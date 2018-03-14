@@ -6,6 +6,7 @@ import router from './router';
 import Vuefity from 'vuetify';
 import 'vuetify/dist/vuetify.min.css';
 import 'babel-polyfill';
+import VueMorphling from 'vue-morphling';
 
 Vue.config.productionTip = false;
 
@@ -21,9 +22,11 @@ Vue.use(Vuefity, {
   }
 });
 
+Vue.use(VueMorphling);
+
 new Vue({
   el: '#app',
   router,
   components: { App },
   template: '<App/>'
-})
+});

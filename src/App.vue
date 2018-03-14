@@ -24,4 +24,16 @@ export default {
 .bg-cms {
   background-color: #9c27b0 !important;
 }
+
+.custom-router-link {
+  text-decoration: none;
+}
+
+.font-weight-normal {
+  font-weight: normal;
+}
+
+.panel-title {
+  font-weight: bold;
+}
 </style>

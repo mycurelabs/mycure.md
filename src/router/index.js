@@ -37,6 +37,26 @@ export default new Router({
       path: '/npc-website',
       name: 'npc-website',
       beforeEnter() { window.open('https://privacy.gov.ph/') }
+    },
+    {
+      path: '/fb-link',
+      name: 'fb-link',
+      beforeEnter() { window.open('https://www.facebook.com/mycure.md') }
+    },
+    {
+      path: '/twitter-link',
+      name: 'twitter-link',
+      beforeEnter() { window.open('https://twitter.com/mycureapp') }
+    },
+    {
+      path: '/youtube-link',
+      name: 'youtube-link',
+      beforeEnter() { window.open('https://www.youtube.com/channel/UCfQ5QBdFh6f9Tuj2tWkRmvg') }
+    },
+    {
+      path: '/request-demo-link',
+      name: 'request-demo-link',
+      beforeEnter() { window.open('https://docs.google.com/forms/d/e/1FAIpQLSfjshsDWT8gfL_ktnuYJVZI50d14i4_2pUT-wBXJGRcdmB83w/viewform?c=0&w=1&usp=send_form') }
     }
   ]
 });
