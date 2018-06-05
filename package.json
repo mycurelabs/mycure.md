@@ -1,8 +1,8 @@
 {
   "name": "mycure.md",
   "version": "1.0.0",
-  "description": "A Vue.js project",
-  "author": "Joff Tiquez <jofftiquez@gmail.com>",
+  "description": "MYCURE Inc. Website",
+  "author": "Jofferson Ramirez Tiquez <jofftiquez@gmail.com>",
   "private": true,
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
@@ -17,7 +17,7 @@
     "vue": "^2.5.2",
     "vue-morphling": "^0.7.3",
     "vue-router": "^3.0.1",
-    "vuetify": "^1.0.6"
+    "vuetify": "^1.0.18"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",

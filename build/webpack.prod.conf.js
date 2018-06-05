@@ -16,6 +16,11 @@ const env = process.env.NODE_ENV === 'testing'
   ? require('../config/test.env')
   : require('../config/prod.env')
 
+const routes = [
+  '/', 
+  '/our-story' 
+];
+
 const webpackConfig = merge(baseWebpackConfig, {
   module: {
     rules: utils.styleLoaders({
@@ -35,7 +40,7 @@ const webpackConfig = merge(baseWebpackConfig, {
       // Path to compiled app
       path.join(__dirname, '../dist'),
       // List of endpoints you wish to prerender
-      [ '/', '/our-story' ]
+      routes
     ),    
     // http://vuejs.github.io/vue-loader/en/workflow/production.html
     new webpack.DefinePlugin({

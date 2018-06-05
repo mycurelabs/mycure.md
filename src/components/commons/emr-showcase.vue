@@ -3,7 +3,7 @@
     v-container
       v-layout(column)
         v-flex(xs12 md10 offset-md1)
-          v-layout(row)
+          v-layout(row).hidden-sm-and-down
             v-flex(xs12 md6).text-xs-right.pt-2
               img(width="auto" :src="selectedItem.image")
             v-flex(xs12 md6).text-xs-left
@@ -14,16 +14,23 @@
                     div.vertical-line
                   div.right-content.pa-1
                     h2(:style="{color: getBackgrounColor(item)}") {{ item.title }}
-                    ul.pa-3
+                    ul.pl-3.pt-2
                       li(v-for="(subItem, key) in item.subItems" :key="key") {{ subItem }}
+          v-layout(column).hidden-md-and-up
+            v-flex(xs12)
+              v-carousel(style="height: 600px;")
+                v-carousel-item(v-for="(item,i) in items" :src="item.image" :key="i")
+            v-flex(xs12)
+              div(v-for="(item, key) in items" :key="key").right-content.pa-1.pt-3
+                h2 {{ item.title }}
+                ul.pl-3.pt-2
+                  li(v-for="(subItem, key) in item.subItems" :key="key") {{ subItem }}
 </template>
 
 <script>
-  import patientRecordManagementImg from '../../assets/images/mycure-v3-philippines-web-mobile-ipad-emr-feature-patient-list.png';
   export default {
     created() {
-      this.selectedItem = this.items[1];
-      console.log(this.selectedItem)
+      this.selectedItem = this.items[0];
     },
     data() {
       return {
@@ -102,7 +109,7 @@
     height: 20px;
     background: #ccc;
     border-radius: 100%;
-    margin-top: 7px;
+    margin-top: 5px;
   }
 
   .vertical-line {

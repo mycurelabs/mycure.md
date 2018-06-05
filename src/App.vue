@@ -17,6 +17,10 @@ export default {
   color: #2c3e50;
 }
 
+p {
+  font-size: 16px;
+}
+
 .btn-larger {
   height: 55px;
 }
