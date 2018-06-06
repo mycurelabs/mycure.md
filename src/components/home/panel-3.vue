@@ -1,9 +1,9 @@
 <template lang="pug">
-  div.panel-2.pt-5.pb-5
+  div.panel-3.pt-5.pb-5
     div.container
-      div(style="height: 100vh").row.align-items-center
+      div.row.align-items-center
         div.col-xs-12.col-md-12.text-center
-          div(style="height: 100vh").row.wrap.align-items-center
+          div.row.wrap.align-items-center
             div.col-xs-12.col-md-6
               h2.color-primary Packaged for you clinic type
               br 
@@ -42,7 +42,7 @@
 </script>
 
 <style scoped>
-  .panel-2 {
-    height: 100vh;
+  .panel-3 {
+    /* height: 100vh; */
   }
 </style>
