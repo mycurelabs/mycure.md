@@ -1,5 +1,5 @@
 <template lang="pug">
-  div.panel-2.pt-5.pb-5
+  div.panel-2
     div.container
       div(style="height: 100vh").row.align-items-center
         div.col-xs-12.col-md-12.text-center
@@ -29,5 +29,6 @@
 <style scoped>
   .panel-2 {
     height: 100vh;
+    background: white;
   }
 </style>
