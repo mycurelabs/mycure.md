@@ -12,8 +12,8 @@
         b-nav-item(href="") Link 4
 
       b-navbar-nav.ml-auto
-        b-nav-item(href="") LOGIN
-        b-button(variant="primary" size="sm") SIGNUP
+        b-nav-item(href="") Login
+        b-button(variant="primary" size="sm") Signup
         
         //- b-nav-item-dropdown(text="" right)
         //-   b-dropdown-item(href="#") EN
