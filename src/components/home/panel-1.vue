@@ -2,7 +2,7 @@
   div.panel-1
     mc-navbar-home
     div.container
-      div(style="height: 90vh").row.align-items-center
+      div.row-container.row.align-items-center
         div.col-xs-12.col-md-6
           h2(style="font-size: 24px;") MYCURE | Clinic Management System
           div.hr-blue
@@ -14,7 +14,7 @@
           b-button(variant="primary" size="sm") Watch Video
           br
           br
-          a(href="") Signup me up now.
+          a(href="") Signup me up now
 </template>
 
 <script>
@@ -28,10 +28,47 @@
 
 <style scoped>
   .panel-1 {
-    height: 100vh;
+    height: auto;
     background-image: url('../../assets/images/v4/bg.jpg');
     background-repeat: no-repeat;
     background-size: cover;
-    background-repeat: no-repeat;
+  }
+
+  .container {
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+
+  @media (min-width: 576px) {
+    .container {
+      padding-top: 50px;
+      padding-bottom: 50px;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .panel-1 {
+      height: 100vh;
+      background-image: url('../../assets/images/v4/bg.jpg');
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+    
+    .container {
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+
+    .row-container {
+      height: 90vh;
+    }
+  }
+
+  @media (min-width: 992px) {
+
+  }
+
+  @media (min-width: 1200px) {
+
   }
 </style>
