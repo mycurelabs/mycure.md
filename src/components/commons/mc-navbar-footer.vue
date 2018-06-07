@@ -26,3 +26,18 @@
         b-form(@submit.prevent="onSubmit")
           b-form-input(v-model="search" class="form-control-dark" type="text" placeholder="Search")
 </template>
+
+<script>
+  export default {
+    data() {
+      return {
+        search: ''
+      }
+    },
+    methods: {
+      onSubmit() {
+        location.href = `http://blog.mycure.md/?s=${this.search}&post_type=post`;
+      }
+    }
+  }
+</script>
