@@ -1006,6 +1006,10 @@ better-assert@~1.0.0:
   dependencies:
     callsite "1.0.0"
 
+bezier-easing@^2.0.3:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/bezier-easing/-/bezier-easing-2.1.0.tgz#c04dfe8b926d6ecaca1813d69ff179b7c2025d86"
+
 bfj-node4@^5.2.0:
   version "5.3.1"
   resolved "https://registry.yarnpkg.com/bfj-node4/-/bfj-node4-5.3.1.tgz#e23d8b27057f1d0214fc561142ad9db998f26830"
@@ -4152,9 +4156,9 @@ kew@^0.7.0, kew@~0.7.0:
   version "0.7.0"
   resolved "https://registry.yarnpkg.com/kew/-/kew-0.7.0.tgz#79d93d2d33363d6fdd2970b335d9141ad591d79b"
 
-kidlat-css@^0.0.15:
-  version "0.0.15"
-  resolved "https://registry.yarnpkg.com/kidlat-css/-/kidlat-css-0.0.15.tgz#7f6f93b02572d57f79ac6764092626273c8344d7"
+kidlat-css@^0.0.16:
+  version "0.0.16"
+  resolved "https://registry.yarnpkg.com/kidlat-css/-/kidlat-css-0.0.16.tgz#224089981bf670bac3266dff8c23ff98e10bb0b6"
 
 killable@^1.0.0:
   version "1.0.0"
@@ -7316,6 +7320,12 @@ vue-morphling@^0.7.3:
 vue-router@^3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/vue-router/-/vue-router-3.0.1.tgz#d9b05ad9c7420ba0f626d6500d693e60092cc1e9"
+
+vue-scrollto@^2.11.0:
+  version "2.11.0"
+  resolved "https://registry.yarnpkg.com/vue-scrollto/-/vue-scrollto-2.11.0.tgz#0657f127faded60a71fbcc841f393279a49aed55"
+  dependencies:
+    bezier-easing "^2.0.3"
 
 vue-style-loader@^3.0.0, vue-style-loader@^3.0.1:
   version "3.1.2"
