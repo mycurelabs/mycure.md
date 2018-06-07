@@ -1,7 +1,7 @@
 <template lang="pug">
   b-navbar(toggleable="md" type="light" variant="transparent-light")
     b-navbar-toggle(target="nav_collapse")
-    b-navbar-brand(href="#") 
+    b-navbar-brand(href="" :to="{name: 'home'}") 
       img(src="../../assets/images/v4/mycure-logo.svg")
     b-collapse(is-nav id="nav_collapse")
 
