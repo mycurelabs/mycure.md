@@ -11,17 +11,17 @@
           p Tell us why you're here:
           br
         div.col-xs-12.col-md-4.offset-md-2
-          b-button(variant="outline-primary" size="sm" style="width: 100%") I wanna learn more about your product
+          b-button(variant="outline-primary" size="lg" style="width: 100%") I wanna learn more about your product
           br
           br
-          b-button(variant="outline-primary" size="sm" style="width: 100%") I wanna partner with MYCURE
+          b-button(variant="outline-primary" size="lg" style="width: 100%") I wanna partner with MYCURE
         div.col-xs-12.col-md-4
-          b-button(variant="outline-primary" size="sm" style="width: 100%") I wanna join the MYCURE team
+          b-button(variant="outline-primary" size="lg" style="width: 100%") I wanna join the MYCURE team
           br
           br
-          b-button(variant="outline-primary" size="sm" style="width: 100%") I wanna care the extra mile with you
+          b-button(variant="outline-primary" size="lg" style="width: 100%") I wanna care the extra mile with you
         div.col-xs-12.col-md-12.text-center.mt-4
-          b-button(variant="success" size="sm") I wanna signup now
+          b-button(variant="success" size="lg") I wanna signup now
 </template>
 
 <script>
