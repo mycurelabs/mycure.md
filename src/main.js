@@ -8,6 +8,7 @@ import router from './router';
 import 'babel-polyfill';
 import VueMorphling from 'vue-morphling';
 import BootstrapVue from 'bootstrap-vue';
+import VueScrollTo from 'vue-scrollto';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
 import 'kidlat-css/css/kidlat.css';
@@ -28,6 +29,19 @@ Vue.use(BootstrapVue);
 // });
 
 Vue.use(VueMorphling);
+
+Vue.use(VueScrollTo,  {
+  container: "body",
+  duration: 500,
+  easing: "ease",
+  offset: 0,
+  cancelable: true,
+  onStart: false,
+  onDone: false,
+  onCancel: false,
+  x: false,
+  y: true
+});
 
 new Vue({
   el: '#app',
