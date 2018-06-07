@@ -9,6 +9,7 @@
     panel-7
     panel-8
     panel-9
+    mc-footer
       
 </template>
 
@@ -22,6 +23,7 @@
   import panel7 from './panel-7';
   import panel8 from './panel-8';
   import panel9 from './panel-9';
+  import mcFooter from '../commons/mc-footer';
 
   export default {
     components: {
@@ -33,7 +35,8 @@
       'panel-6': panel6,
       'panel-7': panel7,
       'panel-8': panel8,
-      'panel-9': panel9
+      'panel-9': panel9,
+      mcFooter
     }
   }
 </script>
