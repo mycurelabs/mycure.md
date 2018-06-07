@@ -25,17 +25,11 @@
 </template>
 
 <script>
-  import mcNavbarHome from '../commons/mc-navbar-home';
-  export default {
-    components: {
-      mcNavbarHome
-    }
-  }
 </script>
 
 <style scoped>
   .panel-9 {
     /* height: 100vh; */
-    background-color: white;
+    /* background-color: white; */
   }
 </style>

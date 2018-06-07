@@ -63,12 +63,6 @@
 </template>
 
 <script>
-  import mcNavbarHome from '../commons/mc-navbar-home';
-  export default {
-    components: {
-      mcNavbarHome
-    }
-  }
 </script>
 
 <style scoped>

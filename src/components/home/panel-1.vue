@@ -4,7 +4,7 @@
     div.container
       div.row-container.row.align-items-center
         div.col-xs-12.col-md-6
-          h2(style="font-size: 24px;") MYCURE | Clinic Management System
+          h2 MYCURE | Clinic Management System
           div.hr-blue
           br
           h1 MYCURE cares for people who care for people.

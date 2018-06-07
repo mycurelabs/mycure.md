@@ -18,57 +18,117 @@
           div.row.justify-content-md-center.pb-5.pt-5
             div.col-xs-12.col-md-9
               h2.color-primary Complete Clinic Suite
-            div(v-if="item1Selected" style="outline: 1px solid red;").col-xs-12.col-md-9.pt-4
+            //- INDIVIDUAL
+            div(v-if="item1Selected").col-xs-12.col-md-9.pt-4
               div.row.justify-content-md-center.mb-5
-                div.col-xs-3.col-md-2
+                div.feature-item
                   img(src="../../assets/images/v4/mycure-homepage-wireframe-icon-emr.png")
                   h6 EMR
-                div.col-xs-3.col-md-2
+                div.feature-item
                   img(src="../../assets/images/v4/mycure-homepage-wireframe-icon-emr.png")
                   h6 Foo
-                div.col-xs-3.col-md-2
+                div.feature-item
                   img(src="../../assets/images/v4/mycure-homepage-wireframe-icon-emr.png")
                   h6 Foo
-                div.col-xs-3.col-md-2
+                div.feature-item
                   img(src="../../assets/images/v4/mycure-homepage-wireframe-icon-emr.png")
                   h6 Foo
-                div.col-xs-3.col-md-2
+                div.feature-item
                   img(src="../../assets/images/v4/mycure-homepage-wireframe-icon-emr.png")
                   h6 Foo
               div.row.justify-content-md-center
-                div.col-xs-3.col-md-2
+                div.feature-item
                   img(src="../../assets/images/v4/mycure-homepage-wireframe-icon-emr.png")
-                div.col-xs-3.col-md-2
+                  h6 Foo
+                div.feature-item
                   img(src="../../assets/images/v4/mycure-homepage-wireframe-icon-emr.png")
-                div.col-xs-3.col-md-2
+                  h6 Foo
+                div.feature-item
                   img(src="../../assets/images/v4/mycure-homepage-wireframe-icon-emr.png")
-                div.col-xs-3.col-md-2
+                  h6 Foo
+                div.feature-item
                   img(src="../../assets/images/v4/mycure-homepage-wireframe-icon-emr.png")
-                div.col-xs-3.col-md-2
+                  h6 Foo
+                div.feature-item
                   img(src="../../assets/images/v4/mycure-homepage-wireframe-icon-emr.png")
+                  h6 Foo
+            //- GROUP
             div(v-if="item2Selected").col-xs-12.col-md-9.pt-4
-              img(src="../../assets/images/v4/mycure-homepage-wireframe-icon-emr.png")
-              img(src="../../assets/images/v4/mycure-homepage-wireframe-icon-emr.png").pl-2.pr-2
-              img(src="../../assets/images/v4/mycure-homepage-wireframe-icon-emr.png").pl-2.pr-2
-              img(src="../../assets/images/v4/mycure-homepage-wireframe-icon-emr.png").pl-2.pr-2
-              img(src="../../assets/images/v4/mycure-homepage-wireframe-icon-emr.png").pl-2.pr-2
+              div.row.justify-content-md-center.mb-5
+                div.feature-item
+                  img(src="../../assets/images/v4/mycure-homepage-wireframe-icon-emr.png")
+                  h6 EMR
+                div.feature-item
+                  img(src="../../assets/images/v4/mycure-homepage-wireframe-icon-emr.png")
+                  h6 Foo
+                div.feature-item
+                  img(src="../../assets/images/v4/mycure-homepage-wireframe-icon-emr.png")
+                  h6 Foo
+                div.feature-item
+                  img(src="../../assets/images/v4/mycure-homepage-wireframe-icon-emr.png")
+                  h6 Foo
+                div.feature-item
+                  img(src="../../assets/images/v4/mycure-homepage-wireframe-icon-emr.png")
+                  h6 Foo
+              div.row.justify-content-md-center
+                div.feature-item
+                  img(src="../../assets/images/v4/mycure-homepage-wireframe-icon-emr.png")
+                  h6 Foo
+                div.feature-item
+                  img(src="../../assets/images/v4/mycure-homepage-wireframe-icon-emr.png")
+                  h6 Foo
+                div.feature-item
+                  img(src="../../assets/images/v4/mycure-homepage-wireframe-icon-emr.png")
+                  h6 Foo
+                div.feature-item
+                  img(src="../../assets/images/v4/mycure-homepage-wireframe-icon-emr.png")
+                  h6 Foo
+                div.feature-item
+                  img(src="../../assets/images/v4/mycure-homepage-wireframe-icon-emr.png")
+                  h6 Foo
+            //- MULTI-SPECIALTY
             div(v-if="item3Selected").col-xs-12.col-md-9.pt-4
-              img(src="../../assets/images/v4/mycure-homepage-wireframe-icon-emr.png").pl-2.pr-2
-              img(src="../../assets/images/v4/mycure-homepage-wireframe-icon-emr.png").pl-2.pr-2
-              img(src="../../assets/images/v4/mycure-homepage-wireframe-icon-emr.png").pl-2.pr-2
-              img(src="../../assets/images/v4/mycure-homepage-wireframe-icon-emr.png").pl-2.pr-2
-              img(src="../../assets/images/v4/mycure-homepage-wireframe-icon-emr.png").pl-2.pr-2
+              div.row.justify-content-md-center.mb-5
+                div.feature-item
+                  img(src="../../assets/images/v4/mycure-homepage-wireframe-icon-emr.png")
+                  h6 EMR
+                div.feature-item
+                  img(src="../../assets/images/v4/mycure-homepage-wireframe-icon-emr.png")
+                  h6 Foo
+                div.feature-item
+                  img(src="../../assets/images/v4/mycure-homepage-wireframe-icon-emr.png")
+                  h6 Foo
+                div.feature-item
+                  img(src="../../assets/images/v4/mycure-homepage-wireframe-icon-emr.png")
+                  h6 Foo
+                div.feature-item
+                  img(src="../../assets/images/v4/mycure-homepage-wireframe-icon-emr.png")
+                  h6 Foo
+              div.row.justify-content-md-center
+                div.feature-item
+                  img(src="../../assets/images/v4/mycure-homepage-wireframe-icon-emr.png")
+                  h6 Foo
+                div.feature-item
+                  img(src="../../assets/images/v4/mycure-homepage-wireframe-icon-emr.png")
+                  h6 Foo
+                div.feature-item
+                  img(src="../../assets/images/v4/mycure-homepage-wireframe-icon-emr.png")
+                  h6 Foo
+                div.feature-item
+                  img(src="../../assets/images/v4/mycure-homepage-wireframe-icon-emr.png")
+                  h6 Foo
+                div.feature-item
+                  img(src="../../assets/images/v4/mycure-homepage-wireframe-icon-emr.png")
+                  h6 Foo
             div.col-xs-12.col-md-12.pb-5.pt-5
               b-button(variant="outline-primary" size="sm") Explore
 </template>
 
 <script>
-  import mcNavbarHome from '../commons/mc-navbar-home';
   import mcRadioGroupImage from '../commons/mc-radio-group-image';
   import VueScrollTo from 'vue-scrollto';
   export default {
     components: {
-      mcNavbarHome,
       mcRadioGroupImage
     },
     data() {
@@ -124,5 +184,15 @@
 <style scoped>
   .panel-3 {
     /* height: 100vh; */
+  }
+
+  .feature-item {
+    background-color: white;
+    border-radius: 5px;
+    padding: 15px;
+    margin: 15px;
+    -webkit-box-shadow: 0px 0px 10px -2px rgba(160,181,191,1);
+    -moz-box-shadow: 0px 0px 10px -2px rgba(160,181,191,1);
+    box-shadow: 0px 0px 10px -2px rgba(160,181,191,1);
   }
 </style>
