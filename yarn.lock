@@ -4152,9 +4152,9 @@ kew@^0.7.0, kew@~0.7.0:
   version "0.7.0"
   resolved "https://registry.yarnpkg.com/kew/-/kew-0.7.0.tgz#79d93d2d33363d6fdd2970b335d9141ad591d79b"
 
-kidlat-css@^0.0.11:
-  version "0.0.11"
-  resolved "https://registry.yarnpkg.com/kidlat-css/-/kidlat-css-0.0.11.tgz#0a327bb8e7fef198e34b4535b6d5bd36b2dbcc7e"
+kidlat-css@^0.0.15:
+  version "0.0.15"
+  resolved "https://registry.yarnpkg.com/kidlat-css/-/kidlat-css-0.0.15.tgz#7f6f93b02572d57f79ac6764092626273c8344d7"
 
 killable@^1.0.0:
   version "1.0.0"
