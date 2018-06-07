@@ -2,7 +2,7 @@
   b-navbar(toggleable="md" type="light" variant="transparent-light")
     b-navbar-toggle(target="nav_collapse")
     b-navbar-brand(href="#") 
-      img(src="../../assets/images/mycure-v3-philippines-web-header-logo.png")
+      img(src="../../assets/images/v4/mycure-logo.svg")
     b-collapse(is-nav id="nav_collapse")
 
       b-navbar-nav
