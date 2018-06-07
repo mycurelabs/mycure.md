@@ -64,16 +64,6 @@
   export default {
     components: {
       mcNavbarFooter
-    },
-    data() {
-      return {
-        search: ''
-      }
-    },
-    methods: {
-      onSubmit() {
-        location.href = `http://blog.mycure.md/?s=${this.search}&post_type=post`;
-      }
     }
   }
 </script>
