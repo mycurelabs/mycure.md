@@ -9,7 +9,8 @@
     "start": "npm run dev",
     "unit": "cross-env BABEL_ENV=test karma start test/unit/karma.conf.js --single-run",
     "test": "npm run unit",
-    "build": "node build/build.js"
+    "build": "node build/build.js",
+    "deploy:fb": "firebase deploy"
   },
   "dependencies": {
     "babel-polyfill": "^6.26.0",
