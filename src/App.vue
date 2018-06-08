@@ -10,6 +10,11 @@ export default {
 </script>
 
 <style>
+html, body {
+  max-width: 100% !important;
+  overflow-x: hidden !important;
+}
+
 .hr-blue {
   height: 2px;
   width: 150px;
