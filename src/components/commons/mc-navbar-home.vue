@@ -6,10 +6,11 @@
     b-collapse(is-nav id="nav_collapse")
 
       b-navbar-nav
-        b-nav-item(href="") Link 1
-        b-nav-item(href="") Link 2
-        b-nav-item(href="") Link 3
-        b-nav-item(href="") Link 4
+        b-nav-item(href="") Our Products
+        b-nav-item(href="" :to="{name: 'modules'}") Modules
+        b-nav-item(href="") Pricing
+        b-nav-item(href="" :to="{name: 'our-story'}") Our Story
+        b-nav-item(href="") Contact Us
 
       b-navbar-nav.ml-auto
         b-nav-item(href="") Login
