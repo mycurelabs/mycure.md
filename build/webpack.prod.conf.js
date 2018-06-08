@@ -18,7 +18,8 @@ const env = process.env.NODE_ENV === 'testing'
 
 const routes = [
   '/', 
-  '/our-story' 
+  '/our-story',
+  '/modules'
 ];
 
 const webpackConfig = merge(baseWebpackConfig, {
