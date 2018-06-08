@@ -1,7 +1,8 @@
-import Vue from 'vue'
-import Router from 'vue-router'
-import home from '@/components/home'
-import ourStory from '@/components/our-story'
+import Vue from 'vue';
+import Router from 'vue-router';
+import home from '@/components/home';
+import ourStory from '@/components/our-story';
+import modules from '@/components/modules';
 
 Vue.use(Router)
 
@@ -17,6 +18,11 @@ export default new Router({
       path: '/our-story',
       name: 'our-story',
       component: ourStory
+    },
+    {
+      path: '/modules',
+      name: 'modules',
+      component: modules
     },
     {
       path: '/login',
