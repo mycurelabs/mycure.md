@@ -4,12 +4,12 @@
       b-row.justify-content-md-center
         b-col(md="2")
         b-col(xs="12" md="7").paper.pl-5.pr-5
-          img(src="../../assets/images/v4/mycure-modules-pin.png" :class="{'animate': scrollPositionTop > 300}").pin
-          img(src="../../assets/images/v4/mycure-modules-plantg.png" :class="{'animate': scrollPositionTop > 420}").pot
-          img(src="../../assets/images/v4/mycure-modules-pen-and-pad.png" :class="{'animate': scrollPositionTop > 570}").notepad
-          img(src="../../assets/images/v4/mycure-modules-white-envelope.png" :class="{'animate': scrollPositionTop > 750}").envelope
-          img(src="../../assets/images/v4/mycure-modules-plate.png" :class="{'animate': scrollPositionTop > 1100}").plate
-          img(src="../../assets/images/v4/mycure-modules-chickpeas.png" :class="{'animate': scrollPositionTop > 1200}").peas
+          img(src="../../assets/images/v4/mycure-modules-pin.png" :class="{'animate': scrollTop > 300}").pin
+          img(src="../../assets/images/v4/mycure-modules-plantg.png" :class="{'animate': scrollTop > 420}").pot
+          img(src="../../assets/images/v4/mycure-modules-pen-and-pad.png" :class="{'animate': scrollTop > 570}").notepad
+          img(src="../../assets/images/v4/mycure-modules-white-envelope.png" :class="{'animate': scrollTop > 750}").envelope
+          img(src="../../assets/images/v4/mycure-modules-plate.png" :class="{'animate': scrollTop > 1100}").plate
+          img(src="../../assets/images/v4/mycure-modules-chickpeas.png" :class="{'animate': scrollTop > 1200}").peas
           b-row.align-items-center.justify-content-md-center
             b-col(xs="12" md="12").text-center
               h2 HOW IT WORKS
@@ -60,13 +60,13 @@
 <script>
   export default {
     created() {
-      this.$scrollspy(scrollPos => {
-        this.scrollPositionTop = scrollPos;
+      this.$scrollspy().subscribe({
+        next: (scrollTop) => this.scrollTop = scrollTop
       });
     },
     data() {
       return {
-        scrollPositionTop: 0
+        scrollTop: 0
       }
     },
     destroyed() {
