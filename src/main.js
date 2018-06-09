@@ -3,6 +3,7 @@
 import Vue from 'vue';
 import App from './App';
 import router from './router';
+import store from './vuex';
 // import Vuefity from 'vuetify';
 // import 'vuetify/dist/vuetify.min.css';
 import 'babel-polyfill';
@@ -47,6 +48,7 @@ Vue.use(VueScrollTo,  {
 new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
   template: '<App/>'
 });
