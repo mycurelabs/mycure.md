@@ -17,11 +17,15 @@
     "bootstrap-vue": "^2.0.0-rc.11",
     "kidlat-css": "^0.0.16",
     "pug": "^2.0.1",
+    "rxjs": "^6.2.0",
+    "rxjs-compat": "^6.2.0",
     "vue": "^2.5.2",
     "vue-morphling": "^0.7.3",
     "vue-router": "^3.0.1",
     "vue-scrollto": "^2.11.0",
-    "vuetify": "^1.0.18"
+    "vuetify": "^1.0.18",
+    "vuex": "^3.0.1",
+    "vuex-persistedstate": "^2.5.4"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
