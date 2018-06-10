@@ -142,14 +142,14 @@
             name: 'INDIVIDUAL',
             isSelected: true,
             hasTooltip: false,
-            src: require('../../assets/images/v4/mycure-homepage-wireframe-individual-clinic-active.png')
+            src: require('../../assets/images/v4/mycure-homepage-can-individual-clinic-active.png')
           },
           {
             id: 'group',
             name: 'GROUP',
             isSelected: false,
             hasTooltip: false,
-            src: require('../../assets/images/v4/mycure-homepage-wireframe-individual-group.png')
+            src: require('../../assets/images/v4/mycure-homepage-can-group-clinic-active.png')
           },
           {
             id: 'specialized',
@@ -157,7 +157,7 @@
             isSelected: false,
             hasTooltip: true,
             tooltipMessage: 'This includes aesthetics, etc.',
-            src: require('../../assets/images/v4/mycure-homepage-wireframe-specialized-clinic-active.png')
+            src: require('../../assets/images/v4/mycure-homepage-can-specialized-clinic-active.png')
           }
         ]
       }
