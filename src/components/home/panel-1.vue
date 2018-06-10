@@ -29,7 +29,7 @@
 <style scoped>
   .panel-1 {
     height: auto;
-    background-image: url('../../assets/images/v4/bg.jpg');
+    background-image: url('../../assets/images/v4/mycure-homepage-doctor-welcome-smile-emr-his-ehr-philippines-mobile-web-app.jpg');
     background-repeat: no-repeat;
     background-size: cover;
   }
@@ -49,7 +49,7 @@
   @media (min-width: 768px) {
     .panel-1 {
       height: 100vh;
-      background-image: url('../../assets/images/v4/bg.jpg');
+      background-image: url('../../assets/images/v4/mycure-homepage-doctor-welcome-smile-emr-his-ehr-philippines-mobile-web-app.jpg');
       background-repeat: no-repeat;
       background-size: cover;
     }
