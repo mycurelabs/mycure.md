@@ -2,7 +2,7 @@
   div.row.justify-content-md-center
     div(v-for="(item, key) in value" @click="select(key, item)").col-xs-12.col-md-3
       div(:class="{selected: item.isSelected}").item.pt-5.pb-5
-        img( :src="item.src")
+        img(width="100%" :src="item.src")
         br
         br
         h5 {{item.name}} 
