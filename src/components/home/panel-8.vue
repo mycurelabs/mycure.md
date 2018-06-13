@@ -7,10 +7,9 @@
             div.hr-blue
           br
           h1 Caring the extra mile is kinda our thing
-          br
-          p Id quis sunt sit sint nostrud dolore consectetur enim ut.
-            br
-            | Proident exercitation voluptate.
+          br  
+          p More than a business, we are a community.
+          p More than a product, it is an advocacy.
           br
           b-button(variant="primary" size="sm") Read our story
 </template>
