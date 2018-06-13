@@ -8,6 +8,7 @@ import store from './vuex';
 // import 'vuetify/dist/vuetify.min.css';
 import 'babel-polyfill';
 import './mixins';
+import './directives';
 import VueMorphling from 'vue-morphling';
 import BootstrapVue from 'bootstrap-vue';
 import VueScrollTo from 'vue-scrollto';
