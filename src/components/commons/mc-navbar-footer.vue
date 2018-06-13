@@ -8,21 +8,21 @@
     b-collapse(is-nav id="nav_collapse")
       b-navbar-nav.ml-auto
         b-nav-item
-          label Follow us on:
+          small.color-white Follow us on:
         b-nav-item(href="") 
-          img(src="../../assets/images/v4/mycure-homepage-wireframe-icon-fb.png")
+          img(width="25" src="../../assets/images/v4/mycure-homepage-wireframe-icon-fb.png")
         b-nav-item(href="")
-          img(src="../../assets/images/v4/mycure-homepage-wireframe-icon-ytub-e.png")
+          img(width="25" src="../../assets/images/v4/mycure-homepage-wireframe-icon-ytub-e.png")
         b-nav-item(href="")
-          img(src="../../assets/images/v4/mycure-homepage-wireframe-icon-ig.png")
+          img(width="25" src="../../assets/images/v4/mycure-homepage-wireframe-icon-ig.png")
         b-nav-item(href="")
-          img(src="../../assets/images/v4/mycure-homepage-wireframe-icon-gplus.png")
+          img(width="25" src="../../assets/images/v4/mycure-homepage-wireframe-icon-gplus.png")
         b-nav-item(href="")
-          img(src="../../assets/images/v4/mycure-homepage-wireframe-icon-linkedin.png")
+          img(width="25" src="../../assets/images/v4/mycure-homepage-wireframe-icon-linkedin.png")
         b-nav-item(href="")
-          img(src="../../assets/images/v4/mycure-homepage-wireframe-icon-twitter.png")
+          img(width="25" src="../../assets/images/v4/mycure-homepage-wireframe-icon-twitter.png")
 
-      b-navbar-nav.ml-auto
+      // b-navbar-nav.ml-auto
         b-form(@submit.prevent="onSubmit")
           b-form-input(v-model="search" class="form-control-dark" type="text" placeholder="Search")
 </template>
