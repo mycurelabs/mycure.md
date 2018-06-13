@@ -9,7 +9,7 @@
           br
           h1 Joel
           br
-          p Laborum cupidatat nulla in nisi ex velit enim do. Cillum enim nostrud aliqua aliqua incididunt amet commodo voluptate nisi. Fugiat sunt ullamco excepteur enim id anim do commodo aliqua aliqua officia et elit.
+          p Joel is a marketing executive and has been involved in the field for the last 20 years. His work involves a lot of travel and he loves to explore and talk to local folks during these times. Through these encounters, he was able to get a closer look at the plight of the Filipinos with regard to medical and health access. He believes that there are still a lot that can be done and that a good tech infrastructure can be a big boost in improving this sector.
 </template>
 
 <script>
@@ -36,7 +36,7 @@
   @media (min-width: 768px) {
     .panel-2 {
       min-height: 100vh;
-      background-color: white;
+      /* background-color: white; */
     }
 
     .container {

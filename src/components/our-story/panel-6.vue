@@ -7,7 +7,11 @@
           br
           h1 Dale
           br
-          p Id incididunt sint anim cupidatat ut est nisi enim est nostrud velit eiusmod minim. Qui aliquip fugiat tempor nulla sint fugiat anim cupidatat minim excepteur eiusmod pariatur aliquip. Lorem non proident nulla exercitation ullamco duis anim eu proident incididunt. Veniam ex irure consectetur labore dolor labore amet laborum duis reprehenderit. Tempor tempor veniam officia pariatur. Dolor sunt do consequat occaecat duis tempor in sint minim cillum.
+          p Dale runs a tech company that started in 2004. Among numerous IT projects, their team also made the first Filipino-themed game on iTunes and Googleplay called 
+            a(href="http://www.butchukoy.com/" target="_blank") Sipa 
+            | and a mobile photo diary meant to tell your story through photos called Pickld. He regularly shares experiences being a Mentor and Director at Founder Institute (Manila). He also started 
+            a(href="http://www.mightyminds.org/" target="_blank") Mighty Minds, 
+            | a nonprofit organization that helps kids finish school.
         div.col-xs-12.col-md-4
           img(width="100%" src="../../assets/images/v4/234x234px.png")
 </template>
@@ -36,7 +40,7 @@
   @media (min-width: 768px) {
     .panel-2 {
       min-height: 100vh;
-      /* background-color: white; */
+      background-color: white;
     }
 
     .container {

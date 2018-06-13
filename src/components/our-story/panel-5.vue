@@ -8,7 +8,7 @@
           br
           h1 About the Founders
           br
-          p Id incididunt sint anim cupidatat ut est nisi enim est nostrud velit eiusmod minim. Qui aliquip fugiat tempor nulla sint fugiat anim cupidatat minim excepteur eiusmod pariatur aliquip. Lorem non proident nulla exercitation ullamco duis anim eu proident incididunt. Veniam ex irure consectetur labore dolor labore amet laborum duis reprehenderit. Tempor tempor veniam officia pariatur. Dolor sunt do consequat occaecat duis tempor in sint minim cillum.
+          p It started with coffee — a late night coffee break between college friends, Dale and Joel, who just came from a wake. A realization set in: life is short and the fact that they were a couple of years away from turning 40 made it much shorter (this explains the coffee and not the beer).
 </template>
 
 <script>

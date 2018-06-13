@@ -1,7 +1,7 @@
 <template lang="pug">
   div.panel-2.pt-5
     div.container
-      div.row.row-container
+      div.row.row-container.align-items-center
         div.col-xs-12.col-md-12.text-center
           center
             div.hr-blue
@@ -11,10 +11,10 @@
         div.col-xs-12.col-md-4
           img(width="100%" src="../../assets/images/v4/234x234px.png")
         div.col-xs-12.col-md-8
-          p Id incididunt sint anim cupidatat ut est nisi enim est nostrud velit eiusmod minim. Qui aliquip fugiat tempor nulla sint fugiat anim cupidatat minim excepteur eiusmod pariatur aliquip. Lorem non proident nulla exercitation ullamco duis anim eu proident incididunt. Veniam ex irure consectetur labore dolor labore amet laborum duis reprehenderit. Tempor tempor veniam officia pariatur. Dolor sunt do consequat occaecat duis tempor in sint minim cillum.
-          p Dolore cillum ex ipsum exercitation tempor aliquip labore exercitation ipsum elit laboris ea cillum. Sunt ut ea sunt aute sit ea incididunt nisi pariatur labore velit eu dolor voluptate. Aliqua amet fugiat mollit qui id mollit aliqua ullamco do consectetur pariatur nisi voluptate. Proident cillum aliqua dolore fugiat sit nostrud deserunt mollit et. Magna sunt reprehenderit sit pariatur quis reprehenderit mollit velit commodo anim. Aliquip pariatur consequat officia ullamco proident.
-          p Minim magna aliqua veniam officia adipisicing.
-          
+          p Meet Paulette, a young widow at 30 years old with two kids (4 yo and 6 yo) in her care. Despite limited resources, she managed to give her kids a good foundation. Paulette is a cancer warrior and survivor. For about a decade and a half now, her life was all about doctor's visits, regular checkups, and staying healthy. 
+            strong Years of medical files 
+            | were definitely taking up a lot of space in their home and her daily life. As she was shuttling between Guam (where she is based) and the Philippines, carrying medical files to different doctors and pharmacies was becoming cumbersome and costly. Replenishing medications became a guessing game. Monitoring her own health sometimes affected her health too.
+          p Our founder, Dale, was witness to all of this. Paulette is Dale’s mother.
 </template>
 
 <script>

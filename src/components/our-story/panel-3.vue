@@ -7,8 +7,9 @@
           br
           h1 Our Purpose
           br
-          p Id incididunt sint anim cupidatat ut est nisi enim est nostrud velit eiusmod minim. Qui aliquip fugiat tempor nulla sint fugiat anim cupidatat minim excepteur eiusmod pariatur aliquip. Lorem non proident nulla exercitation ullamco duis anim eu proident incididunt. Veniam ex irure consectetur labore dolor labore amet laborum duis reprehenderit. Tempor tempor veniam officia pariatur. Dolor sunt do consequat occaecat duis tempor in sint minim cillum.
-          p Id incididunt sint anim cupidatat ut est nisi enim est nostrud velit eiusmod minim. Qui aliquip fugiat tempor nulla sint fugiat anim cupidatat minim excepteur eiusmod pariatur aliquip. Lorem non proident nulla exercitation ullamco duis anim eu proident incididunt. Veniam ex irure consectetur labore dolor labore amet laborum duis reprehenderit. Tempor tempor veniam officia pariatur. Dolor sunt do consequat occaecat duis tempor in sint minim cillum.
+          p Like you, MYCURE is 
+            strong committed to saving lives too, 
+            | by building well-equipped and well-designed apps so healthcare practitioners are in the most ideal work environment to fulfill their purpose.
         div.col-xs-12.col-md-4
           img(width="100%" src="../../assets/images/v4/234x234px.png")
 </template>

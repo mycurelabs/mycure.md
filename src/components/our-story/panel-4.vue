@@ -9,7 +9,9 @@
           br
           h1 Our Team
           br
-          p Laborum cupidatat nulla in nisi ex velit enim do. Cillum enim nostrud aliqua aliqua incididunt amet commodo voluptate nisi. Fugiat sunt ullamco excepteur enim id anim do commodo aliqua aliqua officia et elit.
+          p Our dynamic and agile team will build a 
+            strong healthcare ecosystem 
+            | that is united and adaptive to the rapidly changing technological environment, through top-notch technologies and most delightful designs.
 </template>
 
 <script>
