@@ -8,7 +8,7 @@
     panel-6
     panel-7
     panel-8
-    panel-9
+    panel-9(bg="white")
     mc-footer
       
 </template>
