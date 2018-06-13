@@ -31,18 +31,6 @@
               div.module-container.shadow-5.text-center
                 img(src="../../assets/images/v4/mycure-homepage-wireframe-icon-emr.png")
                 h6 EMR
-            div.col-xs-6.col-md-3
-              div.module-container.shadow-5.text-center
-                img(src="../../assets/images/v4/mycure-homepage-wireframe-icon-emr.png")
-                h6 EMR
-            div.col-xs-6.col-md-3
-              div.module-container.shadow-5.text-center
-                img(src="../../assets/images/v4/mycure-homepage-wireframe-icon-emr.png")
-                h6 EMR
-            div.col-xs-6.col-md-3
-              div.module-container.shadow-5.text-center
-                img(src="../../assets/images/v4/mycure-homepage-wireframe-icon-emr.png")
-                h6 EMR
           div.row.mt-5
             div.col-xs-12.col-md-12
               img(src="../../assets/images/v4/mycure-homepage-wireframe-icon-emr.png")

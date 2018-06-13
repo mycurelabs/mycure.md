@@ -19,10 +19,14 @@
               br
               h1 Create the perfect blend 
                 br 
-                | for you clinic
+                | for your clinic
               br
               center
                 div.hr-blue
+              br
+              p Pick whatever modules you want and we’ll
+                br
+                | beautifully package them just for you.
           b-row.mt-5.pt-5.justify-content-md-center
             b-col(xs="12" md="4")
               h2.mb-5 Core

@@ -9,12 +9,10 @@
           br
           h1 Customize your own MYCURE System.
           br
-          p Consequat laboris laboris tempor dolore est duis mollit dolore laboris duis.
-          p Eu qui ad qui minim consectetur qui. Ea proident sint aliqua ullamco proident in officia culpa.
+          p Because every clinic has its unique way of getting things done.
+          p MYCURE is a clinic management system designed to securely process digital medical records of your patients.
+          br
           b-button(variant="primary" size="sm") Get MYCURE
-          br
-          br
-          a(href="") Signup me up now
 </template>
 
 <script>

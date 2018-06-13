@@ -3,11 +3,11 @@
     div.container
       div.row
         div.col-xs-12.col-md-12.text-center.pb-4
-          center  
+          h2 Let's get started
+          center
             div.hr-blue
           br
-          h1 Let's get started
-          p What recipe/blend do you need right now?
+          h1 What blend do you need right now?
       div.row
         div.col-xs-12.col-md-4.text-center
           h2 For me and my 
