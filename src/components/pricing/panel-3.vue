@@ -17,7 +17,7 @@
         b-col(xs="12" md="6")
           p Signup ang get your clinic spiced up with the best package for you group clinic within 24 hours!
           p Also get get a glimpse of the EMR module for free while you wait!
-          b-button(variant="primary") GET STARATED FOR FREE
+          b-button(variant="primary") Get started for FREE
 
 </template>
 

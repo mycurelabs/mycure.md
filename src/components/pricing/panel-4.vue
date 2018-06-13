@@ -28,7 +28,7 @@
           img(src="../../assets/images/v4/mycure-homepage-wireframe-icon-emr.png").mr-4
           br
           br
-          b-button(variant="primary") GET STARATED FOR FREE
+          b-button(variant="primary") Get started for FREE
 
 
 </template>

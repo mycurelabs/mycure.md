@@ -16,7 +16,7 @@
           br
           br
           br
-          b-button(variant="primary") START QUICK CHAT
+          b-button(variant="primary") Start quick chat
 </template>
 
 <script>

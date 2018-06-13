@@ -18,17 +18,17 @@
           img(src="../../assets/images/v4/mycure-modules-notepad.png")
           br
           br
-          b-button(variant="outline-primary" size="lg").shadow-5 GET MYCURE
+          b-button(variant="outline-primary" size="lg").shadow-5 Get MYCURE
         b-col(xs="12" md="4").text-center
           img(src="../../assets/images/v4/mycure-modules-notepad.png")
           br
           br
-          b-button(variant="outline-primary" size="lg").shadow-5 GET MYCURE
+          b-button(variant="outline-primary" size="lg").shadow-5 Get MYCURE
         b-col(xs="12" md="4").text-center
           img(src="../../assets/images/v4/mycure-modules-notepad.png")
           br
           br
-          b-button(variant="primary" size="lg").shadow-5 GET MYCURE
+          b-button(variant="primary" size="lg").shadow-5 Get MYCURE
 </template>
 
 <script>
