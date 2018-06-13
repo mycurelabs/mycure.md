@@ -15,25 +15,25 @@
               img(width="100%" src="../../assets/images/v4/234x234px.png").mb-3
               div.text-left
                 h6 User-friendly interface
-                p Occaecat anim nostrud.
+                p Being tech-savvy is not a requirement, just tap, type, and go!
             div.col-xs-12.col-md-3.pl-3.pr-3
               img(width="100%" src="../../assets/images/v4/234x234px.png").mb-3
               br
               div.text-left
-                strong Foo
-                p Culpa amet ut laboris.
+                strong Customizable Content
+                p You might ask if we can add this or change that, the answer is usually yes.
             div.col-xs-12.col-md-3.pl-3.pr-3
               img(width="100%" src="../../assets/images/v4/234x234px.png").mb-3
               br
               div.text-left
-                strong Foo
-                p Nisi Lorem labore.
+                strong Hands-on Training
+                p We will be there with you as you learn a new skill and transform your practice.
             div.col-xs-12.col-md-3.pl-3.pr-3
-              img(width="100%" src="../../assets/images/v4/234x234px.png").mb-3
+              img(width="100%" src="../../assets/images/v4/mycure-homepage-image-support.png").mb-3
               br
               div.text-left
-                strong Foo
-                p Eu nostrud qui.
+                strong Responsive Support Team
+                p With a bit of technology and time management, we found a way to serve you faster.
             
 </template>
 
