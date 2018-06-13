@@ -4,12 +4,12 @@
     div.container
       div.row-container.row.align-items-center
         div.col-xs-12.col-md-6
-          h2 MYCURE | Clinic Management System
+          h2 MYCURE | Care the Extra Mile
           div.hr-blue
           br
           h1 MYCURE cares for people who care for people.
           br
-          p Cupidatat deserunt sint incididunt est laborum excepteur ex enim. Ipsum labore labore consectetur consequat cillum pariatur nostrud pariatur veniam eiusmod ad excepteur commodo.
+          p MYCURE cares for people who care for people. It is an all-inclusive clinic management system for doctors and clinics. MYCURE is one of the fastest growing all-around EMR and practice management software in the Philippines.
           br
           b-button(variant="primary" size="sm") Watch Video
           br
