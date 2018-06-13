@@ -1,20 +1,24 @@
 <template lang="pug">
-  div.panel-2
+  div.panel-2.pb-5.pt-5
     div.container
-      div.row-container.row.align-items-center
+      div.row.align-items-center
         div.col-xs-12.col-md-12.text-center
           center
             div.hr-blue
           br
-          h1 All-inclusive system, all-around solution
+          h1 An all-inclusive, all-around clinic 
+            br 
+            | management system
           br
-          p An all-inclusive clinic management system so you don't have to look anywhere else.
+        div.col-xs-12.col-md-6.offset-md-3
+          p MYCURE smoothly integrates your patient records together from registration to billing. It makes data processing so easy, you don’t have to look anywhere else.
           br
-          div.row
-            div.col-xs-12.col-md-6
-              img(src="../../assets/images/v4/635x452px.png" width="100%")
-            div.col-xs-12.col-md-6
-              img(src="../../assets/images/v4/635x452px.png" width="100%")
+        div.col-xs-12.col-md-6
+          img(src="../../assets/images/v4/635x452px.png" width="100%").mb-3
+          p With MYCURE, your patients’ medical data are synced together and stored safely in the cloud.
+        div.col-xs-12.col-md-6
+          img(src="../../assets/images/v4/635x452px.png" width="100%").mb-3
+          p Now, you don’t have to depend on multiple systems anymore because MYCURE simplifies record-keeping for everyone.
 </template>
 
 <script>
@@ -40,17 +44,12 @@
 
   @media (min-width: 768px) {
     .panel-2 {
-      height: 100vh;
       background-color: white;
     }
 
     .container {
       padding-top: 0;
       padding-bottom: 0;
-    }
-
-    .row-container {
-      height: 100vh;
     }
   }
 
