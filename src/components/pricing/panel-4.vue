@@ -9,10 +9,10 @@
           h1 MYCURE for Multispecialty Clinics
           br
           p An all around solution for your outpatient clinic.
-      b-row.row.align-items-center
-        b-col(xs="12" md="6").pl-5.pr-5
-          img(width="100%" src="../../assets/images/v4/635x452px.png")
-        b-col(xs="12" md="6")
+      b-row.row.align-items-center.justify-content-md-center
+        b-col(xs="12" md="5").pl-5.pr-5
+          img(width="100%" src="../../assets/images/v4/mycure-homepage-package-multispecialty.png")
+        b-col(xs="12" md="5")
           p Imagine simplifying all your clinic's paper works -- Faster transactions, more productive staff, reduced paper clutter and secure, integrated data.
           p We promise to formulate the perfect mix for your specialized clinics once you get in touch with us now. We will call you within 24 hours once it's done!
           img(src="../../assets/images/v4/mycure-homepage-wireframe-icon-emr.png").mr-4

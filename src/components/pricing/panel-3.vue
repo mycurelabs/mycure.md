@@ -11,10 +11,11 @@
           p 
             strong A practical system 
             | built for doctor's clinic being handled by a common secretary.
-      b-row.row.align-items-center
-        b-col(xs="12" md="6").pl-5.pr-5
-          img(width="100%" src="../../assets/images/v4/635x452px.png")
-        b-col(xs="12" md="6")
+          img(src="../../assets/images/v4/mycure-modules-plantg.png" :class="{'animate': scrollTop > 1500}").plant
+      b-row.row.align-items-center.justify-content-md-center
+        b-col(xs="12" md="5").pl-5.pr-5.text-center
+          img(src="../../assets/images/v4/mycure-homepage-package-group.png")
+        b-col(xs="12" md="5")
           p Signup ang get your clinic spiced up with the best package for you group clinic within 24 hours!
           p Also get get a glimpse of the EMR module for free while you wait!
           b-button(variant="primary") Get started for FREE
@@ -42,6 +43,19 @@
 <style scoped>
   .panel-3 {
     background-color: white;
+  }
+
+  .plant {
+    width: 550px;
+    position: absolute;
+    right: -1000px;
+    top: -200px;
+    -webkit-transition: right 500ms; /* Safari */
+    transition: right 500ms;
+  }
+
+  .plant.animate {
+    right: -420px;
   }
 </style>
 

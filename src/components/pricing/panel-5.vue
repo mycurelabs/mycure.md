@@ -17,6 +17,7 @@
           br
           br
           b-button(variant="primary") Start quick chat
+          img(src="../../assets/images/v4/mycure-modules-chickpeas.png" :class="{'animate': scrollTop > 2500}").peas
 </template>
 
 <script>
@@ -40,6 +41,19 @@
 <style scoped>
   .panel-5 {
     background-color: white;
+  }
+
+  .peas {
+    width: 300px;
+    position: absolute;
+    left: -500px;
+    top: 20px;
+    -webkit-transition: left 500ms; /* Safari */
+    transition: left 500ms;
+  }
+
+  .peas.animate {
+    left: -100px;
   }
 </style>
 

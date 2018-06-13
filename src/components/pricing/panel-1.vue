@@ -9,11 +9,9 @@
           br
           h1 Your best investment yet.
           br
-          p Consequat laboris laboris tempor dolore est duis mollit dolore laboris duis.
-          b-button(variant="primary" size="sm") View Prices
+          p Quality technology made more affordable. Only pay for what you need.
           br
-          br
-          a(href="") Signup me up now
+          b-button(variant="primary" size="sm") View Prices {{scrollTop}}
 </template>
 
 <script>

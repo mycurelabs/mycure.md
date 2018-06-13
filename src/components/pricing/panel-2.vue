@@ -13,6 +13,7 @@
           br
           p Try it out first without having to pay for anything. No credit card needed. 
             strong Start FREE!
+          img(src="../../assets/images/v4/coffee.png" :class="{'animate': scrollTop > 300}").coffee
       b-row.mt-5
         b-col(xs="12" md="4").text-center
           img(src="../../assets/images/v4/mycure-modules-notepad.png")
@@ -53,6 +54,19 @@
   .panel-2 {
     background-image: url('../../assets/images/v4/mycure-homepage-background-wood.png');
     background-repeat: repeat;
+  }
+
+  .coffee {
+    width: 250px;
+    position: absolute;
+    left: -500px;
+    top: -40px;
+    -webkit-transition: left 500ms; /* Safari */
+    transition: left 500ms;
+  }
+
+  .coffee.animate {
+    left: -50px;
   }
 </style>
 
