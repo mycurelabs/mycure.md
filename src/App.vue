@@ -8,13 +8,9 @@
 export default {
   name: "App",
   created() {
-    console.log(this.$scrollspy);
     this.$scrollspy().subscribe({
       next: scrollTop => {
-        console.log("scrollTop", scrollTop);
-        console.log("1", this.scrollTop);
         this.scrollTop = scrollTop;
-        console.log("2", this.scrollTop);
       },
       error: e => console.log(e)
     });
@@ -32,6 +28,16 @@ html,
 body {
   max-width: 100% !important;
   overflow-x: hidden !important;
+}
+
+.feature-item {
+  background-color: white !important;
+  border-radius: 5px;
+  padding: 15px;
+  margin: 15px;
+  -webkit-box-shadow: 0px 0px 10px -2px rgba(160,181,191,1);
+  -moz-box-shadow: 0px 0px 10px -2px rgba(160,181,191,1);
+  box-shadow: 0px 0px 10px -2px rgba(160,181,191,1);
 }
 
 .hr-blue {
