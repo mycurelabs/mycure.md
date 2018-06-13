@@ -22,104 +22,94 @@
             div(v-if="item1Selected").col-xs-12.col-md-9.pt-4
               div.row.justify-content-md-center.mb-5
                 div.feature-item
-                  img(src="../../assets/images/v4/mycure-homepage-wireframe-icon-emr.png")
+                  img(width="70" src="../../assets/images/v4/mycure-icon-emr-logo-active.png" v-mc-hover-src="'../../assets/images/v4/mycure-icon-emr-logo-active.png'")
                   h6 EMR
                 div.feature-item
-                  img(src="../../assets/images/v4/mycure-homepage-wireframe-icon-emr.png")
-                  h6 Foo
-                div.feature-item
-                  img(src="../../assets/images/v4/mycure-homepage-wireframe-icon-emr.png")
-                  h6 Foo
-                div.feature-item
-                  img(src="../../assets/images/v4/mycure-homepage-wireframe-icon-emr.png")
-                  h6 Foo
-                div.feature-item
-                  img(src="../../assets/images/v4/mycure-homepage-wireframe-icon-emr.png")
-                  h6 Foo
-              div.row.justify-content-md-center
-                div.feature-item
-                  img(src="../../assets/images/v4/mycure-homepage-wireframe-icon-emr.png")
-                  h6 Foo
-                div.feature-item
-                  img(src="../../assets/images/v4/mycure-homepage-wireframe-icon-emr.png")
-                  h6 Foo
-                div.feature-item
-                  img(src="../../assets/images/v4/mycure-homepage-wireframe-icon-emr.png")
-                  h6 Foo
-                div.feature-item
-                  img(src="../../assets/images/v4/mycure-homepage-wireframe-icon-emr.png")
-                  h6 Foo
-                div.feature-item
-                  img(src="../../assets/images/v4/mycure-homepage-wireframe-icon-emr.png")
-                  h6 Foo
+                  img(width="70" src="../../assets/images/v4/mycure-icon-billing-basic-active.png")
+                  h6 Basic 
+                    br
+                    | Billing
             //- GROUP
             div(v-if="item2Selected").col-xs-12.col-md-9.pt-4
               div.row.justify-content-md-center.mb-5
                 div.feature-item
-                  img(src="../../assets/images/v4/mycure-homepage-wireframe-icon-emr.png")
+                  img(width="70" src="../../assets/images/v4/mycure-icon-emr-logo-active.png")
                   h6 EMR
                 div.feature-item
-                  img(src="../../assets/images/v4/mycure-homepage-wireframe-icon-emr.png")
-                  h6 Foo
+                  img(width="70" src="../../assets/images/v4/mycure-icon-billing-advance-active.png")
+                  h6 Advanced
+                    br
+                    | Billing
                 div.feature-item
-                  img(src="../../assets/images/v4/mycure-homepage-wireframe-icon-emr.png")
-                  h6 Foo
+                  img(width="70" src="../../assets/images/v4/mycure-icon-pos-active.png")
+                  h6 POS
                 div.feature-item
-                  img(src="../../assets/images/v4/mycure-homepage-wireframe-icon-emr.png")
-                  h6 Foo
+                  img(width="70" src="../../assets/images/v4/mycure-icon-chat-active.png")
+                  h6 Chat Box
                 div.feature-item
-                  img(src="../../assets/images/v4/mycure-homepage-wireframe-icon-emr.png")
-                  h6 Foo
+                  img(width="70" src="../../assets/images/v4/mycure-icon-report-active.png")
+                  h6 Reports
               div.row.justify-content-md-center
                 div.feature-item
-                  img(src="../../assets/images/v4/mycure-homepage-wireframe-icon-emr.png")
-                  h6 Foo
+                  img(width="70" src="../../assets/images/v4/mycure-icon-dpa-active.png")
+                  h6 DPA 
+                    br
+                    | Guide
                 div.feature-item
-                  img(src="../../assets/images/v4/mycure-homepage-wireframe-icon-emr.png")
-                  h6 Foo
+                  img(width="70" src="../../assets/images/v4/mycure-icon-support-active.png")
+                  h6 Awesome
+                    br
+                    | Care
                 div.feature-item
-                  img(src="../../assets/images/v4/mycure-homepage-wireframe-icon-emr.png")
-                  h6 Foo
-                div.feature-item
-                  img(src="../../assets/images/v4/mycure-homepage-wireframe-icon-emr.png")
-                  h6 Foo
-                div.feature-item
-                  img(src="../../assets/images/v4/mycure-homepage-wireframe-icon-emr.png")
-                  h6 Foo
+                  img(width="70" src="../../assets/images/v4/mycure-icon-specialty-feat-active.png")
+                  h6 Specialy
+                    br
+                    | Features
             //- MULTI-SPECIALTY
             div(v-if="item3Selected").col-xs-12.col-md-9.pt-4
               div.row.justify-content-md-center.mb-5
                 div.feature-item
-                  img(src="../../assets/images/v4/mycure-homepage-wireframe-icon-emr.png")
+                  img(width="70" src="../../assets/images/v4/mycure-icon-emr-logo-active.png")
                   h6 EMR
                 div.feature-item
-                  img(src="../../assets/images/v4/mycure-homepage-wireframe-icon-emr.png")
-                  h6 Foo
+                  img(width="70" src="../../assets/images/v4/mycure-icon-billing-advance-active.png")
+                  h6 Advanced
+                    br
+                    | Billing
                 div.feature-item
-                  img(src="../../assets/images/v4/mycure-homepage-wireframe-icon-emr.png")
-                  h6 Foo
+                  img(width="70" src="../../assets/images/v4/mycure-icon-pos-active.png")
+                  h6 POS
                 div.feature-item
-                  img(src="../../assets/images/v4/mycure-homepage-wireframe-icon-emr.png")
-                  h6 Foo
+                  img(width="70" src="../../assets/images/v4/mycure-icon-chat-active.png")
+                  h6 Chat Box
                 div.feature-item
-                  img(src="../../assets/images/v4/mycure-homepage-wireframe-icon-emr.png")
-                  h6 Foo
+                  img(width="70" src="../../assets/images/v4/mycure-icon-report-active.png")
+                  h6 Reports
               div.row.justify-content-md-center
                 div.feature-item
-                  img(src="../../assets/images/v4/mycure-homepage-wireframe-icon-emr.png")
-                  h6 Foo
+                  img(width="70" src="../../assets/images/v4/mycure-icon-lab-active.png")
+                  h6 LIS
                 div.feature-item
-                  img(src="../../assets/images/v4/mycure-homepage-wireframe-icon-emr.png")
-                  h6 Foo
+                  img(width="70" src="../../assets/images/v4/mycure-icon-ris-active.png")
+                  h6 RIS
                 div.feature-item
-                  img(src="../../assets/images/v4/mycure-homepage-wireframe-icon-emr.png")
-                  h6 Foo
+                  img(width="70" src="../../assets/images/v4/mycure-icon-inventory-active.png")
+                  h6 Inventory
                 div.feature-item
-                  img(src="../../assets/images/v4/mycure-homepage-wireframe-icon-emr.png")
-                  h6 Foo
+                  img(width="70" src="../../assets/images/v4/mycure-icon-dpa-active.png")
+                  h6 DPA 
+                    br
+                    | Guide
                 div.feature-item
-                  img(src="../../assets/images/v4/mycure-homepage-wireframe-icon-emr.png")
-                  h6 Foo
+                  img(width="70" src="../../assets/images/v4/mycure-icon-support-active.png")
+                  h6 Awesome
+                    br
+                    | Care
+                div.feature-item
+                  img(width="70" src="../../assets/images/v4/mycure-icon-specialty-feat-active.png")
+                  h6 Specialy
+                    br
+                    | Features
             div.col-xs-12.col-md-12.pb-5.pt-5
               b-button(variant="outline-primary" size="sm") Explore
 </template>
@@ -184,15 +174,5 @@
 <style scoped>
   .panel-3 {
     /* height: 100vh; */
-  }
-
-  .feature-item {
-    background-color: white;
-    border-radius: 5px;
-    padding: 15px;
-    margin: 15px;
-    -webkit-box-shadow: 0px 0px 10px -2px rgba(160,181,191,1);
-    -moz-box-shadow: 0px 0px 10px -2px rgba(160,181,191,1);
-    box-shadow: 0px 0px 10px -2px rgba(160,181,191,1);
   }
 </style>
