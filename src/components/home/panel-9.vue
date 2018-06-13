@@ -1,5 +1,5 @@
 <template lang="pug">
-  div.panel-9.pt-5.pb-5
+  div(:style="{'background-color': bg}").pt-5.pb-5
     div.container
       div.row.align-items-center
         div.col-xs-12.col-md-12.text-center
@@ -25,11 +25,15 @@
 </template>
 
 <script>
+  export default {
+    props: {
+      bg: {
+        type: String,
+        default: ''
+      }
+    }
+  }
 </script>
 
 <style scoped>
-  .panel-9 {
-    /* height: 100vh; */
-    /* background-color: white; */
-  }
 </style>
