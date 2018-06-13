@@ -9,9 +9,28 @@
         b-nav-item(href="" :to="{name: 'modules'}") Modules
         b-nav-item(href="" :to="{name: 'pricing'}") Pricing
         b-nav-item(href="" :to="{name: 'our-story'}") Our Story
-        b-nav-item(href="") Contact Us
+        b-nav-item(href="" @click="toggle") Contact Us
 
       b-navbar-nav.ml-auto
-        b-nav-item(href="") Login
+        a(href="https://accounts-v4.mycure.md" targe="_blank")#login-link Login
         b-button(variant="primary" size="sm") Signup
 </template>
+
+<script>
+  export default {
+    methods: {
+      toggle() {
+        $crisp.push(['do', 'chat:toggle'])
+      }
+    }
+  }
+</script>
+
+<style scoped>
+  #login-link {
+    color: rgba(0, 0, 0, 0.5) !important;
+    margin-top: 8px !important;
+    margin-right: 50px;
+    font-size: 12px;
+  }
+</style>
