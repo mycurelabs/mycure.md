@@ -6,35 +6,44 @@
           center
             div.hr-blue
           br
-          h1 Medical Records matter to you
-          br
-          p 
-            strong They matter to us too, 
-            | so we perform industry standard
+          h1 It is your duty to protect your 
             br
-            | encryption to protect your records.
+            | patients’ medical records.
+          br
+          p That’s why keeping them secure is our #1 priority.
+          p With MYCURE , you’ll get: 
           br
           div.row.justify-content-center
-            div.col-xs-12.pl-1.pr-1
-              img(src="../../assets/images/v4/100x130px.png")
-              br
-              strong Foo
-            div.col-xs-12.pl-1.pr-1
-              img(src="../../assets/images/v4/100x130px.png")
-              br
-              strong Foo
-            div.col-xs-12.pl-1.pr-1
-              img(src="../../assets/images/v4/100x130px.png")
-              br
-              strong Foo
-            div.col-xs-12.pl-1.pr-1
-              img(src="../../assets/images/v4/100x130px.png")
-              br
-              strong Foo
-            div.col-xs-12.pl-1.pr-1
-              img(src="../../assets/images/v4/100x130px.png")
-              br
-              strong Foo
+            b-col(xs="12" md="2")
+              div.feature-item
+                img(width="70" src="../../assets/images/v4/mycure-homepage-dpa-ssla.png").mb-2
+                h6 Grade A+ 
+                  br 
+                  | SSL
+            b-col(xs="12" md="2")
+              div.feature-item
+                img(width="70" src="../../assets/images/v4/mycure-homepage-dpa-encryption.png").mb-2
+                h6 Data 
+                  br
+                  | Encryption
+            b-col(xs="12" md="2")
+              div.feature-item
+                img(width="70" src="../../assets/images/v4/mycure-homepage-dpa-user-access.png").mb-2
+                h6 User Designated 
+                  br 
+                  | Access
+            b-col(xs="12" md="2")
+              div.feature-item
+                img(width="70" src="../../assets/images/v4/mycure-homepage-dpa-cloud.png").mb-2
+                h6 Secure Cloud
+                  br
+                  | Hosting
+            b-col(xs="12" md="2")
+              div.feature-item
+                img(width="70" src="../../assets/images/v4/mycure-homepage-dpa-compliance.png").mb-2
+                h6 DPA 
+                  br
+                  | Compliance
           div.col-xs-12.pt-5
             b-button(variant="primary" size="sm") Data Privacy for Physicians
 </template>
