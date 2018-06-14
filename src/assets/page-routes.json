@@ -1,0 +1,26 @@
+[
+  {
+    "path": "/",
+    "title": "MYCURE - Easy, Secure, Medical Records Software for Clinics.",
+    "description": "MYCURE is a secure online medical software for doctors and clinics. Increase the efficiency of your clinic with its patient-focused, business-friendly, and flexible technology. MYCURE is one of the fastest growing EMR and practice management system in the Philippines.",
+    "image": ""
+  },
+  {
+    "path": "/modules",
+    "title": "MYCURE Modules - Customize your own MYCURE System.",
+    "description": "Pick whatever modules you want and we'll beautifully package them just for you.",
+    "image": ""
+  },
+  {
+    "path": "/pricing",
+    "title": "MYCURE Pricing - Your best investment yet.",
+    "description": "Quality technology made more affordable. Only pay for what you need.",
+    "image": ""
+  },
+  {
+    "path": "/pricing",
+    "title": "MYCURE | Our story",
+    "description": "MYCURE starts and ends with real people and real stories.",
+    "image": ""
+  }
+]
