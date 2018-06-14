@@ -29,27 +29,20 @@
                 | beautifully package them just for you.
           b-row.mt-5.pt-5.justify-content-md-center
             b-col(xs="12" md="4")
-              h2.mb-5 Core
+              h2.mb-5 
+                strong CORE
               ul.list
-                li ⛋ Doctor
-                li ⛋ Billing
-                li ⛋ Laboratory
-                li ⛋ Imaging
-                li ⛋ Inventory
+                li(v-for="(module, key) in coreModules") ⛋ {{module.name}}
             b-col(xs="12" md="4")
-              h2.mb-5 Premium
+              h2.mb-5 
+                strong
+                  i Premium
               ul.list
-                li ⛋ Point-of-Sales
-                li ⛋ Staff Chatbox
-                li ⛋ Sync Gateway
-                li ⛋ Reports and Analytics
-                li ⛋ Physical Medical Exam
+                li(v-for="(module, key) in premiumModules") ⛋ {{module.name}}
             b-col(xs="12" md="4")
               h2.mb-5 Add-ons
               ul.list
-                li ⛋ DPA Registration Guide
-                li ⛋ Awesome Care
-                li ⛋ Specialty Features
+                li(v-for="(module, key) in adOnModules") ⛋ {{module.name}}
           //- b-row.mt-5.pt-5
             b-col(xs="12" md="4")
               p More coming soon
@@ -62,15 +55,23 @@
 </template>
 
 <script>
+  import modules from '../../assets/modules';
   export default {
     created() {
       this.$scrollspy().subscribe({
         next: (scrollTop) => this.scrollTop = scrollTop
       });
+
+      this.coreModules = modules.filter(module => module.type === 'core');
+      this.premiumModules = modules.filter(module => module.type === 'premium');
+      this.adOnModules = modules.filter(module => module.type === 'ad-on');
     },
     data() {
       return {
-        scrollTop: 0
+        scrollTop: 0,
+        coreModules: [],
+        premiumModules: [],
+        adOnModules: []
       }
     },
     destroyed() {
