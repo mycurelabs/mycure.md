@@ -6,14 +6,14 @@
     b-collapse(is-nav id="nav_collapse")
 
       b-navbar-nav
-        b-nav-item(href="" :to="{name: 'modules'}") Modules
-        b-nav-item(href="" :to="{name: 'pricing'}") Pricing
-        b-nav-item(href="" :to="{name: 'our-story'}") Our Story
-        b-nav-item(href="" @click="toggle") Contact Us
+        b-nav-item(href="" :to="{name: 'modules'}") MODULES
+        b-nav-item(href="" :to="{name: 'pricing'}") PRICING
+        b-nav-item(href="" :to="{name: 'our-story'}") OUR STORY
+        b-nav-item(href="" @click="toggle") CONTACT US
 
       b-navbar-nav.ml-auto
-        a(href="https://accounts-v4.mycure.md" targe="_blank")#login-link Login
-        b-button(variant="primary" size="sm") Signup
+        a(href="https://accounts-v4.mycure.md" targe="_blank")#login-link LOGIN
+        b-button(variant="primary" size="sm") SIGNUP
 </template>
 
 <script>
