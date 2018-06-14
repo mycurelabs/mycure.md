@@ -3,6 +3,8 @@
     div.container
       div(style="height: 100vh").row.align-items-center
         div.col-xs-12.col-md-12.text-center
+          img(src="../../assets/images/v4/coffee.png" :class="{'animate': scrollTop > 2200}").coffee
+          img(src="../../assets/images/v4/mycure-modules-chickpeas.png" :class="{'animate': scrollTop > 2600}").peas
           center
             div.hr-blue
           br
@@ -49,11 +51,50 @@
 </template>
 
 <script>
+  export default {
+    created() {
+      this.$scrollspy().subscribe({
+        next: (scrollTop) => this.scrollTop = scrollTop
+      });
+    },
+    data() {
+      return {
+        scrollTop: 0
+      }
+    },
+    destroyed() {
+      this.$removeScrollspy();
+    }
+  }
 </script>
 
 <style scoped>
   .panel-4 {
     height: 100vh;
     background-color: white;
+  }
+
+  .coffee {
+    position: absolute;
+    left: -1000px;
+    top: -200px;
+    -webkit-transition: left 500ms;
+    transition: left 500ms;
+  }
+
+  .coffee.animate {
+    left: -240px;
+  }
+
+  .peas {
+    position: absolute;
+    right: -1000px;
+    bottom: -130px;
+    -webkit-transition: right 500ms;
+    transition: right 500ms;
+  }
+
+  .peas.animate {
+    right: -300px;
   }
 </style>
