@@ -14,6 +14,15 @@ Vue.mixin({
       window.removeEventListener('scroll', (e) => {
         console.log(e);
       });
+    },
+    $addClass: (id, _class) => {
+      const e = document.getElementById(id);
+      e.classList.add(_class);
+
+    },
+    $removeClass: (id, _class) => {
+      const e = document.getElementById(id);
+      e.classList.remove(_class);
     }
   }
 });
