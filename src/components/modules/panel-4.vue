@@ -1,63 +1,86 @@
 <template lang="pug">
   div.panel-4.pb-5.pt-5
     div.container
-      div.row
+      div.row.align-items-center
         div.col-xs-12.col-md-12.text-center.pb-4
           center  
             div.hr-blue
           br
           h1 Premium Modules
           p Add these on top of the core modules to boosts your digital clinic experience.
-        div.col-xs-12.col-md-6
+        div.col-xs-12.col-md-7
           img(width="100%" src="../../assets/images/v4/234x234px.png")
-        div.col-xs-12.col-md-6
+        div.col-xs-12.col-md-5
           div.row
-            div.col-xs-6.col-md-3
-              div.module-container.shadow-5.text-center
-                img(src="../../assets/images/v4/mycure-homepage-wireframe-icon-emr.png")
-                h6 EMR
-            div.col-xs-6.col-md-3
-              div.module-container.shadow-5.text-center
-                img(src="../../assets/images/v4/mycure-homepage-wireframe-icon-emr.png")
-                h6 EMR
-            div.col-xs-6.col-md-3
-              div.module-container.shadow-5.text-center
-                img(src="../../assets/images/v4/mycure-homepage-wireframe-icon-emr.png")
-                h6 EMR
-            div.col-xs-6.col-md-3
-              div.module-container.shadow-5.text-center
-                img(src="../../assets/images/v4/mycure-homepage-wireframe-icon-emr.png")
-                h6 EMR
-          div.row
-            div.col-xs-6.col-md-3
-              div.module-container.shadow-5.text-center
-                img(src="../../assets/images/v4/mycure-homepage-wireframe-icon-emr.png")
-                h6 EMR
-            div.col-xs-6.col-md-3
-              div.module-container.shadow-5.text-center
-                img(src="../../assets/images/v4/mycure-homepage-wireframe-icon-emr.png")
-                h6 EMR
-            div.col-xs-6.col-md-3
-              div.module-container.shadow-5.text-center
-                img(src="../../assets/images/v4/mycure-homepage-wireframe-icon-emr.png")
-                h6 EMR
-            div.col-xs-6.col-md-3
-              div.module-container.shadow-5.text-center
-                img(src="../../assets/images/v4/mycure-homepage-wireframe-icon-emr.png")
-                h6 EMR
-          div.row.mt-5
+            div(v-for="(module, key) in premiumModules").col-xs-6.col-md-3
+              div(
+                :id="'premiumModule_'+key"
+                :class="{'shadow-5': module.isSelected}" 
+                @mouseover="mouseHover(key, module)" 
+                @mouseout="mouseOut(key, module)" 
+                @click="selectModule(key, module)"
+              ).module-container.text-center
+                img(width="45" :src="parseImage(module)")
+                br
+                p(style="line-height: 13px;")
+                  small {{ module.name }}
+          div.row.mt-3
             div.col-xs-12.col-md-12
-              img(src="../../assets/images/v4/mycure-homepage-wireframe-icon-emr.png")
+              img(width="80" :src="parseImage(selectedModule)")
               span
-                strong EMR
+                strong {{ selectedModule.name }}
               br
-              br
-              p Aliqua consequat ipsum fugiat nostrud ea occaecat fugiat do qui est deserunt ullamco. Ullamco tempor id quis laboris culpa.
-              br
+              p {{ selectedModule.description }}
               b-button(variant="primary" size="sm") Learn More
 </template>
 
 <script>
+  import modules from '../../assets/modules';
+  export default {
+    created() {
+      this.premiumModules = modules.filter(module => {
+        if(module.type === 'premium') {
+          module.isSelected = false;
+          return module;
+        }
+      });
+      this.premiumModules[0].isSelected = true;
+      this.selectedModule = this.premiumModules[0];
+    },
+    data() {
+      return {
+        premiumModules: [],
+        selectedModule: {}
+      }
+    },
+    methods: {
+      mouseHover(key, m) {
+        if(!m.isSelected) {
+          this.$addClass(`premiumModule_${key}`, 'shadow-5');
+          this.$addClass(`premiumModule_${key}`, 'bg-white');
+        }
+      },
+      mouseOut(key, m) {
+        if(!m.isSelected) {
+          this.$removeClass(`premiumModule_${key}`, 'shadow-5');
+          this.$removeClass(`premiumModule_${key}`, 'bg-white');
+        }
+      },
+      selectModule(key, m) {
+        const modules = [];
+        this.premiumModules.forEach((m, i) => {
+          m.isSelected = false;
+          modules.push(m);
+        });
+        modules[key].isSelected = true;
+        this.selectedModule = m;
+        this.premiumModules = modules;
+      },
+      parseImage(module) {
+        return require('../../assets/images/v4/'+module.icon)
+      }
+    }
+  }
 </script>
 
 <style scoped>
@@ -72,8 +95,14 @@
   }
 
   .module-container {
-    padding: 15px;
+    /* background-color: white; */
+    padding: 10px;
     margin: 5px;
+    border-radius: 5px;
+  }
+
+  .module-container:hover {
+    cursor: pointer;
   }
 
   @media (min-width: 576px) {
@@ -86,7 +115,7 @@
   @media (min-width: 768px) {
     .panel-4 {
       /* min-height: 100vh; */
-      background-color: white;
+      /* background-color: white; */
     }
 
     .container {
