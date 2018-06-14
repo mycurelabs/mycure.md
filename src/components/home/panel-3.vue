@@ -62,7 +62,7 @@
                     | Care
                 div.feature-item
                   img(width="70" src="../../assets/images/v4/mycure-icon-specialty-feat-active.png")
-                  h6 Specialy
+                  h6 Specialty
                     br
                     | Features
             //- MULTI-SPECIALTY
@@ -107,7 +107,7 @@
                     | Care
                 div.feature-item
                   img(width="70" src="../../assets/images/v4/mycure-icon-specialty-feat-active.png")
-                  h6 Specialy
+                  h6 Specialty
                     br
                     | Features
             div.col-xs-12.col-md-12.pb-5.pt-5
