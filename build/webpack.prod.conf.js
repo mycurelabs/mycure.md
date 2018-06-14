@@ -10,18 +10,28 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
-// const PrerenderSPAPlugin = require('prerender-spa-plugin')
-// const Renderer = PrerenderSPAPlugin.PuppeteerRenderer
+const PrerenderSPAPlugin = require('prerender-spa-plugin')
+const PuppeteerRenderer = PrerenderSPAPlugin.PuppeteerRenderer
+const pageRoutes = require('../src/assets/page-routes')
+
+console.log(pageRoutes)
 
 const env = process.env.NODE_ENV === 'testing'
   ? require('../config/test.env')
   : require('../config/prod.env')
 
-const routes = [
-  '/', 
-  '/our-story',
-  '/modules'
-];
+  const pagesToRender = [];
+  const titlesToRender = {};
+
+pageRoutes.forEach(function(page) {
+  pagesToRender.push(page.path);
+  titlesToRender[page.path] = {};
+  titlesToRender[page.path].title = page.title;
+  titlesToRender[page.path].description = page.description;
+  titlesToRender[page.path].image = page.image;
+});
+
+console.log('titlesToRender => ', titlesToRender)
 
 const webpackConfig = merge(baseWebpackConfig, {
   module: {
@@ -38,40 +48,30 @@ const webpackConfig = merge(baseWebpackConfig, {
     chunkFilename: utils.assetsPath('js/[id].[chunkhash].js')
   },
   plugins: [
-    // new PrerenderSPAPlugin({
-      // staticDir: path.resolve(__dirname, 'dist'),
-      // routes,
-      // renderAfterDocumentEvent: 'vue-post-render',
-      // postProcessHtml: function (context) {
-      //   // var titles = titlesToRender;
-      //   return context.html.replace(
-      //     /MYCURE_TITLE/g,
-      //     'MYCURE | This is a pre-rendered title!'
-      //   )
-      // },
-      // renderer: new Renderer({
-      //   renderAfterElementExists: '#app',
-      //   headless: false
-      // })
-    // }),
-    // new PrerenderSPAPlugin({
-    //   // Path to compiled app
-    //   staticDir: path.join(__dirname, '../dist'),
-    //   // List of endpoints you wish to prerender
-    //   routes,
-    //   postProcess: function (context) {
-    //     // var titles = titlesToRender;
-    //     return context.html.replace(
-    //       /MYCURE_TITLE/g,
-    //       'MYCURE | This is a pre-rendered title!'
-    //     )
-    //   }, 
-    //   renderer: new PuppeteerRenderer({
-    //     renderAfterElementExists: '#app',
-    //     headless: false
-    //   })
-    // }),    
-    // http://vuejs.github.io/vue-loader/en/workflow/production.html
+    new PrerenderSPAPlugin({
+      staticDir: path.resolve(__dirname, '../dist'),
+      routes: pagesToRender,
+      renderAfterDocumentEvent: 'vue-post-render',
+      postProcessHtml: function (context) {
+        return context.html.replace(
+          /MYCURE_TITLE/g,
+          titlesToRender[context.route].title
+        ).replace(
+          /MYCURE_DESCRIPTION/g,
+          titlesToRender[context.route].description
+        ).replace(
+          /MYCURE_IMAGE/g,
+          titlesToRender[context.route].image
+        ).replace(
+          /MYCURE_URL/g,
+          'https://mycure.md' + context.route
+        );
+      },
+      renderer: new PuppeteerRenderer({
+        renderAfterElementExists: '#app',
+        headless: false
+      })
+    }),
     new webpack.DefinePlugin({
       'process.env': env
     }),
