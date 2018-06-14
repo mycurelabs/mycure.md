@@ -12,9 +12,6 @@
           p MYCURE cares for people who care for people. It is an all-inclusive clinic management system for doctors and clinics. MYCURE is one of the fastest growing all-around EMR and practice management software in the Philippines.
           br
           b-button(variant="primary" size="sm") Watch Video
-          br
-          br
-          a(href="") Signup me up now
 </template>
 
 <script>
