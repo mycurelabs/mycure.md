@@ -4,90 +4,90 @@
     "name": "EMR",
     "description": "Create SOAP charting, digital prescriptions, med certs, lab orders, and compare lab results anytime, anywhere.",
     "icon": "mycure-icon-emr-active.png",
-    "banner": ""
+    "banner": "mycure-modules-screenshot-sample.png"
   },
   {
     "type": "core",
     "name": "Billing",
     "description": "A Billing Management System that can integrate all clinic transactions into a single database.",
     "icon": "mycure-icon-billing-advance-active.png",
-    "banner": ""
+    "banner": "mycure-modules-screenshot-sample.png"
   },
   {
     "type": "core",
     "name": "Laboratory",
     "description": "A Laboratory Information System that communicates with your modern diagnostic machines through HL7 interfacing and PACS configurations.",
     "icon": "mycure-icon-lab-active.png",
-    "banner": ""
+    "banner": "mycure-modules-screenshot-sample.png"
   },
   {
     "type": "core",
     "name": "Imaging",
     "description": "An Imaging Information System that allows doctors to view DICOM images remotely, and patients to view their lab & imaging results online.",
     "icon": "mycure-icon-ris-active.png",
-    "banner": ""
+    "banner": "mycure-modules-screenshot-sample.png"
   },
   {
     "type": "core",
     "name": "Inventory",
     "description": "An Inventory Management System built for healthcare facilities to monitor in-house supplies and over-the-counter products.",
     "icon": "mycure-icon-inventory-active.png",
-    "banner": ""
+    "banner": "mycure-modules-screenshot-sample.png"
   },
   {
     "type": "premium",
     "name": "Point-of-Sales",
     "description": "Complements the Inventory and Billing Module.",
     "icon": "mycure-icon-pos-active.png",
-    "banner": ""
+    "banner": "mycure-modules-screenshot-sample.png"
   },
   {
     "type": "premium",
     "name": "Staff Chatbox",
     "description": "Virtually communicate with your clinic staff.",
     "icon": "mycure-icon-chat-active.png",
-    "banner": ""
+    "banner": "mycure-modules-screenshot-sample.png"
   },
   {
     "type": "premium",
     "name": "Sync Gateway",
     "description": "The system works even when offline.",
     "icon": "mycure-icon-syncGateway-active.png",
-    "banner": ""
+    "banner": "mycure-modules-screenshot-sample.png"
   },
   {
     "type": "premium",
     "name": "Reports and Analytics",
     "description": "Measure your clinic’s performance.",
     "icon": "mycure-icon-report-active.png",
-    "banner": ""
+    "banner": "mycure-modules-screenshot-sample.png"
   },
   {
     "type": "premium",
     "name": "Physical Medical Exam",
     "description": "Manage corporate and private APE, PEME, and FME.",
     "icon": "mycure-icon-pmeepe-active.png",
-    "banner": ""
+    "banner": "mycure-modules-screenshot-sample.png"
   },
   {
     "type": "ad-on",
     "name": "DPA Registration Guide",
     "description": "Step-by-step guide to DPA compliance for doctors and clinics.",
     "icon": "mycure-icon-dpa-active.png",
-    "banner": ""
+    "banner": "mycure-modules-screenshot-sample.png"
   },
   {
     "type": "ad-on",
     "name": "Awesome Care",
     "description": "Get help quickly from our hands-on support team.",
     "icon": "mycure-icon-support-active.png",
-    "banner": ""
+    "banner": "mycure-modules-screenshot-sample.png"
   },
   {
     "type": "ad-on",
     "name": "Specialty Features",
     "description": "Activate premium tools for different doctor specializations.",
     "icon": "mycure-icon-specialty-feat-active.png",
-    "banner": ""
+    "banner": "mycure-modules-screenshot-sample.png"
   }
 ]
