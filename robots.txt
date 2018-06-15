@@ -1,0 +1,10 @@
+User-Agent: *
+Disallow: 
+Allow: /
+Allow: /modules
+Allow: /pricing
+Allow: /our-story
+Allow: /terms
+Allow: /privacy-policy
+
+Sitemap: https://mycure.md/sitemap.xml

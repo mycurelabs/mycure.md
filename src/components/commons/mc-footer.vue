@@ -30,11 +30,11 @@
           h6(style="color: #616161") ABOUT
           ul.list.list-tall
             li
-              a.color-white Our Story
+              router-link(:to="{name: 'our-story'}").color-white Our Story
             li
-              a.color-white Our Team
+              router-link(:to="{name: 'our-story'}").color-white Our Team
             li
-              a.color-white Blog
+              router-link(:to="{name: 'blog-link'}").color-white Blog
             li
               a.color-white Careers
         div.col-xs-12.col-md-3

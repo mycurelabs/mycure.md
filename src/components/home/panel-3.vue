@@ -10,16 +10,13 @@
             @select="itemSelected"
             v-model="items"
           )
-          br
-          b-button(variant="primary" size="small") Learn more
           div#individual
           div#group
           div#specialized
-          div.row.justify-content-md-center.pb-5.pt-5
-            div.col-xs-12.col-md-9
-              h2.color-primary Complete Clinic Suite
+          div.row.justify-content-md-center.pb-5.pt-5.bg-white
             //- INDIVIDUAL
             div(v-if="item1Selected").col-xs-12.col-md-9.pt-4
+              h2 {{items[0].name}}
               div.row.justify-content-md-center.mb-5
                 div.feature-item
                   img(width="70" src="../../assets/images/v4/mycure-icon-emr-logo-active.png" v-mc-hover-src="'../../assets/images/v4/mycure-icon-emr-logo-active.png'")
@@ -111,7 +108,7 @@
                     br
                     | Features
             div.col-xs-12.col-md-12.pb-5.pt-5
-              b-button(variant="outline-primary" size="sm") Explore
+              b-button(variant="outline-primary" size="sm" :to="{name: 'modules'}") Learn more about modules
 </template>
 
 <script>
@@ -130,24 +127,27 @@
           {
             id: 'individual',
             name: 'INDIVIDUAL',
+            description: 'A powerful EMR System with Queuing and Billing modules.',
             isSelected: true,
             hasTooltip: false,
-            src: require('../../assets/images/v4/mycure-homepage-can-individual-clinic-active.png')
+            src: require('../../assets/images/v4/mycure-homepage-package-individual.png')
           },
           {
             id: 'group',
             name: 'GROUP',
+            description: 'A practical system built for doctors’ clinics being handled by a common secretary.',
             isSelected: false,
             hasTooltip: false,
-            src: require('../../assets/images/v4/mycure-homepage-can-group-clinic-active.png')
+            src: require('../../assets/images/v4/mycure-homepage-package-group.png')
           },
           {
             id: 'specialized',
-            name: 'MULTI-SPECIALTY',
+            name: 'HEALTH FACILITY',
+            description: 'Ad non aliqua et ullamco. Cupidatat fugiat velit. Cupidatat fugiat velit.',
             isSelected: false,
             hasTooltip: true,
-            tooltipMessage: 'This includes aesthetics, etc.',
-            src: require('../../assets/images/v4/mycure-homepage-can-specialized-clinic-active.png')
+            tooltipMessage: 'An all-around solution for your outpatient, multispecialty or specialized clinic.',
+            src: require('../../assets/images/v4/mycure-homepage-package-multispecialty.png')
           }
         ]
       }

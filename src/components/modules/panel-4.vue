@@ -9,7 +9,7 @@
           h1 Premium Modules
           p Add these on top of the core modules to boosts your digital clinic experience.
         div.col-xs-12.col-md-7
-          img(width="100%" src="../../assets/images/v4/234x234px.png")
+          img(width="100%" :src="parseImage(selectedModule.banner)")
         div.col-xs-12.col-md-5
           div.row
             div(v-for="(module, key) in premiumModules").col-xs-6.col-md-3
@@ -20,13 +20,13 @@
                 @mouseout="mouseOut(key, module)" 
                 @click="selectModule(key, module)"
               ).module-container.text-center
-                img(width="45" :src="parseImage(module)")
+                img(width="45" :src="parseImage(module.icon)")
                 br
                 p(style="line-height: 13px;")
                   small {{ module.name }}
           div.row.mt-3
             div.col-xs-12.col-md-12
-              img(width="80" :src="parseImage(selectedModule)")
+              img(width="80" :src="parseImage(selectedModule.icon)")
               span
                 strong {{ selectedModule.name }}
               br
@@ -76,8 +76,8 @@
         this.selectedModule = m;
         this.premiumModules = modules;
       },
-      parseImage(module) {
-        return require('../../assets/images/v4/'+module.icon)
+      parseImage(img) {
+        return require('../../assets/images/v4/'+img)
       }
     }
   }

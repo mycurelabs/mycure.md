@@ -1,26 +1,26 @@
 [
   {
     "path": "/",
-    "title": "MYCURE - Easy, Secure, Medical Records Software for Clinics.",
-    "description": "MYCURE is a secure online medical software for doctors and clinics. Increase the efficiency of your clinic with its patient-focused, business-friendly, and flexible technology. MYCURE is one of the fastest growing EMR and practice management system in the Philippines.",
+    "title": "MYCURE - Easy, Secure, Medical Records and Clinic Management System",
+    "description": "MYCURE is a clinic management system that securely integrates patient records together from registration to billing using its patient-focused, business-friendly, and flexible technology. MYCURE is one of the top medical apps and best DPA-compliant EMR practice management software in the Philippines.",
     "image": ""
   },
   {
     "path": "/modules",
-    "title": "MYCURE Modules - Customize your own MYCURE System.",
-    "description": "Pick whatever modules you want and we'll beautifully package them just for you.",
+    "title": "MYCURE Modules - Easy, Secure, Complete Clinic Management System",
+    "description": "MYCURE is a secure, online medical software for doctors and clinics that is easy to customize. It has EMR, Laboratory (LIS), Imaging (RIS), Inventory, Point-of-Sales (POS) and Billing Modules designed to securely process digital medical records. Get the perfect blend for your clinic.",
     "image": ""
   },
   {
     "path": "/pricing",
-    "title": "MYCURE Pricing - Your best investment yet.",
-    "description": "Quality technology made more affordable. Only pay for what you need.",
+    "title": "MYCURE Pricing - Affordable Clinic Management System",
+    "description": "MYCURE provides affordable pricing for individual (solo) practice for doctors, group clinic practice, and multispecialty clinics. Pay only for what you need with plans that suit our budget. With the power of EMR and HIS combined, MYCURE is your best investment yet.",
     "image": ""
   },
   {
     "path": "/pricing",
-    "title": "MYCURE | Our story",
-    "description": "MYCURE starts and ends with real people and real stories.",
+    "title": "MYCURE Our Story - Caring the Extra Mile",
+    "description": "Caring the extra mile is our profession, it’s our way of life. MYCURE is committed to saving lives by building well-equipped and well-designed apps so healthcare practitioners are in the most ideal work environment to fulfill their purpose.",
     "image": ""
   }
 ]

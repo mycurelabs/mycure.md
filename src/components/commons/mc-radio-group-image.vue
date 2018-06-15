@@ -1,7 +1,7 @@
 <template lang="pug">
   div.row.justify-content-md-center
     div(v-for="(item, key) in value" @click="select(key, item)").col-xs-12.col-md-3
-      div(:class="{selected: item.isSelected}").item.pt-5.pb-5
+      div(:class="{selected: item.isSelected}").item.pt-3.pb-3.pl-3.pr-3
         img(width="100%" :src="item.src")
         br
         br
@@ -12,6 +12,8 @@
             v-if="item.hasTooltip"
             style="margin-bottom: -10px; position: absolute;"
           ).color-primary info
+        p 
+          small {{item.description}}
         b-tooltip(:target="'#tooltip_'+item.id" :title="item.tooltipMessage" placement="bottom")
         //- div.pt-5
         //- center
@@ -63,10 +65,10 @@
 
   .item.selected {
     background-color: white;
-    border-radius: 5px;
-    -webkit-box-shadow: 0px 0px 10px -2px rgba(160,181,191,1);
+    /* border-radius: 5px; */
+    /* -webkit-box-shadow: 0px 0px 10px -2px rgba(160,181,191,1);
     -moz-box-shadow: 0px 0px 10px -2px rgba(160,181,191,1);
-    box-shadow: 0px 0px 10px -2px rgba(160,181,191,1);
+    box-shadow: 0px 0px 10px -2px rgba(160,181,191,1); */
   }
 
   .radio-item {

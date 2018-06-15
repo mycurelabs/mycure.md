@@ -8,10 +8,12 @@
           br
           h1 Caring the extra mile is kinda our thing
           br  
-          p More than a business, we are a community.
-          p More than a product, it is an advocacy.
+          p More than a business, 
+            strong we are a community.
+          p More than a product, 
+            strong it is an advocacy.
           br
-          b-button(variant="primary" size="sm") Read our story
+          b-button(variant="primary" size="sm" :to="{name: 'our-story'}") Read our story
 </template>
 
 <script>
