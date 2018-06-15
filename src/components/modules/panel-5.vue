@@ -6,7 +6,7 @@
           center  
             div.hr-blue
           br
-          h1 Ad-ons
+          h1 Add-ons
           p You get these free when you need them.
         div.col-xs-12.col-md-5
           div.row
@@ -18,20 +18,20 @@
                 @mouseout="mouseOut(key, module)" 
                 @click="selectModule(key, module)"
               ).module-container.text-center
-                img(width="45" :src="parseImage(module)")
+                img(width="45" :src="parseImage(module.icon)")
                 br
                 p(style="line-height: 13px;")
                   small {{ module.name }}
           div.row.mt-3
             div.col-xs-12.col-md-12
-              img(width="80" :src="parseImage(selectedModule)")
+              img(width="80" :src="parseImage(selectedModule.icon)")
               span
                 strong {{ selectedModule.name }}
               br
               p {{ selectedModule.description }}
               b-button(variant="primary" size="sm") Learn More
         div.col-xs-12.col-md-7
-          img(width="100%" src="../../assets/images/v4/234x234px.png")
+          img(width="100%" :src="parseImage(selectedModule.banner)")
 </template>
 
 <script>
@@ -76,8 +76,8 @@
         this.selectedModule = m;
         this.adOnsModules = modules;
       },
-      parseImage(module) {
-        return require('../../assets/images/v4/'+module.icon)
+      parseImage(img) {
+        return require('../../assets/images/v4/'+img)
       }
     }
   }
