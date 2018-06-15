@@ -3,7 +3,7 @@
     b-container(fluid)
       b-row.justify-content-md-center
         b-col(md="2")
-        b-col(xs="12" md="7").paper.pl-5.pr-5
+        b-col(xs="12" md="8").paper.pl-5.pr-5
           img(src="../../assets/images/v4/mycure-modules-pin.png" :class="{'animate': scrollTop > 300}").pin
           img(src="../../assets/images/v4/mycure-modules-plantg.png" :class="{'animate': scrollTop > 420}").pot
           img(src="../../assets/images/v4/mycure-modules-pen-and-pad.png" :class="{'animate': scrollTop > 570}").notepad
@@ -29,18 +29,19 @@
                 | beautifully package them just for you.
           b-row.mt-5.pt-5.justify-content-md-center
             b-col(xs="12" md="4")
-              h2.mb-5 
-                strong CORE
+              h1.mb-5.font-weight-extra-bold 
+                img(src="../../assets/images/v4/mycure-modules-icon-core.png")
+                | CORE
               ul.list
                 li(v-for="(module, key) in coreModules") ⛋ {{module.name}}
             b-col(xs="12" md="4")
-              h2.mb-5 
-                strong
-                  i Premium
+              h1.mb-5.font-weight-extra-bold-italic Premium 
+                img(src="../../assets/images/v4/mycure-modules-icon-premium.png")
               ul.list
                 li(v-for="(module, key) in premiumModules") ⛋ {{module.name}}
             b-col(xs="12" md="4")
-              h2.mb-5 Add-ons
+              h1.mb-5 Add-ons
+                img(src="../../assets/images/v4/mycure-modules-icon-add-ons.png")
               ul.list
                 li(v-for="(module, key) in adOnModules") ⛋ {{module.name}}
           //- b-row.mt-5.pt-5
