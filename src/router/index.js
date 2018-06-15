@@ -69,6 +69,11 @@ export default new Router({
       path: '/request-demo-link',
       name: 'request-demo-link',
       beforeEnter() { window.open('https://docs.google.com/forms/d/e/1FAIpQLSfjshsDWT8gfL_ktnuYJVZI50d14i4_2pUT-wBXJGRcdmB83w/viewform?c=0&w=1&usp=send_form') }
+    },
+    {
+      path: '/blog-link',
+      name: 'blog-link',
+      beforeEnter() { window.open('http://blog.mycure.md/') }
     }
   ]
 });
