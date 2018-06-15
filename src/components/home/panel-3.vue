@@ -14,10 +14,9 @@
           div#group
           div#specialized
           div.row.justify-content-md-center.pb-5.pt-5.bg-white
-            div.col-xs-12.col-md-9
-              h2.color-primary Complete Clinic Suite
             //- INDIVIDUAL
             div(v-if="item1Selected").col-xs-12.col-md-9.pt-4
+              h2 {{items[0].name}}
               div.row.justify-content-md-center.mb-5
                 div.feature-item
                   img(width="70" src="../../assets/images/v4/mycure-icon-emr-logo-active.png" v-mc-hover-src="'../../assets/images/v4/mycure-icon-emr-logo-active.png'")
@@ -128,7 +127,7 @@
           {
             id: 'individual',
             name: 'INDIVIDUAL',
-            description: 'Sit officia veniam mollit in laborum deserunt sint qui.',
+            description: 'A powerful EMR System with Queuing and Billing modules.',
             isSelected: true,
             hasTooltip: false,
             src: require('../../assets/images/v4/mycure-homepage-package-individual.png')
@@ -136,18 +135,18 @@
           {
             id: 'group',
             name: 'GROUP',
-            description: 'Pariatur ipsum aute aute cupidatat fugiat velit. IOpsum aute aute cupi.',
+            description: 'A practical system built for doctors’ clinics being handled by a common secretary.',
             isSelected: false,
             hasTooltip: false,
             src: require('../../assets/images/v4/mycure-homepage-package-group.png')
           },
           {
             id: 'specialized',
-            name: 'MULTI-SPECIALTY',
+            name: 'HEALTH FACILITY',
             description: 'Ad non aliqua et ullamco. Cupidatat fugiat velit. Cupidatat fugiat velit.',
             isSelected: false,
             hasTooltip: true,
-            tooltipMessage: 'This includes aesthetics, etc.',
+            tooltipMessage: 'An all-around solution for your outpatient, multispecialty or specialized clinic.',
             src: require('../../assets/images/v4/mycure-homepage-package-multispecialty.png')
           }
         ]
