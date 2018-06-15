@@ -1,6 +1,6 @@
 <template lang="pug">
   div.panel-6
-    img(width="100%" src="../../assets/images/v4/1600x515px.png")
+    img(width="100%" src="../../assets/images/v4/mycure-care-the-extra-mile-banner.png")
             
 </template>
 
