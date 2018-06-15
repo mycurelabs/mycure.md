@@ -10,12 +10,10 @@
             @select="itemSelected"
             v-model="items"
           )
-          br
-          b-button(variant="primary" size="small") Learn more
           div#individual
           div#group
           div#specialized
-          div.row.justify-content-md-center.pb-5.pt-5
+          div.row.justify-content-md-center.pb-5.pt-5.bg-white
             div.col-xs-12.col-md-9
               h2.color-primary Complete Clinic Suite
             //- INDIVIDUAL
@@ -111,7 +109,7 @@
                     br
                     | Features
             div.col-xs-12.col-md-12.pb-5.pt-5
-              b-button(variant="outline-primary" size="sm") Explore
+              b-button(variant="outline-primary" size="sm" :to="{name: 'modules'}") Learn more about modules
 </template>
 
 <script>
@@ -130,24 +128,27 @@
           {
             id: 'individual',
             name: 'INDIVIDUAL',
+            description: 'Sit officia veniam mollit in laborum deserunt sint qui.',
             isSelected: true,
             hasTooltip: false,
-            src: require('../../assets/images/v4/mycure-homepage-can-individual-clinic-active.png')
+            src: require('../../assets/images/v4/mycure-homepage-package-individual.png')
           },
           {
             id: 'group',
             name: 'GROUP',
+            description: 'Pariatur ipsum aute aute cupidatat fugiat velit. IOpsum aute aute cupi.',
             isSelected: false,
             hasTooltip: false,
-            src: require('../../assets/images/v4/mycure-homepage-can-group-clinic-active.png')
+            src: require('../../assets/images/v4/mycure-homepage-package-group.png')
           },
           {
             id: 'specialized',
             name: 'MULTI-SPECIALTY',
+            description: 'Ad non aliqua et ullamco. Cupidatat fugiat velit. Cupidatat fugiat velit.',
             isSelected: false,
             hasTooltip: true,
             tooltipMessage: 'This includes aesthetics, etc.',
-            src: require('../../assets/images/v4/mycure-homepage-can-specialized-clinic-active.png')
+            src: require('../../assets/images/v4/mycure-homepage-package-multispecialty.png')
           }
         ]
       }
