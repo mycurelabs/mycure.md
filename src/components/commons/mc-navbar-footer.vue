@@ -2,7 +2,7 @@
   b-navbar(toggleable="md" type="dark" variant="transparent")
     b-navbar-toggle(target="nav_collapse")
     
-    b-navbar-brand(href="#") 
+    b-navbar-brand(:to="{name: 'home'}") 
       img(src="../../assets/images/v4/mycure-logo.svg")
 
     b-collapse(is-nav id="nav_collapse")
