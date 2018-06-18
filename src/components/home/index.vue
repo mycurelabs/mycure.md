@@ -1,5 +1,5 @@
 <template lang="pug">
-  div
+  div#top
     panel-1
     panel-2
     panel-3
@@ -24,6 +24,7 @@
   import panel8 from './panel-8';
   import panel9 from './panel-9';
   import mcFooter from '../commons/mc-footer';
+  import VueScrollTo from 'vue-scrollto';
 
   export default {
     components: {
@@ -37,6 +38,9 @@
       'panel-8': panel8,
       'panel-9': panel9,
       mcFooter
+    },
+    mounted() {
+      VueScrollTo.scrollTo(`#top`, 500, { easing: 'ease' } );
     }
   }
 </script>
