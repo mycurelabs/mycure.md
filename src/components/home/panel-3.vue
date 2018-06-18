@@ -165,7 +165,7 @@
         }
         setTimeout(() => {
           VueScrollTo.scrollTo(`#${item.id}`, 500, { easing: 'ease' } );
-        }, 200)
+        }, 200);
       }
     }
   }
