@@ -6,7 +6,11 @@
     b-collapse(is-nav id="nav_collapse")
 
       b-navbar-nav
-        b-nav-item(href="" :to="{name: 'modules'}") MODULES
+        b-nav-item-dropdown(text="PRODUCTS")
+          b-dropdown-item(:to="{name: 'modules', query: {id: 'panel-2'}}") OVERVIEW
+          b-dropdown-item(:to="{name: 'modules', query: {id: 'panel-3'}}") CORE
+          b-dropdown-item(:to="{name: 'modules', query: {id: 'panel-4'}}") PREMIUM
+          b-dropdown-item(:to="{name: 'modules', query: {id: 'panel-5'}}") ADD-ONS
         b-nav-item(href="" :to="{name: 'pricing'}") PRICING
         b-nav-item(href="" :to="{name: 'our-story'}") OUR STORY
         b-nav-item(href="" @click="toggle") CONTACT US
