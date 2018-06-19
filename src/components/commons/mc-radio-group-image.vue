@@ -65,6 +65,8 @@
 
   .item.selected {
     background-color: white;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
     /* border-radius: 5px; */
     /* -webkit-box-shadow: 0px 0px 10px -2px rgba(160,181,191,1);
     -moz-box-shadow: 0px 0px 10px -2px rgba(160,181,191,1);
