@@ -163,3 +163,11 @@ query params: {"updateMask":"sourceArchiveUrl,name,labels,httpsTrigger"}
   
  Tue Jun 19 2018 18:37:09 GMT+0800 (+08)
 [debug] [2018-06-19T10:37:10.251Z] <<< HTTP RESPONSE 200
+[debug] [2018-06-19T10:37:12.256Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/operations/bWMtdjQtcHJvZC91cy1jZW50cmFsMS9kb2N0b3JXZWJzaXRlL0RXSkhvTDB1Wk5r  
+  
+ Tue Jun 19 2018 18:37:12 GMT+0800 (+08)
+[debug] [2018-06-19T10:37:12.999Z] <<< HTTP RESPONSE 200
+[debug] [2018-06-19T10:37:15.003Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/operations/bWMtdjQtcHJvZC91cy1jZW50cmFsMS9kb2N0b3JXZWJzaXRlL0RXSkhvTDB1Wk5r  
+  
+ Tue Jun 19 2018 18:37:15 GMT+0800 (+08)
+[debug] [2018-06-19T10:37:15.340Z] <<< HTTP RESPONSE 200
