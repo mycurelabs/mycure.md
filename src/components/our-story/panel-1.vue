@@ -4,15 +4,11 @@
     b-container
       div.row-container.row.align-items-center.justify-content-md-center
         div.col-xs-12.col-md-8.text-center
-          h2 MYCURE | Mission
+          h2 MYCURE | Our Story
           center
             div.hr-blue
           br
           h1 We make it easy to save lives
-          br
-          h1 Improve health by improving the health care network
-          br
-          h1 Using information and integration to build a healthier community
           
 </template>
 
