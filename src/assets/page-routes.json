@@ -22,5 +22,11 @@
     "title": "MYCURE Our Story - Caring the Extra Mile",
     "description": "Caring the extra mile is our profession, it’s our way of life. MYCURE is committed to saving lives by building well-equipped and well-designed apps so healthcare practitioners are in the most ideal work environment to fulfill their purpose.",
     "image": ""
+  },
+  {
+    "path": "/directory",
+    "title": "MYCURE Directory - Search for the finest doctors in the Philippines",
+    "description": "MYCURE helps you find doctors near you, Let's start searching.",
+    "image": ""
   }
 ]
