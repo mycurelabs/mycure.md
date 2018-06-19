@@ -42,7 +42,7 @@
 
 <style scoped>
   .panel-6 {
-    height: 100vh;
+    /* height: 100vh; */
     background-color: white;
   }
 </style>

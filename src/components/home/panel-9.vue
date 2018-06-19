@@ -41,16 +41,38 @@
     
   }
 
-  .plant {
-    width: 600px;
-    position: absolute;
-    left: -250px;
-    top: -250px;
+  .plant, .almonds {
+    display: none;
   }
 
-  .almonds {
-    position: absolute;
-    right: -100px;
-    bottom: -100px;
+  @media (min-width: 576px) {
+    .plant, .almonds {
+      display: none;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .plant {
+      display: inline;
+      width: 600px;
+      position: absolute;
+      left: -250px;
+      top: -250px;
+    }
+
+    .almonds {
+      display: inline;
+      position: absolute;
+      right: -100px;
+      bottom: -100px;
+    }
+  }
+
+  @media (min-width: 992px) {
+
+  }
+
+  @media (min-width: 1200px) {
+
   }
 </style>
