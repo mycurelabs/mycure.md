@@ -1,15 +1,12 @@
 const getDoctorWebsite = require('../../mycure/doctor-website');
 
 module = module.exports = (req, res) => {
-  getDoctorWebsite()
+  const url = req.params.url;
+  getDoctorWebsite(url)
     .then(doctor => {
-      const data = {
-        title: req.params.url,
-        name: doctor.name
-      }
-      res.render('index', data);
+      res.render('index', doctor);
     })
     .catch(e => {
-      res.status(500).send('NOT OK');
+      res.status(500).send(e);
     });
 }
