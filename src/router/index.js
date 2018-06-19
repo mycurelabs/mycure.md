@@ -4,6 +4,7 @@ import home from '@/components/home';
 import ourStory from '@/components/our-story';
 import modules from '@/components/modules';
 import pricing from '@/components/pricing';
+import printDemo from '@/components/print-demo';
 
 Vue.use(Router)
 
@@ -29,6 +30,11 @@ export default new Router({
       path: '/pricing',
       name: 'pricing',
       component: pricing
+    },
+    {
+      path: '/print-demo',
+      name: 'print-demo',
+      component: printDemo
     },
     {
       path: '/login',
