@@ -1,5 +1,3 @@
-const functions = require('firebase-functions');
-
-exports.doctorWebsite = functions.https.onRequest((request, response) => {
-  response.send("Hello from Firebase!");
-});
+require('@babel/polyfill');
+require('./mycure');
+module.exports = require('./modules');
