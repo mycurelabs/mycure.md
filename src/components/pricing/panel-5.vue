@@ -44,16 +44,37 @@
   }
 
   .peas {
-    width: 300px;
-    position: absolute;
-    left: -500px;
-    top: 20px;
-    -webkit-transition: left 500ms; /* Safari */
-    transition: left 500ms;
+    display: none;
   }
 
-  .peas.animate {
-    left: -100px;
+  @media (min-width: 576px) {
+    .peas {
+      display: none;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .peas {
+      display: inline;
+      width: 300px;
+      position: absolute;
+      left: -500px;
+      top: 20px;
+      -webkit-transition: left 500ms; /* Safari */
+      transition: left 500ms;
+    }
+
+    .peas.animate {
+      left: -100px;
+    }
+  }
+
+  @media (min-width: 992px) {
+
+  }
+
+  @media (min-width: 1200px) {
+
   }
 </style>
 

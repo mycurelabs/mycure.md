@@ -46,16 +46,37 @@
   }
 
   .plant {
-    width: 550px;
-    position: absolute;
-    right: -1000px;
-    top: -200px;
-    -webkit-transition: right 500ms; /* Safari */
-    transition: right 500ms;
+    display: none;
   }
 
-  .plant.animate {
-    right: -420px;
+  @media (min-width: 576px) {
+    .plant {
+      display: none;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .plant {
+      display: inline;
+      width: 550px;
+      position: absolute;
+      right: -1000px;
+      top: -200px;
+      -webkit-transition: right 500ms; /* Safari */
+      transition: right 500ms;
+    }
+
+    .plant.animate {
+      right: -420px;
+    }
+  }
+
+  @media (min-width: 992px) {
+
+  }
+
+  @media (min-width: 1200px) {
+
   }
 </style>
 

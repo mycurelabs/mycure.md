@@ -57,16 +57,37 @@
   }
 
   .coffee {
-    width: 250px;
-    position: absolute;
-    left: -500px;
-    top: -40px;
-    -webkit-transition: left 500ms; /* Safari */
-    transition: left 500ms;
+    display: none;
   }
 
-  .coffee.animate {
-    left: -50px;
+  @media (min-width: 576px) {
+    .coffee {
+      display: none;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .coffee {
+      display: inline;
+      width: 250px;
+      position: absolute;
+      left: -500px;
+      top: -40px;
+      -webkit-transition: left 500ms; /* Safari */
+      transition: left 500ms;
+    }
+
+    .coffee.animate {
+      left: -50px;
+    }
+  }
+
+  @media (min-width: 992px) {
+
+  }
+
+  @media (min-width: 1200px) {
+
   }
 </style>
 
