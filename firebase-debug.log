@@ -1,0 +1,64 @@
+[debug] [2018-06-19T08:23:08.667Z] ----------------------------------------------------------------------
+[debug] [2018-06-19T08:23:08.669Z] Command:       /usr/local/bin/node /usr/local/bin/firebase deploy --only hosting
+[debug] [2018-06-19T08:23:08.669Z] CLI Version:   3.17.6
+[debug] [2018-06-19T08:23:08.669Z] Platform:      darwin
+[debug] [2018-06-19T08:23:08.669Z] Node Version:  v8.9.3
+[debug] [2018-06-19T08:23:08.670Z] Time:          Tue Jun 19 2018 16:23:08 GMT+0800 (+08)
+[debug] [2018-06-19T08:23:08.670Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-06-19T08:23:08.682Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-06-19T08:23:08.683Z] > authorizing via signed-in user
+[debug] [2018-06-19T08:23:08.685Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2018-06-19T08:23:08.685Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ { refresh_token: '1/MT9VkaJKBT4NYDZuEXDBuLiPDIF7HfywSbCGPUnooas',
+  client_id: '563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com',
+  client_secret: 'j9iVZfS8kkCEFUPaAeJV0sAi',
+  grant_type: 'refresh_token',
+  scope: 'email https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/cloudplatformprojects.readonly https://www.googleapis.com/auth/firebase openid' } 
+ Tue Jun 19 2018 16:23:08 GMT+0800 (+08)
+[debug] [2018-06-19T08:23:09.152Z] <<< HTTP RESPONSE 200
+[debug] [2018-06-19T08:23:09.171Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/mc-v4-prod  
+  
+ Tue Jun 19 2018 16:23:09 GMT+0800 (+08)
+[debug] [2018-06-19T08:23:10.461Z] <<< HTTP RESPONSE 200
+[debug] [2018-06-19T08:23:10.462Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/mc-v4-prod/tokens  
+  
+ Tue Jun 19 2018 16:23:10 GMT+0800 (+08)
+[debug] [2018-06-19T08:24:26.137Z] Error: connect ETIMEDOUT 104.197.85.31:443
+    at Object._errnoException (util.js:1024:11)
+    at _exceptionWithHostPort (util.js:1046:20)
+    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1182:14)
+[error] 
+[error] Error: Server Error. connect ETIMEDOUT 104.197.85.31:443
+[debug] [2018-06-19T08:25:27.237Z] ----------------------------------------------------------------------
+[debug] [2018-06-19T08:25:27.240Z] Command:       /usr/local/bin/node /usr/local/bin/firebase deploy --only hosting
+[debug] [2018-06-19T08:25:27.240Z] CLI Version:   3.17.6
+[debug] [2018-06-19T08:25:27.240Z] Platform:      darwin
+[debug] [2018-06-19T08:25:27.240Z] Node Version:  v8.9.3
+[debug] [2018-06-19T08:25:27.241Z] Time:          Tue Jun 19 2018 16:25:27 GMT+0800 (+08)
+[debug] [2018-06-19T08:25:27.241Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-06-19T08:25:27.256Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-06-19T08:25:27.257Z] > authorizing via signed-in user
+[debug] [2018-06-19T08:25:27.259Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/mc-v4-prod  
+  
+ Tue Jun 19 2018 16:25:27 GMT+0800 (+08)
+[debug] [2018-06-19T08:25:28.277Z] <<< HTTP RESPONSE 200
+[debug] [2018-06-19T08:25:28.278Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/mc-v4-prod/tokens  
+  
+ Tue Jun 19 2018 16:25:28 GMT+0800 (+08)
+[debug] [2018-06-19T08:25:29.704Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Deploying to 'mc-v4-prod'...
+[info] 
+[info] i  deploying hosting
+[info] i  hosting: preparing dist directory for upload...
+[debug] [2018-06-19T08:25:32.531Z] >>> HTTP REQUEST PUT https://deploy.firebase.com/v1/hosting/mc-v4-prod/uploads/-LFM8WnF1ltexZ6D_J3z?fileCount=61&message=  
+  
+ Tue Jun 19 2018 16:25:32 GMT+0800 (+08)
+[debug] [2018-06-19T08:26:48.333Z] Error: connect ETIMEDOUT 23.251.151.130:443
+    at Object._errnoException (util.js:1024:11)
+    at _exceptionWithHostPort (util.js:1046:20)
+    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1182:14)
+[error] 
+[error] Error: Server Error. connect ETIMEDOUT 23.251.151.130:443
