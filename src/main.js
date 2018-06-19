@@ -15,9 +15,22 @@ import VueScrollTo from 'vue-scrollto';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
 import 'kidlat-css/css/kidlat.css';
+import VueHtmlToPaper from './mixins/vue-html-to-paper';
 
 Vue.config.productionTip = false;
 Vue.use(BootstrapVue);
+Vue.use(VueHtmlToPaper, {
+  name: '_blank',
+  specs: [
+    'fullscreen=yes',
+    'titlebar=yes',
+    'scrollbars=yes'
+  ],
+  styles: [
+    'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css',
+    'https://unpkg.com/kidlat-css/css/kidlat.css'
+  ]
+});
 
 // Vue.use(Vuefity, {
 //   theme: {
