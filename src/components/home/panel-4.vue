@@ -1,7 +1,7 @@
 <template lang="pug">
   div.panel-4
     div.container
-      div(style="height: 100vh").row.align-items-center
+      div.row.align-items-center
         div.col-xs-12.col-md-12.text-center
           img(src="../../assets/images/v4/coffee.png" :class="{'animate': scrollTop > 2200}").coffee
           img(src="../../assets/images/v4/mycure-modules-chickpeas.png" :class="{'animate': scrollTop > 2600}").peas
@@ -70,31 +70,53 @@
 
 <style scoped>
   .panel-4 {
-    height: 100vh;
-    background-color: white;
+    /* height: 100vh; */
+    /* background-color: white; */
   }
 
-  .coffee {
-    position: absolute;
-    left: -1000px;
-    top: -200px;
-    -webkit-transition: left 500ms;
-    transition: left 500ms;
+  .coffee, .peas {
+    display: none;
   }
 
-  .coffee.animate {
-    left: -240px;
+  @media (min-width: 576px) {
+    .coffee, .peas {
+      display: none;
+    }
   }
 
-  .peas {
-    position: absolute;
-    right: -1000px;
-    bottom: -130px;
-    -webkit-transition: right 500ms;
-    transition: right 500ms;
+  @media (min-width: 768px) {
+    .coffee {
+      display: inline;
+      position: absolute;
+      left: -1000px;
+      top: -200px;
+      -webkit-transition: left 500ms;
+      transition: left 500ms;
+    }
+
+    .coffee.animate {
+      left: -240px;
+    }
+
+    .peas {
+      display: inline;
+      position: absolute;
+      right: -1000px;
+      bottom: -130px;
+      -webkit-transition: right 500ms;
+      transition: right 500ms;
+    }
+
+    .peas.animate {
+      right: -300px;
+    }
   }
 
-  .peas.animate {
-    right: -300px;
+  @media (min-width: 992px) {
+
+  }
+
+  @media (min-width: 1200px) {
+
   }
 </style>
