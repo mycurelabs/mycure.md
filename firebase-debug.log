@@ -1,0 +1,35 @@
+[debug] [2018-06-27T12:37:21.550Z] ----------------------------------------------------------------------
+[debug] [2018-06-27T12:37:21.552Z] Command:       /Users/centipede/.nvm/versions/node/v8.11.1/bin/node /usr/local/bin/firebase deploy --only hosting
+[debug] [2018-06-27T12:37:21.552Z] CLI Version:   3.17.6
+[debug] [2018-06-27T12:37:21.552Z] Platform:      darwin
+[debug] [2018-06-27T12:37:21.552Z] Node Version:  v8.11.1
+[debug] [2018-06-27T12:37:21.553Z] Time:          Wed Jun 27 2018 20:37:21 GMT+0800 (+08)
+[debug] [2018-06-27T12:37:21.553Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-06-27T12:37:21.567Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-06-27T12:37:21.567Z] > authorizing via signed-in user
+[debug] [2018-06-27T12:37:21.569Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2018-06-27T12:37:21.569Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ { refresh_token: '1/MT9VkaJKBT4NYDZuEXDBuLiPDIF7HfywSbCGPUnooas',
+  client_id: '563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com',
+  client_secret: 'j9iVZfS8kkCEFUPaAeJV0sAi',
+  grant_type: 'refresh_token',
+  scope: 'email https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/cloudplatformprojects.readonly https://www.googleapis.com/auth/firebase openid' } 
+ Wed Jun 27 2018 20:37:21 GMT+0800 (+08)
+[debug] [2018-06-27T12:37:22.262Z] <<< HTTP RESPONSE 200
+[debug] [2018-06-27T12:37:22.287Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/mc-v4-prod  
+  
+ Wed Jun 27 2018 20:37:22 GMT+0800 (+08)
+[debug] [2018-06-27T12:37:24.270Z] <<< HTTP RESPONSE 200
+[debug] [2018-06-27T12:37:24.271Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/mc-v4-prod/tokens  
+  
+ Wed Jun 27 2018 20:37:24 GMT+0800 (+08)
+[debug] [2018-06-27T12:37:25.902Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Deploying to 'mc-v4-prod'...
+[info] 
+[info] i  deploying hosting
+[info] i  hosting: preparing dist directory for upload...
+[debug] [2018-06-27T12:37:29.719Z] >>> HTTP REQUEST PUT https://deploy.firebase.com/v1/hosting/mc-v4-prod/uploads/-LG0EuRFSRPOH1F5VJdu?fileCount=99&message=  
+  
+ Wed Jun 27 2018 20:37:29 GMT+0800 (+08)
