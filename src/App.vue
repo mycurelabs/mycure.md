@@ -1,6 +1,6 @@
 <template lang="pug">
   div
-    pre(style="position: fixed; z-index: 99999; color: green;") {{scrollTop}}
+    pre(style="position: fixed; z-index: 99999; color: green;" v-if="!$isProduction()") {{scrollTop}}
     router-view
 </template>
 
