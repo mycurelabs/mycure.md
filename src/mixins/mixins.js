@@ -23,6 +23,7 @@ Vue.mixin({
     $removeClass: (id, _class) => {
       const e = document.getElementById(id);
       e.classList.remove(_class);
-    }
+    },
+    $isProduction: () => process.env.NODE_ENV === 'production'
   }
 });
