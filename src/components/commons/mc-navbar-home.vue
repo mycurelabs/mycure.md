@@ -7,10 +7,10 @@
 
       b-navbar-nav
         b-nav-item-dropdown(text="PRODUCTS")
-          b-dropdown-item(:to="{name: 'modules', query: {id: 'panel-2'}}").active OVERVIEW
-          b-dropdown-item(:to="{name: 'modules', query: {id: 'panel-3'}}").active CORE
-          b-dropdown-item(:to="{name: 'modules', query: {id: 'panel-4'}}").active PREMIUM
-          b-dropdown-item(:to="{name: 'modules', query: {id: 'panel-5'}}").active ADD-ONS
+          b-dropdown-item(:to="{name: 'modules', query: {id: 'panel-2'}}" style="color: black").active OVERVIEW
+          b-dropdown-item(:to="{name: 'modules', query: {id: 'panel-3'}}" style="color: black").active CORE
+          b-dropdown-item(:to="{name: 'modules', query: {id: 'panel-4'}}" style="color: black").active PREMIUM
+          b-dropdown-item(:to="{name: 'modules', query: {id: 'panel-5'}}" style="color: black").active ADD-ONS
         b-nav-item(href="" :to="{name: 'pricing'}") PRICING
         b-nav-item(href="" :to="{name: 'our-story'}") OUR STORY
         b-nav-item(href="" @click="toggle") CONTACT US
