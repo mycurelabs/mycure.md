@@ -37,7 +37,7 @@
       },
       {
         "source": "**",
-        "function": "doctorWebsite"
+        "function": "/index.html"
       }
     ],
     "headers": [
