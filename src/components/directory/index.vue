@@ -1,8 +1,8 @@
 <template lang="pug">
   div
-    search
-    results
-      
+    search(:completed.sync="searchResults")
+    results(:data="searchResults")
+    pre {{searchResults}}
 </template>
 
 <script>
@@ -15,7 +15,7 @@
     },
     data() {
       return {
-
+        searchResults: []
       }
     }
   }
