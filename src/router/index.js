@@ -45,17 +45,17 @@ export default new Router({
     {
       path: '/login',
       name: 'login',
-      beforeEnter() { window.open('https://login.mycure.md') }
+      beforeEnter() { window.open('https://accounts-v4.mycure.md') }
     },
     {
       path: '/join-today',
       name: 'join-today',
-      beforeEnter() { window.open('https://login.mycure.md/signup') }
+      beforeEnter() { window.open('https://accounts-v4.mycure.md/signup/') }
     },
     {
       path: '/join-today-doctors',
       name: 'join-today-doctors',
-      beforeEnter() { window.open('https://login.mycure.md/signup/medical-professional') }
+      beforeEnter() { window.open('https://accounts-v4.mycure.md/choose-plan?type=individual') }
     },
     {
       path: '/npc-website',
@@ -78,6 +78,16 @@ export default new Router({
       beforeEnter() { window.open('https://www.youtube.com/channel/UCfQ5QBdFh6f9Tuj2tWkRmvg') }
     },
     {
+      path: '/ig-link',
+      name: 'ig-link',
+      beforeEnter() { window.open('https://www.instagram.com/lifeatmycure/') }
+    },
+    {
+      path: '/linkedin-link',
+      name: 'linkedin-link',
+      beforeEnter() { window.open('https://www.linkedin.com/company/mycure/?originalSubdomain=ph') }
+    },
+    {
       path: '/request-demo-link',
       name: 'request-demo-link',
       beforeEnter() { window.open('https://docs.google.com/forms/d/e/1FAIpQLSfjshsDWT8gfL_ktnuYJVZI50d14i4_2pUT-wBXJGRcdmB83w/viewform?c=0&w=1&usp=send_form') }
@@ -86,6 +96,51 @@ export default new Router({
       path: '/blog-link',
       name: 'blog-link',
       beforeEnter() { window.open('http://blog.mycure.md/') }
-    }
+    },
+    {
+      path: '/home-vid',
+      name: 'home-vid',
+      beforeEnter() { window.open('https://www.youtube.com/watch?v=r7oewF5qDz4') }
+    },
+    {
+      path: '/careers',
+      name: 'careers',
+      beforeEnter() { window.open('https://culture.mycure.md/awesome/') }
+    },
+    {
+      path: '/signup-individual',
+      name: 'signup-individual',
+      beforeEnter() { window.open('https://accounts-v4.mycure.md/choose-plan?type=individual') }
+    },
+    {
+      path: '/signup-group',
+      name: 'signup-group',
+      beforeEnter() { window.open('https://accounts-v4.mycure.md/create-account-group?type=group') }
+    },
+    {
+      path: '/signup-multi',
+      name: 'signup-multi',
+      beforeEnter() { window.open('https://accounts-v4.mycure.md/create-account-multi?type=multi') }
+    },
+    {
+      path: '/faqs-link',
+      name: 'faqs-link',
+      beforeEnter() { window.open('https://tutorials.mycure.md/frequently-asked-questions-faqs/') }
+    },
+    {
+      path: '/arabica-link',
+      name: 'arabica-link',
+      beforeEnter() { window.open('https://accounts-v4.mycure.md/create-account-individual?type=individual&plan=arabica') }
+    },
+    {
+      path: '/robusta-link',
+      name: 'robusta-link',
+      beforeEnter() { window.open('https://accounts-v4.mycure.md/create-account-individual?type=individual&plan=robusta') }
+    },
+    {
+      path: '/liberica-link',
+      name: 'liberica-link',
+      beforeEnter() { window.open('https://accounts-v4.mycure.md/create-account-individual?type=individual&plan=liberica') }
+    },
   ]
 });

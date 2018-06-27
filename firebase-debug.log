@@ -1,0 +1,50 @@
+[debug] [2018-06-27T11:51:32.491Z] ----------------------------------------------------------------------
+[debug] [2018-06-27T11:51:32.493Z] Command:       /usr/local/bin/node /usr/local/bin/firebase serve
+[debug] [2018-06-27T11:51:32.493Z] CLI Version:   3.17.6
+[debug] [2018-06-27T11:51:32.493Z] Platform:      darwin
+[debug] [2018-06-27T11:51:32.493Z] Node Version:  v8.9.3
+[debug] [2018-06-27T11:51:32.494Z] Time:          Wed Jun 27 2018 19:51:32 GMT+0800 (+08)
+[debug] [2018-06-27T11:51:32.494Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-06-27T11:51:32.507Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-06-27T11:51:32.507Z] > authorizing via signed-in user
+[debug] [2018-06-27T11:51:32.510Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2018-06-27T11:51:32.510Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ { refresh_token: '1/MT9VkaJKBT4NYDZuEXDBuLiPDIF7HfywSbCGPUnooas',
+  client_id: '563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com',
+  client_secret: 'j9iVZfS8kkCEFUPaAeJV0sAi',
+  grant_type: 'refresh_token',
+  scope: 'email https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/cloudplatformprojects.readonly https://www.googleapis.com/auth/firebase openid' } 
+ Wed Jun 27 2018 19:51:32 GMT+0800 (+08)
+[debug] [2018-06-27T11:51:35.928Z] <<< HTTP RESPONSE 200
+[debug] [2018-06-27T11:51:35.954Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/mc-v4-prod  
+  
+ Wed Jun 27 2018 19:51:35 GMT+0800 (+08)
+[debug] [2018-06-27T11:51:38.718Z] <<< HTTP RESPONSE 200
+[debug] [2018-06-27T11:51:38.719Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/mc-v4-prod/tokens  
+  
+ Wed Jun 27 2018 19:51:38 GMT+0800 (+08)
+[debug] [2018-06-27T11:51:41.280Z] <<< HTTP RESPONSE 200
+[debug] [2018-06-27T11:51:41.281Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/mc-v4-prod  
+  
+ Wed Jun 27 2018 19:51:41 GMT+0800 (+08)
+[debug] [2018-06-27T11:51:42.988Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from '/Users/centipede/Documents/workspace/MYCURE/v4/mycure.md'...
+[info] 
+[debug] [2018-06-27T11:51:42.990Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/501166994821/clients/_:getWebAppConfig  
+  
+ Wed Jun 27 2018 19:51:42 GMT+0800 (+08)
+[debug] [2018-06-27T11:51:44.828Z] <<< HTTP RESPONSE 200
+[info] i  hosting: Serving hosting files from: dist
+[info] ✔  hosting: Local server: http://localhost:5000
+
+[info] [hosting] Rewriting /favicon.ico to live function doctorWebsite
+[info] [hosting] Rewriting /favicon.ico to live function doctorWebsite
+[info] [hosting] Rewriting /favicon.ico to live function doctorWebsite
+[info] [hosting] Rewriting /favicon.ico to live function doctorWebsite
+[info] [hosting] Rewriting /favicon.ico to live function doctorWebsite
+[info] [hosting] Rewriting /favicon.ico to live function doctorWebsite
+[info] [hosting] Rewriting /favicon.ico to live function doctorWebsite
+[info] [hosting] Rewriting /favicon.ico to live function doctorWebsite
+[info] [hosting] Rewriting /favicon.ico to live function doctorWebsite

@@ -1,8 +1,8 @@
 <template lang="pug">
   div.panel-4
-    div.container
-      div.row.align-items-center
-        div.col-xs-12.col-md-12.text-center
+    b-container
+      b-row.align-items-center
+        b-col(xs="12" md="12").text-center.pt-5.pb-5
           img(src="../../assets/images/v4/coffee.png" :class="{'animate': scrollTop > 2200}").coffee
           img(src="../../assets/images/v4/mycure-modules-chickpeas.png" :class="{'animate': scrollTop > 2600}").peas
           center
@@ -15,7 +15,7 @@
           p That’s why keeping them secure is our #1 priority.
           p With MYCURE , you’ll get: 
           br
-          div.row.justify-content-center
+          b-row.justify-content-center
             b-col(xs="12" md="2")
               div.feature-item
                 img(width="70" src="../../assets/images/v4/mycure-homepage-dpa-ssla.png").mb-2
@@ -47,7 +47,7 @@
                   br
                   | Compliance
           div.col-xs-12.pt-5
-            b-button(variant="primary" size="sm") Data Privacy for Physicians
+            b-button(variant="primary" size="sm").shadow-5 Data Privacy for Physicians
 </template>
 
 <script>

@@ -5,8 +5,7 @@
     panel-3
     panel-4
     panel-5
-    panel-6
-    panel-7
+    // panel-6
     join-us
     //- panel-9
     mc-footer
@@ -20,7 +19,6 @@
   import panel4 from './panel-4';
   import panel5 from './panel-5';
   import panel6 from './panel-6';
-  import panel7 from './panel-7';
   import joinUs from '../home/panel-9';
   // import panel9 from './panel-9';
   import mcFooter from '../commons/mc-footer';
@@ -37,7 +35,6 @@
       'panel-4': panel4,
       'panel-5': panel5,
       'panel-6': panel6,
-      'panel-7': panel7,
       joinUs,
       // 'panel-9': panel9,
       mcFooter

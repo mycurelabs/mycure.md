@@ -12,7 +12,7 @@
             v-if="item.hasTooltip"
             style="margin-bottom: -10px; position: absolute;"
           ).color-primary info
-        p 
+        p.pb-5 
           small {{item.description}}
         b-tooltip(:target="'#tooltip_'+item.id" :title="item.tooltipMessage" placement="bottom")
         //- div.pt-5

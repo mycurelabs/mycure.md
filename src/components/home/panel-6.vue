@@ -23,7 +23,7 @@
                 strong Customizable Content
                 p You might ask if we can add this or change that, the answer is usually yes.
             div.col-xs-12.col-md-3.pl-3.pr-3
-              img(width="100%" src="../../assets/images/v4/234x234px.png").mb-3
+              img(width="100%" src="../../assets/images/v4/mycure-homepage-image-user-hands-on-training.png").mb-3
               br
               div.text-left
                 strong Hands-on Training

@@ -9,17 +9,15 @@
       b-navbar-nav.ml-auto
         b-nav-item
           small.color-white Follow us on:
-        b-nav-item(href="") 
+        b-nav-item(:to="{name: 'fb-link'}") 
           img(width="25" src="../../assets/images/v4/mycure-homepage-wireframe-icon-fb.png")
-        b-nav-item(href="")
+        b-nav-item(:to="{name: 'youtube-link'}")
           img(width="25" src="../../assets/images/v4/mycure-homepage-wireframe-icon-ytub-e.png")
-        b-nav-item(href="")
+        b-nav-item(:to="{name: 'ig-link'}")
           img(width="25" src="../../assets/images/v4/mycure-homepage-wireframe-icon-ig.png")
-        b-nav-item(href="")
-          img(width="25" src="../../assets/images/v4/mycure-homepage-wireframe-icon-gplus.png")
-        b-nav-item(href="")
+        b-nav-item(:to="{name: 'linkedin-link'}")
           img(width="25" src="../../assets/images/v4/mycure-homepage-wireframe-icon-linkedin.png")
-        b-nav-item(href="")
+        b-nav-item(:to="{name: 'twitter-link'}")
           img(width="25" src="../../assets/images/v4/mycure-homepage-wireframe-icon-twitter.png")
 
       // b-navbar-nav.ml-auto

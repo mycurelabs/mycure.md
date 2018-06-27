@@ -8,24 +8,22 @@
           h6(style="color: #616161") CLINIC SOLUTIONS
           ul.list.list-tall
             li
-              a.color-white Individual Practice
+              router-link(:to="{name: 'signup-individual'}").color-white Individual Practice
             li
-              a.color-white Group Practice
+              router-link(:to="{name: 'signup-group'}").color-white Group Practice
             li
-              a.color-white Organizations
+              router-link(:to="{name: 'signup-multi'}").color-white Health Facility
         div.col-xs-12.col-md-3
-          h6(style="color: #616161") MODULES
+          h6(style="color: #616161") PRODUCTS
           ul.list.list-tall
             li
-              a.color-white Doctor
+              router-link(:to="{name: 'modules', query: {id: 'panel-2'}}").color-white Overview
             li
-              a.color-white Billing
+              router-link(:to="{name: 'modules', query: {id: 'panel-3'}}").color-white Core
             li
-              a.color-white Laboratory
+              router-link(:to="{name: 'modules', query: {id: 'panel-4'}}").color-white Premium
             li
-              a.color-white Radiology
-            li
-              a.color-white Inventory
+              router-link(:to="{name: 'modules', query: {id: 'panel-5'}}").color-white Add-Ons
         div.col-xs-12.col-md-3
           h6(style="color: #616161") ABOUT
           ul.list.list-tall
@@ -36,14 +34,14 @@
             li
               router-link(:to="{name: 'blog-link'}").color-white Blog
             li
-              a.color-white Careers
+              router-link(:to="{name: 'careers'}").color-white Careers
         div.col-xs-12.col-md-3
           h6(style="color: #616161") SUPPORT
           ul.list.list-tall
             li
-              a.color-white FAQs
+              router-link(:to="{name: 'faqs-link'}").color-white FAQs
             li
-              a.color-white Request A Demo
+              router-link(:to="{name: 'faqs-link'}").color-white Request A Demo
       hr
       div.row.pt-3.pb-3
         div.col-xs-12.col-md-4

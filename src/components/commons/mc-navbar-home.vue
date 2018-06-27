@@ -7,17 +7,17 @@
 
       b-navbar-nav
         b-nav-item-dropdown(text="PRODUCTS")
-          b-dropdown-item(:to="{name: 'modules', query: {id: 'panel-2'}}") OVERVIEW
-          b-dropdown-item(:to="{name: 'modules', query: {id: 'panel-3'}}") CORE
-          b-dropdown-item(:to="{name: 'modules', query: {id: 'panel-4'}}") PREMIUM
-          b-dropdown-item(:to="{name: 'modules', query: {id: 'panel-5'}}") ADD-ONS
+          b-dropdown-item(:to="{name: 'modules', query: {id: 'panel-2'}}").active OVERVIEW
+          b-dropdown-item(:to="{name: 'modules', query: {id: 'panel-3'}}").active CORE
+          b-dropdown-item(:to="{name: 'modules', query: {id: 'panel-4'}}").active PREMIUM
+          b-dropdown-item(:to="{name: 'modules', query: {id: 'panel-5'}}").active ADD-ONS
         b-nav-item(href="" :to="{name: 'pricing'}") PRICING
         b-nav-item(href="" :to="{name: 'our-story'}") OUR STORY
         b-nav-item(href="" @click="toggle") CONTACT US
 
       b-navbar-nav.ml-auto
-        a(href="https://accounts-v4.mycure.md" targe="_blank")#login-link LOGIN
-        b-button(variant="primary" size="sm") SIGNUP
+        a(href="https://accounts-v4.mycure.md" target="_blank")#login-link LOGIN
+        b-button(variant="primary" size="sm" :to="{name: 'join-today'}") SIGNUP
 </template>
 
 <script>
@@ -36,5 +36,10 @@
     margin-top: 8px !important;
     margin-right: 50px;
     font-size: 12px;
+  }
+
+  .active {
+    background-color: transparent !important;
+    color: black;
   }
 </style>

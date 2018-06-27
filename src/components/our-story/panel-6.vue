@@ -1,19 +1,36 @@
 <template lang="pug">
   div.panel-3
-    div.container
-      div.row.row-container.align-items-center
-        div.col-xs-12.col-md-8
+    b-container
+      b-row.align-items-center
+        b-col(xs="12" md="8")
           div.hr-blue
           br
-          h1 Dale
+          h1 Caring the Extra Mile
           br
-          p Dale runs a tech company that started in 2004. Among numerous IT projects, their team also made the first Filipino-themed game on iTunes and Googleplay called 
-            a(href="http://www.butchukoy.com/" target="_blank") Sipa 
-            | and a mobile photo diary meant to tell your story through photos called Pickld. He regularly shares experiences being a Mentor and Director at Founder Institute (Manila). He also started 
-            a(href="http://www.mightyminds.org/" target="_blank") Mighty Minds, 
-            | a nonprofit organization that helps kids finish school.
-        div.col-xs-12.col-md-4
-          img(width="100%" src="../../assets/images/v4/234x234px.png")
+          p It’s all about the extra day we put into our work,
+
+          p the extra distance we travel to see our clients,
+
+          p the extra features we put into our product,
+
+          p the extra design we add to delight our users,
+
+          p the extra phone call we make to see how you’re doing,
+
+          p the extra concern you have for your patients,
+
+          p the extra discount you give those in need,
+
+          p the extra advice you give them to cope better,
+
+          p the extra class you took to be a better doctor,
+
+          p the extra 10 years of medical education you endured to be a doctor at all.
+
+          p Caring the extra mile is our profession, it’s our way of life.
+
+        // div.col-xs-12.col-md-4
+        //   img(width="100%" src="../../assets/images/v4/mycure-ourstory-dale.png")
 </template>
 
 <script>

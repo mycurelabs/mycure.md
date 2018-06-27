@@ -14,21 +14,21 @@
             br
             | secretary only
           br
-          b-button(variant="outline-primary" size="lg" block) MYCURE for Individuals 
+          b-button(variant="outline-primary" size="lg" block :to="{name: 'signup-individual'}") MYCURE for Individuals 
             i(style="position: absolute;").material-icons chevron_right
         div.col-xs-12.col-md-4.text-center
           h2 For my peers and I, 
             br
             | practicing as a team
           br
-          b-button(variant="primary" size="lg" block) MYCURE for Groups 
+          b-button(variant="primary" size="lg" block :to="{name: 'signup-group'}") MYCURE for Groups 
             i(style="position: absolute;").material-icons chevron_right
         div.col-xs-12.col-md-4.text-center
           h2 For my multispecialty
             br
             | clinic
           br
-          b-button(variant="outline-primary" size="lg" block) MYCURE for Specialized Clinics 
+          b-button(variant="outline-primary" size="lg" block :to="{name: 'signup-multi'}") MYCURE for Health Facility 
             i(style="position: absolute;").material-icons chevron_right
 </template>
 

@@ -1,17 +1,19 @@
 <template lang="pug">
   div.panel-1
     mc-navbar-home
-    div.container
-      div.row-container.row.align-items-center
-        div.col-xs-12.col-md-6
-          h2 MYCURE | Care the Extra Mile
+    b-container
+      b-row.row-container.row.align-items-center
+        b-col(xs="12" md="5")
+          h2 MYCURE | Clinic Management System
           div.hr-blue
           br
           h1 MYCURE cares for people who care for people.
           br
-          p MYCURE cares for people who care for people. It is an all-inclusive clinic management system for doctors and clinics. MYCURE is one of the fastest growing all-around EMR and practice management software in the Philippines.
+          p Doctors, nurses, and clinic professionals have a lot of work and we want to make that work easier.
           br
-          b-button(variant="primary" size="sm") Watch Video
+          b-button(variant="primary" size="sm" :to="{name: 'home-vid'}") Watch Video
+        b-col(xs="12" md="7")
+          img(width="110%" src="../../assets/images/v4/mycure-homepage-doctor-kid-pediatrician-drawing.png")
 </template>
 
 <script>
@@ -26,9 +28,9 @@
 <style scoped>
   .panel-1 {
     height: auto;
-    background-image: url('../../assets/images/v4/mycure-homepage-doctor-welcome-smile-emr-his-ehr-philippines-mobile-web-app.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
+    /* background-image: url('../../assets/images/v4/mycure-homepage-doctor-welcome-smile-emr-his-ehr-philippines-mobile-web-app.jpg'); */
+    /* background-repeat: no-repeat; */
+    /* background-size: cover; */
   }
 
   .container {
@@ -46,9 +48,9 @@
   @media (min-width: 768px) {
     .panel-1 {
       height: 100vh;
-      background-image: url('../../assets/images/v4/mycure-homepage-doctor-welcome-smile-emr-his-ehr-philippines-mobile-web-app.jpg');
-      background-repeat: no-repeat;
-      background-size: cover;
+      /* background-image: url('../../assets/images/v4/mycure-homepage-doctor-kid-pediatrician-drawing.png'); */
+      /* background-repeat: no-repeat; */
+      /* background-position: center left; */
     }
     
     .container {

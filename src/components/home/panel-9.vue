@@ -15,13 +15,13 @@
         div.col-xs-12.col-md-10.offset-md-1
           div.row
             div.col-xs-12.col-md-6
-              b-button(variant="outline-primary" size="lg" style="width: 100%").mb-3 I wanna learn more about your product
-              b-button(variant="outline-primary" size="lg" style="width: 100%").mb-3 I wanna partner with MYCURE
+              b-button(variant="outline-primary" size="lg" style="width: 100%" :to="{name:'modules'}").mb-3 I wanna learn more about your product
+              // b-button(variant="outline-primary" size="lg" style="width: 100%").mb-3 I wanna partner with MYCURE
             div.col-xs-12.col-md-6
-              b-button(variant="outline-primary" size="lg" style="width: 100%").mb-3 I wanna join the MYCURE team
-              b-button(variant="outline-primary" size="lg" style="width: 100%").mb-3 I wanna care the extra mile with you
+              b-button(variant="outline-primary" size="lg" style="width: 100%" :to="{name: 'careers'}").mb-3 I wanna join the MYCURE team
+              // b-button(variant="outline-primary" size="lg" style="width: 100%").mb-3 I wanna care the extra mile with you
             div.col-xs-12.col-md-6.offset-md-3.text-center.mt-4
-              b-button(variant="success" size="lg" style="width: 100%") I wanna signup now
+              b-button(variant="success" size="lg" style="width: 100%" :to="{name: 'join-today'}") I wanna signup now
 </template>
 
 <script>

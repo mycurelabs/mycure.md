@@ -6,7 +6,7 @@
           div.col-xs-12.col-md-12.text-center
             div.row.wrap.align-items-center
               div.col-xs-12.col-md-12.pb-5
-                h2.color-primary Packaged for you clinic type
+                h2.color-primary Brilliantly designed for your clinic type.
             mc-radio-group-image(
               @select="itemSelected"
               v-model="items"
@@ -21,7 +21,8 @@
             div.row.justify-content-md-center.pb-5.pt-5.bg-white
               //- INDIVIDUAL
               div(v-if="item1Selected").col-xs-12.col-md-9.pt-4
-                h2 {{items[0].name}}
+                h2 {{items[0].longName}}
+                p {{items[0].fullDescription}}
                 div.row.justify-content-md-center.mb-5
                   div.feature-item
                     img(width="70" src="../../assets/images/v4/mycure-icon-emr-logo-active.png" v-mc-hover-src="'../../assets/images/v4/mycure-icon-emr-logo-active.png'")
@@ -33,7 +34,8 @@
                       | Billing
               //- GROUP
               div(v-if="item2Selected").col-xs-12.col-md-9.pt-4
-                h2 {{items[1].name}}
+                h2 {{items[1].longName}}
+                p {{items[1].fullDescription}}
                 div.row.justify-content-md-center.mb-5
                   div.feature-item
                     img(width="70" src="../../assets/images/v4/mycure-icon-emr-logo-active.png")
@@ -70,7 +72,8 @@
                       | Features
               //- MULTI-SPECIALTY
               div(v-if="item3Selected").col-xs-12.col-md-9.pt-4
-                h2 {{items[2].name}}
+                h2 {{items[2].longName}}
+                p {{items[2].fullDescription}}
                 div.row.justify-content-md-center.mb-5
                   div.feature-item
                     img(width="70" src="../../assets/images/v4/mycure-icon-emr-logo-active.png")
@@ -115,7 +118,7 @@
                       br
                       | Features
               div.col-xs-12.col-md-12.pb-5.pt-5
-                b-button(variant="outline-primary" size="sm" :to="{name: 'modules'}") Learn more about modules
+                b-button(variant="outline-primary" size="sm" :to="{name: 'modules'}").shadow-5 Learn more about modules
 </template>
 
 <script>
@@ -133,27 +136,33 @@
         items: [
           {
             id: 'individual',
-            name: 'INDIVIDUAL',
-            description: 'A powerful EMR System with Queuing and Billing modules.',
+            name: 'Individual Clinic',
+            description: 'Doctors practicing independently.',
+            longName: 'MYCURE for Individual Practice',
+            fullDescription: 'A powerful combination of EMR, Queuing and Billing systems designed for individual practitioners.',
             isSelected: true,
             hasTooltip: false,
             src: require('../../assets/images/v4/mycure-homepage-package-individual.png')
           },
           {
             id: 'group',
-            name: 'GROUP',
-            description: 'A practical system built for doctors’ clinics being handled by a common secretary.',
+            name: 'Group Clinic',
+            description: 'Group of doctors practicing together',
+            longName: 'MYCURE for Group Practice',
+            fullDescription: 'A practical system built for doctors’ clinics being handled by a common secretary.',
             isSelected: false,
             hasTooltip: false,
             src: require('../../assets/images/v4/mycure-homepage-package-group.png')
           },
           {
             id: 'specialized',
-            name: 'HEALTH FACILITY',
-            description: 'Ad non aliqua et ullamco. Cupidatat fugiat velit. Cupidatat fugiat velit.',
+            name: 'Health Facility',
+            description: 'One-stop, multi-staff clinics',
+            longName: 'MYCURE for Health Facilities',
+            fullDescription: 'A powerful combination of EMR, Queuing and Billing systems designed for individual practitioners.',
             isSelected: false,
-            hasTooltip: true,
-            tooltipMessage: 'An all-around solution for your outpatient, multispecialty or specialized clinic.',
+            hasTooltip: false,
+            tooltipMessage: 'An all-around solution for your outpatient, multispecialty or specialized clinics.',
             src: require('../../assets/images/v4/mycure-homepage-package-multispecialty.png')
           }
         ]

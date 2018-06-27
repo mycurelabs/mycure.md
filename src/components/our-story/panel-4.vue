@@ -1,20 +1,23 @@
 <template lang="pug">
   div.panel-3
-    div.container
-      div.row.row-container.align-items-center
-        div.col-xs-12.col-md-4
-          img(width="100%" src="../../assets/images/v4/234x234px.png")
-        div.col-xs-12.col-md-8
-          div.hr-blue
-          br
-          h1 Our Team
-          br
-          p Our dynamic and agile team will build a 
-            strong healthcare ecosystem 
-            | that is united and adaptive to the rapidly changing technological environment, through top-notch technologies and most delightful designs.
+    b-container
+      b-row
+        div.col-xs-12.col-md-10.offset-md-1
+          b-row.row-container.align-items-center
+            div.col-xs-12.col-md-4
+              img(width="100%" src="../../assets/images/v4/mycure-ourstory-team.png")
+            div.col-xs-12.col-md-8
+              div.hr-blue
+              br
+              h1 Our Team
+              br
+              p Our dynamic and agile team will build a 
+                strong healthcare ecosystem 
+                | that is united and adaptive to the rapidly changing technological environment, through top-notch technologies and most delightful designs.
 </template>
 
 <script>
+  
 </script>
 
 <style scoped>

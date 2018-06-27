@@ -23,39 +23,43 @@
 
 <style scoped>
   .panel-1 {
-    height: auto;
-    background-image: url('../../assets/images/v4/bg.jpg');
+    /* height: auto; */
+    background-image: url('../../assets/images/v4/mycure-about-doctor-background.png');
     background-repeat: no-repeat;
     background-size: cover;
   }
 
   .container {
-    padding-top: 50px;
-    padding-bottom: 50px;
+    /* padding-top: 50px;
+    padding-bottom: 50px; */
+    padding-top: 100px;
+    padding-bottom: 100px;
   }
 
   @media (min-width: 576px) {
     .container {
-      padding-top: 50px;
-      padding-bottom: 50px;
+      /* padding-top: 50px;
+      padding-bottom: 50px; */
+      padding-top: 100px;
+      padding-bottom: 100px;
     }
   }
 
   @media (min-width: 768px) {
     .panel-1 {
-      height: 100vh;
-      background-image: url('../../assets/images/v4/bg.jpg');
+      /* height: 100vh; */
+      background-image: url('../../assets/images/v4/mycure-about-doctor-background.png');
       background-repeat: no-repeat;
       background-size: cover;
     }
     
     .container {
-      padding-top: 0;
-      padding-bottom: 0;
+      padding-top: 100px;
+      padding-bottom: 100px;
     }
 
     .row-container {
-      height: 90vh;
+      /* height: 90vh; */
     }
   }
 

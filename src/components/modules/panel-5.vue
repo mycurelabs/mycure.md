@@ -6,7 +6,7 @@
           center  
             div.hr-blue
           br
-          h1 Add-ons
+          h1 Add-Ons
           p You get these free when you need them.
         div.col-xs-12.col-md-5
           div.row
@@ -29,7 +29,7 @@
                 strong {{ selectedModule.name }}
               br
               p {{ selectedModule.description }}
-              b-button(variant="primary" size="sm") Learn More
+              b-button(variant="primary" size="sm" :to="{name: 'join-today'}") Signup Now!
         div.col-xs-12.col-md-7
           img(width="100%" :src="parseImage(selectedModule.banner)")
 </template>

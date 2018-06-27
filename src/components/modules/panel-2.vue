@@ -24,33 +24,70 @@
               center
                 div.hr-blue
               br
-              p Pick whatever modules you want and we’ll
-                br
-                | beautifully package them just for you.
-          b-row.mt-5.pt-5.justify-content-md-center
-            b-col(xs="12" md="4")
-              h1.mb-5.font-weight-extra-bold 
-                img(src="../../assets/images/v4/mycure-modules-icon-core.png")
-                | CORE
-              ul.list
-                li(v-for="(module, key) in coreModules") ⛋ {{module.name}}
-            b-col(xs="12" md="4")
-              h1.mb-5.font-weight-extra-bold-italic Premium 
-                img(src="../../assets/images/v4/mycure-modules-icon-premium.png")
-              ul.list
-                li(v-for="(module, key) in premiumModules") ⛋ {{module.name}}
-            b-col(xs="12" md="4")
-              h1.mb-5 Add-ons
-                img(src="../../assets/images/v4/mycure-modules-icon-add-ons.png")
-              ul.list
-                li(v-for="(module, key) in adOnModules") ⛋ {{module.name}}
-          //- b-row.mt-5.pt-5
-            b-col(xs="12" md="4")
-              p More coming soon
-              ul.list
-                li ⛋ Patient
-                li ⛋ Philhealth
-                li ⛋ Insurance
+          b-row.align-items-center.justify-content-md-center
+            b-col(xs="12" md="12").text-center.mt-4
+              h2 ⛋ Step 1. Select your plan.
+            b-col(xs="12" md="4").text-center
+              img(width="120" src="../../assets/images/v4/mycure-homepage-package-individual.png")
+              br
+              br
+              label Individual Clinic
+            b-col(xs="12" md="4").text-center.pl-4.pr-4
+              img(width="120" src="../../assets/images/v4/mycure-homepage-package-group.png")
+              br
+              br
+              label Group Clinic
+            b-col(xs="12" md="4").text-center.pl-4.pr-4
+              img(width="120" src="../../assets/images/v4/mycure-homepage-package-multispecialty.png")
+              br
+              br
+              label Health Facility
+          b-row.align-items-center.justify-content-md-center.mt-5
+            b-col(xs="12" md="12").text-center.mt-4
+              h2 ⛋ Step 2. Pick additional 
+                br 
+                | modules that you will need.
+              br
+          b-row(wrap).justify-content-md-center.text-center
+            div.ml-4.mr-4
+              img(width="60" src="../../assets/images/v4/mycure-homepage-wireframe-icon-emr-active.png")
+              br
+              label EMR
+            div.ml-4.mr-4
+              img(width="60" src="../../assets/images/v4/mycure-icon-billing-basic-active.png")
+              br
+              label Billing
+            div.ml-4.mr-4
+              img(width="60" src="../../assets/images/v4/mycure-icon-inventory-active.png")
+              br
+              label Inventory
+            div.ml-4.mr-4
+              img(width="60" src="../../assets/images/v4/mycure-icon-pos-active.png")
+              br
+              label Point-of-Sales
+            div.ml-4.mr-4
+              img(width="60" src="../../assets/images/v4/mycure-icon-chat-active.png")
+              br
+              label Chatbox
+          b-row(wrap).justify-content-md-center.text-center
+            div.ml-4.mr-4
+              img(width="60" src="../../assets/images/v4/mycure-icon-syncGateway-active.png")
+              br
+              label Offline Mode
+            div.ml-4.mr-4
+              img(width="60" src="../../assets/images/v4/mycure-icon-report-active.png")
+              br
+              label Analytics
+            div.ml-4.mr-4
+              img(width="60" src="../../assets/images/v4/mycure-icon-pmeepe-active.png")
+              br
+              label APE
+          b-row.align-items-center.justify-content-md-center.mt-5
+            b-col(xs="12" md="12").text-center.mt-4
+              h2 ⛋ Step 3. Get Started!
+              br   
+              b-button(variant="primary" size="lg" :to="{name: 'join-today'}") SIGNUP NOW!
+
 
         b-col(md="2")
 </template>
@@ -96,7 +133,7 @@
     padding-top: 50px;
     padding-bottom: 50px;
     background-color: #eff3f5;
-    height: 800px;
+    /* height: 800px; */
   }
 
   .square {

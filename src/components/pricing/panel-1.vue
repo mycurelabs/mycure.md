@@ -26,7 +26,7 @@
 <style scoped>
   .panel-1 {
     height: auto;
-    background-image: url('../../assets/images/v4/bg.jpg');
+    background-image: url('../../assets/images/v4/mycure-pricing-best-investment-yet-laptop-drawing.jpg');
     background-repeat: no-repeat;
     background-size: cover;
   }
@@ -46,7 +46,7 @@
   @media (min-width: 768px) {
     .panel-1 {
       height: 100vh;
-      background-image: url('../../assets/images/v4/bg.jpg');
+      background-image: url('../../assets/images/v4/mycure-pricing-best-investment-yet-laptop-drawing.jpg');
       background-repeat: no-repeat;
       background-size: cover;
     }

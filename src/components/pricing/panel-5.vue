@@ -16,7 +16,7 @@
           br
           br
           br
-          b-button(variant="primary") Start quick chat
+          b-button(variant="primary" @click="toggle") Start quick chat
           img(src="../../assets/images/v4/mycure-modules-chickpeas.png" :class="{'animate': scrollTop > 2500}").peas
 </template>
 
@@ -34,6 +34,11 @@
     },
     destroyed() {
       this.$removeScrollspy();
+    },
+    methods: {
+      toggle() {
+        $crisp.push(['do', 'chat:toggle'])
+      }
     }
   }
 </script>

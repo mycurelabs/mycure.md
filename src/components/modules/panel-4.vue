@@ -31,7 +31,7 @@
                 strong {{ selectedModule.name }}
               br
               p {{ selectedModule.description }}
-              b-button(variant="primary" size="sm") Learn More
+              b-button(variant="primary" size="sm" :to="{name: 'join-today'}") Signup Now!
 </template>
 
 <script>

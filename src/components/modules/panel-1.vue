@@ -27,9 +27,11 @@
 <style scoped>
   .panel-1 {
     height: auto;
-    background-image: url('../../assets/images/v4/bg.jpg');
+    background-color: #E9E9E9;
+    background-image: url('../../assets/images/v4/mycure-modules-mobile-drawing.png');
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: contain;
+    background-position: top;
   }
 
   .container {
@@ -47,9 +49,11 @@
   @media (min-width: 768px) {
     .panel-1 {
       height: 100vh;
-      background-image: url('../../assets/images/v4/bg.jpg');
+      background-color: #E9E9E9;
+      background-image: url('../../assets/images/v4/mycure-modules-mobile-drawing.png');
       background-repeat: no-repeat;
-      background-size: cover;
+      background-position: top bottom;
+      /* background-size: cover; */
     }
     
     .container {
