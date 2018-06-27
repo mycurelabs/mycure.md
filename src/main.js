@@ -1,12 +1,13 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
+import '@babel/polyfill';
 import Vue from 'vue';
 import App from './App';
 import router from './router';
 import store from './vuex';
 // import Vuefity from 'vuetify';
 // import 'vuetify/dist/vuetify.min.css';
-import 'babel-polyfill';
+import './mycure';
 import './mixins';
 import './directives';
 import VueMorphling from 'vue-morphling';
@@ -16,6 +17,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
 import 'kidlat-css/css/kidlat.css';
 import VueHtmlToPaper from './mixins/vue-html-to-paper';
+import VImgFallback from 'v-img-fallback';
 
 Vue.config.productionTip = false;
 Vue.use(BootstrapVue);
@@ -31,6 +33,10 @@ Vue.use(VueHtmlToPaper, {
     'https://unpkg.com/kidlat-css/css/kidlat.css'
   ]
 });
+Vue.use(VImgFallback, {
+  loading: require('./assets/images/loading-2.gif'),
+  error: 'https://firebasestorage.googleapis.com/v0/b/mycure-ab311.appspot.com/o/assets%2Fperson-placeholder.png?alt=media&token=04673547-7572-40dc-81f6-007d7a58056d'
+})
 
 // Vue.use(Vuefity, {
 //   theme: {
