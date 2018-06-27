@@ -32,11 +32,11 @@ export default new Router({
       name: 'pricing',
       component: pricing
     },
-    {
-      path: '/directory',
-      name: 'directory',
-      component: directory
-    },
+    // {
+    //   path: '/directory',
+    //   name: 'directory',
+    //   component: directory
+    // },
     {
       path: '/print-demo',
       name: 'print-demo',
