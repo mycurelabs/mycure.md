@@ -4,20 +4,31 @@ const core = sdk.core;
 
 module = module.exports = (url) => {
   return new Promise((resolve, reject) => {
-    core.accounts().findOne({
-      doc_website: url
+    core.personalDetails().findOne({
+      doc_website: url,
+      $populate: {
+        _clinics: {
+          service: 'organizations', 
+          method: 'find', 
+          key: 'id', 
+          idField: 'createdBy', 
+          type: 'personal-clinic'
+        }
+      }
     }).then(account => {
-      console.log('account', account);
       resolve(account);
     }).catch(error => {
       reject(error);
-    })
-    // resolve({
-    //   name: {
-    //     firstName: 'Jofferson',
-    //     middleName: 'Ramirez',
-    //     lastName: 'Tiquez'
-    //   }
-    // });
+    });
   });
 }
+
+// TODO:
+// For directory
+// $or: [
+//   {
+//     'name.firstName': {
+//       $regex: url, $options: 'i'
+//     }
+//   }
+// ]

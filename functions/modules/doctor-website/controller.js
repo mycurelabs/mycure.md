@@ -4,9 +4,17 @@ module = module.exports = (req, res) => {
   const url = req.params.url;
   getDoctorWebsite(url)
     .then(doctor => {
-      res.render('index', doctor);
+      if(!doctor) {
+        res.render('404');
+        return;
+      }
+      const data = doctor;
+      data._data = doctor;
+      console.log(data);
+      console.log(data.$populated);
+      res.render('index', {data});
     })
     .catch(e => {
-      res.status(500).send(e);
+      res.render('500');
     });
 }
