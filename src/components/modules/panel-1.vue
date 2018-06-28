@@ -9,8 +9,12 @@
           br
           h1 Customize your own MYCURE System.
           br
-          p Because every clinic has its unique way of getting things done.
-          p MYCURE is a clinic management system designed to securely process digital medical records of your patients.
+          p Because every clinic has its unique way of 
+            br
+            | getting things done.
+          p MYCURE is a clinic management system designed to securely 
+            br
+            | process digital medical records of your patients.
           br
           b-button(variant="primary" size="sm") Get MYCURE
 </template>
@@ -31,7 +35,7 @@
     background-image: url('../../assets/images/v4/mycure-modules-mobile-drawing.png');
     background-repeat: no-repeat;
     background-size: contain;
-    background-position: top;
+    background-position: right -50px top;
   }
 
   .container {

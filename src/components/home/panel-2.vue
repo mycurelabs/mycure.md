@@ -10,13 +10,13 @@
             br
             | management system around.
           br
-        b-col(xs="12" md="6").offset-md-3
+        b-col(xs="12" md="6").offset-md-3.text-center
           p MYCURE smoothly integrates your patient records together from registration to billing. It simplifies record-keeping for everyone. 
           br
-        b-col(xs="12" md="6").pl-4.pr-4
+        b-col(xs="12" md="6").pl-4.pr-4.text-center
           img(src="../../assets/images/v4/mycure-homepage-compare-other-emr-incomplete-clinic-management-system.png" width="100%").mb-3
           p With MYCURE, you don’t have to depend on multiple, complicated systems anymore.
-        b-col(xs="12" md="6").pl-4.pr-4
+        b-col(xs="12" md="6").pl-4.pr-4.text-center
           img(src="../../assets/images/v4/mycure-homepage-compare-mycure-complete-clinic-management-system.png" width="100%").mb-3
           p Your patients’ medical data are synced together and stored safely in the cloud using one powerful system.
 </template>

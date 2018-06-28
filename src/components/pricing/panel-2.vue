@@ -42,8 +42,9 @@
                   h2 ₱299
                     span(style="font-size: 25px") /clinic/mo
                   h1 Robusta
-                  label(style="font-size: 22px;") A feast of flavors for full-time practitioners
+                  label(style="font-size: 22px;") For everyday energy in your growing years
                 ul
+                  li ✓ Everything in Arabica
                   li ✓ 2500 patient profiles
                   li ✓ 5 GB storage
                   li ✓ Appointment Scheduler
@@ -64,8 +65,9 @@
                       h2 ₱999
                         span(style="font-size: 25px") /clinic/mo
                       h1 Liberica
-                      label(style="font-size: 22px;") For everyday energy in your growing years
+                      label(style="font-size: 22px;") A feast of flavors for full-time practitioners
                     ul
+                      li ✓ Everything in Robusta
                       li ✓ Unlimited patient profiles
                       li ✓ 10 GB storage
                       li ✓ Secretary account

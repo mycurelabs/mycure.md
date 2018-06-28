@@ -137,7 +137,7 @@
           {
             id: 'individual',
             name: 'Individual Clinic',
-            description: 'Doctors practicing independently.',
+            description: 'Doctors practicing independently',
             longName: 'MYCURE for Individual Doctors',
             fullDescription: 'A powerful EMR system with complementary Queuing and Billing modules',
             isSelected: true,
