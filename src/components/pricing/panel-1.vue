@@ -11,7 +11,7 @@
           br
           p Quality technology made more affordable. Only pay for what you need.
           br
-          b-button(variant="primary" size="sm") View Prices
+          b-button(variant="primary" size="sm") VIEW PRICES
 </template>
 
 <script>

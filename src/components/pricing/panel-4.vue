@@ -8,7 +8,9 @@
           br
           h1 MYCURE for Health Facilities
           br
-          p An all around solution for your outpatient clinic.
+          p An 
+            strong all-around solution 
+            | for your outpatient, multi-specialty, or industrial clinic
       b-row.row.align-items-center.justify-content-md-center
         b-col(xs="12" md="5").pl-5.pr-5
           img(width="100%" src="../../assets/images/v4/mycure-pricing-health-facility-coffee-sack.png")
@@ -28,7 +30,7 @@
           img(width="60" src="../../assets/images/v4/mycure-icon-pmeepe-active.png").mr-4
           br
           br
-          b-button(variant="primary" :to="{name: 'signup-multi'}") Get started for FREE
+          b-button(variant="primary" :to="{name: 'signup-multi'}") GET STARTED FOR FREE
 
 
 </template>
