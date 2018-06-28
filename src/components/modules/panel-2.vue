@@ -86,7 +86,7 @@
             b-col(xs="12" md="12").text-center.mt-4
               h2 ⛋ Step 3. Get Started!
               br   
-              b-button(variant="primary" size="lg" :to="{name: 'join-today'}") SIGNUP NOW!
+              b-button(variant="primary" size="lg" :to="{name: 'join-today'}") SIGN UP NOW!
 
 
         b-col(md="2")

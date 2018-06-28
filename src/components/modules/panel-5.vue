@@ -29,7 +29,7 @@
                 strong {{ selectedModule.name }}
               br
               p {{ selectedModule.description }}
-              b-button(variant="primary" size="sm" :to="{name: 'join-today'}") Signup Now!
+              b-button(variant="primary" size="sm" :to="{name: 'join-today'}") SIGN UP NOW!
         div.col-xs-12.col-md-7
           img(width="100%" :src="parseImage(selectedModule.banner)")
 </template>
