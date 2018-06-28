@@ -19,7 +19,7 @@
           v-flex(xs12 md10 offset-md1).text-xs-center.pt-5.pb-5
             h4.headline The Data Privacy Act of 2012
             h1.panel-title.display-1 Protecting your Patients' Health Records is a law.
-            v-btn(color="success" :to="{name: 'npc-website'}").pl-4.pr-4.btn-larger Learn more about DPA or Physicians 
+            v-btn(color="success" :to="{name: 'npc-website'}").pl-4.pr-4.btn-larger {{'Learn more about DPA or Physicians'.toUpperCase()}} 
     div#panel3
       v-container
         v-layout(column)
@@ -41,7 +41,7 @@
                   li
                     p Premium digital medical record system for all your private clinics.
                 v-btn(color="primary").btn-larger 
-                  strong Learn more
+                  strong {{'Learn more'.toUpperCase()}}
           v-flex(xs12 md8).xs-text-center
             img(width="100%" src="../assets/images/mycure-homepage-secure-your-patient-medical-data-clinic-management-system-individual-clinic.jpg")
         
@@ -60,7 +60,7 @@
                   li
                     p Total Clinic Management System from patient registration to billing.
                 v-btn(dark).bg-cms.btn-larger 
-                  strong Learn more
+                  strong {{'Learn more'.toUpperCase()}}
           v-flex(xs12 md8).xs-text-center
             img(width="100%" src="../assets/images/mycure-homepage-secure-your-patient-medical-data-clinic-management-system-multi-specialty-clinic.jpg")
       
