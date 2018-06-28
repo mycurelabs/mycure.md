@@ -17,7 +17,7 @@
           h6(style="color: #616161") PRODUCTS
           ul.list.list-tall
             li
-              router-link(:to="{name: 'modules', query: {id: 'panel-2'}}").color-white Overview
+              router-link(:to="{name: 'modules', query: {id: 'panel-2'}}").color-white How it works
             li
               router-link(:to="{name: 'modules', query: {id: 'panel-3'}}").color-white Core
             li
@@ -29,7 +29,7 @@
           ul.list.list-tall
             li
               router-link(:to="{name: 'our-story'}").color-white Our Story
-            li
+            // li
               router-link(:to="{name: 'our-story'}").color-white Our Team
             li
               router-link(:to="{name: 'blog-link'}").color-white Blog
