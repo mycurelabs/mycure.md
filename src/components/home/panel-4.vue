@@ -47,7 +47,7 @@
                   br
                   | Compliance
           div.col-xs-12.pt-5
-            b-button(variant="primary" size="sm").shadow-5 Data Privacy for Physicians
+            b-button(variant="primary" size="sm").shadow-5 DATA PRIVACY FOR PHYSICIANS
 </template>
 
 <script>

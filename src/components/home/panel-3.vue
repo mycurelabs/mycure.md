@@ -118,7 +118,7 @@
                       br
                       | Features
               div.col-xs-12.col-md-12.pb-5.pt-5
-                b-button(variant="outline-primary" size="sm" :to="{name: 'modules'}").shadow-5 Learn more about modules
+                b-button(variant="outline-primary" size="sm" :to="{name: 'modules'}").shadow-5 {{'Learn more about modules'.toUpperCase()}}
 </template>
 
 <script>
@@ -138,8 +138,8 @@
             id: 'individual',
             name: 'Individual Clinic',
             description: 'Doctors practicing independently.',
-            longName: 'MYCURE for Individual Practice',
-            fullDescription: 'A powerful combination of EMR, Queuing and Billing systems designed for individual practitioners.',
+            longName: 'MYCURE for Individual Doctors',
+            fullDescription: 'A powerful EMR system with complementary Queuing and Billing modules',
             isSelected: true,
             hasTooltip: false,
             src: require('../../assets/images/v4/mycure-homepage-package-individual.png')
@@ -148,8 +148,8 @@
             id: 'group',
             name: 'Group Clinic',
             description: 'Group of doctors practicing together',
-            longName: 'MYCURE for Group Practice',
-            fullDescription: 'A practical system built for doctors’ clinics being handled by a common secretary.',
+            longName: 'MYCURE for Group Clinics',
+            fullDescription: `A unified system built for a doctors' clinic being handled by one secretary`,
             isSelected: false,
             hasTooltip: false,
             src: require('../../assets/images/v4/mycure-homepage-package-group.png')
@@ -159,7 +159,7 @@
             name: 'Health Facility',
             description: 'One-stop, multi-staff clinics',
             longName: 'MYCURE for Health Facilities',
-            fullDescription: 'A powerful combination of EMR, Queuing and Billing systems designed for individual practitioners.',
+            fullDescription: 'An all-around solution for your outpatient, multi-specialty, or industrial clinic',
             isSelected: false,
             hasTooltip: false,
             tooltipMessage: 'An all-around solution for your outpatient, multispecialty or specialized clinics.',

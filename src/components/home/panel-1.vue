@@ -11,7 +11,7 @@
           br
           p Doctors, nurses, and clinic professionals have a lot of work and we want to make that work easier.
           br
-          b-button(variant="primary" size="sm" :to="{name: 'home-vid'}") Watch Video
+          b-button(variant="primary" size="sm" :to="{name: 'home-vid'}") WATCH VIDEO
         b-col(xs="12" md="7")
           img(width="110%" src="../../assets/images/v4/mycure-homepage-doctor-kid-pediatrician-drawing.png")
 </template>

@@ -13,7 +13,7 @@
           p More than a product, 
             strong it is an advocacy.
           br
-          b-button(variant="primary" size="sm" :to="{name: 'our-story'}") Read our story
+          b-button(variant="primary" size="sm" :to="{name: 'our-story'}") READ OUR STORY
 </template>
 
 <script>

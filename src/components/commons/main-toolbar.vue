@@ -67,7 +67,7 @@
             to: 'our-story'
           },
           {
-            title: 'LOGIN',
+            title: 'LOG IN',
             icon: 'people',
             external: true,
             to: 'login'
