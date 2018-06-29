@@ -26,11 +26,12 @@
                     small {{ module.name }}
             div.row.mt-3
               div.col-xs-12.col-md-12
-                img(width="80" :src="parseImage(selectedModule.icon)")
+                img(width="45" :src="parseImage(selectedModule.icon)")
                 span
                   strong {{ selectedModule.name }}
                 br
-                p {{ selectedModule.description }}
+                div(style="height: 85px;")
+                  p {{ selectedModule.description }}
                 b-button(variant="primary" size="sm" :to="{name: 'join-today'}") SIGN UP NOW!
           div.col-xs-12.col-md-7
             img(width="100%" :src="parseImage(selectedModule.banner)")
