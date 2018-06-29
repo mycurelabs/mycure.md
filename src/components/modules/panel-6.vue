@@ -1,35 +1,37 @@
 <template lang="pug">
-  div.panel-5.pb-5.pt-5
-    div.container
-      div.row
-        div.col-xs-12.col-md-12.text-center.pb-4
-          h2 Let's get started
-          center
-            div.hr-blue
-          br
-          h1 What blend do you need right now?
-      div.row
-        div.col-xs-12.col-md-4.text-center
-          h2 For me and my 
+  div
+    pre(v-if="!$isProduction()").panel-number 6
+    div.panel-5.pb-5.pt-5
+      div.container
+        div.row
+          div.col-xs-12.col-md-12.text-center.pb-4
+            h2 Let's get started
+            center
+              div.hr-blue
             br
-            | secretary only
-          br
-          b-button(variant="outline-primary" size="lg" block :to="{name: 'signup-individual'}") MYCURE FOR INDIVIDUAL DOCTORS 
-            i(style="position: absolute;").material-icons chevron_right
-        div.col-xs-12.col-md-4.text-center
-          h2 For my peers and I, 
+            h1 What blend do you need right now?
+        div.row
+          div.col-xs-12.col-md-4.text-center
+            h2 For me and my 
+              br
+              | secretary only
             br
-            | practicing as a team
-          br
-          b-button(variant="primary" size="lg" block :to="{name: 'signup-group'}") MYCURE FOR GROUP CLINICS 
-            i(style="position: absolute;").material-icons chevron_right
-        div.col-xs-12.col-md-4.text-center
-          h2 For my multispecialty
+            b-button(variant="outline-primary" size="lg" block :to="{name: 'signup-individual'}") MYCURE FOR INDIVIDUAL DOCTORS 
+              i(style="position: absolute;").material-icons chevron_right
+          div.col-xs-12.col-md-4.text-center
+            h2 For my peers and I, 
+              br
+              | practicing as a team
             br
-            | clinic
-          br
-          b-button(variant="outline-primary" size="lg" block :to="{name: 'signup-multi'}") MYCURE FOR HEALTH FACILITIES 
-            i(style="position: absolute;").material-icons chevron_right
+            b-button(variant="primary" size="lg" block :to="{name: 'signup-group'}") MYCURE FOR GROUP CLINICS 
+              i(style="position: absolute;").material-icons chevron_right
+          div.col-xs-12.col-md-4.text-center
+            h2 For my multispecialty
+              br
+              | clinic
+            br
+            b-button(variant="outline-primary" size="lg" block :to="{name: 'signup-multi'}") MYCURE FOR HEALTH FACILITIES 
+              i(style="position: absolute;").material-icons chevron_right
 </template>
 
 <script>

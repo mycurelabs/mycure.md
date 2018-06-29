@@ -1,37 +1,39 @@
 <template lang="pug">
-  div.panel-5.pb-5.pt-5
-    div.container
-      div.row.align-items-center
-        div.col-xs-12.col-md-12.text-center.pb-4
-          center  
-            div.hr-blue
-          br
-          h1 Add-Ons
-          p You get these free when you need them.
-        div.col-xs-12.col-md-5
-          div.row
-            div(v-for="(module, key) in adOnsModules").col-xs-6.col-md-3
-              div(
-                :id="'adOnModule_'+key"
-                :class="{'shadow-5': module.isSelected}" 
-                @mouseover="mouseHover(key, module)" 
-                @mouseout="mouseOut(key, module)" 
-                @click="selectModule(key, module)"
-              ).module-container.text-center
-                img(width="45" :src="parseImage(module.icon)")
+  div
+    pre(v-if="!$isProduction()").panel-number 5
+    div.panel-5.pb-5.pt-5
+      div.container
+        div.row.align-items-center
+          div.col-xs-12.col-md-12.text-center.pb-4
+            center  
+              div.hr-blue
+            br
+            h1 Add-Ons
+            p You get these free when you need them.
+          div.col-xs-12.col-md-5
+            div.row
+              div(v-for="(module, key) in adOnsModules").col-xs-6.col-md-3
+                div(
+                  :id="'adOnModule_'+key"
+                  :class="{'shadow-5': module.isSelected}" 
+                  @mouseover="mouseHover(key, module)" 
+                  @mouseout="mouseOut(key, module)" 
+                  @click="selectModule(key, module)"
+                ).module-container.text-center
+                  img(width="45" :src="parseImage(module.icon)")
+                  br
+                  p(style="line-height: 13px;")
+                    small {{ module.name }}
+            div.row.mt-3
+              div.col-xs-12.col-md-12
+                img(width="80" :src="parseImage(selectedModule.icon)")
+                span
+                  strong {{ selectedModule.name }}
                 br
-                p(style="line-height: 13px;")
-                  small {{ module.name }}
-          div.row.mt-3
-            div.col-xs-12.col-md-12
-              img(width="80" :src="parseImage(selectedModule.icon)")
-              span
-                strong {{ selectedModule.name }}
-              br
-              p {{ selectedModule.description }}
-              b-button(variant="primary" size="sm" :to="{name: 'join-today'}") SIGN UP NOW!
-        div.col-xs-12.col-md-7
-          img(width="100%" :src="parseImage(selectedModule.banner)")
+                p {{ selectedModule.description }}
+                b-button(variant="primary" size="sm" :to="{name: 'join-today'}") SIGN UP NOW!
+          div.col-xs-12.col-md-7
+            img(width="100%" :src="parseImage(selectedModule.banner)")
 </template>
 
 <script>

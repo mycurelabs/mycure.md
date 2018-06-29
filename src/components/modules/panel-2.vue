@@ -1,5 +1,6 @@
 <template lang="pug">
   div.panel-2
+    pre(v-if="!$isProduction()").panel-number 2
     b-container(fluid)
       b-row.justify-content-md-center
         b-col(md="2")
