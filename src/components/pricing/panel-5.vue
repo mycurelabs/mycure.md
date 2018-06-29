@@ -1,23 +1,25 @@
 <template lang="pug">
-  div.panel-5.pt-5.pb-5
-    b-container(fluid)
-      b-row.justify-content-md-center
-        b-col(xs="12" md="12").text-center
-          center
-            div.hr-blue
-          br
-          h1 Not sure about what you're looking for?
-          br
-          br
-          p 
-            strong We'll help you figure it out fast.
-          br
-          p Talk to the smart people behind MYCURE and get fast answers to your inquiries.
-          br
-          br
-          br
-          b-button(variant="primary" @click="toggle") START QUICK CHAT
-          img(src="../../assets/images/v4/mycure-modules-chickpeas.png" :class="{'animate': scrollTop > 2500}").peas
+  div
+    pre(v-if="!$isProduction()").panel-number 5
+    div.panel-5.pt-5.pb-5
+      b-container(fluid)
+        b-row.justify-content-md-center
+          b-col(xs="12" md="12").text-center
+            center
+              div.hr-blue
+            br
+            h1 Not sure about what you're looking for?
+            br
+            br
+            p 
+              strong We'll help you figure it out fast.
+            br
+            p Talk to the smart people behind MYCURE and get fast answers to your inquiries.
+            br
+            br
+            br
+            b-button(variant="primary" @click="toggle") START QUICK CHAT
+            img(src="../../assets/images/v4/mycure-modules-chickpeas.png" :class="{'animate': scrollTop > 2500}").peas
 </template>
 
 <script>
