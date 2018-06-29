@@ -131,9 +131,9 @@
     },
     data() {
       return {
-        item1Selected: true,
+        item1Selected: false,
         item2Selected: false,
-        item3Selected: false,
+        item3Selected: true,
         items: [
           {
             id: 'individual',
@@ -141,7 +141,7 @@
             description: 'Doctors practicing independently',
             longName: 'MYCURE for Individual Doctors',
             fullDescription: 'A powerful EMR system with complementary Queuing and Billing modules',
-            isSelected: true,
+            isSelected: false,
             hasTooltip: false,
             src: require('../../assets/images/v4/mycure-homepage-package-individual.png')
           },
@@ -161,7 +161,7 @@
             description: 'One-stop, multi-staff clinics',
             longName: 'MYCURE for Health Facilities',
             fullDescription: 'An all-around solution for your outpatient, multi-specialty, or industrial clinic',
-            isSelected: false,
+            isSelected: true,
             hasTooltip: false,
             tooltipMessage: 'An all-around solution for your outpatient, multispecialty or specialized clinics.',
             src: require('../../assets/images/v4/mycure-homepage-package-multispecialty.png')
