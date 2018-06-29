@@ -1,6 +1,6 @@
 <template lang="pug">
   div
-    pre(style="position: fixed; z-index: 99999; color: green;" v-if="!$isProduction()") {{scrollTop}}
+    pre(v-if="!$isProduction()").scroll-top-log {{scrollTop}}
     router-view
 </template>
 
@@ -33,17 +33,30 @@ body {
 .feature-item {
   background-color: white !important;
   border-radius: 5px;
-  padding: 15px;
-  margin: 15px;
-  -webkit-box-shadow: 0px 0px 10px -2px rgba(160,181,191,1);
+  padding: 5px;
+  margin: 5px;
+  /* -webkit-box-shadow: 0px 0px 10px -2px rgba(160,181,191,1);
   -moz-box-shadow: 0px 0px 10px -2px rgba(160,181,191,1);
-  box-shadow: 0px 0px 10px -2px rgba(160,181,191,1);
+  box-shadow: 0px 0px 10px -2px rgba(160,181,191,1); */
 }
 
 .hr-blue {
   height: 2px;
   width: 150px;
   background-color: #0099cc;
+}
+
+.scroll-top-log {
+  position: fixed; 
+  z-index: 99999; 
+  color: green;
+}
+
+.panel-number {
+  position: absolute; 
+  z-index: 99999; 
+  color: green;
+  right: 10px;
 }
 
 .slide-up-fade-in {
