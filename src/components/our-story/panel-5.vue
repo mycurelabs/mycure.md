@@ -1,9 +1,10 @@
 <template lang="pug">
   div.panel-3
+    pre(v-if="!$isProduction()").panel-number 5
     b-container
       b-row.pb-5.pt-5
         div.col-xs-12.col-md-10.offset-md-1
-          img(src="../../assets/images/v4/Untitled-8.png" :class="{'animate': scrollTop > 2100}").coffee
+          img(src="../../assets/images/v4/mycure-modules-coffee.png" :class="{'animate': scrollTop > 2100}").coffee
           b-row.align-items-center
             b-col(xs="12" md="8" offset-md="2").text-center
               center

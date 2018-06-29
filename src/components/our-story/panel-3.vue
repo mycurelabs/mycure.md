@@ -1,5 +1,6 @@
 <template lang="pug">
   div.panel-3
+    pre(v-if="!$isProduction()").panel-number 3
     b-container
       b-row
         div.col-xs-12.col-md-10.offset-md-1

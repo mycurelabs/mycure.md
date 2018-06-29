@@ -1,5 +1,6 @@
 <template lang="pug">
   div.panel-1
+    pre(v-if="!$isProduction()").panel-number 1
     mc-navbar-home
     b-container
       div.row-container.row.align-items-center.justify-content-md-center
