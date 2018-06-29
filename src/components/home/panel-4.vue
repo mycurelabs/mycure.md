@@ -1,9 +1,10 @@
 <template lang="pug">
   div.panel-4
+    pre(v-if="!$isProduction()").panel-number 4
     b-container
       b-row.align-items-center
         b-col(xs="12" md="12").text-center.pt-5.pb-5
-          img(src="../../assets/images/v4/coffee.png" :class="{'animate': scrollTop > 2200}").coffee
+          img(src="../../assets/images/v4/mycure-modules-coffee.png" :class="{'animate': scrollTop > 2200}").coffee
           img(src="../../assets/images/v4/mycure-modules-chickpeas.png" :class="{'animate': scrollTop > 2600}").peas
           center
             div.hr-blue
@@ -86,16 +87,17 @@
 
   @media (min-width: 768px) {
     .coffee {
+      width: 300px;
       display: inline;
       position: absolute;
       left: -1000px;
-      top: -200px;
+      top: -150px;
       -webkit-transition: left 500ms;
       transition: left 500ms;
     }
 
     .coffee.animate {
-      left: -240px;
+      left: -200px;
     }
 
     .peas {

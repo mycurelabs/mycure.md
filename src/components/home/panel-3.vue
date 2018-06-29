@@ -1,5 +1,6 @@
 <template lang="pug">
   div
+    pre(v-if="!$isProduction()").panel-number 3
     div.panel-3.pt-5
       div.container
         div.row.align-items-center
@@ -21,7 +22,7 @@
             div.row.justify-content-md-center.pb-5.pt-5.bg-white
               //- INDIVIDUAL
               div(v-if="item1Selected").col-xs-12.col-md-9.pt-4
-                h2 {{items[0].longName}}
+                h1 {{items[0].longName}}
                 p {{items[0].fullDescription}}
                 div.row.justify-content-md-center.mb-5
                   div.feature-item
@@ -34,7 +35,7 @@
                       | Billing
               //- GROUP
               div(v-if="item2Selected").col-xs-12.col-md-9.pt-4
-                h2 {{items[1].longName}}
+                h1 {{items[1].longName}}
                 p {{items[1].fullDescription}}
                 div.row.justify-content-md-center.mb-5
                   div.feature-item
@@ -72,7 +73,7 @@
                       | Features
               //- MULTI-SPECIALTY
               div(v-if="item3Selected").col-xs-12.col-md-9.pt-4
-                h2 {{items[2].longName}}
+                h1 {{items[2].longName}}
                 p {{items[2].fullDescription}}
                 div.row.justify-content-md-center.mb-5
                   div.feature-item
