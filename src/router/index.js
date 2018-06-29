@@ -142,5 +142,10 @@ export default new Router({
       name: 'liberica-link',
       beforeEnter() { window.open('https://accounts-v4.mycure.md/create-account-individual?type=individual&plan=liberica') }
     },
+    {
+      path: '/data-privacy-for-physicians',
+      name: 'data-privacy-for-physicians',
+      beforeEnter() { window.open('http://blog.mycure.md/2018/04/26/data-privacy-for-physicians/') }
+    }
   ]
 });
