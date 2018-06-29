@@ -1,4 +1,4 @@
-<template lang="pug">
+  <template lang="pug">
   div.panel-5.pt-5
     div.container
       div.row.align-items-center
@@ -13,7 +13,7 @@
           div.row
             div.col-xs-12.col-md-4.text-left.pt-2.pb-2.pl-2.pr-2
               div.bg-white.pt-2.pb-2.pl-2.pr-2.shadow-3
-                h2 Patient-focused
+                h2.color-primary {{'Patient-focused'}}
                 p Your patients are our top priority.
                 br
                 div.mb-5
@@ -34,7 +34,7 @@
                   p Create updated and accurate medical records for your patients’ safety.
             div.col-xs-12.col-md-4.text-left.pt-2.pb-2.pl-2.pr-2
               div.bg-white.pt-2.pb-2.pl-2.pr-2.shadow-3
-                h2 Business-friendly
+                h2.color-primary Business-friendly
                 p Get the best on your investments.
                 br
                 div.mb-5
@@ -55,7 +55,7 @@
                   p Be a premium healthcare provider with an advanced EMR system.
             div.col-xs-12.col-md-4.text-left.pt-2.pb-2.pl-2.pr-2
               div.bg-white.pt-2.pb-2.pl-2.pr-2.shadow-3
-                h2 Flexible technology
+                h2.color-primary Flexible technology
                 p MYCURE is engineered for your convenience.
                 br
                 div.mb-5
