@@ -1,7 +1,7 @@
 <template lang="pug">
   div.row.justify-content-md-center
     div(v-for="(item, key) in value" @click="select(key, item)").col-xs-12.col-md-3
-      div(:class="{selected: item.isSelected}").item.pt-3.pb-3.pl-3.pr-3
+      div(:class="{selected: item.isSelected}").item.pt-3.pl-3.pr-3
         img(width="100%" :src="item.src")
         br
         br
@@ -14,7 +14,12 @@
           ).color-primary info
         p.pb-5 
           small {{item.description}}
-        b-tooltip(:target="'#tooltip_'+item.id" :title="item.tooltipMessage" placement="bottom")
+          br
+          br
+          br
+          i(v-if="item.isSelected").material-icons arrow_downward
+        // v-icon close
+        // b-tooltip(:target="'#tooltip_'+item.id" :title="item.tooltipMessage" placement="bottom")
         //- div.pt-5
         //- center
           //- div(:class="{selected: item.isSelected}").radio-item

@@ -6,6 +6,8 @@ import modules from '@/components/modules';
 import pricing from '@/components/pricing';
 import printDemo from '@/components/print-demo';
 import directory from '@/components/directory';
+import terms from '@/components/terms';
+import privacy from '@/components/privacy-policy';
 
 Vue.use(Router)
 
@@ -31,6 +33,16 @@ export default new Router({
       path: '/pricing',
       name: 'pricing',
       component: pricing
+    },
+    {
+      path: '/terms',
+      name: 'terms',
+      component: terms
+    },
+    {
+      path: '/privacy-policy',
+      name: 'privacy-policy',
+      component: privacy
     },
     // {
     //   path: '/directory',
