@@ -14,7 +14,7 @@ const PrerenderSPAPlugin = require('prerender-spa-plugin')
 const PuppeteerRenderer = PrerenderSPAPlugin.PuppeteerRenderer
 const pageRoutes = require('../src/assets/page-routes')
 
-console.log(pageRoutes)
+console.log(pageRoutes);
 
 const env = process.env.NODE_ENV === 'testing'
   ? require('../config/test.env')
