@@ -18,7 +18,9 @@ import 'bootstrap-vue/dist/bootstrap-vue.css';
 import 'kidlat-css/css/kidlat.css';
 import VueHtmlToPaper from './mixins/vue-html-to-paper';
 import VImgFallback from 'v-img-fallback';
+import VueYouTubeEmbed from 'vue-youtube-embed';
 
+Vue.use(VueYouTubeEmbed);
 Vue.config.productionTip = false;
 Vue.use(BootstrapVue);
 Vue.use(VueHtmlToPaper, {
