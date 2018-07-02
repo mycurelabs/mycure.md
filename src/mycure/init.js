@@ -1,7 +1,7 @@
-import { core } from '@mycure/sdk';
+// import { core } from '@mycure/sdk';
  
-const config = {
-  urls: { base: 'https://api.v4.mycure.md' }
-};
+// const config = {
+//   urls: { base: 'https://api.v4.mycure.md' }
+// };
 
-core.initialize(config);
+// core.initialize(config);

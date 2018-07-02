@@ -33,14 +33,16 @@
     },
     data() {
       return {
-        videoId: null
+        videoId: 'r7oewF5qDz4'
       }
     },
     methods: {
       addVid() {
+        console.log('Add Vid');
         this.videoId = 'r7oewF5qDz4';
       },
       removeVid() {
+        console.log('Remove Vid');
         this.videoId = null;
       }
     }
