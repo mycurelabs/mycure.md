@@ -102,14 +102,16 @@
       p By continuing to access or use our Service after those revisions become effective, you agree to be bound by the revised terms. If you do not agree to the new terms, please stop using the Service.
       strong(style="font-size: 19px;") Contact Us
       p If you have any questions about these Terms, please contact us.
-
+    mc-footer
 </template>
 
 <script>
   import mcNavbarHome from '../commons/mc-navbar-home';
+  import mcFooter from '../commons/mc-footer';
   export default {
     components: {
-      mcNavbarHome
+      mcNavbarHome,
+      mcFooter
     }
   }
 </script>
