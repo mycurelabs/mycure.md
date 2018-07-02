@@ -19,10 +19,16 @@
       hide-footer 
       hide-header 
       centered 
-      @shown="addVid"
-      @hidden="removeVid"
+      @shown="showVid = true"
+      @hidden="showVid = false"
     )#modal1
-      youtube(player-width="100%" :video-id="videoId")
+      iframe(
+        v-if="showVid"
+        id="ytplayer" 
+        type="text/html" width="100%" height="360"
+        src="https://www.youtube.com/embed/r7oewF5qDz4"
+        frameborder="0"
+      )
 </template>
 
 <script>
@@ -33,7 +39,8 @@
     },
     data() {
       return {
-        videoId: 'r7oewF5qDz4'
+        videoId: 'r7oewF5qDz4',
+        showVid: true
       }
     },
     methods: {
