@@ -89,14 +89,16 @@
         li Address: 	Unit B8 Luisa Building, 107 Maginhawa Street Teachers Village, QC
         li Phone No:	(02) 4340217
         li Email Address: privacy@mycure.md
-    
+    mc-footer
 </template>
 
 <script>
   import mcNavbarHome from '../commons/mc-navbar-home';
+  import mcFooter from '../commons/mc-footer';
   export default {
     components: {
-      mcNavbarHome
+      mcNavbarHome,
+      mcFooter
     }
   }
 </script>

@@ -22,8 +22,9 @@
               b-col(xs="12" md="4").pt-5.pl-4.pr-4
                 div(style="height: 400px;")
                   div.pl-2.pr-2
-                    h2 FREE
-                    h1 Arabica
+                    h1 
+                      img(width="40" src="../../assets/images/v4/mycure-onboarding-02-pricing-emblem-arabica.svg")
+                      | &nbspArabica
                     label(style="font-size: 22px;") For tasting and testing while you adapt
                   ul 
                     li ✓ Multiple clinics
@@ -36,14 +37,17 @@
                     li ✓ PNF Drug Catalog
                     li ✓ ICD-10 List
                     li ✓ DPA Registration Guide
-                div.text-center.mt-5
-                  b-button(variant="outline-primary" size="sm" :to="{name: 'arabica-link'}").shadow-5 START FREE
+                div.text-center.mt-5.pl-4.pr-4
+                  div.text-left
+                    h2 FREE
+                    p ₱0/day
+                  b-button(variant="outline-primary" size="sm" :to="{name: 'arabica-link'}" block).shadow-5 ALWAYS FREE
               b-col(xs="12" md="4").pt-5.pl-4.pr-4
                 div(style="height: 400px;")
                   div.pl-2.pr-2
-                    h2 ₱299
-                      span(style="font-size: 25px") /clinic/mo
-                    h1 Robusta
+                    h1
+                      img(width="40" src="../../assets/images/v4/mycure-onboarding-02-pricing-emblem-robusta.svg")
+                      | &nbspRobusta
                     label(style="font-size: 22px;") For everyday energy in your growing years
                   ul
                     li ✓ Everything in Arabica
@@ -55,18 +59,22 @@
                     li ✓ Cash Payments
                     li ✓ Specialty Features
                     li ✓ Awesome Care
-                div.text-center.mt-5
-                  b-button(variant="outline-primary" size="sm" :to="{name: 'robusta-link'}").shadow-5 START FREE
+                div.text-center.mt-5.pl-4.pr-4
+                  div.text-left
+                    h2 ₱299
+                      span(style="font-size: 25px") /clinic/mo
+                    p ₱10/day
+                  b-button(variant="outline-primary" size="sm" :to="{name: 'robusta-link'}" block).shadow-5 START FREE
               b-col(xs="12" md="4")
-                div.shadow-5.pt-3.pb-3
+                div(style="background-color: #f0f0f2;").shadow-4.pt-3.pb-3
                   div(style="background-color: #ffcc33").text-center
                     h5 MOST RECOMMENDED
                   div.pl-4.pr-4
                     div(style="height: 400px;")
                       div.pl-2.pr-2
-                        h2 ₱999
-                          span(style="font-size: 25px") /clinic/mo
-                        h1 Liberica
+                        h1 
+                          img(width="40" src="../../assets/images/v4/mycure-onboarding-02-pricing-emblem-liberica.svg")
+                          | &nbspLiberica
                         label(style="font-size: 22px;") A feast of flavors for full-time practitioners
                       ul
                         li ✓ Everything in Robusta
@@ -77,8 +85,12 @@
                         li ✓ Queue Board
                         li ✓ Registration Kiosk
                         li ✓ HMO Billing Tracker
-                    div.text-center.mt-5
-                      b-button(variant="primary" size="sm" :to="{name: 'liberica-link'}").shadow-5 START FREE
+                    div.text-center.mt-5.pl-4.pr-4
+                      div.text-left
+                        h2 ₱999
+                          span(style="font-size: 25px") /clinic/mo
+                        p ₱30/day
+                      b-button(variant="success" size="sm" :to="{name: 'liberica-link'}" block).shadow-5 START FREE
 </template>
 
 <script>

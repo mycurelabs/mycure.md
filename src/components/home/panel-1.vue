@@ -11,9 +11,18 @@
           br
           p Doctors, nurses, and clinic professionals have a lot of work and we want to make that work easier.
           br
-          b-button(variant="primary" size="sm" :to="{name: 'home-vid'}") WATCH VIDEO
+          b-button(variant="primary" size="sm" v-b-modal="'modal1'") WATCH VIDEO
         b-col(xs="12" md="7")
           img(width="110%" src="../../assets/images/v4/mycure-homepage-doctor-kid-pediatrician-drawing.png")
+    b-modal(
+      size="lg"
+      hide-footer 
+      hide-header 
+      centered 
+      @shown="addVid"
+      @hidden="removeVid"
+    )#modal1
+      youtube(player-width="100%" :video-id="videoId")
 </template>
 
 <script>
@@ -21,6 +30,19 @@
   export default {
     components: {
       mcNavbarHome
+    },
+    data() {
+      return {
+        videoId: null
+      }
+    },
+    methods: {
+      addVid() {
+        this.videoId = 'r7oewF5qDz4';
+      },
+      removeVid() {
+        this.videoId = null;
+      }
     }
   }
 </script>
