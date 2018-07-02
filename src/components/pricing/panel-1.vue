@@ -29,7 +29,8 @@
     height: auto;
     background-image: url('../../assets/images/v4/mycure-pricing-best-investment-yet-laptop-drawing.jpg');
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: contain;
+    background-position: center;
   }
 
   .container {
