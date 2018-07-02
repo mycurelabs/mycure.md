@@ -25,7 +25,7 @@
       iframe(
         v-if="showVid"
         id="ytplayer" 
-        type="text/html" width="100%" height="360"
+        type="text/html" width="100%" height="450"
         src="https://www.youtube.com/embed/r7oewF5qDz4"
         frameborder="0"
       )
