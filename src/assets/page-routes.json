@@ -28,5 +28,17 @@
     "title": "MYCURE Directory - Search for the finest doctors in the Philippines",
     "description": "MYCURE helps you find doctors near you, Let's start searching.",
     "image": ""
+  },
+  {
+    "path": "/terms",
+    "title": "MYCURE - Terms and Conditions",
+    "description": "Last updated: February 21, 2018 - These Terms and Conditions (\"Terms\", \"Terms and Conditions\") govern your relationship with www.mycure.md website and MYCURE mobile application (the \"Service\") operated by MYCURE, Inc. - USA and Team O.P.S. Inc. - Philippines (\"us\", \"we\", or \"our\").",
+    "image": "https://firebasestorage.googleapis.com/v0/b/mycure-ab311.appspot.com/o/assets%2Fog-mycure-medical-platform.png?alt=media&token=10cc6c06-efe5-4453-9529-b70903f4b4a0"
+  },
+  {
+    "path": "/privacy-policy",
+    "title": "MYCURE - Privacy Policy",
+    "description": "Last updated: March 6, 2018 - MYCURE, Inc. - USA and Team O.P.S. Inc. - Philippines (“company”, \"us\", \"we\", or \"our\") operate the www.MYCURE.md website and the MYCURE mobile applications (the \"Service\").",
+    "image": "https://firebasestorage.googleapis.com/v0/b/mycure-ab311.appspot.com/o/assets%2Fog-mycure-medical-platform.png?alt=media&token=10cc6c06-efe5-4453-9529-b70903f4b4a0"
   }
 ]
