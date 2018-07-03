@@ -62,7 +62,7 @@
                 div.text-center.mt-5.pl-4.pr-4
                   div.text-left
                     h2 ₱299
-                      span(style="font-size: 25px") /clinic/mo
+                      span(style="font-size: 16px;") /clinic/mo
                     p ₱10/day
                   b-button(variant="outline-primary" size="sm" :to="{name: 'robusta-link'}" block).shadow-5 START MY TRIAL
               b-col(xs="12" md="4")
@@ -88,7 +88,7 @@
                     div.text-center.mt-5.pl-4.pr-4
                       div.text-left
                         h2 ₱999
-                          span(style="font-size: 25px") /clinic/mo
+                          span(style="font-size: 16px") /clinic/mo
                         p ₱30/day
                       b-button(variant="success" size="sm" :to="{name: 'liberica-link'}" block).shadow-5 START MY TRIAL
 </template>
