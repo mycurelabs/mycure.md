@@ -33,10 +33,10 @@
   .panel-1 {
     height: auto;
     background-color: #E9E9E9;
-    background-image: url('../../assets/images/v4/mycure-modules-mobile-drawing.png');
+    background-image: url('../../assets/images/v4/mycure-modules-mobile-drawing.jpg');
     background-repeat: no-repeat;
-    background-size: contain;
-    background-position: right -50px top;
+    background-position: right center;
+    background-size: 400px;
   }
 
   .container {
@@ -49,16 +49,21 @@
       padding-top: 50px;
       padding-bottom: 50px;
     }
+
+    .panel-1 {
+      background-position: right center;
+      background-size: 300px;
+    }
   }
 
   @media (min-width: 768px) {
     .panel-1 {
       height: 100vh;
       background-color: #E9E9E9;
-      background-image: url('../../assets/images/v4/mycure-modules-mobile-drawing.png');
+      background-image: url('../../assets/images/v4/mycure-modules-mobile-drawing.jpg');
       background-repeat: no-repeat;
-      background-position: top bottom;
-      /* background-size: cover; */
+      background-position: right center;
+      background-size: 500px;
     }
     
     .container {
@@ -72,7 +77,14 @@
   }
 
   @media (min-width: 992px) {
-
+    .panel-1 {
+      height: 100vh;
+      background-color: #E9E9E9;
+      background-image: url('../../assets/images/v4/mycure-modules-mobile-drawing.jpg');
+      background-repeat: no-repeat;
+      background-position: right center;
+      background-size: 700px;
+    }
   }
 
   @media (min-width: 1200px) {

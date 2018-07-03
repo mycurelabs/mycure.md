@@ -88,9 +88,7 @@
               h2 ⛋ Step 3. Get Started!
               br   
               b-button(variant="primary" size="lg" :to="{name: 'join-today'}") SIGN UP NOW!
-
-
-        b-col(md="2")
+        // b-col(md="2")
 </template>
 
 <script>
