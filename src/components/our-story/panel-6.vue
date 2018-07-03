@@ -3,35 +3,35 @@
     pre(v-if="!$isProduction()").panel-number 6
     b-container
       b-row.align-items-center
-        b-col(xs="12" md="8")
-          div.hr-blue
+        b-col(xs="12" md="12").text-center.pt-5
+          center
+            div.hr-blue
           br
           h1 Caring the Extra Mile
+        b-col(xs="12" md="5")
           br
-          p It’s all about the extra day we put into our work,
-
-          p the extra distance we travel to see our clients,
-
-          p the extra features we put into our product,
-
-          p the extra design we add to delight our users,
-
-          p the extra phone call we make to see how you’re doing,
-
-          p the extra concern you have for your patients,
-
-          p the extra discount you give those in need,
-
-          p the extra advice you give them to cope better,
-
-          p the extra class you took to be a better doctor,
-
-          p the extra 10 years of medical education you endured to be a doctor at all.
-
-          p Caring the extra mile is our profession, it’s our way of life.
-
-        // div.col-xs-12.col-md-4
-        //   img(width="100%" src="../../assets/images/v4/mycure-ourstory-dale.png")
+          p(style="line-height: 7px;") It’s all about the extra day we put into our work,
+          p(style="line-height: 7px;") the extra distance we travel to see our clients,
+          p(style="line-height: 7px;") the extra features we put into our product,
+          p(style="line-height: 7px;") the extra design we add to delight our users,
+          p(style="line-height: 7px;") the extra phone call we make to see how you’re doing,
+          br
+          p(style="line-height: 7px;") the extra concern you have for your patients,
+          p(style="line-height: 7px;") the extra discount you give those in need,
+          p(style="line-height: 7px;") the extra advice you give them to cope better,
+          p(style="line-height: 7px;") the extra class you took to be a better doctor,
+          p(style="line-height: 7px;") the extra 10 years of medical education you endured 
+          p(style="line-height: 7px;") to be a doctor at all.
+          br
+          p(style="line-height: 7px;") Caring the extra mile is our profession, it’s our way of life.
+        b-col(xs="12" md="7")
+          br
+          iframe(
+            id="ytplayer" 
+            type="text/html" width="100%" height="360"
+            src="https://www.youtube.com/embed/vn6tVc1EHQg"
+            frameborder="0"
+          )
 </template>
 
 <script>
@@ -39,8 +39,9 @@
 
 <style scoped>
   .panel-3 {
-    min-height: 100vh;
+    /* min-height: 100vh; */
     /* background-color: white; */
+    padding-bottom: 80px;
   }
 
   .container {
