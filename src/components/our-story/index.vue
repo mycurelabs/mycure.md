@@ -5,8 +5,8 @@
     panel-3
     panel-4
     panel-5
-    // panel-6
-    join-us
+    panel-6
+    join-us(bg="white")
     //- panel-9
     mc-footer
       
