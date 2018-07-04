@@ -1,7 +1,7 @@
 <template lang="pug">
   b-container
     b-row(v-if="!!items.length").row.justify-content-left.pt-4.pb-4
-      b-col(xs="4" md="3" v-for="(item, key) in items" @click="goToDoctorWebsite(item)").result-item.pb-3
+      b-col(xs="4" md="3" v-for="(item, key) in items" @click="goToDoctorWebsite(item)" :key="key").result-item.pb-3
         div.card
           img(width="100%" :src="item.picURL" v-img-fallback="imgFallback").mb-1
           div.text-center
