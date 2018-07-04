@@ -8,7 +8,7 @@
             center
               div.hr-blue
             br
-            h1 Caring the extra mile is kinda our thing
+            h1 Caring the extra mile is kinda our thing.
             br  
             p More than a business, 
               strong we are a community.
