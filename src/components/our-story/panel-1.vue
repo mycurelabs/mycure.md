@@ -9,7 +9,7 @@
           center
             div.hr-blue
           br
-          h1 We make it easy to save lives
+          h1 We make it easy to save lives.
 </template>
 
 <script>

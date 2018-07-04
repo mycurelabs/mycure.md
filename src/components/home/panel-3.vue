@@ -7,7 +7,7 @@
           div.col-xs-12.col-md-12.text-center
             div.row.wrap.align-items-center
               div.col-xs-12.col-md-12.pb-5
-                h2.color-primary Brilliantly designed for your clinic type.
+                h2.color-primary Brilliantly designed for your clinic type
             mc-radio-group-image(
               @select="itemSelected"
               v-model="items"

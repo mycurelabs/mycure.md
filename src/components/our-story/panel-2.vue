@@ -12,7 +12,7 @@
                 br
                 h1 MYCURE starts and ends with 
                   br
-                  | real people and real stories
+                  | real people and real stories.
                 br
               div.col-xs-12.col-md-4
                 img(width="100%" src="../../assets/images/v4/mycure-ourstory-paulette.png")
