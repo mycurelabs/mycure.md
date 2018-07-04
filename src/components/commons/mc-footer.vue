@@ -42,6 +42,12 @@
               router-link(:to="{name: 'faqs-link'}").color-white FAQs
             li
               router-link(:to="{name: 'faqs-link'}").color-white Request A Demo
+          h6(style="color: #616161") LEGAL
+          ul.list.list-tall
+            li
+              router-link(:to="{name: 'terms', query: {id: 'top'}}").color-white Terms
+            li
+              router-link(:to="{name: 'privacy-policy', query: {id: 'top'}}").color-white Privacy Policy
       hr
       div.row.pt-3.pb-3
         div.col-xs-12.col-md-4
