@@ -10,9 +10,13 @@
             br
             h1 MYCURE for Health Facilities
             br
-            p An 
-              strong all-around solution 
-              | for your outpatient, multi-specialty, or industrial clinic
+            p 
+              strong An all-around solution for your outpatient, multispecialty or specialized clinics.
+            br
+            p Imagine simplifying all of your clinic’s paperwork -- Faster transactions, more productive staff,
+              br
+              | reduced paper clutter, and secure, integrated data.
+            p Our professionals will formulate the perfect mix for your health facility in less than 24 hours.
         b-row.row.align-items-center.justify-content-md-center
           b-col(xs="12" md="5").pl-5.pr-5
             img(width="100%" src="../../assets/images/v4/mycure-pricing-health-facility-coffee-sack.png")

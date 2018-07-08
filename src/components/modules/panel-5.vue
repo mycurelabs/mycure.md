@@ -9,7 +9,7 @@
               div.hr-blue
             br
             h1 Add-Ons
-            p You get these free when you need them.
+            p You get these complimentary features whenever you need them.
           div.col-xs-12.col-md-5
             div.row
               div(v-for="(module, key) in adOnsModules").col-xs-6.col-md-3
