@@ -315,9 +315,9 @@
     call-me-maybe "^1.0.1"
     glob-to-regexp "^0.3.0"
 
-"@mycure/sdk@^4.15.1-alpha.24":
-  version "4.15.1-alpha.24"
-  resolved "https://registry.yarnpkg.com/@mycure/sdk/-/sdk-4.15.1-alpha.24.tgz#0c8464c22bee1f6014618ceca22da79826280e83"
+"@mycure/sdk@^4.15.1-alpha.32":
+  version "4.15.1-alpha.32"
+  resolved "https://registry.yarnpkg.com/@mycure/sdk/-/sdk-4.15.1-alpha.32.tgz#c1acad258e3bd99e0744a1fc40338ec54d140d09"
   dependencies:
     "@feathersjs/client" "^3.5.3"
     axios "^0.18.0"

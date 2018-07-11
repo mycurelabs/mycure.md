@@ -36,6 +36,10 @@
         "destination": "/index.html"
       },
       {
+        "source": "/ctm-redirect-link",
+        "destination": "/index.html"
+      },
+      {
         "source": "**",
         "function": "doctorWebsite"
       }
