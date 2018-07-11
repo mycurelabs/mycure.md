@@ -7,7 +7,7 @@ import router from './router';
 import store from './vuex';
 // import Vuefity from 'vuetify';
 // import 'vuetify/dist/vuetify.min.css';
-// import './mycure';
+import './mycure';
 import './mixins';
 import './directives';
 import VueMorphling from 'vue-morphling';
