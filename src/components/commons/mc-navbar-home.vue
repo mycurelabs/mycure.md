@@ -17,7 +17,7 @@
 
       b-navbar-nav.ml-auto
         a(href="https://accounts-v4.mycure.md" target="_blank")#login-link LOG IN
-        b-button(variant="primary" size="sm" :to="{name: 'join-today'}") SIGN UP
+        b-button(variant="success" size="sm" :to="{name: 'join-today'}") SIGN UP
 </template>
 
 <script>
