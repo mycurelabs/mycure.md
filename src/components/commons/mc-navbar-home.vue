@@ -13,7 +13,7 @@
           b-dropdown-item(:to="{name: 'modules', query: {id: 'panel-5'}}" style="color: black").active ADD-ONS
         b-nav-item(href="" :to="{name: 'pricing'}") PRICING
         b-nav-item(href="" :to="{name: 'our-story'}") OUR STORY
-        b-nav-item(href="" @click="toggle") CONTACT US
+        b-nav-item(href="" @click="toggleChat") CONTACT US
 
       b-navbar-nav.ml-auto
         a(href="https://accounts-v4.mycure.md" target="_blank")#login-link LOG IN
@@ -23,7 +23,7 @@
 <script>
   export default {
     methods: {
-      toggle() {
+      toggleChat() {
         $crisp.push(['do', 'chat:toggle'])
       }
     }
