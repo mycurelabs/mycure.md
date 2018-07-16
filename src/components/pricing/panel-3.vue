@@ -10,9 +10,12 @@
             br
             h1 MYCURE for Group Clinics
             br
-            p A 
-              strong unified system 
-              | built for a doctors' clinic being handled by one secretary
+            p
+              strong A practical system built for doctors’ clinics being handled by a common secretary.
+            br
+            p Aside from the premium Group Clinic Package, you’ll also receive expert recommendations on
+              br
+              | boosting clinic efficiency from our technical team, all for a plan that will suit your budget.
             img(src="../../assets/images/v4/mycure-modules-plantg.png" :class="{'animate': scrollTop > 1500}").plant
         b-row.row.align-items-center.justify-content-md-center
           b-col(xs="12" md="5").pl-5.pr-5.text-center

@@ -2,6 +2,7 @@
   {
     "type": "core",
     "name": "EMR",
+    "tagLine": "Premium EMR designed for and by doctors.",
     "description": "Create SOAP charting, digital prescriptions, med certs, lab orders, and compare lab results anytime, anywhere.",
     "icon": "mycure-icon-emr-active.png",
     "banner": "mycure-modules-screenshot-doctor-emr.png"
@@ -9,6 +10,7 @@
   {
     "type": "core",
     "name": "Billing",
+    "tagLine": "Simplified billing with beautiful reports.",
     "description": "A Billing Management System that can integrate all clinic transactions into a single database.",
     "icon": "mycure-icon-billing-advance-active.png",
     "banner": "mycure-modules-screenshot-billing.png"
@@ -16,6 +18,7 @@
   {
     "type": "core",
     "name": "Laboratory",
+    "tagLine": "Record and retrieve results when you need them.",
     "description": "A Laboratory Information System that communicates with your modern diagnostic machines through HL7 interfacing and PACS configurations.",
     "icon": "mycure-icon-lab-active.png",
     "banner": "mycure-modules-screenshot-lab.png"
@@ -23,6 +26,7 @@
   {
     "type": "core",
     "name": "Imaging",
+    "tagLine": "Interpret imaging results in an instant.",
     "description": "An Imaging Information System that allows doctors to view DICOM images remotely, and patients to view their lab & imaging results online.",
     "icon": "mycure-icon-ris-active.png",
     "banner": "mycure-modules-screenshot-imaging.png"
@@ -30,6 +34,7 @@
   {
     "type": "core",
     "name": "Inventory",
+    "tagLine": "Your medical supplies at a glance.",
     "description": "An Inventory Management System built for healthcare facilities to monitor in-house supplies and over-the-counter products.",
     "icon": "mycure-icon-inventory-active.png",
     "banner": "mycure-modules-screenshot-inventory.png"
