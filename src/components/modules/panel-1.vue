@@ -17,7 +17,7 @@
             br
             | process digital medical records of your patients.
           br
-          b-button(variant="primary" size="sm") Get MYCURE
+          b-button(variant="primary" size="sm" :to="{name: 'join-today'}") Get MYCURE
 </template>
 
 <script>
