@@ -40,6 +40,10 @@
         "destination": "/index.html"
       },
       {
+        "source": "/join-today",
+        "destination": "/index.html"
+      },
+      {
         "source": "**",
         "function": "/index.html"
       }
