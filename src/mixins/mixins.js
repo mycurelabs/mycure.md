@@ -2,6 +2,11 @@ import Vue from 'vue';
 import { Observable } from 'rxjs/Observable';
 
 Vue.mixin({
+  computed: {
+    $isMobile () {
+      return this.wXS || wSM;
+    }
+  },  
   methods: {
     $scrollspy: () => {
       return Observable.create(obs => {
@@ -18,7 +23,6 @@ Vue.mixin({
     $addClass: (id, _class) => {
       const e = document.getElementById(id);
       e.classList.add(_class);
-
     },
     $removeClass: (id, _class) => {
       const e = document.getElementById(id);
