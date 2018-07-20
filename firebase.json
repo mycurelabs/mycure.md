@@ -40,7 +40,91 @@
         "destination": "/index.html"
       },
       {
+        "source": "/login",
+        "destination": "/index.html"
+      },
+      {
         "source": "/join-today",
+        "destination": "/index.html"
+      },
+      {
+        "source": "/join-today-doctors",
+        "destination": "/index.html"
+      },
+      {
+        "source": "/npc-website",
+        "destination": "/index.html"
+      },
+      {
+        "source": "/fb-link",
+        "destination": "/index.html"
+      },
+      {
+        "source": "/twitter-link",
+        "destination": "/index.html"
+      },
+      {
+        "source": "/youtube-link",
+        "destination": "/index.html"
+      },
+      {
+        "source": "/ig-link",
+        "destination": "/index.html"
+      },
+      {
+        "source": "/linkedin-link",
+        "destination": "/index.html"
+      },
+      {
+        "source": "/request-demo-link",
+        "destination": "/index.html"
+      },
+      {
+        "source": "/blog-link",
+        "destination": "/index.html"
+      },
+      {
+        "source": "/home-vid",
+        "destination": "/index.html"
+      },
+      {
+        "source": "/careers",
+        "destination": "/index.html"
+      },
+      {
+        "source": "/signup-individual",
+        "destination": "/index.html"
+      },
+      {
+        "source": "/signup-group",
+        "destination": "/index.html"
+      },
+      {
+        "source": "/signup-multi",
+        "destination": "/index.html"
+      },
+      {
+        "source": "/faqs-link",
+        "destination": "/index.html"
+      },
+      {
+        "source": "/arabica-link",
+        "destination": "/index.html"
+      },
+      {
+        "source": "/robusta-link",
+        "destination": "/index.html"
+      },
+      {
+        "source": "/liberica-link",
+        "destination": "/index.html"
+      },
+      {
+        "source": "/data-privacy-for-physicians",
+        "destination": "/index.html"
+      },
+      {
+        "source": "/ctm-redirect-link",
         "destination": "/index.html"
       },
       {
