@@ -1,11 +1,11 @@
 <template lang="pug">
-  div.row.justify-content-md-center
-    div(v-for="(item, key) in value" @click="select(key, item)").col-xs-12.col-md-3
+  b-row.justify-content-md-center
+    b-col(v-for="(item, key) in value" @click="select(key, item)" xs="4" md="3" :key="key")
       div(:class="{selected: item.isSelected}").item.pt-3.pl-3.pr-3
         img(width="100%" :src="item.src")
         br
         br
-        h5 {{item.name}} 
+        h5 {{item.name}}
           i(
             class="material-icons" 
             :id="'tooltip_'+item.id" 
