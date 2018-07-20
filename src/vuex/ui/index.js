@@ -1,18 +1,18 @@
 
 const state = {
   scrollTop: 0
-}
+};
 
 const getters = {
   scrollTop: (s) => s.scrollTop
-}
+};
 
 const actions = {
-}
+};
 
 const mutations = {
   setScrollTop: (s, val) => s.scrollTop = val
-}
+};
 
 export default {
   namespaced: true,
@@ -20,4 +20,4 @@ export default {
   getters,
   actions,
   mutations
-}
+};

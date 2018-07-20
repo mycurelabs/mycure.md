@@ -21,7 +21,7 @@ import VImgFallback from 'v-img-fallback';
 import VueYouTubeEmbed from 'vue-youtube-embed';
 import VueMediaQueryMixin from 'vue-media-query-mixin';
 
-Vue.use(VueMediaQueryMixin, {framework:'bootstrap'});
+Vue.use(VueMediaQueryMixin, {framework: 'bootstrap'});
 
 Vue.use(VueYouTubeEmbed);
 Vue.config.productionTip = false;
@@ -41,7 +41,7 @@ Vue.use(VueHtmlToPaper, {
 Vue.use(VImgFallback, {
   loading: require('./assets/images/loading-2.gif'),
   error: 'https://firebasestorage.googleapis.com/v0/b/mycure-ab311.appspot.com/o/assets%2Fperson-placeholder.png?alt=media&token=04673547-7572-40dc-81f6-007d7a58056d'
-})
+});
 
 // Vue.use(Vuefity, {
 //   theme: {
@@ -57,10 +57,10 @@ Vue.use(VImgFallback, {
 
 Vue.use(VueMorphling);
 
-Vue.use(VueScrollTo,  {
-  container: "body",
+Vue.use(VueScrollTo, {
+  container: 'body',
   duration: 500,
-  easing: "ease",
+  easing: 'ease',
   offset: 0,
   cancelable: true,
   onStart: false,
@@ -70,6 +70,7 @@ Vue.use(VueScrollTo,  {
   y: true
 });
 
+/* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,

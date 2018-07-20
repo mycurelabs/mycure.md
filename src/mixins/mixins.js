@@ -6,14 +6,14 @@ Vue.mixin({
     $isMobile () {
       return this.wXS || wSM;
     }
-  },  
+  },
   methods: {
     $scrollspy: () => {
       return Observable.create(obs => {
         window.addEventListener('scroll', (e) => {
           obs.next(window.pageYOffset || document.documentElement.scrollTop);
         });
-      })
+      });
     },
     $removeScrollspy: () => {
       window.removeEventListener('scroll', (e) => {

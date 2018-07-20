@@ -22,10 +22,10 @@ export const searchDoctor = async (query) => {
             $regex: query || '', $options: 'i'
           }
         }
-      ],
+      ]
       // $limit: 1
     });
   } catch (e) {
     throw e;
   }
-}
+};

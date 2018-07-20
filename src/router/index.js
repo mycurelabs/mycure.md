@@ -11,7 +11,7 @@ import privacy from '@/components/privacy-policy';
 import ctmPage from '@/components/ctm-page';
 import { core } from '@mycure/sdk';
 
-Vue.use(Router)
+Vue.use(Router);
 
 export default new Router({
   mode: 'history',
@@ -59,168 +59,168 @@ export default new Router({
     {
       path: '/login',
       name: 'login',
-      beforeEnter(to, from, next) { 
-        window.open('https://accounts-v4.mycure.md')
+      beforeEnter (to, from, next) {
+        window.open('https://accounts-v4.mycure.md');
         next({name: from.name || 'home'});
       }
     },
     {
       path: '/join-today',
       name: 'join-today',
-      beforeEnter(to, from, next) {
-        window.open('https://accounts-v4.mycure.md/signup/') 
+      beforeEnter (to, from, next) {
+        window.open('https://accounts-v4.mycure.md/signup/');
         next({name: from.name || 'home'});
       }
     },
     {
       path: '/join-today-doctors',
       name: 'join-today-doctors',
-      beforeEnter(to, from, next) {
-        window.open('https://accounts-v4.mycure.md/choose-plan?type=individual') 
+      beforeEnter (to, from, next) {
+        window.open('https://accounts-v4.mycure.md/choose-plan?type=individual');
         next({name: from.name || 'home'});
       }
     },
     {
       path: '/npc-website',
       name: 'npc-website',
-      beforeEnter(to, from, next) {
-        window.open('https://privacy.gov.ph/') 
+      beforeEnter (to, from, next) {
+        window.open('https://privacy.gov.ph/');
         next({name: from.name || 'home'});
       }
     },
     {
       path: '/fb-link',
       name: 'fb-link',
-      beforeEnter(to, from, next) {
-        window.open('https://www.facebook.com/mycure.md') 
+      beforeEnter (to, from, next) {
+        window.open('https://www.facebook.com/mycure.md');
         next({name: from.name || 'home'});
       }
     },
     {
       path: '/twitter-link',
       name: 'twitter-link',
-      beforeEnter(to, from, next) {
-        window.open('https://twitter.com/mycureapp') 
+      beforeEnter (to, from, next) {
+        window.open('https://twitter.com/mycureapp');
         next({name: from.name || 'home'});
       }
     },
     {
       path: '/youtube-link',
       name: 'youtube-link',
-      beforeEnter(to, from, next) {
-        window.open('https://www.youtube.com/channel/UCfQ5QBdFh6f9Tuj2tWkRmvg') 
+      beforeEnter (to, from, next) {
+        window.open('https://www.youtube.com/channel/UCfQ5QBdFh6f9Tuj2tWkRmvg');
         next({name: from.name || 'home'});
       }
     },
     {
       path: '/ig-link',
       name: 'ig-link',
-      beforeEnter(to, from, next) {
-        window.open('https://www.instagram.com/lifeatmycure/') 
+      beforeEnter (to, from, next) {
+        window.open('https://www.instagram.com/lifeatmycure/');
         next({name: from.name || 'home'});
       }
     },
     {
       path: '/linkedin-link',
       name: 'linkedin-link',
-      beforeEnter(to, from, next) {
-        window.open('https://www.linkedin.com/company/mycure/?originalSubdomain=ph') 
+      beforeEnter (to, from, next) {
+        window.open('https://www.linkedin.com/company/mycure/?originalSubdomain=ph');
         next({name: from.name || 'home'});
       }
     },
     {
       path: '/request-demo-link',
       name: 'request-demo-link',
-      beforeEnter(to, from, next) {
-        window.open('https://docs.google.com/forms/d/e/1FAIpQLSfjshsDWT8gfL_ktnuYJVZI50d14i4_2pUT-wBXJGRcdmB83w/viewform?c=0&w=1&usp=send_form') 
+      beforeEnter (to, from, next) {
+        window.open('https://docs.google.com/forms/d/e/1FAIpQLSfjshsDWT8gfL_ktnuYJVZI50d14i4_2pUT-wBXJGRcdmB83w/viewform?c=0&w=1&usp=send_form');
         next({name: from.name || 'home'});
       }
     },
     {
       path: '/blog-link',
       name: 'blog-link',
-      beforeEnter(to, from, next) {
-        window.open('http://blog.mycure.md/') 
+      beforeEnter (to, from, next) {
+        window.open('http://blog.mycure.md/');
         next({name: from.name || 'home'});
       }
     },
     {
       path: '/home-vid',
       name: 'home-vid',
-      beforeEnter(to, from, next) {
-        window.open('https://www.youtube.com/watch?v=r7oewF5qDz4') 
+      beforeEnter (to, from, next) {
+        window.open('https://www.youtube.com/watch?v=r7oewF5qDz4');
         next({name: from.name || 'home'});
       }
     },
     {
       path: '/careers',
       name: 'careers',
-      beforeEnter(to, from, next) {
-        window.open('https://culture.mycure.md/awesome/') 
+      beforeEnter (to, from, next) {
+        window.open('https://culture.mycure.md/awesome/');
         next({name: from.name || 'home'});
       }
     },
     {
       path: '/signup-individual',
       name: 'signup-individual',
-      beforeEnter(to, from, next) {
-        window.open('https://accounts-v4.mycure.md/choose-plan?type=individual') 
+      beforeEnter (to, from, next) {
+        window.open('https://accounts-v4.mycure.md/choose-plan?type=individual');
         next({name: from.name || 'home'});
       }
     },
     {
       path: '/signup-group',
       name: 'signup-group',
-      beforeEnter(to, from, next) {
-        window.open('https://accounts-v4.mycure.md/create-account-group?type=group') 
+      beforeEnter (to, from, next) {
+        window.open('https://accounts-v4.mycure.md/create-account-group?type=group');
         next({name: from.name || 'home'});
       }
     },
     {
       path: '/signup-multi',
       name: 'signup-multi',
-      beforeEnter(to, from, next) {
-        window.open('https://accounts-v4.mycure.md/create-account-multi?type=multi') 
+      beforeEnter (to, from, next) {
+        window.open('https://accounts-v4.mycure.md/create-account-multi?type=multi');
         next({name: from.name || 'home'});
       }
     },
     {
       path: '/faqs-link',
       name: 'faqs-link',
-      beforeEnter(to, from, next) {
-        window.open('https://tutorials.mycure.md/frequently-asked-questions-faqs/') 
+      beforeEnter (to, from, next) {
+        window.open('https://tutorials.mycure.md/frequently-asked-questions-faqs/');
         next({name: from.name || 'home'});
       }
     },
     {
       path: '/arabica-link',
       name: 'arabica-link',
-      beforeEnter(to, from, next) {
-        window.open('https://accounts-v4.mycure.md/create-account-individual?type=individual&plan=arabica') 
+      beforeEnter (to, from, next) {
+        window.open('https://accounts-v4.mycure.md/create-account-individual?type=individual&plan=arabica');
         next({name: from.name || 'home'});
       }
     },
     {
       path: '/robusta-link',
       name: 'robusta-link',
-      beforeEnter(to, from, next) {
-        window.open('https://accounts-v4.mycure.md/create-account-individual?type=individual&plan=robusta') 
+      beforeEnter (to, from, next) {
+        window.open('https://accounts-v4.mycure.md/create-account-individual?type=individual&plan=robusta');
         next({name: from.name || 'home'});
       }
     },
     {
       path: '/liberica-link',
       name: 'liberica-link',
-      beforeEnter(to, from, next) {
-        window.open('https://accounts-v4.mycure.md/create-account-individual?type=individual&plan=liberica') 
+      beforeEnter (to, from, next) {
+        window.open('https://accounts-v4.mycure.md/create-account-individual?type=individual&plan=liberica');
         next({name: from.name || 'home'});
       }
     },
     {
       path: '/data-privacy-for-physicians',
       name: 'data-privacy-for-physicians',
-      beforeEnter(to, from, next) {
-        window.open('http://blog.mycure.md/2018/04/26/data-privacy-for-physicians/') 
+      beforeEnter (to, from, next) {
+        window.open('http://blog.mycure.md/2018/04/26/data-privacy-for-physicians/');
         next({name: from.name || 'home'});
       }
     },
@@ -228,12 +228,12 @@ export default new Router({
       path: '/ctm-redirect-link',
       name: 'ctm-counter',
       component: ctmPage,
-      async beforeEnter(to, from, next) {
+      async beforeEnter (to, from, next) {
         next();
 
         const { link, src, ctm } = to.query;
 
-        if(!link || !src || !ctm) {
+        if (!link || !src || !ctm) {
           location.href = 'https://mycure.md';
           return;
         }
@@ -242,7 +242,7 @@ export default new Router({
           type: 'campaign-link-click',
           source: to.query.src,
           campaign: to.query.ctm
-        }
+        };
 
         await core.system.counters().create(campaign);
 

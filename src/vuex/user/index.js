@@ -4,11 +4,11 @@ import {
 
 const state = {
   searchResults: []
-}
+};
 
 const getters = {
   scrollTop: (s) => s.scrollTop
-}
+};
 
 const actions = {
   searchDoctor: async ({commit}, query) => {
@@ -18,11 +18,11 @@ const actions = {
       throw e;
     }
   }
-}
+};
 
 const mutations = {
   setSearchResults: (s, val) => s.searchResults = val
-}
+};
 
 export default {
   namespaced: true,
@@ -30,4 +30,4 @@ export default {
   getters,
   actions,
   mutations
-}
+};

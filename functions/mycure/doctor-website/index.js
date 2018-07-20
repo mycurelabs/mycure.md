@@ -8,10 +8,10 @@ module = module.exports = (url) => {
       doc_website: url,
       $populate: {
         _clinics: {
-          service: 'organizations', 
-          method: 'find', 
-          key: 'id', 
-          idField: 'createdBy', 
+          service: 'organizations',
+          method: 'find',
+          key: 'id',
+          idField: 'createdBy',
           type: 'personal-clinic'
         }
       }
@@ -21,7 +21,7 @@ module = module.exports = (url) => {
       reject(error);
     });
   });
-}
+};
 
 // TODO:
 // For directory
