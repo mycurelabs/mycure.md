@@ -17,15 +17,15 @@
     debug "^3.1.0"
     jwt-decode "^2.1.0"
 
-"@feathersjs/client@^3.5.1":
-  version "3.5.2"
-  resolved "https://registry.yarnpkg.com/@feathersjs/client/-/client-3.5.2.tgz#aadbd490844e9953e199ed88174ffbabe53c5272"
+"@feathersjs/client@^3.5.3":
+  version "3.5.3"
+  resolved "https://registry.yarnpkg.com/@feathersjs/client/-/client-3.5.3.tgz#fc45d00b01a953474e74eb6294ba4ae45953e0fc"
   dependencies:
     "@feathersjs/authentication-client" "1.0.2"
     "@feathersjs/errors" "3.3.0"
     "@feathersjs/feathers" "3.1.7"
     "@feathersjs/primus-client" "1.1.0"
-    "@feathersjs/rest-client" "1.4.0"
+    "@feathersjs/rest-client" "1.4.1"
     "@feathersjs/socketio-client" "1.1.0"
 
 "@feathersjs/commons@^1.2.0", "@feathersjs/commons@^1.4.0", "@feathersjs/commons@^1.4.1":
@@ -53,9 +53,9 @@
   dependencies:
     "@feathersjs/transport-commons" "^4.0.0"
 
-"@feathersjs/rest-client@1.4.0":
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/@feathersjs/rest-client/-/rest-client-1.4.0.tgz#3b5d28f10a5715719bbe9f42cf4d96f322b9f47b"
+"@feathersjs/rest-client@1.4.1":
+  version "1.4.1"
+  resolved "https://registry.yarnpkg.com/@feathersjs/rest-client/-/rest-client-1.4.1.tgz#2d1ce432516bb4ad51ac8aff0e649e44e51e0f64"
   dependencies:
     "@feathersjs/commons" "^1.2.0"
     "@feathersjs/errors" "^3.0.0"
@@ -315,14 +315,14 @@
     call-me-maybe "^1.0.1"
     glob-to-regexp "^0.3.0"
 
-"@mycure/sdk@^4.15.1-alpha.11":
-  version "4.15.1-alpha.11"
-  resolved "https://registry.yarnpkg.com/@mycure/sdk/-/sdk-4.15.1-alpha.11.tgz#27796af2c987ddbc3c20cd4b7d1ecc0cb93788e4"
+"@mycure/sdk@^4.15.1-alpha.32":
+  version "4.15.1-alpha.32"
+  resolved "https://registry.yarnpkg.com/@mycure/sdk/-/sdk-4.15.1-alpha.32.tgz#c1acad258e3bd99e0744a1fc40338ec54d140d09"
   dependencies:
-    "@feathersjs/client" "^3.5.1"
+    "@feathersjs/client" "^3.5.3"
     axios "^0.18.0"
     debug "^3.1.0"
-    flat "^4.0.0"
+    flat "^4.1.0"
     jwt-decode "^2.2.0"
     lodash "^4.17.10"
     rxjs "^6.2.0"
@@ -1762,7 +1762,7 @@ bytes@3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/bytes/-/bytes-3.0.0.tgz#d32815404d689699f85a4ea4fa8755dd13a96048"
 
-cacache@^10.0.4:
+cacache@^10.0.1, cacache@^10.0.4:
   version "10.0.4"
   resolved "https://registry.yarnpkg.com/cacache/-/cacache-10.0.4.tgz#6452367999eff9d4188aefd9a14e9d7c6a263460"
   dependencies:
@@ -2136,6 +2136,16 @@ compressible@~2.0.13:
   resolved "https://registry.yarnpkg.com/compressible/-/compressible-2.0.13.tgz#0d1020ab924b2fdb4d6279875c7d6daba6baa7a9"
   dependencies:
     mime-db ">= 1.33.0 < 2"
+
+compression-webpack-plugin@^1.0.0:
+  version "1.1.11"
+  resolved "https://registry.yarnpkg.com/compression-webpack-plugin/-/compression-webpack-plugin-1.1.11.tgz#8384c7a6ead1d2e2efb190bdfcdcf35878ed8266"
+  dependencies:
+    cacache "^10.0.1"
+    find-cache-dir "^1.0.0"
+    neo-async "^2.5.0"
+    serialize-javascript "^1.4.0"
+    webpack-sources "^1.0.1"
 
 compression@^1.5.2:
   version "1.7.2"
@@ -3464,11 +3474,11 @@ firebase@^5.0.4:
     "@firebase/polyfill" "0.3.3"
     "@firebase/storage" "0.2.3"
 
-flat@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/flat/-/flat-4.0.0.tgz#3abc7f3b588e64ce77dc42fd59aa35806622fea8"
+flat@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/flat/-/flat-4.1.0.tgz#090bec8b05e39cba309747f1d588f04dbaf98db2"
   dependencies:
-    is-buffer "~1.1.5"
+    is-buffer "~2.0.3"
 
 flatten@^1.0.2:
   version "1.0.2"
@@ -4272,9 +4282,13 @@ is-binary-path@^1.0.0:
   dependencies:
     binary-extensions "^1.0.0"
 
-is-buffer@^1.1.5, is-buffer@~1.1.5:
+is-buffer@^1.1.5:
   version "1.1.6"
   resolved "https://registry.yarnpkg.com/is-buffer/-/is-buffer-1.1.6.tgz#efaa2ea9daa0d7ab2ea13a97b2b8ad51fefbe8be"
+
+is-buffer@~2.0.3:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/is-buffer/-/is-buffer-2.0.3.tgz#4ecf3fcf749cbd1e472689e109ac66261a25e725"
 
 is-builtin-module@^1.0.0:
   version "1.0.0"
@@ -8158,6 +8172,12 @@ vue-loader@^13.3.0:
     vue-style-loader "^3.0.0"
     vue-template-es2015-compiler "^1.6.0"
 
+vue-media-query-mixin@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/vue-media-query-mixin/-/vue-media-query-mixin-0.1.0.tgz#77e27e7edf485787e0b05f4a659a01f7f941c662"
+  dependencies:
+    compression-webpack-plugin "^1.0.0"
+
 vue-morphling@^0.7.3:
   version "0.7.4"
   resolved "https://registry.yarnpkg.com/vue-morphling/-/vue-morphling-0.7.4.tgz#8f15bdd91ad09945f6a1d873d0385955b830415a"
@@ -8195,9 +8215,9 @@ vue-template-es2015-compiler@^1.6.0:
   version "1.6.0"
   resolved "https://registry.yarnpkg.com/vue-template-es2015-compiler/-/vue-template-es2015-compiler-1.6.0.tgz#dc42697133302ce3017524356a6c61b7b69b4a18"
 
-vue-youtube-embed@^2.2.0:
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/vue-youtube-embed/-/vue-youtube-embed-2.2.0.tgz#72cc0baa3570dd18714dd57f5c1c0d15ed1181bd"
+vue-youtube-embed@^2.2.1:
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/vue-youtube-embed/-/vue-youtube-embed-2.2.1.tgz#a3be445d2c8e647be2608c90993d5e8791107207"
 
 vue@^2.5.2:
   version "2.5.16"

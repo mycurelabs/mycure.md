@@ -9,7 +9,7 @@
               div.hr-blue
             br
             h1 Core Modules
-            p The essential tools for your clinic.
+            p Professional systems that are essential for your clinic.
           div.col-xs-12.col-md-5
             div.row
               div(v-for="(module, key) in coreModules").col-xs-6.col-md-3
@@ -30,9 +30,11 @@
                 span
                   strong {{ selectedModule.name }}
                 br
-                div(style="height: 85px;")
+                div(style="height: 130px;")
+                  p.mt-2 
+                    i {{ selectedModule.tagLine }}
                   p {{ selectedModule.description }}
-                b-button(variant="primary" size="sm" :to="{name: 'join-today'}") SIGN UP NOW!
+                b-button(variant="primary" size="sm" :to="{name: 'join-today'}" :class="{'mb-3': (wXS || wSM)}") SIGN UP NOW!
           div.col-xs-12.col-md-7
             img(width="100%" :src="parseImage(selectedModule.banner)")
 </template>

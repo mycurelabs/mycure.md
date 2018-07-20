@@ -9,7 +9,7 @@
               div.hr-blue
             br
             h1 Premium Modules
-            p Add these on top of the core modules to boosts your digital clinic experience.
+            p Add these on top of the core modules to boost your digital clinic experience.
           div.col-xs-12.col-md-7
             img(width="100%" :src="parseImage(selectedModule.banner)")
           div.col-xs-12.col-md-5

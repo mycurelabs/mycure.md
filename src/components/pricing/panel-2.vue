@@ -1,5 +1,5 @@
 <template lang="pug">
-  div
+  div#prices
     pre(v-if="!$isProduction()").panel-number 2
     div.panel-2.pt-5.pb-5
       b-container(fluid)
@@ -8,14 +8,18 @@
             center
               div.hr-blue
             br
-            h1 MYCURE for Individual Doctors
+            h1 MYCURE for Individual Clinics
             br
-            p A 
-              strong powerful EMR 
-              | system with complementary Queuing and Billing modules
+            p 
+              strong A powerful combination of EMR, Queuing and Billing systems designed 
+                br
+                | for individual practitioners.
             br
             p Enjoy one-month free trial for Liberica and Robusta. No credit card needed. 
-              strong Start FREE!
+              br
+              | Our basic solution is 
+              strong always FREE
+              |.
             img(src="../../assets/images/v4/coffee.png" :class="{'animate': scrollTop > 300}").coffee
           b-col(xs="12" md="10")
             b-row(style="background-color: #eff3f5").justify-content-md-center.shadow-3.pl-3.pr-3.pt-5.pb-5

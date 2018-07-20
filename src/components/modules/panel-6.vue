@@ -15,22 +15,22 @@
             h2 For me and my 
               br
               | secretary only
-            br
-            b-button(variant="outline-primary" size="lg" block :to="{name: 'signup-individual'}") MYCURE FOR INDIVIDUAL DOCTORS 
+            br(:class="{'hidden': (wXS || wSM)}")
+            b-button(:class="{'mb-5': (wXS || wSM)}" variant="outline-primary" size="lg" block :to="{name: 'signup-individual'}") MYCURE FOR INDIVIDUAL DOCTORS 
               i(style="position: absolute;").material-icons chevron_right
           div.col-xs-12.col-md-4.text-center
             h2 For my peers and I, 
               br
               | practicing as a team
-            br
-            b-button(variant="primary" size="lg" block :to="{name: 'signup-group'}") MYCURE FOR GROUP CLINICS 
+            br(:class="{'hidden': (wXS || wSM)}")
+            b-button(:class="{'mb-5': (wXS || wSM)}" variant="primary" size="lg" block :to="{name: 'signup-group'}") MYCURE FOR GROUP CLINICS 
               i(style="position: absolute;").material-icons chevron_right
           div.col-xs-12.col-md-4.text-center
             h2 For my multispecialty
               br
               | clinic
-            br
-            b-button(variant="outline-primary" size="lg" block :to="{name: 'signup-multi'}") MYCURE FOR HEALTH FACILITIES 
+            br(:class="{'hidden': (wXS || wSM)}")
+            b-button(:class="{'mb-5': (wXS || wSM)}" variant="outline-primary" size="lg" block :to="{name: 'signup-multi'}") MYCURE FOR HEALTH FACILITIES 
               i(style="position: absolute;").material-icons chevron_right
 </template>
 

@@ -2,11 +2,11 @@
   div
     pre(v-if="!$isProduction()").panel-number 3
     div.panel-3.pt-5
-      div.container
-        div.row.align-items-center
-          div.col-xs-12.col-md-12.text-center
-            div.row.wrap.align-items-center
-              div.col-xs-12.col-md-12.pb-5
+      b-container
+        b-row.align-items-center
+          b-col(xs="12" md="12").text-center
+            b-row.wrap.align-items-center
+              b-col(xs="12" md="12").pb-5
                 h2.color-primary Brilliantly designed for your clinic type
             mc-radio-group-image(
               @select="itemSelected"

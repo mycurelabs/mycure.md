@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.0.0-beta.51",
-    "@mycure/sdk": "^4.15.1-alpha.11",
+    "@mycure/sdk": "^4.15.1-alpha.32",
     "babel-polyfill": "^6.26.0",
     "bootstrap-vue": "^2.0.0-rc.11",
     "firebase": "^5.0.4",
@@ -31,10 +31,11 @@
     "vue": "^2.5.2",
     "vue-barcode": "^1.1.0",
     "vue-html2canvas": "^0.0.2",
+    "vue-media-query-mixin": "^0.1.0",
     "vue-morphling": "^0.7.3",
     "vue-router": "^3.0.1",
     "vue-scrollto": "^2.11.0",
-    "vue-youtube-embed": "^2.2.0",
+    "vue-youtube-embed": "^2.2.1",
     "vuetify": "^1.0.18",
     "vuex": "^3.0.1",
     "vuex-persistedstate": "^2.5.4"

@@ -36,6 +36,14 @@
         "destination": "/index.html"
       },
       {
+        "source": "/ctm-redirect-link",
+        "destination": "/index.html"
+      },
+      {
+        "source": "/join-today",
+        "destination": "/index.html"
+      },
+      {
         "source": "**",
         "function": "/index.html"
       }

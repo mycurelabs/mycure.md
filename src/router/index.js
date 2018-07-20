@@ -8,6 +8,8 @@ import printDemo from '@/components/print-demo';
 import directory from '@/components/directory';
 import terms from '@/components/terms';
 import privacy from '@/components/privacy-policy';
+import ctmPage from '@/components/ctm-page';
+import { core } from '@mycure/sdk';
 
 Vue.use(Router)
 
@@ -158,6 +160,31 @@ export default new Router({
       path: '/data-privacy-for-physicians',
       name: 'data-privacy-for-physicians',
       beforeEnter() { window.open('http://blog.mycure.md/2018/04/26/data-privacy-for-physicians/') }
+    },
+    {
+      path: '/ctm-redirect-link',
+      name: 'ctm-counter',
+      component: ctmPage,
+      async beforeEnter(to, from, next) {
+        next();
+
+        const { link, src, ctm } = to.query;
+
+        if(!link || !src || !ctm) {
+          location.href = 'https://mycure.md';
+          return;
+        }
+
+        const campaign = {
+          type: 'campaign-link-click',
+          source: to.query.src,
+          campaign: to.query.ctm
+        }
+
+        await core.system.counters().create(campaign);
+
+        location.href = to.query.link;
+      }
     }
   ]
 });
