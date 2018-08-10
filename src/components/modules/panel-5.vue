@@ -32,7 +32,7 @@
                 br
                 div(style="height: 85px;")
                   p {{ selectedModule.description }}
-                b-button(variant="primary" size="sm" :to="{name: 'join-today'}") SIGN UP NOW!
+                b-button(variant="primary" size="sm" :to="{name: 'join-today'}" :class="{'mb-3': (wXS || wSM)}") SIGN UP NOW!
           div.col-xs-12.col-md-7
             img(width="100%" :src="parseImage(selectedModule.banner)")
 </template>

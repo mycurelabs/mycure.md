@@ -1,5 +1,5 @@
 <template lang="pug">
-  div
+  div#prices
     pre(v-if="!$isProduction()").panel-number 2
     div.panel-2.pt-5.pb-5
       b-container(fluid)

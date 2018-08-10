@@ -1,10 +1,10 @@
 <template lang="pug">
   div
-    panel-1
-    panel-2
-    panel-3
-    panel-4
-    panel-5
+    panel-1#panel-1
+    panel-2#panel-2
+    panel-3#panel-3
+    panel-4#panel-4
+    panel-5#panel-5
     // panel-6
     // panel-7
     // join-us
@@ -22,6 +22,7 @@
   // import panel7 from './panel-7';
   // import joinUs from '../home/panel-9';
   import mcFooter from '../commons/mc-footer';
+  import VueScrollTo from 'vue-scrollto';
 
   export default {
     components: {
@@ -34,6 +35,22 @@
       // 'panel-7': panel7,
       // joinUs,
       mcFooter
+    },
+    created() { 
+      this.scroll(this.$route.query.id, 500, 500);
+    },
+    methods: {
+      scroll(id, timeout = 1000, duration = 500) {
+        setTimeout(() => {
+          VueScrollTo.scrollTo(`#${id}`, duration, { easing: 'ease' } );
+        }, timeout);
+      }
+    },
+    watch: {
+      $route(to, from) {
+        const { query } = to;
+        this.scroll(query.id, 0, 500);
+      }
     }
   }
 </script>
