@@ -25,7 +25,6 @@ Vue.mixin({
     $addClass: (id, _class) => {
       const e = document.getElementById(id);
       e.classList.add(_class);
-
     },
     $removeClass: (id, _class) => {
       const e = document.getElementById(id);

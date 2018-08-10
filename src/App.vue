@@ -139,4 +139,8 @@ body {
     -ms-transform: translate(0px, 0px);
   }
 }
+
+.hidden {
+  display: none;
+}
 </style>
