@@ -6,6 +6,7 @@ import modules from '@/components/modules';
 import pricing from '@/components/pricing';
 import printDemo from '@/components/print-demo';
 import directory from '@/components/directory';
+import downloadExecutable from '@/components/download-executable';
 import terms from '@/components/terms';
 import privacy from '@/components/privacy-policy';
 import ctmPage from '@/components/ctm-page';
@@ -55,6 +56,11 @@ export default new Router({
       path: '/print-demo',
       name: 'print-demo',
       component: printDemo
+    },
+    {
+      path: '/download-executable',
+      name: 'download-executable',
+      component: downloadExecutable
     },
     {
       path: '/login',
