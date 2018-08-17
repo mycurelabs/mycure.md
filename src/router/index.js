@@ -5,11 +5,11 @@ import ourStory from '@/components/our-story';
 import modules from '@/components/modules';
 import pricing from '@/components/pricing';
 import printDemo from '@/components/print-demo';
-import directory from '@/components/directory';
 import downloadExecutable from '@/components/download-executable';
 import terms from '@/components/terms';
 import privacy from '@/components/privacy-policy';
 import ctmPage from '@/components/ctm-page';
+import notFound from '@/components/not-found';
 import { core } from '@mycure/sdk';
 
 Vue.use(Router);
@@ -61,6 +61,10 @@ export default new Router({
       path: '/download-executable',
       name: 'download-executable',
       component: downloadExecutable
+    },
+    {
+      path: '*',
+      component: notFound
     },
     {
       path: '/login',
@@ -240,7 +244,7 @@ export default new Router({
         const { link, src, ctm } = to.query;
 
         if (!link || !src || !ctm) {
-          location.href = 'https://mycure.md';
+          window.location.href = 'https://mycure.md';
           return;
         }
 
@@ -252,7 +256,7 @@ export default new Router({
 
         await core.system.counters().create(campaign);
 
-        location.href = to.query.link;
+        window.location.href = to.query.link;
       }
     }
   ]
