@@ -6,6 +6,7 @@ import store from './vuex';
 import './mycure';
 import './mixins';
 import './directives';
+import './visitor-country';
 import VueMorphling from 'vue-morphling';
 import BootstrapVue from 'bootstrap-vue';
 import VueScrollTo from 'vue-scrollto';
@@ -15,7 +16,6 @@ import 'kidlat-css/css/kidlat.css';
 import VueHtmlToPaper from './mixins/vue-html-to-paper';
 import VImgFallback from 'v-img-fallback';
 import VueYouTubeEmbed from 'vue-youtube-embed';
-import './visitor-country';
 
 Vue.use(VueYouTubeEmbed);
 Vue.config.productionTip = false;

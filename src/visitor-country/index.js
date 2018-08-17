@@ -3,7 +3,7 @@ import store from '../vuex';
 
 (async () => {
   const { ip } = await getIP();
-  console.log(await getCountry(ip))
   const country = await getCountry(ip);
+  console.warn(country.country_name);
   store.commit('ui/setVisitorCountry', country);
 })();
