@@ -4,7 +4,7 @@ module = module.exports = (req, res) => {
   const url = req.params.url;
   getDoctorWebsite(url)
     .then(doctor => {
-      if(!doctor) {
+      if (!doctor) {
         res.render('404');
         return;
       }
@@ -17,4 +17,4 @@ module = module.exports = (req, res) => {
     .catch(e => {
       res.render('500');
     });
-}
+};

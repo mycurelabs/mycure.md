@@ -15,7 +15,7 @@ Vue.mixin({
         window.addEventListener('scroll', (e) => {
           obs.next(window.pageYOffset || document.documentElement.scrollTop);
         });
-      })
+      });
     },
     $removeScrollspy: () => {
       window.removeEventListener('scroll', (e) => {

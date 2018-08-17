@@ -6,10 +6,10 @@ const state = {
 
 const getters = {
   scrollTop: (s) => s.scrollTop
-}
+};
 
 const actions = {
-}
+};
 
 const mutations = {
   setScrollTop: (s, val) => s.scrollTop = val,
@@ -22,4 +22,4 @@ export default {
   getters,
   actions,
   mutations
-}
+};

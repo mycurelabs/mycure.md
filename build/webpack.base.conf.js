@@ -6,7 +6,7 @@ const vueLoaderConfig = require('./vue-loader.conf')
 const DotEnv = require('dotenv-webpack')
 
 function resolve (dir) {
-  return path.join(__dirname, '..', dir)
+  return path.join(__dirname, '..', dir);
 }
 
 module.exports = {
@@ -25,7 +25,7 @@ module.exports = {
     extensions: ['.js', '.vue', '.json'],
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
-      '@': resolve('src'),
+      '@': resolve('src')
     }
   },
   module: {
