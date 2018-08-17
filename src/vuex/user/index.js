@@ -21,7 +21,9 @@ const actions = {
 };
 
 const mutations = {
-  setSearchResults: (s, val) => s.searchResults = val
+  setSearchResults: (s, val) => {
+    s.searchResults = val;
+  }
 };
 
 export default {

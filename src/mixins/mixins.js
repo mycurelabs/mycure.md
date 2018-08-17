@@ -3,11 +3,11 @@ import { Observable } from 'rxjs/Observable';
 // import { getIP } from '../axios';
 
 Vue.mixin({
-  data() {
+  data () {
     return {
       visitorIP: '',
       visitorCountry: ''
-    }
+    };
   },
   methods: {
     $scrollspy: () => {
@@ -30,7 +30,7 @@ Vue.mixin({
       const e = document.getElementById(id);
       e.classList.remove(_class);
     },
-    $isProduction: () => process.env.NODE_ENV === 'production',
+    $isProduction: () => process.env.NODE_ENV === 'production'
     // $getVisitorCountry: async () => {
     //   const { ip } = await getIP();
     //   this.visitorIP = ip;

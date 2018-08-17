@@ -15,4 +15,3 @@ export const getCountry = async (ip) => {
   const { data } = await request.get();
   return data;
 };
-

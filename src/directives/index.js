@@ -1,1 +1,1 @@
-export * from './mc-hover-src';
+import './mc-hover-src';

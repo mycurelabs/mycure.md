@@ -1,1 +1,1 @@
-export * from './mixins';
+import './mixins';

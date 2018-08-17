@@ -11,7 +11,6 @@ const VueHtml2Canvas = {
             console.warn('Vue Html2Canvas Warn: Invalid option type. Use \'dataURL\' instead. Returning canvas.');
             return canvas;
           }
-          return canvas;
         }
       }
     });
