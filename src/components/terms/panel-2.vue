@@ -23,14 +23,14 @@
             b-col(xs="12" md="5").text-right
               h1 Character, Trust and Integrity
             b-col(xs="12" md="7")
-              p MYCURE values Character, Trust, and Integrity. These are values  very  important to the Founders thus was brought about and integrated in MYCURE's Culture!
+              p MYCURE values Character, Trust, and Integrity. These are values  very  important to the Founders thus was brought about and integrated into MYCURE's Culture!
         b-col(xs="12" md="10").mb-5
           b-row
             b-col(xs="12" md="6")
               span(style="font-size: 21px;") TRUST AND INTEGRITY
               br
               br
-              p We are looking forward to you entrusting to MYCURE your personal data. We know how important this is to you. Our tech team has established standard security protocols (and more) to keep your data safe. But does this mean we are 100% hack-proof? Well, we want to be. But let's admit it, even the world's biggest banks and government institutions are not. Rest assured, however, that we have setup our backend infrastructure to protect your data and continue to work on it constantly.
+              p We are looking forward to you entrusting to MYCURE your personal data. We know how important this is to you. Our tech team has established standard security protocols (and more) to keep your data safe. But does this mean we are 100% hack-proof? Well, we want to be. But let's admit it, even the world's biggest banks and government institutions are not. Rest assured, however, that we have set up our backend infrastructure to protect your data and continue to work on it constantly.
               p Personal data like name, photos, phone numbers and email address are yours and yours alone. We are committed to not selling these types of data to third parties. But we are sure you understand that in the interest of science and for the potential to save more lives in the future, MYCURE may have partnerships with hospitals and medical companies. In other words, records like diseases, types of medicine used, general location and anything that would help medical practitioners make better medical decisions in the future - as long as it does not directly identify you - could possibly be shared to make our world a better place. 
               router-link(:to="{name: 'privacy-policy'}") See also MYCURE Privacy Policy >> 
             b-col(xs="12" md="6")
@@ -41,7 +41,7 @@
               p Please be nice! We worked hard to put this application together and spent many long hours and sleepless nights (we still do as we keep on improving and adding more features!). So please do not copy, share or modify MYCURE copyrights, trademarks, and patents for distribution to others. Should you have an idea or want to improve our services, please feel free to contact us at hello@mycure.md.
               p Please do not try and hack (what is hacking? See 'Use License' below to know what we mean) MYCURE's website or its apps.  Let us respect each other's space, please, thank you!
               p For Doctors App: This is strictly exclusive for Licensed Medical Doctors only.
-              p For Patients App: Please do not lie about your age. Considering the sensitivity of medical data, we are only allowing users 18 years of age (or whatever is legal age in your country) and above. Should you want to enroll a child then it can be done by using your name and registering him/her under you. We also understand that you would need to keep and monitor records of your children.
+              p For Patients App: Please do not lie about your age. Considering the sensitivity of medical data, we are only allowing users 18 years of age (or whatever is the legal age in your country) and above. Should you want to enroll a child then it can be done by using your name and registering him/her under you. We also understand that you would need to keep and monitor records of your children.
         b-col(xs="12" md="10").mb-5
           img(width="100%" src="../../assets/images/v4/mycure onboarding 03 SUCCESS ORG artwork.png")
         b-col(xs="12" md="10").mb-5
@@ -55,7 +55,7 @@
           h2 Free Trial
           p MYCURE, Inc. may, at its sole discretion, offer a Subscription with a free trial for a limited period of time ("Free Trial").
           p You may be required to enter your billing information in order to sign up for the Free Trial.
-          p If you do enter your billing information when signing up for the Free Trial, you will not be charged by MYCURE, Inc. until the Free Trial has expired. On the last day of the Free Trial period, unless you cancelled your Subscription, you will be automatically charged the applicable Subscription fees for the type of Subscription you have selected.
+          p If you do enter your billing information when signing up for the Free Trial, you will not be charged by MYCURE, Inc. until the Free Trial has expired. On the last day of the Free Trial period, unless you canceled your Subscription, you will be automatically charged the applicable Subscription fees for the type of Subscription you have selected.
           p At any time and without notice, MYCURE, Inc. reserves the right to (i) modify the terms and conditions of the Free Trial offer, or (ii) cancel such Free Trial offer.
         b-col(xs="12" md="10").mb-5
           img(width="550" src="../../assets/images/v4/mycure-modules-plantg.png" style="position: absolute; right: -580px;").side-img
@@ -76,7 +76,7 @@
           p This license shall automatically terminate if you violate any of these restrictions and may be terminated by MYCURE at any time. Upon terminating your viewing of these materials or upon the termination of this license, you must destroy any downloaded materials in your possession whether in electronic or printed format.
         b-col(xs="12" md="10").mb-5
           h2 Refunds
-          p Certain refund requests for Subscriptions may be considered by MYCURE, Inc. on a case-by-case basis and granted in sole discretion of MYCURE, Inc..
+          p Certain refund requests for Subscriptions may be considered by MYCURE, Inc. on a case-by-case basis and granted in the sole discretion of MYCURE, Inc..
         b-col(xs="12" md="10").mb-5
           h2 Your Content
           p Our Service allows you to post, link, store, share and otherwise make available certain information, text, graphics, videos, or other material ("Content"). You are responsible for the Content that you post to the Service, including its legality, reliability, and appropriateness.
@@ -95,7 +95,7 @@
         b-col(xs="12" md="10").mb-5
           img(width="250" src="../../assets/images/v4/mycure-modules-pen-and-pad.png" style="position: absolute; right: -280px;").side-img
           h2 Accounts
-          p When you create an account with us, you must provide us information that is accurate, complete, and current at all times. Failure to do so constitutes a breach of the Terms, which may result in immediate termination of your account on our Service.
+          p When you create an account with us, you must provide us with information that is accurate, complete, and current at all times. Failure to do so constitutes a breach of the Terms, which may result in immediate termination of your account on our Service.
           p You are responsible for safeguarding the password that you use to access the Service and for any activities or actions under your password, whether your password is with our Service or a third-party service.
           p You agree not to disclose your password to any third party. You must notify us immediately upon becoming aware of any breach of security or unauthorized use of your account.
           p You may not use as a username the name of another person or entity or that is not lawfully available for use, a name or trademark that is subject to any rights of another person or entity other than you without appropriate authorization, or a name that is otherwise offensive, vulgar or obscene.
@@ -104,9 +104,9 @@
           p The Service and its original content (excluding Content provided by users), features and functionality are and will remain the exclusive property of MYCURE, Inc. and its licensors. The Service is protected by copyright, trademark, and other laws of both the Philippines and foreign countries. Our trademarks and trade dress may not be used in connection with any product or service without the prior written consent of MYCURE, Inc..
         b-col(xs="12" md="10").mb-5
           h2 Links To Other Web Sites
-          p Our Service may contain links to third-party web sites or services that are not owned or controlled by MYCURE, Inc.
-          p MYCURE, Inc. has no control over, and assumes no responsibility for, the content, privacy policies, or practices of any third party web sites or services. You further acknowledge and agree that MYCURE, Inc. shall not be responsible or liable, directly or indirectly, for any damage or loss caused or alleged to be caused by or in connection with use of or reliance on any such content, goods or services available on or through any such web sites or services.
-          p We strongly advise you to read the terms and conditions and privacy policies of any third-party web sites or services that you visit.
+          p Our Service may contain links to third-party websites or services that are not owned or controlled by MYCURE, Inc.
+          p MYCURE, Inc. has no control over, and assumes no responsibility for, the content, privacy policies, or practices of any third party websites or services. You further acknowledge and agree that MYCURE, Inc. shall not be responsible or liable, directly or indirectly, for any damage or loss caused or alleged to be caused by or in connection with the use of or reliance on any such content, goods or services available on or through any such websites or services.
+          p We strongly advise you to read the terms and conditions and privacy policies of any third-party websites or services that you visit.
         b-col(xs="12" md="10").mb-5
           img(width="250" src="../../assets/images/v4/mycure-modules-coffee.png" style="position: absolute; left: -280px;").side-img
           h2 Termination

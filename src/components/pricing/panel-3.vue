@@ -22,7 +22,7 @@
             img(width="100%" src="../../assets/images/v4/mycure-pricing-group-clinic-coffee-jars.png")
           b-col(xs="12" md="5")
             p Sign up ang get your clinic spiced up with the best package for you group clinic within 24 hours!
-            p Also get get a glimpse of the EMR module for free while you wait!
+            p Also get a glimpse of the EMR module for free while you wait!
             b-button(variant="primary" :to="{name: 'signup-group'}") GET STARTED FOR FREE
 
 </template>

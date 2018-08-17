@@ -21,7 +21,7 @@
           b-col(xs="12" md="5").pl-5.pr-5
             img(width="100%" src="../../assets/images/v4/mycure-pricing-health-facility-coffee-sack.png")
           b-col(xs="12" md="5")
-            p Imagine simplifying all your clinic's paper works -- Faster transactions, more productive staff, reduced paper clutter and secure, integrated data.
+            //- p Imagine simplifying all your clinic's paper works -- Faster transactions, more productive staff, reduced paper clutter and secure, integrated data.
             p We promise to formulate the perfect mix for your specialized clinics once you get in touch with us now. We will call you within 24 hours once it's done!
             img(width="60" src="../../assets/images/v4/mycure-homepage-wireframe-icon-emr-active.png").mr-4
             img(width="60" src="../../assets/images/v4/mycure-icon-billing-basic-active.png").mr-4

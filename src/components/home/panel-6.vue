@@ -17,13 +17,13 @@
                 img(width="100%" src="../../assets/images/v4/mycure-homepage-image-user-friendly.png").mb-3
                 div.text-left
                   h6 User-friendly interface
-                  p Being tech-savvy is not a requirement, just tap, type, and go!
+                  p Being tech-savvy is not a requirement, Just tap, type, and go!
               div.col-xs-12.col-md-3.pl-3.pr-3
                 img(width="100%" src="../../assets/images/v4/mycure-homepage-image-customizable.png").mb-3
                 br
                 div.text-left
                   strong Customizable Content
-                  p You might ask if we can add this or change that, the answer is usually yes.
+                  p You might ask if we can add this or change that. The answer is usually yes.
               div.col-xs-12.col-md-3.pl-3.pr-3
                 img(width="100%" src="../../assets/images/v4/mycure-homepage-image-user-hands-on-training.png").mb-3
                 br
