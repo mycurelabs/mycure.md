@@ -23,7 +23,7 @@
             h2 With MYCURE 
               span.color-primary ✓
             br
-            img(src="../../assets/images/v4/mycure-homepage-compare-mycure-complete-clinic-management-system.png" width="100%").mb-3
+            img(src="../../assets/images/v4/mycure_homepage_compare_mycure_complete.png" width="100%").mb-3
           b-col(xs="12" md="8").offset-md-2.text-center
             br
             p With MYCURE, you don’t have to depend on multiple, complicated systems anymore. Your patients’ medical data are synced together and stored safely
