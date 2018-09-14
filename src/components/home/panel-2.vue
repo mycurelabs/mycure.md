@@ -13,7 +13,10 @@
               | management system.
             br
           b-col(xs="12" md="6").offset-md-3.text-center
-            p With MYCURE, you don’t have to depend on multiple, complicated systems anymore. Your patients’ medical data are synced together and stored safely in the cloud while running locally using one powerful system.
+            //- p With MYCURE, you don’t have to depend on multiple, complicated systems anymore. Your patients’ medical data are synced together and stored safely in the cloud while running locally using one powerful system.
+            p MYCURE smoothly integrates your patient records together from registration to billing. It simplifies record-keeping for everyone. 
+              br 
+              | Say goodbye to multiple, complicated systems!
             br
           b-col(xs="12" md="6").border-right.pl-5.pr-5.text-right
             h2.right Other providers
@@ -26,7 +29,7 @@
             img(src="../../assets/images/v4/mycure_homepage_compare_mycure_complete.png" width="100%").mb-3
           b-col(xs="12" md="8").offset-md-2.text-center
             br
-            p With MYCURE, you don’t have to depend on multiple, complicated systems anymore. Your patients’ medical data are synced together and stored safely
+            //- p With MYCURE, you don’t have to depend on multiple, complicated systems anymore. Your patients’ medical data are synced together and stored safely
               br
               | in the cloud using one powerful system.
 </template>

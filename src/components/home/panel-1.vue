@@ -4,12 +4,22 @@
     b-container
       b-row.row-container.row.align-items-center
         b-col(xs="12" md="5")
-          h2 The FIRST & Only Clinic Management System that Syncs Online But Works Offline!
+          h1(style="line-height: 1.3") Syncs Online, 
+            br 
+            | Works Offline!
           //- div.hr-blue
           //- br
           //- h1 MYCURE cares for people who care for people.
           br
-          p Cloudbase and on-premise platform.
+          //- p MYCURE is a hybrid of cloud-based and on-premise software for clinics. It's complete, fast, and affordable.
+          p Your clinic records are synced together and stored safely
+            br 
+            | in the cloud while running locally using one powerful
+            br
+            strong Clinic Management System
+            |. 
+          //- p Goodbye to multiple, complicated systems.
+          p It’s fast, reliable, and affordable.
           br
           b-button(variant="primary" size="sm" href="https://accounts-v4.mycure.md/signup/") Start a trial
           //- b-button(variant="primary" size="sm" v-b-modal="'modal1'") WATCH VIDEO
