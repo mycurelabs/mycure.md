@@ -1,23 +1,23 @@
 <template lang="pug">
-  b-navbar(toggleable="md" type="light" variant="transparent-light")
-    b-navbar-toggle(target="nav_collapse")
-    b-navbar-brand(href="" :to="{name: 'home'}") 
-      img(src="../../assets/images/v4/mycure-logo.svg")
-    b-collapse(is-nav id="nav_collapse")
-
-      b-navbar-nav
-        b-nav-item-dropdown(text="PRODUCTS")
-          b-dropdown-item(:to="{name: 'modules', query: {id: 'panel-2'}}" style="color: black").active HOW IT WORKS
-          b-dropdown-item(:to="{name: 'modules', query: {id: 'panel-3'}}" style="color: black").active CORE
-          b-dropdown-item(:to="{name: 'modules', query: {id: 'panel-4'}}" style="color: black").active PREMIUM
-          b-dropdown-item(:to="{name: 'modules', query: {id: 'panel-5'}}" style="color: black").active ADD-ONS
-        b-nav-item(href="" :to="{name: 'pricing'}") PRICING
-        b-nav-item(href="" :to="{name: 'our-story'}") OUR STORY
-        b-nav-item(href="" @click="toggleChat") CONTACT US
-
-      b-navbar-nav.ml-auto
-        a(href="https://accounts-v4.mycure.md" target="_blank")#login-link LOG IN
-        b-button(variant="success" size="sm" :to="{name: 'join-today'}") SIGN UP
+  b-container
+    b-row
+      b-col(xs="12" md="12")
+        b-navbar(toggleable="md" variant="transparent")#home-nav
+          b-navbar-toggle(target="nav_collapse")
+          b-navbar-brand(href="" :to="{name: 'home'}") 
+            img(src="../../assets/images/v4/mycure-logo.svg")
+          b-collapse(is-nav id="nav_collapse")
+            b-navbar-nav.ml-auto
+              b-nav-item-dropdown(text="PRODUCTS")
+                b-dropdown-item(:to="{name: 'modules', query: {id: 'panel-2'}}" style="color: black").active HOW IT WORKS
+                b-dropdown-item(:to="{name: 'modules', query: {id: 'panel-3'}}" style="color: black").active CORE
+                b-dropdown-item(:to="{name: 'modules', query: {id: 'panel-4'}}" style="color: black").active PREMIUM
+                b-dropdown-item(:to="{name: 'modules', query: {id: 'panel-5'}}" style="color: black").active ADD-ONS
+              b-nav-item(href="" :to="{name: 'pricing'}") PRICING
+              b-nav-item(href="" :to="{name: 'our-story'}") OUR STORY
+              b-nav-item(href="" @click="toggleChat") CONTACT US
+              a(href="https://accounts-v4.mycure.md" target="_blank")#login-link LOG IN
+              b-button(variant="outline-primary" size="sm" :to="{name: 'join-today'}")#signup-button SIGN UP
 </template>
 
 <script>
@@ -31,11 +31,24 @@
 </script>
 
 <style scoped>
+  #home-nav {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+
   #login-link {
-    color: rgba(0, 0, 0, 0.5) !important;
+    color: #0099cc !important;
     margin-top: 8px !important;
-    margin-right: 50px;
+    margin-right: 15px;
+    margin-left: 15px;
     font-size: 12px;
+  }
+
+  #signup-button {
+    font-size: 12px;
+    padding: 8px 0 10px 0 !important;
+    min-width: 100px !important;
+    height: 35px !important;
   }
 
   .active {
