@@ -10,10 +10,10 @@
             br
             h1 The most complete clinic
               br
-              | management system around
+              | management system.
             br
           b-col(xs="12" md="6").offset-md-3.text-center
-            p MYCURE smoothly integrates your patient records together from registration to billing. It simplifies record-keeping for everyone. 
+            p With MYCURE, you don’t have to depend on multiple, complicated systems anymore. Your patients’ medical data are synced together and stored safely in the cloud while running locally using one powerful system.
             br
           b-col(xs="12" md="6").border-right.pl-5.pr-5.text-right
             h2.right Other providers
