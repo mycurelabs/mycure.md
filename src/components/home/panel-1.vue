@@ -4,16 +4,17 @@
     b-container
       b-row.row-container.row.align-items-center
         b-col(xs="12" md="5")
-          h2 MYCURE | Clinic Management System
-          div.hr-blue
+          h2 The FIRST & Only Clinic Management System that Syncs Online But Works Offline!
+          //- div.hr-blue
+          //- br
+          //- h1 MYCURE cares for people who care for people.
           br
-          h1 MYCURE cares for people who care for people.
+          p Cloudbase and on-premise platform.
           br
-          p Doctors, nurses, and clinic professionals have a lot of work and we want to make that work easier.
-          br
-          b-button(variant="primary" size="sm" v-b-modal="'modal1'") WATCH VIDEO
+          b-button(variant="primary" size="sm" href="https://accounts-v4.mycure.md/signup/") Start a trial
+          //- b-button(variant="primary" size="sm" v-b-modal="'modal1'") WATCH VIDEO
         b-col(xs="12" md="7")
-          img(width="110%" src="../../assets/images/v4/mycure-homepage-doctor-kid-pediatrician-drawing.png")
+          img(width="100%" src="../../assets/images/v4/mycure-homepage-syncbase.png")
     b-modal(
       size="lg"
       hide-footer 
