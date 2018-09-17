@@ -4,7 +4,7 @@
     mc-navbar-home
     b-container
       div.row-container.row.align-items-center.justify-content-md-center
-        div.col-xs-12.col-md-8.text-center
+        div(style="padding-top: 100px; padding-bottom: 100px;").col-xs-12.col-md-8.text-center
           h2 MYCURE | Our Story
           center
             div.hr-blue
@@ -32,16 +32,16 @@
   .container {
     /* padding-top: 50px;
     padding-bottom: 50px; */
-    padding-top: 100px;
-    padding-bottom: 100px;
+    /* padding-top: 100px; */
+    /* padding-bottom: 100px; */
   }
 
   @media (min-width: 576px) {
     .container {
       /* padding-top: 50px;
       padding-bottom: 50px; */
-      padding-top: 100px;
-      padding-bottom: 100px;
+      /* padding-top: 100px; */
+      /* padding-bottom: 100px; */
     }
   }
 
@@ -54,8 +54,8 @@
     }
     
     .container {
-      padding-top: 100px;
-      padding-bottom: 100px;
+      /* padding-top: 100px; */
+      /* padding-bottom: 100px; */
     }
 
     .row-container {

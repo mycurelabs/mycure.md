@@ -1,5 +1,6 @@
 <template lang="pug">
   div#top
+    //- mc-navbar-home
     panel-1
     panel-2
     panel-3
@@ -20,7 +21,7 @@
   import panel5 from './panel-5';
   import panel6 from './panel-6';
   import joinUs from '../home/panel-9';
-  // import panel9 from './panel-9';
+  import mcNavbarHome from '../commons/mc-navbar-home';
   import mcFooter from '../commons/mc-footer';
   import VueScrollTo from 'vue-scrollto';
 
@@ -37,7 +38,8 @@
       'panel-6': panel6,
       joinUs,
       // 'panel-9': panel9,
-      mcFooter
+      mcFooter,
+      mcNavbarHome
     }
   }
 </script>
