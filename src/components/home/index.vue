@@ -2,7 +2,8 @@
   div#top
     panel-1
     panel-2
-    panel-3
+    panel-3-1
+    panel-3-2
     panel-4
     panel-5
     panel-6
@@ -16,7 +17,8 @@
 <script>
   import panel1 from './panel-1';
   import panel2 from './panel-2';
-  import panel3 from './panel-3';
+  import panel31 from './panel-3.1';
+  import panel32 from './panel-3.2';
   import panel4 from './panel-4';
   import panel5 from './panel-5';
   import panel6 from './panel-6';
@@ -30,7 +32,8 @@
     components: {
       'panel-1': panel1,
       'panel-2': panel2,
-      'panel-3': panel3,
+      'panel-3-1': panel31,
+      'panel-3-2': panel32,
       'panel-4': panel4,
       'panel-5': panel5,
       'panel-6': panel6,

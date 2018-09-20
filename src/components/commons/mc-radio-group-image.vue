@@ -5,13 +5,15 @@
         img(width="100%" :src="item.src")
         br
         br
-        h5 {{item.name}}
+        h5(style="line-height: 1; margin-bottom: -3px;") {{item.name}}
           i(
             class="material-icons" 
             :id="'tooltip_'+item.id" 
             v-if="item.hasTooltip"
             style="margin-bottom: -10px; position: absolute;"
           ).color-primary info
+        span(style="color: #acadae;")
+          i {{item.subName}}
         p.pb-5 
           small {{item.description}}
           br
@@ -70,8 +72,8 @@
 
   .item.selected {
     background-color: white;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
+    /* border-top-left-radius: 10px; */
+    /* border-top-right-radius: 10px; */
     /* border-radius: 5px; */
     /* -webkit-box-shadow: 0px 0px 10px -2px rgba(160,181,191,1);
     -moz-box-shadow: 0px 0px 10px -2px rgba(160,181,191,1);

@@ -2,8 +2,8 @@
   div
     pre(v-if="!$isProduction()").panel-number 7
     div.panel-6
-      img(width="100%" src="../../assets/images/v4/mycure-care-the-extra-mile-banner.png").d-none.d-md-block
-      img(width="100%" src="../../assets/images/v4/mycure-ourstory-team.png").d-block.d-md-none
+      img(width="100%" src="../../assets/images/v4/mycure-marketing-photo.jpg").d-none.d-md-block
+      img(width="100%" src="../../assets/images/v4/mycure-marketing-photo.jpg").d-block.d-md-none
 </template>
 
 <script>

@@ -14,26 +14,26 @@
             br
             div.row.justify-content-center
               div.col-xs-12.col-md-3.pl-3.pr-3
-                img(width="100%" src="../../assets/images/v4/mycure-homepage-image-user-friendly.png").mb-3
-                div.text-left
+                img(width="100" src="../../assets/images/v4/mycure-homepage-image-user-friendly-icon.png").mb-3
+                div.text-center
                   h6 User-friendly interface
                   p Being tech-savvy is not a requirement, Just tap, type, and go!
               div.col-xs-12.col-md-3.pl-3.pr-3
-                img(width="100%" src="../../assets/images/v4/mycure-homepage-image-customizable.png").mb-3
+                img(width="100" src="../../assets/images/v4/mycure-homepage-image-customizable-icon.png").mb-3
                 br
-                div.text-left
+                div.text-center
                   strong Customizable Content
                   p You might ask if we can add this or change that. The answer is usually yes.
               div.col-xs-12.col-md-3.pl-3.pr-3
-                img(width="100%" src="../../assets/images/v4/mycure-homepage-image-user-hands-on-training.png").mb-3
+                img(width="100" src="../../assets/images/v4/mycure-homepage-image-user-hands-on-training-icon.png").mb-3
                 br
-                div.text-left
+                div.text-center
                   strong Hands-on Training
                   p We will be there with you as you learn a new skill and transform your practice.
               div.col-xs-12.col-md-3.pl-3.pr-3
-                img(width="100%" src="../../assets/images/v4/mycure-homepage-image-support.png").mb-3
+                img(width="100" src="../../assets/images/v4/mycure-homepage-image-support-icon.png").mb-3
                 br
-                div.text-left
+                div.text-center
                   strong Responsive Support Team
                   p With a bit of technology and time management, we found a way to serve you faster.
             

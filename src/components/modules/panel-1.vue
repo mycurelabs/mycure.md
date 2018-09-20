@@ -32,7 +32,7 @@
 <style scoped>
   .panel-1 {
     height: auto;
-    background-color: #E9E9E9;
+    background-color: white !important;
     background-image: url('../../assets/images/v4/mycure-modules-mobile-drawing.jpg');
     background-repeat: no-repeat;
     background-position: right center;

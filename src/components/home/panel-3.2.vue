@@ -136,18 +136,21 @@
         item3Selected: true,
         items: [
           {
-            id: 'individual',
-            name: 'Individual Clinic',
-            description: 'Doctors practicing independently',
-            longName: 'MYCURE for Individual Doctors',
-            fullDescription: 'A powerful EMR system with complementary Queuing and Billing modules',
-            isSelected: false,
+            id: 'specialized',
+            name: 'Farm',
+            subName: 'Health Facility',
+            description: 'One-stop, multi-staff clinics',
+            longName: 'MYCURE for Health Facilities',
+            fullDescription: 'An all-around solution for your outpatient, multi-specialty, or industrial clinic',
+            isSelected: true,
             hasTooltip: false,
-            src: require('../../assets/images/v4/mycure-homepage-package-individual.png')
+            tooltipMessage: 'An all-around solution for your outpatient, multispecialty or specialized clinics.',
+            src: require('../../assets/images/v4/mycure-homepage-package-health-facility-big.png')
           },
           {
             id: 'group',
-            name: 'Group Clinic',
+            name: 'Garden',
+            subName: 'Group Clinic',
             description: 'Group of doctors practicing together',
             longName: 'MYCURE for Group Clinics',
             fullDescription: `A unified system built for a doctors' clinic being handled by one secretary`,
@@ -156,15 +159,15 @@
             src: require('../../assets/images/v4/mycure-homepage-package-group.png')
           },
           {
-            id: 'specialized',
-            name: 'Health Facility',
-            description: 'One-stop, multi-staff clinics',
-            longName: 'MYCURE for Health Facilities',
-            fullDescription: 'An all-around solution for your outpatient, multi-specialty, or industrial clinic',
-            isSelected: true,
+            id: 'individual',
+            name: 'Plant',
+            subName: 'Individual Clinic',
+            description: 'Doctors practicing independently',
+            longName: 'MYCURE for Individual Doctors',
+            fullDescription: 'A powerful EMR system with complementary Queuing and Billing modules',
+            isSelected: false,
             hasTooltip: false,
-            tooltipMessage: 'An all-around solution for your outpatient, multispecialty or specialized clinics.',
-            src: require('../../assets/images/v4/mycure-homepage-package-multispecialty.png')
+            src: require('../../assets/images/v4/mycure-homepage-package-individual.png')
           }
         ]
       }
@@ -190,6 +193,6 @@
 
 <style scoped>
   .panel-3 {
-    /* height: 100vh; */
+    background-color: #eeeeee;
   }
 </style>

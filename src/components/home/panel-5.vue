@@ -15,54 +15,63 @@
             div.row
               div.col-xs-12.col-md-4.text-left.pt-2.pb-2.pl-2.pr-2
                 div.bg-white.pt-2.pb-2.pl-2.pr-2.shadow-3
-                  h2.color-primary {{'Patient-focused'}}
+                  h2(style="margin-bottom: -5px;").color-primary {{'Patient-focused'}}
                   p Your patients are our top priority.
                   br
-                  div(style="height: 130px;").mb-5
-                    img(width="40" src="../../assets/images/v4/mycure-homepage-benefits-patient-care.png")
-                    h5 Better patient care
+                  div(style="height: 80px;").mb-5
+                    h6 
+                      img(width="35" src="../../assets/images/v4/mycure-homepage-benefits-patient-care.png")
+                      | Better patient care
                     p Retrieve your patients’ medical records anytime you need to.
                   div.mb-5
-                    img(width="40" src="../../assets/images/v4/mycure-homepage-benefits-secure.png")
-                    h5 Secure medical data
+                    h6 
+                      img(width="35" src="../../assets/images/v4/mycure-homepage-benefits-secure.png")
+                      | Secure medical data
                     p We perform industry standard encryption to protect your patient records.
                   div.mb-5
-                    img(width="40" src="../../assets/images/v4/mycure-homepage-benefits-uptodate.png")
-                    h5 Up-to-date information
+                    h6 
+                      img(width="35" src="../../assets/images/v4/mycure-homepage-benefits-uptodate.png")
+                      | Up-to-date information
                     p Create updated and accurate medical records for your patients’ safety.
               div.col-xs-12.col-md-4.text-left.pt-2.pb-2.pl-2.pr-2
                 div.bg-white.pt-2.pb-2.pl-2.pr-2.shadow-3
-                  h2.color-primary Business-friendly
+                  h2(style="margin-bottom: -5px;").color-primary Business-friendly
                   p Get the best on your investments.
                   br
-                  div(style="height: 130px;").mb-5
-                    img(width="40" src="../../assets/images/v4/mycure-homepage-benefits-cost-effective.png")
-                    h5 Cost-effective system
+                  div(style="height: 80px;").mb-5
+                    h6
+                      img(width="35" src="../../assets/images/v4/mycure-homepage-benefits-cost-effective.png")
+                      | Cost-effective system
                     p Get highly reduced operating expenses with automated record-keeping.
                   div.mb-5
-                    img(width="40" src="../../assets/images/v4/mycure-homepage-benefits-productive.png")
-                    h5 Increased productivity
+                    h6 
+                      img(width="35" src="../../assets/images/v4/mycure-homepage-benefits-productive.png")
+                      | &nbsp;Increased productivity
                     p Double your clinic efficiency, staff productivity and involvement.
                   div.mb-5
-                    img(width="40" src="../../assets/images/v4/mycure-homepage-benefits-prestige.png")
-                    h5 Added Prestige
+                    h6 
+                      img(width="35" src="../../assets/images/v4/mycure-homepage-benefits-prestige.png")
+                      | Added Prestige
                     p Be a premium healthcare provider with an advanced EMR system.
               div.col-xs-12.col-md-4.text-left.pt-2.pb-2.pl-2.pr-2
                 div.bg-white.pt-2.pb-2.pl-2.pr-2.shadow-3
-                  h2.color-primary Flexible technology
+                  h2(style="margin-bottom: -5px;").color-primary Flexible technology
                   p MYCURE is engineered for your convenience.
                   br
-                  div(style="height: 130px;").mb-5
-                    img(width="40" src="../../assets/images/v4/mycure-homepage-benefits-upgrades.png")
-                    h5 Painless upgrades
+                  div(style="height: 80px;").mb-5
+                    h6 
+                      img(width="35" src="../../assets/images/v4/mycure-homepage-benefits-upgrades.png")
+                      | Painless upgrades
                     p Easily explore new features from regular product upgrades without the technical hassle.
                   div.mb-5
-                    img(width="40" src="../../assets/images/v4/mycure-homepage-benefits-storage.png")
-                    h5 Optimized file storage
+                    h6 
+                      img(width="35" src="../../assets/images/v4/mycure-homepage-benefits-storage.png")
+                      | Optimized file storage
                     p Store and retrieve records anytime without stacking everything in your physical cabinets.
                   div.mb-5
-                    img(width="40" src="../../assets/images/v4/mycure-homepage-benefits-support.png")
-                    h5 Hands-on support
+                    h6 
+                      img(width="35" src="../../assets/images/v4/mycure-homepage-benefits-support.png")
+                      | Hands-on support
                     p We hire humans (not bots) to provide you with technical assistance and awesome care!
             
 </template>
