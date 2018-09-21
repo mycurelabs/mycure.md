@@ -22,8 +22,8 @@
             div.row.justify-content-md-center.pb-5.pt-5.bg-white
               //- MULTI-SPECIALTY
               div(v-if="item1Selected").col-xs-12.col-md-9.pt-4
-                h1 {{items[2].longName}}
-                p {{items[2].fullDescription}}
+                h1 {{items[0].longName}}
+                p {{items[0].fullDescription}}
                 div.row.justify-content-md-center.mb-5
                   div.feature-item
                     img(width="70" src="../../assets/images/v4/mycure-icon-emr-logo-active.png")
@@ -107,8 +107,8 @@
                       | Features
               //- INDIVIDUAL
               div(v-if="item3Selected").col-xs-12.col-md-9.pt-4
-                h1 {{items[0].longName}}
-                p {{items[0].fullDescription}}
+                h1 {{items[2].longName}}
+                p {{items[2].fullDescription}}
                 div.row.justify-content-md-center.mb-5
                   div.feature-item
                     img(width="70" src="../../assets/images/v4/mycure-icon-emr-logo-active.png" v-mc-hover-src="'../../assets/images/v4/mycure-icon-emr-logo-active.png'")
@@ -131,9 +131,9 @@
     },
     data() {
       return {
-        item1Selected: false,
+        item1Selected: true,
         item2Selected: false,
-        item3Selected: true,
+        item3Selected: false,
         items: [
           {
             id: 'specialized',
@@ -178,9 +178,9 @@
         this.item2Selected = false;
         this.item3Selected = false;
         switch (item.id) {
-          case 'individual': this.item1Selected = true; break;
+          case 'specialized': this.item1Selected = true; break;
           case 'group': this.item2Selected = true; break;
-          case 'specialized': this.item3Selected = true; break;
+          case 'individual': this.item3Selected = true; break;
           default:break;
         }
         setTimeout(() => {
