@@ -8,7 +8,7 @@
           h2 MYCURE | Pricing
           div.hr-blue
           br
-          h1 Your best investment yet
+          h1 Your best investment yet.
           br
           p Quality technology made more affordable. Only pay for what you need.
           br

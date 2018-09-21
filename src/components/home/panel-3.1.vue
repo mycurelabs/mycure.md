@@ -6,11 +6,19 @@
         b-row.align-items-center
           b-col(xs="12" md="12").text-center
             b-row.wrap.align-items-center.justify-content-md-center
-              b-col(xs="12" md="9").pb-5
-                h1 Syncs Online, WOrks Offline.
+              b-col(xs="12" md="8").pb-5
+                h1 Syncs Online, Works Offline.
+                span(style="color: #acadae")
+                  b
+                    i Enjoy the best of both worlds — reliability of an in-house server and affordability of the cloud.
                 br
-                p MYCURE has finally solved the holy grail of combining online and offline technology. Now, you can enjoy the best of both worlds - reliability of and in-house server and affordability of the cloud.
-                p Using our proprietary Syncbase technology, MYCURE works in your local network with multiple devices even if the internet goes down and just automatically synchronizes data back in the cloud once online.
+                br
+                p MYCURE finally uncovers the holy grail of combining online and offline technology. Using our proprietary tech called 
+                  b MYCURE Syncbase
+                  |, you can digitally process your clinic records in your local network using multiple devices, even if the internet goes down!
+                  br
+                  | Then once back online, it automatically synchronizes data back in the cloud.
+                p Like magic, but scientifically-blended. 😉
                 img(src="../../assets/images/v4/mycure-website-animated-syncbase-horizontal.gif")
    
 </template>

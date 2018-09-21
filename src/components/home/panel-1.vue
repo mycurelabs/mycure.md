@@ -3,22 +3,40 @@
     mc-navbar-home
     b-container
       b-row.row-container.row.align-items-center
-        b-col(xs="12" md="5")
-          h2(style="line-height: 1.3") Your Clinic Deserves a Reliable CMS!
+        b-col(xs="12" md="6")
+          h1(style="line-height: 1.3") Your Clinic Deserves a Reliable CMS!
           span(style="color: #acadae")
-            i Don't compromise speed, dependability and affordability.
+            b
+              i Don't compromise speed, dependability, and affordability.
           br
           br
-          p(style="text-align: justify").d-none.d-md-block Your clinic records can be synced together and stored safely in the cloud while running locally in one powerful 
-            strong MYCURE Clinic Management System! 
-            | As fast as on-premise server, as affordable as cloud-based subscription.
-          p.d-block.d-md-none Your clinic records can be synced together and stored safely in the cloud while running locally in one powerful  
-            strong MYCURE Clinic Management System!
-            | As fast as on-premise server, as affordable as cloud-based subscription.
+          p().d-block.d-md-block
+            strong MYCURE 
+            | is a 
+            strong clinic management system 
+            | that empowers you
+            br
+            | to sync your clinical records together and store them safely
+            br
+            | in the cloud while running locally!
+          p().d-block.d-md-block As fast as on-premise server, as affordable 
+            br 
+            | as cloud-based subscription.
+
+          p().d-block.d-md-none
+            strong MYCURE 
+            | is a 
+            strong clinic management system 
+            | that empowers you to sync your clinical records together and store them safely in the cloud while running locally!
+          p().d-block.d-md-none As fast as on-premise server, as affordable as cloud-based subscription.
+
+          //- p.d-block.d-md-none Your clinic records can be synced together and stored safely in the cloud while running locally in one powerful  
+          //-   strong MYCURE Clinic Management System!
+          //-   | As fast as on-premise server, as affordable as cloud-based subscription.
           br
-          b-button(variant="primary" size="sm" href="https://accounts-v4.mycure.md/signup/") Start a trial
+          b-button(variant="primary" size="sm" href="https://accounts-v4.mycure.md/signup/") START A TRIAL
           //- b-button(variant="primary" size="sm" v-b-modal="'modal1'") WATCH VIDEO
-        b-col(xs="12" md="7")
+        b-col(xs="12" md="6")
           img(width="100%" src="../../assets/images/v4/mycure-homepage-syncbase-offline-online-clinic-management-system-animated.gif")
     b-modal(
       size="lg"
@@ -65,6 +83,7 @@
 <style scoped>
   .panel-1 {
     height: auto;
+    background-color: white;
     /* background-image: url('../../assets/images/v4/mycure-homepage-doctor-welcome-smile-emr-his-ehr-philippines-mobile-web-app.jpg'); */
     /* background-repeat: no-repeat; */
     /* background-size: cover; */

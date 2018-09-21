@@ -8,7 +8,7 @@
             center
               div.hr-blue
             br
-            h1 To care is human.
+            h1 Heart-crafted Customer Care
             br
             p We guarantee that we will meet your needs; if we cannot, then we will meet you. This is how we care.
             br

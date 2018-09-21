@@ -13,7 +13,7 @@
             p More than a business, 
               strong we are a community.
             p More than a product, 
-              strong it is an advocacy.
+              strong MYCURE is an advocacy.
             br
             b-button(variant="primary" size="sm" :to="{name: 'our-story'}") READ OUR STORY
 </template>

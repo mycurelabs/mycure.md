@@ -28,21 +28,22 @@
           b-row.align-items-center.justify-content-md-center
             b-col(xs="12" md="12").text-center.mt-4
               h2 ⛋ Step 1. Select your plan.
-            b-col(xs="12" md="4").text-center
-              img(width="120" src="../../assets/images/v4/mycure-homepage-package-individual.png")
+              br
+            b-col(xs="12" md="4").text-center.pl-4.pr-4
+              img(width="120" src="../../assets/images/v4/mycure-homepage-package-health-facility-big.png")
               br
               br
-              label Individual Clinic
+              label Health Facility
             b-col(xs="12" md="4").text-center.pl-4.pr-4
               img(width="120" src="../../assets/images/v4/mycure-homepage-package-group.png")
               br
               br
               label Group Clinic
-            b-col(xs="12" md="4").text-center.pl-4.pr-4
-              img(width="120" src="../../assets/images/v4/mycure-homepage-package-multispecialty.png")
+            b-col(xs="12" md="4").text-center
+              img(width="120" src="../../assets/images/v4/mycure-homepage-package-individual.png")
               br
               br
-              label Health Facility
+              label Individual Clinic
           b-row.align-items-center.justify-content-md-center.mt-5
             b-col(xs="12" md="12").text-center.mt-4
               h2 ⛋ Step 2. Pick additional 

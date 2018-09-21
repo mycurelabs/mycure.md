@@ -7,8 +7,8 @@
     panel-4
     panel-5
     panel-6
-    panel-7
     panel-8
+    panel-7
     panel-9(bg="white")
     mc-footer
       

@@ -15,11 +15,11 @@
         span(style="color: #acadae;")
           i {{item.subName}}
         p.pb-5 
-          small {{item.description}}
+          small(v-html="item.description")
           br
           br
           br
-          i(v-if="item.isSelected").material-icons arrow_downward
+          i(v-if="item.isSelected").material-icons keyboard_arrow_down
         // v-icon close
         // b-tooltip(:target="'#tooltip_'+item.id" :title="item.tooltipMessage" placement="bottom")
         //- div.pt-5

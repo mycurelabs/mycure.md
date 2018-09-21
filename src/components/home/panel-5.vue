@@ -15,7 +15,7 @@
             div.row
               div.col-xs-12.col-md-4.text-left.pt-2.pb-2.pl-2.pr-2
                 div.bg-white.pt-2.pb-2.pl-2.pr-2.shadow-3
-                  h2(style="margin-bottom: -5px;").color-primary {{'Patient-focused'}}
+                  h2(style="margin-bottom: -2px;").color-primary {{'Patient-focused'}}
                   p Your patients are our top priority.
                   br
                   div(style="height: 80px;").mb-5
@@ -35,7 +35,7 @@
                     p Create updated and accurate medical records for your patients’ safety.
               div.col-xs-12.col-md-4.text-left.pt-2.pb-2.pl-2.pr-2
                 div.bg-white.pt-2.pb-2.pl-2.pr-2.shadow-3
-                  h2(style="margin-bottom: -5px;").color-primary Business-friendly
+                  h2(style="margin-bottom: -2px;").color-primary Business-friendly
                   p Get the best on your investments.
                   br
                   div(style="height: 80px;").mb-5
@@ -55,7 +55,7 @@
                     p Be a premium healthcare provider with an advanced EMR system.
               div.col-xs-12.col-md-4.text-left.pt-2.pb-2.pl-2.pr-2
                 div.bg-white.pt-2.pb-2.pl-2.pr-2.shadow-3
-                  h2(style="margin-bottom: -5px;").color-primary Flexible technology
+                  h2(style="margin-bottom: -2px;").color-primary Flexible technology
                   p MYCURE is engineered for your convenience.
                   br
                   div(style="height: 80px;").mb-5
@@ -111,7 +111,7 @@
   }
   
   .envelope.animate {
-    left: -390px;
+    left: -400px;
   }
   
   .notepad {
@@ -124,6 +124,6 @@
   }
   
   .notepad.animate {
-    right: -300px;
+    right: -320px;
   }
 </style>
