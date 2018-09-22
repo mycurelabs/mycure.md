@@ -131,7 +131,7 @@
                       br
                       | Billing
               div.col-xs-12.col-md-12.pb-5.pt-5
-                b-button(variant="outline-primary" size="sm" :to="{name: 'modules'}").shadow-5 {{'Learn more about modules'.toUpperCase()}}
+                b-button(variant="primary" size="sm" :to="{name: 'modules'}").shadow-5 {{'Learn more about features'.toUpperCase()}}
 </template>
 
 <script>
