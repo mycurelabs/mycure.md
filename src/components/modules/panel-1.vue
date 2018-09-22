@@ -5,8 +5,8 @@
     div.container
       div.row-container.row.align-items-center
         div.col-xs-12.col-md-6
-          h2 MYCURE | Modules
-          div.hr-blue
+          //- h2 MYCURE | Modules
+          //- div.hr-blue
           br
           h1 Customize your own MYCURE System.
           br
