@@ -22,6 +22,9 @@
             div.row.justify-content-md-center.pb-5.pt-5.bg-white
               //- MULTI-SPECIALTY
               div(v-if="item1Selected").col-xs-12.col-md-9.pt-4
+                center
+                  div.hr-blue
+                br
                 h1 {{items[0].longName}}
                 p {{items[0].fullDescription}}
                 div.row.justify-content-md-center.mb-5
@@ -69,6 +72,9 @@
                       | Features
               //- GROUP
               div(v-if="item2Selected").col-xs-12.col-md-9.pt-4
+                center
+                  div.hr-blue
+                br
                 h1 {{items[1].longName}}
                 p {{items[1].fullDescription}}
                 div.row.justify-content-md-center.mb-5
@@ -107,6 +113,9 @@
                       | Features
               //- INDIVIDUAL
               div(v-if="item3Selected").col-xs-12.col-md-9.pt-4
+                center
+                  div.hr-blue
+                br
                 h1 {{items[2].longName}}
                 p {{items[2].fullDescription}}
                 div.row.justify-content-md-center.mb-5

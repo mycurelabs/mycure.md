@@ -7,6 +7,9 @@
           b-col(xs="12" md="12").text-center
             b-row.wrap.align-items-center.justify-content-md-center
               b-col(xs="12" md="8").pb-5
+                center
+                  div.hr-blue
+                br
                 h1 Syncs Online, Works Offline.
                 span(style="color: #acadae")
                   b
