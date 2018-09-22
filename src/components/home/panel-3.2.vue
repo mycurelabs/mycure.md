@@ -7,7 +7,10 @@
           b-col(xs="12" md="12").text-center
             b-row.wrap.align-items-center
               b-col(xs="12" md="12").pb-5
-                h2.color-primary Diligently produced for clinics of all sizes.
+                center
+                  div.hr-blue
+                br
+                h1 Diligently produced for clinics of all sizes.
             mc-radio-group-image(
               @select="itemSelected"
               v-model="items"
