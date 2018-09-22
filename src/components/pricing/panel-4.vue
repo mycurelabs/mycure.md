@@ -19,7 +19,7 @@
             p Our professionals will formulate the perfect mix for your health facility in less than 24 hours.
         b-row.row.align-items-center.justify-content-md-center
           b-col(xs="12" md="5").pl-5.pr-5
-            img(width="100%" src="../../assets/images/v4/mycure-pricing-health-facility-coffee-sack.png")
+            img(width="100%" src="../../assets/images/v4/mycure-pricing-health-facility-farm.png")
           b-col(xs="12" md="5")
             //- p Imagine simplifying all your clinic's paper works -- Faster transactions, more productive staff, reduced paper clutter and secure, integrated data.
             p We promise to formulate the perfect mix for your specialized clinics once you get in touch with us now. We will call you within 24 hours once it's done!
