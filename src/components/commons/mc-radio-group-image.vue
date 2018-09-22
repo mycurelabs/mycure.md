@@ -14,10 +14,8 @@
           ).color-primary info
         span(style="color: #acadae;")
           i {{item.subName}}
-        p.pb-5 
-          small(v-html="item.description")
-          br
-          br
+        div.pb-5
+          p(v-html="item.description" style="line-height: 1.2; font-size: 14px").mt-2
           br
           i(v-if="item.isSelected").material-icons keyboard_arrow_down
         // v-icon close
