@@ -14,12 +14,10 @@
           ).color-primary info
         span(style="color: #acadae;")
           i {{item.subName}}
-        p.pb-5 
-          small {{item.description}}
+        div.pb-5
+          p(v-html="item.description" style="line-height: 1.2; font-size: 14px").mt-2
           br
-          br
-          br
-          i(v-if="item.isSelected").material-icons arrow_downward
+          i(v-if="item.isSelected").material-icons keyboard_arrow_down
         // v-icon close
         // b-tooltip(:target="'#tooltip_'+item.id" :title="item.tooltipMessage" placement="bottom")
         //- div.pt-5

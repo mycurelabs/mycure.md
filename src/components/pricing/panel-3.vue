@@ -19,7 +19,7 @@
             img(src="../../assets/images/v4/mycure-modules-plantg.png" :class="{'animate': scrollTop > 1500}").plant
         b-row.row.align-items-center.justify-content-md-center
           b-col(xs="12" md="5").pl-5.pr-5.text-center
-            img(width="100%" src="../../assets/images/v4/mycure-pricing-group-clinic-coffee-jars.png")
+            img(width="100%" src="../../assets/images/v4/mycure-pricing-group-clinic-garden.png")
           b-col(xs="12" md="5")
             p Sign up ang get your clinic spiced up with the best package for you group clinic within 24 hours!
             p Also get a glimpse of the EMR module for free while you wait!

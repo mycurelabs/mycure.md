@@ -9,11 +9,11 @@
           center
             div.hr-blue
           br
-          h1 It is your duty to protect your 
+          h1 Protect your patient’s medical records
             br
-            | patients’ medical records.
+            | the smarter way.
           br
-          p That’s why keeping them secure is our #1 priority.
+          p Keeping them secure is our #1 priority.
           p With MYCURE , you’ll get: 
           br
           b-row.justify-content-center

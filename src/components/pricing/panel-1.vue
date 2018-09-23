@@ -5,10 +5,10 @@
     div.container
       div.row-container.row.align-items-center
         div.col-xs-12.col-md-6
-          h2 MYCURE | Pricing
-          div.hr-blue
+          //- h2 MYCURE | Pricing
+          //- div.hr-blue
           br
-          h1 Your best investment yet
+          h1 Your best investment yet.
           br
           p Quality technology made more affordable. Only pay for what you need.
           br
