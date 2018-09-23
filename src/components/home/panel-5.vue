@@ -111,7 +111,7 @@
   }
   
   .envelope.animate {
-    left: -400px;
+    left: -395px;
   }
   
   .notepad {
