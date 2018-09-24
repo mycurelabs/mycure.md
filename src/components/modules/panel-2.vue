@@ -30,17 +30,17 @@
               h2 ⛋ Step 1. Select your plan.
               br
             b-col(xs="12" md="4").text-center.pl-4.pr-4
-              img(width="120" src="../../assets/images/v4/mycure-homepage-package-health-facility-big.png")
+              img(width="120" src="../../assets/images/v4/mycure-homepage-package-health-facility-big.png").white-border
               br
               br
               label Health Facility
             b-col(xs="12" md="4").text-center.pl-4.pr-4
-              img(width="120" src="../../assets/images/v4/mycure-homepage-package-group.png")
+              img(width="120" src="../../assets/images/v4/mycure-homepage-package-group.png").white-border
               br
               br
               label Group Clinic
             b-col(xs="12" md="4").text-center
-              img(width="120" src="../../assets/images/v4/mycure-homepage-package-individual.png")
+              img(width="120" src="../../assets/images/v4/mycure-homepage-package-individual.png").white-border
               br
               br
               label Individual Clinic
@@ -218,6 +218,11 @@
 
   .plate.animate {
     right: -450px;
+  }
+  /*mark's border*/
+  .white-border{
+    outline: 5px solid white;
+    outline-offset: 0px;
   }
 </style>
 
