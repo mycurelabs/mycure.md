@@ -16,7 +16,9 @@
                     i Enjoy the best of both worlds — reliability of an in-house server and affordability of the cloud.
                 br
                 br
-                p MYCURE finally uncovers the holy grail of combining online and offline technology. Using our proprietary tech called 
+                p MYCURE finally uncovers the holy grail of combining online and offline technology.
+                  br
+                  | Using our proprietary tech called 
                   b MYCURE Syncbase
                   |, you can digitally process your clinic records in your local network using multiple devices, even if the internet goes down!
                   br

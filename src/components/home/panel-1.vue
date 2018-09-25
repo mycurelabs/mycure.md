@@ -19,9 +19,9 @@
             | to sync your clinical records together and store them safely
             br
             | in the cloud while running locally!
-          p().d-block.d-md-block As fast as on-premise server, as affordable 
+          p().d-block.d-md-block As fast as on-premise server,  
             br 
-            | as cloud-based subscription.
+            | as affordable as cloud-based subscription.
 
           p().d-block.d-md-none
             strong MYCURE 

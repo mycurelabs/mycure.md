@@ -4,7 +4,7 @@
       b-col(xs="12" md="12")
         b-navbar(toggleable="md" variant="transparent")#home-nav
           b-navbar-toggle(target="nav_collapse")
-          b-navbar-brand(href="" :to="{name: 'home'}") 
+          b-navbar-brand(href="" :to="{name: 'home'}")#home-brand
             img(src="../../assets/images/v4/mycure-logo.svg")
           b-collapse(is-nav id="nav_collapse")
             b-navbar-nav.ml-auto
@@ -52,8 +52,14 @@
     height: 35px !important;
   }
 
-  .active {
+  #home-brand {
     background-color: transparent !important;
+  }
+
+  .active {
+    background-color: #d8d8d8 !important;
     color: black;
+    border-radius: 5px;
+    font-weight: bold;
   }
 </style>

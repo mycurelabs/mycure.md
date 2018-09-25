@@ -23,7 +23,7 @@
                 b-button(variant="outline-primary" size="lg" style="width: 100%" :to="{name: 'careers'}").mb-3 I WANNA JOIN MYCURE TEAM
                 // b-button(variant="outline-primary" size="lg" style="width: 100%").mb-3 I wanna care the extra mile with you
               div.col-xs-12.col-md-6.offset-md-3.text-center.mt-4
-                b-button(variant="success" size="lg" style="width: 100%" :to="{name: 'join-today'}") I WANNA SIGN UP NOW
+                b-button(variant="primary" size="lg" style="width: 100%" :to="{name: 'join-today'}") I WANNA SIGN UP NOW
 </template>
 
 <script>
