@@ -28,6 +28,11 @@ html,
 body {
   max-width: 100% !important;
   overflow-x: hidden !important;
+  font-family: 'Open Sans', sans-serif !important;
+}
+
+h1 {
+  font-weight: 800;
 }
 
 .feature-item {

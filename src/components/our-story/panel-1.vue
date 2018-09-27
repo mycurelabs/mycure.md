@@ -17,8 +17,8 @@
           //-   strong MYCURE Clinic Management System!
           //-   | As fast as on-premise server, as affordable as cloud-based subscription.
           br
-          b-button(variant="primary" size="sm" href="https://www.youtube.com/watch?v=r7oewF5qDz4" target="_blank") WATCH VIDEO
-          //- b-button(variant="primary" size="sm" v-b-modal="'modal1'") WATCH VIDEO
+          //- b-button(variant="primary" size="sm" href="https://www.youtube.com/watch?v=r7oewF5qDz4" target="_blank") WATCH VIDEO
+          b-button(variant="primary" size="sm" v-b-modal="'modal1'") WATCH VIDEO
         b-col(xs="12" md="7")
           img(width="100%" src="../../assets/images/v4/mycure-homepage-doctor-kid-pediatrician-drawing.png")
     b-modal(
@@ -33,7 +33,7 @@
         v-if="showVid"
         id="ytplayer" 
         type="text/html" width="100%" height="450"
-        src="https://www.youtube.com/embed/r7oewF5qDz4"
+        src="https://www.youtube.com/embed/r7oewF5qDz4?autoplay=0&controls=0&loop=1&showinfo=0"
         frameborder="0"
       )
 </template>
