@@ -3,7 +3,7 @@ import Vue from 'vue';
 import App from './App';
 import router from './router';
 import store from './vuex';
-import './mycure';
+// import './mycure';
 import './mixins';
 import './directives';
 import './visitor-country';

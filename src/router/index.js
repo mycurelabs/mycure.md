@@ -10,7 +10,6 @@ import terms from '@/components/terms';
 import privacy from '@/components/privacy-policy';
 import ctmPage from '@/components/ctm-page';
 import notFound from '@/components/not-found';
-import { core } from '@mycure/sdk';
 
 Vue.use(Router);
 
