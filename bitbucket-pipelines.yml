@@ -1,4 +1,4 @@
-mage: node:6.9.4
+mage: node:8.9.3
 
 pipelines:
   default:
