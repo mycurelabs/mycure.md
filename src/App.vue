@@ -40,9 +40,6 @@ h1 {
   border-radius: 5px;
   padding: 5px;
   margin: 5px;
-  /* -webkit-box-shadow: 0px 0px 10px -2px rgba(160,181,191,1);
-  -moz-box-shadow: 0px 0px 10px -2px rgba(160,181,191,1);
-  box-shadow: 0px 0px 10px -2px rgba(160,181,191,1); */
 }
 
 .hr-blue {
