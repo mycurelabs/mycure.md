@@ -6,6 +6,11 @@
 image: node:8.12.9
 
 pipelines:
+  default:
+    - step:
+      name: Default
+      script: 
+        - echo "Running default"
   branches:
     prod:
       - step:
