@@ -69,7 +69,7 @@ const webpackConfig = merge(baseWebpackConfig, {
       },
       renderer: new PuppeteerRenderer({
         renderAfterElementExists: '#app',
-        headless: false
+        headless: true
       })
     }),
     new webpack.DefinePlugin({
