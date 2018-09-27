@@ -3,14 +3,17 @@
 # Only use spaces to indent your .yml configuration.
 # -----
 # You can specify a custom docker image from Docker Hub as your build environment.
-image: node:6.9.4
+image: node:8.12.9
 
 pipelines:
-  default:
-    - step:
+  branches:
+    live:
+      - step:
+        name: Deploy to Firebase
         caches:
           - node
         script: # Modify the commands below to build your repository.
-          - npm install
-          - npm run build
-          - npm run deploy:fb:hosting
+          - yarn install
+          - yarn build
+          - yarn deploy:fb:hosting
+      
