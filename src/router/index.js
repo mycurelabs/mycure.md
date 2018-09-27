@@ -247,13 +247,13 @@ export default new Router({
           return;
         }
 
-        const campaign = {
-          type: 'campaign-link-click',
-          source: to.query.src,
-          campaign: to.query.ctm
-        };
+        // const campaign = {
+        //   type: 'campaign-link-click',
+        //   source: to.query.src,
+        //   campaign: to.query.ctm
+        // };
 
-        await core.system.counters().create(campaign);
+        // await core.system.counters().create(campaign);
 
         window.location.href = to.query.link;
       }
