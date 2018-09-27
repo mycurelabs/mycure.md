@@ -10,4 +10,4 @@ deploy_firebase:
   script:
     - npm install
     - npm run build
-    - npm run deploy:ci
+    - npm run deploy:fb:hosting:ci
