@@ -1,11 +1,6 @@
 mage: node:8.9.3
 
 pipelines:
-  default:
-    - step:
-        name: Default
-        script: 
-          - echo "Running default"
   branches:
     prod:
       - step:
