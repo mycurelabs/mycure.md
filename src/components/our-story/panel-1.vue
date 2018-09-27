@@ -4,7 +4,7 @@
     b-container
       b-row.row-container.row.align-items-center
         b-col(xs="12" md="5")
-          h1(style="line-height: 1.3") MYCURE cares for people who care people.
+          h1(style="line-height: 1.3") MYCURE cares for people who care for people.
           span(style="color: #acadae")
             //- b
               i Don't compromise speed, dependability, and affordability.
