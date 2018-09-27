@@ -54,7 +54,7 @@
           span &copy; {{new Date().getFullYear()}} 
           span.color-primary MYCURE
           |. 
-          span All Rights Reserved
+          span All Rights Reserved.
         div.col-xs-12.col-md-3
           span.color-primary hello@mycure.md
         div.col-xs-12.col-md-3
