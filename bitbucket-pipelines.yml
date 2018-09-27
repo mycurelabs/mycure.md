@@ -13,6 +13,6 @@ pipelines:
           caches:
             - node
           script:
-          - yarn install
-          - yarn build
-          - yarn deploy:fb:hosting
+          - npm install
+          - npm run build
+          - npm run deploy:fb:hosting
