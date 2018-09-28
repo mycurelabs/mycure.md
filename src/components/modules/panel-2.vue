@@ -83,7 +83,7 @@
             div.ml-4.mr-4
               img(width="60" src="../../assets/images/v4/mycure-icon-pmeepe-active.png")
               br
-              label APE
+              label PME
           b-row.align-items-center.justify-content-md-center.mt-5
             b-col(xs="12" md="12").text-center.mt-4
               h2 ⛋ Step 3. Get Started!
