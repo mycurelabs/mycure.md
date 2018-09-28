@@ -10,12 +10,16 @@
           br
           h1 Customize your own MYCURE System.
           br
-          p Because every clinic has its unique way of getting things done.
+          span(style="color: #acadae")
+            b
+              i Because every clinic has its unique way of getting things done.
+          br
+          br
           p MYCURE is a clinic management system designed to securely 
             br
             | process digital medical records of your patients.
           br
-          b-button(variant="primary" size="sm" :to="{name: 'join-today'}") Get MYCURE
+          b-button(variant="primary" size="sm" :to="{name: 'join-today'}") GET MYCURE
 </template>
 
 <script>
