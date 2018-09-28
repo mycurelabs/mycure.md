@@ -9,8 +9,12 @@
           //- div.hr-blue
           br
           h1 Your best investment yet.
+          span(style="color: #acadae")
+            b
+              i Quality technology made more affordable.
+          p
+          | Only pay for what you need.
           br
-          p Quality technology made more affordable. Only pay for what you need.
           br
           b-button(variant="primary" size="sm" :to="{name: 'pricing', query: {id: 'panel-2'}}") VIEW PRICES
 </template>
