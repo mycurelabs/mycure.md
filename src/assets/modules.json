@@ -55,7 +55,7 @@
   },
   {
     "type": "premium",
-    "name": "Sync Gateway",
+    "name": "Syncbase Technology",
     "description": "The system works even when offline.",
     "icon": "mycure-icon-syncGateway-active.png",
     "banner": "mycure-modules-screenshot-offline-sync-gateway.png"
