@@ -100,7 +100,7 @@
   .module-container {
     /* background-color: white; */
     padding: 10px;
-    margin: 5px;
+    margin: 0px;
     border-radius: 5px;
   }
 
