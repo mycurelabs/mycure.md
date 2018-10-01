@@ -16,8 +16,8 @@
               div.col-xs-12.col-md-3.pl-3.pr-3
                 img(width="100" src="../../assets/images/v4/mycure-homepage-image-user-friendly-icon.png").mb-3
                 div.text-center
-                  h6 User-friendly interface
-                  p Being tech-savvy is not a requirement, Just tap, type, and go!
+                  h6 User-friendly Interface
+                  p Being tech-savvy is not a requirement. Just tap, type, and go!
               div.col-xs-12.col-md-3.pl-3.pr-3
                 img(width="100" src="../../assets/images/v4/mycure-homepage-image-customizable-icon.png").mb-3
                 br
