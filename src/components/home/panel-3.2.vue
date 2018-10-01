@@ -163,9 +163,9 @@
             id: 'group',
             name: 'Garden',
             subName: 'Group Clinic',
-            description: 'Made for group of doctors <br> practicing together',
+            description: 'Made for a group of doctors <br> practicing together',
             longName: 'MYCURE for Group Clinics',
-            fullDescription: `A unified system built for a doctors' clinic being handled by one secretary`,
+            fullDescription: `A unified system built for a specialized clinic being handled by one secretary`,
             isSelected: false,
             hasTooltip: false,
             src: require('../../assets/images/v4/mycure-homepage-package-group.png')
