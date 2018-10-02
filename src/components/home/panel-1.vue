@@ -4,7 +4,8 @@
     b-container
       b-row.row-container.row.align-items-center
         b-col(xs="12" md="6")
-          h1(style="line-height: 1.3") Your Clinic Deserves a Reliable CMS!
+          h1(style="line-height: 1.3; font-size:2em;") Your Clinic Deserves a Reliable
+          h1(style="") Clinic Management System!
           span(style="color: #acadae")
             b
               i Don't compromise speed, dependability, and affordability.
