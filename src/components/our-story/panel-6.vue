@@ -4,12 +4,13 @@
     b-container
       b-row
         //- div.col-xs-12.col-md-10.offset-md-1
-        div.col-xs-12.col-md-10.offset-md-2
+        div.col-xs-12.col-md-12
           b-row.row-container.align-items-center
-            div.col-xs-12.col-md-5
+            //- div.col-xs-12.col-md-5
               img(width="100%" src="../../assets/images/v4/mycure-our-story-8-codes-of-being.png")
-            div.col-xs-12.col-md-7
-              div.hr-blue
+            div.col-xs-12.col-md-12(style="text-align:center; line-height: 3;")
+              center
+                div.hr-blue
               br
               h5(style="color:gray;") To further go the extra mile, we practice the following codes:
               br
