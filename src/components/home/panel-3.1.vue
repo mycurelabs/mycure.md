@@ -1,6 +1,6 @@
 <template lang="pug">
   div
-    pre(v-if="!$isProduction()").panel-number 3
+    pre(v-if="!$isProduction()").panel-number 3.1
     div.panel-3.pt-5
       b-container
         b-row.align-items-center
