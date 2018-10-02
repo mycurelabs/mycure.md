@@ -52,7 +52,7 @@
                     h6 
                       img(width="35" src="../../assets/images/v4/mycure-homepage-benefits-prestige.png")
                       | Added Prestige
-                    p Be a premium healthcare provider with an advanced CMS system.
+                    p Be a premium healthcare provider with an advanced Clinic Management System.
               div.col-xs-12.col-md-4.text-left.pt-2.pb-2.pl-2.pr-2
                 div.bg-white.pt-2.pb-2.pl-2.pr-2.shadow-3
                   h2(style="margin-bottom: -2px;").color-primary Flexible technology
