@@ -6,7 +6,7 @@
         b-row.align-items-center
           b-col(xs="12" md="12").text-center
             b-row.wrap.align-items-center.justify-content-md-center
-              b-col(xs="12" md="8").pb-5
+              b-col(xs="12" md="8")
                 center
                   div.hr-blue
                 br
@@ -24,7 +24,8 @@
                   br
                   | Then once back online, it automatically synchronizes data back in the cloud.
                 p Like magic, but scientifically-blended. 😉
-                img(src="../../assets/images/v4/mycure-website-animated-syncbase-horizontal.gif")
+              b-col(xs="12" md="6").pb-5
+                img(width="100%" src="../../assets/images/v4/mycure-website-animated-syncbase-horizontal.gif")
    
 </template>
 
