@@ -5,13 +5,15 @@
       b-row.row-container.row.align-items-center
         b-col(xs="12" md="6")
           h1(style="line-height: 1.3; font-size:2em;") Your Clinic Deserves a Reliable
-          h1(style="") Clinic Management System!
+          h1(style="font-size: 2.3em") Clinic Management System!
           span(style="color: #acadae")
             b
               i Don't compromise speed, dependability, and affordability.
           br
           br
-          p().d-block.d-md-block
+
+          //- DESKTOP
+          p().d-none.d-md-block
             strong MYCURE 
             | is a 
             strong clinic management system 
@@ -20,20 +22,21 @@
             | to sync your clinical records together and store them safely
             br
             | in the cloud while running locally!
-          p().d-block.d-md-block As fast as on-premise server,  
+          p().d-none.d-md-block As fast as on-premise server,  
             br 
             | as affordable as cloud-based subscription.
+          //- DESKTOP END
 
+
+          //- MOBILE
           p().d-block.d-md-none
             strong MYCURE 
             | is a 
             strong clinic management system 
             | that empowers you to sync your clinical records together and store them safely in the cloud while running locally!
           p().d-block.d-md-none As fast as on-premise server, as affordable as cloud-based subscription.
-
-          //- p.d-block.d-md-none Your clinic records can be synced together and stored safely in the cloud while running locally in one powerful  
-          //-   strong MYCURE Clinic Management System!
-          //-   | As fast as on-premise server, as affordable as cloud-based subscription.
+          //- MOBILE END
+          
           br
           b-button(variant="primary" size="sm" href="https://accounts-v4.mycure.md/signup/") START A TRIAL
           //- b-button(variant="primary" size="sm" v-b-modal="'modal1'") WATCH VIDEO
