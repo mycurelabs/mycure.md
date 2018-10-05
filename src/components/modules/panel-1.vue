@@ -20,6 +20,7 @@
             | process digital medical records of your patients.
           br
           b-button(variant="primary" size="sm" :to="{name: 'join-today'}") GET MYCURE
+          //- img(width="100%" src="../../assets/images/v4/mycure-modules-mobile-drawing.jpg")
 </template>
 
 <script>
@@ -32,14 +33,14 @@
 </script>
 
 <style scoped>
-  .panel-1 {
+  /* .panel-1 {
     height: auto;
     background-color: white !important;
     background-image: url('../../assets/images/v4/mycure-modules-mobile-drawing.jpg');
     background-repeat: no-repeat;
     background-position: right center;
     background-size: 400px;
-  }
+  } */
 
   .container {
     padding-top: 50px;
@@ -60,8 +61,8 @@
 
   @media (min-width: 768px) {
     .panel-1 {
-      height: 100vh;
-      background-color: #E9E9E9;
+      height: auto;
+      background-color: white !important;
       background-image: url('../../assets/images/v4/mycure-modules-mobile-drawing.jpg');
       background-repeat: no-repeat;
       background-position: right center;
@@ -80,12 +81,12 @@
 
   @media (min-width: 992px) {
     .panel-1 {
-      height: 100vh;
-      background-color: #E9E9E9;
+      height: auto;
+      background-color: white !important;
       background-image: url('../../assets/images/v4/mycure-modules-mobile-drawing.jpg');
       background-repeat: no-repeat;
       background-position: right center;
-      background-size: 700px;
+      background-size: 600px;
     }
   }
 

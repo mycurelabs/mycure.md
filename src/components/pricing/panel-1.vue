@@ -29,15 +29,6 @@
 </script>
 
 <style scoped>
-  .panel-1 {
-    height: auto;
-    background-image: url('../../assets/images/v4/mycure-pricing-best-investment-yet-laptop-drawing.jpg');
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: center;
-    background-color: white;
-  }
-
   .container {
     padding-top: 50px;
     padding-bottom: 50px;
@@ -52,10 +43,12 @@
 
   @media (min-width: 768px) {
     .panel-1 {
-      height: 100vh;
+      height: auto;
       background-image: url('../../assets/images/v4/mycure-pricing-best-investment-yet-laptop-drawing.jpg');
       background-repeat: no-repeat;
-      background-size: cover;
+      background-size: contain;
+      background-position: center;
+      background-color: white;
     }
     
     .container {
@@ -69,7 +62,14 @@
   }
 
   @media (min-width: 992px) {
-
+    .panel-1 {
+      height: auto;
+      background-image: url('../../assets/images/v4/mycure-pricing-best-investment-yet-laptop-drawing.jpg');
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center;
+      background-color: white;
+    }
   }
 
   @media (min-width: 1200px) {
