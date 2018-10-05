@@ -16,6 +16,9 @@ import 'kidlat-css/css/kidlat.css';
 import VueHtmlToPaper from './mixins/vue-html-to-paper';
 import VImgFallback from 'v-img-fallback';
 import VueYouTubeEmbed from 'vue-youtube-embed';
+import VueMediaQueryMixin from 'vue-media-query-mixin';
+
+Vue.use(VueMediaQueryMixin, {framework:'bootstrap'});
 
 Vue.use(VueYouTubeEmbed);
 Vue.config.productionTip = false;
