@@ -1,5 +1,5 @@
 <template lang="pug">
-  b-container
+  b-container(style="padding-top: 0px; padding-bottom: 0px;")
     b-row
       b-col(xs="12" md="12")
         b-navbar(toggleable="md" variant="transparent")#home-nav
