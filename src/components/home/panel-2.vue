@@ -8,7 +8,7 @@
             center
               div.hr-blue
             br
-            h1 Your most complete clinic management system.
+            h1 Your most complete Clinic Management System.
             br
           b-col(xs="12" md="6").offset-md-3.text-center
             //- p With MYCURE, you don’t have to depend on multiple, complicated systems anymore. Your patients’ medical data are synced together and stored safely in the cloud while running locally using one powerful system.
