@@ -9,6 +9,7 @@
               div.hr-blue
             br
             h1 Heart-crafted Customer Care
+            br
             p We’re here with you throughout the transition process because more often than not, it’s hard to learn new technology!
             p We guarantee that we will meet your needs; if we cannot, then we will meet you.
             br
