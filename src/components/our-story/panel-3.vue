@@ -1,6 +1,6 @@
 <template lang="pug">
   div.panel-3
-    pre(v-if="!$isProduction()").panel-number 5
+    pre(v-if="!$isProduction()").panel-number 3
     b-container
       b-row.pb-5.pt-5
         div.col-xs-12.col-md-10.offset-md-1
@@ -15,35 +15,39 @@
               br
               br
               p It started with coffee — a late night coffee break between college friends, Dale and Joel, who just came from a wake. A realization set in: life is short and the fact that they were a couple of years away from turning 40 made it much shorter (this explains the coffee and not the beer).
-              br
-              br
-              br
+              //- br
+              //- br
+              //- br
             b-col(xs="12" md="6").text-center
-              br
-              br
-              center
+              //- br
+              //- br
+              //- center
                 div.hr-blue
-              br
-              h2 Dale
-              br
-              br
+              //- br
+              //- h2 Dale
+              //- br
+              //- br
               img(src="../../assets/images/v4/mycure-ourstory-dale.png")
-              p(style="text-align: justify") Dale runs a tech company that started in 2004. Among numerous IT projects, their team also made the first Filipino-themed game on iTunes and Googleplay called 
+              p(style="text-align: justify")
+                strong Dale 
+                | runs a tech company that started in 2004. Among numerous IT projects, their team also made the first Filipino-themed game on iTunes and Googleplay called 
                 a(href="http://www.butchukoy.com/" target="_blank") Sipa 
                 | and a mobile photo diary meant to tell your story through photos called Pickld. He regularly shares experiences being a Mentor and Director at Founder Institute (Manila). He also started 
                 a(href="http://www.mightyminds.org/" target="_blank") Mighty Minds, 
                 | a nonprofit organization that helps kids finish school.
             b-col(xs="12" md="6").text-center
-              br
-              br
-              center
+              //- br
+              //- br
+              //- center
                 div.hr-blue
-              br
-              h2 Joel
-              br
-              br
+              //- br
+              //- h2 Joel
+              //- br
+              //- br
               img(src="../../assets/images/v4/mycure-ourstory-joel.png")
-              p(style="text-align: justify") Joel is a marketing executive and has been involved in the field for the last 20 years. His work involves a lot of travel and he loves to explore and talk to local folks during these times. Through these encounters, he was able to get a closer look at the plight of the Filipinos with regard to medical and health access. He believes that there are still a lot that can be done and that a good tech infrastructure can be a big boost in improving this sector.
+              p(style="text-align: justify")
+                strong Joel 
+                | is a marketing executive and has been involved in the field for the last 20 years. His work involves a lot of travel and he loves to explore and talk to local folks during these times. Through these encounters, he was able to get a closer look at the plight of the Filipinos with regard to medical and health access. He believes that there are still a lot that can be done and that a good tech infrastructure can be a big boost in improving this sector.
 </template>
 
 <script>

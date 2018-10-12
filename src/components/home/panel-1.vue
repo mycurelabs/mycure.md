@@ -16,7 +16,7 @@
           p().d-none.d-md-block
             strong MYCURE 
             | is a 
-            strong clinic management system 
+            strong Clinic Management System 
             | that empowers you
             br
             | to sync your clinical records together and store them safely
@@ -32,7 +32,7 @@
           p().d-block.d-md-none
             strong MYCURE 
             | is a 
-            strong clinic management system 
+            strong Clinic Management System 
             | that empowers you to sync your clinical records together and store them safely in the cloud while running locally!
           p().d-block.d-md-none As fast as on-premise server, as affordable as cloud-based subscription.
           //- MOBILE END

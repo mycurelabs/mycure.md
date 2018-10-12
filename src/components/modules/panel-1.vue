@@ -15,7 +15,7 @@
               i Because every clinic has its unique way of getting things done.
           br
           br
-          p MYCURE is a clinic management system designed to securely 
+          p MYCURE is a Clinic Management System designed to securely 
             br
             | process digital medical records of your patients.
           br
