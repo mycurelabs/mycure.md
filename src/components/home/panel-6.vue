@@ -11,9 +11,9 @@
             h1 Heart-crafted Customer Care
             br
             p We’re here with you throughout the transition process because more often than not, it’s hard to learn new technology!
-            p We guarantee that we will meet your needs; if we cannot, then we will meet you.
+            p(style="line-height:.5em;") We guarantee that we will meet your needs; if we cannot, then we will meet you.
             br
-            div.row.justify-content-center
+            div.row.justify-content-center(style="margin-top:1.5em;")
               div.col-xs-12.col-md-3.pl-3.pr-3
                 img(width="100" src="../../assets/images/v4/mycure-homepage-image-user-friendly-icon.png").mb-3
                 div.text-center
