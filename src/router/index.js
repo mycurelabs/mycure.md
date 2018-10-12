@@ -239,24 +239,29 @@ export default new Router({
       name: 'ctm-counter',
       component: ctmPage,
       async beforeEnter (to, from, next) {
-        next();
+        try {
+          next();
 
-        const { link, src, ctm } = to.query;
+          const { link, src, ctm } = to.query;
 
-        if (!link || !src || !ctm) {
-          window.location.href = 'https://mycure.md';
-          return;
+          if (!link || !src || !ctm) {
+            window.location.href = 'https://mycure.md';
+            return;
+          }
+
+          const campaign = {
+            type: 'campaign-link-click',
+            source: to.query.src,
+            campaign: to.query.ctm
+          };
+
+          // TODO: inspect error
+          await core.system.counters().create(campaign);
+
+          window.location.href = to.query.link;
+        } catch (e) {
+          window.location.href = to.query.link;
         }
-
-        const campaign = {
-          type: 'campaign-link-click',
-          source: to.query.src,
-          campaign: to.query.ctm
-        };
-
-        await core.system.counters().create(campaign);
-
-        window.location.href = to.query.link;
       }
     }
   ]
