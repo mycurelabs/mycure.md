@@ -12,10 +12,10 @@
             br  
             p More than a business, 
               strong we are a community.
-            p More than a product, 
+            p(style="line-height:.4em;") More than a product, 
               strong MYCURE is an advocacy.
             br
-            b-button(variant="primary" size="sm" :to="{name: 'our-story'}") READ OUR STORY
+            b-button(style="margin-top: .8em;" variant="primary" size="sm" :to="{name: 'our-story'}") READ OUR STORY
 </template>
 
 <script>
