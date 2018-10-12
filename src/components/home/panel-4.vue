@@ -14,7 +14,7 @@
             | the smarter way.
           br
           p Keeping them secure is our #1 priority.
-          p With MYCURE , you’ll get: 
+          p(style="line-height:.5em;") With MYCURE , you’ll get: 
           br
           b-row.justify-content-center
             b-col(xs="12" md="2")
