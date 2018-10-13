@@ -19,7 +19,7 @@
     "prebuild": "npm run lint",
     "build": "node build/build.js && cp ./robots.txt ./dist && cp ./sitemap.xml ./dist",
     "deploy:fb:hosting": "firebase deploy --only hosting -P mycure-ab311",
-    "deploy:fb:hosting:ci": "firebase deploy --only hosting --token \"$MC_FIREBASE_TOKEN\" -P mycure-ab311",
+    "deploy:fb:hosting:ci": "firebase deploy --only hosting --token \"$FIREBASE_TOKEN\" -P mycure-ab311",
     "deploy:fb:fns": "firebase deploy --only functions",
     "deploy:fb:fns:only": "f() { for func in \"$@\"; do firebase deploy --only functions:\"$func\" -P mc-v4-prod; done; }; f"
   },
