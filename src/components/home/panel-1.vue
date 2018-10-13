@@ -53,8 +53,8 @@
       iframe(
         v-if="showVid"
         id="ytplayer" 
-        type="text/html" width="100%" height="500"
-        src="https://www.youtube.com/embed/3JglQqyUCLA?rel=0&amp;showinfo=0"
+        type="text/html" width="100%" height="450"
+        src="https://www.youtube.com/embed/siFBgZMt26k?rel=0&amp;showinfo=0"
         frameborder="0"
       )
 </template>
