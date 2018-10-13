@@ -35,4 +35,6 @@ jobs:
         
       # run tests!
       - run: yarn build
+  deploy_firebase:
+    steps:
       - run: yarn deploy:fb:hosting:ci
