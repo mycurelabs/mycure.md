@@ -4,7 +4,7 @@
     panel-2
     panel-3-1
     flip
-    panel-3-2
+    //- panel-3-2
     panel-4
     panel-5
     panel-6
