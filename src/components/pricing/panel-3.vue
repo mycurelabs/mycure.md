@@ -11,7 +11,7 @@
             h1 MYCURE App for Doctors
             br
             p An essential record-keeping tool for all practicing physicians.
-            img(src="../../assets/images/v4/mycure-modules-plantg.png" :class="{'animate': scrollTop > 1500}").plant
+            img(src="../../assets/images/v4/mycure-modules-plantg.png" :class="{'animate': scrollTop > 700}").plant
         b-row.row.align-items-center.justify-content-md-center
           b-col(xs="12" md="5").pl-5.pr-5.text-center
             img(width="100%" src="../../assets/images/v4/mycure-pricing-doctors-app.png")
