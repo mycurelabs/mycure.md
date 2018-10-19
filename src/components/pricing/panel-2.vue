@@ -1,27 +1,95 @@
-<template lang="pug">
-  div#prices
-    pre(v-if="!$isProduction()").panel-number 2
-    div.panel-2.pt-5.pb-5
-      b-container(fluid)
-        b-row.justify-content-md-center
-          b-col(xs="12" md="12").text-center
-            center
-              div.hr-blue
-            br
-            h1 Schedule a Demo
-            br
-            p 
-              strong Get to see what you need in action. 
-            br
-            p Select your clinic type:
-            img(src="../../assets/images/v4/coffee.png" :class="{'animate': scrollTop > 300}").coffee
-          b-col(xs="12" md="10")
-            b-row(style="background-color: snow").justify-content-md-center.shadow-3.pl-3.pr-3.pt-5.pb-5
-              b-col(xs="12" md="4").pt-5.pl-4.pr-4
-                div(style="height: 400px;")
-                  div.pl-2.pr-2
-                  form(method='POST' action='/register')
-                      label(for='clinic-type')
+<template>
+  <div id="prices">
+    <pre v-if="!$isProduction()" class="panel-number">2</pre>
+    <div class="panel-2 pt-5 pb-5">
+      <div class="container fluid">
+        <div class="row justify-content-md-center">
+          <div class="col col-xs-12 col-md-12 text-center">
+            <center>
+              <div class="hr-blue">
+              </div>
+              <br>
+              <h1>Schedule a Demo</h1>
+              <br>
+              <p>
+                <b>Get to see what you need in action.</b>
+              </p>
+              <br>
+              <p>Select your clinic type:</p>
+              <img src="../../assets/images/v4/coffee.png" alt="" :class="{'animate': scrollTop > 300, 'coffee': true}">
+            </center>
+          </div>
+          <div class="col col-xs-12 col-md-12">
+            <div 
+              class="row justify-content-md-center shadow-3 pl-3 pr-3 pt-5 pb-5" 
+              style="background-color: snow">
+              <div class="col col-xs-12 col-md-10">
+                <div style="height: 400px;" class="pl-2 pr-2">
+                  <form @submit.prevent="submit">
+                    
+                    <div class="row mb-4">
+                      <div class="col col-xs-12 col-md-4">
+                        <select class="custom-select">
+                          <option selected>Select your clinic type: </option>
+                          <option value="1">One</option>
+                          <option value="2">Two</option>
+                          <option value="3">Three</option>
+                        </select>
+                      </div>
+                    </div>
+                    
+                    <div class="row mb-4">
+                      <div class="col col-xs-12 col-md-4">
+                        <select class="custom-select">
+                          <option selected>Additional Modules: </option>
+                          <option value="1">One</option>
+                          <option value="2">Two</option>
+                          <option value="3">Three</option>
+                        </select>
+                      </div>
+                      <div class="col col-xs-12 col-md-4">
+                        <input type="number" class="form-control" placeholder="No. of clinic staff">
+                      </div>
+                      <div class="col col-xs-12 col-md-4">
+                        <input type="number" class="form-control" placeholder="Est. patients per year">
+                      </div>
+                    </div>
+
+                    <div class="row mb-4">
+                      <div class="col col-xs-12 col-md-4">
+                        <input type="text" class="form-control" placeholder="Your Name">
+                      </div>
+                      <div class="col col-xs-12 col-md-4">
+                        <input type="text" class="form-control" placeholder="Your Designation">
+                      </div>
+                      <div class="col col-xs-12 col-md-4">
+                        <input type="text" class="form-control" placeholder="Best Day and Time to Call">
+                      </div>
+                    </div>
+
+                    <div class="row mb-4">
+                      <div class="col col-xs-12 col-md-6">
+                        <input type="text" class="form-control" placeholder="Your Name">
+                      </div>
+                      <div class="col col-xs-12 col-md-6">
+                        <input type="text" class="form-control" placeholder="Your Designation">
+                      </div>
+                    </div>
+
+                    <div class="row justify-content-md-center mb-4">
+                      <div class="col col-xs-12 col-md-5">
+                        <button type="submit" class="btn btn-primary btn-block">BOOK A DEMO</button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -34,6 +102,11 @@
     data() {
       return {
         scrollTop: 0
+      }
+    },
+    methods: {
+      submit() {
+        
       }
     },
     destroyed() {
