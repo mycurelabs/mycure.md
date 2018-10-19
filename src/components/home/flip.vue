@@ -104,8 +104,7 @@ export default {
             Rehab Clinics<br>
             Maternity Clincis<br>
             Diagnostic Clinics<br>
-            Pharmacies<br>
-            and other health facilities on their way!
+            Pharmacies and more!
           `,
           buttonText: 'Contact Us'
         }
