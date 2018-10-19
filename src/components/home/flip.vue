@@ -29,7 +29,8 @@
               div(slot="back" ref="backCard" ).flip-card.flip-card-back.align-items-center
                 strong(style="color:#0099cc;") {{card.text}}
                 p(v-html="card.content")
-                b-button(:href="card.link" target="_blank") {{card.linkText}}
+                b-button(:href="card.link" target="_blank" v-if="!card.isMoreButton") {{card.buttonText}}
+                b-button(@click="toggleChat" v-else) {{card.buttonText}}
 
 </template>
 
@@ -50,52 +51,53 @@ export default {
           image: require('../../assets/images/v4/mycure-home-products-icon-multispecialty-clinics.png'),
           text: 'Multispecialty Clinics',
           content: 'One-stop, multi-staff clinics that provide ambulatory care and ancillary services',
-          linkText: 'Sign Up',
+          buttonText: 'Sign Up',
           link: 'https://accounts-v4.mycure.md/create-account-multi?type=multi'
         },
         {
           image: require('../../assets/images/v4/mycure-home-products-icon-outpatient-clinics.png'),
           text: 'Outpatient Clinics',
           content: 'Hospital-based clinics that provide outpatient consultation services from various specialists',
-          linkText: 'Sign Up',
+          buttonText: 'Sign Up',
           link: 'https://accounts-v4.mycure.md/create-account-multi?type=multi'
         },
         {
           image: require('../../assets/images/v4/mycure-home-products-icon-industrial-clinics.png'),
           text: 'Industrial Clinics',
           content: 'Primary clinics inside companies, schools, BPOs, and other industries covered by OSHS',
-          linkText: 'Sign Up',
+          buttonText: 'Sign Up',
           link: 'https://accounts-v4.mycure.md/create-account-multi?type=multi'
         },
         {
           image: require('../../assets/images/v4/mycure-home-products-icon-aesthetic-clinics.png'),
           text: 'Skin & Aesthetic Clinics',
           content: 'Specialized for clinics that offer aesthetic procedures and dermatological services',
-          linkText: 'Sign Up',
+          buttonText: 'Sign Up',
           link: 'https://accounts-v4.mycure.md/create-account-multi?type=multi'
         },
         {
           image: require('../../assets/images/v4/mycure-home-products-icon-pme-clinics.png'),
           text: 'PME Clinics',
           content: 'Clinics specializing in Physical Medical Exam (PME) services.',
-          linkText: 'Sign Up',
+          buttonText: 'Sign Up',
           link: 'https://accounts-v4.mycure.md/create-account-multi?type=multi'
         },
         {
           image: require('../../assets/images/v4/mycure-home-products-icon-group-clinics.png'),
           text: 'Group Clinics',
           content: 'Managed by a group of physicians practicing together and assisted by one or more secretaries',
-          linkText: 'Sign Up',
+          buttonText: 'Sign Up',
           link: 'https://accounts-v4.mycure.md/create-account-group?type=group'
         },
         {
           image: require('../../assets/images/v4/mycure-home-products-icon-individual-clinics.png'),
           text: 'Individual Clinics',
           content: 'Physicians practicing independently in one or more clinic locations',
-          linkText: 'Sign Up',
+          buttonText: 'Sign Up',
           link: 'https://accounts-v4.mycure.md/choose-plan?type=individual'
         },
         {
+          isMoreButton: true,
           image: require('../../assets/images/v4/mycure-home-products-icon-more.png'),
           text: 'More coming!',
           content: `
@@ -105,8 +107,14 @@ export default {
             Pharmacies<br>
             and other health facilities on their way!
           `,
+          buttonText: 'Contact Us'
         }
       ]
+    }
+  },
+  methods: {
+    toggleChat() {
+      $crisp.push(['do', 'chat:toggle'])
     }
   }
 }
