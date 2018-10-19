@@ -15,7 +15,6 @@
                 <b>Get to see what you need in action.</b>
               </p>
               <br>
-              <p>Select your clinic type:</p>
               <img src="../../assets/images/v4/coffee.png" alt="" :class="{'animate': scrollTop > 300, 'coffee': true}">
             </center>
           </div>
@@ -27,13 +26,17 @@
                 <div style="height: 400px;" class="pl-2 pr-2">
                   <form @submit.prevent="submit">
                     
-                    <div class="row mb-4">
+                    <div class="row mt-5 mb-5">
                       <div class="col col-xs-12 col-md-4">
                         <select class="custom-select">
                           <option selected>Select your clinic type: </option>
-                          <option value="1">One</option>
-                          <option value="2">Two</option>
-                          <option value="3">Three</option>
+                          <option value="Multispecialty Clinics">Multispecialty Clinics</option>
+                          <option value="Outpatient Clinics">Outpatient Clinics</option>
+                          <option value="Industrial Clinics">Industrial Clinics</option>
+                          <option value="Skin and Aesthetic Clinics"> Skin and Aesthetic Clinics</option>
+                          <option value="PME Clinics">PME Clinics</option>
+                          <option value="Group Clinics">Group Clinics</option>
+                          <option value="Individual Clinics">Individual Clinics</option>
                         </select>
                       </div>
                     </div>
@@ -67,7 +70,7 @@
                       </div>
                     </div>
 
-                    <div class="row mb-4">
+                    <div class="row mb-5">
                       <div class="col col-xs-12 col-md-6">
                         <input type="text" class="form-control" placeholder="Your Name">
                       </div>
@@ -146,7 +149,7 @@
       width: 250px;
       position: absolute;
       left: -500px;
-      top: -40px;
+      top: -120px;
       -webkit-transition: left 500ms; /* Safari */
       transition: left 500ms;
     }
