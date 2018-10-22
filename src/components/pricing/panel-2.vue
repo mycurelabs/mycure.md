@@ -28,54 +28,44 @@
                     
                     <div class="row mt-5 mb-5">
                       <div class="col col-xs-12 col-md-4">
-                        <select class="custom-select">
-                          <option selected>Select your clinic type: </option>
-                          <option value="Multispecialty Clinics">Multispecialty Clinics</option>
-                          <option value="Outpatient Clinics">Outpatient Clinics</option>
-                          <option value="Industrial Clinics">Industrial Clinics</option>
-                          <option value="Skin and Aesthetic Clinics"> Skin and Aesthetic Clinics</option>
-                          <option value="PME Clinics">PME Clinics</option>
-                          <option value="Group Clinics">Group Clinics</option>
-                          <option value="Individual Clinics">Individual Clinics</option>
-                        </select>
+                        <label class="input-label">Please select your clinic type:</label>
+                        <b-select v-model="payload.organization.type" :options="clinicTyes" required></b-select>
+                      </div>
+                      <div class="col col-xs-12 col-md-4">
+                        <input v-model="payload.organization.name" type="text" class="form-control" placeholder="Clinic name" style="margin-top: 32px;" required>
                       </div>
                     </div>
                     
                     <div class="row mb-4">
                       <div class="col col-xs-12 col-md-4">
-                        <select class="custom-select">
-                          <option selected>Additional Modules: </option>
-                          <option value="1">One</option>
-                          <option value="2">Two</option>
-                          <option value="3">Three</option>
-                        </select>
+                        <input type="text" class="form-control" placeholder="Additional modules" @focus="openModulesModal" required>
                       </div>
                       <div class="col col-xs-12 col-md-4">
-                        <input type="number" class="form-control" placeholder="No. of clinic staff">
+                        <input v-model="payload.organization.subscription.numberOfDoctors" type="number" class="form-control" placeholder="No. of clinic staff" required>
                       </div>
                       <div class="col col-xs-12 col-md-4">
-                        <input type="number" class="form-control" placeholder="Est. patients per year">
+                        <input v-model="payload.organization.subscription.numberOfPatients" type="number" class="form-control" placeholder="Est. patients per year" required>
                       </div>
                     </div>
 
                     <div class="row mb-4">
                       <div class="col col-xs-12 col-md-4">
-                        <input type="text" class="form-control" placeholder="Your Name">
+                        <input v-model="payload.name.firstName" type="text" class="form-control" placeholder="Your name" required>
                       </div>
                       <div class="col col-xs-12 col-md-4">
-                        <input type="text" class="form-control" placeholder="Your Designation">
+                        <input v-model="payload.role" type="text" class="form-control" placeholder="Your designation" required>
                       </div>
                       <div class="col col-xs-12 col-md-4">
-                        <input type="text" class="form-control" placeholder="Best Day and Time to Call">
+                        <input v-model="payload.dateTimeToCall" type="text" class="form-control" placeholder="Best day and time to call" required>
                       </div>
                     </div>
 
                     <div class="row mb-5">
                       <div class="col col-xs-12 col-md-6">
-                        <input type="text" class="form-control" placeholder="Your Name">
+                        <input v-model="payload.email" type="text" class="form-control" placeholder="Email address" required>
                       </div>
                       <div class="col col-xs-12 col-md-6">
-                        <input type="text" class="form-control" placeholder="Your Designation">
+                        <input v-model="payload.mobileNo" type="text" class="form-control" placeholder="Mobile number" required>
                       </div>
                     </div>
 
@@ -104,11 +94,66 @@
     },
     data() {
       return {
-        scrollTop: 0
+        scrollTop: 0,
+        payload: {
+          email: '',
+          name: {
+            firstName: '',
+            lastName: ''
+          },
+          doc_PRCLicenseNo: '',
+          mobileNo: '',
+          role: 'Administrator',
+          organization: {
+            type: 'Multispecialty Clinics',
+            superadmin: {
+              roles: ['doctor']
+            },
+            name: '',
+            subscription: {
+              numberOfDoctors: null,
+              numberOfStaff: null,
+              plan: 'plan_liberica'
+            }
+          }
+        },
+        clinicTyes: [
+          {
+            text: 'Multispecialty Clinics',
+            value: 'Multispecialty Clinics'
+          },
+          {
+            text: 'Outpatient Clinics',
+            value: 'Outpatient Clinics'
+          },
+          {
+            text: 'Industrial Clinics',
+            value: 'Industrial Clinics'
+          },
+          {
+            text: 'Skin and Aesthetic Clinics',
+            value: 'Skin and Aesthetic Clinics'
+          },
+          {
+            text: 'PME Clinics',
+            value: 'PME Clinics'
+          },
+          {
+            text: 'Group Clinics',
+            value: 'Group Clinics'
+          },
+          {
+            text: 'Individual Clinics',
+            value: 'Individual Clinics'
+          }
+        ]
       }
     },
     methods: {
       submit() {
+        console.log(this.payload);
+      },
+      openModulesModal() {
         
       }
     },
@@ -119,6 +164,10 @@
 </script>
 
 <style scoped>
+
+  .input-label {
+    color: grey;
+  }
 
   ul {
     list-style-type: none; 
