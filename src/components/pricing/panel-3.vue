@@ -8,23 +8,43 @@
             center
               div.hr-blue
             br
-            h1 MYCURE for Group Clinics
+            h1 MYCURE App for Doctors
             br
-            p
-              strong A practical system built for doctors’ clinics being handled by a common secretary.
-            br
-            p Aside from the premium Group Clinic Package, you’ll also receive expert recommendations on
-              br
-              | boosting clinic efficiency from our technical team, all for a plan that will suit your budget.
-            img(src="../../assets/images/v4/mycure-modules-plantg.png" :class="{'animate': scrollTop > 1500}").plant
+            p An essential record-keeping tool for all practicing physicians.
+            img(src="../../assets/images/v4/mycure-modules-plantg.png" :class="{'animate': scrollTop > 700}").plant
         b-row.row.align-items-center.justify-content-md-center
           b-col(xs="12" md="5").pl-5.pr-5.text-center
-            img(width="100%" src="../../assets/images/v4/mycure-pricing-group-clinic-garden.png")
-          b-col(xs="12" md="5")
-            p Sign up and get your clinic spiced up with the best package for your group clinic within 24 hours!
-            p Also get a glimpse of the EMR module for free while you wait!
-            b-button(variant="primary" :to="{name: 'signup-group'}") GET STARTED FOR FREE
-
+            img(width="100%" src="../../assets/images/v4/mycure-pricing-doctors-app.png")
+          b-col(xs="12" md="4")
+            p 
+            h2 It's always free.
+            |
+            br
+            |✓ Multiple clinics
+            br 
+            | ✓ 500 patient profiles
+            br 
+            | ✓ 1GB storage
+            br 
+            | ✓ SOAP Charting
+            br 
+            | ✓ e-Prescription
+            br 
+            | ✓ Diagnostic orders
+            br 
+            | ✓ Medical Forms
+            br 
+            | ✓ PNF Drug Catalog
+            br 
+            | ✓ ICD-10 Reference
+            br 
+            | ✓ DPA Registration Guide
+            p
+            |
+            br
+            |
+            //- b-button(variant="primary" :to="{name: 'signup-group'}") CREATE MY FREE ACCOUNT
+            b-button(variant="primary" href="https://accounts-v4.mycure.md/create-account-individual?type=individual&plan=arabica" target="_blank") CREATE MY FREE ACCOUNT
 </template>
 
 <script>

@@ -29,21 +29,47 @@
             b-col(xs="12" md="12").text-center.mt-4
               h2 ⛋ Step 1. Select your plan.
               br
-            b-col(xs="12" md="4").text-center.pl-4.pr-4
-              img(width="120" src="../../assets/images/v4/mycure-homepage-package-health-facility-big.png").white-border
+            b-col(xs="12" md="3").text-center.pl-4.pr-4
+              img(width="120" src="../../assets/images/v4/mycure-home-products-icon-multispecialty-clinics.png")
               br
               br
-              label Health Facility
-            b-col(xs="12" md="4").text-center.pl-4.pr-4
-              img(width="120" src="../../assets/images/v4/mycure-homepage-package-group.png").white-border
+              label Multispecialty Clinics
+            b-col(xs="12" md="3").text-center.pl-4.pr-4
+              img(width="120" src="../../assets/images/v4/mycure-home-products-icon-outpatient-clinics.png")
               br
               br
-              label Group Clinic
-            b-col(xs="12" md="4").text-center
-              img(width="120" src="../../assets/images/v4/mycure-homepage-package-individual.png").white-border
+              label Outpatient Clinics
+            b-col(xs="12" md="3").text-center
+              img(width="120" src="../../assets/images/v4/mycure-home-products-icon-industrial-clinics.png")
+              br
+              br
+              label Industrial Clinics
+            b-col(xs="12" md="3").text-center
+              img(width="120" src="../../assets/images/v4/mycure-home-products-icon-aesthetic-clinics.png")
+              br
+              br
+              label Skin and Aesthetic Clinics
+          b-row.align-items-center.justify-content-md-center(style="margin-top:1em;")
+            b-col(xs="12" md="3").text-center.pl-4.pr-4
+              img(width="120" src="../../assets/images/v4/mycure-home-products-icon-pme-clinics.png")
+              br
+              br
+              label PME Clinics
+            b-col(xs="12" md="3").text-center.pl-4.pr-4
+              img(width="120" src="../../assets/images/v4/mycure-home-products-icon-group-clinics.png")
+              br
+              br
+              label Group Clinics
+            b-col(xs="12" md="3").text-center
+              img(width="120" src="../../assets/images/v4/mycure-home-products-icon-individual-clinics.png")
               br
               br
               label Individual Clinic
+            b-col(xs="12" md="3").text-center
+              img(width="120" src="../../assets/images/v4/mycure-home-products-icon-more.png")
+              br
+              br
+              label More Coming!
           b-row.align-items-center.justify-content-md-center.mt-5
             b-col(xs="12" md="12").text-center.mt-4
               h2 ⛋ Step 2. Pick additional 

@@ -10743,6 +10743,11 @@ vue-barcode@^1.1.0:
   dependencies:
     jsbarcode "^3.5.8"
 
+vue-flip@^0.2.4:
+  version "0.2.4"
+  resolved "https://registry.yarnpkg.com/vue-flip/-/vue-flip-0.2.4.tgz#a681676d976b84bbb9922759a8353daaaa9663ae"
+  integrity sha512-Dof5pgNapd7mFCzh4pKtySkZilgU+Kf6Eo7+EVX2Kv6vZitACHYXe0EFZPES1Nk1wZDNIMR6ZtTEAGeJAJC/uQ==
+
 vue-functional-data-merge@^2.0.5:
   version "2.0.6"
   resolved "https://registry.yarnpkg.com/vue-functional-data-merge/-/vue-functional-data-merge-2.0.6.tgz#f08055adfb92458debcf2ad10c3aa712277f7fc2"
