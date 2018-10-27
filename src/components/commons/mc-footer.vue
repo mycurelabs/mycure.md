@@ -50,17 +50,20 @@
               router-link(:to="{name: 'privacy-policy', query: {id: 'top'}}").color-white Privacy Policy
       hr
       div.row.pt-3.pb-3
-        div.col-xs-12.col-md-4
+        div.col-xs-12.col-md-3
+          span.color-primary hello@mycure.md
+        div.col-xs-12.col-md-3
+          span (+632) 799 6262
+        div.col-xs-12.col-md-3
+          span (+63) 917 303 4350
+        div.col-xs-12.col-md-3
+          span (+63) 949 368 2010
+      div.row.pt-5.pb-5
+        div.col-xs-12.col-md-12.text-center
           span &copy; {{new Date().getFullYear()}} 
           span.color-primary MYCURE
           |. 
           span All Rights Reserved.
-        div.col-xs-12.col-md-3
-          span.color-primary hello@mycure.md
-        div.col-xs-12.col-md-3
-          span +639173034350
-        div.col-xs-12.col-md-2
-          span +639493682010
 </template>
 
 <script>
