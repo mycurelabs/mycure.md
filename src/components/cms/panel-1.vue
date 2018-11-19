@@ -1,35 +1,62 @@
 <template lang="pug">
   div.panel-1
-    pre(v-if="!$isProduction()").panel-number 1
     mc-navbar-home
-    div.container
-      div.row-container.row.align-items-center
-        div.col-xs-12.col-md-6
-          //- h2 MYCURE | Modules
-          //- div.hr-blue
-          br
-          h1 CMS
-          br
+    b-container
+      b-row.row-container.row.align-items-center
+        b-col(xs="12" md="6")
+          h1(style="line-height: 1.3; font-size:2em;") Your Clinic Deserves a Reliable
+          h1(style="font-size: 2.3em") Clinic Management System!
           span(style="color: #acadae")
             b
-              i Because every clinic has its unique way of getting things done.
+              i Don't compromise speed, dependability, and affordability.
           br
           br
-          p MYCURE is a Clinic Management System designed to securely 
+
+          //- DESKTOP
+          p().d-none.d-md-block
+            strong MYCURE 
+            | is a 
+            strong Clinic Management System 
+            | that empowers you
             br
-            | process digital medical records of your patients.
+            | to sync your clinical records together and store them safely
+            br
+            | in the cloud while running locally!
+          p().d-none.d-md-block As fast as on-premise server,  
+            br 
+            | as affordable as cloud-based subscription.
+          //- DESKTOP END
+
+
+          //- MOBILE
+          p().d-block.d-md-none
+            strong MYCURE 
+            | is a 
+            strong Clinic Management System 
+            | that empowers you to sync your clinical records together and store them safely in the cloud while running locally!
+          p().d-block.d-md-none As fast as on-premise server, as affordable as cloud-based subscription.
+          //- MOBILE END
+          
           br
-          b-button(variant="primary" size="sm" :to="{name: 'join-today'}") GET MYCURE
-          //- img(width="100%" src="../../assets/images/v4/mycure-modules-mobile-drawing.jpg")
-          div.row
-            div.col-xs-12.col-md-6
-              div(@click="goto('cms')").product-card
-                img(src="")
-                h5(align="center") Clinic Management System
-            div.col-xs-12.col-md-6
-              div(@click="goto('his')").product-card
-                img(src="")
-                h5(align="center") Hospital Information System
+          //- b-button(variant="primary" size="sm" href="https://accounts-v4.mycure.md/signup/") START A TRIAL
+          b-button(variant="primary" size="sm" v-b-modal="'modal1'") WATCH VIDEO
+        b-col(xs="12" md="6")
+          img(width="100%" src="../../assets/images/v4/mycure-homepage-syncbase-offline-online-clinic-management-system-animated.gif")
+    b-modal(
+      size="lg"
+      hide-footer 
+      hide-header 
+      centered 
+      @shown="showVid = true"
+      @hidden="showVid = false"
+    )#modal1
+      iframe(
+        v-if="showVid"
+        id="ytplayer" 
+        type="text/html" width="100%" height="450"
+        src="https://www.youtube.com/embed/siFBgZMt26k?rel=0&amp;showinfo=0"
+        frameborder="0"
+      )
 </template>
 
 <script>
@@ -38,27 +65,32 @@
     components: {
       mcNavbarHome
     },
+    data() {
+      return {
+        videoId: 'r7oewF5qDz4',
+        showVid: true
+      }
+    },
     methods: {
-      goto(page) {
-        this.$router.push({name: page});
+      addVid() {
+        console.log('Add Vid');
+        this.videoId = 'r7oewF5qDz4';
+      },
+      removeVid() {
+        console.log('Remove Vid');
+        this.videoId = null;
       }
     }
   }
 </script>
 
 <style scoped>
-  /* .panel-1 {
+  .panel-1 {
     height: auto;
-    background-color: white !important;
-    background-image: url('../../assets/images/v4/mycure-modules-mobile-drawing.jpg');
-    background-repeat: no-repeat;
-    background-position: right center;
-    background-size: 400px;
-  } */
-
-  .product-card {
     background-color: white;
-    margin: 15px 0 15px 0;
+    /* background-image: url('../../assets/images/v4/mycure-homepage-doctor-welcome-smile-emr-his-ehr-philippines-mobile-web-app.jpg'); */
+    /* background-repeat: no-repeat; */
+    /* background-size: cover; */
   }
 
   .container {
@@ -71,21 +103,14 @@
       padding-top: 50px;
       padding-bottom: 50px;
     }
-
-    .panel-1 {
-      background-position: right center;
-      background-size: 300px;
-    }
   }
 
   @media (min-width: 768px) {
     .panel-1 {
-      height: auto;
-      background-color: white !important;
-      background-image: url('../../assets/images/v4/mycure-home-super-hero-doctor.png');
-      background-repeat: repeat-x;
-      background-position: right bottom;
-      background-size: 1000px;
+      height: 100vh;
+      /* background-image: url('../../assets/images/v4/mycure-homepage-doctor-kid-pediatrician-drawing.png'); */
+      /* background-repeat: no-repeat; */
+      /* background-position: center left; */
     }
     
     .container {
@@ -99,14 +124,7 @@
   }
 
   @media (min-width: 992px) {
-    .panel-1 {
-      height: auto;
-      background-color: white !important;
-      background-image: url('../../assets/images/v4/mycure-home-super-hero-doctor.png');
-      background-repeat: repeat-x;
-      background-position: right bottom;
-      background-size: 1600px;
-    }
+
   }
 
   @media (min-width: 1200px) {
