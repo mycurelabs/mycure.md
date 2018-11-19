@@ -4,7 +4,7 @@ import home from '@/components/home';
 import cms from '@/components/cms';
 import his from '@/components/his';
 import ourStory from '@/components/our-story';
-import modules from '@/components/modules';
+// import modules from '@/components/modules';
 import pricing from '@/components/pricing';
 import printDemo from '@/components/print-demo';
 import downloadExecutable from '@/components/download-executable';
