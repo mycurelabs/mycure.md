@@ -20,8 +20,8 @@
           p Our professionals will formulate the perfect mix for your health facility in less than 24 hours.
           br
           b-button(variant="primary" size="sm" :to="{name: 'join-today'}") GET MYCURE
-          //- img(width="100%" src="../../assets/images/v4/mycure-modules-mobile-drawing.jpg")
-
+        div.col-xs-12.col-md-6
+          img(width="100%" src="../../assets/images/v4/mycure-home-his-image.png")
 </template>
 
 <script>
@@ -74,10 +74,10 @@
     .panel-1 {
       height: auto;
       background-color: white !important;
-      background-image: url('../../assets/images/v4/mycure-home-his-image.png');
+      /* background-image: url('../../assets/images/v4/mycure-home-his-image.png'); */
       background-repeat: no-repeat;
       background-position: right center;
-      background-size: 500px;
+      /* background-size: ; */
     }
     
     .container {
@@ -94,7 +94,7 @@
     .panel-1 {
       height: auto;
       background-color: white !important;
-      background-image: url('../../assets/images/v4/mycure-home-his-image.png');
+      /* background-image: url('../../assets/images/v4/mycure-home-his-image.png'); */
       background-repeat: no-repeat;
       background-position: right center;
       background-size: 600px;

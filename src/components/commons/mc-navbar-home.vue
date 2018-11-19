@@ -8,12 +8,8 @@
             img(src="../../assets/images/v4/mycure-logo.svg")
           b-collapse(is-nav id="nav_collapse")
             b-navbar-nav.ml-auto
-              b-nav-item(href="" :to="{name: 'modules'}") FEATURES
-              //- b-nav-item-dropdown(text="FEATURES")
-                b-dropdown-item(:to="{name: 'modules', query: {id: 'panel-2'}}" style="color: black").active HOW IT WORKS
-                b-dropdown-item(:to="{name: 'modules', query: {id: 'panel-3'}}" style="color: black").active CORE
-                b-dropdown-item(:to="{name: 'modules', query: {id: 'panel-4'}}" style="color: black").active PREMIUM
-                b-dropdown-item(:to="{name: 'modules', query: {id: 'panel-5'}}" style="color: black").active ADD-ONS
+              b-nav-item(href="" :to="{name: 'cms'}") CMS
+              b-nav-item(href="" :to="{name: 'his'}") HIS
               b-nav-item(href="" :to="{name: 'pricing'}") PRICING
               b-nav-item(href="" :to="{name: 'our-story'}") OUR STORY
               b-nav-item(href="" @click="toggleChat") CONTACT US

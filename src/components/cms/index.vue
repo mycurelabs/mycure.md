@@ -2,12 +2,11 @@
   div#top
     panel-1
     panel-2
-    panel-3-1
+    panel-3
     flip
-    //- panel-3-2
-    //- panel-4
-    //- panel-5
-    //- panel-6
+    panel-4
+    panel-5
+    panel-6
     panel-8
     panel-7
     panel-9(bg="white")
@@ -18,7 +17,7 @@
 <script>
   import panel1 from './panel-1';
   import panel2 from './panel-2';
-  import panel31 from './panel-3.1';
+  import panel3 from './panel-3';
   import flip from './flip';
   import panel32 from './panel-3.2';
   import panel4 from './panel-4';
@@ -34,7 +33,7 @@
     components: {
       'panel-1': panel1,
       'panel-2': panel2,
-      'panel-3-1': panel31,
+      'panel-3': panel3,
       flip,
       'panel-3-2': panel32,
       'panel-4': panel4,

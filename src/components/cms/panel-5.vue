@@ -1,129 +1,141 @@
-  <template lang="pug">
+<template lang="pug">
   div
-    pre(v-if="!$isProduction()").panel-number 5
-    div.panel-5.pt-5
+    pre(v-if="!$isProduction()").panel-number 4
+    div.panel-4.pb-5.pt-5
       div.container
         div.row.align-items-center
-          div.col-xs-12.col-md-12.text-center
-            img(src="../../assets/images/v4/mycure-modules-white-envelope.png" :class="{animate: scrollTop > 3100}").envelope
-            img(src="../../assets/images/v4/mycure-modules-notepad.png" :class="{animate: scrollTop > 3800}").notepad
-            center
+          div.col-xs-12.col-md-12.text-center.pb-4
+            center  
               div.hr-blue
             br
-            h1 Why MYCURE?
-            br
+            h1 Premium Modules
+            p Add these on top of the core modules to boost your digital clinic experience.
+          div.col-xs-12.col-md-7
+            img(width="100%" :src="parseImage(selectedModule.banner)")
+          div.col-xs-12.col-md-5
             div.row
-              div.col-xs-12.col-md-4.text-left.pt-2.pb-2.pl-2.pr-2
-                div.bg-white.pt-2.pb-2.pl-2.pr-2.shadow-3
-                  h2(style="margin-bottom: -2px;").color-primary {{'Patient-focused'}}
-                  p Your patients are our top priority.
+              div(v-for="(module, key) in premiumModules").col-xs-6.col-md-3
+                div(
+                  :id="'premiumModule_'+key"
+                  :class="{'shadow-5': module.isSelected}" 
+                  @mouseover="mouseHover(key, module)" 
+                  @mouseout="mouseOut(key, module)" 
+                  @click="selectModule(key, module)"
+                ).module-container.text-center
+                  img(width="45" :src="parseImage(module.icon)")
                   br
-                  div(style="height: 80px;").mb-5
-                    h6 
-                      img(width="35" src="../../assets/images/v4/mycure-homepage-benefits-patient-care.png")
-                      | Better patient care
-                    p Retrieve your patients’ medical records anytime you need to.
-                  div.mb-5
-                    h6 
-                      img(width="35" src="../../assets/images/v4/mycure-homepage-benefits-secure.png")
-                      | Secure medical data
-                    p We perform industry standard encryption to protect your patient records.
-                  div.mb-5
-                    h6 
-                      img(width="35" src="../../assets/images/v4/mycure-homepage-benefits-uptodate.png")
-                      | Up-to-date information
-                    p Create updated and accurate medical records for your patients’ safety.
-              div.col-xs-12.col-md-4.text-left.pt-2.pb-2.pl-2.pr-2
-                div.bg-white.pt-2.pb-2.pl-2.pr-2.shadow-3
-                  h2(style="margin-bottom: -2px;").color-primary Business-friendly
-                  p Get the best on your investments.
-                  br
-                  div(style="height: 80px;").mb-5
-                    h6
-                      img(width="35" src="../../assets/images/v4/mycure-homepage-benefits-cost-effective.png")
-                      | Cost-effective system
-                    p Get highly reduced operating expenses with automated record-keeping.
-                  div.mb-5
-                    h6 
-                      img(width="35" src="../../assets/images/v4/mycure-homepage-benefits-productive.png")
-                      | &nbsp;Increased productivity
-                    p Double your clinic efficiency, staff productivity and involvement.
-                  div.mb-5
-                    h6 
-                      img(width="35" src="../../assets/images/v4/mycure-homepage-benefits-prestige.png")
-                      | Added Prestige
-                    p Be a premium healthcare provider with an advanced Clinic Management System.
-              div.col-xs-12.col-md-4.text-left.pt-2.pb-2.pl-2.pr-2
-                div.bg-white.pt-2.pb-2.pl-2.pr-2.shadow-3
-                  h2(style="margin-bottom: -2px;").color-primary Flexible technology
-                  p MYCURE is engineered for your convenience.
-                  br
-                  div(style="height: 80px;").mb-5
-                    h6 
-                      img(width="35" src="../../assets/images/v4/mycure-homepage-benefits-upgrades.png")
-                      | Painless upgrades
-                    p Easily explore new features from regular product upgrades without the technical hassle.
-                  div.mb-5
-                    h6 
-                      img(width="35" src="../../assets/images/v4/mycure-homepage-benefits-storage.png")
-                      | Optimized file storage
-                    p Store and retrieve records anytime without stacking everything in your physical cabinets.
-                  div.mb-5
-                    h6 
-                      img(width="35" src="../../assets/images/v4/mycure-homepage-benefits-support.png")
-                      | Hands-on support
-                    p We hire humans (not bots) to provide you with technical assistance and awesome care!
-            
+                  p(style="line-height: 13px;")
+                    small {{ module.name }}
+            div.row.mt-3
+              div.col-xs-12.col-md-12
+                img(width="45" :src="parseImage(selectedModule.icon)")
+                span
+                  strong {{ selectedModule.name }}
+                br
+                div(style="height: 85px;")
+                  p {{ selectedModule.description }}
+                b-button(variant="primary" size="sm" :to="{name: 'join-today'}") SIGN UP NOW!
 </template>
 
 <script>
+  import modules from '../../assets/modules';
   export default {
     created() {
-      this.$scrollspy().subscribe({
-        next: (scrollTop) => this.scrollTop = scrollTop
+      this.premiumModules = modules.filter(module => {
+        if(module.type === 'premium') {
+          module.isSelected = false;
+          return module;
+        }
       });
+      this.premiumModules[0].isSelected = true;
+      this.selectedModule = this.premiumModules[0];
     },
     data() {
       return {
-        scrollTop: 0
+        premiumModules: [],
+        selectedModule: {}
       }
     },
-    destroyed() {
-      this.$removeScrollspy();
+    methods: {
+      mouseHover(key, m) {
+        if(!m.isSelected) {
+          this.$addClass(`premiumModule_${key}`, 'shadow-5');
+          this.$addClass(`premiumModule_${key}`, 'bg-white');
+        }
+      },
+      mouseOut(key, m) {
+        if(!m.isSelected) {
+          this.$removeClass(`premiumModule_${key}`, 'shadow-5');
+          this.$removeClass(`premiumModule_${key}`, 'bg-white');
+        }
+      },
+      selectModule(key, m) {
+        const modules = [];
+        this.premiumModules.forEach((m, i) => {
+          m.isSelected = false;
+          modules.push(m);
+        });
+        modules[key].isSelected = true;
+        this.selectedModule = m;
+        this.premiumModules = modules;
+      },
+      parseImage(img) {
+        return require('../../assets/images/v4/'+img)
+      }
     }
   }
 </script>
 
 <style scoped>
-  .panel-5 {
-    background-image: url('../../assets/images/v4/mycure-homepage-background-wood.png');
-    background-repeat: repeat;
-    padding-bottom: 100px;
+  .panel-4 {
+    /* min-height: 100vh; */
+    background-color: white;
   }
-  
-  .envelope {
-    width: 400px;
-    position: absolute;
-    left: -1000px;
-    top: 30px;
-    -webkit-transition: left 500ms;
-    transition: left 500ms;
+
+  .container {
+    /* padding-top: 50px; */
+    /* padding-bottom: 50px; */
   }
-  
-  .envelope.animate {
-    left: -395px;
+
+  .module-container {
+    /* background-color: white; */
+    padding: 10px;
+    margin: 0px;
+    border-radius: 5px;
   }
-  
-  .notepad {
-    width: 300px;
-    position: absolute;
-    right: -1000px;
-    bottom: -500px;
-    -webkit-transition: right 500ms;
-    transition: right 500ms;
+
+  .module-container:hover {
+    cursor: pointer;
   }
-  
-  .notepad.animate {
-    right: -320px;
+
+  @media (min-width: 576px) {
+    .container {
+      padding-top: 50px;
+      padding-bottom: 50px;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .panel-4 {
+      /* min-height: 100vh; */
+      /* background-color: white; */
+    }
+
+    .container {
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+
+    .row-container {
+      height: 100vh;
+    }
+  }
+
+  @media (min-width: 992px) {
+
+  }
+
+  @media (min-width: 1200px) {
+
   }
 </style>

@@ -1,51 +1,141 @@
 <template lang="pug">
   div
-    pre(v-if="!$isProduction()").panel-number 6
-    div.panel-6.pt-5.pb-5
+    pre(v-if="!$isProduction()").panel-number 5
+    div.panel-5.pb-5.pt-5
       div.container
         div.row.align-items-center
-          div.col-xs-12.col-md-12.text-center
-            center
+          div.col-xs-12.col-md-12.text-center.pb-4
+            center  
               div.hr-blue
             br
-            h1 Heart-crafted Customer Care
-            br
-            p We’re here with you throughout the transition process because more often than not, it’s hard to learn new technology!
-            p(style="line-height:.5em;") We guarantee that we will meet your needs; if we cannot, then we will meet you.
-            br
-            div.row.justify-content-center(style="margin-top:1.5em;")
-              div.col-xs-12.col-md-3.pl-3.pr-3
-                img(width="100" src="../../assets/images/v4/mycure-homepage-image-user-friendly-icon.png").mb-3
-                div.text-center
-                  h6 User-friendly Interface
-                  p Being tech-savvy is not a requirement. Just tap, type, and go!
-              div.col-xs-12.col-md-3.pl-3.pr-3
-                img(width="100" src="../../assets/images/v4/mycure-homepage-image-customizable-icon.png").mb-3
+            h1 Add-Ons
+            p You get these complimentary features whenever you need them.
+          div.col-xs-12.col-md-5
+            div.row
+              div(v-for="(module, key) in adOnsModules").col-xs-6.col-md-3
+                div(
+                  :id="'adOnModule_'+key"
+                  :class="{'shadow-5': module.isSelected}" 
+                  @mouseover="mouseHover(key, module)" 
+                  @mouseout="mouseOut(key, module)" 
+                  @click="selectModule(key, module)"
+                ).module-container.text-center
+                  img(width="45" :src="parseImage(module.icon)")
+                  br
+                  p(style="line-height: 13px;")
+                    small {{ module.name }}
+            div.row.mt-3
+              div.col-xs-12.col-md-12
+                img(width="45" :src="parseImage(selectedModule.icon)")
+                span
+                  strong {{ selectedModule.name }}
                 br
-                div.text-center
-                  strong Customizable Content
-                  p You might ask if we can add this or change that. The answer is usually yes.
-              div.col-xs-12.col-md-3.pl-3.pr-3
-                img(width="100" src="../../assets/images/v4/mycure-homepage-image-user-hands-on-training-icon.png").mb-3
-                br
-                div.text-center
-                  strong Hands-on Training
-                  p We will be there with you as you learn a new skill and transform your practice.
-              div.col-xs-12.col-md-3.pl-3.pr-3
-                img(width="100" src="../../assets/images/v4/mycure-homepage-image-support-icon.png").mb-3
-                br
-                div.text-center
-                  strong Responsive Support Team
-                  p With a bit of technology and time management, we found a way to serve you faster.
-            
+                div(style="height: 85px;")
+                  p {{ selectedModule.description }}
+                b-button(variant="primary" size="sm" :to="{name: 'join-today'}" :class="{'mb-3': (wXS || wSM)}") SIGN UP NOW!
+          div.col-xs-12.col-md-7
+            img(width="100%" :src="parseImage(selectedModule.banner)")
 </template>
 
 <script>
+  import modules from '../../assets/modules';
+  export default {
+    created() {
+      this.adOnsModules = modules.filter(module => {
+        if(module.type === 'ad-on') {
+          module.isSelected = false;
+          return module;
+        }
+      });
+      this.adOnsModules[0].isSelected = true;
+      this.selectedModule = this.adOnsModules[0];
+    },
+    data() {
+      return {
+        adOnsModules: [],
+        selectedModule: {}
+      }
+    },
+    methods: {
+      mouseHover(key, m) {
+        if(!m.isSelected) {
+          this.$addClass(`adOnModule_${key}`, 'shadow-5');
+          this.$addClass(`adOnModule_${key}`, 'bg-white');
+        }
+      },
+      mouseOut(key, m) {
+        if(!m.isSelected) {
+          this.$removeClass(`adOnModule_${key}`, 'shadow-5');
+          this.$removeClass(`adOnModule_${key}`, 'bg-white');
+        }
+      },
+      selectModule(key, m) {
+        const modules = [];
+        this.adOnsModules.forEach((m, i) => {
+          m.isSelected = false;
+          modules.push(m);
+        });
+        modules[key].isSelected = true;
+        this.selectedModule = m;
+        this.adOnsModules = modules;
+      },
+      parseImage(img) {
+        return require('../../assets/images/v4/'+img)
+      }
+    }
+  }
 </script>
 
 <style scoped>
-  .panel-6 {
-    /* height: 100vh; */
-    background-color: white;
+  .panel-5 {
+    /* min-height: 100vh; */
+    /* background-color: red; */
+  }
+
+  .container {
+    /* padding-top: 50px; */
+    /* padding-bottom: 50px; */
+  }
+
+  .module-container {
+    /* background-color: white; */
+    padding: 10px;
+    margin: 0px;
+    border-radius: 5px;
+  }
+
+  .module-container:hover {
+    cursor: pointer;
+  }
+
+  @media (min-width: 576px) {
+    .container {
+      padding-top: 50px;
+      padding-bottom: 50px;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .panel-5 {
+      /* min-height: 100vh; */
+      /* background-color: white; */
+    }
+
+    .container {
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+
+    .row-container {
+      height: 100vh;
+    }
+  }
+
+  @media (min-width: 992px) {
+
+  }
+
+  @media (min-width: 1200px) {
+
   }
 </style>

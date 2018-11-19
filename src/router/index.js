@@ -39,11 +39,11 @@ export default new Router({
       name: 'our-story',
       component: ourStory
     },
-    {
-      path: '/modules',
-      name: 'modules',
-      component: modules
-    },
+    // {
+    //   path: '/modules',
+    //   name: 'modules',
+    //   component: modules
+    // },
     {
       path: '/pricing',
       name: 'pricing',

@@ -21,15 +21,15 @@
                 img(width="50" src="../../assets/images/v4/mycure-play-btn.png").media-object
               div.media-body
                 h4.media-heading(style="margin-top:10px; margin-left:10px;") Watch Video
-          div.row
-            div.col-xs-12.col-md-6
-              div(@click="goto('cms')").product-card
-                img(width="90%" src="../../assets/images/v4/mycure-home-product-card-clinic-management-system.png" style="margin:10px;")
-                h5(align="center") Clinic Management System
-            div.col-xs-12.col-md-6
-              div(@click="goto('his')").product-card
-                img(width="90%" src="../../assets/images/v4/mycure-home-product-card-hospital-information-system.png" style="margin:10px;")
-                h5(align="center") Hospital Information System
+        div.row
+          div.col-xs-12.col-md-5
+            div(@click="goto('cms')").product-card
+              img(width="100%" src="../../assets/images/v4/mycure-home-product-card-clinic-management-system.png" style="margin:10px;")
+              h5(align="center") Clinic Management System
+          div.col-xs-12.col-md-5
+            div(@click="goto('his')").product-card
+              img(width="100%" src="../../assets/images/v4/mycure-home-product-card-hospital-information-system.png" style="margin:10px;")
+              h5(align="center") Hospital Information System
 
     b-modal(
       size="lg"
@@ -97,7 +97,7 @@
   .product-card {
     background-color: white;
     margin: 20px 0 15px 0;
-    padding: 10px;
+    padding: 10px 20px 10px 5px;
     -webkit-box-shadow: 1px 4px 9px -2px #000000;
     -moz-box-shadow: 1px 4px 9px -2px #000000;
     box-shadow: 1px 4px 9px -2px #000000;
@@ -129,8 +129,8 @@
       height: auto;
       background-color: white !important;
       background-image: url('../../assets/images/v4/mycure-home-super-hero-doctor.png');
-      background-repeat: repeat-x;
-      background-position: right bottom;
+      background-repeat: no-repeat;
+      background-position: center bottom;
       background-size: 1000px;
     }
     
@@ -139,9 +139,9 @@
       padding-bottom: 0;
     }
 
-    .row-container {
-      height: 90vh;
-    }
+    /* .row-container {
+      min-height: 90vh;
+    } */
   }
 
   @media (min-width: 992px) {
@@ -149,8 +149,8 @@
       height: auto;
       background-color: white !important;
       background-image: url('../../assets/images/v4/mycure-home-super-hero-doctor.png');
-      background-repeat: repeat-x;
-      background-position: right bottom;
+      background-repeat: no-repeat;
+      background-position: center bottom;
       background-size: 1600px;
     }
   }

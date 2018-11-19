@@ -1,116 +1,135 @@
 <template lang="pug">
-  div.panel-4
-    pre(v-if="!$isProduction()").panel-number 4
-    b-container
-      b-row.align-items-center
-        b-col(xs="12" md="12").text-center.pt-5.pb-5
-          img(src="../../assets/images/v4/mycure-modules-coffee.png" :class="{'animate': scrollTop > 2200}").coffee
-          img(src="../../assets/images/v4/mycure-modules-chickpeas.png" :class="{'animate': scrollTop > 2600}").peas
-          center
-            div.hr-blue
-          br
-          h1 Protect your patient’s medical records
+  div
+    pre(v-if="!$isProduction()").panel-number 3
+    div.panel-3.pb-5.pt-5
+      div.container
+        div.row.align-items-center
+          div.col-xs-12.col-md-12.text-center.pb-4
+            center  
+              div.hr-blue
             br
-            | the smarter way.
-          br
-          p Keeping them secure is our #1 priority.
-          p(style="line-height:.5em;") With MYCURE , you’ll get: 
-          br
-          b-row.justify-content-center
-            b-col(xs="12" md="2")
-              div.feature-item
-                img(width="70" src="../../assets/images/v4/mycure-homepage-dpa-ssla.png").mb-2
-                h6 Grade A+ 
-                  br 
-                  | SSL
-            b-col(xs="12" md="2")
-              div.feature-item
-                img(width="70" src="../../assets/images/v4/mycure-homepage-dpa-encryption.png").mb-2
-                h6 Data 
+            h1 Core Modules
+            p Professional systems that are essential for your clinic.
+          div.col-xs-12.col-md-5
+            div.row
+              div(v-for="(module, key) in coreModules").col-xs-6.col-md-3
+                div(
+                  :id="'coreModule_'+key"
+                  :class="{'shadow-5': module.isSelected}" 
+                  @mouseover="mouseHover(key, module)" 
+                  @mouseout="mouseOut(key, module)" 
+                  @click="selectModule(key, module)"
+                ).module-container.text-center
+                  img(width="45" :src="parseImage(module.icon)")
                   br
-                  | Encryption
-            b-col(xs="12" md="2")
-              div.feature-item
-                img(width="70" src="../../assets/images/v4/mycure-homepage-dpa-user-access.png").mb-2
-                h6 User Designated 
-                  br 
-                  | Access
-            b-col(xs="12" md="2")
-              div.feature-item
-                img(width="70" src="../../assets/images/v4/mycure-homepage-dpa-cloud.png").mb-2
-                h6 Secure Cloud
-                  br
-                  | Hosting
-            b-col(xs="12" md="2")
-              div.feature-item
-                img(width="70" src="../../assets/images/v4/mycure-homepage-dpa-compliance.png").mb-2
-                h6 DPA 
-                  br
-                  | Compliance
-          div.col-xs-12.pt-5
-            b-button(variant="primary" size="sm" :to="{name: 'data-privacy-for-physicians'}").shadow-5 DATA PRIVACY FOR PHYSICIANS
+                  p(style="line-height: 13px;")
+                    small {{ module.name }}
+            div.row.mt-3
+              div.col-xs-12.col-md-12
+                img(width="45" :src="parseImage(selectedModule.icon)")
+                span
+                  strong {{ selectedModule.name }}
+                br
+                div(style="height: 130px;")
+                  p.mt-2 
+                    i {{ selectedModule.tagLine }}
+                  p {{ selectedModule.description }}
+                b-button(variant="primary" size="sm" :to="{name: 'join-today'}" :class="{'mb-3': (wXS || wSM)}") SIGN UP NOW!
+          div.col-xs-12.col-md-7
+            img(width="100%" :src="parseImage(selectedModule.banner)")
 </template>
 
 <script>
+  import modules from '../../assets/modules';
   export default {
     created() {
-      this.$scrollspy().subscribe({
-        next: (scrollTop) => this.scrollTop = scrollTop
+      this.coreModules = modules.filter(module => {
+        if(module.type === 'core') {
+          module.isSelected = false;
+          return module;
+        }
       });
+      this.coreModules[0].isSelected = true;
+      this.selectedModule = this.coreModules[0];
     },
     data() {
       return {
-        scrollTop: 0
+        coreModules: [],
+        selectedModule: {}
       }
     },
-    destroyed() {
-      this.$removeScrollspy();
+    methods: {
+      mouseHover(key, m) {
+        if(!m.isSelected) {
+          this.$addClass(`coreModule_${key}`, 'shadow-5');
+          this.$addClass(`coreModule_${key}`, 'bg-white');
+        }
+      },
+      mouseOut(key, m) {
+        if(!m.isSelected) {
+          this.$removeClass(`coreModule_${key}`, 'shadow-5');
+          this.$removeClass(`coreModule_${key}`, 'bg-white');
+        }
+      },
+      selectModule(key, m) {
+        const modules = [];
+        this.coreModules.forEach((m, i) => {
+          m.isSelected = false;
+          modules.push(m);
+        });
+        modules[key].isSelected = true;
+        this.selectedModule = m;
+        this.coreModules = modules;
+      },
+      parseImage(img) {
+        return require('../../assets/images/v4/'+img)
+      }
     }
   }
 </script>
 
 <style scoped>
-  .panel-4 {
-    /* height: 100vh; */
-    /* background-color: white; */
+  .panel-3 {
+    /* min-height: 100vh; */
+    /* background-color: red; */
   }
 
-  .coffee, .peas {
-    display: none;
+  .container {
+    /* padding-top: 50px; */
+    /* padding-bottom: 50px; */
+  }
+
+  .module-container {
+    /* background-color: white; */
+    padding: 10px;
+    margin: 5px;
+    border-radius: 5px;
+  }
+
+  .module-container:hover {
+    cursor: pointer;
   }
 
   @media (min-width: 576px) {
-    .coffee, .peas {
-      display: none;
+    .container {
+      padding-top: 50px;
+      padding-bottom: 50px;
     }
   }
 
   @media (min-width: 768px) {
-    .coffee {
-      width: 300px;
-      display: inline;
-      position: absolute;
-      left: -1000px;
-      top: -150px;
-      -webkit-transition: left 500ms;
-      transition: left 500ms;
+    .panel-3 {
+      /* min-height: 100vh; */
+      /* background-color: white; */
     }
 
-    .coffee.animate {
-      left: -200px;
+    .container {
+      padding-top: 0;
+      padding-bottom: 0;
     }
 
-    .peas {
-      display: inline;
-      position: absolute;
-      right: -1000px;
-      bottom: -130px;
-      -webkit-transition: right 500ms;
-      transition: right 500ms;
-    }
-
-    .peas.animate {
-      right: -300px;
+    .row-container {
+      height: 100vh;
     }
   }
 
