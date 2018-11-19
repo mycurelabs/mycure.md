@@ -1,6 +1,8 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import home from '@/components/home';
+import cms from '@/components/cms';
+import his from '@/components/his';
 import ourStory from '@/components/our-story';
 import modules from '@/components/modules';
 import pricing from '@/components/pricing';
@@ -21,6 +23,16 @@ export default new Router({
       path: '/',
       name: 'home',
       component: home
+    },
+    {
+      path: '/cms',
+      name: 'cms',
+      component: cms
+    },
+    {
+      path: '/his',
+      name: 'his',
+      component: his
     },
     {
       path: '/our-story',

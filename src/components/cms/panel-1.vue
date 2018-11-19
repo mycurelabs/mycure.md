@@ -8,7 +8,7 @@
           //- h2 MYCURE | Modules
           //- div.hr-blue
           br
-          h1 Customize your own MYCURE System.
+          h1 CMS
           br
           span(style="color: #acadae")
             b
@@ -19,39 +19,17 @@
             br
             | process digital medical records of your patients.
           br
-          //- b-button(variant="primary" size="sm" :to="{name: 'join-today'}") GET MYCURE
+          b-button(variant="primary" size="sm" :to="{name: 'join-today'}") GET MYCURE
           //- img(width="100%" src="../../assets/images/v4/mycure-modules-mobile-drawing.jpg")
-          div(v-b-modal="'modal1'").custom-play-button
-            div.media
-              div.media-left
-                img(width="50" src="http://i.imgur.com/Gt1xIqP.png").media-object
-              div.media-body
-                h4.media-heading Watch Video
           div.row
             div.col-xs-12.col-md-6
               div(@click="goto('cms')").product-card
-                img(width="100%" src="http://i.imgur.com/Gt1xIqP.png")
+                img(src="")
                 h5(align="center") Clinic Management System
             div.col-xs-12.col-md-6
               div(@click="goto('his')").product-card
-                img(width="100%" src="http://i.imgur.com/Gt1xIqP.png")
+                img(src="")
                 h5(align="center") Hospital Information System
-
-    b-modal(
-      size="lg"
-      hide-footer 
-      hide-header 
-      centered 
-      @shown="showVid = true"
-      @hidden="showVid = false"
-    )#modal1
-      iframe(
-        v-if="showVid"
-        id="ytplayer" 
-        type="text/html" width="100%" height="450"
-        src="https://www.youtube.com/embed/siFBgZMt26k?rel=0&amp;showinfo=0"
-        frameborder="0"
-      )
 </template>
 
 <script>
@@ -60,23 +38,9 @@
     components: {
       mcNavbarHome
     },
-    data() {
-      return {
-        videoId: 'siFBgZMt26k',
-        showVid: true
-      }
-    },
     methods: {
       goto(page) {
         this.$router.push({name: page});
-      },
-      addVid() {
-        console.log('Add Vid');
-        this.videoId = 'siFBgZMt26k';
-      },
-      removeVid() {
-        console.log('Remove Vid');
-        this.videoId = null;
       }
     }
   }
@@ -92,25 +56,9 @@
     background-size: 400px;
   } */
 
-  .custom-play-button {
-
-  }
-
-  .custom-play-button:hover {
-    cursor: pointer;
-  }
-
   .product-card {
     background-color: white;
-    margin: 20px 0 15px 0;
-    padding: 10px;
-    -webkit-box-shadow: 1px 4px 9px -2px #000000;
-    -moz-box-shadow: 1px 4px 9px -2px #000000;
-    box-shadow: 1px 4px 9px -2px #000000;
-  }
-
-  .product-card:hover {
-    cursor: pointer;
+    margin: 15px 0 15px 0;
   }
 
   .container {
