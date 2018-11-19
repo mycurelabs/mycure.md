@@ -1,7 +1,7 @@
 <template lang="pug">
   div#top
     panel-1
-    panel-2
+    //- panel-2
     panel-3-1
     flip
     //- panel-3-2

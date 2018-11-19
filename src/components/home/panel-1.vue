@@ -8,33 +8,27 @@
           //- h2 MYCURE | Modules
           //- div.hr-blue
           br
-          h1 Customize your own MYCURE System.
+          h1 Enabling Heroes.
+          h1 Saving Lives.
           br
-          span(style="color: #acadae")
-            b
-              i Because every clinic has its unique way of getting things done.
-          br
-          br
-          p MYCURE is a Clinic Management System designed to securely 
-            br
-            | process digital medical records of your patients.
-          br
+          p Advanced tech tools for our everyday heroes - the doctors and everyone who care the extra mile. Enabling them to become better equipped and thus saving more lives.
+
           //- b-button(variant="primary" size="sm" :to="{name: 'join-today'}") GET MYCURE
           //- img(width="100%" src="../../assets/images/v4/mycure-modules-mobile-drawing.jpg")
           div(v-b-modal="'modal1'").custom-play-button
             div.media
               div.media-left
-                img(width="50" src="http://i.imgur.com/Gt1xIqP.png").media-object
+                img(width="50" src="../../assets/images/v4/mycure-play-btn.png").media-object
               div.media-body
-                h4.media-heading Watch Video
+                h4.media-heading(style="margin-top:10px; margin-left:10px;") Watch Video
           div.row
             div.col-xs-12.col-md-6
               div(@click="goto('cms')").product-card
-                img(width="100%" src="http://i.imgur.com/Gt1xIqP.png")
+                img(width="90%" src="../../assets/images/v4/mycure-home-product-card-clinic-management-system.png" style="margin:10px;")
                 h5(align="center") Clinic Management System
             div.col-xs-12.col-md-6
               div(@click="goto('his')").product-card
-                img(width="100%" src="http://i.imgur.com/Gt1xIqP.png")
+                img(width="90%" src="../../assets/images/v4/mycure-home-product-card-hospital-information-system.png" style="margin:10px;")
                 h5(align="center") Hospital Information System
 
     b-modal(
@@ -49,7 +43,7 @@
         v-if="showVid"
         id="ytplayer" 
         type="text/html" width="100%" height="450"
-        src="https://www.youtube.com/embed/siFBgZMt26k?rel=0&amp;showinfo=0"
+        src="https://www.youtube.com/embed/h2I4h-IhEKU?rel=0&amp;showinfo=0"
         frameborder="0"
       )
 </template>
@@ -62,7 +56,7 @@
     },
     data() {
       return {
-        videoId: 'siFBgZMt26k',
+        videoId: 'h2I4h-IhEKU',
         showVid: true
       }
     },
@@ -72,7 +66,7 @@
       },
       addVid() {
         console.log('Add Vid');
-        this.videoId = 'siFBgZMt26k';
+        this.videoId = 'h2I4h-IhEKU';
       },
       removeVid() {
         console.log('Remove Vid');

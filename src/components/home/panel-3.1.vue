@@ -26,8 +26,54 @@
                 p Like magic, but scientifically-blended. 😉
               b-col(xs="12" md="6").pb-5
                 img(width="100%" src="../../assets/images/v4/mycure-website-animated-syncbase-horizontal.gif")
-   
+              //start mew video
+              b-col(xs="12" md="8")
+                center
+                  b-button(variant="primary" size="sm" v-b-modal="'modal1'" style="text-align:center;") WATCH VIDEO   
+    b-modal(
+      size="lg"
+      hide-footer 
+      hide-header 
+      centered 
+      @shown="showVid = true"
+      @hidden="showVid = false"
+    )#modal1
+      iframe(
+        v-if="showVid"
+        id="ytplayer" 
+        type="text/html" width="100%" height="450"
+        src="https://www.youtube.com/embed/3MbUJd1g-lc?rel=0&amp;showinfo=0"
+        frameborder="0"
+      )
 </template>
+
+<script>
+  import mcNavbarHome from '../commons/mc-navbar-home';
+  export default {
+    components: {
+      mcNavbarHome
+    },
+    data() {
+      return {
+        videoId: '3MbUJd1g-lc',
+        showVid: true
+      }
+    },
+    methods: {
+      goto(page) {
+        this.$router.push({name: page});
+      },
+      addVid() {
+        console.log('Add Vid');
+        this.videoId = '3MbUJd1g-lc';
+      },
+      removeVid() {
+        console.log('Remove Vid');
+        this.videoId = null;
+      }
+    }
+  }
+</script>
 
 <script>
   import mcRadioGroupImage from '../commons/mc-radio-group-image';
