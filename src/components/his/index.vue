@@ -1,16 +1,16 @@
 <template lang="pug">
   div#top
     panel-1
-    panel-2
-    panel-3-1
-    flip
+    //- panel-2
+    //- panel-3-1
+    //- flip
     //- panel-3-2
-    panel-4
-    panel-5
-    panel-6
-    panel-8
-    panel-7
-    panel-9(bg="white")
+    //- panel-4
+    //- panel-5
+    //- panel-6
+    //- panel-8
+    //- panel-7
+    //- panel-9(bg="white")
     mc-footer
       
 </template>

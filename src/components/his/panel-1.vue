@@ -8,28 +8,20 @@
           //- h2 MYCURE | Modules
           //- div.hr-blue
           br
-          h1 HIS
+          h1 MYCURE | Hospital Information System
           br
           span(style="color: #acadae")
             b
-              i Because every clinic has its unique way of getting things done.
+              i An all-around solution for your outpatient, multispecialty or specialized clinics.
           br
           br
-          p MYCURE is a Clinic Management System designed to securely 
-            br
-            | process digital medical records of your patients.
+          p Imagine simplifying all of your clinic’s paperwork -- Faster transactions, more productive staff, reduced paper clutter, and secure, integrated data.
+
+          p Our professionals will formulate the perfect mix for your health facility in less than 24 hours.
           br
           b-button(variant="primary" size="sm" :to="{name: 'join-today'}") GET MYCURE
           //- img(width="100%" src="../../assets/images/v4/mycure-modules-mobile-drawing.jpg")
-          div.row
-            div.col-xs-12.col-md-6
-              div(@click="goto('cms')").product-card
-                img(src="")
-                h5(align="center") Clinic Management System
-            div.col-xs-12.col-md-6
-              div(@click="goto('his')").product-card
-                img(src="")
-                h5(align="center") Hospital Information System
+
 </template>
 
 <script>
@@ -82,10 +74,10 @@
     .panel-1 {
       height: auto;
       background-color: white !important;
-      background-image: url('../../assets/images/v4/mycure-home-super-hero-doctor.png');
-      background-repeat: repeat-x;
-      background-position: right bottom;
-      background-size: 1000px;
+      background-image: url('../../assets/images/v4/mycure-home-his-image.png');
+      background-repeat: no-repeat;
+      background-position: right center;
+      background-size: 500px;
     }
     
     .container {
@@ -102,10 +94,10 @@
     .panel-1 {
       height: auto;
       background-color: white !important;
-      background-image: url('../../assets/images/v4/mycure-home-super-hero-doctor.png');
-      background-repeat: repeat-x;
-      background-position: right bottom;
-      background-size: 1600px;
+      background-image: url('../../assets/images/v4/mycure-home-his-image.png');
+      background-repeat: no-repeat;
+      background-position: right center;
+      background-size: 600px;
     }
   }
 
