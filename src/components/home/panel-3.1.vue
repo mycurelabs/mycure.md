@@ -1,12 +1,15 @@
 <template lang="pug">
   div
     pre(v-if="!$isProduction()").panel-number 3.1
-    div.panel-3.pt-5
+    div.panel-3.pt-5.pb-5
       b-container
         b-row.align-items-center
           b-col(xs="12" md="12").text-center
             b-row.wrap.align-items-center.justify-content-md-center
               b-col(xs="12" md="8")
+                br
+                br
+                br
                 center
                   div.hr-blue
                 br
@@ -29,7 +32,7 @@
               //start mew video
               b-col(xs="12" md="8")
                 center
-                  b-button(variant="primary" size="sm" v-b-modal="'modal1'" style="text-align:center;") WATCH VIDEO   
+                  b-button(variant="primary" size="sm" v-b-modal="'modal2'" style="text-align:center;") WATCH VIDEO   
     b-modal(
       size="lg"
       hide-footer 
@@ -37,7 +40,7 @@
       centered 
       @shown="showVid = true"
       @hidden="showVid = false"
-    )#modal1
+    )#modal2
       iframe(
         v-if="showVid"
         id="ytplayer" 
@@ -100,6 +103,7 @@
 
 <style scoped>
   .panel-3 {
+    /* margin-top: 80px; */
     background-color: white;
   }
 </style>

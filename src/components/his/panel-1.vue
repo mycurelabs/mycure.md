@@ -8,16 +8,14 @@
           //- h2 MYCURE | Modules
           //- div.hr-blue
           br
-          h1 MYCURE | Hospital Information System
+          h1 MYCURE Hospital Information System (Beta)
           br
           span(style="color: #acadae")
             b
-              i An all-around solution for your outpatient, multispecialty or specialized clinics.
+              i An affordable, custom-fit solution for your hospital operations and management needs
           br
           br
-          p Imagine simplifying all of your clinic’s paperwork -- Faster transactions, more productive staff, reduced paper clutter, and secure, integrated data.
-
-          p Our professionals will formulate the perfect mix for your health facility in less than 24 hours.
+          p MYCURE HIS is now on Beta! Be the first to avail for a fraction of the market price. Limited slots available until December 31, 2018.
           br
           b-button(variant="primary" size="sm" :to="{name: 'join-today'}") GET MYCURE
         div.col-xs-12.col-md-6

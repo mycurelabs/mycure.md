@@ -9,19 +9,16 @@
           //- div.hr-blue
           br
           h1 Enabling Heroes.
-          h1 Saving Lives.
-          br
-          p Advanced tech tools for our everyday heroes - the doctors and everyone who care the extra mile. Enabling them to become better equipped and thus saving more lives.
-
-          //- b-button(variant="primary" size="sm" :to="{name: 'join-today'}") GET MYCURE
-          //- img(width="100%" src="../../assets/images/v4/mycure-modules-mobile-drawing.jpg")
+          h1(style="margin-top: -10px;") Saving Lives.
+          p MYCURE builds advanced tech tools for our everyday heroes - doctors, medical practitioners, and people who care the extra mile.
           div(v-b-modal="'modal1'").custom-play-button
             div.media
               div.media-left
-                img(width="50" src="../../assets/images/v4/mycure-play-btn.png").media-object
+                img(width="30" src="../../assets/images/v4/mycure-play-btn.png").media-object
               div.media-body
-                h4.media-heading(style="margin-top:10px; margin-left:10px;") Watch Video
-        div.row
+                h5.media-heading(style="margin-top:3px; margin-left:10px;") Watch Video
+        
+        div.product-card-container.row.pl-3
           div.col-xs-12.col-md-5
             div(@click="goto('cms')").product-card
               img(width="100%" src="../../assets/images/v4/mycure-home-product-card-clinic-management-system.png" style="margin:10px;")
@@ -94,6 +91,10 @@
     cursor: pointer;
   }
 
+  .product-card-container {
+    margin-bottom: -80px;
+  }
+
   .product-card {
     background-color: white;
     margin: 20px 0 15px 0;
@@ -130,8 +131,8 @@
       background-color: white !important;
       background-image: url('../../assets/images/v4/mycure-home-super-hero-doctor.png');
       background-repeat: no-repeat;
-      background-position: center bottom;
-      background-size: 1000px;
+      background-position: bottom right;
+      background-size: cover;      
     }
     
     .container {
@@ -150,8 +151,8 @@
       background-color: white !important;
       background-image: url('../../assets/images/v4/mycure-home-super-hero-doctor.png');
       background-repeat: no-repeat;
-      background-position: center bottom;
-      background-size: 1600px;
+      background-position: bottom right;
+      background-size: cover;
     }
   }
 
