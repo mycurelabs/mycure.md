@@ -5,7 +5,7 @@ import cms from '@/components/cms';
 import his from '@/components/his';
 import ourStory from '@/components/our-story';
 // import modules from '@/components/modules';
-import pricing from '@/components/pricing';
+import signup from '@/components/signup';
 import printDemo from '@/components/print-demo';
 import downloadExecutable from '@/components/download-executable';
 import terms from '@/components/terms';
@@ -45,9 +45,9 @@ export default new Router({
     //   component: modules
     // },
     {
-      path: '/pricing',
-      name: 'pricing',
-      component: pricing
+      path: '/signup',
+      name: 'signup',
+      component: signup
     },
     {
       path: '/terms',

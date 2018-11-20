@@ -1,32 +1,34 @@
 <template lang="pug">
-  div.panel-1
-    pre(v-if="!$isProduction()").panel-number 1
-    mc-navbar-home
-    div.container
-      div.row-container.row.align-items-center
-        div.col-xs-12.col-md-6
-          //- h2 MYCURE | Modules
-          //- div.hr-blue
-          br
-          h1 Enabling Heroes.
-          h1(style="margin-top: -10px;") Saving Lives.
-          p MYCURE builds advanced tech tools for our everyday heroes - doctors, medical practitioners, and people who care the extra mile.
-          div(v-b-modal="'modal1'").custom-play-button
-            div.media
-              div.media-left
-                img(width="30" src="../../assets/images/v4/mycure-play-btn.png").media-object
-              div.media-body
-                h5.media-heading(style="margin-top:3px; margin-left:10px;") Watch Video
-        
-        div.product-card-container.row.pl-3
-          div.col-xs-12.col-md-5
-            div(@click="goto('cms')").product-card
-              img(width="100%" src="../../assets/images/v4/mycure-home-product-card-clinic-management-system.png" style="margin:10px;")
-              h5(align="center") Clinic Management System
-          div.col-xs-12.col-md-5
-            div(@click="goto('his')").product-card
-              img(width="100%" src="../../assets/images/v4/mycure-home-product-card-hospital-information-system.png" style="margin:10px;")
-              h5(align="center") Hospital Information System
+  div
+    div.panel-1
+      pre(v-if="!$isProduction()").panel-number 1
+      mc-navbar-home
+      div.container
+        div.row
+          div.col-xs-12.col-md-6
+            br
+            h1 Enabling Heroes.
+            h1(style="margin-top: -10px;") Saving Lives.
+            p MYCURE builds advanced tech tools for our everyday heroes - doctors, medical practitioners, and people who care the extra mile.
+            div(v-b-modal="'homeVid'").custom-play-button
+              div.media
+                div.media-left
+                  img(width="20" src="../../assets/images/v4/mycure-play-btn.png").media-object
+                div.media-body
+                  label(style="margin-top:3px; margin-left:10px; font-size: 14px; font-weight: bold;") Watch Video
+            div.product-card-container.row
+              div.col-md-1
+              div.col-xs-12.col-md-5
+                div(@click="goto('cms')").product-card
+                  img(width="100%" src="../../assets/images/v4/mycure-home-product-card-clinic-management-system.png" style="margin:10px;")
+                  h5(align="center") Clinic Management System
+              div.col-xs-12.col-md-5
+                div(@click="goto('his')").product-card
+                  img(width="100%" src="../../assets/images/v4/mycure-home-product-card-hospital-information-system.png" style="margin:10px;")
+                  h5(align="center") Hospital Information System
+          
+          div(style="height: 490px;").col-xs-12.col-md-6
+              img(width="80%" src="../../assets/images/v4/mycure-home-super-hero-doctor-main.png" style="position: absolute; bottom: -2px; right: 0px;")
 
     b-modal(
       size="lg"
@@ -35,12 +37,12 @@
       centered 
       @shown="showVid = true"
       @hidden="showVid = false"
-    )#modal1
+    )#homeVid
       iframe(
         v-if="showVid"
         id="ytplayer" 
         type="text/html" width="100%" height="450"
-        src="https://www.youtube.com/embed/h2I4h-IhEKU?rel=0&amp;showinfo=0"
+        src="https://www.youtube.com/embed/9sFxkKZktXs?rel=0&showinfo=0"
         frameborder="0"
       )
 </template>
@@ -53,7 +55,7 @@
     },
     data() {
       return {
-        videoId: 'h2I4h-IhEKU',
+        videoId: '9sFxkKZktXs',
         showVid: true
       }
     },
@@ -63,7 +65,7 @@
       },
       addVid() {
         console.log('Add Vid');
-        this.videoId = 'h2I4h-IhEKU';
+        this.videoId = '9sFxkKZktXs';
       },
       removeVid() {
         console.log('Remove Vid');
@@ -92,12 +94,12 @@
   }
 
   .product-card-container {
-    margin-bottom: -80px;
+    margin-bottom: -100px;
   }
 
   .product-card {
     background-color: white;
-    margin: 20px 0 15px 0;
+    margin: 15px 0 15px 0;
     padding: 10px 20px 10px 5px;
     -webkit-box-shadow: 1px 4px 9px -2px #000000;
     -moz-box-shadow: 1px 4px 9px -2px #000000;
@@ -127,12 +129,12 @@
 
   @media (min-width: 768px) {
     .panel-1 {
-      height: auto;
+      height: 550px;
       background-color: white !important;
       background-image: url('../../assets/images/v4/mycure-home-super-hero-doctor.png');
-      background-repeat: no-repeat;
-      background-position: bottom right;
-      background-size: cover;      
+      background-repeat: repeat-x;
+      background-position: center 50px;
+      background-size: contain;
     }
     
     .container {
@@ -147,12 +149,12 @@
 
   @media (min-width: 992px) {
     .panel-1 {
-      height: auto;
+      height: 550px;
       background-color: white !important;
       background-image: url('../../assets/images/v4/mycure-home-super-hero-doctor.png');
-      background-repeat: no-repeat;
-      background-position: bottom right;
-      background-size: cover;
+      background-repeat: repeat-x;
+      background-position: center 50px;
+      background-size: contain;
     }
   }
 

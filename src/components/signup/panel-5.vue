@@ -8,7 +8,7 @@
             center
               div.hr-blue
             br
-            h1 Not sure about what you're looking for?
+            h1 Not sure what you're looking for?
             br
             br
             p 

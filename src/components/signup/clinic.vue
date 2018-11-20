@@ -8,43 +8,41 @@
             center
               div.hr-blue
             br
-            h1 MYCURE App for Doctors
+            h1 MYCURE for Clinics
             br
-            p An essential record-keeping tool for all practicing physicians.
-            img(src="../../assets/images/v4/mycure-modules-plantg.png" :class="{'animate': scrollTop > 700}").plant
+            p An all-around solution for your outpatient, multispecialty or specialized clinics.
+            //- img(src="../../assets/images/v4/mycure-modules-plantg.png" :class="{'animate': scrollTop > 700}").plant
         b-row.row.align-items-center.justify-content-md-center
           b-col(xs="12" md="5").pl-5.pr-5.text-center
-            img(width="100%" src="../../assets/images/v4/mycure-pricing-doctors-app.png")
+            img(width="100%" src="../../assets/images/v4/mycure-pricing-cms.png")
           b-col(xs="12" md="4")
-            p 
-            h2 It's always free.
             |
             br
-            |✓ Multiple clinics
+            | ✓ E-Medical Records
             br 
-            | ✓ 500 patient profiles
+            | ✓ Advanced Billing
             br 
-            | ✓ 1GB storage
+            | ✓ Laboratory
             br 
-            | ✓ SOAP Charting
+            | ✓ Imaging
             br 
-            | ✓ e-Prescription
+            | ✓ Inventory
             br 
-            | ✓ Diagnostic orders
+            | ✓ Point-of-Sales
             br 
-            | ✓ Medical Forms
+            | ✓ Staff Chatbox
             br 
-            | ✓ PNF Drug Catalog
+            | ✓ Syncbase Technology
             br 
-            | ✓ ICD-10 Reference
+            | ✓ Reports & Analytics
             br 
-            | ✓ DPA Registration Guide
-            p
-            |
+            | ✓ Physical Medical Exams
             br
-            |
+            br
             //- b-button(variant="primary" :to="{name: 'signup-group'}") CREATE MY FREE ACCOUNT
-            b-button(variant="primary" href="https://accounts-v4.mycure.md/create-account-individual?type=individual&plan=arabica" target="_blank") CREATE MY FREE ACCOUNT
+            b-button(variant="primary" href="https://accounts-v4.mycure.md/create-account-multi?type=multi" target="_blank") SCHEDULE A DEMO
+            //- b-button(variant="primary" href="https://accounts-v4.mycure.md/create-account-individual?type=individual&plan=arabica" target="_blank") SCHEDULE A DEMO
+
 </template>
 
 <script>
@@ -57,6 +55,11 @@
     data() {
       return {
         scrollTop: 0
+      }
+    },
+    methods: {
+      toggleChat() {
+        $crisp.push(['do', 'chat:toggle'])
       }
     },
     destroyed() {

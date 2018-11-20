@@ -8,43 +8,49 @@
             center
               div.hr-blue
             br
-            h1 MYCURE App for Doctors
+            h1 MYCURE for Hospitals 
+              <span class="badge badge-warning" style="font-size: 18px; position: absolute; margin-top: 12px; margin-left: 10px">BETA</span>
             br
-            p An essential record-keeping tool for all practicing physicians.
-            img(src="../../assets/images/v4/mycure-modules-plantg.png" :class="{'animate': scrollTop > 700}").plant
+            p An affordable, custom-fit solution for your hospital operations and management needs
+            //- img(src="../../assets/images/v4/mycure-modules-plantg.png" :class="{'animate': scrollTop > 700}").plant
         b-row.row.align-items-center.justify-content-md-center
           b-col(xs="12" md="5").pl-5.pr-5.text-center
-            img(width="100%" src="../../assets/images/v4/mycure-pricing-doctors-app.png")
+            img(width="100%" src="../../assets/images/v4/mycure-pricing-his.png")
           b-col(xs="12" md="4")
-            p 
-            h2 It's always free.
             |
             br
-            |✓ Multiple clinics
-            br 
-            | ✓ 500 patient profiles
-            br 
-            | ✓ 1GB storage
-            br 
-            | ✓ SOAP Charting
-            br 
-            | ✓ e-Prescription
-            br 
-            | ✓ Diagnostic orders
-            br 
-            | ✓ Medical Forms
-            br 
-            | ✓ PNF Drug Catalog
-            br 
-            | ✓ ICD-10 Reference
-            br 
-            | ✓ DPA Registration Guide
-            p
-            |
+            | ✓ E-Medical Records
             br
-            |
-            //- b-button(variant="primary" :to="{name: 'signup-group'}") CREATE MY FREE ACCOUNT
-            b-button(variant="primary" href="https://accounts-v4.mycure.md/create-account-individual?type=individual&plan=arabica" target="_blank") CREATE MY FREE ACCOUNT
+            | ✓ Ward Management
+            br
+            | ✓ In-patient Management
+            br
+            | ✓ Emergency Room
+            br
+            | ✓ Operating Room
+            br 
+            | ✓ Advanced Billing
+            br 
+            | ✓ Laboratory
+            br 
+            | ✓ Imaging
+            br 
+            | ✓ Inventory
+            br 
+            | ✓ Point-of-Sales
+            br 
+            | ✓ Staff Chatbox
+            br 
+            | ✓ Syncbase Technology
+            br 
+            | ✓ Reports & Analytics
+            br 
+            | ✓ Physical Medical Exams
+            br
+            br
+            b-button(variant="primary" href="https://mycure1.typeform.com/to/EZHOvV" target="_blank") RESERVE MY SLOT NOW
+            br
+            small(style="color: red;") Few Slots Left!
 </template>
 
 <script>

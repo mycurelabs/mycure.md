@@ -1,10 +1,8 @@
 <template lang="pug">
   div#top
     panel-1
-    //- panel-2
+    syncbase-panel
     panel-3-1
-    //- flip
-    //- panel-3-2
     panel-4
     panel-5
     panel-6
@@ -18,7 +16,7 @@
 <script>
   import panel1 from './panel-1';
   import panel2 from './panel-2';
-  import panel31 from './panel-3.1';
+  import syncbasePanel from '../commons/syncbase-panel';
   import flip from './flip';
   import panel32 from './panel-3.2';
   import panel4 from './panel-4';
@@ -34,7 +32,7 @@
     components: {
       'panel-1': panel1,
       'panel-2': panel2,
-      'panel-3-1': panel31,
+      syncbasePanel,
       flip,
       'panel-3-2': panel32,
       'panel-4': panel4,

@@ -21,7 +21,7 @@
                 //- b-button(variant="outline-primary" size="lg" style="width: 100%" :to="{name:'modules'}").mb-3 I WANNA LEARN MORE ABOUT YOUR PRODUCT
                 // b-button(variant="outline-primary" size="lg" style="width: 100%").mb-3 I wanna partner with MYCURE
               div.col-xs-12.col-md-6
-                b-button(variant="primary" size="lg" style="width: 100%" :to="{name: 'join-today'}") I WANNA SIGN UP NOW
+                b-button(variant="primary" size="lg" style="width: 100%" :to="{name: 'signup', query: {id: 'top'}}") I WANNA SIGN UP NOW
                 // b-button(variant="outline-primary" size="lg" style="width: 100%").mb-3 I wanna care the extra mile with you
               //- div.col-xs-12.col-md-6.offset-md-3.text-center.mt-4
 </template>

@@ -9,12 +9,12 @@
           b-collapse(is-nav id="nav_collapse")
             b-navbar-nav.ml-auto
               b-nav-item(href="" :to="{name: 'cms'}") CMS
-              b-nav-item(href="" :to="{name: 'his'}") HIS
-              b-nav-item(href="" :to="{name: 'pricing'}") PRICING
+              b-nav-item(href="" :to="{name: 'his'}") HIS 
+                span.badge.badge-warning BETA
               b-nav-item(href="" :to="{name: 'our-story'}") OUR STORY
               b-nav-item(href="" @click="toggleChat") CONTACT US
               a(href="https://accounts-v4.mycure.md" target="_blank")#login-link LOG IN
-              b-button(variant="outline-primary" size="sm" :to="{name: 'join-today'}")#signup-button SIGN UP
+              b-button(variant="outline-primary" size="sm" :to="{name: 'signup'}")#signup-button SIGN UP
 </template>
 
 <script>
@@ -57,5 +57,9 @@
     color: black;
     border-radius: 5px;
     font-weight: bold;
+  }
+
+  #signup-button.active {
+    background-color: #0099cc !important;
   }
 </style>

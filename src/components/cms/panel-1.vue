@@ -39,9 +39,10 @@
           
           br
           //- b-button(variant="primary" size="sm" href="https://accounts-v4.mycure.md/signup/") START A TRIAL
-          b-button(variant="primary" size="sm" v-b-modal="'modal1'") WATCH VIDEO
+          b-button(variant="primary" size="sm" v-b-modal="'cmsVid'") WATCH VIDEO
         b-col(xs="12" md="6")
-          img(width="100%" src="../../assets/images/v4/mycure-homepage-syncbase-offline-online-clinic-management-system-animated.gif")
+          img(width="100%" src="../../assets/images/v4/panel1-cms.jpg")
+          //- img(width="100%" src="../../assets/images/v4/mycure-homepage-syncbase-offline-online-clinic-management-system-animated.gif")
     b-modal(
       size="lg"
       hide-footer 
@@ -49,12 +50,12 @@
       centered 
       @shown="showVid = true"
       @hidden="showVid = false"
-    )#modal1
+    )#cmsVid
       iframe(
         v-if="showVid"
         id="ytplayer" 
         type="text/html" width="100%" height="450"
-        src="https://www.youtube.com/embed/siFBgZMt26k?rel=0&amp;showinfo=0"
+        src="https://www.youtube.com/embed/r7oewF5qDz4?rel=0&showinfo=0"
         frameborder="0"
       )
 </template>

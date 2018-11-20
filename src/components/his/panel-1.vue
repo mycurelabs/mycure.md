@@ -8,7 +8,8 @@
           //- h2 MYCURE | Modules
           //- div.hr-blue
           br
-          h1 MYCURE Hospital Information System (Beta)
+          h1 MYCURE Hospital Information System 
+            <span class="badge badge-warning" style="font-size: 18px; position: absolute; margin-top: 12px; margin-left: 10px">BETA</span>
           br
           span(style="color: #acadae")
             b
@@ -17,7 +18,7 @@
           br
           p MYCURE HIS is now on Beta! Be the first to avail for a fraction of the market price. Limited slots available until December 31, 2018.
           br
-          b-button(variant="primary" size="sm" :to="{name: 'join-today'}") GET MYCURE
+          b-button(variant="primary" size="sm" href="https://mycure1.typeform.com/to/EZHOvV" target="_blank") RESERVE MY SLOT NOW
         div.col-xs-12.col-md-6
           img(width="100%" src="../../assets/images/v4/mycure-home-his-image.png")
 </template>

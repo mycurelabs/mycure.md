@@ -1,39 +1,30 @@
 <template lang="pug">
-  div
+  div#top
     panel-1#panel-1
-    mycure-for-individual
-    panel-3#panel-3
-    panel-4#panel-4
+    mycure-for-hospitals#his
+    mycure-for-clinics#cms
+    mycure-for-individuals#docs
     panel-5#panel-5
-    // panel-6
-    // panel-7
-    // join-us
     mc-footer
       
 </template>
 
 <script>
   import panel1 from './panel-1';
-  import mycureForIndividual from './individual';
-  import panel3 from './panel-3';
-  import panel4 from './panel-4';
+  import mycureForHospitals from './hospital';
+  import mycureForClinics from './clinic';
+  import mycureForIndividuals from './individual';
   import panel5 from './panel-5';
-  // import panel6 from './panel-6';
-  // import panel7 from './panel-7';
-  // import joinUs from '../home/panel-9';
   import mcFooter from '../commons/mc-footer';
   import VueScrollTo from 'vue-scrollto';
 
   export default {
     components: {
       'panel-1': panel1,
-      mycureForIndividual,
-      'panel-3': panel3,
-      'panel-4': panel4,
+      mycureForHospitals,
+      mycureForClinics,
+      mycureForIndividuals,
       'panel-5': panel5,
-      // 'panel-6': panel6,
-      // 'panel-7': panel7,
-      // joinUs,
       mcFooter
     },
     created() { 

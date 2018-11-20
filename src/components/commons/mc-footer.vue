@@ -5,25 +5,14 @@
       hr
       div.row.pt-3.pb-3
         div.col-xs-12.col-md-3
-          h6(style="color: #616161") CLINIC SOLUTIONS
-          ul.list.list-tall
-            li
-              router-link(:to="{name: 'signup-individual'}").color-white Individual Practice
-            li
-              router-link(:to="{name: 'signup-group'}").color-white Group Practice
-            li
-              router-link(:to="{name: 'signup-multi'}").color-white Health Facility
-        div.col-xs-12.col-md-3
           h6(style="color: #616161") PRODUCTS
           ul.list.list-tall
             li
-              router-link(:to="{name: 'modules', query: {id: 'panel-2'}}").color-white How it works
+              router-link(:to="{name: 'signup', query: {id: 'his'}}").color-white Hospital Information System
             li
-              router-link(:to="{name: 'modules', query: {id: 'panel-3'}}").color-white Core
+              router-link(:to="{name: 'signup', query: {id: 'cms'}}").color-white Clinic Management System
             li
-              router-link(:to="{name: 'modules', query: {id: 'panel-4'}}").color-white Premium
-            li
-              router-link(:to="{name: 'modules', query: {id: 'panel-5'}}").color-white Add-Ons
+              router-link(:to="{name: 'signup', query: {id: 'docs'}}").color-white App for Doctors
         div.col-xs-12.col-md-3
           h6(style="color: #616161") ABOUT
           ul.list.list-tall
@@ -41,23 +30,22 @@
             li
               router-link(:to="{name: 'faqs-link'}").color-white FAQs
             li
-              router-link(:to="{name: 'faqs-link'}").color-white Request A Demo
+              span(@click="toggleChat").open-chat.color-white Request A Demo
           h6(style="color: #616161") LEGAL
           ul.list.list-tall
             li
               router-link(:to="{name: 'terms', query: {id: 'top'}}").color-white Terms
             li
               router-link(:to="{name: 'privacy-policy', query: {id: 'top'}}").color-white Privacy Policy
+        div.col-xs-12.col-md-3
+          h6(style="color: #616161") CONTACT US
+          ul.list.list-tall
+            li
+              span.color-primary hello@mycure.md
+            li (+632) 799 6262
+            li (+63) 917 303 4350
+            li (+63) 949 368 2010
       hr
-      div.row.pt-3.pb-3
-        div.col-xs-12.col-md-3
-          span.color-primary hello@mycure.md
-        div.col-xs-12.col-md-3
-          span (+632) 799 6262
-        div.col-xs-12.col-md-3
-          span (+63) 917 303 4350
-        div.col-xs-12.col-md-3
-          span (+63) 949 368 2010
       div.row.pt-5.pb-5
         div.col-xs-12.col-md-12.text-center
           span &copy; {{new Date().getFullYear()}} 
@@ -71,6 +59,11 @@
   export default {
     components: {
       mcNavbarFooter
+    },
+    methods: {
+      toggleChat() {
+        $crisp.push(['do', 'chat:toggle'])
+      }
     }
   }
 </script>
@@ -78,5 +71,10 @@
 <style scoped>
   footer {
     /* height: 100vh; */
+  }
+  .open-chat:hover {
+    cursor: pointer;
+    color: #0099cc;
+    text-decoration: underline;
   }
 </style>
