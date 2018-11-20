@@ -1,7 +1,7 @@
 <template lang="pug">
   div
     panel-1#panel-1
-    panel-2#panel-2
+    mycure-for-individual
     panel-3#panel-3
     panel-4#panel-4
     panel-5#panel-5
@@ -14,7 +14,7 @@
 
 <script>
   import panel1 from './panel-1';
-  import panel2 from './panel-2';
+  import mycureForIndividual from './individual';
   import panel3 from './panel-3';
   import panel4 from './panel-4';
   import panel5 from './panel-5';
@@ -27,7 +27,7 @@
   export default {
     components: {
       'panel-1': panel1,
-      'panel-2': panel2,
+      mycureForIndividual,
       'panel-3': panel3,
       'panel-4': panel4,
       'panel-5': panel5,
