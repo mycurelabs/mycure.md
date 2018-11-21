@@ -34,7 +34,7 @@
                   p.mt-2 
                     i {{ selectedModule.tagLine }}
                   p {{ selectedModule.description }}
-                b-button(variant="primary" size="sm" :to="{name: 'join-today'}" :class="{'mb-3': (wXS || wSM)}") SIGN UP NOW!
+                b-button(variant="primary" size="sm" :to="{name: 'signup', query: {id: 'top'}}" :class="{'mb-3': (wXS || wSM)}") SIGN UP NOW!
           div.col-xs-12.col-md-7
             img(width="100%" :src="parseImage(selectedModule.banner)")
 </template>

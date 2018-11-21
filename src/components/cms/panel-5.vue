@@ -34,7 +34,7 @@
                 br
                 div(style="height: 85px;")
                   p {{ selectedModule.description }}
-                b-button(variant="primary" size="sm" :to="{name: 'join-today'}") SIGN UP NOW!
+                b-button(variant="primary" size="sm" :to="{name: 'signup', query: {id: 'top'}}") SIGN UP NOW!
 </template>
 
 <script>

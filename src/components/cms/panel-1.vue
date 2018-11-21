@@ -35,11 +35,11 @@
             strong Clinic Management System 
             | that empowers you to sync your clinical records together and store them safely in the cloud while running locally!
           p().d-block.d-md-none As fast as on-premise server, as affordable as cloud-based subscription.
-          //- MOBILE END
-          
           br
-          //- b-button(variant="primary" size="sm" href="https://accounts-v4.mycure.md/signup/") START A TRIAL
-          b-button(variant="primary" size="sm" v-b-modal="'cmsVid'") WATCH VIDEO
+          b-button(variant="primary" size="sm" href="https://accounts-v4.mycure.md/create-account-multi?type=multi" target="_blank") SHEDULE A DEMO
+          br
+          b-button(variant="transparent" size="sm" v-b-modal="'cmsVid'" style="color: #0099cc;").pl-0.mt-3 Watch how it works ►
+          
         b-col(xs="12" md="6")
           img(width="100%" src="../../assets/images/v4/panel1-cms.jpg")
           //- img(width="100%" src="../../assets/images/v4/mycure-homepage-syncbase-offline-online-clinic-management-system-animated.gif")

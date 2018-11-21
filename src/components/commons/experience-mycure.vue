@@ -10,20 +10,14 @@
             center
               div.hr-blue
             br
-            h1 Care to join us?
+            h1 Experience MYCURE
             br
-            p Tell us why you're here:
+            p Explore what you can do more with our smart tools by your side.
             br
           div.col-xs-12.col-md-10.offset-md-1
             div.row
-              div.col-xs-12.col-md-6
-                b-button(variant="outline-primary" size="lg" style="width: 100%" :to="{name: 'careers'}").mb-3 I WANNA JOIN MYCURE TEAM
-                //- b-button(variant="outline-primary" size="lg" style="width: 100%" :to="{name:'modules'}").mb-3 I WANNA LEARN MORE ABOUT YOUR PRODUCT
-                // b-button(variant="outline-primary" size="lg" style="width: 100%").mb-3 I wanna partner with MYCURE
-              div.col-xs-12.col-md-6
-                b-button(variant="primary" size="lg" style="width: 100%" :to="{name: 'signup', query: {id: 'top'}}") I WANNA SIGN UP NOW
-                // b-button(variant="outline-primary" size="lg" style="width: 100%").mb-3 I wanna care the extra mile with you
-              //- div.col-xs-12.col-md-6.offset-md-3.text-center.mt-4
+              div.col-xs-12.col-md-6.offset-md-3
+                b-button(variant="outline-primary" size="lg" style="width: 100%" :to="{name: 'signup', query: {id: 'top'}}").mb-3 GET STARTED TODAY
 </template>
 
 <script>

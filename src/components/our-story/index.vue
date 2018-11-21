@@ -7,8 +7,7 @@
     panel-4
     panel-5
     panel-6
-    join-us(bg="white")
-    //- panel-9
+    experience-mycure(bg="white")
     mc-footer
       
 </template>
@@ -20,7 +19,7 @@
   import panel4 from './panel-4';
   import panel5 from './panel-5';
   import panel6 from './panel-6';
-  import joinUs from '../home/panel-9';
+  import experienceMycure from '../commons/experience-mycure';
   import mcNavbarHome from '../commons/mc-navbar-home';
   import mcFooter from '../commons/mc-footer';
   import VueScrollTo from 'vue-scrollto';
@@ -36,8 +35,7 @@
       'panel-4': panel4,
       'panel-5': panel5,
       'panel-6': panel6,
-      joinUs,
-      // 'panel-9': panel9,
+      experienceMycure,
       mcFooter,
       mcNavbarHome
     }

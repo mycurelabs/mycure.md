@@ -16,7 +16,8 @@
               i An affordable, custom-fit solution for your hospital operations and management needs
           br
           br
-          p MYCURE HIS is now on Beta! Be the first to avail for a fraction of the market price. Limited slots available until December 31, 2018.
+          p MYCURE HIS is now on Beta! Early birds get the most awesome deals.
+          p Few slots left.
           br
           b-button(variant="primary" size="sm" href="https://mycure1.typeform.com/to/EZHOvV" target="_blank") RESERVE MY SLOT NOW
         div.col-xs-12.col-md-6
