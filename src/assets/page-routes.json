@@ -6,6 +6,18 @@
     "image": "https://firebasestorage.googleapis.com/v0/b/mycure-ab311.appspot.com/o/assets%2Fog-mycure-medical-platform.png?alt=media&token=10cc6c06-efe5-4453-9529-b70903f4b4a0"
   },
   {
+    "path": "/his",
+    "title": "MYCURE - Hospital Information System",
+    "description": "MYCURE is a secure, online medical software for doctors and clinics that is easy to customize. It has EMR, Laboratory (LIS), Imaging (RIS), Inventory, Point-of-Sales (POS) and Billing Modules designed to securely process digital medical records. Get the perfect blend for your clinic.",
+    "image": "https://firebasestorage.googleapis.com/v0/b/mycure-ab311.appspot.com/o/assets%2Fog-mycure-medical-platform.png?alt=media&token=10cc6c06-efe5-4453-9529-b70903f4b4a0"
+  },
+  {
+    "path": "/cms",
+    "title": "MYCURE - Clinic Management System",
+    "description": "MYCURE is a secure, online medical software for doctors and clinics that is easy to customize. It has EMR, Laboratory (LIS), Imaging (RIS), Inventory, Point-of-Sales (POS) and Billing Modules designed to securely process digital medical records. Get the perfect blend for your clinic.",
+    "image": "https://firebasestorage.googleapis.com/v0/b/mycure-ab311.appspot.com/o/assets%2Fog-mycure-medical-platform.png?alt=media&token=10cc6c06-efe5-4453-9529-b70903f4b4a0"
+  },
+  {
     "path": "/modules",
     "title": "MYCURE Modules - Easy, Secure, Complete Clinic Management System",
     "description": "MYCURE is a secure, online medical software for doctors and clinics that is easy to customize. It has EMR, Laboratory (LIS), Imaging (RIS), Inventory, Point-of-Sales (POS) and Billing Modules designed to securely process digital medical records. Get the perfect blend for your clinic.",
@@ -18,7 +30,7 @@
     "image": "https://firebasestorage.googleapis.com/v0/b/mycure-ab311.appspot.com/o/assets%2Fog-mycure-medical-platform.png?alt=media&token=10cc6c06-efe5-4453-9529-b70903f4b4a0"
   },
   {
-    "path": "/pricing",
+    "path": "/our-story",
     "title": "MYCURE Our Story - Caring the Extra Mile",
     "description": "Caring the extra mile is our profession, it’s our way of life. MYCURE is committed to saving lives by building well-equipped and well-designed apps so healthcare practitioners are in the most ideal work environment to fulfill their purpose.",
     "image": "https://firebasestorage.googleapis.com/v0/b/mycure-ab311.appspot.com/o/assets%2Fog-mycure-medical-platform.png?alt=media&token=10cc6c06-efe5-4453-9529-b70903f4b4a0"
