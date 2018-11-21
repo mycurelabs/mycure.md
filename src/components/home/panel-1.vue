@@ -8,6 +8,7 @@
           div.col-xs-12.col-md-6.mt-5
             h1 Enabling Heroes.
             h1(style="margin-top: -10px;") Saving Lives.
+            br
             p MYCURE builds advanced tech tools for our everyday heroes - doctors, medical practitioners, and people who care the extra mile.
             div(v-b-modal="'homeVid'").mb-5.custom-play-button
               div.media
@@ -18,15 +19,15 @@
             div.product-card-container.row
               div.col-md-1
               div.col-xs-12.col-md-5
-                div(@click="goto('cms')").product-card
+                div(@click="goto('cms')").product-card.p-4
                   div.pr-3
-                    img(width="100%" src="../../assets/images/v4/mycure-home-product-card-clinic-management-system.png" style="margin:10px;")
-                  h5(align="center") Clinic Management System
+                    img(width="95%" src="../../assets/images/v4/mycure-home-product-card-clinic-management-system.png" style="margin:10px;")
+                  h6(align="center") Clinic Management System
               div.col-xs-12.col-md-5
-                div(@click="goto('his')").product-card
+                div(@click="goto('his')").product-card.p-4
                   div.pr-3
-                    img(width="100%" src="../../assets/images/v4/mycure-home-product-card-hospital-information-system.png" style="margin:10px;")
-                  h5(align="center") Hospital Information System
+                    img(width="95%" src="../../assets/images/v4/mycure-home-product-card-hospital-information-system.png" style="margin:10px;")
+                  h6(align="center") Hospital Information System
           
           div(style="height: 490px;").col-xs-12.col-md-6
               img(width="80%" src="../../assets/images/v4/mycure-home-super-hero-doctor-main.png" style="position: absolute; bottom: -2px; right: 0px;")
@@ -102,9 +103,9 @@
     background-color: white;
     margin: 15px 0 15px 0;
     padding: 2px;
-    -webkit-box-shadow: 1px 4px 9px -2px #000000;
-    -moz-box-shadow: 1px 4px 9px -2px #000000;
-    box-shadow: 1px 4px 9px -2px #000000;
+    -webkit-box-shadow: 1px 4px 9px -2px #8a8a8a;
+    -moz-box-shadow: 1px 4px 9px -2px #8a8a8a;
+    box-shadow: 1px 4px 9px -2px #8a8a8a;
   }
 
   .product-card:hover {
