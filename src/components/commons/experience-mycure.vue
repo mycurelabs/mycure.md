@@ -4,7 +4,7 @@
     div(:style="{'background-color': bg}").join-us-panel.pt-5.pb-5
       div.container
         div.row.align-items-center
-          div.col-xs-12.col-md-12.text-center
+          div.col-xs-12.col-md-12.text-center.mt-5(style="margin-top:100px;")
             img(src="../../assets/images/v4/mycure-modules-plantg.png").plant
             img(src="../../assets/images/v4/mycure-modules-almond.png").almonds
             center
@@ -53,14 +53,14 @@
       width: 600px;
       position: absolute;
       left: -250px;
-      top: -250px;
+      top: -175px;
     }
 
     .almonds {
       display: inline;
       position: absolute;
       right: -100px;
-      bottom: -100px;
+      bottom: 100px;
     }
   }
 
