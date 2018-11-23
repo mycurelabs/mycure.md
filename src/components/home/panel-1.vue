@@ -44,7 +44,7 @@
         v-if="showVid"
         id="ytplayer" 
         type="text/html" width="100%" height="450"
-        src="https://www.youtube.com/embed/9sFxkKZktXs?rel=0&showinfo=0"
+        src="https://www.youtube.com/embed/vn6tVc1EHQg?rel=0&showinfo=0"
         frameborder="0"
       )
 </template>
@@ -57,7 +57,7 @@
     },
     data() {
       return {
-        videoId: '9sFxkKZktXs',
+        videoId: 'vn6tVc1EHQg',
         showVid: true
       }
     },
@@ -67,7 +67,7 @@
       },
       addVid() {
         console.log('Add Vid');
-        this.videoId = '9sFxkKZktXs';
+        this.videoId = 'vn6tVc1EHQgs';
       },
       removeVid() {
         console.log('Remove Vid');
