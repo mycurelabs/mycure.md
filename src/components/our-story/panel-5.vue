@@ -10,12 +10,13 @@
           h1 Caring the Extra Mile
         b-col(xs="12" md="12")
           br
-          iframe(
-            id="ytplayer" 
-            type="text/html" width="100%" height="500"
-            src="https://www.youtube.com/embed/vn6tVc1EHQg"
-            frameborder="0"
-          )
+          div#video
+            iframe(
+              id="ytplayer" 
+              type="text/html"
+              src="https://www.youtube.com/embed/vn6tVc1EHQg"
+              frameborder="0"
+            )
 </template>
 
 <script>
@@ -32,7 +33,21 @@
     /* padding-top: 50px; */
     /* padding-bottom: 50px; */
   }
+  /* mark- remove the blackbars in video */
+  #video{
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 */
+    height: 0;   
+  }
 
+  #video iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  /*end - removed blackbars  */
   @media (min-width: 576px) {
     .container {
       padding-top: 50px;
