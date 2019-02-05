@@ -17,18 +17,23 @@
                 div.media-body
                   label(style="margin-top:3px; margin-left:10px; font-size: 14px; font-weight: bold;") Watch Video
             div.product-card-container.row
-              div.col-md-1
-              div.col-xs-12.col-md-5
+              div.col-md-0
+              div.col-xs-12.col-md-4
                 div(@click="goto('cms')").product-card.p-4
                   div.pr-3
-                    img(width="95%" src="../../assets/images/v4/mycure-home-product-card-clinic-management-system.png" style="margin:10px;")
+                    img(width="100%" src="../../assets/images/v4/mycure-home-product-card-clinic-management-system.png" style="margin:10px;")
                   h6(align="center") Clinic Management System
-              div.col-xs-12.col-md-5
+              div.col-xs-12.col-md-4
                 div(@click="goto('his')").product-card.p-4
                   div.pr-3
-                    img(width="95%" src="../../assets/images/v4/mycure-home-product-card-hospital-information-system.png" style="margin:10px;")
+                    img(width="100%" src="../../assets/images/v4/mycure-home-product-card-hospital-information-system.png" style="margin:10px;")
                   h6(align="center") Hospital Information System
-          
+              //start of new//
+              div.col-xs-12.col-md-4
+                div(@click="goto('dental')").product-card.p-4
+                  div.pr-3
+                    img(width="100%" src="../../assets/images/v4/mycure-dental.png" style="margin:10px;")
+                  h6(align="center") <span class="badge badge-success" style="font-size: 10px;" align="center">LATEST UPDGRADE</span> Dental Clinic System
           div(style="height: 490px;").col-xs-12.col-md-6
               img(width="80%" src="../../assets/images/v4/mycure-home-super-hero-doctor-main.png" style="position: absolute; bottom: -2px; right: 0px;")
 
