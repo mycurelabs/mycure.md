@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import home from '@/components/home';
 import cms from '@/components/cms';
+import dental from '@/components/dental';
 import his from '@/components/his';
 import ourStory from '@/components/our-story';
 // import modules from '@/components/modules';
@@ -33,6 +34,11 @@ export default new Router({
       path: '/his',
       name: 'his',
       component: his
+    },
+    {
+      path: '/dental',
+      name: 'dental',
+      component: dental
     },
     {
       path: '/our-story',
