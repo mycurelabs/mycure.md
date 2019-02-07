@@ -33,7 +33,7 @@
                 div(@click="goto('dental')").product-card.p-4
                   div.pr-3
                     img(width="100%" src="../../assets/images/v4/mycure-dental.png" style="margin:10px;")
-                  h6(align="center") <span class="badge badge-success" style="font-size: 10px;" align="center">LATEST UPDGRADE</span> Dental Clinic System
+                  h6(align="center") <span class="badge badge-success" style="font-size: 10px;" align="center">LATEST UPGRADE</span> Dental Clinic System
           div(style="height: 490px;").col-xs-12.col-md-6
               img(width="80%" src="../../assets/images/v4/mycure-home-super-hero-doctor-main.png" style="position: absolute; bottom: -2px; right: 0px;")
 
