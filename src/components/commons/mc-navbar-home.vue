@@ -11,6 +11,8 @@
               b-nav-item(href="" :to="{name: 'cms'}") CMS
               b-nav-item(href="" :to="{name: 'his'}") HIS 
                 span.badge.badge-warning BETA
+              b-nav-item(href="" :to="{name: 'dental'}") DENTAL 
+                span.badge.badge-success NEW
               b-nav-item(href="" :to="{name: 'our-story'}") OUR STORY
               b-nav-item(href="" @click="toggleChat") CONTACT US
               a(href="https://accounts-v4.mycure.md" target="_blank")#login-link LOG IN
