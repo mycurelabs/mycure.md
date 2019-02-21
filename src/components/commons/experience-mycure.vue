@@ -17,7 +17,8 @@
           div.col-xs-12.col-md-10.offset-md-1
             div.row
               div.col-xs-12.col-md-6.offset-md-3
-                b-button(variant="outline-primary" size="lg" style="width: 100%" :to="{name: 'signup', query: {id: 'top'}}").mb-3 GET STARTED TODAY
+                //b-button(variant="outline-primary" size="lg" style="width: 100%" :to="{name: 'signup', query: {id: 'top'}}").mb-3 GET STARTED TODAY
+                b-button(variant="primary" size="lg" style="width: 100%" :to="{name: 'signup', query: {id: 'top'}}").mb-3 GET STARTED TODAY 
 </template>
 
 <script>
