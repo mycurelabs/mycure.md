@@ -14,6 +14,7 @@
   import panel8 from './panel-8';
   import experienceMycure from '../commons/experience-mycure';
   import mcFooter from '../commons/mc-footer';
+  import VueScrollTo from 'vue-scrollto';
 
   export default {
     components: {
