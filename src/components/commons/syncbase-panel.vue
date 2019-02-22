@@ -27,6 +27,10 @@
                   br
                   | Then once back online, it automatically synchronizes data back in the cloud.
                 p Like magic, but scientifically-blended. 😉
+                b-button(variant="primary" size="sm" href="" @click="toggleChat").shadow-5 Ask Us Now
+                br
+                br
+                br
               b-col(xs="12" md="6").pb-5
                 img(width="100%" src="../../assets/images/v4/mycure-homepage-syncbase-offline-online-clinic-management-system-animated.gif")
               b-col(xs="12" md="8" v-if="showVidButton")
@@ -76,6 +80,16 @@
       },
       removeVid() {
         this.videoId = null;
+      }
+    }
+  }
+</script>
+
+<script>
+  export default {
+    methods: {
+      toggleChat() {
+        $crisp.push(['do', 'chat:toggle'])
       }
     }
   }

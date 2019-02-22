@@ -8,9 +8,11 @@
           h6(style="color: #616161") PRODUCTS
           ul.list.list-tall
             li
-              router-link(:to="{name: 'signup', query: {id: 'his'}}").color-white Hospital Information System
+              router-link(:to="{name: 'signup', query: {id: 'his'}}").color-white Hospital Information System (HIS)
             li
-              router-link(:to="{name: 'signup', query: {id: 'cms'}}").color-white Clinic Management System
+              router-link(:to="{name: 'signup', query: {id: 'cms'}}").color-white Clinic Management System (CMS)
+            li
+              router-link(:to="{name: 'dental', query: {id: 'dental'}}").color-white Dental Clinic System
             li
               router-link(:to="{name: 'signup', query: {id: 'docs'}}").color-white App for Doctors
         div.col-xs-12.col-md-3

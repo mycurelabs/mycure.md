@@ -17,7 +17,9 @@
               i An easy-to-use clinic management system designed for dentists
           br
           br
-          p Use digital charting that you can save and store anywhere, anytime. Transform your dental practice to the next level now.
+          p
+            b MYCURE Dental Clinic System
+            |  uses digital charting that you can save and store anywhere, anytime. Transform your dental practice to the next level now.
 
           br
           b-button(variant="primary" size="sm" href="https://mycuredentist.typeform.com/to/UW4400" target="_blank") BOOK A DEMO

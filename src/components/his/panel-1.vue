@@ -16,7 +16,9 @@
               i An affordable, custom-fit solution for your hospital operations and management needs
           br
           br
-          p MYCURE HIS is now on Beta! Early birds get the most awesome deals.
+          p
+            b MYCURE Hospital Information System (HIS)
+            |  is now on Beta! Early birds get the most awesome deals.
           p Few slots left.
           br
           b-button(variant="primary" size="sm" href="https://mycure1.typeform.com/to/EZHOvV" target="_blank") RESERVE MY SLOT NOW

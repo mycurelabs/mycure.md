@@ -1,6 +1,6 @@
 <template lang="pug">
   div#top
-    panel-1
+    panel-1#dental
     //- panel-8
     //- panel-7
     experience-mycure
