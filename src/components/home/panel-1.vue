@@ -3,7 +3,7 @@
     div.panel-1
       pre(v-if="!$isProduction()").panel-number 1
       mc-navbar-home
-      div.container
+      div(style="padding-top: 58px;").container
         div.row
           div.col-xs-12.col-md-6.mt-5
             h1 Enabling Heroes.

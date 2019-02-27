@@ -1,11 +1,12 @@
 <template lang="pug">
-  b-container(style="padding-top: 0px; padding-bottom: 0px;")
-    b-row
-      b-col(xs="12" md="12")
-        b-navbar(toggleable="md" variant="transparent")#home-nav
+  b-navbar(toggleable="md" variant="transparent" :class="{'nav-box-shadow': scrollTop >= 1}")#home-nav
+    b-container(style="padding-top: 0px; padding-bottom: 0px;")
+      b-row(style="width: 100vw;")
+        b-col(xs="12" md="2")
           b-navbar-toggle(target="nav_collapse")
           b-navbar-brand(href="" :to="{name: 'home'}")#home-brand
             img(src="../../assets/images/v4/mycure-logo.svg")
+        b-col(xs="12" md="10")
           b-collapse(is-nav id="nav_collapse")
             b-navbar-nav.ml-auto
               b-nav-item(href="" :to="{name: 'cms'}") CMS
@@ -22,6 +23,14 @@
 
 <script>
   export default {
+    data: () => ({
+      scrollTop: 0
+    }),
+    created () {
+      this.$scrollspy().subscribe({
+        next: (scroll) => this.scrollTop = scroll
+      });
+    },
     methods: {
       toggleChat() {
         $crisp.push(['do', 'chat:toggle'])
@@ -34,6 +43,16 @@
   #home-nav {
     padding-left: 0px;
     padding-right: 0px;
+    position: fixed;
+    width: 100vw;
+    background-color: white !important;
+    z-index: 999999;
+  }
+
+  .nav-box-shadow {
+    -webkit-box-shadow: 0px 0px 16px 0px rgba(148,148,148,1);
+    -moz-box-shadow: 0px 0px 16px 0px rgba(148,148,148,1);
+    box-shadow: 0px 0px 16px 0px rgba(148,148,148,1);
   }
 
   #login-link {
