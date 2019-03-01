@@ -6,10 +6,9 @@
         b-col(xs="12" md="6")
           h1(style="line-height: 1.3; font-size:2em;") Your Clinic Deserves a Reliable
           h1(style="font-size: 2.3em") Clinic Management System!
-          span(style="color: #acadae")
+          //span(style="color: #acadae")
             b
               i Don't compromise speed, dependability, and affordability.
-          br
           br
 
           //- DESKTOP
@@ -54,7 +53,7 @@
         v-if="showVid"
         id="ytplayer" 
         type="text/html" width="100%" height="450"
-        src="https://www.youtube.com/embed/r7oewF5qDz4?rel=0&showinfo=0"
+        src="https://www.youtube.com/embed/ZR8e-Egav0M?autoplay=0&controls=0&loop=1&showinfo=0"
         frameborder="0"
       )
 </template>
