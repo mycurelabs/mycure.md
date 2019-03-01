@@ -4,15 +4,18 @@
     mc-navbar-home
     div.container
       div.row-container.row.align-items-center
-        div.col-xs-12.col-md-6
+        div.col-xs-12.col-md-5
           //- h2 MYCURE | Pricing
           //- div.hr-blue
           br
-          h1 Your best investment yet.
+          h1 Your best
+          h1 investment yet.
+          br
           p Explore how these tech tools can transform the way you manage your day-to-day work.
           br
           br
           b-button(variant="primary" size="sm" @click="toggleChat") ASK A QUICK QUESTION
+
 </template>
 
 <script>
