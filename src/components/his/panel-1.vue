@@ -11,14 +11,14 @@
           h1 MYCURE Hospital Information System 
             <span class="badge badge-warning" style="font-size: 18px; position: absolute; margin-top: 12px; margin-left: 10px">BETA</span>
           br
-          span(style="color: #acadae")
+          //span(style="color: #acadae")
             b
               i An affordable, custom-fit solution for your hospital operations and management needs
-          br
-          br
+
           p
             b MYCURE Hospital Information System (HIS)
             |  is now on Beta! Early birds get the most awesome deals.
+            | Get the most affordable, custom-fit solution for your hospital operations and management needs.
           p Few slots left.
           br
           b-button(variant="primary" size="sm" href="https://mycure1.typeform.com/to/EZHOvV" target="_blank") RESERVE MY SLOT NOW
