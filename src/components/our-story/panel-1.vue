@@ -33,7 +33,7 @@
         v-if="showVid"
         id="ytplayer" 
         type="text/html" width="100%" height="450"
-        src="https://www.youtube.com/embed/r7oewF5qDz4?autoplay=0&controls=0&loop=1&showinfo=0"
+        src="https://www.youtube.com/embed/ZR8e-Egav0M?autoplay=0&controls=0&loop=1&showinfo=0"
         frameborder="0"
       )
 </template>
