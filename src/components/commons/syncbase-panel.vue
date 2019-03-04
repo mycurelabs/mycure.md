@@ -14,7 +14,7 @@
                   div.hr-blue
                 br
                 h1 Syncs Online, Works Offline.
-                span(style="color: #acadae")
+                span(style="color: #acadae") 
                   b
                     i Enjoy the best of both worlds — reliability of an in-house server and affordability of the cloud.
                 br
@@ -99,5 +99,9 @@
   .panel-3 {
     /* margin-top: 80px; */
     background-color: white;
+    background-image: url('../../assets/images/v4/mycure-home-second-panel-top.png');
+    background-repeat: repeat-x;
+    background-position: top;
   }
+
 </style>

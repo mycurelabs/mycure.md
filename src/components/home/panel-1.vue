@@ -10,7 +10,7 @@
             h1(style="margin-top: -10px;") Saving Lives.
             br
             b MYCURE
-            |  builds advanced tech tools for our everyday heroes - doctors, medical practitioners, and people who care the extra mile.
+            |  builds advanced tech tools for our everyday heroes - doctors, medical practitioners, and all other people who care the extra mile.
             br
             br
             div(v-b-modal="'homeVid'").mb-5.custom-play-button

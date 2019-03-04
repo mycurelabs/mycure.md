@@ -14,14 +14,20 @@
           //span(style="color: #acadae")
             b
               i An affordable, custom-fit solution for your hospital operations and management needs
-
           p
-            b MYCURE Hospital Information System (HIS)
-            |  is now on Beta! Early birds get the most awesome deals.
-            | Get the most affordable, custom-fit solution for your hospital operations and management needs.
+            span(style="color: #acadae")
+              b
+                i Delivering in-patient care
+              br
+              b
+                i with less of the paperwork.
+            br
+            br
+            strong MYCURE Hospital Information System BETA (HIS)
+            |   is an affordable, custom-fit solution for your hospital operations and management needs. Start now and get the most awesome deals for early birds!
           p Few slots left.
           br
-          b-button(variant="primary" size="sm" href="https://mycure1.typeform.com/to/EZHOvV" target="_blank") RESERVE MY SLOT NOW
+          b-button(variant="primary" size="sm" href="https://mycure1.typeform.com/to/EZHOvV" target="_blank") GET STARTED
         div.col-xs-12.col-md-6
           img(width="100%" src="../../assets/images/v4/mycure-home-his-image.png")
 </template>

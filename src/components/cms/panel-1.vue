@@ -13,26 +13,31 @@
 
           //- DESKTOP
           p().d-none.d-md-block
-            strong MYCURE 
-            | is a 
-            strong Clinic Management System 
-            | that empowers you
+            span(style="color: #acadae")
+              b
+                i Reliability of an in-house server,
+              br
+              b
+                i Affordability of the cloud.
             br
-            | to sync your clinical records together and store them safely
             br
-            | in the cloud while running locally!
-          p().d-none.d-md-block As fast as on-premise server,  
-            br 
-            | as affordable as cloud-based subscription.
+            strong MYCURE Clinic Management System 
+            | empowers you to sync your clinical records together and store them safely in the cloud while running locally! 
+
+          p().d-none.d-md-block
+
           //- DESKTOP END
 
           //- MOBILE
           p().d-block.d-md-none
-            strong MYCURE 
-            | is a 
-            strong Clinic Management System 
-            | that empowers you to sync your clinical records together and store them safely in the cloud while running locally!
-          p().d-block.d-md-none As fast as on-premise server, as affordable as cloud-based subscription.
+            | Reliability of an in-house server,
+            br
+            | Affordability of the cloud.
+            br
+            br
+            strong MYCURE Clinic Management System 
+            | empowers you to sync your clinical records together and store them safely in the cloud while running locally! 
+          p().d-block.d-md-none 
           br
           b-button(variant="primary" size="sm" href="https://accounts-v4.mycure.md/create-account-multi?type=multi" target="_blank") SCHEDULE A DEMO
           br
