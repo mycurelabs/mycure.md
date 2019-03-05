@@ -4,8 +4,8 @@
     b-container
       b-row.row-container.row.align-items-center
         b-col(xs="12" md="6")
-          h1(style="line-height: 1.3; font-size:2em;") Your Clinic Deserves a Reliable
-          h1(style="font-size: 2.3em") Clinic Management System!
+          h1(style="line-height: 1.3; font-size:2em;") Reliability of an in-house server,
+          h1(style="font-size: 2.3em") Affordability of the cloud.
           //span(style="color: #acadae")
             b
               i Don't compromise speed, dependability, and affordability.
@@ -13,14 +13,13 @@
 
           //- DESKTOP
           p().d-none.d-md-block
-            span(style="color: #acadae")
+            //span(style="color: #acadae")
               b
                 i Reliability of an in-house server,
               br
               b
                 i Affordability of the cloud.
-            br
-            br
+
             strong MYCURE Clinic Management System 
             | empowers you to sync your clinical records together and store them safely in the cloud while running locally! 
 
