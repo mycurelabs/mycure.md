@@ -1,7 +1,7 @@
 <template lang="pug">
   div#top
     panel-1
-    syncbase-panel
+    syncbase-panel(:showVideoButton="true")
     panel-3-1
     panel-4
     panel-5

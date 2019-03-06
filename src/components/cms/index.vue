@@ -2,7 +2,7 @@
   div#top
     panel-1
     panel-2
-    syncbase-panel(:showVidButton="true")
+    syncbase-panel(:showVideoButton="true")
     flip
     panel-4
     panel-5

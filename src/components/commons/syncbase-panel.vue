@@ -33,7 +33,7 @@
                 br
               b-col(xs="12" md="6").pb-5
                 img(width="100%" src="../../assets/images/v4/mycure-homepage-syncbase-offline-online-clinic-management-system-animated.gif")
-              b-col(xs="12" md="8" v-if="showVidButton")
+              b-col(xs="12" md="8" v-if="showVideoButton")
                 center
                   b-button(variant="primary" size="sm" v-b-modal="'syncbaseVid'" style="text-align:center;") WATCH VIDEO
     b-modal(
@@ -57,10 +57,7 @@
   import mcNavbarHome from '../commons/mc-navbar-home';
   export default {
     props: {
-      showVidButton: {
-        type: Boolean,
-        default: false
-      }
+      showVideoButton: Boolean
     },
     components: {
       mcNavbarHome
@@ -80,14 +77,7 @@
       },
       removeVid() {
         this.videoId = null;
-      }
-    }
-  }
-</script>
-
-<script>
-  export default {
-    methods: {
+      },
       toggleChat() {
         $crisp.push(['do', 'chat:toggle'])
       }
