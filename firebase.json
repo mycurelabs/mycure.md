@@ -16,6 +16,18 @@
         "destination": "/index.html"
       },
       {
+        "source": "/cms",
+        "destination": "/index.html"
+      },
+      {
+        "source": "/his",
+        "destination": "/index.html"
+      },
+      {
+        "source": "/dental",
+        "destination": "/index.html"
+      },
+      {
         "source": "/pricing",
         "destination": "/index.html"
       },
