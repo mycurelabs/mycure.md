@@ -252,6 +252,15 @@ export default new Router({
         next({name: from.name || 'home'});
       }
     },
+    // Calendly
+    {
+      path: '/calendly',
+      name: 'calendly',
+      beforeEnter (to, from, next) {
+        window.open('https://calendly.com/mycure');
+        next({name: from.name || 'home'});
+      }
+    },
     {
       path: '/ctm-redirect-link',
       name: 'ctm-counter',
