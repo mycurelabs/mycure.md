@@ -40,7 +40,7 @@
             br
             br
             //- b-button(variant="primary" :to="{name: 'signup-group'}") CREATE MY FREE ACCOUNT
-            b-button(variant="primary" href="https://accounts-v4.mycure.md/create-account-multi?type=multi" target="_blank") GET STARTED TODAY
+            b-button(variant="primary" href="https://accounts-v4.mycure.md/create-account-multi?type=multi" target="_blank") GET STARTED
             //- b-button(variant="primary" href="https://accounts-v4.mycure.md/create-account-individual?type=individual&plan=arabica" target="_blank") SCHEDULE A DEMO
 
 </template>

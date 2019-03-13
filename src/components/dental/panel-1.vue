@@ -8,27 +8,15 @@
           //- h2 MYCURE | Modules
           //- div.hr-blue
           br
-          h1 MYCURE
-          h1 Dental Clinic System 
-           
-          //span(style="color: #acadae")
-            b
-              i An easy-to-use clinic management system designed for dentists
-          br
-          p
-            span(style="color: #acadae")
-              b
-                i Save and store dental charts
-              br
-              b
-                i anywhere, anytime.
+          h1(style="line-height: 1.3; font-size:2em;") Save and store dental charts
+          h1(style="font-size: 2.3em") anywhere, anytime.
           br
           p
             b MYCURE Dental Clinic System
             |  is an easy-to-use clinic management system tailored for dentistal services and operations. Transform your dental practice to the next level now.
 
           br
-          b-button(variant="primary" size="sm" href="https://mycuredentist.typeform.com/to/UW4400" target="_blank") BOOK A DEMO
+          b-button(variant="primary" size="sm" href="https://mycuredentist.typeform.com/to/UW4400" target="_blank") GET STARTED
         div.col-xs-12.col-md-6
           img(width="100%" src="../../assets/images/v4/mycure-dental-image.png")
 </template>

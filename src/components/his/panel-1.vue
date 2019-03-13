@@ -8,20 +8,11 @@
           //- h2 MYCURE | Modules
           //- div.hr-blue
           br
-          h1 MYCURE Hospital Information System 
-            <span class="badge badge-warning" style="font-size: 18px; position: absolute; margin-top: 12px; margin-left: 10px">BETA</span>
-          br
-          //span(style="color: #acadae")
-            b
-              i An affordable, custom-fit solution for your hospital operations and management needs
+          h1(style="line-height: 1.3; font-size:2em;") Delivering in-patient care
+          h1(style="font-size: 2.3em") with less of the paperwork.
+
           p
-            span(style="color: #acadae")
-              b
-                i Delivering in-patient care
-              br
-              b
-                i with less of the paperwork.
-            br
+
             br
             strong MYCURE Hospital Information System BETA (HIS)
             |   is an affordable, custom-fit solution for your hospital operations and management needs. Start now and get the most awesome deals for early birds!

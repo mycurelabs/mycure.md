@@ -32,7 +32,8 @@
             li
               router-link(:to="{name: 'faqs-link'}").color-white FAQs
             li
-              span(@click="toggleChat").open-chat.color-white Request A Demo
+              //span(@click="toggleChat").open-chat.color-white Book A Demo
+              router-link(:to="{name: 'calendly'}").color-white Book A Demo
           h6(style="color: #616161") LEGAL
           ul.list.list-tall
             li
