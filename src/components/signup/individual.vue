@@ -44,6 +44,7 @@
             b-button(variant="primary" href="https://accounts-v4.mycure.md/create-account-individual?type=individual&plan=arabica" target="_blank") GET STARTED FOR FREE
             br
             a(href="https://accounts-v4.mycure.md/choose-plan?type=individual" target="_blank") Need more premium features?
+           
 </template>
 
 <script>

@@ -14,6 +14,7 @@
   import mycureForHospitals from './hospital';
   import mycureForClinics from './clinic';
   import mycureForIndividuals from './individual';
+  import dental from './dental';
   import panel5 from './panel-5';
   import mcFooter from '../commons/mc-footer';
   import VueScrollTo from 'vue-scrollto';
@@ -24,6 +25,7 @@
       mycureForHospitals,
       mycureForClinics,
       mycureForIndividuals,
+      dental,
       'panel-5': panel5,
       mcFooter
     },

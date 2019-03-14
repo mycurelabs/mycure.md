@@ -6,7 +6,7 @@
         b-row.align-items-center
           b-col(xs="12" md="12").text-center
             b-row.wrap.align-items-center.justify-content-md-center
-              b-col(xs="12" md="8")
+              b-col(xs="12" md="8" )
                 br
                 br
                 br
@@ -31,11 +31,12 @@
                 br
                 br
                 br
-              b-col(xs="12" md="6").pb-5
-                img(width="100%" src="../../assets/images/v4/mycure-homepage-syncbase-offline-online-clinic-management-system-animated.gif")
-              b-col(xs="12" md="8" v-if="showVideoButton")
-                center
-                  b-button(variant="primary" size="sm" v-b-modal="'syncbaseVid'" style="text-align:center;") WATCH VIDEO
+
+                b-col(xs="12" md="12").pb-5
+                  img(width="100%" src="../../assets/images/v4/mycure-homepage-syncbase-offline-online-clinic-management-system-animated.gif")
+                b-col(xs="12" md="12" v-if="showVideoButton")
+                  center
+                    b-button(variant="primary" size="sm" v-b-modal="'syncbaseVid'" style="text-align:center;") WATCH VIDEO
     b-modal(
       size="lg"
       hide-footer 
@@ -88,8 +89,8 @@
 <style scoped>
   .panel-3 {
     /* margin-top: 80px; */
-    background-color: white;
-    background-image: url('../../assets/images/v4/mycure-home-second-panel-top.png');
+    background-color: #eeecec;
+    /*background-image: url('../../assets/images/v4/mycure-home-second-panel-top.png');*/
     background-repeat: repeat-x;
     background-position: top;
   }
