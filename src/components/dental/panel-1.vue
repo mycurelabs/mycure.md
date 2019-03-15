@@ -13,7 +13,7 @@
           br
           p
             b MYCURE Dental Clinic System
-            |  is an easy-to-use clinic management system tailored for dentistal services and operations. Transform your dental practice to the next level now.
+            |  is an easy-to-use clinic management system tailored for dental services and operations. Transform your dental practice to the next level now.
 
           br
           b-button(variant="primary" size="sm" href="https://mycuredentist.typeform.com/to/UW4400" target="_blank") GET STARTED
