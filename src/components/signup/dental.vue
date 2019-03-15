@@ -8,49 +8,37 @@
             center
               div.hr-blue
             br
-            h1 MYCURE for Hospitals 
-              <span class="badge badge-warning" style="font-size: 18px; position: absolute; margin-top: 12px; margin-left: 10px">BETA</span>
+            h1 MYCURE for Dentists
             br
-            p An affordable, custom-fit solution for your hospital operations and management needs
+            p Save and store dental charts anywhere, anytime.
             //- img(src="../../assets/images/v4/mycure-modules-plantg.png" :class="{'animate': scrollTop > 700}").plant
         b-row.row.align-items-center.justify-content-md-center
           b-col(xs="12" md="5").pl-5.pr-5.text-center
-            img(width="100%" src="../../assets/images/v4/mycure-pricing-his.png")
+            img(width="100%" src="../../assets/images/v4/mycure-pricing-dental.png")
           b-col(xs="12" md="4")
             |
             br
-            | ✓ E-Medical Records
-            br
-            | ✓ Ward Management
-            br
-            | ✓ In-patient Management
-            br
-            | ✓ Emergency Room
-            br
-            | ✓ Operating Room
+            | ✓ Queuing
             br 
-            | ✓ Advanced Billing
+            | ✓ Dental Charting
             br 
-            | ✓ Laboratory
+            | ✓ Scheduler
             br 
-            | ✓ Imaging
+            | ✓ Analytics
             br 
-            | ✓ Inventory
+            | ✓ EMR and Patient List
             br 
             | ✓ Point-of-Sales
             br 
+            | ✓ Inventory
+            br 
             | ✓ Staff Chatbox
             br 
-            | ✓ Syncbase Technology
-            br 
-            | ✓ Reports & Analytics
-            br 
-            | ✓ Physical Medical Exams
             br
-            br
-            b-button(variant="primary" href="https://mycure1.typeform.com/to/EZHOvV" target="_blank") GET STARTED
-            br
-            small(style="color: red;") Few Slots Left!
+            //- b-button(variant="primary" :to="{name: 'signup-group'}") CREATE MY FREE ACCOUNT
+            b-button(variant="primary" href="https://accounts-v4.mycure.md/create-account-multi?type=multi" target="_blank") GET STARTED
+            //- b-button(variant="primary" href="https://accounts-v4.mycure.md/create-account-individual?type=individual&plan=arabica" target="_blank") SCHEDULE A DEMO
+
 </template>
 
 <script>
@@ -63,6 +51,11 @@
     data() {
       return {
         scrollTop: 0
+      }
+    },
+    methods: {
+      toggleChat() {
+        $crisp.push(['do', 'chat:toggle'])
       }
     },
     destroyed() {

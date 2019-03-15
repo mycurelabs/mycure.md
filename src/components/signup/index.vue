@@ -3,6 +3,7 @@
     panel-1#panel-1
     mycure-for-hospitals#his
     mycure-for-clinics#cms
+    mycure-for-dental#dental
     mycure-for-individuals#docs
     panel-5#panel-5
     mc-footer
@@ -14,7 +15,7 @@
   import mycureForHospitals from './hospital';
   import mycureForClinics from './clinic';
   import mycureForIndividuals from './individual';
-  import dental from './dental';
+  import mycureForDental from './dental';
   import panel5 from './panel-5';
   import mcFooter from '../commons/mc-footer';
   import VueScrollTo from 'vue-scrollto';
@@ -25,7 +26,7 @@
       mycureForHospitals,
       mycureForClinics,
       mycureForIndividuals,
-      dental,
+      mycureForDental,
       'panel-5': panel5,
       mcFooter
     },
