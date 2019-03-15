@@ -10,7 +10,7 @@
             br
             h1 MYCURE for Dentists
             br
-            p Save and store dental charts anywhere, anytime.
+            p An easy-to-use clinic management system tailored for dental services and operations.
             //- img(src="../../assets/images/v4/mycure-modules-plantg.png" :class="{'animate': scrollTop > 700}").plant
         b-row.row.align-items-center.justify-content-md-center
           b-col(xs="12" md="5").pl-5.pr-5.text-center
