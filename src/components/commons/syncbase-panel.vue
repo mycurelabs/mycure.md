@@ -30,11 +30,15 @@
                 b-button(variant="primary" size="sm" href="" @click="toggleChat").shadow-5 Ask Us Now
                 br
                 br
+                div.media(v-b-modal="'syncbaseVid'")
+                  div.media-body
+                    img(width="20" src="../../assets/images/v4/mycure-play-btn.png").media-object
+                    label(style="margin-top:3px; margin-left:10px; font-size: 14px; font-weight: bold;") Watch Video
                 br
-
+                br
                 b-col(xs="12" md="12").pb-5
                   img(width="100%" src="../../assets/images/v4/mycure-homepage-syncbase-offline-online-clinic-management-system-animated.gif")
-                b-col(xs="12" md="12" v-if="showVideoButton")
+                // b-col(xs="12" md="12" v-if="showVideoButton")
                   center
                     b-button(variant="primary" size="sm" v-b-modal="'syncbaseVid'" style="text-align:center;") WATCH VIDEO
     b-modal(
@@ -96,3 +100,17 @@
   }
 
 </style>
+              div.media
+                div.media-body
+                  img(width="20" src="../../assets/images/v4/mycure-play-btn.png").media-object
+                  label(style="margin-top:3px; margin-left:10px; font-size: 14px; font-weight: bold;") Watch Video
+
+
+
+            br
+            div(v-b-modal="'homeVid'").mb-5.custom-play-button
+              div.media
+                div.media-left
+                  img(width="20" src="../../assets/images/v4/mycure-play-btn.png").media-object
+                div.media-body
+                  label(style="margin-top:3px; margin-left:10px; font-size: 14px; font-weight: bold;") Watch Video
