@@ -47,7 +47,7 @@
               span.color-primary hello@mycure.md
             li (+632) 799 6262
             li (+63) 917 303 4350
-            li (+63) 949 368 2010
+            //li (+63) 949 368 2010
       hr
       div.row.pt-5.pb-5
         div.col-xs-12.col-md-12.text-center
