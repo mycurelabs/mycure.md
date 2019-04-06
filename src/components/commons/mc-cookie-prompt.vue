@@ -7,7 +7,7 @@
         b-col(xs="4" sm="9" md="8" lg="10" style="padding: 0px 5px 0px 0px").cookie-text
           b Thank you for visiting! 
           span To help improve your browsing experience, this site may use cookies, web beacons, tracking pixels and other tracking technologies while you access the site.
-        b-col(xs="4" offset="4" offset-sm="0" sm="2" md="2" lg="1").agree-button
+        b-col(xs="4" offset="4" offset-sm="0" sm="2" md="2" lg="1").accept-button-container
           b-button(variant="warning" size="lg" @click="showPrompt=false")#cookie-accept-button I ACCEPT.
           // style="padding: 10px 5px 0px 1px"
 </template>
@@ -42,6 +42,7 @@
     padding: 8px 0px 10px 0px !important;
     min-width: 100px !important;
     height: 32px !important;
+    background-color: #cea800;
   }
 
   .cookie-prompt {
@@ -53,7 +54,7 @@
     font-size: 13px;
   }
 
-  .agree-button{
+  .accept-button-container {
     padding: 5px 0px 0px 0px;
     /* opacity: 0.8; */
   }
@@ -62,7 +63,7 @@
     .cookie-prompt {
       padding: 0px 0px 0px 0px;
     } 
-    .agree-button {
+    .accept-button-container {
       padding: 10px 0px 0px 0px;
     }
   }
@@ -71,7 +72,7 @@
     .cookie-prompt {
       padding: 0px 0px 0px 0px;
     } 
-    .agree-button {
+    .accept-button-container {
       padding: 10px 30px 0px 0px;
     }
   }
@@ -80,7 +81,7 @@
     .cookie-prompt {
       padding: 0px 5px 0px 0px;
     } 
-    .agree-button {
+    .accept-button-container {
       padding: 5px 0px 0px 0px;
     }
   }
