@@ -1,13 +1,11 @@
 <template lang="pug">
   div(v-if="!browserID")#cookie-nav.pt-1
     b-container.cookie-prompt
-      b-row(style="width: 100%").pt-1.pb-2
-        b-col(xs="4" offset="4" offset-sm="0" sm="1" md="2" lg="1")
-          // img(src="../../assets/images/v4/mycure-emr-offline-online-website-cookie-prompt-icon.png")
-        b-col(xs="4" sm="9" md="8" lg="10" style="padding: 0px 5px 0px 0px").cookie-text
+      b-row(style="width: 100%").pt-1.pb-2.pl-4
+        b-col(xs="12" sm="10" md="10" lg="11").cookie-text
           b Thank you for visiting! 
           span To help improve your browsing experience, this site may use cookies, web beacons, tracking pixels and other tracking technologies while you access the site.
-        b-col(xs="4" offset="4" offset-sm="0" sm="2" md="2" lg="1").accept-button-container
+        b-col(xs="12" offset-sm="0" sm="2" md="2" lg="1").accept-button-container
           b-button(variant="warning" size="lg" @click="disablePrompt")#cookie-accept-button I ACCEPT.
 </template>
 
@@ -57,11 +55,11 @@
 
   .cookie-prompt {
     padding: 0px 0px 10px 30px;
-    
   }
 
   .cookie-text {
     font-size: 13px;
+    padding: 0px 20px 0px 0px;
   }
 
   .accept-button-container {
@@ -89,7 +87,7 @@
   
   @media (min-width: 992px) {
     .cookie-prompt {
-      padding: 0px 5px 0px 0px;
+      padding: 0px 8px 0px 9px;
     } 
     .accept-button-container {
       padding: 5px 0px 0px 0px;
