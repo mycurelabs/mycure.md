@@ -8,7 +8,7 @@
           b Thank you for visiting! 
           span To help improve your browsing experience, this site may use cookies, web beacons, tracking pixels and other tracking technologies while you access the site.
         b-col(xs="4" offset="4" offset-sm="0" sm="2" md="2" lg="1").agree-button
-          b-button(variant="warning" size="lg" @click="showPrompt=false")#cookie-accept-button I AGREE.
+          b-button(variant="warning" size="lg" @click="showPrompt=false")#cookie-accept-button I ACCEPT.
           // style="padding: 10px 5px 0px 1px"
 </template>
 
