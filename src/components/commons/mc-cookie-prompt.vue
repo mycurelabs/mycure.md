@@ -1,5 +1,5 @@
 <template lang="pug">
-  div(v-if="showPrompt")#cookie-nav.pt-1
+  div(v-if="!browserID")#cookie-nav.pt-1
     b-container.cookie-prompt
       b-row(style="width: 100%").pt-1.pb-2
         b-col(xs="4" offset="4" offset-sm="0" sm="1" md="2" lg="1")
@@ -8,19 +8,29 @@
           b Thank you for visiting! 
           span To help improve your browsing experience, this site may use cookies, web beacons, tracking pixels and other tracking technologies while you access the site.
         b-col(xs="4" offset="4" offset-sm="0" sm="2" md="2" lg="1").accept-button-container
-          b-button(variant="warning" size="lg" @click="showPrompt=false")#cookie-accept-button I ACCEPT.
-          // style="padding: 10px 5px 0px 1px"
+          b-button(variant="warning" size="lg" @click="disablePrompt")#cookie-accept-button I ACCEPT.
 </template>
 
 <script>
+  import { cookieStore } from '../../vuex'
   export default {
+    computed: {
+      browserID (){
+        return cookieStore.state.browserID;
+      }
+    },
+
     data: () => ({
       scrollTop: 0,
-      showPrompt: true
     }),
+
     methods: {
       toggleChat() {
         $crisp.push(['do', 'chat:toggle'])
+      },
+      disablePrompt() {
+        let newBrowserID = Math.random().toString(36).substr(2, 9) ;
+        cookieStore.dispatch('storeID', newBrowserID);
       }
     }
   }

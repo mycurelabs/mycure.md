@@ -10,6 +10,25 @@ const modules = {
   // user
 };
 
+export const cookieStore = new Vuex.Store({
+  state: {
+    browserID: ''
+  },
+  mutations: {
+    storeID: ( state, payload ) => {
+      state.browserID = payload;
+      console.log('Unique ID assinged');
+    }
+  },
+  actions: {
+    storeID: ( { commit }, payload) => {
+      commit('storeID', payload);
+    }
+  },
+  plugins: [createPersistedState()]
+
+});
+
 export default new Vuex.Store({
   modules,
   plugins: [createPersistedState()]
