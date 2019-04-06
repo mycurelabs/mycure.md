@@ -17,7 +17,6 @@ export const cookieStore = new Vuex.Store({
   mutations: {
     storeID: ( state, payload ) => {
       state.browserID = payload;
-      console.log('Unique ID assinged');
     }
   },
   actions: {
