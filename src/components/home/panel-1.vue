@@ -24,18 +24,18 @@
               div.col-md-0
               div.col-xs-12.col-md-4
                 div(@click="goto('cms')").product-card.p-4
-                  div.pr-3
+                  div.pr-3.mobile-collapse
                     img(width="100%" src="../../assets/images/v4/mycure-home-product-card-clinic-management-system.png" style="margin:10px;")
                   h6(align="center") Clinic Management System
               div.col-xs-12.col-md-4
                 div(@click="goto('his')").product-card.p-4
-                  div.pr-3
+                  div.pr-3.mobile-collapse
                     img(width="100%" src="../../assets/images/v4/mycure-home-product-card-hospital-information-system.png" style="margin:10px;")
                   h6(align="center") Hospital Information System
               //start of new//
               div.col-xs-12.col-md-4
                 div(@click="goto('dental')").product-card.p-4
-                  div.pr-3
+                  div.pr-3.mobile-collapse
                     img(width="100%" src="../../assets/images/v4/mycure-dental.png" style="margin:10px;")
                   h6(align="center") <span class="badge badge-success" style="font-size: 10px;" align="center">LATEST UPGRADE</span> Dental Clinic System
           div(style="height: 490px;").col-xs-12.col-md-6
@@ -126,6 +126,12 @@
   .container {
     padding-top: 50px;
     padding-bottom: 50px;
+  }
+
+  @media (max-width: 768px) {
+    .mobile-collapse {
+      display: none !important;
+    }
   }
 
   @media (min-width: 576px) {
