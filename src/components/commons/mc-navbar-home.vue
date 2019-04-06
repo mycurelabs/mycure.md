@@ -3,10 +3,10 @@
     b-container(style="padding-top: 0px; padding-bottom: 0px;")
       b-row(style="width: 100vw;")
         b-col(xs="12" md="2")
-          b-navbar-toggle(target="nav_collapse")
           b-navbar-brand(href="" :to="{name: 'home'}")#home-brand
             img(src="../../assets/images/v4/mycure-logo.svg")
-        b-col(xs="12" md="10")
+          b-navbar-toggle(target="nav_collapse" style="float: right")
+        b-col(xs="12" md="10").pl-4
           b-collapse(is-nav id="nav_collapse")
             b-navbar-nav.ml-auto
               b-nav-item(href="" :to="{name: 'cms'}") CMS
