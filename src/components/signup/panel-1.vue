@@ -2,7 +2,8 @@
   div.panel-1
     pre(v-if="!$isProduction()").panel-number 1
     mc-navbar-home
-    div.container
+    mc-cookie-prompt
+    div(style="padding-top: 58px").container
       div.row-container.row.align-items-center
         div.col-xs-12.col-md-5
           //- h2 MYCURE | Pricing
@@ -20,9 +21,11 @@
 
 <script>
   import mcNavbarHome from '../commons/mc-navbar-home';
+  import mcCookiePrompt from '../commons/mc-cookie-prompt';
   export default {
     components: {
-      mcNavbarHome
+      mcNavbarHome,
+      mcCookiePrompt
     },
     methods: {
       toggleChat() {

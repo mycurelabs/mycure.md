@@ -1,8 +1,8 @@
 <template lang="pug">
   div
-    mc-navbar-home
-    mc-cookie-prompt
     div.panel-1
+      mc-navbar-home
+      mc-cookie-prompt
       pre(v-if="!$isProduction()").panel-number 1
       div(style="padding-top: 58px;").container
         div.row

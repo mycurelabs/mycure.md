@@ -1,7 +1,8 @@
 <template lang="pug">
   div.panel-1
     mc-navbar-home
-    b-container
+    mc-cookie-prompt
+    b-container(style="padding-top: 58px")
       b-row.row-container.row.align-items-center
         b-col(xs="12" md="5")
           h1(style="line-height: 1.3") MYCURE cares for people who care for people.
@@ -40,9 +41,11 @@
 
 <script>
   import mcNavbarHome from '../commons/mc-navbar-home';
+  import mcCookiePrompt from '../commons/mc-cookie-prompt';
   export default {
     components: {
-      mcNavbarHome
+      mcNavbarHome,
+      mcCookiePrompt
     },
     data() {
       return {

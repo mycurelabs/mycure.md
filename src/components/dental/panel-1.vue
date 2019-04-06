@@ -2,6 +2,7 @@
   div.panel-1
     pre(v-if="!$isProduction()").panel-number 1
     mc-navbar-home
+    mc-cookie-prompt
     div.container
       div.row-container.row.align-items-center
         div.col-xs-12.col-md-6
@@ -23,9 +24,11 @@
 
 <script>
   import mcNavbarHome from '../commons/mc-navbar-home';
+  import mcCookiePrompt from '../commons/mc-cookie-prompt';
   export default {
     components: {
-      mcNavbarHome
+      mcNavbarHome,
+      mcCookiePrompt
     },
     methods: {
       goto(page) {
