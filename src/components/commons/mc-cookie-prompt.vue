@@ -7,8 +7,9 @@
         b-col(xs="12" md="8" style="padding: 0px 5px 0px 0px")
           b Thank you for visiting! 
           span To help improve your browsing experience, this site may use cookies, web beacons, tracking pixels and other tracking technologies while you access the site.
-        b-col(xs="12" md="3" style="padding: 10px 5px 0px 0px")
+        b-col(xs="12" md="3").agree-button
           b-button(variant="primary" size="lg")#cookie-accept-button I AGREE.
+          // style="padding: 10px 5px 0px 1px"
 </template>
 
 <script>
@@ -47,6 +48,12 @@
     padding-top: 50px;
     padding-bottom: 50px;
     /* background-color: blue; */
+  }
+  
+  @media (min-width: 992px) {
+    .agree-button {
+      padding: 10px 5px 0px 1px
+    }
   }
 
 </style>
