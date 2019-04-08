@@ -1,6 +1,6 @@
 <template lang="pug">
   b-navbar(toggleable="md" variant="transparent" :class="{'nav-box-shadow': scrollTop >= 1}")#home-nav
-    b-container(style="padding-top: 0px; padding-bottom: 0px;")
+    b-container(style="padding: 0px 0px 0px 7px;")
       b-row(style="width: 100vw;")
         b-col(xs="12" md="2")
           b-navbar-brand(href="" :to="{name: 'home'}")#home-brand
@@ -83,5 +83,11 @@
 
   #signup-button.active {
     background-color: #0099cc !important;
+  }
+
+  @media (min-width: 576px) {
+    .container {
+      padding-right: 15px !important;
+    }
   }
 </style>
