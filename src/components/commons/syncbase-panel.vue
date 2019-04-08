@@ -31,9 +31,9 @@
                 br
                 br
                 div.media(v-b-modal="'syncbaseVid'")
-                  div.media-body
+                  div.media-body(style= "cursor: pointer")
                     img(width="20" src="../../assets/images/v4/mycure-play-btn.png").media-object
-                    label(style="margin-top:3px; margin-left:10px; font-size: 14px; font-weight: bold;") Watch Video
+                    label(style="margin-top:3px; margin-left:10px; font-size: 14px; font-weight: bold; cursor: pointer;") Watch Video
                 br
                 br
                 b-col(xs="12" md="12").pb-5
