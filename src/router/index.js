@@ -216,7 +216,7 @@ export default new Router({
       path: '/faqs-link',
       name: 'faqs-link',
       beforeEnter (to, from, next) {
-        window.open('https://tutorials.mycure.md/frequently-asked-questions-faqs/');
+        window.open('http://blog.mycure.md/frequently-asked-questions/');
         next({name: from.name || 'home'});
       }
     },
