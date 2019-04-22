@@ -144,7 +144,7 @@ export default new Router({
       path: '/ig-link',
       name: 'ig-link',
       beforeEnter (to, from, next) {
-        window.open('https://www.instagram.com/lifeatmycure/');
+        window.open('https://www.instagram.com/mycure.md/');
         next({name: from.name || 'home'});
       }
     },
