@@ -1,7 +1,6 @@
 <template lang="pug">
   div
     mc-navbar-home
-    mc-cookie-prompt
     b-container
       b-row(style="height: 100vh;").align-items-center.justify-content-md-center
         b-col(xs="12" md="6")
