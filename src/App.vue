@@ -1,148 +1,31 @@
-<template lang="pug">
-  div
-    pre(v-if="!$isProduction()").scroll-top-log {{scrollTop}}
-    router-view
+<template>
+  <div id="app">
+    <div id="nav">
+      <router-link to="/">Home</router-link> |
+      <router-link to="/about">About</router-link>
+    </div>
+    <router-view/>
+  </div>
 </template>
 
-<script>
-export default {
-  name: "App",
-  created() {
-    this.$scrollspy().subscribe({
-      next: scrollTop => {
-        this.scrollTop = scrollTop;
-      },
-      error: e => console.log(e)
-    });
-  },
-  data() {
-    return {
-      scrollTop: 0
-    };
-  }
-};
-</script>
-
 <style>
-html,
-body {
-  max-width: 100% !important;
-  overflow-x: hidden !important;
-  font-family: 'Open Sans', sans-serif !important;
+#app {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+}
+#nav {
+  padding: 30px;
 }
 
-h1 {
-  font-weight: 800;
+#nav a {
+  font-weight: bold;
+  color: #2c3e50;
 }
 
-.feature-item {
-  background-color: white !important;
-  border-radius: 5px;
-  padding: 5px;
-  margin: 5px;
-}
-
-.hr-blue {
-  height: 2px;
-  width: 150px;
-  background-color: #0099cc;
-}
-
-.scroll-top-log {
-  position: fixed; 
-  z-index: 99999; 
-  color: green;
-}
-
-.panel-number {
-  position: absolute; 
-  z-index: 99999; 
-  color: green;
-  right: 10px;
-}
-
-.slide-up-fade-in {
-  animation: slide-up-fade-in ease 1s;
-  animation-iteration-count: 1;
-  transform-origin: 50% 50%;
-  animation-fill-mode: forwards; /*when the spec is finished*/
-  -webkit-animation: slide-up-fade-in ease 1s;
-  -webkit-animation-iteration-count: 1;
-  -webkit-transform-origin: 50% 50%;
-  -webkit-animation-fill-mode: forwards; /*Chrome 16+, Safari 4+*/
-  -moz-animation: slide-up-fade-in ease 1s;
-  -moz-animation-iteration-count: 1;
-  -moz-transform-origin: 50% 50%;
-  -moz-animation-fill-mode: forwards; /*FF 5+*/
-  -o-animation: slide-up-fade-in ease 1s;
-  -o-animation-iteration-count: 1;
-  -o-transform-origin: 50% 50%;
-  -o-animation-fill-mode: forwards; /*Not implemented yet*/
-  -ms-animation: slide-up-fade-in ease 1s;
-  -ms-animation-iteration-count: 1;
-  -ms-transform-origin: 50% 50%;
-  -ms-animation-fill-mode: forwards; /*IE 10+*/
-
-  opacity: 0;
-  opacity: 1\9;
-}
-
-@keyframes slide-up-fade-in {
-  0% {
-    opacity: 0;
-    transform: translate(0px, 40px);
-  }
-  100% {
-    opacity: 1;
-    transform: translate(0px, 0px);
-  }
-}
-
-@-moz-keyframes slide-up-fade-in {
-  0% {
-    opacity: 0;
-    -moz-transform: translate(0px, 40px);
-  }
-  100% {
-    opacity: 1;
-    -moz-transform: translate(0px, 0px);
-  }
-}
-
-@-webkit-keyframes slide-up-fade-in {
-  0% {
-    opacity: 0;
-    -webkit-transform: translate(0px, 40px);
-  }
-  100% {
-    opacity: 1;
-    -webkit-transform: translate(0px, 0px);
-  }
-}
-
-@-o-keyframes slide-up-fade-in {
-  0% {
-    opacity: 0;
-    -o-transform: translate(0px, 40px);
-  }
-  100% {
-    opacity: 1;
-    -o-transform: translate(0px, 0px);
-  }
-}
-
-@-ms-keyframes slide-up-fade-in {
-  0% {
-    opacity: 0;
-    -ms-transform: translate(0px, 40px);
-  }
-  100% {
-    opacity: 1;
-    -ms-transform: translate(0px, 0px);
-  }
-}
-
-.hidden {
-  display: none;
+#nav a.router-link-exact-active {
+  color: #42b983;
 }
 </style>
