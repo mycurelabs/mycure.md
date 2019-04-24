@@ -1,11 +1,11 @@
 <template lang="pug">
-  v-toolbar
-    v-toolbar-title
+  v-toolbar.blue
+    v-toolbar-title.white--text
       | MYCURE
     v-spacer
     v-toolbar-items
-      v-btn(flat) Link One
-      v-btn(flat) Link Two
-      v-btn(flat) Link Three
+      v-btn(flat).white--text Link One
+      v-btn(flat).white--text Link Two
+      v-btn(flat).white--text Link Three
 
 </template>
