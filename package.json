@@ -11,6 +11,8 @@
     "@mdi/font": "^2.6.95",
     "bootstrap-vue": "^2.0.0-rc.19",
     "core-js": "^2.6.5",
+    "html-webpack-plugin": "^3.2.0",
+    "prerender-spa-plugin": "^3.4.0",
     "roboto-fontface": "*",
     "vue": "^2.6.10",
     "vue-router": "^3.0.3",
