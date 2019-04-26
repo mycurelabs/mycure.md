@@ -27,6 +27,7 @@
 
   .not-found-container {
     padding: 65px 0px 20px 0px;
+    height: 50%;
   }
 </style>
 <body>
@@ -35,7 +36,7 @@
       <div class="container" style="padding: 0px 0px 0px 7px;">
         <div class="row" style="width: 100vw;">
           <div class="col-xs-12">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" :href="home">
               <img src="../../../../src/assets/images/v4/mycure-logo.svg">
             </a>
           </div>
@@ -44,20 +45,22 @@
     </nav>
 
     <div class="container not-found-container">
-      <div class="row align-items-center justify-content-md-center text-center" style="height: 72vh;"> 
+      <div class="row wrap align-items-center justify-content-md-center text-center" style="height: 72vh;"> 
         <div class="col">
-          <img width="50%" src="../../../../src/assets/images/v4/mycure-online-offline-web-app-cms-emr-error-404-image-blue.png">
+          <img width="40%" src="../../../../src/assets/images/v4/mycure-online-offline-web-app-cms-emr-error-404-image-blue.png">
             <br>
             <br>
             <h5>Oh snap!</h5> 
             <span>There isn't any page like that in this site.</span> 
             <br>
             <span>Please check out our other pages instead.</span>
+            <br>
+            <br>
+            <a class="btn btn-primary" :href="home" role="button">Go back to home</a>
         </div>
       </div>
     </div>
 
-    
     <footer class="bg-dark">
       <div class="container text-center">
         <div class="row py-5">
@@ -76,13 +79,11 @@
       el: '#app',
       data() {
         return {
-          query: ''
+          home: ''
         }
       },
-      methods: {
-        search() {
-          location.href = location.origin + '/directory/?search=' + this.query
-        }
+      created() {
+        this.home = location.origin;
       }
     });
   </script>
