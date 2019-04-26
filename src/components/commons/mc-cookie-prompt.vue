@@ -1,12 +1,13 @@
 <template lang="pug">
-  div(v-if="!browserID")#cookie-nav.pt-1
-    b-container.cookie-prompt
-      b-row(style="width: 100%").pt-1.pb-2.pl-4
-        b-col(xs="12" sm="10" md="10" lg="11").cookie-text
-          b Thank you for visiting! 
-          span To help improve your browsing experience, this site may use cookies, web beacons, tracking pixels and other tracking technologies while you access the site.
-        b-col(xs="12" offset-sm="0" sm="2" md="2" lg="1").accept-button-container
-          b-button(variant="warning" size="lg" @click="disablePrompt")#cookie-accept-button I ACCEPT.
+  div
+    div(v-if="!browserID")#cookie-nav.pt-1
+      b-container.cookie-prompt
+        b-row(style="width: 100%").pt-1.pb-2.pl-4
+          b-col(xs="12" sm="10" md="10" lg="11").cookie-text
+            b Thank you for visiting! 
+            span To help improve your browsing experience, this site may use cookies, web beacons, tracking pixels and other tracking technologies while you access the site.
+          b-col(xs="12" offset-sm="0" sm="2" md="2" lg="1").accept-button-container
+            b-button(variant="warning" size="lg" @click="disablePrompt")#cookie-accept-button I ACCEPT.
 </template>
 
 <script>
@@ -17,15 +18,12 @@
         return cookieStore.state.browserID;
       }
     },
-
+    
     data: () => ({
       scrollTop: 0,
     }),
 
     methods: {
-      toggleChat() {
-        $crisp.push(['do', 'chat:toggle'])
-      },
       disablePrompt() {
         let newBrowserID = Math.random().toString(36).substr(2, 9) ;
         cookieStore.dispatch('storeID', newBrowserID);
