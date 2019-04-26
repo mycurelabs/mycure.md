@@ -21,7 +21,7 @@
     "deploy:fb:hosting": "firebase deploy --only hosting -P mycure-ab311",
     "deploy:fb:hosting:ci": "firebase deploy --only hosting --token \"$FIREBASE_TOKEN\" -P mycure-ab311",
     "deploy:fb:fns": "firebase deploy --only functions",
-    "deploy:fb:fns:only": "f() { for func in \"$@\"; do firebase deploy --only functions:\"$func\" -P mc-v4-prod; done; }; f"
+    "deploy:fb:fns:only": "f() { for func in \"$@\"; do firebase deploy --only functions:\"$func\" -P mycure-ab311; done; }; f"
   },
   "dependencies": {
     "@babel/polyfill": "^7.0.0-beta.51",
