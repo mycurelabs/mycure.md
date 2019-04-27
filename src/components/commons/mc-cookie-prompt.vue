@@ -2,12 +2,19 @@
   div
     div(v-if="!browserID")#cookie-nav.pt-1
       b-container.cookie-prompt
-        b-row(style="width: 100%").pt-1.pb-2.pl-4
+        b-row(style="width: 100%").pt-2.pb-3.pl-4
           b-col(xs="12" sm="10" md="10" lg="11").cookie-text
-            b Thank you for visiting! 
-            span To help improve your browsing experience, this site may use cookies, web beacons, tracking pixels and other tracking technologies while you access the site.
+            span By clicking 
+            b Continue
+            | , you agree to MYCURE's 
+            router-link(:to="{name: 'terms', query: { id: 'top'}}").policy-links Terms of Use 
+            | & 
+            router-link(:to="{name: 'privacy-policy', query: { id: 'top'}}").policy-links Privacy Policy
+            | . We also use third-party services to understand web traffic data for us and they may collect cookies during the process. 
+            | Feel free to check out our policies anytime for more info.
           b-col(xs="12" offset-sm="0" sm="2" md="2" lg="1").accept-button-container
-            b-button(variant="warning" size="lg" @click="disablePrompt")#cookie-accept-button I ACCEPT.
+            b-button(variant="warning" size="lg" @click="disablePrompt")#cookie-accept-button 
+              b CONTINUE
 </template>
 
 <script>
@@ -63,6 +70,12 @@
   .accept-button-container {
     padding: 5px 0px 0px 0px;
     /* opacity: 0.8; */
+  }
+
+  .policy-links {
+    color: black;
+    font-size: 13px; 
+    font-weight: bold
   }
 
   @media (min-width: 576px) {
