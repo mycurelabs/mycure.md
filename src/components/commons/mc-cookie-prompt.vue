@@ -4,13 +4,14 @@
       b-container.cookie-prompt
         b-row(style="width: 100%").pt-2.pb-3.pl-4
           b-col(xs="12" sm="10" md="10" lg="11").cookie-text
+            | We use third-party services to understand web traffic data for us and they may collect cookies during the process. 
             span By clicking 
             b Continue
             | , you agree to MYCURE's 
             router-link(:to="{name: 'terms', query: { id: 'top'}}").policy-links Terms of Use 
             | & 
             router-link(:to="{name: 'privacy-policy', query: { id: 'top'}}").policy-links Privacy Policy
-            | . We also use third-party services to understand web traffic data for us and they may collect cookies during the process. 
+            | .  
             | Feel free to check out our policies anytime for more info.
           b-col(xs="12" offset-sm="0" sm="2" md="2" lg="1").accept-button-container
             b-button(variant="warning" size="lg" @click="disablePrompt")#cookie-accept-button 
