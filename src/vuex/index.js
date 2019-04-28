@@ -15,12 +15,12 @@ export const cookieStore = new Vuex.Store({
     browserID: ''
   },
   mutations: {
-    storeID: ( state, payload ) => {
+    storeID: (state, payload) => {
       state.browserID = payload;
     }
   },
   actions: {
-    storeID: ( { commit }, payload) => {
+    storeID: ({ commit }, payload) => {
       commit('storeID', payload);
     }
   },
