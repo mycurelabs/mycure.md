@@ -26,7 +26,7 @@ export default new Router({
       component: home
     },
     {
-      path: '/cms',
+      path: '/clinic-management-system',
       name: 'cms',
       component: cms
     },
