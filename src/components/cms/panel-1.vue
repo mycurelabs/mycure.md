@@ -1,7 +1,7 @@
 <template lang="pug">
   div.panel-1
     mc-navbar-home
-    mc-cookie-prompt
+    mc-cookie-prompt(:browserID="browserID")
     b-container
       b-row.row-container.row.align-items-center
         b-col(xs="12" md="6")
@@ -66,6 +66,7 @@
 <script>
   import mcNavbarHome from '../commons/mc-navbar-home';
   import mcCookiePrompt from '../commons/mc-cookie-prompt';
+  import { cookieStore } from '../../vuex';
   export default {
     components: {
       mcNavbarHome,
@@ -75,6 +76,11 @@
       return {
         videoId: 'r7oewF5qDz4',
         showVid: true
+      }
+    },
+    computed: {
+      browserID (){
+        return cookieStore.state.browserID;
       }
     },
     methods: {

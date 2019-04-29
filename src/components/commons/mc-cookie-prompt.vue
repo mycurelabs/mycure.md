@@ -21,14 +21,11 @@
 <script>
   import { cookieStore } from '../../vuex'
   export default {
-    computed: {
-      browserID (){
-        return cookieStore.state.browserID;
-      }
-    },
     
+    props: ['browserID'],
     data: () => ({
       scrollTop: 0,
+      browserID: null
     }),
 
     methods: {

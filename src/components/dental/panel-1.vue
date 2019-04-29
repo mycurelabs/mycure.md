@@ -2,7 +2,7 @@
   div.panel-1
     pre(v-if="!$isProduction()").panel-number 1
     mc-navbar-home
-    mc-cookie-prompt
+    mc-cookie-prompt(:browserID="browserID")
     div.container
       div.row-container.row.align-items-center
         div.col-xs-12.col-md-6
@@ -25,10 +25,16 @@
 <script>
   import mcNavbarHome from '../commons/mc-navbar-home';
   import mcCookiePrompt from '../commons/mc-cookie-prompt';
+  import { cookieStore } from '../../vuex';
   export default {
     components: {
       mcNavbarHome,
       mcCookiePrompt
+    },
+    computed: {
+      browserID (){
+        return cookieStore.state.browserID;
+      }
     },
     methods: {
       goto(page) {
