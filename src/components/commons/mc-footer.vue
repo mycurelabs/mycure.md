@@ -1,6 +1,6 @@
 <template lang="pug">
   v-footer(dark height="auto")
-    v-card(flat tile).blue.white--text.text-xs-center
+    v-card(flat tile).grey.white--text.text-xs-center
       v-card-text.white--text.pt-2
         | Water. Earth. Fire. Air.
         | Long ago, the four nations lived together in harmony. Then, everything changed when the Fire Nation attacked. 
