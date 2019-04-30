@@ -28,33 +28,34 @@
 
     //- Section 3 of Home Page
     div.silver
-      v-container
-        v-flex(xs12 md12)
-          v-layout(row wrap justify-center)
-            h3.pa-5 Is your current clinic system stopping you and your clinic from progess?
-            
-            v-flex(xs6).text-xs-left
-              p Is your clinic system already outdated and lack reliablity?
-              br
-              p Is your clinic system providing accurate, real-time data?
-              br
-              p Is your clinic system already outdated and lack reliability?
-              br
-
-            v-flex(xs6).text-xs-left
-              p Is your clinic system hard to maintain?
-              br
-              p Is your clinic system help you in Data Privary Issues?
-              br
-              p Is your clinic system working perfectly even without WiFi?
-              br
-
-            v-btn(
-            color="info"
-            large
-            ) 
-              strong We got a solution
-          p.text-xs-center.py-4 Have questions? Give us a call: (+63) 699 - 7272
+      v-container.px-5
+        v-layout(row wrap justify-center)
+          h3.pa-5 Is your current clinic system stopping you and your clinic from progess?
+          v-layout(row wrap justify-center).mx-5
+            v-flex(xs4)
+              ul
+                li Is your clinic system already outdated and lack reliablity?
+                br
+                li Is your clinic system providing accurate, real-time data?
+                br
+                li Is your clinic system already outdated and lack reliability?
+                br
+            v-flex(xs4)
+              ul
+                li Is your clinic system hard to maintain?
+                br
+                br
+                li Is your clinic system help you in Data Privary Issues?
+                br
+                li Is your clinic system working perfectly even without WiFi?
+                br
+        v-layout(row wrap justify-center)
+          v-btn(
+          color="info"
+          large
+          ) 
+            strong We got a solution
+        p.text-xs-center.py-4 Have questions? Give us a call: (+63) 699 - 7272
 
     //- Section 4 of Home Page
     div.white
