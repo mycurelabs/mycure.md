@@ -1,11 +1,17 @@
 <template lang="pug">
-  v-toolbar.blue
-    v-toolbar-title.white--text
+  v-toolbar(flat).white
+    v-toolbar-title.blue--text
       | MYCURE
     v-spacer
-    v-toolbar-items
-      v-btn(flat).white--text Link One
-      v-btn(flat).white--text Link Two
-      v-btn(flat).white--text Link Three
+    v-btn(flat).px-3
+      strong FOR INDIVIDUAL DOCTORS
+    v-btn(flat).px-3
+      strong FOR MULTI-SPECIALTY CLINICS
+    v-btn(flat).px-3
+      strong LOG IN?
+    v-btn(
+      color="info"
+      ).px-3
+      strong SIGN UP
 
 </template>
