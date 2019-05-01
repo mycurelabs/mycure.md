@@ -33,3 +33,11 @@
             b We got a solution
       p.text-xs-center.py-4 Have questions? Give us a call: (+63) 699 - 7272
 </template>
+
+<style scoped>
+
+.problem-pic {
+  height: 150px;
+}
+
+</style>

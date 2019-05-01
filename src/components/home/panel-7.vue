@@ -9,7 +9,7 @@
             p.text-xs-center {{ panelText }}
 </template>
 
-<script>
+<script scoped>
 export default {
   data () {
     return {
