@@ -8,6 +8,7 @@
       panel-4
       panel-5
       panel-6
+      panel-7
     mcFooter
 </template>
 
@@ -20,6 +21,7 @@
   import panel4 from './panel-4';
   import panel5 from './panel-5';
   import panel6 from './panel-6';
+  import panel7 from './panel-7';
 
   export default {
     components: {
@@ -30,7 +32,8 @@
       panel3,
       panel4,
       panel5,
-      panel6
+      panel6,
+      panel7
     }
   };
 </script>
