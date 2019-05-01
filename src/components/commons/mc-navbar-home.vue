@@ -2,10 +2,10 @@
   div#home-nav.nav-box-shadow
     v-toolbar(flat).white
       v-layout(row wrap).pl-5
-        v-flex(xs12 md2)
+        v-flex(xs12 md2).pt-3
           img(src="../../assets/images/mycure-header-logo.png").logo-img
         v-spacer
-        v-flex(xs12 md7).justify-content-right.pl-4
+        v-flex(xs12 md7).justify-content-right.pl-4.pt-2
           v-btn(flat)
             b FOR INDIVIDUAL DOCTORS
           v-btn(flat)
@@ -42,7 +42,7 @@ export default {
   }
 
   .logo-img {
-    
+    height: 60%;
   }
 
 
