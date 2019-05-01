@@ -5,7 +5,7 @@
         v-flex(xs12 md2)
           img(src="../../assets/images/mycure-header-logo.png").logo-img
         v-spacer
-        v-flex(xs12 md7).justify-content-right
+        v-flex(xs12 md7).justify-content-right.pl-4
           v-btn(flat)
             b FOR INDIVIDUAL DOCTORS
           v-btn(flat)
