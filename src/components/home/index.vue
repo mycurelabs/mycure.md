@@ -9,6 +9,7 @@
       panel-5
       panel-6
       panel-7
+      panel-8
     mcFooter
 </template>
 
@@ -22,6 +23,7 @@
   import panel5 from './panel-5';
   import panel6 from './panel-6';
   import panel7 from './panel-7';
+  import panel8 from './panel-8';
 
   export default {
     components: {
@@ -33,7 +35,8 @@
       panel4,
       panel5,
       panel6,
-      panel7
+      panel7,
+      panel8
     }
   };
 </script>
@@ -43,10 +46,6 @@
 
 .home {
   font-family: 'Poppins', sans-serif;
-}
-
-.problem-pic {
-  height: 150px;
 }
 
 </style>
