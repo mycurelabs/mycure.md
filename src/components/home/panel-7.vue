@@ -4,9 +4,9 @@
     v-container
       v-layout(row wrap justify-center).mx-5
         v-flex(xs12)
-          h2.text-xs-center.pa-5 Introducing: MYCURE - Your Most Complete Clinic Management System
-        v-flex(xs8)
-            p.text-xs-center {{ panelText }}
+          h2.font-m.text-xs-center.pa-5 Introducing: MYCURE - Your Most Complete Clinic Management System
+        v-flex(xs6)
+            p.font-xs.text-xs-center {{ panelText }}
 </template>
 
 <script>
