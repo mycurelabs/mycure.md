@@ -1,6 +1,6 @@
 <template lang="pug">
   //- Section 8 (Sign-Up) of Home Page
-  div.silver.pb-5
+  div.mc-light-grey.pb-5
     v-container
       v-layout(row wrap justify-center).mx-5
         v-flex(xs12)
