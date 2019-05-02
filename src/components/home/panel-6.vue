@@ -1,6 +1,6 @@
 <template lang="pug">
   //- Section 6 of Home Page
-  div.blue.pa-5
+  div.mc-blue.pa-5
     v-container.pa-5
       v-layout(row wrap justify-center).pt-5
         v-flex(xs8)
