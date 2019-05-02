@@ -1,9 +1,9 @@
 <template lang="pug">
   //- Section 5 of Home Page
-  div.silver.px-5
+  div.mc-light-grey.px-5
     v-container
       v-layout(row wrap justify-center)
-        h2.text-xs-center.pa-5 Is this you right now?
+        strong.align-center.font-m.pa-5 Is this you right now?
         v-layout(row wrap justify-center)
           v-flex(xs12 md2).mx-1
             div.problem-pic.red 
@@ -30,8 +30,9 @@
             color="info"
             large
             ) 
-            b We got a solution
-      p.text-xs-center.py-4 Have questions? Give us a call: (+63) 699 - 7272
+            b.text-none.font-s We got a solution
+      p.text-xs-center.font-xs.py-4 Have questions? Give us a call: 
+        strong (+63) 699 - 7272
 </template>
 
 <style scoped>
