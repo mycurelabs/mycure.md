@@ -1,21 +1,21 @@
 <template lang="pug">
-  div#home-nav.nav-box-shadow
-    v-toolbar(flat).white
-      v-layout(row wrap).pl-5
+  div#home-nav
+    v-toolbar(flat).my-3.white
+      v-layout(row wrap justify-center).pl-5
         v-flex(xs12 md2).pt-3
           img(src="../../assets/images/mycure-header-logo.png").logo-img
         v-spacer
         v-flex(xs12 md7).justify-content-right.pl-4.pt-2
           v-btn(flat)
-            b FOR INDIVIDUAL DOCTORS
+            strong.font-xs.tab FOR INDIVIDUAL DOCTORS
           v-btn(flat)
-            b FOR MULTI-SPECIALTY CLINICS
+            strong.font-xs.tab FOR MULTI-SPECIALTY CLINICS
           v-btn(flat)
-            b LOG IN?
+            strong.font-xs.tab LOGIN
           v-btn(
             color="info"
             )
-            b SIGN UP
+            strong.font-xs.tab SIGN UP
 </template>
 
 <script>
@@ -35,15 +35,12 @@ export default {
     z-index: 999999;
   }
 
-  .nav-box-shadow {
-    -webkit-box-shadow: 0px 0px 16px 0px rgba(148,148,148,1);
-    -moz-box-shadow: 0px 0px 16px 0px rgba(148,148,148,1);
-    box-shadow: 0px 0px 16px 0px rgba(148,148,148,1);
-  }
-
   .logo-img {
     height: 60%;
   }
 
+  .tab {
+    letter-spacing: 0.5px
+  }
 
 </style>
