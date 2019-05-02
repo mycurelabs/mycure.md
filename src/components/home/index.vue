@@ -10,6 +10,9 @@
       panel-6
       panel-7
       panel-8
+      panel-9
+      panel-10
+      panel-11
     mcFooter
 </template>
 
@@ -24,6 +27,9 @@
   import panel6 from './panel-6';
   import panel7 from './panel-7';
   import panel8 from './panel-8';
+  import panel9 from './panel-9';
+  import panel10 from './panel-10';
+  import panel11 from './panel-11';
 
   export default {
     components: {
@@ -36,7 +42,10 @@
       panel5,
       panel6,
       panel7,
-      panel8
+      panel8,
+      panel9,
+      panel10,
+      panel11
     }
   };
 </script>
@@ -45,7 +54,47 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins');
 
 .home {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Poppins', sans-serif
+}
+
+.mc-blue {
+	background-color: #2e9fdf
+}
+
+.mc-dark-grey {
+	background-color: #343a40
+}
+
+.mc-grey {
+	background-color: #616161
+}
+
+.mc-light-grey {
+	background-color: #f6f6f6
+}
+
+.mc-yellow {
+	background-color: #ffff33
+}
+
+.font-xl {
+  font-size: 40px
+}
+
+.font-l {
+  font-size: 24px
+}
+
+.font-m {
+  font-size: 18px
+}
+
+.font-s {
+  font-size: 16px;
+}
+
+.font-xs {
+  font-size: 12px
 }
 
 </style>
