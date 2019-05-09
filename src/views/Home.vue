@@ -4,6 +4,8 @@
 </template>
 
 <script>
+  document.title = "MYCURE - Easy, Secure, Medical Records and Cilinic Management System";
+
   import mcHome from '../components/home/index';
 
   export default {
@@ -12,6 +14,7 @@
     }
   };
 </script>
+
 
 <style>
 
