@@ -1,18 +1,17 @@
 <template lang="pug">
-  div.home
+  div
     mcNavbarHome
-    div.home-body.pt-5
-      panel-1
-      panel-2
-      panel-3
-      panel-4
-      panel-5
-      panel-6
-      panel-7
-      panel-8
-      panel-9
-      panel-10
-      panel-11
+    panel-1
+    panel-2
+    panel-3
+    panel-4
+    panel-5
+    panel-6
+    panel-7
+    panel-8
+    panel-9
+    panel-10
+    panel-11
     mcFooter
 </template>
 
@@ -51,50 +50,6 @@
 </script>
 
 <style>
-@import url('https://fonts.googleapis.com/css?family=Poppins');
 
-.home {
-  font-family: 'Poppins', sans-serif
-}
-
-.mc-blue {
-	background-color: #2e9fdf
-}
-
-.mc-dark-grey {
-	background-color: #343a40
-}
-
-.mc-grey {
-	background-color: #616161
-}
-
-.mc-light-grey {
-	background-color: #f6f6f6
-}
-
-.mc-yellow {
-	background-color: #ffff33
-}
-
-.font-xl {
-  font-size: 40px
-}
-
-.font-l {
-  font-size: 24px
-}
-
-.font-m {
-  font-size: 18px
-}
-
-.font-s {
-  font-size: 16px;
-}
-
-.font-xs {
-  font-size: 12px
-}
 
 </style>

@@ -12,9 +12,9 @@
             ).text-capitalize.white--text 
             h4.strong I want this
         v-flex(xs6).mx-5
-          div.sample-vid.mc-blue
+          div.sample-vid.mc-blue    
             v-layout(justify-center)
-              v-icon(size="80" color="white").my-5 play_circle_filled
+              v-icon(size="80" color="white").mt-5.py-5 play_circle_filled
            
 
 </template>

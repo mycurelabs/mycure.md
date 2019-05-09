@@ -2,7 +2,7 @@
   //- Section 1 of Home Page
   div.white.panel-1
     v-container
-      h1.text-xs-center.ma-3 Because we know your clinic can do better.
+      h1.text-xs-center.pa-3 Because we know your clinic can do better.
       h3.em.font-weight-regular.font-italic.text-xs-center MYCURE | Your Most Complete Clinic Management System
       br
       v-layout(row wrap justify-center)
@@ -22,14 +22,6 @@
           ) play_circle_filled
 
           strong.underline.font-xs Watch Video
-        
-
-         
-        
-        
-        
-              
-  
 </template>
 
 <style scoped>
