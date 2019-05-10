@@ -52,11 +52,13 @@ export default {
   }
   
   .font-mc-dark-grey{
-    color: #343a40
+    /* color: #343a40 */
+    color: #2b2d3a 
   }
 
   .font-mc-grey {
-    color: #616161
+    color: #616161;
+    
   }
 
   .font-mc-light-grey {
@@ -68,11 +70,11 @@ export default {
   }
 
   .font-xl {
-    font-size: 40px
+    font-size: 60px
   }
 
   .font-l {
-    font-size: 24px
+    font-size: 40px
   }
 
   .font-m {

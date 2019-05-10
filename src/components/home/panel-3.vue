@@ -1,44 +1,44 @@
 <template lang="pug">
   //- Section 3 of Home Page
-  div.mc-light-grey.px-5
+  div.px-5.panel-3
     v-container.px-5
       v-layout(row wrap justify-center)
-        h2.pa-5 Is your current clinic system stopping you and your clinic from progress?
+        font.font-l.pa-5 Are you having trouble in your clinic?
       v-layout(row wrap justify-center).mx-5
         v-flex(xs12 md4)
-          v-list(two-line).check-list
+          v-list(two-line).check-list.panel-3
             v-list-tile
               v-list-tile-action
                 img(src="../../assets/images/mycure-icon-check.png")
               v-list-tile-content
-                | Is your clinic system already outdated and lack reliablity?
+                | Are you having data privacy issues?
             v-list-tile
               v-list-tile-action
                 img(src="../../assets/images/mycure-icon-check.png")
               v-list-tile-content
-                | Is your clinic system providing accurate, real-time data?
+                | Do you need to cut on unnecessary costs?
             v-list-tile
               v-list-tile-action
                 img(src="../../assets/images/mycure-icon-check.png")
               v-list-tile-content
-                | Is your clinic system already outdated and lack reliability?
+                | Is your internet connection unreliable?
         v-flex(xs12 md4)
-          v-list(two-line).check-list
+          v-list(two-line).check-list.panel-3
             v-list-tile
               v-list-tile-action
                 img(src="../../assets/images/mycure-icon-check.png")
               v-list-tile-content
-                | Is your clinic system hard to maintain?
+                | Do you have a duplicate or missing patient charts?
             v-list-tile
               v-list-tile-action
                 img(src="../../assets/images/mycure-icon-check.png")
               v-list-tile-content
-                | Is your clinic system help you in Data Privary Issues?
+                | Do you have billing &amp collection discrepancies?
             v-list-tile
               v-list-tile-action
                 img(src="../../assets/images/mycure-icon-check.png")
               v-list-tile-content
-                | Is your clinic system working perfectly even without WiFi?
+                | Is your current system crappy and slows you down?
       v-layout(row wrap justify-center)
         v-btn(
         color="info"
@@ -68,6 +68,10 @@ ul {
 
 .check-list {
   background-color: #f6f6f6;
+}
+
+.panel-3 {
+  background-color: #dfdede
 }
 
 </style>

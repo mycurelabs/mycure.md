@@ -4,7 +4,7 @@
     v-container
       v-flex(xs12 md12)
           v-layout(row wrap justify-center)
-            h2.pa-5 Does your clinic have more than 10 branches? 
+            strong(style="font-size: 25px").pa-5 Does your clinic have more than 3 branches? 
               a(
                 href="https://mycure.md"
               )

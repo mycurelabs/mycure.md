@@ -1,45 +1,39 @@
 <template lang="pug">
-  //- Section 9 of Home Page
   div
     v-container
-      v-layout(row wrap justify-center)
-        v-flex(xs3 offset-xs1)
-          b.font-l What if you have a clinic system that works offline?
-          p.font-xs.mt-3 Get seamless process flows without the hassle of slow internet connection. Introducing MYCURE's proprietary feature! The Syncbase Technology. 
-          v-btn(
-            color="#2e9fdf"
-            large
-            ).text-capitalize.white--text 
-            h4.strong I want this
-        v-flex(xs6).mx-5
-          div.sample-vid.mc-blue    
-            v-layout(justify-center)
-              v-icon(size="80" color="white").mt-5.py-5 play_circle_filled
-           
-
+      v-layout(row)
+        v-flex(xs12 md6)
+          img(width="100%" src="../../assets/images/mycure-web-banner-last-panel-doctor-clinic.png")
+        v-flex(xs12 md6 offset-xs1 align-self-center)
+          h2.font-l Because we believe
+              br
+              | your clinic can stand out
+              | and be it best everyday.
+          br
+          p.font-xs.mt-3 Experience what you can do more with 
+            strong MYCURE 
+            br
+            | technology by your side.
+          v-btn(color="info" large) 
+            strong.text-none Get Started with MYCURE
+          
 </template>
 
 <script>
-
 export default {
   
 };
-
 </script>
 
 <style scoped>
-.i-want-this {
-  padding: 20px
+.center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }
 
-.sample-vid {
-  height: 300px;
-}
-
-.video {
-  margin-top: 0;
-  margin-bottom: 0;
-}
 
 </style>
-

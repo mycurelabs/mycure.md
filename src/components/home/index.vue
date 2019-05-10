@@ -27,9 +27,7 @@
   import panel7 from './panel-7';
   import panel8 from './panel-8';
   import panel9 from './panel-9';
-  import panel10 from './panel-10';
-  import panel11 from './panel-11';
-
+  
   export default {
     components: {
       mcNavbarHome,
@@ -42,9 +40,7 @@
       panel6,
       panel7,
       panel8,
-      panel9,
-      panel10,
-      panel11
+      panel9
     }
   };
 </script>

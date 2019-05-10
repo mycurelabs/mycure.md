@@ -1,46 +1,48 @@
 <template lang="pug">
-  //- Section 1 of Home Page
-  div.white.panel-1
-    v-container
-      h1.text-xs-center.pa-3 Because we know your clinic can do better.
-      h3.em.font-weight-regular.font-italic.text-xs-center MYCURE | Your Most Complete Clinic Management System
-      br
-      v-layout(row wrap justify-center)
-        v-btn(
-          color="#2e9fdf"
-          large 
-          ).px-5.text-capitalize.white--text.sign-up
-          strong.font-s Sign Up
+  div.panel-1.pt-5.white
+    v-container.pt-5
+      v-layout(row wrap align-center).pt-5
+        v-flex(xs12 md5)
+          font.font-l Technology 
+              br
+              | to Help You Run 
+              br
+              | Your Clinic Better
+          br
+          br
+          em.font-s - Secure Medical Records
+              br
+              | - Minimized Costs
+              br 
+              | - Lesser Paperwork
+          br 
+          br
+          v-btn(
+            color="info" 
+            large
+            id="showVid"
+            @click="showVid = true") 
+              strong.text-none Get Started Today
+        v-flex(xs12 md7)
+          img(width="100%" src="../../assets/images/mycure-web-banner-first-panel-doctor-clinic-patients.png")
 
-      v-layout(row wrap justify-center)
-        v-btn(  
-          color="#ADD8E6"
-        ).watch-video.ma-3
-          v-icon(
-            color="blue"
-            left
-          ) play_circle_filled
-
-          strong.underline.font-xs Watch Video
 </template>
 
+<script>
+
+export default {
+  data () {
+      return {
+        showVid: false
+      };
+    },
+};
+
+</script>
+
 <style scoped>
-
-.panel-1 {
-  padding: 140px;
-}
-
-.sign-up {
-  width: 200px;
-}
-
-.underline{
-  text-decoration: underline;
-}
-
-.watch-video{
-  height: 35px;
-  width: 160px;
+.panel-1{
+  height: auto;
 }
 
 </style>
