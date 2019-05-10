@@ -7,12 +7,12 @@
             v-flex(xs12 md12).text-xs-center
               div.hr-blue
               br
-              h1.font-xl Caring the Extra Mile
+              h1.font-l Caring the Extra Mile
               br
               br
               br
           iframe(
-            align="center"
+            align="middle"
             id="ytplayer" 
             type="text/html" width="100%" height="450"
             src="https://www.youtube.com/embed/ZR8e-Egav0M?autoplay=0&controls=0&loop=1&showinfo=0"

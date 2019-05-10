@@ -7,7 +7,7 @@
             v-flex(xs12 md12).text-xs-center
               div.hr-blue
               br
-              h1.font-xl MYCURE starts and ends with 
+              h1.font-l MYCURE starts and ends with 
                   br
                   | real people and real stories.
               br

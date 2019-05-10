@@ -7,7 +7,7 @@
             v-flex(xs12 md12).text-xs-center
               div.hr-blue
               br
-              h1.font-xl Our Purpose
+              h1.font-l Our Purpose
             v-flex(xs12 md4).px-4
               img(width="100%" src="../../assets/images/mycure-ourstory-team.png")
             v-flex(xs12 md8).px-4

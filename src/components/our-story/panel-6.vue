@@ -12,7 +12,7 @@
               br
               br
               br
-              h1.font-xl 8 Codes of Being
+              h1.font-l 8 Codes of Being
               br
               br
             v-flex(xs12 md12).text-xs-center
