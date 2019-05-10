@@ -5,7 +5,7 @@
         img(src="../../assets/images/mycure-header-logo.png" height="35")
       v-spacer
       v-btn(flat)
-        strong.font-xs.tab FOR INDIVIDUAL DOCTORS
+        strong.font-xs.tab FOR PRIVATE PRACTICE
       v-btn(flat)
         strong.font-xs.tab FOR MULTI-SPECIALTY CLINICS
       v-btn(flat)

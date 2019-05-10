@@ -8,13 +8,14 @@
             img(src="../../assets/images/mycure-modules-almond.png").almonds
             div.hr-blue
             br
-            h1.font-xl.text-xs-center Experience MYCURE
+            h1.font-l.text-xs-center Experience MYCURE
             br
             p.font-m.text-xs-center Explore what you can do more with our smart tools by your side.
             br
           v-flex(xs12 md12)
             v-layout(row wrap justify-center)
-              v-btn(color="info" large).mb-3 GET STARTED TODAY 
+              v-btn(style="width: 450px" color="info" large).mb-3 
+                strong GET STARTED TODAY 
 </template>
 
 <script>
@@ -50,7 +51,7 @@
       width: 600px;
       position: absolute;
       left: -150px;
-      bottom: 300px;
+      bottom: 320px;
     }
 
     .almonds {
