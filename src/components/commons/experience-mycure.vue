@@ -51,14 +51,14 @@
       width: 600px;
       position: absolute;
       left: -150px;
-      bottom: 320px;
+      bottom: 1300px;
     }
 
     .almonds {
       display: inline;
       position: absolute;
       right: -10px;
-      bottom: 600px;
+      bottom: 1600px;
     }
   }
 
