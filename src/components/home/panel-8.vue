@@ -15,15 +15,14 @@
           a(href="googl.com" style="text-decoration: none")
             em.font-mc-blue Watch how it works &#62
         v-flex(xs12 md6).px-3
-          v-card
-            center
-              iframe(
-                width="560" 
-                height="315" 
-                src="https://www.youtube.com/embed/siFBgZMt26k" 
-                frameborder="0" 
-                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
-                allowfullscreen)
+          center
+            iframe(
+              width="560" 
+              height="315" 
+              src="https://www.youtube.com/embed/siFBgZMt26k" 
+              frameborder="0" 
+              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+              allowfullscreen)
 </template>
 
 <script>
