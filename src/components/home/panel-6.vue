@@ -1,7 +1,7 @@
 <template lang="pug">
   div.pa-5
     v-layout(row wrap justify-center)
-      font.font-l MYCURE works for Private and Multispecialty Clinics
+      font.font-l.text-xs-center MYCURE works for Private and Multispecialty Clinics
     v-layout(row wrap justify-center).pt-5
       table
         tr
