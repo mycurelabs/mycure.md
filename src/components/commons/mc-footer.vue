@@ -1,6 +1,12 @@
 <template lang="pug">
   div
     div.pt-5
+      center
+        v-layout(row wrap justify-center style="width: 60%")
+          font.font-l.text-xs-center Join thousands of other health professionals who enjoy the benefits of using technology in their practice
+        v-layout(row wrap justify-center).py-5
+          v-btn(large style="width: 250px" color="info")
+            strong.text-none Get Started   
       v-layout(row wrap)
         img(src="../../assets/images/mycure-before-footer-panel-background.png")
     div.mc-dark-grey
