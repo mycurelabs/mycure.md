@@ -10,8 +10,6 @@
     panel-7
     panel-8
     panel-9
-    panel-10
-    panel-11
     mcFooter
 </template>
 
