@@ -27,6 +27,17 @@ export default new Router({
       path: '/our-story',
       name: 'our-story', 
       component: () => import('./components/our-story')
+    },
+    {
+      path: '/electronic-medical-records',
+      name: 'electronic-medical-records', 
+      component: () => import('./components/electronic-medical-records')
+    },
+    {
+      path: '/clinic-management-system',
+      name: 'clinic-management-system', 
+      component: () => import('./components/clinic-management-system')
     }
+    
   ]
 });

@@ -4,9 +4,9 @@
       a(href="/")
         img(src="../../assets/images/mycure-header-logo.png" height="35")
       v-spacer
-      v-btn(flat)
+      v-btn(href="/electronic-medical-records" flat)
         strong.font-xs.tab FOR PRIVATE PRACTICE
-      v-btn(flat)
+      v-btn(href="/clinic-management-system" flat)
         strong.font-xs.tab FOR MULTI-SPECIALTY CLINICS
       v-btn(flat)
         strong.font-xs.tab LOGIN
