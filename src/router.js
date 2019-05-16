@@ -37,6 +37,11 @@ export default new Router({
       path: '/clinic-management-system',
       name: 'clinic-management-system', 
       component: () => import('./components/clinic-management-system')
+    },
+    {
+      path: '/pricing',
+      name: 'pricing', 
+      component: () => import('./components/pricing')
     }
     
   ]

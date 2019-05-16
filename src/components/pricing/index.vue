@@ -1,0 +1,29 @@
+<template lang="pug">
+  div
+    panel1
+    panel2
+    panel3
+</template>
+
+<script>
+import panel1 from './panel-1';
+import panel2  from './panel-2';
+import panel3 from './panel-3';
+
+export default {
+  data () {
+    return {
+    };
+  }, 
+
+  components: {
+    panel1,
+    panel2,
+    panel3
+  }
+};
+</script>
+
+<style scoped>
+
+</style>
