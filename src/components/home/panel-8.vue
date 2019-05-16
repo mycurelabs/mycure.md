@@ -6,10 +6,10 @@
           font.font-l What makes MYCURE so different?
           br
           br
-          font.font-xs {{ different1 }}
+          font.font-s {{ different1 }}
           br
           br
-          font.font-xs {{ different2 }}
+          font.font-s {{ different2 }}
           br
           br
           a(href="googl.com" style="text-decoration: none")

@@ -1,7 +1,7 @@
 <template lang="pug">
   div.panel-1.pt-5.white
-    v-container.pt-5
-      v-layout(row wrap align-center).pt-5
+    v-container
+      v-layout(row justify-center).pt-5
         v-flex(xs12 md5)
           font.font-l Technology 
               br

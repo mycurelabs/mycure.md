@@ -26,7 +26,7 @@
                 br
                 font &#10003 &nbsp Medical Billing
                 v-layout(row wrap justify-center).pa-3
-                  v-btn(style="background-color: #2e9fdf; color: white; width: 250px" large round) 
+                  v-btn(style="background-color: #2e9fdf; color: white; width: auto" large round) 
                     strong GET MYCURE FREE
         v-flex(xs12 md6).px-5
           center 
@@ -44,7 +44,7 @@
                 br
                 font &#10003 &nbsp Materials Management
                 v-layout(row wrap justify-center).pa-3
-                  v-btn(style="background-color: #2e9fdf; color: white; width: 250px" large round) 
+                  v-btn(style="background-color: #2e9fdf; color: white; width: auto" large round) 
                     strong LEARN MORE
 </template>
 
