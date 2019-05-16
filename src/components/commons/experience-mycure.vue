@@ -31,10 +31,6 @@
 
 <style scoped>
 
-  .join-us-panel {
-    
-  }
-
   .plant, .almonds {
     display: none;
   }
