@@ -25,7 +25,7 @@
                   span For Individual Doctors
               li.pb-3
                 router-link(:to="{name: 'multi-specialty'}").link.white--text
-                  span For Multi-sepcialty-clinics
+                  span For Multisepcialty Clinics
               li ABOUT
               li
                 router-link(:to="{name: 'our-story'}").link.white--text 
@@ -40,6 +40,9 @@
               li SUPPORT 
               li 
                 a(href="http://blog.mycure.md/frequently-asked-questions/").link.white--text FAQs
+              li
+                router-link(:to="{name: 'pricing'}").link.white--text
+                  span Pricing
               li.pb-3
                 a(href="https://calendly.com/mycure").link.white--text Book A Demo
               li LEGAL
