@@ -7,7 +7,7 @@
       v-btn(href="/electronic-medical-records" flat)
         strong.font-xs.tab FOR PRIVATE PRACTICE
       v-btn(href="/clinic-management-system" flat)
-        strong.font-xs.tab FOR MULTI-SPECIALTY CLINICS
+        strong.font-xs.tab FOR MULTISPECIALTY CLINICS
       v-btn(flat)
         strong.font-xs.tab LOGIN
       v-btn(
