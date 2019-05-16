@@ -14,7 +14,7 @@
             id="showVid"
             @click="showVid = true") 
               strong WATCH VIDEO
-        v-flex(xs12 md7)
+        v-flex(xs12 md7).px-3
           img(width="100%" src="../../assets/images/mycure-homepage-doctor-kid-pediatrician-drawing.png")
 
     v-dialog(v-model="showVid" max-width="700px")
