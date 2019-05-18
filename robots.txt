@@ -1,8 +1,9 @@
 User-Agent: *
 Disallow: 
 Allow: /
-Allow: /modules
-Allow: /pricing
+Allow: /clinic-management-system
+Allow: /his
+Allow: /dental
 Allow: /our-story
 Allow: /terms
 Allow: /privacy-policy
