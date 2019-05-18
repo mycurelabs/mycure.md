@@ -2,7 +2,7 @@
   div#top
     panel-1
     syncbase-panel(:showVideoButton="true")
-    panel-3-1
+    //- panel-3-1
     panel-4
     panel-5
     panel-6
