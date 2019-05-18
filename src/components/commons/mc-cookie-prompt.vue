@@ -1,9 +1,9 @@
 <template lang="pug">
   div
-    div(v-if="!browserID")#cookie-nav.pt-1
-      b-container.cookie-prompt
+    div(v-if="showPrompt")#cookie-nav.pt-1
+      b-container
         b-row(style="width: 100%").pt-2.pb-3.pl-4
-          b-col(xs="12" sm="10" md="10" lg="11").cookie-text
+          b-col(cols="11").cookie-text
             | We use third-party services to understand web traffic data for us and they may collect cookies during the process. 
             | By continuing to browse our site, you agree to MYCURE's 
             router-link(:to="{name: 'terms', query: { id: 'top'}}").policy-links Terms of Use 
@@ -11,25 +11,34 @@
             router-link(:to="{name: 'privacy-policy', query: { id: 'top'}}").policy-links Privacy Policy
             | .  
             | Feel free to check out our policies anytime for more info.
-          b-col(xs="12" offset-sm="0" sm="2" md="2" lg="1").accept-button-container
-            b-button(variant="warning" size="lg" @click="disablePrompt")#cookie-accept-button 
-              b CONTINUE
+          b-col(cols="1").pt-1.text-right.cookie-button
+            img(src="../../assets/images/cookie-close.png" height="30px" @click="disablePrompt")
 </template>
 
 <script>
   import { cookieStore } from '../../vuex'
   export default {
-    
-    props: ['browserID'],
+    // props: ['browserID'],
+    async mounted () {
+      await this.init();
+    },
     data: () => ({
       scrollTop: 0,
-      browserID: null
+      browserID: null,
+      showPrompt: false
     }),
 
     methods: {
+      async init () {
+        this.browserID = cookieStore.state.browserID;
+        if(!this.browserID){
+          this.showPrompt = true;
+        }
+      },
       disablePrompt() {
         let newBrowserID = Math.random().toString(36).substr(2, 9) ;
         cookieStore.dispatch('storeID', newBrowserID);
+        this.showPrompt = false;
       }
     }
   }
@@ -63,9 +72,8 @@
     padding: 0px 20px 0px 0px;
   }
 
-  .accept-button-container {
-    padding: 5px 0px 0px 0px;
-    /* opacity: 0.8; */
+  .cookie-button:hover {
+    cursor: pointer;
   }
 
   .policy-links {
