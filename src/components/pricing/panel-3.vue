@@ -5,7 +5,10 @@
         center 
           strong.font-l.text-xs-center.white--text Need to work offline?
           br
-          strong.font-s.white--text Get MYCURE for only blabla a day.
+          br
+          font.font-s.white--text Get MYCURE for only 
+            strong &#36; 0.63 
+            | a day.
           br
           br
           br

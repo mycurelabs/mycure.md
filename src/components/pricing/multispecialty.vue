@@ -14,7 +14,7 @@
           v-btn(color="success" large) 
             strong BOOK A DEMO
         v-flex(xs12 md6).px-3
-          img(width="100%" src="../../assets/images/mycure-pricing-emr-private-clinic.png")
+          img(width="100%" src="../../assets/images/mycure-pricing-cms.png")
       br
       br
       br
@@ -23,74 +23,144 @@
           font.font-mc-grey 
             strong FEATURES INCLUDED
       br
-      v-layout(row align-center)
-        v-flex(xs12 md3 offset-md1 align-self-center)
-          v-layout(row).pb-2
-            img(width="7%" src="../../assets/images/mycure-icon-check.png").pt-2
-            font.font-m &nbsp &nbsp Unlimited clinics
-          v-layout(row).pb-2
-            img(width="7%" src="../../assets/images/mycure-icon-check.png").pt-2
-            font.font-m &nbsp &nbsp Unlimited devices
-          v-layout(row).pb-2
-            img(width="7%" src="../../assets/images/mycure-icon-check.png").pt-2
-            font.font-m &nbsp &nbsp 50 patients per month
-          v-layout(row).pb-2
-            img(width="7%" src="../../assets/images/mycure-icon-check.png").pt-2
-            font.font-m &nbsp &nbsp Secretary account
-          v-layout(row).pb-2
-            img(width="7%" src="../../assets/images/mycure-icon-check.png").pt-2
-            font.font-m &nbsp &nbsp Queuing System
-          v-layout(row).pb-2
-            img(width="7%" src="../../assets/images/mycure-icon-check.png").pt-2
-            font.font-m &nbsp &nbsp Medical Billing
-        v-flex(xs12 md3 offset-md1)
-          v-layout(row).pb-2
-            img(width="7%" src="../../assets/images/mycure-icon-check.png").pt-2
-            font.font-m &nbsp &nbsp SOAP Charting
-          v-layout(row).pb-2
-            img(width="7%" src="../../assets/images/mycure-icon-check.png").pt-2
-            font.font-m &nbsp &nbsp Prescription
-          v-layout(row).pb-2
-            img(width="7%" src="../../assets/images/mycure-icon-check.png").pt-2
-            font.font-m &nbsp &nbsp Lab &amp Imaging orders
-          v-layout(row).pb-2
-            img(width="7%" src="../../assets/images/mycure-icon-check.png").pt-2
-            font.font-m &nbsp &nbsp Custom medical forms
-          v-layout(row).pb-2
-            img(width="7%" src="../../assets/images/mycure-icon-check.png").pt-2
-            font.font-m &nbsp &nbsp Print functions
-          v-layout(row).pb-2
-            img(width="7%" src="../../assets/images/mycure-icon-check.png").pt-2
-            font.font-m &nbsp &nbsp Bulk patient upload
-        v-flex(xs12 md3 offset-md1)
-          v-layout(row).pb-2
-            img(width="7%" src="../../assets/images/mycure-icon-check.png").pt-2
-            font.font-m &nbsp &nbsp SMS Feature
-          v-layout(row).pb-2
-            img(width="7%" src="../../assets/images/mycure-icon-check.png").pt-2
-            font.font-m &nbsp &nbsp Patient tagging
-          v-layout(row).pb-2
-            img(width="7%" src="../../assets/images/mycure-icon-check.png").pt-2
-            font.font-m &nbsp &nbsp Reports &amp Analytics
-          v-layout(row).pb-2
-            img(width="7%" src="../../assets/images/mycure-icon-check.png").pt-2
-            font.font-m &nbsp &nbsp PNF Drug Catalog
-          v-layout(row).pb-2
-            img(width="7%" src="../../assets/images/mycure-icon-check.png").pt-2
-            font.font-m &nbsp &nbsp ICD-10 List
-          v-layout(row).pb-2
-            img(width="7%" src="../../assets/images/mycure-icon-check.png").pt-2
-            font.font-m &nbsp &nbsp DPA Registration Guide
+      v-layout(row wrap align-items-center)
+        p  
+        v-flex(xs6 md3 v-for="(card, key) in cards" :key="key").text-center.align-self-center
+          vue-flip(:active-hover="true" width="100%" class="simple-test" style="margin-bottom: 250px;")
+            div(slot="front" ref="frontCard").flip-card.align-items-center.pa-3
+              center
+                img(width="80" :src="card.image")
+              br
+              center
+                label {{card.text}}
+            div(slot="back" ref="backCard" ).flip-card.flip-card-back.align-items-center
+              center 
+                strong(style="color:#0099cc;") {{card.text}}
+              br
+              p.font-xs(v-html="card.content").text-xs-center
+              center
+                v-btn(:href="card.link" target="_blank" v-if="!card.isMoreButton") {{card.buttonText}}
+                v-btn(@click="toggleChat" v-else) {{card.buttonText}}
+    
 </template>
 
 <script>
+import VueFlip from 'vue-flip';
 export default {
-  
+  components: {
+    VueFlip
+  },
+  data () {
+    return {
+      cards: [
+        {
+          image: require('../../assets/images/mycure-home-products-icon-multispecialty-clinics.png'),
+          text: 'Multispecialty Clinics',
+          content: 'One-stop, multi-staff clinics that provide ambulatory care and ancillary services',
+          buttonText: 'Sign Up',
+          link: ''
+        },
+        {
+          image: require('../../assets/images/mycure-home-products-icon-outpatient-clinics.png'),
+          text: 'Outpatient Clinics',
+          content: 'Hospital-based clinics that provide outpatient consultation services from various specialists',
+          buttonText: 'Sign Up',
+          link: ''
+        },
+        {
+          image: require('../../assets/images/mycure-home-products-icon-industrial-clinics.png'),
+          text: 'Industrial Clinics',
+          content: 'Primary clinics inside companies, schools, BPOs, and other industries covered by OSHS',
+          buttonText: 'Sign Up',
+          link: ''
+        },
+        {
+          image: require('../../assets/images/mycure-home-products-icon-aesthetic-clinics.png'),
+          text: 'Skin & Aesthetic Clinics',
+          content: 'Specialized for clinics that offer aesthetic procedures and dermatological services',
+          buttonText: 'Sign Up',
+          link: ''
+        },
+        {
+          image: require('../../assets/images/mycure-home-products-icon-pme-clinics.png'),
+          text: 'PME Clinics',
+          content: 'Clinics specializing in Physical Medical Exam (PME) services.',
+          buttonText: 'Sign Up',
+          link: ''
+        },
+        {
+          image: require('../../assets/images/mycure-home-products-icon-group-clinics.png'),
+          text: 'Group Clinics',
+          content: 'Managed by a group of physicians practicing together and assisted by one or more secretaries',
+          buttonText: 'Sign Up',
+          link: ''
+        },
+        {
+          image: require('../../assets/images/mycure-home-products-icon-individual-clinics.png'),
+          text: 'Individual Clinics',
+          content: 'Physicians practicing independently in one or more clinic locations',
+          buttonText: 'Sign Up',
+          link: ''
+        },
+        {
+          isMoreButton: true,
+          image: require('../../assets/images/mycure-home-products-icon-more.png'),
+          text: 'More coming!',
+          content: `
+            Rehab Clinics<br>
+            Maternity Clincis<br>
+            Diagnostic Clinics<br>
+            Pharmacies and more!
+          `,
+          buttonText: 'Contact Us'
+        }
+      ]
+    };
+  }
 };
 </script>
 
 <style scoped>
-br{
-  line-height: 150%;
-}
+  br{
+    line-height: 150%;
+  }
+
+  .flip-panel {
+    /* height: 100vh; */
+    background-color: white;
+  }
+
+  .front {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #673AB7;
+    color: white;
+  }
+
+  .back {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #FFC107;
+    color: white
+  }
+
+  .flip-card {
+    background-color: initial;
+    border-radius: 10px;
+  }
+
+  .flip-card, .flip-card-back {
+    padding: 15px;
+    width: 100%;
+    height: 200px;
+  }
+
+  .flip-card:hover, .flip-card-back {
+    -webkit-box-shadow: 0px 0px 20px -4px rgba(130,130,130,1);
+    -moz-box-shadow: 0px 0px 20px -4px rgba(130,130,130,1);
+    box-shadow: 0px 0px 20px -4px rgba(130,130,130,1);
+  }
+
 </style>
