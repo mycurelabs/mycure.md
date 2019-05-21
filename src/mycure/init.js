@@ -1,7 +1,3 @@
 import { core } from '@mycure/sdk';
 
-const config = {
-  urls: { base: 'https://api.mycure.md' }
-};
-
-core.initialize(config);
+core.initialize('https://api.mycure.md');
