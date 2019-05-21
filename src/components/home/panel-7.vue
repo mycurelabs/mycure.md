@@ -27,7 +27,8 @@
                 font &#10003 &nbsp Medical Billing
                 v-layout(row wrap justify-center).pa-3
                   v-btn(style="background-color: #2e9fdf; color: white; width: auto" large round) 
-                    strong GET MYCURE FREE
+                    a(href="/electronic-medical-records")
+                      strong.white--text GET MYCURE FREE
         v-flex(xs12 md6).px-5
           center 
             div(style="width: 75%")
@@ -45,7 +46,8 @@
                 font &#10003 &nbsp Materials Management
                 v-layout(row wrap justify-center).pa-3
                   v-btn(style="background-color: #2e9fdf; color: white; width: auto" large round) 
-                    strong LEARN MORE
+                    a(href="/clinic-management-system")
+                      strong.white--text LEARN MORE
 </template>
 
 <script scoped>
@@ -61,9 +63,13 @@ export default {
 
 <style scoped>
 
-.clinic-card {
-  border-radius: 0 0 10px 10px;
-}
+  a:link {
+    text-decoration: none;
+  }
+
+  .clinic-card {
+    border-radius: 0 0 10px 10px;
+  }
 
 
 </style>

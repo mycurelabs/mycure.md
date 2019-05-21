@@ -10,7 +10,7 @@
               | your clinic can stand out
               | and be it best everyday.
           br
-          p.font-xs.mt-3 Experience what you can do more with 
+          p.font-s.mt-3 Experience what you can do more with 
             strong MYCURE 
             br
             | technology by your side.

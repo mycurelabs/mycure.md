@@ -4,11 +4,20 @@
     v-flex(xs12 md12)
         v-layout(row wrap justify-center)
           strong(style="font-size: 25px").pa-5.text-xs-center Does your clinic have more than 3 branches? 
-            a(
-              href="https://mycure.md"
-            )
-              span Talk to us for custom pricing.
+            a
+              span(@click="toggleChat").toggle-chat Talk to us for custom pricing.
 </template>
+
+<script>
+export default {
+  methods: {
+      toggleChat () {
+        window.$crisp.push(['do', 'chat:toggle']);
+      }
+    }
+};
+</script>
+>
 
 <style scoped>
 

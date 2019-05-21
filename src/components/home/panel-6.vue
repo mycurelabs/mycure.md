@@ -46,7 +46,7 @@
     v-layout(row wrap justify-center)
       em.font-xs Have a question? 
         a.font-mc-blue 
-          strong Start a quick chat
+          strong(@click="toggleChat") Start a quick chat
       
        
 
@@ -55,7 +55,11 @@
 
 <script>
 export default {
-  
+  methods: {
+      toggleChat () {
+        window.$crisp.push(['do', 'chat:toggle']);
+      }
+    }
 };
 </script>
 
@@ -68,17 +72,17 @@ table {
 }
 
 table tr td {
-  border-right: 1px solid #bbb;
-  border-top: 1px solid #bbb;
-  border-bottom: 1px solid #bbb;
+  border-right: 1px solid #f5f5f5;
+  border-top: 1px solid #f5f5f5;
+  border-bottom: 1px solid #f5f5f5;
   padding: 15px;
 }
 table tr td:first-child {
-  border-left: 1px solid #bbb;
+  border-left: 1px solid #f5f5f5;
 }
 
 tr:nth-child(even) {
-  background-color: #dddddd;
+  background-color: #f5f5f5;
 }
 
 /* top-left border-radius */

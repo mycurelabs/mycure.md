@@ -3,14 +3,17 @@
   div
     v-layout(row wrap justify-center)
       v-flex(xs12 md4)
-        div.panel-2-box-a
-          b.font-s.text-center.font-mc-grey Serve more patients
+        router-link(:to="{name: 'pricing'}").link.white--text 
+          div.panel-2-box-a
+            b.font-s.text-center.font-mc-grey Serve more patients
       v-flex(xs12 md4)
-        div.panel-2-box-b
-          b.font-s.text-center.font-mc-grey Easy record-keeping
+        router-link(:to="{name: 'pricing'}").link.white--text 
+          div.panel-2-box-b
+            b.font-s.text-center.font-mc-grey Easy record-keeping
       v-flex(xs12 md4)
-        div.panel-2-box-c
-          b.font-s.text-center.font-mc-grey Real-time daily census
+        router-link(:to="{name: 'pricing'}").link.white--text 
+          div.panel-2-box-c
+            b.font-s.text-center.font-mc-grey Real-time daily census
 </template>
 
 <style scoped>

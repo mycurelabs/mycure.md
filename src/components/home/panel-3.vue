@@ -67,11 +67,11 @@ ul {
 }
 
 .check-list {
-  background-color: #f6f6f6;
+  background-color: #f5f5f5;
 }
 
 .panel-3 {
-  background-color: #dfdede
+  background-color: #f5f5f5
 }
 
 </style>
