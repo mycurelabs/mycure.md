@@ -3,14 +3,17 @@
   div
     v-layout(row wrap justify-center)
       v-flex(xs12 md4)
-        div.panel-2-box-a
-          b.font-s.text-center.font-mc-grey Organized Patient Records
+        router-link(:to="{name: 'pricing'}").link.white--text 
+          div.panel-2-box-a
+            b.font-s.text-center.font-mc-grey Organized Patient Records
       v-flex(xs12 md4)
-        div.panel-2-box-b
-          b.font-s.text-center.font-mc-grey Data-driven Decisions
+        router-link(:to="{name: 'pricing'}").link.white--text 
+          div.panel-2-box-b
+            b.font-s.text-center.font-mc-grey Data-driven Decisions
       v-flex(xs12 md4)
-        div.panel-2-box-c
-          b.font-s.text-center.font-mc-grey Happier Staff Members
+        router-link(:to="{name: 'pricing'}").link.white--text 
+          div.panel-2-box-c
+            b.font-s.text-center.font-mc-grey Happier Staff Members
 </template>
 
 <style scoped>

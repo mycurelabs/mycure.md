@@ -1,6 +1,5 @@
-<template lang="pug">
-  //- Section 3 of Home Page
-  div.px-5.panel-3
+<template lang="pug"> 
+  div.px-5.mc-light-grey
     v-container.px-5
       v-layout(row wrap justify-center)
         font.font-l.pa-5 Why do clinics switch to MYCURE?
@@ -57,10 +56,6 @@ ul {
 
 .check-list {
   background-color: #f6f6f6;
-}
-
-.panel-3 {
-  background-color: #dfdede
 }
 
 </style>

@@ -37,9 +37,10 @@
             font &#10003 &nbsp Laboratory &amp Imaging
             br
             font &#10003 &nbsp Materials Management
-            v-layout(row wrap justify-center).py-4
-              v-btn(style="background-color: #2e9fdf; color: white; width: auto" large) 
-                strong GET MYCURE FREE
+            v-layout(row wrap).py-4
+              router-link(:to="{name: 'pricing'}").link.white--text
+                v-btn(style="background-color: #2e9fdf; color: white; width: auto" large) 
+                  strong BOOK A DEMO
 </template>
 
 <script>
@@ -49,7 +50,11 @@ export default {
 </script>
 
 <style scoped>
-.price-card{
-  border-radius: 0 10px 10px 0;
-}
+  a:link {
+    text-decoration: none
+  }
+
+  .price-card{
+    border-radius: 0 10px 10px 0;
+  }
 </style>
