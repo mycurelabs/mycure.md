@@ -12,19 +12,16 @@
         strong.font-xs.tab LOGIN
       v-btn(
         color="info"
-        )
+      )
         strong.font-xs.tab SIGN UP
 </template>
 
 <script>
-export default {
-
-};
+  export default {};
 </script>
 
 <style scoped>
-
-.tab {
-  letter-spacing: 0.5px
-}
+  .tab {
+    letter-spacing: 0.5px;
+  }
 </style>
