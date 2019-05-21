@@ -267,8 +267,6 @@ export default new Router({
       component: ctmPage,
       async beforeEnter (to, from, next) {
         try {
-          next();
-
           const { link, src, ctm } = to.query;
 
           if (!link || !src || !ctm) {
@@ -287,6 +285,7 @@ export default new Router({
 
           window.location.href = to.query.link;
         } catch (e) {
+          console.error(e);
           window.location.href = to.query.link;
         }
       }
