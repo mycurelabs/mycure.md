@@ -71,7 +71,7 @@ ul {
 }
 
 .panel-3 {
-  background-color: #dfdede
+  background-color: #f5f5f5
 }
 
 </style>

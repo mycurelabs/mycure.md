@@ -13,7 +13,7 @@
           br
           br
           br
-          a(href="")
+          a(href="http://blog.mycure.md/2018/04/26/data-privacy-for-physicians/" target="_blank")
             strong.font-mc-blue Continue Reading...
           
 </template>

@@ -31,8 +31,7 @@
         v-layout(row justify-center)
           div(style="width: 27%;")
             v-img(:src="require('../../assets/images/mycure-web-banner-pricing-panel-private.png')")
-          div(style="diplay: inline-block;")
-          v-card.price-card.text-xs-left.pa-5
+          v-card(flat).price-card.text-xs-left.pa-5
             strong.pb-2.font-m For Private Practice
             br
             br
@@ -52,9 +51,10 @@
             font &#10003 &nbsp Prescription Printing
             br
             font &#10003 &nbsp Medical Billing
-            v-layout(row wrap justify-center).py-4
-              v-btn(style="background-color: #2e9fdf; color: white; width: auto" large) 
-                strong GET MYCURE FREE
+            v-layout(row wrap).py-4
+              router-link(:to="{name: 'pricing'}").link.white--text
+                v-btn(style="background-color: #2e9fdf; color: white; width: auto" large) 
+                  strong ALWAYS FREE
     
               
 
@@ -72,7 +72,15 @@ export default {
 </script>
 
 <style scoped>
-.price-card{
-  border-radius: 0 10px 10px 0;
-}
+  a:link {
+    text-decoration: none
+  }
+
+  .price-card{
+    border-radius: 0 10px 10px 0;
+  }
+
+  .shadow{
+    box-shadow: 100px 0px 100px 0px
+  }
 </style>

@@ -1,16 +1,18 @@
 <template lang="pug">
-  //- Section 2 of Home Page
   div
     v-layout(row wrap justify-center)
       v-flex(xs12 md4)
-        div.panel-2-box-a
-          b.font-s.text-center.font-mc-grey View your charts anywhere
+        router-link(:to="{name: 'pricing'}").link.white--text 
+          div.panel-2-box-a
+            b.font-s.text-center.font-mc-grey View your charts anywhere
       v-flex(xs12 md4)
-        div.panel-2-box-b
-          b.font-s.text-center.font-mc-grey Boost your online presence
+        router-link(:to="{name: 'pricing'}").link.white--text 
+          div.panel-2-box-b
+            b.font-s.text-center.font-mc-grey Boost your online presence
       v-flex(xs12 md4)
-        div.panel-2-box-c
-          b.font-s.text-center.font-mc-grey Become DPA-compliant
+        router-link(:to="{name: 'pricing'}").link.white--text 
+          div.panel-2-box-c
+            b.font-s.text-center.font-mc-grey Become DPA-compliant
 </template>
 
 <style scoped>
