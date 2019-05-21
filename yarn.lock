@@ -95,36 +95,27 @@
     lodash "^4.2.0"
     to-fast-properties "^2.0.0"
 
-"@feathersjs/commons@^3.0.1":
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/@feathersjs/commons/-/commons-3.0.1.tgz#cf844b91ba5fe3ec419384d986d85929067a3058"
-  integrity sha512-wo2boFwbKqm53h/Wv2F+ggiTxSFOPaCupa6VHujJle/RZrox5On6zbaoO0B1yFZbj1tCJ6kT2IDpFg9StHL0oA==
+"@feathersjs/commons@^4.0.0":
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/@feathersjs/commons/-/commons-4.0.0.tgz#ae49bae4025c35aaeb9aacb6a0c27a3d1def5062"
+  integrity sha512-hyCLse4RiNt7WLPQ0KSudjoVnwiRykhYzIZdtDon9i2usPaoYkFw/fEYZrkE5HVB+sUTwphZoZ1oOntRk1MShg==
 
-"@feathersjs/errors@^3.3.4":
-  version "3.3.4"
-  resolved "https://registry.yarnpkg.com/@feathersjs/errors/-/errors-3.3.4.tgz#7dd591626ba57d1e8074464235b4d23906833ca7"
-  integrity sha512-yA/HXSWgLiK4ngFslCHxcvnt+gek4fUhJcwpix9Z1jpTnCWW5WqtNxUfUqE1Fj8wKq0Y6VPSaQtE+RZcgryDQQ==
+"@feathersjs/errors@^3.3.6":
+  version "3.3.6"
+  resolved "https://registry.yarnpkg.com/@feathersjs/errors/-/errors-3.3.6.tgz#c34cfcd0a8fc1519afb36030efb3f835a8088015"
+  integrity sha512-VCohY/AQU13xYyZGl6rfdUgE+2bjaI76a4aEb6reIphHKgb4mnjYlg2PzS1/hcU1qUNi515kY9yQa5HsE7J1dQ==
   dependencies:
     debug "^4.0.0"
 
-"@feathersjs/feathers@^3.2.1":
-  version "3.2.3"
-  resolved "https://registry.yarnpkg.com/@feathersjs/feathers/-/feathers-3.2.3.tgz#889a64acd7e336d131ce53ea7512e4f48642e218"
-  integrity sha512-T51XlcE+HkAG7nfFMoqRU+bLxPhIYGygAiWQ0Fmc5vOsYtCZlj1AGjJWVL8iX7k2HQgFI2mdinWPoFb2rui03A==
+"@feathersjs/feathers@^3.3.1":
+  version "3.3.1"
+  resolved "https://registry.yarnpkg.com/@feathersjs/feathers/-/feathers-3.3.1.tgz#fcba030847f8418d711135112f01fad64bfb277c"
+  integrity sha512-Mb7Maz03TIIksomXeInmXNb5ykxgsAyBCuJDQHK+oIDrDRR9m+ZbUrslCkMk/s0nr6cW5DmVbWz9s11SCXFW5A==
   dependencies:
-    "@feathersjs/commons" "^3.0.1"
+    "@feathersjs/commons" "^4.0.0"
     debug "^4.0.0"
     events "^3.0.0"
     uberproto "^2.0.2"
-
-"@feathersjs/rest-client@^1.4.3":
-  version "1.4.5"
-  resolved "https://registry.yarnpkg.com/@feathersjs/rest-client/-/rest-client-1.4.5.tgz#e666de67089fdd8dbc3e583a606d1c9d22736dde"
-  integrity sha512-KPk8e+cZ+KpVemyxZxAl4GmK9Jlat8oNusazcC0bJDJoWbLFx2IQ41A+cd7xBJ2JArVp1LzXGNO7iqkAc8KDig==
-  dependencies:
-    "@feathersjs/commons" "^3.0.1"
-    "@feathersjs/errors" "^3.3.4"
-    qs "^6.5.0"
 
 "@google-cloud/common@^0.17.0":
   version "0.17.0"
@@ -203,18 +194,19 @@
     through2 "^2.0.0"
     xdg-basedir "^3.0.0"
 
-"@mycure/sdk@^4.15.2-beta.0":
-  version "4.15.2-beta.0"
-  resolved "https://registry.yarnpkg.com/@mycure/sdk/-/sdk-4.15.2-beta.0.tgz#fb1d327b7282859f5802a6709fa238d7cda1a8cf"
-  integrity sha512-gimzSzSh7AS9iXmVPbVWydHjFss59H7ZXouB4LA2kaY6ZG5xuC1VdJh18QE6J3guB2ggsMvMmZMVBp3SI/y1lA==
+"@mycure/sdk@^4.15.3-beta.110":
+  version "4.15.3-beta.110"
+  resolved "https://registry.yarnpkg.com/@mycure/sdk/-/sdk-4.15.3-beta.110.tgz#88270d1f67964214988a7628b0c4a235f26266ba"
+  integrity sha512-XZMHVOlHY7vNq3Qb5jHy3D+oTq9vR6iLGfkjJT7h4ncjP6nnm7S9mIWhJE7JoXO3wiwcJ9AGyOue/Y75mUHJog==
   dependencies:
-    "@feathersjs/feathers" "^3.2.1"
-    "@feathersjs/rest-client" "^1.4.3"
+    "@feathersjs/errors" "^3.3.6"
+    "@feathersjs/feathers" "^3.3.1"
     axios "^0.18.0"
-    debug "^3.1.0"
+    debug "^4.1.0"
     jwt-decode "^2.2.0"
-    lodash "^4.17.10"
-    rxjs "^6.3.2"
+    lodash "^4.17.11"
+    qs "^6.6.0"
+    rxjs "6.3.3"
     store "^2.0.12"
 
 "@prerenderer/prerenderer@^0.7.2":
@@ -3012,6 +3004,13 @@ debug@^4.0.0:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/debug/-/debug-4.0.1.tgz#f9bb36d439b8d1f0dd52d8fb6b46e4ebb8c1cd5b"
   integrity sha512-K23FHJ/Mt404FSlp6gSZCevIbTMLX0j3fmHhUEhQ3Wq0FMODW3+cUSoLdy1Gx4polAf4t/lphhmHH35BB8cLYw==
+  dependencies:
+    ms "^2.1.1"
+
+debug@^4.1.0:
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/debug/-/debug-4.1.1.tgz#3b72260255109c6b589cee050f1d516139664791"
+  integrity sha512-pYAIzeRo8J6KPEaJ0VWOh5Pzkbw/RetuzehGM7QRRX5he4fPHx2rdKMB256ehJCkX+XRQm16eZLqLNS8RSZXZw==
   dependencies:
     ms "^2.1.1"
 
@@ -6574,7 +6573,7 @@ lodash@^4.0.0, lodash@^4.0.1, lodash@^4.17.0, lodash@^4.17.10, lodash@^4.17.3, l
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.10.tgz#1b7793cf7259ea38fb3661d4d38b3260af8ae4e7"
   integrity sha512-UejweD1pDoXu+AD825lWwp4ZGtSwgnpZxb3JDViD7StjQz+Nb/6l093lx4OQ0foGWNRoc19mWy7BzL+UAK2iVg==
 
-lodash@^4.14.0, lodash@^4.17.2, lodash@^4.17.5, lodash@^4.8.0:
+lodash@^4.14.0, lodash@^4.17.11, lodash@^4.17.2, lodash@^4.17.5, lodash@^4.8.0:
   version "4.17.11"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.11.tgz#b39ea6229ef607ecd89e2c8df12536891cac9b8d"
   integrity sha512-cQKh8igo5QUhZ7lg38DYWAxMvjSAKG0A8wGSVimP07SIUEK2UO+arSRKbRZWtelMtN5V0Hkwh5ryOto/SshYIg==
@@ -8579,10 +8578,15 @@ qs@6.5.1:
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.5.1.tgz#349cdf6eef89ec45c12d7d5eb3fc0c870343a6d8"
   integrity sha512-eRzhrN1WSINYCDCbrz796z37LOe3m5tmW7RQf6oBntukAG1nmovJvhnwHHRMAfeoItc1m2Hk02WER2aQ/iqs+A==
 
-qs@6.5.2, qs@^6.5.0, qs@~6.5.1, qs@~6.5.2:
+qs@6.5.2, qs@~6.5.1, qs@~6.5.2:
   version "6.5.2"
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.5.2.tgz#cb3ae806e8740444584ef154ce8ee98d403f3e36"
   integrity sha512-N5ZAX4/LxJmF+7wN74pUD6qAh9/wnvdQcjq9TZjevvXzSUo7bfmw91saqMjzGS2xq91/odN2dW/WOl7qQHNDGA==
+
+qs@^6.6.0:
+  version "6.7.0"
+  resolved "https://registry.yarnpkg.com/qs/-/qs-6.7.0.tgz#41dc1a015e3d581f1621776be31afb2876a9b1bc"
+  integrity sha512-VCdBRNFTX1fyE7Nb6FYoURo/SPe62QCaAyzJvUjwRaIsc+NePBEniHlvxFmmX56+HZphIGtV0XeCirBtpDrTyQ==
 
 qs@~6.4.0:
   version "6.4.0"
@@ -9232,17 +9236,17 @@ rxjs-compat@^6.2.0:
   resolved "https://registry.yarnpkg.com/rxjs-compat/-/rxjs-compat-6.2.0.tgz#2eb49cc6ac20d0d7057c6887d1895beaab0966f9"
   integrity sha512-kFX7NSIgyzqn3+J5F/w75R72wDOICXwArbXyPU1neE4laOEwxkMTm+2oAZXN82yb+yli+j+c5USgbGLfphTCTA==
 
+rxjs@6.3.3:
+  version "6.3.3"
+  resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-6.3.3.tgz#3c6a7fa420e844a81390fb1158a9ec614f4bad55"
+  integrity sha512-JTWmoY9tWCs7zvIk/CvRjhjGaOd+OVBM987mxFo+OW66cGpdKjZcpmc74ES1sB//7Kl/PAe8+wEakuhG4pcgOw==
+  dependencies:
+    tslib "^1.9.0"
+
 rxjs@^6.2.0:
   version "6.2.0"
   resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-6.2.0.tgz#e024d0e180b72756a83c2aaea8f25423751ba978"
   integrity sha512-qBzf5uu6eOKiCZuAE0SgZ0/Qp+l54oeVxFfC2t+mJ2SFI6IB8gmMdJHs5DUMu5kqifqcCtsKS2XHjhZu6RKvAw==
-  dependencies:
-    tslib "^1.9.0"
-
-rxjs@^6.3.2:
-  version "6.3.3"
-  resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-6.3.3.tgz#3c6a7fa420e844a81390fb1158a9ec614f4bad55"
-  integrity sha512-JTWmoY9tWCs7zvIk/CvRjhjGaOd+OVBM987mxFo+OW66cGpdKjZcpmc74ES1sB//7Kl/PAe8+wEakuhG4pcgOw==
   dependencies:
     tslib "^1.9.0"
 
