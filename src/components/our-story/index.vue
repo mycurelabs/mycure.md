@@ -7,7 +7,6 @@
     panel-4
     panel-5
     panel-6
-    experienceMycure
     mc-footer
 </template>
 
@@ -17,7 +16,6 @@ document.title = "MYCURE Our Story - Caring the Extra Mile";
 
 import mcNavbarHome from '../commons/mc-navbar-home';
 import mcFooter from '../commons/mc-footer';
-import experienceMycure from '../commons/experience-mycure';
 import panel1 from './panel-1';
 import panel2 from './panel-2';
 import panel3 from './panel-3';
@@ -38,8 +36,7 @@ export default {
     panel3,
     panel4,
     panel5,
-    panel6,
-    experienceMycure
+    panel6
   }
 };
 </script>
