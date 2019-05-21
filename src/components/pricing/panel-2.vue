@@ -7,12 +7,15 @@
             strong.font-m.font-mc-grey.text-none Private Practice
               br
               | 
-              span.font-xs.text-none Solo or group clinic practitioners  
+              span.font-xs.text-none Solo or group clinic practitioners
           v-tab.tab.white
             strong.font-m.font-mc-grey.text-none Multispecialty Clinics
               br
               | 
               span.font-xs.text-none One stop, multi-staff clinics
+              
+          
+         
 </template>
 
 <script>
@@ -23,6 +26,11 @@ export default {
   components: {
     private_prac,
     multispecialty
+  },
+  data () {
+    return {
+      // 
+    };
   }
 };
 </script>

@@ -1,9 +1,8 @@
 <template lang="pug">
   div
-    //- v-card(style="width: 70%")
-    //-   v-card-text
     panel1
     private_prac
+    multispecialty
     panel3
 </template>
 
@@ -19,7 +18,6 @@ export default {
     return {
     };
   }, 
-
   components: {
     panel1,
     panel2,
