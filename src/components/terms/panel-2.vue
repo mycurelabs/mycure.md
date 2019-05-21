@@ -3,7 +3,6 @@
     v-container
       v-layout(row wrap justify-center)
         v-flex(xs12 md10).mb-5
-          img(width="250" src="../../assets/images/mycure-modules-bread.png" style="position: absolute; left: -60px;").side-img
           p These 
             b Terms and Conditions 
             | ("Terms", "Terms and Conditions") govern your relationship with 
@@ -20,14 +19,13 @@
           p By accessing or using the Service you agree to be bound by these Terms. If you disagree with any part of the terms then you may not access the Service.
         v-flex(xs12 md10).mb-5
           v-layout(row wrap)
-            v-flex(xs12 md5).text-xs-right
-              h1.font-xl Character, Trust and Integrity
-            v-flex(xs12 md6)
-              v-container(fluid align-center)
+            v-flex(xs12 md6).px-3.text-xs-right
+              h1.font-l Character, Trust and Integrity
+            v-flex(xs12 md6 align-self-center).px-3
                 p.px-2 MYCURE values Character, Trust, and Integrity. These are values  very  important to the Founders thus was brought about and integrated into MYCURE's Culture!
         v-flex(xs12 md10).mb-5
           v-layout(row wrap)
-            v-flex(xs12 md5).px-3
+            v-flex(xs12 md6).px-3
               span(style="font-size: 21px;") TRUST AND INTEGRITY
               br
               br
@@ -35,8 +33,7 @@
               p We are looking forward to you entrusting to MYCURE your personal data. We know how important this is to you. Our tech team has established standard security protocols (and more) to keep your data safe. But does this mean we are 100% hack-proof? Well, we want to be. But let's admit it, even the world's biggest banks and government institutions are not. Rest assured, however, that we have set up our backend infrastructure to protect your data and continue to work on it constantly.
               p Personal data like name, photos, phone numbers and email address are yours and yours alone. We are committed to not selling these types of data to third parties. But we are sure you understand that in the interest of science and for the potential to save more lives in the future, MYCURE may have partnerships with hospitals and medical companies. In other words, records like diseases, types of medicine used, general location and anything that would help medical practitioners make better medical decisions in the future - as long as it does not directly identify you - could possibly be shared to make our world a better place. 
               router-link(:to="{name: 'privacy-policy'}").font-mc-blue See also MYCURE Privacy Policy >> 
-            v-flex(xs12 md5).px-3
-              img(width="250" src="../../assets/images/mycure-modules-pen-and-pad.png" style="position: absolute; right: -120px;").side-img
+            v-flex(xs12 md6).px-3
               span(style="font-size: 21px;") CHARACTER
               br
               br
@@ -45,9 +42,8 @@
               p For Doctors App: This is strictly exclusive for Licensed Medical Doctors only.
               p For Patients App: Please do not lie about your age. Considering the sensitivity of medical data, we are only allowing users 18 years of age (or whatever is the legal age in your country) and above. Should you want to enroll a child then it can be done by using your name and registering him/her under you. We also understand that you would need to keep and monitor records of your children.
         v-flex(xs12 md10).mb-5
-          img(width="100%" src="../../assets/images/mycure onboarding 03 SUCCESS ORG artwork.png")
+          img(width="100%" src="../../assets/images/mycure-terms-and-conditions-artwork.png")
         v-flex(xs12 md10).mb-5
-          img(width="250" src="../../assets/images/mycure-modules-coffee.png" style="position: absolute; left: -100px;").side-img
           h2 Subscription
           p Some parts of the Service are billed on a subscription basis ("Subscription(s)"). You will be billed in advance on a recurring and periodic basis ("Billing Cycle"). Billing cycles are set either on a monthly or annual basis, depending on the type of subscription plan you select when purchasing a Subscription.
           p At the end of each Billing Cycle, your Subscription will automatically renew under the exact same conditions unless you cancel it or MYCURE, Inc. cancels it. You may cancel your Subscription renewal either through your online account management page or by contacting MYCURE, Inc. customer support team.
@@ -60,7 +56,6 @@
           p If you do enter your billing information when signing up for the Free Trial, you will not be charged by MYCURE, Inc. until the Free Trial has expired. On the last day of the Free Trial period, unless you canceled your Subscription, you will be automatically charged the applicable Subscription fees for the type of Subscription you have selected.
           p At any time and without notice, MYCURE, Inc. reserves the right to (i) modify the terms and conditions of the Free Trial offer, or (ii) cancel such Free Trial offer.
         v-flex(xs12 md10).mb-5
-          img(width="550" src="../../assets/images/mycure-modules-plantg.png" style="position: absolute; right: -420px;").side-img
           h2 Fee Charges
           p MYCURE, Inc., in its sole discretion and at any time, may modify the Subscription fees for the Subscriptions. Any Subscription fee change will become effective at the end of the then-current Billing Cycle.
           p MYCURE, Inc. will provide you with a reasonable prior notice of any change in Subscription fees to give you an opportunity to terminate your Subscription before such change becomes effective.
@@ -85,7 +80,6 @@
           p By posting Content to the Service, you grant us the right and license to use, modify, perform, display, reproduce, and distribute such Content on and through the Service. You retain any and all of your rights to any Content you submit, post or display on or through the Service and you are responsible for protecting those rights.
           p You represent and warrant that: (i) the Content is yours (you own it) or you have the right to use it and grant us the rights and license as provided in these Terms, and (ii) the posting of your Content on or through the Service does not violate the privacy rights, publicity rights, copyrights, contract rights or any other rights of any person.
         v-flex(xs12 md10).mb-5
-          img(width="250" src="../../assets/images/mycure-modules-bread.png" style="position: absolute; left: -60px;").side-img
           h2 MYCURE Contents, Revisions, and Errata
           p The materials appearing on MYCURE apps could include technical, typographical, or photographic errors. MYCURE does not warrant that any of the materials on its apps are accurate, complete, or current. MYCURE may make changes to the materials contained on its apps at any time without notice. MYCURE does not make any commitment to update the materials (but of course, we will do our best to have the latest updates!).
           p Some contents like medicines, symptoms, and diagnosis are referenced and/or sourced from publicly available data, thus presumed to be general information. In case of proprietary or copyrighted information, please see our Copyright Policy below.
@@ -95,7 +89,6 @@
           p If you are a copyright owner, or authorized on behalf of one, and you believe that the copyrighted work has been copied in a way that constitutes copyright infringement that is taking place through the Service, you must submit your notice in writing to the attention of "Copyright Infringement" of mark@mycure.md and include in your notice a detailed description of the alleged Infringement.
           p You may be held accountable for damages (including costs and attorneys' fees) for misrepresenting that any Content is infringing your copyright.
         v-flex(xs12 md10).mb-5
-          img(width="250" src="../../assets/images/mycure-modules-pen-and-pad.png" style="position: absolute; right: -120px;").side-img
           h2 Accounts
           p When you create an account with us, you must provide us with information that is accurate, complete, and current at all times. Failure to do so constitutes a breach of the Terms, which may result in immediate termination of your account on our Service.
           p You are responsible for safeguarding the password that you use to access the Service and for any activities or actions under your password, whether your password is with our Service or a third-party service.
@@ -110,7 +103,6 @@
           p MYCURE, Inc. has no control over, and assumes no responsibility for, the content, privacy policies, or practices of any third party websites or services. You further acknowledge and agree that MYCURE, Inc. shall not be responsible or liable, directly or indirectly, for any damage or loss caused or alleged to be caused by or in connection with the use of or reliance on any such content, goods or services available on or through any such websites or services.
           p We strongly advise you to read the terms and conditions and privacy policies of any third-party websites or services that you visit.
         v-flex(xs12 md10).mb-5
-          img(width="250" src="../../assets/images/mycure-modules-coffee.png" style="position: absolute; left: -100px;").side-img
           h2 Termination
           p We may terminate or suspend your account immediately, without prior notice or liability, for any reason whatsoever, including without limitation if you breach the Terms.
           p Upon termination, your right to use the Service will immediately cease. If you wish to terminate your account, you may simply discontinue using the Service.
@@ -123,7 +115,6 @@
           h2 Indemnification
           p You hereby agree to indemnify MYCURE against any losses, damages, costs, liabilities, legal expenses and other expenses incurred or suffered by us arising out of any breach by you of any provision of these Terms or arising out of any claim that you have breached any provision of these Terms.
         v-flex(xs12 md10).mb-5
-          img(width="550" src="../../assets/images/mycure-modules-plantg.png" style="position: absolute; right: -420px;").side-img
           h2 Disclaimer
           p Your use of the Service is at your sole risk. The Service is provided on an "AS IS" and "AS AVAILABLE" basis. The Service is provided without warranties of any kind, whether express or implied, including, but not limited to, implied warranties of merchantability, fitness for a particular purpose, non-infringement or course of performance. 
           p Your use of and/or reliance upon the application and any third party content and service is at your own risk and discretion. Further, MYCURE does not warrant or make any representations concerning the accuracy, likely results, or reliability of the use of the materials on its apps or otherwise relating to such materials.
@@ -133,20 +124,24 @@
           p These Terms shall be governed and construed in accordance with the laws of Philippines, without regard to its conflict of law provisions.
           p Our failure to enforce any right or provision of these Terms will not be considered a waiver of those rights. If any provision of these Terms is held to be invalid or unenforceable by a court, the remaining provisions of these Terms will remain in effect. These Terms constitute the entire agreement between us regarding our Service, and supersede and replace any prior agreements we might have between us regarding the Service.
         v-flex(xs12 md10).mb-5
-          img(width="250" src="../../assets/images/mycure-modules-bread.png" style="position: absolute; left: -60px;").side-img
           h2 Changes
           p We reserve the right, at our sole discretion, to modify or replace these Terms at any time. If a revision is material we will try to provide at least 30 days notice prior to any new terms taking effect. What constitutes a material change will be determined at our sole discretion.
           p By continuing to access or use our Service after those revisions become effective, you agree to be bound by the revised terms. If you do not agree to the new terms, please stop using the Service.
         v-flex(xs12 md10).mb-5.text-xs-center
           h1.font-xl Contact Us
           p(style="text-align: center") If you have any questions about these Terms, 
-            strong please contact us
-            |.
+              //- TODO: where to redirect contact us
+              a
+                strong(@click="toggleChat").toggle-chat.text-none.font-mc-blue please contact us.
 </template>
 
 <script>
   export default {
-    
+    methods: {
+      toggleChat () {
+        window.$crisp.push(['do', 'chat:toggle']);
+      }
+    }
   };
 </script>
 
@@ -161,4 +156,7 @@
     font-size: 15px;
   }
 
+  a:link {
+    text-decoration: none
+  }
 </style>

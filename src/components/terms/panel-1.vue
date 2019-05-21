@@ -21,7 +21,7 @@ export default {
 
 <style scoped>
   .panel-1 {
-    background-image: url('../../assets/images/mycure-terms-background-doctor-on-tablet-cropped.jpg');
+    background-image: url('../../assets/images/mycure-clinic-background.png');
     background-position: center center;
     background-size: cover;
   }
