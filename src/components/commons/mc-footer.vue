@@ -31,20 +31,20 @@
                 router-link(:to="{name: 'our-story'}").link.white--text 
                   span Our Story
               li 
-                a(href="http://blog.mycure.md/").link.white--text Blog 
+                a(href="http://blog.mycure.md/" target="_blank").link.white--text Blog 
               li 
-                a(href="https://culture.mycure.md/").link.white--text Careers
+                a(href="https://culture.mycure.md/" target="_blank").link.white--text Careers
             
           v-flex(xs12 md3 offset-md1).font-mc-grey 
             ul.no-style-type
               li SUPPORT 
               li 
-                a(href="http://blog.mycure.md/frequently-asked-questions/").link.white--text FAQs
+                a(href="http://blog.mycure.md/frequently-asked-questions/" target="_blank").link.white--text FAQs
               li
                 router-link(:to="{name: 'pricing'}").link.white--text
                   span Pricing
               li.pb-3
-                a(href="https://calendly.com/mycure").link.white--text Book A Demo
+                a(href="https://calendly.com/mycure" target="_blank").link.white--text Book A Demo
               li LEGAL
               li
                 router-link(:to="{name: 'terms'}").link.white--text 
@@ -61,10 +61,11 @@
               li (+63) 917 303 4350
         hr.mc-grey.my-4  
         v-layout(row wrap justify-center)  
-          span.white--text &copy; {{new Date().getFullYear()}} 
-            span.font-mc-blue MYCURE
-            |. 
-            span.white--text All Rights Reserved.
+          span.white--text &copy; {{new Date().getFullYear()}}
+            a(href="https://mycure.md")
+              span.font-mc-blue &nbsp; MYCURE.  
+              |
+              span.white--text All Rights Reserved.
 </template>
 
 <script>

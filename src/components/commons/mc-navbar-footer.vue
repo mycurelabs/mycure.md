@@ -7,15 +7,15 @@
       a(href="#")    
         img(src="../../assets/images/mycure-logo.svg" height="25")
       v-spacer
-      a(href="https://www.facebook.com/mycure.md")
+      a(href="https://www.facebook.com/mycure.md" target="_blank")
         img(src="../../assets/images/mycure-homepage-wireframe-icon-fb.png" height="25" href="https://google.com").px-2
-      a(href="https://www.youtube.com/channel/UCfQ5QBdFh6f9Tuj2tWkRmvg")
+      a(href="https://www.youtube.com/channel/UCfQ5QBdFh6f9Tuj2tWkRmvg" target="_blank")
         img(src="../../assets/images/mycure-homepage-wireframe-icon-ytub-e.png" height="25").px-2
-      a(href="https://mycure.md/ig-link")
+      a(href="https://www.instagram.com/mycure.md/" target="_blank")
         img(src="../../assets/images/mycure-homepage-wireframe-icon-ig.png" height="25").px-2
-      a(href="https://mycure.md/linkedin-link")
+      a(href="https://www.linkedin.com/company/mycure" target="_blank")
         img(src="../../assets/images/mycure-homepage-wireframe-icon-linkedin.png" height="25").px-2
-      a(href="https://mycure.md/twitter-link")
+      a(href="https://twitter.com/mycureapp" target="_blank")
         img(src="../../assets/images/mycure-homepage-wireframe-icon-twitter.png" height="25").px-2
 
 </template>
