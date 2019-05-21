@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import Home from './views/Home.vue';
+import Home from '@/views/Home.vue';
+import { core } from '@mycure/sdk';
 
 Vue.use(Router);
 
@@ -16,32 +17,68 @@ export default new Router({
     {
       path: '/privacy-policy',
       name: 'privacy-policy', 
-      component: () => import('./components/privacy-policy')
+      component: () => import(/* webpackChunkName: 'privacy-policy' */ '@/components/privacy-policy')
     },
     {
       path: '/terms',
       name: 'terms', 
-      component: () => import('./components/terms')
+      component: () => import(/* webpackChunkName: 'terms' */ '@/components/terms')
     },
     {
       path: '/our-story',
       name: 'our-story', 
-      component: () => import('./components/our-story')
+      component: () => import(/* webpackChunkName: 'our-story' */ '@/components/our-story')
     },
     {
       path: '/electronic-medical-records',
       name: 'electronic-medical-records', 
-      component: () => import('./components/electronic-medical-records')
+      component: () => import(/* webpackChunkName: 'emr' */ '@/components/electronic-medical-records')
     },
     {
       path: '/clinic-management-system',
       name: 'clinic-management-system', 
-      component: () => import('./components/clinic-management-system')
+      component: () => import(/* webpackChunkName: 'cms' */ '@/components/clinic-management-system')
     },
     {
       path: '/pricing',
       name: 'pricing', 
-      component: () => import('./components/pricing')
+      component: () => import(/* webpackChunkName: 'pricing' */ '@/components/pricing')
+    },
+    {
+      path: '/calendly',
+      name: 'calendly',
+      beforeEnter (to, from, next) {
+        window.open('https://calendly.com/mycure');
+        next({name: from.name || 'home'});
+      }
+    },
+    {
+      path: '/ctm-redirect-link',
+      name: 'ctm-counter',
+      async beforeEnter (to) {
+        try {
+          const { link, src, ctm } = to.query;
+
+          if (!link || !src || !ctm) {
+            window.location.href = 'https://mycure.md';
+            return;
+          }
+
+          const campaign = {
+            type: 'campaign-link-click',
+            source: to.query.src,
+            campaign: to.query.ctm
+          };
+
+          // TODO: inspect error
+          await core.system.counters().create(campaign);
+
+          window.location.href = to.query.link;
+        } catch (e) {
+          console.error(e);
+          window.location.href = to.query.link;
+        }
+      }
     }
     
   ]
