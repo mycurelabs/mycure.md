@@ -8,8 +8,8 @@
               div.hr-blue
               br
               h1.font-l MYCURE starts and ends with 
-                  br
-                  | real people and real stories.
+                br
+                | real people and real stories.
               br
               br
               br
@@ -25,16 +25,16 @@
 </template>
 
 <script>
-export default {
-    
-};
+  export default {
+    data () {
+      return {
+        //
+      };
+    }    
+  };
 </script>
 
 <style scoped>
-  .bread {
-      display: inline;
-      position: absolute;
-      left: -1000px;
-  }
+
 </style>
 

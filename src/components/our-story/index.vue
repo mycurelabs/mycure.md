@@ -10,7 +10,6 @@
     mc-footer
 </template>
 
-
 <script>
   document.title = "MYCURE Our Story - Caring the Extra Mile";
 
@@ -24,23 +23,28 @@
   import panel6 from './panel-6';
   import VueScrollTo from 'vue-scrollto';
 
-export default {
-  data () {
-    return {
-    };
-  }, 
-  components: {
-    mcNavbarHome,
-    mcFooter,
-    panel1,
-    panel2,
-    panel3,
-    panel4,
-    panel5,
-    panel6
-  },
-  mounted () {
-    VueScrollTo.scrollTo(`#top`, 500, { easing: 'ease' } );
-  }
-};
+  export default {
+    data () {
+      return {
+        //
+      };
+    }, 
+    components: {
+      mcNavbarHome,
+      mcFooter,
+      panel1,
+      panel2,
+      panel3,
+      panel4,
+      panel5,
+      panel6
+    },
+    mounted () {
+      VueScrollTo.scrollTo(`#top`, 500, { easing: 'ease' } );
+    }
+  };
 </script>
+
+<style scoped>
+
+</style>
