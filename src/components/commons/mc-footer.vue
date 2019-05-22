@@ -7,8 +7,8 @@
         v-layout(row wrap justify-center).py-5
           v-btn(large style="width: 250px" color="info")
             strong.text-none Get Started   
-      v-layout(row wrap)
-        img(src="../../assets/images/mycure-before-footer-panel-background.png")
+      v-layout(row justify-center)
+        img(width="100%" height="100%" src="../../assets/images/mycure-before-footer-panel-background.png")
     div.mc-dark-grey
       v-container(justify-center)
         mc-navbar-footer
