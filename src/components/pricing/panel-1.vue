@@ -22,6 +22,7 @@ export default {
 
 <style scoped>
   .panel-1{
+    margin-top: 60px;
     height: 300px;
     background-image: url("../../assets/images/mycure-pricing-background.png");
   }

@@ -11,7 +11,7 @@
           font.font-mc-grey An all-around solution for your outpatient, multispecialty or specialized clinics that will manage your full-patient journeys with ease.
           br
           br
-          v-btn(color="success" large) 
+          v-btn(color="info" large) 
             strong BOOK A DEMO
         v-flex(xs12 md6).px-3
           img(width="100%" src="../../assets/images/mycure-pricing-cms.png")
