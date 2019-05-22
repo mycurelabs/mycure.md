@@ -8,15 +8,16 @@
           br
           br
           h1.font-xl Terms and Conditions
-    
-      
-  
 </template>
 
 <script>
-export default {
-  
-};
+  export default {
+    data () {
+      return {
+        //
+      };
+    }
+  };
 </script>
 
 <style scoped>
@@ -37,5 +38,5 @@ export default {
   width: 150px;
   padding: 0;
   margin: 0 auto;
-}
+  }
 </style>

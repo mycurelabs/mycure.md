@@ -146,9 +146,7 @@
 </script>
 
 <style scoped>
-
   p {
-    /* font-size: 16px; */
     text-align: justify;
   }
 
