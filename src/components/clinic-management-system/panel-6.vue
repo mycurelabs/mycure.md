@@ -14,10 +14,10 @@
         br
       v-flex(xs12 md12)
         v-layout(row justify-center)
-          div(style="width: 27%;")
+          div(style="width: 27%;").image-rounded-corner.one-edge-shadow
             v-img(:src="require('../../assets/images/mycure-web-banner-pricing-panel-multispecialty.png')")
           div(style="diplay: inline-block;")
-          v-card(flat).price-card.text-xs-left.pa-5
+          v-card(flat).price-card.text-xs-left.pa-5.one-edge-shadow
             strong.pb-2.font-m For Multispecialty Clinics
             br
             br
@@ -60,5 +60,15 @@
 
   .price-card{
     border-radius: 0 10px 10px 0;
+  }
+
+  .image-rounded-corner {
+    border-radius: 10px 0px 0px 10px;
+  }
+
+  .one-edge-shadow {
+    -webkit-box-shadow: 0 8px 6px -8px black;
+    -moz-box-shadow: 0 8px 6px -8px black;
+    box-shadow: 0 8px 6px -8px black;
   }
 </style>
