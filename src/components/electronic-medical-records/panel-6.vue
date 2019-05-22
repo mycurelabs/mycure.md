@@ -55,20 +55,17 @@
               router-link(:to="{name: 'pricing'}").link.white--text
                 v-btn(style="background-color: #2e9fdf; color: white; width: auto" large) 
                   strong ALWAYS FREE
-    
-              
-
 </template>
 
 <script>
-export default {
-  data () {
-    return {
-      testimonial1: '“MYCURE provides a well organized patient data profiling with customized options for personalized encoding and with integration of lab tests, immunizations as well as growth charts that are very important for us as pediatricians for growth monitoring of our little ones. It is very convenient to use, simple, adaptable and user friendly even to my secretary.”',
-      testimonial2: '“MYCURE fulfills a long time need of physicians for accurate records of patients which they can carry with them wherever they are. It enables them also to prescribe and countercheck their prescriptions, issue medical certificate, communicate with other doctors for referrals.”'
-    };
-  }
-};
+  export default {
+    data () {
+      return {
+        testimonial1: '“MYCURE provides a well organized patient data profiling with customized options for personalized encoding and with integration of lab tests, immunizations as well as growth charts that are very important for us as pediatricians for growth monitoring of our little ones. It is very convenient to use, simple, adaptable and user friendly even to my secretary.”',
+        testimonial2: '“MYCURE fulfills a long time need of physicians for accurate records of patients which they can carry with them wherever they are. It enables them also to prescribe and countercheck their prescriptions, issue medical certificate, communicate with other doctors for referrals.”'
+      };
+    }
+  };
 </script>
 
 <style scoped>

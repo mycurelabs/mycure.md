@@ -15,17 +15,20 @@
           br
           a(href="http://blog.mycure.md/2018/04/26/data-privacy-for-physicians/" target="_blank")
             strong.font-mc-blue Continue Reading...
-          
 </template>
 
 <script>
-export default {
-  
-};
+  export default {
+    data () {
+      return {
+        //
+      };
+    }
+  };
 </script>
 
 <style scoped>
-a {
-  text-decoration-color: #2e9fdf;
-}
+  a {
+    text-decoration-color: #2e9fdf;
+  }
 </style>

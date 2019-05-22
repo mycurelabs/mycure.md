@@ -25,7 +25,8 @@
   text-align: center;
   vertical-align: middle;
   line-height: 90px;  
-}
+  }
+  
   .panel-2-box-b {
   height: 90px;
   background-color: white;
@@ -35,16 +36,16 @@
   text-align: center;
   vertical-align: middle;
   line-height: 90px;  
-} 
+  } 
 
-.panel-2-box-c {
-  height: 90px;
-  background-color: white;
-  border-width: thin;
-  border-style: solid;
-  border-color: lightgray transparent transparent transparent;
-  text-align: center;
-  vertical-align: middle;
-  line-height: 90px;  
-}
+  .panel-2-box-c {
+    height: 90px;
+    background-color: white;
+    border-width: thin;
+    border-style: solid;
+    border-color: lightgray transparent transparent transparent;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 90px;  
+    }
 </style>

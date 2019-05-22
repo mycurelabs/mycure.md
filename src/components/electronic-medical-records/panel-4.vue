@@ -1,5 +1,4 @@
 <template lang="pug">
-  //- Section 4 of Home Page
   div.px-5
     v-flex(xs12 md12)
         v-layout(row wrap justify-center)
@@ -8,10 +7,19 @@
               span Ask us how it works
 </template>
 
+<script>
+  export default {
+    data () {
+      return {
+        //
+      };
+    }
+  }
+</script>
+
+
 <style scoped>
-
-a {
-  color: #2e9fdf
-}
-
+  a {
+    color: #2e9fdf
+  }
 </style>

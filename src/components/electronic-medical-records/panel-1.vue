@@ -7,10 +7,10 @@
           br
           br
           em.font-s - Secure Medical Records
-              br
-              | - Make Data-driven Decisions
-              br 
-              | - Save Time and Costs
+            br
+            | - Make Data-driven Decisions
+            br 
+            | - Save Time and Costs
           br 
           br
           v-btn(
@@ -28,24 +28,20 @@
             strong.font-xs.px-2.black--text(style="text-decoration: underline") WATCH VIDEO
         v-flex(xs12 md7)
           img(width="100%" src="../../assets/images/mycure-emr-web-banner-first-panel-doctor-clinic-patients.png")
-
 </template>
 
 <script>
-
-export default {
-  data () {
-      return {
-        showVid: false
-      };
-    },
-};
-
+  export default {
+    data () {
+        return {
+          showVid: false
+        };
+      },
+  };
 </script>
 
 <style scoped>
-.panel-1{
-  height: auto;
-}
-
+  .panel-1{
+    height: auto;
+  }
 </style>
