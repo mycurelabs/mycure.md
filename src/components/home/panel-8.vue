@@ -26,17 +26,16 @@
 </template>
 
 <script>
-export default {
-  data () {
-    return {
-      different1: "You can enjoy the best of both worlds — reliability of an in-house server and affordability of the cloud. Digitally process your medical records in your local network using multiple devices, even if the internet goes down!",
-      different2: "Then once back online, it automatically synchronizes data back in the cloud."
-    };
-  }
-};
+  export default {
+    data () {
+      return {
+        different1: "You can enjoy the best of both worlds — reliability of an in-house server and affordability of the cloud. Digitally process your medical records in your local network using multiple devices, even if the internet goes down!",
+        different2: "Then once back online, it automatically synchronizes data back in the cloud."
+      };
+    }
+  };
 </script>
 
 <style scoped>
-
 
 </style>

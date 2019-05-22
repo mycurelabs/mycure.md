@@ -1,5 +1,4 @@
 <template lang="pug">
-  //- Section 4 of Home Page
   div.px-5
     v-flex(xs12 md12)
         v-layout(row wrap justify-center)
@@ -9,20 +8,17 @@
 </template>
 
 <script>
-export default {
-  methods: {
+  export default {
+    methods: {
       toggleChat () {
         window.$crisp.push(['do', 'chat:toggle']);
       }
     }
-};
+  };
 </script>
->
 
 <style scoped>
-
-a {
-  color: #2e9fdf
-}
-
+  a {
+    color: #2e9fdf
+  }
 </style>

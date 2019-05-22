@@ -51,18 +51,17 @@
 </template>
 
 <script scoped>
-export default {
-  data () {
-    return {
-        private_title: 'Get a powerful combination of features designed for physicians who are practicing solo or in groups.',
-        multispecialty_title: 'An all-around solution for your outpatient, multispecialty or specialized clinics that will manage your full-patient journeys with ease.'
-    };
-  }
-};
+  export default {
+    data () {
+      return {
+          private_title: 'Get a powerful combination of features designed for physicians who are practicing solo or in groups.',
+          multispecialty_title: 'An all-around solution for your outpatient, multispecialty or specialized clinics that will manage your full-patient journeys with ease.'
+      };
+    }
+  };
 </script>
 
 <style scoped>
-
   a:link {
     text-decoration: none;
   }
@@ -70,7 +69,5 @@ export default {
   .clinic-card {
     border-radius: 0 0 10px 10px;
   }
-
-
 </style>
 

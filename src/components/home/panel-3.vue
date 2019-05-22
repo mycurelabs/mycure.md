@@ -1,5 +1,4 @@
 <template lang="pug">
-  //- Section 3 of Home Page
   div.px-5.panel-3
     v-container.px-5
       v-layout(row wrap justify-center)
@@ -45,34 +44,31 @@
         large
         ).mt-5 
           strong.font-s.text-none We got a solution
-    
       p.text-xs-center.py-4.font-xs Have questions? Give us a call: 
         strong (+63) 699 - 7272
 </template>
 
 <script>
-export default {
-  data () {
-    return {
-      checkIcon: '../../assets/images/mycure-icon-check.png'
-    };
-  }
-};
+  export default {
+    data () {
+      return {
+        checkIcon: '../../assets/images/mycure-icon-check.png'
+      };
+    }
+  };
 </script>
 
 <style scoped>
+  ul {
+    list-style-type: none;
+  }
 
-ul {
-  list-style-type: none;
-}
+  .check-list {
+    background-color: #f5f5f5;
+  }
 
-.check-list {
-  background-color: #f5f5f5;
-}
-
-.panel-3 {
-  background-color: #f5f5f5
-}
-
+  .panel-3 {
+    background-color: #f5f5f5
+  }
 </style>
 
