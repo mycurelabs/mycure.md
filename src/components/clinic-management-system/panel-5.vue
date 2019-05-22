@@ -63,13 +63,13 @@ table {
 }
 
 table tr td {
-  border-right: 1px solid #f5f5f5;
-  border-top: 1px solid #f5f5f5;
-  border-bottom: 1px solid #f5f5f5;
+  border-right: 1px solid #bbb;
+  border-top: 1px solid #bbb;
+  border-bottom: 1px solid #bbb;
   padding: 15px;
 }
 table tr td:first-child {
-  border-left: 1px solid #f5f5f5
+  border-left: 1px solid #bbb
 }
 
 tr:nth-child(even) {

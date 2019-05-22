@@ -17,7 +17,7 @@
           div(style="width: 27%;")
             v-img(:src="require('../../assets/images/mycure-web-banner-pricing-panel-multispecialty.png')")
           div(style="diplay: inline-block;")
-          v-card.price-card.text-xs-left.pa-5
+          v-card(flat).price-card.text-xs-left.pa-5
             strong.pb-2.font-m For Multispecialty Clinics
             br
             br

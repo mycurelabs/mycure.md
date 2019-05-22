@@ -4,7 +4,7 @@
       flat
       color="rgba(52, 58, 64, 1)"
     )
-      a(href="#")    
+      a(href="/")    
         img(src="../../assets/images/mycure-logo.svg" height="25")
       v-spacer
       a(href="https://www.facebook.com/mycure.md" target="_blank")
