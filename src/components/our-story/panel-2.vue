@@ -13,8 +13,6 @@
               br
               br
               br
-              br
-              br
             v-flex(xs12 md4).text-xs-center
               img(width="100%" src="../../assets/images/mycure-ourstory-paulette.png")
             v-flex(xs12 md8).px-5

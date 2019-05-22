@@ -20,9 +20,9 @@
         v-flex(xs12 md10).mb-5
           v-layout(row wrap)
             v-flex(xs12 md6).px-3.text-xs-right
-              h1.font-l Character, Trust and Integrity
+              h1.font-l.px-3 Character, Trust and Integrity
             v-flex(xs12 md6 align-self-center).px-3
-                p.px-2 MYCURE values Character, Trust, and Integrity. These are values  very  important to the Founders thus was brought about and integrated into MYCURE's Culture!
+                p MYCURE values Character, Trust, and Integrity. These are values  very  important to the Founders thus was brought about and integrated into MYCURE's Culture!
         v-flex(xs12 md10).mb-5
           v-layout(row wrap)
             v-flex(xs12 md6).px-3
