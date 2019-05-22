@@ -1,5 +1,5 @@
 <template lang="pug">
-  div
+  div#top
     mcNavbarHome
     panel-1
     panel-2
@@ -25,7 +25,8 @@
   import panel7 from './panel-7';
   import panel8 from './panel-8';
   import panel9 from './panel-9';
-  
+  import VueScrollTo from 'vue-scrollto';
+
   export default {
     components: {
       mcNavbarHome,
@@ -39,6 +40,9 @@
       panel7,
       panel8,
       panel9
+    },
+    mounted () {
+      VueScrollTo.scrollTo(`#top`, 500, { easing: 'ease' } );
     }
   };
 </script>

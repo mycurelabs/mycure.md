@@ -21,10 +21,10 @@
                 router-link(:to="{name: 'home'}").link.white--text
                   span HOME
               li
-                router-link(:to="{name: 'private'}").link.white--text
+                router-link(:to="{name: 'electronic-medical-records'}").link.white--text
                   span For Individual Doctors
               li.pb-3
-                router-link(:to="{name: 'multi-specialty'}").link.white--text
+                router-link(:to="{name: 'clinic-management-system'}").link.white--text
                   span For Multispecialty Clinics
               li ABOUT
               li
