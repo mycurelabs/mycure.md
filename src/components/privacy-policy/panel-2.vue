@@ -91,12 +91,15 @@
 
 <script>
   export default {
-    
+    data () {
+      return {
+        //
+      };
+    }
   };
 </script>
 
 <style scoped>
-
   p {
     /* font-size: 16px; */
     text-align: justify;
@@ -105,5 +108,4 @@
   ul li {
     font-size: 15px;
   }
-
 </style>
