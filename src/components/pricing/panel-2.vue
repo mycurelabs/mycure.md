@@ -8,11 +8,15 @@
               br
               | 
               span.font-xs.text-none Solo or group clinic practitioners
+          v-tab-item
+            private_prac
           v-tab.tab.white
             strong.font-m.font-mc-grey.text-none Multispecialty Clinics
               br
               | 
               span.font-xs.text-none One stop, multi-staff clinics
+          v-tab-item
+            multispecialty
               
           
          

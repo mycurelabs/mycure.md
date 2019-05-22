@@ -8,8 +8,6 @@
           strong.font-m.white--text Quality clinic technology made more affordable. Only pay for what you need.
           br
           br
-    v-layout(row justify-center)  
-      panel2 
 </template>
 
 <script>

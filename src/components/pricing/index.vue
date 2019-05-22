@@ -1,8 +1,7 @@
 <template lang="pug">
   div
     panel1
-    private_prac
-    multispecialty
+    panel2
     panel3
 </template>
 
