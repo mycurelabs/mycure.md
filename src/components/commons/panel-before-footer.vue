@@ -7,13 +7,13 @@
         v-flex(xs12 md6 offset-xs1 align-self-center)
           h2.font-l Because we believe your clinic can stand out and be its best everyday.
           br
-          p.font-s.mt-3 Experience what you can do more with 
-            strong MYCURE 
+          p.font-s.mt-3 Experience what you can do more with
+            a(href="https://mycure.md")
+              strong &nbsp; MYCURE 
             br  
             | technology by your side.
           v-btn(color="info" large) 
-            strong.text-none Contact Sales Today
-          
+            strong.text-none Contact Sales Today 
 </template>
 
 <script>
@@ -27,12 +27,8 @@
 </script>
 
 <style scoped>
-  .center {
-    margin: 0;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
+  a {
+    text-decoration: none;
+    color: black
   }
 </style>
