@@ -45,7 +45,7 @@
         ).mt-5 
           strong.font-s.text-none We got a solution
       p.text-xs-center.py-4.font-xs Have questions? Give us a call: 
-        strong (+63) 699 - 7272
+        strong (+63) 917 303 4350
 </template>
 
 <script>
