@@ -16,34 +16,30 @@
               | 
               span.font-xs.text-none One stop, multi-staff clinics
           v-tab-item
-            multispecialty
-              
-          
-         
+            multispecialty        
 </template>
 
 <script>
-import private_prac from './private';
-import multispecialty from './multispecialty';
+  import private_prac from './private';
+  import multispecialty from './multispecialty';
 
-export default {
-  components: {
-    private_prac,
-    multispecialty
-  },
-  data () {
-    return {
-      // 
-    };
-  }
-};
+  export default {
+    components: {
+      private_prac,
+      multispecialty
+    },
+    data () {
+      return {
+        // 
+      };
+    }
+  };
 </script>
 
 <style scoped>
-.tab{
-  border-radius: 10px 10px 0 0;
-  width: 400px;
-  height: 100%px;
-}
-
+  .tab{
+    border-radius: 10px 10px 0 0;
+    width: 400px;
+    height: 100%px;
+  }
 </style>

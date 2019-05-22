@@ -84,13 +84,17 @@
 </template>
 
 <script>
-export default {
-  
-};
+  export default {
+    data () {
+      return {
+        //
+      };
+    }
+  };
 </script>
 
 <style scoped>
-br{
-  line-height: 150%;
-}
+  br{
+    line-height: 150%;
+  }
 </style>

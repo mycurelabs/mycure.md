@@ -41,83 +41,82 @@
               center
                 v-btn(:href="card.link" target="_blank" v-if="!card.isMoreButton") {{card.buttonText}}
                 v-btn(@click="toggleChat" v-else) {{card.buttonText}}
-    
-</template>
+    </template>
 
 <script>
-import VueFlip from 'vue-flip';
-export default {
-  components: {
-    VueFlip
-  },
-  data () {
-    return {
-      cards: [
-        {
-          image: require('../../assets/images/mycure-home-products-icon-multispecialty-clinics.png'),
-          text: 'Multispecialty Clinics',
-          content: 'One-stop, multi-staff clinics that provide ambulatory care and ancillary services',
-          buttonText: 'Sign Up',
-          link: ''
-        },
-        {
-          image: require('../../assets/images/mycure-home-products-icon-outpatient-clinics.png'),
-          text: 'Outpatient Clinics',
-          content: 'Hospital-based clinics that provide outpatient consultation services from various specialists',
-          buttonText: 'Sign Up',
-          link: ''
-        },
-        {
-          image: require('../../assets/images/mycure-home-products-icon-industrial-clinics.png'),
-          text: 'Industrial Clinics',
-          content: 'Primary clinics inside companies, schools, BPOs, and other industries covered by OSHS',
-          buttonText: 'Sign Up',
-          link: ''
-        },
-        {
-          image: require('../../assets/images/mycure-home-products-icon-aesthetic-clinics.png'),
-          text: 'Skin & Aesthetic Clinics',
-          content: 'Specialized for clinics that offer aesthetic procedures and dermatological services',
-          buttonText: 'Sign Up',
-          link: ''
-        },
-        {
-          image: require('../../assets/images/mycure-home-products-icon-pme-clinics.png'),
-          text: 'PME Clinics',
-          content: 'Clinics specializing in Physical Medical Exam (PME) services.',
-          buttonText: 'Sign Up',
-          link: ''
-        },
-        {
-          image: require('../../assets/images/mycure-home-products-icon-group-clinics.png'),
-          text: 'Group Clinics',
-          content: 'Managed by a group of physicians practicing together and assisted by one or more secretaries',
-          buttonText: 'Sign Up',
-          link: ''
-        },
-        {
-          image: require('../../assets/images/mycure-home-products-icon-individual-clinics.png'),
-          text: 'Individual Clinics',
-          content: 'Physicians practicing independently in one or more clinic locations',
-          buttonText: 'Sign Up',
-          link: ''
-        },
-        {
-          isMoreButton: true,
-          image: require('../../assets/images/mycure-home-products-icon-more.png'),
-          text: 'More coming!',
-          content: `
-            Rehab Clinics<br>
-            Maternity Clincis<br>
-            Diagnostic Clinics<br>
-            Pharmacies and more!
-          `,
-          buttonText: 'Contact Us'
-        }
-      ]
-    };
-  }
-};
+  import VueFlip from 'vue-flip';
+  export default {
+    components: {
+      VueFlip
+    },
+    data () {
+      return {
+        cards: [
+          {
+            image: require('../../assets/images/mycure-home-products-icon-multispecialty-clinics.png'),
+            text: 'Multispecialty Clinics',
+            content: 'One-stop, multi-staff clinics that provide ambulatory care and ancillary services',
+            buttonText: 'Sign Up',
+            link: ''
+          },
+          {
+            image: require('../../assets/images/mycure-home-products-icon-outpatient-clinics.png'),
+            text: 'Outpatient Clinics',
+            content: 'Hospital-based clinics that provide outpatient consultation services from various specialists',
+            buttonText: 'Sign Up',
+            link: ''
+          },
+          {
+            image: require('../../assets/images/mycure-home-products-icon-industrial-clinics.png'),
+            text: 'Industrial Clinics',
+            content: 'Primary clinics inside companies, schools, BPOs, and other industries covered by OSHS',
+            buttonText: 'Sign Up',
+            link: ''
+          },
+          {
+            image: require('../../assets/images/mycure-home-products-icon-aesthetic-clinics.png'),
+            text: 'Skin & Aesthetic Clinics',
+            content: 'Specialized for clinics that offer aesthetic procedures and dermatological services',
+            buttonText: 'Sign Up',
+            link: ''
+          },
+          {
+            image: require('../../assets/images/mycure-home-products-icon-pme-clinics.png'),
+            text: 'PME Clinics',
+            content: 'Clinics specializing in Physical Medical Exam (PME) services.',
+            buttonText: 'Sign Up',
+            link: ''
+          },
+          {
+            image: require('../../assets/images/mycure-home-products-icon-group-clinics.png'),
+            text: 'Group Clinics',
+            content: 'Managed by a group of physicians practicing together and assisted by one or more secretaries',
+            buttonText: 'Sign Up',
+            link: ''
+          },
+          {
+            image: require('../../assets/images/mycure-home-products-icon-individual-clinics.png'),
+            text: 'Individual Clinics',
+            content: 'Physicians practicing independently in one or more clinic locations',
+            buttonText: 'Sign Up',
+            link: ''
+          },
+          {
+            isMoreButton: true,
+            image: require('../../assets/images/mycure-home-products-icon-more.png'),
+            text: 'More coming!',
+            content: `
+              Rehab Clinics<br>
+              Maternity Clincis<br>
+              Diagnostic Clinics<br>
+              Pharmacies and more!
+            `,
+            buttonText: 'Contact Us'
+          }
+        ]
+      };
+    }
+  };
 </script>
 
 <style scoped>

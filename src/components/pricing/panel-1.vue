@@ -11,20 +11,18 @@
 </template>
 
 <script>
-import panel2  from './panel-2';
-
 export default {
-  components: {
-    panel2
+  data () {
+    return {
+      //
+    };
   }
 };
 </script>
 
 <style scoped>
-.panel-1{
-  height: 300px;
-  background-image: url("../../assets/images/mycure-pricing-background.png");
-}
-
-
+  .panel-1{
+    height: 300px;
+    background-image: url("../../assets/images/mycure-pricing-background.png");
+  }
 </style>

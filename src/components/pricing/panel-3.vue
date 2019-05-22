@@ -15,3 +15,14 @@
           v-btn(color="success" large) 
             strong SUBSCRIBE TO SYNCBASE
 </template>
+
+<script>
+  export default {
+   data () {
+     return {
+       //
+     };
+   } 
+  }
+</script>
+
