@@ -1,5 +1,5 @@
 <template lang="pug">
-  div.py-5
+  div.py-3
     v-container
       v-layout(row justify-center)
         v-flex(xs12 md6 align-self-center).px-3

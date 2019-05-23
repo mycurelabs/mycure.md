@@ -1,5 +1,5 @@
 <template lang="pug">
-  div.py-5
+  div.py-3
     v-container
       v-layout(row justify-center)
         v-flex(xs12 md6 align-self-center).px-3
@@ -23,64 +23,101 @@
           font.font-mc-grey 
             strong FEATURES INCLUDED
       br
-      v-layout(row align-center)
-        v-flex(xs12 md3 offset-md1 align-self-center)
-          v-layout(row).pb-2
-            img(width="7%" src="../../assets/images/mycure-icon-check.png").pt-2
-            font.font-m &nbsp &nbsp Unlimited clinics
-          v-layout(row).pb-2
-            img(width="7%" src="../../assets/images/mycure-icon-check.png").pt-2
-            font.font-m &nbsp &nbsp Unlimited devices
-          v-layout(row).pb-2
-            img(width="7%" src="../../assets/images/mycure-icon-check.png").pt-2
-            font.font-m &nbsp &nbsp 50 patients per month
-          v-layout(row).pb-2
-            img(width="7%" src="../../assets/images/mycure-icon-check.png").pt-2
-            font.font-m &nbsp &nbsp Secretary account
-          v-layout(row).pb-2
-            img(width="7%" src="../../assets/images/mycure-icon-check.png").pt-2
-            font.font-m &nbsp &nbsp Queuing System
-          v-layout(row).pb-2
-            img(width="7%" src="../../assets/images/mycure-icon-check.png").pt-2
-            font.font-m &nbsp &nbsp Medical Billing
-        v-flex(xs12 md3 offset-md1)
-          v-layout(row).pb-2
-            img(width="7%" src="../../assets/images/mycure-icon-check.png").pt-2
-            font.font-m &nbsp &nbsp SOAP Charting
-          v-layout(row).pb-2
-            img(width="7%" src="../../assets/images/mycure-icon-check.png").pt-2
-            font.font-m &nbsp &nbsp Prescription
-          v-layout(row).pb-2
-            img(width="7%" src="../../assets/images/mycure-icon-check.png").pt-2
-            font.font-m &nbsp &nbsp Lab &amp Imaging orders
-          v-layout(row).pb-2
-            img(width="7%" src="../../assets/images/mycure-icon-check.png").pt-2
-            font.font-m &nbsp &nbsp Custom medical forms
-          v-layout(row).pb-2
-            img(width="7%" src="../../assets/images/mycure-icon-check.png").pt-2
-            font.font-m &nbsp &nbsp Print functions
-          v-layout(row).pb-2
-            img(width="7%" src="../../assets/images/mycure-icon-check.png").pt-2
-            font.font-m &nbsp &nbsp Bulk patient upload
-        v-flex(xs12 md3 offset-md1)
-          v-layout(row).pb-2
-            img(width="7%" src="../../assets/images/mycure-icon-check.png").pt-2
-            font.font-m &nbsp &nbsp SMS Feature
-          v-layout(row).pb-2
-            img(width="7%" src="../../assets/images/mycure-icon-check.png").pt-2
-            font.font-m &nbsp &nbsp Patient tagging
-          v-layout(row).pb-2
-            img(width="7%" src="../../assets/images/mycure-icon-check.png").pt-2
-            font.font-m &nbsp &nbsp Reports &amp Analytics
-          v-layout(row).pb-2
-            img(width="7%" src="../../assets/images/mycure-icon-check.png").pt-2
-            font.font-m &nbsp &nbsp PNF Drug Catalog
-          v-layout(row).pb-2
-            img(width="7%" src="../../assets/images/mycure-icon-check.png").pt-2
-            font.font-m &nbsp &nbsp ICD-10 List
-          v-layout(row).pb-2
-            img(width="7%" src="../../assets/images/mycure-icon-check.png").pt-2
-            font.font-m &nbsp &nbsp DPA Registration Guide
+      v-layout(row justify-center)
+        v-flex(xs12 md4)
+          v-list
+            v-list-tile
+              v-list-tile-action
+                img(src="../../assets/images/mycure-icon-check.png")
+              v-list-tile-content
+                span.font-m Unlimited clinics
+            v-list-tile
+              v-list-tile-action
+                img(src="../../assets/images/mycure-icon-check.png")
+              v-list-tile-content
+                span.font-m Unlimited devices
+            v-list-tile
+              v-list-tile-action
+                img(src="../../assets/images/mycure-icon-check.png")
+              v-list-tile-content
+                span.font-m 50 patients per month
+            v-list-tile
+              v-list-tile-action
+                img(src="../../assets/images/mycure-icon-check.png")
+              v-list-tile-content
+                span.font-m Secretary account
+            v-list-tile
+              v-list-tile-action
+                img(src="../../assets/images/mycure-icon-check.png")
+              v-list-tile-content
+                span.font-m Queuing System
+            v-list-tile
+              v-list-tile-action
+                img(src="../../assets/images/mycure-icon-check.png")
+              v-list-tile-content
+                span.font-m Medical Billing
+        v-flex(xs12 md4)
+          v-list-tile
+            v-list-tile-action
+              img(src="../../assets/images/mycure-icon-check.png")
+            v-list-tile-content
+              span.font-m SOAP Charting
+          v-list-tile
+            v-list-tile-action
+              img(src="../../assets/images/mycure-icon-check.png")
+            v-list-tile-content
+              span.font-m Prescription
+          v-list-tile
+            v-list-tile-action
+              img(src="../../assets/images/mycure-icon-check.png")
+            v-list-tile-content
+              span.font-m Lab &amp Imaging orders
+          v-list-tile
+            v-list-tile-action
+              img(src="../../assets/images/mycure-icon-check.png")
+            v-list-tile-content
+              span.font-m Custom medical forms
+          v-list-tile
+            v-list-tile-action
+              img(src="../../assets/images/mycure-icon-check.png")
+            v-list-tile-content
+              span.font-m Print functions
+          v-list-tile
+            v-list-tile-action
+              img(src="../../assets/images/mycure-icon-check.png")
+            v-list-tile-content
+              span.font-m Bulk patient upload
+        v-flex(xs12 md4)
+          v-list-tile
+            v-list-tile-action
+              img(src="../../assets/images/mycure-icon-check.png")
+            v-list-tile-content
+              span.font-m SMS Feature
+          v-list-tile
+            v-list-tile-action
+              img(src="../../assets/images/mycure-icon-check.png")
+            v-list-tile-content
+              span.font-m Patient tagging
+          v-list-tile
+            v-list-tile-action
+              img(src="../../assets/images/mycure-icon-check.png")
+            v-list-tile-content
+              span.font-m Reports &amp Analytics
+          v-list-tile
+            v-list-tile-action
+              img(src="../../assets/images/mycure-icon-check.png")
+            v-list-tile-content
+              span.font-m PNF Drug Catalog
+          v-list-tile
+            v-list-tile-action
+              img(src="../../assets/images/mycure-icon-check.png")
+            v-list-tile-content
+              span.font-m ICD-10 List
+          v-list-tile
+            v-list-tile-action
+              img(src="../../assets/images/mycure-icon-check.png")
+            v-list-tile-content
+              span.font-m DPA Registration Guide
 </template>
 
 <script>
