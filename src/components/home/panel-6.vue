@@ -1,5 +1,5 @@
 <template lang="pug">
-  div.pa-5
+  div.pa-5.mc-light-grey
     v-layout(row wrap justify-center).pt-5
       span.font-l.text-xs-center MYCURE works for Private and Multispecialty Clinics
     v-layout(row wrap justify-center).pt-5
@@ -68,7 +68,7 @@
   table {
     border-collapse: separate;
     border-spacing: 0;
-    width: 40%;
+    width: 50%;
   }
 
   table tr td {

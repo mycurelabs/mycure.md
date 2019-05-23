@@ -1,6 +1,6 @@
 <template lang="pug">
-  div
-    div(v-if="!$isMobile").mc-light-grey.pb-5
+  div.white.py-5
+    div(v-if="!$isMobile")
       v-container
         v-flex(xs12 md12)
           v-layout(column wrap justify-center).mx-5
@@ -49,7 +49,7 @@
                     v-btn(style="background-color: #2e9fdf; color: white; width: auto" large round) 
                       a(href="/clinic-management-system")
                         strong.white--text LEARN MORE
-    div(v-else).mc-light-grey
+    div(v-else)
       v-container
         v-layout(column justify-center)
           span.font-m.text-xs-center "It's a great experience using MYCURE app in our rural setup. I've been through many EMR apps, but this one is the best so far." 

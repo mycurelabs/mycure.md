@@ -1,5 +1,5 @@
 <template lang="pug">
-  div.pt-5
+  div.py-5.white
     div(v-if="!$isMobile")
       v-container
         v-flex(xs12 md12)

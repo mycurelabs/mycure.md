@@ -1,6 +1,6 @@
 <template lang="pug"> 
-  div.pt-5
-    div(v-if="!$isMobile").px-5.mc-light-grey
+  div
+    div(v-if="!$isMobile").pa-5.mc-light-grey
       v-container.px-5
         v-layout(row wrap justify-center)
           span.font-l.pa-5 Why do clinics switch to MYCURE?

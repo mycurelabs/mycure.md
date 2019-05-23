@@ -1,5 +1,5 @@
 <template lang="pug">
-  div
+  div.mc-light-grey
     div(v-if="!$isMobile").pa-5
       v-container
         v-layout(row wrap justify-center)

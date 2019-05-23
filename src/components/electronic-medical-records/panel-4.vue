@@ -1,5 +1,5 @@
 <template lang="pug">
-  div
+  div.white
     v-flex(xs12 md12)
         v-layout(row wrap justify-center)
           strong(style="font-size: 25px").py-5.text-xs-center Are you a part of a group clinic? 
