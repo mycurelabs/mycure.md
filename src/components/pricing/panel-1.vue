@@ -67,7 +67,6 @@
 
 <style scoped>
   .panel-1{
-    margin-top: 60px;
     height: auto;
     width: auto;
     background-image: url("../../assets/images/mycure-pricing-background.png");
