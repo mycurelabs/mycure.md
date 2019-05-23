@@ -15,8 +15,8 @@
             center
               div(style="width: 75%")
                 img(width="100%" src="../../assets/images/mycure-web-banner-fifth-panel-private-clinic.png")
-                v-card.clinic-card.text-xs-left.pa-3 
-                  p.pb-2.font-xs {{ private_title }}
+                v-card(style="margin-top: -2%").clinic-card.text-xs-left.pa-4
+                  p.pb-2.font-s {{ private_title }}
                   font &#10003 &nbsp Unlimited Clinics
                   br
                   font &#10003 &nbsp 1 GB Data
@@ -26,7 +26,7 @@
                   font &#10003 &nbsp Prescription Printing
                   br
                   font &#10003 &nbsp Medical Billing
-                  v-layout(row wrap justify-center).pa-3
+                  v-layout(row wrap justify-center).py-4
                     v-btn(style="background-color: #2e9fdf; color: white; width: auto" large round) 
                       a(href="/electronic-medical-records")
                         strong.white--text GET MYCURE FREE
@@ -34,8 +34,8 @@
             center 
               div(style="width: 75%")
                 img(width="100%" src="../../assets/images/mycure-web-banner-fifth-panel-multi-specialty-clinics.png")
-                v-card.clinic-card.text-xs-left.pa-3 
-                  p.pb-2.font-xs {{ multispecialty_title }}
+                v-card(style="margin-top: -2%").clinic-card.text-xs-left.pa-4
+                  p.pb-2.font-s {{ multispecialty_title }}
                   font &#10003 &nbsp Queuing &amp Registration
                   br
                   font &#10003 &nbsp Patient Medical Records
@@ -45,7 +45,8 @@
                   font &#10003 &nbsp Laboratory &amp Imaging
                   br
                   font &#10003 &nbsp Materials Management
-                  v-layout(row wrap justify-center).pa-3
+                  br
+                  v-layout(row wrap justify-center).py-3
                     v-btn(style="background-color: #2e9fdf; color: white; width: auto" large round) 
                       a(href="/clinic-management-system")
                         strong.white--text LEARN MORE
