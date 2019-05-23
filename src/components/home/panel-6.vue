@@ -1,42 +1,47 @@
 <template lang="pug">
   div.pa-5
-    v-layout(row wrap justify-center)
-      font.font-l.text-xs-center MYCURE works for Private and Multispecialty Clinics
+    v-layout(row wrap justify-center).pt-5
+      span.font-l.text-xs-center MYCURE works for Private and Multispecialty Clinics
     v-layout(row wrap justify-center).pt-5
       table
         tr
           td 
             img(src="../../assets/images/mycure-icon-check.png").mr-3
-            | Solo Practice
+            span.font-s Solo Practice
           td 
             img(src="../../assets/images/mycure-icon-check.png").mr-3 
-            | Group Clinics
+            span.font-s Group Clinics
         tr
           td 
             img(src="../../assets/images/mycure-icon-check.png").mr-3 
-            | Multi-specialty Clinics
+            span.font-s Multi-specialty Clinics
           td 
             img(src="../../assets/images/mycure-icon-check.png").mr-3 
-            | Dermatology Clinics
+            span.font-s Dermatology Clinics
         tr
           td 
             img(src="../../assets/images/mycure-icon-check.png").mr-3 
-            | Family Clinics
+            span.font-s Family Clinics
           td 
             img(src="../../assets/images/mycure-icon-check.png").mr-3
-            | Multi-branch Clinics
+            span.font-s Multi-branch Clinics
         tr
           td 
             img(src="../../assets/images/mycure-icon-check.png").mr-3 
-            | Industrial Clinics
+            span.font-s Industrial Clinics
           td 
             img(src="../../assets/images/mycure-icon-check.png").mr-3 
-            | Dental Clinics
+            span.font-s Dental Clinics
     br
     br
     br
     v-layout(row wrap justify-center)
-      em.font-s If you manage a clinic, then you need MCYCURE.
+      em.font-s If you manage a clinic, then you need 
+      |
+      a(href="https://mycure.md")
+        em
+          strong.black--text &nbsp; MYCURE
+        | .
     br
     br
     v-layout(row wrap justify-center)
@@ -99,5 +104,9 @@
   /* bottom-right border-radius */
   table tr:last-child td:last-child {
     border-bottom-right-radius: 6px;
+  }
+
+  a {
+    text-decoration: none;
   }
 </style>
