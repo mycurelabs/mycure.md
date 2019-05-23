@@ -55,7 +55,7 @@
           span.font-m.text-xs-center "It's a great experience using MYCURE app in our rural setup. I've been through many EMR apps, but this one is the best so far." 
           br
           br
-          span.font-xs.text-xs-center Dr. Gay Cadorna-Toledo
+          span.font-s.text-xs-center Dr. Gay Cadorna-Toledo
           b.font-xs.text-xs-center Pediatrician, Misamis Occidental
           span.font-xs.text-xs-center MYCURE Doctor since 2017
       div

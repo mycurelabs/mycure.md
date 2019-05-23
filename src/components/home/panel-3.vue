@@ -84,6 +84,11 @@
                 img(src="../../assets/images/mycure-icon-check.png")
               v-list-tile-content
                 | Is your current system crappy and slows you down?  
+        v-layout(row wrap justify-center)
+          v-btn(color="info" large).mt-5 
+            strong.font-s.text-none We got a solution
+        p.text-xs-center.py-4.font-xs Have questions? Give us a call: 
+          strong (+63) 917 303 4350
 </template>
 
 <script>

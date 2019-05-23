@@ -4,7 +4,7 @@
       p.font-l.text-xs-center MYCURE works for Private and Multispecialty Clinics
     v-layout(justify-center)
       table
-        tr(style="border-radius: 6px;")
+        tr
           div.pl-3.py-3
             img(src="../../assets/images/mycure-icon-check.png").mr-3
             span.font-m Solo Practice
