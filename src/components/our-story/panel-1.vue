@@ -1,7 +1,7 @@
 <template lang="pug">
-  div.panel-1.pt-5.white
-    v-container.pt-5
-      v-layout(row wrap align-center).pt-5
+  div.panel-1.white
+    v-container
+      v-layout(row wrap align-center)
         v-flex(xs12 md5)
           h1.font-xl MYCURE cares for people who care for people.
           br
@@ -9,12 +9,20 @@
           p.font-s Doctors, nurses, and clinic professionals have a lot of work and we want to make that work easier.
           br
           v-btn(
+            v-if="!$isMobile"
             color="info" 
             large
             id="showVid"
             @click="showVid = true") 
               strong WATCH VIDEO
-        v-flex(xs12 md7).px-5
+          center(v-else)
+            v-btn(
+              color="info" 
+              large
+              id="showVid"
+              @click="showVid = true") 
+                strong WATCH VIDEO
+        v-flex(v-if="!$isMobile" xs12 md7).px-5
           img(width="100%" src="../../assets/images/mycure-homepage-doctor-kid-pediatrician-drawing.png")
 
     v-dialog(v-model="showVid" max-width="700px")

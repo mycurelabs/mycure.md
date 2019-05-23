@@ -52,37 +52,38 @@
         v-layout(row justify-center)
           span.font-l.text-xs-center Are you having trouble in your clinic?
       v-container
-        v-list(two-line style="background-color: #f5f5f5")
-          v-list-tile
-            v-list-tile-action
-              img(src="../../assets/images/mycure-icon-check.png")
-            v-list-tile-content
-              span.font-m Are you having data privacy issues?
-          v-list-tile
-            v-list-tile-action
-              img(src="../../assets/images/mycure-icon-check.png")
-            v-list-tile-content
-              span.font-m Do you need to cut on unnecessary costs?
-          v-list-tile
-            v-list-tile-action
-              img(src="../../assets/images/mycure-icon-check.png")
-            v-list-tile-content
-              span.font-m Is your internet connection unreliable?
-          v-list-tile
-            v-list-tile-action
-              img(src="../../assets/images/mycure-icon-check.png")
-            v-list-tile-content
-              | Do you have a duplicate or missing patient charts?
-          v-list-tile
-            v-list-tile-action
-              img(src="../../assets/images/mycure-icon-check.png")
-            v-list-tile-content
-              | Do you have billing &amp; collection discrepancies?
-          v-list-tile
-            v-list-tile-action
-              img(src="../../assets/images/mycure-icon-check.png")
-            v-list-tile-content
-              | Is your current system crappy and slows you down?  
+        v-layout(row justify-center)
+          v-list(two-line style="background-color: #f5f5f5")
+            v-list-tile
+              v-list-tile-action
+                img(src="../../assets/images/mycure-icon-check.png")
+              v-list-tile-content
+                span.font-m Are you having data privacy issues?
+            v-list-tile
+              v-list-tile-action
+                img(src="../../assets/images/mycure-icon-check.png")
+              v-list-tile-content
+                span.font-m Do you need to cut on unnecessary costs?
+            v-list-tile
+              v-list-tile-action
+                img(src="../../assets/images/mycure-icon-check.png")
+              v-list-tile-content
+                span.font-m Is your internet connection unreliable?
+            v-list-tile
+              v-list-tile-action
+                img(src="../../assets/images/mycure-icon-check.png")
+              v-list-tile-content
+                | Do you have a duplicate or missing patient charts?
+            v-list-tile
+              v-list-tile-action
+                img(src="../../assets/images/mycure-icon-check.png")
+              v-list-tile-content
+                | Do you have billing &amp; collection discrepancies?
+            v-list-tile
+              v-list-tile-action
+                img(src="../../assets/images/mycure-icon-check.png")
+              v-list-tile-content
+                | Is your current system crappy and slows you down?  
 </template>
 
 <script>
