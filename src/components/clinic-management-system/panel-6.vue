@@ -1,46 +1,70 @@
 <template lang="pug">
-  div
-    v-container
-      v-flex(xs12 md12)
-      v-layout(column wrap justify-center).mx-5
-        font(style="width: auto;").font-l.text-xs-center.mx-5 "It's a great experience using MYCURE app in our rural setup. I've been through many EMR apps, but this one is the best so far."
-        br
-        br
-        font.font-xs.text-xs-center Dr. Gay Cadorna-Toledo
-        b.font-xs.text-xs-center Pediatrician, Misamis Occidental
-        font.font-xs.text-xs-center MYCURE Doctor since 2017
-        br
-        br
-        br
-      v-flex(xs12 md12)
+  div.pt-5
+    div(v-if="!$isMobile")
+      v-container
+        v-flex(xs12 md12)
+        v-layout(column wrap justify-center).mx-5
+          font(style="width: auto;").font-l.text-xs-center.mx-5 "It's a great experience using MYCURE app in our rural setup. I've been through many EMR apps, but this one is the best so far."
+          br
+          br
+          font.font-xs.text-xs-center Dr. Gay Cadorna-Toledo
+          b.font-xs.text-xs-center Pediatrician, Misamis Occidental
+          font.font-xs.text-xs-center MYCURE Doctor since 2017
+          br
+          br
+          br
+        v-flex(xs12 md12)
+          v-layout(row justify-center)
+            div(style="width: 27%;").image-rounded-corner.one-edge-shadow
+              v-img(:src="require('../../assets/images/mycure-web-banner-pricing-panel-multispecialty.png')")
+            div(style="diplay: inline-block;")
+            v-card(flat).price-card.text-xs-left.pa-5.one-edge-shadow
+              strong.pb-2.font-m For Multispecialty Clinics
+              br
+              br
+              font.font-xs An all-around solution for your outpatient, 
+                br
+                | multispecialty or specialized clinics that will 
+                br
+                | manage your full-patient journeys with ease.
+              br
+              br
+              font &#10003 &nbsp Queuing &amp Registration
+              br
+              font &#10003 &nbsp Patient Medical Records
+              br
+              font &#10003 &nbsp Billing &amp Collection
+              br
+              font &#10003 &nbsp Laboratory &amp Imaging
+              br
+              font &#10003 &nbsp Materials Management
+              v-layout(row wrap).py-4
+                router-link(:to="{name: 'pricing'}").link.white--text
+                  v-btn(style="background-color: #2e9fdf; color: white; width: auto" large) 
+                    strong BOOK A DEMO
+    div(v-else)
+      v-container
+        v-layout(column justify-center)
+          span.font-m.text-xs-center "It's a great experience using MYCURE app in our rural setup. I've been through many EMR apps, but this one is the best so far." 
+          br
+          br
+          span.font-s.text-xs-center Dr. Gay Cadorna-Toledo
+          b.font-xs.text-xs-center Pediatrician, Misamis Occidental
+          span.font-xs.text-xs-center MYCURE Doctor since 2017
+      br
+      div
+        img(width="100%" src="../../assets/images/mycure-web-banner-fifth-panel-multi-specialty-clinics.png")
+        v-layout(column wrap).pt-4.pb-5.pr-5.pl-5
+          p.pb-2.font-s {{ private_title }}
+          span.font-s.pb-2 &#10003; &nbsp; &nbsp; Queuing &amp Registration
+          span.font-s.pb-2 &#10003; &nbsp; &nbsp; Patient Medical Records
+          span.font-s.pb-2 &#10003; &nbsp; &nbsp; Billing &amp Collection
+          span.font-s.pb-2 &#10003; &nbsp; &nbsp; Laboratory &amp Imaging
+          span.font-s.pb-2 &#10003; &nbsp; &nbsp; Laboratory &amp Imaging
         v-layout(row justify-center)
-          div(style="width: 27%;").image-rounded-corner.one-edge-shadow
-            v-img(:src="require('../../assets/images/mycure-web-banner-pricing-panel-multispecialty.png')")
-          div(style="diplay: inline-block;")
-          v-card(flat).price-card.text-xs-left.pa-5.one-edge-shadow
-            strong.pb-2.font-m For Multispecialty Clinics
-            br
-            br
-            font.font-xs An all-around solution for your outpatient, 
-              br
-              | multispecialty or specialized clinics that will 
-              br
-              | manage your full-patient journeys with ease.
-            br
-            br
-            font &#10003 &nbsp Queuing &amp Registration
-            br
-            font &#10003 &nbsp Patient Medical Records
-            br
-            font &#10003 &nbsp Billing &amp Collection
-            br
-            font &#10003 &nbsp Laboratory &amp Imaging
-            br
-            font &#10003 &nbsp Materials Management
-            v-layout(row wrap).py-4
-              router-link(:to="{name: 'pricing'}").link.white--text
-                v-btn(style="background-color: #2e9fdf; color: white; width: auto" large) 
-                  strong BOOK A DEMO
+          v-btn(style="background-color: #2e9fdf; color: white; width: 80%; height: 60px")
+            a(href="/clinic-management-system")
+              strong.font-m.white--text BOOK A DEMO
 </template>
 
 <script>

@@ -1,13 +1,14 @@
 <template lang="pug">
   div#top
     mc-navbar-home
-    panel-1
-    panel-2
-    panel-3.py-4
-    panel-4.py-4
-    panel-5.py-4
-    panel-6.py-4
-    panelBeforeFooter.py-4
+    panel1
+    panel2
+    panel3
+    panel4
+    panel5(v-if="!$isMobile")
+    panel5mobile(v-else)
+    panel6
+    panelBeforeFooter
     mc-footer
 </template>
 
@@ -20,6 +21,7 @@
   import panel3 from './panel-3';
   import panel4 from './panel-4';
   import panel5 from './panel-5';
+  import panel5mobile from './panel-5-mobile';
   import panel6 from './panel-6';
   import VueScrollTo from 'vue-scrollto';
 
@@ -37,6 +39,7 @@
       panel3,
       panel4,
       panel5,
+      panel5mobile,
       panel6,
       panelBeforeFooter
     },

@@ -1,5 +1,5 @@
 <template lang="pug">
-  div
+  div.pt-5
     div(v-if="!$isMobile")
       div.pt-5
         center

@@ -1,5 +1,5 @@
 <template lang="pug">
-  div.pa-5
+  div.pt-5
     v-layout(row wrap justify-center)
       font.font-l.text-xs-center Designed for clinics of all shapes and sizes.
     v-layout(row wrap justify-center).pt-5
@@ -7,24 +7,24 @@
         tr
           td 
             img(src="../../assets/images/mycure-icon-check.png").mr-3
-            | Multispecialty Clinics
+            span.font-s Multispecialty Clinics
           td 
             img(src="../../assets/images/mycure-icon-check.png").mr-3 
-            | Skin &amp Aesthetic Clinics
+            span.font-s Skin &amp Aesthetic Clinics
         tr
           td 
             img(src="../../assets/images/mycure-icon-check.png").mr-3 
-            | Outpatient Clinics
+            span.font-s Outpatient Clinics
           td 
             img(src="../../assets/images/mycure-icon-check.png").mr-3 
-            | Family Clinics
+            span.font-s Family Clinics
         tr
           td 
             img(src="../../assets/images/mycure-icon-check.png").mr-3 
-            | Industrial Clinics
+            span.font-s Industrial Clinics
           td 
             img(src="../../assets/images/mycure-icon-check.png").mr-3
-            | PME Clinics
+            span.font-s PME Clinics
     br
     br
     br

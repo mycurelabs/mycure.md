@@ -3,7 +3,7 @@
     v-container
       v-layout(row wrap align-center)
         v-flex(xs12 md5)
-          h1.font-xl MYCURE cares for people who care for people.
+          h1.font-l MYCURE cares for people who care for people.
           br
           br
           p.font-s Doctors, nurses, and clinic professionals have a lot of work and we want to make that work easier.
