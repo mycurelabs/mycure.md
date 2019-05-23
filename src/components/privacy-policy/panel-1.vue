@@ -7,7 +7,8 @@
           div.hr-blue
           br
           br
-          h1.font-xl Privacy Policy
+          h1(v-if="!$isMobile").font-xl Privacy Policy
+          h1(v-else).font-l Privacy Policy
 </template>
 
 <script>
