@@ -1,6 +1,6 @@
 <template lang="pug">
-  div
-    div(v-if="!$isMobile")
+  div.pt-5
+    div(v-if="!$isMobile").pt-5
       v-container
         v-layout(row)
           v-flex(xs12 md6)

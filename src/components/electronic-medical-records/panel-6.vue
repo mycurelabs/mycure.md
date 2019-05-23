@@ -1,60 +1,101 @@
 <template lang="pug">
-  div.mc-light-grey.pb-5
-    v-container
-      v-layout(row)
-        v-flex(xs12 md5 offset-md1).mx-5
+  div
+    div(v-if="!$isMobile").mc-light-grey.pb-5
+      v-container
+        v-layout(row)
+          v-flex(xs12 md5 offset-md1).mx-5
+            center
+              img(src="../../assets/images/mycure-icon-testimonial.png")
+              br
+              br
+              span.font-s {{ testimonial1 }}
+              br
+              br
+              strong.font-xs Dr. Jean Rivera
+              br
+              em.font-xs.font-mc-blue General Physician
+          v-flex(xs12 md5).mx-5
+              center
+                img(src="../../assets/images/mycure-icon-testimonial.png")
+                br
+                br
+                span.font-s {{ testimonial2 }}
+                br
+                br
+                strong.font-xs Dr. Carly Mae Siamson
+                br
+                em.font-xs.font-mc-blue General Physician
+        br
+        br
+        br
+        v-flex(xs12 md12)
+          v-layout(row justify-center)
+            div(style="width: 27%;").image-rounded-corner.one-edge-shadow
+              v-img(:src="require('../../assets/images/mycure-web-banner-pricing-panel-private.png')")
+            v-card(flat).price-card.text-xs-left.pa-5.one-edge-shadow
+              strong.pb-2.font-m For Private Practice
+              br
+              br
+              span.font-xs Get a powerful combination of features 
+                br 
+                | designed for physicians who are practicing 
+                br
+                | solo or in groups.
+              br
+              br
+              span &#10003 &nbsp Unlimited Clinics
+              br
+              span &#10003 &nbsp 1 GB Data
+              br
+              span &#10003 &nbsp SOAP Charting
+              br
+              span &#10003 &nbsp Prescription Printing
+              br
+              span &#10003 &nbsp Medical Billing
+              v-layout(row wrap).py-4
+                router-link(:to="{name: 'pricing'}").link.white--text
+                  v-btn(style="background-color: #2e9fdf; color: white; width: auto" large) 
+                    strong ALWAYS FREE
+    div(v-else)
+      v-container
+        v-flex(xs12)
           center
             img(src="../../assets/images/mycure-icon-testimonial.png")
             br
             br
-            font.font-s {{ testimonial1 }}
+            span.font-s {{ testimonial1 }}
             br
             br
             strong.font-xs Dr. Jean Rivera
             br
             em.font-xs.font-mc-blue General Physician
-        v-flex(xs12 md5).mx-5
+        br
+        br
+        v-flex(xs12)
             center
               img(src="../../assets/images/mycure-icon-testimonial.png")
               br
               br
-              font.font-s {{ testimonial2 }}
+              span.font-s {{ testimonial2 }}
               br
               br
               strong.font-xs Dr. Carly Mae Siamson
               br
               em.font-xs.font-mc-blue General Physician
-      br
-      br
-      br
-      v-flex(xs12 md12)
-        v-layout(row justify-center)
-          div(style="width: 27%;").image-rounded-corner.one-edge-shadow
-            v-img(:src="require('../../assets/images/mycure-web-banner-pricing-panel-private.png')")
-          v-card(flat).price-card.text-xs-left.pa-5.one-edge-shadow
-            strong.pb-2.font-m For Private Practice
-            br
-            br
-            font.font-xs Get a powerful combination of features 
-              br 
-              | designed for physicians who are practicing 
-              br
-              | solo or in groups.
-            br
-            br
-            font &#10003 &nbsp Unlimited Clinics
-            br
-            font &#10003 &nbsp 1 GB Data
-            br
-            font &#10003 &nbsp SOAP Charting
-            br
-            font &#10003 &nbsp Prescription Printing
-            br
-            font &#10003 &nbsp Medical Billing
-            v-layout(row wrap).py-4
-              router-link(:to="{name: 'pricing'}").link.white--text
-                v-btn(style="background-color: #2e9fdf; color: white; width: auto" large) 
-                  strong ALWAYS FREE
+      div
+      img(width="100%" src="../../assets/images/mycure-web-banner-fifth-panel-private-clinic.png")
+      v-layout(column wrap).pt-4.pb-5.pr-5.pl-5
+        p.pb-2.font-s {{ private_title }}
+        span.font-s.pb-2 &#10003; &nbsp; &nbsp; Unlimited Clinics
+        span.font-s.pb-2 &#10003; &nbsp; &nbsp; 1 GB Data
+        span.font-s.pb-2 &#10003; &nbsp; &nbsp; SOAP Charting
+        span.font-s.pb-2 &#10003; &nbsp; &nbsp; Prescription Printing
+        span.font-s.pb-2 &#10003; &nbsp; &nbsp; Medical Billing
+      v-layout(row justify-center)
+        v-btn(style="background-color: #2e9fdf; color: white; width: 80%; height: 60px")
+          a(href="/electronic-medical-records")
+            strong.font-m.white--text GET MYCURE FREE
+
 </template>
 
 <script>
