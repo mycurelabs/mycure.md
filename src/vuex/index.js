@@ -12,7 +12,7 @@ const modules = {
 
 export const cookieStore = new Vuex.Store({
   state: {
-    browserID: ''
+    browserID: null
   },
   mutations: {
     storeID: (state, payload) => {
@@ -20,8 +20,12 @@ export const cookieStore = new Vuex.Store({
     }
   },
   actions: {
-    storeID: ({ commit }, payload) => {
+    storeID ({ commit }, payload) {
       commit('storeID', payload);
+    },
+    async getID ( context ) {
+      const result = this.state.browserID;
+      return result;
     }
   },
   plugins: [createPersistedState()]

@@ -1,6 +1,6 @@
 <template lang="pug">
   div
-    div(v-if="showPrompt")#cookie-nav.pt-1
+    div(v-if="showPrompt")#cookie-nav.pt-1.text-white
       b-container
         b-row(style="width: 100%").pt-2.pb-3.pl-4
           b-col(cols="11").cookie-text
@@ -12,26 +12,31 @@
             | .  
             | Feel free to check out our policies anytime for more info.
           b-col(cols="1").pt-1.text-right.cookie-button
-            img(src="../../assets/images/cookie-close.png" height="30px" @click="disablePrompt")
+            img(src="../../assets/images/close-white.png" height="30px"  @click="disablePrompt")
 </template>
 
 <script>
   import { cookieStore } from '../../vuex'
   export default {
     // props: ['browserID'],
-    async mounted () {
+    async created () {
       await this.init();
     },
-    data: () => ({
-      scrollTop: 0,
-      browserID: null,
-      showPrompt: false
-    }),
-
+    // async mounted () {
+      
+    // },
+    data () {
+      return {
+        scrollTop: 0,
+        browserID: null,
+        showPrompt: false
+      };
+    },
     methods: {
       async init () {
-        this.browserID = cookieStore.state.browserID;
-        if(!this.browserID){
+        const getID = await cookieStore.dispatch('getID');
+        if(!getID){
+          this.browserID  = getID;
           this.showPrompt = true;
         }
       },
@@ -51,7 +56,7 @@
     margin: 50px 0px 10px 0px;
     position: fixed;
     width: 100vw;
-    background: rgba(239,239,98,0.9);
+    background-color: #596d88;
     z-index: 999999;
   }
 
@@ -77,7 +82,7 @@
   }
 
   .policy-links {
-    color: black;
+    color: white;
     font-size: 13px; 
     font-weight: bold
   }
