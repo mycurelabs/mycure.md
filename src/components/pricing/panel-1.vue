@@ -33,15 +33,36 @@
           private_prac(v-if="isPrivate")
           multispecialty(v-else)
     div(v-else)
-      div.panel-1-mobile
+      div.panel-1
         v-container
           v-flex(xs12)
             center 
               strong.font-m.text-xs-center.white--text Your best CMS investment yet
               br
-              span(style="font-size: 9px").white--text Quality clinic technology made more affordable. Only pay for what you need.
+              span(style="font-size: 8px").white--text Quality clinic technology made more affordable. Only pay for what you need.
               br
-              br
+        div      
+          v-layout(row wrap justify-center).mx-5
+            v-flex(xs6).px-1
+              a(@click="isPrivate=true")
+                div.tabMobile.pa-1.right
+                  center 
+                    strong(style="font-size: 13px") Private Practice
+                      br
+                      | 
+                      span(style="font-size: 8px").font-xs.font-mc-grey Solo or group clinic practitioners
+            v-flex(xs6).px-1
+              a(@click="isPrivate=false")
+                div.tabMobile.pa-1
+                  center 
+                    strong(style="font-size: 13px") Multispecialty Clinics
+                      br
+                      | 
+                      span(style="font-size: 8px").font-xs.font-mc-grey One stop, multi-staff clinics
+      div.white  
+        v-container.py-5
+          private_prac(v-if="isPrivate")
+          multispecialty(v-else)
 
 </template>
 
@@ -67,22 +88,22 @@
 
 <style scoped>
   .panel-1{
-    height: auto;
-    width: auto;
     background-image: url("../../assets/images/mycure-pricing-background.png");
-    background-size: 100% auto;
-  }
-
-  .panel-1-mobile{
-    height: 100%;
-    background-image: url("../../assets/images/mycure-pricing-background.png");
-    background-size: 100% auto;
+    background-position: center center;
+    background-size: cover;
   }
 
   .tab{
     border-radius: 10px 10px 0 0;
     background-color: white;
     width: 450px;
+    height: 100%px;
+  }
+
+  .tabMobile{
+    border-radius: 10px 10px 0 0;
+    background-color: white;
+    width: 150px;
     height: 100%px;
   }
 
