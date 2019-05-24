@@ -20,13 +20,11 @@
 
 <script>
 import mcNavbarHome from '../commons/mc-navbar-home';
-import mcCookiePrompt from '../commons/mc-cookie-prompt';
 import mcFooter from '../commons/mc-footer';
 
 export default {
   components: {
     mcNavbarHome,
-    mcCookiePrompt,
     mcFooter
   }
 }

@@ -2,7 +2,7 @@
   div
     div.panel-1
       mc-navbar-home
-      mc-cookie-prompt(:browserID="browserID")
+      mc-cookie-prompt
       pre(v-if="!$isProduction()").panel-number 1
       div(style="padding-top: 58px;").container
         div.row
@@ -68,9 +68,9 @@
       mcCookiePrompt
     },
     computed: {
-      browserID (){
-        return cookieStore.state.browserID;
-      }
+      // browserID (){
+      //   return cookieStore.state.browserID;
+      // }
     },
     data() {
       return {

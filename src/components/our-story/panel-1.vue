@@ -1,7 +1,7 @@
 <template lang="pug">
   div.panel-1
     mc-navbar-home
-    mc-cookie-prompt(:browserID="browserID")
+    mc-cookie-prompt
     b-container(style="padding-top: 58px")
       b-row.row-container.row.align-items-center
         b-col(xs="12" md="5")
@@ -55,9 +55,9 @@
       }
     },
     computed: {
-      browserID (){
-        return cookieStore.state.browserID;
-      }
+      // browserID (){
+      //   return cookieStore.state.browserID;
+      // }
     },
     methods: {
       addVid() {
