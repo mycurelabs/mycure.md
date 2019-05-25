@@ -48,9 +48,17 @@
         br
         br
         p.font-s.text-xs-center An all-around solution for your outpatient, multispecialty or specialized clinics that will manage your full-patient journeys with ease.
-      div.px-3
+      div
+        v-layout(v-for="(card, key) in cards" :key="key" column wrap).pb-4
+          v-layout(row wrap).px-1
+            v-flex(xs4).pr-3
+              img(width="80" :src="card.image")
+            v-flex(xs8) 
+              strong(style="font-size: 14px")  {{ card.text }}
+              p(style="font-size: 12px").pt-1 {{ card.content }}
+              strong(v-html="" style="font-size: 12px").font-mc-blue.pb-2 {{ card.buttonText }}
 </template>
-
+s
 <script>
   import VueFlip from 'vue-flip';
   export default {
@@ -114,9 +122,9 @@
             image: require('../../assets/images/mycure-home-products-icon-more.png'),
             text: 'More coming!',
             content: `
-              Rehab Clinics<br>
-              Maternity Clincis<br>
-              Diagnostic Clinics<br>
+              Rehab Clinics,
+              Maternity Clincis,
+              Diagnostic Clinics,
               Pharmacies and more!
             `,
             buttonText: 'Contact Us'
@@ -168,6 +176,10 @@
     -webkit-box-shadow: 0px 0px 20px -4px rgba(130,130,130,1);
     -moz-box-shadow: 0px 0px 20px -4px rgba(130,130,130,1);
     box-shadow: 0px 0px 20px -4px rgba(130,130,130,1);
+  }
+  
+  a {
+    text-decoration: none
   }
 
 </style>

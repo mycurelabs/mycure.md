@@ -120,12 +120,13 @@
               v-list-tile-content
                 span.font-m DPA Registration Guide
     div(v-else)
-      div.pt-3.px-3
+      div.pa-3
         img(width="100%" src="../../assets/images/mycure-pricing-emr-private-clinic.png")
         br
         br
         p.font-s.text-xs-center A powerful combination of EMR, queuing, and billing features designed for physicians who are practicing solo or in groups.
-      div.px-3
+        br
+      div.pa-3
         v-list
           v-list-tile
             v-list-tile-action
