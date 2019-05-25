@@ -17,8 +17,6 @@
           v-flex(xs12 md6).px-3
             img(width="100%" src="../../assets/images/mycure-pricing-cms.png")
         br
-        br
-        br
         v-layout(row)
           v-flex(xs12 md4) 
             font.font-mc-grey 
@@ -48,7 +46,11 @@
         br
         br
         p.font-s.text-xs-center An all-around solution for your outpatient, multispecialty or specialized clinics that will manage your full-patient journeys with ease.
+        br
       div
+        center
+            strong.gray FEATURES INCLUDED
+        br
         v-layout(v-for="(card, key) in cards" :key="key" column wrap).pb-4
           v-layout(row wrap).px-1
             v-flex(xs4).pr-3
