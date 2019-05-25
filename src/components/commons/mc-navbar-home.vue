@@ -3,7 +3,7 @@
     div(v-if="!$isMobile")
       v-toolbar(app flat fixed).white.px-3
         a(href="/")
-          img(src="../../assets/images/mycure-header-logo.png" height="35")
+          img(src="../../assets/images/mycure-logo.svg" height="35")
         v-spacer
         v-btn(href="/electronic-medical-records" flat)
           strong.font-xs.tab FOR PRIVATE PRACTICE
@@ -16,13 +16,13 @@
     div(v-else)
       v-toolbar(app flat fixed).white
         a(href="/")
-          img(src="../../assets/images/mycure-header-logo.png" height="25px")
+          img(src="../../assets/images/mycure-logo.svg" height="25px")
         v-spacer
         v-toolbar-side-icon(@click="drawer = !drawer")
           v-icon(color="gray").sideMenu.pa-1 menu
       v-navigation-drawer(app v-model="drawer" right)
         center.py-5
-          img(src="../../assets/images/mycure-header-logo.png" height="50px")
+          img(src="../../assets/images/mycure-logo.svg" height="50px")
         br(style="line-height: 25px")
         div.sideNavBtn
           a(href="/electronic-medical-records" flat)
