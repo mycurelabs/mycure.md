@@ -1,47 +1,55 @@
 <template lang="pug">
-  div.py-3
-    v-container
-      v-layout(row justify-center)
-        v-flex(xs12 md6 align-self-center).px-3
-          strong.font-l.font-mc-blue MYCURE for 
+  div.white
+    div(v-if="!$isMobile").py-3
+      v-container
+        v-layout(row justify-center)
+          v-flex(xs12 md6 align-self-center).px-3
+            strong.font-l.font-mc-blue MYCURE for 
+              br
+              | Multispecialty Clinics
             br
-            | Multispecialty Clinics
-          br
-          br
-          font.font-mc-grey An all-around solution for your outpatient, multispecialty or specialized clinics that will manage your full-patient journeys with ease.
-          br
-          br
-          v-btn(color="info" large) 
-            strong BOOK A DEMO
-        v-flex(xs12 md6).px-3
-          img(width="100%" src="../../assets/images/mycure-pricing-cms.png")
-      br
-      br
-      br
-      v-layout(row)
-        v-flex(xs12 md4) 
-          font.font-mc-grey 
-            strong FEATURES INCLUDED
-      br
-      v-layout(row wrap align-items-center)
-        p  
-        v-flex(xs6 md3 v-for="(card, key) in cards" :key="key").text-center.align-self-center
-          vue-flip(:active-hover="true" width="100%" class="simple-test" style="margin-bottom: 250px;")
-            div(slot="front" ref="frontCard").flip-card.align-items-center.pa-3
-              center
-                img(width="80" :src="card.image")
-              br
-              center
-                label {{card.text}}
-            div(slot="back" ref="backCard" ).flip-card.flip-card-back.align-items-center
-              center 
-                strong(style="color:#0099cc;") {{card.text}}
-              br
-              p.font-xs(v-html="card.content").text-xs-center
-              center
-                v-btn(:href="card.link" target="_blank" v-if="!card.isMoreButton") {{card.buttonText}}
-                v-btn(@click="toggleChat" v-else) {{card.buttonText}}
-    </template>
+            br
+            font.font-mc-grey An all-around solution for your outpatient, multispecialty or specialized clinics that will manage your full-patient journeys with ease.
+            br
+            br
+            v-btn(color="info" large) 
+              strong BOOK A DEMO
+          v-flex(xs12 md6).px-3
+            img(width="100%" src="../../assets/images/mycure-pricing-cms.png")
+        br
+        br
+        br
+        v-layout(row)
+          v-flex(xs12 md4) 
+            font.font-mc-grey 
+              strong FEATURES INCLUDED
+        br
+        v-layout(row wrap align-items-center)
+          p  
+          v-flex(xs6 md3 v-for="(card, key) in cards" :key="key").text-center.align-self-center
+            vue-flip(:active-hover="true" width="100%" class="simple-test" style="margin-bottom: 250px;")
+              div(slot="front" ref="frontCard").flip-card.align-items-center.pa-3
+                center
+                  img(width="80" :src="card.image")
+                br
+                center
+                  label {{card.text}}
+              div(slot="back" ref="backCard" ).flip-card.flip-card-back.align-items-center
+                center 
+                  strong(style="color:#0099cc;") {{card.text}}
+                br
+                p.font-xs(v-html="card.content").text-xs-center
+                center
+                  v-btn(:href="card.link" target="_blank" v-if="!card.isMoreButton") {{card.buttonText}}
+                  v-btn(@click="toggleChat" v-else) {{card.buttonText}}
+    div(v-else)
+      div.pt-3.px-3
+        img(width="100%" src="../../assets/images/mycure-pricing-cms.png")
+        br
+        br
+        p.font-s.text-xs-center An all-around solution for your outpatient, multispecialty or specialized clinics that will manage your full-patient journeys with ease.
+      div.px-3
+</template>
 
 <script>
   import VueFlip from 'vue-flip';

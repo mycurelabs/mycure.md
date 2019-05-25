@@ -37,33 +37,37 @@
         v-container
           v-flex(xs12)
             center 
-              strong.font-m.text-xs-center.white--text Your best CMS investment yet
+              strong(style="font-size: 29px").text-xs-center.white--text Your best CMS 
+                br
+                | investment yet
               br
-              span(style="font-size: 8px").white--text Quality clinic technology made more affordable. Only pay for what you need.
+              span(style="font-size: 13px").white--text Quality clinic technology made more affordable. Only pay for what you need.  
               br
-        div      
-          v-layout(row wrap justify-center).mx-5
-            v-flex(xs6).px-1
-              a(@click="isPrivate=true")
-                div.tabMobile.pa-1.right
-                  center 
-                    strong(style="font-size: 13px") Private Practice
-                      br
-                      | 
-                      span(style="font-size: 8px").font-xs.font-mc-grey Solo or group clinic practitioners
-            v-flex(xs6).px-1
-              a(@click="isPrivate=false")
-                div.tabMobile.pa-1
-                  center 
-                    strong(style="font-size: 13px") Multispecialty Clinics
-                      br
-                      | 
-                      span(style="font-size: 8px").font-xs.font-mc-grey One stop, multi-staff clinics
-      div.white  
-        v-container.py-5
-          private_prac(v-if="isPrivate")
-          multispecialty(v-else)
+      div.white
+        v-layout(row).pa-3
+          v-layout(column)  
+            strong.font-m Private Practice
+            span(style="font-size: 14px") Solo or group clinic practitioners
+          v-spacer
+            
+          v-icon(v-if="isPrivate" size=40 @click="isPrivate=!isPrivate") arrow_right
+          v-icon(v-else size=40 @click="isPrivate=!isPrivate") arrow_drop_down
+        div(v-if="!isPrivate")
+          div.pa-3
+            private_prac
 
+      hr
+      div.white
+        v-layout(row).pa-3
+          v-layout(column)  
+            strong.font-m Multispecialty Clinics
+            span(style="font-size: 14px") One-stop, multi-staff clinics
+          v-spacer
+          v-icon(v-if="isMulti" size=40 @click="isMulti=!isMulti") arrow_right
+          v-icon(v-else size=40 @click="isMulti=!iisMulti") arrow_drop_down
+        div(v-if="!isMulti")
+          div.pa-3
+            multispecialty
 </template>
 
 <script>
@@ -73,7 +77,7 @@
   export default {
     components: {
       private_prac,
-      multispecialty
+      multispecialty,
     },
     methods: {
       
@@ -81,6 +85,7 @@
     data () {
       return {
         isPrivate: true,
+        isMulti: false
       };
     }
   };
