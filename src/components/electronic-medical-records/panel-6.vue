@@ -57,7 +57,7 @@
                   v-btn(style="background-color: #2e9fdf; color: white; width: auto" large) 
                     strong ALWAYS FREE
     div(v-else)
-      v-container
+      div.pa-4
         v-flex(xs12)
           center
             img(src="../../assets/images/mycure-icon-testimonial.png")

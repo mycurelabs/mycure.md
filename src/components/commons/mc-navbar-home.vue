@@ -30,14 +30,14 @@
               v-icon person
               strong.black--text &nbsp; &nbsp; FOR PRIVATE PRACTICE
         center
-          hr(style="width: 80%")
+          hr(style="width: 80%; border-color: #f5f5f5")
         div.sideNavBtn
           a(href="/clinic-management-system" flat)
             v-layout(row center)
               v-icon group
               strong.black--text &nbsp; &nbsp; FOR MULTISPECIALTY CLINICS
         center
-          hr(style="width: 80%")
+          hr(style="width: 80%; border-color: #f5f5f5")
         br
         br
         br
@@ -48,7 +48,7 @@
             a(href="/clinic-management-system" flat)
               strong.black--text LOGIN
         center
-          hr(style="width: 80%")
+          hr(style="width: 80%; border-color: #f5f5f5")
         br
         center
           div.signup
