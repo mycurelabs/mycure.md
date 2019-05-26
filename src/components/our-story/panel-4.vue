@@ -18,11 +18,18 @@
               p(style="text-align: justify").font-s While they see themselves just doing their everyday jobs, we see people that create a dent in humanity. They are truly the heroes that make this world a better place.
               p(style="text-align: justify").font-s MYCURE commits to design and build amazing tech tools and products specifically for them. These would help and enable these heroes to make their jobs easier and more efficient. They are our inspiration, the reason of our being, our existence.
               p(style="text-align: justify").font-s  Building these awesome apps is our mission, building them with love and passion is our extra mile.
-              
 </template>
 
 <script>
-export default {
-    
-};
+  export default {
+    data () {
+      return {
+        //
+      };
+    }
+  };
 </script>
+
+<style scoped>
+
+</style>

@@ -1,45 +1,28 @@
 <template lang="pug">
-  div      
-    v-container     
-      v-flex(xs12 md12)
-        v-tabs(height="80%" color="rgba(0, 0, 0, 0)" fixed-tabs)
-          v-tab.tab.white
-            strong.font-m.font-mc-grey.text-none Private Practice
-              br
-              | 
-              span.font-xs.text-none Solo or group clinic practitioners
-          v-tab.tab.white
-            strong.font-m.font-mc-grey.text-none Multispecialty Clinics
-              br
-              | 
-              span.font-xs.text-none One stop, multi-staff clinics
-              
-          
-         
+  div(style="height: auto").mc-blue
+    v-container 
+      v-flex(xs12 md12).py-5
+        center 
+          strong(v-if="!$isMobile").font-l.text-xs-center.white--text Need to work offline?
+          strong(v-else style="font-size: 200%").text-xs-center.white--text Need to work offline?
+          br
+          font.font-s.white--text Get MYCURE for only 
+            strong &#36; 0.63 
+            | a day.
+          br
+          br
+          br
+          v-btn(color="success" large) 
+            strong SUBSCRIBE TO SYNCBASE
 </template>
 
 <script>
-import private_prac from './private';
-import multispecialty from './multispecialty';
-
-export default {
-  components: {
-    private_prac,
-    multispecialty
-  },
-  data () {
-    return {
-      // 
-    };
-  }
-};
+  export default {
+   data () {
+     return {
+       //
+     };
+   } 
+  };
 </script>
 
-<style scoped>
-.tab{
-  border-radius: 10px 10px 0 0;
-  width: 400px;
-  height: 100%px;
-}
-
-</style>

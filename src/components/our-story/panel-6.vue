@@ -1,5 +1,5 @@
 <template lang="pug">
-  div.white
+  div.white.px-3
     v-container
      v-layout(row wrap)
         v-flex(xs12 md12)
@@ -44,9 +44,17 @@
 </template>
 
 <script>
-export default {
-    
-};
+  export default {
+    data () {
+      return {
+        //
+      };
+    }
+  };
 </script>
+
+<style scoped>
+
+</style>
 
 

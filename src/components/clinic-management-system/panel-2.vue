@@ -1,5 +1,4 @@
 <template lang="pug">
-  //- Section 2 of Home Page
   div
     v-layout(row wrap justify-center)
       v-flex(xs12 md4)
@@ -16,6 +15,17 @@
             b.font-s.text-center.font-mc-grey Happier Staff Members
 </template>
 
+<script>
+  export default {
+    data () {
+      return {
+        //
+      };
+    }    
+  };
+</script>
+
+
 <style scoped>
   .panel-2-box-a {
   height: 90px;
@@ -26,7 +36,8 @@
   text-align: center;
   vertical-align: middle;
   line-height: 90px;  
-}
+  }
+
   .panel-2-box-b {
   height: 90px;
   background-color: white;
@@ -36,16 +47,16 @@
   text-align: center;
   vertical-align: middle;
   line-height: 90px;  
-} 
+  } 
 
-.panel-2-box-c {
-  height: 90px;
-  background-color: white;
-  border-width: thin;
-  border-style: solid;
-  border-color: lightgray transparent transparent transparent;
-  text-align: center;
-  vertical-align: middle;
-  line-height: 90px;  
-}
+  .panel-2-box-c {
+    height: 90px;
+    background-color: white;
+    border-width: thin;
+    border-style: solid;
+    border-color: lightgray transparent transparent transparent;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 90px;  
+    }
 </style>

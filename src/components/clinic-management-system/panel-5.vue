@@ -1,5 +1,5 @@
 <template lang="pug">
-  div.pa-5
+  div.py-5.mc-light-grey
     v-layout(row wrap justify-center)
       font.font-l.text-xs-center Designed for clinics of all shapes and sizes.
     v-layout(row wrap justify-center).pt-5
@@ -7,24 +7,24 @@
         tr
           td 
             img(src="../../assets/images/mycure-icon-check.png").mr-3
-            | Multispecialty Clinics
+            span.font-s Multispecialty Clinics
           td 
             img(src="../../assets/images/mycure-icon-check.png").mr-3 
-            | Skin &amp Aesthetic Clinics
+            span.font-s Skin &amp Aesthetic Clinics
         tr
           td 
             img(src="../../assets/images/mycure-icon-check.png").mr-3 
-            | Outpatient Clinics
+            span.font-s Outpatient Clinics
           td 
             img(src="../../assets/images/mycure-icon-check.png").mr-3 
-            | Family Clinics
+            span.font-s Family Clinics
         tr
           td 
             img(src="../../assets/images/mycure-icon-check.png").mr-3 
-            | Industrial Clinics
+            span.font-s Industrial Clinics
           td 
             img(src="../../assets/images/mycure-icon-check.png").mr-3
-            | PME Clinics
+            span.font-s PME Clinics
     br
     br
     br
@@ -41,59 +41,62 @@
     v-layout(row wrap justify-center)
       em.font-xs Have a question? 
         a.font-mc-blue 
-          strong Start a quick chat
-      
-       
-
-  
+          strong(@click="toggleChat") Start a quick chat
 </template>
 
 <script>
-export default {
-  
-};
+  export default {
+    data () {
+      return {
+        //
+      };
+    },
+    methods: {
+      toggleChat () {
+        window.$crisp.push(['do', 'chat:toggle']);
+      }
+    }
+  };
 </script>
 
 <style scoped>
+  table {
+    border-collapse: separate;
+    border-spacing: 0;
+    width: 40%;
+  }
 
-table {
-  border-collapse: separate;
-  border-spacing: 0;
-  width: 40%;
-}
+  table tr td {
+    border-right: 1px solid #bbb;
+    border-top: 1px solid #bbb;
+    border-bottom: 1px solid #bbb;
+    padding: 15px;
+  }
+  table tr td:first-child {
+    border-left: 1px solid #bbb
+  }
 
-table tr td {
-  border-right: 1px solid #f5f5f5;
-  border-top: 1px solid #f5f5f5;
-  border-bottom: 1px solid #f5f5f5;
-  padding: 15px;
-}
-table tr td:first-child {
-  border-left: 1px solid #f5f5f5
-}
+  tr:nth-child(even) {
+    background-color: #f5f5f5;
+  }
 
-tr:nth-child(even) {
-  background-color: #f5f5f5;
-}
+  /* top-left border-radius */
+  table tr:first-child td:first-child {
+    border-top-left-radius: 6px;
+  }
 
-/* top-left border-radius */
-table tr:first-child td:first-child {
-  border-top-left-radius: 6px;
-}
+  /* top-right border-radius */
+  table tr:first-child td:last-child {
+    border-top-right-radius: 6px;
+  }
 
-/* top-right border-radius */
-table tr:first-child td:last-child {
-  border-top-right-radius: 6px;
-}
+  /* bottom-left border-radius */
+  table tr:last-child td:first-child {
+    border-bottom-left-radius: 6px;
+  }
 
-/* bottom-left border-radius */
-table tr:last-child td:first-child {
-  border-bottom-left-radius: 6px;
-}
-
-/* bottom-right border-radius */
-table tr:last-child td:last-child {
-  border-bottom-right-radius: 6px;
-}
-
+  /* bottom-right border-radius */
+  table tr:last-child td:last-child {
+    border-bottom-right-radius: 6px;
+  }
 </style>

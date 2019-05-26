@@ -1,17 +1,30 @@
 <template lang="pug">
-  //- Section 4 of Home Page
-  div.px-5
+  div.white.px-4
     v-flex(xs12 md12)
         v-layout(row wrap justify-center)
-          strong(style="font-size: 25px").pa-5.text-xs-center Are you a part of a group clinic? 
-            a(href="https://mycure.md")
-              span Ask us how it works
+          strong(style="font-size: 25px").py-5.text-xs-center Are you a part of a group clinic? 
+            a
+              span(@click="toggleChat") Ask us how it works
 </template>
 
+<script>
+  export default {
+    data () {
+      return {
+        //
+      };
+    },
+    methods: {
+      toggleChat () {
+        window.$crisp.push(['do', 'chat:toggle']);
+      }
+    }
+  };
+</script>
+
+
 <style scoped>
-
-a {
-  color: #2e9fdf
-}
-
+  a {
+    color: #2e9fdf
+  }
 </style>
