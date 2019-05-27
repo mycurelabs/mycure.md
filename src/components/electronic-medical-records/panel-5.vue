@@ -16,7 +16,7 @@
             br
             a(href="http://blog.mycure.md/2018/04/26/data-privacy-for-physicians/" target="_blank")
               strong.font-mc-blue Continue Reading...
-    div(v-else)
+    div(v-else).pa-3
       v-container
         v-layout(row)
           v-flex(xs12 md12)

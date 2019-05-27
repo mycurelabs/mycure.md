@@ -9,9 +9,15 @@
           strong.font-xs.tab FOR PRIVATE PRACTICE
         v-btn(href="/clinic-management-system" flat)
           strong.font-xs.tab FOR MULTISPECIALTY CLINICS
-        v-btn(flat)
+        v-btn(
+          flat
+          :href="`${siginURL}?target=${cmsURL}/authenticate`"
+        )
           strong.font-xs.tab LOGIN
-        v-btn(color="info")
+        v-btn(
+          color="info"
+          :href="`${siginURL}/signup/private/step-1`"
+        )
           strong.font-xs.tab SIGN UP
     div(v-else)
       v-toolbar(app flat fixed).white
@@ -30,14 +36,14 @@
               v-icon person
               strong.black--text &nbsp; &nbsp; FOR PRIVATE PRACTICE
         center
-          hr(style="width: 80%")
+          hr(style="width: 80%; border-color: #f5f5f5")
         div.sideNavBtn
           a(href="/clinic-management-system" flat)
             v-layout(row center)
               v-icon group
               strong.black--text &nbsp; &nbsp; FOR MULTISPECIALTY CLINICS
         center
-          hr(style="width: 80%")
+          hr(style="width: 80%; border-color: #f5f5f5")
         br
         br
         br
@@ -48,7 +54,7 @@
             a(href="/clinic-management-system" flat)
               strong.black--text LOGIN
         center
-          hr(style="width: 80%")
+          hr(style="width: 80%; border-color: #f5f5f5")
         br
         center
           div.signup
@@ -60,6 +66,8 @@
   export default {
     data () {
       return {
+        siginURL: process.env.VUE_APP_SIGNIN_URL,
+        cmsURL: process.env.VUE_APP_CMS_URL,
         drawer: false
       };
     }

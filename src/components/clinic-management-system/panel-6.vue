@@ -39,7 +39,7 @@
               br
               font &#10003 &nbsp Materials Management
               v-layout(row wrap).py-4
-                router-link(:to="{name: 'pricing'}").link.white--text
+                a(href="https://calendly.com/mycure" target="_blank")
                   v-btn(style="background-color: #2e9fdf; color: white; width: auto" large) 
                     strong BOOK A DEMO
     div(v-else)
@@ -60,10 +60,10 @@
           span.font-s.pb-2 &#10003; &nbsp; &nbsp; Patient Medical Records
           span.font-s.pb-2 &#10003; &nbsp; &nbsp; Billing &amp Collection
           span.font-s.pb-2 &#10003; &nbsp; &nbsp; Laboratory &amp Imaging
-          span.font-s.pb-2 &#10003; &nbsp; &nbsp; Laboratory &amp Imaging
+          span.font-s.pb-2 &#10003; &nbsp; &nbsp; Materials &amp Management
         v-layout(row justify-center)
           v-btn(style="background-color: #2e9fdf; color: white; width: 80%; height: 60px")
-            a(href="/clinic-management-system")
+            a(href="https://calendly.com/mycure" target="_blank")
               strong.font-m.white--text BOOK A DEMO
 </template>
 

@@ -1,5 +1,5 @@
 <template lang="pug">
-  div.py-5.white
+  div.px-4.py-5.white
     v-layout(row wrap justify-center)
       strong(style="font-size: 25px").text-xs-center Does your clinic have more than 3 branches? 
         a
