@@ -10,7 +10,7 @@
     panel6mobile(v-else)
     panel7
     panel8
-    panelBeforeFooter
+    //- panelBeforeFooter
     mcFooter
 </template>
 

@@ -41,7 +41,8 @@
     br
     v-layout(row wrap justify-center)
       v-btn(color="info" large) 
-        strong.text-none BOOK A DEMO
+        a(href="https://calendly.com/mycure" target="_blank").white--text
+          strong.text-none BOOK A DEMO
     br
     v-layout(row wrap justify-center)
       em.font-xs Have a question? 

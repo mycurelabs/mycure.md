@@ -13,8 +13,8 @@
             span.font-s {{ different2 }}
             br
             br
-            a(href="googl.com" style="text-decoration: none")
-              em.font-mc-blue Watch how it works &#62
+            //- a(href="googl.com" style="text-decoration: none")
+            em.font-mc-blue Watch how it works &#62
           v-flex(xs12 md6).px-3
             center
               iframe(
