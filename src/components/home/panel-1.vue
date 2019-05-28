@@ -1,29 +1,26 @@
 <template lang="pug">
   div(v-if="!$isMobile")
-    div.panel-1.white.pt-5
-      v-container
+    div.panel-1.white.py-5
+      v-container.py-5
         v-layout(row justify-center)
-          v-flex(xs12 md5)
-            font.font-l Tools to Manage 
+          v-flex(xs12 md5 align-self-center)
+            font.font-l We help organize &amp; 
               br
-              | and Secure Your Clinical Records
+              | and secure your clinic's
+              br
+              | medical records.
             br
             br
-            em.font-s - More Patients
-              br
-              | - Decreased Costs
-              br 
-              | - Privacy Compliance
-            br 
             br
             v-btn(
               color="info" 
               large
               id="showVid"
-              @click="showVid = true") 
-                strong.text-none Register Now
-          v-flex(xs12 md7)
-            img(width="110%" src="../../assets/images/mycure-web-banner-first-panel-doctor-clinic-patients.png")
+              @click="showVid = true"
+            ) 
+              strong.text-none Sign Up Now
+          v-flex(xs12 md7 align-self-center).pl-5
+            img(width="100%" src="../../assets/images/mycure-web-banner-first-panel-doctor-clinic-patients.png")
   div(v-else).white
     v-container
       v-layout(row justify-center)
