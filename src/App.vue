@@ -89,4 +89,13 @@ export default {
   margin: 0 auto;
 }
 
+.bullet {
+  height: 25px; 
+  width: 25px; 
+  background-color: #2e9fdf; 
+  border-radius: 50%; 
+  display: inline-block; 
+  padding: 1px 
+}
+
 </style>
