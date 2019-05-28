@@ -69,24 +69,16 @@ export default {
     color: #ffffff
   }
 
-  .font-xl {
-    font-size: 60px
-  }
-
   .font-l {
-    font-size: 40px
+    font-size: 60px 
   }
 
   .font-m {
-    font-size: 18px
+    font-size: 48px
   }
 
   .font-s {
-    font-size: 16px;
-  }
-
-  .font-xs {
-    font-size: 12px
+    font-size: 18px
   }
 
   .hr-blue {
