@@ -1,0 +1,90 @@
+<template lang="pug">
+  div.pt-5
+    center
+      //- https://ssense.github.io/vue-carousel/
+      carousel(
+        :per-page="1" 
+        :autoplay="false  "
+        :navigationEnabled="true"
+        paginationActiveColor="white"
+        paginationColor="grey"
+        navigationPrevLabel="&#60;"
+        navigationNextLabel="&#62;"
+        navigationClickTargetSize=3
+      ) 
+        slide 
+          span.font-l.white--text "It's a great experience using MYCURE app
+            br
+            | in our rural setup. I've been through mandatory
+            br
+            | EMR apps, but this one is the best so far."
+          br
+          br
+          span.font-s.white--text Dr. Gay Cadorna-Toledo
+          br
+          br
+          strong.font-s.white--text Pediatrician,
+            | 
+          span.font-s.white--text Misamis Occidental
+            br
+            | MYCURE Doctor since 2017
+        slide
+          span.font-l.white--text "MYCURE provides a well organized patient
+            br
+            | data profiling with customized options 
+            br
+            | for personalized encoding and with integration of 
+            br
+            | lab tests, immunizations as well as growth
+            br
+            | charts that are very important for us as 
+            br
+            | pediatricians for growth monitoring of our 
+            br
+            | little ones. It is very convenient to use, simple, 
+            br
+            | adaptable and user friendly even to my secretary."  
+          br
+          br
+          span.font-s.white--text Dr. Gay Cadorna-Toledo
+          br
+          br
+          strong.font-s.white--text Pediatrician,
+            | 
+          span.font-s.white--text Misamis Occidental
+            br
+            | MYCURE Doctor since 2017
+        slide 
+          span.font-l.white--text "MYCURE fulfills a long time need of physicians 
+            br
+            | for accurate records of patients which they 
+            br
+            | can carry with them wherever they are. It enables 
+            br
+            | them also to prescribe and countercheck 
+            br
+            | their prescriptions, issue medical certificate, 
+            br
+            | communicate with other doctors for referrals."
+          br
+          br
+          span.font-s.white--text Dr. Nelson S. Abelardo
+          br
+          strong.font-s.white--text Cardiologist,
+            | 
+          span.font-s.white--text Manila Doctors Hospital
+</template>
+
+<script>
+  export default {
+    data () {
+      return {
+        //
+      };
+    } 
+  }
+</script>
+
+<style scoped>
+
+</style>
