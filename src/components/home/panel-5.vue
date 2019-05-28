@@ -50,9 +50,9 @@
     data () {
       return {
         //
-      }
+      };
     }
-  }
+  };
 </script>
 
 

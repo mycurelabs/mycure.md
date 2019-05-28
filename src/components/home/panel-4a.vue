@@ -24,7 +24,7 @@
         videoDialog: false
       };
     } 
-  }
+  };
 </script>
 
 <style scoped>
