@@ -19,14 +19,7 @@
               large
               id="showVid"
               @click="showVid = true") 
-                strong.text-none Get Started Today
-            br
-            br
-            v-btn(
-              color="#96cfef"
-            )
-              v-icon(color="#2e9fdf") play_circle_filled
-              strong.font-s.px-2.black--text(style="text-decoration: underline") WATCH VIDEO
+                strong.text-none Register Now
           v-flex(xs12 md7)
             img(width="100%" src="../../assets/images/mycure-emr-web-banner-first-panel-doctor-clinic-patients.png")
     div(v-else).white
@@ -49,14 +42,10 @@
       v-flex(xs12)
         img(width="100%" src="../../assets/images/mycure-emr-web-banner-first-panel-doctor-clinic-patients-mobile.png")
         div(style="height: 50px; background-color: #96cfef; margin-top: -1%")
-          v-layout(row justify-center)
-            a(style="padding: 12px 0")
-              v-icon(color="#2e9fdf") play_circle_filled
-              strong.font-s.px-2.black--text(style="text-decoration: underline").black--text WATCH VIDEO
         div(style="height: 75px").mc-blue
           v-layout(row justify-center)
             a(style="padding: 20px 0")
-              strong(style="font-size: 25px").white--text Get Started Today
+              strong(style="font-size: 25px").white--text Register Now
 </template>
 
 <script>

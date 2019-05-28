@@ -3,7 +3,7 @@
     div(v-if="!$isMobile")
       v-toolbar(flat color="rgba(52, 58, 64, 1)")
         a(href="/")    
-          img(src="../../assets/images/mycure-logo-white.png" height="25")
+          img(src="../../assets/images/mycure-header-logo.png" height="25")
         v-spacer
         a(href="https://www.facebook.com/mycure.md" target="_blank")
           img(src="../../assets/images/mycure-homepage-wireframe-icon-fb.png" height="25" href="https://google.com").px-2
@@ -18,7 +18,7 @@
     div(v-else).mc-dark-grey
       div
         a(href="/")    
-          img(src="../../assets/images/mycure-logo-white.png" height="25")
+          img(src="../../assets/images/mycure-header-logo.png" height="25")
       br
       strong.white--text FOLLOW US
       br

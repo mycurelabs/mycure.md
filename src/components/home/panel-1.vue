@@ -1,21 +1,19 @@
 <template lang="pug">
   div(v-if="!$isMobile")
-    div.panel-1.white
+    div.panel-1.white.pt-5
       v-container
-        v-layout(row justify-center).pt-5
+        v-layout(row justify-center)
           v-flex(xs12 md5)
-            font.font-l Technology 
+            font.font-l Tools to Manage 
               br
-              | to Help You Run 
-              br
-              | Your Clinic Better
+              | and Secure Your Clinical Records
             br
             br
-            em.font-s - Secure Medical Records
+            em.font-s - More Patients
               br
-              | - Minimized Costs
+              | - Decreased Costs
               br 
-              | - Lesser Paperwork
+              | - Privacy Compliance
             br 
             br
             v-btn(
@@ -23,9 +21,9 @@
               large
               id="showVid"
               @click="showVid = true") 
-                strong.text-none Get Started Today
+                strong.text-none Register Now
           v-flex(xs12 md7)
-            img(width="100%" src="../../assets/images/mycure-web-banner-first-panel-doctor-clinic-patients.png")
+            img(width="110%" src="../../assets/images/mycure-web-banner-first-panel-doctor-clinic-patients.png")
   div(v-else).white
     v-container
       v-layout(row justify-center)

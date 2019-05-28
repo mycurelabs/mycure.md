@@ -1,7 +1,7 @@
 <template lang="pug">
-  div.pt-5
+  div
     div(v-if="!$isMobile")
-      div.pt-5
+      //- div.pt-5
         center
           v-layout(row justify-center style="width: 60%")
             span.font-l.text-xs-center Join thousands of other health professionals who enjoy the benefits of using technology in their practice

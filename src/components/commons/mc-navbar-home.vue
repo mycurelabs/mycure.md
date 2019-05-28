@@ -1,24 +1,25 @@
 <template lang="pug">
   div
     div(v-if="!$isMobile")
-      v-toolbar(app flat fixed).white.px-3
-        a(href="/")
-          img(src="../../assets/images/mycure-logo.svg" height="35")
-        v-spacer
-        v-btn(href="/electronic-medical-records" flat)
-          strong.font-xs.tab FOR PRIVATE PRACTICE
-        v-btn(href="/clinic-management-system" flat)
-          strong.font-xs.tab FOR MULTISPECIALTY CLINICS
-        v-btn(
-          flat
-          :href="`${siginURL}?target=${cmsURL}/authenticate`"
-        )
-          strong.font-xs.tab LOGIN
-        v-btn(
-          color="info"
-          :href="`${siginURL}/signup/private/step-1`"
-        )
-          strong.font-xs.tab SIGN UP
+      v-toolbar(app flat fixed).white
+        v-layout(row).px-5
+          a(href="/")
+            img(src="../../assets/images/mycure-logo.svg" height="35")
+          v-spacer
+          v-btn(href="/electronic-medical-records" flat)
+            strong.font-xs.tab FOR PRIVATE PRACTICE
+          v-btn(href="/clinic-management-system" flat)
+            strong.font-xs.tab FOR MULTISPECIALTY CLINICS
+          v-btn(
+            flat
+            :href="`${siginURL}?target=${cmsURL}/authenticate`"
+          )
+            strong.font-xs.tab LOGIN
+          v-btn(
+            color="info"
+            :href="`${siginURL}/signup/private/step-1`"
+          )
+            strong.font-xs.tab SIGN UP
     div(v-else)
       v-toolbar(app flat fixed).white
         a(href="/")

@@ -19,12 +19,7 @@
               large
               id="showVid"
               @click="showVid = true") 
-                strong.text-none Get Started Today
-            br
-            br
-            v-btn(color="#96cfef")
-              v-icon(color="#2e9fdf") play_circle_filled
-              strong.font-xs.px-2.black--text(style="text-decoration: underline") WATCH VIDEO
+                strong.text-none Register Now
           v-flex(xs12 md7)
             img(width="100%" src="../../assets/images/mycure-cms-web-banner-first-panel-doctor-clinic-patients.png")
     div(v-else).white
