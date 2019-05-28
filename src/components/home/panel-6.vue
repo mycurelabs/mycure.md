@@ -1,112 +1,78 @@
 <template lang="pug">
-  div.pa-5.mc-light-grey
-    v-layout(row wrap justify-center).pt-5
-      span.font-l.text-xs-center MYCURE works for Private and Multispecialty Clinics
-    v-layout(row wrap justify-center).pt-5
-      table
-        tr
-          td 
-            img(src="../../assets/images/mycure-icon-check.png").mr-3
-            span.font-s Solo Practice
-          td 
-            img(src="../../assets/images/mycure-icon-check.png").mr-3 
-            span.font-s Group Clinics
-        tr
-          td 
-            img(src="../../assets/images/mycure-icon-check.png").mr-3 
-            span.font-s Multi-specialty Clinics
-          td 
-            img(src="../../assets/images/mycure-icon-check.png").mr-3 
-            span.font-s Dermatology Clinics
-        tr
-          td 
-            img(src="../../assets/images/mycure-icon-check.png").mr-3 
-            span.font-s Family Clinics
-          td 
-            img(src="../../assets/images/mycure-icon-check.png").mr-3
-            span.font-s Multi-branch Clinics
-        tr
-          td 
-            img(src="../../assets/images/mycure-icon-check.png").mr-3 
-            span.font-s Industrial Clinics
-          td 
-            img(src="../../assets/images/mycure-icon-check.png").mr-3 
-            span.font-s Dental Clinics
-    br
-    br
-    br
-    v-layout(row wrap justify-center)
-      em.font-s If you manage a clinic, then you need 
-      |
-      a(href="https://mycure.md")
-        em
-          strong.black--text &nbsp; MYCURE
-        | .
-    br
-    br
-    v-layout(row wrap justify-center)
-      v-btn(color="info" large) 
-        strong.text-none We got a solution
-    br
-    v-layout(row wrap justify-center)
-      em.font-xs Have a question? 
-        a.font-mc-blue 
-          strong(@click="toggleChat") Start a quick chat
+  div.white
+    div(v-if="!$isMobile")
+      v-container
+        v-layout(row wrap).ma-5
+          v-flex(xs12 md6).px-3
+            center
+              div(style="width: 75%").right
+                img(width="100%" src="../../assets/images/mycure-web-banner-fifth-panel-private-clinic.png")
+                v-card(style="margin-top: -2%").clinic-card.text-xs-left.pa-4
+                  p.pb-2.font-s {{ private_title }}
+                  strong.font-s &#10003 &nbsp It's FREE!
+                  br
+                  span.font-s &#10003 &nbsp Unlimited Clinics
+                  br
+                  span.font-s &#10003 &nbsp 1 GB Data
+                  br
+                  span.font-s &#10003 &nbsp SOAP Charting
+                  br
+                  span.font-s &#10003 &nbsp Prescription Printing
+                  br
+                  span.font-s &#10003 &nbsp Medical Billing
+                  v-layout(row wrap).py-4
+                    v-btn(style="background-color: #2e9fdf; color: white; width: auto" large) 
+                      a(href="/electronic-medical-records")
+                        strong.white--text Sign Up Now
+          v-flex(xs12 md6).px-3
+            div(style="width: 75%").left
+              img(width="100%" src="../../assets/images/mycure-web-banner-fifth-panel-multi-specialty-clinics.png")
+              v-card(style="margin-top: -2%").clinic-card.text-xs-left.pa-4
+                p.pb-2.font-s {{ multispecialty_title }}
+                span.font-s &#10003 &nbsp Queuing &amp Registration
+                br
+                span.font-s &#10003 &nbsp Patient Medical Records
+                br
+                span.font-s &#10003 &nbsp Billing &amp Collection
+                br
+                span.font-s &#10003 &nbsp Laboratory &amp Imaging
+                br
+                span.font-s &#10003 &nbsp Materials Management
+                br(style="line-height: 39px")
+                v-layout(row wrap).py-3
+                  v-btn(style="background-color: #2e9fdf; color: white; width: auto" large) 
+                    a(href="/clinic-management-system")
+                      strong.white--text Sign Up Now
+      panel6a
+      panel6b.pt-5
+    div(v-else)
 </template>
 
 <script>
+  import panel6a from './panel-6a';
+  import panel6b from './panel-6b';
+
   export default {
-    methods: {
-      toggleChat () {
-        window.$crisp.push(['do', 'chat:toggle']);
-      }
+    components: {
+      panel6a,
+      panel6b
+    },
+    data () {
+      return {
+          private_title: 'Get a powerful combination of features designed for physicians who are practicing solo or in groups.',
+          multispecialty_title: 'An all-around solution for your outpatient, multispecialty or specialized clinics that will manage your full-patient journeys with ease.'
+      };
     }
   };
 </script>
 
 <style scoped>
-  table {
-    border-collapse: separate;
-    border-spacing: 0;
-    width: 50%;
-  }
-
-  table tr td {
-    border-right: 1px solid #bbb;
-    border-top: 1px solid #bbb;
-    border-bottom: 1px solid #bbb;
-    padding: 15px;
-  }
-
-  table tr td:first-child {
-    border-left: 1px solid #bbb;
-  }
-
-  tr:nth-child(even) {
-    background-color: #f5f5f5;
-  }
-
-  /* top-left border-radius */
-  table tr:first-child td:first-child {
-    border-top-left-radius: 6px;
-  }
-
-  /* top-right border-radius */
-  table tr:first-child td:last-child {
-    border-top-right-radius: 6px;
-  }
-
-  /* bottom-left border-radius */
-  table tr:last-child td:first-child {
-    border-bottom-left-radius: 6px;
-  }
-
-  /* bottom-right border-radius */
-  table tr:last-child td:last-child {
-    border-bottom-right-radius: 6px;
-  }
-
-  a {
+  a:link {
     text-decoration: none;
   }
+
+  .clinic-card {
+    border-radius: 0 0 10px 10px;
+  }
 </style>
+
