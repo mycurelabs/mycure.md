@@ -7,8 +7,10 @@ import router from './router';
 import store from './store';
 import './mixins';
 import '@mdi/font/css/materialdesignicons.css';
+import VueCarousel from 'vue-carousel';
 
 Vue.config.productionTip = false;
+Vue.use(VueCarousel);
 
 new Vue({
   router,
