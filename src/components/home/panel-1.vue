@@ -1,22 +1,22 @@
 <template lang="pug">
   div(v-if="!$isMobile")
-    div.panel-1.white.py-5
-      v-container.py-5
+    div.panel-1.white.pa-5
+      v-container.pa-5
         v-layout(row justify-center)
           v-flex(xs12 md5 align-self-center)
             font.font-l We help organize &amp; 
               br
-              | and secure your clinic's
+              | and secure your 
               br
-              | medical records.
+              | clinic's medical
+              br
+              | records.
             br
             br
             br
             v-btn(
               color="info" 
               large
-              id="showVid"
-              @click="showVid = true"
             ) 
               strong.text-none Sign Up Now
           v-flex(xs12 md7 align-self-center).pl-5
