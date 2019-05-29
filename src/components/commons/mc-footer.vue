@@ -1,15 +1,6 @@
 <template lang="pug">
   div
     div(v-if="!$isMobile")
-      //- div.pt-5
-        center
-          v-layout(row justify-center style="width: 60%")
-            span.font-l.text-xs-center Join thousands of other health professionals who enjoy the benefits of using technology in their practice
-          v-layout(row wrap justify-center).py-5
-            v-btn(large style="width: 250px" color="info")
-              strong.text-none Get Started with MYCURE 
-        v-layout(row justify-center)
-          img(width="100%" height="100%" src="../../assets/images/mycure-before-footer-panel-background.png")
       div.mc-dark-grey
         v-container(justify-center)
           mc-navbar-footer
