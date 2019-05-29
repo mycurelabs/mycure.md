@@ -1,115 +1,93 @@
 <template lang="pug">
-  div.red.pt-5#panel5
-    div(v-if="!$isMobile")
-      center
-        span.font-l MYCURE works for Private and Multispecialty Clinics
-      v-layout(row wrap justify-center).pt-5
-        table
-          tr
-            td 
-              img(src="../../assets/images/mycure-icon-check.png").mr-3
-              span.font-s Solo Practice
-            td 
-              img(src="../../assets/images/mycure-icon-check.png").mr-3 
-              span.font-s Group Clinics
-          tr
-            td 
-              img(src="../../assets/images/mycure-icon-check.png").mr-3 
-              span.font-s Multi-specialty Clinics
-            td 
-              img(src="../../assets/images/mycure-icon-check.png").mr-3 
-              span.font-s Dermatology Clinics
-          tr
-            td 
-              img(src="../../assets/images/mycure-icon-check.png").mr-3 
-              span.font-s Family Clinics
-            td 
-              img(src="../../assets/images/mycure-icon-check.png").mr-3
-              span.font-s Multi-branch Clinics
-          tr
-            td 
-              img(src="../../assets/images/mycure-icon-check.png").mr-3 
-              span.font-s Industrial Clinics
-            td 
-              img(src="../../assets/images/mycure-icon-check.png").mr-3 
-              span.font-s Dental Clinics
-      panel6.transparent
-      panel7
-    div(v-else)
+  div#panel5
+    center
+      //- https://ssense.github.io/vue-carousel/
+      carousel(
+        :per-page="1" 
+        :autoplay="false"
+        :navigationEnabled="true"
+        paginationActiveColor="white"
+        paginationColor="grey"
+        navigationNextLabel=">>"
+      ) 
+        slide(data-index="1")
+          span.font-l.white--text "It's a great experience using MYCURE app
+            br
+            | in our rural setup. I've been through mandatory
+            br
+            | EMR apps, but this one is the best so far."
+          br
+          br
+          span.font-s.white--text Dr. Gay Cadorna-Toledo
+          br
+          br
+          strong.font-s.white--text Pediatrician,
+            | 
+          span.font-s.white--text Misamis Occidental
+            br
+            | MYCURE Doctor since 2017
+        slide(data-index="2")
+          span.font-l.white--text "MYCURE provides a well organized patient
+            br
+            | data profiling with customized options 
+            br
+            | for personalized encoding and with integration of 
+            br
+            | lab tests, immunizations as well as growth
+            br
+            | charts that are very important for us as 
+            br
+            | pediatricians for growth monitoring of our 
+            br
+            | little ones. It is very convenient to use, simple, 
+            br
+            | adaptable and user friendly even to my secretary."  
+          br
+          br
+          span.font-s.white--text Dr. Gay Cadorna-Toledo
+          br
+          br
+          strong.font-s.white--text Pediatrician,
+            | 
+          span.font-s.white--text Misamis Occidental
+            br
+            | MYCURE Doctor since 2017
+        slide(data-index="3")
+          span.font-l.white--text "MYCURE fulfills a long time need of physicians 
+            br
+            | for accurate records of patients which they 
+            br
+            | can carry with them wherever they are. It enables 
+            br
+            | them also to prescribe and countercheck 
+            br
+            | their prescriptions, issue medical certificate, 
+            br
+            | communicate with other doctors for referrals."
+          br
+          br
+          span.font-s.white--text Dr. Nelson S. Abelardo
+          br
+          strong.font-s.white--text Cardiologist,
+            | 
+          span.font-s.white--text Manila Doctors Hospital
+    br
 </template>
 
-<script>  
-  import panel6 from './panel-6';
-  import panel7 from './panel-7';
-
+<script>
   export default {
-    components: {
-      panel6,
-      panel7
-    },
     data () {
       return {
         //
       };
-    }
+    } 
   };
 </script>
 
-
 <style scoped>
+
   #panel5 {
-    background-image: url('../../assets/images/mycure-home-web-sky-background.png');
-    background-position: center bottom;
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
+    background-color: #43ab5f
   }
 
-  a:link {
-    text-decoration: none;
-  }
-
-  .clinic-card {
-    border-radius: 0 0 10px 10px;
-  }
-
-  table {
-    border-collapse: separate;
-    border-spacing: 0;
-    width: 50%;
-  }
-
-  table tr td {
-    border-right: 1px solid #bbb;
-    border-top: 1px solid #bbb;
-    border-bottom: 1px solid #bbb;
-    padding: 15px;
-  }
-
-  table tr td:first-child {
-    border-left: 1px solid #bbb;
-  }
-
-  tr:nth-child(even) {
-    background-color: #f5f5f5;
-  }
-
-  /* top-left border-radius */
-  table tr:first-child td:first-child {
-    border-top-left-radius: 6px;
-  }
-
-  /* top-right border-radius */
-  table tr:first-child td:last-child {
-    border-top-right-radius: 6px;
-  }
-
-  /* bottom-left border-radius */
-  table tr:last-child td:first-child {
-    border-bottom-left-radius: 6px;
-  }
-
-  /* bottom-right border-radius */
-  table tr:last-child td:last-child {
-    border-bottom-right-radius: 6px;
-  }
 </style>

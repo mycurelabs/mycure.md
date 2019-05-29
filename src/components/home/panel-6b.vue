@@ -2,26 +2,27 @@
   div
     div(v-if="!$isMobile")
       v-container
-        v-layout(row wrap align-center)
-          v-flex(xs6)
-            img(width="100%" src="../../assets/images/mycure-web-banner-last-panel-home-doctors.png")
-          v-flex(xs6 align-self-center).pl-5
-            span.font-l Join thousands of
-              br
-              | other health
-              br
-              | professionals who
-              br
-              | enjoy the benefits of
-              br
-              | using technology in
-              br
-              | their practice.
+        v-layout(row wrap justify-center)
+          span.font-l What makes MYCURE so different?
+        br
+        v-layout(row wrap justify-center)
+          span.font-s.text-xs-center You can enjoy the best of both worlds — reliability of an in-house server and 
+            br
+            | affordability of the cloud. Digitally process your medical records in your local 
+            br
+            | network using multiple devices, even if the internet goes down! 
             br
             br
             br
-            v-btn(color="info" large) 
-              strong.font-m.text-none Sign Up Now
+            | Then once back online, it automatically synchronizes data back in the cloud.
+        br
+        br 
+        v-layout(row wrap justify-center)
+          v-btn(color="#96cfef")
+            v-icon(color="#2e9fdf" left) play_circle_filled
+            strong
+              u WATCH VIDEO 
+    
     div(v-else)
 </template>
 
