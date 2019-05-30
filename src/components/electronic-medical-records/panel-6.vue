@@ -1,115 +1,85 @@
 <template lang="pug">
-  div
-    div(v-if="!$isMobile").mc-light-grey.pb-5
+  div.transparent#panel6
+    div(style="padding-top: 150px" v-if="!$isMobile")#emrproduct
       v-container
-        v-layout(row)
-          v-flex(xs12 md5 offset-md1).mx-5
-            center
-              img(src="../../assets/images/mycure-icon-testimonial.png")
-              br
-              br
-              span.font-small {{ testimonial1 }}
-              br
-              br
-              strong.font-xs Dr. Jean Rivera
-              br
-              em.font-xs.font-mc-blue General Physician
-          v-flex(xs12 md5).mx-5
-              center
-                img(src="../../assets/images/mycure-icon-testimonial.png")
-                br
-                br
-                span.font-small {{ testimonial2 }}
-                br
-                br
-                strong.font-xs Dr. Carly Mae Siamson
-                br
-                em.font-xs.font-mc-blue General Physician
-        br
-        br
-        br
         v-flex(xs12 md12)
           v-layout(row justify-center)
-            div(style="width: 27%;").image-rounded-corner.one-edge-shadow
-              v-img(:src="require('../../assets/images/mycure-web-banner-pricing-panel-private.png')")
-            v-card(flat).price-card.text-xs-left.pa-5.one-edge-shadow
-              strong.pb-2.font-medium For Private Practice
+            div(style="height: 508px" ).image-rounded-corner.elevation-10
+              img(width="100%" src="../../assets/images/mycure-web-banner-pricing-panel-private.png")
+            div
+            v-card(height="508px" flat).price-card.text-xs-left.pa-5.elevation-10
+              strong(style="font-size: 30px").pb-2 For Private Practice
               br
               br
-              span.font-xs Get a powerful combination of features 
-                br 
+              span.font-small Get a powerful combination of features 
+                br
                 | designed for physicians who are practicing 
                 br
                 | solo or in groups.
               br
               br
-              span &#10003 &nbsp Unlimited Clinics
+              span.font-small &#10003 &nbsp Unlimited Clinics
               br
-              span &#10003 &nbsp 1 GB Data
+              span.font-small &#10003 &nbsp 1 GB data
               br
-              span &#10003 &nbsp SOAP Charting
+              span.font-small &#10003 &nbsp SOAP Charting
               br
-              span &#10003 &nbsp Prescription Printing
+              span.font-small &#10003 &nbsp Prescription Printing
               br
-              span &#10003 &nbsp Medical Billing
+              span.font-small &#10003 &nbsp Medical Billing
               v-layout(row wrap).py-4
-                router-link(:to="{name: 'pricing'}").link.white--text
-                  v-btn(style="background-color: #2e9fdf; color: white; width: auto" large) 
-                    strong ALWAYS FREE
+                //- a(href="https://calendly.com/mycure" target="_blank")
+                v-btn(style="background-color: #2e9fdf; color: white; width: auto" large).text-none
+                  strong Sign Up Now
+      panel6a(style="padding-top: 150px")
     div(v-else)
-      div.pa-4
-        v-flex(xs12)
-          center
-            img(src="../../assets/images/mycure-icon-testimonial.png")
-            br
-            br
-            span.font-small {{ testimonial1 }}
-            br
-            br
-            strong.font-xs Dr. Jean Rivera
-            br
-            em.font-xs.font-mc-blue General Physician
-        br
-        br
-        v-flex(xs12)
-            center
-              img(src="../../assets/images/mycure-icon-testimonial.png")
-              br
-              br
-              span.font-small {{ testimonial2 }}
-              br
-              br
-              strong.font-xs Dr. Carly Mae Siamson
-              br
-              em.font-xs.font-mc-blue General Physician
+      v-container
+        v-layout(column justify-center)
+          span.font-medium.text-xs-center "It's a great experience using MYCURE app in our rural setup. I've been through many EMR apps, but this one is the best so far." 
+          br
+          br
+          span.font-small.text-xs-center Dr. Gay Cadorna-Toledo
+          b.font-xs.text-xs-center Pediatrician, Misamis Occidental
+          span.font-xs.text-xs-center MYCURE Doctor since 2017
+      br
       div
-      img(width="100%" src="../../assets/images/mycure-web-banner-fifth-panel-private-clinic.png")
-      v-layout(column wrap).pt-4.pb-5.pr-5.pl-5
-        p.pb-2.font-small {{ private_title }}
-        span.font-small.pb-2 &#10003; &nbsp; &nbsp; Unlimited Clinics
-        span.font-small.pb-2 &#10003; &nbsp; &nbsp; 1 GB Data
-        span.font-small.pb-2 &#10003; &nbsp; &nbsp; SOAP Charting
-        span.font-small.pb-2 &#10003; &nbsp; &nbsp; Prescription Printing
-        span.font-small.pb-2 &#10003; &nbsp; &nbsp; Medical Billing
-      v-layout(row justify-center)
-        v-btn(style="background-color: #2e9fdf; color: white; width: 80%; height: 60px")
-          a(href="/electronic-medical-records")
-            strong.font-medium.white--text GET MYCURE FREE
-
+        img(width="100%" src="../../assets/images/mycure-web-banner-fifth-panel-multi-specialty-clinics.png")
+        v-layout(column wrap).pt-4.pb-5.pr-5.pl-5
+          p.pb-2.font-small {{ private_title }}
+          span.font-small.pb-2 &#10003; &nbsp; &nbsp; Queuing &amp Registration
+          span.font-small.pb-2 &#10003; &nbsp; &nbsp; Patient Medical Records
+          span.font-small.pb-2 &#10003; &nbsp; &nbsp; Billing &amp Collection
+          span.font-small.pb-2 &#10003; &nbsp; &nbsp; Laboratory &amp Imaging
+          span.font-small.pb-2 &#10003; &nbsp; &nbsp; Materials &amp Management
+        v-layout(row justify-center)
+          v-btn(style="background-color: #2e9fdf; color: white; width: 80%; height: 60px")
+            a(href="https://calendly.com/mycure" target="_blank")
+              strong.font-medium.white--text BOOK A DEMO
 </template>
 
 <script>
+  import panel6a from './panel-6a';
+
   export default {
+    components: {
+      panel6a
+    },
     data () {
       return {
-        testimonial1: '“MYCURE provides a well organized patient data profiling with customized options for personalized encoding and with integration of lab tests, immunizations as well as growth charts that are very important for us as pediatricians for growth monitoring of our little ones. It is very convenient to use, simple, adaptable and user friendly even to my secretary.”',
-        testimonial2: '“MYCURE fulfills a long time need of physicians for accurate records of patients which they can carry with them wherever they are. It enables them also to prescribe and countercheck their prescriptions, issue medical certificate, communicate with other doctors for referrals.”'
+        //
       };
     }
   };
 </script>
 
 <style scoped>
+  #panel6 {
+    background-image: url('../../assets/images/mycure-home-web-sky-background.png');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+  }
+
   a:link {
     text-decoration: none
   }

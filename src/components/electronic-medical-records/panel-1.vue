@@ -1,7 +1,7 @@
 <template lang="pug">
   div
     div(v-if="!$isMobile").pt-5.white
-      v-container
+      v-container.px-5
         v-layout(row justify-center)
           v-flex(xs12 md5)
             font.font-large A Clinic System That Helps Physicians Do Greater Things

@@ -13,9 +13,9 @@
               :navigationEnabled="true"
               paginationActiveColor="white"
               paginationColor="grey"
-              navigationNextLabel=""
-              navigationPrevLabel=""
-              navigationClickTargetSize="30px"
+              navigationClickTargetSize="50"
+              navigationNextLabel=" "
+              navigationPrevLabel=" "
             ) 
               slide(data-index="1")
                 span.font-medium.white--text {{ testimonial1 }}
