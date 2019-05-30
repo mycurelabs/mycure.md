@@ -5,7 +5,9 @@
         v-flex(xs12 md12).text-xs-center
           div.hr-blue
           br
-          h1.font-large.pb-3 About the Founders
+          br
+          br
+          h1.font-medium.pb-3 About the Founders
           br
           br
         v-flex(xs12 md5).px-3.text-xs-center

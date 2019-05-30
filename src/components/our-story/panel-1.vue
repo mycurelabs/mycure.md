@@ -1,8 +1,8 @@
 <template lang="pug">
-  div.panel-1.white
+  div.panel-1.white.pt-5
     v-container
-      v-layout(row wrap align-center)
-        v-flex(xs12 md5)
+      v-layout(row wrap)
+        v-flex(xs12 md5 align-self-center)
           h1.font-large MYCURE cares for people who care for people.
           br
           br
@@ -22,7 +22,7 @@
               id="showVid"
               @click="showVid = true") 
                 strong WATCH VIDEO
-        v-flex(v-if="!$isMobile" xs12 md7).px-5
+        v-flex(v-if="!$isMobile" xs12 md7).pl-5
           img(width="100%" src="../../assets/images/mycure-homepage-doctor-kid-pediatrician-drawing.png")
 
     v-dialog(v-model="showVid" max-width="700px")

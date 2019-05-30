@@ -3,9 +3,12 @@
     v-container
       div.hr-blue
       br
+      br
+      br
+      br
       v-flex(xs12 md12).text-xs-center
         v-layout(row wrap align-center justify-center)
-            h1.font-large Caring the Extra Mile
+            h1.font-medium Caring the Extra Mile
     br
     br
     div(v-if="!$isMobile")
