@@ -64,13 +64,13 @@
                   br
                   | for accurate records of patients which they 
                   br
-                  | can carry with them wherever they are. It enables 
+                  | can carry with them wherever they are. It  
                   br
-                  | them also to prescribe and countercheck 
+                  | enables them also to prescribe and  
                   br
-                  | their prescriptions, issue medical certificate, 
+                  | countercheck their prescriptions, issue  
                   br
-                  | communicate with other doctors for referrals."
+                  | medical certificate, communicate with other doctors for referrals."
                 br
                 br
                 span.font-s.white--text Dr. Nelson S. Abelardo

@@ -59,7 +59,7 @@
           color="info"
           style="height: 60px; width: 250px"
           ).mt-3
-            strong.font-m.text-none We got a solution
+            strong.font-m.text-none Sign Up Now
         br
         p.text-xs-center.py-2.font-s Have questions? Give us a call: 
           strong (+63) 917 303 4350
