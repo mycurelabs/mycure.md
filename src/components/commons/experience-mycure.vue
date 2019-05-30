@@ -6,9 +6,9 @@
           v-flex(xs12 md12).mt-5(style="margin-top:100px;")
             div.hr-blue
             br
-            h1.font-l.text-xs-center Experience MYCURE
+            h1.font-large.text-xs-center Experience MYCURE
             br
-            p.font-m.text-xs-center Explore what you can do more with our smart tools by your side.
+            p.font-medium.text-xs-center Explore what you can do more with our smart tools by your side.
             br
           v-flex(xs12 md12)
             v-layout(row wrap justify-center)

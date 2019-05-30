@@ -4,10 +4,10 @@
       v-container
         v-layout(row justify-center)
           v-flex(xs12 md5)
-            span.font-l A System That Simplifies Work for Multispecialty Clinics
+            span.font-large A System That Simplifies Work for Multispecialty Clinics
             br
             br
-            em.font-s - Integrated Medical Records
+            em.font-small - Integrated Medical Records
               br
               | - User-friendly Features
               br 
@@ -26,17 +26,17 @@
       v-container
         v-layout(row justify-center)
           v-flex(xs12 md5)
-            span.font-l A System That Simplifies Work for Multispecialty Clinics
+            span.font-large A System That Simplifies Work for Multispecialty Clinics
             br
             br
             em
-              strong.font-s - Integrated Medical Records
+              strong.font-small - Integrated Medical Records
               br
               | 
-              strong.font-s - User-friendly Features
+              strong.font-small - User-friendly Features
               br 
               | 
-              strong.font-s - Real-time Reports
+              strong.font-small - Real-time Reports
             br 
             br
       v-flex(xs12)
@@ -45,7 +45,7 @@
           v-layout(row justify-center)
             a(style="padding: 12px 0")
               v-icon(color="#2e9fdf") play_circle_filled
-              strong.font-s.px-2.black--text(style="text-decoration: underline").black--text WATCH VIDEO
+              strong.font-small.px-2.black--text(style="text-decoration: underline").black--text WATCH VIDEO
         div(style="height: 75px").mc-blue
           v-layout(row justify-center)
             a(style="padding: 20px 0")

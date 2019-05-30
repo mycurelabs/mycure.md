@@ -1,38 +1,38 @@
 <template lang="pug">
   div.pa-5.mc-light-grey
     v-container
-      p.font-l.text-xs-center Designed for clinics of all shapes and sizes.
+      p.font-large.text-xs-center Designed for clinics of all shapes and sizes.
     v-layout(justify-center)
       table
         tr
           div.pl-3.py-3
             img(src="../../assets/images/mycure-icon-check.png").mr-3
-            span.font-m Multispecialty Clinics
+            span.font-medium Multispecialty Clinics
         tr
           div.pl-3.py-3
             img(src="../../assets/images/mycure-icon-check.png").mr-3 
-            span.font-m Skin &amp Aesthetic Clinics
+            span.font-medium Skin &amp Aesthetic Clinics
         tr 
           div.pl-3.py-3
             img(src="../../assets/images/mycure-icon-check.png").mr-3 
-            span.font-m Outpatient Clinics
+            span.font-medium Outpatient Clinics
         tr 
           div.pl-3.py-3
             img(src="../../assets/images/mycure-icon-check.png").mr-3 
-            span.font-m Family Clinics
+            span.font-medium Family Clinics
         tr 
           div.pl-3.py-3
             img(src="../../assets/images/mycure-icon-check.png").mr-3 
-            span.font-m Industrial Clinics
+            span.font-medium Industrial Clinics
         tr 
           div.pl-3.py-3
             img(src="../../assets/images/mycure-icon-check.png").mr-3
-            span.font-m PME Clinics
+            span.font-medium PME Clinics
     br
     br
     br
     v-layout(row wrap justify-center)
-      em.font-s.text-xs-center Not too complicated, 
+      em.font-small.text-xs-center Not too complicated, 
           br  
           | not too basic.
           br

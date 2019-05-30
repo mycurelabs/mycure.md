@@ -2,7 +2,7 @@
   div
     panelBeforeFooter
       img(slot="home-img" style="max-width: 90%" src="../../assets/images/mycure-web-banner-last-panel-home-doctors.png")
-      span(slot="home-txt").font-l Join thousands of other health professionals who enjoy the benefits of using technology in their practice
+      span(slot="home-txt").font-medium Join thousands of other health professionals who enjoy the benefits of using technology in their practice
       v-btn(slot="sign-up-button" color="info" large) 
         strong.text-none Sign Up Now
     v-layout(row justify-center)

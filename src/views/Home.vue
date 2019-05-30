@@ -63,15 +63,15 @@
     font-size: 60px
   }
 
-  .font-l {
+  .font-large {
     font-size: 40px
   }
 
-  .font-m {
+  .font-medium {
     font-size: 18px
   }
 
-  .font-s {
+  .font-small {
     font-size: 16px;
   }
 

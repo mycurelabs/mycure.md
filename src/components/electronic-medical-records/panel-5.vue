@@ -6,11 +6,11 @@
           v-flex(xs12 md5 offset-md1)
             img(width="100%" src="../../assets/images/mycure-web-banner-data-privacy-act.png")
           v-flex(xs12 md6 offset-xs1 align-self-center)
-            font.font-l Protect your patients' medical records with confidence
+            font.font-large Protect your patients' medical records with confidence
             br
             br
             br
-            font.font-s.mt-3 With MYCURE you'll never have to worry much about data privacy concerns. Keeping them secure is our #1  priority
+            font.font-small.mt-3 With MYCURE you'll never have to worry much about data privacy concerns. Keeping them secure is our #1  priority
             br
             br
             br
@@ -20,11 +20,11 @@
       v-container
         v-layout(row)
           v-flex(xs12 md12)
-            font.font-l Protect your patients' medical records with confidence
+            font.font-large Protect your patients' medical records with confidence
             br
             br
             br
-            font.font-s.mt-3 With MYCURE you'll never have to worry much about data privacy concerns. Keeping them secure is our #1  priority
+            font.font-small.mt-3 With MYCURE you'll never have to worry much about data privacy concerns. Keeping them secure is our #1  priority
             br
             br
             br

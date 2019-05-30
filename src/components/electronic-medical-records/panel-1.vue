@@ -4,10 +4,10 @@
       v-container
         v-layout(row justify-center)
           v-flex(xs12 md5)
-            font.font-l A Clinic System That Helps Physicians Do Greater Things
+            font.font-large A Clinic System That Helps Physicians Do Greater Things
             br
             br
-            em.font-s - Secure Medical Records
+            em.font-small - Secure Medical Records
               br
               | - Make Data-driven Decisions
               br 
@@ -26,17 +26,17 @@
       v-container
         v-layout(row justify-center)
           v-flex(xs12 md5)
-            font.font-l A Clinic System That Helps Physicians Do Greater Things
+            font.font-large A Clinic System That Helps Physicians Do Greater Things
             br
             br
             em
-              strong.font-s - Secure Medical Records
+              strong.font-small - Secure Medical Records
               br
               | 
-              strong.font-s - Minimized Costs
+              strong.font-small - Minimized Costs
               br 
               | 
-              strong.font-s - Lesser Paperwork
+              strong.font-small - Lesser Paperwork
             br 
             br
       v-flex(xs12)

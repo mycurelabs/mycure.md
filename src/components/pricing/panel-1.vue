@@ -7,7 +7,7 @@
             center 
               strong.font-xl.text-xs-center.white--text Your best CMS investment yet
               br
-              strong.font-m.white--text Quality clinic technology made more affordable. Only pay for what you need.
+              strong.font-medium.white--text Quality clinic technology made more affordable. Only pay for what you need.
               br
               br
         div      
@@ -16,7 +16,7 @@
               a(@click="isPrivate=true")
                 div.tab.pa-3.right
                   center 
-                    strong.font-m Private Practice
+                    strong.font-medium Private Practice
                       br
                       | 
                       font.font-xs.font-mc-grey Solo or group clinic practitioners
@@ -24,7 +24,7 @@
               a(@click="isPrivate=false")
                 div.tab.pa-3
                   center 
-                    strong.font-m Multispecialty Clinics
+                    strong.font-medium Multispecialty Clinics
                       br
                       | 
                       font.font-xs.font-mc-grey One stop, multi-staff clinics
@@ -46,7 +46,7 @@
       div.white
         v-layout(row).pa-3
           v-layout(column)  
-            strong.font-m Private Practice
+            strong.font-medium Private Practice
             span(style="font-size: 14px") Solo or group clinic practitioners
           v-spacer
             
@@ -60,7 +60,7 @@
       div.white
         v-layout(row).pa-3
           v-layout(column)  
-            strong.font-m Multispecialty Clinics
+            strong.font-medium Multispecialty Clinics
             span(style="font-size: 14px") One-stop, multi-staff clinics
           v-spacer
           v-icon(v-if="isMulti" size=40 @click="isMulti=!isMulti") arrow_right

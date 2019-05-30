@@ -4,15 +4,15 @@
       v-flex(xs12 md4)
         router-link(:to="{name: 'pricing'}").link.white--text 
           div.panel-2-box-a
-            b.font-s.text-center.font-mc-grey View your charts anywhere
+            b.font-small.text-center.font-mc-grey View your charts anywhere
       v-flex(xs12 md4)
         router-link(:to="{name: 'pricing'}").link.white--text 
           div.panel-2-box-b
-            b.font-s.text-center.font-mc-grey Boost your online presence
+            b.font-small.text-center.font-mc-grey Boost your online presence
       v-flex(xs12 md4)
         router-link(:to="{name: 'pricing'}").link.white--text 
           div.panel-2-box-c
-            b.font-s.text-center.font-mc-grey Become DPA-compliant
+            b.font-small.text-center.font-mc-grey Become DPA-compliant
 </template>
 
 <style scoped>

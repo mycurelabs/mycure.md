@@ -8,18 +8,18 @@
               div(style="width: 75%").right
                 img(width="80%" src="../../assets/images/mycure-web-banner-fifth-panel-private-clinic.png")
                 v-card(style="margin-top: -2%" width="80%").clinic-card.text-xs-left.pa-4
-                  p.pb-2.font-s {{ private_title }}
-                  strong.font-s &#10003 &nbsp It's FREE!
+                  p.pb-2.font-small {{ private_title }}
+                  strong.font-small &#10003 &nbsp It's FREE!
                   br
-                  span.font-s &#10003 &nbsp Unlimited Clinics
+                  span.font-small &#10003 &nbsp Unlimited Clinics
                   br
-                  span.font-s &#10003 &nbsp 1 GB Data
+                  span.font-small &#10003 &nbsp 1 GB Data
                   br
-                  span.font-s &#10003 &nbsp SOAP Charting
+                  span.font-small &#10003 &nbsp SOAP Charting
                   br
-                  span.font-s &#10003 &nbsp Prescription Printing
+                  span.font-small &#10003 &nbsp Prescription Printing
                   br
-                  span.font-s &#10003 &nbsp Medical Billing
+                  span.font-small &#10003 &nbsp Medical Billing
                   v-layout(row wrap).py-4
                     v-btn(style="background-color: #2e9fdf; color: white; width: auto" large) 
                       a(href="/electronic-medical-records")
@@ -28,16 +28,16 @@
             div(style="width: 75%").left
               img(width="80%" src="../../assets/images/mycure-web-banner-fifth-panel-multi-specialty-clinics.png")
               v-card(style="margin-top: -2%" width="80%").clinic-card.text-xs-left.pa-4
-                p.pb-2.font-s {{ multispecialty_title }}
-                span.font-s &#10003 &nbsp Queuing &amp Registration
+                p.pb-2.font-small {{ multispecialty_title }}
+                span.font-small &#10003 &nbsp Queuing &amp Registration
                 br
-                span.font-s &#10003 &nbsp Patient Medical Records
+                span.font-small &#10003 &nbsp Patient Medical Records
                 br
-                span.font-s &#10003 &nbsp Billing &amp Collection
+                span.font-small &#10003 &nbsp Billing &amp Collection
                 br
-                span.font-s &#10003 &nbsp Laboratory &amp Imaging
+                span.font-small &#10003 &nbsp Laboratory &amp Imaging
                 br
-                span.font-s &#10003 &nbsp Materials Management
+                span.font-small &#10003 &nbsp Materials Management
                 br(style="line-height: 39px")
                 v-layout(row wrap).py-3
                   v-btn(style="background-color: #2e9fdf; color: white; width: auto" large) 

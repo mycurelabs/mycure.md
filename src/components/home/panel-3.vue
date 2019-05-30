@@ -3,7 +3,7 @@
     div(v-if="!$isMobile" style="padding: 0 6% 0 6%;").py-5
       v-container
         v-layout(row justify-center)
-          span.font-l It's complete - everything your clinic needs.
+          span.font-medium It's complete - everything your clinic needs.
       div.py-5
         center
           img(style="max-width: 90%;" src="../../assets/images/mycure-home-web-complete-clinic-management-system-diagram.png")

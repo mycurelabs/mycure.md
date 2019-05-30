@@ -5,7 +5,7 @@
       br
       v-flex(xs12 md12).text-xs-center
         v-layout(row wrap align-center justify-center)
-            h1.font-l Caring the Extra Mile
+            h1.font-large Caring the Extra Mile
     br
     br
     div(v-if="!$isMobile")

@@ -1,35 +1,35 @@
 <template lang="pug">
   div.py-5.mc-light-grey
     v-layout(row wrap justify-center)
-      font.font-l.text-xs-center Designed for clinics of all shapes and sizes.
+      font.font-large.text-xs-center Designed for clinics of all shapes and sizes.
     v-layout(row wrap justify-center).pt-5
       table
         tr
           td 
             img(src="../../assets/images/mycure-icon-check.png").mr-3
-            span.font-s Multispecialty Clinics
+            span.font-small Multispecialty Clinics
           td 
             img(src="../../assets/images/mycure-icon-check.png").mr-3 
-            span.font-s Skin &amp Aesthetic Clinics
+            span.font-small Skin &amp Aesthetic Clinics
         tr
           td 
             img(src="../../assets/images/mycure-icon-check.png").mr-3 
-            span.font-s Outpatient Clinics
+            span.font-small Outpatient Clinics
           td 
             img(src="../../assets/images/mycure-icon-check.png").mr-3 
-            span.font-s Family Clinics
+            span.font-small Family Clinics
         tr
           td 
             img(src="../../assets/images/mycure-icon-check.png").mr-3 
-            span.font-s Industrial Clinics
+            span.font-small Industrial Clinics
           td 
             img(src="../../assets/images/mycure-icon-check.png").mr-3
-            span.font-s PME Clinics
+            span.font-small PME Clinics
     br
     br
     br
     v-layout(row wrap justify-center)
-      em.font-s.text-xs-center Not too complicated, not too basic.
+      em.font-small.text-xs-center Not too complicated, not too basic.
           br
           | MYCURE is just right for your clinic.
     br

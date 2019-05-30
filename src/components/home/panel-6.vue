@@ -2,37 +2,37 @@
   div
     div.pt-5#panel6
       v-layout(row wrap justify-center)
-        span.font-l.text-xs-center MYCURE works for Private and Multispecialty Clinics
+        span.font-medium.text-xs-center.px-3 MYCURE works for Private and Multispecialty Clinics
       v-layout(row wrap justify-center).pt-5
         table
           tr
             td 
               img(src="../../assets/images/mycure-icon-check.png").mr-3
-              span.font-s Solo Practice
+              span.font-small Solo Practice
             td 
               img(src="../../assets/images/mycure-icon-check.png").mr-3 
-              span.font-s Group Clinics
+              span.font-small Group Clinics
           tr
             td 
               img(src="../../assets/images/mycure-icon-check.png").mr-3 
-              span.font-s Multispecialty Clinics
+              span.font-small Multispecialty Clinics
             td 
               img(src="../../assets/images/mycure-icon-check.png").mr-3 
-              span.font-s Dermatology Clinics
+              span.font-small Dermatology Clinics
           tr
             td 
               img(src="../../assets/images/mycure-icon-check.png").mr-3 
-              span.font-s Family Clinics
+              span.font-small Family Clinics
             td 
               img(src="../../assets/images/mycure-icon-check.png").mr-3
-              span.font-s Multi-branch Clinics
+              span.font-small Multi-branch Clinics
           tr
             td 
               img(src="../../assets/images/mycure-icon-check.png").mr-3 
-              span.font-s Industrial Clinics
+              span.font-small Industrial Clinics
             td 
               img(src="../../assets/images/mycure-icon-check.png").mr-3
-              span.font-s Dental Clinics
+              span.font-small Dental Clinics
       panel6a
 </template>
 

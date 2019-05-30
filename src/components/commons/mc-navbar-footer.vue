@@ -37,7 +37,7 @@
       br
       br
       v-layout(row).pb-1
-        span.font-s.font-mc-grey CLINIC SOLUTIONS
+        span.font-small.font-mc-grey CLINIC SOLUTIONS
         v-spacer
         v-icon(v-if="!clinicSol" @click="clinicSol=!clinicSol" dark) arrow_right
         v-icon(v-else @click="clinicSol=!clinicSol" dark) arrow_drop_down
@@ -52,7 +52,7 @@
             span.py-2 For Multispecialty Clinics
       br
       v-layout(row).pb-1
-        span.font-s.font-mc-grey ABOUT
+        span.font-small.font-mc-grey ABOUT
         v-spacer
         v-icon(v-if="!about" @click="about=!about" dark) arrow_right
         v-icon(v-else @click="about=!about" dark) arrow_drop_down
@@ -67,7 +67,7 @@
             span.py-2 Careers
       br
       v-layout(row).pb-1
-        span.font-s.font-mc-grey SUPPORT
+        span.font-small.font-mc-grey SUPPORT
         v-spacer
         v-icon(v-if="!support" @click="support=!support" dark) arrow_right
         v-icon(v-else @click="support=!support" dark) arrow_drop_down
@@ -82,7 +82,7 @@
             span.py-2 Book a Demo
       br
       v-layout(row).pb-1
-        span.font-s.font-mc-grey LEGAL
+        span.font-small.font-mc-grey LEGAL
         v-spacer
         v-icon(v-if="!legal" @click="legal=!legal" dark) arrow_right
         v-icon(v-else @click="legal=!legal" dark) arrow_drop_down
@@ -95,7 +95,7 @@
             span.py-2 Privacy Policy
       br
       v-layout(row).pb-1
-        span.font-s.font-mc-grey CONTACT
+        span.font-small.font-mc-grey CONTACT
         v-spacer
         v-icon(v-if="!contact" @click="contact=!contact" dark) arrow_right
         v-icon(v-else @click="contact=!contact" dark) arrow_drop_down

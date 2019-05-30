@@ -4,15 +4,15 @@
       v-flex(xs12 md4)
         router-link(:to="{name: 'pricing'}").link.white--text 
           div.panel-2-box-a
-            b.font-s.text-center.font-mc-grey Organized Patient Records
+            b.font-small.text-center.font-mc-grey Organized Patient Records
       v-flex(xs12 md4)
         router-link(:to="{name: 'pricing'}").link.white--text 
           div.panel-2-box-b
-            b.font-s.text-center.font-mc-grey Data-driven Decisions
+            b.font-small.text-center.font-mc-grey Data-driven Decisions
       v-flex(xs12 md4)
         router-link(:to="{name: 'pricing'}").link.white--text 
           div.panel-2-box-c
-            b.font-s.text-center.font-mc-grey Happier Staff Members
+            b.font-small.text-center.font-mc-grey Happier Staff Members
 </template>
 
 <script>

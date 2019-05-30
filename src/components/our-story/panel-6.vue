@@ -8,15 +8,15 @@
               div.hr-blue
               br
               br
-              h3.font-m.font-mc-grey To further go the extra mile, we practice the following codes:
+              h3.font-medium.font-mc-grey To further go the extra mile, we practice the following codes:
               br
               br
               br
-              h1.font-l 8 Codes of Being
+              h1.font-large 8 Codes of Being
               br
               br
             v-flex(xs12 md12).text-xs-center
-             p.font-m
+             p.font-medium
                 br
                 | We are passionate, fun-loving, innovative people.
                 br

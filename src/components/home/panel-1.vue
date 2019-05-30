@@ -4,13 +4,11 @@
       v-container.pa-5
         v-layout(row justify-center)
           v-flex(xs12 md5 align-self-center)
-            font.font-l We help organize &amp; 
+            span.font-large Tools to Manage &amp; 
               br
-              | and secure your 
+              | and Secure Your Clinic's
               br
-              | clinic's medical
-              br
-              | records.
+              | Records
             br
             br
             br
@@ -19,13 +17,13 @@
               large
             ) 
               strong.text-none Sign Up Now
-          v-flex(xs12 md7 align-self-center).pl-5
+          v-flex(xs12 md7 align-self-center)
             img(width="100%" src="../../assets/images/mycure-web-banner-first-panel-doctor-clinic-patients.png")
   div(v-else).white
     v-container
       v-layout(row justify-center)
         v-flex(xs12 md5)
-          font.font-l Technology 
+          font.font-large Technology 
             br
             | to Help You Run 
             br
@@ -33,13 +31,13 @@
           br
           br
           em
-            strong.font-s - Secure Medical Records
+            strong.font-small - Secure Medical Records
             br
             | 
-            strong.font-s - Minimized Costs
+            strong.font-small - Minimized Costs
             br 
             | 
-            strong.font-s - Lesser Paperwork
+            strong.font-small - Lesser Paperwork
           br 
           br
     v-flex(xs12)
@@ -47,7 +45,7 @@
       div(style="height: 75px").mc-blue
         v-layout(row justify-center)
           a(style="padding: 20px 0")
-            strong(style="font-size: 25px").white--text Get Started Today    
+            strong(style="font-smallize: 25px").white--text Get Started Today    
 </template>
 
 <script>

@@ -4,7 +4,7 @@
       v-container
         v-layout(row justify-center)
           v-flex(xs12 md6 align-self-center).px-3
-            strong.font-l.font-mc-blue MYCURE for 
+            strong.font-large.font-mc-blue MYCURE for 
               br
               | Private Practice
             br
@@ -31,192 +31,192 @@
                 v-list-tile-action
                   img(src="../../assets/images/mycure-icon-check.png")
                 v-list-tile-content
-                  span.font-m Unlimited clinics
+                  span.font-medium Unlimited clinics
               v-list-tile
                 v-list-tile-action
                   img(src="../../assets/images/mycure-icon-check.png")
                 v-list-tile-content
-                  span.font-m Unlimited devices
+                  span.font-medium Unlimited devices
               v-list-tile
                 v-list-tile-action
                   img(src="../../assets/images/mycure-icon-check.png")
                 v-list-tile-content
-                  span.font-m 50 patients per month
+                  span.font-medium 50 patients per month
               v-list-tile
                 v-list-tile-action
                   img(src="../../assets/images/mycure-icon-check.png")
                 v-list-tile-content
-                  span.font-m Secretary account
+                  span.font-medium Secretary account
               v-list-tile
                 v-list-tile-action
                   img(src="../../assets/images/mycure-icon-check.png")
                 v-list-tile-content
-                  span.font-m Queuing System
+                  span.font-medium Queuing System
               v-list-tile
                 v-list-tile-action
                   img(src="../../assets/images/mycure-icon-check.png")
                 v-list-tile-content
-                  span.font-m Medical Billing
+                  span.font-medium Medical Billing
           v-flex(xs12 md4)
             v-list-tile
               v-list-tile-action
                 img(src="../../assets/images/mycure-icon-check.png")
               v-list-tile-content
-                span.font-m SOAP Charting
+                span.font-medium SOAP Charting
             v-list-tile
               v-list-tile-action
                 img(src="../../assets/images/mycure-icon-check.png")
               v-list-tile-content
-                span.font-m Prescription
+                span.font-medium Prescription
             v-list-tile
               v-list-tile-action
                 img(src="../../assets/images/mycure-icon-check.png")
               v-list-tile-content
-                span.font-m Lab &amp Imaging orders
+                span.font-medium Lab &amp Imaging orders
             v-list-tile
               v-list-tile-action
                 img(src="../../assets/images/mycure-icon-check.png")
               v-list-tile-content
-                span.font-m Custom medical forms
+                span.font-medium Custom medical forms
             v-list-tile
               v-list-tile-action
                 img(src="../../assets/images/mycure-icon-check.png")
               v-list-tile-content
-                span.font-m Print functions
+                span.font-medium Print functions
             v-list-tile
               v-list-tile-action
                 img(src="../../assets/images/mycure-icon-check.png")
               v-list-tile-content
-                span.font-m Bulk patient upload
+                span.font-medium Bulk patient upload
           v-flex(xs12 md4)
             v-list-tile
               v-list-tile-action
                 img(src="../../assets/images/mycure-icon-check.png")
               v-list-tile-content
-                span.font-m SMS Feature
+                span.font-medium SMS Feature
             v-list-tile
               v-list-tile-action
                 img(src="../../assets/images/mycure-icon-check.png")
               v-list-tile-content
-                span.font-m Patient tagging
+                span.font-medium Patient tagging
             v-list-tile
               v-list-tile-action
                 img(src="../../assets/images/mycure-icon-check.png")
               v-list-tile-content
-                span.font-m Reports &amp Analytics
+                span.font-medium Reports &amp Analytics
             v-list-tile
               v-list-tile-action
                 img(src="../../assets/images/mycure-icon-check.png")
               v-list-tile-content
-                span.font-m PNF Drug Catalog
+                span.font-medium PNF Drug Catalog
             v-list-tile
               v-list-tile-action
                 img(src="../../assets/images/mycure-icon-check.png")
               v-list-tile-content
-                span.font-m ICD-10 List
+                span.font-medium ICD-10 List
             v-list-tile
               v-list-tile-action
                 img(src="../../assets/images/mycure-icon-check.png")
               v-list-tile-content
-                span.font-m DPA Registration Guide
+                span.font-medium DPA Registration Guide
     div(v-else)
       div.pt-3.px-3
         img(width="100%" src="../../assets/images/mycure-pricing-emr-private-clinic.png")
         br
         br
-        p.font-s.text-xs-center A powerful combination of EMR, queuing, and billing features designed for physicians who are practicing solo or in groups.
+        p.font-small.text-xs-center A powerful combination of EMR, queuing, and billing features designed for physicians who are practicing solo or in groups.
       div.px-3
         v-list
           v-list-tile
             v-list-tile-action
               img(src="../../assets/images/mycure-icon-check.png")
             v-list-tile-content
-              span.font-s Unlimited clinics
+              span.font-small Unlimited clinics
           v-list-tile
             v-list-tile-action
               img(src="../../assets/images/mycure-icon-check.png")
             v-list-tile-content
-              span.font-s Unlimited devices
+              span.font-small Unlimited devices
           v-list-tile
             v-list-tile-action
               img(src="../../assets/images/mycure-icon-check.png")
             v-list-tile-content
-              span.font-s 50 patients per month
+              span.font-small 50 patients per month
           v-list-tile
             v-list-tile-action
               img(src="../../assets/images/mycure-icon-check.png")
             v-list-tile-content
-              span.font-s Secretary account
+              span.font-small Secretary account
           v-list-tile
             v-list-tile-action
               img(src="../../assets/images/mycure-icon-check.png")
             v-list-tile-content
-              span.font-s Queuing System
+              span.font-small Queuing System
           v-list-tile
             v-list-tile-action
               img(src="../../assets/images/mycure-icon-check.png")
             v-list-tile-content
-              span.font-s Medical Billing
+              span.font-small Medical Billing
           v-list-tile
             v-list-tile-action
               img(src="../../assets/images/mycure-icon-check.png")
             v-list-tile-content
-              span.font-s SOAP Charting
+              span.font-small SOAP Charting
           v-list-tile
             v-list-tile-action
               img(src="../../assets/images/mycure-icon-check.png")
             v-list-tile-content
-              span.font-s Prescription
+              span.font-small Prescription
           v-list-tile
             v-list-tile-action
               img(src="../../assets/images/mycure-icon-check.png")
             v-list-tile-content
-              span.font-s Lab &amp Imaging orders
+              span.font-small Lab &amp Imaging orders
           v-list-tile
             v-list-tile-action
               img(src="../../assets/images/mycure-icon-check.png")
             v-list-tile-content
-              span.font-s Custom medical forms
+              span.font-small Custom medical forms
           v-list-tile
             v-list-tile-action
               img(src="../../assets/images/mycure-icon-check.png")
             v-list-tile-content
-              span.font-s Print functions
+              span.font-small Print functions
           v-list-tile
             v-list-tile-action
               img(src="../../assets/images/mycure-icon-check.png")
             v-list-tile-content
-              span.font-s Bulk patient upload
+              span.font-small Bulk patient upload
           v-list-tile
             v-list-tile-action
               img(src="../../assets/images/mycure-icon-check.png")
             v-list-tile-content
-              span.font-s SMS Feature
+              span.font-small SMS Feature
           v-list-tile
             v-list-tile-action
               img(src="../../assets/images/mycure-icon-check.png")
             v-list-tile-content
-              span.font-s Patient tagging
+              span.font-small Patient tagging
           v-list-tile
             v-list-tile-action
               img(src="../../assets/images/mycure-icon-check.png")
             v-list-tile-content
-              span.font-s Reports &amp Analytics
+              span.font-small Reports &amp Analytics
           v-list-tile
             v-list-tile-action
               img(src="../../assets/images/mycure-icon-check.png")
             v-list-tile-content
-              span.font-s PNF Drug Catalog
+              span.font-small PNF Drug Catalog
           v-list-tile
             v-list-tile-action
               img(src="../../assets/images/mycure-icon-check.png")
             v-list-tile-content
-              span.font-s ICD-10 List
+              span.font-small ICD-10 List
           v-list-tile
             v-list-tile-action
               img(src="../../assets/images/mycure-icon-check.png")
             v-list-tile-content
-              span.font-s DPA Registration Guide
+              span.font-small DPA Registration Guide
       div.py-3
         v-layout(justify-center)
           v-btn(color="info" large) 

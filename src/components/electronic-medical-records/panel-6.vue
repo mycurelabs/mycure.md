@@ -8,7 +8,7 @@
               img(src="../../assets/images/mycure-icon-testimonial.png")
               br
               br
-              span.font-s {{ testimonial1 }}
+              span.font-small {{ testimonial1 }}
               br
               br
               strong.font-xs Dr. Jean Rivera
@@ -19,7 +19,7 @@
                 img(src="../../assets/images/mycure-icon-testimonial.png")
                 br
                 br
-                span.font-s {{ testimonial2 }}
+                span.font-small {{ testimonial2 }}
                 br
                 br
                 strong.font-xs Dr. Carly Mae Siamson
@@ -33,7 +33,7 @@
             div(style="width: 27%;").image-rounded-corner.one-edge-shadow
               v-img(:src="require('../../assets/images/mycure-web-banner-pricing-panel-private.png')")
             v-card(flat).price-card.text-xs-left.pa-5.one-edge-shadow
-              strong.pb-2.font-m For Private Practice
+              strong.pb-2.font-medium For Private Practice
               br
               br
               span.font-xs Get a powerful combination of features 
@@ -63,7 +63,7 @@
             img(src="../../assets/images/mycure-icon-testimonial.png")
             br
             br
-            span.font-s {{ testimonial1 }}
+            span.font-small {{ testimonial1 }}
             br
             br
             strong.font-xs Dr. Jean Rivera
@@ -76,7 +76,7 @@
               img(src="../../assets/images/mycure-icon-testimonial.png")
               br
               br
-              span.font-s {{ testimonial2 }}
+              span.font-small {{ testimonial2 }}
               br
               br
               strong.font-xs Dr. Carly Mae Siamson
@@ -85,16 +85,16 @@
       div
       img(width="100%" src="../../assets/images/mycure-web-banner-fifth-panel-private-clinic.png")
       v-layout(column wrap).pt-4.pb-5.pr-5.pl-5
-        p.pb-2.font-s {{ private_title }}
-        span.font-s.pb-2 &#10003; &nbsp; &nbsp; Unlimited Clinics
-        span.font-s.pb-2 &#10003; &nbsp; &nbsp; 1 GB Data
-        span.font-s.pb-2 &#10003; &nbsp; &nbsp; SOAP Charting
-        span.font-s.pb-2 &#10003; &nbsp; &nbsp; Prescription Printing
-        span.font-s.pb-2 &#10003; &nbsp; &nbsp; Medical Billing
+        p.pb-2.font-small {{ private_title }}
+        span.font-small.pb-2 &#10003; &nbsp; &nbsp; Unlimited Clinics
+        span.font-small.pb-2 &#10003; &nbsp; &nbsp; 1 GB Data
+        span.font-small.pb-2 &#10003; &nbsp; &nbsp; SOAP Charting
+        span.font-small.pb-2 &#10003; &nbsp; &nbsp; Prescription Printing
+        span.font-small.pb-2 &#10003; &nbsp; &nbsp; Medical Billing
       v-layout(row justify-center)
         v-btn(style="background-color: #2e9fdf; color: white; width: 80%; height: 60px")
           a(href="/electronic-medical-records")
-            strong.font-m.white--text GET MYCURE FREE
+            strong.font-medium.white--text GET MYCURE FREE
 
 </template>
 

@@ -22,7 +22,7 @@ export default {
   @import url('https://fonts.googleapis.com/css?family=Poppins');
 
   #body {
-    max-width: 100% !important;
+    /* max-width: 100% !important; */
     overflow-x: hidden !important;
     font-family: 'Poppins', sans-serif !important;
   };
@@ -69,16 +69,16 @@ export default {
     color: #ffffff
   }
 
-  .font-l {
-    font-size: 60px 
+  .font-large {
+    font-size: 60px !important
   }
 
-  .font-m {
-    font-size: 48px
+  .font-medium {
+    font-size: 48px !important
   }
 
-  .font-s {
-    font-size: 18px
+  .font-small {
+    font-size: 18px !important
   }
 
   .hr-blue {

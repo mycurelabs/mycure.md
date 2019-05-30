@@ -4,7 +4,7 @@
       v-container
         v-flex(xs12 md12)
         v-layout(column wrap justify-center).mx-5
-          font(style="width: auto;").font-l.text-xs-center.mx-5 "It's a great experience using MYCURE app in our rural setup. I've been through many EMR apps, but this one is the best so far."
+          font(style="width: auto;").font-large.text-xs-center.mx-5 "It's a great experience using MYCURE app in our rural setup. I've been through many EMR apps, but this one is the best so far."
           br
           br
           font.font-xs.text-xs-center Dr. Gay Cadorna-Toledo
@@ -19,7 +19,7 @@
               v-img(:src="require('../../assets/images/mycure-web-banner-pricing-panel-multispecialty.png')")
             div(style="diplay: inline-block;")
             v-card(flat).price-card.text-xs-left.pa-5.one-edge-shadow
-              strong.pb-2.font-m For Multispecialty Clinics
+              strong.pb-2.font-medium For Multispecialty Clinics
               br
               br
               font.font-xs An all-around solution for your outpatient, 
@@ -45,26 +45,26 @@
     div(v-else)
       v-container
         v-layout(column justify-center)
-          span.font-m.text-xs-center "It's a great experience using MYCURE app in our rural setup. I've been through many EMR apps, but this one is the best so far." 
+          span.font-medium.text-xs-center "It's a great experience using MYCURE app in our rural setup. I've been through many EMR apps, but this one is the best so far." 
           br
           br
-          span.font-s.text-xs-center Dr. Gay Cadorna-Toledo
+          span.font-small.text-xs-center Dr. Gay Cadorna-Toledo
           b.font-xs.text-xs-center Pediatrician, Misamis Occidental
           span.font-xs.text-xs-center MYCURE Doctor since 2017
       br
       div
         img(width="100%" src="../../assets/images/mycure-web-banner-fifth-panel-multi-specialty-clinics.png")
         v-layout(column wrap).pt-4.pb-5.pr-5.pl-5
-          p.pb-2.font-s {{ private_title }}
-          span.font-s.pb-2 &#10003; &nbsp; &nbsp; Queuing &amp Registration
-          span.font-s.pb-2 &#10003; &nbsp; &nbsp; Patient Medical Records
-          span.font-s.pb-2 &#10003; &nbsp; &nbsp; Billing &amp Collection
-          span.font-s.pb-2 &#10003; &nbsp; &nbsp; Laboratory &amp Imaging
-          span.font-s.pb-2 &#10003; &nbsp; &nbsp; Materials &amp Management
+          p.pb-2.font-small {{ private_title }}
+          span.font-small.pb-2 &#10003; &nbsp; &nbsp; Queuing &amp Registration
+          span.font-small.pb-2 &#10003; &nbsp; &nbsp; Patient Medical Records
+          span.font-small.pb-2 &#10003; &nbsp; &nbsp; Billing &amp Collection
+          span.font-small.pb-2 &#10003; &nbsp; &nbsp; Laboratory &amp Imaging
+          span.font-small.pb-2 &#10003; &nbsp; &nbsp; Materials &amp Management
         v-layout(row justify-center)
           v-btn(style="background-color: #2e9fdf; color: white; width: 80%; height: 60px")
             a(href="https://calendly.com/mycure" target="_blank")
-              strong.font-m.white--text BOOK A DEMO
+              strong.font-medium.white--text BOOK A DEMO
 </template>
 
 <script>
