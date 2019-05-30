@@ -2,7 +2,7 @@
   div
     div(v-if="!$isMobile")#products
       v-container
-        v-layout(row wrap).ma-5
+        v-layout(row wrap)
           v-flex(xs12 md6).px-3
             center
               div(style="width: 75%").right
@@ -43,8 +43,8 @@
                   v-btn(style="background-color: #2e9fdf; color: white; width: auto" large) 
                     a(href="/clinic-management-system")
                       strong.white--text Sign Up Now
-      panel6b
-      panel6c.pt-5
+      panel6b(style="padding-top: 100px")
+      panel6c(style="padding-top: 100px")
 </template>
 
 <script>

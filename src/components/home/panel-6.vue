@@ -1,8 +1,9 @@
 <template lang="pug">
   div
-    div.pt-5#panel6
+    div(style="padding-top: 100px")#panel6
       v-layout(row wrap justify-center)
         span.font-medium.text-xs-center.px-3 MYCURE works for Private and Multispecialty Clinics
+      br
       v-layout(row wrap justify-center).pt-5
         table
           tr
@@ -33,7 +34,7 @@
             td 
               img(src="../../assets/images/mycure-icon-check.png").mr-3
               span.font-small Dental Clinics
-      panel6a
+      panel6a(style="padding-top: 100px")
 </template>
 
 <script>
