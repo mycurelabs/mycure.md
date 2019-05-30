@@ -3,7 +3,7 @@
     div#panel4
       a(@click.stop="videoDialog=!videoDialog")
         center
-          img(style="max-width: 60%; overflow: hidden; margin-top: 1000px;" src="../../assets/images/mycure-home-web-video-cover-most-complete-clinic-management-system.png")
+          img(style="max-width: 60%; overflow: hidden; margin-top: 600px;" src="../../assets/images/mycure-home-web-video-cover-most-complete-clinic-management-system.png")
           //- img(style="padding-top: 20%" src="../../assets/images/mycure-home-web-video-cover-most-complete-clinic-management-system.png")
           v-dialog(
             v-model="videoDialog"
@@ -32,7 +32,7 @@
 
 <style scoped>
   #panel4 {
-    height: 1600px;
+    height: 1100px;
     width: 100%;
     background-image: url('../../assets/images/mycure-home-web-video-green-background.png');
     background-position: center center;

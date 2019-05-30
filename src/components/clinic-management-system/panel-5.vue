@@ -1,5 +1,5 @@
 <template lang="pug">
-  div.transparent.pt-5#panel5
+  div(style="padding-top: 100px").transparent#panel5
     v-layout(row wrap justify-center)
       font.font-medium.text-xs-center Designed for clinics of all shapes and sizes.
     br
@@ -44,8 +44,8 @@
       em.font-small Have a question? 
         a.font-mc-blue 
           strong(@click="toggleChat") Start a quick chat
-    panel5a.py-5
-    panel5b.pt-5
+    panel5a(style="padding-top: 150px")
+    panel5b(style="padding-top: 150px")
 </template>
 
 <script>

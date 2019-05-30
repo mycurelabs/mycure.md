@@ -1,7 +1,7 @@
 <template lang="pug">
   div
     div(v-if="!$isMobile").pt-5.panel-1.white
-      v-container
+      v-container.px-5
         v-layout(row justify-center)
           v-flex(xs12 md5)
             span.font-large A System That Simplifies 

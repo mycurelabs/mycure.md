@@ -1,5 +1,5 @@
 <template lang="pug">
-  div.py-5.transparent#cmsproduct
+  div.transparent#cmsproduct
     div(v-if="!$isMobile")
       v-container
         v-flex(xs12 md12)

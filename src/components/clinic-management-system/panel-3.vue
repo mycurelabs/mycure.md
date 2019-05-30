@@ -19,14 +19,13 @@
             strong.font-small.right Other Providers
             br
             br
-            img(src="../../assets/images/mycure-homepage-compare-other-emr-incomplete-clinic-management-system.png" width="100%").mb-3
-            b-col(xs="12" md="6").pl-5.pr-5.text-left
+            img(max-width="500px" src="../../assets/images/mycure-homepage-compare-other-emr-incomplete-clinic-management-system.png" width="100%").mb-3
           v-flex(xs12 md6).px-5
             strong.font-small With MYCURE 
               span.font-mc-blue &nbsp ✓
             br
             br
-            img(src="../../assets/images/mycure-homepage-compare-mycure-complete-clinic-management-system.png" width="100%").mb-3   
+            img(max-width="500px" src="../../assets/images/mycure-homepage-compare-mycure-complete-clinic-management-system.png" width="100%").mb-3   
         v-layout(row wrap justify-center)
           v-btn(
           color="info"
