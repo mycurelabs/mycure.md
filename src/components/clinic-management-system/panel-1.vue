@@ -4,7 +4,9 @@
       v-container
         v-layout(row justify-center)
           v-flex(xs12 md5)
-            span.font-large A System That Simplifies Work for Multispecialty Clinics
+            span.font-large A System That Simplifies 
+              br
+              | Work for Multispecialty Clinics
             br
             br
             em.font-small - Integrated Medical Records

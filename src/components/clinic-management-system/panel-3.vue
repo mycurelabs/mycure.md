@@ -1,9 +1,9 @@
 <template lang="pug"> 
   div
-    div(v-if="!$isMobile").pa-5.mc-light-grey
+    div(v-if="!$isMobile").white
       v-container.px-5
         v-layout(row wrap justify-center)
-          span.font-large.pa-5 Why do clinics switch to MYCURE?
+          span.font-medium.pa-5 Why do clinics switch to MYCURE?
         v-layout(row wrap justify-center)
           span.font-small.text-xs-center MYCURE smoothly integrates your patient records together from registration to billing.
             br
@@ -16,13 +16,13 @@
             br
         v-layout(row wrap justify-center).py-3 
           v-flex(xs12 md6 style="border-right: 1px solid lightgray").px-5
-            strong.font-medium.right Other Providers
+            strong.font-small.right Other Providers
             br
             br
             img(src="../../assets/images/mycure-homepage-compare-other-emr-incomplete-clinic-management-system.png" width="100%").mb-3
             b-col(xs="12" md="6").pl-5.pr-5.text-left
           v-flex(xs12 md6).px-5
-            strong.font-medium With MYCURE 
+            strong.font-small With MYCURE 
               span.font-mc-blue &nbsp ✓
             br
             br
@@ -32,8 +32,8 @@
           color="info"
           large
           ).mt-5 
-            strong.font-small.text-none We got a solution
-        p.text-xs-center.py-4.font-xs Have questions? Give us a call: 
+            strong.font-small.text-none Sign Up Now
+        p.text-xs-center.py-4.font-small Have questions? Give us a call: 
           strong (+63) 917 303 4350
     div(v-else).mc-light-grey
       v-container
@@ -58,7 +58,12 @@
 </template>
 
 <script>
+  import panel4 from './panel-4';
+
   export default {
+    components: {
+      panel4
+    },
     data () {
       return {
         checkIcon: '../../assets/images/mycure-icon-check.png'
@@ -75,5 +80,7 @@
   .check-list {
     background-color: #f6f6f6;
   }
+
+  
 </style>
 

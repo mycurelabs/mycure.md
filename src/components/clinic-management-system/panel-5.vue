@@ -1,7 +1,8 @@
 <template lang="pug">
-  div.py-5.mc-light-grey
+  div.transparent.pt-5#panel5
     v-layout(row wrap justify-center)
-      font.font-large.text-xs-center Designed for clinics of all shapes and sizes.
+      font.font-medium.text-xs-center Designed for clinics of all shapes and sizes.
+    br
     v-layout(row wrap justify-center).pt-5
       table
         tr
@@ -36,17 +37,26 @@
     br
     v-layout(row wrap justify-center)
       v-btn(color="info" large)
-        a(style="text-decoration: none" href="https://calendly.com/mycure" target="_blank").white--text
-          strong.text-none BOOK A DEMO
+        //- a(style="text-decoration: none" href="https://calendly.com/mycure" target="_blank").white--text
+        strong.text-none Sign Up Now
     br
     v-layout(row wrap justify-center)
-      em.font-xs Have a question? 
+      em.font-small Have a question? 
         a.font-mc-blue 
           strong(@click="toggleChat") Start a quick chat
+    panel5a.py-5
+    panel5b.pt-5
 </template>
 
 <script>
+  import panel5a from './panel-5a';
+  import panel5b from './panel-5b';
+
   export default {
+    components: {
+      panel5a,
+      panel5b
+    },
     data () {
       return {
         //
@@ -61,10 +71,17 @@
 </script>
 
 <style scoped>
+  #panel5 {
+    background-image: url('../../assets/images/mycure-home-web-sky-background.png');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+  }
+
   table {
     border-collapse: separate;
     border-spacing: 0;
-    width: 40%;
+    width: 45%;
   }
 
   table tr td {

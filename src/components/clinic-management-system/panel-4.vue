@@ -1,28 +1,41 @@
 <template lang="pug">
-  div.px-4.py-5.white
-    v-layout(row wrap justify-center)
-      strong(style="font-size: 25px").text-xs-center Does your clinic have more than 3 branches? 
-        a
-          span(@click="toggleChat") Talk to us for custom pricing.
+  div
+    div#panel4
+      a(@click.stop="videoDialog=!videoDialog")
+        center
+          img(style="max-width: 60%; overflow: hidden; margin-top: 1000px;" src="../../assets/images/mycure-home-web-video-cover-most-complete-clinic-management-system.png")
+          //- img(style="padding-top: 20%" src="../../assets/images/mycure-home-web-video-cover-most-complete-clinic-management-system.png")
+          v-dialog(
+            v-model="videoDialog"
+            max-width=1000
+          )
+            v-card
+              iframe(
+                align="middle"
+                id="ytplayer" 
+                type="text/html" width="100%" height="500"
+                src="https://www.youtube.com/embed/ZR8e-Egav0M?autoplay=0&loop=1&showinfo=0&rel=0"
+                frameborder="0"
+                allowfullscreen
+              )
 </template>
 
 <script>
   export default {
     data () {
       return {
-        //
+        videoDialog: false
       };
-    },
-    methods: {
-      toggleChat () {
-        window.$crisp.push(['do', 'chat:toggle']);
-      }
-    } 
+    }
   };
 </script>
 
 <style scoped>
-  a {
-    color: #2e9fdf
+  #panel4 {
+    height: 1600px;
+    width: 100%;
+    background-image: url('../../assets/images/mycure-home-web-video-green-background.png');
+    background-position: center center;
+    background-size: 100% 100%;
   }
 </style>
