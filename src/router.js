@@ -1,6 +1,12 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import Home from '@/views/Home.vue';
+import home from '@/views/Home.vue';
+import privacyPolicy from '@/components/privacy-policy';
+import terms from '@/components/terms';
+import ourStory from '@/components/our-story';
+import emr from '@/components/electronic-medical-records';
+import cms from '@/components/clinic-management-system';
+import pricing from '@/components/pricing';
 import { core } from '@mycure/sdk';
 
 Vue.use(Router);
@@ -12,37 +18,37 @@ export default new Router({
     {
       path: '/',
       name: 'home',
-      component: Home
+      component: home
     },
     {
       path: '/privacy-policy',
       name: 'privacy-policy', 
-      component: () => import(/* webpackChunkName: 'privacy-policy' */ '@/components/privacy-policy')
+      component: privacyPolicy
     },
     {
       path: '/terms',
       name: 'terms', 
-      component: () => import(/* webpackChunkName: 'terms' */ '@/components/terms')
+      component: terms
     },
     {
       path: '/our-story',
       name: 'our-story', 
-      component: () => import(/* webpackChunkName: 'our-story' */ '@/components/our-story')
+      component: ourStory
     },
     {
       path: '/electronic-medical-records',
       name: 'electronic-medical-records', 
-      component: () => import(/* webpackChunkName: 'emr' */ '@/components/electronic-medical-records')
+      component: () => emr
     },
     {
       path: '/clinic-management-system',
       name: 'clinic-management-system', 
-      component: () => import(/* webpackChunkName: 'cms' */ '@/components/clinic-management-system')
+      component: cms
     },
     {
       path: '/pricing',
       name: 'pricing', 
-      component: () => import(/* webpackChunkName: 'pricing' */ '@/components/pricing')
+      component: pricing
     },
     {
       path: '/calendly',
