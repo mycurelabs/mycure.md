@@ -42,9 +42,9 @@
     br
     br
     v-layout(row wrap justify-center)
-      v-btn(color="info" large)
+      v-btn(color="#18c551" large)
         //- a(style="text-decoration: none" href="https://calendly.com/mycure" target="_blank").white--text
-        strong.text-none Sign Up Now
+        strong.text-none.white--text Sign Up Now
     br
     v-layout(row wrap justify-center)
       em.font-small Have a question? 

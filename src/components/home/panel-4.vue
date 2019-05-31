@@ -56,10 +56,10 @@
         br
         v-layout(row wrap justify-center)
           v-btn(
-          color="info"
+          color="#18c551"
           style="height: 60px; width: 250px"
           ).mt-3
-            strong.font-small.text-none Sign Up Now
+            strong.font-small.white--text.text-none Sign Up Now
         br
         p.text-xs-center.py-2.font-small Have questions? Give us a call: 
           strong (+63) 917 303 4350

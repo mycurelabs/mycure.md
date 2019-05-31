@@ -27,11 +27,8 @@
             br
             img(max-width="500px" src="../../assets/images/mycure-homepage-compare-mycure-complete-clinic-management-system.png" width="100%").mb-3   
         v-layout(row wrap justify-center)
-          v-btn(
-          color="info"
-          large
-          ).mt-5 
-            strong.font-small.text-none Sign Up Now
+          v-btn(color="#18c551" large).mt-5 
+            strong.font-small.text-none.white--text Sign Up Now
         p.text-xs-center.py-4.font-small Have questions? Give us a call: 
           strong (+63) 917 303 4350
     div(v-else).mc-light-grey

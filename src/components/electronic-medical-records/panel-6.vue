@@ -29,7 +29,7 @@
               span.font-small &#10003 &nbsp Medical Billing
               v-layout(row wrap).py-4
                 //- a(href="https://calendly.com/mycure" target="_blank")
-                v-btn(style="background-color: #2e9fdf; color: white; width: auto" large).text-none
+                v-btn(style="background-color: #18c551; color: white; width: auto" large).text-none
                   strong Sign Up Now
       panel6a(style="padding-top: 150px")
     div(v-else)

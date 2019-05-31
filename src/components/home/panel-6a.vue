@@ -21,7 +21,7 @@
                   br
                   span.font-small &#10003 &nbsp Medical Billing
                   v-layout(row wrap).py-4
-                    v-btn(style="background-color: #2e9fdf; color: white; width: auto" large) 
+                    v-btn(style="background-color: #18c551; color: white; width: auto" large) 
                       a(href="/electronic-medical-records")
                         strong.white--text Sign Up Now
           v-flex(xs12 md6).px-3
@@ -40,9 +40,9 @@
                 span.font-small &#10003 &nbsp Materials Management
                 br(style="line-height: 39px")
                 v-layout(row wrap).py-3
-                  v-btn(style="background-color: #2e9fdf; color: white; width: auto" large) 
-                    a(href="/clinic-management-system")
-                      strong.white--text Sign Up Now
+                  v-btn(style="background-color: #18c551; color: white; width: auto" large) 
+                      a(href="/clinic-management-system")
+                        strong.white--text Sign Up Now
       panel6b(style="padding-top: 100px")
       panel6c(style="padding-top: 100px")
 </template>

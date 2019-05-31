@@ -12,7 +12,7 @@
             br
             br
             br
-            v-btn(color="#2e9fdf" style="padding: 10px 40px 40px 40px")
+            v-btn(color="#18c551" style="padding: 10px 40px 40px 40px")
               strong.font-small.text-none.white--text Sign Up Now
           v-flex(xs12 md7 align-self-center)
             img(width="100%" src="../../assets/images/mycure-web-banner-first-panel-doctor-clinic-patients.png").right
