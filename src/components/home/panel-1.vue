@@ -6,7 +6,7 @@
           v-flex(xs12 md5 align-self-center)
             span.font-large Tools to Manage &amp; 
               br
-              | and Secure Your Clinic's
+              | Secure Your Clinic's
               br
               | Records
             br
@@ -23,21 +23,23 @@
     v-container
       v-layout(row justify-center)
         v-flex(xs12 md5)
-          font.font-large Technology 
+          font.font-mobile-large Technology 
             br
-            | to Help You Run 
+            | to Help You 
             br
-            | Your Clinic Better
+            | Run Your 
+            br
+            | Clinic Better
           br
           br
           em
-            strong.font-small - Secure Medical Records
+            strong.font-mobile-small - Secure Medical Records
             br
             | 
-            strong.font-small - Minimized Costs
+            strong.font-mobile-small - Minimized Costs
             br 
             | 
-            strong.font-small - Lesser Paperwork
+            strong.font-mobile-small - Lesser Paperwork
           br 
           br
     v-flex(xs12)
@@ -45,7 +47,7 @@
       div(style="height: 75px").mc-blue
         v-layout(row justify-center)
           a(style="padding: 20px 0")
-            strong(style="font-smallize: 25px").white--text Get Started Today    
+            strong.font-mobile-medium.white--text Get Started Today    
 </template>
 
 <script>
