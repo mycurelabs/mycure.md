@@ -40,10 +40,10 @@
             br
       v-flex(xs12)
         img(width="100%" src="../../assets/images/mycure-emr-web-banner-first-panel-doctor-clinic-patients-mobile.png")
-        div(style="height: 75px; margin-top: -1%").mc-blue
+        div(style="height: 75px; margin-top: -1%").mc-green
           v-layout(row justify-center)
             a(style="padding: 20px 0")
-              strong(style="font-size: 25px").white--text Get Started Today
+              strong(style="font-size: 25px").white--text Sign Up Now
 </template>
 
 <script>

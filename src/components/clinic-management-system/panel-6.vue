@@ -19,7 +19,7 @@
         span.font-s.pb-2 &#10003; &nbsp; &nbsp; Laboratory &amp Imaging
         span.font-s.pb-2 &#10003; &nbsp; &nbsp; Laboratory &amp Imaging
       v-layout(row justify-center)
-        v-btn(style="background-color: #2e9fdf; color: white; width: 80%; height: 60px")
+        v-btn(style="background-color: #18c551; width: 80%; height: 60px")
           a(href="/clinic-management-system")
             strong.font-m.white--text.text-none Sign Up Now
 </template>
