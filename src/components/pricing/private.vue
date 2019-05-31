@@ -12,8 +12,8 @@
             span.font-small.font-mc-grey A powerful combination of EMR, queuing, and billing features designed for physicians who are practicing solo or in groups.
             br
             br
-            v-btn(color="info" large) 
-              strong USE MYCURE FREE
+            v-btn(color="#18c551" large) 
+              strong.white--text.text-none Sign Up Now
           v-flex(xs12 md6).px-3
             img(width="100%" src="../../assets/images/mycure-pricing-emr-private-clinic.png")
         br
