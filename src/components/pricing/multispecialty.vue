@@ -4,12 +4,12 @@
       v-container
         v-layout(row justify-center)
           v-flex(xs12 md6 align-self-center).px-3
-            strong.font-large.font-mc-blue MYCURE for 
+            strong.font-medium.font-mc-blue MYCURE for 
               br
               | Multispecialty Clinics
             br
             br
-            font.font-mc-grey An all-around solution for your outpatient, multispecialty or specialized clinics that will manage your full-patient journeys with ease.
+            span.font-small.font-mc-grey An all-around solution for your outpatient, multispecialty or specialized clinics that will manage your full-patient journeys with ease.
             br
             br
             v-btn(color="info" large) 
@@ -19,7 +19,7 @@
         br
         v-layout(row)
           v-flex(xs12 md4) 
-            font.font-mc-grey 
+            span.font-small.font-mc-grey 
               strong FEATURES INCLUDED
         br
         v-layout(row wrap align-items-center)
