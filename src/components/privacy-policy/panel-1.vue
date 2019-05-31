@@ -23,7 +23,7 @@
 
 <style scoped>
   .panel-1 {
-    background-image: url('../../assets/images/mycure-clinic-background.png');
+    background-image: url('../../assets/images/mycure-clinic-background-privacy-policy.png');
     background-position: center center;
     background-size: cover;
   }
