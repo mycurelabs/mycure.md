@@ -1,6 +1,6 @@
 <template lang="pug">
   div
-    div(v-if="!$isMobile")#panel4
+    div(v-if="!$isMobile" style="margin-top: -20%")#panel4
       center
         a
           img(@click.stop="videoDialog=!videoDialog" style="max-width: 60%; overflow: hidden; margin-top: 600px;" src="../../assets/images/mycure-home-web-video-cover-most-complete-clinic-management-system.png")
@@ -18,7 +18,7 @@
                 allowfullscreen
               )
     div(v-else)
-      div.py-5.white
+      div.py-5
         v-layout(row wrap justify-center)
           strong(style="font-size: 25px").text-xs-center Does your clinic have more than 3 branches? 
             a

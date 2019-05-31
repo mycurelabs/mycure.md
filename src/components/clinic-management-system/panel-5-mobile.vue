@@ -41,7 +41,7 @@
     br
     v-layout(row wrap justify-center)
       v-btn(color="info" large) 
-        strong.text-none BOOK A DEMO
+        strong.text-none Sign Up Now
     br
     v-layout(row wrap justify-center)
       em.font-xs Have a question? 
