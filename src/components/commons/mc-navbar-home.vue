@@ -16,10 +16,10 @@
           )
             strong(style="font-size: 14px").tab LOGIN
           v-btn(
-            color="info"
+            color="#2e9fdf"
             :href="`${siginURL}/signup/private/step-1`"
           )
-            strong(style="font-size: 14px").tab SIGN UP
+            strong(style="font-size: 14px").white--text.tab SIGN UP
     div(v-else)
       v-toolbar(app flat fixed).white
         a(href="/")
