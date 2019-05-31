@@ -4,7 +4,7 @@
     panel1
     panel2
     panel3
-    panel4(style="margin-top: -25%")
+    panel4(style="margin-top: -20%")
     panel5
     mc-footer
 </template>

@@ -4,9 +4,7 @@
       v-container.px-5
         v-layout(row justify-center)
           v-flex(xs12 md5)
-            span.font-large A System That Simplifies 
-              br
-              | Work for Multispecialty Clinics
+            span(style="line-height: 65px;").font-large A System That Simplifies for Multispecialty Clinics
             br
             br
             em.font-small - Integrated Medical Records
@@ -16,12 +14,8 @@
               | - Real-time Reports
             br 
             br
-            v-btn(
-              color="info" 
-              large
-              id="showVid"
-              @click="showVid = true") 
-                strong.text-none Register Now
+            v-btn(color="#2e9fdf" style="padding: 10px 40px 40px 40px")
+              strong.font-small.white--text.text-none Sign Up Now
           v-flex(xs12 md7)
             img(width="100%" src="../../assets/images/mycure-cms-web-banner-first-panel-doctor-clinic-patients.png")
     div(v-else).white

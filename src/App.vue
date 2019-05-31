@@ -81,16 +81,24 @@ export default {
     font-size: 18px !important
   }
 
-  .font-mobile-large {
-    font-size: 48px !important
+  .font-mobile-xl {
+    font-size: 40px !important
   }
 
-  .font-mobile-medium {
-    font-size: 30px !important
+  .font-mobile-l {
+    font-size: 24px !important
   }
 
-  .font-mobile-small {
+  .font-mobile-m {
+    font-size: 18px !important
+  }
+
+  .font-mobile-s {
     font-size: 16px !important
+  }
+
+  .font-mobile-xs {
+    font-size: 12px !important
   }
 
   .hr-blue {

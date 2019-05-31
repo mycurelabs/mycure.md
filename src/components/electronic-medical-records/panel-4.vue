@@ -45,7 +45,7 @@
           large
           ).mt-5 
             strong.font-small.text-none Sign Up Now
-        p.text-xs-center.py-4.font-xs Have questions? Give us a call: 
+        p.text-xs-center.py-4.font-small Have questions? Give us a call: 
           strong (+63) 917 303 4350
     div(v-else).mc-light-grey
       v-container

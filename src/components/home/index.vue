@@ -13,7 +13,6 @@
 <script>
   import mcNavbarHome from '../commons/mc-navbar-home';
   import mcFooter from '../commons/mc-footer';
-  // import panelBeforeFooter from '../commons/panel-before-footer';
   import panel1 from './panel-1';
   import panel2 from './panel-2';
   import panel3 from './panel-3';

@@ -1,8 +1,8 @@
 <template lang="pug">
   div
     div(v-if="!$isMobile")
-      v-toolbar(app flat fixed).py-1.white 
-        v-layout(row wrap align-center style="padding: 0 6% 0 6%;")
+      v-toolbar(app flat fixed).py-1.white
+        v-layout(row wrap align-center style="padding-left: 7vw; padding-right: 7vw;")
           a(href="/").pr-4
             img(src="../../assets/images/mycure-logo.svg" height="35")
           v-btn(href="/electronic-medical-records" flat)

@@ -1,10 +1,10 @@
 <template lang="pug">
   div
-    div(v-if="!$isMobile").py-5.white
+    div(v-if="!$isMobile").pt-4.pb-5.white
       v-container.px-5
         v-layout(row justify-center)
           v-flex(xs12 md5)
-            span.font-large A Clinic System That Helps Physicians Do Greater Things
+            span(style="line-height: 65px;").font-large A Clinic System That Helps Physicians Do Greater Things
             br
             br
             em.font-small - Secure Medical Records
@@ -14,14 +14,13 @@
               | - Save Time and Costs
             br 
             br
-            v-btn(
-              color="info" 
-              large
-              id="showVid"
-              @click="showVid = true") 
-                strong.text-none Register Now
+            v-btn(color="#2e9fdf" large style="padding: 10px 40px 40px 40px")
+              strong.font-small.text-none.white--text Sign Up Now
           v-flex(xs12 md7)
-            img(width="100%" src="../../assets/images/mycure-emr-web-banner-first-panel-doctor-clinic-patients.png")
+            img(width="95%" src="../../assets/images/mycure-emr-web-banner-first-panel-doctor-clinic-patients.png").right
+      br
+      br
+      br
     div(v-else).white
       v-container
         v-layout(row justify-center)

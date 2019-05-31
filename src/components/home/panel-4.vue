@@ -1,6 +1,6 @@
 <template lang="pug">
-  div.white#panel4
-    div(v-if="!$isMobile").px-5
+  div.white
+    div(v-if="!$isMobile").px-5#panel4
       v-container.px-5
         div
           center
@@ -67,6 +67,69 @@
       //- br(style="line-height: 600px")
       div(style="margin-top: -10%")
         panel4a
+    div(v-else).mc-light-grey
+      v-container
+        div
+          center
+            span.font-mobile-xl.text-xs-center Something missing in 
+              br
+              | your clinic?
+        br
+        div
+          v-layout(column)
+            v-list(two-line).transparent.check-list
+              v-list-tile
+                v-list-tile-action
+                  div.bullet
+                    center
+                     span.white--text 1
+                v-list-tile-content
+                  span.font-small Are you having data privacy issues?
+              v-list-tile
+                v-list-tile-action
+                  div.bullet
+                    center
+                     span.white--text 2
+                v-list-tile-content
+                  span.font-small Do you need to cut on unnecessary costs?
+              v-list-tile
+                v-list-tile-action
+                  div.bullet
+                    center
+                     span.white--text 3
+                v-list-tile-content
+                  span.font-small Is your internet connection unreliable?
+              v-list-tile
+                v-list-tile-action
+                  div.bullet
+                    center
+                     span.white--text 4
+                v-list-tile-content
+                  span.font-small Do you have a duplicate or missing patient charts?
+              v-list-tile
+                v-list-tile-action
+                  div.bullet
+                    center
+                     span.white--text 5
+                v-list-tile-content
+                  span.font-small Do you have billing &amp; collection discrepancies?
+              v-list-tile
+                v-list-tile-action
+                  div.bullet
+                    center
+                     span.white--text 6
+                v-list-tile-content
+                  span.font-small Is your current system crappy and slows you down?
+        br
+        br
+        v-layout(row wrap justify-center)
+          v-btn(color="#2e9fdf" style="padding: 10px 40px 40px 40px")
+                strong.font-mobile-m.text-none.white--text Sign Up Now
+        br
+        v-layout(row wrap justify-center)
+          span.text-xs-center.font-mobile-xs Have questions? Give us a call:
+            |
+            strong (+63) 917 303 4350
 </template>
 
 <script>
