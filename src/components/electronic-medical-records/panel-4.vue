@@ -56,6 +56,11 @@
 
 <script>
   export default {
+    methods: {
+      toggleChat () {
+        window.$crisp.push(['do', 'chat:toggle']);
+      }
+    },
     data () {
       return {
         checkIcon: '../../assets/images/mycure-web-bullet-check.png'

@@ -82,6 +82,11 @@
     components: {
       panel4a
     },
+    methods: {
+      toggleChat () {
+        window.$crisp.push(['do', 'chat:toggle']);
+      }
+    },
     data () {
       return {
         videoDialog: false
