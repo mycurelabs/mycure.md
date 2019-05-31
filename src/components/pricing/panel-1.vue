@@ -48,7 +48,7 @@
       div.white
         v-layout(row).pa-3
           v-layout(column)  
-            strong.font-medium Private Practice
+            strong.font-m Private Practice
             span(style="font-size: 14px") Solo or group clinic practitioners
           v-spacer
             
@@ -62,7 +62,7 @@
       div.white
         v-layout(row).pa-3
           v-layout(column)  
-            strong.font-medium Multispecialty Clinics
+            strong.font-m Multispecialty Clinics
             span(style="font-size: 14px") One-stop, multi-staff clinics
           v-spacer
           v-icon(v-if="isMulti" size=40 @click="isMulti=!isMulti") arrow_right

@@ -71,7 +71,7 @@
       v-flex(xs12)
         v-layout(row wrap justify-center)
           strong(style="font-size: 30px").text-xs-center Does your clinic have more than 3 branches? 
-            a
+            a.font-mc-blue
               span(@click="toggleChat").toggle-chat Talk to us for custom pricing.
 </template>
 

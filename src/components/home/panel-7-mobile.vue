@@ -21,7 +21,7 @@
         v-layout(row justify-center)
           v-btn(style="background-color: #2e9fdf; color: white; width: 80%; height: 60px")
             a(href="/electronic-medical-records")
-              strong.font-m.white--text GET MYCURE FREE
+              strong.font-m.white--text.text-none Sign Up Now
       br
       br
       div
@@ -36,7 +36,7 @@
         v-layout(row justify-center)
           v-btn(style="background-color: #2e9fdf; color: white; width: 80%; height: 60px")
             a(href="/clinic-management-system")
-              strong.font-m.white--text LEARN MORE
+              strong.font-m.white--text.text-none Sign Up Now
 </template>
 
 <script scoped>

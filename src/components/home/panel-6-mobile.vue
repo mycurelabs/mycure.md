@@ -6,36 +6,44 @@
       table
         tr
           div.pl-3.py-3
-            img(src="../../assets/images/mycure-icon-check.png").mr-3
-            span.font-m Solo Practice
+            v-layout(row wrap center)
+              img(src="../../assets/images/mycure-web-bullet-check.png").mr-3
+              span.font-m Solo Practice
         tr
           div.pl-3.py-3
-            img(src="../../assets/images/mycure-icon-check.png").mr-3 
-            span.font-m Group Clinics
+            v-layout(row wrap center)
+              img(src="../../assets/images/mycure-web-bullet-check.png").mr-3 
+              span.font-m Group Clinics
         tr 
           div.pl-3.py-3
-            img(src="../../assets/images/mycure-icon-check.png").mr-3 
-            span.font-m Multi-specialty Clinics
+            v-layout(row wrap center)
+              img(src="../../assets/images/mycure-web-bullet-check.png").mr-3 
+              span.font-m Multi-specialty Clinics
         tr 
           div.pl-3.py-3
-            img(src="../../assets/images/mycure-icon-check.png").mr-3 
-            span.font-m Dermatology Clinics
+            v-layout(row wrap center)
+              img(src="../../assets/images/mycure-web-bullet-check.png").mr-3 
+              span.font-m Dermatology Clinics
         tr
           div.pl-3.py-3
-            img(src="../../assets/images/mycure-icon-check.png").mr-3 
-            span.font-m Family Clinics
+            v-layout(row wrap center)
+              img(src="../../assets/images/mycure-web-bullet-check.png").mr-3 
+              span.font-m Family Clinics
         tr 
           div.pl-3.py-3
-            img(src="../../assets/images/mycure-icon-check.png").mr-3
-            span.font-m Multi-branch Clinics
+            v-layout(row wrap center)
+              img(src="../../assets/images/mycure-web-bullet-check.png").mr-3
+              span.font-m Multi-branch Clinics
         tr
           div.pl-3.py-3
-            img(src="../../assets/images/mycure-icon-check.png").mr-3 
-            span.font-m Industrial Clinics
+            v-layout(row wrap center)
+              img(src="../../assets/images/mycure-web-bullet-check.png").mr-3 
+              span.font-m Industrial Clinics
         tr
           div.pl-3.py-3
-            img(src="../../assets/images/mycure-icon-check.png").mr-3 
-            span.font-m Dental Clinics
+            v-layout(row wrap center)
+              img(src="../../assets/images/mycure-web-bullet-check.png").mr-3 
+              span.font-m Dental Clinics
 </template>
 
 <script>

@@ -24,11 +24,11 @@
     v-container
       v-layout(row justify-center)
         v-flex(xs12 md5)
-          font.font-l Technology 
+          span(style="line-height: 55px;").font-l Tools to  
             br
-            | to Help You Run 
+            | Manage &amp; Secure Your  
             br
-            | Your Clinic Better
+            | Clinic's Records
           br
           br
           em
@@ -46,7 +46,7 @@
       div(style="height: 75px").mc-blue
         v-layout(row justify-center)
           a(style="padding: 20px 0")
-            strong(style="font-size: 25px").white--text Get Started Today   
+            strong(style="font-size: 25px").white--text Sign Up Now   
 </template>
 
 <script>

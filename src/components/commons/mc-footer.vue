@@ -69,7 +69,7 @@
       div(style="height: 75px").mc-blue
         v-layout(row justify-center style="margin-top:-2%")
           a(style="padding: 20px 0")
-            strong(style="font-size: 25px").white--text Get Started Today
+            strong(style="font-size: 25px").white--text Sign Up Now
       div.mc-dark-grey.pa-4
         mc-navbar-footer  
 </template>
