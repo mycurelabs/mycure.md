@@ -6,26 +6,32 @@
     v-layout(row wrap justify-center).pt-5
       table
         tr
+          td
+            v-layout(row wrap center) 
+              img(src="../../assets/images/mycure-web-bullet-check.png").mr-3
+              span.font-small Multispecialty Clinics
           td 
-            img(src="../../assets/images/mycure-icon-check.png").mr-3
-            span.font-small Multispecialty Clinics
-          td 
-            img(src="../../assets/images/mycure-icon-check.png").mr-3 
-            span.font-small Skin &amp Aesthetic Clinics
+            v-layout(row wrap center)
+              img(src="../../assets/images/mycure-web-bullet-check.png").mr-3 
+              span.font-small Skin &amp Aesthetic Clinics
         tr
           td 
-            img(src="../../assets/images/mycure-icon-check.png").mr-3 
-            span.font-small Outpatient Clinics
+            v-layout(row wrap center)
+              img(src="../../assets/images/mycure-web-bullet-check.png").mr-3 
+              span.font-small Outpatient Clinics
           td 
-            img(src="../../assets/images/mycure-icon-check.png").mr-3 
-            span.font-small Family Clinics
+            v-layout(row wrap center)
+              img(src="../../assets/images/mycure-web-bullet-check.png").mr-3 
+              span.font-small Family Clinics
         tr
+          td
+            v-layout(row wrap center) 
+              img(src="../../assets/images/mycure-web-bullet-check.png").mr-3 
+              span.font-small Industrial Clinics
           td 
-            img(src="../../assets/images/mycure-icon-check.png").mr-3 
-            span.font-small Industrial Clinics
-          td 
-            img(src="../../assets/images/mycure-icon-check.png").mr-3
-            span.font-small PME Clinics
+            v-layout(row wrap center)
+              img(src="../../assets/images/mycure-web-bullet-check.png").mr-3
+              span.font-small PME Clinics
     br
     br
     br
