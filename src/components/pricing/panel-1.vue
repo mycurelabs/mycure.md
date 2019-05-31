@@ -5,9 +5,11 @@
         v-container
           v-flex(xs12 md12).pt-5
             center 
-              strong.font-xl.text-xs-center.white--text Your best CMS investment yet
+              strong.font-large.text-xs-center.white--text Your best CMS investment yet
               br
-              strong.font-medium.white--text Quality clinic technology made more affordable. Only pay for what you need.
+              strong(style="font-size: 25px").white--text Quality clinic technology made more affordable. 
+                br
+                | Only pay for what you need.
               br
               br
         div      
@@ -16,18 +18,18 @@
               a(@click="isPrivate=true")
                 div.tab.pa-3.right
                   center 
-                    strong.font-medium Private Practice
+                    strong(style="font-size: 25px") Private Practice
                       br
                       | 
-                      font.font-xs.font-mc-grey Solo or group clinic practitioners
+                      font.font-small.font-mc-grey Solo or group clinic practitioners
             v-flex(xs6).px-1
               a(@click="isPrivate=false")
                 div.tab.pa-3
                   center 
-                    strong.font-medium Multispecialty Clinics
+                    strong(style="font-size: 25px") Multispecialty Clinics
                       br
                       | 
-                      font.font-xs.font-mc-grey One stop, multi-staff clinics
+                      font.font-small.font-mc-grey One stop, multi-staff clinics
       div.white  
         v-container.py-5
           private_prac(v-if="isPrivate")
