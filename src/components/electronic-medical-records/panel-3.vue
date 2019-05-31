@@ -45,7 +45,9 @@
               v-list-tile-content
                 | My previous system is old and not user-friendly
         v-layout(row wrap justify-center)
-          v-btn(color="#18c551" large).mt-5 
+          v-btn(
+            :href="`${siginURL}/signup/private/step-1`"
+            color="#18c551" large).mt-5 
             strong.font-s.text-none.white--text Sign Up Now
         p.text-xs-center.py-4.font-xs Have questions? Give us a call: 
           strong (+63) 917 303 4350
@@ -55,7 +57,7 @@
   export default {
     data () {
       return {
-        //
+        siginURL: process.env.VUE_APP_SIGNIN_URL
       };
     }    
   };

@@ -29,7 +29,11 @@
               span.font-small &#10003 &nbsp Materials Management
               v-layout(row wrap).py-4
                 //- a(href="https://calendly.com/mycure" target="_blank")
-                v-btn(color="#18c551" style="width: auto" large).text-none
+                v-btn(
+                  :href="`${siginURL}/signup/private/step-1`"
+                  color="#18c551" 
+                  style="width: auto" large
+                ).text-none
                   strong.white--text Sign Up Now
     div(v-else)
       v-container
@@ -60,7 +64,7 @@
   export default {
     data () {
       return {
-        //
+        siginURL: process.env.VUE_APP_SIGNIN_URL
       };
     }
   };

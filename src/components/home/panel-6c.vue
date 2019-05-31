@@ -3,8 +3,13 @@
     panelBeforeFooter
       img(slot="home-img" style="max-width: 90%" src="../../assets/images/mycure-web-banner-last-panel-home-doctors.png")
       span(slot="home-txt").font-medium Join thousands of other health professionals who enjoy the benefits of using technology in their practice
-      v-btn(slot="sign-up-button" color="#18c551" large) 
-        strong.text-none.white--text Sign Up Now
+      v-btn(
+        slot="sign-up-button"
+        :href="`${siginURL}/signup/private/step-1`" 
+        color="#18c551" 
+        style="padding: 25px 30px 25px 30px"
+      ) 
+        strong.font-small.text-none.white--text Sign Up Now
     v-layout(row justify-center)
         img(width="100%" height="100%" src="../../assets/images/mycure-web-banner-last-panel-health-community.png")
 </template>
@@ -18,7 +23,7 @@
     },
     data () {
       return {
-        //
+        siginURL: process.env.VUE_APP_SIGNIN_URL
       };
     }
   };

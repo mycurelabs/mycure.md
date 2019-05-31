@@ -57,6 +57,7 @@
         v-layout(row wrap justify-center)
           v-btn(
           color="#18c551"
+          :href="`${siginURL}/signup/private/step-1`"
           style="height: 60px; width: 250px"
           ).mt-3
             strong.font-small.white--text.text-none Sign Up Now
@@ -89,7 +90,8 @@
     },
     data () {
       return {
-        videoDialog: false
+        videoDialog: false,
+        siginURL: process.env.VUE_APP_SIGNIN_URL
       };
     }
   };

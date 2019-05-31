@@ -68,7 +68,7 @@
         img(width="100%" height="50%" src="../../assets/images/mycure-web-banner-last-panel-health-community-mobile.png")  
       div(style="height: 75px").mc-green
         v-layout(row justify-center style="margin-top:-2%")
-          a(style="padding: 20px 0")
+          a(:href="`${siginURL}/signup/private/step-1`" style="padding: 20px 0")
             strong(style="font-size: 25px").white--text Sign Up Now
       div.mc-dark-grey.pa-4
         mc-navbar-footer  
@@ -80,6 +80,11 @@ import mcNavbarFooter from "./mc-navbar-footer";
 export default {
   components: {
     mcNavbarFooter
+  },
+  data () {
+    return {
+      siginURL: process.env.VUE_APP_SIGNIN_URL
+    };
   }
 };
 </script>
