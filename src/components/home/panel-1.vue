@@ -24,20 +24,29 @@
     v-container
       v-layout(row justify-center)
         v-flex(xs12 md5)
-          span(style="line-height: 50px;").font-mobile-xl Tools to
+          font.font-l Technology 
             br
-            | Manage &amp; Secure Your  
+            | to Help You Run 
             br
-            | Clinic's Records 
+            | Your Clinic Better
           br
           br
-    br
+          em
+            strong.font-s - Secure Medical Records
+            br
+            | 
+            strong.font-s - Minimized Costs
+            br 
+            | 
+            strong.font-s - Lesser Paperwork
+          br 
+          br
     v-flex(xs12)
       img(width="100%" src="../../assets/images/mycure-web-banner-first-panel-doctor-clinic-patients-mobile.png")
-      div(style="height: 70px").mc-blue
+      div(style="height: 75px").mc-blue
         v-layout(row justify-center)
-          a(style="padding: 15px 0")
-            strong.font-mobile-l.white--text Sign Up Now    
+          a(style="padding: 20px 0")
+            strong(style="font-size: 25px").white--text Get Started Today   
 </template>
 
 <script>

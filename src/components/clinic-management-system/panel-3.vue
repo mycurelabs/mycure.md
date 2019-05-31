@@ -37,19 +37,19 @@
     div(v-else).mc-light-grey
       v-container
         v-layout(row justify-center)
-          span.font-large.text-xs-center Why do clinics switch to MYCURE?
+          span.font-l.text-xs-center Why do clinics switch to MYCURE?
         br
         v-layout(row wrap justify-center)
-          span.font-small.text-xs-center MYCURE smoothly integrates your patient records together from registration to billing. 
+          span.font-s.text-xs-center MYCURE smoothly integrates your patient records together from registration to billing. 
             | It simplifies record-keeping for everyone. Say goodbye to multiple, complicated systems!
         br
         br
         v-layout(column)
-          strong.font-medium.text-xs-center Other Providers
+          strong.font-m.text-xs-center Other Providers
           br
           img(src="../../assets/images/mycure-homepage-compare-other-emr-incomplete-clinic-management-system.png" width="100%").mb-3
           br
-          strong.font-medium.text-xs-center With MYCURE 
+          strong.font-m.text-xs-center With MYCURE 
               span.font-mc-blue &nbsp ✓
           br
           img(src="../../assets/images/mycure-homepage-compare-mycure-complete-clinic-management-system.png" width="100%").mb-3   

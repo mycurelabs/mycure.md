@@ -5,7 +5,9 @@
     panel2
     panel3
     panel4(style="margin-top: -20%")
-    panel5
+    panel5(v-if="!$isMobile")
+    panel5mobile(v-if="$isMobile")
+    panel6(v-if="$isMobile")
     mc-footer
 </template>
 
@@ -17,6 +19,8 @@
   import panel3 from './panel-3';
   import panel4 from './panel-4';
   import panel5 from './panel-5';
+  import panel5mobile from './panel-5-mobile';
+  import panel6 from './panel-6';
   import VueScrollTo from 'vue-scrollto';
 
   export default {
@@ -32,7 +36,9 @@
       panel2,
       panel3,
       panel4,
-      panel5
+      panel5,
+      panel5mobile,
+      panel6
     },
     mounted () {
       VueScrollTo.scrollTo(`#top`, 500, { easing: 'ease' } );

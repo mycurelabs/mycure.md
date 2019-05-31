@@ -1,7 +1,7 @@
 <template lang="pug">
-  div.transparent#panel6
-    div(style="padding-top: 150px" v-if="!$isMobile")#emrproduct
-      v-container
+  div
+    div(style="padding-top: 150px" v-if="!$isMobile").transparent#panel6
+      v-container#emrproduct
         v-flex(xs12 md12)
           v-layout(row justify-center)
             div(style="height: 508px" ).image-rounded-corner.elevation-10
@@ -34,27 +34,43 @@
       panel6a(style="padding-top: 150px")
     div(v-else)
       v-container
-        v-layout(column justify-center)
-          span.font-medium.text-xs-center "It's a great experience using MYCURE app in our rural setup. I've been through many EMR apps, but this one is the best so far." 
-          br
-          br
-          span.font-small.text-xs-center Dr. Gay Cadorna-Toledo
-          b.font-xs.text-xs-center Pediatrician, Misamis Occidental
-          span.font-xs.text-xs-center MYCURE Doctor since 2017
-      br
+        v-flex(xs12)
+          center
+            img(src="../../assets/images/mycure-icon-testimonial.png")
+            br
+            br
+            span.font-s {{ testimonial1 }}
+            br
+            br
+            strong.font-xs Dr. Jean Rivera
+            br
+            em.font-xs.font-mc-blue General Physician
+        br
+        br
+        v-flex(xs12)
+            center
+              img(src="../../assets/images/mycure-icon-testimonial.png")
+              br
+              br
+              span.font-s {{ testimonial2 }}
+              br
+              br
+              strong.font-xs Dr. Carly Mae Siamson
+              br
+              em.font-xs.font-mc-blue General Physician
       div
-        img(width="100%" src="../../assets/images/mycure-web-banner-fifth-panel-multi-specialty-clinics.png")
-        v-layout(column wrap).pt-4.pb-5.pr-5.pl-5
-          p.pb-2.font-small {{ private_title }}
-          span.font-small.pb-2 &#10003; &nbsp; &nbsp; Queuing &amp Registration
-          span.font-small.pb-2 &#10003; &nbsp; &nbsp; Patient Medical Records
-          span.font-small.pb-2 &#10003; &nbsp; &nbsp; Billing &amp Collection
-          span.font-small.pb-2 &#10003; &nbsp; &nbsp; Laboratory &amp Imaging
-          span.font-small.pb-2 &#10003; &nbsp; &nbsp; Materials &amp Management
-        v-layout(row justify-center)
-          v-btn(style="background-color: #2e9fdf; color: white; width: 80%; height: 60px")
-            a(href="https://calendly.com/mycure" target="_blank")
-              strong.font-medium.white--text BOOK A DEMO
+      img(width="100%" src="../../assets/images/mycure-web-banner-fifth-panel-private-clinic.png")
+      v-layout(column wrap).pt-4.pb-5.pr-5.pl-5
+        p.pb-2.font-s {{ private_title }}
+        span.font-s.pb-2 &#10003; &nbsp; &nbsp; Unlimited Clinics
+        span.font-s.pb-2 &#10003; &nbsp; &nbsp; 1 GB Data
+        span.font-s.pb-2 &#10003; &nbsp; &nbsp; SOAP Charting
+        span.font-s.pb-2 &#10003; &nbsp; &nbsp; Prescription Printing
+        span.font-s.pb-2 &#10003; &nbsp; &nbsp; Medical Billing
+      v-layout(row justify-center)
+        v-btn(style="background-color: #2e9fdf; color: white; width: 80%; height: 60px")
+          a(href="/electronic-medical-records")
+            strong.font-m.white--text GET MYCURE FREE
 </template>
 
 <script>
@@ -66,7 +82,8 @@
     },
     data () {
       return {
-        //
+        testimonial1: '“MYCURE provides a well organized patient data profiling with customized options for personalized encoding and with integration of lab tests, immunizations as well as growth charts that are very important for us as pediatricians for growth monitoring of our little ones. It is very convenient to use, simple, adaptable and user friendly even to my secretary.”',
+        testimonial2: '“MYCURE fulfills a long time need of physicians for accurate records of patients which they can carry with them wherever they are. It enables them also to prescribe and countercheck their prescriptions, issue medical certificate, communicate with other doctors for referrals.”'
       };
     }
   };

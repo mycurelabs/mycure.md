@@ -25,26 +25,30 @@
       v-container
         v-layout(row justify-center)
           v-flex(xs12 md5)
-            font.font-large A Clinic System That Helps Physicians Do Greater Things
+            font.font-l A Clinic System That Helps Physicians Do Greater Things
             br
             br
             em
-              strong.font-small - Secure Medical Records
+              strong.font-s - Secure Medical Records
               br
               | 
-              strong.font-small - Minimized Costs
+              strong.font-s - Minimized Costs
               br 
               | 
-              strong.font-small - Lesser Paperwork
+              strong.font-s - Lesser Paperwork
             br 
             br
       v-flex(xs12)
         img(width="100%" src="../../assets/images/mycure-emr-web-banner-first-panel-doctor-clinic-patients-mobile.png")
-        div(style="height: 50px; background-color: #96cfef; margin-top: -1%")
+        div(style="height: 50px; background-color: #96cfef")
+          v-layout(row justify-center)
+            a(style="padding: 12px 0")
+              v-icon(color="#2e9fdf") play_circle_filled
+              strong.font-s.px-2.black--text(style="text-decoration: underline").black--text WATCH VIDEO
         div(style="height: 75px").mc-blue
           v-layout(row justify-center)
             a(style="padding: 20px 0")
-              strong(style="font-size: 25px").white--text Register Now
+              strong(style="font-size: 25px").white--text Get Started Today
 </template>
 
 <script>

@@ -55,59 +55,13 @@
             v-icon(size="100px") keyboard_arrow_right
       br
     div(v-else).py-3
-      center
-        v-container
-          v-layout(justify-center)
-            v-icon(size="100px") keyboard_arrow_left
-            div    
-              //- https://ssense.github.io/vue-carousel/
-              carousel(
-                :per-page="1" 
-                :autoplay="false"
-                :loop="true"
-                :navigationEnabled="true"
-                :adjustableHeight="true"
-                paginationActiveColor="white"
-                paginationColor="grey"
-                :navigationClickTargetSize="50"
-                navigationNextLabel=" "
-                navigationPrevLabel=" "
-              ) 
-                slide(data-index="1")
-                  span.font-mobile-m {{ testimonial1 }}
-                  br
-                  br
-                  br
-                  span.font-mobile-xs Dr. Gay Cadorna-Toledo
-                  br
-                  strong.font-mobile-xs Pediatrician,
-                    | 
-                  span.font-mobile-xs Misamis Occidental
-                    br
-                    | MYCURE Doctor since 2017
-                slide(data-index="2")
-                  span.font-mobile-m {{ testimonial2 }}
-                  br
-                  br
-                  br
-                  span.font-mobile-xs Dr. Gay Cadorna-Toledo
-                  br
-                  strong.font-mobile-xs Pediatrician,
-                    | 
-                  span.font-mobile-xs Misamis Occidental
-                    br
-                    | MYCURE Doctor since 2017
-                slide(data-index="3")
-                  span.font-mobile-m {{ testimonial3 }}
-                  br
-                  br
-                  span.font-mobile-xs Dr. Nelson S. Abelardo
-                  br
-                  strong.font-mobile-xs Cardiologist,
-                    | 
-                  span.font-mobile-xs Manila Doctors Hospital
-            v-icon(size="100px") keyboard_arrow_right
-      br
+      center 
+        iframe(
+          align="middle"
+          id="ytplayer" 
+          type="text/html" width="100%" height="200"
+          src="https://www.youtube.com/embed/ZR8e-Egav0M?autoplay=0&loop=1&showinfo=0&rel=0"
+          frameborder="0")
 </template>
 
 <script>

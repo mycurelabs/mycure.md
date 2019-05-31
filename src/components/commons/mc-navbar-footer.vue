@@ -19,8 +19,10 @@
           img(src="../../assets/images/mycure-homepage-wireframe-icon-twitter.png" height="25").px-2
     div(v-else).mc-dark-grey
       div
-        a(href="/")    
-          img(src="../../assets/images/mycure-header-logo.png" height="25")
+        a(href="/")
+          v-layout(row wrap center)    
+            img(src="../../assets/images/mycure-footer-logo.svg" height="25")
+            strong.pl-2.font-mc-grey MYCURE
       br
       strong.white--text FOLLOW US
       br

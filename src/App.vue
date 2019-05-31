@@ -81,23 +81,23 @@ export default {
     font-size: 18px !important
   }
 
-  .font-mobile-xl {
+  .font-xl {
+    font-size: 60px !important
+  }
+
+  .font-l {
     font-size: 40px !important
   }
 
-  .font-mobile-l {
-    font-size: 24px !important
-  }
-
-  .font-mobile-m {
+  .font-m {
     font-size: 18px !important
   }
 
-  .font-mobile-s {
+  .font-s {
     font-size: 16px !important
   }
 
-  .font-mobile-xs {
+  .font-xs {
     font-size: 12px !important
   }
 

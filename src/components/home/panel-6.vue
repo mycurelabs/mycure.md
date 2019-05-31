@@ -1,6 +1,6 @@
 <template lang="pug">
   div
-    div(style="padding-top: 100px")#panel6
+    div(v-if="!$isMobile" style="padding-top: 100px")#panel6
       v-layout(row wrap justify-center)
         span.font-medium.text-xs-center.px-3 MYCURE works for Private and Multispecialty Clinics
       br
@@ -43,6 +43,7 @@
                 img(src="../../assets/images/mycure-web-bullet-check.png").mr-3
                 span.font-small Dental Clinics
       panel6a(style="padding-top: 100px")
+    div(v-else)
 </template>
 
 <script>
