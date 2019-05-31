@@ -1,6 +1,6 @@
 <template lang="pug">
   div
-    div(v-if="!$isMobile")
+    div(v-if="!$isMobile")#panel5
       center
         a
           img(@click.stop="videoDialog=!videoDialog" style="max-width: 60%; overflow: hidden; margin-top: 500px;" src="../../assets/images/mycure-home-web-video-cover-most-complete-clinic-management-system.png")
