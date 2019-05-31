@@ -7,33 +7,41 @@
       v-layout(row wrap justify-center).pt-5
         table
           tr
-            td 
-              img(src="../../assets/images/mycure-icon-check.png").mr-3
-              span.font-small Solo Practice
-            td 
-              img(src="../../assets/images/mycure-icon-check.png").mr-3 
-              span.font-small Group Clinics
+            td
+              v-layout(row wrap center) 
+                img(src="../../assets/images/mycure-web-bullet-check.png").mr-3
+                span.font-small Solo Practice
+            td
+              v-layout(row wrap center) 
+                img(src="../../assets/images/mycure-web-bullet-check.png").mr-3 
+                span.font-small Group Clinics
           tr
             td 
-              img(src="../../assets/images/mycure-icon-check.png").mr-3 
-              span.font-small Multispecialty Clinics
+              v-layout(row wrap center)
+                img(src="../../assets/images/mycure-web-bullet-check.png").mr-3 
+                span.font-small Multispecialty Clinics
             td 
-              img(src="../../assets/images/mycure-icon-check.png").mr-3 
-              span.font-small Dermatology Clinics
+              v-layout(row wrap center)
+                img(src="../../assets/images/mycure-web-bullet-check.png").mr-3 
+                span.font-small Dermatology Clinics
           tr
             td 
-              img(src="../../assets/images/mycure-icon-check.png").mr-3 
-              span.font-small Family Clinics
+              v-layout(row wrap center)
+                img(src="../../assets/images/mycure-web-bullet-check.png").mr-3 
+                span.font-small Family Clinics
             td 
-              img(src="../../assets/images/mycure-icon-check.png").mr-3
-              span.font-small Multi-branch Clinics
+              v-layout(row wrap center)
+                img(src="../../assets/images/mycure-web-bullet-check.png").mr-3
+                span.font-small Multi-branch Clinics
           tr
             td 
-              img(src="../../assets/images/mycure-icon-check.png").mr-3 
-              span.font-small Industrial Clinics
+              v-layout(row wrap center)
+                img(src="../../assets/images/mycure-web-bullet-check.png").mr-3 
+                span.font-small Industrial Clinics
             td 
-              img(src="../../assets/images/mycure-icon-check.png").mr-3
-              span.font-small Dental Clinics
+              v-layout(row wrap center)
+                img(src="../../assets/images/mycure-web-bullet-check.png").mr-3
+                span.font-small Dental Clinics
       panel6a(style="padding-top: 100px")
 </template>
 
@@ -63,7 +71,7 @@
   table {
     border-collapse: separate;
     border-spacing: 0;
-    width: 40%;
+    width: 50%;
   }
 
   table tr td {
