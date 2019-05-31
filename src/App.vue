@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-app#body
+  v-app(data-server-rendered="true")#app
     v-content
       router-view
 </template>
@@ -21,7 +21,7 @@ export default {
 
   @import url('https://fonts.googleapis.com/css?family=Poppins');
 
-  #body {
+  #app {
     /* max-width: 100% !important; */
     overflow-x: hidden !important;
     font-family: 'Poppins', sans-serif !important;
