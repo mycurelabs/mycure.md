@@ -39,13 +39,14 @@
                   img(src="../../assets/images/mycure-web-bullet-check.png")
                 v-list-tile-content
                   span.font-small My previous system is old and not user-friendly
+        br
         v-layout(row wrap justify-center)
           v-btn(
+            color="#18c551"
             :href="`${siginURL}/signup/private/step-1`"
-            color="#18c551" 
-            large
-          ).mt-5 
-            strong.font-small.text-none.white--text Sign Up Now
+            style="height: 60px; width: 250px"
+          ).mt-3
+            strong.font-small.white--text.text-none Sign Up Now
         p.text-xs-center.py-4.font-small Have questions? Give us a call: 
           strong (+63) 917 303 4350
     div(v-else)
