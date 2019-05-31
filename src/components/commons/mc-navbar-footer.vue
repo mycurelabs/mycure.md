@@ -2,8 +2,10 @@
   div
     div(v-if="!$isMobile")
       v-toolbar(flat color="rgba(52, 58, 64, 1)")
-        a(href="/")    
-          img(src="../../assets/images/mycure-header-logo.png" height="25")
+        a(href="/")
+          v-layout(row wrap center)    
+            img(src="../../assets/images/mycure-footer-logo.svg" height="25")
+            strong.pl-2.font-mc-grey MYCURE
         v-spacer
         a(href="https://www.facebook.com/mycure.md" target="_blank")
           img(src="../../assets/images/mycure-homepage-wireframe-icon-fb.png" height="25" href="https://google.com").px-2
