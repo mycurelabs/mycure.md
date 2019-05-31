@@ -40,8 +40,8 @@
     br
     br
     v-layout(row wrap justify-center)
-      v-btn(color="info" large) 
-        strong.text-none BOOK A DEMO
+      v-btn(color="#18c551" large) 
+        strong.text-none.white--text Sign Up Now
     br
     v-layout(row wrap justify-center)
       em.font-xs Have a question? 

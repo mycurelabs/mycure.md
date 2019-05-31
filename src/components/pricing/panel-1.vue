@@ -52,9 +52,9 @@
             span(style="font-size: 14px") Solo or group clinic practitioners
           v-spacer
             
-          v-icon(v-if="isPrivate" size=40 @click="isPrivate=!isPrivate") arrow_right
+          v-icon(v-if="!isPrivate" size=40 @click="isPrivate=!isPrivate") arrow_right
           v-icon(v-else size=40 @click="isPrivate=!isPrivate") arrow_drop_down
-        div(v-if="!isPrivate")
+        div(v-if="isPrivate")
           div.pa-3
             private_prac
 
@@ -65,9 +65,9 @@
             strong.font-m Multispecialty Clinics
             span(style="font-size: 14px") One-stop, multi-staff clinics
           v-spacer
-          v-icon(v-if="isMulti" size=40 @click="isMulti=!isMulti") arrow_right
-          v-icon(v-else size=40 @click="isMulti=!iisMulti") arrow_drop_down
-        div(v-if="!isMulti")
+          v-icon(v-if="!isMulti" size=40 @click="isMulti=!isMulti") arrow_right
+          v-icon(v-else size=40 @click="isMulti=!isMulti") arrow_drop_down
+        div(v-if="isMulti")
           div.pa-3
             multispecialty
 </template>

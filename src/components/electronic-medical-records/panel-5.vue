@@ -22,11 +22,12 @@
       v-container
         v-layout(row)
           v-flex(xs12 md12)
-            font.font-l Protect your patients' medical records with confidence
+            br
+            span.font-l Protect your patients' medical records with confidence
             br
             br
             br
-            font.font-s.mt-3 With MYCURE you'll never have to worry much about data privacy concerns. Keeping them secure is our #1  priority
+            span.font-s.mt-3 With MYCURE you'll never have to worry much about data privacy concerns. Keeping them secure is our #1  priority
             br
             br
             br

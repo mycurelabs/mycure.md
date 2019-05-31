@@ -54,19 +54,19 @@
         div
           v-flex(xs12)
             br
-            strong.font-large You are one of a kind.
+            strong.font-l You are one of a kind.
             br
             br
-            span.font-medium Highly value diversity and respect everyone’s opinions. These cultivate the way we practice honesty, transparency, and emanate integrity at all times.
+            span.font-m Highly value diversity and respect everyone’s opinions. These cultivate the way we practice honesty, transparency, and emanate integrity at all times.
         div.pt-5
           center
             img(src="../../assets/images/mycure-our-story-elton-john-values-02.png")
         div
           v-flex(xs12)
-            strong.font-large All we need is love.
+            strong.font-l All we need is love.
             br
             br
-            span.font-medium Everything starts, ends, and happens with love — be it in building great products, delivering awesomeness to customers, or strengthening the MYCURE culture.
+            span.font-m Everything starts, ends, and happens with love — be it in building great products, delivering awesomeness to customers, or strengthening the MYCURE culture.
         div.pt-5
           center
             v-flex(xs12)
@@ -74,20 +74,20 @@
         div
           v-flex(xs12)
             br
-            strong.font-large Our Mission is Our Obsession.
+            strong.font-l Our Mission is Our Obsession.
             br
             br
-            span.font-medium As passionate, fun-loving, and innovative people that we are, we dare to challenge status quo and make things happen by giving that extra mile of care in all that we do.
+            span.font-m As passionate, fun-loving, and innovative people that we are, we dare to challenge status quo and make things happen by giving that extra mile of care in all that we do.
         div.pt-5
           center
             img(src="../../assets/images/mycure-our-story-elon-musk-values-04.png")
         div
           v-flex(xs12)
             br
-            strong.font-large First Think First.
+            strong.font-l First Think First.
             br
             br
-            span.font-medium Follow the first principles thinking wherever possible. As Elon Musk said, "boil things down to the most fundamental truths and then reason up from there."
+            span.font-m Follow the first principles thinking wherever possible. As Elon Musk said, "boil things down to the most fundamental truths and then reason up from there."
 </template>
 
 <script>

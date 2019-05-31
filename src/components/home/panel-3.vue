@@ -33,20 +33,20 @@
               v-list-tile-action
                 img(src="../../assets/images/mycure-web-bullet-check.png")
               v-list-tile-content
-                | Do you have a duplicate or missing patient charts?
+                span.font-m Do you have a duplicate or missing patient charts?
             v-list-tile
               v-list-tile-action
                 img(src="../../assets/images/mycure-web-bullet-check.png")
               v-list-tile-content
-                | Do you have billing &amp; collection discrepancies?
+                span.font-m Do you have billing &amp; collection discrepancies?
             v-list-tile
               v-list-tile-action
                 img(src="../../assets/images/mycure-web-bullet-check.png")
               v-list-tile-content
-                | Is your current system crappy and slows you down?  
+                span.font-m Is your current system crappy and slows you down?  
         v-layout(row wrap justify-center)
-          v-btn(color="info" large).mt-5 
-            strong.font-s.text-none Sign Up Now
+          v-btn(color="#18c551" large).mt-5 
+            strong.font-s.white--text.text-none Sign Up Now
         p.text-xs-center.py-4.font-xs Have questions? Give us a call: 
           strong (+63) 917 303 4350
 </template>

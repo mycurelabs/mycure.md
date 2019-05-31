@@ -40,11 +40,8 @@
                 v-list-tile-content
                   | My previous system is old and not user-friendly
         v-layout(row wrap justify-center)
-          v-btn(
-          color="info"
-          large
-          ).mt-5 
-            strong.font-small.text-none Sign Up Now
+          v-btn(color="#18c551" large).mt-5 
+            strong.font-small.text-none.white--text Sign Up Now
         p.text-xs-center.py-4.font-small Have questions? Give us a call: 
           strong (+63) 917 303 4350
     div(v-else)
@@ -52,13 +49,18 @@
         v-flex(xs12 md12)
             v-layout(row wrap justify-center)
               strong(style="font-size: 25px").py-5.text-xs-center Are you a part of a group clinic? 
-                a
+                a.font-mc-blue
                   span(@click="toggleChat") Ask us how it works
 
 </template>
 
 <script>
   export default {
+    methods: {
+      toggleChat () {
+        window.$crisp.push(['do', 'chat:toggle']);
+      }
+    },
     data () {
       return {
         checkIcon: '../../assets/images/mycure-web-bullet-check.png'

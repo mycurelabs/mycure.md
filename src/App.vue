@@ -47,6 +47,10 @@ export default {
     background-color: #ffff33
   }
 
+  .mc-green {
+    background-color: #18c551
+  }
+  
   .font-mc-blue {
     color: #2e9fdf
   }
@@ -58,7 +62,6 @@ export default {
 
   .font-mc-grey {
     color: #616161;
-    
   }
 
   .font-mc-light-grey {

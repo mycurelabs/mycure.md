@@ -29,7 +29,7 @@
               span.font-small &#10003 &nbsp Medical Billing
               v-layout(row wrap).py-4
                 //- a(href="https://calendly.com/mycure" target="_blank")
-                v-btn(style="background-color: #2e9fdf; color: white; width: auto" large).text-none
+                v-btn(style="background-color: #18c551; color: white; width: auto" large).text-none
                   strong Sign Up Now
       panel6a(style="padding-top: 150px")
     div(v-else)
@@ -68,9 +68,9 @@
         span.font-s.pb-2 &#10003; &nbsp; &nbsp; Prescription Printing
         span.font-s.pb-2 &#10003; &nbsp; &nbsp; Medical Billing
       v-layout(row justify-center)
-        v-btn(style="background-color: #2e9fdf; color: white; width: 80%; height: 60px")
+        v-btn(style="background-color: #18c551; width: 80%; height: 60px")
           a(href="/electronic-medical-records")
-            strong.font-m.white--text GET MYCURE FREE
+            strong.font-m.white--text.text-none Sign Up Now
 </template>
 
 <script>

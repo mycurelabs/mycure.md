@@ -14,7 +14,7 @@
               | - Real-time Reports
             br 
             br
-            v-btn(color="#2e9fdf" style="padding: 10px 40px 40px 40px")
+            v-btn(color="#18c551" style="padding: 10px 40px 40px 40px")
               strong.font-small.white--text.text-none Sign Up Now
           v-flex(xs12 md7)
             img(width="100%" src="../../assets/images/mycure-cms-web-banner-first-panel-doctor-clinic-patients.png")
@@ -37,15 +37,10 @@
             br
       v-flex(xs12)
         img(width="100%" src="../../assets/images/mycure-cms-web-banner-first-panel-doctor-clinic-patients-mobile.png")
-        div(style="height: 50px; background-color: #96cfef")
-          v-layout(row justify-center)
-            a(style="padding: 12px 0")
-              v-icon(color="#2e9fdf") play_circle_filled
-              strong.font-s.px-2.black--text(style="text-decoration: underline").black--text WATCH VIDEO
-        div(style="height: 75px").mc-blue
+        div(style="height: 75px; margin-top: -1%").mc-green
           v-layout(row justify-center)
             a(style="padding: 20px 0")
-              strong(style="font-size: 25px").white--text Get Started Today
+              strong(style="font-size: 25px").white--text Sign Up Now
 
 </template>
 

@@ -4,7 +4,7 @@
     panel1
     panel2
     panel3
-    panel4(style="margin-top: -20%")
+    panel4
     panel5(v-if="!$isMobile")
     panel5mobile(v-if="$isMobile")
     panel6(v-if="$isMobile")
