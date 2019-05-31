@@ -1,16 +1,29 @@
 <template lang="pug">
   div
-    a(@click="goToProduct()")
-      v-layout(row wrap justify-center)     
-        v-flex(xs12 md4)
-          div.panel-2-box-a
-            b.font-small.text-center.font-mc-grey View your charts anywhere
-        v-flex(xs12 md4)
-            div.panel-2-box-b
-              b.font-small.text-center.font-mc-grey Boost your online presence
-        v-flex(xs12 md4)
-            div.panel-2-box-c
-              b.font-small.text-center.font-mc-grey Become DPA-compliant
+    div(v-if="!$isMobile")
+      a(@click="goToProduct()")
+        v-layout(row wrap justify-center)     
+          v-flex(xs12 md4)
+            div.panel-2-box-a
+              b.font-small.text-center.font-mc-grey View your charts anywhere
+          v-flex(xs12 md4)
+              div.panel-2-box-b
+                b.font-small.text-center.font-mc-grey Boost your online presence
+          v-flex(xs12 md4)
+              div.panel-2-box-c
+                b.font-small.text-center.font-mc-grey Become DPA-compliant
+    div(v-else)
+      a(@click="goToProduct()")
+        v-layout(row wrap justify-center)     
+          v-flex(xs12 md4)
+            div(style="background-color: white;").panel-2-box-a
+              b.font-small.text-center.font-mc-grey View your charts anywhere
+          v-flex(xs12 md4)
+              div(style="background-color: white;").panel-2-box-b
+                b.font-small.text-center.font-mc-grey Boost your online presence
+          v-flex(xs12 md4)
+              div(style="background-color: white;").panel-2-box-c
+                b.font-small.text-center.font-mc-grey Become DPA-compliant
 </template>
 
 <script>
