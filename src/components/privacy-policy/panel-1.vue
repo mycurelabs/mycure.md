@@ -3,10 +3,6 @@
     v-container
       v-layout(row wrap align-center).panel-1-row
         v-flex(xs12 md12).text-xs-center 
-          h5.font-small.mb-1 Last Updated | March 6, 2018
-          div.hr-blue
-          br
-          br
           h1(v-if="!$isMobile").font-large Privacy Policy
           h1(v-else).font-large Privacy Policy
 </template>
