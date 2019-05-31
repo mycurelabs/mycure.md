@@ -81,6 +81,18 @@ export default {
     font-size: 18px !important
   }
 
+  .font-mobile-large {
+    font-size: 48px !important
+  }
+
+  .font-mobile-medium {
+    font-size: 30px !important
+  }
+
+  .font-mobile-small {
+    font-size: 16px !important
+  }
+
   .hr-blue {
   height: 2px;
   width: 150px;
