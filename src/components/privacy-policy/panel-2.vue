@@ -123,11 +123,15 @@
 
 <style scoped>
   p {
-    /* font-size: 16px; */
+    font-size: 18px;
     text-align: justify;
   }
 
+  h2 {
+    font-size: 26px;
+  }
+
   ul li {
-    font-size: 15px;
+    font-size: 18px;
   }
 </style>
