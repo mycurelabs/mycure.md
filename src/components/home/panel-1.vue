@@ -12,7 +12,11 @@
             br
             br
             br
-            v-btn(:href="`${siginURL}/signup/private/step-1`" color="#18c551" style="padding: 25px 30px 25px 30px") 
+            v-btn(
+              :href="`${siginURL}/signup/private/step-1`" 
+              color="#18c551" 
+              style="padding: 25px 30px 25px 30px"
+            ) 
               strong.font-small.text-none.white--text Sign Up Now
           v-flex(xs12 md7 align-self-center)
             img(width="100%" src="../../assets/images/mycure-web-banner-first-panel-doctor-clinic-patients.png").right

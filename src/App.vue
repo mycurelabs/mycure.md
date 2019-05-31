@@ -22,7 +22,7 @@ export default {
   @import url('https://fonts.googleapis.com/css?family=Poppins');
 
   #app {
-    /* max-width: 100% !important; */
+    max-width: 100% !important;
     overflow-x: hidden !important;
     font-family: 'Poppins', sans-serif !important;
   };
@@ -71,7 +71,7 @@ export default {
   .font-mc-white {
     color: #ffffff
   }
-
+  
   .font-large {
     font-size: 60px !important
   }
@@ -83,7 +83,7 @@ export default {
   .font-small {
     font-size: 18px !important
   }
-
+  /* for mobile */
   .font-xl {
     font-size: 60px !important
   }
