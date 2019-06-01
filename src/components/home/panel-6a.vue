@@ -21,9 +21,12 @@
                   br
                   span.font-small &#10003 &nbsp Medical Billing
                   v-layout(row wrap).py-4
-                    v-btn(style="background-color: #18c551; color: white; width: auto" large) 
-                      a(href="/electronic-medical-records")
-                        strong.white--text Sign Up Now
+                    v-btn(
+                      :href="`${siginURL}/signup/private/step-1`"
+                      style="background-color: #18c551; color: white; width: auto" 
+                      large
+                    ) 
+                      strong.white--text Sign Up Now
           v-flex(xs12 md6).px-3
             div(style="width: 75%").left
               img(width="80%" src="../../assets/images/mycure-web-banner-fifth-panel-multi-specialty-clinics.png")
@@ -40,9 +43,12 @@
                 span.font-small &#10003 &nbsp Materials Management
                 br(style="line-height: 39px")
                 v-layout(row wrap).py-3
-                  v-btn(style="background-color: #18c551; color: white; width: auto" large) 
-                      a(href="/clinic-management-system")
-                        strong.white--text Sign Up Now
+                  v-btn(
+                      :href="`${siginURL}/signup/private/step-1`"
+                      style="background-color: #18c551; color: white; width: auto" 
+                      large
+                    )
+                      strong.white--text Sign Up Now
       panel6b(style="padding-top: 100px")
       panel6c(style="padding-top: 100px")
 </template>
@@ -59,7 +65,8 @@
     data () {
       return {
           private_title: 'Get a powerful combination of features designed for physicians who are practicing solo or in groups.',
-          multispecialty_title: 'An all-around solution for your outpatient, multispecialty or specialized clinics that will manage your full-patient journeys with ease.'
+          multispecialty_title: 'An all-around solution for your outpatient, multispecialty or specialized clinics that will manage your full-patient journeys with ease.',
+          siginURL: process.env.VUE_APP_SIGNIN_URL
       };
     }
   };

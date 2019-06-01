@@ -168,10 +168,15 @@
 <style scoped>
   p {
     text-align: justify;
+    font-size: 18px;
+  }
+
+  h2 {
+    font-size: 26px;
   }
 
   ul li {
-    font-size: 15px;
+    font-size: 18px;
   }
 
   a:link {

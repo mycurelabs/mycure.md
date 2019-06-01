@@ -40,7 +40,9 @@
     br
     br
     v-layout(row wrap justify-center)
-      v-btn(color="#18c551" large) 
+      v-btn(
+        :href="`${siginURL}/signup/private/step-1`"
+        color="#18c551" large) 
         strong.text-none.white--text Sign Up Now
     br
     v-layout(row wrap justify-center)
@@ -53,7 +55,7 @@
   export default {
     data () {
       return {
-        //
+        siginURL: process.env.VUE_APP_SIGNIN_URL
       };
     },
     methods: {

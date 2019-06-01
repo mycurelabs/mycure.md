@@ -26,9 +26,14 @@
             br
             br
             img(max-width="500px" src="../../assets/images/mycure-homepage-compare-mycure-complete-clinic-management-system.png" width="100%").mb-3   
+        br
         v-layout(row wrap justify-center)
-          v-btn(color="#18c551" large).mt-5 
-            strong.font-small.text-none.white--text Sign Up Now
+          v-btn(
+            color="#18c551"
+            :href="`${siginURL}/signup/private/step-1`"
+            style="height: 60px; width: 250px"
+          ).mt-3
+            strong.font-small.white--text.text-none Sign Up Now
         p.text-xs-center.py-4.font-small Have questions? Give us a call: 
           strong (+63) 917 303 4350
     div(v-else).mc-light-grey
@@ -62,7 +67,8 @@
     },
     data () {
       return {
-        checkIcon: '../../assets/images/mycure-icon-check.png'
+        checkIcon: '../../assets/images/mycure-icon-check.png',
+        siginURL: process.env.VUE_APP_SIGNIN_URL
       };
     }
   };

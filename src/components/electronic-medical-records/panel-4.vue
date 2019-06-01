@@ -11,37 +11,42 @@
                 v-list-tile-action
                   img(src="../../assets/images/mycure-web-bullet-check.png")
                 v-list-tile-content
-                  | I've no secretary to help with record keeping
+                  span.font-small I've no secretary to help with record keeping
               v-list-tile
                 v-list-tile-action
                   img(src="../../assets/images/mycure-web-bullet-check.png")
                 v-list-tile-content
-                  | My patients can't read my scribbly handwriting!
+                  span.font-small My patients can't read my scribbly handwriting!
               v-list-tile
                 v-list-tile-action
                   img(src="../../assets/images/mycure-web-bullet-check.png")
                 v-list-tile-content
-                  | Paper charts are very difficult to search &amp filter
+                  span.font-small Paper charts are very difficult to search &amp filter
           v-flex(xs12 md4)
             v-list(two-line).check-list.white
               v-list-tile
                 v-list-tile-action
                   img(src="../../assets/images/mycure-web-bullet-check.png")
                 v-list-tile-content
-                  | Cloud is a much safer place to backup my charts
+                  span.font-small Cloud is a much safer place to backup my charts
               v-list-tile
                 v-list-tile-action
                   img(src="../../assets/images/mycure-web-bullet-check.png")
                 v-list-tile-content
-                  | I have no idea how much HMOs owe me
+                  span.font-small I have no idea how much HMOs owe me
               v-list-tile
                 v-list-tile-action
                   img(src="../../assets/images/mycure-web-bullet-check.png")
                 v-list-tile-content
-                  | My previous system is old and not user-friendly
+                  span.font-small My previous system is old and not user-friendly
+        br
         v-layout(row wrap justify-center)
-          v-btn(color="#18c551" large).mt-5 
-            strong.font-small.text-none.white--text Sign Up Now
+          v-btn(
+            color="#18c551"
+            :href="`${siginURL}/signup/private/step-1`"
+            style="height: 60px; width: 250px"
+          ).mt-3
+            strong.font-small.white--text.text-none Sign Up Now
         p.text-xs-center.py-4.font-small Have questions? Give us a call: 
           strong (+63) 917 303 4350
     div(v-else)
@@ -63,7 +68,8 @@
     },
     data () {
       return {
-        checkIcon: '../../assets/images/mycure-web-bullet-check.png'
+        checkIcon: '../../assets/images/mycure-web-bullet-check.png',
+        siginURL: process.env.VUE_APP_SIGNIN_URL
       };
     }
   };

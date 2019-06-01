@@ -12,7 +12,11 @@
             br
             br
             br
-            v-btn(color="#18c551" style="padding: 10px 40px 40px 40px")
+            v-btn(
+              :href="`${siginURL}/signup/private/step-1`" 
+              color="#18c551" 
+              style="padding: 25px 30px 25px 30px"
+            ) 
               strong.font-small.text-none.white--text Sign Up Now
           v-flex(xs12 md7 align-self-center)
             img(width="100%" src="../../assets/images/mycure-web-banner-first-panel-doctor-clinic-patients.png").right
@@ -45,7 +49,7 @@
       img(width="100%" src="../../assets/images/mycure-web-banner-first-panel-doctor-clinic-patients-mobile.png")
       div(style="height: 75px").mc-green
         v-layout(row justify-center)
-          a(style="padding: 20px 0")
+          a(:href="`${siginURL}/signup/private/step-1`" style="padding: 20px 0; text-decoration: none")
             strong(style="font-size: 25px").white--text Sign Up Now   
 </template>
 
@@ -53,7 +57,8 @@
   export default {
     data () {
         return {
-          showVid: false
+          showVid: false,
+          siginURL: process.env.VUE_APP_SIGNIN_URL
         };
       },
   };

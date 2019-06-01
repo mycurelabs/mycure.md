@@ -19,9 +19,10 @@
           span.font-s.pb-2 &#10003; &nbsp; &nbsp; Prescription Printing
           span.font-s.pb-2 &#10003; &nbsp; &nbsp; Medical Billing
         v-layout(row justify-center)
-          v-btn(style="background-color: #18c551; width: 80%; height: 60px")
-            a(href="/electronic-medical-records")
-              strong.font-m.white--text.text-none Sign Up Now
+          v-btn(
+            :href="`${siginURL}/signup/private/step-1`"
+            style="background-color: #18c551; width: 80%; height: 60px")
+            strong.font-m.white--text.text-none Sign Up Now
       br
       br
       div
@@ -34,9 +35,10 @@
           span.font-s.pb-2 &#10003; &nbsp; &nbsp; Laboratory &amp Imaging
           span.font-s.pb-2 &#10003; &nbsp; &nbsp; Laboratory &amp Imaging
         v-layout(row justify-center)
-          v-btn(style="background-color: #18c551; width: 80%; height: 60px")
-            a(href="/clinic-management-system")
-              strong.font-m.white--text.text-none Sign Up Now
+          v-btn(
+            :href="`${siginURL}/signup/private/step-1`"
+            style="background-color: #18c551; width: 80%; height: 60px")
+            strong.font-m.white--text.text-none Sign Up Now
 </template>
 
 <script scoped>
@@ -44,7 +46,8 @@
     data () {
       return {
           private_title: 'Get a powerful combination of features designed for physicians who are practicing solo or in groups.',
-          multispecialty_title: 'An all-around solution for your outpatient, multispecialty or specialized clinics that will manage your full-patient journeys with ease.'
+          multispecialty_title: 'An all-around solution for your outpatient, multispecialty or specialized clinics that will manage your full-patient journeys with ease.',
+          siginURL: process.env.VUE_APP_SIGNIN_URL
       };
     }
   };

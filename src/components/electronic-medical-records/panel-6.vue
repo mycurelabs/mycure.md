@@ -28,8 +28,7 @@
               br
               span.font-small &#10003 &nbsp Medical Billing
               v-layout(row wrap).py-4
-                //- a(href="https://calendly.com/mycure" target="_blank")
-                v-btn(style="background-color: #18c551; color: white; width: auto" large).text-none
+                v-btn(:href="`${siginURL}/signup/private/step-1`" style="background-color: #18c551; color: white; width: auto" large).text-none
                   strong Sign Up Now
       panel6a(style="padding-top: 150px")
     div(v-else)
@@ -69,7 +68,7 @@
         span.font-s.pb-2 &#10003; &nbsp; &nbsp; Medical Billing
       v-layout(row justify-center)
         v-btn(style="background-color: #18c551; width: 80%; height: 60px")
-          a(href="/electronic-medical-records")
+          a(:href="`${siginURL}/signup/private/step-1`")
             strong.font-m.white--text.text-none Sign Up Now
 </template>
 
@@ -83,7 +82,8 @@
     data () {
       return {
         testimonial1: '“MYCURE provides a well organized patient data profiling with customized options for personalized encoding and with integration of lab tests, immunizations as well as growth charts that are very important for us as pediatricians for growth monitoring of our little ones. It is very convenient to use, simple, adaptable and user friendly even to my secretary.”',
-        testimonial2: '“MYCURE fulfills a long time need of physicians for accurate records of patients which they can carry with them wherever they are. It enables them also to prescribe and countercheck their prescriptions, issue medical certificate, communicate with other doctors for referrals.”'
+        testimonial2: '“MYCURE fulfills a long time need of physicians for accurate records of patients which they can carry with them wherever they are. It enables them also to prescribe and countercheck their prescriptions, issue medical certificate, communicate with other doctors for referrals.”',
+        siginURL: process.env.VUE_APP_SIGNIN_URL
       };
     }
   };

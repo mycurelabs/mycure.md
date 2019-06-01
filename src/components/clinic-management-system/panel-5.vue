@@ -42,9 +42,12 @@
     br
     br
     v-layout(row wrap justify-center)
-      v-btn(color="#18c551" large)
-        //- a(style="text-decoration: none" href="https://calendly.com/mycure" target="_blank").white--text
-        strong.text-none.white--text Sign Up Now
+      v-btn(
+        :href="`${siginURL}/signup/private/step-1`"
+        color="#18c551" 
+        large
+      )
+        strong.text-none.white--text.font-small Sign Up Now
     br
     v-layout(row wrap justify-center)
       em.font-small Have a question? 
@@ -61,11 +64,12 @@
   export default {
     components: {
       panel5a,
-      panel5b
+      panel5b,
+      
     },
     data () {
       return {
-        //
+        siginURL: process.env.VUE_APP_SIGNIN_URL
       };
     },
     methods: {
