@@ -52,49 +52,49 @@ export default {
           text: 'Multispecialty Clinics',
           content: 'One-stop, multi-staff clinics that provide ambulatory care and ancillary services',
           buttonText: 'Sign Up',
-          link: 'https://accounts-v4.mycure.md/create-account-multi?type=multi'
+          link: 'https://accounts.mycure.md/signup/multi-specialty/step-1'
         },
         {
           image: require('../../assets/images/v4/mycure-home-products-icon-outpatient-clinics.png'),
           text: 'Outpatient Clinics',
           content: 'Hospital-based clinics that provide outpatient consultation services from various specialists',
           buttonText: 'Sign Up',
-          link: 'https://accounts-v4.mycure.md/create-account-multi?type=multi'
+          link: 'https://accounts.mycure.md/signup/multi-specialty/step-1'
         },
         {
           image: require('../../assets/images/v4/mycure-home-products-icon-industrial-clinics.png'),
           text: 'Industrial Clinics',
           content: 'Primary clinics inside companies, schools, BPOs, and other industries covered by OSHS',
           buttonText: 'Sign Up',
-          link: 'https://accounts-v4.mycure.md/create-account-multi?type=multi'
+          link: 'https://accounts.mycure.md/signup/multi-specialty/step-1'
         },
         {
           image: require('../../assets/images/v4/mycure-home-products-icon-aesthetic-clinics.png'),
           text: 'Skin & Aesthetic Clinics',
           content: 'Specialized for clinics that offer aesthetic procedures and dermatological services',
           buttonText: 'Sign Up',
-          link: 'https://accounts-v4.mycure.md/create-account-multi?type=multi'
+          link: 'https://accounts.mycure.md/signup/multi-specialty/step-1'
         },
         {
           image: require('../../assets/images/v4/mycure-home-products-icon-pme-clinics.png'),
           text: 'PME Clinics',
           content: 'Clinics specializing in Physical Medical Exam (PME) services.',
           buttonText: 'Sign Up',
-          link: 'https://accounts-v4.mycure.md/create-account-multi?type=multi'
+          link: 'https://accounts.mycure.md/signup/multi-specialty/step-1'
         },
         {
           image: require('../../assets/images/v4/mycure-home-products-icon-group-clinics.png'),
           text: 'Group Clinics',
           content: 'Managed by a group of physicians practicing together and assisted by one or more secretaries',
           buttonText: 'Sign Up',
-          link: 'https://accounts-v4.mycure.md/create-account-group?type=group'
+          link: 'https://accounts.mycure.md/signup/private/step-1?origin=website'
         },
         {
           image: require('../../assets/images/v4/mycure-home-products-icon-individual-clinics.png'),
           text: 'Individual Clinics',
           content: 'Physicians practicing independently in one or more clinic locations',
           buttonText: 'Sign Up',
-          link: 'https://accounts-v4.mycure.md/choose-plan?type=individual'
+          link: 'https://accounts.mycure.md/signup/private/step-1?origin=website'
         },
         {
           isMoreButton: true,

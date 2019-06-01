@@ -88,7 +88,7 @@ export default new Router({
       path: '/login',
       name: 'login',
       beforeEnter (to, from, next) {
-        window.open('https://accounts-v4.mycure.md');
+        window.open('https://accounts.mycure.md/');
         next({name: from.name || 'home'});
       }
     },
@@ -96,7 +96,7 @@ export default new Router({
       path: '/join-today',
       name: 'join-today',
       beforeEnter (to, from, next) {
-        window.open('https://accounts-v4.mycure.md/signup/');
+        window.open('https://accounts.mycure.md/signup/choose');
         next({name: from.name || 'home'});
       }
     },
@@ -104,7 +104,7 @@ export default new Router({
       path: '/join-today-doctors',
       name: 'join-today-doctors',
       beforeEnter (to, from, next) {
-        window.open('https://accounts-v4.mycure.md/choose-plan?type=individual');
+        window.open('https://accounts.mycure.md/signup/private/step-1?origin=website');
         next({name: from.name || 'home'});
       }
     },
@@ -192,7 +192,7 @@ export default new Router({
       path: '/signup-individual',
       name: 'signup-individual',
       beforeEnter (to, from, next) {
-        window.open('https://accounts-v4.mycure.md/choose-plan?type=individual');
+        window.open('https://accounts.mycure.md/signup/private/step-1?origin=website');
         next({name: from.name || 'home'});
       }
     },
@@ -200,7 +200,7 @@ export default new Router({
       path: '/signup-group',
       name: 'signup-group',
       beforeEnter (to, from, next) {
-        window.open('https://accounts-v4.mycure.md/create-account-group?type=group');
+        window.open('https://accounts.mycure.md/signup/private/step-1');
         next({name: from.name || 'home'});
       }
     },
@@ -208,7 +208,7 @@ export default new Router({
       path: '/signup-multi',
       name: 'signup-multi',
       beforeEnter (to, from, next) {
-        window.open('https://accounts-v4.mycure.md/create-account-multi?type=multi');
+        window.open('https://accounts.mycure.md/signup/multi-specialty/step-1');
         next({name: from.name || 'home'});
       }
     },
@@ -224,7 +224,7 @@ export default new Router({
       path: '/arabica-link',
       name: 'arabica-link',
       beforeEnter (to, from, next) {
-        window.open('https://accounts-v4.mycure.md/create-account-individual?type=individual&plan=arabica');
+        window.open('https://accounts.mycure.md/signup/private/step-1?origin=website');
         next({name: from.name || 'home'});
       }
     },
@@ -232,7 +232,7 @@ export default new Router({
       path: '/robusta-link',
       name: 'robusta-link',
       beforeEnter (to, from, next) {
-        window.open('https://accounts-v4.mycure.md/create-account-individual?type=individual&plan=robusta');
+        window.open('https://accounts.mycure.md/signup/private/step-1');
         next({name: from.name || 'home'});
       }
     },
@@ -240,7 +240,7 @@ export default new Router({
       path: '/liberica-link',
       name: 'liberica-link',
       beforeEnter (to, from, next) {
-        window.open('https://accounts-v4.mycure.md/create-account-individual?type=individual&plan=liberica');
+        window.open('https://accounts.mycure.md/signup/private/step-1');
         next({name: from.name || 'home'});
       }
     },

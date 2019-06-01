@@ -39,7 +39,7 @@
             | empowers you to sync your clinical records together and store them safely in the cloud while running locally! 
           p().d-block.d-md-none 
           br
-          b-button(variant="primary" size="sm" href="https://accounts-v4.mycure.md/create-account-multi?type=multi" target="_blank") GET STARTED
+          b-button(variant="primary" size="sm" href="https://accounts.mycure.md/signup/multi-specialty/step-1" target="_blank") GET STARTED
           br
           b-button(variant="transparent" size="sm" v-b-modal="'cmsVid'" style="color: #0099cc; background-color: transparent;").pl-0.mt-3 Watch how it works ►
           

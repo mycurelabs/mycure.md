@@ -16,7 +16,7 @@
                 span.badge.badge-success NEW
               b-nav-item(href="" :to="{name: 'our-story'}") OUR STORY
               b-nav-item(href="" @click="toggleChat") CONTACT US
-              a(href="https://accounts-v4.mycure.md" target="_blank")#login-link LOG IN
+              a(href="https://accounts.mycure.md" target="_blank")#login-link LOG IN
               //b-button(variant="outline-primary" size="sm" :to="{name: 'signup'}")#signup-button SIGN UP
               b-button(variant="primary" size="sm" :to="{name: 'signup'}")#signup-button SIGN UP
 </template>
