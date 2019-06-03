@@ -1,20 +1,29 @@
 <template lang="pug">
   div
     div(v-if="!$isMobile").white
-      v-container(justify-center fill-height).px-5.panel-1
-        v-layout(row justify-center)
-          v-flex(xs12 md6 align-self-center)
-            h1(style="line-height: 65px;").font-large A Clinic System That Helps Physicians Do Greater Things
-            br 
-            br
-            v-btn(
-              :href="`${siginURL}/signup/private/step-1`" 
-              color="#18c551" 
-              style="padding: 25px 30px 25px 30px"
-            )
-              strong.font-small.text-none.white--text Sign Up Now
-          v-flex(xs12 md6 align-self-center)
-            img(width="95%" src="../../assets/images/mycure-emr-web-banner-first-panel-doctor-clinic-patients.png").right
+      v-container(align-center fill-height style="padding-top: 70px").px-5.panel-1
+        v-container
+          v-layout(row justify-center).yellow
+            v-flex(xs12 md6 align-self-end).blue
+              h1(style="line-height: 65px;").font-large A Clinic 
+                br
+                | System That 
+                br
+                | Helps 
+                br
+                | Physicians Do 
+                br
+                | Greater Things
+              br 
+              br
+              v-btn(
+                :href="`${siginURL}/signup/private/step-1`" 
+                color="#18c551" 
+                style="padding: 25px 30px 25px 30px"
+              )
+                strong.font-small.text-none.white--text Sign Up Now
+            v-flex(xs12 md6 align-self-center).red
+              img(width="100%" src="../../assets/images/mycure-emr-web-banner-first-panel-doctor-clinic-patients.png")
     div(v-else).white
       v-container
         v-layout(row justify-center)

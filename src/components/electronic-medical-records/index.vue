@@ -1,7 +1,7 @@
 <template lang="pug">
   div.white#top
     mc-navbar-home
-    panel1(style="padding-top: 6%")
+    panel1
     panel2
     panel3
     panel4
