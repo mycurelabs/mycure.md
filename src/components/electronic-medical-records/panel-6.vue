@@ -60,7 +60,7 @@
       div
       img(width="100%" src="../../assets/images/mycure-web-banner-fifth-panel-private-clinic.png")
       v-layout(column wrap).pt-4.pb-5.pr-5.pl-5
-        p.pb-2.font-s {{ private_title }}
+        //- p.pb-2.font-s {{ private_title }}
         span.font-s.pb-2 &#10003; &nbsp; &nbsp; Unlimited Clinics
         span.font-s.pb-2 &#10003; &nbsp; &nbsp; 1 GB Data
         span.font-s.pb-2 &#10003; &nbsp; &nbsp; SOAP Charting
