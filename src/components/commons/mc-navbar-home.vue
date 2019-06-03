@@ -6,9 +6,9 @@
           a(href="/").pr-4
             img(src="../../assets/images/mycure-logo.svg" height="35")
           v-btn(href="/electronic-medical-records" flat)
-            strong(style="font-size: 14px").tab FOR PRIVATE PRACTICE
+            strong(style="font-size: 14px").tab.text-none Private Practice
           v-btn(href="/clinic-management-system" flat)
-            strong(style="font-size: 14px").tab FOR MULTISPECIALTY CLINICS
+            strong(style="font-size: 14px").tab.text-none Multi-specialty Clinics
           v-spacer
           v-btn(
             flat
