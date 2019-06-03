@@ -1,7 +1,7 @@
 <template lang="pug">
   div
     div(v-if="!$isMobile")
-      div.panel1
+      div(style="padding-top: 70px").panel1
         v-container
           v-flex(xs12 md12).pt-5
             center 
