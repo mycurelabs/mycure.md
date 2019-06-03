@@ -5,13 +5,13 @@
         v-layout(row wrap justify-center)
           v-flex(xs12 md4)
             div.panel-2-box-a
-              strong.font-small.text-center.font-mc-grey Serve more patients
+              strong.font-small.text-center.font-mc-blue Serve more patients
           v-flex(xs12 md4)
             div.panel-2-box-b
-              strong.font-small.text-center.font-mc-grey Comply to Data Privacy Law
+              strong.font-small.text-center.font-mc-blue Comply to Data Privacy Law
           v-flex(xs12 md4)
             div.panel-2-box-c
-              strong.font-small.text-center.font-mc-grey Works Offline
+              strong.font-small.text-center.font-mc-blue Works Offline
     div(v-else)
       a(@click="goToProducts()")
         v-layout(row wrap justify-center)
