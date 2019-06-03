@@ -38,7 +38,9 @@ export default new Router({
     {
       path: '/electronic-medical-records',
       name: 'electronic-medical-records', 
-      component: () => emr
+      // TODO: temporary change only revert back to component: () => emr for prerendering
+      // component: () => emr
+      component: emr
     },
     {
       path: '/clinic-management-system',
