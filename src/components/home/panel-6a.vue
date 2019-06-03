@@ -68,7 +68,7 @@
     data () {
       return {
           private_title: 'Get a powerful combination of features designed for physicians who are practicing solo or in groups.',
-          multispecialty_title: 'An all-around solution for your outpatient, multispecialty or specialized clinics that will manage your full-patient journeys with ease.',
+          multispecialty_title: 'An all-around solution for your outpatient, multi-specialty or specialized clinics that will manage your full-patient journeys with ease.',
           siginURL: process.env.VUE_APP_SIGNIN_URL
       };
     }

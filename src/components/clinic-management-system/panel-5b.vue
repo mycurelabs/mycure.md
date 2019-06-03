@@ -2,7 +2,7 @@
   div
     panelBeforeFooter
       img(slot="cms-img" style="max-width: 90%" src="../../assets/images/mycure_web_banner_last_panel_doctor.png")
-      span(slot="cms-txt").font-medium Because we believe your clinic can stand out and be its best everyday.
+      span(slot="cms-txt").font-medium.lh-title Because we believe your clinic can stand out and be its best everyday.
       span(slot="cms-sub-txt").font-small Experience what you can do more with MYCURE technology by your side.
       v-btn(
         slot="sign-up-button"

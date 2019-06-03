@@ -26,7 +26,7 @@
               a(@click="isPrivate=false")
                 div.tab.pa-3
                   center 
-                    strong(style="font-size: 25px") Multispecialty Clinics
+                    strong(style="font-size: 25px") Multi-specialty Clinics
                       br
                       | 
                       font.font-small.font-mc-grey One stop, multi-staff clinics
@@ -62,7 +62,7 @@
       div.white
         v-layout(row).pa-3
           v-layout(column)  
-            strong.font-m Multispecialty Clinics
+            strong.font-m Multi-specialty Clinics
             span(style="font-size: 14px") One-stop, multi-staff clinics
           v-spacer
           v-icon(v-if="!isMulti" size=40 @click="isMulti=!isMulti") arrow_right

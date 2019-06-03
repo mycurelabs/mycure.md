@@ -12,7 +12,7 @@
     div
       img(width="100%" src="../../assets/images/mycure-web-banner-fifth-panel-multi-specialty-clinics.png")
       v-layout(column wrap).pt-4.pb-5.pr-5.pl-5
-        p.pb-2.font-s {{ private_title }}
+        //- p.pb-2.font-s {{ private_title }}
         span.font-s.pb-2 &#10003; &nbsp; &nbsp; Queuing &amp Registration
         span.font-s.pb-2 &#10003; &nbsp; &nbsp; Patient Medical Records
         span.font-s.pb-2 &#10003; &nbsp; &nbsp; Billing &amp Collection

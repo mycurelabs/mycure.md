@@ -1,7 +1,7 @@
 <template lang="pug">
   div(style="padding-top: 100px").transparent#panel5
     v-layout(row wrap justify-center)
-      font.font-medium.text-xs-center Designed for clinics of all shapes and sizes.
+      font.font-medium.lh-title.text-xs-center Designed for clinics of all shapes and sizes.
     br
     v-layout(row wrap justify-center).pt-5
       table
@@ -9,7 +9,7 @@
           td
             v-layout(row wrap center) 
               img(src="../../assets/images/mycure-web-bullet-check.png").mr-3
-              span.font-small Multispecialty Clinics
+              span.font-small Multi-specialty Clinics
           td 
             v-layout(row wrap center)
               img(src="../../assets/images/mycure-web-bullet-check.png").mr-3 

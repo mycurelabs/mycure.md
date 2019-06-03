@@ -77,7 +77,7 @@ export default {
   }
 
   .font-medium {
-    font-size: 48px !important
+    font-size: 48px !important;
   }
 
   .font-small {
@@ -103,6 +103,10 @@ export default {
 
   .font-xs {
     font-size: 12px !important
+  }
+
+  .lh-title {
+    line-height: 1.25em !important
   }
 
   .hr-blue {

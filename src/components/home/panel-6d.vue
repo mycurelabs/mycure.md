@@ -2,13 +2,13 @@
   div
     panelBeforeFooter
       img(slot="home-img" style="max-width: 90%" src="../../assets/images/mycure-web-banner-last-panel-home-doctors.png")
-      span(slot="home-txt" style="font-size: 36px") Join thousands of other health professionals who enjoy the benefits of using technology in their practice
+      span(slot="home-txt" style="font-size: 36px").lh-title Join thousands of other health professionals who enjoy the benefits of using technology in their practice
       v-btn(
         slot="sign-up-button"
         :href="`${siginURL}/signup/private/step-1`" 
         color="#18c551" 
-        style="padding: 25px 30px 25px 30px"
-      ) 
+        style="padding: 25px 30px 25px 30px;"
+      ).mt-0
         strong.font-small.text-none.white--text Sign Up Now
     v-layout(row justify-center)
         img(width="100%" height="100%" src="../../assets/images/mycure-web-banner-last-panel-health-community.png")

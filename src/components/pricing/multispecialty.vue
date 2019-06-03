@@ -6,10 +6,10 @@
           v-flex(xs12 md6 align-self-center).px-3
             strong.font-medium.font-mc-blue MYCURE for 
               br
-              | Multispecialty Clinics
+              | Multi-specialty Clinics
             br
             br
-            span.font-small.font-mc-grey An all-around solution for your outpatient, multispecialty or specialized clinics that will manage your full-patient journeys with ease.
+            span.font-small.font-mc-grey An all-around solution for your outpatient, multi-specialty or specialized clinics that will manage your full-patient journeys with ease.
             br
             br
             v-btn(color="#18c551" large) 
@@ -45,7 +45,7 @@
         img(width="100%" src="../../assets/images/mycure-pricing-cms.png")
         br
         br
-        p.font-small.text-xs-center An all-around solution for your outpatient, multispecialty or specialized clinics that will manage your full-patient journeys with ease.
+        p.font-small.text-xs-center An all-around solution for your outpatient, multi-specialty or specialized clinics that will manage your full-patient journeys with ease.
         br
       div
         center
@@ -72,7 +72,7 @@ s
         cards: [
           {
             image: require('../../assets/images/mycure-home-products-icon-multispecialty-clinics.png'),
-            text: 'Multispecialty Clinics',
+            text: 'Multi-specialty Clinics',
             content: 'One-stop, multi-staff clinics that provide ambulatory care and ancillary services',
             buttonText: 'Sign Up',
             link: ''
