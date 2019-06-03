@@ -1,8 +1,7 @@
 <template lang="pug">
   div
-    div(v-if="!$isMobile").white
+    div(v-if="!$isMobile").white#panel7
       v-container
-        div.hr-blue
         br
       v-container  
         v-layout(row).py-2
@@ -43,9 +42,9 @@
             img(src="../../assets/images/mycure-our-story-elon-musk-values-04.png").left
       br
       br
+      //- panel7a
     div(v-else)
       v-container
-        div.hr-blue
         br
       v-container  
         div.pt-2
@@ -91,7 +90,12 @@
 </template>
 
 <script>
+  // import panel7a from './panel-7a';
+
   export default {
+    components: {
+      // panel7a
+    },
     data () {
       return {
         //
@@ -101,7 +105,7 @@
 </script>
 
 <style scoped>
-
+  
 </style>
 
 

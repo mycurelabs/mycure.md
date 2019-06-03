@@ -3,7 +3,6 @@
     v-container
       v-layout(row wrap justify-center)
         v-flex(xs12 md12).text-xs-center
-          div.hr-blue
           br
           br
           br

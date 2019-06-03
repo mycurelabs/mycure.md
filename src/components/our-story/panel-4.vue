@@ -5,7 +5,6 @@
         v-flex(xs12 md12)
           v-layout(row wrap align-center justify-center)
             v-flex(xs12 md12).text-xs-center
-              div.hr-blue
               br
               br
               br

@@ -7,7 +7,7 @@
     panel4
     panel5
     panel6
-    panel7
+    //- panel7
     mc-footer
 </template>
 

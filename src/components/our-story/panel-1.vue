@@ -1,9 +1,9 @@
 <template lang="pug">
-  div.panel-1.white.pt-5
-    v-container
+  div.white.pa-5
+    v-container(justify-center fill-height).px-5.panel-1
       v-layout(row wrap)
         v-flex(xs12 md5 align-self-center)
-          span(style="line-height: 70px;").font-large MYCURE cares for people who care for people.
+          h1(style="line-height: 70px;").font-large MYCURE cares for people who care for people.
           br
           br
           p.font-small Doctors, nurses, and clinic professionals have a lot of work and we want to make that work easier.
@@ -22,7 +22,7 @@
               id="showVid"
               @click="showVid = true") 
                 strong WATCH VIDEO
-        v-flex(v-if="!$isMobile" xs12 md7).pl-5
+        v-flex(v-if="!$isMobile" xs12 md7 align-self-center).pl-5
           img(width="100%" src="../../assets/images/mycure-homepage-doctor-kid-pediatrician-drawing.png")
 
     v-dialog(v-model="showVid" max-width="700px")
@@ -48,5 +48,9 @@
 <style scoped>
   .panel-1{
     height: auto;
+  }
+
+  h1 {
+    font-weight: normal
   }
 </style>

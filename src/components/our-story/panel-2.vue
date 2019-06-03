@@ -5,8 +5,6 @@
         v-flex(xs12 md10 offset-md1)
           v-layout(row wrap justify-center)
             v-flex(xs12 md12).text-xs-center
-              div.hr-blue
-              br
               br
               br
               h1.font-medium MYCURE starts and ends with 
