@@ -19,7 +19,7 @@
             ) 
               strong.font-small.text-none.white--text Sign Up Now
           v-flex(xs12 md7 align-self-center)
-            img(width="100%" src="../../assets/images/mycure-web-banner-first-panel-doctor-clinic-patients.png").right
+            img(width="100%" src="../../assets/images/mycure-web-banner-first-panel-doctor-clinic-patients.png").pt-5.right
     div(v-else).white
       v-container
         v-layout(row justify-center)

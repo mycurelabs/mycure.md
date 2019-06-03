@@ -21,8 +21,8 @@
       div
         a(href="/")
           v-layout(row wrap center)    
-            img(src="../../assets/images/mycure-footer-logo.svg" height="25")
-            strong.pl-2.font-mc-grey MYCURE
+            img(src="../../assets/images/mycure-header-logo.png" height="25")
+            //- strong.pl-2.font-mc-grey MYCURE
       br
       strong.white--text FOLLOW US
       br

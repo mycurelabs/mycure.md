@@ -9,7 +9,7 @@
           div(style="z-index: 0")
             //- v-card(flat)
             a
-              img(v-if="!videoDialog" @click.stop="videoDialog=!videoDialog" src="../../assets/images/mycure-web-video-cover.png")
+              img(v-if="!videoDialog" @click.stop="videoDialog=!videoDialog" src="../../assets/images/mycure-web-video-cover-our-story-care-the-extra-mile.png")
               iframe(
                 v-else
                 align="middle"
