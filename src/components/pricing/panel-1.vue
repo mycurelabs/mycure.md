@@ -1,7 +1,7 @@
 <template lang="pug">
   div
     div(v-if="!$isMobile")
-      div.panel-1
+      div.panel1
         v-container
           v-flex(xs12 md12).pt-5
             center 
@@ -94,7 +94,7 @@
 </script>
 
 <style scoped>
-  .panel-1{
+  .panel1{
     background-image: url("../../assets/images/mycure-pricing-background.png");
     background-position: center center;
     background-size: cover;
