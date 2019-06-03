@@ -83,6 +83,7 @@ export default {
   .font-small {
     font-size: 18px !important
   }
+  
   /* for mobile */
   .font-xl {
     font-size: 60px !important
