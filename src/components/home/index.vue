@@ -1,5 +1,5 @@
 <template lang="pug">
-  div#top
+  div#top.white
     mcNavbarHome
     panel1
     panel2

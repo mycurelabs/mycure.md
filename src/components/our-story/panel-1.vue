@@ -3,7 +3,7 @@
     v-container
       v-layout(row wrap)
         v-flex(xs12 md5 align-self-center)
-          h1.font-large MYCURE cares for people who care for people.
+          span(style="line-height: 70px;").font-large MYCURE cares for people who care for people.
           br
           br
           p.font-small Doctors, nurses, and clinic professionals have a lot of work and we want to make that work easier.
@@ -14,7 +14,7 @@
             large
             id="showVid"
             @click="showVid = true") 
-              strong WATCH VIDEO
+              strong.font-small.text-none Watch video
           center(v-else)
             v-btn(
               color="info" 

@@ -122,4 +122,7 @@ export default {
   padding: 1px 
 }
 
+.panel-1{
+    height: 100vh;
+  }
 </style>

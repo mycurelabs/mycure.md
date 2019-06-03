@@ -1,9 +1,9 @@
 <template lang="pug">
   div
-    div(v-if="!$isMobile").pt-5.panel-1.white
-      v-container.px-5
+    div(v-if="!$isMobile").white
+      v-container(justify-center fill-height).px-5.panel-1
         v-layout(row justify-center)
-          v-flex(xs12 md5)
+          v-flex(xs12 md5 align-self-center)
             span(style="line-height: 65px;").font-large A System That Simplifies for Multispecialty Clinics
             br
             br
@@ -20,7 +20,7 @@
               style="padding: 25px 30px 25px 30px"
             )  
               strong.font-small.white--text.text-none Sign Up Now
-          v-flex(xs12 md7)
+          v-flex(xs12 md7 align-self-center)
             img(width="100%" src="../../assets/images/mycure-cms-web-banner-first-panel-doctor-clinic-patients.png")
     div(v-else).white
       v-container
@@ -60,7 +60,5 @@
 </script>
 
 <style scoped>
-  .panel-1{
-    height: auto;
-  }
+
 </style>

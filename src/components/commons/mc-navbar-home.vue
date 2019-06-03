@@ -1,25 +1,28 @@
 <template lang="pug">
   div
-    div(v-if="!$isMobile")
-      v-toolbar(app flat fixed).py-1.white
-        v-layout(row wrap align-center style="padding-left: 7vw; padding-right: 7vw;")
-          a(href="/").pr-4
-            img(src="../../assets/images/mycure-logo.svg" height="35")
-          v-btn(href="/electronic-medical-records" flat)
-            strong(style="font-size: 14px").tab.text-none Private Practice
-          v-btn(href="/clinic-management-system" flat)
-            strong(style="font-size: 14px").tab.text-none Multi-specialty Clinics
-          v-spacer
-          v-btn(
-            flat
-            :href="`${siginURL}?target=${cmsURL}/authenticate`"
-          )
-            strong(style="font-size: 14px").tab LOGIN
-          v-btn(
-            color="#2e9fdf"
-            :href="`${siginURL}/signup/private/step-1`"
-          )
-            strong(style="font-size: 14px").white--text.tab SIGN UP
+    div(v-if="!$isMobile" style="position: fixed; width: 100%; z-index: 9999; padding: -10%").white
+      v-container(justify-center).white
+        //- v-layout(row wrap)
+        //-   v-flex(xs12 md12)
+        v-toolbar(flat).white
+          v-layout(row wrap align-center)
+            a(href="/").pr-4
+              img(src="../../assets/images/mycure-logo.svg" height="35")
+            v-btn(href="/electronic-medical-records" flat)
+              strong(style="font-size: 14px").tab.text-none Private Practice
+            v-btn(href="/clinic-management-system" flat)
+              strong(style="font-size: 14px").tab.text-none Multi-specialty Clinics
+            v-spacer
+            v-btn(
+              flat
+              :href="`${siginURL}?target=${cmsURL}/authenticate`"
+            )
+              strong(style="font-size: 14px").tab LOGIN
+            v-btn(
+              color="#2e9fdf"
+              :href="`${siginURL}/signup/private/step-1`"
+            )
+              strong(style="font-size: 14px").white--text.tab SIGN UP
     div(v-else)
       v-toolbar(app flat fixed).white
         a(href="/")

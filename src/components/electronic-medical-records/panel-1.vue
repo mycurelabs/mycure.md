@@ -1,9 +1,9 @@
 <template lang="pug">
   div
-    div(v-if="!$isMobile").pt-4.pb-5.white
-      v-container.px-5
+    div(v-if="!$isMobile").white
+      v-container(justify-center fill-height).px-5.panel-1
         v-layout(row justify-center)
-          v-flex(xs12 md5)
+          v-flex(xs12 md5 align-self-center)
             span(style="line-height: 65px;").font-large A Clinic System That Helps Physicians Do Greater Things
             br
             br
@@ -20,11 +20,8 @@
               style="padding: 25px 30px 25px 30px"
             )
               strong.font-small.text-none.white--text Sign Up Now
-          v-flex(xs12 md7)
+          v-flex(xs12 md7 align-self-center)
             img(width="95%" src="../../assets/images/mycure-emr-web-banner-first-panel-doctor-clinic-patients.png").right
-      br
-      br
-      br
     div(v-else).white
       v-container
         v-layout(row justify-center)
