@@ -1,5 +1,5 @@
 <template lang="pug">
-  div.panel-1.mb-5.red
+  div.panel1.mb-5.red
     v-container
       v-layout(row wrap align-center).panel-1-row
         v-flex(xs12 md12).text-xs-center
@@ -18,7 +18,7 @@
 </script>
 
 <style scoped>
-  .panel-1 {
+  .panel1 {
     background-image: url('../../assets/images/mycure-clinic-background-terms.png');
     background-position: center center;
     background-size: cover;
