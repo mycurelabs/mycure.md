@@ -2,7 +2,7 @@
   div
     div(v-if="!$isMobile" style="padding-top: 100px")#panel6
       v-layout(row wrap justify-center)
-        span.font-medium.text-xs-center.px-3 MYCURE works for Private and Multispecialty Clinics
+        span.font-medium.text-xs-center.px-3 MYCURE works for Private and Multi-specialty Clinics
       br
       v-layout(row wrap justify-center).pt-5
         table

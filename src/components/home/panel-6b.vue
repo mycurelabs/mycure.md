@@ -1,29 +1,40 @@
 <template lang="pug">
   div
-    div(v-if="!$isMobile")
+    div(v-if="!$isMobile").pb-5
       v-container
-        v-layout(row wrap justify-center)
-          span.font-medium What makes MYCURE so different?
-        br
-        v-layout(row wrap justify-center)
-          span.font-small.text-xs-center You can enjoy the best of both worlds — reliability of an in-house server and 
-            br
-            | affordability of the cloud. Digitally process your medical records in your local 
-            br
-            | network using multiple devices, even if the internet goes down! 
+        v-layout(row)
+          v-flex(xs12 md6)
+            img(width="100%" src="../../assets/images/mycure-web-banner-data-privacy-law.png")
+          v-flex(xs12 md6 offset-xs1 align-self-center)
+            span.font-medium Protect your patients' medical records with confidence
             br
             br
             br
-            | Then once back online, it automatically synchronizes data back in the cloud.
-        br
-        br 
-        v-layout(row wrap justify-center)
-          v-btn(color="#96cfef")
-            v-icon(color="#2e9fdf" left) play_circle_filled
-            strong
-              u WATCH VIDEO 
-    
-    div(v-else)
+            span.font-small.mt-3 With MYCURE you'll never have to worry much about data privacy concerns. Keeping them secure is our #1  priority
+            br
+            br
+            br
+            v-btn(
+              href="http://blog.mycure.md/2018/04/26/data-privacy-for-physicians/" 
+              target="_blank"
+              color="#2e9fdf"
+              large
+            ) 
+              strong.text-none.white--text.font-small Learn More
+    //- div(v-else).pa-3
+      v-container
+        v-layout(row)
+          v-flex(xs12 md12)
+            font.font-medium Protect your patients' medical records with confidence
+            br
+            br
+            br
+            font.font-small.mt-3 With MYCURE you'll never have to worry much about data privacy concerns. Keeping them secure is our #1  priority
+            br
+            br
+            br
+            a(href="http://blog.mycure.md/2018/04/26/data-privacy-for-physicians/" target="_blank")
+              strong.font-mc-blue Continue Reading...
 </template>
 
 <script>
@@ -37,6 +48,7 @@
 </script>
 
 <style scoped>
-
+  a {
+    text-decoration-color: #2e9fdf;
+  }
 </style>
-

@@ -51,16 +51,19 @@
                       strong.white--text Sign Up Now
       panel6b(style="padding-top: 100px")
       panel6c(style="padding-top: 100px")
+      panel6d(style="padding-top: 100px")
 </template>
 
 <script>
   import panel6b from './panel-6b';
   import panel6c from './panel-6c';
+  import panel6d from './panel-6d';
 
   export default {
     components: {
       panel6b,
-      panel6c
+      panel6c,
+      panel6d
     },
     data () {
       return {
