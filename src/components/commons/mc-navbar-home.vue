@@ -1,7 +1,7 @@
 <template lang="pug">
   div
-    div(v-if="!$isMobile" style="position: fixed; width: 100%; z-index: 9999; padding: -10%").white
-      v-container(justify-center).white
+    div(v-if="!$isMobile" style="position: fixed; width: 100%; z-index: 9999;" :class="shadow").white
+      v-container(justify-center style="height: 70px !important").pb-5.pt-1.white
         //- v-layout(row wrap)
         //-   v-flex(xs12 md12)
         v-toolbar(flat).white
@@ -72,8 +72,24 @@
       return {
         siginURL: process.env.VUE_APP_SIGNIN_URL,
         cmsURL: process.env.VUE_APP_CMS_URL,
-        drawer: false
+        drawer: false,
+        scrollPosition: null,
+        shadow: ''
       };
+    },
+    methods: {
+      updateScroll () {
+        this.scrollPosition = window.scrollY;
+      },
+      showShadow () {
+        this.scrollPosition !== 0 ? this.shadow = 'elevation-4' : this.shadow = '';
+      }
+    },
+    mounted () {
+      window.addEventListener('scroll', this.updateScroll);
+    },
+    watch: {
+      'scrollPosition': 'showShadow'
     }
   };
 </script>
