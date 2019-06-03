@@ -2,11 +2,11 @@
   div
     v-container
       v-layout(row wrap justify-center)
-        v-flex(xs6)
+        v-flex(xs5)
           slot(name="home-img")
           slot(name="emr-img")
           slot(name="cms-img")
-        v-flex(xs6 align-self-center)
+        v-flex(xs7 align-self-center)
           slot(name="home-txt")
           slot(name="emr-txt")
           slot(name="cms-txt")
