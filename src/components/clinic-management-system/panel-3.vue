@@ -3,7 +3,7 @@
     div(v-if="!$isMobile").white
       v-container.px-5
         v-layout(row wrap justify-center)
-          span.font-medium.md-title.pa-5 Designed for Multi-specialty Clinics
+          span.font-medium.lh-title.pa-5 Designed for Multi-specialty Clinics
         br
         br
         br

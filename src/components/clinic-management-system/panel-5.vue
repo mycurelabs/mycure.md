@@ -1,7 +1,7 @@
 <template lang="pug">
   div(style="padding-top: 100px").transparent#panel5
     v-layout(row wrap justify-center)
-      font.font-medium.md-title.text-xs-center Designed for clinics of all shapes and sizes.
+      font.font-medium.lh-title.text-xs-center Designed for clinics of all shapes and sizes.
     br
     v-layout(row wrap justify-center).pt-5
       table

@@ -2,7 +2,7 @@
   div
     panelBeforeFooter
       img(slot="emr-img" style="max-width: 90%" src="../../assets/images/mycure-web-banner-last-panel-doctor-clinic-for-private-clinic.png")
-      span(slot="emr-txt").font-medium.md-title Because you can always perform at your best everyday.
+      span(slot="emr-txt").font-medium.lh-title Because you can always perform at your best everyday.
       span(slot="emr-sub-txt").font-small Experience what you can do more with MYCURE technology by your side.
       v-btn(
         slot="sign-up-button"

@@ -105,7 +105,7 @@ export default {
     font-size: 12px !important
   }
 
-  .md-title {
+  .lh-title {
     line-height: 1.25em !important
   }
 
