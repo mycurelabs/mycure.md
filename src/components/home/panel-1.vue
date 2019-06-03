@@ -4,7 +4,7 @@
       v-container(justify-center fill-height).px-5.panel-1
         v-layout(row justify-center)
           v-flex(xs12 md6 align-self-center)
-            span(style="line-height: 65px;").font-large Tools to 
+            h1(style="line-height: 65px;").font-large Tools to 
               br
               | Manage &amp; Secure Your 
               br
@@ -61,5 +61,7 @@
 </script>
 
 <style scoped>
-
+  h1 {
+    font-weight: normal
+  }
 </style>

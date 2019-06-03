@@ -4,7 +4,6 @@
       v-container
         v-layout(row wrap justify-center)
           v-flex(xs12 md12).mt-5(style="margin-top:100px;")
-            div.hr-blue
             br
             h1.font-large.text-xs-center Experience MYCURE
             br

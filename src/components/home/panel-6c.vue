@@ -38,9 +38,17 @@
               | Then once back online, it automatically synchronizes data back in the cloud.
           v-flex(xs6 align-self-center).px-4
             v-card.elevation-10
-              img(width="100%" src="../../assets/images/mycure-web-video-cover-syncbase-online-offline.png")
-            
-
+              a
+                img(v-if="!videoDialog" @click.stop="videoDialog=!videoDialog" width="100%" src="../../assets/images/mycure-web-video-cover-syncbase-online-offline.png")
+                iframe(
+                  v-else
+                  align="middle"
+                  id="ytplayer" 
+                  type="text/html" width="100%" height="300"
+                  src="https://www.youtube.com/embed/ZR8e-Egav0M?autoplay=1&loop=1&showinfo=0&rel=0"
+                  frameborder="0"
+                  allowfullscreen
+                  )
     div(v-else)
 </template>
 
@@ -48,7 +56,7 @@
   export default {
     data () {
       return {
-        //
+        videoDialog: false
       };
     }
   };

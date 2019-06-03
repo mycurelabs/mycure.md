@@ -123,6 +123,6 @@ export default {
 }
 
 .panel-1{
-    height: 100vh;
+    height: 100vh !important;
   }
 </style>
