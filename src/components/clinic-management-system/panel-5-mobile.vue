@@ -7,7 +7,7 @@
         tr
           div.pl-3.py-3
             img(src="../../assets/images/mycure-icon-check.png").mr-3
-            span.font-m Multispecialty Clinics
+            span.font-m Multi-specialty Clinics
         tr
           div.pl-3.py-3
             img(src="../../assets/images/mycure-icon-check.png").mr-3 

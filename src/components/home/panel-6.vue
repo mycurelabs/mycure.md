@@ -19,7 +19,7 @@
             td 
               v-layout(row wrap center)
                 img(src="../../assets/images/mycure-web-bullet-check.png").mr-3 
-                span.font-small Multispecialty Clinics
+                span.font-small Multi-specialty Clinics
             td 
               v-layout(row wrap center)
                 img(src="../../assets/images/mycure-web-bullet-check.png").mr-3 

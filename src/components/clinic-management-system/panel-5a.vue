@@ -8,12 +8,12 @@
               img(width="100%" src="../../assets/images/mycure-web-banner-pricing-panel-multispecialty.png")
             div
             v-card(height="508px" flat).price-card.text-xs-left.pa-5.elevation-10
-              strong(style="font-size: 30px").pb-2 For Multispecialty Clinics
+              strong(style="font-size: 30px").pb-2 For Multi-specialty Clinics
               br
               br
               font.font-small An all-around solution for your outpatient, 
                 br
-                | multispecialty or specialized clinics that will 
+                | multi-specialty or specialized clinics that will 
                 br
                 | manage your full-patient journeys with ease.
               br
