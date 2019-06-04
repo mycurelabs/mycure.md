@@ -7,7 +7,7 @@
         v-toolbar(flat).white
           v-layout(row wrap align-center)
             a(href="/").pr-4
-              img(src="../../assets/images/mycure-logo.svg" height="35")
+              img(src="../../assets/images/mycure-header-logo.png" height="35")
             v-btn(href="/electronic-medical-records" flat)
               strong(style="font-size: 14px").tab.text-none Private Practice
             v-btn(href="/clinic-management-system" flat)
@@ -26,7 +26,7 @@
     div(v-else)
       v-toolbar(app flat fixed).white
         a(href="/")
-          img(src="../../assets/images/mycure-logo.svg" height="25px")
+          img(src="../../assets/images/mycure-header-logo.png" height="25px")
         v-spacer
         v-toolbar-side-icon(@click="drawer = !drawer")
           v-icon(color="gray").sideMenu.pa-1 menu
