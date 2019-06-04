@@ -8,10 +8,10 @@
               strong.font-small.text-center.font-mc-blue Serve more patients
           v-flex(xs12 md4)
             div.panel-2-box-b
-              strong.font-small.text-center.font-mc-blue Comply to Data Privacy Law
+              strong.font-small.text-center.font-mc-blue Comply to Data Privacy Act
           v-flex(xs12 md4)
             div.panel-2-box-c
-              strong.font-small.text-center.font-mc-blue Works Offline
+              strong.font-small.text-center.font-mc-blue Work Offline
     div(v-else)
       a(@click="goToProducts()")
         v-layout(row wrap justify-center)
@@ -20,10 +20,10 @@
               strong.font-small.text-center.font-mc-grey Serve more patients
           v-flex(xs12 md4)
             div(style="background-color: white;").panel-2-box-b
-              strong.font-small.text-center.font-mc-grey Comply to Data Privacy Law
+              strong.font-small.text-center.font-mc-grey Comply to Data Privacy Act
           v-flex(xs12 md4)
             div(style="background-color: white;").panel-2-box-c
-              strong.font-small.text-center.font-mc-grey Works Offline
+              strong.font-small.text-center.font-mc-grey Work Offline
 </template>
 
 <script>
