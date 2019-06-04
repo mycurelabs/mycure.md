@@ -55,14 +55,14 @@
         br
         center
           div.login
-            a(href=`${siginURL}?target=${cmsURL}/authenticate` flat)
+            a(:href="`${siginURL}?target=${cmsURL}/authenticate`" flat)
               strong.black--text LOGIN
         center
           hr(style="width: 80%; border-color: #f5f5f5")
         br
         center
           div.signup
-            a(href=`${siginURL}/signup/private/step-1` flat)
+            a(:href="`${siginURL}/signup/private/step-1`" flat)
               strong.white--text SIGNUP
 </template>
 

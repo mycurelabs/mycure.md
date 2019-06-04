@@ -10,7 +10,7 @@
           br
           br
         v-flex(xs12 md5).px-3.text-xs-center
-          img(width="80%" src="../../assets/images/mycure-ourstory-dale.png")
+          img(width="60%" src="../../assets/images/mycure-ourstory-dale.png")
           br
           br
           br
@@ -22,7 +22,7 @@
             a(href="http://www.mightyminds.org/" target="_blank" style="text-decoration: none").font-mc-blue Mighty Minds, 
             | a nonprofit organization that helps kids finish school.
         v-flex(xs12 md5).px-3.text-xs-center
-          img(width="80%" src="../../assets/images/mycure-ourstory-joel.png")
+          img(width="60%" src="../../assets/images/mycure-ourstory-joel.png")
           br
           br
           br
