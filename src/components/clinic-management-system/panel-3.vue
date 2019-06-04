@@ -5,26 +5,28 @@
         v-layout(row wrap justify-center)
           span.font-medium.lh-title.pa-5 Designed for Multi-specialty Clinics
         br
-        br
-        br
         v-layout(row wrap justify-center).py-3 
-          v-flex(xs12 md6 style="border-right: 1px solid lightgray").px-5
-            v-layout(row)
-              v-flex(xs7)
-                span.font-small.left Say goodbye to multiple, complicated systems!
-              v-flex(xs5)
-                strong.font-small.right Other Providers
+          v-flex(xs12 md6 style="border-right: 1px solid lightgray").px-5  
+            strong.font-small.right Other Providers
             br
             img(max-width="500px" src="../../assets/images/mycure-homepage-compare-other-emr-incomplete-clinic-management-system.png" width="100%").mb-3
-          v-flex(xs12 md6).px-5
-            v-layout(row)
-              v-flex(xs5)
-                strong.font-small With MYCURE 
-                  span.font-mc-blue &nbsp ✓
-              v-flex(xs7)
-                span.font-small.left Say hello to a simplified record-keeping for everyone.
             br
+            br
+            v-layout(row justify-center)
+              span.text-xs-center.font-small Say goodbye to multiple,
+                br
+                | complicated systems!
+          v-flex(xs12 md6).px-5
+            strong.font-small With MYCURE 
+              span.font-mc-blue &nbsp ✓
+              br
             img(max-width="500px" src="../../assets/images/mycure-homepage-compare-mycure-complete-clinic-management-system.png" width="100%").mb-3   
+            br
+            br
+            v-layout(row justify-center)
+              span.text-xs-center.font-small Say hello to a simplified
+                br
+                | record-keeping for everyone.
         br
         v-layout(row wrap justify-center)
           v-btn(
