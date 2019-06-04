@@ -1,10 +1,10 @@
 <template lang="pug">
   div
-    div(v-if="!$isMobile").white
+    div(v-if="!$isMobile")
       v-container(align-center fill-height).px-5.panel-1
-        v-container.green
-          v-layout(row justify-center ).yellow
-            v-flex(xs12 md6 align-self-end).red
+        v-container
+          v-layout(row justify-center )
+            v-flex(xs12 md6 align-self-end)
               h1(style="line-height: 65px;").font-large Tools to 
                 br
                 | Manage &amp; Secure Your 
@@ -18,7 +18,7 @@
                 style="padding: 25px 30px 25px 30px"
               ) 
                 strong.font-small.text-none.white--text Sign Up Now
-            v-flex(xs12 md7 align-self-center).blue
+            v-flex(xs12 md7 align-self-center)
               img(width="100%" src="../../assets/images/mycure-web-banner-first-panel-doctor-clinic-patients.png")
     div(v-else).white
       v-container

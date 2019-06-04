@@ -3,8 +3,8 @@
     div(v-if="!$isMobile").white
       v-container(justify-center fill-height style="padding-top: 70px").px-5.panel-1
         v-container
-          v-layout(row justify-center).yellow
-            v-flex(xs12 md6 align-self-end).blue
+          v-layout(row justify-center)
+            v-flex(xs12 md6 align-self-end)
               h1(style="line-height: 65px;").font-large A System That Simplifies for Multi-specialty Clinics
               br 
               br
@@ -14,7 +14,7 @@
                 style="padding: 25px 30px 25px 30px"
               )  
                 strong.font-small.white--text.text-none Sign Up Now
-            v-flex(xs12 md6 align-self-center).red
+            v-flex(xs12 md6 align-self-center)
               img(width="100%" src="../../assets/images/mycure-cms-web-banner-first-panel-doctor-clinic-patients.png")
     div(v-else).white
       v-container
