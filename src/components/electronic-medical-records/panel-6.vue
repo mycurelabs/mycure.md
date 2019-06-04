@@ -18,6 +18,8 @@
                 | solo or in groups.
               br
               br
+              b.font-small &#10003 &nbsp It's FREE
+              br
               span.font-small &#10003 &nbsp Unlimited Clinics
               br
               span.font-small &#10003 &nbsp 1 GB data

@@ -3,10 +3,10 @@
     div(v-if="!$isMobile").pb-5
       v-container
         v-layout(row)
-          v-flex(xs12 md6)
+          v-flex(xs12 md5)
             img(width="100%" src="../../assets/images/mycure-web-banner-data-privacy-law.png")
           v-flex(xs12 md6 offset-xs1 align-self-center)
-            span.font-medium Protect your patients' medical records with confidence
+            span.font-medium.lh-title Protect your patients' medical records with confidence
             br
             br
             br
