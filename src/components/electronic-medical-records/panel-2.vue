@@ -17,13 +17,13 @@
         v-layout(row wrap justify-center)     
           v-flex(xs12 md4)
             div(style="background-color: white;").panel-2-box-a
-              b.font-small.text-center.font-mc-grey View your charts anywhere
+              b.font-small.text-center.font-mc-blue View your charts anywhere
           v-flex(xs12 md4)
               div(style="background-color: white;").panel-2-box-b
-                b.font-small.text-center.font-mc-grey Boost your online presence
+                b.font-small.text-center.font-mc-blue Boost your online presence
           v-flex(xs12 md4)
               div(style="background-color: white;").panel-2-box-c
-                b.font-small.text-center.font-mc-grey Secure your medical records
+                b.font-small.text-center.font-mc-blue Secure your medical records
 </template>
 
 <script>

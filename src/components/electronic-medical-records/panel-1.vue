@@ -19,7 +19,7 @@
       v-container
         v-layout(row justify-center)
           v-flex(xs12 md5)
-            font.font-l A Clinic System That Helps Physicians Do Greater Things
+            font.font-l A clinic system that helps physicians do greater things.
             br
             br
       v-flex(xs12)
