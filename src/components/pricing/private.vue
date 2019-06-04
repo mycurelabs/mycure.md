@@ -12,7 +12,7 @@
             span.font-small.font-mc-grey A powerful combination of EMR, queuing, and billing features designed for physicians who are practicing solo or in groups.
             br
             br
-            v-btn(color="#18c551" large) 
+            v-btn(:href="`${siginURL}/signup/private/step-1`" color="#18c551" large) 
               strong.white--text.text-none Sign Up Now
           v-flex(xs12 md6).px-3
             img(width="100%" src="../../assets/images/mycure-pricing-emr-private-clinic.png")
@@ -219,8 +219,8 @@
               span.font-small DPA Registration Guide
       div.py-3
         v-layout(justify-center)
-          v-btn(color="info" large) 
-            strong USE MYCURE FREE
+          v-btn(:href="`${siginURL}/signup/private/step-1`" color="info" large) 
+            strong.text-none Sign Up Now
         
 
 </template>
@@ -229,7 +229,7 @@
   export default {
     data () {
       return {
-        //
+        siginURL: process.env.VUE_APP_SIGNIN_URL
       };
     }
   };

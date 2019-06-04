@@ -12,10 +12,11 @@
             span.font-small.font-mc-grey An all-around solution for your outpatient, multi-specialty or specialized clinics that will manage your full-patient journeys with ease.
             br
             br
-            v-btn(color="#18c551" large) 
+            v-btn(:href="`${siginURL}/signup/private/step-1`" color="#18c551" large) 
               strong.text-none.white--text Sign Up Now
           v-flex(xs12 md6).px-3
             img(width="100%" src="../../assets/images/mycure-pricing-cms.png")
+        br
         br
         v-layout(row)
           v-flex(xs12 md4) 
@@ -58,9 +59,10 @@
             v-flex(xs8) 
               strong(style="font-size: 14px")  {{ card.text }}
               p(style="font-size: 12px").pt-1 {{ card.content }}
+              //- a(:href="card.link" )
               strong(v-html="" style="font-size: 12px").font-mc-blue.pb-2 {{ card.buttonText }}
 </template>
-s
+  
 <script>
   import VueFlip from 'vue-flip';
   export default {
@@ -69,13 +71,14 @@ s
     },
     data () {
       return {
+        siginURL: process.env.VUE_APP_SIGNIN_URL,
         cards: [
           {
             image: require('../../assets/images/mycure-home-products-icon-multispecialty-clinics.png'),
             text: 'Multi-specialty Clinics',
             content: 'One-stop, multi-staff clinics that provide ambulatory care and ancillary services',
             buttonText: 'Sign Up',
-            link: ''
+            link: "`${siginURL}/signup/private/step-1`"
           },
           {
             image: require('../../assets/images/mycure-home-products-icon-outpatient-clinics.png'),
