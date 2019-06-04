@@ -15,16 +15,28 @@
         div      
           v-layout(row wrap justify-center).mx-5
             v-flex(xs6).px-1
-              a(@click="isPrivate=true")
-                div.tab.pa-3.right
+              a(@click="isPrivate=true; isMulti=false;")
+                div(v-if="isPrivate").tabActive.pa-3.right
+                  center 
+                    strong(style="font-size: 25px") Private Practice
+                      br
+                      | 
+                      font.font-small.font-mc-grey Solo or group clinic practitioners
+                div(v-else).tab.pa-3.right
                   center 
                     strong(style="font-size: 25px") Private Practice
                       br
                       | 
                       font.font-small.font-mc-grey Solo or group clinic practitioners
             v-flex(xs6).px-1
-              a(@click="isPrivate=false")
-                div.tab.pa-3
+              a(@click="isMulti=true; isPrivate=false")
+                div(v-if="isMulti").tabActive.pa-3
+                  center 
+                    strong(style="font-size: 25px") Multi-specialty Clinics
+                      br
+                      | 
+                      font.font-small.font-mc-grey One stop, multi-staff clinics
+                div(v-else).tab.pa-3
                   center 
                     strong(style="font-size: 25px") Multi-specialty Clinics
                       br
@@ -102,9 +114,19 @@
 
   .tab{
     border-radius: 10px 10px 0 0;
+    background-color: lightgrey;
+    opacity: 1;
+    width: 450px;
+    height: 100%;
+    box-shadow: 0px 0px 10px 2px gray inset;
+  }
+
+  .tabActive{
+    border-radius: 10px 10px 0 0;
     background-color: white;
     width: 450px;
-    height: 100%px;
+    height: 100%;
+    /* box-shadow: 0px 0px 20px 2px gray inset; */
   }
 
   .tabMobile{
