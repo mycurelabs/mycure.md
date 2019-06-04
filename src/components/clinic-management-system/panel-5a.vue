@@ -36,28 +36,6 @@
                 ).text-none
                   strong.white--text Sign Up Now
     div(v-else)
-      v-container
-        v-layout(column justify-center)
-          span.font-medium.text-xs-center "It's a great experience using MYCURE app in our rural setup. I've been through many EMR apps, but this one is the best so far." 
-          br
-          br
-          span.font-small.text-xs-center Dr. Gay Cadorna-Toledo
-          b.font-xs.text-xs-center Pediatrician, Misamis Occidental
-          span.font-xs.text-xs-center MYCURE Doctor since 2017
-      br
-      div
-        img(width="100%" src="../../assets/images/mycure-web-banner-fifth-panel-multi-specialty-clinics.png")
-        v-layout(column wrap).pt-4.pb-5.pr-5.pl-5
-          //- p.pb-2.font-small {{ private_title }}
-          span.font-small.pb-2 &#10003; &nbsp; &nbsp; Queuing &amp Registration
-          span.font-small.pb-2 &#10003; &nbsp; &nbsp; Patient Medical Records
-          span.font-small.pb-2 &#10003; &nbsp; &nbsp; Billing &amp Collection
-          span.font-small.pb-2 &#10003; &nbsp; &nbsp; Laboratory &amp Imaging
-          span.font-small.pb-2 &#10003; &nbsp; &nbsp; Materials &amp Management
-        v-layout(row justify-center)
-          v-btn(style="background-color: #2e9fdf; color: white; width: 80%; height: 60px")
-            a(href="https://calendly.com/mycure" target="_blank")
-              strong.font-medium.white--text BOOK A DEMO
 </template>
 
 <script>
