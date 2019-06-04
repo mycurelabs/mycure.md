@@ -17,13 +17,13 @@
         v-layout(row wrap justify-center)
           v-flex(xs12 md4)
             div(style="background-color: white").panel-2-box-a
-              b.font-small.text-center.font-mc-grey Organized Patient Records
+              b.font-small.text-center.font-mc-blue Organized Patient Records
           v-flex(xs12 md4)
             div(style="background-color: white").panel-2-box-b
-              b.font-small.text-center.font-mc-grey Data-driven Decisions
+              b.font-small.text-center.font-mc-blue Data-driven Decisions
           v-flex(xs12 md4)
             div(style="background-color: white").panel-2-box-c
-              b.font-small.text-center.font-mc-grey Happier Staff Members
+              b.font-small.text-center.font-mc-blue Happier Staff Members
 </template>
 
 <script>
