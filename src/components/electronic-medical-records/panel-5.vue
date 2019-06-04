@@ -39,20 +39,6 @@
           div(style="margin: 0px 0px 0px -20px; z-index: 1") 
             img(src="../../assets/images/mycure-web-video-cover-decor-doctor-right.png")
     div(v-else).py-5
-      v-container
-        v-layout(row)
-          v-flex(xs12 md12)
-            br
-            span.font-l Protect your patients' medical records with confidence
-            br
-            br
-            br
-            span.font-s.mt-3 With MYCURE you'll never have to worry much about data privacy concerns. Keeping them secure is our #1  priority
-            br
-            br
-            br
-            a(href="http://blog.mycure.md/2018/04/26/data-privacy-for-physicians/" target="_blank")
-              strong.font-mc-blue Continue Reading...
 </template>
 
 <script>
