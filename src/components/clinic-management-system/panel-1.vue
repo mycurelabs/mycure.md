@@ -19,7 +19,7 @@
       v-container
         v-layout(row justify-center)
           v-flex(xs12 md5)
-            span.font-l A System That Simplifies Work for Multi-specialty Clinics
+            span.font-l A system that simplifies for multi-specialty clinics.
             br
             br
       v-flex(xs12)
