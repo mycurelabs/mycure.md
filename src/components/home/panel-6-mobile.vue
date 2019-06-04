@@ -1,8 +1,8 @@
 <template lang="pug"> 
-  div.pa-5.mc-light-grey
+  div.py-5.mc-light-grey
     v-container
       p.font-l.text-xs-center MYCURE works for Private and Multi-specialty Clinics
-    v-layout(justify-center)
+    v-layout(justify-center).px-5
       table
         tr
           div.pl-3.py-3
