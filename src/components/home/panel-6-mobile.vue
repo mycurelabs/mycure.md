@@ -1,5 +1,5 @@
 <template lang="pug"> 
-  div
+  div.mt-5
     v-container
       v-layout(justify-center).px-3
         div
@@ -20,32 +20,26 @@
               span.font-s {{ testimonial1 }}
               br
               br
-              span.font-xs Atty. Ivy D. Patdu, M.D
+              span.font-xs Dr. Gay Cadorna-Toledo 
               br
-              strong.font-xs Deputy Privacy Commissioner,
-                | 
-              span.font-small NPC
+              span.font-xs Pediatrician, 
+                | Misamis Occidental
+                br
+                | MYCURE Doctor since 2017
             slide(data-index="2").text-xs-center
               span.font-s {{ testimonial2 }}
               br
               br
-              span.font-xs Dr. Gay Cadorna-Toledo
+              span.font-xs Atty. Ivy D. Patdu, M.D
               br
-              br
-              strong.font-xs Pediatrician,
-                | 
-              span.font-xs Misamis Occidental
-                br
-                | MYCURE Doctor since 2017
+              span.font-xs  Deputy Privacy Commissioner, NPC
             slide(data-index="3").text-xs-center
               span.font-small {{ testimonial3 }}
               br
               br
               span.font-xs Dr. Nelson S. Abelardo
-              br
-              strong.font-xs Cardiologist,
-                | 
-              span.font-xs Manila Doctors Hospital
+                br
+                | Cardiologist, Manila Doctors Hospital
 </template>
 
 <script scoped>
@@ -60,11 +54,9 @@
         private_title: 'Get a powerful combination of features designed for physicians who are practicing solo or in groups.',
         multispecialty_title: 'An all-around solution for your outpatient, multi-specialty or specialized clinics that will manage your full-patient journeys with ease.',
         siginURL: process.env.VUE_APP_SIGNIN_URL,
-
-        testimonial1: '“We should harness the power of technology. We should incorporate in system designs means to obtain information while remaining true to our obligations for data protection.”', 
-        testimonial2: '“MYCURE provides a well organized patient data profiling with customized options for personalized encoding and with integration of lab tests, immunizations as well as growth charts that are very important for us as pediatricians for growth monitoring of our little ones. It is very convenient to use, simple, adaptable and user friendly even to my secretary.”',
-        testimonial3: '“MYCURE fulfills a long time need of physicians for accurate records of patients which they can carry with them wherever they are. It enables them also to prescribe and countercheck their prescriptions, issue medical certificate, communicate with other doctors for referrals.”',
-
+        testimonial1: '“It\'s a great experience using MYCURE app in our rural setup. I\'ve been through many EMR apps, but this one is the best so far... It is very convenient to use, simple, adaptable and user friendly even to my secretary.”',
+        testimonial2: '“We should harness the power of technology. We should incorporate in system designs means to obtain information while remaining true to our obligations for data protection.”', 
+        testimonial3: '“MYCURE fulfills a long time need of physicians for accurate records of patients which they can carry with them wherever they are.”'
       };
     }
   };
