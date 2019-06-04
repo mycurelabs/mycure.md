@@ -24,7 +24,7 @@
             )
               strong(style="font-size: 14px").white--text.tab SIGN UP
     div(v-else)
-      v-toolbar(app flat fixed).white
+      v-toolbar(app flat fixed :class="shadow").white
         a(href="/")
           img(src="../../assets/images/mycure-header-logo.png" height="25px")
         v-spacer
