@@ -1,106 +1,57 @@
 <template lang="pug">
-  div.white.py-5
-    div
+  div
+    div.py-5
       v-container
-        v-layout(justify-center).px-3
-          div
-            //- https://ssense.github.io/vue-carousel/
-            carousel(
-              :per-page="1" 
-              :autoplay="false"
-              :loop="true"
-              :navigationEnabled="true"
-              :adjustableHeight="true"
-              paginationActiveColor="grey"
-              paginationColor="lightgrey"
-              :navigationClickTargetSize="50"
-              navigationNextLabel=" "
-              navigationPrevLabel=" "
-            )
-              slide(data-index="1").text-xs-center
-                span.font-s {{ testimonial1 }}
-                br
-                br
-                span.font-xs Atty. Ivy D. Patdu, M.D
-                br
-                strong.font-xs Deputy Privacy Commissioner,
-                  | 
-                span.font-small NPC
-              slide(data-index="2").text-xs-center
-                span.font-s {{ testimonial2 }}
-                br
-                br
-                span.font-xs Dr. Gay Cadorna-Toledo
-                br
-                br
-                strong.font-xs Pediatrician,
-                  | 
-                span.font-xs Misamis Occidental
-                  br
-                  | MYCURE Doctor since 2017
-              slide(data-index="3").text-xs-center
-                span.font-small {{ testimonial3 }}
-                br
-                br
-                span.font-xs Dr. Nelson S. Abelardo
-                br
-                strong.font-xs Cardiologist,
-                  | 
-                span.font-xs Manila Doctors Hospital
-      div
-        img(width="100%" src="../../assets/images/mycure-web-banner-fifth-panel-private-clinic.png")
-        v-layout(column wrap).pt-4.pb-5.pr-5.pl-5
-          p.pb-2.font-s {{ private_title }}
-          div(v-for="(feature,index) in privateFeatures")
-            b(v-if="index === 0").font-s.pb-2 &#10003; &nbsp; &nbsp; {{ feature }}
-            span(v-else).font-s.pb-2 &#10003; &nbsp; &nbsp; {{ feature }}
-        v-layout(row justify-center)
-          v-btn(
-            :href="`${siginURL}/signup/private/step-1`"
-            style="background-color: #18c551; width: 80%; height: 60px")
-            strong.font-m.white--text.text-none Sign Up Now
-      br
-      br
-      div
-        img(width="100%" src="../../assets/images/mycure-web-banner-fifth-panel-multi-specialty-clinics.png")
-        v-layout(column wrap).pt-4.pb-5.pr-5.pl-5
-          p.pb-2.font-s {{ private_title }}
-          div(v-for="feature in multiFeatures")
-            span.font-s.pb-2 &#10003; &nbsp; &nbsp; {{ feature }}
-        v-layout(row justify-center)
-          v-btn(
-            :href="`${siginURL}/signup/private/step-1`"
-            style="background-color: #18c551; width: 80%; height: 60px")
-            strong.font-m.white--text.text-none Sign Up Now
+        p.font-l.text-xs-center MYCURE works for Private and Multi-specialty Clinics
+      v-layout(justify-center).px-5
+        table
+          tr
+            div.pl-3.py-3
+              v-layout(row wrap center)
+                img(src="../../assets/images/mycure-web-bullet-check.png").mr-3
+                span.font-m Solo Practice
+          tr
+            div.pl-3.py-3
+              v-layout(row wrap center)
+                img(src="../../assets/images/mycure-web-bullet-check.png").mr-3 
+                span.font-m Group Clinics
+          tr 
+            div.pl-3.py-3
+              v-layout(row wrap center)
+                img(src="../../assets/images/mycure-web-bullet-check.png").mr-3 
+                span.font-m Multi-specialty Clinics
+          tr 
+            div.pl-3.py-3
+              v-layout(row wrap center)
+                img(src="../../assets/images/mycure-web-bullet-check.png").mr-3 
+                span.font-m Dermatology Clinics
+          tr
+            div.pl-3.py-3
+              v-layout(row wrap center)
+                img(src="../../assets/images/mycure-web-bullet-check.png").mr-3 
+                span.font-m Family Clinics
+          tr 
+            div.pl-3.py-3
+              v-layout(row wrap center)
+                img(src="../../assets/images/mycure-web-bullet-check.png").mr-3
+                span.font-m Multi-branch Clinics
+          tr
+            div.pl-3.py-3
+              v-layout(row wrap center)
+                img(src="../../assets/images/mycure-web-bullet-check.png").mr-3 
+                span.font-m Industrial Clinics
+          tr
+            div.pl-3.py-3
+              v-layout(row wrap center)
+                img(src="../../assets/images/mycure-web-bullet-check.png").mr-3 
+                span.font-m Dental Clinics
 </template>
 
 <script scoped>
   export default {
     data () {
       return {
-        private_title: 'Get a powerful combination of features designed for physicians who are practicing solo or in groups.',
-        multispecialty_title: 'An all-around solution for your outpatient, multi-specialty or specialized clinics that will manage your full-patient journeys with ease.',
-        siginURL: process.env.VUE_APP_SIGNIN_URL,
-
-        testimonial1: '“We should harness the power of technology. We should incorporate in system designs means to obtain information while remaining true to our obligations for data protection.”', 
-        testimonial2: '“MYCURE provides a well organized patient data profiling with customized options for personalized encoding and with integration of lab tests, immunizations as well as growth charts that are very important for us as pediatricians for growth monitoring of our little ones. It is very convenient to use, simple, adaptable and user friendly even to my secretary.”',
-        testimonial3: '“MYCURE fulfills a long time need of physicians for accurate records of patients which they can carry with them wherever they are. It enables them also to prescribe and countercheck their prescriptions, issue medical certificate, communicate with other doctors for referrals.”',
-
-        privateFeatures: [
-          'It\'s FREE!',
-          'Unlimited Clinics',
-          '1 GB Data',
-          'SOAP Charting',
-          'Prescription Printing',
-          'Medical Billing'
-        ],
-        multiFeatures: [
-          'Queuing & Registration',
-          'Patient Medical Records',
-          'Billing & Collection',
-          'Laboratory & Imaging',
-          'Materials Management'
-        ]
+        //
       };
     }
   };
@@ -114,5 +65,30 @@
   .clinic-card {
     border-radius: 0 0 10px 10px;
   }
+
+  table {
+    border-collapse: collapse;
+    border-radius: 6px;
+    width: 100%;
+  }
+
+  table tr {
+    border: 1px solid #bbb;
+    padding: 15px;
+  }
+
+  tr:nth-child(even) {
+    background-color: #f5f5f5;
+  }
+  
+  table tr:first-child {
+    border-top-right-radius: 6px;
+    border-top-left-radius: 6px;
+  } 
+
+  table tr:last-child {
+    border-bottom-right-radius: 6px;
+    border-bottom-left-radius: 6px;
+  } 
 </style>
 

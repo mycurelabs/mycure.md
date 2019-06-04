@@ -1,29 +1,51 @@
 <template lang="pug">
-  div.mc-light-grey
-    div.pa-4
-      v-container
-        span.font-l What makes MYCURE so different?
-        br
-        br
-        span.font-s {{ different }}
-        br
-        br
-      div
-        center
-          iframe(
-                width="100%" 
-                height="200" 
-                src="https://www.youtube.com/embed/siFBgZMt26k?rel=0" 
-                frameborder="0" 
-                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture")
+  div.mt-5
+    div
+      img(width="100%" src="../../assets/images/mycure-web-banner-fifth-panel-private-clinic.png")
+      v-layout(column wrap).pt-4.pb-5.pr-5.pl-5
+        p.pb-2.font-s {{ private_title }}
+        div(v-for="(feature,index) in privateFeatures")
+          b(v-if="index === 0").font-s.pb-2 &#10003; &nbsp; &nbsp; {{ feature }}
+          span(v-else).font-s.pb-2 &#10003; &nbsp; &nbsp; {{ feature }}
+      v-layout(row justify-center)
+        v-btn(
+          :href="`${siginURL}/signup/private/step-1`"
+          style="background-color: #18c551; width: 80%; height: 60px")
+          strong.font-m.white--text.text-none Sign Up Now
+      br
+      br
+    div
+      img(width="100%" src="../../assets/images/mycure-web-banner-fifth-panel-multi-specialty-clinics.png")
+      v-layout(column wrap).pt-4.pb-5.pr-5.pl-5
+        p.pb-2.font-s {{ private_title }}
+        div(v-for="feature in multiFeatures")
+          span.font-s.pb-2 &#10003; &nbsp; &nbsp; {{ feature }}
+      v-layout(row justify-center)
+        v-btn(
+          :href="`${siginURL}/signup/private/step-1`"
+          style="background-color: #18c551; width: 80%; height: 60px")
+          strong.font-m.white--text.text-none Sign Up Now
 </template>
 
 <script>
   export default {
     data () {
       return {
-        different: "In Southeast Asian regions where internet coverage is limited, MYCURE made it possible for clinics to use a cloud-based system in their local network even if the internet goes down and just syncs data when back online.",
-        
+        privateFeatures: [
+          'It\'s FREE!',
+          'Unlimited Clinics',
+          '1 GB Data',
+          'SOAP Charting',
+          'Prescription Printing',
+          'Medical Billing'
+        ],
+        multiFeatures: [
+          'Queuing & Registration',
+          'Patient Medical Records',
+          'Billing & Collection',
+          'Laboratory & Imaging',
+          'Materials Management'
+        ]
       };
     }
   };
