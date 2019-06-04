@@ -51,8 +51,9 @@
             large
           ).mt-5 
             strong.font-s.white--text.text-none Sign Up Now
-        p.text-xs-center.py-4.font-xs Have questions? Give us a call: 
-          strong (+63) 917 303 4350
+        p.text-xs-center.py-4.font-small Have questions? 
+          a(@click.stop="toggleChat()")
+            strong.font-mc-blue Send us a chat.
 </template>
 
 <script>
@@ -61,7 +62,12 @@
       return {
         siginURL: process.env.VUE_APP_SIGNIN_URL
       };
-    }    
+    },
+    methods: {
+      toggleChat () {
+        window.$crisp.push(['do', 'chat:toggle']);
+      }
+    }
   };
 </script>
 
