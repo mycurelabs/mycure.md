@@ -49,8 +49,8 @@
             :href="`${siginURL}/signup/private/step-1`"
             color="#18c551" large).mt-5 
             strong.font-s.text-none.white--text Sign Up Now
-        p.text-xs-center.py-4.font-xs Have questions? Give us a call: 
-          strong (+63) 917 303 4350
+        p.text-xs-center.py-4.font-xs Have questions?  
+          strong Send us a chat
 </template>
 
 <script>
