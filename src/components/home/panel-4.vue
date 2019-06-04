@@ -69,12 +69,6 @@
       //- br(style="line-height: 600px")
       div(style="margin-top: -10%")
         panel4a
-    div(v-else).white.pa-5
-      v-flex(xs12)
-        v-layout(row wrap justify-center)
-          strong(style="font-size: 30px").text-xs-center Does your clinic have more than 3 branches? 
-            a.font-mc-blue
-              span(@click="toggleChat").toggle-chat Talk to us for custom pricing.
 </template>
 
 <script>
