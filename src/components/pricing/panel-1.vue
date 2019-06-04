@@ -47,7 +47,7 @@
           private_prac(v-if="isPrivate")
           multispecialty(v-else)
     div(v-else)
-      div.panel-1
+      div.panel1
         v-container
           v-flex(xs12)
             center 
