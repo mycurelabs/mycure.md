@@ -33,6 +33,7 @@
     div(v-else)
       img(width="100%" src="../../assets/images/mycure-web-banner-fifth-panel-private-clinic.png")
       v-layout(column wrap).pt-4.pb-5.pr-5.pl-5
+        p.pb-2.font-s {{ private_title }}
         div(v-for="(feature,index) in privateFeatures" :key="index")
           b(v-if="index === 0").font-s.pb-2 &#10003; &nbsp; &nbsp; {{ feature }}
           span(v-else).font-s.pb-2 &#10003; &nbsp; &nbsp; {{ feature }}
@@ -52,7 +53,7 @@
     data () {
       return {
         siginURL: process.env.VUE_APP_SIGNIN_URL,
-
+        private_title: 'Get a powerful combination of features designed for physicians who are practicing solo or in groups.',
         privateFeatures: [
           'It\'s FREE!',
           'Unlimited Clinics',
