@@ -10,7 +10,7 @@
     div(v-else style="background-color: #f5f5f5")
       v-container
         v-layout(row justify-center)
-          span.font-l.text-xs-center Are you having trouble in your clinic?
+          span.font-l.text-xs-center Something missing in your clinic?
       v-container
         v-layout(row justify-center)
           v-list(two-line style="background-color: #f5f5f5")
