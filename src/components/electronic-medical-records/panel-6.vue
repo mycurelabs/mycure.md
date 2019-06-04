@@ -22,56 +22,20 @@
                 | solo or in groups.
               br
               br
-              b.font-small &#10003 &nbsp It's FREE
-              br
-              span.font-small &#10003 &nbsp Unlimited Clinics
-              br
-              span.font-small &#10003 &nbsp 1 GB data
-              br
-              span.font-small &#10003 &nbsp SOAP Charting
-              br
-              span.font-small &#10003 &nbsp Prescription Printing
-              br
-              span.font-small &#10003 &nbsp Medical Billing
+              div(v-for="(feature,index) in privateFeatures" :key="index")
+                b(v-if="index === 0").font-small &#10003 &nbsp {{ feature }}
+                span(v-else).font-small &#10003 &nbsp {{ feature }}
+                br
               v-layout(row wrap).py-4
                 v-btn(:href="`${siginURL}/signup/private/step-1`" style="background-color: #18c551; color: white; width: auto" large).text-none
                   strong Sign Up Now
       panel6a(style="padding-top: 150px")
     div(v-else)
-      v-container
-        v-flex(xs12)
-          center
-            img(src="../../assets/images/mycure-icon-testimonial.png")
-            br
-            br
-            span.font-s {{ testimonial1 }}
-            br
-            br
-            strong.font-xs Dr. Jean Rivera
-            br
-            em.font-xs.font-mc-blue General Physician
-        br
-        br
-        v-flex(xs12)
-            center
-              img(src="../../assets/images/mycure-icon-testimonial.png")
-              br
-              br
-              span.font-s {{ testimonial2 }}
-              br
-              br
-              strong.font-xs Dr. Carly Mae Siamson
-              br
-              em.font-xs.font-mc-blue General Physician
-      div
       img(width="100%" src="../../assets/images/mycure-web-banner-fifth-panel-private-clinic.png")
       v-layout(column wrap).pt-4.pb-5.pr-5.pl-5
-        //- p.pb-2.font-s {{ private_title }}
-        span.font-s.pb-2 &#10003; &nbsp; &nbsp; Unlimited Clinics
-        span.font-s.pb-2 &#10003; &nbsp; &nbsp; 1 GB Data
-        span.font-s.pb-2 &#10003; &nbsp; &nbsp; SOAP Charting
-        span.font-s.pb-2 &#10003; &nbsp; &nbsp; Prescription Printing
-        span.font-s.pb-2 &#10003; &nbsp; &nbsp; Medical Billing
+        div(v-for="(feature,index) in privateFeatures" :key="index")
+          b(v-if="index === 0").font-s.pb-2 &#10003; &nbsp; &nbsp; {{ feature }}
+          span(v-else).font-s.pb-2 &#10003; &nbsp; &nbsp; {{ feature }}
       v-layout(row justify-center)
         v-btn(style="background-color: #18c551; width: 80%; height: 60px")
           a(:href="`${siginURL}/signup/private/step-1`")
@@ -87,9 +51,16 @@
     },
     data () {
       return {
-        testimonial1: '“MYCURE provides a well organized patient data profiling with customized options for personalized encoding and with integration of lab tests, immunizations as well as growth charts that are very important for us as pediatricians for growth monitoring of our little ones. It is very convenient to use, simple, adaptable and user friendly even to my secretary.”',
-        testimonial2: '“MYCURE fulfills a long time need of physicians for accurate records of patients which they can carry with them wherever they are. It enables them also to prescribe and countercheck their prescriptions, issue medical certificate, communicate with other doctors for referrals.”',
-        siginURL: process.env.VUE_APP_SIGNIN_URL
+        siginURL: process.env.VUE_APP_SIGNIN_URL,
+
+        privateFeatures: [
+          'It\'s FREE!',
+          'Unlimited Clinics',
+          '1 GB Data',
+          'SOAP Charting',
+          'Prescription Printing',
+          'Medical Billing'
+        ]
       };
     }
   };
