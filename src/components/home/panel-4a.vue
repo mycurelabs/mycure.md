@@ -39,16 +39,6 @@
                 )
           div(style="margin: 0px 0px 0px -20px; z-index: 1") 
             img(src="../../assets/images/mycure-web-video-cover-decor-doctor-right.png")
-    div(v-else)
-      div
-        iframe(
-          align="middle"
-          id="ytplayer" 
-          type="text/html" width="100%" height="200px"
-          src="https://www.youtube.com/embed/ZR8e-Egav0M?autoplay=0&loop=1&showinfo=0&rel=0"
-          frameborder="0"
-          allowfullscreen
-        )
 </template>
 
 <script>
