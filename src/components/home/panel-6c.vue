@@ -29,13 +29,11 @@
             span.font-medium What makes MYCURE so different?
             br
             br
-            span.font-small.text-xs-center You can enjoy the best of both worlds — 
-              | reliability of an in-house server and  affordability of the cloud. 
-              | Digitally process your medical records in your local network using 
-              | multiple devices, even if the internet goes down! 
+            span.font-small.text-xs-center In Southeast Asian regions where internet coverage is limited, 
+              |  MYCURE made it possible for clinics to use a cloud-based system in their local network even
+              |  if the internet goes down and just syncs data when back online.
               br
               br
-              | Then once back online, it automatically synchronizes data back in the cloud.
           v-flex(xs6 align-self-center).px-4
             v-card.elevation-10
               a
