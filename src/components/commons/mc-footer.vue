@@ -7,11 +7,11 @@
           hr.mc-grey.mb-3
           v-layout(row wrap justify-center)
             v-flex(xs12 md3 offset-md1).font-mc-grey
+              ul.no-style-type.pb-3
+                router-link(:to="{name: 'home'}").link.white--text
+                    strong HOME
               ul.no-style-type
                 li CLINIC SOLUTIONS
-                li 
-                  router-link(:to="{name: 'home'}").link.white--text
-                    span HOME
                 li
                   router-link(:to="{name: 'electronic-medical-records'}").link.white--text
                     span For Individual Doctors
