@@ -19,21 +19,7 @@
       v-container
         v-layout(row justify-center)
           v-flex(xs12 md5)
-            span(style="line-height: 55px;").font-l Tools to  
-              br
-              | Manage &amp; Secure Your  
-              br
-              | Clinic's Records
-            br
-            br
-            em
-              strong.font-s - Secure Medical Records
-              br
-              | 
-              strong.font-s - Minimized Costs
-              br 
-              | 
-              strong.font-s - Lesser Paperwork
+            span(style="line-height: 55px;").font-l We help organize & secure your clinic’s medical records.
             br 
             br
       v-flex(xs12)
