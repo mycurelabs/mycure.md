@@ -12,8 +12,13 @@
           br
           br
           br
-          a(href="http://blog.mycure.md/2018/04/26/data-privacy-for-physicians/" target="_blank")
-            strong.font-mc-blue Continue Reading...
+          v-btn(
+            href="http://blog.mycure.md/2018/04/26/data-privacy-for-physicians/" 
+            target="_blank"
+            color="#2e9fdf"
+            large
+          ) 
+            strong.text-none.white--text.font-small Learn More
 </template>
 
 <script>
