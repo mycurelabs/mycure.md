@@ -7,38 +7,18 @@
         v-layout(row wrap justify-center).mx-5
           v-flex(xs12 md4)
             v-list(two-line).check-list.white
-              v-list-tile
+              v-list-tile(v-for="(problem,index) in clinicProblems1" :key="index")
                 v-list-tile-action
                   img(src="../../assets/images/mycure-web-bullet-check.png")
                 v-list-tile-content
-                  span.font-small I've no secretary to help with record keeping
-              v-list-tile
-                v-list-tile-action
-                  img(src="../../assets/images/mycure-web-bullet-check.png")
-                v-list-tile-content
-                  span.font-small My patients can't read my scribbly handwriting!
-              v-list-tile
-                v-list-tile-action
-                  img(src="../../assets/images/mycure-web-bullet-check.png")
-                v-list-tile-content
-                  span.font-small Paper charts are very difficult to search &amp filter
+                  span.font-small {{ problem }}
           v-flex(xs12 md4)
             v-list(two-line).check-list.white
-              v-list-tile
+              v-list-tile(v-for="(problem,index) in clinicProblems2" :key="index")
                 v-list-tile-action
                   img(src="../../assets/images/mycure-web-bullet-check.png")
                 v-list-tile-content
-                  span.font-small Cloud is a much safer place to backup my charts
-              v-list-tile
-                v-list-tile-action
-                  img(src="../../assets/images/mycure-web-bullet-check.png")
-                v-list-tile-content
-                  span.font-small I have no idea how much HMOs owe me
-              v-list-tile
-                v-list-tile-action
-                  img(src="../../assets/images/mycure-web-bullet-check.png")
-                v-list-tile-content
-                  span.font-small My previous system is old and not user-friendly
+                  span.font-small {{ problem }}
         br
         v-layout(row wrap justify-center)
           v-btn(
@@ -70,7 +50,18 @@
     data () {
       return {
         checkIcon: '../../assets/images/mycure-web-bullet-check.png',
-        siginURL: process.env.VUE_APP_SIGNIN_URL
+        siginURL: process.env.VUE_APP_SIGNIN_URL,
+
+        clinicProblems1: [
+          'I\'ve no secretary to help with record keeping',
+          'My patients can\'t read my scribbly handwriting!',
+          'Paper charts are very difficult to search & filter',
+        ],
+        clinicProblems2: [
+          'Cloud is a much safer place to backup my charts',
+          'I have no idea how much HMOs owe me',
+          'My previous system is old and not user-friendly'
+        ]
       };
     }
   };
