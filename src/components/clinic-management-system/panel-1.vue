@@ -2,20 +2,19 @@
   div
     div(v-if="!$isMobile").white
       v-container(justify-center fill-height style="padding-top: 70px").px-5.panel-1
-        v-container
-          v-layout(row justify-center)
-            v-flex(xs12 md6 align-self-end)
-              h1(style="line-height: 65px;").font-large A System That Simplifies for Multi-specialty Clinics
-              br 
-              br
-              v-btn(
-                :href="`${siginURL}/signup/private/step-1`" 
-                color="#18c551" 
-                style="padding: 25px 30px 25px 30px"
-              )  
-                strong.font-small.white--text.text-none Sign Up Now
-            v-flex(xs12 md6 align-self-center)
-              img(width="100%" src="../../assets/images/mycure-cms-web-banner-first-panel-doctor-clinic-patients.png")
+        v-layout(row justify-center)
+          v-flex(xs12 md6 align-self-center style="margin-top: -10%") 
+            h1(style="line-height: 65px;").font-large A System That Simplifies for Multi-specialty Clinics
+            br 
+            br
+            v-btn(
+              :href="`${siginURL}/signup/private/step-1`" 
+              color="#18c551" 
+              style="padding: 25px 30px 25px 30px"
+            )  
+              strong.font-small.white--text.text-none Sign Up Now
+          v-flex(xs12 md7 align-self-center style="margin-top: 10%")
+            img(width="100%" src="../../assets/images/mycure-cms-web-banner-first-panel-doctor-clinic-patients.png")
     div(v-else).white
       v-container
         v-layout(row justify-center)
