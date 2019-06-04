@@ -24,10 +24,8 @@
                   br
                   br
                   span.font-small.white--text Dr. Gay Cadorna-Toledo
-                  br
-                  span.font-small.white--text Pediatrician,
-                    | 
-                  span.font-small.white--text Misamis Occidental
+                    br
+                    | Pediatrician, Misamis Occidental
                     br
                     | MYCURE Doctor since 2017
                 slide(data-index="2")
@@ -35,20 +33,16 @@
                   br
                   br
                   span.font-small.white--text Atty. Ivy D. Patdu, M.D 
-                  br
-                  span.font-small.white--text Deputy Privacy Commissioner,
-                    | 
-                  span.font-small.white--text NPC
+                    br
+                    | Deputy Privacy Commissioner, NPC
                     
                 slide(data-index="3")
                   h2.white--text {{ testimonial3 }}
                   br
                   br
                   span.font-small.white--text Dr. Nelson S. Abelardo
-                  br
-                  span.font-small.white--text Cardiologist,
-                    | 
-                  span.font-small.white--text Manila Doctors Hospital
+                    br
+                    | Cardiologist, Manila Doctors Hospital
             v-icon(size="100px") keyboard_arrow_right
       br
     div(v-else)
