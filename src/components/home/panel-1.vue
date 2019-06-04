@@ -3,12 +3,8 @@
     div(v-if="!$isMobile")
       v-container(align-center fill-height style="padding-top: 70px").px-5.panel-1
         v-layout(row justify-center)
-          v-flex(xs12 md6 align-self-center style="margin-top: -10%")
-            h1(style="line-height: 65px;").font-large Tools to 
-              br
-              | Manage &amp; Secure Your 
-              br
-              | Clinic's Records
+          v-flex(xs12 md6 align-self-center style="margin-top: -5%")
+            h1(style="line-height: 65px;").font-large We help organize and secure your clinic’s medical records.
             br
             br
             v-btn(
@@ -17,7 +13,7 @@
               style="padding: 25px 30px 25px 30px"
             ) 
               strong.font-small.text-none.white--text Sign Up Now
-          v-flex(xs12 md7 align-self-center style="margin-top: 10%")
+          v-flex(xs12 md7 align-self-center style="margin-top: 5%")
             img(width="100%" src="../../assets/images/mycure-web-banner-first-panel-doctor-clinic-patients.png")
     div(v-else).white
       v-container
