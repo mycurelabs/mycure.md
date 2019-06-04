@@ -4,6 +4,10 @@
       v-container#emrproduct
         v-flex(xs12 md12)
           v-layout(row justify-center)
+            span.font-medium.lh-title Engineered for solo practice doctors
+          br
+          br
+          v-layout(row justify-center)
             div(style="height: 508px" ).image-rounded-corner.elevation-10
               img(width="100%" src="../../assets/images/mycure-web-banner-pricing-panel-private.png")
             div
