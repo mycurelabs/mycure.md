@@ -11,22 +11,6 @@
       v-container
         v-layout(row justify-center)
           span.font-l.text-xs-center Ideal for Individual Practice
-      v-container
-        v-layout(row justify-center)
-          v-list(two-line style="background-color: #f5f5f5")
-            v-list-tile(v-for="(problem,index) in clinicProblems" :key="index")
-              v-list-tile-action
-                img(src="../../assets/images/mycure-web-bullet-check.png")
-              v-list-tile-content
-                span.font-m {{ problem }}
-        v-layout(row wrap justify-center)
-          v-btn(
-            :href="`${siginURL}/signup/private/step-1`"
-            color="#18c551" large).mt-5 
-            strong.font-s.text-none.white--text Sign Up Now
-        p.text-xs-center.py-4.font-small Have questions? 
-          a(@click.stop="toggleChat()")
-            strong.font-mc-blue Send us a chat.
 </template>
 
 <script>
