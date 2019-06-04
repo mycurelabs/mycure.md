@@ -11,7 +11,7 @@
                 b.font-small.text-center.font-mc-blue Boost your online presence
           v-flex(xs12 md4)
               div.panel-2-box-c
-                b.font-small.text-center.font-mc-blue Become DPA-compliant
+                b.font-small.text-center.font-mc-blue Secure your medical records
     div(v-else)
       a(@click="goToProduct()")
         v-layout(row wrap justify-center)     
@@ -23,7 +23,7 @@
                 b.font-small.text-center.font-mc-grey Boost your online presence
           v-flex(xs12 md4)
               div(style="background-color: white;").panel-2-box-c
-                b.font-small.text-center.font-mc-grey Become DPA-compliant
+                b.font-small.text-center.font-mc-grey Secure your medical records
 </template>
 
 <script>
