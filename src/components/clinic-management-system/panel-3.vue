@@ -7,7 +7,7 @@
         br
         v-layout(row wrap justify-center).py-3 
           v-flex(xs12 md6 style="border-right: 1px solid lightgray").px-5  
-            strong.font-small.right Other Providers
+            h2.right Other Providers
             br
             img(max-width="500px" src="../../assets/images/mycure-homepage-compare-other-emr-incomplete-clinic-management-system.png" width="100%").mb-3
             br
@@ -17,7 +17,7 @@
                 br
                 | complicated systems!
           v-flex(xs12 md6).px-5
-            strong.font-small With MYCURE 
+            h2 With MYCURE 
               span.font-mc-blue &nbsp ✓
               br
             img(max-width="500px" src="../../assets/images/mycure-homepage-compare-mycure-complete-clinic-management-system.png" width="100%").mb-3   
@@ -90,6 +90,8 @@
     background-color: #f6f6f6;
   }
 
-  
+  h2 {
+    font-size: 26px;
+  }
 </style>
 
