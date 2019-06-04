@@ -51,7 +51,7 @@
                   span.font-small.white--text Manila Doctors Hospital
             v-icon(size="100px") keyboard_arrow_right
       br
-    div(v-else).py-3
+    div(v-else)
       center 
         iframe(
           align="middle"
