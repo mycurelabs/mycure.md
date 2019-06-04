@@ -2,7 +2,7 @@
   div.white.py-5
     div
       v-container
-        v-layout(justify-center).px-3.red
+        v-layout(justify-center).px-3
           div
             //- https://ssense.github.io/vue-carousel/
             carousel(
@@ -11,42 +11,42 @@
               :loop="true"
               :navigationEnabled="true"
               :adjustableHeight="true"
-              paginationActiveColor="blue"
-              paginationColor="grey"
+              paginationActiveColor="grey"
+              paginationColor="lightgrey"
               :navigationClickTargetSize="50"
               navigationNextLabel=" "
               navigationPrevLabel=" "
             )
               slide(data-index="1").text-xs-center
-                span.font-small {{ testimonial1 }}
+                span.font-s {{ testimonial1 }}
                 br
                 br
-                span.font-s Atty. Ivy D. Patdu, M.D
+                span.font-xs Atty. Ivy D. Patdu, M.D
                 br
-                strong.font-s Deputy Privacy Commissioner,
+                strong.font-xs Deputy Privacy Commissioner,
                   | 
                 span.font-small NPC
-              slide(data-index="2").text-xs-center.blue.px-5
-                span.font-small {{ testimonial2 }}
+              slide(data-index="2").text-xs-center
+                span.font-s {{ testimonial2 }}
                 br
                 br
-                span.font-s Dr. Gay Cadorna-Toledo
+                span.font-xs Dr. Gay Cadorna-Toledo
                 br
                 br
-                strong.font-s Pediatrician,
+                strong.font-xs Pediatrician,
                   | 
-                span.font-s Misamis Occidental
+                span.font-xs Misamis Occidental
                   br
                   | MYCURE Doctor since 2017
               slide(data-index="3").text-xs-center
                 span.font-small {{ testimonial3 }}
                 br
                 br
-                span.font-s Dr. Nelson S. Abelardo
+                span.font-xs Dr. Nelson S. Abelardo
                 br
-                strong.font-s Cardiologist,
+                strong.font-xs Cardiologist,
                   | 
-                span.font-s Manila Doctors Hospital
+                span.font-xs Manila Doctors Hospital
       div
         img(width="100%" src="../../assets/images/mycure-web-banner-fifth-panel-private-clinic.png")
         v-layout(column wrap).pt-4.pb-5.pr-5.pl-5
