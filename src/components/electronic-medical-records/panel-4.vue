@@ -47,8 +47,9 @@
             style="height: 60px; width: 250px"
           ).mt-3
             strong.font-small.white--text.text-none Sign Up Now
-        p.text-xs-center.py-4.font-small Have questions? Give us a call: 
-          strong (+63) 917 303 4350
+        p.text-xs-center.py-4.font-small Have questions? 
+          a(@click.stop="toggleChat()")
+            strong.font-mc-blue Send us a chat.
     div(v-else)
       div.white
         v-flex(xs12 md12)
