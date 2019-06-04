@@ -62,8 +62,9 @@
           ).mt-3
             strong.font-small.white--text.text-none Sign Up Now
         br
-        p.text-xs-center.py-2.font-small Have questions? Give us a call: 
-          strong (+63) 917 303 4350
+        p.text-xs-center.py-4.font-small Have questions? 
+          a(@click.stop="toggleChat()")
+            strong.font-mc-blue Send us a chat.
       br(style="line-height: 4000%").
       //- br(style="line-height: 600px")
       div(style="margin-top: -10%")

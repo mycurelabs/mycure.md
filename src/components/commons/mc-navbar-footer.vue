@@ -48,8 +48,6 @@
       hr(style="border: 1px solid grey").mx-1
       div(v-if="clinicSol").py-3
         v-layout(column)
-          a(href="/").link.white--text.py-2
-            span.py-2 HOME
           a(href="/electronic-medical-records").link.white--text.py-2
             span.py-2 For Individual Doctors
           a(href="/clinic-management-system").link.white--text.py-2

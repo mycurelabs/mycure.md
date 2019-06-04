@@ -32,20 +32,21 @@
           v-icon(color="gray").sideMenu.pa-1 menu
       v-navigation-drawer(app v-model="drawer" right)
         center.py-5
-          img(src="../../assets/images/mycure-logo.svg" height="50px")
+          a(href="/")
+            img(src="../../assets/images/mycure-header-logo.png" height="50px")
         br(style="line-height: 25px")
         div.sideNavBtn
           a(href="/electronic-medical-records" flat)
             v-layout(row center)
               v-icon person
-              strong.black--text &nbsp; &nbsp; FOR PRIVATE PRACTICE
+              strong.black--text &nbsp; &nbsp; Private Practice 
         center
           hr(style="width: 80%; border-color: #f5f5f5")
         div.sideNavBtn
           a(href="/clinic-management-system" flat)
             v-layout(row center)
               v-icon group
-              strong.black--text &nbsp; &nbsp; FOR MULTI-SPECIALTY CLINICS
+              strong.black--text &nbsp; &nbsp; Multi-specialty Clinics
         center
           hr(style="width: 80%; border-color: #f5f5f5")
         br
