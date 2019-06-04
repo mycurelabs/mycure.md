@@ -31,6 +31,8 @@
   export default {
     data () {
       return {
+        private_title: 'Get a powerful combination of features designed for physicians who are practicing solo or in groups.',
+        multispecialty_title: 'An all-around solution for your outpatient, multi-specialty or specialized clinics that will manage your full-patient journeys with ease.',          
         privateFeatures: [
           'It\'s FREE!',
           'Unlimited Clinics',
