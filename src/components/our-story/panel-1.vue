@@ -1,8 +1,8 @@
 <template lang="pug">
   div
     div(v-if="!$isMobile").white.pa-5
-      v-container(justify-center fill-height).px-5.panel1
-        v-layout(row wrap)
+      v-container(justify-center fill-height).px-5.panel-1
+        v-layout(row wrap justify-center)
           v-flex(xs12 md5 align-self-center)
             h1(style="line-height: 70px;").font-large MYCURE cares for people who care for people.
             br
