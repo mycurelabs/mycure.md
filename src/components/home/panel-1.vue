@@ -4,7 +4,7 @@
       v-container(align-center fill-height style="padding-top: 70px").px-5.panel-1
         v-layout(row justify-center)
           v-flex(xs12 md6 align-self-center style="margin-top: -5%")
-            h1(style="line-height: 65px;").font-large We help organize and secure your clinic’s medical records.
+            h1(style="line-height: 65px;").font-large We help organize & secure your clinic’s medical records.
             br
             br
             v-btn(

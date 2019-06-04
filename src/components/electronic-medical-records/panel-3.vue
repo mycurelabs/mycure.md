@@ -3,7 +3,7 @@
     div(v-if="!$isMobile" style="padding: 0 6% 0 6%;").pt-5
       v-container
         v-layout(row justify-center)
-          span.font-medium.lh-title It's complete - everything your clinic needs.
+          span.font-medium.lh-title Ideal for Individual Practice
       div.py-5
         center
           img(style="max-width: 90%;" src="../../assets/images/mycure-home-web-individual-clinic-diagram-banner.png")
