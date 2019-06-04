@@ -17,13 +17,13 @@
         v-layout(row wrap justify-center)
           v-flex(xs12 md4)
             div(style="background-color: white;").panel-2-box-a
-              strong.font-small.text-center.font-mc-grey Serve more patients
+              strong.font-small.text-center.font-mc-blue Serve more patients
           v-flex(xs12 md4)
             div(style="background-color: white;").panel-2-box-b
-              strong.font-small.text-center.font-mc-grey Comply to Data Privacy Act
+              strong.font-small.text-center.font-mc-blue Comply to Data Privacy Act
           v-flex(xs12 md4)
             div(style="background-color: white;").panel-2-box-c
-              strong.font-small.text-center.font-mc-grey Work Offline
+              strong.font-small.text-center.font-mc-blue Work Offline
 </template>
 
 <script>
