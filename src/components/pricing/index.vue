@@ -2,8 +2,8 @@
   div#top
     mcNavbarHome
     panel1
-    panel2
-    panel3(v-if="$isMobile")
+    panel2.showPanel
+    panel3(v-if="$isMobile").showPanel
     mcFooter
 </template>
 
