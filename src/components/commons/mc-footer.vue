@@ -61,7 +61,7 @@
     div(v-else).pt-5
       center
         v-layout(column justify-center style="width: 90%")
-          span(style="font-size: 200%").text-xs-center Join thousands of other health professionals who enjoy the benefits of using technology in their practice
+          span(style="font-size: 200%").text-xs-center Join thousands of health professionals who get the best out of technology in their practice
       br
       br
       div 
