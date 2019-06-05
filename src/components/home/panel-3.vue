@@ -97,12 +97,12 @@
             title: 'Syncbase - Work Offline',
             description: 'Use MYCURE even if your internet connection is down. Work offline and sync data once online',
             icon: 'mycure-web-clinic-feature-icon-syncbase.png'
-          },
-          {
-            title: 'DPA Guide',
-            description: 'Step-by-step guide to DPA compliance',
-            icon: 'mycure-web-clinic-feature-icon-DPA.png'
           }
+          // {
+          //   title: 'DPA Guide',
+          //   description: 'Step-by-step guide to DPA compliance',
+          //   icon: 'mycure-web-clinic-feature-icon-DPA.png'
+          // }
         ]
       };
     },
