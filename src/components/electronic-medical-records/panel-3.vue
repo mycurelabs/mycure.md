@@ -41,7 +41,7 @@
           {
             title: 'SOAP Charting',
             description: 'Quickly store and retrieve your charts anytime, anywhere',
-            icon: null
+            icon: 'mycure-web-clinic-feature-icon-soap-charting.png'
           },
           {
             title: 'Prescription',
@@ -51,17 +51,17 @@
           {
             title: 'Diagnostic Orders',
             description: 'Laboratory and Imaging test requests in a few clicks',
-            icon: null
+            icon: 'mycure-web-clinic-feature-icon-lab.png'
           },
           {
             title: 'Custom Forms',
             description: 'Create medical certificates, questionnaires, and waivers',
-            icon: null
+            icon: 'mycure-web-clinic-feature-icon-forms.png'
           },
           {
             title: 'Daily Census',
             description: 'Manage your daily performance and income with ease',
-            icon: null
+            icon: 'mycure-web-clinic-feature-icon-census.png'
           },
         ]
 
