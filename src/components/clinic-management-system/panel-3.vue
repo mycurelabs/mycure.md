@@ -39,9 +39,9 @@
           a(@click.stop="toggleChat()")
             strong.font-mc-blue Send us a chat.
     div(v-else).mc-light-grey
-      v-container
+      v-container.pt-5
         v-layout(row justify-center)
-          span.font-l.text-xs-center Designed for Multi-specialty Clinics
+          span.font-l.text-xs-center.lh-title Designed for Multi-specialty Clinics
         br
         br
         br
@@ -59,6 +59,19 @@
           img(src="../../assets/images/mycure-homepage-compare-mycure-complete-clinic-management-system.png" width="100%").mb-3   
           br
           span.text-xs-center.font-small Say hello to a simplified record-keeping for everyone.
+          br
+          br
+          v-layout(row wrap justify-center)
+            v-btn(
+              color="#18c551"
+              :href="`${siginURL}/signup/private/step-1`"
+              large
+            ).mt-3
+              strong.font-s.white--text.text-none Sign Up Now
+          p.text-xs-center.py-4.font-small Have questions? 
+            a(@click.stop="toggleChat()")
+              strong.font-mc-blue Send us a chat.
+
 </template>
 
 <script>
