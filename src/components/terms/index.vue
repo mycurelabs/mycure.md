@@ -3,7 +3,7 @@
     mcNavbarHome
     panel-1
     panel-2.showPanel
-    mcFooter(style="padding-top: 100px")
+    mcFooter(:webSky="false")
 </template>
 
 <script>
