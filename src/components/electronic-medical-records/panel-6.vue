@@ -30,7 +30,7 @@
                 v-btn(:href="`${siginURL}/signup/private/step-1`" style="background-color: #18c551; color: white; width: auto" large).text-none
                   strong Sign Up Now
       panel6a(style="padding-top: 150px")
-    div(v-else)
+    div(v-else).pt-3
       img(width="100%" src="../../assets/images/mycure-web-banner-fifth-panel-private-clinic.png")
       v-layout(column wrap).pt-4.pb-5.pr-5.pl-5
         p.pb-2.font-s {{ private_title }}
