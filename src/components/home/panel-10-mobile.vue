@@ -1,5 +1,5 @@
 <template lang="pug">
-  div.white.mt-4
+  div.mt-4
     v-container
       span.font-l.lh-title What makes MYCURE so different?
       br
