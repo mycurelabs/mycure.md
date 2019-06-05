@@ -6,6 +6,7 @@
     panel3
     panel4
     panel5(style="margin-top: -2px")
+    panel5mobile(v-if="$isMobile" style="margin-top: -15%")
     panel6
     panel6mobile(v-if="$isMobile")
     panel7mobile(v-if="$isMobile")
@@ -24,6 +25,7 @@
   import panel3 from './panel-3';
   import panel4 from './panel-4';
   import panel5 from './panel-5';
+  import panel5mobile from './panel-5-mobile';
   import panel6 from './panel-6';
   import panel6mobile from './panel-6-mobile';
   import panel7mobile from './panel-7-mobile';
@@ -42,6 +44,7 @@
       panel3,
       panel4,
       panel5,
+      panel5mobile,
       panel6,
       panel6mobile,
       panel7mobile,
