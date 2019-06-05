@@ -2,8 +2,8 @@
   div#top
     mcNavbarHome
     panel-1
-    panel-2
-    mcFooter
+    panel-2.showPanel
+    mcFooter(style="padding-top: 100px")
 </template>
 
 <script>
