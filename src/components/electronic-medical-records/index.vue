@@ -6,8 +6,8 @@
     panel3
     panel4
     panel5(style="margin-top: -20%")
-    panel6
-    panel7mobile(v-if="$isMobile")
+    panel6.showPanel
+    panel7mobile(v-if="$isMobile").showPanel
     mc-footer
 </template>
 
