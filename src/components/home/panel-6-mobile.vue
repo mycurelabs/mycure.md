@@ -1,8 +1,8 @@
 <template lang="pug"> 
-  div.mt-5
-    v-container
+  div#panel6mobile
+    v-container.pt-5
       v-layout(justify-center).px-3
-        div
+        div.white--text
           //- https://ssense.github.io/vue-carousel/
           carousel(
             :per-page="1" 
@@ -10,8 +10,8 @@
             :loop="true"
             :navigationEnabled="true"
             :adjustableHeight="true"
-            paginationActiveColor="grey"
-            paginationColor="lightgrey"
+            paginationActiveColor="white"
+            paginationColor="grey"
             :navigationClickTargetSize="50"
             navigationNextLabel=" "
             navigationPrevLabel=" "
@@ -64,7 +64,9 @@
 
 
 <style scoped>
-  
+  #panel6mobile {
+    background-color: #43ab5f
+  }
 
   a {
     text-decoration: none;
