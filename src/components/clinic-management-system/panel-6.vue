@@ -1,5 +1,5 @@
 <template lang="pug">
-  div.py-5.white
+  div.white
     div
       img(width="100%" src="../../assets/images/mycure-web-banner-fifth-panel-multi-specialty-clinics.png")
       v-layout(column wrap).pt-4.pb-5.pr-5.pl-5

@@ -8,6 +8,7 @@
     panel5(v-if="!$isMobile")
     panel5mobile(v-if="$isMobile")
     panel6(v-if="$isMobile")
+    panel7(v-if="$isMobile")
     mc-footer
 </template>
 
@@ -21,6 +22,7 @@
   import panel5 from './panel-5';
   import panel5mobile from './panel-5-mobile';
   import panel6 from './panel-6';
+  import panel7 from './panel-7';
   import VueScrollTo from 'vue-scrollto';
 
   export default {
@@ -38,7 +40,8 @@
       panel4,
       panel5,
       panel5mobile,
-      panel6
+      panel6,
+      panel7
     },
     mounted () {
       VueScrollTo.scrollTo(`#top`, 500, { easing: 'ease' } );
