@@ -31,22 +31,33 @@
             br
             span.font-small.text-xs-center In Southeast Asian regions where internet coverage is limited, 
               |  MYCURE made it possible for clinics to use a cloud-based system in their local network even
-              |  if the internet goes down and just syncs data when back online.
+              |  if the internet goes down.
               br
               br
-          v-flex(xs6 align-self-center).px-4
-            v-card.elevation-10
-              a
-                img(v-if="!videoDialog" @click.stop="videoDialog=!videoDialog" width="100%" src="../../assets/images/mycure-web-video-cover-syncbase-online-offline.png")
-                iframe(
-                  v-else
-                  align="middle"
-                  id="ytplayer" 
-                  type="text/html" width="100%" height="300"
-                  src="https://www.youtube.com/embed/ZR8e-Egav0M?autoplay=1&loop=1&showinfo=0&rel=0"
-                  frameborder="0"
-                  allowfullscreen
-                  )
+            v-btn(
+              @click.stop="dialog= true"
+              color="#2e9fdf"
+              small
+              right
+              large
+            )
+              strong.text-none.white--text.font-small &#9658; &nbsp; Watch Video
+            v-dialog(v-model="dialog" max-width="50%") 
+              v-card(height="30%").elevation-10
+                a
+                  img(v-if="!videoDialog" @click.stop="videoDialog=!videoDialog" width="100%" src="../../assets/images/mycure-web-video-cover-syncbase-online-offline.png")
+                  iframe(
+                    v-else
+                    align="middle"
+                    id="ytplayer" 
+                    type="text/html" width="100%" height="400"
+                    src="https://www.youtube.com/embed/ZR8e-Egav0M?autoplay=1&loop=1&showinfo=0&rel=0"
+                    frameborder="0"
+                    allowfullscreen
+                    )
+
+          v-flex(xs6 align-self-center).px-3
+            img(src="../../assets/images/mycure-homepage-syncbase-animated.gif" width="100%")
     div(v-else)
 </template>
 
@@ -54,6 +65,7 @@
   export default {
     data () {
       return {
+        dialog: false,
         videoDialog: false
       };
     }
