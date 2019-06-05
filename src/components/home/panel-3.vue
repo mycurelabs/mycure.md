@@ -94,7 +94,7 @@
             icon: 'mycure-web-clinic-feature-icon-pme.png'
           },
           {
-            title: 'Syncbase Technology',
+            title: 'Syncbase - Work Offline',
             description: 'Use MYCURE even if your internet connection is down. Work offline and sync data once online',
             icon: 'mycure-web-clinic-feature-icon-syncbase.png'
           },
