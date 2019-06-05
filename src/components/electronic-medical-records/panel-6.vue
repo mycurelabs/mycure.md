@@ -1,6 +1,6 @@
 <template lang="pug">
-  div
-    div(style="padding-top: 150px" v-if="!$isMobile").transparent#panel6
+  div(style="padding-top: 150px")
+    div(v-if="!$isMobile").transparent#panel6
       v-container#emrproduct
         v-flex(xs12 md12)
           v-layout(row justify-center)
