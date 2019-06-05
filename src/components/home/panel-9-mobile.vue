@@ -2,9 +2,12 @@
   div.mc-light-grey.mt-5
     v-container
       v-layout(row)
-        v-flex(xs12 md12)
+        v-flex(xs12 md12).text-xs-center
           br
           span(style="line-height: 45px").font-l Protect your patients' medical records with confidence
+          br
+          br
+          img(width="85%" src="../../assets/images/mycure-web-banner-data-privacy-law.png")
           br
           br
           br
