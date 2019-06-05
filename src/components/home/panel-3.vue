@@ -35,7 +35,7 @@
         br
         v-layout(row justify-center v-for="feature in features" :key="feature.title").pt-3
           v-flex(xs3).text-xs-center
-            img(:src="require(`../../assets/images/${feature.icon}`)")
+            img(v-if="feature.icon" :src="require(`../../assets/images/${feature.icon}`)")
           v-flex(xs8 offset-xs1)
             b {{ feature.title }}
             p {{ feature.description}}
@@ -49,19 +49,19 @@
 
         features: [
           {
+            title: 'Registration',
+            description: 'Patient profiling, queuing & appointments',
+            icon: null
+          },
+          {
             title: 'Medical Records',
             description: 'Create printable Prescriptions, Charts, Lab Orders and customizable forms',
             icon: 'mycure-web-clinic-feature-icon-emr.png'
           },
           {
-            title: 'Syncbase Technology',
-            description: 'Use MYCURE even if your internet connection is down. Work offline and sync data once online',
-            icon: 'mycure-web-clinic-feature-icon-syncbase.png'
-          },
-          {
-            title: 'DPA Guide',
-            description: 'Step-by-step guide to DPA compliance',
-            icon: 'mycure-web-clinic-feature-icon-DPA.png'
+            title: 'Administrative',
+            description: 'Staff management, audit trail and clinic customizations',
+            icon: null
           },
           {
             title: 'Billing',
@@ -79,9 +79,9 @@
             icon: 'mycure-web-clinic-feature-icon-materials-management.png'
           },
           {
-            title: 'Physical Medical Exam',
-            description: 'Auto-balancing queues, PME reports, and group registration',
-            icon: 'mycure-web-clinic-feature-icon-pme.png'
+            title: 'Laboratory',
+            description: 'Online & printable lab results, census,and  HL7 machine integration',
+            icon: 'mycure-web-clinic-feature-icon-lab.png'
           },
           {
             title: 'Imaging',
@@ -89,9 +89,19 @@
             icon: 'mycure-web-clinic-feature-icon-imaging.png'
           },
           {
-            title: 'Laboratory',
-            description: 'Online & printable lab results, census,and  HL7 machine integration',
-            icon: 'mycure-web-clinic-feature-icon-lab.png'
+            title: 'Physical Medical Exam',
+            description: 'Auto-balancing queues, PME reports, and group registration',
+            icon: 'mycure-web-clinic-feature-icon-pme.png'
+          },
+          {
+            title: 'Syncbase Technology',
+            description: 'Use MYCURE even if your internet connection is down. Work offline and sync data once online',
+            icon: 'mycure-web-clinic-feature-icon-syncbase.png'
+          },
+          {
+            title: 'DPA Guide',
+            description: 'Step-by-step guide to DPA compliance',
+            icon: 'mycure-web-clinic-feature-icon-DPA.png'
           }
         ]
       };
