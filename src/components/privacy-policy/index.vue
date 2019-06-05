@@ -2,8 +2,8 @@
   div#top
     mc-navbar-home
     panel-1
-    panel-2
-    mc-footer
+    panel-2.showPanel
+    mc-footer(:webSky="false")
 </template>
 
 <script>
