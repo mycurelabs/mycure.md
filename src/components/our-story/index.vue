@@ -4,9 +4,9 @@
     panel1
     panel2
     panel3
-    panel4
-    panel5
-    panel6
+    panel4.showPanel
+    panel5.showPanel
+    panel6.showPanel
     //- panel7
     mc-footer
 </template>

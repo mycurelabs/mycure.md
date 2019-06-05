@@ -25,15 +25,14 @@
       v-container
       br
       br
-      br
-      br
       v-flex(xs12 md12).text-xs-center
         v-layout(row wrap align-center justify-center)
             h1.font-medium Caring the Extra Mile
+        br
         iframe(
           align="middle"
           id="ytplayer" 
-          type="text/html" width="100%" height="200"
+          type="text/html" width="100%" height="300"
           src="https://www.youtube.com/embed/ZR8e-Egav0M?autoplay=0&loop=1&showinfo=0&rel=0"
           frameborder="0"
         )        
