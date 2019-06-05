@@ -1,7 +1,7 @@
 <template lang="pug">
   div.pa-5.mc-light-grey
     v-container
-      p.font-l.text-xs-center Designed for clinics of all shapes and sizes.
+      p.font-l.text-xs-center.lh-title Designed for clinics of all shapes and sizes.
     v-layout(justify-center)
       table
         tr
