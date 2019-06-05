@@ -129,4 +129,10 @@ export default {
 .panel-1{
     height: 100vh !important;
   }
+
+/* This class lets the panel avoid being covered by the web sky background */
+.showPanel {
+  position: relative; 
+  z-index: 1;
+}
 </style>
