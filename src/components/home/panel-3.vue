@@ -51,7 +51,7 @@
           {
             title: 'Registration',
             description: 'Patient profiling, queuing & appointments',
-            icon: null
+            icon: 'mycure-web-clinic-feature-icon-registration.png'
           },
           {
             title: 'Medical Records',
@@ -61,7 +61,7 @@
           {
             title: 'Administrative',
             description: 'Staff management, audit trail and clinic customizations',
-            icon: null
+            icon: 'mycure-web-clinic-feature-icon-admin.png'
           },
           {
             title: 'Billing',
