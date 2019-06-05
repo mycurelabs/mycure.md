@@ -10,7 +10,17 @@
     div(v-else).mc-light-grey
       v-container
         v-layout(row justify-center)
-          span.font-l.text-xs-center Ideal for Individual Practice
+          span.font-l.text-xs-center.lh-title Ideal for Individual Practice
+        br
+        v-layout(row justify-center)
+          img(src="../../assets/images/mycure-web-clinic-room-01.png" width="100%")
+        br
+        v-layout(row justify-center v-for="feature in privateFeatures" :key="feature.title").pt-3
+          v-flex(xs3).text-xs-center
+            img(v-if="feature.icon" :src="require(`../../assets/images/${feature.icon}`)")
+          v-flex(xs8 offset-xs1)
+            b {{ feature.title }}
+            p {{ feature.description}}
 </template>
 
 <script>
@@ -26,7 +36,35 @@
           'Cloud is a much safer place to backup my charts',
           'I have no idea how much HMOs owe me',
           'My previous system is old and not user-friendly'
+        ],
+        privateFeatures: [
+          {
+            title: 'SOAP Charting',
+            description: 'Quickly store and retrieve your charts anytime, anywhere',
+            icon: null
+          },
+          {
+            title: 'Prescription',
+            description: 'Printable medical orders for you and your patients',
+            icon: 'mycure-web-clinic-feature-icon-prescription.png'
+          },
+          {
+            title: 'Diagnostic Orders',
+            description: 'Laboratory and Imaging test requests in a few clicks',
+            icon: null
+          },
+          {
+            title: 'Custom Forms',
+            description: 'Create medical certificates, questionnaires, and waivers',
+            icon: null
+          },
+          {
+            title: 'Daily Census',
+            description: 'Manage your daily performance and income with ease',
+            icon: null
+          },
         ]
+
       };
     },
     methods: {
