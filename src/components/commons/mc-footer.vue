@@ -59,7 +59,7 @@
                 |
                 span.white--text All Rights Reserved.
     div(v-else).pt-5
-      div 
+      div(style="margin-bottom: -2%")
         img(width="100%" height="50%" src="../../assets/images/mycure-web-banner-last-panel-health-community-mobile.png")  
       div(style="height: 75px").mc-green
         v-layout(row justify-center)
