@@ -58,8 +58,8 @@
                 span.font-mc-blue &nbsp; MYCURE.  
                 |
                 span.white--text All Rights Reserved.
-    div(v-else style="margin-top: -250%; z-index: -1").pt-5.transparent
-      div(style="margin-bottom: -140%").pt-5
+    div(v-else :style="webSky ? 'margin-top: -250%; z-index: -1' : 'margin-top: 0'").pt-5.transparent
+      div(v-if="webSky" style="margin-bottom: -140%").pt-5
         img(width="100%" src="../../assets/images/mycure-home-web-sky-background-mobile.png")
       div(style="margin-bottom: -2%")
         img(width="100%" height="100%" src="../../assets/images/mycure-web-banner-last-panel-health-community-mobile.png")  
@@ -77,6 +77,12 @@ import mcNavbarFooter from "./mc-navbar-footer";
 export default {
   components: {
     mcNavbarFooter
+  },
+  props: {
+    webSky: {
+      type: Boolean,
+      default: true,
+    }
   },
   data () {
     return {
