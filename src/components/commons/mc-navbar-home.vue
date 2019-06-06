@@ -6,7 +6,7 @@
         //-   v-flex(xs12 md12)
         v-toolbar(flat).white
           v-layout(row wrap align-center)
-            a(href="/").pr-4
+            a(href="/").pr-4.pt-1
               img(src="../../assets/images/mycure-header-logo.png" height="35")
             v-btn(href="/electronic-medical-records" flat)
               strong(style="font-size: 14px").tab.text-none Private Practice
