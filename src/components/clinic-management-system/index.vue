@@ -4,9 +4,9 @@
     panel1
     panel2
     panel3
-    panel4
-    panel5(v-if="!$isMobile")
-    panel5mobile(v-if="$isMobile")
+    panel4.showPanel
+    panel5(v-if="!$isMobile").showPanel
+    panel5mobile(v-if="$isMobile").showPanel
     panel6(v-if="$isMobile").showPanel
     panel7(v-if="$isMobile").showPanel
     mc-footer
