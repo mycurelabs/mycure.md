@@ -24,18 +24,17 @@
           div(style="margin: 0px -20px 0px 0px; z-index: 1")
             img(src="../../assets/images/mycure-web-video-cover-decor-doctor-left.png")
           div(style="z-index: 0")
-            //- v-card(flat)
             a
               img(v-if="!videoDialog" @click.stop="videoDialog=!videoDialog" src="../../assets/images/mycure-web-video-cover.png")
-              iframe(
-                v-else
-                align="middle"
-                id="ytplayer" 
-                type="text/html" width="672" height="393"
-                src="https://www.youtube.com/embed/ZR8e-Egav0M?autoplay=1&loop=1&showinfo=0&rel=0"
-                frameborder="0"
-                allowfullscreen
-                )
+              div(v-else style="border: 10px solid white; border-radius: 10px;")
+                iframe(
+                  align="middle"
+                  id="ytplayer" 
+                  type="text/html" width="652" height="380"
+                  src="https://www.youtube.com/embed/ZR8e-Egav0M?autoplay=1&loop=1&showinfo=0&rel=0"
+                  frameborder="0"
+                  allowfullscreen
+                  )
           div(style="margin: 0px 0px 0px -20px; z-index: 1") 
             img(src="../../assets/images/mycure-web-video-cover-decor-doctor-right.png")
     div(v-else style="margin-top: -15%")
