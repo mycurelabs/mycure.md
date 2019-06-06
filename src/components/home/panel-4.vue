@@ -128,7 +128,9 @@
     },
     methods: {
       toggleChat () {
+        let message = `Hi, I would like to know more about MYCURE's products.`;
         window.$crisp.push(['do', 'chat:toggle']);
+        window.$crisp.push(['do', 'message:send', ['text', message]]);
       }
     },
     data () {
