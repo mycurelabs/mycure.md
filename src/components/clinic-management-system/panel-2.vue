@@ -16,14 +16,14 @@
       a(@click="goToProduct()")
         v-layout(row wrap justify-center)
           v-flex(xs12 md4)
-            div(style="background-color: white").panel-2-box.border-color-a
-              b.font-small.text-center Organized Patient Records
+            div(style="background-color: white;").panel-2-box.border-color-a
+              b.font-small.text-center.font-mc-blue Organized Patient Records
           v-flex(xs12 md4)
-            div(style="background-color: white").panel-2-box.border-color-a
-              b.font-small.text-center Data-driven Decisions
+            div(style="background-color: white;").panel-2-box.border-color-a
+              b.font-small.text-center.font-mc-blue Data-driven Decisions
           v-flex(xs12 md4)
-            div(style="background-color: white").panel-2-box.border-color-b
-              b.font-small.text-center Happier Staff Members
+            div(style="background-color: white;").panel-2-box.border-color-b
+              b.font-small.text-center.font-mc-blue Happier Staff Members
 </template>
 
 <script>
