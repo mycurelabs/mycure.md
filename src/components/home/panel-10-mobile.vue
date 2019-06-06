@@ -26,7 +26,7 @@
   export default {
     data () {
       return {
-        different: "In Southeast Asian regions where internet coverage is limited, MYCURE made it possible for clinics to use a cloud-based system in their local network even if the internet goes down.",
+        different: "In Southeast Asia where internet coverage is limited, MYCURE made it possible for clinics to use a cloud-based system in their local network even if the internet goes down.",
         videoDialog: false
       };
     }

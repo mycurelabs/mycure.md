@@ -29,7 +29,7 @@
             span.font-medium What makes MYCURE so different?
             br
             br
-            span.font-small.text-xs-center In Southeast Asian regions where internet coverage is limited, 
+            span.font-small.text-xs-center In Southeast Asia where internet coverage is limited, 
               |  MYCURE made it possible for clinics to use a cloud-based system in their local network even
               |  if the internet goes down.
               br
