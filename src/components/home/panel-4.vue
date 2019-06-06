@@ -9,50 +9,18 @@
         v-layout(row wrap justify-center).mx-5
           v-flex(xs12 md4)
             v-list(two-line).transparent.check-list
-              v-list-tile
+              v-list-tile(v-for="(problem,index) in problems" :key="index" v-if="index<=2")
                 v-list-tile-action
-                  div.bullet
-                    center
-                     span.white--text 1
+                  img(src="../../assets/images/mycure-web-bullet-check.png")
                 v-list-tile-content
-                  span.font-small Are you having data privacy issues?
-              v-list-tile
-                v-list-tile-action
-                  div.bullet
-                    center
-                     span.white--text 2
-                v-list-tile-content
-                  span.font-small Do you need to cut on unnecessary costs?
-              v-list-tile
-                v-list-tile-action
-                  div.bullet
-                    center
-                     span.white--text 3
-                v-list-tile-content
-                  span.font-small Is your internet connection unreliable?
+                  span.font-small {{ problem }}
           v-flex(xs12 md4)
             v-list(two-line).transparent.check-list
-              v-list-tile
+              v-list-tile(v-for="(problem,index) in problems" :key="index" v-if="index>2")
                 v-list-tile-action
-                  div.bullet
-                    center
-                     span.white--text 4
+                  img(src="../../assets/images/mycure-web-bullet-check.png")
                 v-list-tile-content
-                  span.font-small Do you have a duplicate or missing patient charts?
-              v-list-tile
-                v-list-tile-action
-                  div.bullet
-                    center
-                     span.white--text 5
-                v-list-tile-content
-                  span.font-small Do you have billing &amp; collection discrepancies?
-              v-list-tile
-                v-list-tile-action
-                  div.bullet
-                    center
-                     span.white--text 6
-                v-list-tile-content
-                  span.font-small Is your current system crappy and slows you down?
+                  span.font-small {{ problem }}
         br
         v-layout(row wrap justify-center)
           v-btn(
@@ -76,36 +44,11 @@
       v-container
         v-layout(row justify-center)
           v-list(two-line style="background-color: #f5f5f5")
-            v-list-tile
+            v-list-tile(v-for="(problem,index) in problems" :key="index")
               v-list-tile-action
                 img(src="../../assets/images/mycure-web-bullet-check.png")
               v-list-tile-content
-                span.font-m Are you having data privacy issues?
-            v-list-tile
-              v-list-tile-action
-                img(src="../../assets/images/mycure-web-bullet-check.png")
-              v-list-tile-content
-                span.font-m Do you need to cut on unnecessary costs?
-            v-list-tile
-              v-list-tile-action
-                img(src="../../assets/images/mycure-web-bullet-check.png")
-              v-list-tile-content
-                span.font-m Is your internet connection unreliable?
-            v-list-tile
-              v-list-tile-action
-                img(src="../../assets/images/mycure-web-bullet-check.png")
-              v-list-tile-content
-                span.font-m Do you have a duplicate or missing patient charts?
-            v-list-tile
-              v-list-tile-action
-                img(src="../../assets/images/mycure-web-bullet-check.png")
-              v-list-tile-content
-                span.font-m Do you have billing &amp; collection discrepancies?
-            v-list-tile
-              v-list-tile-action
-                img(src="../../assets/images/mycure-web-bullet-check.png")
-              v-list-tile-content
-                span.font-m Is your current system crappy and slows you down?  
+                span.font-m {{ problem }} 
         v-layout(row wrap justify-center)
           v-btn(
             :href="`${siginURL}/signup/private/step-1`"
@@ -136,7 +79,16 @@
     data () {
       return {
         videoDialog: false,
-        siginURL: process.env.VUE_APP_SIGNIN_URL
+        siginURL: process.env.VUE_APP_SIGNIN_URL,
+
+        problems: [
+          'Are you having data privacy issues?',
+          'Do you need to cut on unnecessary costs?',
+          'Is your internet connection unreliable?',
+          'Do you have a duplicate or missing patient charts?',
+          'Do you have billing & collection discrepancies?',
+          'Is your current system crappy and slows you down?'
+        ]
       };
     }
   };
