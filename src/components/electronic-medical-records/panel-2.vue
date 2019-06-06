@@ -4,26 +4,26 @@
       a(@click="goToProduct()")
         v-layout(row wrap justify-center)     
           v-flex(xs12 md4)
-            div.panel-2-box-a
-              b.font-small.text-center.font-mc-blue View your charts anywhere
+            div.panel-2-box.border-color-a
+              b.font-small.text-center View your charts anywhere
           v-flex(xs12 md4)
-              div.panel-2-box-b
-                b.font-small.text-center.font-mc-blue Boost your online presence
+              div.panel-2-box.border-color-a
+                b.font-small.text-center Boost your online presence
           v-flex(xs12 md4)
-              div.panel-2-box-c
-                b.font-small.text-center.font-mc-blue Secure your medical records
+              div.panel-2-box.border-color-b
+                b.font-small.text-center Secure your medical records
     div(v-else)
       a(@click="goToProduct()")
         v-layout(row wrap justify-center)     
           v-flex(xs12 md4)
-            div(style="background-color: white;").panel-2-box-a
-              b.font-small.text-center.font-mc-blue View your charts anywhere
+            div(style="background-color: white;").panel-2-box.border-color-a
+              b.font-small.text-center View your charts anywhere
           v-flex(xs12 md4)
-              div(style="background-color: white;").panel-2-box-b
-                b.font-small.text-center.font-mc-blue Boost your online presence
+              div(style="background-color: white;").panel-2-box.border-color-a
+                b.font-small.text-center Boost your online presence
           v-flex(xs12 md4)
-              div(style="background-color: white;").panel-2-box-c
-                b.font-small.text-center.font-mc-blue Secure your medical records
+              div(style="background-color: white;").panel-2-box.border-color-b
+                b.font-small.text-center Secure your medical records
 </template>
 
 <script>
@@ -45,36 +45,27 @@
 
 
 <style scoped>
-  .panel-2-box-a {
-  height: 90px;
-  background-color: #f5f5f5;
-  border-width: thin;
-  border-style: solid;
-  border-color: lightgray lightgray lightgray transparent;
-  text-align: center;
-  vertical-align: middle;
-  line-height: 90px;  
+  a {
+    text-decoration: none
   }
-  
-  .panel-2-box-b {
-  height: 90px;
-  background-color: #f5f5f5;
-  border-width: thin;
-  border-style: solid;
-  border-color: lightgray lightgray lightgray transparent;
-  text-align: center;
-  vertical-align: middle;
-  line-height: 90px;  
-  } 
-
-  .panel-2-box-c {
+  .panel-2-box {
     height: 90px;
     background-color: #f5f5f5;
     border-width: thin;
     border-style: solid;
-    border-color: lightgray transparent lightgray transparent;
     text-align: center;
     vertical-align: middle;
-    line-height: 90px;  
-    }
+    line-height: 90px; 
+    color: #2e9fdf;
+  }
+  .panel-2-box:hover {
+    background-color: #2e9fdf;
+    color: white;
+  }
+  .border-color-a {
+    border-color: lightgray lightgray lightgray transparent;
+  }
+  .border-color-b {
+    border-color: lightgray transparent lightgray transparent;
+  }
 </style>
