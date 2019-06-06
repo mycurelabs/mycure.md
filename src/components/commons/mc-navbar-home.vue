@@ -46,7 +46,7 @@
           a(href="/clinic-management-system" flat)
             v-layout(row center)
               v-icon group
-              strong.black--text &nbsp; &nbsp; multispecialty Clinics
+              strong.black--text &nbsp; &nbsp; Multispecialty Clinics
         center
           hr(style="width: 80%; border-color: #f5f5f5")
         br
