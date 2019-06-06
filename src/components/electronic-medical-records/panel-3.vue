@@ -13,7 +13,7 @@
           span.font-l.text-xs-center.lh-title Ideal for Individual Practice
         br
         v-layout(row justify-center)
-          img(src="../../assets/images/mycure-web-clinic-room-01.png" width="100%")
+          img(src="../../assets/images/mycure-web-clinic-room-01.png" width="100%" height="100%")
         br
         v-layout(row justify-center v-for="feature in privateFeatures" :key="feature.title").pt-3
           v-flex(xs3).text-xs-center
