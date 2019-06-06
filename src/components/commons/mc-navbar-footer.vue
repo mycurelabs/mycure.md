@@ -97,7 +97,7 @@
             span.py-2 Privacy Policy
       br
       v-layout(row).pb-1
-        span.font-small.font-mc-grey CONTACT
+        span.font-small.font-mc-grey CONTACT US
         v-spacer
         v-icon(v-if="!contact" @click="contact=!contact" dark) arrow_right
         v-icon(v-else @click="contact=!contact" dark) arrow_drop_down

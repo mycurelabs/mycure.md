@@ -47,10 +47,11 @@
               
             v-flex(xs12 md3 offset-md1).font-mc-grey
               ul.no-style-type
+                li CONTACT US
                 li 
                   a(href="mailto:hello@mycure.md") hello@mycure.md
-                li (+632) 799 6262
-                li (+63) 917 303 4350
+                li.white--text (+632) 799 6262
+                li.white--text (+63) 917 303 4350
           hr.mc-grey.my-4  
           v-layout(row wrap justify-center)  
             span.white--text &copy; {{new Date().getFullYear()}}
