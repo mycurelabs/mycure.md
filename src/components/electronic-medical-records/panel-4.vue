@@ -57,7 +57,9 @@
   export default {
     methods: {
       toggleChat () {
+        let message = `Hi, I would like to know more about MYCURE's Electronic Medical Records for Private Practice.`;
         window.$crisp.push(['do', 'chat:toggle']);
+        window.$crisp.push(['do', 'message:send', ['text', message]]);
       },
     },
     data () {

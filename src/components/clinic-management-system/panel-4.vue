@@ -38,8 +38,8 @@
             img(src="../../assets/images/mycure-web-video-cover-decor-doctor-right.png")
     div(v-else style="margin-top: -15%")
       div(style="background-color: #f5f5f5")
-        img(src="../../assets/images/mycure-home-web-video-green-background-mobile.png" width="100%")
-        a
+        img(src="../../assets/images/mycure-home-web-video-green-background-mobile.png" width="100%").showPanel
+        a.showPanel
           img(
             v-if="!videoDialog" 
             @click.stop="videoDialog=!videoDialog"

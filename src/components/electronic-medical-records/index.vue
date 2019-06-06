@@ -5,7 +5,7 @@
     panel2
     panel3
     panel4
-    panel5(style="margin-top: -20%").showPanel
+    panel5(style="margin-top: -20%")
     panel6.showPanel
     panel7mobile(v-if="$isMobile").showPanel
     mc-footer
