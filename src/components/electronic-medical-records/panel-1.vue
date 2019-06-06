@@ -3,7 +3,7 @@
     div(v-if="!$isMobile").white
       v-container(align-center fill-height style="padding-top: 70px").px-5.panel-1
         v-layout(row justify-center)
-          v-flex(xs12 md6 align-self-center style="margin-top: -10%")
+          v-flex(xs12 md7 align-self-center style="margin-top: -10%")
             h1(style="line-height: 65px;").font-large A clinic system that helps physicians do greater things.
             br 
             br
@@ -13,7 +13,7 @@
               style="padding: 25px 30px 25px 30px"
             )
               strong.font-small.text-none.white--text Sign Up Now
-          v-flex(xs12 md6 offset-xs1 align-self-center style="margin-top: 10%")
+          v-flex(xs12 md7 offset-xs1 align-self-center style="margin-top: 5%")
             img(width="100%" src="../../assets/images/mycure-emr-web-banner-first-panel-doctor-clinic-patients.png")
     div(v-else).white
       v-container
