@@ -17,7 +17,7 @@
                     span For Individual Doctors
                 li.pb-3
                   router-link(:to="{name: 'clinic-management-system'}").link.white--text
-                    span For Multi-specialty Clinics
+                    span For Multispecialty Clinics
                 li ABOUT
                 li
                   router-link(:to="{name: 'our-story'}").link.white--text 

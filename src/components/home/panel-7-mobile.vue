@@ -2,7 +2,7 @@
   div
     div.py-5
       v-container
-        p.font-l.text-xs-center MYCURE works for Private and Multi-specialty Clinics
+        p.font-l.text-xs-center MYCURE works for Private and Multispecialty Clinics
       v-layout(justify-center).px-5
         table
           tr
@@ -19,7 +19,7 @@
             div.pl-3.py-3
               v-layout(row wrap center)
                 img(src="../../assets/images/mycure-web-bullet-check.png").mr-3 
-                span.font-m Multi-specialty Clinics
+                span.font-m Multispecialty Clinics
           tr 
             div.pl-3.py-3
               v-layout(row wrap center)

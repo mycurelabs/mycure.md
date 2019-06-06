@@ -7,7 +7,7 @@
         tr
           div.pl-3.py-3
             img(src="../../assets/images/mycure-icon-check.png").mr-3
-            span.font-m Multi-specialty Clinics
+            span.font-m Multispecialty Clinics
         tr
           div.pl-3.py-3
             img(src="../../assets/images/mycure-icon-check.png").mr-3 
@@ -60,7 +60,7 @@
     },
     methods: {
       toggleChat () {
-        let message = `Hi, I would like to know more about the Clinic Management System for Multi-specialty Clinics.`;
+        let message = `Hi, I would like to know more about the Clinic Management System for Multispecialty Clinics.`;
         window.$crisp.push(['do', 'chat:toggle']);
         window.$crisp.push(['do', 'message:send', ['text', message]]);
       }

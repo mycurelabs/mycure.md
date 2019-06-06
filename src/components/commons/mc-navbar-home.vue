@@ -11,7 +11,7 @@
             v-btn(href="/electronic-medical-records" flat)
               strong(style="font-size: 14px").tab.text-none Private Practice
             v-btn(href="/clinic-management-system" flat)
-              strong(style="font-size: 14px").tab.text-none Multi-specialty Clinics
+              strong(style="font-size: 14px").tab.text-none Multispecialty Clinics
             v-spacer
             v-btn(
               flat
@@ -46,7 +46,7 @@
           a(href="/clinic-management-system" flat)
             v-layout(row center)
               v-icon group
-              strong.black--text &nbsp; &nbsp; Multi-specialty Clinics
+              strong.black--text &nbsp; &nbsp; multispecialty Clinics
         center
           hr(style="width: 80%; border-color: #f5f5f5")
         br

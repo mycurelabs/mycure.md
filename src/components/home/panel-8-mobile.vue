@@ -17,7 +17,7 @@
           div(v-if="isMulti" @click.stop="isPrivate=false; isMulti=true" style="height: 100px;").mc-blue.pl-4.py-2
             strong.font-m.white--text For 
               br
-              | Multi-specialty
+              | Multispecialty
               br
               | Clinics
             div(style="margin-top: -px")
@@ -25,7 +25,7 @@
           div(v-else @click.stop="isPrivate=false; isMulti=true" style="height: 100px;").white.pl-4.py-2
             span.font-m.font-mc-grey For
               br
-              | Multi-specialty
+              | Multispecialty
               br
               | Clinics
     div(v-if="isPrivate" style="background-color: #f6f6f6")#content
@@ -62,7 +62,7 @@
         isMulti: false,
         siginURL: process.env.VUE_APP_SIGNIN_URL,
         private_title: 'Get a powerful combination of features designed for physicians who are practicing solo or in groups.',
-        multispecialty_title: 'An all-around solution for your outpatient, multi-specialty or specialized clinics that will manage your full-patient journeys with ease.',          
+        multispecialty_title: 'An all-around solution for your outpatient, multispecialty or specialized clinics that will manage your full-patient journeys with ease.',          
         privateFeatures: [
           'It\'s FREE!',
           'Unlimited Clinics',

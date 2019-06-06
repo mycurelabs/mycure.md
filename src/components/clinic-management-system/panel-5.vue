@@ -9,7 +9,7 @@
           td
             v-layout(row wrap center) 
               img(src="../../assets/images/mycure-web-bullet-check.png").mr-3
-              span.font-small Multi-specialty Clinics
+              span.font-small Multispecialty Clinics
           td 
             v-layout(row wrap center)
               img(src="../../assets/images/mycure-web-bullet-check.png").mr-3 
@@ -74,7 +74,7 @@
     },
     methods: {
       toggleChat () {
-        let message = `Hi, I would like to know more about the Clinic Management System for Multi-specialty Clinics.`;
+        let message = `Hi, I would like to know more about the Clinic Management System for Multispecialty Clinics.`;
         window.$crisp.push(['do', 'chat:toggle']);
         window.$crisp.push(['do', 'message:send', ['text', message]]);
       }

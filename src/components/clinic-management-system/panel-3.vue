@@ -3,7 +3,7 @@
     div(v-if="!$isMobile").white
       v-container.px-5
         v-layout(row wrap justify-center)
-          span.font-medium.lh-title.pa-5 Designed for Multi-specialty Clinics
+          span.font-medium.lh-title.pa-5 Designed for multispecialty Clinics
         br
         v-layout(row wrap justify-center).py-3 
           v-flex(xs12 md6 style="border-right: 1px solid lightgray").px-5  
@@ -41,7 +41,7 @@
     div(v-else).mc-light-grey
       v-container.pt-5
         v-layout(row justify-center)
-          span.font-l.text-xs-center.lh-title Designed for Multi-specialty Clinics
+          span.font-l.text-xs-center.lh-title Designed for multispecialty Clinics
         br
         br
         br
@@ -89,7 +89,7 @@
     },
     methods: {
       toggleChat () {
-        let message = `Hi, I would like to know more about the Clinic Management System for Multi-specialty Clinics.`;
+        let message = `Hi, I would like to know more about the Clinic Management System for multispecialty Clinics.`;
         window.$crisp.push(['do', 'chat:toggle']);
         window.$crisp.push(['do', 'message:send', ['text', message]]);
       }

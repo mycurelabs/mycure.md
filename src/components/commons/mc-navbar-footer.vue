@@ -51,7 +51,7 @@
           a(href="/electronic-medical-records").link.white--text.py-2
             span.py-2 For Individual Doctors
           a(href="/clinic-management-system").link.white--text.py-2
-            span.py-2 For Multi-specialty Clinics
+            span.py-2 For Multispecialty Clinics
       br
       v-layout(row).pb-1
         span.font-small.font-mc-grey ABOUT
