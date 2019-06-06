@@ -8,27 +8,28 @@
           br
           br
           v-layout(row justify-center)
-            div(style="height: 508px" ).image-rounded-corner.elevation-10
-              img(width="100%" src="../../assets/images/mycure-web-banner-pricing-panel-private.png")
-            div
-            v-card(height="508px" flat).price-card.text-xs-left.pa-5.elevation-10
-              strong(style="font-size: 30px").pb-2 For Private Practice
-              br
-              br
-              span.font-small Get a powerful combination of features 
-                br
-                | designed for physicians who are practicing 
-                br
-                | solo or in groups.
-              br
-              br
-              div(v-for="(feature,index) in privateFeatures" :key="index")
-                b(v-if="index === 0").font-small &#10003 &nbsp {{ feature }}
-                span(v-else).font-small &#10003 &nbsp {{ feature }}
-                br
-              v-layout(row wrap).py-4
-                v-btn(:href="`${siginURL}/signup/private/step-1`" style="background-color: #18c551; color: white; width: auto" large).text-none
-                  strong Sign Up Now
+            v-card(height="508px" flat).elevation-10.image-rounded-corner
+              v-layout(row justify-center)
+                v-flex(xs5)
+                  img(width="100%" height="508vh" src="../../assets/images/mycure-web-banner-pricing-panel-private.png")
+                v-flex(xs8).text-xs-left.pa-5
+                  strong(style="font-size: 30px").pb-2 For Private Practice
+                  br
+                  br
+                  span.font-small Get a powerful combination of features 
+                    br
+                    | designed for physicians who are practicing 
+                    br
+                    | solo or in groups.
+                  br
+                  br
+                  div(v-for="(feature,index) in privateFeatures" :key="index")
+                    b(v-if="index === 0").font-small &#10003 &nbsp {{ feature }}
+                    span(v-else).font-small &#10003 &nbsp {{ feature }}
+                    br
+                  v-layout(row wrap).py-4
+                    v-btn(:href="`${siginURL}/signup/private/step-1`" style="background-color: #18c551; color: white; width: auto" large).text-none
+                      strong Sign Up Now
       panel6a(style="padding-top: 150px")
     div(v-else).py-3.white
       img(width="100%" src="../../assets/images/mycure-web-banner-fifth-panel-private-clinic.png")
@@ -84,7 +85,7 @@
   }
 
   .image-rounded-corner {
-    border-radius: 10px 0px 0px 10px;
+    border-radius: 10px !important;
   }
 
   .one-edge-shadow {
