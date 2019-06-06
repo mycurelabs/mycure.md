@@ -4,7 +4,8 @@
       center
         v-container(style="width: 65% !important")
           v-layout(justify-center)
-            v-icon(size="100px") keyboard_arrow_left
+            //- TODO: Update to MDI 
+            v-icon(size="100px").white--text mdi-chevron-left
             div    
               //- https://ssense.github.io/vue-carousel/
               carousel(
@@ -43,7 +44,7 @@
                   span.font-small.white--text Dr. Nelson S. Abelardo
                     br
                     | Cardiologist, Manila Doctors Hospital
-            v-icon(size="100px") keyboard_arrow_right
+            v-icon(size="100px").white--text mdi-chevron-right
       br
     div(v-else style="margin-top: -15%")
       div(style="background-color: #f5f5f5")
