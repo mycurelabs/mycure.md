@@ -4,7 +4,7 @@
       v-layout(row style="border-top: 1px solid #f5f5f5; border-bottom: 1px solid #f6f6f6; height: 100px")
         div(style="height: 100px; width: 50%")
           div(v-if="isPrivate" @click.stop="isPrivate=true; isMulti=false" style="height: 100px;").mc-blue.pl-4.py-4
-            span.font-m.white--text For Private
+            strong.font-m.white--text For Private
               br
               | Practice
             div(style="margin-top: 10px")
@@ -15,9 +15,9 @@
               | Practice
         div(style="height: 100px; width: 50%")
           div(v-if="isMulti" @click.stop="isPrivate=false; isMulti=true" style="height: 100px;").mc-blue.pl-4.py-2
-            span.font-m.white--text For 
+            strong.font-m.white--text For 
               br
-              | Mutli-specialty
+              | Multi-specialty
               br
               | Clinics
             div(style="margin-top: -px")
@@ -25,7 +25,7 @@
           div(v-else @click.stop="isPrivate=false; isMulti=true" style="height: 100px;").white.pl-4.py-2
             span.font-m.font-mc-grey For
               br
-              | Mutli-specialty
+              | Multi-specialty
               br
               | Clinics
     div(v-if="isPrivate" style="background-color: #f6f6f6")#content
