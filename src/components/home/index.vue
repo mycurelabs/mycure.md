@@ -9,7 +9,7 @@
     panel6
     panel6mobile(v-if="$isMobile")
     panel7mobile(v-if="$isMobile")
-    panel8mobile(v-if="$isMobile")
+    panel8mobile(v-if="$isMobile").showPanel
     panel9mobile(v-if="$isMobile").showPanel
     panel10mobile(v-if="$isMobile").showPanel
     panel11mobile(v-if="$isMobile").showPanel

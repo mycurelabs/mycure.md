@@ -24,11 +24,11 @@
               img(src="../../assets/images/mycure-web-bullet-check.png").mr-3 
               span.font-small Family Clinics
         tr
-          td
+          td(style="border-bottom: 1px solid #bbb;")
             v-layout(row wrap center) 
               img(src="../../assets/images/mycure-web-bullet-check.png").mr-3 
               span.font-small Industrial Clinics
-          td 
+          td(style="border-bottom: 1px solid #bbb;")
             v-layout(row wrap center)
               img(src="../../assets/images/mycure-web-bullet-check.png").mr-3
               span.font-small PME Clinics
@@ -97,7 +97,7 @@
   table tr td {
     border-right: 1px solid #bbb;
     border-top: 1px solid #bbb;
-    border-bottom: 1px solid #bbb;
+    border-bottom: 0px solid #bbb;
     padding: 15px;
   }
   table tr td:first-child {
