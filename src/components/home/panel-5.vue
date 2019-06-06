@@ -26,9 +26,7 @@
                   br
                   span.font-small.white--text Dr. Gay Cadorna-Toledo
                     br
-                    | Pediatrician, Misamis Occidental
-                    br
-                    | MYCURE Doctor since 2017
+                    | Pediatrician
                 slide(data-index="2")
                   h2.white--text {{ testimonial2 }}
                   br
@@ -43,7 +41,7 @@
                   br
                   span.font-small.white--text Dr. Nelson S. Abelardo
                     br
-                    | Cardiologist, Manila Doctors Hospital
+                    | Cardiologist
             v-icon(size="100px").white--text mdi-chevron-right
       br
     div(v-else style="margin-top: -15%")
