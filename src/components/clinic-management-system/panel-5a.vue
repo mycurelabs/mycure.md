@@ -18,15 +18,9 @@
                 | manage your full-patient journeys with ease.
               br
               br
-              span.font-small &#10003 &nbsp Queuing &amp Registration
-              br
-              span.font-small &#10003 &nbsp Patient Medical Records
-              br
-              span.font-small &#10003 &nbsp Billing &amp Collection
-              br
-              span.font-small &#10003 &nbsp Laboratory &amp Imaging
-              br
-              span.font-small &#10003 &nbsp Materials Management
+              div(v-for="(feature,index) in multiFeatures" :key="index")
+                span.font-small &#10003 &nbsp {{ feature }}
+                br
               v-layout(row wrap).py-4
                 //- a(href="https://calendly.com/mycure" target="_blank")
                 v-btn(
@@ -42,7 +36,15 @@
   export default {
     data () {
       return {
-        siginURL: process.env.VUE_APP_SIGNIN_URL
+        siginURL: process.env.VUE_APP_SIGNIN_URL,
+
+        multiFeatures: [
+          'Queuing & Registration',
+          'Patient Medical Records',
+          'Billing & Collection',
+          'Laboratory & Imaging',
+          'Materials Management'
+        ]
       };
     }
   };
