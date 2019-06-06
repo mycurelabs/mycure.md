@@ -4,7 +4,7 @@
     panel1
     panel2.showPanel
     panel3(v-if="$isMobile").showPanel
-    mcFooter
+    mcFooter(:webSky="false")
 </template>
 
 <script>
