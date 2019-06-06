@@ -4,31 +4,32 @@
       v-container
         v-flex(xs12 md12)
           v-layout(row justify-center)
-            div(style="height: 508px" ).image-rounded-corner.elevation-10
-              img(width="100%" src="../../assets/images/mycure-web-banner-pricing-panel-multispecialty.png")
-            div
-            v-card(height="508px" flat).price-card.text-xs-left.pa-5.elevation-10
-              strong(style="font-size: 30px").pb-2 For Multi-specialty Clinics
-              br
-              br
-              font.font-small An all-around solution for your outpatient, 
-                br
-                | multi-specialty or specialized clinics that will 
-                br
-                | manage your full-patient journeys with ease.
-              br
-              br
-              div(v-for="(feature,index) in multiFeatures" :key="index")
-                span.font-small &#10003 &nbsp {{ feature }}
-                br
-              v-layout(row wrap).py-4
-                //- a(href="https://calendly.com/mycure" target="_blank")
-                v-btn(
-                  :href="`${siginURL}/signup/private/step-1`"
-                  color="#18c551" 
-                  style="width: auto" large
-                ).text-none
-                  strong.white--text Sign Up Now
+            v-card(height="508px" flat).elevation-10.image-rounded-corner
+              v-layout(row justify-center)
+                v-flex(xs5)
+                  img(width="100%" height="508vh" src="../../assets/images/mycure-web-banner-pricing-panel-multispecialty.png")
+                v-flex(xs8).text-xs-left.pa-5
+                  strong(style="font-size: 30px").pb-2 For Multi-specialty Clinics
+                  br
+                  br
+                  font.font-small An all-around solution for your outpatient, 
+                    br
+                    | multi-specialty or specialized clinics that will 
+                    br
+                    | manage your full-patient journeys with ease.
+                  br
+                  br
+                  div(v-for="(feature,index) in multiFeatures" :key="index")
+                    span.font-small &#10003 &nbsp {{ feature }}
+                    br
+                  v-layout(row wrap).py-4
+                    //- a(href="https://calendly.com/mycure" target="_blank")
+                    v-btn(
+                      :href="`${siginURL}/signup/private/step-1`"
+                      color="#18c551" 
+                      style="width: auto" large
+                    ).text-none
+                      strong.white--text Sign Up Now
     div(v-else)
 </template>
 
@@ -60,7 +61,7 @@
   }
 
   .image-rounded-corner {
-    border-radius: 10px 0px 0px 10px;
+    border-radius: 10px !important ;
   }
 
   .one-edge-shadow {
