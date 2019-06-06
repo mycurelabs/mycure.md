@@ -1,5 +1,5 @@
 <template lang="pug">
-  div
+  div#dpa
     div(v-if="!$isMobile").pb-5
       v-container
         v-layout(row)

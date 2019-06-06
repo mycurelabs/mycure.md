@@ -1,5 +1,5 @@
 <template lang="pug">
-  div
+  div#syncbase
     //- div(v-if="!$isMobile")
       v-container
         v-layout(row wrap justify-center)

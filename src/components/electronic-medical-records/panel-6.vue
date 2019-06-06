@@ -1,7 +1,7 @@
 <template lang="pug">
-  div(style="padding-top: 80px")
+  div(style="padding-top: 80px")#emrproduct
     div(v-if="!$isMobile").transparent#panel6
-      v-container#emrproduct
+      v-container
         v-flex(xs12 md12)
           v-layout(row justify-center)
             span.font-medium.lh-title Engineered for solo practice doctors
