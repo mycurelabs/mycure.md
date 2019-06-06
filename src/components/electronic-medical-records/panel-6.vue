@@ -3,9 +3,6 @@
     div(v-if="!$isMobile").transparent#panel6
       v-container
         v-flex(xs12 md12)
-          v-layout(row justify-center)
-            span.font-medium.lh-title Engineered for solo practice doctors
-          br
           br
           v-layout(row justify-center)
             v-card(height="508px" flat).elevation-10.image-rounded-corner
