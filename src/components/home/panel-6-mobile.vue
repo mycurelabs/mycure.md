@@ -16,30 +16,13 @@
             navigationNextLabel=" "
             navigationPrevLabel=" "
           )
-            slide(data-index="1").text-xs-center
-              span.font-s {{ testimonial1 }}
+            slide(v-for="(testimonial,index) in testimonials" :key="index" :data-index="index+1").text-xs-center
+              h2.white--text {{ testimonial.message }}
               br
               br
-              span.font-xs Dr. Gay Cadorna-Toledo 
-              br
-              span.font-xs Pediatrician, 
-                | Misamis Occidental
+              span.font-small.white--text {{ testimonial.name }}
                 br
-                | MYCURE Doctor since 2017
-            slide(data-index="2").text-xs-center
-              span.font-s {{ testimonial2 }}
-              br
-              br
-              span.font-xs Atty. Ivy D. Patdu, M.D
-              br
-              span.font-xs  Deputy Privacy Commissioner, NPC
-            slide(data-index="3").text-xs-center
-              span.font-small {{ testimonial3 }}
-              br
-              br
-              span.font-xs Dr. Nelson S. Abelardo
-                br
-                | Cardiologist, Manila Doctors Hospital
+                span {{ testimonial.position }}
 </template>
 
 <script scoped>
@@ -54,9 +37,23 @@
         private_title: 'Get a powerful combination of features designed for physicians who are practicing solo or in groups.',
         multispecialty_title: 'An all-around solution for your outpatient, multi-specialty or specialized clinics that will manage your full-patient journeys with ease.',
         siginURL: process.env.VUE_APP_SIGNIN_URL,
-        testimonial1: '“It\'s a great experience using MYCURE app in our rural setup. I\'ve been through many EMR apps, but this one is the best so far... It is very convenient to use, simple, adaptable and user friendly even to my secretary.”',
-        testimonial2: '“We should harness the power of technology. We should incorporate in system designs means to obtain information while remaining true to our obligations for data protection.”', 
-        testimonial3: '“MYCURE fulfills a long time need of physicians for accurate records of patients which they can carry with them wherever they are.”'
+        testimonials: [
+          {
+            name: 'Dr. Gay Cadorna-Toledo',
+            position: 'Pediatrician',
+            message: '“It\'s a great experience using MYCURE app in our rural setup. I\'ve been through many EMR apps, but this one is the best so far... It is very convenient to use, simple, adaptable and user friendly even to my secretary.”'
+          },
+          {
+            name: 'Atty. Ivy D. Patdu, M.D',
+            position: 'Deputy Privacy Commissioner, NPC',
+            message: '“We should harness the power of technology. We should incorporate in system designs means to obtain information while remaining true to our obligations for data protection.”'
+          },
+          {
+            name: 'Dr. Nelson S. Abelardo',
+            position: 'Cardiologist',
+            message: '“MYCURE fulfills a long time need of physicians for accurate records of patients which they can carry with them wherever they are.”'
+          }
+        ]
       };
     }
   };
