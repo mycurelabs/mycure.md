@@ -3,14 +3,14 @@
     div(v-if="!$isMobile" style="padding: 0 6% 0 6%;").pt-5
       v-container
         v-layout(row justify-center)
-          span.font-medium.lh-title Ideal for Individual Practice
+          span(style="font-size: 40px").lh-title Your buddy from medical school to private practice
       div.py-5
         center
           img(style="max-width: 90%;" src="../../assets/images/mycure-home-web-individual-clinic-diagram-banner.png")
     div(v-else).mc-light-grey
       v-container
         v-layout(row justify-center)
-          span.font-l.text-xs-center.lh-title Ideal for Individual Practice
+          span.font-l.text-xs-center.lh-title Your buddy from medical school to private practice
         br
         v-layout(row justify-center)
           img(src="../../assets/images/mycure-web-clinic-room-01.png" width="100%" height="100%")
