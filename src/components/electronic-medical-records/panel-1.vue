@@ -13,7 +13,7 @@
               style="padding: 25px 30px 25px 30px"
             )
               strong.font-small.text-none.white--text Sign Up Now
-          v-flex(xs12 md7 offset-xs1 align-self-center style="margin-top: 5%")
+          v-flex(xs12 md7 align-self-center style="margin-top: 5%")
             img(width="100%" src="../../assets/images/mycure-emr-web-banner-first-panel-doctor-clinic-patients.png")
     div(v-else).white
       v-container

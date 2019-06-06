@@ -1,8 +1,35 @@
 <template lang="pug">
-  div.mt-5
-    div
-      img(width="100%" src="../../assets/images/mycure-web-banner-fifth-panel-private-clinic.png")
-      v-layout(column wrap).pt-4.pb-5.pr-5.pl-5
+  div.pt-3
+    div#tabs
+      v-layout(row style="border-top: 1px solid #f5f5f5; border-bottom: 1px solid #f6f6f6; height: 100px")
+        div(style="height: 100px; width: 50%")
+          div(v-if="isPrivate" @click.stop="isPrivate=true; isMulti=false" style="height: 100px;").mc-blue.pl-4.py-4
+            span.font-m.white--text For Private
+              br
+              | Practice
+            div(style="margin-top: 10px")
+              img(style="color: red" src="../../assets/images/mycure-mobile-icon-triangle-up-white.png")
+          div(v-else @click.stop="isPrivate=true; isMulti=false" style="height: 100px;").white.pl-4.py-4
+            span.font-m.font-mc-grey For Private
+              br
+              | Practice
+        div(style="height: 100px; width: 50%")
+          div(v-if="isMulti" @click.stop="isPrivate=false; isMulti=true" style="height: 100px;").mc-blue.pl-4.py-2
+            span.font-m.white--text For 
+              br
+              | Mutli-specialty
+              br
+              | Clinics
+            div(style="margin-top: -px")
+              img(style="color: #f6f6f6" src="../../assets/images/mycure-mobile-icon-triangle-up-white.png")
+          div(v-else @click.stop="isPrivate=false; isMulti=true" style="height: 100px;").white.pl-4.py-2
+            span.font-m.font-mc-grey For
+              br
+              | Mutli-specialty
+              br
+              | Clinics
+    div(v-if="isPrivate" style="background-color: #f6f6f6")#content
+      v-layout(column wrap).pa-5
         p.pb-2.font-s {{ private_title }}
         div(v-for="(feature,index) in privateFeatures")
           b(v-if="index === 0").font-s.pb-2 &#10003; &nbsp; &nbsp; {{ feature }}
@@ -12,25 +39,27 @@
           :href="`${siginURL}/signup/private/step-1`"
           style="background-color: #18c551; width: 80%; height: 60px")
           strong.font-m.white--text.text-none Sign Up Now
-      br
-      br
-    div
-      img(width="100%" src="../../assets/images/mycure-web-banner-fifth-panel-multi-specialty-clinics.png")
-      v-layout(column wrap).pt-4.pb-5.pr-5.pl-5
-        p.pb-2.font-s {{ private_title }}
+    div(v-if="isMulti" style="background-color: #f6f6f6")#content 
+      v-layout(column wrap).pa-5
+        p.pb-2.font-s {{ multispecialty_title }}
         div(v-for="feature in multiFeatures")
-          span.font-s.pb-2 &#10003; &nbsp; &nbsp; {{ feature }}
+          span.font-s.pb-2 &#10003; &nbsp; &nbsp; {{ feature }} 
       v-layout(row justify-center)
         v-btn(
           :href="`${siginURL}/signup/private/step-1`"
           style="background-color: #18c551; width: 80%; height: 60px")
           strong.font-m.white--text.text-none Sign Up Now
+      
+              
+        
 </template>
 
 <script>
   export default {
     data () {
       return {
+        isPrivate: true,
+        isMulti: false,
         siginURL: process.env.VUE_APP_SIGNIN_URL,
         private_title: 'Get a powerful combination of features designed for physicians who are practicing solo or in groups.',
         multispecialty_title: 'An all-around solution for your outpatient, multi-specialty or specialized clinics that will manage your full-patient journeys with ease.',          

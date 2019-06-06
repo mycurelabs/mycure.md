@@ -1,5 +1,5 @@
 <template lang="pug">
-  div.mc-light-grey.mt-5
+  div.mc-light-grey.pt-5
     v-container
       v-layout(row)
         v-flex(xs12 md12).text-xs-center
