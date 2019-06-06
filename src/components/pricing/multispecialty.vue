@@ -12,8 +12,9 @@
             span.font-small.font-mc-grey An all-around solution for your outpatient, multispecialty or specialized clinics that will manage your full-patient journeys with ease.
             br
             br
-            v-btn(:href="`${siginURL}/signup/private/step-1`" color="#18c551" large) 
-              strong.text-none.white--text Sign Up Now
+            div.pl-1
+              v-btn(:href="`${siginURL}/signup/private/step-1`" color="#18c551" large right)
+                strong.text-none.white--text Sign Up Now
           v-flex(xs12 md6).px-3
             img(width="100%" src="../../assets/images/mycure-pricing-cms.png")
         br
