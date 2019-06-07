@@ -3,42 +3,9 @@
     v-layout(row wrap justify-center)
       font.font-medium.lh-title.text-xs-center Designed for clinics of all shapes and sizes.
     br
-    v-layout(row wrap justify-center).pt-5
-      table
-        tr
-          td
-            v-layout(row wrap center) 
-              img(src="../../assets/images/mycure-web-bullet-check.png").mr-3
-              span.font-small Multispecialty Clinics
-          td 
-            v-layout(row wrap center)
-              img(src="../../assets/images/mycure-web-bullet-check.png").mr-3 
-              span.font-small Skin &amp Aesthetic Clinics
-        tr
-          td 
-            v-layout(row wrap center)
-              img(src="../../assets/images/mycure-web-bullet-check.png").mr-3 
-              span.font-small Outpatient Clinics
-          td 
-            v-layout(row wrap center)
-              img(src="../../assets/images/mycure-web-bullet-check.png").mr-3 
-              span.font-small Family Clinics
-        tr
-          td(style="border-bottom: 1px solid #bbb;")
-            v-layout(row wrap center) 
-              img(src="../../assets/images/mycure-web-bullet-check.png").mr-3 
-              span.font-small Industrial Clinics
-          td(style="border-bottom: 1px solid #bbb;")
-            v-layout(row wrap center)
-              img(src="../../assets/images/mycure-web-bullet-check.png").mr-3
-              span.font-small PME Clinics
-    br
-    br
-    br
-    v-layout(row wrap justify-center)
-      em.font-small.text-xs-center Not too complicated, not too basic.
-          br
-          | MYCURE is just right for your clinic.
+    div.pt-5
+      center
+        img(width="75%" src="../../assets/images/mycure-home-web-complete-for-clinics-of-all-sizes-diagram.png").mb-3
     br
     br
     v-layout(row wrap justify-center)
