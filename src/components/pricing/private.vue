@@ -194,7 +194,7 @@
               span.font-mc-grey This varies on the number of users of the app. We encrypt and upload your records to our secure servers every time you process them. The download/upload speed should be at least:
                 br
                 br
-                p.text-xs-center
+                span.text-xs-center
                   | 5 Mbps → 1 to 3 simultaneous users
                   br
                   | 10 Mbps → 4 to 10 simultaneous users
@@ -374,7 +374,7 @@
             span.font-mc-grey This varies on the number of users of the app. We encrypt and upload your records to our secure servers every time you process them. The download/upload speed should be at least:
               br
               br
-              p.text-xs-center
+              span.text-xs-center
                 | 5 Mbps → 1 to 3 simultaneous users
                 br
                 | 10 Mbps → 4 to 10 simultaneous users
