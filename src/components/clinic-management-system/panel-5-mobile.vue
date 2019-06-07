@@ -1,12 +1,29 @@
 <template lang="pug">
-  div.pa-5.mc-light-grey
+  div.py-5.mc-light-grey
     v-container
       v-layout(row justify-center)
         span.font-l.text-xs-center.lh-title Designed for clinics of all shapes and sizes.
       br
       v-layout(row justify-center)
-        img(src="../../assets/images/mycure-web-clinic-room-01.png" width="100%" height="100%")
-      br
+        div
+          //- https://ssense.github.io/vue-carousel/
+          carousel(
+            :per-page="1" 
+            :autoplay="true"
+            :loop="true"
+            :navigationEnabled="true"
+            :adjustableHeight="true"
+            :paginationEnabled="false"
+            :navigationClickTargetSize="50"
+            navigationNextLabel=" "
+            navigationPrevLabel=" "
+          ) 
+            slide(
+              v-for="(product,index) in 6"
+              :key="index"
+              :data-index="product"
+            ).px-2
+              img(:src="require(`../../assets/images/mycure-web-clinic-type-0${product}.png`)" width="100%")
       v-layout(row justify-center v-for="feature in multiFeatures" :key="feature.title").pt-3
         v-flex(xs3).text-xs-center
           img(v-if="feature.icon" :src="require(`../../assets/images/${feature.icon}`)")
