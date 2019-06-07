@@ -89,7 +89,7 @@
     },
     methods: {
       toggleChat () {
-        let message = `Hi, I would like to know more about the Clinic Management System for multispecialty Clinics.`;
+        let message = `Hi, I would like to know more about the Clinic Management System for Multispecialty Clinics.`;
         window.$crisp.push(['do', 'chat:toggle']);
         window.$crisp.push(['do', 'message:send', ['text', message]]);
       }
