@@ -24,6 +24,7 @@
               :data-index="product"
             ).px-2
               img(:src="require(`../../assets/images/mycure-web-clinic-type-0${product}.png`)" width="100%")
+      br
       v-layout(row justify-center v-for="feature in multiFeatures" :key="feature.title").pt-3
         v-flex(xs3).text-xs-center
           img(v-if="feature.icon" :src="require(`../../assets/images/${feature.icon}`)")
