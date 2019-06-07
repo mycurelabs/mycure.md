@@ -16,7 +16,8 @@
           slot(name="cms-sub-txt")
           br
           br
-          slot(name="sign-up-button")
+          div.pl-1
+            slot(name="sign-up-button")
 </template>
 
 <script>

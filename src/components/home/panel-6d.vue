@@ -9,6 +9,7 @@
         :href="`${siginURL}/signup/private/step-1`" 
         color="#18c551" 
         style="padding: 25px 30px 25px 30px;"
+        right
       ).mt-0
         strong.font-small.text-none.white--text Sign Up Now
     v-layout(row justify-center)
