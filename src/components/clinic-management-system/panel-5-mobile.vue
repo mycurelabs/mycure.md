@@ -80,7 +80,7 @@
           {
             title: 'Outpatient Clinics',
             description: 'Hospital-based clinics that provide outpatient consultation services from various specialists',
-            icon: 'mycure-web-clinic-type-icon-opd.png.png'
+            icon: 'mycure-web-clinic-type-icon-opd.png'
           },
           {
             title: 'Industrial Clinics',
