@@ -21,17 +21,23 @@
         a.font-mc-blue 
           strong(@click="toggleChat") Start a quick chat
     panel5a(style="padding-top: 150px")
+    filler(style="padding-top:150px")
+      span(slot="multiFiller").font-l Does your clinic have more than 3 branches? 
+      span(slot="chatWindow" @click="toggleChat").pointer.font-l.font-mc-blue Talk to us for custom pricing.
     panel5b(style="padding-top: 150px")
+
 </template>
 
 <script>
   import panel5a from './panel-5a';
   import panel5b from './panel-5b';
+  import filler from '../commons/filler';
 
   export default {
     components: {
       panel5a,
       panel5b,
+      filler
       
     },
     data () {
@@ -57,43 +63,7 @@
     background-size: 100% 100%;
   }
 
-  table {
-    border-collapse: separate;
-    border-spacing: 0;
-    width: 45%;
-  }
-
-  table tr td {
-    border-right: 1px solid #bbb;
-    border-top: 1px solid #bbb;
-    border-bottom: 0px solid #bbb;
-    padding: 15px;
-  }
-  table tr td:first-child {
-    border-left: 1px solid #bbb
-  }
-
-  tr:nth-child(even) {
-    background-color: #f5f5f5;
-  }
-
-  /* top-left border-radius */
-  table tr:first-child td:first-child {
-    border-top-left-radius: 6px;
-  }
-
-  /* top-right border-radius */
-  table tr:first-child td:last-child {
-    border-top-right-radius: 6px;
-  }
-
-  /* bottom-left border-radius */
-  table tr:last-child td:first-child {
-    border-bottom-left-radius: 6px;
-  }
-
-  /* bottom-right border-radius */
-  table tr:last-child td:last-child {
-    border-bottom-right-radius: 6px;
+  .pointer:hover {
+    cursor: pointer;
   }
 </style>
