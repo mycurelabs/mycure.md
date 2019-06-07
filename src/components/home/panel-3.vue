@@ -1,5 +1,5 @@
 <template lang="pug">
-  div
+  div#products
     div(v-if="!$isMobile" style="padding: 0 6% 0 6%;").white.py-5
       v-container
         v-layout(row justify-center).pt-3
