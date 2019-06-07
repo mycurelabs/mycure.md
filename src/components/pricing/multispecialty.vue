@@ -27,7 +27,7 @@
         v-layout(row wrap align-items-center)
           p  
           v-flex(xs6 md3 v-for="(card, key) in cards" :key="key").text-center.align-self-center
-            vue-flip(:active-hover="true" width="100%" class="simple-test" style="margin-bottom: 250px;")
+            vue-flip(:active-hover="true" width="100%" class="simple-test" style="margin-bottom: 250px; font-size: 18px")
               div(slot="front" ref="frontCard").flip-card.align-items-center.pa-3
                 center
                   img(width="80" :src="card.image")
