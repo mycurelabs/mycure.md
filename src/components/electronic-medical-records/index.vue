@@ -47,7 +47,7 @@
     },
     methods: {
       toggleChat () {
-        let message = `Hi, I would like to know more about the Clinic Management System for Multispecialty Clinics.`;
+        let message = `Hi, I would like to know more about the Electronic Medical Records for Private Practice.`;
         window.$crisp.push(['do', 'chat:toggle']);
         window.$crisp.push(['do', 'message:send', ['text', message]]);
       }
@@ -57,3 +57,10 @@
     }
   };
 </script>
+
+<style scoped>
+.pointer:hover {
+    cursor: pointer;
+}
+</style>
+
