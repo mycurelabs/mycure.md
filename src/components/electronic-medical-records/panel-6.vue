@@ -27,6 +27,10 @@
                   v-layout(row wrap).py-4
                     v-btn(:href="`${siginURL}/signup/private/step-1`" style="background-color: #18c551; color: white; width: auto" large).text-none
                       strong Sign Up Now
+      filler(style="padding-top: 130px")
+        span(slot="privateFiller").font-l Are you part of a group clinic?
+        br
+        span(slot="chatWindow" @click="toggleChat").pointer.font-l.font-mc-blue Ask us how it works.
       panel6a(style="padding-top: 150px")
     div(v-else).py-3.white
       img(width="100%" src="../../assets/images/mycure-web-banner-fifth-panel-private-clinic.png")
@@ -43,10 +47,12 @@
 
 <script>
   import panel6a from './panel-6a';
+  import filler from '../commons/filler';
 
   export default {
     components: {
-      panel6a
+      panel6a,
+      filler
     },
     data () {
       return {
@@ -61,6 +67,13 @@
           'Medical Billing'
         ]
       };
+    },
+    methods: {
+      toggleChat () {
+        let message = `Hi, I would like to know more about the Electronic Medical Records for Private Practice.`;
+        window.$crisp.push(['do', 'chat:toggle']);
+        window.$crisp.push(['do', 'message:send', ['text', message]]);
+      },
     }
   };
 </script>
@@ -83,6 +96,10 @@
 
   .image-rounded-corner {
     border-radius: 10px !important;
+  }
+
+  .pointer:hover {
+    cursor: pointer;
   }
 
   .one-edge-shadow {
