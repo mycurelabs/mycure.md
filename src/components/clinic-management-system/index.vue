@@ -8,6 +8,9 @@
     panel5(v-if="!$isMobile").showPanel
     panel5mobile(v-if="$isMobile").showPanel
     panel6(v-if="$isMobile").showPanel
+    filler(v-if="$isMobile").showPanel.pt-5
+      span(slot="multiFiller" style="font-size: 30px") Does your clinic have more than 3 branches? 
+      span(slot="chatWindow" @click="toggleChat" style="font-size: 30px").pointer.font-mc-blue Talk to us for custom pricing.
     panel7(v-if="$isMobile").showPanel
     mc-footer
 </template>
@@ -23,6 +26,7 @@
   import panel5mobile from './panel-5-mobile';
   import panel6 from './panel-6';
   import panel7 from './panel-7';
+  import filler from '../commons/filler';
   import VueScrollTo from 'vue-scrollto';
 
   export default {
@@ -41,7 +45,15 @@
       panel5,
       panel5mobile,
       panel6,
-      panel7
+      panel7,
+      filler
+    },
+    methods: {
+      toggleChat () {
+        let message = `Hi, I would like to know more about the Clinic Management System for Multispecialty Clinics.`;
+        window.$crisp.push(['do', 'chat:toggle']);
+        window.$crisp.push(['do', 'message:send', ['text', message]]);
+      }
     },
     mounted () {
       VueScrollTo.scrollTo(`#top`, 500, { easing: 'ease' } );
@@ -50,5 +62,7 @@
 </script>
 
 <style scoped>
-
+  .pointer:hover {
+    cursor: pointer;
+  }
 </style>

@@ -7,6 +7,9 @@
     panel4
     panel5(style="margin-top: -20%")
     panel6.showPanel
+    filler(v-if="$isMobile").showPanel.pt-5
+      span(slot="privateFiller" style="font-size: 30px") Are you part of a group clinic?
+      span(slot="chatWindow" @click="toggleChat" style="font-size: 30px").pointer.font-mc-blue Ask us how it works.
     panel7mobile(v-if="$isMobile").showPanel
     mc-footer
 </template>
@@ -21,6 +24,7 @@
   import panel5 from './panel-5';
   import panel6 from './panel-6';
   import panel7mobile from './panel-7-mobile';
+  import filler from '../commons/filler';
   import VueScrollTo from 'vue-scrollto';
 
   export default {
@@ -38,7 +42,15 @@
       panel4,
       panel5,
       panel6,
-      panel7mobile
+      panel7mobile,
+      filler
+    },
+    methods: {
+      toggleChat () {
+        let message = `Hi, I would like to know more about the Clinic Management System for Multispecialty Clinics.`;
+        window.$crisp.push(['do', 'chat:toggle']);
+        window.$crisp.push(['do', 'message:send', ['text', message]]);
+      }
     },
     mounted () {
       VueScrollTo.scrollTo(`#top`, 500, { easing: 'ease' } );
