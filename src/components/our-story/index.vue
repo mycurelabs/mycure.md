@@ -12,7 +12,7 @@
 </template>
 
 <script>
-  document.title = "MYCURE Our Story - Caring the Extra Mile";
+  document.title = "MYCURE - Easy, Secure, Medical Records and Clinic Management System";
 
   import mcNavbarHome from '../commons/mc-navbar-home';
   import mcFooter from '../commons/mc-footer';
