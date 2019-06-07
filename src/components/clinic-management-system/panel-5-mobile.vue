@@ -1,6 +1,20 @@
 <template lang="pug">
   div.pa-5.mc-light-grey
     v-container
+      v-layout(row justify-center)
+        span.font-l.text-xs-center.lh-title Designed for clinics of all shapes and sizes.
+      br
+      v-layout(row justify-center)
+        img(src="../../assets/images/mycure-web-clinic-room-01.png" width="100%" height="100%")
+      br
+      v-layout(row justify-center v-for="feature in multiFeatures" :key="feature.title").pt-3
+        v-flex(xs3).text-xs-center
+          img(v-if="feature.icon" :src="require(`../../assets/images/${feature.icon}`)")
+        v-flex(xs8 offset-xs1)
+          b {{ feature.title }}
+          p {{ feature.description}}
+  //- div.pa-5.mc-light-grey
+    v-container
       p.font-l.text-xs-center.lh-title Designed for clinics of all shapes and sizes.
     v-layout(justify-center)
       table
@@ -49,13 +63,46 @@
       em.font-xs Have a question? 
         a.font-mc-blue 
           strong(@click="toggleChat") Start a quick chat
+  
 </template>
 
 <script>
   export default {
     data () {
       return {
-        siginURL: process.env.VUE_APP_SIGNIN_URL
+        siginURL: process.env.VUE_APP_SIGNIN_URL,
+        multiFeatures: [
+          {
+            title: 'Multispecialty Clinics',
+            description: 'One-stop, multi-staff clinics that provide ambulatory care and ancillary services',
+            icon: 'mycure-web-clinic-type-icon-multispecialty.png'
+          },
+          {
+            title: 'Outpatient Clinics',
+            description: 'Hospital-based clinics that provide outpatient consultation services from various specialists',
+            icon: 'mycure-web-clinic-type-icon-opd.png.png'
+          },
+          {
+            title: 'Industrial Clinics',
+            description: 'Primary clinics inside companies, schools, BPOs, and other industries covered by OSHS',
+            icon: 'mycure-web-clinic-type-icon-industrial.png'
+          },
+          {
+            title: 'Skin & Aesthetics Clinics',
+            description: 'Specialized for clinics that offer aesthetic procedures and dermatological services',
+            icon: 'mycure-web-clinic-type-icon-skin.png'
+          },
+          {
+            title: 'PME Clinics',
+            description: 'Clinics specializing in Physical Medical Exam (PME) Services',
+            icon: 'mycure-web-clinic-type-icon-pme.png'
+          },
+          {
+            title: 'Family Clinics',
+            description: 'Small to medium clinics that offer family medicine services, laboratory tests, and pharmacy',
+            icon: 'mycure-web-clinic-type-icon-family-clinic.png'
+          }
+        ]
       };
     },
     methods: {
