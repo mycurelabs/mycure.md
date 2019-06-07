@@ -194,12 +194,15 @@
               br
               | 
               span.font-mc-grey Yes. All your medical records are backed up in the cloud.
-            span.font-small 
-              strong What level of support is given to MYCURE Multispecialty Clinic users?
               br
               br
-              | 
-              span.font-mc-grey All users of MYCURE clinic management system (private practice or multispecialty clinics) are given free access to its tutorial articles once inside the system. On top of that, MYCURE provides online chat support for clinic administrators from 9:00AM - 8:00PM GMT +8:00.
+              br
+              span.font-small 
+                strong What level of support is given to MYCURE Multispecialty Clinic users?
+                br
+                br
+                | 
+                span.font-mc-grey All users of MYCURE clinic management system (private practice or multispecialty clinics) are given free access to its tutorial articles once inside the system. On top of that, MYCURE provides online chat support for clinic administrators from 9:00AM - 8:00PM GMT +8:00.
 </template>
   
 <script>
