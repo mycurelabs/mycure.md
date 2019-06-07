@@ -42,6 +42,76 @@
                 center
                   v-btn(:href="card.link" target="_blank" v-if="!card.isMoreButton") {{card.buttonText}}
                   v-btn(@click="toggleChat" v-else) {{card.buttonText}}
+        br
+        v-layout(row)
+          v-flex(xs12 md4) 
+            span(style="font-size: 22px")
+              strong Frequently Asked Questions
+        br
+        br
+        v-layout(row)
+          v-flex(xs12 md4).px-3 
+            span.font-small 
+              strong  What happens when I book a demo?
+              br
+              br
+              | 
+              span.font-mc-grey We’ll contact you within 24 hours to schedule the best time to meet you. Then during the demo, you will learn more about the features that will be useful for your clinic. You will also get expert recommendations from MYCURE specialists to to ease the transition.
+            br
+            br
+            br
+            span.font-small 
+              strong How secure is MYCURE?
+              br
+              br
+              | 
+              span.font-mc-grey MYCURE is DPA-compliant and follows international standards in data security. We use advanced encryption protocols to keep your patient records unreadable to anyone, except you. While we aren’t promising a 100% hack-proof system (since no such system exists yet!), we follow international standards that highly value confidentiality, integrity, and availability.
+            br
+            br
+            br
+            span.font-small 
+              strong  Do I need to buy onboarding services?
+              br
+              br
+              | 
+              span.font-mc-grey Onboarding services are essential to clinic management implementations, especially when you don’t have IT people to handle technical stuff for you.
+            br
+            br
+            br
+          v-flex(xs12 md4).px-3
+            span.font-small 
+              strong Do I need to pay for a year upfront for Multispecialty Clinic plan?
+              br
+              br
+              | 
+              span.font-mc-grey Multispecialty Clinic plans are billed annually by default. We’ve learned that clinics have more successful system implementations when they commit to using the system for at least a year.
+              br
+              br
+              br
+              span.font-small 
+              strong  Does my MYCURE account also come with a free device?
+              br
+              br
+              | 
+              span.font-mc-grey No. MYCURE only provides the web-based application. 
+                br
+                | That’s actually more practical (and less spending) for you! Most software that come with devices require you to be locked up to their expensive subscription plans for a certain period of time. Don’t worry, we’re confident that MYCURE is compatible with at least one of your current devices so long as it has Google Chrome installed.
+              br
+              br
+              br
+              span.font-small 
+              strong Is MYCURE cloud-based?
+              br
+              br
+              | 
+              span.font-mc-grey Yes. All your medical records are backed up in the cloud.
+          v-flex(xs12 md4).px-3
+            span.font-small 
+              strong What level of support is given to MYCURE Multispecialty Clinic users?
+              br
+              br
+              | 
+              span.font-mc-grey All users of MYCURE clinic management system (private practice or multispecialty clinics) are given free access to its tutorial articles once inside the system. On top of that, MYCURE provides online chat support for clinic administrators from 9:00AM - 8:00PM GMT +8:00.
     div(v-else)
       div.pt-3.px-3
         img(width="100%" src="../../assets/images/mycure-pricing-cms.png")
@@ -62,6 +132,74 @@
               p(style="font-size: 12px").pt-1 {{ card.content }}
               //- a(:href="card.link" )
               strong(v-html="" style="font-size: 12px").font-mc-blue.pb-2 {{ card.buttonText }}
+        br
+        v-layout(row)
+          v-flex(xs12 md4) 
+            span(style="font-size: 22px")
+              strong Frequently Asked Questions
+        br
+        br
+        v-layout(row)
+          v-flex(xs12 md12).px-2 
+            span.font-small 
+              strong  What happens when I book a demo?
+              br
+              br
+              | 
+              span.font-mc-grey We’ll contact you within 24 hours to schedule the best time to meet you. Then during the demo, you will learn more about the features that will be useful for your clinic. You will also get expert recommendations from MYCURE specialists to to ease the transition.
+            br
+            br
+            br
+            span.font-small 
+              strong How secure is MYCURE?
+              br
+              br
+              | 
+              span.font-mc-grey MYCURE is DPA-compliant and follows international standards in data security. We use advanced encryption protocols to keep your patient records unreadable to anyone, except you. While we aren’t promising a 100% hack-proof system (since no such system exists yet!), we follow international standards that highly value confidentiality, integrity, and availability.
+            br
+            br
+            br
+            span.font-small 
+              strong  Do I need to buy onboarding services?
+              br
+              br
+              | 
+              span.font-mc-grey Onboarding services are essential to clinic management implementations, especially when you don’t have IT people to handle technical stuff for you.
+            br
+            br
+            br
+            span.font-small 
+              strong Do I need to pay for a year upfront for Multispecialty Clinic plan?
+              br
+              br
+              | 
+              span.font-mc-grey Multispecialty Clinic plans are billed annually by default. We’ve learned that clinics have more successful system implementations when they commit to using the system for at least a year.
+              br
+              br
+              br
+              span.font-small 
+              strong  Does my MYCURE account also come with a free device?
+              br
+              br
+              | 
+              span.font-mc-grey No. MYCURE only provides the web-based application. 
+                br
+                | That’s actually more practical (and less spending) for you! Most software that come with devices require you to be locked up to their expensive subscription plans for a certain period of time. Don’t worry, we’re confident that MYCURE is compatible with at least one of your current devices so long as it has Google Chrome installed.
+              br
+              br
+              br
+              span.font-small 
+              strong Is MYCURE cloud-based?
+              br
+              br
+              | 
+              span.font-mc-grey Yes. All your medical records are backed up in the cloud.
+            span.font-small 
+              strong What level of support is given to MYCURE Multispecialty Clinic users?
+              br
+              br
+              | 
+              span.font-mc-grey All users of MYCURE clinic management system (private practice or multispecialty clinics) are given free access to its tutorial articles once inside the system. On top of that, MYCURE provides online chat support for clinic administrators from 9:00AM - 8:00PM GMT +8:00.
 </template>
   
 <script>

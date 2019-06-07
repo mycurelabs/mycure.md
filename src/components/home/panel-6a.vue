@@ -1,5 +1,5 @@
 <template lang="pug">
-  div#products
+  div
     div(v-if="!$isMobile")
       v-container
         v-layout(row wrap)
