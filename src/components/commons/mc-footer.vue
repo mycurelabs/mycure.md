@@ -49,7 +49,7 @@
               ul.no-style-type
                 li CONTACT US
                 li 
-                  a(href="mailto:hello@mycure.md") hello@mycure.md
+                  a(href="mailto:hello@mycure.md").font-mc-blue hello@mycure.md
                 li.white--text (+632) 799 6262
                 li.white--text (+63) 917 303 4350
           hr.mc-grey.my-4  
