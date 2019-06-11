@@ -6,11 +6,10 @@
     panel3
     panel4
     panel5
-    panel5
+    panel6
     panel7
     panel8
     panel9
-    panel10
     mcFooter
 </template>
 
@@ -26,7 +25,6 @@
   import panel7 from './panel-7';
   import panel8 from './panel-8';
   import panel9 from './panel-9';
-  import panel10 from './panel-10';
   import VueScrollTo from 'vue-scrollto';
 
   export default {
@@ -41,8 +39,7 @@
       panel6,
       panel7,
       panel8,
-      panel9,
-      panel10
+      panel9
     },
     mounted () {
       VueScrollTo.scrollTo(`#top`, 500, { easing: 'ease' } );
