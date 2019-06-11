@@ -6,7 +6,7 @@ import terms from '@/components/terms';
 import ourStory from '@/components/our-story';
 import emr from '@/components/electronic-medical-records';
 import cms from '@/components/clinic-management-system';
-import pricing from '@/components/pricing'
+import pricing from '@/components/pricing';
 import features from '@/components/features';
 import { core } from '@mycure/sdk';
 
