@@ -12,6 +12,8 @@
               strong(style="font-size: 14px").tab.text-none Private Practice
             v-btn(href="/clinic-management-system" flat)
               strong(style="font-size: 14px").tab.text-none Multispecialty Clinics
+            v-btn(href="/features" flat)
+              strong(style="font-size: 14px").tab.text-none Features
             v-spacer
             v-btn(
               flat
