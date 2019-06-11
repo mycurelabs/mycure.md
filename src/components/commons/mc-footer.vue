@@ -49,7 +49,7 @@
               ul.no-style-type
                 li CONTACT US
                 li 
-                  a(href="mailto:hello@mycure.md").font-mc-blue hello@mycure.md
+                  a(href="mailto:hello@mycure.md" style="color: #2e9fdf") hello@mycure.md
                 li.white--text (+632) 799 6262
                 li.white--text (+63) 917 303 4350
           hr.mc-grey.my-4  
@@ -96,28 +96,28 @@ export default {
 
 <style scoped>
 
-hr {
-  height: 1px;
-  color: #616161;
-  background-color: #616161;
-  border: none;
-}
-
-.no-style-type {
-    list-style-type: none;
-    padding-left: 0;
+  hr {
+    height: 1px;
+    color: #616161;
+    background-color: #616161;
+    border: none;
   }
 
-a:link {
-  text-decoration: none;
-  color: white;
-}
+  .no-style-type {
+      list-style-type: none;
+      padding-left: 0;
+    }
 
-.center {
-  padding: auto;
-}
+  a:link {
+    text-decoration: none;
+    color: white;
+  }
 
-.font-mc-blue {
-	color: #2e9fdf
-}
+  .center {
+    padding: auto;
+  }
+
+  .font-mc-blue {
+    color: #2e9fdf
+  }
 </style>
