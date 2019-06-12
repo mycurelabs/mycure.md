@@ -1,7 +1,7 @@
 <template lang="pug">
   div
     panelBeforeFooter
-      img(slot="emr-img" style="max-width: 90%" src="../../assets/images/mycure-web-banner-last-panel-home-doctors.png")
+      img(slot="emr-img" style="max-width: 90%" src="../../assets/images/mycure-web-banner-last-panel-features-embrace-habit.png")
       span(slot="emr-txt").font-medium.lh-title Embrace a new habit.
       span(slot="emr-sub-txt").font-small Let your patients experience top-of-the-line service through your streamlined clinic operations with the help of MYCURE.
       v-btn(

@@ -25,19 +25,7 @@
           br
           v-layout(row justify-center)  
             //- https://ssense.github.io/vue-carousel/
-            center
-              carousel(
-                :per-page="1" 
-                :autoplay="false"
-                :loop="true"
-                paginationActiveColor="white"
-                paginationColor="grey"
-                navigationNextLabel=" "
-                navigationPrevLabel=" "
-                style="height: 550px"
-              )
-                slide(v-for="(feature,index) in 6" :key="index" :data-index="feature")
-                  img(:src="require(`../../assets/images/mycure-web-features-mockup-0${feature}-A.png`)" width="70%")
+            img(src="../../assets/images/mycure-web-features-mockup-07-A.png" width="50%")
       panel10(style="padding-top: 200px")
     //- div(v-else)
 </template>

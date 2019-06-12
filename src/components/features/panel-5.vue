@@ -39,8 +39,8 @@
               navigationPrevLabel=" "
               style="height: 550px"
             )
-              slide(v-for="(feature,index) in 6" :key="index" :data-index="feature")
-                img(:src="require(`../../assets/images/mycure-web-features-mockup-0${feature}-A.png`)" width="70%")
+              slide(v-for="(feature,index) in features" :key="index" :data-index="index+1")
+                img(:src="require(`../../assets/images/mycure-web-features-mockup-03-${feature}.png`)" width="70%")
     //- div(v-else)
 </template>
 
@@ -53,7 +53,8 @@
           'Invoice & Receipt Printing',
           'HMO Statements, Collections, & Reports',
           'Interface with Materials Management'
-        ]
+        ],
+        features: ['A','B','C']
       };
     }
   };

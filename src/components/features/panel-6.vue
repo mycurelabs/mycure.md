@@ -29,7 +29,7 @@
         br
         v-layout(row justify-center)  
           //- https://ssense.github.io/vue-carousel/
-          //- center
+          center
             carousel(
               :per-page="1" 
               :autoplay="false"
@@ -40,10 +40,8 @@
               navigationPrevLabel=" "
               style="height: 550px"
             )
-              slide(v-for="(feature,index) in 6" :key="index" :data-index="feature")
-                img(:src="require(`../../assets/images/mycure-web-features-mockup-0${feature}-A.png`)" width="70%")
-          img(src="../../assets/images/mycure-web-features-mockup-01-A.png" width="70%" height="100%")
-                
+              slide(v-for="(feature,index) in features" :key="index" :data-index="index+1")
+                img(:src="require(`../../assets/images/mycure-web-features-mockup-04-${feature}.png`)" width="70%")
     //- div(v-else)
 </template>
 
@@ -51,7 +49,7 @@
   export default {
     data () {
       return {
-        //
+        features: ['A','B']
       };
     }
   };

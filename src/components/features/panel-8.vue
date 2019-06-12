@@ -37,7 +37,7 @@
             )
               slide(v-for="(feature,index) in 6" :key="index" :data-index="feature")
                 img(:src="require(`../../assets/images/mycure-web-features-mockup-0${feature}-A.png`)" width="70%")
-          img(src="../../assets/images/mycure-web-features-mockup-sample.png" width="90%" height="100%")
+          img(src="../../assets/images/mycure-web-features-mockup-06-A.png" width="90%" height="100%")
     //- div(v-else)
 </template>
 
