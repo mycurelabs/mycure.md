@@ -43,8 +43,7 @@
 </template>
 
 <script>
-  import panel10 from './panel-10'
-
+  import panel10 from './panel-10';
   export default {
     components:{
       panel10
