@@ -64,7 +64,7 @@
                 span.py-2 Our Story
               router-link(:to="{ name: 'blog-link' }").link.white--text.py-2
                 span.py-2 Blog
-              a(href="https://culture.mycure.md/" target="_blank").link.white--text.py-2
+              router-link(:to="{ name: 'careers' }").link.white--text.py-2
                 span.py-2 Careers
       v-layout(row)
         v-expansion-panel.elevation-0
@@ -74,11 +74,11 @@
             template(v-slot:actions)
               v-icon(style="margin-right: -24px" color="white") mdi-chevron-down
             v-layout(column)
-              a(href="http://blog.mycure.md/frequently-asked-questions/" target="_blank").link.white--text.py-2
+              router-link(:to="{ name: 'faqs-link' }").link.white--text.py-2
                 span.py-2 FAQs
               router-link(:to="{ name: 'pricing' }").link.white--text.py-2
                 span.py-2 Pricing
-              a(href="https://calendly.com/mycure" target="_blank").link.white--text.py-2
+              router-link(:to="{ name: 'calendly' }").link.white--text.py-2
                 span.py-2 Book a Demo
       v-layout(row)
         v-expansion-panel.elevation-0
@@ -100,7 +100,7 @@
             template(v-slot:actions)
               v-icon(style="margin-right: -24px" color="white") mdi-chevron-down
             v-layout(column)
-              a(href="mailto:hello@mycure.md").link.white--text.py-2
+              a(href="mailto:hello@mycure.md").link.font-mc-blue.py-2
                 span.py-2 hello@mycure.md
               span.py-2.white--text (+632) 799 6262
               span.py-2.white--text (+63) 917 303 4350
