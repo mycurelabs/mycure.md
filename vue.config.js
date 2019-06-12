@@ -30,7 +30,7 @@ const config = {
             titlesToRender[context.route].description
           ).replace(
             /MYCURE_IMAGE/g,
-            // titlesToRender[context.route].image
+            titlesToRender[context.route].image
           ).replace(
             /MYCURE_URL/g,
             'https://mycure.md' + context.route
