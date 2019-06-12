@@ -8,13 +8,13 @@
 </template>
 
 <script>
-  import mcToolbarHome from '../commons/mc-toolbar-home';
-  import mcFooter from '../commons/mc-footer';
-  import panel1 from './panel-1';
-  // import panel2  from './panel-2';
-  import panel3 from './panel-3';
-  import private_prac from './private';
-  import multispecialty from './multispecialty';
+  import mcToolbarHome from '@/components/commons/mc-toolbar-home';
+  import mcFooter from '@/components/commons/mc-footer';
+  import panel1 from '@/components/pricing/panel-1';
+  // import panel2  from '@/components/pricing/panel-2';
+  import panel3 from '@/components/pricing/panel-3';
+  import private_prac from '@/components/pricing/private';
+  import multispecialty from '@/components/pricing/multispecialty';
   import VueScrollTo from 'vue-scrollto';
 
   export default {

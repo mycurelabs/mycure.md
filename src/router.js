@@ -1,7 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import home from '@/views/home.vue';
-import pricing from '@/components/pricing';
 import { core } from '@mycure/sdk';
 
 Vue.use(Router);
@@ -63,8 +62,7 @@ export default new Router({
     {
       path: '/pricing',
       name: 'pricing', 
-      // TODO: lazy load this
-      component: pricing,
+      component: () => import(/* webpackChunkName: 'pricing' */ '@/views/pricing'),
       meta: {
         pageType: 'support',
         pageName: 'Pricing'
