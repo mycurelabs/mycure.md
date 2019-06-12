@@ -2,7 +2,7 @@
   div
     div(v-if="!$isMobile")
       v-toolbar(flat color="rgba(52, 58, 64, 1)")
-        a(href="/")
+        router-link(:to="{ name: 'home' }")
           v-layout(row wrap center)    
             img(src="../../assets/images/mycure-header-logo.png" height="25")
             //- strong.pl-2.font-mc-grey MYCURE
@@ -19,7 +19,7 @@
           img(src="../../assets/images/mycure-homepage-wireframe-icon-twitter.png" height="25").px-2
     div(v-else).mc-dark-grey
       div
-        a(href="/")
+        router-link(:to="{ name: 'home' }")
           v-layout(row wrap center)    
             img(src="../../assets/images/mycure-header-logo.png" height="25")
             //- strong.pl-2.font-mc-grey MYCURE
@@ -48,9 +48,9 @@
       hr(style="border: 1px solid grey").mx-1
       div(v-if="clinicSol").py-3
         v-layout(column)
-          a(href="/electronic-medical-records").link.white--text.py-2
+          router-link(:to="{ name: 'electronic-medical-records' }").link.white--text.py-2
             span.py-2 For Individual Doctors
-          a(href="/clinic-management-system").link.white--text.py-2
+          router-link(:to="{ name: 'clinic-management-system' }").link.white--text.py-2
             span.py-2 For Multispecialty Clinics
       br
       v-layout(row).pb-1
@@ -61,7 +61,7 @@
       hr(style="border: 1px solid grey").mx-1
       div(v-if="about").py-3
         v-layout(column)
-          a(href="/our-story").link.white--text.py-2
+          router-link(:to="{ name: 'our-story' }").link.white--text.py-2
             span.py-2 Our Story
           a(href="http://blog.mycure.md/" target="_blank").link.white--text.py-2
             span.py-2 Blog
@@ -78,7 +78,7 @@
         v-layout(column)
           a(href="http://blog.mycure.md/frequently-asked-questions/" target="_blank").link.white--text.py-2
             span.py-2 FAQs
-          a(href="/pricing").link.white--text.py-2
+          router-link(:to="{ name: 'pricing' }").link.white--text.py-2
             span.py-2 Pricing
           a(href="https://calendly.com/mycure" target="_blank").link.white--text.py-2
             span.py-2 Book a Demo
@@ -91,9 +91,9 @@
       hr(style="border: 1px solid grey").mx-1
       div(v-if="legal").py-3
         v-layout(column)
-          a(href="/terms").link.white--text.py-2
+          router-link(:to="{ name: 'terms' }").link.white--text.py-2
             span.py-2 Terms
-          a(href="/privacy-policy").link.white--text.py-2
+          router-link(:to="{ name: 'privacy-policy' }").link.white--text.py-2
             span.py-2 Privacy Policy
       br
       v-layout(row).pb-1
@@ -113,7 +113,7 @@
       br
       v-layout(row justify-center)
         strong.white--text &copy; {{new Date().getFullYear()}}
-          a(href="https://mycure.md")
+         router-link(:to="{ name: 'home' }")
             strong.font-mc-blue &nbsp; MYCURE.  
             |
             strong.white--text All Rights Reserved.
