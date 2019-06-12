@@ -36,7 +36,7 @@
           span(v-else).font-s.pb-2 &#10003; &nbsp; &nbsp; {{ feature }}
       v-layout(row justify-center)
         v-btn(
-          :href="`${siginURL}/signup/private/step-1`"
+          :href="`${siginURL}/signup/choose`"
           style="background-color: #18c551; width: 80%; height: 60px")
           strong.font-m.white--text.text-none Sign Up Now
     div(v-if="isMulti" style="background-color: #f6f6f6")#content 
@@ -46,7 +46,7 @@
           span.font-s.pb-2 &#10003; &nbsp; &nbsp; {{ feature }} 
       v-layout(row justify-center)
         v-btn(
-          :href="`${siginURL}/signup/private/step-1`"
+          :href="`${siginURL}/signup/choose`"
           style="background-color: #18c551; width: 80%; height: 60px")
           strong.font-m.white--text.text-none Sign Up Now
       

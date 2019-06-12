@@ -13,7 +13,7 @@
             br
             br
             div.pl-1
-              v-btn(:href="`${siginURL}/signup/private/step-1`" color="#18c551" large right)
+              v-btn(:href="`${siginURL}/signup/choose`" color="#18c551" large right)
                 strong.white--text.text-none Sign Up Now
           v-flex(xs12 md6).px-3
             img(width="100%" src="../../assets/images/mycure-pricing-emr-private-clinic.png")
@@ -140,7 +140,7 @@
               span.font-small {{ feature }}
       div.py-3
         v-layout(justify-center)
-          v-btn(:href="`${siginURL}/signup/private/step-1`" color="info" large) 
+          v-btn(:href="`${siginURL}/signup/choose`" color="info" large) 
             strong.text-none Sign Up Now
       br
       br

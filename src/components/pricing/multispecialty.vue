@@ -13,7 +13,7 @@
             br
             br
             div.pl-1
-              v-btn(:href="`${siginURL}/signup/private/step-1`" color="#18c551" large right)
+              v-btn(:href="`${siginURL}/signup/choose`" color="#18c551" large right)
                 strong.text-none.white--text Sign Up Now
           v-flex(xs12 md6).px-3
             img(width="100%" src="../../assets/images/mycure-pricing-cms.png")
@@ -220,7 +220,7 @@
             text: 'Multispecialty Clinics',
             content: 'One-stop, multi-staff clinics that provide ambulatory care and ancillary services',
             buttonText: 'Sign Up',
-            link: "`${siginURL}/signup/private/step-1`"
+            link: "`${siginURL}/signup/choose`"
           },
           {
             image: require('../../assets/images/mycure-home-products-icon-outpatient-clinics.png'),
