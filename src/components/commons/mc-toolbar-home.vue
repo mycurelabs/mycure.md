@@ -6,13 +6,13 @@
         //-   v-flex(xs12 md12)
         v-toolbar(flat).white
           v-layout(row wrap align-center)
-            a(href="/").pr-4.pt-1
+            router-link(:to="{ name: 'home' }").pr-4.pt-1
               img(src="../../assets/images/mycure-header-logo.png" height="35")
-            v-btn(href="/electronic-medical-records" flat)
+            v-btn(:to="{ name: 'electronic-medical-records' }" flat)
               strong(style="font-size: 14px").tab.text-none Private Practice
-            v-btn(href="/clinic-management-system" flat)
+            v-btn(:to="{ name: 'clinic-management-system' }" flat)
               strong(style="font-size: 14px").tab.text-none Multispecialty Clinics
-            v-btn(href="/features" flat)
+            v-btn(:to="{ name: 'features' }" flat)
               strong(style="font-size: 14px").tab.text-none Features
             v-spacer
             v-btn(
