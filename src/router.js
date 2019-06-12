@@ -2,10 +2,8 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import home from '@/views/home.vue';
 import ourStory from '@/views/our-story.vue';
-import emr from '@/components/electronic-medical-records';
 import cms from '@/components/clinic-management-system';
 import pricing from '@/components/pricing';
-import features from '@/components/features';
 import { core } from '@mycure/sdk';
 
 Vue.use(Router);
@@ -50,8 +48,7 @@ export default new Router({
     {
       path: '/electronic-medical-records',
       name: 'emr', 
-      // TODO: lazy load this
-      component: emr,
+      component: () => import(/* webpackChunkName: 'electronic-medical-records' */ '@/views/electronic-medical-records'),
       meta: {
         pageType: 'main',
         pageName: 'Private Practice'
@@ -60,7 +57,6 @@ export default new Router({
     {
       path: '/clinic-management-system',
       name: 'cms', 
-      // TODO: lazy load this
       component: cms,
       meta: {
         pageType: 'main',
@@ -81,7 +77,7 @@ export default new Router({
       path: '/features',
       name: 'features', 
       // TODO: lazy load this
-      component: features,
+      component: () => import(/* webpackChunkName: 'features' */ '@/views/features'),
       meta: {
         pageType: 'main',
         pageName: 'Features'
