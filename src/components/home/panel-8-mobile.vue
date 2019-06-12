@@ -4,28 +4,24 @@
       v-layout(row style="border-top: 1px solid #f5f5f5; border-bottom: 1px solid #f6f6f6; height: 100px")
         div(style="height: 100px; width: 50%")
           div(v-if="isPrivate" @click.stop="isPrivate=true; isMulti=false" style="height: 100px;").mc-blue.pl-4.py-4
-            strong.font-m.white--text For Private
+            strong.font-m.font-mc-blue For Private
               br
               | Practice
-            div(style="margin-top: 10px")
+            div(style="margin-top: 6px")
               img(style="color: red" src="../../assets/images/mycure-mobile-icon-triangle-up-white.png")
           div(v-else @click.stop="isPrivate=true; isMulti=false" style="height: 100px;").white.pl-4.py-4
             span.font-m.font-mc-grey For Private
               br
               | Practice
         div(style="height: 100px; width: 50%")
-          div(v-if="isMulti" @click.stop="isPrivate=false; isMulti=true" style="height: 100px;").mc-blue.pl-4.py-2
-            strong.font-m.white--text For 
-              br
-              | Multispecialty
+          div(v-if="isMulti" @click.stop="isPrivate=false; isMulti=true" style="height: 100px;").mc-blue.pl-4.py-4
+            strong.font-m.font-mc-blue For Multispecialty
               br
               | Clinics
-            div(style="margin-top: -px")
+            div(style="margin-top: 6px")
               img(style="color: #f6f6f6" src="../../assets/images/mycure-mobile-icon-triangle-up-white.png")
-          div(v-else @click.stop="isPrivate=false; isMulti=true" style="height: 100px;").white.pl-4.py-2
-            span.font-m.font-mc-grey For
-              br
-              | Multispecialty
+          div(v-else @click.stop="isPrivate=false; isMulti=true" style="height: 100px;").white.pl-4.py-4
+            span.font-m.font-mc-grey For Multispecialty
               br
               | Clinics
     div(v-if="isPrivate" style="background-color: #f6f6f6")#content
