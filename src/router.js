@@ -110,6 +110,46 @@ export default new Router({
       }
     },
     {
+      path: '/fb-link',
+      name: 'fb-link',
+      beforeEnter (to, from, next) {
+        window.open('https://www.facebook.com/mycure.md');
+        next({name: from.name || 'home'});
+      }
+    },
+    {
+      path: '/youtube-link',
+      name: 'youtube-link',
+      beforeEnter (to, from, next) {
+        window.open('https://www.youtube.com/channel/UCfQ5QBdFh6f9Tuj2tWkRmvg');
+        next({name: from.name || 'home'});
+      }
+    },
+    {
+      path: '/ig-link',
+      name: 'ig-link',
+      beforeEnter (to, from, next) {
+        window.open('https://www.instagram.com/mycure.md/');
+        next({name: from.name || 'home'});
+      }
+    },
+    {
+      path: '/linkedin-link',
+      name: 'linkedin-link',
+      beforeEnter (to, from, next) {
+        window.open('https://www.linkedin.com/company/mycure');
+        next({name: from.name || 'home'});
+      }
+    },
+    {
+      path: '/twitter-link',
+      name: 'twitter-link',
+      beforeEnter (to, from, next) {
+        window.open('https://twitter.com/mycureapp');
+        next({name: from.name || 'home'});
+      }
+    },
+    {
       path: '/butchukoy',
       name: 'butchukoy',
       beforeEnter (to, from, next) {
