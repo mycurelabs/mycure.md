@@ -2,7 +2,7 @@
   div
     div(v-if="!$isMobile")
       v-toolbar(flat color="rgba(52, 58, 64, 1)")
-        a(href="/")
+        a(:to="{ name: 'home' }" href="")
           v-layout(row wrap center)    
             img(src="../../assets/images/mycure-header-logo.png" height="25")
             //- strong.pl-2.font-mc-grey MYCURE
@@ -19,7 +19,7 @@
           img(src="../../assets/images/mycure-homepage-wireframe-icon-twitter.png" height="25").px-2
     div(v-else).mc-dark-grey
       div
-        a(href="/")
+        a(:to="{ name: 'home' }" href="")
           v-layout(row wrap center)    
             img(src="../../assets/images/mycure-header-logo.png" height="25")
             //- strong.pl-2.font-mc-grey MYCURE
