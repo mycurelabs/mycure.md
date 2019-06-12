@@ -17,9 +17,9 @@
           p(style="text-align: justify").font-small
             strong Dale 
             | runs a tech company that started in 2004. Among numerous IT projects, their team also made the first Filipino-themed game on iTunes and Googleplay called 
-            a(href="http://www.butchukoy.com/" target="_blank" style="text-decoration: none").font-mc-blue Sipa 
+            a(:to="{ name: 'butchukoy' }" style="text-decoration: none").font-mc-blue Sipa 
             | and a mobile photo diary meant to tell your story through photos called Pickld. He regularly shares experiences being a Mentor and Director at Founder Institute (Manila). He also started 
-            a(href="http://www.mightyminds.org/" target="_blank" style="text-decoration: none").font-mc-blue Mighty Minds, 
+            a(:to="{ name: 'mighty-minds' }" style="text-decoration: none").font-mc-blue Mighty Minds, 
             | a nonprofit organization that helps kids finish school.
         v-flex(xs12 md5).px-3.text-xs-center
           img(width="60%" src="../../assets/images/mycure-ourstory-joel.png")

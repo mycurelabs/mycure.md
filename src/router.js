@@ -93,22 +93,22 @@ export default new Router({
         next({name: from.name || 'home'});
       }
     },
-    // {
-    //   path: '/butchukoy',
-    //   name: 'butchukoy',
-    //   beforeEnter (to, from, next) {
-    //     window.open('http://www.butchukoy.com/');
-    //     next({name: from.name || 'our-story'});
-    //   }
-    // },
-    // {
-    //   path: '/mighty-minds',
-    //   name: 'mighty-minds',
-    //   beforeEnter (to, from, next) {
-    //     window.open('http://www.mightyminds.org/');
-    //     next({name: from.name || 'our-story'});
-    //   }
-    // },
+    {
+      path: '/butchukoy',
+      name: 'butchukoy',
+      beforeEnter (to, from, next) {
+        window.open('http://www.butchukoy.com/');
+        next({name: from.name || 'home'});
+      }
+    },
+    {
+      path: '/mighty-minds',
+      name: 'mighty-minds',
+      beforeEnter (to, from, next) {
+        window.open('http://www.mightyminds.org/');
+        next({name: from.name || 'home'});
+      }
+    },
     {
       path: '/calendly',
       name: 'calendly',
