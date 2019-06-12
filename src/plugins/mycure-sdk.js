@@ -1,3 +1,3 @@
 import { core } from '@mycure/sdk';
 
-core.initialize('https://api.mycure.md');
+core.initialize(process.env.VUE_APP_API);
