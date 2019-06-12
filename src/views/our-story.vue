@@ -45,7 +45,3 @@
     }
   };
 </script>
-
-<style scoped>
-/* TODO: Remove all empty style blocks */
-</style>
