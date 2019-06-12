@@ -50,7 +50,6 @@
         p.text-xs-center.py-4.font-small Have questions? 
           a(@click.stop="toggleChat()")
             strong.font-mc-blue Send us a chat.
-
 </template>
 
 <script>

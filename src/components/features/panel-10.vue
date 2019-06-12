@@ -14,7 +14,6 @@
         strong.text-none.white--text.font-small Sign Up Now
     v-layout(row justify-center)
         img(width="100%" height="100%" src="../../assets/images/mycure-web-banner-last-panel-health-community.png")
-
 </template>
 
 <script>
@@ -31,7 +30,3 @@
     }
   };
 </script>
-
-<style scoped>
-
-</style>
