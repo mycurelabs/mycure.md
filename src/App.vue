@@ -110,29 +110,29 @@ export default {
   }
 
   .hr-blue {
-  height: 2px;
-  width: 150px;
-  background-color: #0099cc;
-  padding: 1px;
-  margin: 0 auto;
-}
-
-.bullet {
-  height: 25px; 
-  width: 25px; 
-  background-color: #2e9fdf; 
-  border-radius: 50%; 
-  display: inline-block; 
-  padding: 1px 
-}
-
-.panel-1{
-    height: 100vh !important;
+    height: 2px;
+    width: 150px;
+    background-color: #0099cc;
+    padding: 1px;
+    margin: 0 auto;
   }
 
-/* This class lets the panel avoid being covered by the web sky background */
-.showPanel {
-  position: relative; 
-  z-index: 1;
-}
+  .bullet {
+    height: 25px; 
+    width: 25px; 
+    background-color: #2e9fdf; 
+    border-radius: 50%; 
+    display: inline-block; 
+    padding: 1px 
+  }
+
+  .panel-1{
+      height: 100vh !important;
+    }
+
+  /* This class lets the panel avoid being covered by the web sky background */
+  .showPanel {
+    position: relative; 
+    z-index: 1;
+  }
 </style>
