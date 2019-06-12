@@ -26,7 +26,7 @@ export default new Router({
     {
       path: '/terms',
       name: 'terms', 
-      component: () => import(/* webpackChunkName: 'terms' */ '@/components/terms'),
+      component: () => import(/* webpackChunkName: 'terms' */ '@/views/terms'),
       meta: {
         pageType: 'legal',
         pageName: 'Terms'
@@ -112,6 +112,5 @@ export default new Router({
         }
       }
     }
-    
   ]
 });

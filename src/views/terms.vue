@@ -7,10 +7,10 @@
 </template>
 
 <script>
-  import mcToolbarHome from '../commons/mc-toolbar-home';
-  import mcFooter from '../commons/mc-footer';
-  import panel1 from './panel-1';
-  import panel2 from './panel-2';
+  import mcToolbarHome from '@/components/commons/mc-toolbar-home';
+  import mcFooter from '@/components/commons/mc-footer';
+  import panel1 from '@/components/terms/panel-1';
+  import panel2 from '@/components/terms/panel-2';
   import VueScrollTo from 'vue-scrollto';
 
   export default {
