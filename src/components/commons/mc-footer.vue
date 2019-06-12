@@ -23,15 +23,15 @@
                   router-link(:to="{name: 'our-story'}").link.white--text 
                     span Our Story
                 li 
-                  a(href="http://blog.mycure.md/" target="_blank").link.white--text Blog 
+                  router-link(:to="{ name: 'blog-link' }").link.white--text Blog 
                 li 
-                  a(href="https://culture.mycure.md/" target="_blank").link.white--text Careers
+                  router-link(:to="{ name: 'careers' }").link.white--text Careers
               
             v-flex(xs12 md3 offset-md1).font-mc-grey 
               ul.no-style-type
                 li SUPPORT 
                 li 
-                  a(href="http://blog.mycure.md/frequently-asked-questions/" target="_blank").link.white--text FAQs
+                  router-link(:to="{ name: 'faqs-link'}").link.white--text FAQs
                 li
                   router-link(:to="{name: 'pricing'}").link.white--text
                     span Pricing

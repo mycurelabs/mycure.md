@@ -77,19 +77,35 @@ export default new Router({
         pageName: 'Features'
       }
     },
-    // {
-    //   path: '/blog-link',
-    //   name: 'blog-link',
-    //   beforeEnter (to, from, next) {
-    //     window.open('http://blog.mycure.md/');
-    //     next({name: from.name || 'home'});
-    //   }
-    // },
+    {
+      path: '/blog-link',
+      name: 'blog-link',
+      beforeEnter (to, from, next) {
+        window.open('http://blog.mycure.md/');
+        next({name: from.name || 'home'});
+      }
+    },
     {
       path: '/dpa-link',
       name: 'dpa-link',
       beforeEnter (to, from, next) {
         window.open('http://blog.mycure.md/2018/04/26/data-privacy-for-physicians/');
+        next({name: from.name || 'home'});
+      }
+    },
+    {
+      path: '/careers',
+      name: 'careers',
+      beforeEnter (to, from, next) {
+        window.open('https://culture.mycure.md/');
+        next({name: from.name || 'home'});
+      }
+    },
+    {
+      path: '/faqs-link',
+      name: 'faqs-link',
+      beforeEnter (to, from, next) {
+        window.open('http://blog.mycure.md/frequently-asked-questions/');
         next({name: from.name || 'home'});
       }
     },
