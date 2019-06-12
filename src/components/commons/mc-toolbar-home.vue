@@ -1,72 +1,94 @@
 <template lang="pug">
   div
-    div(v-if="!$isMobile" style="position: fixed; width: 100%; z-index: 9999;" :class="shadow").white
-      v-container(justify-center style="height: 70px !important").pb-5.pt-1.white
-        //- v-layout(row wrap)
-        //-   v-flex(xs12 md12)
-        v-toolbar(flat).white
-          v-layout(row wrap align-center)
-            a(href="/").pr-4.pt-1
-              img(src="../../assets/images/mycure-header-logo.png" height="35")
-            v-btn(href="/electronic-medical-records" flat)
-              strong(style="font-size: 14px").tab.text-none Private Practice
-            v-btn(href="/clinic-management-system" flat)
-              strong(style="font-size: 14px").tab.text-none Multispecialty Clinics
-            v-btn(href="/features" flat)
-              strong(style="font-size: 14px").tab.text-none Features
-            v-spacer
-            v-btn(
-              flat
-              :href="`${siginURL}?target=${cmsURL}/authenticate`"
-            )
-              strong(style="font-size: 14px").tab LOGIN
-            v-btn(
-              color="#2e9fdf"
-              :href="`${siginURL}/signup/private/step-1`"
-            )
-              strong(style="font-size: 14px").white--text.tab SIGN UP
-    div(v-else)
+    template(v-if="!$isMobile" style="position: fixed; width: 100%; z-index: 9999;" :class="shadow").white
+      v-container(style="height: 70px !important").white.py-0
+        v-layout(row wrap justify-center)
+          v-flex(xs12 md12 style="margin-top: 3px;")
+            v-toolbar(flat).white
+              router-link(:to="{ name: 'home' }").mr-3.mt-2
+                img(src="../../assets/images/mycure-header-logo.png" width="140")
+              v-btn(v-for="(link, key) in $mainLinks" :to="{ name: link.name }" flat)
+                strong(style="font-size: 14px").tab.text-none {{link.meta.pageName}}
+              v-spacer
+              v-btn(
+                flat
+                :href="`${siginURL}?target=${cmsURL}/authenticate`"
+              )
+                strong(style="font-size: 14px").tab LOGIN
+              v-btn(
+                color="#2e9fdf"
+                :href="`${siginURL}/signup/choose`"
+              )
+                strong(style="font-size: 14px").white--text.tab SIGN UP
+    template(v-else)
       v-toolbar(app flat fixed :class="shadow").white
-        a(href="/")
-          img(src="../../assets/images/mycure-header-logo.png" height="25px")
+        router-link(:to="{ name: 'home' }").logo-a
+          img(src="../../assets/images/mycure-header-logo.png" width="130").mt-1
         v-spacer
-        v-toolbar-side-icon(@click="drawer = !drawer")
-          v-icon(color="gray").sideMenu.pa-1 menu
-      v-navigation-drawer(app v-model="drawer" right)
-        center.py-5
-          a(href="/")
-            img(src="../../assets/images/mycure-header-logo.png" height="50px")
-        br(style="line-height: 25px")
-        div.sideNavBtn
-          a(href="/electronic-medical-records" flat)
-            v-layout(row center)
-              v-icon person
-              strong.black--text &nbsp; &nbsp; Private Practice 
-        center
-          hr(style="width: 80%; border-color: #f5f5f5")
-        div.sideNavBtn
-          a(href="/clinic-management-system" flat)
-            v-layout(row center)
-              v-icon group
-              strong.black--text &nbsp; &nbsp; Multispecialty Clinics
-        center
-          hr(style="width: 80%; border-color: #f5f5f5")
-        br
-        br
-        br
-        br
-        br
-        center
-          div.login
-            a(:href="`${siginURL}?target=${cmsURL}/authenticate`" flat)
-              strong.black--text LOGIN
-        center
-          hr(style="width: 80%; border-color: #f5f5f5")
-        br
-        center
-          div.signup
-            a(:href="`${siginURL}/signup/private/step-1`" flat)
-              strong.white--text SIGNUP
+        v-btn(icon large @click="drawer = !drawer")
+          v-icon(style="font-size: 35px;") menu
+      v-navigation-drawer(app v-model="drawer" right width="500")
+        v-toolbar(app flat fixed :class="shadow").white
+          router-link(:to="{ name: 'home' }").logo-a
+            img(src="../../assets/images/mycure-header-logo.png" width="130").mt-1
+          v-spacer
+          v-btn(icon large @click="drawer = !drawer")
+            v-icon(style="font-size: 35px;") close
+        v-content
+          v-layout(row wrap)
+            v-flex(xs12 md12)
+              v-list(two-line)
+                v-list-tile(v-for="(link, key) in $mainLinks" :to="{ name: link.name }")
+                  v-list-tile-content
+                    v-list-tile-title 
+                      b {{link.meta.pageName}}
+              v-divider
+            v-flex(xs12 md12 dark)
+              h1 TODO: Add footer links here. Use list with section
+              p See this https://vuetifyjs.com/en/components/lists#subheadings-and-dividers
+            
+    //- div(v-else)
+    //-   v-toolbar(app flat fixed :class="shadow").white
+    //-     router-link(:to="{ name: 'home' }").logo-a
+    //-       img(src="../../assets/images/mycure-header-logo.png" width="130").mt-1
+    //-     v-spacer
+    //-     v-btn(icon large @click="drawer = !drawer")
+    //-       v-icon(style="font-size: 35px;") menu
+    //-   v-navigation-drawer(app v-model="drawer" right)
+    //-     center.py-5
+    //-       a(href="/")
+    //-         img(src="../../assets/images/mycure-header-logo.png" height="50px")
+    //-     br(style="line-height: 25px")
+    //-     div.sideNavBtn
+    //-       a(href="/electronic-medical-records" flat)
+    //-         v-layout(row center)
+    //-           v-icon person
+    //-           strong.black--text &nbsp; &nbsp; Private Practice 
+    //-     center
+    //-       hr(style="width: 80%; border-color: #f5f5f5")
+    //-     div.sideNavBtn
+    //-       a(href="/clinic-management-system" flat)
+    //-         v-layout(row center)
+    //-           v-icon group
+    //-           strong.black--text &nbsp; &nbsp; Multispecialty Clinics
+    //-     center
+    //-       hr(style="width: 80%; border-color: #f5f5f5")
+    //-     br
+    //-     br
+    //-     br
+    //-     br
+    //-     br
+    //-     center
+    //-       div.login
+    //-         a(:href="`${siginURL}?target=${cmsURL}/authenticate`" flat)
+    //-           strong.black--text LOGIN
+    //-     center
+    //-       hr(style="width: 80%; border-color: #f5f5f5")
+    //-     br
+    //-     center
+    //-       div.signup
+    //-         a(:href="`${siginURL}/signup/choose`" flat)
+    //-           strong.white--text SIGNUP
 </template>
 
 <script>
