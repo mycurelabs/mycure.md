@@ -22,42 +22,70 @@ export default new Router({
     {
       path: '/privacy-policy',
       name: 'privacy-policy', 
-      component: () => import(/* webpackChunkName: 'privacy-policy' */ '@/components/privacy-policy')
+      component: () => import(/* webpackChunkName: 'privacy-policy' */ '@/components/privacy-policy'),
+      meta: {
+        pageType: 'legal',
+        pageName: 'Privacy Policy'
+      }
     },
     {
       path: '/terms',
       name: 'terms', 
-      component: () => import(/* webpackChunkName: 'terms' */ '@/components/terms')
+      component: () => import(/* webpackChunkName: 'terms' */ '@/components/terms'),
+      meta: {
+        pageType: 'legal',
+        pageName: 'Terms'
+      }
     },
     {
       path: '/our-story',
       name: 'our-story', 
       // TODO: lazy load this
-      component: ourStory
+      component: ourStory,
+      meta: {
+        pageType: 'about',
+        pageName: 'Our Story'
+      }
     },
     {
       path: '/electronic-medical-records',
-      name: 'electronic-medical-records', 
+      name: 'emr', 
       // TODO: lazy load this
-      component: emr
+      component: emr,
+      meta: {
+        pageType: 'main',
+        pageName: 'Private Practice'
+      }
     },
     {
       path: '/clinic-management-system',
-      name: 'clinic-management-system', 
+      name: 'cms', 
       // TODO: lazy load this
-      component: cms
+      component: cms,
+      meta: {
+        pageType: 'main',
+        pageName: 'Multyspecialty Clinics'
+      }
     },
     {
       path: '/pricing',
       name: 'pricing', 
       // TODO: lazy load this
-      component: pricing
+      component: pricing,
+      meta: {
+        pageType: 'support',
+        pageName: 'Pricing'
+      }
     },
     {
       path: '/features',
-      name: 'feature', 
+      name: 'features', 
       // TODO: lazy load this
-      component: features
+      component: features,
+      meta: {
+        pageType: 'main',
+        pageName: 'Features'
+      }
     },
     {
       path: '/calendly',
@@ -80,7 +108,7 @@ export default new Router({
           }
 
           const campaign = {
-            type: 'campaign-link-click',
+            pageType: 'campaign-link-click',
             source: to.query.src,
             campaign: to.query.ctm
           };
