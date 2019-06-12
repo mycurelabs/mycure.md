@@ -10,7 +10,7 @@
     br
     v-layout(row wrap justify-center)
       v-btn(
-        :href="`${siginURL}/signup/private/step-1`"
+        :href="`${siginURL}/signup/choose`"
         color="#18c551" 
         large
       )

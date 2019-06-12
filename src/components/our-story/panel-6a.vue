@@ -5,7 +5,7 @@
       span(slot="home-txt" style="font-size: 36px") Join thousands of other health professionals who enjoy the benefits of using technology in their practice
       v-btn(
         slot="sign-up-button"
-        :href="`${siginURL}/signup/private/step-1`" 
+        :href="`${siginURL}/signup/choose`" 
         color="#18c551" 
         style="padding: 25px 30px 25px 30px"
       ) 

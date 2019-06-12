@@ -25,7 +25,7 @@
                     span(v-else).font-small &#10003 &nbsp {{ feature }}
                     br
                   v-layout(row wrap).py-4
-                    v-btn(:href="`${siginURL}/signup/private/step-1`" style="background-color: #18c551; color: white; width: auto" large).text-none
+                    v-btn(:href="`${siginURL}/signup/choose`" style="background-color: #18c551; color: white; width: auto" large).text-none
                       strong Sign Up Now
       filler(style="padding-top: 130px")
         span(slot="privateFiller").font-l Are you part of a group clinic?
@@ -41,7 +41,7 @@
           span(v-else).font-s.pb-2 &#10003; &nbsp; &nbsp; {{ feature }}
       v-layout(row justify-center)
         v-btn(style="background-color: #18c551; width: 80%; height: 60px")
-          a(:href="`${siginURL}/signup/private/step-1`")
+          a(:href="`${siginURL}/signup/choose`")
             strong.font-m.white--text.text-none Sign Up Now
 </template>
 

@@ -13,10 +13,10 @@
               ul.no-style-type
                 li CLINIC SOLUTIONS
                 li
-                  router-link(:to="{name: 'electronic-medical-records'}").link.white--text
+                  router-link(:to="{name: 'emr'}").link.white--text
                     span For Individual Doctors
                 li.pb-3
-                  router-link(:to="{name: 'clinic-management-system'}").link.white--text
+                  router-link(:to="{name: 'cms'}").link.white--text
                     span For Multispecialty Clinics
                 li ABOUT
                 li
@@ -66,7 +66,7 @@
         img(width="100%" height="100%" src="../../assets/images/mycure-web-banner-last-panel-health-community-mobile.png")  
       div(style="height: 75px").mc-green
         v-layout(row justify-center)
-          a(:href="`${siginURL}/signup/private/step-1`" style="padding: 20px 0")
+          a(:href="`${siginURL}/signup/choose`" style="padding: 20px 0")
             strong(style="font-size: 25px").white--text Sign Up Now
       div.mc-dark-grey.pa-4
         mc-toolbar-footer  

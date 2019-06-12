@@ -22,7 +22,7 @@
                   span.font-small &#10003 &nbsp Medical Billing
                   v-layout(row wrap).py-4
                     v-btn(
-                      :href="`${siginURL}/signup/private/step-1`"
+                      :href="`${siginURL}/signup/choose`"
                       style="background-color: #18c551; color: white; width: auto" 
                       large
                     ) 
@@ -44,7 +44,7 @@
                 br(style="line-height: 39px")
                 v-layout(row wrap).py-3
                   v-btn(
-                      :href="`${siginURL}/signup/private/step-1`"
+                      :href="`${siginURL}/signup/choose`"
                       style="background-color: #18c551; color: white; width: auto" 
                       large
                     )

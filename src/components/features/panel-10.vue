@@ -6,7 +6,7 @@
       span(slot="emr-sub-txt").font-small Let your patients experience top-of-the-line service through your streamlined clinic operations with the help of MYCURE.
       v-btn(
         slot="sign-up-button"
-        :href="`${siginURL}/signup/private/step-1`" 
+        :href="`${siginURL}/signup/choose`" 
         color="#18c551" 
         style="padding: 25px 30px 25px 30px"
         right

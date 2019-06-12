@@ -2,6 +2,10 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import home from '@/views/home.vue';
 import ourStory from '@/views/our-story.vue';
+import emr from '@/components/electronic-medical-records';
+import cms from '@/components/clinic-management-system';
+import pricing from '@/components/pricing';
+import features from '@/components/features';
 import { core } from '@mycure/sdk';
 
 Vue.use(Router);
@@ -18,37 +22,70 @@ export default new Router({
     {
       path: '/privacy-policy',
       name: 'privacy-policy', 
-      component: () => import(/* webpackChunkName: 'privacy-policy' */ '@/components/privacy-policy')
+      component: () => import(/* webpackChunkName: 'privacy-policy' */ '@/components/privacy-policy'),
+      meta: {
+        pageType: 'legal',
+        pageName: 'Privacy Policy'
+      }
     },
     {
       path: '/terms',
       name: 'terms', 
-      component: () => import(/* webpackChunkName: 'terms' */ '@/components/terms')
+      component: () => import(/* webpackChunkName: 'terms' */ '@/components/terms'),
+      meta: {
+        pageType: 'legal',
+        pageName: 'Terms'
+      }
     },
     {
       path: '/our-story',
       name: 'our-story', 
-      component: ourStory
+      // TODO: lazy load this
+      component: ourStory,
+      meta: {
+        pageType: 'about',
+        pageName: 'Our Story'
+      }
     },
     {
       path: '/electronic-medical-records',
-      name: 'electronic-medical-records', 
-      component: () => import(/* webpackChunkName: 'electronic-medical-records' */ '@/components/electronic-medical-records')
+      name: 'emr', 
+      // TODO: lazy load this
+      component: emr,
+      meta: {
+        pageType: 'main',
+        pageName: 'Private Practice'
+      }
     },
     {
       path: '/clinic-management-system',
-      name: 'clinic-management-system', 
-      component: () => import(/* webpackChunkName: 'clinic-management-system' */ '@/components/clinic-management-system')
+      name: 'cms', 
+      // TODO: lazy load this
+      component: cms,
+      meta: {
+        pageType: 'main',
+        pageName: 'Multyspecialty Clinics'
+      }
     },
     {
       path: '/pricing',
       name: 'pricing', 
-      component: () => import(/* webpackChunkName: 'pricing' */ '@/components/pricing')
+      // TODO: lazy load this
+      component: pricing,
+      meta: {
+        pageType: 'support',
+        pageName: 'Pricing'
+      }
     },
     {
       path: '/features',
       name: 'features', 
-      component: () => import(/* webpackChunkName: 'features' */ '@/components/features')
+      // TODO: lazy load this
+      component: features,
+      meta: {
+        pageType: 'main',
+        pageName: 'Features'
+      }
     },
     {
       path: '/calendly',
@@ -71,7 +108,7 @@ export default new Router({
           }
 
           const campaign = {
-            type: 'campaign-link-click',
+            pageType: 'campaign-link-click',
             source: to.query.src,
             campaign: to.query.ctm
           };

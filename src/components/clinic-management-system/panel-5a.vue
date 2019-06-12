@@ -25,7 +25,7 @@
                   v-layout(row wrap).py-4
                     //- a(href="https://calendly.com/mycure" target="_blank")
                     v-btn(
-                      :href="`${siginURL}/signup/private/step-1`"
+                      :href="`${siginURL}/signup/choose`"
                       color="#18c551" 
                       style="width: auto" large
                     ).text-none
