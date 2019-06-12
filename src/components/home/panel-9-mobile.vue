@@ -16,8 +16,7 @@
           br
           br
           v-btn(
-            href="http://blog.mycure.md/2018/04/26/data-privacy-for-physicians/" 
-            target="_blank"
+            :to="{ name: 'dpa-link' }" 
             color="#2e9fdf"
             large
           ) 
