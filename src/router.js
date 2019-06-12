@@ -1,9 +1,7 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import home from '@/views/Home.vue';
-import privacyPolicy from '@/components/privacy-policy';
-import terms from '@/components/terms';
-import ourStory from '@/components/our-story';
+import home from '@/views/home.vue';
+import ourStory from '@/views/our-story';
 import emr from '@/components/electronic-medical-records';
 import cms from '@/components/clinic-management-system';
 import pricing from '@/components/pricing';
@@ -24,38 +22,41 @@ export default new Router({
     {
       path: '/privacy-policy',
       name: 'privacy-policy', 
-      component: privacyPolicy
+      component: () => import(/* webpackChunkName: 'privacy-policy' */ '@/components/privacy-policy')
     },
     {
       path: '/terms',
       name: 'terms', 
-      component: terms
+      component: () => import(/* webpackChunkName: 'terms' */ '@/components/terms')
     },
     {
       path: '/our-story',
       name: 'our-story', 
+      // TODO: lazy load this
       component: ourStory
     },
     {
       path: '/electronic-medical-records',
       name: 'electronic-medical-records', 
-      // TODO: temporary change only revert back to component: () => emr for prerendering
-      // component: () => emr
+      // TODO: lazy load this
       component: emr
     },
     {
       path: '/clinic-management-system',
       name: 'clinic-management-system', 
+      // TODO: lazy load this
       component: cms
     },
     {
       path: '/pricing',
       name: 'pricing', 
+      // TODO: lazy load this
       component: pricing
     },
     {
       path: '/features',
       name: 'feature', 
+      // TODO: lazy load this
       component: features
     },
     {
@@ -84,12 +85,11 @@ export default new Router({
             campaign: to.query.ctm
           };
 
-          // TODO: inspect error
           await core.system.counters().create(campaign);
 
           window.location.href = to.query.link;
         } catch (e) {
-          console.error(e);
+          console.error('CTM Counter Error:', e);
           window.location.href = to.query.link;
         }
       }
