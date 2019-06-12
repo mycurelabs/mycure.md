@@ -1,11 +1,7 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import home from '@/views/home.vue';
-import ourStory from '@/views/our-story';
-import emr from '@/components/electronic-medical-records';
-import cms from '@/components/clinic-management-system';
-import pricing from '@/components/pricing';
-import features from '@/components/features';
+import ourStory from '@/views/our-story.vue';
 import { core } from '@mycure/sdk';
 
 Vue.use(Router);
@@ -32,32 +28,27 @@ export default new Router({
     {
       path: '/our-story',
       name: 'our-story', 
-      // TODO: lazy load this
       component: ourStory
     },
     {
       path: '/electronic-medical-records',
       name: 'electronic-medical-records', 
-      // TODO: lazy load this
-      component: emr
+      component: () => import(/* webpackChunkName: 'electronic-medical-records' */ '@/components/electronic-medical-records')
     },
     {
       path: '/clinic-management-system',
       name: 'clinic-management-system', 
-      // TODO: lazy load this
-      component: cms
+      component: () => import(/* webpackChunkName: 'clinic-management-system' */ '@/components/clinic-management-system')
     },
     {
       path: '/pricing',
       name: 'pricing', 
-      // TODO: lazy load this
-      component: pricing
+      component: () => import(/* webpackChunkName: 'pricing' */ '@/components/pricing')
     },
     {
       path: '/features',
-      name: 'feature', 
-      // TODO: lazy load this
-      component: features
+      name: 'features', 
+      component: () => import(/* webpackChunkName: 'features' */ '@/components/features')
     },
     {
       path: '/calendly',
