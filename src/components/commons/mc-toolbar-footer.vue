@@ -7,16 +7,9 @@
             img(src="../../assets/images/mycure-header-logo.png" height="25")
             //- strong.pl-2.font-mc-grey MYCURE
         v-spacer
-        router-link(:to="{ name: 'fb-link'}")
-          img(src="../../assets/images/mycure-homepage-wireframe-icon-fb.png" height="25").px-2
-        router-link(:to="{ name: 'youtube-link'}")  
-          img(src="../../assets/images/mycure-homepage-wireframe-icon-ytub-e.png" height="25").px-2
-        router-link(:to="{ name: 'ig-link'}")
-          img(src="../../assets/images/mycure-homepage-wireframe-icon-ig.png" height="25").px-2
-        router-link(:to="{ name: 'linkedin-link'}")
-          img(src="../../assets/images/mycure-homepage-wireframe-icon-linkedin.png" height="25").px-2
-        router-link(:to="{ name: 'twitter-link'}")
-          img(src="../../assets/images/mycure-homepage-wireframe-icon-twitter.png" height="25").px-2
+        div(v-for="(account,key) in socMed" :key="key")
+          router-link(:to="{ name: `${ account.link }`}")
+            img(:src="require(`../../assets/images/${ account.icon }`)" height="25").px-2
     div(v-else).mc-dark-grey
       div
         router-link(:to="{ name: 'home' }")
@@ -28,16 +21,9 @@
       br
       br
       v-layout(row justify-center)
-        router-link(:to="{ name: 'fb-link'}")
-          img(src="../../assets/images/mycure-homepage-wireframe-icon-fb.png" height="30").px-3
-        router-link(:to="{ name: 'youtube-link'}")  
-          img(src="../../assets/images/mycure-homepage-wireframe-icon-ytub-e.png" height="30").px-3
-        router-link(:to="{ name: 'ig-link'}")
-          img(src="../../assets/images/mycure-homepage-wireframe-icon-ig.png" height="30").px-3
-        router-link(:to="{ name: 'linkedin-link'}")
-          img(src="../../assets/images/mycure-homepage-wireframe-icon-linkedin.png" height="30").px-3
-        router-link(:to="{ name: 'twitter-link'}")
-          img(src="../../assets/images/mycure-homepage-wireframe-icon-twitter.png" height="30").px-3
+        div(v-for="(account,key) in socMed" :key="key")
+          router-link(:to="{ name: `${ account.link }`}")
+            img(:src="require(`../../assets/images/${ account.icon }`)" height="30").px-3
       br
       br
       v-layout(row)
@@ -125,7 +111,29 @@ export default {
       about: false,
       support: false,
       legal: false,
-      contact: false
+      contact: false,
+      socMed: [
+        {
+          link: 'fb-link',
+          icon: 'mycure-homepage-wireframe-icon-fb.png'
+        },
+        {
+          link: 'youtube-link',
+          icon: 'mycure-homepage-wireframe-icon-ytub-e.png'
+        },
+        {
+          link: 'ig-link',
+          icon: 'mycure-homepage-wireframe-icon-ig.png'
+        },
+        {
+          link: 'linkedin-link',
+          icon: 'mycure-homepage-wireframe-icon-linkedin.png'
+        },
+        {
+          link: 'twitter-link',
+          icon: 'mycure-homepage-wireframe-icon-twitter.png'
+        },
+      ]
     };
   }
 };
