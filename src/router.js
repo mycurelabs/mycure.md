@@ -1,7 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import home from '@/views/home.vue';
-import ourStory from '@/views/our-story.vue';
 import cms from '@/components/clinic-management-system';
 import pricing from '@/components/pricing';
 import { core } from '@mycure/sdk';
@@ -38,8 +37,7 @@ export default new Router({
     {
       path: '/our-story',
       name: 'our-story', 
-      // TODO: lazy load this
-      component: ourStory,
+      component: () => import(/* webpackChunkName: 'our-story' */ '@/views/our-story'),
       meta: {
         pageType: 'about',
         pageName: 'Our Story'
@@ -76,7 +74,6 @@ export default new Router({
     {
       path: '/features',
       name: 'features', 
-      // TODO: lazy load this
       component: () => import(/* webpackChunkName: 'features' */ '@/views/features'),
       meta: {
         pageType: 'main',
