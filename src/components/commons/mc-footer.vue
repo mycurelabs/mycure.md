@@ -3,7 +3,7 @@
     div(v-if="!$isMobile")
       div.mc-dark-grey
         v-container(justify-center)
-          mc-navbar-footer
+          mc-toolbar-footer
           hr.mc-grey.mb-3
           v-layout(row wrap justify-center)
             v-flex(xs12 md3 offset-md1).font-mc-grey
@@ -69,15 +69,15 @@
           a(:href="`${siginURL}/signup/private/step-1`" style="padding: 20px 0")
             strong(style="font-size: 25px").white--text Sign Up Now
       div.mc-dark-grey.pa-4
-        mc-navbar-footer  
+        mc-toolbar-footer  
 </template>
 
 <script>
-import mcNavbarFooter from "./mc-navbar-footer";
+import mcToolbarFooter from "./mc-toolbar-footer";
 
 export default {
   components: {
-    mcNavbarFooter
+    mcToolbarFooter
   },
   props: {
     webSky: {
