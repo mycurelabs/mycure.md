@@ -110,8 +110,8 @@ export default new Router({
       }
     },
     {
-      path: '/fb-link',
-      name: 'fb-link',
+      path: '/facebook-link',
+      name: 'facebook-link',
       beforeEnter (to, from, next) {
         window.open('https://www.facebook.com/mycure.md');
         next({name: from.name || 'home'});
@@ -126,8 +126,8 @@ export default new Router({
       }
     },
     {
-      path: '/ig-link',
-      name: 'ig-link',
+      path: '/instagram-link',
+      name: 'instagram-link',
       beforeEnter (to, from, next) {
         window.open('https://www.instagram.com/mycure.md/');
         next({name: from.name || 'home'});

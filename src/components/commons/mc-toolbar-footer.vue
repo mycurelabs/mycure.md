@@ -114,7 +114,7 @@ export default {
       contact: false,
       socMed: [
         {
-          link: 'fb-link',
+          link: 'facebook-link',
           icon: 'mycure-homepage-wireframe-icon-fb.png'
         },
         {
@@ -122,7 +122,7 @@ export default {
           icon: 'mycure-homepage-wireframe-icon-ytub-e.png'
         },
         {
-          link: 'ig-link',
+          link: 'instagram-link',
           icon: 'mycure-homepage-wireframe-icon-ig.png'
         },
         {
