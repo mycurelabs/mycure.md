@@ -17,7 +17,7 @@ export default new Router({
     {
       path: '/privacy-policy',
       name: 'privacy-policy', 
-      component: () => import(/* webpackChunkName: 'privacy-policy' */ '@/components/privacy-policy'),
+      component: () => import(/* webpackChunkName: 'privacy-policy' */ '@/views/privacy-policy'),
       meta: {
         pageType: 'legal',
         pageName: 'Privacy Policy'
