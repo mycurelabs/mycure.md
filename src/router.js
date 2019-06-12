@@ -1,7 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import home from '@/views/home.vue';
-import cms from '@/components/clinic-management-system';
 import pricing from '@/components/pricing';
 import { core } from '@mycure/sdk';
 
@@ -55,10 +54,10 @@ export default new Router({
     {
       path: '/clinic-management-system',
       name: 'cms', 
-      component: cms,
+      component: () => import(/* webpackChunkName: 'clinic-management-system' */ '@/views/clinic-management-system'),
       meta: {
         pageType: 'main',
-        pageName: 'Multyspecialty Clinics'
+        pageName: 'Multispecialty Clinics'
       }
     },
     {

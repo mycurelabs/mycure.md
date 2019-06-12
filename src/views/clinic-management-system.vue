@@ -16,17 +16,17 @@
 </template>
 
 <script>
-  import mcToolbarHome from '../commons/mc-toolbar-home';
-  import mcFooter from '../commons/mc-footer';
-  import panel1 from './panel-1';
-  import panel2 from './panel-2';
-  import panel3 from './panel-3';
-  import panel4 from './panel-4';
-  import panel5 from './panel-5';
-  import panel5mobile from './panel-5-mobile';
-  import panel6 from './panel-6';
-  import panel7 from './panel-7';
-  import filler from '../commons/filler';
+  import mcToolbarHome from '@/components/commons/mc-toolbar-home';
+  import mcFooter from '@/components/commons/mc-footer';
+  import panel1 from '@/components/clinic-management-system/panel-1';
+  import panel2 from '@/components/clinic-management-system/panel-2';
+  import panel3 from '@/components/clinic-management-system/panel-3';
+  import panel4 from '@/components/clinic-management-system/panel-4';
+  import panel5 from '@/components/clinic-management-system/panel-5';
+  import panel5mobile from '@/components/clinic-management-system/panel-5-mobile';
+  import panel6 from '@/components/clinic-management-system/panel-6';
+  import panel7 from '@/components/clinic-management-system/panel-7';
+  import filler from '@/components/commons/filler';
   import VueScrollTo from 'vue-scrollto';
 
   export default {
