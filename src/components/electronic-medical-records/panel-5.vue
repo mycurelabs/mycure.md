@@ -18,8 +18,7 @@
       //-           frameborder="0"
       //-           allowfullscreen
       //-         )
-      v-container
-        br(style="line-height: 500px")
+      v-container(style="padding-top: 500px")
         v-layout(row wrap align-center justify-center)
           div(style="margin: 0px -20px 0px 0px; z-index: 1")
             img(src="../../assets/images/mycure-web-video-cover-decor-doctor-left.png")

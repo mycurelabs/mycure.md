@@ -2,8 +2,7 @@
   div
     div(v-if="!$isMobile")#panel5 
       v-container
-        br(style="line-height: 500px")
-        v-layout(row wrap align-center justify-center)
+        v-layout(row wrap align-center justify-center style="padding-top: 500px")
           div(style="margin: 0px -20px 0px 0px; z-index: 1")
             img(src="../../assets/images/mycure-web-video-cover-decor-doctor-left.png")
           div(style="z-index: 0")

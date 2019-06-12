@@ -8,8 +8,7 @@
             h1.font-medium.text-xs-center Human-friendly features,
               br
               | patient-centric care.
-              br(style="line-height: 100px")
-              p(style="font-weight: normal").font-small.text-xs-center Focus on your patients and let MYCURE handle the rest.
+              p(style="font-weight: normal; padding-top: 40px").font-small.text-xs-center Focus on your patients and let MYCURE handle the rest.
                 br
                 | We made it very easy to learn and use.
             br
