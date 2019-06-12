@@ -1,15 +1,13 @@
 <template lang="pug">
   div#top
-    mcNavbarHome
+    mcToolbarHome
     panel-1
     panel-2.showPanel
     mcFooter(:webSky="false")
 </template>
 
 <script>
-  document.title = "MYCURE - Terms and Conditions";
-
-  import mcNavbarHome from '../commons/mc-navbar-home';
+  import mcToolbarHome from '../commons/mc-toolbar-home';
   import mcFooter from '../commons/mc-footer';
   import panel1 from './panel-1';
   import panel2 from './panel-2';
@@ -21,7 +19,7 @@
       };
     }, 
     components: {
-      mcNavbarHome,
+      mcToolbarHome,
       mcFooter,
       panel1,
       panel2
