@@ -1,6 +1,6 @@
 <template lang="pug">
   div.white#top
-    mc-navbar-home
+    mc-toolbar-home
     panel1
     panel2
     panel3
@@ -15,7 +15,7 @@
 </template>
 
 <script>
-  import mcNavbarHome from '../commons/mc-navbar-home';
+  import mcToolbarHome from '../commons/mc-toolbar-home';
   import mcFooter from '../commons/mc-footer';
   import panel1 from './panel-1';
   import panel2 from './panel-2';
@@ -34,7 +34,7 @@
       };
     }, 
     components: {
-      mcNavbarHome,
+      mcToolbarHome,
       mcFooter,
       panel1,
       panel2,
