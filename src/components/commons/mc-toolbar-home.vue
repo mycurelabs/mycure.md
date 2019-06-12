@@ -7,7 +7,7 @@
             v-toolbar(flat).white
               router-link(:to="{ name: 'home' }").mr-3.mt-2
                 img(src="../../assets/images/mycure-header-logo.png" width="140")
-              v-btn(v-for="(link, key) in $mainLinks" :to="{ name: link.name }" flat)
+              v-btn(v-for="(link, key) in $mainLinks" :key="key" :to="{ name: link.name }" flat)
                 strong(style="font-size: 14px").tab.text-none {{link.meta.pageName}}
               v-spacer
               v-btn(
@@ -38,7 +38,7 @@
           v-layout(row wrap)
             v-flex(xs12 md12)
               v-list(two-line)
-                v-list-tile(v-for="(link, key) in $mainLinks" :to="{ name: link.name }")
+                v-list-tile(v-for="(link, key) in $mainLinks" :key="key" :to="{ name: link.name }")
                   v-list-tile-content
                     v-list-tile-title 
                       b {{link.meta.pageName}}
