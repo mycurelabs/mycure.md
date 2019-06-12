@@ -15,7 +15,7 @@
             br
             br
             v-btn(
-              :to="{ name: 'dpa-link' }"
+              :to="{ name: 'data-privacy-for-physicians' }"
               color="#2e9fdf"
               large
             ) 

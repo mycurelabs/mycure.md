@@ -86,8 +86,8 @@ export default new Router({
       }
     },
     {
-      path: '/dpa-link',
-      name: 'dpa-link',
+      path: '/data-privacy-for-physicians',
+      name: 'data-privacy-for-physicians',
       beforeEnter (to, from, next) {
         window.open('http://blog.mycure.md/2018/04/26/data-privacy-for-physicians/');
         next({name: from.name || 'home'});
