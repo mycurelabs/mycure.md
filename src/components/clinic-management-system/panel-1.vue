@@ -16,7 +16,7 @@
           v-flex(xs12 md7 align-self-center style="margin-top: 5%")
             img(width="100%" src="../../assets/images/mycure-cms-web-banner-first-panel-doctor-clinic-patients.png")
     div(v-else).white
-      v-container
+      v-container(style="padding-top: 70px")
         v-layout(row justify-center)
           v-flex(xs12 md5)
             span.font-l A system that simplifies work for multispecialty clinics.
