@@ -4,7 +4,7 @@
     div(v-if="!$isMobile")#panel6.pt-5
       v-container
         center
-          strong.font-small.font-mc-blue Laboratory &amp; Imaging
+          strong.font-small.font-mc-blue LABORATORY &amp; IMAGING
         br
         br
         v-layout(row justify-center)
@@ -42,7 +42,39 @@
             )
               slide(v-for="(feature,index) in features" :key="index" :data-index="index+1")
                 img(:src="require(`../../assets/images/mycure-web-features-mockup-04-${feature}.png`)" width="70%")
-    //- div(v-else)
+    div(v-else)#panel6.pt-5
+      v-container
+        center
+          strong.font-s.font-mc-blue LABORATORY &amp; IMAGING
+        br
+        br
+        v-layout(row justify-center)
+          span.font-l Record and retrieve diagnostic results right where you need them.
+        br
+        v-layout(row justify-center)
+          span.font-m MYCURE can communicate with modern diagnostic machines through HL7 interfacing and PACS configurations. 
+            br
+            br
+            | Doctors can view DICOM images remotely or within clinic premises, while patients can view their lab & imaging results through an online portal.
+
+        br
+        br
+        v-layout(row justify-center)  
+          //- https://ssense.github.io/vue-carousel/
+          center
+            carousel(
+              :per-page="1" 
+              :autoplay="false"
+              :loop="true"
+              paginationActiveColor="white"
+              paginationColor="grey"
+              navigationNextLabel=" "
+              navigationPrevLabel=" "
+              style="height: 250px"
+            )
+              slide(v-for="(feature,index) in features" :key="index" :data-index="index+1")
+                img(:src="require(`../../assets/images/mycure-web-features-mockup-04-${feature}.png`)" width="70%")
+    
 </template>
 
 <script>
