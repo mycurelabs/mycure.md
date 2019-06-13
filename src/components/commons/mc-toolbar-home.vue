@@ -52,63 +52,66 @@
               //- p See this https://vuetifyjs.com/en/components/lists#subheadings-and-dividers
               v-list(two-line) 
                 v-subheader Clinic Solutions
-                v-list-tile
+                v-list-tile(:to="{name: 'emr'}")
                   v-list-tile-content
                     v-list-tile-title 
-                      router-link(:to="{name: 'emr'}").black--text For Individual Doctors
-                v-list-tile
+                      b For Individual Doctors
+                v-list-tile(:to="{name: 'cms'}")
                   v-list-tile-content
                     v-list-tile-title 
-                      router-link(:to="{name: 'cms'}").black--text For Multi-specialty Practice
+                      b For Multi-specialty Practice
                 v-divider
                 v-subheader About
-                v-list-tile
+                v-list-tile(:to="{name: 'our-story'}")
                   v-list-tile-content
                     v-list-tile-title 
-                      router-link(:to="{name: 'our-story'}").black--text Our Story
-                v-list-tile
+                      b Our Story
+                v-list-tile(:to="{name: 'blog-link'}")
                   v-list-tile-content
                     v-list-tile-title     
-                      router-link(:to="{name: 'blog-link'}").black--text Blog
-                v-list-tile
+                      b Blog
+                v-list-tile(:to="{name: 'careers'}")
                   v-list-tile-content
                     v-list-tile-title 
-                      router-link(:to="{name: 'careers'}").black--text Careers
+                      b Careers
                 v-divider
                 v-subheader Support
-                v-list-tile
+                v-list-tile(:to="{name: 'faqs-link'}")
                   v-list-tile-content
                     v-list-tile-title 
-                      router-link(:to="{name: 'faqs-link'}").black--text FAQs
-                v-list-tile
+                      b FAQs
+                v-list-tile(:to="{name: 'pricing'}")
                   v-list-tile-content
                     v-list-tile-title 
-                      router-link(:to="{name: 'pricing'}").black--text Pricing
-                v-list-tile
+                      b Pricing
+                v-list-tile(:to="{name: 'calendly'}")
                   v-list-tile-content
                     v-list-tile-title 
-                      router-link(:to="{name: 'calendly'}").black--text Book A Demo
+                      b Book A Demo
                 v-divider
                 v-subheader Legal
-                v-list-tile
+                v-list-tile(:to="{name: 'terms'}")
                   v-list-tile-content
                     v-list-tile-title 
-                      router-link(:to="{name: 'terms'}").black--text Terms
-                v-list-tile
+                      b Terms
+                v-list-tile(:to="{name: 'privacy-policy'}")
                   v-list-tile-content
                     v-list-tile-title 
-                      router-link(:to="{name: 'privacy-policy'}").black--text Privacy Policy
+                      b Privacy Policy
                 v-divider 
                 v-subheader Contact Us
                 v-list-tile
                   v-list-tile-content
-                    v-list-tile-title hello@mycure.md
+                    v-list-tile-title
+                      b hello@mycure.md
                 v-list-tile
                   v-list-tile-content
-                    v-list-tile-title (+632) 799 6262
+                    v-list-tile-title
+                      b (+632) 799 6262
                 v-list-tile
                   v-list-tile-content
-                    v-list-tile-title (+63) 917 303 4350              
+                    v-list-tile-title
+                      b (+63) 917 303 4350              
         div(style="position: sticky; bottom: 0px; z-index: 999; border-top: 1px solid lightgrey; background-color: white").py-3
           v-layout(row justify-center)
             v-btn(
