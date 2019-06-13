@@ -27,11 +27,30 @@
             //- https://ssense.github.io/vue-carousel/
             img(src="../../assets/images/mycure-web-features-mockup-07-A.png" width="50%")
       panel10(style="padding-top: 200px")
-    //- div(v-else)
+    div(v-else)#panel9.showPanel
+      div.pt-5#panel9a
+        v-container
+          center
+            strong.font-s.font-mc-blue SYNCBASE TECHNOLOGY
+          br
+          br
+          v-layout(row justify-center)
+            span.font-l Go offline safely and securely.
+          br
+          br
+          v-layout(row justify-center)
+            span.font-s The holy grail of online-offline technology is here. Work within your local network using multiple devices even if the internet goes down and just sync data when back online.
+          br
+          br
+          v-layout(row justify-center)  
+            //- https://ssense.github.io/vue-carousel/
+            img(src="../../assets/images/mycure-web-features-mockup-07-A.png" style="width: 100%; height: 100%;")
+      panel10.showPanel
 </template>
 
 <script>
   import panel10 from './panel-10';
+  
   export default {
     components:{
       panel10
