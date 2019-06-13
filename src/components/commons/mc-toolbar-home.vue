@@ -1,7 +1,7 @@
 <template lang="pug">
   div
-    template(v-if="!$isMobile" style="position: fixed; width: 100%; z-index: 9999;" :class="shadow").white
-      v-container(style="height: 70px !important").white.py-0
+    div(v-if="!$isMobile" style="position: fixed; width: 100%; z-index: 9999;" :class="shadow").white
+      v-container(style="height: 70px !important;").white.py-0
         v-layout(row wrap justify-center)
           v-flex(xs12 md12 style="margin-top: 3px;")
             v-toolbar(flat).white
@@ -20,7 +20,7 @@
                 :href="`${siginURL}/signup/choose`"
               )
                 strong(style="font-size: 14px").white--text.tab SIGN UP
-    template(v-else)
+    div(v-else)
       v-toolbar(app flat fixed :class="shadow").white
         router-link(:to="{ name: 'home' }").logo-a
           img(src="../../assets/images/mycure-header-logo.png" width="130").mt-1
