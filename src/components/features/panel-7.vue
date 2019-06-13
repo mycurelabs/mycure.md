@@ -1,5 +1,4 @@
 <template lang="pug">
-  //- TODO: mobile responsiveness
   div
     div(v-if="!$isMobile")#panel7.pt-5
       v-container
@@ -29,23 +28,32 @@
         br
         br
         v-layout(row justify-center)  
-          //- https://ssense.github.io/vue-carousel/
-          //- center
-            carousel(
-              :per-page="1" 
-              :autoplay="false"
-              :loop="true"
-              paginationActiveColor="white"
-              paginationColor="grey"
-              navigationNextLabel=" "
-              navigationPrevLabel=" "
-              style="height: 550px"
-            )
-              slide(v-for="(feature,index) in 6" :key="index" :data-index="feature")
-                img(:src="require(`../../assets/images/mycure-web-features-mockup-0${feature}-A.png`)" width="70%")
-          img(src="../../assets/images/mycure-web-features-mockup-05-A.png" width="90%" height="100%")
-            
-    //- div(v-else)
+          img(src="../../assets/images/mycure-web-features-mockup-05-A.png" width="90%" height="100%")     
+    div(v-else)#panel7.pt-5
+      v-container
+        center
+          strong.font-s.font-mc-blue MATERIALS MANAGEMENT
+        br
+        br
+        v-layout(row justify-center)
+          span.font-l Your medical supplies at a glance.
+        br
+        br
+        v-layout(row justify-center)
+          span.font-m.text-xs-center Produce neatly-organized reports in a minute or less.
+        br
+        br
+        v-layout(row justify-center)
+          ul
+            li
+              v-layout(v-for="(item, index) in items" :key="index" row align-left).pb-3 
+                img(src="../../assets/images/mycure-web-bullet-check.png" style="height: 29px;")
+                span.font-s.pl-3 {{ item }} 
+        br
+        br
+        v-layout(row justify-center)  
+          img(src="../../assets/images/mycure-web-features-mockup-05-A.png" width="90%" height="100%")     
+    
 </template>
 
 <script>
