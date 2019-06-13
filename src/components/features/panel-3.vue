@@ -1,10 +1,9 @@
 <template lang="pug">
-  //- TODO: mobile responsiveness
   div
     div(v-if="!$isMobile")#panel3.pt-5
       v-container
         center
-          strong.font-small.font-mc-blue Medical Records
+          strong.font-small.font-mc-blue MEDICAL RECORDS
         br
         br
         v-layout(row justify-center)
@@ -36,7 +35,38 @@
             )
               slide(v-for="(feature,index) in features" :key="index" :data-index="index+1")
                 img(:src="require(`../../assets/images/mycure-web-features-mockup-01-${feature}.png`)" width="70%")
-    //- div(v-else)
+    div(v-else)#panel3.pt-5
+      v-container
+        center
+          strong.font-s.font-mc-blue MEDICAL RECORDS
+        br
+        br
+        v-layout(row justify-center)
+          span.font-l Designed for doctors, by doctors.
+        br
+        v-layout(row justify-center)
+          span.font-m Record full medical history, vitals, and physical exam records according
+            br
+            | to SOAP charting. Eliminate the haste of scribbling with Rx printing, ICD-10
+            br
+            | database, multiple image uploads, and more.
+        br
+        br
+        v-layout(row justify-center)
+          //- https://ssense.github.io/vue-carousel/
+          center
+            carousel(
+              :per-page="1" 
+              :autoplay="false"
+              :loop="true"
+              paginationActiveColor="grey"
+              paginationColor="#f5f5f5"
+              navigationNextLabel=" "
+              navigationPrevLabel=" "
+              style="height: 225px"
+            )
+              slide(v-for="(feature,index) in features" :key="index" :data-index="index+1")
+                img(:src="require(`../../assets/images/mycure-web-features-mockup-01-${feature}.png`)" width="70%")
 </template>
 
 <script>
