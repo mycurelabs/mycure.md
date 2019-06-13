@@ -19,26 +19,25 @@
             | physical exam reports can be generated instantly.
         br
         br
+        v-layout(row justify-center)  
+          img(src="../../assets/images/mycure-web-features-mockup-06-A.png" width="90%" height="100%")
+    div(v-else)#panel8.pt-5
+      v-container
+        center
+          strong.font-s.font-mc-blue REPORTS AND ANALYTICS
         br
+        br
+        v-layout(row justify-center)
+          span.font-l Never miss out on important business decisions. 
+        br
+        br
+        v-layout(row justify-center)
+          span.font-m Measure your day-to-day clinic performance analyzing comprehensive graphs based on your KPIs. Census, billing, diagnostics, sales, and physical exam reports can be generated instantly.
         br
         br
         v-layout(row justify-center)  
-          //- https://ssense.github.io/vue-carousel/
-          //- center
-            carousel(
-              :per-page="1" 
-              :autoplay="false"
-              :loop="true"
-              paginationActiveColor="white"
-              paginationColor="grey"
-              navigationNextLabel=" "
-              navigationPrevLabel=" "
-              style="height: 550px"
-            )
-              slide(v-for="(feature,index) in 6" :key="index" :data-index="feature")
-                img(:src="require(`../../assets/images/mycure-web-features-mockup-0${feature}-A.png`)" width="70%")
           img(src="../../assets/images/mycure-web-features-mockup-06-A.png" width="90%" height="100%")
-    //- div(v-else)
+
 </template>
 
 <script>
