@@ -15,48 +15,12 @@
         br
         br
         v-layout(row align-self-center)
-          v-flex(xs12 md2 justify-center)
+          v-flex(xs12 md2 justify-center v-for="(role,index) in roles" :key="index")
             center
-              img(src="../../assets/images/mycure-web-features-role-health-professionals.png" height="250px")
+              img(:src="require(`../../assets/images/mycure-web-features-role-${ role.avatar }.png`)" height="250px")
               br
-              span.font-small Health 
-                br
-                | Professionals
-          v-flex(xs12 md2)   
-            center       
-              img(src="../../assets/images/mycure-web-features-role-front-desk-receptionists.png" height="250px")
-              br
-              span.font-small Front Desk
-                br
-                | Receptionists
-          v-flex(xs12 md2)
-            center
-              img(src="../../assets/images/mycure-web-features-role-inventory-manager.png" height="250px")
-              br
-              span.font-small Inventory
-                br
-                | Manager
-          v-flex(xs12 md2)
-            center
-              img(src="../../assets/images/mycure-web-features-role-medical-technologist.png" height="250px")
-              br
-              span.font-small Medical
-                br
-                | Technologists
-          v-flex(xs12 md2)
-            center
-              img(src="../../assets/images/mycure-web-features-role-cashier-billing-staff.png" height="250px")
-              br
-              span.font-small Cashier &amp;
-                br
-                | Billing Staff
-          v-flex(xs12 md2)
-            center
-              img(src="../../assets/images/mycure-web-features-role-clinic-administrators.png" height="250px")
-              br
-              span.font-small Clinic
-                br
-                | Administrators        
+              div.mx-3
+                span.font-small {{ role.name }}
     div(v-else)#panel2
       v-container
         center
@@ -85,69 +49,49 @@
             style="height: 400px"
           ) 
             slide(
-              :data-index="0"
+              v-for="(role,index) in roles"
+              :key="index"
+              :data-index="index+1"
             )
-              center
-                img(src="../../assets/images/mycure-web-features-role-health-professionals.png" height="250px")
+              center.mx-5
+                img(:src="require(`../../assets/images/mycure-web-features-role-${ role.avatar }.png`)" height="250px")
                 br
-                span.font-small Health
-                  br
-                  | Professionals
-            slide(
-              :data-index="1"
-            )
-              center
-                img(src="../../assets/images/mycure-web-features-role-front-desk-receptionists.png" height="250px")
                 br
-                span.font-small Front Desk
-                  br
-                  | Receptionists
-            slide(
-              :data-index="1"
-            )
-              center
-                img(src="../../assets/images/mycure-web-features-role-inventory-manager.png" height="250px")
-                br
-                span.font-small Inventory
-                  br
-                  | Manager
-            slide(
-              :data-index="1"
-            )
-              center
-                img(src="../../assets/images/mycure-web-features-role-medical-technologist.png" height="250px")
-                br
-                span.font-small Medical
-                  br
-                  | Technologists
-            slide(
-              :data-index="1"
-            )
-              center
-                img(src="../../assets/images/mycure-web-features-role-cashier-billing-staff.png" height="250px")
-                br
-                span.font-small Cashier &amp;
-                  br
-                  | Billing Staff
-            slide(
-              :data-index="1"
-            )
-              center
-                img(src="../../assets/images/mycure-web-features-role-clinic-administrators.png" height="250px")
-                br
-                span.font-small Clinic
-                  br
-                  | Administrators
-              
-          
-
+                v-layout(row justify-center)
+                  v-flex(xs1)
+                    span.font-small {{ role.name }}
 </template>
 
 <script>
   export default {
     data () {
       return {
-        //
+        roles: [
+          {
+            name: 'Health Professionals',
+            avatar: 'health-professionals'
+          },
+          {
+            name: 'Front Desk Receptionists',
+            avatar: 'front-desk-receptionists'
+          },
+          {
+            name: 'Inventory Manager',
+            avatar: 'inventory-manager'
+          },
+          {
+            name: 'Medical Technologists',
+            avatar: 'medical-technologist'
+          },
+          {
+            name: 'Cashier & Billing Staff',
+            avatar: 'cashier-billing-staff'
+          },
+          {
+            name: 'Clinic Administrators',
+            avatar: 'clinic-administrators'
+          }
+        ]
       };
     }
   };
