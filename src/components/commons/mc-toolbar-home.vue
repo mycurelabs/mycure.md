@@ -6,7 +6,7 @@
           v-flex(xs12 md12 style="margin-top: 3px;")
             v-toolbar(flat).white
               router-link(:to="{ name: 'home' }").mr-3.mt-2
-                img(src="../../assets/images/mycure-header-logo.png" width="140")
+                img(src="../../assets/images/mycure-header-logo.png" width="140" alt="MYCURE logo")
               v-btn(v-for="(link, key) in $mainLinks" :key="key" :to="{ name: link.name }" flat)
                 span(style="font-size: 14px").tab.text-none {{link.meta.pageName}}
               v-spacer
@@ -24,7 +24,7 @@
       v-container
         v-toolbar(app flat fixed :class="shadow").white
           router-link(:to="{ name: 'home' }").logo-a
-            img(src="../../assets/images/mycure-header-logo.png" width="130").mt-1
+            img(src="../../assets/images/mycure-header-logo.png" width="130" alt="MYCURE logo").mt-1
           v-spacer
           v-btn(icon large @click="drawer = !drawer")
             v-icon(style="font-size: 35px;") menu
@@ -33,7 +33,7 @@
         div(style="position: sticky; top: 0px; z-index: 9999; width: 100%;")
           v-toolbar(flat :class="shadow").white
             router-link(:to="{ name: 'home' }").logo-a
-              img(src="../../assets/images/mycure-header-logo.png" width="130").mt-1
+              img(src="../../assets/images/mycure-header-logo.png" width="130" alt="MYCURE logo").mt-1
             v-spacer
             v-btn(icon large @click="drawer = !drawer")
               v-icon(style="font-size: 35px;") close 
