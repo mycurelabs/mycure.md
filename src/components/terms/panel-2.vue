@@ -42,7 +42,7 @@
               p For Doctors App: This is strictly exclusive for Licensed Medical Doctors only.
               p For Patients App: Please do not lie about your age. Considering the sensitivity of medical data, we are only allowing users 18 years of age (or whatever is the legal age in your country) and above. Should you want to enroll a child then it can be done by using your name and registering him/her under you. We also understand that you would need to keep and monitor records of your children.
         v-flex(xs12 md10).mb-3
-          img(width="100%" src="../../assets/images/mycure-terms-and-conditions-artwork.png")
+          img(width="100%" src="../../assets/images/mycure-terms-and-conditions-artwork.png" alt="MYCURE Terms and Conditions")
         v-flex(xs12 md10).mb-3
           h2 Subscription
           br
