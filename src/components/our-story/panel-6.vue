@@ -14,8 +14,6 @@
                 br
                 br
                 h1.font-medium 8 Codes of Being
-                br
-                br
               v-flex(xs12 md12).text-xs-center
                 p.font-small
                     br
