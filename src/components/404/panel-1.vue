@@ -5,7 +5,7 @@
         br
         div
           center
-            img(src="../../assets/images/mycure-error-404-image.png")
+            img(src="../../assets/images/mycure-error-404-image.png" alt="Error 404")
         br
         br
         div
@@ -20,7 +20,7 @@
         br
         v-flex(xs12)
           center
-            img(width="100%" src="../../assets/images/mycure-error-404-image.png")
+            img(width="100%" src="../../assets/images/mycure-error-404-image.png" alt="Error 404")
         br
         br
         v-flex(xs12)
