@@ -115,7 +115,6 @@
         div(style="position: sticky; bottom: 0px; z-index: 999; border-top: 1px solid lightgrey; background-color: white").py-3
           v-layout(row justify-center)
             v-btn(
-                flat
                 :href="`${siginURL}?target=${cmsURL}/authenticate`"
               )
                 strong(style="font-size: 14px").tab LOGIN
