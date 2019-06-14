@@ -24,7 +24,13 @@
           br
           br
           span.font-s.text-xs-center Experience what you can do more with MYCURE technology by your side.
-
+          br
+          br
+          v-layout(row justify-center)
+            v-btn(
+              :href="`${siginURL}/signup/choose`"
+              style="background-color: #18c551; width: 80%; height: 60px")  
+              strong.font-m.white--text.text-none Sign Up Now  
 </template>
 
 <script>
