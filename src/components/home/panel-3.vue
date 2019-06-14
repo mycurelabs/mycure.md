@@ -55,7 +55,7 @@
           },
           {
             title: 'Medical Records',
-            description: 'Create printable Prescriptions, Charts, Lab Orders and customizable forms',
+            description: 'Create EMR (electronic medical records), printable Prescriptions, Charts, Lab Orders and customizable forms',
             icon: 'mycure-web-clinic-feature-icon-emr.png'
           },
           {

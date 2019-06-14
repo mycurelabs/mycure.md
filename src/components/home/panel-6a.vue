@@ -13,14 +13,12 @@
                   br
                   span.font-small &#10003 &nbsp Unlimited Clinics
                   br
-                  span.font-small &#10003 &nbsp 1 GB Data
-                  br
                   span.font-small &#10003 &nbsp SOAP Charting
                   br
                   span.font-small &#10003 &nbsp Prescription Printing
                   br
                   span.font-small &#10003 &nbsp Medical Billing
-                  v-layout(row wrap).py-4
+                  v-layout(row wrap).pt-5.pb-4
                     v-btn(
                       :href="`${siginURL}/signup/choose`"
                       style="background-color: #18c551; color: white; width: auto" 

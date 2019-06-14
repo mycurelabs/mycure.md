@@ -2,7 +2,7 @@
   div
     panelBeforeFooter
       img(slot="home-img" style="max-width: 90%" src="../../assets/images/mycure-web-banner-last-panel-home-doctors.png")
-      span(slot="home-txt" style="font-size: 36px").lh-title Join thousands of health professionals who get the best out of technology in their practice
+      span(slot="home-txt" style="font-size: 36px").lh-title Join thousands of healthcare professionals who get the best out of technology in their practice
 
       v-btn(
         slot="sign-up-button"
