@@ -8,7 +8,7 @@
               br
               | Practice
             div(style="margin-top: 9px")
-              img(style="color: #f6f6f6" src="../../assets/images/mycure-mobile-icon-triangle-up-white.png")
+              img(style="color: #f6f6f6" src="../../assets/images/mycure-mobile-icon-triangle-up-white.png" alt="Triangle icon")
           div(v-else @click.stop="isPrivate=true; isMulti=false" style="height: 100px;").white.pl-4.py-4
             span.font-m.font-mc-grey For Private
               br
@@ -19,7 +19,7 @@
               br
               | Clinics
             div(style="margin-top: 9px")
-              img(style="color: #f6f6f6" src="../../assets/images/mycure-mobile-icon-triangle-up-white.png")
+              img(style="color: #f6f6f6" src="../../assets/images/mycure-mobile-icon-triangle-up-white.png" alt="Triangle icon")
           div(v-else @click.stop="isPrivate=false; isMulti=true" style="height: 100px;").white.pl-4.py-4
             span.font-m.font-mc-grey For Multispecialty
               br

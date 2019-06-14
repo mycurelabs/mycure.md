@@ -6,10 +6,10 @@
         br
         v-layout(row wrap align-center justify-center)
           div(style="margin: 0px -20px 0px 0px; z-index: 1")
-            img(src="../../assets/images/mycure-web-video-cover-decor-doctor-left.png")
+            img(src="../../assets/images/mycure-web-video-cover-decor-doctor-left.png" alt="Male doctor")
           div(style="z-index: 0")
             a
-              img(v-if="!videoDialog" @click.stop="videoDialog=!videoDialog" src="../../assets/images/mycure-web-video-cover.png")
+              img(v-if="!videoDialog" @click.stop="videoDialog=!videoDialog" src="../../assets/images/mycure-web-video-cover.png" alt="MYCURE Introduction video thumbnail")
               div(v-else style="border: 10px solid white; border-radius: 10px;")
                 iframe(
                   align="middle"
@@ -20,7 +20,7 @@
                   allowfullscreen
                   )
           div(style="margin: 0px 0px 0px -20px; z-index: 1") 
-            img(src="../../assets/images/mycure-web-video-cover-decor-doctor-right.png")
+            img(src="../../assets/images/mycure-web-video-cover-decor-doctor-right.png" alt="Female doctor")
 </template>
 
 <script>

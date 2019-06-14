@@ -11,14 +11,14 @@
             v-list(two-line).transparent.check-list
               v-list-tile(v-for="(problem,index) in problems" :key="index" v-if="index<=2")
                 v-list-tile-action
-                  img(src="../../assets/images/mycure-web-bullet-check.png")
+                  img(src="../../assets/images/mycure-web-bullet-check.png" alt="Check icon")
                 v-list-tile-content
                   span.font-small {{ problem }}
           v-flex(xs12 md4)
             v-list(two-line).transparent.check-list
               v-list-tile(v-for="(problem,index) in problems" :key="index" v-if="index>2")
                 v-list-tile-action
-                  img(src="../../assets/images/mycure-web-bullet-check.png")
+                  img(src="../../assets/images/mycure-web-bullet-check.png" alt="Check icon")
                 v-list-tile-content
                   span.font-small {{ problem }}
         br
@@ -45,7 +45,7 @@
           v-list(two-line style="background-color: #f5f5f5")
             v-list-tile(v-for="(problem,index) in problems" :key="index")
               v-list-tile-action
-                img(src="../../assets/images/mycure-web-bullet-check.png")
+                img(src="../../assets/images/mycure-web-bullet-check.png" alt="Check icon")
               v-list-tile-content
                 span.font-m {{ problem }} 
         v-layout(row wrap justify-center)

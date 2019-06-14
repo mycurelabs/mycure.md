@@ -30,12 +30,13 @@
       br
     div(v-else style="margin-top: -15%")
       div(style="background-color: #f5f5f5")
-        img(src="../../assets/images/mycure-home-web-video-green-background-mobile.png" width="100%")
+        img(src="../../assets/images/mycure-home-web-video-green-background-mobile.png" alt="Video green background" width="100%")
         a
           img(
             v-if="!videoDialog" 
             @click.stop="videoDialog=!videoDialog"
             src="../../assets/images/mycure-home-web-video-cover-most-complete-clinic-management-system-mobile.png" 
+            alt="MYCURE Introduction Video thumbnail"
             width="100%"
             style="margin: -2% 0 -2% 0;"
           )

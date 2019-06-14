@@ -7,7 +7,7 @@
           span(style="line-height: 45px").font-l Protect your patients' medical records with confidence
           br
           br
-          img(width="85%" src="../../assets/images/mycure-web-banner-data-privacy-law.png")
+          img(width="85%" src="../../assets/images/mycure-web-banner-data-privacy-law.png" alt="Data Privacy Law")
           br
           br
           br

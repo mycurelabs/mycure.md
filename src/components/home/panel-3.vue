@@ -6,7 +6,7 @@
           span(style="font-size: 40px").lh-title MYCURE is complete - everything your clinic needs.
       div.py-5
         center.pt-4
-          img(style="max-width: 90%;" src="../../assets/images/mycure-home-web-complete-clinic-management-system-diagram.png")
+          img(style="max-width: 90%;" src="../../assets/images/mycure-home-web-complete-clinic-management-system-diagram.png" alt="Complete clinic management system")
     div(v-else)
       v-container.pt-5
         v-layout(row justify-center)
@@ -31,11 +31,11 @@
                 :key="index"
                 :data-index="product"
               ).px-2
-                img(:src="require(`../../assets/images/mycure-web-clinic-room-0${product}.png`)" width="100%")
+                img(:src="require(`../../assets/images/mycure-web-clinic-room-0${product}.png`)" alt="Clinic room" width="100%")
         br
         v-layout(row justify-center v-for="feature in features" :key="feature.title").pt-3
           v-flex(xs3).text-xs-center
-            img(v-if="feature.icon" :src="require(`../../assets/images/${feature.icon}`)")
+            img(v-if="feature.icon" :src="require(`../../assets/images/${feature.icon}`)" :alt="feature.title")
           v-flex(xs8 offset-xs1)
             b {{ feature.title }}
             p {{ feature.description}}

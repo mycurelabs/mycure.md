@@ -6,7 +6,7 @@
           v-flex(xs12 md6).px-3
             center
               div(style="width: 75%").right
-                img(width="80%" src="../../assets/images/mycure-web-banner-fifth-panel-private-clinic.png")
+                img(width="80%" src="../../assets/images/mycure-web-banner-fifth-panel-private-clinic.png" alt="Private Clinic")
                 v-card(style="margin-top: -2%" width="80%").clinic-card.text-xs-left.pa-4
                   p.pb-2.font-small {{ private_title }}
                   strong.font-small &#10003 &nbsp It's FREE!
@@ -27,7 +27,7 @@
                       strong.white--text Sign Up Now
           v-flex(xs12 md6).px-3
             div(style="width: 75%").left
-              img(width="80%" src="../../assets/images/mycure-web-banner-fifth-panel-multi-specialty-clinics.png")
+              img(width="80%" src="../../assets/images/mycure-web-banner-fifth-panel-multi-specialty-clinics.png" alt="Multispecialty Clinic")
               v-card(style="margin-top: -2%" width="80%").clinic-card.text-xs-left.pa-4
                 p.pb-2.font-small {{ multispecialty_title }}
                 span.font-small &#10003 &nbsp Queuing &amp Registration

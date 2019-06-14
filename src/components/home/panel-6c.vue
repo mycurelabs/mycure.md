@@ -23,7 +23,13 @@
             v-dialog(v-model="dialog" max-width="50%") 
               v-card(height="30%").elevation-10
                 a
-                  img(v-if="!videoDialog" @click.stop="videoDialog=!videoDialog" width="100%" src="../../assets/images/mycure-web-video-cover-syncbase-online-offline.png")
+                  img(
+                    v-if="!videoDialog"
+                    @click.stop="videoDialog=!videoDialog" 
+                    width="100%" 
+                    src="../../assets/images/mycure-web-video-cover-syncbase-online-offline.png"
+                    alt="MYCURE Syncbase video thumbnail"
+                  )
                   iframe(
                     v-else
                     align="middle"
@@ -35,7 +41,7 @@
                     )
 
           v-flex(xs6 align-self-center).px-3
-            img(src="../../assets/images/mycure-homepage-syncbase-animated.gif" width="100%")
+            img(src="../../assets/images/mycure-homepage-syncbase-animated.gif" width="100%" alt="MYCURE Syncbase")
     div(v-else)
 </template>
 
