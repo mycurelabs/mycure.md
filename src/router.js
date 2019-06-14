@@ -10,6 +10,11 @@ export default new Router({
   base: process.env.BASE_URL,
   routes: [
     {
+      path: '*',
+      name: '404',
+      component: () => import(/* webpackChunkName: 'privacy-policy' */ '@/views/404'),
+    },
+    {
       path: '/',
       name: 'home',
       component: home
