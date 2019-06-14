@@ -4,16 +4,16 @@
       v-toolbar(flat color="rgba(52, 58, 64, 1)")
         router-link(:to="{ name: 'home' }")
           v-layout(row wrap center)    
-            img(src="../../assets/images/mycure-header-logo.png" height="25")
+            img(src="../../assets/images/mycure-header-logo.png" height="25" alt="MYCURE logo")
         v-spacer
         div(v-for="(account,key) in socMed" :key="key")
           router-link(:to="{ name: `${ account.link }`}")
-            img(:src="require(`../../assets/images/${ account.icon }`)" height="25").px-2
+            img(:src="require(`../../assets/images/${ account.icon }`)" height="25" :alt="account.name").px-2
     div(v-else).mc-dark-grey
       div
         router-link(:to="{ name: 'home' }")
           v-layout(row wrap center)    
-            img(src="../../assets/images/mycure-header-logo.png" height="25")
+            img(src="../../assets/images/mycure-header-logo.png" height="25" alt="MYCURE logo")
       br
       strong.white--text FOLLOW US
       br
@@ -21,7 +21,7 @@
       v-layout(row justify-center)
         div(v-for="(account,key) in socMed" :key="key")
           router-link(:to="{ name: `${ account.link }`}")
-            img(:src="require(`../../assets/images/${ account.icon }`)" height="30").px-3
+            img(:src="require(`../../assets/images/${ account.icon }`)" height="30" :alt="account.name").px-3
       br
       br
       v-layout(row)
@@ -112,22 +112,27 @@ export default {
       contact: false,
       socMed: [
         {
+          name: 'MYCURE FB',
           link: 'facebook-link',
           icon: 'mycure-homepage-wireframe-icon-fb.png'
         },
         {
+          name: 'MYCURE YT',
           link: 'youtube-link',
           icon: 'mycure-homepage-wireframe-icon-ytub-e.png'
         },
         {
+          name: 'MYCURE IG',
           link: 'instagram-link',
           icon: 'mycure-homepage-wireframe-icon-ig.png'
         },
         {
+          name: 'MYCURE - LinkedIn',
           link: 'linkedin-link',
           icon: 'mycure-homepage-wireframe-icon-linkedin.png'
         },
         {
+          name: 'MYCUREApp Twitter',
           link: 'twitter-link',
           icon: 'mycure-homepage-wireframe-icon-twitter.png'
         },
