@@ -4,7 +4,6 @@
       center
         v-container(style="width: 65% !important")
           v-layout(justify-center)
-            //- TODO: Update to MDI 
             v-icon(size="100px").white--text mdi-chevron-left
             div    
               //- https://ssense.github.io/vue-carousel/

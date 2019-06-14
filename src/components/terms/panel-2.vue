@@ -150,13 +150,6 @@
           br
           p We reserve the right, at our sole discretion, to modify or replace these Terms at any time. If a revision is material we will try to provide at least 30 days notice prior to any new terms taking effect. What constitutes a material change will be determined at our sole discretion.
           p By continuing to access or use our Service after those revisions become effective, you agree to be bound by the revised terms. If you do not agree to the new terms, please stop using the Service.
-        //- v-flex(xs12 md10).mb-3.text-xs-center
-          h1(v-if="!$isMobile").font-xl Contact Us
-          h1(v-else).font-large Contact Us
-          p.font-small(style="text-align: center") If you have any questions about these Terms, 
-              //- TODO: where to redirect contact us
-              a
-                strong(@click="toggleChat").font-small.toggle-chat.text-none.font-mc-blue please contact us.
         v-flex(xs12 md10).mb-3
           h2 Contact Us
           br

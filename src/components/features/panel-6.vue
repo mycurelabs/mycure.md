@@ -1,5 +1,4 @@
 <template lang="pug">
-  //- TODO: mobile responsiveness
   div
     div(v-if="!$isMobile")#panel6.pt-5
       v-container

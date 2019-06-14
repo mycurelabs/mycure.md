@@ -49,8 +49,6 @@
               br    
               v-divider
             v-flex(xs12 md12 dark)
-              //- h1 TODO: Add footer links here. Use list with section
-              //- p See this https://vuetifyjs.com/en/components/lists#subheadings-and-dividers
               v-list(two-line) 
                 v-subheader Clinic Solutions
                 v-list-tile(:to="{name: 'emr'}")
