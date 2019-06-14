@@ -38,10 +38,12 @@
                 center 
                   strong(style="color:#0099cc;") {{card.text}}
                 br
-                p.font-xs(v-html="card.content").text-xs-center
+                p.font-s(v-html="card.content").text-xs-center
                 center
-                  v-btn(:href="card.link" target="_blank" v-if="!card.isMoreButton") {{card.buttonText}}
-                  v-btn(@click="toggleChat" v-else) {{card.buttonText}}
+                  v-btn(color="#18c551" :href="`${siginURL}/signup/choose`" target="_blank" v-if="!card.isMoreButton").white--text 
+                    strong {{card.buttonText}}
+                  v-btn(color="#2e9fdf" @click="toggleChat" v-else) 
+                    strong.white--text {{card.buttonText}}
         br
         v-layout(row)
           v-flex(xs12 md4) 
@@ -211,6 +213,11 @@
     components: {
       VueFlip
     },
+    methods: {
+      toggleChat () {
+        window.$crisp.push(['do', 'chat:toggle']);
+      }
+    },
     data () {
       return {
         siginURL: process.env.VUE_APP_SIGNIN_URL,
@@ -220,7 +227,7 @@
             text: 'Multispecialty Clinics',
             content: 'One-stop, multi-staff clinics that provide ambulatory care and ancillary services',
             buttonText: 'Sign Up',
-            link: "`${siginURL}/signup/choose`"
+            link: ''
           },
           {
             image: require('../../assets/images/mycure-home-products-icon-outpatient-clinics.png'),
@@ -314,9 +321,9 @@
   }
 
   .flip-card, .flip-card-back {
-    padding: 15px;
+    padding: 5px;
     width: 100%;
-    height: 200px;
+    height: 225px;
   }
 
   .flip-card:hover, .flip-card-back {
