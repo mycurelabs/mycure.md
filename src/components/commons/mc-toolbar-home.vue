@@ -122,49 +122,6 @@
               :href="`${siginURL}/signup/choose`"
             )
               strong(style="font-size: 14px").white--text.tab SIGN UP
-                  
-    //- div(v-else)
-    //-   v-toolbar(app flat fixed :class="shadow").white
-    //-     router-link(:to="{ name: 'home' }").logo-a
-    //-       img(src="../../assets/images/mycure-header-logo.png" width="130").mt-1
-    //-     v-spacer
-    //-     v-btn(icon large @click="drawer = !drawer")
-    //-       v-icon(style="font-size: 35px;") menu
-    //-   v-navigation-drawer(app v-model="drawer" right)
-    //-     center.py-5
-    //-       a(href="/")
-    //-         img(src="../../assets/images/mycure-header-logo.png" height="50px")
-    //-     br(style="line-height: 25px")
-    //-     div.sideNavBtn
-    //-       a(href="/electronic-medical-records" flat)
-    //-         v-layout(row center)
-    //-           v-icon person
-    //-           strong.black--text &nbsp; &nbsp; Private Practice 
-    //-     center
-    //-       hr(style="width: 80%; border-color: #f5f5f5")
-    //-     div.sideNavBtn
-    //-       a(href="/clinic-management-system" flat)
-    //-         v-layout(row center)
-    //-           v-icon group
-    //-           strong.black--text &nbsp; &nbsp; Multispecialty Clinics
-    //-     center
-    //-       hr(style="width: 80%; border-color: #f5f5f5")
-    //-     br
-    //-     br
-    //-     br
-    //-     br
-    //-     br
-    //-     center
-    //-       div.login
-    //-         a(:href="`${siginURL}?target=${cmsURL}/authenticate`" flat)
-    //-           strong.black--text LOGIN
-    //-     center
-    //-       hr(style="width: 80%; border-color: #f5f5f5")
-    //-     br
-    //-     center
-    //-       div.signup
-    //-         a(:href="`${siginURL}/signup/choose`" flat)
-    //-           strong.white--text SIGNUP
 </template>
 
 <script>

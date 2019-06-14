@@ -42,7 +42,6 @@
             img(src="../../assets/images/mycure-our-story-elon-musk-values-04.png").left
       br
       br
-      //- panel7a
     div(v-else)
       v-container
         br
@@ -90,11 +89,9 @@
 </template>
 
 <script>
-  // import panel7a from './panel-7a';
-
   export default {
     components: {
-      // panel7a
+      // 
     },
     data () {
       return {

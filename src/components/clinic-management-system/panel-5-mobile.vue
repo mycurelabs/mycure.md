@@ -31,57 +31,6 @@
         v-flex(xs8 offset-xs1)
           b {{ feature.title }}
           p {{ feature.description}}
-  //- div.pa-5.mc-light-grey
-    v-container
-      p.font-l.text-xs-center.lh-title Designed for clinics of all shapes and sizes.
-    v-layout(justify-center)
-      table
-        tr
-          div.pl-3.py-3
-            img(src="../../assets/images/mycure-icon-check.png").mr-3
-            span.font-m Multispecialty Clinics
-        tr
-          div.pl-3.py-3
-            img(src="../../assets/images/mycure-icon-check.png").mr-3 
-            span.font-m Skin &amp Aesthetic Clinics
-        tr 
-          div.pl-3.py-3
-            img(src="../../assets/images/mycure-icon-check.png").mr-3 
-            span.font-m Outpatient Clinics
-        tr 
-          div.pl-3.py-3
-            img(src="../../assets/images/mycure-icon-check.png").mr-3 
-            span.font-m Family Clinics
-        tr 
-          div.pl-3.py-3
-            img(src="../../assets/images/mycure-icon-check.png").mr-3 
-            span.font-m Industrial Clinics
-        tr 
-          div.pl-3.py-3
-            img(src="../../assets/images/mycure-icon-check.png").mr-3
-            span.font-m PME Clinics
-    br
-    br
-    br
-    v-layout(row wrap justify-center)
-      em.font-s.text-xs-center Not too complicated, 
-          br  
-          | not too basic.
-          br
-          | MYCURE is just right for your clinic.
-    br
-    br
-    v-layout(row wrap justify-center)
-      v-btn(
-        :href="`${siginURL}/signup/choose`"
-        color="#18c551" large) 
-        strong.text-none.white--text Sign Up Now
-    br
-    v-layout(row wrap justify-center)
-      em.font-xs Have a question? 
-        a.font-mc-blue 
-          strong(@click="toggleChat") Start a quick chat
-  
 </template>
 
 <script>

@@ -132,7 +132,6 @@
             v-flex(xs8) 
               strong(style="font-size: 14px")  {{ card.text }}
               p(style="font-size: 12px").pt-1 {{ card.content }}
-              //- a(:href="card.link" )
               strong(v-html="" style="font-size: 12px").font-mc-blue.pb-2 {{ card.buttonText }}
         br
         v-layout(row)

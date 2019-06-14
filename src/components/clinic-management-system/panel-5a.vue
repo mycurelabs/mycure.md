@@ -23,7 +23,6 @@
                     span.font-small &#10003 &nbsp {{ feature }}
                     br
                   v-layout(row wrap).py-4
-                    //- a(href="https://calendly.com/mycure" target="_blank")
                     v-btn(
                       :href="`${siginURL}/signup/choose`"
                       color="#18c551" 

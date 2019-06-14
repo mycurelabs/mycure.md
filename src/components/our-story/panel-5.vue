@@ -6,7 +6,6 @@
           div(style="margin: 0px -20px 0px 0px; z-index: 1")
             img(src="../../assets/images/mycure-web-video-cover-decor-doctor-left.png")
           div(style="z-index: 0")
-            //- v-card(flat)
             a
               img(v-if="!videoDialog" @click.stop="videoDialog=!videoDialog" src="../../assets/images/mycure-web-video-cover-our-story-care-the-extra-mile.png")
               iframe(

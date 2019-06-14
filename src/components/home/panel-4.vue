@@ -33,8 +33,7 @@
         p.text-xs-center.py-4.font-small Have questions? 
           a(@click.stop="toggleChat()")
             strong.font-mc-blue Send us a chat.
-      br(style="line-height: 4000%").
-      //- br(style="line-height: 600px")
+      br(style="line-height: 4000%")
       div(style="margin-top: -10%")
         panel4a
     div(v-else style="background-color: #f5f5f5")

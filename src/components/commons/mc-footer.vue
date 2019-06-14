@@ -64,10 +64,6 @@
         img(width="100%" src="../../assets/images/mycure-home-web-sky-background-mobile.png")
       div(style="margin-bottom: -2%")
         img(width="100%" height="100%" src="../../assets/images/mycure-web-banner-last-panel-health-community-mobile.png")  
-      //- div(style="height: 75px").mc-green
-        v-layout(row justify-center)
-          a(:href="`${siginURL}/signup/choose`" style="padding: 20px 0")
-            strong(style="font-size: 25px").white--text Sign Up Now
       div.mc-dark-grey.pa-4
         mc-toolbar-footer  
 </template>

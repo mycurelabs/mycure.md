@@ -20,12 +20,6 @@
             | mobile application (the "Service").
           p Your access to and use of the Service is conditioned on your acceptance of and compliance with these Terms. These Terms apply to all visitors, users and others who access or use the Service.
           p By accessing or using the Service you agree to be bound by these Terms. If you disagree with any part of the terms then you may not access the Service.
-        //- v-flex(xs12 md10).mb-3
-          v-layout(row wrap)
-            v-flex(xs12 md6).px-3.text-xs-right
-              h1.font-medium Character, Trust and Integrity
-            v-flex(xs12 md6 align-self-center).px-3
-                p MYCURE values Character, Trust, and Integrity. These are values  very  important to the Founders thus was brought about and integrated into MYCURE's Culture!
         v-flex(xs12 md10).mb-3
           h2 Character, Trust and Integrity
           br
