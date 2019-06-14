@@ -34,15 +34,14 @@
           center
             carousel(
               :per-page="1" 
-              :autoplay="false"
+              :autoplay="true"
               :loop="true"
               paginationActiveColor="white"
               paginationColor="grey"
               navigationNextLabel=" "
               navigationPrevLabel=" "
-              style="height: 550px"
             )
-              slide(v-for="(feature,index) in features" :key="index" :data-index="index+1")
+              slide(v-for="(feature,index) in features" :key="index" :data-index="index+1").pa-1
                 img(:src="require(`../../assets/images/mycure-web-features-mockup-01-${feature}.png`)" width="70%")
     div(v-else)#panel3.pt-5
       v-container
@@ -82,12 +81,22 @@
               navigationPrevLabel=" "
               style="height: 225px"
             )
-              slide(v-for="(feature,index) in features" :key="index" :data-index="index+1")
+              slide(
+                v-for="(feature,index) in features" 
+                :key="index" 
+                :data-index="index+1"
+              )
                 img(:src="require(`../../assets/images/mycure-web-features-mockup-01-${feature}.png`)" width="70%")
 </template>
 
 <script>
   export default {
+    mounted () {
+      setTimeout ( () => {
+        this.$refs['carousel'].onResize();
+        this.$refs['carousel'].goToPage(0);
+      }, 200);
+    },
     data () {
       return {
         features: ['A','B','C'],

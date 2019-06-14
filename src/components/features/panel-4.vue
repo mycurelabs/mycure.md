@@ -27,15 +27,14 @@
           center
             carousel(
               :per-page="1" 
-              :autoplay="false"
+              :autoplay="true"
               :loop="true"
               paginationActiveColor="white"
               paginationColor="grey"
               navigationNextLabel=" "
               navigationPrevLabel=" "
-              style="height: 550px"
             )
-              slide(v-for="(feature,index) in features" :key="index" :data-index="index+1")
+              slide(v-for="(feature,index) in features" :key="index" :data-index="index+1").pa-1
                 img(:src="require(`../../assets/images/mycure-web-features-mockup-02-${feature}.png`)" width="70%")
     div(v-else)#panel4.pt-5
       v-container
