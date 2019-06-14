@@ -16,7 +16,7 @@
               v-btn(:href="`${siginURL}/signup/choose`" color="#18c551" large right)
                 strong.white--text.text-none Sign Up Now
           v-flex(xs12 md6).px-3
-            img(width="100%" src="../../assets/images/mycure-pricing-emr-private-clinic.png")
+            img(width="100%" src="../../assets/images/mycure-pricing-emr-private-clinic.png" alt="EMR Pricing")
         br
         br
         br
@@ -30,19 +30,19 @@
             v-list
               v-list-tile(v-for="(feature,index) in privateFeatures" :key="index" v-if="index < 6")
                 v-list-tile-action
-                  img(src="../../assets/images/mycure-web-bullet-check.png")
+                  img(src="../../assets/images/mycure-web-bullet-check.png" alt="Check icon")
                 v-list-tile-content
                   span.font-small {{ feature }}
           v-flex(xs12 md4)
             v-list-tile(v-for="(feature,index) in privateFeatures" :key="index" v-if="index > 5  && index < 12")
               v-list-tile-action
-                img(src="../../assets/images/mycure-web-bullet-check.png")
+                img(src="../../assets/images/mycure-web-bullet-check.png" alt="Check icon")
               v-list-tile-content
                 span.font-small {{ feature }}
           v-flex(xs12 md4)
             v-list-tile(v-for="(feature,index) in privateFeatures" :key="index" v-if="index > 11")
               v-list-tile-action
-                img(src="../../assets/images/mycure-web-bullet-check.png")
+                img(src="../../assets/images/mycure-web-bullet-check.png" alt="Check icon")
               v-list-tile-content
                 span.font-small {{ feature }}
         br
@@ -127,7 +127,7 @@
                   | 15 Mbps and up → More than 10 users
     div(v-else)
       div.pt-3.px-3
-        img(width="100%" src="../../assets/images/mycure-pricing-emr-private-clinic.png")
+        img(width="100%" src="../../assets/images/mycure-pricing-emr-private-clinic.png" alt="EMR Pricing")
         br
         br
         p.font-small.text-xs-center A powerful combination of EMR, queuing, and billing features designed for physicians who are practicing solo or in groups.
@@ -135,7 +135,7 @@
         v-list
           v-list-tile(v-for="(feature,index) in privateFeatures" :key="index")
             v-list-tile-action
-              img(src="../../assets/images/mycure-web-bullet-check.png")
+              img(src="../../assets/images/mycure-web-bullet-check.png" alt="Check icon")
             v-list-tile-content
               span.font-small {{ feature }}
       div.py-3

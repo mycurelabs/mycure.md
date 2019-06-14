@@ -16,7 +16,7 @@
               v-btn(:href="`${siginURL}/signup/choose`" color="#18c551" large right)
                 strong.text-none.white--text Sign Up Now
           v-flex(xs12 md6).px-3
-            img(width="100%" src="../../assets/images/mycure-pricing-cms.png")
+            img(width="100%" src="../../assets/images/mycure-pricing-cms.png" alt="CMS Pricing")
         br
         br
         v-layout(row)
@@ -30,7 +30,7 @@
             vue-flip(:active-hover="true" width="100%" class="simple-test" style="margin-bottom: 250px; font-size: 18px")
               div(slot="front" ref="frontCard").flip-card.align-items-center.pa-3
                 center
-                  img(width="80" :src="card.image")
+                  img(width="80" :src="card.image" :alt="card.text")
                 br
                 center
                   label {{card.text}}
@@ -116,7 +116,7 @@
               span.font-mc-grey All users of MYCURE clinic management system (private practice or multispecialty clinics) are given free access to its tutorial articles once inside the system. On top of that, MYCURE provides online chat support for clinic administrators from 9:00AM - 8:00PM GMT +8:00.
     div(v-else)
       div.pt-3.px-3
-        img(width="100%" src="../../assets/images/mycure-pricing-cms.png")
+        img(width="100%" src="../../assets/images/mycure-pricing-cms.png" alt="CMS Pricing")
         br
         br
         p.font-small.text-xs-center An all-around solution for your outpatient, multispecialty or specialized clinics that will manage your full-patient journeys with ease.
@@ -128,7 +128,7 @@
         v-layout(v-for="(card, key) in cards" :key="key" column wrap).pb-4
           v-layout(row wrap).px-1
             v-flex(xs4).pr-3
-              img(width="80" :src="card.image")
+              img(width="80" :src="card.image" :alt="card.text")
             v-flex(xs8) 
               strong(style="font-size: 14px")  {{ card.text }}
               p(style="font-size: 12px").pt-1 {{ card.content }}
