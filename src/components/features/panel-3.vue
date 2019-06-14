@@ -17,6 +17,15 @@
             | database, multiple image uploads, and more.
         br
         br
+        center
+            v-btn(
+              :href="`${siginURL}/signup/choose`" 
+              color="#18c551" 
+              style="padding: 25px 30px 25px 30px"
+            ) 
+              strong.font-small.text-none.white--text Sign Up Now 
+        br
+        br
         br
         br
         br
@@ -25,15 +34,14 @@
           center
             carousel(
               :per-page="1" 
-              :autoplay="false"
+              :autoplay="true"
               :loop="true"
               paginationActiveColor="white"
               paginationColor="grey"
               navigationNextLabel=" "
               navigationPrevLabel=" "
-              style="height: 550px"
             )
-              slide(v-for="(feature,index) in features" :key="index" :data-index="index+1")
+              slide(v-for="(feature,index) in features" :key="index" :data-index="index+1").pa-1
                 img(:src="require(`../../assets/images/mycure-web-features-mockup-01-${feature}.png`)" width="70%")
     div(v-else)#panel3.pt-5
       v-container
@@ -51,6 +59,14 @@
             br
             | database, multiple image uploads, and more.
         br
+        center
+            v-btn(
+              :href="`${siginURL}/signup/choose`" 
+              color="#18c551" 
+              style="padding: 25px 30px 25px 30px"
+            ) 
+              strong.font-small.text-none.white--text Sign Up Now 
+        br
         br
         v-layout(row justify-center)
           //- https://ssense.github.io/vue-carousel/
@@ -65,15 +81,26 @@
               navigationPrevLabel=" "
               style="height: 225px"
             )
-              slide(v-for="(feature,index) in features" :key="index" :data-index="index+1")
+              slide(
+                v-for="(feature,index) in features" 
+                :key="index" 
+                :data-index="index+1"
+              )
                 img(:src="require(`../../assets/images/mycure-web-features-mockup-01-${feature}.png`)" width="70%")
 </template>
 
 <script>
   export default {
+    mounted () {
+      setTimeout ( () => {
+        this.$refs['carousel'].onResize();
+        this.$refs['carousel'].goToPage(0);
+      }, 200);
+    },
     data () {
       return {
-        features: ['A','B','C']
+        features: ['A','B','C'],
+        siginURL: process.env.VUE_APP_SIGNIN_URL
       };
     }
   };

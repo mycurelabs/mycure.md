@@ -61,7 +61,7 @@
         privateFeatures: [
           'It\'s FREE!',
           'Unlimited Clinics',
-          '1 GB Data',
+          '1 GB',
           'SOAP Charting',
           'Prescription Printing',
           'Medical Billing'

@@ -5,7 +5,7 @@
         v-flex(xs12 md4)
           a(@click="goToProducts()")
             div.panel-2-box.border-color-a
-              strong.font-small.text-center Serve more patients
+              strong.font-small.text-center Serve patients efficiently
         v-flex(xs12 md4)
           a(@click="goToDPA()")
             div.panel-2-box.border-color-a
@@ -18,7 +18,7 @@
       v-layout(row wrap justify-center)
         v-flex(xs12 md4)
           div(style="background-color: white;").panel-2-box.border-color-a
-            strong.font-small.text-center.font-mc-blue Serve more patients
+            strong.font-small.text-center.font-mc-blue Serve patients efficiently
         v-flex(xs12 md4)
           div(style="background-color: white;").panel-2-box.border-color-a
             strong.font-small.text-center.font-mc-blue Comply to Data Privacy Act
