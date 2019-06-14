@@ -17,6 +17,15 @@
             | database, multiple image uploads, and more.
         br
         br
+        center
+            v-btn(
+              :href="`${siginURL}/signup/choose`" 
+              color="#18c551" 
+              style="padding: 25px 30px 25px 30px"
+            ) 
+              strong.font-small.text-none.white--text Sign Up Now 
+        br
+        br
         br
         br
         br
@@ -51,6 +60,14 @@
             br
             | database, multiple image uploads, and more.
         br
+        center
+            v-btn(
+              :href="`${siginURL}/signup/choose`" 
+              color="#18c551" 
+              style="padding: 25px 30px 25px 30px"
+            ) 
+              strong.font-small.text-none.white--text Sign Up Now 
+        br
         br
         v-layout(row justify-center)
           //- https://ssense.github.io/vue-carousel/
@@ -73,7 +90,8 @@
   export default {
     data () {
       return {
-        features: ['A','B','C']
+        features: ['A','B','C'],
+        siginURL: process.env.VUE_APP_SIGNIN_URL
       };
     }
   };
