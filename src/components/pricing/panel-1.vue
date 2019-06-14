@@ -48,15 +48,14 @@
           multispecialty(v-else)
     div(v-else)
       div.panel1
-        v-container
-          v-flex(xs12)
-            center 
-              strong(style="font-size: 29px").text-xs-center.white--text Your best CMS 
-                br
-                | investment yet
+        v-flex(xs12)
+          center 
+            strong(style="font-size: 29px").text-xs-center.white--text Your best CMS 
               br
-              span(style="font-size: 13px").white--text Quality clinic technology made more affordable. Only pay for what you need.  
-              br
+              | investment yet
+            br
+            span(style="font-size: 13px").white--text Quality clinic technology made more affordable. Only pay for what you need.  
+            br
       div.white
         v-layout(row).pa-3
           v-layout(column)  

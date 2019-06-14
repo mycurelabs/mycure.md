@@ -1,10 +1,10 @@
 <template lang="pug">
   div#top
     mcToolbarHome
-    panel1
+    panel1.showPanel
     //- panel2.showPanel
     panel3(v-if="$isMobile").showPanel
-    mcFooter(:webSky="false")
+    mcFooter
 </template>
 
 <script>

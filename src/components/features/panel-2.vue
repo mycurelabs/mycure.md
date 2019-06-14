@@ -7,9 +7,9 @@
         br
         br
         v-layout(row justify-center)
-          v-flex(xs12 md6).pr-5
+          v-flex(xs12 md6 align-self-center).pr-5
             span.font-medium Everybody's got a special role to play.
-          v-flex(xs12 md6).pl-5
+          v-flex(xs12 md6 align-self-center).pl-5
             span.font-small Collaborate with your clinc staff more efficiently using a clinic system that's so user-friendly, you wouldn't even feel that you're working.
         br
         br
