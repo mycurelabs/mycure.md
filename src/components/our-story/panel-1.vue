@@ -35,7 +35,7 @@
           v-if="showVid"
           id="ytplayer" 
           type="text/html" width="100%" height="450"
-          src="https://www.youtube.com/embed/ZR8e-Egav0M?autoplay=0&loop=1&showinfo=0&rel=0"
+          src="https://www.youtube.com/embed/ZR8e-Egav0M?autoplay=1&loop=1&showinfo=0&rel=0"
           frameborder="0")
     div(v-else)
       v-container

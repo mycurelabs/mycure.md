@@ -31,7 +31,7 @@
                 iframe(
                   align="middle"
                   id="ytplayer" 
-                  type="text/html" width="652" height="380"
+                  type="text/html" width="652" height="379"
                   src="https://www.youtube.com/embed/ZR8e-Egav0M?autoplay=1&loop=1&showinfo=0&rel=0"
                   frameborder="0"
                   allowfullscreen
