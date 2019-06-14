@@ -28,7 +28,7 @@
                 @click="showVid = true") 
                   strong WATCH VIDEO
           v-flex(v-if="!$isMobile" xs12 md6 align-self-center style="margin-top: 5%")
-            img(width="100%" src="../../assets/images/mycure-homepage-doctor-kid-pediatrician-drawing.png")
+            img(width="100%" src="../../assets/images/mycure-homepage-doctor-kid-pediatrician-drawing.png" alt="Pediatrician")
       v-dialog(v-model="showVid" max-width="700px")
         iframe(
           align="center"

@@ -15,7 +15,7 @@
               br
       v-layout(row wrap justify-center)
         v-flex(xs12 md4 align-self-center).text-xs-center
-          img(width="80%" src="../../assets/images/mycure-web-our-story-paulette.png")
+          img(width="80%" src="../../assets/images/mycure-web-our-story-paulette.png" alt="Our Story Paulette")
         v-flex(xs12 md8 align-self-center).px-3
           p(style="text-align: justify").py-3.font-small Meet Paulette, a young widow at 30 years old with two kids (4 yo and 6 yo) in her care. Despite limited resources, she managed to give her kids a good foundation. Paulette is a cancer warrior and survivor. For about a decade and a half now, her life was all about doctor's visits, regular checkups, and staying healthy. 
             strong Years of medical files 

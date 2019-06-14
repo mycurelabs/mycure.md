@@ -10,7 +10,7 @@
               br
               h1.font-medium Our Purpose
             v-flex(xs12 md4).px-4
-              img(width="100%" src="../../assets/images/mycure-ourstory-team.png")
+              img(width="100%" src="../../assets/images/mycure-ourstory-team.png" alt="Our Story - Team")
             v-flex(xs12 md8).px-4
               br
               br
