@@ -8,7 +8,7 @@
             v-card(height="508px" flat).elevation-10.image-rounded-corner
               v-layout(row justify-center)
                 v-flex(xs5)
-                  img(width="100%" height="508vh" src="../../assets/images/mycure-web-banner-pricing-panel-private.png")
+                  img(width="100%" height="508vh" src="../../assets/images/mycure-web-banner-pricing-panel-private.png" alt="Private clinic pricing")
                 v-flex(xs8).text-xs-left.pa-5
                   strong(style="font-size: 30px").pb-2 For Private Practice
                   br
@@ -33,7 +33,7 @@
         span(slot="chatWindow" @click="toggleChat").pointer.font-l.font-mc-blue Ask us how it works.
       panel6a(style="padding-top: 150px")
     div(v-else).py-3.white
-      img(width="100%" src="../../assets/images/mycure-web-banner-fifth-panel-private-clinic.png")
+      img(width="100%" src="../../assets/images/mycure-web-banner-fifth-panel-private-clinic.png" alt="Private clinic pricing")
       v-layout(column wrap).pt-4.pb-5.pr-5.pl-5
         p.pb-2.font-s {{ private_title }}
         div(v-for="(feature,index) in privateFeatures" :key="index")

@@ -6,18 +6,18 @@
           span(style="font-size: 40px").lh-title Your buddy from medical school to private practice
       div.py-5
         center
-          img(style="max-width: 90%;" src="../../assets/images/mycure-home-web-individual-clinic-diagram-banner.png")
+          img(style="max-width: 90%;" src="../../assets/images/mycure-home-web-individual-clinic-diagram-banner.png" alt="Individual clinic")
     div(v-else).mc-light-grey
       v-container
         v-layout(row justify-center)
           span.font-l.text-xs-center.lh-title Your buddy from medical school to private practice
         br
         v-layout(row justify-center)
-          img(src="../../assets/images/mycure-web-clinic-room-01.png" width="100%" height="100%")
+          img(src="../../assets/images/mycure-web-clinic-room-01.png" width="100%" height="100%" alt="Clinic room")
         br
         v-layout(row justify-center v-for="feature in privateFeatures" :key="feature.title").pt-3
           v-flex(xs3).text-xs-center
-            img(v-if="feature.icon" :src="require(`../../assets/images/${feature.icon}`)")
+            img(v-if="feature.icon" :src="require(`../../assets/images/${feature.icon}`)" :alt="feature.title")
           v-flex(xs8 offset-xs1)
             b {{ feature.title }}
             p {{ feature.description}}

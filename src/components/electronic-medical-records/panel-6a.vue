@@ -1,7 +1,7 @@
 <template lang="pug">
   div
     panelBeforeFooter
-      img(slot="emr-img" style="max-width: 90%" src="../../assets/images/mycure-web-banner-last-panel-doctor-clinic-for-private-clinic.png")
+      img(slot="emr-img" style="max-width: 90%" src="../../assets/images/mycure-web-banner-last-panel-doctor-clinic-for-private-clinic.png" alt="Doctor best version")
       span(slot="emr-txt").font-medium.lh-title Be your best version everyday.
       span(slot="emr-sub-txt").font-small Experience what you can do more with MYCURE technology by your side.
       v-btn(
@@ -13,7 +13,7 @@
       )
         strong.text-none.white--text.font-small Sign Up Now
     v-layout(row justify-center)
-        img(width="100%" height="100%" src="../../assets/images/mycure-web-banner-last-panel-health-community.png")
+        img(width="100%" height="100%" src="../../assets/images/mycure-web-banner-last-panel-health-community.png" alt="Health community")
 </template>
 
 <script>
