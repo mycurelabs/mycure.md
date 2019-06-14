@@ -16,7 +16,7 @@
           v-flex(xs12 md7 align-self-center style="margin-top: 5%")
             img(width="100%" src="../../assets/images/mycure-web-banner-first-panel-doctor-clinic-patients.png")
     div(v-else).white
-      v-container(style="padding-top: 70px")
+      v-container
         v-layout(row justify-center)
           v-flex(xs12 md5)
             span(style="line-height: 55px;").font-l We help organize & secure your clinic’s medical records.
