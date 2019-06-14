@@ -58,7 +58,7 @@
                 v-list-tile(:to="{name: 'cms'}")
                   v-list-tile-content
                     v-list-tile-title 
-                      b For Multi-specialty Practice
+                      b For Multispecialty Practice
                 v-divider
                 v-subheader About
                 v-list-tile(:to="{name: 'our-story'}")
