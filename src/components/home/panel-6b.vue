@@ -14,12 +14,12 @@
             br
             br
             br
-            v-btn(
+            //- v-btn(
               :to="{ name: 'data-privacy-for-physicians' }"
               color="#2e9fdf"
               large
-            ) 
-              strong.text-none.white--text.font-small Learn More
+            //- ) 
+              //- strong.text-none.white--text.font-small Learn More
     //- div(v-else).pa-3
       v-container
         v-layout(row)
