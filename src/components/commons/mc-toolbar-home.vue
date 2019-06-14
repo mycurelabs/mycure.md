@@ -8,7 +8,7 @@
               router-link(:to="{ name: 'home' }").mr-3.mt-2
                 img(src="../../assets/images/mycure-header-logo.png" width="140")
               v-btn(v-for="(link, key) in $mainLinks" :key="key" :to="{ name: link.name }" flat)
-                strong(style="font-size: 14px").tab.text-none {{link.meta.pageName}}
+                span(style="font-size: 14px").tab.text-none {{link.meta.pageName}}
               v-spacer
               v-btn(
                 flat
