@@ -42,7 +42,7 @@
               navigationPrevLabel=" "
             )
               slide(v-for="(feature,index) in features" :key="index" :data-index="index+1").pa-1
-                img(:src="require(`../../assets/images/mycure-web-features-mockup-01-${feature}.png`)" width="70%")
+                img(:src="require(`../../assets/images/mycure-web-features-mockup-01-${feature}.png`)" alt="Medical records" width="70%")
     div(v-else)#panel3.pt-5
       v-container
         center
@@ -86,7 +86,7 @@
                 :key="index" 
                 :data-index="index+1"
               )
-                img(:src="require(`../../assets/images/mycure-web-features-mockup-01-${feature}.png`)" width="70%")
+                img(:src="require(`../../assets/images/mycure-web-features-mockup-01-${feature}.png`)" alt="Medical records" width="70%")
 </template>
 
 <script>

@@ -17,7 +17,7 @@
         v-layout(row align-self-center)
           v-flex(xs12 md2 justify-center v-for="(role,index) in roles" :key="index")
             center
-              img(:src="require(`../../assets/images/mycure-web-features-role-${ role.avatar }.png`)" height="250px")
+              img(:src="require(`../../assets/images/mycure-web-features-role-${ role.avatar }.png`)" :alt="role.name" height="250px")
               br
               div.mx-3
                 span.font-small {{ role.name }}
@@ -54,7 +54,7 @@
               :data-index="index+1"
             )
               center.mx-5
-                img(:src="require(`../../assets/images/mycure-web-features-role-${ role.avatar }.png`)" height="250px")
+                img(:src="require(`../../assets/images/mycure-web-features-role-${ role.avatar }.png`)" :alt="role.name" height="250px")
                 br
                 br
                 v-layout(row justify-center)

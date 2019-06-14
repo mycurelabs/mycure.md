@@ -35,7 +35,7 @@
               navigationPrevLabel=" "
             )
               slide(v-for="(feature,index) in features" :key="index" :data-index="index+1").pa-1
-                img(:src="require(`../../assets/images/mycure-web-features-mockup-02-${feature}.png`)" width="70%")
+                img(:src="require(`../../assets/images/mycure-web-features-mockup-02-${feature}.png`)" alt="Clinic Registration and Queueing" width="70%")
     div(v-else)#panel4.pt-5
       v-container
         center
@@ -69,9 +69,7 @@
               style="height: 225px"
             )
               slide(v-for="(feature,index) in features" :key="index" :data-index="index+1")
-                img(:src="require(`../../assets/images/mycure-web-features-mockup-02-${feature}.png`)" width="70%")
-    
-      
+                img(:src="require(`../../assets/images/mycure-web-features-mockup-02-${feature}.png`)" alt="Clinic Registration and Queueing" width="70%")
 </template>
 
 <script>

@@ -39,7 +39,7 @@
               navigationPrevLabel=" "
             )
               slide(v-for="(feature,index) in features" :key="index" :data-index="index+1").pa-1
-                img(:src="require(`../../assets/images/mycure-web-features-mockup-04-${feature}.png`)" width="70%")
+                img(:src="require(`../../assets/images/mycure-web-features-mockup-04-${feature}.png`)" alt="Clinic Laboratory and Imaging" width="70%")
     div(v-else)#panel6.pt-5
       v-container
         center
@@ -71,7 +71,7 @@
               style="height: 250px"
             )
               slide(v-for="(feature,index) in features" :key="index" :data-index="index+1")
-                img(:src="require(`../../assets/images/mycure-web-features-mockup-04-${feature}.png`)" width="70%")
+                img(:src="require(`../../assets/images/mycure-web-features-mockup-04-${feature}.png`)" alt="Clinic Laboratory and Imaging" width="70%")
     
 </template>
 

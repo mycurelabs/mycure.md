@@ -20,7 +20,7 @@
           ul
             li
               v-layout(v-for="(item, index) in items" :key="index" row align-left).pb-3 
-                img(src="../../assets/images/mycure-web-bullet-check.png")
+                img(src="../../assets/images/mycure-web-bullet-check.png" alt="Check icon")
                 span.font-small.pl-3 {{ item }} 
         br
         br
@@ -28,7 +28,7 @@
         br
         br
         v-layout(row justify-center)  
-          img(src="../../assets/images/mycure-web-features-mockup-05-A.png" width="90%" height="100%")     
+          img(src="../../assets/images/mycure-web-features-mockup-05-A.png" alt="Clinic Materials Management" width="90%" height="100%")     
     div(v-else)#panel7.pt-5
       v-container
         center
@@ -47,12 +47,12 @@
           ul
             li
               v-layout(v-for="(item, index) in items" :key="index" row align-left).pb-3 
-                img(src="../../assets/images/mycure-web-bullet-check.png" style="height: 29px;")
+                img(src="../../assets/images/mycure-web-bullet-check.png" alt="Check icon" style="height: 29px;")
                 span.font-s.pl-3 {{ item }} 
         br
         br
         v-layout(row justify-center)  
-          img(src="../../assets/images/mycure-web-features-mockup-05-A.png" width="90%" height="100%")     
+          img(src="../../assets/images/mycure-web-features-mockup-05-A.png" alt="Clinic Materials Management" width="90%" height="100%")     
     
 </template>
 

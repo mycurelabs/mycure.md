@@ -24,7 +24,7 @@
           br
           v-layout(row justify-center)  
             //- https://ssense.github.io/vue-carousel/
-            img(src="../../assets/images/mycure-web-features-mockup-07-A.png" width="50%")
+            img(src="../../assets/images/mycure-web-features-mockup-07-A.png" alt="Syncbase Technology" width="50%")
       panel10(style="padding-top: 200px")
     div(v-else)#panel9.showPanel
       div.pt-5#panel9a
@@ -43,7 +43,7 @@
           br
           v-layout(row justify-center)  
             //- https://ssense.github.io/vue-carousel/
-            img(src="../../assets/images/mycure-web-features-mockup-07-A.png" style="width: 100%; height: 100%;")
+            img(src="../../assets/images/mycure-web-features-mockup-07-A.png" alt="Syncbase Technology" style="width: 100%; height: 100%;")
       panel10.showPanel
 </template>
 

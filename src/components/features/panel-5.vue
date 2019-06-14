@@ -18,7 +18,7 @@
           ul
             li
               v-layout(v-for="(item, index) in items" :key="index" row align-left).pb-3 
-                img(src="../../assets/images/mycure-web-bullet-check.png")
+                img(src="../../assets/images/mycure-web-bullet-check.png" alt="Check icon")
                 span.font-small.pl-3 {{ item }} 
         br
         br
@@ -38,7 +38,7 @@
               navigationPrevLabel=" "
             )
               slide(v-for="(feature,index) in features" :key="index" :data-index="index+1").pa-1
-                img(:src="require(`../../assets/images/mycure-web-features-mockup-03-${feature}.png`)" width="70%")
+                img(:src="require(`../../assets/images/mycure-web-features-mockup-03-${feature}.png`)" alt="Clinic Billing and Payments" width="70%")
     div(v-else)#panel5.pt-5
       v-container
         center
@@ -57,7 +57,7 @@
           ul
             li
               v-layout(v-for="(item, index) in items" :key="index" row align-left).pb-3 
-                img(src="../../assets/images/mycure-web-bullet-check.png" style="height: 29px;")
+                img(src="../../assets/images/mycure-web-bullet-check.png" alt="Check icon" style="height: 29px;")
                 span.font-s.pl-3 {{ item }} 
         br
         br
@@ -75,7 +75,7 @@
               style="height: 250px"
             )
               slide(v-for="(feature,index) in features" :key="index" :data-index="index+1")
-                img(:src="require(`../../assets/images/mycure-web-features-mockup-03-${feature}.png`)" width="70%")
+                img(:src="require(`../../assets/images/mycure-web-features-mockup-03-${feature}.png`)" alt="Clinic Billing and Payments" width="70%")
     
 </template>
 

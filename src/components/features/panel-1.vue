@@ -20,7 +20,7 @@
             ) 
               strong.font-small.text-none.white--text Sign Up Now
           v-flex(xs12 md7 align-self-center style="margin-top: 5%")
-            img(width="100%" src="../../assets/images/mycure-cms-web-banner-first-panel-features.png")
+            img(width="100%" src="../../assets/images/mycure-cms-web-banner-first-panel-features.png" alt="Features")
     div(v-else).panel1.mb-5
       v-container  
         v-layout(row wrap justify-center style="height: 100%")
