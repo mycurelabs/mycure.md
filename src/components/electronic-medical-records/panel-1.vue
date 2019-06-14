@@ -16,7 +16,7 @@
           v-flex(xs12 md7 align-self-center style="margin-top: 5%")
             img(width="100%" src="../../assets/images/mycure-emr-web-banner-first-panel-doctor-clinic-patients.png")
     div(v-else).white
-      v-container(style="padding-top: 70px")
+      v-container(style="p")
         v-layout(row justify-center)
           v-flex(xs12 md5)
             font.font-l A clinic system that helps physicians do greater things.
