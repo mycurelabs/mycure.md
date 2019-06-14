@@ -1,7 +1,7 @@
 <template lang="pug">
   div.white.py-3
     div
-      img(width="100%" src="../../assets/images/mycure-web-banner-fifth-panel-multi-specialty-clinics.png")
+      img(width="100%" src="../../assets/images/mycure-web-banner-fifth-panel-multi-specialty-clinics.png" alt="Multispecialty banner")
       v-layout(column wrap).pt-4.pb-5.pr-5.pl-5
         div(v-for="(feature,index) in multiFeatures" :key="feature")
           span.font-small.pb-2 &#10003; &nbsp; &nbsp; {{ feature }}

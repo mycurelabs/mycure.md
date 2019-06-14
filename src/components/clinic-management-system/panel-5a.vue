@@ -7,7 +7,7 @@
             v-card(height="508px" flat).elevation-10.image-rounded-corner
               v-layout(row justify-center)
                 v-flex(xs5)
-                  img(width="100%" height="508vh" src="../../assets/images/mycure-web-banner-pricing-panel-multispecialty.png")
+                  img(width="100%" height="508vh" src="../../assets/images/mycure-web-banner-pricing-panel-multispecialty.png" alt="Multispecialty Pricing")
                 v-flex(xs8).text-xs-left.pa-5
                   strong(style="font-size: 30px").pb-2 For Multispecialty Clinics
                   br

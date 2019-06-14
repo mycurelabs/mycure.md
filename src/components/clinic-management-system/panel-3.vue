@@ -9,7 +9,11 @@
           v-flex(xs12 md6 style="border-right: 1px solid lightgray").px-5  
             h2.right Other Providers
             br
-            img(max-width="500px" src="../../assets/images/mycure-homepage-compare-other-emr-incomplete-clinic-management-system.png" width="100%").mb-3
+            img(
+              max-width="500px"
+              src="../../assets/images/mycure-homepage-compare-other-emr-incomplete-clinic-management-system.png"
+              alt="Incomplete Clinic"
+              width="100%" ).mb-3
             br
             br
             v-layout(row justify-center)
@@ -20,7 +24,12 @@
             h2 With MYCURE 
               span.font-mc-blue &nbsp ✓
               br
-            img(max-width="500px" src="../../assets/images/mycure-homepage-compare-mycure-complete-clinic-management-system.png" width="100%").mb-3   
+            img(
+              max-width="500px"
+              src="../../assets/images/mycure-homepage-compare-mycure-complete-clinic-management-system.png" 
+              width="100%"
+              alt="Complete Clinic"
+            ).mb-3   
             br
             br
             v-layout(row justify-center)
@@ -48,7 +57,10 @@
         v-layout(column)
           h2.text-xs-center Other Providers
           br
-          img(src="../../assets/images/mycure-homepage-compare-other-emr-incomplete-clinic-management-system.png" width="100%").mb-3
+          img(
+            src="../../assets/images/mycure-homepage-compare-other-emr-incomplete-clinic-management-system.png" 
+            alt="Incomplete Clinic"
+            width="100%").mb-3
           br
           span.text-xs-center.font-small Say goodbye to multiple, complicated systems!
           br
@@ -56,7 +68,10 @@
           h2.text-xs-center With MYCURE 
               span.font-mc-blue &nbsp ✓
           br
-          img(src="../../assets/images/mycure-homepage-compare-mycure-complete-clinic-management-system.png" width="100%").mb-3   
+          img(
+            src="../../assets/images/mycure-homepage-compare-mycure-complete-clinic-management-system.png" 
+            alt="Complete Clinic"
+            width="100%").mb-3   
           br
           span.text-xs-center.font-small Say hello to a simplified record-keeping for everyone.
           br

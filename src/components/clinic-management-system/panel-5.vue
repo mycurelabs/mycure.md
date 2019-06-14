@@ -5,7 +5,7 @@
     br
     div.pt-5
       center
-        img(width="75%" src="../../assets/images/mycure-home-web-complete-for-clinics-of-all-sizes-diagram.png").mb-3
+        img(width="75%" src="../../assets/images/mycure-home-web-complete-for-clinics-of-all-sizes-diagram.png" alt="All types of clinics").mb-3
     br
     br
     v-layout(row wrap justify-center)
