@@ -21,12 +21,13 @@
               )
                 strong(style="font-size: 14px").white--text.tab SIGN UP
     div(v-else)
-      v-toolbar(app flat fixed :class="shadow").white
-        router-link(:to="{ name: 'home' }").logo-a
-          img(src="../../assets/images/mycure-header-logo.png" width="130").mt-1
-        v-spacer
-        v-btn(icon large @click="drawer = !drawer")
-          v-icon(style="font-size: 35px;") menu
+      v-container
+        v-toolbar(app flat fixed :class="shadow").white
+          router-link(:to="{ name: 'home' }").logo-a
+            img(src="../../assets/images/mycure-header-logo.png" width="130").mt-1
+          v-spacer
+          v-btn(icon large @click="drawer = !drawer")
+            v-icon(style="font-size: 35px;") menu
       v-navigation-drawer(fixed app v-model="drawer" right width="500")   
         //- v-toolbar(flat app fixed).white
         div(style="position: sticky; top: 0px; z-index: 9999; width: 100%;")
