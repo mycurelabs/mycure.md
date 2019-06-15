@@ -4,30 +4,21 @@
       v-container
         center
           strong.font-small.font-mc-blue MATERIALS MANAGEMENT
-        br
-        br
-        v-layout(row justify-center)
+        v-layout(row justify-center).add-spacing
           span.font-medium.text-xs-center Your medical supplies at a glance. 
             br
             | where you need them.
-        br
-        br
-        v-layout(row justify-center)
+        v-layout(row justify-center).add-spacing
           span.font-small.text-xs-center Produce neatly-organized reports in a minute or less.
-        br
-        br
-        v-layout(row justify-center)
+        v-layout(row justify-center).add-spacing
           ul
             li
               v-layout(v-for="(item, index) in items" :key="index" row align-left).pb-3 
                 img(src="../../assets/images/mycure-web-bullet-check.png" alt="Check icon")
                 span.font-small.pl-3 {{ item }} 
-        br
-        br
-        br
-        br
-        br
-        v-layout(row justify-center)  
+        v-layout(row justify-center).add-spacing
+          img(src="@/assets/images/mycure-cms-web-features-arrow-down.png" alt="Arrow down icon")
+        v-layout(row justify-center).add-spacing 
           img(src="../../assets/images/mycure-web-features-mockup-05-A.png" alt="Clinic Materials Management" width="90%" height="100%")     
     div(v-else)#panel7.pt-5
       v-container
@@ -82,5 +73,9 @@
   
   ul {
     list-style-type: none;
+  }
+
+  .add-spacing {
+    padding-top: 32px;
   }
 </style>

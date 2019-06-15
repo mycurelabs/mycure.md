@@ -4,21 +4,17 @@
       v-container
         center
           strong.font-small.font-mc-blue REPORTS AND ANALYTICS
-        br
-        br
-        v-layout(row justify-center)
+        v-layout(row justify-center).add-spacing
           span.font-medium.text-xs-center Never miss out on important business decisions. 
-        br
-        br
-        v-layout(row justify-center)
+        v-layout(row justify-center).add-spacing
           span.font-small.text-xs-center Measure your day-to-day clinic performance analyzing comprehensive 
             br
             | graphs based on your KPIs. Census, billing, diagnostics, sales, and 
             br
             | physical exam reports can be generated instantly.
-        br
-        br
-        v-layout(row justify-center)  
+        v-layout(row justify-center).add-spacing
+          img(src="@/assets/images/mycure-cms-web-features-arrow-down.png" alt="Arrow down icon")
+        v-layout(row justify-center).add-spacing
           img(src="../../assets/images/mycure-web-features-mockup-06-A.png" alt="Clinic Reports and Analytics" width="90%" height="100%")
     div(v-else)#panel8.pt-5
       v-container
@@ -59,5 +55,9 @@
   
   ul {
     list-style-type: none;
+  }
+
+  .add-spacing {
+    padding-top: 32px;
   }
 </style>
