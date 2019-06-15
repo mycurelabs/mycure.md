@@ -20,7 +20,7 @@
         v-layout(column justify-center style="width: 90%").pt-5
           img(style="max-width: 80%" src="../../assets/images/mycure-web-banner-last-panel-features-embrace-habit.png" alt="Embrace service")
           br 
-          span(style="font-size: 200%").text-xs-center.lh-title Embrace new habit.
+          span(style="font-size: 200%").text-xs-center.lh-title Embrace a new habit.
           br
           br
           span.font-s.text-xs-center Experience what you can do more with MYCURE technology by your side.
