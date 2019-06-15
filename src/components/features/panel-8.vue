@@ -15,7 +15,7 @@
         v-layout(row justify-center).add-spacing
           img(src="@/assets/images/mycure-cms-web-features-arrow-down.png" alt="Arrow down icon")
         v-layout(row justify-center).add-spacing
-          img(src="../../assets/images/mycure-web-features-mockup-06-A.png" alt="Clinic Reports and Analytics" width="90%" height="100%")
+          img(src="../../assets/images/mycure-web-features-mockup-06-A.png" alt="Clinic Reports and Analytics" width="95%" height="100%")
     div(v-else)#panel8.pt-5
       v-container
         center

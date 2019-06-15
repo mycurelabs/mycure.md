@@ -59,10 +59,9 @@
               paginationColor="grey"
               navigationNextLabel=" "
               navigationPrevLabel=" "
-              style="height: 250px"
             )
               slide(v-for="(feature,index) in features" :key="index" :data-index="index+1")
-                img(:src="require(`../../assets/images/mycure-web-features-mockup-04-${feature}.png`)" alt="Clinic Laboratory and Imaging" width="70%")
+                img(:src="require(`../../assets/images/mycure-web-features-mockup-04-${feature}.png`)" alt="Clinic Laboratory and Imaging" width="100%")
     
 </template>
 

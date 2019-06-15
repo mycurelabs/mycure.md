@@ -43,7 +43,7 @@
         br
         br
         v-layout(row justify-center)  
-          img(src="../../assets/images/mycure-web-features-mockup-05-A.png" alt="Clinic Materials Management" width="90%" height="100%")     
+          img(src="../../assets/images/mycure-web-features-mockup-05-A.png" alt="Clinic Materials Management" width="95%" height="100%")     
     
 </template>
 

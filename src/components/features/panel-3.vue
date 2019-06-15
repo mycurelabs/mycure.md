@@ -60,14 +60,13 @@
               paginationColor="#f5f5f5"
               navigationNextLabel=" "
               navigationPrevLabel=" "
-              style="height: 225px"
             )
               slide(
                 v-for="(feature,index) in features" 
                 :key="index" 
                 :data-index="index+1"
               )
-                img(:src="require(`../../assets/images/mycure-web-features-mockup-01-${feature}.png`)" alt="Medical records" width="70%")
+                img(:src="require(`../../assets/images/mycure-web-features-mockup-01-${feature}.png`)" alt="Medical records" width="100%")
 </template>
 
 <script>
