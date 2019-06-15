@@ -23,7 +23,7 @@
             br
             br
       v-flex(xs12)
-        img(width="100%" src="../../assets/images/mycure-emr-web-banner-first-panel-doctor-clinic-patients-mobile.png" alt="Individual doctor")
+        img(width="100%" src="../../assets/images/mycure-emr-web-banner-first-panel-doctor-clinic-patients.png" alt="Individual doctor")
         div(style="height: 75px; margin-top: -1%").mc-green
           v-layout(row justify-center)
             a(:href="`${siginURL}/signup/choose`" style="padding: 20px 0; text-decoration: none")
