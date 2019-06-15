@@ -8,7 +8,7 @@
             v-flex(xs12 md6).px-2
               center
                 div(style="width: 75%").right
-                  img(width="80%" src="@/assets/images/mycure-web-banner-fifth-panel-private-clinic-mycure-cloud.png" alt="Private Clinic")
+                  img(width="80%" src="@/assets/images/mycure-web-banner-fifth-panel-private-clinic-mycure-cloud.png" alt="MYCURE Cloud")
                   v-card(style="margin-top: -2%" width="80%").clinic-card.text-xs-left.pa-4
                     p.pb-2.font-small {{ cloud_title }}
                     template(v-for="(feature,index) in cloudFeatures") 
@@ -24,7 +24,7 @@
             v-flex(xs12 md6).px-2
               center
                 div(style="width: 75%").left
-                  img(width="80%" src="@/assets/images/mycure-web-banner-fifth-panel-private-clinic-mycure-me-standalone.png" alt="Multispecialty Clinic")
+                  img(width="80%" src="@/assets/images/mycure-web-banner-fifth-panel-private-clinic-mycure-me-standalone.png" alt="MYCURE Standalone")
                   v-card(style="margin-top: -2%" width="80%").clinic-card.text-xs-left.pa-4
                     p.pb-2.font-small {{ standalone_title }}
                     template(v-for="(feature,index) in standaloneFeatures")
@@ -46,17 +46,37 @@
         br
         span(slot="chatWindow" @click="toggleChat").pointer.font-l.font-mc-blue Ask us how it works.
       panel6a(style="padding-top: 150px")
-    div(v-else).py-3.white
-      img(width="100%" src="../../assets/images/mycure-web-banner-fifth-panel-private-clinic.png" alt="Private clinic pricing")
-      v-layout(column wrap).pt-4.pb-5.pr-5.pl-5
-        p.pb-2.font-s {{ private_title }}
-        div(v-for="(feature,index) in cloudFeatures" :key="index")
-          b(v-if="index === 0").font-s.pb-2 &#10003; &nbsp; &nbsp; {{ feature }}
-          span(v-else).font-s.pb-2 &#10003; &nbsp; &nbsp; {{ feature }}
-      v-layout(row justify-center)
-        v-btn(style="background-color: #18c551; width: 80%; height: 60px")
-          a(:href="`${siginURL}/signup/choose`")
-            strong.font-m.white--text.text-none Sign Up Now
+    div(v-else).py-3
+      div.white
+        img(width="100%" src="@/assets/images/mycure-web-banner-fifth-panel-private-clinic-mycure-cloud.png" alt="MYCURE Cloud")
+        v-layout(column wrap).pt-4.pb-5.pr-5.pl-5
+          p.pb-2.font-s {{ cloud_title }}
+          div(v-for="(feature,index) in cloudFeatures" :key="index")
+            b(v-if="index === 0").font-s.pb-2 &#10003; &nbsp; &nbsp; {{ feature }}
+            span(v-else).font-s.pb-2 &#10003; &nbsp; &nbsp; {{ feature }}
+        v-layout(row justify-center)
+          v-btn(style="background-color: #18c551; width: 80%; height: 60px")
+            a(:href="`${siginURL}/signup/choose`")
+              strong.font-m.white--text.text-none Sign Up Now
+      br
+      br
+      div.white
+        img(width="100%" src="@/assets/images/mycure-web-banner-fifth-panel-private-clinic-mycure-me-standalone.png" alt="MYCURE Standalone")
+        v-layout(column wrap).pt-4.pb-5.pr-5.pl-5
+          p.pb-2.font-s {{ standalone_title }}
+          div(v-for="(feature,index) in standaloneFeatures" :key="index")
+            b(v-if="index === 0").font-s.pb-2 &#10003; &nbsp; &nbsp; {{ feature }}
+            span(v-else).font-s.pb-2 &#10003; &nbsp; &nbsp; {{ feature }}
+            v-layout(row wrap v-if="index === 3").pl-4.pt-3
+              img(src="@/assets/images/mycure-web-banner-fifth-panel-private-clinic-mycure-icon-google-drive.png")
+              img(src="@/assets/images/mycure-web-banner-fifth-panel-private-clinic-mycure-icon-drop-box.png").pl-3
+        v-layout(row justify-center)
+          //- v-btn(style="background-color: #18c551; width: 80%; height: 60px")
+          //-   a(:href="`${siginURL}/signup/choose`")
+          //-     strong.font-m.white--text.text-none Sign Up Now
+          b.font-m.font-mc-blue COMING SOON!
+        br
+        br
 </template>
 
 <script>
