@@ -4,29 +4,43 @@
       v-container
         v-flex(xs12 md12)
           br
-          v-layout(row justify-center)
-            v-card(height="508px" flat).elevation-10.image-rounded-corner
-              v-layout(row justify-center)
-                v-flex(xs5)
-                  img(width="100%" height="508vh" src="../../assets/images/mycure-web-banner-pricing-panel-private.png" alt="Private clinic pricing")
-                v-flex(xs8).text-xs-left.pa-5
-                  strong(style="font-size: 30px").pb-2 For Private Practice
-                  br
-                  br
-                  span.font-small Get a powerful combination of features 
-                    br
-                    | designed for physicians who are practicing 
-                    br
-                    | solo or in groups.
-                  br
-                  br
-                  div(v-for="(feature,index) in privateFeatures" :key="index")
-                    b(v-if="index === 0").font-small &#10003 &nbsp {{ feature }}
-                    span(v-else).font-small &#10003 &nbsp {{ feature }}
-                    br
-                  v-layout(row wrap).py-4
-                    v-btn(:href="`${siginURL}/signup/choose`" style="background-color: #18c551; color: white; width: auto" large).text-none
-                      strong Sign Up Now
+          v-layout(row wrap)
+            v-flex(xs12 md6).px-2
+              center
+                div(style="width: 75%").right
+                  img(width="80%" src="@/assets/images/mycure-web-banner-fifth-panel-private-clinic-mycure-cloud.png" alt="Private Clinic")
+                  v-card(style="margin-top: -2%" width="80%").clinic-card.text-xs-left.pa-4
+                    p.pb-2.font-small {{ cloud_title }}
+                    template(v-for="(feature,index) in cloudFeatures") 
+                      span(:class="index === 0 ? 'font-weight-bold' : 'font-weight-regular'").font-small &#10003 &nbsp {{ feature }}
+                      br
+                    v-layout(row wrap).pt-5.pb-4
+                      v-btn(
+                        :href="`${siginURL}/signup/choose`"
+                        style="background-color: #18c551; color: white; width: auto" 
+                        large
+                      ) 
+                        strong.white--text Sign Up Now
+            v-flex(xs12 md6).px-2
+              center
+                div(style="width: 75%").left
+                  img(width="80%" src="@/assets/images/mycure-web-banner-fifth-panel-private-clinic-mycure-me-standalone.png" alt="Multispecialty Clinic")
+                  v-card(style="margin-top: -2%" width="80%").clinic-card.text-xs-left.pa-4
+                    p.pb-2.font-small {{ standalone_title }}
+                    template(v-for="(feature,index) in standaloneFeatures")
+                      span(:class="index === 0 ? 'font-weight-bold' : 'font-weight-regular'").font-small &#10003 &nbsp {{ feature }}
+                      br
+                      v-layout(row wrap v-if="index === 3").pl-4.pt-3
+                        img(src="@/assets/images/mycure-web-banner-fifth-panel-private-clinic-mycure-icon-google-drive.png")
+                        img(src="@/assets/images/mycure-web-banner-fifth-panel-private-clinic-mycure-icon-drop-box.png").pl-3             
+                    v-layout(row wrap justify-center).py-2
+                      //- v-btn(
+                      //-     :href="`${siginURL}/signup/choose`"
+                      //-     style="background-color: #18c551; color: white; width: auto" 
+                      //-     large
+                      //-   )
+                      //-     strong.white--text Sign Up Now
+                      b.py-3.font-small.font-mc-blue COMING SOON!
       filler(style="padding-top: 130px")
         span(slot="privateFiller").font-l Are you part of a group clinic?
         br
@@ -36,7 +50,7 @@
       img(width="100%" src="../../assets/images/mycure-web-banner-fifth-panel-private-clinic.png" alt="Private clinic pricing")
       v-layout(column wrap).pt-4.pb-5.pr-5.pl-5
         p.pb-2.font-s {{ private_title }}
-        div(v-for="(feature,index) in privateFeatures" :key="index")
+        div(v-for="(feature,index) in cloudFeatures" :key="index")
           b(v-if="index === 0").font-s.pb-2 &#10003; &nbsp; &nbsp; {{ feature }}
           span(v-else).font-s.pb-2 &#10003; &nbsp; &nbsp; {{ feature }}
       v-layout(row justify-center)
@@ -57,14 +71,20 @@
     data () {
       return {
         siginURL: process.env.VUE_APP_SIGNIN_URL,
-        private_title: 'Get a powerful combination of features designed for physicians who are practicing solo or in groups.',
-        privateFeatures: [
+        cloud_title: 'Get a powerful combination of features designed for physicians who are practicing solo or in groups.',
+        standalone_title: 'Get access to the full features, completely independent system and designed for the physician’s personal clinic.',
+        cloudFeatures: [
           'It\'s FREE!',
-          'Unlimited Clinics',
-          '1 GB',
+          'Unlimited Clinics, infinite devices',
+          'Store 100 patient profiles using MYCURE Cloud storage',
           'SOAP Charting',
-          'Prescription Printing',
-          'Medical Billing'
+          'In-app purchases'
+        ],
+        standaloneFeatures: [
+          'It’s FREE (forever)',
+          '1 Clinic per device',
+          'Store unlimited patient profiles using your personal cloud (Dropbox or Google Drive)',
+          'In-app purchases'
         ]
       };
     },
