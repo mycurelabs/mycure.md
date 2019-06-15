@@ -1,9 +1,9 @@
 <template lang="pug">
   div#top
     mc-toolbar-home
-    panel1
-    panel2
-    panel3
+    panel1.showPanel
+    panel2.showPanel
+    panel3.showPanel
     panel4.showPanel
     panel5.showPanel
     panel6.showPanel
