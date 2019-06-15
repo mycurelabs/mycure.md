@@ -3,116 +3,48 @@
     "path": "/",
     "title": "MYCURE | Clinic Management System | Cloud EMR Philippines",
     "description": "MYCURE is a clinic management system that helps secure and organize medical records - Best DPA-compliant EMR practice management software in the Philippines.",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mycure-ab311.appspot.com/o/assets%2Fog-mycure-medical-platform.png?alt=media&token=10cc6c06-efe5-4453-9529-b70903f4b4a0"
+    "image": "https://firebasestorage.googleapis.com/v0/b/mc-v4-prod.appspot.com/o/web-main-assets%2FMYCURE_Open_Graph_Images_Home_Clinic_Management_System.png?alt=media&token=9556e040-1c3d-4632-9151-798ad13a15d4"
   },
   {
     "path": "/electronic-medical-records",
     "title": "MYCURE | Private Practice Electronic Medical Records (EMR)",
     "description": "MYCURE is a secure, online medical software for doctors that is easy to use and customize. Create SOAP charting, printable Rx, lab orders, and other forms.",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mycure-ab311.appspot.com/o/assets%2Fog-mycure-medical-platform.png?alt=media&token=10cc6c06-efe5-4453-9529-b70903f4b4a0"
+    "image": "https://firebasestorage.googleapis.com/v0/b/mc-v4-prod.appspot.com/o/web-main-assets%2FMYCURE_Open_Graph_Images_Individual_Clinic.png?alt=media&token=661d3622-8019-4aab-8af5-ec81631166c8"
   },
   {
     "path": "/clinic-management-system",
     "title": "MYCURE | Multispecialty Clinic Management System (CMS)",
     "description": "A secure, cloud-based clinic management system built for multispecialty clinics. It has EMR, Lab (LIS), Imaging (RIS), Inventory, POS and Billing features.",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mycure-ab311.appspot.com/o/assets%2Fog-mycure-medical-platform.png?alt=media&token=10cc6c06-efe5-4453-9529-b70903f4b4a0"
+    "image": "https://firebasestorage.googleapis.com/v0/b/mc-v4-prod.appspot.com/o/web-main-assets%2FMYCURE_Open_Graph_Images_Multispecialty_Clinic.png?alt=media&token=de2ed033-d770-4940-b0f0-d7ce9f85664d"
   },
   {
     "path": "/pricing",
     "title": "MYCURE Pricing | Affordable EMR and Clinic Management System",
     "description": "MYCURE is always FREE for doctors. The most affordable EMR and clinic management in the Philippines. Pay only for what you need with plans that suit your budget.",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mycure-ab311.appspot.com/o/assets%2Fog-mycure-medical-platform.png?alt=media&token=10cc6c06-efe5-4453-9529-b70903f4b4a0"
+    "image": "https://firebasestorage.googleapis.com/v0/b/mc-v4-prod.appspot.com/o/web-main-assets%2FMYCURE_Open_Graph_Images_Pricing_.png?alt=media&token=f4a0a996-5f9e-4db0-ab91-d59c9e76bc9a"
   },
   {
     "path": "/our-story",
     "title": "MYCURE Our Story | Caring the Extra Mile",
     "description": "Caring the extra mile is our mantra. MYCURE is committed to saving lives by building advanced apps for patients, physicians, and other healthcare practitioners.",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mycure-ab311.appspot.com/o/assets%2Fog-mycure-medical-platform.png?alt=media&token=10cc6c06-efe5-4453-9529-b70903f4b4a0"
+    "image": "https://firebasestorage.googleapis.com/v0/b/mc-v4-prod.appspot.com/o/web-main-assets%2FMYCURE_Open_Graph_Images_Our_Story.png?alt=media&token=9bea8679-7c32-4b92-9976-134dfb127d07"
   },
   {
     "path": "/terms",
     "title": "MYCURE Terms and Conditions",
     "description": "Learn more about our Terms and Conditions so you can maximize using MYCURE Clinic Management System in your practice. Last updated: February 21, 2018.",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mycure-ab311.appspot.com/o/assets%2Fog-mycure-medical-platform.png?alt=media&token=10cc6c06-efe5-4453-9529-b70903f4b4a0"
+    "image": "https://firebasestorage.googleapis.com/v0/b/mc-v4-prod.appspot.com/o/web-main-assets%2FMYCURE_Open_Graph_Images_Terms_and_Conditions.png?alt=media&token=3884660e-7f81-4586-9dc6-c500991e0b03"
   },
   {
     "path": "/privacy-policy",
     "title": "MYCURE Privacy Policy",
     "description": "MYCURE practices data privacy and integrity at its core. Learn more about our Privacy Policy so you will know how we process your data using MYCURE Clinic Management System in your practice. Last updated: March 6, 2018.",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mycure-ab311.appspot.com/o/assets%2Fog-mycure-medical-platform.png?alt=media&token=10cc6c06-efe5-4453-9529-b70903f4b4a0"
+    "image": "https://firebasestorage.googleapis.com/v0/b/mc-v4-prod.appspot.com/o/web-main-assets%2FMYCURE_Open_Graph_Images_Privacy_Policy.png?alt=media&token=f68b2956-ed80-421b-bbcd-a7c129f7430c"
   },
  {
     "path": "/features",
     "title": "MYCURE - Features",
     "description": "MYCURE Features",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mycure-ab311.appspot.com/o/assets%2Fog-mycure-medical-platform.png?alt=media&token=10cc6c06-efe5-4453-9529-b70903f4b4a0"
-  },
-  {
-    "path": "/blog-link",
-    "title": "MYCURE - Blog",
-    "description": "MYCURE blog is a compilation of well-researched articles meant to inform and create awareness in fields of data privacy, health, and technology.",
-    "link": "http://blog.mycure.md"
-
-  },
-  {
-    "path": "/data-privacy-for-physicians",
-    "title": "Data Privacy Guidelines for Medical Practitioners",
-    "description": "Data Privacy Guidelines for Medical Practitioners will serve as a guide. This is to avoid chances of Medical Practitioners being penalized or incriminated for violations on Data Policies.",
-    "link": "http://blog.mycure.md/2018/04/26/data-privacy-for-physicians/"
-
-  },
-  {
-    "path": "/careers",
-    "title": "MYCURE Careers",
-    "description": "Join a team of highly motivated, diverse, and passionate individuals who will CaretheExtraMile to help others.",
-    "link": "https://culture.mycure.md/"
-  },
-  {
-    "path": "/faqs-link",
-    "title": "MYCURE - FAQS",
-    "description": "MYCURE FAQS are meant to answer usual questions and inquiries with regards to our products and services.",
-    "link": "http://blog.mycure.md/frequently-asked-questions/"
-  },
-  {
-    "path": "/facebook-link",
-    "title": "MYCURE FB",
-    "description": "Visit MYCURE FB page for updates, insights on upcoming events and launches.",
-    "link": "https://www.facebook.com/mycure.md"
-  },
-  {
-    "path": "/youtube-link",
-    "title":  "MYCURE YT",
-    "description": "Watch and Subscribe to MYCURE YT for tutorials, stories, and guidelines on our company and our services.",
-    "link": "https://www.youtube.com/channel/UCfQ5QBdFh6f9Tuj2tWkRmvg"
-  },
-  {
-    "path": "/instagram-link",
-    "title": "MYCURE.MD IG",
-    "description": "Follow mycure.md on instagram to get the latest feed, updates, and promotions.",
-    "link": "https://www.instagram.com/mycure.md/"
-  },
-  {
-    "path": "/",
-    "title": "MYCURE - LinkedIn",
-    "description": "MYCURE's LinkedIn Account",
-    "link": "https://www.linkedin.com/company/mycure"
-  },
-  {
-    "path": "/twitter-link",
-    "title": "MYCUREApp Twitter",
-    "description": "Follow MYCUREApp for the latest updates on MYCURE's activities.",
-    "link": "https://twitter.com/mycureapp"
-  },
-  {
-    "path": "/butchukoy",
-    "title": "Sipa: Street Kick!",
-    "description": "Sipa: Street Kick! is the first digitalized Pinoy-themed street game. Support it by downloading it on Google Play for Android and iTunes AppStore for iOS users.",
-    "link": "http://www.butchukoy.com/"
-  },
-  {
-    "path": "/mighty-minds",
-    "title": "Mighty Minds",
-    "description": "Mighty Minds is a registered non-profit organization with the aim of extending assistance to the youth.",
-    "link": "http://www.mightyminds.org/"
+    "image": "https://firebasestorage.googleapis.com/v0/b/mc-v4-prod.appspot.com/o/web-main-assets%2FMYCURE_Open_Graph_Images_Features.png?alt=media&token=f3dc1d21-a745-411c-b585-b3917e66225d"
   }
 ]
