@@ -4,32 +4,15 @@
       v-container
         center
           strong.font-small.font-mc-blue MEDICAL RECORDS
-        br
-        br
-        v-layout(row justify-center)
+        v-layout(row justify-center).panelPadding
           span.font-medium Designed for doctors, by doctors.
-        br
-        v-layout(row justify-center)
-          span.font-small.text-xs-center Record full medical history, vitals, and physical exam records according
-            br
-            | to SOAP charting. Eliminate the haste of scribbling with Rx printing, ICD-10
-            br
-            | database, multiple image uploads, and more.
-        br
-        br
-        center
-            v-btn(
-              :href="`${siginURL}/signup/choose`" 
-              color="#18c551" 
-              style="padding: 25px 30px 25px 30px"
-            ) 
-              strong.font-small.text-none.white--text Sign Up Now 
-        br
-        br
-        br
-        br
-        br
-        v-layout(row justify-center)  
+        v-layout(row justify-center).panelPadding
+          v-flex(xs7 align-self-center).text-xs-center
+            span.font-small Record full medical history, vitals, and physical exam records according to SOAP charting. 
+              | Eliminate the haste of scribbling with Rx printing, ICD-10 database, multiple image uploads, and more.
+        v-layout(row justify-center).panelPadding
+          img(src="@/assets/images/mycure-cms-web-features-arrow-down.png")
+        v-layout(row justify-center).panelPadding 
           //- https://ssense.github.io/vue-carousel/
           center
             carousel(
@@ -113,6 +96,10 @@
     background-position: center bottom;
     background-repeat: no-repeat;
     background-size: 100% auto;
+  }
+
+  .panelPadding {
+    padding-top: 32px;
   }
 
 </style>

@@ -4,17 +4,14 @@
       v-container
         center
           strong.font-small.font-mc-blue ROLES &amp; PRIVILEGES
-        br
-        br
-        v-layout(row justify-center)
-          v-flex(xs12 md6 align-self-center).pr-5
-            span.font-medium Everybody's got a special role to play.
-          v-flex(xs12 md6 align-self-center).pl-5
+        v-layout(row justify-center).panelPadding
+          span.font-medium Everybody's got a special role to play.
+        v-layout(row justify-center).panelPadding
+          v-flex(xs7 align-self-center).text-xs-center
             span.font-small Collaborate with your clinc staff more efficiently using a clinic system that's so user-friendly, you wouldn't even feel that you're working.
-        br
-        br
-        br
-        v-layout(row align-self-center)
+        v-layout(row justify-center).panelPadding
+          img(src="@/assets/images/mycure-cms-web-features-arrow-down.png")
+        v-layout(row align-self-center).panelPadding
           v-flex(xs12 md2 justify-center v-for="(role,index) in roles" :key="index")
             center
               img(:src="require(`../../assets/images/mycure-web-features-role-${ role.avatar }.png`)" :alt="role.name" height="250px")
@@ -104,6 +101,10 @@
     background-position: center bottom;
     background-repeat: no-repeat;
     background-size: 100% auto;
+  }
+
+  .panelPadding {
+    padding-top: 32px;
   }
 
 </style>

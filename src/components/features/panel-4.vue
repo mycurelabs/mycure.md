@@ -4,25 +4,16 @@
       v-container
         center
           strong.font-small.font-mc-blue REGISTRATION AND QUEUEING
-        br
-        br
-        v-layout(row justify-center)
+        v-layout(row justify-center).panelPadding
           span.font-medium Value everyone's time more effectively.
-        br
-        v-layout(row justify-center)
-          span.font-small.text-xs-center With MYCURE, queueing is easier done than spelled. Patients easily register
-            br
-            | via kiosks. Display multiple queues through auxiliary monitors or smart 
-            br
-            | TVs for waiting patients. Incoming doctors even get notified in their
-            br
-            | devices for every new patient in line.
-        br
-        br
-        br
-        br
-        br
-        v-layout(row justify-center)  
+        v-layout(row justify-center).panelPadding
+          v-flex(xs7 align-self-center).text-xs-center
+            span.font-small With MYCURE, queueing is easier done than spelled. Patients easily register
+              | via kiosks. Display multiple queues through auxiliary monitors or smart TVs for waiting patients. Incoming doctors even get notified in their
+              | devices for every new patient in line.
+        v-layout(row justify-center).panelPadding
+          img(src="@/assets/images/mycure-cms-web-features-arrow-down.png")
+        v-layout(row justify-center).panelPadding
           //- https://ssense.github.io/vue-carousel/
           center
             carousel(
@@ -88,5 +79,9 @@
     background-position: center bottom;
     background-repeat: no-repeat;
     background-size: 100% auto;
+  }
+
+  .panelPadding {
+    padding-top: 32px;
   }
 </style>
