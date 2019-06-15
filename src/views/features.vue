@@ -2,8 +2,8 @@
   div#top.white
     mcToolbarHome
     panel1
-    panel2.panelPadding
-    panel3.panelPadding
+    panel2
+    panel3
     panel4
     panel5
     panel6
@@ -46,10 +46,3 @@
     }
   };
 </script>
-
-<style scoped>
-
-.panelPadding {
-  padding: 120px 0 0px 0;
-}
-</style>

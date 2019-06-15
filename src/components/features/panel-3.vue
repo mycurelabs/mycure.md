@@ -1,18 +1,18 @@
 <template lang="pug">
   div
-    div(v-if="!$isMobile")#panel3.pt-5
+    div(v-if="!$isMobile" style="padding-top: 200px")#panel3
       v-container
         center
           strong.font-small.font-mc-blue MEDICAL RECORDS
-        v-layout(row justify-center).panelPadding
+        v-layout(row justify-center).add-spacing
           span.font-medium Designed for doctors, by doctors.
-        v-layout(row justify-center).panelPadding
+        v-layout(row justify-center).add-spacing
           v-flex(xs7 align-self-center).text-xs-center
             span.font-small Record full medical history, vitals, and physical exam records according to SOAP charting. 
               | Eliminate the haste of scribbling with Rx printing, ICD-10 database, multiple image uploads, and more.
-        v-layout(row justify-center).panelPadding
+        v-layout(row justify-center).add-spacing
           img(src="@/assets/images/mycure-cms-web-features-arrow-down.png")
-        v-layout(row justify-center).panelPadding 
+        v-layout(row justify-center).add-spacing 
           //- https://ssense.github.io/vue-carousel/
           center
             carousel(
@@ -37,9 +37,7 @@
         br
         v-layout(row justify-center)
           span.font-m Record full medical history, vitals, and physical exam records according
-            br
-            | to SOAP charting. Eliminate the haste of scribbling with Rx printing, ICD-10
-            br
+            |  to SOAP charting. Eliminate the haste of scribbling with Rx printing, ICD-10
             | database, multiple image uploads, and more.
         br
         center
@@ -98,7 +96,7 @@
     background-size: 100% auto;
   }
 
-  .panelPadding {
+  .add-spacing {
     padding-top: 32px;
   }
 

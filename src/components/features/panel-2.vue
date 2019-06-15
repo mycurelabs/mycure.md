@@ -1,17 +1,17 @@
 <template lang="pug">
   div
-    div(v-if="!$isMobile")
+    div(v-if="!$isMobile" style="padding-top: 200px")
       v-container
         center
           strong.font-small.font-mc-blue ROLES &amp; PRIVILEGES
-        v-layout(row justify-center).panelPadding
+        v-layout(row justify-center).add-spacing
           span.font-medium Everybody's got a special role to play.
-        v-layout(row justify-center).panelPadding
+        v-layout(row justify-center).add-spacing
           v-flex(xs7 align-self-center).text-xs-center
             span.font-small Collaborate with your clinc staff more efficiently using a clinic system that's so user-friendly, you wouldn't even feel that you're working.
-        v-layout(row justify-center).panelPadding
+        v-layout(row justify-center).add-spacing
           img(src="@/assets/images/mycure-cms-web-features-arrow-down.png")
-        v-layout(row align-self-center).panelPadding
+        v-layout(row align-self-center).add-spacing
           v-flex(xs12 md2 justify-center v-for="(role,index) in roles" :key="index")
             center
               img(:src="require(`../../assets/images/mycure-web-features-role-${ role.avatar }.png`)" :alt="role.name" height="250px")
@@ -103,7 +103,7 @@
     background-size: 100% auto;
   }
 
-  .panelPadding {
+  .add-spacing {
     padding-top: 32px;
   }
 

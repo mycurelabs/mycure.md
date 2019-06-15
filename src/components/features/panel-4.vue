@@ -4,16 +4,16 @@
       v-container
         center
           strong.font-small.font-mc-blue REGISTRATION AND QUEUEING
-        v-layout(row justify-center).panelPadding
+        v-layout(row justify-center).add-spacing
           span.font-medium Value everyone's time more effectively.
-        v-layout(row justify-center).panelPadding
+        v-layout(row justify-center).add-spacing
           v-flex(xs7 align-self-center).text-xs-center
             span.font-small With MYCURE, queueing is easier done than spelled. Patients easily register
               | via kiosks. Display multiple queues through auxiliary monitors or smart TVs for waiting patients. Incoming doctors even get notified in their
               | devices for every new patient in line.
-        v-layout(row justify-center).panelPadding
+        v-layout(row justify-center).add-spacing
           img(src="@/assets/images/mycure-cms-web-features-arrow-down.png")
-        v-layout(row justify-center).panelPadding
+        v-layout(row justify-center).add-spacing
           //- https://ssense.github.io/vue-carousel/
           center
             carousel(
@@ -37,13 +37,10 @@
           span.font-l Value everyone's time more effectively.
         br
         v-layout(row justify-center)
-          span.font-m With MYCURE, queueing is easier done than spelled. Patients easily register
+          span.font-m With MYCURE, queueing is easier done than spelled. Patients easily register via kiosks.
             br
-            | via kiosks. Display multiple queues through auxiliary monitors or smart 
-            br
-            | TVs for waiting patients. Incoming doctors even get notified in their
-            br
-            | devices for every new patient in line.
+            | Display multiple queues through auxiliary monitors or smart 
+            | TVs for waiting patients. Incoming doctors even get notified in their devices for every new patient in line.
         br
         br
         v-layout(row justify-center)  
@@ -81,7 +78,7 @@
     background-size: 100% auto;
   }
 
-  .panelPadding {
+  .add-spacing {
     padding-top: 32px;
   }
 </style>
