@@ -1,6 +1,14 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import home from '@/views/home.vue';
+import notFound from '@/views/404.vue';
+import privacyPolicy from '@/views/privacy-policy.vue';
+import terms from '@/views/terms.vue';
+import ourStory from '@/views/our-story.vue';
+import emr from '@/views/electronic-medical-records.vue';
+import cms from '@/views/clinic-management-system.vue';
+import pricing from '@/views/pricing.vue';
+import features from '@/views/features.vue';
 import { core } from '@mycure/sdk';
 
 Vue.use(Router);
@@ -12,7 +20,7 @@ export default new Router({
     {
       path: '*',
       name: '404',
-      component: () => import(/* webpackChunkName: 'privacy-policy' */ '@/views/404'),
+      component: notFound
     },
     {
       path: '/',
@@ -22,7 +30,7 @@ export default new Router({
     {
       path: '/privacy-policy',
       name: 'privacy-policy', 
-      component: () => import(/* webpackChunkName: 'privacy-policy' */ '@/views/privacy-policy'),
+      component: privacyPolicy,
       meta: {
         pageType: 'legal',
         pageName: 'Privacy Policy'
@@ -31,7 +39,7 @@ export default new Router({
     {
       path: '/terms',
       name: 'terms', 
-      component: () => import(/* webpackChunkName: 'terms' */ '@/views/terms'),
+      component: terms,
       meta: {
         pageType: 'legal',
         pageName: 'Terms'
@@ -40,7 +48,7 @@ export default new Router({
     {
       path: '/our-story',
       name: 'our-story', 
-      component: () => import(/* webpackChunkName: 'our-story' */ '@/views/our-story'),
+      component: ourStory,
       meta: {
         pageType: 'about',
         pageName: 'Our Story'
@@ -49,7 +57,7 @@ export default new Router({
     {
       path: '/electronic-medical-records',
       name: 'emr', 
-      component: () => import(/* webpackChunkName: 'electronic-medical-records' */ '@/views/electronic-medical-records'),
+      component: emr,
       meta: {
         pageType: 'main',
         pageName: 'Private Practice'
@@ -58,7 +66,7 @@ export default new Router({
     {
       path: '/clinic-management-system',
       name: 'cms', 
-      component: () => import(/* webpackChunkName: 'clinic-management-system' */ '@/views/clinic-management-system'),
+      component: cms,
       meta: {
         pageType: 'main',
         pageName: 'Multispecialty Clinics'
@@ -67,7 +75,7 @@ export default new Router({
     {
       path: '/pricing',
       name: 'pricing', 
-      component: () => import(/* webpackChunkName: 'pricing' */ '@/views/pricing'),
+      component: pricing,
       meta: {
         pageType: 'support',
         pageName: 'Pricing'
@@ -76,7 +84,7 @@ export default new Router({
     {
       path: '/features',
       name: 'features', 
-      component: () => import(/* webpackChunkName: 'features' */ '@/views/features'),
+      component: features,
       meta: {
         pageType: 'main',
         pageName: 'Features'

@@ -27,7 +27,7 @@
                 li 
                   router-link(:to="{ name: 'careers' }").link.white--text Careers
               
-            v-flex(xs12 md3 offset-md1).font-mc-grey 
+            v-flex(xs12 md3 offset-md1).font-mc-grey
               ul.no-style-type
                 li SUPPORT 
                 li 
