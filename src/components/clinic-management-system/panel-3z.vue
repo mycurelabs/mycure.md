@@ -3,7 +3,7 @@
     div(v-if="!$isMobile").white
       v-container.px-5
         v-layout(row wrap justify-center)
-          span.font-medium.lh-title.pa-5 Why do clinics switch to MYCURE?
+          span.font-medium.lh-title.pa-5 Designed for multispecialty clinics
         br
         v-layout(row wrap justify-center).py-3 
           v-flex(xs12 md6 style="border-right: 1px solid lightgray").px-5  

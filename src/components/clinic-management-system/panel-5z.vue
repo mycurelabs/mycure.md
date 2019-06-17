@@ -10,20 +10,35 @@
     br
     v-layout(row wrap justify-center)
       v-btn(
-        color="#18c551"
         :href="`${siginURL}/signup/multi-specialty/step-1`"
-        style="height: 60px; width: 250px"
-      ).mt-3
-        strong.font-small.white--text.text-none Sign Up Now
+        color="#18c551" 
+        large
+      )
+        strong.text-none.white--text.font-small Sign Up Now
     br
     v-layout(row wrap justify-center)
       em.font-small Have a question? 
         a.font-mc-blue 
           strong(@click="toggleChat") Start a quick chat
+    panel5a(style="padding-top: 150px")
+    filler(style="padding-top:150px")
+      span(slot="multiFiller").font-l Does your clinic have more than 3 branches? 
+      span(slot="chatWindow" @click="toggleChat").pointer.font-l.font-mc-blue Talk to us for custom pricing.
+    panel5b(style="padding-top: 150px")
+
 </template>
 
 <script>
+  import panel5a from './panel-5a';
+  import panel5b from './panel-5b';
+  import filler from '../commons/filler';
+
   export default {
+    components: {
+      panel5a,
+      panel5b,
+      filler
+    },
     data () {
       return {
         siginURL: process.env.VUE_APP_SIGNIN_URL
@@ -40,6 +55,13 @@
 </script>
 
 <style scoped>
+  #panel5 {
+    background-image: url('../../assets/images/mycure-home-web-sky-background.png');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+  }
+
   .pointer:hover {
     cursor: pointer;
   }

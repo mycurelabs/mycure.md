@@ -1,6 +1,6 @@
 <template lang="pug">
   div
-    div(v-if="!$isMobile" style="margin-top: -20%")#panel5
+    div(v-if="!$isMobile" style="margin-top: -20%")#panel4
       v-container(style="padding-top: 600px")
         v-layout(row wrap align-center justify-center)
           div(style="margin: 0px -20px 0px 0px; z-index: 1")
@@ -59,7 +59,7 @@
 </script>
 
 <style scoped>
-  #panel5 {
+  #panel4 {
     height: 1100px;
     width: 100%;
     background-image: url('../../assets/images/mycure-home-web-video-green-background.png');

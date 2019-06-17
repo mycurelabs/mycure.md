@@ -8,7 +8,7 @@
             br 
             br
             v-btn(
-              :href="`${siginURL}/signup/choose`" 
+              :href="`${siginURL}/signup/multi-specialty/step-1`" 
               color="#18c551" 
               style="padding: 25px 30px 25px 30px"
             )  
@@ -26,7 +26,7 @@
         img(width="100%" src="../../assets/images/mycure-cms-web-banner-first-panel-doctor-clinic-patients.png" alt="Clinic management system banner").pb-5
         div(style="height: 75px; margin-top: -1%").mc-green
           v-layout(row justify-center)
-            a(:href="`${siginURL}/signup/choose`" style="padding: 20px 0; text-decoration: none")
+            a(:href="`${siginURL}/signup/multi-specialty/step-1`" style="padding: 20px 0; text-decoration: none")
               strong(style="font-size: 25px").white--text Sign Up Now
 
 </template>

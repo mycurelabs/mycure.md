@@ -6,7 +6,7 @@
       span(slot="cms-sub-txt").font-small Experience what you can do more with MYCURE technology by your side.
       v-btn(
         slot="sign-up-button"
-        :href="`${siginURL}/signup/choose`" 
+        :href="`${siginURL}/signup/multi-specialty/step-1`" 
         color="#18c551" 
         style="padding: 25px 30px 25px 30px"
         right
