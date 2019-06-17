@@ -4,13 +4,13 @@
       v-container(align-center fill-height style="padding-top: 70px").px-5.panel-1
         v-layout(row justify-center)
           v-flex(xs12 md7 align-self-center style="margin-top: -10%")
-            h1(style="line-height: 65px;").font-large Human-Friendly,
+            h1(style="line-height: 65px;").font-large Human-friendly
               br
-              | Features,
+              | features,
               br
-              | Patient-Centric
+              | patient-centric
               br
-              | Care.
+              | care
             br
             br
             v-btn(
@@ -27,7 +27,7 @@
           v-flex(xs12 md12 align-self-center).my-5
             h1.font-l.text-xs-center Human-friendly features,
               br
-              | patient-centric care.
+              | patient-centric care
               p(style="font-weight: normal; padding-top: 40px").font-m.text-xs-center Focus on your patients and let MYCURE handle the rest.
                 br
                 | We made it very easy to learn and use.
