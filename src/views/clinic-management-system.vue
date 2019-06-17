@@ -3,11 +3,11 @@
     mc-toolbar-home
     panel1
     panel2
-    panel3
+    panel3(v-if="!$isMobile")
+    panel3mobile(v-if="$isMobile").showPanel
     panel4
     panel5(v-if="!$isMobile").showPanel
     panel5a(v-if="!$isMobile").showPanel
-    panel5mobile(v-if="$isMobile").showPanel
     panel6(v-if="$isMobile").showPanel
     filler(v-if="$isMobile").showPanel.pt-5
       span(slot="multiFiller" style="font-size: 30px") Does your clinic have more than 3 branches? 
@@ -22,10 +22,10 @@
   import panel1 from '@/components/clinic-management-system/panel-1';
   import panel2 from '@/components/clinic-management-system/panel-2';
   import panel3 from '@/components/clinic-management-system/panel-3';
+  import panel3mobile from '@/components/clinic-management-system/panel-3-mobile';
   import panel4 from '@/components/clinic-management-system/panel-4';
   import panel5 from '@/components/clinic-management-system/panel-5';
   import panel5a from '@/components/clinic-management-system/panel-5a';
-  import panel5mobile from '@/components/clinic-management-system/panel-5-mobile';
   import panel6 from '@/components/clinic-management-system/panel-6';
   import panel7 from '@/components/clinic-management-system/panel-7';
   import filler from '@/components/commons/filler';
@@ -42,11 +42,11 @@
       mcFooter,
       panel1,
       panel2,
-      panel3,
+      panel3, 
+      panel3mobile,
       panel4,
       panel5,
       panel5a,
-      panel5mobile,
       panel6,
       panel7,
       filler

@@ -48,7 +48,7 @@
           a(@click.stop="toggleChat()")
             strong.font-mc-blue Send us a chat.
     div(v-else).mc-light-grey
-      v-container.pt-5
+      v-container
         v-layout(row justify-center)
           span.font-l.text-xs-center.lh-title Designed for multispecialty clinics
         br
