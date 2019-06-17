@@ -7,9 +7,8 @@
     "build": "vue-cli-service build",
     "postbuild": "cp dist/index.html dist/200.html",
     "lint": "vue-cli-service lint",
-    "precommit": "npm run lint",
-    "commit": "git commit"
-  },
+    "deploy": "firebase deploy --only hosting -P mycure-ab311"
+    },
   "dependencies": {
     "@chenfengyuan/vue-carousel": "^1.0.2",
     "@mdi/font": "^2.6.95",
