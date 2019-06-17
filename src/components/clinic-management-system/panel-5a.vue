@@ -1,6 +1,6 @@
 <template lang="pug">
-  div.transparent#cmsproduct
-    div(v-if="!$isMobile")
+  div.transparent#cmsproduct.pt-5
+    div(v-if="!$isMobile")#panel5a
       v-container
         v-flex(xs12 md12)
           v-layout(row justify-center)
@@ -24,20 +24,30 @@
                     br
                   v-layout(row wrap).py-4
                     v-btn(
-                      :href="`${siginURL}/signup/choose`"
+                      :href="`${siginURL}/signup/multi-specialty/step-1`"
                       color="#18c551" 
                       style="width: auto" large
                     ).text-none
-                      strong.white--text Sign Up Now
+                      strong.font-small.white--text Sign Up Now
+      filler(style="padding-top:150px")
+        span(slot="multiFiller").font-l Does your clinic have more than 3 branches? 
+        span(slot="chatWindow" @click="toggleChat").pointer.font-l.font-mc-blue Talk to us for custom pricing.
+      panel5b(style="padding-top: 150px")
     div(v-else)
 </template>
 
 <script>
+  import panel5b from './panel-5b';
+  import filler from '../commons/filler';
+
   export default {
+    components:{
+      panel5b,
+      filler
+    },
     data () {
       return {
         siginURL: process.env.VUE_APP_SIGNIN_URL,
-
         multiFeatures: [
           'Queuing & Registration',
           'Patient Medical Records',
@@ -51,6 +61,13 @@
 </script>
 
 <style scoped>
+  #panel5a {
+    background-image: url('../../assets/images/mycure-home-web-sky-background.png');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+  }
+
   a:link {
     text-decoration: none
   }

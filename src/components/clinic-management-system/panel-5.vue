@@ -1,69 +1,73 @@
 <template lang="pug">
-  div(style="padding-top: 100px").transparent#panel5
-    v-layout(row wrap justify-center)
-      font.font-medium.lh-title.text-xs-center Designed for clinics of all shapes and sizes.
-    br
-    div.pt-5
-      center
-        img(width="75%" src="../../assets/images/mycure-home-web-complete-for-clinics-of-all-sizes-diagram.png" alt="All types of clinics").mb-3
-    br
-    br
-    v-layout(row wrap justify-center)
-      v-btn(
-        :href="`${siginURL}/signup/choose`"
-        color="#18c551" 
-        large
-      )
-        strong.text-none.white--text.font-small Sign Up Now
-    br
-    v-layout(row wrap justify-center)
-      em.font-small Have a question? 
-        a.font-mc-blue 
-          strong(@click="toggleChat") Start a quick chat
-    panel5a(style="padding-top: 150px")
-    filler(style="padding-top:150px")
-      span(slot="multiFiller").font-l Does your clinic have more than 3 branches? 
-      span(slot="chatWindow" @click="toggleChat").pointer.font-l.font-mc-blue Talk to us for custom pricing.
-    panel5b(style="padding-top: 150px")
-
+  div
+    div(v-if="!$isMobile" style="margin-top: -20%")#panel5
+      v-container(style="padding-top: 600px")
+        v-layout(row wrap align-center justify-center)
+          div(style="margin: 0px -20px 0px 0px; z-index: 1")
+            img(src="../../assets/images/mycure-web-video-cover-decor-doctor-left.png" alt="Male doctor")
+          div(style="z-index: 0")
+            a
+              img(v-if="!videoDialog" @click.stop="videoDialog=!videoDialog" src="../../assets/images/mycure-web-video-cover.png" alt="MYCURE Introduction video thumbnail")
+              div(v-else style="border: 10px solid white; border-radius: 10px;")
+                iframe(
+                  align="middle"
+                  id="ytplayer" 
+                  type="text/html" width="652" height="380"
+                  src="https://www.youtube.com/embed/ZR8e-Egav0M?autoplay=1&loop=1&showinfo=0&rel=0"
+                  frameborder="0"
+                  allowfullscreen
+                  )
+          div(style="margin: 0px 0px 0px -20px; z-index: 1") 
+            img(src="../../assets/images/mycure-web-video-cover-decor-doctor-right.png" alt="Female doctor")
+    div(v-else style="margin-top: -15%")
+      div(style="background-color: #f5f5f5")
+        img(src="../../assets/images/mycure-home-web-video-green-background-mobile.png" width="100%" alt="Video green background").showPanel
+        a.showPanel
+          img(
+            v-if="!videoDialog" 
+            @click.stop="videoDialog=!videoDialog"
+            src="../../assets/images/mycure-home-web-video-cover-most-complete-clinic-management-system-mobile.png" 
+            alt="MYCURE Introduction video thumbnail"
+            width="100%"
+            style="margin: -2% 0 -2% 0;"
+          )
+          iframe(
+            v-else
+            style="margin: -2% 0 -2% 0;"
+            align="middle"
+            id="ytplayer" 
+            type="text/html" width="375" height="250"
+            src="https://www.youtube.com/embed/ZR8e-Egav0M?autoplay=1&loop=1&showinfo=0&rel=0"
+            frameborder="0"
+            allowfullscreen
+          )
 </template>
 
 <script>
-  import panel5a from './panel-5a';
-  import panel5b from './panel-5b';
-  import filler from '../commons/filler';
-
   export default {
-    components: {
-      panel5a,
-      panel5b,
-      filler
-      
+    methods: {
+      toggleChat () {
+        window.$crisp.push(['do', 'chat:toggle']);
+      }
     },
     data () {
       return {
-        siginURL: process.env.VUE_APP_SIGNIN_URL
+        videoDialog: false
       };
-    },
-    methods: {
-      toggleChat () {
-        let message = `Hi, I would like to know more about the Clinic Management System for Multispecialty Clinics.`;
-        window.$crisp.push(['do', 'chat:toggle']);
-        window.$crisp.push(['do', 'message:send', ['text', message]]);
-      }
     }
   };
 </script>
 
 <style scoped>
   #panel5 {
-    background-image: url('../../assets/images/mycure-home-web-sky-background.png');
+    height: 1100px;
+    width: 100%;
+    background-image: url('../../assets/images/mycure-home-web-video-green-background.png');
     background-position: center center;
-    background-repeat: no-repeat;
     background-size: 100% 100%;
   }
-
-  .pointer:hover {
-    cursor: pointer;
+  
+  a {
+    color: #2e9fdf
   }
 </style>
