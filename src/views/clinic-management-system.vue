@@ -6,6 +6,7 @@
     panel3
     panel4
     panel5(v-if="!$isMobile").showPanel
+    panel5a(v-if="!$isMobile").showPanel
     panel5mobile(v-if="$isMobile").showPanel
     panel6(v-if="$isMobile").showPanel
     filler(v-if="$isMobile").showPanel.pt-5
@@ -23,6 +24,7 @@
   import panel3 from '@/components/clinic-management-system/panel-3';
   import panel4 from '@/components/clinic-management-system/panel-4';
   import panel5 from '@/components/clinic-management-system/panel-5';
+  import panel5a from '@/components/clinic-management-system/panel-5a';
   import panel5mobile from '@/components/clinic-management-system/panel-5-mobile';
   import panel6 from '@/components/clinic-management-system/panel-6';
   import panel7 from '@/components/clinic-management-system/panel-7';
@@ -43,6 +45,7 @@
       panel3,
       panel4,
       panel5,
+      panel5a,
       panel5mobile,
       panel6,
       panel7,

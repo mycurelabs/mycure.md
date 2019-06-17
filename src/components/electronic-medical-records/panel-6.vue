@@ -38,7 +38,7 @@
                         span(:class="index === 0 ? 'font-weight-bold' : 'font-weight-regular'").font-small {{ feature }}
                     v-layout(row wrap).pt-5
                       v-btn(
-                        :href="`${siginURL}/signup/choose`"
+                        :href="`${siginURL}/signup/private/step-1`"
                         style="background-color: #18c551; color: white; width: auto" 
                         large
                       ) 
@@ -81,7 +81,7 @@
               span(:class="index === 0 ? 'font-weight-bold' : 'font-weight-regular'").font-small {{ feature }}
         v-layout(row justify-center)
           v-btn(style="background-color: #18c551; width: 80%; height: 60px")
-            a(:href="`${siginURL}/signup/choose`")
+            a(:href="`${siginURL}/signup/private/step-1`")
               strong.font-m.white--text.text-none Sign Up Now      
       br
       br
