@@ -1,5 +1,11 @@
 [
   {
+    "path": "/not-found",
+    "title": "MYCURE | Page Not Found",
+    "description": "The page you are looking for does not exist.",
+    "image": "https://firebasestorage.googleapis.com/v0/b/mc-v4-prod.appspot.com/o/web-main-assets%2FMYCURE_Open_Graph_Images_Home_Clinic_Management_System.png?alt=media&token=9556e040-1c3d-4632-9151-798ad13a15d4"
+  },
+  {
     "path": "/",
     "title": "MYCURE | Clinic Management System | Cloud EMR Philippines",
     "description": "MYCURE is a clinic management system that helps secure and organize medical records - Best DPA-compliant EMR practice management software in the Philippines.",
@@ -41,7 +47,7 @@
     "description": "MYCURE practices data privacy and integrity at its core. Learn more about our Privacy Policy so you will know how we process your data using MYCURE Clinic Management System in your practice. Last updated: March 6, 2018.",
     "image": "https://firebasestorage.googleapis.com/v0/b/mc-v4-prod.appspot.com/o/web-main-assets%2FMYCURE_Open_Graph_Images_Privacy_Policy.png?alt=media&token=f68b2956-ed80-421b-bbcd-a7c129f7430c"
   },
- {
+  {
     "path": "/features",
     "title": "MYCURE - Features",
     "description": "MYCURE Features",

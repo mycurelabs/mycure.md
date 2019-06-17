@@ -19,7 +19,10 @@ export default new Router({
   routes: [
     {
       path: '*',
-      name: '404',
+      redirect: '/not-found'
+    },
+    {
+      path: '/not-found',
       component: notFound
     },
     {

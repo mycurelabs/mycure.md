@@ -1,0 +1,13 @@
+User-Agent: *
+Disallow: 
+Allow: /
+Allow: /electronic-medical-records
+Allow: /clinic-management-system
+Allow: /pricing
+Allow: /our-story
+Allow: /terms
+Allow: /privacy-policy
+Allow: /features
+Allow: /not-found
+
+Sitemap: https://mycure.md/sitemap.xml
