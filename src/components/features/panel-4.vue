@@ -9,7 +9,7 @@
         v-layout(row justify-center).add-spacing
           v-flex(xs7 align-self-center).text-xs-center
             span.font-small With MYCURE, queueing is easier done than spelled. Patients easily register
-              | via kiosks. Display multiple queues through auxiliary monitors or smart TVs for waiting patients. Incoming doctors even get notified in their
+              |  via kiosks. Display multiple queues through auxiliary monitors or smart TVs for waiting patients. Incoming doctors even get notified in their
               | devices for every new patient in line.
         v-layout(row justify-center).add-spacing
           img(src="@/assets/images/mycure-cms-web-features-arrow-down.png")
