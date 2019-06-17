@@ -1,29 +1,33 @@
-# web-main
+### Install dependencies
 
-## Project setup
-```
-yarn install
-```
-
-### Compiles and hot-reloads for development
-```
-yarn run serve
+```bash
+yarn
 ```
 
-### Compiles and minifies for production
-```
-yarn run build
+### Run development
+
+The `.env.development` file is required to start the development. Refer to `.env.example`.
+
+Run
+
+```bash
+yarn serve
 ```
 
-### Run your tests
-```
-yarn run test
+### Build production
+
+The `.env.production` file is required to start the development. Refer to `.env.example`.
+
+Run
+
+```bash
+yarn build
 ```
 
-### Lints and fixes files
-```
-yarn run lint
-```
+### Deploy
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+Run
+
+```bash
+yarn deploy
+```
