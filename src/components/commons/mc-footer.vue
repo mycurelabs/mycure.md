@@ -14,7 +14,7 @@
                 li CLINIC SOLUTIONS
                 li
                   router-link(:to="{name: 'emr'}" title="MYCURE | Private Practice Electronic Medical Records (EMR)").link.white--text
-                    span For Individual Doctors
+                    span For Private Practice
                 li.pb-3
                   router-link(:to="{name: 'cms'}" title="MYCURE | Multispecialty Clinic Management System (CMS)").link.white--text
                     span For Multispecialty Clinics

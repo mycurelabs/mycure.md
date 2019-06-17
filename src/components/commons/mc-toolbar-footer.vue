@@ -33,7 +33,7 @@
               v-icon(style="margin-right: -24px" color="white") mdi-chevron-down
             v-layout(column)
               router-link(:to="{ name: 'emr' }" title="MYCURE | Private Practice Electronic Medical Records (EMR)").link.white--text.py-2
-                span.py-2 For Individual Doctors
+                span.py-2 For Private Practice
               router-link(:to="{ name: 'cms' }" title="MYCURE | Multispecialty Clinic Management System (CMS)").link.white--text.py-2
                 span.py-2 For Multispecialty Clinics
       v-layout(row)

@@ -54,7 +54,7 @@
                 v-list-tile(:to="{name: 'emr'}")
                   v-list-tile-content
                     v-list-tile-title 
-                      b For Individual Doctors
+                      b For Private Practice
                 v-list-tile(:to="{name: 'cms'}")
                   v-list-tile-content
                     v-list-tile-title 
