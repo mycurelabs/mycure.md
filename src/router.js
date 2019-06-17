@@ -12,7 +12,7 @@ export default new Router({
     {
       path: '*',
       name: '404',
-      component: () => import(/* webpackChunkName: 'privacy-policy' */ '@/views/404'),
+      component: () => import(/* webpackChunkName: '404' */ '@/views/404'),
     },
     {
       path: '/',
