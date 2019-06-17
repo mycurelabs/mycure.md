@@ -5,7 +5,9 @@
         center
           strong.font-small.font-mc-blue REPORTS AND ANALYTICS
         v-layout(row justify-center).add-spacing
-          span.font-medium.text-xs-center Never miss out on important business decisions. 
+          span.font-medium.text-xs-center Never miss out on important 
+            br
+            | business decisions. 
         v-layout(row justify-center).add-spacing
           span.font-small.text-xs-center Measure your day-to-day clinic performance analyzing comprehensive 
             br
