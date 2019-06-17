@@ -2,8 +2,8 @@
   {
     "path": "/not-found",
     "title": "MYCURE | Page Not Found",
-    "description": "The page you are looking for does not exist.",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mc-v4-prod.appspot.com/o/web-main-assets%2FMYCURE_Open_Graph_Images_Home_Clinic_Management_System.png?alt=media&token=9556e040-1c3d-4632-9151-798ad13a15d4"
+    "description": "Aw snap! The page you are looking for does not exist.",
+    "image": "https://firebasestorage.googleapis.com/v0/b/mc-v4-prod.appspot.com/o/web-main-assets%2FMYCURE-Open-Graph-Images-404.png?alt=media&token=5181853e-9176-44d6-b8ef-87fcb84b36a2"
   },
   {
     "path": "/",

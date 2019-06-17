@@ -71,12 +71,6 @@
 
 <script>
   export default {
-    mounted () {
-      setTimeout ( () => {
-        this.$refs['carousel'].onResize();
-        this.$refs['carousel'].goToPage(0);
-      }, 200);
-    },
     data () {
       return {
         features: ['A','B','C'],
