@@ -8,7 +8,7 @@
           span.font-medium Everybody's got a special role to play.
         v-layout(row justify-center).add-spacing
           v-flex(xs7 align-self-center).text-xs-center
-            span.font-small Collaborate with your clinc staff more efficiently using a clinic system that's so user-friendly, you wouldn't even feel that you're working.
+            span.font-small Collaborate with your clinic staff more efficiently using a clinic system that's so user-friendly, you wouldn't even feel that you're working.
         v-layout(row justify-center).add-spacing
           img(src="@/assets/images/mycure-cms-web-features-arrow-down.png")
         v-layout(row align-self-center).add-spacing
@@ -29,7 +29,7 @@
             span.font-l Everybody's got a special role to play.
           br
           v-flex(xs12)
-            span.font-m Collaborate with your clinc staff more efficiently using a clinic system that's so user-friendly, you wouldn't even feel that you're working.
+            span.font-m Collaborate with your clinic staff more efficiently using a clinic system that's so user-friendly, you wouldn't even feel that you're working.
         br
         br
         v-layout(row justify-center)

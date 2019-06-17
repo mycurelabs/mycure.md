@@ -276,7 +276,7 @@
             text: 'More coming!',
             content: `
               Rehab Clinics,
-              Maternity Clincis,
+              Maternity Clinics,
               Diagnostic Clinics,
               Pharmacies and more!
             `,
