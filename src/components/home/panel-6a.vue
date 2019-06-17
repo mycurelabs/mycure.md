@@ -3,9 +3,9 @@
     div(v-if="!$isMobile")
       v-container
         v-layout(row wrap)
-          v-flex(xs12 md6).px-3
-            center
-              div(style="width: 75%").right
+          v-flex(xs12 md6)
+            div(style="width: 75%").right
+              center
                 img(width="80%" src="../../assets/images/mycure-web-banner-fifth-panel-private-clinic.png" alt="Private Clinic")
                 v-card(style="margin-top: -2%" width="80%").clinic-card.text-xs-left.pa-4
                   p.pb-2.font-small {{ private_title }}
@@ -25,27 +25,28 @@
                       large
                     ) 
                       strong.white--text Sign Up Now
-          v-flex(xs12 md6).px-3
-            div(style="width: 75%").left
-              img(width="80%" src="../../assets/images/mycure-web-banner-fifth-panel-multi-specialty-clinics.png" alt="Multispecialty Clinic")
-              v-card(style="margin-top: -2%" width="80%").clinic-card.text-xs-left.pa-4
-                p.pb-2.font-small {{ multispecialty_title }}
-                span.font-small &#10003 &nbsp Queuing &amp Registration
-                br
-                span.font-small &#10003 &nbsp Patient Medical Records
-                br
-                span.font-small &#10003 &nbsp Billing &amp Collection
-                br
-                span.font-small &#10003 &nbsp Laboratory &amp Imaging
-                br
-                span.font-small &#10003 &nbsp Materials Management
-                v-layout(row wrap).py-4
-                  v-btn(
-                      :href="`${siginURL}/signup/choose`"
-                      style="background-color: #18c551; color: white; width: auto" 
-                      large
-                    )
-                      strong.white--text Sign Up Now
+          v-flex(xs12 md6)
+            div(style="width: 75%")
+              center
+                img(width="80%" src="../../assets/images/mycure-web-banner-fifth-panel-multi-specialty-clinics.png" alt="Multispecialty Clinic")
+                v-card(style="margin-top: -2%" width="80%").clinic-card.text-xs-left.pa-4
+                  p.pb-2.font-small {{ multispecialty_title }}
+                  span.font-small &#10003 &nbsp Queuing &amp Registration
+                  br
+                  span.font-small &#10003 &nbsp Patient Medical Records
+                  br
+                  span.font-small &#10003 &nbsp Billing &amp Collection
+                  br
+                  span.font-small &#10003 &nbsp Laboratory &amp Imaging
+                  br
+                  span.font-small &#10003 &nbsp Materials Management
+                  v-layout(row wrap).py-4
+                    v-btn(
+                        :href="`${siginURL}/signup/choose`"
+                        style="background-color: #18c551; color: white; width: auto" 
+                        large
+                      )
+                        strong.white--text Sign Up Now
       panel6b(style="padding-top: 100px")
       panel6c(style="padding-top: 100px")
       panel6d(style="padding-top: 100px")
