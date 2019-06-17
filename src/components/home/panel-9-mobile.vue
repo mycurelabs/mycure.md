@@ -12,15 +12,15 @@
           br
           br
           span.font-s.mt-3 With MYCURE you'll never have to worry much about data privacy concerns. Keeping them secure is our #1 priority.
-          br
-          br
-          br
-          v-btn(
-            :to="{ name: 'data-privacy-for-physicians' }" 
-            color="#2e9fdf"
-            large
-          ) 
-            strong.text-none.white--text.font-small Learn More
+          //- br
+          //- br
+          //- br
+          //- v-btn(
+          //-   :to="{ name: 'data-privacy-for-physicians' }" 
+          //-   color="#2e9fdf"
+          //-   large
+          //- ) 
+          //-   strong.text-none.white--text.font-small Learn More
 </template>
 
 <script>

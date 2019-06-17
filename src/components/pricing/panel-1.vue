@@ -47,7 +47,7 @@
           private_prac(v-if="isPrivate")
           multispecialty(v-else)
     div(v-else)
-      div.panel1
+      div.panel1.pa-2
         v-flex(xs12)
           center 
             strong(style="font-size: 29px").text-xs-center.white--text Your best CMS 

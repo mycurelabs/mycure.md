@@ -50,35 +50,41 @@
       panel6a(style="padding-top: 150px")
     div(v-else).py-3
       div.white
-        img(width="100%" src="@/assets/images/mycure-web-banner-fifth-panel-private-clinic-mycure-cloud.png" alt="MYCURE Cloud")
-        v-layout(column wrap).pt-4.pb-5.pr-5.pl-5
-          p.pb-2.font-s {{ cloud_title }}
-          div(v-for="(feature,index) in cloudFeatures" :key="index")
-            b(v-if="index === 0").font-s.pb-2 &#10003; &nbsp; &nbsp; {{ feature }}
-            span(v-else).font-s.pb-2 &#10003; &nbsp; &nbsp; {{ feature }}
-        v-layout(row justify-center)
-          v-btn(style="background-color: #18c551; width: 80%; height: 60px")
-            a(:href="`${siginURL}/signup/choose`")
-              strong.font-m.white--text.text-none Sign Up Now
-      br
-      br
-      div.white
         img(width="100%" src="@/assets/images/mycure-web-banner-fifth-panel-private-clinic-mycure-me-standalone.png" alt="MYCURE Standalone")
         v-layout(column wrap).pt-4.pb-5.pr-5.pl-5
           p.pb-2.font-s {{ standalone_title }}
           div(v-for="(feature,index) in standaloneFeatures" :key="index")
-            b(v-if="index === 0").font-s.pb-2 &#10003; &nbsp; &nbsp; {{ feature }}
-            span(v-else).font-s.pb-2 &#10003; &nbsp; &nbsp; {{ feature }}
+            v-layout(row)
+              span(:class="index === 0 ? 'font-weight-bold' : 'font-weight-regular'").font-small &#10003 &nbsp 
+              span(v-if="index === 2") &nbsp; &nbsp; &nbsp; &nbsp;
+              span(:class="index === 0 ? 'font-weight-bold' : 'font-weight-regular'").font-small {{ feature }}
             v-layout(row wrap v-if="index === 3").pl-4.pt-3
               img(src="@/assets/images/mycure-web-banner-fifth-panel-private-clinic-mycure-icon-google-drive.png")
               img(src="@/assets/images/mycure-web-banner-fifth-panel-private-clinic-mycure-icon-drop-box.png").pl-3
+        v-layout(row wrap justify-center)
+          v-btn(
+            style="width: 80%; height: 60px"
+            disabled
+            large
+          ) 
+            strong.font-small.font-mc-grey.text-none Coming Soon!
+      br
+      br
+      div.white
+        img(width="100%" src="@/assets/images/mycure-web-banner-fifth-panel-private-clinic-mycure-cloud.png" alt="MYCURE Cloud")
+        v-layout(column wrap).pt-4.pb-5.pr-5.pl-5
+          p.pb-2.font-s {{ cloud_title }}
+          div(v-for="(feature,index) in cloudFeatures" :key="index")
+            v-layout(row)
+              span(:class="index === 0 ? 'font-weight-bold' : 'font-weight-regular'").font-small &#10003 &nbsp
+              span(v-if="index === 2") &nbsp; &nbsp;
+              span(:class="index === 0 ? 'font-weight-bold' : 'font-weight-regular'").font-small {{ feature }}
         v-layout(row justify-center)
-          //- v-btn(style="background-color: #18c551; width: 80%; height: 60px")
-          //-   a(:href="`${siginURL}/signup/choose`")
-          //-     strong.font-m.white--text.text-none Sign Up Now
-          b.font-m.font-mc-blue COMING SOON!
-        br
-        br
+          v-btn(style="background-color: #18c551; width: 80%; height: 60px")
+            a(:href="`${siginURL}/signup/choose`")
+              strong.font-m.white--text.text-none Sign Up Now      
+      br
+      br
 </template>
 
 <script>
