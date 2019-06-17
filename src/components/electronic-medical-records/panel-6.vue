@@ -8,39 +8,41 @@
             v-flex(xs12 md6).px-2
               center
                 div(style="width: 75%").right
+                  img(width="80%" src="@/assets/images/mycure-web-banner-fifth-panel-private-clinic-mycure-me-standalone.png" alt="MYCURE Standalone")
+                  v-card(style="margin-top: -2%" width="80%" height="500px").clinic-card.text-xs-left.pa-4
+                    p.pb-2.font-small {{ standalone_title }}
+                    template(v-for="(feature,index) in standaloneFeatures")
+                      v-layout(row)
+                        span(:class="index === 0 ? 'font-weight-bold' : 'font-weight-regular'").font-small &#10003 &nbsp 
+                        span(v-if="index === 2") &nbsp; &nbsp; &nbsp; &nbsp;
+                        span(:class="index === 0 ? 'font-weight-bold' : 'font-weight-regular'").font-small {{ feature }}
+                      v-layout(row wrap v-if="index === 3").pl-4.pt-3
+                        img(src="@/assets/images/mycure-web-banner-fifth-panel-private-clinic-mycure-icon-google-drive.png")
+                        img(src="@/assets/images/mycure-web-banner-fifth-panel-private-clinic-mycure-icon-drop-box.png").pl-3     
+                    v-layout(row wrap).pt-4
+                      v-btn(
+                        disabled
+                        large
+                      ) 
+                        strong.font-small.font-mc-grey.text-none Coming Soon!
+            v-flex(xs12 md6).px-2
+              center
+                div(style="width: 75%").left
                   img(width="80%" src="@/assets/images/mycure-web-banner-fifth-panel-private-clinic-mycure-cloud.png" alt="MYCURE Cloud")
-                  v-card(style="margin-top: -2%" width="80%").clinic-card.text-xs-left.pa-4
+                  v-card(style="margin-top: -2%" width="80%" height="500px").clinic-card.text-xs-left.pa-4
                     p.pb-2.font-small {{ cloud_title }}
                     template(v-for="(feature,index) in cloudFeatures") 
-                      span(:class="index === 0 ? 'font-weight-bold' : 'font-weight-regular'").font-small &#10003 &nbsp {{ feature }}
-                      br
-                    v-layout(row wrap).pt-5.pb-4
+                      v-layout(row)
+                        span(:class="index === 0 ? 'font-weight-bold' : 'font-weight-regular'").font-small &#10003 &nbsp
+                        span(v-if="index === 2") &nbsp; &nbsp; &nbsp; &nbsp;
+                        span(:class="index === 0 ? 'font-weight-bold' : 'font-weight-regular'").font-small {{ feature }}
+                    v-layout(row wrap).pt-5
                       v-btn(
                         :href="`${siginURL}/signup/choose`"
                         style="background-color: #18c551; color: white; width: auto" 
                         large
                       ) 
-                        strong.white--text Sign Up Now
-            v-flex(xs12 md6).px-2
-              center
-                div(style="width: 75%").left
-                  img(width="80%" src="@/assets/images/mycure-web-banner-fifth-panel-private-clinic-mycure-me-standalone.png" alt="MYCURE Standalone")
-                  v-card(style="margin-top: -2%" width="80%").clinic-card.text-xs-left.pa-4
-                    p.pb-2.font-small {{ standalone_title }}
-                    template(v-for="(feature,index) in standaloneFeatures")
-                      span(:class="index === 0 ? 'font-weight-bold' : 'font-weight-regular'").font-small &#10003 &nbsp {{ feature }}
-                      br
-                      v-layout(row wrap v-if="index === 3").pl-4.pt-3
-                        img(src="@/assets/images/mycure-web-banner-fifth-panel-private-clinic-mycure-icon-google-drive.png")
-                        img(src="@/assets/images/mycure-web-banner-fifth-panel-private-clinic-mycure-icon-drop-box.png").pl-3             
-                    v-layout(row wrap justify-center).py-2
-                      //- v-btn(
-                      //-     :href="`${siginURL}/signup/choose`"
-                      //-     style="background-color: #18c551; color: white; width: auto" 
-                      //-     large
-                      //-   )
-                      //-     strong.white--text Sign Up Now
-                      b.py-3.font-small.font-mc-blue COMING SOON!
+                        strong.white--text.text-none.font-small Sign Up Now
       filler(style="padding-top: 130px")
         span(slot="privateFiller").font-l Are you part of a group clinic?
         br
@@ -101,7 +103,7 @@
           'In-app purchases'
         ],
         standaloneFeatures: [
-          'It’s FREE (forever)',
+          'It’s FREE!',
           '1 Clinic per device',
           'Store unlimited patient profiles using your personal cloud (Dropbox or Google Drive)',
           'In-app purchases'
