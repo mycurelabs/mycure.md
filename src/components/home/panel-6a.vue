@@ -20,7 +20,7 @@
                   span.font-small &#10003 &nbsp Medical Billing
                   v-layout(row wrap).pt-5.pb-4
                     v-btn(
-                      :href="`${siginURL}/signup/choose`"
+                      :href="`${siginURL}/signup/private/step-1`"
                       style="background-color: #18c551; color: white; width: auto" 
                       large
                     ) 
@@ -42,7 +42,7 @@
                   span.font-small &#10003 &nbsp Materials Management
                   v-layout(row wrap).py-4
                     v-btn(
-                        :href="`${siginURL}/signup/choose`"
+                        :href="`${siginURL}/signup/multi-specialty/step-1`"
                         style="background-color: #18c551; color: white; width: auto" 
                         large
                       )
