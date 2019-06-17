@@ -19,7 +19,7 @@
                   )
           div(style="margin: 0px 0px 0px -20px; z-index: 1") 
             img(src="../../assets/images/mycure-web-video-cover-decor-doctor-right.png" alt="Female doctor")
-    div(v-else style="margin-top: -15%")
+    div(v-else style="margin-top: -9%")
       div(style="background-color: #f5f5f5")
         img(src="../../assets/images/mycure-home-web-video-green-background-mobile.png" width="100%" alt="Video green background").showPanel
         a.showPanel
