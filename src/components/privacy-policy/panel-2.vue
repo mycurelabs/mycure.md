@@ -12,10 +12,10 @@
           p Your privacy is very important to us. Accordingly, we have developed this Policy in order for you to understand how we collect, use, communicate, and disclose and make use of Personal Information when you use our Service. MYCURE is very much committed to conducting our business in accordance with these principles in order to ensure that the confidentiality of personal information is protected and maintained.
           p Any sensitive, privileged and personal information that you provide shall be kept protected under the Republic Act No. 10173, or the Data Privacy Act of 2012, and its Implementing Rules and Regulations (collectively, the "Data Privacy Act").
           p We will not use or share your Personal Information with anyone except as described in this Privacy Policy and in MYCURE's 
-            router-link(:to="{name:'terms'}").blue--text Terms and Conditions.
+            router-link(:to="{name:'terms'}" title="MYCURE Terms and Conditions").blue--text Terms and Conditions.
             |&nbspInformation will only be used for its intended purpose (or as may be required by existing national and local laws, rules and regulations).
           p We use your Personal Information for providing and improving the Service. By using the Service, you agree to the collection and use of information in accordance with this policy. Unless otherwise defined in this Privacy Policy, terms used in this Privacy Policy have the same meanings as in our 
-            router-link(:to="{name:'terms'}").blue--text Terms and Conditions.
+            router-link(:to="{name:'terms'}" title="MYCURE Terms and Conditions").blue--text Terms and Conditions.
         v-flex(xs12 md10).mb-3
           h2 Information Collection And Use
           br
