@@ -22,7 +22,7 @@
         v-layout(row)
           v-flex(xs12 md4) 
             span.font-small.font-mc-grey 
-              strong FEATURES INCLUDED
+              strong MADE FOR
         br
         v-layout(row wrap align-items-center)
           p  
