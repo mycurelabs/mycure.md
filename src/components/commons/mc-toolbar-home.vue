@@ -5,7 +5,7 @@
         v-layout(row wrap justify-center)
           v-flex(xs12 md12 style="margin-top: 3px;")
             v-toolbar(flat).white
-              router-link(:to="{ name: 'home' }").mr-3.mt-2
+              router-link(:to="{ name: 'home' }" title="MYCURE | Clinic Management System | Cloud EMR Philippines").mr-3.mt-2
                 img(src="../../assets/images/mycure-header-logo.png" width="140" alt="MYCURE logo")
               v-btn(v-for="(link, key) in $mainLinks" :key="key" :to="{ name: link.name }" flat)
                 span(style="font-size: 14px").tab.text-none {{link.meta.pageName}}
@@ -23,7 +23,7 @@
     div(v-else)
       v-container
         v-toolbar(app flat fixed :class="shadow").white
-          router-link(:to="{ name: 'home' }").logo-a
+          router-link(:to="{ name: 'home' }" title="MYCURE | Clinic Management System | Cloud EMR Philippines").logo-a
             img(src="../../assets/images/mycure-header-logo.png" width="130" alt="MYCURE logo").mt-1
           v-spacer
           v-btn(icon large @click="drawer = !drawer")
@@ -32,7 +32,7 @@
         //- v-toolbar(flat app fixed).white
         div(style="position: sticky; top: 0px; z-index: 9999; width: 100%;")
           v-toolbar(flat :class="shadow").white
-            router-link(:to="{ name: 'home' }").logo-a
+            router-link(:to="{ name: 'home' }" title="MYCURE | Clinic Management System | Cloud EMR Philippines").logo-a
               img(src="../../assets/images/mycure-header-logo.png" width="130" alt="MYCURE logo").mt-1
             v-spacer
             v-btn(icon large @click="drawer = !drawer")

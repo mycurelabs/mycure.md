@@ -32,7 +32,7 @@
               br
               p We are looking forward to you entrusting to MYCURE your personal data. We know how important this is to you. Our tech team has established standard security protocols (and more) to keep your data safe. But does this mean we are 100% hack-proof? Well, we want to be. But let's admit it, even the world's biggest banks and government institutions are not. Rest assured, however, that we have set up our backend infrastructure to protect your data and continue to work on it constantly.
               p Personal data like name, photos, phone numbers and email address are yours and yours alone. We are committed to not selling these types of data to third parties. But we are sure you understand that in the interest of science and for the potential to save more lives in the future, MYCURE may have partnerships with hospitals and medical companies. In other words, records like diseases, types of medicine used, general location and anything that would help medical practitioners make better medical decisions in the future - as long as it does not directly identify you - could possibly be shared to make our world a better place. 
-              router-link(:to="{name: 'privacy-policy'}").font-mc-blue See also MYCURE Privacy Policy >> 
+              router-link(:to="{name: 'privacy-policy'}" title="MYCURE Privacy Policy").font-mc-blue See also MYCURE Privacy Policy >> 
             v-flex(xs12 md6).px-3
               span(style="font-size: 21px;") CHARACTER
               br

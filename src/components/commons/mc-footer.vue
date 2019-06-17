@@ -8,41 +8,41 @@
           v-layout(row wrap justify-center)
             v-flex(xs12 md3 offset-md1).font-mc-grey
               ul.no-style-type.pb-3
-                router-link(:to="{name: 'home'}").link.white--text
+                router-link(:to="{name: 'home'}" title="MYCURE | Clinic Management System | Cloud EMR Philippines").link.white--text
                     strong HOME
               ul.no-style-type
                 li CLINIC SOLUTIONS
                 li
-                  router-link(:to="{name: 'emr'}").link.white--text
+                  router-link(:to="{name: 'emr'}" title="MYCURE | Private Practice Electronic Medical Records (EMR)").link.white--text
                     span For Individual Doctors
                 li.pb-3
-                  router-link(:to="{name: 'cms'}").link.white--text
+                  router-link(:to="{name: 'cms'}" title="MYCURE | Multispecialty Clinic Management System (CMS)").link.white--text
                     span For Multispecialty Clinics
                 li ABOUT
                 li
-                  router-link(:to="{name: 'our-story'}").link.white--text 
+                  router-link(:to="{name: 'our-story'}" title="MYCURE Our Story | Caring the Extra Mile").link.white--text 
                     span Our Story
                 li 
-                  router-link(:to="{ name: 'blog-link' }").link.white--text Blog 
+                  router-link(:to="{ name: 'blog-link' }" title="MYCURE - Blog").link.white--text Blog 
                 li 
-                  router-link(:to="{ name: 'careers' }").link.white--text Careers
+                  router-link(:to="{ name: 'careers' }" title="MYCURE - Careers").link.white--text Careers
               
             v-flex(xs12 md3 offset-md1).font-mc-grey
               ul.no-style-type
                 li SUPPORT 
                 li 
-                  router-link(:to="{ name: 'faqs-link'}").link.white--text FAQs
+                  router-link(:to="{ name: 'faqs-link'}" title="MYCURE - FAQs").link.white--text FAQs
                 li
-                  router-link(:to="{name: 'pricing'}").link.white--text
+                  router-link(:to="{name: 'pricing'}" title="MYCURE Pricing | Affordable EMR and Clinic Management System").link.white--text
                     span Pricing
                 li.pb-3
-                  a(href="https://calendly.com/mycure" target="_blank").link.white--text Book A Demo
+                  a(href="https://calendly.com/mycure" target="_blank" title="MYCURE - Book A Demo").link.white--text Book A Demo
                 li LEGAL
                 li
-                  router-link(:to="{name: 'terms'}").link.white--text 
+                  router-link(:to="{name: 'terms'}" title="MYCURE Terms and Conditions").link.white--text 
                     span Terms
                 li
-                  router-link(:to="{name: 'privacy-policy'}").link.white--text 
+                  router-link(:to="{name: 'privacy-policy'}" title="MYCURE Privacy Policy").link.white--text 
                     span Privacy Policy
               
             v-flex(xs12 md3 offset-md1).font-mc-grey
