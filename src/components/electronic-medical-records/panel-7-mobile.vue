@@ -21,7 +21,7 @@
   export default {
     data () {
       return {
-        //
+        siginURL: process.env.VUE_APP_SIGNIN_URL
       };
     }
   };
