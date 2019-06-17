@@ -45,6 +45,13 @@
       panel5b,
       filler
     },
+    methods: {
+      toggleChat () {
+        let message = `Hi, I would like to know more about the Clinic Management System for Multispecialty Clinics.`;
+        window.$crisp.push(['do', 'chat:toggle']);
+        window.$crisp.push(['do', 'message:send', ['text', message]]);
+      }
+    },
     data () {
       return {
         siginURL: process.env.VUE_APP_SIGNIN_URL,

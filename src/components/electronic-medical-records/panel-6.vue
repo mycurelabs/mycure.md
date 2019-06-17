@@ -9,17 +9,16 @@
               center
                 div(style="width: 75%").right
                   img(width="80%" src="@/assets/images/mycure-web-banner-fifth-panel-private-clinic-mycure-me-standalone.png" alt="MYCURE Standalone")
-                  v-card(style="margin-top: -2%" width="80%" height="500px").clinic-card.text-xs-left.pa-4
+                  v-card(style="margin-top: -2%" width="80%" height="450px").clinic-card.text-xs-left.pa-4
                     p.pb-2.font-small {{ standalone_title }}
                     template(v-for="(feature,index) in standaloneFeatures")
                       v-layout(row)
-                        span(:class="index === 0 ? 'font-weight-bold' : 'font-weight-regular'").font-small &#10003 &nbsp 
-                        span(v-if="index === 2") &nbsp; &nbsp; &nbsp; &nbsp;
-                        span(:class="index === 0 ? 'font-weight-bold' : 'font-weight-regular'").font-small {{ feature }}
-                      v-layout(row wrap v-if="index === 3").pl-4.pt-3
-                        img(src="@/assets/images/mycure-web-banner-fifth-panel-private-clinic-mycure-icon-google-drive.png")
-                        img(src="@/assets/images/mycure-web-banner-fifth-panel-private-clinic-mycure-icon-drop-box.png").pl-3     
-                    v-layout(row wrap).pt-4
+                        span(:class="index === 0 ? 'font-weight-bold' : 'font-weight-regular'").font-small &#10003 &nbsp  
+                        span(v-if="index === 2").font-small.ml-2 {{ feature }} &nbsp; &nbsp;
+                          img(height="25px" src="@/assets/images/mycure-web-banner-fifth-panel-private-clinic-mycure-icon-google-drive.png")
+                          img(height="25px" src="@/assets/images/mycure-web-banner-fifth-panel-private-clinic-mycure-icon-drop-box.png").pl-3    
+                        span(v-else :class="index === 0 ? 'font-weight-bold' : 'font-weight-regular'").font-small {{ feature }}
+                    div(style="position: absolute; bottom: 30px;")
                       v-btn(
                         disabled
                         large
@@ -29,14 +28,14 @@
               center
                 div(style="width: 75%").left
                   img(width="80%" src="@/assets/images/mycure-web-banner-fifth-panel-private-clinic-mycure-cloud.png" alt="MYCURE Cloud")
-                  v-card(style="margin-top: -2%" width="80%" height="500px").clinic-card.text-xs-left.pa-4
+                  v-card(style="margin-top: -2%" width="80%" height="450px").clinic-card.text-xs-left.pa-4
                     p.pb-2.font-small {{ cloud_title }}
                     template(v-for="(feature,index) in cloudFeatures") 
                       v-layout(row)
                         span(:class="index === 0 ? 'font-weight-bold' : 'font-weight-regular'").font-small &#10003 &nbsp
                         span(v-if="index === 2") &nbsp; &nbsp; &nbsp; &nbsp;
                         span(:class="index === 0 ? 'font-weight-bold' : 'font-weight-regular'").font-small {{ feature }}
-                    v-layout(row wrap).pt-5
+                    div(style="position: absolute; bottom: 30px;")
                       v-btn(
                         :href="`${siginURL}/signup/private/step-1`"
                         style="background-color: #18c551; color: white; width: auto" 
@@ -105,13 +104,12 @@
           'It\'s FREE!',
           'Unlimited Clinics, infinite devices',
           'Store 100 patient profiles using MYCURE Cloud storage',
-          'SOAP Charting',
           'In-app purchases'
         ],
         standaloneFeatures: [
           'It’s FREE!',
           '1 Clinic per device',
-          'Store unlimited patient profiles using your personal cloud (Dropbox or Google Drive)',
+          'Store unlimited patient profiles using your personal cloud',
           'In-app purchases'
         ]
       };
