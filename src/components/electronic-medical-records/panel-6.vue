@@ -54,12 +54,11 @@
           p.pb-2.font-s {{ standalone_title }}
           div(v-for="(feature,index) in standaloneFeatures" :key="index")
             v-layout(row)
-              span(:class="index === 0 ? 'font-weight-bold' : 'font-weight-regular'").font-small &#10003 &nbsp 
-              span(v-if="index === 2") &nbsp; &nbsp; &nbsp; &nbsp;
-              span(:class="index === 0 ? 'font-weight-bold' : 'font-weight-regular'").font-small {{ feature }}
-            v-layout(row wrap v-if="index === 3").pl-4.pt-3
-              img(src="@/assets/images/mycure-web-banner-fifth-panel-private-clinic-mycure-icon-google-drive.png")
-              img(src="@/assets/images/mycure-web-banner-fifth-panel-private-clinic-mycure-icon-drop-box.png").pl-3
+              span(:class="index === 0 ? 'font-weight-bold' : 'font-weight-regular'").font-small &#10003 &nbsp  
+              span(v-if="index === 2").font-small {{ feature }} &nbsp; &nbsp;
+                img(height="25px" src="@/assets/images/mycure-web-banner-fifth-panel-private-clinic-mycure-icon-google-drive.png")
+                img(height="25px" src="@/assets/images/mycure-web-banner-fifth-panel-private-clinic-mycure-icon-drop-box.png").pl-3    
+              span(v-else :class="index === 0 ? 'font-weight-bold' : 'font-weight-regular'").font-small {{ feature }}
         v-layout(row wrap justify-center)
           v-btn(
             style="width: 80%; height: 60px"
@@ -107,7 +106,7 @@
           'In-app purchases'
         ],
         standaloneFeatures: [
-          'It’s FREE!',
+          'It’s FREE forever!',
           '1 Clinic per device',
           'Store unlimited patient profiles using your personal cloud',
           'In-app purchases'
