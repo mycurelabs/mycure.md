@@ -92,4 +92,8 @@
     -moz-box-shadow: 0 8px 6px -8px black;
     box-shadow: 0 8px 6px -8px black;
   }
+
+  .pointer:hover {
+    cursor: pointer;
+  }
 </style>
