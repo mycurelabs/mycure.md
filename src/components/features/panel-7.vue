@@ -20,16 +20,16 @@
           img(src="../../assets/images/mycure-web-features-mockup-05-A.png" alt="Clinic Materials Management" width="90%" height="100%")     
     div(v-else)#panel7.pt-5
       v-container
-        center
+        v-layout(row justify-center)
           strong.font-s.font-mc-blue MATERIALS MANAGEMENT
         br
         br
         v-layout(row justify-center)
-          span.font-l Your medical supplies at a glance
+          p.font-l.text-xs-center Your medical supplies at a glance
         br
         br
         v-layout(row justify-center)
-          span.font-m.text-xs-center Deliver the right supplies to the right people at the right time.
+          p.font-m.text-xs-center Deliver the right supplies to the right people at the right time.
         br
         br
         v-layout(row justify-center)
@@ -38,10 +38,13 @@
               v-layout(v-for="(item, index) in items" :key="index" row align-left).pb-3 
                 img(src="../../assets/images/mycure-web-bullet-check.png" alt="Check icon" style="height: 29px;")
                 span.font-s.pl-3 {{ item }} 
+        v-layout(row justify-center).add-spacing
+          img(src="@/assets/images/mycure-cms-web-features-arrow-down.png")
+        br
         br
         br
         v-layout(row justify-center)  
-          img(src="../../assets/images/mycure-web-features-mockup-05-A.png" alt="Clinic Materials Management" width="95%" height="100%")     
+          img(src="../../assets/images/mycure-web-features-mockup-05-A.png" alt="Clinic Materials Management" height="200px")     
     
 </template>
 
