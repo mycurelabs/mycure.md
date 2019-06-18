@@ -7,9 +7,6 @@
           hr.mc-grey.mb-3
           v-layout(row wrap justify-center)
             v-flex(xs12 md3 offset-md1).font-mc-grey
-              ul.no-style-type.pb-3
-                router-link(:to="{name: 'home'}" title="MYCURE | Clinic Management System | Cloud EMR Philippines").link.white--text
-                    strong HOME
               ul.no-style-type
                 li CLINIC SOLUTIONS
                 li
