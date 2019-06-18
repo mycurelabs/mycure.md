@@ -7,7 +7,7 @@
         span(style="font-size: 200%").text-xs-center.lh-title Be your best version everyday.
         br
         br
-        span.font-s.text-xs-center Experience what you can do more with MYCURE technology by your side.
+        span.font-m.text-xs-center Experience what you can do more with MYCURE technology by your side.
         br
         br
         v-layout(row justify-center)

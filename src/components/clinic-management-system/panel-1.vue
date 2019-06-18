@@ -16,18 +16,20 @@
           v-flex(xs12 md7 align-self-center style="margin-top: 5%")
             img(width="100%" src="../../assets/images/mycure-cms-web-banner-first-panel-doctor-clinic-patients.png" alt="Clinic management system banner")
     div(v-else).white
-      v-container
+      v-container.pt-5
         v-layout(row justify-center)
           v-flex(xs12 md5)
-            span.font-l A system that simplifies work for multispecialty clinics.
+            p.font-l.text-xs-center A system that simplifies work for 
+              br
+              | multi-specialty clinics.
             br
             br
-      v-flex(xs12)
-        img(width="100%" src="../../assets/images/mycure-cms-web-banner-first-panel-doctor-clinic-patients.png" alt="Clinic management system banner").pb-5
-        div(style="height: 75px; margin-top: -1%").mc-green
-          v-layout(row justify-center)
-            a(:href="`${siginURL}/signup/multi-specialty/step-1`" style="padding: 20px 0; text-decoration: none")
-              strong(style="font-size: 25px").white--text Sign Up Now
+        v-flex(xs12)
+          img(width="100%" src="../../assets/images/mycure-cms-web-banner-first-panel-doctor-clinic-patients.png" alt="Clinic management system banner").pb-5
+      div(style="height: 75px; margin-top: -1%").mc-green
+        v-layout(row justify-center)
+          a(:href="`${siginURL}/signup/multi-specialty/step-1`" style="padding: 20px 0; text-decoration: none")
+            strong(style="font-size: 25px").white--text Sign Up Now
 
 </template>
 
