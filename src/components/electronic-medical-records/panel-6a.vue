@@ -5,6 +5,7 @@
       span(slot="emr-txt").font-medium.lh-title Be your best version everyday.
       span(slot="emr-sub-txt").font-small Experience what you can do more with MYCURE technology by your side.
       v-btn(
+        id="emr-signup-btn"
         slot="sign-up-button"
         :href="`${siginURL}/signup/private/step-1`" 
         color="#18c551" 

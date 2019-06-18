@@ -12,6 +12,7 @@
         br
         v-layout(row justify-center)
           v-btn(
+            id="emr-signup-btn"
             :href="`${siginURL}/signup/private/step-1`"
             style="background-color: #18c551; width: 80%; height: 60px")  
             strong.font-m.white--text.text-none Sign Up Now  

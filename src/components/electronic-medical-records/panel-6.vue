@@ -37,6 +37,7 @@
                         span(:class="index === 0 ? 'font-weight-bold' : 'font-weight-regular'").font-small {{ feature }}
                     div(style="position: absolute; bottom: 30px;")
                       v-btn(
+                        id="emr-signup-btn"
                         :href="`${siginURL}/signup/private/step-1`"
                         style="background-color: #18c551; color: white; width: auto" 
                         large
@@ -78,7 +79,7 @@
               span(v-if="index === 2") &nbsp; &nbsp;
               span(:class="index === 0 ? 'font-weight-bold' : 'font-weight-regular'").font-small {{ feature }}
         v-layout(row justify-center)
-          v-btn(style="background-color: #18c551; width: 80%; height: 60px")
+          v-btn(id="emr-signup-btn" style="background-color: #18c551; width: 80%; height: 60px")
             a(:href="`${siginURL}/signup/private/step-1`")
               strong.font-m.white--text.text-none Sign Up Now      
       br

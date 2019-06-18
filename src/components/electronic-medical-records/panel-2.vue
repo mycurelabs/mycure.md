@@ -3,15 +3,15 @@
     div(v-if="!$isMobile")
       a(@click="goToProduct()")
         v-layout(row wrap justify-center)     
-          v-flex(xs12 md4 v-for="(tab,index) in tabText" :key="index")
-            div(:class="index < 2 ? 'border-color-a' : 'border-color-b'").panel-2-box
-              b.font-small.text-center {{ tab }}
+          v-flex(xs12 md4 v-for="(tab,index) in panel2btns" :key="index")
+            div(:class="index < 2 ? 'border-color-a' : 'border-color-b'" :id="tab.id").panel-2-box
+              b.font-small.text-center {{ tab.text }}
     div(v-else)
       a(@click="goToProduct()")
         v-layout(row wrap justify-center)     
-          v-flex(xs12 md4 v-for="(tab,index) in tabText" :key="index")
-            div(:class="index < 2 ? 'border-color-a' : 'border-color-b'").panel-2-box
-              b.font-small.text-center {{ tab }}
+          v-flex(xs12 md4 v-for="(tab,index) in panel2btns" :key="index")
+            div(:class="index < 2 ? 'border-color-a' : 'border-color-b'" :id="tab.id").panel-2-box
+              b.font-small.text-center {{ tab.text }}
 </template>
 
 <script>
@@ -25,10 +25,19 @@
     },
     data () {
       return {
-        tabText: [
-          'View your charts anywhere',
-          'Boost your online presence',
-          'Secure your medical records'
+        panel2btns: [
+          {
+            text: 'View your charts anywhere',
+            id: 'emr-panel2-btn1'
+          },
+          {
+            text: 'Boost your online presence',
+            id: 'emr-panel2-btn2'
+          },
+          {
+            text: 'Secure your medical records',
+            id: 'emr-panel2-btn3'
+          }
         ]
       };
     }

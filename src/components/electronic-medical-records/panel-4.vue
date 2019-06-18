@@ -22,6 +22,7 @@
         br
         v-layout(row wrap justify-center)
           v-btn(
+            id="emr-signup-btn"
             color="#18c551"
             :href="`${siginURL}/signup/private/step-1`"
             style="height: 60px; width: 250px"
@@ -44,6 +45,7 @@
                 span.font-m {{ problem }}
         v-layout(row wrap justify-center)
           v-btn(
+            id="emr-signup-btn"
             :href="`${siginURL}/signup/private/step-1`"
             color="#18c551" large).mt-5 
             strong.font-s.text-none.white--text Sign Up Now
