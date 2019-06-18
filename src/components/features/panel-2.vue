@@ -18,18 +18,20 @@
               br
               div.mx-3
                 span.font-small {{ role.name }}
-    div(v-else)#panel2
+    div(v-else).pt-5#panel2
       v-container
-        center
+        v-layout(row justify-center) 
           strong.font-s.font-mc-blue ROLES &amp; PRIVILEGES
         br
         br
         v-layout(column justify-center)
           v-flex(xs12)
-            span.font-l Everybody's got a special role to play.
+            p.font-l.text-xs-center.lh-title Everybody's got a special role to play.
           br
           v-flex(xs12)
-            span.font-m Collaborate with your clinic staff more efficiently using a clinic system that's so user-friendly, you wouldn't even feel that you're working.
+            p.font-m.text-xs-center Collaborate with your clinic staff more efficiently using a clinic system that's so user-friendly, you wouldn't even feel that you're working.
+        v-layout(row justify-center).add-spacing
+          img(src="@/assets/images/mycure-cms-web-features-arrow-down.png")
         br
         br
         v-layout(row justify-center)
@@ -41,9 +43,8 @@
             :loop="true"
             :adjustableHeight="true"
             :paginationEnabled="true"
-            paginationActiveColor="grey"
-            paginationColor="#f5f5f5"
-            style="height: 400px"
+            paginationActiveColor="#3498db"
+            paginationColor="#808080"
           ) 
             slide(
               v-for="(role,index) in roles"
@@ -51,8 +52,7 @@
               :data-index="index+1"
             )
               center.mx-5
-                img(:src="require(`../../assets/images/mycure-web-features-role-${ role.avatar }.png`)" :alt="role.name" height="250px")
-                br
+                img(:src="require(`../../assets/images/mycure-web-features-role-${ role.avatar }.png`)" :alt="role.name" height="300px")
                 br
                 v-layout(row justify-center)
                   v-flex(xs1)
