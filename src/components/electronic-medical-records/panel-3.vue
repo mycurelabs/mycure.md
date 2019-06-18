@@ -8,7 +8,7 @@
         center
           img(style="max-width: 90%;" src="../../assets/images/mycure-home-web-individual-clinic-diagram-banner.png" alt="Individual clinic")
     div(v-else).mc-light-grey
-      v-container
+      v-container.pt-5
         v-layout(row justify-center)
           span.font-l.text-xs-center.lh-title Your buddy from medical school to private practice
         br

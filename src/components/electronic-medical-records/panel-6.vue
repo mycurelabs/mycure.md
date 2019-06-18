@@ -54,8 +54,8 @@
           p.pb-2.font-s {{ standalone_title }}
           div(v-for="(feature,index) in standaloneFeatures" :key="index")
             v-layout(row)
-              span(:class="index === 0 ? 'font-weight-bold' : 'font-weight-regular'").font-small &#10003 &nbsp  
-              span(v-if="index === 2").font-small {{ feature }} &nbsp; &nbsp;
+              span(:class="index === 0 ? 'font-weight-bold' : 'font-weight-regular'").font-small &#10003; &nbsp;  
+              span(v-if="index === 2").font-small &nbsp; {{ feature }} &nbsp; &nbsp; 
                 img(height="25px" src="@/assets/images/mycure-web-banner-fifth-panel-private-clinic-mycure-icon-google-drive.png")
                 img(height="25px" src="@/assets/images/mycure-web-banner-fifth-panel-private-clinic-mycure-icon-drop-box.png").pl-3    
               span(v-else :class="index === 0 ? 'font-weight-bold' : 'font-weight-regular'").font-small {{ feature }}
