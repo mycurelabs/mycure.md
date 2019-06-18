@@ -7,6 +7,7 @@
       span.font-s {{ different }}
       br
       br
+      br
       v-card.elevation-5
         a
           img(v-if="!videoDialog" @click.stop="videoDialog=!videoDialog" width="100%" src="../../assets/images/mycure-web-video-cover-syncbase-online-offline.png" alt="MYCURE Syncbase video thumbnail")
