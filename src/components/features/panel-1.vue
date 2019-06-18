@@ -14,6 +14,7 @@
             br
             br
             v-btn(
+              id="features-signup-btn"
               :href="`${siginURL}/signup/choose`" 
               color="#18c551" 
               style="padding: 25px 30px 25px 30px"
@@ -37,7 +38,7 @@
           img(width="100%" src="../../assets/images/mycure-cms-web-banner-first-panel-features.png" alt="Features").pb-5
       div(style="height: 75px; margin-top: -10%").mc-green
         v-layout(row justify-center)
-          a(:href="`${siginURL}/signup/choose`" style="padding: 20px 0; text-decoration: none")
+          a(id="features-signup-btn" :href="`${siginURL}/signup/choose`" style="padding: 20px 0; text-decoration: none")
             strong(style="font-size: 25px").white--text Sign Up Now
 </template>
 
