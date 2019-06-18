@@ -22,7 +22,7 @@
                 strong(style="font-size: 14px").white--text.tab SIGN UP
     div(v-else)
       v-container
-        v-toolbar(app flat fixed :class="shadow").white
+        v-toolbar(flat fixed :class="shadow").white
           router-link(:to="{ name: 'home' }" title="MYCURE | Clinic Management System | Cloud EMR Philippines").logo-a
             img(src="../../assets/images/mycure-header-logo.png" width="130" alt="MYCURE logo").mt-1
           v-spacer
