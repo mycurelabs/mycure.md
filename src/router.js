@@ -60,6 +60,7 @@ export default new Router({
     {
       path: '/electronic-medical-records',
       name: 'emr', 
+      id: 'toolbar-private-practice-btn',
       component: emr,
       meta: {
         pageType: 'main',
@@ -68,7 +69,8 @@ export default new Router({
     },
     {
       path: '/clinic-management-system',
-      name: 'cms', 
+      name: 'cms',
+      id: 'toolbar-multispecialty-btn',
       component: cms,
       meta: {
         pageType: 'main',
@@ -86,7 +88,8 @@ export default new Router({
     },
     {
       path: '/features',
-      name: 'features', 
+      name: 'features',
+      id: 'toolbar-features-btn', 
       component: features,
       meta: {
         pageType: 'main',
