@@ -38,31 +38,30 @@
         br
         br
         v-layout(row justify-center)
-          span.font-l Record and retrieve diagnostic results right where you need them.
+          p.font-l.text-xs-center Record and retrieve diagnostic results right where you need them.
         br
         v-layout(row justify-center)
-          span.font-m MYCURE can communicate with modern diagnostic machines through HL7 interfacing and PACS configurations. 
+          p.font-m.text-xs-center MYCURE can communicate with modern diagnostic machines through HL7 interfacing and PACS configurations. 
             br
             br
             | Doctors can view DICOM images remotely or within clinic premises, while patients can view their lab & imaging results through an online portal.
-
+        v-layout(row justify-center).add-spacing
+          img(src="@/assets/images/mycure-cms-web-features-arrow-down.png")
         br
         br
         v-layout(row justify-center)  
           //- https://ssense.github.io/vue-carousel/
-          center
-            carousel(
-              :per-page="1" 
-              :autoplay="false"
-              :loop="true"
-              paginationActiveColor="white"
-              paginationColor="grey"
-              navigationNextLabel=" "
-              navigationPrevLabel=" "
-            )
-              slide(v-for="(feature,index) in features" :key="index" :data-index="index+1")
-                img(:src="require(`../../assets/images/mycure-web-features-mockup-04-${feature}.png`)" alt="Clinic Laboratory and Imaging" width="100%")
-    
+          carousel(
+            :per-page="1" 
+            autoplay
+            loop
+            adjustableHeight
+            paginationActiveColor="#3498db"
+            paginationColor="#808080"
+          ).pa-1
+            slide(v-for="(feature,index) in features" :key="index" :data-index="index+1")
+              v-layout(row justify-center)
+                img(:src="require(`../../assets/images/mycure-web-features-mockup-04-${feature}.png`)" alt="Clinic Laboratory and Imaging" height="200px")
 </template>
 
 <script>
