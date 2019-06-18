@@ -19,7 +19,7 @@
       v-container.pt-5
         v-layout(row justify-center)
           v-flex(xs12 md5)
-            p.lh-title.font-l.text-xs-center We help organize & secure your clinic’s medical records.
+            h1.lh-title.font-l.text-xs-center We help organize & secure your clinic’s medical records.
             br 
             br
         v-flex(xs12)

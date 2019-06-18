@@ -1,12 +1,9 @@
 <template lang="pug">
   div.pt-5
     v-container
-      span.font-l.lh-title What makes MYCURE so different?
+      p.font-l.lh-title.text-xs-center What makes MYCURE so different?
       br
-      br
-      span.font-s {{ different }}
-      br
-      br
+      p.font-m.text-xs-center {{ different }}
       br
       v-card.elevation-5
         a

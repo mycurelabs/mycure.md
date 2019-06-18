@@ -30,7 +30,7 @@
         div(v-for="(feature,index) in privateFeatures")
           b(v-if="index === 0").font-s.pb-2 &#10003; &nbsp; &nbsp; {{ feature }}
           span(v-else).font-s.pb-2 &#10003; &nbsp; &nbsp; {{ feature }}
-      v-layout(row justify-center)
+      v-layout(row justify-center).pb-5
         v-btn(
           :href="`${siginURL}/signup/private/step-1`"
           style="background-color: #18c551; width: 80%; height: 60px")
@@ -40,12 +40,11 @@
         p.pb-2.font-s {{ multispecialty_title }}
         div(v-for="feature in multiFeatures")
           span.font-s.pb-2 &#10003; &nbsp; &nbsp; {{ feature }} 
-      v-layout(row justify-center)
+      v-layout(row justify-center).pb-5
         v-btn(
           :href="`${siginURL}/signup/multi-specialty/step-1`"
           style="background-color: #18c551; width: 80%; height: 60px")  
           strong.font-m.white--text.text-none Sign Up Now  
-      
 </template>
 
 <script>
