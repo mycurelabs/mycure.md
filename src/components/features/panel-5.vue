@@ -37,11 +37,11 @@
         br
         br
         v-layout(row justify-center)
-          span.font-l Simplified billing, beautiful reports.
+          p.font-l.text-xs-center Simplified billing, beautiful reports.
         br
         br
         v-layout(row justify-center)
-          span.font-m.text-xs-center Produce neatly-organized reports in a minute or less.
+          p.font-m.text-xs-center Produce neatly-organized reports in a minute or less.
         br
         br
         v-layout(row justify-center)
@@ -50,23 +50,23 @@
               v-layout(v-for="(item, index) in items" :key="index" row align-left).pb-3 
                 img(src="../../assets/images/mycure-web-bullet-check.png" alt="Check icon" style="height: 29px;")
                 span.font-s.pl-3 {{ item }} 
+        v-layout(row justify-center).add-spacing
+          img(src="@/assets/images/mycure-cms-web-features-arrow-down.png")
         br
         br
         v-layout(row justify-center)  
           //- https://ssense.github.io/vue-carousel/
-          center
-            carousel(
-              :per-page="1" 
-              :autoplay="false"
-              :loop="true"
-              paginationActiveColor="white"
-              paginationColor="grey"
-              navigationNextLabel=" "
-              navigationPrevLabel=" "
-            )
-              slide(v-for="(feature,index) in features" :key="index" :data-index="index+1")
-                img(:src="require(`../../assets/images/mycure-web-features-mockup-03-${feature}.png`)" alt="Clinic Billing and Payments" width="100%")
-    
+          carousel(
+            :per-page="1" 
+            autoplay
+            loop
+            adjustableHeight
+            paginationActiveColor="#3498db"
+            paginationColor="#808080"
+          ).pa-1
+            slide(v-for="(feature,index) in features" :key="index" :data-index="index+1")
+              v-layout(row justify-center)
+                img(:src="require(`../../assets/images/mycure-web-features-mockup-03-${feature}.png`)" alt="Clinic Billing and Payments" height="175px")
 </template>
 
 <script>
