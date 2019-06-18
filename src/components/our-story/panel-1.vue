@@ -14,17 +14,17 @@
             p.font-small Doctors, nurses, and clinic professionals have a lot of work and we want to make that work easier.
             br
             v-btn(
+              id="our-story-watch-vid-btn"
               v-if="!$isMobile"
               color="info" 
               large
-              id="showVid"
               @click="showVid = true") 
                 strong.font-small.text-none Watch video
             center(v-else)
               v-btn(
+                id="our-story-watch-vid-btn"
                 color="info" 
                 large
-                id="showVid"
                 @click="showVid = true") 
                   strong WATCH VIDEO
           v-flex(v-if="!$isMobile" xs12 md6 align-self-center style="margin-top: 5%")
