@@ -9,47 +9,47 @@
             v-flex(xs12 md3 offset-md1).font-mc-grey
               ul.no-style-type.pb-3
                 li
-                  router-link(:to="{name: 'features'}" title="MYCURE Features").link.white--text Features
+                  router-link(id="footer-features-btn" :to="{name: 'features'}" title="MYCURE Features").link.white--text Features
               ul.no-style-type
                 li CLINIC SOLUTIONS
                 li
-                  router-link(:to="{name: 'emr'}" title="MYCURE | Private Practice Electronic Medical Records (EMR)").link.white--text
+                  router-link(id="footer-private-practice-btn" :to="{name: 'emr'}" title="MYCURE | Private Practice Electronic Medical Records (EMR)").link.white--text
                     span For Private Practice
                 li.pb-3
-                  router-link(:to="{name: 'cms'}" title="MYCURE | Multispecialty Clinic Management System (CMS)").link.white--text
+                  router-link(id="footer-multispecialty-btn" :to="{name: 'cms'}" title="MYCURE | Multispecialty Clinic Management System (CMS)").link.white--text
                     span For Multispecialty Clinics
                 li ABOUT
                 li
-                  router-link(:to="{name: 'our-story'}" title="MYCURE Our Story | Caring the Extra Mile").link.white--text 
+                  router-link(id="footer-our-story-btn" :to="{name: 'our-story'}" title="MYCURE Our Story | Caring the Extra Mile").link.white--text 
                     span Our Story
                 li 
-                  router-link(:to="{ name: 'blog-link' }" title="MYCURE - Blog").link.white--text Blog 
+                  router-link(id="footer-blog-btn" :to="{ name: 'blog-link' }" title="MYCURE - Blog").link.white--text Blog 
                 li 
-                  router-link(:to="{ name: 'careers' }" title="MYCURE - Careers").link.white--text Careers
+                  router-link(id="footer-careers-btn" :to="{ name: 'careers' }" title="MYCURE - Careers").link.white--text Careers
               
             v-flex(xs12 md3 offset-md1).font-mc-grey
               ul.no-style-type
                 li SUPPORT 
                 li 
-                  router-link(:to="{ name: 'faqs-link'}" title="MYCURE - FAQs").link.white--text FAQs
+                  router-link(id="footer-faqs-btn" :to="{ name: 'faqs-link'}" title="MYCURE - FAQs").link.white--text FAQs
                 li
-                  router-link(:to="{name: 'pricing'}" title="MYCURE Pricing | Affordable EMR and Clinic Management System").link.white--text
+                  router-link(id="footer-pricing-btn" :to="{name: 'pricing'}" title="MYCURE Pricing | Affordable EMR and Clinic Management System").link.white--text
                     span Pricing
                 li.pb-3
-                  a(href="https://calendly.com/mycure" target="_blank" title="MYCURE - Book A Demo").link.white--text Book A Demo
+                  router-link(id="footer-book-a-demo-btn" :to="{ name: 'calendly' }" title="MYCURE - Book A Demo").link.white--text Book A Demo
                 li LEGAL
                 li
-                  router-link(:to="{name: 'terms'}" title="MYCURE Terms and Conditions").link.white--text 
+                  router-link(id="footer-terms-btn" :to="{name: 'terms'}" title="MYCURE Terms and Conditions").link.white--text 
                     span Terms
                 li
-                  router-link(:to="{name: 'privacy-policy'}" title="MYCURE Privacy Policy").link.white--text 
+                  router-link(id="footer-privacy-policy-btn" :to="{name: 'privacy-policy'}" title="MYCURE Privacy Policy").link.white--text 
                     span Privacy Policy
               
             v-flex(xs12 md3 offset-md1).font-mc-grey
               ul.no-style-type
                 li CONTACT US
                 li 
-                  a(href="mailto:hello@mycure.md" style="color: #2e9fdf") hello@mycure.md
+                  a(id="footer-email-btn" title="MYCURE - Email" href="mailto:hello@mycure.md" style="color: #2e9fdf") hello@mycure.md
                 li.white--text (+632) 799 6262
                 li.white--text (+63) 917 303 4350
           hr.mc-grey.my-4  
