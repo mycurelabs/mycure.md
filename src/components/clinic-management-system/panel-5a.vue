@@ -24,6 +24,7 @@
                     br
                   v-layout(row wrap).py-4
                     v-btn(
+                      id="cms-signup-btn"
                       :href="`${siginURL}/signup/multi-specialty/step-1`"
                       color="#18c551" 
                       style="width: auto" large

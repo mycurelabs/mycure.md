@@ -42,6 +42,7 @@
         br
         v-layout(row wrap justify-center)
           v-btn(
+            id="cms-signup-btn"
             color="#18c551"
             :href="`${siginURL}/signup/multi-specialty/step-1`"
             style="height: 60px; width: 250px"
@@ -81,6 +82,7 @@
           br
           v-layout(row wrap justify-center)
             v-btn(
+              id="cms-signup-btn"
               color="#18c551"
               :href="`${siginURL}/signup/multi-specialty/step-1`"
               large

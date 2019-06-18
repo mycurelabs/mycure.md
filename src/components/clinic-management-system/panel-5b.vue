@@ -5,6 +5,7 @@
       span(slot="cms-txt").font-medium.lh-title Because we believe your clinic can stand out and be its best everyday.
       span(slot="cms-sub-txt").font-small Experience what you can do more with MYCURE technology by your side.
       v-btn(
+        id="cms-signup-btn"
         slot="sign-up-button"
         :href="`${siginURL}/signup/multi-specialty/step-1`" 
         color="#18c551" 

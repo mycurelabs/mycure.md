@@ -7,6 +7,7 @@
           span.font-small.pb-2 &#10003; &nbsp; &nbsp; {{ feature }}
       v-layout(row justify-center)
         v-btn(
+          id="cms-signup-btn"
           :href="`${siginURL}/signup/multi-specialty/step-1`"
           style="background-color: #18c551; width: 80%; height: 60px")
             strong.font-m.white--text.text-none Sign Up Now
