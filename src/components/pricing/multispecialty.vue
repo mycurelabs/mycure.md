@@ -40,7 +40,7 @@
                 br
                 p.font-s(v-html="card.content").text-xs-center
                 center
-                  v-btn(color="#18c551" :href="`${siginURL}/signup/choose`" target="_blank" v-if="!card.isMoreButton").white--text 
+                  v-btn(id="pricing-multispecialty-signup-btn" color="#18c551" :href="`${siginURL}/signup/choose`" target="_blank" v-if="!card.isMoreButton").white--text 
                     strong {{card.buttonText}}
                   v-btn(color="#2e9fdf" @click="toggleChat" v-else) 
                     strong.white--text {{card.buttonText}}
@@ -132,7 +132,7 @@
             v-flex(xs8) 
               strong(style="font-size: 14px")  {{ card.text }}
               p(style="font-size: 12px").pt-1 {{ card.content }}
-              strong(v-html="" style="font-size: 12px").font-mc-blue.pb-2 {{ card.buttonText }}
+              strong(id="pricing-multispecialty-signup-btn" v-html="" style="font-size: 12px").font-mc-blue.pb-2 {{ card.buttonText }}
         br
         v-layout(row)
           v-flex(xs12 md4) 
