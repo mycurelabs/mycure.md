@@ -7,7 +7,7 @@
             img(src="../../assets/images/mycure-header-logo.png" height="25" alt="MYCURE logo")
         v-spacer
         div(v-for="(account,key) in socMed" :key="key")
-          router-link(:to="{ name: `${ account.link }`}" title="MYCURE | Clinic Management System | Cloud EMR Philippines")
+          router-link(:to="{ name: `${ account.link }`}" :title="account.name")
             img(:src="require(`../../assets/images/${ account.icon }`)" height="25" :alt="account.name").px-2
     div(v-else).mc-dark-grey
       div
@@ -20,7 +20,7 @@
       br
       v-layout(row justify-center)
         div(v-for="(account,key) in socMed" :key="key")
-          router-link(:to="{ name: `${ account.link }`}" title="MYCURE | Clinic Management System | Cloud EMR Philippines")
+          router-link(:to="{ name: `${ account.link }`}" :title="account.name")
             img(:src="require(`../../assets/images/${ account.icon }`)" height="30" :alt="account.name").px-3
       br
       br
@@ -112,17 +112,17 @@ export default {
       contact: false,
       socMed: [
         {
-          name: 'MYCURE FB',
+          name: 'MYCURE - Facebook',
           link: 'facebook-link',
           icon: 'mycure-homepage-wireframe-icon-fb.png'
         },
         {
-          name: 'MYCURE YT',
+          name: 'MYCURE - YouTube',
           link: 'youtube-link',
           icon: 'mycure-homepage-wireframe-icon-ytub-e.png'
         },
         {
-          name: 'MYCURE IG',
+          name: 'MYCURE - Instagram',
           link: 'instagram-link',
           icon: 'mycure-homepage-wireframe-icon-ig.png'
         },
@@ -132,7 +132,7 @@ export default {
           icon: 'mycure-homepage-wireframe-icon-linkedin.png'
         },
         {
-          name: 'MYCUREApp Twitter',
+          name: 'MYCURE - Twitter',
           link: 'twitter-link',
           icon: 'mycure-homepage-wireframe-icon-twitter.png'
         },
