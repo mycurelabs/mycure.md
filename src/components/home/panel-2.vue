@@ -3,15 +3,15 @@
     div(v-if="!$isMobile")
       v-layout(row wrap justify-center)
         v-flex(xs12 md4)
-          a(@click="goToProducts()")
+          a(@click="goToProducts()" id="home-panel2-btn1")
             div.panel-2-box.border-color-a
               strong.font-small.text-center Serve patients efficiently
         v-flex(xs12 md4)
-          a(@click="goToDPA()")
+          a(@click="goToDPA()" id="home-panel2-btn2")
             div.panel-2-box.border-color-a
               strong.font-small.text-center Comply to Data Privacy Act
         v-flex(xs12 md4)
-          a(@click="goToSyncbase()")
+          a(@click="goToSyncbase()" id="home-panel2-btn3")
             div.panel-2-box.border-color-b
               strong.font-small.text-center Work Offline
     div(v-else)

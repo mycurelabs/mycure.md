@@ -13,6 +13,7 @@
               br
               br
             v-btn(
+              id="home-syncbase-vid-btn"
               @click.stop="dialog= true"
               color="#2e9fdf"
               small

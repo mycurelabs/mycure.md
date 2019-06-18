@@ -8,7 +8,7 @@
           div(style="margin: 0px -20px 0px 0px; z-index: 1")
             img(src="../../assets/images/mycure-web-video-cover-decor-doctor-left.png" alt="Male doctor")
           div(style="z-index: 0")
-            a
+            a(id="home-most-complete-vid-btn")
               img(v-if="!videoDialog" @click.stop="videoDialog=!videoDialog" src="../../assets/images/mycure-web-video-cover.png" alt="MYCURE Introduction video thumbnail")
               div(v-else style="border: 10px solid white; border-radius: 10px;")
                 iframe(

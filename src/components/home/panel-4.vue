@@ -27,6 +27,7 @@
             color="#18c551"
             :href="`${siginURL}/signup/choose`"
             style="height: 60px; width: 250px"
+            id="home-signup-btn"
           ).mt-3
             strong.font-small.white--text.text-none Sign Up Now
         br
@@ -53,6 +54,7 @@
             :href="`${siginURL}/signup/choose`"
             color="#18c551" 
             large
+            id="home-signup-btn"
           ).mt-5 
             strong.font-s.white--text.text-none Sign Up Now
         p.text-xs-center.py-4.font-small Have questions? 

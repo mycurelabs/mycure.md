@@ -11,6 +11,7 @@
               :href="`${siginURL}/signup/choose`" 
               color="#18c551" 
               style="padding: 25px 30px 25px 30px"
+              id="home-signup-btn"
             ) 
               strong.font-small.text-none.white--text Sign Up Now
           v-flex(xs12 md7 align-self-center style="margin-top: 5%")
@@ -26,7 +27,7 @@
           img(width="100%" src="../../assets/images/mycure-web-banner-first-panel-doctor-clinic-patients.png" alt="Clinic home banner").pb-5
       div(style="height: 75px").mc-green
         v-layout(row justify-center)
-          a(:href="`${siginURL}/signup/choose`" style="padding: 20px 0; text-decoration: none")
+          a(id="home-signup-btn" :href="`${siginURL}/signup/choose`" style="padding: 20px 0; text-decoration: none" title="MYCURE - Sign Up")
             strong(style="font-size: 25px").white--text Sign Up Now   
 </template>
 

@@ -23,6 +23,7 @@
                       :href="`${siginURL}/signup/private/step-1`"
                       style="background-color: #18c551; color: white; width: auto" 
                       large
+                      id="home-emr-signup-btn"
                     ) 
                       strong.white--text Sign Up Now
           v-flex(xs12 md6)
@@ -45,6 +46,7 @@
                         :href="`${siginURL}/signup/multi-specialty/step-1`"
                         style="background-color: #18c551; color: white; width: auto" 
                         large
+                        id="home-cms-signup-btn"
                       )
                         strong.white--text Sign Up Now
       panel6b(style="padding-top: 100px")
