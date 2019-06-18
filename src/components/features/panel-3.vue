@@ -28,45 +28,38 @@
                 img(:src="require(`../../assets/images/mycure-web-features-mockup-01-${feature}.png`)" alt="Medical records" width="70%")
     div(v-else)#panel3.pt-5
       v-container
-        center
+        v-layout(row justify-center)
           strong.font-s.font-mc-blue MEDICAL RECORDS
         br
         br
         v-layout(row justify-center)
-          span.font-l Designed for doctors, by doctors.
+          p.font-l.text-xs-center Designed for doctors, by doctors.
         br
         v-layout(row justify-center)
-          span.font-m Record full medical history, vitals, and physical exam records according
+          p.font-m.text-xs-center Record full medical history, vitals, and physical exam records according
             |  to SOAP charting. Eliminate the haste of scribbling with Rx printing, ICD-10
             | database, multiple image uploads, and more.
-        br
-        center
-            v-btn(
-              :href="`${siginURL}/signup/choose`" 
-              color="#18c551" 
-              style="padding: 25px 30px 25px 30px"
-            ) 
-              strong.font-small.text-none.white--text Sign Up Now 
+        v-layout(row justify-center).add-spacing
+          img(src="@/assets/images/mycure-cms-web-features-arrow-down.png")
         br
         br
         v-layout(row justify-center)
           //- https://ssense.github.io/vue-carousel/
-          center
-            carousel(
-              :per-page="1" 
-              :autoplay="false"
-              :loop="true"
-              paginationActiveColor="grey"
-              paginationColor="#f5f5f5"
-              navigationNextLabel=" "
-              navigationPrevLabel=" "
-            )
-              slide(
-                v-for="(feature,index) in features" 
-                :key="index" 
-                :data-index="index+1"
-              )
-                img(:src="require(`../../assets/images/mycure-web-features-mockup-01-${feature}.png`)" alt="Medical records" width="100%")
+          carousel(
+            :per-page="1" 
+            autoplay
+            loop
+            adjustableHeight
+            paginationActiveColor="#3498db"
+            paginationColor="#808080"
+          )
+            slide(
+              v-for="(feature,index) in features" 
+              :key="index" 
+              :data-index="index+1"
+            ).pa-1
+              v-layout(row justify-center)
+                img(:src="require(`../../assets/images/mycure-web-features-mockup-01-${feature}.png`)" alt="Medical records" height="200px")
 </template>
 
 <script>
