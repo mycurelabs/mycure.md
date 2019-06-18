@@ -28,7 +28,7 @@
                 @click="showVid = true") 
                   strong WATCH VIDEO
           v-flex(v-if="!$isMobile" xs12 md6 align-self-center style="margin-top: 5%")
-            img(width="100%" src="../../assets/images/mycure-homepage-doctor-kid-pediatrician-drawing.png" alt="Pediatrician")
+            img(width="100%" src="../../assets/images/mycure-homepage-doctor-kid-pediatrician-drawing.png" alt="Our Story")
       v-dialog(v-model="showVid" max-width="700px")
         iframe(
           align="center"
@@ -38,17 +38,15 @@
           src="https://www.youtube.com/embed/ZR8e-Egav0M?autoplay=1&loop=1&showinfo=0&rel=0"
           frameborder="0")
     div(v-else)
-      v-container
-        v-flex(xs12 align-self-center)
-          h1(style="font-weight: bold").font-l MYCURE cares for people who care for people.
+      v-container.pt-5
+        v-flex(xs12)
+          h1(style="font-weight: bold").font-l.text-xs-center MYCURE cares for people who care for people.
         br
-        v-flex(xs12 align-self-center)
+        v-flex(xs12)
+          img(width="100%" src="../../assets/images/mycure-homepage-doctor-kid-pediatrician-drawing.png" alt="Our Story").pb-5
+        //- v-flex(xs12 align-self-center)
           span.font-s Doctors, nurses, and clinic professionals have a lot of work and we want to make that work easier.
-        v-layout(row justify-center)
-        br
-        br
-        br
-        div.hr-blue
+        
 </template>
 
 <script>

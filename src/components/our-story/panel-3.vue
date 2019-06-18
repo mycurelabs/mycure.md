@@ -1,11 +1,8 @@
 <template lang="pug">
   div.white
-    v-container
+    v-container.pt-5
       v-layout(row wrap justify-center)
         v-flex(xs12 md12).text-xs-center
-          br
-          br
-          br
           h1.font-medium.pb-3 About the Founders
           br
           br
