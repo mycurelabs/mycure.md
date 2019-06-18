@@ -37,6 +37,9 @@
                 br
                 | record-keeping for everyone.
         br
+        br
+        br
+        br
         v-layout(row wrap justify-center)
           v-btn(
             color="#18c551"
@@ -50,7 +53,7 @@
     div(v-else).mc-light-grey
       v-container
         v-layout(row justify-center)
-          span.font-l.text-xs-center.lh-title Designed for multispecialty clinics
+          span.font-l.text-xs-center.lh-title Designed for Multispecialty clinics
         br
         br
         br

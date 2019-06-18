@@ -6,7 +6,7 @@
     panel3(v-if="!$isMobile")
     panel3mobile(v-if="$isMobile").showPanel
     panel4
-    panel5(v-if="!$isMobile").showPanel
+    panel5(v-if="!$isMobile")
     panel5a(v-if="!$isMobile").showPanel
     panel6(v-if="$isMobile").showPanel
     filler(v-if="$isMobile").showPanel.pt-5
