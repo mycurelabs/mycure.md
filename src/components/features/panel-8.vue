@@ -20,20 +20,22 @@
           img(src="../../assets/images/mycure-web-features-mockup-06-A.png" alt="Clinic Reports and Analytics" width="95%" height="100%")
     div(v-else)#panel8.pt-5
       v-container
-        center
+        v-layout(row justify-center)
           strong.font-s.font-mc-blue REPORTS AND ANALYTICS
         br
         br
         v-layout(row justify-center)
-          span.font-l Never miss out on important business decisions. 
+          p.font-l.text-xs-center Never miss out on important business decisions. 
         br
         br
         v-layout(row justify-center)
-          span.font-m Measure your day-to-day clinic performance analyzing comprehensive graphs based on your KPIs. Census, billing, diagnostics, sales, and physical exam reports can be generated instantly.
+          p.font-m.text-xs-center Measure your day-to-day clinic performance analyzing comprehensive graphs based on your KPIs. Census, billing, diagnostics, sales, and physical exam reports can be generated instantly.
+        v-layout(row justify-center).add-spacing
+          img(src="@/assets/images/mycure-cms-web-features-arrow-down.png")
         br
         br
         v-layout(row justify-center)  
-          img(src="../../assets/images/mycure-web-features-mockup-06-A.png" alt="Clinic Reports and Analytics" width="90%" height="100%")
+          img(src="../../assets/images/mycure-web-features-mockup-06-A.png" alt="Clinic Reports and Analytics" height="200px")
 
 </template>
 
