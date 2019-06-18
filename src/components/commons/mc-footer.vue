@@ -7,6 +7,9 @@
           hr.mc-grey.mb-3
           v-layout(row wrap justify-center)
             v-flex(xs12 md3 offset-md1).font-mc-grey
+              ul.no-style-type.pb-3
+                li
+                  router-link(:to="{name: 'features'}" title="MYCURE Features").link.white--text Features
               ul.no-style-type
                 li CLINIC SOLUTIONS
                 li

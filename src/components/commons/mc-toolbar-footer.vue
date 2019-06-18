@@ -4,7 +4,7 @@
       v-toolbar(flat color="rgba(52, 58, 64, 1)")
         router-link(:to="{ name: 'home' }" title="MYCURE | Clinic Management System | Cloud EMR Philippines")
           v-layout(row wrap center)    
-            img(src="../../assets/images/mycure-header-logo.png" height="25" alt="MYCURE logo")
+            img(src="../../assets/images/mycure-footer-logo.png" height="25" alt="MYCURE logo")
         v-spacer
         div(v-for="(account,key) in socMed" :key="key")
           router-link(:to="{ name: `${ account.link }`}" :title="account.name")
@@ -13,7 +13,7 @@
       div
         router-link(:to="{ name: 'home' }" title="MYCURE | Clinic Management System | Cloud EMR Philippines")
           v-layout(row wrap center)    
-            img(src="../../assets/images/mycure-header-logo.png" height="25" alt="MYCURE logo")
+            img(src="../../assets/images/mycure-footer-logo.png" height="25" alt="MYCURE logo")
       br
       strong.white--text FOLLOW US
       br
