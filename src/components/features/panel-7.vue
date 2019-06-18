@@ -5,7 +5,7 @@
         center
           strong.font-small.font-mc-blue MATERIALS MANAGEMENT
         v-layout(row justify-center).add-spacing
-          span.font-medium.text-xs-center Your medical supplies at a glance
+          span.font-medium.text-xs-center Your medical supplies at a glance.
         v-layout(row justify-center).add-spacing
           span.font-small.text-xs-center Deliver the right supplies to the right people at the right time.
         v-layout(row justify-center).add-spacing
