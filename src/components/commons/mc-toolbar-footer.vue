@@ -114,27 +114,27 @@ export default {
         {
           name: 'MYCURE - Facebook',
           link: 'facebook-link',
-          icon: 'mycure-homepage-wireframe-icon-fb.png'
+          icon: 'mycure-homepage-wireframe-icon-fb-hover.png'
         },
         {
           name: 'MYCURE - YouTube',
           link: 'youtube-link',
-          icon: 'mycure-homepage-wireframe-icon-ytub-e.png'
+          icon: 'mycure-homepage-wireframe-icon-ytube-hover.png'
         },
         {
           name: 'MYCURE - Instagram',
           link: 'instagram-link',
-          icon: 'mycure-homepage-wireframe-icon-ig.png'
+          icon: 'mycure-homepage-wireframe-icon-ig-hover.png'
         },
         {
           name: 'MYCURE - LinkedIn',
           link: 'linkedin-link',
-          icon: 'mycure-homepage-wireframe-icon-linkedin.png'
+          icon: 'mycure-homepage-wireframe-icon-linkedin-hover.png'
         },
         {
           name: 'MYCURE - Twitter',
           link: 'twitter-link',
-          icon: 'mycure-homepage-wireframe-icon-twitter.png'
+          icon: 'mycure-homepage-wireframe-icon-twitter-hover.png'
         },
       ]
     };
