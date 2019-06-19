@@ -5,7 +5,7 @@
     panel2
     panel3
     panel4
-    panel5
+    //- panel5
     panel6.showPanel
     filler(v-if="$isMobile").showPanel.pt-5
       span(slot="privateFiller" style="font-size: 30px") Are you part of a group clinic?

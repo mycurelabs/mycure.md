@@ -1,71 +1,32 @@
 <template lang="pug">
-  div
-    div(v-if="!$isMobile").px-5.white
-      v-container.px-5
-        v-layout(row wrap justify-center)
-          span(style="font-size: 45px").pa-5 Why do doctors use MYCURE in their clinics?
-        v-layout(row wrap justify-center).mx-5
-          v-flex(xs12 md4)
-            v-list(two-line).check-list.white
-              v-list-tile(v-for="(problem,index) in clinicProblems" :key="index" v-if="index<=2")
-                v-list-tile-action
-                  img(src="../../assets/images/mycure-web-bullet-check.png" alt="Check icon")
-                v-list-tile-content
-                  span.font-small {{ problem }}
-          v-flex(xs12 md4)
-            v-list(two-line).check-list.white
-              v-list-tile(v-for="(problem,index) in clinicProblems" :key="index" v-if="index>2")
-                v-list-tile-action
-                  img(src="../../assets/images/mycure-web-bullet-check.png" alt="Check icon")
-                v-list-tile-content
-                  span.font-small {{ problem }}
-        br
-        v-layout(row wrap justify-center)
-          v-btn(
-            id="emr-signup-btn"
-            color="#18c551"
-            :href="`${siginURL}/signup/private/step-1`"
-            style="height: 60px; width: 250px"
-          ).mt-3
-            strong.font-small.white--text.text-none Sign Up Now
-        p.text-xs-center.py-4.font-small Have questions? 
-          a(@click.stop="toggleChat()")
-            strong.font-mc-blue Send us a chat.
+  div.white
+    div(v-if="!$isMobile" style="padding: 0 6% 0 6%;").pt-5
+      v-container
+        v-layout(row justify-center)
+          span(style="font-size: 40px").lh-title Your buddy from medical school to private practice
+      div.py-5
+        center
+          img(style="max-width: 90%;" src="../../assets/images/mycure-home-web-individual-clinic-diagram-banner.png" alt="Individual clinic")
     div(v-else).mc-light-grey
-      v-container
+      v-container.pt-5
         v-layout(row justify-center)
-          span.font-l.text-xs-center Why do doctors use MYCURE in their clinics?
-      v-container
+          span.font-l.text-xs-center.lh-title Your buddy from medical school to private practice
+        br
         v-layout(row justify-center)
-          v-list(two-line style="background-color: #f5f5f5")
-            v-list-tile(v-for="(problem,index) in clinicProblems" :key="index")
-              v-list-tile-action
-                img(src="../../assets/images/mycure-web-bullet-check.png" alt="Check icon") 
-              v-list-tile-content
-                span.font-m {{ problem }}
-        v-layout(row wrap justify-center)
-          v-btn(
-            id="emr-signup-btn"
-            :href="`${siginURL}/signup/private/step-1`"
-            color="#18c551" large).mt-5 
-            strong.font-s.text-none.white--text Sign Up Now
-        p.text-xs-center.py-4.font-small Have questions? 
-          a(@click.stop="toggleChat()")
-            strong.font-mc-blue Send us a chat.
+          img(src="../../assets/images/mycure-web-clinic-room-01.png" width="100%" height="100%" alt="Clinic room")
+        br
+        v-layout(row justify-center v-for="feature in privateFeatures" :key="feature.title").pt-3
+          v-flex(xs3).text-xs-center
+            img(v-if="feature.icon" :src="require(`../../assets/images/${feature.icon}`)" :alt="feature.title")
+          v-flex(xs8 offset-xs1)
+            b {{ feature.title }}
+            p {{ feature.description}}
 </template>
 
 <script>
   export default {
-    methods: {
-      toggleChat () {
-        let message = `Hi, I would like to know more about the Electronic Medical Records for Private Practice.`;
-        window.$crisp.push(['do', 'chat:toggle']);
-        window.$crisp.push(['do', 'message:send', ['text', message]]);
-      },
-    },
     data () {
       return {
-        checkIcon: '../../assets/images/mycure-web-bullet-check.png',
         siginURL: process.env.VUE_APP_SIGNIN_URL,
 
         clinicProblems: [
@@ -75,9 +36,42 @@
           'Cloud is a much safer place to backup my charts',
           'I have no idea how much HMOs owe me',
           'My previous system is old and not user-friendly'
+        ],
+        privateFeatures: [
+          {
+            title: 'SOAP Charting',
+            description: 'Quickly store and retrieve your charts anytime, anywhere',
+            icon: 'mycure-web-clinic-feature-icon-soap-charting.png'
+          },
+          {
+            title: 'Prescription',
+            description: 'Printable medical orders for you and your patients',
+            icon: 'mycure-web-clinic-feature-icon-prescription.png'
+          },
+          {
+            title: 'Diagnostic Orders',
+            description: 'Laboratory and Imaging test requests in a few clicks',
+            icon: 'mycure-web-clinic-feature-icon-lab.png'
+          },
+          {
+            title: 'Custom Forms',
+            description: 'Create medical certificates, questionnaires, and waivers',
+            icon: 'mycure-web-clinic-feature-icon-forms.png'
+          },
+          {
+            title: 'Daily Census',
+            description: 'Manage your daily performance and income with ease',
+            icon: 'mycure-web-clinic-feature-icon-census.png'
+          },
         ]
+
       };
     },
+    methods: {
+       toggleChat () {
+        window.$crisp.push(['do', 'chat:toggle']);
+      }
+    }   
   };
 </script>
 
@@ -89,6 +83,4 @@
   .check-list {
     background-color: #f6f6f6;
   }
-
 </style>
-
