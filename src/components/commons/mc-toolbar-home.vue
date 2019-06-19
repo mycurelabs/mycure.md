@@ -124,10 +124,15 @@
               :href="`${siginURL}/signup/choose`"
             )
               strong(style="font-size: 14px").white--text.tab SIGN UP
+    mc-cookie-prompt
 </template>
 
 <script>
+  import mcCookiePrompt from './mc-cookie-prompt';
   export default {
+    components: {
+      mcCookiePrompt
+    },
     data () {
       return {
         siginURL: process.env.VUE_APP_SIGNIN_URL,

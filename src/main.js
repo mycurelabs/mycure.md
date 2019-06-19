@@ -8,9 +8,11 @@ import store from './store';
 import './mixins';
 import '@mdi/font/css/materialdesignicons.css';
 import VueCarousel from 'vue-carousel';
+import CookieLaw from 'vue-cookie-law';
 
 Vue.config.productionTip = false;
 Vue.use(VueCarousel);
+Vue.use(CookieLaw);
 
 new Vue({
   router,
