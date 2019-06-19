@@ -11,14 +11,14 @@
                 li
                   router-link(id="footer-features-btn" :to="{name: 'features'}" title="MYCURE Features").link.white--text Features
               ul.no-style-type
-                li CLINIC SOLUTIONS
+                li.feature-text CLINIC SOLUTIONS
                 li
                   router-link(id="footer-private-practice-btn" :to="{name: 'emr'}" title="MYCURE | Private Practice Electronic Medical Records (EMR)").link.white--text
                     span For Private Practice
                 li.pb-3
                   router-link(id="footer-multispecialty-btn" :to="{name: 'cms'}" title="MYCURE | Multispecialty Clinic Management System (CMS)").link.white--text
                     span For Multispecialty Clinics
-                li ABOUT
+                li.feature-text ABOUT
                 li
                   router-link(id="footer-our-story-btn" :to="{name: 'our-story'}" title="MYCURE Our Story | Caring the Extra Mile").link.white--text 
                     span Our Story
@@ -29,7 +29,7 @@
               
             v-flex(xs12 md3 offset-md1).font-mc-grey
               ul.no-style-type
-                li SUPPORT 
+                li.feature-text SUPPORT 
                 li 
                   router-link(id="footer-faqs-btn" :to="{ name: 'faqs-link'}" title="MYCURE - FAQs").link.white--text FAQs
                 li
@@ -37,7 +37,7 @@
                     span Pricing
                 li.pb-3
                   router-link(id="footer-book-a-demo-btn" :to="{ name: 'calendly' }" title="MYCURE - Book A Demo").link.white--text Book A Demo
-                li LEGAL
+                li.feature-text LEGAL
                 li
                   router-link(id="footer-terms-btn" :to="{name: 'terms'}" title="MYCURE Terms and Conditions").link.white--text 
                     span Terms
@@ -47,7 +47,7 @@
               
             v-flex(xs12 md3 offset-md1).font-mc-grey
               ul.no-style-type
-                li CONTACT US
+                li.feature-text CONTACT US
                 li 
                   a(id="footer-email-btn" title="MYCURE - Email" href="mailto:hello@mycure.md" style="color: #2e9fdf") hello@mycure.md
                 li.white--text (+632) 799 6262
@@ -115,5 +115,9 @@ export default {
 
   .font-mc-blue {
     color: #2e9fdf
+  }
+
+  .feature-text {
+    color: #999999
   }
 </style>

@@ -28,7 +28,7 @@
         v-expansion-panel.elevation-0
           v-expansion-panel-content(style="background-color: #343a40")
             template(v-slot:header)
-              span(style="margin-left: -24px").font-small.font-mc-grey CLINIC SOLUTIONS
+              span(style="margin-left: -24px").font-small.feature-text CLINIC SOLUTIONS
             template(v-slot:actions)
               v-icon(style="margin-right: -24px" color="white") mdi-chevron-down
             v-layout(column)
@@ -40,7 +40,7 @@
         v-expansion-panel.elevation-0
           v-expansion-panel-content(style="background-color: #343a40")
             template(v-slot:header)
-              span(style="margin-left: -24px").font-small.font-mc-grey ABOUT
+              span(style="margin-left: -24px").font-small.feature-text ABOUT
             template(v-slot:actions)
               v-icon(style="margin-right: -24px" color="white") mdi-chevron-down
             v-layout(column)
@@ -54,7 +54,7 @@
         v-expansion-panel.elevation-0
           v-expansion-panel-content(style="background-color: #343a40")
             template(v-slot:header)
-              span(style="margin-left: -24px").font-small.font-mc-grey SUPPORT
+              span(style="margin-left: -24px").font-small.feature-text SUPPORT
             template(v-slot:actions)
               v-icon(style="margin-right: -24px" color="white") mdi-chevron-down
             v-layout(column)
@@ -68,7 +68,7 @@
         v-expansion-panel.elevation-0
           v-expansion-panel-content(style="background-color: #343a40")
             template(v-slot:header)
-              span(style="margin-left: -24px").font-small.font-mc-grey LEGAL
+              span(style="margin-left: -24px").font-small.feature-text LEGAL
             template(v-slot:actions)
               v-icon(style="margin-right: -24px" color="white") mdi-chevron-down
             v-layout(column)
@@ -80,7 +80,7 @@
         v-expansion-panel.elevation-0
           v-expansion-panel-content(style="background-color: #343a40")
             template(v-slot:header)
-              span(style="margin-left: -24px").font-small.font-mc-grey CONTACT US
+              span(style="margin-left: -24px").font-small.feature-text CONTACT US
             template(v-slot:actions)
               v-icon(style="margin-right: -24px" color="white") mdi-chevron-down
             v-layout(column)
@@ -155,6 +155,10 @@ export default {
 
 a:link {
   text-decoration: none;
+}
+
+.feature-text {
+  color: #999999;
 }
 
 </style>
