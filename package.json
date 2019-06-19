@@ -8,7 +8,7 @@
     "postbuild": "cp dist/index.html dist/200.html",
     "lint": "vue-cli-service lint",
     "deploy": "firebase deploy --only hosting -P mycure-ab311"
-    },
+  },
   "dependencies": {
     "@chenfengyuan/vue-carousel": "^1.0.2",
     "@mdi/font": "^2.6.95",
@@ -21,6 +21,7 @@
     "typeface-poppins": "*",
     "vue": "^2.6.10",
     "vue-carousel": "^0.18.0",
+    "vue-cookie-law": "^1.10.0",
     "vue-flip": "^0.2.5",
     "vue-router": "^3.0.3",
     "vue-scrollto": "^2.15.0",
