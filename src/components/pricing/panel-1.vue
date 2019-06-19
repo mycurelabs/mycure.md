@@ -5,9 +5,9 @@
         v-container
           v-flex(xs12 md12).pt-5
             center 
-              strong.font-large.text-xs-center.white--text Your best CMS investment yet
+              strong.font-large.text-xs-center Your best CMS investment yet
               br
-              strong(style="font-size: 25px").white--text Quality clinic technology made more affordable. 
+              strong(style="font-size: 25px").font-mc-grey Quality clinic technology made more affordable. 
                 br
                 | Only pay for what you need.
               br
@@ -106,7 +106,7 @@
 
 <style scoped>
   .panel1{
-    background-image: url("../../assets/images/mycure-pricing-background.png");
+    background-image: url("../../assets/images/mycure-web-features-cover-banner.png");
     background-position: center center;
     background-size: cover;
   }
