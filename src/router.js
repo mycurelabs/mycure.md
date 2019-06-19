@@ -9,6 +9,7 @@ import emr from '@/views/electronic-medical-records.vue';
 import cms from '@/views/clinic-management-system.vue';
 import pricing from '@/views/pricing.vue';
 import features from '@/views/features.vue';
+import solo from '@/views/solo.vue';
 import { core } from '@mycure/sdk';
 
 Vue.use(Router);
@@ -84,6 +85,16 @@ export default new Router({
       meta: {
         pageType: 'support',
         pageName: 'Pricing'
+      }
+    },
+    {
+      path: '/mycure-solo',
+      name: 'mycure-solo',
+      id: 'toolbar-mycure-solo-btn', 
+      component: solo,
+      meta: {
+        pageType: 'main',
+        pageName: 'Solo'
       }
     },
     {
