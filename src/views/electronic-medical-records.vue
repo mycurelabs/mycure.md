@@ -2,10 +2,10 @@
   div.white#top
     mc-toolbar-home
     panel1
-    panel2
+    //- panel2
     panel3
     panel4
-    highlights
+    highlights(:highlights="highlightItems")
     //- panel5
     panel6.showPanel
     filler(v-if="$isMobile").showPanel.pt-5
@@ -22,7 +22,7 @@
   import panel2 from '@/components/electronic-medical-records/panel-2';
   import panel3 from '@/components/electronic-medical-records/panel-3';
   import panel4 from '@/components/electronic-medical-records/panel-4';
-  import highlights from '@/components/electronic-medical-records/highlights';
+  import highlights from '@/components/commons/highlights';
   import panel5 from '@/components/electronic-medical-records/panel-5';
   import panel6 from '@/components/electronic-medical-records/panel-6';
   import panel7mobile from '@/components/electronic-medical-records/panel-7-mobile';
@@ -32,7 +32,23 @@
   export default {
     data () {
       return {
-        //
+        highlightItems: [
+          {
+            title: 'Manage on the Go',
+            text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+            image: 'mycure-web-banner-last-panel-home-doctors.png'
+          },
+          {
+            title: 'Oversee Security',
+            text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+            image: 'mycure-web-banner-last-panel-home-doctors.png'
+          },
+          {
+            title: 'Online Profile',
+            text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+            image: 'mycure-web-banner-last-panel-home-doctors.png'
+          }
+        ]
       };
     }, 
     components: {
