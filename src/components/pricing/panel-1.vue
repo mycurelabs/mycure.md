@@ -50,11 +50,11 @@
       div.panel1.pa-2
         v-flex(xs12)
           center 
-            strong(style="font-size: 29px").text-xs-center.white--text Your best CMS 
+            strong(style="font-size: 29px").text-xs-center Your best CMS 
               br
               | investment yet
             br
-            span(style="font-size: 13px").white--text Quality clinic technology made more affordable. Only pay for what you need.  
+            span(style="font-size: 13px").font-mc-grey Quality clinic technology made more affordable. Only pay for what you need.  
             br
       div.white
         v-layout(row).pa-3
