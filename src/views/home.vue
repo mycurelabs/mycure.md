@@ -2,7 +2,8 @@
   div#top.white
     mcToolbarHome
     panel1
-    panel2
+    //- panel2
+    highlights(:highlights="highlightItems")
     panel3
     panel4
     panel5(style="margin-top: -2px")
@@ -31,6 +32,7 @@
   import panel9mobile from '@/components/home/panel-9-mobile';
   import panel10mobile from '@/components/home/panel-10-mobile';
   import panel11mobile from '@/components/home/panel-11-mobile';
+  import highlights from '@/components/commons/highlights';
   import VueScrollTo from 'vue-scrollto';
 
   export default {
@@ -48,10 +50,32 @@
       panel8mobile,
       panel9mobile,
       panel10mobile,
-      panel11mobile
+      panel11mobile,
+      highlights
     },
     mounted () {
       VueScrollTo.scrollTo(`#top`, 500, { easing: 'ease' } );
+    },
+    data () {
+      return {
+        highlightItems: [
+          {
+            title: 'Characters',
+            text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+            image: 'mycure-web-banner-last-panel-home-doctors.png'
+          },
+          {
+            title: 'Challenges',
+            text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+            image: 'mycure-web-banner-last-panel-home-doctors.png'
+          },
+          {
+            title: 'Plans',
+            text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+            image: 'mycure-web-banner-last-panel-home-doctors.png'
+          }
+        ]
+      };
     }
   };
 </script>
