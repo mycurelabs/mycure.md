@@ -1,4 +1,5 @@
 <template lang="pug">
+  //-TODO: Confirm if we are reverting back to the old product card
   div(style="padding-top: 80px")#emrproduct
     div(v-if="!$isMobile").transparent#panel6
       v-container

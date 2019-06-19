@@ -5,7 +5,7 @@
     panel2
     panel3
     panel4
-    featurePanels
+    highlights
     //- panel5
     panel6.showPanel
     filler(v-if="$isMobile").showPanel.pt-5
@@ -22,7 +22,7 @@
   import panel2 from '@/components/electronic-medical-records/panel-2';
   import panel3 from '@/components/electronic-medical-records/panel-3';
   import panel4 from '@/components/electronic-medical-records/panel-4';
-  import featurePanels from '@/components/electronic-medical-records/featurePanels';
+  import highlights from '@/components/electronic-medical-records/highlights';
   import panel5 from '@/components/electronic-medical-records/panel-5';
   import panel6 from '@/components/electronic-medical-records/panel-6';
   import panel7mobile from '@/components/electronic-medical-records/panel-7-mobile';
@@ -42,7 +42,7 @@
       panel2,
       panel3,
       panel4,
-      featurePanels,
+      highlights,
       panel5,
       panel6,
       panel7mobile,
