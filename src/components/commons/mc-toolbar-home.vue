@@ -18,6 +18,13 @@
               v-spacer
               v-btn(
                 flat
+                :to="{ name: 'features' }"
+                id="toolbar-features-btn"
+                @click.stop="handleToolbarFeaturesBtn"
+              )
+                span(style="font-size: 14px").text-none.tab Features
+              v-btn(
+                flat
                 :href="`${siginURL}?target=${cmsURL}/authenticate`"
                 id="toolbar-login-btn"
                 @click.stop="handleLoginBtn"
@@ -194,6 +201,13 @@
           eventCategory: 'logo-btn',
           eventAction: 'click-toolbar-mycure-logo',
           eventLabel: 'toolbar-mycure-logo'
+        });
+      },
+      handleToolbarFeaturesBtn () {
+        this.$ga.event({
+          eventCategory: 'button',
+          eventAction: 'click-toolbar-features-btn',
+          eventLabel: 'toolbar-features-btn'
         });
       }
       // foo () {

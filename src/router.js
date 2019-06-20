@@ -104,7 +104,7 @@ export default new Router({
       id: 'toolbar-features-btn', 
       component: features,
       meta: {
-        pageType: 'main',
+        pageType: '',
         pageName: 'Features'
       }
     },
