@@ -1,5 +1,5 @@
 <template lang="pug">
-  div
+  v-container
     v-container
       span.font-l {{ introduction }}
       br
