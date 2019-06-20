@@ -5,6 +5,7 @@
       span(slot="home-txt" style="font-size: 36px").lh-title Join thousands of healthcare professionals who get the best out of technology in their practice
       v-btn(
         id="home-signup-btn"
+        @click.stop="handleHomeSignupBtn"
         slot="sign-up-button"
         :href="`${siginURL}/signup/choose`" 
         color="#18c551" 
@@ -27,6 +28,15 @@
       return {
         siginURL: process.env.VUE_APP_SIGNIN_URL
       };
+    },
+    methods: {
+      handleHomeSignupBtn () {
+        this.$ga.event({
+          eventCategory: 'button',
+          eventAction: 'click-home-signup-btn',
+          eventLabel: 'home-signup-btn'
+        });
+      },
     }
   };
 </script>

@@ -12,6 +12,7 @@
               color="#18c551" 
               style="padding: 25px 30px 25px 30px"
               id="home-signup-btn"
+              @click.stop="handleHomeSignupBtn"
             ) 
               strong.font-small.text-none.white--text Sign Up Now
           v-flex(xs12 md7 align-self-center style="margin-top: 5%")
@@ -27,18 +28,27 @@
           img(width="100%" src="../../assets/images/mycure-web-banner-first-panel-doctor-clinic-patients.png" alt="Clinic home banner").pb-5
       div(style="height: 75px").mc-green
         v-layout(row justify-center)
-          a(id="home-signup-btn" :href="`${siginURL}/signup/choose`" style="padding: 20px 0; text-decoration: none" title="MYCURE - Sign Up")
+          a(id="home-signup-btn" @click.stop="handleHomeSignupBtn" :href="`${siginURL}/signup/choose`" style="padding: 20px 0; text-decoration: none" title="MYCURE - Sign Up")
             strong(style="font-size: 25px").white--text Sign Up Now   
 </template>
 
 <script>
   export default {
     data () {
-        return {
-          showVid: false,
-          siginURL: process.env.VUE_APP_SIGNIN_URL
-        };
+      return {
+        showVid: false,
+        siginURL: process.env.VUE_APP_SIGNIN_URL
+      };
+    },
+    methods: {
+      handleHomeSignupBtn () {
+        this.$ga.event({
+          eventCategory: 'button',
+          eventAction: 'click-home-signup-btn',
+          eventLabel: 'home-signup-btn'
+        });
       },
+    }
   };
 </script>
 

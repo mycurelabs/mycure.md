@@ -28,6 +28,7 @@
             :href="`${siginURL}/signup/choose`"
             style="height: 60px; width: 250px"
             id="home-signup-btn"
+            @click.stop="handleHomeSignupBtn"
           ).mt-3
             strong.font-small.white--text.text-none Sign Up Now
         br
@@ -55,6 +56,7 @@
             color="#18c551" 
             large
             id="home-signup-btn"
+            @click.stop="handleHomeSignupBtn"
           ).mt-5 
             strong.font-s.white--text.text-none Sign Up Now
         p.text-xs-center.py-4.font-small Have questions? 
@@ -91,6 +93,15 @@
           'Is your current system crappy and slows you down?'
         ]
       };
+    },
+    methods: {
+      handleHomeSignupBtn () {
+        this.$ga.event({
+          eventCategory: 'button',
+          eventAction: 'click-home-signup-btn',
+          eventLabel: 'home-signup-btn'
+        });
+      },
     }
   };
 </script>
