@@ -23,6 +23,7 @@
         v-layout(row wrap justify-center)
           v-btn(
             id="emr-signup-btn"
+            @click.stop="handleEmrSignupBtn"
             color="#18c551"
             :href="`${siginURL}/signup/private/step-1`"
             style="height: 60px; width: 250px"
@@ -46,6 +47,7 @@
         v-layout(row wrap justify-center)
           v-btn(
             id="emr-signup-btn"
+            @click.stop="handleEmrSignupBtn"
             :href="`${siginURL}/signup/private/step-1`"
             color="#18c551" large).mt-5 
             strong.font-s.text-none.white--text Sign Up Now
@@ -56,13 +58,6 @@
 
 <script>
   export default {
-    methods: {
-      toggleChat () {
-        let message = `Hi, I would like to know more about the Electronic Medical Records for Private Practice.`;
-        window.$crisp.push(['do', 'chat:toggle']);
-        window.$crisp.push(['do', 'message:send', ['text', message]]);
-      },
-    },
     data () {
       return {
         checkIcon: '../../assets/images/mycure-web-bullet-check.png',
@@ -77,6 +72,20 @@
           'My previous system is old and not user-friendly'
         ]
       };
+    },
+    methods: {
+      toggleChat () {
+        let message = `Hi, I would like to know more about the Electronic Medical Records for Private Practice.`;
+        window.$crisp.push(['do', 'chat:toggle']);
+        window.$crisp.push(['do', 'message:send', ['text', message]]);
+      },
+      handleEmrSignupBtn () {
+        this.$ga.event({
+          eventCategory: 'button',
+          eventAction: 'click-emr-signup-btn',
+          eventLabel: 'emr-signup-btn'
+        });
+      }
     },
   };
 </script>

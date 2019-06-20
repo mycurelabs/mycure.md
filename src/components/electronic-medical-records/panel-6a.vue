@@ -6,6 +6,7 @@
       span(slot="emr-sub-txt").font-small Experience what you can do more with MYCURE technology by your side.
       v-btn(
         id="emr-signup-btn"
+        @click.stop="handleEmrSignupBtn"
         slot="sign-up-button"
         :href="`${siginURL}/signup/private/step-1`" 
         color="#18c551" 
@@ -27,6 +28,15 @@
       return {
         siginURL: process.env.VUE_APP_SIGNIN_URL
       };
+    },
+    methods: {
+      handleEmrSignupBtn () {
+        this.$ga.event({
+          eventCategory: 'button',
+          eventAction: 'click-emr-signup-btn',
+          eventLabel: 'emr-signup-btn'
+        });
+      }
     }
   };
 </script>

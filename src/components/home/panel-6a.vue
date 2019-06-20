@@ -24,7 +24,7 @@
                       style="background-color: #18c551; color: white; width: auto" 
                       large
                       id="home-emr-signup-btn"
-                      @click.stop="handleEmrSignupBtn"
+                      @click.stop="handleHomeEmrSignupBtn"
                     ) 
                       strong.white--text Sign Up Now
           v-flex(xs12 md6)
@@ -48,7 +48,7 @@
                         style="background-color: #18c551; color: white; width: auto" 
                         large
                         id="home-cms-signup-btn"
-                        @click.stop="handleCmsSignupBtn"
+                        @click.stop="handleHomeCmsSignupBtn"
                       )
                         strong.white--text Sign Up Now
       panel6b(style="padding-top: 100px")
@@ -75,14 +75,14 @@
       };
     },
     methods: {
-      handleEmrSignupBtn () {
+      handleHomeEmrSignupBtn () {
         this.$ga.event({
           eventCategory: 'button',
           eventAction: 'click-home-emr-signup-btn',
           eventLabel: 'toolbar-home-emr-signup-btn'
         });
       },
-      handleCmsSignupBtn () {
+      handleHomeCmsSignupBtn () {
         this.$ga.event({
           eventCategory: 'button',
           eventAction: 'click-home-cms-signup-btn',

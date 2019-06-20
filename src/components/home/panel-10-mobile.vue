@@ -33,7 +33,7 @@
           eventCategory: 'video',
           eventAction: 'play-home-syncbase-vid-btn',
           eventLabel: 'home-syncbase-vid-btn'
-        })
+        });
       }
     }
   };
