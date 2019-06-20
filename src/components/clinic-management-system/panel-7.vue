@@ -13,6 +13,7 @@
         v-layout(row justify-center)
           v-btn(
             id="cms-signup-btn"
+            @click.stop="handleCmsSignupBtn"
             :href="`${siginURL}/signup/multi-specialty/step-1`"
             style="background-color: #18c551; width: 80%; height: 60px")  
             strong.font-m.white--text.text-none Sign Up Now  
@@ -24,6 +25,15 @@
       return {
         siginURL: process.env.VUE_APP_SIGNIN_URL
       };
+    },
+    methods: {
+      handleCmsSignupBtn () {
+        this.$ga.event({
+          eventCategory: 'button',
+          eventAction: 'click-cms-signup-btn',
+          eventLabel: 'cms-signup-btn'
+        });
+      }
     }
   };
 </script>

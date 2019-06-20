@@ -6,6 +6,7 @@
       span(slot="cms-sub-txt").font-small Experience what you can do more with MYCURE technology by your side.
       v-btn(
         id="cms-signup-btn"
+        @click.stop="handleCmsSignupBtn"
         slot="sign-up-button"
         :href="`${siginURL}/signup/multi-specialty/step-1`" 
         color="#18c551" 
@@ -29,6 +30,15 @@
       return {
         siginURL: process.env.VUE_APP_SIGNIN_URL
       };
+    },
+    methods: {
+      handleCmsSignupBtn () {
+        this.$ga.event({
+          eventCategory: 'button',
+          eventAction: 'click-cms-signup-btn',
+          eventLabel: 'cms-signup-btn'
+        });
+      }
     }
   };
 </script>

@@ -11,6 +11,7 @@
     v-layout(row wrap justify-center)
       v-btn(
         id="cms-signup-btn"
+        @click.stop="handleCmsSignupBtn"
         color="#18c551"
         :href="`${siginURL}/signup/multi-specialty/step-1`"
         style="height: 60px; width: 250px"
@@ -35,6 +36,13 @@
         let message = `Hi, I would like to know more about the Clinic Management System for Multispecialty Clinics.`;
         window.$crisp.push(['do', 'chat:toggle']);
         window.$crisp.push(['do', 'message:send', ['text', message]]);
+      },
+      handleCmsSignupBtn () {
+        this.$ga.event({
+          eventCategory: 'button',
+          eventAction: 'click-cms-signup-btn',
+          eventLabel: 'cms-signup-btn'
+        });
       }
     }
   };
