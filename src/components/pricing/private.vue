@@ -13,7 +13,14 @@
             br
             br
             div.pl-1
-              v-btn(id="pricing-private-signup-btn" :href="`${siginURL}/signup/private/step-1`"  color="#18c551" large right)
+              v-btn(
+                @click.stop="handlePricingPrivateSignupBtn"
+                id="pricing-private-signup-btn" 
+                :href="`${siginURL}/signup/private/step-1`"  
+                color="#18c551" 
+                large 
+                right
+              )
                 strong.white--text.text-none Sign Up Now
           v-flex(xs12 md6).px-3
             img(width="100%" src="../../assets/images/mycure-pricing-emr-private-clinic.png" alt="EMR Pricing")
@@ -140,7 +147,13 @@
               span.font-small {{ feature }}
       div.py-3
         v-layout(justify-center)
-          v-btn(id="pricing-private-signup-btn" :href="`${siginURL}/signup/private/step-1`"  color="info" large) 
+          v-btn(
+            id="pricing-private-signup-btn" 
+            @click.stop="handlePricingPrivateSignupBtn"
+            :href="`${siginURL}/signup/private/step-1`" 
+            color="info" 
+            large
+          ) 
             strong.text-none Sign Up Now
       br
       br
@@ -248,6 +261,15 @@
         ],
         siginURL: process.env.VUE_APP_SIGNIN_URL
       };
+    },
+    methods: {
+      handlePricingPrivateSignupBtn () {
+        this.$ga.event({
+          eventCategory: 'button',
+          eventAction: 'click-pricing-private-signup-btn',
+          eventLabel: 'pricing-private-signup-btn'
+        });
+      }
     }
   };
 </script>

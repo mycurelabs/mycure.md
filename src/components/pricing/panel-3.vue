@@ -10,6 +10,7 @@
       v-layout(row justify-center)
         v-btn(
           id="pricing-signup-btn"
+          @click.stop="handlePricingSignupBtn"
           :href="`${siginURL}/signup/choose`"
           style="background-color: #18c551; width: 80%; height: 60px")  
           strong.font-m.white--text.text-none Sign Up Now  
@@ -21,6 +22,15 @@
       return {
         siginURL: process.env.VUE_APP_SIGNIN_URL
       };
+    },
+    methods: {
+      handlePricingSignupBtn () {
+        this.$ga.event({
+          eventCategory: 'button',
+          eventAction: 'click-pricing-signup-btn',
+          eventLabel: 'pricing-signup-btn'
+        });
+      }
     }
   };
 </script>
