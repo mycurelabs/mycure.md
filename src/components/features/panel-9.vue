@@ -18,6 +18,7 @@
           v-layout(row justify-center).add-spacing
             //- https://ssense.github.io/vue-carousel/
             img(src="../../assets/images/mycure-web-features-mockup-07-A.png" alt="Syncbase Technology" width="50%")
+      modules.pt-5
       panel10(style="padding-top: 200px")
     div(v-else)#panel9.showPanel
       div.pt-5
@@ -44,10 +45,12 @@
 
 <script>
   import panel10 from './panel-10';
+  import modules from './modules';
   
   export default {
     components:{
-      panel10
+      panel10,
+      modules
     },
     data () {
       return {
