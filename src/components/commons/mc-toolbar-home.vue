@@ -124,7 +124,7 @@
               :href="`${siginURL}/signup/choose`"
             )
               strong(style="font-size: 14px").white--text.tab SIGN UP
-    mc-cookie-prompt
+    mc-cookie-prompt(style="position: absolute; z-index: 99;")
 </template>
 
 <script>

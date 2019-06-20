@@ -4,31 +4,32 @@
       position="top" 
       transitionName="fade"
     ).Cookie--mcCookie.white--text.pa-2
-      div(slot-scope="props")
-        v-layout(row v-if="!$isMobile").pl-4
-          v-flex(xs9 offset-xs1)
-            | We use third-party services to understand web traffic data for us and they may collect cookies during the process.
-            | By continuing to browse our site, you agree to MYCURE's 
-            router-link(:to="{name: 'terms'}").policy-links Terms of Use 
-            | & 
-            router-link(:to="{name: 'privacy-policy'}").policy-links Privacy Policy
-            | .  
-            | Feel free to check out our policies anytime for more info. 
-          v-flex(xs1).pl-4
+      div(slot-scope="props" style="width: 100%")
+        v-container(style="height: 45px !important; width: 100%").py-1
+          v-layout(row v-if="!$isMobile").px-4
+            v-flex(xs11)
+              | We use third-party services to understand web traffic data for us and they may collect cookies during the process.
+              | By continuing to browse our site, you agree to MYCURE's 
+              router-link(:to="{name: 'terms'}").policy-links Terms of Use 
+              | & 
+              router-link(:to="{name: 'privacy-policy'}").policy-links Privacy Policy
+              | .  
+              | Feel free to check out our policies anytime for more info. 
+            v-spacer
             v-btn(flat icon color="white" @click="props.accept")
               v-icon mdi-close
-        v-layout(row v-else).pl-3
-          v-flex(xs10)
-            | We use third-party services to understand web traffic data for us and they may collect cookies during the process.
-            | By continuing to browse our site, you agree to MYCURE's 
-            router-link(:to="{name: 'terms'}").policy-links Terms of Use 
-            | & 
-            router-link(:to="{name: 'privacy-policy'}").policy-links Privacy Policy
-            | .  
-            | Feel free to check out our policies anytime for more info. 
-          v-flex(xs1).pl-2
-            v-btn(flat icon left color="white" @click="props.accept")
-              v-icon mdi-close   
+          v-layout(row v-else).pl-3
+            v-flex(xs10)
+              | We use third-party services to understand web traffic data for us and they may collect cookies during the process.
+              | By continuing to browse our site, you agree to MYCURE's 
+              router-link(:to="{name: 'terms'}").policy-links Terms of Use 
+              | & 
+              router-link(:to="{name: 'privacy-policy'}").policy-links Privacy Policy
+              | .  
+              | Feel free to check out our policies anytime for more info. 
+            v-flex(xs1).pl-2
+              v-btn(flat icon left color="white" @click="props.accept")
+                v-icon mdi-close   
 </template>
 
 <script>
