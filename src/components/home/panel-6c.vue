@@ -14,7 +14,7 @@
               br
             v-btn(
               id="home-syncbase-vid-btn"
-              @click.stop="dialog= true; handleHomeSyncbaseVid"
+              @click.stop="dialog= true; handleHomeSyncbaseVid()"
               color="#2e9fdf"
               small
               right
