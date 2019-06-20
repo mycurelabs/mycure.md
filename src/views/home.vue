@@ -75,7 +75,7 @@
         highlightItems: [
           {
             title: 'Characters',
-            text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+            text: 'Doctors - MYCURE | Complete Clinic Management System wants to ease the mission of Medical Practitioners: Our unsung Heroes.',
             image: 'mycure-web-banner-last-panel-home-doctors.png'
           },
           {
@@ -85,7 +85,7 @@
           },
           {
             title: 'Plans',
-            text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+            text: 'The plan was to create a complete integrated, accessible, clinic management system to help direct the flow in the facility, process, store, and secure data.',
             image: 'mycure-web-banner-last-panel-home-doctors.png'
           }
         ]
