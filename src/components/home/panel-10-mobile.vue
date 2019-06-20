@@ -6,7 +6,7 @@
       p.font-m.text-xs-center {{ different }}
       br
       v-card.elevation-5
-        a(id="home-syncbase-vid-btn")
+        a(id="home-syncbase-vid-btn" @click.stop="handleHomeSyncbaseVid")
           img(v-if="!videoDialog" @click.stop="videoDialog=!videoDialog" width="100%" src="../../assets/images/mycure-web-video-cover-syncbase-online-offline.png" alt="MYCURE Syncbase video thumbnail")
           iframe(
             v-else
@@ -26,6 +26,15 @@
         different: "In Southeast Asia where internet coverage is limited, MYCURE made it possible for clinics to use a cloud-based system in their local network even if the internet goes down.",
         videoDialog: false
       };
+    },
+    methods: {
+      handleHomeSyncbaseVid () {
+        this.$ga.event({
+          eventCategory: 'video',
+          eventAction: 'play-home-syncbase-vid-btn',
+          eventLabel: 'home-syncbase-vid-btn'
+        })
+      }
     }
   };
 </script>

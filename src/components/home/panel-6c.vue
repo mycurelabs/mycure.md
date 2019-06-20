@@ -14,7 +14,7 @@
               br
             v-btn(
               id="home-syncbase-vid-btn"
-              @click.stop="dialog= true"
+              @click.stop="dialog= true; handleHomeSyncbaseVid"
               color="#2e9fdf"
               small
               right
@@ -53,6 +53,15 @@
         dialog: false,
         videoDialog: false
       };
+    },
+    methods: {
+      handleHomeSyncbaseVid () {
+        this.$ga.event({
+          eventCategory: 'video',
+          eventAction: 'play-home-syncbase-vid-btn',
+          eventLabel: 'home-syncbase-vid-btn'
+        })
+      }
     }
   };
 </script>
