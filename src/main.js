@@ -9,10 +9,14 @@ import './mixins';
 import '@mdi/font/css/materialdesignicons.css';
 import VueCarousel from 'vue-carousel';
 import CookieLaw from 'vue-cookie-law';
+import VueAnalytics from 'vue-analytics';
 
 Vue.config.productionTip = false;
 Vue.use(VueCarousel);
 Vue.use(CookieLaw);
+Vue.use(VueAnalytics, {
+  id: 'UA-78838129-8'
+});
 
 new Vue({
   router,

@@ -20,6 +20,7 @@
     "prerender-spa-plugin": "^3.4.0",
     "typeface-poppins": "*",
     "vue": "^2.6.10",
+    "vue-analytics": "^5.17.0",
     "vue-carousel": "^0.18.0",
     "vue-cookie-law": "^1.10.0",
     "vue-flip": "^0.2.5",
