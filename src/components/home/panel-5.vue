@@ -31,7 +31,7 @@
     div(v-else style="margin-top: -9%")
       div(style="background-color: #f5f5f5")
         img(src="../../assets/images/mycure-home-web-video-green-background-mobile.png" alt="Video green background" width="100%")
-        a(id="home-most-complete-vid-btn")
+        a(id="home-most-complete-vid-btn" @click.stop="handleMostCompleteVideo")
           img(
             v-if="!videoDialog" 
             @click.stop="videoDialog=!videoDialog"
@@ -75,6 +75,15 @@
           }
         ]
       };
+    },
+    methods: {
+      handleMostCompleteVideo () {
+        this.$ga.event({
+          eventCategory: 'video',
+          eventAction: 'play-home-most-complete-vid-btn',
+          eventLabel: 'home-most-complete-vid-btn'
+        });
+      }
     } 
   };
 </script>

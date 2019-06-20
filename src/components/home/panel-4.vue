@@ -72,13 +72,6 @@
     components: {
       panel4a
     },
-    methods: {
-      toggleChat () {
-        let message = `Hi, I would like to know more about MYCURE's products.`;
-        window.$crisp.push(['do', 'chat:toggle']);
-        window.$crisp.push(['do', 'message:send', ['text', message]]);
-      }
-    },
     data () {
       return {
         videoDialog: false,
@@ -102,6 +95,11 @@
           eventLabel: 'home-signup-btn'
         });
       },
+      toggleChat () {
+        let message = `Hi, I would like to know more about MYCURE's products.`;
+        window.$crisp.push(['do', 'chat:toggle']);
+        window.$crisp.push(['do', 'message:send', ['text', message]]);
+      }
     }
   };
 </script>
