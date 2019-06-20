@@ -5,6 +5,7 @@
       span(slot="home-txt" style="font-size: 36px") Join thousands of other health professionals who enjoy the benefits of using technology in their practice
       v-btn(
         id="our-story-signup-btn"
+        @click.stop="handleOurStorySignupBtn"
         slot="sign-up-button"
         :href="`${siginURL}/signup/choose`" 
         color="#18c551" 
@@ -26,6 +27,15 @@
       return {
         siginURL: process.env.VUE_APP_SIGNIN_URL
       };
+    },
+    methods: {
+      handleOurStorySignupBtn () {
+        this.$ga.event({
+          eventCategory: 'button',
+          eventAction: 'click-our-story-signup-btn',
+          eventLabel: 'our-story-signup-btn'
+        });
+      }
     }
   };
 </script>

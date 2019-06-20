@@ -18,14 +18,14 @@
               v-if="!$isMobile"
               color="info" 
               large
-              @click="showVid = true") 
+              @click="showVid = true; handleOurStoryWatchVid()") 
                 strong.font-small.text-none Watch video
             center(v-else)
               v-btn(
                 id="our-story-watch-vid-btn"
                 color="info" 
                 large
-                @click="showVid = true") 
+                @click="showVid = true; handleOurStoryWatchVid()") 
                   strong WATCH VIDEO
           v-flex(v-if="!$isMobile" xs12 md6 align-self-center style="margin-top: 5%")
             img(width="100%" src="../../assets/images/mycure-homepage-doctor-kid-pediatrician-drawing.png" alt="Our Story")
@@ -52,10 +52,19 @@
 <script>
   export default {
     data () {
-        return {
-          showVid: false
-        };
-      },
+      return {
+        showVid: false
+      };
+    },
+    methods: {
+      handleOurStoryWatchVid () {
+        this.$ga.event({
+          eventCategory: 'button',
+          eventAction: 'click-our-story-watch-vid-btn',
+          eventLabel: 'our-story-watch-vid-btn'
+        });
+      }
+    }
   };
 </script>
 

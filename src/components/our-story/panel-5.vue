@@ -6,7 +6,7 @@
           div(style="margin: 0px -20px 0px 0px; z-index: 1")
             img(src="../../assets/images/mycure-web-video-cover-decor-doctor-left.png" alt="Male doctor")
           div(style="z-index: 0")
-            a(id="our-story-care-the-extra-mile-vid-btn")
+            a(id="our-story-care-the-extra-mile-vid-btn" @click.stop="handleOurStoryCareTheExtraMile()")
               img(
                 v-if="!videoDialog" 
                 @click.stop="videoDialog=!videoDialog" 
@@ -30,7 +30,7 @@
           v-layout(row wrap align-center justify-center)
               h1.font-medium Caring the Extra Mile
           br
-          div(id="our-story-care-the-extra-mile-vid-btn")
+          div(id="our-story-care-the-extra-mile-vid-btn" @click.stop="handleOurStoryCareTheExtraMile()")
             iframe(
               align="middle"
               id="ytplayer" 
@@ -46,6 +46,15 @@
       return {
         videoDialog: false
       };
+    },
+    methods: {
+      handleOurStoryCareTheExtraMile () {
+        this.$ga.event({
+          eventCategory: 'button',
+          eventAction: 'click-our-story-care-the-extra-mile-vid-btn',
+          eventLabel: 'our-story-care-the-extra-mile-vid-btn'
+        });
+      }
     }
   };
 </script>
