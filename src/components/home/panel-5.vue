@@ -1,97 +1,32 @@
 <template lang="pug">
-  div
-    div(v-if="!$isMobile")#panel5
-      center
-        v-container(style="width: 65% !important")
-          v-layout(justify-center)
-            v-icon(size="100px").white--text mdi-chevron-left
-            div    
-              //- https://ssense.github.io/vue-carousel/
-              carousel(
-                :per-page="1" 
-                :autoplay="false"
-                :loop="true"
-                :navigationEnabled="true"
-                :adjustableHeight="true"
-                paginationActiveColor="white"
-                paginationColor="grey"
-                :navigationClickTargetSize="50"
-                navigationNextLabel=" "
-                navigationPrevLabel=" "
-              ) 
-                slide(v-for="(testimonial,index) in testimonials" :key="index" :data-index="index+1")
-                  h2.white--text {{ testimonial.message }}
-                  br
-                  br
-                  span.font-small.white--text {{ testimonial.name }}
-                    br
-                    span {{ testimonial.position }}
-            v-icon(size="100px").white--text mdi-chevron-right
-      br
-    div(v-else style="margin-top: -9%")
-      div(style="background-color: #f5f5f5")
-        img(src="../../assets/images/mycure-home-web-video-green-background-mobile.png" alt="Video green background" width="100%")
-        a(id="home-most-complete-vid-btn" @click.stop="handleMostCompleteVideo")
-          img(
-            v-if="!videoDialog" 
-            @click.stop="videoDialog=!videoDialog"
-            src="../../assets/images/mycure-home-web-video-cover-most-complete-clinic-management-system-mobile.png" 
-            alt="MYCURE Introduction Video thumbnail"
-            width="100%"
-            style="margin: -2% 0 -2% 0;"
-          )
-          iframe(
-            v-else
-            style="margin: -2% 0 -2% 0;"
-            align="middle"
-            id="ytplayer" 
-            type="text/html" width="375" height="250"
-            src="https://www.youtube.com/embed/ZR8e-Egav0M?autoplay=1&loop=1&showinfo=0&rel=0"
-            frameborder="0"
-            allowfullscreen
-          )
+  div#panel5
+    div(v-if="!$isMobile")
+      v-container
+        v-layout(row justify-center)
+          v-flex(xs5)
+            img(width="85%" src="../../assets/images/mycure-web-banner-data-privacy-law.png" alt="Data Privacy Law")
+          v-flex(xs6 align-self-center)
+            span.font-medium.lh-title Protect your patients' medical records with confidence
+            br
+            br
+            br
+            span.font-small.mt-3 With MYCURE you'll never have to worry much about data privacy concerns. Keeping them secure is our #1 priority.
+    div(v-else)
 </template>
 
 <script>
   export default {
     data () {
       return {
-        videoDialog: false,
-        testimonials: [
-          {
-            name: 'Dr. Gay Cadorna-Toledo',
-            position: 'Pediatrician',
-            message: '“It\'s a great experience using MYCURE app in our rural setup. I\'ve been through many EMR apps, but this one is the best so far... It is very convenient to use, simple, adaptable and user friendly even to my secretary.”'
-          },
-          {
-            name: 'Atty. Ivy D. Patdu, M.D',
-            position: 'Deputy Privacy Commissioner, NPC',
-            message: '“We should harness the power of technology. We should incorporate in system designs means to obtain information while remaining true to our obligations for data protection.”'
-          },
-          {
-            name: 'Dr. Nelson S. Abelardo',
-            position: 'Cardiologist',
-            message: '“MYCURE fulfills a long time need of physicians for accurate records of patients which they can carry with them wherever they are.”'
-          }
-        ]
+        // 
       };
-    },
-    methods: {
-      handleMostCompleteVideo () {
-        this.$ga.event({
-          eventCategory: 'video',
-          eventAction: 'play-home-most-complete-vid-btn',
-          eventLabel: 'home-most-complete-vid-btn'
-        });
-      }
-    } 
+    }
   };
 </script>
 
+
 <style scoped>
-
-  #panel5 {
-    background-color: #43ab5f
+  a {
+    text-decoration-color: #2e9fdf;
   }
-
 </style>

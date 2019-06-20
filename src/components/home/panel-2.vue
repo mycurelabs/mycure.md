@@ -1,95 +1,52 @@
 <template lang="pug">
-  div
-    div(v-if="!$isMobile")
-      v-layout(row wrap justify-center)
-        v-flex(xs12 md4)
-          a(@click="goToProducts();" id="home-panel2-btn1")
-            div.panel-2-box.border-color-a
-              strong.font-small.text-center Serve patients efficiently
-        v-flex(xs12 md4)
-          a(@click="goToDPA()" id="home-panel2-btn2")
-            div.panel-2-box.border-color-a
-              strong.font-small.text-center Comply to Data Privacy Act
-        v-flex(xs12 md4)
-          a(@click="goToSyncbase()" id="home-panel2-btn3")
-            div.panel-2-box.border-color-b
-              strong.font-small.text-center Work Offline
+  div#panel2
+    div(v-if="!$isMobile" style="margin-top: -5%")
+      v-container(style="padding-top: 450px;")
+        v-layout(row align-center justify-center)
+          div(style="margin: 0px -20px 0px 0px; z-index: 1")
+            img(src="../../assets/images/mycure-web-video-cover-decor-doctor-left.png" alt="Male doctor")
+          div(style="z-index: 0")
+            a(id="home-most-complete-vid-btn" @click.stop="handleMostCompleteVideo")
+              img(v-if="!videoDialog" @click.stop="videoDialog=!videoDialog" src="../../assets/images/mycure-web-video-cover.png" alt="MYCURE Introduction video thumbnail")
+              div(v-else style="border: 10px solid white; border-radius: 10px;")
+                iframe(
+                  align="middle"
+                  id="ytplayer" 
+                  type="text/html" width="652" height="379"
+                  src="https://www.youtube.com/embed/ZR8e-Egav0M?autoplay=1&loop=1&showinfo=0&rel=0"
+                  frameborder="0"
+                  allowfullscreen
+                  )
+          div(style="margin: 0px 0px 0px -20px; z-index: 1") 
+            img(src="../../assets/images/mycure-web-video-cover-decor-doctor-right.png" alt="Female doctor")
     div(v-else)
-      v-layout(row wrap justify-center)
-        v-flex(xs12 md4)
-          div(style="background-color: white;").panel-2-box.border-color-a
-            strong.font-small.text-center.font-mc-blue Serve patients efficiently
-        v-flex(xs12 md4)
-          div(style="background-color: white;").panel-2-box.border-color-a
-            strong.font-small.text-center.font-mc-blue Comply to Data Privacy Act
-        v-flex(xs12 md4)
-          div(style="background-color: white;").panel-2-box.border-color-b
-            strong.font-small.text-center.font-mc-blue Work Offline
 </template>
 
 <script>
-  import VueScrollTo from 'vue-scrollto';
-
   export default {
-    methods: {
-      goToProducts () {
-        VueScrollTo.scrollTo(`#products`, 500, { easing: 'ease' } );
-
-        this.$ga.event({
-          eventCategory: 'button',
-          eventAction: 'click-home-panel2-btn1',
-          eventLabel: 'home-panel2-btn1'
-        });
-      },
-      goToDPA () {
-        VueScrollTo.scrollTo(`#dpa`, 500, { easing: 'ease' } );
-
-        this.$ga.event({
-          eventCategory: 'button',
-          eventAction: 'click-home-panel2-btn2',
-          eventLabel: 'home-panel2-btn2'
-        });
-      },
-      goToSyncbase () {
-        VueScrollTo.scrollTo(`#syncbase`, 500, { easing: 'ease' } );
-
-        this.$ga.event({
-          eventCategory: 'button',
-          eventAction: 'click-home-panel2-btn3',
-          eventLabel: 'home-panel2-btn3'
-        });
-      }
-    },   
     data () {
       return {
-        //
+        videoDialog: false
       };
-    } 
+    },
+    methods: {
+      handleMostCompleteVideo () {
+        this.$ga.event({
+          eventCategory: 'video',
+          eventAction: 'play-home-most-complete-vid-btn',
+          eventLabel: 'home-most-complete-vid-btn'
+        });
+      },
+    },
   };
 </script>
 
 <style scoped>
-  a {
-    text-decoration: none
-  }
-  .panel-2-box {
-    height: 90px;
-    background-color: #f5f5f5;
-    border-width: thin;
-    border-style: solid;
-    text-align: center;
-    vertical-align: middle;
-    line-height: 90px; 
-    color: #2e9fdf;
-  }
-  .panel-2-box:hover {
-    background-color: #2e9fdf;
-    color: white;
-  }
-  .border-color-a {
-    border-color: lightgray lightgray lightgray transparent;
-  }
-  .border-color-b {
-    border-color: lightgray transparent lightgray transparent;
+  #panel2 {
+    height: 900px;
+    width: 100vw;
+    background-image: url('../../assets/images/mycure-home-web-video-green-background.png');
+    background-position: center center;
+    background-size: 100% 100%;
   }
 </style>

@@ -4,9 +4,9 @@
       v-container
         v-layout(row justify-center).pt-3
           span(style="font-size: 40px").lh-title MYCURE is complete - everything your clinic needs.
-      div.py-5
-        center.pt-4
-          img(style="max-width: 90%;" src="../../assets/images/mycure-home-web-complete-clinic-management-system-diagram.png" alt="Complete clinic management system")
+        div.py-5
+          v-layout(row justify-center).pt-4
+            img(style="max-width: 100%;" src="../../assets/images/mycure-home-web-complete-clinic-management-system-diagram.png" alt="Complete clinic management system")
     div(v-else)
       v-container.pt-5
         v-layout(row justify-center)

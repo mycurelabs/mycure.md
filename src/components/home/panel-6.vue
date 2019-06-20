@@ -1,6 +1,7 @@
 <template lang="pug">
   div
-    div(v-if="!$isMobile" style="padding-top: 100px")#panel6
+    //- div(v-if="!$isMobile" style="padding-top: 100px")#panel6
+    div(v-if="!$isMobile")#panel6
       v-layout(row wrap justify-center)
         span.font-medium.text-xs-center.px-3 MYCURE works for Private and Multispecialty Clinics
       br
@@ -42,16 +43,25 @@
               v-layout(row wrap center)
                 img(src="../../assets/images/mycure-web-bullet-check.png" alt="Check icon").mr-3
                 span.font-small Dental Clinics
-      panel6a(style="padding-top: 100px")
+      panel7(style="padding-top: 5%")
+      panel8(style="padding-top: 5%")
+      panel9(style="padding-top: 10%")
+      //- panel6a(style="padding-top: 100px")
     div(v-else)
 </template>
 
 <script>
   import panel6a from './panel-6a';
+  import panel7 from './panel-7';
+  import panel8 from './panel-8';
+  import panel9 from './panel-9';
 
   export default {
     components: {
-      panel6a
+      panel6a,
+      panel7,
+      panel8,
+      panel9
     },
     data () {
       return {
@@ -87,6 +97,10 @@
 
   tr:nth-child(even) {
     background-color: #f5f5f5;
+  }
+
+  tr:nth-child(odd) {
+    background-color: white;
   }
 
   /* top-left border-radius */

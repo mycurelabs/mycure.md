@@ -2,12 +2,14 @@
   div#top.white
     mcToolbarHome
     panel1
-    //- panel2
-    highlights(:highlights="highlightItems")
-    panel3
-    panel4
-    panel5(style="margin-top: -2px")
-    panel6
+    highlights(:highlights="highlightItems").pt-5
+    panel2mobile(v-if="$isMobile")
+    panel2.pt-5
+    panel3.pt-5
+    panel4.pt-5
+    panel4mobile
+    panel5.pt-5
+    panel6.pt-5
     panel6mobile(v-if="$isMobile")
     panel7mobile(v-if="$isMobile")
     panel8mobile(v-if="$isMobile").showPanel
@@ -22,10 +24,16 @@
   import mcFooter from '@/components/commons/mc-footer';
   import panel1 from '@/components/home/panel-1';
   import panel2 from '@/components/home/panel-2';
+  import panel2mobile from '@/components/home/panel-2-mobile';
   import panel3 from '@/components/home/panel-3';
   import panel4 from '@/components/home/panel-4';
+  import panel4mobile from '@/components/home/panel-4-mobile';
   import panel5 from '@/components/home/panel-5';
+  import panel5mobile from '@/components/home/panel-5-mobile';
   import panel6 from '@/components/home/panel-6';
+  import panel7 from '@/components/home/panel-7';
+  import panel8 from '@/components/home/panel-8';
+  import panel9 from '@/components/home/panel-9';
   import panel6mobile from '@/components/home/panel-6-mobile';
   import panel7mobile from '@/components/home/panel-7-mobile';
   import panel8mobile from '@/components/home/panel-8-mobile';
@@ -41,10 +49,16 @@
       mcFooter,
       panel1,
       panel2,
+      panel2mobile,
       panel3,
       panel4,
+      panel4mobile,
       panel5,
+      panel5mobile,
       panel6,
+      panel7,
+      panel8,
+      panel9,
       panel6mobile,
       panel7mobile,
       panel8mobile,

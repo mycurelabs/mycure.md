@@ -3,16 +3,16 @@
     v-container
       v-layout(row wrap justify-center)
         v-flex(xs5) 
-          slot(name="home-img")
+          slot(name="img")
           slot(name="emr-img")
           slot(name="cms-img")
         v-flex(xs7 align-self-center).pl-5
-          slot(name="home-txt")
+          slot(name="txt")
           slot(name="emr-txt")
           slot(name="cms-txt")
           br
           br
-          slot(name="emr-sub-txt")
+          slot(name="sub-txt")
           slot(name="cms-sub-txt")
           br
           br
