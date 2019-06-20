@@ -1,28 +1,31 @@
 <template lang="pug">
   div#top.white
     mcToolbarHome
-    panel1
-    highlights(
+    usp-1
+    highlights-2(
       :introduction="introText"
       :highlights="highlightItems"
       :hasTitle="false"
     )
+    diagram-3
     mcFooter
 </template>
 
 <script>
   import mcToolbarHome from '@/components/commons/mc-toolbar-home';
   import mcFooter from '@/components/commons/mc-footer';
-  import highlights from '@/components/commons/highlights';
-  import panel1 from '@/components/solo/panel-1';
+  import usp1 from '@/components/solo/1-usp';
+  import highlights2 from '@/components/commons/highlights';
+  import diagram3 from '@/components/solo/3-diagram';
   import VueScrollTo from 'vue-scrollto';
 
   export default {
     components: {
       mcToolbarHome,
       mcFooter,
-      highlights,
-      panel1,
+      usp1,
+      highlights2,
+      diagram3
     },
     mounted () {
       VueScrollTo.scrollTo(`#top`, 500, { easing: 'ease' } );
