@@ -33,6 +33,7 @@
       v-layout(row justify-center).pb-5
         v-btn(
           id="home-emr-signup-btn"
+          @click.stop="handleEmrSignupBtn"
           :href="`${siginURL}/signup/private/step-1`"
           style="background-color: #18c551; width: 80%; height: 60px")
           strong.font-m.white--text.text-none Sign Up Now
@@ -44,6 +45,7 @@
       v-layout(row justify-center).pb-5
         v-btn(
           id="home-cms-signup-btn"
+          @click.stop="handleCmsSignupBtn"
           :href="`${siginURL}/signup/multi-specialty/step-1`"
           style="background-color: #18c551; width: 80%; height: 60px")  
           strong.font-m.white--text.text-none Sign Up Now  
@@ -73,6 +75,22 @@
           'Materials Management'
         ]
       };
+    },
+    methods: {
+      handleEmrSignupBtn () {
+        this.$ga.event({
+          eventCategory: 'button',
+          eventAction: 'click-home-emr-signup-btn',
+          eventLabel: 'toolbar-home-emr-signup-btn'
+        });
+      },
+      handleCmsSignupBtn () {
+        this.$ga.event({
+          eventCategory: 'button',
+          eventAction: 'click-home-cms-signup-btn',
+          eventLabel: 'toolbar-home-cms-signup-btn'
+        });
+      }
     }
   };
 </script>

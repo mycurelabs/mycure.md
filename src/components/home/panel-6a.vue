@@ -24,6 +24,7 @@
                       style="background-color: #18c551; color: white; width: auto" 
                       large
                       id="home-emr-signup-btn"
+                      @click.stop="handleEmrSignupBtn"
                     ) 
                       strong.white--text Sign Up Now
           v-flex(xs12 md6)
@@ -47,6 +48,7 @@
                         style="background-color: #18c551; color: white; width: auto" 
                         large
                         id="home-cms-signup-btn"
+                        @click.stop="handleCmsSignupBtn"
                       )
                         strong.white--text Sign Up Now
       panel6b(style="padding-top: 100px")
@@ -71,6 +73,22 @@
           multispecialty_title: 'An all-around solution for your outpatient, multispecialty or specialized clinics that will manage your full-patient journeys with ease.',
           siginURL: process.env.VUE_APP_SIGNIN_URL
       };
+    },
+    methods: {
+      handleEmrSignupBtn () {
+        this.$ga.event({
+          eventCategory: 'button',
+          eventAction: 'click-home-emr-signup-btn',
+          eventLabel: 'toolbar-home-emr-signup-btn'
+        });
+      },
+      handleCmsSignupBtn () {
+        this.$ga.event({
+          eventCategory: 'button',
+          eventAction: 'click-home-cms-signup-btn',
+          eventLabel: 'toolbar-home-cms-signup-btn'
+        });
+      }
     }
   };
 </script>
