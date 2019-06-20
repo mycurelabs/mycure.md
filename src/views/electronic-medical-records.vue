@@ -35,17 +35,17 @@
         highlightItems: [
           {
             title: 'Manage on the Go',
-            text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+            text: 'View your charts while you are traveling, having coffee or simply relaxing at home.',
             image: 'mycure-web-banner-last-panel-home-doctors.png'
           },
           {
             title: 'Oversee Security',
-            text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+            text: 'Personally secure your records and control access to it via the admin status.',
             image: 'mycure-web-banner-last-panel-home-doctors.png'
           },
           {
             title: 'Online Profile',
-            text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+            text: 'Maximize your online presence by using the online profile feature of MYCURE so that patients can reach you easily',
             image: 'mycure-web-banner-last-panel-home-doctors.png'
           }
         ]
