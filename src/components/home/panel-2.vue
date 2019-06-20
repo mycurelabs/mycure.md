@@ -3,7 +3,7 @@
     div(v-if="!$isMobile")
       v-layout(row wrap justify-center)
         v-flex(xs12 md4)
-          a(@click="goToProducts()" id="home-panel2-btn1")
+          a(@click="goToProducts();" id="home-panel2-btn1")
             div.panel-2-box.border-color-a
               strong.font-small.text-center Serve patients efficiently
         v-flex(xs12 md4)
@@ -34,12 +34,30 @@
     methods: {
       goToProducts () {
         VueScrollTo.scrollTo(`#products`, 500, { easing: 'ease' } );
+
+        this.$ga.event({
+          eventCategory: 'button',
+          eventAction: 'click-home-panel2-btn1',
+          eventLabel: 'home-panel2-btn1'
+        });
       },
       goToDPA () {
         VueScrollTo.scrollTo(`#dpa`, 500, { easing: 'ease' } );
+
+        this.$ga.event({
+          eventCategory: 'button',
+          eventAction: 'click-home-panel2-btn2',
+          eventLabel: 'home-panel2-btn2'
+        });
       },
       goToSyncbase () {
         VueScrollTo.scrollTo(`#syncbase`, 500, { easing: 'ease' } );
+
+        this.$ga.event({
+          eventCategory: 'button',
+          eventAction: 'click-home-panel2-btn3',
+          eventLabel: 'home-panel2-btn3'
+        });
       }
     },   
     data () {
