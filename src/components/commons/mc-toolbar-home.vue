@@ -5,21 +5,29 @@
         v-layout(row wrap justify-center)
           v-flex(xs12 md12 style="margin-top: 3px;")
             v-toolbar(flat).white
-              router-link(:to="{ name: 'home' }" title="MYCURE | Clinic Management System | Cloud EMR Philippines" id="toolbar-mycure-logo").mr-3.mt-2
+              router-link(:to="{ name: 'home' }" title="MYCURE | Clinic Management System | Cloud EMR Philippines" id="toolbar-mycure-logo" @click.stop="handleMycureLogo").mr-3.mt-2
                 img(src="../../assets/images/mycure-header-logo.png" width="140" alt="MYCURE logo")
-              v-btn(v-for="(link, key) in $mainLinks" :key="key" :to="{ name: link.name }" :id="link.id" flat)
+              v-btn(
+                v-for="(link, key) in $mainLinks" 
+                :key="key" 
+                :to="{ name: link.name }" 
+                :id="link.id" 
+                flat
+              )
                 span(style="font-size: 14px").tab.text-none {{link.meta.pageName}}
               v-spacer
               v-btn(
                 flat
                 :href="`${siginURL}?target=${cmsURL}/authenticate`"
                 id="toolbar-login-btn"
+                @click.stop="handleLoginBtn"
               )
                 strong(style="font-size: 14px").tab LOGIN
               v-btn(
                 color="#2e9fdf"
                 :href="`${siginURL}/signup/choose`"
                 id="toolbar-signup-btn"
+                @click.stop="handleSignupBtn"
               )
                 strong(style="font-size: 14px").white--text.tab SIGN UP
     div(v-else)
@@ -34,7 +42,7 @@
         //- v-toolbar(flat app fixed).white
         div(style="position: sticky; top: 0px; z-index: 9999; width: 100%;")
           v-toolbar(flat :class="shadow").white
-            router-link(:to="{ name: 'home' }" title="MYCURE | Clinic Management System | Cloud EMR Philippines" id="toolbar-mycure-logo").logo-a
+            router-link(:to="{ name: 'home' }" title="MYCURE | Clinic Management System | Cloud EMR Philippines" id="toolbar-mycure-logo" @click.stop="handleMycureLogo").logo-a
               img(src="../../assets/images/mycure-header-logo.png" width="130" alt="MYCURE logo").mt-1
             v-spacer
             v-btn(icon large @click="drawer = !drawer")
@@ -116,12 +124,16 @@
         div(style="position: sticky; bottom: 0px; z-index: 999; border-top: 1px solid lightgrey; background-color: white").py-3
           v-layout(row justify-center)
             v-btn(
+                id="navdrawer-login-btn"
                 :href="`${siginURL}?target=${cmsURL}/authenticate`"
+                @click.stop="handleLoginBtnMobile"
               )
                 strong(style="font-size: 14px").tab LOGIN
             v-btn(
+              id="navdrawer-signup-btn"
               color="#18c551"
               :href="`${siginURL}/signup/choose`"
+              @click.stop="handleSignupBtnMobile"
             )
               strong(style="font-size: 14px").white--text.tab SIGN UP
     mc-cookie-prompt(style="position: absolute; z-index: 99;")
@@ -148,7 +160,45 @@
       },
       showShadow () {
         this.scrollPosition !== 0 ? this.shadow = 'elevation-4' : this.shadow = '';
+      },
+      handleLoginBtn () {
+        this.$ga.event({
+          eventCategory: 'button',
+          eventAction: 'click-toolbar-login-btn',
+          eventLabel: 'toolbar-login-btn'
+        });
+      },
+      handleSignupBtn () {
+        this.$ga.event({
+          eventCategory: 'button',
+          eventAction: 'click-toolbar-signup-btn',
+          eventLabel: 'toolbar-signup-btn'
+        });
+      },
+      handleLoginBtnMobile () {
+        this.$ga.event({
+          eventCategory: 'button',
+          eventAction: 'click-navdrawer-login-btn',
+          eventLabel: 'navdrawer-login-btn'
+        });
+      },
+      handleSignupBtnMobile () {
+        this.$ga.event({
+          eventCategory: 'button',
+          eventAction: 'click-navdrawer-signup-btn',
+          eventLabel: 'navdrawer-signup-btn'
+        });
+      },
+      handleMycureLogo () {
+        this.$ga.event({
+          eventCategory: 'logo-btn',
+          eventAction: 'click-toolbar-mycure-logo',
+          eventLabel: 'toolbar-mycure-logo'
+        });
       }
+      // foo () {
+      //   console.log('asdasd');
+      // }
     },
     mounted () {
       window.addEventListener('scroll', this.updateScroll);

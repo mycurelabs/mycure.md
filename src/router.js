@@ -62,6 +62,7 @@ export default new Router({
       path: '/electronic-medical-records',
       name: 'emr', 
       id: 'toolbar-private-practice-btn',
+      // function: 'foo',
       component: emr,
       meta: {
         pageType: 'main',

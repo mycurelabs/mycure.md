@@ -9,47 +9,47 @@
             v-flex(xs12 md3 offset-md1).font-mc-grey
               ul.no-style-type.pb-3
                 li
-                  router-link(id="footer-features-btn" :to="{name: 'features'}" title="MYCURE Features").link.white--text Features
+                  router-link(id="footer-features-link" @click.stop="handleFooterFeaturesLink" :to="{name: 'features'}" title="MYCURE Features").link.white--text Features
               ul.no-style-type
                 li.feature-text CLINIC SOLUTIONS
                 li
-                  router-link(id="footer-private-practice-btn" :to="{name: 'emr'}" title="MYCURE | Private Practice Electronic Medical Records (EMR)").link.white--text
+                  router-link(id="footer-private-practice-link" @click.stop="handleFooterEmrLink" :to="{name: 'emr'}" title="MYCURE | Private Practice Electronic Medical Records (EMR)").link.white--text
                     span For Private Practice
                 li.pb-3
-                  router-link(id="footer-multispecialty-btn" :to="{name: 'cms'}" title="MYCURE | Multispecialty Clinic Management System (CMS)").link.white--text
+                  router-link(id="footer-multispecialty-link" @click.stop="handleFooterCmsLink" :to="{name: 'cms'}" title="MYCURE | Multispecialty Clinic Management System (CMS)").link.white--text
                     span For Multispecialty Clinics
                 li.feature-text ABOUT
                 li
-                  router-link(id="footer-our-story-btn" :to="{name: 'our-story'}" title="MYCURE Our Story | Caring the Extra Mile").link.white--text 
+                  router-link(id="footer-our-story-link" @click.stop="handleFooterOurStoryLink" :to="{name: 'our-story'}" title="MYCURE Our Story | Caring the Extra Mile").link.white--text 
                     span Our Story
                 li 
-                  router-link(id="footer-blog-btn" :to="{ name: 'blog-link' }" title="MYCURE - Blog").link.white--text Blog 
+                  router-link(id="footer-blog-link" @click.stop="handleFooterBlogLink" :to="{ name: 'blog-link' }" title="MYCURE - Blog").link.white--text Blog 
                 li 
-                  router-link(id="footer-careers-btn" :to="{ name: 'careers' }" title="MYCURE - Careers").link.white--text Careers
+                  router-link(id="footer-careers-link" @click.stop="handleFooterCareersLink" :to="{ name: 'careers' }" title="MYCURE - Careers").link.white--text Careers
               
             v-flex(xs12 md3 offset-md1).font-mc-grey
               ul.no-style-type
                 li.feature-text SUPPORT 
                 li 
-                  router-link(id="footer-faqs-btn" :to="{ name: 'faqs-link'}" title="MYCURE - FAQs").link.white--text FAQs
+                  router-link(id="footer-faqs-link" @click.stop="handleFooterFaqsLink" :to="{ name: 'faqs-link'}" title="MYCURE - FAQs").link.white--text FAQs
                 li
-                  router-link(id="footer-pricing-btn" :to="{name: 'pricing'}" title="MYCURE Pricing | Affordable EMR and Clinic Management System").link.white--text
+                  router-link(id="footer-pricing-link" @click.stop="handleFooterPricingLink" :to="{name: 'pricing'}" title="MYCURE Pricing | Affordable EMR and Clinic Management System").link.white--text
                     span Pricing
                 li.pb-3
-                  router-link(id="footer-book-a-demo-btn" :to="{ name: 'calendly' }" title="MYCURE - Book A Demo").link.white--text Book A Demo
+                  router-link(id="footer-book-a-demo-link" @click.stop="handleFooterBookADemoLink" :to="{ name: 'calendly' }" title="MYCURE - Book A Demo").link.white--text Book A Demo
                 li.feature-text LEGAL
                 li
-                  router-link(id="footer-terms-btn" :to="{name: 'terms'}" title="MYCURE Terms and Conditions").link.white--text 
+                  router-link(id="footer-terms-link" @click.stop="handleFooterTermsLink" :to="{name: 'terms'}" title="MYCURE Terms and Conditions").link.white--text 
                     span Terms
                 li
-                  router-link(id="footer-privacy-policy-btn" :to="{name: 'privacy-policy'}" title="MYCURE Privacy Policy").link.white--text 
+                  router-link(id="footer-privacy-policy-link" @click.stop="handleFooterPrivacyPolicyLink" :to="{name: 'privacy-policy'}" title="MYCURE Privacy Policy").link.white--text 
                     span Privacy Policy
               
             v-flex(xs12 md3 offset-md1).font-mc-grey
               ul.no-style-type
                 li.feature-text CONTACT US
                 li 
-                  a(id="footer-email-btn" title="MYCURE - Email" href="mailto:hello@mycure.md" style="color: #2e9fdf") hello@mycure.md
+                  a(id="footer-email-link" @click.stop="handleFooterEmailLink" title="MYCURE - Email" href="mailto:hello@mycure.md" style="color: #2e9fdf") hello@mycure.md
                 li.white--text (+632) 799 6262
                 li.white--text (+63) 917 303 4350
           hr.mc-grey.my-4  
@@ -85,13 +85,98 @@ export default {
     return {
       siginURL: process.env.VUE_APP_SIGNIN_URL
     };
+  },
+  methods: {
+    handleFooterFeaturesLink () {
+      this.$ga.event({
+        eventCategory: 'link',
+        eventAction: 'click-footer-features-link',
+        eventLabel: 'footer-features-link'
+      });
+    },
+    handleFooterEmrLink () {
+      this.$ga.event({
+        eventCategory: 'link',
+        eventAction: 'click-footer-private-practice-link',
+        eventLabel: 'footer-private-practice-link'
+      });
+    },
+    handleFooterCmsLink () {
+      this.$ga.event({
+        eventCategory: 'link',
+        eventAction: 'click-footer-multispecialty-link',
+        eventLabel: 'footer-multispecialty-link'
+      });
+    },
+    handleFooterOurStoryLink () {
+      this.$ga.event({
+        eventCategory: 'link',
+        eventAction: 'click-footer-our-story-link',
+        eventLabel: 'footer-our-story-link'
+      });
+    },
+    handleFooterBlogLink () {
+      this.$ga.event({
+        eventCategory: 'link',
+        eventAction: 'click-footer-blog-link',
+        eventLabel: 'footer-blog-link'
+      });
+    },
+    handleFooterCareersLink () {
+      this.$ga.event({
+        eventCategory: 'link',
+        eventAction: 'click-footer-careers-link',
+        eventLabel: 'footer-careers-link'
+      });
+    },
+    handleFooterFaqsLink () {
+      this.$ga.event({
+        eventCategory: 'link',
+        eventAction: 'click-footer-faqs-link',
+        eventLabel: 'footer-faqs-link'
+      });
+    },
+    handleFooterPricingLink () {
+      this.$ga.event({
+        eventCategory: 'link',
+        eventAction: 'click-footer-pricing-link',
+        eventLabel: 'footer-pricing-link'
+      });
+    },
+    handleFooterBookADemoLink () {
+      this.$ga.event({
+        eventCategory: 'link',
+        eventAction: 'click-footer-book-a-demo-link',
+        eventLabel: 'footer-book-a-demo-link'
+      });
+    },
+    handleFooterTermsLink () {
+      this.$ga.event({
+        eventCategory: 'link',
+        eventAction: 'click-footer-terms-link',
+        eventLabel: 'footer-terms-link'
+      });
+    },
+    handleFooterPrivacyPolicyLink () {
+      this.$ga.event({
+        eventCategory: 'link',
+        eventAction: 'click-footer-privacy-policy-link',
+        eventLabel: 'footer-privacy-policy-link'
+      });
+    },
+    handleFooterEmailLink () {
+      this.$ga.event({
+        eventCategory: 'link',
+        eventAction: 'click-footer-email-link',
+        eventLabel: 'footer-email-link'
+      });
+    },
   }
 };
 </script>
 
 
 <style scoped>
-
   hr {
     height: 1px;
     color: #616161;
