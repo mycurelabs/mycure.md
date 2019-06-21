@@ -56,6 +56,7 @@
     data () {
       return {
         siginURL: process.env.VUE_APP_SIGNIN_URL,
+        private_title: 'Get a powerful combination of features designed for physicians who are practicing solo or in groups.',
         // cloud_title: 'Get a powerful combination of features designed for physicians who are practicing solo or in groups.',
         // standalone_title: 'Get access to the full features, completely independent system and designed for the physician’s personal clinic.',
         // cloudFeatures: [

@@ -35,17 +35,17 @@
         storyflowItems: [
           {
             title: 'Manage on the Go',
-            text: 'View your charts while you are traveling, \nhaving coffee or simply relaxing at home.',
+            text: 'View your charts while you are \ntraveling, having coffee or simply\n relaxing at home.',
             image: 'mycure-web-banner-circles-private-01-on-the-go.png'
           },
           {
             title: 'Oversee Security',
-            text: 'Personally secure your records and control access to it via the \nadmin status.',
+            text: 'Personally secure your records \nand control access to it via the \nadmin status.',
             image: 'mycure-web-banner-circles-private-02-security.png'
           },
           {
             title: 'Online Profile',
-            text: 'Maximize your online presence by using the online profile \nfeature of MYCURE so that patients can reach you easily',
+            text: 'Maximize your online presence by \nusing the online profile feature \nof MYCURE so that patients \ncan reach you easily',
             image: 'mycure-web-banner-circles-private-03-online-profile.png'
           }
         ]
