@@ -17,9 +17,9 @@
     //- panel5(v-if="!$isMobile")
     //- panel5a(v-if="!$isMobile").showPanel
     //- panel6(v-if="$isMobile").showPanel
-    //- filler(v-if="$isMobile").showPanel.pt-5
-    //-   span(slot="multiFiller" style="font-size: 30px") Does your clinic have more than 3 branches? 
-    //-   span(slot="chatWindow" @click="toggleChat" style="font-size: 30px").pointer.font-mc-blue Talk to us for custom pricing.
+    filler(v-if="$isMobile").showPanel.pt-5
+      span(slot="multiFiller" style="font-size: 30px") Does your clinic have more than 3 branches? 
+      span(slot="chatWindow" @click="toggleChat" style="font-size: 30px").pointer.font-mc-blue Talk to us for custom pricing.
     //- panel7(v-if="$isMobile").showPanel
     mc-footer
 </template>
@@ -36,7 +36,7 @@
   import panel5a from '@/components/clinic-management-system/panel-5a';
   import panel6 from '@/components/clinic-management-system/panel-6';
   import panel7 from '@/components/clinic-management-system/panel-7';
-  // import filler from '@/components/commons/filler';
+  import filler from '@/components/commons/filler';
   import VueScrollTo from 'vue-scrollto';
 
   import usp from '@/components/clinic-management-system/1-usp';
@@ -45,7 +45,7 @@
   import benfits from '@/components/clinic-management-system/4-benefits';
   import pricing from '@/components/clinic-management-system/5-pricing';
   import finalwords from '@/components/clinic-management-system/6-finalwords';
-  import filler from '@/components/clinic-management-system/7-filler';
+  // import filler from '@/components/clinic-management-system/7-filler';
 
   export default {
     data () {

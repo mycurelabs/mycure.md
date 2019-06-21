@@ -16,7 +16,7 @@
     //- panel9mobile(v-if="$isMobile").showPanel
     //- panel10mobile(v-if="$isMobile").showPanel
     //- panel11mobile(v-if="$isMobile").showPanel
-    //- mcFooter
+    mcFooter
 </template>
 
 <script>

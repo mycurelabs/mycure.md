@@ -1,8 +1,7 @@
 <template lang="pug">
   div
-    div(v-if="!$isMobile").pt-4
+    div.pt-4
       storyflow(:storyflow="storyflowItems")
-    div(v-else)
 </template>
 
 <script>

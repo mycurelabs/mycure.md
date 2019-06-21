@@ -1,6 +1,6 @@
 <template lang="pug">
   div#panel7.pt-3.transparent
-    center
+    v-layout(row align-center)
       v-layout(column justify-center style="width: 90%").pt-5
         img(style="max-width: 80%" src="../../assets/images/../../assets/images/mycure_web_banner_last_panel_doctor.png" alt="Clinic best version")
         br 

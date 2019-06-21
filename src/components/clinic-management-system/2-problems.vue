@@ -52,7 +52,7 @@
         p.text-xs-center.py-4.font-small Have questions? 
           a(@click.stop="toggleChat()")
             strong.font-mc-blue Send us a chat.
-    div(v-else).mc-light-grey
+    div(v-else).white
       v-container
         v-layout(row justify-center)
           span.font-l.text-xs-center.lh-title Why do clinics switch to MYCURE?
