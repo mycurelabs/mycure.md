@@ -37,17 +37,17 @@
           {
             title: '',
             text: 'Live in a remote area with poor connection or no internet at all?',
-            image: 'mycure-web-banner-last-panel-home-doctors.png'
+            image: 'mycure-web-banner-circles-solo-01-doctor.png'
           },
           {
             title: '',
             text: 'Have security trust issues and want to secure your patient\'s medical records?',
-            image: 'mycure-web-banner-last-panel-home-doctors.png'
+            image: 'mycure-web-banner-circles-solo-02-privacy.png'
           },
           {
             title: '',
             text: 'Not have enough funds but want a complete clinic system for your personal use?',
-            image: 'mycure-web-banner-last-panel-home-doctors.png'
+            image: 'mycure-web-banner-circles-solo-03-free.png'
           }
         ]
       };
