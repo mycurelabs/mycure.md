@@ -40,6 +40,7 @@
           v-layout(row justify-center)  
             //- https://ssense.github.io/vue-carousel/
             img(src="../../assets/images/mycure-web-features-mockup-07-A.png" alt="Syncbase Technology" style="width: 90%; height: 100%;")
+      modules.showPanel
       panel10.showPanel
 </template>
 
