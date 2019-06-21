@@ -32,13 +32,13 @@
         p.text-xs-center.py-4.font-small Have questions? 
           a(@click.stop="toggleChat()")
             strong.font-mc-blue Send us a chat.
-    div(v-else).mc-light-grey
+    div(v-else).white
       v-container
         v-layout(row justify-center)
           span.font-l.text-xs-center Why do doctors use MYCURE in their clinics?
       v-container
         v-layout(row justify-center)
-          v-list(two-line style="background-color: #f5f5f5")
+          v-list(two-line style="background-color: white")
             v-list-tile(v-for="(problem,index) in clinicProblems" :key="index")
               v-list-tile-action
                 img(src="../../assets/images/mycure-web-bullet-check.png" alt="Check icon") 
