@@ -36,17 +36,17 @@
           {
             title: 'Manage on the Go',
             text: 'View your charts while you are traveling, having coffee or simply relaxing at home.',
-            image: 'mycure-web-banner-last-panel-home-doctors.png'
+            image: 'mycure-web-banner-circles-private-01-on-the-go.png'
           },
           {
             title: 'Oversee Security',
             text: 'Personally secure your records and control access to it via the admin status.',
-            image: 'mycure-web-banner-last-panel-home-doctors.png'
+            image: 'mycure-web-banner-circles-private-02-security.png'
           },
           {
             title: 'Online Profile',
             text: 'Maximize your online presence by using the online profile feature of MYCURE so that patients can reach you easily',
-            image: 'mycure-web-banner-last-panel-home-doctors.png'
+            image: 'mycure-web-banner-circles-private-03-online-profile.png'
           }
         ]
       };
