@@ -4,7 +4,7 @@
       v-container(align-center fill-height style="padding-top: 70px").px-5.panel-1
         v-layout(row justify-center)
           v-flex(xs12 md7 align-self-center style="margin-top: -1%")
-            h1(style="font-weight: bold;").font-small.font-mc-blue MYCURE | Complete Clinic Management System
+            h1(style="font-weight: bold;").font-small.font-mc-blue MYCURE Complete Clinic Management System
             br
             p(style="line-height: 65px;").font-medium A clinic management system that helps private medical practitioner do greater things.
             br 
