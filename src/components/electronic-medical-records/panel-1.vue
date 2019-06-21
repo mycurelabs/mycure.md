@@ -21,7 +21,7 @@
     div(v-else).white
       v-container.pt-5
         v-layout(column justify-center)
-            h1(style="font-weight: bold;").font-small.font-mc-blue.text-xs-center.pb-2 MYCURE Complete Clinic Management System
+            h1(style="font-weight: bold;").font-small.font-mc-blue.text-xs-center.pb-2 MYCURE Private Practice
             br
             p.font-l.text-xs-center.lh-title Provides a system that helps private medical practitioner do greater things.
         v-flex(xs12)
