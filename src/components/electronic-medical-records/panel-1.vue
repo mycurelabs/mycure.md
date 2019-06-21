@@ -3,8 +3,8 @@
     div(v-if="!$isMobile").white
       v-container(align-center fill-height style="padding-top: 70px").px-5.panel-1
         v-layout(row justify-center)
-          v-flex(xs12 md7 align-self-center style="margin-top: -10%")
-            h1(style="line-height: 65px;").font-large A clinic system that helps physicians do greater things.
+          v-flex(xs12 md7 align-self-center style="margin-top: -1%")
+            h1(style="line-height: 65px;").font-medium A clinic management system that helps private medical practitioner do greater things.
             br 
             br
             v-btn(
@@ -21,7 +21,7 @@
       v-container.pt-5
         v-layout(row justify-center)
           v-flex(xs12 md5)
-            h1.font-l.text-xs-center A clinic system that helps physicians do greater things.
+            h1.font-l.text-xs-center.lh-title A clinic management system that helps private medical practitioner do greater things.
             br
             br
         v-flex(xs12)

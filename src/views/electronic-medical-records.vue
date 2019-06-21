@@ -8,10 +8,10 @@
     storyflow(:storyflow="storyflowItems")
     //- panel5
     panel6.showPanel
+    panel7mobile(v-if="$isMobile").showPanel
     filler(v-if="$isMobile").showPanel.pt-5
       span(slot="privateFiller" style="font-size: 30px") Are you part of a group clinic?
       span(slot="chatWindow" @click="toggleChat" style="font-size: 30px").pointer.font-mc-blue Ask us how it works.
-    panel7mobile(v-if="$isMobile").showPanel
     mc-footer
 </template>
 
