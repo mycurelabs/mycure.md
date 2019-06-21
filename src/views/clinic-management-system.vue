@@ -71,7 +71,6 @@
       panel5a,
       panel6,
       panel7,
-      filler
     },
     methods: {
       toggleChat () {
