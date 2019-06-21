@@ -17,9 +17,12 @@
           v-card(height="100%").pa-1
             v-card-text
               //- TODO: Add icon here and in data
-              v-layout(row)
+              v-layout(row v-if="!$isMobile")
                 img(:src="require(`@/assets/images/${ moduleItem.icon }`)" width="10%") 
                 span.pt-2 &nbsp; {{ moduleItem.title }}
+              v-layout(column v-else)
+                img(:src="require(`@/assets/images/${ moduleItem.icon }`)" width="20%")
+                b.pt-2 &nbsp; {{ moduleItem.title }}
               br
               i(v-if="panel.hasSubtext") {{ moduleItem.subtext}}
                 br
