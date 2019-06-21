@@ -14,7 +14,7 @@
             v-btn(
               id="emr-signup-btn"
               @click.stop="handleSoloSignUpBtn"
-              :href="`${siginURL}/signup/private/step-1`" 
+              :href="`${siginURL}/signup/choose`" 
               color="#18c551" 
               style="padding: 25px 30px 25px 30px"
             )
@@ -31,7 +31,7 @@
           img(width="100%" src="@/assets/images/mycure-emr-web-banner-first-panel-solo-page.png" alt="Solo doctor").pb-5
       div(style="height: 75px; margin-top: -1%").mc-green
         v-layout(row justify-center)
-          a(id="emr-signup-btn" @click.stop="handleSoloSignUpBtn" :href="`${siginURL}/signup/private/step-1`" style="padding: 20px 0; text-decoration: none")
+          a(id="emr-signup-btn" @click.stop="handleSoloSignUpBtn" :href="`${siginURL}/signup/choose`" style="padding: 20px 0; text-decoration: none")
             strong(style="font-size: 25px").white--text Sign Up Now
 </template>
 
