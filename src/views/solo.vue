@@ -5,7 +5,7 @@
     storyflow-2(
       :introduction="introText"
       :storyflow="storyflowItems"
-      :hasTitle="false"
+      :hasTitle="true"
     ).showPanel
     diagram-3.showPanel
     mcFooter
@@ -32,20 +32,20 @@
     },
     data () {
       return {
-        introText: 'Do you ...',
+        introText: 'Why use MYCURE Solo',
         storyflowItems: [
           {
-            title: '',
-            text: 'Want a clinic management system \nwithout relying heavily on the internet?',
+            title: 'Connectivity?',
+            text: 'Want a clinic management system without\n relying heavily on the internet?',
             image: 'mycure-web-banner-circles-solo-01-doctor.png'
           },
           {
-            title: '',
+            title: 'Security Issues?',
             text: 'Have security trust issues and \nwant to secure your patient\'s \nmedical records?',
             image: 'mycure-web-banner-circles-solo-02-privacy.png'
           },
           {
-            title: '',
+            title: 'It’s FREE!',
             text: 'Want to experience a clinic \nmanagement system without spending?',
             image: 'mycure-web-banner-circles-solo-03-free.png'
           }
