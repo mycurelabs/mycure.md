@@ -12,7 +12,7 @@
             span(v-if="hasTitle").font-medium.lh-title {{ highlight.title }}
             br
             br
-            span(style="white-space: pre;").font-small {{ highlight.text }}
+            span.font-small {{ highlight.text }}
           v-flex(xs7 v-if="index%2 === 0" align-self-center).pl-5
             span(v-if="hasTitle").font-medium.lh-title {{ highlight.title }}
             br
@@ -22,12 +22,18 @@
             img(style="max-width: 90%" :src="require(`@/assets/images/${ highlight.image }`)" :alt="highlight.title")
     div(v-else).pt-4
       v-container(v-for="(highlight,index) in storyflow" :key="index" column justify-center)
-        v-layout(justify-center).pb-2
-          img(style="height: 70vw" :src="require(`@/assets/images/${ highlight.image }`)" :alt="highlight.title")
-        v-layout(justify-center)  
-          span(v-if="hasTitle").font-l.lh-title.text-xs-center {{ highlight.title }}
-        v-layout(justify-center).pb-4  
-          span(style="white-space: pre;").font-m.text-xs-center {{ highlight.text }}
+        v-layout(justify-center row wrap).pb-2
+          v-flex(xs10)
+            img(style="height: 70vw" :src="require(`@/assets/images/${ highlight.image }`)" :alt="highlight.title")
+        br
+        v-layout(justify-center row wrap).text-xs-center  
+          v-flex(xs10)
+            span(v-if="hasTitle").font-l.lh-title.text-xs-center {{ highlight.title }}
+        br
+        v-layout(justify-center row wrap).text-xs-center
+          v-flex(xs10)
+            span.font-m.text-xs-center {{ highlight.text }}
+        br
 </template>
 
 <script>

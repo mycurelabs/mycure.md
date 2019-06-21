@@ -36,7 +36,7 @@
         storyflowItems: [
           {
             title: '',
-            text: 'Live in a remote area with poor connection or no internet at all?',
+            text: 'Want a clinic management system without relying heavily on the internet?',
             image: 'mycure-web-banner-circles-solo-01-doctor.png'
           },
           {
@@ -46,7 +46,7 @@
           },
           {
             title: '',
-            text: 'Not have enough funds but want a complete clinic system for your personal use?',
+            text: 'Want to experience a clinic management system without spending?',
             image: 'mycure-web-banner-circles-solo-03-free.png'
           }
         ]
