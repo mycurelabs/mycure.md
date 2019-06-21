@@ -1,5 +1,5 @@
 <template lang="pug">
-  div.py-5.mc-light-grey
+  div.py-5.white
     v-container
       v-layout(row justify-center)
         span.font-l.text-xs-center.lh-title Designed for clinics of all shapes and sizes.

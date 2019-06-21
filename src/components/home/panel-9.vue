@@ -20,11 +20,11 @@
         br
         v-layout(row justify-center).pt-5
           p.font-small.text-xs-center Unsure where you fit? 
-            a
+            router-link(:to="{ name: 'calendly' }")
               strong Book a demo
       v-layout(row justify-center)
           img(width="100%" height="100%" src="../../assets/images/mycure-web-banner-last-panel-health-community.png" alt="Health community")
-    div(v-else)
+    div(v-else).showPanel
       v-container
         v-layout(column align-center)
           v-card(
@@ -40,7 +40,7 @@
                 strong.font-mc-blue.font-s {{ card.subtxt }}
         v-layout(row justify-center).pt-5
           p.font-small.text-xs-center Unsure where you fit? 
-            a
+            router-link(:to="{ name: 'calendly' }")
               strong Book a demo
       v-layout(row justify-center)
           img(width="100%" height="100%" src="../../assets/images/mycure-web-banner-last-panel-health-community.png" alt="Health community")
