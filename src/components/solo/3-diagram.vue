@@ -1,31 +1,25 @@
 <template lang="pug">
   div#diagramPanel
     v-container.px-5
-      v-layout(row justify-center)
-        v-flex(xs10).text-xs-center
-          span.font-m {{ MYCURE_SOLO_description }}
+      v-flex(xs12 md10 offset-md1)
+        br
+        v-layout(row justify-center)
+          v-card(height="508px" flat).elevation-10.image-rounded-corner
+            v-layout(row justify-center)
+              v-flex(xs5)
+                img(width="100%" height="508vh" src="@/assets/images/mycure-web-banner-pricing-panel-solo.png" alt="Solo features")
+              v-flex(xs8).text-xs-left.pa-5
+                strong(style="font-size: 30px").pb-2 MYCURE SOLO
+                br
+                br
+                span.font-s {{ MYCURE_SOLO_description }}
+                br
+                br
+                div(v-for="(feature,index) in soloFeatures" :key="index")
+                  span.font-s &#10003 &nbsp {{ feature }}
+                  br
       br
       br
-      v-layout(row justify-center)
-        v-flex(xs12)
-          v-card(
-            flat 
-            color="primary"
-            min-height="70vh"
-            style="border-radius: 30px"
-          )
-            v-card-title.white--text.justify-center.font-medium Diagram
-      br
-      br
-      v-layout(row wrap justify-center).pt-5
-        v-btn(
-          id="emr-signup-btn"
-          @click.stop="handleEmrSignupBtn"
-          color="#18c551"
-          :href="`${siginURL}/signup/private/step-1`"
-          style="height: 60px; width: 250px"
-        ).mt-3
-          strong.font-small.white--text.text-none Sign Up
       br
       p.text-xs-center.py-4.font-small Wanna know the difference? 
         a(@click.stop="popUp = true")
@@ -53,6 +47,13 @@
           'system or those who are in remote areas and do not have access to the internet.',
         siginURL: process.env.VUE_APP_SIGNIN_URL,
         popUp: false,
+
+        soloFeatures: [
+          'Not Internet dependent',
+          'You can secure your own patients record',
+          'No need to spend anything',
+          'Option: Back your medical records in your own cloud'
+        ]
       };
     }
   };
