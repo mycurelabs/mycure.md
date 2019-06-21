@@ -62,6 +62,10 @@
                   v-list-tile-content
                     v-list-tile-title 
                       b {{link.meta.pageName}}
+                v-list-tile(:to="{ name: 'features' }")
+                  v-list-tile-content
+                    v-list-tile-title
+                      b Features
               br
               br    
               v-divider

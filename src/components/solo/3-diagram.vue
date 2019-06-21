@@ -36,10 +36,10 @@
     div(v-else)
       v-container.px-3
         v-layout(row wrap)
-          v-flex(xs12).text-xs-center.pa-5
+          v-flex(xs12).text-xs-center.pa-2
               img(
                 width="100%" 
-                height="50%"  
+                height="40%"  
                 style="border-radius: 20px"
                 src="@/assets/images/mycure-web-banner-pricing-panel-solo.png" alt="Solo features")
               br
@@ -53,22 +53,21 @@
               div(v-for="(feature,index) in soloFeatures" :key="index").text-xs-center
                 span.font-s &#10003 &nbsp {{ feature }}
                 br
-        br
-        p.text-xs-center.py-4.font-small Wanna know the difference? 
-          a(@click.stop="dialog = true")
-            strong.font-mc-blue Compare here.
+              br
+              br
+              p.text-xs-center.py-4.font-small Wanna know the difference? 
+                a(@click.stop="dialog = true")
+                  strong.font-mc-blue Compare here.
       v-dialog(
         v-model="dialog" 
         width="675"
         fullscreen
       ).mt-5
-        v-card(style="border-radius: 20px")
+        v-card(style="border-radius: 10px")
           v-card-actions
             v-btn(flat icon @click="dialog = false")
               v-icon mdi-chevron-left
           v-img(:src="require('@/assets/images/mycure-cms-web-solo-comparison-diagram.png')")
-      v-layout(row justify-center)
-          img(width="100%" height="100%" src="@/assets/images/mycure-web-banner-last-panel-health-community.png" alt="Health community") 
 </template>
 
 <script>
@@ -100,11 +99,14 @@
 </script>
 
 <style scoped>
- #diagramPanel {
+  #diagramPanel {
     background-image: url('../../assets/images/mycure-home-web-sky-background.png');
     background-position: center center;
     background-repeat: no-repeat;
     background-size: 100% 100%;
+  }
+  .image-rounded-corner {
+    border-radius: 10px !important;
   }
 </style>
 
