@@ -4,7 +4,7 @@
     usp-1
     storyflow-2(
       :introduction="introText"
-      :storyflow="storyflowItem"
+      :storyflow="storyflowItems"
       :hasTitle="false"
     )
     diagram-3
@@ -33,7 +33,7 @@
     data () {
       return {
         introText: 'Do you ...',
-        storyflowItem: [
+        storyflowItems: [
           {
             title: '',
             text: 'Live in a remote area with poor connection or no internet at all?',

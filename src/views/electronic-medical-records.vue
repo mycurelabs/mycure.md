@@ -5,7 +5,7 @@
     //- panel2
     panel3
     panel4
-    storyflow(:storyflow="storyflowItem")
+    storyflow(:storyflow="storyflowItems")
     //- panel5
     panel6.showPanel
     filler(v-if="$isMobile").showPanel.pt-5
@@ -32,7 +32,7 @@
   export default {
     data () {
       return {
-        storyflowItem: [
+        storyflowItems: [
           {
             title: 'Manage on the Go',
             text: 'View your charts while you are traveling, having coffee or simply relaxing at home.',

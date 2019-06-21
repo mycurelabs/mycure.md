@@ -2,7 +2,7 @@
   div#top.white
     mcToolbarHome
     panel1
-    storyflow(:storyflow="storyflowItem")
+    storyflow(:storyflow="storyflowItems")
     //- panel2mobile(v-if="$isMobile")
     panel2
     panel3
@@ -72,7 +72,7 @@
     },
     data () {
       return {
-        storyflowItem: [
+        storyflowItems: [
           {
             title: 'Characters',
             text: 'Doctors - MYCURE | Complete Clinic Management System wants to ease the mission of Medical Practitioners: Our unsung Heroes.',
