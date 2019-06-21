@@ -22,16 +22,15 @@
             img(style="max-width: 90%" :src="require(`@/assets/images/${ highlight.image }`)" :alt="highlight.title")
     div(v-else).pt-4
       v-container(v-for="(highlight,index) in storyflow" :key="index" column justify-center)
-        v-layout(justify-center row wrap).pb-2
-          v-flex(xs10)
-            img(style="height: 70vw" :src="require(`@/assets/images/${ highlight.image }`)" :alt="highlight.title")
+        v-layout(row wrap justify-center align-center).pb-2
+          img(style="height: 70vw" :src="require(`@/assets/images/${ highlight.image }`)" :alt="highlight.title")
         br
-        v-layout(justify-center row wrap).text-xs-center  
-          v-flex(xs10)
+        v-layout(align-center row wrap).text-xs-center  
+          v-flex(xs12)
             span(v-if="hasTitle").font-l.lh-title.text-xs-center {{ highlight.title }}
         br
-        v-layout(justify-center row wrap).text-xs-center
-          v-flex(xs10)
+        v-layout(align-center row wrap).text-xs-center
+          v-flex(xs12)
             span.font-m.text-xs-center {{ highlight.text }}
         br
 </template>
