@@ -8,7 +8,7 @@
             br
             p(style="line-height: 65px;").font-medium A clinic management system that helps private medical practitioner do greater things.
             br 
-            v-btn(
+            v-btn(  
               id="emr-signup-btn"
               @click.stop="handleEmrSignupBtn"
               :href="`${siginURL}/signup/private/step-1`" 
@@ -20,11 +20,10 @@
             img(width="80%" src="../../assets/images/mycure-emr-web-banner-first-panel-doctor-clinic-patients.png" alt="Individual doctor").right
     div(v-else).white
       v-container.pt-5
-        v-layout(row justify-center)
-          v-flex(xs12 md5)
-            h1.font-l.text-xs-center.lh-title A clinic management system that helps private medical practitioner do greater things.
+        v-layout(column justify-center)
+            h1(style="font-weight: bold;").font-small.font-mc-blue.text-xs-center.pb-2 MYCURE Complete Clinic Management System
             br
-            br
+            p.font-l.text-xs-center.lh-title A clinic management system that helps private medical practitioner do greater things.
         v-flex(xs12)
           img(width="100%" src="../../assets/images/mycure-emr-web-banner-first-panel-doctor-clinic-patients.png" alt="Individual doctor").pb-5
       div(style="height: 75px; margin-top: -1%").mc-green
