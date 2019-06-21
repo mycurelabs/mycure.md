@@ -75,7 +75,7 @@
         storyflowItems: [
           {
             title: 'Doctors',
-            text: 'MYCURE | Complete Clinic \nManagement System wants to ease \nthe mission of Medical Practitioners: \nOur unsung Heroes.',
+            text: 'MYCURE Complete Clinic \nManagement System wants to ease \nthe mission of Medical Practitioners: \nOur unsung Heroes.',
             image: 'mycure-web-banner-circles-home-01-doctors-league.png'
           },
           {

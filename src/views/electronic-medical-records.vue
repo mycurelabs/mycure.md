@@ -35,7 +35,7 @@
         storyflowItems: [
           {
             title: 'Manage on the Go',
-            text: 'View your charts while you are traveling, having coffee or simply relaxing at home.',
+            text: 'View your charts while you are traveling, \nhaving coffee or simply relaxing at home.',
             image: 'mycure-web-banner-circles-private-01-on-the-go.png'
           },
           {
@@ -45,7 +45,7 @@
           },
           {
             title: 'Online Profile',
-            text: 'Maximize your online presence by using the online profile feature of MYCURE so that patients can reach you easily',
+            text: 'Maximize your online presence by using the online profile \nfeature of MYCURE so that patients can reach you easily',
             image: 'mycure-web-banner-circles-private-03-online-profile.png'
           }
         ]
