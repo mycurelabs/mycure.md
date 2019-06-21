@@ -16,7 +16,7 @@
         :href="`${siginURL}/signup/multi-specialty/step-1`"
         style="height: 60px; width: 250px"
       ).mt-3
-        strong.font-small.white--text.text-none Sign Up Now
+        strong.font-small.white--text.text-none Get Started Today
     br
     v-layout(row wrap justify-center)
       em.font-small Have a question? 

@@ -32,7 +32,7 @@
             @click.stop="handleCmsSignupBtn"
             :href="`${siginURL}/signup/multi-specialty/step-1`"
             style="background-color: #18c551; width: 80%; height: 60px")  
-            strong.font-m.white--text.text-none Sign Up Now 
+            strong.font-m.white--text.text-none Get Started Today
 </template>
 
 <script>

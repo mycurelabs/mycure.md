@@ -21,13 +21,12 @@
             img(width="80%" src="../../assets/images/mycure-cms-web-banner-first-panel-doctor-clinic-patients.png" alt="Clinic management system banner").right
     div(v-else).white
       v-container.pt-5
-        v-layout(row justify-center)
-          v-flex(xs12 md5)
-            p.font-l.text-xs-center A system that simplifies work for 
-              br
-              | multi-specialty clinics.
-            br
-            br
+        v-layout(column justify-center)
+          h1(style="font-weight: bold;").font-small.font-mc-blue.text-xs-center.pb-2 MYCURE Complete Clinic Management System
+          br
+          p.font-l.text-xs-center Provides a system that simplifies the work for multispecialty clinics
+          br
+          br
         v-flex(xs12)
           img(width="100%" src="../../assets/images/mycure-cms-web-banner-first-panel-doctor-clinic-patients.png" alt="Clinic management system banner").pb-5
       div(style="height: 75px; margin-top: -1%").mc-green

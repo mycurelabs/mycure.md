@@ -54,7 +54,7 @@
             :href="`${siginURL}/signup/multi-specialty/step-1`"
             style="height: 60px; width: 250px"
           ).mt-3
-            strong.font-small.white--text.text-none Sign Up Now
+            strong.font-small.white--text.text-none Get Started Today
         p.text-xs-center.py-4.font-small Have questions? 
           a(@click.stop="toggleChat()")
             strong.font-mc-blue Send us a chat.
@@ -62,7 +62,14 @@
       v-container
         v-layout(row justify-center)
           span.font-l.text-xs-center.lh-title Why do clinics switch to MYCURE?
-        brs
+        br
+        v-layout(row justify-center)
+          p.font-s.text-xs-center MYCURE smoothly integrates your patient records together from registration to billing, simplifying record management for everyone. 
+            br
+            | 
+            br
+            | Say goodbye to multiple, complicated systems!
+
         br
         br
         v-layout(column)
@@ -95,7 +102,7 @@
               :href="`${siginURL}/signup/multi-specialty/step-1`"
               large
             ).mt-3
-              strong.font-s.white--text.text-none Sign Up Now
+              strong.font-s.white--text.text-none Get Started Today
           p.text-xs-center.py-4.font-small Have questions? 
             a(@click.stop="toggleChat()")
               strong.font-mc-blue Send us a chat.
