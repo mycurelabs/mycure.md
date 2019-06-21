@@ -45,7 +45,7 @@
                 description: 'Create SOAP Charting, digital prescriptions, med certs, lab orders, and compare lab results anytime, anywhere.'
               },
               {
-                icon: 'mycure-web-clinic-feature-icon-billing.png',
+                icon: 'mycure-icon-billing-basic-active.png',
                 title: 'Billing',
                 subtext: 'Simplified billing with beautiful reports',
                 description: 'A billing management system that can integrate all clinic transactions into a single database.'
@@ -64,7 +64,7 @@
                   'lab & imaging results online.'
               },
               {
-                icon: 'mycure-web-clinic-feature-icon-emr.png',
+                icon: 'mycure-icon-inventory-active.png',
                 title: 'Inventory',
                 subtext: 'Your medical supplies at a glance.',
                 description: 'An inventory management system built for healthcare facilities to monitor in-house supplies and' +
@@ -85,7 +85,7 @@
                 description: 'Complements the Inventory and Billing Module.'
               },
               {
-                icon: 'mycure-web-clinic-feature-icon-emr.png',
+                icon: 'mycure-icon-chat-active.png',
                 title: 'Staff Chatbox',
                 subtext: '',
                 description: 'Virtually communicate with your clinic staff'
@@ -94,7 +94,7 @@
                 icon: 'mycure-web-clinic-feature-icon-syncbase.png',
                 title: 'Syncbase Technology',
                 subtext: '',
-                description: 'The system works evene offline.'
+                description: 'The system works even offline.'
               },
               {
                 icon: 'mycure-web-clinic-feature-icon-census.png',
@@ -123,7 +123,7 @@
                 description: 'Step-by-step guide to DPA compliance and clinics.'
               },
               {
-                icon: 'mycure-web-clinic-feature-icon-emr.png',
+                icon: 'mycure-icon-support-active.png',
                 title: 'Awesome Care',
                 subtext: '',
                 description: 'Get help quickly from our hands-on support team.'
