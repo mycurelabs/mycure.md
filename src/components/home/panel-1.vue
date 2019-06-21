@@ -20,9 +20,10 @@
             img(width="80%" src="../../assets/images/mycure-web-banner-first-panel-doctor-clinic-patients.png" alt="Clinic home banner").right
     div(v-else).white
       v-container.pt-4
-        v-layout(row justify-center).pb-4
-          v-flex(xs12 md5)
-            h1.lh-title.font-l.text-xs-center We help organize & secure your clinic’s medical records.
+        v-layout(column justify-center).pb-4
+          h1(style="font-weight: bold;").font-small.font-mc-blue.text-xs-center.pb-2 MYCURE Complete Clinic Management System
+          br            
+          p.lh-title.font-l.text-xs-center "We provide you with a system that helps organize and secure your medical records."
         v-flex(xs12)
           img(width="100%" src="../../assets/images/mycure-web-banner-first-panel-doctor-clinic-patients.png" alt="Clinic home banner")
       div(style="height: 75px").mc-green
