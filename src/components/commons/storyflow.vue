@@ -4,7 +4,7 @@
       span.font-l {{ introduction }}
       br
       br
-      v-layout(v-for="(highlight,index) in highlights" :key="index" row wrap justify-center)
+      v-layout(v-for="(highlight,index) in storyflow" :key="index" row wrap justify-center)
         v-flex(xs5 v-if="index%2 === 0")
           img(style="max-width: 90%" :src="require(`@/assets/images/${ highlight.image }`)" :alt="highlight.title")
         v-flex(xs7 v-else align-self-center).pr-5.text-xs-right
@@ -24,7 +24,7 @@
 <script>
   export default {
     props: {
-      highlights: Array,
+      storyflow: Array,
       hasTitle: {
         type: Boolean,
         default: true

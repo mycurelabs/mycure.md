@@ -2,9 +2,9 @@
   div#top.white
     mcToolbarHome
     usp-1
-    highlights-2(
+    storyflow-2(
       :introduction="introText"
-      :highlights="highlightItems"
+      :storyflow="storyflowItem"
       :hasTitle="false"
     )
     diagram-3
@@ -15,7 +15,7 @@
   import mcToolbarHome from '@/components/commons/mc-toolbar-home';
   import mcFooter from '@/components/commons/mc-footer';
   import usp1 from '@/components/solo/1-usp';
-  import highlights2 from '@/components/commons/highlights';
+  import storyflow2 from '@/components/commons/storyflow';
   import diagram3 from '@/components/solo/3-diagram';
   import VueScrollTo from 'vue-scrollto';
 
@@ -24,7 +24,7 @@
       mcToolbarHome,
       mcFooter,
       usp1,
-      highlights2,
+      storyflow2,
       diagram3
     },
     mounted () {
@@ -33,7 +33,7 @@
     data () {
       return {
         introText: 'Do you ...',
-        highlightItems: [
+        storyflowItem: [
           {
             title: '',
             text: 'Live in a remote area with poor connection or no internet at all?',

@@ -5,7 +5,7 @@
     //- panel2
     panel3
     panel4
-    highlights(:highlights="highlightItems")
+    storyflow(:storyflow="storyflowItem")
     //- panel5
     panel6.showPanel
     filler(v-if="$isMobile").showPanel.pt-5
@@ -22,7 +22,7 @@
   import panel2 from '@/components/electronic-medical-records/panel-2';
   import panel3 from '@/components/electronic-medical-records/panel-3';
   import panel4 from '@/components/electronic-medical-records/panel-4';
-  import highlights from '@/components/commons/highlights';
+  import storyflow from '@/components/commons/storyflow';
   import panel5 from '@/components/electronic-medical-records/panel-5';
   import panel6 from '@/components/electronic-medical-records/panel-6';
   import panel7mobile from '@/components/electronic-medical-records/panel-7-mobile';
@@ -32,7 +32,7 @@
   export default {
     data () {
       return {
-        highlightItems: [
+        storyflowItem: [
           {
             title: 'Manage on the Go',
             text: 'View your charts while you are traveling, having coffee or simply relaxing at home.',
@@ -58,7 +58,7 @@
       panel2,
       panel3,
       panel4,
-      highlights,
+      storyflow,
       panel5,
       panel6,
       panel7mobile,

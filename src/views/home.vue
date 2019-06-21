@@ -2,7 +2,7 @@
   div#top.white
     mcToolbarHome
     panel1
-    highlights(:highlights="highlightItems").pt-5
+    storyflow(:storyflow="storyflowItem").pt-5
     panel2mobile(v-if="$isMobile")
     panel2.pt-5
     panel3.pt-5
@@ -40,7 +40,7 @@
   import panel9mobile from '@/components/home/panel-9-mobile';
   import panel10mobile from '@/components/home/panel-10-mobile';
   import panel11mobile from '@/components/home/panel-11-mobile';
-  import highlights from '@/components/commons/highlights';
+  import storyflow from '@/components/commons/storyflow';
   import VueScrollTo from 'vue-scrollto';
 
   export default {
@@ -65,14 +65,14 @@
       panel9mobile,
       panel10mobile,
       panel11mobile,
-      highlights
+      storyflow
     },
     mounted () {
       VueScrollTo.scrollTo(`#top`, 500, { easing: 'ease' } );
     },
     data () {
       return {
-        highlightItems: [
+        storyflowItem: [
           {
             title: 'Characters',
             text: 'Doctors - MYCURE | Complete Clinic Management System wants to ease the mission of Medical Practitioners: Our unsung Heroes.',
