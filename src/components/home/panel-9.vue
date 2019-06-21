@@ -30,6 +30,7 @@
           v-card(
             v-for="(card,i) in productCards"
             :key="i"
+            :to="{ name: card.link }"
             style="width: 225px; height: 300px"
           ).roundedCard.my-3
             v-layout(column justify-center)

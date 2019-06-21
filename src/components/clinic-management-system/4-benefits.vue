@@ -1,7 +1,8 @@
 <template lang="pug">
   div
     div.pt-4
-      storyflow(:storyflow="storyflowItems")
+      v-layout(row justify-center align-center)
+        storyflow(:storyflow="storyflowItems")
 </template>
 
 <script>
