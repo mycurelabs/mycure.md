@@ -21,7 +21,7 @@
           },
           {
             title: 'Data Collection Analysis',
-            text: 'It allows the facility to collect data about certain disease trend and business statistics. It can help in the research and development of a facility.',
+            text: 'It allows the facility to collect data about certain disease trend \nand business statistics. It can help in the research and development \nof a facility.',
             image: 'mycure-web-banner-circles-multispecialty-02-stats.png'
           },
           {

@@ -3,10 +3,10 @@
     div(v-if="!$isMobile")
       v-container(align-center fill-height style="padding-top: 70px").px-5.panel-1
         v-layout(row justify-center)
-          v-flex(xs12 md7 align-self-center)
-            h1(style="font-weight: bold;").font-small.font-mc-blue MYCURE | Complete Clinic Management System
+          v-flex(xs12 md7 align-self-center style="margin-top: -7%")
+            h1(style="font-weight: bold;").font-small.font-mc-blue MYCURE Complete Clinic Management System
             br
-            p(style="line-height: 60px;").font-medium "We provide you with the most complete clinic management system that helps organize and secure your medical records."
+            p(style="line-height: 60px;").font-medium "We provide you with a system that helps organize and secure your medical records."
             br
             v-btn(
               :href="`${siginURL}/signup/choose`" 

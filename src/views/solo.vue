@@ -41,7 +41,7 @@
           },
           {
             title: '',
-            text: 'Have security trust issues and want to secure your patient\'s medical records?',
+            text: 'Have security trust issues and want to secure your patient\'s medical \nrecords?',
             image: 'mycure-web-banner-circles-solo-02-privacy.png'
           },
           {
