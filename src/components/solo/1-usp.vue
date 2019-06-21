@@ -4,7 +4,9 @@
       v-container(align-center fill-height style="padding-top: 70px").px-5.panel-1
         v-layout(row justify-center)
           v-flex(xs12 md7 align-self-center style="margin-top: -5%")
-            h1(style="line-height: 65px;").font-medium MYCURE SOLO is a free and independent offline clinic management system.
+            h1(style="font-weight: bold;").font-small.font-mc-blue MYCURE Complete Clinic Management System            
+            br
+            p(style="line-height: 65px;").font-medium MYCURE SOLO is a free and independent offline clinic management system.
             br 
             br
             v-btn(
@@ -16,7 +18,7 @@
             )
               strong.font-small.text-none.white--text Sign Up Now
           v-flex(xs12 md7 align-self-center style="margin-top: 5%")
-            img(width="100%" src="@/assets/images/mycure-emr-web-banner-first-panel-solo-page.png" alt="Solo doctor")
+            img(width="80%" src="@/assets/images/mycure-emr-web-banner-first-panel-solo-page.png" alt="Solo doctor").right
     div(v-else).white
       v-container.pt-5
         v-layout(row justify-center)
