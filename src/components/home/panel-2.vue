@@ -1,7 +1,7 @@
 <template lang="pug">
   div
     div(v-if="!$isMobile" style="margin-top: -5%")#panel2.pt-5
-      v-container(style="padding-top: 450px;")
+      v-container(style="padding-top: 380px;")
         v-layout(row align-center justify-center)
           div(style="margin: 0px -20px 0px 0px; z-index: 1")
             img(src="../../assets/images/mycure-web-video-cover-decor-doctor-left.png" alt="Male doctor")
