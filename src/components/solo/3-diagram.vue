@@ -24,14 +24,14 @@
       p.text-xs-center.py-4.font-small Wanna know the difference? 
         a(@click.stop="dialog = true")
           strong.font-mc-blue Compare here.
-    v-layout(row justify-center)
-        img(width="100%" height="100%" src="@/assets/images/mycure-web-banner-last-panel-health-community.png" alt="Health community")
     v-dialog(
       v-model="dialog" 
       width="675"
     ).mt-5
       v-card(style="border-radius: 20px")
-        v-img(:src="require('@/assets/images/mycure-cms-web-solo-comparison-diagram.png')") 
+        v-img(:src="require('@/assets/images/mycure-cms-web-solo-comparison-diagram.png')")
+    v-layout(row justify-center)
+        img(width="100%" height="100%" src="@/assets/images/mycure-web-banner-last-panel-health-community.png" alt="Health community") 
 </template>
 
 <script>
