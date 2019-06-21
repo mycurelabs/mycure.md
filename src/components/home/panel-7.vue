@@ -25,27 +25,28 @@
                   span.black--text.text-xs-center {{ testimonial.position }}
     div(v-else).transparent
       v-container
-        v-layout(justify-center).px-3
+        v-layout(row wrap justify-center).px-3
           //- https://ssense.github.io/vue-carousel/
-          carousel(
-            :per-page="1" 
-            :autoplay="false"
-            :loop="true"
-            :navigationEnabled="true"
-            :adjustableHeight="true"
-            paginationActiveColor="white"
-            paginationColor="grey"
-            :navigationClickTargetSize="50"
-            navigationNextLabel=" "
-            navigationPrevLabel=" "
-          )
-            slide(v-for="(testimonial,index) in testimonials" :key="index" :data-index="index+1").text-xs-center
-              h2.black--text {{ testimonial.message }}
-              br
-              br
-              span.font-s.black--text {{ testimonial.name }}
+          v-flex(xs12)
+            carousel(
+              :per-page="1" 
+              :autoplay="false"
+              :loop="true"
+              :navigationEnabled="true"
+              :adjustableHeight="true"
+              paginationActiveColor="white"
+              paginationColor="grey"
+              :navigationClickTargetSize="50"
+              navigationNextLabel=" "
+              navigationPrevLabel=" "
+            )
+              slide(v-for="(testimonial,index) in testimonials" :key="index" :data-index="index+1").text-xs-center
+                h2.black--text {{ testimonial.message }}
                 br
-                span {{ testimonial.position }}
+                br
+                span.font-s.black--text {{ testimonial.name }}
+                  br
+                  span {{ testimonial.position }}
 </template>
 
 <script>
