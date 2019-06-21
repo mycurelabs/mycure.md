@@ -45,7 +45,7 @@
           v-spacer
           v-btn(icon large @click="drawer = !drawer")
             v-icon(style="font-size: 35px;") menu
-      v-navigation-drawer(fixed app v-model="drawer" right width="500")   
+      v-navigation-drawer(fixed app v-model="drawer" right width="500" style="z-index: 999 !important")   
         //- v-toolbar(flat app fixed).white
         div(style="position: sticky; top: 0px; z-index: 9999; width: 100%;")
           v-toolbar(flat :class="shadow").white
