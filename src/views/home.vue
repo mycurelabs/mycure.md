@@ -2,21 +2,21 @@
   div#top.white
     mcToolbarHome
     panel1
-    storyflow(:storyflow="storyflowItem").pt-5
-    panel2mobile(v-if="$isMobile")
-    panel2.pt-5
-    panel3.pt-5
-    panel4.pt-5
-    panel4mobile
-    panel5.pt-5
-    panel6.pt-5
+    storyflow(:storyflow="storyflowItem")
+    //- panel2mobile(v-if="$isMobile")
+    panel2
+    panel3
+    panel4
+    //- panel4mobile
+    panel5
+    panel6
     panel6mobile(v-if="$isMobile")
-    panel7mobile(v-if="$isMobile")
-    panel8mobile(v-if="$isMobile").showPanel
-    panel9mobile(v-if="$isMobile").showPanel
-    panel10mobile(v-if="$isMobile").showPanel
-    panel11mobile(v-if="$isMobile").showPanel
-    mcFooter
+    //- panel7mobile(v-if="$isMobile")
+    //- panel8mobile(v-if="$isMobile").showPanel
+    //- panel9mobile(v-if="$isMobile").showPanel
+    //- panel10mobile(v-if="$isMobile").showPanel
+    //- panel11mobile(v-if="$isMobile").showPanel
+    //- mcFooter
 </template>
 
 <script>

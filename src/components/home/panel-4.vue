@@ -1,6 +1,6 @@
 <template lang="pug">
   div#panel4
-    div(v-if="!$isMobile")
+    div(v-if="!$isMobile").pt-5
       v-container
         v-layout(row wrap justify center)
           v-flex(xs6 align-self-center).px-3
@@ -43,6 +43,24 @@
           v-flex(xs6 align-self-center).px-3
             img(src="../../assets/images/mycure-homepage-syncbase-animated.gif" width="100%" alt="MYCURE Syncbase")
     div(v-else)
+      v-container
+        h1
+        p.font-l.lh-title.text-xs-center What makes MYCURE so different?
+        br
+        p.font-m.text-xs-center {{ different }}
+        br
+        v-card.elevation-5
+          a(id="home-syncbase-vid-btn" @click.stop="handleHomeSyncbaseVid")
+            img(v-if="!videoDialog" @click.stop="videoDialog=!videoDialog" width="100%" src="../../assets/images/mycure-web-video-cover-syncbase-online-offline.png" alt="MYCURE Syncbase video thumbnail")
+            iframe(
+              v-else
+              align="middle"
+              id="ytplayer" 
+              type="text/html" width="100%" height="200"
+              src="https://www.youtube.com/embed/siFBgZMt26k?autoplay=1&loop=1&showinfo=0&rel=0"
+              frameborder="0"
+              allowfullscreen
+            )
 </template>
 
 <script>
@@ -50,7 +68,8 @@
     data () {
       return {
         dialog: false,
-        videoDialog: false
+        videoDialog: false,
+        different: "In Southeast Asia where internet coverage is limited, MYCURE made it possible for clinics to use a cloud-based system in their local network even if the internet goes down."
       };
     },
     methods: {

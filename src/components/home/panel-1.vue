@@ -18,14 +18,12 @@
           v-flex(xs12 md7 align-self-center style="margin-top: 5%")
             img(width="100%" src="../../assets/images/mycure-web-banner-first-panel-doctor-clinic-patients.png" alt="Clinic home banner")
     div(v-else).white
-      v-container.pt-5
-        v-layout(row justify-center)
+      v-container.pt-4
+        v-layout(row justify-center).pb-4
           v-flex(xs12 md5)
             h1.lh-title.font-l.text-xs-center We help organize & secure your clinic’s medical records.
-            br 
-            br
         v-flex(xs12)
-          img(width="100%" src="../../assets/images/mycure-web-banner-first-panel-doctor-clinic-patients.png" alt="Clinic home banner").pb-5
+          img(width="100%" src="../../assets/images/mycure-web-banner-first-panel-doctor-clinic-patients.png" alt="Clinic home banner")
       div(style="height: 75px").mc-green
         v-layout(row justify-center)
           a(id="home-signup-btn" @click.stop="handleHomeSignupBtn" :href="`${siginURL}/signup/choose`" style="padding: 20px 0; text-decoration: none" title="MYCURE - Sign Up")

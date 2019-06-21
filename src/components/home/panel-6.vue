@@ -1,7 +1,7 @@
 <template lang="pug">
   div
     //- div(v-if="!$isMobile" style="padding-top: 100px")#panel6
-    div(v-if="!$isMobile")#panel6
+    div(v-if="!$isMobile")#panel6.pt-5
       v-layout(row wrap justify-center)
         span.font-medium.text-xs-center.px-3 MYCURE works for Private and Multispecialty Clinics
       br
