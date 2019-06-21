@@ -22,14 +22,16 @@
       br
       br
       p.text-xs-center.py-4.font-small Wanna know the difference? 
-        a(@click.stop="popUp = true")
+        a(@click.stop="dialog = true")
           strong.font-mc-blue Compare here.
     v-layout(row justify-center)
         img(width="100%" height="100%" src="@/assets/images/mycure-web-banner-last-panel-health-community.png" alt="Health community")
-    compareDialog(
-      :dialog="popUp"
-      @close=" v => popUp = v"
-    )
+    v-dialog(
+      v-model="dialog" 
+      width="675"
+    ).mt-5
+      v-card(style="border-radius: 20px")
+        v-img(:src="require('@/assets/images/mycure-cms-web-solo-comparison-diagram.png')") 
 </template>
 
 <script>
@@ -40,6 +42,7 @@
     },
     data () {
       return {
+        dialog: false,
         MYCURE_SOLO_description: 'MYCURE SOLO is a free version of MYCURE Cloud ' +
           'for those who want to store their data in their own devices (one device per ' +
           'program) and in their personal cloud (in-app purchase). It can be used by ' +
