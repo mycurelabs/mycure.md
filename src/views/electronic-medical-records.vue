@@ -40,7 +40,7 @@
           },
           {
             title: 'Oversee Security',
-            text: 'Personally secure your records and control access to it via the admin status.',
+            text: 'Personally secure your records and control access to it via the \nadmin status.',
             image: 'mycure-web-banner-circles-private-02-security.png'
           },
           {

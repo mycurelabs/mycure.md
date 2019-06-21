@@ -74,13 +74,13 @@
       return {
         storyflowItems: [
           {
-            title: 'Characters',
-            text: 'Doctors - MYCURE | Complete Clinic Management System wants to ease the mission of Medical Practitioners: Our unsung Heroes.',
+            title: 'Doctors',
+            text: 'MYCURE | Complete Clinic Management System wants to ease the mission of Medical Practitioners: Our unsung Heroes.',
             image: 'mycure-web-banner-circles-home-01-doctors-league.png'
           },
           {
             title: 'Challenges',
-            text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+            text: ' -Data privacy issues? \n-Unnecessary costs? \n-Unreliable internet connection? \n-Duplicate or missing patient charts? \n-Billing & collection discrepancies? \n-Crappy System?',
             image: 'mycure-web-banner-circles-home-02-challenges.png'
           },
           {

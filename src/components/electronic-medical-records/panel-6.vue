@@ -47,7 +47,7 @@
         v-flex(xs12 md12)
           br
           v-layout(row justify-center)
-            v-card(height="508px" flat).elevation-10.image-rounded-corner
+            v-card(height="508px" width="80%" flat).elevation-10.image-rounded-corner
               v-layout(row justify-center)
                 v-flex(xs5)
                   img(width="100%" height="508vh" src="../../assets/images/mycure-web-banner-pricing-panel-private.png" alt="Private clinic pricing")
@@ -55,16 +55,12 @@
                   strong(style="font-size: 30px").pb-2 For Private Practice
                   br
                   br
-                  span.font-small Know some of the other features  
-                    br
-                    | specifically designed for private practitioners running their clinic 
-                    br
-                    | alone or collaborating with other private practitioners.
+                  span.font-small Know some of the other features specifically designed for private practitioners running their clinic alone or collaborating with other private practitioners.
                   br
                   br
-                  div(v-for="(feature,index) in privateFeatures" :key="index")
-                    //- b(v-if="index === 0").font-small &#10003 &nbsp {{ feature }}
-                    span.font-small &#10003 &nbsp {{ feature }}
+                  v-layout(row v-for="(feature,index) in privateFeatures" :key="index")
+                    span.font-small &#10003 &nbsp 
+                    span.font-small {{ feature }}
                     br
                   v-layout(row wrap).py-4
                     v-btn(:href="`${siginURL}/signup/choose`" style="background-color: #18c551; color: white; width: auto" large).text-none

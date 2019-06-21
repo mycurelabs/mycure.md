@@ -12,7 +12,7 @@
             span(v-if="hasTitle").font-medium.lh-title {{ highlight.title }}
             br
             br
-            span.font-small {{ highlight.text }}
+            span(style="white-space: pre;").font-small {{ highlight.text }}
           v-flex(xs7 v-if="index%2 === 0" align-self-center).pl-5
             span(v-if="hasTitle").font-medium.lh-title {{ highlight.title }}
             br
@@ -27,7 +27,7 @@
         v-layout(justify-center)  
           span(v-if="hasTitle").font-l.lh-title.text-xs-center {{ highlight.title }}
         v-layout(justify-center).pb-4  
-          span.font-m.text-xs-center {{ highlight.text }}
+          span(style="white-space: pre;").font-m.text-xs-center {{ highlight.text }}
 </template>
 
 <script>

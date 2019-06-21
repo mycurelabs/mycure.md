@@ -3,7 +3,9 @@
     div(v-if="!$isMobile").px-5.white
       v-container.px-5
         v-layout(row wrap justify-center)
-          span(style="font-size: 45px").pa-5 Why do doctors use MYCURE in their clinics?
+          p(style="font-size: 45px").pa-5.text-xs-center Why should doctors use MYCURE 
+            br
+            | in their clinics?
         v-layout(row wrap justify-center).mx-5
           v-flex(xs12 md4)
             v-list(two-line).check-list.white
@@ -35,7 +37,7 @@
     div(v-else).white
       v-container
         v-layout(row justify-center)
-          span.font-l.text-xs-center Why do doctors use MYCURE in their clinics?
+          span.font-l.text-xs-center Why should doctors use MYCURE in their clinics?
       v-container
         v-layout(row justify-center)
           v-list(two-line style="background-color: white")
