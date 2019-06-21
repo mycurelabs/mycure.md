@@ -1,37 +1,74 @@
 <template lang="pug">
-  div#diagramPanel
-    v-container.px-5
-      v-flex(xs12 md10 offset-md1)
-        br
-        v-layout(row justify-center)
-          v-card(height="508px" flat).elevation-10.image-rounded-corner
-            v-layout(row justify-center)
-              v-flex(xs5)
-                img(width="100%" height="508vh" src="@/assets/images/mycure-web-banner-pricing-panel-solo.png" alt="Solo features")
-              v-flex(xs8).text-xs-left.pa-5
-                strong(style="font-size: 30px").pb-2 MYCURE SOLO
-                br
-                br
-                span.font-s {{ MYCURE_SOLO_description }}
-                br
-                br
-                div(v-for="(feature,index) in soloFeatures" :key="index")
-                  span.font-s &#10003 &nbsp {{ feature }}
+  div
+    div(v-if="!$isMobile")#diagramPanel
+      v-container.px-5
+        v-flex(xs12 md10 offset-md1)
+          br
+          v-layout(row justify-center)
+            v-card(height="508px" flat).elevation-10.image-rounded-corner
+              v-layout(row justify-center)
+                v-flex(xs5)
+                  img(width="100%" height="508vh" src="@/assets/images/mycure-web-banner-pricing-panel-solo.png" alt="Solo features")
+                v-flex(xs8).text-xs-left.pa-5
+                  strong(style="font-size: 30px").pb-2 MYCURE SOLO
                   br
-      br
-      br
-      br
-      p.text-xs-center.py-4.font-small Wanna know the difference? 
-        a(@click.stop="dialog = true")
-          strong.font-mc-blue Compare here.
-    v-dialog(
-      v-model="dialog" 
-      width="675"
-    ).mt-5
-      v-card(style="border-radius: 20px")
-        v-img(:src="require('@/assets/images/mycure-cms-web-solo-comparison-diagram.png')")
-    v-layout(row justify-center)
-        img(width="100%" height="100%" src="@/assets/images/mycure-web-banner-last-panel-health-community.png" alt="Health community") 
+                  br
+                  span.font-s {{ MYCURE_SOLO_description }}
+                  br
+                  br
+                  div(v-for="(feature,index) in soloFeatures" :key="index")
+                    span.font-s &#10003 &nbsp {{ feature }}
+                    br
+        br
+        br
+        br
+        p.text-xs-center.py-4.font-small Wanna know the difference? 
+          a(@click.stop="dialog = true")
+            strong.font-mc-blue Compare here.
+      v-dialog(
+        v-model="dialog" 
+        width="675"
+      ).mt-5
+        v-card(style="border-radius: 20px")
+          v-img(:src="require('@/assets/images/mycure-cms-web-solo-comparison-diagram.png')")
+      v-layout(row justify-center)
+          img(width="100%" height="100%" src="@/assets/images/mycure-web-banner-last-panel-health-community.png" alt="Health community") 
+    div(v-else)
+      v-container.px-3
+        v-layout(row wrap)
+          v-flex(xs12).text-xs-center.pa-5
+              img(
+                width="100%" 
+                height="50%"  
+                style="border-radius: 20px"
+                src="@/assets/images/mycure-web-banner-pricing-panel-solo.png" alt="Solo features")
+              br
+              br
+              strong.font-l.pb-2 MYCURE SOLO
+              br
+              br
+              span.font-s {{ MYCURE_SOLO_description }}
+              br
+              br
+              div(v-for="(feature,index) in soloFeatures" :key="index").text-xs-center
+                span.font-s &#10003 &nbsp {{ feature }}
+                br
+        br
+        p.text-xs-center.py-4.font-small Wanna know the difference? 
+          a(@click.stop="dialog = true")
+            strong.font-mc-blue Compare here.
+      v-dialog(
+        v-model="dialog" 
+        width="675"
+        fullscreen
+      ).mt-5
+        v-card(style="border-radius: 20px")
+          v-card-actions
+            v-btn(flat icon @click="dialog = false")
+              v-icon mdi-chevron-left
+          v-img(:src="require('@/assets/images/mycure-cms-web-solo-comparison-diagram.png')")
+      v-layout(row justify-center)
+          img(width="100%" height="100%" src="@/assets/images/mycure-web-banner-last-panel-health-community.png" alt="Health community") 
 </template>
 
 <script>
