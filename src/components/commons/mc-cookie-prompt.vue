@@ -5,7 +5,7 @@
       transitionName="fade"
     ).Cookie--mcCookie.white--text.pa-2
       div(slot-scope="props" style="width: 100%")
-        v-container(style="height: 45px !important; width: 100%").py-1
+        v-container(style="width: 100%").py-1
           v-layout(row v-if="!$isMobile").px-4
             v-flex(xs11)
               | We use third-party services to understand web traffic data for us and they may collect cookies during the process.
