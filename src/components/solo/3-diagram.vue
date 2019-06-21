@@ -24,11 +24,15 @@
         br
         p.text-xs-center.py-4.font-small Wanna know the difference? 
           a(@click.stop="dialog = true")
-            strong.font-mc-blue Compare here.
+            strong.font-mc-blue Click here
+          span &nbsp;or&nbsp;
+          a(@click.stop="toggleChat()")
+            strong.font-mc-blue chat us.
       v-dialog(
         v-model="dialog" 
-        width="675"
-      ).mt-5
+        width="1100"
+        attach="#app"
+      ).mt-5.image-rounded-corner
         v-card(style="border-radius: 20px")
           v-img(:src="require('@/assets/images/mycure-cms-web-solo-comparison-diagram.png')")
       v-layout(row justify-center)
@@ -55,14 +59,16 @@
               br
               br
               p.text-xs-center.py-4.font-small Wanna know the difference? 
-                br
-                |
                 a(@click.stop="dialog = true")
-                  strong.font-mc-blue Compare here.
+                  strong.font-mc-blue Click here
+                span &nbsp;or&nbsp;
+                a(@click.stop="toggleChat()")
+                  strong.font-mc-blue chat us.
       v-dialog(
         v-model="dialog" 
-        width="675"
-      ).mt-5
+        width="800"
+        hide-overlay
+      )
         v-card(style="border-radius: 10px")
           v-card-actions
             v-btn(flat icon @click="dialog = false")
@@ -71,11 +77,11 @@
 </template>
 
 <script>
-  import compareDialog from './compareDialog';
+  // import compareDialog from './compareDialog';
   export default {
-    components: {
-      compareDialog
-    },
+    // components: {
+    //   compareDialog
+    // },
     data () {
       return {
         dialog: false,
@@ -94,6 +100,13 @@
           'Option: Back your medical records in your own cloud'
         ]
       };
+    },
+    methods: {
+      toggleChat () {
+        let message = `Hi, I would like to know more about MYCURE Solo`;
+        window.$crisp.push(['do', 'chat:toggle']);
+        window.$crisp.push(['do', 'message:send', ['text', message]]);
+      },
     }
   };
 </script>
@@ -107,6 +120,12 @@
   }
   .image-rounded-corner {
     border-radius: 10px !important;
+  }
+
+  .v-dialog {
+    position: absolute;
+    bottom: 0;
+    right: 0;
   }
 </style>
 

@@ -1,6 +1,6 @@
 <template lang="pug">
   div
-    div(v-if="!$isMobile" style="position: fixed; width: 100%; z-index: 9999;" :class="shadow").white
+    div(v-if="!$isMobile" style="position: fixed; width: 100%; z-index: 99;" :class="shadow").white
       v-container(style="height: 70px !important;").white.py-0
         v-layout(row wrap justify-center)
           v-flex(xs12 md12 style="margin-top: 3px;")

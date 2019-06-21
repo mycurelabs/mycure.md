@@ -36,7 +36,7 @@
         storyflowItems: [
           {
             title: 'Connectivity?',
-            text: 'Want a clinic management system without\n relying heavily on the internet?',
+            text: 'Want a clinic management system without\nrelying heavily on the internet?',
             image: 'mycure-web-banner-circles-solo-01-doctor.png'
           },
           {
