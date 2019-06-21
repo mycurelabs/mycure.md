@@ -6,8 +6,8 @@
       :introduction="introText"
       :storyflow="storyflowItems"
       :hasTitle="false"
-    )
-    diagram-3
+    ).showPanel
+    diagram-3.showPanel
     mcFooter
 </template>
 
