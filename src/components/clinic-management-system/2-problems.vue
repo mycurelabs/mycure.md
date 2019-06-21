@@ -55,7 +55,7 @@
     div(v-else).mc-light-grey
       v-container
         v-layout(row justify-center)
-          span.font-l.text-xs-center.lh-title Designed for Multispecialty clinics
+          span.font-l.text-xs-center.lh-title Why do clinics switch to MYCURE?
         br
         br
         br
@@ -93,7 +93,6 @@
           p.text-xs-center.py-4.font-small Have questions? 
             a(@click.stop="toggleChat()")
               strong.font-mc-blue Send us a chat.
-
 </template>
 
 <script>

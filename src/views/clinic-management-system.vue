@@ -3,9 +3,10 @@
     mc-toolbar-home
     usp
     problems
-    product
-    benfits
-    pricing
+    product(v-if="!$isMobile")
+    panel3mobile(v-if="$isMobile").showPanel
+    benfits.showPanel
+    pricing.showPanel
     //- finalwords
     //- filler
     //- panel1
