@@ -16,18 +16,18 @@
       return {
         storyflowItems: [
           {
-            title: 'Characters',
-            text: 'Doctors - MYCURE | Complete Clinic Management System wants to ease the mission of Medical Practitioners: Our unsung Heroes.',
+            title: 'Syncbase',
+            text: 'This technology allows the program to be used even when the internet is down.',
             image: 'mycure-web-banner-circles-multispecialty-01-syncbase.png'
           },
           {
-            title: 'Challenges',
-            text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+            title: 'Data Collection Analysis',
+            text: 'It allows the facility to collect data about certain disease trend and business statistics. It can help in the research and development of a facility.',
             image: 'mycure-web-banner-circles-multispecialty-02-stats.png'
           },
           {
-            title: 'Plans',
-            text: 'The plan was to create a complete integrated, accessible, clinic management system to help direct the flow in the facility, process, store, and secure data.',
+            title: 'Affordability',
+            text: 'The system is cost-efficient. For the features, it has been set in an affordable cost so that it can be accessed by many.',
             image: 'mycure-web-banner-circles-multispecialty-03-affordability.png'
           }
         ] 
