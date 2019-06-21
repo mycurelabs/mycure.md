@@ -42,8 +42,6 @@
           p.font-small.text-xs-center Unsure where you fit? 
             router-link(:to="{ name: 'calendly' }")
               strong Book a demo
-      v-layout(row justify-center)
-          img(width="100%" height="100%" src="../../assets/images/mycure-web-banner-last-panel-health-community.png" alt="Health community")
 </template>
 
 <script>

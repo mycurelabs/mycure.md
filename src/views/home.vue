@@ -10,7 +10,7 @@
     //- panel4mobile
     panel5
     panel6
-    panel6mobile(v-if="$isMobile")
+    panel6mobile(v-if="$isMobile").showPanel
     //- panel7mobile(v-if="$isMobile")
     //- panel8mobile(v-if="$isMobile").showPanel
     //- panel9mobile(v-if="$isMobile").showPanel
@@ -75,7 +75,7 @@
         storyflowItems: [
           {
             title: 'Doctors',
-            text: 'MYCURE | Complete Clinic Management System wants to ease the mission of Medical Practitioners: Our unsung Heroes.',
+            text: 'MYCURE | Complete Clinic \nManagement System wants to ease \nthe mission of Medical Practitioners: \nOur unsung Heroes.',
             image: 'mycure-web-banner-circles-home-01-doctors-league.png'
           },
           {
@@ -85,7 +85,7 @@
           },
           {
             title: 'Plans',
-            text: 'The plan was to create a complete integrated, accessible, clinic management system to help direct the flow in the facility, process, store, and secure data.',
+            text: 'The plan was to create a complete\n integrated, accessible, clinic \nmanagement system to help direct \n the flow in the facility, process, store, \nand secure data.',
             image: 'mycure-web-banner-circles-home-03-mycure-plan.png'
           }
         ]
