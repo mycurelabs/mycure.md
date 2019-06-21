@@ -36,7 +36,7 @@
     div(v-else)
       v-container.px-3
         v-layout(row wrap)
-          v-flex(xs12).text-xs-center.pa-2
+          v-flex(xs12).pa-2
               img(
                 width="100%" 
                 height="40%"  
@@ -44,24 +44,24 @@
                 src="@/assets/images/mycure-web-banner-pricing-panel-solo.png" alt="Solo features")
               br
               br
-              strong.font-l.pb-2 MYCURE SOLO
+              v-layout(row justify-center)
+                strong.font-l.pb-2 MYCURE SOLO
+              p.font-s.text-xs-center {{ MYCURE_SOLO_description }}
               br
-              br
-              span.font-s {{ MYCURE_SOLO_description }}
-              br
-              br
-              div(v-for="(feature,index) in soloFeatures" :key="index").text-xs-center
-                span.font-s &#10003 &nbsp {{ feature }}
-                br
+              
+              v-layout(row v-for="(feature,index) in soloFeatures" :key="index").pl-3
+                p.font-s &#10003; &nbsp;
+                p.font-s {{ feature }}
               br
               br
               p.text-xs-center.py-4.font-small Wanna know the difference? 
+                br
+                |
                 a(@click.stop="dialog = true")
                   strong.font-mc-blue Compare here.
       v-dialog(
         v-model="dialog" 
         width="675"
-        fullscreen
       ).mt-5
         v-card(style="border-radius: 10px")
           v-card-actions
