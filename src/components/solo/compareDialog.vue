@@ -1,10 +1,11 @@
 <template lang="pug">
-  v-dialog(v-model="dialog" width="600" persistent)
-    v-card
-      v-card-title This dialog is in preparation for Jem's idea of a comparison pop up.
-      v-divider
-      v-card-actions
-        v-btn(flat color="error" @click="close") Close  
+  v-dialog(
+    v-model="dialog" 
+    width="675" 
+    style="border-radius: 20px"
+  )
+    v-card(style="border-radius: 20px")
+      v-img(:src="require('@/assets/images/mycure-cms-web-solo-comparison-diagram.png')") 
 </template>
 
 <script>
@@ -20,9 +21,9 @@
         //
       };
     },
-    methods: {
-      close () {
-        this.$emit('close', false);
+    watch: {
+      dialog (val) {
+        this.$emit('close',val);
       }
     }
   };
