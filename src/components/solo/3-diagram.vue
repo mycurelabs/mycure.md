@@ -68,6 +68,7 @@
         v-model="dialog" 
         width="800"
         hide-overlay
+        style="z-index: 999;"
       )
         v-card(style="border-radius: 10px")
           v-card-actions
