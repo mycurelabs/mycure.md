@@ -29,7 +29,7 @@
                     color="#18c551" 
                     style="width: auto" large
                   ).text-none
-                    strong.font-small.white--text Sign Up Now
+                    strong.font-small.white--text Get Started Today
       finalwords
       filler
     div(v-else)

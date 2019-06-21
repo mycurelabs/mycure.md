@@ -14,7 +14,7 @@
           style="padding: 25px 30px 25px 30px"
           right
         ) 
-          strong.text-none.white--text.font-small Sign Up Now
+          strong.text-none.white--text.font-small Get Started Today
     div(v-else).pa-3
       v-layout(column justify-center).pt-5
         v-layout(row align-center style="width: 100%")
