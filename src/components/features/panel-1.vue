@@ -3,8 +3,8 @@
     div(v-if="!$isMobile")
       v-container(align-center fill-height style="padding-top: 70px").px-5.panel-1
         v-layout(row justify-center)
-          v-flex(xs12 md7 align-self-center style="margin-top: -10%")
-            h1(style="line-height: 65px;").font-large Human-friendly
+          v-flex(xs12 md7 align-self-center style="margin-top: -7%")
+            h1(style="line-height: 60px;").font-large Human-friendly
               br
               | features,
               br

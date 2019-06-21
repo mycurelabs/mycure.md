@@ -1,13 +1,12 @@
 <template lang="pug">
   div
     div(v-if="!$isMobile").white
-      v-container(justify-center fill-height style="padding-top: 70px").px-5.panel-1
+      v-container(align-center fill-height style="padding-top: 70px").px-5.panel-1
         v-layout(row justify-center)
-          v-flex(xs12 md7 align-self-center style="margin-top: -10%") 
+          v-flex(xs12 md7 align-self-center style="margin-top: -7%") 
             h1(style="font-weight: bold;").font-small.font-mc-blue MYCURE Complete Clinic Management System
             br
-            p(style="line-height: 65px;").font-medium Provides a system that simplifies the work for multispecialty clinics
-            br 
+            p(style="line-height: 60px;").font-medium Provides a system that simplifies the work for multispecialty clinics &nbsp; &nbsp;
             br
             v-btn(
               id="cms-signup-btn"

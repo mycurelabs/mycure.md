@@ -3,12 +3,11 @@
     div(v-if="!$isMobile").white
       v-container(align-center fill-height style="padding-top: 70px").px-5.panel-1
         v-layout(row justify-center)
-          v-flex(xs12 md7 align-self-center style="margin-top: -5%")
+          v-flex(xs12 md7 align-self-center style="margin-top: -7%")
             h1(style="font-weight: bold;").font-small.font-mc-blue MYCURE Complete Clinic Management System            
             br
-            p(style="line-height: 65px;").font-medium MYCURE SOLO is a free and independent clinic management system.
+            p(style="line-height: 60px;").font-medium MYCURE SOLO is a free and independent clinic management system.
             br 
-            br
             v-btn(
               id="emr-signup-btn"
               @click.stop="handleSoloSignUpBtn"
