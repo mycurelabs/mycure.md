@@ -67,6 +67,16 @@
             name: 'Dr. Nelson S. Abelardo',
             position: 'Cardiologist',
             message: '“MYCURE fulfills a long time need of physicians for accurate records of patients which they can carry with them wherever they are.”'
+          },
+          {
+            name: 'Dr. Greg Burke, MD',
+            position: '',
+            message: '“They want to be greeted by name, they want their healthcare professionals [to] be identifiable and professionally dressed. They don\'t want to wait long for an appointment. They want to hear results quickly, and they want rapid access to their clinicians. At a fundamental level, they want to be treated with kindness and compassion and feel they\'re not a number, they\'re a human being.”'
+          },
+          {
+            name: 'Meredith Phillips',
+            position: 'Chief information privacy & security officer at Henry Ford Health System',
+            message: '“What I preach to our executives is that it is not about the data; it is about the people. Behind every line of data and medical record number, there is a person. We do what we do because of the person, not the data. That’s what makes us passionate. When you get on the phone with a patient whose information has been breached, and hear them cry, or how they feel violated, that is not a piece of data, that is a person.”'
           }
         ]
       };

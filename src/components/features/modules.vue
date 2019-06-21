@@ -1,5 +1,5 @@
 <template lang="pug">
-  div
+  div()
     v-container(v-for="(panel,key) in moduleList" :key="key")
       v-layout(row justify-center)
         v-flex(xs10).text-xs-center
@@ -15,19 +15,26 @@
           :key="index"
         ).px-1.py-2
           v-card(height="100%").pa-1
-            v-card-text
-              //- TODO: Add icon here and in data
-              v-layout(row v-if="!$isMobile")
-                img(:src="require(`@/assets/images/${ moduleItem.icon }`)" width="10%") 
+            v-card-text(v-if="!$isMobile")
+              v-layout(row)
+                img(:src="require(`@/assets/images/${ moduleItem.icon }`)" width="10%" :alt="moduleItem.title") 
                 span.pt-2 &nbsp; {{ moduleItem.title }}
-              v-layout(column v-else)
-                img(:src="require(`@/assets/images/${ moduleItem.icon }`)" width="20%")
-                b.pt-2 &nbsp; {{ moduleItem.title }}
               br
               i(v-if="panel.hasSubtext") {{ moduleItem.subtext}}
                 br
                 br
               span {{ moduleItem.description }}
+            v-card-text(v-else)
+              v-layout(row wrap)
+                v-flex(xs4 align-self-center).pr-3
+                  img(:src="require(`@/assets/images/${ moduleItem.icon }`)" width="80" :alt="moduleItem.title")
+                v-flex(xs8)
+                  strong(style="font-size: 14px")  {{ moduleItem.title}}
+                  br
+                  i(v-if="panel.hasSubtext" style="font-size: 12px") {{ moduleItem.subtext}}
+                  p(style="font-size: 12px").pt-3 {{ moduleItem.description }}
+                  
+
 </template>
 
 <script>
