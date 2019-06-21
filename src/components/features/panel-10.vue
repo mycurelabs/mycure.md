@@ -28,8 +28,11 @@
           br
           v-layout(row justify-center)
             v-btn(
+              id="features-signup-btn"
+              @click.stop="handleFeaturesSignupBtn"
               :href="`${siginURL}/signup/choose`"
-              style="background-color: #18c551; width: 80%; height: 60px")  
+              style="background-color: #18c551; width: 80%; height: 60px"
+            )  
               strong.font-m.white--text.text-none Sign Up Now  
 </template>
 
@@ -44,6 +47,15 @@
       return {
         siginURL: process.env.VUE_APP_SIGNIN_URL
       };
+    },
+    methods: {
+      handleFeaturesSignupBtn () {
+        this.$ga.event({
+          eventCategory: 'button',
+          eventAction: 'click-features-signup-btn',
+          eventLabel: 'features-signup-btn'
+        });
+      }
     }
   };
 </script>

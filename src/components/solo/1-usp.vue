@@ -12,7 +12,7 @@
             br
             br 
             v-btn(
-              id="emr-signup-btn"
+              id="solo-signup-btn"
               @click.stop="handleSoloSignUpBtn"
               :href="`${siginURL}/signup/choose`" 
               color="#18c551" 
@@ -31,7 +31,7 @@
           img(width="100%" src="@/assets/images/mycure-emr-web-banner-first-panel-solo-page.png" alt="Solo doctor").pb-5
       div(style="height: 75px; margin-top: -1%").mc-green
         v-layout(row justify-center)
-          a(id="emr-signup-btn" @click.stop="handleSoloSignUpBtn" :href="`${siginURL}/signup/choose`" style="padding: 20px 0; text-decoration: none")
+          a(id="solo-signup-btn" @click.stop="handleSoloSignUpBtn" :href="`${siginURL}/signup/choose`" style="padding: 20px 0; text-decoration: none")
             strong(style="font-size: 25px").white--text Sign Up Now
 </template>
 
@@ -46,8 +46,8 @@
     handleSoloSignUpBtn () {
       this.$ga.event({
         eventCategory: 'button',
-        eventAction: 'click-emr-signup-btn',
-        eventLabel: 'emr-signup-btn'
+        eventAction: 'click-solo-signup-btn',
+        eventLabel: 'solo-signup-btn'
       });
     }
   };
