@@ -36,6 +36,9 @@
       div
         img(width="100%" src="../../assets/images/mycure-web-banner-fifth-panel-multi-specialty-clinics.png" alt="Multispecialty banner")
         v-layout(column wrap).pt-4.pb-5.pr-5.pl-5
+          v-layout(row wrap)
+            span.font-small {{ multiSpecialty_desc }}
+          br
           div(v-for="(feature,index) in multiFeatures" :key="feature")
             span.font-small.pb-2 &#10003; &nbsp; &nbsp; {{ feature }}
         v-layout(row justify-center)
@@ -61,6 +64,7 @@
     data () {
       return {
         siginURL: process.env.VUE_APP_SIGNIN_URL,
+        multiSpecialty_desc: 'An all-around solution for your outpatient, multispecialty or specialized clinics that will manage your full-patient journeys with ease.',
         multiFeatures: [
           'Queuing & Registration',
           'Patient Medical Records',
