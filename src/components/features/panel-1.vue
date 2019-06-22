@@ -4,13 +4,9 @@
       v-container(align-center fill-height style="padding-top: 70px").px-5.panel-1
         v-layout(row justify-center)
           v-flex(xs12 md7 align-self-center style="margin-top: -7%")
-            h1(style="line-height: 60px;").font-large Human-friendly
-              br
-              | features,
-              br
-              | patient-centric
-              br
-              | care
+            h1(style="font-weight: bold;").font-small.font-mc-blue MYCURE Features           
+            br
+            p(style="line-height: 60px;").font-medium Human-friendly features, patient-centric care.
             br
             br
             v-btn(
@@ -22,7 +18,7 @@
             ) 
               strong.font-small.text-none.white--text Sign Up Now
           v-flex(xs12 md7 align-self-center style="margin-top: 5%")
-            img(width="100%" src="../../assets/images/mycure-cms-web-banner-first-panel-features.png" alt="Features")
+            img(width="80%" src="../../assets/images/mycure-cms-web-banner-first-panel-features.png" alt="Features")
     div(v-else).white
       v-container.pt-5
         v-layout(row justify-center)

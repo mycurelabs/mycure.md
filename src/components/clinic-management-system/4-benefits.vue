@@ -17,7 +17,7 @@
         storyflowItems: [
           {
             title: 'Work Offline',
-            text: 'MYCURE is cloud-based clinic management system that can be used within your local network even if the internet goes down.',
+            text: 'MYCURE is a cloud-based clinic management system that can be used within your local network even if the internet goes down.',
             image: 'mycure-web-banner-circles-multispecialty-01-syncbase.png'
           },
           {

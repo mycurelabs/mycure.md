@@ -3,26 +3,26 @@
     div(v-if="!$isMobile")#panel7
       v-container
         v-layout(row justify-center)
-          v-carousel(
-            light
-            hide-delimiters
-            style="width: 70% !important; height: 350px;" 
-            next-icon="mdi-chevron-right"
-          ).elevation-0
-            v-carousel-item(
-              v-for="(testimonial,i) in testimonials"
-              :key="i"
-            )
-              v-layout(
-                column 
-                justify-center 
-                style="height: 350px; padding-left: 50px; padding-right: 50px")
-                h2.black--text.text-xs-center {{ testimonial.message }}
-                br
-                br
-                span.font-small.black--text.text-xs-center {{ testimonial.name }}
-                  br
-                  span.black--text.text-xs-center {{ testimonial.position }}
+          v-flex(xs12 md9)
+            v-carousel(
+              light
+              hide-delimiters
+              next-icon="mdi-chevron-right"
+              height="350"
+            ).elevation-0
+              v-carousel-item(
+                v-for="(testimonial,i) in testimonials"
+                :key="i"
+              )
+                v-layout(
+                  column 
+                  justify-center 
+                )
+                  v-flex(xs12 md10).text-xs-center.pa-5
+                    h2.black--text.mb-5 {{ testimonial.message }}
+                    span.font-small.black--text {{ testimonial.name }}
+                      br
+                      i.black--text {{ testimonial.position }}
     div(v-else).transparent
       v-container
         v-layout(row wrap justify-center).px-3

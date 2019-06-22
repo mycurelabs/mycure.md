@@ -10,7 +10,7 @@
                 v-flex(xs5)
                   img(width="100%" height="508vh" src="@/assets/images/mycure-web-banner-pricing-panel-solo.png" alt="Solo features")
                 v-flex(xs8).text-xs-left.pa-5
-                  strong(style="font-size: 30px").pb-2 MYCURE SOLO
+                  strong(style="font-size: 30px").pb-2 MYCURE Solo
                   br
                   br
                   span.font-small {{ MYCURE_SOLO_description }}
@@ -49,7 +49,7 @@
               br
               br
               v-layout(row justify-center)
-                strong.font-l.pb-2 MYCURE SOLO
+                strong.font-l.pb-2 MYCURE Solo
               p.font-s.text-xs-center {{ MYCURE_SOLO_description }}
               br
               
@@ -86,7 +86,7 @@
     data () {
       return {
         dialog: false,
-        MYCURE_SOLO_description: 'SOLO is a free-forever version of MYCURE CMS -- an independent clinic management system for those who want to store their data in their own device, with the option to sync and back-up data in their personal cloud.',
+        MYCURE_SOLO_description: 'Solo is a free-forever version of MYCURE CMS — a standalone clinic management system for those who want to store their data in their own device, with the option to sync and back-up data in their personal cloud.',
         siginURL: process.env.VUE_APP_SIGNIN_URL,
         popUp: false,
 
@@ -94,7 +94,7 @@
           'Full Access to the CMS Core Modules',
           'Records are stored in your own database',
           'No internet needed',
-          'No need to spend anything'
+          'No monthly fees'
         ]
       };
     },
