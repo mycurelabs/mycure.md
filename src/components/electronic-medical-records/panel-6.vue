@@ -73,11 +73,10 @@
         // ],
         
         privateFeatures: [
-          'Store 100 patient profiles for free.',
-          'You can connect to unlimited clinics.',
-          'It has the complete product features.',
-          'It has upgrades and In-app purchases.',
-          'It can be accessed in any device using your login credentials.'
+          'Create unlimited clinics',
+          'Access using multiple devices',
+          'Full Access to the CMS Core Modules',
+          'Start FREE up to 100 patient profiles',
         ]
       };
     },

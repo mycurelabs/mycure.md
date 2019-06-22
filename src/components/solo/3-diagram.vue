@@ -13,11 +13,11 @@
                   strong(style="font-size: 30px").pb-2 MYCURE SOLO
                   br
                   br
-                  span.font-s {{ MYCURE_SOLO_description }}
+                  span.font-small {{ MYCURE_SOLO_description }}
                   br
                   br
                   div(v-for="(feature,index) in soloFeatures" :key="index")
-                    span.font-s &#10003 &nbsp {{ feature }}
+                    span.font-small &#10003 &nbsp {{ feature }}
                     br
         br
         br
@@ -86,19 +86,15 @@
     data () {
       return {
         dialog: false,
-        MYCURE_SOLO_description: 'MYCURE SOLO is a free version of MYCURE Cloud ' +
-          'for those who want to store their data in their own devices (one device per ' +
-          'program) and in their personal cloud (in-app purchase). It can be used by ' +
-          'Med students who want to get the hang of using a holistic clinic management ' +
-          'system or those who are in remote areas and do not have access to the internet.',
+        MYCURE_SOLO_description: 'SOLO is a free-forever version of MYCURE CMS -- an independent clinic management system for those who want to store their data in their own device, with the option to sync and back-up data in their personal cloud.',
         siginURL: process.env.VUE_APP_SIGNIN_URL,
         popUp: false,
 
         soloFeatures: [
-          'Not Internet dependent',
-          'You can secure your own patients record',
-          'No need to spend anything',
-          'Option: Back your medical records in your own cloud'
+          'Full Access to the CMS Core Modules',
+          'Records are stored in your own database',
+          'No internet needed',
+          'No need to spend anything'
         ]
       };
     },
