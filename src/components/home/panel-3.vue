@@ -1,12 +1,11 @@
 <template lang="pug">
   div#products
-    div(v-if="!$isMobile" style="padding: 0 6% 0 6%;").white.pt-5
+    div(v-if="!$isMobile").pt-5
       v-container
         v-layout(row justify-center).pt-3
           span(style="font-size: 40px").lh-title.text-xs-center MYCURE complete clinic management system - it has everything your facility needs.
         div.py-5
-          v-layout(row justify-center).pt-4
-            img(width="100%" src="../../assets/images/mycure-home-web-complete-clinic-management-system-diagram.png" alt="Complete clinic management system")
+          img(width="100%" height="100%" src="../../assets/images/mycure-home-web-complete-clinic-management-system-diagram.png" alt="Complete clinic management system")
     div(v-else).pt-4
       v-container
         v-layout(row justify-center)

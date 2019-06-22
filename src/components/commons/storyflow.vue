@@ -1,6 +1,6 @@
 <template lang="pug">
   div
-    div(v-if="!$isMobile").pt-5
+    div(v-if="!$isMobile").pt-0
       v-container
         span.font-l {{ introduction }}
         br

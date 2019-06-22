@@ -84,8 +84,8 @@
             image: 'mycure-web-banner-circles-home-02-challenges.png'
           },
           {
-            title: 'Plans',
-            text: 'The plan was to create a complete\n integrated, accessible, clinic \nmanagement system to help direct \n the flow in the facility, process, store, \nand secure data.',
+            title: 'Goal',
+            text: 'The goal was to create a complete\n integrated, accessible, clinic \nmanagement system to help direct \n the flow in the facility, process, store, \nand secure data.',
             image: 'mycure-web-banner-circles-home-03-mycure-plan.png'
           }
         ]
