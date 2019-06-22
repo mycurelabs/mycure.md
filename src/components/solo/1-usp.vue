@@ -10,15 +10,14 @@
             br
             br
             br
-            br 
+            br
             v-btn(
-              id="solo-signup-btn"
-              @click.stop="handleSoloSignUpBtn"
-              :href="`${siginURL}/signup/choose`" 
               color="#18c551" 
-              style="padding: 25px 30px 25px 30px"
-            )
-              strong.font-small.text-none.white--text Sign Up Now
+              style="padding: 10px 30px 40px 30px"
+              id="solo-signup-btn"
+              @click.stop="handleSoloSignUpBtn(); toggleChat()"
+            ) 
+              strong.font-small.text-none.white--text Get Early Access
           v-flex(xs12 md7 align-self-center style="margin-top: 5%")
             img(width="80%" src="@/assets/images/mycure-emr-web-banner-first-panel-solo-page.png" alt="Solo doctor").right
     div(v-else).white
@@ -31,8 +30,8 @@
           img(width="100%" src="@/assets/images/mycure-emr-web-banner-first-panel-solo-page.png" alt="Solo doctor").pb-5
       div(style="height: 75px; margin-top: -1%").mc-green
         v-layout(row justify-center)
-          a(id="solo-signup-btn" @click.stop="handleSoloSignUpBtn" :href="`${siginURL}/signup/choose`" style="padding: 20px 0; text-decoration: none")
-            strong(style="font-size: 25px").white--text Sign Up Now
+          a(id="solo-signup-btn" @click.stop="handleSoloSignUpBtn(); toggleChat()" style="padding: 20px 0; text-decoration: none")
+            strong(style="font-size: 25px").white--text Get Early Access
 </template>
 
 <script>
@@ -43,12 +42,20 @@
         siginURL: process.env.VUE_APP_SIGNIN_URL
       };
     },
-    handleSoloSignUpBtn () {
-      this.$ga.event({
-        eventCategory: 'button',
-        eventAction: 'click-solo-signup-btn',
-        eventLabel: 'solo-signup-btn'
-      });
+    methods: {
+      handleSoloSignUpBtn () {
+        this.$ga.event({
+          eventCategory: 'button',
+          eventAction: 'click-solo-signup-btn',
+          eventLabel: 'solo-signup-btn'
+        });
+      },
+      toggleChat () {
+        let message = `Hi! I want to get early access to MYCURE Solo.`;
+        window.$crisp.push(['do', 'chat:toggle']);
+        window.$crisp.push(['do', 'message:send', ['text', message]]);
+      },
+
     }
   };
 </script>
