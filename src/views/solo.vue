@@ -36,17 +36,17 @@
         storyflowItems: [
           {
             title: 'Connectivity?',
-            text: 'Want a clinic management system without\nrelying heavily on the internet?',
+            text: 'Want a clinic management system without relying heavily on the internet?',
             image: 'mycure-web-banner-circles-solo-01-doctor.png'
           },
           {
             title: 'Security Issues?',
-            text: 'Have security trust issues and \nwant to secure your patient\'s \nmedical records?',
+            text: 'Have security trust issues and want to secure your patient\'s medical records?',
             image: 'mycure-web-banner-circles-solo-02-privacy.png'
           },
           {
             title: 'It’s FREE!',
-            text: 'Want to experience a clinic \nmanagement system without spending?',
+            text: 'Want to experience a clinic management system without spending?',
             image: 'mycure-web-banner-circles-solo-03-free.png'
           }
         ]

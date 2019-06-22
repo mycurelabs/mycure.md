@@ -75,17 +75,17 @@
         storyflowItems: [
           {
             title: 'Doctors',
-            text: 'MYCURE Complete Clinic \nManagement System wants to ease \nthe mission of Medical Practitioners: \nOur unsung Heroes.',
+            text: 'MYCURE Complete Clinic Management System wants to ease the mission of Medical Practitioners: Our unsung Heroes.',
             image: 'mycure-web-banner-circles-home-01-doctors-league.png'
           },
           {
             title: 'Challenges',
-            text: ' -Data privacy issues? \n-Unnecessary costs? \n-Unreliable internet connection? \n-Duplicate or missing patient charts? \n-Billing & collection discrepancies? \n-Crappy System?',
+            text: ' -Data privacy issues? -Unnecessary costs? -Unreliable internet connection? -Duplicate or missing patient charts? -Billing & collection discrepancies? -Crappy System?',
             image: 'mycure-web-banner-circles-home-02-challenges.png'
           },
           {
             title: 'Goal',
-            text: 'The goal was to create a complete\n integrated, accessible, clinic \nmanagement system to help direct \n the flow in the facility, process, store, \nand secure data.',
+            text: 'The goal was to create a complete integrated, accessible, clinic management system to help direct the flow in the facility, process, store, and secure data.',
             image: 'mycure-web-banner-circles-home-03-mycure-plan.png'
           }
         ]

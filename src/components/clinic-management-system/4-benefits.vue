@@ -17,17 +17,17 @@
         storyflowItems: [
           {
             title: 'Syncbase',
-            text: 'This technology allows the program to be used \neven when the internet is down.',
+            text: 'This technology allows the program to be used even when the internet is down.',
             image: 'mycure-web-banner-circles-multispecialty-01-syncbase.png'
           },
           {
             title: 'Data Collection Analysis',
-            text: 'It allows the facility to collect data about certain disease trend \nand business statistics. It can help in the research and development \nof a facility.',
+            text: 'It allows the facility to collect data about certain disease trend and business statistics. It can help in the research and development of a facility.',
             image: 'mycure-web-banner-circles-multispecialty-02-stats.png'
           },
           {
             title: 'Affordability',
-            text: 'The system is cost-efficient. For the features, it has been \nset in an affordable cost so that it can be accessed by many.',
+            text: 'The system is cost-efficient. For the features, it has been set in an affordable cost so that it can be accessed by many.',
             image: 'mycure-web-banner-circles-multispecialty-03-affordability.png'
           }
         ] 
