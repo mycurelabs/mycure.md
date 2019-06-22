@@ -1,5 +1,5 @@
 <template lang="pug">
-  div()
+  div(:class="$isMobile ? 'pt-5' : ''")
     v-container(v-for="(panel,key) in moduleList" :key="key")
       v-layout(row justify-center)
         v-flex(xs10).text-xs-center
