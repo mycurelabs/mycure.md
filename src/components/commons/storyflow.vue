@@ -31,8 +31,8 @@
             span(v-if="hasTitle").font-l.lh-title.text-xs-center {{ highlight.title }}
         br
         v-layout(align-center row wrap).px-2
-          v-flex(xs12)
-            span(style="white-space: pre;").font-m.text-xs-center {{ highlight.text }}
+          v-flex(xs12).text-xs-center
+            span.font-m {{ highlight.text }}
         br
 </template>
 
