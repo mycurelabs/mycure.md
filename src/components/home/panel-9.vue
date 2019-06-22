@@ -2,7 +2,8 @@
   div#panel9
     div(v-if="!$isMobile")
       v-container.text-xs-center
-        b.font-small What brings you here?
+        b.font-medium What brings you here?
+        br
         br
         br
         v-layout(row justify-center)
@@ -29,7 +30,7 @@
           img(width="100%" height="100%" src="../../assets/images/mycure-web-banner-last-panel-health-community.png" alt="Health community")
     div(v-else).showPanel
       v-container.text-xs-center
-        b.font-small What brings you here?
+        b.font-m What brings you here?
         br
         br
         v-layout(column align-center)
