@@ -22,7 +22,21 @@
             span.font-small {{ highlight.text }}
           v-flex(xs5 v-else).text-xs-right
             img(style="max-width: 90%" :src="require(`@/assets/images/${ highlight.image }`)" :alt="highlight.title")
+        br
+        v-layout(v-if="featuresButton" row wrap justify-center)
+          v-btn(
+            id="features-page-btn"
+            @click.stop="handleFeaturesPageBtn"
+            color="#18c551"
+            :to="{ name: 'features' }"
+            style="height: 60px; width: 250px"
+          ).mt-3
+            strong.font-small.white--text.text-none Explore the Features
     div(v-else).pt-4
+      div.text-xs-center
+        span.font-l {{ introduction }}
+      br
+      br
       v-container(v-for="(highlight,index) in storyflow" :key="index" column justify-center)
         v-layout(row wrap justify-center align-center).pb-2
           img(style="height: 70vw" :src="require(`@/assets/images/${ highlight.image }`)" :alt="highlight.title")
@@ -35,6 +49,15 @@
           v-flex(xs12).text-xs-center
             span.font-m {{ highlight.text }}
         br
+      v-layout(v-if="featuresButton" row wrap justify-center)
+        v-btn(
+          id="features-page-btn"
+          @click.stop="handleFeaturesPageBtn"
+          color="#18c551"
+          :to="{ name: 'features' }"
+          style="height: 60px; width: 250px"
+        ).mt-3
+          strong.font-small.white--text.text-none Explore the Features
 </template>
 
 <script>
@@ -48,8 +71,21 @@
       introduction: {
         type: String,
         default: ''
+      },
+      featuresButton: {
+        type: Boolean,
+        default: false
+      },
+    },
+    methods: {
+      handleFeaturesPageBtn () {
+        this.$ga.event({
+          eventCategory: 'button',
+          eventAction: 'click-features-page-btn',
+          eventLabel: 'features-page-btn'
+        });
       }
-    }, 
+    }
   };
 </script>
 
