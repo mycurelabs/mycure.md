@@ -5,6 +5,7 @@
     storyflow(
       :storyflow="storyflowItems"
       :introduction="introText"
+      :featuresButton="true"
     )
     //- panel2mobile(v-if="$isMobile")
     panel2
