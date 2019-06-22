@@ -11,7 +11,8 @@
       v-layout(row wrap fill-height :class="panel.isCenter ? 'justify-center' : ''")
         v-flex(
           xs12
-          md4 
+          :md4="!panel.doubleCol"
+          :md5="panel.doubleCol"
           v-for="(moduleItem, index) in panel.modules" 
           :key="index"
         ).px-1.py-2
@@ -19,7 +20,7 @@
             v-card-text(v-if="!$isMobile")
               v-layout(row)
                 img(:src="require(`@/assets/images/${ moduleItem.icon }`)" width="10%" height="10%" :alt="moduleItem.title") 
-                span.font-small.pt-1 &nbsp; {{ moduleItem.title }}
+                span(:class="panel.doubleCol ? 'pt-3' : 'pt-1'").font-small &nbsp; {{ moduleItem.title }}
               br
               i(v-if="panel.hasSubtext") {{ moduleItem.subtext}}
                 br
@@ -45,6 +46,7 @@
             type: 'Core Modules',
             description: 'Professional systems that are essential for your clinic',
             isCenter: true,
+            doubleCol: true,
             hasSubtext: true,
             modules: [
               {
@@ -77,6 +79,7 @@
             type: 'Premium Modules',
             description: 'Add these on top of the core modules to boost your digital clinic experience.',
             isCenter: false,
+            doubleCol: false,
             hasSubtext: true,
             modules: [
               {
