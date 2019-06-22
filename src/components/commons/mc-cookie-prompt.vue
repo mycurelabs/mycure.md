@@ -7,7 +7,7 @@
       div(slot-scope="props" style="width: 100%")
         v-container(style="width: 100%").py-1
           v-layout(row v-if="!$isMobile").px-4
-            v-flex(xs11)
+            v-flex(xs11).pt-2
               | We use third-party services to understand web traffic data for us and they may collect cookies during the process.
               | By continuing to browse our site, you agree to MYCURE's 
               router-link(:to="{name: 'terms'}").policy-links Terms of Use 
