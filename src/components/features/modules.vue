@@ -17,7 +17,7 @@
           v-card(height="100%").pa-1
             v-card-text(v-if="!$isMobile")
               v-layout(row)
-                img(:src="require(`@/assets/images/${ moduleItem.icon }`)" width="10%" :alt="moduleItem.title") 
+                img(:src="require(`@/assets/images/${ moduleItem.icon }`)" width="10%" height="10%" :alt="moduleItem.title") 
                 span.pt-2 &nbsp; {{ moduleItem.title }}
               br
               i(v-if="panel.hasSubtext") {{ moduleItem.subtext}}
@@ -33,8 +33,6 @@
                   br
                   i(v-if="panel.hasSubtext" style="font-size: 12px") {{ moduleItem.subtext}}
                   p(style="font-size: 12px").pt-3 {{ moduleItem.description }}
-                  
-
 </template>
 
 <script>
@@ -118,32 +116,6 @@
                 subtext: '',
                 description: 'Manage corporate and private APE, PEME, and FME.'
               }  
-            ]
-          },
-          {
-            type: 'Add-Ons',
-            description: 'You get these complimentary features when you need them.',
-            isCenter: false,
-            hasSubtext: false,
-            modules: [
-              {
-                icon: 'mycure-web-clinic-feature-icon-DPA.png',
-                title: 'DPA Registration Guide',
-                subtext: '',
-                description: 'Step-by-step guide to DPA compliance and clinics.'
-              },
-              {
-                icon: 'mycure-icon-support-active.png',
-                title: 'Awesome Care',
-                subtext: '',
-                description: 'Get help quickly from our hands-on support team.'
-              },
-              {
-                icon: 'mycure-web-clinic-type-icon-multispecialty.png',
-                title: 'Specialty Features',
-                subtext: '',
-                description: 'Activate premium tools for different doctor specializations.'
-              }
             ]
           }
         ]
