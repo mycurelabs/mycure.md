@@ -18,7 +18,7 @@
             v-card-text(v-if="!$isMobile")
               v-layout(row)
                 img(:src="require(`@/assets/images/${ moduleItem.icon }`)" width="10%" height="10%" :alt="moduleItem.title") 
-                span.pt-2 &nbsp; {{ moduleItem.title }}
+                span.font-small.pt-1 &nbsp; {{ moduleItem.title }}
               br
               i(v-if="panel.hasSubtext") {{ moduleItem.subtext}}
                 br
