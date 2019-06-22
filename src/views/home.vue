@@ -7,7 +7,7 @@
       :storyflow="storyflowItems"
       :introduction="introText"
       :featuresButton="true"
-    )
+    ).showPanel
     //- panel2mobile(v-if="$isMobile")
     panel2
     panel3
