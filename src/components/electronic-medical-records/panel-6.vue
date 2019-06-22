@@ -14,7 +14,7 @@
                   strong(style="font-size: 30px").pb-2 For Private Practice
                   br
                   br
-                  span.font-small Know some of the other features specifically designed for private practitioners running their clinic alone or collaborating with other private practitioners.
+                  span.font-small {{ private_title }}
                   br
                   br
                   v-layout(row v-for="(feature,index) in privateFeatures" :key="index")
@@ -34,7 +34,7 @@
     div(v-else).py-3.white
       img(width="100%" src="../../assets/images/mycure-web-banner-fifth-panel-private-clinic.png" alt="Private clinic pricing")
       v-layout(column wrap).pt-4.pb-5.pr-5.pl-5
-        p.pb-2.font-s {{ private_title }}
+        p.pb-2.font-small {{ private_title }}
         v-layout(row v-for="(feature,index) in privateFeatures" :key="index")
           span.font-small.pb-2 &#10003; &nbsp; 
           span.font-small {{ feature }}
@@ -56,7 +56,7 @@
     data () {
       return {
         siginURL: process.env.VUE_APP_SIGNIN_URL,
-        private_title: 'Get a powerful combination of features designed for physicians who are practicing solo or in groups.',
+        private_title: 'Designed for private practitioners who run their clinic alone or collaborate with other private practitioners.',
         // cloud_title: 'Get a powerful combination of features designed for physicians who are practicing solo or in groups.',
         // standalone_title: 'Get access to the full features, completely independent system and designed for the physician’s personal clinic.',
         // cloudFeatures: [
