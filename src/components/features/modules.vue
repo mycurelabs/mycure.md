@@ -10,7 +10,8 @@
       br
       v-layout(row wrap fill-height :class="panel.isCenter ? 'justify-center' : ''")
         v-flex(
-          xs12 md4 
+          xs12
+          md4 
           v-for="(moduleItem, index) in panel.modules" 
           :key="index"
         ).px-1.py-2
@@ -48,74 +49,72 @@
             modules: [
               {
                 icon: 'mycure-web-clinic-feature-icon-emr.png',
-                title: 'EMR',
+                title: 'Medical Records',
                 subtext: 'Premium EMR designed for and by doctors',
-                description: 'Create SOAP Charting, digital prescriptions, med certs, lab orders, and compare lab results anytime, anywhere.'
+                description: 'An easy-to-use Electronic Medical Records (EMR) System for printing Prescriptions, creating Charts, Lab Orders, and other medical forms.'
+              },
+              {
+                icon: 'mycure-web-clinic-feature-icon-pme.png',
+                title: 'Registration',
+                subtext: 'Streamlined registration process from start to finish',
+                description: 'A Registration & Queuing System designed to reduce patient journey turnaround time and medical record filing errors.'
               },
               {
                 icon: 'mycure-icon-billing-basic-active.png',
                 title: 'Billing',
                 subtext: 'Simplified billing with beautiful reports',
-                description: 'A billing management system that can integrate all clinic transactions into a single database.'
+                description: 'A Billing Management System that can integrate all clinic private and HMO transactions into a single database.'
               },
               {
-                icon: 'mycure-web-clinic-feature-icon-lab.png',
-                title: 'Laboratory',
-                subtext: 'Record and retrieve results when you need them.',
-                description: 'A laboratory information system that communicates with your modern diagnostic machines through  HL7 interfacing and PACS configurations.'
-              },
-              {
-                icon: 'mycure-web-clinic-feature-icon-imaging.png',
-                title: 'Imaging',
-                subtext: 'Interpret imaging results in an instant.',
-                description: 'An imaging information system that allows doctors to view DICOM images remotely, and patients to view their ' +
-                  'lab & imaging results online.'
-              },
-              {
-                icon: 'mycure-icon-inventory-active.png',
-                title: 'Inventory',
-                subtext: 'Your medical supplies at a glance.',
-                description: 'An inventory management system built for healthcare facilities to monitor in-house supplies and' +
-                  'over-the-counter products.'
-              }  
+                icon: 'mycure-icon-report-active.png',
+                title: 'Administrative',
+                subtext: 'Better operations with data-driven business decisions.',
+                description: 'A business tool to measure your day-to-day clinic performance with sales reports, daily census, and sophisticated user access control.'
+              }
             ]
           },
           {
             type: 'Premium Modules',
             description: 'Add these on top of the core modules to boost your digital clinic experience.',
             isCenter: false,
-            hasSubtext: false,
+            hasSubtext: true,
             modules: [
               {
-                icon: 'mycure-web-clinic-feature-icon-billing.png',
-                title: 'Point-of-Sales',
-                subtext: '',
-                description: 'Complements the Inventory and Billing Module.'
+                icon: 'mycure-web-clinic-feature-icon-lab.png',
+                title: 'Laboratory',
+                subtext: 'Record and retrieve results when you need them.',
+                description: 'A Laboratory Information System that communicates with modern diagnostic machines through HL7 interfacing.'
               },
               {
-                icon: 'mycure-icon-chat-active.png',
-                title: 'Staff Chatbox',
-                subtext: '',
-                description: 'Virtually communicate with your clinic staff'
+                icon: 'mycure-web-clinic-feature-icon-imaging.png',
+                title: 'Imaging',
+                subtext: 'Interpret imaging results in an instant.',
+                description: 'An Imaging Information System that allows doctors to view DICOM images remotely, and patients to view imaging results online.'
+              },
+              {
+                icon: 'mycure-icon-inventory-active.png',
+                title: 'Materials Management',
+                subtext: 'Your medical supplies at a glance.',
+                description: 'A Materials Management System built for healthcare facilities to monitor in-house supplies and over-the-counter products.'
+              },
+              {
+                icon: 'mycure-icon-pmeepe-active.png',
+                title: 'Physical Medical Exam',
+                subtext: 'Monitor groups of PME patients effectively.',
+                description: 'Manage corporate and private Annual Physical Exams, Pre-employment Medical Exams, Executive Checkups, and Full Medical Exams.'
+              },
+              {
+                icon: 'mycure-web-clinic-feature-icon-billing.png',
+                title: 'Pharmacy',
+                subtext: 'Sell medicines in a very efficient way.',
+                description: 'A Pharmacy Management System with Point-of-Sales functions, Rx access, inventory management, and reports in one place.'
               },
               {
                 icon: 'mycure-web-clinic-feature-icon-syncbase.png',
                 title: 'Syncbase Technology',
-                subtext: '',
-                description: 'The system works even offline.'
-              },
-              {
-                icon: 'mycure-web-clinic-feature-icon-census.png',
-                title: 'Reports and Analytics',
-                subtext: '',
-                description: 'Measure your clinic\'s performance'
-              },
-              {
-                icon: 'mycure-web-clinic-feature-icon-pme.png',
-                title: 'Physical Medical Exam',
-                subtext: '',
-                description: 'Manage corporate and private APE, PEME, and FME.'
-              }  
+                subtext: 'Use MYCURE even if your internet connection is down.',
+                description: 'Work within your local network using multiple devices even if the internet goes down and just sync data when back online.'
+              } 
             ]
           }
         ]
