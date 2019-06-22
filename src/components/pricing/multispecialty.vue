@@ -26,7 +26,7 @@
         br
         v-layout(row wrap align-items-center)
           p  
-          v-flex(xs6 md3 v-for="(card, key) in cards" :key="key").text-center.align-self-center
+          v-flex(xs6 md4 v-for="(card, key) in cards" :key="key").text-center.align-self-center
             vue-flip(:active-hover="true" width="100%" class="simple-test" style="margin-bottom: 250px; font-size: 18px")
               div(slot="front" ref="frontCard").flip-card.align-items-center.pa-3
                 center
@@ -128,16 +128,16 @@
         br
       div
         center
-            strong.gray FEATURES INCLUDED
+            strong.gray MADE FOR
         br
         v-layout(v-for="(card, key) in cards" :key="key" column wrap).pb-4
           v-layout(row wrap).px-1
             v-flex(xs4).pr-3
               img(width="80" :src="card.image" :alt="card.text")
-            v-flex(xs8) 
+            v-flex(xs8).pt-1
               strong(style="font-size: 14px")  {{ card.text }}
               p(style="font-size: 12px").pt-1 {{ card.content }}
-              strong(id="pricing-multispecialty-signup-btn" v-html="" style="font-size: 12px").font-mc-blue.pb-2 {{ card.buttonText }}
+              //- strong(id="pricing-multispecialty-signup-btn" v-html="" style="font-size: 12px").font-mc-blue.pb-2 {{ card.buttonText }}
         br
         v-layout(row)
           v-flex(xs12 md4) 
@@ -258,29 +258,10 @@
           },
           {
             image: require('../../assets/images/mycure-home-products-icon-group-clinics.png'),
-            text: 'Group Clinics',
-            content: 'Managed by a group of physicians practicing together and assisted by one or more secretaries',
+            text: 'Family Clinics',
+            content: 'Small to medium clinics that offer family medicine services, laboratory tests, and pharmacy.',
             buttonText: 'Sign Up',
             link: ''
-          },
-          {
-            image: require('../../assets/images/mycure-home-products-icon-individual-clinics.png'),
-            text: 'Individual Clinics',
-            content: 'Physicians practicing independently in one or more clinic locations',
-            buttonText: 'Sign Up',
-            link: ''
-          },
-          {
-            isMoreButton: true,
-            image: require('../../assets/images/mycure-home-products-icon-more.png'),
-            text: 'More coming!',
-            content: `
-              Rehab Clinics,
-              Maternity Clinics,
-              Diagnostic Clinics,
-              Pharmacies and more!
-            `,
-            buttonText: 'Contact Us'
           }
         ]
       };
