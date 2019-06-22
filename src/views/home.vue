@@ -1,4 +1,5 @@
 <template lang="pug">
+  //-TODO: Videos are still playing even when dialogs are closed
   div#top.white
     mcToolbarHome
     panel1
