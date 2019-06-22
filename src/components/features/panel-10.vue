@@ -2,9 +2,9 @@
   div
     div(v-if="!$isMobile")
       panelBeforeFooter
-        img(slot="emr-img" style="max-width: 90%" src="../../assets/images/mycure-web-banner-last-panel-features-embrace-habit.png" alt="Embrace service")
-        span(slot="emr-txt").font-medium.lh-title Embrace a new habit.
-        span(slot="emr-sub-txt").font-small Let your patients experience top-of-the-line service through your streamlined clinic operations with the help of MYCURE.
+        img(slot="img" style="max-width: 90%" src="../../assets/images/mycure-web-banner-last-panel-features-embrace-habit.png" alt="Embrace service")
+        span(slot="txt").font-medium.lh-title Embrace a new habit.
+        span(slot="sub-txt").font-small Let your patients experience top-of-the-line service through your streamlined clinic operations with the help of MYCURE.
         v-btn(
           slot="sign-up-button"
           :href="`${siginURL}/signup/choose`" 
@@ -23,7 +23,7 @@
           span(style="font-size: 200%").text-xs-center.lh-title Embrace a new habit.
           br
           br
-          span.font-s.text-xs-center Experience what you can do more with MYCURE technology by your side.
+          span.font-s.text-xs-center Let your patients experience top-of-the-line service through your streamlined clinic operations with the help of MYCURE.
           br
           br
           v-layout(row justify-center)
