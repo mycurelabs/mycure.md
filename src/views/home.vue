@@ -2,7 +2,10 @@
   div#top.white
     mcToolbarHome
     panel1
-    storyflow(:storyflow="storyflowItems")
+    storyflow(
+      :storyflow="storyflowItems"
+      :introduction="introText"
+    )
     //- panel2mobile(v-if="$isMobile")
     panel2
     panel3
@@ -72,20 +75,21 @@
     },
     data () {
       return {
+        introText: 'Technology with a Powerful Mission',
         storyflowItems: [
           {
-            title: 'Doctors',
-            text: 'MYCURE Complete Clinic Management System wants to ease the mission of Medical Practitioners: Our unsung Heroes.',
+            title: 'Built for Medical Practitioners',
+            text: 'To the unsung heroes who inspire us everyday, you deserve access to a more reliable clinic management system that will help ease your mission to save lives.',
             image: 'mycure-web-banner-circles-home-01-doctors-league.png'
           },
           {
-            title: 'Challenges',
-            text: ' -Data privacy issues? -Unnecessary costs? -Unreliable internet connection? -Duplicate or missing patient charts? -Billing & collection discrepancies? -Crappy System?',
+            title: 'Solving Everyday Challenges',
+            text: 'Data privacy issues, duplicate or missing patient charts, billing & collection discrepancies, cutting down unnecessary costs, and having unreliable internet connection should be the least of your worries.',
             image: 'mycure-web-banner-circles-home-02-challenges.png'
           },
           {
-            title: 'Goal',
-            text: 'The goal was to create a complete integrated, accessible, clinic management system to help direct the flow in the facility, process, store, and secure data.',
+            title: 'Secure, Integrated Medical Records',
+            text: 'Our goal at MYCURE is to build an accessible, integrated, and complete clinic management system that simplifies work, helps direct the flow in every health facility, while securely storing and retrieving medical records.',
             image: 'mycure-web-banner-circles-home-03-mycure-plan.png'
           }
         ]

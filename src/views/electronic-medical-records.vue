@@ -5,7 +5,10 @@
     //- panel2
     panel3
     panel4
-    storyflow(:storyflow="storyflowItems")
+    storyflow(
+      :storyflow="storyflowItems"
+      :introduction="introText"
+    )
     //- panel5
     panel6.showPanel
     panel7mobile(v-if="$isMobile").showPanel
@@ -32,20 +35,21 @@
   export default {
     data () {
       return {
+        introText: 'How It Works',
         storyflowItems: [
           {
             title: 'Manage on the Go',
-            text: 'View your charts while you are traveling, having coffee, or simply relaxing at home.',
+            text: 'Review your charts while on the way to your clinic, while doing your rounds, or while you’re at home because MYCURE is cloud-based.',
             image: 'mycure-web-banner-circles-private-01-on-the-go.png'
           },
           {
             title: 'Oversee Security',
-            text: 'Personally secure your records and control access to it via the admin status.',
+            text: 'Personally secure and control access to your records with international data privacy standards built inside MYCURE.',
             image: 'mycure-web-banner-circles-private-02-security.png'
           },
           {
             title: 'Online Profile',
-            text: 'Maximize your online presence by using the online profile feature of MYCURE so that patients can reach you easily',
+            text: 'New and regular patients may reach you easily by activating your own personal website that comes free with your clinic management system.',
             image: 'mycure-web-banner-circles-private-03-online-profile.png'
           }
         ]

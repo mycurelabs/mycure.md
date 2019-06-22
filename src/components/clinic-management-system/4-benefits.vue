@@ -16,18 +16,18 @@
       return {
         storyflowItems: [
           {
-            title: 'Syncbase',
-            text: 'This technology allows the program to be used even when the internet is down.',
+            title: 'Work Offline',
+            text: 'MYCURE is cloud-based clinic management system that can be used within your local network even if the internet goes down.',
             image: 'mycure-web-banner-circles-multispecialty-01-syncbase.png'
           },
           {
             title: 'Data Collection Analysis',
-            text: 'It allows the facility to collect data about certain disease trend and business statistics. It can help in the research and development of a facility.',
+            text: 'MYCURE allows clinics to collect significant data in real-time that can help optimize business operations.',
             image: 'mycure-web-banner-circles-multispecialty-02-stats.png'
           },
           {
             title: 'Affordability',
-            text: 'The system is cost-efficient. For the features, it has been set in an affordable cost so that it can be accessed by many.',
+            text: 'With the reliability of an in-house system and affordability of the cloud, MYCURE is a great investment for your clinic.',
             image: 'mycure-web-banner-circles-multispecialty-03-affordability.png'
           }
         ] 
