@@ -1,8 +1,9 @@
 <template lang="pug">
   div
-    div(v-if="!$isMobile").pt-0
+    div(v-if="!$isMobile").pt-2
       v-container
-        span.font-l {{ introduction }}
+        div.text-xs-center
+          span.font-l {{ introduction }}
         br
         br
         v-layout(v-for="(highlight,index) in storyflow" :key="index" row wrap justify-center)

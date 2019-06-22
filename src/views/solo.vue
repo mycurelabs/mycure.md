@@ -32,15 +32,15 @@
     },
     data () {
       return {
-        introText: 'Why use MYCURE Solo',
+        introText: 'Why use MYCURE Solo?',
         storyflowItems: [
           {
-            title: 'Connectivity?',
+            title: 'Connectivity',
             text: 'Want a clinic management system without relying heavily on the internet?',
             image: 'mycure-web-banner-circles-solo-01-doctor.png'
           },
           {
-            title: 'Security Issues?',
+            title: 'Security Issues',
             text: 'Have security trust issues and want to secure your patient\'s medical records?',
             image: 'mycure-web-banner-circles-solo-02-privacy.png'
           },
