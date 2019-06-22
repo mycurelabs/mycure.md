@@ -24,6 +24,12 @@
     "image": "https://firebasestorage.googleapis.com/v0/b/mc-v4-prod.appspot.com/o/web-main-assets%2FMYCURE_Open_Graph_Images_Multispecialty_Clinic.png?alt=media&token=de2ed033-d770-4940-b0f0-d7ce9f85664d"
   },
   {
+    "path": "/mycure-solo",
+    "title": "MYCURE - Solo | A free and standalone clinic management system",
+    "description": "MYCURE Features",
+    "image": "https://firebasestorage.googleapis.com/v0/b/mc-v4-prod.appspot.com/o/web-main-assets%2FMYCURE_Open_Graph_Images_Home_Clinic_Management_System.png?alt=media&token=9556e040-1c3d-4632-9151-798ad13a15d4"
+  },
+  {
     "path": "/pricing",
     "title": "MYCURE - Pricing | Affordable EMR and Clinic Management System",
     "description": "MYCURE is always FREE for doctors. The most affordable EMR and clinic management in the Philippines. Pay only for what you need with plans that suit your budget.",
