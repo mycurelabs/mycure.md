@@ -6,7 +6,7 @@
           v-flex(xs12 md7 align-self-center style="margin-top: -7%")
             h1(style="font-weight: bold;").font-small.font-mc-blue MYCURE Private Practice
             br
-            p(style="line-height: 60px;").font-medium Provides a system that helps private medical practitioner do greater things.
+            p(style="line-height: 60px;").font-medium A clinic management system designed specifically for private medical practitioners
             br
             v-btn(  
               id="emr-signup-btn"
@@ -23,7 +23,7 @@
         v-layout(column justify-center)
             h1(style="font-weight: bold;").font-small.font-mc-blue.text-xs-center.pb-2 MYCURE Private Practice
             br
-            p.font-l.text-xs-center.lh-title Provides a system that helps private medical practitioner do greater things.
+            p.font-l.text-xs-center.lh-title A clinic management system designed specifically for private medical practitioners
         v-flex(xs12)
           img(width="100%" src="../../assets/images/mycure-emr-web-banner-first-panel-doctor-clinic-patients.png" alt="Individual doctor").pb-5
       div(style="height: 75px; margin-top: -1%").mc-green

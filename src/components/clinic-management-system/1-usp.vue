@@ -6,7 +6,7 @@
           v-flex(xs12 md7 align-self-center style="margin-top: -7%") 
             h1(style="font-weight: bold;").font-small.font-mc-blue MYCURE Multispecialty
             br
-            p(style="line-height: 60px;").font-medium Provides a system that simplifies the work for multispecialty clinics &nbsp; &nbsp;
+            p(style="line-height: 60px;").font-medium A clinic management system designed specifically for multispecialty clinics
             br
             v-btn(
               id="cms-signup-btn"
@@ -23,7 +23,7 @@
         v-layout(column justify-center)
           h1(style="font-weight: bold;").font-small.font-mc-blue.text-xs-center.pb-2 MYCURE Multispecialty
           br
-          p.font-l.text-xs-center Provides a system that simplifies the work for multispecialty clinics
+          p.font-l.text-xs-center A clinic management system designed specifically for multispecialty clinics
           br
           br
         v-flex(xs12)
