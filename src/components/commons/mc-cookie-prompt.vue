@@ -43,7 +43,7 @@
 
 <style scoped>
   .Cookie--mcCookie {
-    margin-top: 10%;
+    margin-top: 11%;
     background-color: #596d88;
     font-size: 13px;
   }
