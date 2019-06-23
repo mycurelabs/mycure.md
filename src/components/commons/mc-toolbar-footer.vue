@@ -94,7 +94,7 @@
       br
       br
       v-layout(row justify-center)
-        strong.white--text &copy; {{new Date().getFullYear()}}
+        strong.white--text &copy; 2016 - {{new Date().getFullYear()}}
          router-link(:to="{ name: 'home' }" title="MYCURE | Clinic Management System | Cloud EMR Philippines")
             strong.font-mc-blue &nbsp; MYCURE.  
             |

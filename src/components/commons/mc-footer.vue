@@ -57,7 +57,7 @@
                 li.white--text (+63) 917 303 4350
           hr.mc-grey.my-4  
           v-layout(row wrap justify-center)  
-            span.white--text &copy; {{new Date().getFullYear()}}
+            span.white--text &copy; 2016 - {{new Date().getFullYear()}}
               a(href="https://mycure.md")
                 span.font-mc-blue &nbsp; MYCURE.  
                 |
