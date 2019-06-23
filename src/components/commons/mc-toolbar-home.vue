@@ -36,7 +36,6 @@
                 :href="`${signInURL}/signup/choose`"
                 target="_blank"
                 id="toolbar-signup-btn"
-                target="_blank"
                 @click.stop="handleSignupBtn"
               )
                 strong(style="font-size: 14px").white--text.tab SIGN UP
