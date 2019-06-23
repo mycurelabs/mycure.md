@@ -77,7 +77,7 @@
     },
     data () {
       return {
-        introText: 'Technology with a Powerful Mission',
+        introText: 'A Technology with a Powerful Mission',
         storyflowItems: [
           {
             title: 'Built for Medical Practitioners',
