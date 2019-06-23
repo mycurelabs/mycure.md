@@ -27,10 +27,18 @@
           p.lh-title.font-l.text-xs-center We provide you with a system that helps organize and secure your medical records.
         v-flex(xs12)
           img(width="100%" src="../../assets/images/mycure-web-banner-first-panel-doctor-clinic-patients.png" alt="Clinic home banner")
-      div(style="height: 75px").mc-green
-        v-layout(row justify-center)
-          a(id="home-signup-btn" @click.stop="handleHomeSignupBtn" :href="`${signInURL}/signup/choose`" style="padding: 20px 0; text-decoration: none" title="MYCURE - Sign Up")
-            strong(style="font-size: 25px").white--text Sign Up Now   
+      v-layout(row justify-center)
+        v-btn(
+          id="home-signup-btn" 
+          @click.stop="handleHomeSignupBtn" 
+          :href="`${signInURL}/signup/choose`" 
+          target="_blank"
+          style="height: 75px" 
+          title="MYCURE - Sign Up"
+          color="#18c551" 
+          block
+        )
+          strong(style="font-size: 25px").white--text.text-none Sign Up Now   
 </template>
 
 <script>

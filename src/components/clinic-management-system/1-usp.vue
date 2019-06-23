@@ -29,10 +29,18 @@
           br
         v-flex(xs12)
           img(width="100%" src="../../assets/images/mycure-cms-web-banner-first-panel-doctor-clinic-patients.png" alt="Clinic management system banner").pb-5
-      div(style="height: 75px; margin-top: -1%").mc-green
-        v-layout(row justify-center)
-          a(id="cms-signup-btn" @click.stop="handleCmsSignupBtn" :href="`${signInURL}/signup/multi-specialty/step-1`" style="padding: 20px 0; text-decoration: none")
-            strong(style="font-size: 25px").white--text Get Started Today
+      v-layout(row justify-center)
+        v-btn(
+          id="cms-signup-btn" 
+          @click.stop="handleCmsSignupBtn" 
+          :href="`${signInURL}/signup/multi-specialty/step-1`"
+          target="_blank"
+          style="height: 75px" 
+          title="MYCURE - Sign Up"
+          color="#18c551" 
+          block
+        )
+          strong(style="font-size: 25px").white--text.text-none Get Started Today
 </template>
 
 <script>

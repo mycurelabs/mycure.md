@@ -27,10 +27,18 @@
             p.font-l.text-xs-center.lh-title A clinic management system designed specifically for private medical practitioners
         v-flex(xs12)
           img(width="100%" src="../../assets/images/mycure-emr-web-banner-first-panel-doctor-clinic-patients.png" alt="Individual doctor").pb-5
-      div(style="height: 75px; margin-top: -1%").mc-green
-        v-layout(row justify-center)
-          a(id="emr-signup-btn" @click.stop="handleEmrSignupBtn" :href="`${signInURL}/signup/private/step-1`" style="padding: 20px 0; text-decoration: none")
-            strong(style="font-size: 25px").white--text Sign Up Now
+      v-layout(row justify-center)
+        v-btn(
+          id="emr-signup-btn" 
+          @click.stop="handleEmrSignupBtn" 
+          :href="`${signInURL}/signup/private/step-1`" 
+          target="_blank"
+          style="height: 75px" 
+          title="MYCURE - Sign Up"
+          color="#18c551" 
+          block
+        )
+          strong(style="font-size: 25px").white--text.text-none Sign Up Now
 </template>
 
 <script>

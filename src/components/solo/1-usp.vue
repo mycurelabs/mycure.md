@@ -28,10 +28,16 @@
             p.font-l.text-xs-center A free and standalone clinic management system.
         v-flex(xs12)
           img(width="100%" src="@/assets/images/mycure-emr-web-banner-first-panel-solo-page.png" alt="Solo doctor").pb-5
-      div(style="height: 75px; margin-top: -1%").mc-green
-        v-layout(row justify-center)
-          a(id="solo-signup-btn" @click.stop="handleSoloSignUpBtn(); toggleChat()" style="padding: 20px 0; text-decoration: none")
-            strong(style="font-size: 25px").white--text Get Early Access
+      v-layout(row justify-center)
+        v-btn(
+          id="solo-signup-btn" 
+          @click.stop="handleSoloSignupBtn(); toggleChat()" 
+          style="height: 75px" 
+          title="MYCURE - Sign Up"
+          color="#18c551" 
+          block
+        )
+          strong(style="font-size: 25px").white--text.text-none Get Early Access
 </template>
 
 <script>

@@ -34,16 +34,18 @@
         br
         v-flex(xs12)
           img(width="100%" src="../../assets/images/mycure-cms-web-banner-first-panel-features.png" alt="Features").pb-5
-      div(style="height: 75px; margin-top: -10%").mc-green
-        v-layout(row justify-center)
-          a(
-            id="features-signup-btn" 
-            @click.stop="handleFeaturesSignupBtn"
-            :href="`${signInURL}/signup/choose`" 
-            target="_blank"
-            style="padding: 20px 0; text-decoration: none"
-          )
-            strong(style="font-size: 25px").white--text Sign Up Now
+      v-layout(row justify-center)
+        v-btn(
+          id="features-signup-btn" 
+          @click.stop="handleFeaturesSignupBtn"
+          :href="`${signInURL}/signup/choose`" 
+          target="_blank"
+          style="height: 75px"
+          title="MYCURE - Sign Up"
+          color="#18c551" 
+          block
+        )
+          strong(style="font-size: 25px").white--text.text-none Sign Up Now
 </template>
 
 <script>
