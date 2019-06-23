@@ -15,9 +15,12 @@
                 li
                   router-link(id="footer-private-practice-link" @click.stop="handleFooterEmrLink" :to="{name: 'emr'}" title="MYCURE | Private Practice Electronic Medical Records (EMR)").link.white--text
                     span For Private Practice
-                li.pb-3
+                li
                   router-link(id="footer-multispecialty-link" @click.stop="handleFooterCmsLink" :to="{name: 'cms'}" title="MYCURE | Multispecialty Clinic Management System (CMS)").link.white--text
                     span For Multispecialty Clinics
+                li.pb-3
+                  router-link(id="footer-solo-link" @click.stop="handleFooterSoloLink" :to="{name: 'mycure-solo'}" title="MYCURE - Solo | A free and standalone clinic management system").link.white--text
+                    span Solo
                 li.feature-text ABOUT
                 li
                   router-link(id="footer-our-story-link" @click.stop="handleFooterOurStoryLink" :to="{name: 'our-story'}" title="MYCURE Our Story | Caring the Extra Mile").link.white--text 
@@ -106,6 +109,13 @@ export default {
         eventCategory: 'link',
         eventAction: 'click-footer-multispecialty-link',
         eventLabel: 'footer-multispecialty-link'
+      });
+    },
+    handleFooterSoloLink () {
+      this.$ga.event({
+        eventCategory: 'link',
+        eventAction: 'click-footer-solo-link',
+        eventLabel: 'footer-solo-link'
       });
     },
     handleFooterOurStoryLink () {

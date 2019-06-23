@@ -36,6 +36,8 @@
                 span.py-2 For Private Practice
               router-link(id="footer-multispecialty-btn" :to="{ name: 'cms' }" title="MYCURE | Multispecialty Clinic Management System (CMS)").link.white--text.py-2
                 span.py-2 For Multispecialty Clinics
+              router-link(id="footer-solo-btn" :to="{ name: 'mycure-solo' }" title="MYCURE - Solo | A free and standalone clinic management system").link.white--text.py-2
+                span.py-2 Solo
       v-layout(row)
         v-expansion-panel.elevation-0
           v-expansion-panel-content(style="background-color: #343a40")
