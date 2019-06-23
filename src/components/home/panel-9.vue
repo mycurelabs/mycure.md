@@ -30,7 +30,7 @@
           img(width="100%" height="100%" src="../../assets/images/mycure-web-banner-last-panel-health-community.png" alt="Health community")
     div(v-else).showPanel
       v-container.text-xs-center
-        b.font-m What brings you here?
+        b(style="font-size: 36px") What brings you here?
         br
         br
         v-layout(column align-center)
