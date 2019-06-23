@@ -27,7 +27,7 @@
             id="emr-signup-btn"
             @click.stop="handleEmrSignupBtn"
             color="#18c551"
-            :href="`${siginURL}/signup/private/step-1`"
+            :href="`${signInURL}/signup/private/step-1`"
             style="height: 60px; width: 250px"
           ).mt-3
             strong.font-small.white--text.text-none Sign Up Now
@@ -50,7 +50,7 @@
           v-btn(
             id="emr-signup-btn"
             @click.stop="handleEmrSignupBtn"
-            :href="`${siginURL}/signup/private/step-1`"
+            :href="`${signInURL}/signup/private/step-1`"
             color="#18c551" large).mt-5 
             strong.font-s.text-none.white--text Sign Up Now
         p.text-xs-center.py-4.font-small Have questions? 
@@ -63,7 +63,7 @@
     data () {
       return {
         checkIcon: '../../assets/images/mycure-web-bullet-check.png',
-        siginURL: process.env.VUE_APP_SIGNIN_URL,
+        signInURL: process.env.VUE_APP_SIGNIN_URL,
 
         clinicProblems: [
           'I\'ve no secretary to help with record keeping',

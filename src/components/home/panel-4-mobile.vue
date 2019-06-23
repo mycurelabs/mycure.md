@@ -25,7 +25,7 @@
         v-layout(row wrap justify-center)
           v-btn(
             color="#18c551"
-            :href="`${siginURL}/signup/choose`"
+            :href="`${signInURL}/signup/choose`"
             style="height: 60px; width: 250px"
             id="home-signup-btn"
             @click.stop="handleHomeSignupBtn"
@@ -52,7 +52,7 @@
                 span.font-m {{ problem }} 
         v-layout(row wrap justify-center)
           v-btn(
-            :href="`${siginURL}/signup/choose`"
+            :href="`${signInURL}/signup/choose`"
             color="#18c551" 
             large
             id="home-signup-btn"
@@ -75,7 +75,7 @@
     data () {
       return {
         videoDialog: false,
-        siginURL: process.env.VUE_APP_SIGNIN_URL,
+        signInURL: process.env.VUE_APP_SIGNIN_URL,
 
         problems: [
           'Are you having data privacy issues?',

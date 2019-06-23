@@ -7,7 +7,7 @@
         id="home-signup-btn"
         @click.stop="handleHomeSignupBtn"
         slot="sign-up-button"
-        :href="`${siginURL}/signup/choose`" 
+        :href="`${signInURL}/signup/choose`" 
         color="#18c551" 
         style="padding: 25px 30px 25px 30px;"
         right
@@ -26,7 +26,7 @@
     },
     data () {
       return {
-        siginURL: process.env.VUE_APP_SIGNIN_URL
+        signInURL: process.env.VUE_APP_SIGNIN_URL
       };
     },
     methods: {

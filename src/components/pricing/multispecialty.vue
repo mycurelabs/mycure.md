@@ -13,7 +13,7 @@
             br
             br
             div.pl-1
-              v-btn(:href="`${siginURL}/signup/multi-specialty/step-1`" color="#18c551" large right)
+              v-btn(:href="`${signInURL}/signup/multi-specialty/step-1`" color="#18c551" large right)
                 strong.text-none.white--text Sign Up Now
           v-flex(xs12 md6).px-3
             img(width="100%" src="../../assets/images/mycure-pricing-cms.png" alt="CMS Pricing")
@@ -43,7 +43,7 @@
                   v-btn(
                     id="pricing-multispecialty-signup-btn" 
                     @click.stop="handlePricingMultispecialtySignupBtn"
-                    color="#18c551" :href="`${siginURL}/signup/choose`" 
+                    color="#18c551" :href="`${signInURL}/signup/choose`" 
                     target="_blank" 
                     v-if="!card.isMoreButton").white--text 
                     strong {{card.buttonText}}
@@ -219,7 +219,7 @@
     },
     data () {
       return {
-        siginURL: process.env.VUE_APP_SIGNIN_URL,
+        signInURL: process.env.VUE_APP_SIGNIN_URL,
         cards: [
           {
             image: require('../../assets/images/mycure-home-products-icon-multispecialty-clinics.png'),

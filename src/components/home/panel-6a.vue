@@ -20,7 +20,7 @@
                   span.font-small &#10003 &nbsp Medical Billing
                   v-layout(row wrap).pt-5.pb-4
                     v-btn(
-                      :href="`${siginURL}/signup/private/step-1`"
+                      :href="`${signInURL}/signup/private/step-1`"
                       style="background-color: #18c551; color: white; width: auto" 
                       large
                       id="home-emr-signup-btn"
@@ -44,7 +44,7 @@
                   span.font-small &#10003 &nbsp Materials Management
                   v-layout(row wrap).py-4
                     v-btn(
-                        :href="`${siginURL}/signup/multi-specialty/step-1`"
+                        :href="`${signInURL}/signup/multi-specialty/step-1`"
                         style="background-color: #18c551; color: white; width: auto" 
                         large
                         id="home-cms-signup-btn"
@@ -71,7 +71,7 @@
       return {
           private_title: 'Get a powerful combination of features designed for physicians who are practicing solo or in groups.',
           multispecialty_title: 'An all-around solution for your outpatient, multispecialty or specialized clinics that will manage your full-patient journeys with ease.',
-          siginURL: process.env.VUE_APP_SIGNIN_URL
+          signInURL: process.env.VUE_APP_SIGNIN_URL
       };
     },
     methods: {

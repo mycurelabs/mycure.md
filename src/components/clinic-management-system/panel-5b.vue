@@ -8,7 +8,7 @@
         id="cms-signup-btn"
         @click.stop="handleCmsSignupBtn"
         slot="sign-up-button"
-        :href="`${siginURL}/signup/multi-specialty/step-1`" 
+        :href="`${signInURL}/signup/multi-specialty/step-1`" 
         color="#18c551" 
         style="padding: 25px 30px 25px 30px"
         right
@@ -28,7 +28,7 @@
     },
     data () {
       return {
-        siginURL: process.env.VUE_APP_SIGNIN_URL
+        signInURL: process.env.VUE_APP_SIGNIN_URL
       };
     },
     methods: {

@@ -25,15 +25,17 @@
                 span(style="font-size: 14px").text-none.tab Features
               v-btn(
                 flat
-                :href="`${siginURL}?target=${cmsURL}/authenticate`"
+                :href="`${signInURL}?target=${cmsURL}/authenticate`"
+                target="_blank"
                 id="toolbar-login-btn"
                 @click.stop="handleLoginBtn"
               )
                 strong(style="font-size: 14px").tab LOGIN
               v-btn(
                 color="#2e9fdf"
-                :href="`${siginURL}/signup/choose`"
+                :href="`${signInURL}/signup/choose`"
                 id="toolbar-signup-btn"
+                target="_blank"
                 @click.stop="handleSignupBtn"
               )
                 strong(style="font-size: 14px").white--text.tab SIGN UP
@@ -136,14 +138,14 @@
           v-layout(row justify-center)
             v-btn(
                 id="navdrawer-login-btn"
-                :href="`${siginURL}?target=${cmsURL}/authenticate`"
+                :href="`${signInURL}?target=${cmsURL}/authenticate`"
                 @click.stop="handleLoginBtnMobile"
               )
                 strong(style="font-size: 14px").tab LOGIN
             v-btn(
               id="navdrawer-signup-btn"
               color="#18c551"
-              :href="`${siginURL}/signup/choose`"
+              :href="`${signInURL}/signup/choose`"
               @click.stop="handleSignupBtnMobile"
             )
               strong(style="font-size: 14px").white--text.tab SIGN UP
@@ -158,7 +160,7 @@
     },
     data () {
       return {
-        siginURL: process.env.VUE_APP_SIGNIN_URL,
+        signInURL: process.env.VUE_APP_SIGNIN_URL,
         cmsURL: process.env.VUE_APP_CMS_URL,
         drawer: false,
         scrollPosition: null,

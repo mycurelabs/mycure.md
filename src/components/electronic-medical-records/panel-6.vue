@@ -22,7 +22,7 @@
                     span.font-small {{ feature }}
                     br
                   v-layout(row wrap).py-4
-                    v-btn(:href="`${siginURL}/signup/choose`" style="background-color: #18c551; color: white; width: auto" large).text-none
+                    v-btn(:href="`${signInURL}/signup/choose`" style="background-color: #18c551; color: white; width: auto" large).text-none
                       strong Sign Up Now
       panel6a(style="padding-top: 150px")
       filler(style="padding-top: 100px")
@@ -40,7 +40,7 @@
           span.font-small {{ feature }}
       v-layout(row justify-center)
         v-btn(style="background-color: #18c551; width: 80%; height: 60px")
-          a(:href="`${siginURL}/signup/choose`")
+          a(:href="`${signInURL}/signup/choose`")
             strong.font-m.white--text.text-none Sign Up Now
 </template>
 
@@ -55,7 +55,7 @@
     },
     data () {
       return {
-        siginURL: process.env.VUE_APP_SIGNIN_URL,
+        signInURL: process.env.VUE_APP_SIGNIN_URL,
         private_title: 'Designed for private practitioners who run their clinic alone or collaborate with other private practitioners.',
         // cloud_title: 'Get a powerful combination of features designed for physicians who are practicing solo or in groups.',
         // standalone_title: 'Get access to the full features, completely independent system and designed for the physician’s personal clinic.',

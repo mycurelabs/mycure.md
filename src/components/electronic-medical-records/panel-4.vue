@@ -27,7 +27,7 @@
   export default {
     data () {
       return {
-        siginURL: process.env.VUE_APP_SIGNIN_URL,
+        signInURL: process.env.VUE_APP_SIGNIN_URL,
 
         clinicProblems: [
           'I\'ve no secretary to help with record keeping',

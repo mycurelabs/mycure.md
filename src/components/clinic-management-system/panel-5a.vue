@@ -26,7 +26,7 @@
                     v-btn(
                       id="cms-signup-btn"
                       @click.stop="handleCmsSignupBtn"
-                      :href="`${siginURL}/signup/multi-specialty/step-1`"
+                      :href="`${signInURL}/signup/multi-specialty/step-1`"
                       color="#18c551" 
                       style="width: auto" large
                     ).text-none
@@ -49,7 +49,7 @@
     },
     data () {
       return {
-        siginURL: process.env.VUE_APP_SIGNIN_URL,
+        signInURL: process.env.VUE_APP_SIGNIN_URL,
         multiFeatures: [
           'Queuing & Registration',
           'Patient Medical Records',

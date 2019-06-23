@@ -34,7 +34,7 @@
         v-btn(
           id="home-emr-signup-btn"
           @click.stop="handleHomeEmrSignupBtn"
-          :href="`${siginURL}/signup/private/step-1`"
+          :href="`${signInURL}/signup/private/step-1`"
           style="background-color: #18c551; width: 80%; height: 60px")
           strong.font-m.white--text.text-none Sign Up Now
     div(v-if="isMulti" style="background-color: #f6f6f6")#content 
@@ -46,7 +46,7 @@
         v-btn(
           id="home-cms-signup-btn"
           @click.stop="handleHomeCmsSignupBtn"
-          :href="`${siginURL}/signup/multi-specialty/step-1`"
+          :href="`${signInURL}/signup/multi-specialty/step-1`"
           style="background-color: #18c551; width: 80%; height: 60px")  
           strong.font-m.white--text.text-none Sign Up Now  
 </template>
@@ -57,7 +57,7 @@
       return {
         isPrivate: true,
         isMulti: false,
-        siginURL: process.env.VUE_APP_SIGNIN_URL,
+        signInURL: process.env.VUE_APP_SIGNIN_URL,
         private_title: 'Get a powerful combination of features designed for physicians who are practicing solo or in groups.',
         multispecialty_title: 'An all-around solution for your outpatient, multispecialty or specialized clinics that will manage your full-patient journeys with ease.',          
         privateFeatures: [

@@ -12,7 +12,7 @@
             v-btn(
               id="features-signup-btn"
               @click.stop="handleFeaturesSignupBtn"
-              :href="`${siginURL}/signup/choose`" 
+              :href="`${signInURL}/signup/choose`" 
               color="#18c551" 
               style="padding: 25px 30px 25px 30px"
             ) 
@@ -38,7 +38,7 @@
           a(
             id="features-signup-btn" 
             @click.stop="handleFeaturesSignupBtn"
-            :href="`${siginURL}/signup/choose`" 
+            :href="`${signInURL}/signup/choose`" 
             style="padding: 20px 0; text-decoration: none"
           )
             strong(style="font-size: 25px").white--text Sign Up Now
@@ -48,7 +48,7 @@
   export default {
     data () {
       return {
-        siginURL: process.env.VUE_APP_SIGNIN_URL
+        signInURL: process.env.VUE_APP_SIGNIN_URL
       };
     },
     methods: {

@@ -16,7 +16,7 @@
               v-btn(
                 @click.stop="handlePricingPrivateSignupBtn"
                 id="pricing-private-signup-btn" 
-                :href="`${siginURL}/signup/private/step-1`"  
+                :href="`${signInURL}/signup/private/step-1`"  
                 color="#18c551" 
                 large 
                 right
@@ -150,7 +150,7 @@
           v-btn(
             id="pricing-private-signup-btn" 
             @click.stop="handlePricingPrivateSignupBtn"
-            :href="`${siginURL}/signup/private/step-1`" 
+            :href="`${signInURL}/signup/private/step-1`" 
             color="info" 
             large
           ) 
@@ -259,7 +259,7 @@
           'ICD-10 List',
           'DPA Registration Guide'
         ],
-        siginURL: process.env.VUE_APP_SIGNIN_URL
+        signInURL: process.env.VUE_APP_SIGNIN_URL
       };
     },
     methods: {

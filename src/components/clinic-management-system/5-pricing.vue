@@ -25,7 +25,7 @@
                   v-btn(
                     id="cms-signup-btn"
                     @click.stop="handleCmsSignupBtn"
-                    :href="`${siginURL}/signup/multi-specialty/step-1`"
+                    :href="`${signInURL}/signup/multi-specialty/step-1`"
                     color="#18c551" 
                     style="width: auto" large
                   ).text-none
@@ -45,7 +45,7 @@
           v-btn(
             id="cms-signup-btn"
             @click.stop="handleCmsSignupBtn"
-            :href="`${siginURL}/signup/multi-specialty/step-1`"
+            :href="`${signInURL}/signup/multi-specialty/step-1`"
             style="background-color: #18c551; width: 80%; height: 60px")
               strong.font-m.white--text.text-none Get Started Today
       finalwords
@@ -63,7 +63,7 @@
     },
     data () {
       return {
-        siginURL: process.env.VUE_APP_SIGNIN_URL,
+        signInURL: process.env.VUE_APP_SIGNIN_URL,
         multiSpecialty_desc: 'An all-around solution for your outpatient, multispecialty or specialized clinics that will manage your full-patient journeys with ease.',
         multiFeatures: [
           'Queuing & Registration',

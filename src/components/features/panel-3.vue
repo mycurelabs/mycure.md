@@ -67,7 +67,7 @@
     data () {
       return {
         features: ['A','B','C'],
-        siginURL: process.env.VUE_APP_SIGNIN_URL
+        signInURL: process.env.VUE_APP_SIGNIN_URL
       };
     }
   };

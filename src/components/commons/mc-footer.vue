@@ -86,7 +86,7 @@ export default {
   },
   data () {
     return {
-      siginURL: process.env.VUE_APP_SIGNIN_URL
+      signInURL: process.env.VUE_APP_SIGNIN_URL
     };
   },
   methods: {

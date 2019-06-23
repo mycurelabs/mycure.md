@@ -9,7 +9,7 @@
             p(style="line-height: 60px;").font-medium We provide you with a system that helps organize and secure your medical records.
             br
             v-btn(
-              :href="`${siginURL}/signup/choose`" 
+              :href="`${signInURL}/signup/choose`" 
               color="#18c551" 
               style="padding: 25px 30px 25px 30px"
               id="home-signup-btn"
@@ -28,7 +28,7 @@
           img(width="100%" src="../../assets/images/mycure-web-banner-first-panel-doctor-clinic-patients.png" alt="Clinic home banner")
       div(style="height: 75px").mc-green
         v-layout(row justify-center)
-          a(id="home-signup-btn" @click.stop="handleHomeSignupBtn" :href="`${siginURL}/signup/choose`" style="padding: 20px 0; text-decoration: none" title="MYCURE - Sign Up")
+          a(id="home-signup-btn" @click.stop="handleHomeSignupBtn" :href="`${signInURL}/signup/choose`" style="padding: 20px 0; text-decoration: none" title="MYCURE - Sign Up")
             strong(style="font-size: 25px").white--text Sign Up Now   
 </template>
 
@@ -37,7 +37,7 @@
     data () {
       return {
         showVid: false,
-        siginURL: process.env.VUE_APP_SIGNIN_URL
+        signInURL: process.env.VUE_APP_SIGNIN_URL
       };
     },
     methods: {
