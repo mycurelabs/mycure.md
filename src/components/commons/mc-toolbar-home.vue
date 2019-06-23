@@ -34,6 +34,7 @@
               v-btn(
                 color="#2e9fdf"
                 :href="`${signInURL}/signup/choose`"
+                target="_blank"
                 id="toolbar-signup-btn"
                 target="_blank"
                 @click.stop="handleSignupBtn"
@@ -139,6 +140,7 @@
             v-btn(
                 id="navdrawer-login-btn"
                 :href="`${signInURL}?target=${cmsURL}/authenticate`"
+                target="_blank"
                 @click.stop="handleLoginBtnMobile"
               )
                 strong(style="font-size: 14px").tab LOGIN
@@ -146,6 +148,7 @@
               id="navdrawer-signup-btn"
               color="#18c551"
               :href="`${signInURL}/signup/choose`"
+              target="_blank"
               @click.stop="handleSignupBtnMobile"
             )
               strong(style="font-size: 14px").white--text.tab SIGN UP

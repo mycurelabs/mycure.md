@@ -53,6 +53,7 @@
         v-layout(row wrap justify-center)
           v-btn(
             :href="`${signInURL}/signup/choose`"
+            target="_blank"
             color="#18c551" 
             large
             id="home-signup-btn"

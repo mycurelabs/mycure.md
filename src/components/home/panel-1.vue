@@ -10,6 +10,7 @@
             br
             v-btn(
               :href="`${signInURL}/signup/choose`" 
+              target="_blank"
               color="#18c551" 
               style="padding: 25px 30px 25px 30px"
               id="home-signup-btn"

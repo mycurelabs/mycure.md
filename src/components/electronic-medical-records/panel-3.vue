@@ -28,6 +28,7 @@
             @click.stop="handleEmrSignupBtn"
             color="#18c551"
             :href="`${signInURL}/signup/private/step-1`"
+            target="_blank"
             style="height: 60px; width: 250px"
           ).mt-3
             strong.font-small.white--text.text-none Sign Up Now
@@ -51,6 +52,7 @@
             id="emr-signup-btn"
             @click.stop="handleEmrSignupBtn"
             :href="`${signInURL}/signup/private/step-1`"
+            target="_blank"
             color="#18c551" large).mt-5 
             strong.font-s.text-none.white--text Sign Up Now
         p.text-xs-center.py-4.font-small Have questions? 

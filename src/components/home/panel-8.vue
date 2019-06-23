@@ -8,7 +8,8 @@
           id="home-signup-btn"
           @click.stop="handleHomeSignupBtn"
           slot="sign-up-button"
-          :href="`${signInURL}/signup/choose`" 
+          :href="`${signInURL}/signup/choose`"
+          target="_blank" 
           color="#18c551" 
           style="padding: 25px 30px 25px 30px;"
           right
@@ -26,6 +27,7 @@
               id="home-signup-btn"
               @click.stop="handleHomeSignupBtn"
               :href="`${signInURL}/signup/choose`"
+              target="_blank"
               style="background-color: #18c551; width: 80%; height: 60px")  
               strong.font-m.white--text.text-none Sign Up Now  
 </template>

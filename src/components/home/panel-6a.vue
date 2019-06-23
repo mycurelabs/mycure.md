@@ -21,6 +21,7 @@
                   v-layout(row wrap).pt-5.pb-4
                     v-btn(
                       :href="`${signInURL}/signup/private/step-1`"
+                      target="_blank"
                       style="background-color: #18c551; color: white; width: auto" 
                       large
                       id="home-emr-signup-btn"
@@ -45,6 +46,7 @@
                   v-layout(row wrap).py-4
                     v-btn(
                         :href="`${signInURL}/signup/multi-specialty/step-1`"
+                        target="_blank"
                         style="background-color: #18c551; color: white; width: auto" 
                         large
                         id="home-cms-signup-btn"

@@ -16,7 +16,8 @@
               v-btn(
                 @click.stop="handlePricingPrivateSignupBtn"
                 id="pricing-private-signup-btn" 
-                :href="`${signInURL}/signup/private/step-1`"  
+                :href="`${signInURL}/signup/private/step-1`"
+                target="_blank"
                 color="#18c551" 
                 large 
                 right
@@ -150,7 +151,8 @@
           v-btn(
             id="pricing-private-signup-btn" 
             @click.stop="handlePricingPrivateSignupBtn"
-            :href="`${signInURL}/signup/private/step-1`" 
+            :href="`${signInURL}/signup/private/step-1`"
+            target="_blank" 
             color="info" 
             large
           ) 

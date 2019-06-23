@@ -22,7 +22,12 @@
                     span.font-small {{ feature }}
                     br
                   v-layout(row wrap).py-4
-                    v-btn(:href="`${signInURL}/signup/choose`" style="background-color: #18c551; color: white; width: auto" large).text-none
+                    v-btn(
+                      :href="`${signInURL}/signup/choose`" 
+                      target="_blank"
+                      style="background-color: #18c551; color: white; width: auto" 
+                      large
+                    ).text-none
                       strong Sign Up Now
       panel6a(style="padding-top: 150px")
       filler(style="padding-top: 100px")
@@ -40,7 +45,7 @@
           span.font-small {{ feature }}
       v-layout(row justify-center)
         v-btn(style="background-color: #18c551; width: 80%; height: 60px")
-          a(:href="`${signInURL}/signup/choose`")
+          a(:href="`${signInURL}/signup/choose`" target="_blank")
             strong.font-m.white--text.text-none Sign Up Now
 </template>
 

@@ -7,7 +7,8 @@
         id="our-story-signup-btn"
         @click.stop="handleOurStorySignupBtn"
         slot="sign-up-button"
-        :href="`${signInURL}/signup/choose`" 
+        :href="`${signInURL}/signup/choose`"
+        target="_blank" 
         color="#18c551" 
         style="padding: 25px 30px 25px 30px"
       ) 

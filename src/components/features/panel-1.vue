@@ -13,6 +13,7 @@
               id="features-signup-btn"
               @click.stop="handleFeaturesSignupBtn"
               :href="`${signInURL}/signup/choose`" 
+              target="_blank"
               color="#18c551" 
               style="padding: 25px 30px 25px 30px"
             ) 
@@ -39,6 +40,7 @@
             id="features-signup-btn" 
             @click.stop="handleFeaturesSignupBtn"
             :href="`${signInURL}/signup/choose`" 
+            target="_blank"
             style="padding: 20px 0; text-decoration: none"
           )
             strong(style="font-size: 25px").white--text Sign Up Now

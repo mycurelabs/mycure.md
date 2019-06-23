@@ -14,6 +14,7 @@
         @click.stop="handleCmsSignupBtn"
         color="#18c551"
         :href="`${signInURL}/signup/multi-specialty/step-1`"
+        target="_blank"
         style="height: 60px; width: 250px"
       ).mt-3
         strong.font-small.white--text.text-none Get Started Today

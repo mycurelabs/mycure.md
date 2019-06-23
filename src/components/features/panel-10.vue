@@ -8,6 +8,7 @@
         v-btn(
           slot="sign-up-button"
           :href="`${signInURL}/signup/choose`" 
+          target="_blank"
           color="#18c551" 
           style="padding: 25px 30px 25px 30px"
           right
@@ -31,6 +32,7 @@
               id="features-signup-btn"
               @click.stop="handleFeaturesSignupBtn"
               :href="`${signInURL}/signup/choose`"
+              target="_blank"
               style="background-color: #18c551; width: 80%; height: 60px"
             )  
               strong.font-m.white--text.text-none Sign Up Now  

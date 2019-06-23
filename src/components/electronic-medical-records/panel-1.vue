@@ -12,6 +12,7 @@
               id="emr-signup-btn"
               @click.stop="handleEmrSignupBtn"
               :href="`${signInURL}/signup/private/step-1`" 
+              target="_blank"
               color="#18c551" 
               style="padding: 25px 30px 25px 30px"
             )
