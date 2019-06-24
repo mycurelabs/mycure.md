@@ -8,6 +8,58 @@
     ],
     "rewrites": [
       {
+        "source": "/blog-link",
+        "function": "/index.html"
+      },
+      {
+        "source": "/data-privacy-for-physicians",
+        "function": "/index.html"
+      },
+      {
+        "source": "/careers",
+        "function": "/index.html"
+      },
+      {
+        "source": "/faqs-link",
+        "function": "/index.html"
+      },
+      {
+        "source": "/facebook-link",
+        "function": "/index.html"
+      },
+      {
+        "source": "/youtube-link",
+        "function": "/index.html"
+      },
+      {
+        "source": "/instagram-link",
+        "function": "/index.html"
+      },
+      {
+        "source": "/linkedin-link",
+        "function": "/index.html"
+      },
+      {
+        "source": "/twitter-link",
+        "function": "/index.html"
+      },
+      {
+        "source": "/butchukoy",
+        "function": "/index.html"
+      },
+      {
+        "source": "/mighty-minds",
+        "function": "/index.html"
+      },
+      {
+        "source": "/calendly",
+        "function": "/index.html"
+      },
+      {
+        "source": "/ctm-redirect-link",
+        "function": "/index.html"
+      },
+      {
         "source": "**",
         "function": "/index.html"
       }
