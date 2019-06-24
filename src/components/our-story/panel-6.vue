@@ -39,7 +39,8 @@
                     br
                     br
                     | We promise to help each other and make this world a better place.
-      panel6a(v-if="!$isMobile")
+      v-layout(row justify-center)
+        img(width="100%" height="100%" src="../../assets/images/mycure-web-banner-last-panel-health-community.png" alt="Health community")
 </template>
 
 <script>
