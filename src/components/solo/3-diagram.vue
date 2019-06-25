@@ -29,12 +29,12 @@
           a(@click.stop="toggleChat()")
             strong.font-mc-blue chat us.
       v-dialog(
-        v-model="dialog" 
-        width="1100"
-        attach="#app"
+        v-model="dialog"
+        max-width="100vh"
       ).mt-5.image-rounded-corner
-        v-card(style="border-radius: 20px")
-          v-img(:src="require('@/assets/images/mycure-cms-web-solo-comparison-diagram.png')" alt="Solo diagram")
+        v-card(style="border-radius: 20px;")
+          v-layout(justify-center align-center)
+            img(style="width: 100%" :src="require('@/assets/images/mycure-cms-web-solo-comparison-diagram.png')" alt="Solo diagram")
       v-layout(row justify-center)
           img(width="100%" height="100%" src="@/assets/images/mycure-web-banner-last-panel-health-community.png" alt="Health community") 
     div(v-else)
@@ -117,12 +117,6 @@
   }
   .image-rounded-corner {
     border-radius: 10px !important;
-  }
-
-  .v-dialog {
-    position: absolute;
-    bottom: 0;
-    right: 0;
   }
 </style>
 
