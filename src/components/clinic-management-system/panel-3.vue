@@ -22,7 +22,7 @@
     v-layout(row wrap justify-center)
       em.font-small Have a question? 
         a.font-mc-blue 
-          strong(@click="toggleChat") Start a quick chat
+          strong(@click="toggleChat") Start a quick chat!
 </template>
 
 <script>

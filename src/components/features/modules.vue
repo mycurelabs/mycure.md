@@ -44,7 +44,7 @@
         moduleList: [
           {
             type: 'Core Modules',
-            description: 'Professional systems that are essential for your clinic',
+            description: 'Professional systems that are essential for your clinic.',
             isCenter: true,
             doubleCol: true,
             hasSubtext: true,
