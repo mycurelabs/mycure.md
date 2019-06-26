@@ -3,7 +3,7 @@
     div(v-if="!$isMobile")
       panelBeforeFooter
         img(slot="img" style="max-width: 90%" src="../../assets/images/mycure-web-banner-last-panel-home-doctors.png" alt="Healthcare professionals")
-        span(slot="txt" style="font-size: 36px").lh-title Join thousands of healthcare professionals who get the best out of technology in their practice
+        span(slot="txt" style="font-size: 36px").lh-title Join thousands of healthcare professionals who get the best out of technology in their practice.
         v-btn(
           id="home-signup-btn"
           @click.stop="handleHomeSignupBtn"
