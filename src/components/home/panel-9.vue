@@ -11,7 +11,7 @@
             v-for="(card,i) in productCards"
             :to="{ name: card.link }"
             :key="i"
-            style="width: 250px; height: 100px"
+            style="width: 250px; height: 150px"
           ).roundedCard.mx-3.cardText
             v-layout(column justify-center)
               //- v-flex(xs12 align-baseline).pa-3
@@ -38,7 +38,7 @@
             v-for="(card,i) in productCards"
             :key="i"
             :to="{ name: card.link }"
-            style="width: 225px; height: 100px"
+            style="width: 225px; height: 150px"
           ).roundedCard.my-3.cardText
             v-layout(column justify-center)
               //- v-flex(xs12 align-baseline).pa-3
@@ -59,17 +59,17 @@
         productCards: [
           {
             text: 'Do you run a Multispecialty Clinic with branches around the country?',
-            subtxt: 'I manage a multispecialty clinic',
+            subtxt: 'I manage a multispecialty clinic (laboratory, imaging, etc.)',
             link: 'cms'
           },
           {
             text: 'Are you a private medical practitioner? Running a clinic on your own or collaborating with others?',
-            subtxt: 'I am a private medical practitioner',
+            subtxt: 'I am a private medical practitioner (individually or with peers)',
             link: 'emr'
           },
           {
             text: 'Do you want to secure your own client’s EMR? Or live remotely with very scarce internet connectivity?',
-            subtxt: ' I need a free and independent CMS',
+            subtxt: 'I need a standalone and free CMS (personal data storage)',
             link: 'mycure-solo'          
           }
         ] 
