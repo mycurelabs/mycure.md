@@ -6,7 +6,7 @@
           v-flex(xs12 md7 align-self-center style="margin-top: -7%")
             h1(style="font-weight: bold;").font-small.font-mc-blue MYCURE Complete Clinic Management System
             br
-            p(style="line-height: 60px;").font-medium We provide you with a system that helps organize and secure your medical records.
+            p(style="line-height: 60px;").font-medium A modern technology platform that helps organize and secure patients' medical records.
             br
             v-btn(
               :href="`${signInURL}/signup/choose`" 
@@ -24,7 +24,7 @@
         v-layout(column justify-center).pb-4
           h1(style="font-weight: bold;").font-small.font-mc-blue.text-xs-center.pb-2 MYCURE Complete Clinic Management System
           br            
-          p.lh-title.font-l.text-xs-center We provide you with a system that helps organize and secure your medical records.
+          p.lh-title.font-l.text-xs-center A modern technology platform that helps organize and secure patients' medical records.
         v-flex(xs12)
           img(width="100%" src="../../assets/images/mycure-web-banner-first-panel-doctor-clinic-patients.png" alt="Clinic home banner")
       v-layout(row justify-center)
