@@ -11,11 +11,11 @@
             v-for="(card,i) in productCards"
             :to="{ name: card.link }"
             :key="i"
-            style="width: 250px; height: 150px;"
+            style="width: 275px; height: 150px;"
           ).roundedCard.mx-3.cardText
             v-layout(column justify-center)
-              v-flex(xs12 align-self-end).pa-3
-                strong.font-18 {{ card.subtxt }}
+              v-flex(xs12 align-self-center).pa-3
+                strong(style="white-space: pre-wrap;").font-18 {{ card.subtxt }}
         br
         v-layout(row justify-center).pt-5
           p.font-18.text-xs-center Unsure where you fit? 
@@ -33,11 +33,11 @@
             v-for="(card,i) in productCards"
             :key="i"
             :to="{ name: card.link }"
-            style="width: 225px; height: 150px"
+            style="width: 250px; height: 130px"
           ).roundedCard.my-3.cardText
             v-layout(column justify-center)
-              v-flex(xs12 align-self-end).pa-3
-                strong.font-16 {{ card.subtxt }}
+              v-flex(xs12 align-self-center).pa-3
+                strong(style="white-space: pre-wrap;").font-16 {{ card.subtxt }}
         v-layout(row justify-center).pt-5
           p.font-18.text-xs-center Unsure where you fit? 
             router-link(:to="{ name: 'calendly' }")
@@ -51,17 +51,17 @@
         productCards: [
           {
             text: 'Do you run a Multispecialty Clinic with branches around the country?',
-            subtxt: 'I manage a multispecialty clinic (laboratory, imaging, etc.)',
+            subtxt: 'I manage a \nmultispecialty \nclinic \n(laboratory, imaging, etc.)',
             link: 'cms'
           },
           {
             text: 'Are you a private medical practitioner? Running a clinic on your own or collaborating with others?',
-            subtxt: 'I am a private medical practitioner (individually or with peers)',
+            subtxt: 'I am a \nprivate medical \npractitioner \n(individually or with peers)',
             link: 'emr'
           },
           {
             text: 'Do you want to secure your own client’s EMR? Or live remotely with very scarce internet connectivity?',
-            subtxt: 'I need a standalone and free CMS (personal data storage)',
+            subtxt: 'I need a \nstandalone and \nfree CMS \n(personal data storage)',
             link: 'mycure-solo'          
           }
         ] 

@@ -47,19 +47,19 @@
                 span.font-18 Dental Clinics
       testimonial.pt-4
       finalWords.pt-4
-      panel9.pt-4
+      cards.pt-4
 </template>
 
 <script scoped>
   import testimonial from './testimonial';
   import finalWords from './final-words';
-  import panel9 from './cards';
+  import cards from './cards';
 
   export default {
     components: {
       testimonial,
       finalWords,
-      panel9
+      cards
     },
     data () {
       return {

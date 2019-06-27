@@ -12,8 +12,8 @@
     product
     unique
     security
-    table
-    tableMobile(v-if="$isMobile").showPanel
+    targetMarket
+    targetMarketMobile(v-if="$isMobile").showPanel
     mcFooter
 </template>
 
@@ -25,8 +25,8 @@
   import product from '@/components/home/product';
   import unique from '@/components/home/unique';
   import security from '@/components/home/security';
-  import table from '@/components/home/table';
-  import tableMobile from '@/components/home/table-mobile';
+  import targetMarket from '@/components/home/target-market';
+  import targetMarketMobile from '@/components/home/target-market-mobile';
   import storyflow from '@/components/commons/storyflow';
   import VueScrollTo from 'vue-scrollto';
 
@@ -39,8 +39,8 @@
       product,
       unique,
       security,
-      table,
-      tableMobile,
+      targetMarket,
+      targetMarketMobile,
       storyflow
     },
     mounted () {

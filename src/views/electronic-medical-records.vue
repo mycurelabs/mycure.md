@@ -2,14 +2,12 @@
   div.white#top
     mc-toolbar-home
     panel1
-    //- panel2
     panel3
     panel4
     storyflow(
       :storyflow="storyflowItems"
       :introduction="introText"
     ).showPanel
-    //- panel5
     panel6.showPanel
     panel7mobile(v-if="$isMobile").showPanel
     filler(v-if="$isMobile").showPanel.pt-5
@@ -22,11 +20,9 @@
   import mcToolbarHome from '@/components/commons/mc-toolbar-home';
   import mcFooter from '@/components/commons/mc-footer';
   import panel1 from '@/components/electronic-medical-records/panel-1';
-  import panel2 from '@/components/electronic-medical-records/panel-2';
   import panel3 from '@/components/electronic-medical-records/panel-3';
   import panel4 from '@/components/electronic-medical-records/panel-4';
   import storyflow from '@/components/commons/storyflow';
-  import panel5 from '@/components/electronic-medical-records/panel-5';
   import panel6 from '@/components/electronic-medical-records/panel-6';
   import panel7mobile from '@/components/electronic-medical-records/panel-7-mobile';
   import filler from '@/components/commons/filler';
@@ -59,11 +55,9 @@
       mcToolbarHome,
       mcFooter,
       panel1,
-      panel2,
       panel3,
       panel4,
       storyflow,
-      panel5,
       panel6,
       panel7mobile,
       filler
