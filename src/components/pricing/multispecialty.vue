@@ -35,17 +35,17 @@
           v-flex(xs6 md4 v-for="(card, key) in cards" :key="key").text-center.align-self-center
             vue-flip(:active-hover="true" width="100%" class="simple-test" style="margin-bottom: 250px; font-size: 18px")
               div(slot="front" ref="frontCard").flip-card.align-items-center.pa-3
-                center
+                v-layout(row justify-center)
                   img(width="80" :src="card.image" :alt="card.text")
                 br
-                center
+                v-layout(row justify-center)
                   label {{card.text}}
-              div(slot="back" ref="backCard" ).flip-card.flip-card-back.align-items-center
-                center 
+              div(slot="back" ref="backCard" ).flip-card.flip-card-back.align-items-center.py-2.px-5
+                v-layout(row justify-center) 
                   strong(style="color:#0099cc;") {{card.text}}
                 br
                 p.font-16(v-html="card.content").text-xs-center
-                center
+                v-layout(row justify-center)
                   v-btn(
                     id="pricing-multispecialty-signup-btn" 
                     @click.stop="handlePricingMultispecialtySignupBtn"

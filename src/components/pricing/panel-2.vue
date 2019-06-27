@@ -2,7 +2,7 @@
   div(style="height: auto").mc-blue
     v-container 
       v-flex(xs12 md12).py-5
-        center 
+        v-layout(row justify-center) 
           strong(v-if="!$isMobile").font-60.text-xs-center.white--text Need to work offline?
           strong(v-else style="font-size: 200%").text-xs-center.white--text Need to work offline?
           br

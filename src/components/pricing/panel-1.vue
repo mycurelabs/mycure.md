@@ -4,10 +4,10 @@
       div(style="padding-top: 70px").panel1
         v-container
           v-flex(xs12 md12).pt-5
-            center 
+            v-layout(row justify-center) 
               strong.font-60.text-xs-center Your best CMS investment yet
-              br
-              strong(style="font-size: 25px").font-mc-grey Quality clinic technology made more affordable. 
+            v-layout(row justify-center) 
+              strong(style="font-size: 25px").text-xs-center.font-mc-grey Quality clinic technology made more affordable. 
                 br
                 | Only pay for what you need.
               br
@@ -17,13 +17,13 @@
             v-flex(xs6).px-1
               a(@click="isPrivate=true; isMulti=false;")
                 div(v-if="isPrivate").tabActive.pa-3.right
-                  center 
+                  v-layout(row justify-center) 
                     strong(style="font-size: 25px") Private Practice
                       br
                       | 
                       font.font-18.font-mc-grey Solo or group clinic practitioners
                 div(v-else).tab.pa-3.right
-                  center 
+                  v-layout(row justify-center) 
                     strong(style="font-size: 25px") Private Practice
                       br
                       | 
@@ -31,13 +31,13 @@
             v-flex(xs6).px-1
               a(@click="isMulti=true; isPrivate=false")
                 div(v-if="isMulti").tabActive.pa-3
-                  center 
+                  v-layout(row justify-center) 
                     strong(style="font-size: 25px") Multispecialty Clinics
                       br
                       | 
                       font.font-18.font-mc-grey One stop, multi-staff clinics
                 div(v-else).tab.pa-3
-                  center 
+                  v-layout(row justify-center) 
                     strong(style="font-size: 25px") Multispecialty Clinics
                       br
                       | 
@@ -49,7 +49,7 @@
     div(v-else)
       div.panel1.pa-2.pt-5
         v-flex(xs12)
-          center 
+          v-layout(row justify-center) 
             strong(style="font-size: 29px").text-xs-center Your best CMS 
               br
               | investment yet
