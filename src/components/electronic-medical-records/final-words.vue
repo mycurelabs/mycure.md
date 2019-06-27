@@ -1,7 +1,7 @@
 <template lang="pug">
   div
     div(v-if="!$isMobile").pt-5
-      panelBeforeFooter
+      panelBeforeFooter.pt-5
         img(slot="emr-img" style="max-width: 90%" src="../../assets/images/mycure-web-banner-last-panel-doctor-clinic-for-private-clinic.png" alt="Doctor best version")
         span(slot="emr-txt").font-48.lh-title Be your best version everyday.
         span(slot="cms-sub-txt").font-18 Experience what you can do more with MYCURE technology by your side.

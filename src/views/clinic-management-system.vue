@@ -5,7 +5,7 @@
     problems
     product
     div.skyBg
-      benfits
+      benefits
       pricing
       finalWords
       filler
@@ -24,7 +24,7 @@
   import usp from '@/components/clinic-management-system/usp';
   import problems from '@/components/clinic-management-system/problems';
   import product from '@/components/clinic-management-system/product';
-  import benfits from '@/components/clinic-management-system/benefits';
+  import benefits from '@/components/clinic-management-system/benefits';
   import pricing from '@/components/clinic-management-system/pricing';
   import finalWords from '@/components/clinic-management-system/final-words';
 
@@ -38,7 +38,7 @@
       usp,
       problems,
       product,
-      benfits,
+      benefits,
       pricing,
       finalWords,
       filler,
