@@ -1,9 +1,9 @@
 <template lang="pug">
   div
-    div(v-if="!$isMobile").py-5
-      panelBeforeFooter
+    div(v-if="!$isMobile").pt-5
+      panelBeforeFooter.pt-5
         img(slot="cms-img" style="max-width: 90%" src="../../assets/images/mycure_web_banner_last_panel_doctor.png" alt="Clinic best version")
-        span(slot="cms-txt").font-48.lh-title Because we believe your clinic can stand out and be its best everyday.
+        span(slot="cms-txt").font-48.lh-title We believe your clinic can stand out and be at its best, always.
         span(slot="cms-sub-txt").font-18 Experience what you can do more with MYCURE technology by your side.
         v-btn(
           id="cms-signup-btn"
