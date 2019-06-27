@@ -13,12 +13,11 @@
               @click.stop="handleCmsSignupBtn"
               :href="`${signInURL}/signup/multi-specialty/step-1`" 
               target="_blank"
-              color="#18c551" 
-              style="padding: 25px 30px 25px 30px"
-            )  
+              color="#18c551"
+            ).cta-btn
               strong.font-18.white--text.text-none Get Started Today
-          v-flex(xs12 md7 align-self-center style="margin-top: 5%")
-            img(width="80%" src="../../assets/images/mycure-cms-web-banner-first-panel-doctor-clinic-patients.png" alt="Clinic management system banner").right
+          v-flex(xs12 md7 align-self-center style="margin-top: 10%")
+            img(width="auto" src="../../assets/images/mycure-cms-web-banner-first-panel-doctor-clinic-patients.png" alt="Clinic management system banner").right
     div(v-else).white
       v-container.pt-5
         v-layout(column justify-center)

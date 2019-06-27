@@ -1,6 +1,6 @@
 <template lang="pug"> 
   div
-    div(v-if="!$isMobile").white.py-4
+    div(v-if="!$isMobile").white.pt-5
       v-container.px-5
         v-layout(row wrap justify-center)
           span.font-48.lh-title.pa-5 Why do clinics switch to MYCURE?
@@ -59,8 +59,8 @@
         p.text-xs-center.py-4.font-18 Have questions? 
           a(@click.stop="toggleChat()")
             strong.font-mc-blue Send us a chat.
-    div(v-else).white
-      v-container
+    div(v-else).pt-5.white
+      v-container.px-3
         v-layout(row justify-center)
           span.font-40.text-xs-center.lh-title Why do clinics switch to MYCURE?
         br

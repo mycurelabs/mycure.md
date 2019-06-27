@@ -16,15 +16,13 @@
           right
         ) 
           strong.text-none.white--text.font-18 Get Started Today
-    div(v-else).pa-3
-      v-layout(column justify-center).pt-5
-        v-layout(row align-center style="width: 100%")
+    div(v-else).pa-5
+      v-container
+        v-layout(row justify-center)
           img(style="width: 100%" src="../../assets/images/../../assets/images/mycure_web_banner_last_panel_doctor.png" alt="Clinic best version")
         br 
-        span(style="font-size: 200%").text-xs-center.lh-title Because we believe your clinic can stand out and be its best everyday.
-        br
-        br
-        span.font-18.text-xs-center Experience what you can do more with MYCURE technology by your side.
+        p(style="font-size: 200%").text-xs-center.lh-title We believe your clinic can stand out and be at its best, always.
+        p.font-18.text-xs-center Experience what you can do more with MYCURE technology by your side.
         br
         br
         v-layout(row justify-center)

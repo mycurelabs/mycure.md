@@ -1,6 +1,6 @@
 <template lang="pug">
   div
-    div(v-if="!$isMobile").pt-4#panel5
+    div(v-if="!$isMobile").pt-4#panel5transparent
       v-container
         v-layout(row justify-center)
           v-card(height="508px" flat).elevation-10.image-rounded-corner
@@ -31,37 +31,28 @@
                     style="width: auto" large
                   ).text-none
                     strong.font-18.white--text Get Started Today
-      finalwords
-      filler
-    div(v-else)
-      div
-        img(width="100%" src="../../assets/images/mycure-web-banner-fifth-panel-multi-specialty-clinics.png" alt="Multispecialty banner")
-        v-layout(column wrap).pt-4.pb-5.pr-5.pl-5
-          v-layout(row wrap)
-            span.font-18 {{ multiSpecialty_desc }}
-          br
-          div(v-for="(feature,index) in multiFeatures" :key="feature")
-            span.font-18.pb-2 &#10003; &nbsp; &nbsp; {{ feature }}
-        v-layout(row justify-center)
-          v-btn(
-            id="cms-signup-btn"
-            @click.stop="handleCmsSignupBtn"
-            :href="`${signInURL}/signup/multi-specialty/step-1`"
-            target="_blank"
-            style="background-color: #18c551; width: 80%; height: 60px")
-              strong.font-18.white--text.text-none Get Started Today
-      finalwords
-      //- filler
+    div(v-else).pt-5
+      img(width="100%" src="../../assets/images/mycure-web-banner-fifth-panel-multi-specialty-clinics.png" alt="Multispecialty banner")
+      v-layout(column wrap).pt-4.pb-5.pr-5.pl-5
+        v-layout(row wrap)
+          span.font-18 {{ multiSpecialty_desc }}
+        br
+        div(v-for="(feature,index) in multiFeatures" :key="feature")
+          span.font-18.pb-2 &#10003; &nbsp; &nbsp; {{ feature }}
+      v-layout(row justify-center)
+        v-btn(
+          id="cms-signup-btn"
+          @click.stop="handleCmsSignupBtn"
+          :href="`${signInURL}/signup/multi-specialty/step-1`"
+          target="_blank"
+          style="background-color: #18c551; width: 80%; height: 60px")
+            strong.font-18.white--text.text-none Get Started Today
 </template>
 
 <script>
-  import finalwords from '@/components/clinic-management-system/6-finalwords';
-  import filler from '@/components/clinic-management-system/7-filler';
-
   export default {
     components: {
-      finalwords,
-      filler
+      // 
     },
     data () {
       return {
@@ -80,11 +71,6 @@
 </script>
 
 <style scoped>
-  #panel5 {
-    background-image: url('../../assets/images/mycure-home-web-sky-background.png');
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
-  }
+
 </style>
 
