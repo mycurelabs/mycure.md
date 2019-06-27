@@ -3,9 +3,9 @@
     v-container(v-for="(panel,key) in moduleList" :key="key")
       v-layout(row justify-center)
         v-flex(xs10).text-xs-center
-          span.font-medium {{ panel.type }}
+          span.font-48 {{ panel.type }}
           br
-          span.font-small {{ panel.description }}
+          span.font-18 {{ panel.description }}
       br
       br
       v-layout(row wrap fill-height :class="panel.isCenter ? 'justify-center' : ''")
@@ -20,7 +20,7 @@
             v-card-text(v-if="!$isMobile")
               v-layout(row)
                 img(:src="require(`@/assets/images/${ moduleItem.icon }`)" width="10%" height="10%" :alt="moduleItem.title") 
-                span(:class="panel.doubleCol ? 'pt-3' : 'pt-1'").font-small &nbsp; {{ moduleItem.title }}
+                span(:class="panel.doubleCol ? 'pt-3' : 'pt-1'").font-18 &nbsp; {{ moduleItem.title }}
               br
               i(v-if="panel.hasSubtext") {{ moduleItem.subtext}}
                 br

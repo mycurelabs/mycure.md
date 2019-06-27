@@ -3,7 +3,7 @@
     v-container
       v-layout(row wrap justify-center)
         v-flex(xs12 md10).mb-3 
-          strong.font-small Last Updated | March 6, 2018
+          strong.font-18 Last Updated | March 6, 2018
           br
           br
           h2 Privacy Statement

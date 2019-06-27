@@ -13,14 +13,14 @@
                 v-list-tile-action
                   img(src="../../assets/images/mycure-web-bullet-check.png" alt="Check icon")
                 v-list-tile-content
-                  span.font-small {{ problem }}
+                  span.font-18 {{ problem }}
           v-flex(xs12 md4)
             v-list(two-line).check-list.white
               v-list-tile(v-for="(problem,index) in clinicProblems" :key="index" v-if="index>2")
                 v-list-tile-action
                   img(src="../../assets/images/mycure-web-bullet-check.png" alt="Check icon")
                 v-list-tile-content
-                  span.font-small {{ problem }}
+                  span.font-18 {{ problem }}
         br
         v-layout(row wrap justify-center)
           v-btn(
@@ -31,14 +31,14 @@
             target="_blank"
             style="height: 60px; width: 250px"
           ).mt-3
-            strong.font-small.white--text.text-none Sign Up Now
-        p.text-xs-center.py-4.font-small Have questions? 
+            strong.font-18.white--text.text-none Sign Up Now
+        p.text-xs-center.py-4.font-18 Have questions? 
           a(@click.stop="toggleChat()")
-            strong.font-mc-blue Send us a chat.
+            strong.font-18c-blue Send us a chat.
     div(v-else).white
       v-container
         v-layout(row justify-center)
-          span.font-l.text-xs-center Why should doctors use MYCURE in their clinics?
+          span.font-40.text-xs-center Why should doctors use MYCURE in their clinics?
       v-container
         v-layout(row justify-center)
           v-list(two-line style="background-color: white")
@@ -46,7 +46,7 @@
               v-list-tile-action
                 img(src="../../assets/images/mycure-web-bullet-check.png" alt="Check icon") 
               v-list-tile-content
-                span.font-m {{ problem }}
+                span.font-18 {{ problem }}
         v-layout(row wrap justify-center)
           v-btn(
             id="emr-signup-btn"
@@ -54,10 +54,10 @@
             :href="`${signInURL}/signup/private/step-1`"
             target="_blank"
             color="#18c551" large).mt-5 
-            strong.font-s.text-none.white--text Sign Up Now
-        p.text-xs-center.py-4.font-small Have questions? 
+            strong.font-16.text-none.white--text Sign Up Now
+        p.text-xs-center.py-4.font-18 Have questions? 
           a(@click.stop="toggleChat()")
-            strong.font-mc-blue Send us a chat.
+            strong.font-18c-blue Send us a chat.
 </template>
 
 <script>

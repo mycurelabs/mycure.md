@@ -2,7 +2,7 @@
   div.py-5.white
     v-container
       v-layout(row justify-center)
-        span.font-l.text-xs-center.lh-title Designed for clinics of all shapes and sizes.
+        span.font-40.text-xs-center.lh-title Designed for clinics of all shapes and sizes.
       br
       v-layout(row justify-center)
         div

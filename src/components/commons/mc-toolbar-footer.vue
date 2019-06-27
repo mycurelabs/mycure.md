@@ -28,7 +28,7 @@
         v-expansion-panel.elevation-0
           v-expansion-panel-content(style="background-color: #343a40")
             template(v-slot:header)
-              span(style="margin-left: -24px").font-small.feature-text CLINIC SOLUTIONS
+              span(style="margin-left: -24px").font-18.feature-text CLINIC SOLUTIONS
             template(v-slot:actions)
               v-icon(style="margin-right: -24px" color="white") mdi-chevron-down
             v-layout(column)
@@ -42,7 +42,7 @@
         v-expansion-panel.elevation-0
           v-expansion-panel-content(style="background-color: #343a40")
             template(v-slot:header)
-              span(style="margin-left: -24px").font-small.feature-text ABOUT
+              span(style="margin-left: -24px").font-18.feature-text ABOUT
             template(v-slot:actions)
               v-icon(style="margin-right: -24px" color="white") mdi-chevron-down
             v-layout(column)
@@ -56,7 +56,7 @@
         v-expansion-panel.elevation-0
           v-expansion-panel-content(style="background-color: #343a40")
             template(v-slot:header)
-              span(style="margin-left: -24px").font-small.feature-text SUPPORT
+              span(style="margin-left: -24px").font-18.feature-text SUPPORT
             template(v-slot:actions)
               v-icon(style="margin-right: -24px" color="white") mdi-chevron-down
             v-layout(column)
@@ -70,7 +70,7 @@
         v-expansion-panel.elevation-0
           v-expansion-panel-content(style="background-color: #343a40")
             template(v-slot:header)
-              span(style="margin-left: -24px").font-small.feature-text LEGAL
+              span(style="margin-left: -24px").font-18.feature-text LEGAL
             template(v-slot:actions)
               v-icon(style="margin-right: -24px" color="white") mdi-chevron-down
             v-layout(column)
@@ -82,11 +82,11 @@
         v-expansion-panel.elevation-0
           v-expansion-panel-content(style="background-color: #343a40")
             template(v-slot:header)
-              span(style="margin-left: -24px").font-small.feature-text CONTACT US
+              span(style="margin-left: -24px").font-18.feature-text CONTACT US
             template(v-slot:actions)
               v-icon(style="margin-right: -24px" color="white") mdi-chevron-down
             v-layout(column)
-              a(id="footer-email-btn" title="MYCURE - Email" href="mailto:hello@mycure.md").link.font-mc-blue.py-2
+              a(id="footer-email-btn" title="MYCURE - Email" href="mailto:hello@mycure.md").link.font-18c-blue.py-2
                 span.py-2 hello@mycure.md
               span.py-2.white--text (+632) 799 6262
               span.py-2.white--text (+63) 917 303 4350
@@ -96,7 +96,7 @@
       v-layout(row justify-center)
         strong.white--text &copy; 2016 - {{new Date().getFullYear()}}
          router-link(:to="{ name: 'home' }" title="MYCURE | Clinic Management System | Cloud EMR Philippines")
-            strong.font-mc-blue &nbsp; MYCURE.  
+            strong.font-18c-blue &nbsp; MYCURE.  
             |
             strong.white--text All Rights Reserved.
       br

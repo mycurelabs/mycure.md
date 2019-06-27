@@ -14,7 +14,7 @@
           style="padding: 25px 30px 25px 30px;"
           right
         ).mt-0
-          strong.font-small.text-none.white--text Sign Up Now
+          strong.font-18.text-none.white--text Sign Up Now
     div(v-else).pt-4
       v-container
         v-layout(column justify-center)
@@ -29,7 +29,7 @@
               :href="`${signInURL}/signup/choose`"
               target="_blank"
               style="background-color: #18c551; width: 80%; height: 60px")  
-              strong.font-m.white--text.text-none Sign Up Now  
+              strong.font-18.white--text.text-none Sign Up Now  
 </template>
 
 <script>

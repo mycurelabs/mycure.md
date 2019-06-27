@@ -4,14 +4,14 @@
       v-layout(row)
         v-flex(xs12 md12).text-xs-center
           br
-          span(style="line-height: 45px").font-l Protect your patients' medical records with confidence
+          span(style="line-height: 45px").font-40 Protect your patients' medical records with confidence
           br
           br
           img(width="85%" src="../../assets/images/mycure-web-banner-data-privacy-law.png" alt="Data Privacy Law")
           br
           br
           br
-          span.font-s.mt-3 With MYCURE you'll never have to worry much about data privacy concerns. Keeping them secure is our #1 priority.
+          span.font-16.mt-3 With MYCURE you'll never have to worry much about data privacy concerns. Keeping them secure is our #1 priority.
           //- br
           //- br
           //- br
@@ -20,7 +20,7 @@
           //-   color="#2e9fdf"
           //-   large
           //- ) 
-          //-   strong.text-none.white--text.font-small Learn More
+          //-   strong.text-none.white--text.font-18 Learn More
 </template>
 
 <script>

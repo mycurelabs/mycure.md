@@ -8,16 +8,16 @@
               center
                 img(width="80%" src="../../assets/images/mycure-web-banner-fifth-panel-private-clinic.png" alt="Private Clinic")
                 v-card(style="margin-top: -2%" width="80%").clinic-card.text-xs-left.pa-4
-                  p.pb-2.font-small {{ private_title }}
-                  strong.font-small &#10003 &nbsp It's FREE!
+                  p.pb-2.font-18 {{ private_title }}
+                  strong.font-18 &#10003 &nbsp It's FREE!
                   br
-                  span.font-small &#10003 &nbsp Unlimited Clinics
+                  span.font-18 &#10003 &nbsp Unlimited Clinics
                   br
-                  span.font-small &#10003 &nbsp SOAP Charting
+                  span.font-18 &#10003 &nbsp SOAP Charting
                   br
-                  span.font-small &#10003 &nbsp Prescription Printing
+                  span.font-18 &#10003 &nbsp Prescription Printing
                   br
-                  span.font-small &#10003 &nbsp Medical Billing
+                  span.font-18 &#10003 &nbsp Medical Billing
                   v-layout(row wrap).pt-5.pb-4
                     v-btn(
                       :href="`${signInURL}/signup/private/step-1`"
@@ -33,16 +33,16 @@
               center
                 img(width="80%" src="../../assets/images/mycure-web-banner-fifth-panel-multi-specialty-clinics.png" alt="Multispecialty Clinic")
                 v-card(style="margin-top: -2%" width="80%").clinic-card.text-xs-left.pa-4
-                  p.pb-2.font-small {{ multispecialty_title }}
-                  span.font-small &#10003 &nbsp Queuing &amp Registration
+                  p.pb-2.font-18 {{ multispecialty_title }}
+                  span.font-18 &#10003 &nbsp Queuing &amp Registration
                   br
-                  span.font-small &#10003 &nbsp Patient Medical Records
+                  span.font-18 &#10003 &nbsp Patient Medical Records
                   br
-                  span.font-small &#10003 &nbsp Billing &amp Collection
+                  span.font-18 &#10003 &nbsp Billing &amp Collection
                   br
-                  span.font-small &#10003 &nbsp Laboratory &amp Imaging
+                  span.font-18 &#10003 &nbsp Laboratory &amp Imaging
                   br
-                  span.font-small &#10003 &nbsp Materials Management
+                  span.font-18 &#10003 &nbsp Materials Management
                   v-layout(row wrap).py-4
                     v-btn(
                         :href="`${signInURL}/signup/multi-specialty/step-1`"

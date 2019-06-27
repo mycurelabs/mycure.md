@@ -13,21 +13,21 @@
                   strong(style="font-size: 30px").pb-2 MYCURE Solo
                   br
                   br
-                  span.font-small {{ MYCURE_SOLO_description }}
+                  span.font-18 {{ MYCURE_SOLO_description }}
                   br
                   br
                   div(v-for="(feature,index) in soloFeatures" :key="index")
-                    span.font-small &#10003 &nbsp {{ feature }}
+                    span.font-18 &#10003 &nbsp {{ feature }}
                     br
         br
         br
         br
-        p.text-xs-center.py-4.font-small Wanna know the difference? 
+        p.text-xs-center.py-4.font-18 Wanna know the difference? 
           a(@click.stop="dialog = true")
-            strong.font-mc-blue Click here
+            strong.font-18c-blue Click here
           span &nbsp;or&nbsp;
           a(@click.stop="toggleChat()")
-            strong.font-mc-blue chat us.
+            strong.font-18c-blue chat us.
       v-dialog(
         v-model="dialog"
         max-width="100vh"
@@ -49,21 +49,21 @@
               br
               br
               v-layout(row justify-center)
-                strong.font-l.pb-2 MYCURE Solo
-              p.font-s.text-xs-center {{ MYCURE_SOLO_description }}
+                strong.font-40.pb-2 MYCURE Solo
+              p.font-16.text-xs-center {{ MYCURE_SOLO_description }}
               br
               
               v-layout(row v-for="(feature,index) in soloFeatures" :key="index").pl-3
-                p.font-s &#10003; &nbsp;
-                p.font-s {{ feature }}
+                p.font-16 &#10003; &nbsp;
+                p.font-16 {{ feature }}
               br
               br
-              p.text-xs-center.py-4.font-small Wanna know the difference? 
+              p.text-xs-center.py-4.font-18 Wanna know the difference? 
                 a(@click.stop="dialog = true")
-                  strong.font-mc-blue Click here
+                  strong.font-18c-blue Click here
                 span &nbsp;or&nbsp;
                 a(@click.stop="toggleChat()")
-                  strong.font-mc-blue chat us.
+                  strong.font-18c-blue chat us.
       v-dialog(
         v-model="dialog" 
         width="800"

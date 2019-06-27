@@ -4,7 +4,7 @@
       img(width="100%" src="../../assets/images/mycure-web-banner-fifth-panel-multi-specialty-clinics.png" alt="Multispecialty banner")
       v-layout(column wrap).pt-4.pb-5.pr-5.pl-5
         div(v-for="(feature,index) in multiFeatures" :key="feature")
-          span.font-small.pb-2 &#10003; &nbsp; &nbsp; {{ feature }}
+          span.font-18.pb-2 &#10003; &nbsp; &nbsp; {{ feature }}
       v-layout(row justify-center)
         v-btn(
           id="cms-signup-btn"
@@ -12,7 +12,7 @@
           :href="`${signInURL}/signup/multi-specialty/step-1`"
           target="_blank"
           style="background-color: #18c551; width: 80%; height: 60px")
-            strong.font-m.white--text.text-none Sign Up Now
+            strong.font-18.white--text.text-none Sign Up Now
 </template>
 
 <script>

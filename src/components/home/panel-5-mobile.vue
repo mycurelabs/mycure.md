@@ -23,7 +23,7 @@
                   h2.white--text {{ testimonial.message }}
                   br
                   br
-                  span.font-small.white--text {{ testimonial.name }}
+                  span.font-18.white--text {{ testimonial.name }}
                     br
                     span {{ testimonial.position }}
             v-icon(size="100px").white--text mdi-chevron-right

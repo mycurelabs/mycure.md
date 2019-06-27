@@ -4,12 +4,12 @@
       v-container
         v-layout(row justify-center)
           v-flex(xs12 md6 align-self-center).px-3
-            strong.font-medium.font-mc-blue MYCURE for 
+            strong.font-48.font-18c-blue MYCURE for 
               br
               | Private Practice
             br
             br
-            span.font-small.font-mc-grey A powerful combination of EMR, queuing, and billing features designed for physicians who are practicing solo or in groups.
+            span.font-18.font-18c-grey A powerful combination of EMR, queuing, and billing features designed for physicians who are practicing solo or in groups.
             br
             br
             div.pl-1
@@ -30,7 +30,7 @@
         br
         v-layout(row)
           v-flex(xs12 md4) 
-            span.font-small.font-mc-grey 
+            span.font-18.font-18c-grey 
               strong FEATURES INCLUDED
         br
         v-layout(row justify-center)
@@ -40,19 +40,19 @@
                 v-list-tile-action
                   img(src="../../assets/images/mycure-web-bullet-check.png" alt="Check icon")
                 v-list-tile-content
-                  span.font-small {{ feature }}
+                  span.font-18 {{ feature }}
           v-flex(xs12 md4)
             v-list-tile(v-for="(feature,index) in privateFeatures" :key="index" v-if="index > 5  && index < 12")
               v-list-tile-action
                 img(src="../../assets/images/mycure-web-bullet-check.png" alt="Check icon")
               v-list-tile-content
-                span.font-small {{ feature }}
+                span.font-18 {{ feature }}
           v-flex(xs12 md4)
             v-list-tile(v-for="(feature,index) in privateFeatures" :key="index" v-if="index > 11")
               v-list-tile-action
                 img(src="../../assets/images/mycure-web-bullet-check.png" alt="Check icon")
               v-list-tile-content
-                span.font-small {{ feature }}
+                span.font-18 {{ feature }}
         br
         br
         br
@@ -64,67 +64,67 @@
         br
         v-layout(row)
           v-flex(xs12 md4).px-3 
-            span.font-small 
+            span.font-18 
               strong  Is the MYCURE Free version for doctors really always free?
               br
               br
               | 
-              span.font-mc-grey Yes! Especially for fresh starters, we wanna make sure that you love our product first before you pay for it and use it full-time.
+              span.font-18c-grey Yes! Especially for fresh starters, we wanna make sure that you love our product first before you pay for it and use it full-time.
             br
             br
             br
-            span.font-small 
+            span.font-18 
               strong How secure is MYCURE?
               br
               br
               | 
-              span.font-mc-grey MYCURE is DPA-compliant and follows international standards in data security. We use advanced encryption protocols to keep your patient records unreadable to anyone, except you. While we aren’t promising a 100% hack-proof system (since no such system exists yet!), we follow international standards that highly value confidentiality, integrity, and availability.
+              span.font-18c-grey MYCURE is DPA-compliant and follows international standards in data security. We use advanced encryption protocols to keep your patient records unreadable to anyone, except you. While we aren’t promising a 100% hack-proof system (since no such system exists yet!), we follow international standards that highly value confidentiality, integrity, and availability.
             br
             br
             br
-            span.font-small 
+            span.font-18 
               strong  Who else can see my patient records?
               br
               br
               | 
-              span.font-mc-grey Only you. You are in control of your own account and the medical records you create. If you add a secretary into your account, you are entitling him/her to view your patient records, too.
+              span.font-18c-grey Only you. You are in control of your own account and the medical records you create. If you add a secretary into your account, you are entitling him/her to view your patient records, too.
             br
             br
             br
           v-flex(xs12 md4).px-3
-            span.font-small 
+            span.font-18 
               strong Do you have an account for secretaries and nurses?
               br
               br
               | 
-              span.font-mc-grey Yes. You can learn more about the different features on our products page.
+              span.font-18c-grey Yes. You can learn more about the different features on our products page.
               br
               br
               br
-              span.font-small 
+              span.font-18 
               strong  Does my MYCURE account also come with a free device?
               br
               br
               | 
-              span.font-mc-grey No. MYCURE only provides the web-based application. 
+              span.font-18c-grey No. MYCURE only provides the web-based application. 
                 br
                 | That’s actually more practical (and less spending) for you! Most software that come with devices require you to be locked up to their expensive subscription plans for a certain period of time. Don’t worry, we’re confident that MYCURE is compatible with at least one of your current devices so long as it has Google Chrome installed.
               br
               br
               br
-              span.font-small 
+              span.font-18 
               strong Is MYCURE cloud-based?
               br
               br
               | 
-              span.font-mc-grey Yes. All your medical records are backed up in the cloud.
+              span.font-18c-grey Yes. All your medical records are backed up in the cloud.
           v-flex(xs12 md4).px-3
-            span.font-small 
+            span.font-18 
               strong How fast should my internet connection be when I’m using MYCURE?
               br
               br
               | 
-              span.font-mc-grey This varies on the number of users of the app. We encrypt and upload your records to our secure servers every time you process them. The download/upload speed should be at least:
+              span.font-18c-grey This varies on the number of users of the app. We encrypt and upload your records to our secure servers every time you process them. The download/upload speed should be at least:
                 br
                 br
                 span.text-xs-center
@@ -138,14 +138,14 @@
         img(width="100%" src="../../assets/images/mycure-pricing-emr-private-clinic.png" alt="EMR Pricing")
         br
         br
-        p.font-small.text-xs-center A powerful combination of EMR, queuing, and billing features designed for physicians who are practicing solo or in groups.
+        p.font-18.text-xs-center A powerful combination of EMR, queuing, and billing features designed for physicians who are practicing solo or in groups.
       div.px-3
         v-list
           v-list-tile(v-for="(feature,index) in privateFeatures" :key="index")
             v-list-tile-action
               img(src="../../assets/images/mycure-web-bullet-check.png" alt="Check icon")
             v-list-tile-content
-              span.font-small {{ feature }}
+              span.font-18 {{ feature }}
       div.py-3
         v-layout(justify-center)
           v-btn(
@@ -168,65 +168,65 @@
       br
       v-layout(row)
         v-flex(xs12).px-2
-          span.font-small 
+          span.font-18 
             strong  Is the MYCURE Free version for doctors really always free?
             br
             br
             | 
-            span.font-mc-grey Yes! Especially for fresh starters, we wanna make sure that you love our product first before you pay for it and use it full-time.
+            span.font-18c-grey Yes! Especially for fresh starters, we wanna make sure that you love our product first before you pay for it and use it full-time.
           br
           br
           br
-          span.font-small 
+          span.font-18 
             strong How secure is MYCURE?
             br
             br
             | 
-            span.font-mc-grey MYCURE is DPA-compliant and follows international standards in data security. We use advanced encryption protocols to keep your patient records unreadable to anyone, except you. While we aren’t promising a 100% hack-proof system (since no such system exists yet!), we follow international standards that highly value confidentiality, integrity, and availability.
+            span.font-18c-grey MYCURE is DPA-compliant and follows international standards in data security. We use advanced encryption protocols to keep your patient records unreadable to anyone, except you. While we aren’t promising a 100% hack-proof system (since no such system exists yet!), we follow international standards that highly value confidentiality, integrity, and availability.
           br
           br
           br
-          span.font-small 
+          span.font-18 
             strong  Who else can see my patient records?
             br
             br
             | 
-            span.font-mc-grey Only you. You are in control of your own account and the medical records you create. If you add a secretary into your account, you are entitling him/her to view your patient records, too.
+            span.font-18c-grey Only you. You are in control of your own account and the medical records you create. If you add a secretary into your account, you are entitling him/her to view your patient records, too.
           br
           br
           br
-          span.font-small 
+          span.font-18 
             strong Do you have an account for secretaries and nurses?
             br
             br
             | 
-            span.font-mc-grey Yes. You can learn more about the different features on our products page.
+            span.font-18c-grey Yes. You can learn more about the different features on our products page.
             br
             br
             br
-            span.font-small 
+            span.font-18 
             strong  Does my MYCURE account also come with a free device?
             br
             br
             | 
-            span.font-mc-grey No. MYCURE only provides the web-based application. 
+            span.font-18c-grey No. MYCURE only provides the web-based application. 
               br
               | That’s actually more practical (and less spending) for you! Most software that come with devices require you to be locked up to their expensive subscription plans for a certain period of time. Don’t worry, we’re confident that MYCURE is compatible with at least one of your current devices so long as it has Google Chrome installed.
             br
             br
             br
-            span.font-small 
+            span.font-18 
             strong Is MYCURE cloud-based?
             br
             br
             | 
-            span.font-mc-grey Yes. All your medical records are backed up in the cloud.
-          span.font-small 
+            span.font-18c-grey Yes. All your medical records are backed up in the cloud.
+          span.font-18 
             strong How fast should my internet connection be when I’m using MYCURE?
             br
             br
             | 
-            span.font-mc-grey This varies on the number of users of the app. We encrypt and upload your records to our secure servers every time you process them. The download/upload speed should be at least:
+            span.font-18c-grey This varies on the number of users of the app. We encrypt and upload your records to our secure servers every time you process them. The download/upload speed should be at least:
               br
               br
               span.text-xs-center

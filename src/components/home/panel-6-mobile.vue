@@ -2,49 +2,49 @@
   div
     div.pt-4#panel6mobile
       v-container
-        p.font-l.text-xs-center MYCURE works for Private and Multispecialty Clinics
+        p.font-40.text-xs-center MYCURE works for Private and Multispecialty Clinics
       v-layout(justify-center).px-5
         table
           tr
             div.pl-3.py-3
               v-layout(row wrap center)
                 img(src="../../assets/images/mycure-web-bullet-check.png" alt="Check icon").mr-3
-                span.font-m Solo Practice
+                span.font-18 Solo Practice
           tr
             div.pl-3.py-3
               v-layout(row wrap center)
                 img(src="../../assets/images/mycure-web-bullet-check.png" alt="Check icon").mr-3 
-                span.font-m Group Clinics
+                span.font-18 Group Clinics
           tr 
             div.pl-3.py-3
               v-layout(row wrap center)
                 img(src="../../assets/images/mycure-web-bullet-check.png" alt="Check icon").mr-3 
-                span.font-m Multispecialty Clinics
+                span.font-18 Multispecialty Clinics
           tr 
             div.pl-3.py-3
               v-layout(row wrap center)
                 img(src="../../assets/images/mycure-web-bullet-check.png" alt="Check icon").mr-3 
-                span.font-m Dermatology Clinics
+                span.font-18 Dermatology Clinics
           tr
             div.pl-3.py-3
               v-layout(row wrap center)
                 img(src="../../assets/images/mycure-web-bullet-check.png" alt="Check icon").mr-3 
-                span.font-m Family Clinics
+                span.font-18 Family Clinics
           tr 
             div.pl-3.py-3
               v-layout(row wrap center)
                 img(src="../../assets/images/mycure-web-bullet-check.png" alt="Check icon").mr-3
-                span.font-m Multi-branch Clinics
+                span.font-18 Multi-branch Clinics
           tr
             div.pl-3.py-3
               v-layout(row wrap center)
                 img(src="../../assets/images/mycure-web-bullet-check.png" alt="Check icon").mr-3 
-                span.font-m Industrial Clinics
+                span.font-18 Industrial Clinics
           tr
             div.pl-3.py-3
               v-layout(row wrap center)
                 img(src="../../assets/images/mycure-web-bullet-check.png" alt="Check icon").mr-3 
-                span.font-m Dental Clinics
+                span.font-18 Dental Clinics
       panel7.pt-4
       panel8.pt-4
       panel9.pt-4

@@ -9,13 +9,13 @@
               v-flex(xs12 md12).text-xs-center
                 br
                 br
-                h3.font-small.font-mc-grey To further go the extra mile, we practice the following codes:
+                h3.font-18.font-18c-grey To further go the extra mile, we practice the following codes:
                 br
                 br
                 br
-                h1.font-medium 8 Codes of Being
+                h1.font-48 8 Codes of Being
               v-flex(xs12 md12).text-xs-center
-                p.font-small
+                p.font-18
                     br
                     | We are passionate, fun-loving, innovative people.
                     br

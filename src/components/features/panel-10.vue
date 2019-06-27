@@ -3,8 +3,8 @@
     div(v-if="!$isMobile")
       panelBeforeFooter
         img(slot="img" style="max-width: 90%" src="../../assets/images/mycure-web-banner-last-panel-features-embrace-habit.png" alt="Embrace service")
-        span(slot="txt").font-medium.lh-title Embrace a new habit.
-        span(slot="sub-txt").font-small Let your patients experience top-of-the-line service through your streamlined clinic operations with the help of MYCURE.
+        span(slot="txt").font-48.lh-title Embrace a new habit.
+        span(slot="sub-txt").font-18 Let your patients experience top-of-the-line service through your streamlined clinic operations with the help of MYCURE.
         v-btn(
           slot="sign-up-button"
           :href="`${signInURL}/signup/choose`" 
@@ -13,7 +13,7 @@
           style="padding: 25px 30px 25px 30px"
           right
         )
-          strong.text-none.white--text.font-small Sign Up Now
+          strong.text-none.white--text.font-18 Sign Up Now
       v-layout(row justify-center)
           img(width="100%" height="100%" src="../../assets/images/mycure-web-banner-last-panel-health-community.png" alt="Health community")
     div(v-else).transparent
@@ -24,7 +24,7 @@
           span(style="font-size: 200%").text-xs-center.lh-title Embrace a new habit.
           br
           br
-          span.font-s.text-xs-center Let your patients experience top-of-the-line service through your streamlined clinic operations with the help of MYCURE.
+          span.font-16.text-xs-center Let your patients experience top-of-the-line service through your streamlined clinic operations with the help of MYCURE.
           br
           br
           v-layout(row justify-center)
@@ -35,7 +35,7 @@
               target="_blank"
               style="background-color: #18c551; width: 80%; height: 60px"
             )  
-              strong.font-m.white--text.text-none Sign Up Now  
+              strong.font-18.white--text.text-none Sign Up Now  
 </template>
 
 <script>

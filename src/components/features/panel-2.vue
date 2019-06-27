@@ -3,12 +3,12 @@
     div(v-if="!$isMobile" style="padding-top: 200px")
       v-container
         center
-          strong.font-small.font-mc-blue ROLES &amp; PRIVILEGES
+          strong.font-18.font-18c-blue ROLES &amp; PRIVILEGES
         v-layout(row justify-center).add-spacing
-          span.font-medium Everybody's got a special role to play.
+          span.font-48 Everybody's got a special role to play.
         v-layout(row justify-center).add-spacing
           v-flex(xs7 align-self-center).text-xs-center
-            span.font-small Collaborate with your clinic staff more efficiently using a clinic system that's so user-friendly, you wouldn't even feel that you're working.
+            span.font-18 Collaborate with your clinic staff more efficiently using a clinic system that's so user-friendly, you wouldn't even feel that you're working.
         v-layout(row justify-center).add-spacing
           img(src="@/assets/images/mycure-cms-web-features-arrow-down.png")
         v-layout(row align-self-center).add-spacing
@@ -17,19 +17,19 @@
               img(:src="require(`../../assets/images/mycure-web-features-role-${ role.avatar }.png`)" :alt="role.name" height="250px")
               br
               div.mx-3
-                span.font-small {{ role.name }}
+                span.font-18 {{ role.name }}
     div(v-else).pt-5#panel2
       v-container
         v-layout(row justify-center) 
-          strong.font-s.font-mc-blue ROLES &amp; PRIVILEGES
+          strong.font-16.font-18c-blue ROLES &amp; PRIVILEGES
         br
         br
         v-layout(column justify-center)
           v-flex(xs12)
-            p.font-l.text-xs-center.lh-title Everybody's got a special role to play.
+            p.font-40.text-xs-center.lh-title Everybody's got a special role to play.
           br
           v-flex(xs12)
-            p.font-m.text-xs-center Collaborate with your clinic staff more efficiently using a clinic system that's so user-friendly, you wouldn't even feel that you're working.
+            p.font-18.text-xs-center Collaborate with your clinic staff more efficiently using a clinic system that's so user-friendly, you wouldn't even feel that you're working.
         v-layout(row justify-center).add-spacing
           img(src="@/assets/images/mycure-cms-web-features-arrow-down.png")
         br
@@ -56,7 +56,7 @@
                 br
                 v-layout(row justify-center)
                   v-flex(xs1)
-                    span.font-small {{ role.name }}
+                    span.font-18 {{ role.name }}
 </template>
 
 <script>

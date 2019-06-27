@@ -51,57 +51,48 @@ export default {
     background-color: #18c551
   }
   
-  .font-mc-blue {
+  .font-18c-blue {
     color: #2e9fdf
   }
   
-  .font-mc-dark-grey{
+  .font-18c-dark-grey{
     /* color: #343a40 */
     color: #2b2d3a 
   }
 
-  .font-mc-grey {
+  .font-18c-grey {
     color: #616161;
   }
 
-  .font-mc-light-grey {
+  .font-18c-light-grey {
     color: #f6f6f6
   }
 
-  .font-mc-white {
+  .font-18c-white {
     color: #ffffff
   }
   
-  .font-large {
+  .font-60 {
     font-size: 60px !important
   }
 
-  .font-medium {
+  .font-48 {
     font-size: 48px !important;
   }
 
-  .font-small {
-    font-size: 18px !important
-  }
-  
-  /* for mobile */
-  .font-xl {
-    font-size: 60px !important
-  }
-
-  .font-l {
+  .font-40 {
     font-size: 40px !important
   }
 
-  .font-m {
+  .font-18 {
     font-size: 18px !important
   }
-
-  .font-s {
+  
+  .font-16 {
     font-size: 16px !important
   }
 
-  .font-xs {
+  .font-12 {
     font-size: 12px !important
   }
 

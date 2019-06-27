@@ -2,7 +2,7 @@
   div#panel9
     div(v-if="!$isMobile")
       v-container.text-xs-center
-        b.font-medium What brings you here?
+        b.font-48 What brings you here?
         br
         br
         br
@@ -15,15 +15,15 @@
           ).roundedCard.mx-3.cardText
             v-layout(column justify-center)
               //- v-flex(xs12 align-baseline).pa-3
-              //-   p.font-small {{ card.text }}
+              //-   p.font-18 {{ card.text }}
               //- br
               //- br
               //- br
               v-flex(xs12 align-self-end).pa-3
-                strong.font-small {{ card.subtxt }}
+                strong.font-18 {{ card.subtxt }}
         br
         v-layout(row justify-center).pt-5
-          p.font-small.text-xs-center Unsure where you fit? 
+          p.font-18.text-xs-center Unsure where you fit? 
             router-link(:to="{ name: 'calendly' }")
               strong Book a demo
       v-layout(row justify-center)
@@ -42,12 +42,12 @@
           ).roundedCard.my-3.cardText
             v-layout(column justify-center)
               //- v-flex(xs12 align-baseline).pa-3
-              //-   p.font-s {{ card.text }}
+              //-   p.font-16 {{ card.text }}
               //- br
               v-flex(xs12 align-self-end).pa-3
-                strong.font-s {{ card.subtxt }}
+                strong.font-16 {{ card.subtxt }}
         v-layout(row justify-center).pt-5
-          p.font-small.text-xs-center Unsure where you fit? 
+          p.font-18.text-xs-center Unsure where you fit? 
             router-link(:to="{ name: 'calendly' }")
               strong Book a demo
 </template>

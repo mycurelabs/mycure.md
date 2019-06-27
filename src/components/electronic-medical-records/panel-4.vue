@@ -10,7 +10,7 @@
     div(v-else)
       v-container.pt-5
         v-layout(row justify-center)
-          span.font-l.text-xs-center.lh-title Your buddy from medical school to private practice
+          span.font-40.text-xs-center.lh-title Your buddy from medical school to private practice
         br
         v-layout(row justify-center)
           img(src="../../assets/images/mycure-web-clinic-room-01.png" width="100%" height="100%" alt="Clinic room")

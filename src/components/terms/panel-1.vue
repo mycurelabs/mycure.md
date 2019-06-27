@@ -4,11 +4,11 @@
       v-container
         v-layout(row wrap align-center).panel-1-row
           v-flex(xs12 md12)
-            h1.font-large.text-xs-center Terms and Conditions
+            h1.font-60.text-xs-center Terms and Conditions
     div(v-else).panel1.mb-5
       v-layout(row wrap justify-center style="height: 100%")
         v-flex(xs12 md12 align-self-center).my-5
-          h1.font-xl.text-xs-center Terms &amp; Conditions
+          h1.font-60.text-xs-center Terms &amp; Conditions
 </template>
 
 <script>

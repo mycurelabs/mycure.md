@@ -5,9 +5,9 @@
         v-layout(row wrap justify-center)
           v-flex(xs12 md12).mt-5(style="margin-top:100px;")
             br
-            h1.font-large.text-xs-center Experience MYCURE
+            h1.font-60.text-xs-center Experience MYCURE
             br
-            p.font-medium.text-xs-center Explore what you can do more with our smart tools by your side.
+            p.font-48.text-xs-center Explore what you can do more with our smart tools by your side.
             br
           v-flex(xs12 md12)
             v-layout(row wrap justify-center)

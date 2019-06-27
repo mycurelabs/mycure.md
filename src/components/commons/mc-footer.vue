@@ -6,7 +6,7 @@
           mc-toolbar-footer
           hr.mc-grey.mb-3
           v-layout(row wrap justify-center)
-            v-flex(xs12 md3 offset-md1).font-mc-grey
+            v-flex(xs12 md3 offset-md1).font-18c-grey
               ul.no-style-type.pb-3
                 li
                   router-link(id="footer-features-link" @click.stop="handleFooterFeaturesLink" :to="{name: 'features'}" title="MYCURE Features").link.white--text Features
@@ -30,7 +30,7 @@
                 li 
                   router-link(id="footer-careers-link" @click.stop="handleFooterCareersLink" :to="{ name: 'careers' }" title="MYCURE - Careers").link.white--text Careers
               
-            v-flex(xs12 md3 offset-md1).font-mc-grey
+            v-flex(xs12 md3 offset-md1).font-18c-grey
               ul.no-style-type
                 li.feature-text SUPPORT 
                 li 
@@ -48,7 +48,7 @@
                   router-link(id="footer-privacy-policy-link" @click.stop="handleFooterPrivacyPolicyLink" :to="{name: 'privacy-policy'}" title="MYCURE Privacy Policy").link.white--text 
                     span Privacy Policy
               
-            v-flex(xs12 md3 offset-md1).font-mc-grey
+            v-flex(xs12 md3 offset-md1).font-18c-grey
               ul.no-style-type
                 li.feature-text CONTACT US
                 li 
@@ -59,7 +59,7 @@
           v-layout(row wrap justify-center)  
             span.white--text &copy; 2016 - {{new Date().getFullYear()}}
               a(href="https://mycure.md")
-                span.font-mc-blue &nbsp; MYCURE.  
+                span.font-18c-blue &nbsp; MYCURE.  
                 |
                 span.white--text All Rights Reserved.
     div(v-else :style="webSky ? 'margin-top: -250%; z-index: -1' : 'margin-top: 0'").pt-5.transparent
@@ -208,7 +208,7 @@ export default {
     padding: auto;
   }
 
-  .font-mc-blue {
+  .font-18c-blue {
     color: #2e9fdf
   }
 

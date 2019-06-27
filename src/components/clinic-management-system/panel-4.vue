@@ -3,7 +3,7 @@
     div(v-if="!$isMobile").white
       v-container.px-5
         v-layout(row wrap justify-center)
-          span.font-medium.lh-title.pa-5 Why do clinics switch to MYCURE?
+          span.font-48.lh-title.pa-5 Why do clinics switch to MYCURE?
         br
         v-layout(row wrap justify-center).py-3 
           v-flex(xs12 md6 style="border-right: 1px solid lightgray").px-5  
@@ -17,12 +17,12 @@
             br
             br
             v-layout(row justify-center)
-              span.text-xs-center.font-small Say goodbye to multiple,
+              span.text-xs-center.font-18 Say goodbye to multiple,
                 br
                 | complicated systems!
           v-flex(xs12 md6).px-5
             h2 With MYCURE 
-              span.font-mc-blue &nbsp ✓
+              span.font-18c-blue &nbsp ✓
               br
             img(
               max-width="500px"
@@ -33,7 +33,7 @@
             br
             br
             v-layout(row justify-center)
-              span.text-xs-center.font-small Say hello to a simplified
+              span.text-xs-center.font-18 Say hello to a simplified
                 br
                 | record-keeping for everyone.
         br
@@ -49,14 +49,14 @@
             target="_blank"
             style="height: 60px; width: 250px"
           ).mt-3
-            strong.font-small.white--text.text-none Sign Up Now
-        p.text-xs-center.py-4.font-small Have questions? 
+            strong.font-18.white--text.text-none Sign Up Now
+        p.text-xs-center.py-4.font-18 Have questions? 
           a(@click.stop="toggleChat()")
-            strong.font-mc-blue Send us a chat.
+            strong.font-18c-blue Send us a chat.
     div(v-else).mc-light-grey
       v-container
         v-layout(row justify-center)
-          span.font-l.text-xs-center.lh-title Designed for Multispecialty clinics
+          span.font-40.text-xs-center.lh-title Designed for Multispecialty clinics
         br
         br
         br
@@ -68,18 +68,18 @@
             alt="Incomplete Clinic"
             width="100%").mb-3
           br
-          span.text-xs-center.font-small Say goodbye to multiple, complicated systems!
+          span.text-xs-center.font-18 Say goodbye to multiple, complicated systems!
           br
           br
           h2.text-xs-center With MYCURE 
-              span.font-mc-blue &nbsp ✓
+              span.font-18c-blue &nbsp ✓
           br
           img(
             src="../../assets/images/mycure-homepage-compare-mycure-complete-clinic-management-system.png" 
             alt="Complete Clinic"
             width="100%").mb-3   
           br
-          span.text-xs-center.font-small Say hello to a simplified record-keeping for everyone.
+          span.text-xs-center.font-18 Say hello to a simplified record-keeping for everyone.
           br
           br
           v-layout(row wrap justify-center)
@@ -91,10 +91,10 @@
               target="_blank"
               large
             ).mt-3
-              strong.font-s.white--text.text-none Sign Up Now
-          p.text-xs-center.py-4.font-small Have questions? 
+              strong.font-16.white--text.text-none Sign Up Now
+          p.text-xs-center.py-4.font-18 Have questions? 
             a(@click.stop="toggleChat()")
-              strong.font-mc-blue Send us a chat.
+              strong.font-18c-blue Send us a chat.
 
 </template>
 

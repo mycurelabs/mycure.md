@@ -19,7 +19,7 @@
     //- panel6(v-if="$isMobile").showPanel
     filler(v-if="$isMobile").showPanel.pt-5
       span(slot="multiFiller" style="font-size: 30px") Does your clinic have more than 3 branches? 
-      span(slot="chatWindow" @click="toggleChat" style="font-size: 30px").pointer.font-mc-blue Talk to us for custom pricing.
+      span(slot="chatWindow" @click="toggleChat" style="font-size: 30px").pointer.font-18c-blue Talk to us for custom pricing.
     //- panel7(v-if="$isMobile").showPanel
     mc-footer
 </template>

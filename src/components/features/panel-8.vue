@@ -3,13 +3,13 @@
     div(v-if="!$isMobile")#panel8.pt-5
       v-container
         center
-          strong.font-small.font-mc-blue REPORTS AND ANALYTICS
+          strong.font-18.font-18c-blue REPORTS AND ANALYTICS
         v-layout(row justify-center).add-spacing
-          span.font-medium.text-xs-center Never miss out on important 
+          span.font-48.text-xs-center Never miss out on important 
             br
             | business decisions. 
         v-layout(row justify-center).add-spacing
-          span.font-small.text-xs-center Measure your day-to-day clinic performance analyzing comprehensive 
+          span.font-18.text-xs-center Measure your day-to-day clinic performance analyzing comprehensive 
             br
             | graphs based on your KPIs. Census, billing, diagnostics, sales, and 
             br
@@ -21,15 +21,15 @@
     div(v-else)#panel8.pt-5
       v-container
         v-layout(row justify-center)
-          strong.font-s.font-mc-blue REPORTS AND ANALYTICS
+          strong.font-16.font-18c-blue REPORTS AND ANALYTICS
         br
         br
         v-layout(row justify-center)
-          p.font-l.text-xs-center Never miss out on important business decisions. 
+          p.font-40.text-xs-center Never miss out on important business decisions. 
         br
         br
         v-layout(row justify-center)
-          p.font-m.text-xs-center Measure your day-to-day clinic performance analyzing comprehensive graphs based on your KPIs. Census, billing, diagnostics, sales, and physical exam reports can be generated instantly.
+          p.font-18.text-xs-center Measure your day-to-day clinic performance analyzing comprehensive graphs based on your KPIs. Census, billing, diagnostics, sales, and physical exam reports can be generated instantly.
         v-layout(row justify-center).add-spacing
           img(src="@/assets/images/mycure-cms-web-features-arrow-down.png")
         br

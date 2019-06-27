@@ -14,12 +14,12 @@
                   strong(style="font-size: 30px").pb-2 For Private Practice
                   br
                   br
-                  span.font-small {{ private_title }}
+                  span.font-18 {{ private_title }}
                   br
                   br
                   v-layout(row v-for="(feature,index) in privateFeatures" :key="index")
-                    span.font-small &#10003 &nbsp 
-                    span.font-small {{ feature }}
+                    span.font-18 &#10003 &nbsp 
+                    span.font-18 {{ feature }}
                     br
                   v-layout(row wrap).py-4
                     v-btn(
@@ -31,22 +31,22 @@
                       strong Sign Up Now
       panel6a(style="padding-top: 150px")
       filler(style="padding-top: 100px")
-        span(slot="privateFiller").font-l Are you part of a group clinic?
+        span(slot="privateFiller").font-40 Are you part of a group clinic?
         br
-        span(slot="chatWindow" @click="toggleChat").pointer.font-l.font-mc-blue Ask us how it works.
+        span(slot="chatWindow" @click="toggleChat").pointer.font-40.font-18c-blue Ask us how it works.
       v-layout(row justify-center)
         img(width="100%" height="100%" src="../../assets/images/mycure-web-banner-last-panel-health-community.png" alt="Health community")
     div(v-else).py-3.white
       img(width="100%" src="../../assets/images/mycure-web-banner-fifth-panel-private-clinic.png" alt="Private clinic pricing")
       v-layout(column wrap).pt-4.pb-5.pr-5.pl-5
-        p.pb-2.font-small {{ private_title }}
+        p.pb-2.font-18 {{ private_title }}
         v-layout(row v-for="(feature,index) in privateFeatures" :key="index")
-          span.font-small.pb-2 &#10003; &nbsp; 
-          span.font-small {{ feature }}
+          span.font-18.pb-2 &#10003; &nbsp; 
+          span.font-18 {{ feature }}
       v-layout(row justify-center)
         v-btn(style="background-color: #18c551; width: 80%; height: 60px")
           a(:href="`${signInURL}/signup/choose`" target="_blank")
-            strong.font-m.white--text.text-none Sign Up Now
+            strong.font-18.white--text.text-none Sign Up Now
 </template>
 
 <script>

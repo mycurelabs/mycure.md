@@ -4,10 +4,10 @@
       v-container
         v-layout(row wrap justify center)
           v-flex(xs6 align-self-center).px-3
-            span.font-medium What makes MYCURE so different?
+            span.font-48 What makes MYCURE so different?
             br
             br
-            span.font-small.text-xs-center MYCURE works online and offline! Using our proprietary tech called Syncbase, you can digitally process your medical records locally using multiple devices even if the internet is down! Once online, it automatically synchronizes your data back into the cloud.
+            span.font-18.text-xs-center MYCURE works online and offline! Using our proprietary tech called Syncbase, you can digitally process your medical records locally using multiple devices even if the internet is down! Once online, it automatically synchronizes your data back into the cloud.
               br
               br
             v-btn(
@@ -18,7 +18,7 @@
               right
               large
             )
-              strong.text-none.white--text.font-small &#9658; &nbsp; Watch Video
+              strong.text-none.white--text.font-18 &#9658; &nbsp; Watch Video
             v-dialog(v-model="dialog" max-width="50%") 
               v-card(height="30%").elevation-10
                 a
@@ -43,9 +43,9 @@
     div(v-else)
       v-container
         h1
-        p.font-l.lh-title.text-xs-center What makes MYCURE so different?
+        p.font-40.lh-title.text-xs-center What makes MYCURE so different?
         br
-        p.font-m.text-xs-center {{ different }}
+        p.font-18.text-xs-center {{ different }}
         br
         v-card.elevation-5
           a(id="home-syncbase-vid-btn" @click.stop="handleHomeSyncbaseVid")

@@ -7,7 +7,7 @@
         span(style="font-size: 200%").text-xs-center.lh-title Because we believe your clinic can stand out and be its best everyday.
         br
         br
-        span.font-m.text-xs-center Experience what you can do more with MYCURE technology by your side.
+        span.font-18.text-xs-center Experience what you can do more with MYCURE technology by your side.
         br
         br
         v-layout(row justify-center)
@@ -17,7 +17,7 @@
             :href="`${signInURL}/signup/multi-specialty/step-1`"
             target="_blank"
             style="background-color: #18c551; width: 80%; height: 60px")  
-            strong.font-m.white--text.text-none Sign Up Now  
+            strong.font-18.white--text.text-none Sign Up Now  
 </template>
 
 <script>

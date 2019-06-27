@@ -20,7 +20,7 @@
                 )
                   v-flex(xs12 md10).text-xs-center.pa-5
                     h2.black--text.mb-5 {{ testimonial.message }}
-                    span.font-small.black--text {{ testimonial.name }}
+                    span.font-18.black--text {{ testimonial.name }}
                       br
                       i.black--text {{ testimonial.position }}
     div(v-else).transparent
@@ -44,7 +44,7 @@
                 h2.black--text {{ testimonial.message }}
                 br
                 br
-                span.font-s.black--text {{ testimonial.name }}
+                span.font-16.black--text {{ testimonial.name }}
                   br
                   span {{ testimonial.position }}
 </template>

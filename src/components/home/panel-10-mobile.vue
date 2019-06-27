@@ -1,9 +1,9 @@
 <template lang="pug">
   div.pt-5
     v-container
-      p.font-l.lh-title.text-xs-center What makes MYCURE so different?
+      p.font-40.lh-title.text-xs-center What makes MYCURE so different?
       br
-      p.font-m.text-xs-center {{ different }}
+      p.font-18.text-xs-center {{ different }}
       br
       v-card.elevation-5
         a(id="home-syncbase-vid-btn" @click.stop="handleHomeSyncbaseVid")

@@ -3,7 +3,7 @@
     //- div(v-if="!$isMobile" style="padding-top: 100px")#panel6
     div(v-if="!$isMobile")#panel6.pt-5
       v-layout(row wrap justify-center)
-        span.font-medium.text-xs-center.px-3 MYCURE works for Private and Multispecialty Clinics
+        span.font-48.text-xs-center.px-3 MYCURE works for Private and Multispecialty Clinics
       br
       v-layout(row wrap justify-center).pt-5
         table
@@ -11,38 +11,38 @@
             td
               v-layout(row wrap center) 
                 img(src="../../assets/images/mycure-web-bullet-check.png" alt="Check icon").mr-3
-                span.font-small Solo Practice
+                span.font-18 Solo Practice
             td
               v-layout(row wrap center) 
                 img(src="../../assets/images/mycure-web-bullet-check.png" alt="Check icon").mr-3 
-                span.font-small Group Clinics
+                span.font-18 Group Clinics
           tr
             td 
               v-layout(row wrap center)
                 img(src="../../assets/images/mycure-web-bullet-check.png" alt="Check icon").mr-3 
-                span.font-small Multispecialty Clinics
+                span.font-18 Multispecialty Clinics
             td 
               v-layout(row wrap center)
                 img(src="../../assets/images/mycure-web-bullet-check.png" alt="Check icon").mr-3 
-                span.font-small Dermatology Clinics
+                span.font-18 Dermatology Clinics
           tr
             td 
               v-layout(row wrap center)
                 img(src="../../assets/images/mycure-web-bullet-check.png" alt="Check icon").mr-3 
-                span.font-small Family Clinics
+                span.font-18 Family Clinics
             td 
               v-layout(row wrap center)
                 img(src="../../assets/images/mycure-web-bullet-check.png" alt="Check icon").mr-3
-                span.font-small Multi-branch Clinics
+                span.font-18 Multi-branch Clinics
           tr
             td(style="border-bottom: 1px solid #bbb;")
               v-layout(row wrap center)
                 img(src="../../assets/images/mycure-web-bullet-check.png" alt="Check icon").mr-3 
-                span.font-small Industrial Clinics
+                span.font-18 Industrial Clinics
             td(style="border-bottom: 1px solid #bbb;")
               v-layout(row wrap center)
                 img(src="../../assets/images/mycure-web-bullet-check.png" alt="Check icon").mr-3
-                span.font-small Dental Clinics
+                span.font-18 Dental Clinics
       panel7(style="padding-top: 5%")
       panel8(style="padding-top: 5%")
       panel9(style="padding-top: 10%")

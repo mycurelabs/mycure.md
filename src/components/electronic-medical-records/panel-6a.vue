@@ -2,8 +2,8 @@
   div
     panelBeforeFooter
       img(slot="emr-img" style="max-width: 90%" src="../../assets/images/mycure-web-banner-last-panel-doctor-clinic-for-private-clinic.png" alt="Doctor best version")
-      span(slot="emr-txt").font-medium.lh-title Be your best version everyday.
-      span(slot="cms-sub-txt").font-small Experience what you can do more with MYCURE technology by your side.
+      span(slot="emr-txt").font-48.lh-title Be your best version everyday.
+      span(slot="cms-sub-txt").font-18 Experience what you can do more with MYCURE technology by your side.
       v-btn(
         id="emr-signup-btn"
         @click.stop="handleEmrSignupBtn"
@@ -14,7 +14,7 @@
         style="padding: 25px 30px 25px 30px"
         right
       )
-        strong.text-none.white--text.font-small Sign Up Now
+        strong.text-none.white--text.font-18 Sign Up Now
     
 </template>
 

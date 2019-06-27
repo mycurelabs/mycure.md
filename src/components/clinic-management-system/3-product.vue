@@ -1,7 +1,7 @@
 <template lang="pug">
   div(style="padding-top: 100px").transparent#panel5.pt-4
     v-layout(row wrap justify-center)
-      font.font-medium.lh-title.text-xs-center Designed for clinics of all shapes and sizes.
+      font.font-48.lh-title.text-xs-center Designed for clinics of all shapes and sizes.
     br
     div.pt-5
       center
@@ -17,11 +17,11 @@
         target="_blank"
         style="height: 60px; width: 250px"
       ).mt-3
-        strong.font-small.white--text.text-none Get Started Today
+        strong.font-18.white--text.text-none Get Started Today
     br
     v-layout(row wrap justify-center)
-      em.font-small Have a question? 
-        a.font-mc-blue 
+      em.font-18 Have a question? 
+        a.font-18c-blue 
           strong(@click="toggleChat") Start a quick chat!
 </template>
 

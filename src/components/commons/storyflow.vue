@@ -3,7 +3,7 @@
     div(v-if="!$isMobile").pt-5
       v-container
         div.text-xs-center
-          span.font-l {{ introduction }}
+          span.font-40 {{ introduction }}
         br
         br
         br
@@ -11,15 +11,15 @@
           v-flex(xs5 v-if="index%2 === 0")
             img(style="max-width: 90%; white-space: wrap;" :src="require(`@/assets/images/${ highlight.image }`)" :alt="highlight.title")
           v-flex(xs6 v-else align-self-center).pr-5.text-xs-right
-            span(v-if="hasTitle").font-medium.lh-title {{ highlight.title }}
+            span(v-if="hasTitle").font-48.lh-title {{ highlight.title }}
             br
             br
-            span.font-small {{ highlight.text }}
+            span.font-18 {{ highlight.text }}
           v-flex(xs6 v-if="index%2 === 0" align-self-center).pl-5
-            span(v-if="hasTitle").font-medium.lh-title {{ highlight.title }}
+            span(v-if="hasTitle").font-48.lh-title {{ highlight.title }}
             br
             br
-            span.font-small {{ highlight.text }}
+            span.font-18 {{ highlight.text }}
           v-flex(xs5 v-else).text-xs-right
             img(style="max-width: 90%" :src="require(`@/assets/images/${ highlight.image }`)" :alt="highlight.title")
         br
@@ -31,10 +31,10 @@
             :to="{ name: 'features' }"
             style="height: 60px; width: 250px"
           ).mt-3
-            strong.font-small.white--text.text-none Explore the Features
+            strong.font-18.white--text.text-none Explore the Features
     div(v-else).pt-4
       div.text-xs-center
-        span.font-l {{ introduction }}
+        span.font-40 {{ introduction }}
       br
       br
       v-container(v-for="(highlight,index) in storyflow" :key="index" column justify-center)
@@ -43,11 +43,11 @@
         br
         v-layout(align-center row wrap).text-xs-center  
           v-flex(xs12)
-            span(v-if="hasTitle").font-l.lh-title.text-xs-center {{ highlight.title }}
+            span(v-if="hasTitle").font-40.lh-title.text-xs-center {{ highlight.title }}
         br
         v-layout(align-center row wrap).px-2
           v-flex(xs12).text-xs-center
-            span.font-m {{ highlight.text }}
+            span.font-18 {{ highlight.text }}
         br
       v-layout(v-if="featuresButton" row wrap justify-center)
         v-btn(
@@ -57,7 +57,7 @@
           :to="{ name: 'features' }"
           style="height: 60px; width: 250px"
         ).mt-3
-          strong.font-small.white--text.text-none Explore the Features
+          strong.font-18.white--text.text-none Explore the Features
 </template>
 
 <script>

@@ -3,17 +3,17 @@
     div(v-if="!$isMobile")#panel5.pt-5
       v-container
         center
-          strong.font-small.font-mc-blue BILLING AND PAYMENTS
+          strong.font-18.font-18c-blue BILLING AND PAYMENTS
         v-layout(row justify-center).add-spacing
-          span.font-medium Simplified billing, beautiful reports.
+          span.font-48 Simplified billing, beautiful reports.
         v-layout(row justify-center).add-spacing
-          span.font-small.text-xs-center Produce neatly-organized reports in a minute or less.
+          span.font-18.text-xs-center Produce neatly-organized reports in a minute or less.
         v-layout(row justify-center).add-spacing
           ul
             li
               v-layout(v-for="(item, index) in items" :key="index" row align-left).pb-3 
                 img(src="../../assets/images/mycure-web-bullet-check.png" alt="Check icon")
-                span.font-small.pl-3 {{ item }} 
+                span.font-18.pl-3 {{ item }} 
         v-layout(row justify-center).add-spacing
           img(src="@/assets/images/mycure-cms-web-features-arrow-down.png" alt="Arrow down icon")
         v-layout(row justify-center).add-spacing
@@ -33,15 +33,15 @@
     div(v-else)#panel5.pt-5
       v-container
         center
-          strong.font-s.font-mc-blue BILLING AND PAYMENTS
+          strong.font-16.font-18c-blue BILLING AND PAYMENTS
         br
         br
         v-layout(row justify-center)
-          p.font-l.text-xs-center Simplified billing, beautiful reports.
+          p.font-40.text-xs-center Simplified billing, beautiful reports.
         br
         br
         v-layout(row justify-center)
-          p.font-m.text-xs-center Produce neatly-organized reports in a minute or less.
+          p.font-18.text-xs-center Produce neatly-organized reports in a minute or less.
         br
         br
         v-layout(row justify-center)
@@ -49,7 +49,7 @@
             li
               v-layout(v-for="(item, index) in items" :key="index" row align-left).pb-3 
                 img(src="../../assets/images/mycure-web-bullet-check.png" alt="Check icon" style="height: 29px;")
-                span.font-s.pl-3 {{ item }} 
+                span.font-16.pl-3 {{ item }} 
         v-layout(row justify-center).add-spacing
           img(src="@/assets/images/mycure-cms-web-features-arrow-down.png")
         br

@@ -4,11 +4,11 @@
       div.pt-5#panel9a
         v-container
           center
-            strong.font-small.font-mc-blue SYNCBASE TECHNOLOGY
+            strong.font-18.font-18c-blue SYNCBASE TECHNOLOGY
           v-layout(row justify-center).add-spacing
-            span.font-medium.text-xs-center Go offline safely and securely.
+            span.font-48.text-xs-center Go offline safely and securely.
           v-layout(row justify-center).add-spacing
-            span.font-small.text-xs-center The holy grail of online-offline technology is here. Work within your local 
+            span.font-18.text-xs-center The holy grail of online-offline technology is here. Work within your local 
               br
               | network using multiple devices even if the internet goes down and just 
               br
@@ -24,15 +24,15 @@
       div.pt-5
         v-container
           v-layout(row justify-center)
-            strong.font-s.font-mc-blue SYNCBASE TECHNOLOGY
+            strong.font-16.font-18c-blue SYNCBASE TECHNOLOGY
           br
           br
           v-layout(row justify-center)
-            p.font-l.text-xs-center Go offline safely and securely.
+            p.font-40.text-xs-center Go offline safely and securely.
           br
           br
           v-layout(row justify-center)
-            p.font-m.text-xs-center The holy grail of online-offline technology is here. Work within your local network using multiple devices even if the internet goes down and just sync data when back online.
+            p.font-18.text-xs-center The holy grail of online-offline technology is here. Work within your local network using multiple devices even if the internet goes down and just sync data when back online.
           v-layout(row justify-center).add-spacing
             img(src="@/assets/images/mycure-cms-web-features-arrow-down.png")
           br

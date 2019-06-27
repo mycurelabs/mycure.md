@@ -12,7 +12,7 @@
                   strong(style="font-size: 30px").pb-2 For Multispecialty Clinics
                   br
                   br
-                  font.font-small An all-around solution for your outpatient, 
+                  font.font-18 An all-around solution for your outpatient, 
                     br
                     | multispecialty or specialized clinics that will 
                     br
@@ -20,7 +20,7 @@
                   br
                   br
                   div(v-for="(feature,index) in multiFeatures" :key="index")
-                    span.font-small &#10003 &nbsp {{ feature }}
+                    span.font-18 &#10003 &nbsp {{ feature }}
                     br
                   v-layout(row wrap).py-4
                     v-btn(
@@ -31,10 +31,10 @@
                       color="#18c551" 
                       style="width: auto" large
                     ).text-none
-                      strong.font-small.white--text Sign Up Now
+                      strong.font-18.white--text Sign Up Now
       filler(style="padding-top:150px")
-        span(slot="multiFiller").font-l Does your clinic have more than 3 branches? 
-        span(slot="chatWindow" @click="toggleChat").pointer.font-l.font-mc-blue Talk to us for custom pricing.
+        span(slot="multiFiller").font-40 Does your clinic have more than 3 branches? 
+        span(slot="chatWindow" @click="toggleChat").pointer.font-40.font-18c-blue Talk to us for custom pricing.
       panel5b(style="padding-top: 150px")
     div(v-else)
 </template>

@@ -28,7 +28,7 @@
       v-container
         v-flex(xs12 md12).text-xs-center
           v-layout(row wrap align-center justify-center)
-              h1.font-medium Caring the Extra Mile
+              h1.font-48 Caring the Extra Mile
           br
           div(id="our-story-care-the-extra-mile-vid-btn" @click.stop="handleOurStoryCareTheExtraMile()")
             iframe(

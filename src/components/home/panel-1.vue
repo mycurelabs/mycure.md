@@ -4,9 +4,9 @@
       v-container(align-center fill-height style="padding-top: 70px").px-5.panel-1
         v-layout(row justify-center)
           v-flex(xs12 md7 align-self-center style="margin-top: -7%")
-            h1(style="font-weight: bold;").font-small.font-mc-blue MYCURE Complete Clinic Management System
+            h1(style="font-weight: bold;").font-18.font-18c-blue MYCURE Complete Clinic Management System
             br
-            p(style="line-height: 60px;").font-medium A modern technology platform that helps organize and secure patients' medical records.
+            p(style="line-height: 60px;").font-48 A modern technology platform that helps organize and secure patients' medical records.
             br
             v-btn(
               :href="`${signInURL}/signup/choose`" 
@@ -16,15 +16,15 @@
               id="home-signup-btn"
               @click.stop="handleHomeSignupBtn"
             ) 
-              strong.font-small.text-none.white--text Sign Up Now
+              strong.font-18.text-none.white--text Sign Up Now
           v-flex(xs12 md7 align-self-center style="margin-top: 5%")
             img(width="80%" src="../../assets/images/mycure-web-banner-first-panel-doctor-clinic-patients.png" alt="Clinic home banner").right
     div(v-else).white
       v-container.pt-4
         v-layout(column justify-center).pb-4
-          h1(style="font-weight: bold;").font-small.font-mc-blue.text-xs-center.pb-2 MYCURE Complete Clinic Management System
+          h1(style="font-weight: bold;").font-18.font-18c-blue.text-xs-center.pb-2 MYCURE Complete Clinic Management System
           br            
-          p.lh-title.font-l.text-xs-center A modern technology platform that helps organize and secure patients' medical records.
+          p.lh-title.font-40.text-xs-center A modern technology platform that helps organize and secure patients' medical records.
         v-flex(xs12)
           img(width="100%" src="../../assets/images/mycure-web-banner-first-panel-doctor-clinic-patients.png" alt="Clinic home banner")
       v-layout(row justify-center)

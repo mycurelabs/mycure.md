@@ -9,7 +9,7 @@
     div(v-else).pt-4
       v-container
         v-layout(row justify-center)
-          span.font-l.lh-title.text-xs-center MYCURE is a complete clinic management system — everything your clinic needs.
+          span.font-40.lh-title.text-xs-center MYCURE is a complete clinic management system — everything your clinic needs.
         br
         v-layout(row justify-center)
           div

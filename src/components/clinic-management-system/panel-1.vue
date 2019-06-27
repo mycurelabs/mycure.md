@@ -4,7 +4,7 @@
       v-container(justify-center fill-height style="padding-top: 70px").px-5.panel-1
         v-layout(row justify-center)
           v-flex(xs12 md7 align-self-center style="margin-top: -10%") 
-            h1(style="line-height: 65px;").font-large A system that simplifies work for multispecialty clinics.
+            h1(style="line-height: 65px;").font-60 A system that simplifies work for multispecialty clinics.
             br 
             br
             v-btn(
@@ -15,14 +15,14 @@
               color="#18c551" 
               style="padding: 25px 30px 25px 30px"
             )  
-              strong.font-small.white--text.text-none Sign Up Now
+              strong.font-18.white--text.text-none Sign Up Now
           v-flex(xs12 md7 align-self-center style="margin-top: 5%")
             img(width="100%" src="../../assets/images/mycure-cms-web-banner-first-panel-doctor-clinic-patients.png" alt="Clinic management system banner")
     div(v-else).white
       v-container.pt-5
         v-layout(row justify-center)
           v-flex(xs12 md5)
-            p.font-l.text-xs-center A system that simplifies work for 
+            p.font-40.text-xs-center A system that simplifies work for 
               br
               | multi-specialty clinics.
             br

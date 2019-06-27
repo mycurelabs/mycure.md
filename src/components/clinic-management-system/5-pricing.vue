@@ -11,7 +11,7 @@
                 strong(style="font-size: 30px").pb-2 For Multispecialty Clinics
                 br
                 br
-                font.font-small An all-around solution for your outpatient, 
+                font.font-18 An all-around solution for your outpatient, 
                   br
                   | multispecialty or specialized clinics that will 
                   br
@@ -19,7 +19,7 @@
                 br
                 br
                 div(v-for="(feature,index) in multiFeatures" :key="index")
-                  span.font-small &#10003 &nbsp {{ feature }}
+                  span.font-18 &#10003 &nbsp {{ feature }}
                   br
                 v-layout(row wrap).py-4
                   v-btn(
@@ -30,7 +30,7 @@
                     color="#18c551" 
                     style="width: auto" large
                   ).text-none
-                    strong.font-small.white--text Get Started Today
+                    strong.font-18.white--text Get Started Today
       finalwords
       filler
     div(v-else)
@@ -38,10 +38,10 @@
         img(width="100%" src="../../assets/images/mycure-web-banner-fifth-panel-multi-specialty-clinics.png" alt="Multispecialty banner")
         v-layout(column wrap).pt-4.pb-5.pr-5.pl-5
           v-layout(row wrap)
-            span.font-small {{ multiSpecialty_desc }}
+            span.font-18 {{ multiSpecialty_desc }}
           br
           div(v-for="(feature,index) in multiFeatures" :key="feature")
-            span.font-small.pb-2 &#10003; &nbsp; &nbsp; {{ feature }}
+            span.font-18.pb-2 &#10003; &nbsp; &nbsp; {{ feature }}
         v-layout(row justify-center)
           v-btn(
             id="cms-signup-btn"
@@ -49,7 +49,7 @@
             :href="`${signInURL}/signup/multi-specialty/step-1`"
             target="_blank"
             style="background-color: #18c551; width: 80%; height: 60px")
-              strong.font-m.white--text.text-none Get Started Today
+              strong.font-18.white--text.text-none Get Started Today
       finalwords
       //- filler
 </template>

@@ -10,9 +10,9 @@
         br
         div
           center
-            strong.font-small Oh snap!
+            strong.font-18 Oh snap!
             br
-            span.font-small There isn't any page like that in this site.
+            span.font-18 There isn't any page like that in this site.
               br
               | Please check out our other pages instead.
     div(v-else).showPanel
@@ -25,9 +25,9 @@
         br
         v-flex(xs12)
           center
-            strong.font-s Oh snap!
+            strong.font-16 Oh snap!
             br
-            span.font-s There isn't any page like that in this site.
+            span.font-16 There isn't any page like that in this site.
               br
               | Please check out our other pages instead.
 </template>

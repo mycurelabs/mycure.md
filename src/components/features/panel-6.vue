@@ -3,11 +3,11 @@
     div(v-if="!$isMobile")#panel6.pt-5
       v-container
         center
-          strong.font-small.font-mc-blue LABORATORY &amp; IMAGING
+          strong.font-18.font-18c-blue LABORATORY &amp; IMAGING
         v-layout(row justify-center).add-spacing
-          span.font-medium.text-xs-center Record and retrieve diagnostic results right where you need them.
+          span.font-48.text-xs-center Record and retrieve diagnostic results right where you need them.
         v-layout(row justify-center).add-spacing
-          span.font-small.text-xs-center MYCURE can communicate with modern diagnostic machines through 
+          span.font-18.text-xs-center MYCURE can communicate with modern diagnostic machines through 
             br
             | HL7 interfacing and PACS configurations. 
             br
@@ -34,14 +34,14 @@
     div(v-else)#panel6.pt-5
       v-container
         center
-          strong.font-s.font-mc-blue LABORATORY &amp; IMAGING
+          strong.font-16.font-18c-blue LABORATORY &amp; IMAGING
         br
         br
         v-layout(row justify-center)
-          p.font-l.text-xs-center Record and retrieve diagnostic results right where you need them.
+          p.font-40.text-xs-center Record and retrieve diagnostic results right where you need them.
         br
         v-layout(row justify-center)
-          p.font-m.text-xs-center MYCURE can communicate with modern diagnostic machines through HL7 interfacing and PACS configurations. 
+          p.font-18.text-xs-center MYCURE can communicate with modern diagnostic machines through HL7 interfacing and PACS configurations. 
             br
             br
             | Doctors can view DICOM images remotely or within clinic premises, while patients can view their lab & imaging results through an online portal.
