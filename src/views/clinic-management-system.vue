@@ -3,49 +3,30 @@
     mc-toolbar-home
     usp
     problems
-    product(v-if="!$isMobile")
-    panel3mobile(v-if="$isMobile").showPanel
-    benfits.showPanel
-    pricing.showPanel
-    //- finalwords
-    //- filler
-    //- panel1
-    //- panel2
-    //- panel3(v-if="!$isMobile")
-    //- panel3mobile(v-if="$isMobile").showPanel
-    //- panel4
-    //- panel5(v-if="!$isMobile")
-    //- panel5a(v-if="!$isMobile").showPanel
-    //- panel6(v-if="$isMobile").showPanel
-    filler(v-if="$isMobile").showPanel.pt-5
-      span(slot="question" style="font-size: 30px") Does your clinic have more than 3 branches? 
-      span(slot="chatWindow" @click="toggleChat" style="font-size: 30px").pointer.font-mc-blue Talk to us for custom pricing.
-    //- panel7(v-if="$isMobile").showPanel
+    product
+    div.skyBg
+      benfits
+      pricing
+      finalWords
+      filler
+        span(v-if="!$isMobile" slot="question").font-40 Does your clinic have more than 3 branches?
+        span(v-else slot="question").font-30 Does your clinic have more than 3 branches?        
+        span(v-if="!$isMobile" slot="chatWindow" @click="toggleChat").font-40.pointer.font-mc-blue Talk to us for custom pricing.
+        span(v-else slot="chatWindow" @click="toggleChat").font-30.pointer.font-mc-blue Talk to us for custom pricing.
     mc-footer
 </template>
 
 <script>
   import mcToolbarHome from '@/components/commons/mc-toolbar-home';
   import mcFooter from '@/components/commons/mc-footer';
-  import panel1 from '@/components/clinic-management-system/panel-1';
-  import panel2 from '@/components/clinic-management-system/panel-2';
-  import panel3 from '@/components/clinic-management-system/panel-3';
-  import panel3mobile from '@/components/clinic-management-system/panel-3-mobile';
-  import panel4 from '@/components/clinic-management-system/panel-4';
-  import panel5 from '@/components/clinic-management-system/panel-5';
-  import panel5a from '@/components/clinic-management-system/panel-5a';
-  import panel6 from '@/components/clinic-management-system/panel-6';
-  import panel7 from '@/components/clinic-management-system/panel-7';
   import filler from '@/components/commons/filler';
   import VueScrollTo from 'vue-scrollto';
-
-  import usp from '@/components/clinic-management-system/1-usp';
-  import problems from '@/components/clinic-management-system/2-problems';
-  import product from '@/components/clinic-management-system/3-product';
-  import benfits from '@/components/clinic-management-system/4-benefits';
-  import pricing from '@/components/clinic-management-system/5-pricing';
-  import finalwords from '@/components/clinic-management-system/6-finalwords';
-  // import filler from '@/components/clinic-management-system/7-filler';
+  import usp from '@/components/clinic-management-system/usp';
+  import problems from '@/components/clinic-management-system/problems';
+  import product from '@/components/clinic-management-system/product';
+  import benfits from '@/components/clinic-management-system/benefits';
+  import pricing from '@/components/clinic-management-system/pricing';
+  import finalWords from '@/components/clinic-management-system/final-words';
 
   export default {
     data () {
@@ -59,19 +40,10 @@
       product,
       benfits,
       pricing,
-      finalwords,
+      finalWords,
       filler,
       mcToolbarHome,
-      mcFooter,
-      panel1,
-      panel2,
-      panel3, 
-      panel3mobile,
-      panel4,
-      panel5,
-      panel5a,
-      panel6,
-      panel7,
+      mcFooter
     },
     methods: {
       toggleChat () {
