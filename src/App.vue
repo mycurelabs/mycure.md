@@ -84,6 +84,10 @@ export default {
     font-size: 40px !important
   }
 
+  .font-25 {
+    font-size: 25px !important
+  }
+
   .font-18 {
     font-size: 18px !important
   }
@@ -125,5 +129,13 @@ export default {
   .showPanel {
     position: relative; 
     z-index: 1;
+  }
+
+  .cta-btn {
+    padding: 25px 30px 25px 30px;
+  }
+
+  .lh-60 {
+    line-height: 60px;
   }
 </style>

@@ -42,7 +42,6 @@
             img(src="../../assets/images/mycure-homepage-syncbase-animated.gif" width="100%" alt="MYCURE Syncbase")
     div(v-else)
       v-container
-        h1
         p.font-40.lh-title.text-xs-center What makes MYCURE so different?
         br
         p.font-18.text-xs-center {{ different }}

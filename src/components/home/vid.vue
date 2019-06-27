@@ -40,7 +40,6 @@
           frameborder="0"
           allowfullscreen
         )
-
 </template>
 
 <script>

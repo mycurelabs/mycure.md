@@ -2,49 +2,31 @@
   //-TODO: Videos are still playing even when dialogs are closed
   div#top.white
     mcToolbarHome
-    panel1
+    usp
     storyflow(
       :storyflow="storyflowItems"
       :introduction="introText"
       :featuresButton="true"
     ).showPanel
-    //- panel2mobile(v-if="$isMobile")
-    panel2
-    panel3
-    panel4
-    //- panel4mobile
-    panel5
-    panel6
-    panel6mobile(v-if="$isMobile").showPanel
-    //- panel7mobile(v-if="$isMobile")
-    //- panel8mobile(v-if="$isMobile").showPanel
-    //- panel9mobile(v-if="$isMobile").showPanel
-    //- panel10mobile(v-if="$isMobile").showPanel
-    //- panel11mobile(v-if="$isMobile").showPanel
+    vid
+    product
+    unique
+    security
+    table
+    tableMobile(v-if="$isMobile").showPanel
     mcFooter
 </template>
 
 <script>
   import mcToolbarHome from '@/components/commons/mc-toolbar-home';
   import mcFooter from '@/components/commons/mc-footer';
-  import panel1 from '@/components/home/panel-1';
-  import panel2 from '@/components/home/panel-2';
-  import panel2mobile from '@/components/home/panel-2-mobile';
-  import panel3 from '@/components/home/panel-3';
-  import panel4 from '@/components/home/panel-4';
-  import panel4mobile from '@/components/home/panel-4-mobile';
-  import panel5 from '@/components/home/panel-5';
-  import panel5mobile from '@/components/home/panel-5-mobile';
-  import panel6 from '@/components/home/panel-6';
-  import panel7 from '@/components/home/panel-7';
-  import panel8 from '@/components/home/panel-8';
-  import panel9 from '@/components/home/panel-9';
-  import panel6mobile from '@/components/home/panel-6-mobile';
-  import panel7mobile from '@/components/home/panel-7-mobile';
-  import panel8mobile from '@/components/home/panel-8-mobile';
-  import panel9mobile from '@/components/home/panel-9-mobile';
-  import panel10mobile from '@/components/home/panel-10-mobile';
-  import panel11mobile from '@/components/home/panel-11-mobile';
+  import usp from '@/components/home/usp';
+  import vid from '@/components/home/vid';
+  import product from '@/components/home/product';
+  import unique from '@/components/home/unique';
+  import security from '@/components/home/security';
+  import table from '@/components/home/table';
+  import tableMobile from '@/components/home/table-mobile';
   import storyflow from '@/components/commons/storyflow';
   import VueScrollTo from 'vue-scrollto';
 
@@ -52,24 +34,13 @@
     components: {
       mcToolbarHome,
       mcFooter,
-      panel1,
-      panel2,
-      panel2mobile,
-      panel3,
-      panel4,
-      panel4mobile,
-      panel5,
-      panel5mobile,
-      panel6,
-      panel7,
-      panel8,
-      panel9,
-      panel6mobile,
-      panel7mobile,
-      panel8mobile,
-      panel9mobile,
-      panel10mobile,
-      panel11mobile,
+      usp,
+      vid,
+      product,
+      unique,
+      security,
+      table,
+      tableMobile,
       storyflow
     },
     mounted () {

@@ -45,20 +45,20 @@
               v-layout(row wrap center)
                 img(src="../../assets/images/mycure-web-bullet-check.png" alt="Check icon").mr-3 
                 span.font-18 Dental Clinics
-      panel7.pt-4
-      panel8.pt-4
+      testimonial.pt-4
+      finalWords.pt-4
       panel9.pt-4
 </template>
 
 <script scoped>
-  import panel7 from './panel-7';
-  import panel8 from './panel-8';
-  import panel9 from './panel-9';
+  import testimonial from './testimonial';
+  import finalWords from './final-words';
+  import panel9 from './cards';
 
   export default {
     components: {
-      panel7,
-      panel8,
+      testimonial,
+      finalWords,
       panel9
     },
     data () {

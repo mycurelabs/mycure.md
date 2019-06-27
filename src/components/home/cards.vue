@@ -11,14 +11,9 @@
             v-for="(card,i) in productCards"
             :to="{ name: card.link }"
             :key="i"
-            style="width: 250px; height: 150px"
+            style="width: 250px; height: 150px;"
           ).roundedCard.mx-3.cardText
             v-layout(column justify-center)
-              //- v-flex(xs12 align-baseline).pa-3
-              //-   p.font-18 {{ card.text }}
-              //- br
-              //- br
-              //- br
               v-flex(xs12 align-self-end).pa-3
                 strong.font-18 {{ card.subtxt }}
         br
@@ -41,9 +36,6 @@
             style="width: 225px; height: 150px"
           ).roundedCard.my-3.cardText
             v-layout(column justify-center)
-              //- v-flex(xs12 align-baseline).pa-3
-              //-   p.font-16 {{ card.text }}
-              //- br
               v-flex(xs12 align-self-end).pa-3
                 strong.font-16 {{ card.subtxt }}
         v-layout(row justify-center).pt-5
