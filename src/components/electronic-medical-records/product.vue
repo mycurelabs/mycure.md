@@ -1,6 +1,6 @@
 <template lang="pug">
-  div.white
-    div(v-if="!$isMobile" style="padding: 0 6% 0 6%;").pt-5
+  div
+    div(v-if="!$isMobile" style="padding: 0 6% 0 6%;").pt-5.white
       v-container
         v-layout(row justify-center)
           span(style="font-size: 40px").lh-title Your buddy from medical school to private practice

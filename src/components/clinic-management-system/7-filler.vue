@@ -2,7 +2,7 @@
   div
     div(v-if="!$isMobile").pt-4
       filler
-        p(slot="multiFiller").font-40 Does your clinic have more than 3 branches? 
+        p(slot="question").font-40 Does your clinic have more than 3 branches? 
         p(slot="chatWindow" @click="toggleChat").pointer.font-40.font-mc-blue Talk to us for custom pricing.
       v-layout(row justify-center)
         img(width="100%" height="100%" src="../../assets/images/mycure-web-banner-last-panel-health-community.png" alt="Health community")

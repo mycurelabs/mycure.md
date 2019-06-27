@@ -84,6 +84,10 @@ export default {
     font-size: 40px !important
   }
 
+  .font-30 {
+    font-size: 30px !important
+  }
+
   .font-25 {
     font-size: 25px !important
   }

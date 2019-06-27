@@ -1,30 +1,33 @@
 <template lang="pug">
   div.white#top
     mc-toolbar-home
-    panel1
-    panel3
-    panel4
-    storyflow(
-      :storyflow="storyflowItems"
-      :introduction="introText"
-    ).showPanel
-    panel6.showPanel
-    panel7mobile(v-if="$isMobile").showPanel
-    filler(v-if="$isMobile").showPanel.pt-5
-      span(slot="privateFiller" style="font-size: 30px") Are you part of a group clinic?
-      span(slot="chatWindow" @click="toggleChat" style="font-size: 30px").pointer.font-mc-blue Ask us how it works.
+    usp
+    problems
+    product
+    div#skyBg
+      storyflow(
+        :storyflow="storyflowItems"
+        :introduction="introText"
+      )
+      pricing
+      finalWords
+      filler
+        span(v-if="!$isMobile" slot="question").font-40 Are you part of a group clinic?
+        span(v-else slot="question").font-30 Are you part of a group clinic?        
+        span(v-if="!$isMobile" slot="chatWindow" @click="toggleChat").font-40.pointer.font-mc-blue Ask us how it works.
+        span(v-else slot="chatWindow" @click="toggleChat").font-30.pointer.font-mc-blue Ask us how it works.
     mc-footer
 </template>
 
 <script>
   import mcToolbarHome from '@/components/commons/mc-toolbar-home';
   import mcFooter from '@/components/commons/mc-footer';
-  import panel1 from '@/components/electronic-medical-records/panel-1';
-  import panel3 from '@/components/electronic-medical-records/panel-3';
-  import panel4 from '@/components/electronic-medical-records/panel-4';
+  import usp from '@/components/electronic-medical-records/usp';
+  import problems from '@/components/electronic-medical-records/problems';
+  import product from '@/components/electronic-medical-records/product';
   import storyflow from '@/components/commons/storyflow';
-  import panel6 from '@/components/electronic-medical-records/panel-6';
-  import panel7mobile from '@/components/electronic-medical-records/panel-7-mobile';
+  import pricing from '@/components/electronic-medical-records/pricing';
+  import finalWords from '@/components/electronic-medical-records/final-words';
   import filler from '@/components/commons/filler';
   import VueScrollTo from 'vue-scrollto';
 
@@ -54,12 +57,12 @@
     components: {
       mcToolbarHome,
       mcFooter,
-      panel1,
-      panel3,
-      panel4,
+      usp,
+      problems,
+      product,
       storyflow,
-      panel6,
-      panel7mobile,
+      pricing,
+      finalWords,
       filler
     },
     methods: {
@@ -76,8 +79,15 @@
 </script>
 
 <style scoped>
-.pointer:hover {
-    cursor: pointer;
-}
+  .pointer:hover {
+      cursor: pointer;
+  }
+
+  #skyBg {
+    background-image: url('../assets/images/mycure-home-web-sky-background.png');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
 </style>
 

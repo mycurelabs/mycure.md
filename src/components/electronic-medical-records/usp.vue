@@ -14,10 +14,10 @@
               :href="`${signInURL}/signup/private/step-1`" 
               target="_blank"
               color="#18c551"
-            ).signup-cta-btn
+            ).cta-btn
               strong.font-18.text-none.white--text Sign Up Now
-          v-flex(xs12 md7 align-self-center style="margin-top: 5%")
-            img(width="80%" src="../../assets/images/mycure-emr-web-banner-first-panel-doctor-clinic-patients.png" alt="Individual doctor").right
+          v-flex(xs12 md7 align-self-center style="margin-top: 10%")
+            img(width="auto" src="../../assets/images/mycure-emr-web-banner-first-panel-doctor-clinic-patients.png" alt="Individual doctor").right
     div(v-else).white
       v-container.pt-5
         v-layout(column justify-center)
