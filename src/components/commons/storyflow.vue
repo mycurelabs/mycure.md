@@ -30,7 +30,7 @@
             large
           ).mt-3.cta-btn
             strong.font-18.white--text.text-none Explore the Features
-    div(v-else).pt-4
+    div(v-else).pt-5
       v-container
         v-layout(row justify-center).text-xs-center.pb-3
           p.font-40 {{ introduction }}
