@@ -4,7 +4,7 @@
     usp
     problems
     product
-    div#skyBg
+    div.skyBg
       storyflow(
         :storyflow="storyflowItems"
         :introduction="introText"
@@ -81,13 +81,6 @@
 <style scoped>
   .pointer:hover {
       cursor: pointer;
-  }
-
-  #skyBg {
-    background-image: url('../assets/images/mycure-home-web-sky-background.png');
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-size: cover;
   }
 </style>
 
