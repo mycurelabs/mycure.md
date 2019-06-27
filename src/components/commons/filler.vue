@@ -1,5 +1,5 @@
 <template lang="pug">
-  div
+  div.pt-5
     v-container.pt-5
       v-layout(justify-center).text-xs-center
         slot(name="question")
