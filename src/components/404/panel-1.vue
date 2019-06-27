@@ -4,12 +4,12 @@
       v-container(style="padding-top: 70px; height: 90vh")
         br
         div
-          center
+          v-layout(row justify-center)
             img(src="../../assets/images/mycure-error-404-image.png" alt="Error 404")
         br
         br
         div
-          center
+          v-layout(row justify-center)
             strong.font-18 Oh snap!
             br
             span.font-18 There isn't any page like that in this site.
@@ -19,12 +19,12 @@
       v-container
         br
         v-flex(xs12)
-          center
+          v-layout(row justify-center)
             img(width="100%" src="../../assets/images/mycure-error-404-image.png" alt="Error 404")
         br
         br
         v-flex(xs12)
-          center
+          v-layout(row justify-center)
             strong.font-16 Oh snap!
             br
             span.font-16 There isn't any page like that in this site.
