@@ -59,6 +59,8 @@
               br
               br
               p.text-xs-center.py-4.font-18 Wanna know the difference? 
+                br
+                |
                 a(@click.stop="dialog = true")
                   strong.font-mc-blue Click here
                 span &nbsp;or&nbsp;
@@ -78,11 +80,7 @@
 </template>
 
 <script>
-  // import compareDialog from './compareDialog';
   export default {
-    // components: {
-    //   compareDialog
-    // },
     data () {
       return {
         dialog: false,

@@ -18,8 +18,8 @@
               @click.stop="handleSoloSignUpBtn(); toggleChat()"
             ) 
               strong.font-18.text-none.white--text Get Early Access
-          v-flex(xs12 md7 align-self-center style="margin-top: 5%")
-            img(width="80%" src="@/assets/images/mycure-emr-web-banner-first-panel-solo-page.png" alt="Solo doctor").right
+          v-flex(xs12 md7 align-self-center style="margin-top: 10%")
+            img(width="auto" src="@/assets/images/mycure-emr-web-banner-first-panel-solo-page.png" alt="Solo doctor").right
     div(v-else).white
       v-container.pt-5
         v-layout(column align-center justify-center)
