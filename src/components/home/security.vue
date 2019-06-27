@@ -1,5 +1,5 @@
 <template lang="pug">
-  div#panel5
+  div
     div(v-if="!$isMobile").pt-5
       v-container
         v-layout(row justify-center)
@@ -10,7 +10,7 @@
             br
             br
             span.font-18.mt-3 With MYCURE you'll never have to worry much about data privacy concerns. Keeping them secure is our #1 priority.
-    div(v-else).pt-4
+    div(v-else).pt-5
       v-container
         v-layout(row)
           v-flex(xs12 md12).text-xs-center

@@ -40,7 +40,7 @@
                     )
           v-flex(xs6 align-self-center).px-3
             img(src="../../assets/images/mycure-homepage-syncbase-animated.gif" width="100%" alt="MYCURE Syncbase")
-    div(v-else)
+    div(v-else).pt-5
       v-container
         p.font-40.lh-title.text-xs-center What makes MYCURE so different?
         br

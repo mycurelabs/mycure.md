@@ -21,7 +21,9 @@
     div(v-else).white
       v-container.pt-4
         v-layout(column justify-center).pb-4
-          h1.font-weight.bold.font-18.font-mc-blue.text-xs-center.pb-2 MYCURE Complete Clinic Management System
+          h1.font-weight.bold.font-18.font-mc-blue.text-xs-center.pb-2 MYCURE Complete Clinic 
+            br
+            | Management System
           br            
           h2.font-weight-regular.lh-title.font-40.text-xs-center A modern technology platform that helps organize and secure patients' medical records.
         v-flex(xs12)

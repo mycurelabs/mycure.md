@@ -1,6 +1,6 @@
 <template lang="pug">
   div
-    div(v-if="!$isMobile")#panel7
+    div(v-if="!$isMobile")
       v-container
         v-layout(row justify-center)
           v-flex(xs12 md9)
@@ -23,7 +23,7 @@
                     span.font-18.black--text {{ testimonial.name }}
                       br
                       i.black--text {{ testimonial.position }}
-    div(v-else).transparent
+    div(v-else).transparent.pt-5
       v-container
         v-layout(row wrap justify-center).px-3
           //- https://ssense.github.io/vue-carousel/
