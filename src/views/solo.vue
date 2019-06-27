@@ -1,31 +1,31 @@
 <template lang="pug">
   div#top.white
     mcToolbarHome
-    usp-1
-    storyflow-2(
+    usp
+    storyflow(
       :introduction="introText"
       :storyflow="storyflowItems"
       :hasTitle="true"
     ).showPanel
-    diagram-3.showPanel
+    diagram.showPanel
     mcFooter
 </template>
 
 <script>
   import mcToolbarHome from '@/components/commons/mc-toolbar-home';
   import mcFooter from '@/components/commons/mc-footer';
-  import usp1 from '@/components/solo/1-usp';
-  import storyflow2 from '@/components/commons/storyflow';
-  import diagram3 from '@/components/solo/3-diagram';
+  import usp from '@/components/solo/usp';
+  import storyflow from '@/components/commons/storyflow';
+  import diagram from '@/components/solo/diagram';
   import VueScrollTo from 'vue-scrollto';
 
   export default {
     components: {
       mcToolbarHome,
       mcFooter,
-      usp1,
-      storyflow2,
-      diagram3
+      usp,
+      storyflow,
+      diagram
     },
     mounted () {
       VueScrollTo.scrollTo(`#top`, 500, { easing: 'ease' } );

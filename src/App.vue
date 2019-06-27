@@ -142,4 +142,11 @@ export default {
   .lh-60 {
     line-height: 60px;
   }
+
+  .skyBg {
+    background-image: url('./assets/images/mycure-home-web-sky-background.png');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
 </style>
