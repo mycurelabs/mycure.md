@@ -86,7 +86,7 @@
             template(v-slot:actions)
               v-icon(style="margin-right: -24px" color="white") mdi-chevron-down
             v-layout(column)
-              a(id="footer-email-btn" title="MYCURE - Email" href="mailto:hello@mycure.md").link.font-18c-blue.py-2
+              a(id="footer-email-btn" title="MYCURE - Email" href="mailto:hello@mycure.md").link.font-mc-blue.py-2
                 span.py-2 hello@mycure.md
               span.py-2.white--text (+632) 799 6262
               span.py-2.white--text (+63) 917 303 4350
@@ -96,7 +96,7 @@
       v-layout(row justify-center)
         strong.white--text &copy; 2016 - {{new Date().getFullYear()}}
          router-link(:to="{ name: 'home' }" title="MYCURE | Clinic Management System | Cloud EMR Philippines")
-            strong.font-18c-blue &nbsp; MYCURE.  
+            strong.font-mc-blue &nbsp; MYCURE.  
             |
             strong.white--text All Rights Reserved.
       br

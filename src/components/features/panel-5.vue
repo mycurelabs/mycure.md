@@ -3,7 +3,7 @@
     div(v-if="!$isMobile")#panel5.pt-5
       v-container
         center
-          strong.font-18.font-18c-blue BILLING AND PAYMENTS
+          strong.font-18.font-mc-blue BILLING AND PAYMENTS
         v-layout(row justify-center).add-spacing
           span.font-48 Simplified billing, beautiful reports.
         v-layout(row justify-center).add-spacing
@@ -33,7 +33,7 @@
     div(v-else)#panel5.pt-5
       v-container
         center
-          strong.font-16.font-18c-blue BILLING AND PAYMENTS
+          strong.font-16.font-mc-blue BILLING AND PAYMENTS
         br
         br
         v-layout(row justify-center)

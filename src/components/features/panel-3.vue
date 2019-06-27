@@ -3,7 +3,7 @@
     div(v-if="!$isMobile" style="padding-top: 200px")#panel3
       v-container
         center
-          strong.font-18.font-18c-blue MEDICAL RECORDS
+          strong.font-18.font-mc-blue MEDICAL RECORDS
         v-layout(row justify-center).add-spacing
           span.font-48 Designed for doctors, by doctors.
         v-layout(row justify-center).add-spacing
@@ -29,7 +29,7 @@
     div(v-else)#panel3.pt-5
       v-container
         v-layout(row justify-center)
-          strong.font-16.font-18c-blue MEDICAL RECORDS
+          strong.font-16.font-mc-blue MEDICAL RECORDS
         br
         br
         v-layout(row justify-center)

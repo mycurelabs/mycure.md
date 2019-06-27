@@ -28,7 +28,7 @@
                 | complicated systems!
           v-flex(xs12 md6).px-5
             h2 With MYCURE 
-              span.font-18c-blue &nbsp ✓
+              span.font-mc-blue &nbsp ✓
               br
             img(
               max-width="500px"
@@ -58,7 +58,7 @@
             strong.font-18.white--text.text-none Get Started Today
         p.text-xs-center.py-4.font-18 Have questions? 
           a(@click.stop="toggleChat()")
-            strong.font-18c-blue Send us a chat.
+            strong.font-mc-blue Send us a chat.
     div(v-else).white
       v-container
         v-layout(row justify-center)
@@ -85,7 +85,7 @@
           br
           br
           h2.text-xs-center With MYCURE 
-              span.font-18c-blue &nbsp ✓
+              span.font-mc-blue &nbsp ✓
           br
           img(
             src="../../assets/images/mycure-homepage-compare-mycure-complete-clinic-management-system.png" 
@@ -107,7 +107,7 @@
               strong.font-16.white--text.text-none Get Started Today
           p.text-xs-center.py-4.font-18 Have questions? 
             a(@click.stop="toggleChat()")
-              strong.font-18c-blue Send us a chat.
+              strong.font-mc-blue Send us a chat.
 </template>
 
 <script>

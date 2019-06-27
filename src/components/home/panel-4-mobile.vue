@@ -34,7 +34,7 @@
         br
         p.text-xs-center.py-4.font-18 Have questions? 
           a(@click.stop="toggleChat()")
-            strong.font-18c-blue Send us a chat.
+            strong.font-mc-blue Send us a chat.
       br(style="line-height: 4000%")
       div(style="margin-top: -10%")
         panel4a
@@ -62,7 +62,7 @@
             strong.font-16.white--text.text-none Sign Up Now
         p.text-xs-center.py-4.font-18 Have questions? 
           a(@click.stop="toggleChat()")
-            strong.font-18c-blue Send us a chat.
+            strong.font-mc-blue Send us a chat.
 
 </template>
 

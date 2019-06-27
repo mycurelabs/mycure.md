@@ -21,7 +21,7 @@
     br
     v-layout(row wrap justify-center)
       em.font-18 Have a question? 
-        a.font-18c-blue 
+        a.font-mc-blue 
           strong(@click="toggleChat") Start a quick chat!
 </template>
 

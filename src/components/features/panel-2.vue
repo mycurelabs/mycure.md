@@ -3,7 +3,7 @@
     div(v-if="!$isMobile" style="padding-top: 200px")
       v-container
         center
-          strong.font-18.font-18c-blue ROLES &amp; PRIVILEGES
+          strong.font-18.font-mc-blue ROLES &amp; PRIVILEGES
         v-layout(row justify-center).add-spacing
           span.font-48 Everybody's got a special role to play.
         v-layout(row justify-center).add-spacing
@@ -21,7 +21,7 @@
     div(v-else).pt-5#panel2
       v-container
         v-layout(row justify-center) 
-          strong.font-16.font-18c-blue ROLES &amp; PRIVILEGES
+          strong.font-16.font-mc-blue ROLES &amp; PRIVILEGES
         br
         br
         v-layout(column justify-center)

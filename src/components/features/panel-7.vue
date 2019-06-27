@@ -3,7 +3,7 @@
     div(v-if="!$isMobile")#panel7.pt-5
       v-container
         center
-          strong.font-18.font-18c-blue MATERIALS MANAGEMENT
+          strong.font-18.font-mc-blue MATERIALS MANAGEMENT
         v-layout(row justify-center).add-spacing
           span.font-48.text-xs-center Your medical supplies at a glance.
         v-layout(row justify-center).add-spacing
@@ -21,7 +21,7 @@
     div(v-else)#panel7.pt-5
       v-container
         v-layout(row justify-center)
-          strong.font-16.font-18c-blue MATERIALS MANAGEMENT
+          strong.font-16.font-mc-blue MATERIALS MANAGEMENT
         br
         br
         v-layout(row justify-center)

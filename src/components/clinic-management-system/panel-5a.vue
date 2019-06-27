@@ -34,7 +34,7 @@
                       strong.font-18.white--text Sign Up Now
       filler(style="padding-top:150px")
         span(slot="multiFiller").font-40 Does your clinic have more than 3 branches? 
-        span(slot="chatWindow" @click="toggleChat").pointer.font-40.font-18c-blue Talk to us for custom pricing.
+        span(slot="chatWindow" @click="toggleChat").pointer.font-40.font-mc-blue Talk to us for custom pricing.
       panel5b(style="padding-top: 150px")
     div(v-else)
 </template>

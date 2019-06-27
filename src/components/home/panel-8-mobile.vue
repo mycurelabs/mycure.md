@@ -4,24 +4,24 @@
       v-layout(row style="border-top: 1px solid #f5f5f5; border-bottom: 1px solid #f6f6f6; height: 100px")
         div(style="height: 100px; width: 50%; border-right: 1px solid #f5f5f5;")
           div(v-if="isPrivate" @click.stop="isPrivate=true; isMulti=false" style="height: 100px;").pl-4.py-4
-            strong.font-18.font-18c-blue For Private
+            strong.font-18.font-mc-blue For Private
               br
               | Practice
             div(style="margin-top: 9px")
               img(style="color: #f6f6f6" src="../../assets/images/mycure-mobile-icon-triangle-up-white.png" alt="Triangle icon")
           div(v-else @click.stop="isPrivate=true; isMulti=false" style="height: 100px;").white.pl-4.py-4
-            span.font-18.font-18c-grey For Private
+            span.font-18.font-mc-grey For Private
               br
               | Practice
         div(style="height: 100px; width: 50%")
           div(v-if="isMulti" @click.stop="isPrivate=false; isMulti=true" style="height: 100px;").mc-blue.pl-4.py-4
-            strong.font-18.font-18c-blue For Multispecialty
+            strong.font-18.font-mc-blue For Multispecialty
               br
               | Clinics
             div(style="margin-top: 9px")
               img(style="color: #f6f6f6" src="../../assets/images/mycure-mobile-icon-triangle-up-white.png" alt="Triangle icon")
           div(v-else @click.stop="isPrivate=false; isMulti=true" style="height: 100px;").white.pl-4.py-4
-            span.font-18.font-18c-grey For Multispecialty
+            span.font-18.font-mc-grey For Multispecialty
               br
               | Clinics
     div(v-if="isPrivate" style="background-color: #f6f6f6")#content

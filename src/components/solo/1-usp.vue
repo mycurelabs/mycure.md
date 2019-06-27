@@ -4,7 +4,7 @@
       v-container(align-center fill-height style="padding-top: 70px").px-5.panel-1
         v-layout(row justify-center)
           v-flex(xs12 md7 align-self-center style="margin-top: -7%")
-            h1(style="font-weight: bold;").font-18.font-18c-blue MYCURE Solo           
+            h1(style="font-weight: bold;").font-18.font-mc-blue MYCURE Solo           
             br
             p(style="line-height: 60px;").font-48 A free and standalone clinic management system.
             br
@@ -23,7 +23,7 @@
     div(v-else).white
       v-container.pt-5
         v-layout(column align-center justify-center)
-            h1(style="font-weight: bold;").font-18.font-18c-blue.text-xs-center.pb-2 MYCURE Solo 
+            h1(style="font-weight: bold;").font-18.font-mc-blue.text-xs-center.pb-2 MYCURE Solo 
             br
             p.font-40.text-xs-center A free and standalone clinic management system.
         v-flex(xs12)

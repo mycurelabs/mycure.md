@@ -4,7 +4,7 @@
       div.pt-5#panel9a
         v-container
           center
-            strong.font-18.font-18c-blue SYNCBASE TECHNOLOGY
+            strong.font-18.font-mc-blue SYNCBASE TECHNOLOGY
           v-layout(row justify-center).add-spacing
             span.font-48.text-xs-center Go offline safely and securely.
           v-layout(row justify-center).add-spacing
@@ -24,7 +24,7 @@
       div.pt-5
         v-container
           v-layout(row justify-center)
-            strong.font-16.font-18c-blue SYNCBASE TECHNOLOGY
+            strong.font-16.font-mc-blue SYNCBASE TECHNOLOGY
           br
           br
           v-layout(row justify-center)

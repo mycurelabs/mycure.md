@@ -3,7 +3,7 @@
     div(v-if="!$isMobile")#panel4.pt-5
       v-container
         center
-          strong.font-18.font-18c-blue REGISTRATION AND QUEUEING
+          strong.font-18.font-mc-blue REGISTRATION AND QUEUEING
         v-layout(row justify-center).add-spacing
           span.font-48 Value everyone's time more effectively.
         v-layout(row justify-center).add-spacing
@@ -30,7 +30,7 @@
     div(v-else)#panel4.pt-5
       v-container
         v-layout(row justify-center)        
-          strong.font-16.font-18c-blue REGISTRATION AND QUEUEING
+          strong.font-16.font-mc-blue REGISTRATION AND QUEUEING
         br
         br
         v-layout(row justify-center)

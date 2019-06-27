@@ -9,7 +9,7 @@
               v-flex(xs12 md12).text-xs-center
                 br
                 br
-                h3.font-18.font-18c-grey To further go the extra mile, we practice the following codes:
+                h3.font-18.font-mc-grey To further go the extra mile, we practice the following codes:
                 br
                 br
                 br

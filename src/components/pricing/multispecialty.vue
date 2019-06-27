@@ -4,12 +4,12 @@
       v-container
         v-layout(row justify-center)
           v-flex(xs12 md6 align-self-center).px-3
-            strong.font-48.font-18c-blue MYCURE for 
+            strong.font-48.font-mc-blue MYCURE for 
               br
               | Multispecialty Clinics
             br
             br
-            span.font-18.font-18c-grey An all-around solution for your outpatient, multispecialty or specialized clinics that will manage your full-patient journeys with ease.
+            span.font-18.font-mc-grey An all-around solution for your outpatient, multispecialty or specialized clinics that will manage your full-patient journeys with ease.
             br
             br
             div.pl-1
@@ -27,7 +27,7 @@
         br
         v-layout(row)
           v-flex(xs12 md4) 
-            span.font-18.font-18c-grey 
+            span.font-18.font-mc-grey 
               strong MADE FOR
         br
         v-layout(row wrap align-items-center)
@@ -70,7 +70,7 @@
               br
               br
               | 
-              span.font-18c-grey We’ll contact you within 24 hours to schedule the best time to meet you. Then during the demo, you will learn more about the features that will be useful for your clinic. You will also get expert recommendations from MYCURE specialists to to ease the transition.
+              span.font-mc-grey We’ll contact you within 24 hours to schedule the best time to meet you. Then during the demo, you will learn more about the features that will be useful for your clinic. You will also get expert recommendations from MYCURE specialists to to ease the transition.
             br
             br
             br
@@ -79,7 +79,7 @@
               br
               br
               | 
-              span.font-18c-grey MYCURE is DPA-compliant and follows international standards in data security. We use advanced encryption protocols to keep your patient records unreadable to anyone, except you. While we aren’t promising a 100% hack-proof system (since no such system exists yet!), we follow international standards that highly value confidentiality, integrity, and availability.
+              span.font-mc-grey MYCURE is DPA-compliant and follows international standards in data security. We use advanced encryption protocols to keep your patient records unreadable to anyone, except you. While we aren’t promising a 100% hack-proof system (since no such system exists yet!), we follow international standards that highly value confidentiality, integrity, and availability.
             br
             br
             br
@@ -88,7 +88,7 @@
               br
               br
               | 
-              span.font-18c-grey Onboarding services are essential to clinic management implementations, especially when you don’t have IT people to handle technical stuff for you.
+              span.font-mc-grey Onboarding services are essential to clinic management implementations, especially when you don’t have IT people to handle technical stuff for you.
             br
             br
             br
@@ -98,7 +98,7 @@
               br
               br
               | 
-              span.font-18c-grey Multispecialty Clinic plans are billed annually by default. We’ve learned that clinics have more successful system implementations when they commit to using the system for at least a year.
+              span.font-mc-grey Multispecialty Clinic plans are billed annually by default. We’ve learned that clinics have more successful system implementations when they commit to using the system for at least a year.
               br
               br
               br
@@ -107,7 +107,7 @@
               br
               br
               | 
-              span.font-18c-grey No. MYCURE only provides the web-based application. 
+              span.font-mc-grey No. MYCURE only provides the web-based application. 
                 br
                 | That’s actually more practical (and less spending) for you! Most software that come with devices require you to be locked up to their expensive subscription plans for a certain period of time. Don’t worry, we’re confident that MYCURE is compatible with at least one of your current devices so long as it has Google Chrome installed.
               br
@@ -118,14 +118,14 @@
               br
               br
               | 
-              span.font-18c-grey Yes. All your medical records are backed up in the cloud.
+              span.font-mc-grey Yes. All your medical records are backed up in the cloud.
           v-flex(xs12 md4).px-3
             span.font-18 
               strong What level of support is given to MYCURE Multispecialty Clinic users?
               br
               br
               | 
-              span.font-18c-grey All users of MYCURE clinic management system (private practice or multispecialty clinics) are given free access to its tutorial articles once inside the system. On top of that, MYCURE provides online chat support for clinic administrators from 9:00AM - 8:00PM GMT +8:00.
+              span.font-mc-grey All users of MYCURE clinic management system (private practice or multispecialty clinics) are given free access to its tutorial articles once inside the system. On top of that, MYCURE provides online chat support for clinic administrators from 9:00AM - 8:00PM GMT +8:00.
     div(v-else)
       div.pt-3.px-3
         img(width="100%" src="../../assets/images/mycure-pricing-cms.png" alt="CMS Pricing")
@@ -144,7 +144,7 @@
             v-flex(xs8).pt-1
               strong(style="font-size: 14px")  {{ card.text }}
               p(style="font-size: 12px").pt-1 {{ card.content }}
-              //- strong(id="pricing-multispecialty-signup-btn" v-html="" style="font-size: 12px").font-18c-blue.pb-2 {{ card.buttonText }}
+              //- strong(id="pricing-multispecialty-signup-btn" v-html="" style="font-size: 12px").font-mc-blue.pb-2 {{ card.buttonText }}
         br
         v-layout(row)
           v-flex(xs12 md4) 
@@ -159,7 +159,7 @@
               br
               br
               | 
-              span.font-18c-grey We’ll contact you within 24 hours to schedule the best time to meet you. Then during the demo, you will learn more about the features that will be useful for your clinic. You will also get expert recommendations from MYCURE specialists to to ease the transition.
+              span.font-mc-grey We’ll contact you within 24 hours to schedule the best time to meet you. Then during the demo, you will learn more about the features that will be useful for your clinic. You will also get expert recommendations from MYCURE specialists to to ease the transition.
             br
             br
             br
@@ -168,7 +168,7 @@
               br
               br
               | 
-              span.font-18c-grey MYCURE is DPA-compliant and follows international standards in data security. We use advanced encryption protocols to keep your patient records unreadable to anyone, except you. While we aren’t promising a 100% hack-proof system (since no such system exists yet!), we follow international standards that highly value confidentiality, integrity, and availability.
+              span.font-mc-grey MYCURE is DPA-compliant and follows international standards in data security. We use advanced encryption protocols to keep your patient records unreadable to anyone, except you. While we aren’t promising a 100% hack-proof system (since no such system exists yet!), we follow international standards that highly value confidentiality, integrity, and availability.
             br
             br
             br
@@ -177,7 +177,7 @@
               br
               br
               | 
-              span.font-18c-grey Onboarding services are essential to clinic management implementations, especially when you don’t have IT people to handle technical stuff for you.
+              span.font-mc-grey Onboarding services are essential to clinic management implementations, especially when you don’t have IT people to handle technical stuff for you.
             br
             br
             br
@@ -186,7 +186,7 @@
               br
               br
               | 
-              span.font-18c-grey Multispecialty Clinic plans are billed annually by default. We’ve learned that clinics have more successful system implementations when they commit to using the system for at least a year.
+              span.font-mc-grey Multispecialty Clinic plans are billed annually by default. We’ve learned that clinics have more successful system implementations when they commit to using the system for at least a year.
               br
               br
               br
@@ -195,7 +195,7 @@
               br
               br
               | 
-              span.font-18c-grey No. MYCURE only provides the web-based application. 
+              span.font-mc-grey No. MYCURE only provides the web-based application. 
                 br
                 | That’s actually more practical (and less spending) for you! Most software that come with devices require you to be locked up to their expensive subscription plans for a certain period of time. Don’t worry, we’re confident that MYCURE is compatible with at least one of your current devices so long as it has Google Chrome installed.
               br
@@ -206,7 +206,7 @@
               br
               br
               | 
-              span.font-18c-grey Yes. All your medical records are backed up in the cloud.
+              span.font-mc-grey Yes. All your medical records are backed up in the cloud.
               br
               br
               br
@@ -215,7 +215,7 @@
                 br
                 br
                 | 
-                span.font-18c-grey All users of MYCURE clinic management system (private practice or multispecialty clinics) are given free access to its tutorial articles once inside the system. On top of that, MYCURE provides online chat support for clinic administrators from 9:00AM - 8:00PM GMT +8:00.
+                span.font-mc-grey All users of MYCURE clinic management system (private practice or multispecialty clinics) are given free access to its tutorial articles once inside the system. On top of that, MYCURE provides online chat support for clinic administrators from 9:00AM - 8:00PM GMT +8:00.
 </template>
   
 <script>

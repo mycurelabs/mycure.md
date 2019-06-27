@@ -33,7 +33,7 @@
       filler(style="padding-top: 100px")
         span(slot="privateFiller").font-40 Are you part of a group clinic?
         br
-        span(slot="chatWindow" @click="toggleChat").pointer.font-40.font-18c-blue Ask us how it works.
+        span(slot="chatWindow" @click="toggleChat").pointer.font-40.font-mc-blue Ask us how it works.
       v-layout(row justify-center)
         img(width="100%" height="100%" src="../../assets/images/mycure-web-banner-last-panel-health-community.png" alt="Health community")
     div(v-else).py-3.white

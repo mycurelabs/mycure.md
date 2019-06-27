@@ -3,7 +3,7 @@
     div(v-if="!$isMobile")#panel6.pt-5
       v-container
         center
-          strong.font-18.font-18c-blue LABORATORY &amp; IMAGING
+          strong.font-18.font-mc-blue LABORATORY &amp; IMAGING
         v-layout(row justify-center).add-spacing
           span.font-48.text-xs-center Record and retrieve diagnostic results right where you need them.
         v-layout(row justify-center).add-spacing
@@ -34,7 +34,7 @@
     div(v-else)#panel6.pt-5
       v-container
         center
-          strong.font-16.font-18c-blue LABORATORY &amp; IMAGING
+          strong.font-16.font-mc-blue LABORATORY &amp; IMAGING
         br
         br
         v-layout(row justify-center)

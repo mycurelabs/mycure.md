@@ -24,10 +24,10 @@
         br
         p.text-xs-center.py-4.font-18 Wanna know the difference? 
           a(@click.stop="dialog = true")
-            strong.font-18c-blue Click here
+            strong.font-mc-blue Click here
           span &nbsp;or&nbsp;
           a(@click.stop="toggleChat()")
-            strong.font-18c-blue chat us.
+            strong.font-mc-blue chat us.
       v-dialog(
         v-model="dialog"
         max-width="100vh"
@@ -60,10 +60,10 @@
               br
               p.text-xs-center.py-4.font-18 Wanna know the difference? 
                 a(@click.stop="dialog = true")
-                  strong.font-18c-blue Click here
+                  strong.font-mc-blue Click here
                 span &nbsp;or&nbsp;
                 a(@click.stop="toggleChat()")
-                  strong.font-18c-blue chat us.
+                  strong.font-mc-blue chat us.
       v-dialog(
         v-model="dialog" 
         width="800"

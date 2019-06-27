@@ -3,7 +3,7 @@
     div(v-if="!$isMobile")#panel8.pt-5
       v-container
         center
-          strong.font-18.font-18c-blue REPORTS AND ANALYTICS
+          strong.font-18.font-mc-blue REPORTS AND ANALYTICS
         v-layout(row justify-center).add-spacing
           span.font-48.text-xs-center Never miss out on important 
             br
@@ -21,7 +21,7 @@
     div(v-else)#panel8.pt-5
       v-container
         v-layout(row justify-center)
-          strong.font-16.font-18c-blue REPORTS AND ANALYTICS
+          strong.font-16.font-mc-blue REPORTS AND ANALYTICS
         br
         br
         v-layout(row justify-center)

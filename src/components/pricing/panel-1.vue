@@ -7,7 +7,7 @@
             center 
               strong.font-60.text-xs-center Your best CMS investment yet
               br
-              strong(style="font-size: 25px").font-18c-grey Quality clinic technology made more affordable. 
+              strong(style="font-size: 25px").font-mc-grey Quality clinic technology made more affordable. 
                 br
                 | Only pay for what you need.
               br
@@ -21,13 +21,13 @@
                     strong(style="font-size: 25px") Private Practice
                       br
                       | 
-                      font.font-18.font-18c-grey Solo or group clinic practitioners
+                      font.font-18.font-mc-grey Solo or group clinic practitioners
                 div(v-else).tab.pa-3.right
                   center 
                     strong(style="font-size: 25px") Private Practice
                       br
                       | 
-                      font.font-18.font-18c-grey Solo or group clinic practitioners
+                      font.font-18.font-mc-grey Solo or group clinic practitioners
             v-flex(xs6).px-1
               a(@click="isMulti=true; isPrivate=false")
                 div(v-if="isMulti").tabActive.pa-3
@@ -35,13 +35,13 @@
                     strong(style="font-size: 25px") Multispecialty Clinics
                       br
                       | 
-                      font.font-18.font-18c-grey One stop, multi-staff clinics
+                      font.font-18.font-mc-grey One stop, multi-staff clinics
                 div(v-else).tab.pa-3
                   center 
                     strong(style="font-size: 25px") Multispecialty Clinics
                       br
                       | 
-                      font.font-18.font-18c-grey One stop, multi-staff clinics
+                      font.font-18.font-mc-grey One stop, multi-staff clinics
       div.white  
         v-container.py-5
           private_prac(v-if="isPrivate")
@@ -54,7 +54,7 @@
               br
               | investment yet
             br
-            span(style="font-size: 13px").font-18c-grey Quality clinic technology made more affordable. Only pay for what you need.  
+            span(style="font-size: 13px").font-mc-grey Quality clinic technology made more affordable. Only pay for what you need.  
             br
       div.white
         v-layout(row).pa-3

@@ -34,7 +34,7 @@
             strong.font-18.white--text.text-none Sign Up Now
         p.text-xs-center.py-4.font-18 Have questions? 
           a(@click.stop="toggleChat()")
-            strong.font-18c-blue Send us a chat.
+            strong.font-mc-blue Send us a chat.
     div(v-else).white
       v-container
         v-layout(row justify-center)
@@ -57,7 +57,7 @@
             strong.font-16.text-none.white--text Sign Up Now
         p.text-xs-center.py-4.font-18 Have questions? 
           a(@click.stop="toggleChat()")
-            strong.font-18c-blue Send us a chat.
+            strong.font-mc-blue Send us a chat.
 </template>
 
 <script>

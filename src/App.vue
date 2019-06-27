@@ -51,24 +51,24 @@ export default {
     background-color: #18c551
   }
   
-  .font-18c-blue {
+  .font-mc-blue {
     color: #2e9fdf
   }
   
-  .font-18c-dark-grey{
+  .font-mc-dark-grey{
     /* color: #343a40 */
     color: #2b2d3a 
   }
 
-  .font-18c-grey {
+  .font-mc-grey {
     color: #616161;
   }
 
-  .font-18c-light-grey {
+  .font-mc-light-grey {
     color: #f6f6f6
   }
 
-  .font-18c-white {
+  .font-mc-white {
     color: #ffffff
   }
   

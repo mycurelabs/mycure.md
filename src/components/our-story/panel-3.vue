@@ -14,9 +14,9 @@
           p(style="text-align: justify").font-18
             strong Dale 
             | runs a tech company that started in 2004. Among numerous IT projects, their team also made the first Filipino-themed game on iTunes and Googleplay called 
-            router-link(:to="{ name: 'butchukoy' }" title="Sipa: Street Kick!" style="text-decoration: none").font-18c-blue Sipa 
+            router-link(:to="{ name: 'butchukoy' }" title="Sipa: Street Kick!" style="text-decoration: none").font-mc-blue Sipa 
             | and a mobile photo diary meant to tell your story through photos called Pickld. He regularly shares experiences being a Mentor and Director at Founder Institute (Manila). He also started 
-            router-link(:to="{ name: 'mighty-minds' }" title="Mighty Minds" style="text-decoration: none").font-18c-blue Mighty Minds, 
+            router-link(:to="{ name: 'mighty-minds' }" title="Mighty Minds" style="text-decoration: none").font-mc-blue Mighty Minds, 
             | a nonprofit organization that helps kids finish school.
         v-flex(xs12 md5).px-3.text-xs-center
           img(width="60%" src="../../assets/images/mycure-ourstory-joel.png" alt="Our Story - Joel")
