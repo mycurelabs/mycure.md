@@ -35,7 +35,7 @@
         p.text-xs-center.py-4.font-18 Have questions? 
           a(@click.stop="toggleChat()")
             strong.font-mc-blue Send us a chat.
-    div(v-else).white
+    div(v-else).white.pt-5
       v-container
         v-layout(row justify-center)
           span.font-40.text-xs-center Why should doctors use MYCURE in their clinics?
