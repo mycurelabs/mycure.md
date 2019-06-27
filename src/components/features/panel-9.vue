@@ -68,18 +68,11 @@
 </script>
 
 <style scoped>
-  #panel9a {
-    background-image: url('../../assets/images/mycure-web-features-gradient-background.png');
-    background-position: center bottom;
-    background-repeat: no-repeat;
-    background-size: 100% auto;
-  }
-
   #panel9 {
     background-image: url('../../assets/images/mycure-home-web-sky-background.png');
     background-position: center center;
     background-repeat: no-repeat;
-    background-size: 100% 100%;
+    background-size: cover;
   }
   
   ul {

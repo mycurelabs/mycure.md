@@ -18,8 +18,8 @@
               style="padding: 25px 30px 25px 30px"
             ) 
               strong.font-18.text-none.white--text Sign Up Now
-          v-flex(xs12 md7 align-self-center style="margin-top: 5%")
-            img(width="80%" src="../../assets/images/mycure-cms-web-banner-first-panel-features.png" alt="Features")
+          v-flex(xs12 md7 align-self-center style="margin-top: 10%")
+            img(width="auto" src="../../assets/images/mycure-cms-web-banner-first-panel-features.png" alt="Features").right
     div(v-else).white
       v-container.pt-5
         v-layout(row justify-center)

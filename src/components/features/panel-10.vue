@@ -16,26 +16,26 @@
           strong.text-none.white--text.font-18 Sign Up Now
       v-layout(row justify-center)
           img(width="100%" height="100%" src="../../assets/images/mycure-web-banner-last-panel-health-community.png" alt="Health community")
-    div(v-else).transparent
-      center
-        v-layout(column justify-center style="width: 90%").pt-5
+    div(v-else).transparent.pt-5
+      v-container
+        v-layout(row justify-center)
           img(style="max-width: 80%" src="../../assets/images/mycure-web-banner-last-panel-features-embrace-habit.png" alt="Embrace service")
-          br 
-          span(style="font-size: 200%").text-xs-center.lh-title Embrace a new habit.
-          br
-          br
-          span.font-16.text-xs-center Let your patients experience top-of-the-line service through your streamlined clinic operations with the help of MYCURE.
-          br
-          br
-          v-layout(row justify-center)
-            v-btn(
-              id="features-signup-btn"
-              @click.stop="handleFeaturesSignupBtn"
-              :href="`${signInURL}/signup/choose`"
-              target="_blank"
-              style="background-color: #18c551; width: 80%; height: 60px"
-            )  
-              strong.font-18.white--text.text-none Sign Up Now  
+        br 
+        p(style="font-size: 200%").text-xs-center Embrace a new habit.
+        p.font-18.text-xs-center Let your patients experience top-of-the-line service through your streamlined clinic operations with the help of MYCURE.
+        br
+        br
+        v-layout(row justify-center)
+          v-btn(
+            id="features-signup-btn"
+            @click.stop="handleFeaturesSignupBtn"
+            :href="`${signInURL}/signup/choose`"
+            target="_blank"
+            style="background-color: #18c551; width: 80%; height: 60px"
+          )  
+            strong.font-18.white--text.text-none Sign Up Now  
+      v-layout(row justify-center)
+        img(width="100%" height="100%" src="../../assets/images/mycure-web-banner-last-panel-health-community-mobile.png" alt="Health community")
 </template>
 
 <script>
