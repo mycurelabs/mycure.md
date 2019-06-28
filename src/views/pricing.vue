@@ -3,7 +3,7 @@
     mcToolbarHome
     panel1.showPanel
     //- panel2.showPanel
-    panel3(v-if="$isMobile").showPanel
+    panel3(v-if="$isMobile").skyBg
     mcFooter
 </template>
 

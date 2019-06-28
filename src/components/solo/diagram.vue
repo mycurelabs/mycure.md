@@ -77,6 +77,8 @@
             v-btn(flat icon @click="dialog = false")
               v-icon mdi-chevron-left
           v-img(:src="require('@/assets/images/mycure-cms-web-solo-comparison-diagram.png')" alt="Comparison diagram")
+      //- v-layout(row justify-center)
+      //-   img(width="100%" height="100%" src="../../assets/images/mycure-web-banner-last-panel-health-community-mobile.png" alt="Health community")
 </template>
 
 <script>
