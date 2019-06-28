@@ -1,5 +1,5 @@
 <template lang="pug">
-  div
+  div.white
     v-container
       v-layout(row wrap)
         v-flex(xs12 md10 offset-md1)

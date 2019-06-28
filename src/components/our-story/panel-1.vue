@@ -37,7 +37,7 @@
           type="text/html" width="100%" height="450"
           src="https://www.youtube.com/embed/ZR8e-Egav0M?autoplay=1&loop=1&showinfo=0&rel=0"
           frameborder="0")
-    div(v-else)
+    div(v-else).white
       v-container.pt-5
         v-flex(xs12)
           h1(style="font-weight: bold").font-40.text-xs-center MYCURE cares for people who care for people.
