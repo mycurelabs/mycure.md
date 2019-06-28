@@ -1,12 +1,12 @@
 <template lang="pug">
   div
     div(v-if="!$isMobile").px-5.white
-      v-container.px-5
-        v-layout(row wrap justify-center)
-          p(style="font-size: 45px").pa-5.text-xs-center Why should doctors use MYCURE 
+      v-container.px-5.blue
+        v-layout(row justify-center).text-xs-center
+          p(style="font-size: 45px").pa-5.text-xs-center Why should doctorsds use MYCURE 
             br
             | in their clinics?
-        v-layout(row wrap justify-center).mx-5
+        v-layout(row wrap justify-center)
           v-flex(xs12 md4)
             v-list(two-line).check-list.white
               v-list-tile(v-for="(problem,index) in clinicProblems" :key="index" v-if="index<=2")

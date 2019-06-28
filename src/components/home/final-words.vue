@@ -18,7 +18,7 @@
     div(v-else).pa-5
       v-container
         v-layout(row justify-center)
-          img(style="width: 100%" src="../../assets/images/mycure-web-banner-last-panel-home-doctors.png" alt="Healthcare proffesionals")
+          img(width="100%" height="100%" src="../../assets/images/mycure-web-banner-last-panel-home-doctors.png" alt="Healthcare proffesionals")
         br 
         p(style="font-size: 200%").text-xs-center.lh-title Join thousands of healthcare professionals who get the best out of technology in their practice.
         v-layout(row justify-center)

@@ -19,7 +19,7 @@
     div(v-else).pa-5
       v-container
         v-layout(row justify-center)
-          img(style="width: 100%" src="../../assets/images/../../assets/images/mycure_web_banner_last_panel_doctor.png" alt="Clinic best version")
+          img(width="100%" height="100%" src="../../assets/images/../../assets/images/mycure_web_banner_last_panel_doctor.png" alt="Clinic best version")
         br 
         p(style="font-size: 200%").text-xs-center.lh-title We believe your clinic can stand out and be at its best, always.
         p.font-18.text-xs-center Experience what you can do more with MYCURE technology by your side.

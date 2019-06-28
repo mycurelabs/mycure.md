@@ -16,10 +16,10 @@
           strong.text-none.white--text.font-18 Sign Up Now
       v-layout(row justify-center)
           img(width="100%" height="100%" src="../../assets/images/mycure-web-banner-last-panel-health-community.png" alt="Health community")
-    div(v-else).transparent.pt-5
+    div(v-else).transparent.pa-5
       v-container
         v-layout(row justify-center)
-          img(style="max-width: 80%" src="../../assets/images/mycure-web-banner-last-panel-features-embrace-habit.png" alt="Embrace service")
+          img(width="100%" height="100%" src="../../assets/images/mycure-web-banner-last-panel-features-embrace-habit.png" alt="Embrace service")
         br 
         p(style="font-size: 200%").text-xs-center Embrace a new habit.
         p.font-18.text-xs-center Let your patients experience top-of-the-line service through your streamlined clinic operations with the help of MYCURE.

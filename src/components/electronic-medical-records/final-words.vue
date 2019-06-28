@@ -19,7 +19,7 @@
     div(v-else).pa-5
       v-container
         v-layout(row justify-center)
-          img(style="width: 100%" src="../../assets/images/mycure-web-banner-last-panel-doctor-clinic-for-private-clinic.png" alt="Doctor best version")
+          img(width="100%" height="100%" src="../../assets/images/mycure-web-banner-last-panel-doctor-clinic-for-private-clinic.png" alt="Doctor best version")
         br 
         p(style="font-size: 200%").text-xs-center Be your best version everyday.
         p.font-18.text-xs-center Experience what you can do more with MYCURE technology by your side.
