@@ -5,21 +5,23 @@
 version: 2
 jobs:
   deploy:
-    machine:
-      # specify the version you desire here
-      - image: circleci/node:8.12.0
-
-      # Specify service dependencies here if necessary
-      # CircleCI maintains a library of pre-built images
-      # documented at https://circleci.com/docs/2.0/circleci-images/
-      # - image: circleci/mongo:3.4.4
-
+    machine: true
     working_directory: ~/repo
 
     steps:
       - checkout
 
-      # Download and cache dependencies
+      - run:
+          name: Install node@v8.12.0
+          command: |
+            ./load-nvm.sh
+            nvm install v8.12.0
+            nvm alias default v8.12.0
+
+      - run: |
+          ./load-nvm.sh
+          npm version
+
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "package.json" }}
@@ -28,7 +30,7 @@ jobs:
 
       - run: 
           name: Install Dependencies
-          command: yarn install
+          command: npm install
 
       - save_cache:
           paths:
@@ -38,17 +40,17 @@ jobs:
       # run build!
       - run:
           name: Build WebApp
-          command: yarn build
+          command: npm run build
       
       # install firebase!
       - run:
           name: Install Firebase CLI
-          command: yarn add firebase-tools -D
+          command: npm run install firebase-tools --save-dev
       
       # run deploy!
       - run:
           name: Deploy to Firebase
-          command: yarn deploy -- --token=$FIREBASE_TOKEN
+          command: npm run deploy -- --token=$FIREBASE_TOKEN
 
 workflows:
   version: 2
