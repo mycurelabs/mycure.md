@@ -8,6 +8,7 @@
     ],
     "rewrites": [
       {
+<<<<<<< HEAD
         "source": "/",
         "destination": "/index.html"
       },
@@ -148,8 +149,10 @@
         "destination": "/index.html"
       },
       {
+=======
+>>>>>>> refactor/upgrade
         "source": "**",
-        "function": "doctorWebsite"
+        "function": "/index.html"
       }
     ],
     "headers": [

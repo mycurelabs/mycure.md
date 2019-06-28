@@ -1,148 +1,152 @@
 <template lang="pug">
-  div
-    pre(v-if="!$isProduction()").scroll-top-log {{scrollTop}}
-    router-view
+  v-app(data-server-rendered="true")#app
+    v-content
+      router-view
 </template>
 
+
 <script>
+
 export default {
-  name: "App",
-  created() {
-    this.$scrollspy().subscribe({
-      next: scrollTop => {
-        this.scrollTop = scrollTop;
-      },
-      error: e => console.log(e)
-    });
-  },
-  data() {
+  name: 'App',
+  data () {
     return {
-      scrollTop: 0
+      //
     };
   }
 };
 </script>
 
 <style>
-html,
-body {
-  max-width: 100% !important;
-  overflow-x: hidden !important;
-  font-family: 'Open Sans', sans-serif !important;
-}
 
-h1 {
-  font-weight: 800;
-}
+  @import url('https://fonts.googleapis.com/css?family=Poppins');
 
-.feature-item {
-  background-color: white !important;
-  border-radius: 5px;
-  padding: 5px;
-  margin: 5px;
-}
+  #app {
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+    font-family: 'Poppins', sans-serif !important;
+  };
 
-.hr-blue {
-  height: 2px;
-  width: 150px;
-  background-color: #0099cc;
-}
-
-.scroll-top-log {
-  position: fixed; 
-  z-index: 99999; 
-  color: green;
-}
-
-.panel-number {
-  position: absolute; 
-  z-index: 99999; 
-  color: green;
-  right: 10px;
-}
-
-.slide-up-fade-in {
-  animation: slide-up-fade-in ease 1s;
-  animation-iteration-count: 1;
-  transform-origin: 50% 50%;
-  animation-fill-mode: forwards; /*when the spec is finished*/
-  -webkit-animation: slide-up-fade-in ease 1s;
-  -webkit-animation-iteration-count: 1;
-  -webkit-transform-origin: 50% 50%;
-  -webkit-animation-fill-mode: forwards; /*Chrome 16+, Safari 4+*/
-  -moz-animation: slide-up-fade-in ease 1s;
-  -moz-animation-iteration-count: 1;
-  -moz-transform-origin: 50% 50%;
-  -moz-animation-fill-mode: forwards; /*FF 5+*/
-  -o-animation: slide-up-fade-in ease 1s;
-  -o-animation-iteration-count: 1;
-  -o-transform-origin: 50% 50%;
-  -o-animation-fill-mode: forwards; /*Not implemented yet*/
-  -ms-animation: slide-up-fade-in ease 1s;
-  -ms-animation-iteration-count: 1;
-  -ms-transform-origin: 50% 50%;
-  -ms-animation-fill-mode: forwards; /*IE 10+*/
-
-  opacity: 0;
-  opacity: 1\9;
-}
-
-@keyframes slide-up-fade-in {
-  0% {
-    opacity: 0;
-    transform: translate(0px, 40px);
+  .mc-blue {
+    background-color: #2e9fdf
   }
-  100% {
-    opacity: 1;
-    transform: translate(0px, 0px);
-  }
-}
 
-@-moz-keyframes slide-up-fade-in {
-  0% {
-    opacity: 0;
-    -moz-transform: translate(0px, 40px);
+  .mc-dark-grey {
+    background-color: #343a40
   }
-  100% {
-    opacity: 1;
-    -moz-transform: translate(0px, 0px);
-  }
-}
 
-@-webkit-keyframes slide-up-fade-in {
-  0% {
-    opacity: 0;
-    -webkit-transform: translate(0px, 40px);
+  .mc-grey {
+    background-color: #616161
   }
-  100% {
-    opacity: 1;
-    -webkit-transform: translate(0px, 0px);
-  }
-}
 
-@-o-keyframes slide-up-fade-in {
-  0% {
-    opacity: 0;
-    -o-transform: translate(0px, 40px);
+  .mc-light-grey {
+    background-color: #f5f5f5
   }
-  100% {
-    opacity: 1;
-    -o-transform: translate(0px, 0px);
-  }
-}
 
-@-ms-keyframes slide-up-fade-in {
-  0% {
-    opacity: 0;
-    -ms-transform: translate(0px, 40px);
+  .mc-yellow {
+    background-color: #ffff33
   }
-  100% {
-    opacity: 1;
-    -ms-transform: translate(0px, 0px);
-  }
-}
 
-.hidden {
-  display: none;
-}
+  .mc-green {
+    background-color: #18c551
+  }
+  
+  .font-mc-blue {
+    color: #2e9fdf
+  }
+  
+  .font-mc-dark-grey{
+    /* color: #343a40 */
+    color: #2b2d3a 
+  }
+
+  .font-mc-grey {
+    color: #616161;
+  }
+
+  .font-mc-light-grey {
+    color: #f6f6f6
+  }
+
+  .font-mc-white {
+    color: #ffffff
+  }
+  
+  .font-60 {
+    font-size: 60px !important
+  }
+
+  .font-48 {
+    font-size: 48px !important;
+  }
+
+  .font-40 {
+    font-size: 40px !important
+  }
+
+  .font-30 {
+    font-size: 30px !important
+  }
+
+  .font-25 {
+    font-size: 25px !important
+  }
+
+  .font-18 {
+    font-size: 18px !important
+  }
+  
+  .font-16 {
+    font-size: 16px !important
+  }
+
+  .font-12 {
+    font-size: 12px !important
+  }
+
+  .lh-title {
+    line-height: 1.25em !important
+  }
+
+  .hr-blue {
+    height: 2px;
+    width: 150px;
+    background-color: #0099cc;
+    padding: 1px;
+    margin: 0 auto;
+  }
+
+  .bullet {
+    height: 25px; 
+    width: 25px; 
+    background-color: #2e9fdf; 
+    border-radius: 50%; 
+    display: inline-block; 
+    padding: 1px 
+  }
+
+  .panel-1{
+      height: 100vh !important;
+    }
+
+  /* This class lets the panel avoid being covered by the web sky background */
+  .showPanel {
+    position: relative; 
+    z-index: 1;
+  }
+
+  .cta-btn {
+    padding: 25px 30px 25px 30px;
+  }
+
+  .lh-60 {
+    line-height: 60px;
+  }
+
+  .skyBg {
+    background-image: url('./assets/images/mycure-home-web-sky-background.png');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
 </style>

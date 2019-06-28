@@ -1,83 +1,219 @@
 <template lang="pug">
-  footer.bg-dark.pt-3.pb-5
-    div.container
-      mc-navbar-footer
-      hr
-      div.row.pt-3.pb-3
-        div.col-xs-12.col-md-3
-          h6(style="color: #616161") PRODUCTS
-          ul.list.list-tall
-            li
-              router-link(:to="{name: 'his', query: {id: 'top'}}").color-white Hospital Information System (HIS)
-            li
-              router-link(:to="{name: 'cms', query: {id: 'top'}}").color-white Clinic Management System (CMS)
-            li
-              router-link(:to="{name: 'dental', query: {id: 'top'}}").color-white Dental Clinic System
-            li
-              router-link(:to="{name: 'signup', query: {id: 'docs'}}").color-white App for Doctors
-        div.col-xs-12.col-md-3
-          h6(style="color: #616161") ABOUT
-          ul.list.list-tall
-            li
-              router-link(:to="{name: 'our-story'}").color-white Our Story
-            // li
-              router-link(:to="{name: 'our-story'}").color-white Our Team
-            li
-              router-link(:to="{name: 'blog-link'}").color-white Blog
-            li
-              router-link(:to="{name: 'careers'}").color-white Careers
-        div.col-xs-12.col-md-3
-          h6(style="color: #616161") SUPPORT
-          ul.list.list-tall
-            li
-              router-link(:to="{name: 'faqs-link'}").color-white FAQs
-            li
-              //span(@click="toggleChat").open-chat.color-white Book A Demo
-              router-link(:to="{name: 'calendly'}").color-white Book A Demo
-          h6(style="color: #616161") LEGAL
-          ul.list.list-tall
-            li
-              router-link(:to="{name: 'terms', query: {id: 'top'}}").color-white Terms
-            li
-              router-link(:to="{name: 'privacy-policy', query: {id: 'top'}}").color-white Privacy Policy
-        div.col-xs-12.col-md-3
-          h6(style="color: #616161") CONTACT US
-          ul.list.list-tall
-            li
-              span.color-primary hello@mycure.md
-            li (+632) 799 6262
-            li (+63) 917 303 4350
-            //li (+63) 949 368 2010
-      hr
-      div.row.pt-5.pb-5
-        div.col-xs-12.col-md-12.text-center
-          span &copy; {{new Date().getFullYear()}} 
-          span.color-primary MYCURE
-          |. 
-          span All Rights Reserved.
+  div
+    div(v-if="!$isMobile")
+      div.mc-dark-grey
+        v-container(justify-center)
+          mc-toolbar-footer
+          hr.mc-grey.mb-3
+          v-layout(row wrap justify-center)
+            v-flex(xs12 md3 offset-md1).font-mc-grey
+              ul.no-style-type.pb-3
+                li
+                  router-link(id="footer-features-link" @click.stop="handleFooterFeaturesLink" :to="{name: 'features'}" title="MYCURE Features").link.white--text Features
+              ul.no-style-type
+                li.feature-text CLINIC SOLUTIONS
+                li
+                  router-link(id="footer-private-practice-link" @click.stop="handleFooterEmrLink" :to="{name: 'emr'}" title="MYCURE | Private Practice Electronic Medical Records (EMR)").link.white--text
+                    span For Private Practice
+                li
+                  router-link(id="footer-multispecialty-link" @click.stop="handleFooterCmsLink" :to="{name: 'cms'}" title="MYCURE | Multispecialty Clinic Management System (CMS)").link.white--text
+                    span For Multispecialty Clinics
+                li.pb-3
+                  router-link(id="footer-solo-link" @click.stop="handleFooterSoloLink" :to="{name: 'mycure-solo'}" title="MYCURE - Solo | A free and standalone clinic management system").link.white--text
+                    span Solo
+                li.feature-text ABOUT
+                li
+                  router-link(id="footer-our-story-link" @click.stop="handleFooterOurStoryLink" :to="{name: 'our-story'}" title="MYCURE Our Story | Caring the Extra Mile").link.white--text 
+                    span Our Story
+                li 
+                  router-link(id="footer-blog-link" @click.stop="handleFooterBlogLink" :to="{ name: 'blog-link' }" title="MYCURE - Blog").link.white--text Blog 
+                li 
+                  router-link(id="footer-careers-link" @click.stop="handleFooterCareersLink" :to="{ name: 'careers' }" title="MYCURE - Careers").link.white--text Careers
+              
+            v-flex(xs12 md3 offset-md1).font-mc-grey
+              ul.no-style-type
+                li.feature-text SUPPORT 
+                li 
+                  router-link(id="footer-faqs-link" @click.stop="handleFooterFaqsLink" :to="{ name: 'faqs-link'}" title="MYCURE - FAQs").link.white--text FAQs
+                li
+                  router-link(id="footer-pricing-link" @click.stop="handleFooterPricingLink" :to="{name: 'pricing'}" title="MYCURE Pricing | Affordable EMR and Clinic Management System").link.white--text
+                    span Pricing
+                li.pb-3
+                  router-link(id="footer-book-a-demo-link" @click.stop="handleFooterBookADemoLink" :to="{ name: 'calendly' }" title="MYCURE - Book A Demo").link.white--text Book A Demo
+                li.feature-text LEGAL
+                li
+                  router-link(id="footer-terms-link" @click.stop="handleFooterTermsLink" :to="{name: 'terms'}" title="MYCURE Terms and Conditions").link.white--text 
+                    span Terms
+                li
+                  router-link(id="footer-privacy-policy-link" @click.stop="handleFooterPrivacyPolicyLink" :to="{name: 'privacy-policy'}" title="MYCURE Privacy Policy").link.white--text 
+                    span Privacy Policy
+              
+            v-flex(xs12 md3 offset-md1).font-mc-grey
+              ul.no-style-type
+                li.feature-text CONTACT US
+                li 
+                  a(id="footer-email-link" @click.stop="handleFooterEmailLink" title="MYCURE - Email" href="mailto:hello@mycure.md" style="color: #2e9fdf") hello@mycure.md
+                li.white--text (+632) 799 6262
+                li.white--text (+63) 917 303 4350
+          hr.mc-grey.my-4  
+          v-layout(row wrap justify-center)  
+            span.white--text &copy; 2016 - {{new Date().getFullYear()}}
+              a(href="https://mycure.md")
+                span.font-mc-blue &nbsp; MYCURE.  
+                |
+                span.white--text All Rights Reserved.
+    //- div(v-else :style="webSky ? 'margin-top: -250%; z-index: -1' : 'margin-top: 0'").pt-5.transparent
+      div(v-if="webSky" style="margin-bottom: -140%").pt-5
+        img(width="100%" src="../../assets/images/mycure-home-web-sky-background-mobile.png" alt="Web Sky background")
+      div(style="margin-bottom: -2%")
+        img(width="100%" height="100%" src="../../assets/images/mycure-web-banner-last-panel-health-community-mobile.png" alt="Health community")  
+      div.mc-dark-grey.pa-4
+    div(v-else).mc-dark-grey.pa-4
+      mc-toolbar-footer  
 </template>
 
 <script>
-  import mcNavbarFooter from './mc-navbar-footer';
-  export default {
-    components: {
-      mcNavbarFooter
-    },
-    methods: {
-      toggleChat() {
-        $crisp.push(['do', 'chat:toggle'])
-      }
+import mcToolbarFooter from "./mc-toolbar-footer";
+
+export default {
+  components: {
+    mcToolbarFooter
+  },
+  props: {
+    webSky: {
+      type: Boolean,
+      default: true,
     }
+  },
+  data () {
+    return {
+      signInURL: process.env.VUE_APP_SIGNIN_URL
+    };
+  },
+  methods: {
+    handleFooterFeaturesLink () {
+      this.$ga.event({
+        eventCategory: 'link',
+        eventAction: 'click-footer-features-link',
+        eventLabel: 'footer-features-link'
+      });
+    },
+    handleFooterEmrLink () {
+      this.$ga.event({
+        eventCategory: 'link',
+        eventAction: 'click-footer-private-practice-link',
+        eventLabel: 'footer-private-practice-link'
+      });
+    },
+    handleFooterCmsLink () {
+      this.$ga.event({
+        eventCategory: 'link',
+        eventAction: 'click-footer-multispecialty-link',
+        eventLabel: 'footer-multispecialty-link'
+      });
+    },
+    handleFooterSoloLink () {
+      this.$ga.event({
+        eventCategory: 'link',
+        eventAction: 'click-footer-solo-link',
+        eventLabel: 'footer-solo-link'
+      });
+    },
+    handleFooterOurStoryLink () {
+      this.$ga.event({
+        eventCategory: 'link',
+        eventAction: 'click-footer-our-story-link',
+        eventLabel: 'footer-our-story-link'
+      });
+    },
+    handleFooterBlogLink () {
+      this.$ga.event({
+        eventCategory: 'link',
+        eventAction: 'click-footer-blog-link',
+        eventLabel: 'footer-blog-link'
+      });
+    },
+    handleFooterCareersLink () {
+      this.$ga.event({
+        eventCategory: 'link',
+        eventAction: 'click-footer-careers-link',
+        eventLabel: 'footer-careers-link'
+      });
+    },
+    handleFooterFaqsLink () {
+      this.$ga.event({
+        eventCategory: 'link',
+        eventAction: 'click-footer-faqs-link',
+        eventLabel: 'footer-faqs-link'
+      });
+    },
+    handleFooterPricingLink () {
+      this.$ga.event({
+        eventCategory: 'link',
+        eventAction: 'click-footer-pricing-link',
+        eventLabel: 'footer-pricing-link'
+      });
+    },
+    handleFooterBookADemoLink () {
+      this.$ga.event({
+        eventCategory: 'link',
+        eventAction: 'click-footer-book-a-demo-link',
+        eventLabel: 'footer-book-a-demo-link'
+      });
+    },
+    handleFooterTermsLink () {
+      this.$ga.event({
+        eventCategory: 'link',
+        eventAction: 'click-footer-terms-link',
+        eventLabel: 'footer-terms-link'
+      });
+    },
+    handleFooterPrivacyPolicyLink () {
+      this.$ga.event({
+        eventCategory: 'link',
+        eventAction: 'click-footer-privacy-policy-link',
+        eventLabel: 'footer-privacy-policy-link'
+      });
+    },
+    handleFooterEmailLink () {
+      this.$ga.event({
+        eventCategory: 'link',
+        eventAction: 'click-footer-email-link',
+        eventLabel: 'footer-email-link'
+      });
+    },
   }
+};
 </script>
 
+
 <style scoped>
-  footer {
-    /* height: 100vh; */
+  hr {
+    height: 1px;
+    color: #616161;
+    background-color: #616161;
+    border: none;
   }
-  .open-chat:hover {
-    cursor: pointer;
-    color: #0099cc;
-    text-decoration: underline;
+
+  .no-style-type {
+      list-style-type: none;
+      padding-left: 0;
+    }
+
+  a:link {
+    text-decoration: none;
+    color: white;
+  }
+
+  .center {
+    padding: auto;
+  }
+
+  .font-mc-blue {
+    color: #2e9fdf
+  }
+
+  .feature-text {
+    color: #999999
   }
 </style>

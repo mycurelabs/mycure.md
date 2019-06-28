@@ -1,6 +1,0 @@
-echo "_____"
-echo "| K |"
-echo "| A |"
-echo "| P |"
-echo "| E |"
-echo "-----"

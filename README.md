@@ -1,27 +1,33 @@
-# mycure.md
+### Install dependencies
 
-> A Vue.js project
-
-## Build Setup
-
-``` bash
-# install dependencies
-npm install
-
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for production with minification
-npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
-
-# run unit tests
-npm run unit
-
-# run all tests
-npm test
+```bash
+yarn
 ```
 
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+### Run development
+
+The `.env.development` file is required to start the development. Refer to `.env.example`.
+
+Run
+
+```bash
+yarn serve
+```
+
+### Build production
+
+The `.env.production` file is required to start the development. Refer to `.env.example`.
+
+Run
+
+```bash
+yarn build
+```
+
+### Deploy
+
+Run
+
+```bash
+yarn deploy
+```

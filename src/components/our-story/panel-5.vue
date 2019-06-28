@@ -1,81 +1,72 @@
 <template lang="pug">
-  div.panel-3
-    pre(v-if="!$isProduction()").panel-number 5
-    b-container
-      b-row.align-items-center
-        b-col(xs="12" md="12").text-center.pt-5
-          center
-            div.hr-blue
+  div
+    div(v-if="!$isMobile")#panel5 
+      v-container
+        v-layout(row wrap align-center justify-center style="padding-top: 500px")
+          div(style="margin: 0px -20px 0px 0px; z-index: 1")
+            img(src="../../assets/images/mycure-web-video-cover-decor-doctor-left.png" alt="Male doctor")
+          div(style="z-index: 0")
+            a(id="our-story-care-the-extra-mile-vid-btn" @click.stop="handleOurStoryCareTheExtraMile()")
+              img(
+                v-if="!videoDialog" 
+                @click.stop="videoDialog=!videoDialog" 
+                src="../../assets/images/mycure-web-video-cover-our-story-care-the-extra-mile.png"
+                alt="MYCURE Our Story video thumbnail"
+              )
+              iframe(
+                v-else
+                align="middle"
+                id="ytplayer" 
+                type="text/html" width="672" height="393"
+                src="https://www.youtube.com/embed/ZR8e-Egav0M?autoplay=1&loop=1&showinfo=0&rel=0"
+                frameborder="0"
+                allowfullscreen
+                )
+          div(style="margin: 0px 0px 0px -20px; z-index: 1") 
+            img(src="../../assets/images/mycure-web-video-cover-decor-doctor-right.png" alt="Female doctor")
+    div(v-else)
+      v-container
+        v-flex(xs12 md12).text-xs-center
+          v-layout(row wrap align-center justify-center)
+              h1.font-48 Caring the Extra Mile
           br
-          h1 Caring the Extra Mile
-        b-col(xs="12" md="12")
-          br
-          div#video
+          div(id="our-story-care-the-extra-mile-vid-btn" @click.stop="handleOurStoryCareTheExtraMile()")
             iframe(
+              align="middle"
               id="ytplayer" 
-              type="text/html"
-              src="https://www.youtube.com/embed/vn6tVc1EHQg"
+              type="text/html" width="100%" height="200"
+              src="https://www.youtube.com/embed/ZR8e-Egav0M?autoplay=0&loop=1&showinfo=0&rel=0"
               frameborder="0"
-            )
+            )        
 </template>
 
 <script>
+  export default {
+    data () {
+      return {
+        videoDialog: false
+      };
+    },
+    methods: {
+      handleOurStoryCareTheExtraMile () {
+        this.$ga.event({
+          eventCategory: 'button',
+          eventAction: 'click-our-story-care-the-extra-mile-vid-btn',
+          eventLabel: 'our-story-care-the-extra-mile-vid-btn'
+        });
+      }
+    }
+  };
 </script>
 
 <style scoped>
-  .panel-3 {
-    /* min-height: 100vh; */
-    /* background-color: white; */
-    padding-bottom: 80px;
-  }
-
-  .container {
-    /* padding-top: 50px; */
-    /* padding-bottom: 50px; */
-  }
-  /* mark- remove the blackbars in video */
-  #video{
-    position: relative;
-    padding-bottom: 56.25%; /* 16:9 */
-    height: 0;   
-  }
-
-  #video iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
+  #panel5 {
+    height: 1000px;
     width: 100%;
-    height: 100%;
-  }
-  /*end - removed blackbars  */
-  @media (min-width: 576px) {
-    .container {
-      padding-top: 50px;
-      padding-bottom: 50px;
-    }
-  }
-
-  @media (min-width: 768px) {
-    .panel-2 {
-      min-height: 100vh;
-      background-color: white;
-    }
-
-    .container {
-      padding-top: 0;
-      padding-bottom: 0;
-    }
-
-    .row-container {
-      height: 100vh;
-    }
-  }
-
-  @media (min-width: 992px) {
-
-  }
-
-  @media (min-width: 1200px) {
-
+    background-image: url('../../assets/images/mycure-home-web-video-green-background.png');
+    background-position: center center;
+    background-size: 100% 100%;
   }
 </style>
+
+
