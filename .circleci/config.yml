@@ -12,12 +12,12 @@ jobs:
       - checkout
 
       - run:
-          name: Install node@v8.12.0
+          name: Install node@v10.16.0
           command: |
             curl https://raw.githubusercontent.com/creationix/nvm/v0.30.2/install.sh | bash
             source ~/.profile
             nvm --version
-            nvm install v8.12.0
+            nvm install v10.16.0
 
       - restore_cache:
           keys:
