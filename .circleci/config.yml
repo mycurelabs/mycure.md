@@ -29,8 +29,8 @@ jobs:
     <<: *defaults
     steps:
       - run:
-        name: Build WebApp
-        command: yarn build
+          name: Build WebApp
+          command: yarn build
   deploy:
     <<: *defaults
     steps:
