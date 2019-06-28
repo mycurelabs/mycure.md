@@ -1,0 +1,57 @@
+# Javascript Node CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-javascript/ for more details
+#
+version: 2
+
+defaults: &defaults
+  working_directory: ~/repo
+  docker:
+    - image: circleci/node:8.9.1
+
+jobs:
+  setup:
+    steps: 
+      - restore_cache:
+          name: Restore Yarn Package Cache
+          keys:
+            - yarn-packages-{{ checksum "yarn.lock" }}
+      - run:
+          name: Install Dependencies
+          command: yarn install --frozen-lockfile
+      - save_cache:
+          name: Save Yarn Package Cache
+          key: yarn-packages-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/.cache/yarn
+  build:
+    steps:
+      - run:
+        name: Build WebApp
+        command: yarn build
+  deploy:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~/repo
+      - run:
+          name: Install Firebase
+          command: yarn add firebase-tools -D
+      - run:
+          name: Deploy Master to Firebase
+          command: yarn deploy -- --token=$FIREBASE_TOKEN
+            
+workflows:
+  version: 2
+  publish:
+    jobs:
+      - setup:
+      - build: 
+          requires:
+            - setup
+      - deploy:
+          requires:
+            - build
+          filters:
+            branches:
+              only: master
