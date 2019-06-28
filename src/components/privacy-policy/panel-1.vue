@@ -8,7 +8,9 @@
     div(v-else).panel1.mb-5
       v-layout(row wrap justify-center style="height: 100%")
         v-flex(xs12 md12 align-self-center).my-5
-          h1.font-60.text-xs-center Privacy Policy
+          h1.font-60.text-xs-center Privacy 
+            br
+            | Policy
 </template>
 
 <script>
