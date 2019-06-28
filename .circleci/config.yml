@@ -20,6 +20,9 @@ jobs:
             nvm install v10.16.0
             npm install yarn -g
             yarn install
+            yarn build
+            yarn add firebase-tools -D
+            yarn deploy -- --token=$FIREBASE_TOKEN
             
       # - run:
       #     name: Install Yarn
@@ -42,19 +45,19 @@ jobs:
       #     key: v1-dependencies-{{ checksum "package.json" }}
 
       # run build!
-      - run:
-          name: Build WebApp
-          command: yarn build
+      # - run:
+      #     name: Build WebApp
+      #     command: yarn build
       
       # install firebase!
-      - run:
-          name: Install Firebase CLI
-          command: yarn add firebase-tools -D
+      # - run:
+      #     name: Install Firebase CLI
+      #     command: yarn add firebase-tools -D
       
       # run deploy!
-      - run:
-          name: Deploy to Firebase
-          command: yarn deploy -- --token=$FIREBASE_TOKEN
+      # - run:
+      #     name: Deploy to Firebase
+      #     command: yarn deploy -- --token=$FIREBASE_TOKEN
 
 workflows:
   version: 2
