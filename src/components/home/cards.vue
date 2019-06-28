@@ -18,7 +18,7 @@
                 strong(style="white-space: pre-wrap;").font-18 {{ card.subtxt }}
         br
         v-layout(row justify-center).pt-5
-          p.font-18.text-xs-center Unsure where you fit? 
+          p.font-30.text-xs-center Unsure where you fit? 
             router-link(:to="{ name: 'calendly' }")
               strong Book a demo
       v-layout(row justify-center)
