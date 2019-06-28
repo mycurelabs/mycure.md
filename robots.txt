@@ -1,0 +1,11 @@
+User-Agent: *
+Disallow: 
+Allow: /
+Allow: /clinic-management-system
+Allow: /his
+Allow: /dental
+Allow: /our-story
+Allow: /terms
+Allow: /privacy-policy
+
+Sitemap: https://mycure.md/sitemap.xml

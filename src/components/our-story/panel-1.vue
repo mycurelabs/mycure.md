@@ -56,6 +56,11 @@
         showVid: false
       };
     },
+    computed: {
+      // browserID (){
+      //   return cookieStore.state.browserID;
+      // }
+    },
     methods: {
       handleOurStoryWatchVid () {
         this.$ga.event({
