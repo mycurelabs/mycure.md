@@ -4,7 +4,7 @@
 #
 version: 2
 jobs:
-  deploy:
+  dev:
     machine: true
     working_directory: ~/repo
 
@@ -12,17 +12,46 @@ jobs:
       - checkout
 
       - run:
-          name: Install node@v10.16.0
+          name: Publish MYCURE Main Website to Firebase
           command: |
+            echo Install NVM
             curl https://raw.githubusercontent.com/creationix/nvm/v0.30.2/install.sh | bash
             source ~/.profile
-            nvm --version
+            echo Install Node via NVM
             nvm install v10.16.0
+            echo Install Yarn via NPM
             npm install yarn -g
+            echo Install Dependencies
             yarn install
             yarn add firebase-tools -D
+            echo Build WebApp
             yarn build
-            yarn deploy -- --token=$FIREBASE_TOKEN
+            echo Deploy to Firebase Hosting
+            yarn deploy:dev -- --token=$FIREBASE_TOKEN
+  prod:
+    machine: true
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+
+      - run:
+          name: Publish MYCURE Main Website to Firebase
+          command: |
+            echo Install NVM
+            curl https://raw.githubusercontent.com/creationix/nvm/v0.30.2/install.sh | bash
+            source ~/.profile
+            echo Install Node via NVM
+            nvm install v10.16.0
+            echo Install Yarn via NPM
+            npm install yarn -g
+            echo Install Dependencies
+            yarn install
+            yarn add firebase-tools -D
+            echo Build WebApp
+            yarn build
+            echo Deploy to Firebase Hosting
+            yarn deploy:prod -- --token=$FIREBASE_TOKEN
             
       # - run:
       #     name: Install Yarn
@@ -63,7 +92,16 @@ workflows:
   version: 2
   publish:
     jobs: 
-      - deploy:
+      - dev:
           filters:
             branches: 
               only: master
+      - hold:
+          type: approval
+      - prod:
+          filters:
+            branches: 
+              only: master
+          requires: 
+            - hold
+
