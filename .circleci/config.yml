@@ -40,6 +40,11 @@ jobs:
           name: Build WebApp
           command: yarn build
       
+      # install firebase!
+      - run:
+          name: Install Firebase CLI
+          command: yarn add firebase-tools -D
+      
       # run deploy!
       - run:
           name: Deploy to Firebase
