@@ -16,8 +16,8 @@
           strong.text-none.white--text.font-18 Sign Up Now
       v-layout(row justify-center)
           img(width="100%" height="100%" src="../../assets/images/mycure-web-banner-last-panel-health-community.png" alt="Health community")
-    div(v-else).transparent.pa-5
-      v-container
+    div(v-else).transparent
+      v-container.pa-5
         v-layout(row justify-center)
           img(width="100%" height="100%" src="../../assets/images/mycure-web-banner-last-panel-features-embrace-habit.png" alt="Embrace service")
         br 
