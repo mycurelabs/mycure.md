@@ -10,8 +10,14 @@
     ).showPanel
     vid
     product
+    br
+    v-divider
     unique
+    br
+    v-divider
     security
+    br
+    v-divider
     targetMarket
     targetMarketMobile(v-if="$isMobile").showPanel
     mcFooter
