@@ -1,12 +1,10 @@
 <template lang="pug">
-  div#panel3.pt-5.transparent
-    center
-      v-layout(column justify-center style="width: 90%").pt-5
-        img(style="max-width: 80%" src="../../assets/images/mycure-web-banner-last-panel-home-doctors.png" alt="Healthcare professionals")
-        br 
-        span(style="font-size: 200%").text-xs-center.lh-title Join thousands of healthcare professionals who get the best out of technology in their practice.
-      br
-      br
+  div.pt-5
+    v-container.pa-5
+      v-layout(row justify-center)
+        img(width="100%" height="100%" src="../../assets/images/mycure-web-banner-last-panel-home-doctors.png" alt="Healthcare proffesionals")
+      br 
+      p(style="font-size: 200%").text-xs-center.lh-title Join thousands of healthcare professionals who get the best out of technology in their practice.
       v-layout(row justify-center)
         v-btn(
           id="pricing-signup-btn"
@@ -14,7 +12,9 @@
           :href="`${signInURL}/signup/choose`"
           target="_blank"
           style="background-color: #18c551; width: 80%; height: 60px")  
-          strong.font-18.white--text.text-none Sign Up Now  
+          strong.font-18.white--text.text-none Sign Up Now
+    v-layout(row justify-center)
+        img(width="100%" height="100%" src="../../assets/images/mycure-web-banner-last-panel-health-community-mobile.png" alt="Health community")  
 </template>
 
 <script>

@@ -47,15 +47,15 @@
           private_prac(v-if="isPrivate")
           multispecialty(v-else)
     div(v-else)
-      div.panel1.pa-2.pt-5
-        v-flex(xs12)
-          v-layout(row justify-center) 
-            strong(style="font-size: 29px").text-xs-center Your best CMS 
-              br
-              | investment yet
+      div.panel1.px-2.pt-5
+        v-layout(column justify-center) 
+          strong.font-30.text-xs-center Your best CMS 
             br
-            span(style="font-size: 13px").font-mc-grey Quality clinic technology made more affordable. Only pay for what you need.  
-            br
+            | investment yet
+          span.font-14.font-mc-grey.text-xs-center Quality clinic technology made more affordable. 
+            br 
+            | Only pay for what you need.  
+          br
       div.white
         v-layout(row).pa-3
           v-layout(column)  
