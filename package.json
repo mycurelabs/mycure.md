@@ -3,25 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-<<<<<<< HEAD
-    "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
-    "start": "npm run dev",
-    "unit": "cross-env BABEL_ENV=test karma start test/unit/karma.conf.js --single-run",
-    "test": "npm run unit",
-    "lint": "semistandard --fix | snazzy",
-    "prebuild": "npm run lint",
-    "build": "node build/build.js && cp ./robots.txt ./dist && cp ./sitemap.xml ./dist",
-    "deploy:fb:hosting": "firebase deploy --only hosting -P mycure-ab311",
-    "deploy:fb:hosting:ci": "firebase deploy --only hosting --token \"$FIREBASE_TOKEN\" -P mycure-ab311",
-    "deploy:fb:fns": "firebase deploy --only functions",
-    "deploy:fb:fns:only": "f() { for func in \"$@\"; do firebase deploy --only functions:\"$func\" -P mycure-ab311; done; }; f"
-  },
-  "dependencies": {
-    "@babel/polyfill": "^7.0.0-beta.51",
-    "@mycure/sdk": "^4.15.3-beta.110",
-    "axios": "^0.18.0",
-    "babel-eslint": "^8.2.6",
-=======
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "postbuild": "cp dist/index.html dist/200.html",
@@ -32,7 +13,6 @@
     "@chenfengyuan/vue-carousel": "^1.0.2",
     "@mdi/font": "^2.6.95",
     "@mycure/sdk": "^4.15.3-beta.110",
->>>>>>> refactor/upgrade
     "babel-polyfill": "^6.26.0",
     "bootstrap-vue": "^2.0.0-rc.19",
     "core-js": "^2.6.5",
