@@ -4,7 +4,7 @@
 #
 version: 2
 jobs:
-  build:
+  deploy:
     docker:
       # specify the version you desire here
       - image: circleci/node:8.12.0
@@ -49,3 +49,12 @@ jobs:
       - run:
           name: Deploy to Firebase
           command: yarn deploy -- --token=$FIREBASE_TOKEN
+
+workflows:
+  version: 2
+  publish:
+    jobs: 
+      - deploy:
+          filters:
+            branches: 
+              only: master
