@@ -7,7 +7,8 @@
     "build": "vue-cli-service build",
     "postbuild": "cp dist/index.html dist/200.html",
     "lint": "vue-cli-service lint",
-    "deploy": "firebase deploy --only hosting -P mycure-ab311"
+    "deploy:dev": "firebase deploy --only hosting -P mycure-v2",
+    "deploy:prod": "firebase deploy --only hosting -P mycure-ab311"
   },
   "dependencies": {
     "@chenfengyuan/vue-carousel": "^1.0.2",
