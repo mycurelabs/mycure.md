@@ -11,8 +11,8 @@
       filler
         span(v-if="!$isMobile" slot="question").font-40 Does your clinic have more than 3 branches?
         span(v-else slot="question").font-30 Does your clinic have more than 3 branches?        
-        span(v-if="!$isMobile" slot="chatWindow" @click="toggleChat").font-40.pointer.font-mc-blue Talk to us for custom pricing.
-        span(v-else slot="chatWindow" @click="toggleChat").font-30.pointer.font-mc-blue Talk to us for custom pricing.
+        span(v-if="!$isMobile" slot="chatWindow" @click="toggleChat").font-40.pointer.font-mc-blue Talk to us.
+        span(v-else slot="chatWindow" @click="toggleChat").font-30.pointer.font-mc-blue Talk to us.
     mc-footer
 </template>
 
