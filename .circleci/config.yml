@@ -20,7 +20,9 @@ jobs:
             nvm install v10.16.0
       - run:
           name: Install Yarn
-          command: npm install yarn
+          command: |
+            npm install yarn
+            exec bash
 
       # - restore_cache:
       #     keys:
