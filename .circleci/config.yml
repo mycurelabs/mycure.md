@@ -98,6 +98,11 @@ workflows:
               only: master
       - hold:
           type: approval
+          filters:
+            branches: 
+              only: master
+          requires: 
+            - dev
       - prod:
           filters:
             branches: 
