@@ -18,6 +18,7 @@ jobs:
             source ~/.profile
             nvm --version
             nvm install v10.16.0
+            nvm use v10.16.0
       - run:
           name: Install Yarn
           command: |
