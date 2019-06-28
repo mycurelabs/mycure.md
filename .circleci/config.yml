@@ -10,19 +10,14 @@ defaults: &defaults
     - image: circleci/node:8.9.1
 
 jobs:
-  setup:
-    <<: *defaults
-    steps: 
-      - attach_workspace:
-          at: ~/repo
-      - run:
-          name: Install Dependencies
-          command: yarn install
   build:
     <<: *defaults
     steps:
       - attach_workspace:
           at: ~/repo
+      - run:
+          name: Install Dependencies
+          command: yarn install
       - run:
           name: Build WebApp
           command: yarn build
@@ -42,13 +37,7 @@ workflows:
   version: 2
   publish:
     jobs:
-      - setup:
-          filters:
-            branches:
-              only: master
-      - build: 
-          requires:
-            - setup
+      - build:
           filters:
             branches:
               only: master
