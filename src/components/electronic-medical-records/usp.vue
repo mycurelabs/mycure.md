@@ -1,7 +1,7 @@
 <template lang="pug">
   div
     div(v-if="!$isMobile").white
-      v-container(align-center fill-height).px-5.panel-1.red
+      v-container(align-center fill-height).px-5.panel-1
         v-layout(row justify-center)
           v-flex(xs12 md7 align-self-center style="margin-top: -7%")
             h1(style="font-weight: bold;").font-18.font-mc-blue MYCURE for Private Practice

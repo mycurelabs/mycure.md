@@ -1,6 +1,6 @@
 <template lang="pug">
   div
-    div(v-if="!$isMobile" style="padding-top: 20px;")
+    div(v-if="!$isMobile")
       v-container(align-center fill-height).px-5.panel-1
         v-layout(row justify-center)
           v-flex(xs12 md7 align-self-center style="margin-top: -7%")

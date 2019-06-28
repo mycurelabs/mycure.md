@@ -71,6 +71,11 @@
 </script>
 
 <style scoped>
-
+  .price-card{
+    border-radius: 0 10px 10px 0;
+  }
+  .image-rounded-corner {
+    border-radius: 10px !important;
+  }
 </style>
 

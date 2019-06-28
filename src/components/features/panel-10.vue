@@ -34,8 +34,8 @@
             style="background-color: #18c551; width: 80%; height: 60px"
           )  
             strong.font-18.white--text.text-none Sign Up Now  
-    v-layout(row justify-center)
-      img(width="100%" height="100%" src="../../assets/images/mycure-web-banner-last-panel-health-community-mobile.png" alt="Health community")
+      v-layout(row justify-center)
+        img(width="100%" height="100%" src="../../assets/images/mycure-web-banner-last-panel-health-community-mobile.png" alt="Health community")
 </template>
 
 <script>

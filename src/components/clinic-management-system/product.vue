@@ -1,12 +1,11 @@
 <template lang="pug">
   div
     div(v-if="!$isMobile" style="padding-top: 100px").transparent#panel5.pt-4
-      v-layout(row wrap justify-center)
-        font.font-48.lh-title.text-xs-center Designed for clinics of all shapes and sizes.
-      br
-      div.pt-5
-        center
-          img(width="75%" src="../../assets/images/mycure-home-web-complete-for-clinics-of-all-sizes-diagram.png" alt="All types of clinics").mb-3
+      v-container
+        v-layout(column wrap justify-center)
+          p.font-48.lh-title.text-xs-center.pb-5 Designed for clinics of all shapes and sizes.
+          br
+          img(height="100%" width="100%"  src="../../assets/images/mycure-home-web-complete-for-clinics-of-all-sizes-diagram.png" alt="All types of clinics").mb-3
       br
       br
       v-layout(row wrap justify-center)

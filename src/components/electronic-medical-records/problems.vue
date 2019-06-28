@@ -1,9 +1,9 @@
 <template lang="pug">
   div
     div(v-if="!$isMobile").px-5.white
-      v-container.px-5.blue
+      v-container.px-5
         v-layout(row justify-center).text-xs-center
-          p(style="font-size: 45px").pa-5.text-xs-center Why should doctorsds use MYCURE 
+          p(style="font-size: 45px").pa-5.text-xs-center Why should doctors use MYCURE 
             br
             | in their clinics?
         v-layout(row wrap justify-center)
