@@ -1,6 +1,6 @@
 <template lang="pug">
   div
-    div(v-if="!$isMobile" style="padding-top: 100px").transparent#panel5.pt-4
+    div(v-if="!$isMobile").transparent#panel5.pt-5
       v-container
         v-layout(column wrap justify-center)
           p.font-48.lh-title.text-xs-center.pb-5 Designed for clinics of all shapes and sizes.
@@ -15,8 +15,7 @@
           color="#18c551"
           :href="`${signInURL}/signup/multi-specialty/step-1`"
           target="_blank"
-          style="height: 60px; width: 250px"
-        ).mt-3
+        ).mt-3.cta-btn
           strong.font-18.white--text.text-none Get Started Today
       br
       v-layout(row wrap justify-center)

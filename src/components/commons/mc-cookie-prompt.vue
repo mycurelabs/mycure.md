@@ -4,8 +4,8 @@
       position="top" 
       transitionName="fade"
     ).Cookie--mcCookie.white--text.pa-2
-      div(slot-scope="props" style="width: 100%")
-        v-container(style="width: 100%").py-1
+      div(slot-scope="props").width100
+        v-container.py-1.width100
           v-layout(row v-if="!$isMobile").px-4
             v-flex(xs11).pt-2
               | We use third-party services to understand web traffic data for us and they may collect cookies during the process.
@@ -71,6 +71,7 @@
       margin-top: 4.5%;
    }
   }
+
 </style>
 
 

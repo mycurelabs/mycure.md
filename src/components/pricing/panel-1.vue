@@ -1,13 +1,13 @@
 <template lang="pug">
   div
     div(v-if="!$isMobile")
-      div(style="padding-top: 70px").panel1
+      div.panel1
         v-container
           v-flex(xs12 md12).pt-5
             v-layout(row justify-center) 
               strong.font-60.text-xs-center Your best CMS investment yet
             v-layout(row justify-center) 
-              strong(style="font-size: 25px").text-xs-center.font-mc-grey Quality clinic technology made more affordable. 
+              strong.font-25.text-xs-center.font-mc-grey Quality clinic technology made more affordable. 
                 br
                 | Only pay for what you need.
               br
@@ -18,13 +18,13 @@
               a(@click="isPrivate=true; isMulti=false;")
                 div(v-if="isPrivate").tabActive.pa-3.right
                   v-layout(row justify-center) 
-                    strong(style="font-size: 25px") Private Practice
+                    strong.font-25 Private Practice
                       br
                       | 
                       font.font-18.font-mc-grey Solo or group clinic practitioners
                 div(v-else).tab.pa-3.right
                   v-layout(row justify-center) 
-                    strong(style="font-size: 25px") Private Practice
+                    strong.font-25 Private Practice
                       br
                       | 
                       font.font-18.font-mc-grey Solo or group clinic practitioners
@@ -32,13 +32,13 @@
               a(@click="isMulti=true; isPrivate=false")
                 div(v-if="isMulti").tabActive.pa-3
                   v-layout(row justify-center) 
-                    strong(style="font-size: 25px") Multispecialty Clinics
+                    strong.font-25 Multispecialty Clinics
                       br
                       | 
                       font.font-18.font-mc-grey One stop, multi-staff clinics
                 div(v-else).tab.pa-3
                   v-layout(row justify-center) 
-                    strong(style="font-size: 25px") Multispecialty Clinics
+                    strong.font-25 Multispecialty Clinics
                       br
                       | 
                       font.font-18.font-mc-grey One stop, multi-staff clinics
@@ -60,7 +60,7 @@
         v-layout(row).pa-3
           v-layout(column)  
             strong.font-18 Private Practice
-            span(style="font-size: 14px") Solo or group clinic practitioners
+            span.font-14 Solo or group clinic practitioners
           v-spacer
             
           v-icon(v-if="!isPrivate" size=40 @click="isPrivate=!isPrivate") arrow_right
@@ -74,7 +74,7 @@
         v-layout(row).pa-3
           v-layout(column)  
             strong.font-18 Multispecialty Clinics
-            span(style="font-size: 14px") One-stop, multi-staff clinics
+            span.font-14 One-stop, multi-staff clinics
           v-spacer
           v-icon(v-if="!isMulti" size=40 @click="isMulti=!isMulti") arrow_right
           v-icon(v-else size=40 @click="isMulti=!isMulti") arrow_drop_down

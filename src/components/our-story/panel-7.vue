@@ -8,14 +8,14 @@
           v-flex(xs12 md3 offset-xs1).px-4
             img(src="../../assets/images/mycure-our-story-clara-barton-values-01.png" alt="MYCURE Values").right
           v-flex(xs12 md8).px-4
-            br(style="line-height: 130px")
+            br.brLH
             strong.font-48 You are one of a kind.
             br
             br
             span.font-18 Highly value diversity and respect everyone’s opinions. These cultivate the way we practice honesty, transparency, and emanate integrity at all times.
         v-layout(row).py-2
           v-flex(xs12 md7 offset-md1).px-4
-            br(style="line-height: 130px")
+            br.brLH
             strong.font-48 All we need is love.
             br
             br
@@ -26,14 +26,14 @@
           v-flex(xs12 md3 offset-xs1).px-4
             img(src="../../assets/images/mycure-our-story-mother-theresa-values-03.png" alt="MYCURE Values").right
           v-flex(xs12 md8).px-4
-            br(style="line-height: 130px")
+            br.brLH
             strong.font-48 Our Mission is Our Obsession.
             br
             br
             span.font-18 As passionate, fun-loving, and innovative people that we are, we dare to challenge status quo and make things happen by giving that extra mile of care in all that we do.
         v-layout(row).py-2
           v-flex(xs12 md7 offset-md1).px-4
-            br(style="line-height: 130px")
+            br.brLH
             strong.font-48 First Think First.
             br
             br
@@ -100,5 +100,12 @@
     }
   };
 </script>
+
+<style scoped>
+ .brLH {
+   line-height: 130px;
+ }
+</style>
+
 
 

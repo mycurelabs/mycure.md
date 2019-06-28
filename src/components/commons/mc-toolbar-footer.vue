@@ -26,11 +26,11 @@
       br
       v-layout(row)
         v-expansion-panel.elevation-0
-          v-expansion-panel-content(style="background-color: #343a40")
+          v-expansion-panel-content.expansionPanelBg
             template(v-slot:header)
-              span(style="margin-left: -24px").font-18.feature-text CLINIC SOLUTIONS
+              span.iconMargin.font-18.feature-text CLINIC SOLUTIONS
             template(v-slot:actions)
-              v-icon(style="margin-right: -24px" color="white") mdi-chevron-down
+              v-icon(color="white").iconMargin mdi-chevron-down
             v-layout(column)
               router-link(id="footer-private-practice-btn" :to="{ name: 'emr' }" title="MYCURE | Private Practice Electronic Medical Records (EMR)").link.white--text.py-2
                 span.py-2 For Private Practice
@@ -40,11 +40,11 @@
                 span.py-2 Solo
       v-layout(row)
         v-expansion-panel.elevation-0
-          v-expansion-panel-content(style="background-color: #343a40")
+          v-expansion-panel-content.expansionPanelBg
             template(v-slot:header)
-              span(style="margin-left: -24px").font-18.feature-text ABOUT
+              span.iconMargin.font-18.feature-text ABOUT
             template(v-slot:actions)
-              v-icon(style="margin-right: -24px" color="white") mdi-chevron-down
+              v-icon(color="white").iconMargin mdi-chevron-down
             v-layout(column)
               router-link(id="footer-our-story-btn" :to="{ name: 'our-story' }" title="MYCURE Our Story | Caring the Extra Mile").link.white--text.py-2
                 span.py-2 Our Story
@@ -54,11 +54,11 @@
                 span.py-2 Careers
       v-layout(row)
         v-expansion-panel.elevation-0
-          v-expansion-panel-content(style="background-color: #343a40")
+          v-expansion-panel-content(color="").expansionPanelBg
             template(v-slot:header)
-              span(style="margin-left: -24px").font-18.feature-text SUPPORT
+              span.iconMargin.font-18.feature-text SUPPORT
             template(v-slot:actions)
-              v-icon(style="margin-right: -24px" color="white") mdi-chevron-down
+              v-icon(color="white").iconMargin mdi-chevron-down
             v-layout(column)
               router-link(id="footer-faqs-btn" :to="{ name: 'faqs-link' }" title="MYCURE - FAQs").link.white--text.py-2
                 span.py-2 FAQs
@@ -68,11 +68,11 @@
                 span.py-2 Book a Demo
       v-layout(row)
         v-expansion-panel.elevation-0
-          v-expansion-panel-content(style="background-color: #343a40")
+          v-expansion-panel-content.expansionPanelBg
             template(v-slot:header)
-              span(style="margin-left: -24px").font-18.feature-text LEGAL
+              span.iconMargin.font-18.feature-text LEGAL
             template(v-slot:actions)
-              v-icon(style="margin-right: -24px" color="white") mdi-chevron-down
+              v-icon(color="white").iconMargin mdi-chevron-down
             v-layout(column)
               router-link(id="footer-terms-btn" :to="{ name: 'terms' }" title="MYCURE Terms and Conditions").link.white--text.py-2
                 span.py-2 Terms
@@ -80,11 +80,11 @@
                 span.py-2 Privacy Policy
       v-layout(row)
         v-expansion-panel.elevation-0
-          v-expansion-panel-content(style="background-color: #343a40")
+          v-expansion-panel-content.expansionPanelBg
             template(v-slot:header)
-              span(style="margin-left: -24px").font-18.feature-text CONTACT US
+              span.iconMargin.font-18.feature-text CONTACT US
             template(v-slot:actions)
-              v-icon(style="margin-right: -24px" color="white") mdi-chevron-down
+              v-icon(color="white").iconMargin mdi-chevron-down
             v-layout(column)
               a(id="footer-email-btn" title="MYCURE - Email" href="mailto:hello@mycure.md").link.font-mc-blue.py-2
                 span.py-2 hello@mycure.md
@@ -153,18 +153,20 @@ export default {
 </script>
 
 <style scoped>
-
-.logo-img {
-  height: 20%;
-}
-
-a:link {
-  text-decoration: none;
-}
-
-.feature-text {
-  color: #999999;
-}
-
+  .logo-img {
+    height: 20%;
+  }
+  a:link {
+    text-decoration: none;
+  }
+  .feature-text {
+    color: #999999;
+  }
+  .expansionPanelBg {
+    background-color: #343a40 !important;
+  }
+  .iconMargin {
+    margin-left: -24px;
+  }
 </style>
 

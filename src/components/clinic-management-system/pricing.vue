@@ -8,7 +8,7 @@
               v-flex(xs5)
                 img(width="100%" height="508vh" src="../../assets/images/mycure-web-banner-pricing-panel-multispecialty.png" alt="Multispecialty Pricing")
               v-flex(xs8).text-xs-left.pa-5
-                strong(style="font-size: 30px").pb-2 For Multispecialty Clinics
+                strong.font-30.pb-2 For Multispecialty Clinics
                 br
                 br
                 font.font-18 An all-around solution for your outpatient, 
@@ -28,7 +28,7 @@
                     :href="`${signInURL}/signup/multi-specialty/step-1`"
                     target="_blank"
                     color="#18c551" 
-                    style="width: auto" large
+                    large
                   ).text-none
                     strong.font-18.white--text Get Started Today
     div(v-else).pt-5
@@ -45,8 +45,10 @@
           @click.stop="handleCmsSignupBtn"
           :href="`${signInURL}/signup/multi-specialty/step-1`"
           target="_blank"
-          style="background-color: #18c551; width: 80%; height: 60px")
-            strong.font-18.white--text.text-none Get Started Today
+          color="#18c551"
+          large
+        ).cta-btn
+          strong.font-18.white--text.text-none Get Started Today
 </template>
 
 <script>

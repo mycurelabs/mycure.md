@@ -33,7 +33,7 @@
         v-layout(row wrap align-items-center)
           p  
           v-flex(xs6 md4 v-for="(card, key) in cards" :key="key").text-center.align-self-center
-            vue-flip(:active-hover="true" width="100%" class="simple-test" style="margin-bottom: 250px; font-size: 18px")
+            vue-flip(:active-hover="true" width="100%" class="simple-test").flipMargin.font-18
               div(slot="front" ref="frontCard").flip-card.align-items-center.pa-3
                 v-layout(row justify-center)
                   img(width="80" :src="card.image" :alt="card.text")
@@ -42,7 +42,7 @@
                   label {{card.text}}
               div(slot="back" ref="backCard" ).flip-card.flip-card-back.align-items-center.py-2.px-5
                 v-layout(row justify-center) 
-                  strong(style="color:#0099cc;") {{card.text}}
+                  strong.font-mc-blue {{card.text}}
                 br
                 p.font-16(v-html="card.content").text-xs-center
                 v-layout(row justify-center)
@@ -59,7 +59,7 @@
         br
         v-layout(row)
           v-flex(xs12 md4) 
-            span(style="font-size: 22px")
+            span.font-22
               strong Frequently Asked Questions
         br
         br
@@ -142,13 +142,12 @@
             v-flex(xs4).pr-3
               img(width="80" :src="card.image" :alt="card.text")
             v-flex(xs8).pt-1
-              strong(style="font-size: 14px")  {{ card.text }}
-              p(style="font-size: 12px").pt-1 {{ card.content }}
-              //- strong(id="pricing-multispecialty-signup-btn" v-html="" style="font-size: 12px").font-mc-blue.pb-2 {{ card.buttonText }}
+              strong.font-14  {{ card.text }}
+              p.font-12.pt-1 {{ card.content }}
         br
         v-layout(row)
           v-flex(xs12 md4) 
-            span(style="font-size: 22px")
+            span.font-22
               strong Frequently Asked Questions
         br
         br
@@ -335,4 +334,7 @@
     text-decoration: none
   }
 
+  .flipMargin{
+    margin-bottom: 250px;
+  }
 </style>

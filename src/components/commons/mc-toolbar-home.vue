@@ -1,9 +1,9 @@
 <template lang="pug">
   div
-    div(v-if="!$isMobile" style="position: fixed; width: 100%; z-index: 200;" :class="shadow").white
-      v-container(style="height: 70px !important;").white.py-0
+    div(v-if="!$isMobile" :class="shadow").white.toolbarMain
+      v-container.white.toolbarHeight.py-0
         v-layout(row wrap justify-center)
-          v-flex(xs12 md12 style="margin-top: 3px;")
+          v-flex(xs12 md12).toolbarMargin
             v-toolbar(flat).white
               router-link(:to="{ name: 'home' }" title="MYCURE | Clinic Management System | Cloud EMR Philippines" id="toolbar-mycure-logo" @click.stop="handleMycureLogo").mr-3.mt-2
                 img(src="../../assets/images/mycure-header-logo.png" width="140" alt="MYCURE logo")
@@ -14,7 +14,7 @@
                 :id="link.id" 
                 flat
               )
-                span(style="font-size: 14px").tab.text-none {{link.meta.pageName}}
+                span.font-14.tab.text-none {{link.meta.pageName}}
               v-spacer
               v-btn(
                 flat
@@ -22,7 +22,7 @@
                 id="toolbar-features-btn"
                 @click.stop="handleToolbarFeaturesBtn"
               )
-                span(style="font-size: 14px").text-none.tab Features
+                span.font-14.text-none.tab Features
               v-btn(
                 flat
                 :href="`${signInURL}?target=${cmsURL}/authenticate`"
@@ -30,7 +30,7 @@
                 id="toolbar-login-btn"
                 @click.stop="handleLoginBtn"
               )
-                strong(style="font-size: 14px").tab LOGIN
+                strong.font-14.tab LOGIN
               v-btn(
                 color="#2e9fdf"
                 :href="`${signInURL}/signup/choose`"
@@ -38,7 +38,7 @@
                 id="toolbar-signup-btn"
                 @click.stop="handleSignupBtn"
               )
-                strong(style="font-size: 14px").white--text.tab SIGN UP
+                strong.font-14.white--text.tab SIGN UP
     div(v-else)
       v-container
         v-toolbar(flat fixed :class="shadow").white
@@ -46,16 +46,15 @@
             img(src="../../assets/images/mycure-header-logo.png" width="130" alt="MYCURE logo").mt-1
           v-spacer
           v-btn(icon large @click="drawer = !drawer")
-            v-icon(style="font-size: 35px;") menu
-      v-navigation-drawer(fixed app v-model="drawer" right width="500" style="z-index: 999 !important")   
-        //- v-toolbar(flat app fixed).white
-        div(style="position: sticky; top: 0px; z-index: 9999; width: 100%;")
+            v-icon.font-35 menu
+      v-navigation-drawer(fixed app v-model="drawer" right width="500").navMain   
+        div.navHeader
           v-toolbar(flat :class="shadow").white
             router-link(:to="{ name: 'home' }" title="MYCURE | Clinic Management System | Cloud EMR Philippines" id="toolbar-mycure-logo" @click.stop="handleMycureLogo").logo-a
               img(src="../../assets/images/mycure-header-logo.png" width="130" alt="MYCURE logo").mt-1
             v-spacer
             v-btn(icon large @click="drawer = !drawer")
-              v-icon(style="font-size: 35px;") close 
+              v-icon.font-35 close 
         v-content
           v-layout(row wrap)
             v-flex(xs12 md12)
@@ -134,7 +133,7 @@
                   v-list-tile-content
                     v-list-tile-title
                       b (+63) 917 303 4350              
-        div(style="position: sticky; bottom: 0px; z-index: 999; border-top: 1px solid lightgrey; background-color: white").py-3
+        div.navBottomBtns.py-3
           v-layout(row justify-center)
             v-btn(
                 id="navdrawer-login-btn"
@@ -142,7 +141,7 @@
                 target="_blank"
                 @click.stop="handleLoginBtnMobile"
               )
-                strong(style="font-size: 14px").tab LOGIN
+                strong.font-14.tab LOGIN
             v-btn(
               id="navdrawer-signup-btn"
               color="#18c551"
@@ -150,8 +149,8 @@
               target="_blank"
               @click.stop="handleSignupBtnMobile"
             )
-              strong(style="font-size: 14px").white--text.tab SIGN UP
-    mc-cookie-prompt(style="position: absolute; z-index: 99;")
+              strong.font-14.white--text.tab SIGN UP
+    mc-cookie-prompt.forCookie
 </template>
 
 <script>
@@ -261,5 +260,43 @@
     border-radius: 20px;
     background-color: #2e9fdf;
     width: 60%
+  }
+
+  .toolbarMargin{
+    margin-top: 3px;
+  }
+
+  .toolbarHeight {
+    height: 70px !important;
+  }
+
+  .toolbarMain {
+    position: fixed; 
+    width: 100%; 
+    z-index: 200;
+  }
+
+  .navMain {
+    z-index: 999 !important
+  }
+
+  .forCookie {
+    position: absolute; 
+    z-index: 99;
+  }
+
+  .navBottomBtns {
+    position: sticky; 
+    bottom: 0px; 
+    z-index: 999; 
+    border-top: 1px solid lightgrey; 
+    background-color: white
+  }
+
+  .navHeader {
+    position: sticky; 
+    top: 0px; 
+    z-index: 9999; 
+    width: 100%;
   }
 </style>

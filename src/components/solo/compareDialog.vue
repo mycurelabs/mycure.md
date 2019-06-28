@@ -1,10 +1,9 @@
 <template lang="pug">
   v-dialog(
     v-model="dialog" 
-    width="675" 
-    style="border-radius: 20px"
+    width="675"
   )
-    v-card(style="border-radius: 20px")
+    v-card
       v-img(:src="require('@/assets/images/mycure-cms-web-solo-comparison-diagram.png')") 
 </template>
 
@@ -28,4 +27,11 @@
     }
   };
 </script>
+
+<style scoped>
+  .roundedCard {
+    border-radius: 20px;
+  }
+</style>
+
 

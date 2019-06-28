@@ -31,10 +31,10 @@
                 v-flex(xs4 align-self-center).pr-3
                   img(:src="require(`@/assets/images/${ moduleItem.icon }`)" width="80" :alt="moduleItem.title")
                 v-flex(xs8)
-                  strong(style="font-size: 14px")  {{ moduleItem.title}}
+                  strong.font-14 {{ moduleItem.title}}
                   br
-                  i(v-if="panel.hasSubtext" style="font-size: 12px") {{ moduleItem.subtext}}
-                  p(style="font-size: 12px").pt-3 {{ moduleItem.description }}
+                  i(v-if="panel.hasSubtext").font-12 {{ moduleItem.subtext}}
+                  p.font-12.pt-3 {{ moduleItem.description }}
 </template>
 
 <script>

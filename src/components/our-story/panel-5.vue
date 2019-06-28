@@ -2,10 +2,10 @@
   div
     div(v-if="!$isMobile")#panel5 
       v-container
-        v-layout(row wrap align-center justify-center style="padding-top: 500px")
-          div(style="margin: 0px -20px 0px 0px; z-index: 1")
+        v-layout(row wrap align-center justify-center).padding500
+          div.maleDoctor
             img(src="../../assets/images/mycure-web-video-cover-decor-doctor-left.png" alt="Male doctor")
-          div(style="z-index: 0")
+          div.vidPosition
             a(id="our-story-care-the-extra-mile-vid-btn" @click.stop="handleOurStoryCareTheExtraMile()")
               img(
                 v-if="!videoDialog" 
@@ -22,9 +22,9 @@
                 frameborder="0"
                 allowfullscreen
                 )
-          div(style="margin: 0px 0px 0px -20px; z-index: 1") 
+          div.femaleDoctor
             img(src="../../assets/images/mycure-web-video-cover-decor-doctor-right.png" alt="Female doctor")
-    div(v-else)
+    div(v-else).white
       v-container
         v-flex(xs12 md12).text-xs-center
           v-layout(row wrap align-center justify-center)
@@ -66,6 +66,10 @@
     background-image: url('../../assets/images/mycure-home-web-video-green-background.png');
     background-position: center center;
     background-size: 100% 100%;
+  }
+
+  .padding500 {
+    padding-top: 500px;
   }
 </style>
 

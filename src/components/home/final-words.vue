@@ -2,33 +2,32 @@
   div#panel8
     div(v-if="!$isMobile")
       panelBeforeFooter
-        img(slot="img" style="max-width: 90%" src="../../assets/images/mycure-web-banner-last-panel-home-doctors.png" alt="Healthcare professionals")
-        span(slot="txt" style="font-size: 36px").lh-title Join thousands of healthcare professionals who get the best out of technology in their practice.
+        img(slot="img" src="../../assets/images/mycure-web-banner-last-panel-home-doctors.png" alt="Healthcare professionals").banner
+        span(slot="txt").font-36.lh-title Join thousands of healthcare professionals who get the best out of technology in their practice.
         v-btn(
           id="home-signup-btn"
           @click.stop="handleHomeSignupBtn"
           slot="sign-up-button"
           :href="`${signInURL}/signup/choose`"
           target="_blank" 
-          color="#18c551" 
-          style="padding: 25px 30px 25px 30px;"
+          color="#18c551"
           right
-        ).mt-0
+        ).cta-btn.mt-0
           strong.font-18.text-none.white--text Sign Up Now
     div(v-else).pa-5
       v-container
         v-layout(row justify-center)
           img(width="100%" height="100%" src="../../assets/images/mycure-web-banner-last-panel-home-doctors.png" alt="Healthcare proffesionals")
         br 
-        p(style="font-size: 200%").text-xs-center.lh-title Join thousands of healthcare professionals who get the best out of technology in their practice.
+        p.font-25.text-xs-center.lh-title Join thousands of healthcare professionals who get the best out of technology in their practice.
         v-layout(row justify-center)
           v-btn(
             id="emr-signup-btn"
             @click.stop="handleEmrSignupBtn"
             :href="`${signInURL}/signup/private/step-1`"
             target="_blank"
-            style="background-color: #18c551; width: 80%; height: 60px"
-          )  
+            color="#18c551"
+          ).cta-btn
             strong.font-18.white--text.text-none Sign Up Now  
 </template>
 
@@ -55,3 +54,9 @@
     }
   };
 </script>
+
+<style scoped>
+  .banner {
+    max-width: 90%;
+  }
+</style>

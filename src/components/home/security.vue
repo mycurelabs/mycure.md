@@ -15,7 +15,7 @@
         v-layout(row)
           v-flex(xs12 md12).text-xs-center
             br
-            p(style="line-height: 45px").font-40.pb-4 Protect your patients' medical records with confidence
+            p.lh-title.font-40.pb-4 Protect your patients' medical records with confidence
             img(width="85%" src="../../assets/images/mycure-web-banner-data-privacy-law.png" alt="Data Privacy Law").pb-3
             p.font-16.mt-3 With MYCURE you'll never have to worry much about data privacy concerns. Keeping them secure is our #1 priority.
 </template>

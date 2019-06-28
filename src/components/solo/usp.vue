@@ -3,27 +3,28 @@
     div(v-if="!$isMobile").white
       v-container(align-center fill-height).px-5.panel-1
         v-layout(row justify-center)
-          v-flex(xs12 md7 align-self-center style="margin-top: -7%")
-            h1(style="font-weight: bold;").font-18.font-mc-blue MYCURE Solo           
+          v-flex(xs12 md7 align-self-center).uspLeft
+            h1.font-weight-bold.font-18.font-mc-blue MYCURE Solo           
             br
-            p(style="line-height: 60px;").font-48 A free and standalone clinic management system.
+            p.lh-title.font-48 A free and standalone clinic management system.
             br
             br
             br
             br
             v-btn(
+              :href="' '" 
+              target="_blank"
               color="#18c551" 
-              style="padding: 10px 30px 40px 30px"
               id="solo-signup-btn"
               @click.stop="handleSoloSignUpBtn(); toggleChat()"
-            ) 
+            ).cta-btn
               strong.font-18.text-none.white--text Get Early Access
-          v-flex(xs12 md7 align-self-center style="margin-top: 10%")
+          v-flex(xs12 md7 align-self-center).uspRight
             img(width="auto" src="@/assets/images/mycure-emr-web-banner-first-panel-solo-page.png" alt="Solo doctor").right
     div(v-else).white
       v-container.pt-5
         v-layout(column align-center justify-center)
-            h1(style="font-weight: bold;").font-18.font-mc-blue.text-xs-center.pb-2 MYCURE Solo 
+            h1.font-weight-bold.font-18.font-mc-blue.text-xs-center.pb-2 MYCURE Solo 
             br
             p.font-40.text-xs-center A free and standalone clinic management system.
         v-flex(xs12)
@@ -32,12 +33,11 @@
         v-btn(
           id="solo-signup-btn" 
           @click.stop="handleSoloSignupBtn(); toggleChat()" 
-          style="height: 75px" 
           title="MYCURE - Sign Up"
           color="#18c551" 
           block
-        )
-          strong(style="font-size: 25px").white--text.text-none Get Early Access
+        ).uspBtn
+          strong.font-25.white--text.text-none Get Early Access
 </template>
 
 <script>
@@ -69,5 +69,9 @@
 <style scoped>
   h1 {
     font-weight: normal
+  }
+
+  .uspBtn {
+    height: 75px;
   }
 </style>

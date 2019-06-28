@@ -1,6 +1,6 @@
 <template lang="pug">
   div
-    div(v-if="!$isMobile" style="padding-top: 200px")
+    div(v-if="!$isMobile").pt-5
       v-container
         center
           strong.font-18.font-mc-blue ROLES &amp; PRIVILEGES

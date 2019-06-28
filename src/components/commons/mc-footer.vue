@@ -52,7 +52,8 @@
               ul.no-style-type
                 li.feature-text CONTACT US
                 li 
-                  a(id="footer-email-link" @click.stop="handleFooterEmailLink" title="MYCURE - Email" href="mailto:hello@mycure.md" style="color: #2e9fdf") hello@mycure.md
+                  a(id="footer-email-link" @click.stop="handleFooterEmailLink" title="MYCURE - Email" href="mailto:hello@mycure.md")
+                    span.font-mc-blue hello@mycure.md
                 li.white--text (+632) 799 6262
                 li.white--text (+63) 917 303 4350
           hr.mc-grey.my-4  
@@ -62,12 +63,6 @@
                 span.font-mc-blue &nbsp; MYCURE.  
                 |
                 span.white--text All Rights Reserved.
-    //- div(v-else :style="webSky ? 'margin-top: -250%; z-index: -1' : 'margin-top: 0'").pt-5.transparent
-      div(v-if="webSky" style="margin-bottom: -140%").pt-5
-        img(width="100%" src="../../assets/images/mycure-home-web-sky-background-mobile.png" alt="Web Sky background")
-      div(style="margin-bottom: -2%")
-        img(width="100%" height="100%" src="../../assets/images/mycure-web-banner-last-panel-health-community-mobile.png" alt="Health community")  
-      div.mc-dark-grey.pa-4
     div(v-else).mc-dark-grey.pa-4
       mc-toolbar-footer  
 </template>

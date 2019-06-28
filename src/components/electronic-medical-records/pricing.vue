@@ -12,7 +12,7 @@
                   v-flex(xs5)
                     img(width="100%" height="508vh" src="../../assets/images/mycure-web-banner-pricing-panel-private.png" alt="Private clinic pricing")
                   v-flex(xs8).text-xs-left.pa-5
-                    strong(style="font-size: 30px").pb-2 For Private Practice
+                    strong.font-30.pb-2 For Private Practice
                     br
                     br
                     span.font-18 {{ private_title }}
@@ -26,10 +26,10 @@
                       v-btn(
                         :href="`${signInURL}/signup/choose`" 
                         target="_blank"
-                        style="background-color: #18c551; color: white; width: auto" 
+                        color="#18c551"
                         large
                       ).text-none
-                        strong Sign Up Now
+                        strong.font-18.white--text Sign Up Now
     div(v-else).py-3.transparent
       img(width="100%" src="../../assets/images/mycure-web-banner-fifth-panel-private-clinic.png" alt="Private clinic pricing")
       v-layout(column wrap).pt-4.pb-5.pr-5.pl-5
@@ -38,9 +38,12 @@
           span.font-18.pb-2 &#10003; &nbsp; 
           span.font-18 {{ feature }}
       v-layout(row justify-center)
-        v-btn(style="background-color: #18c551; width: 80%; height: 60px")
-          a(:href="`${signInURL}/signup/choose`" target="_blank")
-            strong.font-18.white--text.text-none Sign Up Now
+        v-btn(
+          color="#18c551"
+          :href="`${signInURL}/signup/choose`"
+          target="_blank"
+        ).cta-btn
+          strong.font-18.white--text.text-none Sign Up Now
 </template>
 
 <script>

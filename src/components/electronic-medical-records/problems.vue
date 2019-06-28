@@ -3,7 +3,7 @@
     div(v-if="!$isMobile").px-5.white
       v-container.px-5
         v-layout(row justify-center).text-xs-center
-          p(style="font-size: 45px").pa-5.text-xs-center Why should doctors use MYCURE 
+          p.font-45.pa-5.text-xs-center Why should doctors use MYCURE 
             br
             | in their clinics?
         v-layout(row wrap justify-center)
@@ -29,8 +29,7 @@
             color="#18c551"
             :href="`${signInURL}/signup/private/step-1`"
             target="_blank"
-            style="height: 60px; width: 250px"
-          ).mt-3
+          ).mt-3.cta-btn
             strong.font-18.white--text.text-none Sign Up Now
         p.text-xs-center.py-4.font-18 Have questions? 
           a(@click.stop="toggleChat()")
@@ -41,7 +40,7 @@
           span.font-40.text-xs-center Why should doctors use MYCURE in their clinics?
       v-container
         v-layout(row justify-center)
-          v-list(two-line style="background-color: white")
+          v-list(two-line).white
             v-list-tile(v-for="(problem,index) in clinicProblems" :key="index")
               v-list-tile-action
                 img(src="../../assets/images/mycure-web-bullet-check.png" alt="Check icon") 
