@@ -45,7 +45,7 @@ workflows:
   version: 2
   publish:
     jobs:
-      - setup:
+      - setup
       - build: 
           requires:
             - setup
