@@ -22,7 +22,7 @@
         br
         br
         br
-        p.text-xs-center.py-4.font-18 Wanna know the difference? 
+        p.text-xs-center.py-4.font-30 Wanna know the difference? 
           a(@click.stop="dialog = true")
             strong.font-mc-blue Click here
           span &nbsp;or&nbsp;
