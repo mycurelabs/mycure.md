@@ -80,8 +80,20 @@ export default {
     font-size: 48px !important;
   }
 
+  .font-45 {
+    font-size: 45px !important
+  }
+
   .font-40 {
     font-size: 40px !important
+  }
+
+  .font-36 {
+    font-size: 36px !important
+  }
+
+  .font-35 {
+    font-size: 35px !important
   }
 
   .font-30 {
@@ -92,12 +104,24 @@ export default {
     font-size: 25px !important
   }
 
+  .font-22 {
+    font-size: 22px !important
+  }
+  
+  .font-21 {
+    font-size: 21px !important
+  }
+
   .font-18 {
     font-size: 18px !important
   }
   
   .font-16 {
     font-size: 16px !important
+  }
+
+  .font-14 {
+    font-size: 14px !important
   }
 
   .font-12 {
@@ -148,5 +172,31 @@ export default {
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
+  }
+
+  .uspLeft {
+    margin-top: -7%;
+  }
+
+  .uspRight {
+    margin-top: 10%;
+  }
+
+  .width100 {
+    width: 100%;
+  }
+
+  .maleDoctor {
+    margin: 0px -20px 0px 0px; 
+    z-index: 1;
+  }
+
+  .femaleDoctor {
+    margin: 0px 0px 0px -20px; 
+    z-index: 1;
+  }
+
+  .vidPosition {
+    z-index: 0;
   }
 </style>

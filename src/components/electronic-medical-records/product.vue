@@ -1,12 +1,11 @@
 <template lang="pug">
   div
-    div(v-if="!$isMobile" style="padding: 0 6% 0 6%;").pt-5.white
+    div(v-if="!$isMobile").px-5.pt-5.white
       v-container
-        v-layout(row justify-center)
-          span(style="font-size: 40px").lh-title Your buddy from medical school to private practice
-      div.py-5
-        center
-          img(style="max-width: 90%;" src="../../assets/images/mycure-home-web-individual-clinic-diagram-banner.png" alt="Individual clinic")
+        v-layout(column justify-center)
+          p.font-40.lh-title.br-5.text-xs-center Your buddy from medical school to private practice
+          br
+          img(height="100%" width="100%" src="../../assets/images/mycure-home-web-individual-clinic-diagram-banner.png" alt="Individual clinic")
     div(v-else).pt-5
       v-container
         v-layout(row justify-center)

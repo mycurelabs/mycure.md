@@ -1,17 +1,16 @@
 <template lang="pug">
   div
     panelBeforeFooter
-      img(slot="home-img" style="max-width: 90%" src="../../assets/images/mycure-web-banner-last-panel-home-doctors.png" alt="Healthcare professionals")
-      span(slot="home-txt" style="font-size: 36px") Join thousands of other healthcare professionals who enjoy the benefits of using technology in their practice.
+      img(slot="home-img" src="../../assets/images/mycure-web-banner-last-panel-home-doctors.png" alt="Healthcare professionals").banner
+      span(slot="home-txt").font-36 Join thousands of other healthcare professionals who enjoy the benefits of using technology in their practice.
       v-btn(
         id="our-story-signup-btn"
         @click.stop="handleOurStorySignupBtn"
         slot="sign-up-button"
         :href="`${signInURL}/signup/choose`"
         target="_blank" 
-        color="#18c551" 
-        style="padding: 25px 30px 25px 30px"
-      ) 
+        color="#18c551"
+      ).cta-btn
         strong.font-18.text-none.white--text Sign Up Now
     v-layout(row justify-center)
         img(width="100%" height="100%" src="../../assets/images/mycure-web-banner-last-panel-health-community.png" alt="Health community")
@@ -40,3 +39,10 @@
     }
   };
 </script>
+
+<style scoped>
+  .banner {
+    max-width: 90%;
+  }
+</style>
+

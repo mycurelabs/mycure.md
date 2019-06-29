@@ -5,12 +5,12 @@
         v-flex(xs12 md10 offset-md1)
           br
           v-layout(row justify-center)
-            v-card(height="508px" flat).elevation-10.image-rounded-corner
+            v-card(height="508px" flat).elevation-10.rounded-corner
               v-layout(row justify-center)
                 v-flex(xs5)
                   img(width="100%" height="508vh" src="@/assets/images/mycure-web-banner-pricing-panel-solo.png" alt="Solo features")
                 v-flex(xs8).text-xs-left.pa-5
-                  strong(style="font-size: 30px").pb-2 MYCURE Solo
+                  strong.font-30  .pb-2 MYCURE Solo
                   br
                   br
                   span.font-18 {{ MYCURE_SOLO_description }}
@@ -31,10 +31,10 @@
       v-dialog(
         v-model="dialog"
         max-width="100vh"
-      ).mt-5.image-rounded-corner
-        v-card(style="border-radius: 20px;")
+      ).mt-5.rounded-corner
+        v-card.rounded-corner
           v-layout(justify-center align-center)
-            img(style="width: 100%" :src="require('@/assets/images/mycure-cms-web-solo-comparison-diagram.png')" alt="Solo diagram")
+            img(width="100%" :src="require('@/assets/images/mycure-cms-web-solo-comparison-diagram.png')" alt="Solo diagram")
       v-layout(row justify-center)
           img(width="100%" height="100%" src="@/assets/images/mycure-web-banner-last-panel-health-community.png" alt="Health community") 
     div(v-else)
@@ -43,9 +43,9 @@
           v-flex(xs12).pa-2
               img(
                 width="100%" 
-                height="40%"  
-                style="border-radius: 20px"
-                src="@/assets/images/mycure-web-banner-pricing-panel-solo.png" alt="Solo features")
+                height="40%"
+                src="@/assets/images/mycure-web-banner-pricing-panel-solo.png" alt="Solo features"
+              ).rounded-corner
               br
               br
               v-layout(row justify-center)
@@ -70,13 +70,14 @@
         v-model="dialog" 
         width="800"
         hide-overlay
-        style="z-index: 999;"
-      )
-        v-card(style="border-radius: 10px")
+      ).dialogIndex
+        v-card.rounded-corner
           v-card-actions
             v-btn(flat icon @click="dialog = false")
               v-icon mdi-chevron-left
           v-img(:src="require('@/assets/images/mycure-cms-web-solo-comparison-diagram.png')" alt="Comparison diagram")
+      //- v-layout(row justify-center)
+      //-   img(width="100%" height="100%" src="../../assets/images/mycure-web-banner-last-panel-health-community-mobile.png" alt="Health community")
 </template>
 
 <script>
@@ -113,8 +114,13 @@
     background-repeat: no-repeat;
     background-size: 100% 100%;
   }
-  .image-rounded-corner {
+
+  .rounded-corner {
     border-radius: 10px !important;
+  }
+
+  .dialogIndex {
+    z-index: 999;
   }
 </style>
 

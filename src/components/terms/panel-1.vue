@@ -6,7 +6,7 @@
           v-flex(xs12 md12)
             h1.font-60.text-xs-center Terms and Conditions
     div(v-else).panel1.mb-5
-      v-layout(row wrap justify-center style="height: 100%")
+      v-layout(row wrap justify-center)
         v-flex(xs12 md12 align-self-center).my-5
           h1.font-60.text-xs-center Terms &amp; Conditions
 </template>

@@ -10,8 +10,14 @@
     ).showPanel
     vid
     product
+    br
+    v-divider
     unique
+    br
+    v-divider
     security
+    br
+    v-divider
     targetMarket
     targetMarketMobile(v-if="$isMobile").showPanel
     mcFooter
@@ -62,7 +68,7 @@
           },
           {
             title: 'Secure, Integrated Medical Records',
-            text: 'Our goal at MYCURE is to build an accessible, integrated, and complete clinic management system that simplifies work, helps direct the flow in every health facility, while securely storing and retrieving medical records.',
+            text: 'Our goal at MYCURE is to build an accessible, integrated, and complete clinic management system that you can use to simplify work, help direct the flow in every health facility, while securely storing and retrieving medical records.',
             image: 'mycure-web-banner-circles-home-03-mycure-plan.png'
           }
         ]

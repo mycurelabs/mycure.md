@@ -1,6 +1,6 @@
 <template lang="pug">
   div.white
-    v-container(fluid fill-height align-start style="height: 90vh; padding-top: 70px;")
+    v-container(fluid fill-height align-start).panel1
       v-layout(row align-center)
         v-flex
           v-layout(row justify-center)  
@@ -25,5 +25,8 @@
 </script>
 
 <style scoped>
-
+  .panel1 {
+    height: 90vh; 
+    padding-top: 70px;
+  }
 </style>

@@ -12,7 +12,7 @@
             br
             | Say goodbye to multiple, complicated systems!
         v-layout(row wrap justify-center).py-3 
-          v-flex(xs12 md6 style="border-right: 1px solid lightgray").px-5  
+          v-flex(xs12 md6).px-5.verticalLine  
             h2.right Other Providers
             br
             img(
@@ -53,8 +53,7 @@
             color="#18c551"
             :href="`${signInURL}/signup/multi-specialty/step-1`"
             target="_blank"
-            style="height: 60px; width: 250px"
-          ).mt-3
+          ).mt-3.cta-btn
             strong.font-18.white--text.text-none Get Started Today
         p.text-xs-center.py-4.font-18 Have questions? 
           a(@click.stop="toggleChat()")
@@ -146,5 +145,9 @@
 
   h2 {
     font-size: 26px;
+  }
+
+  .verticalLine {
+    border-right: 1px solid lightgray;
   }
 </style>

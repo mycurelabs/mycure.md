@@ -1,10 +1,10 @@
 <template lang="pug">
   div
     div(v-if="!$isMobile").white
-      v-container(align-center fill-height style="padding-top: 70px").px-5.panel-1
+      v-container(align-center fill-height).px-5.panel-1
         v-layout(row justify-center)
-          v-flex(xs12 md6 align-self-center style="margin-top: -10%")
-            h1(style="line-height: 70px;").font-60 MYCURE cares 
+          v-flex(xs12 md6 align-self-center).uspLeft
+            h1.lh-title.font-60 MYCURE cares 
               br
               | for people who 
               br
@@ -27,7 +27,7 @@
                 large
                 @click="showVid = true; handleOurStoryWatchVid()") 
                   strong WATCH VIDEO
-          v-flex(v-if="!$isMobile" xs12 md6 align-self-center style="margin-top: 5%")
+          v-flex(v-if="!$isMobile" xs12 md6 align-self-center).uspRight
             img(width="100%" src="../../assets/images/mycure-homepage-doctor-kid-pediatrician-drawing.png" alt="Our Story")
       v-dialog(v-model="showVid" max-width="700px")
         iframe(
@@ -37,16 +37,13 @@
           type="text/html" width="100%" height="450"
           src="https://www.youtube.com/embed/ZR8e-Egav0M?autoplay=1&loop=1&showinfo=0&rel=0"
           frameborder="0")
-    div(v-else)
+    div(v-else).white
       v-container.pt-5
         v-flex(xs12)
-          h1(style="font-weight: bold").font-40.text-xs-center MYCURE cares for people who care for people.
+          h1.font-weight-bold.font-40.text-xs-center MYCURE cares for people who care for people.
         br
         v-flex(xs12)
           img(width="100%" src="../../assets/images/mycure-homepage-doctor-kid-pediatrician-drawing.png" alt="Our Story").pb-5
-        //- v-flex(xs12 align-self-center)
-          span.font-16 Doctors, nurses, and clinic professionals have a lot of work and we want to make that work easier.
-        
 </template>
 
 <script>
@@ -57,9 +54,7 @@
       };
     },
     computed: {
-      // browserID (){
-      //   return cookieStore.state.browserID;
-      // }
+      // 
     },
     methods: {
       handleOurStoryWatchVid () {

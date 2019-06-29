@@ -1,6 +1,6 @@
 <template lang="pug">
   div
-    div(v-if="!$isMobile" style="padding-top: 200px")#panel3
+    div(v-if="!$isMobile").pt-5#panel3
       v-container
         center
           strong.font-18.font-mc-blue MEDICAL RECORDS

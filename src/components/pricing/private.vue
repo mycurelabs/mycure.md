@@ -58,7 +58,7 @@
         br
         v-layout(row)
           v-flex(xs12 md4) 
-            span(style="font-size: 22px")
+            span.font-22
               strong Frequently Asked Questions
         br
         br
@@ -162,7 +162,7 @@
       br
       v-layout(row)
         v-flex(xs12 md4) 
-          span(style="font-size: 22px")
+          span.font-22
             strong Frequently Asked Questions
       br
       br

@@ -5,21 +5,21 @@
         v-layout(row justify-center).text-xs-center.pb-5
           span.font-40 {{ introduction }}
         br
-        v-layout(v-for="(highlight,index) in storyflow" :key="index" row wrap justify-center)
-          v-flex(xs5 v-if="index%2 === 0").text-xs-right
-            img(style="max-width: 90%; white-space: wrap;" :src="require(`@/assets/images/${ highlight.image }`)" :alt="highlight.title")
-          v-flex(xs5 v-else align-self-center).pr-5.text-xs-right
+        v-layout(v-for="(highlight,index) in storyflow" :key="index" row wrap justify-center) 
+          v-flex(xs5 v-if="index%2 === 0").text-xs-right.py-5
+            img(:src="require(`@/assets/images/${ highlight.image }`)" :alt="highlight.title").storyflowAsset
+          v-flex(xs6 v-else align-self-center).pr-5.text-xs-right.py-5
             span(v-if="hasTitle").font-48.lh-title {{ highlight.title }}
             br
             br
             span.font-18 {{ highlight.text }}
-          v-flex(xs5 v-if="index%2 === 0" align-self-center).pl-5
+          v-flex(xs6 v-if="index%2 === 0" align-self-center).pl-5.py-5
             span(v-if="hasTitle").font-48.lh-title {{ highlight.title }}
             br
             br
             span.font-18 {{ highlight.text }}
-          v-flex(xs5 v-else).text-xs-left
-            img(style="width: auto" :src="require(`@/assets/images/${ highlight.image }`)" :alt="highlight.title")
+          v-flex(xs5 v-else).text-xs-left.py-5
+            img(:src="require(`@/assets/images/${ highlight.image }`)" :alt="highlight.title").storyflowAsset
         br
         v-layout(v-if="featuresButton" row wrap justify-center).pt-5
           v-btn(
@@ -36,7 +36,7 @@
           p.font-40 {{ introduction }}
         v-container(v-for="(highlight,index) in storyflow" :key="index" column justify-center)
           v-layout(row wrap justify-center align-center).pb-2
-            img(style="height: 70vw" :src="require(`@/assets/images/${ highlight.image }`)" :alt="highlight.title")
+            img(:src="require(`@/assets/images/${ highlight.image }`)" :alt="highlight.title").storyflowAsset
           br
           v-layout(align-center row wrap).text-xs-center  
             v-flex(xs12)
@@ -85,4 +85,11 @@
     }
   };
 </script>
+
+<style scoped>
+  .storyflowAsset {
+    width: 70%;
+  }
+</style>
+
 

@@ -1,6 +1,5 @@
 <template lang="pug">
   div
-    //- div(v-if="!$isMobile" style="padding-top: 100px")#panel6
     div(v-if="!$isMobile")#panel6.pt-5
       v-layout(row wrap justify-center)
         span.font-48.text-xs-center.px-3 MYCURE works for Private and Multispecialty Clinics
@@ -35,17 +34,17 @@
                 img(src="../../assets/images/mycure-web-bullet-check.png" alt="Check icon").mr-3
                 span.font-18 Multi-branch Clinics
           tr
-            td(style="border-bottom: 1px solid #bbb;")
+            td
               v-layout(row wrap center)
                 img(src="../../assets/images/mycure-web-bullet-check.png" alt="Check icon").mr-3 
                 span.font-18 Industrial Clinics
-            td(style="border-bottom: 1px solid #bbb;")
+            td
               v-layout(row wrap center)
                 img(src="../../assets/images/mycure-web-bullet-check.png" alt="Check icon").mr-3
                 span.font-18 Dental Clinics
-      testimonial(style="padding-top: 5%")
-      finalWords(style="padding-top: 5%")
-      cards(style="padding-top: 10%")
+      testimonial.py-5
+      finalWords.pb-5
+      cards.pt-5
     div(v-else)
 </template>
 
@@ -85,7 +84,7 @@
   table tr td {
     border-right: 1px solid #bbb;
     border-top: 1px solid #bbb;
-    border-bottom: 0px solid #bbb;
+    border-bottom: 1px solid #bbb;
     padding: 15px;
   }
   table tr td:first-child {

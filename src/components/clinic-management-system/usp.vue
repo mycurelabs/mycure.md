@@ -1,12 +1,12 @@
 <template lang="pug">
   div
     div(v-if="!$isMobile").white
-      v-container(align-center fill-height style="padding-top: 70px").px-5.panel-1
+      v-container(align-center fill-height).px-5.panel-1
         v-layout(row justify-center)
-          v-flex(xs12 md7 align-self-center style="margin-top: -7%") 
-            h1(style="font-weight: bold;").font-18.font-mc-blue MYCURE for Multispecialty Clinics
+          v-flex(xs12 md7 align-self-center).uspLeft 
+            h1.font-weight-bold.font-18.font-mc-blue MYCURE for Multispecialty Clinics
             br
-            p(style="line-height: 60px;").font-48 A clinic management system designed specifically for multispecialty clinics.
+            p.lh-title.font-48 A clinic management system designed specifically for multispecialty clinics.
             br
             v-btn(
               id="cms-signup-btn"
@@ -16,12 +16,12 @@
               color="#18c551"
             ).cta-btn
               strong.font-18.white--text.text-none Get Started Today
-          v-flex(xs12 md7 align-self-center style="margin-top: 10%")
+          v-flex(xs12 md7 align-self-center).uspRight
             img(width="auto" src="../../assets/images/mycure-cms-web-banner-first-panel-doctor-clinic-patients.png" alt="Clinic management system banner").right
     div(v-else).white
       v-container.pt-5
         v-layout(column justify-center)
-          h1(style="font-weight: bold;").font-18.font-mc-blue.text-xs-center.pb-2 MYCURE for Multispecialty Clinics
+          h1.font-weight-bold.font-18.font-mc-blue.text-xs-center.pb-2 MYCURE for Multispecialty Clinics
           br
           p.font-40.text-xs-center A clinic management system designed specifically for multispecialty clinics
           br
@@ -33,13 +33,12 @@
           id="cms-signup-btn" 
           @click.stop="handleCmsSignupBtn" 
           :href="`${signInURL}/signup/multi-specialty/step-1`"
-          target="_blank"
-          style="height: 75px" 
+          target="_blank" 
           title="MYCURE - Sign Up"
           color="#18c551" 
           block
-        )
-          strong(style="font-size: 25px").white--text.text-none Get Started Today
+        ).uspBtn
+          strong.font-25.white--text.text-none Get Started Today
 </template>
 
 <script>
@@ -65,6 +64,10 @@
 <style scoped>
   h1 {
     font-weight: normal
+  }
+
+  .uspBtn {
+    height: 70px;
   }
 </style>
 
