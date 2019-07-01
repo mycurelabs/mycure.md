@@ -10,7 +10,7 @@
                 v-flex(xs5)
                   img(width="100%" height="508vh" src="@/assets/images/mycure-web-banner-pricing-panel-solo.png" alt="Solo features")
                 v-flex(xs8).text-xs-left.pa-5
-                  strong.font-30  .pb-2 MYCURE Solo
+                  strong.font-30.pb-2 MYCURE Solo
                   br
                   br
                   span.font-18 {{ MYCURE_SOLO_description }}
@@ -22,7 +22,7 @@
         br
         br
         br
-        p.text-xs-center.py-4.font-18 Wanna know the difference? 
+        p.text-xs-center.py-4.font-30 Wanna know the difference? 
           a(@click.stop="dialog = true")
             strong.font-mc-blue Click here
           span &nbsp;or&nbsp;
