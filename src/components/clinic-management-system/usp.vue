@@ -3,10 +3,10 @@
     div(v-if="!$isMobile").white
       v-container(align-center fill-height).px-5.panel-1
         v-layout(row justify-center)
-          v-flex(xs12 md7 align-self-center).uspLeft 
+          v-flex(xs12 md8 align-self-center).uspLeft 
             h1.font-weight-bold.font-18.font-mc-blue MYCURE for Multispecialty Clinics
             br
-            p.lh-title.font-48 A clinic management system designed specifically for multispecialty clinics.
+            p.lh-title.font-45 A clinic system designed specifically for multispecialty clinics.
             br
             v-btn(
               id="cms-signup-btn"
@@ -16,8 +16,8 @@
               color="#18c551"
             ).cta-btn
               strong.font-18.white--text.text-none Get Started Today
-          v-flex(xs12 md7 align-self-center).uspRight
-            img(width="auto" src="../../assets/images/mycure-cms-web-banner-first-panel-doctor-clinic-patients.png" alt="Clinic management system banner").right
+          v-flex(xs12 md6 align-self-center).uspRight
+            img(width="90%" src="../../assets/images/mycure-cms-web-banner-first-panel-doctor-clinic-patients.png" alt="Clinic management system banner").right
     div(v-else).white
       v-container.pt-5
         v-layout(column justify-center)

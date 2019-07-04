@@ -174,13 +174,13 @@ export default {
     background-size: cover;
   }
 
-  .uspLeft {
+  /* .uspLeft {
     margin-top: -7%;
   }
 
   .uspRight {
     margin-top: 10%;
-  }
+  } */
 
   .width100 {
     width: 100%;

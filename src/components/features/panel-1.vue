@@ -3,10 +3,10 @@
     div(v-if="!$isMobile")
       v-container(align-center fill-height).px-5.panel-1
         v-layout(row justify-center)
-          v-flex(xs12 md7 align-self-center).uspLeft
+          v-flex(xs12 md8 align-self-center).uspLeft
             h1.font-weight-bold.font-18.font-mc-blue MYCURE Features           
             br
-            p.lh-title.font-48 Human-friendly features, patient-centric care.
+            p.lh-title.font-45 Human-friendly features, patient-centric care.
             br
             br
             v-btn(
@@ -17,8 +17,8 @@
               color="#18c551" 
             ).cta-btn
               strong.font-18.text-none.white--text Sign Up Now
-          v-flex(xs12 md7 align-self-center).uspRight
-            img(width="auto" src="../../assets/images/mycure-cms-web-banner-first-panel-features.png" alt="Features").right
+          v-flex(xs12 md6 align-self-center).uspRight
+            img(width="90%" src="../../assets/images/mycure-cms-web-banner-first-panel-features.png" alt="Features").right
     div(v-else).white
       v-container.pt-5
         v-layout(row justify-center)
