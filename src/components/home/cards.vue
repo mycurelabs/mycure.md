@@ -70,7 +70,6 @@
   export default {
     data () {
       return {
-        // hover: false,
         cms: {
             text: 'Do you run a Multispecialty Clinic with branches around the country?',
             subtxt: 'I manage a \nmultispecialty \nclinic',
@@ -116,13 +115,5 @@
 
   .preWrap {
     white-space: pre-wrap;
-  }
-
-  .class1 {
-    color: white;
-  }
-
-  .class2 {
-    color: #616161;
   }
 </style>
