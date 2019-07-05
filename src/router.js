@@ -59,6 +59,16 @@ export default new Router({
       }
     },
     {
+      path: '/clinic-management-system',
+      name: 'cms',
+      id: 'toolbar-multispecialty-btn',
+      component: cms,
+      meta: {
+        pageType: 'main',
+        pageName: 'Multispecialty Clinics'
+      }
+    },
+    {
       path: '/electronic-medical-records',
       name: 'emr', 
       id: 'toolbar-private-practice-btn',
@@ -67,16 +77,6 @@ export default new Router({
       meta: {
         pageType: 'main',
         pageName: 'Private Practice'
-      }
-    },
-    {
-      path: '/clinic-management-system',
-      name: 'cms',
-      id: 'toolbar-multispecialty-btn',
-      component: cms,
-      meta: {
-        pageType: 'main',
-        pageName: 'Multispecialty Clinics'
       }
     },
     {
