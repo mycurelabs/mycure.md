@@ -43,7 +43,7 @@
           },
           {
             title: 'Oversee Security',
-            text: 'Personally secure and control access to your records with international data privacy standards built inside MYCURE.',
+            text: 'Personally secure and control access to your records. MYCURE adheres to the international data privacy standards.',
             image: 'mycure-web-banner-circles-private-02-security.png'
           },
           {

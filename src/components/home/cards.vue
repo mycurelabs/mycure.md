@@ -7,14 +7,36 @@
         br
         br
         v-layout(row justify-center)
-          v-card(
-            v-for="(card,i) in productCards"
-            :to="{ name: card.link }"
-            :key="i"
-          ).roundedCard.mx-3.cardText
-            v-layout(column justify-center)
-              v-flex(xs12 align-self-center).pa-3
-                strong.preWrap.font-18 {{ card.subtxt }}
+          v-hover
+            v-card(
+              slot-scope="{ hover }"
+              :to="{ name: cms.link }"
+            ).roundedCard.mx-3.cardText
+              v-layout(column justify-center)
+                v-flex(xs12 align-self-center).pa-3
+                  p.font-weight-bold.pb-0.preWrap.font-18 {{ cms.subtxt }}
+                  strong(v-if="!hover").font-mc-grey.font-18 {{ cms.subsubtxt }}
+                  strong(v-else).font-18 {{ cms.subsubtxt }}
+          v-hover
+            v-card(
+              slot-scope="{ hover }"
+              :to="{ name: emr.link }"
+            ).roundedCard.mx-3.cardText
+              v-layout(column justify-center)
+                v-flex(xs12 align-self-center).pa-3
+                  p.font-weight-bold.pb-0.preWrap.font-18 {{ emr.subtxt }}
+                  strong(v-if="!hover").font-mc-grey.font-18 {{ emr.subsubtxt }}
+                  strong(v-else).font-18 {{ emr.subsubtxt }}
+          v-hover
+            v-card(
+              slot-scope="{ hover }"
+              :to="{ name: solo.link }"
+            ).roundedCard.mx-3.cardText
+              v-layout(column justify-center)
+                v-flex(xs12 align-self-center).pa-3
+                  p.font-weight-bold.pb-0.preWrap.font-18 {{ solo.subtxt }}
+                  strong(v-if="!hover").font-mc-grey.font-18 {{ solo.subsubtxt }}
+                  strong(v-else).font-18 {{ solo.subsubtxt }}
         br
         v-layout(row justify-center).pt-5
           p.font-30.text-xs-center Unsure where you fit? 
@@ -48,23 +70,25 @@
   export default {
     data () {
       return {
-        productCards: [
-          {
+        // hover: false,
+        cms: {
             text: 'Do you run a Multispecialty Clinic with branches around the country?',
-            subtxt: 'I manage a \nmultispecialty \nclinic \n(laboratory, imaging, etc.)',
+            subtxt: 'I manage a \nmultispecialty \nclinic',
+            subsubtxt: '(laboratory, imaging, etc.)',
             link: 'cms'
-          },
-          {
-            text: 'Are you a private medical practitioner? Running a clinic on your own or collaborating with others?',
-            subtxt: 'I am a \nprivate medical \npractitioner \n(individually or with peers)',
-            link: 'emr'
-          },
-          {
-            text: 'Do you want to secure your own client’s EMR? Or live remotely with very scarce internet connectivity?',
-            subtxt: 'I need a \nstandalone and \nfree CMS \n(personal data storage)',
-            link: 'mycure-solo'          
-          }
-        ] 
+        },
+        emr: {
+          text: 'Are you a private medical practitioner? Running a clinic on your own or collaborating with others?',
+          subtxt: 'I am a \nprivate medical \npractitioner',
+          subsubtxt: '(individually or with peers)',
+          link: 'emr'
+        },
+        solo: {
+          text: 'Do you want to secure your own client’s EMR? Or live remotely with very scarce internet connectivity?',
+          subtxt: 'I need a \nstandalone and \nfree CMS',
+          subsubtxt: '(personal data storage)',
+          link: 'mycure-solo'          
+        } 
       };
     }
   };
@@ -92,5 +116,13 @@
 
   .preWrap {
     white-space: pre-wrap;
+  }
+
+  .class1 {
+    color: white;
+  }
+
+  .class2 {
+    color: #616161;
   }
 </style>

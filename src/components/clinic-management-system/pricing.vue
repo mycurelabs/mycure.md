@@ -15,7 +15,7 @@
                   br
                   | multispecialty or specialized clinics that will 
                   br
-                  | manage your full-patient journeys with ease.
+                  | complete your patient journeys with ease.
                 br
                 br
                 div(v-for="(feature,index) in multiFeatures" :key="index")
@@ -59,7 +59,7 @@
     data () {
       return {
         signInURL: process.env.VUE_APP_SIGNIN_URL,
-        multiSpecialty_desc: 'An all-around solution for your outpatient, multispecialty or specialized clinics that will manage your full-patient journeys with ease.',
+        multiSpecialty_desc: 'An all-around solution for your outpatient, multispecialty or specialized clinics that will complete your patient journeys with ease.',
         multiFeatures: [
           'Queuing & Registration',
           'Patient Medical Records',
