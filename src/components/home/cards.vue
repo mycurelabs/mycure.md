@@ -50,27 +50,57 @@
         br
         br
         v-layout(column align-center)
-          v-card(
-            :to="{ name: emr.link }"
-          ).roundedCard.my-3.cardText
-            v-layout(column justify-center)
-              v-flex(xs12 align-self-center).pa-3
-                p.font-weight-bold.preWrap.font-16 {{ emr.subtxt }}
-                strong.preWrap.font-16 {{ emr.subsubtxt }}
-          v-card(
-            :to="{ name: cms.link }"
-          ).roundedCard.my-3.cardText
-            v-layout(column justify-center)
-              v-flex(xs12 align-self-center).pa-3
-                p.font-weight-bold.preWrap.font-16 {{ cms.subtxt }}
-                strong.preWrap.font-16 {{ cms.subsubtxt }}
-          v-card(
-            :to="{ name: solo.link }"
-          ).roundedCard.my-3.cardText
-            v-layout(column justify-center)
-              v-flex(xs12 align-self-center).pa-3
-                strong.preWrap.font-16 {{ solo.subtxt }}
-                p.font-weight-bold.preWrap.font-16 {{ solo.subsubtxt }}
+          v-hover
+            v-card(
+              slot-scope="{ hover }"
+              :to="{ name: cms.link }"
+            ).roundedCard.mx-3.cardText.my-2
+              v-layout(column justify-center)
+                v-flex(xs12 align-self-center).pa-3
+                  p.font-weight-bold.pb-0.preWrap.font-16 {{ cms.subtxt }}
+                  strong(v-if="!hover").font-mc-grey.font-16 {{ cms.subsubtxt }}
+                  strong(v-else).font-16 {{ cms.subsubtxt }}
+          v-hover
+            v-card(
+              slot-scope="{ hover }"
+              :to="{ name: emr.link }"
+            ).roundedCard.mx-3.cardText.my-2
+              v-layout(column justify-center)
+                v-flex(xs12 align-self-center).pa-3
+                  p.font-weight-bold.pb-0.preWrap.font-16 {{ emr.subtxt }}
+                  strong(v-if="!hover").font-mc-grey.font-16 {{ emr.subsubtxt }}
+                  strong(v-else).font-16 {{ emr.subsubtxt }}
+          v-hover
+            v-card(
+              slot-scope="{ hover }"
+              :to="{ name: solo.link }"
+            ).roundedCard.mx-3.cardText.my-2
+              v-layout(column justify-center)
+                v-flex(xs12 align-self-center).pa-3
+                  p.font-weight-bold.pb-0.preWrap.font-16 {{ solo.subtxt }}
+                  strong(v-if="!hover").font-mc-grey.font-16 {{ solo.subsubtxt }}
+                  strong(v-else).font-16 {{ solo.subsubtxt }}
+          //- v-card(
+          //-   :to="{ name: emr.link }"
+          //- ).roundedCard.my-3.cardText
+          //-   v-layout(column justify-center)
+          //-     v-flex(xs12 align-self-center).pa-3
+          //-       p.font-weight-bold.preWrap.font-16 {{ emr.subtxt }}
+          //-       strong.preWrap.font-16 {{ emr.subsubtxt }}
+          //- v-card(
+          //-   :to="{ name: cms.link }"
+          //- ).roundedCard.my-3.cardText
+          //-   v-layout(column justify-center)
+          //-     v-flex(xs12 align-self-center).pa-3
+          //-       p.font-weight-bold.preWrap.font-16 {{ cms.subtxt }}
+          //-       strong.preWrap.font-16 {{ cms.subsubtxt }}
+          //- v-card(
+          //-   :to="{ name: solo.link }"
+          //- ).roundedCard.my-3.cardText
+          //-   v-layout(column justify-center)
+          //-     v-flex(xs12 align-self-center).pa-3
+          //-       strong.preWrap.font-16 {{ solo.subtxt }}
+          //-       p.font-weight-bold.preWrap.font-16 {{ solo.subsubtxt }}
         v-layout(row justify-center).pt-5
           p.font-18.text-xs-center Unsure where you fit? 
             router-link(:to="{ name: 'calendly' }")
