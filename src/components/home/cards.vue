@@ -51,13 +51,26 @@
         br
         v-layout(column align-center)
           v-card(
-            v-for="(card,i) in productCards"
-            :key="i"
-            :to="{ name: card.link }"
+            :to="{ name: emr.link }"
           ).roundedCard.my-3.cardText
             v-layout(column justify-center)
               v-flex(xs12 align-self-center).pa-3
-                strong.preWrap.font-16 {{ card.subtxt }}
+                p.font-weight-bold.preWrap.font-16 {{ emr.subtxt }}
+                strong.preWrap.font-16 {{ emr.subsubtxt }}
+          v-card(
+            :to="{ name: cms.link }"
+          ).roundedCard.my-3.cardText
+            v-layout(column justify-center)
+              v-flex(xs12 align-self-center).pa-3
+                p.font-weight-bold.preWrap.font-16 {{ cms.subtxt }}
+                strong.preWrap.font-16 {{ cms.subsubtxt }}
+          v-card(
+            :to="{ name: solo.link }"
+          ).roundedCard.my-3.cardText
+            v-layout(column justify-center)
+              v-flex(xs12 align-self-center).pa-3
+                strong.preWrap.font-16 {{ solo.subtxt }}
+                p.font-weight-bold.preWrap.font-16 {{ solo.subsubtxt }}
         v-layout(row justify-center).pt-5
           p.font-18.text-xs-center Unsure where you fit? 
             router-link(:to="{ name: 'calendly' }")
