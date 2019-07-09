@@ -22,12 +22,13 @@
         br
         br
         br
-        p.text-xs-center.py-4.font-30 Wanna know the difference? 
-          a(@click.stop="dialog = true")
-            strong.font-mc-blue Click here
-          span &nbsp;or&nbsp;
-          a(@click.stop="toggleChat()")
-            strong.font-mc-blue chat us.
+        p.text-xs-center.py-4.font-30 To learn more, visit 
+          //- a(@click.stop="dialog = true")
+          //-   strong.font-mc-blue Click here
+          //- span &nbsp;or&nbsp;
+          //- a(@click.stop="toggleChat()")
+          //-   strong.font-mc-blue chat us.
+          router-link(:to="{name:'solo'}").visit solo.health
       v-dialog(
         v-model="dialog"
         max-width="100vh"
@@ -121,6 +122,10 @@
 
   .dialogIndex {
     z-index: 999;
+  }
+
+  .visit {
+    text-decoration: none;
   }
 </style>
 

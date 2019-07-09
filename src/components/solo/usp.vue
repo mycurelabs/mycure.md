@@ -6,7 +6,7 @@
           v-flex(xs12 md8 align-self-center).uspLeft
             h1.font-weight-bold.font-18.font-mc-blue MYCURE Solo           
             br
-            p.lh-title.font-45 A free and standalone clinic management system.
+            p.lh-title.font-45 A free standalone clinic management system.
             br
             v-btn(
               href="https://solo.health"
@@ -23,14 +23,14 @@
         v-layout(column align-center justify-center)
             h1.font-weight-bold.font-18.font-mc-blue.text-xs-center.pb-2 MYCURE Solo 
             br
-            p.font-40.text-xs-center A free and standalone clinic management system.
+            p.font-40.text-xs-center A free standalone clinic management system.
         v-flex(xs12)
           img(width="100%" src="@/assets/images/mycure-emr-web-banner-first-panel-solo-page.png" alt="Solo doctor").pb-5
       v-layout(row justify-center)
         v-btn(
           id="solo-signup-btn" 
-          @click.stop="handleSoloSignupBtn(); toggleChat()" 
           href="https://solo.health"
+          @click.stop="handleSoloSignupBtn(); toggleChat()" 
           title="MYCURE - Sign Up"
           color="#18c551" 
           block
