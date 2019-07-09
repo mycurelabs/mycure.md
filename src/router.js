@@ -109,6 +109,14 @@ export default new Router({
       }
     },
     {
+      path: '/solo',
+      name: 'solo',
+      beforeEnter (to, from, next) {
+        window.open('https://solo.health/');
+        next({name: from.name || 'home'});
+      }
+    },
+    {
       path: '/blog-link',
       name: 'blog-link',
       beforeEnter (to, from, next) {
