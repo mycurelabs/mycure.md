@@ -9,7 +9,7 @@
             p.lh-title.font-45 A free and standalone clinic management system.
             br
             v-btn(
-              :href="' '" 
+              href="https://solo.health"
               target="_blank"
               color="#18c551" 
               id="solo-signup-btn"
@@ -30,6 +30,7 @@
         v-btn(
           id="solo-signup-btn" 
           @click.stop="handleSoloSignupBtn(); toggleChat()" 
+          href="https://solo.health"
           title="MYCURE - Sign Up"
           color="#18c551" 
           block
