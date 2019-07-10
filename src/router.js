@@ -117,6 +117,14 @@ export default new Router({
       }
     },
     {
+      path: '/solo-early-access',
+      name: 'solo-early-access',
+      beforeEnter (to, from, next) {
+        window.open('https://solo732284.typeform.com/to/EWQfst/');
+        next({name: from.name || 'home'});
+      }
+    },
+    {
       path: '/blog-link',
       name: 'blog-link',
       beforeEnter (to, from, next) {
