@@ -23,7 +23,7 @@
         v-layout(column justify-center)
           h1.font-weight-bold.font-18.font-mc-blue.text-xs-center.pb-2 MYCURE for Multispecialty Clinics
           br
-          p.font-40.text-xs-center A clinic management system designed specifically for multispecialty clinics
+          p.font-40.text-xs-center A clinic system designed specifically for multispecialty clinics.
           br
           br
         v-flex(xs12)

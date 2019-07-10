@@ -23,7 +23,7 @@
         v-layout(column justify-center)
             h1.font-weight-bold.font-18.font-mc-blue.text-xs-center.pb-2 MYCURE for Private Practice
             br
-            p.font-40.text-xs-center.lh-title A clinic management system designed specifically for private medical practitioners
+            p.font-40.text-xs-center.lh-title A clinic system designed specifically for private medical practitioners.
         v-flex(xs12)
           img(width="100%" src="../../assets/images/mycure-emr-web-banner-first-panel-doctor-clinic-patients.png" alt="Individual doctor").pb-5
       v-layout(row justify-center)

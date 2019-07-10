@@ -25,7 +25,7 @@
             br
             | Management System
           br            
-          h2.font-weight-regular.lh-title.font-40.text-xs-center A modern technology platform that helps organize and secure patients' medical records.
+          h2.font-weight-regular.lh-title.font-40.text-xs-center A platform that helps organize and secure patients' medical records.
         v-flex(xs12)
           img(width="100%" src="../../assets/images/mycure-web-banner-first-panel-doctor-clinic-patients.png" alt="Clinic home banner")
       v-layout(row justify-center)

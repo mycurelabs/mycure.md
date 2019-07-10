@@ -60,7 +60,7 @@
         signInURL: process.env.VUE_APP_SIGNIN_URL,
         private_title: 'Designed for private practitioners who run their clinic alone or collaborate with other private practitioners.',
         privateFeatures: [
-          'Create unlimited clinics',
+          'Create unlimited number of virtual clinics',
           'Access using multiple devices',
           'Full Access to the CMS Core Modules',
           'Start FREE up to 100 patient profiles',
