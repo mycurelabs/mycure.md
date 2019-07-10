@@ -1,35 +1,36 @@
 <template lang="pug">
-  v-container
-    cookie-law(
-      position="top" 
-      transitionName="fade"
-    ).Cookie--mcCookie.white--text.pa-2
-      div(slot-scope="props").width100
-        v-container.py-1.width100
-          v-layout(row v-if="!$isMobile").px-4
-            v-flex(xs11).pt-2
-              | We use third-party services to understand web traffic data for us and they may collect cookies during the process.
-              | By continuing to browse our site, you agree to MYCURE's 
-              router-link(:to="{name: 'terms'}").policy-links Terms of Use 
-              | & 
-              router-link(:to="{name: 'privacy-policy'}").policy-links Privacy Policy
-              | .  
-              | Feel free to check out our policies anytime for more info. 
-            v-spacer
-            v-btn(flat icon color="white" @click="props.accept")
-              v-icon mdi-close
-          v-layout(row v-else).pl-3
-            v-flex(xs10)
-              | We use third-party services to understand web traffic data for us and they may collect cookies during the process.
-              | By continuing to browse our site, you agree to MYCURE's 
-              router-link(:to="{name: 'terms'}").policy-links Terms of Use 
-              | & 
-              router-link(:to="{name: 'privacy-policy'}").policy-links Privacy Policy
-              | .  
-              | Feel free to check out our policies anytime for more info. 
-            v-flex(xs1).pl-2
-              v-btn(flat icon left color="white" @click="props.accept")
-                v-icon mdi-close   
+  div
+    v-container
+      cookie-law(
+        position="top" 
+        transitionName="fade"
+      ).Cookie--mcCookie.white--text.pa-1
+        div(slot-scope="props").width100
+          v-container.py-1.width100
+            v-layout(row v-if="!$isMobile").px-4
+              v-flex(xs11).pt-2
+                | We use third-party services to understand web traffic data for us and they may collect cookies during the process.
+                | By continuing to browse our site, you agree to MYCURE's 
+                router-link(:to="{name: 'terms'}").policy-links Terms of Use 
+                | & 
+                router-link(:to="{name: 'privacy-policy'}").policy-links Privacy Policy
+                | .  
+                | Feel free to check out our policies anytime for more info. 
+              v-spacer
+              v-btn(flat icon color="white" @click="props.accept")
+                v-icon mdi-close
+            v-layout(row v-else).pl-3
+              v-flex(xs10)
+                | We use third-party services to understand web traffic data for us and they may collect cookies during the process.
+                | By continuing to browse our site, you agree to MYCURE's 
+                router-link(:to="{name: 'terms'}").policy-links Terms of Use 
+                | & 
+                router-link(:to="{name: 'privacy-policy'}").policy-links Privacy Policy
+                | .  
+                | Feel free to check out our policies anytime for more info. 
+              v-flex(xs1).pl-2
+                v-btn(flat icon left color="white" @click="props.accept")
+                  v-icon mdi-close   
 </template>
 
 <script>
@@ -43,7 +44,7 @@
 
 <style scoped>
   .Cookie--mcCookie {
-    margin-top: 11%;
+    margin-top: 15%;
     background-color: #596d88;
     font-size: 13px;
   }
