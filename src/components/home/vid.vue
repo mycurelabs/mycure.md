@@ -1,7 +1,7 @@
 <template lang="pug">
   div
     div(v-if="!$isMobile")#panel2.pt-5
-      v-container.padding380
+      v-container.padding300
         v-layout(row align-center justify-center)
           div.maleDoctor
             img(src="../../assets/images/mycure-web-video-cover-decor-doctor-left.png" alt="Male doctor")
@@ -77,7 +77,7 @@
     border-radius: 10px;
   }
 
-  .padding380 {
-    padding-top: 380px;
+  .padding300 {
+    padding-top: 300px;
   }
 </style>
