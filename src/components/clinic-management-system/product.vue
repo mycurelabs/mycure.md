@@ -3,7 +3,7 @@
     div(v-if="!$isMobile").transparent#panel5.pt-5
       v-container
         v-layout(column wrap justify-center)
-          p.font-48.lh-title.text-xs-center.pb-5 Designed for clinics of all shapes and sizes.
+          p.font-45.lh-title.text-xs-center.pb-5 Designed for clinics of all shapes and sizes.
           br
           img(height="100%" width="100%"  src="../../assets/images/mycure-home-web-complete-for-clinics-of-all-sizes-diagram.png" alt="All types of clinics").mb-3
       br
@@ -25,7 +25,7 @@
     div(v-else).pt-5
       v-container
         v-layout(row justify-center)
-          span.font-40.text-xs-center.lh-title Designed for clinics of all shapes and sizes.
+          span.font-45.text-xs-center.lh-title Designed for clinics of all shapes and sizes.
         br
         v-layout(row justify-center)
           div
