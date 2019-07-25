@@ -2,24 +2,17 @@
   div
     div(v-if="!$isMobile").pt-5
       v-container
-        v-layout(row justify-center).text-xs-center
-          span.font-40 {{ introduction }}
+        v-layout(row justify-center).text-xs-center.pb60
+          span.font-45 {{ introduction }}
         br
-        v-layout(v-for="(highlight,index) in storyflow" :key="index" row wrap justify-center) 
-          v-flex(xs5 v-if="index%2 === 0").text-xs-right.py-5
-            img(:src="require(`@/assets/images/${ highlight.image }`)" :alt="highlight.title").storyflowAsset
-          v-flex(xs6 v-else align-self-center).pr-5.text-xs-right.py-5
+        v-layout(v-for="(highlight,index) in storyflow" :key="index" row wrap justify-center).pb60
+          v-flex(xs4 align-self-center).pr-5
+            img(:src="require(`@/assets/images/${ highlight.image }`)" :alt="highlight.title").storyflowAsset.right
+          v-flex(xs5)
             span(v-if="hasTitle").font-40.lh-title {{ highlight.title }}
             br
             br
             span.font-18 {{ highlight.text }}
-          v-flex(xs6 v-if="index%2 === 0" align-self-center).pl-5.py-5
-            span(v-if="hasTitle").font-40.lh-title {{ highlight.title }}
-            br
-            br
-            span.font-18 {{ highlight.text }}
-          v-flex(xs5 v-else).text-xs-left.py-5
-            img(:src="require(`@/assets/images/${ highlight.image }`)" :alt="highlight.title").storyflowAsset
         br
         v-layout(v-if="featuresButton" row wrap justify-center).pt-5
           v-btn(
@@ -88,7 +81,10 @@
 
 <style scoped>
   .storyflowAsset {
-    width: 70%;
+    width: 275px;
+  }
+  .pb60 {
+    padding-bottom: 60px;
   }
 </style>
 
