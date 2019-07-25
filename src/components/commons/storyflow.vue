@@ -2,19 +2,19 @@
   div
     div(v-if="!$isMobile").pt-5
       v-container
-        v-layout(row justify-center).text-xs-center.pb-5
+        v-layout(row justify-center).text-xs-center
           span.font-40 {{ introduction }}
         br
         v-layout(v-for="(highlight,index) in storyflow" :key="index" row wrap justify-center) 
           v-flex(xs5 v-if="index%2 === 0").text-xs-right.py-5
             img(:src="require(`@/assets/images/${ highlight.image }`)" :alt="highlight.title").storyflowAsset
           v-flex(xs6 v-else align-self-center).pr-5.text-xs-right.py-5
-            span(v-if="hasTitle").font-48.lh-title {{ highlight.title }}
+            span(v-if="hasTitle").font-40.lh-title {{ highlight.title }}
             br
             br
             span.font-18 {{ highlight.text }}
           v-flex(xs6 v-if="index%2 === 0" align-self-center).pl-5.py-5
-            span(v-if="hasTitle").font-48.lh-title {{ highlight.title }}
+            span(v-if="hasTitle").font-40.lh-title {{ highlight.title }}
             br
             br
             span.font-18 {{ highlight.text }}

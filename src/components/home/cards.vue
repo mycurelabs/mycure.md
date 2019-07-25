@@ -2,7 +2,7 @@
   div#panel9
     div(v-if="!$isMobile")
       v-container.text-xs-center
-        b.font-48 What brings you here?
+        b.font-40 What brings you here?
         br
         br
         br

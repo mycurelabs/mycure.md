@@ -4,7 +4,7 @@
       v-container(align-center fill-height).px-5.panel-1
         v-layout(row justify-center)
           v-flex(xs12 md8 align-self-center).uspLeft
-            h1.font-weight-bold.font-18.font-mc-blue MYCURE Complete Clinic Management System
+            h1.font-weight-bold.font-18.font-mc-blue MYCURE Complete Clinic Practice Management System
             br
             h2.font-weight-regular.lh-60.font-45 A platform that helps organize and secure patients' medical records.
             br

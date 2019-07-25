@@ -4,7 +4,7 @@
       v-container
         v-layout(row wrap justify center)
           v-flex(xs6 align-self-center).px-3
-            span.font-48 What makes MYCURE so different?
+            span.font-40 What makes MYCURE so different?
             br
             br
             span.font-18.text-xs-center MYCURE works online and offline! Using our proprietary tech called Syncbase, you can digitally process your medical records locally using multiple devices even if the internet is down! Once online, it automatically synchronizes your data back into the cloud.
