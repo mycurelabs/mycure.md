@@ -67,16 +67,13 @@
     background-position: center center;
     background-size: 100% 100%;
   }
-
   .margin-2 {
     margin: -2% 0 -2% 0;
   }
-
   .vidBorder {
     border: 10px solid white; 
     border-radius: 10px;
   }
-
   .padding300 {
     padding-top: 300px;
   }

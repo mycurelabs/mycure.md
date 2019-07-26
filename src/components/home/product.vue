@@ -1,7 +1,7 @@
 <template lang="pug">
-  div#products
-    div(v-if="!$isMobile").pt-5
-      v-container
+  div
+    div(v-if="!$isMobile").py-5.productPanel
+      v-container.productContainer
         v-layout(column justify-center).pt-3
           p.font-45.lh-title.text-xs-center.pb-5 MYCURE is a complete clinic management system — everything your clinic needs.
           img(height="100%" width="100%" src="../../assets/images/mycure-home-web-complete-clinic-management-system-diagram.png" alt="Complete clinic management system")
@@ -23,7 +23,7 @@
               :navigationClickTargetSize="50"
               navigationNextLabel=" "
               navigationPrevLabel=" "
-            ) 
+            )
               slide(
                 v-for="(product,index) in 6"
                 :key="index"
@@ -111,3 +111,16 @@
     }
   };
 </script>
+
+<style scoped>
+  .productPanel {
+    background: #43ab5f;
+    margin-top: -100px;
+  }
+  .productContainer {
+    background: white;
+    border-style: solid;
+    border-color: white;
+    border-radius: 20px;
+  }
+</style>

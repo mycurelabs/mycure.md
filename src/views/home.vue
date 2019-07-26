@@ -9,9 +9,8 @@
       :featuresButton="true"
     ).showPanel
     vid
-    product
     br
-    v-divider
+    product
     unique
     br
     v-divider
