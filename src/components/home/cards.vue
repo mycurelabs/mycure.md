@@ -14,9 +14,15 @@
             ).roundedCard.mx-3.cardText
               v-layout(column justify-center)
                 v-flex(xs12 align-self-center).pa-3
-                  p.font-weight-bold.pb-0.preWrap.font-18 {{ cms.subtxt }}
-                  strong(v-if="!hover").font-mc-grey.font-18 {{ cms.subsubtxt }}
-                  strong(v-else).font-18 {{ cms.subsubtxt }}
+                  v-flex(xs12)
+                    img(
+                      src='../../assets/images/mycure-cms-web-solo-comparison-multispecialty.png' 
+                      height="100"
+                    )
+                  strong.pb-0.preWrap.font-18 {{ cms.subtxt }}
+                  br
+                  strong(v-if="!hover").font-mc-grey.font-18.font-italic {{ cms.subsubtxt }}
+                  strong(v-else).font-18.font-italic {{ cms.subsubtxt }}
           v-hover
             v-card(
               slot-scope="{ hover }"
@@ -24,9 +30,15 @@
             ).roundedCard.mx-3.cardText
               v-layout(column justify-center)
                 v-flex(xs12 align-self-center).pa-3
-                  p.font-weight-bold.pb-0.preWrap.font-18 {{ emr.subtxt }}
-                  strong(v-if="!hover").font-mc-grey.font-18 {{ emr.subsubtxt }}
-                  strong(v-else).font-18 {{ emr.subsubtxt }}
+                  v-flex(xs12)
+                    img(
+                      src='../../assets/images/mycure-cms-web-solo-comparison-private.png' 
+                      height="100"
+                    )
+                  strong.pb-0.preWrap.font-18 {{ emr.subtxt }}
+                  br
+                  strong(v-if="!hover").font-mc-grey.font-18.font-italic {{ emr.subsubtxt }}
+                  strong(v-else).font-18.font-italic {{ emr.subsubtxt }}
           v-hover
             v-card(
               slot-scope="{ hover }"
@@ -34,12 +46,20 @@
             ).roundedCard.mx-3.cardText
               v-layout(column justify-center)
                 v-flex(xs12 align-self-center).pa-3
-                  p.font-weight-bold.pb-0.preWrap.font-18 {{ solo.subtxt }}
-                  strong(v-if="!hover").font-mc-grey.font-18 {{ solo.subsubtxt }}
-                  strong(v-else).font-18 {{ solo.subsubtxt }}
+                  v-flex(xs12)
+                    img(
+                      src='../../assets/images/mycure-cms-web-solo-comparison-solo.png' 
+                      height="100"
+                    )
+                  strong.font-weight-bold.pb-0.preWrap.font-18 {{ solo.subtxt }}
+                  br
+                  strong(v-if="!hover").font-mc-grey.font-18.font-italic {{ solo.subsubtxt }}
+                  strong(v-else).font-18.font-italic {{ solo.subsubtxt }}
         br
         v-layout(row justify-center).pt-5
           p.font-30.text-xs-center Unsure where you fit? 
+            br
+            |
             router-link(:to="{ name: 'calendly' }")
               strong Book a demo
       v-layout(row justify-center)
@@ -57,9 +77,15 @@
             ).roundedCard.mx-3.cardText.my-2
               v-layout(column justify-center)
                 v-flex(xs12 align-self-center).pa-3
-                  p.font-weight-bold.pb-0.preWrap.font-16 {{ cms.subtxt }}
-                  strong(v-if="!hover").font-mc-grey.font-16 {{ cms.subsubtxt }}
-                  strong(v-else).font-16 {{ cms.subsubtxt }}
+                  v-flex(xs12)
+                    img(
+                      src='../../assets/images/mycure-cms-web-solo-comparison-multispecialty.png' 
+                      height="100"
+                    )
+                  strong.pb-0.preWrap.font-16 {{ cms.subtxt }}
+                  br
+                  strong(v-if="!hover").font-mc-grey.font-16.font-italic {{ cms.subsubtxt }}
+                  strong(v-else).font-16.font-italic {{ cms.subsubtxt }}
           v-hover
             v-card(
               slot-scope="{ hover }"
@@ -67,9 +93,15 @@
             ).roundedCard.mx-3.cardText.my-2
               v-layout(column justify-center)
                 v-flex(xs12 align-self-center).pa-3
-                  p.font-weight-bold.pb-0.preWrap.font-16 {{ emr.subtxt }}
-                  strong(v-if="!hover").font-mc-grey.font-16 {{ emr.subsubtxt }}
-                  strong(v-else).font-16 {{ emr.subsubtxt }}
+                  v-flex(xs12)
+                    img(
+                      src='../../assets/images/mycure-cms-web-solo-comparison-private.png' 
+                      height="100"
+                    )
+                  strong.pb-0.preWrap.font-16 {{ emr.subtxt }}
+                  br
+                  strong(v-if="!hover").font-mc-grey.font-16.font-italic {{ emr.subsubtxt }}
+                  strong(v-else).font-16.font-italic {{ emr.subsubtxt }}
           v-hover
             v-card(
               slot-scope="{ hover }"
@@ -77,30 +109,15 @@
             ).roundedCard.mx-3.cardText.my-2
               v-layout(column justify-center)
                 v-flex(xs12 align-self-center).pa-3
-                  p.font-weight-bold.pb-0.preWrap.font-16 {{ solo.subtxt }}
-                  strong(v-if="!hover").font-mc-grey.font-16 {{ solo.subsubtxt }}
-                  strong(v-else).font-16 {{ solo.subsubtxt }}
-          //- v-card(
-          //-   :to="{ name: emr.link }"
-          //- ).roundedCard.my-3.cardText
-          //-   v-layout(column justify-center)
-          //-     v-flex(xs12 align-self-center).pa-3
-          //-       p.font-weight-bold.preWrap.font-16 {{ emr.subtxt }}
-          //-       strong.preWrap.font-16 {{ emr.subsubtxt }}
-          //- v-card(
-          //-   :to="{ name: cms.link }"
-          //- ).roundedCard.my-3.cardText
-          //-   v-layout(column justify-center)
-          //-     v-flex(xs12 align-self-center).pa-3
-          //-       p.font-weight-bold.preWrap.font-16 {{ cms.subtxt }}
-          //-       strong.preWrap.font-16 {{ cms.subsubtxt }}
-          //- v-card(
-          //-   :to="{ name: solo.link }"
-          //- ).roundedCard.my-3.cardText
-          //-   v-layout(column justify-center)
-          //-     v-flex(xs12 align-self-center).pa-3
-          //-       strong.preWrap.font-16 {{ solo.subtxt }}
-          //-       p.font-weight-bold.preWrap.font-16 {{ solo.subsubtxt }}
+                  v-flex(xs12)
+                    img(
+                      src='../../assets/images/mycure-cms-web-solo-comparison-solo.png' 
+                      height="100"
+                    )
+                  strong.pb-0.preWrap.font-16 {{ solo.subtxt }}
+                  br
+                  strong(v-if="!hover").font-mc-grey.font-16.font-italic {{ solo.subsubtxt }}
+                  strong(v-else).font-16.font-italic {{ solo.subsubtxt }}
         v-layout(row justify-center).pt-5
           p.font-18.text-xs-center Unsure where you fit? 
             router-link(:to="{ name: 'calendly' }")
@@ -115,7 +132,7 @@
       return {
         cms: {
             text: 'Do you run a Multispecialty Clinic with branches around the country?',
-            subtxt: 'I manage a \nmultispecialty \nclinic',
+            subtxt: `I manage a \nmultispecialty \nclinic`,
             subsubtxt: '(laboratory, imaging, etc.)',
             link: 'cms'
         },
@@ -140,7 +157,7 @@
   .roundedCard {
     border-radius: 20px;
     width: 275px; 
-    height: 150px;
+    height: 240px;
   }
 
   .roundedCard:hover {
@@ -158,5 +175,6 @@
 
   .preWrap {
     white-space: pre-wrap;
+    line-height: auto;
   }
 </style>

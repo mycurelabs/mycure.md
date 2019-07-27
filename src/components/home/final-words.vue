@@ -3,7 +3,7 @@
     div(v-if="!$isMobile")
       panelBeforeFooter
         img(slot="img" src="../../assets/images/mycure-web-banner-last-panel-home-doctors.png" alt="Healthcare professionals").banner
-        span(slot="txt").font-45.lh-title Join thousands of healthcare professionals who get the best out of technology in their practice.
+        span(slot="txt").font-40.lh-title Join thousands of medical practitioners who optimize their practice with the use of efficient technology.
         v-btn(
           id="home-signup-btn"
           @click.stop="handleHomeSignupBtn"
@@ -19,7 +19,7 @@
         v-layout(row justify-center)
           img(width="100%" height="100%" src="../../assets/images/mycure-web-banner-last-panel-home-doctors.png" alt="Healthcare proffesionals")
         br 
-        p.font-25.text-xs-center.lh-title Join thousands of healthcare professionals who get the best out of technology in their practice.
+        p.font-25.text-xs-center.lh-title Join thousands of medical practitioners who optimize their practice with the use of efficient technology.
         v-layout(row justify-center)
           v-btn(
             id="emr-signup-btn"
