@@ -14,15 +14,18 @@
             ).roundedCard.mx-3.cardText
               v-layout(column justify-center)
                 v-flex(xs12 align-self-center).pa-3
-                  v-flex(xs12)
+                  v-flex(xs12).cardAssetPadding.pb-3
                     img(
                       src='../../assets/images/mycure-cms-web-solo-comparison-multispecialty.png' 
                       height="100"
                     )
-                  strong.pb-0.preWrap.font-18 {{ cms.subtxt }}
-                  br
-                  strong(v-if="!hover").font-mc-grey.font-18.font-italic {{ cms.subsubtxt }}
-                  strong(v-else).font-18.font-italic {{ cms.subsubtxt }}
+                  p.subtxtLineHeight.font-weight-bold.font-18 I manage a 
+                    br
+                    | multispecialty 
+                    br
+                    | clinic
+                  strong(v-if="!hover").font-mc-grey.font-14.font-italic {{ cms.subsubtxt }}
+                  strong(v-else).font-14.font-italic {{ cms.subsubtxt }}
           v-hover
             v-card(
               slot-scope="{ hover }"
@@ -30,15 +33,18 @@
             ).roundedCard.mx-3.cardText
               v-layout(column justify-center)
                 v-flex(xs12 align-self-center).pa-3
-                  v-flex(xs12)
+                  v-flex(xs12).cardAssetPadding.pb-3
                     img(
                       src='../../assets/images/mycure-cms-web-solo-comparison-private.png' 
                       height="100"
                     )
-                  strong.pb-0.preWrap.font-18 {{ emr.subtxt }}
-                  br
-                  strong(v-if="!hover").font-mc-grey.font-18.font-italic {{ emr.subsubtxt }}
-                  strong(v-else).font-18.font-italic {{ emr.subsubtxt }}
+                  p.subtxtLineHeight.font-weight-bold.pb-0.font-18 I am a 
+                    br
+                    | private medical 
+                    br
+                    |practitioner
+                  strong(v-if="!hover").font-mc-grey.font-14.font-italic {{ emr.subsubtxt }}
+                  strong(v-else).font-14.font-italic {{ emr.subsubtxt }}
           v-hover
             v-card(
               slot-scope="{ hover }"
@@ -46,15 +52,18 @@
             ).roundedCard.mx-3.cardText
               v-layout(column justify-center)
                 v-flex(xs12 align-self-center).pa-3
-                  v-flex(xs12)
+                  v-flex(xs12).cardAssetPadding.pb-3
                     img(
                       src='../../assets/images/mycure-cms-web-solo-comparison-solo.png' 
                       height="100"
                     )
-                  strong.font-weight-bold.pb-0.preWrap.font-18 {{ solo.subtxt }}
-                  br
-                  strong(v-if="!hover").font-mc-grey.font-18.font-italic {{ solo.subsubtxt }}
-                  strong(v-else).font-18.font-italic {{ solo.subsubtxt }}
+                  p.subtxtLineHeight.font-weight-bold.pb-0.preWrap.font-18 I need a 
+                    br
+                    | standalone and 
+                    br 
+                    | free CMS
+                  strong(v-if="!hover").font-mc-grey.font-14.font-italic {{ solo.subsubtxt }}
+                  strong(v-else).font-14.font-italic {{ solo.subsubtxt }}
         br
         v-layout(row justify-center).pt-5
           p.font-30.text-xs-center Unsure where you fit? 
@@ -77,15 +86,14 @@
             ).roundedCard.mx-3.cardText.my-2
               v-layout(column justify-center)
                 v-flex(xs12 align-self-center).pa-3
-                  v-flex(xs12)
+                  v-flex(xs12).cardAssetPadding.pb-3
                     img(
                       src='../../assets/images/mycure-cms-web-solo-comparison-multispecialty.png' 
                       height="100"
                     )
-                  strong.pb-0.preWrap.font-16 {{ cms.subtxt }}
-                  br
-                  strong(v-if="!hover").font-mc-grey.font-16.font-italic {{ cms.subsubtxt }}
-                  strong(v-else).font-16.font-italic {{ cms.subsubtxt }}
+                  p.font-weight-bold.pb-0.preWrap.font-16 {{ cms.subtxt }}
+                  strong(v-if="!hover").font-mc-grey.font-14.font-italic {{ cms.subsubtxt }}
+                  strong(v-else).font-14.font-italic {{ cms.subsubtxt }}
           v-hover
             v-card(
               slot-scope="{ hover }"
@@ -93,15 +101,14 @@
             ).roundedCard.mx-3.cardText.my-2
               v-layout(column justify-center)
                 v-flex(xs12 align-self-center).pa-3
-                  v-flex(xs12)
+                  v-flex(xs12).cardAssetPadding.pb-3
                     img(
                       src='../../assets/images/mycure-cms-web-solo-comparison-private.png' 
                       height="100"
                     )
-                  strong.pb-0.preWrap.font-16 {{ emr.subtxt }}
-                  br
-                  strong(v-if="!hover").font-mc-grey.font-16.font-italic {{ emr.subsubtxt }}
-                  strong(v-else).font-16.font-italic {{ emr.subsubtxt }}
+                  p.font-weight-bold.pb-0.preWrap.font-16 {{ emr.subtxt }}
+                  strong(v-if="!hover").font-mc-grey.font-14.font-italic {{ emr.subsubtxt }}
+                  strong(v-else).font-14.font-italic {{ emr.subsubtxt }}
           v-hover
             v-card(
               slot-scope="{ hover }"
@@ -109,17 +116,18 @@
             ).roundedCard.mx-3.cardText.my-2
               v-layout(column justify-center)
                 v-flex(xs12 align-self-center).pa-3
-                  v-flex(xs12)
+                  v-flex(xs12).cardAssetPadding.pb-3
                     img(
                       src='../../assets/images/mycure-cms-web-solo-comparison-solo.png' 
                       height="100"
                     )
-                  strong.pb-0.preWrap.font-16 {{ solo.subtxt }}
-                  br
-                  strong(v-if="!hover").font-mc-grey.font-16.font-italic {{ solo.subsubtxt }}
-                  strong(v-else).font-16.font-italic {{ solo.subsubtxt }}
+                  p.font-weight-bold.pb-0.preWrap.font-16 {{ solo.subtxt }}
+                  strong(v-if="!hover").font-mc-grey.font-14.font-italic {{ solo.subsubtxt }}
+                  strong(v-else).font-14.font-italic {{ solo.subsubtxt }}
         v-layout(row justify-center).pt-5
           p.font-18.text-xs-center Unsure where you fit? 
+            br
+            |
             router-link(:to="{ name: 'calendly' }")
               strong Book a demo
       v-layout(row justify-center)
@@ -132,7 +140,7 @@
       return {
         cms: {
             text: 'Do you run a Multispecialty Clinic with branches around the country?',
-            subtxt: `I manage a \nmultispecialty \nclinic`,
+            subtxt: 'I manage a \nmultispecialty \nclinic',
             subsubtxt: '(laboratory, imaging, etc.)',
             link: 'cms'
         },
@@ -157,24 +165,26 @@
   .roundedCard {
     border-radius: 20px;
     width: 275px; 
-    height: 240px;
+    height: 320px;
   }
-
   .roundedCard:hover {
     color: white;
     background-color: #2e9fdf;
   }
-
   .cardText {
     color: #2e9fdf;
   }
-
   .cardText:hover {
     color: white;
   }
-
   .preWrap {
     white-space: pre-wrap;
     line-height: auto;
+  }
+  .cardAssetPadding {
+    padding-top: 30px;
+  }
+  .subtxtLineHeight {
+    line-height: 24px;
   }
 </style>
