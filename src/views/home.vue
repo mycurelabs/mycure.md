@@ -51,10 +51,10 @@
     },
     data () {
       return {
-        introText: 'A Versatile Tool with a Powerful Mission',
+        introText: 'Built for Medical Practitioners',
         storyflowItems: [
           {
-            title: 'Built for Medical Practitioners',
+            title: 'A Versatile Tool with a Powerful Mission',
             text: 'To the unsung heroes who inspire us everyday, you deserve access to a more reliable clinic management system that will help ease your mission to save lives.',
             image: 'mycure-web-banner-circles-home-01-doctors-league.png'
           },
