@@ -4,10 +4,13 @@
       v-container
         v-layout(row wrap justify center)
           v-flex(xs6 align-self-center).px-3
-            span.font-40 What makes MYCURE so different?
+            span.font-40 It works online and offline!
             br
             br
-            span.font-18.text-xs-center MYCURE works online and offline! Using our proprietary tech called Syncbase, you can digitally process your medical records locally using multiple devices even if the internet is down! Once online, it automatically synchronizes your data back into the cloud.
+            span.font-18.text-xs-center This is what makes MYCURE different from the rest. Using our proprietary tech called 
+              |
+              strong Syncbase, 
+              | you can digitally process your medical records locally using multiple devices even if the internet is down! Once online, it automatically synchronizes your data back into the cloud.
               br
               br
             v-btn(
@@ -42,9 +45,12 @@
             img(src="../../assets/images/mycure-homepage-syncbase-animated.gif" width="100%" alt="MYCURE Syncbase")
     div(v-else).pt-5
       v-container
-        p.font-40.lh-title.text-xs-center What makes MYCURE so different?
+        p.font-40.lh-title.text-xs-center It works online and offline!
         br
-        p.font-18.text-xs-center {{ different }}
+        p.font-18.text-xs-center This is what makes MYCURE different from the rest. Using our proprietary tech called 
+          |
+          strong Syncbase, 
+          | you can digitally process your medical records locally using multiple devices even if the internet is down! Once online, it automatically synchronizes your data back into the cloud.
         br
         v-card.elevation-5
           a(id="home-syncbase-vid-btn" @click.stop="handleHomeSyncbaseVid")
@@ -66,7 +72,6 @@
       return {
         dialog: false,
         videoDialog: false,
-        different: "MYCURE works online and offline! Using our proprietary tech called Syncbase, you can digitally process your medical records locally using multiple devices even if the internet is down! Once online, it automatically synchronizes your data back into the cloud."
       };
     },
     methods: {
