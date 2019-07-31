@@ -76,7 +76,7 @@
 
 <style scoped>
   hr {
-    border: 2px solid #2e9fdf;
+    border: 1px solid #2e9fdf;
     margin: auto;
     width: 10%;
   }
