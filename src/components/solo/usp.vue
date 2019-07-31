@@ -4,7 +4,7 @@
       v-container(align-center fill-height).px-5.panel-1
         v-layout(row justify-center)
           v-flex(xs12 md8 align-self-center).uspLeft
-            h1.font-weight-bold.font-18.font-mc-blue MYCURE Solo           
+            h1.font-weight-bold.font-18.font-mc-blue SOLO by MYCURE           
             br
             p.lh-title.font-45 A free standalone clinic management system.
             br
@@ -21,7 +21,7 @@
     div(v-else).white
       v-container.pt-5
         v-layout(column align-center justify-center)
-            h1.font-weight-bold.font-18.font-mc-blue.text-xs-center.pb-2 MYCURE Solo 
+            h1.font-weight-bold.font-18.font-mc-blue.text-xs-center.pb-2 SOLO by MYCURE 
             br
             p.font-40.text-xs-center A free standalone clinic management system.
         v-flex(xs12)
