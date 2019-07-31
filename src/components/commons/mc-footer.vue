@@ -7,20 +7,19 @@
           hr.mc-grey.mb-3
           v-layout(row wrap justify-center)
             v-flex(xs12 md3 offset-md1).font-mc-grey
-              ul.no-style-type.pb-3
-                li
-                  router-link(id="footer-features-link" @click.stop="handleFooterFeaturesLink" :to="{name: 'features'}" title="MYCURE Features").link.white--text Features
               ul.no-style-type
                 li.feature-text CLINIC SOLUTIONS
                 li
-                  router-link(id="footer-private-practice-link" @click.stop="handleFooterEmrLink" :to="{name: 'emr'}" title="MYCURE | Private Practice Electronic Medical Records (EMR)").link.white--text
-                    span For Private Practice
-                li
                   router-link(id="footer-multispecialty-link" @click.stop="handleFooterCmsLink" :to="{name: 'cms'}" title="MYCURE | Multispecialty Clinic Management System (CMS)").link.white--text
-                    span For Multispecialty Clinics
+                    span Multispecialty Clinics
+                li
+                  router-link(id="footer-private-practice-link" @click.stop="handleFooterEmrLink" :to="{name: 'emr'}" title="MYCURE | Private Practice Electronic Medical Records (EMR)").link.white--text
+                    span Private Practice
                 li.pb-3
                   router-link(id="footer-solo-link" @click.stop="handleFooterSoloLink" :to="{name: 'mycure-solo'}" title="MYCURE - Solo | A free and standalone clinic management system").link.white--text
-                    span Solo
+                    span Solo by MYCURE
+                li.pb-3
+                  router-link(id="footer-features-link" @click.stop="handleFooterFeaturesLink" :to="{name: 'features'}" title="MYCURE Features").link.white--text FEATURES
                 li.feature-text ABOUT
                 li
                   router-link(id="footer-our-story-link" @click.stop="handleFooterOurStoryLink" :to="{name: 'our-story'}" title="MYCURE Our Story | Caring the Extra Mile").link.white--text 
