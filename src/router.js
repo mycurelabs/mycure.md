@@ -95,7 +95,7 @@ export default new Router({
       component: solo,
       meta: {
         pageType: 'main',
-        pageName: 'Solo'
+        pageName: 'Solo by MYCURE'
       }
     },
     {
