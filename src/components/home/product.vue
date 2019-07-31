@@ -3,7 +3,9 @@
     div(v-if="!$isMobile").py-5.productPanel
       v-container.productContainer
         v-layout(column justify-center).pt-3
-          p.font-45.lh-title.text-xs-center.pb-5 MYCURE is a complete clinic management system — everything your clinic needs.
+          p.font-weight-bold.font-40.lh-title.text-xs-center.pb-5 MYCURE is a complete clinic management 
+            br
+            | system — everything your clinic needs.
           img(height="100%" width="100%" src="../../assets/images/mycure-home-web-complete-clinic-management-system-diagram.png" alt="Complete clinic management system")
     div(v-else).pt-5
       v-container
