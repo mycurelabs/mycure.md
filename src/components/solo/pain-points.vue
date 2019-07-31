@@ -89,29 +89,29 @@
       return {
         emr: [
           {
-            image: 'mycure-solo-health-concerns-doctor-01.png',
+            image: 'mycure-ic-question.png',
             content: 'I can\'t access my data outside the clinic!'
           },
           {
-            image: 'mycure-solo-health-concerns-doctor-02.png',
+            image: 'mycure-ic-question.png',
             content: 'How do I backup my data?'
           },
           {
-            image: 'mycure-solo-health-concerns-doctor-03.png',
+            image: 'mycure-ic-question.png',
             content: 'License fee is costly!'
           },
         ],
         cloud: [
           {
-            image: 'mycure-solo-health-concerns-doctor-04.png',
+            image: 'mycure-ic-question.png',
             content: 'How can I access when the internet is down?'
           },
           {
-            image: 'mycure-solo-health-concerns-doctor-05.png',
+            image: 'mycure-ic-question.png',
             content: 'Do I have 100% control of my data?'
           },
           {
-            image: 'mycure-solo-health-concerns-doctor-06.png',
+            image: 'mycure-ic-question.png',
             content: 'Monthly subscription fee is costly!'
           },
         ]

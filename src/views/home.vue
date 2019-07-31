@@ -12,11 +12,9 @@
     br
     product
     unique
-    br
-    v-divider
+    hr
     security
-    br
-    v-divider
+    hr
     targetMarket
     targetMarketMobile(v-if="$isMobile").showPanel
     mcFooter
@@ -53,10 +51,10 @@
     },
     data () {
       return {
-        introText: 'A Versatile Tool with a Powerful Mission',
+        introText: 'Built for Medical Practitioners',
         storyflowItems: [
           {
-            title: 'Built for Medical Practitioners',
+            title: 'A Versatile Tool with a Powerful Mission',
             text: 'To the unsung heroes who inspire us everyday, you deserve access to a more reliable clinic management system that will help ease your mission to save lives.',
             image: 'mycure-web-banner-circles-home-01-doctors-league.png'
           },
@@ -75,4 +73,12 @@
     }
   };
 </script>
+
+<style scoped>
+  hr {
+    border: 1px solid #2e9fdf;
+    margin: auto;
+    width: 10%;
+  }
+</style>
 

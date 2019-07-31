@@ -1,6 +1,6 @@
 <template lang="pug">
   div
-    div(v-if="!$isMobile").pt-5
+    div(v-if="!$isMobile").py-5
       v-container
         v-layout(row justify-center)
           v-flex(xs5)

@@ -141,7 +141,7 @@
         cms: {
             text: 'Do you run a Multispecialty Clinic with branches around the country?',
             subtxt: 'I manage a \nmultispecialty \nclinic',
-            subsubtxt: '(laboratory, imaging, etc.)',
+            subsubtxt: '(one-stop, multi-staff center)',
             link: 'cms'
         },
         emr: {
