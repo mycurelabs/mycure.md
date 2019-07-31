@@ -4,13 +4,12 @@
       v-container.px-5
         v-layout(row wrap justify-center)
           span.font-48.lh-title.pa-5 Why do clinics switch to MYCURE?
-        v-layout(row justify-center)
+        v-layout(column justify-center).pb-5
           p.font-18.text-xs-center MYCURE smoothly integrates your patient records together from registration to billing, 
             br
             | simplifying record management for everyone. 
-            br
-            br
-            | Say goodbye to multiple, complicated systems!
+          br
+          strong.font-18.text-xs-center Say goodbye to multiple, complicated systems!
         v-layout(row wrap justify-center).py-3 
           v-flex(xs12 md6).px-5.verticalLine  
             h2.right Other Providers
@@ -23,7 +22,7 @@
             br
             br
             v-layout(row justify-center)
-              span.text-xs-center.font-18 Say goodbye to multiple,
+              strong.text-xs-center.font-18 Say goodbye to multiple,
                 br
                 | complicated systems!
           v-flex(xs12 md6).px-5
