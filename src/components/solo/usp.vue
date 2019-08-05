@@ -55,7 +55,7 @@
         });
       },
       toggleChat () {
-        let message = `Hi! I want to get early access to MYCURE Solo.`;
+        let message = `Hi! I want to get early access to SOLO by MYCURE.`;
         window.$crisp.push(['do', 'chat:toggle']);
         window.$crisp.push(['do', 'message:send', ['text', message]]);
       },

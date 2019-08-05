@@ -23,11 +23,11 @@
             src="@/assets/images/mycure-solo-health-comparison-solo.png" 
             alt="Solo Pain Points"
           ) 
-        h3(v-if="!$isMobile").text-xs-center.font-30.topSpacing.pb-5 MYCURE Solo is coming soon.
+        h3(v-if="!$isMobile").text-xs-center.font-30.topSpacing.pb-5 SOLO by MYCURE is coming soon.
           br
           |  
           router-link(:to="{name:'solo-early-access'}").visit Get early access today
-        h3(v-else).text-xs-center.font-28.topSpacing.pb-5 MYCURE Solo is coming soon.
+        h3(v-else).text-xs-center.font-28.topSpacing.pb-5 SOLO by MYCURE is coming soon.
           br
           |  
           router-link(:to="{name:'solo-early-access'}").visit Get early access today        
