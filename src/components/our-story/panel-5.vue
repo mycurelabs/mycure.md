@@ -69,7 +69,7 @@
   }
 
   .padding500 {
-    padding-top: 500px;
+    padding-top: 330px;
   }
 </style>
 
