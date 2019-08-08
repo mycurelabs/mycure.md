@@ -1,5 +1,5 @@
 <template lang="pug">
-  div
+  div.white
     div(v-if="!$isMobile")#panel5 
       v-container
         v-layout(row wrap align-center justify-center).padding500
