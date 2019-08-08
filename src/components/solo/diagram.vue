@@ -10,7 +10,7 @@
                 v-flex(xs5)
                   img(width="100%" height="508vh" src="@/assets/images/mycure-web-banner-pricing-panel-solo.png" alt="Solo features")
                 v-flex(xs8).text-xs-left.pa-5
-                  strong.font-30.pb-2 MYCURE Solo
+                  strong.font-30.pb-2 SOLO by MYCURE
                   br
                   br
                   span.font-18 {{ MYCURE_SOLO_description }}
@@ -50,7 +50,7 @@
               br
               br
               v-layout(row justify-center)
-                strong.font-40.pb-2 MYCURE Solo
+                strong.font-40.pb-2 SOLO by MYCURE
               p.font-16.text-xs-center {{ MYCURE_SOLO_description }}
               br
               
@@ -100,7 +100,7 @@
     },
     methods: {
       toggleChat () {
-        let message = `Hi, I would like to know more about MYCURE Solo`;
+        let message = `Hi, I would like to know more about SOLO by MYCURE`;
         window.$crisp.push(['do', 'chat:toggle']);
         window.$crisp.push(['do', 'message:send', ['text', message]]);
       },

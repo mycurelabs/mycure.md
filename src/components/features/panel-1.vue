@@ -3,10 +3,10 @@
     div(v-if="!$isMobile")
       v-container(align-center fill-height).px-5.panel-1
         v-layout(row justify-center)
-          v-flex(xs12 md8 align-self-center).uspLeft
+          v-flex(xs12 md6 align-self-center).uspLeft
             h1.font-weight-bold.font-18.font-mc-blue MYCURE Features           
             br
-            p.lh-title.font-45 Human-friendly features, patient-centric care.
+            p.lh-title.font-45 Patient-centric, efficient and state-of-the-art features
             br
             br
             v-btn(
@@ -23,13 +23,13 @@
       v-container.pt-5
         v-layout(row justify-center)
           v-flex(xs12)
-            h1.font-40.text-xs-center Human-friendly
+            h1.font-40.text-xs-center Patient-centric,
               br
-              | features,
+              | efficient,
               br
-              | patient-centric
+              | and state-of-the-art 
               br
-              | care
+              | features
         br
         v-flex(xs12)
           img(width="100%" src="../../assets/images/mycure-cms-web-banner-first-panel-features.png" alt="Features").pb-5

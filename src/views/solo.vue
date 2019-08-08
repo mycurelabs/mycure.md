@@ -41,7 +41,7 @@
     },
     data () {
       return {
-        introText: 'Why use MYCURE Solo?',
+        introText: 'Why use SOLO by MYCURE?',
         // storyflowItems: [
         //   {
         //     title: 'Connectivity',

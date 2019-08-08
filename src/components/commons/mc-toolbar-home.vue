@@ -24,7 +24,8 @@
               )
                 span.font-14.text-none.tab Features
               v-btn(
-                flat
+                outline
+                color="#2e9fdf"
                 :href="`${signInURL}?target=${cmsURL}/authenticate`"
                 target="_blank"
                 id="toolbar-login-btn"

@@ -3,7 +3,7 @@
     div(v-if="!$isMobile").white
       v-container(align-center fill-height).px-5.panel-1
         v-layout(row justify-center)
-          v-flex(xs12 md8 align-self-center).uspLeft
+          v-flex(xs12 md6 align-self-center).uspLeft
             h1.font-weight-bold.font-18.font-mc-blue SOLO by MYCURE           
             br
             p.lh-title.font-45 A free standalone clinic management system.
@@ -55,7 +55,7 @@
         });
       },
       toggleChat () {
-        let message = `Hi! I want to get early access to MYCURE Solo.`;
+        let message = `Hi! I want to get early access to SOLO by MYCURE.`;
         window.$crisp.push(['do', 'chat:toggle']);
         window.$crisp.push(['do', 'message:send', ['text', message]]);
       },
