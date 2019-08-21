@@ -9,7 +9,7 @@ import emr from '@/views/electronic-medical-records.vue';
 import cms from '@/views/clinic-management-system.vue';
 import pricing from '@/views/pricing.vue';
 import features from '@/views/features.vue';
-import solo from '@/views/solo.vue';
+// import solo from '@/views/solo.vue';
 import { core } from '@mycure/sdk';
 
 Vue.use(Router);
@@ -88,16 +88,16 @@ export default new Router({
         pageName: 'Pricing'
       }
     },
-    {
-      path: '/mycure-solo',
-      name: 'mycure-solo',
-      id: 'toolbar-mycure-solo-btn', 
-      component: solo,
-      meta: {
-        pageType: 'main',
-        pageName: 'Solo by MYCURE'
-      }
-    },
+    // {
+    //   path: '/mycure-solo',
+    //   name: 'mycure-solo',
+    //   id: 'toolbar-mycure-solo-btn', 
+    //   component: solo,
+    //   meta: {
+    //     pageType: 'main',
+    //     pageName: 'Solo by MYCURE'
+    //   }
+    // },
     {
       path: '/features',
       name: 'features',
@@ -108,14 +108,14 @@ export default new Router({
         pageName: 'Features'
       }
     },
-    {
-      path: '/solo',
-      name: 'solo',
-      beforeEnter (to, from, next) {
-        window.open('https://solo.health/');
-        next({name: from.name || 'home'});
-      }
-    },
+    // {
+    //   path: '/solo',
+    //   name: 'solo',
+    //   beforeEnter (to, from, next) {
+    //     window.open('https://solo.health/');
+    //     next({name: from.name || 'home'});
+    //   }
+    // },
     {
       path: '/solo-early-access',
       name: 'solo-early-access',
