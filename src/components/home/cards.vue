@@ -45,7 +45,7 @@
                     |practitioner
                   strong(v-if="!hover").font-mc-grey.font-14.font-italic {{ emr.subsubtxt }}
                   strong(v-else).font-14.font-italic {{ emr.subsubtxt }}
-          v-hover
+          //- v-hover
             v-card(
               slot-scope="{ hover }"
               :to="{ name: solo.link }"
@@ -109,7 +109,7 @@
                   p.font-weight-bold.pb-0.preWrap.font-16 {{ emr.subtxt }}
                   strong(v-if="!hover").font-mc-grey.font-14.font-italic {{ emr.subsubtxt }}
                   strong(v-else).font-14.font-italic {{ emr.subsubtxt }}
-          v-hover
+          //- v-hover
             v-card(
               slot-scope="{ hover }"
               :to="{ name: solo.link }"
