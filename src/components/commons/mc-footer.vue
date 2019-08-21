@@ -15,7 +15,7 @@
                 li
                   router-link(id="footer-private-practice-link" @click.stop="handleFooterEmrLink" :to="{name: 'emr'}" title="MYCURE | Private Practice Electronic Medical Records (EMR)").link.white--text
                     span Private Practice
-                li.pb-3
+                //- li.pb-3
                   router-link(id="footer-solo-link" @click.stop="handleFooterSoloLink" :to="{name: 'mycure-solo'}" title="MYCURE - Solo | A free and standalone clinic management system").link.white--text
                     span Solo by MYCURE
                 li.pb-3
