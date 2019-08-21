@@ -18,7 +18,7 @@
                 //- li.pb-3
                   router-link(id="footer-solo-link" @click.stop="handleFooterSoloLink" :to="{name: 'mycure-solo'}" title="MYCURE - Solo | A free and standalone clinic management system").link.white--text
                     span Solo by MYCURE
-                li.pb-3
+                li.py-3
                   router-link(id="footer-features-link" @click.stop="handleFooterFeaturesLink" :to="{name: 'features'}" title="MYCURE Features").link.white--text FEATURES
                 li.feature-text ABOUT
                 li
