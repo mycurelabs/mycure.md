@@ -1,4 +1,4 @@
-[![CircleCI](https://circleci.com/bb/mycure-dev/mycure.md.svg?style=svg&circle-token=c9bcd265a1094c0e29c28f94c8237996bede546a)](https://circleci.com/bb/mycure-dev/mycure.md)
+[![CircleCI](https://circleci.com/gh/mycurelabs/web-main.svg?style=svg)](https://circleci.com/gh/mycurelabs/web-main)
 
 ### Install dependencies
 
