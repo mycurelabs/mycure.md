@@ -6,7 +6,7 @@
           v-flex(xs12 md6 align-self-center).uspLeft
             h1.font-weight-bold.font-18.font-mc-blue MYCURE Complete Clinic Practice Management System
             br
-            h2.font-weight-regular.lh-60.font-45 Discover a powerful and proven solution to organize and secure your patients’ medical records.
+            h2.font-weight-regular.lh-60.font-45 Discover a proven solution to organize and secure your patients’ medical records.
             br
             v-btn(
               :href="`${signInURL}/signup/choose`" 
@@ -25,7 +25,7 @@
             br
             | Management System
           br            
-          h2.font-weight-regular.lh-title.font-40.text-xs-center Discover a powerful and proven solution to organize and secure your patients’ medical records.
+          h2.font-weight-regular.lh-title.font-40.text-xs-center Discover a proven solution to organize and secure your patients’ medical records.
         v-flex(xs12)
           img(width="100%" src="../../assets/images/mycure-web-banner-first-panel-doctor-clinic-patients.png" alt="Clinic home banner")
       v-layout(row justify-center)
