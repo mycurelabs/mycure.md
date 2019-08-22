@@ -1,4 +1,4 @@
-[![CircleCI](https://circleci.com/gh/mycurelabs/web-main.svg?style=svg)](https://circleci.com/gh/mycurelabs/web-main)
+[![CircleCI](https://circleci.com/gh/mycurelabs/web-main.svg?style=svg&circle-token=3b5a4f262a30c4fb5c9265226ca841c1d78ff821)](https://circleci.com/gh/mycurelabs/web-main)
 
 ### Install dependencies
 
