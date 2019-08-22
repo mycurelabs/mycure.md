@@ -4,9 +4,9 @@
       v-container(align-center fill-height).px-5.panel-1
         v-layout(row justify-center)
           v-flex(xs12 md6 align-self-center).uspLeft
-            h1.font-weight-bold.font-18.font-mc-blue MYCURE for Private Practice
+            h1.font-weight-bold.font-18.font-mc-blue MYCURE for Individual Practice
             br
-            p.lh-title.font-45 A clinic system designed specifically for private medical practitioners.
+            p.lh-title.font-45 The smartest practice management tool for doctors that makes writing a thing of the past.
             br
             v-btn(  
               id="emr-signup-btn"
@@ -17,13 +17,13 @@
             ).cta-btn
               strong.font-18.text-none.white--text Sign Up Now
           v-flex(xs12 md6 align-self-center).uspRight
-            img(width="90%" src="../../assets/images/mycure-emr-web-banner-first-panel-doctor-clinic-patients.png" alt="Individual doctor").right
+            img(width="100%" src="../../assets/images/mycure-emr-web-banner-first-panel-doctor-clinic-patients.png" alt="Individual doctor").right
     div(v-else).white
       v-container.pt-5
         v-layout(column justify-center)
             h1.font-weight-bold.font-18.font-mc-blue.text-xs-center.pb-2 MYCURE for Private Practice
             br
-            p.font-40.text-xs-center.lh-title A clinic system designed specifically for private medical practitioners.
+            p.font-40.text-xs-center.lh-title The smartest practice management tool for doctors that makes writing a thing of the past.
         v-flex(xs12)
           img(width="100%" src="../../assets/images/mycure-emr-web-banner-first-panel-doctor-clinic-patients.png" alt="Individual doctor").pb-5
       v-layout(row justify-center)
