@@ -12,7 +12,7 @@
                   v-flex(xs5)
                     img(width="100%" height="508vh" src="../../assets/images/mycure-web-banner-pricing-panel-private.png" alt="Private clinic pricing")
                   v-flex(xs8).text-xs-left.pa-5
-                    strong.font-30.pb-2 For Private Practice
+                    strong.font-30.pb-2 For Individual Practice
                     br
                     br
                     span.font-18 {{ private_title }}
@@ -58,12 +58,12 @@
     data () {
       return {
         signInURL: process.env.VUE_APP_SIGNIN_URL,
-        private_title: 'Designed for private practitioners who run their clinic alone or collaborate with other private practitioners.',
+        private_title: 'Designed for private practitioners who run their clinic alone or with a trusty secretary.',
         privateFeatures: [
           'Create unlimited number of virtual clinics',
           'Access using multiple devices',
           'Full Access to the CMS Core Modules',
-          'Start FREE up to 100 patient profiles',
+          'Start FREE up to 1GB storage',
         ]
       };
     },

@@ -6,7 +6,7 @@
           v-flex(xs12 md6 align-self-center).uspLeft 
             h1.font-weight-bold.font-18.font-mc-blue MYCURE for Multispecialty Clinics
             br
-            p.lh-title.font-45 A clinic system designed specifically for multispecialty clinics.
+            p.lh-title.font-45 The ultimate clinic system that eases the process flows of your multispecialty clinic.
             br
             v-btn(
               id="cms-signup-btn"
@@ -17,13 +17,13 @@
             ).cta-btn
               strong.font-18.white--text.text-none Get Started Today
           v-flex(xs12 md6 align-self-center).uspRight
-            img(width="90%" src="../../assets/images/mycure-cms-web-banner-first-panel-doctor-clinic-patients.png" alt="Clinic management system banner").right
+            img(width="100%" src="../../assets/images/mycure-cms-web-banner-first-panel-doctor-clinic-patients.png" alt="Clinic management system banner").right
     div(v-else).white
       v-container.pt-5
         v-layout(column justify-center)
           h1.font-weight-bold.font-18.font-mc-blue.text-xs-center.pb-2 MYCURE for Multispecialty Clinics
           br
-          p.font-40.text-xs-center A clinic system designed specifically for multispecialty clinics.
+          p.font-40.text-xs-center The ultimate clinic system that eases the process flows of your multispecialty clinic.
           br
           br
         v-flex(xs12)

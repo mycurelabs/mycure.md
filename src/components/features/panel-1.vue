@@ -6,7 +6,7 @@
           v-flex(xs12 md6 align-self-center).uspLeft
             h1.font-weight-bold.font-18.font-mc-blue MYCURE Features           
             br
-            p.lh-title.font-45 Patient-centric, efficient and state-of-the-art features
+            p.lh-title.font-45 User-friendly and time efficient features for a more patient-centric care
             br
             br
             v-btn(
