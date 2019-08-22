@@ -6,7 +6,7 @@
           v-flex(xs12 md6 align-self-center).uspLeft 
             h1.font-weight-bold.font-18.font-mc-blue MYCURE for Multispecialty Clinics
             br
-            p.lh-title.font-45 The ultimate clinic system that remarkably eases the process flows of your multispecialty clinic.
+            p.lh-title.font-45 The ultimate clinic system that eases the process flows of your multispecialty clinic.
             br
             v-btn(
               id="cms-signup-btn"
@@ -23,7 +23,7 @@
         v-layout(column justify-center)
           h1.font-weight-bold.font-18.font-mc-blue.text-xs-center.pb-2 MYCURE for Multispecialty Clinics
           br
-          p.font-40.text-xs-center The ultimate clinic system that remarkably eases the process flows of your multispecialty clinic.
+          p.font-40.text-xs-center The ultimate clinic system that eases the process flows of your multispecialty clinic.
           br
           br
         v-flex(xs12)
