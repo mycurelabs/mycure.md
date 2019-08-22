@@ -76,7 +76,7 @@ export default new Router({
       component: emr,
       meta: {
         pageType: 'main',
-        pageName: 'Private Practice'
+        pageName: 'Individual Practice'
       }
     },
     {
