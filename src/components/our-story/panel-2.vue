@@ -4,15 +4,8 @@
       v-layout(row wrap)
         v-flex(xs12 md10 offset-md1)
           v-layout(row wrap justify-center)
-            v-flex(xs12 md12).text-xs-center
-              br
-              br
-              h1.font-48 MYCURE starts and ends with 
-                br
-                | real people and real stories.
-              br
-              br
-              br
+            v-flex(xs12 md12).text-xs-center.mb-5
+              h1.font-48 Meet Paulette
       v-layout(row wrap justify-center)
         v-flex(xs12 md4 align-self-center).text-xs-center
           img(width="80%" src="../../assets/images/mycure-web-our-story-paulette.png" alt="Our Story Paulette")
