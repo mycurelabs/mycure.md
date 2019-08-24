@@ -13,9 +13,9 @@
                 :to="{ name: link.name }" 
                 :id="link.id" 
                 flat
-              )
+              ).mx-0
                 span.font-14.tab.text-none {{link.meta.pageName}}
-              v-spacer
+              span.font-weight-bold |
               v-btn(
                 flat
                 :to="{ name: 'features' }"
@@ -23,6 +23,14 @@
                 @click.stop="handleToolbarFeaturesBtn"
               )
                 span.font-14.text-none.tab Features
+              v-spacer
+              v-btn(
+                flat
+                :to="{ name: 'csr' }"
+                id="toolbar-csr-btn"
+                @click.stop="handleToolbarCsrBtn"
+              )
+                span.font-14.text-none.tab CSR
               v-btn(
                 outline
                 color="#2e9fdf"
@@ -216,6 +224,13 @@
           eventCategory: 'button',
           eventAction: 'click-toolbar-features-btn',
           eventLabel: 'toolbar-features-btn'
+        });
+      },
+      handleToolbarCsrBtn () {
+        this.$ga.event({
+          eventCategory: 'button',
+          eventAction: 'click-toolbar-csr-btn',
+          eventLabel: 'toolbar-csr-btn'
         });
       }
       // foo () {
