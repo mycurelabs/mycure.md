@@ -76,6 +76,10 @@
                   v-list-tile-content
                     v-list-tile-title
                       b Features
+                v-list-tile(:to="{ name: 'csr' }")
+                  v-list-tile-content
+                    v-list-tile-title
+                      b CSR
               br
               br    
               v-divider
