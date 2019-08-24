@@ -128,6 +128,14 @@ export default {
     font-size: 12px !important
   }
 
+  .padding-top-100 {
+    padding-top: 100px;
+  }
+
+  .margin-top-100 {
+    padding-top: 100px;
+  }
+
   .lh-title {
     line-height: 1.25em !important
   }

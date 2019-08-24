@@ -9,13 +9,14 @@
         :storyflow="storyflowItems"
         :introduction="introText"
       )
-      pricing
+      privatePrac
       finalWords
+      pricing.padding-top-100
       filler
-        span(v-if="!$isMobile" slot="question").font-40 Are you part of a group clinic?
-        span(v-else slot="question").font-30 Are you part of a group clinic?        
-        span(v-if="!$isMobile" slot="chatWindow" @click="toggleChat").font-40.pointer.font-mc-blue Ask us how it works.
-        span(v-else slot="chatWindow" @click="toggleChat").font-30.pointer.font-mc-blue Ask us how it works.
+        //- //- //- span(v-if="!$isMobile" slot="question").font-40 Are you part of a group clinic?
+        //- //- //- span(v-else slot="question").font-30 Are you part of a group clinic?        
+        //- //- span(v-if="!$isMobile" slot="chatWindow" @click="toggleChat").font-40.pointer.font-mc-blue Ask us how it works.
+        //- span(v-else slot="chatWindow" @click="toggleChat").font-30.pointer.font-mc-blue Ask us how it works.
     mc-footer
 </template>
 
@@ -25,8 +26,9 @@
   import usp from '@/components/electronic-medical-records/usp';
   import problems from '@/components/electronic-medical-records/problems';
   import product from '@/components/electronic-medical-records/product';
-  import storyflow from '@/components/commons/storyflow';
   import pricing from '@/components/electronic-medical-records/pricing';
+  import storyflow from '@/components/commons/storyflow';
+  import privatePrac from '@/components/electronic-medical-records/private-prac';
   import finalWords from '@/components/electronic-medical-records/final-words';
   import filler from '@/components/commons/filler';
   import VueScrollTo from 'vue-scrollto';
@@ -60,8 +62,9 @@
       usp,
       problems,
       product,
-      storyflow,
       pricing,
+      storyflow,
+      privatePrac,
       finalWords,
       filler
     },
@@ -79,8 +82,8 @@
 </script>
 
 <style scoped>
-  .pointer:hover {
-      cursor: pointer;
-  }
+.pointer:hover {
+    cursor: pointer;
+}
 </style>
 
