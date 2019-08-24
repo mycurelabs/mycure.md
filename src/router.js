@@ -10,6 +10,7 @@ import group from '@/views/group-practice.vue';
 import cms from '@/views/clinic-management-system.vue';
 import pricing from '@/views/pricing.vue';
 import features from '@/views/features.vue';
+import csr from '@/views/csr.vue';
 // import solo from '@/views/solo.vue';
 import { core } from '@mycure/sdk';
 
@@ -110,6 +111,16 @@ export default new Router({
     //     pageName: 'Solo by MYCURE'
     //   }
     // },
+    {
+      path: '/csr',
+      name: 'csr',
+      id: 'toolbar-csr-btn', 
+      component: csr,
+      meta: {
+        pageType: '',
+        pageName: 'CSR'
+      }
+    },
     {
       path: '/features',
       name: 'features',
