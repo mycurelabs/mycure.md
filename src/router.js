@@ -61,7 +61,7 @@ export default new Router({
       }
     },
     {
-      path: '/clinic-management-system',
+      path: '/multispecialty-clinics',
       name: 'cms',
       id: 'toolbar-multispecialty-btn',
       component: cms,
@@ -82,7 +82,7 @@ export default new Router({
       }
     },
     {
-      path: '/electronic-medical-records',
+      path: '/individual-practice',
       name: 'emr', 
       id: 'toolbar-private-practice-btn',
       // function: 'foo',
@@ -112,7 +112,8 @@ export default new Router({
     //   }
     // },
     {
-      path: '/csr',
+      // TODO: what if `/community` ? 
+      path: '/corporate-social-responsibility',
       name: 'csr',
       id: 'toolbar-csr-btn', 
       component: csr,
