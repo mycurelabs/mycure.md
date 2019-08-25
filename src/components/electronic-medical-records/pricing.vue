@@ -107,7 +107,6 @@ div
     data () {
       return {
         signInURL: process.env.VUE_APP_SIGNIN_URL,
-<<<<<<< HEAD
         coreFree: [
           '✓ Unlimited patients',
           '✓ Unlimited virtual clinics',
@@ -146,14 +145,6 @@ div
         accessibilityPremimum: [
           '✓ Offline mode',
           '✓ Ad free'
-=======
-        private_title: 'Designed for private practitioners who run their clinic alone or with a trusty secretary.',
-        privateFeatures: [
-          'Create unlimited number of virtual clinics',
-          'Access using multiple devices',
-          'Full Access to the CMS Core Modules',
-          'Start FREE up to 1GB storage',
->>>>>>> 4efda4a487e6aed4e76666da776a958f0039b20f
         ]
       };
     }
