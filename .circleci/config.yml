@@ -94,19 +94,25 @@ workflows:
     jobs: 
       - dev:
           filters:
-            branches: 
-              only: master
+            tags:
+              only: /^v.*/
+            branches:
+              ignore: /.*/
       - hold:
           type: approval
           filters:
-            branches: 
-              only: master
+            tags:
+              only: /^v.*/
+            branches:
+              ignore: /.*/
           requires: 
             - dev
       - prod:
           filters:
-            branches: 
-              only: master
+            tags:
+              only: /^v.*/
+            branches:
+              ignore: /.*/
           requires: 
             - hold
 
