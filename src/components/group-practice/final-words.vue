@@ -6,14 +6,13 @@
         span(slot="emr-txt").font-48.lh-title It's always better when we work together.
         span(slot="cms-sub-txt").font-18 Experience what you can do more with MYCURE technology by your side.
         v-btn(
-          id="emr-signup-btn"
-          @click.stop="handleEmrSignupBtn"
+          id="group-signup-btn"
+          @click.stop="handleGroupSignupBtn(); toggleChat()"
           slot="sign-up-button"
-          :href="`${signInURL}/signup/private/step-1`" 
-          target="_blank"
           color="#18c551" 
           right
-        ).cta-btn
+          large
+        )
           strong.text-none.white--text.font-18 Sign Up Now
     div(v-else).pa-5
       v-container
@@ -26,13 +25,11 @@
         br
         v-layout(row justify-center)
           v-btn(
-            id="emr-signup-btn"
-            @click.stop="handleEmrSignupBtn"
-            :href="`${signInURL}/signup/private/step-1`"
-            target="_blank"
+            id="group-signup-btn"
+            @click.stop="handleGroupSignupBtn(); toggleChat()"
             color="#18c551"
             large
-          ).cta-btn
+          )
             strong.font-18.white--text.text-none Sign Up Now  
 </template>
 
@@ -49,13 +46,18 @@
       };
     },
     methods: {
-      handleEmrSignupBtn () {
+      handleGroupSignupBtn () {
         this.$ga.event({
           eventCategory: 'button',
-          eventAction: 'click-emr-signup-btn',
-          eventLabel: 'emr-signup-btn'
+          eventAction: 'click-group-signup-btn',
+          eventLabel: 'group-signup-btn'
         });
-      }
+      },
+      toggleChat () {
+        let message = `Hi, I would like to sign up for MYCURE's Group Practice.`;
+        window.$crisp.push(['do', 'chat:toggle']);
+        window.$crisp.push(['do', 'message:send', ['text', message]]);
+      },
     }
   };
 </script>

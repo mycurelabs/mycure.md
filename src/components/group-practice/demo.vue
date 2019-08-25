@@ -29,11 +29,10 @@
         v-layout(row wrap justify-center)
           v-btn(
             id="emr-signup-btn"
-            @click.stop="handleEmrSignupBtn"
+            @click.stop="handleDemoBtn(); toggleChat()"
             color="#18c551"
-            :href="`${signInURL}/signup/private/step-1`"
-            target="_blank"
-          ).mt-3.cta-btn
+            large
+          ).mt-3
             strong.font-18.white--text.text-none Schedule a Demo
     div(v-else).pt-5
       v-container
@@ -62,9 +61,11 @@
           //- TODO: href to where?
           v-btn(
             id="group-demo-btn"
-            @click.stop="handleDemoBtn"
+            @click.stop="handleDemoBtn(); toggleChat()"
             target="_blank"
-            color="#18c551" large).mt-5 
+            color="#18c551" 
+            large
+          ).mt-5 
             strong.font-16.text-none.white--text Schedule a Demo
 </template>
 
@@ -118,7 +119,12 @@
           eventAction: 'click-demo-signup-btn',
           eventLabel: 'demo-signup-btn'
         });
-      }
+      },
+      toggleChat () {
+        let message = `Hi, I would like to schedule a demo for MYCURE's Group Practice.`;
+        window.$crisp.push(['do', 'chat:toggle']);
+        window.$crisp.push(['do', 'message:send', ['text', message]]);
+      },
     },
   };
 </script>

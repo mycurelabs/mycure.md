@@ -24,7 +24,7 @@
           //- TODO: href to where?
           v-btn(
             id="group-practice-signup-btn"
-            @click.stop="handleGroupSignupBtn"
+            @click.stop="handleGroupSignupBtn(); toggleChat()"
             color="#18c551"
             target="_blank"
             large
@@ -51,7 +51,7 @@
           //- TODO: href to where?
           v-btn(
             id="group-signup-btn"
-            @click.stop="handleGroupSignupBtn"
+            @click.stop="handleGroupSignupBtn(); toggleChat()"
             target="_blank"
             color="#18c551" large).mt-5 
             strong.font-16.text-none.white--text Sign Up Now
@@ -79,7 +79,7 @@
     },
     methods: {
       toggleChat () {
-        let message = `Hi, I would like to know more about the Electronic Medical Records for Private Practice.`;
+        let message = `Hi, I would like to sign up for MYCURE's Group Practice.`;
         window.$crisp.push(['do', 'chat:toggle']);
         window.$crisp.push(['do', 'message:send', ['text', message]]);
       },
