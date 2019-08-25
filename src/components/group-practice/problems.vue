@@ -27,7 +27,8 @@
             @click.stop="handleGroupSignupBtn"
             color="#18c551"
             target="_blank"
-          ).mt-3.cta-btn
+            large
+          ).mt-3
             strong.font-18.white--text.text-none Sign Up Now
         p.text-xs-center.py-4.font-18 Have questions? 
           a(@click.stop="toggleChat()")
