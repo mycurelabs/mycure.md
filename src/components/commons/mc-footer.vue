@@ -13,13 +13,18 @@
                   router-link(id="footer-multispecialty-link" @click.stop="handleFooterCmsLink" :to="{name: 'cms'}" title="MYCURE | Multispecialty Clinic Management System (CMS)").link.white--text
                     span Multispecialty Clinics
                 li
+                  router-link(id="footer-group-link" @click.stop="handleFooterGroupLink" :to="{name: 'group'}" title="MYCURE | Multispecialty Clinic Management System (CMS)").link.white--text
+                    span Group Practice
+                li
                   router-link(id="footer-private-practice-link" @click.stop="handleFooterEmrLink" :to="{name: 'emr'}" title="MYCURE | Private Practice Electronic Medical Records (EMR)").link.white--text
                     span Private Practice
                 //- li.pb-3
                   router-link(id="footer-solo-link" @click.stop="handleFooterSoloLink" :to="{name: 'mycure-solo'}" title="MYCURE - Solo | A free and standalone clinic management system").link.white--text
                     span Solo by MYCURE
-                li.py-3
+                li.pt-3
                   router-link(id="footer-features-link" @click.stop="handleFooterFeaturesLink" :to="{name: 'features'}" title="MYCURE Features").link.white--text FEATURES
+                li.pb-3
+                  router-link(id="footer-csr-link" @click.stop="handleFooterCsrLink" :to="{name: 'csr'}" title="MYCURE Corporate Social Responsibility").link.white--text CORPORATE SOCIAL RESPONSIBILITY
                 li.feature-text ABOUT
                 li
                   router-link(id="footer-our-story-link" @click.stop="handleFooterOurStoryLink" :to="{name: 'our-story'}" title="MYCURE Our Story | Caring the Extra Mile").link.white--text 
@@ -97,6 +102,13 @@ export default {
         eventCategory: 'link',
         eventAction: 'click-footer-private-practice-link',
         eventLabel: 'footer-private-practice-link'
+      });
+    },
+    handleFooterGroupLink () {
+      this.$ga.event({
+        eventCategory: 'link',
+        eventAction: 'click-footer-group-practice-link',
+        eventLabel: 'footer-group-practice-link'
       });
     },
     handleFooterCmsLink () {
