@@ -10,11 +10,11 @@
             br
             v-btn(  
               id="group-practice-signup-btn"
-              @click.stop="handleGroupSignUpBtn"
-              :href="`${signInURL}/signup/private/step-1`" 
+              @click.stop="handleGroupSignUpBtn(); toggleChat()"
               target="_blank"
               color="#18c551"
-            ).cta-btn
+              large
+            )
               strong.font-18.text-none.white--text Sign Up Now
           v-flex(xs12 md6 align-self-center).uspRight
             img(width="90%" src="../../assets/images/mycure-group-web-banner-first-panel-doctor-frontdesk.png" alt="Group practice doctors").right
@@ -29,8 +29,7 @@
       v-layout(row justify-center)
         v-btn(
           id="group-practice-signup-btn" 
-          @click.stop="handleGroupSignUpBtn" 
-          :href="`${signInURL}/signup/private/step-1`" 
+          @click.stop="handleGroupSignUpBtn(); toggleChat()" 
           target="_blank"
           title="MYCURE - Sign Up"
           color="#18c551" 
@@ -54,7 +53,12 @@
           eventAction: 'click-group-practice-signup-btn',
           eventLabel: 'group-practice-signup-btn'
         });
-      }
+      },
+      toggleChat () {
+        let message = `Hi, I would like to sign up for MYCURE's Group Practice.`;
+        window.$crisp.push(['do', 'chat:toggle']);
+        window.$crisp.push(['do', 'message:send', ['text', message]]);
+      },
     }
   };
 </script>
