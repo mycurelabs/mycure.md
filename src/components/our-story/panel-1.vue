@@ -9,24 +9,6 @@
               | for people who 
               br
               | care for people.
-            br
-            br
-            p.font-18 Doctors, nurses, and clinic professionals have a lot of work and we want to make that work easier.
-            br
-            v-btn(
-              id="our-story-watch-vid-btn"
-              v-if="!$isMobile"
-              color="info" 
-              large
-              @click="showVid = true; handleOurStoryWatchVid()") 
-                strong.font-18.text-none Watch video
-            center(v-else)
-              v-btn(
-                id="our-story-watch-vid-btn"
-                color="info" 
-                large
-                @click="showVid = true; handleOurStoryWatchVid()") 
-                  strong WATCH VIDEO
           v-flex(v-if="!$isMobile" xs12 md6 align-self-center).uspRight
             img(width="100%" src="../../assets/images/mycure-homepage-doctor-kid-pediatrician-drawing.png" alt="Our Story")
       v-dialog(v-model="showVid" max-width="700px")

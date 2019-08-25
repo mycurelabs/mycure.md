@@ -2,34 +2,23 @@
   div.white#top
     mc-toolbar-home
     usp
-    problems
-    product
     div.skyBg
-      storyflow(
-        :storyflow="storyflowItems"
-        :introduction="introText"
-      )
-      privatePrac
+      problems
+      product
+      demo
       finalWords
-      pricing.padding-top-100
       filler
-        //- //- //- span(v-if="!$isMobile" slot="question").font-40 Are you part of a group clinic?
-        //- //- //- span(v-else slot="question").font-30 Are you part of a group clinic?        
-        //- //- span(v-if="!$isMobile" slot="chatWindow" @click="toggleChat").font-40.pointer.font-mc-blue Ask us how it works.
-        //- span(v-else slot="chatWindow" @click="toggleChat").font-30.pointer.font-mc-blue Ask us how it works.
     mc-footer
 </template>
 
 <script>
   import mcToolbarHome from '@/components/commons/mc-toolbar-home';
   import mcFooter from '@/components/commons/mc-footer';
-  import usp from '@/components/electronic-medical-records/usp';
-  import problems from '@/components/electronic-medical-records/problems';
-  import product from '@/components/electronic-medical-records/product';
-  import pricing from '@/components/electronic-medical-records/pricing';
-  import storyflow from '@/components/commons/storyflow';
-  import privatePrac from '@/components/electronic-medical-records/private-prac';
-  import finalWords from '@/components/electronic-medical-records/final-words';
+  import usp from '@/components/group-practice/usp';
+  import problems from '@/components/group-practice/problems';
+  import product from '@/components/group-practice/product';
+  import demo from '@/components/group-practice/demo';
+  import finalWords from '@/components/group-practice/final-words';
   import filler from '@/components/commons/filler';
   import VueScrollTo from 'vue-scrollto';
 
@@ -62,15 +51,13 @@
       usp,
       problems,
       product,
-      pricing,
-      storyflow,
-      privatePrac,
+      demo,
       finalWords,
       filler
     },
     methods: {
       toggleChat () {
-        let message = `Hi, I would like to know more about the Electronic Medical Records for Private Practice.`;
+        let message = `Hi, I would like to know more about  Group Practice.`;
         window.$crisp.push(['do', 'chat:toggle']);
         window.$crisp.push(['do', 'message:send', ['text', message]]);
       }

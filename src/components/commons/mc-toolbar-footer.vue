@@ -34,8 +34,10 @@
             v-layout(column)
               router-link(id="footer-multispecialty-btn" :to="{ name: 'cms' }" title="MYCURE | Multispecialty Clinic Management System (CMS)").link.white--text.py-2
                 span.py-2 Multispecialty Clinics
+              router-link(id="footer-group-practice-btn" :to="{ name: 'group' }" title="MYCURE | Group Practice").link.white--text.py-2
+                span.py-2 Group Practice
               router-link(id="footer-private-practice-btn" :to="{ name: 'emr' }" title="MYCURE | Private Practice Electronic Medical Records (EMR)").link.white--text.py-2
-                span.py-2 Private Practice
+                span.py-2 Individual Practice
               //- router-link(id="footer-solo-btn" :to="{ name: 'mycure-solo' }" title="MYCURE - Solo | A free and standalone clinic management system").link.white--text.py-2
                 span.py-2 Solo by MYCURE
       v-layout(row)

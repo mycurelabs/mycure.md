@@ -6,9 +6,11 @@ import privacyPolicy from '@/views/privacy-policy.vue';
 import terms from '@/views/terms.vue';
 import ourStory from '@/views/our-story.vue';
 import emr from '@/views/electronic-medical-records.vue';
+import group from '@/views/group-practice.vue';
 import cms from '@/views/clinic-management-system.vue';
 import pricing from '@/views/pricing.vue';
 import features from '@/views/features.vue';
+import csr from '@/views/csr.vue';
 // import solo from '@/views/solo.vue';
 import { core } from '@mycure/sdk';
 
@@ -59,7 +61,7 @@ export default new Router({
       }
     },
     {
-      path: '/clinic-management-system',
+      path: '/multispecialty-clinics',
       name: 'cms',
       id: 'toolbar-multispecialty-btn',
       component: cms,
@@ -69,7 +71,18 @@ export default new Router({
       }
     },
     {
-      path: '/electronic-medical-records',
+      path: '/group-practice',
+      name: 'group', 
+      id: 'toolbar-group-practice-btn',
+      // function: 'foo',
+      component: group,
+      meta: {
+        pageType: 'main',
+        pageName: 'Group Practice'
+      }
+    },
+    {
+      path: '/individual-practice',
       name: 'emr', 
       id: 'toolbar-private-practice-btn',
       // function: 'foo',
@@ -98,6 +111,17 @@ export default new Router({
     //     pageName: 'Solo by MYCURE'
     //   }
     // },
+    {
+      // TODO: what if `/community` ? 
+      path: '/corporate-social-responsibility',
+      name: 'csr',
+      id: 'toolbar-csr-btn', 
+      component: csr,
+      meta: {
+        pageType: '',
+        pageName: 'CSR'
+      }
+    },
     {
       path: '/features',
       name: 'features',
