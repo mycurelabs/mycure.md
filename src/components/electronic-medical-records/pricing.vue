@@ -46,11 +46,15 @@ div
               v-btn(
                 v-if="n === 1"
                 color="#18c551"
+                :href="`${signInURL}/signup/private/step-1`"
+                target="_blank"
               ).cta-btn-size
                 strong.font-16.white--text SIGN UP FREE
               v-btn(
                 v-if="n !== 1"
                 color="#18c551"
+                :href="`${signInURL}/signup/private/step-1`"
+                target="_blank"
               ).cta-btn-size
                 strong.font-16.white--text START MY TRIAL 
   //-TODO: Confirm if we are reverting back to the old product card
