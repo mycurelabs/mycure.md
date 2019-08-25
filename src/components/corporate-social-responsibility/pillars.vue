@@ -23,6 +23,7 @@
                   v-btn(
                     v-if="i === 3"
                     color="#2e9fdf"
+                    @click.stop="toggleChat"
                     large
                   ).text-none
                     strong.font-18.white--text Contact us 
@@ -47,6 +48,7 @@
               v-btn(
                 v-if="i === 3"
                 color="#2e9fdf"
+                @click.stop="toggleChat"
                 large
               ).text-none
                 strong.font-18.white--text Contact us 
@@ -86,6 +88,11 @@
         ]
       };
     },
+    methods: {
+      toggleChat () {
+        window.$crisp.push(['do', 'chat:toggle']);
+      },
+    }
   };
 </script>
 
