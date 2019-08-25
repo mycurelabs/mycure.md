@@ -12,13 +12,19 @@
     "image": "https://firebasestorage.googleapis.com/v0/b/mc-v4-prod.appspot.com/o/web-main-assets%2FMYCURE_Open_Graph_Images_Home_Clinic_Management_System.png?alt=media&token=9556e040-1c3d-4632-9151-798ad13a15d4"
   },
   {
-    "path": "/electronic-medical-records",
+    "path": "/individual-practice",
     "title": "MYCURE - Private Practice Electronic Medical Records (EMR)",
     "description": "MYCURE is a secure, online medical software for doctors that is easy to use and customize. Create SOAP charting, printable Rx, lab orders, and other forms.",
     "image": "https://firebasestorage.googleapis.com/v0/b/mc-v4-prod.appspot.com/o/web-main-assets%2FMYCURE_Open_Graph_Images_Individual_Clinic.png?alt=media&token=661d3622-8019-4aab-8af5-ec81631166c8"
   },
   {
-    "path": "/clinic-management-system",
+    "path": "/group-practice",
+    "title": "MYCURE - Group Practice",
+    "description": "MYCURE for Group Clinics",
+    "image": ""
+  },
+  {
+    "path": "/multispecialty-clinics",
     "title": "MYCURE - Multispecialty Clinic Management System (CMS)",
     "description": "A secure, cloud-based clinic management system built for multispecialty clinics. It has EMR, Lab (LIS), Imaging (RIS), Inventory, POS and Billing features.",
     "image": "https://firebasestorage.googleapis.com/v0/b/mc-v4-prod.appspot.com/o/web-main-assets%2FMYCURE_Open_Graph_Images_Multispecialty_Clinic.png?alt=media&token=de2ed033-d770-4940-b0f0-d7ce9f85664d"
@@ -58,5 +64,11 @@
     "title": "MYCURE - Features",
     "description": "MYCURE Features",
     "image": "https://firebasestorage.googleapis.com/v0/b/mc-v4-prod.appspot.com/o/web-main-assets%2FMYCURE_Open_Graph_Images_Features.png?alt=media&token=f3dc1d21-a745-411c-b585-b3917e66225d"
+  },
+  {
+    "path": "/corporate-social-responsibility",
+    "title": "MYCURE - Corporate Social Responsibility",
+    "description": "MYCURE Corporate Social Responsibility",
+    "image": ""
   }
 ]
