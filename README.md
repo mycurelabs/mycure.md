@@ -110,3 +110,7 @@ git push origin <branch>
 Where branch is your branch name.
 
 *Example:* `git push origin refactor/update-home`
+
+
+### Deploy
+Every changes merged to `master` will be deployed to Firebase.
