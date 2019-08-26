@@ -26,7 +26,7 @@
     },
     methods: {
       // toggleChat () {
-      //   let message = `Hi, I would like to know more about  Group Practice.`;
+      //   let message = `Hi, I would like to know more about  Group Clinics.`;
       //   window.$crisp.push(['do', 'chat:toggle']);
       //   window.$crisp.push(['do', 'message:send', ['text', message]]);
       // }

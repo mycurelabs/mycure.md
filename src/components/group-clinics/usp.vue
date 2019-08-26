@@ -9,7 +9,7 @@
             p.lh-title.font-45 The perfect clinic system setup designed for doctors who are practicing in groups.
             br
             v-btn(  
-              id="group-practice-signup-btn"
+              id="group-clinics-signup-btn"
               @click.stop="handleGroupSignUpBtn(); toggleChat()"
               target="_blank"
               color="#18c551"
@@ -17,7 +17,7 @@
             )
               strong.font-18.text-none.white--text Sign Up Now
           v-flex(xs12 md6 align-self-center).uspRight
-            img(width="90%" src="../../assets/images/mycure-group-web-banner-first-panel-doctor-frontdesk.png" alt="Group practice doctors").right
+            img(width="90%" src="../../assets/images/mycure-group-web-banner-first-panel-doctor-frontdesk.png" alt="Group Clinics doctors").right
     div(v-else).white
       v-container.pt-5
         v-layout(column justify-center)
@@ -25,10 +25,10 @@
             br
             p.font-40.text-xs-center.lh-title The perfect clinic  setup designed for doctors who are practicing in groups.
         v-flex(xs12)
-          img(width="100%" src="../../assets/images/mycure-group-web-banner-first-panel-doctor-frontdesk.png" alt="Group practice doctors").pb-5
+          img(width="100%" src="../../assets/images/mycure-group-web-banner-first-panel-doctor-frontdesk.png" alt="Group Clinics doctors").pb-5
       v-layout(row justify-center)
         v-btn(
-          id="group-practice-signup-btn" 
+          id="group-clinics-signup-btn" 
           @click.stop="handleGroupSignUpBtn(); toggleChat()" 
           target="_blank"
           title="MYCURE - Sign Up"
@@ -50,12 +50,12 @@
       handleGroupSignUpBtn () {
         this.$ga.event({
           eventCategory: 'button',
-          eventAction: 'click-group-practice-signup-btn',
-          eventLabel: 'group-practice-signup-btn'
+          eventAction: 'click-group-clinics-signup-btn',
+          eventLabel: 'group-clinics-signup-btn'
         });
       },
       toggleChat () {
-        let message = `Hi, I would like to sign up for MYCURE's Group Practice.`;
+        let message = `Hi, I would like to sign up for MYCURE's Group Clinics.`;
         window.$crisp.push(['do', 'chat:toggle']);
         window.$crisp.push(['do', 'message:send', ['text', message]]);
       },

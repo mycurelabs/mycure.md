@@ -14,11 +14,11 @@
 <script>
   import mcToolbarHome from '@/components/commons/mc-toolbar-home';
   import mcFooter from '@/components/commons/mc-footer';
-  import usp from '@/components/group-practice/usp';
-  import problems from '@/components/group-practice/problems';
-  import product from '@/components/group-practice/product';
-  import demo from '@/components/group-practice/demo';
-  import finalWords from '@/components/group-practice/final-words';
+  import usp from '@/components/group-clinics/usp';
+  import problems from '@/components/group-clinics/problems';
+  import product from '@/components/group-clinics/product';
+  import demo from '@/components/group-clinics/demo';
+  import finalWords from '@/components/group-clinics/final-words';
   import filler from '@/components/commons/filler';
   import VueScrollTo from 'vue-scrollto';
 
@@ -57,7 +57,7 @@
     },
     methods: {
       toggleChat () {
-        let message = `Hi, I would like to know more about  Group Practice.`;
+        let message = `Hi, I would like to know more about  Group Clinics.`;
         window.$crisp.push(['do', 'chat:toggle']);
         window.$crisp.push(['do', 'message:send', ['text', message]]);
       }

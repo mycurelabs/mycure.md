@@ -54,7 +54,7 @@
         });
       },
       toggleChat () {
-        let message = `Hi, I would like to sign up for MYCURE's Group Practice.`;
+        let message = `Hi, I would like to sign up for MYCURE's Group Clinics.`;
         window.$crisp.push(['do', 'chat:toggle']);
         window.$crisp.push(['do', 'message:send', ['text', message]]);
       },

@@ -14,7 +14,7 @@
                     span Multispecialty Clinics
                 li
                   router-link(id="footer-group-link" @click.stop="handleFooterGroupLink" :to="{name: 'group'}" title="MYCURE | Multispecialty Clinic Management System (CMS)").link.white--text
-                    span Group Practice
+                    span Group Clinics
                 li
                   router-link(id="footer-private-practice-link" @click.stop="handleFooterEmrLink" :to="{name: 'emr'}" title="MYCURE | Private Practice Electronic Medical Records (EMR)").link.white--text
                     span Private Practice
@@ -107,8 +107,8 @@ export default {
     handleFooterGroupLink () {
       this.$ga.event({
         eventCategory: 'link',
-        eventAction: 'click-footer-group-practice-link',
-        eventLabel: 'footer-group-practice-link'
+        eventAction: 'click-footer-group-clinics-link',
+        eventLabel: 'footer-group-clinics-link'
       });
     },
     handleFooterCmsLink () {

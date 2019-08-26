@@ -121,7 +121,7 @@
         });
       },
       toggleChat () {
-        let message = `Hi, I would like to schedule a demo for MYCURE's Group Practice.`;
+        let message = `Hi, I would like to schedule a demo for MYCURE's Group Clinics.`;
         window.$crisp.push(['do', 'chat:toggle']);
         window.$crisp.push(['do', 'message:send', ['text', message]]);
       },
