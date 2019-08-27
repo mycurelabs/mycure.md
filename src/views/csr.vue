@@ -2,9 +2,9 @@
   div.white#top
     mc-toolbar-home
     usp
-    div.skyBg
-      pillars
-      filler
+    //- div.skyBg
+    pillars
+    filler
     mc-footer
 </template>
 
