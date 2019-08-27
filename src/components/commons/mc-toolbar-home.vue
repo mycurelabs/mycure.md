@@ -110,11 +110,11 @@
                       b Careers
                 v-divider
                 v-subheader Support
-                v-list-tile(:to="{name: 'faqs-link'}")
+                //- v-list-tile(:to="{name: 'faqs-link'}")
                   v-list-tile-content
                     v-list-tile-title 
                       b FAQs
-                v-list-tile(:to="{name: 'pricing'}")
+                //- v-list-tile(:to="{name: 'pricing'}")
                   v-list-tile-content
                     v-list-tile-title 
                       b Pricing
