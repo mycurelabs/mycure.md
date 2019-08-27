@@ -2,7 +2,7 @@
   //-TODO: Videos are still playing even when dialogs are closed
   div#top.white
     mcToolbarHome
-    usp
+    usp(:uspContents="uspContents")
     storyflow(
       :storyflow="storyflowItems"
       :introduction="introText"
@@ -23,7 +23,7 @@
 <script>
   import mcToolbarHome from '@/components/commons/mc-toolbar-home';
   import mcFooter from '@/components/commons/mc-footer';
-  import usp from '@/components/home/usp';
+  import usp from '@/components/commons/usp';
   import vid from '@/components/home/vid';
   import product from '@/components/home/product';
   import unique from '@/components/home/unique';
@@ -51,6 +51,16 @@
     },
     data () {
       return {
+        // FOR USP PANEL
+        signInURL: process.env.VUE_APP_SIGNIN_URL,
+        uspContents: {
+          metaTitle: 'MYCURE Complete Clinic Practice Management System',
+          title: 'Discover a proven solution to organize and secure your patients’ medical records.',
+          btn: `${this.signInURL}signup/choose`,
+          btnId: 'home-usp-signup-btn',
+          btnText: 'Sign Up Now',
+          img: 'mycure-web-banner-first-panel-doctor-clinic-patients',
+        },
         introText: 'Built for Medical Practitioners',
         storyflowItems: [
           {
