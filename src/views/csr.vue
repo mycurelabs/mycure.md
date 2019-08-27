@@ -24,13 +24,6 @@
       pillars,
       filler
     },
-    methods: {
-      // toggleChat () {
-      //   let message = `Hi, I would like to know more about  Group Clinics.`;
-      //   window.$crisp.push(['do', 'chat:toggle']);
-      //   window.$crisp.push(['do', 'message:send', ['text', message]]);
-      // }
-    },
     mounted () {
       VueScrollTo.scrollTo(`#top`, 500, { easing: 'ease' } );
     }
