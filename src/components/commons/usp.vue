@@ -12,6 +12,7 @@ div
                 //- :href="uspContents.btn"                
                 v-btn(
                   v-if="uspContents.btnText"
+                  :href="uspContents.btn"
                   :color="mcGreen"
                   :id="uspContents.btnId"
                   target="_blank"
