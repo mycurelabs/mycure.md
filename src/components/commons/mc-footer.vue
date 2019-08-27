@@ -37,9 +37,9 @@
             v-flex(xs12 md3 offset-md1).font-mc-grey
               ul.no-style-type
                 li.feature-text SUPPORT 
-                li 
+                //- li 
                   router-link(id="footer-faqs-link" @click.stop="handleFooterFaqsLink" :to="{ name: 'faqs-link'}" title="MYCURE - FAQs").link.white--text FAQs
-                li
+                //- li
                   router-link(id="footer-pricing-link" @click.stop="handleFooterPricingLink" :to="{name: 'pricing'}" title="MYCURE Pricing | Affordable EMR and Clinic Management System").link.white--text
                     span Pricing
                 li.pb-3
