@@ -4,11 +4,11 @@
       v-container(align-center fill-height).px-5.panel-1
         v-layout(row justify-center)
           v-flex(xs12 md6 align-self-center).uspLeft
-            h1.lh-title.font-60 MYCURE cares 
+            h1.lh-title.font-60 MYCURE starts 
               br
-              | for people who 
+              | and ends
               br
-              | care for people.
+              | with real people.
           v-flex(v-if="!$isMobile" xs12 md6 align-self-center).uspRight
             img(width="100%" src="../../assets/images/mycure-homepage-doctor-kid-pediatrician-drawing.png" alt="Our Story")
       v-dialog(v-model="showVid" max-width="700px")
@@ -22,7 +22,7 @@
     div(v-else).white
       v-container.pt-5
         v-flex(xs12)
-          h1.font-weight-bold.font-40.text-xs-center MYCURE cares for people who care for people.
+          h1.font-weight-bold.font-40.text-xs-center MYCURE starts and ends with real people.
         br
         v-flex(xs12)
           img(width="100%" src="../../assets/images/mycure-homepage-doctor-kid-pediatrician-drawing.png" alt="Our Story").pb-5
