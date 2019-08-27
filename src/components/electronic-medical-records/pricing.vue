@@ -25,7 +25,9 @@ div
             div.pricing-card-3
               div.pb-4
                 p.font-22.pb-2 CORE
-                p(v-for="(item, i) in coreFree").font-16.line-height-10 {{ item }}
+                p(v-if="n === 1" v-for="(item, i) in coreFree").font-16.line-height-10 {{ item }}
+                p(v-if="n !== 1" v-for="(item, i) in coreFree.slice(0,4)").font-16.line-height-10 {{ item }}
+                p(v-if="n !== 1").font-16.line-height-10 ✓ Up to 10GB Storage
               div.pb-4
                 p.font-22.pb-2 MEDICAL RECORDS
                 p(v-for="(item, i) in medicalRecordsFree").font-16.line-height-10 {{ item }}
