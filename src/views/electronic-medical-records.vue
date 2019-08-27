@@ -40,7 +40,7 @@
         signInURL: process.env.VUE_APP_SIGNIN_URL,
         uspContents: {
           metaTitle: 'MYCURE for Individual Practice',
-          title: 'The smartest clinical tool for doctors that makes writing a thing of the past.',
+          title: 'The smartest clinical \ntool for doctors that \nmakes writing a thing \nof the past.',
           btn: `${this.signInURL}/signup/private/step-1`,
           btnId: 'emr-usp-signup-btn',
           btnText: 'Sign Up Now',

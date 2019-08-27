@@ -82,6 +82,7 @@ export default {
 }
 .uspTitle {
   font-size: 45px;
+  white-space: pre;
 }
 .uspMetaTitle {
   white-space: pre;

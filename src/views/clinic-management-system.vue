@@ -35,7 +35,7 @@
         signInURL: process.env.VUE_APP_SIGNIN_URL,
         uspContents: {
           metaTitle: 'MYCURE for Multispecialty Clinics',
-          title: 'The ultimate clinic system that eases the process flows of your multispecialty clinic.',
+          title: 'The ultimate clinic \nsystem that eases the \nprocess flows of your \nmultispecialty clinic.',
           btn: `${this.signInURL}/signup/multi-specialty/step-1`,
           btnId: 'cms-usp-signup-btn',
           btnText: 'Get Started Today',

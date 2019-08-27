@@ -48,7 +48,7 @@
         signInURL: process.env.VUE_APP_SIGNIN_URL,
         uspContents: {
           metaTitle: 'MYCURE Features',
-          title: 'User-friendly and time efficient features for a more patient-centric care.',
+          title: 'User-friendly and time \nefficient features for a \nmore patient-centric \ncare.',
           btn: `${this.signInURL}/signup/choose`,
           btnId: 'features-usp-signup-btn',
           btnText: 'Sign Up Now',
