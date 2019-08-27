@@ -29,7 +29,7 @@
           v-hover
             v-card(
               slot-scope="{ hover }"
-              :to="{ name: emr.link }"
+              :to="{ name: group.link }"
             ).roundedCard.mx-3.cardText
               v-layout(column justify-center)
                 v-flex(xs12 align-self-center).pa-3
@@ -38,17 +38,17 @@
                       src='../../assets/images/mycure-cms-web-solo-comparison-private.png' 
                       height="100"
                     )
-                  p.subtxtLineHeight.font-weight-bold.pb-0.font-18 I am a 
+                  p.subtxtLineHeight.font-weight-bold.pb-0.font-18 I need a 
                     br
-                    | private medical 
+                    | system for my 
                     br
-                    |practitioner
-                  strong(v-if="!hover").font-mc-grey.font-14.font-italic {{ emr.subsubtxt }}
-                  strong(v-else).font-14.font-italic {{ emr.subsubtxt }}
-          //- v-hover
+                    | group clinic
+                  strong(v-if="!hover").font-mc-grey.font-14.font-italic {{ group.subsubtxt }}
+                  strong(v-else).font-14.font-italic {{ group.subsubtxt }}
+          v-hover
             v-card(
               slot-scope="{ hover }"
-              :to="{ name: solo.link }"
+              :to="{ name: emr.link }"
             ).roundedCard.mx-3.cardText
               v-layout(column justify-center)
                 v-flex(xs12 align-self-center).pa-3
@@ -57,13 +57,13 @@
                       src='../../assets/images/mycure-cms-web-solo-comparison-solo.png' 
                       height="100"
                     )
-                  p.subtxtLineHeight.font-weight-bold.pb-0.preWrap.font-18 I need a 
+                  p.subtxtLineHeight.font-weight-bold.pb-0.preWrap.font-18 I am an
                     br
-                    | standalone and 
+                    | individual medical 
                     br 
-                    | free CMS
-                  strong(v-if="!hover").font-mc-grey.font-14.font-italic {{ solo.subsubtxt }}
-                  strong(v-else).font-14.font-italic {{ solo.subsubtxt }}
+                    | practitioner
+                  strong(v-if="!hover").font-mc-grey.font-14.font-italic {{ emr.subsubtxt }}
+                  strong(v-else).font-14.font-italic {{ emr.subsubtxt }}
         br
         v-layout(row justify-center).pt-5
           p.font-30.text-xs-center Unsure where you fit? 
@@ -97,13 +97,28 @@
           v-hover
             v-card(
               slot-scope="{ hover }"
-              :to="{ name: emr.link }"
+              :to="{ name: group.link }"
             ).roundedCard.mx-3.cardText.my-2
               v-layout(column justify-center)
                 v-flex(xs12 align-self-center).pa-3
                   v-flex(xs12).cardAssetPadding.pb-3
                     img(
                       src='../../assets/images/mycure-cms-web-solo-comparison-private.png' 
+                      height="100"
+                    )
+                  p.font-weight-bold.pb-0.preWrap.font-16 {{ group.subtxt }}
+                  strong(v-if="!hover").font-mc-grey.font-14.font-italic {{ group.subsubtxt }}
+                  strong(v-else).font-14.font-italic {{ group.subsubtxt }}
+          v-hover
+            v-card(
+              slot-scope="{ hover }"
+              :to="{ name: emr.link }"
+            ).roundedCard.mx-3.cardText.my-2
+              v-layout(column justify-center)
+                v-flex(xs12 align-self-center).pa-3
+                  v-flex(xs12).cardAssetPadding.pb-3
+                    img(
+                      src='../../assets/images/mycure-cms-web-solo-comparison-solo.png' 
                       height="100"
                     )
                   p.font-weight-bold.pb-0.preWrap.font-16 {{ emr.subtxt }}
@@ -144,10 +159,16 @@
             subsubtxt: '(one-stop, multi-staff center)',
             link: 'cms'
         },
+        group: {
+            text: 'Do you run a Multispecialty Clinic with branches around the country?',
+            subtxt: 'I need a \n system for my \ngroup clincic',
+            subsubtxt: '(got a clinic with peers)',
+            link: 'group'
+        },
         emr: {
           text: 'Are you a private medical practitioner? Running a clinic on your own or collaborating with others?',
           subtxt: 'I am a \nprivate medical \npractitioner',
-          subsubtxt: '(individually or with peers)',
+          subsubtxt: '(got a personal clinic)',
           link: 'emr'
         },
         solo: {
