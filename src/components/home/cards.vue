@@ -162,13 +162,13 @@
         group: {
             text: 'Do you run a Multispecialty Clinic with branches around the country?',
             subtxt: 'I need a \n system for my \ngroup clincic',
-            subsubtxt: '(got a clinic with peers)',
+            subsubtxt: '(shared, collaborative clinic)',
             link: 'group'
         },
         emr: {
           text: 'Are you a private medical practitioner? Running a clinic on your own or collaborating with others?',
           subtxt: 'I am a \nprivate medical \npractitioner',
-          subsubtxt: '(got a personal clinic)',
+          subsubtxt: '(personal private practice)',
           link: 'emr'
         },
         solo: {
