@@ -55,7 +55,7 @@ div
               v-btn(
                 v-if="n !== 1"
                 color="#18c551"
-                :href="`${signInURL}/signup/private/step-1`"
+                @click.stop="toggleChat"
                 target="_blank"
               ).cta-btn-size
                 strong.font-16.white--text START MY TRIAL 
@@ -153,6 +153,11 @@ div
           // '✓ Ad free'
         ]
       };
+    },
+    methods: {
+      toggleChat () {
+        window.$crisp.push(['do', 'chat:toggle']);
+      },
     }
   };
 </script>
