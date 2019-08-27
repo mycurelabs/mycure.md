@@ -150,7 +150,7 @@ div
         ],
         accessibilityPremimum: [
           '✓ Offline mode',
-          '✓ Ad free'
+          // '✓ Ad free'
         ]
       };
     }
