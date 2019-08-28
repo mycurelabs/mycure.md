@@ -15,7 +15,7 @@
                 flat
               ).mx-0
                 span.font-14.tab.text-none {{link.meta.pageName}}
-              span.font-weight-bold |
+              span.ml-2.font-weight-bold |
               v-btn(
                 flat
                 :to="{ name: 'features' }"
