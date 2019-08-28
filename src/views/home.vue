@@ -3,7 +3,6 @@
   div#top.white
     mcToolbarHome
     usp(:uspContents="uspContents")
-    pre {{ uspContents }}
     storyflow(
       :storyflow="storyflowItems"
       :introduction="introText"
