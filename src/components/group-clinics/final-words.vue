@@ -7,7 +7,7 @@
         span(slot="cms-sub-txt").font-18 Experience what you can do more with MYCURE technology by your side.
         v-btn(
           id="group-signup-btn"
-          @click.stop="handleGroupSignupBtn(); toggleChat()"
+          href="https://mycurecreatives.typeform.com/to/DiZQQY"
           slot="sign-up-button"
           color="#18c551" 
           right
@@ -26,7 +26,7 @@
         v-layout(row justify-center)
           v-btn(
             id="group-signup-btn"
-            @click.stop="handleGroupSignupBtn(); toggleChat()"
+            href="https://mycurecreatives.typeform.com/to/DiZQQY"
             color="#18c551"
             large
           )

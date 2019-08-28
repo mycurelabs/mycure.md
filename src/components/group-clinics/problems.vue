@@ -24,7 +24,7 @@
           //- TODO: href to where?
           v-btn(
             id="group-clinics-signup-btn"
-            @click.stop="handleGroupSignupBtn(); toggleChat()"
+            href="https://mycurecreatives.typeform.com/to/DiZQQY"
             color="#18c551"
             target="_blank"
             large
@@ -51,7 +51,7 @@
           //- TODO: href to where?
           v-btn(
             id="group-signup-btn"
-            @click.stop="handleGroupSignupBtn(); toggleChat()"
+            href="https://mycurecreatives.typeform.com/to/DiZQQY"
             target="_blank"
             color="#18c551" large).mt-5 
             strong.font-16.text-none.white--text Sign Up Now

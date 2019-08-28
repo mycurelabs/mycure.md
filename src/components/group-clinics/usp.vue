@@ -10,7 +10,7 @@
             br
             v-btn(  
               id="group-clinics-signup-btn"
-              @click.stop="handleGroupSignUpBtn(); toggleChat()"
+              href="https://mycurecreatives.typeform.com/to/DiZQQY"
               target="_blank"
               color="#18c551"
               large
@@ -29,7 +29,7 @@
       v-layout(row justify-center)
         v-btn(
           id="group-clinics-signup-btn" 
-          @click.stop="handleGroupSignUpBtn(); toggleChat()" 
+          href="https://mycurecreatives.typeform.com/to/DiZQQY"
           target="_blank"
           title="MYCURE - Sign Up"
           color="#18c551" 
