@@ -132,14 +132,14 @@ export default new Router({
         pageName: 'Features'
       }
     },
-    // {
-    //   path: '/solo',
-    //   name: 'solo',
-    //   beforeEnter (to, from, next) {
-    //     window.open('https://solo.health/');
-    //     next({name: from.name || 'home'});
-    //   }
-    // },
+    {
+      path: '/solo',
+      name: 'solo',
+      beforeEnter (to, from, next) {
+        window.open('https://solo.mycure.md/');
+        next({name: from.name || 'home'});
+      }
+    },
     {
       path: '/solo-early-access',
       name: 'solo-early-access',
