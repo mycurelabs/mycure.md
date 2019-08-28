@@ -6,7 +6,7 @@ import privacyPolicy from '@/views/privacy-policy.vue';
 import terms from '@/views/terms.vue';
 import ourStory from '@/views/our-story.vue';
 import emr from '@/views/electronic-medical-records.vue';
-import group from '@/views/group-practice.vue';
+import group from '@/views/group-clinics.vue';
 import cms from '@/views/clinic-management-system.vue';
 import pricing from '@/views/pricing.vue';
 import features from '@/views/features.vue';
@@ -71,14 +71,14 @@ export default new Router({
       }
     },
     {
-      path: '/group-practice',
+      path: '/group-clinics',
       name: 'group', 
-      id: 'toolbar-group-practice-btn',
+      id: 'toolbar-group-clinics-btn',
       // function: 'foo',
       component: group,
       meta: {
         pageType: 'main',
-        pageName: 'Group Practice'
+        pageName: 'Group Clinics'
       }
     },
     {

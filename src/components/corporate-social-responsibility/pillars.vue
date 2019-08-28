@@ -4,7 +4,8 @@
       v-container.px-5
         v-layout(row justify-center)
           v-layout(column justify-center)
-            div(v-for="(item, i) in items" :key="i").pb-5
+            div(v-for="(item, i) in items" :key="i").padding-top-75
+              div.hr-blue.margin-top-50
               v-layout(row justify-center).pb-5
                 v-flex(xs7).text-xs-center
                   h2.font-36 {{ item.title }}
@@ -99,5 +100,12 @@
 <style scoped>
 a {
   text-decoration: none;
+}
+.padding-top-75 {
+  padding-top: 75px;
+}
+.margin-top-50 {
+  margin-top: 50px;
+  margin-bottom: 30px;
 }
 </style>

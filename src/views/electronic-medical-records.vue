@@ -1,7 +1,7 @@
 <template lang="pug">
   div.white#top
     mc-toolbar-home
-    usp
+    usp(:uspContents="uspContents")
     problems
     product
     div.skyBg
@@ -23,7 +23,7 @@
 <script>
   import mcToolbarHome from '@/components/commons/mc-toolbar-home';
   import mcFooter from '@/components/commons/mc-footer';
-  import usp from '@/components/electronic-medical-records/usp';
+  import usp from '@/components/commons/usp';
   import problems from '@/components/electronic-medical-records/problems';
   import product from '@/components/electronic-medical-records/product';
   import pricing from '@/components/electronic-medical-records/pricing';
@@ -36,6 +36,16 @@
   export default {
     data () {
       return {
+        // FOR USP PANEL
+        signInURL: process.env.VUE_APP_SIGNIN_URL,
+        uspContents: {
+          metaTitle: 'MYCURE for Individual Practice',
+          title: 'The smartest clinical \ntool for doctors that \nmakes writing a thing \nof the past.',
+          btn: `${this.signInURL}/signup/private/step-1`,
+          btnId: 'emr-usp-signup-btn',
+          btnText: 'Sign Up Now',
+          img: 'mycure-emr-web-banner-first-panel-doctor-clinic-patients',
+        },
         introText: 'How It Works',
         storyflowItems: [
           {

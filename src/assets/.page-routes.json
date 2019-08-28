@@ -18,8 +18,8 @@
     "image": "https://firebasestorage.googleapis.com/v0/b/mc-v4-prod.appspot.com/o/web-main-assets%2FMYCURE_Open_Graph_Images_Individual_Clinic.png?alt=media&token=661d3622-8019-4aab-8af5-ec81631166c8"
   },
   {
-    "path": "/group-practice",
-    "title": "MYCURE - Group Practice",
+    "path": "/group-clinics",
+    "title": "MYCURE - Group Clinics",
     "description": "MYCURE for Group Clinics",
     "image": ""
   },

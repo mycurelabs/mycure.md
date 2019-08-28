@@ -2,9 +2,9 @@
   div.white#top
     mc-toolbar-home
     usp
-    div.skyBg
-      pillars
-      filler
+    //- div.skyBg
+    pillars
+    filler
     mc-footer
 </template>
 
@@ -23,13 +23,6 @@
       usp,
       pillars,
       filler
-    },
-    methods: {
-      // toggleChat () {
-      //   let message = `Hi, I would like to know more about  Group Practice.`;
-      //   window.$crisp.push(['do', 'chat:toggle']);
-      //   window.$crisp.push(['do', 'message:send', ['text', message]]);
-      // }
     },
     mounted () {
       VueScrollTo.scrollTo(`#top`, 500, { easing: 'ease' } );

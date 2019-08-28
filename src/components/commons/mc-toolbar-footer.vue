@@ -34,8 +34,8 @@
             v-layout(column)
               router-link(id="footer-multispecialty-btn" :to="{ name: 'cms' }" title="MYCURE | Multispecialty Clinic Management System (CMS)").link.white--text.py-2
                 span.py-2 Multispecialty Clinics
-              router-link(id="footer-group-practice-btn" :to="{ name: 'group' }" title="MYCURE | Group Practice").link.white--text.py-2
-                span.py-2 Group Practice
+              router-link(id="footer-group-clinics-btn" :to="{ name: 'group' }" title="MYCURE | Group Clinics").link.white--text.py-2
+                span.py-2 Group Clinics
               router-link(id="footer-private-practice-btn" :to="{ name: 'emr' }" title="MYCURE | Private Practice Electronic Medical Records (EMR)").link.white--text.py-2
                 span.py-2 Individual Practice
               //- router-link(id="footer-solo-btn" :to="{ name: 'mycure-solo' }" title="MYCURE - Solo | A free and standalone clinic management system").link.white--text.py-2
@@ -62,9 +62,9 @@
             template(v-slot:actions)
               v-icon(color="white").iconMargin mdi-chevron-down
             v-layout(column)
-              router-link(id="footer-faqs-btn" :to="{ name: 'faqs-link' }" title="MYCURE - FAQs").link.white--text.py-2
+              //- router-link(id="footer-faqs-btn" :to="{ name: 'faqs-link' }" title="MYCURE - FAQs").link.white--text.py-2
                 span.py-2 FAQs
-              router-link(id="footer-pricing-btn" :to="{ name: 'pricing' }" title="MYCURE Pricing | Affordable EMR and Clinic Management System").link.white--text.py-2
+              //- router-link(id="footer-pricing-btn" :to="{ name: 'pricing' }" title="MYCURE Pricing | Affordable EMR and Clinic Management System").link.white--text.py-2
                 span.py-2 Pricing
               router-link(id="footer-book-a-demo-btn" :to="{ name: 'calendly' }" title="MYCURE - Book A Demo").link.white--text.py-2
                 span.py-2 Book a Demo

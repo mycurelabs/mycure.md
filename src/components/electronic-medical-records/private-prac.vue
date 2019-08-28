@@ -12,7 +12,7 @@
                   v-flex(xs5)
                     img(width="100%" height="508vh" src="../../assets/images/mycure-web-banner-pricing-panel-private.png" alt="Private clinic pricing")
                   v-flex(xs8).text-xs-left.pa-5
-                    strong.font-30.pb-2 For Private Practice
+                    strong.font-30.pb-2 For Individual Practice
                     br
                     br
                     span.font-18 {{ private_title }}
@@ -24,7 +24,7 @@
                       br
                     v-layout(row wrap).py-4
                       v-btn(
-                        :href="`${signInURL}/signup/choose`" 
+                        :href="`${signInURL}/signup/private/step-1`" 
                         target="_blank"
                         color="#18c551"
                         large
@@ -40,7 +40,7 @@
       v-layout(row justify-center)
         v-btn(
           color="#18c551"
-          :href="`${signInURL}/signup/choose`"
+          :href="`${signInURL}/signup/private/step-1`"
           target="_blank"
         ).cta-btn
           strong.font-18.white--text.text-none Sign Up Now
@@ -58,7 +58,7 @@
     data () {
       return {
         signInURL: process.env.VUE_APP_SIGNIN_URL,
-        private_title: 'Designed for private practitioners who run their clinic alone or collaborate with other private practitioners.',
+        private_title: 'Designed for individual private practitioners who run their clinic alone or collaborate with other private practitioners.',
         privateFeatures: [
           'Create unlimited number of virtual clinics',
           'Access using multiple devices',

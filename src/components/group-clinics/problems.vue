@@ -23,8 +23,8 @@
         v-layout(row wrap justify-center)
           //- TODO: href to where?
           v-btn(
-            id="group-practice-signup-btn"
-            @click.stop="handleGroupSignupBtn(); toggleChat()"
+            id="group-clinics-signup-btn"
+            href="https://mycurecreatives.typeform.com/to/DiZQQY"
             color="#18c551"
             target="_blank"
             large
@@ -51,7 +51,7 @@
           //- TODO: href to where?
           v-btn(
             id="group-signup-btn"
-            @click.stop="handleGroupSignupBtn(); toggleChat()"
+            href="https://mycurecreatives.typeform.com/to/DiZQQY"
             target="_blank"
             color="#18c551" large).mt-5 
             strong.font-16.text-none.white--text Sign Up Now
@@ -79,7 +79,7 @@
     },
     methods: {
       toggleChat () {
-        let message = `Hi, I would like to sign up for MYCURE's Group Practice.`;
+        let message = `Hi, I would like to sign up for MYCURE's Group Clinics.`;
         window.$crisp.push(['do', 'chat:toggle']);
         window.$crisp.push(['do', 'message:send', ['text', message]]);
       },

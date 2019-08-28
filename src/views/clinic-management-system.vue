@@ -1,7 +1,7 @@
 <template lang="pug">
   div.white#top
     mc-toolbar-home
-    usp
+    usp(:uspContents="uspContents")
     problems
     product
     div.skyBg
@@ -21,7 +21,7 @@
   import mcFooter from '@/components/commons/mc-footer';
   import filler from '@/components/commons/filler';
   import VueScrollTo from 'vue-scrollto';
-  import usp from '@/components/clinic-management-system/usp';
+  import usp from '@/components/commons/usp';
   import problems from '@/components/clinic-management-system/problems';
   import product from '@/components/clinic-management-system/product';
   import benefits from '@/components/clinic-management-system/benefits';
@@ -31,7 +31,16 @@
   export default {
     data () {
       return {
-        //
+        // FOR USP PANEL
+        signInURL: process.env.VUE_APP_SIGNIN_URL,
+        uspContents: {
+          metaTitle: 'MYCURE for Multispecialty Clinics',
+          title: 'The ultimate clinic \nsystem that eases the \nprocess flows of your \nmultispecialty clinic.',
+          btn: `${this.signInURL}/signup/multi-specialty/step-1`,
+          btnId: 'cms-usp-signup-btn',
+          btnText: 'Get Started Today',
+          img: 'mycure-cms-web-banner-first-panel-doctor-clinic-patients',
+        },
       };
     }, 
     components: {

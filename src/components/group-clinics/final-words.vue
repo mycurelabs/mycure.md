@@ -2,12 +2,12 @@
   div
     div(v-if="!$isMobile").pt-5
       panelBeforeFooter.pt-5
-        img(slot="emr-img" src="../../assets/images/mycure_web_banner_last_panel_doctor.png" alt="Doctor best version").banner
+        img(slot="emr-img" src="../../assets/images/mycure-web-banner-last-panel-group-of-doctors.png" alt="Doctor best version").banner
         span(slot="emr-txt").font-48.lh-title It's always better when we work together.
         span(slot="cms-sub-txt").font-18 Experience what you can do more with MYCURE technology by your side.
         v-btn(
           id="group-signup-btn"
-          @click.stop="handleGroupSignupBtn(); toggleChat()"
+          href="https://mycurecreatives.typeform.com/to/DiZQQY"
           slot="sign-up-button"
           color="#18c551" 
           right
@@ -17,7 +17,7 @@
     div(v-else).pa-5
       v-container
         v-layout(row justify-center)
-          img(width="100%" height="100%" src="../../assets/images/mycure_web_banner_last_panel_doctor.png" alt="Doctor best version")
+          img(width="100%" height="100%" src="../../assets/images/mycure-web-banner-last-panel-group-of-doctors.png" alt="Doctor best version")
         br 
         p.font-25.text-xs-center It's always better when we work together.
         p.font-18.text-xs-center Experience what you can do more with MYCURE technology by your side.
@@ -26,7 +26,7 @@
         v-layout(row justify-center)
           v-btn(
             id="group-signup-btn"
-            @click.stop="handleGroupSignupBtn(); toggleChat()"
+            href="https://mycurecreatives.typeform.com/to/DiZQQY"
             color="#18c551"
             large
           )
@@ -54,7 +54,7 @@
         });
       },
       toggleChat () {
-        let message = `Hi, I would like to sign up for MYCURE's Group Practice.`;
+        let message = `Hi, I would like to sign up for MYCURE's Group Clinics.`;
         window.$crisp.push(['do', 'chat:toggle']);
         window.$crisp.push(['do', 'message:send', ['text', message]]);
       },

@@ -1,7 +1,8 @@
 <template lang="pug">
   div#top.white
     mcToolbarHome
-    panel1
+    //- panel1
+    usp(:uspContents="uspContents")
     panel2
     panel3
     panel4
@@ -16,7 +17,7 @@
 <script>
   import mcToolbarHome from '@/components/commons/mc-toolbar-home';
   import mcFooter from '@/components/commons/mc-footer';
-  import panel1 from '@/components/features/panel-1';
+  import usp from '@/components/commons/usp';
   import panel2 from '@/components/features/panel-2';
   import panel3 from '@/components/features/panel-3';
   import panel4 from '@/components/features/panel-4';
@@ -31,7 +32,7 @@
     components: {
       mcToolbarHome,
       mcFooter,
-      panel1,
+      usp,
       panel2,
       panel3,
       panel4,
@@ -40,6 +41,20 @@
       panel7,
       panel8,
       panel9
+    },
+    data () {
+      return {
+        // FOR USP PANEL
+        signInURL: process.env.VUE_APP_SIGNIN_URL,
+        uspContents: {
+          metaTitle: 'MYCURE Features',
+          title: 'User-friendly and time \nefficient features for a \nmore patient-centric \ncare.',
+          btn: `${this.signInURL}/signup/choose`,
+          btnId: 'features-usp-signup-btn',
+          btnText: 'Sign Up Now',
+          img: 'mycure-cms-web-banner-first-panel-features',
+        },
+      };
     },
     mounted () {
       VueScrollTo.scrollTo(`#top`, 500, { easing: 'ease' } );
