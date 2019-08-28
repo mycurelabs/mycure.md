@@ -12,7 +12,7 @@ div
                 //- :href="uspContents.btn"                
                 v-btn(
                   v-if="uspContents.btnText"
-                  :href="uspContents.btn"
+                  :href="`${this.signInURL}/signup/${uspContents.btn}`"
                   :color="mcGreen"
                   :id="uspContents.btnId"
                   target="_blank"
@@ -53,7 +53,7 @@ export default {
   props: {
     uspContents: {
       type: Object,
-      required: true
+      required: true,
     },
     someFunctionParent: {
       type: String
@@ -61,6 +61,7 @@ export default {
   },
   data () {
     return {
+      signInURL: process.env.VUE_APP_SIGNIN_URL,
       mcGreen: '#18c551',
       mcBlue: '#2e9fdf'
     };

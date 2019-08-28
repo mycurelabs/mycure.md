@@ -3,6 +3,7 @@
   div#top.white
     mcToolbarHome
     usp(:uspContents="uspContents")
+    pre {{ uspContents }}
     storyflow(
       :storyflow="storyflowItems"
       :introduction="introText"
@@ -56,7 +57,7 @@
         uspContents: {
           metaTitle: 'MYCURE Complete Clinic Practice Management System',
           title: 'Discover a proven \nsolution to organize and \nsecure your patients’ \nmedical records.',
-          btn: `${this.signInURL}/signup/choose`,
+          btn: `/choose`,
           btnId: 'home-usp-signup-btn',
           btnText: 'Sign Up Now',
           img: 'mycure-web-banner-first-panel-doctor-clinic-patients',
