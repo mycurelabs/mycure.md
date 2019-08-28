@@ -1,12 +1,72 @@
 <template lang="pug">
 div
-  v-container
+  div(v-if="!$isMobile")
+    v-container
+      v-layout(column justify-center)
+        h2.font-48.text-xs-center For Individual Practice
+        p.font-18.text-xs-center Designed for private practitioners who run their clinic alone or with a trusty secretary.
+      v-layout(row justify-center).margin-top-100
+        v-flex(xs12 md5 v-for="n in 2" :key="n").px-2
+          v-card(height="1600").px-5.pt-2.flexcard
+            v-card-text.grow
+              div.pricing-card-1
+                h2(v-if="n === 1").font-20.font-mc-blue.font-weight-black FREE
+                h2(v-else).font-20.font-mc-blue.font-weight-black PREMIUM              
+                strong.font-26 $
+                  |
+                  strong(v-if="n === 1").font-40 0
+                  strong(v-else).font-40 18
+                br
+                p.font-22.line-height-5 per month
+                span(v-if="n !== 1").font-18.font-italic (if billed annually, $22 if per month) 
+              div(v-if="n === 1").pricing-card-2-left
+                p.font-20.font-mc-grey We have included everything you need to serve your patients more efficiently for FREE!
+              div(v-if="n !== 1").pricing-card-2-right            
+                p.font-20.font-mc-grey Everything in FREE plus boosters to help you with business management and patient loyalty.
+              div.pricing-card-3
+                div.pb-4
+                  p.font-22.pb-2 CORE
+                  p(v-if="n === 1" v-for="(item, i) in coreFree").font-16.line-height-10 {{ item }}
+                  p(v-if="n !== 1" v-for="(item, i) in coreFree.slice(0,4)").font-16.line-height-10 {{ item }}
+                  p(v-if="n !== 1").font-16.line-height-10 ✓ Up to 10GB Storage
+                div.pb-4
+                  p.font-22.pb-2 MEDICAL RECORDS
+                  p(v-for="(item, i) in medicalRecordsFree").font-16.line-height-10 {{ item }}
+                div.pb-4
+                  p.font-22.pb-2 QUEUING &amp; APPOINTMENTS
+                  p(v-for="(item, i) in queueingFree").font-16.line-height-10 {{ item }}
+                div.pb-4
+                  p.font-22.pb-2 SECURITY
+                  p(v-for="(item, i) in securityFree").font-16.line-height-10 {{ item }}
+                div(v-if="n !== 1").pb-4
+                  p.font-22.pb-2 BUSINESS MANAGEMENT
+                  p(v-for="(item, i) in businessManagementPremium").font-16.line-height-10 {{ item }}
+                div(v-if="n !== 1").pb-4
+                  p.font-22.pb-2 ACCESSIBILITY
+                  p(v-for="(item, i) in accessibilityPremimum").font-16.line-height-10 {{ item }}
+            v-card-actions.pb-5
+              v-layout(row justify-center)
+                v-btn(
+                  v-if="n === 1"
+                  color="#18c551"
+                  :href="`${signInURL}/signup/private/step-1`"
+                  target="_blank"
+                ).cta-btn-size
+                  strong.font-16.white--text SIGN UP FREE
+                v-btn(
+                  v-if="n !== 1"
+                  color="#18c551"
+                  @click.stop="toggleChat"
+                  target="_blank"
+                ).cta-btn-size
+                  strong.font-16.white--text START MY TRIAL 
+  div(v-else)
     v-layout(column justify-center)
       h2.font-48.text-xs-center For Individual Practice
       p.font-18.text-xs-center Designed for private practitioners who run their clinic alone or with a trusty secretary.
-    v-layout(row justify-center).margin-top-100
-      v-flex(xs12 md5 v-for="n in 2" :key="n").px-2
-        v-card(height="1600").px-5.pt-2.flexcard
+    v-layout(column justify-center).margin-top-100
+      v-flex(xs12 md5 v-for="n in 2" :key="n").py-2
+        v-card(height="100%").px-5.pt-2.flexcard
           v-card-text.grow
             div.pricing-card-1
               h2(v-if="n === 1").font-20.font-mc-blue.font-weight-black FREE
@@ -58,7 +118,8 @@ div
                 @click.stop="toggleChat"
                 target="_blank"
               ).cta-btn-size
-                strong.font-16.white--text START MY TRIAL 
+                strong.font-16.white--text START MY TRIAL
+
   //-TODO: Confirm if we are reverting back to the old product card
   //- div#emrproduct
   //-   div(v-if="!$isMobile").transparent
