@@ -19,6 +19,7 @@
     "babel-polyfill": "^6.26.0",
     "bootstrap-vue": "^2.0.0-rc.19",
     "core-js": "^2.6.5",
+    "firebase-tools": "^7.3.0",
     "hooper": "^0.1.5",
     "prerender-spa-plugin": "^3.4.0",
     "typeface-poppins": "*",

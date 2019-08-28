@@ -38,7 +38,7 @@
                 span.py-2 Group Clinics
               router-link(id="footer-private-practice-btn" :to="{ name: 'emr' }" title="MYCURE | Private Practice Electronic Medical Records (EMR)").link.white--text.py-2
                 span.py-2 Individual Practice
-              //- router-link(id="footer-solo-btn" :to="{ name: 'mycure-solo' }" title="MYCURE - Solo | A free and standalone clinic management system").link.white--text.py-2
+              a(id="footer-solo-btn" href="https://solo.mycure.md" target="_blank" title="MYCURE - Solo | Patient Records Organizer (PRO)").link.white--text.py-2
                 span.py-2 Solo by MYCURE
       v-layout(row)
         v-expansion-panel.elevation-0

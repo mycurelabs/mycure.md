@@ -32,7 +32,7 @@
             target="_blank"
             color="#18c551"
             large
-          ).cta-btn
+          )
             strong.font-18.white--text.text-none Sign Up Now  
 </template>
 

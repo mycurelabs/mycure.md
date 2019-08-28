@@ -14,19 +14,19 @@
   {
     "path": "/individual-practice",
     "title": "MYCURE - Private Practice Electronic Medical Records (EMR)",
-    "description": "MYCURE is a secure, online medical software for doctors that is easy to use and customize. Create SOAP charting, printable Rx, lab orders, and other forms.",
+    "description": "The smartest clinical tool for doctors that makes writing a thing of the past.",
     "image": "https://firebasestorage.googleapis.com/v0/b/mc-v4-prod.appspot.com/o/web-main-assets%2FMYCURE_Open_Graph_Images_Individual_Clinic.png?alt=media&token=661d3622-8019-4aab-8af5-ec81631166c8"
   },
   {
     "path": "/group-clinics",
     "title": "MYCURE - Group Clinics",
-    "description": "MYCURE for Group Clinics",
+    "description": "The perfect clinic system setup designed for doctors who are practicing in groups.",
     "image": ""
   },
   {
     "path": "/multispecialty-clinics",
     "title": "MYCURE - Multispecialty Clinic Management System (CMS)",
-    "description": "A secure, cloud-based clinic management system built for multispecialty clinics. It has EMR, Lab (LIS), Imaging (RIS), Inventory, POS and Billing features.",
+    "description": "The ultimate clinic system that eases the process flows of your multispecialty clinic.",
     "image": "https://firebasestorage.googleapis.com/v0/b/mc-v4-prod.appspot.com/o/web-main-assets%2FMYCURE_Open_Graph_Images_Multispecialty_Clinic.png?alt=media&token=de2ed033-d770-4940-b0f0-d7ce9f85664d"
   },
   {
@@ -62,7 +62,7 @@
   {
     "path": "/corporate-social-responsibility",
     "title": "MYCURE - Corporate Social Responsibility",
-    "description": "MYCURE Corporate Social Responsibility",
+    "description": "MYCURE cares for people who care for people.",
     "image": ""
   }
 ]

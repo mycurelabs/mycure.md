@@ -49,7 +49,7 @@
         uspContents: {
           metaTitle: 'MYCURE Features',
           title: 'User-friendly and time \nefficient features for a \nmore patient-centric \ncare.',
-          btn: `${this.signInURL}/signup/choose`,
+          btn: `/choose`,
           btnId: 'features-usp-signup-btn',
           btnText: 'Sign Up Now',
           img: 'mycure-cms-web-banner-first-panel-features',
