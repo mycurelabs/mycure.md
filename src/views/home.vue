@@ -55,7 +55,7 @@
         signInURL: process.env.VUE_APP_SIGNIN_URL,
         uspContents: {
           metaTitle: 'MYCURE Complete Clinic Practice Management System',
-          title: 'Discover a proven \nsolution to organize and \nsecure your patients’ \nmedical records.',
+          title: 'The first complete clinic \nsolution designed for \nmodern clinics that works \noffline and syncs online  .',
           btn: `/choose`,
           btnId: 'home-usp-signup-btn',
           btnText: 'Sign Up Now',
