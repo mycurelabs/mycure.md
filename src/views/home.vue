@@ -55,7 +55,7 @@
         signInURL: process.env.VUE_APP_SIGNIN_URL,
         uspContents: {
           metaTitle: 'MYCURE Complete Clinic Practice Management System',
-          title: 'The first complete \nclinic solution designed for \nmodern clinics that works \noffline and syncs online  .',
+          title: 'The first complete clinic \nsolution designed for \nmodern clinics that works \noffline and syncs online.',
           btn: `/choose`,
           btnId: 'home-usp-signup-btn',
           btnText: 'Sign Up Now',
@@ -66,17 +66,17 @@
           {
             title: 'A Versatile Electronic Health Records (EHR)',
             text: 'Powerful, robust and proven solution to organize and secure patients’ medical records.',
-            image: 'mycure-web-banner-circles-home-01-doctors-league.png'
+            image: 'mycure-web-banner-circles-home-01-ehr.png'
           },
           {
             title: 'Solving Everyday Challenges Efficiently',
             text: 'Data privacy issues, duplicate or missing patient charts, billing & collection discrepancies, cutting down unnecessary costs, and having unreliable internet connection should be the least of the worries.',
-            image: 'mycure-web-banner-circles-home-02-challenges.png'
+            image: 'mycure-web-banner-circles-home-02-solve.png'
           },
           {
             title: 'Integrating the Whole Patient Journey',
             text: 'Accessible, integrated, and complete clinic management system that simplifies and automates workflow from queuing to charting to billing.',
-            image: 'mycure-web-banner-circles-home-03-mycure-plan.png'
+            image: 'mycure-web-banner-circles-home-03-px-journey.png'
           }
         ]
       };
