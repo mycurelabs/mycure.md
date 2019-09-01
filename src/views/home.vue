@@ -55,13 +55,13 @@
         signInURL: process.env.VUE_APP_SIGNIN_URL,
         uspContents: {
           metaTitle: 'MYCURE Complete Clinic Practice Management System',
-          title: 'The first complete clinic \nsolution designed for \nmodern clinics that works \noffline and syncs online.',
+          title: 'The first complete clinic \nsolution designed for \nsmart clinics that works \noffline and syncs online.',
           btn: `/choose`,
           btnId: 'home-usp-signup-btn',
           btnText: 'Sign Up Now',
           img: 'mycure-web-banner-first-panel-doctor-clinic-patients',
         },
-        introText: 'The Ultimate Clinicware for Modern Clinics',
+        introText: 'The Ultimate Clinicware for Smart Clinics',
         storyflowItems: [
           {
             title: 'A Versatile Electronic Health Records (EHR)',
