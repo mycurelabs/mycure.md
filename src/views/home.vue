@@ -3,7 +3,6 @@
   div#top.white
     mcToolbarHome
     usp(:uspContents="uspContents")
-    pre {{ uspContents }}
     storyflow(
       :storyflow="storyflowItems"
       :introduction="introText"
@@ -56,28 +55,28 @@
         signInURL: process.env.VUE_APP_SIGNIN_URL,
         uspContents: {
           metaTitle: 'MYCURE Complete Clinic Practice Management System',
-          title: 'Discover a proven \nsolution to organize and \nsecure your patients’ \nmedical records.',
+          title: 'The first complete clinic \nsolution designed for \nmodern clinics that works \noffline and syncs online.',
           btn: `/choose`,
           btnId: 'home-usp-signup-btn',
           btnText: 'Sign Up Now',
           img: 'mycure-web-banner-first-panel-doctor-clinic-patients',
         },
-        introText: 'Built for Medical Practitioners',
+        introText: 'The Ultimate Clinicware for Modern Clinics',
         storyflowItems: [
           {
-            title: 'A Versatile Tool with a Powerful Mission',
-            text: 'To the unsung heroes who inspire us everyday, you deserve access to a more reliable clinic management system that will help ease your mission to save lives.',
-            image: 'mycure-web-banner-circles-home-01-doctors-league.png'
+            title: 'A Versatile Electronic Health Records (EHR)',
+            text: 'Powerful, robust and proven solution to organize and secure patients’ medical records.',
+            image: 'mycure-web-banner-circles-home-01-ehr.png'
           },
           {
-            title: 'Solving Everyday Challenges',
-            text: 'Data privacy issues, duplicate or missing patient charts, billing & collection discrepancies, cutting down unnecessary costs, and having unreliable internet connection should be the least of your worries.',
-            image: 'mycure-web-banner-circles-home-02-challenges.png'
+            title: 'Solving Everyday Challenges Efficiently',
+            text: 'Data privacy issues, duplicate or missing patient charts, billing & collection discrepancies, cutting down unnecessary costs, and having unreliable internet connection should be the least of the worries.',
+            image: 'mycure-web-banner-circles-home-02-solve.png'
           },
           {
-            title: 'Secure, Integrated Medical Records',
-            text: 'Our goal at MYCURE is to build an accessible, integrated, and complete clinic management system that you can use to simplify work, help direct the flow in every health facility, while securely storing and retrieving medical records.',
-            image: 'mycure-web-banner-circles-home-03-mycure-plan.png'
+            title: 'Integrating the Whole Patient Journey',
+            text: 'Accessible, integrated, and complete clinic management system that simplifies and automates workflow from queuing to charting to billing.',
+            image: 'mycure-web-banner-circles-home-03-px-journey.png'
           }
         ]
       };
