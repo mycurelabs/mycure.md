@@ -9,6 +9,7 @@
           id="group-signup-btn"
           href="https://mycurecreatives.typeform.com/to/DiZQQY"
           slot="sign-up-button"
+          target="_blank"
           color="#18c551" 
           right
           large
@@ -27,6 +28,7 @@
           v-btn(
             id="group-signup-btn"
             href="https://mycurecreatives.typeform.com/to/DiZQQY"
+            target="_blank"
             color="#18c551"
             large
           )
