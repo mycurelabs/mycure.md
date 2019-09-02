@@ -1,6 +1,6 @@
 <template lang="pug">
 div
-  div(v-if="!$isMobile").whole-page
+  div(v-if="!$isMobile").white.whole-page
     v-container(fill-height)
       v-layout(row align-center justify-center)
         div.panel-size.usp-panel
