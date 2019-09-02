@@ -80,3 +80,85 @@
     }
   }
 }
+[debug] [2019-09-02T15:27:33.832Z] ----------------------------------------------------------------------
+[debug] [2019-09-02T15:27:33.836Z] Command:       /Users/francisryanmarquez/.nvm/versions/node/v10.16.3/bin/node /Users/francisryanmarquez/Documents/MYCURE/web-main/node_modules/.bin/firebase deploy --only hosting -P mycure-v2 --token 1/jJ01eUOvxwG_58zOB8OQ86dK6oMgefcAsUMuwYfLOzc
+[debug] [2019-09-02T15:27:33.836Z] CLI Version:   7.3.0
+[debug] [2019-09-02T15:27:33.837Z] Platform:      darwin
+[debug] [2019-09-02T15:27:33.837Z] Node Version:  v10.16.3
+[debug] [2019-09-02T15:27:33.840Z] Time:          Mon Sep 02 2019 23:27:33 GMT+0800 (Philippine Standard Time)
+[debug] [2019-09-02T15:27:33.840Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2019-09-02T15:27:33.863Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-09-02T15:27:33.863Z] > authorizing via --token option
+[debug] [2019-09-02T15:27:33.863Z] [iam] checking project mycure-v2 for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2019-09-02T15:27:33.865Z] > refreshing access token with scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-09-02T15:27:33.865Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2019-09-02T15:27:34.075Z] <<< HTTP RESPONSE 200
+[debug] [2019-09-02T15:27:34.078Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/mycure-v2:testIamPermissions  
+
+[debug] [2019-09-02T15:27:35.210Z] <<< HTTP RESPONSE 200
+[debug] [2019-09-02T15:27:35.215Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/mycure-v2  
+ 
+[debug] [2019-09-02T15:27:36.029Z] <<< HTTP RESPONSE 200
+[warn] ⚠  functions: package.json indicates an outdated version of firebase-functions.
+ Please upgrade using npm install --save firebase-functions@latest in your functions directory.
+[info] 
+[info] === Deploying to 'mycure-v2'...
+[info] 
+[info] i  deploying hosting
+[debug] [2019-09-02T15:27:38.744Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/mycure-v2/versions  
+
+[debug] [2019-09-02T15:27:40.919Z] <<< HTTP RESPONSE 500
+[debug] [2019-09-02T15:27:40.919Z] <<< HTTP RESPONSE BODY
+[error] 
+[error] Error: HTTP Error: 500, Internal error encountered.
+[debug] [2019-09-02T15:27:41.039Z] Error Context: {
+  "body": {
+    "error": {
+      "code": 500,
+      "message": "Internal error encountered.",
+      "status": "INTERNAL"
+    }
+  },
+  "response": {
+    "statusCode": 500,
+    "body": {
+      "error": {
+        "code": 500,
+        "message": "Internal error encountered.",
+        "status": "INTERNAL"
+      }
+    },
+    "headers": {
+      "vary": "X-Origin, Referer, Origin,Accept-Encoding",
+      "content-type": "application/json; charset=UTF-8",
+      "date": "Mon, 02 Sep 2019 15:27:40 GMT",
+      "server": "ESF",
+      "cache-control": "private",
+      "x-xss-protection": "0",
+      "x-frame-options": "SAMEORIGIN",
+      "x-content-type-options": "nosniff",
+      "alt-svc": "quic=\":443\"; ma=2592000; v=\"46,43,39\"",
+      "accept-ranges": "none",
+      "transfer-encoding": "chunked"
+    },
+    "request": {
+      "uri": {
+        "protocol": "https:",
+        "slashes": true,
+        "auth": null,
+        "host": "firebasehosting.googleapis.com",
+        "port": 443,
+        "hostname": "firebasehosting.googleapis.com",
+        "hash": null,
+        "search": null,
+        "query": null,
+        "pathname": "/v1beta1/sites/mycure-v2/versions",
+        "path": "/v1beta1/sites/mycure-v2/versions",
+        "href": "https://firebasehosting.googleapis.com/v1beta1/sites/mycure-v2/versions"
+      },
+      "method": "POST"
+    }
+  }
+}
