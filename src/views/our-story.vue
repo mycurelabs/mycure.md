@@ -4,6 +4,7 @@
     panel1
     panel2
     panel3
+    ProblemToSolve
     panel4
     panel5
     panel6.skyBg
@@ -21,6 +22,7 @@
   import panel5 from '@/components/our-story/panel-5';
   import panel6 from '@/components/our-story/panel-6';
   import panel7 from '@/components/our-story/panel-7';
+  import ProblemToSolve from '@/components/our-story/ProblemToSolve';
   import VueScrollTo from 'vue-scrollto';
 
   export default {
@@ -38,7 +40,8 @@
       panel4,
       panel5,
       panel6,
-      panel7
+      panel7,
+      ProblemToSolve
     },
     mounted () {
       VueScrollTo.scrollTo(`#top`, 500, { easing: 'ease' } );
