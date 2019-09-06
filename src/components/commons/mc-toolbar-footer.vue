@@ -36,7 +36,7 @@
                 span.py-2 Multispecialty Clinics
               router-link(id="footer-group-clinics-btn" :to="{ name: 'group' }" title="MYCURE | Group Clinics").link.white--text.py-2
                 span.py-2 Group Clinics
-              router-link(id="footer-private-practice-btn" :to="{ name: 'emr' }" title="MYCURE | Private Practice Electronic Medical Records (EMR)").link.white--text.py-2
+              router-link(id="footer-private-practice-btn" :to="{ name: 'emr' }" title="MYCURE | Individual Practice Electronic Medical Records (EMR)").link.white--text.py-2
                 span.py-2 Individual Practice
               a(id="footer-solo-btn" href="https://solo.mycure.md" target="_blank" title="MYCURE - Solo | Patient Records Organizer (PRO)").link.white--text.py-2
                 span.py-2 Solo by MYCURE

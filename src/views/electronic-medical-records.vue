@@ -80,7 +80,7 @@
     },
     methods: {
       toggleChat () {
-        let message = `Hi, I would like to know more about the Electronic Medical Records for Private Practice.`;
+        let message = `Hi, I would like to know more about the Electronic Medical Records for Individual Practice.`;
         window.$crisp.push(['do', 'chat:toggle']);
         window.$crisp.push(['do', 'message:send', ['text', message]]);
       }
