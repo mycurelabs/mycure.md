@@ -70,7 +70,7 @@
         clinicProblems: [
           'We can share the same list of patients.',
           'Our secretary gets piled up with paperwork.',
-          'We have a patient queueing issues.',
+          'We have patient queueing issues.',
           'Paper charts are very difficult to search & filter.',
           'We have no idea how much HMOs owe us.',
           'Our previous system is old and not user-friendly.'

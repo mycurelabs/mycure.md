@@ -81,7 +81,7 @@
             avatar: 'medical-technologist'
           },
           {
-            name: 'Cashier & Billing Staff',
+            name: 'Cashier and Billing Staff',
             avatar: 'cashier-billing-staff'
           },
           {
