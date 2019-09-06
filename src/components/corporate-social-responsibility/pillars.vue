@@ -72,7 +72,7 @@
             image: 'mycure-web-banner-circles-csr-02-helping-hands',
             title: 'Social Responsibility',
             content1: 'Solo is designed to work in areas with zero or low internet. Ideal to be used in health community centers as well as doctors in the field, the ones doing voluntary work on mission.',
-            content2: 'While there are other electronic medical record (EMR) systems around, Solo uses advanced tech, applies user friendly flows and continuously improves. More importantly, it\'s FREE.'
+            content2: 'While there are other electronic medical record (EMR) systems around, Solo uses advanced tech, applies user-friendly flows and continuously improves. More importantly, it\'s FREE.'
           },
           {
             image: 'mycure-web-banner-circles-csr-03-group-of-doctors',
