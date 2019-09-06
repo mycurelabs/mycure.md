@@ -60,7 +60,7 @@
         signInURL: process.env.VUE_APP_SIGNIN_URL,
         private_title: 'Designed for individual private practitioners who run their clinic alone or collaborate with other private practitioners.',
         privateFeatures: [
-          'Create unlimited number of virtual clinics',
+          'Create an unlimited number of virtual clinics',
           'Access using multiple devices',
           'Full Access to the CMS Core Modules',
           'Start FREE up to 100 patient profiles',
@@ -69,7 +69,7 @@
     },
     methods: {
       toggleChat () {
-        let message = `Hi, I would like to know more about the Electronic Medical Records for Private Practice.`;
+        let message = `Hi, I would like to know more about the Electronic Medical Records for Individual Practice.`;
         window.$crisp.push(['do', 'chat:toggle']);
         window.$crisp.push(['do', 'message:send', ['text', message]]);
       },
