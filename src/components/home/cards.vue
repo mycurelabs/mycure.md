@@ -23,7 +23,7 @@
                     br
                     | multispecialty 
                     br
-                    | clinic
+                    | clinic.
                   strong(v-if="!hover").font-mc-grey.font-14.font-italic {{ cms.subsubtxt }}
                   strong(v-else).font-14.font-italic {{ cms.subsubtxt }}
           v-hover
@@ -42,7 +42,7 @@
                     br
                     | system for my 
                     br
-                    | group clinic
+                    | group clinic.
                   strong(v-if="!hover").font-mc-grey.font-14.font-italic {{ group.subsubtxt }}
                   strong(v-else).font-14.font-italic {{ group.subsubtxt }}
           v-hover
@@ -61,7 +61,7 @@
                     br
                     | individual medical 
                     br 
-                    | practitioner
+                    | practitioner.
                   strong(v-if="!hover").font-mc-grey.font-14.font-italic {{ emr.subsubtxt }}
                   strong(v-else).font-14.font-italic {{ emr.subsubtxt }}
         br
@@ -155,25 +155,25 @@
       return {
         cms: {
             text: 'Do you run a Multispecialty Clinic with branches around the country?',
-            subtxt: 'I manage a \nmultispecialty \nclinic',
+            subtxt: 'I manage a \nmultispecialty \nclinic.',
             subsubtxt: '(one-stop, multi-staff center)',
             link: 'cms'
         },
         group: {
             text: 'Do you run a Multispecialty Clinic with branches around the country?',
-            subtxt: 'I need a \n system for my \ngroup clincic',
+            subtxt: 'I need a \n system for my \ngroup clincic.',
             subsubtxt: '(shared, collaborative clinic)',
             link: 'group'
         },
         emr: {
           text: 'Are you a private medical practitioner? Running a clinic on your own or collaborating with others?',
-          subtxt: 'I am a \nprivate medical \npractitioner',
+          subtxt: 'I am a \nprivate medical \npractitioner.',
           subsubtxt: '(personal private practice)',
           link: 'emr'
         },
         solo: {
           text: 'Do you want to secure your own client’s EMR? Or live remotely with very scarce internet connectivity?',
-          subtxt: 'I need a \nstandalone and \nfree CMS',
+          subtxt: 'I need a \nstandalone and \nfree CMS.',
           subsubtxt: '(personal data storage)',
           link: 'mycure-solo'          
         } 

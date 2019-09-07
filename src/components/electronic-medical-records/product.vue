@@ -29,7 +29,7 @@
         signInURL: process.env.VUE_APP_SIGNIN_URL,
 
         clinicProblems: [
-          'I\'ve no secretary to help with record keeping',
+          'I\'ve no secretary to help with record-keeping',
           'My patients can\'t read my scribbly handwriting!',
           'Paper charts are very difficult to search & filter',
           'Cloud is a much safer place to backup my charts',

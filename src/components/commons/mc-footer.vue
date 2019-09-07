@@ -16,7 +16,7 @@
                   router-link(id="footer-group-link" @click.stop="handleFooterGroupLink" :to="{name: 'group'}" title="MYCURE | Multispecialty Clinic Management System (CMS)").link.white--text
                     span Group Clinics
                 li
-                  router-link(id="footer-private-practice-link" @click.stop="handleFooterEmrLink" :to="{name: 'emr'}" title="MYCURE | Private Practice Electronic Medical Records (EMR)").link.white--text
+                  router-link(id="footer-private-practice-link" @click.stop="handleFooterEmrLink" :to="{name: 'emr'}" title="MYCURE | Individual Practice Electronic Medical Records (EMR)").link.white--text
                     span Individual Practice
                 li.pb-3
                   a(id="footer-solo-link" @click.stop="handleFooterSoloLink" href="https://solo.mycure.md" target="_blank" title="MYCURE - Solo | Patient Records Organizer (PRO)").link.white--text

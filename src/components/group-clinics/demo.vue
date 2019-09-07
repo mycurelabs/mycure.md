@@ -79,7 +79,7 @@
           '✓ Unlimited patient charts',
           '✓ Unlimited secretary accounts',
           '✓ Multiple device access',
-          '✓ Offlne Mode',
+          '✓ Offline Mode',
           '✓ Up to 10GB storage'
         ],
         recordsFeatures: [

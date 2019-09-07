@@ -57,7 +57,7 @@
           {
             name: 'Dr. Gay Cadorna-Toledo',
             position: 'Pediatrician',
-            message: '“It\'s a great experience using MYCURE app in our rural setup. I\'ve been through many EMR apps, but this one is the best so far... It is very convenient to use, simple, adaptable and user friendly even to my secretary.”'
+            message: '“It\'s a great experience using MYCURE app in our rural setup. I\'ve been through many EMR apps, but this one is the best so far... It is very convenient to use, simple, adaptable and user-friendly even to my secretary.”'
           },
           {
             name: 'Atty. Ivy D. Patdu, M.D',
