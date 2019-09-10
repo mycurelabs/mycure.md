@@ -19,7 +19,9 @@ jobs:
       - name: Install yarn
         run: npm install yarn@latest -g
       - name: CD to project
-        run: cd ..
+        run: |
+          pwd
+          ls -la
       - name: Install dependencies
         run: yarn
       - name: Run build
