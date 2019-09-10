@@ -36,7 +36,7 @@ jobs:
         node: [10]
     steps:
       - uses: actions/setup-node@v1
-        name: Run deploy
         env: 
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+        name: Run deploy
         run: yarn deploy:prod
