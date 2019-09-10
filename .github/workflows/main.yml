@@ -30,8 +30,6 @@ jobs:
   deploy:
     name: Deploy to hosting
     needs: build
-    env: 
-      FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -39,4 +37,6 @@ jobs:
     steps:
       - uses: actions/setup-node@v1
       - name: Run deploy
+      - env: 
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
         run: yarn deploy:prod
