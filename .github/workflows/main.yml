@@ -6,8 +6,8 @@ on:
       - master
 
 jobs:
-  install:
-    name: Install dependencies
+  deploy_to_live:
+    name: Deploy prod hosting
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -16,26 +16,8 @@ jobs:
       - uses: actions/setup-node@v1
       - name: Install yarn
         run: npm install yarn -g
-  build:
-    name: Build web app
-    needs: install
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node: [10]
-    steps:
-      - uses: actions/setup-node@v1
       - name: Run build
         run: yarn build
-  deploy:
-    name: Deploy to hosting
-    needs: build
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node: [10]
-    steps:
-      - uses: actions/setup-node@v1
       - name: Run deploy
         env: 
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
