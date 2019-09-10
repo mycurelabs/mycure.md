@@ -14,8 +14,12 @@ jobs:
         node: [10]
     steps: 
       - uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node }}
       - name: Install yarn
         run: npm install yarn@latest -g
+      - name: Install dependencies
+        run: yarn
       - name: Run build
         run: yarn build
       - name: Run deploy
