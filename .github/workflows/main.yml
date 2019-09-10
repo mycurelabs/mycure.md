@@ -38,5 +38,5 @@ jobs:
       - uses: actions/setup-node@v1
         env: 
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
-        name: Run deploy
+      - name: Run deploy
         run: yarn deploy:prod
