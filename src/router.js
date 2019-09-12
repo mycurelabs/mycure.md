@@ -266,7 +266,6 @@ export default new Router({
 
           window.location.href = to.query.link;
         } catch (e) {
-          console.error('CTM Counter Error:', e);
           window.location.href = to.query.link;
         }
       }
