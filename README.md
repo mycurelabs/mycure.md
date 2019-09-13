@@ -1,3 +1,5 @@
+[![Build Status](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2Fmycurelabs%2Fweb-main%2Fbadge%3Fref%3Dmaster%26token%3D002637dbbbff3a6cc042c93e2c663b5571d2b243&style=for-the-badge)](https://actions-badge.atrox.dev/mycurelabs/web-main/goto?ref=master&token=002637dbbbff3a6cc042c93e2c663b5571d2b243)
+
 ### Install dependencies
 
 ```bash
