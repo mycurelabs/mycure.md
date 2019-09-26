@@ -38,7 +38,7 @@ div
       v-layout(row justify-center)
         v-btn(
           v-if="uspContents.btn"
-          :href="uspContents.btn"
+          :href="`${this.signInURL}/signup/${uspContents.btn}`"         
           :color="mcGreen"
           :id="uspContents.btnId"
           target="_blank"
