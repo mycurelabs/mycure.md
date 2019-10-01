@@ -177,7 +177,7 @@ export default {
 
   .skyBg {
     background-image: url('./assets/images/mycure-home-web-sky-background.png');
-    background-position: center center;
+    background-position: center top;
     background-repeat: no-repeat;
     background-size: cover;
   }
