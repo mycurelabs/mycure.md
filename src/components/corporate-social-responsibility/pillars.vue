@@ -32,7 +32,7 @@
       v-container.pt-5
         div(v-for="(item, i) in items" :key="i").pb-5
           v-layout(row justify-center).pb-5
-            v-flex(xs7).text-xs-center
+            v-flex(xs12).text-xs-center
               h2.font-36 {{ item.title }}
           v-layout(column justify-center)
             v-flex(xs12 md12 align-self-center)
