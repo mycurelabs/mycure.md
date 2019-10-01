@@ -3,13 +3,13 @@
     v-container
       v-layout(row wrap)
         v-flex(xs12 md12)
-          v-layout(row wrap align-center justify-center)
+          v-layout(row wrap align-start justify-center)
             v-flex(xs12 md12).text-xs-center
-              h1.pt-5.font-48 Our Purpose
+              h1.pt-5.font-48.pb-3 Our Purpose
             v-flex(xs12 md4).px-4
               img(width="100%" src="../../assets/images/mycure-ourstory-team.png" alt="Our Story - Team")
             v-flex(xs12 md8).px-4
-              p.font-18.pt-5 MYCURE’s vision is to 
+              p.font-18 MYCURE’s vision is to 
                 |
                 strong securely organize medical records that will provide fast, safe, and efficient access to health professionals, enabling them to help and save more lives.
               p.font-18 We believe that even the small things can make a big difference. And that extra mile of care we give for humanity goes a long way and creates a lasting impact.
