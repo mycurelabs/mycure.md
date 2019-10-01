@@ -4,7 +4,7 @@
       v-container
         center
           strong.font-18.font-mc-blue MEDICAL RECORDS
-        v-layout(row justify-center).add-spacing
+        v-layout(row justify-center text-xs-center).add-spacing
           span.font-48 Designed for doctors, by doctors.
         v-layout(row justify-center).add-spacing
           v-flex(xs7 align-self-center).text-xs-center
