@@ -8,7 +8,11 @@
           v-layout(row wrap justify-center)
             v-flex(xs12 md3 offset-md1).font-mc-grey
               ul.no-style-type
-                li.feature-text CLINIC SOLUTIONS
+                li
+                  router-link(id="footer-features-link" @click.stop="handleFooterFeaturesLink" :to="{name: 'features'}" title="MYCURE Features").link.white--text FEATURES
+                li
+                  router-link(id="footer-csr-link" @click.stop="handleFooterCsrLink" :to="{name: 'csr'}" title="MYCURE Corporate Social Responsibility").link.white--text CORPORATE SOCIAL RESPONSIBILITY
+                li.pt-3.feature-text CLINIC SOLUTIONS
                 li
                   router-link(id="footer-multispecialty-link" @click.stop="handleFooterCmsLink" :to="{name: 'cms'}" title="MYCURE | Multispecialty Clinic Management System (CMS)").link.white--text
                     span Multispecialty Clinics
@@ -21,10 +25,6 @@
                 li.pb-3
                   a(id="footer-solo-link" @click.stop="handleFooterSoloLink" href="https://solo.mycure.md" target="_blank" title="MYCURE - Solo | Patient Records Organizer (PRO)").link.white--text
                     span Solo by MYCURE
-                li.pt-3
-                  router-link(id="footer-features-link" @click.stop="handleFooterFeaturesLink" :to="{name: 'features'}" title="MYCURE Features").link.white--text FEATURES
-                li.pb-3
-                  router-link(id="footer-csr-link" @click.stop="handleFooterCsrLink" :to="{name: 'csr'}" title="MYCURE Corporate Social Responsibility").link.white--text CORPORATE SOCIAL RESPONSIBILITY
                 li.feature-text ABOUT
                 li
                   router-link(id="footer-our-story-link" @click.stop="handleFooterOurStoryLink" :to="{name: 'our-story'}" title="MYCURE Our Story | Caring the Extra Mile").link.white--text 
