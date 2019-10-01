@@ -12,12 +12,13 @@
                 @click.stop="videoDialog=!videoDialog" 
                 src="../../assets/images/mycure-web-video-cover-our-story-care-the-extra-mile.png"
                 alt="MYCURE Our Story video thumbnail"
+                width="620"
               )
               iframe(
                 v-else
                 align="middle"
                 id="ytplayer" 
-                type="text/html" width="672" height="393"
+                type="text/html" width="620" height="393"
                 src="https://www.youtube.com/embed/zvM3LIvq-6k?autoplay=1&loop=1&showinfo=0&rel=0"
                 frameborder="0"
                 allowfullscreen
