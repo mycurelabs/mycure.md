@@ -11,7 +11,7 @@
                 v-layout(row justify-center)
                   v-flex(xs5)
                     img(width="100%" height="508vh" src="../../assets/images/mycure-web-banner-pricing-panel-private.png" alt="Private clinic pricing")
-                  v-flex(xs8).text-xs-left.pa-5
+                  v-flex(xs9).text-xs-left.pa-5
                     strong.font-30.pb-2 For Individual Practice
                     br
                     br

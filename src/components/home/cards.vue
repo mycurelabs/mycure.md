@@ -166,8 +166,8 @@
             link: 'group'
         },
         emr: {
-          text: 'Are you a private medical practitioner? Running a clinic on your own or collaborating with others?',
-          subtxt: 'I am a \nprivate medical \npractitioner.',
+          text: 'Are you an individual medical practitioner? Running a clinic on your own or collaborating with others?',
+          subtxt: 'I am an \nindividual medical \npractitioner.',
           subsubtxt: '(individual practice)',
           link: 'emr'
         },
