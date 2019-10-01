@@ -168,7 +168,7 @@
         emr: {
           text: 'Are you a private medical practitioner? Running a clinic on your own or collaborating with others?',
           subtxt: 'I am a \nprivate medical \npractitioner.',
-          subsubtxt: '(personal private practice)',
+          subsubtxt: '(individual practice)',
           link: 'emr'
         },
         solo: {

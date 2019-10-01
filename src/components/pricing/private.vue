@@ -6,7 +6,7 @@
           v-flex(xs12 md6 align-self-center).px-3
             strong.font-48.font-mc-blue MYCURE for 
               br
-              | Private Practice
+              | Individual Practice
             br
             br
             span.font-18.font-mc-grey A powerful combination of EMR, queuing, and billing features designed for physicians who are practicing solo or in groups.

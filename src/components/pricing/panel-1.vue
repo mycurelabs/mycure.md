@@ -18,13 +18,13 @@
               a(@click="isPrivate=true; isMulti=false;")
                 div(v-if="isPrivate").tabActive.pa-3.right
                   v-layout(row justify-center) 
-                    strong.font-25 Private Practice
+                    strong.font-25 Individual Practice
                       br
                       | 
                       font.font-18.font-mc-grey Solo or group clinic practitioners
                 div(v-else).tab.pa-3.right
                   v-layout(row justify-center) 
-                    strong.font-25 Private Practice
+                    strong.font-25 Individual Practice
                       br
                       | 
                       font.font-18.font-mc-grey Solo or group clinic practitioners
@@ -59,7 +59,7 @@
       div.white
         v-layout(row).pa-3
           v-layout(column)  
-            strong.font-18 Private Practice
+            strong.font-18 Individual Practice
             span.font-14 Solo or group clinic practitioners
           v-spacer
             
