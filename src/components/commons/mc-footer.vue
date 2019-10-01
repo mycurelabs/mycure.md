@@ -8,7 +8,7 @@
           v-layout(row wrap justify-center)
             v-flex(xs12 md3 offset-md1).font-mc-grey
               ul.no-style-type
-                li.feature-text CLINIC SOLUTIONS
+                li.pt-3.feature-text CLINIC SOLUTIONS
                 li
                   router-link(id="footer-multispecialty-link" @click.stop="handleFooterCmsLink" :to="{name: 'cms'}" title="MYCURE | Multispecialty Clinic Management System (CMS)").link.white--text
                     span Multispecialty Clinics

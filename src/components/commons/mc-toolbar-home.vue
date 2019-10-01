@@ -1,6 +1,6 @@
 <template lang="pug">
   div
-    div(v-if="!$isMobile" :class="shadow").white.toolbarMain
+    div(v-if="!$isMd" :class="shadow").white.toolbarMain
       v-container.white.toolbarHeight.py-0
         v-layout(row wrap justify-center)
           v-flex(xs12 md12).toolbarMargin
@@ -85,16 +85,16 @@
               v-divider
             v-flex(xs12 md12 dark)
               v-list(two-line) 
-                v-subheader Clinic Solutions
-                v-list-tile(:to="{name: 'emr'}")
-                  v-list-tile-content
-                    v-list-tile-title 
-                      b For Individual Practice
-                v-list-tile(:to="{name: 'cms'}")
-                  v-list-tile-content
-                    v-list-tile-title 
-                      b For Multispecialty Practice
-                v-divider
+                //- v-subheader Clinic Solutions
+                //- v-list-tile(:to="{name: 'emr'}")
+                //-   v-list-tile-content
+                //-     v-list-tile-title 
+                //-       b For Individual Practice
+                //- v-list-tile(:to="{name: 'cms'}")
+                //-   v-list-tile-content
+                //-     v-list-tile-title 
+                //-       b For Multispecialty Practice
+                //- v-divider
                 v-subheader About
                 v-list-tile(:to="{name: 'our-story'}")
                   v-list-tile-content

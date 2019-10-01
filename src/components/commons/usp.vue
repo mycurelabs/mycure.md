@@ -5,7 +5,7 @@ div
       v-layout(row align-center justify-center)
         div.panel-size.usp-panel
           v-layout(row justify-center)
-            v-flex(xs12 md6)
+            v-flex(xs12 md7)
               v-layout(column align-start)
                 h1.font-weight-bold.font-18.font-mc-blue.pb-3.uspMetaTitle {{ uspContents.metaTitle }}
                 h2.title-line-height.uspTitle.font-weight-regular.pb-4 {{ uspContents.title }}
@@ -19,7 +19,7 @@ div
                   large
                 ).text-none.white--text.mt-4.btnHeight
                   strong.font-18 {{ uspContents.btnText }}
-            v-flex(xs12 md6 text-xs-right)
+            v-flex(xs12 md7 text-xs-right)
               img(
                 :src="require(`@/assets/images/${ uspContents.img }.png`)"
                 width="90%"

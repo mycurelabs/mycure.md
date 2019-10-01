@@ -7,7 +7,7 @@ div
         p.font-18.text-xs-center Designed for private practitioners who run their clinic alone or with a trusty secretary.
       v-layout(row justify-center).margin-top-100
         v-flex(xs12 md5 v-for="n in 2" :key="n").px-2
-          v-card(height="1600").px-5.pt-2.flexcard
+          v-card(height="1650").px-3.pt-2.flexcard
             v-card-text.grow
               div.pricing-card-1
                 h2(v-if="n === 1").font-20.font-mc-blue.font-weight-black FREE

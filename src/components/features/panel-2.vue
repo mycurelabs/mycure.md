@@ -4,8 +4,10 @@
       v-container
         center
           strong.font-18.font-mc-blue ROLES &amp; PRIVILEGES
-        v-layout(row justify-center).add-spacing
-          span.font-48 Everybody's got a special role to play.
+        v-layout(row justify-center text-xs-center).add-spacing
+          span.font-48 Everybody's got a special 
+            br
+            | role to play.
         v-layout(row justify-center).add-spacing
           v-flex(xs7 align-self-center).text-xs-center
             span.font-18 Collaborate with your clinic staff more efficiently using a clinic system that's so user-friendly, you wouldn't even feel that you're working.

@@ -24,6 +24,12 @@
             img(:src="require(`../../assets/images/${ account.icon }`)" height="30" :alt="account.name").px-3
       br
       br
+      v-layout.pt-3
+        router-link(id="footer-features-btn" :to="{ name: 'features' }" title="MYCURE | Features").link.white--text.py-2
+          span.py-2 Features
+      v-layout.pb-3
+        router-link(id="footer-csr-btn" :to="{ name: 'csr' }" title="MYCURE | Corporate Social Responsibility").link.white--text.py-2
+          span.py-2 Corporate Social Responsibility
       v-layout(row)
         v-expansion-panel.elevation-0
           v-expansion-panel-content.expansionPanelBg
@@ -40,12 +46,6 @@
                 span.py-2 Individual Practice
               a(id="footer-solo-btn" href="https://solo.mycure.md" target="_blank" title="MYCURE - Solo | Patient Records Organizer (PRO)").link.white--text.py-2
                 span.py-2 Solo by MYCURE
-      v-layout.pt-3
-        router-link(id="footer-features-btn" :to="{ name: 'features' }" title="MYCURE | Features").link.white--text.py-2
-          span.py-2 Features
-      v-layout.pb-3
-        router-link(id="footer-csr-btn" :to="{ name: 'csr' }" title="MYCURE | Corporate Social Responsibility").link.white--text.py-2
-          span.py-2 Corporate Social Responsibility
       v-layout(row)
         v-expansion-panel.elevation-0
           v-expansion-panel-content.expansionPanelBg

@@ -125,7 +125,7 @@
               br
               br
               | 
-              span.font-mc-grey All users of MYCURE clinic management system (private practice or multispecialty clinics) are given free access to its tutorial articles once inside the system. On top of that, MYCURE provides online chat support for clinic administrators from 9:00AM - 8:00PM GMT +8:00.
+              span.font-mc-grey All users of MYCURE clinic management system (individual practice or multispecialty clinics) are given free access to its tutorial articles once inside the system. On top of that, MYCURE provides online chat support for clinic administrators from 9:00AM - 8:00PM GMT +8:00.
     div(v-else).white
       div.pt-3.px-3
         img(width="100%" src="../../assets/images/mycure-pricing-cms.png" alt="CMS Pricing")
@@ -214,7 +214,7 @@
                 br
                 br
                 | 
-                span.font-mc-grey All users of MYCURE clinic management system (private practice or multispecialty clinics) are given free access to its tutorial articles once inside the system. On top of that, MYCURE provides online chat support for clinic administrators from 9:00AM - 8:00PM GMT +8:00.
+                span.font-mc-grey All users of MYCURE clinic management system (individual practice or multispecialty clinics) are given free access to its tutorial articles once inside the system. On top of that, MYCURE provides online chat support for clinic administrators from 9:00AM - 8:00PM GMT +8:00.
 </template>
   
 <script>
