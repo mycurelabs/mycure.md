@@ -85,16 +85,16 @@
               v-divider
             v-flex(xs12 md12 dark)
               v-list(two-line) 
-                v-subheader Clinic Solutions
-                v-list-tile(:to="{name: 'emr'}")
-                  v-list-tile-content
-                    v-list-tile-title 
-                      b For Individual Practice
-                v-list-tile(:to="{name: 'cms'}")
-                  v-list-tile-content
-                    v-list-tile-title 
-                      b For Multispecialty Practice
-                v-divider
+                //- v-subheader Clinic Solutions
+                //- v-list-tile(:to="{name: 'emr'}")
+                //-   v-list-tile-content
+                //-     v-list-tile-title 
+                //-       b For Individual Practice
+                //- v-list-tile(:to="{name: 'cms'}")
+                //-   v-list-tile-content
+                //-     v-list-tile-title 
+                //-       b For Multispecialty Practice
+                //- v-divider
                 v-subheader About
                 v-list-tile(:to="{name: 'our-story'}")
                   v-list-tile-content
