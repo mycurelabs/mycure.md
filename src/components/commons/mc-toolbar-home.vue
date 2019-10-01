@@ -1,6 +1,6 @@
 <template lang="pug">
   div
-    div(v-if="!$isMobile" :class="shadow").white.toolbarMain
+    div(v-if="!$isMd" :class="shadow").white.toolbarMain
       v-container.white.toolbarHeight.py-0
         v-layout(row wrap justify-center)
           v-flex(xs12 md12).toolbarMargin
