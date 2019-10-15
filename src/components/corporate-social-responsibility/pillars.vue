@@ -16,8 +16,11 @@
                     height="300"
                   )
                 v-flex(xs12 md8 align-self-center)
+                  span(v-if="i===0").font-weight-bold.font-18 Solo is designed to work in areas with zero or low internet.                 
                   p.font-18 {{ item.content1 }}
                   p.font-18 {{ item.content2 }}
+                    | 
+                    span(v-if="i===1").font-weight-bold.font-18 More importantly, it's FREE.
                   p.font-18(v-if="i === 1") For more information on Solo, please visit
                     a(href="https://solo.mycure.md" target="_blank").font-mc-blue
                       strong &nbsp;solo.mycure.md
@@ -71,8 +74,8 @@
           {
             image: 'mycure-web-banner-circles-csr-02-helping-hands',
             title: 'Social Responsibility',
-            content1: 'Solo is designed to work in areas with zero or low internet. Ideal to be used in health community centers as well as doctors in the field, the ones doing voluntary work on mission.',
-            content2: 'While there are other electronic medical record (EMR) systems around, Solo uses advanced tech, applies user-friendly flows and continuously improves. More importantly, it\'s FREE.'
+            content1: 'Ideal to be used in health community centers as well as doctors in the field, the ones doing voluntary work on mission.',
+            content2: 'While there are other electronic medical record (EMR) systems around, Solo uses advanced tech, applies user-friendly flows and continuously improves.'
           },
           {
             image: 'mycure-web-banner-circles-csr-03-group-of-doctors',
