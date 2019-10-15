@@ -58,7 +58,7 @@
                 li 
                   a(id="footer-email-link" @click.stop="handleFooterEmailLink" title="MYCURE - Email" href="mailto:hello@mycure.md")
                     span.font-mc-blue hello@mycure.md
-                li.white--text (+632) 799 6262
+                li.white--text (+632) 7799 6262
                 li.white--text (+63) 917 303 4350
           hr.mc-grey.my-4  
           v-layout(row wrap justify-center)  
