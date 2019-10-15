@@ -18,7 +18,7 @@ div
                   strong.font-18 Learn More
             v-flex(xs12 md6 text-xs-right)
               img(
-                :src="require(`@/assets/images/mycure-csr-web-banner-first-panel-community-doctors-and-kids.png`)"
+                :src="require(`@/assets/images/mycure-csr-web-banner-community.png`)"
                 width="90%"
                 alt="mycure-csr-web-banner-first-panel-community-doctors-and-kids"
               )
@@ -28,7 +28,7 @@ div
       h2.font-40.font-weight-regular.title-line-height.pb-5.text-xs-center.uspTitle MYCURE cares for people who care for people.
       v-layout(row justify-center).mb-5
         img(
-          :src="require(`@/assets/images/mycure-csr-web-banner-first-panel-community-doctors-and-kids.png`)"
+          :src="require(`@/assets/images/mycure-csr-web-banner-community.png`)"
           height="250"
           alt="mycure-csr-web-banner-first-panel-community-doctors-and-kids"
         )
