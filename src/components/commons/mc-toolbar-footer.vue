@@ -96,7 +96,7 @@
             v-layout(column)
               a(id="footer-email-btn" title="MYCURE - Email" href="mailto:hello@mycure.md").link.font-mc-blue.py-2
                 span.py-2 hello@mycure.md
-              span.py-2.white--text (+632) 799 6262
+              span.py-2.white--text (+632) 7799 6262
               span.py-2.white--text (+63) 917 303 4350
       br
       br
