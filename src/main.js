@@ -15,7 +15,10 @@ Vue.config.productionTip = false;
 Vue.use(VueCarousel);
 Vue.use(CookieLaw);
 Vue.use(VueAnalytics, {
-  id: 'UA-78838129-8'
+  id: 'UA-78838129-8',
+  debug: {
+    sendHitTask: process.env.VUE_APP_ENV === 'production'
+  }
 });
 
 new Vue({
