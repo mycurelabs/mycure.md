@@ -140,7 +140,7 @@
                   strong(v-if="!hover").font-mc-grey.font-14.font-italic {{ solo.subsubtxt }}
                   strong(v-else).font-14.font-italic {{ solo.subsubtxt }}
         v-layout(row justify-center).pt-5
-          p.font-18.text-xs-center Unsure where you fit? 
+          p.font-30.text-xs-center Unsure where you fit? 
             br
             |
             router-link(:to="{ name: 'calendly' }")
@@ -161,7 +161,7 @@
         },
         group: {
             text: 'Do you run a Multispecialty Clinic with branches around the country?',
-            subtxt: 'I need a \n system for my \ngroup clincic.',
+            subtxt: 'I need a \n system for my \ngroup clinic.',
             subsubtxt: '(shared, collaborative clinic)',
             link: 'group'
         },

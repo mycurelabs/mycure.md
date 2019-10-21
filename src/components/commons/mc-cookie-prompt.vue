@@ -2,7 +2,7 @@
   div
     v-container
       cookie-law(
-        position="top" 
+        :position="position" 
         transitionName="fade"
       ).Cookie--mcCookie.white--text.pa-1
         div(slot-scope="props").width100
@@ -38,6 +38,12 @@
   export default {
     components: {
       CookieLaw
+    },
+    computed: {
+      position () {
+        if (!this.$isMobile) return 'top';
+        else return 'bottom';
+      }
     }
   };
 </script>
