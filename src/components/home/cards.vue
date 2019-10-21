@@ -161,7 +161,7 @@
         },
         group: {
             text: 'Do you run a Multispecialty Clinic with branches around the country?',
-            subtxt: 'I need a \n system for my \ngroup clincic.',
+            subtxt: 'I need a \n system for my \ngroup clinic.',
             subsubtxt: '(shared, collaborative clinic)',
             link: 'group'
         },
