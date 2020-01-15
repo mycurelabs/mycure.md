@@ -150,7 +150,7 @@
           v-layout(row justify-center)
             v-btn(
                 id="navdrawer-login-btn"
-                :href="`${signInURL}?target=${cmsURL}/authenticate`"
+                :href="`${signInURL}?target=${cmsURL}`"
                 target="_blank"
                 @click.stop="handleLoginBtnMobile"
               )
