@@ -1,9 +1,12 @@
 import Vue from 'vue';
 import Router from 'vue-router';
+import { core } from '@mycure/sdk';
+
 import cms from '@/views/clinic-management-system.vue';
 import csr from '@/views/csr.vue';
 import emr from '@/views/electronic-medical-records.vue';
 import features from '@/views/features.vue';
+import forgotPassword from '@/views/forgot-password.vue';
 import group from '@/views/group-clinics.vue';
 import home from '@/views/home.vue';
 import notFound from '@/views/404.vue';
@@ -11,9 +14,11 @@ import ourStory from '@/views/our-story.vue';
 import pricing from '@/views/pricing.vue';
 import privacyPolicy from '@/views/privacy-policy.vue';
 import signin from '@/views/signin.vue';
+import signupMultispecialty from '@/views/signup-multispecialty.vue';
+import signupMultispecialtyStep1 from '@/components/signup-multispecialty/step-1.vue';
+import signupMultispecialtyStep2 from '@/components/signup-multispecialty/step-2.vue';
+import signupMultispecialtyStep3 from '@/components/signup-multispecialty/step-3.vue';
 import terms from '@/views/terms.vue';
-// import solo from '@/views/solo.vue';
-import { core } from '@mycure/sdk';
 
 Vue.use(Router);
 
@@ -42,6 +47,42 @@ export default new Router({
         pageType: 'signin',
         pageName: 'Signin Page'
       }
+    },
+    {
+      path: '/forgot-password',
+      name: 'forgot-password', 
+      component: forgotPassword,
+      meta: {
+        pageType: 'forgot-password',
+        pageName: 'Forgot Password Page'
+      }
+    },
+    {
+      path: '/signup/multispecialty',
+      name: 'signup-multispecialty', 
+      component: signupMultispecialty,
+      redirect: '/signup/multispecialty/step-1',
+      meta: {
+        pageType: 'signup-multispecialty',
+        pageName: 'Signup Miltispecialty'
+      },
+      children: [
+        {
+          path: 'step-1',
+          name: 'signup-multispecialty-step-1',
+          component: signupMultispecialtyStep1
+        },
+        {
+          path: 'step-2',
+          name: 'signup-multispecialty-step-2',
+          component: signupMultispecialtyStep2
+        },
+        {
+          path: 'step-3',
+          name: 'signup-multispecialty-step-3',
+          component: signupMultispecialtyStep3
+        },
+      ]
     },
     {
       path: '/privacy-policy',
