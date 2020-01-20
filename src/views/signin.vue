@@ -8,7 +8,11 @@
           v-flex(xs12 sm8 md4)
             v-card
               v-card-text.pa-4
-                img(width="120" src="../assets/images/mycure-header-logo.png").mb-3
+                img(
+                  width="120" 
+                  src="../assets/images/mycure-header-logo.png"
+                  @click="$router.push({ name: 'home' })"
+                ).link-to-home.mb-3
                 h1.signin-title It's nice to see you here!
                 small.grey--text Good day! Welcome to MYCURE.
               v-card-text.pa-4
@@ -31,13 +35,13 @@
                   type="error"
                 ) {{errorMsg}}
               v-card-text.pa-4
-                router-link(:to="{ name: 'home' }").router-link Forgot Password?
+                router-link(:to="{ name: 'forgot-password' }").router-link Forgot Password?
               v-card-text.pa-4
                 v-layout(row)
                   v-flex
                     span No account yet?
                     br
-                    router-link(:to="{ name: 'home' }").router-link Create an account here.
+                    router-link(:to="{ name: 'signup-multispecialty' }").router-link Create an account here.
                   v-flex
                     v-btn(
                       @click="submit" 
@@ -191,5 +195,9 @@ export default {
 .otp-field::placeholder {
   font-size: 18px;
   letter-spacing: 1px;
+}
+
+.link-to-home:hover {
+  cursor: pointer;
 }
 </style>
