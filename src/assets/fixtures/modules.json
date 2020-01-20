@@ -1,0 +1,84 @@
+[
+  {
+    "selected": true,
+    "type": "core",
+    "id": "registration",
+    "name": "Registration",
+    "icon": "mycure-onboarding-icon-reg.png",
+    "description": "Patient profiling, queuing & appointments"
+  },
+  {
+    "selected": true,
+    "type": "core",
+    "id": "billing",
+    "name": "Billing",
+    "icon": "mycure-onboarding-icon-billing.png",
+    "description": "Manage patient billing, doctor rebates, and HMO receivables"
+  },
+  {
+    "selected": true,
+    "type": "core",
+    "id": "emr",
+    "name": "EMR",
+    "icon": "mycure-onboarding-icon-emr.png",
+    "description": "Create printable Prescriptions, Charts, Lab orders and more"
+  },
+  {
+    "selected": true,
+    "type": "core",
+    "id": "administrative",
+    "name": "Administrative",
+    "icon": "mycure-onboarding-icon-admin.png",
+    "description": "Staff management, audit trail and clinic customizations"
+  },
+
+  {
+    "selected": false,
+    "type": "premium",
+    "id": "lis",
+    "name": "Laboratory",
+    "icon": "mycure-onboarding-icon-lab.png",
+    "description": "Online and printable lab results, census, HL7 machine integration"
+  },
+  {
+    "selected": false,
+    "type": "premium",
+    "id": "ris",
+    "name": "Imaging",
+    "icon": "mycure-onboarding-icon-imaging.png",
+    "description": "Online and printable imaging results, census, DICOM/PACS integration"
+  },
+  {
+    "selected": false,
+    "type": "premium",
+    "id": "pharmacy",
+    "name": "Pharmacy",
+    "icon": "mycure-onboarding-icon-pharmacy.png",
+    "description": "POS functions, Rx access, inventory management, reports"
+  },
+  {
+    "selected": false,
+    "type": "premium",
+    "id": "PMEorEPE",
+    "name": "Physical Medical Exam",
+    "icon": "mycure-onboarding-icon-pme.png",
+    "description": "Auto-balancing queues, PME reports, group registration"
+  },
+  {
+    "selected": false,
+    "type": "premium",
+    "id": "PME",
+    "name": "Materials Management",
+    "icon": "mycure-onboarding-icon-inventory.png",
+    "description": "Items masterlist, reorder & expiration alerts, weekly reports"
+  },
+  {
+    "selected": false,
+    "type": "premium",
+    "id": "syncGateway",
+    "name": "Syncbase",
+    "icon": "mycure-onboarding-icon-syncbase.png",
+    "fontIcon": "mdi-cloud-sync",
+    "description": "Use MYCURE even if your internet connection is down"
+  }
+]
