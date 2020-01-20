@@ -34,17 +34,15 @@
               v-btn(
                 outline
                 color="#2e9fdf"
-                :href="`${signInURL}?target=${cmsURL}/authenticate`"
-                target="_blank"
                 id="toolbar-login-btn"
+                :to="{ name: 'signin' }"
                 @click.stop="handleLoginBtn"
               )
                 strong.font-14.tab LOGIN
               v-btn(
-                color="#2e9fdf"
-                :href="`${signInURL}/signup/choose`"
-                target="_blank"
                 id="toolbar-signup-btn"
+                color="#2e9fdf"
+                :to="{ name: 'signup-multispecialty' }"
                 @click.stop="handleSignupBtn"
               )
                 strong.font-14.white--text.tab SIGN UP
@@ -149,17 +147,15 @@
         div.navBottomBtns.py-3
           v-layout(row justify-center)
             v-btn(
-                id="navdrawer-login-btn"
-                :href="`${signInURL}?target=${cmsURL}`"
-                target="_blank"
-                @click.stop="handleLoginBtnMobile"
-              )
-                strong.font-14.tab LOGIN
+              id="navdrawer-login-btn"
+              :to="{ name: 'signin' }"
+              @click.stop="handleLoginBtnMobile"
+            )
+              strong.font-14.tab LOGIN
             v-btn(
               id="navdrawer-signup-btn"
               color="#18c551"
-              :href="`${signInURL}/signup/choose`"
-              target="_blank"
+              :to="{ name: 'signup-multispecialty' }"
               @click.stop="handleSignupBtnMobile"
             )
               strong.font-14.white--text.tab SIGN UP
