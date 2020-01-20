@@ -31,15 +31,14 @@ export default {
       }
       console.warn(value, pos);
     },
-    deleteChar(event, pos) {
+    deleteChar (event, pos) {
       const key = event.key;
-      console.warn(key, pos)
       if (key === "Backspace" || key === "Delete") {
         return false;
       }
     }
   }
-}
+};
 </script>
 
 <style scoped>
