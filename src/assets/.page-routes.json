@@ -78,13 +78,13 @@
     "image": ""
   },
   {
-    "path": "/signup-multispecialty",
+    "path": "/signup-multispecialty/step-1",
     "title": "MYCURE - Request for Demo",
     "description": "Make your clinic more efficient in minutes.",
     "image": ""
   },
   {
-    "path": "/signup-individual",
+    "path": "/signup-individual/step-1",
     "title": "MYCURE - Create an Account for Private Practice",
     "description": "Become a techy doctor in minutes!",
     "image": ""
