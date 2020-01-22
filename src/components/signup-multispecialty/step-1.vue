@@ -9,15 +9,21 @@
           ).link-to-home.mb-3
           h1#step-1-title Make your clinic more efficient in minutes.
           br
-          p 
-            v-icon(color="accent") mdi-check
-            | Better operations
-          p 
-            v-icon(color="accent") mdi-check
-            | Beautiful reports
-          p 
-            v-icon(color="accent") mdi-check
-            | Bye paperworks
+          v-layout(row)
+            v-flex(shrink).pr-2
+              img(width="20" src="../../assets/images/mycure-check.png")
+            v-flex(shrink)
+              p Better operations
+          v-layout(row)
+            v-flex(shrink).pr-2
+              img(width="20" src="../../assets/images/mycure-check.png")
+            v-flex(shrink)
+              p Beautiful reports
+          v-layout(row)
+            v-flex(shrink).pr-2
+              img(width="20" src="../../assets/images/mycure-check.png")
+            v-flex(shrink)
+              p Bye paperworks
         v-flex(xs12 md5)
           v-card
             v-card-text
