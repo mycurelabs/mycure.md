@@ -29,9 +29,8 @@ export default {
       } else {
         document.getElementById(`otp-field-${pos-1}`).focus();
       }
-      console.warn(value, pos);
     },
-    deleteChar (event, pos) {
+    deleteChar (event) {
       const key = event.key;
       if (key === "Backspace" || key === "Delete") {
         return false;
