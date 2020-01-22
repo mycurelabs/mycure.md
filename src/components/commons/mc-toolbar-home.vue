@@ -42,7 +42,7 @@
               v-btn(
                 id="toolbar-signup-btn"
                 color="#2e9fdf"
-                :to="{ name: 'signup-multispecialty' }"
+                :to="{ name: 'signup-choose' }"
                 @click.stop="handleSignupBtn"
               )
                 strong.font-14.white--text.tab SIGN UP
@@ -155,7 +155,7 @@
             v-btn(
               id="navdrawer-signup-btn"
               color="#18c551"
-              :to="{ name: 'signup-multispecialty' }"
+              :to="{ name: 'signup-choose' }"
               @click.stop="handleSignupBtnMobile"
             )
               strong.font-14.white--text.tab SIGN UP
