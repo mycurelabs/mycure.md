@@ -27,6 +27,8 @@ jobs:
           VUE_APP_CMS_URL: ${{ secrets.VUE_APP_CMS_URL }}
           VUE_APP_ENV: ${{ secrets.VUE_APP_ENV }}
           VUE_APP_SIGNIN_URL: ${{ secrets.VUE_APP_SIGNIN_URL }}
+          VUE_APP_IPSTACK_API: ${{ secrets.VUE_APP_IPSTACK_API }}
+          VUE_APP_IPSTACK_API_KEY: ${{ secrets.VUE_APP_IPSTACK_API_KEY }}
         run: yarn build
       - name: Run deploy
         env: 
