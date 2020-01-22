@@ -70,3 +70,56 @@ export const sendMultiSpecialtyInquiry = async (opts) => {
     throw handleError(e);
   }
 };
+
+export const getCountry = async () => {
+  try {
+    const fields = [
+      'country_code',
+      'country_name',
+      'latitude',
+      'longitude',
+      'location.country_flag',
+      'location.calling_code',
+    ];
+    const { data } = await axios({
+      method: 'get',
+      url: `${process.env.VUE_APP_IPSTACK_API}/check?access_key=${process.env.VUE_APP_IPSTACK_API_KEY}&fields=${fields.join(',')}`
+    });
+    return data;
+  } catch (e) {
+    console.error(e);
+    throw handleError(e);
+  }
+};
+
+export const getCountries = async () => {
+  try {
+    const fields = [
+      'name',
+      'flag',
+      'callingCodes'
+    ];
+    const { data } = await axios({
+      method: 'get',
+      url: `https://restcountries.eu/rest/v2/all?fields=${fields.join(';')}`,
+    });
+    return data;
+  } catch (e) {
+    console.error(e);
+    throw handleError(e);
+  }
+};
+
+export const getMycureCountries = async (opts) => {
+  try {
+    const { limit, skip } = opts;
+    const { data } = await axios({
+      method: 'get',
+      url: `${process.env.VUE_APP_API}/fixtures?type=country&$limit=${limit}&$skip=${skip}`,
+    });
+    return data.data;
+  } catch (e) {
+    console.error(e);
+    throw handleError(e);
+  }
+};
