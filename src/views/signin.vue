@@ -1,9 +1,10 @@
 <template lang="pug">
-  v-app
+  v-app(:dark="dayOrNight === 'night'")
     v-content
       v-container(
         fluid fill-height
-      ).bg.white
+        :class="dayOrNight === 'day' ? 'white' : ''"
+      ).bg
         v-layout(align-center justify-center)
           v-flex(xs12 sm8 md4)
             v-card
@@ -41,7 +42,7 @@
                   v-flex
                     span No account yet?
                     br
-                    router-link(:to="{ name: 'signup-multispecialty' }").router-link Create an account here.
+                    router-link(:to="{ name: 'signup-choose' }").router-link Create an account here.
                   v-flex
                     v-btn(
                       @click="submit" 
@@ -73,6 +74,7 @@
 </template>
 
 <script>
+import dayOrNight from '../utils/day-or-night';
 import { signin } from '../utils/axios';
 import OtpForm from '../components/commons/otp-form';
 export default {
@@ -80,6 +82,7 @@ export default {
     OtpForm
   },
   data () {
+    this.dayOrNight = dayOrNight();
     return {
       valid: false,
       otpValid: false,
