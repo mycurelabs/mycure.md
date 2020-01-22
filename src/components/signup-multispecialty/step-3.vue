@@ -140,7 +140,7 @@ export default {
         this.loading = true;
         if (this.$refs.formRef.validate()) {
           const step1Data = JSON.parse(localStorage.getItem('multi:step1:model'));
-          const step2Data = JSON.parse(localStorage.getItem('multi:step2:model'));
+          const step2Data = JSON.parse(localStorage.getItem('multi:step2:model')) || [];
           const step3Data = JSON.parse(localStorage.getItem('multi:step3:model'));
           const payload = {
             $inquiry: true,
@@ -154,7 +154,7 @@ export default {
               ..._.pick(step1Data, this.step1Fields),
               ..._.pick(step3Data, this.step3Fields),
             }
-          }
+          };
           await sendMultiSpecialtyInquiry(payload);
           localStorage.removeItem('multi:step1:model');
           localStorage.removeItem('multi:step2:model');
@@ -171,8 +171,8 @@ export default {
     }
   },
   created () {
-    if (!localStorage.getItem('multi:step2:model')) 
-      this.$router.push({ name: 'signup-multispecialty-step-2' });
+    // if (!localStorage.getItem('multi:step2:model')) 
+    //   this.$router.push({ name: 'signup-multispecialty-step-2' });
     if (localStorage.getItem('multi:step3:model')) {
       this.contact = JSON.parse(localStorage.getItem('multi:step3:model'));
     }
