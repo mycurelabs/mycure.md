@@ -65,7 +65,6 @@
     data () {
       return {
         showVid: false,
-        signInURL: process.env.VUE_APP_SIGNIN_URL,
         items: [
           {
             image: 'mycure-web-banner-circles-csr-01-logo',

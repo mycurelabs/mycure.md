@@ -12,10 +12,9 @@ div
                 //- :href="uspContents.btn"                
                 v-btn(
                   v-if="uspContents.btnText"
-                  :href="`${this.signInURL}/signup/${uspContents.btn}`"
+                  :to="{ name: uspContents.route }"
                   :color="mcGreen"
                   :id="uspContents.btnId"
-                  target="_blank"
                   large
                 ).text-none.white--text.mt-4.btnHeight
                   strong.font-18 {{ uspContents.btnText }}
@@ -61,7 +60,6 @@ export default {
   },
   data () {
     return {
-      signInURL: process.env.VUE_APP_SIGNIN_URL,
       mcGreen: '#18c551',
       mcBlue: '#2e9fdf'
     };

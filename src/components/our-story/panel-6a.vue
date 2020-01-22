@@ -7,8 +7,7 @@
         id="our-story-signup-btn"
         @click.stop="handleOurStorySignupBtn"
         slot="sign-up-button"
-        :href="`${signInURL}/signup/choose`"
-        target="_blank" 
+        :to="{ name: 'signup-choose' }"
         color="#18c551"
       ).cta-btn
         strong.font-18.text-none.white--text Sign Up Now
@@ -22,11 +21,6 @@
   export default {
     components: {
       panelBeforeFooter
-    },
-    data () {
-      return {
-        signInURL: process.env.VUE_APP_SIGNIN_URL
-      };
     },
     methods: {
       handleOurStorySignupBtn () {

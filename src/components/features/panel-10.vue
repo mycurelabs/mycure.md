@@ -7,8 +7,7 @@
         span(slot="sub-txt").font-18 Let your patients experience top-of-the-line service through your streamlined clinic operations with the help of MYCURE.
         v-btn(
           slot="sign-up-button"
-          :href="`${signInURL}/signup/choose`" 
-          target="_blank"
+          :to="{ name: 'signup-choose' }"
           color="#18c551"
           right
         ).cta-btn
@@ -28,8 +27,7 @@
           v-btn(
             id="features-signup-btn"
             @click.stop="handleFeaturesSignupBtn"
-            :href="`${signInURL}/signup/choose`"
-            target="_blank"
+            :to="{ name: 'signup-choose' }"
             color="#18c551"
           ).cta-btn
             strong.font-18.white--text.text-none Sign Up Now  
@@ -43,11 +41,6 @@
   export default {
     components: {
       panelBeforeFooter
-    },
-    data () {
-      return {
-        signInURL: process.env.VUE_APP_SIGNIN_URL
-      };
     },
     methods: {
       handleFeaturesSignupBtn () {

@@ -73,7 +73,6 @@
   export default {
     data () {
       return {
-        signInURL: process.env.VUE_APP_SIGNIN_URL,
         coreFeatures: [
           '✓ Shared patients in one clinic',
           '✓ Unlimited patient charts',

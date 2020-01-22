@@ -45,7 +45,6 @@
     data () {
       return {
         // FOR USP PANEL
-        signInURL: process.env.VUE_APP_SIGNIN_URL,
         uspContents: {
           metaTitle: 'MYCURE Features',
           title: 'User-friendly and time \nefficient features for a \nmore patient-centric \ncare.',

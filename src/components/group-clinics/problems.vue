@@ -65,7 +65,6 @@
     data () {
       return {
         checkIcon: '../../assets/images/mycure-web-bullet-check.png',
-        signInURL: process.env.VUE_APP_SIGNIN_URL,
 
         clinicProblems: [
           'We can share the same list of patients.',

@@ -42,7 +42,6 @@
     data () {
       return {
         MYCURE_SOLO_description: 'Solo is a free-forever version of MYCURE CMS — a standalone clinic management system for those who want to store their data in their own device, with the option to sync and back-up data in their personal cloud.',
-        signInURL: process.env.VUE_APP_SIGNIN_URL,
         popUp: false,
 
         soloFeatures: [

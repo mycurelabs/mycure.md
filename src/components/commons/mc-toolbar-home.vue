@@ -170,7 +170,6 @@
     },
     data () {
       return {
-        signInURL: process.env.VUE_APP_SIGNIN_URL,
         cmsURL: process.env.VUE_APP_CMS_URL,
         drawer: false,
         scrollPosition: null,

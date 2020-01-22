@@ -42,8 +42,7 @@
   export default {
     data () {
       return {
-        showVid: false,
-        signInURL: process.env.VUE_APP_SIGNIN_URL
+        showVid: false
       };
     },
     methods: {

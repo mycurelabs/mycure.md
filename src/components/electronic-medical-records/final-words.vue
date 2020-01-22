@@ -9,8 +9,7 @@
           id="grop-signup-btn"
           @click.stop="handleGroupSignUpBtn"
           slot="sign-up-button"
-          :href="`${signInURL}/signup/private/step-1`" 
-          target="_blank"
+          :to="{ name: 'signup-individual' }"
           color="#18c551" 
           right
         ).cta-btn
@@ -42,11 +41,6 @@
   export default {
     components: {
       panelBeforeFooter
-    },
-    data () {
-      return {
-        signInURL: process.env.VUE_APP_SIGNIN_URL
-      };
     },
     methods: {
       handleGroupSignUpBtn () {

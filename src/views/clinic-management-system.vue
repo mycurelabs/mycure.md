@@ -32,11 +32,10 @@
     data () {
       return {
         // FOR USP PANEL
-        signInURL: process.env.VUE_APP_SIGNIN_URL,
         uspContents: {
           metaTitle: 'MYCURE for Multispecialty Clinics',
           title: 'The ultimate clinic \nsystem that eases the \nprocess flows of your \nmultispecialty clinic.',
-          btn: `/multi-specialty/step-1`,
+          route: 'signup-multispecialty',
           btnId: 'cms-usp-signup-btn',
           btnText: 'Get Started Today',
           img: 'mycure-cms-web-banner-first-panel-doctor-clinic-patients',

@@ -45,8 +45,6 @@
   export default {
     data () {
       return {
-        signInURL: process.env.VUE_APP_SIGNIN_URL,
-
         features: [
           {
             title: 'Registration',

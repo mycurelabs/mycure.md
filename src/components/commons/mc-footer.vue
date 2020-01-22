@@ -84,11 +84,6 @@ export default {
       default: true,
     }
   },
-  data () {
-    return {
-      signInURL: process.env.VUE_APP_SIGNIN_URL
-    };
-  },
   methods: {
     handleFooterFeaturesLink () {
       this.$ga.event({

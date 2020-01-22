@@ -37,11 +37,10 @@
     data () {
       return {
         // FOR USP PANEL
-        signInURL: process.env.VUE_APP_SIGNIN_URL,
         uspContents: {
           metaTitle: 'MYCURE for Individual Practice',
           title: 'The smartest clinical \ntool for doctors that \nmakes writing a thing \nof the past.',
-          btn: `private/step-1`,
+          route: 'signup-individual',
           btnId: 'emr-usp-signup-btn',
           btnText: 'Sign Up Now',
           img: 'mycure-emr-web-banner-first-panel-doctor-clinic-patients',
