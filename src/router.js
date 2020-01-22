@@ -14,6 +14,10 @@ import ourStory from '@/views/our-story.vue';
 import pricing from '@/views/pricing.vue';
 import privacyPolicy from '@/views/privacy-policy.vue';
 import signin from '@/views/signin.vue';
+import signupChoose from '@/views/signup-choose.vue';
+import signupIndividual from '@/views/signup-individual.vue';
+import signupIndividualStep1 from '@/components/signup-individual/step-1.vue';
+import signupIndividualStep2 from '@/components/signup-individual/step-2.vue';
 import signupMultispecialty from '@/views/signup-multispecialty.vue';
 import signupMultispecialtyStep1 from '@/components/signup-multispecialty/step-1.vue';
 import signupMultispecialtyStep2 from '@/components/signup-multispecialty/step-2.vue';
@@ -58,6 +62,15 @@ export default new Router({
       }
     },
     {
+      path: '/signup/choose',
+      name: 'signup-choose',
+      component: signupChoose,
+      meta: {
+        pageType: 'signup-choose',
+        pageName: 'Signup Choose'
+      }
+    },
+    {
       path: '/signup/multispecialty',
       name: 'signup-multispecialty', 
       component: signupMultispecialty,
@@ -82,6 +95,28 @@ export default new Router({
           name: 'signup-multispecialty-step-3',
           component: signupMultispecialtyStep3
         },
+      ]
+    },
+    {
+      path: '/signup/individual',
+      name: 'signup-individual', 
+      component: signupIndividual,
+      redirect: '/signup/individual/step-1',
+      meta: {
+        pageType: 'signup-individual',
+        pageName: 'Signup Individual'
+      },
+      children: [
+        {
+          path: 'step-1',
+          name: 'signup-individual-step-1',
+          component: signupIndividualStep1
+        },
+        {
+          path: 'step-2',
+          name: 'signup-individual-step-2',
+          component: signupIndividualStep2
+        }
       ]
     },
     {
