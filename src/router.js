@@ -74,7 +74,7 @@ export default new Router({
       path: '/signup-multispecialty',
       name: 'signup-multispecialty', 
       component: signupMultispecialty,
-      redirect: '/signup/multispecialty/step-1',
+      redirect: '/signup-multispecialty/step-1',
       meta: {
         pageType: 'signup-multispecialty',
         pageName: 'Signup Miltispecialty'
@@ -101,7 +101,7 @@ export default new Router({
       path: '/signup-individual',
       name: 'signup-individual', 
       component: signupIndividual,
-      redirect: '/signup/individual/step-1',
+      redirect: '/signup-individual/step-1',
       meta: {
         pageType: 'signup-individual',
         pageName: 'Signup Individual'
