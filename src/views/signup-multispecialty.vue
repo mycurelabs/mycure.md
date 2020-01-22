@@ -1,11 +1,22 @@
 <template lang="pug">
-  v-app
+  v-app(:dark="dayOrNight === 'night'")
     v-content
       v-container(
         fluid fill-height
-      ).bg.white
+        :class="dayOrNight === 'day' ? 'white' : ''"
+      ).bg
         router-view
 </template>
+
+<script>
+import dayOrNight from '../utils/day-or-night';
+export default {
+  data () {
+    this.dayOrNight = dayOrNight();
+    return {};
+  }
+};
+</script>
 
 <style scoped>
 .bg {
