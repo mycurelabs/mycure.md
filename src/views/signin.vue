@@ -3,7 +3,7 @@
     v-content
       v-container(
         fluid fill-height
-        :class="dayOrNight === 'day' ? 'white' : ''"
+        :class="dayOrNight === 'day' ? 'white' : 'night-sky'"
         :style="{ 'background-image': dayOrNight === 'day' ? `url(${require('../assets/images/mycure-onboarding-background.png')})` : `url(${require('../assets/images/mycure-onboarding-background-dark-mode.png')})` }"
       ).bg
         v-layout(align-center justify-center)
@@ -203,5 +203,13 @@ export default {
 
 .link-to-home:hover {
   cursor: pointer;
+}
+
+.night-sky {
+  background-color: rgb(28,28,28);
+  background-color: -moz-linear-gradient(180deg, rgba(28,28,28,1) 0%, rgba(60,60,60,1) 50%);
+  background-color: -webkit-linear-gradient(180deg, rgba(28,28,28,1) 0%, rgba(60,60,60,1) 50%);
+  background-color: linear-gradient(180deg, rgba(28,28,28,1) 0%, rgba(60,60,60,1) 50%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#1c191c",endColorstr="#3c3c3c",GradientType=1);
 }
 </style>
