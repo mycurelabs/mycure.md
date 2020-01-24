@@ -64,17 +64,5 @@
     "title": "MYCURE - Corporate Social Responsibility",
     "description": "MYCURE cares for people who care for people.",
     "image": ""
-  },
-  {
-    "path": "/signin",
-    "title": "MYCURE - Signin",
-    "description": "MYCURE cares for people who care for people.",
-    "image": ""
-  },
-  {
-    "path": "/forgot-password",
-    "title": "MYCURE - Forgot Password?",
-    "description": "MYCURE cares for people who care for people.",
-    "image": ""
   }
 ]
