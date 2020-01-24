@@ -1,7 +1,7 @@
 <template lang="pug">
   v-layout(row justify-center align-center)
-    v-flex(xs12 md10)
-      v-layout(row wrap justify-center align-center)
+    v-flex(xs12 md8)
+      v-layout(row justify-center align-center)
         v-flex(xs12 md6).pa-1.mb-3
           img(
             src="../../assets/images/mycure-header-logo.png"
@@ -27,8 +27,8 @@
               v-progress-circular(indeterminate size="15" color="primary")
           p Didn't get the code?&nbsp;
             a Resend.
-        v-flex(xs12 md6).pa-1
-          pre image here
+        v-flex(xs12 md6).pa-1.text-xs-center
+          img(src="../../assets/images/mycure-onboarding-phone-verification.png")
     
     v-dialog(v-model="successDialog" width="500" persistent)
       v-card

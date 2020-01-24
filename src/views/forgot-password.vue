@@ -3,7 +3,9 @@
     v-content
       v-container(
         fluid fill-height
-      ).bg.white
+        :class="dayOrNight === 'day' ? 'white' : ''"
+        :style="{ 'background-image': dayOrNight === 'day' ? `url(${require('../assets/images/mycure-onboarding-background.png')})` : `url(${require('../assets/images/mycure-onboarding-background-dark-mode.png')})` }"
+      ).bg
         v-layout(align-center justify-center)
           v-flex(xs12 sm8 md4)
             v-card
@@ -56,9 +58,11 @@
 </template>
 
 <script>
+import dayOrNight from '../utils/day-or-night';
 import { forgotPassword } from '../utils/axios';
 export default {
   data () {
+    this.dayOrNight = dayOrNight();
     return {
       valid: false,
       loading: false,
@@ -106,7 +110,7 @@ export default {
 }
 
 .bg {
-  background-image: url('../assets/images/mycure-signup-062618-footer-BG.png');
+  /* background-image: url('../assets/images/mycure-signup-062618-footer-BG.png'); */
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: bottom center;

@@ -4,6 +4,7 @@
       v-container(
         fluid fill-height
         :class="dayOrNight === 'day' ? 'white' : ''"
+        :style="{ 'background-image': dayOrNight === 'day' ? `url(${require('../assets/images/mycure-onboarding-background.png')})` : `url(${require('../assets/images/mycure-onboarding-background-dark-mode.png')})` }"
       ).bg
         v-layout(row justify-center align-center)
           v-flex(xs12 md10)
@@ -46,7 +47,7 @@ export default {
 
 <style scoped>
 .bg {
-  background-image: url('../assets/images/mycure-signup-062618-footer-BG.png');
+  /* background-image: url('../assets/images/mycure-signup-062618-footer-BG.png'); */
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: bottom center;
