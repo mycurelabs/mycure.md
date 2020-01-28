@@ -194,6 +194,7 @@ export default {
       } catch (e) {
         console.error(e);
       } finally {
+        // TODO: apply error handling
         this.loading = false;
       }
     },
