@@ -31,33 +31,48 @@
               h1 Create an account.
             v-card-text
               v-form(ref="formRef" v-model="valid")
+                v-layout(row)
+                  v-flex.mr-1
+                    v-text-field(
+                      v-model="doctor.firstName"
+                      outline
+                      label="First Name"
+                      :rules="[requiredRule]"
+                      :disabled="loading"
+                    )
+                  v-flex.ml-1
+                    v-text-field(
+                      v-model="doctor.lastName"
+                      outline
+                      label="Last Name"
+                      :rules="[requiredRule]"
+                      :disabled="loading"
+                    )
                 v-text-field(
-                  v-model="doctor.firstName"
+                  v-model="doctor.doc_PRCLicenseNo"
+                  label="Doctor PRC License No"
                   outline
-                  label="First Name"
                   :rules="[requiredRule]"
-                )
-                v-text-field(
-                  v-model="doctor.lastName"
-                  outline
-                  label="Last Name"
-                  :rules="[requiredRule]"
+                  :disabled="loading"
                 )
                 v-text-field(
                   v-model="doctor.mobileNo"
                   label="Mobile Number"
-                  mask="NNNN-NNN-NNN"
+                  type="number"
                   outline
                   :prefix="`+${doctor.countryCallingCode}`"
+                  :loading="loadingForm || loading"
+                  :disabled="loadingForm || loading"
+                  :error="mobileNoError"
+                  :error-messages="mobileNoErrorMessage"
                   :rules="[requiredRule]"
-                  :loading="loadingForm"
-                  :disabled="loadingForm"
+                  @blur="validatePhoneNo"
                 )
                   template(slot="append")
                     img(width="25" :src="doctor.countryFlag").mt-2
                   template(slot="append-outer")
                     v-tooltip(bottom)
-                      v-btn(small icon slot="activator" @click="countryDialog = true")
+                      v-btn(small icon slot="activator" @click="countryDialog = true" :disabled="loading")
                         v-icon mdi-earth
                       | Change Country
                 v-divider
@@ -68,6 +83,7 @@
                   label="Email Address"
                   outline
                   :rules="[requiredRule]"
+                  :disabled="loading"
                 )
                 v-text-field(
                   v-model="doctor.password"
@@ -76,6 +92,7 @@
                   :type="showPass ? 'text' : 'password'"
                   :rules="[requiredRule]"
                   :append-icon="showPass ? 'mdi-eye-off' : 'mdi-eye'"
+                  :disabled="loading"
                   @click:append="showPass = !showPass"
                 )
                 v-checkbox(
@@ -83,6 +100,7 @@
                   hide-details
                   style="margin-top: -10px"
                   :rules="[requiredRule]"
+                  :disabled="loading"
                 ).mb-4
                   template(slot="label")
                     p(style="margin-bottom: -35px") By creating a MYCURE account, you're agreeing to accept MYCURE&nbsp;
@@ -93,6 +111,8 @@
               v-btn(
                 color="accent"
                 @click="next"
+                :disabled="loading"
+                :loading="loading"
               ) Next
           div.mt-3
             b Already have an account? 
@@ -121,11 +141,13 @@
 </template>
 
 <script>
-import { getCountry, getCountries } from '../../utils/axios';
+import { getCountry, getCountries, signupIndividual } from '../../utils/axios';
+import { parsePhoneNumberFromString, parsePhoneNumber } from 'libphonenumber-js';
 export default {
   data () {
     return {
       valid: false,
+      loading: false,
       loadingForm: false,
       countryDialog: false,
       showPass: false,
@@ -135,13 +157,21 @@ export default {
         countryCallingCode: '',
         countryFlag: null,
       },
-      requiredRule: v => !!v || 'This field is required'
+      requiredRule: v => !!v || 'This field is required',
+      mobileNoError: false,
+      mobileNoErrorMessage: ''
     };
   },
   watch: {
     doctor: {
       handler (val) {
         localStorage.setItem('individual:step1:model', JSON.stringify(val));
+      },
+      deep: true
+    },
+    'doctor.mobileNo': {
+      handler () {
+        this.validatePhoneNo();
       },
       deep: true
     },
@@ -155,9 +185,16 @@ export default {
     }
   },
   methods: {
-    next () {
-      if (this.$refs.formRef.validate()) {
+    async next () {
+      try {
+        this.loading = true;
+        if (!this.$refs.formRef.validate()) return;
+        await signupIndividual(this.doctor);
         this.$router.push({ name: 'signup-individual-step-2' });
+      } catch (e) {
+        console.error(e);
+      } finally {
+        this.loading = false;
       }
     },
     async init () {
@@ -194,6 +231,19 @@ export default {
     },
     gotoTerms () {
       window.open('https://mycure.md/terms', '_blank');
+    },
+    validatePhoneNo () {
+      this.mobileNoError = false;
+      this.mobileNoErrorMessage = '';
+      try {
+        let countryCode = this.doctor.countryCallingCode;
+        let mobileNo = this.doctor.mobileNo;
+        let phoneNumber = parsePhoneNumberFromString(`+${countryCode}${mobileNo}`);
+        if (!phoneNumber || !phoneNumber.isValid()) throw new Error();
+      } catch (e) {
+        this.mobileNoError = false;
+        this.mobileNoErrorMessage = 'Invalid mobile number format';
+      }
     }
   },
   async created () {
