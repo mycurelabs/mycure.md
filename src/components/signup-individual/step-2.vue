@@ -12,7 +12,7 @@
           h1 Verify it's you.
           p Enter the code sent to your mobile number: +{{step1Data.countryCallingCode}}{{step1Data.mobileNo}}
           v-layout(row align-center)
-            v-flex(shrink)
+            v-flex(grow)
               input(
                 v-model="otp"
                 placeholder="Enter One-Time Pin (OTP)"
@@ -25,8 +25,17 @@
               )#otpField.otp-field.my-3
             v-flex(shrink v-if="loading").pl-3
               v-progress-circular(indeterminate size="15" color="primary")
+          //- v-layout(row).pa-0.mb-3
+            v-btn(style="margin-left: 0px")
           p Didn't get the code?&nbsp;
-            a Resend.
+            a(@click="resendVerificationCode") Resend.
+          v-layout
+            v-flex
+              v-alert(
+                :value="verificationError"
+                type="error"
+                dismissible
+              ) Incorrect verification code
         v-flex(xs12 md6).pa-1.text-xs-center
           img(src="../../assets/images/mycure-onboarding-phone-verification.png")
     
@@ -48,15 +57,18 @@
 
 <script>
 import dayOrNight from '../../utils/day-or-night';
+import { verifyMobileNo, signin, resendVerificationCode } from '../../utils/axios';
 export default {
   data () {
     this.dayOrNight = dayOrNight();
     return {
       valid: false,
       loading: false,
+      verificationError: false,
       successDialog: false,
       otp: '',
-      step1Data: {}
+      step1Data: {},
+      waitMinutes: 600000
     };
   },
   watch: {
@@ -70,9 +82,30 @@ export default {
     async submit () {
       try {
         this.loading = true;
+        this.verificationError = false;
+        const payload = {
+          code: this.otp
+        };
+        await verifyMobileNo(payload);
         this.successDialog = true;
       } catch (e) {
-        // TODO: handle error, including 2FA error
+        this.verificationError = true;
+        console.error(e);
+      } finally {
+        this.loading = false;
+      }
+    },
+    async resendVerificationCode () {
+      try {
+        const { accessToken } = await signin({
+          email: this.step1Data.email,
+          password: this.step1Data.password
+        });
+        await resendVerificationCode({ token: accessToken });
+        // localStorage.setItem('waiting', true);
+        // this.startCountDown();
+      } catch (e) {
+        console.error(e);
       }
     },
     okay () {
