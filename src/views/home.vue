@@ -1,7 +1,6 @@
 <template lang="pug">
   //-TODO: Videos are still playing even when dialogs are closed
   div#top.white
-    mc-toolbar-home
     usp
     storyflow(
       :storyflow="storyflowItems"
@@ -17,12 +16,10 @@
     hr
     targetMarket
     targetMarketMobile(v-if="$isMobile").showPanel
-    mcFooter
+    //- mcFooter
 </template>
 
 <script>
-  import McToolbarHome from '@/components/commons/mc-toolbar-home';
-  import McFooter from '@/components/commons/mc-footer';
   import Usp from '@/components/commons/usp';
   import Vid from '@/components/home/vid';
   import Product from '@/components/home/product';
@@ -35,8 +32,6 @@
 
   export default {
     components: {
-      McToolbarHome,
-      McFooter,
       Usp,
       Vid,
       Product,
@@ -51,7 +46,6 @@
     },
     data () {
       return {
-        // FOR USP PANEL
         signInURL: process.env.VUE_APP_SIGNIN_URL,
         introText: 'The Ultimate Clinicware for Smart Clinics',
         storyflowItems: [
