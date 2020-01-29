@@ -1,5 +1,5 @@
 <template lang="pug">
-  div
+  div.gradient-bg-color
     v-container(v-if="!$isMobile").whole-page
       v-container(fill-height)
         v-layout(row align-center)
@@ -15,7 +15,10 @@
               ).text-none.white--text
                 strong.font-18 {{ uspContents.btnText }}
             div.pt-5
-              v-img(:src="require(`@/assets/images/${uspContents.coverImg}.png`)" :alt="uspContents.coverImg")
+              v-img(
+                :src="require(`@/assets/images/${uspContents.coverImg}.png`)"
+                :alt="uspContents.coverImg"
+              )
         
     div(v-else)
       v-layout(column wrap justify-center).mt-5
@@ -70,6 +73,9 @@ export default {
 </script>
 
 <style scoped>
+.gradient-bg-color {
+  background-color: #f0f0f0
+}
 .whole-page {
   min-height: 120vh;
   padding-top: 10vh;
@@ -78,7 +84,6 @@ export default {
   line-height: 1.25em;
 }
 .uspTitle {
-  font-size: 45px;
   white-space: pre;
   font-family: 'Work Sans', 'Poppins', sans-serif !important;
 }
