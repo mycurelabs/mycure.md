@@ -176,7 +176,7 @@ export default {
 
 .bg {
   /* background-image: url('../assets/images/mycure-signup-062618-footer-BG.png'); */
-  background-repeat: no-repeat;
+  background-repeat: repeat-x;
   background-attachment: fixed;
   background-position: bottom center;
   /* background-size: 250px, contain; */
