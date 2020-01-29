@@ -8,10 +8,10 @@
       :storyflow="storyflowItems"
       :introduction="introText"
       :featuresButton="true"
+      horizontal
     ).showPanel
     vid
     br
-    product
     unique
     hr
     security
@@ -24,8 +24,8 @@
 
 <script>
 import Usp from '@/components/home/usp';
-import HealthSuites from '@/components/home/health-suites'
-import Solutions from '@/components/home/solutions'
+import HealthSuites from '@/components/home/health-suites';
+import Solutions from '@/components/home/solutions';
 import Vid from '@/components/home/vid';
 import Product from '@/components/home/product';
 import Unique from '@/components/home/unique';
@@ -56,22 +56,22 @@ export default {
   data () {
     return {
       signInURL: process.env.VUE_APP_SIGNIN_URL,
-      introText: 'The Ultimate Clinicware for Smart Clinics',
+      introText: 'Designed for your health facility',
       storyflowItems: [
         {
-          title: 'A Versatile Electronic Health Records (EHR)',
-          text: 'Powerful, robust and proven solution to organize and secure patients’ medical records.',
-          image: 'mycure-web-banner-circles-home-01-ehr.png'
+          title: 'Secure Electronic Health Records (EHR)',
+          text: 'Powerful, robust and proven solution that organize health records based on global health standards.',
+          image: 'mycure-homepage-secure.png'
         },
         {
           title: 'Solving Everyday Challenges Efficiently',
-          text: 'Data privacy issues, duplicate or missing patient charts, billing & collection discrepancies, cutting down unnecessary costs, and having unreliable internet connection should be the least of the worries.',
-          image: 'mycure-web-banner-circles-home-02-solve.png'
+          text: 'Duplicate or missing charts, billing mishaps, excess costs, and crazy workflows become the least of your worries.',
+          image: 'mycure-homepage-workflow.png'
         },
         {
-          title: 'Integrating the Whole Patient Journey',
-          text: 'Accessible, integrated, and complete clinic management system that simplifies and automates workflow from queuing to charting to billing.',
-          image: 'mycure-web-banner-circles-home-03-px-journey.png'
+          title: 'Holistic Patient Care Experience',
+          text: 'From registration to billing, evaluate your patient care performance through fast reporting and analytics.',
+          image: 'mycure-homepage-holistic.png'
         }
       ]
     };
