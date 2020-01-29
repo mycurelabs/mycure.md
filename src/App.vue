@@ -1,14 +1,22 @@
 <template lang="pug">
   v-app(data-server-rendered="true")#app
+    mc-toolbar-home
     v-content
       router-view
+    mc-footer
 </template>
-
 
 <script>
 
+import McToolbarHome from '@/components/commons/mc-toolbar-home';
+import McFooter from '@/components/commons/mc-footer'; 
+
 export default {
   name: 'App',
+  components: {
+    McToolbarHome,
+    McFooter
+  },
   data () {
     return {
       //
@@ -20,6 +28,8 @@ export default {
 <style>
 
   @import url('https://fonts.googleapis.com/css?family=Poppins');
+  @import url('https://fonts.googleapis.com/css?family=Work+Sans');
+  @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
 
   #app {
     max-width: 100% !important;
