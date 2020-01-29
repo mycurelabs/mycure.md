@@ -105,7 +105,7 @@
                   template(slot="label")
                     p(style="margin-bottom: -35px") By creating a MYCURE account, you're agreeing to accept MYCURE&nbsp;
                       a(target="_blank" @click.stop="gotoTerms") Terms & Privacy Policy
-
+                v-alert(:value="error" type="error").mt-5 {{errorMessage}}
             v-card-actions
               v-spacer
               v-btn(
@@ -137,6 +137,8 @@
                 img(width="25" :src="country.flag")
               v-list-tile-content
                 v-list-tile-title {{country.name}}
+    
+    //- v-dialog(v-mode="errorDialog")
           
 </template>
 
@@ -158,6 +160,8 @@ export default {
         countryFlag: null,
       },
       requiredRule: v => !!v || 'This field is required',
+      error: false,
+      errorMessage: 'There was an error please try again later.',
       mobileNoError: false,
       mobileNoErrorMessage: ''
     };
@@ -188,13 +192,18 @@ export default {
     async next () {
       try {
         this.loading = true;
+        this.error = false;
+        this.mobileNoError = false;
         if (!this.$refs.formRef.validate()) return;
         await signupIndividual(this.doctor);
         this.$router.push({ name: 'signup-individual-step-2' });
       } catch (e) {
         console.error(e);
+        this.error = true;
+        if (e.code === 11000) {
+          this.errorMessage = `The email ${this.doctor.email} or mobile number ${this.doctor.mobileNo} is already in use.`;
+        }
       } finally {
-        // TODO: apply error handling
         this.loading = false;
       }
     },
