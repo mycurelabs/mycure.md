@@ -15,8 +15,9 @@
     hr
     security
     hr
-    targetMarket
-    targetMarketMobile(v-if="$isMobile").showPanel
+    testimonial
+    //- targetMarketMobile(v-if="$isMobile").showPanel
+    final-words.pb-5
     //- mcFooter
 </template>
 
@@ -27,7 +28,8 @@ import Vid from '@/components/home/vid';
 import Product from '@/components/home/product';
 import Unique from '@/components/home/unique';
 import Security from '@/components/home/security';
-import TargetMarket from '@/components/home/target-market';
+import Testimonial from '@/components/home/testimonial';
+import FinalWords from '@/components/home/final-words';
 import TargetMarketMobile from '@/components/home/target-market-mobile';
 import Storyflow from '@/components/commons/storyflow';
 import VueScrollTo from 'vue-scrollto';
@@ -40,7 +42,8 @@ export default {
     Product,
     Unique,
     Security,
-    TargetMarket,
+    Testimonial,
+    FinalWords,
     TargetMarketMobile,
     Storyflow
   },
