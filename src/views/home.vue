@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import Usp from '@/components/commons/usp';
+import Usp from '@/components/home/usp';
 import HealthSuites from '@/components/home/health-suites'
 import Solutions from '@/components/home/solutions'
 import Vid from '@/components/home/vid';
