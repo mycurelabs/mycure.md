@@ -3,6 +3,7 @@
   div#top.white
     usp
     health-suites
+    solutions
     storyflow(
       :storyflow="storyflowItems"
       :introduction="introText"
@@ -24,6 +25,7 @@
 <script>
 import Usp from '@/components/commons/usp';
 import HealthSuites from '@/components/home/health-suites'
+import Solutions from '@/components/home/solutions'
 import Vid from '@/components/home/vid';
 import Product from '@/components/home/product';
 import Unique from '@/components/home/unique';
@@ -38,6 +40,7 @@ export default {
   components: {
     Usp,
     HealthSuites,
+    Solutions,
     Vid,
     Product,
     Unique,
