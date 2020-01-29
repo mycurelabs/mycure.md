@@ -78,7 +78,7 @@ export default {
 }
 .whole-page {
   min-height: 120vh;
-  padding-top: 10vh;
+  padding-top: 15vh;
 }
 .title-line-height {
   line-height: 1.25em;
