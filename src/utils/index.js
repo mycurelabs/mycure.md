@@ -2,6 +2,8 @@
  * 
  * @param {String} text 
  * @param {Array} indicators 
+ * 
+ * Note: Make sure to apply the 'white-space: pre' CSS to the block
  */
 
 export const parseTextWithNewLine = (text, indicators ) => {
