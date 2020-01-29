@@ -86,6 +86,7 @@ export default {
 .uspTitle {
   white-space: pre;
   font-family: 'Work Sans', 'Poppins', sans-serif !important;
+  line-height: 1.25em;
 }
 .uspDescription {
   white-space: pre;
