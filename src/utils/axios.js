@@ -157,7 +157,7 @@ export const signupIndividual = async (opts) => {
     console.error(e);
     throw handleError(e);
   }
-}
+};
 
 export const verifyMobileNo = async (opts) => {
   try {
@@ -198,4 +198,4 @@ export const resendVerificationCode = async (opts) => {
     console.error(e);
     throw handleError(e);
   }
-}
+};

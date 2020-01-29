@@ -142,7 +142,7 @@
 
 <script>
 import { getCountry, getCountries, signupIndividual } from '../../utils/axios';
-import { parsePhoneNumberFromString, parsePhoneNumber } from 'libphonenumber-js';
+import { parsePhoneNumberFromString } from 'libphonenumber-js';
 export default {
   data () {
     return {
