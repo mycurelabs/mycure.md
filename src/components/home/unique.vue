@@ -4,24 +4,19 @@
       v-container
         v-layout(row wrap justify center)
           v-flex(xs6 align-self-center).px-3
-            span.font-40 It works online and offline!
+            h2.panelTitle.font-40 {{ title }}
             br
             br
-            span.font-18.text-xs-center This is what makes MYCURE different from the rest. Using our proprietary tech called 
-              |
-              strong Syncbase, 
-              | you can digitally process your medical records locally using multiple devices even if the internet is down! Once online, it automatically synchronizes your data back into the cloud.
-              br
-              br
-            v-btn(
-              id="home-syncbase-vid-btn"
-              @click.stop="dialog= true; handleHomeSyncbaseVid()"
-              color="#2e9fdf"
-              small
-              right
-              large
-            )
-              strong.text-none.white--text.font-18 &#9658; &nbsp; Watch Video
+            p.font-18 {{ panelContent }}
+            //- v-btn(
+            //-   id="home-syncbase-vid-btn"
+            //-   @click.stop="dialog= true; handleHomeSyncbaseVid()"
+            //-   color="#2e9fdf"
+            //-   small
+            //-   right
+            //-   large
+            //- )
+            //-   strong.text-none.white--text.font-18 &#9658; &nbsp; Watch Video
             v-dialog(v-model="dialog" max-width="50%") 
               v-card(height="30%").elevation-10
                 a
@@ -67,26 +62,40 @@
 </template>
 
 <script>
-  export default {
-    data () {
-      return {
-        dialog: false,
-        videoDialog: false,
-      };
-    },
-    methods: {
-      handleHomeSyncbaseVid () {
-        this.$ga.event({
-          eventCategory: 'video',
-          eventAction: 'play-home-syncbase-vid-btn',
-          eventLabel: 'home-syncbase-vid-btn'
-        });
-      }
+import { parseTextWithNewLine } from '@/utils';
+export default {
+  data () {
+    return {
+      dialog: false,
+      videoDialog: false,
+      panelTitle: 'MYCURE Health Suites work online and offline',
+      panelContent: 'Work as if you have an in-house server, with the convenience of the cloud.\
+       Create your medical records locally using multiple devices even if the internet is down!\
+       Once back online, it instantly syncs your data into the cloud.',
+      panelImage: 'mycure-homepage-syncbase'
+    };
+  },
+  computed: {
+    title () {
+      return parseTextWithNewLine(this.panelTitle, ['Health ', 'online ']);
     }
-  };
+  },
+  methods: {
+    handleHomeSyncbaseVid () {
+      this.$ga.event({
+        eventCategory: 'video',
+        eventAction: 'play-home-syncbase-vid-btn',
+        eventLabel: 'home-syncbase-vid-btn'
+      });
+    }
+  }
+};
 </script>
 
 <style scoped>
-
+.panelTitle {
+  font-family: 'Work Sans', 'Poppins', sans-serif !important;
+  white-space: pre;
+}
 </style>
 
