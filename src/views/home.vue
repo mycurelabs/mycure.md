@@ -1,8 +1,8 @@
 <template lang="pug">
   //-TODO: Videos are still playing even when dialogs are closed
   div#top.white
-    mcToolbarHome
-    usp(:uspContents="uspContents")
+    mc-toolbar-home
+    usp
     storyflow(
       :storyflow="storyflowItems"
       :introduction="introText"
@@ -21,30 +21,30 @@
 </template>
 
 <script>
-  import mcToolbarHome from '@/components/commons/mc-toolbar-home';
-  import mcFooter from '@/components/commons/mc-footer';
-  import usp from '@/components/commons/usp';
-  import vid from '@/components/home/vid';
-  import product from '@/components/home/product';
-  import unique from '@/components/home/unique';
-  import security from '@/components/home/security';
-  import targetMarket from '@/components/home/target-market';
-  import targetMarketMobile from '@/components/home/target-market-mobile';
-  import storyflow from '@/components/commons/storyflow';
+  import McToolbarHome from '@/components/commons/mc-toolbar-home';
+  import McFooter from '@/components/commons/mc-footer';
+  import Usp from '@/components/commons/usp';
+  import Vid from '@/components/home/vid';
+  import Product from '@/components/home/product';
+  import Unique from '@/components/home/unique';
+  import Security from '@/components/home/security';
+  import TargetMarket from '@/components/home/target-market';
+  import TargetMarketMobile from '@/components/home/target-market-mobile';
+  import Storyflow from '@/components/commons/storyflow';
   import VueScrollTo from 'vue-scrollto';
 
   export default {
     components: {
-      mcToolbarHome,
-      mcFooter,
-      usp,
-      vid,
-      product,
-      unique,
-      security,
-      targetMarket,
-      targetMarketMobile,
-      storyflow
+      McToolbarHome,
+      McFooter,
+      Usp,
+      Vid,
+      Product,
+      Unique,
+      Security,
+      TargetMarket,
+      TargetMarketMobile,
+      Storyflow
     },
     mounted () {
       VueScrollTo.scrollTo(`#top`, 500, { easing: 'ease' } );
@@ -53,14 +53,6 @@
       return {
         // FOR USP PANEL
         signInURL: process.env.VUE_APP_SIGNIN_URL,
-        uspContents: {
-          metaTitle: 'MYCURE Complete Clinic Practice Management System',
-          title: 'The first complete clinic \nsolution designed for \nsmart clinics to work \nonline and offline.',
-          btn: `/choose`,
-          btnId: 'home-usp-signup-btn',
-          btnText: 'Sign Up Now',
-          img: 'mycure-web-banner-first-panel-doctor-clinic-patients',
-        },
         introText: 'The Ultimate Clinicware for Smart Clinics',
         storyflowItems: [
           {

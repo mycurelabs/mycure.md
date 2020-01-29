@@ -49,22 +49,21 @@ div
 </template>
 
 <script>
+import { USP_CONTENTS } from './constants';
 export default {
-  props: {
-    uspContents: {
-      type: Object,
-      required: true,
-    },
-    someFunctionParent: {
-      type: String
-    }
-  },
   data () {
     return {
-      signInURL: process.env.VUE_APP_SIGNIN_URL,
-      mcGreen: '#18c551',
-      mcBlue: '#2e9fdf'
+      uspContents: USP_CONTENTS,
+      signInURL: process.env.VUE_APP_SIGNIN_URL
     };
+  },
+  computed: {
+    mcGreen () {
+      return this.$mcColors.mcGreen;
+    },
+    mcBlue () {
+      return this.$mcColors.mcBlue;
+    }
   }
 };
 </script>
@@ -72,12 +71,6 @@ export default {
 <style scoped>
 .whole-page {
   height: 100vh;
-}
-.font-xxs {
-  font-size: 11px;
-}
-.uspBtn-padding {
-  padding-bottom: 20px;
 }
 .title-line-height {
   line-height: 1.25em;
