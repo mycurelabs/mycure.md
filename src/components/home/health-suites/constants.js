@@ -1,7 +1,7 @@
 export const HEALTH_SUITES_HEADERS = {
   title: 'MYCURE Health Suites',
   subtitle: 'Find the right mix based on the size and functions of your health facility.'
-}
+};
 
 export const HEALTH_SUITES_ITEMS = [
   {
