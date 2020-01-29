@@ -13,6 +13,6 @@ export const parseTextWithNewLine = (text, indicators ) => {
     let newline = '\n';
     let position = index + indicators[i].length;
     output = [output.slice(0, position), newline, output.slice(position)].join('');
-  };
+  }
   return output;
-}
+};
