@@ -14,6 +14,7 @@ export const HEALTH_SUITES_ITEMS = [
       'Census & Income Summary',
       'SMS Reminders'
     ],
+    image: 'mycure-p2-badge-doctor-clinic',
     btnlink: '',
     learnLink: ''
   },
@@ -27,6 +28,7 @@ export const HEALTH_SUITES_ITEMS = [
       'Dentistry',
       'Diagnostics'
     ],
+    image: 'mycure-p2-badge-specialized-clinic',
     btnlink: '',
     learnLink: ''
   },
@@ -40,6 +42,7 @@ export const HEALTH_SUITES_ITEMS = [
       'Insurance & Corporate Billing',
       'Materials Management'
     ],
+    image: 'mycure-p2-badge-multispecialty',
     btnlink: '',
     learnLink: ''
   }
