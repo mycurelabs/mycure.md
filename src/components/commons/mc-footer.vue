@@ -11,18 +11,18 @@
             v-flex(xs12 md3)
               ul.no-style-type
                 li.pt-3.feature-text CLINIC SOLUTIONS
-                li
-                  router-link(id="footer-multispecialty-link" @click.stop="handleFooterCmsLink" :to="{name: 'cms'}" title="MYCURE | Multispecialty Clinic Management System (CMS)").link
-                    span Multispecialty Clinics
-                li
-                  router-link(id="footer-group-link" @click.stop="handleFooterGroupLink" :to="{name: 'group'}" title="MYCURE | Multispecialty Clinic Management System (CMS)").link
-                    span Group Clinics
-                li
-                  router-link(id="footer-private-practice-link" @click.stop="handleFooterEmrLink" :to="{name: 'emr'}" title="MYCURE | Individual Practice Electronic Medical Records (EMR)").link
-                    span Individual Practice
-                li.pb-3
-                  a(id="footer-solo-link" @click.stop="handleFooterSoloLink" href="https://solo.mycure.md" target="_blank" title="MYCURE - Solo | Patient Records Organizer (PRO)").link
-                    span Solo by MYCURE
+                //- li
+                //-   router-link(id="footer-multispecialty-link" @click.stop="handleFooterCmsLink" :to="{name: 'cms'}" title="MYCURE | Multispecialty Clinic Management System (CMS)").link
+                //-     span Multispecialty Clinics
+                //- li
+                //-   router-link(id="footer-group-link" @click.stop="handleFooterGroupLink" :to="{name: 'group'}" title="MYCURE | Multispecialty Clinic Management System (CMS)").link
+                //-     span Group Clinics
+                //- li
+                //-   router-link(id="footer-private-practice-link" @click.stop="handleFooterEmrLink" :to="{name: 'emr'}" title="MYCURE | Individual Practice Electronic Medical Records (EMR)").link
+                //-     span Individual Practice
+                //- li.pb-3
+                //-   a(id="footer-solo-link" @click.stop="handleFooterSoloLink" href="https://solo.mycure.md" target="_blank" title="MYCURE - Solo | Patient Records Organizer (PRO)").link
+                //-     span Solo by MYCURE
                 li.pt-3
                   router-link(id="footer-features-link" @click.stop="handleFooterFeaturesLink" :to="{name: 'features'}" title="MYCURE Features").link FEATURES
                 li.pb-3
