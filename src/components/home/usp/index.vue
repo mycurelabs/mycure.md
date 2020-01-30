@@ -1,12 +1,12 @@
 <template lang="pug">
   //- TODO: Mobile view
   div.gradient-bg-color
-    v-container(v-if="!$isMobile").whole-page
+    v-container.whole-page
       v-container(fill-height)
         v-layout(row align-center)
           v-flex(xs12 md12).text-xs-center
-            h2.text-xs-center.uspTitle.font-xl {{ uspTitle }}
-            p.text-xs-center.uspDescription.pt-3.font-s {{ uspDescription }}
+            h2(:class="{'pre-white-space': !$isMobile}").text-xs-center.uspTitle.font-xl {{ uspTitle }}
+            p(:class="{'pre-white-space': !$isMobile}").text-xs-center.uspDescription.pt-3.font-s {{ uspDescription }}
             div.pt-5
               v-btn(
                 :href="uspContents.btn"
@@ -41,11 +41,11 @@ export default {
     },
     uspTitle () {
       const title = this.uspContents.title; 
-      return parseTextWithNewLine(title, ['workflows']);
+      return !this.$isMobile ? parseTextWithNewLine(title, ['workflows']) : title ;
     },
     uspDescription () {
       const description = this.uspContents.description;
-      return parseTextWithNewLine(description, ['system']);
+      return !this.$isMobile ? parseTextWithNewLine(description, ['system']) : description;
     }
   }
 };
@@ -56,19 +56,17 @@ export default {
   background-color: #f0f0f0
 }
 .whole-page {
-  height: 75vh;
+  height: 85vh;
   padding-top: 15vh;
 }
 .title-line-height {
   line-height: 1.25em;
 }
 .uspTitle {
-  white-space: pre;
   font-family: 'Work Sans', 'Poppins', sans-serif !important;
   line-height: 1.25em;
 }
 .uspDescription {
-  white-space: pre;
   font-family: 'Source Sans Pro', 'Poppins', sans-serif !important;
 }
 .uspMetaTitle {
