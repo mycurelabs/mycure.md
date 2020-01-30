@@ -1,5 +1,5 @@
 <template lang="pug">
-  div
+  div.gradient-grey
     div(v-if="!$isMobile")
       v-container
         v-layout(row justify-center)
@@ -19,10 +19,10 @@
                   justify-center 
                 )
                   v-flex(xs12 md10).text-xs-center.pa-5
-                    h2.black--text.mb-5 {{ testimonial.message }}
-                    span.font-18.black--text {{ testimonial.name }}
-                      br
-                      i.black--text {{ testimonial.position }}
+                    h2.black--text.mb-5.font-m {{ testimonial.message }}
+                    strong.font-18.font-mc-blue {{ testimonial.name }}
+                    br
+                    span.font-18.subheading.grey--text {{ testimonial.position }}
     div(v-else).transparent.pt-5
       v-container
         v-layout(row wrap justify-center).px-3
@@ -86,5 +86,7 @@
 </script>
 
 <style scoped>
-
+.gradient-grey {
+  background-color: #f0f0f0;
+}
 </style>

@@ -22,7 +22,6 @@
     hr
     //- 7th panel
     privacy
-    hr
     //- 8th panel
     testimonial
     //- final panel
