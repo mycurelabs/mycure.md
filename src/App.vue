@@ -60,6 +60,10 @@ export default {
   .mc-green {
     background-color: #18c551
   }
+
+  .font-work-sans {
+    font-family: 'Work Sans', 'Poppins', sans-serif !important;
+  }
   
   .font-mc-blue {
     color: #2e9fdf
