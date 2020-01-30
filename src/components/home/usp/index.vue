@@ -1,11 +1,12 @@
 <template lang="pug">
+  //- TODO: Mobile view
   div.gradient-bg-color
     v-container(v-if="!$isMobile").whole-page
       v-container(fill-height)
         v-layout(row align-center)
           v-flex(xs12 md12).text-xs-center
-            h2.text-xs-center.uspTitle.font-48 {{ uspTitle }}
-            p.text-xs-center.uspDescription.pt-3.font-16 {{ uspDescription }}
+            h2.text-xs-center.uspTitle.font-xl {{ uspTitle }}
+            p.text-xs-center.uspDescription.pt-3.font-s {{ uspDescription }}
             div.pt-5
               v-btn(
                 :href="uspContents.btn"
@@ -13,34 +14,12 @@
                 :id="uspContents.btnId"
                 large
               ).text-none.white--text
-                strong.font-18 {{ uspContents.btnText }}
-            div.pt-5
-              v-img(
-                :src="require(`@/assets/images/${uspContents.coverImg}.png`)"
-                :alt="uspContents.coverImg"
-              )
-        
-    div(v-else)
-      v-layout(column wrap justify-center).mt-5
-        h1.font-weight-bold.font-18.font-mc-blue.pb-2.text-xs-center {{ uspContents.metaTitle }}
-        h2.font-30.font-weight-regular.title-line-height.pb-5.text-xs-center.uspTitle {{ uspContents.title }}
-        v-layout(row justify-center).mb-5
-          img(
-            :src="require(`@/assets/images/${ uspContents.img }.png`)"
-            height="250"
-            :alt="uspContents.img"
-          )
-        v-layout(row justify-center)
-          v-btn(
-            v-if="uspContents.btn"
-            :href="uspContents.btn"
-            :color="mcGreen"
-            :id="uspContents.btnId"
-            target="_blank"
-            large
-            block
-          ).uspMobileBtn
-            strong.font-25.text-none.white--text {{ uspContents.btnText }}
+                strong.font-s {{ uspContents.btnText }}     
+    div
+      v-img(
+        :src="require(`@/assets/images/${uspContents.coverImg}.png`)"
+        :alt="uspContents.coverImg"
+      )
 </template>
 
 <script>
@@ -77,7 +56,7 @@ export default {
   background-color: #f0f0f0
 }
 .whole-page {
-  min-height: 120vh;
+  height: 75vh;
   padding-top: 15vh;
 }
 .title-line-height {
