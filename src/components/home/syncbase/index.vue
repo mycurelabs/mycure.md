@@ -10,7 +10,7 @@
             br
             p.font-18 {{ panelContent }}
           v-flex(xs6 align-self-center).px-3.text-xs-center
-            img(:src="require(`@/assets/images/${panelImage}.png`)" width="80%" alt="MYCURE Syncbase")
+            img(:src="require(`@/assets/images/${panelImage}.gif`)" width="100%" alt="MYCURE Syncbase")
     //- MOBILE
     div(v-else).pt-5
       v-container.text-xs-center
@@ -18,7 +18,7 @@
         br
         p.font-18.text-xs-center {{ panelContent }}
         br
-        img(:src="require(`@/assets/images/${panelImage}.png`)" width="80%" alt="MYCURE Syncbase")
+        img(:src="require(`@/assets/images/${panelImage}.gif`)" width="80%" alt="MYCURE Syncbase")
 </template>
 
 <script>
@@ -30,7 +30,7 @@ export default {
       panelContent: 'Work as if you have an in-house server, with the convenience of the cloud.\
        Create your medical records locally using multiple devices even if the internet is down!\
        Once back online, it instantly syncs your data into the cloud.',
-      panelImage: 'mycure-homepage-syncbase'
+      panelImage: 'mycure-homepage-syncbase-animated'
     };
   },
   computed: {

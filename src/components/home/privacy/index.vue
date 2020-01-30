@@ -28,7 +28,7 @@
       return {
         panelTitle: 'Protect your patients\' medical records with confidence',
         panelText: 'With MYCURE you\'ll never have to worry much about data privacy concerns. Keeping them secure is our #1 priority.',
-        panelImage: 'mycure-homepage-privacy'
+        panelImage: 'mycure-web-banner-data-privacy-law'
       };
     }
   };
