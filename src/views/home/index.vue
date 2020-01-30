@@ -23,6 +23,7 @@
 </template>
 
 <script>
+import STORYFLOW_ITEMS from './storyflow-items.json';
 import Usp from '@/components/home/usp';
 import HealthSuites from '@/components/home/health-suites';
 import Solutions from '@/components/home/solutions';
@@ -57,23 +58,7 @@ export default {
     return {
       signInURL: process.env.VUE_APP_SIGNIN_URL,
       introText: 'Designed for your health facility',
-      storyflowItems: [
-        {
-          title: 'Secure Electronic Health Records (EHR)',
-          text: 'Powerful, robust and proven solution that organize health records based on global health standards.',
-          image: 'mycure-homepage-secure.png'
-        },
-        {
-          title: 'Solving Everyday Challenges Efficiently',
-          text: 'Duplicate or missing charts, billing mishaps, excess costs, and crazy workflows become the least of your worries.',
-          image: 'mycure-homepage-workflow.png'
-        },
-        {
-          title: 'Holistic Patient Care Experience',
-          text: 'From registration to billing, evaluate your patient care performance through fast reporting and analytics.',
-          image: 'mycure-homepage-holistic.png'
-        }
-      ]
+      storyflowItems: STORYFLOW_ITEMS
     };
   }
 };

@@ -1,17 +1,16 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import home from '@/views/home.vue';
-import notFound from '@/views/404.vue';
-import privacyPolicy from '@/views/privacy-policy.vue';
-import terms from '@/views/terms.vue';
-import ourStory from '@/views/our-story.vue';
-import emr from '@/views/electronic-medical-records.vue';
-import group from '@/views/group-clinics.vue';
-import cms from '@/views/clinic-management-system.vue';
-import pricing from '@/views/pricing.vue';
-import features from '@/views/features.vue';
-import csr from '@/views/csr.vue';
-// import solo from '@/views/solo.vue';
+import home from '@/views/home';
+import notFound from '@/views/404';
+import privacyPolicy from '@/views/privacy-policy';
+import terms from '@/views/terms';
+import ourStory from '@/views/our-story';
+import emr from '@/views/electronic-medical-records';
+import group from '@/views/group-clinics';
+import cms from '@/views/clinic-management-system';
+import pricing from '@/views/pricing';
+import features from '@/views/features';
+import csr from '@/views/csr';
 import { core } from '@mycure/sdk';
 
 Vue.use(Router);
