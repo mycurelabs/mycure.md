@@ -21,7 +21,7 @@
     syncbase
     hr
     //- 7th panel
-    security
+    privacy
     hr
     //- 8th panel
     testimonial
@@ -38,7 +38,7 @@ import Solutions from '@/components/home/solutions';
 import Vid from '@/components/home/vid';
 import Product from '@/components/home/product';
 import Syncbase from '@/components/home/syncbase';
-import Security from '@/components/home/security';
+import Privacy from '@/components/home/privacy';
 import Testimonial from '@/components/home/testimonial';
 import FinalWords from '@/components/home/final-words';
 import Storyflow from '@/components/commons/storyflow';
@@ -52,7 +52,7 @@ export default {
     Vid,
     Product,
     Syncbase,
-    Security,
+    Privacy,
     Testimonial,
     FinalWords,
     Storyflow
