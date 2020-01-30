@@ -1,11 +1,12 @@
 <template lang="pug">
   div
+    //- TODO: Mobile view
     div(v-if="!$isMobile").pt-5.health-suites
       v-container
         v-layout(row align-center)
           v-flex(xs12 md12).text-xs-center
-            h2.text-xs-center.panelTitle.font-48.white--text {{ panelTitle }}
-            p.font-18.text-xs-center.white--text {{ panelSubtitle }}
+            h2.text-xs-center.font-work-sans.font-xl.white--text {{ panelTitle }}
+            p.font-s.text-xs-center.white--text {{ panelSubtitle }}
         v-layout(row align-center fill-height).pt-5
           v-flex(
             v-for="(suite, key) in healthSuites"
@@ -15,7 +16,7 @@
           ).mx-1
             v-card.roundedCard
               v-card-text
-                strong.font-16 {{ suite.header }}
+                strong.font-s {{ suite.header }}
                 p.font-14 {{ suite.subheader }}
                 v-layout(row wrap)
                   v-flex(xs12 md4)
@@ -38,9 +39,6 @@
                       flat
                       :color="$mcColors.mcBlue"
                     ).text-none.font-weight-bold Learn More >
-
-
-
 </template>
 
 <script>
@@ -64,11 +62,7 @@ export default {
 
 <style scoped>
 .health-suites {
-  background-color: #7892a2;
-}
-.panelTitle {
-  white-space: pre;
-  font-family: 'Work Sans', 'Poppins', sans-serif !important;
+  background-color: #075b76;
 }
 .roundedCard {
   border-radius: 10px;
