@@ -1,6 +1,6 @@
 <template lang="pug">
   v-app(data-server-rendered="true")#app
-    mc-toolbar-home
+    mc-toolbar
     v-content
       router-view
     mc-footer
@@ -8,13 +8,13 @@
 
 <script>
 
-import McToolbarHome from '@/components/commons/mc-toolbar-home';
+import McToolbar from '@/components/commons/mc-toolbar';
 import McFooter from '@/components/commons/mc-footer'; 
 
 export default {
   name: 'App',
   components: {
-    McToolbarHome,
+    McToolbar,
     McFooter
   },
   data () {
