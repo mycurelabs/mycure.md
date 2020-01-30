@@ -13,12 +13,12 @@
             img(src="../../../assets/images/mycure-homepage-syncbase.png" width="80%" alt="MYCURE Syncbase")
     //- MOBILE
     div(v-else).pt-5
-      v-container
+      v-container.text-xs-center
         p.font-40.lh-title.text-xs-center {{ panelTitle }}
         br
         p.font-18.text-xs-center {{ panelContent }}
         br
-        img(src="../../../assets/images/mycure-homepage-syncbase.png" width="100%" alt="MYCURE Syncbase")
+        img(src="../../../assets/images/mycure-homepage-syncbase.png" width="80%" alt="MYCURE Syncbase")
 </template>
 
 <script>
