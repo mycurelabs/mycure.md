@@ -85,9 +85,25 @@ export default {
   .font-mc-white {
     color: #ffffff
   }
-  
+  .font-xl {
+    font-size: 50px !important;
+  }
+  .font-l {
+    font-size: 30px !important;
+  }
+  .font-m {
+    font-size: 24px !important;
+  }
+  .font-s {
+    font-size: 16px !important;
+  }
+  /* TODO: Remove these font styles*/
   .font-60 {
-    font-size: 60px !important
+    font-size: 60px !important;
+  }
+
+  .font-50 {
+    font-size: 50px !important;
   }
 
   .font-48 {
