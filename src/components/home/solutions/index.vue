@@ -1,10 +1,10 @@
 <template lang="pug">
   div
-    div(v-if="!$isMobile").pt-3
+    div.pt-3
       v-container
         v-layout(row align-center)
           v-flex(xs12 md12).text-xs-center
-            h2.text-xs-center.panelTitle.font-48 {{ panelTitle }}
+            h2(:class="{'pre-white-space': !$isMobile}").text-xs-center.font-work-sans.lh-title.font-xl {{ panelTitle }}
             p.font-16.text-xs-center.pt-3 {{ panelContent.description }}
         div.pt-5
           v-img(
@@ -20,16 +20,13 @@ export default {
   data () {
     return {
       panelContent: CONTENT,
-      panelTitle: parseTextWithNewLine(CONTENT.title, ['better']),
     };
+  },
+  computed: {
+    panelTitle () {
+      const title = CONTENT.title;
+      return !this.$isMobile ? parseTextWithNewLine(title, ['better']) : title;
+    }
   }
 };
 </script>
-
-<style scoped>
-.panelTitle {
-  white-space: pre;
-  font-family: 'Work Sans', 'Poppins', sans-serif !important;
-  line-height: 1.25em;
-}
-</style>
