@@ -1,8 +1,8 @@
 <template lang="pug">
-  v-container
-    v-layout(row justify-center)
+  v-container.pt-5
+    v-layout(row justify-center).pt-5
       v-flex(xs12 md12).text-xs-center
-        h2(:class="{'pre-white-space' : !$isMobile}").font-40.lh-title.font-work-sans.cta-text {{ ctaText }}
+        h2(:class="{'pre-white-space' : !$isMobile}").font-xl.lh-title.font-work-sans.cta-text {{ ctaText }}
         br
         div.text-xs-center.pt-3
           v-btn(
