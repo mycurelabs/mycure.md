@@ -79,8 +79,8 @@
                     v-list-tile-title 
                       b {{ item.name }}
                 v-list-tile(
-                  v-for="(link, key) in toolbarLinks"
-                  :key="key"
+                  v-for="(link, index) in toolbarLinks"
+                  :key="index"
                   :to="{ name: link.route }")
                   v-list-tile-content
                     v-list-tile-title
@@ -143,7 +143,7 @@ export default {
       scrollPosition: null,
       shadow: '',
       solutionsText: 'Solutions',
-      solutionsModel: false,
+      solutionsMenuModel: false,
       solutionsMenuItems: [
         { name: 'Doctors Clinics' },
         { name: 'Specialized Clinics' },
