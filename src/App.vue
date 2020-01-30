@@ -97,7 +97,7 @@ export default {
   .font-s {
     font-size: 16px !important;
   }
-  /* TODO: Remove these font styles*/
+  /* TODO: Remove these font classes for size*/
   .font-60 {
     font-size: 60px !important;
   }
