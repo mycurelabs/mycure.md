@@ -45,6 +45,10 @@ export default {
     background-color: #343a40
   }
 
+  .mc-gradient-grey {
+    background-color: #f0f0f0
+  }
+
   .mc-grey {
     background-color: #616161
   }

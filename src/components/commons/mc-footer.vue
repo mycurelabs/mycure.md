@@ -1,55 +1,57 @@
 <template lang="pug">
   div
+    //- FIXME: PLEASE ORGANIZE THIS CODE!
+    //- TODO: MOBILE VIEW
+    //- TODO: UPDATE CONTENTS
     div(v-if="!$isMobile")
-      div.mc-dark-grey
+      div.mc-gradient-grey
         v-container(justify-center)
           mc-toolbar-footer
-          hr.mc-grey.mb-3
           v-layout(row wrap justify-center)
-            v-flex(xs12 md3 offset-md1).font-mc-grey
+            v-flex(xs12 md3)
               ul.no-style-type
                 li.pt-3.feature-text CLINIC SOLUTIONS
                 li
-                  router-link(id="footer-multispecialty-link" @click.stop="handleFooterCmsLink" :to="{name: 'cms'}" title="MYCURE | Multispecialty Clinic Management System (CMS)").link.white--text
+                  router-link(id="footer-multispecialty-link" @click.stop="handleFooterCmsLink" :to="{name: 'cms'}" title="MYCURE | Multispecialty Clinic Management System (CMS)").link
                     span Multispecialty Clinics
                 li
-                  router-link(id="footer-group-link" @click.stop="handleFooterGroupLink" :to="{name: 'group'}" title="MYCURE | Multispecialty Clinic Management System (CMS)").link.white--text
+                  router-link(id="footer-group-link" @click.stop="handleFooterGroupLink" :to="{name: 'group'}" title="MYCURE | Multispecialty Clinic Management System (CMS)").link
                     span Group Clinics
                 li
-                  router-link(id="footer-private-practice-link" @click.stop="handleFooterEmrLink" :to="{name: 'emr'}" title="MYCURE | Individual Practice Electronic Medical Records (EMR)").link.white--text
+                  router-link(id="footer-private-practice-link" @click.stop="handleFooterEmrLink" :to="{name: 'emr'}" title="MYCURE | Individual Practice Electronic Medical Records (EMR)").link
                     span Individual Practice
                 li.pb-3
-                  a(id="footer-solo-link" @click.stop="handleFooterSoloLink" href="https://solo.mycure.md" target="_blank" title="MYCURE - Solo | Patient Records Organizer (PRO)").link.white--text
+                  a(id="footer-solo-link" @click.stop="handleFooterSoloLink" href="https://solo.mycure.md" target="_blank" title="MYCURE - Solo | Patient Records Organizer (PRO)").link
                     span Solo by MYCURE
                 li.pt-3
-                  router-link(id="footer-features-link" @click.stop="handleFooterFeaturesLink" :to="{name: 'features'}" title="MYCURE Features").link.white--text FEATURES
+                  router-link(id="footer-features-link" @click.stop="handleFooterFeaturesLink" :to="{name: 'features'}" title="MYCURE Features").link FEATURES
                 li.pb-3
-                  router-link(id="footer-csr-link" @click.stop="handleFooterCsrLink" :to="{name: 'csr'}" title="MYCURE Corporate Social Responsibility").link.white--text CORPORATE SOCIAL RESPONSIBILITY
+                  router-link(id="footer-csr-link" @click.stop="handleFooterCsrLink" :to="{name: 'csr'}" title="MYCURE Corporate Social Responsibility").link CORPORATE SOCIAL RESPONSIBILITY
                 li.feature-text ABOUT
                 li
-                  router-link(id="footer-our-story-link" @click.stop="handleFooterOurStoryLink" :to="{name: 'our-story'}" title="MYCURE Our Story | Caring the Extra Mile").link.white--text 
+                  router-link(id="footer-our-story-link" @click.stop="handleFooterOurStoryLink" :to="{name: 'our-story'}" title="MYCURE Our Story | Caring the Extra Mile").link 
                     span Our Story
                 li 
-                  router-link(id="footer-blog-link" @click.stop="handleFooterBlogLink" :to="{ name: 'blog-link' }" title="MYCURE - Blog").link.white--text Blog 
+                  router-link(id="footer-blog-link" @click.stop="handleFooterBlogLink" :to="{ name: 'blog-link' }" title="MYCURE - Blog").link Blog 
                 li 
-                  router-link(id="footer-careers-link" @click.stop="handleFooterCareersLink" :to="{ name: 'careers' }" title="MYCURE - Careers").link.white--text Careers
+                  router-link(id="footer-careers-link" @click.stop="handleFooterCareersLink" :to="{ name: 'careers' }" title="MYCURE - Careers").link Careers
               
             v-flex(xs12 md3 offset-md1).font-mc-grey
               ul.no-style-type
                 li.feature-text SUPPORT 
                 //- li 
-                  router-link(id="footer-faqs-link" @click.stop="handleFooterFaqsLink" :to="{ name: 'faqs-link'}" title="MYCURE - FAQs").link.white--text FAQs
+                  router-link(id="footer-faqs-link" @click.stop="handleFooterFaqsLink" :to="{ name: 'faqs-link'}" title="MYCURE - FAQs").link FAQs
                 //- li
-                  router-link(id="footer-pricing-link" @click.stop="handleFooterPricingLink" :to="{name: 'pricing'}" title="MYCURE Pricing | Affordable EMR and Clinic Management System").link.white--text
+                  router-link(id="footer-pricing-link" @click.stop="handleFooterPricingLink" :to="{name: 'pricing'}" title="MYCURE Pricing | Affordable EMR and Clinic Management System").link
                     span Pricing
                 li.pb-3
-                  router-link(id="footer-book-a-demo-link" @click.stop="handleFooterBookADemoLink" :to="{ name: 'calendly' }" title="MYCURE - Book A Demo").link.white--text Book A Demo
+                  router-link(id="footer-book-a-demo-link" @click.stop="handleFooterBookADemoLink" :to="{ name: 'calendly' }" title="MYCURE - Book A Demo").link Book A Demo
                 li.feature-text LEGAL
                 li
-                  router-link(id="footer-terms-link" @click.stop="handleFooterTermsLink" :to="{name: 'terms'}" title="MYCURE Terms and Conditions").link.white--text 
+                  router-link(id="footer-terms-link" @click.stop="handleFooterTermsLink" :to="{name: 'terms'}" title="MYCURE Terms and Conditions").link 
                     span Terms
                 li
-                  router-link(id="footer-privacy-policy-link" @click.stop="handleFooterPrivacyPolicyLink" :to="{name: 'privacy-policy'}" title="MYCURE Privacy Policy").link.white--text 
+                  router-link(id="footer-privacy-policy-link" @click.stop="handleFooterPrivacyPolicyLink" :to="{name: 'privacy-policy'}" title="MYCURE Privacy Policy").link 
                     span Privacy Policy
               
             v-flex(xs12 md3 offset-md1).font-mc-grey
@@ -58,15 +60,15 @@
                 li 
                   a(id="footer-email-link" @click.stop="handleFooterEmailLink" title="MYCURE - Email" href="mailto:hello@mycure.md")
                     span.font-mc-blue hello@mycure.md
-                li.white--text (+632) 7799 6262
-                li.white--text (+63) 917 303 4350
+                li (+632) 7799 6262
+                li (+63) 917 303 4350
           hr.mc-grey.my-4  
           v-layout(row wrap justify-center)  
-            span.white--text &copy; 2016 - {{new Date().getFullYear()}}
+            span &copy; 2016 - {{new Date().getFullYear()}}
               a(href="https://mycure.md")
                 span.font-mc-blue &nbsp; MYCURE.  
                 |
-                span.white--text All Rights Reserved.
+                span All Rights Reserved.
     div(v-else).mc-dark-grey.pa-4
       mc-toolbar-footer  
 </template>
@@ -208,9 +210,11 @@ export default {
 
   a:link {
     text-decoration: none;
-    color: white;
+    color: grey;
   }
-
+  .link {
+    color: grey;
+  }
   .center {
     padding: auto;
   }
@@ -220,6 +224,6 @@ export default {
   }
 
   .feature-text {
-    color: #999999
+    color: #3a3838
   }
 </style>

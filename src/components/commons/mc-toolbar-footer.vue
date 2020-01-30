@@ -1,21 +1,21 @@
 <template lang="pug">
   div
     div(v-if="!$isMobile")
-      v-toolbar(flat color="rgba(52, 58, 64, 1)")
+      v-toolbar(flat color="#f0f0f0")
         router-link(:to="{ name: 'home' }" title="MYCURE | Clinic Management System | Cloud EMR Philippines")
           v-layout(row wrap center)    
-            img(src="../../assets/images/mycure-footer-logo.png" height="25" alt="MYCURE logo")
+            img(src="../../assets/images/mycure-header-logo.png" height="40" alt="MYCURE logo")
         v-spacer
         div(v-for="(account,key) in socMed" :key="key")
           router-link(:to="{ name: `${ account.link }`}" :title="account.name" :id="account.id")
             img(:src="require(`../../assets/images/${ account.icon }`)" height="25" :alt="account.name").px-2
-    div(v-else).mc-dark-grey
+    div(v-else).mc-gradient-grey
       div
         router-link(:to="{ name: 'home' }" title="MYCURE | Clinic Management System | Cloud EMR Philippines")
           v-layout(row wrap center)    
-            img(src="../../assets/images/mycure-footer-logo.png" height="25" alt="MYCURE logo")
+            img(src="../../assets/images/mycure-header-logo.png" height="25" alt="MYCURE logo")
       br
-      strong.white--text FOLLOW US
+      strong FOLLOW US
       br
       br
       v-layout(row justify-center)
@@ -25,10 +25,10 @@
       br
       br
       v-layout.pt-3
-        router-link(id="footer-features-btn" :to="{ name: 'features' }" title="MYCURE | Features").link.white--text.py-2
+        router-link(id="footer-features-btn" :to="{ name: 'features' }" title="MYCURE | Features").link.py-2
           span.py-2 Features
       v-layout.pb-3
-        router-link(id="footer-csr-btn" :to="{ name: 'csr' }" title="MYCURE | Corporate Social Responsibility").link.white--text.py-2
+        router-link(id="footer-csr-btn" :to="{ name: 'csr' }" title="MYCURE | Corporate Social Responsibility").link.py-2
           span.py-2 Corporate Social Responsibility
       v-layout(row)
         v-expansion-panel.elevation-0
@@ -38,13 +38,13 @@
             template(v-slot:actions)
               v-icon(color="white").iconMargin mdi-chevron-down
             v-layout(column)
-              router-link(id="footer-multispecialty-btn" :to="{ name: 'cms' }" title="MYCURE | Multispecialty Clinic Management System (CMS)").link.white--text.py-2
+              router-link(id="footer-multispecialty-btn" :to="{ name: 'cms' }" title="MYCURE | Multispecialty Clinic Management System (CMS)").link.py-2
                 span.py-2 Multispecialty Clinics
-              router-link(id="footer-group-clinics-btn" :to="{ name: 'group' }" title="MYCURE | Group Clinics").link.white--text.py-2
+              router-link(id="footer-group-clinics-btn" :to="{ name: 'group' }" title="MYCURE | Group Clinics").link.py-2
                 span.py-2 Group Clinics
-              router-link(id="footer-private-practice-btn" :to="{ name: 'emr' }" title="MYCURE | Individual Practice Electronic Medical Records (EMR)").link.white--text.py-2
+              router-link(id="footer-private-practice-btn" :to="{ name: 'emr' }" title="MYCURE | Individual Practice Electronic Medical Records (EMR)").link.py-2
                 span.py-2 Individual Practice
-              a(id="footer-solo-btn" href="https://solo.mycure.md" target="_blank" title="MYCURE - Solo | Patient Records Organizer (PRO)").link.white--text.py-2
+              a(id="footer-solo-btn" href="https://solo.mycure.md" target="_blank" title="MYCURE - Solo | Patient Records Organizer (PRO)").link.py-2
                 span.py-2 Solo by MYCURE
       v-layout(row)
         v-expansion-panel.elevation-0
@@ -54,11 +54,11 @@
             template(v-slot:actions)
               v-icon(color="white").iconMargin mdi-chevron-down
             v-layout(column)
-              router-link(id="footer-our-story-btn" :to="{ name: 'our-story' }" title="MYCURE Our Story | Caring the Extra Mile").link.white--text.py-2
+              router-link(id="footer-our-story-btn" :to="{ name: 'our-story' }" title="MYCURE Our Story | Caring the Extra Mile").link.py-2
                 span.py-2 Our Story
-              router-link(id="footer-blog-btn" :to="{ name: 'blog-link' }" title="MYCURE - Blog").link.white--text.py-2
+              router-link(id="footer-blog-btn" :to="{ name: 'blog-link' }" title="MYCURE - Blog").link.py-2
                 span.py-2 Blog
-              router-link(id="footer-careers-btn" :to="{ name: 'careers' }" title="MYCURE - Careers").link.white--text.py-2
+              router-link(id="footer-careers-btn" :to="{ name: 'careers' }" title="MYCURE - Careers").link.py-2
                 span.py-2 Careers
       v-layout(row)
         v-expansion-panel.elevation-0
@@ -68,11 +68,11 @@
             template(v-slot:actions)
               v-icon(color="white").iconMargin mdi-chevron-down
             v-layout(column)
-              //- router-link(id="footer-faqs-btn" :to="{ name: 'faqs-link' }" title="MYCURE - FAQs").link.white--text.py-2
+              //- router-link(id="footer-faqs-btn" :to="{ name: 'faqs-link' }" title="MYCURE - FAQs").link.py-2
                 span.py-2 FAQs
-              //- router-link(id="footer-pricing-btn" :to="{ name: 'pricing' }" title="MYCURE Pricing | Affordable EMR and Clinic Management System").link.white--text.py-2
+              //- router-link(id="footer-pricing-btn" :to="{ name: 'pricing' }" title="MYCURE Pricing | Affordable EMR and Clinic Management System").link.py-2
                 span.py-2 Pricing
-              router-link(id="footer-book-a-demo-btn" :to="{ name: 'calendly' }" title="MYCURE - Book A Demo").link.white--text.py-2
+              router-link(id="footer-book-a-demo-btn" :to="{ name: 'calendly' }" title="MYCURE - Book A Demo").link.py-2
                 span.py-2 Book a Demo
       v-layout(row)
         v-expansion-panel.elevation-0
@@ -82,9 +82,9 @@
             template(v-slot:actions)
               v-icon(color="white").iconMargin mdi-chevron-down
             v-layout(column)
-              router-link(id="footer-terms-btn" :to="{ name: 'terms' }" title="MYCURE Terms and Conditions").link.white--text.py-2
+              router-link(id="footer-terms-btn" :to="{ name: 'terms' }" title="MYCURE Terms and Conditions").link.py-2
                 span.py-2 Terms
-              router-link(id="footer-privacy-policy-btn" :to="{ name: 'privacy-policy' }" title="MYCURE Privacy Policy").link.white--text.py-2
+              router-link(id="footer-privacy-policy-btn" :to="{ name: 'privacy-policy' }" title="MYCURE Privacy Policy").link.py-2
                 span.py-2 Privacy Policy
       v-layout(row)
         v-expansion-panel.elevation-0
@@ -96,17 +96,17 @@
             v-layout(column)
               a(id="footer-email-btn" title="MYCURE - Email" href="mailto:hello@mycure.md").link.font-mc-blue.py-2
                 span.py-2 hello@mycure.md
-              span.py-2.white--text (+632) 7799 6262
-              span.py-2.white--text (+63) 917 303 4350
+              span.py-2 (+632) 7799 6262
+              span.py-2 (+63) 917 303 4350
       br
       br
       br
       v-layout(row justify-center)
-        strong.white--text &copy; 2016 - {{new Date().getFullYear()}}
+        strong &copy; 2016 - {{new Date().getFullYear()}}
          router-link(:to="{ name: 'home' }" title="MYCURE | Clinic Management System | Cloud EMR Philippines")
             strong.font-mc-blue &nbsp; MYCURE.  
             |
-            strong.white--text All Rights Reserved.
+            strong All Rights Reserved.
       br
       br
 </template>
@@ -166,9 +166,13 @@ export default {
   }
   a:link {
     text-decoration: none;
+    color: grey;
+  }
+  .link {
+    color: grey;
   }
   .feature-text {
-    color: #999999;
+    color: #3a3838;
   }
   .expansionPanelBg {
     background-color: #343a40 !important;
