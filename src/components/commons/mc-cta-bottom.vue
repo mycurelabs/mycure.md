@@ -2,7 +2,7 @@
   v-container
     v-layout(row justify-center)
       v-flex(xs12 md12).text-xs-center
-        h2.font-40.lh-title.font-work-sans.cta-text.pre-white-space {{ ctaText }}
+        h2(:class="{'pre-white-space' : !$isMobile}").font-40.lh-title.font-work-sans.cta-text {{ ctaText }}
         br
         div.text-xs-center.pt-3
           v-btn(
@@ -12,7 +12,11 @@
           ).text-none.font-weight-bold {{ ctaBtnText }}
     v-layout(row justify-center).py-5
       v-flex(xs12 md12).text-xs-center
-        img(:src="require(`@/assets/images/${ctaImage}.png`)")
+        img(
+          :src="require(`@/assets/images/${ctaImage}.png`)"
+          :alt="ctaImage"
+          :width="!$isMobile ? '70%' : '90%'"
+        )
 </template>
 
 <script>
