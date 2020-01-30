@@ -1,10 +1,10 @@
 <template lang="pug">
   div
-    div(v-if="!$isMd" :class="shadow").white.toolbarMain
-      v-container.white.toolbarHeight.py-0
+    div(v-if="!$isMd" :class="shadow").toolbarMain
+      v-container.grey-gradient.toolbarHeight.py-0
         v-layout(row wrap justify-center)
           v-flex(xs12 md12).toolbarMargin
-            v-toolbar(flat).white
+            v-toolbar(flat).grey-gradient
               router-link(:to="{ name: 'home' }" title="MYCURE | Clinic Management System | Cloud EMR Philippines" id="toolbar-mycure-logo" @click.stop="handleMycureLogo").mr-3.mt-2
                 img(src="../../assets/images/mycure-header-logo.png" width="140" alt="MYCURE logo")
               v-btn(
@@ -294,6 +294,7 @@
     position: fixed; 
     width: 100%; 
     z-index: 200;
+    background-color: #f0f0f0;
   }
 
   .navMain {
@@ -318,5 +319,8 @@
     top: 0px; 
     z-index: 9999; 
     width: 100%;
+  }
+  .grey-gradient {
+    background-color: #f0f0f0;
   }
 </style>
