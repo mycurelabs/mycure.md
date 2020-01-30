@@ -26,12 +26,17 @@
     //- 8th panel
     testimonial
     //- final panel
-    final-words.pb-5
+    mc-cta-bottom(
+      parse-text
+      :parseIndicators="['for']"
+      :ctaContent="ctaContent"
+    )
     //- mcFooter
 </template>
 
 <script>
 import STORYFLOW_ITEMS from './storyflow-items.json';
+import CTA_CONTENT from './cta-contents.json';
 import Usp from '@/components/home/usp';
 import HealthSuites from '@/components/home/health-suites';
 import Solutions from '@/components/home/solutions';
@@ -40,7 +45,7 @@ import Product from '@/components/home/product';
 import Syncbase from '@/components/home/syncbase';
 import Privacy from '@/components/home/privacy';
 import Testimonial from '@/components/home/testimonial';
-import FinalWords from '@/components/home/final-words';
+import McCtaBottom from '@/components/commons/mc-cta-bottom';
 import Storyflow from '@/components/commons/storyflow';
 import VueScrollTo from 'vue-scrollto';
 
@@ -54,7 +59,7 @@ export default {
     Syncbase,
     Privacy,
     Testimonial,
-    FinalWords,
+    McCtaBottom,
     Storyflow
   },
   mounted () {
@@ -64,7 +69,8 @@ export default {
     return {
       signInURL: process.env.VUE_APP_SIGNIN_URL,
       introText: 'Designed for your health facility',
-      storyflowItems: STORYFLOW_ITEMS
+      storyflowItems: STORYFLOW_ITEMS,
+      ctaContent: CTA_CONTENT
     };
   }
 };

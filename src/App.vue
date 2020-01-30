@@ -154,6 +154,10 @@ export default {
     line-height: 1.25em !important
   }
 
+  .pre-white-space {
+    white-space: pre;
+  }
+
   .hr-blue {
     height: 2px;
     width: 150px;
@@ -170,54 +174,34 @@ export default {
     display: inline-block; 
     padding: 1px 
   }
-
-  .panel-1{
-      height: 100vh !important;
-    }
-
   /* This class lets the panel avoid being covered by the web sky background */
   .showPanel {
     position: relative; 
     z-index: 1;
   }
-
   .cta-btn {
     padding: 25px 30px 25px 30px;
   }
-
   .lh-60 {
     line-height: 60px;
   }
-
   .skyBg {
     background-image: url('./assets/images/mycure-home-web-sky-background.png');
     background-position: center top;
     background-repeat: no-repeat;
     background-size: cover;
   }
-
-  /* .uspLeft {
-    margin-top: -7%;
-  }
-
-  .uspRight {
-    margin-top: 10%;
-  } */
-
   .width100 {
     width: 100%;
   }
-
   .maleDoctor {
     margin: 0px -20px 0px 0px; 
     z-index: 1;
   }
-
   .femaleDoctor {
     margin: 0px 0px 0px -20px; 
     z-index: 1;
   }
-
   .vidPosition {
     z-index: 0;
   }
