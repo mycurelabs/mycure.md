@@ -41,7 +41,6 @@ import Usp from '@/components/home/usp';
 import HealthSuites from '@/components/home/health-suites';
 import Solutions from '@/components/home/solutions';
 import Vid from '@/components/home/vid';
-import Product from '@/components/home/product';
 import Syncbase from '@/components/home/syncbase';
 import Privacy from '@/components/home/privacy';
 import Testimonial from '@/components/home/testimonial';
@@ -55,7 +54,6 @@ export default {
     HealthSuites,
     Solutions,
     Vid,
-    Product,
     Syncbase,
     Privacy,
     Testimonial,
