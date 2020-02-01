@@ -11,6 +11,9 @@
             v-flex(xs12 md3)
               ul.no-style-type
                 li.pt-3.feature-text CLINIC SOLUTIONS
+                li(v-for="(solution, key) in clinicSolutions")
+                  router-link(:to="{ name: solution.learnLink }").link
+                    | {{ solution.header }}
                 //- li
                 //-   router-link(id="footer-multispecialty-link" @click.stop="handleFooterCmsLink" :to="{name: 'cms'}" title="MYCURE | Multispecialty Clinic Management System (CMS)").link
                 //-     span Multispecialty Clinics
@@ -69,12 +72,13 @@
                 span.font-mc-blue &nbsp; MYCURE.  
                 |
                 span All Rights Reserved.
-    div(v-else).mc-dark-grey.pa-4
+    div(v-else).mc-gradient-grey.pa-4
       mc-toolbar-footer  
 </template>
 
 <script>
 import mcToolbarFooter from "./mc-toolbar-footer";
+import { HEALTH_SUITES_ITEMS } from "../home/health-suites/constants";
 
 export default {
   components: {
@@ -88,7 +92,8 @@ export default {
   },
   data () {
     return {
-      signInURL: process.env.VUE_APP_SIGNIN_URL
+      signInURL: process.env.VUE_APP_SIGNIN_URL,
+      clinicSolutions: HEALTH_SUITES_ITEMS
     };
   },
   methods: {

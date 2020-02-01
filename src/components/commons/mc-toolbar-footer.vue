@@ -32,27 +32,25 @@
           span.py-2 Corporate Social Responsibility
       v-layout(row)
         v-expansion-panel.elevation-0
-          v-expansion-panel-content.expansionPanelBg
+          v-expansion-panel-content.mc-gradient-grey
             template(v-slot:header)
               span.iconMargin.font-18.feature-text CLINIC SOLUTIONS
             template(v-slot:actions)
-              v-icon(color="white").iconMargin mdi-chevron-down
+              v-icon.iconMargin mdi-chevron-down
             v-layout(column)
-              router-link(id="footer-multispecialty-btn" :to="{ name: 'cms' }" title="MYCURE | Multispecialty Clinic Management System (CMS)").link.py-2
-                span.py-2 Multispecialty Clinics
-              router-link(id="footer-group-clinics-btn" :to="{ name: 'group' }" title="MYCURE | Group Clinics").link.py-2
-                span.py-2 Group Clinics
-              router-link(id="footer-private-practice-btn" :to="{ name: 'emr' }" title="MYCURE | Individual Practice Electronic Medical Records (EMR)").link.py-2
-                span.py-2 Individual Practice
-              a(id="footer-solo-btn" href="https://solo.mycure.md" target="_blank" title="MYCURE - Solo | Patient Records Organizer (PRO)").link.py-2
-                span.py-2 Solo by MYCURE
+              router-link(
+                v-for="(solution, key) in clinicSolutions"
+                :key="key"
+                :to="{ name: solution.learnLink }"
+              ).link.py-2
+                span.py-2 {{ solution.header }}
       v-layout(row)
         v-expansion-panel.elevation-0
-          v-expansion-panel-content.expansionPanelBg
+          v-expansion-panel-content.mc-gradient-grey
             template(v-slot:header)
               span.iconMargin.font-18.feature-text ABOUT
             template(v-slot:actions)
-              v-icon(color="white").iconMargin mdi-chevron-down
+              v-icon.iconMargin mdi-chevron-down
             v-layout(column)
               router-link(id="footer-our-story-btn" :to="{ name: 'our-story' }" title="MYCURE Our Story | Caring the Extra Mile").link.py-2
                 span.py-2 Our Story
@@ -62,11 +60,11 @@
                 span.py-2 Careers
       v-layout(row)
         v-expansion-panel.elevation-0
-          v-expansion-panel-content(color="").expansionPanelBg
+          v-expansion-panel-content(color="").mc-gradient-grey
             template(v-slot:header)
               span.iconMargin.font-18.feature-text SUPPORT
             template(v-slot:actions)
-              v-icon(color="white").iconMargin mdi-chevron-down
+              v-icon.iconMargin mdi-chevron-down
             v-layout(column)
               //- router-link(id="footer-faqs-btn" :to="{ name: 'faqs-link' }" title="MYCURE - FAQs").link.py-2
                 span.py-2 FAQs
@@ -76,11 +74,11 @@
                 span.py-2 Book a Demo
       v-layout(row)
         v-expansion-panel.elevation-0
-          v-expansion-panel-content.expansionPanelBg
+          v-expansion-panel-content.mc-gradient-grey
             template(v-slot:header)
               span.iconMargin.font-18.feature-text LEGAL
             template(v-slot:actions)
-              v-icon(color="white").iconMargin mdi-chevron-down
+              v-icon.iconMargin mdi-chevron-down
             v-layout(column)
               router-link(id="footer-terms-btn" :to="{ name: 'terms' }" title="MYCURE Terms and Conditions").link.py-2
                 span.py-2 Terms
@@ -88,11 +86,11 @@
                 span.py-2 Privacy Policy
       v-layout(row)
         v-expansion-panel.elevation-0
-          v-expansion-panel-content.expansionPanelBg
+          v-expansion-panel-content.mc-gradient-grey
             template(v-slot:header)
               span.iconMargin.font-18.feature-text CONTACT US
             template(v-slot:actions)
-              v-icon(color="white").iconMargin mdi-chevron-down
+              v-icon.iconMargin mdi-chevron-down
             v-layout(column)
               a(id="footer-email-btn" title="MYCURE - Email" href="mailto:hello@mycure.md").link.font-mc-blue.py-2
                 span.py-2 hello@mycure.md
@@ -112,9 +110,11 @@
 </template>
 
 <script>
+import { HEALTH_SUITES_ITEMS } from '../home/health-suites/constants';
 export default {
   data () {
     return {
+      clinicSolutions: HEALTH_SUITES_ITEMS,
       clinicSol: false,
       about: false,
       support: false,
