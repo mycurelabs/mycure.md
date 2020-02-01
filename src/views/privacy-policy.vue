@@ -1,6 +1,5 @@
 <template lang="pug">
   div#top
-    mc-toolbar-home
     panel-1
     panel-2.showPanel
     mc-footer(:webSky="false")

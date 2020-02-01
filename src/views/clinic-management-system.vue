@@ -1,6 +1,5 @@
 <template lang="pug">
   div.white#top
-    mc-toolbar-home
     usp(:uspContents="uspContents")
     problems
     product
@@ -13,7 +12,6 @@
         span(v-else slot="question").font-30 Does your clinic have more than 3 branches?        
         span(v-if="!$isMobile" slot="chatWindow" @click="toggleChat").font-40.pointer.font-mc-blue Talk to us.
         span(v-else slot="chatWindow" @click="toggleChat").font-30.pointer.font-mc-blue Talk to us.
-    mc-footer
 </template>
 
 <script>

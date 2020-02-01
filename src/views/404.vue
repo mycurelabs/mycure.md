@@ -1,8 +1,6 @@
 <template lang="pug">
   div#top
-    mcToolbarHome
     panel1
-    mcFooter
 </template>
 
 <script>

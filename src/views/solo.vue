@@ -1,6 +1,5 @@
 <template lang="pug">
   div#top.white
-    mcToolbarHome
     usp
     product
     painPoints
@@ -11,7 +10,6 @@
     //-   :hasTitle="true"
     //- ).showPanel
     //- diagram.showPanel
-    mcFooter
 </template>
 
 <script>

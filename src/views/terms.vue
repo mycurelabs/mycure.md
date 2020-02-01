@@ -1,9 +1,7 @@
 <template lang="pug">
   div#top
-    mcToolbarHome
     panel-1
     panel-2.showPanel
-    mcFooter(:webSky="false")
 </template>
 
 <script>

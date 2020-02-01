@@ -1,6 +1,5 @@
 <template lang="pug">
   div#top
-    mc-toolbar-home
     panel1
     panel2
     panel3
@@ -9,7 +8,6 @@
     panel5
     panel6.skyBg
     //- panel7
-    mc-footer
 </template>
 
 <script>

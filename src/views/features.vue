@@ -1,6 +1,5 @@
 <template lang="pug">
   div#top.white
-    mcToolbarHome
     //- panel1
     usp(:uspContents="uspContents")
     panel2
@@ -11,7 +10,6 @@
     panel7
     panel8
     panel9
-    mcFooter
 </template>
 
 <script>
