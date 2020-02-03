@@ -50,8 +50,7 @@
             id="cms-signup-btn"
             @click.stop="handleCmsSignupBtn"
             color="#18c551"
-            :href="`${signInURL}/signup/multi-specialty/step-1`"
-            target="_blank"
+            :to="{ name: 'signup-multispecialty' }"
           ).mt-3.cta-btn
             strong.font-18.white--text.text-none Get Started Today
         p.text-xs-center.py-4.font-18 Have questions? 
@@ -98,8 +97,7 @@
               id="cms-signup-btn"
               @click.stop="handleCmsSignupBtn"
               color="#18c551"
-              :href="`${signInURL}/signup/multi-specialty/step-1`"
-              target="_blank"
+              :to="{ name: 'signup-multispecialty' }"
               large
             ).mt-3
               strong.font-16.white--text.text-none Get Started Today
@@ -112,8 +110,7 @@
   export default {
     data () {
       return {
-        checkIcon: '../../assets/images/mycure-icon-check.png',
-        signInURL: process.env.VUE_APP_SIGNIN_URL
+        checkIcon: '../../assets/images/mycure-icon-check.png'
       };
     },
     methods: {

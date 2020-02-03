@@ -42,11 +42,6 @@
     components: {
       panelBeforeFooter
     },
-    data () {
-      return {
-        signInURL: process.env.VUE_APP_SIGNIN_URL
-      };
-    },
     methods: {
       handleGroupSignupBtn () {
         this.$ga.event({

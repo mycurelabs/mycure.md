@@ -14,8 +14,7 @@
             br
             div.pl-1
               v-btn(
-                :href="`${signInURL}/signup/multi-specialty/step-1`"
-                target="_blank"
+                :to="{ name: 'signup-multispecialty' }"
                 color="#18c551" 
                 large 
                 right
@@ -50,8 +49,7 @@
                     id="pricing-multispecialty-signup-btn" 
                     @click.stop="handlePricingMultispecialtySignupBtn"
                     color="#18c551" 
-                    :href="`${signInURL}/signup/choose`" 
-                    target="_blank" 
+                    :to="{ name: 'signup-chose' }"
                     v-if="!card.isMoreButton").white--text 
                     strong {{card.buttonText}}
                   v-btn(color="#2e9fdf" @click="toggleChat" v-else) 
@@ -225,7 +223,6 @@
     },
     data () {
       return {
-        signInURL: process.env.VUE_APP_SIGNIN_URL,
         cards: [
           {
             image: require('../../assets/images/mycure-home-products-icon-multispecialty-clinics.png'),

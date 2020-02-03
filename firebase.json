@@ -8,8 +8,12 @@
     ],
     "rewrites": [
       {
+        "source": "/doctors/**",
+        "function": "websites"
+      },
+      {
         "source": "**",
-        "function": "/index.html"
+        "destination": "/index.html"
       }
     ],
     "headers": [

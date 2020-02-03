@@ -13,8 +13,7 @@
           id="cms-signup-btn"
           @click.stop="handleCmsSignupBtn"
           color="#18c551"
-          :href="`${signInURL}/signup/multi-specialty/step-1`"
-          target="_blank"
+          :to="{ name: 'signup-multispecialty' }"
         ).mt-3.cta-btn
           strong.font-18.white--text.text-none Get Started Today
       br
@@ -60,7 +59,6 @@
   export default {
     data () {
       return {
-        signInURL: process.env.VUE_APP_SIGNIN_URL,
         multiFeatures: [
           {
             title: 'Multispecialty Clinics',

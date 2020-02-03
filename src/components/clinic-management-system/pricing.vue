@@ -25,8 +25,7 @@
                   v-btn(
                     id="cms-signup-btn"
                     @click.stop="handleCmsSignupBtn"
-                    :href="`${signInURL}/signup/multi-specialty/step-1`"
-                    target="_blank"
+                    :to="{ name: 'signup-multispecialty' }"
                     color="#18c551" 
                     large
                   ).text-none
@@ -43,8 +42,7 @@
         v-btn(
           id="cms-signup-btn"
           @click.stop="handleCmsSignupBtn"
-          :href="`${signInURL}/signup/multi-specialty/step-1`"
-          target="_blank"
+          :to="{ name: 'signup-multispecialty' }"
           color="#18c551"
           large
         ).cta-btn
@@ -58,7 +56,6 @@
     },
     data () {
       return {
-        signInURL: process.env.VUE_APP_SIGNIN_URL,
         multiSpecialty_desc: 'An all-around solution for your outpatient, multispecialty or specialized clinics that will complete your patient journeys with ease.',
         multiFeatures: [
           'Queuing & Registration',

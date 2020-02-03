@@ -66,8 +66,7 @@
   export default {
     data () {
       return {
-        features: ['A','B','C'],
-        signInURL: process.env.VUE_APP_SIGNIN_URL
+        features: ['A','B','C']
       };
     }
   };

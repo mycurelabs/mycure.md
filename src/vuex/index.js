@@ -23,7 +23,7 @@ export const cookieStore = new Vuex.Store({
     storeID ({ commit }, payload) {
       commit('storeID', payload);
     },
-    async getID (context) {
+    async getID () {
       const result = this.state.browserID;
       return result;
     }

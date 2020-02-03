@@ -9,8 +9,7 @@
           id="cms-signup-btn"
           @click.stop="handleCmsSignupBtn"
           slot="sign-up-button"
-          :href="`${signInURL}/signup/multi-specialty/step-1`" 
-          target="_blank"
+          :to="{ name: 'signup-multispecialty' }"
           color="#18c551" 
           right
         ).cta-btn
@@ -28,8 +27,7 @@
           v-btn(
             id="cms-signup-btn"
             @click.stop="handleCmsSignupBtn"
-            :href="`${signInURL}/signup/multi-specialty/step-1`"
-            target="_blank"
+            :to="{ name: 'signup-multispecialty' }"
             color="#18c551"
             large
           ).cta-btn  
@@ -43,11 +41,6 @@
     components: {
       panelBeforeFooter,
       
-    },
-    data () {
-      return {
-        signInURL: process.env.VUE_APP_SIGNIN_URL
-      };
     },
     methods: {
       handleCmsSignupBtn () {

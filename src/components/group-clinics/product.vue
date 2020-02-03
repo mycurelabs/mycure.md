@@ -44,8 +44,6 @@
   export default {
     data () {
       return {
-        signInURL: process.env.VUE_APP_SIGNIN_URL,
-
         clinicProblems: [
           'I\'ve no secretary to help with record-keeping',
           'My patients can\'t read my scribbly handwriting!',

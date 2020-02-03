@@ -49,8 +49,7 @@ div
                 v-btn(
                   v-if="n === 1"
                   color="#18c551"
-                  :href="`${signInURL}/signup/private/step-1`"
-                  target="_blank"
+                  :to="{ name: 'signup-individual' }"
                 ).cta-btn-size
                   strong.font-16.white--text SIGN UP FREE
                 v-btn(
@@ -108,8 +107,7 @@ div
               v-btn(
                 v-if="n === 1"
                 color="#18c551"
-                :href="`${signInURL}/signup/private/step-1`"
-                target="_blank"
+                :to="{ name: 'signup-individual' }"
               ).cta-btn-size
                 strong.font-16.white--text SIGN UP FREE
               v-btn(
@@ -145,8 +143,7 @@ div
   //-                     br
   //-                   v-layout(row wrap).py-4
   //-                     v-btn(
-  //-                       :href="`${signInURL}/signup/choose`" 
-  //-                       target="_blank"
+  //-                       :to="{ name: 'signup-choose' }"
   //-                       color="#18c551"
   //-                       large
   //-                     ).text-none
@@ -161,8 +158,7 @@ div
   //-     v-layout(row justify-center)
   //-       v-btn(
   //-         color="#18c551"
-  //-         :href="`${signInURL}/signup/choose`"
-  //-         target="_blank"
+  //-         :to="{ name: 'signup-choose' }"
   //-       ).cta-btn
   //-         strong.font-18.white--text.text-none Sign Up Now
 </template>
@@ -173,7 +169,6 @@ div
     },
     data () {
       return {
-        signInURL: process.env.VUE_APP_SIGNIN_URL,
         coreFree: [
           '✓ Unlimited patients',
           '✓ Unlimited virtual clinics',

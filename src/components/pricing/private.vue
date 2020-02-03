@@ -16,8 +16,7 @@
               v-btn(
                 @click.stop="handlePricingPrivateSignupBtn"
                 id="pricing-private-signup-btn" 
-                :href="`${signInURL}/signup/private/step-1`"
-                target="_blank"
+                :to="{ name: 'signup-individual' }"
                 color="#18c551" 
                 large 
                 right
@@ -151,9 +150,8 @@
           v-btn(
             id="pricing-private-signup-btn" 
             @click.stop="handlePricingPrivateSignupBtn"
-            :href="`${signInURL}/signup/private/step-1`"
-            target="_blank" 
-            color="info" 
+            :to="{ name: 'signup-individual' }"
+            color="info"
             large
           ) 
             strong.text-none Sign Up Now
@@ -260,8 +258,7 @@
           'PNF Drug Catalog',
           'ICD-10 List',
           'DPA Registration Guide'
-        ],
-        signInURL: process.env.VUE_APP_SIGNIN_URL
+        ]
       };
     },
     methods: {

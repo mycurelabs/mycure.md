@@ -24,8 +24,7 @@
                       br
                     v-layout(row wrap).py-4
                       v-btn(
-                        :href="`${signInURL}/signup/private/step-1`" 
-                        target="_blank"
+                        :to="{ name: 'signup-individual' }"
                         color="#18c551"
                         large
                       ).text-none
@@ -40,8 +39,7 @@
       v-layout(row justify-center)
         v-btn(
           color="#18c551"
-          :href="`${signInURL}/signup/private/step-1`"
-          target="_blank"
+          :to="{ name: 'signup-individual' }"
         ).cta-btn
           strong.font-18.white--text.text-none Sign Up Now
 </template>
@@ -57,7 +55,6 @@
     },
     data () {
       return {
-        signInURL: process.env.VUE_APP_SIGNIN_URL,
         private_title: 'Designed for individual private practitioners who run their clinic alone or collaborate with other private practitioners.',
         privateFeatures: [
           'Create an unlimited number of virtual clinics',
