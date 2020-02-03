@@ -1,7 +1,6 @@
 <template lang="pug">
-  //- TODO: Mobile view
   div.gradient-bg-color
-    v-container.whole-page
+    v-container(:class="$isMobile ? 'mobile-page-height' : 'whole-page'")
       v-container(fill-height)
         v-layout(row align-center)
           v-flex(xs12 md12).text-xs-center
@@ -59,11 +58,15 @@ export default {
   height: 75vh;
   padding-top: 15vh;
 }
+.mobile-page-height {
+  height: 80vh;
+  padding-top: 15vh;
+}
 .title-line-height {
   line-height: 1.25em;
 }
 .uspTitle {
-  font-family: 'Work Sans' !important;
+  font-family: 'Work Sans', 'Poppins', sans-serif !important;
   line-height: 1.25em;
   font-weight: 700 !important;
 }
