@@ -37,7 +37,7 @@ export default {
 
   @import url('https://fonts.googleapis.com/css?family=Poppins');
   @import url('https://fonts.googleapis.com/css?family=Work+Sans:400,700,900');
-  @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
+  @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700');
 
   #app {
     max-width: 100% !important;

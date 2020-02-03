@@ -1,0 +1,34 @@
+[
+  {
+    "title": "Solo Practice",
+    "type": "solo",
+    "description": "Everything you need to serve your patients more efficiently.",
+    "priceText": "FREE",
+    "inclusionsTitle": "CORE",
+    "inclusions": [
+      "✓ 1 doctor account",
+      "✓ 1GB Storage",
+      "✓ Unlimited virtual clinics",
+      "✓ Unlimited patient profiles",
+      "✓ Secretary accounts",
+      "✓ Multiple device access"
+    ],
+    "btnText": "Sign Up Free"
+  },
+  {
+    "title": "Group Practice",
+    "type": "group",
+    "description": "Make work easier for you, your colleagues, and your secretary.",
+    "priceText": "49.99",
+    "inclusionsTitle": "EVERYTHING IN SOLO plus...",
+    "inclusions": [
+      "✓ 3 doctor accounts",
+      "✓ 5GB Storage",
+      "✓ 1 virtual clinic",
+      "✓ 500 SMS Credits",
+      "✓ Clinic Website",
+      "✓ Work Offline"
+    ],
+    "btnText": "Start 14-day Trial"
+  }
+]
