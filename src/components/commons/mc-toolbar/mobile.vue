@@ -23,9 +23,10 @@
                 v-list-tile-content
                   v-list-tile-title 
                     b {{ item.name }}
+            v-list(two-line)
               v-list-tile(
-                v-for="(link, index) in toolbarLinks"
-                :key="index"
+                v-for="(link, key) in toolbarLinks"
+                :key="key"
                 :to="{ name: link.route }")
                 v-list-tile-content
                   v-list-tile-title
@@ -35,7 +36,7 @@
             v-divider
           v-flex(xs12 md12 dark)
             v-list(two-line) 
-              template(v-for="section in navSectionLinks")
+              div(v-for="(section, key) in navSectionLinks" :key="key")
                 v-subheader {{ section.header }}
                 v-list-tile(
                   v-for="(item, key) in section.items"
@@ -46,6 +47,7 @@
                     v-list-tile-title 
                       b {{ item.name }}
                 v-divider
+            v-list(two-line)
               v-subheader {{ contactDetails.header }}
               v-list-tile(
                 v-for="(contact, key) in contactDetails.items"
@@ -74,6 +76,14 @@
 <script>
 export default {
   props: {
+    toolbarLinks: {
+      type: Array,
+      default: () => []
+    },
+    solutionsMenuItems: {
+      type: Array,
+      default: () => []
+    },
     shadow: {
       type: String,
       default: () => ''
