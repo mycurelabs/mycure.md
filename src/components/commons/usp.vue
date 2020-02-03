@@ -1,94 +1,90 @@
 <template lang="pug">
-div
-  div(v-if="!$isMobile").whole-page
-    v-container(fill-height)
-      v-layout(row align-center justify-center)
-        div.panel-size.usp-panel
-          v-layout(row justify-center)
-            v-flex(xs12 md7)
-              v-layout(column align-start)
-                h1.font-weight-bold.font-18.font-mc-blue.pb-3.uspMetaTitle {{ uspContents.metaTitle }}
-                h2.title-line-height.uspTitle.font-weight-regular.pb-4 {{ uspContents.title }}
-                //- :href="uspContents.btn"                
-                v-btn(
-                  v-if="uspContents.btnText"
-                  :to="{ name: uspContents.route }"
-                  :color="mcGreen"
-                  :id="uspContents.btnId"
-                  large
-                ).text-none.white--text.mt-4.btnHeight
-                  strong.font-18 {{ uspContents.btnText }}
-            v-flex(xs12 md7 text-xs-right)
-              img(
-                :src="require(`@/assets/images/${ uspContents.img }.png`)"
-                width="90%"
-                :alt="uspContents.img"
-              )
-  div(v-else)
-    v-layout(column wrap justify-center).mt-5
-      h1.font-weight-bold.font-18.font-mc-blue.pb-2.text-xs-center {{ uspContents.metaTitle }}
-      h2.font-30.font-weight-regular.title-line-height.pb-5.text-xs-center.uspTitle {{ uspContents.title }}
-      v-layout(row justify-center).mb-5
-        img(
-          :src="require(`@/assets/images/${ uspContents.img }.png`)"
-          height="250"
-          :alt="uspContents.img"
-        )
-      v-layout(row justify-center)
-        v-btn(
-          v-if="uspContents.btn"
-          :href="uspContents.btn"
-          :color="mcGreen"
-          :id="uspContents.btnId"
-          target="_blank"
-          large
-          block
-        ).uspMobileBtn
-          strong.font-25.text-none.white--text {{ uspContents.btnText }}
+  fragment
+    v-container(:class="$isMobile ? 'mobile-page-height' : 'whole-page'")
+      v-container(fill-height)
+        v-layout(row align-center)
+          v-flex(xs12 md12).text-xs-center
+            p.text-xs-center.font-s.font-mc-blue {{ uspMetaTitle }}
+            h1(:class="{'pre-white-space': !$isMobile}").text-xs-center.uspTitle.font-xl {{ uspTitle }}
+            p(:class="{'pre-white-space': !$isMobile}").text-xs-center.uspDescription.pt-3.font-s {{ uspDescription }}
+            div.pt-3
+              v-btn(
+                :to="{ name: btnRoute }"
+                :color="$mcColors.mcAltGreen"
+                :id="btnId"
+                large
+              ).text-none.white--text
+                strong.font-s {{ btnText }}     
+    div.usp-image-container.text-xs-center
+      v-img(
+        :src="require(`@/assets/images/${coverImg}.png`)"
+        :alt="coverImg"
+      )
 </template>
 
 <script>
 export default {
   props: {
-    uspContents: {
-      type: Object,
-      required: true,
+    uspTitle: {
+      type: String,
+      default: 'MYCURE Health Suites'
     },
-    someFunctionParent: {
-      type: String
+    uspMetaTitle: {
+      type: String,
+      default: ''
+    },
+    uspDescription: {
+      type: String,
+      default: ''
+    },
+    btnRoute: {
+      type: String,
+      default: 'signup-choose'
+    },
+    btnId: {
+      type: String,
+      default: 'usp-signup-choose'
+    },
+    btnText: {
+      type: String,
+      default: 'Get Demo'
+    },
+    coverImg: {
+      type: String,
+      default: 'mycure-homepage-usp-cover'
     }
   },
-  data () {
-    return {
-      mcGreen: '#18c551',
-      mcBlue: '#2e9fdf'
-    };
-  }
 };
 </script>
 
 <style scoped>
 .whole-page {
-  height: 100vh;
+  height: 70vh;
+  padding-top: 15vh;
 }
-.font-xxs {
-  font-size: 11px;
-}
-.uspBtn-padding {
-  padding-bottom: 20px;
+.mobile-page-height {
+  height: 80vh;
+  padding-top: 15vh;
 }
 .title-line-height {
   line-height: 1.25em;
 }
 .uspTitle {
-  font-size: 45px;
-  white-space: pre;
+  font-family: 'Work Sans', 'Poppins', sans-serif !important;
+  line-height: 1.25em;
+  font-weight: 700 !important;
+}
+.uspDescription {
+  font-family: 'Source Sans Pro', 'Poppins', sans-serif !important;
 }
 .uspMetaTitle {
   white-space: pre;
 }
 .panel-size {
   width: 1100px;
+}
+.usp-image-container {
+  line-height: 0px;
 }
 .btnHeight {
   height: 50px;
