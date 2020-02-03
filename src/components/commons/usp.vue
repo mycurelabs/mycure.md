@@ -16,9 +16,10 @@
               ).text-none.white--text
                 strong.font-s {{ btnText }}     
     div.usp-image-container.text-xs-center
-      v-img(
+      img(
         :src="require(`@/assets/images/${customPath}${coverImg}.png`)"
         :alt="coverImg"
+        :width="coverImgWidth"
       )
 </template>
 
@@ -52,6 +53,10 @@ export default {
     coverImg: {
       type: String,
       default: 'mycure-homepage-usp-cover'
+    },
+    coverImgWidth: {
+      type: String,
+      default: '100%'
     },
     customPath: {
       type: String,
