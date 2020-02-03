@@ -76,7 +76,10 @@ export default {
   .font-work-sans {
     font-family: 'Work Sans', 'Poppins', sans-serif !important;
   }
-  
+  .font-source-sans {
+    font-family: 'Source Sans Pro', 'Poppins', sans-serif !important;
+  }
+
   .font-mc-blue {
     color: #2e9fdf
   }
