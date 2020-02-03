@@ -5,9 +5,9 @@
       v-container(fill-height)
         v-layout(row align-center)
           v-flex(xs12 md12).text-xs-center
-            h2(:class="{'pre-white-space': !$isMobile}").text-xs-center.uspTitle.font-xl {{ uspTitle }}
+            h1(:class="{'pre-white-space': !$isMobile}").text-xs-center.uspTitle.font-xl {{ uspTitle }}
             p(:class="{'pre-white-space': !$isMobile}").text-xs-center.uspDescription.pt-3.font-s {{ uspDescription }}
-            div.pt-5
+            div.pt-3
               v-btn(
                 :href="uspContents.btn"
                 :color="$mcColors.mcAltGreen"
@@ -56,15 +56,16 @@ export default {
   background-color: #f0f0f0
 }
 .whole-page {
-  height: 85vh;
+  height: 75vh;
   padding-top: 15vh;
 }
 .title-line-height {
   line-height: 1.25em;
 }
 .uspTitle {
-  font-family: 'Work Sans', 'Poppins', sans-serif !important;
+  font-family: 'Work Sans' !important;
   line-height: 1.25em;
+  font-weight: 700 !important;
 }
 .uspDescription {
   font-family: 'Source Sans Pro', 'Poppins', sans-serif !important;
