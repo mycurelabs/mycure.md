@@ -28,7 +28,7 @@ export default {
 <style>
 
   @import url('https://fonts.googleapis.com/css?family=Poppins');
-  @import url('https://fonts.googleapis.com/css?family=Work+Sans');
+  @import url('https://fonts.googleapis.com/css?family=Work+Sans:400,700,900');
   @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
 
   #app {
