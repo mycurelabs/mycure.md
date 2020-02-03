@@ -23,6 +23,7 @@
                 v-list-tile(
                   v-for="(item, key) in solutionsMenuItems"
                   :key="key"
+                  :to="{ name: item.route }"
                 )
                   v-list-tile-content
                     v-list-tile-title {{ item.name }}

@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import { core } from '@mycure/sdk';
 
+import doctorsClinics from '@/views/doctors-clinics';
 import cms from '@/views/clinic-management-system.vue';
 import csr from '@/views/csr.vue';
 import emr from '@/views/electronic-medical-records.vue';
@@ -164,6 +165,16 @@ export default new Router({
       meta: {
         pageType: 'about',
         pageName: 'Our Story'
+      }
+    },
+    {
+      path: '/doctors-clinics',
+      name: 'doctors-clinics',
+      id: 'nav-doctors-clinics',
+      component: doctorsClinics,
+      meta: {
+        pageType: 'clinic-solutions',
+        pageName: 'Doctors Clinics'
       }
     },
     {
