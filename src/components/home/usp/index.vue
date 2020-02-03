@@ -9,7 +9,7 @@
             p(:class="{'pre-white-space': !$isMobile}").text-xs-center.uspDescription.pt-3.font-s {{ uspDescription }}
             div.pt-3
               v-btn(
-                :href="uspContents.btn"
+                :to="{ name: uspContents.route }"
                 :color="$mcColors.mcAltGreen"
                 :id="uspContents.btnId"
                 large

@@ -8,7 +8,7 @@ import emr from '@/views/electronic-medical-records.vue';
 import features from '@/views/features.vue';
 import forgotPassword from '@/views/forgot-password.vue';
 import group from '@/views/group-clinics.vue';
-import home from '@/views/home.vue';
+import home from '@/views/home';
 import notFound from '@/views/404.vue';
 import ourStory from '@/views/our-story.vue';
 import pricing from '@/views/pricing.vue';
@@ -49,7 +49,8 @@ export default new Router({
       component: signin,
       meta: {
         pageType: 'signin',
-        pageName: 'Signin Page'
+        pageName: 'Signin Page',
+        account: true
       }
     },
     {
@@ -58,7 +59,8 @@ export default new Router({
       component: forgotPassword,
       meta: {
         pageType: 'forgot-password',
-        pageName: 'Forgot Password Page'
+        pageName: 'Forgot Password Page',
+        account: true
       }
     },
     {
@@ -67,7 +69,8 @@ export default new Router({
       component: signupChoose,
       meta: {
         pageType: 'signup-choose',
-        pageName: 'Signup Choose'
+        pageName: 'Signup Choose',
+        account: true
       }
     },
     {
@@ -77,23 +80,33 @@ export default new Router({
       redirect: '/signup/multispecialty/step-1',
       meta: {
         pageType: 'signup-multispecialty',
-        pageName: 'Signup Miltispecialty'
+        pageName: 'Signup Miltispecialty',
+        account: true
       },
       children: [
         {
           path: 'step-1',
           name: 'signup-multispecialty-step-1',
-          component: signupMultispecialtyStep1
+          component: signupMultispecialtyStep1,
+          meta: {
+            account: true
+          }
         },
         {
           path: 'step-2',
           name: 'signup-multispecialty-step-2',
-          component: signupMultispecialtyStep2
+          component: signupMultispecialtyStep2,
+          meta: {
+            account: true
+          }
         },
         {
           path: 'step-3',
           name: 'signup-multispecialty-step-3',
-          component: signupMultispecialtyStep3
+          component: signupMultispecialtyStep3,
+          meta: {
+            account: true
+          }
         },
       ]
     },
@@ -104,18 +117,25 @@ export default new Router({
       redirect: '/signup/individual/step-1',
       meta: {
         pageType: 'signup-individual',
-        pageName: 'Signup Individual'
+        pageName: 'Signup Individual',
+        account: true
       },
       children: [
         {
           path: 'step-1',
           name: 'signup-individual-step-1',
-          component: signupIndividualStep1
+          component: signupIndividualStep1,
+          meta: {
+            account: true
+          }
         },
         {
           path: 'step-2',
           name: 'signup-individual-step-2',
-          component: signupIndividualStep2
+          component: signupIndividualStep2,
+          meta: {
+            account: true
+          }
         }
       ]
     },

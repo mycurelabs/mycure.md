@@ -39,16 +39,14 @@
                 span.font-14.tab.text-none {{ link.name }}
               v-btn(
                 flat
-                :href="`${signInURL}?target=${cmsURL}/authenticate`"
-                target="_blank"
+                :to="{ name: 'signin' }"
                 id="toolbar-login-btn"
                 @click.stop="handleLoginBtn"
               )
                 strong.font-14.tab.text-none Login
               v-btn(
                 :color="$mcColors.mcAltGreen"
-                :href="`${signInURL}/signup/choose`"
-                target="_blank"
+                :to="{ name: 'signup-choose' }"
                 id="toolbar-signup-btn"
                 @click.stop="handleSignupBtn"
               )

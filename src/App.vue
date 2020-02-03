@@ -1,13 +1,12 @@
 <template lang="pug">
   v-app(data-server-rendered="true")#app
-    mc-toolbar
+    mc-toolbar(v-if="!signInRoute")
     v-content
       router-view
-    mc-footer
+    mc-footer(v-if="!signInRoute")
 </template>
 
 <script>
-
 import McToolbar from '@/components/commons/mc-toolbar';
 import McFooter from '@/components/commons/mc-footer'; 
 
@@ -21,6 +20,15 @@ export default {
     return {
       //
     };
+  },
+  computed: {
+    signInRoute () {
+      if (!this.$route.meta) {
+        return false;
+      } else {
+        return this.$route.meta.account ? true : false;
+      }
+    }
   }
 };
 </script>
