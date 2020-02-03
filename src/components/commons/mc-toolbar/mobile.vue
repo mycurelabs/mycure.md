@@ -19,7 +19,11 @@
         v-layout(row wrap)
           v-flex(xs12 md12)
             v-list(two-line)
-              v-list-tile(v-for="(item, key) in solutionsMenuItems" :key="key")
+              v-list-tile(
+                v-for="(item, key) in solutionsMenuItems" 
+                :key="key"
+                :to="{ name: item.route }"
+              )
                 v-list-tile-content
                   v-list-tile-title 
                     b {{ item.name }}
