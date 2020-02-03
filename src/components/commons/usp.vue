@@ -4,7 +4,7 @@
       v-container(fill-height)
         v-layout(row align-center)
           v-flex(xs12 md12).text-xs-center
-            p.text-xs-center.font-s.font-mc-blue {{ uspMetaTitle }}
+            strong.text-xs-center.font-s.font-mc-blue {{ uspMetaTitle }}
             h1(:class="{'pre-white-space': !$isMobile}").text-xs-center.uspTitle.font-xl {{ uspTitle }}
             p(:class="{'pre-white-space': !$isMobile}").text-xs-center.uspDescription.pt-3.font-s {{ uspDescription }}
             div.pt-3
@@ -17,7 +17,7 @@
                 strong.font-s {{ btnText }}     
     div.usp-image-container.text-xs-center
       v-img(
-        :src="require(`@/assets/images/${coverImg}.png`)"
+        :src="require(`@/assets/images/${customPath}${coverImg}.png`)"
         :alt="coverImg"
       )
 </template>
@@ -52,6 +52,10 @@ export default {
     coverImg: {
       type: String,
       default: 'mycure-homepage-usp-cover'
+    },
+    customPath: {
+      type: String,
+      default: ''
     }
   },
 };
