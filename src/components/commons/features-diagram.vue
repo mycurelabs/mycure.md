@@ -7,7 +7,7 @@
     div.pt-5
       v-img(
         v-if="image !== ''"
-        :src="require(`@/assets/images/${image}.png`)"
+        :src="require(`@/assets/images/${customPath}${image}.png`)"
         :alt="image"
       )
 </template>
@@ -24,6 +24,10 @@ export default {
       default: ''
     },
     image: {
+      type: String,
+      default: ''
+    },
+    customPath: {
       type: String,
       default: ''
     }
