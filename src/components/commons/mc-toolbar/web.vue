@@ -3,9 +3,6 @@
     v-layout(row wrap justify-center)
       v-flex(xs12 md12).toolbarMargin
         v-toolbar(flat).grey-gradient
-          router-link(:to="{ name: 'home' }" title="MYCURE | Clinic Management System | Cloud EMR Philippines" id="toolbar-mycure-logo" @click.stop="handleMycureLogo").mr-3.mt-2
-            img(src="../../../assets/images/mycure-header-logo.png" width="140" alt="MYCURE logo")
-          v-spacer
           v-menu(
             v-model="solutionsMenuModel"
             :close-on-content-click="false"
@@ -27,14 +24,27 @@
                 )
                   v-list-tile-content
                     v-list-tile-title {{ item.name }}
+          v-spacer
           v-btn(
-            v-for="(link, key) in toolbarLinks" 
-            :key="key" 
-            :to="{ name: link.route }" 
-            :id="link.id" 
+            :to="{ name: featuresLink.route }"
+            :id="featuresLink.id"
             flat
           ).mx-0
-            span.font-14.tab.text-none {{ link.name }}
+            span.font-14.tab.text-none {{ featuresLink.name }}
+          v-spacer
+          v-spacer
+          router-link(:to="{ name: 'home' }" title="MYCURE | Clinic Management System | Cloud EMR Philippines" id="toolbar-mycure-logo" @click.stop="handleMycureLogo").mr-3.mt-2
+            img(src="../../../assets/images/mycure-header-logo.png" width="140" alt="MYCURE logo")
+          v-spacer
+          v-spacer
+          //- v-btn(
+          //-   v-for="(link, key) in toolbarLinks" 
+          //-   :key="key" 
+          //-   :to="{ name: link.route }" 
+          //-   :id="link.id" 
+          //-   flat
+          //- ).mx-0
+          //-   span.font-14.tab.text-none {{ link.name }}
           v-btn(
             flat
             :to="{ name: loginURL}"
@@ -42,6 +52,7 @@
             @click.stop="handleLoginBtn"
           )
             strong.font-14.tab.text-none Login
+          v-spacer
           v-btn(
             :color="$mcColors.mcAltGreen"
             :to="{ name: signUpURL }"
@@ -79,6 +90,11 @@ export default {
     return {
       solutionsMenuModel: false
     };
+  },
+  computed: {
+    featuresLink () {
+      return this.toolbarLinks[0];
+    }
   }
 };
 </script>
