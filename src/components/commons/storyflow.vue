@@ -4,7 +4,6 @@
       v-container
         v-layout(row justify-center).text-xs-center.pb60
           strong.font-45.introText {{ introduction }}
-        br
         div(v-if="!horizontal")
           v-layout(v-for="(highlight,index) in storyflow" :key="index" row wrap justify-center).pb60
             v-flex(xs4 align-self-center).pr-5
@@ -36,7 +35,16 @@
               br
               strong(v-if="hasTitle").font-25 {{ highlight.title }}
               br
-              p.pt-3 {{ highlight.text }}
+              p.font-18.pt-3 {{ highlight.text }}
+          v-layout(v-if="featuresButton" row wrap justify-center).pt-5
+            v-btn(
+              id="features-page-btn"
+              @click.stop="handleFeaturesPageBtn"
+              :color="$mcColors.mcBlue"
+              :to="{ name: 'features' }"
+              large
+            ).mt-3.cta-btn
+              strong.font-18.white--text.text-none Explore the Features
               
     div(v-else).pt-5
       v-container
@@ -48,7 +56,7 @@
           br
           v-layout(align-center row wrap).text-xs-center  
             v-flex(xs12)
-              span(v-if="hasTitle").font-40.lh-title.text-xs-center {{ highlight.title }}
+              strong(v-if="hasTitle").font-30.lh-title.text-xs-center {{ highlight.title }}
           br
           v-layout(align-center row wrap).px-2
             v-flex(xs12).text-xs-center
@@ -58,7 +66,7 @@
           v-btn(
             id="features-page-btn"
             @click.stop="handleFeaturesPageBtn"
-            color="#18c551"
+            :color="$mcColors.mcBlue"
             :to="{ name: 'features' }"
             large
           ).mt-3.cta-btn
