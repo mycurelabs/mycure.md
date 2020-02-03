@@ -14,7 +14,7 @@
                 large
               ).text-none.white--text
                 strong.font-s {{ uspContents.btnText }}     
-    div
+    div.usp-image-container.text-xs-center
       v-img(
         :src="require(`@/assets/images/${uspContents.coverImg}.png`)"
         :alt="uspContents.coverImg"
@@ -55,7 +55,7 @@ export default {
   background-color: #f0f0f0
 }
 .whole-page {
-  height: 75vh;
+  height: 70vh;
   padding-top: 15vh;
 }
 .mobile-page-height {
@@ -78,6 +78,9 @@ export default {
 }
 .panel-size {
   width: 1100px;
+}
+.usp-image-container {
+  line-height: 0px;
 }
 .btnHeight {
   height: 50px;
