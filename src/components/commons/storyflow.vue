@@ -41,7 +41,7 @@
     div(v-else).pt-5
       v-container
         v-layout(row justify-center).text-xs-center.pb-3
-          p.font-40 {{ introduction }}
+          strong.font-45.introText {{ introduction }}
         v-container(v-for="(highlight,index) in storyflow" :key="index" column justify-center)
           v-layout(row wrap justify-center align-center).pb-2
             img(:src="require(`@/assets/images/${ highlight.image }`)" :alt="highlight.title").storyflowAsset

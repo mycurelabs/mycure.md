@@ -44,9 +44,9 @@
                 h2.black--text {{ testimonial.message }}
                 br
                 br
-                span.font-16.black--text {{ testimonial.name }}
-                  br
-                  span {{ testimonial.position }}
+                strong.font-16.font-mc-blue {{ testimonial.name }}
+                br
+                | {{ testimonial.position }}
 </template>
 
 <script>

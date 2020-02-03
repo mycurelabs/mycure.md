@@ -5,7 +5,7 @@
       v-container
         v-layout(row wrap justify center)
           v-flex(xs6 align-self-center).px-3
-            h2.panelTitle.font-40.font-work-sans.lh-title {{ webTitle }}
+            h1.panelTitle.font-40.font-work-sans.lh-title {{ webTitle }}
             br
             br
             p.font-18 {{ panelContent }}
@@ -14,7 +14,7 @@
     //- MOBILE
     div(v-else).pt-5
       v-container.text-xs-center
-        p.font-40.lh-title.text-xs-center.font-work-sans {{ panelTitle }}
+        h1.font-40.lh-title.text-xs-center.font-work-sans {{ panelTitle }}
         br
         p.font-18.text-xs-center {{ panelContent }}
         br
