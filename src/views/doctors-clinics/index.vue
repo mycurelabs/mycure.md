@@ -4,16 +4,20 @@
     usp
     //- 2nd panel
     workflow
+    //- 3rd panel
+    features
 </template>
 
 <script>
 import Usp from '@/components/doctors-clinics/usp';
 import Workflow from '@/components/doctors-clinics/workflow';
+import Features from '@/components/doctors-clinics/features';
 import VueScrollTo from 'vue-scrollto';
 export default {
   components: {
     Usp,
-    Workflow
+    Workflow,
+    Features
   },
   mounted () {
     VueScrollTo.scrollTo(`#top`, 500, { easing: 'ease' } );
