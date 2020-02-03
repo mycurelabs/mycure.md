@@ -17,7 +17,7 @@ export default {
   },
   data () {
     return {
-      image: 'mycure-home-web-individual-clinic-diagram-banner'
+      image: 'mycure-group-clinic-diagram'
     };
   },
   computed: {
