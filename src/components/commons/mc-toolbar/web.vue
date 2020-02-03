@@ -55,11 +55,11 @@ export default {
   props: {
     solutionsMenuItems: {
       type: Array,
-      default: []
+      default: () => []
     },
     toolbarLinks: {
       type: Array,
-      default: []
+      default: () => []
     },
     solutionsText: {
       type: String,
