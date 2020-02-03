@@ -3,10 +3,11 @@
     v-layout(row justify-center).pt-5
       v-flex(xs12 md12).text-xs-center
         h2(:class="{'pre-white-space' : !$isMobile}").font-xl.lh-title.font-work-sans.cta-text {{ ctaText }}
+        p(:class="{'pre-white-space' : !$isMobile}").font-18.font-source-sans.pt-3 {{ ctaSubText }}
         br
         div.text-xs-center.pt-3
           v-btn(
-            :color="$mcColors.mcBlue"
+            :color="btnColor"
             large
             dark
           ).text-none.font-weight-bold {{ ctaBtnText }}
@@ -35,7 +36,11 @@ export default {
       type: Array,
       default: () => [],
       required: () => this.parseText ? true : false
-    }
+    },
+    btnColor: {
+      type: String,
+      default: '#2e9fdf'
+    } 
   },
   computed: {
     ctaText () {
@@ -48,11 +53,16 @@ export default {
           : this.ctaContent.text;
       }
     },
+    ctaSubText () {
+      if (!this.ctaContent) return '';
+      if (!this.ctaContent.subtext) return '';
+      return this.ctaContent.subtext;
+    },
     ctaBtnText () {
       return !this.ctaContent ? 'Get Started' : this.ctaContent.btnText;
     },
     ctaImage () {
-      return !this.ctaContent ? 'mycure-web-footer' : this.ctaContent.image;
+      return !this.ctaContent || !this.ctaContent.image ? 'mycure-web-footer' : this.ctaContent.image;
     }
   }
 };
