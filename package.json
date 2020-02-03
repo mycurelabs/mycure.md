@@ -28,6 +28,7 @@
     "vue-carousel": "^0.18.0",
     "vue-cookie-law": "^1.10.0",
     "vue-flip": "^0.2.5",
+    "vue-fragment": "^1.5.1",
     "vue-router": "^3.0.3",
     "vue-scrollto": "^2.15.0",
     "vuetify": "^1.5.5",
