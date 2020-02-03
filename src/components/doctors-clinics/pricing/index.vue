@@ -57,7 +57,7 @@
                     @click="collapseItems"
                   ).text-none.font-18 Collapse
                 br
-              v-card-action.text-xs-center
+              v-card-actions.text-xs-center
                 v-btn(
                   :color="$mcColors.mcBlue"
                   dark
