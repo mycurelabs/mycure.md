@@ -14,7 +14,7 @@
             md6
           ).mx-4
             v-card(height="100%").px-5.py-3
-              v-card-text.font-source-sans
+              v-card-text#pricingContent.font-source-sans
                 h1.pre-white-space.font-xl.font-work-sans.lh-title {{ parseTitle(item) }}
                 p.font-18.pre-white-space {{ parseDescription(item) }}
                 br
@@ -35,20 +35,34 @@
                 p(v-for="(inclusion, key) in item.inclusions" :key="key").font-18 {{ inclusion }}
                 br
                 v-btn(
-                  v-if="item.type === 'solo'"
+                  v-if="item.type === 'solo' && !expandInclusions"
                   flat 
                   :color="$mcColors.mcBlue"
                   right
+                  @click="expandInclusions = true"
                 ).text-none.font-18 See More
                 div(v-else)
                   br
-                br
-                div.text-xs-center.mr-5.pt-4
+                div(v-if="expandInclusions && item.expandedInclusions")
+                  template(v-for="inclusion in item.expandedInclusions")
+                    strong.font-18 {{ inclusion.title }}
+                    br
+                    p(v-for="(inc, key) in inclusion.inclusions" :key="key").font-18 {{ inc }}
+                    br
+                  br
                   v-btn(
+                    flat 
                     :color="$mcColors.mcBlue"
-                    dark
-                    block
-                  ).text-none.font-weight-bold.font-18 {{ item.btnText }}
+                    right
+                    @click="collapseItems"
+                  ).text-none.font-18 Collapse
+                br
+              v-card-action.text-xs-center
+                v-btn(
+                  :color="$mcColors.mcBlue"
+                  dark
+                  large
+                ).text-none.font-weight-bold.font-18 {{ item.btnText }}
         v-layout(row align-center).pt-3
           v-flex(xs12 md12).text-xs-center
             v-btn(
@@ -60,6 +74,7 @@
 <script>
 //- utils
 import { parseTextWithNewLine } from '@/utils';
+import VueScrollTo from 'vue-scrollto';
 //- constants
 import PRICING_ITEMS from './pricing-items.json';
 export default {
@@ -67,7 +82,8 @@ export default {
     return {
       pricingTitle: 'Affordable Pricing',
       description: 'Pay only for what you need.',
-      pricingItems: PRICING_ITEMS
+      pricingItems: PRICING_ITEMS,
+      expandInclusions: false
     };
   },
   methods: {
@@ -80,6 +96,10 @@ export default {
     parseDescription (item) {
       const { description } = item;
       return parseTextWithNewLine(description, ['your ']);
+    },
+    collapseItems () {
+      this.expandInclusions = false;
+      VueScrollTo.scrollTo(`#pricingContent`, 500, { easing: 'ease' });
     }
   }
 };

@@ -13,6 +13,47 @@
       "✓ Secretary accounts",
       "✓ Multiple device access"
     ],
+    "expandedInclusions": [
+      {
+        "title": "MEDICAL RECORDS",
+        "inclusions": [
+          "✓ SOAP Charting",
+          "✓ Prescription Encoding",
+          "✓ Lab & Imaging Orders",
+          "✓ Customizable Forms",
+          "✓ Printing",
+          "✓ Bulk Patient Upload",
+          "✓ ICD-10 Catalog",
+          "✓ PNF Drug Catalog"
+        ]
+      },
+      {
+        "title": "QUEUEING & APPOINTMENTS",
+        "inclusions": [
+          "✓ Smart Patient Queuing",
+          "✓ Queue Monitor",
+          "✓ Patient Kiosk",
+          "✓ Appointments Calendar"
+        ]
+      },
+      {
+        "title": "SECURITY",
+        "inclusions": [
+          "✓ Multi-Factor Authentication",
+          "✓ Activity Logs",
+          "✓ DPA Registration Guide"
+        ]
+      },
+      {
+        "title": "IN-APP PURCHASES",
+        "inclusions": [
+          "✓ Unlimited Storage",
+          "✓ SMS Reminders",
+          "✓ Clinic Website",
+          "✓ Work Offline"
+        ]
+      }
+    ],
     "btnText": "Sign Up Free"
   },
   {
