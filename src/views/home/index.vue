@@ -11,7 +11,7 @@
     storyflow(
       :storyflow="storyflowItems"
       :introduction="introText"
-      :featuresButton="true"
+      featuresButton
       horizontal
     ).showPanel
     //- 5th panel
