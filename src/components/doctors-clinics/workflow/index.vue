@@ -3,7 +3,7 @@
     div(v-if="!$isMobile").px-5.white
       v-container.px-5
         v-layout(row justify-center).text-xs-center
-          h1.font-45.pa-5.text-xs-center.font-work-sans {{ title }}
+          h1.font-xl.pa-5.text-xs-center.font-work-sans {{ title }}
         v-layout(row wrap justify-center)
           v-flex(xs12 md4)
             v-list(two-line).check-list.white
@@ -22,7 +22,7 @@
     div(v-else).white.pt-5
       v-container
         v-layout(row justify-center)
-          h1.font-40.text-xs-center.font-work-sans {{ title }}
+          h1.font-xl.text-xs-center.font-work-sans {{ title }}
       v-container
         v-layout(row justify-center)
           v-list(two-line).white
