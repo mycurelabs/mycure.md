@@ -6,6 +6,5 @@ export const USP_CONTENTS = {
   route: 'signup-choose',
   btnId: 'home-usp-signup-btn',
   btnText: 'Get Demo',
-  img: 'mycure-web-banner-first-panel-doctor-clinic-patients',
   coverImg: 'mycure-homepage-usp-cover'
 };
