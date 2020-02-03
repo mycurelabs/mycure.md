@@ -1,5 +1,6 @@
 <template lang="pug">
   div
+    //- TODO: Configure Google Analytics Events
     //- WEB
     div(v-if="!$isMd" :class="shadow").toolbarMain
       toolbar-web(
@@ -44,8 +45,8 @@ export default {
         { name: 'Multispecialty Clinics' }
       ],
       toolbarLinks: [
-        { name: 'Features', route: 'features' },
-        { name: 'Pricing', route: 'pricing' }
+        { id: 'nav-features', name: 'Features', route: 'features' },
+        { id: 'nav-pricing', name: 'Pricing', route: 'pricing' }
       ]
     };
   },
