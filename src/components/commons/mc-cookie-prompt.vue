@@ -1,6 +1,6 @@
 <template lang="pug">
   div
-    v-container
+    v-container.font-source-sans
       cookie-law(
         :position="position" 
         transitionName="fade"
@@ -51,7 +51,7 @@
 <style scoped>
   .Cookie--mcCookie {
     margin-top: 15%;
-    background-color: #596d88;
+    background-color: #075b76;
     font-size: 13px;
   }
 
