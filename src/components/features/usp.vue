@@ -24,7 +24,7 @@ div
   div(v-else)
     v-layout(column wrap justify-center).mt-5
       h1.font-weight-bold.font-18.font-mc-blue.pb-2.text-xs-center {{ metaTitle }}
-      h2.font-40.font-weight-regular.title-line-height.pb-5.text-xs-center.uspTitle {{ title }}
+      h2.font-40.font-weight-bold.font-work-sans.title-line-height.pb-5.text-xs-center.uspTitle {{ title }}
       v-layout(row justify-center).mb-5
         img(
           :src="require(`@/assets/images/mycure-cms-web-banner-first-panel-features.png`)"
