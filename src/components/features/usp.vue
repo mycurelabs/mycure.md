@@ -8,7 +8,7 @@ div
             v-flex(xs12 md6)
               v-layout(column align-start)
                 h1.font-weight-bold.font-18.font-mc-blue.pb-3.uspMetaTitle {{ metaTitle }}
-                h2.title-line-height.uspTitle.font-weight-regular.pb-4.pre-white-space {{ parseTitle(title) }}
+                h2.title-line-height.font-work-sans.uspTitle.font-weight-bold.pb-4.pre-white-space {{ parseTitle(title) }}
                 v-btn(
                   :color="$mcColors.mcAltGreen"
                   large
