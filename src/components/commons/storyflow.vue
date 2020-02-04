@@ -1,13 +1,13 @@
 <template lang="pug">
-  div
+  div(:class="{'white' : whiteBg }")
     div(v-if="!$isMobile").pt-5
       v-container
-        v-layout(row justify-center).text-xs-center.pb60
+        v-layout(v-if="introduction" row justify-center).text-xs-center.pb60
           strong.font-45.introText {{ introduction }}
         div(v-if="!horizontal")
           v-layout(v-for="(highlight,index) in storyflow" :key="index" row wrap justify-center).pb60
             v-flex(xs4 align-self-center).pr-5
-              img(:src="require(`@/assets/images/${ highlight.image }`)" :alt="highlight.title").storyflowAsset.right
+              img(:src="require(`@/assets/images/${customPath}${highlight.image}`)" :alt="highlight.title").storyflowAsset.right
             v-flex(xs5)
               span(v-if="hasTitle").font-40.lh-title {{ highlight.title }}
               br
@@ -31,7 +31,7 @@
               xs4
               align-center
             ).text-xs-center.mx-5
-              img(:src="require(`@/assets/images/${ highlight.image }`)" :alt="highlight.title").storyflowAssetHorizontal
+              img(:src="require(`@/assets/images/${customPath}${highlight.image}`)" :alt="highlight.title").storyflowAssetHorizontal
               br
               strong(v-if="hasTitle").font-25 {{ highlight.title }}
               br
@@ -52,7 +52,7 @@
           strong.font-45.introText {{ introduction }}
         v-container(v-for="(highlight,index) in storyflow" :key="index" column justify-center)
           v-layout(row wrap justify-center align-center).pb-2
-            img(:src="require(`@/assets/images/${ highlight.image }`)" :alt="highlight.title").storyflowAsset
+            img(:src="require(`@/assets/images/${customPath}${highlight.image}`)" :alt="highlight.title").storyflowAsset
           br
           v-layout(align-center row wrap).text-xs-center  
             v-flex(xs12)
@@ -90,6 +90,14 @@
         default: false
       },
       horizontal: {
+        type: Boolean,
+        default: false
+      },
+      customPath: {
+        type: String,
+        default: ''
+      },
+      whiteBg: {
         type: Boolean,
         default: false
       }
