@@ -116,7 +116,7 @@ export default {
         {
           header: 'Support',
           items: [
-            { name: 'Book A Demo' }
+            { name: 'Book A Demo', route: 'calendly' }
           ]
         },
         {
