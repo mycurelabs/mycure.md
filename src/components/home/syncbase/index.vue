@@ -1,7 +1,7 @@
 <template lang="pug">
   div#panel4
     //- WEB
-    div(v-if="!$isMobile").py-5
+    div(v-if="!$isMobile").py-4
       v-container
         v-layout(row wrap justify center)
           v-flex(xs6 align-self-center).px-3
@@ -30,7 +30,7 @@ export default {
       panelContent: 'Work as if you have an in-house server, with the convenience of the cloud.\
        Create your medical records locally using multiple devices even if the internet is down!\
        Once back online, it instantly syncs your data into the cloud.',
-      panelImage: 'mycure-homepage-syncbase-animated'
+      panelImage: 'mycure-syncbase-diagram-animate-small'
     };
   },
   computed: {
