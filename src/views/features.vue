@@ -1,14 +1,15 @@
 <template lang="pug">
   div#top.white
     //- panel1
-    usp(
-      :uspMetaTitle="uspContents.metaTitle"
-      :uspTitle="uspTitle"
-      btnText="Sign Up Now"
-      :btnId="uspContents.btnId"
-      :coverImg="uspContents.img"
-      coverImgWidth="50%"
-    )
+    //- usp(
+    //-   :uspMetaTitle="uspContents.metaTitle"
+    //-   :uspTitle="uspTitle"
+    //-   btnText="Sign Up Now"
+    //-   :btnId="uspContents.btnId"
+    //-   :coverImg="uspContents.img"
+    //-   coverImgWidth="50%"
+    //- )
+    usp
     panel2
     panel3
     panel4
@@ -22,7 +23,7 @@
 <script>
 import mcToolbarHome from '@/components/commons/mc-toolbar-home';
 import mcFooter from '@/components/commons/mc-footer';
-import usp from '@/components/commons/usp';
+import usp from '@/components/features/usp';
 import panel2 from '@/components/features/panel-2';
 import panel3 from '@/components/features/panel-3';
 import panel4 from '@/components/features/panel-4';
