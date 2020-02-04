@@ -48,7 +48,7 @@ export default {
     },
     btnText: {
       type: String,
-      default: 'Get Demo'
+      default: 'Get Started'
     },
     coverImg: {
       type: String,

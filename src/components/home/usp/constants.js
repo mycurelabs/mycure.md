@@ -5,6 +5,6 @@ export const USP_CONTENTS = {
   system that gives real-time medical and business insights.',
   route: 'signup-choose',
   btnId: 'home-usp-signup-btn',
-  btnText: 'Get Demo',
+  btnText: 'Get Started',
   coverImg: 'mycure-homepage-usp-cover'
 };
