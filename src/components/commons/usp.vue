@@ -4,7 +4,7 @@
       v-container(fill-height)
         v-layout(row align-center)
           v-flex(xs12 md12).text-xs-center
-            strong.text-xs-center.font-s.font-mc-blue {{ uspMetaTitle }}
+            strong(v-if="uspMetaTitle").text-xs-center.font-s.font-mc-blue {{ uspMetaTitle }}
             h1(:class="{'pre-white-space': !$isMobile}").text-xs-center.uspTitle.font-xl {{ uspTitle }}
             p(:class="{'pre-white-space': !$isMobile}").text-xs-center.uspDescription.pt-3.font-s {{ uspDescription }}
             div.pt-3
@@ -14,13 +14,15 @@
                 :id="btnId"
                 large
               ).text-none.white--text
-                strong.font-s {{ btnText }}     
-    div.usp-image-container.text-xs-center
-      img(
-        :src="require(`@/assets/images/${customPath}${coverImg}.png`)"
-        :alt="coverImg"
-        :width="coverImgWidth"
-      )
+                strong.font-s {{ btnText }}    
+    div.outer-image-container
+      div.usp-image-container.text-xs-center.justify-center
+        img(
+          :src="require(`@/assets/images/${customPath}${coverImg}.png`)"
+          :alt="coverImg"
+          :width="coverImgWidth"
+        ).justify-center
+    div.offset-container
 </template>
 
 <script>
@@ -68,7 +70,7 @@ export default {
 
 <style scoped>
 .whole-page {
-  height: 55vh;
+  height: 60vh;
   padding-top: 15vh;
 }
 .mobile-page-height {
@@ -93,7 +95,16 @@ export default {
 }
 .usp-image-container {
   line-height: 0px;
-  height: 20vw;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.outer-image-container {
+  margin-bottom: -76.65px;
+}
+.offset-container {
+  height: 15vh;
+  background-color: #075b76;
 }
 .btnHeight {
   height: 50px;
