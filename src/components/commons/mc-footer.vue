@@ -53,7 +53,7 @@
                     span.font-mc-blue hello@mycure.md
                 li (+632) 7799 6262
                 li (+63) 917 303 4350
-          hr.mc-grey.my-4  
+          hr.my-4  
           v-layout(row wrap justify-center)  
             span &copy; 2016 - {{new Date().getFullYear()}}
               a(href="https://mycure.md")
@@ -191,8 +191,8 @@ export default {
 <style scoped>
   hr {
     height: 1px;
-    color: #616161;
-    background-color: #616161;
+    color: #cccccc;
+    background-color: #cccccc;
     border: none;
   }
 
