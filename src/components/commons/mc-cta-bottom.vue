@@ -11,6 +11,13 @@
             dark
           ).text-none.font-weight-bold {{ ctaBtnText }}
     br
+    v-layout(row justify-center v-if="ctaSecondaryBtnText")
+      v-flex(xs12 md12).text-xs-center
+        v-btn(
+          flat
+          :color="$mcColors.mcBlue"
+        ).text-none.font-weight-bold {{ ctaSecondaryBtnText }}
+      br
     v-layout(row justify-center).py-5
       v-flex(xs12 md12).text-xs-center
         img(
@@ -40,7 +47,7 @@ export default {
     btnColor: {
       type: String,
       default: '#2e9fdf'
-    } 
+    }
   },
   computed: {
     ctaText () {
@@ -63,6 +70,9 @@ export default {
     },
     ctaImage () {
       return !this.ctaContent || !this.ctaContent.image ? 'mycure-web-footer' : this.ctaContent.image;
+    },
+    ctaSecondaryBtnText () {
+      return !this.ctaContent ? '' : this.ctaContent.secondaryBtnText;
     }
   }
 };
