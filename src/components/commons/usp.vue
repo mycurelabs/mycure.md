@@ -72,8 +72,7 @@ export default {
   padding-top: 15vh;
 }
 .mobile-page-height {
-  height: 85vh;
-  padding-top: 15vh;
+  padding-top: 10vh;
 }
 .title-line-height {
   line-height: 1.25em;
