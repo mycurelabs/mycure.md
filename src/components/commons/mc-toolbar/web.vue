@@ -47,7 +47,7 @@
             id="toolbar-login-btn"
             @click.stop="handleLoginBtn"
           )
-            v-icon(small) mdi-account
+            v-img(:src="require(`@/assets/images/${loginIcon}.png`)")
             strong.font-14.tab.text-none &nbsp;Login
           v-btn(
             :color="$mcColors.mcAltGreen"
@@ -84,7 +84,8 @@ export default {
   },
   data () {
     return {
-      solutionsMenuModel: false
+      solutionsMenuModel: false,
+      loginIcon: 'mycure-icon-login'
     };
   },
   computed: {
