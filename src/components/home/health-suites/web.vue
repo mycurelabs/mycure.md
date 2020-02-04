@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-container
+  v-container.py-5
     v-layout(row align-center)
       v-flex(xs12 md12).text-xs-center
         h2.text-xs-center.font-work-sans.font-xl.white--text {{ panelTitle }}
@@ -19,11 +19,11 @@
               v-flex(xs12 md4)
                 v-img(
                   :src="require(`@/assets/images/${suite.image}.png`)"
+                  width="90%"
                 )
               v-flex(xs12 md8).pl-1
                 ul
                   li(v-for="(feat, key) in suite.features" :key="key") {{ feat }}
-                  br(v-if="key === 1")
             v-layout(row wrap)
               v-flex(xs12 md4)
                 v-btn(

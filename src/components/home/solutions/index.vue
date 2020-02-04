@@ -1,5 +1,5 @@
 <template lang="pug">
-  div.pt-5
+  div.pt-3
     features-diagram(
       :title="title"
       :description="panelContent.description"
