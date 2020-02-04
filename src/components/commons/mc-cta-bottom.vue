@@ -4,13 +4,13 @@
       v-flex(xs12 md12).text-xs-center
         h2(:class="{'pre-white-space' : !$isMobile}").font-xl.lh-title.font-work-sans.cta-text {{ ctaText }}
         p(:class="{'pre-white-space' : !$isMobile}").font-18.font-source-sans.pt-3 {{ ctaSubText }}
-        br
-        div.text-xs-center.pt-3
+        div.text-xs-center.pt-2
           v-btn(
             :color="btnColor"
             large
             dark
           ).text-none.font-weight-bold {{ ctaBtnText }}
+    br
     v-layout(row justify-center).py-5
       v-flex(xs12 md12).text-xs-center
         img(
