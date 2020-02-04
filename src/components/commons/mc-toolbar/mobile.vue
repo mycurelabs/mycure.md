@@ -70,7 +70,7 @@
               strong.font-14.tab LOGIN
           v-btn(
             id="navdrawer-signup-btn"
-            color="#18c551"
+            :color="$mcColors.mcAltGreen"
             :to="{ name: signUpURL }"
             @click.stop="handleSignupBtnMobile"
           )
