@@ -1,0 +1,105 @@
+<template lang="pug">
+  div.white.pt-5
+    //- WEB
+    div(v-if="!$isMobile").px-5
+      v-container.px-5
+        v-layout(row justify-center).text-xs-center
+          h1.font-xl.text-xs-center {{ title }}
+        v-layout(row wrap justify-center).pt-3
+          v-flex(xs12 md4)
+            v-list(two-line)
+              v-list-tile(v-for="(reason,index) in reasons" :key="index" v-if="index<=2")
+                v-list-tile-action
+                  img(:src="require(`@/assets/images/${checkIcon}.png`)" alt="Check icon")
+                v-list-tile-content
+                  span.font-18 {{ reason }}
+          v-flex(xs12 md4)
+            v-list(two-line)
+              v-list-tile(v-for="(reason,index) in reasons" :key="index" v-if="index>2")
+                v-list-tile-action
+                  img(:src="require(`@/assets/images/${checkIcon}.png`)" alt="Check icon")
+                v-list-tile-content
+                  span.font-18 {{ reason }}
+        br
+        v-layout(row wrap justify-center)
+          //- TODO: href to where?
+          v-btn(
+            id="specialized-clinics-workflow-btn"
+            href="https://mycurecreatives.typeform.com/to/DiZQQY"
+            :color="$mcColors.mcAltGreen"
+            target="_blank"
+            large
+            dark
+          ).mt-3.font-18.text-none
+            strong {{ workflowBtnText }}
+        p.text-xs-center.py-4.font-18 Have questions? 
+          a(@click.stop="toggleChat()")
+            strong.font-mc-blue Send us a chat.
+    //- MOBILE
+    div(v-else).pt-5
+      v-container
+        v-layout(row justify-center)
+          h1.font-xl.text-xs-center {{ title }}
+      v-container
+        v-layout(row justify-center)
+          v-list(two-line)
+            v-list-tile(v-for="(reason,index) in reasons" :key="index")
+              v-list-tile-action
+                img(:src="require(`@/assets/images/${checkIcon}.png`)" alt="Check icon") 
+              v-list-tile-content
+                span.font-18 {{ reason }}
+        v-layout(row wrap justify-center)
+          v-btn(
+            id="specialized-clinics-workflow-btn-mobile"
+            href="https://mycurecreatives.typeform.com/to/DiZQQY"
+            target="_blank"
+            large
+            dark
+            :color="$mcColors.mcAltGreen"
+          ).mt-5.text-none
+            strong.font-18 {{ workflowBtnText }} 
+        p.text-xs-center.py-4.font-18 Have questions? 
+          a(@click.stop="toggleChat()")
+            strong.font-mc-blue Send us a chat.
+</template>
+
+<script>
+  export default {
+    data () {
+      return {
+        checkIcon: 'mycure-web-bullet-check',
+        title: 'Why do clinics use MYCURE?',
+        workflowBtnText: 'Start 14-day Trial',
+        reasons: [
+          'Compact yet customizable EMR system',
+          'Accessible both online and offline!',
+          'Feels like having a hands-on IT Team',
+          'Helps a lot with reporting and metrics',
+          'Very easy to use and navigate',
+          'Improves overall performance of my clinic'
+        ]
+      };
+    },
+    methods: {
+      toggleChat () {
+        let message = `Hi, I would like to sign up for MYCURE's Group Clinics.`;
+        window.$crisp.push(['do', 'chat:toggle']);
+        window.$crisp.push(['do', 'message:send', ['text', message]]);
+      },
+      handleGroupSignupBtn () {
+        this.$ga.event({
+          eventCategory: 'button',
+          eventAction: 'click-group-signup-btn',
+          eventLabel: 'group-signup-btn'
+        });
+      }
+    },
+  };
+</script>
+
+<style scoped>
+  ul {
+    list-style-type: none;
+  }
+</style>
+
