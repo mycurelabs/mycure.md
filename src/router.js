@@ -3,7 +3,7 @@ import Router from 'vue-router';
 import { core } from '@mycure/sdk';
 
 import doctorsClinics from '@/views/doctors-clinics';
-import cms from '@/views/clinic-management-system.vue';
+import multispecialtyClinics from '@/views/multispecialty';
 import csr from '@/views/csr.vue';
 import emr from '@/views/electronic-medical-records.vue';
 import features from '@/views/features.vue';
@@ -179,11 +179,11 @@ export default new Router({
     },
     {
       path: '/multispecialty-clinics',
-      name: 'cms',
-      id: 'toolbar-multispecialty-btn',
-      component: cms,
+      name: 'multispecialty-clinics',
+      id: 'nav-multispecialty-btn',
+      component: multispecialtyClinics,
       meta: {
-        pageType: 'main',
+        pageType: 'clinic-solutions',
         pageName: 'Multispecialty Clinics'
       }
     },

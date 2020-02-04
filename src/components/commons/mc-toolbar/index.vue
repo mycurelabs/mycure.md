@@ -40,9 +40,9 @@ export default {
       shadow: '',
       solutionsText: 'Solutions',
       solutionsMenuItems: [
-        { name: 'Doctors Clinics', route: 'doctors-clinics'},
+        { name: 'Doctors Clinics', route: 'doctors-clinics' },
         { name: 'Specialized Clinics' },
-        { name: 'Multispecialty Clinics' }
+        { name: 'Multispecialty Clinics', route: 'multispecialty-clinics' }
       ],
       toolbarLinks: [
         { id: 'nav-features', name: 'Features', route: 'features' },
