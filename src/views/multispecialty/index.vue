@@ -13,14 +13,21 @@
       :customPath="storyflowCustomPath"
       white-bg
     )
-
+    //- cta
+    div.white
+      mc-cta-bottom(
+        parse-text
+        :parseIndicators="['work']"
+        :ctaContent="ctaContent"
+      )
 </template>
 
 <script>
 import Usp from '@/components/multispecialty/usp';
 import Workflow from '@/components/multispecialty/workflow';
 import Features from '@/components/multispecialty/features';
-import Storyflow from '../../components/commons/storyflow';
+import Storyflow from '@/components/commons/storyflow';
+import McCtaBottom from '@/components/commons/mc-cta-bottom';
 import VueScrollTo from 'vue-scrollto';
 import STORYFLOW_ITEMS from './storyflow-items.json';
 
@@ -29,12 +36,19 @@ export default {
     Usp,
     Workflow,
     Features,
-    Storyflow
+    Storyflow,
+    McCtaBottom
   },
   data () {
     return {
       storyflowItems: STORYFLOW_ITEMS,
-      storyflowCustomPath: 'multispecialty/'
+      storyflowCustomPath: 'multispecialty/',
+      ctaContent: {
+        text: 'Premium clinical services work best with premium technology.',
+        subtext: 'Experience what you can do more with MYCURE technology by your side.',
+        btnText: 'Start Free',
+        image: 'mycure-web-footer'
+      }
     };
   },
   mounted () {
