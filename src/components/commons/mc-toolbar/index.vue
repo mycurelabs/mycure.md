@@ -41,7 +41,7 @@ export default {
       solutionsText: 'Solutions',
       solutionsMenuItems: [
         { name: 'Doctors Clinics', route: 'doctors-clinics' },
-        { name: 'Specialized Clinics' },
+        { name: 'Specialized Clinics', route: 'specialized-clinics' },
         { name: 'Multispecialty Clinics', route: 'multispecialty-clinics' }
       ],
       toolbarLinks: [

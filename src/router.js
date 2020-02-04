@@ -4,11 +4,10 @@ import { core } from '@mycure/sdk';
 
 import doctorsClinics from '@/views/doctors-clinics';
 import multispecialtyClinics from '@/views/multispecialty';
+import specializedClinics from '@/views/specialized';
 import csr from '@/views/csr.vue';
-import emr from '@/views/electronic-medical-records.vue';
 import features from '@/views/features.vue';
 import forgotPassword from '@/views/forgot-password.vue';
-import group from '@/views/group-clinics.vue';
 import home from '@/views/home';
 import notFound from '@/views/404.vue';
 import ourStory from '@/views/our-story.vue';
@@ -188,25 +187,13 @@ export default new Router({
       }
     },
     {
-      path: '/group-clinics',
-      name: 'group', 
-      id: 'toolbar-group-clinics-btn',
-      // function: 'foo',
-      component: group,
+      path: '/specialized-clinics',
+      name: 'specialized-clinics',
+      id: 'nav-specialized-btn',
+      component: specializedClinics,
       meta: {
-        pageType: 'main',
-        pageName: 'Group Clinics'
-      }
-    },
-    {
-      path: '/individual-practice',
-      name: 'emr', 
-      id: 'toolbar-private-practice-btn',
-      // function: 'foo',
-      component: emr,
-      meta: {
-        pageType: 'main',
-        pageName: 'Individual Practice'
+        pageType: 'clinic-solutions',
+        pageName: 'Specialized Clinics'
       }
     },
     {
@@ -218,16 +205,6 @@ export default new Router({
         pageName: 'Pricing'
       }
     },
-    // {
-    //   path: '/mycure-solo',
-    //   name: 'mycure-solo',
-    //   id: 'toolbar-mycure-solo-btn', 
-    //   component: solo,
-    //   meta: {
-    //     pageType: 'main',
-    //     pageName: 'Solo by MYCURE'
-    //   }
-    // },
     {
       // TODO: what if `/community` ? 
       path: '/corporate-social-responsibility',
