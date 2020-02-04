@@ -4,7 +4,7 @@
       v-layout(row align-center)
         v-flex(xs12 md12).text-xs-center
           h1(:class="{'pre-white-space': !$isMobile}").text-xs-center.font-work-sans.lh-title.font-xl {{ title }}
-      v-container.px-5
+      v-container(:class="{'px-5' : !$isMobile}")
         v-layout(
           row
           :wrap="$isMobile"
@@ -12,14 +12,14 @@
           justify-center 
           v-for="(expert, key) in expertise" 
           :key="key"
-          :class="(key+1)%2 === 0 ? 'grey-panel' : 'white-panel'"
-        ).my-3.mx-5
-          v-flex(xs4 md6 align-center).text-xs-center
+          :class="[(key+1)%2 === 0 && !$isMobile? 'grey-panel' : 'white-panel', {'my-4' : !$isMobile}, {'mx-5': !$isMobile}]"
+        )
+          v-flex(xs12 md6 align-center :class="{'text-xs-center' : !$isMobile}")
             img(
               :src="require(`@/assets/images/specialized/${expert.image}.png`)"
               :alt="expert.image"
             )
-          v-flex(xs8 md6)
+          v-flex(xs12 md6 :class="{'pb-5' : $isMobile}")
             h2.font-m.pb-3 {{ expert.title }}
             strong.font-s.font-mc-blue TOP FEATURES
             ul.no-list-style
