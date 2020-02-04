@@ -35,14 +35,13 @@ export default {
 
 <style>
 
-  @import url('https://fonts.googleapis.com/css?family=Poppins');
   @import url('https://fonts.googleapis.com/css?family=Work+Sans:400,700,900');
   @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700');
 
   #app {
     max-width: 100% !important;
     overflow-x: hidden !important;
-    font-family: 'Poppins', sans-serif !important;
+    font-family: 'Source Sans Pro', sans-serif !important;
   };
 
   .mc-blue {
@@ -74,10 +73,10 @@ export default {
   }
 
   .font-work-sans {
-    font-family: 'Work Sans', 'Poppins', sans-serif !important;
+    font-family: 'Work Sans', 'Source Sans Pro', sans-serif !important;
   }
   .font-source-sans {
-    font-family: 'Source Sans Pro', 'Poppins', sans-serif !important;
+    font-family: 'Source Sans Pro', 'Source Sans Pro', sans-serif !important;
   }
 
   .font-mc-blue {
