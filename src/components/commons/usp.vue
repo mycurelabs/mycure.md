@@ -68,7 +68,7 @@ export default {
 
 <style scoped>
 .whole-page {
-  height: 70vh;
+  height: 55vh;
   padding-top: 15vh;
 }
 .mobile-page-height {
@@ -93,6 +93,7 @@ export default {
 }
 .usp-image-container {
   line-height: 0px;
+  height: 20vw;
 }
 .btnHeight {
   height: 50px;
