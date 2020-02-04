@@ -1,28 +1,27 @@
 <template lang="pug">
   div.gradient-grey
-    div(v-if="!$isMobile")
-      v-container
-        v-layout(row justify-center)
-          v-flex(xs12 md9)
-            v-carousel(
-              light
-              hide-delimiters
-              next-icon="mdi-chevron-right"
-              height="350"
-            ).elevation-0
-              v-carousel-item(
-                v-for="(testimonial,i) in testimonials"
-                :key="i"
+    v-container(v-if="!$isMobile")
+      v-layout(row justify-center)
+        v-flex(xs12 md9).pt-2.pb-1
+          v-carousel(
+            light
+            hide-delimiters
+            next-icon="mdi-chevron-right"
+            height="350"
+          ).elevation-0
+            v-carousel-item(
+              v-for="(testimonial,i) in testimonials"
+              :key="i"
+            ).py-3
+              v-layout(
+                column 
+                align-center
               )
-                v-layout(
-                  column 
-                  justify-center 
-                )
-                  v-flex(xs12 md10).text-xs-center.pa-5
-                    h2.black--text.mb-5.font-m {{ testimonial.message }}
-                    strong.font-18.font-mc-blue {{ testimonial.name }}
-                    br
-                    span.font-18.subheading.grey--text {{ testimonial.position }}
+                v-flex(xs12 md10 justify-center align-center).text-xs-center.pa-5
+                  h2.black--text.mb-5.font-m {{ testimonial.message }}
+                  strong.font-18.font-mc-blue {{ testimonial.name }}
+                  br
+                  span.font-18.subheading.grey--text {{ testimonial.position }}
     div(v-else).transparent.pt-5
       v-container
         v-layout(row wrap justify-center).px-3
