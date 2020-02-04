@@ -12,11 +12,12 @@
             :key="key"
             xs12
             md6
-          ).mx-4
-            v-card(height="100%").px-5.py-3
+            :class="{ 'mx-4' : !$isMobile }"
+          )
+            v-card(height="100%" :class="{ 'px-5' : !$isMobile}").py-3
               v-card-text#pricingContent.font-source-sans
-                h1.pre-white-space.font-xl.font-work-sans.lh-title {{ parseTitle(item) }}
-                p.font-18.pre-white-space {{ parseDescription(item) }}
+                h1(:class="{'pre-white-space' : !$isMobile}").font-xl.font-work-sans.lh-title {{ parseTitle(item) }}
+                p(:class="{'pre-white-space' : !$isMobile}").font-18 {{ parseDescription(item) }}
                 br
                 br
                 span(v-if="item.type === 'solo'").font-m Always
@@ -89,12 +90,14 @@ export default {
   methods: {
     parseTitle (item) {
       const { title } = item;
+      if (this.$isMobile) return title;
       return item.type === 'solo'
         ? parseTextWithNewLine(title, ['Solo '])
         : parseTextWithNewLine(title, ['Group ']);
     },
     parseDescription (item) {
       const { description } = item;
+      if (this.$isMobile) return description;
       return parseTextWithNewLine(description, ['your ']);
     },
     collapseItems () {
