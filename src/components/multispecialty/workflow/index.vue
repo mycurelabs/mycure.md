@@ -30,7 +30,17 @@
         v-layout(row v-if="!$isMobile").pt-4
           v-flex(v-for="(diagram, key) in diagrams" :key="key" xs12 md6).text-xs-center
             h2(:class="key === 0 ? 'font-weight-bold' : 'font-weight-light'").pre-white-space {{ diagram.endText }}
-
+    v-layout(row justify-center align-center).pt-4
+      v-flex(xs12).text-xs-center
+        v-btn(
+          :color="$mcColors.mcAltGreen"
+          dark
+          large
+        ).text-none.font-18.font-weight-bold Book A Free Demo
+        br
+        p.text-xs-center.font-18.py-3 Have questions? 
+          a(@click.stop="toggleChat()")
+            strong.font-mc-blue Send us a chat.
 </template>
 
 <script>
@@ -67,7 +77,12 @@ export default {
   methods: {
     parseEndText (text, indicators) {
       return parseTextWithNewLine(text, indicators);
-    }
+    },
+    toggleChat () {
+      let message = `Hi, I would like to know more about the Clinic Management System for Multispecialty Clinics.`;
+      window.$crisp.push(['do', 'chat:toggle']);
+      window.$crisp.push(['do', 'message:send', ['text', message]]);
+    },
   }
 };
 </script>
