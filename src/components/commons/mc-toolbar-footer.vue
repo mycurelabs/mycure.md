@@ -24,12 +24,6 @@
             img(:src="require(`../../assets/images/${ account.icon }`)" height="30" :alt="account.name").px-3
       br
       br
-      v-layout.pt-3
-        router-link(id="footer-features-btn" :to="{ name: 'features' }" title="MYCURE | Features").link.py-2
-          span.py-2 Features
-      v-layout.pb-3
-        router-link(id="footer-csr-btn" :to="{ name: 'csr' }" title="MYCURE | Corporate Social Responsibility").link.py-2
-          span.py-2 Corporate Social Responsibility
       v-layout(row)
         v-expansion-panel.elevation-0
           v-expansion-panel-content.mc-gradient-grey
@@ -44,6 +38,9 @@
                 :to="{ name: solution.learnLink }"
               ).link.py-2
                 span.py-2 {{ solution.header }}
+              router-link(id="footer-features-btn" :to="{ name: 'features' }" title="MYCURE | Features").link.py-2
+                span.py-2 Features
+              
       v-layout(row)
         v-expansion-panel.elevation-0
           v-expansion-panel-content.mc-gradient-grey
@@ -52,6 +49,8 @@
             template(v-slot:actions)
               v-icon.iconMargin mdi-chevron-down
             v-layout(column)
+              router-link(id="footer-csr-btn" :to="{ name: 'csr' }" title="MYCURE | Corporate Social Responsibility").link.py-2
+                span.py-2 Corporate Social Responsibility
               router-link(id="footer-our-story-btn" :to="{ name: 'our-story' }" title="MYCURE Our Story | Caring the Extra Mile").link.py-2
                 span.py-2 Our Story
               router-link(id="footer-blog-btn" :to="{ name: 'blog-link' }" title="MYCURE - Blog").link.py-2
