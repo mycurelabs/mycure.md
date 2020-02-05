@@ -1,7 +1,6 @@
 <template lang="pug">
   div#top
     panel1.showPanel
-    panel3(v-if="$isMobile").skyBg
 </template>
 
 <script>

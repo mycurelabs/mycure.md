@@ -4,7 +4,7 @@
       v-container
         v-layout(row justify-center)
           v-flex(xs12 md6 align-self-center).px-3
-            strong.font-48.font-mc-blue MYCURE for 
+            strong.font-48.font-mc-blue.font-work-sans MYCURE for 
               br
               | Individual Practice
             br
@@ -17,7 +17,7 @@
                 @click.stop="handlePricingPrivateSignupBtn"
                 id="pricing-private-signup-btn" 
                 :to="{ name: 'signup-individual' }"
-                color="#18c551" 
+                :color="$mcColors.mcAltGreen" 
                 large 
                 right
               )
@@ -219,6 +219,9 @@
             br
             | 
             span.font-mc-grey Yes. All your medical records are backed up in the cloud.
+          br
+          br
+          br
           span.font-18 
             strong How fast should my internet connection be when I’m using MYCURE?
             br

@@ -4,7 +4,7 @@
       v-container
         v-layout(row justify-center)
           v-flex(xs12 md6 align-self-center).px-3
-            strong.font-48.font-mc-blue MYCURE for 
+            strong.font-48.font-mc-blue.font-work-sans MYCURE for 
               br
               | Multispecialty Clinics
             br
@@ -15,7 +15,7 @@
             div.pl-1
               v-btn(
                 :to="{ name: 'signup-multispecialty' }"
-                color="#18c551" 
+                :color="$mcColors.mcAltGreen" 
                 large 
                 right
               )
