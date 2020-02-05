@@ -3,7 +3,7 @@
     usp
     //- div.skyBg
     pillars
-    filler
+    //- filler
 </template>
 
 <script>

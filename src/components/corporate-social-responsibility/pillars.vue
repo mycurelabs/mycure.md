@@ -8,7 +8,7 @@
               div.hr-blue.margin-top-50
               v-layout(row justify-center).pb-5
                 v-flex(xs7).text-xs-center
-                  h2.font-36 {{ item.title }}
+                  h2.font-36.font-work-sans {{ item.title }}
               v-layout(row justify-center)
                 v-flex(xs12 md5).pr-5
                   img(
@@ -36,7 +36,7 @@
         div(v-for="(item, i) in items" :key="i").pb-5
           v-layout(row justify-center).pb-5
             v-flex(xs12).text-xs-center
-              h2.font-36 {{ item.title }}
+              h2.font-36.font-work-sans {{ item.title }}
           v-layout(column justify-center)
             v-flex(xs12 md12 align-self-center)
               img(
