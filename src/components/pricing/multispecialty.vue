@@ -49,7 +49,7 @@
                     id="pricing-multispecialty-signup-btn" 
                     @click.stop="handlePricingMultispecialtySignupBtn"
                     color="#18c551" 
-                    :to="{ name: 'signup-chose' }"
+                    :to="{ name: 'signup-choose' }"
                     v-if="!card.isMoreButton").white--text 
                     strong {{card.buttonText}}
                   v-btn(color="#2e9fdf" @click="toggleChat" v-else) 
