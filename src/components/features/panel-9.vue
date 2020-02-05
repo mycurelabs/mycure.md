@@ -19,7 +19,6 @@
             //- https://ssense.github.io/vue-carousel/
             img(src="../../assets/images/mycure-web-features-mockup-07-A.png" alt="Syncbase Technology" width="50%" height="100%")
       modules.pt-5
-      panel10.pt-5
     div(v-else)#panel9.showPanel
       div.pt-5
         v-container
@@ -41,7 +40,6 @@
             //- https://ssense.github.io/vue-carousel/
             img(src="../../assets/images/mycure-web-features-mockup-07-A.png" alt="Syncbase Technology").syncbasePanel
       modules.showPanel
-      panel10.showPanel
 </template>
 
 <script>

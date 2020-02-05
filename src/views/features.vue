@@ -1,14 +1,5 @@
 <template lang="pug">
   div#top.white
-    //- panel1
-    //- usp(
-    //-   :uspMetaTitle="uspContents.metaTitle"
-    //-   :uspTitle="uspTitle"
-    //-   btnText="Sign Up Now"
-    //-   :btnId="uspContents.btnId"
-    //-   :coverImg="uspContents.img"
-    //-   coverImgWidth="50%"
-    //- )
     usp
     panel2
     panel3
@@ -18,6 +9,11 @@
     panel7
     panel8
     panel9
+    //- cta
+    mc-cta-bottom(
+      :ctaContent="ctaContent"
+      :btnColor="$mcColors.mcAltGreen"
+    )
 </template>
 
 <script>
@@ -32,6 +28,7 @@ import panel6 from '@/components/features/panel-6';
 import panel7 from '@/components/features/panel-7';
 import panel8 from '@/components/features/panel-8';
 import panel9 from '@/components/features/panel-9';
+import McCtaBottom from '@/components/commons/mc-cta-bottom';
 import VueScrollTo from 'vue-scrollto';
 import { parseTextWithNewLine } from '@/utils';
 
@@ -47,7 +44,8 @@ export default {
     panel6,
     panel7,
     panel8,
-    panel9
+    panel9,
+    McCtaBottom
   },
   data () {
     return {
@@ -60,6 +58,12 @@ export default {
         btnText: 'Sign Up Now',
         img: 'mycure-cms-web-banner-first-panel-features',
       },
+      ctaContent: {
+        text: 'Embrace a new habit',
+        subtext: this.parseCtaSubText(),
+        btnText: 'Sign Up Now',
+        image: 'mycure-web-footer'
+      }
     };
   },
   mounted () {
@@ -69,6 +73,12 @@ export default {
     uspTitle () {
       const { title } = this.uspContents;
       return parseTextWithNewLine(title, ['time', 'more']);
+    }
+  },
+  methods: {
+    parseCtaSubText () {
+      const subtext = 'Let your patients experience top-of-the-line service through your streamlined clinic operations with the help of MYCURE.';
+      return parseTextWithNewLine(subtext, ['through your']);
     }
   }
 };

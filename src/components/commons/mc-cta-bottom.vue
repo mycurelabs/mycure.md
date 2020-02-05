@@ -42,7 +42,6 @@ export default {
     parseIndicators: {
       type: Array,
       default: () => [],
-      required: () => this.parseText ? true : false
     },
     btnColor: {
       type: String,
