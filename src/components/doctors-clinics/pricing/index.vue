@@ -5,7 +5,7 @@
         v-layout(row align-center)
           v-flex(xs12 md12).text-xs-center
             h1(:class="{'pre-white-space': !$isMobile}").text-xs-center.font-xl.font-work-sans {{ pricingTitle }}
-            p(:class="{'pre-white-space': !$isMobile}").text-xs-center.pt-3.font-18.font-source-sans {{ description }}
+            p(:class="{'pre-white-space': !$isMobile}" v-if="description").text-xs-center.pt-3.font-18.font-source-sans {{ description }}
         v-layout(row :wrap="$isMobile" fill-height).pt-5
           v-flex(
             v-for="(item, key) in pricingItems"
@@ -15,10 +15,9 @@
             :class="{ 'mx-4' : !$isMobile }"
           )
             v-card(height="100%" :class="{ 'px-5' : !$isMobile}").py-3
-              v-card-text#pricingContent.font-source-sans
-                h1(:class="{'pre-white-space' : !$isMobile}").font-xl.font-work-sans.lh-title {{ parseTitle(item) }}
+              v-card-text#pricingContent
+                h1(:class="{'pre-white-space' : !$isMobile}").font-25.font-work-sans.lh-title {{ item.title }}
                 p(:class="{'pre-white-space' : !$isMobile}").font-18 {{ parseDescription(item) }}
-                br
                 br
                 span(v-if="item.type === 'solo'").font-m Always
                 span(v-else).font-m Starts at
@@ -69,7 +68,7 @@
             v-btn(
               :color="$mcColors.mcBlue"
               flat
-            ).text-none.font-weight-bold.font-work-sans See Full Pricing Matrix
+            ).text-none.font-weight-bold.font-work-sans.font-18 See Full Pricing Matrix
 </template>
 
 <script>
@@ -81,8 +80,8 @@ import PRICING_ITEMS from './pricing-items.json';
 export default {
   data () {
     return {
-      pricingTitle: 'Affordable Pricing',
-      description: 'Pay only for what you need.',
+      pricingTitle: 'Start free. Pay only for what you need.',
+      description: '',
       pricingItems: PRICING_ITEMS,
       expandInclusions: false
     };
