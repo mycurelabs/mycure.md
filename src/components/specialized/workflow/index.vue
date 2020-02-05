@@ -30,6 +30,8 @@
             target="_blank"
             large
             dark
+            :to="{ name: 'signup-choose'}"
+            @click.stop="handleWorkflowBtn"
           ).mt-3.font-18.text-none
             strong {{ workflowBtnText }}
         p.text-xs-center.py-4.font-18 Have questions? 
@@ -50,12 +52,13 @@
                 span.font-21 {{ reason }}
         v-layout(row wrap justify-center)
           v-btn(
-            id="specialized-clinics-workflow-btn-mobile"
+            id="mobile-specialized-clinics-workflow-btn"
             href="https://mycurecreatives.typeform.com/to/DiZQQY"
             target="_blank"
             large
             dark
             :color="$mcColors.mcAltGreen"
+            @click.stop="handleWorkflowBtn"
           ).mt-5.text-none
             strong.font-18 {{ workflowBtnText }} 
         p.text-xs-center.py-4.font-18 Have questions? 
@@ -85,12 +88,17 @@
         let message = `Hi, I would like to sign up for MYCURE's Group Clinics.`;
         window.$crisp.push(['do', 'chat:toggle']);
         window.$crisp.push(['do', 'message:send', ['text', message]]);
-      },
-      handleGroupSignupBtn () {
         this.$ga.event({
           eventCategory: 'button',
-          eventAction: 'click-group-signup-btn',
-          eventLabel: 'group-signup-btn'
+          eventAction: 'click-specialized-chat-btn',
+          eventLabel: 'specialized-chat-btn'
+        });
+      },
+      handleWorkflowBtn () {
+        this.$ga.event({
+          eventCategory: 'button',
+          eventAction: `click-${this.$isMobile ? 'mobile-' : ''}specialized-workflow-btn`,
+          eventLabel: `${this.$isMobile ? 'mobile-' : ''}specialized-workflow-btn`
         });
       }
     },
