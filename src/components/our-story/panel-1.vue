@@ -8,10 +8,10 @@ div
             v-flex(xs12 md6)
               v-layout(column align-start)
                 h1.font-weight-bold.font-18.font-mc-blue.pb-3.uspMetaTitle MYCURE | Our Story
-                h2.title-line-height.uspTitle.font-weight-regular.pb-4 MYCURE starts and ends with real people.
+                h2.title-line-height.font-xl.font-work-sans.font-weight-regular.pb-4 MYCURE starts and ends with real people.
                 v-btn(
                   @click.stop="popUpVideo"
-                  :color="mcGreen"
+                  :color="$mcColors.mcAltGreen"
                   target="_blank"
                   large
                 ).text-none.white--text.mt-4.btnHeight
@@ -37,7 +37,7 @@ div
   div(v-else)
     v-layout(column wrap justify-center).mt-5
       h1.font-weight-bold.font-18.font-mc-blue.pb-2.text-xs-center MYCURE | Our Story
-      h2.font-40.font-weight-regular.title-line-height.pb-5.text-xs-center.uspTitle MYCURE starts and ends with real people.
+      h2.font-40.font-weight-regular.font-work-sans.title-line-height.pb-5.text-xs-center.uspTitle MYCURE starts and ends with real people.
       v-layout(row justify-center).mb-5
         img(
           :src="require(`@/assets/images/mycure-homepage-doctor-kid-pediatrician-drawing.png`)"
@@ -47,7 +47,7 @@ div
       v-layout(row justify-center)
         v-btn(
           @click.stop="popUpVideo"
-          :color="mcGreen"
+          :color="$mcColors.mcAltGreen"
           target="_blank"
           large
           block
@@ -105,9 +105,6 @@ export default {
 }
 .panel-size {
   width: 1100px;
-}
-.btnHeight {
-  height: 50px;
 }
 .uspMobileBtn {
   height: 75px;

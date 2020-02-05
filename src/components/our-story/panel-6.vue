@@ -4,7 +4,7 @@
       v-layout(row wrap align-center justify-center)
         v-flex(xs12 md12).text-xs-center
           h2.font-18.font-mc-grey.pb-5 To further go the extra mile, we practice the following codes:
-          h2.font-48 8 Codes of Being
+          h2.font-48.font-work-sans 8 Codes of Being
         v-flex(xs12 md12).text-xs-center.pt-5
           p We are passionate, fun-loving, innovative people.
           p We grow through continuous learning.

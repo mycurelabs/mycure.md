@@ -5,7 +5,7 @@
         v-flex(xs12 md12)
           v-layout(row wrap align-start justify-center)
             v-flex(xs12 md12).text-xs-center
-              h1.pt-5.font-48.pb-3 Our Purpose
+              h1.pt-5.font-48.pb-3.font-work-sans Our Purpose
             v-flex(xs12 md4).px-4
               img(width="100%" src="../../assets/images/mycure-ourstory-team.png" alt="Our Story - Team")
             v-flex(xs12 md8).px-4

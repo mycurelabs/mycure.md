@@ -5,7 +5,7 @@
         v-flex(xs12 md12)
           v-layout(row wrap align-center justify-center)
             v-flex(xs12 md12).text-xs-center.pb-5
-              h1.pt-5.font-48 The Problem We Are Trying To Solve
+              h1.pt-5.font-48.font-work-sans The Problem We Are Trying To Solve
             v-flex(xs12 md4).px-4
               img(width="100%" src="../../assets/images/mycure-our-story-solving-problems-clinic-image.png" alt="Our Story - Problem")
             v-flex(xs12 md8).px-4

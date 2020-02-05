@@ -3,7 +3,7 @@
     v-container.pt-5
       v-layout(row wrap justify-center)
         v-flex(xs12 md12).text-xs-center
-          h1.font-48.pb-3 About the Founders
+          h1.font-48.font-work-sans.pb-3 About the Founders
           br
           br
         v-flex(xs12 md5).px-3.text-xs-center
