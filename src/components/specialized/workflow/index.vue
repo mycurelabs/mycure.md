@@ -47,7 +47,7 @@
               v-list-tile-action
                 img(:src="require(`@/assets/images/${checkIcon}.png`)" alt="Check icon") 
               v-list-tile-content
-                span.font-18 {{ reason }}
+                span.font-21 {{ reason }}
         v-layout(row wrap justify-center)
           v-btn(
             id="specialized-clinics-workflow-btn-mobile"
