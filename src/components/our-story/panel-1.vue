@@ -79,6 +79,11 @@ export default {
   methods: {
     popUpVideo () {
       this.videoDialog = true;
+      this.$ga.event({
+        eventCategory: 'button',
+        eventAction: 'click-our-story-watch-video',
+        eventLabel: 'our-story-watch-video'
+      });
     }
   }
 };
