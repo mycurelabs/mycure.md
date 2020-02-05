@@ -39,7 +39,7 @@
                   flat 
                   :color="$mcColors.mcBlue"
                   right
-                  @click="expandInclusions = true"
+                  @click.stop="handleSeeMoreBtn"
                 ).text-none.font-18 See More
                 div(v-else)
                   br
@@ -60,6 +60,9 @@
               v-card-actions.text-xs-center
                 v-btn(
                   :color="$mcColors.mcBlue"
+                  :to="{ name: item.btnLink}"
+                  :id="`${item.type}-practice-btn`"
+                  @click="handlePricingBtn(item.type)"
                   dark
                   large
                 ).text-none.font-weight-bold.font-18 {{ item.btnText }}
@@ -68,6 +71,8 @@
             v-btn(
               :color="$mcColors.mcBlue"
               flat
+              :to="{ name: 'pricing'}"
+              @click.stop="handlePricingMatrixBtn"
             ).text-none.font-weight-bold.font-work-sans.font-18 See Full Pricing Matrix
 </template>
 
@@ -99,7 +104,29 @@ export default {
       if (this.$isMobile) return description;
       return parseTextWithNewLine(description, ['your ']);
     },
-    collapseItems () {
+    handleSeeMoreBtn () {
+      this.expandInclusions = true;
+      this.$ga.event({
+        eventCategory: 'button',
+        eventAction: 'click-doctors-solo-practice-see-more',
+        eventLabel: 'doctors-solo-practice-see-more'
+      });
+    },
+    handlePricingBtn (type) {
+      this.$ga.event({
+        eventCategory: 'button',
+        eventAction: `click-doctors-${type}-practice-btn`,
+        eventLabel: `doctors-${type}-practice-btn`
+      }); 
+    },
+    handlePricingMatrixBtn () {
+      this.$ga.event({
+        eventCategory: 'button',
+        eventAction: 'click-doctors-pricing-matrix',
+        eventLabel: 'doctors-pricing-matrix'
+      });
+    },
+     collapseItems () {
       this.expandInclusions = false;
       VueScrollTo.scrollTo(`#pricingContent`, 500, { easing: 'ease' });
     }

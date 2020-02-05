@@ -54,7 +54,8 @@
         ]
       }
     ],
-    "btnText": "Sign Up Free"
+    "btnText": "Sign Up Free",
+    "btnLink": "signup-individual"
   },
   {
     "title": "Group Practice",
@@ -70,6 +71,7 @@
       "✓ Clinic Website",
       "✓ Work Offline"
     ],
-    "btnText": "Start 14-day Trial"
+    "btnText": "Start 14-day Trial",
+    "btnLink": "signup-individual"
   }
 ]
