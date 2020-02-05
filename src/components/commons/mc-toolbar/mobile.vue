@@ -23,6 +23,7 @@
                 v-for="(item, key) in solutionsMenuItems" 
                 :key="key"
                 :to="{ name: item.route }"
+                @click.stop="handleToolbarLinkClick(`mobile-${item.route}`)"
               )
                 v-list-tile-content
                   v-list-tile-title 
@@ -31,7 +32,9 @@
               v-list-tile(
                 v-for="(link, key) in toolbarLinks"
                 :key="key"
-                :to="{ name: link.route }")
+                :to="{ name: link.route }"
+                @click.stop="handleToolbarLinkClick(`mobile-${link.id}`)"
+              )
                 v-list-tile-content
                   v-list-tile-title
                     b {{ link.name }}
@@ -46,6 +49,7 @@
                   v-for="(item, key) in section.items"
                   :key="key"
                   :to="{ name: item.route }"
+                  @click="handleToolbarLinkClick(`mobile-${item.route}`)"
                 )
                   v-list-tile-content
                     v-list-tile-title 
@@ -65,14 +69,14 @@
           v-btn(
               id="navdrawer-login-btn"
               :to="{ name: loginURL }"
-              @click.stop="handleLoginBtnMobile"
+              @click.stop="handleToolbarLinkClick(`mobile-${loginURL}`)"
             )
               strong.font-14.tab LOGIN
           v-btn(
             id="navdrawer-signup-btn"
             :color="$mcColors.mcAltGreen"
             :to="{ name: signUpURL }"
-            @click.stop="handleSignupBtnMobile"
+            @click.stop="handleToolbarLinkClick(`mobile-${signUpURL}`)"
           )
             strong.font-14.white--text.tab SIGN UP
 </template>
@@ -136,6 +140,14 @@ export default {
         ]
       }
     };
+  },
+  methods: {
+    handleToolbarLinkClick (link) {
+      this.$emit('toolbarLinkClick', link);
+    },
+    handleMycureLogo () {
+      this.$emit('logoClick');
+    }
   }
 };
 </script>

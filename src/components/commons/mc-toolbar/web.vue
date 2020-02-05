@@ -24,6 +24,7 @@
                   v-for="(item, key) in solutionsMenuItems"
                   :key="key"
                   :to="{ name: item.route }"
+                  @click="handleToolbarLinkClick(item.route)"
                 )
                   v-list-tile-content
                     v-list-tile-title {{ item.name }}
@@ -33,6 +34,7 @@
               :to="{ name: link.route }"
               :id="link.id"
               flat
+              @click.stop="handleToolbarLinkClick(link.id)"
             ).mx-0
               span.font-14.tab.text-none {{ link.name }}
           v-btn(
@@ -40,13 +42,14 @@
             :to="{ name: 'calendly' }"
             id="nav-specialized-book-demo"
             flat
+            @click.stop="handleToolbarLinkClick('nav-specialized-book-demo')"
           ).mx-0
             span.font-14.tab.text-none Book A Demo
           v-btn(
             flat
             :to="{ name: loginURL}"
-            id="toolbar-login-btn"
-            @click.stop="handleLoginBtn"
+            id="login-btn"
+            @click.stop="handleToolbarLinkClick('login-btn')"
           )
             v-img(:src="require(`@/assets/images/${loginIcon}.png`)")
             span.font-14.tab.text-none &nbsp;Login
@@ -54,21 +57,24 @@
             v-if="currentRoute === 'doctors-clinics' || currentRoute === 'specialized-clinics'"
             :color="$mcColors.mcAltGreen"
             :to="currentRoute === 'doctors-clinics' ? { name: 'signup-individual' } : { name: 'signup-choose' }"
-            id="toolbar-start-free-btn"
+            id="start-free-btn"
+            @click.stop="handleToolbarLinkClick('start-free-btn')"
           )
             strong.font-14.white--text.tab.text-none Start Free
           v-btn(
             v-else-if="currentRoute === 'multispecialty-clinics'"
             :color="$mcColors.mcAltGreen"
             :to="{ name: 'calendly' }"
-            id="toolbar-multispecialty-book-demo-btn"
+            id="multispecialty-book-demo-btn"
+            @click.stop="handleToolbarLinkClick('multispecialty-book-demo-btn')"
           )
             strong.font-14.white--text.tab.text-none Book A Free Demo
           v-btn(
             v-else
             :color="$mcColors.mcAltGreen"
             :to="{ name: signUpURL }"
-            id="toolbar-signup-btn"
+            id="signup-btn"
+            @click.stop="handleToolbarLinkClick('signup-btn')"
           )
             strong.font-14.white--text.tab.text-none Get Started
 </template>
@@ -116,6 +122,12 @@ export default {
     showNav (key) {
       if (key === 0) return true;
       return this.currentRoute === 'doctors-clinics' ? true : false;
+    },
+    handleToolbarLinkClick (link) {
+      this.$emit('toolbarLinkClick', link) ;
+    },
+    handleMycureLogo () {
+      this.$emit('logoClick');
     }
   }
 };

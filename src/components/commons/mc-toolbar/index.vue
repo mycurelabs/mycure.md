@@ -10,6 +10,8 @@
         :solutionsText="solutionsText"
         :toolbarLinks="toolbarLinks"
         :isMainRoute="isMainRoute"
+        @toolbarLinkClick="handleToolbarLinkClick($event)"
+        @logoClick="handleMycureLogo"
       )
     //- MOBILE
     div(v-else)
@@ -19,6 +21,8 @@
         :signUpURL="signUpURL"
         :solutionsMenuItems="solutionsMenuItems"
         :toolbarLinks="toolbarLinks"
+        @toolbarLinkClick="handleToolbarLinkClick($event)"
+        @logoClick="handleMycureLogo"
       )
     mc-cookie-prompt.cookie-prompt
 </template>
@@ -46,8 +50,8 @@ export default {
         { name: 'Multispecialty Clinics', route: 'multispecialty-clinics' }
       ],
       toolbarLinks: [
-        { id: 'nav-features', name: 'Features', route: 'features' },
-        { id: 'nav-pricing', name: 'Pricing', route: 'pricing' }
+        { id: 'features', name: 'Features', route: 'features' },
+        { id: 'pricing', name: 'Pricing', route: 'pricing' }
       ]
     };
   },
@@ -64,34 +68,6 @@ export default {
     showShadow () {
       this.scrollPosition !== 0 ? this.shadow = 'elevation-4' : this.shadow = '';
     },
-    handleLoginBtn () {
-      this.$ga.event({
-        eventCategory: 'button',
-        eventAction: 'click-toolbar-login-btn',
-        eventLabel: 'toolbar-login-btn'
-      });
-    },
-    handleSignupBtn () {
-      this.$ga.event({
-        eventCategory: 'button',
-        eventAction: 'click-toolbar-signup-btn',
-        eventLabel: 'toolbar-signup-btn'
-      });
-    },
-    handleLoginBtnMobile () {
-      this.$ga.event({
-        eventCategory: 'button',
-        eventAction: 'click-navdrawer-login-btn',
-        eventLabel: 'navdrawer-login-btn'
-      });
-    },
-    handleSignupBtnMobile () {
-      this.$ga.event({
-        eventCategory: 'button',
-        eventAction: 'click-navdrawer-signup-btn',
-        eventLabel: 'navdrawer-signup-btn'
-      });
-    },
     handleMycureLogo () {
       this.$ga.event({
         eventCategory: 'logo-btn',
@@ -99,18 +75,11 @@ export default {
         eventLabel: 'toolbar-mycure-logo'
       });
     },
-    handleToolbarFeaturesBtn () {
+    handleToolbarLinkClick (link) {
       this.$ga.event({
         eventCategory: 'button',
-        eventAction: 'click-toolbar-features-btn',
-        eventLabel: 'toolbar-features-btn'
-      });
-    },
-    handleToolbarCsrBtn () {
-      this.$ga.event({
-        eventCategory: 'button',
-        eventAction: 'click-toolbar-csr-btn',
-        eventLabel: 'toolbar-csr-btn'
+        eventAction: `click-toolbar-${link}`,
+        eventLabel: link
       });
     }
   },
