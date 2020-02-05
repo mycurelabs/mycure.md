@@ -48,7 +48,7 @@
                   v-btn(
                     id="pricing-multispecialty-signup-btn" 
                     @click.stop="handlePricingMultispecialtySignupBtn"
-                    color="#18c551" 
+                    :color="$mcColors.mcAltGreen" 
                     :to="{ name: 'signup-choose' }"
                     v-if="!card.isMoreButton").white--text 
                     strong {{card.buttonText}}
