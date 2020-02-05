@@ -6,20 +6,20 @@
         v-layout(row justify-center).text-xs-center
           h1.font-xl.text-xs-center {{ title }}
         v-layout(row wrap justify-center).pt-3
-          v-flex(xs12 md4)
+          v-flex(xs12 md5)
             v-list(two-line)
               v-list-tile(v-for="(reason,index) in reasons" :key="index" v-if="index<=2")
                 v-list-tile-action
                   img(:src="require(`@/assets/images/${checkIcon}.png`)" alt="Check icon")
                 v-list-tile-content
-                  span.font-18 {{ reason }}
-          v-flex(xs12 md4)
+                  span.font-21 {{ reason }}
+          v-flex(xs12 md5)
             v-list(two-line)
               v-list-tile(v-for="(reason,index) in reasons" :key="index" v-if="index>2")
                 v-list-tile-action
                   img(:src="require(`@/assets/images/${checkIcon}.png`)" alt="Check icon")
                 v-list-tile-content
-                  span.font-18 {{ reason }}
+                  span.font-21 {{ reason }}
         br
         v-layout(row wrap justify-center)
           //- TODO: href to where?
