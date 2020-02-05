@@ -11,14 +11,14 @@
                 v-list-tile-action
                   img(:src="require(`@/assets/images/${checkIcon}.png`)" alt="Check icon")
                 v-list-tile-content
-                  span.font-18 {{ problem }}
+                  span.font-21 {{ problem }}
           v-flex(xs12 md4)
             v-list(two-line).check-list.white
               v-list-tile(v-for="(problem,index) in clinicProblems" :key="index" v-if="index>2")
                 v-list-tile-action
                   img(:src="require(`@/assets/images/${checkIcon}.png`)" alt="Check icon")
                 v-list-tile-content
-                  span.font-18 {{ problem }}
+                  span.font-21 {{ problem }}
     div(v-else).white.pt-5
       v-container
         v-layout(row justify-center)
