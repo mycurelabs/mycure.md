@@ -5,17 +5,15 @@
         v-flex(xs12 md12).text-xs-center
           h1.font-xl.font-work-sans {{ faqsTitle }}
       v-layout(row wrap justify-center).pt-5
-        v-flex(xs12 md12)
+        v-flex(xs12 md9)
           div(
             v-for="(item, key) in faqsItems"
             :key="key"
           ).font-source-sans
             strong.font-18 • {{ item.question }}
             p.font-21 {{ item.answer }}
-            p(v-if="item.supplement").pre-white-space.font-21 {{ parseSupplement(item)}}
+            p(v-if="item.supplement" :class="{'pl-3' : !$isMobile}").font-21.pre-white-space {{ parseSupplement(item)}}
             br
-
-
 </template>
 
 <script>
@@ -65,7 +63,7 @@ export default {
         {
           question: 'How fast should my internet connection be when I’m using MYCURE?',
           answer: 'This varies on the number of users of the app. We encrypt and upload your records to our secure servers every time you process them. The download/upload speed should be at least:',
-          supplement: '5 Mbps → 1 to 3 simultaneous users 10 Mbps → 4 to 10 simultaneous users 15 Mbps and up → More than 10 users'
+          supplement: '• 5 Mbps → 1 to 3 simultaneous users • 10 Mbps → 4 to 10 simultaneous users • 15 Mbps and up → More than 10 users'
         }
       ]
     };
