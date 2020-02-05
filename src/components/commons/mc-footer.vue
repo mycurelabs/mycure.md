@@ -12,7 +12,7 @@
               ul.no-style-type
                 li.feature-text CLINIC SOLUTIONS
                 li(v-for="(solution, key) in clinicSolutions")
-                  router-link(:to="{ name: solution.learnLink }").link
+                  router-link(:to="{ name: solution.learnLink }" @click.stop="handleFooterSolution(solution.learnLink)").link
                     | {{ solution.header }}
                 li.pb-3
                   router-link(id="footer-features-link" @click.stop="handleFooterFeaturesLink" :to="{name: 'features'}" title="MYCURE Features").link Features
@@ -85,6 +85,13 @@ export default {
     };
   },
   methods: {
+    handleFooterSolution (link) {
+      this.$ga.event({
+        eventCategory: 'link',
+        eventAction: `click-footer-${link}`,
+        eventLabel: `footer-${link}`
+      });
+    },
     handleFooterFeaturesLink () {
       this.$ga.event({
         eventCategory: 'link',
