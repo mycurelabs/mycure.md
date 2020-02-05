@@ -6,6 +6,7 @@
       :title="title"
       :customPath="customPath"
       :image="image"
+      :imageWidth="$isMobile ? '100%' : '80%'"
     )
     //- MOBILE
     div(v-else)
