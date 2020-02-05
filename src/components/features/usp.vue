@@ -55,7 +55,7 @@ export default {
   },
   methods: {
     parseTitle (title) {
-      return parseTextWithNewLine(title, ['time ', 'for a ', 'patient-centric ']);
+      return parseTextWithNewLine(title, ['User-friendly ', 'efficient ', 'more ']);
     }
   }
 };
