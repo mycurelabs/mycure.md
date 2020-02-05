@@ -3,6 +3,7 @@
     features-diagram(
       :title="title"
       :image="image"
+      :image-width="$isMobile ? '100%' : '80%'"
     )
 </template>
 
