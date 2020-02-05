@@ -34,8 +34,10 @@
       v-flex(xs12).text-xs-center
         v-btn(
           :color="$mcColors.mcAltGreen"
+          :id="bookDemoId"
           dark
           large
+          @click.stop="handleBookDemoBtn"
         ).text-none.font-18.font-weight-bold Book A Free Demo
         br
         p.text-xs-center.font-18.py-3 Have questions? 
@@ -54,6 +56,7 @@ export default {
     return {
       title: 'Why do clinics switch to MYCURE?',
       customPath: 'multispecialty/',
+      bookDemoId: 'multispecialty-workflow-book-demo-btn',
       boldDescription: 'MYCURE makes record management easier for everyone.',
       diagrams: [
         {
@@ -83,7 +86,19 @@ export default {
       let message = `Hi, I would like to know more about the Clinic Management System for Multispecialty Clinics.`;
       window.$crisp.push(['do', 'chat:toggle']);
       window.$crisp.push(['do', 'message:send', ['text', message]]);
+      this.$ga.event({
+        eventCategory: 'button',
+        eventAction: 'click-multispecialty-chat-btn',
+        eventLabel: 'multispecialty-chat-btn'
+      });
     },
+    handleBookDemoBtn () {
+      this.$ga.event({
+        eventCategory: 'button',
+        eventAction: `click-${this.$isMobile ? 'mobile-' : ''}${this.bookDemoId}`,
+        eventLabel: this.bookDemoId
+      });
+    }
   }
 };
 </script>
