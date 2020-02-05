@@ -97,6 +97,11 @@ export default {
   methods: {
     toggleChat () {
       window.$crisp.push(['do', 'chat:toggle']);
+      this.$ga.event({
+        eventCategory: 'button',
+        eventAction: 'click-csr-contact-us',
+        eventLabel: 'csr-contact-us'
+      });
     },
     parseTitle (title, indicators) {
       return parseTextWithNewLine(title, [...indicators]);
