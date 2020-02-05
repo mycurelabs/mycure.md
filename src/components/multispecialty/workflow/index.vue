@@ -5,15 +5,18 @@
       :description="description"
       :customPath="customPath"
     )
+      strong(slot="add-content").font-16.text-xs-center 
+        br
+        | {{ boldDescription }}
       v-container(slot="diagram-content").pa-0
-        v-layout(row :wrap="$isMobile")
+        v-layout(row :wrap="$isMobile" justify-center)
           v-flex(
             v-for="(diagram, key) in diagrams"
             :key="key"
             xs12
-            md6
-            :class="key === 0  && !$isMobile? 'text-xs-right' : 'text-xs-left'"
-          ).mx-4
+            md5
+            :class="[{ 'text-xs-right' : key === 0  && !$isMobile }, {'verticalLine' : key === 0 && !$isMobile }]"
+          ).mx-2.px-4
             h2 {{ diagram.title }}
               span(v-if="key === 1").font-mc-blue &nbsp;✓
             br
@@ -23,13 +26,10 @@
               :alt="diagram.image"
               width="100%"
             )
-            div(v-if="$isMobile").text-xs-center
+            div.text-xs-center
               br
-              h2(:class="key === 0 ? 'font-weight-bold' : 'font-weight-light'").pre-white-space {{ diagram.endText }}
+              h2(:class="key === 0 ? 'font-weight-bold' : 'font-weight-light'").font-s.pre-white-space {{ diagram.endText }}
               br
-        v-layout(row v-if="!$isMobile").pt-4
-          v-flex(v-for="(diagram, key) in diagrams" :key="key" xs12 md6).text-xs-center
-            h2(:class="key === 0 ? 'font-weight-bold' : 'font-weight-light'").pre-white-space {{ diagram.endText }}
     v-layout(row justify-center align-center).pt-4
       v-flex(xs12).text-xs-center
         v-btn(
@@ -54,6 +54,7 @@ export default {
     return {
       title: 'Why do clinics switch to MYCURE?',
       customPath: 'multispecialty/',
+      boldDescription: 'MYCURE makes record management easier for everyone.',
       diagrams: [
         {
           title: 'Other Providers',
@@ -70,8 +71,8 @@ export default {
   },
   computed: {
     description () {
-      const desc = 'Smoothly integrate your patient records from registration to billing. MYCURE makes record management easier for everyone.';
-      return parseTextWithNewLine(desc, ['billing. ']);
+      const desc = 'Smoothly integrate your patient records from registration to billing.';
+      return desc;
     }
   },
   methods: {
@@ -86,3 +87,9 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.verticalLine {
+  border-right: 1px solid lightgray;
+}
+</style>

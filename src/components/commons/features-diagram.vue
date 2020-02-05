@@ -5,6 +5,7 @@
         v-flex(xs12 md12).text-xs-center
           h1(:class="{'pre-white-space': !$isMobile}").text-xs-center.font-work-sans.lh-title.font-xl {{ title }}
           p(:class="{'pre-white-space': !$isMobile}").font-16.text-xs-center.pt-3 {{ description }}
+            slot(name="add-content")
       div.pt-5.text-xs-center.justify-center.center
         img(
           v-if="image !== ''"
