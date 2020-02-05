@@ -13,6 +13,7 @@ div
                   :color="$mcColors.mcAltGreen"
                   large
                   :to="{name: 'signup-choose'}"
+                  @click.stop="handleFeaturesSignUp"
                 ).text-none.white--text.mt-4.btnHeight
                   strong.font-18 {{ btnText }}
             v-flex(xs12 md6 text-xs-right)
@@ -37,6 +38,7 @@ div
           large
           block
           :to="{name: 'signup-choose'}"
+          @click.stop="handleFeaturesSignUp"
         ).uspMobileBtn
           strong.font-25.text-none.white--text {{ btnText }}
 </template>
@@ -56,6 +58,13 @@ export default {
   methods: {
     parseTitle (title) {
       return parseTextWithNewLine(title, ['User-friendly ', 'efficient ', 'more ']);
+    },
+    handleFeaturesSignUp () {
+      this.$ga.event({
+        eventCategory: 'button',
+        eventAction: 'click-features-signup-btn',
+        eventLabel: 'features-signup-btn'
+      });
     }
   }
 };
