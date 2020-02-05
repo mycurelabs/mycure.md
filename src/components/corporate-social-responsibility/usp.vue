@@ -59,6 +59,11 @@ export default {
   methods: {
     toggleChat () {
       window.$crisp.push(['do', 'chat:toggle']);
+      this.$ga.event({
+        eventCategory: 'button',
+        eventAction: 'click-csr-learn-more',
+        eventLabel: 'csr-learn-more'
+      });
     }
   }
 };
