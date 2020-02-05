@@ -9,6 +9,8 @@
             :color="btnColor"
             large
             dark
+            :id="ctaBtnId"
+            @click.stop="handleCtaBtnClick"
           ).text-none.font-weight-bold {{ ctaBtnText }}
     br
     v-layout(row justify-center v-if="ctaSecondaryBtnText")
@@ -16,6 +18,8 @@
         v-btn(
           flat
           :color="$mcColors.mcBlue"
+          :id="ctaSecondaryBtnId"
+          @click.stop="handleCtaSecondaryBtnClick"
         ).text-none.font-weight-bold {{ ctaSecondaryBtnText }}
       br
     v-layout(row justify-center).py-5
@@ -72,6 +76,28 @@ export default {
     },
     ctaSecondaryBtnText () {
       return !this.ctaContent ? '' : this.ctaContent.secondaryBtnText;
+    },
+    ctaBtnId () {
+      return `cta-${this.$route.name}-btn`;
+    },
+    ctaSecondaryBtnId () {
+      return `cta-${this.$route.name}-secondary-btn`;
+    }
+  },
+  methods: {
+    handleCtaBtnClick () {
+      this.$ga.event({
+        eventCategory: 'button',
+        eventAction: `click-${this.ctaBtnId}`,
+        eventLabel: this.ctaBtnId
+      });
+    },
+    handleCtaSecondaryBtnClick () {
+      this.$ga.event({
+        eventCategory: 'button',
+        eventAction: `click-${this.ctaSecondaryBtnId}`,
+        eventLabel: this.ctaSecondaryBtnId
+      });
     }
   }
 };
