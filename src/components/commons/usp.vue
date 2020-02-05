@@ -13,6 +13,7 @@
                 :color="$mcColors.mcAltGreen"
                 :id="btnId"
                 large
+                @click.stop="handleUspBtnClick"
               ).text-none.white--text
                 strong.font-s {{ btnText }}    
     div.outer-image-container
@@ -65,6 +66,15 @@ export default {
       default: ''
     }
   },
+  methods: {
+    handleUspBtnClick () {
+      this.$ga.event({
+        eventCategory: 'button',
+        eventAction: `click-${this.btnId}`,
+        eventLabel: `${this.btnId}`
+      });
+    }
+  }
 };
 </script>
 
