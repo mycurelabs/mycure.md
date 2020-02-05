@@ -28,12 +28,18 @@
               v-flex(xs12 md4)
                 v-btn(
                   :color="$mcColors.mcBlue"
+                  :to="{ name: 'signup-choose'}"
                   dark
+                  :id="suite.btnId"
+                  @click.stop="handleStartFreeBtn(suite.btnId)"
                 ).text-none.font-weight-bold Start Free
               v-flex(xs12 md7).pl-1.text-xs-right
                 v-btn(
                   flat
                   :color="$mcColors.mcBlue"
+                  :id="suite.learnId"
+                  :to="{ name: suite.learnLink }"
+                  @click.stop="handleLearnMoreBtn(suite.learnId)"
                 ).text-none.font-weight-bold Learn More >
 </template>
 
@@ -51,6 +57,14 @@ export default {
     },
     panelSubtitle () {
       return HEALTH_SUITES_HEADERS.subtitle;
+    }
+  },
+  methods: {
+    handleStartFreeBtn (btnId) {
+      this.$emit('startFree', btnId);
+    },
+    handleLearnMoreBtn (learnId) {
+      this.$emit('learnMore', learnId);
     }
   }
 };

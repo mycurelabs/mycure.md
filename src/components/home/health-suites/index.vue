@@ -1,9 +1,15 @@
 <template lang="pug">
   div
     div(v-if="!$isMobile").pt-5.health-suites
-      health-suites-web
+      health-suites-web(
+        @startFree="handleStartFreeBtn($event)"
+        @learnMore="handleLearnMoreBtn($event)"
+      )
     div(v-else).pt-5.health-suites
-      health-suites-mobile
+      health-suites-mobile(
+        @startFree="handleStartFreeBtn($event)"
+        @learnMore="handleLearnMoreBtn($event)"
+      )
       
 </template>
 
@@ -14,6 +20,22 @@ export default {
   components: {
     HealthSuitesWeb,
     HealthSuitesMobile
+  },
+  methods: {
+    handleStartFreeBtn (btn) {
+      this.$ga.event({
+        eventCategory: 'button',
+        eventAction: `click-${btn}`,
+        eventLabel: btn
+      });
+    },
+    handleLearnMoreBtn (btn) {
+      this.$ga.event({
+        eventCategory: 'link',
+        eventAction: `click-${btn}`,
+        eventLabel: btn
+      });
+    } 
   }
 };
 </script>

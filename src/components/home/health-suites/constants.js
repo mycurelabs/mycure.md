@@ -15,8 +15,10 @@ export const HEALTH_SUITES_ITEMS = [
       'SMS Reminders'
     ],
     image: 'mycure-p2-badge-doctor-clinic',
-    btnlink: '',
-    learnLink: ''
+    btnlink: 'signup-choose',
+    btnId: 'home-doctors-clinics-start-free',
+    learnLink: 'doctors-clinics',
+    learnId: 'home-doctors-clinics-learn-more'
   },
   {
     header: 'Specialized Clinics',
@@ -30,7 +32,9 @@ export const HEALTH_SUITES_ITEMS = [
     ],
     image: 'mycure-p2-badge-specialized-clinic',
     btnlink: '',
-    learnLink: ''
+    btnId: 'home-specialized-clinics-start-free',
+    learnLink: 'specialized-clinics',
+    learnId: 'home-specialized-clinics-learn-more'
   },
   {
     header: 'Multispecialty Clinics',
@@ -44,6 +48,8 @@ export const HEALTH_SUITES_ITEMS = [
     ],
     image: 'mycure-p2-badge-multispecialty',
     btnlink: '',
-    learnLink: ''
+    btnId: 'home-multispecialty-clinics-start-free',
+    learnLink: 'multispecialty-clinics',
+    learnId: 'home-multispecialty-clinics-learn-more'
   }
 ];
