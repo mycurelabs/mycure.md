@@ -6,7 +6,7 @@
           center
             strong.font-18.font-mc-blue SYNCBASE TECHNOLOGY
           v-layout(row justify-center).add-spacing
-            span.font-48.text-xs-center Go offline safely and securely.
+            span.font-48.text-xs-center.font-work-sans Go offline safely and securely.
           v-layout(row justify-center).add-spacing
             span.font-18.text-xs-center The holy grail of online-offline technology is here. Work within your local 
               br
@@ -27,7 +27,7 @@
           br
           br
           v-layout(row justify-center)
-            p.font-40.text-xs-center Go offline safely and securely.
+            p.font-40.text-xs-center.font-work-sans Go offline safely and securely.
           br
           br
           v-layout(row justify-center)

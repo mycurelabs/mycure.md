@@ -5,7 +5,7 @@
         center
           strong.font-18.font-mc-blue MEDICAL RECORDS
         v-layout(row justify-center text-xs-center).add-spacing
-          span.font-48 Designed for doctors, by doctors.
+          span.font-48.font-work-sans Designed for doctors, by doctors.
         v-layout(row justify-center).add-spacing
           v-flex(xs7 align-self-center).text-xs-center
             span.font-18 Record full medical history, vitals, and physical exam records according to SOAP charting. 
@@ -33,7 +33,7 @@
         br
         br
         v-layout(row justify-center)
-          p.font-40.text-xs-center Designed for doctors, by doctors.
+          p.font-40.text-xs-center.font-work-sans Designed for doctors, by doctors.
         br
         v-layout(row justify-center)
           p.font-18.text-xs-center Record full medical history, vitals, and physical exam records according

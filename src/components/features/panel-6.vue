@@ -5,7 +5,7 @@
         center
           strong.font-18.font-mc-blue LABORATORY &amp; IMAGING
         v-layout(row justify-center).add-spacing
-          span.font-48.text-xs-center Record and retrieve diagnostic results right where you need them.
+          span.font-48.text-xs-center.font-work-sans Record and retrieve diagnostic results right where you need them.
         v-layout(row justify-center).add-spacing
           span.font-18.text-xs-center MYCURE can communicate with modern diagnostic machines through 
             br
@@ -38,7 +38,7 @@
         br
         br
         v-layout(row justify-center)
-          p.font-40.text-xs-center Record and retrieve diagnostic results right where you need them.
+          p.font-40.text-xs-center.font-work-sans Record and retrieve diagnostic results right where you need them.
         br
         v-layout(row justify-center)
           p.font-18.text-xs-center MYCURE can communicate with modern diagnostic machines through HL7 interfacing and PACS configurations. 

@@ -3,7 +3,7 @@
     v-container(v-for="(panel,key) in moduleList" :key="key")
       v-layout(row justify-center)
         v-flex(xs10).text-xs-center
-          span.font-48 {{ panel.type }}
+          span.font-48.font-work-sans {{ panel.type }}
           br
           span.font-18 {{ panel.description }}
       br

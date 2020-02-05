@@ -5,7 +5,7 @@
         center
           strong.font-18.font-mc-blue REPORTS AND ANALYTICS
         v-layout(row justify-center).add-spacing
-          span.font-48.text-xs-center Never miss out on important 
+          span.font-48.text-xs-center.font-work-sans Never miss out on important 
             br
             | business decisions. 
         v-layout(row justify-center).add-spacing
@@ -25,7 +25,7 @@
         br
         br
         v-layout(row justify-center)
-          p.font-40.text-xs-center Never miss out on important business decisions. 
+          p.font-40.text-xs-center.font-work-sans Never miss out on important business decisions. 
         br
         br
         v-layout(row justify-center)

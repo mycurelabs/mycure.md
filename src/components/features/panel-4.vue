@@ -5,7 +5,7 @@
         center
           strong.font-18.font-mc-blue REGISTRATION AND QUEUEING
         v-layout(row justify-center text-xs-center).add-spacing
-          span.font-48 Value everyone's time more effectively.
+          span.font-48.font-work-sans Value everyone's time more effectively.
         v-layout(row justify-center).add-spacing
           v-flex(xs7 align-self-center).text-xs-center
             span.font-18 With MYCURE, queueing is easier done than spelled. Patients easily register
@@ -34,7 +34,7 @@
         br
         br
         v-layout(row justify-center)
-          p.font-40.text-xs-center Value everyone's time more effectively.
+          p.font-40.text-xs-center.font-work-sans Value everyone's time more effectively.
         br
         v-layout(row justify-center)
           p.font-18.text-xs-center With MYCURE, queueing is easier done than spelled. Patients easily register via kiosks.
