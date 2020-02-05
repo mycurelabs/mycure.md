@@ -27,11 +27,11 @@
               v-flex(xs4 md4)
                 v-btn(
                   :color="$mcColors.mcBlue"
+                  right
                   dark
                 ).text-none.font-weight-bold Start Free
-              v-flex(xs8 md8).pl-1
+              v-flex(xs8 md8).pl-1.text-xs-right
                 v-btn(
-                  left
                   flat
                   :color="$mcColors.mcBlue"
                 ).text-none.font-weight-bold Learn More >

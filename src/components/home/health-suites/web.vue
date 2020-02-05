@@ -30,9 +30,8 @@
                   :color="$mcColors.mcBlue"
                   dark
                 ).text-none.font-weight-bold Start Free
-              v-flex(xs12 md8).pl-1
+              v-flex(xs12 md7).pl-1.text-xs-right
                 v-btn(
-                  left
                   flat
                   :color="$mcColors.mcBlue"
                 ).text-none.font-weight-bold Learn More >
