@@ -7,6 +7,7 @@
         div.text-xs-center.pt-2
           v-btn(
             :color="btnColor"
+            :to="{ name: ctaBtnLink }"
             large
             dark
             :id="ctaBtnId"
@@ -19,6 +20,7 @@
           flat
           :color="$mcColors.mcBlue"
           :id="ctaSecondaryBtnId"
+          :to="{ name: ctaSecondaryBtnLink }"
           @click.stop="handleCtaSecondaryBtnClick"
         ).text-none.font-weight-bold {{ ctaSecondaryBtnText }}
       br
@@ -75,13 +77,19 @@ export default {
       return !this.ctaContent || !this.ctaContent.image ? 'mycure-web-footer' : this.ctaContent.image;
     },
     ctaSecondaryBtnText () {
-      return !this.ctaContent ? '' : this.ctaContent.secondaryBtnText;
+      return !this.ctaContent ? 'Request A Demo' : this.ctaContent.secondaryBtnText;
     },
     ctaBtnId () {
       return `cta-${this.$route.name}-btn`;
     },
     ctaSecondaryBtnId () {
       return `cta-${this.$route.name}-secondary-btn`;
+    },
+    ctaBtnLink () {
+      return !this.ctaContent || !this.ctaContent.btnLink ? 'signup-choose' : this.ctaContent.btnLink;
+    },
+    ctaSecondaryBtnLink () {
+      return !this.ctaContent || !this.ctaContent.secondaryBtnLink ? 'calendly' : this.ctaContent.secondaryBtnLink;
     }
   },
   methods: {
