@@ -47,8 +47,10 @@
         v-btn(
           :color="$mcColors.mcBlue"
           :to="{ name: 'features' }"
+          :id="exploreFeaturesId"
           dark
           large
+          @click.stop="handleExploreFeaturesBtn"
         ).text-none.font-18.font-weight-bold Explore the Features
 </template>
 
@@ -63,6 +65,7 @@ export default {
   data () {
     return {
       customPath: 'multispecialty/',
+      exploreFeaturesId: 'multispecialty-explore-features-btn',
       image: 'mycure-home-web-complete-for-clinics-of-all-sizes-diagram',
       multiFeatures: [
           {
@@ -102,6 +105,15 @@ export default {
     title () {
       const title = 'Provide the best service to your patients.';
       return parseTextWithNewLine(title, ['service']);
+    }
+  },
+  methods: {
+    handleExploreFeaturesBtn () {
+      this.$ga.event({
+        eventCategory: 'button',
+        eventAction: `click-${this.$isMobile ? 'mobile-': ''}${this.exploreFeaturesId}`,
+        eventLabel: this.exploreFeaturesId
+      });
     }
   }
 };
