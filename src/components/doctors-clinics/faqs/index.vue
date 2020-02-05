@@ -10,8 +10,9 @@
             v-for="(item, key) in faqsItems"
             :key="key"
           ).font-source-sans
-            strong.font-18 • {{ item.question }}
-            p.font-21 {{ item.answer }}
+            img(:src="require(`@/assets/images/${questionMark}.png`)" :alt="questionMark" width="18px")
+            strong.font-18 &nbsp;{{ item.question }}
+            p.font-21.pl-1 {{ item.answer }}
             p(v-if="item.supplement" :class="{'pl-3' : !$isMobile}").font-21.pre-white-space {{ parseSupplement(item)}}
             br
 </template>
@@ -21,6 +22,7 @@ import { parseTextWithNewLine } from '@/utils';
 export default {
   data () {
     return {
+      questionMark: 'mycure-icon-question-mark',
       faqsTitle: 'Frequently Asked Questions (FAQs)',
       faqsImage: 'mycure-doctor-clinic-faqs',
       faqsItems: [
