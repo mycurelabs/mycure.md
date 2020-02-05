@@ -2,13 +2,14 @@
   div
     //- TODO: Configure Google Analytics Events
     //- WEB
-    div(v-if="!$isMd" :class="shadow").toolbarMain
+    div(v-if="!$isMd" :class="[shadow, isMainRoute ? 'mc-gradient-grey' : 'white']").toolbarMain
       toolbar-web(
         :signUpURL="signUpURL"
         :loginURL="loginURL"
         :solutionsMenuItems="solutionsMenuItems"
         :solutionsText="solutionsText"
         :toolbarLinks="toolbarLinks"
+        :isMainRoute="isMainRoute"
       )
     //- MOBILE
     div(v-else)
@@ -49,6 +50,12 @@ export default {
         { id: 'nav-pricing', name: 'Pricing', route: 'pricing' }
       ]
     };
+  },
+  computed: {
+    isMainRoute () {
+      const routes = ['home', 'doctors-clinics', 'specialized-clinics', 'multispecialty-clinics'];
+      return routes.includes(this.$route.name);
+    }
   },
   methods: {
     updateScroll () {
@@ -121,7 +128,6 @@ export default {
   position: fixed; 
   width: 100%; 
   z-index: 200;
-  background-color: #f0f0f0;
 }
 .cookie-prompt {
   position: absolute; 
