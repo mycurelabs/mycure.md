@@ -13,7 +13,7 @@
           v-for="(expert, key) in expertise" 
           :key="key"
           :class="[(key+1)%2 === 0 && !$isMobile? 'grey-panel' : 'white-panel', {'my-4' : !$isMobile}, {'mx-5': !$isMobile}]"
-        )
+        ).pb-3
           v-flex(xs12 md6 align-center :class="{'text-xs-center' : !$isMobile}")
             img(
               :src="require(`@/assets/images/specialized/${expert.image}.png`)"
