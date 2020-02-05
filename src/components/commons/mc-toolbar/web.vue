@@ -27,20 +27,21 @@
                 )
                   v-list-tile-content
                     v-list-tile-title {{ item.name }}
+          div(v-for="(link, key) in toolbarLinks" :key="key")
+            v-btn(
+              v-if="showNav(key)"
+              :to="{ name: link.route }"
+              :id="link.id"
+              flat
+            ).mx-0
+              span.font-14.tab.text-none {{ link.name }}
           v-btn(
-            :to="{ name: featuresLink.route }"
-            :id="featuresLink.id"
+            v-if="currentRoute === 'specialized-clinics'"
+            :to="{ name: 'calendly' }"
+            id="nav-specialized-book-demo"
             flat
           ).mx-0
-            span.font-14.tab.text-none {{ featuresLink.name }}
-          //- v-btn(
-          //-   v-for="(link, key) in toolbarLinks" 
-          //-   :key="key" 
-          //-   :to="{ name: link.route }" 
-          //-   :id="link.id" 
-          //-   flat
-          //- ).mx-0
-          //-   span.font-14.tab.text-none {{ link.name }}
+            span.font-14.tab.text-none Book A Demo
           v-btn(
             flat
             :to="{ name: loginURL}"
@@ -50,10 +51,24 @@
             v-img(:src="require(`@/assets/images/${loginIcon}.png`)")
             span.font-14.tab.text-none &nbsp;Login
           v-btn(
+            v-if="currentRoute === 'doctors-clinics' || currentRoute === 'specialized-clinics'"
+            :color="$mcColors.mcAltGreen"
+            :to="currentRoute === 'doctors-clinics' ? { name: 'signup-individual' } : { name: 'signup-choose' }"
+            id="toolbar-start-free-btn"
+          )
+            strong.font-14.white--text.tab.text-none Start Free
+          v-btn(
+            v-else-if="currentRoute === 'multispecialty-clinics'"
+            :color="$mcColors.mcAltGreen"
+            :to="{ name: 'calendly' }"
+            id="toolbar-multispecialty-book-demo-btn"
+          )
+            strong.font-14.white--text.tab.text-none Book A Free Demo
+          v-btn(
+            v-else
             :color="$mcColors.mcAltGreen"
             :to="{ name: signUpURL }"
             id="toolbar-signup-btn"
-            @click.stop="handleSignupBtn"
           )
             strong.font-14.white--text.tab.text-none Get Started
 </template>
@@ -89,8 +104,14 @@ export default {
     };
   },
   computed: {
-    featuresLink () {
-      return this.toolbarLinks[0];
+    currentRoute () {
+      return this.$route.name;
+    }
+  },
+  methods: {
+    showNav (key) {
+      if (key === 0) return true;
+      return this.currentRoute === 'doctors-clinics' ? true : false;
     }
   }
 };
