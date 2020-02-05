@@ -98,7 +98,7 @@ export default {
     toggleChat () {
       window.$crisp.push(['do', 'chat:toggle']);
     },
-    parseTitle(title, indicators) {
+    parseTitle (title, indicators) {
       return parseTextWithNewLine(title, [...indicators]);
     }
   }
