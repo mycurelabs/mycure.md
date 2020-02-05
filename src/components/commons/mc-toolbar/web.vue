@@ -48,7 +48,7 @@
             @click.stop="handleLoginBtn"
           )
             v-img(:src="require(`@/assets/images/${loginIcon}.png`)")
-            strong.font-14.tab.text-none &nbsp;Login
+            span.font-14.tab.text-none &nbsp;Login
           v-btn(
             :color="$mcColors.mcAltGreen"
             :to="{ name: signUpURL }"

@@ -30,7 +30,7 @@
               :key="index"
               xs4
               align-center
-            ).text-xs-center.mx-5
+            ).text-xs-center.mx-4
               img(:src="require(`@/assets/images/${customPath}${highlight.image}`)" :alt="highlight.title").storyflowAssetHorizontal
               br
               strong(v-if="hasTitle").font-25 {{ highlight.title }}

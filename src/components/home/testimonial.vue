@@ -17,8 +17,8 @@
                 column 
                 align-center
               )
-                v-flex(xs12 md10 justify-center align-center).text-xs-center.pa-5
-                  h2.black--text.mb-5.font-m {{ testimonial.message }}
+                v-flex(xs12 md12 justify-center align-center).text-xs-center.pa-5
+                  h2.black--text.mb-5.font-25 {{ testimonial.message }}
                   strong.font-18.font-mc-blue {{ testimonial.name }}
                   br
                   span.font-18.subheading.grey--text {{ testimonial.position }}
