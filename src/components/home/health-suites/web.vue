@@ -24,18 +24,20 @@
               v-flex(xs12 md8).pl-1
                 ul
                   li(v-for="(feat, key) in suite.features" :key="key") {{ feat }}
-            v-layout(row wrap)
-              v-flex(xs12 md4)
+            v-layout(row wrap).mx-2
+              v-flex(xs12 md6)
                 v-btn(
                   :color="$mcColors.mcBlue"
                   :to="{ name: 'signup-choose'}"
                   dark
+                  block
                   :id="suite.btnId"
                   @click.stop="handleStartFreeBtn(suite.btnId)"
                 ).text-none.font-weight-bold Start Free
-              v-flex(xs12 md7).pl-1.text-xs-right
+              v-flex(xs12 md6).pl-1.text-xs-right
                 v-btn(
-                  flat
+                  outline
+                  block
                   :color="$mcColors.mcBlue"
                   :id="suite.learnId"
                   :to="{ name: suite.learnLink }"

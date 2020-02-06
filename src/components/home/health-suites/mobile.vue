@@ -23,19 +23,21 @@
                 ul
                   li(v-for="(feat, key) in suite.features" :key="key") {{ feat }}
                   br(v-if="key === 1")
-            v-layout(row wrap).pl-3.pt-2
-              v-flex(xs4 md4)
+            v-layout(row wrap).mx-2.pt-2
+              v-flex(xs6 md6)
                 v-btn(
                   :color="$mcColors.mcBlue"
                   right
                   dark
+                  block
                   :to="{ name: 'signup-choose'}"
                   :id="suite.btnId"
                   @click.stop="handleStartFreeBtn(suite.btnId)"
                 ).text-none.font-weight-bold Start Free
-              v-flex(xs8 md8).pl-1.text-xs-right
+              v-flex(xs6 md6)
                 v-btn(
-                  flat
+                  outline
+                  block
                   :color="$mcColors.mcBlue"
                   :id="suite.learnId"
                   :to="{ name: suite.learnLink }"
