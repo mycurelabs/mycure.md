@@ -212,6 +212,9 @@ export default {
     text-decoration: none;
     color: grey;
   }
+  .link:hover {
+    color: white;
+  }
   .link {
     color: grey;
   }
