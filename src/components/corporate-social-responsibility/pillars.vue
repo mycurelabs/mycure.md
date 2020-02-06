@@ -8,7 +8,7 @@
               div.hr-blue.margin-top-50
               v-layout(row justify-center).pb-5
                 v-flex(xs7).text-xs-center
-                  h2.font-36.font-work-sans.pre-white-space {{ item.title  }}
+                  h2.font-40.font-work-sans.pre-white-space {{ item.title  }}
               v-layout(row justify-center)
                 v-flex(xs12 md5).pr-5
                   img(
@@ -16,21 +16,21 @@
                     height="300"
                   )
                 v-flex(xs12 md8 align-self-center)
-                  //- span(v-if="i===1").font-weight-bold.font-18 Solo is designed to work in areas with zero or low internet.                 
-                  span(v-if="i===1").font-18.font-weight-bold Solo is designed to work in areas with zero or low internet.
+                  //- span(v-if="i===1").font-weight-bold.font-21 Solo is designed to work in areas with zero or low internet.                 
+                  span(v-if="i===1").font-21.font-weight-bold Solo is designed to work in areas with zero or low internet.
                     |
-                    span.font-18.font-weight-regular &nbsp;Ideal to be used in health community centers as well as doctors in the field, the ones doing voluntary work on mission.
-                  p.font-18 {{ item.content1 }}
-                  p.font-18 {{ item.content2 }}
-                    span(v-if="i === 1").font-18.font-weight-bold &nbsp;More importantly, it's FREE.
-                  p.font-18(v-if="i === 1") For more information on Solo, please email us at #[span.primary--text hello@mycure.md].
+                    span.font-21.font-weight-regular &nbsp;Ideal to be used in health community centers as well as doctors in the field, the ones doing voluntary work on mission.
+                  p.font-21 {{ item.content1 }}
+                  p.font-21 {{ item.content2 }}
+                    span(v-if="i === 1").font-21.font-weight-bold &nbsp;More importantly, it's FREE.
+                  p.font-21(v-if="i === 1") For more information on Solo, please email us at #[span.primary--text hello@mycure.md].
                   v-btn(
                     v-if="i === 3"
                     color="#2e9fdf"
                     @click.stop="toggleChat"
                     large
                   ).text-none
-                    strong.font-18.white--text Contact us 
+                    strong.font-21.white--text Contact us 
     div(v-else)
       v-container.pt-5
         div(v-for="(item, i) in items" :key="i").pb-5
@@ -44,20 +44,20 @@
                 height="300"
               )
             v-flex(xs12 md12 align-self-center).pt-3.text-xs-center
-              span(v-if="i===1").font-18.font-weight-bold Solo is designed to work in areas with zero or low internet.
+              span(v-if="i===1").font-21.font-weight-bold Solo is designed to work in areas with zero or low internet.
                 |
-                span.font-18.font-weight-regular &nbsp; Ideal to be used in health community centers as well as doctors in the field, the ones doing voluntary work on mission.
-              p.font-18 {{ item.content1 }}
-              p.font-18 {{ item.content2 }}
-                span(v-if="i === 1").font-18.font-weight-bold &nbsp;More importantly, it's FREE.
-              p.font-18(v-if="i === 1") For more information on Solo, please email us at #[span.primary--text hello@mycure.md].
+                span.font-21.font-weight-regular &nbsp; Ideal to be used in health community centers as well as doctors in the field, the ones doing voluntary work on mission.
+              p.font-21 {{ item.content1 }}
+              p.font-21 {{ item.content2 }}
+                span(v-if="i === 1").font-21.font-weight-bold &nbsp;More importantly, it's FREE.
+              p.font-21(v-if="i === 1") For more information on Solo, please email us at #[span.primary--text hello@mycure.md].
               v-btn(
                 v-if="i === 3"
                 color="#2e9fdf"
                 @click.stop="toggleChat"
                 large
               ).text-none
-                strong.font-18.white--text Contact us 
+                strong.font-21.white--text Contact us 
 </template>
 
 <script>

@@ -6,14 +6,14 @@ div
         div.panel-size.usp-panel
           v-layout(row justify-center)
             v-flex(xs12 md6)
-              h1.font-weight-bold.font-18.font-mc-blue.pb-3.uspMetaTitle MYCURE | Corporate Social Responsibility
-              h2.title-line-height.font-xl.font-weight-regular.font-work-sans.pb-4.pre-white-space {{ uspTitle }}
+              h1.font-weight-bold.font-21.font-mc-blue.pb-3.uspMetaTitle MYCURE | Corporate Social Responsibility
+              h2.title-line-height.font-xl.font-work-sans.pb-4.pre-white-space {{ uspTitle }}
               v-btn(
                 @click.stop="toggleChat"
                 :color="$mcColors.mcAltGreen"
                 large
               ).text-none.white--text.mt-4.btnHeight
-                strong.font-18 Learn More
+                strong.font-21 Learn More
             v-flex(xs12 md6 text-xs-right)
               img(
                 :src="require(`@/assets/images/mycure-csr-web-banner-community.png`)"
@@ -23,7 +23,7 @@ div
   div(v-else)
     v-layout(column wrap justify-center).mt-5
       h1.font-weight-bold.font-18.font-mc-blue.pb-2.text-xs-center MYCURE | Corporate Social Responsibility
-      h2.font-weight-regular.title-line-height.pb-5.text-xs-center.font-xl.font-work-sans MYCURE cares for people who care for people.
+      h2.title-line-height.pb-5.text-xs-center.font-xl.font-work-sans MYCURE cares for people who care for people.
       v-layout(row justify-center).mb-5
         img(
           :src="require(`@/assets/images/mycure-csr-web-banner-community.png`)"
