@@ -2,23 +2,12 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import { core } from '@mycure/sdk';
 
-import doctorsClinics from '@/views/doctors-clinics';
-import multispecialtyClinics from '@/views/multispecialty';
-import specializedClinics from '@/views/specialized';
 import csr from '@/views/csr.vue';
-import features from '@/views/features.vue';
-import forgotPassword from '@/views/forgot-password.vue';
-import home from '@/views/home';
 import notFound from '@/views/404.vue';
 import ourStory from '@/views/our-story.vue';
-import pricing from '@/views/pricing.vue';
 import privacyPolicy from '@/views/privacy-policy.vue';
-import signin from '@/views/signin.vue';
-import signupChoose from '@/views/signup-choose.vue';
-import signupIndividual from '@/views/signup-individual.vue';
 import signupIndividualStep1 from '@/components/signup-individual/step-1.vue';
 import signupIndividualStep2 from '@/components/signup-individual/step-2.vue';
-import signupMultispecialty from '@/views/signup-multispecialty.vue';
 import signupMultispecialtyStep1 from '@/components/signup-multispecialty/step-1.vue';
 import signupMultispecialtyStep2 from '@/components/signup-multispecialty/step-2.vue';
 import signupMultispecialtyStep3 from '@/components/signup-multispecialty/step-3.vue';
@@ -41,12 +30,12 @@ export default new Router({
     {
       path: '/',
       name: 'home',
-      component: home
+      component: () => import(/* webpackChunkName: 'home' */ '@/views/home')
     },
     {
       path: '/signin',
       name: 'signin', 
-      component: signin,
+      component: () => import(/* webpackChunkName: 'signin' */ '@/views/signin'),
       meta: {
         pageType: 'signin',
         pageName: 'Signin Page',
@@ -56,7 +45,7 @@ export default new Router({
     {
       path: '/forgot-password',
       name: 'forgot-password', 
-      component: forgotPassword,
+      component: () => import(/* webpackChunkName: 'forgot-password' */ '@/views/forgot-password'),
       meta: {
         pageType: 'forgot-password',
         pageName: 'Forgot Password Page',
@@ -66,7 +55,7 @@ export default new Router({
     {
       path: '/signup/choose',
       name: 'signup-choose',
-      component: signupChoose,
+      component: () => import(/* webpackChunkName: 'signup-choose' */ '@/views/signup-choose'),
       meta: {
         pageType: 'signup-choose',
         pageName: 'Signup Choose',
@@ -76,7 +65,7 @@ export default new Router({
     {
       path: '/signup/multispecialty',
       name: 'signup-multispecialty', 
-      component: signupMultispecialty,
+      component: () => import(/* webpackChunkName: 'signup-multispecialty' */  '@/views/signup-multispecialty'),
       redirect: '/signup/multispecialty/step-1',
       meta: {
         pageType: 'signup-multispecialty',
@@ -113,7 +102,7 @@ export default new Router({
     {
       path: '/signup/individual',
       name: 'signup-individual', 
-      component: signupIndividual,
+      component: () => import (/* webpackChunkName */ '@/views/signup-individual.vue'),
       redirect: '/signup/individual/step-1',
       meta: {
         pageType: 'signup-individual',
@@ -170,7 +159,7 @@ export default new Router({
       path: '/doctors-clinics',
       name: 'doctors-clinics',
       id: 'nav-doctors-clinics',
-      component: doctorsClinics,
+      component: () => import(/* webpackChunkName: 'doctors-clinics' */ '@/views/doctors-clinics'),
       meta: {
         pageType: 'clinic-solutions',
         pageName: 'Doctors Clinics'
@@ -180,7 +169,7 @@ export default new Router({
       path: '/multispecialty-clinics',
       name: 'multispecialty-clinics',
       id: 'nav-multispecialty-btn',
-      component: multispecialtyClinics,
+      component: () => import(/* webpackChunkName: 'multispecialty' */ '@/views/multispecialty'),
       meta: {
         pageType: 'clinic-solutions',
         pageName: 'Multispecialty Clinics'
@@ -190,7 +179,7 @@ export default new Router({
       path: '/specialized-clinics',
       name: 'specialized-clinics',
       id: 'nav-specialized-btn',
-      component: specializedClinics,
+      component: () => import(/* webpackChunkName: 'specialized' */ '@/views/specialized'),
       meta: {
         pageType: 'clinic-solutions',
         pageName: 'Specialized Clinics'
@@ -199,14 +188,13 @@ export default new Router({
     {
       path: '/pricing',
       name: 'pricing', 
-      component: pricing,
+      component: () => import(/* webpackChunkName */ '@/views/pricing.vue'),
       meta: {
         pageType: 'support',
         pageName: 'Pricing'
       }
     },
     {
-      // TODO: what if `/community` ? 
       path: '/corporate-social-responsibility',
       name: 'csr',
       id: 'toolbar-csr-btn', 
@@ -220,7 +208,7 @@ export default new Router({
       path: '/features',
       name: 'features',
       id: 'toolbar-features-btn', 
-      component: features,
+      component: () => import(/* webpackChunkName */ '@/views/features'),
       meta: {
         pageType: '',
         pageName: 'Features'
