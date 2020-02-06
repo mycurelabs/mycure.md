@@ -109,7 +109,7 @@ export default {
     font-size: 24px !important;
   }
   .font-s {
-    font-size: 16px !important;
+    font-size: 21px !important;
   }
   /* TODO: Remove these font classes for size*/
   .font-60 {
