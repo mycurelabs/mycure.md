@@ -1,7 +1,7 @@
 <template lang="pug">
   div.white.pt-5
     //- WEB
-    div(v-if="!$isMobile").px-5
+    div(v-if="!$isMobile").px-5.workflow
       v-container.px-5
         v-layout(row justify-center).text-xs-center
           h1.font-40.text-xs-center.font-work-sans {{ title }}
@@ -108,6 +108,11 @@
 <style scoped>
   ul {
     list-style-type: none;
+  }
+  @media screen and (min-height: 1080px) {
+    .workflow {
+      padding: 300px 0px 300px 0px !important;
+    }
   }
 </style>
 
