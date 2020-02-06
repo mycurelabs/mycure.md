@@ -23,7 +23,7 @@
                 ul
                   li(v-for="(feat, key) in suite.features" :key="key") {{ feat }}
                   br(v-if="key === 1")
-            v-layout(row wrap).mx-2.pt-2
+            v-layout(row wrap).mx-2.py-2
               v-flex(xs6 md6)
                 v-btn(
                   :color="$mcColors.mcBlue"

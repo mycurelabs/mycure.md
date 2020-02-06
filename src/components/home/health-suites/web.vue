@@ -24,7 +24,7 @@
               v-flex(xs12 md8).pl-1
                 ul
                   li(v-for="(feat, key) in suite.features" :key="key") {{ feat }}
-            v-layout(row wrap).mx-2
+            v-layout(row wrap).mx-2.py-2
               v-flex(xs12 md6)
                 v-btn(
                   :color="$mcColors.mcBlue"
