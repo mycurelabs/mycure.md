@@ -1,6 +1,6 @@
 <template lang="pug">
   div
-    div(v-if="!$isMobile").pt-5.health-suites
+    div(v-if="!$isMobile").health-suites
       health-suites-web(
         @startFree="handleStartFreeBtn($event)"
         @learnMore="handleLearnMoreBtn($event)"
@@ -43,5 +43,12 @@ export default {
 <style scoped>
 .health-suites {
   background-color: #075b76;
+  padding-bottom: 100px;
+}
+
+@media screen and (min-height: 1080px) {
+  .health-suites {
+    padding: 100px 0px 350px 0px !important;
+  }
 }
 </style>
