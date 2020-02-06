@@ -8,7 +8,6 @@
           v-spacer
           v-menu(
             v-model="solutionsMenuModel"
-            :close-on-content-click="false"
             offset-y
           )
             template(slot="activator" slot-scope="props")
