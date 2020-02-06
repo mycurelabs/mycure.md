@@ -37,6 +37,7 @@
           :id="bookDemoId"
           dark
           large
+          :to="{ name: 'signup-multispecialty'}"
           @click.stop="handleBookDemoBtn"
         ).text-none.font-21.font-weight-bold Book A Free Demo
         br

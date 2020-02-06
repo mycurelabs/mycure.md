@@ -63,7 +63,7 @@
           v-btn(
             v-else-if="currentRoute === 'multispecialty-clinics'"
             :color="$mcColors.mcAltGreen"
-            :to="{ name: 'calendly' }"
+            :to="{ name: 'signup-multispecialty' }"
             id="multispecialty-book-demo-btn"
             @click.stop="handleToolbarLinkClick('multispecialty-book-demo-btn')"
           )

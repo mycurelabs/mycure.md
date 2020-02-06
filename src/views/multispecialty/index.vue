@@ -49,6 +49,7 @@ export default {
         text: 'Premium clinical services work best with premium technology.',
         subtext: this.parseCtaSubtext(),
         btnText: 'Start Free',
+        btnLink: 'signup-multispecialty',
         image: 'mycure-web-footer'
       }
     };
