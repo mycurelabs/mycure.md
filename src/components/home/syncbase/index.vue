@@ -26,7 +26,7 @@ import { parseTextWithNewLine } from '@/utils';
 export default {
   data () {
     return {
-      panelTitle: 'MYCURE Health Suites work online and offline',
+      panelTitle: 'MYCURE Health Suites work online and offline.',
       panelContent: 'Work as if you have an in-house server, with the convenience of the cloud.\
        Create your medical records locally using multiple devices even if the internet is down!\
        Once back online, it instantly syncs your data into the cloud.',

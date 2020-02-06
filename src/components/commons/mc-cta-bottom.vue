@@ -57,7 +57,7 @@ export default {
   computed: {
     ctaText () {
       if (!this.ctaContent) {
-        const text = 'Find the perfect solution for your health facility';
+        const text = 'Find the perfect solution for your health facility.';
         return parseTextWithNewLine(text, ['for']);
       } else {
         return this.parseText
