@@ -15,7 +15,7 @@ export const HEALTH_SUITES_ITEMS = [
       'SMS Reminders'
     ],
     image: 'mycure-p2-badge-doctor-clinic',
-    btnlink: 'signup-choose',
+    btnLink: 'signup-individual',
     btnId: 'home-doctors-clinics-start-free',
     learnLink: 'doctors-clinics',
     learnId: 'home-doctors-clinics-learn-more'
@@ -31,7 +31,7 @@ export const HEALTH_SUITES_ITEMS = [
       'Diagnostics'
     ],
     image: 'mycure-p2-badge-specialized-clinic',
-    btnlink: '',
+    btnLink: 'signup-multispecialty',
     btnId: 'home-specialized-clinics-start-free',
     learnLink: 'specialized-clinics',
     learnId: 'home-specialized-clinics-learn-more'
@@ -47,7 +47,7 @@ export const HEALTH_SUITES_ITEMS = [
       'Materials Management'
     ],
     image: 'mycure-p2-badge-multispecialty',
-    btnlink: '',
+    btnLink: 'signup-multispecialty',
     btnId: 'home-multispecialty-clinics-start-free',
     learnLink: 'multispecialty-clinics',
     learnId: 'home-multispecialty-clinics-learn-more'

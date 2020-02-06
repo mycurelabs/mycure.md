@@ -30,7 +30,7 @@
                   right
                   dark
                   block
-                  :to="{ name: 'signup-choose'}"
+                  :to="{ name: suite.btnLink }"
                   :id="suite.btnId"
                   @click.stop="handleStartFreeBtn(suite.btnId)"
                 ).text-none.font-weight-bold Start Free

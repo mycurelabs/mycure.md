@@ -28,7 +28,7 @@
               v-flex(xs12 md6)
                 v-btn(
                   :color="$mcColors.mcBlue"
-                  :to="{ name: 'signup-choose'}"
+                  :to="{ name: suite.btnLink }"
                   dark
                   block
                   :id="suite.btnId"

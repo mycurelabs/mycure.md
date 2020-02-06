@@ -102,7 +102,7 @@ export default new Router({
     {
       path: '/signup/individual',
       name: 'signup-individual', 
-      component: () => import (/* webpackChunkName */ '@/views/signup-individual.vue'),
+      component: () => import (/* webpackChunkName */ '@/views/signup-individual'),
       redirect: '/signup/individual/step-1',
       meta: {
         pageType: 'signup-individual',
