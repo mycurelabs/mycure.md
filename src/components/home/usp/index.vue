@@ -7,6 +7,7 @@
       :btnId="uspContents.btnId"
       :btnText="uspContents.btnText"
       :coverImg="uspContents.coverImg"
+      @getStarted="getStarted"
     )
 </template>
 
@@ -31,6 +32,11 @@ export default {
     uspDescription () {
       const description = this.uspContents.description;
       return !this.$isMobile ? parseTextWithNewLine(description, ['system']) : description;
+    }
+  },
+  methods: {
+    getStarted () {
+      this.$emit('getStarted');
     }
   }
 };

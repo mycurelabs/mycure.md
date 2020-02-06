@@ -2,9 +2,9 @@
   //-TODO: Videos are still playing even when dialogs are closed
   div#top.white
     //- 1st panel
-    usp
+    usp(@getStarted="getStarted")
     //- 2nd panel
-    health-suites
+    health-suites#health-suites
     //- 3rd panel
     solutions
     //- 4th panel
@@ -29,6 +29,7 @@
       parse-text
       :parseIndicators="['for']"
       :ctaContent="ctaContent"
+      @getStarted="getStarted"
     )
     //- mcFooter
 </template>
@@ -69,6 +70,11 @@ export default {
       storyflowItems: STORYFLOW_ITEMS,
       ctaContent: CTA_CONTENT
     };
+  },
+  methods: {
+    getStarted () {
+      VueScrollTo.scrollTo(`#health-suites`, 500, { easing: 'ease' });
+    }
   }
 };
 </script>

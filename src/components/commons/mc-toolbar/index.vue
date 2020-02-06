@@ -31,6 +31,8 @@
 import mcCookiePrompt from '../mc-cookie-prompt';
 import ToolbarWeb from './web';
 import ToolbarMobile from './mobile';
+import VueScrollTo from 'vue-scrollto';
+
 export default {
   components: {
     mcCookiePrompt,
@@ -76,6 +78,9 @@ export default {
       });
     },
     handleToolbarLinkClick (link) {
+      if (link === 'get-started-btn') {
+        VueScrollTo.scrollTo(`#health-suites`, 500, { easing: 'ease' } );
+      }
       this.$ga.event({
         eventCategory: 'button',
         eventAction: `click-toolbar-${link}`,

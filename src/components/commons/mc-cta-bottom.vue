@@ -7,7 +7,6 @@
         div.text-xs-center.pt-2
           v-btn(
             :color="btnColor"
-            :to="{ name: ctaBtnLink }"
             large
             dark
             :id="ctaBtnId"
@@ -99,6 +98,11 @@ export default {
         eventAction: `click-${this.ctaBtnId}`,
         eventLabel: this.ctaBtnId
       });
+      if (this.ctaBtnId === 'cta-home-btn') {
+        this.$emit('getStarted');
+      } else {
+        this.$router.push({ name: this.ctaBtnLink });
+      }
     },
     handleCtaSecondaryBtnClick () {
       this.$ga.event({

@@ -71,9 +71,8 @@
           v-btn(
             v-else
             :color="$mcColors.mcAltGreen"
-            :to="{ name: signUpURL }"
-            id="signup-btn"
-            @click.stop="handleToolbarLinkClick('signup-btn')"
+            id="get-started-btn"
+            @click.stop="handleToolbarLinkClick('get-started-btn')"
           )
             strong.font-14.white--text.tab.text-none Get Started
 </template>

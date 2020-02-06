@@ -9,7 +9,6 @@
             p(:class="{'pre-white-space': !$isMobile}").text-xs-center.uspDescription.pt-3.font-s {{ uspDescription }}
             div.pt-3
               v-btn(
-                :to="{ name: btnRoute }"
                 :color="$mcColors.mcAltGreen"
                 :id="btnId"
                 large
@@ -73,6 +72,11 @@ export default {
         eventAction: `click-${this.btnId}`,
         eventLabel: `${this.btnId}`
       });
+      if (this.btnId === 'home-usp-btn') {
+        this.$emit('getStarted');
+      } else {
+        this.$router.push({ name: this.btnRoute });
+      }
     }
   }
 };
