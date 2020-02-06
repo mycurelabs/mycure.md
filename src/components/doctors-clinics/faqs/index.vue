@@ -3,7 +3,7 @@
     v-container.pt-5
       v-layout(row align-center)
         v-flex(xs12 md12).text-xs-center
-          h1.font-xl.font-work-sans {{ faqsTitle }}
+          h1.font-40.font-work-sans {{ faqsTitle }}
       v-layout(row wrap justify-center).pt-5
         v-flex(xs12 md9)
           div(
@@ -11,9 +11,9 @@
             :key="key"
           ).font-source-sans
             img(:src="require(`@/assets/images/${questionMark}.png`)" :alt="questionMark" width="18px")
-            strong.font-18 &nbsp;{{ item.question }}
-            p.font-21.pl-1 {{ item.answer }}
-            p(v-if="item.supplement" :class="{'pl-3' : !$isMobile}").font-21.pre-white-space {{ parseSupplement(item)}}
+            strong.font-21 &nbsp;{{ item.question }}
+            p.font-25.pl-1 {{ item.answer }}
+            p(v-if="item.supplement" :class="{'pl-3' : !$isMobile}").font-25.pre-white-space {{ parseSupplement(item)}}
             br
 </template>
 

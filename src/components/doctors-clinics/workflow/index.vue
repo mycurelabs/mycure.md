@@ -38,7 +38,7 @@ import CLINIC_PROBLEMS from './constants.json';
 export default {
   data () {
     return {
-      title: 'Why do doctors use MYCURE',
+      title: 'Why do doctors use MYCURE?',
       checkIcon: 'mycure-web-bullet-check',
       clinicProblems: CLINIC_PROBLEMS
     };

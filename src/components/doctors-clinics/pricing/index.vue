@@ -4,8 +4,8 @@
       v-container
         v-layout(row align-center)
           v-flex(xs12 md12).text-xs-center
-            h1(:class="{'pre-white-space': !$isMobile}").text-xs-center.font-xl.font-work-sans {{ pricingTitle }}
-            p(:class="{'pre-white-space': !$isMobile}" v-if="description").text-xs-center.pt-3.font-18.font-source-sans {{ description }}
+            h1(:class="{'pre-white-space': !$isMobile}").text-xs-center.font-40.font-work-sans {{ pricingTitle }}
+            p(:class="{'pre-white-space': !$isMobile}" v-if="description").text-xs-center.pt-3.font-21.font-source-sans {{ description }}
         v-layout(row :wrap="$isMobile" fill-height).pt-5
           v-flex(
             v-for="(item, key) in pricingItems"
