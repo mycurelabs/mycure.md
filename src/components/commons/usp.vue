@@ -118,7 +118,7 @@ export default {
 }
 .offset-container {
   height: 15vh;
-  background-color: #075b76;
+  background-color: #707070;
 }
 .btnHeight {
   height: 50px;
