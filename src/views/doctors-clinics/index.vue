@@ -45,7 +45,8 @@ export default {
       ctaContent: {
         text: 'It\'s always better when we work together.',
         subtext: 'Experience what more you can do with MYCURE technology by your side.',
-        btnText: 'Start Free'
+        btnText: 'Start Free',
+        btnLink: 'signup-individual'
       }
     };
   }
