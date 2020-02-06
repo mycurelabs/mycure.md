@@ -125,7 +125,7 @@
     padding-bottom: 60px;
   }
   .storyflowAssetHorizontal {
-    width: 80%;
+    width: 85%;
     font-family: 'Work Sans', 'Poppins', sans-serif !important;
   }
 </style>
