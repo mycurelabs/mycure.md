@@ -5,7 +5,7 @@
       :description="description"
       :customPath="customPath"
     )
-      strong(slot="add-content").font-16.text-xs-center 
+      strong(slot="add-content").font-18.text-xs-center 
         br
         | {{ boldDescription }}
       v-container(slot="diagram-content").pa-0
@@ -38,9 +38,9 @@
           dark
           large
           @click.stop="handleBookDemoBtn"
-        ).text-none.font-18.font-weight-bold Book A Free Demo
+        ).text-none.font-21.font-weight-bold Book A Free Demo
         br
-        p.text-xs-center.font-18.py-3 Have questions? 
+        p.text-xs-center.font-21.py-3 Have questions? 
           a(@click.stop="toggleChat()")
             strong.font-mc-blue Send us a chat.
 </template>
