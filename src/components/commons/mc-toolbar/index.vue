@@ -59,7 +59,7 @@ export default {
   },
   computed: {
     isMainRoute () {
-      const routes = ['home', 'doctors-clinics', 'specialized-clinics', 'multispecialty-clinics'];
+      const routes = ['doctors-clinics', 'specialized-clinics', 'multispecialty-clinics'];
       return routes.includes(this.$route.name);
     }
   },

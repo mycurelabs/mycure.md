@@ -1,5 +1,5 @@
 <template lang="pug">
-  div.gradient-bg-color
+  div.white
     usp-template(
       :uspTitle="uspTitle"
       :uspDescription="uspDescription"
