@@ -2,7 +2,7 @@
   v-container.py-5
     v-layout(row align-center)
       v-flex(xs12 md12).text-xs-center
-        h2.text-xs-center.font-work-sans.font-xl.white--text {{ panelTitle }}
+        h2.text-xs-center.font-work-sans.font-40.white--text {{ panelTitle }}
         p.font-s.text-xs-center.white--text {{ panelSubtitle }}
     v-layout(row fill-height).pt-5
       v-flex(
@@ -14,7 +14,7 @@
         v-card(height="100%").roundedCard
           v-card-text
             strong.font-s {{ suite.header }}
-            p.font-14 {{ suite.subheader }}
+            p.font-16 {{ suite.subheader }}
             v-layout(row wrap)
               v-flex(xs12 md4)
                 v-img(
