@@ -54,7 +54,7 @@ export default {
   },
   data () {
     return {
-      title: 'Why do clinics switch to MYCURE?',
+      title: 'Why do multispecialty clinics switch to MYCURE?',
       customPath: 'multispecialty/',
       bookDemoId: 'multispecialty-workflow-book-demo-btn',
       boldDescription: 'MYCURE makes record management easier for everyone.',

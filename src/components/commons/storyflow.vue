@@ -3,7 +3,7 @@
     div(v-if="!$isMobile").pt-5
       v-container
         v-layout(v-if="introduction" row justify-center).text-xs-center.pb60
-          strong.font-40.introText {{ introduction }}
+          strong.font-40.introText.pre-white-space {{ introduction }}
         div(v-if="!horizontal")
           v-layout(v-for="(highlight,index) in storyflow" :key="index" row wrap justify-center).pb60
             v-flex(xs4 align-self-center).pr-5

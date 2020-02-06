@@ -8,6 +8,7 @@
     features
     //- 4th panel
     storyflow(
+      :introduction="storyflowIntro"
       :storyflow="storyflowItems"
       horizontal
       :customPath="storyflowCustomPath"
@@ -30,6 +31,7 @@ import Storyflow from '@/components/commons/storyflow';
 import McCtaBottom from '@/components/commons/mc-cta-bottom';
 import VueScrollTo from 'vue-scrollto';
 import STORYFLOW_ITEMS from './storyflow-items.json';
+import { parseTextWithNewLine } from '@/utils';
 
 export default {
   components: {
@@ -45,11 +47,23 @@ export default {
       storyflowCustomPath: 'multispecialty/',
       ctaContent: {
         text: 'Premium clinical services work best with premium technology.',
-        subtext: 'Experience what you can do more with MYCURE technology by your side.',
+        subtext: this.parseCtaSubtext(),
         btnText: 'Start Free',
         image: 'mycure-web-footer'
       }
     };
+  },
+  computed: {
+    storyflowIntro () {
+      const text = 'Make your patients and your staff become more engaged.';
+      return parseTextWithNewLine(text, ['staff']);
+    }
+  },
+  methods: {
+    parseCtaSubtext () {
+      const text = 'Your multispecialty clinic deserves the most advanced clinic management system around. Do more with MYCURE technology by your side.';
+      return parseTextWithNewLine(text, ['around.']);
+    }
   },
   mounted () {
     VueScrollTo.scrollTo(`#top`, 500, { easing: 'ease' } );

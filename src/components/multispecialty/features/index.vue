@@ -4,6 +4,7 @@
     features-diagram(
       v-if="!$isMobile"
       :title="title"
+      :description="description"
       :customPath="customPath"
       :image="image"
       :imageWidth="$isMobile ? '100%' : '80%'"
@@ -51,7 +52,7 @@
           dark
           large
           @click.stop="handleExploreFeaturesBtn"
-        ).text-none.font-18.font-weight-bold Explore the Features
+        ).text-none.font-21.font-weight-bold Explore the Features
 </template>
 
 <script>
@@ -105,6 +106,10 @@ export default {
     title () {
       const title = 'Provide the best service to your patients.';
       return parseTextWithNewLine(title, ['service']);
+    },
+    description () {
+      const description = 'Your multispecialty clinic is everything your patients need. We help you make it extra easier to manage so you can focus more on patient care.';
+      return parseTextWithNewLine(description, ['need.']);
     }
   },
   methods: {
