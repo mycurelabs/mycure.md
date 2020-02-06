@@ -106,9 +106,9 @@
 
 <style scoped>
   .panel1{
-    background-image: url("../../assets/images/mycure-web-features-cover-banner.png");
     background-position: center center;
     background-size: cover;
+    background-color: #ced7df
   }
 
   .tab{
@@ -117,7 +117,7 @@
     opacity: 1;
     width: 450px;
     height: 100%;
-    box-shadow: 0px 0px 10px 2px gray inset;
+    /* box-shadow: 0px 0px 10px 2px gray inset; */
   }
 
   .tabActive{
