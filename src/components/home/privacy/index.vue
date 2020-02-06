@@ -10,7 +10,7 @@
             strong.font-40.lh-title.pb-3.font-work-sans {{ panelTitle }}
             br
             br
-            span.font-18.mt-3 {{ panelText }}
+            span.font-s.mt-3 {{ panelText }}
     //- MOBILE
     div(v-else).pt-5
       v-container
@@ -19,7 +19,7 @@
             br
             strong.lh-title.font-40.pb-4.font-work-sans {{ panelTitle }}
             img(width="85%" :src="require(`@/assets/images/${panelImage}.png`)" alt="Data Privacy Law").pb-3
-            p.font-16.mt-3 {{ panelText }}
+            p.font-s.mt-3 {{ panelText }}
 </template>
 
 <script>

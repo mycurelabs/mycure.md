@@ -19,9 +19,9 @@
               )
                 v-flex(xs12 md12 justify-center align-center).text-xs-center.pa-5
                   h2.black--text.mb-5.font-25 {{ testimonial.message }}
-                  strong.font-18.font-mc-blue {{ testimonial.name }}
+                  strong.font-s.font-mc-blue {{ testimonial.name }}
                   br
-                  span.font-18.subheading.grey--text {{ testimonial.position }}
+                  span.font-s.subheading.grey--text {{ testimonial.position }}
     div(v-else).transparent.pt-5
       v-container
         v-layout(row wrap justify-center).px-3

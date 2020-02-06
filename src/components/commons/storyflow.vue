@@ -3,7 +3,7 @@
     div(v-if="!$isMobile").pt-5
       v-container
         v-layout(v-if="introduction" row justify-center).text-xs-center.pb60
-          strong.font-45.introText {{ introduction }}
+          strong.font-40.introText {{ introduction }}
         div(v-if="!horizontal")
           v-layout(v-for="(highlight,index) in storyflow" :key="index" row wrap justify-center).pb60
             v-flex(xs4 align-self-center).pr-5
@@ -22,7 +22,7 @@
               :to="{ name: 'features' }"
               large
             ).mt-3.cta-btn
-              strong.font-18.white--text.text-none Explore the Features
+              strong.font-s.white--text.text-none Explore the Features
         div(v-else)
           v-layout(row justify-center)
             v-flex(
@@ -33,7 +33,7 @@
             ).text-xs-center.mx-4
               img(:src="require(`@/assets/images/${customPath}${highlight.image}`)" :alt="highlight.title").storyflowAssetHorizontal
               br
-              strong(v-if="hasTitle").font-25 {{ highlight.title }}
+              strong(v-if="hasTitle").font-m {{ highlight.title }}
               br
               p.font-18.pt-3 {{ highlight.text }}
           v-layout(v-if="featuresButton" row wrap justify-center).pt-5
@@ -44,7 +44,7 @@
               :to="{ name: 'features' }"
               large
             ).mt-3.cta-btn
-              strong.font-18.white--text.text-none Explore the Features
+              strong.font-s.white--text.text-none Explore the Features
               
     div(v-else).pt-5
       v-container
@@ -70,7 +70,7 @@
             :to="{ name: 'features' }"
             large
           ).mt-3.cta-btn
-            strong.font-18.white--text.text-none Explore the Features
+            strong.font-s.white--text.text-none Explore the Features
 </template>
 
 <script>

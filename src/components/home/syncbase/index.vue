@@ -8,7 +8,7 @@
             h1.panelTitle.font-40.font-work-sans.lh-title {{ webTitle }}
             br
             br
-            p.font-18 {{ panelContent }}
+            p.font-s {{ panelContent }}
           v-flex(xs6 align-self-center).px-3.text-xs-center
             img(:src="require(`@/assets/images/${panelImage}.gif`)" width="100%" alt="MYCURE Syncbase")
     //- MOBILE
@@ -16,7 +16,7 @@
       v-container.text-xs-center
         h1.font-40.lh-title.text-xs-center.font-work-sans {{ panelTitle }}
         br
-        p.font-18.text-xs-center {{ panelContent }}
+        p.font-s.text-xs-center {{ panelContent }}
         br
         img(:src="require(`@/assets/images/${panelImage}.gif`)" width="80%" alt="MYCURE Syncbase")
 </template>
