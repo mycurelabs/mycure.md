@@ -4,7 +4,7 @@
     //- TODO: MOBILE VIEW
     //- TODO: UPDATE CONTENTS
     div(v-if="!$isMobile")
-      div.mc-gradient-grey
+      div.footer-grey
         v-container(justify-center)
           mc-toolbar-footer
           v-layout(row wrap justify-center)
@@ -27,7 +27,7 @@
                 li 
                   router-link(id="footer-careers-link" @click.stop="handleFooterCareersLink" :to="{ name: 'careers' }" title="MYCURE - Careers").link Careers
               
-            v-flex(xs12 md3 offset-md1).font-mc-grey
+            v-flex(xs12 md3 offset-md1)
               ul.no-style-type
                 li.feature-text SUPPORT 
                 //- li 
@@ -45,22 +45,22 @@
                   router-link(id="footer-privacy-policy-link" @click.stop="handleFooterPrivacyPolicyLink" :to="{name: 'privacy-policy'}" title="MYCURE Privacy Policy").link 
                     span Privacy Policy
               
-            v-flex(xs12 md3 offset-md1).font-mc-grey
+            v-flex(xs12 md3 offset-md1)
               ul.no-style-type
                 li.feature-text CONTACT US
                 li 
                   a(id="footer-email-link" @click.stop="handleFooterEmailLink" title="MYCURE - Email" href="mailto:hello@mycure.md")
                     span.font-mc-blue hello@mycure.md
-                li (+632) 7799 6262
-                li (+63) 917 303 4350
+                li.font-mc-white (+632) 7799 6262
+                li.font-mc-white (+63) 917 303 4350
           hr.my-4  
           v-layout(row wrap justify-center)  
-            span &copy; 2016 - {{new Date().getFullYear()}}
+            span.font-mc-white &copy; 2016 - {{new Date().getFullYear()}}
               a(href="https://mycure.md")
                 span.font-mc-blue &nbsp; MYCURE.  
                 |
-                span All Rights Reserved.
-    div(v-else).mc-gradient-grey.pa-4
+                span.font-mc-white All Rights Reserved.
+    div(v-else).footer-grey.pa-4
       mc-toolbar-footer  
 </template>
 
@@ -198,8 +198,8 @@ export default {
 <style scoped>
   hr {
     height: 1px;
-    color: #cccccc;
-    background-color: #cccccc;
+    color: grey;
+    background-color: grey;
     border: none;
   }
 
@@ -224,6 +224,6 @@ export default {
   }
 
   .feature-text {
-    color: #3a3838
+    color: lightgrey;
   }
 </style>

@@ -72,6 +72,10 @@ export default {
     background-color: #18c551
   }
 
+  .footer-grey {
+    background-color: #343a40 !important
+  }
+
   .font-work-sans {
     font-family: 'Work Sans', 'Source Sans Pro', sans-serif !important;
   }

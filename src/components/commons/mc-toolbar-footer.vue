@@ -1,19 +1,19 @@
 <template lang="pug">
   div
     div(v-if="!$isMobile")
-      v-toolbar(flat color="#f0f0f0")
+      v-toolbar(flat).footer-grey
         router-link(:to="{ name: 'home' }" title="MYCURE | Clinic Management System | Cloud EMR Philippines")
           v-layout(row wrap center)    
-            img(src="../../assets/images/mycure-header-logo.png" height="40" alt="MYCURE logo")
+            img(src="../../assets/images/mycure-footer-logo.png" height="40" alt="MYCURE logo")
         v-spacer
         div(v-for="(account,key) in socMed" :key="key")
           router-link(:to="{ name: `${ account.link }`}" :title="account.name" :id="account.id")
             img(:src="require(`../../assets/images/${ account.icon }`)" height="25" :alt="account.name").px-2
-    div(v-else).mc-gradient-grey
+    div(v-else).footer-grey.font-mc-grey
       div
         router-link(:to="{ name: 'home' }" title="MYCURE | Clinic Management System | Cloud EMR Philippines")
           v-layout(row wrap center)    
-            img(src="../../assets/images/mycure-header-logo.png" height="25" alt="MYCURE logo")
+            img(src="../../assets/images/mycure-footer-logo.png" height="25" alt="MYCURE logo")
       br
       strong FOLLOW US
       br
@@ -26,7 +26,7 @@
       br
       v-layout(row)
         v-expansion-panel.elevation-0
-          v-expansion-panel-content.mc-gradient-grey
+          v-expansion-panel-content.footer-grey
             template(v-slot:header)
               span.iconMargin.font-18.feature-text CLINIC SOLUTIONS
             template(v-slot:actions)
@@ -43,7 +43,7 @@
               
       v-layout(row)
         v-expansion-panel.elevation-0
-          v-expansion-panel-content.mc-gradient-grey
+          v-expansion-panel-content.footer-grey
             template(v-slot:header)
               span.iconMargin.font-18.feature-text ABOUT
             template(v-slot:actions)
@@ -59,7 +59,7 @@
                 span.py-2 Careers
       v-layout(row)
         v-expansion-panel.elevation-0
-          v-expansion-panel-content(color="").mc-gradient-grey
+          v-expansion-panel-content.footer-grey
             template(v-slot:header)
               span.iconMargin.font-18.feature-text SUPPORT
             template(v-slot:actions)
@@ -73,7 +73,7 @@
                 span.py-2 Book a Demo
       v-layout(row)
         v-expansion-panel.elevation-0
-          v-expansion-panel-content.mc-gradient-grey
+          v-expansion-panel-content.footer-grey
             template(v-slot:header)
               span.iconMargin.font-18.feature-text LEGAL
             template(v-slot:actions)
@@ -85,7 +85,7 @@
                 span.py-2 Privacy Policy
       v-layout(row)
         v-expansion-panel.elevation-0
-          v-expansion-panel-content.mc-gradient-grey
+          v-expansion-panel-content.footer-grey
             template(v-slot:header)
               span.iconMargin.font-18.feature-text CONTACT US
             template(v-slot:actions)
@@ -99,11 +99,11 @@
       br
       br
       v-layout(row justify-center)
-        strong &copy; 2016 - {{new Date().getFullYear()}}
+        strong.font-mc-white &copy; 2016 - {{new Date().getFullYear()}}
          router-link(:to="{ name: 'home' }" title="MYCURE | Clinic Management System | Cloud EMR Philippines")
             strong.font-mc-blue &nbsp; MYCURE.  
             |
-            strong All Rights Reserved.
+            strong.font-mc-white All Rights Reserved.
       br
       br
 </template>
@@ -171,7 +171,7 @@ export default {
     color: grey;
   }
   .feature-text {
-    color: #3a3838;
+    color: grey;
   }
   .expansionPanelBg {
     background-color: #343a40 !important;
