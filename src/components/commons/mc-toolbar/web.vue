@@ -55,7 +55,7 @@
           v-btn(
             v-if="currentRoute === 'doctors-clinics' || currentRoute === 'specialized-clinics'"
             :color="$mcColors.mcAltGreen"
-            :to="currentRoute === 'doctors-clinics' ? { name: 'signup-individual' } : { name: 'signup-choose' }"
+            :to="currentRoute === 'doctors-clinics' ? { name: 'signup-individual' } : { name: 'signup-multispecialty' }"
             id="start-free-btn"
             @click.stop="handleToolbarLinkClick('start-free-btn')"
           )
