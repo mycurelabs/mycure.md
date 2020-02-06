@@ -1,6 +1,6 @@
 <template lang="pug">
   div
-    div(v-if="!$isMobile").px-5.white
+    div(v-if="!$isMobile").px-5.white.workFlow
       v-container.px-5
         v-layout(row justify-center).text-xs-center
           h1.font-xl.pa-5.text-xs-center.font-work-sans {{ title }}
@@ -47,8 +47,13 @@ export default {
 </script>
 
 <style scoped>
-  .check-list {
-    background-color: #f6f6f6;
+.check-list {
+  background-color: #f6f6f6;
+}
+@media screen and (min-height: 1080px) {
+  .workFlow {
+    padding: 300px 0px 300px 0px !important;
   }
+}
 </style>
 
