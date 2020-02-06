@@ -7,15 +7,15 @@ div
           v-layout(row justify-center)
             v-flex(xs12 md6)
               v-layout(column align-start)
-                h1.font-weight-bold.font-18.font-mc-blue.pb-3.uspMetaTitle MYCURE | Our Story
-                h2.title-line-height.font-xl.font-work-sans.font-weight-regular.pb-4 MYCURE starts and ends with real people.
+                h1.font-weight-bold.font-21.font-mc-blue.pb-3.uspMetaTitle MYCURE | Our Story
+                h2.title-line-height.font-xl.font-work-sans.pb-4 MYCURE starts and ends with real people.
                 v-btn(
                   @click.stop="popUpVideo"
                   :color="$mcColors.mcAltGreen"
                   target="_blank"
                   large
                 ).text-none.white--text.mt-4.btnHeight
-                  strong.font-18 Watch Video
+                  strong.font-21 Watch Video
                 v-dialog(v-model="videoDialog" max-width="600px")
                   v-layout(row justify-center)
                     v-card(width="600")
@@ -37,7 +37,7 @@ div
   div(v-else)
     v-layout(column wrap justify-center).mt-5
       h1.font-weight-bold.font-18.font-mc-blue.pb-2.text-xs-center MYCURE | Our Story
-      h2.font-40.font-weight-regular.font-work-sans.title-line-height.pb-5.text-xs-center.uspTitle MYCURE starts and ends with real people.
+      h2.font-40.font-work-sans.title-line-height.pb-5.text-xs-center.uspTitle MYCURE starts and ends with real people.
       v-layout(row justify-center).mb-5
         img(
           :src="require(`@/assets/images/mycure-homepage-doctor-kid-pediatrician-drawing.png`)"

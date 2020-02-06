@@ -3,9 +3,9 @@
     v-container.pa-5
       v-layout(row wrap align-center justify-center)
         v-flex(xs12 md12).text-xs-center
-          h2.font-18.font-mc-grey.pb-5 To further go the extra mile, we practice the following codes:
-          h2.font-48.font-work-sans 8 Codes of Being
-        v-flex(xs12 md12).text-xs-center.pt-5
+          h2.font-21.font-mc-grey.pb-5 To further go the extra mile, we practice the following codes:
+          h2.font-40.font-work-sans 8 Codes of Being
+        v-flex(xs12 md12).text-xs-center.pt-5.font-21
           p We are passionate, fun-loving, innovative people.
           p We grow through continuous learning.
           p We dare to challenge status quo and make things happen.
