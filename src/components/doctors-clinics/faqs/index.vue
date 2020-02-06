@@ -32,7 +32,7 @@ export default {
         },
         {
           question: 'How free is free for solo practice?',
-          answer: 'You can create all types of records up to 1GB or about 100,000 patient profiles. Afterwards you can subscribe for higher storage starting from $18.99 a month.'
+          answer: 'You can create all types of records up to 1GB or about 100,000 patient profiles. Afterwards you can subscribe for higher storage starting from $18.00 a month.'
         },
         {
           question: 'Do you have a plan for 2 doctors only?',

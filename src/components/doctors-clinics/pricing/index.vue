@@ -18,7 +18,6 @@
               v-card-text#pricingContent
                 h1(:class="{'pre-white-space' : !$isMobile}").font-25.font-work-sans.lh-title {{ item.title }}
                 p(:class="{'pre-white-space' : !$isMobile}").font-18 {{ parseDescription(item) }}
-                br
                 span(v-if="item.type === 'solo'").font-m Always
                 span(v-else).font-m Starts at
                 br
@@ -27,8 +26,6 @@
                   span.font-m $&nbsp;
                   span.font-xl {{ item.priceText }}
                   span.font-m &nbsp;monthly
-                br
-                br
                 br
                 strong.font-18 {{ item.inclusionsTitle }}
                 br
