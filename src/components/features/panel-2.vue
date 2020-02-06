@@ -3,14 +3,14 @@
     div(v-if="!$isMobile").pt-5
       v-container
         center
-          strong.font-18.font-mc-blue ROLES &amp; PRIVILEGES
+          strong.font-21.font-mc-blue ROLES &amp; PRIVILEGES
         v-layout(row justify-center text-xs-center).add-spacing
-          span.font-48.font-work-sans Everybody's got a special 
+          strong.font-40.font-work-sans Everybody's got a special 
             br
             | role to play.
         v-layout(row justify-center).add-spacing
           v-flex(xs7 align-self-center).text-xs-center
-            span.font-18 Collaborate with your clinic staff more efficiently using a clinic system that's so user-friendly, you wouldn't even feel that you're working.
+            span.font-21 Collaborate with your clinic staff more efficiently using a clinic system that's so user-friendly, you wouldn't even feel that you're working.
         v-layout(row justify-center).add-spacing
           img(src="@/assets/images/mycure-cms-web-features-arrow-down.png")
         v-layout(row align-self-center).add-spacing
@@ -28,7 +28,7 @@
         br
         v-layout(column justify-center)
           v-flex(xs12)
-            p.font-40.text-xs-center.lh-title.font-work-sans Everybody's got a special role to play.
+            p.font-weight-bold.font-40.text-xs-center.lh-title.font-work-sans Everybody's got a special role to play.
           br
           v-flex(xs12)
             p.font-18.text-xs-center Collaborate with your clinic staff more efficiently using a clinic system that's so user-friendly, you wouldn't even feel that you're working.

@@ -7,15 +7,15 @@ div
           v-layout(row justify-center)
             v-flex(xs12 md6)
               v-layout(column align-start)
-                h1.font-weight-bold.font-18.font-mc-blue.pb-3.uspMetaTitle {{ metaTitle }}
-                h2.title-line-height.font-work-sans.uspTitle.font-weight-bold.pb-4.pre-white-space {{ parseTitle(title) }}
+                h1.font-weight-bold.font-21.font-mc-blue.pb-3.uspMetaTitle {{ metaTitle }}
+                h2.title-line-height.font-work-sans.font-xl.font-weight-bold.pb-4.pre-white-space {{ parseTitle(title) }}
                 v-btn(
                   :color="$mcColors.mcAltGreen"
                   large
                   :to="{name: 'signup-choose'}"
                   @click.stop="handleFeaturesSignUp"
                 ).text-none.white--text.mt-4.btnHeight
-                  strong.font-18 {{ btnText }}
+                  strong.font-21 {{ btnText }}
             v-flex(xs12 md6 text-xs-right)
               img(
                 :src="require(`@/assets/images/mycure-cms-web-banner-first-panel-features.png`)"

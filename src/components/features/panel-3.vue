@@ -3,12 +3,12 @@
     div(v-if="!$isMobile").pt-5#panel3
       v-container
         center
-          strong.font-18.font-mc-blue MEDICAL RECORDS
+          strong.font-21.font-mc-blue MEDICAL RECORDS
         v-layout(row justify-center text-xs-center).add-spacing
-          span.font-48.font-work-sans Designed for doctors, by doctors.
+          strong.font-40.font-work-sans Designed for doctors, by doctors.
         v-layout(row justify-center).add-spacing
           v-flex(xs7 align-self-center).text-xs-center
-            span.font-18 Record full medical history, vitals, and physical exam records according to SOAP charting. 
+            span.font-21 Record full medical history, vitals, and physical exam records according to SOAP charting. 
               | Eliminate the haste of scribbling with Rx printing, ICD-10 database, multiple image uploads, and more.
         v-layout(row justify-center).add-spacing
           img(src="@/assets/images/mycure-cms-web-features-arrow-down.png")
@@ -33,7 +33,7 @@
         br
         br
         v-layout(row justify-center)
-          p.font-40.text-xs-center.font-work-sans Designed for doctors, by doctors.
+          p.font-40.font-weight-bold.text-xs-center.font-work-sans Designed for doctors, by doctors.
         br
         v-layout(row justify-center)
           p.font-18.text-xs-center Record full medical history, vitals, and physical exam records according

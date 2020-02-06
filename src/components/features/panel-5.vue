@@ -3,11 +3,11 @@
     div(v-if="!$isMobile")#panel5.pt-5
       v-container
         center
-          strong.font-18.font-mc-blue BILLING AND PAYMENTS
+          strong.font-21.font-mc-blue BILLING AND PAYMENTS
         v-layout(row justify-center text-xs-center).add-spacing
-          span.font-48.font-work-sans Simplified billing, beautiful reports.
+          strong.font-40.font-work-sans Simplified billing, beautiful reports.
         v-layout(row justify-center).add-spacing
-          span.font-18.text-xs-center Produce neatly-organized reports in a minute or less.
+          span.font-21.text-xs-center Produce neatly-organized reports in a minute or less.
         v-layout(row justify-center).add-spacing
           ul
             li
@@ -37,7 +37,7 @@
         br
         br
         v-layout(row justify-center)
-          p.font-40.text-xs-center.font-work-sans Simplified billing, beautiful reports.
+          p.font-weight-bold.font-40.text-xs-center.font-work-sans Simplified billing, beautiful reports.
         br
         br
         v-layout(row justify-center)

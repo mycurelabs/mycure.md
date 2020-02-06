@@ -4,11 +4,11 @@
       div.pt-5#panel9a
         v-container
           center
-            strong.font-18.font-mc-blue SYNCBASE TECHNOLOGY
+            strong.font-21.font-mc-blue SYNCBASE TECHNOLOGY
           v-layout(row justify-center).add-spacing
-            span.font-48.text-xs-center.font-work-sans Go offline safely and securely.
+            strong.font-40.text-xs-center.font-work-sans Go offline safely and securely.
           v-layout(row justify-center).add-spacing
-            span.font-18.text-xs-center The holy grail of online-offline technology is here. Work within your local 
+            span.font-21.text-xs-center The holy grail of online-offline technology is here. Work within your local 
               br
               | network using multiple devices even if the internet goes down and just 
               br
@@ -27,7 +27,7 @@
           br
           br
           v-layout(row justify-center)
-            p.font-40.text-xs-center.font-work-sans Go offline safely and securely.
+            p.font-weight-bold.font-40.text-xs-center.font-work-sans Go offline safely and securely.
           br
           br
           v-layout(row justify-center)
