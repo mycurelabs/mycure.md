@@ -80,7 +80,7 @@ export default {
 
 <style scoped>
 .whole-page {
-  height: 60vh;
+  height: 65vh;
   padding-top: 15vh;
 }
 .mobile-page-height {
@@ -121,5 +121,11 @@ export default {
 }
 .uspMobileBtn {
   height: 75px;
+}
+
+@media screen and (min-height: 1080px) {
+  .whole-page {
+    height: 55vh !important;
+  }
 }
 </style>
