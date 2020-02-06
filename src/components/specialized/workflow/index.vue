@@ -4,7 +4,7 @@
     div(v-if="!$isMobile").px-5
       v-container.px-5
         v-layout(row justify-center).text-xs-center
-          h1.font-xl.text-xs-center {{ title }}
+          h1.font-xl.text-xs-center.font-work-sans {{ title }}
         v-layout(row wrap justify-center).pt-3
           v-flex(xs12 md5)
             v-list(two-line)
@@ -30,9 +30,9 @@
             target="_blank"
             large
             dark
-            :to="{ name: 'signup-choose'}"
+            :to="{ name: 'signup-multispecialty'}"
             @click.stop="handleWorkflowBtn"
-          ).mt-3.font-18.text-none
+          ).mt-3.font-21.text-none
             strong {{ workflowBtnText }}
         p.text-xs-center.py-4.font-18 Have questions? 
           a(@click.stop="toggleChat()")

@@ -38,6 +38,7 @@ export default {
         text: 'Grow your practice with the right tools to use.',
         subtext: 'No credit card needed. No hidden charges. No strings attached.',
         btnText: 'Start 14-day trial',
+        btnLink: 'signup-multispecialty',
         secondaryBtnText: 'Request for a Demo',
         image: 'mycure-web-footer'
       }

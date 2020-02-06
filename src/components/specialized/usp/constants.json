@@ -2,7 +2,7 @@
   "metaTitle": "MYCURE EMR Solution for Specialized Clinics",
   "title": "Customizable clinic management system tailored for your specialized practice.",
   "description": "",
-  "route": "signup-multispecialty",
+  "btnRoute": "signup-multispecialty",
   "btnId": "specialized-usp-btn",
   "btnText": "Start 14-day Trial",
   "coverImg": "mycure-specialized-clinic-usp-cover",
