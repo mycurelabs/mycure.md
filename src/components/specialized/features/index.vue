@@ -3,7 +3,7 @@
     v-container.pt-5
       v-layout(row align-center)
         v-flex(xs12 md12).text-xs-center
-          h1(:class="{'pre-white-space': !$isMobile}").text-xs-center.font-work-sans.lh-title.font-xl {{ title }}
+          h1(:class="{'pre-white-space': !$isMobile}").text-xs-center.font-work-sans.lh-title.font-40 {{ title }}
       v-container(:class="{'px-5' : !$isMobile}")
         v-layout(
           row

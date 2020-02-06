@@ -4,7 +4,7 @@
     div(v-if="!$isMobile").px-5
       v-container.px-5
         v-layout(row justify-center).text-xs-center
-          h1.font-xl.text-xs-center.font-work-sans {{ title }}
+          h1.font-40.text-xs-center.font-work-sans {{ title }}
         v-layout(row wrap justify-center).pt-3
           v-flex(xs12 md5)
             v-list(two-line)
@@ -76,10 +76,10 @@
         reasons: [
           'Compact yet customizable EMR system',
           'Accessible both online and offline!',
-          'Feels like having a hands-on IT Team',
-          'Helps a lot with reporting and metrics',
+          'Feels like having a hands-on IT Team.',
+          'Helps a lot with reporting and metrics.',
           'Very easy to use and navigate',
-          'Improves overall performance of my clinic'
+          'Improves overall performance of my clinic.'
         ]
       };
     },
