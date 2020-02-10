@@ -81,7 +81,10 @@ export default {
       if (link === 'get-started-btn' && this.$route.name === 'home') {
         VueScrollTo.scrollTo(`#health-suites`, 500, { easing: 'ease' } );
       } else if (link === 'get-started-btn') {
-        this.$router.push({ name: 'signup-choose' });
+        this.$router.push({
+          name: 'home',
+          params: { scrollHealthSuites: true }
+        });
       }
       this.$ga.event({
         eventCategory: 'button',

@@ -75,7 +75,10 @@ export default {
       if (this.btnId === 'home-usp-btn') {
         this.$emit('getStarted');
       } else {
-        this.$router.push({ name: this.btnRoute });
+        this.$router.push({ 
+          name: this.btnRoute,
+          ...(this.btnRoute === 'home') && { params: { scrollHealthSuites: true } } 
+        });
       }
     }
   }
@@ -84,8 +87,8 @@ export default {
 
 <style scoped>
 .whole-page {
-  height: 65vh;
-  padding-top: 15vh;
+  height: 75vh;
+  padding-top: 20vh;
 }
 .mobile-page-height {
   padding-top: 10vh;
@@ -130,6 +133,7 @@ export default {
 @media screen and (min-height: 1080px) {
   .whole-page {
     height: 55vh !important;
+    padding-top: 10vh !important;
   }
 }
 </style>
