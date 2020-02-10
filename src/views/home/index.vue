@@ -62,6 +62,7 @@ export default {
   },
   mounted () {
     VueScrollTo.scrollTo(`#top`, 500, { easing: 'ease' } );
+    if (this.$route.params.scrollHealthSuites) this.getStarted();
   },
   data () {
     return {
