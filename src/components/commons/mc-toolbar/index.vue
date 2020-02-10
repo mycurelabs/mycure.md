@@ -4,7 +4,6 @@
     //- WEB
     div(v-if="!$isMd" :class="[shadow]").toolbarMain.white
       toolbar-web(
-        :signUpURL="signUpURL"
         :loginURL="loginURL"
         :solutionsMenuItems="solutionsMenuItems"
         :solutionsText="solutionsText"
@@ -18,7 +17,6 @@
       toolbar-mobile(
         :shadow="shadow"
         :loginURL="loginURL"
-        :signUpURL="signUpURL"
         :solutionsMenuItems="solutionsMenuItems"
         :toolbarLinks="toolbarLinks"
         @toolbarLinkClick="handleToolbarLinkClick($event)"
@@ -41,7 +39,6 @@ export default {
   },
   data () {
     return {
-      signUpURL: 'signup-choose',
       loginURL: 'signin',
       scrollPosition: null,
       shadow: '',
@@ -80,7 +77,7 @@ export default {
     handleToolbarLinkClick (link) {
       if (link === 'get-started-btn' && this.$route.name === 'home') {
         VueScrollTo.scrollTo(`#health-suites`, 500, { easing: 'ease' } );
-      } else if (link === 'get-started-btn') {
+      } else if (link === 'get-started-btn' || link === 'mobile-navdrawer-get-started-btn') {
         this.$router.push({
           name: 'home',
           params: { scrollHealthSuites: true }

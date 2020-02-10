@@ -85,7 +85,7 @@ export default {
       return `cta-${this.$route.name}-secondary-btn`;
     },
     ctaBtnLink () {
-      return !this.ctaContent || !this.ctaContent.btnLink ? 'signup-choose' : this.ctaContent.btnLink;
+      return !this.ctaContent || !this.ctaContent.btnLink ? 'home' : this.ctaContent.btnLink;
     },
     ctaSecondaryBtnLink () {
       return !this.ctaContent || !this.ctaContent.secondaryBtnLink ? 'calendly' : this.ctaContent.secondaryBtnLink;
@@ -98,11 +98,13 @@ export default {
         eventAction: `click-${this.ctaBtnId}`,
         eventLabel: this.ctaBtnId
       });
-      if (this.ctaBtnId === 'cta-home-btn') {
-        this.$emit('getStarted');
-      } else {
-        this.$router.push({ name: this.ctaBtnLink });
+      if (this.ctaBtnId !== 'cta-home-btn') {
+        this.$router.push({ 
+          name: this.ctaBtnLink,
+          ...( this.ctaBtnLink === 'home') && { params: { scrollHealthSuites: true } }
+        });
       }
+      this.$emit('btnClick');
     },
     handleCtaSecondaryBtnClick () {
       this.$ga.event({

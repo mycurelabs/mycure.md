@@ -67,18 +67,18 @@
       div.navBottomBtns.py-3
         v-layout(row justify-center)
           v-btn(
-              id="navdrawer-login-btn"
+              id="mobile-navdrawer-login-btn"
               :to="{ name: loginURL }"
               @click.stop="handleToolbarLinkClick(`mobile-${loginURL}`)"
             )
               strong.font-14.tab LOGIN
           v-btn(
-            id="navdrawer-signup-btn"
+            id="mobile-navdrawer-get-started-btn"
             :color="$mcColors.mcAltGreen"
-            :to="{ name: signUpURL }"
-            @click.stop="handleToolbarLinkClick(`mobile-${signUpURL}`)"
+            :to="{ name: 'home'}"
+            @click.stop="handleToolbarLinkClick(`mobile-navdrawer-get-started-btn`)"
           )
-            strong.font-14.white--text.tab SIGN UP
+            strong.font-14.white--text.tab GET STARTED
 </template>
 
 <script>
@@ -99,10 +99,6 @@ export default {
     loginURL: {
       type: String,
       default: () => 'signin'
-    },
-    signUpURL: {
-      type: String,
-      default: () => 'signup-choose'
     }
   },
   data () {

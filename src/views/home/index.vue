@@ -29,7 +29,7 @@
       parse-text
       :parseIndicators="['for']"
       :ctaContent="ctaContent"
-      @getStarted="getStarted"
+      @btnClick="getStarted"
     )
     //- mcFooter
 </template>

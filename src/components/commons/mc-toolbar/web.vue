@@ -99,10 +99,6 @@ export default {
     loginURL: {
       type: String,
       default: () => 'signin'
-    },
-    signUpURL: {
-      type: String,
-      default: () => 'signUpURL'
     }
   },
   data () {
