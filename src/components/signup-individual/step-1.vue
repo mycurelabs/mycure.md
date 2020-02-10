@@ -52,7 +52,7 @@
                   v-model="doctor.doc_PRCLicenseNo"
                   label="Doctor PRC License No"
                   outline
-                  :rules="[requiredRule]"
+                  :rules="[requiredRule, numberRule]"
                   :disabled="loading"
                 )
                 v-text-field(
@@ -90,7 +90,7 @@
                   label="Password"
                   outline
                   :type="showPass ? 'text' : 'password'"
-                  :rules="[requiredRule]"
+                  :rules="[requiredRule, ]"
                   :append-icon="showPass ? 'mdi-eye-off' : 'mdi-eye'"
                   :disabled="loading"
                   @click:append="showPass = !showPass"
@@ -160,6 +160,7 @@ export default {
         countryFlag: null,
       },
       requiredRule: v => !!v || 'This field is required',
+      numberRule: v => v >= 0 || 'Please input a valid number',
       error: false,
       errorMessage: 'There was an error please try again later.',
       mobileNoError: false,
