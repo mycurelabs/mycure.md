@@ -42,11 +42,11 @@ export default {
     },
     btnRoute: {
       type: String,
-      default: 'signup-choose'
+      default: undefined
     },
     btnId: {
       type: String,
-      default: 'usp-signup-choose'
+      default: 'usp-btn'
     },
     btnText: {
       type: String,
@@ -72,7 +72,7 @@ export default {
         eventAction: `click-${this.btnId}`,
         eventLabel: `${this.btnId}`
       });
-      if (this.btnId !== 'home-usp-btn') {
+      if (this.btnId !== 'home-usp-btn' && this.btnRoute) {
         this.$router.push({ 
           name: this.btnRoute,
           ...(this.btnRoute === 'home') && { params: { scrollHealthSuites: true } } 
