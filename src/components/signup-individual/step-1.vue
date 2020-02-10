@@ -9,21 +9,11 @@
           ).link-to-home.mb-3
           h1#step-1-title Become a techy doctor in minutes!
           br
-          v-layout(row)
-            v-flex(shrink).pr-2
+          v-layout(row v-for="(item, key) in checkListItems" :key="key")
+            v-flex(shrink).pr-2.pt-2
               img(width="20" src="../../assets/images/mycure-check.png")
             v-flex(shrink)
-              p Better operations
-          v-layout(row)
-            v-flex(shrink).pr-2
-              img(width="20" src="../../assets/images/mycure-check.png")
-            v-flex(shrink)
-              p Beautiful reports
-          v-layout(row)
-            v-flex(shrink).pr-2
-              img(width="20" src="../../assets/images/mycure-check.png")
-            v-flex(shrink)
-              p Bye paperworks
+              p.font-21 {{ item }}
         v-flex(xs12 md5)
           v-card
             v-card-text
@@ -164,7 +154,12 @@ export default {
       error: false,
       errorMessage: 'There was an error please try again later.',
       mobileNoError: false,
-      mobileNoErrorMessage: ''
+      mobileNoErrorMessage: '',
+      checkListItems: [
+        'Better operations',
+        'Beautiful reports',
+        'Bye paperworks'
+      ]
     };
   },
   watch: {
