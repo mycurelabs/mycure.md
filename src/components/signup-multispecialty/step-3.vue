@@ -10,6 +10,20 @@
           h1#step-1-title Let's talk soon!
           br
           p Please fill out the form and expect a call from our experts within 24 hours.
+          div.pt-1
+            p By default, you'll have these Core Modules in your clinic:
+            v-layout(row v-for="(module, key) in coreModules" :key="key").pa-0
+              v-flex(shrink).pr-2
+                img(width="20" src="../../assets/images/mycure-check.png")
+              v-flex(shrink)
+                p {{ module.name }}
+          div(v-if="selectedPremiumModules.length > 0").pt-1
+            p You've added these premium modules:
+            v-layout(row v-for="(module, key) in selectedPremiumModules" :key="key").pa-0
+              v-flex(shrink).pr-2
+                img(width="20" src="../../assets/images/mycure-check.png")
+              v-flex(shrink)
+                p {{ module.name }}
         v-flex(xs12 md5)
           v-card
             v-card-text
@@ -115,6 +129,7 @@ export default {
       valid: false,
       success: false,
       contact: {},
+      selectedPremiumModules: [],
       requiredRule: v => !!v || 'This field is required',
       roles: [
         'Owner',
@@ -175,6 +190,10 @@ export default {
     //   this.$router.push({ name: 'signup-multispecialty-step-2' });
     if (localStorage.getItem('multi:step3:model')) {
       this.contact = JSON.parse(localStorage.getItem('multi:step3:model'));
+    }
+    if (localStorage.getItem('multi:step2:model')) {
+      const premiumModules = JSON.parse(localStorage.getItem('multi:step2:model'));
+      this.selectedPremiumModules = premiumModules.filter(module => module.selected);
     }
   }
 };
