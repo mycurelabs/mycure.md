@@ -11,10 +11,13 @@
 </template>
 
 <script>
-import USP_CONTENTS from './constants.json';
+// utils
 import { parseTextWithNewLine } from '@/utils';
-import VueScrollTo from 'vue-scrollto';
+// constants
+import USP_CONTENTS from './constants.json';
+// components
 import UspTemplate from '../../commons/usp';
+
 export default {
   components: {
     UspTemplate
