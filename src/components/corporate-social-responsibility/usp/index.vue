@@ -6,6 +6,7 @@
       :btnId="uspContents.btnId"
       :btnText="uspContents.btnText"
       :coverImg="uspContents.coverImg"
+      @btnClick="toggleChat"
     )
 </template>
 
@@ -34,6 +35,11 @@ export default {
     uspMetaTitle () {
       const metaTitle = this.uspContents.metaTitle;
       return metaTitle;
+    }
+  },
+  methods: {
+    toggleChat () {
+      window.$crisp.push(['do', 'chat:toggle']);
     }
   }
 };
