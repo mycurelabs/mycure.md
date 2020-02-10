@@ -7,7 +7,7 @@
       :btnId="uspContents.btnId"
       :btnText="uspContents.btnText"
       :coverImg="uspContents.coverImg"
-      @getStarted="getStarted"
+      @btnClick="getStarted"
     )
 </template>
 
