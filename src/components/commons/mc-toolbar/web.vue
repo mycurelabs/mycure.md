@@ -1,8 +1,8 @@
 <template lang="pug">
-  v-container(:class="isMainRoute ? 'mc-gradient-grey' : 'white'").toolbarHeight.py-0
+  v-container.toolbarHeight.py-0.white
     v-layout(row wrap justify-center)
       v-flex(xs12 md12).toolbarMargin
-        v-toolbar(flat :class="isMainRoute ? 'mc-gradient-grey' : 'white'")
+        v-toolbar(flat).white
           router-link(:to="{ name: 'home' }" title="MYCURE | Clinic Management System | Cloud EMR Philippines" id="toolbar-mycure-logo" @click.stop="handleMycureLogo").mr-3.mt-2
             img(src="../../../assets/images/mycure-header-logo.png" width="140" alt="MYCURE logo")
           v-spacer

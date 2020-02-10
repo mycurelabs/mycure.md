@@ -2,7 +2,7 @@
   div
     //- TODO: Configure Google Analytics Events
     //- WEB
-    div(v-if="!$isMd" :class="[shadow, isMainRoute ? 'mc-gradient-grey' : 'white']").toolbarMain
+    div(v-if="!$isMd" :class="[shadow]").toolbarMain.white
       toolbar-web(
         :signUpURL="signUpURL"
         :loginURL="loginURL"

@@ -1,5 +1,5 @@
 <template lang="pug">
-  div.mc-gradient-grey
+  div.white
     usp-template(
       :uspTitle="uspTitle"
       :uspMetaTitle="uspContents.metaTitle"
