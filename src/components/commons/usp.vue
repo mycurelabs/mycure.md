@@ -72,14 +72,13 @@ export default {
         eventAction: `click-${this.btnId}`,
         eventLabel: `${this.btnId}`
       });
-      if (this.btnId === 'home-usp-btn') {
-        this.$emit('getStarted');
-      } else {
+      if (this.btnId !== 'home-usp-btn') {
         this.$router.push({ 
           name: this.btnRoute,
           ...(this.btnRoute === 'home') && { params: { scrollHealthSuites: true } } 
         });
       }
+      this.$emit('btnClick');
     }
   }
 };
