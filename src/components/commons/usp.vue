@@ -18,11 +18,16 @@
     div.outer-image-container
       div.usp-image-container.text-xs-center.justify-center
         img(
+          v-show="isImageLoaded"
           :src="require(`@/assets/images/${customPath}${coverImg}.png`)"
           :alt="coverImg"
           :width="coverImgWidth"
+          @load="loadedImage"
         ).justify-center
-    div.offset-container
+        div(v-show="!isImageLoaded").white.empty-image-container
+    div.offset-container(
+        v-show="isImageLoaded"
+        :class="{'usp-offset-color' : this.$route.name === 'home'}")
 </template>
 
 <script>
@@ -65,7 +70,15 @@ export default {
       default: ''
     }
   },
+  data () {
+    return {
+      isImageLoaded: false
+    };
+  },
   methods: {
+    loadedImage () {
+      this.isImageLoaded = true;
+    },
     handleUspBtnClick () {
       this.$ga.event({
         eventCategory: 'button',
@@ -114,13 +127,19 @@ export default {
   max-width: 1400px;
   margin: 0 auto;
 }
+.empty-image-container {
+  height: 340px;
+}
 
 .outer-image-container {
   margin-bottom: -76.65px;
 }
 .offset-container {
   height: 15vh;
-  background-color: #707070;
+  background-color: #4BA2C5;
+}
+.usp-offset-color {
+  background-color: #5AA7C7 !important;
 }
 .btnHeight {
   height: 50px;

@@ -104,7 +104,7 @@ export default {
   data () {
     return {
       solutionsMenuModel: false,
-      loginIcon: 'mycure-icon-login'
+      loginIcon: 'login-icon'
     };
   },
   computed: {
