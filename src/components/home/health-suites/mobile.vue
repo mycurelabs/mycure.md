@@ -2,8 +2,8 @@
   v-container
     v-layout(row align-center)
       v-flex(xs12 md12).text-xs-center
-        h2.text-xs-center.font-work-sans.font-xl.white--text {{ panelTitle }}
-        p.font-s.text-xs-center.white--text {{ panelSubtitle }}
+        h2.text-xs-center.font-work-sans.font-xl {{ panelTitle }}
+        p.font-s.text-xs-center {{ panelSubtitle }}
     v-layout(
       row 
       v-for="(suite, key) in healthSuites"
@@ -75,5 +75,6 @@ export default {
 <style scoped>
 .roundedCard {
   border-radius: 10px;
+  background-color: #f0f0f0;
 }
 </style>

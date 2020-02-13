@@ -42,7 +42,7 @@ export default {
 
 <style scoped>
 .health-suites {
-  background-color: #707070;
+  background-color: white;
   padding-bottom: 100px;
 }
 
