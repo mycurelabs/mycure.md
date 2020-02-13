@@ -4,7 +4,26 @@
       v-layout(row align-center)
         v-flex(xs12 md12).text-xs-center
           h1.font-40.font-work-sans {{ faqsTitle }}
-      v-layout(row wrap justify-center).pt-5
+      v-layout(v-if="!$isMobile" row justify-center).pt-5
+        v-flex(v-for="column in 3" xs12 md4).font-source-sans.mx-2
+          template(v-for="(item, key) in faqsItems")
+            div(v-if="key < 5 && column === 1")
+              img(:src="require(`@/assets/images/${questionMark}.png`)" :alt="questionMark" width="18px")
+              strong.font-21 &nbsp;{{ item.question }}
+              p.font-21.pl-1.pt-2 {{ item.answer }}
+              br
+            div(v-else-if="key < 8 && key > 4 && column === 2")
+              img(:src="require(`@/assets/images/${questionMark}.png`)" :alt="questionMark" width="18px")
+              strong.font-21 &nbsp;{{ item.question }}
+              p.font-21.pl-1.pt-2 {{ item.answer }}
+              br
+            div(v-else-if="key > 8 && column === 3")
+              img(:src="require(`@/assets/images/${questionMark}.png`)" :alt="questionMark" width="18px")
+              strong.font-21 &nbsp;{{ item.question }}
+              p.font-21.pl-1.pt-2 {{ item.answer }}
+              p(v-if="item.supplement" :class="{'pl-3' : !$isMobile}").font-21.pre-white-space {{ parseSupplement(item)}}
+              br
+      v-layout(v-else row wrap justify-center).pt-5
         v-flex(xs12 md9)
           div(
             v-for="(item, key) in faqsItems"
@@ -12,8 +31,8 @@
           ).font-source-sans
             img(:src="require(`@/assets/images/${questionMark}.png`)" :alt="questionMark" width="18px")
             strong.font-21 &nbsp;{{ item.question }}
-            p.font-25.pl-1 {{ item.answer }}
-            p(v-if="item.supplement" :class="{'pl-3' : !$isMobile}").font-25.pre-white-space {{ parseSupplement(item)}}
+            p.font-21.pl-1.pt-2 {{ item.answer }}
+            p(v-if="item.supplement" :class="{'pl-3' : !$isMobile}").font-21.pre-white-space {{ parseSupplement(item)}}
             br
 </template>
 
