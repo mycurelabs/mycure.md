@@ -143,7 +143,7 @@ export default {
       solutionsText: 'Solutions',
       solutionsMenuModel: false,
       solutionsMenuItems: [
-        { name: 'Doctor\'s Clinics' },
+        { name: 'Doctors Clinic' },
         { name: 'Specialized Clinics' },
         { name: 'Multispecialty Clinics' }
       ],
