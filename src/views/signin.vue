@@ -43,7 +43,7 @@
                   v-flex
                     span No account yet?
                     br
-                    router-link(:to="{ name: 'signup-choose' }").router-link Create an account here.
+                    router-link(:to="{ name: 'home' , params: { scrollHealthSuites: true}}").router-link Create an account here.
                   v-flex
                     v-btn(
                       @click="submit" 
