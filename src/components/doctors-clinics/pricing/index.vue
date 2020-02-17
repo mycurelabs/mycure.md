@@ -38,10 +38,8 @@
                   right
                   @click.stop="handleSeeMoreBtn"
                 ).text-none.font-18 See More
-                div(v-else)
-                  br
                 div(v-if="expandInclusions && item.expandedInclusions")
-                  template(v-for="inclusion in item.expandedInclusions")
+                  div(v-for="(inclusion, key) in item.expandedInclusions" :key="key")
                     strong.font-18 {{ inclusion.title }}
                     br
                     p(v-for="(inc, key) in inclusion.inclusions" :key="key").font-18 {{ inc }}
