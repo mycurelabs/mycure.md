@@ -22,7 +22,7 @@
     div(v-else).white.pt-5
       v-container
         v-layout(row justify-center)
-          h1.font-xl.text-xs-center.font-work-sans {{ title }}
+          h1.font-40.text-xs-center.font-work-sans {{ title }}
       v-container
         v-layout(row justify-center)
           v-list(two-line).white
