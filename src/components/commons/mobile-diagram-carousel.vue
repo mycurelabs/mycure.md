@@ -21,7 +21,7 @@
           ).px-2
             img(:src="require(`@/assets/images/${customSlidePath}${slide}.png`)" :alt="slide" width="100%")
     br
-    v-layout(row justify-center v-for="(item, key) in items" :key="key").pt-3
+    v-layout(row justify-center align-center v-for="(item, key) in items" :key="key").pt-3
       v-flex(xs3).text-xs-center
         img(v-if="item.icon" :src="require(`@/assets/images/${customItemPath}${item.icon}.png`)" :alt="item.title")
       v-flex(xs8 offset-xs1)
