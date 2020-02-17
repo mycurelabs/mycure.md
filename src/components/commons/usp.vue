@@ -28,7 +28,7 @@
         div(v-show="!isImageLoaded").white.empty-image-container
     div.offset-container(
         v-show="isImageLoaded"
-        :class="[{'usp-offset-alt-blue-color' : altBlueRoutes.includes(this.$route.name)}, {'usp-offset-grey' : this.$route.name === 'csr'}]")
+        :class="{'usp-offset-alt-blue-color' : altBlueRoutes.includes(this.$route.name)}")
 </template>
 
 <script>
@@ -75,7 +75,7 @@ export default {
     return {
       isImageLoaded: false,
       // - Routes that use the alternative blue color for USP
-      altBlueRoutes: ['home', 'features', 'our-story']
+      altBlueRoutes: ['home', 'features', 'our-story', 'csr']
     };
   },
   methods: {
