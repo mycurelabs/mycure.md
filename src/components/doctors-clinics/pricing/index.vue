@@ -1,5 +1,5 @@
 <template lang="pug">
-  div.mc-gradient-grey.pt-5
+  div.mc-gradient-grey.pt-3
     v-container
       v-container
         v-layout(row align-center)

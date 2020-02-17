@@ -23,7 +23,10 @@
     br
     v-layout(row justify-center align-center v-for="(item, key) in items" :key="key").pt-3
       v-flex(xs3).text-xs-center
-        img(v-if="item.icon" :src="require(`@/assets/images/${customItemPath}${item.icon}.png`)" :alt="item.title")
+        img(
+          v-if="item.icon"
+          :src="require(`@/assets/images/${item.customPath ? item.customPath : customItemPath}${item.icon}.png`)" 
+          :alt="item.title")
       v-flex(xs8 offset-xs1)
         b {{ item.title }}
         p {{ item.description}}
