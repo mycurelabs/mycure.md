@@ -5,7 +5,8 @@
         v-layout(row align-center)
           v-flex(xs12 md12).text-xs-center
             strong(v-if="uspMetaTitle").text-xs-center.font-s.font-mc-blue {{ uspMetaTitle }}
-            h1(:class="{'pre-white-space': !$isMobile}").text-xs-center.uspTitle.font-xl {{ uspTitle }}
+            h1(:class="[{'pre-white-space': !$isMobile}, {'font-xl': !$isMobile}, {'font-45': $isMobile}]").text-xs-center.uspTitle 
+              | {{ uspTitle }}
             p(:class="{'pre-white-space': !$isMobile}").text-xs-center.uspDescription.pt-3.font-s {{ uspDescription }}
             div.pt-3
               v-btn(

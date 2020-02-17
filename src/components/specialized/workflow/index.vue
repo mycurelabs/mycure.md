@@ -38,10 +38,10 @@
           a(@click.stop="toggleChat()")
             strong.font-mc-blue Send us a chat.
     //- MOBILE
-    div(v-else).pt-5
+    div(v-else).pt-3
       v-container
         v-layout(row justify-center)
-          h1.font-xl.text-xs-center {{ title }}
+          h1.font-40.font-work-sans.text-xs-center {{ title }}
       v-container
         v-layout(row justify-center)
           v-list(two-line)
