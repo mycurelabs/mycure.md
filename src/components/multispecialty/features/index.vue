@@ -17,6 +17,7 @@
         br
         mobile-diagram-carousel(
           :slides="slides"
+          :customSlidePath="customSlidePath"
           :items="multiFeatures"
         )
     v-layout(row justify-center align-center).pt-4
@@ -44,15 +45,16 @@ export default {
   data () {
     return {
       customPath: 'multispecialty/',
+      customSlidePath: 'multispecialty/',
       exploreFeaturesId: 'multispecialty-explore-features-btn',
       image: 'mycure-home-web-complete-for-clinics-of-all-sizes-diagram',
       slides: [
-        'mycure-web-clinic-type-01',
-        'mycure-web-clinic-type-02',
-        'mycure-web-clinic-type-03',
-        'mycure-web-clinic-type-04',
-        'mycure-web-clinic-type-05',
-        'mycure-web-clinic-type-06'
+        'mycure-home-web-complete-for-clinics-of-all-sizes-diagram-mobile-01',
+        'mycure-home-web-complete-for-clinics-of-all-sizes-diagram-mobile-02',
+        'mycure-home-web-complete-for-clinics-of-all-sizes-diagram-mobile-03',
+        'mycure-home-web-complete-for-clinics-of-all-sizes-diagram-mobile-04',
+        'mycure-home-web-complete-for-clinics-of-all-sizes-diagram-mobile-05',
+        'mycure-home-web-complete-for-clinics-of-all-sizes-diagram-mobile-06'
       ],
       multiFeatures: [
           {
