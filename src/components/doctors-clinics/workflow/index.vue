@@ -3,7 +3,7 @@
     div(v-if="!$isMobile").px-5.white.workFlow
       v-container.px-5
         v-layout(row justify-center).text-xs-center
-          h1.font-xl.pa-5.text-xs-center.font-work-sans {{ title }}
+          h1.font-40.pa-5.text-xs-center.font-work-sans {{ title }}
         v-layout(row wrap justify-center)
           v-flex(xs12 md4)
             v-list(two-line).check-list.white
