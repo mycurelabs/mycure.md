@@ -27,7 +27,7 @@
         div(v-show="!isImageLoaded").white.empty-image-container
     div.offset-container(
         v-show="isImageLoaded"
-        :class="{'usp-offset-color' : this.$route.name === 'home'}")
+        :class="[{'usp-offset-alt-blue-color' : altBlueRoutes.includes(this.$route.name)}, {'usp-offset-grey' : this.$route.name === 'csr'}]")
 </template>
 
 <script>
@@ -72,7 +72,9 @@ export default {
   },
   data () {
     return {
-      isImageLoaded: false
+      isImageLoaded: false,
+      // - Routes that use the alternative blue color for USP
+      altBlueRoutes: ['home', 'features', 'our-story']
     };
   },
   methods: {
@@ -138,8 +140,11 @@ export default {
   height: 15vh;
   background-color: #4BA2C5;
 }
-.usp-offset-color {
+.usp-offset-alt-blue-color {
   background-color: #5AA7C7 !important;
+}
+.usp-offset-grey {
+  background-color: #707070 !important;
 }
 .btnHeight {
   height: 50px;

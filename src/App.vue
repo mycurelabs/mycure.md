@@ -57,11 +57,11 @@ export default {
   }
 
   .mc-grey {
-    background-color: #616161
+    background-color: #616161 !important;
   }
 
   .mc-light-grey {
-    background-color: #f5f5f5
+    background-color: #f5f5f5 !important;
   }
 
   .mc-yellow {
