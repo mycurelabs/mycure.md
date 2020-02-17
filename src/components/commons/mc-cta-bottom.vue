@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-container.pt-5
+  v-container.pt-3
     v-layout(row justify-center).pt-5
       v-flex(xs12 md12).text-xs-center
         h2(:class="{'pre-white-space' : !$isMobile}").font-40.lh-title.font-work-sans.cta-text {{ ctaText }}
