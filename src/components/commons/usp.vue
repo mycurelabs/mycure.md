@@ -19,7 +19,7 @@
       div.usp-image-container.text-xs-center.justify-center
         img(
           v-show="isImageLoaded"
-          :src="require(`@/assets/images/${customPath}${coverImg}.png`)"
+          :src="require(`@/assets/images/${customPath}${coverImg}${$isMobile ? '-mobile' : ''}.png`)"
           :alt="coverImg"
           :width="coverImgWidth"
           @load="loadedImage"
