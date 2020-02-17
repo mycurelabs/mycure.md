@@ -101,8 +101,8 @@ export default {
 
 <style scoped>
 .whole-page {
-  height: 70vh;
-  padding-top: 20vh;
+  height: 400px;
+  padding-top: 90px;
 }
 .mobile-page-height {
   padding-top: 10vh;
