@@ -63,6 +63,7 @@ export const SOLUTIONS = [
   {
     title: 'Pharmacy',
     description: 'Point-of-sales functions, Rx access, inventory management and reports',
-    icon: 'mycure-web-clinic-feature-icon-lab'
+    icon: 'mycure-icon-pos-active',
+    customPath: 'mycure features icon set/'
   },
 ];
