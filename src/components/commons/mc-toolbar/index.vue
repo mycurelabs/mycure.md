@@ -50,7 +50,6 @@ export default {
       ],
       toolbarLinks: [
         { id: 'features', name: 'Features', route: 'features' },
-        { id: 'pricing', name: 'Pricing', route: 'pricing' }
       ]
     };
   },
