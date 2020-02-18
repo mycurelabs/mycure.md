@@ -7,33 +7,27 @@
   },
   {
     "path": "/",
-    "title": "MYCURE Complete Clinic Practice Management System | Philippines",
-    "description": "MYCURE is a clinic management system that helps secure and organize medical records - Best DPA-compliant EMR practice management software in the Philippines.",
+    "title": "MYCURE Healthcare Solutions | Hospital and Clinic Management Systems",
+    "description": "MYCURE is an advanced clinic management system that optimizes workflows and gives real-time medical and business insights.",
     "image": "https://firebasestorage.googleapis.com/v0/b/mc-v4-prod.appspot.com/o/web-main-assets%2FMYCURE_Open_Graph_Images_Home_Clinic_Management_System.png?alt=media&token=9556e040-1c3d-4632-9151-798ad13a15d4"
   },
   {
-    "path": "/individual-practice",
-    "title": "MYCURE - Individual Practice Electronic Medical Records (EMR)",
-    "description": "The smartest clinical tool for doctors that makes writing a thing of the past.",
+    "path": "/doctors-clinics",
+    "title": "MYCURE EMR Solution for Doctors",
+    "description": "MYCURE is the best EMR clinic practice management system that helps doctors manage their daily clinic needs.",
     "image": "https://firebasestorage.googleapis.com/v0/b/mc-v4-prod.appspot.com/o/web-main-assets%2FMYCURE_Open_Graph_Images_Individual_Clinic.png?alt=media&token=661d3622-8019-4aab-8af5-ec81631166c8"
   },
   {
-    "path": "/group-clinics",
-    "title": "MYCURE - Group Clinics",
-    "description": "The perfect clinic system setup designed for doctors who are practicing in groups.",
+    "path": "/specialized-clinics",
+    "title": "MYCURE EMR Solution for Specialized Clinics",
+    "description": "MYCURE is the best EMR clinic practice management system for skin, maternity care, pediatric, dental, and diagnostic clinics.",
     "image": ""
   },
   {
     "path": "/multispecialty-clinics",
-    "title": "MYCURE - Multispecialty Clinic Management System (CMS)",
-    "description": "The ultimate clinic system that eases the process flows of your multispecialty clinic.",
+    "title": "MYCURE Clinic Management System",
+    "description": "MYCURE is the best EMR clinic practice management system for multispecialty clinics.",
     "image": "https://firebasestorage.googleapis.com/v0/b/mc-v4-prod.appspot.com/o/web-main-assets%2FMYCURE_Open_Graph_Images_Multispecialty_Clinic.png?alt=media&token=de2ed033-d770-4940-b0f0-d7ce9f85664d"
-  },
-  {
-    "path": "/pricing",
-    "title": "MYCURE - Pricing | Affordable EMR and Clinic Management System",
-    "description": "MYCURE is always FREE for doctors. The most affordable EMR and clinic management in the Philippines. Pay only for what you need with plans that suit your budget.",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mc-v4-prod.appspot.com/o/web-main-assets%2FMYCURE_Open_Graph_Images_Pricing_.png?alt=media&token=f4a0a996-5f9e-4db0-ab91-d59c9e76bc9a"
   },
   {
     "path": "/our-story",
@@ -55,8 +49,8 @@
   },
   {
     "path": "/features",
-    "title": "MYCURE - Features",
-    "description": "MYCURE Features",
+    "title": "MYCURE Features for EMR and CMS",
+    "description": "MYCURE includes modularized features that makes it easier for clinics to customize reports, user roles, and displays.",
     "image": "https://firebasestorage.googleapis.com/v0/b/mc-v4-prod.appspot.com/o/web-main-assets%2FMYCURE_Open_Graph_Images_Features.png?alt=media&token=f3dc1d21-a745-411c-b585-b3917e66225d"
   },
   {
