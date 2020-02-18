@@ -67,7 +67,6 @@
 
 <style scoped>
   #panel9 {
-    background-image: url('../../assets/images/mycure-home-web-sky-background.png');
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;

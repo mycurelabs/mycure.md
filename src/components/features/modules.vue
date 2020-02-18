@@ -16,11 +16,11 @@
           v-for="(moduleItem, index) in panel.modules" 
           :key="index"
         ).px-1.py-2
-          v-card(height="100%").pa-1
+          v-card(height="100%").pa-1.module-card
             v-card-text(v-if="!$isMobile")
               v-layout(row)
                 img(:src="require(`@/assets/images/${ moduleItem.icon }`)" width="10%" height="10%" :alt="moduleItem.title") 
-                span(:class="panel.doubleCol ? 'pt-3' : 'pt-1'").font-18 &nbsp; {{ moduleItem.title }}
+                span(:class="panel.doubleCol ? 'pt-3' : 'pt-1'").font-21 &nbsp; {{ moduleItem.title }}
               br
               i(v-if="panel.hasSubtext") {{ moduleItem.subtext}}
                 br
@@ -125,4 +125,10 @@
     }
   };
 </script>
+
+<style scoped>
+.module-card {
+  background-color: #f0f0f0;
+}
+</style>
 
