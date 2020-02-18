@@ -90,7 +90,7 @@
                 :loading="loading"
                 @click="submit"
               ) Request for Demo
-        v-flex(xs12 md6 offset-md-6).text-xs-right.pt-2
+        v-flex(xs12 md6 offset-md-6 :class="{'text-xs-right' : !$isMobile}").pt-2
           b.font-18 Already have an account? 
             router-link(:to="{ name: 'signin' }") Sign in.
     v-snackbar(
