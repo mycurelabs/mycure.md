@@ -75,7 +75,7 @@
           v-btn(
             id="mobile-navdrawer-get-started-btn"
             :color="$mcColors.mcAltGreen"
-            :to="{ name: 'home'}"
+            :to="{ name: 'home', params: { scrollToHealthSuites: true }}"
             @click.stop="handleToolbarLinkClick(`mobile-navdrawer-get-started-btn`)"
           )
             strong.font-14.white--text.tab GET STARTED
@@ -122,8 +122,8 @@ export default {
         {
           header: 'Legal',
           items: [
-            { name: 'Terms' },
-            { name: 'Privacy Policy' }
+            { name: 'Terms', route: 'terms' },
+            { name: 'Privacy Policy', route: 'privacy-policy' }
           ]
         }
       ],
@@ -140,6 +140,7 @@ export default {
   methods: {
     handleToolbarLinkClick (link) {
       this.$emit('toolbarLinkClick', link);
+      this.drawer = false;
     },
     handleMycureLogo () {
       this.$emit('logoClick');
