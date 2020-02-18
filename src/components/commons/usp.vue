@@ -16,7 +16,7 @@
                 @click.stop="handleUspBtnClick"
               ).text-none.white--text
                 strong.font-s {{ btnText }}    
-    div.outer-image-container
+    div.outer-image-container(:class="{'pb-5' : $isMobile}")
       div.usp-image-container.text-xs-center.justify-center
         img(
           v-show="isImageLoaded"
@@ -27,7 +27,7 @@
         ).justify-center
         div(v-show="!isImageLoaded").white.empty-image-container
     div.offset-container(
-        v-show="isImageLoaded"
+        v-show="isImageLoaded && !$isMobile"
         :class="{'usp-offset-alt-blue-color' : altBlueRoutes.includes(this.$route.name)}")
 </template>
 
