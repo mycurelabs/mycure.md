@@ -7,23 +7,28 @@
       v-container(:class="{'px-5' : !$isMobile}")
         v-layout(
           row
-          :wrap="$isMobile"
+          wrap
           align-center 
           justify-center 
-          v-for="(expert, key) in expertise" 
-          :key="key"
-          :class="[(key+1)%2 === 0 && !$isMobile? 'grey-panel' : 'white-panel', {'my-4' : !$isMobile}, {'mx-5': !$isMobile}]"
+          :class="[{'my-4' : !$isMobile}, {'mx-5': !$isMobile}]"
         ).pb-3
-          v-flex(xs12 md6 align-center :class="{'text-xs-center' : !$isMobile}")
-            img(
-              :src="require(`@/assets/images/specialized/${expert.image}.png`)"
-              :alt="expert.image"
-            )
-          v-flex(xs12 md6 :class="{'pb-5' : $isMobile}")
-            h2.font-m.pb-3 {{ expert.title }}
-            strong.font-s.font-mc-blue TOP FEATURES
-            ul.no-list-style
-              li(v-for="(feature,key) in expert.features") ✓&nbsp;{{ feature }}
+          v-flex(
+            xs12 
+            md4 
+            align-center
+            v-for="(expert, key) in expertise" 
+            :key="key"
+          ).pa-3
+            v-card.grey-panel.pa-3
+              v-card-text
+                img(
+                  :src="require(`@/assets/images/specialized/${expert.image}.png`)"
+                  :alt="expert.image"
+                )
+                h2.font-m.pb-3 {{ expert.title }}
+                strong.font-18.font-mc-blue TOP FEATURES
+                ul.no-list-style
+                  li(v-for="(feature,key) in expert.features") ✓&nbsp;{{ feature }}
 </template>
 
 <script>
@@ -41,7 +46,7 @@ export default {
             'Inventory Management',
             'Staff Commissions'
           ],
-          image: 'mycure-web-specialized-icon-skin'
+          image: 'mycure-specialized-clinic-feature-skin'
         },
         {
           title: 'Pediatrics',
@@ -52,7 +57,7 @@ export default {
             'Developmental Milestones',
             'Pedia Store'
           ],
-          image: 'mycure-web-specialized-icon-pedia'
+          image: 'mycure-specialized-clinic-feature-pedia'
         },
         {
           title: 'Maternity Care',
@@ -63,7 +68,7 @@ export default {
             'AOG & EDD Calculators',
             'Advanced Billing'
           ],
-          image: 'mycure-web-specialized-icon-maternity'
+          image: 'mycure-specialized-clinic-feature-maternity'
         },
         {
           title: 'Dental',
@@ -74,7 +79,7 @@ export default {
             'Custom Dental Statuses',
             'Discounting and Promos'
           ],
-          image: 'mycure-web-specialized-icon-dental'
+          image: 'mycure-specialized-clinic-feature-dentist'
         },
         {
           title: 'Diagnostic',
@@ -85,7 +90,7 @@ export default {
             'HL7 Machine Integrations',
             'Online Results Portal for Patients'
           ],
-          image: 'mycure-web-specialized-icon-diagx'
+          image: 'mycure-specialized-clinic-feature-diagnostics'
         },
       ]
     };
