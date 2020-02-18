@@ -1,6 +1,6 @@
 <template lang="pug">
   div#top
-    usp
+    usp.pb-5
     panel2
     panel3
     ProblemToSolve
