@@ -1,7 +1,7 @@
 <template lang="pug">
   v-layout(row justify-center align-center)
     v-flex(xs12 md8)
-      v-layout(row justify-center align-center)
+      v-layout(row wrap justify-center align-center)
         v-flex(xs12 md6).pa-1.mb-3
           img(
             src="../../assets/images/mycure-header-logo.png"
