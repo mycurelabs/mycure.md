@@ -5,7 +5,7 @@
       v-container.px-5
         v-layout(row justify-center).text-xs-center
           h1.font-40.text-xs-center.font-work-sans {{ title }}
-        v-layout(row wrap justify-center).pt-3
+        v-layout(row wrap justify-center).pt-3.mx-3
           v-flex(xs12 md5)
             v-list(two-line)
               v-list-tile(v-for="(reason,index) in reasons" :key="index" v-if="index<=2")
