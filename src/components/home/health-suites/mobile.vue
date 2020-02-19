@@ -33,7 +33,7 @@
                   :to="{ name: suite.btnLink }"
                   :id="suite.btnId"
                   @click.stop="handleStartFreeBtn(suite.btnId)"
-                ).text-none.font-weight-bold Start Free
+                ).text-none.font-weight-bold {{ suite.btnText }}
               v-flex(xs6 md6)
                 v-btn(
                   outline

@@ -33,7 +33,7 @@
                   block
                   :id="suite.btnId"
                   @click.stop="handleStartFreeBtn(suite.btnId)"
-                ).text-none.font-weight-bold Start Free
+                ).text-none.font-weight-bold {{ suite.btnText }}
               v-flex(xs12 md6).pl-1.text-xs-right
                 v-btn(
                   outline
