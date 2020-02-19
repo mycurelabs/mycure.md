@@ -49,10 +49,9 @@ export const SOLUTIONS = [
     icon: 'mycure-web-clinic-feature-icon-lab'
   },
   {
-    title: 'Administration',
-    description: 'Staff management, audit trail, and clinic customizations',
-    icon: 'mycure-icon-report-active',
-    customPath: 'mycure features icon set/'
+    title: 'Pharmacy',
+    description: 'Point-of-sales functions, Rx access, inventory management and reports',
+    icon: 'mycure-web-clinic-feature-icon-pharmacy'
   },
   {
     title: 'Billing',
@@ -61,8 +60,9 @@ export const SOLUTIONS = [
     customPath: 'mycure features icon set/'
   },
   {
-    title: 'Pharmacy',
-    description: 'Point-of-sales functions, Rx access, inventory management and reports',
-    icon: 'mycure-web-clinic-feature-icon-pharmacy'
-  },
+    title: 'Administration',
+    description: 'Staff management, audit trail, and clinic customizations',
+    icon: 'mycure-icon-report-active',
+    customPath: 'mycure features icon set/'
+  }
 ];
