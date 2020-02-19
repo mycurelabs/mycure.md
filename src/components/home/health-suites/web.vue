@@ -10,7 +10,7 @@
         :key="key"
         xs12
         md4
-      ).mx-1
+      ).mx-2
         v-card(height="100%").roundedCard
           v-card-text
             strong.font-s {{ suite.header }}
