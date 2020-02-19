@@ -38,6 +38,7 @@
                   right
                   @click.stop="handleSeeMoreBtn"
                 ).text-none.font-18 See More
+                div(v-else).offset-container
                 div(v-if="expandInclusions && item.expandedInclusions")
                   div(v-for="(inclusion, key) in item.expandedInclusions" :key="key")
                     strong.font-18 {{ inclusion.title }}
@@ -128,3 +129,9 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.offset-container {
+  height: 25px;
+}
+</style>
