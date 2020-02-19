@@ -59,17 +59,17 @@
             message: '“It\'s a great experience using MYCURE app in our rural setup. I\'ve been through many EMR apps, but this one is the best so far... It is very convenient to use, simple, adaptable and user-friendly even to my secretary.”'
           },
           {
-            name: 'Atty. Ivy D. Patdu, M.D',
+            name: 'Atty. Ivy D. Patdu, M.D.',
             position: 'Deputy Privacy Commissioner, NPC',
             message: '“We should harness the power of technology. We should incorporate in system designs means to obtain information while remaining true to our obligations for data protection.”'
           },
           {
-            name: 'Dr. Nelson S. Abelardo',
+            name: 'Nelson S. Abelardo, M.D.',
             position: 'Cardiologist',
             message: '“MYCURE fulfills a long time need of physicians for accurate records of patients which they can carry with them wherever they are.”'
           },
           {
-            name: 'Dr. Greg Burke, MD',
+            name: 'Greg Burke, M.D.',
             position: 'Internist',
             message: '“They want to be greeted by name, they want their healthcare professionals [to] be identifiable and professionally dressed. They don\'t want to wait long for an appointment.”'
           },
