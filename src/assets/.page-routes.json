@@ -9,31 +9,31 @@
     "path": "/",
     "title": "MYCURE Healthcare Solutions | Hospital and Clinic Management Systems",
     "description": "MYCURE is an advanced clinic management system that optimizes workflows and gives real-time medical and business insights.",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mc-v4-prod.appspot.com/o/web-main-assets%2FMYCURE_Open_Graph_Images_Home_Clinic_Management_System.png?alt=media&token=9556e040-1c3d-4632-9151-798ad13a15d4"
+    "image": "https://firebasestorage.googleapis.com/v0/b/mc-v4-prod.appspot.com/o/web-main-assets%2FMYCURE-Open-Graph-Images-Home.png?alt=media&token=61978d70-326f-4323-8e6a-17d7b9c9a53b"
   },
   {
     "path": "/doctors-clinics",
     "title": "MYCURE EMR Solution for Doctors",
     "description": "MYCURE is the best EMR clinic practice management system that helps doctors manage their daily clinic needs.",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mc-v4-prod.appspot.com/o/web-main-assets%2FMYCURE_Open_Graph_Images_Individual_Clinic.png?alt=media&token=661d3622-8019-4aab-8af5-ec81631166c8"
+    "image": "https://firebasestorage.googleapis.com/v0/b/mc-v4-prod.appspot.com/o/web-main-assets%2FMYCURE-Open-Graph-Images-Doctors-Clinic.png?alt=media&token=a4c57fe8-8ac7-479c-a959-949930299ca5"
   },
   {
     "path": "/specialized-clinics",
     "title": "MYCURE EMR Solution for Specialized Clinics",
     "description": "MYCURE is the best EMR clinic practice management system for skin, maternity care, pediatric, dental, and diagnostic clinics.",
-    "image": ""
+    "image": "https://firebasestorage.googleapis.com/v0/b/mc-v4-prod.appspot.com/o/web-main-assets%2FMYCURE-Open-Graph-Images-Specialized-Clinic.png?alt=media&token=cb08fe03-e7c8-4ea7-9f40-c9742c68cfbc"
   },
   {
     "path": "/multispecialty-clinics",
     "title": "MYCURE Clinic Management System",
     "description": "MYCURE is the best EMR clinic practice management system for multispecialty clinics.",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mc-v4-prod.appspot.com/o/web-main-assets%2FMYCURE_Open_Graph_Images_Multispecialty_Clinic.png?alt=media&token=de2ed033-d770-4940-b0f0-d7ce9f85664d"
+    "image": "https://firebasestorage.googleapis.com/v0/b/mc-v4-prod.appspot.com/o/web-main-assets%2FMYCURE-Open-Graph-Images-Multispecialty.png?alt=media&token=771bd2f8-fd7b-47fd-9bb9-0f495f1e94f8"
   },
   {
     "path": "/our-story",
     "title": "MYCURE - Our Story | Caring the Extra Mile",
     "description": "Caring the extra mile is our mantra. MYCURE is committed to saving lives by building advanced apps for patients, physicians, and other healthcare practitioners.",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mc-v4-prod.appspot.com/o/web-main-assets%2FMYCURE_Open_Graph_Images_Our_Story.png?alt=media&token=9bea8679-7c32-4b92-9976-134dfb127d07"
+    "image": "https://firebasestorage.googleapis.com/v0/b/mc-v4-prod.appspot.com/o/web-main-assets%2FMYCURE-Open-Graph-Images-Our-Story.png?alt=media&token=de5c4443-0b36-41ee-93e6-3fac9aae0b1d"
   },
   {
     "path": "/terms",
@@ -51,12 +51,12 @@
     "path": "/features",
     "title": "MYCURE Features for EMR and CMS",
     "description": "MYCURE includes modularized features that makes it easier for clinics to customize reports, user roles, and displays.",
-    "image": "https://firebasestorage.googleapis.com/v0/b/mc-v4-prod.appspot.com/o/web-main-assets%2FMYCURE_Open_Graph_Images_Features.png?alt=media&token=f3dc1d21-a745-411c-b585-b3917e66225d"
+    "image": "https://firebasestorage.googleapis.com/v0/b/mc-v4-prod.appspot.com/o/web-main-assets%2FMYCURE-Open-Graph-Images-Features.png?alt=media&token=6bac1cce-cd24-4af2-b3d8-b0cf3005ec91"
   },
   {
     "path": "/corporate-social-responsibility",
     "title": "MYCURE - Corporate Social Responsibility",
     "description": "MYCURE cares for people who care for people.",
-    "image": ""
+    "image": "https://firebasestorage.googleapis.com/v0/b/mc-v4-prod.appspot.com/o/web-main-assets%2FMYCURE-Open-Graph-Images-CSR.png?alt=media&token=00369500-c57c-48a4-8383-f3421b7be321"
   }
 ]
