@@ -1,5 +1,5 @@
 <template lang="pug">
-  div
+  div.pt-4
     div(v-if="!$isMobile").health-suites
       health-suites-web(
         @startFree="handleStartFreeBtn($event)"

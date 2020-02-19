@@ -61,8 +61,8 @@ export default {
     Storyflow
   },
   mounted () {
-    VueScrollTo.scrollTo(`#top`, 500, { easing: 'ease' } );
-    if (this.$route.params.scrollHealthSuites) this.getStarted();
+    this.$route.params.scrollHealthSuites ? this.getStarted()
+      : VueScrollTo.scrollTo(`#top`, 500, { easing: 'ease' } );
   },
   data () {
     return {
