@@ -48,8 +48,8 @@ export default {
       ctaContent: {
         text: 'Premium clinical services work best with premium technology.',
         subtext: this.parseCtaSubtext(),
-        btnText: 'Start Free',
-        btnLink: 'signup-multispecialty',
+        btnText: 'Book A Demo',
+        btnLink: 'calendly',
         image: 'mycure-web-footer'
       }
     };
