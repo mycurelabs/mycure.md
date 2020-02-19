@@ -5,7 +5,7 @@ export const HEALTH_SUITES_HEADERS = {
 
 export const HEALTH_SUITES_ITEMS = [
   {
-    header: 'Doctors Clinic',
+    header: 'Doctors Clinics',
     subheader: 'Make writing a thing of the past.',
     features: [
       'Best for Solo & Group Practice',
