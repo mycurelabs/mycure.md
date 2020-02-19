@@ -1,6 +1,6 @@
 export const CONTENT = {
   title: 'Complete solutions for better healthcare services',
-  description: 'MYCURE is a comprehensive clinic practice management system - everything your clinic needs.',
+  description: 'MYCURE is a comprehensive clinic practice management system — everything your clinic needs.',
   image: 'mycure-home-web-complete-clinic-management-system-diagram'
 };
 
