@@ -50,7 +50,7 @@
             id="login-btn"
             @click.stop="handleToolbarLinkClick('login-btn')"
           )
-            img(:src="require(`@/assets/images/${loginIcon}.png`)" alt="login icon" width="20%")
+            //- img(:src="require(`@/assets/images/${loginIcon}.png`)" alt="login icon" width="17%")
             span.font-14.tab.text-none &nbsp;Login
           v-btn(
             v-if="currentRoute === 'doctors-clinics' || currentRoute === 'specialized-clinics'"
