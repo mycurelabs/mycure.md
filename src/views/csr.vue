@@ -2,7 +2,7 @@
   div.white#top
     usp
     //- div.skyBg
-    pillars
+    pillars.last-panel-padding
     //- filler
 </template>
 
@@ -30,7 +30,10 @@
 
 <style scoped>
 .pointer:hover {
-    cursor: pointer;
+  cursor: pointer;
+}
+.last-panel-padding {
+  padding-bottom: 100px;
 }
 </style>
 
