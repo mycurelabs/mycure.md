@@ -8,7 +8,7 @@
             h1(:class="[{'pre-white-space': !$isMobile}, {'font-xl': !$isMobile}, {'font-45': $isMobile}]").text-xs-center.uspTitle 
               | {{ uspTitle }}
             p(:class="{'pre-white-space': !$isMobile}").text-xs-center.uspDescription.pt-3.font-s {{ uspDescription }}
-            div.pt-3
+            div.pt-1
               v-btn(
                 :color="$mcColors.mcAltGreen"
                 :id="btnId"
@@ -16,7 +16,7 @@
                 @click.stop="handleUspBtnClick"
               ).text-none.white--text
                 strong.font-s {{ btnText }}    
-    div.outer-image-container(:class="{'pb-5' : $isMobile}")
+    div.outer-image-container(:class="$isMobile ? 'pb-5' : 'web-padding'")
       div.usp-image-container.text-xs-center.justify-center
         img(
           v-show="isImageLoaded"
@@ -64,7 +64,7 @@ export default {
     },
     coverImgWidth: {
       type: String,
-      default: '100%'
+      default: '82%'
     },
     customPath: {
       type: String,
@@ -103,7 +103,7 @@ export default {
 <style scoped>
 .whole-page {
   height: 400px;
-  padding-top: 90px;
+  padding-top: 25vh;
 }
 .mobile-page-height {
   padding-top: 10vh;
@@ -136,6 +136,7 @@ export default {
 
 .outer-image-container {
   margin-bottom: -76.65px;
+  padding-top: 7vh;
 }
 .offset-container {
   height: 15vh;
@@ -153,11 +154,13 @@ export default {
 .uspMobileBtn {
   height: 75px;
 }
-
+.web-padding {
+  padding-bottom: 13.80px;
+}
 @media screen and (min-height: 1080px) {
   .whole-page {
     height: 55vh !important;
-    padding-top: 10vh !important;
+    padding-top: 12vh !important;
   }
 }
 </style>
