@@ -3,11 +3,19 @@
     usp-template(
       :uspTitle="uspTitle"
       :uspMetaTitle="uspMetaTitle"
-      :btnRoute="uspContents.btnRoute"
       :btnId="uspContents.btnId"
       :btnText="uspContents.btnText"
       :coverImg="uspContents.coverImg"
+      @btnClick="showVideo"
     )
+
+    //- Video
+    //- TODO: Attach video
+    v-dialog(v-model="videoDialog" max-width="600px")
+      v-layout(row justify-center)
+        v-card(width="600")
+          v-card-text
+
 </template>
 
 <script>
@@ -25,6 +33,7 @@ export default {
   data () {
     return {
       uspContents: USP_CONTENTS,
+      videoDialog: false
     };
   },
   computed: {
@@ -35,6 +44,11 @@ export default {
     uspMetaTitle () {
       const metaTitle = this.uspContents.metaTitle;
       return metaTitle;
+    }
+  },
+  methods: {
+    showVideo () {
+      this.videoDialog = true;
     }
   }
 };
