@@ -15,7 +15,7 @@
           :md5="panel.doubleCol"
           v-for="(moduleItem, index) in panel.modules" 
           :key="index"
-        ).px-1.py-2
+        ).pa-2
           v-card(height="100%").pa-1.module-card
             v-card-text(v-if="!$isMobile")
               v-layout(row)
@@ -128,7 +128,7 @@
 
 <style scoped>
 .module-card {
-  background-color: #f0f0f0;
+  background-color: #fafafa;
 }
 </style>
 
