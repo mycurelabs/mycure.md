@@ -9,10 +9,10 @@
             type="text/html" 
             :height="!$isMobile ? '400' : '175'" 
             :width="!$isMobile ? '570' : '300'"
-            src="https://www.youtube.com/embed/zvM3LIvq-6k?autoplay=1&loop=1&showinfo=0&rel=0"
+            src="https://www.youtube.com/embed/zvM3LIvq-6k?autoplay=0&loop=1&showinfo=0rel=0"
             frameborder="0"
             allowfullscreen
-        )
+          )
 </template>
 
 <script>
