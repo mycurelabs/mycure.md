@@ -1,5 +1,5 @@
 <template lang="pug">
-  div.mc-gradient-grey.pt-3
+  div.panel-bg-color.pt-3
     v-container
       v-container
         v-layout(row align-center)
@@ -133,5 +133,8 @@ export default {
 <style scoped>
 .offset-container {
   height: 25px;
+}
+.panel-bg-color {
+  background-color: #fafafa !important;
 }
 </style>
