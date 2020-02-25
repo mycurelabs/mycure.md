@@ -1,10 +1,10 @@
 <template lang="pug">
-  v-container.py-5
+  v-container.pt-5.main-container
     v-layout(row align-center)
       v-flex(xs12 md12).text-xs-center
         h2.text-xs-center.font-work-sans.font-40 {{ panelTitle }}
         p.font-s.text-xs-center {{ panelSubtitle }}
-    v-layout(row fill-height).pt-5
+    v-layout(row).pt-5
       v-flex(
         v-for="(suite, key) in healthSuites"
         :key="key"
@@ -73,6 +73,9 @@ export default {
 </script>
 
 <style scoped>
+.main-container {
+  height: 100vh;
+}
 .roundedCard {
   border-radius: 10px;
   background-color: #f0f0f0;
