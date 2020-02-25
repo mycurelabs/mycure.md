@@ -5,7 +5,7 @@
         v-flex(xs12 md12).text-xs-center
           h1.font-40.font-work-sans {{ faqsTitle }}
       v-layout(v-if="!$isMobile" row justify-center).pt-5
-        v-flex(v-for="column in 3" xs12 md4).font-source-sans.mx-2
+        v-flex(v-for="(column, key) in 3" xs12 md4 :key="key").font-source-sans.mx-2
           template(v-for="(item, key) in faqsItems")
             div(v-if="key < 5 && column === 1")
               img(:src="require(`@/assets/images/${questionMark}.png`)" :alt="questionMark" width="18px")

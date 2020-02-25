@@ -14,11 +14,15 @@
               img(width="20" src="../../assets/images/mycure-check.png")
             v-flex(shrink)
               p.font-21 {{ item }}
+          v-layout(row)
+            v-flex.mb-3
+              b.font-18 Already have an account? 
+                router-link(:to="{ name: 'signin' }") Sign in.
         v-flex(xs12 md5)
           v-card
             v-card-text
               h5.primary--text Step 1 of 3
-              h1 Create an account.
+              h1 Create a MYCURE Account.
             v-card-text
               v-form(ref="formRef" v-model="valid")
                 v-layout(row)
@@ -40,7 +44,7 @@
                     )
                 v-text-field(
                   v-model="doctor.doc_PRCLicenseNo"
-                  label="Doctor PRC License No"
+                  label="Physician License No"
                   outline
                   :rules="[requiredRule, numberRule]"
                   :disabled="loading"
@@ -59,8 +63,12 @@
                   @blur="validatePhoneNo"
                 )
                   template(slot="append")
-                    img(width="25" :src="doctor.countryFlag").mt-2
-                  template(slot="append-outer")
+                    v-tooltip(bottom)
+                      v-btn(icon style="margin-top: -5px" @click="countryDialog = true" slot="activator").ma-0
+                        img(width="25" :src="doctor.countryFlag").flag-img.mt-2
+                      | Change Country
+                  //- NOTE: DO NOT REMOVE YET
+                  //- template(slot="append-outer")
                     v-tooltip(bottom)
                       v-btn(small icon slot="activator" @click="countryDialog = true" :disabled="loading")
                         v-icon mdi-earth
@@ -93,7 +101,7 @@
                   :disabled="loading"
                 ).mb-4
                   template(slot="label")
-                    p(style="margin-bottom: -35px") By creating a MYCURE account, you're agreeing to accept MYCURE&nbsp;
+                    p(style="margin-bottom: -12px") By creating a MYCURE account, you're agreeing to accept MYCURE&nbsp;
                       a(target="_blank" @click.stop="gotoTerms") Terms & Privacy Policy
                 v-alert(:value="error" type="error").mt-5 {{errorMessage}}
             v-card-actions
@@ -103,10 +111,7 @@
                 @click="next"
                 :disabled="loading"
                 :loading="loading"
-              ) Next
-          div.mt-3
-            b.font-18 Already have an account? 
-              router-link(:to="{ name: 'signin' }") Sign in.
+              ) Create my Account
     
     v-dialog(v-model="countryDialog" width="500" scrollable)
       v-card
@@ -264,6 +269,14 @@ h1 {
 }
 
 .link-to-home:hover {
+  cursor: pointer;
+}
+
+.flag-img {
+  margin-bottom: 5px;
+}
+
+.flag-img:hover {
   cursor: pointer;
 }
 </style>

@@ -115,9 +115,10 @@ export default {
   },
   created () {
     this.$nextTick(() => {
-      document.getElementById('otpField').focus();
+      document.getElementById('otpField') && document.getElementById('otpField').focus();
     });
-    if (!localStorage.getItem('individual:step1:model')) {
+    const step1Data = JSON.parse(localStorage.getItem('individual:step1:model'));
+    if (step1Data && !step1Data.hasOwnProperty('email')) {
       this.$router.push({ name: 'signup-individual-step-1' });
     } else {
       this.step1Data = JSON.parse(localStorage.getItem('individual:step1:model'));
