@@ -12,7 +12,7 @@
             :key="key"
             xs12
             md6
-            :class="{ 'mx-4' : !$isMobile }"
+            :class="[{ 'mx-4' : !$isMobile }, { 'my-3' : $isMobile }]"
           )
             v-card(height="100%" :class="{ 'px-5' : !$isMobile}").py-3
               v-card-text#pricingContent
