@@ -30,16 +30,16 @@
             template(v-slot:header)
               span.iconMargin.font-18.feature-text CLINIC SOLUTIONS
             template(v-slot:actions)
-              v-icon.iconMargin mdi-chevron-down
+              v-icon(color="grey").iconMargin mdi-chevron-down
             v-layout(column)
               router-link(
                 v-for="(solution, key) in clinicSolutions"
                 :key="key"
                 :to="{ name: solution.learnLink }"
               ).link.py-2
-                span.py-2 {{ solution.header }}
+                span.py-2.font-18.white--text {{ solution.header }}
               router-link(id="footer-features-btn" :to="{ name: 'features' }" title="MYCURE | Features").link.py-2
-                span.py-2 Features
+                span.py-2.font-18.white--text Features
               
       v-layout(row)
         v-expansion-panel.elevation-0
@@ -47,54 +47,54 @@
             template(v-slot:header)
               span.iconMargin.font-18.feature-text ABOUT
             template(v-slot:actions)
-              v-icon.iconMargin mdi-chevron-down
+              v-icon(color="grey").iconMargin mdi-chevron-down
             v-layout(column)
               router-link(id="footer-csr-btn" :to="{ name: 'csr' }" title="MYCURE | Corporate Social Responsibility").link.py-2
-                span.py-2 Corporate Social Responsibility
+                span.py-2.font-18.white--text Corporate Social Responsibility
               router-link(id="footer-our-story-btn" :to="{ name: 'our-story' }" title="MYCURE Our Story | Caring the Extra Mile").link.py-2
-                span.py-2 Our Story
+                span.py-2.font-18.white--text Our Story
               router-link(id="footer-blog-btn" :to="{ name: 'blog-link' }" title="MYCURE - Blog").link.py-2
-                span.py-2 Blog
+                span.py-2.font-18.white--text Blog
               router-link(id="footer-careers-btn" :to="{ name: 'careers' }" title="MYCURE - Careers").link.py-2
-                span.py-2 Careers
+                span.py-2.font-18.white--text Careers
       v-layout(row)
         v-expansion-panel.elevation-0
           v-expansion-panel-content.footer-grey
             template(v-slot:header)
               span.iconMargin.font-18.feature-text SUPPORT
             template(v-slot:actions)
-              v-icon.iconMargin mdi-chevron-down
+              v-icon(color="grey").iconMargin mdi-chevron-down
             v-layout(column)
               //- router-link(id="footer-faqs-btn" :to="{ name: 'faqs-link' }" title="MYCURE - FAQs").link.py-2
                 span.py-2 FAQs
               //- router-link(id="footer-pricing-btn" :to="{ name: 'pricing' }" title="MYCURE Pricing | Affordable EMR and Clinic Management System").link.py-2
                 span.py-2 Pricing
               router-link(id="footer-book-a-demo-btn" :to="{ name: 'calendly' }" title="MYCURE - Book A Demo").link.py-2
-                span.py-2 Book a Demo
+                span.py-2.font-18.white--text Book a Demo
       v-layout(row)
         v-expansion-panel.elevation-0
           v-expansion-panel-content.footer-grey
             template(v-slot:header)
               span.iconMargin.font-18.feature-text LEGAL
             template(v-slot:actions)
-              v-icon.iconMargin mdi-chevron-down
+              v-icon(color="grey").iconMargin mdi-chevron-down
             v-layout(column)
               router-link(id="footer-terms-btn" :to="{ name: 'terms' }" title="MYCURE Terms and Conditions").link.py-2
-                span.py-2 Terms
+                span.py-2.font-18.white--text Terms
               router-link(id="footer-privacy-policy-btn" :to="{ name: 'privacy-policy' }" title="MYCURE Privacy Policy").link.py-2
-                span.py-2 Privacy Policy
+                span.py-2.font-18.white--text Privacy Policy
       v-layout(row)
         v-expansion-panel.elevation-0
           v-expansion-panel-content.footer-grey
             template(v-slot:header)
               span.iconMargin.font-18.feature-text CONTACT US
             template(v-slot:actions)
-              v-icon.iconMargin mdi-chevron-down
+              v-icon(color="grey").iconMargin mdi-chevron-down
             v-layout(column)
               a(id="footer-email-btn" title="MYCURE - Email" href="mailto:hello@mycure.md").link.font-mc-blue.py-2
-                span.py-2 hello@mycure.md
-              span.py-2 (+632) 7799 6262
-              span.py-2 (+63) 917 303 4350
+                span.py-2.font-18.white--text hello@mycure.md
+              span.py-2.font-18.white--text (+632) 7799 6262
+              span.py-2.font-18.white--text (+63) 917 303 4350
       br
       br
       br

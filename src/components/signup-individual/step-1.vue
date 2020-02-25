@@ -33,7 +33,7 @@
                       label="First Name"
                       :rules="[requiredRule]"
                       :disabled="loading"
-                    )
+                    ).step-one-text-field
                   v-flex.ml-1
                     v-text-field(
                       v-model="doctor.lastName"
@@ -69,10 +69,10 @@
                       | Change Country
                   //- NOTE: DO NOT REMOVE YET
                   //- template(slot="append-outer")
-                    v-tooltip(bottom)
-                      v-btn(small icon slot="activator" @click="countryDialog = true" :disabled="loading")
-                        v-icon mdi-earth
-                      | Change Country
+                  //-   v-tooltip(bottom)
+                  //-     v-btn(small icon slot="activator" @click="countryDialog = true" :disabled="loading")
+                  //-       v-icon mdi-earth
+                  //-     | Change Country
                 v-divider
                 br
                 v-text-field(
@@ -161,9 +161,9 @@ export default {
       mobileNoError: false,
       mobileNoErrorMessage: '',
       checkListItems: [
-        'Better operations',
-        'Beautiful reports',
-        'Bye paperworks'
+        'Manage your clinic more efficiently',
+        'Produce beautiful and useful reports',
+        'Save on time and save more lives!'
       ]
     };
   },
@@ -279,4 +279,9 @@ h1 {
 .flag-img:hover {
   cursor: pointer;
 }
+
+/* TODO: confirm if needed. This will defeat uniformity across other forms. */
+/* .step-one-text-field {
+  border-width: thin !important;
+} */
 </style>

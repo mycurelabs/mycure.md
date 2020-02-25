@@ -26,9 +26,7 @@
           @load="loadedImage"
         ).justify-center
         div(v-show="!isImageLoaded").white.empty-image-container
-    div.offset-container(
-        v-show="isImageLoaded && !$isMobile"
-        :class="{'usp-offset-alt-blue-color' : altBlueRoutes.includes(this.$route.name)}")
+    div.offset-container(v-show="isImageLoaded && !$isMobile")
 </template>
 
 <script>
@@ -75,7 +73,6 @@ export default {
     return {
       isImageLoaded: false,
       // - Routes that use the alternative blue color for USP
-      altBlueRoutes: ['home', 'features', 'our-story', 'csr']
     };
   },
   methods: {
@@ -135,15 +132,12 @@ export default {
 }
 
 .outer-image-container {
-  margin-bottom: -76.65px;
+  margin-bottom: -63.5px;
   padding-top: 7vh;
 }
 .offset-container {
   height: 15vh;
-  background-color: #4BA2C5;
-}
-.usp-offset-alt-blue-color {
-  background-color: #5AA7C7 !important;
+  background-color: #5AA7C7
 }
 .usp-offset-grey {
   background-color: #707070 !important;
@@ -154,9 +148,9 @@ export default {
 .uspMobileBtn {
   height: 75px;
 }
-.web-padding {
-  padding-bottom: 13.80px;
-}
+/* .web-padding {
+  padding-bottom: 14.80px;
+} */
 @media screen and (min-height: 1080px) {
   .whole-page {
     height: 55vh !important;
