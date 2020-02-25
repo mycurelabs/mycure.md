@@ -14,11 +14,15 @@
               img(width="20" src="../../assets/images/mycure-check.png")
             v-flex(shrink)
               p.font-21 {{ item }}
+          br
+          div.mt-3
+            b.font-18.white--text Already have an account? 
+              router-link(:to="{ name: 'signin' }") Sign in.
         v-flex(xs12 md5)
           v-card
             v-card-text
               h5.primary--text Step 1 of 3
-              h1 Create an account.
+              h1 Create a MYCURE Account.
             v-card-text
               v-form(ref="formRef" v-model="valid")
                 v-layout(row)
@@ -29,7 +33,7 @@
                       label="First Name"
                       :rules="[requiredRule]"
                       :disabled="loading"
-                    )
+                    ).step-one-text-field
                   v-flex.ml-1
                     v-text-field(
                       v-model="doctor.lastName"
@@ -40,7 +44,7 @@
                     )
                 v-text-field(
                   v-model="doctor.doc_PRCLicenseNo"
-                  label="Doctor PRC License No"
+                  label="Physician License No"
                   outline
                   :rules="[requiredRule, numberRule]"
                   :disabled="loading"
@@ -59,12 +63,14 @@
                   @blur="validatePhoneNo"
                 )
                   template(slot="append")
-                    img(width="25" :src="doctor.countryFlag").mt-2
-                  template(slot="append-outer")
                     v-tooltip(bottom)
-                      v-btn(small icon slot="activator" @click="countryDialog = true" :disabled="loading")
-                        v-icon mdi-earth
+                      img(width="25" :src="doctor.countryFlag" slot="activator" @click="countryDialog = true" :disabled="loading").mt-2.country-flag
                       | Change Country
+                  //- template(slot="append-outer")
+                  //-   v-tooltip(bottom)
+                  //-     v-btn(small icon slot="activator" @click="countryDialog = true" :disabled="loading")
+                  //-       v-icon mdi-earth
+                  //-     | Change Country
                 v-divider
                 br
                 v-text-field(
@@ -93,7 +99,7 @@
                   :disabled="loading"
                 ).mb-4
                   template(slot="label")
-                    p(style="margin-bottom: -35px") By creating a MYCURE account, you're agreeing to accept MYCURE&nbsp;
+                    p(style="margin-bottom: -8px") By creating a MYCURE account, you're agreeing to accept MYCURE&nbsp;
                       a(target="_blank" @click.stop="gotoTerms") Terms & Privacy Policy
                 v-alert(:value="error" type="error").mt-5 {{errorMessage}}
             v-card-actions
@@ -103,11 +109,8 @@
                 @click="next"
                 :disabled="loading"
                 :loading="loading"
-              ) Next
-          div.mt-3
-            b.font-18 Already have an account? 
-              router-link(:to="{ name: 'signin' }") Sign in.
-    
+                large
+              ) Create my Account
     v-dialog(v-model="countryDialog" width="500" scrollable)
       v-card
         v-toolbar(flat)
@@ -156,9 +159,9 @@ export default {
       mobileNoError: false,
       mobileNoErrorMessage: '',
       checkListItems: [
-        'Better operations',
-        'Beautiful reports',
-        'Bye paperworks'
+        'Manage your clinic more efficiently',
+        'Produce beautiful and useful reports',
+        'Save on time and save more lives!'
       ]
     };
   },
@@ -264,6 +267,13 @@ h1 {
 }
 
 .link-to-home:hover {
+  cursor: pointer;
+}
+
+.step-one-text-field {
+  border-width: thin !important;
+}
+.country-flag:hover {
   cursor: pointer;
 }
 </style>
