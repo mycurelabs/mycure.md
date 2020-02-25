@@ -50,7 +50,7 @@ export default {
     },
     btnColor: {
       type: String,
-      default: '#2e9fdf'
+      default: '#7fad22'
     }
   },
   computed: {
