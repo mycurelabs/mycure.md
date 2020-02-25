@@ -28,7 +28,10 @@
           //- v-layout(row).pa-0.mb-3
             v-btn(style="margin-left: 0px")
           p Didn't get the code?&nbsp;
-            a(@click="resendVerificationCode") Resend.
+            span(v-if="otpCountdown > 0").primary--text Resend in 00:{{otpCountdown / 1000}}
+            a(v-else @click="resendVerificationCode") 
+              span(v-if="!sendingCode") Resend.
+              v-progress-circular(v-else indeterminate size="15" color="white")
           v-layout
             v-flex
               v-alert(
@@ -58,17 +61,19 @@
 <script>
 import dayOrNight from '../../utils/day-or-night';
 import { verifyMobileNo, signin, resendVerificationCode } from '../../utils/axios';
+const COUNTDOWN_MILLIS = 60000;
 export default {
   data () {
     this.dayOrNight = dayOrNight();
     return {
       valid: false,
       loading: false,
+      sendingCode: false,
       verificationError: false,
       successDialog: false,
       otp: '',
       step1Data: {},
-      waitMinutes: 600000
+      otpCountdown: null
     };
   },
   watch: {
@@ -97,20 +102,37 @@ export default {
     },
     async resendVerificationCode () {
       try {
+        this.sendingCode = true;
         const { accessToken } = await signin({
           email: this.step1Data.email,
           password: this.step1Data.password
         });
         await resendVerificationCode({ token: accessToken });
-        // localStorage.setItem('waiting', true);
-        // this.startCountDown();
+        this.resetCountDown();
       } catch (e) {
         console.error(e);
+      } finally {
+        this.sendingCode = false;
       }
     },
     okay () {
       localStorage.clear();
       this.$router.push({ name: 'signin' });
+    },
+    startCountDown () {
+      let interval = setInterval(() => {
+        this.otpCountdown -= 1000;
+        localStorage.setItem('otp:resend:countdown', this.otpCountdown);
+        if (this.otpCountdown < 0) {
+          clearInterval(interval);
+          localStorage.removeItem('otp:resend:countdown');
+        }
+      }, 1000);
+    },
+    resetCountDown () {
+      localStorage.setItem('otp:resend:countdown', COUNTDOWN_MILLIS);
+      this.otpCountdown = COUNTDOWN_MILLIS;
+      this.startCountDown();
     }
   },
   created () {
@@ -122,6 +144,14 @@ export default {
       this.$router.push({ name: 'signup-individual-step-1' });
     } else {
       this.step1Data = JSON.parse(localStorage.getItem('individual:step1:model'));
+    }
+
+    const ongoingCountDown = JSON.parse(localStorage.getItem('otp:resend:countdown'));
+    if (!ongoingCountDown) {
+      this.resetCountDown();
+    } else {
+      this.otpCountdown = Number(JSON.parse(localStorage.getItem('otp:resend:countdown')));
+      this.startCountDown();
     }
   }
 };
