@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-container.pt-5.main-container
+  v-container.main-container
     v-layout(row align-center)
       v-flex(xs12 md12).text-xs-center
         h2.text-xs-center.font-work-sans.font-40 {{ panelTitle }}
@@ -75,6 +75,7 @@ export default {
 <style scoped>
 .main-container {
   height: 100vh;
+  padding-top: 90px;
 }
 .roundedCard {
   border-radius: 10px;
