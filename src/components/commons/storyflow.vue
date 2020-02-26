@@ -71,6 +71,7 @@
             large
           ).mt-3.cta-btn
             strong.font-s.white--text.text-none Explore the Features
+    slot(name="extra-content")
 </template>
 
 <script>

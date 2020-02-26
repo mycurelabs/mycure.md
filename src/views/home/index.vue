@@ -14,6 +14,27 @@
       featuresButton
       horizontal
     ).showPanel
+      div(slot="extra-content").pt-3.text-xs-center
+        v-btn(
+          flat
+          large
+          :color="$mcColors.mcBlue"
+          @click="featuresVideoDialog = true"
+        ).font-21.text-none See the features video here
+        
+         //- Video
+        v-dialog(v-model="featuresVideoDialog" max-width="600px")
+          v-layout(row justify-center)
+            v-card(width="600")
+              v-card-text
+                iframe(
+                  align="middle"
+                  :height="!$isMobile ? '400' : '175'" 
+                  :width="!$isMobile ? '570' : '300'"
+                  src="https://www.youtube.com/embed/YjymFVmKX_U" 
+                  frameborder="0" 
+                  allowfullscreen
+                )
     //- 5th panel
     vid
     br
@@ -69,7 +90,8 @@ export default {
       signInURL: process.env.VUE_APP_SIGNIN_URL,
       introText: 'Designed for your health facility',
       storyflowItems: STORYFLOW_ITEMS,
-      ctaContent: CTA_CONTENT
+      ctaContent: CTA_CONTENT,
+      featuresVideoDialog: false
     };
   },
   methods: {
