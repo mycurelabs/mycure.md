@@ -19,9 +19,9 @@
               :class="[{ 'px-5' : !$isMobile}, {'py-3' : !$isMobile}, {'pt-3' : $isMobile}]")
               v-card-text#pricingContent.text-xs-center
                 img(
-                  :src="require(`@/assets/images/${item.image}.png`)" 
-                  :alt="item.image" 
-                  :width="item.type === 'solo' ? '75%' : '76.5%'"
+                  :src="require(`@/assets/images/doctors-clinics/${item.image}.png`)" 
+                  :alt="item.image"
+                  width="95%"
                 )
                 h1(:class="{'pre-white-space' : !$isMobile}").font-40.font-work-sans.lh-title {{ item.title }}
                 p(:class="{'pre-white-space' : !$isMobile}").font-18 {{ parseDescription(item) }}

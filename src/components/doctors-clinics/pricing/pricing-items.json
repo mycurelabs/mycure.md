@@ -1,7 +1,7 @@
 [
   {
     "title": "Solo Practice",
-    "image": "mycure-signup-individual-choose",
+    "image": "mycure-doctors-clinics-pricing-page-solo-banner",
     "type": "solo",
     "description": "Everything you need to serve your patients more efficiently.",
     "priceText": "FREE",
@@ -18,7 +18,7 @@
   },
   {
     "title": "Group Practice",
-    "image": "mycure-signup-multispecialty-choose",
+    "image": "mycure-doctors-clinics-pricing-page-group-banner",
     "type": "group",
     "description": "Make work easier for you, your colleagues, and your secretary.",
     "priceText": "28",
