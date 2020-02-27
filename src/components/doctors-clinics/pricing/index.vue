@@ -50,9 +50,9 @@
             v-btn(
               :color="$mcColors.mcBlue"
               flat
-              :to="{ name: 'pricing'}"
               @click.stop="handlePricingMatrixBtn"
             ).text-none.font-weight-bold.font-work-sans.font-18 See Full Pricing Matrix
+    pricing-matrix(v-model="pricingMatrixDialog")
 </template>
 
 <script>
@@ -60,11 +60,18 @@
 import { parseTextWithNewLine } from '@/utils';
 //- constants
 import PRICING_ITEMS from './pricing-items.json';
+//- components
+import PricingMatrix from './pricing-matrix';
+
 export default {
+  components: {
+    PricingMatrix
+  },
   data () {
     return {
       pricingTitle: 'Affordable Pricing',
       pricingItems: PRICING_ITEMS,
+      pricingMatrixDialog: false,
       expandInclusions: false
     };
   },
@@ -100,6 +107,8 @@ export default {
         eventAction: 'click-doctors-pricing-matrix',
         eventLabel: 'doctors-pricing-matrix'
       });
+
+      this.pricingMatrixDialog = true;
     },
   },
 };
