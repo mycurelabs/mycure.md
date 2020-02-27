@@ -56,7 +56,6 @@
 <script>
 //- utils
 import { parseTextWithNewLine } from '@/utils';
-import VueScrollTo from 'vue-scrollto';
 //- constants
 import PRICING_ITEMS from './pricing-items.json';
 export default {
