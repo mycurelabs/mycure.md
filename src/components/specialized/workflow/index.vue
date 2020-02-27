@@ -72,14 +72,14 @@
       return {
         checkIcon: 'mycure-web-bullet-check',
         title: 'Why do clinics use MYCURE?',
-        workflowBtnText: 'Start 14-day Trial',
+        workflowBtnText: 'Book a Free Demo',
         reasons: [
           'Compact yet customizable EMR system',
-          'Accessible both online and offline!',
-          'Feels like having a hands-on IT Team.',
-          'Helps a lot with reporting and metrics.',
+          'Accessible both online and offline',
+          'Feels like having a hands-on IT Team',
+          'Helps a lot with reporting and metrics',
           'Very easy to use and navigate',
-          'Improves overall performance of my clinic.'
+          'Improves overall performance of my clinic'
         ]
       };
     },
