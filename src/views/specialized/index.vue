@@ -35,11 +35,10 @@ export default {
   data () {
     return {
       ctaContent: {
-        text: 'Grow your practice with the right tools to use.',
-        subtext: 'No credit card needed. No hidden charges. No strings attached.',
-        btnText: 'Start 14-day trial',
+        text: 'Grow your practice with the right tools to use',
+        subtext: 'Schedule a quick demo with a MYCURE specialist today.',
+        btnText: 'Book a Free Demo',
         btnLink: 'signup-multispecialty',
-        secondaryBtnText: 'Request for a Demo',
         image: 'mycure-web-footer'
       }
     };
