@@ -32,9 +32,9 @@ export const HEALTH_SUITES_ITEMS = [
       'Diagnostics'
     ],
     image: 'mycure-p2-badge-specialized-clinic',
-    btnText: 'Start 14-day trial',
+    btnText: 'Book A Demo',
     btnLink: 'signup-multispecialty',
-    btnId: 'home-specialized-clinics-start-free',
+    btnId: 'home-solutions-specialized-clinics-book-demo',
     learnLink: 'specialized-clinics',
     learnId: 'home-specialized-clinics-learn-more'
   },
@@ -50,8 +50,8 @@ export const HEALTH_SUITES_ITEMS = [
     ],
     image: 'mycure-p2-badge-multispecialty',
     btnText: 'Book A Demo',
-    btnLink: 'calendly',
-    btnId: 'home-multispecialty-clinics-start-free',
+    btnLink: 'signup-multispecialty',
+    btnId: 'home-solutions-multispecialty-clinics-book-demo',
     learnLink: 'multispecialty-clinics',
     learnId: 'home-multispecialty-clinics-learn-more'
   }
