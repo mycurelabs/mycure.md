@@ -5,9 +5,6 @@
       :description="description"
       :customPath="customPath"
     )
-      strong(slot="add-content").font-18.text-xs-center 
-        br
-        | {{ boldDescription }}
       v-container(slot="diagram-content").pa-0
         v-layout(row :wrap="$isMobile" justify-center)
           v-flex(
@@ -17,19 +14,19 @@
             md5
             :class="[{ 'text-xs-right' : key === 0  && !$isMobile }, {'verticalLine' : key === 0 && !$isMobile }]"
           ).mx-2.px-4
+            br
+            br
+            div(:class="{'pt-3' :$isMobile}")
+              v-img(
+                :src="require(`@/assets/images/multispecialty/${diagram.image}.png`)"
+                :alt="diagram.image"
+                width="100%"
+              )
+            br
+            br
             h2 {{ diagram.title }}
               span(v-if="key === 1").font-mc-blue &nbsp;✓
             br
-            br
-            v-img(
-              :src="require(`@/assets/images/multispecialty/${diagram.image}.png`)"
-              :alt="diagram.image"
-              width="100%"
-            )
-            div.text-xs-center
-              br
-              h2(:class="key === 0 ? 'font-weight-bold' : 'font-weight-light'").font-s.pre-white-space {{ diagram.endText }}
-              br
     v-layout(row justify-center align-center).pt-4
       v-flex(xs12).text-xs-center
         v-btn(
@@ -58,16 +55,13 @@ export default {
       title: 'Why do multispecialty clinics switch to MYCURE?',
       customPath: 'multispecialty/',
       bookDemoId: 'multispecialty-workflow-book-demo-btn',
-      boldDescription: 'MYCURE makes record management easier for everyone.',
       diagrams: [
         {
           title: 'Other Providers',
-          endText: this.parseEndText('Say goodbye to multiple, complicated systems', ['multiple,']),
           image: 'mycure-homepage-compare-other-emr-incomplete-clinic-management-system',
         },
         {
           title: 'With MYCURE',
-          endText: this.parseEndText('Say hello to a simplified record-keeping for everyone', ['simplified']),
           image: 'mycure-homepage-compare-mycure-complete-clinic-management-system'
         }
       ]
@@ -75,8 +69,8 @@ export default {
   },
   computed: {
     description () {
-      const desc = 'Smoothly integrate your patient records from registration to billing.';
-      return desc;
+      const desc = 'MYCURE makes record management much easier for everyone as it can smoothly integrate your patient records from registration to billing. Say goodbye to multiple, complicated systems!';
+      return !this.$$isMobile ? parseTextWithNewLine(desc, ['records']) : desc;
     }
   },
   methods: {
