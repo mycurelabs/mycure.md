@@ -1,75 +1,34 @@
 [
   {
     "title": "Solo Practice",
+    "image": "mycure-signup-individual-choose",
     "type": "solo",
     "description": "Everything you need to serve your patients more efficiently.",
     "priceText": "FREE",
     "inclusionsTitle": "CORE",
     "inclusions": [
       "✓ 1 doctor account",
-      "✓ 1GB Storage",
-      "✓ Unlimited virtual clinics",
-      "✓ Unlimited patient profiles",
-      "✓ Secretary accounts",
+      "✓ 5 Secretary accounts",
+      "✓ 100 Monthly Patient Visits",
+      "✓ 1000 Patient Profiles",
       "✓ Multiple device access"
-    ],
-    "expandedInclusions": [
-      {
-        "title": "MEDICAL RECORDS",
-        "inclusions": [
-          "✓ SOAP Charting",
-          "✓ Prescription Encoding",
-          "✓ Lab & Imaging Orders",
-          "✓ Customizable Forms",
-          "✓ Printing",
-          "✓ Bulk Patient Upload",
-          "✓ ICD-10 Catalog",
-          "✓ PNF Drug Catalog"
-        ]
-      },
-      {
-        "title": "QUEUEING & APPOINTMENTS",
-        "inclusions": [
-          "✓ Smart Patient Queuing",
-          "✓ Queue Monitor",
-          "✓ Patient Kiosk",
-          "✓ Appointments Calendar"
-        ]
-      },
-      {
-        "title": "SECURITY",
-        "inclusions": [
-          "✓ Multi-Factor Authentication",
-          "✓ Activity Logs",
-          "✓ DPA Registration Guide"
-        ]
-      },
-      {
-        "title": "IN-APP PURCHASES",
-        "inclusions": [
-          "✓ Unlimited Storage",
-          "✓ SMS Reminders",
-          "✓ Clinic Website",
-          "✓ Work Offline"
-        ]
-      }
     ],
     "btnText": "Sign Up Free",
     "btnLink": "signup-individual"
   },
   {
     "title": "Group Practice",
+    "image": "mycure-signup-multispecialty-choose",
     "type": "group",
     "description": "Make work easier for you, your colleagues, and your secretary.",
-    "priceText": "48.00",
+    "priceText": "28",
     "inclusionsTitle": "EVERYTHING IN SOLO plus...",
     "inclusions": [
-      "✓ 3 doctor accounts",
-      "✓ 5GB Storage",
-      "✓ 1 virtual clinic",
-      "✓ 500 SMS Credits",
-      "✓ Clinic Website",
-      "✓ Work Offline"
+      "✓ 2 doctor accounts",
+      "✓ Unlimited staff accounts",
+      "✓ 200 Monthly Patient Visits",
+      "✓ 2000 Patient Profiles",
+      "✓ Multiple device access"
     ],
     "btnText": "Start 14-day Trial",
     "btnLink": "signup-individual"

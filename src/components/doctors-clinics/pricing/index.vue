@@ -5,7 +5,7 @@
         v-layout(row align-center)
           v-flex(xs12 md12).text-xs-center
             h1(:class="{'pre-white-space': !$isMobile}").text-xs-center.font-40.font-work-sans {{ pricingTitle }}
-            p(:class="{'pre-white-space': !$isMobile}" v-if="description").text-xs-center.pt-3.font-21.font-source-sans {{ description }}
+            p(:class="{'pre-white-space': !$isMobile}" v-if="description").text-xs-center.pt-1.font-21.font-source-sans {{ description }}
         v-layout(row :wrap="$isMobile" fill-height).pt-5
           v-flex(
             v-for="(item, key) in pricingItems"
@@ -15,53 +15,34 @@
             :class="[{ 'mx-4' : !$isMobile }, { 'my-3' : $isMobile }]"
           )
             v-card(height="100%" :class="{ 'px-5' : !$isMobile}").py-3
-              v-card-text#pricingContent
-                h1(:class="{'pre-white-space' : !$isMobile}").font-25.font-work-sans.lh-title {{ item.title }}
+              v-card-text#pricingContent.text-xs-center
+                img(
+                  :src="require(`@/assets/images/${item.image}.png`)" 
+                  :alt="item.image" 
+                  :width="item.type === 'solo' ? '75%' : '76.5%'"
+                )
+                h1(:class="{'pre-white-space' : !$isMobile}").font-40.font-work-sans.lh-title {{ item.title }}
                 p(:class="{'pre-white-space' : !$isMobile}").font-18 {{ parseDescription(item) }}
-                span(v-if="item.type === 'solo'").font-m Always
-                span(v-else).font-m Starts at
+                span.font-m.font-mc-blue {{ item.type === 'solo' ? 'Always' : 'Starts at' }}
                 br
                 strong(v-if="item.type === 'solo'").font-mc-blue.font-xl {{ item.priceText }}
                 strong(v-else).font-mc-blue
                   span.font-m $&nbsp;
                   span.font-xl {{ item.priceText }}
-                  span.font-m &nbsp;monthly
+                  span.font-m &nbsp;/clinic/month
                 br
-                strong.font-18 {{ item.inclusionsTitle }}
-                br
-                p(v-for="(inclusion, key) in item.inclusions" :key="key").font-18 {{ inclusion }}
-                br
-                v-btn(
-                  v-if="item.type === 'solo' && !expandInclusions"
-                  flat 
-                  :color="$mcColors.mcBlue"
-                  right
-                  @click.stop="handleSeeMoreBtn"
-                ).text-none.font-18 See More
-                div(v-else).offset-container
-                div(v-if="expandInclusions && item.expandedInclusions")
-                  div(v-for="(inclusion, key) in item.expandedInclusions" :key="key")
-                    strong.font-18 {{ inclusion.title }}
-                    br
-                    p(v-for="(inc, key) in inclusion.inclusions" :key="key").font-18 {{ inc }}
-                    br
-                  br
-                  v-btn(
-                    flat 
-                    :color="$mcColors.mcBlue"
-                    right
-                    @click="collapseItems"
-                  ).text-none.font-18 Collapse
-                br
-              v-card-actions.text-xs-center
-                v-btn(
-                  :color="$mcColors.mcBlue"
-                  :to="{ name: item.btnLink}"
-                  :id="`${item.type}-practice-btn`"
-                  @click="handlePricingBtn(item.type)"
-                  dark
-                  large
-                ).text-none.font-weight-bold.font-18 {{ item.btnText }}
+                v-container.text-xs-left
+                  v-layout(row justify-center)
+                    v-flex(xs12 md8)
+                      p(v-for="(inclusion, key) in item.inclusions" :key="key").font-18 {{ inclusion }}
+              v-btn(
+                :color="$mcColors.mcBlue"
+                :to="{ name: item.btnLink}"
+                :id="`${item.type}-practice-btn`"
+                @click="handlePricingBtn(item.type)"
+                dark
+                block
+              ).text-none.font-weight-bold.font-18 {{ item.btnText }}
         v-layout(row align-center).pt-3
           v-flex(xs12 md12).text-xs-center
             v-btn(
@@ -81,11 +62,16 @@ import PRICING_ITEMS from './pricing-items.json';
 export default {
   data () {
     return {
-      pricingTitle: 'Start free. Pay only for what you need.',
-      description: '',
+      pricingTitle: 'Affordable Pricing',
       pricingItems: PRICING_ITEMS,
       expandInclusions: false
     };
+  },
+  computed: {
+    description () {
+      const desc = 'Start free with no credit card required. Pay only for what you need.';
+      return !this.$isMobile ? parseTextWithNewLine(desc, ['required.']) : desc;
+    }
   },
   methods: {
     parseTitle (item) {
@@ -99,14 +85,6 @@ export default {
       const { description } = item;
       if (this.$isMobile) return description;
       return parseTextWithNewLine(description, ['your ']);
-    },
-    handleSeeMoreBtn () {
-      this.expandInclusions = true;
-      this.$ga.event({
-        eventCategory: 'button',
-        eventAction: 'click-doctors-solo-practice-see-more',
-        eventLabel: 'doctors-solo-practice-see-more'
-      });
     },
     handlePricingBtn (type) {
       this.$ga.event({
@@ -122,17 +100,13 @@ export default {
         eventLabel: 'doctors-pricing-matrix'
       });
     },
-     collapseItems () {
-      this.expandInclusions = false;
-      VueScrollTo.scrollTo(`#pricingContent`, 500, { easing: 'ease' });
-    }
-  }
+  },
 };
 </script>
 
 <style scoped>
 .offset-container {
-  height: 25px;
+  height: 30px;
 }
 .panel-bg-color {
   background-color: #fafafa !important;
