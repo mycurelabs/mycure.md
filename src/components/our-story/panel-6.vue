@@ -9,14 +9,14 @@
         template(v-if="!$isMobile")
           v-flex(xs12 md6)
             v-list(two-line).check-list
-              v-list-tile(v-for="(code, key) in codes.slice(0,3)" :key="key")
+              v-list-tile(v-for="(code, key) in codes.slice(0,4)" :key="key")
                 v-list-tile-action
                     img(:src="require(`@/assets/images/${checkIcon}.png`)" alt="Check icon")
                 v-list-tile-content
                     span.font-18 {{ code }}
           v-flex(xs12 md6)
             v-list(two-line).check-list
-              v-list-tile(v-for="(code, key) in codes.slice(4,7)" :key="key")
+              v-list-tile(v-for="(code, key) in codes.slice(4,8)" :key="key")
                 v-list-tile-action
                     img(:src="require(`@/assets/images/${checkIcon}.png`)" alt="Check icon")
                 v-list-tile-content
