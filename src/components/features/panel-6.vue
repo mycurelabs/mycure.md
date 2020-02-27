@@ -5,7 +5,7 @@
         center
           strong.font-21.font-mc-blue LABORATORY &amp; IMAGING
         v-layout(row justify-center).add-spacing
-          strong.font-40.text-xs-center.font-work-sans Record and retrieve diagnostic results right where you need them.
+          h1.font-40.text-xs-center.font-work-sans.pre-white-space {{ primaryDescription }}
         v-layout(row justify-center).add-spacing
           span.font-21.text-xs-center MYCURE can communicate with modern diagnostic machines through 
             br
@@ -38,7 +38,7 @@
         br
         br
         v-layout(row justify-center)
-          p.font-weight-bold.font-40.text-xs-center.font-work-sans Record and retrieve diagnostic results right where you need them.
+          p.font-weight-bold.font-40.text-xs-center.font-work-sans {{ primaryDescription }}
         br
         v-layout(row justify-center)
           p.font-18.text-xs-center MYCURE can communicate with modern diagnostic machines through HL7 interfacing and PACS configurations. 
@@ -65,13 +65,22 @@
 </template>
 
 <script>
-  export default {
-    data () {
-      return {
-        features: ['A','B']
-      };
+// utils
+import { parseTextWithNewLine } from '@/utils';
+
+export default {
+  data () {
+    return {
+      features: ['A','B']
+    };
+  },
+  computed: {
+    primaryDescription () {
+      const desc = 'Record and retrieve diagnostic results right where you need them.';
+      return this.$isMobile ? desc : parseTextWithNewLine(desc, ['results']);
     }
-  };
+  }
+};
 </script>
 
 <style scoped>
