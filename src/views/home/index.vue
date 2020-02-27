@@ -14,9 +14,10 @@
       featuresButton
       horizontal
     ).showPanel
-      div(slot="extra-content").pt-3.text-xs-center
+      div(slot="extra-content").text-xs-center
         v-btn(
           flat
+          bottom
           large
           :color="$mcColors.mcBlue"
           @click="featuresVideoDialog = true"

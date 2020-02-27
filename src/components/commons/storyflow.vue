@@ -36,7 +36,7 @@
               strong(v-if="hasTitle").font-m {{ highlight.title }}
               br
               p.font-18.pt-3 {{ highlight.text }}
-          v-layout(v-if="featuresButton" row wrap justify-center).pt-5
+          v-layout(v-if="featuresButton" row wrap justify-center).pt-4
             v-btn(
               id="features-page-btn"
               @click.stop="handleFeaturesPageBtn"
