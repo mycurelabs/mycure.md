@@ -53,7 +53,7 @@
             //- img(:src="require(`@/assets/images/${loginIcon}.png`)" alt="login icon" width="17%")
             span.font-14.tab.text-none &nbsp;Login
           v-btn(
-            v-if="currentRoute === 'doctors-clinics' || currentRoute === 'specialized-clinics'"
+            v-if="currentRoute === 'doctors-clinics'"
             :color="$mcColors.mcAltGreen"
             :to="currentRoute === 'doctors-clinics' ? { name: 'signup-individual' } : { name: 'signup-multispecialty' }"
             id="start-free-btn"
@@ -61,7 +61,7 @@
           )
             strong.font-14.white--text.tab.text-none Start Free
           v-btn(
-            v-else-if="currentRoute === 'multispecialty-clinics'"
+            v-else-if="currentRoute === 'multispecialty-clinics' || currentRoute === 'specialized-clinics'"
             :color="$mcColors.mcAltGreen"
             :to="{ name: 'signup-multispecialty' }"
             id="multispecialty-book-demo-btn"
