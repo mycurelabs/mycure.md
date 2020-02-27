@@ -26,9 +26,16 @@
     v-layout(row justify-center).py-5
       v-flex(xs12 md12).text-xs-center
         img(
+          v-if="!$isMobile"
           :src="require(`@/assets/images/${ctaImage}.png`)"
           :alt="ctaImage"
-          :width="!$isMobile ? '70%' : '90%'"
+          width="70%"
+        )
+        img(
+          v-else
+          :src="require(`@/assets/images/${ctaMobileImage}.png`)"
+          :alt="ctaMobileImage"
+          width="95%"
         )
 </template>
 
@@ -74,6 +81,9 @@ export default {
     },
     ctaImage () {
       return !this.ctaContent || !this.ctaContent.image ? 'mycure-web-footer' : this.ctaContent.image;
+    },
+    ctaMobileImage () {
+      return !this.ctaContent || !this.ctaContent.mobileImage ? 'mycure-web-footer-mobile' : this.ctaContent.mobileImage;
     },
     ctaSecondaryBtnText () {
       return !this.ctaContent ? 'Request A Demo' : this.ctaContent.secondaryBtnText;
