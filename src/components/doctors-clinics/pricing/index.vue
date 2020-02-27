@@ -14,7 +14,9 @@
             md6
             :class="[{ 'mx-4' : !$isMobile }, { 'my-3' : $isMobile }]"
           )
-            v-card(height="100%" :class="{ 'px-5' : !$isMobile}").py-3
+            v-card(
+              height="100%"
+              :class="[{ 'px-5' : !$isMobile}, {'py-3' : !$isMobile}, {'pt-3' : $isMobile}]")
               v-card-text#pricingContent.text-xs-center
                 img(
                   :src="require(`@/assets/images/${item.image}.png`)" 
