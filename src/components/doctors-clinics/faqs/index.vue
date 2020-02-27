@@ -5,23 +5,17 @@
         v-flex(xs12 md12).text-xs-center
           h1.font-40.font-work-sans {{ faqsTitle }}
       v-layout(v-if="!$isMobile" row justify-center).pt-5
-        v-flex(v-for="(column, key) in 3" xs12 md4 :key="key").font-source-sans.mx-2
+        v-flex(v-for="(column, key) in 2" xs12 md6 :key="key").font-source-sans.mx-2
           template(v-for="(item, key) in faqsItems")
             div(v-if="key < 5 && column === 1")
               img(:src="require(`@/assets/images/${questionMark}.png`)" :alt="questionMark" width="18px")
               strong.font-21 &nbsp;{{ item.question }}
-              p.font-21.pl-1.pt-2 {{ item.answer }}
+              p.font-18.pl-1.pt-2 {{ item.answer }}
               br
-            div(v-else-if="key < 8 && key > 4 && column === 2")
+            div(v-else-if="key < 10 && key > 4 && column === 2")
               img(:src="require(`@/assets/images/${questionMark}.png`)" :alt="questionMark" width="18px")
               strong.font-21 &nbsp;{{ item.question }}
-              p.font-21.pl-1.pt-2 {{ item.answer }}
-              br
-            div(v-else-if="key > 8 && column === 3")
-              img(:src="require(`@/assets/images/${questionMark}.png`)" :alt="questionMark" width="18px")
-              strong.font-21 &nbsp;{{ item.question }}
-              p.font-21.pl-1.pt-2 {{ item.answer }}
-              p(v-if="item.supplement" :class="{'pl-3' : !$isMobile}").font-21.pre-white-space {{ parseSupplement(item)}}
+              p.font-18.pl-1.pt-2 {{ item.answer }}
               br
       v-layout(v-else row wrap justify-center).pt-5
         v-flex(xs12 md9)
