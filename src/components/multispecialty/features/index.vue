@@ -1,25 +1,9 @@
 <template lang="pug">
-  div.pt-5.white
-    //- WEB
-    features-diagram(
-      v-if="!$isMobile"
-      :title="title"
-      :description="description"
-      :customPath="customPath"
-      :image="image"
-      :imageWidth="$isMobile ? '100%' : '80%'"
-    )
-    //- MOBILE
-    div(v-else)
-      v-container
-        v-layout(row justify-center)
-          h1.font-xl.text-xs-center.lh-title {{ title }}
-        br
-        mobile-diagram-carousel(
-          :slides="slides"
-          :customSlidePath="customSlidePath"
-          :items="multiFeatures"
-        )
+  div.main-container
+    v-layout(row justify-center align-center)
+      v-flex(xs12 md12).text-xs-center
+          h1(:class="{'pre-white-space': !$isMobile}").text-xs-center.font-work-sans.lh-title.font-40 {{ title }}
+          p(:class="{'pre-white-space': !$isMobile}").font-s.text-xs-center.pt-3 {{ description }}
     v-layout(row justify-center align-center).pt-4
       v-flex(xs12).text-xs-center
         v-btn(
@@ -34,60 +18,54 @@
 
 <script>
 import { parseTextWithNewLine } from '@/utils';
-import FeaturesDiagram from '@/components/commons/features-diagram';
-import MobileDiagramCarousel from '@/components/commons/mobile-diagram-carousel';
 
 export default {
-  components: {
-    FeaturesDiagram,
-    MobileDiagramCarousel
-  },
   data () {
     return {
       customPath: 'multispecialty/',
       customSlidePath: 'multispecialty/',
       exploreFeaturesId: 'multispecialty-explore-features-btn',
-      image: 'mycure-home-web-complete-for-clinics-of-all-sizes-diagram',
-      slides: [
-        'mycure-home-web-complete-for-clinics-of-all-sizes-diagram-mobile-01',
-        'mycure-home-web-complete-for-clinics-of-all-sizes-diagram-mobile-02',
-        'mycure-home-web-complete-for-clinics-of-all-sizes-diagram-mobile-03',
-        'mycure-home-web-complete-for-clinics-of-all-sizes-diagram-mobile-04',
-        'mycure-home-web-complete-for-clinics-of-all-sizes-diagram-mobile-05',
-        'mycure-home-web-complete-for-clinics-of-all-sizes-diagram-mobile-06'
-      ],
-      multiFeatures: [
-          {
-            title: 'Multispecialty Clinics',
-            description: 'One-stop, multi-staff clinics that provide ambulatory care and ancillary services',
-            icon: 'mycure-web-clinic-type-icon-multispecialty'
-          },
-          {
-            title: 'Outpatient Clinics',
-            description: 'Hospital-based clinics that provide outpatient consultation services from various specialists',
-            icon: 'mycure-web-clinic-type-icon-opd'
-          },
-          {
-            title: 'Industrial Clinics',
-            description: 'Primary clinics inside companies, schools, BPOs, and other industries covered by OSHS',
-            icon: 'mycure-web-clinic-type-icon-industrial'
-          },
-          {
-            title: 'Skin & Aesthetics Clinics',
-            description: 'Specialized for clinics that offer aesthetic procedures and dermatological services',
-            icon: 'mycure-web-clinic-type-icon-skin'
-          },
-          {
-            title: 'PME Clinics',
-            description: 'Clinics specializing in Physical Medical Exam (PME) Services',
-            icon: 'mycure-web-clinic-type-icon-pme'
-          },
-          {
-            title: 'Family Clinics',
-            description: 'Small to medium clinics that offer family medicine services, laboratory tests, and pharmacy',
-            icon: 'mycure-web-clinic-type-icon-family-clinic'
-          }
-        ]
+      // image: 'mycure-home-web-complete-for-clinics-of-all-sizes-diagram',
+      // slides: [
+      //   'mycure-home-web-complete-for-clinics-of-all-sizes-diagram-mobile-01',
+      //   'mycure-home-web-complete-for-clinics-of-all-sizes-diagram-mobile-02',
+      //   'mycure-home-web-complete-for-clinics-of-all-sizes-diagram-mobile-03',
+      //   'mycure-home-web-complete-for-clinics-of-all-sizes-diagram-mobile-04',
+      //   'mycure-home-web-complete-for-clinics-of-all-sizes-diagram-mobile-05',
+      //   'mycure-home-web-complete-for-clinics-of-all-sizes-diagram-mobile-06'
+      // ],
+      // multiFeatures: [
+      //     {
+      //       title: 'Multispecialty Clinics',
+      //       description: 'One-stop, multi-staff clinics that provide ambulatory care and ancillary services',
+      //       icon: 'mycure-web-clinic-type-icon-multispecialty'
+      //     },
+      //     {
+      //       title: 'Outpatient Clinics',
+      //       description: 'Hospital-based clinics that provide outpatient consultation services from various specialists',
+      //       icon: 'mycure-web-clinic-type-icon-opd'
+      //     },
+      //     {
+      //       title: 'Industrial Clinics',
+      //       description: 'Primary clinics inside companies, schools, BPOs, and other industries covered by OSHS',
+      //       icon: 'mycure-web-clinic-type-icon-industrial'
+      //     },
+      //     {
+      //       title: 'Skin & Aesthetics Clinics',
+      //       description: 'Specialized for clinics that offer aesthetic procedures and dermatological services',
+      //       icon: 'mycure-web-clinic-type-icon-skin'
+      //     },
+      //     {
+      //       title: 'PME Clinics',
+      //       description: 'Clinics specializing in Physical Medical Exam (PME) Services',
+      //       icon: 'mycure-web-clinic-type-icon-pme'
+      //     },
+      //     {
+      //       title: 'Family Clinics',
+      //       description: 'Small to medium clinics that offer family medicine services, laboratory tests, and pharmacy',
+      //       icon: 'mycure-web-clinic-type-icon-family-clinic'
+      //     }
+      //   ]
     };
   },
   computed: {
@@ -111,3 +89,11 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.main-container {
+  height: 90vh;
+  padding-top: 20vh;
+  background-color: #f0f0f0;
+}
+</style>
