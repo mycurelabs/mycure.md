@@ -85,7 +85,7 @@
     },
     methods: {
       toggleChat () {
-        let message = `Hi, I would like to sign up for MYCURE's Group Clinics.`;
+        let message = `Hi, I have a question about MYCURE's EMR Solution for Specialized Clinics.`;
         window.$crisp.push(['do', 'chat:toggle']);
         window.$crisp.push(['do', 'message:send', ['text', message]]);
         this.$ga.event({
