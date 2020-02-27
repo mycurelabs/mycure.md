@@ -1,5 +1,5 @@
 <template lang="pug">
-  div.pt-2
+  div
     features-diagram(
       v-if="!$isMobile"
       :title="title"

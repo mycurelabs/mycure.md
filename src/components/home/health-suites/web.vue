@@ -74,8 +74,8 @@ export default {
 
 <style scoped>
 .main-container {
-  height: 100vh;
-  padding-top: 90px;
+  height: 600px;
+  padding-top: 100px;
 }
 .roundedCard {
   border-radius: 10px;
