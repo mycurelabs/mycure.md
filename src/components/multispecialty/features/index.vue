@@ -70,7 +70,7 @@ export default {
   },
   computed: {
     title () {
-      const title = 'Provide the best service to your patients.';
+      const title = 'Provide the best service to your patients';
       return parseTextWithNewLine(title, ['service']);
     },
     description () {

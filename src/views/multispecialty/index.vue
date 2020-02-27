@@ -46,7 +46,7 @@ export default {
       storyflowItems: STORYFLOW_ITEMS,
       storyflowCustomPath: 'multispecialty/',
       ctaContent: {
-        text: 'Premium clinical services work best with premium technology.',
+        text: 'Premium clinical services work best with premium technology',
         subtext: this.parseCtaSubtext(),
         btnText: 'Book A Demo',
         btnLink: 'calendly',
@@ -56,7 +56,7 @@ export default {
   },
   computed: {
     storyflowIntro () {
-      const text = 'Make your patients and your staff become more engaged.';
+      const text = 'Make your patients and your staff become more engaged';
       return parseTextWithNewLine(text, ['staff']);
     }
   },
