@@ -20,49 +20,55 @@ export const SOLUTIONS = [
   {
     title: 'Registration',
     description: 'Patient-profiling, queuing, and appointments',
-    icon: 'mycure-web-clinic-feature-icon-registration'
+    icon: 'mycure-web-clinic-feature-icon-core-registration',
+    customPath: 'module-icons/'
   },
   {
     title: 'Syncbase Technology',
     description: 'Use MYCURE even if your internet connection is down.',
-    icon: 'mycure-web-clinic-feature-icon-syncbase'
+    icon: 'mycure-web-clinic-feature-icon-premium-syncbase-technology',
+    customPath: 'module-icons/'
   },
   {
     title: 'Physical Medical Exam',
     description: 'Auto-balancing queues, PME reports, and group registration',
-    icon: 'mycure-icon-pmeepe-active',
-    customPath: 'mycure features icon set/'
+    icon: 'mycure-web-clinic-feature-icon-premium-pme',
+    customPath: 'module-icons/'
   },
   {
     title: 'Medical Records',
     description: 'Create printable prescriptions, charts, lab orders, and customizable forms.',
-    icon: 'mycure-web-clinic-feature-icon-emr',
+    icon: 'mycure-web-clinic-feature-icon-core-emr',
+    customPath: 'module-icons/'
   },
   {
     title: 'Materials Management',
     description: 'Items masterlist, reorder, & expiration alerts, and weekly reports',
-    icon: 'mycure-web-clinic-feature-icon-materials-management'
+    icon: 'mycure-web-clinic-feature-icon-premium-materials-management',
+    customPath: 'module-icons/'
   },
   {
     title: 'Laboratory & Imaging',
     description: 'Online & printable results census, & HL7, DICOM/PACS integration',
-    icon: 'mycure-web-clinic-feature-icon-lab'
+    icon: 'mycure-web-clinic-feature-icon-premium-laboratory',
+    customPath: 'module-icons/'
   },
   {
     title: 'Pharmacy',
     description: 'Point-of-sales functions, Rx access, inventory management and reports',
-    icon: 'mycure-web-clinic-feature-icon-pharmacy'
+    icon: 'mycure-web-clinic-feature-icon-premium-pharmacy',
+    customPath: 'module-icons/'
   },
   {
     title: 'Billing',
     description: 'Manage patient billing, doctor rebates, and insurance transactions.',
-    icon: 'mycure-icon-billing-basic-active',
-    customPath: 'mycure features icon set/'
+    icon: 'mycure-web-clinic-feature-icon-core-billing',
+    customPath: 'module-icons/'
   },
   {
     title: 'Administration',
     description: 'Staff management, audit trail, and clinic customizations',
-    icon: 'mycure-icon-report-active',
-    customPath: 'mycure features icon set/'
+    icon: 'mycure-web-clinic-feature-icon-core-administrative',
+    customPath: 'module-icons/'
   }
 ];
