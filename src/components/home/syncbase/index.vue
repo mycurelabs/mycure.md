@@ -17,7 +17,9 @@
               right
               :id="btnData.id"
               @click.stop="handleVideoBtn"
-            ).text-none.font-s.font-weight-bold {{ btnData.text }}
+            ).text-none.font-s.font-weight-bold
+              v-icon mdi-play-circle-outline
+              span &nbsp;{{ btnData.text }}
           v-flex(xs6 align-self-center).px-3.text-xs-center
             img(:src="require(`@/assets/images/${panelImage}.gif`)" width="100%" alt="MYCURE Syncbase")
     //- MOBILE
@@ -64,7 +66,7 @@
                 src="https://www.youtube.com/embed/siFBgZMt26k?autoplay=1&loop=1&showinfo=0&rel=0"
                 frameborder="0"
                 allowfullscreen
-                )
+              )
 </template>
 
 <script>

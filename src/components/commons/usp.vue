@@ -16,7 +16,8 @@
                 large
                 @click.stop="handleUspBtnClick"
               ).text-none.white--text
-                strong.font-s {{ btnText }}    
+                v-icon(v-if="btnIconLeft" v-text="btnIconLeft")
+                strong(:class="{'pl-1' : btnIconLeft}").font-s {{ btnText }}    
     div.outer-image-container(:class="$isMobile ? 'pb-5' : 'web-padding'")
       div.usp-image-container.text-xs-center.justify-center
         img(
@@ -56,6 +57,10 @@ export default {
     btnText: {
       type: String,
       default: 'Get Started'
+    },
+    btnIconLeft : {
+      type: String,
+      default: undefined
     },
     coverImg: {
       type: String,

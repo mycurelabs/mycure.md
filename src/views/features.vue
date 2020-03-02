@@ -49,15 +49,6 @@ export default {
   },
   data () {
     return {
-      // FOR USP PANEL
-      uspContents: {
-        metaTitle: 'MYCURE Features',
-        title: 'User-friendly and time efficient features for a more patient-centric care.',
-        btn: `/choose`,
-        btnId: 'features-usp-signup-btn',
-        btnText: 'Sign Up Now',
-        img: 'mycure-cms-web-banner-first-panel-features',
-      },
       ctaContent: {
         text: 'Embrace a new habit',
         subtext: this.parseCtaSubText(),

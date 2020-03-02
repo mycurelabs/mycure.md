@@ -5,6 +5,7 @@
       :uspMetaTitle="uspMetaTitle"
       :btnId="uspContents.btnId"
       :btnText="uspContents.btnText"
+      :btnIconLeft="uspContents.btnIconLeft"
       :coverImg="uspContents.coverImg"
       @btnClick="showVideo"
     )
