@@ -5,7 +5,8 @@
         v-layout(row align-center)
           v-flex(xs12 md12).text-xs-center
             strong(v-if="uspMetaTitle").text-xs-center.font-s.font-mc-blue {{ uspMetaTitle }}
-            h1(:class="[{'pre-white-space': !$isMobile}, {'font-xl': !$isMobile}, {'font-45': $isMobile}]").text-xs-center.uspTitle 
+            template(v-if="uspMetaTitle && $isMobile")
+            h1(:class="titleClasses").text-xs-center.uspTitle 
               | {{ uspTitle }}
             p(:class="{'pre-white-space': !$isMobile}").text-xs-center.uspDescription.pt-3.font-s {{ uspDescription }}
             div.pt-1
@@ -74,6 +75,13 @@ export default {
       isImageLoaded: false,
       // - Routes that use the alternative blue color for USP
     };
+  },
+  computed: {
+    titleClasses () {
+      const webClasses = ['pre-white-space', 'font-xl'];
+      const mobileClasses = ['font-45', 'pt-3'];
+      return this.$isMobile ? mobileClasses : webClasses;
+    }
   },
   methods: {
     loadedImage () {
