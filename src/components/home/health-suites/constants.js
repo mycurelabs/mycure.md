@@ -6,7 +6,7 @@ export const HEALTH_SUITES_HEADERS = {
 export const HEALTH_SUITES_ITEMS = [
   {
     header: 'Doctors Clinics',
-    subheader: 'Make writing a thing of the past.',
+    subheader: 'Make writing a thing of the past',
     features: [
       'Best for Solo & Group Practice',
       'Customizable EMR',
@@ -23,7 +23,7 @@ export const HEALTH_SUITES_ITEMS = [
   },
   {
     header: 'Specialized Clinics',
-    subheader: 'Customized for your line of experience ',
+    subheader: 'Customized for your line of expertise',
     features: [
       'Skin & Aesthetics',
       'Maternity Care',
@@ -40,7 +40,7 @@ export const HEALTH_SUITES_ITEMS = [
   },
   {
     header: 'Multispecialty Clinics',
-    subheader: 'One stop, multi-staff healthcare centers',
+    subheader: 'For one stop, multi-staff health centers',
     features: [
       'User designated roles',
       'Multiple departments',
