@@ -1,8 +1,6 @@
 <template lang="pug">
   div
     //- FIXME: PLEASE ORGANIZE THIS CODE!
-    //- TODO: MOBILE VIEW
-    //- TODO: UPDATE CONTENTS
     div(v-if="!$isMobile")
       div.footer-grey
         v-container(justify-center)
@@ -17,8 +15,8 @@
                 li.pb-3
                   router-link(id="footer-features-link" @click.stop="handleFooterFeaturesLink" :to="{name: 'features'}" title="MYCURE Features").link Features
                 li.feature-text ABOUT
-                li
-                  router-link(id="footer-csr-link" @click.stop="handleFooterCsrLink" :to="{name: 'csr'}" title="MYCURE Corporate Social Responsibility").link Corporate Social Responsibility
+                //- li
+                //-   router-link(id="footer-csr-link" @click.stop="handleFooterCsrLink" :to="{name: 'csr'}" title="MYCURE Corporate Social Responsibility").link Corporate Social Responsibility
                 li
                   router-link(id="footer-our-story-link" @click.stop="handleFooterOurStoryLink" :to="{name: 'our-story'}" title="MYCURE Our Story | Caring the Extra Mile").link 
                     span Our Story
@@ -40,7 +38,7 @@
                 li.feature-text LEGAL
                 li
                   router-link(id="footer-terms-link" @click.stop="handleFooterTermsLink" :to="{name: 'terms'}" title="MYCURE Terms and Conditions").link 
-                    span Terms
+                    span Terms of Use
                 li
                   router-link(id="footer-privacy-policy-link" @click.stop="handleFooterPrivacyPolicyLink" :to="{name: 'privacy-policy'}" title="MYCURE Privacy Policy").link 
                     span Privacy Policy
@@ -55,10 +53,10 @@
                 li.font-mc-white (+63) 917 303 4350
           hr.my-4  
           v-layout(row wrap justify-center)  
-            span.font-mc-white &copy; 2016 - {{new Date().getFullYear()}}
+            span.font-mc-white Copyright &copy; 2016 - {{new Date().getFullYear()}}
               a(href="https://mycure.md")
-                span.font-mc-blue &nbsp; MYCURE.  
-                |
+                span.font-mc-blue &nbsp; MYCURE Inc.
+                | &nbsp;
                 span.font-mc-white All Rights Reserved.
     div(v-else).footer-grey.pa-4
       mc-toolbar-footer  

@@ -49,8 +49,8 @@
             template(v-slot:actions)
               v-icon(color="grey").iconMargin mdi-chevron-down
             v-layout(column)
-              router-link(id="footer-csr-btn" :to="{ name: 'csr' }" title="MYCURE | Corporate Social Responsibility").link.py-2
-                span.py-2.font-18.white--text Corporate Social Responsibility
+              //- router-link(id="footer-csr-btn" :to="{ name: 'csr' }" title="MYCURE | Corporate Social Responsibility").link.py-2
+              //-   span.py-2.font-18.white--text Corporate Social Responsibility
               router-link(id="footer-our-story-btn" :to="{ name: 'our-story' }" title="MYCURE Our Story | Caring the Extra Mile").link.py-2
                 span.py-2.font-18.white--text Our Story
               router-link(id="footer-blog-btn" :to="{ name: 'blog-link' }" title="MYCURE - Blog").link.py-2
@@ -80,7 +80,7 @@
               v-icon(color="grey").iconMargin mdi-chevron-down
             v-layout(column)
               router-link(id="footer-terms-btn" :to="{ name: 'terms' }" title="MYCURE Terms and Conditions").link.py-2
-                span.py-2.font-18.white--text Terms
+                span.py-2.font-18.white--text Terms of Use
               router-link(id="footer-privacy-policy-btn" :to="{ name: 'privacy-policy' }" title="MYCURE Privacy Policy").link.py-2
                 span.py-2.font-18.white--text Privacy Policy
       v-layout(row)
@@ -98,11 +98,11 @@
       br
       br
       br
-      v-layout(row justify-center)
-        strong.font-mc-white &copy; 2016 - {{new Date().getFullYear()}}
+      v-layout(row justify-center).text-xs-center
+        strong.font-mc-white Copyright &copy; 2016 - {{new Date().getFullYear()}}
          router-link(:to="{ name: 'home' }" title="MYCURE | Clinic Management System | Cloud EMR Philippines")
-            strong.font-mc-blue &nbsp; MYCURE.  
-            |
+            strong.font-mc-blue &nbsp; MYCURE Inc.  
+            br
             strong.font-mc-white All Rights Reserved.
       br
       br
@@ -121,6 +121,12 @@ export default {
       contact: false,
       socMed: [
         {
+          name: 'MYCURE - LinkedIn',
+          link: 'linkedin-link',
+          icon: 'mycure-homepage-wireframe-icon-linkedin.png',
+          id: 'footer-linkedin-btn'
+        },
+        {
           name: 'MYCURE - Facebook',
           link: 'facebook-link',
           icon: 'mycure-homepage-wireframe-icon-fb.png',
@@ -137,12 +143,6 @@ export default {
           link: 'instagram-link',
           icon: 'mycure-homepage-wireframe-icon-ig.png',
           id: 'footer-ig-btn'
-        },
-        {
-          name: 'MYCURE - LinkedIn',
-          link: 'linkedin-link',
-          icon: 'mycure-homepage-wireframe-icon-linkedin.png',
-          id: 'footer-linkedin-btn'
         },
         {
           name: 'MYCURE - Twitter',
