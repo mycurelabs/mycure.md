@@ -3,12 +3,12 @@
     div(v-if="!$isMobile")#panel4.pt-5
       v-container
         center
-          strong.font-21.font-mc-blue REGISTRATION AND QUEUEING
+          strong.font-21.font-mc-blue REGISTRATION AND QUEUING
         v-layout(row justify-center text-xs-center).add-spacing
           strong.font-40.font-work-sans Value everyone's time more effectively.
         v-layout(row justify-center).add-spacing
           v-flex(xs7 align-self-center).text-xs-center
-            span.font-21 With MYCURE, queueing is easier done than spelled. Patients easily register
+            span.font-21 With MYCURE, queuing is easier done than spelled. Patients easily register
               |  via kiosks. Display multiple queues through auxiliary monitors or smart TVs for waiting patients. Incoming doctors even get notified in their
               | devices for every new patient in line.
         v-layout(row justify-center).add-spacing
