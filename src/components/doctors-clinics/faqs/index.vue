@@ -16,6 +16,7 @@
               img(:src="require(`@/assets/images/${questionMark}.png`)" :alt="questionMark" width="18px")
               strong.font-21 &nbsp;{{ item.question }}
               p.font-18.pl-1.pt-2 {{ item.answer }}
+              p(v-if="item.supplement" :class="{'pl-3' : !$isMobile}").font-18.pre-white-space {{ parseSupplement(item)}}
               br
       v-layout(v-else row wrap justify-center).pt-5
         v-flex(xs12 md9)
