@@ -5,7 +5,7 @@
     medical-records
     reports
     billing
-    registration-and-queueing
+    registration-and-queuing
     lab-and-imaging
     inventory
     syncbase
@@ -22,7 +22,7 @@ import McFooter from '@/components/commons/mc-footer';
 import Usp from '@/components/features/usp';
 import RolesAndPrivileges from '@/components/features/roles-and-privileges';
 import MedicalRecords from '@/components/features/medical-records';
-import RegistrationAndQueueing from '@/components/features/registration-and-queueing';
+import RegistrationAndQueuing from '@/components/features/registration-and-queuing';
 import Billing from '@/components/features/billing';
 import LabAndImaging from '@/components/features/lab-and-imaging';
 import Inventory from '@/components/features/inventory';
@@ -39,7 +39,7 @@ export default {
     Usp,
     RolesAndPrivileges,
     MedicalRecords,
-    RegistrationAndQueueing,
+    RegistrationAndQueuing,
     Billing,
     LabAndImaging,
     Inventory,
