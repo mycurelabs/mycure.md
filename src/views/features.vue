@@ -61,7 +61,7 @@ export default {
       ctaContent: {
         text: 'Embrace a new habit',
         subtext: this.parseCtaSubText(),
-        btnText: 'Sign Up Now',
+        btnText: 'Get Started Today',
         image: 'mycure-web-footer'
       }
     };
@@ -77,8 +77,8 @@ export default {
   },
   methods: {
     parseCtaSubText () {
-      const subtext = 'Let your patients experience top-of-the-line service through your streamlined clinic operations with the help of MYCURE.';
-      return parseTextWithNewLine(subtext, ['through your']);
+      const subtext = 'Let your patients experience top-of-the-line services with the help of MYCURE.';
+      return subtext;
     }
   }
 };
