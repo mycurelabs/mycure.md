@@ -16,6 +16,9 @@
           ).mx-2.px-4
             br
             br
+            h2(v-if="$isMobile") {{ diagram.title }}
+              span(v-if="key === 1").font-mc-blue &nbsp;✓
+              br
             div(:class="{'pt-3' :$isMobile}")
               v-img(
                 :src="require(`@/assets/images/multispecialty/${diagram.image}.png`)"
@@ -24,9 +27,8 @@
               )
             br
             br
-            h2 {{ diagram.title }}
+            h2(v-if="!$isMobile").pb-3 {{ diagram.title }}
               span(v-if="key === 1").font-mc-blue &nbsp;✓
-            br
     v-layout(row justify-center align-center).pt-4
       v-flex(xs12).text-xs-center
         v-btn(
