@@ -1,14 +1,14 @@
 <template lang="pug">
   div#top.white
     usp
-    panel2
-    panel3
-    panel4
-    panel5
-    panel6
-    panel7
-    panel8
-    panel9
+    roles-and-privileges
+    medical-records
+    reports
+    billing
+    registration-and-queueing
+    lab-and-imaging
+    inventory
+    syncbase
     //- cta
     mc-cta-bottom(
       :ctaContent="ctaContent"
@@ -17,34 +17,34 @@
 </template>
 
 <script>
-import mcToolbarHome from '@/components/commons/mc-toolbar-home';
-import mcFooter from '@/components/commons/mc-footer';
-import usp from '@/components/features/usp';
-import panel2 from '@/components/features/panel-2';
-import panel3 from '@/components/features/panel-3';
-import panel4 from '@/components/features/panel-4';
-import panel5 from '@/components/features/panel-5';
-import panel6 from '@/components/features/panel-6';
-import panel7 from '@/components/features/panel-7';
-import panel8 from '@/components/features/panel-8';
-import panel9 from '@/components/features/panel-9';
+import McToolbarHome from '@/components/commons/mc-toolbar-home';
+import McFooter from '@/components/commons/mc-footer';
+import Usp from '@/components/features/usp';
+import RolesAndPrivileges from '@/components/features/roles-and-privileges';
+import MedicalRecords from '@/components/features/medical-records';
+import RegistrationAndQueueing from '@/components/features/registration-and-queueing';
+import Billing from '@/components/features/billing';
+import LabAndImaging from '@/components/features/lab-and-imaging';
+import Inventory from '@/components/features/inventory';
+import Reports from '@/components/features/reports';
+import Syncbase from '@/components/features/syncbase';
 import McCtaBottom from '@/components/commons/mc-cta-bottom';
 import VueScrollTo from 'vue-scrollto';
 import { parseTextWithNewLine } from '@/utils';
 
 export default {
   components: {
-    mcToolbarHome,
-    mcFooter,
-    usp,
-    panel2,
-    panel3,
-    panel4,
-    panel5,
-    panel6,
-    panel7,
-    panel8,
-    panel9,
+    McToolbarHome,
+    McFooter,
+    Usp,
+    RolesAndPrivileges,
+    MedicalRecords,
+    RegistrationAndQueueing,
+    Billing,
+    LabAndImaging,
+    Inventory,
+    Reports,
+    Syncbase,
     McCtaBottom
   },
   data () {

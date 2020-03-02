@@ -42,26 +42,24 @@
 </template>
 
 <script>
-  import panel10 from './panel-10';
-  import modules from './modules';
-  
-  export default {
-    components:{
-      panel10,
-      modules
-    },
-    data () {
-      return {
-        items: [
-          'Product Identification',
-          'Inventory levels, orders, and deliveries tracking',
-          'Inventory and Sales Reports',
-          'Warehouse Inventory Management',
-          'Interface with Medical Billing'
-        ]
-      };
-    }
-  };
+import modules from './modules';
+
+export default {
+  components:{
+    modules
+  },
+  data () {
+    return {
+      items: [
+        'Product Identification',
+        'Inventory levels, orders, and deliveries tracking',
+        'Inventory and Sales Reports',
+        'Warehouse Inventory Management',
+        'Interface with Medical Billing'
+      ]
+    };
+  }
+};
 </script>
 
 <style scoped>
