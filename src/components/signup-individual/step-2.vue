@@ -8,7 +8,6 @@
             @click="$router.push({ name: 'home' })"
           ).link-to-home.mb-3
           br
-          h5.primary--text Step 2 of 3
           h1 Verify it's you.
           p Enter the code sent to your mobile number: +{{step1Data.countryCallingCode}}{{step1Data.mobileNo}}
           v-layout(row align-center)

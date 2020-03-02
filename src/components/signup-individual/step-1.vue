@@ -2,7 +2,7 @@
   v-layout(row justify-center align-center)
     v-flex(xs12 md10)
       v-layout(row wrap justify-center)
-        v-flex(xs12 md5)
+        v-flex(xs12 md5).pt-5.mt-5
           img(
             src="../../assets/images/mycure-header-logo.png"
             @click="$router.push({ name: 'home' })"
@@ -14,15 +14,14 @@
               img(width="20" src="../../assets/images/mycure-check.png")
             v-flex(shrink)
               p.font-21 {{ item }}
-          v-layout(row)
+          v-layout(row).pt-5
             v-flex.mb-3
               b.font-18 Already have an account? 
                 router-link(:to="{ name: 'signin' }") Sign in.
         v-flex(xs12 md5)
           v-card
             v-card-text
-              h5.primary--text Step 1 of 3
-              h1 Create a MYCURE Account.
+              h1 Create a MYCURE Account
             v-card-text
               v-form(ref="formRef" v-model="valid")
                 v-layout(row)
