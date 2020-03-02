@@ -49,13 +49,13 @@ export const SOLUTIONS = [
   },
   {
     title: 'Laboratory & Imaging',
-    description: 'Online & printable results census, & HL7, DICOM/PACS integration',
+    description: 'Online & printable results census, HL7, & DICOM/PACS integration',
     icon: 'mycure-web-clinic-feature-icon-premium-laboratory',
     customPath: 'module-icons/'
   },
   {
     title: 'Pharmacy',
-    description: 'Point-of-sales functions, Rx access, inventory management and reports',
+    description: 'Point-of-sales functions, eRx access, stock control and reports',
     icon: 'mycure-web-clinic-feature-icon-premium-pharmacy',
     customPath: 'module-icons/'
   },
