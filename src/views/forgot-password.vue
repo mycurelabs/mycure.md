@@ -18,8 +18,8 @@
                 h1.signin-title Forgot your password?
                 p No worries! Just follow these steps:
                 p 1. Enter your MYCURE email address below.
-                p 2. We'll be sending you a password recovery email to the address you provided. Follow the instructions carefully.
-                p 3. Login to MYCURE using your new password. :)
+                p 2. Carefully follow the instructions we sent to your email address.
+                p 3. Login to MYCURE using your new password.
               v-card-text.px-4
                 v-form(ref="form" v-model="valid" @submit.prevent="submit")
                   v-text-field(
@@ -37,8 +37,9 @@
                   v-flex
                     v-btn(
                       flat
+                      right
                       :to="{ name: 'signin' }"
-                    ) Go back
+                    ).text-none Back to Login
                   v-flex
                     v-btn(
                       type="submit"

@@ -16,7 +16,7 @@
                   @click="$router.push({ name: 'home' })"
                 ).link-to-home.mb-3
                 h1.signin-title It's nice to see you here!
-                small.grey--text Good day! Welcome to MYCURE.
+                span.grey--text Welcome to MYCURE. Sign in to your account
               v-card-text.pa-4
                 v-form(ref="form" v-model="valid" @keydown.native.enter="valid && submit()")
                   v-text-field(
