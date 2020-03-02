@@ -16,8 +16,7 @@
           v-layout(row justify-center).add-spacing
             img(src="@/assets/images/mycure-cms-web-features-arrow-down.png" alt="Arrow down icon")
           v-layout(row justify-center).add-spacing
-            //- https://ssense.github.io/vue-carousel/
-            img(src="../../assets/images/mycure-web-features-mockup-07-A.png" alt="Syncbase Technology" width="50%" height="100%")
+            img(src="../../assets/images/mycure-web-features-mockup-07-A.png" alt="Syncbase Technology" width="35%")
       modules.pt-5
     div(v-else)#panel9.showPanel
       div.pt-5
