@@ -19,12 +19,14 @@
             v-for="(expert, key) in expertise" 
             :key="key"
           ).pa-3
-            v-card.grey-panel.pa-3
+            v-card.grey-panel
               v-card-text
-                img(
-                  :src="require(`@/assets/images/specialized/${expert.image}.png`)"
-                  :alt="expert.image"
-                )
+                div.text-xs-center
+                  img(
+                    :src="require(`@/assets/images/specialized/${expert.image}.png`)"
+                    :alt="expert.image"
+                  )
+              v-card-text.px-4.pb-3
                 h2.font-m.pb-3 {{ expert.title }}
                 strong.font-18.font-mc-blue TOP FEATURES
                 ul.no-list-style
