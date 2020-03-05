@@ -44,7 +44,10 @@
     hr
     //- 7th panel
     privacy
-    //- 8th panel
+    hr
+     //- 8th panel
+    apis
+    //- 9th panel
     testimonial
     //- final panel
     mc-cta-bottom(
@@ -64,6 +67,7 @@ import HealthSuites from '@/components/home/health-suites';
 import Solutions from '@/components/home/solutions';
 import Vid from '@/components/home/vid';
 import Syncbase from '@/components/home/syncbase';
+import Apis from '@/components/home/apis';
 import Privacy from '@/components/home/privacy';
 import Testimonial from '@/components/home/testimonial';
 import McCtaBottom from '@/components/commons/mc-cta-bottom';
@@ -77,6 +81,7 @@ export default {
     Solutions,
     Vid,
     Syncbase,
+    Apis,
     Privacy,
     Testimonial,
     McCtaBottom,
