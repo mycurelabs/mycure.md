@@ -9,7 +9,7 @@
     div(v-else)
       v-container
         v-layout(row justify-center)
-          h1.font-40.text-xs-center.lh-title {{ title }}
+          h1.font-40.text-xs-center.lh-title.font-work-sans {{ title }}
         br
         p.font-s.text-xs-center.pt-3 {{ panelContent.description }}
         mobile-diagram-carousel(
