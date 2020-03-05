@@ -20,10 +20,12 @@
           bottom
           large
           :color="$mcColors.mcBlue"
-          @click="featuresVideoDialog = true"
-        ).font-21.text-none See the features video here
+          @click="handleWatchFeatures"
+        ).font-21.text-none 
+          v-icon mdi-play-circle
+          | &nbsp;Watch Our Features In Action
         
-         //- Video
+        //- Video
         v-dialog(v-model="featuresVideoDialog" max-width="600px")
           v-layout(row justify-center)
             v-card(width="600")
@@ -103,6 +105,15 @@ export default {
   methods: {
     getStarted () {
       VueScrollTo.scrollTo(`#health-suites`, 500, { easing: 'ease' });
+    },
+    handleWatchFeatures () {
+      this.$ga.event({
+        eventCategory: 'button',
+        eventLabel: 'home-watch-features-btn',
+        eventAction: 'click-home-watch-features-btn'
+      });
+
+      this.featuresVideoDialog = true;
     }
   }
 };
