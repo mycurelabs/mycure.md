@@ -9,7 +9,7 @@
     div(v-else)
       v-container
         v-layout(row justify-center)
-          h1.font-40.text-xs-center.lh-title.font-work-sans {{ title }}
+          h1.font-30.pre-white-space.text-xs-center.lh-title.font-work-sans {{ title }}
         br
         p.font-s.text-xs-center.pt-3 {{ panelContent.description }}
         mobile-diagram-carousel(
@@ -47,7 +47,9 @@ export default {
   computed: {
     title () {
       const title = CONTENT.title;
-      return !this.$isMobile ? parseTextWithNewLine(title, ['better']) : title;
+      return !this.$isMobile
+        ? parseTextWithNewLine(title, ['better'])
+        : parseTextWithNewLine(title, ['solutions', 'better']);
     },
   }
 };

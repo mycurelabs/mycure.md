@@ -2,7 +2,8 @@
   v-container
     v-layout(row align-center)
       v-flex(xs12 md12).text-xs-center
-        h2.text-xs-center.font-work-sans.font-xl {{ panelTitle }}
+        h2(:class="$isMobile ? 'font-45' : 'font-xl'").text-xs-center.font-work-sans {{ panelTitle }}
+        br
         p.font-s.text-xs-center {{ panelSubtitle }}
     v-layout(
       row 
