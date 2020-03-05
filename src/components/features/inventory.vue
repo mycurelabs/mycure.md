@@ -25,7 +25,7 @@
         br
         br
         v-layout(row justify-center)
-          p.font-weight-bold.font-40.text-xs-center.font-work-sans Your medical supplies at a glance
+          p.font-weight-bold.font-30.text-xs-center.font-work-sans Your medical supplies at a glance
         br
         br
         v-layout(row justify-center)

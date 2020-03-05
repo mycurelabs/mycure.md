@@ -28,7 +28,7 @@
         br
         v-layout(column justify-center)
           v-flex(xs12)
-            p.font-weight-bold.font-40.text-xs-center.lh-title.font-work-sans Everybody's got a special role to play.
+            p.font-weight-bold.font-30.text-xs-center.lh-title.font-work-sans Everybody's got a special role to play.
           br
           v-flex(xs12)
             p.font-18.text-xs-center Collaborate with your clinic staff more efficiently using a clinic system that's so user-friendly, you wouldn't even feel that you're working.

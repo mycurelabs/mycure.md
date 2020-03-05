@@ -25,7 +25,11 @@
         br
         br
         v-layout(row justify-center)
-          p.font-weight-bold.font-40.text-xs-center.font-work-sans Never miss out on important business decisions. 
+          p.font-weight-bold.font-30.text-xs-center.font-work-sans Never miss out
+            br
+            | on important
+            br
+            | business decisions. 
         br
         br
         v-layout(row justify-center)

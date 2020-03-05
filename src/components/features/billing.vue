@@ -37,7 +37,9 @@
         br
         br
         v-layout(row justify-center)
-          p.font-weight-bold.font-40.text-xs-center.font-work-sans Simplified billing, beautiful reports.
+          p.font-weight-bold.font-30.text-xs-center.font-work-sans Simplified billing,
+            br
+            | beautiful reports.
         br
         br
         v-layout(row justify-center)

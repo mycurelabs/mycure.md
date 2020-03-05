@@ -34,7 +34,7 @@
         br
         br
         v-layout(row justify-center)
-          p.font-weight-bold.font-40.text-xs-center.font-work-sans Value everyone's time more effectively.
+          p.font-weight-bold.font-30.text-xs-center.font-work-sans Value everyone's time more effectively.
         br
         v-layout(row justify-center)
           p.font-18.text-xs-center With MYCURE, queueing is easier done than spelled. Patients easily register via kiosks.

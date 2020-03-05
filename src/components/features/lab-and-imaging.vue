@@ -38,7 +38,13 @@
         br
         br
         v-layout(row justify-center)
-          p.font-weight-bold.font-40.text-xs-center.font-work-sans {{ primaryDescription }}
+          p.font-weight-bold.font-30.text-xs-center.font-work-sans Record and retrieve
+            br
+            | diagnostic results
+            br
+            | right where you 
+            br
+            | need them.
         br
         v-layout(row justify-center)
           p.font-18.text-xs-center MYCURE can communicate with modern diagnostic machines through HL7 interfacing and PACS configurations. 

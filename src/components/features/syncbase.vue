@@ -26,7 +26,9 @@
           br
           br
           v-layout(row justify-center)
-            p.font-weight-bold.font-40.text-xs-center.font-work-sans Go offline safely and securely.
+            p.font-weight-bold.font-30.text-xs-center.font-work-sans Go offline safely
+              br
+              | and securely.
           br
           br
           v-layout(row justify-center)

@@ -33,7 +33,7 @@
         br
         br
         v-layout(row justify-center)
-          p.font-40.font-weight-bold.text-xs-center.font-work-sans Designed for doctors, by doctors.
+          p.font-30.font-weight-bold.text-xs-center.font-work-sans Designed for doctors, by doctors.
         br
         v-layout(row justify-center)
           p.font-18.text-xs-center Record full medical history, vitals, and physical exam records according
