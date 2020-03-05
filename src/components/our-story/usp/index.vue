@@ -34,7 +34,9 @@ export default {
   computed: {
     uspTitle () {
       const title = this.uspContents.title;
-      return !this.$isMobile ? parseTextWithNewLine(title, ['ends']) : title ;
+      return !this.$isMobile
+        ? parseTextWithNewLine(title, ['ends'])
+        : parseTextWithNewLine(title, ['starts', 'ends']) ;
     },
     uspMetaTitle () {
       const metaTitle = this.uspContents.metaTitle;
