@@ -27,11 +27,11 @@
         v-dialog(v-model="featuresVideoDialog" max-width="600px")
           v-layout(row justify-center)
             v-card(width="600")
-              v-card-text
+              v-card-text.text-xs-center
                 iframe(
                   align="middle"
                   :height="!$isMobile ? '400' : '175'" 
-                  :width="!$isMobile ? '570' : '300'"
+                  width="100%"
                   src="https://www.youtube.com/embed/YjymFVmKX_U" 
                   frameborder="0" 
                   allowfullscreen
