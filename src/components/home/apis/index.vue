@@ -20,7 +20,7 @@
                 v-list-tile-content
                   span.font-s {{ item }}
           v-flex(xs6 align-self-center).px-3.text-xs-center
-            img(:src="require(`@/assets/images/${panelImage}.png`)" width="75%" :alt="panelImage")
+            img(:src="require(`@/assets/images/${panelImage}.png`)" width="80%" :alt="panelImage")
     //- MOBILE
     div(v-else).pt-5
       v-container.text-xs-center
