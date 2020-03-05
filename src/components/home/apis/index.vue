@@ -20,13 +20,13 @@
                 v-list-tile-content
                   span.font-s {{ item }}
           v-flex(xs6 align-self-center).px-3.text-xs-center
-            img(:src="require(`@/assets/images/${panelImage}.gif`)" width="100%" alt="MYCURE Syncbase")
+            img(:src="require(`@/assets/images/${panelImage}.png`)" width="75%" :alt="panelImage")
     //- MOBILE
     div(v-else).pt-5
       v-container.text-xs-center
         h1.font-40.lh-title.font-work-sans {{ panelTitle }}
         br
-        img(width="85%" :src="require(`@/assets/images/${panelImage}.gif`)" alt="MYCURE Syncabse").pb-3
+        img(width="85%" :src="require(`@/assets/images/${panelImage}.png`)" :alt="panelImage").pb-3
         p.font-s {{ panelContent }}
         v-list(two-line)
           v-list-tile(
@@ -53,7 +53,7 @@ export default {
         'Customize the CMS as needed',
         'Complete documentation'
       ],
-      panelImage: 'mycure-syncbase-animate-small',
+      panelImage: 'mycure-web-banner-api',
       btnData: {
         id: 'home-syncbase-video-btn',
         text: 'Watch How It Works'
