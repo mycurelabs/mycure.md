@@ -8,6 +8,7 @@
       :btnText="uspContents.btnText"
       :coverImg="uspContents.coverImg"
       :customPath="uspContents.customPath"
+      :title-mobile-size="30"
     )
 </template>
 
@@ -30,7 +31,9 @@ export default {
   computed: {
     uspTitle () {
       const title = USP_CONTENTS.title;
-      return parseTextWithNewLine(title, ['clinic', 'tailored']);
+      return !this.$isMobile
+        ? parseTextWithNewLine(title, ['clinic', 'tailored'])
+        : parseTextWithNewLine(title, ['Customizable', 'management', 'tailored', 'your']);
     }
   }
 };

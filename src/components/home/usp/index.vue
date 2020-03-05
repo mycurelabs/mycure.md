@@ -27,7 +27,9 @@ export default {
   computed: {
     uspTitle () {
       const title = this.uspContents.title; 
-      return !this.$isMobile ? parseTextWithNewLine(title, ['workflows']) : title ;
+      return !this.$isMobile
+        ? parseTextWithNewLine(title, ['workflows'])
+        : parseTextWithNewLine(title, ['your', 'workflows', 'maximize']) ;
     },
     uspDescription () {
       const description = this.uspContents.description;

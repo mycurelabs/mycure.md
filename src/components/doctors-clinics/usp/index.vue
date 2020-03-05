@@ -30,7 +30,9 @@ export default {
   computed: {
     uspTitle () {
       const title = USP_CONTENTS.title;
-      return parseTextWithNewLine(title, ['for', 'group']);
+      return !this.$isMobile
+        ? parseTextWithNewLine(title, ['for', 'group'])
+        : parseTextWithNewLine(title, ['perfect', 'system', 'doctors', ' or']);
     }
   }
 };

@@ -4,7 +4,7 @@
       v-container(fill-height)
         v-layout(row align-center)
           v-flex(xs12 md12).text-xs-center
-            strong(v-if="uspMetaTitle").text-xs-center.font-s.font-mc-blue {{ uspMetaTitle }}
+            strong(v-if="uspMetaTitle" :class="[getMetaFontSize]").text-xs-center.font-mc-blue {{ uspMetaTitle }}
             template(v-if="uspMetaTitle && $isMobile")
             h1(:class="titleClasses").text-xs-center.uspTitle 
               | {{ uspTitle }}
@@ -41,6 +41,10 @@ export default {
     uspMetaTitle: {
       type: String,
       default: ''
+    },
+    titleMobileSize: {
+      type: Number,
+      default: 36
     },
     uspDescription: {
       type: String,
@@ -84,8 +88,13 @@ export default {
   computed: {
     titleClasses () {
       const webClasses = ['pre-white-space', 'font-xl'];
-      const mobileClasses = ['font-45', 'pt-3'];
+      const mobileClasses = [`font-${this.titleMobileSize}`, 'pt-3', 'pre-white-space'];
       return this.$isMobile ? mobileClasses : webClasses;
+    },
+    getMetaFontSize () {
+      return this.$route.name === 'multispecialty-clinics'
+        ? 'font-18'
+        : 'font-s';
     }
   },
   methods: {
