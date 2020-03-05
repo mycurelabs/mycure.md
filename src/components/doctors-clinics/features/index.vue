@@ -11,7 +11,7 @@
     div(v-else)
       v-container
         v-layout(row justify-center)
-          h1.font-40.text-xs-center.lh-title.font-work-sans {{ title }}
+          h1.font-40.pre-white-space.text-xs-center.lh-title.font-work-sans {{ title }}
         br
         mobile-diagram-carousel(
           :slides="slides"
@@ -83,7 +83,9 @@ export default {
   computed: {
     title () {
       const title = 'Your buddy from medical school to clinical practice';
-      return parseTextWithNewLine(title, ['school']);
+      return !this.$isMobile
+        ? parseTextWithNewLine(title, ['school'])
+        : parseTextWithNewLine(title, ['buddy', 'medical', 'to']);
     }
   }
 };
