@@ -193,7 +193,7 @@ export default {
       try {
         this.loading = true;
         this.error = false;
-        this.mobileNoError = false;
+        this.validateForm();
         if (!this.valid) return;
         await signupIndividual(this.doctor);
         this.$router.push({ name: 'signup-individual-step-2' });
