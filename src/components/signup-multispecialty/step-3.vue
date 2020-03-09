@@ -47,19 +47,27 @@
                 )
                 v-text-field(
                   v-model="contact.mobileNo"
-                  label="Mobile No."
-                  prefix="+63"
-                  mask="NNNN-NNN-NNN"
+                  label="Mobile Number"
+                  type="number"
                   outline
-                  :rules="[requiredRule]"
+                  :prefix="`+${contact.countryCallingCode}`"
+                  :loading="loading"
                   :disabled="loading"
+                  :error-messages="mobileNoErrorMessage"
+                  :rules="[requiredRule]"
+                  @blur="validatePhoneNo"
                 )
+                  template(slot="append")
+                    v-tooltip(bottom)
+                      v-btn(icon style="margin-top: -5px" @click="countryDialog = true" slot="activator").ma-0
+                        img(width="25" :src="contact.countryFlag").flag-img.mt-2
+                      | Change Country
                 v-text-field(
                   v-model="contact.email"
                   type="email"
                   label="Email"
                   outline
-                  :rules="[requiredRule]"
+                  :rules="[requiredRule, emailRule]"
                   :disabled="loading"
                 )
                 v-select(
@@ -73,11 +81,14 @@
                 v-text-field(
                   v-model="contact.preferredScheduleDate"
                   type="date"
-                  label="Preferred schedule date"
+                  :min="minDate"
+                  :max="maxDate"
+                  label="Preferred schedule date (dd/mm/yy)"
                   prepend-inner-icon="mdi-calendar"
                   outline
                   :rules="[requiredRule]"
                   :disabled="loading"
+                  :error-messages="dateErrorMessage"
                 )
         v-flex(xs12 md10).mt-2
           v-card
@@ -97,12 +108,39 @@
       v-model="success"
       color="accent"
     ) Inquiry sent! Please check your email for confirmation.
+
+    //- Country dialog
+    //- TODO: Make this into a separate component
+    v-dialog(v-model="countryDialog" width="500" scrollable)
+      v-card
+        v-toolbar(flat)
+          v-text-field(
+            v-model="searchString" 
+            label="Search Country"
+            solo
+            hide-details
+            clearable
+            autofocus
+            flat
+          )
+        v-card-text(style="height: 300px").pa-0
+          v-list
+            v-list-tile(v-for="(country, key) in countries" @click="selectCountry(country)" :key="key")
+              v-list-tile-action
+                img(width="25" :src="country.flag")
+              v-list-tile-content
+                v-list-tile-title {{country.name}}
 </template>
 
 <script>
 import _ from 'lodash';
 import modules from '../../assets/fixtures/modules';
-import { sendMultiSpecialtyInquiry } from '../../utils/axios';
+import {
+  getCountry,
+  getCountries,
+  sendMultiSpecialtyInquiry 
+} from '../../utils/axios';
+import { parsePhoneNumberFromString } from 'libphonenumber-js';
 export default {
   data () {
     this.step1Fields = [
@@ -129,9 +167,20 @@ export default {
       loading: false,
       valid: false,
       success: false,
-      contact: {},
+      countries: [],
+      searchString: '',
+      countryDialog: false,
+      contact: {
+        countryCallingCode: '',
+        countryFlag: null
+      },
+      mobileNoError: false,
+      mobileNoErrorMessage: '',
+      dateError: false,
+      dateErrorMessage: '',
       selectedPremiumModules: [],
       requiredRule: v => !!v || 'This field is required',
+      emailRule: v => /.+@.+/.test(v) || 'Email address must be valid',
       roles: [
         'Owner',
         'Administrator',
@@ -141,6 +190,25 @@ export default {
       ],
     };
   },
+  computed: {
+    minDate () {
+      const date = new Date;
+      const year = date.getFullYear();
+      const month = date.getMonth() + 1;
+      const day = date.getDate();
+      const formatted = `${year}-${month < 10 ? `0${month}` : month}-${day < 10 ? `0${day}` : day}`;
+      return formatted;
+    },
+    maxDate () {
+      const date = new Date;
+      date.setMonth(date.getMonth() + 3);
+      const year = date.getFullYear();
+      const month = date.getMonth() + 1;
+      const day = date.getDate() + 1;
+      const formatted = `${year}-${month < 10 ? `0${month}` : month }-${day < 10 ? `0${day}` : day}`;
+      return formatted;
+    }
+  },
   watch: {
     contact: {
       handler (val) {
@@ -148,13 +216,115 @@ export default {
       },
       deep: true,
       immediate: false
+    },
+    'contact.mobileNo': {
+      handler () {
+        this.validatePhoneNo();
+      },
+      deep: true
+    },
+    'contact.preferredScheduleDate': {
+      handler () {
+        this.validateDate();
+      },
+      deep: true
+    },
+    searchString (val) {
+      if (typeof val !== 'string' || val === '') {
+        this.countries = JSON.parse(localStorage.getItem('mycure:countries'));
+        return;
+      }
+      const needle = val.toLowerCase();
+      this.countries = this.countries.filter(v => v.name.toLowerCase().indexOf(needle) > -1);
     }
   },
   methods: {
+    async init () {
+      // if (!localStorage.getItem('multi:step2:model')) 
+      //   this.$router.push({ name: 'signup-multispecialty-step-2' });
+
+      // Load model
+      if (localStorage.getItem('multi:step3:model')) {
+        this.contact = JSON.parse(localStorage.getItem('multi:step3:model'));
+      } else {
+        const country = await getCountry();
+        const { location } = country;
+        this.contact.countryCallingCode = location.calling_code;
+        this.contact.countryFlag = location.country_flag;
+      }
+      if (localStorage.getItem('multi:step2:model')) {
+        const premiumModules = JSON.parse(localStorage.getItem('multi:step2:model'));
+        this.selectedPremiumModules = premiumModules.filter(module => module.selected);
+      }
+
+      // Load countries
+      this.getCountries();
+    },
+    async getCountries () {
+      if (!localStorage.getItem('mycure:countries')) {
+        this.countries = await getCountries();
+        localStorage.setItem('mycure:countries', JSON.stringify(this.countries));
+      } else {
+        this.countries = JSON.parse(localStorage.getItem('mycure:countries'));
+      }
+    },
+    selectCountry (country) {
+      this.contact.countryCallingCode = country.callingCodes[0];
+      this.contact.countryFlag = country.flag;
+      this.countryDialog = false;
+      this.searchString = '';
+    },
+    validateForm () {
+      const valid = this.$refs.formRef.validate();
+      this.validatePhoneNo();
+      this.validateDate();
+      this.valid = valid && this.mobileNoError && this.dateError;
+    },
+    validatePhoneNo () {
+      this.mobileNoError = false;
+      this.mobileNoErrorMessage = '';
+      try {
+        let countryCode = this.contact.countryCallingCode;
+        let mobileNo = this.contact.mobileNo;
+        let phoneNumber = parsePhoneNumberFromString(`+${countryCode}${mobileNo}`);
+        if (!phoneNumber || !phoneNumber.isValid()) {
+          throw new Error();
+        } else {
+          this.mobileNoError = true;
+        }
+      } catch (e) {
+        this.mobileNoError = false;
+        this.mobileNoErrorMessage = 'Invalid mobile number format';
+      }
+    },
+    validateDate () {
+      this.dateError = false;
+      this.dateErrorMessage = '';
+      try {
+        const date = new Date(this.contact.preferredScheduleDate);
+        const max = new Date(this.maxDate);
+        const min = new Date(this.minDate);
+        if (date > max || date < min ) {
+          throw new Error(`${date > max ? 'max' : 'min'}`);
+        } else {
+          this.dateError = true;
+        }
+      } catch (e) {
+        this.dateError = false;
+        if (e.message === 'max') {
+          this.dateErrorMessage = 'Please set date within a 3-month period.';
+        } else if (e.message === 'min') {
+          this.dateErrorMessage = 'You cannot set a past date';
+        } else {
+          this.dateErrorMessage = 'Invalid date';
+        }
+      }
+    },
     async submit () {
       try {
         this.loading = true;
-        if (this.$refs.formRef.validate()) {
+        this.validateForm();
+        if (this.valid) {
           const step1Data = JSON.parse(localStorage.getItem('multi:step1:model'));
           const step2Data = JSON.parse(localStorage.getItem('multi:step2:model')) || [];
           const step3Data = JSON.parse(localStorage.getItem('multi:step3:model'));
@@ -186,16 +356,8 @@ export default {
       }
     }
   },
-  created () {
-    // if (!localStorage.getItem('multi:step2:model')) 
-    //   this.$router.push({ name: 'signup-multispecialty-step-2' });
-    if (localStorage.getItem('multi:step3:model')) {
-      this.contact = JSON.parse(localStorage.getItem('multi:step3:model'));
-    }
-    if (localStorage.getItem('multi:step2:model')) {
-      const premiumModules = JSON.parse(localStorage.getItem('multi:step2:model'));
-      this.selectedPremiumModules = premiumModules.filter(module => module.selected);
-    }
+  async created () {
+    await this.init();
   }
 };
 </script>
