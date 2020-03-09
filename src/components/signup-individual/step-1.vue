@@ -2,7 +2,7 @@
   v-layout(row justify-center align-center)
     v-flex(xs12 md10)
       v-layout(row wrap justify-center)
-        v-flex(xs12 md5).pt-5.mt-5
+        v-flex(xs12 md5 :class="[{'pt-5': !$isMobile}, {'mt-5': !$isMobile}]")
           img(
             src="../../assets/images/mycure-header-logo.png"
             @click="$router.push({ name: 'home' })"
