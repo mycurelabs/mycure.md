@@ -56,7 +56,6 @@
                   :prefix="`+${doctor.countryCallingCode}`"
                   :loading="loadingForm || loading"
                   :disabled="loadingForm || loading"
-                  :error="mobileNoError"
                   :error-messages="mobileNoErrorMessage"
                   :rules="[requiredRule]"
                   @blur="validatePhoneNo"
@@ -79,7 +78,7 @@
                   type="email"
                   label="Email Address"
                   outline
-                  :rules="[requiredRule]"
+                  :rules="[requiredRule, emailRule]"
                   :disabled="loading"
                 )
                 v-text-field(
@@ -108,7 +107,7 @@
               v-btn(
                 color="accent"
                 @click="next"
-                :disabled="loading"
+                :disabled="loading || !valid"
                 :loading="loading"
               ) Create my Account
     
@@ -155,6 +154,7 @@ export default {
       },
       requiredRule: v => !!v || 'This field is required',
       numberRule: v => v >= 0 || 'Please input a valid number',
+      emailRule: v => /.+@.+/.test(v) || 'Email address must be valid',
       error: false,
       errorMessage: 'There was an error please try again later.',
       mobileNoError: false,
@@ -194,7 +194,7 @@ export default {
         this.loading = true;
         this.error = false;
         this.mobileNoError = false;
-        if (!this.$refs.formRef.validate()) return;
+        if (!this.valid) return;
         await signupIndividual(this.doctor);
         this.$router.push({ name: 'signup-individual-step-2' });
       } catch (e) {
@@ -242,6 +242,11 @@ export default {
     gotoTerms () {
       window.open('https://mycure.md/terms', '_blank');
     },
+    validateForm () {
+      const valid = this.$refs.formRef.validate();
+      this.validatePhoneNo();
+      this.valid = valid && this.mobileNoError;
+    },
     validatePhoneNo () {
       this.mobileNoError = false;
       this.mobileNoErrorMessage = '';
@@ -249,7 +254,11 @@ export default {
         let countryCode = this.doctor.countryCallingCode;
         let mobileNo = this.doctor.mobileNo;
         let phoneNumber = parsePhoneNumberFromString(`+${countryCode}${mobileNo}`);
-        if (!phoneNumber || !phoneNumber.isValid()) throw new Error();
+        if (!phoneNumber || !phoneNumber.isValid()) {
+          throw new Error();
+        } else {
+          this.mobileNoError = true;
+        }
       } catch (e) {
         this.mobileNoError = false;
         this.mobileNoErrorMessage = 'Invalid mobile number format';
