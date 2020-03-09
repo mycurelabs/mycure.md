@@ -35,17 +35,15 @@
                 ).step-one-field.font-21
                 v-text-field(
                   v-model="clinic.numberOfStaff"
-                  type="number"
                   outline
                   label="No. of staff (?)"
-                  :rules="[requiredRule, numberRule]"
+                  :rules="[requiredRule, ...numberRules]"
                 ).step-one-field.font-21
                 v-text-field(
                   v-model="clinic.numberOfPatients"
-                  type="number"
                   outline
                   label="Average patients per day (?)"
-                  :rules="[requiredRule, numberRule]"
+                  :rules="[requiredRule, ...numberRules]"
                 ).step-one-field.font-21
                 //- h5(style="margin-bottom: -20px;").grey--text No. of staff (?)
                 //- v-slider(
@@ -87,7 +85,10 @@ export default {
       valid: false,
       clinic: {},
       requiredRule: v => !!v || 'This field is required',
-      numberRule: v => v > 0 || 'Number should be positive',
+      numberRules: [
+        v => v > 0 || 'Number should be positive',
+        v => !(/.\./.test(v)) || 'Whole numbers only'
+      ],
       checkListItems: [
         'Better operations',
         'Beautiful reports',
@@ -113,6 +114,8 @@ export default {
   created () {
     if (localStorage.getItem('multi:step1:model')) {
       this.clinic = JSON.parse(localStorage.getItem('multi:step1:model'));
+    } else {
+      this.clinic.hasOtherBranches = true;
     }
   }
 };
