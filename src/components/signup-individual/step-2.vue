@@ -26,11 +26,15 @@
               v-progress-circular(indeterminate size="15" color="primary")
           //- v-layout(row).pa-0.mb-3
             v-btn(style="margin-left: 0px")
-          p Didn't get the code?&nbsp;
-            span(v-if="otpCountdown > 0").primary--text Resend in 00:{{otpCountdown / 1000}}
-            a(v-else @click="resendVerificationCode") 
-              span(v-if="!sendingCode") Resend.
-              v-progress-circular(v-else indeterminate size="15" color="white")
+          p Didn't get the code?
+          v-btn(
+            style="width: 150px;"
+            :disabled="otpCountdown > 0"
+            @click="resendVerificationCode"
+            color="primary"
+            right
+          ).text-none.font-weight-bold
+            | Resend {{ otpCountdown > 0 ? `in 00:${otpCountdown / 1000}` : '.' }}
           v-layout
             v-flex
               v-alert(
