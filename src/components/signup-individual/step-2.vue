@@ -33,6 +33,7 @@
             @click="resendVerificationCode"
             color="primary"
             right
+            bottom
           ).text-none.font-weight-bold
             | Resend {{ otpCountdown > 0 ? `in 00:${otpCountdown / 1000}` : '.' }}
           v-layout
