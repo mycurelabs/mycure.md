@@ -4,7 +4,7 @@
   "description": "",
   "btnRoute": "signup-multispecialty",
   "btnId": "specialized-usp-btn",
-  "btnText": "Book a Free Demo",
+  "btnText": "Book A Free Demo",
   "coverImg": "mycure-specialized-clinic-usp-cover",
   "customPath": "specialized/"
 }
