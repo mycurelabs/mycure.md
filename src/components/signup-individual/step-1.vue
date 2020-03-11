@@ -86,10 +86,18 @@
                   label="Password"
                   outline
                   :type="showPass ? 'text' : 'password'"
-                  :rules="[requiredRule, ]"
+                  :rules="[requiredRule]"
                   :append-icon="showPass ? 'mdi-eye-off' : 'mdi-eye'"
                   :disabled="loading"
                   @click:append="showPass = !showPass"
+                )
+                v-text-field(
+                  v-model="confirmPassword"
+                  label="Confirm Password"
+                  outline
+                  type="password"
+                  :rules="[requiredRule, matchPasswordRule]"
+                  :disabled="loading"
                 )
                 v-checkbox(
                   v-model="doctor.acceptTerms"
@@ -152,9 +160,11 @@ export default {
         countryCallingCode: '',
         countryFlag: null,
       },
+      confirmPassword: '',
       requiredRule: v => !!v || 'This field is required',
       numberRule: v => v >= 0 || 'Please input a valid number',
       emailRule: v => /.+@.+/.test(v) || 'Email address must be valid',
+      matchPasswordRule: v => v === this.doctor.password || 'Passwords do not match',
       error: false,
       errorMessage: 'There was an error please try again later.',
       mobileNoError: false,
@@ -169,7 +179,12 @@ export default {
   watch: {
     doctor: {
       handler (val) {
-        localStorage.setItem('individual:step1:model', JSON.stringify(val));
+        const saveVal = {
+          ...val,
+          password: '',
+          acceptTerms: false
+        };
+        localStorage.setItem('individual:step1:model', JSON.stringify(saveVal));
       },
       deep: true
     },
