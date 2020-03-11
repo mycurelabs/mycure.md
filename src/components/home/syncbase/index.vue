@@ -20,6 +20,8 @@
             ).text-none.font-s.font-weight-bold
               v-icon mdi-play-circle-outline
               span &nbsp;{{ btnData.text }}
+            br
+            p.font-16.font-italic.pt-5 * Available only for multispecialty and enterprise clinic setup
           v-flex(xs6 align-self-center).px-3.text-xs-center
             img(:src="require(`@/assets/images/${panelImage}.gif`)" width="100%" alt="MYCURE Syncbase")
     //- MOBILE
@@ -28,6 +30,9 @@
         h1.font-40.lh-title.text-xs-center.font-work-sans {{ panelTitle }}
         br
         p.font-s.text-xs-center {{ panelContent }}
+        br
+        i.font-16 * Available only for multispecialty and enterprise clinic setup
+        br
         br
         a(@click.stop="handleVideoBtn")
           img(
@@ -74,7 +79,7 @@ import { parseTextWithNewLine } from '@/utils';
 export default {
   data () {
     return {
-      panelTitle: 'MYCURE Health Suites work online and offline',
+      panelTitle: 'MYCURE Health Suites work online and offline *',
       panelContent: 'Work as if you have an in-house server with the convenience of the cloud.\
        Create your medical records locally using multiple devices even if the internet is down!\
        Once back online, it instantly syncs your data into the cloud.',

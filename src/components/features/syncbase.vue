@@ -6,13 +6,15 @@
           center
             strong.font-21.font-mc-blue SYNCBASE TECHNOLOGY
           v-layout(row justify-center).add-spacing
-            strong.font-40.text-xs-center.font-work-sans Go offline safely and securely.
+            strong.font-40.text-xs-center.font-work-sans Go offline safely and securely.*
           v-layout(row justify-center).add-spacing
             span.font-21.text-xs-center The holy grail of online-offline technology is here. Work within your local 
               br
               | network using multiple devices even if the internet goes down and just 
               br
               | sync data when back online.
+          v-layout(row justify-center).add-spacing
+            p.font-16.font-italic  * Available only for multispecialty and enterprise clinic setup
           v-layout(row justify-center).add-spacing
             img(src="@/assets/images/mycure-cms-web-features-arrow-down.png" alt="Arrow down icon")
           v-layout(row justify-center).add-spacing
@@ -28,11 +30,13 @@
           v-layout(row justify-center)
             p.font-weight-bold.font-30.text-xs-center.font-work-sans Go offline safely
               br
-              | and securely.
+              | and securely.*
           br
           br
           v-layout(row justify-center)
             p.font-18.text-xs-center The holy grail of online-offline technology is here. Work within your local network using multiple devices even if the internet goes down and just sync data when back online.
+          v-layout(row justify-center).add-spacing
+            p.font-16.font-italic.text-xs-center  * Available only for multispecialty and enterprise clinic setup
           v-layout(row justify-center).add-spacing
             img(src="@/assets/images/mycure-cms-web-features-arrow-down.png")
           br
