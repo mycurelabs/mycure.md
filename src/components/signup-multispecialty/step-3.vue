@@ -345,9 +345,15 @@ export default {
           localStorage.removeItem('multi:step1:model');
           localStorage.removeItem('multi:step2:model');
           localStorage.removeItem('multi:step3:model');
-          this.contact = {};
+          this.contact = {
+            countryCallingCode: '',
+            countryFlag: null
+          };
           this.$refs.formRef.resetValidation();
           this.success = true;
+          setTimeout( () => {
+            this.$router.push({ name: 'home'});
+          }, 2000);
         }
       } catch (e) {
         console.error(e);
