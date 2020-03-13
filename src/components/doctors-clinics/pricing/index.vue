@@ -35,7 +35,7 @@
                 br
                 v-container.text-xs-left
                   v-layout(row justify-center)
-                    v-flex(xs12 md8)
+                    v-flex(xs12 md10)
                       p(v-for="(inclusion, key) in item.inclusions" :key="key").font-18 {{ inclusion }}
               v-btn(
                 :color="$mcColors.mcBlue"

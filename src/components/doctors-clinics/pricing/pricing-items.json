@@ -8,10 +8,12 @@
     "inclusionsTitle": "CORE",
     "inclusions": [
       "✓ 1 doctor account",
-      "✓ 5 Secretary accounts",
-      "✓ 100 Monthly Patient Visits",
-      "✓ 1000 Patient Profiles",
-      "✓ Multiple device access"
+      "✓ 1 staff account",
+      "✓ 500 MB Storage",
+      "✓ 1 Registration and Queueing Module",
+      "✓ 1 Electronic Medical Records Module",
+      "✓ 1 Billing Module",
+      "✓ 1 Administration Module"
     ],
     "btnText": "Sign Up Free",
     "btnLink": "signup-individual"
