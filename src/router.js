@@ -115,6 +115,7 @@ export default new Router({
           name: 'signup-individual-step-1',
           component: signupIndividualStep1,
           meta: {
+            pageType: 'signup-individualw',
             account: true
           }
         },
@@ -123,6 +124,38 @@ export default new Router({
           name: 'signup-individual-step-2',
           component: signupIndividualStep2,
           meta: {
+            pageType: 'signup-individualw',
+            account: true
+          }
+        }
+      ]
+    },
+    {
+      path: '/signup/specialized',
+      name: 'signup-specialized', 
+      component: () => import (/* webpackChunkName */ '@/views/signup-specialized'),
+      redirect: '/signup/specialized/step-1',
+      meta: {
+        pageType: 'signup-specialized',
+        pageName: 'Signup Specialized',
+        account: true
+      },
+      children: [
+        {
+          path: 'step-1',
+          name: 'signup-specialized-step-1',
+          component: signupIndividualStep1,
+          meta: {
+            pageType: 'signup-specialized',
+            account: true
+          }
+        },
+        {
+          path: 'step-2',
+          name: 'signup-specialized-step-2',
+          component: signupIndividualStep2,
+          meta: {
+            pageType: 'signup-specialized',
             account: true
           }
         }

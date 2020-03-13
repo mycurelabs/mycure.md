@@ -22,15 +22,13 @@
                   span.font-21 {{ reason }}
         br
         v-layout(row wrap justify-center)
-          //- TODO: href to where?
           v-btn(
             id="specialized-clinics-workflow-btn"
-            href="https://mycurecreatives.typeform.com/to/DiZQQY"
             :color="$mcColors.mcAltGreen"
             target="_blank"
             large
             dark
-            :to="{ name: 'signup-multispecialty'}"
+            :to="{ name: 'signup-specialized'}"
             @click.stop="handleWorkflowBtn"
           ).mt-3.font-21.text-none
             strong {{ workflowBtnText }}

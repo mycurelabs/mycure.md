@@ -61,13 +61,21 @@
           )
             strong.font-14.white--text.tab.text-none Start Free
           v-btn(
-            v-else-if="currentRoute === 'multispecialty-clinics' || currentRoute === 'specialized-clinics'"
+            v-else-if="currentRoute === 'multispecialty-clinics'"
             :color="$mcColors.mcAltGreen"
             :to="{ name: 'signup-multispecialty' }"
             id="multispecialty-book-demo-btn"
             @click.stop="handleToolbarLinkClick('multispecialty-book-demo-btn')"
           )
             strong.font-14.white--text.tab.text-none Book A Free Demo
+          v-btn(
+            v-else-if="currentRoute === 'specialized-clinics'"
+            :color="$mcColors.mcAltGreen"
+            :to="{ name: 'signup-specialized' }"
+            id="specialized-signup-btn"
+            @click.stop="handleToolbarLinkClick('specialized-signup-btn')"
+          )
+            strong.font-14.white--text.tab.text-none Get Started
           v-btn(
             v-else
             :color="$mcColors.mcAltGreen"

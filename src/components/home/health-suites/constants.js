@@ -32,8 +32,8 @@ export const HEALTH_SUITES_ITEMS = [
       'Diagnostics'
     ],
     image: 'mycure-p2-badge-specialized-clinic',
-    btnText: 'Book A Demo',
-    btnLink: 'signup-multispecialty',
+    btnText: 'Get Started',
+    btnLink: 'signup-specialized',
     btnId: 'home-solutions-specialized-clinics-book-demo',
     learnLink: 'specialized-clinics',
     learnId: 'home-specialized-clinics-learn-more'

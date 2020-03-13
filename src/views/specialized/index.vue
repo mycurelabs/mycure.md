@@ -37,8 +37,8 @@ export default {
       ctaContent: {
         text: 'Grow your practice with the right tools to use',
         subtext: 'Schedule a quick demo with a MYCURE specialist today.',
-        btnText: 'Book A Free Demo',
-        btnLink: 'signup-multispecialty',
+        btnText: 'Get Started',
+        btnLink: 'signup-specialized',
         image: 'mycure-web-footer'
       }
     };
