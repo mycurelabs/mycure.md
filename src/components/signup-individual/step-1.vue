@@ -27,7 +27,7 @@
                 v-layout(row)
                   v-flex.mr-1
                     v-text-field(
-                      v-model="doctor.firstName"
+                      v-model="user.firstName"
                       outline
                       label="First Name"
                       :rules="[requiredRule]"
@@ -35,25 +35,38 @@
                     ).step-one-text-field
                   v-flex.ml-1
                     v-text-field(
-                      v-model="doctor.lastName"
+                      v-model="user.lastName"
                       outline
                       label="Last Name"
                       :rules="[requiredRule]"
                       :disabled="loading"
                     )
+                v-select(
+                  v-model="user.role"
+                  v-if="pageType === 'signup-specialized'"
+                  :items="roles"
+                  label="What is your role?"
+                  outline
+                  item-text="name"
+                  item-value="value"
+                  :rules="[requiredRule]"
+                  :disabled="loading"
+                  clearable
+                )
                 v-text-field(
-                  v-model="doctor.doc_PRCLicenseNo"
+                  v-model="user.doc_PRCLicenseNo"
+                  v-if="pageType === 'signup-individual' || user.role === 'doctor'"
                   label="Physician License No"
                   outline
                   :rules="[requiredRule, numberRule]"
                   :disabled="loading"
                 )
                 v-text-field(
-                  v-model="doctor.mobileNo"
+                  v-model="user.mobileNo"
                   label="Mobile Number"
                   type="number"
                   outline
-                  :prefix="`+${doctor.countryCallingCode}`"
+                  :prefix="`+${user.countryCallingCode}`"
                   :loading="loadingForm || loading"
                   :disabled="loadingForm || loading"
                   :error-messages="mobileNoErrorMessage"
@@ -63,7 +76,7 @@
                   template(slot="append")
                     v-tooltip(bottom)
                       v-btn(icon style="margin-top: -5px" @click="countryDialog = true" slot="activator").ma-0
-                        img(width="25" :src="doctor.countryFlag").flag-img.mt-2
+                        img(width="25" :src="user.countryFlag").flag-img.mt-2
                       | Change Country
                   //- NOTE: DO NOT REMOVE YET
                   //- template(slot="append-outer")
@@ -74,7 +87,7 @@
                 v-divider
                 br
                 v-text-field(
-                  v-model="doctor.email"
+                  v-model="user.email"
                   type="email"
                   label="Email Address"
                   outline
@@ -82,7 +95,7 @@
                   :disabled="loading"
                 )
                 v-text-field(
-                  v-model="doctor.password"
+                  v-model="user.password"
                   label="Password"
                   outline
                   :type="showPass ? 'text' : 'password'"
@@ -100,7 +113,7 @@
                   :disabled="loading"
                 )
                 v-checkbox(
-                  v-model="doctor.acceptTerms"
+                  v-model="user.acceptTerms"
                   hide-details
                   style="margin-top: -10px"
                   :rules="[requiredRule]"
@@ -156,7 +169,7 @@ export default {
       showPass: false,
       countries: [],
       searchString: '',
-      doctor: {
+      user: {
         countryCallingCode: '',
         countryFlag: null,
       },
@@ -164,7 +177,7 @@ export default {
       requiredRule: v => !!v || 'This field is required',
       numberRule: v => v >= 0 || 'Please input a valid number',
       emailRule: v => /.+@.+/.test(v) || 'Email address must be valid',
-      matchPasswordRule: v => v === this.doctor.password || 'Passwords do not match',
+      matchPasswordRule: v => v === this.user.password || 'Passwords do not match',
       error: false,
       errorMessage: 'There was an error please try again later.',
       mobileNoError: false,
@@ -173,11 +186,23 @@ export default {
         'Manage your clinic more efficiently',
         'Produce beautiful and useful reports',
         'Save on time and save more lives!'
+      ],
+      roles: [
+        { name: 'Owner', value: 'owner' },
+        { name: 'Administrator', value: 'administrator' },
+        { name: 'Manager', value: 'manager' },
+        { name: 'Doctor', value: 'doctor' },
+        { name: 'Staff', value: 'staff' }
       ]
     };
   },
+  computed: {
+    pageType () {
+      return this.$route.meta.pageType;
+    }
+  },
   watch: {
-    doctor: {
+    user: {
       handler (val) {
         const saveVal = {
           ...val,
@@ -188,7 +213,7 @@ export default {
       },
       deep: true
     },
-    'doctor.mobileNo': {
+    'user.mobileNo': {
       handler () {
         this.validatePhoneNo();
       },
@@ -210,13 +235,13 @@ export default {
         this.error = false;
         this.validateForm();
         if (!this.valid) return;
-        await signupIndividual(this.doctor);
+        await signupIndividual(this.user);
         this.$router.push({ name: 'signup-individual-step-2' });
       } catch (e) {
         console.error(e);
         this.error = true;
         if (e.code === 11000) {
-          this.errorMessage = `The email ${this.doctor.email} or mobile number ${this.doctor.mobileNo} is already in use.`;
+          this.errorMessage = `The email ${this.user.email} or mobile number ${this.user.mobileNo} is already in use.`;
         }
       } finally {
         this.loading = false;
@@ -227,12 +252,12 @@ export default {
       
       // Load model
       if (localStorage.getItem('individual:step1:model')) {
-        this.doctor = JSON.parse(localStorage.getItem('individual:step1:model'));
+        this.user = JSON.parse(localStorage.getItem('individual:step1:model'));
       } else {
         const country = await getCountry();
         const { location } = country;
-        this.doctor.countryCallingCode = location.calling_code;
-        this.doctor.countryFlag = location.country_flag;
+        this.user.countryCallingCode = location.calling_code;
+        this.user.countryFlag = location.country_flag;
       }
 
       // Load countries
@@ -249,8 +274,8 @@ export default {
       }
     },
     selectCountry (country) {
-      this.doctor.countryCallingCode = country.callingCodes[0];
-      this.doctor.countryFlag = country.flag;
+      this.user.countryCallingCode = country.callingCodes[0];
+      this.user.countryFlag = country.flag;
       this.countryDialog = false;
       this.searchString = '';
     },
@@ -266,8 +291,8 @@ export default {
       this.mobileNoError = false;
       this.mobileNoErrorMessage = '';
       try {
-        let countryCode = this.doctor.countryCallingCode;
-        let mobileNo = this.doctor.mobileNo;
+        let countryCode = this.user.countryCallingCode;
+        let mobileNo = this.user.mobileNo;
         let phoneNumber = parsePhoneNumberFromString(`+${countryCode}${mobileNo}`);
         if (!phoneNumber || !phoneNumber.isValid()) {
           throw new Error();

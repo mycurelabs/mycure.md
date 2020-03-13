@@ -115,7 +115,7 @@ export default new Router({
           name: 'signup-individual-step-1',
           component: signupIndividualStep1,
           meta: {
-            pageType: 'signup-individualw',
+            pageType: 'signup-individual',
             account: true
           }
         },
@@ -124,7 +124,7 @@ export default new Router({
           name: 'signup-individual-step-2',
           component: signupIndividualStep2,
           meta: {
-            pageType: 'signup-individualw',
+            pageType: 'signup-individual',
             account: true
           }
         }
