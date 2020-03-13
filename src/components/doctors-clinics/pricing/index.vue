@@ -6,9 +6,9 @@
           v-flex(xs12 md12).text-xs-center
             h1(:class="{'pre-white-space': !$isMobile}").text-xs-center.font-40.font-work-sans {{ pricingTitle }}
             p(:class="{'pre-white-space': !$isMobile}" v-if="description").text-xs-center.pt-1.font-21.font-source-sans {{ description }}
-        v-layout(row :wrap="$isMobile" fill-height).pt-5
+        v-layout(row :wrap="$isMobile" fill-height justify-center).pt-5
           v-flex(
-            v-for="(item, key) in pricingItems"
+            v-for="(item, key) in pricingItems.slice(0,1)"
             :key="key"
             xs12
             md6
@@ -45,13 +45,13 @@
                 dark
                 block
               ).text-none.font-weight-bold.font-18 {{ item.btnText }}
-        v-layout(row align-center).pt-3
-          v-flex(xs12 md12).text-xs-center
-            v-btn(
-              :color="$mcColors.mcBlue"
-              flat
-              @click.stop="handlePricingMatrixBtn"
-            ).text-none.font-weight-bold.font-work-sans.font-18 See Full Pricing Matrix
+        //- v-layout(row align-center).pt-3
+        //-   v-flex(xs12 md12).text-xs-center
+        //-     v-btn(
+        //-       :color="$mcColors.mcBlue"
+        //-       flat
+        //-       @click.stop="handlePricingMatrixBtn"
+        //-     ).text-none.font-weight-bold.font-work-sans.font-18 See Full Pricing Matrix
     pricing-matrix(v-model="pricingMatrixDialog")
 </template>
 
