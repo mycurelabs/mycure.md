@@ -308,10 +308,6 @@ export default {
     };
   },
   computed: {
-    currentSubscription () {
-      const mock = 50;
-      return mock;
-    },
     totalSubscription () {
       return this.totalStoragePrice + this.totalDoctorSeatsPrice + this.totalStaffSeatsPrice + this.totalPremiumModulesPrice;
     },
