@@ -210,13 +210,38 @@
                       p.black--text Price: ${{ module.price }}/mo
               v-flex(xs12 md3).text-xs-center
                 v-btn(
-                  :color="module.isSubscribed ? 'error' : 'primary'"
+                  :color="module.isSubscribed ? 'error' : $mcColors.mcBlue"
+                  dark
                   :disabled="loading"
                   @click="module.isSubscribed = !module.isSubscribed"
                 ).text-none.font-weight-bold {{ module.isSubscribed ? 'Unsubscribe' : 'Subscribe'}}
               v-flex(xs12 md3 align-self-center).text-xs-center.font-21
                 p(v-if="module.isSubscribed") ${{ module.price }}/mo
                 p(v-else) --
+            v-layout(row wrap).text-xs-center
+              v-flex(xs12 md3 offset-md6)
+                b.font-21 Sub Total
+              v-flex(xs12 md3)
+                p.font-21 ${{ totalSubscription }}/mo
+              v-divider
+            v-layout(row wrap).text-xs-center
+              v-flex(xs12 md3 offset-md6)
+                p.grey--text.font-21 Estimated Tax
+              v-flex(xs12 md3)
+                p.font-21 ${{ tax }}/mo
+            v-layout(row wrap).text-xs-center.grey.lighten-4
+              v-flex(xs12 md3 offset-md6)
+                h2.font-weight-regular {{ clinicName }}'s Total
+              v-flex(xs12 md3)
+                h2 ${{ totalSubscription + tax }}/mo
+          v-card-actions
+            v-spacer
+            v-btn(
+              :color="$mcColors.mcAltGreen"
+              dark
+              large
+              @click="proceedToCheckout"
+            ).text-none.font-weight-bold Proceed to Checkout
 </template>
 
 <script>
@@ -280,6 +305,10 @@ export default {
     totalSubscription () {
       return this.totalStoragePrice + this.totalDoctorSeatsPrice + this.totalStaffSeatsPrice + this.totalPremiumModulesPrice;
     },
+    tax () {
+      const tax = 0.20;
+      return tax;
+    },
     totalStoragePrice () {
       return this.isMinimum(this.storageGB) ? 0 : (this.storageGB-1)*this.storagePrice;
     },
@@ -302,6 +331,9 @@ export default {
   methods: {
     isMinimum (number) {
       return number <= 1;
+    },
+    proceedToCheckout () {
+
     }
   }
 };
