@@ -6,7 +6,7 @@
           v-toolbar(flat).grey-lighten-4
             h1.font-30 {{ clinicName }}
             v-spacer
-            h2.font-25.primary--text ${{currentSubscription}}/mo
+            h2.font-25.primary--text ${{  totalSubscription }}/mo
           v-card-text.pa-4
             v-layout(row wrap).pt-3
               v-flex(xs12 md3)
@@ -135,6 +135,88 @@
               ).text-xs-center
                 p.font-21 ${{ totalStaffSeatsPrice }}/mo
             v-divider
+            v-layout(row wrap).pt-3
+              v-flex(xs12 md8)
+                v-icon(color="primary" medium) mdi-numeric-5-box
+                br
+                p.font-21 Modules
+                p.font-16.grey--text By default, the core modules are FREE. Add more in premium modules.
+                  br
+                  span.black--text Price: varies per module
+              v-flex(
+                xs12
+                md4
+                align-self-center 
+              ).text-xs-center
+                v-img(
+                  :src="require('@/assets/images/subscription/mycure-accounts-subscription-modules-image.png')"
+                  alt="Modules Image"
+                )
+            v-layout(row wrap).pt-3
+              v-flex(xs12 md6)
+                p.font-weight-bold.font-18 Core Modules
+                v-layout(row wrap)
+                  v-flex(xs2 md1)
+                    v-img(
+                      :src="require('@/assets/images/subscription/mycure-accounts-subscription-modules-icon-core-active.png')"
+                      alt="Subscription Modules"
+                    )
+                  v-flex(xs10 md11).font-16.pl-3
+                    p.grey--text 
+                      span.black--text Essential Features&nbsp;
+                      img(:src="require('@/assets/images/mycure-check.png')" alt="Check" width="4%")
+                      br
+                      | All the modules you need to run your clinic system -
+                      br
+                      | Registration, Medical Records, Billing, EMR.
+                      br
+                      p.black--text Price: FREE
+              v-flex(xs12 md3 align-self-center).text-xs-center
+                p.font-21 Free
+              v-flex(
+                xs12
+                md3
+                align-self-center 
+              ).text-xs-center
+                p.font-21 $0/mo
+            v-layout(row wrap).pt-3
+              v-flex(xs12 md6)
+                p.font-weight-bold.font-18 + Premium Modules
+            v-layout(
+              v-for="(module, key) in premiumModules"
+              :key="key"
+              row 
+              wrap
+            )
+              v-flex(xs12 md6)
+                v-layout(row wrap)
+                  v-flex(xs2 md1)
+                    v-img(
+                      :src="require(`@/assets/images/subscription/mycure-accounts-subscription-modules-icon-${module.icon}${module.isSubscribed ? '-active' : ''}.png`)"
+                      :alt="module.icon"
+                    )
+                  v-flex(xs10 md11).font-16.pl-3
+                    p.grey--text 
+                      span.black--text {{ module.name }}&nbsp;
+                      img(
+                        v-if="module.isSubscribed"
+                        :src="require('@/assets/images/mycure-check.png')"
+                        alt="Check" 
+                        width="4%"
+                      )
+                      br
+                      | {{ module.description }}
+                      br
+                      p.black--text Price: ${{ module.price }}/mo
+              v-flex(xs12 md3).text-xs-center
+                v-btn(
+                  :color="module.isSubscribed ? 'error' : 'primary'"
+                  :disabled="loading"
+                  @click="module.isSubscribed = !module.isSubscribed"
+                ).text-none.font-weight-bold {{ module.isSubscribed ? 'Unsubscribe' : 'Subscribe'}}
+              v-flex(xs12 md3 align-self-center).text-xs-center.font-21
+                p(v-if="module.isSubscribed") ${{ module.price }}/mo
+                p(v-else) --
 </template>
 
 <script>
@@ -142,15 +224,52 @@ export default {
   data () {
     return {
       loading: false,
+      // Prices
+      storagePrice: 5,
+      doctorSeatsPrice: 6,
+      staffSeatsPrice: 5,
       // Models
       clinicName: 'Metro City Clinic',
       storageGB: 1,
       doctorSeats: 1,
       staffSeats: 1,
-      // Prices
-      storagePrice: 5,
-      doctorSeatsPrice: 6,
-      staffSeatsPrice: 5,
+      premiumModules: [
+        {
+          name: 'Laboratory',
+          description: 'Insert description here',
+          icon: 'lab',
+          isSubscribed: false,
+          price: 5
+        },
+        {
+          name: 'Imaging',
+          description: 'Insert description here',
+          icon: 'imaging',
+          isSubscribed: false,
+          price: 5
+        },
+        {
+          name: 'Materials Management',
+          description: 'Insert description here',
+          icon: 'inventory',
+          isSubscribed: false,
+          price: 5
+        },
+        {
+          name: 'Physical Medical Exam',
+          description: 'Insert description here',
+          icon: 'pme',
+          isSubscribed: false,
+          price: 10
+        },
+        {
+          name: 'Pharmacy',
+          description: 'Insert description here',
+          icon: 'pharmacy',
+          isSubscribed: false,
+          price: 8
+        }
+      ]
     };
   },
   computed: {
@@ -159,7 +278,7 @@ export default {
       return mock;
     },
     totalSubscription () {
-      return this.totalStoragePrice + this.totalDoctorSeatsPrice + this.totalStaffSeatsPrice;
+      return this.totalStoragePrice + this.totalDoctorSeatsPrice + this.totalStaffSeatsPrice + this.totalPremiumModulesPrice;
     },
     totalStoragePrice () {
       return this.isMinimum(this.storageGB) ? 0 : (this.storageGB-1)*this.storagePrice;
@@ -170,6 +289,15 @@ export default {
     totalStaffSeatsPrice () {
       return this.isMinimum(this.staffSeats) ? 0 : (this.staffSeats-1)*this.staffSeatsPrice;
     },
+    totalPremiumModulesPrice () {
+      const subscriptions = this.premiumModules.filter(module => module.isSubscribed);
+      if (!subscriptions.length) return 0;
+      let total = 0;
+      subscriptions.forEach(module => {
+        total+=module.price;
+      });
+      return total;
+    }
   },
   methods: {
     isMinimum (number) {
