@@ -2,6 +2,11 @@
   v-container
     v-layout(row wrap justify-center)
       v-flex(xs12 md10)
+        img(
+          src="../../assets/images/mycure-header-logo.png"
+          @click="$router.push({ name: 'home' })"
+        ).link-to-home.mb-3
+        h1#step-3-title.mb-5 Choose your subscriptions.
         v-card
           v-toolbar(flat).grey-lighten-4
             h1.font-30 {{ clinicName }}
@@ -17,7 +22,7 @@
                   br
                   | Additional clinics are $5/mo.
                   br
-                  span.black--text Starts free
+                  span(:class="dayOrNight === 'night' ? 'night-text' : 'black--text'") Starts free
               v-flex(xs12 md3 align-self-center).text-xs-center
                 p.font-21 Free
               v-flex(
@@ -37,7 +42,7 @@
                   br
                   | 1 GB is equivalent to 1,000 patient profiles.
                   br
-                  span.black--text Price: ${{storagePrice}}/gb/mo
+                  span(:class="dayOrNight === 'night' ? 'night-text' : 'black--text'") Price: ${{storagePrice}}/gb/mo
               v-flex(xs12 md3 align-self-center).text-xs-center
                 input(
                   v-model="storageGB"
@@ -73,7 +78,7 @@
                   br
                   | 1 Doctor Seat is 1 MYCURE Doctor account.
                   br
-                  span.black--text Price: ${{ doctorSeatsPrice }}/gb/mo
+                  span(:class="dayOrNight === 'night' ? 'night-text' : 'black--text'") Price: ${{ doctorSeatsPrice }}/gb/mo
               v-flex(xs12 md3 align-self-center).text-xs-center
                 //- TODO: Implement rule
                 input(
@@ -108,7 +113,7 @@
                 p.font-21 Staff Seat
                 p.font-16.grey--text By default, you have 1 FREE Seat. 1 Staff seat is 1 account that you can designate at your admin panel.
                   br
-                  span.black--text Price: ${{ staffSeatsPrice }}/gb/mo
+                  span(:class="dayOrNight === 'night' ? 'night-text' : 'black--text'") Price: ${{ staffSeatsPrice }}/gb/mo
               v-flex(xs12 md3 align-self-center).text-xs-center
                 input(
                   v-model="staffSeats"
@@ -142,7 +147,7 @@
                 p.font-21 Modules
                 p.font-16.grey--text By default, the core modules are FREE. Add more in premium modules.
                   br
-                  span.black--text Price: varies per module
+                  span(:class="dayOrNight === 'night' ? 'night-text' : 'black--text'") Price: varies per module
               v-flex(
                 xs12
                 md4
@@ -163,14 +168,14 @@
                     )
                   v-flex(xs10 md11).font-16.pl-3
                     p.grey--text 
-                      span.black--text Essential Features&nbsp;
+                      span(:class="dayOrNight === 'night' ? 'night-text' : 'black--text'") Essential Features&nbsp;
                       img(:src="require('@/assets/images/mycure-check.png')" alt="Check" width="4%")
                       br
                       | All the modules you need to run your clinic system -
                       br
                       | Registration, Medical Records, Billing, EMR.
                       br
-                      p.black--text Price: FREE
+                      p(:class="dayOrNight === 'night' ? 'night-text' : 'black--text'") Price: FREE
               v-flex(xs12 md3 align-self-center).text-xs-center
                 p.font-21 Free
               v-flex(
@@ -197,7 +202,7 @@
                     )
                   v-flex(xs10 md11).font-16.pl-3
                     p.grey--text 
-                      span.black--text {{ module.name }}&nbsp;
+                      span(:class="dayOrNight === 'night' ? 'night-text' : 'black--text'") {{ module.name }}&nbsp;
                       img(
                         v-if="module.isSubscribed"
                         :src="require('@/assets/images/mycure-check.png')"
@@ -207,7 +212,7 @@
                       br
                       | {{ module.description }}
                       br
-                      p.black--text Price: ${{ module.price }}/mo
+                      p(:class="dayOrNight === 'night' ? 'night-text' : 'black--text'") Price: ${{ module.price }}/mo
               v-flex(xs12 md3).text-xs-center
                 v-btn(
                   :color="module.isSubscribed ? 'error' : $mcColors.mcBlue"
@@ -229,7 +234,8 @@
                 p.grey--text.font-21 Estimated Tax
               v-flex(xs12 md3)
                 p.font-21 ${{ tax }}/mo
-            v-layout(row wrap).text-xs-center.grey.lighten-4
+            v-divider
+            v-layout(row wrap).text-xs-center
               v-flex(xs12 md3 offset-md6)
                 h2.font-weight-regular {{ clinicName }}'s Total
               v-flex(xs12 md3)
@@ -245,8 +251,12 @@
 </template>
 
 <script>
+// - utils
+import dayOrNight from '../../utils/day-or-night';
+
 export default {
   data () {
+    this.dayOrNight = dayOrNight();
     return {
       loading: false,
       // Prices
@@ -340,8 +350,14 @@ export default {
 </script>
 
 <style scoped>
+.link-to-home:hover {
+  cursor: pointer;
+}
 .input-field {
   border-style: groove;
   width: 70px;
+}
+.night-text {
+  color: white !important;
 }
 </style>
