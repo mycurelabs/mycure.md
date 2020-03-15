@@ -341,6 +341,13 @@ export default {
     proceedToCheckout () {
 
     }
+  },
+  created () {
+    //- TODO: Temporarily commented out in order to access this page
+    // const step1Data = JSON.parse(localStorage.getItem('individual:step1:model'));
+    // if ((step1Data && !step1Data.hasOwnProperty('email')) || !step1Data) {
+    //   this.$router.push({ name: 'signup-specialized-step-1' });
+    // } 
   }
 };
 </script>
