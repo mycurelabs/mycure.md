@@ -96,7 +96,9 @@ export default {
           code: this.otp
         };
         await verifyMobileNo(payload);
-        this.successDialog = true;
+        this.$route.meta.pageType === 'signup-individual'
+          ? this.successDialog = true
+          : this.$router.push({ name: 'signup-specialized-step-3'});
       } catch (e) {
         this.verificationError = true;
         console.error(e);
