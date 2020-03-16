@@ -95,7 +95,6 @@ export default {
   },
   data () {
     return {
-      signInURL: process.env.VUE_APP_SIGNIN_URL,
       introText: 'Designed for your health facility',
       storyflowItems: STORYFLOW_ITEMS,
       ctaContent: CTA_CONTENT,
