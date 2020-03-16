@@ -2,8 +2,8 @@ name: Deploy:Prod
 
 on: 
   push:
-    tags:
-      - 'v*'
+    branches:
+      - legacy
 
 jobs:
   deploy_to_live:
@@ -17,7 +17,7 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node }}
-      - name: Install Yarn
+      - name: Install yarn
         run: npm install yarn@latest -g
       - name: Install Firebase Tools
         run: npm install firebase-tools -g
@@ -29,8 +29,6 @@ jobs:
           VUE_APP_CMS_URL: ${{ secrets.VUE_APP_CMS_URL }}
           VUE_APP_ENV: ${{ secrets.VUE_APP_ENV }}
           VUE_APP_SIGNIN_URL: ${{ secrets.VUE_APP_SIGNIN_URL }}
-          VUE_APP_IPSTACK_API: ${{ secrets.VUE_APP_IPSTACK_API }}
-          VUE_APP_IPSTACK_API_KEY: ${{ secrets.VUE_APP_IPSTACK_API_KEY }}
         run: yarn build
       - name: Run deploy
         env: 
