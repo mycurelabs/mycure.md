@@ -1,9 +1,6 @@
 <template lang="pug">
   div#top
-    mcToolbarHome
     panel1.showPanel
-    panel3(v-if="$isMobile").skyBg
-    mcFooter
 </template>
 
 <script>

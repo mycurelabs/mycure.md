@@ -9,8 +9,7 @@
         v-btn(
           id="pricing-signup-btn"
           @click.stop="handlePricingSignupBtn"
-          :href="`${signInURL}/signup/choose`"
-          target="_blank"
+          :to="{ name: 'signup-choose' }"
           color="#18c551"
         ).cta-btn
           strong.font-18.white--text.text-none Sign Up Now
@@ -20,11 +19,6 @@
 
 <script>
   export default {
-    data () {
-      return {
-        signInURL: process.env.VUE_APP_SIGNIN_URL
-      };
-    },
     methods: {
       handlePricingSignupBtn () {
         this.$ga.event({

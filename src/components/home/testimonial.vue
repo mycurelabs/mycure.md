@@ -1,28 +1,27 @@
 <template lang="pug">
-  div
-    div(v-if="!$isMobile")
-      v-container
-        v-layout(row justify-center)
-          v-flex(xs12 md9)
-            v-carousel(
-              light
-              hide-delimiters
-              next-icon="mdi-chevron-right"
-              height="350"
-            ).elevation-0
-              v-carousel-item(
-                v-for="(testimonial,i) in testimonials"
-                :key="i"
+  div.gradient-grey
+    v-container(v-if="!$isMobile")
+      v-layout(row justify-center)
+        v-flex(xs12 md9).pt-2.pb-1
+          v-carousel(
+            light
+            hide-delimiters
+            next-icon="mdi-chevron-right"
+            height="350"
+          ).elevation-0
+            v-carousel-item(
+              v-for="(testimonial,i) in testimonials"
+              :key="i"
+            ).py-3
+              v-layout(
+                column 
+                align-center
               )
-                v-layout(
-                  column 
-                  justify-center 
-                )
-                  v-flex(xs12 md10).text-xs-center.pa-5
-                    h2.black--text.mb-5 {{ testimonial.message }}
-                    span.font-18.black--text {{ testimonial.name }}
-                      br
-                      i.black--text {{ testimonial.position }}
+                v-flex(xs12 md12 justify-center align-center).text-xs-center.pa-5
+                  h2.black--text.mb-5.font-25 {{ testimonial.message }}
+                  strong.font-s.font-mc-blue {{ testimonial.name }}
+                  br
+                  span.font-s.subheading.grey--text {{ testimonial.position }}
     div(v-else).transparent.pt-5
       v-container
         v-layout(row wrap justify-center).px-3
@@ -44,9 +43,9 @@
                 h2.black--text {{ testimonial.message }}
                 br
                 br
-                span.font-16.black--text {{ testimonial.name }}
-                  br
-                  span {{ testimonial.position }}
+                strong.font-16.font-mc-blue {{ testimonial.name }}
+                br
+                | {{ testimonial.position }}
 </template>
 
 <script>
@@ -60,17 +59,17 @@
             message: '“It\'s a great experience using MYCURE app in our rural setup. I\'ve been through many EMR apps, but this one is the best so far... It is very convenient to use, simple, adaptable and user-friendly even to my secretary.”'
           },
           {
-            name: 'Atty. Ivy D. Patdu, M.D',
+            name: 'Atty. Ivy D. Patdu, M.D.',
             position: 'Deputy Privacy Commissioner, NPC',
             message: '“We should harness the power of technology. We should incorporate in system designs means to obtain information while remaining true to our obligations for data protection.”'
           },
           {
-            name: 'Dr. Nelson S. Abelardo',
+            name: 'Nelson S. Abelardo, M.D.',
             position: 'Cardiologist',
             message: '“MYCURE fulfills a long time need of physicians for accurate records of patients which they can carry with them wherever they are.”'
           },
           {
-            name: 'Dr. Greg Burke, MD',
+            name: 'Greg Burke, M.D.',
             position: 'Internist',
             message: '“They want to be greeted by name, they want their healthcare professionals [to] be identifiable and professionally dressed. They don\'t want to wait long for an appointment.”'
           },
@@ -86,5 +85,7 @@
 </script>
 
 <style scoped>
-
+.gradient-grey {
+  background-color: #f0f0f0;
+}
 </style>

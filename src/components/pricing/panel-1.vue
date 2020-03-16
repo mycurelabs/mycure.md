@@ -5,7 +5,7 @@
         v-container
           v-flex(xs12 md12).pt-5
             v-layout(row justify-center) 
-              strong.font-60.text-xs-center Your best CMS investment yet
+              strong.font-60.text-xs-cente.font-work-sans Your best CMS investment yet
             v-layout(row justify-center) 
               strong.font-25.text-xs-center.font-mc-grey Quality clinic technology made more affordable. 
                 br
@@ -18,13 +18,13 @@
               a(@click="isPrivate=true; isMulti=false;")
                 div(v-if="isPrivate").tabActive.pa-3.right
                   v-layout(row justify-center) 
-                    strong.font-25 Individual Practice
+                    strong.font-25.font-work-sans Individual Practice
                       br
                       | 
                       font.font-18.font-mc-grey Solo or group clinic practitioners
                 div(v-else).tab.pa-3.right
                   v-layout(row justify-center) 
-                    strong.font-25 Individual Practice
+                    strong.font-25.font-work-sans Individual Practice
                       br
                       | 
                       font.font-18.font-mc-grey Solo or group clinic practitioners
@@ -32,13 +32,13 @@
               a(@click="isMulti=true; isPrivate=false")
                 div(v-if="isMulti").tabActive.pa-3
                   v-layout(row justify-center) 
-                    strong.font-25 Multispecialty Clinics
+                    strong.font-25.font-work-sans Multispecialty Clinics
                       br
                       | 
                       font.font-18.font-mc-grey One stop, multi-staff clinics
                 div(v-else).tab.pa-3
                   v-layout(row justify-center) 
-                    strong.font-25 Multispecialty Clinics
+                    strong.font-25.font-work-sans Multispecialty Clinics
                       br
                       | 
                       font.font-18.font-mc-grey One stop, multi-staff clinics
@@ -49,7 +49,7 @@
     div(v-else)
       div.panel1.px-2.pt-5
         v-layout(column justify-center) 
-          strong.font-30.text-xs-center Your best CMS 
+          strong.font-30.text-xs-center.font-work-sans Your best CMS 
             br
             | investment yet
           span.font-14.font-mc-grey.text-xs-center Quality clinic technology made more affordable. 
@@ -106,9 +106,9 @@
 
 <style scoped>
   .panel1{
-    background-image: url("../../assets/images/mycure-web-features-cover-banner.png");
     background-position: center center;
     background-size: cover;
+    background-color: #ced7df
   }
 
   .tab{
@@ -117,7 +117,7 @@
     opacity: 1;
     width: 450px;
     height: 100%;
-    box-shadow: 0px 0px 10px 2px gray inset;
+    /* box-shadow: 0px 0px 10px 2px gray inset; */
   }
 
   .tabActive{

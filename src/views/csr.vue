@@ -1,11 +1,9 @@
 <template lang="pug">
   div.white#top
-    mc-toolbar-home
     usp
     //- div.skyBg
-    pillars
-    filler
-    mc-footer
+    pillars.last-panel-padding
+    //- filler
 </template>
 
 <script>
@@ -32,7 +30,10 @@
 
 <style scoped>
 .pointer:hover {
-    cursor: pointer;
+  cursor: pointer;
+}
+.last-panel-padding {
+  padding-bottom: 100px;
 }
 </style>
 

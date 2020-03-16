@@ -1,0 +1,107 @@
+<template lang="pug">
+  div.pt-5.white
+    features-diagram(
+      :title="title"
+      :description="description"
+      :customPath="customPath"
+    )
+      v-container(slot="diagram-content").pa-0
+        v-layout(row :wrap="$isMobile" justify-center)
+          v-flex(
+            v-for="(diagram, key) in diagrams"
+            :key="key"
+            xs12
+            md5
+            :class="[{ 'text-xs-right' : key === 0  && !$isMobile }, {'verticalLine' : key === 0 && !$isMobile }]"
+          ).mx-2.px-4
+            br
+            br
+            h2(v-if="$isMobile") {{ diagram.title }}
+              span(v-if="key === 1").font-mc-blue &nbsp;✓
+              br
+            div(:class="{'pt-3' :$isMobile}")
+              v-img(
+                :src="require(`@/assets/images/multispecialty/${diagram.image}.png`)"
+                :alt="diagram.image"
+                width="100%"
+              )
+            br
+            br
+            h2(v-if="!$isMobile").pb-3 {{ diagram.title }}
+              span(v-if="key === 1").font-mc-blue &nbsp;✓
+    v-layout(row justify-center align-center).pt-4
+      v-flex(xs12).text-xs-center
+        v-btn(
+          :color="$mcColors.mcAltGreen"
+          :id="bookDemoId"
+          dark
+          large
+          :to="{ name: 'signup-multispecialty'}"
+          @click.stop="handleBookDemoBtn"
+        ).text-none.font-21.font-weight-bold Book A Free Demo
+        br
+        p.text-xs-center.font-21.py-3 Have questions? 
+          a(@click.stop="toggleChat()")
+            strong.font-mc-blue Send us a chat.
+</template>
+
+<script>
+import { parseTextWithNewLine } from '@/utils';
+import FeaturesDiagram from '@/components/commons/features-diagram';
+export default {
+  components: {
+    FeaturesDiagram
+  },
+  data () {
+    return {
+      title: 'Why do multispecialty clinics switch to MYCURE?',
+      customPath: 'multispecialty/',
+      bookDemoId: 'multispecialty-workflow-book-demo-btn',
+      diagrams: [
+        {
+          title: 'Other Providers',
+          image: 'mycure-homepage-compare-other-emr-incomplete-clinic-management-system',
+        },
+        {
+          title: 'With MYCURE',
+          image: 'mycure-homepage-compare-mycure-complete-clinic-management-system'
+        }
+      ]
+    };
+  },
+  computed: {
+    description () {
+      const desc = 'MYCURE makes record management much easier for everyone as it can smoothly integrate your patient records from registration to billing. Say goodbye to multiple, complicated systems!';
+      return !this.$$isMobile ? parseTextWithNewLine(desc, ['records']) : desc;
+    }
+  },
+  methods: {
+    parseEndText (text, indicators) {
+      return parseTextWithNewLine(text, indicators);
+    },
+    toggleChat () {
+      let message = `Hi, I would like to know more about the Clinic Management System for Multispecialty Clinics.`;
+      window.$crisp.push(['do', 'chat:toggle']);
+      window.$crisp.push(['do', 'message:send', ['text', message]]);
+      this.$ga.event({
+        eventCategory: 'button',
+        eventAction: 'click-multispecialty-chat-btn',
+        eventLabel: 'multispecialty-chat-btn'
+      });
+    },
+    handleBookDemoBtn () {
+      this.$ga.event({
+        eventCategory: 'button',
+        eventAction: `click-${this.$isMobile ? 'mobile-' : ''}${this.bookDemoId}`,
+        eventLabel: this.bookDemoId
+      });
+    }
+  }
+};
+</script>
+
+<style scoped>
+.verticalLine {
+  border-right: 1px solid lightgray;
+}
+</style>

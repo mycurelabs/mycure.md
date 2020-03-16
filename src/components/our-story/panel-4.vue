@@ -3,19 +3,19 @@
     v-container
       v-layout(row wrap)
         v-flex(xs12 md12)
-          v-layout(row wrap align-start justify-center)
+          v-layout(row wrap justify-center)
             v-flex(xs12 md12).text-xs-center
-              h1.pt-5.font-48.pb-3 Our Purpose
-            v-flex(xs12 md4).px-4
-              img(width="100%" src="../../assets/images/mycure-ourstory-team.png" alt="Our Story - Team")
-            v-flex(xs12 md8).px-4
-              p.font-18 MYCURE’s vision is to 
+              h1.pt-5.font-40.pb-3.font-work-sans Our Purpose
+            v-flex(xs12 md4 align-center).px-4
+              img(width="100%" src="../../assets/images/mycure-team.jpg" alt="Our Story - Team")
+            v-flex(xs12 md8 :class="{'pt-3' : $isMobile}").px-4
+              p.font-21 MYCURE’s vision is to 
                 |
                 strong securely organize medical records that will provide fast, safe, and efficient access to health professionals, enabling them to help and save more lives.
-              p.font-18 We believe that even the small things can make a big difference. And that extra mile of care we give for humanity goes a long way and creates a lasting impact.
-              p.font-18 Thus, we honor and support people who care the extra mile. They are the unsung heroes, the doctors and other health professionals who work day and night to make things work. 
-              p.font-18 While they see themselves just doing their everyday jobs, we see people that create a dent in humanity. They are truly the heroes that make this world a better place.
-              p.font-18 MYCURE commits to design and build amazing tech tools and products specifically for them. These would help and enable these heroes to make their jobs easier and more efficient. They are our inspiration, the reason of our being, our existence.
+              p.font-21 We believe that even the small things can make a big difference. And that extra mile of care we give for humanity goes a long way and creates a lasting impact.
+              p.font-21 Thus, we honor and support people who care the extra mile. They are the unsung heroes, the doctors and other health professionals who work day and night to make things work. 
+              p.font-21 While they see themselves just doing their everyday jobs, we see people that create a dent in humanity. They are truly the heroes that make this world a better place.
+              p.font-21 MYCURE commits to design and build amazing tech tools and products specifically for them. These would help and enable these heroes to make their jobs easier and more efficient. They are our inspiration, the reason of our being, our existence.
 </template>
 
 <script>

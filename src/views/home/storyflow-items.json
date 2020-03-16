@@ -1,0 +1,17 @@
+[
+  {
+    "title": "Secure Electronic Health Records (EHR)",
+    "text": "Powerful, robust and proven solution that organizes health records based on global health standards.",
+    "image": "mycure-homepage-secure.png"
+  },
+  {
+    "title": "Solving Everyday Challenges Efficiently",
+    "text": "Duplicate or missing charts, billing mishaps, excess costs, and crazy workflows become the least of your worries.",
+    "image": "mycure-homepage-workflow.png"
+  },
+  {
+    "title": "Holistic Patient Care Experience",
+    "text": "From registration to billing, evaluate your patient care performance through fast reporting and analytics.",
+    "image": "mycure-homepage-holistic.png"
+  }
+]

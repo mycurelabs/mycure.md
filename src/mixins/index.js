@@ -15,6 +15,14 @@ Vue.mixin({
           return link;
         }
       });
+    },
+    $mcColors () {
+      const colors = {
+        mcBlue: '#2e9fdf',
+        mcGreen: '#18c551',
+        mcAltGreen: '#7fad22'
+      };
+      return colors;
     }
   }
 });

@@ -1,90 +1,142 @@
 <template lang="pug">
-div
-  div(v-if="!$isMobile").whole-page
-    v-container(fill-height)
-      v-layout(row align-center justify-center)
-        div.panel-size.usp-panel
-          v-layout(row justify-center)
-            v-flex(xs12 md7)
-              v-layout(column align-start)
-                h1.font-weight-bold.font-18.font-mc-blue.pb-3.uspMetaTitle {{ uspContents.metaTitle }}
-                h2.title-line-height.uspTitle.font-weight-regular.pb-4 {{ uspContents.title }}
-                //- :href="uspContents.btn"                
-                v-btn(
-                  v-if="uspContents.btnText"
-                  :href="`${this.signInURL}/signup/${uspContents.btn}`"
-                  :color="mcGreen"
-                  :id="uspContents.btnId"
-                  target="_blank"
-                  large
-                ).text-none.white--text.mt-4.btnHeight
-                  strong.font-18 {{ uspContents.btnText }}
-            v-flex(xs12 md7 text-xs-right)
-              img(
-                :src="require(`@/assets/images/${ uspContents.img }.png`)"
-                width="90%"
-                :alt="uspContents.img"
-              )
-  div(v-else)
-    v-layout(column wrap justify-center).mt-5
-      h1.font-weight-bold.font-18.font-mc-blue.pb-2.text-xs-center {{ uspContents.metaTitle }}
-      h2.font-30.font-weight-regular.title-line-height.pb-5.text-xs-center.uspTitle {{ uspContents.title }}
-      v-layout(row justify-center).mb-5
+  fragment
+    v-container(:class="$isMobile ? 'mobile-page-height' : 'whole-page'")
+      v-container(fill-height)
+        v-layout(row align-center)
+          v-flex(xs12 md12).text-xs-center
+            strong(v-if="uspMetaTitle" :class="[getMetaFontSize]").text-xs-center.font-mc-blue {{ uspMetaTitle }}
+            template(v-if="uspMetaTitle && $isMobile")
+            h1(:class="titleClasses").text-xs-center.uspTitle 
+              | {{ uspTitle }}
+            p(:class="{'pre-white-space': !$isMobile}").text-xs-center.uspDescription.pt-3.font-s {{ uspDescription }}
+            div.pt-1
+              v-btn(
+                :color="$mcColors.mcAltGreen"
+                :id="btnId"
+                large
+                @click.stop="handleUspBtnClick"
+              ).text-none.white--text
+                v-icon(v-if="btnIconLeft" v-text="btnIconLeft")
+                strong(:class="{'pl-1' : btnIconLeft}").font-s {{ btnText }}    
+    div.outer-image-container(:class="$isMobile ? 'pb-5' : 'web-padding'")
+      div.usp-image-container.text-xs-center.justify-center
         img(
-          :src="require(`@/assets/images/${ uspContents.img }.png`)"
-          height="250"
-          :alt="uspContents.img"
-        )
-      v-layout(row justify-center)
-        v-btn(
-          v-if="uspContents.btn"
-          :href="uspContents.btn"
-          :color="mcGreen"
-          :id="uspContents.btnId"
-          target="_blank"
-          large
-          block
-        ).uspMobileBtn
-          strong.font-25.text-none.white--text {{ uspContents.btnText }}
+          v-show="isImageLoaded"
+          :src="require(`@/assets/images/${customPath}${coverImg}${$isMobile ? '-mobile' : ''}.png`)"
+          :alt="coverImg"
+          :width="coverImgWidth"
+          @load="loadedImage"
+        ).justify-center
+        div(v-show="!isImageLoaded").white.empty-image-container
+    div.offset-container(v-show="isImageLoaded && !$isMobile")
 </template>
 
 <script>
 export default {
   props: {
-    uspContents: {
-      type: Object,
-      required: true,
+    uspTitle: {
+      type: String,
+      default: 'MYCURE Health Suites'
     },
-    someFunctionParent: {
-      type: String
+    uspMetaTitle: {
+      type: String,
+      default: ''
+    },
+    titleMobileSize: {
+      type: Number,
+      default: 36
+    },
+    uspDescription: {
+      type: String,
+      default: ''
+    },
+    btnRoute: {
+      type: String,
+      default: undefined
+    },
+    btnId: {
+      type: String,
+      default: 'usp-btn'
+    },
+    btnText: {
+      type: String,
+      default: 'Get Started'
+    },
+    btnIconLeft : {
+      type: String,
+      default: undefined
+    },
+    coverImg: {
+      type: String,
+      default: 'mycure-homepage-usp-cover'
+    },
+    coverImgWidth: {
+      type: String,
+      default: '82%'
+    },
+    customPath: {
+      type: String,
+      default: ''
     }
   },
   data () {
     return {
-      signInURL: process.env.VUE_APP_SIGNIN_URL,
-      mcGreen: '#18c551',
-      mcBlue: '#2e9fdf'
+      isImageLoaded: false,
+      // - Routes that use the alternative blue color for USP
     };
+  },
+  computed: {
+    titleClasses () {
+      const webClasses = ['pre-white-space', 'font-xl'];
+      const mobileClasses = [`font-${this.titleMobileSize}`, 'pt-3', 'pre-white-space'];
+      return this.$isMobile ? mobileClasses : webClasses;
+    },
+    getMetaFontSize () {
+      return this.$route.name === 'multispecialty-clinics'
+        ? 'font-18'
+        : 'font-s';
+    }
+  },
+  methods: {
+    loadedImage () {
+      this.isImageLoaded = true;
+    },
+    handleUspBtnClick () {
+      this.$ga.event({
+        eventCategory: 'button',
+        eventAction: `click-${this.btnId}`,
+        eventLabel: `${this.btnId}`
+      });
+      if (this.btnId !== 'home-usp-btn' && this.btnRoute) {
+        this.$router.push({ 
+          name: this.btnRoute,
+          ...(this.btnRoute === 'home') && { params: { scrollHealthSuites: true } } 
+        });
+      }
+      this.$emit('btnClick');
+    }
   }
 };
 </script>
 
 <style scoped>
 .whole-page {
-  height: 100vh;
+  height: 400px;
+  padding-top: 25vh;
 }
-.font-xxs {
-  font-size: 11px;
-}
-.uspBtn-padding {
-  padding-bottom: 20px;
+.mobile-page-height {
+  padding-top: 10vh;
 }
 .title-line-height {
   line-height: 1.25em;
 }
 .uspTitle {
-  font-size: 45px;
-  white-space: pre;
+  font-family: 'Work Sans', 'Poppins', sans-serif !important;
+  line-height: 1.25em;
+  font-weight: 700 !important;
+}
+.uspDescription {
+  font-family: 'Source Sans Pro', 'Poppins', sans-serif !important;
 }
 .uspMetaTitle {
   white-space: pre;
@@ -92,10 +144,39 @@ export default {
 .panel-size {
   width: 1100px;
 }
+.usp-image-container {
+  line-height: 0px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+.empty-image-container {
+  height: 340px;
+}
+
+.outer-image-container {
+  margin-bottom: -63.5px;
+  padding-top: 7vh;
+}
+.offset-container {
+  height: 15vh;
+  background-color: #5AA7C7
+}
+.usp-offset-grey {
+  background-color: #707070 !important;
+}
 .btnHeight {
   height: 50px;
 }
 .uspMobileBtn {
   height: 75px;
+}
+/* .web-padding {
+  padding-bottom: 14.80px;
+} */
+@media screen and (min-height: 1080px) {
+  .whole-page {
+    height: 55vh !important;
+    padding-top: 12vh !important;
+  }
 }
 </style>

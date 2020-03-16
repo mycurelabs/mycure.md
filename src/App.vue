@@ -1,30 +1,47 @@
 <template lang="pug">
   v-app(data-server-rendered="true")#app
+    mc-toolbar(v-if="!signInRoute")
     v-content
       router-view
+    mc-footer(v-if="!signInRoute")
 </template>
 
-
 <script>
+import McToolbar from '@/components/commons/mc-toolbar';
+import McFooter from '@/components/commons/mc-footer'; 
 
 export default {
   name: 'App',
+  components: {
+    McToolbar,
+    McFooter
+  },
   data () {
     return {
       //
     };
+  },
+  computed: {
+    signInRoute () {
+      if (!this.$route.meta) {
+        return false;
+      } else {
+        return this.$route.meta.account ? true : false;
+      }
+    }
   }
 };
 </script>
 
 <style>
 
-  @import url('https://fonts.googleapis.com/css?family=Poppins');
+  @import url('https://fonts.googleapis.com/css?family=Work+Sans:400,700,900');
+  @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700');
 
   #app {
     max-width: 100% !important;
     overflow-x: hidden !important;
-    font-family: 'Poppins', sans-serif !important;
+    font-family: 'Source Sans Pro', sans-serif !important;
   };
 
   .mc-blue {
@@ -35,12 +52,16 @@ export default {
     background-color: #343a40
   }
 
+  .mc-gradient-grey {
+    background-color: #f0f0f0 !important;
+  }
+
   .mc-grey {
-    background-color: #616161
+    background-color: #616161 !important;
   }
 
   .mc-light-grey {
-    background-color: #f5f5f5
+    background-color: #f5f5f5 !important;
   }
 
   .mc-yellow {
@@ -50,7 +71,18 @@ export default {
   .mc-green {
     background-color: #18c551
   }
-  
+
+  .footer-grey {
+    background-color: #343a40 !important
+  }
+
+  .font-work-sans {
+    font-family: 'Work Sans', 'Source Sans Pro', sans-serif !important;
+  }
+  .font-source-sans {
+    font-family: 'Source Sans Pro', 'Source Sans Pro', sans-serif !important;
+  }
+
   .font-mc-blue {
     color: #2e9fdf
   }
@@ -71,9 +103,25 @@ export default {
   .font-mc-white {
     color: #ffffff
   }
-  
+  .font-xl {
+    font-size: 50px !important;
+  }
+  .font-l {
+    font-size: 30px !important;
+  }
+  .font-m {
+    font-size: 24px !important;
+  }
+  .font-s {
+    font-size: 21px !important;
+  }
+  /* TODO: Remove these font classes for size*/
   .font-60 {
-    font-size: 60px !important
+    font-size: 60px !important;
+  }
+
+  .font-50 {
+    font-size: 50px !important;
   }
 
   .font-48 {
@@ -140,6 +188,10 @@ export default {
     line-height: 1.25em !important
   }
 
+  .pre-white-space {
+    white-space: pre;
+  }
+
   .hr-blue {
     height: 2px;
     width: 150px;
@@ -156,54 +208,34 @@ export default {
     display: inline-block; 
     padding: 1px 
   }
-
-  .panel-1{
-      height: 100vh !important;
-    }
-
   /* This class lets the panel avoid being covered by the web sky background */
   .showPanel {
     position: relative; 
     z-index: 1;
   }
-
   .cta-btn {
     padding: 25px 30px 25px 30px;
   }
-
   .lh-60 {
     line-height: 60px;
   }
-
   .skyBg {
     background-image: url('./assets/images/mycure-home-web-sky-background.png');
     background-position: center top;
     background-repeat: no-repeat;
     background-size: cover;
   }
-
-  /* .uspLeft {
-    margin-top: -7%;
-  }
-
-  .uspRight {
-    margin-top: 10%;
-  } */
-
   .width100 {
     width: 100%;
   }
-
   .maleDoctor {
     margin: 0px -20px 0px 0px; 
     z-index: 1;
   }
-
   .femaleDoctor {
     margin: 0px 0px 0px -20px; 
     z-index: 1;
   }
-
   .vidPosition {
     z-index: 0;
   }

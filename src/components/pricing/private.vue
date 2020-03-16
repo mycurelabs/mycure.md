@@ -4,7 +4,7 @@
       v-container
         v-layout(row justify-center)
           v-flex(xs12 md6 align-self-center).px-3
-            strong.font-48.font-mc-blue MYCURE for 
+            strong.font-48.font-mc-blue.font-work-sans MYCURE for 
               br
               | Individual Practice
             br
@@ -16,9 +16,8 @@
               v-btn(
                 @click.stop="handlePricingPrivateSignupBtn"
                 id="pricing-private-signup-btn" 
-                :href="`${signInURL}/signup/private/step-1`"
-                target="_blank"
-                color="#18c551" 
+                :to="{ name: 'signup-individual' }"
+                :color="$mcColors.mcAltGreen" 
                 large 
                 right
               )
@@ -151,9 +150,8 @@
           v-btn(
             id="pricing-private-signup-btn" 
             @click.stop="handlePricingPrivateSignupBtn"
-            :href="`${signInURL}/signup/private/step-1`"
-            target="_blank" 
-            color="info" 
+            :to="{ name: 'signup-individual' }"
+            color="info"
             large
           ) 
             strong.text-none Sign Up Now
@@ -221,6 +219,9 @@
             br
             | 
             span.font-mc-grey Yes. All your medical records are backed up in the cloud.
+          br
+          br
+          br
           span.font-18 
             strong How fast should my internet connection be when I’m using MYCURE?
             br
@@ -260,8 +261,7 @@
           'PNF Drug Catalog',
           'ICD-10 List',
           'DPA Registration Guide'
-        ],
-        signInURL: process.env.VUE_APP_SIGNIN_URL
+        ]
       };
     },
     methods: {

@@ -1,10 +1,10 @@
 <template lang="pug">
   div
-    div(v-if="!$isMd" :class="shadow").white.toolbarMain
-      v-container.white.toolbarHeight.py-0
+    div(v-if="!$isMd" :class="shadow").toolbarMain
+      v-container.grey-gradient.toolbarHeight.py-0
         v-layout(row wrap justify-center)
           v-flex(xs12 md12).toolbarMargin
-            v-toolbar(flat).white
+            v-toolbar(flat).grey-gradient
               router-link(:to="{ name: 'home' }" title="MYCURE | Clinic Management System | Cloud EMR Philippines" id="toolbar-mycure-logo" @click.stop="handleMycureLogo").mr-3.mt-2
                 img(src="../../assets/images/mycure-header-logo.png" width="140" alt="MYCURE logo")
               v-btn(
@@ -37,14 +37,14 @@
                 :href="`${signInURL}?target=${cmsURL}`"
                 target="_blank"
                 id="toolbar-login-btn"
+                :to="{ name: 'signin' }"
                 @click.stop="handleLoginBtn"
               )
                 strong.font-14.tab LOGIN
               v-btn(
-                color="#2e9fdf"
-                :href="`${signInURL}/signup/choose`"
-                target="_blank"
                 id="toolbar-signup-btn"
+                color="#2e9fdf"
+                :to="{ name: 'signup-choose' }"
                 @click.stop="handleSignupBtn"
               )
                 strong.font-14.white--text.tab SIGN UP
@@ -149,17 +149,15 @@
         div.navBottomBtns.py-3
           v-layout(row justify-center)
             v-btn(
-                id="navdrawer-login-btn"
-                :href="`${signInURL}?target=${cmsURL}`"
-                target="_blank"
-                @click.stop="handleLoginBtnMobile"
-              )
-                strong.font-14.tab LOGIN
+              id="navdrawer-login-btn"
+              :to="{ name: 'signin' }"
+              @click.stop="handleLoginBtnMobile"
+            )
+              strong.font-14.tab LOGIN
             v-btn(
               id="navdrawer-signup-btn"
               color="#18c551"
-              :href="`${signInURL}/signup/choose`"
-              target="_blank"
+              :to="{ name: 'signup-choose' }"
               @click.stop="handleSignupBtnMobile"
             )
               strong.font-14.white--text.tab SIGN UP
@@ -174,7 +172,6 @@
     },
     data () {
       return {
-        signInURL: process.env.VUE_APP_SIGNIN_URL,
         cmsURL: process.env.VUE_APP_CMS_URL,
         drawer: false,
         scrollPosition: null,
@@ -294,6 +291,7 @@
     position: fixed; 
     width: 100%; 
     z-index: 200;
+    background-color: #f0f0f0;
   }
 
   .navMain {
@@ -318,5 +316,8 @@
     top: 0px; 
     z-index: 9999; 
     width: 100%;
+  }
+  .grey-gradient {
+    background-color: #f0f0f0;
   }
 </style>

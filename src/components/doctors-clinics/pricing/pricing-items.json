@@ -1,0 +1,38 @@
+[
+  {
+    "title": "Solo Practice",
+    "image": "mycure-doctors-clinics-pricing-page-solo-banner",
+    "type": "solo",
+    "description": "Everything you need to serve your patients more efficiently.",
+    "priceText": "FREE",
+    "inclusionsTitle": "CORE",
+    "inclusions": [
+      "✓ 1 doctor account",
+      "✓ 1 staff account",
+      "✓ 500 MB Storage",
+      "✓ 1 Registration and Queueing Module",
+      "✓ 1 Electronic Medical Records Module",
+      "✓ 1 Billing Module",
+      "✓ 1 Administration Module"
+    ],
+    "btnText": "Sign Up Free",
+    "btnLink": "signup-individual"
+  },
+  {
+    "title": "Group Practice",
+    "image": "mycure-doctors-clinics-pricing-page-group-banner",
+    "type": "group",
+    "description": "Make work easier for you, your colleagues, and your secretary.",
+    "priceText": "28",
+    "inclusionsTitle": "EVERYTHING IN SOLO plus...",
+    "inclusions": [
+      "✓ 2 doctor accounts",
+      "✓ Unlimited staff accounts",
+      "✓ 200 Monthly Patient Visits",
+      "✓ 2000 Patient Profiles",
+      "✓ Multiple device access"
+    ],
+    "btnText": "Start 14-day Trial",
+    "btnLink": "signup-individual"
+  }
+]

@@ -1,18 +1,18 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import home from '@/views/home.vue';
-import notFound from '@/views/404.vue';
-import privacyPolicy from '@/views/privacy-policy.vue';
-import terms from '@/views/terms.vue';
-import ourStory from '@/views/our-story.vue';
-import emr from '@/views/electronic-medical-records.vue';
-import group from '@/views/group-clinics.vue';
-import cms from '@/views/clinic-management-system.vue';
-import pricing from '@/views/pricing.vue';
-import features from '@/views/features.vue';
-import csr from '@/views/csr.vue';
-// import solo from '@/views/solo.vue';
 import { core } from '@mycure/sdk';
+
+import csr from '@/views/csr.vue';
+import notFound from '@/views/404.vue';
+import ourStory from '@/views/our-story.vue';
+import privacyPolicy from '@/views/privacy-policy.vue';
+import signupIndividualStep1 from '@/components/signup-individual/step-1.vue';
+import signupIndividualStep2 from '@/components/signup-individual/step-2.vue';
+import signupMultispecialtyStep1 from '@/components/signup-multispecialty/step-1.vue';
+import signupMultispecialtyStep2 from '@/components/signup-multispecialty/step-2.vue';
+import signupMultispecialtyStep3 from '@/components/signup-multispecialty/step-3.vue';
+import signupSpecializedStep3 from '@/components/signup-specialized/step-3.vue';
+import terms from '@/views/terms.vue';
 
 Vue.use(Router);
 
@@ -31,7 +31,145 @@ export default new Router({
     {
       path: '/',
       name: 'home',
-      component: home
+      component: () => import(/* webpackChunkName: 'home' */ '@/views/home')
+    },
+    {
+      path: '/signin',
+      name: 'signin', 
+      component: () => import(/* webpackChunkName: 'signin' */ '@/views/signin'),
+      meta: {
+        pageType: 'signin',
+        pageName: 'Signin Page',
+        account: true
+      }
+    },
+    {
+      path: '/forgot-password',
+      name: 'forgot-password', 
+      component: () => import(/* webpackChunkName: 'forgot-password' */ '@/views/forgot-password'),
+      meta: {
+        pageType: 'forgot-password',
+        pageName: 'Forgot Password Page',
+        account: true
+      }
+    },
+    {
+      path: '/signup/choose',
+      name: 'signup-choose',
+      component: () => import(/* webpackChunkName: 'signup-choose' */ '@/views/signup-choose'),
+      meta: {
+        pageType: 'signup-choose',
+        pageName: 'Signup Choose',
+        account: true
+      }
+    },
+    {
+      path: '/signup/multispecialty',
+      name: 'signup-multispecialty', 
+      component: () => import(/* webpackChunkName: 'signup-multispecialty' */  '@/views/signup-multispecialty'),
+      redirect: '/signup/multispecialty/step-1',
+      meta: {
+        pageType: 'signup-multispecialty',
+        pageName: 'Signup Miltispecialty',
+        account: true
+      },
+      children: [
+        {
+          path: 'step-1',
+          name: 'signup-multispecialty-step-1',
+          component: signupMultispecialtyStep1,
+          meta: {
+            account: true
+          }
+        },
+        {
+          path: 'step-2',
+          name: 'signup-multispecialty-step-2',
+          component: signupMultispecialtyStep2,
+          meta: {
+            account: true
+          }
+        },
+        {
+          path: 'step-3',
+          name: 'signup-multispecialty-step-3',
+          component: signupMultispecialtyStep3,
+          meta: {
+            account: true
+          }
+        },
+      ]
+    },
+    {
+      path: '/signup/individual',
+      name: 'signup-individual', 
+      component: () => import (/* webpackChunkName */ '@/views/signup-individual'),
+      redirect: '/signup/individual/step-1',
+      meta: {
+        pageType: 'signup-individual',
+        pageName: 'Signup Individual',
+        account: true
+      },
+      children: [
+        {
+          path: 'step-1',
+          name: 'signup-individual-step-1',
+          component: signupIndividualStep1,
+          meta: {
+            pageType: 'signup-individual',
+            account: true
+          }
+        },
+        {
+          path: 'step-2',
+          name: 'signup-individual-step-2',
+          component: signupIndividualStep2,
+          meta: {
+            pageType: 'signup-individual',
+            account: true
+          }
+        }
+      ]
+    },
+    {
+      path: '/signup/specialized',
+      name: 'signup-specialized', 
+      component: () => import (/* webpackChunkName */ '@/views/signup-specialized'),
+      redirect: '/signup/specialized/step-1',
+      meta: {
+        pageType: 'signup-specialized',
+        pageName: 'Signup Specialized',
+        account: true
+      },
+      children: [
+        {
+          path: 'step-1',
+          name: 'signup-specialized-step-1',
+          component: signupIndividualStep1,
+          meta: {
+            pageType: 'signup-specialized',
+            account: true
+          }
+        },
+        {
+          path: 'step-2',
+          name: 'signup-specialized-step-2',
+          component: signupIndividualStep2,
+          meta: {
+            pageType: 'signup-specialized',
+            account: true
+          }
+        },
+        {
+          path: 'step-3',
+          name: 'signup-specialized-step-3',
+          component: signupSpecializedStep3,
+          meta: {
+            pageType: 'signup-specialized',
+            account: true
+          }
+        }
+      ]
     },
     {
       path: '/privacy-policy',
@@ -61,58 +199,45 @@ export default new Router({
       }
     },
     {
-      path: '/multispecialty-clinics',
-      name: 'cms',
-      id: 'toolbar-multispecialty-btn',
-      component: cms,
+      path: '/doctors-clinics',
+      name: 'doctors-clinics',
+      id: 'nav-doctors-clinics',
+      component: () => import(/* webpackChunkName: 'doctors-clinics' */ '@/views/doctors-clinics'),
       meta: {
-        pageType: 'main',
+        pageType: 'clinic-solutions',
+        pageName: 'Doctors Clinics'
+      }
+    },
+    {
+      path: '/multispecialty-clinics',
+      name: 'multispecialty-clinics',
+      id: 'nav-multispecialty-btn',
+      component: () => import(/* webpackChunkName: 'multispecialty' */ '@/views/multispecialty'),
+      meta: {
+        pageType: 'clinic-solutions',
         pageName: 'Multispecialty Clinics'
       }
     },
     {
-      path: '/group-clinics',
-      name: 'group', 
-      id: 'toolbar-group-clinics-btn',
-      // function: 'foo',
-      component: group,
+      path: '/specialized-clinics',
+      name: 'specialized-clinics',
+      id: 'nav-specialized-btn',
+      component: () => import(/* webpackChunkName: 'specialized' */ '@/views/specialized'),
       meta: {
-        pageType: 'main',
-        pageName: 'Group Clinics'
-      }
-    },
-    {
-      path: '/individual-practice',
-      name: 'emr', 
-      id: 'toolbar-private-practice-btn',
-      // function: 'foo',
-      component: emr,
-      meta: {
-        pageType: 'main',
-        pageName: 'Individual Practice'
+        pageType: 'clinic-solutions',
+        pageName: 'Specialized Clinics'
       }
     },
     {
       path: '/pricing',
       name: 'pricing', 
-      component: pricing,
+      component: () => import(/* webpackChunkName */ '@/views/pricing.vue'),
       meta: {
         pageType: 'support',
         pageName: 'Pricing'
       }
     },
-    // {
-    //   path: '/mycure-solo',
-    //   name: 'mycure-solo',
-    //   id: 'toolbar-mycure-solo-btn', 
-    //   component: solo,
-    //   meta: {
-    //     pageType: 'main',
-    //     pageName: 'Solo by MYCURE'
-    //   }
-    // },
     {
-      // TODO: what if `/community` ? 
       path: '/corporate-social-responsibility',
       name: 'csr',
       id: 'toolbar-csr-btn', 
@@ -126,7 +251,7 @@ export default new Router({
       path: '/features',
       name: 'features',
       id: 'toolbar-features-btn', 
-      component: features,
+      component: () => import(/* webpackChunkName */ '@/views/features'),
       meta: {
         pageType: '',
         pageName: 'Features'

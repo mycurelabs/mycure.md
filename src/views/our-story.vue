@@ -1,7 +1,6 @@
 <template lang="pug">
   div#top
-    mc-toolbar-home
-    panel1
+    usp.pb-5
     panel2
     panel3
     ProblemToSolve
@@ -9,13 +8,12 @@
     panel5
     panel6.skyBg
     //- panel7
-    mc-footer
 </template>
 
 <script>
   import mcToolbarHome from '@/components/commons/mc-toolbar-home';
   import mcFooter from '@/components/commons/mc-footer';
-  import panel1 from '@/components/our-story/panel-1';
+  import Usp from '@/components/our-story/usp';
   import panel2 from '@/components/our-story/panel-2';
   import panel3 from '@/components/our-story/panel-3';
   import panel4 from '@/components/our-story/panel-4';
@@ -34,7 +32,7 @@
     components: {
       mcToolbarHome,
       mcFooter,
-      panel1,
+      Usp,
       panel2,
       panel3,
       panel4,

@@ -1,6 +1,5 @@
 <template lang="pug">
   div.white#top
-    mc-toolbar-home
     usp    
     div.skyBg
       problems
@@ -8,7 +7,6 @@
       demo
       finalWords
       filler
-    mc-footer
 </template>
 
 <script>
