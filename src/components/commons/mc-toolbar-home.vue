@@ -34,6 +34,8 @@
               v-btn(
                 outline
                 color="#2e9fdf"
+                :href="`${signInURL}?target=${cmsURL}`"
+                target="_blank"
                 id="toolbar-login-btn"
                 :to="{ name: 'signin' }"
                 @click.stop="handleLoginBtn"

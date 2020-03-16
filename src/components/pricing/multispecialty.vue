@@ -68,7 +68,7 @@
               br
               br
               | 
-              span.font-mc-grey We’ll contact you within 24 hours to schedule the best time to meet you. Then during the demo, you will learn more about the features that will be useful for your clinic. You will also get expert recommendations from MYCURE specialists to to ease the transition.
+              span.font-mc-grey We’ll contact you within 24 hours to schedule the best time to meet you. Then during the demo, you will learn more about the features that will be useful for your clinic. You will also get expert recommendations from MYCURE specialists to ease the transition.
             br
             br
             br
@@ -156,7 +156,7 @@
               br
               br
               | 
-              span.font-mc-grey We’ll contact you within 24 hours to schedule the best time to meet you. Then during the demo, you will learn more about the features that will be useful for your clinic. You will also get expert recommendations from MYCURE specialists to to ease the transition.
+              span.font-mc-grey We’ll contact you within 24 hours to schedule the best time to meet you. Then during the demo, you will learn more about the features that will be useful for your clinic. You will also get expert recommendations from MYCURE specialists to ease the transition.
             br
             br
             br
