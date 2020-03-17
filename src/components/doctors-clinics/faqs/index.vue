@@ -45,16 +45,16 @@ export default {
           answer: 'Yes! Especially for fresh starters, we wanna make sure that you love our product first before you pay for it and use it full-time.'
         },
         {
-          question: 'How free is free for solo practice?',
-          answer: 'You can create all types of records for free up to 100 patient visits per month or until you reach 1000 patient profiles. Afterwards you can subscribe for higher storage capacity through our in-app purchases starting $5 a month.'
+          question: 'How free is free?',
+          answer: 'You can create and store all types of records up to 1GB. Afterwards you can subscribe for higher storage capacity through our in-app purchases starting $4 a month.'
         },
         {
           question: 'What if I’m part of a group practice?',
-          answer: 'You can invite other doctors to your virtual clinic, but each additional doctor to your clinic is an additional charge of $[price].'
+          answer: 'You can invite other doctors to your virtual clinic, but each additional doctor to your clinic is an additional charge of $4.'
         },
         {
           question: 'What if I serve multiple clinics?',
-          answer: 'Additional clinics are $[price] but they automatically come with the same features as your original account!'
+          answer: 'Additional clinics are $5 but they automatically come with the same features as your original account!'
         },
         {
           question: 'Can I still get the other modules for my clinic?',
