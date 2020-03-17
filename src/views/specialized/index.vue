@@ -36,7 +36,7 @@ export default {
     return {
       ctaContent: {
         text: 'Grow your practice with the right tools to use',
-        subtext: 'Schedule a quick demo with a MYCURE specialist today.',
+        subtext: 'Customize your system with MYCURE. Start your 14-day trial today.',
         btnText: 'Start 14-Day Trial',
         btnLink: 'signup-specialized',
         image: 'mycure-web-footer'
