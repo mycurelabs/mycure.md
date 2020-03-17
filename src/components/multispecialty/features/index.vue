@@ -1,8 +1,13 @@
 <template lang="pug">
-  div.main-container
+  div.main-container.pb-5
     v-layout(row justify-center align-center)
-      v-flex(xs12 md12).text-xs-center
-          h1(:class="{'pre-white-space': !$isMobile}").text-xs-center.font-work-sans.lh-title.font-40 {{ title }}
+      v-flex(xs12 md10).text-xs-center
+          h1(:class="[{'pre-white-space': !$isMobile}, $isMobile ? 'font-36' : 'font-40']").text-xs-center.font-work-sans.lh-title {{ title }}
+          img(
+            :src="require(`@/assets/images/multispecialty/${image}.png`)"
+            :alt="image"
+            :width="$isMobile ? '80%' : '40%'"
+          ).my-2
           p(:class="{'pre-white-space': !$isMobile}").font-s.text-xs-center.pt-3 {{ description }}
     v-layout(row justify-center align-center).pt-4
       v-flex(xs12).text-xs-center
@@ -25,47 +30,7 @@ export default {
       customPath: 'multispecialty/',
       customSlidePath: 'multispecialty/',
       exploreFeaturesId: 'multispecialty-explore-features-btn',
-      // image: 'mycure-home-web-complete-for-clinics-of-all-sizes-diagram',
-      // slides: [
-      //   'mycure-home-web-complete-for-clinics-of-all-sizes-diagram-mobile-01',
-      //   'mycure-home-web-complete-for-clinics-of-all-sizes-diagram-mobile-02',
-      //   'mycure-home-web-complete-for-clinics-of-all-sizes-diagram-mobile-03',
-      //   'mycure-home-web-complete-for-clinics-of-all-sizes-diagram-mobile-04',
-      //   'mycure-home-web-complete-for-clinics-of-all-sizes-diagram-mobile-05',
-      //   'mycure-home-web-complete-for-clinics-of-all-sizes-diagram-mobile-06'
-      // ],
-      // multiFeatures: [
-      //     {
-      //       title: 'Multispecialty Clinics',
-      //       description: 'One-stop, multi-staff clinics that provide ambulatory care and ancillary services',
-      //       icon: 'mycure-web-clinic-type-icon-multispecialty'
-      //     },
-      //     {
-      //       title: 'Outpatient Clinics',
-      //       description: 'Hospital-based clinics that provide outpatient consultation services from various specialists',
-      //       icon: 'mycure-web-clinic-type-icon-opd'
-      //     },
-      //     {
-      //       title: 'Industrial Clinics',
-      //       description: 'Primary clinics inside companies, schools, BPOs, and other industries covered by OSHS',
-      //       icon: 'mycure-web-clinic-type-icon-industrial'
-      //     },
-      //     {
-      //       title: 'Skin & Aesthetics Clinics',
-      //       description: 'Specialized for clinics that offer aesthetic procedures and dermatological services',
-      //       icon: 'mycure-web-clinic-type-icon-skin'
-      //     },
-      //     {
-      //       title: 'PME Clinics',
-      //       description: 'Clinics specializing in Physical Medical Exam (PME) Services',
-      //       icon: 'mycure-web-clinic-type-icon-pme'
-      //     },
-      //     {
-      //       title: 'Family Clinics',
-      //       description: 'Small to medium clinics that offer family medicine services, laboratory tests, and pharmacy',
-      //       icon: 'mycure-web-clinic-type-icon-family-clinic'
-      //     }
-      //   ]
+      image: 'mycure-best-multispecialty-service-system-badge',
     };
   },
   computed: {
@@ -92,8 +57,7 @@ export default {
 
 <style scoped>
 .main-container {
-  height: 90vh;
-  padding-top: 20vh;
+  padding-top: 10vh;
   background-color: #f0f0f0;
 }
 </style>

@@ -2,7 +2,7 @@
   v-container
     v-layout(row align-center)
       v-flex(xs12 md12).text-xs-center
-        h2(:class="$isMobile ? 'font-45' : 'font-xl'").text-xs-center.font-work-sans {{ panelTitle }}
+        h2.font-36.text-xs-center.font-work-sans.pre-white-space {{ panelTitle }}
         br
         p.font-s.text-xs-center {{ panelSubtitle }}
     v-layout(
@@ -47,7 +47,10 @@
 </template>
 
 <script>
+// - constants
 import { HEALTH_SUITES_HEADERS, HEALTH_SUITES_ITEMS } from './constants';
+// - utils
+import { parseTextWithNewLine } from '@/utils';
 export default {
   data () {
     return {
@@ -56,7 +59,8 @@ export default {
   },
   computed: {
     panelTitle () {
-      return HEALTH_SUITES_HEADERS.title;
+      const title = HEALTH_SUITES_HEADERS.title;
+      return parseTextWithNewLine(title, ['MYCURE']);
     },
     panelSubtitle () {
       return HEALTH_SUITES_HEADERS.subtitle;

@@ -27,7 +27,7 @@
     //- MOBILE
     div(v-else).pt-5
       v-container.text-xs-center
-        h1.font-40.lh-title.text-xs-center.font-work-sans {{ panelTitle }}
+        h1.font-35.lh-title.text-xs-center.font-work-sans {{ panelTitle }}
         br
         p.font-s.text-xs-center {{ panelContent }}
         br

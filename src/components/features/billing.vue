@@ -51,7 +51,7 @@
             li
               v-layout(v-for="(item, index) in items" :key="index" row align-left).pb-3 
                 img(src="../../assets/images/mycure-web-bullet-check.png" alt="Check icon" height="29px")
-                span.font-16.pl-3 {{ item }}
+                span.font-14.pl-3 {{ item }}
         v-layout(row justify-center).add-spacing
           img(src="@/assets/images/mycure-cms-web-features-arrow-down.png")
         br

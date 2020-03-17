@@ -2,7 +2,7 @@
   v-container.pt-3
     v-layout(row justify-center).pt-5
       v-flex(xs12 md12).text-xs-center
-        h2(:class="{'pre-white-space' : !$isMobile}").font-40.lh-title.font-work-sans.cta-text {{ ctaText }}
+        h2(:class="[{'pre-white-space' : !$isMobile}, $isMobile ? 'font-36' : 'font-40']").lh-title.font-work-sans.cta-text {{ ctaText }}
         p(:class="{'pre-white-space' : !$isMobile}").font-18.font-source-sans.pt-3 {{ ctaSubText }}
         div.text-xs-center.pt-2
           v-btn(
