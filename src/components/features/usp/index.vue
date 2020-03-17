@@ -8,7 +8,7 @@
       :btnIconLeft="uspContents.btnIconLeft"
       :coverImg="uspContents.coverImg"
       @btnClick="showVideo"
-      :title-mobile-size="30"
+      :title-mobile-size="28"
     )
 
     //- Video
@@ -49,7 +49,7 @@ export default {
       const title = this.uspContents.title;
       return !this.$isMobile
         ? parseTextWithNewLine(title, ['time', 'more'])
-        : parseTextWithNewLine(title, ['friendly', 'time', 'features', 'for a', 'patient-']) ;
+        : parseTextWithNewLine(title, ['friendly', 'time', 'features', 'more']) ;
     },
     uspMetaTitle () {
       const metaTitle = this.uspContents.metaTitle;
