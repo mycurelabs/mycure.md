@@ -253,7 +253,7 @@ export default {
           this.emailVerificationMessageDialog = true;
         } else {
           this.$router.push({ name: 'signup-individual-step-2' });
-        };
+        }
       } catch (e) {
         console.error(e);
         this.error = true;
