@@ -146,7 +146,12 @@ export default {
         if (this.otp)
           this.otpDialog = false;
       } catch (e) {
-        console.error(e);
+        if (/network error/gi.test(e.message)) {
+          this.error = true;
+          this.errorMsg = 'Can\'t connect to the server.';
+          return;
+        }
+
         if (e.code === 'auth/user-not-found' || e.code === 'auth/wrong-password') {
           this.error = true;
           this.errorMsg = 'Email address or password is incorrect!';
