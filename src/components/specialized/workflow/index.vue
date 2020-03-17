@@ -70,7 +70,7 @@
       return {
         checkIcon: 'mycure-web-bullet-check',
         title: 'Why do clinics use MYCURE?',
-        workflowBtnText: 'Book a Free Demo',
+        workflowBtnText: 'Start 14-Day Trial',
         reasons: [
           'Compact yet customizable EMR system',
           'Accessible both online and offline',
