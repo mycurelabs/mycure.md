@@ -39,7 +39,7 @@
     div(v-else).pt-3
       v-container
         v-layout(row justify-center)
-          h1.font-40.font-work-sans.text-xs-center {{ title }}
+          h1.font-36.font-work-sans.text-xs-center {{ title }}
       v-container
         v-layout(row justify-center)
           v-list(two-line)
