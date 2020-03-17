@@ -70,5 +70,12 @@
     "title": "Book a Free Demo for MYCURE Clinic Management System",
     "description": "Book a free demo with MYCURE Specialists to learn more how the clinic management system can help boost your clinic performance",
     "image": ""
+  },
+  {
+    "path": "/signin",
+    "title": "Sign In to MYCURE",
+    "description": "Welcome to MYCURE Complete Clinic Management System. Sign in today and get ready to easily create, store, and retrieve your electronic medical records (EMR).",
+    "image": ""
   }
+
 ]
