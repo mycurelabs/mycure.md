@@ -152,8 +152,19 @@
               v-list-tile-content
                 v-list-tile-title {{country.name}}
     
-    //- v-dialog(v-mode="errorDialog")
-          
+    v-dialog(v-model="emailVerificationMessageDialog" width="400" persistent)
+      v-card
+        v-card-text.text-xs-center
+          h1 Signup Success!
+          br
+          p.subheading To verify your account, we sent a verification email to your email {{user.email}}!
+        v-card-text.text-xs-center
+          v-btn(
+            large
+            color="success"
+            @click="doneSignupNonPH"
+          ) Okay!
+
 </template>
 
 <script>
@@ -166,6 +177,7 @@ export default {
       loading: false,
       loadingForm: false,
       countryDialog: false,
+      emailVerificationMessageDialog: false,
       showPass: false,
       countries: [],
       searchString: '',
@@ -236,7 +248,12 @@ export default {
         this.validateForm();
         if (!this.valid) return;
         await signupIndividual(this.user);
-        this.$router.push({ name: 'signup-individual-step-2' });
+        if (this.user.countryCallingCode !== '63') {
+          localStorage.clear();
+          this.emailVerificationMessageDialog = true;
+        } else {
+          this.$router.push({ name: 'signup-individual-step-2' });
+        };
       } catch (e) {
         console.error(e);
         this.error = true;
@@ -274,6 +291,7 @@ export default {
       }
     },
     selectCountry (country) {
+      console.warn(country);
       this.user.countryCallingCode = country.callingCodes[0];
       this.user.countryFlag = country.flag;
       this.countryDialog = false;
@@ -303,6 +321,10 @@ export default {
         this.mobileNoError = false;
         this.mobileNoErrorMessage = 'Invalid mobile number format';
       }
+    },
+    doneSignupNonPH () {
+      this.emailVerificationMessageDialog = false;
+      this.$router.push({ name: 'signin' });
     }
   },
   async created () {
