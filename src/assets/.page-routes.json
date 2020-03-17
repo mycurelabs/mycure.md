@@ -58,17 +58,5 @@
     "title": "MYCURE - Corporate Social Responsibility",
     "description": "MYCURE cares for people who care for people.",
     "image": "https://firebasestorage.googleapis.com/v0/b/mc-v4-prod.appspot.com/o/web-main-assets%2FMYCURE-Open-Graph-Images-CSR.png?alt=media&token=00369500-c57c-48a4-8383-f3421b7be321"
-  },
-  {
-    "path": "/signup/individual/step-1",
-    "title": "MYCURE Start Free EMR Doctor Practice Management System",
-    "description": "Create a free MYCURE account today and become a techy doctor in minutes! Better operations, beautiful reports, bye paperworks!",
-    "image": ""
-  },
-  {
-    "path": "/signup/multispecialty/step-1",
-    "title": "Book a Free Demo for MYCURE Clinic Management System",
-    "description": "Book a free demo with MYCURE Specialists to learn more how the clinic management system can help boost your clinic performance",
-    "image": ""
   }
 ]
