@@ -26,7 +26,7 @@
                 br
                 br
               span {{ moduleItem.description }}
-            v-card-text(v-else)
+            v-card-text(v-else).pa-1
               v-layout(row wrap)
                 v-flex(xs4 align-self-center).pr-3
                   img(:src="require(`@/assets/images/module-icons/${ moduleItem.icon }`)" width="80" :alt="moduleItem.title")

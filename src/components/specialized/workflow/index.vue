@@ -39,7 +39,7 @@
     div(v-else).pt-3
       v-container
         v-layout(row justify-center)
-          h1.font-40.font-work-sans.text-xs-center {{ title }}
+          h1.font-36.font-work-sans.text-xs-center.pre-white-space {{ mobileTitle }}
       v-container
         v-layout(row justify-center)
           v-list(two-line)
@@ -65,52 +65,60 @@
 </template>
 
 <script>
-  export default {
-    data () {
-      return {
-        checkIcon: 'mycure-web-bullet-check',
-        title: 'Why do clinics use MYCURE?',
-        workflowBtnText: 'Book a Free Demo',
-        reasons: [
-          'Compact yet customizable EMR system',
-          'Accessible both online and offline',
-          'Feels like having a hands-on IT Team',
-          'Helps a lot with reporting and metrics',
-          'Very easy to use and navigate',
-          'Improves overall performance of my clinic'
-        ]
-      };
+// - utils
+import { parseTextWithNewLine } from '@/utils';
+
+export default {
+  data () {
+    return {
+      checkIcon: 'mycure-web-bullet-check',
+      title: 'Why do clinics use MYCURE?',
+      workflowBtnText: 'Start 14-Day Trial',
+      reasons: [
+        'Compact yet customizable EMR system',
+        'Accessible both online and offline',
+        'Feels like having a hands-on IT Team',
+        'Helps a lot with reporting and metrics',
+        'Very easy to use and navigate',
+        'Improves overall performance of my clinic'
+      ]
+    };
+  },
+  computed: {
+    mobileTitle () {
+      return parseTextWithNewLine(this.title, ['clinics']);
+    }
+  },
+  methods: {
+    toggleChat () {
+      let message = `Hi, I have a question about MYCURE's EMR Solution for Specialized Clinics.`;
+      window.$crisp.push(['do', 'chat:toggle']);
+      window.$crisp.push(['do', 'message:send', ['text', message]]);
+      this.$ga.event({
+        eventCategory: 'button',
+        eventAction: 'click-specialized-chat-btn',
+        eventLabel: 'specialized-chat-btn'
+      });
     },
-    methods: {
-      toggleChat () {
-        let message = `Hi, I have a question about MYCURE's EMR Solution for Specialized Clinics.`;
-        window.$crisp.push(['do', 'chat:toggle']);
-        window.$crisp.push(['do', 'message:send', ['text', message]]);
-        this.$ga.event({
-          eventCategory: 'button',
-          eventAction: 'click-specialized-chat-btn',
-          eventLabel: 'specialized-chat-btn'
-        });
-      },
-      handleWorkflowBtn () {
-        this.$ga.event({
-          eventCategory: 'button',
-          eventAction: `click-${this.$isMobile ? 'mobile-' : ''}specialized-workflow-btn`,
-          eventLabel: `${this.$isMobile ? 'mobile-' : ''}specialized-workflow-btn`
-        });
-      }
-    },
-  };
+    handleWorkflowBtn () {
+      this.$ga.event({
+        eventCategory: 'button',
+        eventAction: `click-${this.$isMobile ? 'mobile-' : ''}specialized-workflow-btn`,
+        eventLabel: `${this.$isMobile ? 'mobile-' : ''}specialized-workflow-btn`
+      });
+    }
+  },
+};
 </script>
 
 <style scoped>
-  ul {
-    list-style-type: none;
+ul {
+  list-style-type: none;
+}
+@media screen and (min-height: 1080px) {
+  .workflow {
+    padding: 300px 0px 300px 0px !important;
   }
-  @media screen and (min-height: 1080px) {
-    .workflow {
-      padding: 300px 0px 300px 0px !important;
-    }
-  }
+}
 </style>
 

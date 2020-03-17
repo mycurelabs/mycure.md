@@ -4,7 +4,7 @@
   "description": "",
   "btnRoute": "signup-specialized",
   "btnId": "specialized-usp-btn",
-  "btnText": "Get Started",
+  "btnText": "Start 14-Day Trial",
   "coverImg": "mycure-specialized-clinic-usp-cover",
   "customPath": "specialized/"
 }

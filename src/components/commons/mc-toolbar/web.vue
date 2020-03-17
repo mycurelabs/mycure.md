@@ -75,7 +75,7 @@
             id="specialized-signup-btn"
             @click.stop="handleToolbarLinkClick('specialized-signup-btn')"
           )
-            strong.font-14.white--text.tab.text-none Get Started
+            strong.font-14.white--text.tab.text-none Start 14-Day Trial
           v-btn(
             v-else
             :color="$mcColors.mcAltGreen"

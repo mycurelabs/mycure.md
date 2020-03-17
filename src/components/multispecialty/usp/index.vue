@@ -8,7 +8,7 @@
       :btnText="uspContents.btnText"
       :coverImg="uspContents.coverImg"
       :customPath="uspContents.customPath"
-      :title-mobile-size="30"
+      :title-mobile-size="29"
     )
 </template>
 

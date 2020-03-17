@@ -17,22 +17,5 @@
     ],
     "btnText": "Sign Up Free",
     "btnLink": "signup-individual"
-  },
-  {
-    "title": "Group Practice",
-    "image": "mycure-doctors-clinics-pricing-page-group-banner",
-    "type": "group",
-    "description": "Make work easier for you, your colleagues, and your secretary.",
-    "priceText": "28",
-    "inclusionsTitle": "EVERYTHING IN SOLO plus...",
-    "inclusions": [
-      "✓ 2 doctor accounts",
-      "✓ Unlimited staff accounts",
-      "✓ 200 Monthly Patient Visits",
-      "✓ 2000 Patient Profiles",
-      "✓ Multiple device access"
-    ],
-    "btnText": "Start 14-day Trial",
-    "btnLink": "signup-individual"
   }
 ]

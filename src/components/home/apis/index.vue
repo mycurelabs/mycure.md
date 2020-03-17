@@ -24,7 +24,7 @@
     //- MOBILE
     div(v-else).pt-5
       v-container.text-xs-center
-        h1.font-40.lh-title.font-work-sans.pb-5 {{ panelTitle }}
+        h1.font-36.lh-title.font-work-sans.pb-5 {{ panelTitle }}
         br
         img(width="85%" :src="require(`@/assets/images/${panelImage}.png`)" :alt="panelImage").pb-3
         br

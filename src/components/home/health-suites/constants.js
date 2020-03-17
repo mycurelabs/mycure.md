@@ -32,7 +32,7 @@ export const HEALTH_SUITES_ITEMS = [
       'Diagnostics'
     ],
     image: 'mycure-p2-badge-specialized-clinic',
-    btnText: 'Get Started',
+    btnText: 'Start 14-Day Trial',
     btnLink: 'signup-specialized',
     btnId: 'home-solutions-specialized-clinics-book-demo',
     learnLink: 'specialized-clinics',

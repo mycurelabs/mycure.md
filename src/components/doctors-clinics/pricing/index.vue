@@ -8,43 +8,46 @@
             p(:class="{'pre-white-space': !$isMobile}" v-if="description").text-xs-center.pt-1.font-21.font-source-sans {{ description }}
         v-layout(row :wrap="$isMobile" fill-height justify-center).pt-5
           v-flex(
-            v-for="(item, key) in pricingItems.slice(0,1)"
+            v-for="(item, key) in pricingItems"
             :key="key"
             xs12
-            md6
             :class="[{ 'mx-4' : !$isMobile }, { 'my-3' : $isMobile }]"
           )
             v-card(
               height="100%"
               :class="[{ 'px-5' : !$isMobile}, {'py-3' : !$isMobile}, {'pt-3' : $isMobile}]")
               v-card-text#pricingContent.text-xs-center
-                img(
-                  :src="require(`@/assets/images/doctors-clinics/${item.image}.png`)" 
-                  :alt="item.image"
-                  width="95%"
-                )
-                h1(:class="{'pre-white-space' : !$isMobile}").font-40.font-work-sans.lh-title {{ item.title }}
-                p(:class="{'pre-white-space' : !$isMobile}").font-18 {{ parseDescription(item) }}
-                span.font-m.font-mc-blue {{ item.type === 'solo' ? 'Always' : 'Starts at' }}
-                br
-                strong(v-if="item.type === 'solo'").font-mc-blue.font-xl {{ item.priceText }}
-                strong(v-else).font-mc-blue
-                  span.font-m $&nbsp;
-                  span.font-xl {{ item.priceText }}
-                  span.font-m &nbsp;/clinic/month
-                br
-                v-container.text-xs-left
-                  v-layout(row justify-center)
-                    v-flex(xs12 md10)
-                      p(v-for="(inclusion, key) in item.inclusions" :key="key").font-18 {{ inclusion }}
-              v-btn(
-                :color="$mcColors.mcBlue"
-                :to="{ name: item.btnLink}"
-                :id="`${item.type}-practice-btn`"
-                @click="handlePricingBtn(item.type)"
-                dark
-                block
-              ).text-none.font-weight-bold.font-18 {{ item.btnText }}
+                v-layout(row wrap)
+                  v-flex(xs12 md6)
+                    img(
+                      :src="require(`@/assets/images/doctors-clinics/${item.image}.png`)" 
+                      :alt="item.image"
+                      width="95%"
+                    )
+                    h1(:class="[{'pre-white-space' : !$isMobile}, {'pt-5': !$isMobile }]").font-40.font-work-sans.lh-title {{ item.title }}
+                    p(:class="{'pre-white-space' : !$isMobile}").font-18 {{ parseDescription(item) }}
+                  v-flex(xs12 md6)
+                    v-container.text-xs-left
+                      v-layout(row justify-center)
+                        v-flex(xs12 md10)
+                          p(:class="[{'text-xs-center': $isMobile }, $isMobile ? 'font-l' : 'font-xl']").font-mc-blue {{ item.type === 'solo' ? 'Always' : 'Starts at' }}&nbsp;
+                            strong(v-if="item.type === 'solo'") {{ item.priceText }}
+                            strong(v-else)
+                              span $&nbsp;
+                              span {{ item.priceText }}
+                              span &nbsp;/clinic/month
+                      v-layout(row justify-center)
+                        v-flex(xs12 md10)
+                          p(v-for="(inclusion, key) in item.inclusions" :key="key").font-18 {{ inclusion }}
+                    v-btn(
+                      :color="$mcColors.mcBlue"
+                      :to="{ name: item.btnLink}"
+                      :id="`${item.type}-practice-btn`"
+                      @click="handlePricingBtn(item.type)"
+                      dark
+                      large
+                      block
+                    ).text-none.font-weight-bold.font-18 {{ item.btnText }}
         //- v-layout(row align-center).pt-3
         //-   v-flex(xs12 md12).text-xs-center
         //-     v-btn(

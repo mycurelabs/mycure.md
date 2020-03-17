@@ -7,12 +7,12 @@
       v-layout(v-if="!$isMobile" row justify-center).pt-5
         v-flex(v-for="(column, key) in 2" xs12 md6 :key="key").font-source-sans.mx-2
           template(v-for="(item, key) in faqsItems")
-            div(v-if="key < 5 && column === 1")
+            div(v-if="key < 7 && column === 1")
               img(:src="require(`@/assets/images/${questionMark}.png`)" :alt="questionMark" width="18px")
               strong.font-21 &nbsp;{{ item.question }}
               p.font-18.pl-1.pt-2 {{ item.answer }}
               br
-            div(v-else-if="key < 10 && key > 4 && column === 2")
+            div(v-else-if="key < 12 && key > 6 && column === 2")
               img(:src="require(`@/assets/images/${questionMark}.png`)" :alt="questionMark" width="18px")
               strong.font-21 &nbsp;{{ item.question }}
               p.font-18.pl-1.pt-2 {{ item.answer }}
@@ -45,8 +45,20 @@ export default {
           answer: 'Yes! Especially for fresh starters, we wanna make sure that you love our product first before you pay for it and use it full-time.'
         },
         {
-          question: 'How free is free for solo practice?',
-          answer: 'You can create all types of records for free up to 100 patient visits per month or until you reach 1000 patient profiles. Afterwards you can subscribe for higher storage capacity through our in-app purchases starting $5 a month.'
+          question: 'How free is free?',
+          answer: 'You can create and store all types of records up to 1GB. Afterwards you can subscribe for higher storage capacity through our in-app purchases starting $4 a month.'
+        },
+        {
+          question: 'What if I’m part of a group practice?',
+          answer: 'You can invite other doctors to your virtual clinic, but each additional doctor to your clinic is an additional charge of $4.'
+        },
+        {
+          question: 'What if I serve multiple clinics?',
+          answer: 'Additional clinics are $5 but they automatically come with the same features as your original account!'
+        },
+        {
+          question: 'Can I still get the other modules for my clinic?',
+          answer: 'Sure! Just update your subscription under Accounts and upgrade to a premium subscription by subscribing to our other available modules! Check out our Features to view the other modules.'
         },
         {
           question: 'Can I transfer my existing charts to MYCURE?',
