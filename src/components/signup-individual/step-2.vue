@@ -80,6 +80,11 @@ export default {
       otpCountdown: null
     };
   },
+  computed: {
+    pageType () {
+      return this.$route.meta.pageType;
+    }
+  },
   watch: {
     otp (val) {
       if (!val) return;
@@ -147,7 +152,9 @@ export default {
     });
     const step1Data = JSON.parse(localStorage.getItem('individual:step1:model'));
     if (step1Data && !step1Data.hasOwnProperty('email')) {
-      this.$router.push({ name: 'signup-individual-step-1' });
+      this.pageType === 'signup-individual' ? this.$router.push({ name: 'signup-individual-step-1' })
+        : this.pageType === 'signup-specialized' ?  this.$router.push({ name: 'signup-specialized-step-1'})
+        : this.$router.push({ name: 'home'});
     } else {
       this.step1Data = JSON.parse(localStorage.getItem('individual:step1:model'));
     }
