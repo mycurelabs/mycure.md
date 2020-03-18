@@ -5,8 +5,8 @@
       div.footer-grey
         v-container(justify-center)
           mc-toolbar-footer
-          v-layout(row wrap justify-center)
-            v-flex(xs12 md3)
+          v-layout(row wrap justify-center).pb-5
+            v-flex(xs12 md2)
               ul.no-style-type
                 li.feature-text CLINIC SOLUTIONS
                 li(v-for="(solution, key) in clinicSolutions")
@@ -14,9 +14,9 @@
                     | {{ solution.header }}
                 li.pb-3
                   router-link(id="footer-features-link" @click.stop="handleFooterFeaturesLink" :to="{name: 'features'}" title="MYCURE Features").link Features
+            v-flex(xs12 md2 offset-md1)
+              ul.no-style-type
                 li.feature-text ABOUT
-                //- li
-                //-   router-link(id="footer-csr-link" @click.stop="handleFooterCsrLink" :to="{name: 'csr'}" title="MYCURE Corporate Social Responsibility").link Corporate Social Responsibility
                 li
                   router-link(id="footer-our-story-link" @click.stop="handleFooterOurStoryLink" :to="{name: 'our-story'}" title="MYCURE Our Story | Caring the Extra Mile").link 
                     span Our Story
@@ -24,17 +24,8 @@
                   router-link(id="footer-blog-link" @click.stop="handleFooterBlogLink" :to="{ name: 'blog-link' }" title="MYCURE - Blog").link Blog 
                 li 
                   router-link(id="footer-careers-link" @click.stop="handleFooterCareersLink" :to="{ name: 'careers' }" title="MYCURE - Careers").link Careers
-              
-            v-flex(xs12 md3 offset-md1)
+            v-flex(xs12 md2)
               ul.no-style-type
-                li.feature-text SUPPORT 
-                //- li 
-                  router-link(id="footer-faqs-link" @click.stop="handleFooterFaqsLink" :to="{ name: 'faqs-link'}" title="MYCURE - FAQs").link FAQs
-                //- li
-                  router-link(id="footer-pricing-link" @click.stop="handleFooterPricingLink" :to="{name: 'pricing'}" title="MYCURE Pricing | Affordable EMR and Clinic Management System").link
-                    span Pricing
-                li.pb-3
-                  router-link(id="footer-book-a-demo-link" @click.stop="handleFooterBookADemoLink" :to="{ name: 'calendly' }" title="MYCURE - Book A Demo").link Book A Demo
                 li.feature-text LEGAL
                 li
                   router-link(id="footer-terms-link" @click.stop="handleFooterTermsLink" :to="{name: 'terms'}" title="MYCURE Terms and Conditions").link 
@@ -43,7 +34,7 @@
                   router-link(id="footer-privacy-policy-link" @click.stop="handleFooterPrivacyPolicyLink" :to="{name: 'privacy-policy'}" title="MYCURE Privacy Policy").link 
                     span Privacy Policy
               
-            v-flex(xs12 md3 offset-md1)
+            v-flex(xs12 md2 offset-md2)
               ul.no-style-type
                 li.feature-text CONTACT US
                 li 
@@ -143,27 +134,6 @@ export default {
         eventCategory: 'link',
         eventAction: 'click-footer-careers-link',
         eventLabel: 'footer-careers-link'
-      });
-    },
-    handleFooterFaqsLink () {
-      this.$ga.event({
-        eventCategory: 'link',
-        eventAction: 'click-footer-faqs-link',
-        eventLabel: 'footer-faqs-link'
-      });
-    },
-    handleFooterPricingLink () {
-      this.$ga.event({
-        eventCategory: 'link',
-        eventAction: 'click-footer-pricing-link',
-        eventLabel: 'footer-pricing-link'
-      });
-    },
-    handleFooterBookADemoLink () {
-      this.$ga.event({
-        eventCategory: 'link',
-        eventAction: 'click-footer-book-a-demo-link',
-        eventLabel: 'footer-book-a-demo-link'
       });
     },
     handleFooterTermsLink () {

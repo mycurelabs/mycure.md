@@ -61,20 +61,6 @@
         v-expansion-panel.elevation-0
           v-expansion-panel-content.footer-grey
             template(v-slot:header)
-              span.iconMargin.font-18.feature-text SUPPORT
-            template(v-slot:actions)
-              v-icon(color="grey").iconMargin mdi-chevron-down
-            v-layout(column)
-              //- router-link(id="footer-faqs-btn" :to="{ name: 'faqs-link' }" title="MYCURE - FAQs").link.py-2
-                span.py-2 FAQs
-              //- router-link(id="footer-pricing-btn" :to="{ name: 'pricing' }" title="MYCURE Pricing | Affordable EMR and Clinic Management System").link.py-2
-                span.py-2 Pricing
-              router-link(id="footer-book-a-demo-btn" :to="{ name: 'calendly' }" title="MYCURE - Book A Demo").link.py-2
-                span.py-2.font-18.white--text Book a Demo
-      v-layout(row)
-        v-expansion-panel.elevation-0
-          v-expansion-panel-content.footer-grey
-            template(v-slot:header)
               span.iconMargin.font-18.feature-text LEGAL
             template(v-slot:actions)
               v-icon(color="grey").iconMargin mdi-chevron-down
