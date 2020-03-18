@@ -154,6 +154,42 @@ export const signupIndividual = async (opts) => {
   }
 };
 
+export const signupSpecialized = async (opts) => {
+  try {
+    const payload = {
+      email: opts.email,
+      mobileNo: opts.mobileNo,
+      password: opts.password,
+      personalDetails: {
+        name: {
+          firstName: opts.firstName,
+          lastName: opts.lastName
+        },
+        doc_PRCLicenseNo: opts.doc_PRCLicenseNo,
+        mobileNo: opts.mobileNo
+      },
+      organization: {
+        type: 'facility',
+        types: [opts.clinicType],
+        superadmin: {
+          roles: ['doctor']
+        },
+        name:  `${opts.firstName}'s Clinic`
+      }
+    };
+    if (opts.otp) payload.totpToken = opts.otp;
+    const { data } = await axios({
+      method: 'post',
+      url: `${process.env.VUE_APP_API}/accounts`,
+      data: payload
+    });
+    return data;
+  } catch (e) {
+    console.error(e);
+    throw handleError(e);
+  }
+};
+
 export const verifyMobileNo = async (opts) => {
   try {
     const payload = {
