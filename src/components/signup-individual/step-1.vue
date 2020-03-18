@@ -291,7 +291,6 @@ export default {
       }
     },
     selectCountry (country) {
-      console.warn(country);
       this.user.countryCallingCode = country.callingCodes[0];
       this.user.countryFlag = country.flag;
       this.countryDialog = false;
