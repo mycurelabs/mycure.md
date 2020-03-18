@@ -84,7 +84,13 @@
 <script>
 // - utils
 import { signupSpecialized } from '@/utils/axios';
+// - components
+import EmailVerificationDialog from '../signup-individual/email-verification-dialog';
+
 export default {
+  components: {
+    EmailVerificationDialog
+  },
   data () {
     return {
       added: false,
