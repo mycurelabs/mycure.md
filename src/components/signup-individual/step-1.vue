@@ -174,7 +174,7 @@ export default {
       loading: false,
       loadingForm: false,
       countryDialog: false,
-      emailVerificationMessageDialog: true,
+      emailVerificationMessageDialog: false,
       showPass: false,
       countries: [],
       searchString: '',
