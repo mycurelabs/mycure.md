@@ -37,14 +37,6 @@
             ).mx-0
               span.font-14.tab.text-none {{ link.name }}
           v-btn(
-            v-if="currentRoute === 'specialized-clinics'"
-            :to="{ name: 'calendly' }"
-            id="nav-specialized-book-demo"
-            flat
-            @click.stop="handleToolbarLinkClick('nav-specialized-book-demo')"
-          ).mx-0
-            span.font-14.tab.text-none Book A Demo
-          v-btn(
             flat
             :to="{ name: loginURL}"
             id="login-btn"
