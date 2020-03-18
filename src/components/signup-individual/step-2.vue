@@ -127,7 +127,7 @@ export default {
       }
     },
     okay () {
-      localStorage.clear();
+      localStorage.removeItem('individual:step-1:model');
       this.$router.push({ name: 'signin' });
     },
     startCountDown () {
