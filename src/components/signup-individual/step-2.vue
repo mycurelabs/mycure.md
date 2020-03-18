@@ -46,19 +46,22 @@
         v-flex(xs12 md6).pa-1.text-xs-center
           img(src="../../assets/images/mycure-onboarding-phone-verification.png")
     
-    v-dialog(v-model="successDialog" width="500" persistent)
+    v-dialog(v-model="successDialog" width="600" persistent)
       v-card
         v-card-text.text-xs-center
-          h1 Welcome to MYCURE,
-            br
-            | Dr. {{step1Data.firstName}}
-          img(width="300" src="../../assets/images/mycure-onboarding-congratulations.png")
+          img(width="300" src="../../assets/images/mycure-signup-image-jumping-doctors.png")
+          br
+          h1.font-40 Welcome to MYCURE!
           div.px-5
-            p.subheading Securely organize your medical records and get set for an ultimate clinic make-over.
+            p.subheading
+              b(v-if="step1Data.firstName") Dr. {{ step1Data.firstName }}
+              | {{ step1Data.firstName ? `, you've` : `You've` }} taken the first step in securely organizing your medical records.&nbsp;
+              | Now get ready for the ultimate clinic make-over.
           v-btn(
             color="accent"
-            @click="okay"
-          ) Okay!
+            @click="onAcknowledgment"
+            large
+          ).text-none.font-weight-bold Get Started
 
 </template>
 
@@ -126,7 +129,7 @@ export default {
         this.sendingCode = false;
       }
     },
-    okay () {
+    onAcknowledgment () {
       localStorage.removeItem('individual:step-1:model');
       this.$router.push({ name: 'signin' });
     },
