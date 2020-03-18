@@ -195,9 +195,10 @@ export default {
         'Produce beautiful and useful reports',
         'Save on time and save more lives!'
       ],
+      // - TODO: update corresponding role values
       roles: [
         { name: 'Owner', value: 'owner' },
-        { name: 'Administrator', value: 'administrator' },
+        { name: 'Administrator', value: 'admin' },
         { name: 'Manager', value: 'manager' },
         { name: 'Doctor', value: 'doctor' },
         { name: 'Staff', value: 'staff' }
