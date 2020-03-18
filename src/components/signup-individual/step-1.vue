@@ -273,8 +273,8 @@ export default {
       } else {
         const country = await getCountry();
         const { location } = country;
-        this.user.countryCallingCode = location.calling_code;
-        this.user.countryFlag = location.country_flag;
+        this.user.countryCallingCode = location ? location.calling_code : '63';
+        this.user.countryFlag = location ? location.country_flag : 'http://assets.ipstack.com/flags/ph.svg';
       }
 
       // Load countries
