@@ -4,7 +4,7 @@
       v-card-text.text-xs-center
         h1 Signup Success!
         br
-        p.subheading To verify your account, we sent a verification email to your email {{user.email}}!
+        p.subheading To verify your account, we sent a verification email to your email {{ email }}!
       v-card-text.text-xs-center
         v-btn(
           large
@@ -16,7 +16,11 @@
 <script>
 export default {
   props: {
-    value: null
+    value: null,
+    email: {
+      type: String,
+      default: ''
+    }
   },
   computed: {
     model: {

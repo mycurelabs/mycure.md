@@ -153,6 +153,7 @@
                 v-list-tile-title {{country.name}}
     email-verification-dialog(
       v-model="emailVerificationMessageDialog"
+      :email="user.email"
       @confirm="doneSignupNonPH"
     )
 </template>
@@ -173,7 +174,7 @@ export default {
       loading: false,
       loadingForm: false,
       countryDialog: false,
-      emailVerificationMessageDialog: false,
+      emailVerificationMessageDialog: true,
       showPass: false,
       countries: [],
       searchString: '',

@@ -61,6 +61,7 @@
 
     email-verification-dialog(
       v-model="emailVerificationMessageDialog"
+      :email="step1Data.email"
       @confirm="doneSignupNonPH"
     )
     v-snackbar(
