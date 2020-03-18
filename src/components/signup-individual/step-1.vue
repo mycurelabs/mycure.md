@@ -151,26 +151,23 @@
                 img(width="25" :src="country.flag")
               v-list-tile-content
                 v-list-tile-title {{country.name}}
-    
-    v-dialog(v-model="emailVerificationMessageDialog" width="400" persistent)
-      v-card
-        v-card-text.text-xs-center
-          h1 Signup Success!
-          br
-          p.subheading To verify your account, we sent a verification email to your email {{user.email}}!
-        v-card-text.text-xs-center
-          v-btn(
-            large
-            color="success"
-            @click="doneSignupNonPH"
-          ) Okay!
+    email-verification-dialog(
+      v-model="emailVerificationMessageDialog"
+      @confirm="doneSignupNonPH"
+    )
 
 </template>
 
 <script>
+// - utils
 import { getCountry, getCountries, signupIndividual } from '../../utils/axios';
 import { parsePhoneNumberFromString } from 'libphonenumber-js';
+// - components
+import EmailVerificationDialog from './email-verification-dialog';
 export default {
+  components: {
+    EmailVerificationDialog
+  },
   data () {
     return {
       valid: false,
@@ -214,17 +211,6 @@ export default {
     }
   },
   watch: {
-    user: {
-      handler (val) {
-        const saveVal = {
-          ...val,
-          password: '',
-          acceptTerms: false
-        };
-        localStorage.setItem('individual:step1:model', JSON.stringify(saveVal));
-      },
-      deep: true
-    },
     'user.mobileNo': {
       handler () {
         this.validatePhoneNo();
@@ -247,6 +233,7 @@ export default {
         this.error = false;
         this.validateForm();
         if (!this.valid) return;
+        this.saveModel(this.user);
         this.pageType === 'signup-individual'
           ? await signupIndividual(this.user)
           : this.$router.push({ name: 'signup-specialized-step-2' });
@@ -271,7 +258,11 @@ export default {
       
       // Load model
       if (localStorage.getItem('individual:step1:model')) {
-        this.user = JSON.parse(localStorage.getItem('individual:step1:model'));
+        this.user = {
+          ...JSON.parse(localStorage.getItem('individual:step1:model')),
+          password: '',
+          confirmPassword: ''
+        };
       } else {
         const country = await getCountry();
         const { location } = country;
@@ -283,6 +274,14 @@ export default {
       this.getCountries();
 
       this.loadingForm = false;
+    },
+    saveModel (val) {
+      const saveVal = {
+        ...val,
+        password: this.pageType === 'signup-individual' ? '' : val.password,
+        acceptTerms: false
+      };
+      localStorage.setItem('individual:step1:model', JSON.stringify(saveVal));
     },
     async getCountries () {
       if (!localStorage.getItem('mycure:countries')) {
