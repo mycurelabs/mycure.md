@@ -47,7 +47,7 @@
             v-card-actions
               v-btn(flat :to="{ name: 'signup-specialized-step-1' }") Back
               v-spacer
-              v-btn(color="accent" :to="{ name: 'signup-specialized-step-3' }") Next
+              v-btn(color="accent" :to="{ name: 'signup-specialized-step-3' }") Proceed
     v-snackbar(
       color="accent"
       v-model="added"
