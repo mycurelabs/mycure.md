@@ -2,14 +2,12 @@
   div.white
     v-container
       v-layout(row wrap)
-        v-flex(xs12 md10 offset-md1)
-          v-layout(row wrap justify-center)
-            v-flex(xs12 md12).text-xs-center.mb-5
-              h1.font-40.font-work-sans Meet Paulette
-      v-layout(row wrap justify-center)
+        v-flex(xs12 md8 offset-md4).px-3
+          h1.font-40.font-work-sans Meet Paulette
+      v-layout(row wrap justify-center).pt-3
         v-flex(xs12 md4 align-self-center).text-xs-center
           img(width="80%" src="../../assets/images/mycure-web-our-story-paulette.png" alt="Our Story Paulette")
-        v-flex(xs12 md8 align-self-center).px-3.font-21
+        v-flex(xs12 md8).px-3.font-21
           p Paulette became a young widow at age 30. Her two children were just 4- and 6-year olds then. Despite limited resources, she managed to give her kids a good life.
           p Just when things got a lot better, Paulette encountered a bigger challenge—cancer.
           p For about a decade and a half, her life had been all about trips to the doctor, regular checkups, and staying healthy.&nbsp;
