@@ -247,7 +247,9 @@ export default {
         this.error = false;
         this.validateForm();
         if (!this.valid) return;
-        await signupIndividual(this.user);
+        this.pageType === 'signup-individual'
+          ? await signupIndividual(this.user)
+          : this.$router.push({ name: 'signup-specialized-step-2' });
         if (this.user.countryCallingCode !== '63') {
           localStorage.clear();
           this.emailVerificationMessageDialog = true;
