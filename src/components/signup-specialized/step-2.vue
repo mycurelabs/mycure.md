@@ -9,39 +9,41 @@
           ).link-to-home.mb-3
           br
           h1 What type of services does your clinic provide?
-        v-flex(xs12 md10).pa-1
-          v-layout(
-            row
-            wrap
-            align-center
-            justify-center
+      v-layout(
+        row
+        wrap
+        align-center
+        justify-center
+      )
+        v-flex(
+          xs12 
+          md2
+          align-center
+          v-for="(type, key) in specializedTypes" 
+          :key="key"
+        ).pa-2
+          v-card(
+            hover
+            @click="toggleType(type)"
+            :class="[{'grey-panel': type.selected}]"
+            width="100%"
           )
-            v-flex(
-              xs12 
-              md4 
-              align-center
-              v-for="(type, key) in specializedTypes" 
-              :key="key"
-            ).pa-3
-              v-card(
-                hover
-                @click="toggleType(type)"
-                :class="type.selected ? 'grey-card' : 'white'"
-              )
-                div.check-container.text-xs-right
-                  img(
-                    v-if="type.selected"
-                    src="../../assets/images/mycure-web-bullet-check.png"
-                    width="10%"
-                  ).mt-1.ml-1
-                v-card-text
-                  div.text-xs-center
-                    img(
-                      :src="require(`@/assets/images/specialized/${type.image}.png`)"
-                      :alt="type.image"
-                    )
-                v-card-text.px-4.text-xs-center
-                  h2.font-m {{ type.title }}
+            div.check-container.text-xs-right
+              img(
+                v-if="type.selected"
+                src="../../assets/images/mycure-web-bullet-check.png"
+                width="15%"
+                alt="Check"
+              ).mt-1.mr-1
+            v-card-text
+              div.text-xs-center
+                img(
+                  :src="require(`@/assets/images/specialized/${type.image}.png`)"
+                  :alt="type.image"
+                  width="100%"
+                )
+            v-card-text.text-xs-center
+              h2(:class="[$isMobile ? 'font-m' : 'font-16']") {{ type.title }}
         v-flex(xs12 md10).pa-1.mt-3
           v-card
             v-card-actions
@@ -64,9 +66,12 @@
 export default {
   data () {
     return {
-      toggledType: {},
       added: false,
       removed: false,
+      // - models
+      toggledType: {},
+      selectedType: {},
+      // - enum
       specializedTypes: [
         {
           title: 'Skin and Aesthetic',
@@ -131,14 +136,19 @@ export default {
       ]
     };
   },
-  computed: {
-    selectedTypes () {
-      return this.specializedTypes.filter(type => type.selected) || [];
-    }
-  },
   methods: {
     toggleType (type) {
       type.selected = !type.selected;
+      if (type.selected) {
+        this.selectedType = type;
+        this.specializedTypes = this.specializedTypes
+          .map(item => {
+            if (item.title !== type.title ) item.selected = false;
+            return item;
+          });
+      } else {
+        this.selectedType = {};
+      }
       this.showToast(type);
     },
     showToast (type) {
@@ -154,9 +164,15 @@ export default {
   cursor: pointer;
 }
 .grey-card {
-  background-color: #f0f0f0;
+  background-color: #f0f0f0 !important;
 }
 .check-container {
   min-height: 40px;
+}
+
+@media screen and (min-height: 1080px) {
+  .check-container {
+    min-height: 60px !important;
+  }
 }
 </style>
