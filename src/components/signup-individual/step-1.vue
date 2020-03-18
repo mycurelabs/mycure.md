@@ -155,7 +155,6 @@
       v-model="emailVerificationMessageDialog"
       @confirm="doneSignupNonPH"
     )
-
 </template>
 
 <script>
@@ -234,15 +233,18 @@ export default {
         this.validateForm();
         if (!this.valid) return;
         this.saveModel(this.user);
-        this.pageType === 'signup-individual'
-          ? await signupIndividual(this.user)
-          : this.$router.push({ name: 'signup-specialized-step-2' });
-        if (this.user.countryCallingCode !== '63') {
-          localStorage.clear();
-          this.emailVerificationMessageDialog = true;
+        if (this.pageType === 'signup-individual') {
+          await signupIndividual(this.user);
+          if (this.user.countryCallingCode !== '63') {
+            localStorage.clear();
+            this.emailVerificationMessageDialog = true;
+          } else {
+            this.$router.push({ name: 'signup-individual-step-2' });
+          }
         } else {
-          this.$router.push({ name: 'signup-individual-step-2' });
+          this.$router.push({ name: 'signup-specialized-step-2' });
         }
+        
       } catch (e) {
         console.error(e);
         this.error = true;

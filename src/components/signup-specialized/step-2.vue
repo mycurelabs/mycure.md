@@ -47,9 +47,22 @@
         v-flex(xs12 md10).pa-1.mt-3
           v-card
             v-card-actions
-              v-btn(flat :to="{ name: 'signup-specialized-step-1' }") Back
+              v-btn(
+                flat
+                :to="{ name: 'signup-specialized-step-1' }"
+                :disabled="loading"
+              ) Back
               v-spacer
-              v-btn(color="accent" :to="{ name: 'signup-specialized-step-3' }") Proceed
+              v-btn(
+                color="accent"
+                :disabled="loading"
+                @click="onProceed"
+              ) Proceed
+
+    email-verification-dialog(
+      v-model="emailVerificationMessageDialog"
+      @confirm="doneSignupNonPH"
+    )
     v-snackbar(
       color="accent"
       v-model="added"
@@ -60,83 +73,111 @@
       v-model="removed"
       :timeout="1000"
     ) {{toggledType}} Removed!
+
+    v-snackbar(
+      v-model="errorSnack"
+      color="error"
+      :timeout="1000"
+    ) {{ errorMessage }}
 </template>
 
 <script>
+// - utils
+import { signupSpecialized } from '@/utils/axios';
 export default {
   data () {
     return {
       added: false,
       removed: false,
+      errorSnack: false,
+      loading: false,
+      emailVerificationMessageDialog: false,
       // - models
+      step1Data: {},
       toggledType: {},
       selectedType: {},
+      errorMessage: '',
       // - enum
       specializedTypes: [
         {
           title: 'Skin and Aesthetic',
-          features: [
-            'Image Uploads',
-            'Medical Drawings',
-            'Point-of-Sales',
-            'Inventory Management',
-            'Staff Commissions'
-          ],
+          value: 'aesthetics-clinic',
           image: 'mycure-specialized-clinic-feature-skin',
           selected: false,
         },
         {
           title: 'Pediatrics',
-          features: [
-            'Complete Medical History',
-            'Growth Charts',
-            'Vaccination Tracker',
-            'Developmental Milestones',
-            'Pedia Store'
-          ],
+          value: 'pediatrics-clinic',
           image: 'mycure-specialized-clinic-feature-pedia',
           selected: false,
         },
         {
           title: 'Maternity Care',
-          features: [
-            'Appointment Calendar',
-            'Lab & Ultrasound Results',
-            'Physician Referrals',
-            'AOG & EDD Calculators',
-            'Advanced Billing'
-          ],
+          value: 'maternity-care-clinic',
           image: 'mycure-specialized-clinic-feature-maternity',
           selected: false,
         },
         {
           title: 'Dental',
-          features: [
-            'Baseline Dental Charting',
-            'Proposed Work Documentation',
-            'Patient Consent Forms',
-            'Custom Dental Statuses',
-            'Discounting and Promos'
-          ],
+          value: 'dental-clinic',
           image: 'mycure-specialized-clinic-feature-dentist',
           selected: false,
         },
         {
           title: 'Diagnostic',
-          features: [
-            'Advanced Queuing',
-            'Laboratory & Imaging Results',
-            'Send Outs & Specimen Tracking',
-            'HL7 Machine Integrations',
-            'Online Results Portal for Patients'
-          ],
+          value: 'diagnostic-center',
           image: 'mycure-specialized-clinic-feature-diagnostics',
           selected: false
         }
       ]
     };
   },
+  created () {
+    const step1Data = JSON.parse(localStorage.getItem('individual:step1:model'));
+    if (step1Data && !step1Data.hasOwnProperty('email')) {
+      this.pageType === 'signup-individual' ? this.$router.push({ name: 'signup-individual-step-1' })
+        : this.pageType === 'signup-specialized' ?  this.$router.push({ name: 'signup-specialized-step-1'})
+        : this.$router.push({ name: 'home'});
+    } else {
+      this.step1Data = JSON.parse(localStorage.getItem('individual:step1:model'));
+    }
+  },
   methods: {
+    async onProceed () {
+      try {
+        this.loading = true;
+        if (!this.selectedType.hasOwnProperty('value')) {
+          this.errorMessage = 'Please select a type of clinic service';
+          this.errorSnack = true;
+          return;
+        }
+        this.step1Data.clinicType = this.selectedType.value;
+        this.saveModel(this.step1Data);
+        await signupSpecialized(this.step1Data);
+        if (this.step1Data.countryCallingCode !== '63') {
+          localStorage.clear();
+          this.emailVerificationMessageDialog = true;
+        } else {
+          this.$router.push({ name: 'signup-specialized-step-3' });
+        }
+      } catch (e) {
+        console.error(e);
+        this.error = true;
+        if (e.code === 11000) {
+          this.errorMessage = `The email ${this.step1Data.email} or mobile number ${this.step1Data.mobileNo} is already in use.`;
+          this.errorSnack = true;
+        }
+      } finally {
+        this.loading = false;
+      }
+    },
+    saveModel (val) {
+      const saveVal = {
+        ...val,
+        password: '',
+      };
+      localStorage.setItem('individual:step1:model', JSON.stringify(saveVal));
+    },
     toggleType (type) {
       type.selected = !type.selected;
       if (type.selected) {
@@ -154,6 +195,10 @@ export default {
     showToast (type) {
       this.toggledType = type.title;
       type.selected ? this.added = true : this.removed = true;
+    },
+    doneSignupNonPH () {
+      this.emailVerificationMessageDialog = false;
+      this.$router.push({ name: 'signup-specialized-step-4' });
     }
   }
 };
