@@ -200,7 +200,7 @@ export default {
     },
     doneSignupNonPH () {
       this.emailVerificationMessageDialog = false;
-      this.$router.push({ name: 'signup-specialized-step-4' });
+      this.$router.push({ name: 'signup-specialized-step-3' });
     }
   }
 };
