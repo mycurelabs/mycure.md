@@ -91,6 +91,7 @@
 <script>
 // - utils
 import dayOrNight from '../../utils/day-or-night';
+// import { signUpSpecialized } from '../../utils/axios';
 // - components
 import EmailVerificationDialog from '../signup-individual/email-verification-dialog';
 
@@ -205,13 +206,8 @@ export default {
           return;
         }
         this.step1Data.clinicType = this.selectedType.value;
-        this.saveModel(this.step1Data);
-        if (this.step1Data.countryCallingCode !== '63') {
-          localStorage.clear();
-          this.emailVerificationMessageDialog = true;
-        } else {
-          this.$router.push({ name: 'signup-specialized-step-3' });
-        }
+        //await signUpSpecialized(this.step1Data);
+        // this.saveModel(this.step1Data);
       } catch (e) {
         console.error(e);
         this.error = true;
@@ -223,13 +219,13 @@ export default {
         this.loading = false;
       }
     },
-    saveModel (val) {
-      const saveVal = {
-        ...val,
-        password: '',
-      };
-      localStorage.setItem('individual:step1:model', JSON.stringify(saveVal));
-    },
+    // saveModel (val) {
+    //   const saveVal = {
+    //     ...val,
+    //     password: '',
+    //   };
+    //   localStorage.setItem('individual:step1:model', JSON.stringify(saveVal));
+    // },
     toggleType (type) {
       type.selected = !type.selected;
       if (type.selected) {
@@ -250,7 +246,8 @@ export default {
     },
     doneSignupNonPH () {
       this.emailVerificationMessageDialog = false;
-      this.$router.push({ name: 'signup-specialized-step-3' });
+      localStorage.clear();
+      this.$router.push({ name: 'home' });
     },
   }
 };
