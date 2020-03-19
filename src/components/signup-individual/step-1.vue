@@ -41,21 +41,8 @@
                       :rules="[requiredRule]"
                       :disabled="loading"
                     )
-                v-select(
-                  v-model="user.role"
-                  v-if="pageType === 'signup-specialized'"
-                  :items="roles"
-                  label="What is your role?"
-                  outline
-                  item-text="name"
-                  item-value="value"
-                  :rules="[requiredRule]"
-                  :disabled="loading"
-                  clearable
-                )
                 v-text-field(
                   v-model="user.doc_PRCLicenseNo"
-                  v-if="pageType === 'signup-individual' || user.role === 'doctor'"
                   label="Physician License No"
                   outline
                   :rules="[requiredRule, numberRule]"
@@ -195,14 +182,6 @@ export default {
         'Manage your clinic more efficiently',
         'Produce beautiful and useful reports',
         'Save on time and save more lives!'
-      ],
-      // - TODO: update corresponding role values
-      roles: [
-        { name: 'Owner', value: 'owner' },
-        { name: 'Administrator', value: 'admin' },
-        { name: 'Manager', value: 'manager' },
-        { name: 'Doctor', value: 'doctor' },
-        { name: 'Staff', value: 'staff' }
       ]
     };
   },
