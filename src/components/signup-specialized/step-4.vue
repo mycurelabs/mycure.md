@@ -264,7 +264,7 @@ export default {
       doctorSeatsPrice: 6,
       staffSeatsPrice: 5,
       // Models
-      clinicName: 'Metro City Clinic',
+      step1Data: {},
       storageGB: 1,
       doctorSeats: 1,
       staffSeats: 1,
@@ -308,6 +308,11 @@ export default {
     };
   },
   computed: {
+    clinicName () {
+      return this.step1Data.hasOwnProperty('firstName')
+        ? `${this.step1Data.firstName}'s Clinic`
+        : 'Your Clinic';
+    },
     totalSubscription () {
       return this.totalStoragePrice + this.totalDoctorSeatsPrice + this.totalStaffSeatsPrice + this.totalPremiumModulesPrice;
     },
@@ -334,6 +339,15 @@ export default {
       return total;
     }
   },
+  created () {
+    const step1Data = JSON.parse(localStorage.getItem('individual:step1:model'));
+    if (step1Data && !step1Data.hasOwnProperty('email')
+      && !step1Data.hasOwnProperty('clinicType')) {
+      this.$router.push({ name: 'signup-specialized-step-1'});
+    } else {
+      this.step1Data = JSON.parse(localStorage.getItem('individual:step1:model'));
+    }
+  },
   methods: {
     isMinimum (number) {
       return number <= 1;
@@ -342,13 +356,6 @@ export default {
 
     }
   },
-  created () {
-    //- TODO: Temporarily commented out in order to access this page
-    // const step1Data = JSON.parse(localStorage.getItem('individual:step1:model'));
-    // if ((step1Data && !step1Data.hasOwnProperty('email')) || !step1Data) {
-    //   this.$router.push({ name: 'signup-specialized-step-1' });
-    // } 
-  }
 };
 </script>
 
@@ -358,7 +365,8 @@ export default {
 }
 .input-field {
   border-style: groove;
-  width: 70px;
+  width: 60px;
+  padding-left: 10px;
 }
 .night-text {
   color: white !important;
