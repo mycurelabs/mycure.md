@@ -12,22 +12,22 @@
       v-layout(
         row
         wrap
-        align-center
         justify-center
       )
         v-flex(
           xs12 
           md2
-          align-center
           v-for="(type, key) in specializedTypes" 
           :key="key"
         ).pa-2
           v-card(
             hover
             @click="toggleType(type)"
-            :class="[{'grey-panel': type.selected}]"
             width="100%"
-          )
+            height="100%"
+            :color="type.selected ? '#f0f0f0' : ''"
+            :class="[{'black--text': type.selected}]"
+          ).clinic-card
             div.check-container.text-xs-right
               img(
                 v-if="type.selected"
@@ -44,6 +44,12 @@
                 )
             v-card-text.text-xs-center
               h2(:class="[$isMobile ? 'font-m' : 'font-16']") {{ type.title }}
+            v-card-text.px-2
+              p The trial includes:
+              span(v-for="(item, key) in type.checklist" :key="key")
+                span.primary--text ✓&nbsp;
+                | {{ item }}
+                br
         v-flex(xs12 md10).pa-1.mt-3
           v-card
             v-card-actions
@@ -83,6 +89,8 @@
 </template>
 
 <script>
+// - utils
+import dayOrNight from '../../utils/day-or-night';
 // - components
 import EmailVerificationDialog from '../signup-individual/email-verification-dialog';
 
@@ -91,6 +99,12 @@ export default {
     EmailVerificationDialog
   },
   data () {
+    this.dayOrNight = dayOrNight();
+    this.freeInclusions = [
+      '1 doctor account',
+      '1 staff account',
+      '1 GB Storage'
+    ];
     return {
       added: false,
       removed: false,
@@ -109,30 +123,66 @@ export default {
           value: 'aesthetics-clinic',
           image: 'mycure-specialized-clinic-feature-skin',
           selected: false,
+          checklist: [
+            ...this.freeInclusions,
+            'Core Modules',
+            'Pharmacy',
+            'Materials Management',
+          ]
         },
         {
           title: 'Pediatrics',
           value: 'pediatrics-clinic',
           image: 'mycure-specialized-clinic-feature-pedia',
           selected: false,
+          checklist: [
+            ...this.freeInclusions,
+            'Core Modules',
+            'Pharmacy',
+            'Materials Management',
+          ]
         },
         {
           title: 'Maternity Care',
           value: 'maternity-care-clinic',
           image: 'mycure-specialized-clinic-feature-maternity',
           selected: false,
+          checklist: [
+            ...this.freeInclusions,
+            'Core Modules',
+            'Laboratory',
+            'Imaging',
+            'Pharmacy',
+            'Materials Management'
+          ]
         },
         {
           title: 'Dental',
           value: 'dental-clinic',
           image: 'mycure-specialized-clinic-feature-dentist',
           selected: false,
+          checklist: [
+            ...this.freeInclusions,
+            'Core Modules',
+            'Laboratory',
+            'Imaging',
+            'Pharmacy',
+            'Materials Management'
+          ]
         },
         {
           title: 'Diagnostic',
           value: 'diagnostic-center',
           image: 'mycure-specialized-clinic-feature-diagnostics',
-          selected: false
+          selected: false,
+          checklist: [
+            ...this.freeInclusions,
+            'Core Modules',
+            'Laboratory',
+            'Imaging',
+            'Pharmacy',
+            'Materials Management'
+          ]
         }
       ]
     };
@@ -201,7 +251,7 @@ export default {
     doneSignupNonPH () {
       this.emailVerificationMessageDialog = false;
       this.$router.push({ name: 'signup-specialized-step-3' });
-    }
+    },
   }
 };
 </script>
@@ -210,11 +260,12 @@ export default {
 .link-to-home:hover {
   cursor: pointer;
 }
-.grey-card {
-  background-color: #f0f0f0 !important;
-}
 .check-container {
   min-height: 40px;
+}
+.clinic-card:hover {
+  background-color: #f0f0f0 !important;
+  color: black;
 }
 
 @media screen and (min-height: 1080px) {
