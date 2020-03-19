@@ -174,7 +174,10 @@ export const signupSpecialized = async (opts) => {
         superadmin: {
           roles: ['doctor']
         },
-        name:  `${opts.firstName}'s Clinic`
+        name:  `${opts.firstName}'s Clinic`,
+        //- TODO: Insert subscription
+        // subscription: {
+        // }
       }
     };
     if (opts.otp) payload.totpToken = opts.otp;
