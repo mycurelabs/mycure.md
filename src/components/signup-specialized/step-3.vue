@@ -11,7 +11,7 @@
           v-toolbar(flat).grey-lighten-4
             h1.font-30 {{ clinicName }}
             v-spacer
-            h2.font-25.primary--text ${{  totalSubscription }}/mo
+            h2.font-25.primary--text ${{  totalSubscription.toFixed(2) }}/mo
           v-card-text.pa-4
             v-layout(row wrap).pt-3
               v-flex(xs12 md3)
@@ -20,7 +20,7 @@
                 p.font-21 {{ clinicName }}
                 p.font-16.grey--text Your first clinic is free
                   br
-                  | Additional clinics are $5/mo.
+                  | Additional clinics are ${{ clinicPrice }}/mo.
                   br
                   span(:class="dayOrNight === 'night' ? 'night-text' : 'black--text'") Starts free
               v-flex(xs12 md3 align-self-center).text-xs-center
@@ -78,7 +78,7 @@
                   br
                   | 1 Doctor Seat is 1 MYCURE Doctor account.
                   br
-                  span(:class="dayOrNight === 'night' ? 'night-text' : 'black--text'") Price: ${{ doctorSeatsPrice }}/gb/mo
+                  span(:class="dayOrNight === 'night' ? 'night-text' : 'black--text'") Price: ${{ doctorSeatsPrice }}/doctor/mo
               v-flex(xs12 md3 align-self-center).text-xs-center
                 //- TODO: Implement rule
                 input(
@@ -113,7 +113,7 @@
                 p.font-21 Staff Seat
                 p.font-16.grey--text By default, you have 1 FREE Seat. 1 Staff seat is 1 account that you can designate at your admin panel.
                   br
-                  span(:class="dayOrNight === 'night' ? 'night-text' : 'black--text'") Price: ${{ staffSeatsPrice }}/gb/mo
+                  span(:class="dayOrNight === 'night' ? 'night-text' : 'black--text'") Price: ${{ staffSeatsPrice }}/staff/mo
               v-flex(xs12 md3 align-self-center).text-xs-center
                 input(
                   v-model="staffSeats"
@@ -195,7 +195,7 @@
             )
               v-flex(xs12 md6)
                 v-layout(row wrap)
-                  v-flex(xs2 md1)
+                  v-flex(xs2 md1).pt-3
                     v-img(
                       :src="require(`@/assets/images/subscription/mycure-accounts-subscription-modules-icon-${module.icon}${module.isSubscribed ? '-active' : ''}.png`)"
                       :alt="module.icon"
@@ -210,7 +210,7 @@
                         width="4%"
                       )
                       br
-                      | {{ module.description }}
+                      span.font-16 {{ module.description }}
                       br
                       p(:class="dayOrNight === 'night' ? 'night-text' : 'black--text'") Price: ${{ module.price }}/mo
               v-flex(xs12 md3).text-xs-center
@@ -227,20 +227,24 @@
               v-flex(xs12 md3 offset-md6)
                 b.font-21 Sub Total
               v-flex(xs12 md3)
-                p.font-21 ${{ totalSubscription }}/mo
+                p.font-21 ${{ totalSubscription.toFixed(2) }}/mo
               v-divider
             v-layout(row wrap).text-xs-center
               v-flex(xs12 md3 offset-md6)
                 p.grey--text.font-21 Estimated Tax
               v-flex(xs12 md3)
-                p.font-21 ${{ tax }}/mo
+                p.font-21 ${{ tax.toFixed(2) }}/mo
             v-divider
             v-layout(row wrap).text-xs-center
               v-flex(xs12 md3 offset-md6)
                 h2.font-weight-regular {{ clinicName }}'s Total
               v-flex(xs12 md3)
-                h2 ${{ totalSubscription + tax }}/mo
-          v-card-actions
+                h2 ${{ computedPaymentAmount.toFixed(2) }}/mo
+          v-card-actions.grey.lighten-3
+            v-btn(
+              large
+              @click="goBack"
+            ).text-none.font-weight-bold Back
             v-spacer
             v-btn(
               :color="$mcColors.mcAltGreen"
@@ -260,9 +264,10 @@ export default {
     return {
       loading: false,
       // Prices
-      storagePrice: 5,
-      doctorSeatsPrice: 6,
-      staffSeatsPrice: 5,
+      clinicPrice: 5,
+      storagePrice: 4,
+      doctorSeatsPrice: 4,
+      staffSeatsPrice: 2,
       // Models
       step1Data: {},
       storageGB: 1,
@@ -271,35 +276,35 @@ export default {
       premiumModules: [
         {
           name: 'Laboratory',
-          description: 'Insert description here',
+          description: 'A Laboratory Information System that communicates with modern diagnostic machines through HL7 interfacing.',
           icon: 'lab',
           isSubscribed: false,
           price: 5
         },
         {
           name: 'Imaging',
-          description: 'Insert description here',
+          description: 'An Imaging Information System that allows doctors to view DICOM images remotely, and patients to view imaging results online.',
           icon: 'imaging',
           isSubscribed: false,
           price: 5
         },
         {
           name: 'Materials Management',
-          description: 'Insert description here',
+          description: 'A Materials Management System built for healthcare facilities to monitor in-house supplies and over-the-counter products.',
           icon: 'inventory',
           isSubscribed: false,
           price: 5
         },
         {
           name: 'Physical Medical Exam',
-          description: 'Insert description here',
+          description: 'Manage corporate and private Annual Physical Exams, Pre-employment Medical Exams, Executive Checkups, and Full Medical Exams.',
           icon: 'pme',
           isSubscribed: false,
           price: 10
         },
         {
           name: 'Pharmacy',
-          description: 'Insert description here',
+          description: 'A Pharmacy Management System with Point-of-Sales functions, Rx access, inventory management, and reports in one place.',
           icon: 'pharmacy',
           isSubscribed: false,
           price: 8
@@ -314,11 +319,17 @@ export default {
         : 'Your Clinic';
     },
     totalSubscription () {
-      return this.totalStoragePrice + this.totalDoctorSeatsPrice + this.totalStaffSeatsPrice + this.totalPremiumModulesPrice;
+      const total = this.totalStoragePrice + this.totalDoctorSeatsPrice
+        + this.totalStaffSeatsPrice + this.totalPremiumModulesPrice;
+      return total;
     },
     tax () {
       const tax = 0.20;
       return tax;
+    },
+    computedPaymentAmount () {
+      const amount = this.totalSubscription + this.tax;
+      return amount;
     },
     totalStoragePrice () {
       return this.isMinimum(this.storageGB) ? 0 : (this.storageGB-1)*this.storagePrice;
@@ -354,6 +365,9 @@ export default {
     },
     proceedToCheckout () {
 
+    },
+    goBack () {
+      this.$router.push({name: 'signup-specialized-step-2'});
     }
   },
 };
