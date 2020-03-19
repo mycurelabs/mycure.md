@@ -83,8 +83,6 @@
 </template>
 
 <script>
-// - utils
-import { signupSpecialized } from '@/utils/axios';
 // - components
 import EmailVerificationDialog from '../signup-individual/email-verification-dialog';
 
@@ -142,9 +140,7 @@ export default {
   created () {
     const step1Data = JSON.parse(localStorage.getItem('individual:step1:model'));
     if (step1Data && !step1Data.hasOwnProperty('email')) {
-      this.pageType === 'signup-individual' ? this.$router.push({ name: 'signup-individual-step-1' })
-        : this.pageType === 'signup-specialized' ?  this.$router.push({ name: 'signup-specialized-step-1'})
-        : this.$router.push({ name: 'home'});
+         this.$router.push({ name: 'signup-specialized-step-1'});
     } else {
       this.step1Data = JSON.parse(localStorage.getItem('individual:step1:model'));
     }
@@ -160,7 +156,6 @@ export default {
         }
         this.step1Data.clinicType = this.selectedType.value;
         this.saveModel(this.step1Data);
-        await signupSpecialized(this.step1Data);
         if (this.step1Data.countryCallingCode !== '63') {
           localStorage.clear();
           this.emailVerificationMessageDialog = true;
