@@ -3,7 +3,7 @@
     v-content.bottom-bg
       v-container(fill-height)
         v-layout(row wrap align-center justify-center)
-          v-flex(xs12 md4)
+          v-flex(xs12 md4).pa-2
             img(
               src="../../assets/images/payment/mycure-accounts-checkout-cancel-callback-image.png"
               width="100%"
@@ -16,23 +16,25 @@
             :class="{'text-xs-center': $isMobile }"
           )
             img(src="../../assets/images/mycure-logo.svg" height="50")
-            h1.font-work-sans PAYMENT FAILED.
+            h1.font-work-sans TRIAL FAILED
             p.mt-3
-              | Oops! Something went wrong with your payment.
+              | Oops! Something went wrong!
               br
-              | Please go back and try again.
+              | You can always continue later. For the meantime,
+              br
+              | you can now start exploring MYCURE's FREE tier.
             v-btn(
               color="primary"
               large
               @click="onGoBack"
-            ).text-none.font-weight-bold.elevation-0 Go Back
+            ).ml-0.text-none.font-weight-bold.elevation-0 Start Exploring MYCURE!
 </template>
 
 <script>
 export default {
   methods: {
     onGoBack () {
-      this.$router.push({ name: 'home' });
+      this.$router.push({ name: 'signin' });
     },
   },
 };
