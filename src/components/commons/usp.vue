@@ -1,6 +1,8 @@
 <template lang="pug">
   fragment
-    v-container(:class="$isMobile ? 'mobile-page-height' : 'whole-page'")
+    v-container(
+      :class="[$isMobile ? 'mobile-page-height' : 'whole-page', {'mt-4': visibleCookie}]"
+    )
       v-container(fill-height)
         v-layout(row align-center)
           v-flex(xs12 md12).text-xs-center
@@ -95,6 +97,12 @@ export default {
       return this.$route.name === 'multispecialty-clinics'
         ? 'font-18'
         : 'font-s';
+    },
+    noCookie () {
+      return localStorage.getItem('accept-cookie');
+    },
+    visibleCookie () {
+      return !this.noCookie && !this.$isMobile;
     }
   },
   methods: {

@@ -13,6 +13,8 @@ import signupMultispecialtyStep2 from '@/components/signup-multispecialty/step-2
 import signupMultispecialtyStep3 from '@/components/signup-multispecialty/step-3.vue';
 import signupSpecializedStep2 from '@/components/signup-specialized/step-2.vue';
 import signupSpecializedStep3 from '@/components/signup-specialized/step-3.vue';
+import paymentSuccesss from '@/views/payment/success.vue';
+import paymentError from '@/views/payment/error.vue';
 import terms from '@/views/terms.vue';
 
 Vue.use(Router);
@@ -180,6 +182,26 @@ export default new Router({
         //   }
         // }
       ]
+    },
+    {
+      path: '/payment/success',
+      name: 'payment-success',
+      component: paymentSuccesss,
+      meta: {
+        pageType: 'payment',
+        pageName: 'Payment Successful',
+        account: true
+      }
+    },
+    {
+      path: '/payment/error',
+      name: 'payment-error',
+      component: paymentError,
+      meta: {
+        pageType: 'payment',
+        pageName: 'Payment Error',
+        account: true
+      }
     },
     {
       path: '/privacy-policy',

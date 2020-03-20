@@ -4,7 +4,8 @@
       cookie-law(
         :position="position" 
         transitionName="fade"
-      ).Cookie--mcCookie.white--text.pa-1
+        :class="[{'font-16': !$isMobile}, $isMobile ? 'py-1' : 'py-3']"
+      ).Cookie--mcCookie.white--text.px-1
         div(slot-scope="props").width100
           v-container.py-1.width100
             v-layout(row v-if="!$isMobile").px-4
@@ -17,7 +18,7 @@
                 | .  
                 | Feel free to check out our policies anytime for more info. 
               v-spacer
-              v-btn(flat icon color="white" @click="props.accept")
+              v-btn(flat icon color="white" @click="onClick(props)").mt-2
                 v-icon mdi-close
             v-layout(row v-else).pl-3
               v-flex(xs10)
@@ -34,30 +35,34 @@
 </template>
 
 <script>
-  import CookieLaw from 'vue-cookie-law';
-  export default {
-    components: {
-      CookieLaw
-    },
-    computed: {
-      position () {
-        if (!this.$isMobile) return 'top';
-        else return 'bottom';
-      }
+import CookieLaw from 'vue-cookie-law';
+export default {
+  components: {
+    CookieLaw
+  },
+  computed: {
+    position () {
+      if (!this.$isMobile) return 'top';
+      else return 'bottom';
     }
-  };
+  },
+  methods: {
+    onClick (props) {
+      props.accept();
+      localStorage.setItem('accept-cookie', true);
+    }
+  }
+};
 </script>
 
 <style scoped>
   .Cookie--mcCookie {
     margin-top: 15%;
     background-color: #075b76;
-    font-size: 13px;
   }
 
   .policy-links {
     color: white;
-    font-size: 13px; 
     font-weight: bold
   }
 

@@ -3,9 +3,9 @@
     v-content
       v-container(
         fluid fill-height
-        :class="dayOrNight === 'day' ? 'white' : 'night-sky'"
-        :style="{ 'background-image': dayOrNight === 'day' ? `url(${require('../assets/images/mycure-onboarding-background.png')})` : `url(${require('../assets/images/mycure-onboarding-background-dark-mode.png')})` }"
-      ).bg
+        :class="[dayOrNight === 'day' ? 'white' : 'night-sky', page !== 'signup-specialized-step-2' ? 'default-bg' : 'corner-bg']"
+        :style="styleConfig"
+      )
         router-view
 </template>
 
@@ -15,18 +15,33 @@ export default {
   data () {
     this.dayOrNight = dayOrNight();
     return {};
+  },
+  computed: {
+    styleConfig () {
+      const style = {
+        'background-image': this.dayOrNight === 'day' && this.page !== 'signup-specialized-step-2' ? `url(${require('../assets/images/mycure-onboarding-background.png')})`
+          : this.dayOrNight === 'night' && this.page !== 'signup-specialized-step-2' ? `url(${require('../assets/images/mycure-onboarding-background-dark-mode.png')})`
+          : `url(${require('../assets/images/MYCURE-Sign-Up-background-left-corner.png')}), url(${require('../assets/images/MYCURE-Sign-Up-background-right-corner.png')})`
+      };
+      return style;
+    },
+    page () {
+      return this.$route.name;
+    }
   }
 };
 </script>
 
 <style scoped>
-.bg {
-  /* background-image: url('../assets/images/mycure-signup-062618-footer-BG.png'); */
+.default-bg {
   background-repeat: repeat-x;
   background-attachment: fixed;
   background-position: bottom center;
-  /* background-size: 250px, contain; */
-  /* background-position: bottom right 50px, bottom; */
+}
+
+.corner-bg {
+  background-attachment: fixed;
+  background-position: left center, right center;
 }
 
 .night-sky {

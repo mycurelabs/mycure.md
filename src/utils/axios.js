@@ -157,6 +157,7 @@ export const signupIndividual = async (opts) => {
 export const signupSpecialized = async (opts) => {
   try {
     const payload = {
+      skipMobileNoVerification: true, // only for specialized signup
       email: opts.email,
       mobileNo: opts.mobileNo,
       password: opts.password,
@@ -175,9 +176,7 @@ export const signupSpecialized = async (opts) => {
           roles: ['doctor']
         },
         name:  `${opts.firstName}'s Clinic`,
-        //- TODO: Insert subscription
-        // subscription: {
-        // }
+        subscription: opts.subscription
       }
     };
     if (opts.otp) payload.totpToken = opts.otp;

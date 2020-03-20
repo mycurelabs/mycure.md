@@ -8,7 +8,8 @@
             @click="$router.push({ name: 'home' })"
           ).link-to-home.mb-3
           br
-          h1 What type of services does your clinic provide?
+          h2.primary--text Specialized Clinic: Sign Up (Step 2 of 3)
+          h1.font-work-sans Choose your specialized clinic:
       v-layout(
         row
         wrap
@@ -22,49 +23,62 @@
         ).pa-2
           v-card(
             hover
-            @click="toggleType(type)"
             width="100%"
             height="100%"
             :color="type.selected ? '#f0f0f0' : ''"
             :class="[{'black--text': type.selected}]"
           ).clinic-card
-            div.check-container.text-xs-right
-              img(
-                v-if="type.selected"
-                src="../../assets/images/mycure-web-bullet-check.png"
-                width="15%"
-                alt="Check"
-              ).mt-1.mr-1
-            v-card-text
-              div.text-xs-center
+            div(@click="toggleType(type)")
+              div.check-container.text-xs-right
                 img(
-                  :src="require(`@/assets/images/specialized/${type.image}.png`)"
-                  :alt="type.image"
-                  width="100%"
-                )
-            v-card-text.text-xs-center
-              h2(:class="[$isMobile ? 'font-m' : 'font-16']") {{ type.title }}
-            v-card-text.px-2
-              p The trial includes:
-              span(v-for="(item, key) in type.checklist" :key="key")
-                span.primary--text ✓&nbsp;
-                | {{ item }}
-                br
+                  v-if="type.selected"
+                  src="../../assets/images/mycure-web-bullet-check.png"
+                  width="15%"
+                  alt="Check"
+                ).mt-1.mr-1
+              v-card-text
+                div.text-xs-center
+                  img(
+                    :src="require(`@/assets/images/${type.image}${type.selected ? '-active' : '' }.png`)"
+                    :alt="type.image"
+                    width="100%"
+                  )
+              v-card-text.text-xs-center
+                h2(:class="[$isMobile ? 'font-m' : 'font-16']") {{ type.title }}
+              v-card-text.px-2.inclusions-container.grow
+                p The trial includes:
+                span(v-for="(item, key) in type.checklist" :key="key")
+                  span(:class="type.selected ? 'primary--text' : 'black--text'") ✓&nbsp;
+                  | {{ item }}
+                  br
+            v-card-actions.clinic-card-actions
+              v-btn(
+                color="primary"
+                medium
+                flat
+                @click="viewDetails(type)"
+              ).font-weight-bold.details-btn View Details
         v-flex(xs12 md10).pa-1.mt-3
-          v-card
+          v-card(flat)
             v-card-actions
               v-btn(
                 flat
                 :to="{ name: 'signup-specialized-step-1' }"
                 :disabled="loading"
-              ) Back
+                large
+              ).font-weight-bold Back
               v-spacer
               v-btn(
                 color="accent"
-                :disabled="loading"
+                :disabled="loading || !selectedType.value"
+                :loading="loading"
                 @click="onProceed"
-              ) Proceed
-
+                large
+              ).font-weight-bold Proceed
+    specialized-clinic-details-dialog(
+      v-model="detailsDialog"
+      :clinic="viewClinicModel"
+    )
     email-verification-dialog(
       v-model="emailVerificationMessageDialog"
       :email="step1Data.email"
@@ -75,121 +89,65 @@
       v-model="added"
       :timeout="1000"
     ) {{toggledType}} Selected!
-    
     v-snackbar(
       v-model="removed"
       :timeout="1000"
     ) {{toggledType}} Removed!
-
     v-snackbar(
       v-model="errorSnack"
       color="error"
       :timeout="1000"
     ) {{ errorMessage }}
+    stripe-checkout(
+      ref="checkouRef"
+      :pk="stripePK"
+      :sessionId="stripeCheckoutSessionId"
+    )
 </template>
 
 <script>
 // - utils
-import dayOrNight from '../../utils/day-or-night';
-// import { signUpSpecialized } from '../../utils/axios';
+import { signupSpecialized } from '../../utils/axios';
+// - constants
+import { SPECIALIZED_CLINIC_TYPES } from './constants';
 // - components
 import EmailVerificationDialog from '../signup-individual/email-verification-dialog';
+import SpecializedClinicDetailsDialog from './specialized-clinic-details-dialog';
+import { MODULE_AVAILABILITY_MAPPINGS } from '@/utils/subscriptions';
+import { StripeCheckout } from 'vue-stripe-checkout';
+import _ from 'lodash';
 
 export default {
   components: {
-    EmailVerificationDialog
+    EmailVerificationDialog,
+    SpecializedClinicDetailsDialog,
+    StripeCheckout
   },
   data () {
-    this.dayOrNight = dayOrNight();
-    this.freeInclusions = [
-      '1 doctor account',
-      '1 staff account',
-      '1 GB Storage'
-    ];
+    this.stripePK = process.env.VUE_APP_STRIPE_PK;
     return {
       added: false,
       removed: false,
       errorSnack: false,
       loading: false,
+      stripeCheckoutSessionId: '',
+      // - dialogs
       emailVerificationMessageDialog: false,
+      detailsDialog: false,
       // - models
       step1Data: {},
       toggledType: {},
       selectedType: {},
+      selectedClinicTypeModulesMapping: {},
+      viewClinicModel: {},
       errorMessage: '',
       // - enum
-      specializedTypes: [
-        {
-          title: 'Skin and Aesthetic',
-          value: 'aesthetics-clinic',
-          image: 'mycure-specialized-clinic-feature-skin',
-          selected: false,
-          checklist: [
-            ...this.freeInclusions,
-            'Core Modules',
-            'Pharmacy',
-            'Materials Management',
-          ]
-        },
-        {
-          title: 'Pediatrics',
-          value: 'pediatrics-clinic',
-          image: 'mycure-specialized-clinic-feature-pedia',
-          selected: false,
-          checklist: [
-            ...this.freeInclusions,
-            'Core Modules',
-            'Pharmacy',
-            'Materials Management',
-          ]
-        },
-        {
-          title: 'Maternity Care',
-          value: 'maternity-care-clinic',
-          image: 'mycure-specialized-clinic-feature-maternity',
-          selected: false,
-          checklist: [
-            ...this.freeInclusions,
-            'Core Modules',
-            'Laboratory',
-            'Imaging',
-            'Pharmacy',
-            'Materials Management'
-          ]
-        },
-        {
-          title: 'Dental',
-          value: 'dental-clinic',
-          image: 'mycure-specialized-clinic-feature-dentist',
-          selected: false,
-          checklist: [
-            ...this.freeInclusions,
-            'Core Modules',
-            'Laboratory',
-            'Imaging',
-            'Pharmacy',
-            'Materials Management'
-          ]
-        },
-        {
-          title: 'Diagnostic',
-          value: 'diagnostic-center',
-          image: 'mycure-specialized-clinic-feature-diagnostics',
-          selected: false,
-          checklist: [
-            ...this.freeInclusions,
-            'Core Modules',
-            'Laboratory',
-            'Imaging',
-            'Pharmacy',
-            'Materials Management'
-          ]
-        }
-      ]
+      specializedTypes: SPECIALIZED_CLINIC_TYPES
     };
   },
   created () {
     const step1Data = JSON.parse(localStorage.getItem('individual:step1:model'));
+    if (!step1Data) this.$router.push({ name: 'signup-specialized-step-1' });
     if (step1Data && !step1Data.hasOwnProperty('email')) {
          this.$router.push({ name: 'signup-specialized-step-1'});
     } else {
@@ -206,8 +164,18 @@ export default {
           return;
         }
         this.step1Data.clinicType = this.selectedType.value;
-        //await signUpSpecialized(this.step1Data);
-        // this.saveModel(this.step1Data);
+        this.step1Data.subscription = {
+          trial: true,
+          storageMax: 1,
+          doctorSeatsMax: 1,
+          staffSeatsMax: 1,
+          ...this.selectedClinicTypeModulesMapping
+        };
+        const data = await signupSpecialized(this.step1Data);
+        const checkoutSession = _.get(data, 'organization.subscription.updatesPending');
+        this.stripeCheckoutSessionId = checkoutSession.stripeSession;
+        this.$refs.checkouRef.redirectToCheckout();
+        window.localStorage.clear();
       } catch (e) {
         console.error(e);
         this.error = true;
@@ -230,6 +198,7 @@ export default {
       type.selected = !type.selected;
       if (type.selected) {
         this.selectedType = type;
+        this.selectedClinicTypeModulesMapping = MODULE_AVAILABILITY_MAPPINGS[type.value];
         this.specializedTypes = this.specializedTypes
           .map(item => {
             if (item.title !== type.title ) item.selected = false;
@@ -237,8 +206,13 @@ export default {
           });
       } else {
         this.selectedType = {};
+        this.selectedClinicTypeModulesMapping = {};
       }
       this.showToast(type);
+    },
+    viewDetails (type) {
+      this.viewClinicModel = type;
+      this.detailsDialog = true;
     },
     showToast (type) {
       this.toggledType = type.title;
@@ -260,11 +234,22 @@ export default {
 .check-container {
   min-height: 40px;
 }
+.clinic-card {
+  position: relative;
+  padding-bottom: 30px;
+}
 .clinic-card:hover {
   background-color: #f0f0f0 !important;
   color: black;
 }
-
+.clinic-card-actions {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+}
+.details-btn {
+  width: 100%
+}
 @media screen and (min-height: 1080px) {
   .check-container {
     min-height: 60px !important;
