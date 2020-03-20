@@ -16,19 +16,13 @@
             :class="{'text-xs-center': $isMobile }"
           )
             img(src="../../assets/images/mycure-logo.svg" height="50")
-            h1.font-work-sans PAYMENT SUCCESSFUL!
-            p.mt-3
-              | Your new subscription amounts to a total of&nbsp;
-              b ${{ price }}
-              br
-              | Your next due date will be on&nbsp;
-              b {{ date }}
+            h1.font-work-sans YOUR TRIAL IS NOW ACTIVE!
+            p.mt-3 Congratulations! You can now starting exploring MYCURE.
             v-btn(
               :color="$mcColors.mcAltGreen"
               large
               @click="onOkayClick"
-              style="width: 120px;"
-            ).text-none.font-weight-bold.elevation-0.white--text Okay!
+            ).ml-0.text-none.font-weight-bold.elevation-0.white--text Start exploring MYCURE!
 </template>
 
 <script>
@@ -42,6 +36,9 @@ export default {
       // - TODO: return date param
       return 'March 20, 2020';
     },
+  },
+  mounted () {
+    console.warn('just to verify stripe pk', process.env.VUE_APP_STRIPE_PK);
   },
   methods: {
     onOkayClick () {
