@@ -71,6 +71,7 @@
               v-btn(
                 color="accent"
                 :disabled="loading || !selectedType.value"
+                :loading="loading"
                 @click="onProceed"
                 large
               ).font-weight-bold Proceed
@@ -88,17 +89,20 @@
       v-model="added"
       :timeout="1000"
     ) {{toggledType}} Selected!
-    
     v-snackbar(
       v-model="removed"
       :timeout="1000"
     ) {{toggledType}} Removed!
-
     v-snackbar(
       v-model="errorSnack"
       color="error"
       :timeout="1000"
     ) {{ errorMessage }}
+    stripe-checkout(
+      ref="checkouRef"
+      :pk="stripePK"
+      :sessionId="stripeCheckoutSessionId"
+    )
 </template>
 
 <script>
@@ -109,18 +113,24 @@ import { SPECIALIZED_CLINIC_TYPES } from './constants';
 // - components
 import EmailVerificationDialog from '../signup-individual/email-verification-dialog';
 import SpecializedClinicDetailsDialog from './specialized-clinic-details-dialog';
+import { MODULE_AVAILABILITY_MAPPINGS } from '@/utils/subscriptions';
+import { StripeCheckout } from 'vue-stripe-checkout';
+import _ from 'lodash';
 
 export default {
   components: {
     EmailVerificationDialog,
-    SpecializedClinicDetailsDialog
+    SpecializedClinicDetailsDialog,
+    StripeCheckout
   },
   data () {
+    this.stripePK = process.env.VUE_APP_STRIPE_PK;
     return {
       added: false,
       removed: false,
       errorSnack: false,
       loading: false,
+      stripeCheckoutSessionId: '',
       // - dialogs
       emailVerificationMessageDialog: false,
       detailsDialog: false,
@@ -128,6 +138,7 @@ export default {
       step1Data: {},
       toggledType: {},
       selectedType: {},
+      selectedClinicTypeModulesMapping: {},
       viewClinicModel: {},
       errorMessage: '',
       // - enum
@@ -136,6 +147,7 @@ export default {
   },
   created () {
     const step1Data = JSON.parse(localStorage.getItem('individual:step1:model'));
+    if (!step1Data) this.$router.push({ name: 'signup-specialized-step-1' });
     if (step1Data && !step1Data.hasOwnProperty('email')) {
          this.$router.push({ name: 'signup-specialized-step-1'});
     } else {
@@ -152,9 +164,18 @@ export default {
           return;
         }
         this.step1Data.clinicType = this.selectedType.value;
+        this.step1Data.subscription = {
+          trial: true,
+          storageMax: 1,
+          doctorSeatsMax: 1,
+          staffSeatsMax: 1,
+          ...this.selectedClinicTypeModulesMapping
+        };
         const data = await signupSpecialized(this.step1Data);
-        console.warn('specialized data', data);
-        // this.saveModel(this.step1Data);
+        const checkoutSession = _.get(data, 'organization.subscription.updatesPending');
+        this.stripeCheckoutSessionId = checkoutSession.stripeSession;
+        this.$refs.checkouRef.redirectToCheckout();
+        window.localStorage.clear();
       } catch (e) {
         console.error(e);
         this.error = true;
@@ -177,6 +198,7 @@ export default {
       type.selected = !type.selected;
       if (type.selected) {
         this.selectedType = type;
+        this.selectedClinicTypeModulesMapping = MODULE_AVAILABILITY_MAPPINGS[type.value];
         this.specializedTypes = this.specializedTypes
           .map(item => {
             if (item.title !== type.title ) item.selected = false;
@@ -184,6 +206,7 @@ export default {
           });
       } else {
         this.selectedType = {};
+        this.selectedClinicTypeModulesMapping = {};
       }
       this.showToast(type);
     },
