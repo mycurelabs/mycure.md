@@ -8,7 +8,8 @@
             @click="$router.push({ name: 'home' })"
           ).link-to-home.mb-3
           br
-          h1 What type of services does your clinic provide?
+          h2.primary--text Specialized Clinic: Sign Up (Step 2 of 3)
+          h1.font-work-sans Choose your specialized clinic:
       v-layout(
         row
         wrap
@@ -22,48 +23,56 @@
         ).pa-2
           v-card(
             hover
-            @click="toggleType(type)"
             width="100%"
             height="100%"
             :color="type.selected ? '#f0f0f0' : ''"
             :class="[{'black--text': type.selected}]"
           ).clinic-card
-            div.check-container.text-xs-right
-              img(
-                v-if="type.selected"
-                src="../../assets/images/mycure-web-bullet-check.png"
-                width="15%"
-                alt="Check"
-              ).mt-1.mr-1
-            v-card-text
-              div.text-xs-center
+            div(@click="toggleType(type)")
+              div.check-container.text-xs-right
                 img(
-                  :src="require(`@/assets/images/specialized/${type.image}.png`)"
-                  :alt="type.image"
-                  width="100%"
-                )
-            v-card-text.text-xs-center
-              h2(:class="[$isMobile ? 'font-m' : 'font-16']") {{ type.title }}
-            v-card-text.px-2
-              p The trial includes:
-              span(v-for="(item, key) in type.checklist" :key="key")
-                span.primary--text ✓&nbsp;
-                | {{ item }}
-                br
+                  v-if="type.selected"
+                  src="../../assets/images/mycure-web-bullet-check.png"
+                  width="15%"
+                  alt="Check"
+                ).mt-1.mr-1
+              v-card-text
+                div.text-xs-center
+                  img(
+                    :src="require(`@/assets/images/${type.image}${type.selected ? '-active' : '' }.png`)"
+                    :alt="type.image"
+                    width="100%"
+                  )
+              v-card-text.text-xs-center
+                h2(:class="[$isMobile ? 'font-m' : 'font-16']") {{ type.title }}
+              v-card-text.px-2.inclusions-container.grow
+                p The trial includes:
+                span(v-for="(item, key) in type.checklist" :key="key")
+                  span(:class="type.selected ? 'primary--text' : 'black--text'") ✓&nbsp;
+                  | {{ item }}
+                  br
+            v-card-actions.clinic-card-actions
+              v-btn(
+                color="primary"
+                medium
+                flat
+              ).font-weight-bold.details-btn View Details
         v-flex(xs12 md10).pa-1.mt-3
-          v-card
+          v-card(flat)
             v-card-actions
               v-btn(
                 flat
                 :to="{ name: 'signup-specialized-step-1' }"
                 :disabled="loading"
-              ) Back
+                large
+              ).font-weight-bold Back
               v-spacer
               v-btn(
                 color="accent"
-                :disabled="loading"
+                :disabled="loading || !selectedType.value"
                 @click="onProceed"
-              ) Proceed
+                large
+              ).font-weight-bold Proceed
 
     email-verification-dialog(
       v-model="emailVerificationMessageDialog"
@@ -91,7 +100,7 @@
 <script>
 // - utils
 import dayOrNight from '../../utils/day-or-night';
-// import { signUpSpecialized } from '../../utils/axios';
+import { signupSpecialized } from '../../utils/axios';
 // - components
 import EmailVerificationDialog from '../signup-individual/email-verification-dialog';
 
@@ -122,7 +131,7 @@ export default {
         {
           title: 'Skin and Aesthetic',
           value: 'aesthetics-clinic',
-          image: 'mycure-specialized-clinic-feature-skin',
+          image: 'mycure-signup-derma',
           selected: false,
           checklist: [
             ...this.freeInclusions,
@@ -134,7 +143,7 @@ export default {
         {
           title: 'Pediatrics',
           value: 'pediatrics-clinic',
-          image: 'mycure-specialized-clinic-feature-pedia',
+          image: 'mycure-signup-pedia',
           selected: false,
           checklist: [
             ...this.freeInclusions,
@@ -146,7 +155,7 @@ export default {
         {
           title: 'Maternity Care',
           value: 'maternity-care-clinic',
-          image: 'mycure-specialized-clinic-feature-maternity',
+          image: 'mycure-signup-maternity',
           selected: false,
           checklist: [
             ...this.freeInclusions,
@@ -160,7 +169,7 @@ export default {
         {
           title: 'Dental',
           value: 'dental-clinic',
-          image: 'mycure-specialized-clinic-feature-dentist',
+          image: 'mycure-signup-dental',
           selected: false,
           checklist: [
             ...this.freeInclusions,
@@ -174,7 +183,7 @@ export default {
         {
           title: 'Diagnostic',
           value: 'diagnostic-center',
-          image: 'mycure-specialized-clinic-feature-diagnostics',
+          image: 'mycure-signup-diag',
           selected: false,
           checklist: [
             ...this.freeInclusions,
@@ -206,7 +215,8 @@ export default {
           return;
         }
         this.step1Data.clinicType = this.selectedType.value;
-        //await signUpSpecialized(this.step1Data);
+        const data = await signupSpecialized(this.step1Data);
+        console.warn('specialized data', data);
         // this.saveModel(this.step1Data);
       } catch (e) {
         console.error(e);
@@ -260,11 +270,22 @@ export default {
 .check-container {
   min-height: 40px;
 }
+.clinic-card {
+  position: relative;
+  padding-bottom: 30px;
+}
 .clinic-card:hover {
   background-color: #f0f0f0 !important;
   color: black;
 }
-
+.clinic-card-actions {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+}
+.details-btn {
+  width: 100%
+}
 @media screen and (min-height: 1080px) {
   .check-container {
     min-height: 60px !important;
