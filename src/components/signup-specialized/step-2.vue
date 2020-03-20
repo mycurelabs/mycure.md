@@ -56,6 +56,7 @@
                 color="primary"
                 medium
                 flat
+                @click="viewDetails(type)"
               ).font-weight-bold.details-btn View Details
         v-flex(xs12 md10).pa-1.mt-3
           v-card(flat)
@@ -73,10 +74,10 @@
                 @click="onProceed"
                 large
               ).font-weight-bold Proceed
-    //- specialized-clinic-details-dialog(
-    //-   v-model="detailsDialog"
-    //-   :clinic="selectedType.value"
-    //- )
+    specialized-clinic-details-dialog(
+      v-model="detailsDialog"
+      :clinic="viewClinicModel"
+    )
     email-verification-dialog(
       v-model="emailVerificationMessageDialog"
       :email="step1Data.email"
@@ -107,10 +108,12 @@ import { signupSpecialized } from '../../utils/axios';
 import { SPECIALIZED_CLINIC_TYPES } from './constants';
 // - components
 import EmailVerificationDialog from '../signup-individual/email-verification-dialog';
+import SpecializedClinicDetailsDialog from './specialized-clinic-details-dialog';
 
 export default {
   components: {
-    EmailVerificationDialog
+    EmailVerificationDialog,
+    SpecializedClinicDetailsDialog
   },
   data () {
     return {
@@ -118,11 +121,14 @@ export default {
       removed: false,
       errorSnack: false,
       loading: false,
+      // - dialogs
       emailVerificationMessageDialog: false,
+      detailsDialog: false,
       // - models
       step1Data: {},
       toggledType: {},
       selectedType: {},
+      viewClinicModel: {},
       errorMessage: '',
       // - enum
       specializedTypes: SPECIALIZED_CLINIC_TYPES
@@ -180,6 +186,10 @@ export default {
         this.selectedType = {};
       }
       this.showToast(type);
+    },
+    viewDetails (type) {
+      this.viewClinicModel = type;
+      this.detailsDialog = true;
     },
     showToast (type) {
       this.toggledType = type.title;

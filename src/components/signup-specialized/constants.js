@@ -4,6 +4,8 @@ const FREE_INCLUSIONS = [
   '1 GB Storage'
 ];
 
+const FREE_INCLUSIONS_TEXT = 'FREE 1 GB storage, 1 doctor seat, 1 staff seat';
+
 export const SPECIALIZED_CLINIC_TYPES = [
   {
     title: 'Skin and Aesthetic',
@@ -16,6 +18,12 @@ export const SPECIALIZED_CLINIC_TYPES = [
       'Pharmacy',
       'Materials Management',
     ],
+    descriptions: [
+      'Dynamic EMR module to accommodate various procedures with image uploads and medical drawings',
+      'Administration, Registration, and Billing modules',
+      'Pharmacy & Inventory Management Module partnered with Point-of-Sales functions',
+      FREE_INCLUSIONS_TEXT
+    ]
   },
   {
     title: 'Pediatrics',
@@ -27,6 +35,12 @@ export const SPECIALIZED_CLINIC_TYPES = [
       'Core Modules',
       'Pharmacy',
       'Materials Management',
+    ],
+    descriptions: [
+      'Comprehensive and complete EMR module with growth charts, a vaccination tracker, and developmental milestones', 
+      'Administration, Registration, and Billing modules',
+      'Pharmacy & Inventory Management module with Point-of-Sales functions',
+      FREE_INCLUSIONS_TEXT
     ]
   },
   {
@@ -41,6 +55,12 @@ export const SPECIALIZED_CLINIC_TYPES = [
       'Imaging',
       'Pharmacy',
       'Materials Management'
+    ],
+    descriptions: [
+      'Laboratory & Imaging modules to store lab and ultrasound results with AOG & EDD calculators',
+      'Administration, Registration, and Billing modules',
+      'Pharmacy & Inventory Management module with Point-of-Sales functions',
+      FREE_INCLUSIONS_TEXT
     ]
   },
   {
@@ -55,6 +75,13 @@ export const SPECIALIZED_CLINIC_TYPES = [
       'Imaging',
       'Pharmacy',
       'Materials Management'
+    ],
+    descriptions: [
+      'A comprehensive Dental EMR module to for baseline dental charting, proposed work documentation, and other attachments',
+      'Administration, Registration, and Billing modules',
+      'Laboratory & Imaging modules',
+      'Pharmacy & Inventory Management module with Point-of-Sales functions',
+      FREE_INCLUSIONS_TEXT
     ]
   },
   {
@@ -69,6 +96,12 @@ export const SPECIALIZED_CLINIC_TYPES = [
       'Imaging',
       'Pharmacy',
       'Materials Management'
+    ],
+    descriptions: [
+      'Interoperable Laboratory & Imaging modules with HL7 machine integrations, send-outs, and specimen tracking functions',
+      'Administration, Registration, EMR, and Billing modules',
+      'Pharmacy & Inventory Management module with Point-of-Sales functions',
+      FREE_INCLUSIONS_TEXT
     ]
   }
 ];
