@@ -6415,7 +6415,7 @@ lodash@^4.17.10, lodash@^4.17.11, lodash@^4.17.3, lodash@^4.17.4, lodash@^4.17.5
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.11.tgz#b39ea6229ef607ecd89e2c8df12536891cac9b8d"
   integrity sha512-cQKh8igo5QUhZ7lg38DYWAxMvjSAKG0A8wGSVimP07SIUEK2UO+arSRKbRZWtelMtN5V0Hkwh5ryOto/SshYIg==
 
-lodash@^4.17.14:
+lodash@^4.17.14, lodash@^4.17.15:
   version "4.17.15"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.15.tgz#b447f6670a0455bbfeedd11392eff330ea097548"
   integrity sha512-8xOcRHvCjnocdS5cpwXQXVzmmh5e5+saE2QGoeQmbKmRS6J3VQppPOIt0MnmE+4xlZoumy0GPG0D0MVIQbNA1A==
@@ -7351,6 +7351,13 @@ package-json@^4.0.0:
     registry-auth-token "^3.0.1"
     registry-url "^3.0.3"
     semver "^5.1.0"
+
+package-lock-only@0.0.4:
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/package-lock-only/-/package-lock-only-0.0.4.tgz#5cf4f379d54d0f3d18d50c92e54d92e177f2f754"
+  integrity sha512-fV1YHeTMWH5LKmdVqfWskm2/SG0iF2IrxJn3ziaPVx9CnpecGJzt8xXtLV+CYINENZwPFMtbxO5qupz0asNz1A==
+  dependencies:
+    chalk "^2.4.1"
 
 pako@~1.0.5:
   version "1.0.10"
@@ -10356,6 +10363,13 @@ vue-server-renderer@^2.6.4:
     resolve "^1.2.0"
     serialize-javascript "^1.3.0"
     source-map "0.5.6"
+
+vue-stripe-checkout@^3.1.14:
+  version "3.1.14"
+  resolved "https://registry.yarnpkg.com/vue-stripe-checkout/-/vue-stripe-checkout-3.1.14.tgz#9c5ef33fa5a86cffa0eea8b6d48757fe7f9876bb"
+  integrity sha512-kVz9U/t+BRj610N450rbcMyUOJvXAYnZCAWIS4wRLjycYKbmd9xYQVuEa879aT/q5FR5Ok3JACDfwr5hpaogcA==
+  dependencies:
+    package-lock-only "0.0.4"
 
 vue-style-loader@^4.1.0:
   version "4.1.2"
