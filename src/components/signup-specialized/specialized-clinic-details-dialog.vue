@@ -1,7 +1,7 @@
 <template lang="pug">
   v-dialog(v-model="dialog" width="500")
     v-card
-      v-toolbar(flat).white
+      v-toolbar(flat)
         h2 {{ clinic.title }} Clinic
         v-spacer
         v-btn(
@@ -14,7 +14,7 @@
         v-layout(row wrap align-center)
           v-flex(xs12 md3)
             img(
-              :src="require(`@/assets/images/${clinic.image}-active.png`)"
+              :src="require(`@/assets/images/${clinic.image || 'mycure-signup-derma'}-active.png`)"
               :alt="clinic.image"
               width="100%"
             )
