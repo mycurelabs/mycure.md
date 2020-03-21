@@ -47,10 +47,10 @@
                   v-flex
                     v-btn(
                       @click="submit" 
-                      color="success" 
+                      :color="$mcColors.mcAltGreen" 
                       :disabled="!valid || loading"
                       :loading="loading"
-                    ).right Sign in
+                    ).right.font-weight-bold Sign in
       v-dialog(v-model="otpDialog" width="400" persistent)
         v-card
           v-toolbar(flat)
