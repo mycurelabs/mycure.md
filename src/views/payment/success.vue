@@ -42,7 +42,7 @@ export default {
   },
   methods: {
     onOkayClick () {
-      this.$router.push({ name: 'home' });
+      this.$router.push({ name: 'signin' });
     },
   },
 };
