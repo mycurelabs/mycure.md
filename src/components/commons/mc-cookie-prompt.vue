@@ -78,7 +78,12 @@ export default {
    }
   }
   
-  @media (min-width: 992px) {
+  @media (min-width: 960px) {
+   .Cookie--mcCookie {
+      margin-top: 6%;
+   }
+  }
+  @media (min-width: 1100px) {
    .Cookie--mcCookie {
       margin-top: 4.5%;
    }
