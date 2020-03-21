@@ -264,7 +264,6 @@ export default {
     saveModel (val) {
       const saveVal = {
         ...val,
-        password: this.pageType === 'signup-individual' ? '' : val.password,
         acceptTerms: false
       };
       localStorage.setItem('individual:step1:model', JSON.stringify(saveVal));
