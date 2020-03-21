@@ -17,8 +17,8 @@
             router-link(:to="{ name: 'butchukoy' }" title="Sipa: Street Kick!").font-mc-blue Sipa
             | &nbsp; and a mobile photo diary meant to tell your story through photos called Pickld. He regularly shares experiences being a Mentor and Director at Founder Institute (Manila). He also started 
             router-link(:to="{ name: 'mighty-minds' }" title="Mighty Minds").font-mc-blue Mighty Minds
-            | , &nbsp; a nonprofit organization that helps kids finish school.
-        v-flex(xs12 md5).px-3.text-xs-center
+            | , a nonprofit organization that helps kids finish school.
+        v-flex(xs12 md5 :class="{'pt-5': $isMobile}").px-3.text-xs-center
           img(width="60%" src="../../assets/images/mycure-ourstory-joel.png" alt="Our Story - Joel")
           br
           br

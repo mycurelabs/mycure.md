@@ -27,6 +27,8 @@
             height="100%"
             :color="type.selected ? '#f0f0f0' : ''"
             :class="[{'black--text': type.selected}]"
+            @mouseover="onMouseOver(type.value)"
+            @mouseout="hoveredClinic = ''"
           ).clinic-card
             div(@click="toggleType(type)")
               div.check-container.text-xs-right
@@ -39,7 +41,7 @@
               v-card-text
                 div.text-xs-center
                   img(
-                    :src="require(`@/assets/images/${type.image}${type.selected ? '-active' : '' }.png`)"
+                    :src="require(`@/assets/images/${type.image}${(type.selected || hoveredClinic === type.value ) ? '-active' : '' }.png`)"
                     :alt="type.image"
                     width="100%"
                   )
@@ -68,13 +70,19 @@
                 large
               ).font-weight-bold Back
               v-spacer
-              v-btn(
-                color="accent"
-                :disabled="loading || !selectedType.value"
-                :loading="loading"
-                @click="onProceed"
-                large
-              ).font-weight-bold Proceed
+              stripe-checkout(
+                ref="checkouRef"
+                :pk="stripePK"
+                :sessionId="stripeCheckoutSessionId"
+              )
+                template(slot="checkout-button")
+                  v-btn(
+                    color="accent"
+                    :disabled="loading || !selectedType.value"
+                    :loading="loading"
+                    @click="onProceed"
+                    large
+                  ).font-weight-bold Start Trial Now
     specialized-clinic-details-dialog(
       v-model="detailsDialog"
       :clinic="viewClinicModel"
@@ -98,11 +106,6 @@
       color="error"
       :timeout="1000"
     ) {{ errorMessage }}
-    stripe-checkout(
-      ref="checkouRef"
-      :pk="stripePK"
-      :sessionId="stripeCheckoutSessionId"
-    )
 </template>
 
 <script>
@@ -140,6 +143,7 @@ export default {
       selectedType: {},
       selectedClinicTypeModulesMapping: {},
       viewClinicModel: {},
+      hoveredClinic: '',
       errorMessage: '',
       // - enum
       specializedTypes: SPECIALIZED_CLINIC_TYPES
@@ -187,13 +191,9 @@ export default {
         this.loading = false;
       }
     },
-    // saveModel (val) {
-    //   const saveVal = {
-    //     ...val,
-    //     password: '',
-    //   };
-    //   localStorage.setItem('individual:step1:model', JSON.stringify(saveVal));
-    // },
+    onMouseOver (clinicValue) {
+      this.hoveredClinic = clinicValue;
+    },
     toggleType (type) {
       type.selected = !type.selected;
       if (type.selected) {

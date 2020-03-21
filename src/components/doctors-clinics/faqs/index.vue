@@ -11,6 +11,9 @@
               img(:src="require(`@/assets/images/${questionMark}.png`)" :alt="questionMark" width="18px")
               strong.font-21 &nbsp;{{ item.question }}
               p.font-18.pl-1.pt-2 {{ item.answer }}
+                span(v-if="key === 4") &nbsp;
+                  router-link(:to="{name: 'features'}") features
+                  | &nbsp; to view the other modules.
               br
             div(v-else-if="key < 12 && key > 6 && column === 2")
               img(:src="require(`@/assets/images/${questionMark}.png`)" :alt="questionMark" width="18px")
@@ -27,6 +30,9 @@
             img(:src="require(`@/assets/images/${questionMark}.png`)" :alt="questionMark" width="18px")
             strong.font-21 &nbsp;{{ item.question }}
             p.font-21.pl-1.pt-2 {{ item.answer }}
+              span(v-if="key === 4") &nbsp;
+                router-link(:to="{name: 'features'}") features
+                | &nbsp; to view the other modules.
             p(v-if="item.supplement" :class="{'pl-3' : !$isMobile}").font-21.pre-white-space {{ parseSupplement(item)}}
             br
 </template>
@@ -58,7 +64,7 @@ export default {
         },
         {
           question: 'Can I still get the other modules for my clinic?',
-          answer: 'Sure! Just update your subscription under Accounts and upgrade to a premium subscription by subscribing to our other available modules! Check out our Features to view the other modules.'
+          answer: 'Sure! Just update your subscription under Accounts and upgrade to a premium subscription by subscribing to our other available modules! Check out our'
         },
         {
           question: 'Can I transfer my existing charts to MYCURE?',

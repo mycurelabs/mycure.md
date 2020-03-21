@@ -1,6 +1,5 @@
 <template lang="pug">
   div
-    //- TODO: Configure Google Analytics Events
     //- WEB
     div(v-if="!$isMd" :class="[shadow]").toolbarMain.white
       toolbar-web(
