@@ -24,8 +24,6 @@
               )#otpField.otp-field.my-3
             v-flex(shrink v-if="loading").pl-3
               v-progress-circular(indeterminate size="15" color="primary")
-          //- v-layout(row).pa-0.mb-3
-            v-btn(style="margin-left: 0px")
           p Didn't get the code?
           v-btn(
             style="width: 150px;"

@@ -7,6 +7,9 @@
             src="../../assets/images/mycure-header-logo.png"
             @click="$router.push({ name: 'home' })"
           ).link-to-home.mb-3
+          h2.primary--text {{ pageType === 'signup-individual' ? 'Doctors' : 'Specialized'}} Clinic: Sign Up (Step 1 of&nbsp;
+            | {{ pageType === 'signup-individual' ? '2' : '3'}})
+          br
           h1#step-1-title Become a techy doctor in minutes!
           br
           v-layout(row v-for="(item, key) in checkListItems" :key="key")
@@ -261,7 +264,6 @@ export default {
     saveModel (val) {
       const saveVal = {
         ...val,
-        password: this.pageType === 'signup-individual' ? '' : val.password,
         acceptTerms: false
       };
       localStorage.setItem('individual:step1:model', JSON.stringify(saveVal));

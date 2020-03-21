@@ -1,32 +1,49 @@
 <template lang="pug">
   v-app(:dark="dayOrNight === 'night'")
     v-content
-      v-container(
-        fluid fill-height
-        :class="dayOrNight === 'day' ? 'white' : 'night-sky'"
-        :style="{ 'background-image': dayOrNight === 'day' ? `url(${require('../assets/images/mycure-onboarding-background.png')})` : `url(${require('../assets/images/mycure-onboarding-background-dark-mode.png')})` }"
-      ).bg
+      div(
+        :style="styleConfig"
+        :class="[dayOrNight === 'day' ? 'day-bg' : 'night-sky']"
+      ).bg-positions.pt-5.px-3#top
         router-view
+      div(:class="[dayOrNight === 'day' ? 'day-bg' : 'night-sky']")
+        v-img(:src="require(`../assets/images/mycure-onboarding-background${dayOrNight === 'night' ? '-dark-mode' : ''}.png`)" alt="Sign up background")
 </template>
 
 <script>
+// - utils
 import dayOrNight from '../utils/day-or-night';
+import VueScrollTo from 'vue-scrollto';
+
 export default {
   data () {
     this.dayOrNight = dayOrNight();
     return {};
+  },
+  computed: {
+    styleConfig () {
+      const style = {
+        'background-image': `url(${require('../assets/images/MYCURE-Sign-Up-background-left-corner.png')}), url(${require('../assets/images/MYCURE-Sign-Up-background-right-corner.png')})`
+      };
+      return this.$isMobile ? {} : style;
+    },
+    page () {
+      return this.$route.name;
+    }
+  },
+  mounted () {
+    VueScrollTo.scrollTo(`#top`, 500, { easing: 'ease' } );
   }
 };
 </script>
 
 <style scoped>
-.bg {
-  /* background-image: url('../assets/images/mycure-signup-062618-footer-BG.png'); */
-  background-repeat: repeat-x;
-  background-attachment: fixed;
-  background-position: bottom center;
-  /* background-size: 250px, contain; */
-  /* background-position: bottom right 50px, bottom; */
+.day-bg {
+  background-color: #fafafa;
+}
+
+.bg-positions {
+  background-position: left center, right center;
 }
 
 .night-sky {

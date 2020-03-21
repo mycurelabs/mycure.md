@@ -85,7 +85,7 @@ export default {
   }
   @media (min-width: 1100px) {
    .Cookie--mcCookie {
-      margin-top: 4.5%;
+      margin-top: 60px;
    }
   }
 

@@ -1,16 +1,20 @@
 <template lang="pug">
   v-app(:dark="dayOrNight === 'night'")
     v-content
-      v-container(
-        fluid fill-height
-        :class="[dayOrNight === 'day' ? 'white' : 'night-sky', page !== 'signup-specialized-step-2' ? 'default-bg' : 'corner-bg']"
+      div(
         :style="styleConfig"
-      )
+        :class="[dayOrNight === 'day' ? 'day-bg' : 'night-sky']"
+      ).bg-positions.pt-5.px-3#top
         router-view
+      div(:class="[dayOrNight === 'day' ? 'day-bg' : 'night-sky']")
+        v-img(:src="require(`../assets/images/mycure-onboarding-background${dayOrNight === 'night' ? '-dark-mode' : ''}.png`)" alt="Sign up background")
 </template>
 
 <script>
+// - utils
 import dayOrNight from '../utils/day-or-night';
+import VueScrollTo from 'vue-scrollto';
+
 export default {
   data () {
     this.dayOrNight = dayOrNight();
@@ -19,28 +23,26 @@ export default {
   computed: {
     styleConfig () {
       const style = {
-        'background-image': this.dayOrNight === 'day' && this.page !== 'signup-specialized-step-2' ? `url(${require('../assets/images/mycure-onboarding-background.png')})`
-          : this.dayOrNight === 'night' && this.page !== 'signup-specialized-step-2' ? `url(${require('../assets/images/mycure-onboarding-background-dark-mode.png')})`
-          : `url(${require('../assets/images/MYCURE-Sign-Up-background-left-corner.png')}), url(${require('../assets/images/MYCURE-Sign-Up-background-right-corner.png')})`
+        'background-image': `url(${require('../assets/images/MYCURE-Sign-Up-background-left-corner.png')}), url(${require('../assets/images/MYCURE-Sign-Up-background-right-corner.png')})`
       };
-      return style;
+      return this.$isMobile ? {} : style;
     },
     page () {
       return this.$route.name;
     }
+  },
+  mounted () {
+    VueScrollTo.scrollTo(`#top`, 500, { easing: 'ease' } );
   }
 };
 </script>
 
 <style scoped>
-.default-bg {
-  background-repeat: repeat-x;
-  background-attachment: fixed;
-  background-position: bottom center;
+.day-bg {
+  background-color: #fafafa;
 }
 
-.corner-bg {
-  background-attachment: fixed;
+.bg-positions {
   background-position: left center, right center;
 }
 

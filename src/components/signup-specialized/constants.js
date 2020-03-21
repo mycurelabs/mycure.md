@@ -58,7 +58,7 @@ export const SPECIALIZED_CLINIC_TYPES = [
     ],
     descriptions: [
       'Laboratory & Imaging modules to store lab and ultrasound results with AOG & EDD calculators',
-      'Administration, Registration, and Billing modules',
+      'Administration, Registration, EMR, and Billing modules',
       'Pharmacy & Inventory Management module with Point-of-Sales functions',
       FREE_INCLUSIONS_TEXT
     ]
