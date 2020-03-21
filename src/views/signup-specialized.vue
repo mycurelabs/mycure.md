@@ -43,7 +43,7 @@ export default {
 }
 
 .day-bg {
-  background-color: #f0f0f0;
+  background-color: #fafafa;
 }
 
 .bg-positions {

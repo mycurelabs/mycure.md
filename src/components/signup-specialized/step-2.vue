@@ -23,9 +23,10 @@
         ).pa-2
           v-card(
             hover
+            :flat="!type.selected"
             width="100%"
             height="100%"
-            :color="type.selected ? '#f0f0f0' : ''"
+            :color="cardColor(type)"
             :class="[{'black--text': type.selected}]"
             @mouseover="onMouseOver(type.value)"
             @mouseout="hoveredClinic = ''"
@@ -43,14 +44,14 @@
                   img(
                     :src="require(`@/assets/images/${type.image}${(type.selected || hoveredClinic === type.value ) ? '-active' : '' }.png`)"
                     :alt="type.image"
-                    width="100%"
+                    width="80%"
                   )
               v-card-text.text-xs-center
                 h2(:class="[$isMobile ? 'font-m' : 'font-16']") {{ type.title }}
               v-card-text.px-2.inclusions-container.grow
                 p The trial includes:
                 span(v-for="(item, key) in type.checklist" :key="key")
-                  span(:class="type.selected ? 'primary--text' : 'black--text'") ✓&nbsp;
+                  span(:class="{'primary--text': type.selected}") ✓&nbsp;
                   | {{ item }}
                   br
             v-card-actions.clinic-card-actions
@@ -62,7 +63,9 @@
               ).font-weight-bold.details-btn View Details
         v-flex(xs12 md10).pa-1.mt-3
           v-card(flat)
-            v-card-actions
+            v-card-actions(
+              :class="dayOrNight === 'day' ? 'day-card-actions' : 'night-card-actions'"
+            )
               v-btn(
                 flat
                 :to="{ name: 'signup-specialized-step-1' }"
@@ -111,6 +114,7 @@
 <script>
 // - utils
 import { signupSpecialized } from '../../utils/axios';
+import dayOrNight from '../../utils/day-or-night';
 // - constants
 import { SPECIALIZED_CLINIC_TYPES } from './constants';
 // - components
@@ -128,6 +132,7 @@ export default {
   },
   data () {
     this.stripePK = process.env.VUE_APP_STRIPE_PK;
+    this.dayOrNight = dayOrNight();
     return {
       added: false,
       removed: false,
@@ -223,11 +228,24 @@ export default {
       localStorage.clear();
       this.$router.push({ name: 'home' });
     },
+    cardColor (type) {
+      if (this.dayOrNight === 'day') {
+        return type.selected ? 'white' : '#f0f0f0';
+      } else {
+        return type.selected ? 'white' : 'black';
+      }
+    }
   }
 };
 </script>
 
 <style scoped>
+.day-card-actions {
+  background-color: #fafafa;
+}
+.night-card-actions {
+  background-color:  rgb(28,28,28);
+}
 .link-to-home:hover {
   cursor: pointer;
 }
@@ -239,8 +257,9 @@ export default {
   padding-bottom: 30px;
 }
 .clinic-card:hover {
-  background-color: #f0f0f0 !important;
+  background-color: white !important;
   color: black;
+  cursor: pointer;
 }
 .clinic-card-actions {
   position: absolute;
