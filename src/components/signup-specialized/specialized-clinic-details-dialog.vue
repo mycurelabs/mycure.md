@@ -11,7 +11,7 @@
         )
           v-icon mdi-close
       v-card-text
-        v-layout(row wrap align-center)
+        v-layout(row wrap)
           v-flex(xs12 md3)
             img(
               :src="require(`@/assets/images/${clinic.image || 'mycure-signup-derma'}-active.png`)"
