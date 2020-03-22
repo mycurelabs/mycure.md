@@ -60,6 +60,11 @@
             @click="onAcknowledgment"
             large
           ).text-none.font-weight-bold Get Started
+    v-snackbar(
+      v-model="showSnack"
+      :color="snackBarModel.color"
+      :timeout="1000"
+    ) {{ snackBarModel.text }}
 
 </template>
 
@@ -78,7 +83,12 @@ export default {
       successDialog: false,
       otp: '',
       step1Data: {},
-      otpCountdown: null
+      otpCountdown: null,
+      showSnack: false,
+      snackBarModel: {
+        text: 'Success!',
+        color: 'accent'
+      }
     };
   },
   computed: {
@@ -102,9 +112,7 @@ export default {
           code: this.otp
         };
         await verifyMobileNo(payload);
-        this.$route.meta.pageType === 'signup-individual'
-          ? this.successDialog = true
-          : this.$router.push({ name: 'signup-specialized-step-4'});
+        this.successDialog = true;
       } catch (e) {
         this.verificationError = true;
         console.error(e);
@@ -121,14 +129,24 @@ export default {
         });
         await resendVerificationCode({ token: accessToken });
         this.resetCountDown();
+        this.snackBarModel = {
+          text: 'OTP was resent successfully!',
+          color: 'accent'
+        };
+        this.showSnack = true;
       } catch (e) {
         console.error(e);
+        this.snackBarModel = {
+          text: 'There was an error in sending. Please try again!',
+          color: 'error'
+        };
+        this.showSnack = true;
       } finally {
         this.sendingCode = false;
       }
     },
     onAcknowledgment () {
-      localStorage.removeItem('individual:step-1:model');
+      localStorage.clear();
       this.$router.push({ name: 'signin' });
     },
     startCountDown () {

@@ -12,7 +12,6 @@ import signupMultispecialtyStep1 from '@/components/signup-multispecialty/step-1
 import signupMultispecialtyStep2 from '@/components/signup-multispecialty/step-2.vue';
 import signupMultispecialtyStep3 from '@/components/signup-multispecialty/step-3.vue';
 import signupSpecializedStep2 from '@/components/signup-specialized/step-2.vue';
-import signupSpecializedStep3 from '@/components/signup-specialized/step-3.vue';
 import paymentSuccesss from '@/views/payment/success.vue';
 import paymentError from '@/views/payment/error.vue';
 import terms from '@/views/terms.vue';
@@ -162,25 +161,7 @@ export default new Router({
             pageType: 'signup-specialized',
             account: true
           }
-        },
-        {
-          path: 'step-3',
-          name: 'signup-specialized-step-3',
-          component: signupSpecializedStep3,
-          meta: {
-            pageType: 'signup-specialized',
-            account: true
-          }
         }
-        // {
-        //   path: 'step-4',
-        //   name: 'signup-specialized-step-4',
-        //   component: signupSpecializedStep4,
-        //   meta: {
-        //     pageType: 'signup-specialized',
-        //     account: true
-        //   }
-        // }
       ]
     },
     {
