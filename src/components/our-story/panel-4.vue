@@ -4,11 +4,10 @@
       v-layout(row wrap)
         v-flex(xs12 md12)
           v-layout(row wrap justify-center)
-            v-flex(xs12 md8 offset-md4).px-4.pb-3
+            v-flex(xs12).px-4.pb-3.text-xs-center
               h1.pt-5.font-40.pb-3.font-work-sans Our Purpose
-            v-flex(xs12 md4).px-4
-              img(width="100%" src="../../assets/images/mycure-team.jpg" alt="Our Story - Team")
-            v-flex(xs12 md8 :class="{'pt-3' : $isMobile}").px-4.font-21
+            v-flex(xs12 :class="{'pt-3' : $isMobile}").px-4.font-21
+              img(width="100%" src="../../assets/images/mycure-team.png" alt="Our Story - Team").pb-4
               p MYCURE’s vision is to&nbsp;
                 strong securely organize medical records that will provide fast, safe, and efficient access to health professionals, enabling them to help and save more lives
                 | .

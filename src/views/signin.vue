@@ -50,7 +50,7 @@
                       :color="$mcColors.mcAltGreen" 
                       :disabled="!valid || loading"
                       :loading="loading"
-                    ).right.font-weight-bold Sign in
+                    ).right.font-weight-bold.white--text Sign in
       v-dialog(v-model="otpDialog" width="400" persistent)
         v-card
           v-toolbar(flat)

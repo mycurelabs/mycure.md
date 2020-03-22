@@ -1,12 +1,12 @@
 <template lang="pug">
   div.main-container.pb-5
     v-layout(row justify-center align-center)
-      v-flex(xs12 md10).text-xs-center
+      v-flex(xs10 md10).text-xs-center
           h1(:class="[{'pre-white-space': !$isMobile}, $isMobile ? 'font-36' : 'font-40']").text-xs-center.font-work-sans.lh-title {{ title }}
           img(
             :src="require(`@/assets/images/multispecialty/${image}.png`)"
             :alt="image"
-            :width="$isMobile ? '80%' : '40%'"
+            :width="$isMobile ? '100%' : '40%'"
           ).my-2
           p(:class="{'pre-white-space': !$isMobile}").font-s.text-xs-center.pt-3 {{ description }}
     v-layout(row justify-center align-center).pt-4

@@ -38,6 +38,9 @@ export default {
 </script>
 
 <style scoped>
+#top {
+  min-height: 100vh;
+}
 .day-bg {
   background-color: #fafafa;
 }
