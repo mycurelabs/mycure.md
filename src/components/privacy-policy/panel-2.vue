@@ -106,8 +106,8 @@
           p If you have any questions about this Privacy Policy, please contact:
           ul 
             li Title:		Data Protection Officer
-            li Address: 	Unit B8 Luisa Building, 107 Maginhawa Street Teachers Village, QC
-            li Phone No:	(02) 4340217
+            li Address: #107 TKC Square (Formerly Luisa Bldg. 2) Maginhawa St, Teacher's Village - East, QC 1101
+            li Phone No:	(+632) 7799 6262
             li Email Address: privacy@mycure.md
 </template>
 
