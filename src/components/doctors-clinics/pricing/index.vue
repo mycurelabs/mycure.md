@@ -24,7 +24,7 @@
                       :alt="item.image"
                       width="95%"
                     )
-                    h1(:class="[{'pre-white-space' : !$isMobile}, {'pt-5': !$isMobile }]").font-40.font-work-sans.lh-title {{ item.title }}
+                    h1(:class="[{'pt-5': !$isMobile }]").font-40.font-work-sans.lh-title {{ item.title }}
                     p(:class="{'pre-white-space' : !$isMobile}").font-18 {{ parseDescription(item) }}
                   v-flex(xs12 md6)
                     v-container.text-xs-left
@@ -46,6 +46,7 @@
                       @click="handlePricingBtn(item.type)"
                       dark
                       large
+                      :top="!$isMobile"
                       block
                     ).text-none.font-weight-bold.font-18 {{ item.btnText }}
         //- v-layout(row align-center).pt-3
@@ -85,13 +86,6 @@ export default {
     }
   },
   methods: {
-    parseTitle (item) {
-      const { title } = item;
-      if (this.$isMobile) return title;
-      return item.type === 'solo'
-        ? parseTextWithNewLine(title, ['Solo '])
-        : parseTextWithNewLine(title, ['Group ']);
-    },
     parseDescription (item) {
       const { description } = item;
       if (this.$isMobile) return description;
