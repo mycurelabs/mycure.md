@@ -7,6 +7,8 @@
             src="../../assets/images/mycure-header-logo.png"
             @click="$router.push({ name: 'home' })"
           ).link-to-home.mb-3
+          h2.primary--text Multispecialty Clinic: Sign Up (Step 1 of 3)
+          br
           h1#step-1-title Let's talk soon!
           br
           p Please fill out the form and expect a call from our experts within 24 hours.
@@ -27,7 +29,6 @@
         v-flex(xs12 md5)
           v-card
             v-card-text
-              h5.primary--text Step 3 of 3
               h1 Fill out the form below.
             v-card-text
               v-form(ref="formRef" v-model="valid")
