@@ -89,7 +89,7 @@
                   label="Password"
                   outline
                   :type="showPass ? 'text' : 'password'"
-                  :rules="[requiredRule]"
+                  :rules="[requiredRule, passwordRule]"
                   :append-icon="showPass ? 'mdi-eye-off' : 'mdi-eye'"
                   :disabled="loading"
                   @click:append="showPass = !showPass"
@@ -154,6 +154,9 @@ import { getCountry, getCountries, signupIndividual } from '../../utils/axios';
 import { parsePhoneNumberFromString } from 'libphonenumber-js';
 // - components
 import EmailVerificationDialog from './email-verification-dialog';
+
+const PASS_LENGTH = 6;
+
 export default {
   components: {
     EmailVerificationDialog
@@ -176,6 +179,7 @@ export default {
       requiredRule: v => !!v || 'This field is required',
       numberRule: v => v >= 0 || 'Please input a valid number',
       emailRule: v => /.+@.+/.test(v) || 'Email address must be valid',
+      passwordRule: v => v.length >= PASS_LENGTH || 'Password length must be at least 6 characters.',
       matchPasswordRule: v => v === this.user.password || 'Passwords do not match',
       error: false,
       errorMessage: 'There was an error please try again later.',
