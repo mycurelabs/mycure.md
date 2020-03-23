@@ -16,6 +16,10 @@
               img(width="20" src="../../assets/images/mycure-check.png")
             v-flex(shrink)
               p.font-21 {{ item }}
+          v-layout(row).pt-5
+            v-flex.mb-3
+              b.font-18 Already have an account? 
+                router-link(:to="{ name: 'signin' }") Sign in.
         v-flex(xs12 md5)
           v-card
             v-card-text
@@ -56,10 +60,8 @@
                 color="accent"
                 :disabled="!valid"
                 @click="next"
-              ) Next
-          div.mt-3.font-18
-            b Already have an account? 
-              router-link(:to="{ name: 'signin' }") Sign in.
+                large
+              ).font-weight-bold Next
 </template>
 
 <script>

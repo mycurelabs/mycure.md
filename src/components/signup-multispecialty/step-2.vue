@@ -38,11 +38,21 @@
                   h3 {{module.name}}
                   p {{module.description}}
         v-flex(xs12 md10).pa-1.mt-3
-          v-card
-            v-card-actions
-              v-btn(flat :to="{ name: 'signup-multispecialty-step-1' }") Back
+          v-card(flat)
+            v-card-actions(
+              :class="dayOrNight === 'day' ? 'day-card-actions' : 'night-card-actions'"
+            )
+              v-btn(
+                :to="{ name: 'signup-multispecialty-step-1' }"
+                flat
+                large
+              ).font-weight-bold Back
               v-spacer
-              v-btn(color="accent" :to="{ name: 'signup-multispecialty-step-3' }") Next
+              v-btn(
+                color="accent"
+                :to="{ name: 'signup-multispecialty-step-3' }"
+                large
+              ).font-weight-bold Next
 
     v-snackbar(
       color="accent"
@@ -116,5 +126,12 @@ export default {
 
 .link-to-home:hover {
   cursor: pointer;
+}
+
+.day-card-actions {
+  background-color: #fafafa;
+}
+.night-card-actions {
+  background-color:  rgb(28,28,28);
 }
 </style>
