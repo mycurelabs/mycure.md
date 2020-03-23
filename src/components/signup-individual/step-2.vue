@@ -4,7 +4,7 @@
       v-layout(row wrap justify-center align-center)
         v-flex(xs12 md6).pa-1.mb-3
           img(
-            src="../../assets/images/mycure-header-logo.png"
+            src=`../../assets/images/mycure-${dayOrNight === 'day' ? 'header' : 'footer'}-logo.png`
             @click="$router.push({ name: 'home' })"
           ).link-to-home.mb-3
           br

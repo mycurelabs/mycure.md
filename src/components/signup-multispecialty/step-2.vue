@@ -4,7 +4,7 @@
       v-layout(row wrap justify-center)
         v-flex(xs12 md10).pa-1.mb-3
           img(
-            src="../../assets/images/mycure-header-logo.png"
+            src=`../../assets/images/mycure-${dayOrNight === 'day' ? 'header' : 'footer'}-logo.png`
             @click="$router.push({ name: 'home' })"
           ).link-to-home.mb-3
           br
@@ -58,9 +58,14 @@
 </template>
 
 <script>
+// - utils
+import dayOrNight from '../../utils/day-or-night';
+// - constants
 import modules from '../../assets/fixtures/modules';
+
 export default {
   data () {
+    this.dayOrNight = dayOrNight();
     return {
       selectedModule: {},
       added: false,

@@ -4,7 +4,7 @@
       v-layout(row wrap justify-center)
         v-flex(xs12 md5)
           img(
-            src="../../assets/images/mycure-header-logo.png"
+            src=`../../assets/images/mycure-${dayOrNight === 'day' ? 'header' : 'footer'}-logo.png`
             @click="$router.push({ name: 'home' })"
           ).link-to-home.mb-3
           h2.primary--text Multispecialty Clinic: Sign Up (Step 1 of 3)
@@ -134,14 +134,18 @@
 </template>
 
 <script>
+// - utils
 import _ from 'lodash';
-import modules from '../../assets/fixtures/modules';
 import {
   getCountry,
   getCountries,
   sendMultiSpecialtyInquiry 
 } from '../../utils/axios';
 import { parsePhoneNumberFromString } from 'libphonenumber-js';
+import dayOrNight from '../../utils/day-or-night';
+// - constants
+import modules from '../../assets/fixtures/modules';
+
 export default {
   data () {
     this.step1Fields = [
@@ -164,6 +168,7 @@ export default {
         .map(m => ({ 
           ...m, icon: require(`../../assets/images/${m.icon}`)
         }));
+    this.dayOrNight = dayOrNight();
     return {
       loading: false,
       valid: false,

@@ -4,7 +4,7 @@
       v-layout(row wrap justify-center)
         v-flex(xs12 md5 :class="[{'pt-5': !$isMobile}, {'mt-5': !$isMobile}]")
           img(
-            src="../../assets/images/mycure-header-logo.png"
+            src=`../../assets/images/mycure-${dayOrNight === 'day' ? 'header' : 'footer'}-logo.png`
             @click="$router.push({ name: 'home' })"
           ).link-to-home.mb-3
           h2.primary--text {{ pageType === 'signup-individual' ? 'Doctors' : 'Specialized'}} Clinic: Sign Up (Step 1 of&nbsp;
@@ -152,6 +152,7 @@
 // - utils
 import { getCountry, getCountries, signupIndividual } from '../../utils/axios';
 import { parsePhoneNumberFromString } from 'libphonenumber-js';
+import dayOrNight from '../../utils/day-or-night';
 // - components
 import EmailVerificationDialog from './email-verification-dialog';
 
@@ -162,6 +163,7 @@ export default {
     EmailVerificationDialog
   },
   data () {
+    this.dayOrNight = dayOrNight();
     return {
       valid: false,
       loading: false,
