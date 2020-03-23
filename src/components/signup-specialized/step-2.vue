@@ -163,6 +163,10 @@ export default {
       this.step1Data = JSON.parse(localStorage.getItem('individual:step1:model'));
     }
   },
+  mounted () {
+    this.selectedType = {};
+    this.specializedTypes.map(type => type.selected = false);
+  },
   methods: {
     async onProceed () {
       try {
