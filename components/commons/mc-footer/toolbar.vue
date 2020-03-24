@@ -1,9 +1,9 @@
 <template lang="pug">
-  div
+  v-container
     div(v-if="!$isMobile")
       v-toolbar(flat).footer-grey
         nuxt-link(:to="{ name: 'home' }" title="MYCURE | Clinic Management System | Cloud EMR Philippines")
-          v-row(align="center").text-center
+          v-row.text-center
             img(src="~/assets/images/mycure-footer-logo.png" height="40" alt="MYCURE logo")
         v-spacer
         div(v-for="(account,key) in socMed" :key="key")
