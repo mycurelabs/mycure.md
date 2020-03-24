@@ -84,6 +84,11 @@ export default {
     margin-top: 6%;
   }
 }
+@media (min-width: 1023px) {
+  .Cookie--mcCookie {
+    margin-top: 8%;
+  }
+}
 @media (min-width: 1100px) {
   .Cookie--mcCookie {
     margin-top: 80px;
