@@ -12,7 +12,7 @@
               v-card-text.pa-4
                 img(
                   width="120" 
-                  src="../assets/images/mycure-header-logo.png"
+                  src=`../assets/images/mycure-${dayOrNight === 'day' ? 'header' : 'footer'}-logo.png`
                   @click="$router.push({ name: 'home' })"
                 ).link-to-home.mb-3
                 h1.signin-title It's nice to see you here!

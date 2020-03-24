@@ -4,9 +4,11 @@
       v-layout(row wrap justify-center)
         v-flex(xs12 md5)
           img(
-            src="../../assets/images/mycure-header-logo.png"
+            src=`../../assets/images/mycure-${dayOrNight === 'day' ? 'header' : 'footer'}-logo.png`
             @click="$router.push({ name: 'home' })"
           ).link-to-home.mb-3
+          h2.primary--text Multispecialty Clinic: Sign Up (Step 1 of 3)
+          br
           h1#step-1-title Let's talk soon!
           br
           p Please fill out the form and expect a call from our experts within 24 hours.
@@ -27,7 +29,6 @@
         v-flex(xs12 md5)
           v-card
             v-card-text
-              h5.primary--text Step 3 of 3
               h1 Fill out the form below.
             v-card-text
               v-form(ref="formRef" v-model="valid")
@@ -91,19 +92,24 @@
                   :error-messages="dateErrorMessage"
                 )
         v-flex(xs12 md10).mt-2
-          v-card
-            v-card-actions
-              v-btn(flat :to="{ name: 'signup-multispecialty-step-2' }") Back
+          v-card(flat)
+            v-card-actions(
+              :class="dayOrNight === 'day' ? 'day-card-actions' : 'night-card-actions'"
+            )
+              v-btn(
+                :to="{ name: 'signup-multispecialty-step-2' }"
+                flat
+                large
+                :disabled="loading"
+              ).font-weight-bold Back
               v-spacer
               v-btn(
                 color="accent"
+                large
                 :disabled="loading"
                 :loading="loading"
                 @click="submit"
-              ) Request for Demo
-        v-flex(xs12 md6 offset-md-6 :class="{'text-xs-right' : !$isMobile}").pt-2
-          b.font-18 Already have an account? 
-            router-link(:to="{ name: 'signin' }") Sign in.
+              ).font-weight-bold Request for Demo
     v-snackbar(
       v-model="success"
       color="accent"
@@ -133,14 +139,18 @@
 </template>
 
 <script>
+// - utils
 import _ from 'lodash';
-import modules from '../../assets/fixtures/modules';
 import {
   getCountry,
   getCountries,
   sendMultiSpecialtyInquiry 
 } from '../../utils/axios';
 import { parsePhoneNumberFromString } from 'libphonenumber-js';
+import dayOrNight from '../../utils/day-or-night';
+// - constants
+import modules from '../../assets/fixtures/modules';
+
 export default {
   data () {
     this.step1Fields = [
@@ -163,6 +173,7 @@ export default {
         .map(m => ({ 
           ...m, icon: require(`../../assets/images/${m.icon}`)
         }));
+    this.dayOrNight = dayOrNight();
     return {
       loading: false,
       valid: false,
@@ -375,5 +386,12 @@ h1 {
 
 .link-to-home:hover {
   cursor: pointer;
+}
+
+.day-card-actions {
+  background-color: #fafafa;
+}
+.night-card-actions {
+  background-color:  rgb(28,28,28);
 }
 </style>

@@ -4,7 +4,7 @@
       v-layout(row wrap justify-center)
         v-flex(xs12 md10).pa-1.mb-3
           img(
-            src="../../assets/images/mycure-header-logo.png"
+            src=`../../assets/images/mycure-${dayOrNight === 'day' ? 'header' : 'footer'}-logo.png`
             @click="$router.push({ name: 'home' })"
           ).link-to-home.mb-3
           br
@@ -162,6 +162,10 @@ export default {
     } else {
       this.step1Data = JSON.parse(localStorage.getItem('individual:step1:model'));
     }
+  },
+  mounted () {
+    this.selectedType = {};
+    this.specializedTypes.map(type => type.selected = false);
   },
   methods: {
     async onProceed () {

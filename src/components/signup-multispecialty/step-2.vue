@@ -4,11 +4,11 @@
       v-layout(row wrap justify-center)
         v-flex(xs12 md10).pa-1.mb-3
           img(
-            src="../../assets/images/mycure-header-logo.png"
+            src=`../../assets/images/mycure-${dayOrNight === 'day' ? 'header' : 'footer'}-logo.png`
             @click="$router.push({ name: 'home' })"
           ).link-to-home.mb-3
           br
-          h5.primary--text Step 2 of 3
+          h2.primary--text Multispecialty Clinic: Sign Up (Step 2 of 3)
           h1 Choose modules that you will need.
           p Core modules are already included by default.
         
@@ -38,11 +38,21 @@
                   h3 {{module.name}}
                   p {{module.description}}
         v-flex(xs12 md10).pa-1.mt-3
-          v-card
-            v-card-actions
-              v-btn(flat :to="{ name: 'signup-multispecialty-step-1' }") Back
+          v-card(flat)
+            v-card-actions(
+              :class="dayOrNight === 'day' ? 'day-card-actions' : 'night-card-actions'"
+            )
+              v-btn(
+                :to="{ name: 'signup-multispecialty-step-1' }"
+                flat
+                large
+              ).font-weight-bold Back
               v-spacer
-              v-btn(color="accent" :to="{ name: 'signup-multispecialty-step-3' }") Next
+              v-btn(
+                color="accent"
+                :to="{ name: 'signup-multispecialty-step-3' }"
+                large
+              ).font-weight-bold Next
 
     v-snackbar(
       color="accent"
@@ -58,9 +68,14 @@
 </template>
 
 <script>
+// - utils
+import dayOrNight from '../../utils/day-or-night';
+// - constants
 import modules from '../../assets/fixtures/modules';
+
 export default {
   data () {
+    this.dayOrNight = dayOrNight();
     return {
       selectedModule: {},
       added: false,
@@ -111,5 +126,12 @@ export default {
 
 .link-to-home:hover {
   cursor: pointer;
+}
+
+.day-card-actions {
+  background-color: #fafafa;
+}
+.night-card-actions {
+  background-color:  rgb(28,28,28);
 }
 </style>

@@ -4,9 +4,11 @@
       v-layout(row wrap justify-center)
         v-flex(xs12 md5 :class="[{'pt-5': !$isMobile}, {'mt-5': !$isMobile}]")
           img(
-            src="../../assets/images/mycure-header-logo.png"
+            src=`../../assets/images/mycure-${dayOrNight === 'day' ? 'header' : 'footer'}-logo.png`
             @click="$router.push({ name: 'home' })"
           ).link-to-home.mb-3
+          h2.primary--text Multispecialty Clinic: Sign Up (Step 1 of 3)
+          br
           h1#step-1-title Make your clinic more efficient in minutes.
           br
           v-layout(row v-for="(item, key) in checkListItems" :key="key")
@@ -14,10 +16,13 @@
               img(width="20" src="../../assets/images/mycure-check.png")
             v-flex(shrink)
               p.font-21 {{ item }}
+          v-layout(row).pt-5
+            v-flex.mb-3
+              b.font-18 Already have an account? 
+                router-link(:to="{ name: 'signin' }") Sign in.
         v-flex(xs12 md5)
           v-card
             v-card-text
-              h5.primary--text Step 1 of 3
               h1 Tell us about your facility.
             v-card-text
               v-form(ref="formRef" v-model="valid")
@@ -45,24 +50,6 @@
                   label="Average patients per day (?)"
                   :rules="[requiredRule, ...numberRules]"
                 ).step-one-field.font-21
-                //- h5(style="margin-bottom: -20px;").grey--text No. of staff (?)
-                //- v-slider(
-                //-   color="primary"
-                //-   thumb-label
-                //-   step="1"
-                //-   ticks
-                //-   min="1"
-                //-   max="50"
-                //- )
-                //- h5(style="margin-bottom: -20px;").grey--text Average patients per day (?)
-                //- v-slider(
-                //-   color="primary"
-                //-   thumb-label
-                //-   step="1"
-                //-   ticks
-                //-   min="1"
-                //-   max="1000"
-                //- )
                 h5(style="margin-bottom: -20px;").grey--text.font-21 Does your clinic have other branches?
                 v-radio-group(row v-model="clinic.hasOtherBranches")
                   v-radio(label="Yes" :value="true").step-one-field
@@ -71,22 +58,25 @@
               v-spacer
               v-btn(
                 color="accent"
+                :disabled="!valid"
                 @click="next"
-              ) Next
-          div.mt-3.font-18
-            b Already have an account? 
-              router-link(:to="{ name: 'signin' }") Sign in.
+                large
+              ).font-weight-bold Next
 </template>
 
 <script>
+// - utils
+import dayOrNight from '../../utils/day-or-night';
+
 export default {
   data () {
+    this.dayOrNight = dayOrNight();
     return {
       valid: false,
       clinic: {},
       requiredRule: v => !!v || 'This field is required',
       numberRules: [
-        v => v > 0 || 'Number should be positive',
+        v => v > 0 || 'Please enter a positive number',
         v => !(/.\./.test(v)) || 'Whole numbers only'
       ],
       checkListItems: [

@@ -4,7 +4,7 @@
       v-layout(row wrap justify-center)
         v-flex(xs12 md5 :class="[{'pt-5': !$isMobile}, {'mt-5': !$isMobile}]")
           img(
-            src="../../assets/images/mycure-header-logo.png"
+            src=`../../assets/images/mycure-${dayOrNight === 'day' ? 'header' : 'footer'}-logo.png`
             @click="$router.push({ name: 'home' })"
           ).link-to-home.mb-3
           h2.primary--text {{ pageType === 'signup-individual' ? 'Doctors' : 'Specialized'}} Clinic: Sign Up (Step 1 of&nbsp;
@@ -89,7 +89,7 @@
                   label="Password"
                   outline
                   :type="showPass ? 'text' : 'password'"
-                  :rules="[requiredRule]"
+                  :rules="[requiredRule, passwordRule]"
                   :append-icon="showPass ? 'mdi-eye-off' : 'mdi-eye'"
                   :disabled="loading"
                   @click:append="showPass = !showPass"
@@ -152,13 +152,18 @@
 // - utils
 import { getCountry, getCountries, signupIndividual } from '../../utils/axios';
 import { parsePhoneNumberFromString } from 'libphonenumber-js';
+import dayOrNight from '../../utils/day-or-night';
 // - components
 import EmailVerificationDialog from './email-verification-dialog';
+
+const PASS_LENGTH = 6;
+
 export default {
   components: {
     EmailVerificationDialog
   },
   data () {
+    this.dayOrNight = dayOrNight();
     return {
       valid: false,
       loading: false,
@@ -176,6 +181,7 @@ export default {
       requiredRule: v => !!v || 'This field is required',
       numberRule: v => v >= 0 || 'Please input a valid number',
       emailRule: v => /.+@.+/.test(v) || 'Email address must be valid',
+      passwordRule: v => v.length >= PASS_LENGTH || 'Password length must be at least 6 characters.',
       matchPasswordRule: v => v === this.user.password || 'Passwords do not match',
       error: false,
       errorMessage: 'There was an error please try again later.',
