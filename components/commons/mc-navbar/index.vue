@@ -21,20 +21,20 @@
         @toolbarLinkClick="handleToolbarLinkClick($event)"
         @logoClick="handleMycureLogo"
       )
-    //- mc-cookie-prompt.cookie-prompt
+    mc-cookie-prompt.cookie-prompt
 </template>
 
 <script>
 // - utils
 import VueScrollTo from 'vue-scrollto';
 // - components
-// import McCookiePrompt from '../mc-cookie-prompt';
+import McCookiePrompt from '../mc-cookie-prompt';
 import ToolbarWeb from './web';
 import ToolbarMobile from './mobile';
 
 export default {
   components: {
-    // McCookiePrompt,
+    McCookiePrompt,
     ToolbarWeb,
     ToolbarMobile,
   },
