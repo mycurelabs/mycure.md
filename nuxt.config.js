@@ -30,6 +30,9 @@ module.exports = {
   ** Plugins to load before mounting the App
   */
   plugins: [
+    '~/plugins/main.js',
+    '~/plugins/vue-fragment.js',
+    '~/plugins/vue-media-query.js',
   ],
   /*
   ** Nuxt.js dev-modules
