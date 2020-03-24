@@ -19,6 +19,9 @@
               img(:src="require(`@/assets/images/${questionMark}.png`)" :alt="questionMark" width="18px")
               strong.font-21 &nbsp;{{ item.question }}
               p.font-18.pl-1.pt-2 {{ item.answer }}
+                span(v-if="key === 8") &nbsp;
+                  router-link(:to="{name: 'features'}") features page
+                  | .
               p(v-if="item.supplement" :class="{'pl-3' : !$isMobile}").font-18.pre-white-space {{ parseSupplement(item)}}
               br
       v-layout(v-else row wrap justify-center).pt-5
@@ -30,9 +33,10 @@
             img(:src="require(`@/assets/images/${questionMark}.png`)" :alt="questionMark" width="18px")
             strong.font-21 &nbsp;{{ item.question }}
             p.font-21.pl-1.pt-2 {{ item.answer }}
-              span(v-if="key === 4") &nbsp;
+              span(v-if="key === 4 || key === 8") &nbsp;
                 router-link(:to="{name: 'features'}") features
-                | &nbsp; to view the other modules.
+                  span(v-if="key === 8") &nbsp;page
+                span {{ key === 4 ? ' to view the other modules' : ''}}.
             p(v-if="item.supplement" :class="{'pl-3' : !$isMobile}").font-21.pre-white-space {{ parseSupplement(item)}}
             br
 </template>
@@ -80,7 +84,7 @@ export default {
         },
         {
           question: 'Do you have an account for secretaries and nurses?',
-          answer: 'Yes. You can learn more about the different features on our features page.'
+          answer: 'Yes. You can learn more about the different features on our'
         },
         {
           question: 'Does my MYCURE account also come with a free device?',
