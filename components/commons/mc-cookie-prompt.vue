@@ -1,6 +1,6 @@
 <template lang="pug">
   v-container.font-source-sans
-    no-ssr
+    client-only
       cookie-law(
         :position="position"
         transitionName="fade"
