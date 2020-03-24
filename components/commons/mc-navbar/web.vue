@@ -4,7 +4,7 @@
       v-col(cols="12" md="12").toolbarMargin
         v-toolbar(flat).white
           nuxt-link(:to="{ name: 'index' }" title="MYCURE | Clinic Management System | Cloud EMR Philippines" id="toolbar-mycure-logo" @click.stop="handleMycureLogo").mr-3.mt-2
-            img(src="../../../assets/images/mycure-header-logo.png" width="140" alt="MYCURE logo")
+            img(src="~/assets/images/mycure-header-logo.png" width="140" alt="MYCURE logo")
           v-spacer
           v-menu(
             v-model="solutionsMenuModel"
@@ -42,7 +42,6 @@
             id="login-btn"
             @click.stop="handleToolbarLinkClick('login-btn')"
           )
-            //- img(:src="require(`@/assets/images/${loginIcon}.png`)" alt="login icon" width="17%")
             span.font-14.tab.text-none &nbsp;Login
           v-btn(
             v-if="currentRoute === 'doctors-clinics'"

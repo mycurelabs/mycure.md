@@ -1,7 +1,7 @@
 <template lang="pug">
   fragment
     //- WEB
-    div(v-if="isMd" :class="[shadow]").toolbarMain
+    div(v-if="!$isMobile" :class="[shadow]").toolbarMain
       toolbar-web(
         :loginURL="loginURL"
         :solutionsMenuItems="solutionsMenuItems"
@@ -28,9 +28,9 @@
 // - utils
 import VueScrollTo from 'vue-scrollto';
 // - components
-import McCookiePrompt from '../mc-cookie-prompt';
 import ToolbarWeb from './web';
 import ToolbarMobile from './mobile';
+import McCookiePrompt from '~/components/commons/mc-cookie-prompt';
 
 export default {
   components: {
@@ -58,9 +58,6 @@ export default {
     isMainRoute () {
       const routes = ['doctors-clinics', 'specialized-clinics', 'multispecialty-clinics'];
       return routes.includes(this.$nuxt.$route.name);
-    },
-    isMd () {
-      return this.wMD;
     },
   },
   watch: {

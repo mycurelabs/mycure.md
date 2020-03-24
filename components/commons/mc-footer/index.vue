@@ -51,10 +51,10 @@
 </template>
 
 <script>
-// - constants
-import { HEALTH_SUITES_ITEMS } from '../../home/health-suites/constants';
 // - components
 import McFooterToolbar from './toolbar';
+// - constants
+import { HEALTH_SUITES_ITEMS } from '~/components/home/health-suites/constants';
 
 export default {
   components: {

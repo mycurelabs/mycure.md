@@ -4,16 +4,16 @@
       v-toolbar(flat).footer-grey
         nuxt-link(:to="{ name: 'home' }" title="MYCURE | Clinic Management System | Cloud EMR Philippines")
           v-row(align="center").text-center
-            img(src="../../../assets/images/mycure-footer-logo.png" height="40" alt="MYCURE logo")
+            img(src="~/assets/images/mycure-footer-logo.png" height="40" alt="MYCURE logo")
         v-spacer
         div(v-for="(account,key) in socMed" :key="key")
           nuxt-link(:to="{ name: `${ account.link }`}" :title="account.name" :id="account.id")
-            img(:src="require(`../../../assets/images/${ account.icon }`)" height="25" :alt="account.name").px-2
+            img(:src="require(`~/assets/images/${ account.icon }`)" height="25" :alt="account.name").px-2
     div(v-else).footer-grey.secondary--text
       div
         nuxt-link(:to="{ name: 'home' }" title="MYCURE | Clinic Management System | Cloud EMR Philippines")
           v-row(align="center").text-center
-            img(src="../../../assets/images/mycure-footer-logo.png" height="25" alt="MYCURE logo")
+            img(src="~/assets/images/mycure-footer-logo.png" height="25" alt="MYCURE logo")
       br
       strong FOLLOW US
       br
@@ -21,7 +21,7 @@
       v-row(justify="center")
         div(v-for="(account,key) in socMed" :key="key")
           nuxt-link(:to="{ name: `${ account.link }`}" :title="account.name" :id="account.id")
-            img(:src="require(`../../../assets/images/${ account.icon }`)" height="30" :alt="account.name").px-3
+            img(:src="require(`~/assets/images/${ account.icon }`)" height="30" :alt="account.name").px-3
       br
       br
       v-row
@@ -94,7 +94,7 @@
 
 <script>
 // - constants
-import { HEALTH_SUITES_ITEMS } from '../../home/health-suites/constants';
+import { HEALTH_SUITES_ITEMS } from '~/components/home/health-suites/constants';
 export default {
   data () {
     this.socMed = [
