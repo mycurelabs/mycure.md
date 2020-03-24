@@ -1,117 +1,139 @@
-<template>
-  <v-app dark>
-    <v-navigation-drawer
-      v-model="drawer"
-      :mini-variant="miniVariant"
-      :clipped="clipped"
-      fixed
-      app
-    >
-      <v-list>
-        <v-list-item
-          v-for="(item, i) in items"
-          :key="i"
-          :to="item.to"
-          router
-          exact
-        >
-          <v-list-item-action>
-            <v-icon>{{ item.icon }}</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title v-text="item.title" />
-          </v-list-item-content>
-        </v-list-item>
-      </v-list>
-    </v-navigation-drawer>
-    <v-app-bar
-      :clipped-left="clipped"
-      fixed
-      app
-    >
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
-      <v-btn
-        icon
-        @click.stop="miniVariant = !miniVariant"
-      >
-        <v-icon>mdi-{{ `chevron-${miniVariant ? 'right' : 'left'}` }}</v-icon>
-      </v-btn>
-      <v-btn
-        icon
-        @click.stop="clipped = !clipped"
-      >
-        <v-icon>mdi-application</v-icon>
-      </v-btn>
-      <v-btn
-        icon
-        @click.stop="fixed = !fixed"
-      >
-        <v-icon>mdi-minus</v-icon>
-      </v-btn>
-      <v-toolbar-title v-text="title" />
-      <v-spacer />
-      <v-btn
-        icon
-        @click.stop="rightDrawer = !rightDrawer"
-      >
-        <v-icon>mdi-menu</v-icon>
-      </v-btn>
-    </v-app-bar>
-    <v-content>
-      <v-container>
-        <nuxt />
-      </v-container>
-    </v-content>
-    <v-navigation-drawer
-      v-model="rightDrawer"
-      :right="right"
-      temporary
-      fixed
-    >
-      <v-list>
-        <v-list-item @click.native="right = !right">
-          <v-list-item-action>
-            <v-icon light>
-              mdi-repeat
-            </v-icon>
-          </v-list-item-action>
-          <v-list-item-title>Switch drawer (click me)</v-list-item-title>
-        </v-list-item>
-      </v-list>
-    </v-navigation-drawer>
-    <v-footer
-      :fixed="fixed"
-      app
-    >
-      <span>&copy; {{ new Date().getFullYear() }}</span>
-    </v-footer>
-  </v-app>
+<template lang="pug">
+  v-app#app
+    mc-navbar
+    v-content
+      nuxt
+    //mc-footer
 </template>
 
 <script>
+// - components
+import McNavbar from '~/components/commons/mc-navbar';
+// import McFooter from '~/components/commons/mc-footer';
+
 export default {
-  data () {
-    return {
-      clipped: false,
-      drawer: false,
-      fixed: false,
-      items: [
-        {
-          icon: 'mdi-apps',
-          title: 'Welcome',
-          to: '/',
-        },
-        {
-          icon: 'mdi-chart-bubble',
-          title: 'Inspire',
-          to: '/inspire',
-        },
-      ],
-      miniVariant: false,
-      right: true,
-      rightDrawer: false,
-      title: 'Vuetify.js',
-    };
+  components: {
+    McNavbar,
+    // McFooter
   },
 };
 </script>
+
+<style>
+@import url('https://fonts.googleapis.com/css?family=Work+Sans:400,700,900');
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700');
+
+#app {
+  max-width: 100% !important;
+  overflow-x: hidden !important;
+  font-family: 'Source Sans Pro', sans-serif !important;
+};
+
+/* --FONT CSS-- */
+
+/* Font Styles */
+.font-work-sans {
+  font-family: 'Work Sans', 'Source Sans Pro', sans-serif !important;
+}
+.font-source-sans {
+  font-family: 'Source Sans Pro', 'Source Sans Pro', sans-serif !important;
+/* Font Sizes */
+}
+.font-xl {
+  font-size: 50px !important;
+}
+.font-l {
+  font-size: 30px !important;
+}
+.font-m {
+  font-size: 24px !important;
+}
+.font-s {
+  font-size: 21px !important;
+}
+.font-60 {
+  font-size: 60px !important;
+}
+.font-48 {
+  font-size: 48px !important;
+}
+.font-45 {
+  font-size: 45px !important
+}
+.font-40 {
+  font-size: 40px !important
+}
+.font-36 {
+  font-size: 36px !important
+}
+.font-35 {
+  font-size: 35px !important
+}
+.font-30 {
+  font-size: 30px !important
+}
+.font-25 {
+  font-size: 25px !important
+}
+.font-22 {
+  font-size: 22px !important
+}
+.font-21 {
+  font-size: 21px !important
+}
+.font-18 {
+  font-size: 18px !important
+}
+.font-16 {
+  font-size: 16px !important
+}
+.font-14 {
+  font-size: 14px !important
+}
+.font-12 {
+  font-size: 12px !important
+}
+
+/* --OTHER CSS-- */
+.lh-title {
+  line-height: 1.25em !important
+}
+.pre-white-space {
+  white-space: pre;
+}
+/* This class lets the panel avoid being covered by the web sky background */
+.showPanel {
+  position: relative;
+  z-index: 1;
+}
+.cta-btn {
+  padding: 25px 30px 25px 30px;
+}
+/* TODO: Transfer to our-story/panel-5 and home/vid components then remove*/
+.maleDoctor {
+  margin: 0px -20px 0px 0px;
+  z-index: 1;
+}
+.femaleDoctor {
+  margin: 0px 0px 0px -20px;
+  z-index: 1;
+}
+.vidPosition {
+  z-index: 0;
+}
+/* TODO: Replace the elements that use these classes with the corresponding class
+  then remove them after */
+
+/* primary--text */
+.font-mc-blue {
+  color: #2e9fdf
+}
+/* white--text */
+.font-mc-white {
+  color: #ffffff
+}
+/* secondary */
+.mc-grey {
+  background-color: #616161 !important;
+}
+</style>
