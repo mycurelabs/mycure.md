@@ -33,6 +33,10 @@ module.exports = {
     '~/plugins/main.js',
     '~/plugins/vue-fragment.js',
     '~/plugins/vue-media-query.js',
+    '~/plugins/vue-carousel.js',
+    '~/plugins/vue-cookie-law.js',
+    '~/plugins/vue-analytics.js',
+    { src: '~/plugins/ga.js', mode: 'client' }
   ],
   /*
   ** Nuxt.js dev-modules
@@ -41,7 +45,11 @@ module.exports = {
     // Doc: https://github.com/nuxt-community/eslint-module
     '@nuxtjs/eslint-module',
     '@nuxtjs/vuetify',
+    '@nuxtjs/google-analytics',
   ],
+  googleAnalytics: {
+    id: process.env.GA_ID
+  },
   /*
   ** Nuxt.js modules
   */
