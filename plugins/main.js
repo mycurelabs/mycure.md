@@ -4,6 +4,6 @@ Vue.mixin({
   computed: {
     $isMobile () {
       return this.wXS || this.wSM;
-    }
-  }
+    },
+  },
 });
