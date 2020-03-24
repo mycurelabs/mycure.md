@@ -1,69 +1,67 @@
 <template lang="pug">
   fragment
-    v-container
-        v-toolbar(flat fixed :class="shadow").white
-          nuxt-link(:to="{ name: 'index' }" title="MYCURE | Clinic Management System | Cloud EMR Philippines").logo-a
-            img(src="~/assets/images/mycure-header-logo.png" width="130" alt="MYCURE logo").mt-1
-          v-spacer
-          v-btn(icon large @click="drawer = !drawer")
-            v-icon.font-35 mdi-menu
+    v-app-bar(app fixed flat height="70" color="white" :class="shadow")
+      nuxt-link(:to="{ name: 'index' }" title="MYCURE | Clinic Management System | Cloud EMR Philippines").logo-a
+        img(src="~/assets/images/mycure-header-logo.png" width="130" alt="MYCURE logo").mt-1
+      v-spacer
+      v-btn(icon large @click="drawer = !drawer")
+        v-icon.font-35 mdi-menu
     v-navigation-drawer(fixed app v-model="drawer" right width="500").navMain
       div.navHeader
-        v-toolbar(flat :class="shadow").white
+        v-toolbar(:class="shadow").white
           nuxt-link(:to="{ name: 'index' }" title="MYCURE | Clinic Management System | Cloud EMR Philippines" id="toolbar-mycure-logo" @click.stop="handleMycureLogo").logo-a
             img(src="~/assets/images/mycure-header-logo.png" width="130" alt="MYCURE logo").mt-1
           v-spacer
           v-btn(icon large @click="drawer = !drawer")
             v-icon.font-35 mdi-close
-      v-content
-        v-row
-          v-col(cols="12")
-            v-list(two-line)
+      v-row
+        v-col(cols="12")
+          v-list(two-line)
+            v-list-item(
+              v-for="(item, key) in solutionsMenuItems"
+              :key="key"
+              :to="{ name: item.route }"
+              @click.stop="handleToolbarLinkClick(`mobile-${item.route}`)"
+            )
+              v-list-item-content
+                v-list-item-title
+                  b {{ item.name }}
+          v-list(two-line)
+            v-list-item(
+              v-for="(link, key) in toolbarLinks"
+              :key="key"
+              :to="{ name: link.route }"
+              @click.stop="handleToolbarLinkClick(`mobile-${link.id}`)"
+            )
+              v-list-item-content
+                v-list-item-title
+                  b {{ link.name }}
+          br
+          br
+          v-divider
+        v-col(cols="12")
+          v-list(two-line)
+            div(v-for="(section, key) in navSectionLinks" :key="key")
+              v-subheader {{ section.header }}
               v-list-item(
-                v-for="(item, key) in solutionsMenuItems"
+                v-for="(item, key) in section.items"
                 :key="key"
                 :to="{ name: item.route }"
-                @click.stop="handleToolbarLinkClick(`mobile-${item.route}`)"
+                @click="handleToolbarLinkClick(`mobile-${item.route}`)"
               )
                 v-list-item-content
                   v-list-item-title
                     b {{ item.name }}
-            v-list(two-line)
-              v-list-item(
-                v-for="(link, key) in toolbarLinks"
-                :key="key"
-                :to="{ name: link.route }"
-                @click.stop="handleToolbarLinkClick(`mobile-${link.id}`)"
-              )
-                v-list-item-content
-                  v-list-item-title
-                    b {{ link.name }}
-            br
-            br
-            v-divider
-          v-col(cols="12")
-            v-list(two-line)
-              div(v-for="(section, key) in navSectionLinks" :key="key")
-                v-subheader {{ section.header }}
-                v-list-item(
-                  v-for="(item, key) in section.items"
-                  :key="key"
-                  :to="{ name: item.route }"
-                  @click="handleToolbarLinkClick(`mobile-${item.route}`)"
-                )
-                  v-list-item-content
-                    v-list-item-title
-                      b {{ item.name }}
-                v-divider
-            v-list(two-line)
-              v-subheader {{ contactDetails.header }}
-              v-list-item(
-                v-for="(contact, key) in contactDetails.items"
-                :key="key"
-              )
-                v-list-item-content
-                  v-list-item-title
-                    b {{ contact }}
+              v-divider
+          v-list(two-line)
+            v-subheader {{ contactDetails.header }}
+            v-list-item(
+              v-for="(contact, key) in contactDetails.items"
+              :key="key"
+            )
+              v-list-item-content
+                v-list-item-title
+                  b {{ contact }}
       div.navBottomBtns.py-3
         v-row(justify="center")
           v-btn(
@@ -158,6 +156,9 @@ a {
 }
 .navMain {
   z-index: 999 !important
+}
+.toolbar-container {
+  width: 100%
 }
 .navBottomBtns {
   position: sticky;

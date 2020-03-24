@@ -1,7 +1,7 @@
 <template lang="pug">
   fragment
     //- WEB
-    div(v-if="!$isMobile" :class="[shadow]").toolbarMain
+    div(v-if="isMd" :class="[shadow]").toolbarMain
       toolbar-web(
         :loginURL="loginURL"
         :solutionsMenuItems="solutionsMenuItems"
@@ -59,6 +59,9 @@ export default {
       const routes = ['doctors-clinics', 'specialized-clinics', 'multispecialty-clinics'];
       return routes.includes(this.$nuxt.$route.name);
     },
+    isMd () {
+      return this.wMD;
+    },
   },
   watch: {
     scrollPosition: 'showShadow',
@@ -102,6 +105,7 @@ export default {
 
 <style scoped>
 .toolbarMain {
+  position: fixed;
   width: 100%;
   z-index: 200;
 }
