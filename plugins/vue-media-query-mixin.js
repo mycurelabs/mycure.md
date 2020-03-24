@@ -1,6 +1,4 @@
-// Import Vue and vue-highlgihtjs
 import Vue from 'vue';
-import VueHighlightJS from 'vue-highlightjs';
+import VueMediaQueryMixin from 'vue-media-query-mixin';
 
-// Tell Vue.js to use vue-highlightjs
-Vue.use(VueHighlightJS);
+Vue.use(VueMediaQueryMixin, { framework: 'vuetify' });
