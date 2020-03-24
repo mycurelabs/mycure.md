@@ -1,27 +1,26 @@
 <template lang="pug">
   fragment
     //- WEB
-    div(v-if="isMd" :class="[shadow]").toolbarMain.red
-      //- toolbar-web(
-      //-   :loginURL="loginURL"
-      //-   :solutionsMenuItems="solutionsMenuItems"
-      //-   :solutionsText="solutionsText"
-      //-   :toolbarLinks="toolbarLinks"
-      //-   :isMainRoute="isMainRoute"
-      //-   @toolbarLinkClick="handleToolbarLinkClick($event)"
-      //-   @logoClick="handleMycureLogo"
-      //- )
-      h2 Navbar
+    div(v-if="isMd" :class="[shadow]").toolbarMain
+      toolbar-web(
+        :loginURL="loginURL"
+        :solutionsMenuItems="solutionsMenuItems"
+        :solutionsText="solutionsText"
+        :toolbarLinks="toolbarLinks"
+        :isMainRoute="isMainRoute"
+        @toolbarLinkClick="handleToolbarLinkClick($event)"
+        @logoClick="handleMycureLogo"
+      )
     //- MOBILE
     div(v-else)
-      //- toolbar-mobile(
-      //-   :shadow="shadow"
-      //-   :loginURL="loginURL"
-      //-   :solutionsMenuItems="solutionsMenuItems"
-      //-   :toolbarLinks="toolbarLinks"
-      //-   @toolbarLinkClick="handleToolbarLinkClick($event)"
-      //-   @logoClick="handleMycureLogo"
-      //- )
+      toolbar-mobile(
+        :shadow="shadow"
+        :loginURL="loginURL"
+        :solutionsMenuItems="solutionsMenuItems"
+        :toolbarLinks="toolbarLinks"
+        @toolbarLinkClick="handleToolbarLinkClick($event)"
+        @logoClick="handleMycureLogo"
+      )
     //- mc-cookie-prompt.cookie-prompt
 </template>
 
@@ -40,19 +39,19 @@ export default {
     ToolbarMobile,
   },
   data () {
+    this.solutionsMenuItems = [
+      { name: 'Doctors Clinics', route: 'doctors-clinics' },
+      { name: 'Specialized Clinics', route: 'specialized-clinics' },
+      { name: 'Multispecialty Clinics', route: 'multispecialty-clinics' },
+    ];
+    this.toolbarLinks = [
+      { id: 'features', name: 'Features', route: '/features' },
+    ];
     return {
       loginURL: 'signin',
       scrollPosition: null,
       shadow: '',
       solutionsText: 'Solutions',
-      solutionsMenuItems: [
-        { name: 'Doctors Clinics', route: 'doctors-clinics' },
-        { name: 'Specialized Clinics', route: 'specialized-clinics' },
-        { name: 'Multispecialty Clinics', route: 'multispecialty-clinics' },
-      ],
-      toolbarLinks: [
-        { id: 'features', name: 'Features', route: 'features' },
-      ],
     };
   },
   computed: {
