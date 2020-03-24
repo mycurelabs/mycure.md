@@ -3,18 +3,18 @@
     mc-navbar
     v-content
       nuxt
-    //mc-footer
+    mc-footer
 </template>
 
 <script>
 // - components
 import McNavbar from '~/components/commons/mc-navbar';
-// import McFooter from '~/components/commons/mc-footer';
+import McFooter from '~/components/commons/mc-footer';
 
 export default {
   components: {
     McNavbar,
-    // McFooter
+    McFooter,
   },
 };
 </script>
