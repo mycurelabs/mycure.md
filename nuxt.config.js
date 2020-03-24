@@ -32,7 +32,7 @@ module.exports = {
   plugins: [
     '~/plugins/main.js',
     '~/plugins/vue-fragment.js',
-    '~/plugins/vue-media-query.js',
+    '~/plugins/vue-media-query-mixin.js',
     '~/plugins/vue-carousel.js',
     '~/plugins/vue-cookie-law.js',
     '~/plugins/vue-analytics.js',
