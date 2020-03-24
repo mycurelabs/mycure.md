@@ -12,45 +12,45 @@ export default ({ title, description, socialBanner }) => {
       {
         hid: 'description',
         name: 'description',
-        content: description
+        content: description,
       },
       // facebook meta
       {
         hid: 'locale',
         name: 'og:locale',
-        content: LANG
+        content: LANG,
       },
       {
         hid: 'type',
         name: 'og:type',
-        content: TYPE
+        content: TYPE,
       },
       {
         hid: 'type',
         name: 'og:url',
-        content: URL
+        content: URL,
       },
       {
         hid: 'type',
         name: 'og:title',
-        content: title
+        content: title,
       },
       {
         hid: 'type',
         name: 'og:site_name',
-        content: SITE_NAME
+        content: SITE_NAME,
       },
       {
         hid: 'type',
         name: 'og:description',
-        content: description
+        content: description,
       },
       {
         hid: 'image',
         name: 'og:image',
-        content: socialBanner
-      }
+        content: socialBanner,
+      },
       // twitter meta
-    ]
+    ],
   };
 };
