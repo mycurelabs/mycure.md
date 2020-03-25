@@ -46,7 +46,7 @@ export default {
       { name: 'Multispecialty Clinics', route: 'multispecialty-clinics' },
     ];
     this.toolbarLinks = [
-      { id: 'features', name: 'Features', route: '/features' },
+      { id: 'features', name: 'Features', route: 'features' },
     ];
     return {
       loginURL: 'signin',
