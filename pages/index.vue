@@ -47,6 +47,8 @@
     hr
     //- 8th panel
     apis
+    //- 9th panel
+    testimonial
     //- final panel
     mc-cta-bottom(
       parse-text
@@ -69,6 +71,7 @@ import Vid from '~/components/home/vid';
 import Syncbase from '~/components/home/syncbase';
 import Privacy from '~/components/home/privacy';
 import Apis from '~/components/home/apis';
+import Testimonial from '~/components/home/testimonial';
 import McCtaBottom from '~/components/commons/mc-cta-bottom';
 
 export default {
@@ -81,6 +84,7 @@ export default {
     Syncbase,
     Privacy,
     Apis,
+    Testimonial,
     McCtaBottom,
   },
   data () {
