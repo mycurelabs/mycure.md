@@ -29,6 +29,10 @@ export default {
   font-family: 'Source Sans Pro', sans-serif;
 };
 
+h1 {
+  font-family: 'Work Sans', 'Source Sans Pro', sans-serif;
+}
+
 /* --FONT CSS-- */
 
 /* Font Styles */
