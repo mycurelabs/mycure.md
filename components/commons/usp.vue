@@ -3,23 +3,22 @@
     v-container(
       :class="[$isMobile ? 'mobile-page-height' : 'whole-page', {'mt-4': visibleCookie}]"
     )
-      v-container(fill-height)
-        v-row(align="center")
-          v-col(cols="12").text-center
-            strong(v-if="uspMetaTitle" :class="[getMetaFontSize]").text-center.primary--text {{uspMetaTitle}}
-            template(v-if="uspMetaTitle && $isMobile")
-            h1(:class="titleClasses").text-center.uspTitle 
-              | {{uspTitle}}
-            p(:class="{'pre-white-space': !$isMobile}").text-center.uspDescription.pt-3.font-s {{uspDescription}}
-            div.pt-1
-              v-btn(
-                :color="$mcColors.mcAltGreen"
-                :id="btnId"
-                large
-                @click.stop="handleUspBtnClick"
-              ).text-none.white--text
-                v-icon(v-if="btnIconLeft" v-text="btnIconLeft")
-                strong(:class="{'pl-1' : btnIconLeft}").font-s {{btnText}}    
+      v-row(align="center")
+        v-col(cols="12").text-center
+          strong(v-if="uspMetaTitle" :class="[getMetaFontSize]").text-center.primary--text {{uspMetaTitle}}
+          template(v-if="uspMetaTitle && $isMobile")
+          h1(:class="titleClasses").text-center.uspTitle
+            | {{uspTitle}}
+          p(:class="{'pre-white-space': !$isMobile}").text-center.uspDescription.pt-3.font-s {{uspDescription}}
+          div.pt-1
+            v-btn(
+              color="accent"
+              :id="btnId"
+              large
+              @click.stop="handleUspBtnClick"
+            ).text-none.white--text
+              v-icon(v-if="btnIconLeft" v-text="btnIconLeft")
+              strong(:class="{'pl-1' : btnIconLeft}").font-s {{btnText}}
     div.outer-image-container(:class="$isMobile ? 'pb-5' : 'web-padding'")
       div.usp-image-container.text-center.justify-center
         img(
@@ -64,7 +63,7 @@ export default {
       type: String,
       default: 'Get Started',
     },
-    btnIconLeft : {
+    btnIconLeft: {
       type: String,
       default: undefined,
     },
@@ -99,7 +98,7 @@ export default {
         : 'font-s';
     },
     noCookie () {
-      return localStorage.getItem('accept-cookie');
+      return process.browser ? localStorage.getItem('accept-cookie') : false;
     },
     visibleCookie () {
       return !this.noCookie && !this.$isMobile;
@@ -113,12 +112,12 @@ export default {
       this.$ga.event({
         eventCategory: 'button',
         eventAction: `click-${this.btnId}`,
-        eventLabel: `${this.btnId}`
+        eventLabel: `${this.btnId}`,
       });
       if (this.btnId !== 'home-usp-btn' && this.btnRoute) {
-        this.$router.push({ 
+        this.$router.push({
           name: this.btnRoute,
-          ...(this.btnRoute === 'home') && { params: { scrollHealthSuites: true } } 
+          ...(this.btnRoute === 'home') && { params: { scrollHealthSuites: true } },
         });
       }
       this.$emit('btnClick');
@@ -129,11 +128,10 @@ export default {
 
 <style scoped>
 .whole-page {
-  height: 400px;
-  padding-top: 25vh;
+  height: 320px;
 }
 .mobile-page-height {
-  padding-top: 10vh;
+  padding-top: 4vh;
 }
 .title-line-height {
   line-height: 1.25em;
@@ -163,7 +161,6 @@ export default {
 
 .outer-image-container {
   margin-bottom: -63.5px;
-  padding-top: 7vh;
 }
 .offset-container {
   height: 15vh;
@@ -183,8 +180,7 @@ export default {
 } */
 @media screen and (min-height: 1080px) {
   .whole-page {
-    height: 55vh !important;
-    padding-top: 12vh !important;
+    height: 30vh !important;
   }
 }
 </style>

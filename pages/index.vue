@@ -1,5 +1,7 @@
 <template lang="pug">
   div#top.white
+    //- 1st panel
+    usp(@getStarted="getStarted")
     //- final panel
     mc-cta-bottom(
       parse-text
@@ -14,10 +16,12 @@
 import VueScrollTo from 'vue-scrollto';
 import headMeta from '~/utils/head-meta';
 // - components
+import Usp from '~/components/home/usp';
 import McCtaBottom from '~/components/commons/mc-cta-bottom';
 
 export default {
   components: {
+    Usp,
     McCtaBottom,
   },
   data () {
