@@ -10,17 +10,27 @@
     pricing
     //- 5th panel
     faqs
+    //- CTA
+    mc-cta-bottom(
+      parse-text
+      :parseIndicators="['when']"
+      :ctaContent="ctaContent"
+      btnColor="accent"
+    )
 </template>
 
 <script>
+// utils
+import VueScrollTo from 'vue-scrollto';
+import headMeta from '~/utils/head-meta';
 // components
 import Usp from '~/components/doctors-clinics/usp';
 import Workflow from '~/components/doctors-clinics/workflow';
 import Features from '~/components/doctors-clinics/features';
 import Pricing from '~/components/doctors-clinics/pricing';
 import Faqs from '~/components/doctors-clinics/faqs';
-// utils
-import headMeta from '~/utils/head-meta';
+import McCtaBottom from '~/components/commons/mc-cta-bottom';
+
 export default {
   components: {
     Usp,
@@ -28,6 +38,19 @@ export default {
     Features,
     Pricing,
     Faqs,
+    McCtaBottom,
+  },
+  data () {
+    this.ctaContent = {
+      text: 'It\'s always better when we work together',
+      subtext: 'Experience what more you can do with MYCURE technology by your side.',
+      btnText: 'Start Free',
+      btnLink: 'signup-individual',
+    };
+    return {};
+  },
+  mounted () {
+    VueScrollTo.scrollTo('#app', 500, { easing: 'ease' });
   },
   head () {
     return headMeta({
