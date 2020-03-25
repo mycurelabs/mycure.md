@@ -86,7 +86,7 @@ export default {
     },
     handleToolbarLinkClick (link) {
       const getStartedBtns = ['get-started-btn', 'mobile-navdrawer-get-started-btn'];
-      if (getStartedBtns.includes(link) && this.$nuxt.$route.name === 'home') {
+      if (getStartedBtns.includes(link) && this.$nuxt.$route.name === 'index') {
         VueScrollTo.scrollTo('#health-suites', 500, { easing: 'ease' });
       } else if (getStartedBtns.includes(link)) {
         this.$nuxt.$router.push({

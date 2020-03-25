@@ -12,7 +12,7 @@
             dark
             :id="ctaBtnId"
             @click.stop="handleCtaBtnClick"
-          ).text-none.font-s.font-weight-bold {{ctaBtnText}}
+          ).text-none.font-s.font-weight-bold.cta-btn {{ctaBtnText}}
     br
     v-row(v-if="ctaSecondaryBtnText" justify="center")
       v-col(cols="12").text-center
@@ -97,7 +97,7 @@ export default {
       return `cta-${this.$route.name}-secondary-btn`;
     },
     ctaBtnLink () {
-      return !this.ctaContent || !this.ctaContent.btnLink ? 'home' : this.ctaContent.btnLink;
+      return !this.ctaContent || !this.ctaContent.btnLink ? 'index' : this.ctaContent.btnLink;
     },
     ctaSecondaryBtnLink () {
       return !this.ctaContent || !this.ctaContent.secondaryBtnLink ? 'calendly' : this.ctaContent.secondaryBtnLink;
@@ -113,7 +113,7 @@ export default {
       if (this.ctaBtnId !== 'cta-home-btn') {
         this.$nuxt.$router.push({
           name: this.ctaBtnLink,
-          ...(this.ctaBtnLink === 'home') && { params: { scrollHealthSuites: true } },
+          ...(this.ctaBtnLink === 'index') && { params: { scrollHealthSuites: true } },
         });
       }
       this.$emit('btnClick');
@@ -130,6 +130,9 @@ export default {
 </script>
 
 <style>
+.cta-btn {
+  letter-spacing: normal;
+}
 .cta-text {
   font-family: 'Work Sans', 'Source Sans Pro', sans-serif;
 }
