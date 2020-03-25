@@ -4,6 +4,8 @@
     usp
     //- 2nd panel
     workflow
+    //- 3rd panel
+    features
 </template>
 
 <script>
@@ -13,10 +15,12 @@ import headMeta from '~/utils/head-meta';
 // components
 import Usp from '~/components/specialized-clinics/usp';
 import Workflow from '~/components/specialized-clinics/workflow';
+import Features from '~/components/specialized-clinics/features';
 export default {
   components: {
     Usp,
     Workflow,
+    Features,
   },
   mounted () {
     VueScrollTo.scrollTo('#app', 500, { easing: 'ease' });
