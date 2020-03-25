@@ -26,7 +26,9 @@
         img(
           v-if="item.icon"
           :src="require(`@/assets/images/${item.customPath ? item.customPath : customItemPath}${item.icon}.png`)"
-          :alt="item.title")
+          width="80%"
+          :alt="item.title"
+        )
       v-col(cols="8" offset="1")
         b {{item.title}}
         p {{item.description}}

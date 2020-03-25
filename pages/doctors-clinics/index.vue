@@ -4,18 +4,22 @@
     usp
     //- 2nd panel
     workflow
+    //- 3rd panel
+    features
 </template>
 
 <script>
 // components
 import Usp from '~/components/doctors-clinics/usp';
 import Workflow from '~/components/doctors-clinics/workflow';
+import Features from '~/components/doctors-clinics/features';
 // utils
 import headMeta from '~/utils/head-meta';
 export default {
   components: {
     Usp,
     Workflow,
+    Features,
   },
   head () {
     return headMeta({
