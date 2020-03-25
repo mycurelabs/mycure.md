@@ -8,6 +8,8 @@
     features
     //- 4th panel
     pricing
+    //- 5th panel
+    faqs
 </template>
 
 <script>
@@ -16,6 +18,7 @@ import Usp from '~/components/doctors-clinics/usp';
 import Workflow from '~/components/doctors-clinics/workflow';
 import Features from '~/components/doctors-clinics/features';
 import Pricing from '~/components/doctors-clinics/pricing';
+import Faqs from '~/components/doctors-clinics/faqs';
 // utils
 import headMeta from '~/utils/head-meta';
 export default {
@@ -24,6 +27,7 @@ export default {
     Workflow,
     Features,
     Pricing,
+    Faqs,
   },
   head () {
     return headMeta({
