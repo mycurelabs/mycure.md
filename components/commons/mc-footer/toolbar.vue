@@ -13,7 +13,7 @@
       div
         nuxt-link(:to="{ name: 'home' }" title="MYCURE | Clinic Management System | Cloud EMR Philippines")
           v-row(align="center").text-center
-            img(src="~/assets/images/mycure-footer-logo.png" height="25" alt="MYCURE logo")
+            img(src="~/assets/images/mycure-footer-logo.png" width="130" alt="MYCURE logo")
       br
       strong FOLLOW US
       br
