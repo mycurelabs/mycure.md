@@ -2,16 +2,20 @@
   div#top
     //- 1st panel
     usp
+    //- 2nd panel
+    workflow
 </template>
 
 <script>
 // components
 import Usp from '~/components/doctors-clinics/usp';
+import Workflow from '~/components/doctors-clinics/workflow';
 // utils
 import headMeta from '~/utils/head-meta';
 export default {
   components: {
     Usp,
+    Workflow,
   },
   head () {
     return headMeta({
