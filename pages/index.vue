@@ -6,6 +6,37 @@
     health-suites#health-suites
     //- 3rd panel
     solutions
+    //- 4th panel
+    storyflow(
+      :storyflow="storyflowItems"
+      :introduction="introText"
+      featuresButton
+      horizontal
+    ).showPanel
+      div(slot="extra-content").text-center
+        v-btn(
+          text
+          bottom
+          large
+          color="primary"
+          @click="handleWatchFeatures"
+        ).font-21.text-none.video-button
+          v-icon mdi-play-circle
+          | &nbsp;Watch Our Features In Action
+
+        //- Video
+        v-dialog(v-model="featuresVideoDialog" max-width="600")
+          v-layout(row justify-center)
+            v-card(width="600")
+              v-card-text.text-center
+                iframe(
+                  align="middle"
+                  :height="!$isMobile ? '400' : '175'"
+                  width="100%"
+                  src="https://www.youtube.com/embed/YjymFVmKX_U"
+                  frameborder="0"
+                  allowfullscreen
+                )
     //- final panel
     mc-cta-bottom(
       parse-text
@@ -23,6 +54,7 @@ import headMeta from '~/utils/head-meta';
 import Usp from '~/components/home/usp';
 import HealthSuites from '~/components/home/health-suites';
 import Solutions from '~/components/home/solutions';
+import Storyflow from '~/components/commons/storyflow';
 import McCtaBottom from '~/components/commons/mc-cta-bottom';
 
 export default {
@@ -30,6 +62,7 @@ export default {
     Usp,
     HealthSuites,
     Solutions,
+    Storyflow,
     McCtaBottom,
   },
   data () {
@@ -38,7 +71,27 @@ export default {
       btnText: 'Get Started',
       image: 'mycure-web-footer',
     };
-    return {};
+    this.storyflowItems = [
+      {
+        title: 'Secure Electronic Health Records (EHR)',
+        text: 'Powerful, robust and proven solution that organizes health records based on global health standards.',
+        image: 'mycure-homepage-secure.png',
+      },
+      {
+        title: 'Solving Everyday Challenges Efficiently',
+        text: 'Duplicate or missing charts, billing mishaps, excess costs, and crazy workflows become the least of your worries.',
+        image: 'mycure-homepage-workflow.png',
+      },
+      {
+        title: 'Holistic Patient Care Experience',
+        text: 'From registration to billing, evaluate your patient care performance through fast reporting and analytics.',
+        image: 'mycure-homepage-holistic.png',
+      },
+    ];
+    this.introText = 'Designed for your health facility';
+    return {
+      featuresVideoDialog: false,
+    };
   },
   mounted () {
     this.$nuxt.$route.params.scrollHealthSuites ? this.getStarted()
@@ -47,6 +100,15 @@ export default {
   methods: {
     getStarted () {
       VueScrollTo.scrollTo('#health-suites', 500, { easing: 'ease' });
+    },
+    handleWatchFeatures () {
+      this.$ga.event({
+        eventCategory: 'button',
+        eventLabel: 'home-watch-features-btn',
+        eventAction: 'click-home-watch-features-btn',
+      });
+
+      this.featuresVideoDialog = true;
     },
   },
   head () {
@@ -65,5 +127,8 @@ hr {
   border: 1px solid #2e9fdf;
   margin: auto;
   width: 10%;
+}
+.video-button {
+  letter-spacing: normal;
 }
 </style>

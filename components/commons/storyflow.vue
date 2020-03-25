@@ -1,6 +1,6 @@
 <template lang="pug">
   div(:class="{'white' : whiteBg }")
-    div(v-if="!$isMobile").pt-5
+    div(v-if="!$isMobile").pt-10.mt-10
       v-container
         v-row(v-if="introduction" justify="center").text-center.pb60
           strong.font-40.introText.pre-white-space {{introduction}}
@@ -30,21 +30,22 @@
               :key="index"
               cols="4"
               align="center"
-            ).text-center.mx-4
+            ).text-center
               img(:src="require(`@/assets/images/${customPath}${highlight.image}`)" :alt="highlight.title").storyflowAssetHorizontal
               br
-              strong(v-if="hasTitle").font-m {{highlight.title}}
+              strong(v-if="hasTitle").font-l {{highlight.title}}
               br
-              p.font-18.pt-3 {{highlight.text}}
-          v-row(v-if="featuresButton" justify="center").pt-4
-            v-btn(
-              id="features-page-btn"
-              @click.stop="handleFeaturesPageBtn"
-              color="primary"
-              :to="{ name: 'features' }"
-              large
-            ).mt-3.cta-btn
-              strong.font-s.white--text.text-none Explore the Features   
+              p.font-18.pt-3.mx-2 {{highlight.text}}
+          v-row(v-if="featuresButton" justify="center" align="center").pt-10
+            v-col(cols="4").text-center
+              v-btn(
+                id="features-page-btn"
+                @click.stop="handleFeaturesPageBtn"
+                color="primary"
+                :to="{ name: 'features' }"
+                large
+              ).mt-3.cta-btn
+                strong.font-s.white--text.text-none Explore the Features
     div(v-else).pt-5
       v-container
         v-row(justify="center").text-center.pb-3
@@ -53,7 +54,7 @@
           v-row(justify="center" align="center").pb-2
             img(:src="require(`@/assets/images/${customPath}${highlight.image}`)" :alt="highlight.title").storyflowAsset
           br
-          v-row(align="center").text-center  
+          v-row(align="center").text-center
             v-col(cols="12")
               strong(v-if="hasTitle").font-30.lh-title.text-center {{highlight.title}}
           br
@@ -74,44 +75,47 @@
 </template>
 
 <script>
-  export default {
-    props: {
-      storyflow: Array,
-      hasTitle: {
-        type: Boolean,
-        default: true,
-      },
-      introduction: {
-        type: String,
-        default: '',
-      },
-      featuresButton: {
-        type: Boolean,
-        default: false,
-      },
-      horizontal: {
-        type: Boolean,
-        default: false,
-      },
-      customPath: {
-        type: String,
-        default: '',
-      },
-      whiteBg: {
-        type: Boolean,
-        default: false,
-      },
+export default {
+  props: {
+    storyflow: {
+      type: Array,
+      default: () => [],
     },
-    methods: {
-      handleFeaturesPageBtn () {
-        this.$ga.event({
-          eventCategory: 'button',
-          eventAction: 'click-features-page-btn',
-          eventLabel: 'features-page-btn',
-        });
-      },
+    hasTitle: {
+      type: Boolean,
+      default: true,
     },
-  };
+    introduction: {
+      type: String,
+      default: '',
+    },
+    featuresButton: {
+      type: Boolean,
+      default: false,
+    },
+    horizontal: {
+      type: Boolean,
+      default: false,
+    },
+    customPath: {
+      type: String,
+      default: '',
+    },
+    whiteBg: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  methods: {
+    handleFeaturesPageBtn () {
+      this.$ga.event({
+        eventCategory: 'button',
+        eventAction: 'click-features-page-btn',
+        eventLabel: 'features-page-btn',
+      });
+    },
+  },
+};
 </script>
 
 <style scoped>
