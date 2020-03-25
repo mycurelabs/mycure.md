@@ -8,8 +8,8 @@
             h1.panelTitle.font-40.font-work-sans.lh-title {{ webTitle }}
             br
             br
-            p.font-18 {{ panelContent }}
-            p.font-18 This feature is available for multispecialty and enterprise clinic setup.
+            p.font-22 {{ panelContent }}
+            p.font-22 This feature is available for multispecialty and enterprise clinic setup.
             br
             v-btn(
               color="primary"

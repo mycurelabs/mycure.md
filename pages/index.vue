@@ -41,6 +41,10 @@
     vid
     //- 6th panel
     syncbase
+    hr
+    //- 7th panel
+    privacy
+    hr
     //- final panel
     mc-cta-bottom(
       parse-text
@@ -61,6 +65,7 @@ import Solutions from '~/components/home/solutions';
 import Storyflow from '~/components/commons/storyflow';
 import Vid from '~/components/home/vid';
 import Syncbase from '~/components/home/syncbase';
+import Privacy from '~/components/home/privacy';
 import McCtaBottom from '~/components/commons/mc-cta-bottom';
 
 export default {
@@ -71,6 +76,7 @@ export default {
     Storyflow,
     Vid,
     Syncbase,
+    Privacy,
     McCtaBottom,
   },
   data () {
