@@ -6,6 +6,13 @@
     workflow
     //- 3rd panel
     features
+    //- CTA
+    mc-cta-bottom(
+      :ctaContent="ctaContent"
+      parse-text
+      :parseIndicators="['the']"
+      btnColor="accent"
+    )
 </template>
 
 <script>
@@ -16,11 +23,23 @@ import headMeta from '~/utils/head-meta';
 import Usp from '~/components/specialized-clinics/usp';
 import Workflow from '~/components/specialized-clinics/workflow';
 import Features from '~/components/specialized-clinics/features';
+import McCtaBottom from '~/components/commons/mc-cta-bottom';
 export default {
   components: {
     Usp,
     Workflow,
     Features,
+    McCtaBottom,
+  },
+  data () {
+    this.ctaContent = {
+      text: 'Grow your practice with the right tools to use',
+      subtext: 'Customize your system with MYCURE. Start your 14-day trial today.',
+      btnText: 'Start 14-Day Trial',
+      btnLink: 'signup-specialized',
+      image: 'mycure-web-footer',
+    };
+    return {};
   },
   mounted () {
     VueScrollTo.scrollTo('#app', 500, { easing: 'ease' });
