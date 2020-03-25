@@ -1,9 +1,10 @@
 <template lang="pug">
   fragment
     //- WEB
-    div(v-if="isMd" :class="[shadow]").toolbarMain
+    div(v-if="isMd").toolbarMain
       toolbar-web(
         :loginURL="loginURL"
+        :shadow="shadow"
         :solutionsMenuItems="solutionsMenuItems"
         :solutionsText="solutionsText"
         :toolbarLinks="toolbarLinks"
