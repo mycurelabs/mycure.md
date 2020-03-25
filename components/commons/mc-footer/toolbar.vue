@@ -24,61 +24,60 @@
             img(:src="require(`~/assets/images/${ account.icon }`)" height="30" :alt="account.name").px-3
       br
       br
-      v-row
-        v-expansion-panel.elevation-0
-          v-expansion-panel-content.footer-grey
-            template(v-slot:header)
-              span.iconMargin.font-18.feature-text CLINIC SOLUTIONS
+      v-expansion-panels(flat).footer-grey.elevation-0
+        v-expansion-panel.footer-grey
+          v-expansion-panel-header(:color="expansionPanelColor")
+            span.iconMargin.font-18.feature-text CLINIC SOLUTIONS
             template(v-slot:actions)
               v-icon(color="grey").iconMargin mdi-chevron-down
-            v-col
-              nuxt-link(
-                v-for="(solution, key) in clinicSolutions"
-                :key="key"
-                :to="{ name: solution.learnLink }"
-              ).link.py-2
-                span.py-2.font-18.white--text {{solution.header}}
-              nuxt-link(id="footer-features-btn" :to="{ name: 'features' }" title="MYCURE | Features").link.py-2
-                span.py-2.font-18.white--text Features
-
-      v-row
-        v-expansion-panel.elevation-0
-          v-expansion-panel-content.footer-grey
-            template(v-slot:header)
-              span.iconMargin.font-18.feature-text ABOUT
+          v-expansion-panel-content.iconMargin
+            template(v-for="solution in clinicSolutions").link.py-2
+              nuxt-link(:to="{ name: solution.learnLink }")
+              span.py-2.font-18.white--text {{solution.header}}
+              br
+              br
+            nuxt-link(id="footer-features-btn" :to="{ name: 'features' }" title="MYCURE | Features").link.py-2
+              span.py-2.font-18.white--text Features
+        v-expansion-panel.footer-grey
+          v-expansion-panel-header(:color="expansionPanelColor")
+            span.iconMargin.font-18.feature-text ABOUT
             template(v-slot:actions)
               v-icon(color="grey").iconMargin mdi-chevron-down
-            v-col
-              nuxt-link(id="footer-our-story-btn" :to="{ name: 'our-story' }" title="MYCURE Our Story | Caring the Extra Mile").link.py-2
-                span.py-2.font-18.white--text Our Story
-              nuxt-link(id="footer-blog-btn" :to="{ name: 'blog-link' }" title="MYCURE - Blog").link.py-2
-                span.py-2.font-18.white--text Blog
-              nuxt-link(id="footer-careers-btn" :to="{ name: 'careers' }" title="MYCURE - Careers").link.py-2
-                span.py-2.font-18.white--text Careers
-      v-row
-        v-expansion-panel.elevation-0
-          v-expansion-panel-content.footer-grey
-            template(v-slot:header)
-              span.iconMargin.font-18.feature-text LEGAL
+          v-expansion-panel-content.iconMargin
+            nuxt-link(id="footer-our-story-btn" :to="{ name: 'our-story' }" title="MYCURE Our Story | Caring the Extra Mile").link.py-2
+              span.py-2.font-18.white--text Our Story
+            br
+            br
+            nuxt-link(id="footer-blog-btn" :to="{ name: 'blog-link' }" title="MYCURE - Blog").link.py-2
+              span.py-2.font-18.white--text Blog
+            br
+            br
+            nuxt-link(id="footer-careers-btn" :to="{ name: 'careers' }" title="MYCURE - Careers").link.py-2
+              span.py-2.font-18.white--text Careers
+        v-expansion-panel.footer-grey
+          v-expansion-panel-header(:color="expansionPanelColor")
+            span.iconMargin.font-18.feature-text LEGAL
             template(v-slot:actions)
               v-icon(color="grey").iconMargin mdi-chevron-down
-            v-col
-              nuxt-link(id="footer-terms-btn" :to="{ name: 'terms' }" title="MYCURE Terms and Conditions").link.py-2
-                span.py-2.font-18.white--text Terms of Use
-              nuxt-link(id="footer-privacy-policy-btn" :to="{ name: 'privacy-policy' }" title="MYCURE Privacy Policy").link.py-2
-                span.py-2.font-18.white--text Privacy Policy
-      v-row
-        v-expansion-panel.elevation-0
-          v-expansion-panel-content.footer-grey
-            template(v-slot:header)
-              span.iconMargin.font-18.feature-text CONTACT US
+          v-expansion-panel-content.iconMargin
+            nuxt-link(id="footer-terms-btn" :to="{ name: 'terms' }" title="MYCURE Terms and Conditions").link.py-2
+              span.py-2.font-18.white--text Terms of Use
+            br
+            br
+            nuxt-link(id="footer-privacy-policy-btn" :to="{ name: 'privacy-policy' }" title="MYCURE Privacy Policy").link.py-2
+              span.py-2.font-18.white--text Privacy Policy
+        v-expansion-panel.footer-grey
+          v-expansion-panel-header(:color="expansionPanelColor")
+            span.iconMargin.font-18.feature-text CONTACT US
             template(v-slot:actions)
               v-icon(color="grey").iconMargin mdi-chevron-down
-            v-col
-              a(id="footer-email-btn" title="MYCURE - Email" href="mailto:hello@mycure.md").link.font-mc-blue.py-2
-                span.py-2.font-18.white--text hello@mycure.md
-              span.py-2.font-18.white--text (+632) 7799 6262
-              span.py-2.font-18.white--text (+63) 917 303 4350
+          v-expansion-panel-content.iconMargin
+            a(id="footer-email-btn" title="MYCURE - Email" href="mailto:hello@mycure.md").link.font-mc-blue.py-2
+              span.py-2.font-18.primary--text hello@mycure.md
+            br
+            span.py-2.font-18.white--text (+632) 7799 6262
+            br
+            span.py-2.font-18.white--text (+63) 917 303 4350
       br
       br
       br
@@ -129,6 +128,7 @@ export default {
         id: 'footer-twitter-btn',
       },
     ];
+    this.expansionPanelColor = '#343a40';
     return {
       clinicSolutions: HEALTH_SUITES_ITEMS,
       clinicSol: false,
