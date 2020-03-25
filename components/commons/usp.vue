@@ -161,6 +161,7 @@ export default {
 
 .outer-image-container {
   margin-bottom: -63.5px;
+  padding-top: 4vh;
 }
 .offset-container {
   height: 15vh;
