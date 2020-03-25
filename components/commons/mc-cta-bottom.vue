@@ -2,8 +2,8 @@
   v-container.pt-3
     v-row(justify="center").pt-5
       v-col(cols="12").text-center
-        h2(:class="[{'pre-white-space' : !$isMobile}, $isMobile ? 'font-36' : 'font-40']").lh-title.cta-text {{ ctaText }}
-        p(:class="{'pre-white-space' : !$isMobile}").font-18.pt-3 {{ ctaSubText }}
+        h2(:class="[{'pre-white-space' : !$isMobile}, $isMobile ? 'font-36' : 'font-40']").lh-title.cta-text {{ctaText}}
+        p(:class="{'pre-white-space' : !$isMobile}").font-18.pt-3 {{ctaSubText}}
         div.text-xs-center.pt-2
           v-btn(
             :color="btnColor"
@@ -12,7 +12,7 @@
             dark
             :id="ctaBtnId"
             @click.stop="handleCtaBtnClick"
-          ).text-none.font-s.font-weight-bold {{ ctaBtnText }}
+          ).text-none.font-s.font-weight-bold {{ctaBtnText}}
     br
     v-row(v-if="ctaSecondaryBtnText" justify="center")
       v-col(cols="12").text-center
@@ -22,7 +22,7 @@
           :id="ctaSecondaryBtnId"
           :to="{ name: ctaSecondaryBtnLink }"
           @click.stop="handleCtaSecondaryBtnClick"
-        ).text-none.font-weight-bold {{ ctaSecondaryBtnText }}
+        ).text-none.font-weight-bold {{ctaSecondaryBtnText}}
       br
     v-row(justify="center").py-5
       v-col(cols="12").text-center

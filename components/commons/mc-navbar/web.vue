@@ -16,7 +16,7 @@
                   text
                   v-on="props.on"
                 ).mx-0
-                  span.font-14.tab.text-none {{ solutionsText }}
+                  span.font-14.tab.text-none {{solutionsText}}
                   v-icon(small) mdi-chevron-down
               v-card
                 v-list
@@ -27,7 +27,7 @@
                     @click="handleToolbarLinkClick(item.route)"
                   )
                     v-list-item-content
-                      v-list-item-title {{ item.name }}
+                      v-list-item-title {{item.name}}
             div(v-for="(link, key) in toolbarLinks" :key="key")
               v-btn(
                 v-if="showNav(key)"
@@ -36,7 +36,7 @@
                 text
                 @click.stop="handleToolbarLinkClick(link.id)"
               ).mx-0
-                span.font-14.tab.text-none {{ link.name }}
+                span.font-14.tab.text-none {{link.name}}
             v-btn(
               text
               :to="{ name: loginURL}"
@@ -102,9 +102,9 @@ export default {
     },
   },
   data () {
+    this.loginIcon = 'login-icon';
     return {
       solutionsMenuModel: false,
-      loginIcon: 'login-icon',
     };
   },
   computed: {

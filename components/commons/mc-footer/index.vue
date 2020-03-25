@@ -10,7 +10,7 @@
                 li.feature-text CLINIC SOLUTIONS
                 li(v-for="(solution, key) in clinicSolutions")
                   nuxt-link(:to="{ name: solution.learnLink }" @click.stop="handleFooterSolution(solution.learnLink)").link
-                    | {{ solution.header }}
+                    | {{solution.header}}
                 li.pb-3
                   nuxt-link(id="footer-features-link" @click.stop="handleFooterFeaturesLink" :to="{name: 'features'}" title="MYCURE Features").link Features
             v-col(cols="12" md="2" offset-md="1")

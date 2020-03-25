@@ -25,7 +25,7 @@
             )
               v-list-item-content
                 v-list-item-title
-                  b {{ item.name }}
+                  b {{item.name}}
           v-list(two-line)
             v-list-item(
               v-for="(link, key) in toolbarLinks"
@@ -35,14 +35,14 @@
             )
               v-list-item-content
                 v-list-item-title
-                  b {{ link.name }}
+                  b {{link.name}}
           br
           br
           v-divider
         v-col(cols="12")
           v-list(two-line)
             div(v-for="(section, key) in navSectionLinks" :key="key")
-              v-subheader {{ section.header }}
+              v-subheader {{section.header}}
               v-list-item(
                 v-for="(item, key) in section.items"
                 :key="key"
@@ -51,17 +51,17 @@
               )
                 v-list-item-content
                   v-list-item-title
-                    b {{ item.name }}
+                    b {{item.name}}
               v-divider
           v-list(two-line)
-            v-subheader {{ contactDetails.header }}
+            v-subheader {{contactDetails.header}}
             v-list-item(
               v-for="(contact, key) in contactDetails.items"
               :key="key"
             )
               v-list-item-content
                 v-list-item-title
-                  b {{ contact }}
+                  b {{contact}}
       div.navBottomBtns.py-3
         v-row(justify="center")
           v-btn(

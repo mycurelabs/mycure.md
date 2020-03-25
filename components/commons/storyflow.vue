@@ -3,16 +3,16 @@
     div(v-if="!$isMobile").pt-5
       v-container
         v-row(v-if="introduction" justify="center").text-center.pb60
-          strong.font-40.introText.pre-white-space {{ introduction }}
+          strong.font-40.introText.pre-white-space {{introduction}}
         div(v-if="!horizontal")
           v-row(v-for="(highlight,index) in storyflow" :key="index" justify="center").pb60
             v-col(cols="4" align-self="center").pr-5
               img(:src="require(`@/assets/images/${customPath}${highlight.image}`)" :alt="highlight.title").storyflowAsset.right
             v-col(cols="5")
-              span(v-if="hasTitle").font-40.lh-title {{ highlight.title }}
+              span(v-if="hasTitle").font-40.lh-title {{highlight.title}}
               br
               br
-              span.font-18 {{ highlight.text }}
+              span.font-18 {{highlight.text}}
           br
           v-row(v-if="featuresButton" justify="center").pt-5
             v-btn(
@@ -33,9 +33,9 @@
             ).text-center.mx-4
               img(:src="require(`@/assets/images/${customPath}${highlight.image}`)" :alt="highlight.title").storyflowAssetHorizontal
               br
-              strong(v-if="hasTitle").font-m {{ highlight.title }}
+              strong(v-if="hasTitle").font-m {{highlight.title}}
               br
-              p.font-18.pt-3 {{ highlight.text }}
+              p.font-18.pt-3 {{highlight.text}}
           v-row(v-if="featuresButton" justify="center").pt-4
             v-btn(
               id="features-page-btn"
@@ -48,18 +48,18 @@
     div(v-else).pt-5
       v-container
         v-row(justify="center").text-center.pb-3
-          strong.font-36.introText.lh-title {{ introduction }}
+          strong.font-36.introText.lh-title {{introduction}}
         v-col(v-for="(highlight,index) in storyflow" :key="index" justify="center")
           v-row(justify="center" align="center").pb-2
             img(:src="require(`@/assets/images/${customPath}${highlight.image}`)" :alt="highlight.title").storyflowAsset
           br
           v-row(align="center").text-center  
             v-col(cols="12")
-              strong(v-if="hasTitle").font-30.lh-title.text-center {{ highlight.title }}
+              strong(v-if="hasTitle").font-30.lh-title.text-center {{highlight.title}}
           br
           v-row(align="center").px-2
             v-col(cols="12").text-center
-              span.font-18 {{ highlight.text }}
+              span.font-18 {{highlight.text}}
           br
         v-row(v-if="featuresButton" justify="center")
           v-btn(

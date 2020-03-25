@@ -37,7 +37,7 @@
                 :key="key"
                 :to="{ name: solution.learnLink }"
               ).link.py-2
-                span.py-2.font-18.white--text {{ solution.header }}
+                span.py-2.font-18.white--text {{solution.header}}
               nuxt-link(id="footer-features-btn" :to="{ name: 'features' }" title="MYCURE | Features").link.py-2
                 span.py-2.font-18.white--text Features
 

@@ -6,11 +6,11 @@
       v-container(fill-height)
         v-row(align="center")
           v-col(cols="12").text-center
-            strong(v-if="uspMetaTitle" :class="[getMetaFontSize]").text-center.primary--text {{ uspMetaTitle }}
+            strong(v-if="uspMetaTitle" :class="[getMetaFontSize]").text-center.primary--text {{uspMetaTitle}}
             template(v-if="uspMetaTitle && $isMobile")
             h1(:class="titleClasses").text-center.uspTitle 
-              | {{ uspTitle }}
-            p(:class="{'pre-white-space': !$isMobile}").text-center.uspDescription.pt-3.font-s {{ uspDescription }}
+              | {{uspTitle}}
+            p(:class="{'pre-white-space': !$isMobile}").text-center.uspDescription.pt-3.font-s {{uspDescription}}
             div.pt-1
               v-btn(
                 :color="$mcColors.mcAltGreen"
@@ -19,7 +19,7 @@
                 @click.stop="handleUspBtnClick"
               ).text-none.white--text
                 v-icon(v-if="btnIconLeft" v-text="btnIconLeft")
-                strong(:class="{'pl-1' : btnIconLeft}").font-s {{ btnText }}    
+                strong(:class="{'pl-1' : btnIconLeft}").font-s {{btnText}}    
     div.outer-image-container(:class="$isMobile ? 'pb-5' : 'web-padding'")
       div.usp-image-container.text-center.justify-center
         img(

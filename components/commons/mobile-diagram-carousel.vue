@@ -28,8 +28,8 @@
           :src="require(`@/assets/images/${item.customPath ? item.customPath : customItemPath}${item.icon}.png`)" 
           :alt="item.title")
       v-col(cols="8" offset-xs="1")
-        b {{ item.title }}
-        p {{ item.description}}
+        b {{item.title}}
+        p {{item.description}}
 </template>
 
 <script>
