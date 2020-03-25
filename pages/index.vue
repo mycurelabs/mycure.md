@@ -37,6 +37,8 @@
                   frameborder="0"
                   allowfullscreen
                 )
+    //- 5th panel
+    vid
     //- final panel
     mc-cta-bottom(
       parse-text
@@ -55,6 +57,7 @@ import Usp from '~/components/home/usp';
 import HealthSuites from '~/components/home/health-suites';
 import Solutions from '~/components/home/solutions';
 import Storyflow from '~/components/commons/storyflow';
+import Vid from '~/components/home/vid';
 import McCtaBottom from '~/components/commons/mc-cta-bottom';
 
 export default {
@@ -63,6 +66,7 @@ export default {
     HealthSuites,
     Solutions,
     Storyflow,
+    Vid,
     McCtaBottom,
   },
   data () {
