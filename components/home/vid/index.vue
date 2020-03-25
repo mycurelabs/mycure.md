@@ -2,7 +2,7 @@
   div
     div(v-if="!$isMobile").vid-container.pt-5
       v-container.padding300
-        v-layout(row align-center justify-center)
+        v-row(align="center" justify="center")
           div.maleDoctor
             img(src="~/assets/images/mycure-web-video-cover-decor-doctor-left.png" alt="Male doctor")
           div.vidPosition
