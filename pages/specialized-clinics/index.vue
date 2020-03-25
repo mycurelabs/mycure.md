@@ -2,6 +2,8 @@
   div#top
     //- 1st panel
     usp
+    //- 2nd panel
+    workflow
 </template>
 
 <script>
@@ -10,9 +12,11 @@ import VueScrollTo from 'vue-scrollto';
 import headMeta from '~/utils/head-meta';
 // components
 import Usp from '~/components/specialized-clinics/usp';
+import Workflow from '~/components/specialized-clinics/workflow';
 export default {
   components: {
     Usp,
+    Workflow,
   },
   mounted () {
     VueScrollTo.scrollTo('#app', 500, { easing: 'ease' });
