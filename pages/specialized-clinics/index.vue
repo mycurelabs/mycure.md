@@ -1,0 +1,30 @@
+<template lang="pug">
+  div#top
+    //- 1st panel
+    usp
+</template>
+
+<script>
+// utils
+import VueScrollTo from 'vue-scrollto';
+import headMeta from '~/utils/head-meta';
+// components
+import Usp from '~/components/specialized-clinics/usp';
+export default {
+  components: {
+    Usp,
+  },
+  mounted () {
+    VueScrollTo.scrollTo('#app', 500, { easing: 'ease' });
+  },
+  head () {
+    return headMeta({
+      title: 'EMR Practice Management for Specialized Clinics',
+      description: 'MYCURE is the best customizable EMR clinic practice management system for skin, maternity care, pediatric, dental, & diagnostic clinics. Book a free demo now!',
+      // - TODO: Replace with local if applicable
+      socialBanner: 'https://firebasestorage.googleapis.com/v0/b/mc-v4-prod.appspot.com/o/web-main-assets%2FMYCURE-Open-Graph-Images-Specialized-Clinic.png?alt=media&token=cb08fe03-e7c8-4ea7-9f40-c9742c68cfbc',
+
+    });
+  },
+};
+</script>
