@@ -1,0 +1,21 @@
+[
+  {
+    "title": "Solo and Group Practice",
+    "image": "mycure-doctors-clinics-pricing-page-solo-banner",
+    "type": "solo",
+    "description": "Everything you need to serve your patients more efficiently.",
+    "priceText": "FREE",
+    "inclusionsTitle": "CORE",
+    "inclusions": [
+      "✓ 1 doctor account",
+      "✓ 1 staff account",
+      "✓ 1 GB Storage",
+      "✓ 1 Registration and Queueing Module",
+      "✓ 1 Electronic Medical Records Module",
+      "✓ 1 Billing Module",
+      "✓ 1 Administration Module"
+    ],
+    "btnText": "Sign Up Free",
+    "btnLink": "signup-individual"
+  }
+]
