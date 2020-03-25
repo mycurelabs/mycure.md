@@ -1,7 +1,7 @@
 <template lang="pug">
   fragment
     //- WEB
-    div(v-if="isMd").toolbarMain
+    div(v-if="!$isMobile").toolbarMain
       toolbar-web(
         :loginURL="loginURL"
         :shadow="shadow"
