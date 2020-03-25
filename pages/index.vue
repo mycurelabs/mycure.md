@@ -39,6 +39,8 @@
                 )
     //- 5th panel
     vid
+    //- 6th panel
+    syncbase
     //- final panel
     mc-cta-bottom(
       parse-text
@@ -58,6 +60,7 @@ import HealthSuites from '~/components/home/health-suites';
 import Solutions from '~/components/home/solutions';
 import Storyflow from '~/components/commons/storyflow';
 import Vid from '~/components/home/vid';
+import Syncbase from '~/components/home/syncbase';
 import McCtaBottom from '~/components/commons/mc-cta-bottom';
 
 export default {
@@ -67,6 +70,7 @@ export default {
     Solutions,
     Storyflow,
     Vid,
+    Syncbase,
     McCtaBottom,
   },
   data () {
