@@ -4,6 +4,8 @@
     usp(@getStarted="getStarted")
     //- 2nd panel
     health-suites#health-suites
+    //- 3rd panel
+    solutions
     //- final panel
     mc-cta-bottom(
       parse-text
@@ -20,12 +22,14 @@ import headMeta from '~/utils/head-meta';
 // - components
 import Usp from '~/components/home/usp';
 import HealthSuites from '~/components/home/health-suites';
+import Solutions from '~/components/home/solutions';
 import McCtaBottom from '~/components/commons/mc-cta-bottom';
 
 export default {
   components: {
     Usp,
     HealthSuites,
+    Solutions,
     McCtaBottom,
   },
   data () {
@@ -38,7 +42,7 @@ export default {
   },
   mounted () {
     this.$nuxt.$route.params.scrollHealthSuites ? this.getStarted()
-      : VueScrollTo.scrollTo('#top', 500, { easing: 'ease' });
+      : VueScrollTo.scrollTo('#app', 500, { easing: 'ease' });
   },
   methods: {
     getStarted () {

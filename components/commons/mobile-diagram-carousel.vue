@@ -1,10 +1,10 @@
 <template lang="pug">
-  div
+  v-container
     v-row(justify="center")
       div
         client-only
           carousel(
-            :per-page="1" 
+            :per-page="1"
             :autoplay="true"
             :loop="true"
             :navigationEnabled="true"
@@ -13,7 +13,7 @@
             :navigationClickTargetSize="50"
             navigationNextLabel=" "
             navigationPrevLabel=" "
-          ) 
+          )
             slide(
               v-for="(slide,index) in slides"
               :key="index"
@@ -25,9 +25,9 @@
       v-col(cols="3").text-center
         img(
           v-if="item.icon"
-          :src="require(`@/assets/images/${item.customPath ? item.customPath : customItemPath}${item.icon}.png`)" 
+          :src="require(`@/assets/images/${item.customPath ? item.customPath : customItemPath}${item.icon}.png`)"
           :alt="item.title")
-      v-col(cols="8" offset-xs="1")
+      v-col(cols="8" offset="1")
         b {{item.title}}
         p {{item.description}}
 </template>

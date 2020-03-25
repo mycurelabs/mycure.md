@@ -33,7 +33,7 @@ module.exports = {
     '~/plugins/main.js',
     '~/plugins/vue-fragment.js',
     '~/plugins/vue-media-query-mixin.js',
-    // '~/plugins/vue-carousel.js',
+    { src: '~/plugins/vue-carousel.js', mode: 'client' },
     // '~/plugins/vue-cookie-law.js',
     // '~/plugins/vue-analytics.js',
     // { src: '~/plugins/ga.js', mode: 'client' }
