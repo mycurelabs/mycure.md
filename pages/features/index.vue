@@ -10,6 +10,8 @@
     reports
     //- 5th panel
     billing
+    //- 6th panel
+    registration-and-queuing
 </template>
 
 <script>
@@ -20,6 +22,7 @@ import RolesAndPrivileges from '~/components/features/roles-and-privileges';
 import MedicalRecords from '~/components/features/medical-records';
 import Reports from '~/components/features/reports';
 import Billing from '~/components/features/billing';
+import RegistrationAndQueuing from '~/components/features/registration-and-queuing';
 // - utils
 import { parseTextWithNewLine } from '~/utils/newline';
 import headMeta from '~/utils/head-meta';
@@ -31,6 +34,7 @@ export default {
     MedicalRecords,
     Reports,
     Billing,
+    RegistrationAndQueuing,
   },
   data () {
     return {
