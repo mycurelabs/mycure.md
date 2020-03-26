@@ -3,7 +3,7 @@
     div(v-if="!$isMobile").registration-panel.py-10
       v-container
         v-row(justify="center").text-center
-          strong.font-21.font-mc-blue REGISTRATION AND QUEUING
+          strong.font-21.primary--text REGISTRATION AND QUEUING
         v-row(justify="center").add-spacing.text-center
           strong.font-40.font-work-sans Value everyone's time more effectively.
         v-row(justify="center").add-spacing
@@ -29,7 +29,7 @@
     div(v-else).registration-panel.pt-5
       v-container
         v-row(justify="center")
-          strong.font-16.font-mc-blue REGISTRATION AND QUEUEING
+          strong.font-16.primary--text REGISTRATION AND QUEUEING
         br
         br
         v-row(justify="center").mx-2
