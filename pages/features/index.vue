@@ -1,12 +1,16 @@
 <template lang="pug">
   div#top.white
+    //- 1st panel
     usp
+    //- 2nd panel
+    roles-and-privileges
 </template>
 
 <script>
 import VueScrollTo from 'vue-scrollto';
 // - components
 import Usp from '~/components/features/usp';
+import RolesAndPrivileges from '~/components/features/roles-and-privileges';
 // - utils
 import { parseTextWithNewLine } from '~/utils/newline';
 import headMeta from '~/utils/head-meta';
@@ -14,6 +18,7 @@ import headMeta from '~/utils/head-meta';
 export default {
   components: {
     Usp,
+    RolesAndPrivileges,
   },
   data () {
     return {
