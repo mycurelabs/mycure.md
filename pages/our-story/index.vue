@@ -6,6 +6,8 @@
     paulette
     //- 3rd panel
     founders
+    //- 4th panel
+    problem
 
 </template>
 
@@ -13,12 +15,14 @@
 import Usp from '~/components/our-story/usp';
 import Paulette from '~/components/our-story/paulette';
 import Founders from '~/components/our-story/founders';
+import Problem from '~/components/our-story/problem';
 import headMeta from '~/utils/head-meta';
 export default {
   components: {
     Usp,
     Paulette,
     Founders,
+    Problem,
   },
   head () {
     return headMeta({
