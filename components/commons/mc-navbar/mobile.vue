@@ -110,12 +110,6 @@ export default {
         ],
       },
       {
-        header: 'Support',
-        items: [
-          { name: 'Book A Demo', route: 'calendly' },
-        ],
-      },
-      {
         header: 'Legal',
         items: [
           { name: 'Terms', route: 'terms' },
