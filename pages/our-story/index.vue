@@ -4,17 +4,21 @@
     usp.pb-5
     //- 2nd panel
     paulette
+    //- 3rd panel
+    founders
 
 </template>
 
 <script>
 import Usp from '~/components/our-story/usp';
 import Paulette from '~/components/our-story/paulette';
+import Founders from '~/components/our-story/founders';
 import headMeta from '~/utils/head-meta';
 export default {
   components: {
     Usp,
     Paulette,
+    Founders,
   },
   head () {
     return headMeta({
