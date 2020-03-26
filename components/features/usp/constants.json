@@ -6,6 +6,5 @@
   "btnText": "Watch Walkthrough",
   "btnIconLeft": "mdi-play-circle-outline",
   "coverImg": "mycure-features-usp-cover",
-  "customPath:": "features/"
-  
+  "customPath": "features/" 
 }

@@ -7,6 +7,7 @@
       :btnText="uspContents.btnText"
       :btnIconLeft="uspContents.btnIconLeft"
       :coverImg="uspContents.coverImg"
+      :customPath="uspContents.customPath"
       @btnClick="showVideo"
       :title-mobile-size="28"
     )
