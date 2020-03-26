@@ -4,16 +4,20 @@
     usp
     //- 2nd panel
     workflow
+    //- 3rd panel
+    features
 </template>
 
 <script>
 import Usp from '~/components/multispecialty-clinics/usp';
 import Workflow from '~/components/multispecialty-clinics/workflow';
+import Features from '~/components/multispecialty-clinics/features';
 import headMeta from '~/utils/head-meta';
 export default {
   components: {
     Usp,
     Workflow,
+    Features,
   },
   head () {
     return headMeta({
