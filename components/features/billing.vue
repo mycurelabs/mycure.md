@@ -11,7 +11,7 @@
         v-row(justify="center").add-spacing
           ul
             li
-              v-row(v-for="(item, index) in items" :key="index" row align="left").pb-3
+              v-row(v-for="(item, index) in items" :key="index" row align="start").pb-3
                 img(src="~/assets/images/mycure-web-bullet-check.png" alt="Check icon")
                 span.font-18.pl-3 {{item}}
         v-row(justify="center").add-spacing
@@ -27,7 +27,7 @@
             navigationPrevLabel=" "
           ).text-center
             slide(v-for="(feature,index) in features" :key="index" :data-index="index+1").pa-1
-              img(:src="require(`~/assets/images/features/mycure-web-features-mockup-03-${feature}.png`)" alt="Clinic Billing and Payments" width="75%")
+              img(:src="require(`~/assets/images/features/mycure-web-features-mockup-03-${feature}.png`)" alt="Clinic Billing and Payments")
     div(v-else).billing-container.pt-5
       v-container
         v-row(justify="center")
@@ -47,7 +47,7 @@
         v-row(justify="center")
           ul
             li
-              v-row(v-for="(item, index) in items" :key="index" align="left").pb-3
+              v-row(v-for="(item, index) in items" :key="index" align="start").pb-3
                 img(src="~/assets/images/mycure-web-bullet-check.png" alt="Check icon" height="29px")
                 span.font-14.pl-3 {{ item }}
         v-row(justify="center").add-spacing
@@ -55,7 +55,6 @@
         br
         br
         v-row(justify="center")
-          //- https://ssense.github.io/vue-carousel/
           carousel(
             :per-page="1"
             autoplay

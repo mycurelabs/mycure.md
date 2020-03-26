@@ -13,7 +13,7 @@
             span.font-21 Collaborate with your clinic staff more efficiently using a clinic system that's so user-friendly, you wouldn't even feel that you're working.
         v-row(justify="center").add-spacing
           img(src="~/assets/images/features/mycure-cms-web-features-arrow-down.png" alt="Arrow down")
-        v-row(align="top").add-spacing
+        v-row(align="start").add-spacing
           v-col(v-for="(role,index) in roles" :key="index" cols="12" md="2" justify="center").text-center
             img(:src="require(`~/assets/images/features//mycure-web-features-role-${ role.avatar }.png`)" :alt="role.name" height="250px")
             br
