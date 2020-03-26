@@ -16,7 +16,8 @@
     laboratory-and-imaging
     //- 8th panel
     inventory
-
+    //- 9th panel
+    syncbase
 </template>
 
 <script>
@@ -30,6 +31,7 @@ import Billing from '~/components/features/billing';
 import RegistrationAndQueuing from '~/components/features/registration-and-queuing';
 import LaboratoryAndImaging from '~/components/features/laboratory-and-imaging';
 import Inventory from '~/components/features/inventory';
+import Syncbase from '~/components/features/syncbase';
 // - utils
 import { parseTextWithNewLine } from '~/utils/newline';
 import headMeta from '~/utils/head-meta';
@@ -44,6 +46,7 @@ export default {
     RegistrationAndQueuing,
     LaboratoryAndImaging,
     Inventory,
+    Syncbase,
   },
   data () {
     return {
