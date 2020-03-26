@@ -1,7 +1,5 @@
 <template lang="pug">
-  v-container
-    v-row
-      v-col
+  nuxt-child
 </template>
 
 <script>

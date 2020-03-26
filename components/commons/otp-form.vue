@@ -4,8 +4,8 @@
       tr
         td(v-for="pos in otpLength")
           input(
-            type="text" 
-            maxlength="1" 
+            type="text"
+            maxlength="1"
             :id="`otp-field-${pos}`"
             @input="change($event, pos)"
             @onkeydown="deleteChar($event, pos)"
@@ -25,14 +25,14 @@ export default {
       const value = event.target.value;
       if (pos >= this.otpLength || pos === 1) { return; }
       if (value) {
-        document.getElementById(`otp-field-${pos+1}`).focus();
+        document.getElementById(`otp-field-${pos + 1}`).focus();
       } else {
-        document.getElementById(`otp-field-${pos-1}`).focus();
+        document.getElementById(`otp-field-${pos - 1}`).focus();
       }
     },
     deleteChar (event) {
       const key = event.key;
-      if (key === "Backspace" || key === "Delete") {
+      if (key === 'Backspace' || key === 'Delete') {
         return false;
       }
     },
