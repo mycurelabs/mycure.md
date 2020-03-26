@@ -10,7 +10,7 @@
           v-col(
             v-for="(diagram, key) in diagrams"
             :key="key"
-            cols="12"
+            cols="11"
             md="5"
             :class="[{ 'text-right' : key === 0  && !$isMobile }, {'verticalLine' : key === 0 && !$isMobile }]"
           ).mx-1.px-4
