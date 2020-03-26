@@ -1,14 +1,20 @@
 <template lang="pug">
   div#top
+    //- 1st panel
     usp.pb-5
+    //- 2nd panel
+    paulette
+
 </template>
 
 <script>
 import Usp from '~/components/our-story/usp';
+import Paulette from '~/components/our-story/paulette';
 import headMeta from '~/utils/head-meta';
 export default {
   components: {
     Usp,
+    Paulette,
   },
   head () {
     return headMeta({
