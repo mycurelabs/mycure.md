@@ -27,7 +27,7 @@
             img(src="~/assets/images/mycure-web-video-cover-decor-doctor-right.png" alt="Female doctor")
     div(v-else).white
       v-container
-        v-cols(cols="11").text-center
+        v-col(cols="11").text-center
           v-row(align="center" justify="center")
             h1.font-36 Caring the Extra Mile
           br
