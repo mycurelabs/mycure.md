@@ -15,7 +15,7 @@
                 v-btn(
                   text
                   v-on="props.on"
-                ).mx-2
+                )
                   span.font-14.tab.text-none {{solutionsText}}
                   v-icon(small) mdi-chevron-down
               v-card

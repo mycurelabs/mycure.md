@@ -1,0 +1,10 @@
+{
+  "metaTitle": "MYCURE Clinic Management System for Multispecialty Clinics",
+  "title": "Simplified workflows, faster results, better performance",
+  "description": "",
+  "btnRoute": "signup-multispecialty",
+  "btnId": "multispecialty-usp-book-demo-btn",
+  "btnText": "Book A Free Demo",
+  "coverImg": "mycure-multispecialty-clinic-usp-cover",
+  "customPath": "multispecialty/"
+}

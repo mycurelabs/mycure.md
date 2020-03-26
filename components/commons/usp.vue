@@ -7,7 +7,7 @@
         v-col(cols="12").text-center
           strong(v-if="uspMetaTitle" :class="[getMetaFontSize]").text-center.primary--text {{uspMetaTitle}}
           template(v-if="uspMetaTitle && $isMobile")
-          h1(:class="titleClasses").text-center.uspTitle
+          h1(:class="titleClasses" :style="this.$isMobile ? fontStyle : {}").text-center.uspTitle
             | {{uspTitle}}
           p(:class="{'pre-white-space': !$isMobile}").text-center.uspDescription.pt-3.font-s {{uspDescription}}
           div.pt-1
@@ -81,6 +81,9 @@ export default {
     },
   },
   data () {
+    this.fontStyle = {
+      'font-size': `${this.titleMobileSize}px`,
+    };
     return {
       isImageLoaded: false,
       // - Routes that use the alternative blue color for USP
