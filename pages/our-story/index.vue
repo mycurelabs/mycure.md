@@ -14,6 +14,8 @@
     vid
     //- 7th panel
     codes-of-being
+    //- cta
+    mc-cta-bottom(image-only)
 </template>
 
 <script>
@@ -24,6 +26,7 @@ import Problem from '~/components/our-story/problem';
 import Purpose from '~/components/our-story/purpose';
 import Vid from '~/components/our-story/vid';
 import CodesOfBeing from '~/components/our-story/codes-of-being';
+import McCtaBottom from '~/components/commons/mc-cta-bottom';
 import headMeta from '~/utils/head-meta';
 export default {
   components: {
@@ -34,6 +37,7 @@ export default {
     Purpose,
     Vid,
     CodesOfBeing,
+    McCtaBottom,
   },
   head () {
     return headMeta({

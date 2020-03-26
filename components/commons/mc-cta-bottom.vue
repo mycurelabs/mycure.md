@@ -1,6 +1,6 @@
 <template lang="pug">
   v-container.pt-3
-    v-row(justify="center").pt-5
+    v-row(v-if="!imageOnly" justify="center").pt-5
       v-col(cols="12").text-center
         h2(:class="[{'pre-white-space' : !$isMobile}, $isMobile ? 'font-36' : 'font-40']").lh-title.cta-text {{ctaText}}
         p(:class="{'pre-white-space' : !$isMobile}").font-18.pt-3 {{ctaSubText}}
@@ -14,7 +14,7 @@
             @click.stop="handleCtaBtnClick"
           ).text-none.font-s.font-weight-bold.cta-btn {{ctaBtnText}}
     br
-    v-row(v-if="ctaSecondaryBtnText" justify="center")
+    v-row(v-if="ctaSecondaryBtnText && !imageOnly" justify="center")
       v-col(cols="12").text-center
         v-btn(
           text
@@ -60,6 +60,10 @@ export default {
     btnColor: {
       type: String,
       default: '#7fad22',
+    },
+    imageOnly: {
+      type: Boolean,
+      default: false,
     },
   },
   computed: {
