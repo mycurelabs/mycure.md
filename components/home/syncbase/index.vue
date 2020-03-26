@@ -4,7 +4,7 @@
     div(v-if="!$isMobile").py-4
       v-container
         v-row(justify="center")
-          v-col(cols="6" align-self="center").px-3
+          v-col(cols="6" align-self="center").px-3.content
             h1.panelTitle.font-40.font-work-sans.lh-title {{ webTitle }}
             br
             br
@@ -22,7 +22,10 @@
               v-icon mdi-play-circle-outline
               span &nbsp;{{ btnData.text }}
           v-col(cols="6" align-self="center").px-3.text-center
-            img(:src="require(`~/assets/images/${panelImage}.gif`)" width="100%" alt="MYCURE Syncbase")
+            //- img(:src="require(`~/assets/images/${panelImage}.gif`)" width="100%" alt="MYCURE Syncbase")
+            video(loop :width="wXL ? '1400' : '1150'" autoplay).syncbase-animate
+              source(src="~/assets/videos/mycure-syncbase-diagram-animate.mp4" type="video/mp4")
+              | Your browser does not support the video tag.
     //- MOBILE
     div(v-else).pt-10.mt-10
       v-container.text-center
@@ -114,5 +117,17 @@ export default {
 }
 .video-button {
   letter-spacing: normal;
+}
+.content {
+  z-index: 1;
+}
+.syncbase-animate {
+  margin-left: -20vw;
+}
+
+@media screen and (min-width: 1440px){
+  .syncbase-animate {
+    margin-left: -11vw;
+  }
 }
 </style>
