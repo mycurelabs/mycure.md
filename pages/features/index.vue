@@ -14,6 +14,9 @@
     registration-and-queuing
     //- 7th panel
     laboratory-and-imaging
+    //- 8th panel
+    inventory
+
 </template>
 
 <script>
@@ -26,6 +29,7 @@ import Reports from '~/components/features/reports';
 import Billing from '~/components/features/billing';
 import RegistrationAndQueuing from '~/components/features/registration-and-queuing';
 import LaboratoryAndImaging from '~/components/features/laboratory-and-imaging';
+import Inventory from '~/components/features/inventory';
 // - utils
 import { parseTextWithNewLine } from '~/utils/newline';
 import headMeta from '~/utils/head-meta';
@@ -39,6 +43,7 @@ export default {
     Billing,
     RegistrationAndQueuing,
     LaboratoryAndImaging,
+    Inventory,
   },
   data () {
     return {
