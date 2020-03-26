@@ -8,6 +8,8 @@
     medical-records
     //- 4th panel
     reports
+    //- 5th panel
+    billing
 </template>
 
 <script>
@@ -17,6 +19,7 @@ import Usp from '~/components/features/usp';
 import RolesAndPrivileges from '~/components/features/roles-and-privileges';
 import MedicalRecords from '~/components/features/medical-records';
 import Reports from '~/components/features/reports';
+import Billing from '~/components/features/billing';
 // - utils
 import { parseTextWithNewLine } from '~/utils/newline';
 import headMeta from '~/utils/head-meta';
@@ -27,6 +30,7 @@ export default {
     RolesAndPrivileges,
     MedicalRecords,
     Reports,
+    Billing,
   },
   data () {
     return {
