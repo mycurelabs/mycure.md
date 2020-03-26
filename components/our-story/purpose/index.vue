@@ -1,5 +1,5 @@
 <template lang="pug">
-  div.white.my-10
+  div.white.mt-10.mb-5
     v-container
       v-row
         v-col(cols="12")

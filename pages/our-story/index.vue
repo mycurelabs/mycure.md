@@ -10,6 +10,8 @@
     problem
     //- 5th panel
     purpose
+    //- 6th panel
+    vid
 
 </template>
 
@@ -19,6 +21,7 @@ import Paulette from '~/components/our-story/paulette';
 import Founders from '~/components/our-story/founders';
 import Problem from '~/components/our-story/problem';
 import Purpose from '~/components/our-story/purpose';
+import Vid from '~/components/our-story/vid';
 import headMeta from '~/utils/head-meta';
 export default {
   components: {
@@ -27,6 +30,7 @@ export default {
     Founders,
     Problem,
     Purpose,
+    Vid,
   },
   head () {
     return headMeta({
