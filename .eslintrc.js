@@ -13,7 +13,7 @@ module.exports = {
   ],
   // add your custom rules here
   rules: {
-    'nuxt/no-cjs-in-config': 'off',
+    // 'nuxt/no-cjs-in-config': 'off',
     'semi': [2, 'always'],
     'space-before-function-paren': [2, 'always'],
     'keyword-spacing': [2, { before: true, after: true }],
