@@ -14,6 +14,12 @@
       :customPath="storyflowCustomPath"
       white-bg
     )
+    //- cta
+    mc-cta-bottom(
+      parse-text
+      :parseIndicators="['work']"
+      :ctaContent="ctaContent"
+    ).mt-10
 </template>
 
 <script>
@@ -25,6 +31,7 @@ import Usp from '~/components/multispecialty-clinics/usp';
 import Workflow from '~/components/multispecialty-clinics/workflow';
 import Features from '~/components/multispecialty-clinics/features';
 import Storyflow from '~/components/commons/storyflow';
+import McCtaBottom from '~/components/commons/mc-cta-bottom';
 // - utils
 import headMeta from '~/utils/head-meta';
 import { parseTextWithNewLine } from '~/utils/newline';
@@ -35,6 +42,7 @@ export default {
     Workflow,
     Features,
     Storyflow,
+    McCtaBottom,
   },
   data () {
     this.storyflowItems = STORYFLOW_ITEMS;
