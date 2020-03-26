@@ -6,6 +6,8 @@
     roles-and-privileges
     //- 3rd panel
     medical-records
+    //- 4th panel
+    reports
 </template>
 
 <script>
@@ -14,6 +16,7 @@ import VueScrollTo from 'vue-scrollto';
 import Usp from '~/components/features/usp';
 import RolesAndPrivileges from '~/components/features/roles-and-privileges';
 import MedicalRecords from '~/components/features/medical-records';
+import Reports from '~/components/features/reports';
 // - utils
 import { parseTextWithNewLine } from '~/utils/newline';
 import headMeta from '~/utils/head-meta';
@@ -23,6 +26,7 @@ export default {
     Usp,
     RolesAndPrivileges,
     MedicalRecords,
+    Reports,
   },
   data () {
     return {
