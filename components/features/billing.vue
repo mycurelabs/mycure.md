@@ -22,12 +22,13 @@
             :autoplay="true"
             :loop="true"
             paginationActiveColor="white"
+            adjustableHeight
             paginationColor="grey"
             navigationNextLabel=" "
             navigationPrevLabel=" "
           ).text-center
             slide(v-for="(feature,index) in features" :key="index" :data-index="index+1").pa-1
-              img(:src="require(`~/assets/images/features/mycure-web-features-mockup-03-${feature}.png`)" alt="Clinic Billing and Payments")
+              img(:src="require(`~/assets/images/features/mycure-web-features-mockup-03-${feature}.png`)" alt="Clinic Billing and Payments" width="70%")
     div(v-else).billing-container.pt-5
       v-container
         v-row(justify="center")
@@ -90,7 +91,9 @@ export default {
   background-repeat: no-repeat;
   background-size: 100% auto;
 }
-
+.carousel-container {
+  height: 600px !important;
+}
 ul {
   list-style-type: none;
 }

@@ -18,6 +18,7 @@
             :per-page="1"
             :autoplay="true"
             :loop="true"
+            adjustableHeight
             paginationActiveColor="white"
             paginationColor="grey"
             navigationNextLabel=" "
