@@ -30,10 +30,10 @@
           strong.font-16.primary--text MEDICAL RECORDS
         br
         br
-        v-row(justify="center")
+        v-row(justify="center").mx-2
           p.font-30.font-weight-bold.text-center.font-work-sans Designed for doctors, by doctors.
         br
-        v-row(justify="center")
+        v-row(justify="center").mx-2
           p.font-18.text-center Record full medical history, vitals, and physical exam records according
             |  to SOAP charting. Eliminate the haste of scribbling with Rx printing, ICD-10
             | database, multiple image uploads, and more.

@@ -32,7 +32,7 @@
             | business decisions.
         br
         br
-        v-row(justify="center")
+        v-row(justify="center").mx-2
           p.font-18.text-center Measure your day-to-day clinic performance analyzing comprehensive graphs based on your KPIs. Census, billing, diagnostics, sales, and physical exam reports can be generated instantly.
         v-row(justify="center").add-spacing
           img(src="~/assets/images/features/mycure-cms-web-features-arrow-down.png" alt="Arrow down")
