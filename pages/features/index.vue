@@ -18,6 +18,11 @@
     inventory
     //- 9th panel
     syncbase
+    //- cta
+    mc-cta-bottom(
+      :ctaContent="ctaContent"
+      btnColor="accent"
+    )
 </template>
 
 <script>
@@ -32,6 +37,7 @@ import RegistrationAndQueuing from '~/components/features/registration-and-queui
 import LaboratoryAndImaging from '~/components/features/laboratory-and-imaging';
 import Inventory from '~/components/features/inventory';
 import Syncbase from '~/components/features/syncbase';
+import McCtaBottom from '~/components/commons/mc-cta-bottom';
 // - utils
 import { parseTextWithNewLine } from '~/utils/newline';
 import headMeta from '~/utils/head-meta';
@@ -47,6 +53,7 @@ export default {
     LaboratoryAndImaging,
     Inventory,
     Syncbase,
+    McCtaBottom,
   },
   data () {
     return {
