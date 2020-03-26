@@ -19,7 +19,7 @@
             img(src="~/assets/images/features/mycure-cms-web-features-arrow-down.png" alt="Arrow down")
           v-row(justify="center").add-spacing
             img(src="~/assets/images/features/mycure-web-features-mockup-07-A.png" alt="Syncbase Technology" width="35%")
-      //- modules.pt-5
+      modules.pt-10
     div(v-else).syncbase-container
       div.pt-5
         v-container
@@ -43,16 +43,16 @@
           br
           v-row(justify="center")
             img(src="~/assets/images/features/mycure-web-features-mockup-07-A.png" alt="Syncbase Technology").syncbasePanel
-      //- modules
+      modules
 </template>
 
 <script>
-// import modules from './modules';
+import Modules from './modules';
 
 export default {
-  // components:{
-  //   modules
-  // },
+  components: {
+    Modules,
+  },
   data () {
     this.items = [
       'Product Identification',
