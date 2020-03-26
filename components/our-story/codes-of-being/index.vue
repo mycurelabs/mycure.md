@@ -7,14 +7,14 @@
           h2(:class="$isMobile ? 'font-36' : 'font-40'").font-work-sans 8 Codes of Being
       v-row(justify="center").fill-height.pt-3
         template(v-if="!$isMobile")
-          v-col(cols="12" md="5")
+          v-col(cols="12" md="4")
             v-list(two-line).check-list
               v-list-item(v-for="(code, key) in codes.slice(0,4)" :key="key")
                 v-list-item-action
                     img(:src="require(`~/assets/images/${checkIcon}.png`)" alt="Check icon")
                 v-list-item-content
                     span.font-18 {{ code }}
-          v-col(cols="12" md="5")
+          v-col(cols="12" md="4")
             v-list(two-line).check-list
               v-list-item(v-for="(code, key) in codes.slice(4,8)" :key="key")
                 v-list-item-action
