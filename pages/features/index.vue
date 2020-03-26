@@ -12,6 +12,8 @@
     billing
     //- 6th panel
     registration-and-queuing
+    //- 7th panel
+    laboratory-and-imaging
 </template>
 
 <script>
@@ -23,6 +25,7 @@ import MedicalRecords from '~/components/features/medical-records';
 import Reports from '~/components/features/reports';
 import Billing from '~/components/features/billing';
 import RegistrationAndQueuing from '~/components/features/registration-and-queuing';
+import LaboratoryAndImaging from '~/components/features/laboratory-and-imaging';
 // - utils
 import { parseTextWithNewLine } from '~/utils/newline';
 import headMeta from '~/utils/head-meta';
@@ -35,6 +38,7 @@ export default {
     Reports,
     Billing,
     RegistrationAndQueuing,
+    LaboratoryAndImaging,
   },
   data () {
     return {
