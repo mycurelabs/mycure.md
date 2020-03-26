@@ -14,10 +14,10 @@
           img(src="~/assets/images/features/mycure-cms-web-features-arrow-down.png" alt="Arrow down")
         v-row(justify="center").add-spacing
           carousel(
+            :key="$isMobile"
             :per-page="1"
             :autoplay="true"
             :loop="true"
-            adjustableHeight
             paginationActiveColor="white"
             paginationColor="grey"
             navigationNextLabel=" "
