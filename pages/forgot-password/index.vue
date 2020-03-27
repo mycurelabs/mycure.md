@@ -1,7 +1,7 @@
 <template lang="pug">
   v-container(class="fill-height")
     v-row(align="center" justify="center")
-      v-col(cols="12" sm="6" md="5")
+      v-col(cols="12" sm="8" md="4")
         v-card
           v-card-text.px-4
             img(
@@ -10,6 +10,7 @@
               @click="$router.push({ name: 'home' })"
             ).link-to-home.mb-3
             h1.signin-title Forgot your password?
+            br
             p No worries! Just follow these steps:
             p 1. Enter your MYCURE email address below.
             p 2. Carefully follow the instructions we sent to your email address.
@@ -26,21 +27,21 @@
               :value="error"
               type="error"
             ) {{errorMsg}}
-          v-card-text.px-4
+          v-card-text
             v-row
               v-col
                 v-btn(
-                  flat
+                  text
                   right
                   :to="{ name: 'signin' }"
                 ).text-none Back to Login
-              v-col
+              v-col.text-right
                 v-btn(
                   type="submit"
-                  color="success"
+                  color="accent"
                   :disabled="!valid || loading"
                   :loading="loading"
-                ).right Submit
+                ).font-weight-bold Submit
 
     v-dialog(v-model="successDialog" width="400" persistent)
       v-card
@@ -56,7 +57,7 @@
 import dayOrNight from '@/utils/day-or-night';
 import { forgotPassword } from '@/utils/axios';
 export default {
-  layout: 'user',
+  layout: 'signin',
   data () {
     this.dayOrNight = dayOrNight();
     return {
