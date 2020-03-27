@@ -1,20 +1,33 @@
-<template>
-  <v-app dark>
-    <h1 v-if="error.statusCode === 404">
-      {{ pageNotFound }}
-    </h1>
-    <h1 v-else>
-      {{ otherError }}
-    </h1>
-    <NuxtLink to="/">
-      Home page
-    </NuxtLink>
-  </v-app>
+<template lang="pug">
+  fragment
+    div(v-if="error.statusCode === 404").white
+      v-container(fluid align="start").mb-3
+        v-row(align="center")
+          v-col
+            v-row(justify="center")
+              img(:width="$isMobile ? '90%' : 'auto'" src="~/assets/images/mycure-error-404-image.png" alt="Error 404")
+            br
+            v-row(justify="center").text-center
+              v-col
+                strong.pb-2.font-18 Oh snap!
+                p.pb-2.font-16 The page you’re looking for can’t be found.
+                nuxt-link(:to="{ name: 'index' }" title="MYCURE | Clinic Management System | Cloud EMR Philippines")
+                  p.font-16 Back to Home >
+    div(v-else).my-10
+      v-container(fluid align="start")
+        v-row(align="center")
+          v-col(cols="12").text-center
+            h1.font-40 {{ otherError }}
+            br
+            nuxt-link(:to="{ name: 'index' }" title="MYCURE | Clinic Management System | Cloud EMR Philippines")
+                p.font-16 Back to Home >
 </template>
 
 <script>
+import VueScrollTo from 'vue-scrollto';
+import headMeta from '~/utils/head-meta';
 export default {
-  layout: 'empty',
+  layout: 'default',
   props: {
     error: {
       type: Object,
@@ -27,12 +40,22 @@ export default {
       otherError: 'An error occurred',
     };
   },
+  mounted () {
+    VueScrollTo.scrollTo('#app', 500, { easing: 'ease' });
+  },
   head () {
-    const title =
-      this.error.statusCode === 404 ? this.pageNotFound : this.otherError;
-    return {
-      title,
-    };
+    if (this.error.statusCode === 404) {
+      return headMeta({
+        title: 'MYCURE - Page Not Found',
+        description: 'Aw snap! The page you are looking for does not exist.',
+        socialBanner: 'https://firebasestorage.googleapis.com/v0/b/mc-v4-prod.appspot.com/o/web-main-assets%2FMYCURE-Open-Graph-Images-404.png?alt=media&token=5181853e-9176-44d6-b8ef-87fcb84b36a2',
+      });
+    } else {
+      return {
+        title: `MYCURE - ${this.otherError}`,
+        description: this.otherError,
+      };
+    }
   },
 };
 </script>
