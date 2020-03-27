@@ -32,7 +32,7 @@ export default {
   },
   methods: {
     onOkayClick () {
-      this.$router.push({ name: 'signin' });
+      this.$nuxt.$router.push({ name: 'signin' });
     },
   },
   head () {
