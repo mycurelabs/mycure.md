@@ -1,7 +1,7 @@
 <template lang="pug">
   v-row(justify="center" align="center")
     v-col(cols="12" md="10")
-      v-row(justify="center")
+      v-row(justify="center" no-gutters)
         v-col(cols="12" md="5" :class="[{'content-padding': !$isMobile}]")
           img(
             src=`~/assets/images/mycure-${dayOrNight === 'night' ? 'footer' : 'header'}-logo.png`
