@@ -2,7 +2,7 @@
   v-row(justify="center" align="center")
     v-col(cols="12" md="10")
       v-row(justify="center")
-        v-col(cols="12" md="5" :class="[{'pt-5': !$isMobile}, {'mt-5': !$isMobile}]")
+        v-col(cols="12" md="5" :class="[{'content-padding': !$isMobile}]")
           img(
             src=`~/assets/images/mycure-${dayOrNight === 'night' ? 'footer' : 'header'}-logo.png`
             @click="$nuxt.$router.push({ name: 'index' })"
@@ -13,7 +13,7 @@
           br
           h1#step-1-title Become a techy doctor in minutes!
           br
-          v-row(v-for="(item, key) in checkListItems" :key="key" align="center")
+          v-row(v-for="(item, key) in checkListItems" :key="key" align="center" dense)
             v-col(cols="1").pr-2.pt-2
               img(width="20" src="~/assets/images/mycure-check.png" alt="Check icon")
             v-col(shrink)
@@ -29,7 +29,7 @@
             v-card-text
               v-form(ref="formRef" v-model="valid")
                 v-row
-                  v-col.mr-1
+                  v-col
                     v-text-field(
                       v-model="user.firstName"
                       outlined
@@ -37,7 +37,7 @@
                       :rules="[requiredRule]"
                       :disabled="loading"
                     ).step-one-text-field
-                  v-col.ml-1
+                  v-col
                     v-text-field(
                       v-model="user.lastName"
                       outlined
@@ -123,7 +123,8 @@
                 @click="next"
                 :disabled="loading || !valid"
                 :loading="loading"
-              ) Create my Account
+                large
+              ).font-weight-bold Create my Account
 
     v-dialog(v-model="countryDialog" width="500" scrollable)
       v-card
@@ -218,9 +219,8 @@ export default {
       this.countries = this.countries.filter(v => v.name.toLowerCase().indexOf(needle) > -1); // eslint-disable-line
     },
   },
-  created () {
-    // await this.init();
-    console.warn('dayOrNight', this.dayOrNight);
+  async created () {
+    await this.init();
   },
   methods: {
     async next () {
@@ -235,13 +235,15 @@ export default {
         if (this.pageType === 'signup-individual-step-1') {
           await signupIndividual(this.user);
           if (this.user.countryCallingCode !== '63') {
-            localStorage.clear();
+            if (process.browser) {
+              localStorage.clear();
+            }
             this.emailVerificationMessageDialog = true;
           } else {
-            this.$router.push({ name: 'signup-individual-step-2' });
+            this.$nuxt.$router.push({ name: 'signup-individual-step-2' });
           }
         } else {
-          this.$router.push({ name: 'signup-specialized-step-2' });
+          this.$nuxt.$router.push({ name: 'signup-specialized-step-2' });
         }
       } catch (e) {
         console.error(e);
@@ -272,7 +274,6 @@ export default {
         }
         // Load countries
         this.getCountries();
-
         this.loadingForm = false;
       }
     },
@@ -281,14 +282,18 @@ export default {
         ...val,
         acceptTerms: false,
       };
-      localStorage.setItem('individual:step1:model', JSON.stringify(saveVal));
+      if (process.browser) {
+        localStorage.setItem('individual:step1:model', JSON.stringify(saveVal));
+      }
     },
     async getCountries () {
-      if (!localStorage.getItem('mycure:countries')) {
-        this.countries = await getCountries();
-        localStorage.setItem('mycure:countries', JSON.stringify(this.countries));
-      } else {
-        this.countries = JSON.parse(localStorage.getItem('mycure:countries'));
+      if (process.browser) {
+        if (!localStorage.getItem('mycure:countries')) {
+          this.countries = await getCountries();
+          localStorage.setItem('mycure:countries', JSON.stringify(this.countries));
+        } else {
+          this.countries = JSON.parse(localStorage.getItem('mycure:countries'));
+        }
       }
     },
     selectCountry (country) {
@@ -324,7 +329,7 @@ export default {
     },
     doneSignupNonPH () {
       this.emailVerificationMessageDialog = false;
-      this.$router.push({ name: 'signin' });
+      this.$nuxt.$router.push({ name: 'signin' });
     },
   },
 };
@@ -345,6 +350,10 @@ h1 {
 
 .flag-img:hover {
   cursor: pointer;
+}
+
+.content-padding {
+  padding-top: 100px;
 }
 /* TODO: confirm if needed. This will defeat uniformity across other forms. */
 /* .step-one-text-field {
