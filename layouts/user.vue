@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-app(:dark="dayOrNight === 'night'")
+  v-app
     v-content
       div(
         :style="styleConfig"
@@ -33,6 +33,7 @@ export default {
   },
   mounted () {
     VueScrollTo.scrollTo('#top', 500, { easing: 'ease' });
+    this.$vuetify.theme.dark = this.dayOrNight === 'night';
   },
 };
 </script>

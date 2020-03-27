@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-app(:dark="dayOrNight === 'night'")
+  v-app
     v-content
       v-container(
         fluid fill-height
@@ -15,6 +15,9 @@ export default {
   data () {
     this.dayOrNight = dayOrNight();
     return {};
+  },
+  mounted () {
+    this.$vuetify.theme.dark = this.dayOrNight === 'night';
   },
 };
 </script>

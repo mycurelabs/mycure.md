@@ -16,6 +16,9 @@ export default {
     McNavbar,
     McFooter,
   },
+  mounted () {
+    this.$vuetify.theme.dark = false;
+  },
 };
 </script>
 
