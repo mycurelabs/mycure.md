@@ -61,8 +61,9 @@
                 )
                   template(slot="append")
                     v-tooltip(bottom)
-                      v-btn(icon style="margin-top: -5px" @click="countryDialog = true" slot="activator").ma-0
-                        img(width="25" :src="contact.countryFlag").flag-img.mt-2
+                      template(v-slot:activator="{ on }")
+                        v-btn(icon style="margin-top: -5px" @click="countryDialog = true" v-on="on").ma-0
+                          img(width="25" :src="contact.countryFlag").flag-img.mt-2
                       | Change Country
                 v-text-field(
                   v-model="contact.email"
@@ -98,10 +99,10 @@
               :class="dayOrNight === 'day' ? 'day-card-actions' : 'night-card-actions'"
             )
               v-btn(
-                :to="{ name: 'signup-multispecialty-step-2' }"
                 text
                 large
                 :disabled="loading"
+                @click="onBack"
               ).font-weight-bold Back
               v-spacer
               v-btn(
@@ -387,6 +388,17 @@ export default {
       } finally {
         this.loading = false;
       }
+    },
+    onBack () {
+      if (process.browser) {
+        localStorage.removeItem('multi:step3:model');
+      }
+      this.contact = {
+        countryCallingCode: '',
+        countryFlag: null,
+      };
+      this.$refs.formRef.resetValidation();
+      this.$nuxt.$router.push({ name: 'signup-multispecialty-step-2' });
     },
   },
 };

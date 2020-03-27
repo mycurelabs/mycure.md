@@ -44,9 +44,9 @@
               :class="dayOrNight === 'day' ? 'day-card-actions' : 'night-card-actions'"
             )
               v-btn(
-                :to="{ name: 'signup-multispecialty-step-1' }"
                 text
                 large
+                @click="onBack"
               ).font-weight-bold Back
               v-spacer
               v-btn(
@@ -125,6 +125,12 @@ export default {
       if (process.browser) {
         localStorage.setItem('multi:step2:model', JSON.stringify(this.premiumModules));
       }
+    },
+    onBack () {
+      if (process.browser) {
+        localStorage.removeItem('multi:step2:model');
+      }
+      this.$nuxt.$router.push({ name: 'signup-multispecialty-step-1' });
     },
   },
   head () {
