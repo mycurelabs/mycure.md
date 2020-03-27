@@ -124,7 +124,7 @@
                 :disabled="loading || !valid"
                 :loading="loading"
                 large
-              ).font-weight-bold Create my Account
+              ).font-weight-bold {{pageType === 'signup-individual-step-1' ? 'Create My Account' : 'Next'}}
 
     v-dialog(v-model="countryDialog" width="500" scrollable)
       v-card
