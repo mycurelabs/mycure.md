@@ -5,7 +5,7 @@
 export default {
   layout: 'user',
   created () {
-    this.$router.push({ name: 'signup-individual-step-1' });
+    this.$nuxt.$router.push({ name: 'signup-individual-step-1' });
   },
 };
 </script>
