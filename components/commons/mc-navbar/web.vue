@@ -15,7 +15,7 @@
                 v-btn(
                   text
                   v-on="props.on"
-                )
+                ).mx-1
                   span.font-14.tab.text-none {{solutionsText}}
                   v-icon(small) mdi-chevron-down
               v-card
@@ -35,14 +35,14 @@
                 :id="link.id"
                 text
                 @click.stop="handleToolbarLinkClick(link.id)"
-              ).mx-2
+              ).mx-1
                 span.font-14.tab.text-none {{link.name}}
             v-btn(
               text
               :to="{ name: loginURL}"
               id="login-btn"
               @click.stop="handleToolbarLinkClick('login-btn')"
-            ).mx-2
+            ).mr-2.ml-1
               span.font-14.tab.text-none &nbsp;Login
             v-btn(
               v-if="currentRoute === 'doctors-clinics'"
