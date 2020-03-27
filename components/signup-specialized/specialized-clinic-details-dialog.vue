@@ -1,0 +1,55 @@
+<template lang="pug">
+  v-dialog(v-model="dialog" width="500")
+    v-card
+      v-toolbar(flat)
+        h2 {{ clinic.title }} Clinic
+        v-spacer
+        v-btn(
+          icon
+          @click="dialog = false"
+          small
+        )
+          v-icon mdi-close
+      v-card-text
+        v-row(no-gutters)
+          v-col(cols="12" md="3")
+            img(
+              :src="require(`@/assets/images/${clinic.image || 'mycure-signup-derma'}-active.png`)"
+              :alt="clinic.image"
+              width="100%"
+            )
+          v-col(cols="12" md="9")
+            v-row(v-for="(desc, key) in clinic.descriptions" :key="key" no-gutters)
+              v-col(cols="2").text-center
+                img(:src="require('@/assets/images/mycure-web-bullet-check.png')" alt="✓ " width="30%")
+              v-col(cols="10")
+                p.font-14 {{ desc }}
+</template>
+
+<script>
+export default {
+  props: {
+    value: null, // eslint-disable-line
+    clinic: {
+      type: Object,
+      required: true,
+    },
+  },
+  computed: {
+    dialog: {
+      get () {
+        return this.value;
+      },
+      set (val) {
+        this.$emit('input', val);
+      },
+    },
+  },
+};
+</script>
+
+<style scoped>
+.no-list-style {
+  list-style-type: none;
+}
+</style>
