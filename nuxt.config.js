@@ -85,6 +85,15 @@ module.exports = {
             error: '#ff5252',
             success: colors.green.accent3,
           },
+          dark: {
+            primary: '#2e9fdf',
+            accent: '#7fad33',
+            secondary: '#616161',
+            info: colors.teal.lighten1,
+            warning: colors.amber.base,
+            error: '#ff5252',
+            success: colors.green.accent3,
+          }
         },
       },
     },
