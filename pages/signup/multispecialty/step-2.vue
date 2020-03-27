@@ -45,7 +45,7 @@
             )
               v-btn(
                 :to="{ name: 'signup-multispecialty-step-1' }"
-                flat
+                text
                 large
               ).font-weight-bold Back
               v-spacer
