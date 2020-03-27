@@ -20,7 +20,6 @@
             v-list-item(
               v-for="(item, key) in solutionsMenuItems"
               :key="key"
-              :to="{ name: item.route }"
               @click.stop="handleToolbarLinkClick(`mobile-${item.route}`)"
             )
               v-list-item-content
@@ -30,7 +29,6 @@
             v-list-item(
               v-for="(link, key) in toolbarLinks"
               :key="key"
-              :to="{ name: link.route }"
               @click.stop="handleToolbarLinkClick(`mobile-${link.id}`)"
             )
               v-list-item-content
@@ -105,8 +103,8 @@ export default {
         header: 'About',
         items: [
           { name: 'Our Story', route: 'our-story' },
-          { name: 'Blog', route: 'blog-link' },
-          { name: 'Careers', route: 'careers' },
+          { name: 'Blog', external: 'http://blog.mycure.md/' },
+          { name: 'Careers', external: 'https://culture.mycure.md/' },
         ],
       },
       {
@@ -131,7 +129,12 @@ export default {
   },
   methods: {
     handleToolbarLinkClick (link) {
-      this.$emit('toolbarLinkClick', link);
+      if (link?.external) {
+        window.open(link.external);
+      } else {
+        this.$emit('toolbarLinkClick', link);
+        this.$nuxt.$router.push({ name: link.route });
+      }
       this.drawer = false;
     },
     handleMycureLogo () {

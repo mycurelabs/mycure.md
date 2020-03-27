@@ -2,16 +2,16 @@
   v-container
     div(v-if="!$isMobile")
       v-toolbar(flat).footer-grey
-        nuxt-link(:to="{ name: 'home' }" title="MYCURE | Clinic Management System | Cloud EMR Philippines")
+        nuxt-link(:to="{ name: 'index' }" title="MYCURE | Clinic Management System | Cloud EMR Philippines")
           v-row.text-center
             img(src="~/assets/images/mycure-footer-logo.png" height="40" alt="MYCURE logo")
         v-spacer
         div(v-for="(account,key) in socMed" :key="key")
-          nuxt-link(:to="{ name: `${ account.link }`}" :title="account.name" :id="account.id")
+          a(:href="account.link" target="_blank")
             img(:src="require(`~/assets/images/${ account.icon }`)" height="25" :alt="account.name").px-2
     div(v-else).footer-grey.secondary--text
       div
-        nuxt-link(:to="{ name: 'home' }" title="MYCURE | Clinic Management System | Cloud EMR Philippines")
+        nuxt-link(:to="{ name: 'index' }" title="MYCURE | Clinic Management System | Cloud EMR Philippines")
           v-row(align="center").text-center
             img(src="~/assets/images/mycure-footer-logo.png" width="130" alt="MYCURE logo")
       br
@@ -20,7 +20,7 @@
       br
       v-row(justify="center")
         div(v-for="(account,key) in socMed" :key="key")
-          nuxt-link(:to="{ name: `${ account.link }`}" :title="account.name" :id="account.id")
+          a(:href="account.link" target="_blank")
             img(:src="require(`~/assets/images/${ account.icon }`)" height="30" :alt="account.name").px-3
       br
       br
@@ -48,11 +48,11 @@
               span.py-2.font-18.white--text Our Story
             br
             br
-            nuxt-link(id="footer-blog-btn" :to="{ name: 'blog-link' }" title="MYCURE - Blog").link.py-2
+            a(href="http://blog.mycure.md/" target="_blank").py-2
               span.py-2.font-18.white--text Blog
             br
             br
-            nuxt-link(id="footer-careers-btn" :to="{ name: 'careers' }" title="MYCURE - Careers").link.py-2
+            a(href="https://culture.mycure.md/" target="_blank").py-2
               span.py-2.font-18.white--text Careers
         v-expansion-panel.footer-grey
           v-expansion-panel-header(:color="expansionPanelColor")
@@ -83,7 +83,7 @@
       br
       v-row(justify="center").text-center
         strong.white--text Copyright &copy; 2016 - {{new Date().getFullYear()}}
-         nuxt-link(:to="{ name: 'home' }" title="MYCURE | Clinic Management System | Cloud EMR Philippines")
+         nuxt-link(:to="{ name: 'index' }" title="MYCURE | Clinic Management System | Cloud EMR Philippines")
             strong.font-mc-blue &nbsp;MYCURE Inc.
             br
             strong.white--text All Rights Reserved.
@@ -99,31 +99,31 @@ export default {
     this.socMed = [
       {
         name: 'MYCURE - LinkedIn',
-        link: 'linkedin-link',
+        link: 'https://www.linkedin.com/company/mycure',
         icon: 'mycure-homepage-wireframe-icon-linkedin.png',
         id: 'footer-linkedin-btn',
       },
       {
         name: 'MYCURE - Facebook',
-        link: 'facebook-link',
+        link: 'https://www.facebook.com/mycure.md',
         icon: 'mycure-homepage-wireframe-icon-fb.png',
         id: 'footer-fb-btn',
       },
       {
         name: 'MYCURE - YouTube',
-        link: 'youtube-link',
+        link: 'https://www.youtube.com/channel/UCfQ5QBdFh6f9Tuj2tWkRmvg',
         icon: 'mycure-homepage-wireframe-icon-ytub-e.png',
         id: 'footer-yt-btn',
       },
       {
         name: 'MYCURE - Instagram',
-        link: 'instagram-link',
+        link: 'https://www.instagram.com/mycure.md/',
         icon: 'mycure-homepage-wireframe-icon-ig.png',
         id: 'footer-ig-btn',
       },
       {
         name: 'MYCURE - Twitter',
-        link: 'twitter-link',
+        link: 'https://twitter.com/mycureapp',
         icon: 'mycure-homepage-wireframe-icon-twitter.png',
         id: 'footer-twitter-btn',
       },

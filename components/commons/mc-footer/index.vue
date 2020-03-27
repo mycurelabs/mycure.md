@@ -20,9 +20,9 @@
                   nuxt-link(id="footer-our-story-link" @click.stop="handleFooterOurStoryLink" :to="{name: 'our-story'}" title="MYCURE Our Story | Caring the Extra Mile").link
                     span Our Story
                 li
-                  nuxt-link(id="footer-blog-link" @click.stop="handleFooterBlogLink" :to="{ name: 'blog-link' }" title="MYCURE - Blog").link Blog
+                  a(href="http://blog.mycure.md/" target="_blank").link Blog
                 li
-                  nuxt-link(id="footer-careers-link" @click.stop="handleFooterCareersLink" :to="{ name: 'careers' }" title="MYCURE - Careers").link Careers
+                  a(href="https://culture.mycure.md/" target="_blank").link Careers
             v-col(cols="12" md="2")
               ul.no-style-type
                 li.feature-text LEGAL
@@ -113,20 +113,6 @@ export default {
         eventCategory: 'link',
         eventAction: 'click-footer-our-story-link',
         eventLabel: 'footer-our-story-link',
-      });
-    },
-    handleFooterBlogLink () {
-      this.$ga.event({
-        eventCategory: 'link',
-        eventAction: 'click-footer-blog-link',
-        eventLabel: 'footer-blog-link',
-      });
-    },
-    handleFooterCareersLink () {
-      this.$ga.event({
-        eventCategory: 'link',
-        eventAction: 'click-footer-careers-link',
-        eventLabel: 'footer-careers-link',
       });
     },
     handleFooterTermsLink () {
