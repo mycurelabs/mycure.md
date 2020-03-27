@@ -51,7 +51,7 @@
           img(width="300" src="~/assets/images/mycure-signup-image-jumping-doctors.png" alt="Jumping doctors")
           br
           h1.font-40 Welcome to MYCURE!
-          div.px-5
+          div.px-5.pt-5
             p.subheading
               b(v-if="step1Data.firstName") Dr. {{ step1Data.firstName }}
               | {{ step1Data.firstName ? `, you've` : `You've` }} taken the first step in securely organizing your medical records.&nbsp;
@@ -75,6 +75,7 @@ import { verifyMobileNo, signin, resendVerificationCode } from '~/utils/axios';
 import headMeta from '~/utils/head-meta';
 const COUNTDOWN_MILLIS = 60000;
 export default {
+  layout: 'user',
   data () {
     this.dayOrNight = dayOrNight();
     return {
