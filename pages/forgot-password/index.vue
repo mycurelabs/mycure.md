@@ -56,6 +56,7 @@
 <script>
 import dayOrNight from '@/utils/day-or-night';
 import { forgotPassword } from '@/utils/axios';
+import headMeta from '~/utils/head-meta';
 export default {
   layout: 'signin',
   data () {
@@ -93,6 +94,14 @@ export default {
       this.$refs.form.resetValidation();
       this.successDialog = false;
     },
+  },
+  head () {
+    return headMeta({
+      title: 'Sign In to MYCURE - Forgot Password',
+      description: 'Welcome to MYCURE Complete Clinic Management System. Sign in today and get ready to easily create, store, and retrieve your electronic medical records (EMR).',
+      // - TODO: Replace with local if applicable
+      socialBanner: 'https://firebasestorage.googleapis.com/v0/b/mc-v4-prod.appspot.com/o/web-main-assets%2FMYCURE-Open-Graph-Images-Home.png?alt=media&token=61978d70-326f-4323-8e6a-17d7b9c9a53b',
+    });
   },
 };
 </script>

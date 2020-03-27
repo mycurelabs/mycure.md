@@ -72,6 +72,7 @@
 <script>
 import dayOrNight from '~/utils/day-or-night';
 import { verifyMobileNo, signin, resendVerificationCode } from '~/utils/axios';
+import headMeta from '~/utils/head-meta';
 const COUNTDOWN_MILLIS = 60000;
 export default {
   data () {
@@ -202,6 +203,14 @@ export default {
       this.otpCountdown = COUNTDOWN_MILLIS;
       this.startCountDown();
     },
+  },
+  head () {
+    return headMeta({
+      title: 'Start Free EMR Doctor Practice Management System',
+      description: 'Create a free MYCURE account today and become a techy doctor in minutes! Better operations, beautiful reports, bye paperworks!',
+      // - TODO: Replace with local if applicable
+      socialBanner: 'https://firebasestorage.googleapis.com/v0/b/mc-v4-prod.appspot.com/o/web-main-assets%2FMYCURE-Open-Graph-Images-Home.png?alt=media&token=61978d70-326f-4323-8e6a-17d7b9c9a53b',
+    });
   },
 };
 </script>
