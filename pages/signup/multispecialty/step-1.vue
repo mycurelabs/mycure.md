@@ -5,7 +5,7 @@
         v-col(cols="12" md="5" :class="[{'content-padding': !$isMobile}]")
           img(
             src=`~/assets/images/mycure-${dayOrNight === 'night' ? 'footer' : 'header'}-logo.png`
-            @click="$nuxt.$nuxt.push({ name: 'index' })"
+            @click="$nuxt.$router.push({ name: 'index' })"
             alt="MYCURE logo"
           ).link-to-home.mb-3
           h2.primary--text Multispecialty Clinic: Sign Up (Step 1 of 3)
@@ -14,7 +14,7 @@
           br
           v-row(v-for="(item, key) in checkListItems" :key="key" align="center" no-gutters)
             v-col(cols="1")
-              img(width="20" src="~/assets/images/mycure-check.png")
+              img(width="20" src="~/assets/images/mycure-check.png" alt="Check icon")
             v-col(cols="11")
               p.font-21 {{ item }}
           v-row.pt-5
