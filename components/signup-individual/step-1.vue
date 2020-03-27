@@ -303,7 +303,7 @@ export default {
       this.searchString = '';
     },
     gotoTerms () {
-      window.open('https://mycure.md/terms', '_blank');
+      this.$nuxt.$router.push({ name: 'terms' });
     },
     validateForm () {
       const valid = this.$refs.formRef.validate();
