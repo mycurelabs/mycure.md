@@ -6,8 +6,8 @@
           v-card-text.px-4
             img(
               width="120"
-              src="@/assets/images/mycure-header-logo.png"
-              @click="$router.push({ name: 'home' })"
+              src="~/assets/images/mycure-header-logo.png"
+              @click="$nuxt.$router.push({ name: 'index' })"
             ).link-to-home.mb-3
             h1.signin-title Forgot your password?
             br
@@ -54,8 +54,8 @@
 </template>
 
 <script>
-import dayOrNight from '@/utils/day-or-night';
-import { forgotPassword } from '@/utils/axios';
+import dayOrNight from '~/utils/day-or-night';
+import { forgotPassword } from '~/utils/axios';
 import headMeta from '~/utils/head-meta';
 export default {
   layout: 'signin',
