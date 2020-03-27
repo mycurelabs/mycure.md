@@ -73,7 +73,7 @@
           v-btn(
             id="mobile-navdrawer-get-started-btn"
             color="accent"
-            :to="{ name: 'home', params: { scrollToHealthSuites: true }}"
+            :to="{ name: 'index', params: { scrollToHealthSuites: true }}"
             @click.stop="handleToolbarLinkClick(`mobile-navdrawer-get-started-btn`)"
           ).ml-2
             strong.font-14.white--text.tab GET STARTED
