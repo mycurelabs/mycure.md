@@ -65,27 +65,19 @@ import headMeta from '~/utils/head-meta';
 // - components
 import Usp from '~/components/home/usp';
 import HealthSuites from '~/components/home/health-suites';
-import Solutions from '~/components/home/solutions';
-import Storyflow from '~/components/commons/storyflow';
-import Vid from '~/components/home/vid';
-import Syncbase from '~/components/home/syncbase';
-import Privacy from '~/components/home/privacy';
-import Apis from '~/components/home/apis';
-import Testimonial from '~/components/home/testimonial';
-import McCtaBottom from '~/components/commons/mc-cta-bottom';
 
 export default {
   components: {
     Usp,
     HealthSuites,
-    Solutions,
-    Storyflow,
-    Vid,
-    Syncbase,
-    Privacy,
-    Apis,
-    Testimonial,
-    McCtaBottom,
+    Solutions: () => import('~/components/home/solutions'),
+    Storyflow: () => import('~/components/commons/storyflow'),
+    Vid: () => import('~/components/home/vid'),
+    Syncbase: () => import('~/components/home/syncbase'),
+    Privacy: () => import('~/components/home/privacy'),
+    Apis: () => import('~/components/home/apis'),
+    Testimonial: () => import('~/components/home/testimonial'),
+    McCtaBottom: () => import('~/components/commons/mc-cta-bottom'),
   },
   data () {
     this.ctaContent = {
