@@ -2,13 +2,13 @@
   div.main-container
     v-row(justify="center" align="center")
       v-col(cols="10").text-center
-          h1(:class="[{'pre-white-space': !$isMobile}, $isMobile ? 'font-36' : 'font-40']").text-center.font-work-sans.lh-title {{ title }}
+          h1(:class="[{'pre-white-space': !isMobile}, isMobile ? 'font-36' : 'font-40']").text-center.font-work-sans.lh-title {{ title }}
           img(
-            :src="require(`~/assets/images/multispecialty/${image}.png`)"
+            v-lazy="require(`~/assets/images/multispecialty/${image}.png`)"
             :alt="image"
             :width="$isMobile ? '100%' : '40%'"
           ).my-2
-          p(:class="{'pre-white-space': !$isMobile}").font-s.text-center.pt-3 {{ description }}
+          p(:class="{'pre-white-space': !isMobile}").font-s.text-center.pt-3 {{ description }}
     v-row(justify="center" align="center").pt-4
       v-col(cols="12").text-center
         v-btn(
@@ -29,7 +29,9 @@ export default {
     this.customPath = 'multispecialty/';
     this.exploreFeaturesId = 'multispecialty-explore-features-btn';
     this.image = 'mycure-best-multispecialty-service-system-badge';
-    return {};
+    return {
+      isMobile: true,
+    };
   },
   computed: {
     title () {
@@ -40,6 +42,16 @@ export default {
       const description = 'Your multispecialty clinic is everything your patients need. We help you make it extra easier to manage so you can focus more on patient care.';
       return parseTextWithNewLine(description, ['need.']);
     },
+  },
+  watch: {
+    $isMobile: {
+      handler (val) {
+        this.isMobile = val;
+      },
+    },
+  },
+  mounted () {
+    this.isMobile = this.$isMobile;
   },
   methods: {
     handleExploreFeaturesBtn () {

@@ -12,22 +12,22 @@
             :key="key"
             cols="11"
             md="5"
-            :class="[{ 'text-right' : key === 0  && !$isMobile }, {'verticalLine' : key === 0 && !$isMobile }]"
+            :class="[{ 'text-right' : key === 0  && !isMobile }, {'verticalLine' : key === 0 && !isMobile }]"
           ).mx-1.px-4
             br
             br
-            h2(v-if="$isMobile") {{ diagram.title }}
+            h2(v-if="isMobile") {{ diagram.title }}
               span(v-if="key === 1").primary--text &nbsp;✓
               br
             div(:class="{'pt-3' :$isMobile}")
               v-img(
-                :src="require(`@/assets/images/multispecialty/${diagram.image}.png`)"
+                v-lazy="require(`@/assets/images/multispecialty/${diagram.image}.png`)"
                 :alt="diagram.image"
                 width="100%"
               )
             br
             br
-            h2(v-if="!$isMobile").pb-3 {{ diagram.title }}
+            h2(v-if="!isMobile").pb-3 {{ diagram.title }}
               span(v-if="key === 1").primary--text &nbsp;✓
     v-row(justify="center" align="center").pt-4
       v-col(cols="12").text-center
@@ -66,13 +66,25 @@ export default {
         image: 'mycure-homepage-compare-mycure-complete-clinic-management-system',
       },
     ];
-    return {};
+    return {
+      isMobile: true,
+    };
   },
   computed: {
     description () {
       const desc = 'MYCURE makes record management much easier for everyone as it can smoothly integrate your patient records from registration to billing. Say goodbye to multiple, complicated systems!';
       return !this.$$isMobile ? parseTextWithNewLine(desc, ['records']) : desc;
     },
+  },
+  watch: {
+    $isMobile: {
+      handler (val) {
+        this.isMobile = val;
+      },
+    },
+  },
+  mounted () {
+    this.isMobile = this.$isMobile;
   },
   methods: {
     parseEndText (text, indicators) {

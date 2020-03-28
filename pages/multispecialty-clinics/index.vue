@@ -28,10 +28,6 @@ import VueScrollTo from 'vue-scrollto';
 import STORYFLOW_ITEMS from './storyflow-items.json';
 // - components
 import Usp from '~/components/multispecialty-clinics/usp';
-import Workflow from '~/components/multispecialty-clinics/workflow';
-import Features from '~/components/multispecialty-clinics/features';
-import Storyflow from '~/components/commons/storyflow';
-import McCtaBottom from '~/components/commons/mc-cta-bottom';
 // - utils
 import headMeta from '~/utils/head-meta';
 import { parseTextWithNewLine } from '~/utils/newline';
@@ -39,10 +35,10 @@ import { parseTextWithNewLine } from '~/utils/newline';
 export default {
   components: {
     Usp,
-    Workflow,
-    Features,
-    Storyflow,
-    McCtaBottom,
+    Workflow: () => import('~/components/multispecialty-clinics/workflow'),
+    Features: () => import('~/components/multispecialty-clinics/features'),
+    Storyflow: () => import('~/components/commons/storyflow'),
+    McCtaBottom: () => import('~/components/commons/mc-cta-bottom'),
   },
   data () {
     this.storyflowItems = STORYFLOW_ITEMS;
