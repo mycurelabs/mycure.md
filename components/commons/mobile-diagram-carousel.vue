@@ -19,13 +19,13 @@
               :key="index"
               :data-index="index+1"
             ).px-2
-              img(:src="require(`@/assets/images/${customSlidePath}${slide}.png`)" :alt="slide" width="100%")
+              img(v-lazy="require(`@/assets/images/${customSlidePath}${slide}.png`)" :alt="slide" width="100%")
     br
     v-row(v-for="(item, key) in items" :key="key" align="center" justify="center").pt-3
       v-col(cols="3").text-center
         img(
           v-if="item.icon"
-          :src="require(`@/assets/images/${item.customPath ? item.customPath : customItemPath}${item.icon}.png`)"
+          v-lazy="require(`@/assets/images/${item.customPath ? item.customPath : customItemPath}${item.icon}.png`)"
           width="80%"
           :alt="item.title"
         )

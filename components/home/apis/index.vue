@@ -15,7 +15,7 @@
                 :key="key"
               )
                 v-list-item-action
-                  img(src="~/assets/images/mycure-web-bullet-check.png" alt="Check icon")
+                  img(v-lazy="require('~/assets/images/mycure-web-bullet-check.png')" alt="Check icon")
                 v-list-item-content
                   span.font-s {{ item }}
           v-col(cols="6" align-self="center").px-3.text-center
@@ -25,7 +25,7 @@
       v-container.text-center
         h1.font-36.lh-title.font-work-sans.pb-5 {{ panelTitle }}
         br
-        img(width="85%" :src="require(`~/assets/images/${panelImage}.png`)" :alt="panelImage").pb-3
+        img(width="85%" v-lazy="require(`~/assets/images/${panelImage}.png`)" :alt="panelImage").pb-3
         br
         p.font-s {{ panelContent }}
         v-list(two-line).text-left

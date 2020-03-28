@@ -84,6 +84,7 @@ export default {
       text: 'Find the best solution for your health facility',
       btnText: 'Get Started',
       image: 'mycure-web-footer',
+      mobileImage: 'mycure-web-footer-mobile',
     };
     this.storyflowItems = [
       {

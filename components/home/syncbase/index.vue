@@ -39,7 +39,7 @@
             v-if="!videoPlay"
             @click.stop="videoPlay=!videoPlay"
             width="100%"
-            src="~/assets/images/mycure-web-video-cover-syncbase-online-offline.png"
+            v-lazy="require('~/assets/images/mycure-web-video-cover-syncbase-online-offline.png')"
             alt="MYCURE Syncbase video thumbnail"
           )
           iframe(

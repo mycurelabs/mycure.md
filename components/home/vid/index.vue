@@ -20,12 +20,12 @@
           div.femaleDoctor
             img(src="~/assets/images/mycure-web-video-cover-decor-doctor-right.png" alt="Female doctor")
     div(v-else)
-      img(src="~/assets/images/mycure-home-web-video-green-background-mobile.png" alt="Video green background" width="100%")
+      img(v-lazy="require('~/assets/images/mycure-home-web-video-green-background-mobile.png')" alt="Video green background" width="100%")
       a(id="home-most-complete-vid-btn" @click.stop="handleMostCompleteVideo")
         img(
           v-if="!videoDialog"
           @click.stop="videoDialog=!videoDialog"
-          src="~/assets/images/mycure-home-web-video-cover-most-complete-clinic-management-system-mobile.png"
+          v-lazy="require('~/assets/images/mycure-home-web-video-cover-most-complete-clinic-management-system-mobile.png')"
           alt="MYCURE Introduction Video thumbnail"
           width="100%"
         ).margin-2

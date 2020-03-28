@@ -17,7 +17,7 @@
             v-row
               v-col(cols="4")
                 img(
-                  :src="require(`~/assets/images/${suite.image}.png`)"
+                  v-lazy="require(`~/assets/images/${suite.image}.png`)"
                   :alt="suite.image"
                   width="90%"
                 )

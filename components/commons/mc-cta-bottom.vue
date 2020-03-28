@@ -28,13 +28,13 @@
       v-col(cols="12").text-center
         img(
           v-if="!isMobile"
-          :src="require(`@/assets/images/${ctaImage}.png`)"
+          :src="require(`~/assets/images/${ctaImage}.png`)"
           :alt="ctaImage"
           width="70%"
         )
         img(
           v-else
-          :src="require(`@/assets/images/${ctaMobileImage}.png`)"
+          :src="require(`~/assets/images/${ctaMobileImage}.png`)"
           :alt="ctaMobileImage"
           width="95%"
         )

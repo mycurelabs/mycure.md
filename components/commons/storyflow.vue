@@ -52,7 +52,7 @@
           strong.font-36.introText.lh-title {{introduction}}
         v-col(v-for="(highlight,index) in storyflow" :key="index" justify="center")
           v-row(justify="center" align="center").pb-2
-            img(:src="require(`@/assets/images/${customPath}${highlight.image}`)" :alt="highlight.title").storyflowAsset
+            img(v-lazy="require(`@/assets/images/${customPath}${highlight.image}`)" :alt="highlight.title").storyflowAsset
           br
           v-row(align="center").text-center
             v-col(cols="12")

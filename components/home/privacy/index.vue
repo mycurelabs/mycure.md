@@ -28,7 +28,7 @@
                 v-tooltip(bottom)
                   template(v-slot:activator="{ on }")
                     img(
-                      :src="require(`~/assets/images/mycure-data-privacy-mobile-${item.image}.png`)"
+                      v-lazy="require(`~/assets/images/mycure-data-privacy-mobile-${item.image}.png`)"
                       :alt="item.text"
                       width="80%"
                       v-on="on"
