@@ -25,7 +25,7 @@
                 ul
                   li(v-for="(feat, key) in suite.features" :key="key") {{ feat }}
                   br(v-if="key === 1")
-            v-row.mx-2.py-2
+            v-row.py-2
               v-col(cols="6")
                 v-btn(
                   color="primary"
