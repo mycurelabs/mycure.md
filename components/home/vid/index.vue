@@ -4,7 +4,7 @@
       v-container.padding300
         v-row(align="center" justify="center")
           div.maleDoctor
-            img(v-lazy="require('~/assets/images/mycure-web-video-cover-decor-doctor-left.png')" alt="Male doctor")
+            img(:src="require('~/assets/images/mycure-web-video-cover-decor-doctor-left.png')" alt="Male doctor")
           div.vidPosition
             a(id="home-most-complete-vid-btn" @click.stop="handleMostCompleteVideo")
               img(v-if="!videoDialog" @click.stop="videoDialog=!videoDialog" v-lazy="require('~/assets/images/mycure-web-video-cover.png')" alt="MYCURE Introduction video thumbnail")
@@ -18,14 +18,14 @@
                   allowfullscreen
                   )
           div.femaleDoctor
-            img(v-lazy="require('~/assets/images/mycure-web-video-cover-decor-doctor-right.png')" alt="Female doctor")
+            img(:src="require('~/assets/images/mycure-web-video-cover-decor-doctor-right.png')" alt="Female doctor")
     div(v-else)
       img(v-lazy="require('~/assets/images/mycure-home-web-video-green-background-mobile.png')" alt="Video green background" width="100%")
       a(id="home-most-complete-vid-btn" @click.stop="handleMostCompleteVideo")
         img(
           v-if="!videoDialog"
           @click.stop="videoDialog=!videoDialog"
-          v-lazy="require('~/assets/images/mycure-home-web-video-cover-most-complete-clinic-management-system-mobile.png')"
+          :src="require('~/assets/images/mycure-home-web-video-cover-most-complete-clinic-management-system-mobile.png')"
           alt="MYCURE Introduction Video thumbnail"
           width="100%"
         ).margin-2
