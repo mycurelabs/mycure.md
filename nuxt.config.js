@@ -15,6 +15,8 @@ module.exports = {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Work+Sans:400,700,900' },
+      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700' },
     ],
   },
   /*
@@ -35,9 +37,8 @@ module.exports = {
     '~/plugins/vue-media-query-mixin.js',
     { src: '~/plugins/vue-carousel.js', mode: 'client' },
     { src: "~plugins/crisp.js", mode: 'client' },
-    // '~/plugins/vue-cookie-law.js',
     // '~/plugins/vue-analytics.js',
-    // { src: '~/plugins/ga.js', mode: 'client' }
+    { src: '~/plugins/ga.js', mode: 'client' }
   ],
   /*
   ** Nuxt.js dev-modules
