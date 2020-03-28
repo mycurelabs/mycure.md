@@ -28,7 +28,6 @@
               :autoplay="false"
               :loop="true"
               :navigationEnabled="true"
-              :adjustableHeight="true"
               paginationActiveColor="white"
               paginationColor="grey"
               :navigationClickTargetSize="50"
