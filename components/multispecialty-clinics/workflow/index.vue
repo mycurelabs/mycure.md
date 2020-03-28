@@ -6,7 +6,7 @@
       :customPath="customPath"
     )
       v-container(slot="diagram-content").pa-0
-        v-row(:class="[{'flex-nowrap': !$isMobile}]" justify="center")
+        v-row(:class="[{'flex-nowrap': !isMobile}]" justify="center")
           v-col(
             v-for="(diagram, key) in diagrams"
             :key="key"
@@ -20,9 +20,9 @@
               span(v-if="key === 1").primary--text &nbsp;✓
               br
             div(:class="{'pt-3' :$isMobile}")
-              v-img(
+              img(
                 v-lazy="require(`@/assets/images/multispecialty/${diagram.image}.png`)"
-                :alt="diagram.image"
+                alt="Multispecialty diagram"
                 width="100%"
               )
             br

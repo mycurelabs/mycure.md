@@ -3,8 +3,8 @@
     v-container
       v-row(align="center")
         v-col(cols="12").text-center
-          h1(:class="[{'pre-white-space': !$isMobile}, $isMobile ? 'font-36' : 'font-40']").text-xs-center.font-work-sans.lh-title {{title}}
-          p(:class="{'pre-white-space': !$isMobile}").font-s.text-xs-center.pt-3 {{description}}
+          h1(:class="[{'pre-white-space': !isMobile}, isMobile ? 'font-36' : 'font-40']").text-xs-center.font-work-sans.lh-title {{title}}
+          p(:class="{'pre-white-space': !isMobile}").font-s.text-xs-center.pt-3 {{description}}
             slot(name="add-content")
       div(v-if="image").pt-5.text-center.justify-center.center
         img(
@@ -38,6 +38,21 @@ export default {
       type: String,
       default: '',
     },
+  },
+  data () {
+    return {
+      isMobile: true,
+    };
+  },
+  watch: {
+    $isMobile: {
+      handler (val) {
+        this.isMobile = val;
+      },
+    },
+  },
+  mounted () {
+    this.isMobile = this.$isMobile;
   },
 };
 </script>
