@@ -21,7 +21,7 @@
                 v-row
                   v-col(cols="12" md="6")
                     img(
-                      :src="require(`@/assets/images/doctors-clinics/${item.image}.png`)"
+                      v-lazy="require(`@/assets/images/doctors-clinics/${item.image}.png`)"
                       :alt="item.image"
                       width="95%"
                     )
@@ -61,13 +61,25 @@ export default {
   data () {
     this.pricingTitle = 'Affordable Pricing';
     this.pricingItems = PRICING_ITEMS;
-    return {};
+    return {
+      isMobile: true,
+    };
   },
   computed: {
     description () {
       const desc = 'Start free with no credit card required. Pay only for what you need.';
       return !this.$isMobile ? parseTextWithNewLine(desc, ['required.']) : desc;
     },
+  },
+  watch: {
+    $isMobile: {
+      handler (val) {
+        this.isMobile = val;
+      },
+    },
+  },
+  mounted () {
+    this.isMobile = this.$isMobile;
   },
   methods: {
     parseDescription (item) {

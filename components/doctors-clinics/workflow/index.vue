@@ -1,6 +1,6 @@
 <template lang="pug">
   fragment
-    div(v-if="!$isMobile").px-5.white.workFlow.py-10
+    div(v-if="!isMobile").px-5.white.workFlow.py-10
       v-container.px-5
         v-row(justify="center").text-center
           h1.font-40.pa-5.text-center.font-work-sans {{ title }}
@@ -42,7 +42,19 @@ export default {
     this.title = 'Why do doctors use MYCURE?';
     this.checkIcon = 'mycure-web-bullet-check';
     this.clinicProblems = CLINIC_PROBLEMS;
-    return {};
+    return {
+      isMobile: true,
+    };
+  },
+  watch: {
+    $isMobile: {
+      handler (val) {
+        this.isMobile = val;
+      },
+    },
+  },
+  mounted () {
+    this.isMobile = this.$isMobile;
   },
 };
 </script>

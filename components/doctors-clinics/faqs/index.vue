@@ -4,7 +4,7 @@
       v-row(align="center")
         v-col(cols="12").text-center
           h1.font-40.font-work-sans {{ faqsTitle }}
-      v-row(v-if="!$isMobile" justify="center").pt-5
+      v-row(v-if="!isMobile" justify="center").pt-5
         v-col(v-for="(column, key) in 2" :key="key" cols="12" md="6").font-source-sans
           template(v-for="(item, key) in faqsItems")
             div(v-if="key < 7 && column === 1")
@@ -95,7 +95,19 @@ export default {
         supplement: '• 10 Mbps → 1 to 3 simultaneous users • 15 Mbps → 4 to 10 simultaneous users • 20 Mbps and up → More than 10 users',
       },
     ];
-    return {};
+    return {
+      isMobile: true,
+    };
+  },
+  watch: {
+    $isMobile: {
+      handler (val) {
+        this.isMobile = val;
+      },
+    },
+  },
+  mounted () {
+    this.isMobile = this.$isMobile;
   },
   methods: {
     parseSupplement (item) {

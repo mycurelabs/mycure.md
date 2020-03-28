@@ -25,20 +25,15 @@ import VueScrollTo from 'vue-scrollto';
 import headMeta from '~/utils/head-meta';
 // components
 import Usp from '~/components/doctors-clinics/usp';
-import Workflow from '~/components/doctors-clinics/workflow';
-import Features from '~/components/doctors-clinics/features';
-import Pricing from '~/components/doctors-clinics/pricing';
-import Faqs from '~/components/doctors-clinics/faqs';
-import McCtaBottom from '~/components/commons/mc-cta-bottom';
 
 export default {
   components: {
     Usp,
-    Workflow,
-    Features,
-    Pricing,
-    Faqs,
-    McCtaBottom,
+    Workflow: () => import('~/components/doctors-clinics/workflow'),
+    Features: () => import('~/components/doctors-clinics/features'),
+    Pricing: () => import('~/components/doctors-clinics/pricing'),
+    Faqs: () => import('~/components/doctors-clinics/faqs'),
+    McCtaBottom: () => import('~/components/commons/mc-cta-bottom'),
   },
   data () {
     this.ctaContent = {
