@@ -4,11 +4,11 @@
       cookie-law(
         :position="position"
         transitionName="fade"
-        :class="[{'font-16': !$isMobile}, $isMobile ? 'py-1' : 'py-3']"
+        :class="[{'font-16': !isMobile}, isMobile ? 'py-1' : 'py-3']"
       ).Cookie--mcCookie.white--text.px-1
         div(slot-scope="props").width100
           v-container.py-1.widht100
-            v-row(v-if="!$isMobile").px-4
+            v-row(v-if="!isMobile").px-4
               v-col(cols="11").pt-2
                 | We use third-party services to understand web traffic data for us and they may collect cookies during the process.
                 | By continuing to browse our site, you agree to MYCURE's&nbsp;
@@ -38,6 +38,21 @@ import CookieLaw from 'vue-cookie-law';
 export default {
   components: {
     CookieLaw,
+  },
+  data () {
+    return {
+      isMobile: true,
+    };
+  },
+  watch: {
+    $isMobile: {
+      handler (val) {
+        this.isMobile = val;
+      },
+    },
+  },
+  mounted () {
+    this.isMobile = this.$isMobile;
   },
   computed: {
     position () {
