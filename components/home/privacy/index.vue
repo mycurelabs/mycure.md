@@ -19,7 +19,21 @@
             br
             h2.lh-title.font-36.pb-5.font-work-sans {{ panelTitle }}
             br
-            img(width="85%" :src="require(`@/assets/images/${panelImage}.png`)" alt="Data Privacy Law").pb-3
+            v-row(no-gutters justify="center")
+              v-col(
+                v-for="(item, key) in privacyItems"
+                :key="key"
+                cols="4"
+              )
+                v-tooltip(bottom)
+                  template(v-slot:activator="{ on }")
+                    img(
+                      :src="require(`~/assets/images/mycure-data-privacy-mobile-${item.image}.png`)"
+                      :alt="item.text"
+                      width="80%"
+                      v-on="on"
+                    )
+                  | {{item.text}}
             p.font-s.mt-3 {{ panelText }}
 </template>
 
@@ -29,6 +43,13 @@ export default {
     this.panelTitle = 'Protect your patients\' medical records with confidence';
     this.panelText = 'With MYCURE you\'ll never have to worry much about data privacy concerns. Keeping them secure is our #1 priority.';
     this.panelImage = 'mycure-web-banner-data-privacy-law';
+    this.privacyItems = [
+      { text: 'Secure Cloud Hosting', image: 'cloud' },
+      { text: 'Data Encryption', image: 'encryption' },
+      { text: 'Data Compliance', image: 'dpa' },
+      { text: 'User Designated Access', image: 'user-access' },
+      { text: 'Grade A+ SSL', image: 'ssl' },
+    ];
     return {
       isMobile: true,
     };
