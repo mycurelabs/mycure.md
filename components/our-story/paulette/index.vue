@@ -3,10 +3,10 @@
     v-container
       v-row
         v-col(cols="12" md="8" offset-md="4")
-          h1(:class="{'text-center': $isMobile}").font-40.font-work-sans Meet Paulette
+          h1(:class="{'text-center': isMobile}").font-40.font-work-sans Meet Paulette
       v-row(justify="center").pt-3
         v-col(cols="12" md="4" align-self="center").text-center
-          img(width="80%" src="~/assets/images/our-story/mycure-web-our-story-paulette.png" alt="Our Story Paulette")
+          img(width="80%" v-lazy="require('~/assets/images/our-story/mycure-web-our-story-paulette.png')" alt="Our Story Paulette")
         v-col(cols="11" md="8").px-3.font-21
           p Paulette became a young widow at age 30. Her two children were just 4- and 6-year olds then. Despite limited resources, she managed to give her kids a good life.
           p Just when things got a lot better, Paulette encountered a bigger challenge—cancer.
@@ -19,6 +19,12 @@
 
 <script>
 export default {
+  props: {
+    isMobile: {
+      type: Boolean,
+      default: true,
+    },
+  },
   data () {
     return {};
   },

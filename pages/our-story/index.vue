@@ -3,41 +3,49 @@
     //- 1st panel
     usp.pb-5
     //- 2nd panel
-    paulette
+    paulette(:isMobile="isMobile")
     //- 3rd panel
-    founders
+    founders(:isMobile="isMobile")
     //- 4th panel
-    problem
+    problem(:isMobile="isMobile")
     //- 5th panel
-    purpose
+    purpose(:isMobile="isMobile")
     //- 6th panel
-    vid
+    vid(:isMobile="isMobile")
     //- 7th panel
-    codes-of-being
+    codes-of-being(:isMobile="isMobile")
     //- cta
     mc-cta-bottom(image-only)
 </template>
 
 <script>
 import Usp from '~/components/our-story/usp';
-import Paulette from '~/components/our-story/paulette';
-import Founders from '~/components/our-story/founders';
-import Problem from '~/components/our-story/problem';
-import Purpose from '~/components/our-story/purpose';
-import Vid from '~/components/our-story/vid';
-import CodesOfBeing from '~/components/our-story/codes-of-being';
-import McCtaBottom from '~/components/commons/mc-cta-bottom';
 import headMeta from '~/utils/head-meta';
 export default {
   components: {
     Usp,
-    Paulette,
-    Founders,
-    Problem,
-    Purpose,
-    Vid,
-    CodesOfBeing,
-    McCtaBottom,
+    Paulette: () => import('~/components/our-story/paulette'),
+    Founders: () => import('~/components/our-story/founders'),
+    Problem: () => import('~/components/our-story/problem'),
+    Purpose: () => import('~/components/our-story/purpose'),
+    Vid: () => import('~/components/our-story/vid'),
+    CodesOfBeing: () => import('~/components/our-story/codes-of-being'),
+    McCtaBottom: () => import('~/components/commons/mc-cta-bottom'),
+  },
+  data () {
+    return {
+      isMobile: true,
+    };
+  },
+  watch: {
+    $isMobile: {
+      handler (val) {
+        this.isMobile = val;
+      },
+    },
+  },
+  mounted () {
+    this.isMobile = this.$isMobile;
   },
   head () {
     return headMeta({

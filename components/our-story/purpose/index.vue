@@ -6,8 +6,8 @@
           v-row(justify="center")
             v-col(cols="12").px-4.pb-3.text-center
               h1.pt-5.font-40.pb-3.font-work-sans Our Purpose
-            v-col(cols="11" md="12" :class="{'pt-3' : $isMobile}").px-4.font-21
-              img(width="100%" src="~/assets/images/our-story/mycure-team.png" alt="Our Story - Team").pb-4
+            v-col(cols="11" md="12" :class="{'pt-3' : isMobile}").px-4.font-21
+              img(width="100%" v-lazy="require('~/assets/images/our-story/mycure-team.png')" alt="Our Story - Team").pb-4
               p MYCURE’s vision is to&nbsp;
                 strong securely organize medical records that will provide fast, safe, and efficient access to health professionals, enabling them to help and save more lives
                 | .
@@ -20,6 +20,12 @@
 
 <script>
 export default {
+  props: {
+    isMobile: {
+      type: Boolean,
+      default: true,
+    },
+  },
   data () {
     return {};
   },
