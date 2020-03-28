@@ -1,7 +1,7 @@
 <template lang="pug">
   fragment
     //- WEB
-    div(v-if="!$isMobile").px-5.workflow.py-10.white
+    div(v-if="!isMobile").px-5.workflow.py-10.white
       v-container.px-5
         v-row(justify="center").text-center
           h1.font-40.text-center.font-work-sans {{ title }}
@@ -81,12 +81,24 @@ export default {
       'Very easy to use and navigate',
       'Improves overall performance of my clinic',
     ];
-    return {};
+    return {
+      isMobile: true,
+    };
   },
   computed: {
     mobileTitle () {
       return parseTextWithNewLine(this.title, ['clinics']);
     },
+  },
+  watch: {
+    $isMobile: {
+      handler (val) {
+        this.isMobile = val;
+      },
+    },
+  },
+  mounted () {
+    this.isMobile = this.$isMobile;
   },
   methods: {
     toggleChat () {

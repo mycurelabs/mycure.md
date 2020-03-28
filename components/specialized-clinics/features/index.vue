@@ -3,12 +3,12 @@
     v-container.pt-5
       v-row(align="center")
         v-col(cols="12").text-center
-          h1(:class="[{'pre-white-space': !$isMobile}, $isMobile ? 'font-36' : 'font-40']").text-center.font-work-sans.lh-title {{ title }}
+          h1(:class="[{'pre-white-space': !isMobile}, isMobile ? 'font-36' : 'font-40']").text-center.font-work-sans.lh-title {{ title }}
       v-container(:class="{'px-5' : !$isMobile}")
         v-row(
           align="center"
           justify="center"
-          :class="[{'my-4' : !$isMobile}, {'mx-5': !$isMobile}]"
+          :class="[{'my-4' : !isMobile}, {'mx-5': !isMobile}]"
         ).pb-3
           v-col(
             v-for="(expert, key) in expertise"
@@ -21,7 +21,7 @@
               v-card-text
                 div.text-center
                   img(
-                    :src="require(`@/assets/images/specialized/${expert.image}.png`)"
+                    v-lazy="require(`@/assets/images/specialized/${expert.image}.png`)"
                     :alt="expert.image"
                   )
               v-card-text.px-4.pb-3
@@ -92,13 +92,25 @@ export default {
         image: 'mycure-specialized-clinic-feature-diagnostics',
       },
     ];
-    return {};
+    return {
+      isMobile: true,
+    };
   },
   computed: {
     title () {
       const title = 'Same robust technology that powers various areas of expertise';
       return this.$isMobile ? title : parseTextWithNewLine(title, ['that']);
     },
+  },
+  watch: {
+    $isMobile: {
+      handler (val) {
+        this.isMobile = val;
+      },
+    },
+  },
+  mounted () {
+    this.isMobile = this.$isMobile;
   },
 };
 </script>

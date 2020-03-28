@@ -21,15 +21,12 @@ import VueScrollTo from 'vue-scrollto';
 import headMeta from '~/utils/head-meta';
 // components
 import Usp from '~/components/specialized-clinics/usp';
-import Workflow from '~/components/specialized-clinics/workflow';
-import Features from '~/components/specialized-clinics/features';
-import McCtaBottom from '~/components/commons/mc-cta-bottom';
 export default {
   components: {
     Usp,
-    Workflow,
-    Features,
-    McCtaBottom,
+    Workflow: () => import('~/components/specialized-clinics/workflow'),
+    Features: () => import('~/components/specialized-clinics/features'),
+    McCtaBottom: () => import('~/components/commons/mc-cta-bottom'),
   },
   data () {
     this.ctaContent = {
