@@ -38,7 +38,8 @@ module.exports = {
     { src: '~/plugins/vue-carousel.js', mode: 'client' },
     { src: "~plugins/crisp.js", mode: 'client' },
     // '~/plugins/vue-analytics.js',
-    { src: '~/plugins/ga.js', mode: 'client' }
+    { src: '~/plugins/ga.js', mode: 'client' },
+    '~/plugins/vue-lazyload.js',
   ],
   /*
   ** Nuxt.js dev-modules
