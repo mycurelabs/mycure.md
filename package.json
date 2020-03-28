@@ -23,6 +23,7 @@
     "cross-env": "^5.2.0",
     "libphonenumber-js": "^1.7.48",
     "nuxt": "^2.0.0",
+    "nuxt-webfontloader": "^1.1.0",
     "vue-analytics": "^5.22.1",
     "vue-carousel": "^0.18.0",
     "vue-cookie-law": "^1.12.0",

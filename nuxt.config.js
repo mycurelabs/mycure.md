@@ -15,8 +15,6 @@ module.exports = {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Work+Sans:400,700,900' },
-      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700' },
     ],
   },
   /*
@@ -62,7 +60,13 @@ module.exports = {
     '@nuxtjs/pwa',
     // Doc: https://github.com/nuxt-community/dotenv-module
     '@nuxtjs/dotenv',
+    'nuxt-webfontloader',
   ],
+  webfontloader: {
+    google: {
+      families: ['Work+Sans:400,700,900', 'Source+Sans+Pro:400,700'],
+    },
+  },
   /*
   ** Axios module configuration
   ** See https://axios.nuxtjs.org/options
