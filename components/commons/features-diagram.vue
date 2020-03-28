@@ -32,7 +32,7 @@ export default {
     },
     imageWidth: {
       type: String,
-      default: '100%',
+      default: '90%',
     },
     customPath: {
       type: String,
