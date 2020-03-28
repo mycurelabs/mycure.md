@@ -1,15 +1,15 @@
 <template lang="pug">
   fragment
     v-container(
-      :class="[$isMobile ? 'mobile-page-height' : 'whole-page', {'mt-4': visibleCookie}]"
+      :class="[isMobile ? 'mobile-page-height' : 'whole-page', {'mt-4': visibleCookie}]"
     )
       v-row(align="center")
         v-col(cols="12").text-center
           strong(v-if="uspMetaTitle" :class="[getMetaFontSize]").text-center.primary--text {{uspMetaTitle}}
-          template(v-if="uspMetaTitle && $isMobile")
-          h1(:class="titleClasses" :style="this.$isMobile ? fontStyle : {}").text-center.uspTitle
+          template(v-if="uspMetaTitle && isMobile")
+          h1(:class="titleClasses" :style="this.isMobile ? fontStyle : {}").text-center.uspTitle
             | {{uspTitle}}
-          p(:class="{'pre-white-space': !$isMobile}").text-center.uspDescription.pt-3.font-s {{uspDescription}}
+          p(:class="{'pre-white-space': !isMobile}").text-center.uspDescription.pt-3.font-s {{uspDescription}}
           div.pt-1
             v-btn(
               color="accent"
@@ -19,17 +19,17 @@
             ).text-none.white--text
               v-icon(v-if="btnIconLeft" v-text="btnIconLeft")
               strong(:class="{'pl-1' : btnIconLeft}").font-s {{btnText}}
-    div.outer-image-container(:class="$isMobile ? 'pb-5' : 'web-padding'")
+    div.outer-image-container(:class="isMobile ? 'pb-5' : 'web-padding'")
       div.usp-image-container.text-center.justify-center
         img(
           v-show="isImageLoaded"
-          :src="require(`~/assets/images/${customPath}${coverImg}${$isMobile ? '-mobile' : ''}.png`)"
+          :src="require(`~/assets/images/${customPath}${coverImg}${isMobile ? '-mobile' : ''}.png`)"
           :alt="coverImg"
           :width="coverImgWidth"
           @load="loadedImage"
         ).justify-center
         div(v-show="!isImageLoaded").white.empty-image-container
-    div.offset-container(v-show="isImageLoaded && !$isMobile")
+    div.offset-container(v-show="isImageLoaded && !isMobile")
 </template>
 
 <script>
@@ -84,17 +84,20 @@ export default {
     this.fontStyle = {
       'font-size': `${this.titleMobileSize}px`,
     };
+    this.webClasses = ['pre-white-space', 'font-xl'];
+    this.mobileClasses = ['pt-3', 'pre-white-space'];
     return {
       isImageLoaded: false,
-      // - Routes that use the alternative blue color for USP
+      isMobile: true,
+      titleClasses: [],
     };
   },
   computed: {
-    titleClasses () {
-      const webClasses = ['pre-white-space', 'font-xl'];
-      const mobileClasses = [`font-${this.titleMobileSize}`, 'pt-3', 'pre-white-space'];
-      return this.$isMobile ? mobileClasses : webClasses;
-    },
+    // titleClasses () {
+    //   const webClasses = ['pre-white-space', 'font-xl'];
+    //   const mobileClasses = ['pt-3', 'pre-white-space'];
+    //   return this.isMobile ? mobileClasses : webClasses;
+    // },
     getMetaFontSize () {
       return this.$route.name === 'multispecialty-clinics'
         ? 'font-18'
@@ -104,7 +107,19 @@ export default {
       return process.browser ? localStorage.getItem('accept-cookie') : false;
     },
     visibleCookie () {
-      return !this.noCookie && !this.$isMobile;
+      return !this.noCookie && !this.isMobile;
+    },
+  },
+  mounted () {
+    this.isMobile = this.$isMobile;
+    this.titleClasses = this.isMobile ? this.mobileClasses : this.webClasses;
+  },
+  watch: {
+    $isMobile: {
+      handler (val) {
+        this.isMobile = val;
+        this.titleClasses = val ? this.mobileClasses : this.webClasses;
+      },
     },
   },
   methods: {

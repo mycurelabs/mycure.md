@@ -1,7 +1,17 @@
 <template lang="pug">
   fragment
     //- WEB
-    div(v-if="!$isMobile").toolbarMain
+    //- MOBILE
+    div(v-if="isMobile")
+      toolbar-mobile(
+        :shadow="shadow"
+        :loginURL="loginURL"
+        :solutionsMenuItems="solutionsMenuItems"
+        :toolbarLinks="toolbarLinks"
+        @toolbarLinkClick="handleToolbarLinkClick($event)"
+        @logoClick="handleMycureLogo"
+      )
+    div(v-else).toolbarMain
       toolbar-web(
         :loginURL="loginURL"
         :shadow="shadow"
@@ -9,16 +19,6 @@
         :solutionsText="solutionsText"
         :toolbarLinks="toolbarLinks"
         :isMainRoute="isMainRoute"
-        @toolbarLinkClick="handleToolbarLinkClick($event)"
-        @logoClick="handleMycureLogo"
-      )
-    //- MOBILE
-    div(v-else)
-      toolbar-mobile(
-        :shadow="shadow"
-        :loginURL="loginURL"
-        :solutionsMenuItems="solutionsMenuItems"
-        :toolbarLinks="toolbarLinks"
         @toolbarLinkClick="handleToolbarLinkClick($event)"
         @logoClick="handleMycureLogo"
       )
@@ -53,6 +53,7 @@ export default {
       scrollPosition: null,
       shadow: '',
       solutionsText: 'Solutions',
+      isMobile: true,
     };
   },
   computed: {
@@ -66,9 +67,15 @@ export default {
   },
   watch: {
     scrollPosition: 'showShadow',
+    $isMobile: {
+      handler (val) {
+        this.isMobile = val;
+      },
+    },
   },
   mounted () {
     window.addEventListener('scroll', this.updateScroll);
+    this.isMobile = this.$isMobile;
   },
   methods: {
     updateScroll () {
