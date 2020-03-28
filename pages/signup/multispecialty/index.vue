@@ -1,10 +1,16 @@
 <template lang="pug">
+  fragment
+    loader
 </template>
 
 <script>
 import headMeta from '~/utils/head-meta';
+import Loader from '~/components/commons/loader';
 export default {
-  layout: 'user',
+  layout: 'empty',
+  components: {
+    Loader,
+  },
   created () {
     this.$nuxt.$router.push({ name: 'signup-multispecialty-step-1' });
   },

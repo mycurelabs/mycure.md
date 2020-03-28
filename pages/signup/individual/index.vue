@@ -1,10 +1,16 @@
 <template lang="pug">
+  fragment
+    loader
 </template>
 
 <script>
+import Loader from '~/components/commons/loader';
 import headMeta from '~/utils/head-meta';
 export default {
-  layout: 'user',
+  layout: 'empty',
+  components: {
+    Loader,
+  },
   created () {
     this.$nuxt.$router.push({ name: 'signup-individual-step-1' });
   },
