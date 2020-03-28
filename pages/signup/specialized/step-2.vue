@@ -190,7 +190,7 @@ export default {
         this.stripeCheckoutSessionId = checkoutSession.stripeSession;
         this.$refs.checkouRef.redirectToCheckout();
         if (process.browser) {
-          window.localStorage.clear();
+          localStorage.clear();
         }
       } catch (e) {
         console.error(e);
