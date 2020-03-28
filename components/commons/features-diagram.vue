@@ -8,7 +8,7 @@
             slot(name="add-content")
       div(v-if="image").pt-5.text-center.justify-center.center
         img(
-          :src="require(`@/assets/images/${customPath}${image}.png`)"
+          v-lazy="require(`@/assets/images/${customPath}${image}.png`)"
           :alt="image"
           :width="imageWidth"
         )

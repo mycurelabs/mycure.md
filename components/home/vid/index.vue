@@ -4,10 +4,10 @@
       v-container.padding300
         v-row(align="center" justify="center")
           div.maleDoctor
-            img(src="~/assets/images/mycure-web-video-cover-decor-doctor-left.png" alt="Male doctor")
+            img(v-lazy="require('~/assets/images/mycure-web-video-cover-decor-doctor-left.png')" alt="Male doctor")
           div.vidPosition
             a(id="home-most-complete-vid-btn" @click.stop="handleMostCompleteVideo")
-              img(v-if="!videoDialog" @click.stop="videoDialog=!videoDialog" src="~/assets/images/mycure-web-video-cover.png" alt="MYCURE Introduction video thumbnail")
+              img(v-if="!videoDialog" @click.stop="videoDialog=!videoDialog" v-lazy="require('~/assets/images/mycure-web-video-cover.png')" alt="MYCURE Introduction video thumbnail")
               div(v-else)
                 iframe(
                   align="middle"
@@ -18,7 +18,7 @@
                   allowfullscreen
                   )
           div.femaleDoctor
-            img(src="~/assets/images/mycure-web-video-cover-decor-doctor-right.png" alt="Female doctor")
+            img(v-lazy="require('~/assets/images/mycure-web-video-cover-decor-doctor-right.png')" alt="Female doctor")
     div(v-else)
       img(v-lazy="require('~/assets/images/mycure-home-web-video-green-background-mobile.png')" alt="Video green background" width="100%")
       a(id="home-most-complete-vid-btn" @click.stop="handleMostCompleteVideo")

@@ -7,7 +7,7 @@
         div(v-if="!horizontal")
           v-row(v-for="(highlight,index) in storyflow" :key="index" justify="center").pb60
             v-col(cols="4" align-self="center").pr-5
-              img(:src="require(`@/assets/images/${customPath}${highlight.image}`)" :alt="highlight.title").storyflowAsset.right
+              img(v-lazy="require(`@/assets/images/${customPath}${highlight.image}`)" :alt="highlight.title").storyflowAsset.right
             v-col(cols="5")
               span(v-if="hasTitle").font-40.lh-title {{highlight.title}}
               br
@@ -31,7 +31,7 @@
               cols="4"
               align="center"
             ).text-center
-              img(:src="require(`@/assets/images/${customPath}${highlight.image}`)" :alt="highlight.title").storyflowAssetHorizontal
+              img(v-lazy="require(`@/assets/images/${customPath}${highlight.image}`)" :alt="highlight.title").storyflowAssetHorizontal
               br
               strong(v-if="hasTitle").font-l {{highlight.title}}
               br

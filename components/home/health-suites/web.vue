@@ -18,8 +18,9 @@
             v-row
               v-col(cols="12" md="4").text-center.pt-1
                 img(
-                  :src="require(`~/assets/images/${suite.image}.png`)"
+                  v-lazy="require(`~/assets/images/${suite.image}.png`)"
                   width="100%"
+                  :alt="suite.header"
                 )
               v-col(cols="12" md="8").pl-1
                 ul

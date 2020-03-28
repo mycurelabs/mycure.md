@@ -5,7 +5,7 @@
       v-container
         v-row(justify="center")
           v-col(cols="5")
-            img(width="85%" :src="require(`@/assets/images/${panelImage}.png`)" alt="Data Privacy Law")
+            img(width="85%" v-lazy="require(`@/assets/images/${panelImage}.png`)" alt="Data Privacy Law")
           v-col(cols="6" align-self="center")
             strong.font-40.lh-title.pb-3.font-work-sans {{ panelTitle }}
             br

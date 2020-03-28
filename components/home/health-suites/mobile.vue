@@ -18,7 +18,7 @@
               v-col(cols="4")
                 img(
                   v-lazy="require(`~/assets/images/${suite.image}.png`)"
-                  :alt="suite.image"
+                  :alt="suite.header"
                   width="90%"
                 )
               v-col(cols="8").pl-1
