@@ -111,7 +111,7 @@
 <script>
 import { StripeCheckout } from 'vue-stripe-checkout';
 import _ from 'lodash';
-import { SPECIALIZED_CLINIC_TYPES } from './constants';
+import { SPECIALIZED_CLINIC_TYPES } from '~/components/signup-specialized/constants';
 import { signupSpecialized } from '~/utils/axios';
 import dayOrNight from '~/utils/day-or-night';
 import { MODULE_AVAILABILITY_MAPPINGS } from '~/utils/subscriptions';
