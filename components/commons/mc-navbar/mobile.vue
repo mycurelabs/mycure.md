@@ -20,7 +20,7 @@
             v-list-item(
               v-for="(item, key) in solutionsMenuItems"
               :key="key"
-              @click.stop="handleToolbarLinkClick(`mobile-${item.route}`)"
+              @click.stop="handleToolbarLinkClick(item)"
             )
               v-list-item-content
                 v-list-item-title
@@ -29,7 +29,7 @@
             v-list-item(
               v-for="(link, key) in toolbarLinks"
               :key="key"
-              @click.stop="handleToolbarLinkClick(`mobile-${link.id}`)"
+              @click.stop="handleToolbarLinkClick(link)"
             )
               v-list-item-content
                 v-list-item-title
@@ -44,8 +44,7 @@
               v-list-item(
                 v-for="(item, key) in section.items"
                 :key="key"
-                :to="{ name: item.route }"
-                @click="handleToolbarLinkClick(`mobile-${item.route}`)"
+                @click="handleToolbarLinkClick(item)"
               )
                 v-list-item-content
                   v-list-item-title
@@ -65,14 +64,13 @@
           v-btn(
               id="mobile-navdrawer-login-btn"
               :to="{ name: loginURL }"
-              @click.stop="handleToolbarLinkClick(`mobile-${loginURL}`)"
+              @click.stop="handleUserLinkClick(`mobile-${loginURL}`)"
             )
               strong.font-14.tab LOGIN
           v-btn(
             id="mobile-navdrawer-get-started-btn"
             color="accent"
-            :to="{ name: 'index', params: { scrollToHealthSuites: true }}"
-            @click.stop="handleToolbarLinkClick(`mobile-navdrawer-get-started-btn`)"
+            @click.stop="handleUserLinkClick(`mobile-navdrawer-get-started-btn`)"
           ).ml-2
             strong.font-14.white--text.tab GET STARTED
 </template>
@@ -132,13 +130,18 @@ export default {
       if (link?.external) {
         window.open(link.external);
       } else {
-        this.$emit('toolbarLinkClick', link);
+        const id = `mobile-${link.route}`;
+        this.$emit('toolbarLinkClick', id);
         this.$nuxt.$router.push({ name: link.route });
       }
       this.drawer = false;
     },
     handleMycureLogo () {
       this.$emit('logoClick');
+    },
+    handleUserLinkClick (id) {
+      this.$emit('toolbarLinkClick', id);
+      this.drawer = false;
     },
   },
 };
