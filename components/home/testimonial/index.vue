@@ -1,6 +1,6 @@
 <template lang="pug">
   div.gradient-grey
-    v-container(v-if="!$isMobile")
+    v-container(v-if="!isMobile")
       v-row(justify="center")
        v-col(cols="12" md="9").pt-2.pb-1
           v-carousel(
@@ -74,7 +74,19 @@ export default {
         message: '“What I preach to our executives is that it is not about the data; it is about the people. Behind every line of data and medical record number, there is a person.”',
       },
     ];
-    return {};
+    return {
+      isMobile: true,
+    };
+  },
+  watch: {
+    $isMobile: {
+      handler (val) {
+        this.isMobile = val;
+      },
+    },
+  },
+  mounted () {
+    this.isMobile = this.$isMobile;
   },
 };
 </script>

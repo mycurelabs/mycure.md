@@ -1,12 +1,6 @@
 <template lang="pug">
   div
-    features-diagram(
-      v-if="!$isMobile"
-      :title="title"
-      :description="panelContent.description"
-      :image="panelContent.image"
-    )
-    div(v-else)
+    div(v-if="isMobile")
       v-container
         h1.font-work-sans.font-30.pre-white-space.text-center.lh-title {{ title }}
         br
@@ -15,6 +9,12 @@
           :slides="slides"
           :items="solutions"
         )
+    features-diagram(
+      v-else
+      :title="title"
+      :description="panelContent.description"
+      :image="panelContent.image"
+    )
 </template>
 
 <script>
@@ -39,7 +39,9 @@ export default {
     this.panelContent = CONTENT;
     this.slides = SLIDES;
     this.solutions = SOLUTIONS;
-    return {};
+    return {
+      isMobile: true,
+    };
   },
   computed: {
     title () {
@@ -48,6 +50,16 @@ export default {
         ? parseTextWithNewLine(title, ['better'])
         : parseTextWithNewLine(title, ['solutions', 'better']);
     },
+  },
+  watch: {
+    $isMobile: {
+      handler (val) {
+        this.isMobile = val;
+      },
+    },
+  },
+  mounted () {
+    this.isMobile = this.$isMobile;
   },
 };
 </script>

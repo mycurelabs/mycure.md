@@ -1,7 +1,7 @@
 <template lang="pug">
   div
     //- WEB
-    div(v-if="!$isMobile").py-4
+    div(v-if="!isMobile").py-4
       v-container
         v-row(justify="center")
           v-col(cols="6" align-self="center").px-3.content
@@ -88,12 +88,23 @@ export default {
       },
       videoDialog: false,
       videoPlay: false,
+      isMobile: true,
     };
   },
   computed: {
     webTitle () {
       return parseTextWithNewLine(this.panelTitle, ['Health ', 'online ']);
     },
+  },
+  watch: {
+    $isMobile: {
+      handler (val) {
+        this.isMobile = val;
+      },
+    },
+  },
+  mounted () {
+    this.isMobile = this.$isMobile;
   },
   methods: {
     handleVideoBtn () {

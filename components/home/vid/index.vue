@@ -1,6 +1,6 @@
 <template lang="pug">
   div
-    div(v-if="!$isMobile").vid-container.pt-5
+    div(v-if="!isMobile").vid-container.pt-5
       v-container.padding300
         v-row(align="center" justify="center")
           div.maleDoctor
@@ -45,7 +45,18 @@ export default {
   data () {
     return {
       videoDialog: false,
+      isMobile: true,
     };
+  },
+  watch: {
+    $isMobile: {
+      handler (val) {
+        this.isMobile = val;
+      },
+    },
+  },
+  mounted () {
+    this.isMobile = this.$isMobile;
   },
   methods: {
     handleMostCompleteVideo () {

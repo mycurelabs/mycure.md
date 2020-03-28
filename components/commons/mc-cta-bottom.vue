@@ -2,8 +2,8 @@
   v-container.pt-3
     v-row(v-if="!imageOnly" justify="center").pt-5
       v-col(cols="12").text-center
-        h2(:class="[{'pre-white-space' : !$isMobile}, $isMobile ? 'font-36' : 'font-40']").lh-title.cta-text {{ctaText}}
-        p(:class="{'pre-white-space' : !$isMobile}").font-18.pt-3 {{ctaSubText}}
+        h2(:class="[{'pre-white-space' : !isMobile}, isMobile ? 'font-36' : 'font-40']").lh-title.cta-text {{ctaText}}
+        p(:class="{'pre-white-space' : !isMobile}").font-18.pt-3 {{ctaSubText}}
         div.text-xs-center.pt-2
           v-btn(
             :color="btnColor"
@@ -27,7 +27,7 @@
     v-row(justify="center").py-5
       v-col(cols="12").text-center
         img(
-          v-if="!$isMobile"
+          v-if="!isMobile"
           :src="require(`@/assets/images/${ctaImage}.png`)"
           :alt="ctaImage"
           width="70%"
@@ -65,6 +65,11 @@ export default {
       type: Boolean,
       default: false,
     },
+  },
+  data () {
+    return {
+      isMobile: true,
+    };
   },
   computed: {
     ctaText () {
@@ -106,6 +111,16 @@ export default {
     ctaSecondaryBtnLink () {
       return !this.ctaContent || !this.ctaContent.secondaryBtnLink ? 'calendly' : this.ctaContent.secondaryBtnLink;
     },
+  },
+  watch: {
+    $isMobile: {
+      handler (val) {
+        this.isMobile = val;
+      },
+    },
+  },
+  mounted () {
+    this.isMobile = this.$isMobile;
   },
   methods: {
     handleCtaBtnClick () {

@@ -1,12 +1,12 @@
 <template lang="pug">
   div.pt-4
-    div(v-if="!$isMobile").health-suites
-      health-suites-web(
+    div(v-if="isMobile").mobile.health-suites
+      health-suites-mobile(
         @startFree="handleStartFreeBtn($event)"
         @learnMore="handleLearnMoreBtn($event)"
       )
-    div(v-else).mobile.health-suites
-      health-suites-mobile(
+    div(v-else).health-suites
+      health-suites-web(
         @startFree="handleStartFreeBtn($event)"
         @learnMore="handleLearnMoreBtn($event)"
       )
@@ -19,6 +19,21 @@ export default {
   components: {
     HealthSuitesWeb,
     HealthSuitesMobile,
+  },
+  data () {
+    return {
+      isMobile: true,
+    };
+  },
+  watch: {
+    $isMobile: {
+      handler (val) {
+        this.isMobile = val;
+      },
+    },
+  },
+  mounted () {
+    this.isMobile = this.$isMobile;
   },
   methods: {
     handleStartFreeBtn (btn) {

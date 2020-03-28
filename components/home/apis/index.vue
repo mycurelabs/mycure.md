@@ -1,7 +1,7 @@
 <template lang="pug">
   div
     //- WEB
-    div(v-if="!$isMobile").py-5.mb-3
+    div(v-if="!isMobile").py-5.mb-3
       v-container
         v-row(justify="center")
           v-col(cols="6" align-self="center").px-3
@@ -59,12 +59,23 @@ export default {
     return {
       videoDialog: false,
       videoPlay: false,
+      isMobile: true,
     };
   },
   computed: {
     webTitle () {
       return parseTextWithNewLine(this.panelTitle, ['your ', 'systems ']);
     },
+  },
+  watch: {
+    $isMobile: {
+      handler (val) {
+        this.isMobile = val;
+      },
+    },
+  },
+  mounted () {
+    this.isMobile = this.$isMobile;
   },
   methods: {
     handleVideoBtn () {

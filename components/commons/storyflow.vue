@@ -1,6 +1,6 @@
 <template lang="pug">
   div(:class="{'white' : whiteBg }")
-    div(v-if="!$isMobile").pt-10.mt-10
+    div(v-if="!isMobile").pt-10.mt-10
       v-container
         v-row(v-if="introduction" justify="center").text-center.pb60
           strong.font-40.introText.pre-white-space {{introduction}}
@@ -105,6 +105,21 @@ export default {
       type: Boolean,
       default: false,
     },
+  },
+  data () {
+    return {
+      isMobile: true,
+    };
+  },
+  watch: {
+    $isMobile: {
+      handler (val) {
+        this.isMobile = val;
+      },
+    },
+  },
+  mounted () {
+    this.isMobile = this.$isMobile;
   },
   methods: {
     handleFeaturesPageBtn () {

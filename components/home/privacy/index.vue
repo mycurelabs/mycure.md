@@ -1,7 +1,7 @@
 <template lang="pug">
   div
     //- WEB
-    div(v-if="!$isMobile").py-5
+    div(v-if="!isMobile").py-5
       v-container
         v-row(justify="center")
           v-col(cols="5")
@@ -26,11 +26,22 @@
 <script>
 export default {
   data () {
+    this.panelTitle = 'Protect your patients\' medical records with confidence';
+    this.panelText = 'With MYCURE you\'ll never have to worry much about data privacy concerns. Keeping them secure is our #1 priority.';
+    this.panelImage = 'mycure-web-banner-data-privacy-law';
     return {
-      panelTitle: 'Protect your patients\' medical records with confidence',
-      panelText: 'With MYCURE you\'ll never have to worry much about data privacy concerns. Keeping them secure is our #1 priority.',
-      panelImage: 'mycure-web-banner-data-privacy-law',
+      isMobile: true,
     };
+  },
+  watch: {
+    $isMobile: {
+      handler (val) {
+        this.isMobile = val;
+      },
+    },
+  },
+  mounted () {
+    this.isMobile = this.$isMobile;
   },
 };
 </script>
