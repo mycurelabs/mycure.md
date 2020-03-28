@@ -1,11 +1,11 @@
 <template lang="pug">
-  div(:class="$isMobile ? 'pt-5' : ''")
+  div(:class="isMobile ? 'pt-5' : ''")
     v-container(v-for="(panel,key) in moduleList" :key="key")
       v-row(justify="center")
         v-col(cols="10").text-center
-          strong(:class="$isMobile ? 'font-30' : 'font-40'").font-work-sans {{ panel.type }}
+          strong(:class="isMobile ? 'font-30' : 'font-40'").font-work-sans {{ panel.type }}
           br
-          span(:class="$isMobile ? 'font-18' : 'font-21'") {{ panel.description }}
+          span(:class="isMobile ? 'font-18' : 'font-21'") {{ panel.description }}
       br
       br
       v-row(:class="panel.isCenter ? 'justify-center' : ''").fill-height
@@ -16,9 +16,9 @@
           :md="!panel.doubleCol ? '4' : '5'"
         ).pa-2
           v-card(height="100%").pa-1.module-card
-            v-card-text(v-if="!$isMobile").black--text
+            v-card-text(v-if="!isMobile").black--text
               v-row.flex-nowrap
-                img(:src="require(`~/assets/images/module-icons/${ moduleItem.icon }`)" width="10%" height="10%" :alt="moduleItem.title")
+                img(v-lazy="require(`~/assets/images/module-icons/${ moduleItem.icon }`)" width="10%" height="10%" :alt="moduleItem.title")
                 span(:class="panel.doubleCol ? 'pt-2' : 'pt-1'").font-21.font-work-sans &nbsp; {{ moduleItem.title }}
               br
               i(v-if="panel.hasSubtext") {{ moduleItem.subtext}}
@@ -28,7 +28,7 @@
             v-card-text(v-else).pa-1
               v-row
                 v-col(cols="4" align-self="center").pr-3
-                  img(:src="require(`~/assets/images/module-icons/${ moduleItem.icon }`)" width="80" :alt="moduleItem.title")
+                  img(v-lazy="require(`~/assets/images/module-icons/${ moduleItem.icon }`)" width="80" :alt="moduleItem.title")
                 v-col(cols="8")
                   strong.font-14 {{ moduleItem.title}}
                   br
@@ -38,6 +38,12 @@
 
 <script>
 export default {
+  props: {
+    isMobile: {
+      type: Boolean,
+      default: true,
+    },
+  },
   data () {
     this.moduleList = [
       {

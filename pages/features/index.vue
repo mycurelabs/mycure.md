@@ -3,21 +3,21 @@
     //- 1st panel
     usp
     //- 2nd panel
-    roles-and-privileges
+    roles-and-privileges(:isMobile="isMobile")
     //- 3rd panel
-    medical-records
+    medical-records(:isMobile="isMobile")
     //- 4th panel
-    reports
+    reports(:isMobile="isMobile")
     //- 5th panel
-    billing
+    billing(:isMobile="isMobile")
     //- 6th panel
-    registration-and-queuing
+    registration-and-queuing(:isMobile="isMobile")
     //- 7th panel
-    laboratory-and-imaging
+    laboratory-and-imaging(:isMobile="isMobile")
     //- 8th panel
-    inventory
+    inventory(:isMobile="isMobile")
     //- 9th panel
-    syncbase
+    syncbase(:isMobile="isMobile")
     //- cta
     mc-cta-bottom(
       :ctaContent="ctaContent"
@@ -29,15 +29,6 @@
 import VueScrollTo from 'vue-scrollto';
 // - components
 import Usp from '~/components/features/usp';
-import RolesAndPrivileges from '~/components/features/roles-and-privileges';
-import MedicalRecords from '~/components/features/medical-records';
-import Reports from '~/components/features/reports';
-import Billing from '~/components/features/billing';
-import RegistrationAndQueuing from '~/components/features/registration-and-queuing';
-import LaboratoryAndImaging from '~/components/features/laboratory-and-imaging';
-import Inventory from '~/components/features/inventory';
-import Syncbase from '~/components/features/syncbase';
-import McCtaBottom from '~/components/commons/mc-cta-bottom';
 // - utils
 import { parseTextWithNewLine } from '~/utils/newline';
 import headMeta from '~/utils/head-meta';
@@ -45,15 +36,15 @@ import headMeta from '~/utils/head-meta';
 export default {
   components: {
     Usp,
-    RolesAndPrivileges,
-    MedicalRecords,
-    Reports,
-    Billing,
-    RegistrationAndQueuing,
-    LaboratoryAndImaging,
-    Inventory,
-    Syncbase,
-    McCtaBottom,
+    RolesAndPrivileges: () => import('~/components/features/roles-and-privileges'),
+    MedicalRecords: () => import('~/components/features/medical-records'),
+    Reports: () => import('~/components/features/reports'),
+    Billing: () => import('~/components/features/billing'),
+    RegistrationAndQueuing: () => import('~/components/features/registration-and-queuing'),
+    LaboratoryAndImaging: () => import('~/components/features/laboratory-and-imaging'),
+    Inventory: () => import('~/components/features/inventory'),
+    Syncbase: () => import('~/components/features/syncbase'),
+    McCtaBottom: () => import('~/components/commons/mc-cta-bottom'),
   },
   data () {
     return {
@@ -63,7 +54,15 @@ export default {
         btnText: 'Get Started Today',
         image: 'mycure-web-footer',
       },
+      isMobile: true,
     };
+  },
+  watch: {
+    $isMobile: {
+      handler (val) {
+        this.isMobile = val;
+      },
+    },
   },
   computed: {
     uspTitle () {
@@ -73,6 +72,7 @@ export default {
   },
   mounted () {
     VueScrollTo.scrollTo('#app', 500, { easing: 'ease' });
+    this.isMobile = this.$isMobile;
   },
   methods: {
     parseCtaSubText () {

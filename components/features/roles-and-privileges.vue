@@ -1,26 +1,27 @@
 <template lang="pug">
   div
-    div(v-if="!$isMobile").pt-10
-      v-container
-        v-row(justify="center").text-center
-          strong.font-21.primary--text ROLES &amp; PRIVILEGES
-        v-row(justify="center").add-spacing.text-center
-          strong.font-40.font-work-sans Everybody's got a special&nbsp;
-            br
-            | role to play.
-        v-row(justify="center").add-spacing
-          v-col(cols="7" align-self="center").text-center
-            span.font-21 Collaborate with your clinic staff more efficiently using a clinic system that's so user-friendly, you wouldn't even feel that you're working.
-        v-row(justify="center").add-spacing
-          img(src="~/assets/images/features/mycure-cms-web-features-arrow-down.png" alt="Arrow down")
-        v-row(align="start").add-spacing
-          v-col(v-for="(role,index) in roles" :key="index" cols="12" md="2" justify="center").text-center
-            img(:src="require(`~/assets/images/features//mycure-web-features-role-${ role.avatar }.png`)" :alt="role.name" height="250px")
-            br
-            div.mx-1
-              span.font-18 {{ role.name }}
-    div(v-else).pt-10.mt-10.mobile-container
-      v-container
+    client-only
+      div(v-if="!isMobile").pt-10
+        v-container
+          v-row(justify="center").text-center
+            strong.font-21.primary--text ROLES &amp; PRIVILEGES
+          v-row(justify="center").add-spacing.text-center
+            strong.font-40.font-work-sans Everybody's got a special&nbsp;
+              br
+              | role to play.
+          v-row(justify="center").add-spacing
+            v-col(cols="7" align-self="center").text-center
+              span.font-21 Collaborate with your clinic staff more efficiently using a clinic system that's so user-friendly, you wouldn't even feel that you're working.
+          v-row(justify="center").add-spacing
+            img(src="~/assets/images/features/mycure-cms-web-features-arrow-down.png" alt="Arrow down")
+          v-row(align="start").add-spacing
+            v-col(v-for="(role,index) in roles" :key="index" cols="12" md="2" justify="center").text-center
+              img(v-lazy="require(`~/assets/images/features//mycure-web-features-role-${ role.avatar }.png`)" :alt="role.name" height="250px")
+              br
+              div.mx-1
+                span.font-18 {{ role.name }}
+      div(v-else).pt-10.mt-10.mobile-container
+        v-container
         v-row(justify="center")
           strong.font-16.primary--text ROLES &amp; PRIVILEGES
         br
@@ -51,15 +52,21 @@
               :data-index="index+1"
             )
               div.text-center.mx-5
-                img(:src="require(`~/assets/images/features/mycure-web-features-role-${ role.avatar }.png`)" :alt="role.name" height="300px")
+                img(v-lazy="require(`~/assets/images/features/mycure-web-features-role-${ role.avatar }.png`)" :alt="role.name" height="300px")
                 br
                 v-row(justify="center")
-                  v-flex(xs1)
+                  v-col(cols="1")
                     span.font-18 {{ role.name }}
 </template>
 
 <script>
 export default {
+  props: {
+    isMobile: {
+      type: Boolean,
+      default: true,
+    },
+  },
   data () {
     this.roles = [
       { name: 'Health Professionals', avatar: 'health-professionals' },
