@@ -57,17 +57,17 @@ export default {
       isMobile: true,
     };
   },
+  computed: {
+    uspTitle () {
+      const { title } = this.uspContents;
+      return parseTextWithNewLine(title, ['time', 'more']);
+    },
+  },
   watch: {
     $isMobile: {
       handler (val) {
         this.isMobile = val;
       },
-    },
-  },
-  computed: {
-    uspTitle () {
-      const { title } = this.uspContents;
-      return parseTextWithNewLine(title, ['time', 'more']);
     },
   },
   mounted () {

@@ -44,6 +44,11 @@ export default {
       isMobile: true,
     };
   },
+  computed: {
+    position () {
+      return this.$isMobile ? 'bottom' : 'top';
+    },
+  },
   watch: {
     $isMobile: {
       handler (val) {
@@ -53,11 +58,6 @@ export default {
   },
   mounted () {
     this.isMobile = this.$isMobile;
-  },
-  computed: {
-    position () {
-      return this.$isMobile ? 'bottom' : 'top';
-    },
   },
   methods: {
     onClick (props) {

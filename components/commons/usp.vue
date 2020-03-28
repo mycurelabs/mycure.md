@@ -110,10 +110,6 @@ export default {
       return !this.noCookie && !this.isMobile;
     },
   },
-  mounted () {
-    this.isMobile = this.$isMobile;
-    this.titleClasses = this.isMobile ? this.mobileClasses : this.webClasses;
-  },
   watch: {
     $isMobile: {
       handler (val) {
@@ -121,6 +117,10 @@ export default {
         this.titleClasses = val ? this.mobileClasses : this.webClasses;
       },
     },
+  },
+  mounted () {
+    this.isMobile = this.$isMobile;
+    this.titleClasses = this.isMobile ? this.mobileClasses : this.webClasses;
   },
   methods: {
     loadedImage () {

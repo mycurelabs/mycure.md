@@ -51,14 +51,14 @@
 import Modules from './modules';
 
 export default {
+  components: {
+    Modules,
+  },
   props: {
     isMobile: {
       type: Boolean,
       default: true,
     },
-  },
-  components: {
-    Modules,
   },
   data () {
     this.items = [
