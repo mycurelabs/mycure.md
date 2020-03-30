@@ -51,27 +51,26 @@
             frameborder="0"
             allowfullscreen
           )
-    v-dialog(v-model="videoDialog" max-width="600px")
-      v-row(justify="center")
-        v-card(width="600")
-          v-card-text
-            a
-              img(
-                v-if="!videoPlay"
-                @click.stop="videoPlay=!videoPlay"
-                width="100%"
-                src="~/assets/images/mycure-web-video-cover-syncbase-online-offline.png"
-                alt="MYCURE Syncbase video thumbnail"
-              )
-              iframe(
-                v-else
-                align="middle"
-                id="ytplayer"
-                type="text/html" width="100%" height="400"
-                src="https://www.youtube.com/embed/siFBgZMt26k?autoplay=1&loop=1&showinfo=0&rel=0"
-                frameborder="0"
-                allowfullscreen
-              )
+    v-dialog(v-model="videoDialog" max-width="600")
+      v-card(width="600").pt-5
+        v-card-text
+          a
+            img(
+              v-if="!videoPlay"
+              @click.stop="videoPlay=!videoPlay"
+              width="100%"
+              src="~/assets/images/mycure-web-video-cover-syncbase-online-offline.png"
+              alt="MYCURE Syncbase video thumbnail"
+            )
+            iframe(
+              v-else
+              align="middle"
+              id="ytplayer"
+              type="text/html" width="100%" height="400"
+              src="https://www.youtube.com/embed/siFBgZMt26k?autoplay=1&loop=1&showinfo=0&rel=0"
+              frameborder="0"
+              allowfullscreen
+            )
 </template>
 
 <script>
