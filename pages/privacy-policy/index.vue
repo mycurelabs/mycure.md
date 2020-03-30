@@ -9,7 +9,7 @@
       v-container
         v-row(justify="center")
           v-col(cols="12" md="10").mb-3
-            strong.font-18 Last Updated | March 6, 2018
+            strong.font-18 Last Updated | March 22, 2020
             br
             br
             h2 Privacy Statement
