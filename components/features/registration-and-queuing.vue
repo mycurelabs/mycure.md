@@ -26,7 +26,7 @@
               navigationPrevLabel=" "
             ).text-center
               slide(v-for="(feature,index) in features" :key="index" :data-index="index+1").pa-1
-                img(v-lazy="require(`~/assets/images/features/mycure-web-features-mockup-02-${feature}.png`)" alt="Clinic Registration and Queueing" width="70%")
+                img(:src="require(`~/assets/images/features/mycure-web-features-mockup-02-${feature}.png`)" alt="Clinic Registration and Queueing" width="70%")
       div(v-else).registration-panel.pt-5
         v-container
           v-row(justify="center")

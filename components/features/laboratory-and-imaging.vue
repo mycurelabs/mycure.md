@@ -30,7 +30,7 @@
               navigationPrevLabel=" "
             ).text-center
               slide(v-for="(feature,index) in features" :key="index" :data-index="index+1").pa-1
-                img(v-lazy="require(`~/assets/images/features/mycure-web-features-mockup-04-${feature}.png`)" alt="Clinic Laboratory and Imaging" width="75%")
+                img(:src="require(`~/assets/images/features/mycure-web-features-mockup-04-${feature}.png`)" alt="Clinic Laboratory and Imaging" width="75%")
       div(v-else).lab-container.pt-5
         v-container
           v-row(justify="center")

@@ -29,8 +29,7 @@
               navigationPrevLabel=" "
             ).text-center
               slide(v-for="(feature,index) in features" :key="index" :data-index="index+1").pa-1
-                img(v-lazy
-                ="require(`~/assets/images/features/mycure-web-features-mockup-03-${feature}.png`)" alt="Clinic Billing and Payments" width="70%")
+                img(:src="require(`~/assets/images/features/mycure-web-features-mockup-03-${feature}.png`)" alt="Clinic Billing and Payments" width="70%")
       div(v-else).billing-container.pt-5
         v-container
           v-row(justify="center")

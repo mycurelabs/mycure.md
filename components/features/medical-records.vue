@@ -25,7 +25,7 @@
               navigationPrevLabel=" "
             ).text-center
               slide(v-for="(feature,index) in features" :key="index" :data-index="index+1").pa-1
-                img(v-lazy="require(`~/assets/images/features/mycure-web-features-mockup-01-${feature}.png`)" alt="Medical records" width="70%")
+                img(:src="require(`~/assets/images/features/mycure-web-features-mockup-01-${feature}.png`)" alt="Medical records" width="70%")
       div(v-else).panel-container.pt-5
         v-container
           v-row(justify="center")
