@@ -35,7 +35,7 @@ module.exports = {
     '~/plugins/vue-media-query-mixin.js',
     { src: '~/plugins/vue-carousel.js', mode: 'client' },
     { src: "~plugins/crisp.js", mode: 'client' },
-    // '~/plugins/vue-analytics.js',
+    { src: '~/plugins/vue-analytics.js', mode: 'client' },
     { src: '~/plugins/ga.js', mode: 'client' },
     '~/plugins/vue-lazyload.js',
   ],
