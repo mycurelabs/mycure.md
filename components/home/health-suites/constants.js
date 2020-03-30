@@ -40,7 +40,7 @@ export const HEALTH_SUITES_ITEMS = [
   },
   {
     header: 'Multispecialty Clinics',
-    subheader: 'For one stop, multi-staff health centers',
+    subheader: 'For one-stop, multi-staff health centers',
     features: [
       'User designated roles',
       'Multiple departments',
