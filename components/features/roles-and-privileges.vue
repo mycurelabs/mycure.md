@@ -4,7 +4,7 @@
       div(v-if="!isMobile").pt-10
         v-container
           v-row(justify="center").text-center
-            strong.font-21.primary--text ROLES &amp; PRIVILEGES
+            strong.font-21.primary--text ROLES AND PRIVILEGES
           v-row(justify="center").add-spacing.text-center
             strong.font-40.font-work-sans Everybody's got a special&nbsp;
               br
@@ -23,7 +23,7 @@
       div(v-else).pt-10.mt-10.mobile-container
         v-container
         v-row(justify="center")
-          strong.font-16.primary--text ROLES &amp; PRIVILEGES
+          strong.font-16.primary--text ROLES AND PRIVILEGES
         br
         br
         v-row(justify="center")

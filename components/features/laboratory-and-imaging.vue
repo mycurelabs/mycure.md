@@ -4,7 +4,7 @@
       div(v-if="!isMobile").lab-container.py-10
         v-container
           v-row(justify="center").text-center
-            strong.font-21.primary--text LABORATORY &amp; IMAGING
+            strong.font-21.primary--text LABORATORY AND IMAGING
           v-row(justify="center").add-spacing
             h1.font-40.text-center.font-work-sans.pre-white-space {{ primaryDescription }}
           v-row(justify="center").add-spacing
@@ -34,7 +34,7 @@
       div(v-else).lab-container.pt-5
         v-container
           v-row(justify="center")
-            strong.font-16.primary--text LABORATORY &amp; IMAGING
+            strong.font-16.primary--text LABORATORY AND IMAGING
           br
           br
           v-row(justify="center")
