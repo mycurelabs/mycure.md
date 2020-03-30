@@ -114,7 +114,9 @@
                 ).mb-4
                   template(slot="label")
                     p(style="margin-bottom: -12px") By creating a MYCURE account, you're agreeing to accept MYCURE&nbsp;
-                      a(target="_blank" @click.stop="gotoTerms") Terms & Privacy Policy
+                      a(target="_blank" @click.stop="goToTerms") Terms
+                      | &nbsp;and&nbsp;
+                      a(targe="_blank" @click.stop="goToPrivacy") Privacy Policy
                 v-alert(:value="error" type="error").mt-5 {{errorMessage}}
             v-card-actions
               v-spacer
@@ -302,8 +304,13 @@ export default {
       this.countryDialog = false;
       this.searchString = '';
     },
-    gotoTerms () {
-      this.$nuxt.$router.push({ name: 'terms' });
+    goToTerms () {
+      const routeData = this.$nuxt.$router.resolve({ name: 'terms' });
+      window.open(routeData.href, '_blank');
+    },
+    goToPrivacy () {
+      const routeData = this.$nuxt.$router.resolve({ name: 'privacy-policy' });
+      window.open(routeData.href, '_blank');
     },
     validateForm () {
       const valid = this.$refs.formRef.validate();
