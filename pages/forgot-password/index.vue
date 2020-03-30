@@ -2,7 +2,7 @@
   v-container(class="fill-height")
     v-row(align="center" justify="center")
       v-col(cols="12" sm="8" md="4")
-        v-card
+        v-card(width="100%")
           v-card-text.px-4
             img(
               width="120"
@@ -37,20 +37,21 @@
                 ).text-none Back to Login
               v-col.text-right
                 v-btn(
-                  type="submit"
+                  @click="submit"
                   color="accent"
                   :disabled="!valid || loading"
                   :loading="loading"
                 ).font-weight-bold Submit
 
     v-dialog(v-model="successDialog" width="400" persistent)
-      v-card
-        v-card-text.text-xs-center
-          h1 Success!
-          h2 Password reset link sent to
+      v-card.pa-1
+        v-card-text.text-center.black--text.pt-5
+          h1.accent--text Success!
+          br
+          h2 Password reset link sent to&nbsp;
             span.primary--text {{email}}
-        v-card-text(style="height: 120px").text-xs-center#success-image
-          v-btn(color="success" @click="done") Done
+        v-card-text.text-center#success-image
+          v-btn(color="accent" @click="done").font-weight-bold Done
 </template>
 
 <script>
