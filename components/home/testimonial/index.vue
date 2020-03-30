@@ -3,23 +3,23 @@
     client-only
       v-container(v-if="!isMobile")
         v-row(justify="center")
-        v-col(cols="12" md="9").pt-2.pb-1
-            v-carousel(
-              dark
-              hide-delimiters
-              next-icon="mdi-chevron-right"
-              height="350"
-            ).elevation-0.testimonial-carousel
-              v-carousel-item(
-                v-for="(testimonial,i) in testimonials"
-                :key="i"
-              ).pt-10
-                v-row(justify="center" align="center")
-                  v-col(cols="10").text-center.pa-5
-                    h2.black--text.mb-5.font-25 {{ testimonial.message }}
-                    strong.font-s.primary--text {{ testimonial.name }}
-                    br
-                    span.font-s.subheading.grey--text {{ testimonial.position }}
+          v-col(cols="12" md="9").pt-2.pb-1
+              v-carousel(
+                dark
+                hide-delimiters
+                next-icon="mdi-chevron-right"
+                height="350"
+              ).elevation-0.testimonial-carousel
+                v-carousel-item(
+                  v-for="(testimonial,i) in testimonials"
+                  :key="i"
+                ).pt-10
+                  v-row(justify="center" align="center")
+                    v-col(cols="10").text-center.pa-5
+                      h2.black--text.mb-5.font-25 {{ testimonial.message }}
+                      strong.font-s.primary--text {{ testimonial.name }}
+                      br
+                      span.font-s.subheading.grey--text {{ testimonial.position }}
       div(v-else).transparent.pt-5
         v-container
           v-row(justify="center").px-3
