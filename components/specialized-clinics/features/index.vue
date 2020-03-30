@@ -24,11 +24,11 @@
                     v-lazy="require(`@/assets/images/specialized/${expert.image}.png`)"
                     :alt="expert.image"
                   )
-              v-card-text.px-4.pb-3
-                h2.font-m.pb-3.black--text {{ expert.title }}
-                strong.font-18.primary--text TOP FEATURES
-                ul.no-list-style
-                  li(v-for="(feature,key) in expert.features").black--text ✓&nbsp;{{ feature }}
+                div.px-4.pb-3
+                  h2.font-m.pb-5.black--text {{ expert.title }}
+                  strong.font-18.primary--text TOP FEATURES
+                  ul.no-list-style
+                    li(v-for="(feature,key) in expert.features").black--text ✓&nbsp;{{ feature }}
 </template>
 
 <script>
