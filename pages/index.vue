@@ -111,6 +111,7 @@ export default {
   mounted () {
     this.$nuxt.$route.params.scrollHealthSuites ? this.getStarted()
       : VueScrollTo.scrollTo('#app', 500, { easing: 'ease' });
+    window.$crisp.push(['safe', true]);
   },
   methods: {
     getStarted () {
