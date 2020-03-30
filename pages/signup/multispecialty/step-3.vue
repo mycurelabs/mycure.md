@@ -40,6 +40,8 @@
                   :rules="[requiredRule]"
                   :disabled="loading"
                 )
+                  template(v-slot:append v-if="contact.firstName")
+                    v-icon(color="accent") mdi-check
                 v-text-field(
                   v-model="contact.lastName"
                   label="Last Name"
@@ -47,6 +49,8 @@
                   :rules="[requiredRule]"
                   :disabled="loading"
                 )
+                  template(v-slot:append v-if="contact.lastName")
+                    v-icon(color="accent") mdi-check
                 v-text-field(
                   v-model="contact.mobileNo"
                   label="Mobile Number"
@@ -57,14 +61,15 @@
                   :disabled="loading"
                   :error-messages="mobileNoErrorMessage"
                   :rules="[requiredRule]"
-                  @blur="validatePhoneNo"
                 )
                   template(slot="append")
-                    v-tooltip(bottom)
-                      template(v-slot:activator="{ on }")
-                        v-btn(icon style="margin-top: -5px" @click="countryDialog = true" v-on="on").ma-0
-                          img(width="25" :src="contact.countryFlag").flag-img.mt-2
-                      | Change Country
+                    div(style="margin-top: -5px")
+                      v-tooltip(bottom)
+                        template(v-slot:activator="{ on }")
+                          v-btn(icon @click="countryDialog = true" v-on="on").ma-0
+                            img(width="25" :src="contact.countryFlag").flag-img.mt-2
+                        | Change Country
+                      v-icon(v-if="mobileNoError" color="accent") mdi-check
                 v-text-field(
                   v-model="contact.email"
                   type="email"
@@ -73,6 +78,8 @@
                   :rules="[requiredRule, emailRule]"
                   :disabled="loading"
                 )
+                  template(v-slot:append v-if="contact.email && /.+@+./.test(contact.email)")
+                    v-icon(color="accent") mdi-check
                 v-select(
                   v-model="contact.designation"
                   :items="roles"
@@ -81,6 +88,8 @@
                   :rules="[requiredRule]"
                   :disabled="loading"
                 )
+                  template(v-slot:append v-if="contact.designation")
+                    v-icon(color="accent") mdi-check
                 v-text-field(
                   v-model="contact.preferredScheduleDate"
                   type="date"
@@ -93,6 +102,8 @@
                   :disabled="loading"
                   :error-messages="dateErrorMessage"
                 )
+                  template(v-slot:append v-if="dateError")
+                    v-icon(color="accent") mdi-check
         v-flex(xs12 md10).mt-2
           v-card(flat)
             v-card-actions(
@@ -235,13 +246,11 @@ export default {
       handler () {
         this.validatePhoneNo();
       },
-      deep: true,
     },
     'contact.preferredScheduleDate': {
       handler () {
         this.validateDate();
       },
-      deep: true,
     },
     searchString (val) {
       if (typeof val !== 'string' || val === '') {
