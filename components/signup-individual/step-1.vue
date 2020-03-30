@@ -222,7 +222,6 @@ export default {
       handler () {
         this.validatePhoneNo();
       },
-      deep: true,
     },
     searchString (val) {
       if (typeof val !== 'string' || val === '') {
