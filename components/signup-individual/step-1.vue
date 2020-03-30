@@ -262,7 +262,7 @@ export default {
         console.error(e);
         this.error = true;
         if (e.code === 11000) {
-          this.errorMessage = `The email ${this.user.email} or mobile number ${this.user.mobileNo} is already in use.`;
+          this.errorMessage = 'The email or mobile number you have entered is invalid or taken. Please try again.';
         }
       } finally {
         this.loading = false;
