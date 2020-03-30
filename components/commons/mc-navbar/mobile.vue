@@ -39,14 +39,15 @@
                   v-list-item-title
                     b {{item.name}}
               v-divider
-            v-subheader {{contactDetails.header}}
-            v-list-item(
-              v-for="(contact, key) in contactDetails.items"
-              :key="key"
-            )
-              v-list-item-content
-                v-list-item-title
-                  b {{contact}}
+        v-col(cols="12")
+          v-subheader {{contactDetails.header}}
+          v-list-item(
+            v-for="(contact, key) in contactDetails.items"
+            :key="key"
+          )
+            v-list-item-content
+              v-list-item-title
+                b {{contact}}
       div.navBottomBtns.py-3
         v-row(justify="center")
           v-btn(
