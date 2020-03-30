@@ -13,18 +13,17 @@
     )
 
     //- Video
-    v-dialog(v-model="videoDialog" max-width="600px")
-      v-layout(row justify-center)
-        v-card(width="600")
-          v-card-text
-            iframe(
-              align="middle"
-              :height="!$isMobile ? '400' : '175'"
-              :width="!$isMobile ? '570' : '300'"
-              src="https://www.youtube.com/embed/YjymFVmKX_U"
-              frameborder="0"
-              allowfullscreen
-            )
+    v-dialog(v-model="videoDialog" max-width="600")
+      v-card(width="600").pt-5
+        v-card-text
+          iframe(
+            align="middle"
+            :height="!$isMobile ? '400' : '175'"
+            width="100%"
+            src="https://www.youtube.com/embed/YjymFVmKX_U"
+            frameborder="0"
+            allowfullscreen
+          )
 </template>
 
 <script>
