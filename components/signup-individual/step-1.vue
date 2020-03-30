@@ -37,6 +37,8 @@
                       :rules="[requiredRule]"
                       :disabled="loading"
                     ).step-one-text-field
+                      template(v-slot:append v-if="user.firstName")
+                        v-icon(color="accent") mdi-check
                   v-col
                     v-text-field(
                       v-model="user.lastName"
@@ -45,6 +47,8 @@
                       :rules="[requiredRule]"
                       :disabled="loading"
                     )
+                      template(v-slot:append v-if="user.lastName")
+                        v-icon(color="accent") mdi-check
                 v-text-field(
                   v-model="user.doc_PRCLicenseNo"
                   label="Physician License No"
@@ -52,6 +56,8 @@
                   :rules="[requiredRule, numberRule]"
                   :disabled="loading"
                 )
+                  template(v-slot:append v-if="user.doc_PRCLicenseNo && user.doc_PRCLicenseNo>=0")
+                    v-icon(color="accent") mdi-check
                 v-text-field(
                   v-model="user.mobileNo"
                   label="Mobile Number"
@@ -65,11 +71,13 @@
                   @blur="validatePhoneNo"
                 )
                   template(slot="append")
-                    v-tooltip(bottom)
-                      template(v-slot:activator="{ on }")
-                        v-btn(icon style="margin-top: -5px" @click="countryDialog = true" v-on="on").ma-0
-                          img(width="25" :src="user.countryFlag").flag-img.mt-2
-                      | Change Country
+                    div(style="margin-top: -5px")
+                      v-tooltip(bottom)
+                        template(v-slot:activator="{ on }")
+                          v-btn(icon @click="countryDialog = true" v-on="on").ma-0
+                            img(width="25" :src="user.countryFlag").flag-img.mt-2
+                        | Change Country
+                      v-icon(v-if="mobileNoError" color="accent") mdi-check
                   //- NOTE: DO NOT REMOVE YET
                   //- template(slot="append-outer")
                   //-   v-tooltip(bottom)
@@ -86,6 +94,8 @@
                   :rules="[requiredRule, emailRule]"
                   :disabled="loading"
                 )
+                  template(v-slot:append v-if="user.email &&  /.+@.+/.test(user.email)")
+                    v-icon(color="accent") mdi-check
                 v-text-field(
                   v-model="user.password"
                   label="Password"
@@ -104,6 +114,8 @@
                   :rules="[requiredRule, matchPasswordRule]"
                   :disabled="loading"
                 )
+                  template(v-slot: append v-if="confirmPassword && confirmPassword === user.password")
+                    v-icon(color="accent") mdi-check
                 v-checkbox(
                   v-model="user.acceptTerms"
                   hide-details
