@@ -33,24 +33,32 @@
                   label="Clinic Name"
                   :rules="[requiredRule]"
                 ).step-one-field.font-21
+                  template(v-slot:append v-if="clinic.facilityName")
+                    v-icon(color="accent") mdi-check
                 v-text-field(
                   v-model="clinic.facilityAddress"
                   outlined
                   label="Clinic Address"
                   :rules="[requiredRule]"
                 ).step-one-field.font-21
+                  template(v-slot:append v-if="clinic.facilityAddress")
+                    v-icon(color="accent") mdi-check
                 v-text-field(
                   v-model="clinic.numberOfStaff"
                   outlined
                   label="No. of staff (?)"
                   :rules="[requiredRule, ...numberRules]"
                 ).step-one-field.font-21
+                  template(v-slot:append v-if="clinic.numberOfStaff && clinic.numberOfStaff > 0 && !decimalTest(clinic.numberOfStaff)")
+                    v-icon(color="accent") mdi-check
                 v-text-field(
                   v-model="clinic.numberOfPatients"
                   outlined
                   label="Average patients per day (?)"
                   :rules="[requiredRule, ...numberRules]"
                 ).step-one-field.font-21
+                  template(v-slot:append v-if="clinic.numberOfPatients && clinic.numberOfPatients > 0 && !decimalTest(clinic.numberOfPatients)")
+                    v-icon(color="accent") mdi-check
                 h5(style="margin-bottom: -20px;").grey--text.font-21 Does your clinic have other branches?
                 v-radio-group(row v-model="clinic.hasOtherBranches")
                   v-radio(label="Yes" :value="true").step-one-field
@@ -106,6 +114,10 @@ export default {
         }
         this.$nuxt.$router.push({ name: 'signup-multispecialty-step-2' });
       }
+    },
+    decimalTest (val) {
+      const test = /.\./.test(val);
+      return test;
     },
   },
   head () {
