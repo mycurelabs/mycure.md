@@ -16,29 +16,18 @@
             v-icon.font-35 mdi-close
       v-row
         v-col(cols="12")
-          v-list(two-line)
+          v-list
             v-list-item(
-              v-for="(item, key) in solutionsMenuItems"
+              v-for="(item, key) in solutionsMenuItems.concat(toolbarLinks)"
               :key="key"
               @click.stop="handleToolbarLinkClick(item)"
             )
               v-list-item-content
                 v-list-item-title
                   b {{item.name}}
-          v-list(two-line)
-            v-list-item(
-              v-for="(link, key) in toolbarLinks"
-              :key="key"
-              @click.stop="handleToolbarLinkClick(link)"
-            )
-              v-list-item-content
-                v-list-item-title
-                  b {{link.name}}
-          br
           br
           v-divider
         v-col(cols="12")
-          v-list(two-line)
             div(v-for="(section, key) in navSectionLinks" :key="key")
               v-subheader {{section.header}}
               v-list-item(
@@ -50,7 +39,6 @@
                   v-list-item-title
                     b {{item.name}}
               v-divider
-          v-list(two-line)
             v-subheader {{contactDetails.header}}
             v-list-item(
               v-for="(contact, key) in contactDetails.items"
