@@ -26,17 +26,16 @@
 
         //- Video
         v-dialog(v-model="featuresVideoDialog" max-width="600")
-          v-layout(row justify-center)
-            v-card(width="600")
-              v-card-text.text-center
-                iframe(
-                  align="middle"
-                  :height="!$isMobile ? '400' : '175'"
-                  width="100%"
-                  src="https://www.youtube.com/embed/YjymFVmKX_U"
-                  frameborder="0"
-                  allowfullscreen
-                )
+          v-card(width="600").pt-5
+            v-card-text.text-center
+              iframe(
+                align="middle"
+                :height="!$isMobile ? '400' : '175'"
+                width="100%"
+                src="https://www.youtube.com/embed/YjymFVmKX_U"
+                frameborder="0"
+                allowfullscreen
+              )
     //- 5th panel
     vid
     //- 6th panel
