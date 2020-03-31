@@ -127,18 +127,21 @@ export default {
         this.loading = true;
         const payload = { email: this.email, password: this.password };
         if (this.otp) { payload.otp = this.otp; }
+
         const {
           accessToken,
           code,
           message,
           isMFAMobileNoEnabled,
         } = await signin(payload);
+
         if (code === 206 && message === 'Missing MFA token') {
           this.isMFAMobileNoEnabled = !!isMFAMobileNoEnabled;
           this.otpDialog = true;
         } else {
-          window.location = `${this.target}?token=${accessToken}`;
+          window.location = this.composeTarget(accessToken);
         }
+
         if (this.otp) {
           this.otpDialog = false;
         }
@@ -159,6 +162,13 @@ export default {
       } finally {
         this.loading = false;
       }
+    },
+    composeTarget (accessToken) {
+      const queries = Object.keys(this.$route.query)
+        .filter(item => item !== 'target')
+        .map((item) => { return `${item}=${this.$route.query[item]}`; });
+      queries.unshift(`token=${accessToken}`);
+      return `${this.target}?${queries.join('&')}`;
     },
   },
   head () {

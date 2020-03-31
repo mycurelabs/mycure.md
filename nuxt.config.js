@@ -20,7 +20,7 @@ module.exports = {
   /*
   ** Customize the progress-bar color
   */
-  loading: { color: '#2e9fdf', throttle: 0},
+  loading: { color: '#2e9fdf', throttle: 0 },
   /*
   ** Global CSS
   */
@@ -34,7 +34,7 @@ module.exports = {
     '~/plugins/vue-fragment.js',
     '~/plugins/vue-media-query-mixin.js',
     { src: '~/plugins/vue-carousel.js', mode: 'client' },
-    { src: "~plugins/crisp.js", mode: 'client' },
+    { src: '~plugins/crisp.js', mode: 'client' },
     { src: '~/plugins/vue-analytics.js', mode: 'client' },
     { src: '~/plugins/ga.js', mode: 'client' },
     '~/plugins/vue-lazyload.js',
@@ -99,7 +99,7 @@ module.exports = {
             warning: colors.amber.base,
             error: '#ff5252',
             success: colors.green.accent3,
-          }
+          },
         },
       },
     },
