@@ -140,30 +140,29 @@
                 v-alert(:value="error" type="error").mt-5 {{errorMessage}}
             v-card-actions
               v-spacer
-              client-only
-                v-btn(
-                  v-if="pageType === 'signup-individual-step-1'"
-                  color="accent"
-                  @click="next"
-                  :disabled="loading || !valid"
-                  :loading="loading"
-                  large
-                ).font-weight-bold Create My Account
+              v-btn(
+                v-if="pageType === 'signup-individual-step-1'"
+                color="accent"
+                @click="next"
+                :disabled="loading || !valid"
+                :loading="loading"
+                large
+              ).font-weight-bold Create My Account
 
-                stripe-checkout(
-                  v-else
-                  ref="checkouRef"
-                  :pk="stripePK"
-                  :sessionId="stripeCheckoutSessionId"
-                )
-                  template(slot="checkout-button")
-                    v-btn(
-                      color="accent"
-                      :disabled="loading || !valid"
-                      :loading="loading"
-                      @click="checkout"
-                      large
-                    ).font-weight-bold.font-18 Start Trial Now
+              stripe-checkout(
+                v-else
+                ref="checkouRef"
+                :pk="stripePK"
+                :sessionId="stripeCheckoutSessionId"
+              )
+                template(slot="checkout-button")
+                  v-btn(
+                    color="accent"
+                    :disabled="loading || !valid"
+                    :loading="loading"
+                    @click="checkout"
+                    large
+                  ).font-weight-bold.font-18 Start Trial Now
     v-dialog(v-model="countryDialog" width="500" scrollable)
       v-card
         v-toolbar(flat)
