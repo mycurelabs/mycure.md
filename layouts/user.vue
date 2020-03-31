@@ -6,7 +6,7 @@
         :class="[dayOrNight === 'day' ? 'day-bg' : 'night-sky']"
       ).bg-positions.pt-5.px-3#top
         nuxt
-      div(:class="[dayOrNight === 'day' ? 'day-bg' : 'night-sky']")
+      div(:class="[dayOrNight === 'day' ? 'day-bg' : 'night-sky', 'fixed-footer']")
         v-img(:src="require(`../assets/images/mycure-onboarding-background${dayOrNight === 'night' ? '-dark-mode' : ''}.png`)" alt="Sign up background")
 </template>
 
@@ -53,5 +53,10 @@ export default {
   background-color: -webkit-linear-gradient(180deg, rgba(28,28,28,1) 0%, rgba(60,60,60,1) 50%);
   background-color: linear-gradient(180deg, rgba(28,28,28,1) 0%, rgba(60,60,60,1) 50%);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#1c191c",endColorstr="#3c3c3c",GradientType=1);
+}
+
+.fixed-footer {
+  position: relative;
+  bottom: 0;
 }
 </style>

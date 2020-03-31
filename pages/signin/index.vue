@@ -1,5 +1,5 @@
 <template lang="pug">
-  fragment
+  v-container
     v-row(align="center" justify="center").mx-1
       v-col(cols="12" sm="8" md="4")
         v-card

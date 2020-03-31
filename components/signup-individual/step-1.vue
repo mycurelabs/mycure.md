@@ -8,7 +8,8 @@
             @click="$nuxt.$router.push({ name: 'index' })"
             alt="MYCURE logo"
           ).link-to-home.mb-3
-          h2.primary--text {{ pageType === 'signup-individual-step-1' ? 'Doctors' : 'Specialized'}} Clinic: Sign Up (Step 1 of&nbsp;
+          h2.primary--text {{ pageType === 'signup-individual-step-1' ? 'Doctors' : 'Specialized'}} Clinic: Sign Up (Step&nbsp;
+            | {{ pageType === 'signup-individual-step-1' ? '1' : '2' }} of&nbsp;
             | {{ pageType === 'signup-individual-step-1' ? '2' : '3'}})
           br
           h1#step-1-title Become a techy doctor in minutes!
@@ -18,12 +19,19 @@
               img(width="20" src="~/assets/images/mycure-check.png" alt="Check icon")
             v-col(shrink)
               p.font-21 {{ item }}
-          v-row.pt-5
+          v-row(v-if="pageType === 'signup-individual-step-1'").pt-5
             v-col.mb-3
               b.font-18 Already have an account?&nbsp;
                 nuxt-link(:to="{ name: 'signin' }") Sign in.
         v-col(cols="12" md="5")
           v-card
+            v-card-actions(v-if="pageType === 'signup-specialized-step-2'")
+              v-btn(
+                icon
+                medium
+                :to="{ name: 'signup-specialized-step-1' }"
+              )
+                v-icon(medium) mdi-arrow-left
             v-card-text
               h1 Create a MYCURE Account
             v-card-text
@@ -133,13 +141,28 @@
             v-card-actions
               v-spacer
               v-btn(
+                v-if="pageType === 'signup-individual-step-1'"
                 color="accent"
                 @click="next"
                 :disabled="loading || !valid"
                 :loading="loading"
                 large
-              ).font-weight-bold {{pageType === 'signup-individual-step-1' ? 'Create My Account' : 'Next'}}
+              ).font-weight-bold Create My Account
 
+              stripe-checkout(
+                v-else
+                ref="checkouRef"
+                :pk="stripePK"
+                :sessionId="stripeCheckoutSessionId"
+              )
+                template(slot="checkout-button")
+                  v-btn(
+                    color="accent"
+                    :disabled="loading || !valid"
+                    :loading="loading"
+                    @click="checkout"
+                    large
+                  ).font-weight-bold.font-18 Start Trial Now
     v-dialog(v-model="countryDialog" width="500" scrollable)
       v-card
         v-toolbar(flat)
@@ -167,11 +190,13 @@
 </template>
 
 <script>
+import { StripeCheckout } from 'vue-stripe-checkout';
+import _ from 'lodash';
 import { parsePhoneNumberFromString } from 'libphonenumber-js';
 // - components
 import EmailVerificationDialog from './email-verification-dialog';
 // - utils
-import { getCountry, getCountries, signupIndividual } from '~/utils/axios';
+import { getCountry, getCountries, signupIndividual, signupSpecialized } from '~/utils/axios';
 import dayOrNight from '~/utils/day-or-night';
 
 const PASS_LENGTH = 6;
@@ -179,8 +204,10 @@ const PASS_LENGTH = 6;
 export default {
   components: {
     EmailVerificationDialog,
+    StripeCheckout,
   },
   data () {
+    this.stripePK = process.env.VUE_APP_STRIPE_PK;
     this.dayOrNight = dayOrNight();
     this.checkListItems = [
       'Manage your clinic more efficiently',
@@ -194,22 +221,26 @@ export default {
       countryDialog: false,
       emailVerificationMessageDialog: false,
       showPass: false,
-      countries: [],
-      searchString: '',
+      // models
       user: {
         countryCallingCode: '',
         countryFlag: null,
       },
+      countries: [],
       confirmPassword: '',
+      searchString: '',
+      // rules
       requiredRule: v => !!v || 'This field is required',
       numberRule: v => v >= 0 || 'Please input a valid number',
       emailRule: v => /.+@.+/.test(v) || 'Email address must be valid',
       passwordRule: v => v?.length >= PASS_LENGTH || 'Password length must be at least 6 characters.',
       matchPasswordRule: v => v === this.user.password || 'Passwords do not match',
+      //
       error: false,
       errorMessage: 'There was an error please try again later.',
       mobileNoError: false,
       mobileNoErrorMessage: '',
+      stripeCheckoutSessionId: '',
     };
   },
   computed: {
@@ -245,18 +276,14 @@ export default {
           return;
         }
         this.saveModel(this.user);
-        if (this.pageType === 'signup-individual-step-1') {
-          await signupIndividual(this.user);
-          if (this.user.countryCallingCode !== '63') {
-            if (process.browser) {
-              localStorage.clear();
-            }
-            this.emailVerificationMessageDialog = true;
-          } else {
-            this.$nuxt.$router.push({ name: 'signup-individual-step-2' });
+        await signupIndividual(this.user);
+        if (this.user.countryCallingCode !== '63') {
+          if (process.browser) {
+            localStorage.clear();
           }
+          this.emailVerificationMessageDialog = true;
         } else {
-          this.$nuxt.$router.push({ name: 'signup-specialized-step-2' });
+          this.$nuxt.$router.push({ name: 'signup-individual-step-2' });
         }
       } catch (e) {
         console.error(e);
@@ -268,17 +295,54 @@ export default {
         this.loading = false;
       }
     },
+    async checkout () {
+      try {
+        this.loading = true;
+        this.error = false;
+        this.validateForm();
+        if (!this.valid) {
+          return;
+        }
+        const data = await signupSpecialized(this.user);
+        const checkoutSession = _.get(data, 'organization.subscription.updatesPending');
+        this.stripeCheckoutSessionId = checkoutSession.stripeSession;
+        this.$refs.checkouRef.redirectToCheckout();
+        if (process.browser) {
+          localStorage.clear();
+        }
+      } catch (e) {
+        console.error(e);
+        this.error = true;
+        if (e.code === 11000) {
+          this.errorMessage = 'The email or mobile number you have entered is invalid or taken. Please try again.';
+        } else {
+          this.errorMessage = 'There was an error in creating your account. Please try again.';
+        }
+      } finally {
+        this.loading = false;
+      }
+    },
     async init () {
       this.loadingForm = true;
 
       // Load model
       if (process.browser) {
-        if (localStorage.getItem('individual:step1:model')) {
+        if (localStorage.getItem('individual:step1:model') && this.pageType === 'signup-individual-step-1') {
           this.user = {
             ...JSON.parse(localStorage.getItem('individual:step1:model')),
             password: '',
             confirmPassword: '',
           };
+        } else if (localStorage.getItem('specialized:step1:model') && this.pageType === 'signup-specialized-step-2') {
+          this.user = {
+            ...JSON.parse(localStorage.getItem('specialized:step1:model')),
+          };
+          const country = await getCountry();
+          const { location } = country;
+          this.user.countryCallingCode = location ? location.calling_code : '63';
+          this.user.countryFlag = location ? location.country_flag : 'http://assets.ipstack.com/flags/ph.svg';
+        } else if (localStorage.getItem('specialized:step1:model') && this.pageType === 'signup-specialized-step-2') {
+          this.$nuxt.$router.push({ name: 'signup-specialiazed-step-1' });
         } else {
           const country = await getCountry();
           const { location } = country;
@@ -347,6 +411,9 @@ export default {
     },
     doneSignupNonPH () {
       this.emailVerificationMessageDialog = false;
+      if (process.browser) {
+        localStorage.clear();
+      }
       this.$nuxt.$router.push({ name: 'signin' });
     },
   },
