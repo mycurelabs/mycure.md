@@ -168,7 +168,6 @@
 
 <script>
 import { parsePhoneNumberFromString } from 'libphonenumber-js';
-import dayOrNight from '../../utils/day-or-night';
 // - components
 import EmailVerificationDialog from './email-verification-dialog';
 // - utils
