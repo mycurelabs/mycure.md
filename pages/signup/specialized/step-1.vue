@@ -63,19 +63,6 @@
             v-card-actions(
               :class="dayOrNight === 'night' ? 'night-card-actions' : 'day-card-actions'"
             )
-              //- stripe-checkout(
-              //-   ref="checkouRef"
-              //-   :pk="stripePK"
-              //-   :sessionId="stripeCheckoutSessionId"
-              //- )
-              //-   template(slot="checkout-button")
-              //-     v-btn(
-              //-       color="accent"
-              //-       :disabled="loading || !selectedType.value"
-              //-       :loading="loading"
-              //-       @click="onProceed"
-              //-       large
-              //-     ).font-weight-bold Start Trial Now
               v-spacer
               v-btn(
                 color="accent"
@@ -104,10 +91,7 @@
 </template>
 
 <script>
-// import { StripeCheckout } from 'vue-stripe-checkout';
-// import _ from 'lodash';
 import { SPECIALIZED_CLINIC_TYPES } from '~/components/signup-specialized/constants';
-// import { signupSpecialized } from '~/utils/axios';
 import dayOrNight from '~/utils/day-or-night';
 import { MODULE_AVAILABILITY_MAPPINGS } from '~/utils/subscriptions';
 import headMeta from '~/utils/head-meta';
@@ -118,10 +102,8 @@ export default {
   layout: 'user',
   components: {
     SpecializedClinicDetailsDialog,
-    // StripeCheckout,
   },
   data () {
-    // this.stripePK = process.env.VUE_APP_STRIPE_PK;
     this.dayOrNight = dayOrNight();
     return {
       added: false,
@@ -162,20 +144,6 @@ export default {
       this.user.clinicType = this.selectedType.value;
       this.saveModel(this.user);
       this.$nuxt.$router.push({ name: 'signup-specialized-step-2' });
-      // this.step1Data.subscription = {
-      //   trial: true,
-      //   storageMax: 1,
-      //   doctorSeatsMax: 1,
-      //   staffSeatsMax: 1,
-      //   ...this.selectedClinicTypeModulesMapping,
-      // };
-      // const data = await signupSpecialized(this.step1Data);
-      // const checkoutSession = _.get(data, 'organization.subscription.updatesPending');
-      // this.stripeCheckoutSessionId = checkoutSession.stripeSession;
-      // this.$refs.checkouRef.redirectToCheckout();
-      // if (process.browser) {
-      //   localStorage.clear();
-      // }
     },
     saveModel (val) {
       const saveVal = {
