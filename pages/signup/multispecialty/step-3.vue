@@ -4,14 +4,9 @@
       v-row(justify="center")
         v-col(cols="12" md="5")
           img(
-<<<<<<< HEAD:pages/signup/multispecialty/step-3.vue
             src=`~/assets/images/mycure-${dayOrNight === 'night' ? 'footer' : 'header'}-logo.png`
             @click="$nuxt.$router.push({ name: 'index' })"
             alt="MYCURE logo"
-=======
-            src=`../../assets/images/mycure-${dayOrNight === 'day' ? 'header' : 'footer'}-logo.png`
-            @click="$router.push({ name: 'home' })"
->>>>>>> 1ed931f5276bb0f5914e5bd8756f6f1b8baf392f:src/components/signup-multispecialty/step-3.vue
           ).link-to-home.mb-3
           h2.primary--text Multispecialty Clinic: Sign Up (Step 1 of 3)
           br
@@ -115,17 +110,10 @@
               :class="dayOrNight === 'day' ? 'day-card-actions' : 'night-card-actions'"
             )
               v-btn(
-<<<<<<< HEAD:pages/signup/multispecialty/step-3.vue
                 text
                 large
                 :disabled="loading"
                 @click="onBack"
-=======
-                :to="{ name: 'signup-multispecialty-step-2' }"
-                flat
-                large
-                :disabled="loading"
->>>>>>> 1ed931f5276bb0f5914e5bd8756f6f1b8baf392f:src/components/signup-multispecialty/step-3.vue
               ).font-weight-bold Back
               v-spacer
               v-btn(
@@ -170,29 +158,17 @@
 
 <script>
 // - utils
-<<<<<<< HEAD:pages/signup/multispecialty/step-3.vue
 import { parsePhoneNumberFromString } from 'libphonenumber-js';
-=======
->>>>>>> 1ed931f5276bb0f5914e5bd8756f6f1b8baf392f:src/components/signup-multispecialty/step-3.vue
 import _ from 'lodash';
 import {
   getCountry,
   getCountries,
-<<<<<<< HEAD:pages/signup/multispecialty/step-3.vue
   sendMultiSpecialtyInquiry,
 } from '~/utils/axios';
 import dayOrNight from '~/utils/day-or-night';
 import headMeta from '~/utils/head-meta';
 // - constants
 import modules from '~/assets/fixtures/modules';
-=======
-  sendMultiSpecialtyInquiry 
-} from '../../utils/axios';
-import { parsePhoneNumberFromString } from 'libphonenumber-js';
-import dayOrNight from '../../utils/day-or-night';
-// - constants
-import modules from '../../assets/fixtures/modules';
->>>>>>> 1ed931f5276bb0f5914e5bd8756f6f1b8baf392f:src/components/signup-multispecialty/step-3.vue
 
 export default {
   layout: 'user',
@@ -213,17 +189,10 @@ export default {
       'preferredScheduleDate',
     ];
     this.coreModules = modules
-<<<<<<< HEAD:pages/signup/multispecialty/step-3.vue
       .filter(m => m.type === 'core')
       .map(m => ({
         ...m, icon: require(`~/assets/images/${m.icon}`),
       }));
-=======
-        .filter(m => m.type === 'core')
-        .map(m => ({ 
-          ...m, icon: require(`../../assets/images/${m.icon}`)
-        }));
->>>>>>> 1ed931f5276bb0f5914e5bd8756f6f1b8baf392f:src/components/signup-multispecialty/step-3.vue
     this.dayOrNight = dayOrNight();
     return {
       loading: false,
@@ -467,8 +436,4 @@ h1 {
 .night-card-actions {
   background-color:  rgb(28,28,28);
 }
-<<<<<<< HEAD:pages/signup/multispecialty/step-3.vue
 </style>
-=======
-</style>
->>>>>>> 1ed931f5276bb0f5914e5bd8756f6f1b8baf392f:src/components/signup-multispecialty/step-3.vue
