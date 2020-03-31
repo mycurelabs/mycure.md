@@ -4,9 +4,14 @@
       v-row(justify="center")
         v-col(cols="12" md="10").pa-1.mb-3
           img(
+<<<<<<< HEAD:pages/signup/specialized/step-2.vue
             src=`~/assets/images/mycure-${dayOrNight === 'night' ? 'footer' : 'header'}-logo.png`
             @click="$nuxt.$router.push({ name: 'index' })"
             alt="MYCURE Logo"
+=======
+            src=`../../assets/images/mycure-${dayOrNight === 'day' ? 'header' : 'footer'}-logo.png`
+            @click="$router.push({ name: 'home' })"
+>>>>>>> 1ed931f5276bb0f5914e5bd8756f6f1b8baf392f:src/components/signup-specialized/step-2.vue
           ).link-to-home.mb-3
           br
           h2.primary--text Specialized Clinic: Sign Up (Step 2 of 3)
@@ -163,10 +168,14 @@ export default {
   },
   mounted () {
     this.selectedType = {};
+<<<<<<< HEAD:pages/signup/specialized/step-2.vue
     this.specializedTypes.map((type) => {
       type.selected = false;
       return type;
     });
+=======
+    this.specializedTypes.map(type => type.selected = false);
+>>>>>>> 1ed931f5276bb0f5914e5bd8756f6f1b8baf392f:src/components/signup-specialized/step-2.vue
   },
   methods: {
     async onProceed () {
