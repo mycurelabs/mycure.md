@@ -1,6 +1,5 @@
 {
   "hosting": {
-    "target": "staging-web-main",
     "public": "dist",
     "ignore": [
       "firebase.json",
@@ -8,10 +7,6 @@
       "**/node_modules/**"
     ],
     "rewrites": [
-      {
-        "source": "/doctors/**",
-        "function": "websites"
-      },
       {
         "source": "**",
         "destination": "/index.html"
