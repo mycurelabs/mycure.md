@@ -4,14 +4,9 @@
       v-row(justify="center" no-gutters)
         v-col(cols="12" md="5" :class="[{'content-padding': !$isMobile}]")
           img(
-<<<<<<< HEAD:components/signup-individual/step-1.vue
             src=`~/assets/images/mycure-${dayOrNight === 'night' ? 'footer' : 'header'}-logo.png`
             @click="$nuxt.$router.push({ name: 'index' })"
             alt="MYCURE logo"
-=======
-            src=`../../assets/images/mycure-${dayOrNight === 'day' ? 'header' : 'footer'}-logo.png`
-            @click="$router.push({ name: 'home' })"
->>>>>>> 1ed931f5276bb0f5914e5bd8756f6f1b8baf392f:src/components/signup-individual/step-1.vue
           ).link-to-home.mb-3
           h2.primary--text {{ pageType === 'signup-individual-step-1' ? 'Doctors' : 'Specialized'}} Clinic: Sign Up (Step 1 of&nbsp;
             | {{ pageType === 'signup-individual-step-1' ? '2' : '3'}})
@@ -176,12 +171,9 @@ import { parsePhoneNumberFromString } from 'libphonenumber-js';
 import dayOrNight from '../../utils/day-or-night';
 // - components
 import EmailVerificationDialog from './email-verification-dialog';
-<<<<<<< HEAD:components/signup-individual/step-1.vue
 // - utils
 import { getCountry, getCountries, signupIndividual } from '~/utils/axios';
 import dayOrNight from '~/utils/day-or-night';
-=======
->>>>>>> 1ed931f5276bb0f5914e5bd8756f6f1b8baf392f:src/components/signup-individual/step-1.vue
 
 const PASS_LENGTH = 6;
 
@@ -191,14 +183,11 @@ export default {
   },
   data () {
     this.dayOrNight = dayOrNight();
-<<<<<<< HEAD:components/signup-individual/step-1.vue
     this.checkListItems = [
       'Manage your clinic more efficiently',
       'Produce beautiful and useful reports',
       'Save on time and save more lives!',
     ];
-=======
->>>>>>> 1ed931f5276bb0f5914e5bd8756f6f1b8baf392f:src/components/signup-individual/step-1.vue
     return {
       valid: false,
       loading: false,
@@ -216,11 +205,7 @@ export default {
       requiredRule: v => !!v || 'This field is required',
       numberRule: v => v >= 0 || 'Please input a valid number',
       emailRule: v => /.+@.+/.test(v) || 'Email address must be valid',
-<<<<<<< HEAD:components/signup-individual/step-1.vue
       passwordRule: v => v?.length >= PASS_LENGTH || 'Password length must be at least 6 characters.',
-=======
-      passwordRule: v => v.length >= PASS_LENGTH || 'Password length must be at least 6 characters.',
->>>>>>> 1ed931f5276bb0f5914e5bd8756f6f1b8baf392f:src/components/signup-individual/step-1.vue
       matchPasswordRule: v => v === this.user.password || 'Passwords do not match',
       error: false,
       errorMessage: 'There was an error please try again later.',
