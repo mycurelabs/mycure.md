@@ -18,7 +18,7 @@
               p.font-21 {{ item }}
           v-layout(row).pt-5
             v-flex.mb-3
-              b.font-18 Already have an account? 
+              b.font-18 Already have an account?
                 router-link(:to="{ name: 'signin' }") Sign in.
         v-flex(xs12 md5)
           v-card
@@ -77,13 +77,13 @@ export default {
       requiredRule: v => !!v || 'This field is required',
       numberRules: [
         v => v > 0 || 'Please enter a positive number',
-        v => !(/.\./.test(v)) || 'Whole numbers only'
+        v => !(/.\./.test(v)) || 'Whole numbers only',
       ],
       checkListItems: [
         'Better operations',
         'Beautiful reports',
-        'Bye paperworks'
-      ]
+        'Bye paperworks',
+      ],
     };
   },
   watch: {
@@ -91,15 +91,8 @@ export default {
       handler (val) {
         localStorage.setItem('multi:step1:model', JSON.stringify(val));
       },
-      deep: true
-    }
-  },
-  methods: {
-    next () {
-      if (this.$refs.formRef.validate()) {
-        this.$router.push({ name: 'signup-multispecialty-step-2' });
-      }
-    }
+      deep: true,
+    },
   },
   created () {
     if (localStorage.getItem('multi:step1:model')) {
@@ -107,7 +100,14 @@ export default {
     } else {
       this.clinic.hasOtherBranches = true;
     }
-  }
+  },
+  methods: {
+    next () {
+      if (this.$refs.formRef.validate()) {
+        this.$router.push({ name: 'signup-multispecialty-step-2' });
+      }
+    },
+  },
 };
 </script>
 

@@ -38,14 +38,14 @@
           img(
             v-if="!videoPlay"
             @click.stop="videoPlay=!videoPlay"
-            width="100%" 
+            width="100%"
             src="@/assets/images/mycure-web-video-cover-syncbase-online-offline.png"
             alt="MYCURE Syncbase video thumbnail"
           )
           iframe(
             v-else
             align="middle"
-            id="ytplayer" 
+            id="ytplayer"
             type="text/html" width="100%" height="200"
             src="https://www.youtube.com/embed/siFBgZMt26k?autoplay=1&loop=1&showinfo=0&rel=0"
             frameborder="0"
@@ -58,15 +58,15 @@
             a
               img(
                 v-if="!videoPlay"
-                @click.stop="videoPlay=!videoPlay" 
-                width="100%" 
+                @click.stop="videoPlay=!videoPlay"
+                width="100%"
                 src="@/assets/images/mycure-web-video-cover-syncbase-online-offline.png"
                 alt="MYCURE Syncbase video thumbnail"
               )
               iframe(
                 v-else
                 align="middle"
-                id="ytplayer" 
+                id="ytplayer"
                 type="text/html" width="100%" height="400"
                 src="https://www.youtube.com/embed/siFBgZMt26k?autoplay=1&loop=1&showinfo=0&rel=0"
                 frameborder="0"
@@ -86,27 +86,27 @@ export default {
       panelImage: 'mycure-syncbase-animate-small',
       btnData: {
         id: 'home-syncbase-video-btn',
-        text: 'Watch How It Works'
+        text: 'Watch How It Works',
       },
       videoDialog: false,
-      videoPlay: false
+      videoPlay: false,
     };
   },
   computed: {
     webTitle () {
       return parseTextWithNewLine(this.panelTitle, ['Health ', 'online ']);
-    }
+    },
   },
   methods: {
     handleVideoBtn () {
       this.$ga.event({
         eventCategory: 'video',
         eventAction: `play-${this.btnData.id}`,
-        eventLabel: this.btnData.id
+        eventLabel: this.btnData.id,
       });
-      if (!this.$isMobile) this.videoDialog = true;
-    }
-  }
+      if (!this.$isMobile) { this.videoDialog = true; }
+    },
+  },
 };
 </script>
 
@@ -115,4 +115,3 @@ export default {
   white-space: pre;
 }
 </style>
-

@@ -52,65 +52,65 @@ export default {
       faqsItems: [
         {
           question: 'Is the MYCURE Free version for doctors really always free?',
-          answer: 'Yes! Especially for fresh starters, we wanna make sure that you love our product first before you pay for it and use it full-time.'
+          answer: 'Yes! Especially for fresh starters, we wanna make sure that you love our product first before you pay for it and use it full-time.',
         },
         {
           question: 'How free is free?',
-          answer: 'You can create and store all types of records up to 1GB. Afterwards you can subscribe for higher storage capacity through our in-app purchases starting $4 a month.'
+          answer: 'You can create and store all types of records up to 1GB. Afterwards you can subscribe for higher storage capacity through our in-app purchases starting $4 a month.',
         },
         {
           question: 'What if I’m part of a group practice?',
-          answer: 'You can invite other doctors to your virtual clinic, but each additional doctor to your clinic is an additional charge of $4.'
+          answer: 'You can invite other doctors to your virtual clinic, but each additional doctor to your clinic is an additional charge of $4.',
         },
         {
           question: 'What if I serve multiple clinics?',
-          answer: 'Additional clinics are $5 but they automatically come with the same features as your original account!'
+          answer: 'Additional clinics are $5 but they automatically come with the same features as your original account!',
         },
         {
           question: 'Can I still get the other modules for my clinic?',
-          answer: 'Sure! Just update your subscription under Accounts and upgrade to a premium subscription by subscribing to our other available modules! Check out our'
+          answer: 'Sure! Just update your subscription under Accounts and upgrade to a premium subscription by subscribing to our other available modules! Check out our',
         },
         {
           question: 'Can I transfer my existing charts to MYCURE?',
-          answer: 'Possibly! Chat with us now and ask our experts about it.'
+          answer: 'Possibly! Chat with us now and ask our experts about it.',
         },
         {
           question: 'Am I required to pay for installation fees?',
-          answer: 'No. You can set it up on your own!'
+          answer: 'No. You can set it up on your own!',
         },
         {
           question: 'Who else can see my patient records?',
-          answer: 'Only you. You are in control of your own account and the medical records you create. If you add a secretary account into your clinic, you may allow him/her to view your patient records, too.'
+          answer: 'Only you. You are in control of your own account and the medical records you create. If you add a secretary account into your clinic, you may allow him/her to view your patient records, too.',
         },
         {
           question: 'Do you have an account for secretaries and nurses?',
-          answer: 'Yes. You can learn more about the different features on our'
+          answer: 'Yes. You can learn more about the different features on our',
         },
         {
           question: 'Does my MYCURE account also come with a free device?',
-          answer: 'No. MYCURE only provides the web-based application. That’s actually more practical (and less spending) for you! Most software products that come with devices require you to be locked up to their subscription plans for a certain time period. Don’t worry, we’re confident that MYCURE is compatible with at least one of your current devices so long as it has Google Chrome installed.'
+          answer: 'No. MYCURE only provides the web-based application. That’s actually more practical (and less spending) for you! Most software products that come with devices require you to be locked up to their subscription plans for a certain time period. Don’t worry, we’re confident that MYCURE is compatible with at least one of your current devices so long as it has Google Chrome installed.',
         },
         {
           question: 'Is MYCURE cloud-based?',
-          answer: 'Yes. All your medical records are backed up in the cloud.'
+          answer: 'Yes. All your medical records are backed up in the cloud.',
         },
         {
           question: 'How fast should my internet connection be when I’m using MYCURE?',
           answer: 'This varies on the number of users of the app. We encrypt and upload your records to our secure servers every time you process them. The download/upload speed should be at least:',
-          supplement: '• 10 Mbps → 1 to 3 simultaneous users • 15 Mbps → 4 to 10 simultaneous users • 20 Mbps and up → More than 10 users'
-        }
-      ]
+          supplement: '• 10 Mbps → 1 to 3 simultaneous users • 15 Mbps → 4 to 10 simultaneous users • 20 Mbps and up → More than 10 users',
+        },
+      ],
     };
   },
   methods: {
     parseSupplement (item) {
       const { supplement } = item;
-      if (this.faqsItems.indexOf(item) === this.faqsItems.length-1) {
+      if (this.faqsItems.indexOf(item) === this.faqsItems.length - 1) {
         return parseTextWithNewLine(supplement, ['3 simultaneous users ', '10 simultaneous users ']);
       } else {
         return supplement;
       }
-    }
-  }
+    },
+  },
 };
 </script>

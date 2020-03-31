@@ -11,7 +11,7 @@
           h2.primary--text Multispecialty Clinic: Sign Up (Step 2 of 3)
           h1 Choose modules that you will need.
           p Core modules are already included by default.
-        
+
         v-flex(xs12 md10).pa-1
           h4 Core modules
         v-flex(xs12 md5 v-for="(module, key) in coreModules" :key="module.id").pa-1
@@ -59,7 +59,7 @@
       v-model="added"
       :timeout="1000"
     ) {{selectedModule}} Selected!
-    
+
     v-snackbar(
       v-model="removed"
       :timeout="1000"
@@ -82,15 +82,21 @@ export default {
       removed: false,
       coreModules: modules
         .filter(m => m.type === 'core')
-        .map(m => ({ 
-          ...m, icon: require(`../../assets/images/${m.icon}`)
+        .map(m => ({
+          ...m, icon: require(`../../assets/images/${m.icon}`),
         })),
       premiumModules: modules
         .filter(m => m.type === 'premium')
-        .map(m => ({ 
-          ...m, icon: require(`../../assets/images/${m.icon}`)
-        }))
+        .map(m => ({
+          ...m, icon: require(`../../assets/images/${m.icon}`),
+        })),
     };
+  },
+  created () {
+    if (!localStorage.getItem('multi:step1:model')) { this.$router.push({ name: 'signup-multispecialty-step-1' }); }
+    if (localStorage.getItem('multi:step2:model')) {
+      this.premiumModules = JSON.parse(localStorage.getItem('multi:step2:model'));
+    }
   },
   methods: {
     toggleModule (module) {
@@ -107,15 +113,8 @@ export default {
     },
     updateLocalStorage () {
       localStorage.setItem('multi:step2:model', JSON.stringify(this.premiumModules));
-    }
+    },
   },
-  created () {
-    if (!localStorage.getItem('multi:step1:model')) 
-      this.$router.push({ name: 'signup-multispecialty-step-1' });
-    if (localStorage.getItem('multi:step2:model')) {
-      this.premiumModules = JSON.parse(localStorage.getItem('multi:step2:model'));
-    }
-  }
 };
 </script>
 

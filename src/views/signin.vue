@@ -11,7 +11,7 @@
             v-card
               v-card-text.pa-4
                 img(
-                  width="120" 
+                  width="120"
                   src=`../assets/images/mycure-${dayOrNight === 'day' ? 'header' : 'footer'}-logo.png`
                   @click="$router.push({ name: 'home' })"
                 ).link-to-home.mb-3
@@ -46,8 +46,8 @@
                     router-link(:to="{ name: 'home' , params: { scrollHealthSuites: true}}").router-link Create an account here.
                   v-flex
                     v-btn(
-                      @click="submit" 
-                      :color="$mcColors.mcAltGreen" 
+                      @click="submit"
+                      :color="$mcColors.mcAltGreen"
                       :disabled="!valid || loading"
                       :loading="loading"
                     ).right.font-weight-bold.white--text Sign in
@@ -61,7 +61,7 @@
               input(
                 v-model="otp"
                 placeholder="Enter One-Time Pin (OTP)"
-                type="text" 
+                type="text"
                 maxlength="6"
                 autofocus
                 :rules="[v => !!v || 'OTP is required']"
@@ -80,7 +80,7 @@ import { signin } from '../utils/axios';
 import OtpForm from '../components/commons/otp-form';
 export default {
   components: {
-    OtpForm
+    OtpForm,
   },
   data () {
     this.dayOrNight = dayOrNight();
@@ -92,10 +92,10 @@ export default {
       password: '',
       emailRules: [
         v => !!v || 'Email address is required',
-        v => /.+@.+/.test(v) || 'Email address must be valid'
+        v => /.+@.+/.test(v) || 'Email address must be valid',
       ],
       passwordRules: [
-        v => !!v || 'Password is required'
+        v => !!v || 'Password is required',
       ],
       target: '',
       error: false,
@@ -103,7 +103,7 @@ export default {
       isMFAMobileNoEnabled: false,
       otpDialog: false,
       otp: '',
-      errors: []
+      errors: [],
     };
   },
   computed: {
@@ -111,7 +111,7 @@ export default {
       return this.isMFAMobileNoEnabled
         ? 'We sent the authentication code to your mobile number. Enter the code in the form above to verify your identity.'
         : 'Enter the code from Google Authenticator in the form above to verify your identity.';
-    }
+    },
   },
   watch: {
     otpDialog (val) {
@@ -120,7 +120,10 @@ export default {
           document.getElementById('otpField').focus();
         });
       }
-    }
+    },
+  },
+  created () {
+    this.init();
   },
   methods: {
     init () {
@@ -130,12 +133,12 @@ export default {
       try {
         this.loading = true;
         const payload = { email: this.email, password: this.password };
-        if (this.otp) payload.otp = this.otp;
-        const { 
-          accessToken, 
-          code, 
-          message, 
-          isMFAMobileNoEnabled
+        if (this.otp) { payload.otp = this.otp; }
+        const {
+          accessToken,
+          code,
+          message,
+          isMFAMobileNoEnabled,
         } = await signin(payload);
         if (code === 206 && message === 'Missing MFA token') {
           this.isMFAMobileNoEnabled = !!isMFAMobileNoEnabled;
@@ -143,8 +146,7 @@ export default {
         } else {
           window.location = `${this.target}?token=${accessToken}`;
         }
-        if (this.otp)
-          this.otpDialog = false;
+        if (this.otp) { this.otpDialog = false; }
       } catch (e) {
         if (/network error/gi.test(e.message)) {
           this.error = true;
@@ -162,11 +164,8 @@ export default {
       } finally {
         this.loading = false;
       }
-    }
+    },
   },
-  created () {
-    this.init();
-  }
 };
 </script>
 
