@@ -45,7 +45,7 @@ export default {
     this.codes = [
       'We are passionate, fun-loving, innovative people.',
       'We grow through continuous learning.',
-      'We dare to challenge status quo and make things happen.',
+      'We dare to challenge the status quo and make things happen.',
       'We value diversity and respect everyone’s opinions.',
       'We practice honesty, transparency and highly value integrity.',
       'We truly care and deliver awesomeness to our customers.',

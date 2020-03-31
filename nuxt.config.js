@@ -61,8 +61,8 @@ module.exports = {
     // Doc: https://github.com/nuxt-community/dotenv-module
     '@nuxtjs/dotenv',
     'nuxt-webfontloader',
-    'nuxt-ssr-cache',
   ],
+<<<<<<< HEAD
   cache: {
     // if you're serving multiple host names (with differing
     // results) from the same server, set this option to true.
@@ -99,6 +99,8 @@ module.exports = {
       ttl: 60,
     },
   },
+=======
+>>>>>>> d89a84d588d1498904e0e67cb93b4ed0abc647de
   webfontloader: {
     google: {
       families: ['Work+Sans:400,700,900', 'Source+Sans+Pro:400,700'],

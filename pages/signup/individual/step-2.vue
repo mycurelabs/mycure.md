@@ -42,6 +42,10 @@
                 type="error"
                 dismissible
               ) Incorrect verification code
+          br
+          p Having trouble with your verifaction?&nbsp;
+            a(@click.stop="toggleChat()")
+              strong.primary--text Send us a chat for support.
         v-col(cols="12" md="6").pa-1.text-center
           img(src="~/assets/images/mycure-onboarding-phone-verification.png" alt="Phone")
 
@@ -203,6 +207,11 @@ export default {
       }
       this.otpCountdown = COUNTDOWN_MILLIS;
       this.startCountDown();
+    },
+    toggleChat () {
+      const message = 'Hi, I am having an issue with my OTP number.';
+      window.$crisp.push(['do', 'chat:toggle']);
+      window.$crisp.push(['do', 'message:send', ['text', message]]);
     },
   },
   head () {

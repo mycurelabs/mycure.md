@@ -11,16 +11,22 @@
         cols="12"
         md="4"
       )
-        v-card(height="100%").roundedCard
+        v-card(
+          height="100%"
+          :color="hoveredClinic === suite.learnLink ? '#fafafa' : '#f0f0f0'"
+          @mouseover="hoveredClinic = suite.learnLink"
+          @mouseout="hoveredClinic = ''"
+        ).roundedCard
           v-card-text.black--text
             strong.font-s {{ suite.header }}
             p.font-16 {{ suite.subheader }}
             v-row
               v-col(cols="12" md="4").text-center.pt-1
                 img(
-                  v-lazy="require(`~/assets/images/${suite.image}.png`)"
+                  :src="require(`~/assets/images/${suite.image}${hoveredClinic === suite.learnLink ? '-colored' : ''}.png`)"
                   width="100%"
                   :alt="suite.header"
+                  @click="$nuxt.$router.push({ name: suite.learnLink })"
                 )
               v-col(cols="12" md="8").pl-1
                 ul
@@ -52,6 +58,7 @@ export default {
   data () {
     return {
       healthSuites: HEALTH_SUITES_ITEMS,
+      hoveredClinic: '',
     };
   },
   computed: {
