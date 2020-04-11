@@ -21,7 +21,7 @@
             v-col.mb-3
               b.font-18 Already have an account?&nbsp;
                 nuxt-link(:to="{ name: 'signin' }") Sign in.
-        v-col(cols="12" md="5")
+        v-col(cols="12" md="5" :class="[{'mb-10': $isMobile}]")
           v-card
             v-card-text
               h1 Tell us about your facility.

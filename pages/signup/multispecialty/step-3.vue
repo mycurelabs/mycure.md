@@ -8,7 +8,7 @@
             @click="$nuxt.$router.push({ name: 'index' })"
             alt="MYCURE logo"
           ).link-to-home.mb-3
-          h2.primary--text Multispecialty Clinic: Sign Up (Step 1 of 3)
+          h2.primary--text Multispecialty Clinic: Sign Up (Step 3 of 3)
           br
           h1#step-1-title Let's talk soon!
           br
@@ -104,7 +104,7 @@
                 )
                   template(v-slot:append v-if="dateError")
                     v-icon(color="accent") mdi-check
-        v-flex(xs12 md10).mt-2
+        v-col(cols="12" md="10" :class="[{'mb-10': $isMobile}]").mt-2
           v-card(flat)
             v-card-actions(
               :class="dayOrNight === 'day' ? 'day-card-actions' : 'night-card-actions'"
