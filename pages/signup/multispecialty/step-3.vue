@@ -318,7 +318,7 @@ export default {
         const countryCode = this.contact.countryCallingCode;
         const mobileNo = this.contact.mobileNo;
         const phoneNumber = parsePhoneNumberFromString(`+${countryCode}${mobileNo}`);
-        if (!phoneNumber || !phoneNumber.isValid()) {
+        if (!phoneNumber || !phoneNumber.isValid() || mobileNo.charAt(0) === '0') {
           throw new Error('Invalid mobile number');
         } else {
           this.mobileNoError = true;

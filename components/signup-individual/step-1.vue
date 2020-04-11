@@ -399,7 +399,7 @@ export default {
         const countryCode = this.user.countryCallingCode;
         const mobileNo = this.user.mobileNo;
         const phoneNumber = parsePhoneNumberFromString(`+${countryCode}${mobileNo}`);
-        if (!phoneNumber || !phoneNumber.isValid()) {
+        if (!phoneNumber || !phoneNumber.isValid() || mobileNo.charAt(0) === '0') {
           throw new Error('Invalid phone number');
         } else {
           this.mobileNoError = true;
