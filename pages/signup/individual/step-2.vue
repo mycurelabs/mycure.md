@@ -43,7 +43,7 @@
                 dismissible
               ) Incorrect verification code
           br
-          p Having trouble with your verifaction?&nbsp;
+          p Having trouble with your verification?&nbsp;
             a(@click.stop="toggleChat()")
               strong.primary--text Send us a chat for support.
         v-col(cols="12" md="6").pa-1.text-center
