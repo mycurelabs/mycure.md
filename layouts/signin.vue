@@ -1,12 +1,9 @@
 <template lang="pug">
   v-app
-    v-content
-      v-container(
-        fluid fill-height
-        :class="dayOrNight === 'day' ? 'white' : 'night-sky'"
-        :style="{ 'background-image': dayOrNight === 'day' ? `url(${require('~/assets/images/mycure-onboarding-background.png')})` : `url(${require('~/assets/images/mycure-onboarding-background-dark-mode.png')})` }"
-      ).bg
+    v-content(:class="dayOrNight === 'day' ? 'white' : 'night-sky'").content-padding
+      div(:class="dayOrNight === 'day' ? 'white' : 'night-sky'")
         nuxt
+      div(:class="[dayOrNight === 'day' ? 'white' : 'night-sky', dayOrNight === 'day' ? 'day-bg' : 'night-bg']").footer-bg
 </template>
 
 <script>
@@ -23,13 +20,23 @@ export default {
 </script>
 
 <style scoped>
-.bg {
-  /* background-image: url('../assets/images/mycure-signup-062618-footer-BG.png'); */
+.content-padding {
+  padding-top: 10px;
+}
+
+.footer-bg {
   background-repeat: repeat-x;
-  background-attachment: fixed;
   background-position: bottom center;
-  /* background-size: 250px, contain; */
-  /* background-position: bottom right 50px, bottom; */
+  bottom: 0;
+  min-height: 300px;
+}
+
+.day-bg {
+  background-image: url('../assets/images/mycure-onboarding-background.png');
+}
+
+.night-bg {
+  background-image: url('../assets/images/mycure-onboarding-background-dark-mode.png');
 }
 
 .night-sky {
@@ -38,5 +45,11 @@ export default {
   background-color: -webkit-linear-gradient(180deg, rgba(28,28,28,1) 0%, rgba(60,60,60,1) 50%);
   background-color: linear-gradient(180deg, rgba(28,28,28,1) 0%, rgba(60,60,60,1) 50%);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#1c191c",endColorstr="#3c3c3c",GradientType=1);
+}
+
+@media screen and (min-height: 700px) {
+  .content-padding {
+    padding-top: 15vh !important;
+  }
 }
 </style>
