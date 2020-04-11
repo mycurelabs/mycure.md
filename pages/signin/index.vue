@@ -1,12 +1,19 @@
 <template lang="pug">
-  v-container
+  v-container.main-container
     v-row(align="center" justify="center").mx-1
       v-col(cols="12" sm="8" md="4")
         v-card
           v-card-text.pa-4
             img(
+              v-if="dayOrNight === 'day'"
+              src="~/assets/images/mycure-header-logo.png"
+              alt="MYCURE logo"
+              @click="$nuxt.$router.push({ name: 'index' })"
+            ).link-to-home.mb-3
+            img(
+              v-else
               width="120"
-              src=`~/assets/images/mycure-${dayOrNight === 'night' ? 'footer' : 'header'}-logo.png`
+              src="~/assets/images/mycure-footer-logo.png"
               alt="MYCURE logo"
               @click="$nuxt.$router.push({ name: 'index' })"
             ).link-to-home.mb-3
@@ -46,6 +53,17 @@
                   :disabled="!valid || loading"
                   :loading="loading"
                 ).font-weight-bold Sign in
+        v-row(align="center" justify="center")
+          v-col(cols="12").text-center.font-14
+            span.white--text Copyright &copy; 2016 - {{new Date().getFullYear()}}
+            br
+            p
+              b MYCURE Inc.
+              | &nbsp;All Rights Reserved.
+            a(@click.stop="goToTerms") Terms of Use
+            | &nbsp;|&nbsp;
+            a(@click.stop="goToPrivacy") Privacy Policy
+
     v-dialog(v-model="otpDialog" width="400" persistent)
       v-card
         v-toolbar(flat)
@@ -170,6 +188,14 @@ export default {
       queries.unshift(`token=${accessToken}`);
       return `${this.target}?${queries.join('&')}`;
     },
+    goToTerms () {
+      const routeData = this.$nuxt.$router.resolve({ name: 'terms' });
+      window.open(routeData.href, '_blank');
+    },
+    goToPrivacy () {
+      const routeData = this.$nuxt.$router.resolve({ name: 'privacy-policy' });
+      window.open(routeData.href, '_blank');
+    },
   },
   head () {
     return headMeta({
@@ -183,6 +209,10 @@ export default {
 </script>
 
 <style scoped>
+.main-container {
+  min-height: 90vh;
+}
+
 .signin-title {
   font-weight: 500;
 }

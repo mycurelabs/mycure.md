@@ -11,13 +11,13 @@
           br
           h2.primary--text Specialized Clinic: Sign Up (Step 1 of 3)
           h1.font-work-sans Choose your specialized clinic:
-      v-row(justify="center")
+      v-row(justify="center" dense)
         v-col(
           v-for="(type, key) in specializedTypes"
           :key="key"
           cols="12"
           md="2"
-        ).pa-2
+        )
           v-card(
             hover
             :flat="!type.selected"
@@ -33,7 +33,7 @@
                 img(
                   v-if="type.selected"
                   src="~/assets/images/mycure-web-bullet-check.png"
-                  width="15%"
+                  width="10%"
                   alt="Check"
                 ).mt-1.mr-1
               v-card-text
@@ -43,49 +43,21 @@
                     :alt="type.image"
                     width="80%"
                   )
-              v-card-text.text-center
+              v-card-text.text-center.card-title-container
                 h2(:class="[$isMobile ? 'font-m' : 'font-16']") {{ type.title }}
               v-card-text.px-2.inclusions-container.grow
                 p The trial includes:
-                span(v-for="(item, key) in type.checklist" :key="key")
-                  span(:class="{'primary--text': type.selected}") ✓&nbsp;
-                  | {{ item }}
-                  br
-            v-card-actions.clinic-card-actions
-              v-btn(
-                color="primary"
-                medium
-                text
-                @click="viewDetails(type)"
-              ).font-weight-bold.details-btn View Details
-        v-col(cols="12" md="10").pa-1.mt-3
-          v-card(flat)
-            v-card-actions(
-              :class="dayOrNight === 'night' ? 'night-card-actions' : 'day-card-actions'"
-            )
-              //- stripe-checkout(
-              //-   ref="checkouRef"
-              //-   :pk="stripePK"
-              //-   :sessionId="stripeCheckoutSessionId"
-              //- )
-              //-   template(slot="checkout-button")
-              //-     v-btn(
-              //-       color="accent"
-              //-       :disabled="loading || !selectedType.value"
-              //-       :loading="loading"
-              //-       @click="onProceed"
-              //-       large
-              //-     ).font-weight-bold Start Trial Now
-              v-spacer
-              v-btn(
-                color="accent"
-                :disabled="loading || !selectedType.value"
-                @click="onProceed"
-                large
-              ).font-weight-bold Proceed
+                v-row(no-gutters).checklist-item
+                  template(v-for="(item, key) in type.checklist")
+                    v-col(cols="1")
+                      span(:class="{'primary--text': type.selected}") ✓&nbsp;
+                    v-col(cols="11")
+                      | {{ item }}
     specialized-clinic-details-dialog(
       v-model="detailsDialog"
       :clinic="viewClinicModel"
+      @proceed="onProceed"
+      @deselect="toggleType(viewClinicModel)"
     )
     v-snackbar(
       color="accent"
@@ -104,10 +76,7 @@
 </template>
 
 <script>
-// import { StripeCheckout } from 'vue-stripe-checkout';
-// import _ from 'lodash';
 import { SPECIALIZED_CLINIC_TYPES } from '~/components/signup-specialized/constants';
-// import { signupSpecialized } from '~/utils/axios';
 import dayOrNight from '~/utils/day-or-night';
 import { MODULE_AVAILABILITY_MAPPINGS } from '~/utils/subscriptions';
 import headMeta from '~/utils/head-meta';
@@ -118,10 +87,8 @@ export default {
   layout: 'user',
   components: {
     SpecializedClinicDetailsDialog,
-    // StripeCheckout,
   },
   data () {
-    // this.stripePK = process.env.VUE_APP_STRIPE_PK;
     this.dayOrNight = dayOrNight();
     return {
       added: false,
@@ -162,20 +129,6 @@ export default {
       this.user.clinicType = this.selectedType.value;
       this.saveModel(this.user);
       this.$nuxt.$router.push({ name: 'signup-specialized-step-2' });
-      // this.step1Data.subscription = {
-      //   trial: true,
-      //   storageMax: 1,
-      //   doctorSeatsMax: 1,
-      //   staffSeatsMax: 1,
-      //   ...this.selectedClinicTypeModulesMapping,
-      // };
-      // const data = await signupSpecialized(this.step1Data);
-      // const checkoutSession = _.get(data, 'organization.subscription.updatesPending');
-      // this.stripeCheckoutSessionId = checkoutSession.stripeSession;
-      // this.$refs.checkouRef.redirectToCheckout();
-      // if (process.browser) {
-      //   localStorage.clear();
-      // }
     },
     saveModel (val) {
       const saveVal = {
@@ -207,6 +160,7 @@ export default {
             }
             return item;
           });
+        this.viewDetails(type);
       } else {
         this.selectedType = {};
         this.selectedClinicTypeModulesMapping = {};
@@ -251,7 +205,7 @@ export default {
   cursor: pointer;
 }
 .check-container {
-  min-height: 40px;
+  min-height: 5vh;
 }
 .clinic-card {
   position: relative;
@@ -267,8 +221,19 @@ export default {
   width: 100%;
   bottom: 0;
 }
+.card-title-container {
+  min-height: 75px;
+}
+.checklist-item {
+  line-height: 3vh !important;
+}
 .details-btn {
   width: 100%
+}
+@media screen and (min-height: 550px) {
+  .card-title-container {
+    min-height: 60px !important;
+  }
 }
 @media screen and (min-height: 1080px) {
   .check-container {

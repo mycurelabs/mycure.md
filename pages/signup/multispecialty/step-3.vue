@@ -8,7 +8,7 @@
             @click="$nuxt.$router.push({ name: 'index' })"
             alt="MYCURE logo"
           ).link-to-home.mb-3
-          h2.primary--text Multispecialty Clinic: Sign Up (Step 1 of 3)
+          h2.primary--text Multispecialty Clinic: Sign Up (Step 3 of 3)
           br
           h1#step-1-title Let's talk soon!
           br
@@ -104,7 +104,7 @@
                 )
                   template(v-slot:append v-if="dateError")
                     v-icon(color="accent") mdi-check
-        v-flex(xs12 md10).mt-2
+        v-col(cols="12" md="10" :class="[{'mb-10': $isMobile}]").mt-2
           v-card(flat)
             v-card-actions(
               :class="dayOrNight === 'day' ? 'day-card-actions' : 'night-card-actions'"
@@ -277,8 +277,8 @@ export default {
         } else {
           const country = await getCountry();
           const { location } = country;
-          this.contact.countryCallingCode = location.calling_code;
-          this.contact.countryFlag = location.country_flag;
+          this.contact.countryCallingCode = location ? location.calling_code : '63';
+          this.contact.countryFlag = location ? location.country_flag : 'https://assets.ipstack.com/flags/ph.svg';
         }
         if (localStorage.getItem('multi:step2:model')) {
           const premiumModules = JSON.parse(localStorage.getItem('multi:step2:model'));
@@ -318,7 +318,7 @@ export default {
         const countryCode = this.contact.countryCallingCode;
         const mobileNo = this.contact.mobileNo;
         const phoneNumber = parsePhoneNumberFromString(`+${countryCode}${mobileNo}`);
-        if (!phoneNumber || !phoneNumber.isValid()) {
+        if (!phoneNumber || !phoneNumber.isValid() || mobileNo.charAt(0) === '0') {
           throw new Error('Invalid mobile number');
         } else {
           this.mobileNoError = true;

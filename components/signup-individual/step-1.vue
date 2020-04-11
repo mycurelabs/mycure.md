@@ -106,7 +106,7 @@
                     v-icon(color="accent") mdi-check
                 v-text-field(
                   v-model="user.password"
-                  label="Password"
+                  label="Your MYCURE Password"
                   outlined
                   :type="showPass ? 'text' : 'password'"
                   :rules="[requiredRule, passwordRule]"
@@ -134,9 +134,9 @@
                 ).mb-4
                   template(slot="label")
                     p(style="margin-bottom: -12px") By creating a MYCURE account, you're agreeing to accept MYCURE&nbsp;
-                      a(target="_blank" @click.stop="goToTerms") Terms
+                      a(@click.stop="goToTerms") Terms
                       | &nbsp;and&nbsp;
-                      a(targe="_blank" @click.stop="goToPrivacy") Privacy Policy
+                      a(@click.stop="goToPrivacy") Privacy Policy
                 v-alert(:value="error" type="error").mt-5 {{errorMessage}}
             v-card-actions
               v-spacer
@@ -340,14 +340,14 @@ export default {
           const country = await getCountry();
           const { location } = country;
           this.user.countryCallingCode = location ? location.calling_code : '63';
-          this.user.countryFlag = location ? location.country_flag : 'http://assets.ipstack.com/flags/ph.svg';
+          this.user.countryFlag = location ? location.country_flag : 'https://assets.ipstack.com/flags/ph.svg';
         } else if (localStorage.getItem('specialized:step1:model') && this.pageType === 'signup-specialized-step-2') {
           this.$nuxt.$router.push({ name: 'signup-specialiazed-step-1' });
         } else {
           const country = await getCountry();
           const { location } = country;
           this.user.countryCallingCode = location ? location.calling_code : '63';
-          this.user.countryFlag = location ? location.country_flag : 'http://assets.ipstack.com/flags/ph.svg';
+          this.user.countryFlag = location ? location.country_flag : 'https://assets.ipstack.com/flags/ph.svg';
         }
         // Load countries
         this.getCountries();
@@ -399,7 +399,7 @@ export default {
         const countryCode = this.user.countryCallingCode;
         const mobileNo = this.user.mobileNo;
         const phoneNumber = parsePhoneNumberFromString(`+${countryCode}${mobileNo}`);
-        if (!phoneNumber || !phoneNumber.isValid()) {
+        if (!phoneNumber || !phoneNumber.isValid() || mobileNo.charAt(0) === '0') {
           throw new Error('Invalid phone number');
         } else {
           this.mobileNoError = true;
