@@ -53,28 +53,11 @@
                       span(:class="{'primary--text': type.selected}") ✓&nbsp;
                     v-col(cols="11")
                       | {{ item }}
-            v-card-actions.clinic-card-actions
-              v-btn(
-                color="primary"
-                medium
-                text
-                @click="viewDetails(type)"
-              ).font-weight-bold.details-btn View Details
-        v-col(cols="12" md="10").pa-1.mt-3
-          v-card(flat)
-            v-card-actions(
-              :class="dayOrNight === 'night' ? 'night-card-actions' : 'day-card-actions'"
-            )
-              v-spacer
-              v-btn(
-                color="accent"
-                :disabled="loading || !selectedType.value"
-                @click="onProceed"
-                large
-              ).font-weight-bold Proceed
     specialized-clinic-details-dialog(
       v-model="detailsDialog"
       :clinic="viewClinicModel"
+      @proceed="onProceed"
+      @deselect="toggleType(viewClinicModel)"
     )
     v-snackbar(
       color="accent"
@@ -177,6 +160,7 @@ export default {
             }
             return item;
           });
+        this.viewDetails(type);
       } else {
         this.selectedType = {};
         this.selectedClinicTypeModulesMapping = {};

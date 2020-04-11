@@ -6,7 +6,7 @@
         v-spacer
         v-btn(
           icon
-          @click="dialog = false"
+          @click="onClose"
           small
         ).mr-1
           v-icon mdi-close
@@ -24,6 +24,13 @@
                 img(:src="require('@/assets/images/mycure-web-bullet-check.png')" alt="✓ " width="30%")
               v-col(cols="10")
                 p.font-14 {{ desc }}
+      v-card-actions
+        v-spacer
+        v-btn(
+          color="accent"
+          @click="onProceed"
+          large
+        ).font-weight-bold.mr-1 Proceed
 </template>
 
 <script>
@@ -43,6 +50,16 @@ export default {
       set (val) {
         this.$emit('input', val);
       },
+    },
+  },
+  methods: {
+    onProceed () {
+      this.dialog = false;
+      this.$emit('proceed');
+    },
+    onClose () {
+      this.dialog = false;
+      this.$emit('deselect');
     },
   },
 };
