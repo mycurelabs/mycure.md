@@ -11,13 +11,13 @@
           br
           h2.primary--text Specialized Clinic: Sign Up (Step 1 of 3)
           h1.font-work-sans Choose your specialized clinic:
-      v-row(justify="center")
+      v-row(justify="center" dense)
         v-col(
           v-for="(type, key) in specializedTypes"
           :key="key"
           cols="12"
           md="2"
-        ).pa-2
+        )
           v-card(
             hover
             :flat="!type.selected"
@@ -33,7 +33,7 @@
                 img(
                   v-if="type.selected"
                   src="~/assets/images/mycure-web-bullet-check.png"
-                  width="15%"
+                  width="10%"
                   alt="Check"
                 ).mt-1.mr-1
               v-card-text
@@ -43,14 +43,16 @@
                     :alt="type.image"
                     width="80%"
                   )
-              v-card-text.text-center
+              v-card-text.text-center.card-title-container
                 h2(:class="[$isMobile ? 'font-m' : 'font-16']") {{ type.title }}
               v-card-text.px-2.inclusions-container.grow
                 p The trial includes:
-                span(v-for="(item, key) in type.checklist" :key="key")
-                  span(:class="{'primary--text': type.selected}") ✓&nbsp;
-                  | {{ item }}
-                  br
+                v-row(no-gutters).checklist-item
+                  template(v-for="(item, key) in type.checklist")
+                    v-col(cols="1")
+                      span(:class="{'primary--text': type.selected}") ✓&nbsp;
+                    v-col(cols="11")
+                      | {{ item }}
             v-card-actions.clinic-card-actions
               v-btn(
                 color="primary"
@@ -219,7 +221,7 @@ export default {
   cursor: pointer;
 }
 .check-container {
-  min-height: 40px;
+  min-height: 5vh;
 }
 .clinic-card {
   position: relative;
@@ -235,8 +237,19 @@ export default {
   width: 100%;
   bottom: 0;
 }
+.card-title-container {
+  min-height: 75px;
+}
+.checklist-item {
+  line-height: 3vh !important;
+}
 .details-btn {
   width: 100%
+}
+@media screen and (min-height: 550px) {
+  .card-title-container {
+    min-height: 60px !important;
+  }
 }
 @media screen and (min-height: 1080px) {
   .check-container {
