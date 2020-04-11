@@ -7,18 +7,20 @@
       v-row(v-if="!isMobile" justify="center").pt-5
         v-col(v-for="(column, key) in 2" :key="key" cols="12" md="6").font-source-sans
           template(v-for="(item, key) in faqsItems")
-            div(v-if="key < 7 && column === 1")
+            div(v-if="key < 6 && column === 1")
               img(:src="require(`~/assets/images/${questionMark}.png`)" :alt="questionMark" width="18px")
               strong.font-21 &nbsp;{{ item.question }}
               p.font-18.pl-1.pt-2 {{ item.answer }}
-                span(v-if="key === 4") &nbsp;
+                span(v-if="key === 3") &nbsp;
                   router-link(:to="{name: 'features'}") features
-                  | &nbsp; to view the other modules.
+                  | &nbsp;to view the other modules.
               br
-            div(v-else-if="key < 12 && key > 6 && column === 2")
+            div(v-else-if="key < 11 && key > 5 && column === 2")
               img(:src="require(`~/assets/images/${questionMark}.png`)" :alt="questionMark" width="18px")
               strong.font-21 &nbsp;{{ item.question }}
               p.font-18.pl-1.pt-2 {{ item.answer }}
+                span(v-if="key === 7")
+                  router-link(:to="{name: 'features'}") features page.
               p(v-if="item.supplement" :class="{'pl-3' : !$isMobile}").font-18.pre-white-space {{ parseSupplement(item)}}
               br
       v-row(v-else justify="center").pt-5
@@ -30,9 +32,11 @@
             img(:src="require(`~/assets/images/${questionMark}.png`)" :alt="questionMark" width="18px")
             strong.font-21 &nbsp;{{ item.question }}
             p.font-21.pl-1.pt-2 {{ item.answer }}
-              span(v-if="key === 4") &nbsp;
+              span(v-if="key === 3") &nbsp;
                 router-link(:to="{name: 'features'}") features
-                | &nbsp; to view the other modules.
+                | &nbsp;to view the other modules.
+              span(v-if="key === 7")
+                  router-link(:to="{name: 'features'}") features page.
             p(v-if="item.supplement" :class="{'pl-3' : !$isMobile}").font-21.pre-white-space {{ parseSupplement(item)}}
             br
 </template>
@@ -46,20 +50,16 @@ export default {
     this.faqsImage = 'mycure-doctor-clinic-faqs';
     this.faqsItems = [
       {
-        question: 'Is the MYCURE Free version for doctors really always free?',
-        answer: 'Yes! Especially for fresh starters, we wanna make sure that you love our product first before you pay for it and use it full-time.',
-      },
-      {
         question: 'How free is free?',
-        answer: 'You can create and store all types of records up to 1GB. Afterwards you can subscribe for higher storage capacity through our in-app purchases starting $4 a month.',
+        answer: 'You can create and store all types of records up to 1GB or approximately 10,000 patient visits. Afterwards you can subscribe for higher storage capacity through our in-app purchases.',
       },
       {
         question: 'What if I’m part of a group practice?',
-        answer: 'You can invite other doctors to your virtual clinic, but each additional doctor to your clinic is an additional charge of $4.',
+        answer: 'The Free version allows for up to one doctor seat and one staff seat. You may subscribe for additional doctor seats for your group practice later on.',
       },
       {
         question: 'What if I serve multiple clinics?',
-        answer: 'Additional clinics are $5 but they automatically come with the same features as your original account!',
+        answer: 'You may add more clinics to your account later on so that all your patient records are accessible online.',
       },
       {
         question: 'Can I still get the other modules for my clinic?',
@@ -79,7 +79,7 @@ export default {
       },
       {
         question: 'Do you have an account for secretaries and nurses?',
-        answer: 'Yes. You can learn more about the different features on our features page.',
+        answer: 'Yes. You can learn more about the different features on our ',
       },
       {
         question: 'Does my MYCURE account also come with a free device?',
