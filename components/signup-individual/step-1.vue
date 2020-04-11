@@ -134,9 +134,9 @@
                 ).mb-4
                   template(slot="label")
                     p(style="margin-bottom: -12px") By creating a MYCURE account, you're agreeing to accept MYCURE&nbsp;
-                      a(target="_blank" @click.stop="goToTerms") Terms
+                      a(@click.stop="goToTerms") Terms
                       | &nbsp;and&nbsp;
-                      a(targe="_blank" @click.stop="goToPrivacy") Privacy Policy
+                      a(@click.stop="goToPrivacy") Privacy Policy
                 v-alert(:value="error" type="error").mt-5 {{errorMessage}}
             v-card-actions
               v-spacer
