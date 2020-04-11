@@ -277,8 +277,8 @@ export default {
         } else {
           const country = await getCountry();
           const { location } = country;
-          this.contact.countryCallingCode = location.calling_code;
-          this.contact.countryFlag = location.country_flag;
+          this.contact.countryCallingCode = location ? location.calling_code : '63';
+          this.contact.countryFlag = location ? location.country_flag : 'https://assets.ipstack.com/flags/ph.svg';
         }
         if (localStorage.getItem('multi:step2:model')) {
           const premiumModules = JSON.parse(localStorage.getItem('multi:step2:model'));

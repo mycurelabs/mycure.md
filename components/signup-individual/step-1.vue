@@ -340,14 +340,14 @@ export default {
           const country = await getCountry();
           const { location } = country;
           this.user.countryCallingCode = location ? location.calling_code : '63';
-          this.user.countryFlag = location ? location.country_flag : 'http://assets.ipstack.com/flags/ph.svg';
+          this.user.countryFlag = location ? location.country_flag : 'https://assets.ipstack.com/flags/ph.svg';
         } else if (localStorage.getItem('specialized:step1:model') && this.pageType === 'signup-specialized-step-2') {
           this.$nuxt.$router.push({ name: 'signup-specialiazed-step-1' });
         } else {
           const country = await getCountry();
           const { location } = country;
           this.user.countryCallingCode = location ? location.calling_code : '63';
-          this.user.countryFlag = location ? location.country_flag : 'http://assets.ipstack.com/flags/ph.svg';
+          this.user.countryFlag = location ? location.country_flag : 'https://assets.ipstack.com/flags/ph.svg';
         }
         // Load countries
         this.getCountries();
