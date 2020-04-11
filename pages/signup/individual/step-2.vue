@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-row(align="center" justify="center" :class="[{'pt-10': !$isMobile}, {'mt-10': !$isMobile}]")
+  v-row(align="center" justify="center" :class="[{'pt-5': !$isMobile}, {'mt-5': !$isMobile}]").main-container
     v-col(cols="11" md="8")
       v-row(justify="center" align="center")
         v-col(cols="12" md="6").pa-1.mb-3
@@ -11,7 +11,7 @@
           br
           h1 Verify it's you.
           p Enter the code sent to your mobile number: +{{step1Data.countryCallingCode}}{{step1Data.mobileNo}}
-          v-row(align="center" :class="{'mx-1': $isMobile}")
+          v-row(align="center" :class="{'mx-1': $isMobile}" no-gutters).mb-5
             v-col.grow
               input(
                 v-model="otp"
@@ -34,7 +34,7 @@
             right
             bottom
           ).text-none.font-weight-bold
-            | Resend {{ otpCountdown > 0 ? `in 00:${otpCountdown / 1000}` : '.' }}
+            | Resend{{ otpCountdown > 0 ? ` in 00:${otpCountdown / 1000}` : '.' }}
           v-row
             v-col
               v-alert(
@@ -113,8 +113,8 @@ export default {
       }
     },
   },
-  created () {
-    this.init();
+  async created () {
+    await this.init();
   },
   methods: {
     init () {
@@ -160,13 +160,13 @@ export default {
     },
     async resendVerificationCode () {
       try {
+        this.resetCountDown();
         this.sendingCode = true;
         const { accessToken } = await signin({
           email: this.step1Data.email,
           password: this.step1Data.password,
         });
         await resendVerificationCode({ token: accessToken });
-        this.resetCountDown();
         this.snackBarModel = {
           text: 'OTP was resent successfully!',
           color: 'accent',
@@ -226,6 +226,9 @@ export default {
 </script>
 
 <style scoped>
+.main-container {
+  min-height: 85vh;
+}
 .disable-hover:hover {
   cursor: not-allowed;
 }
