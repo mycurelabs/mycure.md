@@ -106,7 +106,7 @@
                     v-icon(color="accent") mdi-check
                 v-text-field(
                   v-model="user.password"
-                  label="Password"
+                  label="Your MYCURE Password"
                   outlined
                   :type="showPass ? 'text' : 'password'"
                   :rules="[requiredRule, passwordRule]"
