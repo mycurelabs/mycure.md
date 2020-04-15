@@ -7,6 +7,12 @@
     //- 3rd panel
     workflow
     //- 4th panel
+    storyflow(
+      :storyflow="storyflowItems"
+      :introduction="introText"
+      :customPath="customPath"
+      horizontal
+    )
     //- 5th panel
 </template>
 
@@ -21,8 +27,28 @@ export default {
     Usp,
     Features: () => import('~/components/hippocrates/features'),
     Workflow: () => import('~/components/hippocrates/workflow'),
+    Storyflow: () => import('~/components/commons/storyflow'),
   },
   data () {
+    this.storyflowItems = [
+      {
+        title: 'Value for Safety',
+        text: 'Accept physical consultations only as needed. Significantly reduce the COVID-19 risk exposure for both your patients and your health workers by accommodating patients virtually.',
+        image: 'mycure-hippocrates-feature-icon-safety.png',
+      },
+      {
+        title: 'Consistency and Accessibility',
+        text: 'Your doctors can continue their practices online while your patients can continue to consult with their physicians under the hospital brand they trust.',
+        image: 'mycure-hippocrates-feature-icon-consistent.png',
+      },
+      {
+        title: 'A Complete Clinic System',
+        text: 'Hippocrates integrates with MYCURE’s holistic clinic management system to accommodate all of your operations—from patient transactions to consultations and even diagnostic services.',
+        image: 'mycure-hippocrates-feature-icon-complete.png',
+      },
+    ];
+    this.introText = 'Designed for your health facility';
+    this.customPath = 'hippocrates/';
     return {};
   },
   mounted () {
