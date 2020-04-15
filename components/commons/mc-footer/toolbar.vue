@@ -33,7 +33,7 @@
           v-expansion-panel-content.iconMargin
             template(v-for="solution in clinicSolutions").link.py-2
               nuxt-link(:to="{ name: solution.learnLink }")
-              span.py-2.font-18.white--text {{solution.header}}
+                span.py-2.font-18.white--text {{solution.header}}
               br
               br
             nuxt-link(id="footer-features-btn" :to="{ name: 'features' }" title="MYCURE | Features").link.py-2
