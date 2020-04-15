@@ -3,6 +3,7 @@
     //- 1st panel
     usp
     //- 2nd panel
+    workflow
     //- 3rd panel
     //- 4th panel
     //- 5th panel
@@ -17,6 +18,7 @@ import Usp from '~/components/hippocrates/usp';
 export default {
   components: {
     Usp,
+    Workflow: () => import('~/components/hippocrates/workflow'),
   },
   data () {
     return {};
