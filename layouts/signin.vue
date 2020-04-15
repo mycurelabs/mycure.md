@@ -1,9 +1,9 @@
 <template lang="pug">
   v-app
-    v-content(:class="dayOrNight === 'day' ? 'white' : 'night-sky'").content-padding
-      div(:class="dayOrNight === 'day' ? 'white' : 'night-sky'")
+    v-content(:class="dayOrNight === 'night' ? 'night-sky' : 'white'").content-padding
+      div(:class="dayOrNight === 'night' ? 'night-sky' : 'white'")
         nuxt
-      div(:class="[dayOrNight === 'day' ? 'white' : 'night-sky', dayOrNight === 'day' ? 'day-bg' : 'night-bg']").footer-bg
+      div(:class="[dayOrNight === 'night' ? 'night-sky' : 'white', dayOrNight === 'night' ? 'night-bg' : 'day-bg']").footer-bg
 </template>
 
 <script>
