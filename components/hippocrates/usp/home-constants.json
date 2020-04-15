@@ -1,0 +1,10 @@
+{
+  "metaTitle": "Introducing: Hippocrates by MYCURE",
+  "title": "Take Your Medical Arts Center Online",
+  "description": "Use advanced technology to fight COVID-19, all the while taking care of your patients, with an enterprise-grade clinic management system.",
+  "btnRoute": "hippocrates",
+  "btnId": "hippocrates-home-usp-button",
+  "btnText": "Learn More",
+  "coverImg": "mycure-hippocrates-virtual-medical-center-usp-cover",
+  "customPath": "hippocrates/" 
+}

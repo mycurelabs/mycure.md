@@ -1,7 +1,9 @@
 <template lang="pug">
   div#top.white
+    //- hippocrates
+    hippocrates-usp
     //- 1st panel
-    usp(@getStarted="getStarted")
+    usp(@getStarted="getStarted").mt-10
     //- 2nd panel
     health-suites#health-suites
     //- 3rd panel
@@ -62,11 +64,13 @@
 import VueScrollTo from 'vue-scrollto';
 import headMeta from '~/utils/head-meta';
 // - components
+import HippocratesUsp from '~/components/hippocrates/usp';
 import Usp from '~/components/home/usp';
 import HealthSuites from '~/components/home/health-suites';
 
 export default {
   components: {
+    HippocratesUsp,
     Usp,
     HealthSuites,
     Solutions: () => import('~/components/home/solutions'),

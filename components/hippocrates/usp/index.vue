@@ -3,6 +3,7 @@
     usp-template(
       :uspTitle="uspTitle"
       :uspMetaTitle="uspContents.metaTitle"
+      :uspDescription="uspDescription"
       :btnRoute="uspContents.btnRoute"
       :btnId="uspContents.btnId"
       :btnText="uspContents.btnText"
@@ -14,7 +15,8 @@
 
 <script>
 // constants
-import USP_CONTENTS from './constants.json';
+import USP_CONTENTS from './hippocrates-constants.json';
+import HOME_USP_CONTENTS from './home-constants.json';
 // components
 import UspTemplate from '~/components/commons/usp';
 // utils
@@ -25,15 +27,36 @@ export default {
     UspTemplate,
   },
   data () {
-    this.uspContents = USP_CONTENTS;
     return {};
   },
   computed: {
+    uspContents () {
+      return this.route === 'hippocrates' ? USP_CONTENTS : HOME_USP_CONTENTS;
+    },
     uspTitle () {
-      const title = USP_CONTENTS.title;
-      return !this.$isMobile
-        ? parseTextWithNewLine(title, ['and', 'take'])
-        : parseTextWithNewLine(title, ['and', 'way', 'care of']);
+      const title = this.uspContents.title;
+      if (this.route === 'hippocrates') {
+        return !this.$isMobile
+          ? parseTextWithNewLine(title, ['and', 'take'])
+          : parseTextWithNewLine(title, ['and', 'way', 'care of']);
+      } else {
+        return parseTextWithNewLine(title, ['Arts']);
+      }
+    },
+    uspDescription () {
+      const description = this.uspContents.description || '';
+      if (description && this.route === 'index') {
+        return !this.$isMobile
+          ? parseTextWithNewLine(description, ['patients,'])
+          : description;
+      } else if (description && this.route === 'hippocrates') {
+        return description;
+      } else {
+        return '';
+      }
+    },
+    route () {
+      return this.$nuxt.$route.name;
     },
   },
 };
