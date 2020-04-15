@@ -13,8 +13,13 @@
       :customPath="customPath"
       horizontal
       highlightTitleSize="28"
-    )
-    //- 5th panel
+    ).mt-10
+    //- CTA
+    mc-cta-bottom(
+      parse-text
+      :parseIndicators="['patients', 'from the']"
+      :ctaContent="ctaContent"
+    ).mt-10
 </template>
 
 <script>
@@ -30,6 +35,7 @@ export default {
     Features: () => import('~/components/hippocrates/features'),
     Workflow: () => import('~/components/hippocrates/workflow'),
     Storyflow: () => import('~/components/commons/storyflow'),
+    McCtaBottom: () => import('~/components/commons/mc-cta-bottom'),
   },
   data () {
     this.storyflowItems = [
@@ -51,7 +57,15 @@ export default {
     ];
     this.introText = 'Take care of both your doctors and your patients.';
     this.customPath = 'hippocrates/';
-    return {};
+    return {
+      ctaContent: {
+        text: 'Continue to provide your patients with the best of care from the safety of their homes',
+        subtext: 'Take your Medical Arts Center online with the most advanced clinic management solution around.',
+        btnText: 'Book A Free Demo',
+        btnLink: 'signup-multispecialty',
+        image: 'mycure-web-footer',
+      },
+    };
   },
   computed: {
     introduction () {
