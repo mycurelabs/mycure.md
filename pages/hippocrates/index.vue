@@ -5,6 +5,7 @@
     //- 2nd panel
     features
     //- 3rd panel
+    workflow
     //- 4th panel
     //- 5th panel
 </template>
@@ -19,6 +20,7 @@ export default {
   components: {
     Usp,
     Features: () => import('~/components/hippocrates/features'),
+    Workflow: () => import('~/components/hippocrates/workflow'),
   },
   data () {
     return {};
