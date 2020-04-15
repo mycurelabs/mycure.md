@@ -9,7 +9,7 @@
             v-col(cols="4" align-self="center").pr-5
               img(v-lazy="require(`@/assets/images/${customPath}${highlight.image}`)" :alt="highlight.title").storyflowAsset.right
             v-col(cols="5")
-              span(v-if="hasTitle").font-40.lh-title {{highlight.title}}
+              span(v-if="hasTitle"  :style="highlightTitleFontStyle").lh-title {{highlight.title}}
               br
               br
               span.font-18 {{highlight.text}}
@@ -33,7 +33,7 @@
             ).text-center
               img(v-lazy="require(`@/assets/images/${customPath}${highlight.image}`)" :alt="highlight.title").storyflowAssetHorizontal
               br
-              strong(v-if="hasTitle").font-l {{highlight.title}}
+              strong(v-if="hasTitle" :style="highlightTitleFontStyle") {{highlight.title}}
               br
               p.font-18.pt-3.mx-2 {{highlight.text}}
           v-row(v-if="featuresButton" justify="center" align="center").pt-10
@@ -105,8 +105,15 @@ export default {
       type: Boolean,
       default: false,
     },
+    highlightTitleSize: {
+      type: String,
+      default: '30',
+    },
   },
   data () {
+    this.highlightTitleFontStyle = {
+      'font-size': `${this.highlightTitleSize}px`,
+    };
     return {
       isMobile: true,
     };

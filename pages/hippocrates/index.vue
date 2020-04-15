@@ -9,9 +9,10 @@
     //- 4th panel
     storyflow(
       :storyflow="storyflowItems"
-      :introduction="introText"
+      :introduction="introduction"
       :customPath="customPath"
       horizontal
+      highlightTitleSize="28"
     )
     //- 5th panel
 </template>
@@ -19,6 +20,7 @@
 <script>
 // utils
 import VueScrollTo from 'vue-scrollto';
+import { parseTextWithNewLine } from '../../utils/newline';
 import headMeta from '~/utils/head-meta';
 // components
 import Usp from '~/components/hippocrates/usp';
@@ -47,9 +49,16 @@ export default {
         image: 'mycure-hippocrates-feature-icon-complete.png',
       },
     ];
-    this.introText = 'Designed for your health facility';
+    this.introText = 'Take care of both your doctors and your patients.';
     this.customPath = 'hippocrates/';
     return {};
+  },
+  computed: {
+    introduction () {
+      return this.$isMobile
+        ? this.introText
+        : parseTextWithNewLine(this.introText, ['both']);
+    },
   },
   mounted () {
     VueScrollTo.scrollTo('#app', 500, { easing: 'ease' });
