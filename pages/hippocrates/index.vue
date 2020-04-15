@@ -3,7 +3,7 @@
     //- 1st panel
     usp
     //- 2nd panel
-    features
+    features.mt-10
     //- 3rd panel
     workflow
     //- 4th panel
