@@ -80,10 +80,6 @@
 <script>
 export default {
   props: {
-    isMainRoute: {
-      type: Boolean,
-      default: true,
-    },
     solutionsMenuItems: {
       type: Array,
       default: () => [],

@@ -18,7 +18,6 @@
         :solutionsMenuItems="solutionsMenuItems"
         :solutionsText="solutionsText"
         :toolbarLinks="toolbarLinks"
-        :isMainRoute="isMainRoute"
         @toolbarLinkClick="handleToolbarLinkClick($event)"
         @logoClick="handleMycureLogo"
       )
@@ -44,6 +43,7 @@ export default {
       { name: 'Doctors Clinics', route: 'doctors-clinics' },
       { name: 'Specialized Clinics', route: 'specialized-clinics' },
       { name: 'Multispecialty Clinics', route: 'multispecialty-clinics' },
+      { name: 'Hippocrates by MYCURE', route: 'hippocrates' },
     ];
     this.toolbarLinks = [
       { name: 'Features', route: 'features' },
@@ -57,10 +57,6 @@ export default {
     };
   },
   computed: {
-    isMainRoute () {
-      const routes = ['doctors-clinics', 'specialized-clinics', 'multispecialty-clinics'];
-      return routes.includes(this.$nuxt.$route.name);
-    },
     isMd () {
       return this.wMD;
     },
