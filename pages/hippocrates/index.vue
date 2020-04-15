@@ -46,7 +46,7 @@ export default {
       },
       {
         title: 'Consistency and Accessibility',
-        text: 'Your doctors can continue their practices online while your patients can continue to consult with their physicians under the hospital brand they trust.',
+        text: 'Maintain patient loyalty. Your doctors can continue their practices online while your patients can continue to consult with their physicians under the hospital brand they trust.',
         image: 'mycure-hippocrates-feature-icon-consistent.png',
       },
       {
