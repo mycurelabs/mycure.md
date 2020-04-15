@@ -47,7 +47,7 @@ export default {
       const description = this.uspContents.description || '';
       if (description && this.route === 'index') {
         return !this.$isMobile
-          ? parseTextWithNewLine(description, ['patients,'])
+          ? parseTextWithNewLine(description, ['compromising'])
           : description;
       } else if (description && this.route === 'hippocrates') {
         return description;
