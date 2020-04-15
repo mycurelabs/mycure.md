@@ -41,7 +41,7 @@ export default {
     this.storyflowItems = [
       {
         title: 'Value for Safety',
-        text: 'Accept physical consultations only as needed. Significantly reduce the COVID-19 risk exposure for both your patients and your health workers by accommodating patients virtually.',
+        text: 'Accept physical consultations only as needed and reduce the COVID-19 exposure for both your patients and your health workers by accommodating patients virtually.',
         image: 'mycure-hippocrates-feature-icon-safety.png',
       },
       {
@@ -51,7 +51,7 @@ export default {
       },
       {
         title: 'A Complete Clinic System',
-        text: 'Hippocrates integrates with MYCURE’s holistic clinic management system to accommodate all of your operations—from patient transactions to consultations and even diagnostic services.',
+        text: 'Integrate  with MYCURE’s complete clinic system to accommodate all of your operations—from patient transactions to consultations and even diagnostic services.',
         image: 'mycure-hippocrates-feature-icon-complete.png',
       },
     ];
