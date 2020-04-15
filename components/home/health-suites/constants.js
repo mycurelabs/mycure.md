@@ -55,4 +55,20 @@ export const HEALTH_SUITES_ITEMS = [
     learnLink: 'multispecialty-clinics',
     learnId: 'home-multispecialty-clinics-learn-more',
   },
+  {
+    header: 'Hippocrates',
+    subheader: 'For Medical Arts Centers',
+    features: [
+      'Complete and comprehensive telemedicine',
+      'Online video consultations',
+      'Mobile app for patients',
+      'Integrated EMR module',
+      'Easy ePrescriptions',
+    ],
+    image: 'mycure-p2-badge-hippocrates-virtual-medical-center',
+    btnText: 'Book A Demo',
+    btnLink: 'signup-multispecialty',
+    learnLink: 'hippocrates',
+    learnId: 'hippocrates--health-suites-learn-more',
+  },
 ];
