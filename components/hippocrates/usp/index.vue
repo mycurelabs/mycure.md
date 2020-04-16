@@ -40,7 +40,9 @@ export default {
           ? parseTextWithNewLine(title, ['and', 'take'])
           : parseTextWithNewLine(title, ['and', 'way', 'care of']);
       } else {
-        return parseTextWithNewLine(title, ['Arts']);
+        return !this.$isMobile
+          ? parseTextWithNewLine(title, ['Arts'])
+          : parseTextWithNewLine(title, ['Medical']);
       }
     },
     uspDescription () {
