@@ -3,10 +3,10 @@
     v-content
       div(
         :style="styleConfig"
-        :class="[dayOrNight === 'day' ? 'day-bg' : 'night-sky']"
+        :class="[dayOrNight === 'night' ? 'night-sky' : 'day-bg']"
       ).bg-positions.pt-5.px-3#top
         nuxt
-      div(:class="[dayOrNight === 'day' ? 'day-bg' : 'night-sky', 'fixed-footer']")
+      div(:class="[dayOrNight === 'night' ? 'night-sky' : 'day-bg', 'fixed-footer']")
         v-img(:src="require(`../assets/images/mycure-onboarding-background${dayOrNight === 'night' ? '-dark-mode' : ''}.png`)" alt="Sign up background")
 </template>
 
