@@ -14,15 +14,46 @@
           v-row(align="center" :class="{'mx-1': $isMobile}" no-gutters).mb-5
             v-col.grow
               input(
-                v-model="otp"
-                placeholder="Enter One-Time Pin (OTP)"
+                v-model="firstDigit"
                 type="text"
-                maxlength="6"
-                autocomplete="off"
-                :rules="[v => !!v || 'OTP is required']"
-                :disabled="loading"
-                :class="{ 'night': dayOrNight === 'night', loading : loading }"
-              )#otpField.otp-field.my-3
+                max-length="1"
+                :class="{'night-field': dayOrNight === 'night'}"
+              )#firstDigit.single-field
+              input(
+                v-model="secondDigit"
+                type="text"
+                max-length="1"
+                :class="{'night-field': dayOrNight === 'night'}"
+                v-on:keyup.delete="onDelete(2)"
+              )#secondDigit.single-field
+              input(
+                v-model="thirdDigit"
+                type="text"
+                max-length="1"
+                :class="{'night-field': dayOrNight === 'night'}"
+                v-on:keyup.delete="onDelete(3)"
+              )#thirdDigit.single-field
+              input(
+                v-model="fourthDigit"
+                type="text"
+                max-length="1"
+                :class="{'night-field': dayOrNight === 'night'}"
+                v-on:keyup.delete="onDelete(4)"
+              )#fourthDigit.single-field
+              input(
+                v-model="fifthDigit"
+                type="text"
+                max-length="1"
+                :class="{'night-field': dayOrNight === 'night'}"
+                v-on:keyup.delete="onDelete(5)"
+              )#fifthDigit.single-field
+              input(
+                v-model="sixthDigit"
+                type="text"
+                max-length="1"
+                :class="{'night-field': dayOrNight === 'night'}"
+                v-on:keyup.delete="onDelete(6)"
+              )#sixthDigit.single-field
             v-col(v-if="loading").shrink
               v-progress-circular(indeterminate size="15" color="primary")
           p Didn't get the code?
@@ -96,6 +127,12 @@ export default {
         text: 'Success!',
         color: 'accent',
       },
+      firstDigit: '',
+      secondDigit: '',
+      thirdDigit: '',
+      fourthDigit: '',
+      fifthDigit: '',
+      sixthDigit: '',
     };
   },
   computed: {
@@ -104,11 +141,35 @@ export default {
     },
   },
   watch: {
-    otp (val) {
-      if (!val) {
-        return;
+    firstDigit (val) {
+      if (val?.length === 1) {
+        document.getElementById('secondDigit') && document.getElementById('secondDigit').focus();
       }
-      if (val?.length === 6) {
+    },
+    secondDigit (val) {
+      if (val?.length === 1) {
+        document.getElementById('thirdDigit') && document.getElementById('thirdDigit').focus();
+      }
+    },
+    thirdDigit (val) {
+      if (val?.length === 1) {
+        document.getElementById('fourthDigit') && document.getElementById('fourthDigit').focus();
+      }
+    },
+    fourthDigit (val) {
+      if (val?.length === 1) {
+        document.getElementById('fifthDigit') && document.getElementById('fifthDigit').focus();
+      }
+    },
+    fifthDigit (val) {
+      if (val?.length === 1) {
+        document.getElementById('sixthDigit') && document.getElementById('sixthDigit').focus();
+      }
+    },
+    sixthDigit (val) {
+      if (val?.length === 1) {
+        const code = `${this.firstDigit}${this.secondDigit}${this.thirdDigit}${this.fourthDigit}${this.fifthDigit}${val}`;
+        this.otp = code;
         this.submit();
       }
     },
@@ -120,7 +181,7 @@ export default {
     init () {
       if (process.browser) {
         this.$nextTick(() => {
-          document.getElementById('otpField') && document.getElementById('otpField').focus();
+          document.getElementById('firstDigit') && document.getElementById('firstDigit').focus();
         });
 
         const step1Data = JSON.parse(localStorage.getItem('individual:step1:model'));
@@ -153,6 +214,7 @@ export default {
         this.successDialog = true;
       } catch (e) {
         this.verificationError = true;
+        this.clearInputs();
         console.error(e);
       } finally {
         this.loading = false;
@@ -213,6 +275,41 @@ export default {
       window.$crisp.push(['do', 'chat:toggle']);
       window.$crisp.push(['do', 'message:send', ['text', message]]);
     },
+    onDelete (digit) {
+      if (process.browser) {
+        switch (digit) {
+          case 2:
+            document.getElementById('firstDigit') && document.getElementById('firstDigit').focus();
+            break;
+          case 3:
+            document.getElementById('secondDigit') && document.getElementById('secondDigit').focus();
+            break;
+          case 4:
+            document.getElementById('thirdDigit') && document.getElementById('thirdDigit').focus();
+            break;
+          case 5:
+            document.getElementById('fourthDigit') && document.getElementById('fourthDigit').focus();
+            break;
+          case 6:
+            document.getElementById('fifthDigit') && document.getElementById('fifthDigit').focus();
+            break;
+          default: {
+            break;
+          }
+        }
+      }
+    },
+    clearInputs () {
+      this.firstDigit = '';
+      this.secondDigit = '';
+      this.thirdDigit = '';
+      this.fourthDigit = '';
+      this.fifthDigit = '';
+      this.sixthDigit = '';
+      if (process.browser) {
+        document.getElementById('firstDigit') && document.getElementById('firstDigit').focus();
+      }
+    },
   },
   head () {
     return headMeta({
@@ -237,34 +334,23 @@ export default {
   cursor: pointer;
 }
 
-.otp-field {
+.single-field {
+  width: 50px;
   height: 50px;
-  width: 280px;
   font-size: 20px;
-  text-align: center;
-  letter-spacing: 10px;
-  background-color: white;
-  border-radius: 3px;
-  padding: 10px;
-  -webkit-box-shadow: 0px 1px 3px 0px rgba(153,153,153,1);
-  -moz-box-shadow: 0px 1px 3px 0px rgba(153,153,153,1);
-  box-shadow: 0px 1px 3px 0px rgba(153,153,153,1);
+  background-image: linear-gradient(to left, black 70%, rgba(255, 255, 255, 0) 0%);
+  background-position: bottom;
+  background-size: 90px 2px;
+  border: 0;
+  padding-left: 25px;
 }
 
-.otp-field.night {
-  color: black;
-}
-
-.otp-field.loading {
-  color: grey;
-}
-
-.otp-field:focus {
+.single-field:focus {
   outline: none;
 }
 
-.otp-field::placeholder {
-  font-size: 16px;
-  letter-spacing: 1px;
+.night-field {
+  background-image: linear-gradient(to left, white 70%, rgba(255, 255, 255, 0) 0%) !important;
+  color: white;
 }
 </style>
