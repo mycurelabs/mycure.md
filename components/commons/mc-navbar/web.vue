@@ -53,7 +53,7 @@
             )
               strong.font-14.white--text.tab.text-none Start Free
             v-btn(
-              v-else-if="currentRoute === 'multispecialty-clinics'"
+              v-else-if="currentRoute === 'multispecialty-clinics' || currentRoute === 'hippocrates'"
               color="accent"
               :to="{ name: 'signup-multispecialty' }"
               id="multispecialty-book-demo-btn"
@@ -80,10 +80,6 @@
 <script>
 export default {
   props: {
-    isMainRoute: {
-      type: Boolean,
-      default: true,
-    },
     solutionsMenuItems: {
       type: Array,
       default: () => [],
