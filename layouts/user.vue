@@ -17,8 +17,9 @@ import dayOrNight from '../utils/day-or-night';
 
 export default {
   data () {
-    this.dayOrNight = dayOrNight();
-    return {};
+    return {
+      dayOrNight: '',
+    };
   },
   computed: {
     styleConfig () {
@@ -33,6 +34,7 @@ export default {
   },
   mounted () {
     VueScrollTo.scrollTo('#top', 500, { easing: 'ease' });
+    this.dayOrNight = dayOrNight();
     this.$vuetify.theme.dark = this.dayOrNight === 'night';
   },
 };

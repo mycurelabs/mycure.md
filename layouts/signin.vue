@@ -10,10 +10,12 @@
 import dayOrNight from '../utils/day-or-night';
 export default {
   data () {
-    this.dayOrNight = dayOrNight();
-    return {};
+    return {
+      dayOrNight: '',
+    };
   },
   mounted () {
+    this.dayOrNight = dayOrNight();
     this.$vuetify.theme.dark = this.dayOrNight === 'night';
   },
 };

@@ -55,13 +55,11 @@
 </template>
 
 <script>
-import dayOrNight from '~/utils/day-or-night';
 import { forgotPassword } from '~/utils/axios';
 import headMeta from '~/utils/head-meta';
 export default {
   layout: 'signin',
   data () {
-    this.dayOrNight = dayOrNight();
     return {
       valid: false,
       loading: false,
