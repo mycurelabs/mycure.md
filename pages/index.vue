@@ -66,13 +66,12 @@ import headMeta from '~/utils/head-meta';
 // - components
 import HippocratesUsp from '~/components/hippocrates/usp';
 import Usp from '~/components/home/usp';
-import HealthSuites from '~/components/home/health-suites';
 
 export default {
   components: {
     HippocratesUsp,
     Usp,
-    HealthSuites,
+    HealthSuites: () => import('~/components/home/health-suites'),
     Solutions: () => import('~/components/home/solutions'),
     Storyflow: () => import('~/components/commons/storyflow'),
     Vid: () => import('~/components/home/vid'),

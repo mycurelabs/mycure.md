@@ -33,7 +33,7 @@
         ]
       },
       {
-        "source": "**/*.@(jpg|jpeg|gif|png|mp4)",
+        "source": "**/*.@(jpg|jpeg|gif|png|mp4|webm)",
         "headers": [
           {
             "key": "Cache-Control",

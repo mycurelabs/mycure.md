@@ -23,6 +23,7 @@
               span &nbsp;{{ btnData.text }}
           v-col(cols="6" align-self="center").px-3.text-center
             video(:width="wXL ? '1400' : '1150'" playsinline autoplay muted loop).syncbase-animate
+              source(src="~/assets/videos/mycure-syncbase-diagram-animate.webm" type="video/webm")
               source(src="~/assets/videos/mycure-syncbase-diagram-animate.mp4" type="video/mp4")
               | Your browser does not support the video tag.
     //- MOBILE
