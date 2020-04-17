@@ -50,7 +50,7 @@
                 v-btn(
                   @click="submit"
                   color="accent"
-                  :disabled="!valid || loading"
+                  :disabled="!valid || loading || signInDisabled"
                   :loading="loading"
                 ).font-weight-bold Sign in
         v-row(align="center" justify="center")
@@ -99,6 +99,7 @@ export default {
       valid: false,
       otpValid: false,
       loading: false,
+      signInDisabled: false,
       email: '',
       password: '',
       emailRules: [
@@ -156,8 +157,13 @@ export default {
         if (code === 206 && message === 'Missing MFA token') {
           this.isMFAMobileNoEnabled = !!isMFAMobileNoEnabled;
           this.otpDialog = true;
-        } else {
+        } else if (accessToken) {
+          this.signInDisabled = true;
           window.location = this.composeTarget(accessToken);
+        } else {
+          throw new Error({
+            message: 'There was an error. Please try again later.',
+          });
         }
 
         if (this.otp) {
@@ -177,6 +183,7 @@ export default {
           this.error = true;
           this.errorMsg = 'There was an error. Please try again later.';
         }
+        this.signInDisabled = false;
       } finally {
         this.loading = false;
       }
