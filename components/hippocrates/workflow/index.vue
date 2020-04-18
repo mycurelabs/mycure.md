@@ -26,9 +26,8 @@
               fab
               small
               depressed
-              :color="key === 1 ? '#f0f0f0' : '#372A82'"
-              :class="{'white--text' : key !== 1}"
-            ).font-s {{ step.number }}
+              color="#372A82"
+            ).font-s.white--text {{ step.number }}
             div.ml-5.mt-5
               span.font.s {{ step.text }}
               br
