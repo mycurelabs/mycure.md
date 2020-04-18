@@ -133,6 +133,7 @@ export default {
         this.$nuxt.$router.push({
           name: this.ctaBtnLink,
           ...(this.ctaBtnLink === 'index') && { params: { scrollHealthSuites: true } },
+          ...(this.$nuxt.$route.name === 'hippocrates') && { params: { route: 'hippocrates' } },
         });
       }
       this.$emit('btnClick');

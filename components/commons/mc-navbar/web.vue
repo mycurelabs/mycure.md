@@ -55,7 +55,7 @@
             v-btn(
               v-else-if="currentRoute === 'multispecialty-clinics' || currentRoute === 'hippocrates'"
               color="accent"
-              :to="{ name: 'signup-multispecialty' }"
+              :to="{ name: 'signup-multispecialty', ...($nuxt.$route.name === 'hippocrates') && { params: { route: 'hippocrates' } }}"
               id="multispecialty-book-demo-btn"
               @click.stop="handleToolbarLinkClick('multispecialty-book-demo-btn')"
             )

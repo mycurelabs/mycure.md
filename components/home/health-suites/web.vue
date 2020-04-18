@@ -35,7 +35,7 @@
               v-col(cols="12" md="6")
                 v-btn(
                   color="primary"
-                  :to="{ name: suite.btnLink }"
+                :to="{ name: suite.btnLink, ...suite.learnLink === 'hippocrates' && { params: { route: suite.learnLink } } }"
                   dark
                   block
                   :id="suite.btnId"
