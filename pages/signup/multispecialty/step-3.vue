@@ -8,7 +8,7 @@
             @click="$nuxt.$router.push({ name: 'index' })"
             alt="MYCURE logo"
           ).link-to-home.mb-3
-          h2.font-18.primary--text Multispecialty Clinic: Sign Up (Step 3 of 3)
+          h2.font-18.primary--text {{ route === 'hippocrates' ? 'Hippocrates' : 'Multispecialty Clinic' }}: Sign Up (Step 3 of 3)
           br
           h1#step-1-title Let's talk soon!
           br
@@ -223,6 +223,9 @@ export default {
     };
   },
   computed: {
+    route () {
+      return this.$nuxt.$route?.params?.route || 'multispecialty';
+    },
     minDate () {
       const date = new Date();
       const year = date.getFullYear();

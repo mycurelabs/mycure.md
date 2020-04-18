@@ -9,8 +9,8 @@
             alt="MYCURE Logo"
           ).link-to-home.mb-3
           br
-          h2.font-18.primary--text Multispecialty Clinic: Sign Up (Step 2 of 3)
-          h1 Choose modules that you will need.
+          h2.font-18.primary--text {{ route === 'hippocrates' ? 'Hippocrates' : 'Multispecialty Clinic' }}: Sign Up (Step 2 of 3)
+          h1(v-if="route !== 'hippocrates'") Choose modules that you will need.
           p Core modules are already included by default.
 
         v-col(cols="12" md="10").pa-1
@@ -26,9 +26,9 @@
                   h3 {{module.name}}
                   p {{module.description}}
 
-        v-col(cols="12" md="10").pa-1.mt-5
+        v-col(cols="12" md="10" v-if="route !== 'hippocrates'").pa-1.mt-5
           h4 Premium modules
-        v-col(cols="12" md="5" v-for="(module, key) in premiumModules" :key="module.id").pa-1
+        v-col(cols="12" md="5" v-for="(module, key) in premiumModules" :key="module.id" v-if="route !== 'hippocrates'").pa-1
           v-card(hover @click="module.selected = !module.selected; toggleModule(module)").elevation-1
             v-card-text.pa-0
               v-row(align="center" no-gutters)
@@ -95,6 +95,11 @@ export default {
         })),
     };
   },
+  computed: {
+    route () {
+      return this.$nuxt.$route?.params?.route || 'multispecialty';
+    },
+  },
   created () {
     if (process.browser) {
       if (!localStorage.getItem('multi:step1:model')) {
@@ -108,7 +113,7 @@ export default {
   methods: {
     next () {
       this.updateLocalStorage();
-      this.$nuxt.$router.push({ name: 'signup-multispecialty-step-3' });
+      this.$nuxt.$router.push({ name: 'signup-multispecialty-step-3', params: { route: this.route } });
     },
     toggleModule (module) {
       this.showToast(module);
