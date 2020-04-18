@@ -29,7 +29,7 @@
           @load="loadedImage"
         ).justify-center
         div(v-show="!isImageLoaded").white.empty-image-container
-    div.offset-container(v-show="isImageLoaded && !isMobile")
+    div.offset-container(v-show="isImageLoaded && !isMobile && !noOffset")
 </template>
 
 <script>
@@ -78,6 +78,10 @@ export default {
     customPath: {
       type: String,
       default: '',
+    },
+    noOffset: {
+      type: Boolean,
+      default: false,
     },
   },
   data () {

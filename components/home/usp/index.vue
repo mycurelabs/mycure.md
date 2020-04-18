@@ -8,6 +8,7 @@
       :btnText="uspContents.btnText"
       :coverImg="uspContents.coverImg"
       @btnClick="getStarted"
+      no-offset
     )
 </template>
 
