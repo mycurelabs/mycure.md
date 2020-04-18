@@ -26,11 +26,11 @@
         br
         v-row(justify="center")
           v-btn(
-            id="specialized-clinics-workflow-btn"
+            id="hippocrates-features-btn"
             color="accent"
             large
             dark
-            :to="{ name: 'signup-specialized'}"
+            :to="{ name: 'signup-multispecialty', params: { route: 'hippocrates' }}"
             @click.stop="handleWorkflowBtn"
           ).mt-3.font-21.text-none
             strong {{ workflowBtnText }}
@@ -52,11 +52,11 @@
                 span.font-21 {{ reason }}
         v-row(justify="center")
           v-btn(
-            id="mobile-specialized-clinics-workflow-btn"
+            id="mobile-hippocrates-features-btn"
             large
             dark
             color="accent"
-            :to="{ name: 'signup-specialized'}"
+            :to="{ name: 'signup-multispecialty', params: { route: 'hippocrates' }}"
             @click.stop="handleWorkflowBtn"
           ).mt-5.text-none
             strong.font-18 {{ workflowBtnText }}

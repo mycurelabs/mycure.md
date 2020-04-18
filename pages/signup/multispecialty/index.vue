@@ -11,8 +11,13 @@ export default {
   components: {
     Loader,
   },
+  computed: {
+    route () {
+      return this.$nuxt.$route?.params?.route || 'multispecialty';
+    },
+  },
   created () {
-    this.$nuxt.$router.push({ name: 'signup-multispecialty-step-1' });
+    this.$nuxt.$router.push({ name: 'signup-multispecialty-step-1', params: { route: this.route } });
   },
   head () {
     return headMeta({
