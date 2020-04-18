@@ -8,7 +8,7 @@
             @click="$nuxt.$router.push({ name: 'index' })"
             alt="MYCURE logo"
           ).link-to-home.mb-3
-          h2.primary--text {{ pageType === 'signup-individual-step-1' ? 'Doctors' : 'Specialized'}} Clinic: Sign Up (Step&nbsp;
+          h2.font-18.primary--text {{ pageType === 'signup-individual-step-1' ? 'Doctors' : 'Specialized'}} Clinic: Sign Up (Step&nbsp;
             | {{ pageType === 'signup-individual-step-1' ? '1' : '2' }} of&nbsp;
             | {{ pageType === 'signup-individual-step-1' ? '2' : '3'}})
           br

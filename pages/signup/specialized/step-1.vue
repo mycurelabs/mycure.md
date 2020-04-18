@@ -9,7 +9,7 @@
             alt="MYCURE Logo"
           ).link-to-home.mb-3
           br
-          h2.primary--text Specialized Clinic: Sign Up (Step 1 of 3)
+          h2.font-18.primary--text Specialized Clinic: Sign Up (Step 1 of 3)
           h1.font-work-sans Choose your specialized clinic:
       v-row(justify="center" dense)
         v-col(
