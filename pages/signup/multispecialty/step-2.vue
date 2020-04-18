@@ -9,7 +9,7 @@
             alt="MYCURE Logo"
           ).link-to-home.mb-3
           br
-          h2.primary--text Multispecialty Clinic: Sign Up (Step 2 of 3)
+          h2.font-18.primary--text Multispecialty Clinic: Sign Up (Step 2 of 3)
           h1 Choose modules that you will need.
           p Core modules are already included by default.
 

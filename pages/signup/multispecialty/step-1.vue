@@ -8,7 +8,7 @@
             @click="$nuxt.$router.push({ name: 'index' })"
             alt="MYCURE logo"
           ).link-to-home.mb-3
-          h2.primary--text Multispecialty Clinic: Sign Up (Step 1 of 3)
+          h2.font-18.primary--text Multispecialty Clinic: Sign Up (Step 1 of 3)
           br
           h1#step-1-title Make your clinic more efficient in minutes.
           br

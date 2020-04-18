@@ -41,7 +41,7 @@
                   :id="suite.btnId"
                   @click.stop="handleStartFreeBtn(suite.btnId)"
                 ).text-none.font-weight-bold {{ suite.btnText }}
-              v-col(cols="12" md="6").pl-1.text-xs-right
+              v-col(cols="12" md="6").pl-1.pr-5.text-xs-right
                 v-btn(
                   outlined
                   block
