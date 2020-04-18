@@ -59,7 +59,7 @@ export const HEALTH_SUITES_ITEMS = [
     header: 'Hippocrates',
     subheader: 'For Medical Arts Centers',
     features: [
-      'Complete and comprehensive telemedicine',
+      'Comprehensive telemedicine',
       'Online video consultations',
       'Mobile app for patients',
       'Integrated EMR module',

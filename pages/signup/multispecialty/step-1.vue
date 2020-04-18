@@ -8,7 +8,7 @@
             @click="$nuxt.$router.push({ name: 'index' })"
             alt="MYCURE logo"
           ).link-to-home.mb-3
-          h2.font-18.primary--text Multispecialty Clinic: Sign Up (Step 1 of 3)
+          h2.font-18.primary--text {{ route === 'hippocrates' ? 'Hippocrates' : 'Multispecialty Clinic' }}: Sign Up (Step 1 of 3)
           br
           h1#step-1-title Make your clinic more efficient in minutes.
           br
@@ -97,6 +97,11 @@ export default {
       ],
     };
   },
+  computed: {
+    route () {
+      return this.$nuxt.$route?.params?.route || 'multispecialty';
+    },
+  },
   created () {
     if (process.browser) {
       if (localStorage.getItem('multi:step1:model')) {
@@ -112,7 +117,7 @@ export default {
         if (process.browser) {
           localStorage.setItem('multi:step1:model', JSON.stringify(this.clinic));
         }
-        this.$nuxt.$router.push({ name: 'signup-multispecialty-step-2' });
+        this.$nuxt.$router.push({ name: 'signup-multispecialty-step-2', params: { route: this.route } });
       }
     },
     decimalTest (val) {
