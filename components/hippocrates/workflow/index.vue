@@ -59,11 +59,6 @@ export default {
       },
       {
         number: 2,
-        text: 'If positive...',
-        image: 'mycure-hippocrates-virtual-medical-center-steps-02B.png',
-      },
-      {
-        number: 2,
         text: 'Patient searches for or selects a doctor.',
         image: 'mycure-hippocrates-virtual-medical-center-steps-02A.png',
       },
