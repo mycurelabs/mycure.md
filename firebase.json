@@ -9,6 +9,10 @@
     ],
     "rewrites": [
       {
+        "source": "/doctors/**",
+        "function": "websites"
+      },
+      {
         "source": "**",
         "destination": "/index.html"
       }
