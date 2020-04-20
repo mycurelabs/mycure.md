@@ -18,7 +18,7 @@
             img(
               :src="require(`~/assets/images/${specializedClinicType.image}-active.png`)"
               :alt="specializedClinicType.image"
-              width="30%"
+              width="25%"
             )
           h1#step-1-title Become a techy doctor in minutes!
           br
