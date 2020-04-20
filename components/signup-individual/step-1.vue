@@ -158,7 +158,7 @@
                 template(slot="checkout-button")
                   v-btn(
                     color="accent"
-                    :disabled="loading || !valid"
+                    :disabled="loading || !valid || startTrialBtnDisabled"
                     :loading="loading"
                     @click="checkout"
                     large
@@ -218,6 +218,7 @@ export default {
       valid: false,
       loading: false,
       loadingForm: false,
+      startTrialBtnDisabled: false,
       countryDialog: false,
       emailVerificationMessageDialog: false,
       showPass: false,
@@ -266,6 +267,9 @@ export default {
   async created () {
     await this.init();
   },
+  mounted () {
+    this.startTrialBtnDisabled = false;
+  },
   methods: {
     async next () {
       try {
@@ -306,6 +310,7 @@ export default {
         const data = await signupSpecialized(this.user);
         const checkoutSession = _.get(data, 'organization.subscription.updatesPending');
         this.stripeCheckoutSessionId = checkoutSession.stripeSession;
+        this.startTrialBtnDisabled = true;
         this.$refs.checkouRef.redirectToCheckout();
         if (process.browser) {
           localStorage.clear();
@@ -318,6 +323,7 @@ export default {
         } else {
           this.errorMessage = 'There was an error in creating your account. Please try again.';
         }
+        this.startTrialBtnDisabled = false;
       } finally {
         this.loading = false;
       }
