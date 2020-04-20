@@ -11,7 +11,14 @@
           h2.font-18.primary--text {{ pageType === 'signup-individual-step-1' ? 'Doctors' : 'Specialized'}} Clinic: Sign Up (Step&nbsp;
             | {{ pageType === 'signup-individual-step-1' ? '1' : '2' }} of&nbsp;
             | {{ pageType === 'signup-individual-step-1' ? '2' : '3'}})
-          br
+          div(v-if="pageType === 'signup-specialized-step-2'")
+            i.font-16 {{ specializedClinicType.title }}
+            br
+            img(
+              :src="require(`~/assets/images/${specializedClinicType.image}-active.png`)"
+              :alt="specializedClinicType.image"
+              width="30%"
+            )
           h1#step-1-title Become a techy doctor in minutes!
           br
           v-row(v-for="(item, key) in checkListItems" :key="key" align="center" dense)
@@ -227,6 +234,10 @@ export default {
         countryCallingCode: '',
         countryFlag: null,
       },
+      specializedClinicType: {
+        title: '',
+        image: '',
+      },
       countries: [],
       confirmPassword: '',
       searchString: '',
@@ -343,12 +354,15 @@ export default {
           this.user = {
             ...JSON.parse(localStorage.getItem('specialized:step1:model')),
           };
+          this.specializedClinicType = this.user.clinicTypeData;
+          delete this.user.clinicTypeData;
+
           const country = await getCountry();
           const { location } = country;
           this.user.countryCallingCode = location ? location.calling_code : '63';
           this.user.countryFlag = location ? location.country_flag : 'https://assets.ipstack.com/flags/ph.svg';
-        } else if (localStorage.getItem('specialized:step1:model') && this.pageType === 'signup-specialized-step-2') {
-          this.$nuxt.$router.push({ name: 'signup-specialiazed-step-1' });
+        } else if (!localStorage.getItem('specialized:step1:model') && this.pageType === 'signup-specialized-step-2') {
+          this.$nuxt.$router.push({ name: 'signup-specialized-step-1' });
         } else {
           const country = await getCountry();
           const { location } = country;
