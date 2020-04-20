@@ -123,11 +123,26 @@
                 :loading="loading"
                 @click="submit"
               ).font-weight-bold Request for Demo
-    v-snackbar(
-      v-model="success"
-      color="accent"
-    ) Inquiry sent! Please check your email for confirmation.
 
+    //- Success Dialog
+    v-dialog(v-model="successDialog" width="400" persistent)
+      v-card.pt-3
+        v-card-text.text-center
+          img(
+            src="~/assets/images/mycure-sign-up-success-pop-up-image.png"
+            alt="Email"
+          )
+          h1.font-40 Success!
+          br
+          p.subheading We've received your request. Please check out your scheduled apppointment info in&nbsp;
+            b {{ contact.email ? contact.email : 'your email.' }}
+        v-card-text.text-center
+          v-btn(
+            large
+            bottom
+            color="accent"
+            @click="onConfirm"
+          ).text-none.font-weight-bold Okay!
     v-snackbar(
       v-model="error"
       color="error"
@@ -197,7 +212,7 @@ export default {
     return {
       loading: false,
       valid: false,
-      success: false,
+      successDialog: false,
       error: false,
       countries: [],
       searchString: '',
@@ -383,16 +398,7 @@ export default {
               },
             };
             await sendMultiSpecialtyInquiry(payload);
-            localStorage.clear();
-            this.contact = {
-              countryCallingCode: '',
-              countryFlag: null,
-            };
-            this.$refs.formRef.resetValidation();
-            this.success = true;
-            setTimeout(() => {
-              this.$nuxt.$router.push({ name: 'index' });
-            }, 2000);
+            this.successDialog = true;
           }
         }
       } catch (e) {
@@ -412,6 +418,17 @@ export default {
       };
       this.$refs.formRef.resetValidation();
       this.$nuxt.$router.push({ name: 'signup-multispecialty-step-2' });
+    },
+    onConfirm () {
+      if (process.browser) {
+        localStorage.clear();
+      }
+      this.contact = {
+        countryCallingCode: '',
+        countryFlag: null,
+      };
+      this.$refs.formRef.resetValidation();
+      this.$nuxt.$router.push({ name: 'index' });
     },
   },
   head () {
