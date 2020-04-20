@@ -1,7 +1,7 @@
 <template lang="pug">
   v-dialog(v-model="model" width="400" persistent)
     v-card.pt-3
-      v-card-text.text-xs-center
+      v-card-text.text-center
         img(
           src="~/assets/images/mycure-sign-up-success-pop-up-image.png"
           alt="Email"
@@ -10,7 +10,7 @@
         p.subheading A verification link has been sent to
           br
           b {{ email ? email : 'your email.' }}
-      v-card-text.text-xs-center
+      v-card-text.text-center
         v-btn(
           large
           bottom
