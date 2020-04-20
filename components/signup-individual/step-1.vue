@@ -12,7 +12,8 @@
             | {{ pageType === 'signup-individual-step-1' ? '1' : '2' }} of&nbsp;
             | {{ pageType === 'signup-individual-step-1' ? '2' : '3'}})
           div(v-if="pageType === 'signup-specialized-step-2'")
-            i.font-16 {{ specializedClinicType.title }}
+            i.font-16 {{ specializedClinicType.title }} Clinic
+            br
             br
             img(
               :src="require(`~/assets/images/${specializedClinicType.image}-active.png`)"
