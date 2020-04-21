@@ -48,7 +48,7 @@
                 strong.font-s.white--text.text-none Explore the Features
     div(v-else).pt-5
       v-container
-        v-row(justify="center").text-center.pb-3
+        v-row(justify="center").text-center.pb-10
           strong.font-36.introText.lh-title {{introduction}}
         v-col(v-for="(highlight,index) in storyflow" :key="index" justify="center")
           v-row(justify="center" align="center").pb-2
