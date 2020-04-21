@@ -151,7 +151,7 @@ export default {
   padding-bottom: 60px;
 }
 .storyflowAssetHorizontal {
-  width: 85%;
+  width: 75%;
   font-family: 'Work Sans', 'Poppins', sans-serif !important;
 }
 </style>
