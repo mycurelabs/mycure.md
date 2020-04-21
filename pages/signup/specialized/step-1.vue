@@ -47,7 +47,7 @@
                 h2(:class="[$isMobile ? 'font-m' : 'font-16']") {{ type.title }}
               v-card-text.px-2.inclusions-container.grow
                 p The trial includes:
-                v-row(no-gutters).checklist-item
+                v-row(dense).checklist-item
                   template(v-for="(item, key) in type.checklist")
                     v-col(cols="1")
                       span(:class="{'primary--text': type.selected}") ✓&nbsp;
@@ -127,6 +127,10 @@ export default {
         return;
       }
       this.user.clinicType = this.selectedType.value;
+      this.user.clinicTypeData = {
+        image: this.selectedType.image,
+        title: this.selectedType.title,
+      };
       this.saveModel(this.user);
       this.$nuxt.$router.push({ name: 'signup-specialized-step-2' });
     },
@@ -153,14 +157,15 @@ export default {
       if (type.selected) {
         this.selectedType = type;
         this.selectedClinicTypeModulesMapping = MODULE_AVAILABILITY_MAPPINGS[type.value];
-        this.specializedTypes = this.specializedTypes
-          .map((item) => {
-            if (item.title !== type.title) {
-              item.selected = false;
-            }
-            return item;
-          });
-        this.viewDetails(type);
+        this.onProceed();
+        // this.specializedTypes = this.specializedTypes
+        //   .map((item) => {
+        //     if (item.title !== type.title) {
+        //       item.selected = false;
+        //     }
+        //     return item;
+        //   });
+        // this.viewDetails(type);
       } else {
         this.selectedType = {};
         this.selectedClinicTypeModulesMapping = {};
