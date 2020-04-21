@@ -15,42 +15,48 @@
             v-col.grow
               input(
                 v-model="firstDigit"
-                type="text"
-                max-length="1"
+                type="number"
+                step="1"
+                maxlength="1"
                 :class="{'night-field': dayOrNight === 'night'}"
               )#firstDigit.single-field
               input(
                 v-model="secondDigit"
-                type="text"
-                max-length="1"
+                type="number"
+                step="1"
+                maxlength="1"
                 :class="{'night-field': dayOrNight === 'night'}"
                 v-on:keyup.delete="onDelete(2)"
               )#secondDigit.single-field
               input(
                 v-model="thirdDigit"
-                type="text"
-                max-length="1"
+                type="number"
+                step="1"
+                maxlength="1"
                 :class="{'night-field': dayOrNight === 'night'}"
                 v-on:keyup.delete="onDelete(3)"
               )#thirdDigit.single-field
               input(
                 v-model="fourthDigit"
-                type="text"
-                max-length="1"
+                type="number"
+                step="1"
+                maxlength="1"
                 :class="{'night-field': dayOrNight === 'night'}"
                 v-on:keyup.delete="onDelete(4)"
               )#fourthDigit.single-field
               input(
                 v-model="fifthDigit"
-                type="text"
-                max-length="1"
+                type="number"
+                step="1"
+                maxlength="1"
                 :class="{'night-field': dayOrNight === 'night'}"
                 v-on:keyup.delete="onDelete(5)"
               )#fifthDigit.single-field
               input(
                 v-model="sixthDigit"
-                type="text"
-                max-length="1"
+                type="number"
+                step="1"
+                maxlength="1"
                 :class="{'night-field': dayOrNight === 'night'}"
                 v-on:keyup.delete="onDelete(6)"
               )#sixthDigit.single-field
@@ -74,9 +80,10 @@
                 dismissible
               ) Incorrect verification code
           br
-          p Having trouble with your verification?&nbsp;
-            a(@click.stop="toggleChat()")
-              strong.primary--text Send us a chat for support.
+          span Having trouble with your verification?
+          br
+          a(@click.stop="toggleChat()")
+            strong.primary--text Send us a chat for support.
         v-col(cols="12" md="6").pa-1.text-center
           img(src="~/assets/images/mycure-onboarding-phone-verification.png" alt="Phone")
 

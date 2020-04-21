@@ -90,20 +90,32 @@
                 )
                   template(v-slot:append v-if="contact.designation")
                     v-icon(color="accent") mdi-check
-                v-text-field(
-                  v-model="contact.preferredScheduleDate"
-                  type="date"
-                  :min="minDate"
-                  :max="maxDate"
-                  label="Preferred schedule date (dd/mm/yy)"
-                  prepend-inner-icon="mdi-calendar"
-                  outlined
-                  :rules="[requiredRule]"
-                  :disabled="loading"
-                  :error-messages="dateErrorMessage"
-                )
-                  template(v-slot:append v-if="dateError")
-                    v-icon(color="accent") mdi-check
+                v-menu(
+                  v-model="dateMenu"
+                  :close-on-content-click="false"
+                  max-width="290px"
+                  min-width="290px"
+                ).white
+                  template(v-slot:activator="{ on }")
+                    v-text-field(
+                      v-model="dateFormatted"
+                      label="Preferred schedule date"
+                      prepend-inner-icon="mdi-calendar"
+                      outlined
+                      :rules="[requiredRule]"
+                      :disabled="loading"
+                      :error-messages="dateErrorMessage"
+                      v-on="on"
+                    )
+                      template(v-slot:append v-if="dateError")
+                        v-icon(color="accent") mdi-check
+                  v-date-picker(
+                    v-model="contact.preferredScheduleDate"
+                    @input="dateMenu = false"
+                    :min="minDate"
+                    :max="maxDate"
+                    color="#0099cc"
+                  )
         v-col(cols="12" md="10" :class="[{'mb-10': $isMobile}]").mt-2
           v-card(flat)
             v-card-actions(
@@ -123,11 +135,26 @@
                 :loading="loading"
                 @click="submit"
               ).font-weight-bold Request for Demo
-    v-snackbar(
-      v-model="success"
-      color="accent"
-    ) Inquiry sent! Please check your email for confirmation.
 
+    //- Success Dialog
+    v-dialog(v-model="successDialog" width="400" persistent)
+      v-card.pt-3
+        v-card-text.text-center
+          img(
+            src="~/assets/images/mycure-sign-up-success-pop-up-image.png"
+            alt="Email"
+          )
+          h1.font-40 Success!
+          br
+          p.subheading We've received your request. Please check out your scheduled apppointment info in&nbsp;
+            b {{ contact.email ? contact.email : 'your email.' }}
+        v-card-text.text-center
+          v-btn(
+            large
+            bottom
+            color="accent"
+            @click="onConfirm"
+          ).text-none.font-weight-bold Okay!
     v-snackbar(
       v-model="error"
       color="error"
@@ -197,7 +224,8 @@ export default {
     return {
       loading: false,
       valid: false,
-      success: false,
+      successDialog: false,
+      dateMenu: false,
       error: false,
       countries: [],
       searchString: '',
@@ -226,6 +254,7 @@ export default {
     route () {
       return this.$nuxt.$route?.params?.route || 'multispecialty';
     },
+    // returns min date in ISO 8601 format
     minDate () {
       const date = new Date();
       const year = date.getFullYear();
@@ -234,6 +263,7 @@ export default {
       const formatted = `${year}-${month < 10 ? `0${month}` : month}-${day < 10 ? `0${day}` : day}`;
       return formatted;
     },
+    // returns max date in ISO 8601 format
     maxDate () {
       const date = new Date();
       date.setMonth(date.getMonth() + 3);
@@ -242,6 +272,15 @@ export default {
       const day = date.getDate() + 1;
       const formatted = `${year}-${month < 10 ? `0${month}` : month}-${day < 10 ? `0${day}` : day}`;
       return formatted;
+    },
+    dateFormatted () {
+      const date = this.contact.preferredScheduleDate;
+      if (!date) {
+        return null;
+      }
+
+      const [year, month, day] = date.split('-');
+      return `${month}/${day}/${year}`;
     },
   },
   watch: {
@@ -383,16 +422,7 @@ export default {
               },
             };
             await sendMultiSpecialtyInquiry(payload);
-            localStorage.clear();
-            this.contact = {
-              countryCallingCode: '',
-              countryFlag: null,
-            };
-            this.$refs.formRef.resetValidation();
-            this.success = true;
-            setTimeout(() => {
-              this.$nuxt.$router.push({ name: 'index' });
-            }, 2000);
+            this.successDialog = true;
           }
         }
       } catch (e) {
@@ -412,6 +442,17 @@ export default {
       };
       this.$refs.formRef.resetValidation();
       this.$nuxt.$router.push({ name: 'signup-multispecialty-step-2' });
+    },
+    onConfirm () {
+      if (process.browser) {
+        localStorage.clear();
+      }
+      this.contact = {
+        countryCallingCode: '',
+        countryFlag: null,
+      };
+      this.$refs.formRef.resetValidation();
+      this.$nuxt.$router.push({ name: 'index' });
     },
   },
   head () {

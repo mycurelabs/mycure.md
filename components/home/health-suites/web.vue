@@ -4,7 +4,7 @@
       v-col(cols="12").text-center
         h1.text-center.font-work-sans.font-40 {{ panelTitle }}
         p.font-s.text-center {{ panelSubtitle }}
-    v-row(justify="center" dense).pt-5
+    v-row(justify="center").pt-5
       v-col(
         v-for="(suite, key) in healthSuites"
         :key="key"
@@ -83,7 +83,7 @@ export default {
 <style scoped>
 .main-container {
   height: 900px;
-  padding-top: 100px;
+  padding-top: 80px;
 }
 .health-suites-card {
   border-radius: 10px;
