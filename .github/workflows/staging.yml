@@ -3,7 +3,7 @@ name: Deploy:Staging
 on: 
   push:
     branches:
-      - master
+      - environment/staging
 
 jobs:
   deploy_to_live:
@@ -36,4 +36,4 @@ jobs:
       - name: Run deploy
         env: 
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
-        run: firebase deploy --only hosting:staging-web-main -P ${{ secrets.FIREBASE_STAGING_ID }} --token ${{ secrets.FIREBASE_TOKEN }}
+        run: yarn deploy:stg
