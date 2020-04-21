@@ -16,12 +16,14 @@
               input(
                 v-model="firstDigit"
                 type="number"
+                step="1"
                 maxlength="1"
                 :class="{'night-field': dayOrNight === 'night'}"
               )#firstDigit.single-field
               input(
                 v-model="secondDigit"
                 type="number"
+                step="1"
                 maxlength="1"
                 :class="{'night-field': dayOrNight === 'night'}"
                 v-on:keyup.delete="onDelete(2)"
@@ -29,6 +31,7 @@
               input(
                 v-model="thirdDigit"
                 type="number"
+                step="1"
                 maxlength="1"
                 :class="{'night-field': dayOrNight === 'night'}"
                 v-on:keyup.delete="onDelete(3)"
@@ -36,6 +39,7 @@
               input(
                 v-model="fourthDigit"
                 type="number"
+                step="1"
                 maxlength="1"
                 :class="{'night-field': dayOrNight === 'night'}"
                 v-on:keyup.delete="onDelete(4)"
@@ -43,6 +47,7 @@
               input(
                 v-model="fifthDigit"
                 type="number"
+                step="1"
                 maxlength="1"
                 :class="{'night-field': dayOrNight === 'night'}"
                 v-on:keyup.delete="onDelete(5)"
@@ -50,6 +55,7 @@
               input(
                 v-model="sixthDigit"
                 type="number"
+                step="1"
                 maxlength="1"
                 :class="{'night-field': dayOrNight === 'night'}"
                 v-on:keyup.delete="onDelete(6)"
