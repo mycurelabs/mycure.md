@@ -37,5 +37,5 @@ jobs:
         env: 
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
         run: |
-          firebase use mycure-ab311
+          firebase use default
           yarn deploy:prod

@@ -1,16 +1,17 @@
 {
   "projects": {
-    "default": "mc-v4-stg"
+    "default": "mycure-ab311",
+    "staging": "mc-v4-stg"
   },
   "targets": {
-    "mc-v4-stg": {
+    "staging": {
       "hosting": {
         "staging-web-main": [
           "staging-web-main"
         ]
       }
     },
-    "mycure-ab311": {
+    "default": {
       "hosting": {
         "mycure-ab311": [
           "mycure-ab311"
