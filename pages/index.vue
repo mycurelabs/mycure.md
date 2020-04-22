@@ -1,10 +1,10 @@
 <template lang="pug">
   div#top.white
     //- hippocrates
-    hippocrates-usp
-    //- 1st panel
     //- TODO: Temporarily hide
-    //- usp(@getStarted="getStarted").mt-10
+    //- hippocrates-usp
+    //- 1st panel
+    usp(@getStarted="getStarted").mt-10
     //- 2nd panel
     health-suites#health-suites
     //- 3rd panel
@@ -65,13 +65,15 @@
 import VueScrollTo from 'vue-scrollto';
 import headMeta from '~/utils/head-meta';
 // - components
-import HippocratesUsp from '~/components/hippocrates/usp';
-// import Usp from '~/components/home/usp';
+//- TODO: Temporarily hide
+// import HippocratesUsp from '~/components/hippocrates/usp';
+import Usp from '~/components/home/usp';
 
 export default {
   components: {
-    HippocratesUsp,
-    // Usp,
+    //- TODO: Temporarily hide
+    // HippocratesUsp,
+    Usp,
     HealthSuites: () => import('~/components/home/health-suites'),
     Solutions: () => import('~/components/home/solutions'),
     Storyflow: () => import('~/components/commons/storyflow'),

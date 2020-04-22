@@ -1,25 +1,26 @@
 <template lang="pug">
   div#top
+    //- TODO: Temporarily hide contents
     //- 1st panel
-    usp
-    //- 2nd panel
-    features.mt-10
-    //- 3rd panel
-    workflow
-    //- 4th panel
-    storyflow(
-      :storyflow="storyflowItems"
-      :introduction="introduction"
-      :customPath="customPath"
-      horizontal
-      highlightTitleSize="28"
-    ).mt-10
-    //- CTA
-    mc-cta-bottom(
-      parse-text
-      :parseIndicators="['patients', 'from the']"
-      :ctaContent="ctaContent"
-    ).mt-10
+    //- usp
+    //- //- 2nd panel
+    //- features.mt-10
+    //- //- 3rd panel
+    //- workflow
+    //- //- 4th panel
+    //- storyflow(
+    //-   :storyflow="storyflowItems"
+    //-   :introduction="introduction"
+    //-   :customPath="customPath"
+    //-   horizontal
+    //-   highlightTitleSize="28"
+    //- ).mt-10
+    //- //- CTA
+    //- mc-cta-bottom(
+    //-   parse-text
+    //-   :parseIndicators="['patients', 'from the']"
+    //-   :ctaContent="ctaContent"
+    //- ).mt-10
 </template>
 
 <script>

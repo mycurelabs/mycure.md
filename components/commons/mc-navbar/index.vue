@@ -43,7 +43,8 @@ export default {
       { name: 'Doctors Clinics', route: 'doctors-clinics' },
       { name: 'Specialized Clinics', route: 'specialized-clinics' },
       { name: 'Multispecialty Clinics', route: 'multispecialty-clinics' },
-      { name: 'Hippocrates by MYCURE', route: 'hippocrates' },
+      //- TODO: Temporarily hide
+      // { name: 'Hippocrates by MYCURE', route: 'hippocrates' },
     ];
     this.toolbarLinks = [
       { name: 'Features', route: 'features' },
