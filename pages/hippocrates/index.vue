@@ -1,5 +1,6 @@
 <template lang="pug">
   div#top
+    //- TODO: Temporarily hide contents
     //- 1st panel
     //- usp
     //- //- 2nd panel

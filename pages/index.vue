@@ -65,11 +65,13 @@
 import VueScrollTo from 'vue-scrollto';
 import headMeta from '~/utils/head-meta';
 // - components
+//- TODO: Temporarily hide
 // import HippocratesUsp from '~/components/hippocrates/usp';
 import Usp from '~/components/home/usp';
 
 export default {
   components: {
+    //- TODO: Temporarily hide
     // HippocratesUsp,
     Usp,
     HealthSuites: () => import('~/components/home/health-suites'),
