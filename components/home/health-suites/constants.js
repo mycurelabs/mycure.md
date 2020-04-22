@@ -55,7 +55,7 @@ export const HEALTH_SUITES_ITEMS = [
     learnLink: 'multispecialty-clinics',
     learnId: 'home-multispecialty-clinics-learn-more',
   },
-  //- TODO: Temporarily hide
+  // - TODO: Temporarily hide
   // {
   //   header: 'Hippocrates',
   //   subheader: 'For Medical Arts Centers',
