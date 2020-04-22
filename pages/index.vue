@@ -4,7 +4,6 @@
     //- TODO: Temporarily hide
     //- hippocrates-usp
     //- 1st panel
-    //- TODO: Temporarily hide
     usp(@getStarted="getStarted").mt-10
     //- 2nd panel
     health-suites#health-suites
