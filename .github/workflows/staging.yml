@@ -17,12 +17,12 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node }}
-      - name: Install Yarn
-        run: npm install yarn@latest -g
-      - name: Install Firebase Tools
-        run: npm install firebase-tools -g
-      - name: Install dependencies
-        run: yarn
+      # - name: Install Yarn
+      #   run: npm install yarn@latest -g
+      # - name: Install Firebase Tools
+      #   run: npm install firebase-tools -g
+      # - name: Install dependencies
+      #   run: yarn
       - name: Run build
         env: 
           VUE_APP_API: ${{ secrets.VUE_APP_STAGING_API }}
@@ -32,14 +32,15 @@ jobs:
           VUE_APP_IPSTACK_API_KEY: ${{ secrets.VUE_APP_STAGING_IPSTACK_API_KEY }}
           VUE_APP_STRIPE_PK: ${{ secrets.VUE_APP_STAGING_STRIPE_PK }}
           GA_ID: ${{ secrets.GA_STAGING_ID }}
-        run: yarn generate
+        # run: yarn generate
       - name: Run deploy
         env: 
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
         run: |
-          echo $FIREBASE_TOKEN
-          echo $GA_ID
-          firebase use mc-v4-stg
-          firebase target:clear hosting staging
-          firebase target:apply hosting staging staging-web-main
-          yarn deploy:stg
+          echo VUE_APP_API $VUE_APP_STAGING_API
+          echo FIREBASE_TOKEN $FIREBASE_TOKEN
+          echo GA_ID $GA_ID
+          # firebase use mc-v4-stg
+          # firebase target:clear hosting staging
+          # firebase target:apply hosting staging staging-web-main
+          # yarn deploy:stg
