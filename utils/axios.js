@@ -176,7 +176,11 @@ export const signupSpecialized = async (opts) => {
           roles: ['doctor'],
         },
         name: `${opts.firstName}'s Clinic`,
-        subscription: opts.subscription,
+        subscription: {
+          ...opts.subscription,
+          stripeCheckoutSuccessURL: process.env.VUE_APP_STRIPE_CHECKOUT_SUCCESS_URL,
+          stripeCheckoutCancelURL: process.env.VUE_APP_STRIPE_CHECKOUT_CANCEL_URL,
+        },
       },
     };
     if (opts.otp) { payload.totpToken = opts.otp; }
