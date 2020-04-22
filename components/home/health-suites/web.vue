@@ -10,7 +10,7 @@
         :key="key"
         cols="12"
         md="4"
-      ).mr-1
+      )
         v-card(
           height="100%"
           :color="hoveredClinic === suite.learnLink ? '#fafafa' : '#f0f0f0'"
@@ -81,9 +81,14 @@ export default {
 </script>
 
 <style scoped>
-.main-container {
+/* For Hippocrates */
+/* .main-container {
   height: 900px;
   padding-top: 80px;
+} */
+.main-container {
+  height: 600px;
+  padding-top: 110px;
 }
 .health-suites-card {
   border-radius: 10px;
