@@ -36,4 +36,8 @@ jobs:
       - name: Run deploy
         env: 
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
-        run: yarn deploy:stg
+        run: |
+          firebase use mc-v4-stg
+          firebase target:clear hosting staging
+          firebase target:apply hosting staging staging-web-main
+          yarn deploy:stg
