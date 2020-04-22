@@ -23,6 +23,7 @@ jobs:
       #   run: npm install firebase-tools -g
       # - name: Install dependencies
       #   run: yarn
+        run: echo foo
       - name: Run build
         env: 
           VUE_APP_API: ${{ secrets.VUE_APP_STAGING_API }}
@@ -33,10 +34,16 @@ jobs:
           VUE_APP_STRIPE_PK: ${{ secrets.VUE_APP_STAGING_STRIPE_PK }}
           GA_ID: ${{ secrets.GA_STAGING_ID }}
         # run: yarn generate
+        run: |
+          echo 1
+          echo VUE_APP_API $VUE_APP_STAGING_API
+          echo FIREBASE_TOKEN $FIREBASE_TOKEN
+          echo GA_ID $GA_ID
       - name: Run deploy
         env: 
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
         run: |
+          echo 2
           echo VUE_APP_API $VUE_APP_STAGING_API
           echo FIREBASE_TOKEN $FIREBASE_TOKEN
           echo GA_ID $GA_ID
