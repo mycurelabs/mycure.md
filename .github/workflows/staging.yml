@@ -37,6 +37,8 @@ jobs:
         env: 
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
         run: |
+          echo $FIREBASE_TOKEN
+          echo $GA_ID
           firebase use mc-v4-stg
           firebase target:clear hosting staging
           firebase target:apply hosting staging staging-web-main
