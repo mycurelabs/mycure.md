@@ -1,6 +1,6 @@
 <template lang="pug">
   v-row(justify="center")
-    v-col(cols="12" md="10")
+    v-col(cols="12" md="11")
       v-row(justify="center")
         v-col(cols="12" md="10").pa-1.mb-3
           img(
@@ -37,22 +37,22 @@
                   alt="Check"
                 ).mt-1.mr-1
               v-card-text
-                div.text-center
+                div
                   img(
                     :src="require(`~/assets/images/${type.image}${(type.selected || hoveredClinic === type.value ) ? '-active' : '' }.png`)"
                     :alt="type.image"
                     width="80%"
                   )
-              v-card-text.text-center.card-title-container
+              v-card-text.card-title-container
                 h2(:class="[$isMobile ? 'font-m' : 'font-16']") {{ type.title }}
-              v-card-text.px-2.inclusions-container.grow
+              v-card-text.inclusions-container.grow
                 p The trial includes:
                 v-row(dense).checklist-item
                   template(v-for="(item, key) in type.checklist")
-                    v-col(cols="1")
-                      span(:class="{'primary--text': type.selected}") ✓&nbsp;
-                    v-col(cols="11")
-                      | {{ item }}
+                    v-col(cols="2").text-center
+                      span.primary--text ✓&nbsp;
+                    v-col(cols="10").pb-3
+                      span.checklist-item-text {{ item }}
     specialized-clinic-details-dialog(
       v-model="detailsDialog"
       :clinic="viewClinicModel"
@@ -227,10 +227,16 @@ export default {
   bottom: 0;
 }
 .card-title-container {
-  min-height: 75px;
+  min-height: 45px;
 }
 .checklist-item {
   line-height: 3vh !important;
+}
+.checklist-item-text {
+  line-height: 20px;
+}
+.inclusions-container {
+  color: #545252;
 }
 .details-btn {
   width: 100%
