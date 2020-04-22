@@ -38,6 +38,6 @@ jobs:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
         run: |
           firebase use mycure-ab311
-          firebase target:clear hosting web-main
-          firebase target:apply hosting web-main mycure-ab311
+          firebase target:clear hosting prod
+          firebase target:apply hosting prod mycure-ab311
           yarn deploy:prod

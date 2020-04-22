@@ -12,7 +12,7 @@
     "lint": "eslint --fix --ext .js,.vue --ignore-path .gitignore .",
     "test": "jest",
     "deploy:stg": "firebase deploy --only hosting:staging -P mc-v4-stg",
-    "deploy:prod": "firebase deploy --only hosting -P mycure-ab311"
+    "deploy:prod": "firebase deploy --only hosting:prod -P mycure-ab311"
   },
   "dependencies": {
     "@feathersjs/configuration": "^2.0.6",
