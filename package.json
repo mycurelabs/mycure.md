@@ -11,8 +11,8 @@
     "generate": "nuxt generate && cp ./dist/index.html ./dist/200.html",
     "lint": "eslint --fix --ext .js,.vue --ignore-path .gitignore .",
     "test": "jest",
-    "deploy:stg": "firebase deploy --only hosting:staging-web-main -P mc-v4-stg",
-    "deploy:prod": "firebase deploy --only hosting -P mycure-ab311"
+    "deploy:stg": "firebase deploy --only hosting:staging -P mc-v4-stg",
+    "deploy:prod": "firebase deploy --only hosting:prod -P mycure-ab311"
   },
   "dependencies": {
     "@feathersjs/configuration": "^2.0.6",
