@@ -9,6 +9,13 @@
           "staging-web-main"
         ]
       }
+    },
+    "mycure-ab311": {
+      "hosting": {
+        "mycure-ab311": [
+          "mycure-ab311"
+        ]
+      }
     }
   }
 }
