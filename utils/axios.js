@@ -14,6 +14,34 @@ function handleError (e) {
   }
 }
 
+async function resendVerificationEmail (opts) {
+  try {
+    const payload = {
+      email: opts.email,
+      password: opts.password,
+    };
+    const { data } = await axios({
+      method: 'post',
+      url: `${process.env.VUE_APP_API}/authentication`,
+      data: payload,
+    });
+    const accessToken = data.accessToken;
+    await axios({
+      method: 'post',
+      url: `${process.env.VUE_APP_API}/authentication`,
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+      data: {
+        action: 'sendVerificationEmail',
+      },
+    });
+  } catch (e) {
+    console.error(e);
+    throw handleError(e);
+  }
+}
+
 export const signin = async (opts) => {
   try {
     const payload = {
@@ -147,6 +175,7 @@ export const signupIndividual = async (opts) => {
       url: `${process.env.VUE_APP_API}/accounts`,
       data: payload,
     });
+    await resendVerificationEmail({ email: opts.email, password: opts.password });
     return data;
   } catch (e) {
     console.error(e);
@@ -189,6 +218,7 @@ export const signupSpecialized = async (opts) => {
       url: `${process.env.VUE_APP_API}/accounts`,
       data: payload,
     });
+    await resendVerificationEmail({ email: opts.email, password: opts.password });
     return data;
   } catch (e) {
     console.error(e);
