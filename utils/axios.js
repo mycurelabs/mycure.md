@@ -152,7 +152,7 @@ export const signupIndividual = async (opts) => {
   try {
     const payload = {
       email: opts.email,
-      mobileNo: opts.mobileNo,
+      mobileNo: `+${opts.countryCallingCode}${opts.mobileNo}`,
       password: opts.password,
       personalDetails: {
         name: {
@@ -160,7 +160,7 @@ export const signupIndividual = async (opts) => {
           lastName: opts.lastName,
         },
         doc_PRCLicenseNo: opts.doc_PRCLicenseNo,
-        mobileNo: opts.mobileNo,
+        mobileNo: `+${opts.countryCallingCode}${opts.mobileNo}`,
       },
       organization: {
         type: 'personal-clinic',
@@ -189,7 +189,7 @@ export const signupSpecialized = async (opts) => {
     const payload = {
       skipMobileNoVerification: true, // only for specialized signup
       email: opts.email,
-      mobileNo: opts.mobileNo,
+      mobileNo: `+${opts.countryCallingCode}${opts.mobileNo}`,
       password: opts.password,
       personalDetails: {
         name: {
@@ -197,7 +197,7 @@ export const signupSpecialized = async (opts) => {
           lastName: opts.lastName,
         },
         doc_PRCLicenseNo: opts.doc_PRCLicenseNo,
-        mobileNo: opts.mobileNo,
+        mobileNo: `+${opts.countryCallingCode}${opts.mobileNo}`,
       },
       organization: {
         type: 'facility',
