@@ -408,15 +408,17 @@ export default {
             const step1Data = JSON.parse(localStorage.getItem('multi:step1:model'));
             const step2Data = JSON.parse(localStorage.getItem('multi:step2:model')) || [];
             const step3Data = JSON.parse(localStorage.getItem('multi:step3:model'));
+            const modulesArr = [...step2Data, ...this.coreModules]
+              .filter(m => m.selected)
+              .map(m => m.name);
             const payload = {
               $inquiry: true,
               to: this.contact.email,
               substitutions: {
                 name: this.contact.firstName,
                 fullName: `${this.contact.firstName} ${this.contact.lastName}`,
-                modules: [...step2Data, ...this.coreModules]
-                  .filter(m => m.selected)
-                  .map(m => m.name),
+                modules: modulesArr.join(', '),
+                modulesArr,
                 ..._.pick(step1Data, this.step1Fields),
                 ..._.pick(step3Data, this.step3Fields),
               },
