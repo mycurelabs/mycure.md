@@ -424,6 +424,7 @@ export default {
               },
             };
             await sendMultiSpecialtyInquiry(payload);
+            this.$router.replace({ query: { success: true } });
             this.successDialog = true;
           }
         }
