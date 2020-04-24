@@ -16,6 +16,11 @@ module.exports = {
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
     ],
+    script: [
+      {
+        src: 'https://app.heyflow.co/pixel/Ol00Wv3kMUxpaalI'
+      }
+    ]
   },
   /*
   ** Customize the progress-bar color
