@@ -43,6 +43,14 @@ function handleError (e) {
 //   }
 // }
 
+export const getDoctorWebsite = async (opts) => {
+  const { data } = await axios({
+    method: 'get',
+    url: `${process.env.VUE_APP_API}/personal-details?doc_website=${opts.username}`,
+  });
+  return data.data[0];
+};
+
 export const signin = async (opts) => {
   try {
     const payload = {
