@@ -30,7 +30,6 @@
                       v-list-item-title {{item.name}}
             div(v-for="(link, key) in toolbarLinks" :key="key")
               v-btn(
-                v-if="showNav(key)"
                 :to="{ name: link.route }"
                 :id="link.id"
                 text
@@ -113,10 +112,6 @@ export default {
     },
   },
   methods: {
-    showNav (key) {
-      if (key === 0) { return true; }
-      return this.currentRoute === 'doctors-clinics';
-    },
     handleToolbarLinkClick (link) {
       this.$emit('toolbarLinkClick', link);
     },
