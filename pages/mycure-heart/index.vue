@@ -14,6 +14,8 @@
       highlight-title-size="25"
       parse-titles
     )
+    //-4th panel
+    banner
 </template>
 
 <script>
@@ -27,6 +29,7 @@ export default {
     Usp,
     Features: () => import('~/components/mycure-heart/features'),
     Storyflow: () => import('~/components/commons/storyflow'),
+    Banner: () => import('~/components/mycure-heart/banner'),
   },
   data () {
     this.storyflowItems = [
