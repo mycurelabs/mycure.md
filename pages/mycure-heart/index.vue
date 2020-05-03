@@ -18,6 +18,9 @@
     banner
     //- 5th panel
     privacy
+    //- 6th panel
+    syncbase
+
 </template>
 
 <script>
@@ -33,6 +36,7 @@ export default {
     Storyflow: () => import('~/components/commons/storyflow'),
     Banner: () => import('~/components/mycure-heart/banner'),
     Privacy: () => import('~/components/mycure-heart/privacy'),
+    Syncbase: () => import('~/components/mycure-heart/syncbase'),
   },
   data () {
     this.storyflowItems = [
