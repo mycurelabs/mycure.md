@@ -47,7 +47,16 @@ export default {
       // { name: 'Hippocrates by MYCURE', route: 'hippocrates' },
     ];
     this.toolbarLinks = [
-      { name: 'Features', route: 'features' },
+      {
+        name: 'Features',
+        id: 'features-nav-btn',
+        route: 'features',
+      },
+      {
+        name: 'Fight COVID-19: Free EMR',
+        id: 'mycure-heart-nav-btn',
+        route: 'mycure-heart',
+      },
     ];
     return {
       loginURL: 'signin',

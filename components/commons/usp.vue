@@ -23,7 +23,7 @@
       div.usp-image-container.text-center.justify-center
         img(
           v-show="isImageLoaded"
-          :src="require(`~/assets/images/${customPath}${coverImg}${isMobile ? '-mobile' : ''}.png`)"
+          :src="require(`~/assets/images/${customPath}${coverImg}${isMobile ? '-mobile' : ''}${coverImgExtension}`)"
           :alt="coverImg"
           :width="coverImgWidth"
           @load="loadedImage"
@@ -70,6 +70,10 @@ export default {
     coverImg: {
       type: String,
       default: 'mycure-homepage-usp-cover',
+    },
+    coverImgExtension: {
+      type: String,
+      default: '.png',
     },
     coverImgWidth: {
       type: String,
