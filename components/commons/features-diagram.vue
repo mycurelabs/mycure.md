@@ -4,11 +4,11 @@
       v-row(align="center")
         v-col(cols="12").text-center
           h1(:class="[{'pre-white-space': !isMobile}, isMobile ? 'font-36' : 'font-40']").text-xs-center.font-work-sans.lh-title {{title}}
-          p(:class="{'pre-white-space': !isMobile}").font-s.text-xs-center.pt-3 {{description}}
+          p(:class="{'pre-white-space': !isMobile}").font-s.text-xs-center.my-5 {{description}}
             slot(name="add-content")
       div(v-if="image").pt-5.text-center.justify-center.center
         img(
-          v-lazy="require(`@/assets/images/${customPath}${image}.png`)"
+          v-lazy="require(`@/assets/images/${customPath}${image}${imageExtension}`)"
           :alt="image"
           :width="imageWidth"
         )
@@ -29,6 +29,10 @@ export default {
     image: {
       type: String,
       default: '',
+    },
+    imageExtension: {
+      type: String,
+      default: '.png',
     },
     imageWidth: {
       type: String,

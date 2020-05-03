@@ -2,6 +2,8 @@
   div#top.white
     //- 1st panel
     usp
+    //- 2nd panel
+    features.mt-10
 </template>
 
 <script>
@@ -12,6 +14,7 @@ import Usp from '~/components/mycure-heart/usp';
 export default {
   components: {
     Usp,
+    Features: () => import('~/components/mycure-heart/features'),
   },
   head () {
     return headMeta({
