@@ -16,6 +16,8 @@
     )
     //-4th panel
     banner
+    //- 5th panel
+    privacy
 </template>
 
 <script>
@@ -30,6 +32,7 @@ export default {
     Features: () => import('~/components/mycure-heart/features'),
     Storyflow: () => import('~/components/commons/storyflow'),
     Banner: () => import('~/components/mycure-heart/banner'),
+    Privacy: () => import('~/components/mycure-heart/privacy'),
   },
   data () {
     this.storyflowItems = [
