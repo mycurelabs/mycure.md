@@ -11,14 +11,14 @@
           :slideImageExtension="imageExtension"
           :customSlidePath="customPath"
         )
-    features-diagram(
-      v-else
-      :title="title"
-      :description="description"
-      :image="panelContent.image"
-      :imageExtension="imageExtension"
-      :customPath="customPath"
-    )
+    div(v-else).hearts
+      features-diagram(
+        :title="title"
+        :description="description"
+        :image="panelContent.image"
+        :imageExtension="imageExtension"
+        :customPath="customPath"
+      )
 </template>
 
 <script>
@@ -73,3 +73,10 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.hearts {
+  background-image: url('../../../assets/images/mycure-heart/heart-decor-right.webp'), url('../../../assets/images/mycure-heart/heart-decor-left.webp');
+  background-position: top right, center left;
+}
+</style>

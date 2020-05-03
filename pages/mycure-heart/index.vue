@@ -5,15 +5,16 @@
     //- 2nd panel
     features.mt-10
     //- 3rd panel
-    storyflow(
-      :storyflow="storyflowItems"
-      :metaTitle="storyflowMetaTitle"
-      :introduction="introText"
-      :customPath="customPath"
-      horizontal
-      highlight-title-size="25"
-      parse-titles
-    )
+    div(:class="{'hearts': !$isMobile}")
+      storyflow(
+        :storyflow="storyflowItems"
+        :metaTitle="storyflowMetaTitle"
+        :introduction="introText"
+        :customPath="customPath"
+        horizontal
+        highlight-title-size="25"
+        parse-titles
+      )
     //-4th panel
     banner
     //- 5th panel
@@ -23,12 +24,13 @@
     //- 7th panel
     apis
     //- final panel
-    mc-cta-bottom(
-      parse-text
-      :parseIndicators="['health', 'advanced']"
-      :ctaContent="ctaContent"
-      customPath="mycure-heart/"
-    )
+    div(:class="{'hearts-cta': !$isMobile}")
+      mc-cta-bottom(
+        parse-text
+        :parseIndicators="['health', 'advanced']"
+        :ctaContent="ctaContent"
+        customPath="mycure-heart/"
+      )
 </template>
 
 <script>
@@ -103,3 +105,15 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.hearts {
+  background-image: url('../../assets/images/mycure-heart/heart-decor-right.webp');
+  background-position: top right;
+}
+
+.hearts-cta {
+  background-image: url('../../assets/images/mycure-heart/heart-decor-left.webp'), url('../../assets/images/mycure-heart/heart-decor-right.webp');
+  background-position: top left, center right;
+}
+</style>

@@ -1,5 +1,5 @@
 <template lang="pug">
-  div.white
+  div(:class="{'hearts': !$isMobile }").white
     usp-template(
       :uspTitle="uspTitle"
       :uspMetaTitle="uspContents.metaTitle"
@@ -56,3 +56,10 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.hearts {
+  background-image: url('../../../assets/images/mycure-heart/heart-decor-right.webp'), url('../../../assets/images/mycure-heart/heart-decor-left.webp');
+  background-position: top right, center left;
+}
+</style>

@@ -1,5 +1,5 @@
 <template lang="pug">
-  div
+  div(:class="{'hearts': !$isMobile}")
     //- WEB
     div(v-if="!isMobile").py-5
       v-container
@@ -71,5 +71,9 @@ export default {
 a {
   text-decoration-color: #2e9fdf;
   text-decoration: none;
+}
+.hearts {
+  background-image: url('../../../assets/images/mycure-heart/heart-decor-right.webp');
+  background-position: top right;
 }
 </style>

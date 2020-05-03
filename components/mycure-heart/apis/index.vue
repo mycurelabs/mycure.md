@@ -1,5 +1,5 @@
 <template lang="pug">
-  div
+  div(:class="{'hearts': !$isMobile}")
     //- WEB
     div(v-if="!isMobile").py-5.mb-3
       v-container
@@ -91,5 +91,9 @@ export default {
 <style scoped>
 .panelTitle {
   white-space: pre;
+}
+.hearts {
+  background-image: url('../../../assets/images/mycure-heart/heart-decor-right.webp');
+  background-position: top right;
 }
 </style>
