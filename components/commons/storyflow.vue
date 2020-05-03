@@ -2,6 +2,8 @@
   div(:class="{'white' : whiteBg }")
     div(v-if="!isMobile").pt-10.mt-10
       v-container
+        v-row(v-if="metaTitle" justify="center").text-center
+          strong.font-21.primary--text {{ metaTitle }}
         v-row(v-if="introduction" justify="center").text-center.pb60
           strong.font-40.introText.pre-white-space {{introduction}}
         div(v-if="!horizontal")
@@ -27,13 +29,17 @@
           v-row(justify="center")
             v-col(
               v-for="(highlight, index) in storyflow"
+              align="center"
               :key="index"
               cols="4"
-              align="center"
             ).text-center
               img(v-lazy="require(`@/assets/images/${customPath}${highlight.image}`)" :alt="highlight.title").storyflowAssetHorizontal
               br
-              strong(v-if="hasTitle" :style="highlightTitleFontStyle") {{highlight.title}}
+              strong(
+                v-if="hasTitle"
+                :style="highlightTitleFontStyle"
+                :class="{'pre-white-space': parseTitles}"
+              ) {{ parseTitle(highlight) }}
               br
               p.font-18.pt-3.mx-2 {{highlight.text}}
           v-row(v-if="featuresButton" justify="center" align="center").pt-10
@@ -75,6 +81,7 @@
 </template>
 
 <script>
+import { parseTextWithNewLine } from '~/utils/newline';
 export default {
   props: {
     storyflow: {
@@ -84,6 +91,10 @@ export default {
     hasTitle: {
       type: Boolean,
       default: true,
+    },
+    metaTitle: {
+      type: String,
+      default: undefined,
     },
     introduction: {
       type: String,
@@ -109,6 +120,10 @@ export default {
       type: String,
       default: '30',
     },
+    parseTitles: {
+      type: Boolean,
+      default: false,
+    },
   },
   data () {
     this.highlightTitleFontStyle = {
@@ -129,6 +144,11 @@ export default {
     this.isMobile = this.$isMobile;
   },
   methods: {
+    parseTitle (highlight) {
+      return this.parseTitles
+        ? parseTextWithNewLine(highlight.title, highlight.parseIndicators)
+        : highlight.title;
+    },
     handleFeaturesPageBtn () {
       this.$ga.event({
         eventCategory: 'button',
@@ -151,7 +171,7 @@ export default {
   padding-bottom: 60px;
 }
 .storyflowAssetHorizontal {
-  width: 75%;
+  width: 65%;
   font-family: 'Work Sans', 'Poppins', sans-serif !important;
 }
 </style>

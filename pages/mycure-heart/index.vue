@@ -4,17 +4,60 @@
     usp
     //- 2nd panel
     features.mt-10
+    //- 3rd panel
+    storyflow(
+      :storyflow="storyflowItems"
+      :metaTitle="storyflowMetaTitle"
+      :introduction="introText"
+      :customPath="customPath"
+      horizontal
+      highlight-title-size="25"
+      parse-titles
+    )
 </template>
 
 <script>
 // utils
 import headMeta from '~/utils/head-meta';
+import { parseTextWithNewLine } from '~/utils/newline';
 // components
 import Usp from '~/components/mycure-heart/usp';
 export default {
   components: {
     Usp,
     Features: () => import('~/components/mycure-heart/features'),
+    Storyflow: () => import('~/components/commons/storyflow'),
+  },
+  data () {
+    this.storyflowItems = [
+      {
+        title: 'Real-time Analytics',
+        parseIndicators: ['Real-time'],
+        text: 'How many are sick in a particular area? Do we have enough medicines? MYCURE Guardian provides critical answers to what is happening on the ground.',
+        image: 'mycure-heart-benefit-analytics.png',
+      },
+      {
+        title: 'Data from the Ground Up',
+        parseIndicators: ['the'],
+        text: 'Consolidate data from all levels of the local government so you can provide faster and more accurate reports to the national government.',
+        image: 'mycure-heart-benefit-data-portability.png',
+      },
+      {
+        title: 'Secure Electronic Health Records (EHR)',
+        parseIndicators: ['Health'],
+        text: 'Use powerful, robust and proven healthcare solutions that organize community health records while being compliant to data privacy standards.',
+        image: 'mycure-heart-benefit-data-secure.png',
+      },
+    ];
+    this.storyflowMetaTitle = 'ADVANTAGES';
+    this.customPath = 'mycure-heart/';
+    return {};
+  },
+  computed: {
+    introText () {
+      const text = 'MYCURE Heart promotes good governance, transparency, and accountability.';
+      return parseTextWithNewLine(text, ['governance,']);
+    },
   },
   head () {
     return headMeta({
