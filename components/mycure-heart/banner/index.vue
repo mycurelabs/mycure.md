@@ -76,5 +76,6 @@ export default {
 .banner-mobile-container {
   height: 300px;
   width: 100%;
+  border: 1px solid black !important;
 }
 </style>
