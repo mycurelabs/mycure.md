@@ -22,7 +22,13 @@
     syncbase
     //- 7th panel
     apis
-
+    //- final panel
+    mc-cta-bottom(
+      parse-text
+      :parseIndicators="['health', 'advanced']"
+      :ctaContent="ctaContent"
+      customPath="mycure-heart/"
+    )
 </template>
 
 <script>
@@ -40,6 +46,7 @@ export default {
     Privacy: () => import('~/components/mycure-heart/privacy'),
     Syncbase: () => import('~/components/mycure-heart/syncbase'),
     Apis: () => import('~/components/mycure-heart/apis'),
+    McCtaBottom: () => import('~/components/commons/mc-cta-bottom'),
   },
   data () {
     this.storyflowItems = [
@@ -64,12 +71,26 @@ export default {
     ];
     this.storyflowMetaTitle = 'ADVANTAGES';
     this.customPath = 'mycure-heart/';
-    return {};
+    return {
+      ctaContent: {
+        text: 'Strengthen your public healthcare systems with MYCURE Heart advanced cloud-based technology.',
+        subtext: this.parseCtaSubText(),
+        btnText: 'Get Started',
+        image: 'mycure-heart-footer-image',
+        mobileImage: 'mycure-heart-footer-mobile',
+      },
+    };
   },
   computed: {
     introText () {
       const text = 'MYCURE Heart promotes good governance, transparency, and accountability.';
       return parseTextWithNewLine(text, ['governance,']);
+    },
+  },
+  methods: {
+    parseCtaSubText () {
+      const text = 'MYCURE Heart is an initiative to help fight against COVID-19. Together let’s help flatten the curve!';
+      return parseTextWithNewLine(text, ['COVID-19.']);
     },
   },
   head () {
