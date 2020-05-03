@@ -11,7 +11,7 @@
       :coverImgExtension="uspContents.coverImgExtension"
       :customPath="uspContents.customPath"
       :title-mobile-size="29"
-      @getStarted="getStarted"
+      @btnClick="getStarted"
     )
 </template>
 
@@ -51,7 +51,10 @@ export default {
   },
   methods: {
     getStarted () {
-      // do something
+      this.$nuxt.$router.push({
+        name: 'index',
+        params: { scrollHealthSuites: true },
+      });
     },
   },
 };
