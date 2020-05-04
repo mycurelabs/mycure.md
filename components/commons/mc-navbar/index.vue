@@ -55,7 +55,7 @@ export default {
       {
         name: 'Fight COVID-19: Free EMR',
         id: 'mycure-heart-nav-btn',
-        route: 'mycure-heart',
+        route: 'fight-covid-19',
       },
     ];
     return {
