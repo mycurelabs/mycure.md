@@ -2,7 +2,6 @@
   div(:class="{'hearts': !$isMobile }").white
     usp-template(
       :uspTitle="uspTitle"
-      :uspMetaTitle="uspContents.metaTitle"
       :uspDescription="uspDescription"
       :btnRoute="uspContents.btnRoute"
       :btnId="uspContents.btnId"
@@ -12,7 +11,11 @@
       :customPath="uspContents.customPath"
       :title-mobile-size="29"
       @btnClick="getStarted"
+      slottedMetaTitle
     )
+      span(slot="meta-slot") MYCURE Heart&nbsp;
+        v-icon(color="error") mdi-heart
+        span : Fight COVID-19
 </template>
 
 <script>
@@ -24,7 +27,6 @@ export default {
   },
   data () {
     this.uspContents = {
-      metaTitle: 'MYCURE Heart: Fight COVID-19',
       title: 'Free EMR System for LGUs & NGOs',
       description: 'Securely manage  your community’s health data with an enterprise-grade Electronic Medical Records (EMR) System that runs on your own cloud server.',
       btnId: 'mycure-heart-usp-btn',
