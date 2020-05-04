@@ -46,7 +46,7 @@ export default {
       const description = this.uspContents.description;
       return this.$isMobile
         ? description
-        : parseTextWithNewLine(description, ['Electronic Medical']);
+        : parseTextWithNewLine(description, ['grade']);
     },
   },
   methods: {
