@@ -10,6 +10,7 @@
         :storyflow="storyflowItems"
         :metaTitle="storyflowMetaTitle"
         :introduction="introText"
+        :description="storyflowDescription"
         :customPath="customPath"
         horizontal
         highlight-title-size="25"
@@ -87,6 +88,10 @@ export default {
     introText () {
       const text = 'MYCURE Heart promotes good governance, transparency, and accountability.';
       return parseTextWithNewLine(text, ['governance,']);
+    },
+    storyflowDescription () {
+      const text = 'Overcoming many difficult obstacles while following protocols can become a challenge. Having an effective system helps you automate processes so you can focus on more important matters.';
+      return parseTextWithNewLine(text, ['challenge.']);
     },
   },
   methods: {
