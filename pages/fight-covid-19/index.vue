@@ -10,6 +10,7 @@
         :storyflow="storyflowItems"
         :metaTitle="storyflowMetaTitle"
         :introduction="introText"
+        :description="storyflowDescription"
         :customPath="customPath"
         horizontal
         highlight-title-size="25"
@@ -30,6 +31,7 @@
         :parseIndicators="['health', 'advanced']"
         :ctaContent="ctaContent"
         customPath="mycure-heart/"
+        @btnClick="getStarted"
       )
 </template>
 
@@ -55,7 +57,7 @@ export default {
       {
         title: 'Real-time Analytics',
         parseIndicators: ['Real-time'],
-        text: 'How many are sick in a particular area? Do we have enough medicines? MYCURE Guardian provides critical answers to what is happening on the ground.',
+        text: 'How many are sick in a particular area? Do we have enough medicines? MYCURE Heart provides critical answers to what is happening on the ground.',
         image: 'mycure-heart-benefit-analytics.png',
       },
       {
@@ -88,19 +90,28 @@ export default {
       const text = 'MYCURE Heart promotes good governance, transparency, and accountability.';
       return parseTextWithNewLine(text, ['governance,']);
     },
+    storyflowDescription () {
+      const text = 'Overcoming many difficult obstacles while following protocols can become a challenge. Having an effective system helps you automate processes so you can focus on more important matters.';
+      return parseTextWithNewLine(text, ['challenge.']);
+    },
   },
   methods: {
     parseCtaSubText () {
       const text = 'MYCURE Heart is an initiative to help fight against COVID-19. Together let’s help flatten the curve!';
       return parseTextWithNewLine(text, ['COVID-19.']);
     },
+    getStarted () {
+      if (process.browser) {
+        window.open('https://forms.gle/y4qpv7ajERaGE5Lr7', '_blank');
+      }
+    },
   },
   head () {
     return headMeta({
-      title: 'MYCURE Heart: Free EMR for LGUs',
-      description: 'Securely manage  your community’s health data with an enterprise-grade Electronic Medical Records (EMR) System that runs on your own cloud server.',
+      title: 'Fight COVID-19: Free EMR System for LGUs and NGOs',
+      description: 'MYCURE Heart securely manages  your community’s health data with an enterprise-grade Electronic Medical Records (EMR) System that runs on your own cloud server.',
       // - TODO: Replace with local if applicable
-      socialBanner: 'https://firebasestorage.googleapis.com/v0/b/mc-v4-prod.appspot.com/o/web-main-assets%2FMYCURE-Open-Graph-Images-Home.png?alt=media&token=61978d70-326f-4323-8e6a-17d7b9c9a53b',
+      socialBanner: require('~/assets/images/mycure-heart/MYCURE_HEART_Open_Graph_Images.png'),
     });
   },
 };

@@ -133,7 +133,7 @@ export default {
         eventAction: `click-${this.ctaBtnId}`,
         eventLabel: this.ctaBtnId,
       });
-      if (this.ctaBtnId !== 'cta-home-btn') {
+      if (this.ctaBtnId !== 'cta-home-btn' && this.ctaBtnId !== 'cta-fight-covid-19-btn') {
         this.$nuxt.$router.push({
           name: this.ctaBtnLink,
           ...(this.ctaBtnLink === 'index') && { params: { scrollHealthSuites: true } },

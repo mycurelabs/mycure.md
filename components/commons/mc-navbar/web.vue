@@ -32,7 +32,9 @@
               v-btn(
                 :to="{ name: link.route }"
                 :id="link.id"
-                text
+                :text="link.text"
+                :color="link.color"
+                depressed
                 @click.stop="handleToolbarLinkClick(link.id)"
               ).mx-1
                 span.font-14.tab.text-none {{link.name}}
@@ -67,6 +69,13 @@
               @click.stop="handleToolbarLinkClick('specialized-signup-btn')"
             )
               strong.font-14.white--text.tab.text-none Start 14-Day Trial
+            v-btn(
+              v-else-if="currentRoute === 'fight-covid-19'"
+              color="accent"
+              id="fight-covid-19-get-started-btn"
+              @click.stop="handleToolbarLinkClick('fight-covid-19-get-started-btn')"
+            )
+              strong.font-14.white--text.tab.text-none Get Started
             v-btn(
               v-else
               color="accent"
