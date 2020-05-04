@@ -56,7 +56,7 @@ export default {
       {
         title: 'Real-time Analytics',
         parseIndicators: ['Real-time'],
-        text: 'How many are sick in a particular area? Do we have enough medicines? MYCURE Guardian provides critical answers to what is happening on the ground.',
+        text: 'How many are sick in a particular area? Do we have enough medicines? MYCURE Heart provides critical answers to what is happening on the ground.',
         image: 'mycure-heart-benefit-analytics.png',
       },
       {
