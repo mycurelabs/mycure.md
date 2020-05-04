@@ -32,7 +32,9 @@
               v-btn(
                 :to="{ name: link.route }"
                 :id="link.id"
-                text
+                :text="link.text"
+                :color="link.color"
+                depressed
                 @click.stop="handleToolbarLinkClick(link.id)"
               ).mx-1
                 span.font-14.tab.text-none {{link.name}}

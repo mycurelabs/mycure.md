@@ -51,11 +51,13 @@ export default {
         name: 'Features',
         id: 'features-nav-btn',
         route: 'features',
+        text: true,
       },
       {
         name: 'Fight COVID-19: Free EMR',
         id: 'mycure-heart-nav-btn',
         route: 'fight-covid-19',
+        color: '#C2F3FF',
       },
     ];
     return {
