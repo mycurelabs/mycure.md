@@ -108,8 +108,8 @@ export default {
   },
   head () {
     return headMeta({
-      title: 'MYCURE Heart: Free EMR for LGUs',
-      description: 'Securely manage  your community’s health data with an enterprise-grade Electronic Medical Records (EMR) System that runs on your own cloud server.',
+      title: 'Fight COVID-19: Free EMR System for LGUs and NGOs',
+      description: 'MYCURE Heart securely manages  your community’s health data with an enterprise-grade Electronic Medical Records (EMR) System that runs on your own cloud server.',
       // - TODO: Replace with local if applicable
       socialBanner: require('~/assets/images/mycure-heart/MYCURE_HEART_Open_Graph_Images.png'),
     });
