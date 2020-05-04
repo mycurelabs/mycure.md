@@ -105,7 +105,7 @@ export default {
       title: 'MYCURE Heart: Free EMR for LGUs',
       description: 'Securely manage  your community’s health data with an enterprise-grade Electronic Medical Records (EMR) System that runs on your own cloud server.',
       // - TODO: Replace with local if applicable
-      socialBanner: 'https://firebasestorage.googleapis.com/v0/b/mc-v4-prod.appspot.com/o/web-main-assets%2FMYCURE-Open-Graph-Images-Home.png?alt=media&token=61978d70-326f-4323-8e6a-17d7b9c9a53b',
+      socialBanner: require('~/assets/images/mycure-heart/MYCURE_HEART_Open_Graph_Images.png'),
     });
   },
 };
