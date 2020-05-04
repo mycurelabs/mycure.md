@@ -49,10 +49,9 @@ export default {
   },
   methods: {
     getStarted () {
-      this.$nuxt.$router.push({
-        name: 'index',
-        params: { scrollHealthSuites: true },
-      });
+      if (process.browser) {
+        window.open('https://forms.gle/y4qpv7ajERaGE5Lr7', '_blank');
+      }
     },
   },
 };

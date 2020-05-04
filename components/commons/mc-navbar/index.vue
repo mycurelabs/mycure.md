@@ -106,6 +106,10 @@ export default {
           name: 'index',
           params: { scrollHealthSuites: true },
         });
+      } else if (link === 'fight-covid-19-get-started-btn') {
+        if (process.browser) {
+          window.open('https://forms.gle/y4qpv7ajERaGE5Lr7', '_blank');
+        }
       }
       this.$ga.event({
         eventCategory: 'button',

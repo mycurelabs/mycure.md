@@ -31,6 +31,7 @@
         :parseIndicators="['health', 'advanced']"
         :ctaContent="ctaContent"
         customPath="mycure-heart/"
+        @btnClick="getStarted"
       )
 </template>
 
@@ -98,6 +99,11 @@ export default {
     parseCtaSubText () {
       const text = 'MYCURE Heart is an initiative to help fight against COVID-19. Together let’s help flatten the curve!';
       return parseTextWithNewLine(text, ['COVID-19.']);
+    },
+    getStarted () {
+      if (process.browser) {
+        window.open('https://forms.gle/y4qpv7ajERaGE5Lr7', '_blank');
+      }
     },
   },
   head () {

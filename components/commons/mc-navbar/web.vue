@@ -68,6 +68,13 @@
             )
               strong.font-14.white--text.tab.text-none Start 14-Day Trial
             v-btn(
+              v-else-if="currentRoute === 'fight-covid-19'"
+              color="accent"
+              id="fight-covid-19-get-started-btn"
+              @click.stop="handleToolbarLinkClick('fight-covid-19-get-started-btn')"
+            )
+              strong.font-14.white--text.tab.text-none Get Started
+            v-btn(
               v-else
               color="accent"
               id="get-started-btn"
