@@ -54,12 +54,12 @@ export default {
     title () {
       const title = CONTENT.title;
       return !this.$isMobile
-        ? parseTextWithNewLine(title, ['Produce'])
+        ? parseTextWithNewLine(title, ['data.', 'reports.'])
         : parseTextWithNewLine(title, ['organize', 'Produce', 'Make']);
     },
     description () {
       const description = CONTENT.description;
-      return parseTextWithNewLine(description, ['modules']);
+      return parseTextWithNewLine(description, ['EMR.', 'daily']);
     },
   },
   watch: {
