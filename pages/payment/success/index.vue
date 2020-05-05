@@ -28,7 +28,7 @@
 export default {
   layout: 'empty',
   mounted () {
-    console.warn('just to verify stripe pk', process.env.VUE_APP_STRIPE_PK);
+    console.warn('just to verify stripe pk', process.env.STRIPE_PK);
   },
   methods: {
     onOkayClick () {

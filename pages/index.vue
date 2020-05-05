@@ -114,13 +114,13 @@ export default {
     };
   },
   created () {
-    console.warn('VUE_APP_ENV', process.env.VUE_APP_ENV);
-    console.warn('VUE_APP_API', process.env.VUE_APP_API);
-    console.warn('VUE_APP_SIGNIN_URL', process.env.VUE_APP_SIGNIN_URL);
-    console.warn('VUE_APP_CMS_URL', process.env.VUE_APP_CMS_URL);
-    console.warn('VUE_APP_IPSTACK_API', process.env.VUE_APP_IPSTACK_API);
-    console.warn('VUE_APP_IPSTACK_API_KEY', process.env.VUE_APP_IPSTACK_API_KEY);
-    console.warn('VUE_APP_STRIPE_PK', process.env.VUE_APP_STRIPE_PK);
+    console.warn('ENV', process.env.ENV);
+    console.warn('API_URL', process.env.API_URL);
+    console.warn('SIGNIN_URL', process.env.SIGNIN_URL);
+    console.warn('CMS_URL', process.env.CMS_URL);
+    console.warn('IPSTACK_API', process.env.IPSTACK_API);
+    console.warn('IPSTACK_API_KEY', process.env.IPSTACK_API_KEY);
+    console.warn('STRIPE_PK', process.env.STRIPE_PK);
     console.warn('GA_ID', process.env.GA_ID);
   },
   mounted () {

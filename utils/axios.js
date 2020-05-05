@@ -23,13 +23,13 @@ function handleError (e) {
 //     };
 //     const { data } = await axios({
 //       method: 'post',
-//       url: `${process.env.VUE_APP_API}/authentication`,
+//       url: `${process.env.API_URL}/authentication`,
 //       data: payload,
 //     });
 //     const accessToken = data.accessToken;
 //     await axios({
 //       method: 'post',
-//       url: `${process.env.VUE_APP_API}/authentication`,
+//       url: `${process.env.API_URL}/authentication`,
 //       headers: {
 //         Authorization: `Bearer ${accessToken}`,
 //       },
@@ -52,7 +52,7 @@ export const signin = async (opts) => {
     if (opts.otp) { payload.totpToken = opts.otp; }
     const { data } = await axios({
       method: 'post',
-      url: `${process.env.VUE_APP_API}/authentication`,
+      url: `${process.env.API_URL}/authentication`,
       data: payload,
     });
     return data;
@@ -70,7 +70,7 @@ export const forgotPassword = async (opts) => {
     };
     const { data } = await axios({
       method: 'post',
-      url: `${process.env.VUE_APP_API}/authentication`,
+      url: `${process.env.API_URL}/authentication`,
       data: payload,
     });
     return data;
@@ -85,7 +85,7 @@ export const sendMultiSpecialtyInquiry = async (opts) => {
     const payload = opts;
     const { data } = await axios({
       method: 'post',
-      url: `${process.env.VUE_APP_API}/mailer`,
+      url: `${process.env.API_URL}/mailer`,
       data: payload,
     });
     return data;
@@ -107,7 +107,7 @@ export const getCountry = async () => {
     ];
     const { data } = await axios({
       method: 'get',
-      url: `${process.env.VUE_APP_IPSTACK_API}/check?access_key=${process.env.VUE_APP_IPSTACK_API_KEY}&fields=${fields.join(',')}`,
+      url: `${process.env.IPSTACK_API}/check?access_key=${process.env.IPSTACK_API_KEY}&fields=${fields.join(',')}`,
     });
     return data;
   } catch (e) {
@@ -139,7 +139,7 @@ export const getMycureCountries = async (opts) => {
     const { limit, skip } = opts;
     const { data } = await axios({
       method: 'get',
-      url: `${process.env.VUE_APP_API}/fixtures?type=country&$limit=${limit}&$skip=${skip}`,
+      url: `${process.env.API_URL}/fixtures?type=country&$limit=${limit}&$skip=${skip}`,
     });
     return data.data;
   } catch (e) {
@@ -173,7 +173,7 @@ export const signupIndividual = async (opts) => {
     if (opts.otp) { payload.totpToken = opts.otp; }
     const { data } = await axios({
       method: 'post',
-      url: `${process.env.VUE_APP_API}/accounts`,
+      url: `${process.env.API_URL}/accounts`,
       data: payload,
     });
     // await resendVerificationEmail({ email: opts.email, password: opts.password });
@@ -208,15 +208,15 @@ export const signupSpecialized = async (opts) => {
         name: `${opts.firstName}'s Clinic`,
         subscription: {
           ...opts.subscription,
-          stripeCheckoutSuccessURL: process.env.VUE_APP_STRIPE_CHECKOUT_SUCCESS_URL,
-          stripeCheckoutCancelURL: process.env.VUE_APP_STRIPE_CHECKOUT_CANCEL_URL,
+          stripeCheckoutSuccessURL: process.env.STRIPE_CHECKOUT_SUCCESS_URL,
+          stripeCheckoutCancelURL: process.env.STRIPE_CHECKOUT_CANCEL_URL,
         },
       },
     };
     if (opts.otp) { payload.totpToken = opts.otp; }
     const { data } = await axios({
       method: 'post',
-      url: `${process.env.VUE_APP_API}/accounts`,
+      url: `${process.env.API_URL}/accounts`,
       data: payload,
     });
     // await resendVerificationEmail({ email: opts.email, password: opts.password });
@@ -238,7 +238,7 @@ export const verifyMobileNo = async (opts) => {
     };
     const { data } = await axios({
       method: 'post',
-      url: `${process.env.VUE_APP_API}/authentication`,
+      url: `${process.env.API_URL}/authentication`,
       data: payload,
     });
     return data;
@@ -255,7 +255,7 @@ export const resendVerificationCode = async (opts) => {
     };
     const { data } = await axios({
       method: 'post',
-      url: `${process.env.VUE_APP_API}/authentication`,
+      url: `${process.env.API_URL}/authentication`,
       headers: {
         Authorization: 'Bearer ' + opts.token,
       },
