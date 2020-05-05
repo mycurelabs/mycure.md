@@ -2,7 +2,7 @@ version: 2.1
 orbs:
   node: circleci/node@1.1.6
 jobs:
-  deploy-staging:
+  build-deploy-staging:
     executor:
       name: node/default
     environment:
@@ -34,14 +34,15 @@ jobs:
               command: yarn generate
             - run:
               name: Run deploy
-              command: firebase use mc-v4-stg \
-                firebase target:clear hosting staging \
-                firebase target:apply hosting staging staging-web-main \
+              command: |
+                firebase use mc-v4-stg
+                firebase target:clear hosting staging
+                firebase target:apply hosting staging staging-web-main
                 yarn deploy:stg
 workflows:
-  deploy-staging:
+  staging:
     jobs:
-      - deploy-staging:
+      - build-deploy-staging:
           filters:
             branches:
               only: environment/staging
