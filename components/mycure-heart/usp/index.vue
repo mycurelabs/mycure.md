@@ -13,6 +13,7 @@
       @btnClick="getStarted"
       slottedMetaTitle
     )
+      span(slot="pre-btn-content").pb-5.font-14.grey--text *This requires your own managed cloud and database server setup.
       span(slot="meta-slot") MYCURE Heart&nbsp;
         v-icon(color="error") mdi-heart
         span : Fight COVID-19

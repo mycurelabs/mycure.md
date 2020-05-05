@@ -12,7 +12,8 @@
           h1(:class="titleClasses" :style="this.isMobile ? fontStyle : {}").text-center.uspTitle
             | {{uspTitle}}
           p(:class="{'pre-white-space': !isMobile}").text-center.uspDescription.pt-3.font-s {{uspDescription}}
-          div.pt-1
+          slot(name="pre-btn-content")
+          div.pt-3
             v-btn(
               color="accent"
               :id="btnId"
@@ -194,7 +195,7 @@ export default {
 
 .outer-image-container {
   margin-bottom: -63.5px;
-  padding-top: 4vh;
+  padding-top: 6vh;
 }
 .offset-container {
   height: 15vh;
