@@ -22,7 +22,7 @@ jobs:
           steps:
             - run:
                 name: Install Yarn
-                command: npm isntall yarn@latest -g
+                command: npm install yarn@latest -g
             - run:
                 name: Install Firebase Tools
                 command: npm install firebase-tools -g
