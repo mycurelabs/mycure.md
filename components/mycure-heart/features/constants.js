@@ -20,9 +20,9 @@ export const SOLUTIONS = [
     customPath: 'module-icons/',
   },
   {
-    title: 'Syncbase Technology',
-    description: 'Use MYCURE even if your internet connection is down.',
-    icon: 'mycure-web-clinic-feature-icon-premium-syncbase-technology',
+    title: 'Medical Records',
+    description: 'Create printable prescriptions, charts, lab orders, and customizable forms.',
+    icon: 'mycure-web-clinic-feature-icon-core-emr',
     customPath: 'module-icons/',
   },
   {
@@ -38,9 +38,9 @@ export const SOLUTIONS = [
     customPath: 'module-icons/',
   },
   {
-    title: 'Medical Records',
-    description: 'Create printable prescriptions, charts, lab orders, and customizable forms.',
-    icon: 'mycure-web-clinic-feature-icon-core-emr',
+    title: 'Administration',
+    description: 'Staff management, audit trail, and clinic customizations',
+    icon: 'mycure-web-clinic-feature-icon-core-administrative',
     customPath: 'module-icons/',
   },
   {
