@@ -21,21 +21,24 @@ jobs:
       - node/with-cache:
           steps:
             - run:
+                name: Install Yarn
+                command: sudo npm install yarn@latest -g
+            - run:
                 name: Install Firebase Tools
-                command: npm install firebase-tools -g
+                command: sudo npm install firebase-tools -g
             - run: 
                 name: Install Dependencies
-                command: npm install
+                command: yarn
             - run:
                 name: Run build
-                command: npm run generate
+                command: yarn generate
             - run:
                 name: Run deploy
                 command: |
                   firebase use mc-v4-stg
                   firebase target:clear hosting staging
                   firebase target:apply hosting staging staging-web-main
-                  npm run deploy:stg
+                  yarn deploy:stg
 workflows:
   staging:
     jobs:
