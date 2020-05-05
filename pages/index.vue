@@ -113,16 +113,6 @@ export default {
       featuresVideoDialog: false,
     };
   },
-  created () {
-    console.warn('ENV', process.env.ENV);
-    console.warn('API_URL', process.env.API_URL);
-    console.warn('SIGNIN_URL', process.env.SIGNIN_URL);
-    console.warn('CMS_URL', process.env.CMS_URL);
-    console.warn('IPSTACK_API', process.env.IPSTACK_API);
-    console.warn('IPSTACK_API_KEY', process.env.IPSTACK_API_KEY);
-    console.warn('STRIPE_PK', process.env.STRIPE_PK);
-    console.warn('GA_ID', process.env.GA_ID);
-  },
   mounted () {
     this.$nuxt.$route.params.scrollHealthSuites ? this.getStarted()
       : VueScrollTo.scrollTo('#app', 500, { easing: 'ease' });
