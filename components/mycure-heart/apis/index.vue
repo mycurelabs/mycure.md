@@ -59,7 +59,7 @@ export default {
     },
   },
   data () {
-    this.panelTitle = 'Think Beyond Covid-19.';
+    this.panelTitle = 'Think Beyond COVID-19.';
     this.panelContents = [
       'MYCURE Heart has advanced APIs made to augment your IT innovations now and in the future.',
       'We created our APIs to be simple to use, excellent in performance, and boundless in possibilities.',
