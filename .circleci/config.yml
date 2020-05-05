@@ -22,10 +22,10 @@ jobs:
           steps:
             - run:
                 name: Install Yarn
-                command: sudo npm install yarn@latest -g
+                command: sudo npm install yarn@latest -g --force
             - run:
                 name: Install Firebase Tools
-                command: sudo npm install firebase-tools -g
+                command: sudo npm install firebase-tools -g --force
             - run: 
                 name: Install Dependencies
                 command: yarn
