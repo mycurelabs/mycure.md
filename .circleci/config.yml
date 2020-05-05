@@ -2,15 +2,46 @@ version: 2.1
 orbs:
   node: circleci/node@1.1.6
 jobs:
-  build-and-test:
+  deploy-staging:
     executor:
       name: node/default
+    environment:
+      ENV: ${STAGING_ENV}
+      API_URL: ${STAGING_API_URL}
+      SIGNIN_URL: ${STAGING_SIGNIN_URL}
+      CMS_URL: ${STAGING_CMS_URL}
+      IPSTACK_API: ${STAGING_IPSTACK_API}
+      IPSTACK_API_KEY: ${STAGING_IPSTACK_API_KEY}
+      STRIPE_PK: ${STAGING_STRIPE_PK}
+      STRIPE_CHECKOUT_SUCCESS_URL: ${STAGING_STRIPE_CHECKOUT_SUCCESS_URL}
+      STRIPE_CHECKOUT_CANCEL_URL: ${STAGING_STRIPE_CHECKOUT_CANCEL_URL}
+      GA_ID: ${STAGING_GA_ID}
     steps:
       - checkout
       - node/with-cache:
           steps:
-            - run: echo FOO
+            - run:
+              name: Install Yarn
+              command: npm isntall yarn@latest -g
+            - run:
+              name: Install Firebase Tools
+              command: npm install firebase-tools -g
+            - run: 
+              name: Install Dependencies
+              command: yarn
+            - run:
+              name: Run build
+              command: yarn generate
+            - run:
+              name: Run deploy
+              command: firebase use mc-v4-stg \
+                firebase target:clear hosting staging \
+                firebase target:apply hosting staging staging-web-main \
+                yarn deploy:stg
 workflows:
-    build-and-test:
-      jobs:
-        - build-and-test
+  deploy-staging:
+    jobs:
+      - deploy-staging:
+          filters:
+            branches:
+              only: environment/staging
