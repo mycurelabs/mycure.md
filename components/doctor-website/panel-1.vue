@@ -5,7 +5,7 @@
         v-avatar(size="150")
           img(:src="picUrl")
       v-col(cols="12").text-center
-        h1 Dr. {{fullName}}
+        h1 Dr. {{fullName}}, MD
         span Pediatrician | 25 Years Expecience
       v-col(cols="12" md="10").text-center
         p {{bio}}
