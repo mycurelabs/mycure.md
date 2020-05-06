@@ -54,6 +54,7 @@ module.exports = {
     { src: '~/plugins/vue-analytics.js', mode: 'client' },
     { src: '~/plugins/ga.js', mode: 'client' },
     { src: '~/plugins/vue-social-sharing.js', mode: 'client' },
+    { src: '~/plugins/vue-morphling.js', mode: 'client' },
     '~/plugins/vue-lazyload.js',
   ],
   /*
