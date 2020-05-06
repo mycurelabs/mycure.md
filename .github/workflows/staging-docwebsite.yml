@@ -43,4 +43,4 @@ jobs:
           firebase use mc-v4-stg
           firebase target:clear hosting staging-doctor-website
           firebase target:apply hosting staging-doctor-website staging-web-docwebsite
-          yarn deploy:stg
+          firebase deploy --only hosting:staging-doctor-website -P mc-v4-stg
