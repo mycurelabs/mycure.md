@@ -5,11 +5,21 @@
       :pic-url="picURL"
       :full-name="fullName"
       :bio="bio"
+      :specialties="specialties"
+      :professions="professions"
+      :practicing-since="practicingSince"
     )
     services(
       :services="services"
     )
-    tabs
+    tabs(
+      :clinics="clinics"
+      :bio="bio"
+      :specialties="specialties"
+      :professions="professions"
+      :practicing-since="practicingSince"
+      :education="education"
+    )
     social
     v-footer(
       height="auto"
@@ -22,7 +32,8 @@
 </template>
 
 <script>
-import { getDoctorWebsite } from '../../utils/axios';
+import _ from 'lodash';
+import { getDoctorWebsite, getDoctorClinics } from '../../utils/axios';
 import { formatName } from '../../utils/formats';
 import AppBar from '~/components/doctor-website/app-bar';
 import Panel1 from '~/components/doctor-website/panel-1';
@@ -38,11 +49,22 @@ export default {
     Tabs,
     Social,
   },
-  async asyncData ({ app, router, params }) {
-    const doctor = await getDoctorWebsite({ username: params.id });
-    return {
-      doctor: doctor || {},
-    };
+  async asyncData ({ app, router, params, error }) {
+    try {
+      const doctor = await getDoctorWebsite({ username: params.id });
+      console.warn('doctor', doctor);
+      if (_.isEmpty(doctor)) {
+        error({ statusCode: 404, message: 'doctor-not-found' });
+      }
+      const clinics = await getDoctorClinics({ uid: doctor.id });
+      console.warn('clinics', clinics);
+      return {
+        doctor,
+        clinics: clinics || [],
+      };
+    } catch (e) {
+      console.error(e);
+    }
   },
   data () {
     return {
@@ -60,6 +82,15 @@ export default {
     bio () {
       return this.doctor?.doc_bio || ''; // eslint-disable-line
     },
+    specialties () {
+      return this.doctor?.doc_specialties || []; // eslint-disable-line
+    },
+    professions () {
+      return this.doctor?.doc_professions || []; // eslint-disable-line
+    },
+    practicingSince () {
+      return this.doctor?.doc_practicingSince; // eslint-disable-line
+    },
     services () {
       return [
         'Newborn Jaundice',
@@ -72,6 +103,9 @@ export default {
         'Limping Child',
         'Bronchial Asthma Treatment',
       ];
+    },
+    education () {
+      return this.doctor?.educations;
     },
   },
   head () {
