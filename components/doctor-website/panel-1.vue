@@ -5,8 +5,8 @@
         v-avatar(size="150")
           img(:src="picUrl")
       v-col(cols="12").text-center
-        h1 Dr. {{fullName}}, MD
-        span Pediatrician | 25 Years Expecience
+        h1 Dr. {{fullName}}#[span(v-if="professionsMapped") {{','}} {{professionsMapped}}]
+        span {{specialtiesMapped}} #[span(v-if="practicingSince") | {{yearsOfExperience}} Years Expecience ]
       v-col(cols="12" md="10").text-center
         p {{bio}}
     v-row(justify="center")
@@ -37,13 +37,30 @@ export default {
       type: Array,
       default: () => ([]),
     },
+    professions: {
+      type: Array,
+      default: () => ([]),
+    },
     practicingSince: {
-      type: Date,
+      type: [Date, Number],
       default: null,
     },
     bio: {
       type: String,
       default: null,
+    },
+  },
+  computed: {
+    yearsOfExperience () {
+      const from = new Date(this.practicingSince).getFullYear();
+      const to = new Date().getFullYear();
+      return to - from;
+    },
+    specialtiesMapped () {
+      return this.specialties.join(', ');
+    },
+    professionsMapped () {
+      return this.professions.join(', ');
     },
   },
 };
