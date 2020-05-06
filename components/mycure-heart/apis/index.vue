@@ -23,13 +23,13 @@
                 v-list-item-content
                   span.font-s {{ item }}
           v-col(cols="6" align-self="center").px-3.text-center
-            img(:src="require(`~/assets/images/${panelImage}.png`)" width="80%" :alt="panelImage")
+            img(:src="require(`~/assets/images/mycure-heart/${panelImage}${panelImageExtension}`)" width="80%" :alt="panelImage")
     //- MOBILE
     div(v-else).pt-10
       v-container.text-center
         h1.font-36.lh-title.font-work-sans.pb-5 {{ panelTitle }}
         br
-        img(width="85%" v-lazy="require(`~/assets/images/${panelImage}.png`)" :alt="panelImage").pb-3
+        img(width="85%" v-lazy="require(`~/assets/images/mycure-heart/${panelImage}${panelImageExtension}`)" :alt="panelImage").pb-3
         br
         br
         p(
@@ -52,8 +52,14 @@
 <script>
 import { parseTextWithNewLine } from '~/utils/newline';
 export default {
+  props: {
+    panelImageExtension: {
+      type: String,
+      default: '.png',
+    },
+  },
   data () {
-    this.panelTitle = 'Think Beyond Covid-19. ';
+    this.panelTitle = 'Think Beyond COVID-19.';
     this.panelContents = [
       'MYCURE Heart has advanced APIs made to augment your IT innovations now and in the future.',
       'We created our APIs to be simple to use, excellent in performance, and boundless in possibilities.',
@@ -63,7 +69,7 @@ export default {
       'Customize the CMS as needed',
       'Complete documentation',
     ];
-    this.panelImage = 'mycure-web-banner-api';
+    this.panelImage = 'mycure-heart-covid-19-image';
     return {
       isMobile: true,
     };
@@ -82,8 +88,6 @@ export default {
   },
   mounted () {
     this.isMobile = this.$isMobile;
-  },
-  methods: {
   },
 };
 </script>

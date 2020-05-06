@@ -6,28 +6,28 @@
           div.maleDoctor
             img(:src="require('~/assets/images/mycure-web-video-cover-decor-doctor-left.png')" alt="Male doctor")
           div.vidPosition
-            v-container.white.banner-container.pt-10
+            v-container.white.banner-container
               v-row(justify="center" align="center").text-center
                 v-col(cols="10")
                   img(:src="require('~/assets/images/mycure-header-logo.png')" alt="MYCURE logo" width="140")
-                  h1.font-40 {{ bannerTitle }}
-                  p.font-21 {{ bannerDescription }}
+                  h1.font-40.font-work-sans {{ bannerTitle }}
+                  p.font-21.pt-5 {{ bannerDescription }}
           div.femaleDoctor
             img(:src="require('~/assets/images/mycure-web-video-cover-decor-doctor-right.png')" alt="Female doctor")
     div(v-else)
       img(v-lazy="require('~/assets/images/mycure-home-web-video-green-background-mobile.png')" alt="Video green background" width="100%")
       v-container.banner-mobile-container.white.margin-2
         v-row(justify="center" align="center").text-center
-          v-col(cols="10")
+          v-col(cols="10").pt-5
             img(:src="require('~/assets/images/mycure-header-logo.png')" alt="MYCURE logo" width="140")
-            h1.font-30.lh-title {{ bannerTitle }}
+            h1.font-30.lh-title.font-work-sans {{ bannerTitle }}
             p.pt-5.font-21 {{ bannerDescription }}
 </template>
 
 <script>
 export default {
   data () {
-    this.bannerTitle = 'Let’s Help Fight Against COVID-19';
+    this.bannerTitle = 'Fight COVID-19';
     this.bannerDescription = 'Together let’s help flatten the curve and make a more proactive, health-first world.';
     return {
       isMobile: true,
@@ -72,6 +72,7 @@ export default {
 .banner-container {
   width: 652px;
   height: 379px;
+  padding-top: 65px;
 }
 .banner-mobile-container {
   height: 300px;

@@ -51,11 +51,13 @@ export default {
         name: 'Features',
         id: 'features-nav-btn',
         route: 'features',
+        text: true,
       },
       {
         name: 'Fight COVID-19: Free EMR',
         id: 'mycure-heart-nav-btn',
-        route: 'mycure-heart',
+        route: 'fight-covid-19',
+        color: '#C2F3FF',
       },
     ];
     return {
@@ -106,6 +108,10 @@ export default {
           name: 'index',
           params: { scrollHealthSuites: true },
         });
+      } else if (link === 'fight-covid-19-get-started-btn') {
+        if (process.browser) {
+          window.open('https://forms.gle/y4qpv7ajERaGE5Lr7', '_blank');
+        }
       }
       this.$ga.event({
         eventCategory: 'button',

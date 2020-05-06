@@ -215,7 +215,7 @@ export default {
     StripeCheckout,
   },
   data () {
-    this.stripePK = process.env.VUE_APP_STRIPE_PK;
+    this.stripePK = process.env.STRIPE_PK;
     this.dayOrNight = dayOrNight();
     this.checkListItems = [
       'Manage your clinic more efficiently',

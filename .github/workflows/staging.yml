@@ -1,43 +1,46 @@
-# name: Deploy:Staging
+name: Deploy:Staging
 
-# on: 
-#   push:
-#     branches:
-#       - environment/staging
+on: 
+  push:
+    branches:
+      - environment/staging
 
-# jobs:
-#   deploy_to_live:
-#     name: Deploy staging hosting
-#     runs-on: ubuntu-latest
-#     strategy:
-#       matrix:
-#         node: [10]
-#     steps: 
-#       - uses: actions/checkout@master
-#       - uses: actions/setup-node@v1
-#         with:
-#           node-version: ${{ matrix.node }}
-#       - name: Install Yarn
-#         run: npm install yarn@latest -g
-#       - name: Install Firebase Tools
-#         run: npm install firebase-tools -g
-#       - name: Install dependencies
-#         run: yarn
-#       - name: Run build
-#         env: 
-#           VUE_APP_API: ${{ secrets.VUE_APP_STAGING_API }}
-#           VUE_APP_CMS_URL: ${{ secrets.VUE_APP_STAGING_CMS_URL }}
-#           VUE_APP_ENV: ${{ secrets.VUE_APP_STAGING_ENV }}
-#           VUE_APP_IPSTACK_API: ${{ secrets.VUE_APP_STAGING_IPSTACK_API }}
-#           VUE_APP_IPSTACK_API_KEY: ${{ secrets.VUE_APP_STAGING_IPSTACK_API_KEY }}
-#           VUE_APP_STRIPE_PK: ${{ secrets.VUE_APP_STAGING_STRIPE_PK }}
-#           GA_ID: ${{ secrets.GA_STAGING_ID }}
-#         run: yarn generate
-#       - name: Run deploy
-#         env: 
-#           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
-#         run: |
-#           firebase use mc-v4-stg
-#           firebase target:clear hosting staging
-#           firebase target:apply hosting staging staging-web-main
-#           yarn deploy:stg
+jobs:
+  deploy_to_live:
+    name: Deploy staging hosting
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [10]
+    steps: 
+      - uses: actions/checkout@master
+      - uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node }}
+      - name: Install Yarn
+        run: npm install yarn@latest -g
+      - name: Install Firebase Tools
+        run: npm install firebase-tools -g
+      - name: Install dependencies
+        run: yarn
+      - name: Run build
+        env: 
+          ENV: ${{ secrets.STAGING_ENV }}
+          API_URL: ${{ secrets.STAGING_API_URL }}
+          SIGNIN_URL: ${{ secrets.STAGING_SIGNIN_URL }}
+          CMS_URL: ${{ secrets.STAGING_CMS_URL }}
+          IPSTACK_API: ${{ secrets.STAGING_IPSTACK_API }}
+          IPSTACK_API_KEY: ${{ secrets.STAGING_IPSTACK_API_KEY }}
+          STRIPE_PK: ${{ secrets.STAGING_STRIPE_PK }}
+          STRIPE_CHECKOUT_SUCCESS_URL: ${{ secrets.STAGING_STRIPE_CHECKOUT_SUCCESS_URL }}
+          STRIPE_CHECKOUT_CANCEL_URL: ${{ secrets.STAGING_STRIPE_CHECKOUT_CANCEL_URL }}
+          GA_ID: ${{ secrets.STAGING_GA_ID }}
+        run: yarn generate
+      - name: Run deploy
+        env: 
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+        run: |
+          firebase use mc-v4-stg
+          firebase target:clear hosting staging
+          firebase target:apply hosting staging staging-web-main
+          yarn deploy:stg

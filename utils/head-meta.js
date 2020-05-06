@@ -14,6 +14,21 @@ export default ({ title, description, socialBanner }) => {
         name: 'description',
         content: description,
       },
+      {
+        hid: 'og:title',
+        name: 'og:title',
+        content: title,
+      },
+      {
+        hid: 'og:site_name',
+        name: 'og:site_name',
+        content: SITE_NAME,
+      },
+      {
+        hid: 'og:description',
+        name: 'og:description',
+        content: description,
+      },
       // facebook meta
       {
         hid: 'locale',
@@ -51,6 +66,12 @@ export default ({ title, description, socialBanner }) => {
         content: socialBanner,
       },
       // twitter meta
+      // mobile meta
+      {
+        hid: 'apple-mobile-web-app-title',
+        name: 'apple-mobile-web-app-title',
+        content: title,
+      },
     ],
   };
 };

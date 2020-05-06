@@ -1,5 +1,5 @@
 <template lang="pug">
-  div
+  div.pt-10
     div(v-if="isMobile")
       v-container.pt-10
         h1.font-work-sans.font-30.pre-white-space.text-center.lh-title {{ title }}
@@ -11,8 +11,9 @@
           :slideImageExtension="imageExtension"
           :customSlidePath="customPath"
         )
-    div(v-else).hearts
+    div(v-else).hearts.pt-10
       features-diagram(
+        imageWidth="60%"
         :title="title"
         :description="description"
         :image="panelContent.image"
@@ -53,12 +54,12 @@ export default {
     title () {
       const title = CONTENT.title;
       return !this.$isMobile
-        ? parseTextWithNewLine(title, ['Produce'])
+        ? parseTextWithNewLine(title, ['data.', 'reports.'])
         : parseTextWithNewLine(title, ['organize', 'Produce', 'Make']);
     },
     description () {
       const description = CONTENT.description;
-      return parseTextWithNewLine(description, ['modules']);
+      return parseTextWithNewLine(description, ['EMR.', 'daily']);
     },
   },
   watch: {

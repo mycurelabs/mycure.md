@@ -5,13 +5,24 @@ module.exports = {
   /*
   ** Headers of the page
   */
+  env: {
+    ENV: process.env.ENV,
+    API_URL: process.env.API_URL,
+    SIGNIN_URL: process.env.SIGNIN_URL,
+    CMS_URL: process.env.CMS_URL,
+    IPSTACK_API: process.env.IPSTACK_API,
+    IPSTACK_API_KEY: process.env.IPSTACK_API_KEY,
+    STRIPE_PK: process.env.STRIPE_PK,
+    STRIPE_CHECKOUT_SUCCESS_URL: process.env.STRIPE_CHECKOUT_SUCCESS_URL,
+    STRIPE_CHECKOUT_CANCEL_URL: process.env.STRIPE_CHECKOUT_CANCEL_URL,
+    GA_ID: process.env.GA_ID,
+  },
   head: {
     titleTemplate: '%s',
-    title: process.env.npm_package_name || '',
+    title: 'MYCURE Advanced Complete Clinic Management System',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: process.env.npm_package_description || '' },
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },

@@ -78,8 +78,8 @@
 export default {
   data () {
     this.panelTitle = 'It can work offline too!';
-    this.panelContent = 'Work as if you have an in-house server, with the convenience of the cloud. Create your medical records locally using multiple devices even if the internet is down! Once back online, it instantly syncs your data into the cloud. Available in premium plans only.';
-    this.disclaimer = '*This is NOT included in the free MYCURE Guardian Package and requires on-premise server setup.';
+    this.panelContent = 'Work as if you have an in-house server, with the convenience of the cloud. Create your medical records locally using multiple devices even if the internet is down! Once back online, it instantly syncs your data into the cloud.';
+    this.disclaimer = '*Available in premium plans only. This is NOT included in the free MYCURE Heart Package and requires on-premise server setup.';
     this.panelImage = 'mycure-syncbase-animate-small';
     this.btnData = {
       id: 'home-syncbase-video-btn',

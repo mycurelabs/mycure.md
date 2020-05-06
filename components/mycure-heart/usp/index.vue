@@ -2,7 +2,6 @@
   div(:class="{'hearts': !$isMobile }").white
     usp-template(
       :uspTitle="uspTitle"
-      :uspMetaTitle="uspContents.metaTitle"
       :uspDescription="uspDescription"
       :btnRoute="uspContents.btnRoute"
       :btnId="uspContents.btnId"
@@ -12,7 +11,12 @@
       :customPath="uspContents.customPath"
       :title-mobile-size="29"
       @btnClick="getStarted"
+      slottedMetaTitle
     )
+      span(slot="pre-btn-content").pb-5.font-14.grey--text *This requires your own managed cloud and database server setup.
+      span(slot="meta-slot") MYCURE Heart&nbsp;
+        v-icon(color="error") mdi-heart
+        span : Fight COVID-19
 </template>
 
 <script>
@@ -24,7 +28,6 @@ export default {
   },
   data () {
     this.uspContents = {
-      metaTitle: 'MYCURE Heart: Fight COVID-19',
       title: 'Free EMR System for LGUs & NGOs',
       description: 'Securely manage  your community’s health data with an enterprise-grade Electronic Medical Records (EMR) System that runs on your own cloud server.',
       btnId: 'mycure-heart-usp-btn',
@@ -38,23 +41,20 @@ export default {
   computed: {
     uspTitle () {
       const title = this.uspContents.title;
-      return this.$isMobile
-        ? parseTextWithNewLine(title, ['System'])
-        : title;
+      return parseTextWithNewLine(title, ['System']);
     },
     uspDescription () {
       const description = this.uspContents.description;
       return this.$isMobile
         ? description
-        : parseTextWithNewLine(description, ['Electronic Medical']);
+        : parseTextWithNewLine(description, ['grade']);
     },
   },
   methods: {
     getStarted () {
-      this.$nuxt.$router.push({
-        name: 'index',
-        params: { scrollHealthSuites: true },
-      });
+      if (process.browser) {
+        window.open('https://forms.gle/y4qpv7ajERaGE5Lr7', '_blank');
+      }
     },
   },
 };
