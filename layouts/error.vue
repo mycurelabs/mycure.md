@@ -8,11 +8,15 @@
               img(:width="$isMobile ? '90%' : 'auto'" src="~/assets/images/mycure-error-404-image.png" alt="Error 404")
             br
             v-row(justify="center").text-center
-              v-col
+              v-col(v-if="error.message === 'doctor-not-found'")
+                h2 Doctor who?
+                p.pb-2.font-16 The doctor with username '{{$route.params.id}}' is not yet using MYCURE.
+              v-col(v-else)
                 strong.pb-2.font-18 Oh snap!
-                p.pb-2.font-16 The page you’re looking for can’t be found.
+                h2 The page you’re looking for can’t be found.
+              v-col(cols="12")
                 nuxt-link(:to="{ name: 'index' }" title="MYCURE | Clinic Management System | Cloud EMR Philippines")
-                  p.font-16 Back to Home >
+                  p.font-16 Back to Home
     div(v-else).my-10
       v-container(fluid align="start")
         v-row(align="center")
