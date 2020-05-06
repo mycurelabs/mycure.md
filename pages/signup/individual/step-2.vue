@@ -218,6 +218,7 @@ export default {
           code: this.otp,
         };
         await verifyMobileNo(payload);
+        this.$router.replace({ query: { success: true } });
         this.successDialog = true;
       } catch (e) {
         this.verificationError = true;

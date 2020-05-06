@@ -5,12 +5,15 @@
     )
       v-row(align="center")
         v-col(cols="12").text-center
-          strong(v-if="uspMetaTitle" :class="[getMetaFontSize]").text-center.primary--text {{uspMetaTitle}}
-          template(v-if="uspMetaTitle && isMobile")
+          strong(v-if="uspMetaTitle || slottedMetaTitle" :class="[getMetaFontSize]").text-center.primary--text
+            template(v-if="slottedMetaTitle")
+              slot(name="meta-slot")
+            span(v-else) {{uspMetaTitle}}
           h1(:class="titleClasses" :style="this.isMobile ? fontStyle : {}").text-center.uspTitle
             | {{uspTitle}}
           p(:class="{'pre-white-space': !isMobile}").text-center.uspDescription.pt-3.font-s {{uspDescription}}
-          div.pt-1
+          slot(name="pre-btn-content")
+          div.pt-3
             v-btn(
               color="accent"
               :id="btnId"
@@ -23,7 +26,7 @@
       div.usp-image-container.text-center.justify-center
         img(
           v-show="isImageLoaded"
-          :src="require(`~/assets/images/${customPath}${coverImg}${isMobile ? '-mobile' : ''}.png`)"
+          :src="require(`~/assets/images/${customPath}${coverImg}${isMobile ? '-mobile' : ''}${coverImgExtension}`)"
           :alt="coverImg"
           :width="coverImgWidth"
           @load="loadedImage"
@@ -42,6 +45,10 @@ export default {
     uspMetaTitle: {
       type: String,
       default: '',
+    },
+    slottedMetaTitle: {
+      type: Boolean,
+      default: false,
     },
     titleMobileSize: {
       type: Number,
@@ -70,6 +77,10 @@ export default {
     coverImg: {
       type: String,
       default: 'mycure-homepage-usp-cover',
+    },
+    coverImgExtension: {
+      type: String,
+      default: '.png',
     },
     coverImgWidth: {
       type: String,
@@ -184,7 +195,7 @@ export default {
 
 .outer-image-container {
   margin-bottom: -63.5px;
-  padding-top: 4vh;
+  padding-top: 6vh;
 }
 .offset-container {
   height: 15vh;

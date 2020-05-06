@@ -43,10 +43,22 @@ export default {
       { name: 'Doctors Clinics', route: 'doctors-clinics' },
       { name: 'Specialized Clinics', route: 'specialized-clinics' },
       { name: 'Multispecialty Clinics', route: 'multispecialty-clinics' },
-      { name: 'Hippocrates by MYCURE', route: 'hippocrates' },
+      // - TODO: Temporarily hide
+      // { name: 'Hippocrates by MYCURE', route: 'hippocrates' },
     ];
     this.toolbarLinks = [
-      { name: 'Features', route: 'features' },
+      {
+        name: 'Features',
+        id: 'features-nav-btn',
+        route: 'features',
+        text: true,
+      },
+      {
+        name: 'Fight COVID-19: Free EMR',
+        id: 'mycure-heart-nav-btn',
+        route: 'fight-covid-19',
+        color: '#C2F3FF',
+      },
     ];
     return {
       loginURL: 'signin',
@@ -96,6 +108,10 @@ export default {
           name: 'index',
           params: { scrollHealthSuites: true },
         });
+      } else if (link === 'fight-covid-19-get-started-btn') {
+        if (process.browser) {
+          window.open('https://forms.gle/y4qpv7ajERaGE5Lr7', '_blank');
+        }
       }
       this.$ga.event({
         eventCategory: 'button',

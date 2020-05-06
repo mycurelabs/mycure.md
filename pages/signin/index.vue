@@ -139,7 +139,7 @@ export default {
   },
   methods: {
     init () {
-      this.target = this.$nuxt.$route.query.target || process.env.VUE_APP_CMS_URL;
+      this.target = this.$nuxt.$route.query.target || process.env.CMS_URL;
     },
     async submit () {
       try {

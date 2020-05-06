@@ -14,6 +14,35 @@ function handleError (e) {
   }
 }
 
+// NOTE: Do not remove yet
+// async function resendVerificationEmail (opts) {
+//   try {
+//     const payload = {
+//       email: opts.email,
+//       password: opts.password,
+//     };
+//     const { data } = await axios({
+//       method: 'post',
+//       url: `${process.env.API_URL}/authentication`,
+//       data: payload,
+//     });
+//     const accessToken = data.accessToken;
+//     await axios({
+//       method: 'post',
+//       url: `${process.env.API_URL}/authentication`,
+//       headers: {
+//         Authorization: `Bearer ${accessToken}`,
+//       },
+//       data: {
+//         action: 'sendVerificationEmail',
+//       },
+//     });
+//   } catch (e) {
+//     console.error(e);
+//     throw handleError(e);
+//   }
+// }
+
 export const signin = async (opts) => {
   try {
     const payload = {
@@ -23,7 +52,7 @@ export const signin = async (opts) => {
     if (opts.otp) { payload.totpToken = opts.otp; }
     const { data } = await axios({
       method: 'post',
-      url: `${process.env.VUE_APP_API}/authentication`,
+      url: `${process.env.API_URL}/authentication`,
       data: payload,
     });
     return data;
@@ -41,7 +70,7 @@ export const forgotPassword = async (opts) => {
     };
     const { data } = await axios({
       method: 'post',
-      url: `${process.env.VUE_APP_API}/authentication`,
+      url: `${process.env.API_URL}/authentication`,
       data: payload,
     });
     return data;
@@ -56,7 +85,7 @@ export const sendMultiSpecialtyInquiry = async (opts) => {
     const payload = opts;
     const { data } = await axios({
       method: 'post',
-      url: `${process.env.VUE_APP_API}/mailer`,
+      url: `${process.env.API_URL}/mailer`,
       data: payload,
     });
     return data;
@@ -78,7 +107,7 @@ export const getCountry = async () => {
     ];
     const { data } = await axios({
       method: 'get',
-      url: `${process.env.VUE_APP_IPSTACK_API}/check?access_key=${process.env.VUE_APP_IPSTACK_API_KEY}&fields=${fields.join(',')}`,
+      url: `${process.env.IPSTACK_API}/check?access_key=${process.env.IPSTACK_API_KEY}&fields=${fields.join(',')}`,
     });
     return data;
   } catch (e) {
@@ -110,7 +139,7 @@ export const getMycureCountries = async (opts) => {
     const { limit, skip } = opts;
     const { data } = await axios({
       method: 'get',
-      url: `${process.env.VUE_APP_API}/fixtures?type=country&$limit=${limit}&$skip=${skip}`,
+      url: `${process.env.API_URL}/fixtures?type=country&$limit=${limit}&$skip=${skip}`,
     });
     return data.data;
   } catch (e) {
@@ -123,7 +152,7 @@ export const signupIndividual = async (opts) => {
   try {
     const payload = {
       email: opts.email,
-      mobileNo: opts.mobileNo,
+      mobileNo: `+${opts.countryCallingCode}${opts.mobileNo}`,
       password: opts.password,
       personalDetails: {
         name: {
@@ -131,7 +160,7 @@ export const signupIndividual = async (opts) => {
           lastName: opts.lastName,
         },
         doc_PRCLicenseNo: opts.doc_PRCLicenseNo,
-        mobileNo: opts.mobileNo,
+        mobileNo: `+${opts.countryCallingCode}${opts.mobileNo}`,
       },
       organization: {
         type: 'personal-clinic',
@@ -144,9 +173,10 @@ export const signupIndividual = async (opts) => {
     if (opts.otp) { payload.totpToken = opts.otp; }
     const { data } = await axios({
       method: 'post',
-      url: `${process.env.VUE_APP_API}/accounts`,
+      url: `${process.env.API_URL}/accounts`,
       data: payload,
     });
+    // await resendVerificationEmail({ email: opts.email, password: opts.password });
     return data;
   } catch (e) {
     console.error(e);
@@ -159,7 +189,7 @@ export const signupSpecialized = async (opts) => {
     const payload = {
       skipMobileNoVerification: true, // only for specialized signup
       email: opts.email,
-      mobileNo: opts.mobileNo,
+      mobileNo: `+${opts.countryCallingCode}${opts.mobileNo}`,
       password: opts.password,
       personalDetails: {
         name: {
@@ -167,7 +197,7 @@ export const signupSpecialized = async (opts) => {
           lastName: opts.lastName,
         },
         doc_PRCLicenseNo: opts.doc_PRCLicenseNo,
-        mobileNo: opts.mobileNo,
+        mobileNo: `+${opts.countryCallingCode}${opts.mobileNo}`,
       },
       organization: {
         type: 'facility',
@@ -176,15 +206,20 @@ export const signupSpecialized = async (opts) => {
           roles: ['doctor'],
         },
         name: `${opts.firstName}'s Clinic`,
-        subscription: opts.subscription,
+        subscription: {
+          ...opts.subscription,
+          stripeCheckoutSuccessURL: process.env.STRIPE_CHECKOUT_SUCCESS_URL,
+          stripeCheckoutCancelURL: process.env.STRIPE_CHECKOUT_CANCEL_URL,
+        },
       },
     };
     if (opts.otp) { payload.totpToken = opts.otp; }
     const { data } = await axios({
       method: 'post',
-      url: `${process.env.VUE_APP_API}/accounts`,
+      url: `${process.env.API_URL}/accounts`,
       data: payload,
     });
+    // await resendVerificationEmail({ email: opts.email, password: opts.password });
     return data;
   } catch (e) {
     console.error(e);
@@ -203,7 +238,7 @@ export const verifyMobileNo = async (opts) => {
     };
     const { data } = await axios({
       method: 'post',
-      url: `${process.env.VUE_APP_API}/authentication`,
+      url: `${process.env.API_URL}/authentication`,
       data: payload,
     });
     return data;
@@ -220,7 +255,7 @@ export const resendVerificationCode = async (opts) => {
     };
     const { data } = await axios({
       method: 'post',
-      url: `${process.env.VUE_APP_API}/authentication`,
+      url: `${process.env.API_URL}/authentication`,
       headers: {
         Authorization: 'Bearer ' + opts.token,
       },
