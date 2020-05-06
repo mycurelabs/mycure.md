@@ -46,9 +46,17 @@ function handleError (e) {
 export const getDoctorWebsite = async (opts) => {
   const { data } = await axios({
     method: 'get',
-    url: `${process.env.VUE_APP_API}/personal-details?doc_website=${opts.username}`,
+    url: `${process.env.API_URL}/personal-details?doc_website=${opts.username}`,
   });
   return data.data[0];
+};
+
+export const getDoctorClinics = async (opts) => {
+  const { data } = await axios({
+    method: 'GET',
+    url: `${process.env.API_URL}/organizations?createdBy=${opts.uid}`,
+  });
+  return data.data;
 };
 
 export const signin = async (opts) => {
