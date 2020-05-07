@@ -3,7 +3,7 @@
     v-col.shrink
       v-avatar(tile size="150")
         img(
-          src="../../assets/images/mycure_home_web_complete_for_clinics_1.png"
+          :src="clinicPicURL"
           style="border-radius: 5px"
         )
     v-col.grow
@@ -50,6 +50,11 @@ export default {
       clinicSchedules: [],
       clinicSchedulesExpanded: null,
     };
+  },
+  computed: {
+    clinicPicURL () {
+      return this.clinic?.picURL || require('~/assets/images/doctor-website/doctor-website-profile-clinic.png');
+    },
   },
   watch: {
     clinicSchedulesExpanded (val) {
