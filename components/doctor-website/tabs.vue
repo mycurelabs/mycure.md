@@ -24,7 +24,8 @@
                 i(v-else) No data
               v-col(cols="12" md="5")
                 h3 Praciting Since
-                span {{practicingSince | morph-date-format('YYYY')}}
+                i(v-if="!practicingSince") No data
+                span(v-else) {{practicingSince | morph-date-format('YYYY')}}
                 br
                 h3 Education
                 i(v-if="education.length === 0") No data
