@@ -10,30 +10,30 @@
           )
             div
               network(network="facebook").social-image
-                img(src="../../assets/images/social/facebook.png").pa-3
+                img(src="../../assets/images/doctor-website/facebook.png").pa-3
               network(network="twitter").social-image
-                img(src="../../assets/images/social/twitter.png").pa-3
+                img(src="../../assets/images/doctor-website/twitter.png").pa-3
               network(network="linkedin").social-image
-                img(src="../../assets/images/social/linkedin.png").pa-3
+                img(src="../../assets/images/doctor-website/linkedin.png").pa-3
               network(network="email").social-image
-                img(src="../../assets/images/social/email.png").pa-3
+                img(src="../../assets/images/doctor-website/email.png").pa-3
       v-col(cols="12" sm="12" md="5").social-image
-        v-card(flat hover).grey.lighten-3
+        v-card(flat hover).grey.lighten-4
           v-card-text
             media
               template(slot="media-image")
-                img(width="150" src="../../assets/images/mycure-homepage-holistic.png")
+                img(width="100" src="../../assets/images/doctor-website/mycure-doctor-website-icon-book.png")
               template(slot="media-content")
                 h2 Don't like waiting?
                 div(style="height: 50px")
                   p Book an appointment to Dr. {{name.firstName}} and avoid the long line in the waiting area.
                 book-appointment-btn
       v-col(cols="12" sm="12" md="5")
-        v-card(flat hover).grey.lighten-3
+        v-card(flat hover).grey.lighten-4
           v-card-text
             media
               template(slot="media-image")
-                img(width="150" src="../../assets/images/mycure-homepage-secure.png")
+                img(width="100" src="../../assets/images/doctor-website/mycure-doctor-website-icon-online-consult.png")
               template(slot="media-content")
                 h2 Talk to Dr. {{name.firstName}}
                 div(style="height: 50px")
