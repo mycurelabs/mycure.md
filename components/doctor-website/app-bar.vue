@@ -1,10 +1,11 @@
 <template lang="pug">
   v-app-bar(flat color="white")
-    img(
-      height="45"
-      src="../../assets/images/mycure-header-logo.png"
-      to="/"
-    )
+    nuxt-link(:to="{ name: 'index' }" title="MYCURE | Clinic Management System | Cloud EMR Philippines" id="toolbar-mycure-logo")
+      img(
+        height="45"
+        src="../../assets/images/mycure-header-logo.png"
+        to="/"
+      )
     v-spacer
     book-appointment-btn.mr-2
     online-consult-btn
