@@ -51,9 +51,6 @@ export default {
       clinicSchedulesExpanded: null,
     };
   },
-  created () {
-    this.clinicSchedulesExpanded = false;
-  },
   watch: {
     clinicSchedulesExpanded (val) {
       if (!val && this.clinic?.mf_schedule.length >= 3) { // eslint-disable-line
@@ -62,6 +59,9 @@ export default {
       }
       this.clinicSchedules = this.clinic?.mf_schedule || []; // eslint-disable-line
     },
+  },
+  created () {
+    this.clinicSchedulesExpanded = false;
   },
   methods: {
     visitWebsite (url) {
