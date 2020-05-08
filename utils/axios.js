@@ -283,3 +283,24 @@ export const resendVerificationCode = async (opts) => {
     throw handleError(e);
   }
 };
+
+export const recordWebsiteVisit = async (opts) => {
+  try {
+    const payload = {
+      account: opts.uid,
+      type: 'doctor-website-visit',
+      label: 'Website Visit',
+      campaign: 'Website Visit',
+      source: window.location.href,
+    };
+    const { data } = await axios({
+      method: 'post',
+      url: `${process.env.API_URL}/system-counters`,
+      data: payload,
+    });
+    return data;
+  } catch (e) {
+    console.error(e);
+    throw handleError(e);
+  }
+};
