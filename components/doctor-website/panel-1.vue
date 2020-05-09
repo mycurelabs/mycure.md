@@ -5,7 +5,7 @@
         v-avatar(size="150")
           img(:src="picUrl")
       v-col(cols="12").text-center
-        h1 Dr. {{fullName}}#[span(v-if="professionsMapped") {{','}} {{professionsMapped}}]
+        h1 {{fullName}}
         span {{specialtiesMapped}} #[span(v-if="practicingSince") | {{yearsOfExperience}} Years Expecience ]
       v-col(cols="12" md="10").text-center
         p {{bio}}
