@@ -3,7 +3,7 @@
     app-bar
     panel-1(
       :pic-url="picURL"
-      :full-name="fullName"
+      :full-name="fullNameWithSuffixes"
       :bio="bio"
       :specialties="specialties"
       :professions="professions"
@@ -33,8 +33,9 @@
 
 <script>
 import _ from 'lodash';
-import { getDoctorWebsite, getDoctorClinics } from '../../utils/axios';
-import { formatName } from '../../utils/formats';
+import { getDoctorWebsite, getDoctorClinics, recordWebsiteVisit } from '~/utils/axios';
+import { formatName } from '~/utils/formats';
+import headMeta from '~/utils/head-meta';
 import AppBar from '~/components/doctor-website/app-bar';
 import Panel1 from '~/components/doctor-website/panel-1';
 import Services from '~/components/doctor-website/services';
@@ -80,7 +81,15 @@ export default {
       return this.doctor.picURL || require('~/assets/images/doctor-website/doctor-website-profile-male.png');
     },
     fullName () {
-      return formatName(this.doctor.name || {}, 'firstName middleInitial lastName');
+      return `Dr. ${formatName(this.doctor.name || {}, 'firstName middleInitial lastName generationalSuffix')}`;
+    },
+    fullNameWithSuffixes () {
+      return [
+        this.fullName,
+        ...this.professions,
+        this.doctor.name.academicSuffix,
+        this.doctor.name.professionalSuffix,
+      ].filter(Boolean).join(', ');
     },
     bio () {
       return this.doctor.doc_bio || ''; // eslint-disable-line
@@ -111,10 +120,15 @@ export default {
       return this.doctor?.educations;
     },
   },
+  async mounted () {
+    await recordWebsiteVisit({ uid: this.doctor.id });
+  },
   head () {
-    return {
-      title: `Dr. ${this.fullName} | MYCURE Doctors`,
-    };
+    return headMeta({
+      title: `${this.fullNameWithSuffixes}`,
+      description: `${this.bio || 'Visit my professional website and schedule an appointment with me today.'}`,
+      socialBanner: this.picURL,
+    });
   },
 };
 </script>
