@@ -1,9 +1,9 @@
 <template lang="pug">
   v-container
     v-row(wrap justify="center")
-      v-col(cols="12" sm="12").text-center
+      v-col(cols="12" sm="12").pa-0.text-center
         span Love this doctor? Let your friends know by sharing this website!
-        br
+      v-col(cols="12" sm="12").pt-0.text-center
         social-sharing(
           :url="doctorLink"
           :title="windowTitle"
