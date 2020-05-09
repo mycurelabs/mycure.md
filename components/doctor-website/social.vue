@@ -3,20 +3,21 @@
     v-row(wrap justify="center")
       v-col(cols="12" sm="12").text-center
         span Love this doctor? Let your friends know by sharing this website!
-          social-sharing(
-            :url="doctorLink"
-            :title="windowTitle"
-            inline-template
-          )
-            div
-              network(network="facebook").social-image
-                img(src="../../assets/images/doctor-website/facebook.png").pa-3
-              network(network="twitter").social-image
-                img(src="../../assets/images/doctor-website/twitter.png").pa-3
-              network(network="linkedin").social-image
-                img(src="../../assets/images/doctor-website/linkedin.png").pa-3
-              network(network="email").social-image
-                img(src="../../assets/images/doctor-website/email.png").pa-3
+        br
+        social-sharing(
+          :url="doctorLink"
+          :title="windowTitle"
+          inline-template
+        )
+          div
+            network(network="facebook").social-image
+              img(src="../../assets/images/doctor-website/facebook.png").pa-3
+            network(network="twitter").social-image
+              img(src="../../assets/images/doctor-website/twitter.png").pa-3
+            network(network="linkedin").social-image
+              img(src="../../assets/images/doctor-website/linkedin.png").pa-3
+            network(network="email").social-image
+              img(src="../../assets/images/doctor-website/email.png").pa-3
       v-col(cols="12" sm="12" md="5").social-image
         v-card(flat hover).grey.lighten-4
           v-card-text
