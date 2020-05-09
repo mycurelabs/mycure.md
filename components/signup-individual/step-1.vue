@@ -402,11 +402,15 @@ export default {
     },
     goToTerms () {
       const routeData = this.$nuxt.$router.resolve({ name: 'terms' });
-      window.open(routeData.href, '_blank');
+      if (process.client) {
+        window.open(routeData.href, '_blank');
+      }
     },
     goToPrivacy () {
       const routeData = this.$nuxt.$router.resolve({ name: 'privacy-policy' });
-      window.open(routeData.href, '_blank');
+      if (process.client) {
+        window.open(routeData.href, '_blank');
+      }
     },
     validateForm () {
       const valid = this.$refs.formRef.validate();
