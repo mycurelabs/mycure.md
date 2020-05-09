@@ -4,6 +4,7 @@ Allow: /
 Allow: /doctors-clinics
 Allow: /specialized-clinics
 Allow: /multispecialty-clinics
+Allow: /fight-covid-19
 Allow: /features
 Allow: /our-story
 Allow: /privacy-policy
