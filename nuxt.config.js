@@ -132,4 +132,11 @@ module.exports = {
     extend (config, ctx) {
     },
   },
+  generate: {
+    routes: [
+      '/doctors/jeanrivera',
+      '/doctors/william',
+      '/doctors/paulette',
+    ]
+  },
 };
