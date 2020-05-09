@@ -81,7 +81,7 @@ export default {
       return this.doctor.picURL || require('~/assets/images/doctor-website/doctor-website-profile-male.png');
     },
     fullName () {
-      return `Dr. ${formatName(this.doctor.name || {}, 'firstName middleInitial lastName generationalSuffix')}`;
+      return formatName(this.doctor.name || {}, 'firstName middleInitial lastName generationalSuffix');
     },
     fullNameWithSuffixes () {
       return [
@@ -104,17 +104,7 @@ export default {
       return this.doctor.doc_practicingSince; // eslint-disable-line
     },
     services () {
-      return [
-        'Newborn Jaundice',
-        'Adolescent Medicine',
-        'Chickenpox Treatment',
-        'Measles Treatment',
-        'Vaccination / Immunization',
-        'Congenital Disorders',
-        'Evaluation / Treatment',
-        'Limping Child',
-        'Bronchial Asthma Treatment',
-      ];
+      return this.doctor.doc_services; // eslint-disable-line
     },
     education () {
       return this.doctor?.educations;
