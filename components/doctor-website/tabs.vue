@@ -15,23 +15,23 @@
           v-tab-item(value="professional-info")
             v-row
               v-col(cols="12" md="5")
-                h3 Specialties
-                span(v-if="specialtiesMapped") {{specialtiesMapped}}
-                i(v-else) No data
-                br
-                h3 Professions
-                span(v-if="professionsMapped") {{professionsMapped}}
-                i(v-else) No data
+                div.mb-5
+                  h3 Specialization
+                  span(v-if="specialtiesMapped") {{specialtiesMapped}}
+                  i(v-else) No data
+                div
+                  h3 Praciting Since
+                  i(v-if="!practicingSince") No data
+                  span(v-else) {{practicingSince | morph-date-format('YYYY')}}
               v-col(cols="12" md="5")
-                h3 Praciting Since
-                i(v-if="!practicingSince") No data
-                span(v-else) {{practicingSince | morph-date-format('YYYY')}}
-                br
-                h3 Education
-                i(v-if="education.length === 0") No data
-                template(v-else v-for="educ in education")
-                  span Studied {{educ.degree}} at {{educ.school}} from {{educ.from}} to {{educ.to}}
-                  br
+                div.mb-5
+                  h3 Educational Background
+                  i(v-if="education.length === 0") No data
+                  template(v-else v-for="educ in education")
+                    span {{educ.degree}} - {{educ.school}}
+                    br
+                    span {{educ.from}} - {{educ.to}}
+                    br
 </template>
 
 <script>
