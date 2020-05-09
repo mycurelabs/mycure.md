@@ -2,7 +2,7 @@
   v-container
     v-row(wrap justify="center")
       v-col(cols="12" sm="12").text-center
-        span Love this doctor? Share their website.
+        span Love this doctor? Let your friends know by sharing this website!
           social-sharing(
             :url="doctorLink"
             :title="windowTitle"
@@ -26,7 +26,7 @@
               template(slot="media-content")
                 h2 Don't like waiting?
                 div(style="height: 50px")
-                  p Book an appointment to Dr. {{name.firstName}} and avoid the long line in the waiting area.
+                  p Book an appointment to Dr. Save time by booking your next visit with Dr. {{name.firstName}}.
                 book-appointment-btn
       v-col(cols="12" sm="12" md="5")
         v-card(flat hover).grey.lighten-4
@@ -35,12 +35,12 @@
               template(slot="media-image")
                 img(width="100" src="../../assets/images/doctor-website/mycure-doctor-website-icon-online-consult.png")
               template(slot="media-content")
-                h2 Talk to Dr. {{name.firstName}}
+                h2 Talk with Doc anywhere.
                 div(style="height: 50px")
-                  p Dr. {{name.firstName}} is now available for consult online.
+                  p Dr. {{name.firstName}} is now available for online consults.
                 online-consult-btn
       v-col(cols="12" sm="12").mb-10.text-center
-        span Want to view more doctors? #[a.font-weight-bold Check MYCURE Directory].
+        span View more doctors and clinics in the #[a.font-weight-bold MYCURE Directory].
 </template>
 
 <script>
