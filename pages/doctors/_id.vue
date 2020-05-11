@@ -20,7 +20,9 @@
       :practicing-since="practicingSince"
       :education="education"
     )
-    social
+    social(
+      :name="name"
+    )
     v-footer(
       height="auto"
       color="primary"
@@ -79,6 +81,9 @@ export default {
         return this.doctor.picURL || require('~/assets/images/doctor-website/doctor-website-profile-female.png');
       }
       return this.doctor.picURL || require('~/assets/images/doctor-website/doctor-website-profile-male.png');
+    },
+    name () {
+      return this.doctor.name;
     },
     fullName () {
       return formatName(this.doctor.name || {}, 'firstName middleInitial lastName generationalSuffix');
