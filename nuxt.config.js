@@ -134,6 +134,7 @@ module.exports = {
   },
   generate: {
     routes: [
+      '/doctors/jofftiquez',
       '/doctors/jeanrivera',
       '/doctors/william',
       '/doctors/paulette',
