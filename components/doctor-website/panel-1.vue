@@ -6,7 +6,7 @@
           img(:src="picUrl")
       v-col(cols="12").text-center
         h1 {{fullName}}
-        span {{specialtiesMapped}} #[span(v-if="practicingSince") | {{yearsOfExperience}} Years Expecience ]
+        span {{specialtiesMapped}} #[span(v-if="practicingSince") | {{yearsOfExperience}} Years Experience ]
       v-col(cols="12" md="10").text-center
         p {{bio}}
     v-row(justify="center")
