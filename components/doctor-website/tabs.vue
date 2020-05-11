@@ -20,7 +20,7 @@
                   span(v-if="specialtiesMapped") {{specialtiesMapped}}
                   i(v-else) No data
                 div
-                  h3 Praciting Since
+                  h3 Practicing Since
                   i(v-if="!practicingSince") No data
                   span(v-else) {{practicingSince | morph-date-format('YYYY')}}
               v-col(cols="12" md="5")
