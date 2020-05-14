@@ -194,7 +194,7 @@ export default {
 }
 
 .outer-image-container {
-  margin-bottom: -63.5px;
+  margin-bottom: -58px;
   padding-top: 6vh;
 }
 .offset-container {
@@ -216,6 +216,11 @@ export default {
 @media screen and (min-height: 1080px) {
   .whole-page {
     height: 30vh !important;
+  }
+}
+@media screen and (min-height: 650px) {
+  .outer-image-container {
+    margin-bottom: -63.5px !important;
   }
 }
 </style>
