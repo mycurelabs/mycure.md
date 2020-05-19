@@ -20,6 +20,7 @@ module.exports = {
     'space-before-blocks': [2, 'always'],
     'comma-dangle': [2, 'always-multiline'],
     'no-console': 'off',
-    'no-multi-str': 'off'
+    'no-multi-str': 'off',
+    'curly': ['error', 'multi-line']
   }
 }
