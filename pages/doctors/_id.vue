@@ -116,6 +116,9 @@ export default {
     },
   },
   async mounted () {
+    if (this.$route.query.audience === 'self') {
+      return;
+    };
     await recordWebsiteVisit({ uid: this.doctor.id });
   },
   head () {
