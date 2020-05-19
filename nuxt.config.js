@@ -138,6 +138,6 @@ module.exports = {
       '/doctors/jeanrivera',
       '/doctors/william',
       '/doctors/paulette',
-    ]
+    ],
   },
 };
