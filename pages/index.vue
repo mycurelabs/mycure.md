@@ -20,6 +20,7 @@
     //- 7th panel
     testimonial
     //- final panel
+    cta
 </template>
 
 <script>
@@ -38,15 +39,9 @@ export default {
     Privacy: () => import('~/components/home/privacy'),
     Apis: () => import('~/components/home/apis'),
     Testimonial: () => import('~/components/home/testimonial'),
-    McCtaBottom: () => import('~/components/commons/mc-cta-bottom'),
+    Cta: () => import('~/components/home/cta'),
   },
   data () {
-    this.ctaContent = {
-      text: 'Find the best solution for your health facility',
-      btnText: 'Get Started',
-      image: 'mycure-web-footer',
-      mobileImage: 'mycure-web-footer-mobile',
-    };
     this.storyflowItems = [
       {
         title: 'Secure Electronic Health Records (EHR)',
@@ -65,9 +60,7 @@ export default {
       },
     ];
     this.introText = 'The best tech tool you\'ll need every step of the way';
-    return {
-      featuresVideoDialog: false,
-    };
+    return {};
   },
   computed: {
     storyflowIntroText () {
@@ -105,14 +98,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-hr {
-  border: 1px solid #2e9fdf;
-  margin: auto;
-  width: 10%;
-}
-.video-button {
-  letter-spacing: normal;
-}
-</style>
