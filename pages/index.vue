@@ -5,7 +5,7 @@
     //- 2nd panel
     health-suites#health-suites.mt-10
     //- 3rd panel
-    //- solutions
+    //- TODO: Insert Gerald's component here, then erase this comment
     //- 4th panel
     storyflow(
       :storyflow="storyflowItems"
@@ -20,7 +20,7 @@
     //- 7th panel
     testimonial
     //- final panel
-    cta
+    cta(@getStarted="getStarted")
 </template>
 
 <script>

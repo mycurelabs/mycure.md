@@ -1,38 +1,29 @@
 <template lang="pug">
   div.white
     generic-background-panel(
-      v-if="!isMobile"
       :background-image="backgroundImage"
       :background-image-configs="backgroundImageConfigs"
-      :class="{'mt-10': isMobile}"
     )
-      v-row(slot="content" align="center").row-content.mt-10
+      v-row(slot="content" align="center").row-content
         v-col(
           cols="12"
           md="5"
           offset-md="6"
           class="[{'web-content-margin': !isMobile}]"
-        ).mt-10
-          h1(:class="[centerText]").font-40.lh-title {{ uspTitle }}
-          p(:class="[centerText]").font-italic.font-18 {{ uspSubtitle }}
+        )
+          h1.font-40.lh-title {{ uspTitle }}
+          p.font-italic.font-18 {{ uspSubtitle }}
           v-btn(
-            v-if="!isMobile"
             color="accent"
             large
             @click="getStarted"
           ).text-none.font-weight-bold.font-18.mt-5 Get Started
-    //- template(v-if="isMobile")
-    //-   div.text-field-container.white
-    //-     v-text-field(
-    //-       v-model="email"
-    //-       outlined
-    //-       placeholder="myname@email.com"
-    //-     )
-    //-   v-btn(
-    //-     block
-    //-     color="accent"
-    //-     large
-    //-   ).text-none.font-weight-bold.font-18.mt-5 Get Started
+          img(
+            v-if="isMobile"
+            v-lazy="require(`~/assets/images/${backgroundImageMobile}`)"
+            alt="Home CTA"
+            width="100%"
+          ).pt-10
 </template>
 
 <script>
@@ -53,9 +44,6 @@ export default {
     };
   },
   computed: {
-    centerText () {
-      return { 'text-center': this.isMobile };
-    },
     backgroundImageConfigs () {
       return {
         width: '100%',
@@ -89,6 +77,6 @@ export default {
   margin-top: 80px;
 }
 .row-content {
-  height: 100vh;
+  min-height: 100vh;
 }
 </style>
