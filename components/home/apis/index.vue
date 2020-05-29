@@ -51,14 +51,8 @@ export default {
       'Customize the CMS as needed',
       'Complete documentation',
     ];
-    this.panelImage = 'mycure-web-banner-api';
-    this.btnData = {
-      id: 'home-syncbase-video-btn',
-      text: 'Watch How It Works',
-    };
+    this.panelImage = 'MYCURE-virtual-clinic-healthcare-practice-online-homepage-F-features-02-api';
     return {
-      videoDialog: false,
-      videoPlay: false,
       isMobile: true,
     };
   },
@@ -76,18 +70,6 @@ export default {
   },
   mounted () {
     this.isMobile = this.$isMobile;
-  },
-  methods: {
-    handleVideoBtn () {
-      this.$ga.event({
-        eventCategory: 'video',
-        eventAction: `play-${this.btnData.id}`,
-        eventLabel: this.btnData.id,
-      });
-      if (!this.$isMobile) {
-        this.videoDialog = true;
-      }
-    },
   },
 };
 </script>
