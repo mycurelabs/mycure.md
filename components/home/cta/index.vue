@@ -16,7 +16,7 @@
           v-btn(
             color="accent"
             large
-            @click="getStarted"
+            @click="onGetStarted"
           ).text-none.font-weight-bold.font-18.mt-5 Get Started
           img(
             v-if="isMobile"
@@ -62,7 +62,7 @@ export default {
     this.isMobile = this.$isMobile;
   },
   methods: {
-    getStarted () {
+    onGetStarted () {
       this.$emit('getStarted');
     },
   },

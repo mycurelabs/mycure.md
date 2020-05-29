@@ -21,7 +21,7 @@
             block
             color="accent"
             large
-            @click="getStarted"
+            @click="onGetStarted"
           ).text-none.font-weight-bold.font-18.mt-5 Get Started
     template(v-if="isMobile")
       div.text-field-container.white
@@ -87,8 +87,11 @@ export default {
     this.isMobile = this.$isMobile;
   },
   methods: {
-    getStarted () {
-      this.$emit('getStarted');
+    onGetStarted () {
+      if (!this.email) {
+        return;
+      }
+      this.$emit('getStarted', this.email);
     },
   },
 };
