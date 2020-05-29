@@ -1,6 +1,7 @@
 <template lang="pug">
   div(:class="[...mainContainerClasses]" :style="backgroundImageStyleConfig")
-    v-container
+    img(v-if="!isMobile" :src="imageSrc").source-image
+    v-container.content
       slot(name="content")
 </template>
 
@@ -18,13 +19,6 @@ export default {
     customPath: {
       type: String,
       default: '',
-    },
-    backgroundImageConfigs: {
-      type: Object,
-      default: () => ({
-        'background-size': 'cover',
-        'background-position': 'top',
-      }),
     },
     backgroundImageMobileConfigs: {
       type: Object,
@@ -47,19 +41,20 @@ export default {
         : defaultClasses;
     },
     backgroundImageStyleConfig () {
-      if (!this.backgroundImage && !this.isMobile) {
-        return {};
+      if (!this.isMobile) {
+        return;
       }
       if (!this.backgroundImageMobile && this.isMobile) {
         return {};
       }
-      const image = this.isMobile ? this.backgroundImageMobile : this.backgroundImage;
       const styleConfig = {
-        'background-image': `url(${require(`~/assets/images/${this.customPath}${image}`)})`,
-        ...this.isMobile && this.backgroundImageMobileConfigs,
-        ...!this.isMobile && this.backgroundImageConfigs,
+        'background-image': `url(${require(`~/assets/images/${this.customPath}${this.backgroundImageMobile}`)})`,
+        ...this.backgroundImageMobileConfigs,
       };
       return styleConfig;
+    },
+    imageSrc () {
+      return require(`~/assets/images/${this.backgroundImage}`);
     },
   },
   watch: {
@@ -76,6 +71,15 @@ export default {
 <style scoped>
 .main-container {
   width: 100vw;
-  min-height: 110vh !important;
+  min-height: 100vh;
+}
+.source-image {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.content {
+  position: relative;
 }
 </style>

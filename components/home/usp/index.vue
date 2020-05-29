@@ -3,7 +3,6 @@
     generic-background-panel(
       :background-image="backgroundImage"
       :background-image-mobile="backgroundImageMobile"
-      :background-image-configs="backgroundImageConfigs"
       :background-image-mobile-configs="backgroundImageMobileConfigs"
       :class="{'mt-10': isMobile}"
     )
@@ -59,12 +58,6 @@ export default {
   computed: {
     centerText () {
       return { 'text-center': this.isMobile };
-    },
-    backgroundImageConfigs () {
-      return {
-        'background-size': '120%',
-        'background-position': 'top',
-      };
     },
     backgroundImageMobileConfigs () {
       return {
