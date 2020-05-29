@@ -35,7 +35,11 @@
               :key="index"
               cols="4"
             ).text-center
-              img(v-lazy="require(`@/assets/images/${customPath}${highlight.image}`)" :alt="highlight.title").storyflowAssetHorizontal
+              img(
+                v-lazy="require(`@/assets/images/${customPath}${highlight.image}`)"
+                :alt="highlight.title"
+                :style="storyflowAssetHorizontal"
+              )
               br
               strong(
                 v-if="hasTitle"
@@ -118,6 +122,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    horizontalImageSize: {
+      type: String,
+      default: '65%',
+    },
     customPath: {
       type: String,
       default: '',
@@ -142,6 +150,13 @@ export default {
     return {
       isMobile: true,
     };
+  },
+  computed: {
+    storyflowAssetHorizontal () {
+      return {
+        width: this.horizontalImageSize,
+      };
+    },
   },
   watch: {
     $isMobile: {
@@ -182,9 +197,5 @@ export default {
 }
 .pb60 {
   padding-bottom: 60px;
-}
-.storyflowAssetHorizontal {
-  width: 65%;
-  font-family: 'Work Sans', 'Poppins', sans-serif !important;
 }
 </style>
