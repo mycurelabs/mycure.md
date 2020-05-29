@@ -1,5 +1,5 @@
 <template lang="pug">
-  div.gradient-grey
+  div.white
     client-only
       v-container(v-if="!isMobile" @mouseover="playCarousel = true")
         v-row(justify="center")

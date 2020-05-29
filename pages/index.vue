@@ -1,14 +1,11 @@
 <template lang="pug">
   div#top.white
-    //- hippocrates
-    //- TODO: Temporarily hide
-    //- hippocrates-usp
     //- 1st panel
     usp(@getStarted="getStarted")
     //- 2nd panel
-    health-suites#health-suites
+    health-suites#health-suites.mt-10
     //- 3rd panel
-    solutions
+    //- solutions
     //- 4th panel
     storyflow(
       :storyflow="storyflowItems"
@@ -40,9 +37,7 @@
                 allowfullscreen
               )
     //- 5th panel
-    vid
     //- 6th panel
-    syncbase
     hr
     //- 7th panel
     privacy
@@ -52,12 +47,6 @@
     //- 9th panel
     testimonial
     //- final panel
-    mc-cta-bottom(
-      parse-text
-      :parseIndicators="['for']"
-      :ctaContent="ctaContent"
-      @btnClick="getStarted"
-    )
 </template>
 
 <script>
