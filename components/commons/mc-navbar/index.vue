@@ -2,7 +2,7 @@
   fragment
     //- WEB
     //- MOBILE
-    div(v-if="isMobile").toolbarMobile
+    div(v-if="isMobile")
       toolbar-mobile(
         :shadow="shadow"
         :loginURL="loginURL"
@@ -128,9 +128,6 @@ export default {
   position: fixed;
   height: 30px;
   width: 100%;
-  z-index: 200;
-}
-.toolbarMobile {
   z-index: 200;
 }
 .cookie-prompt {

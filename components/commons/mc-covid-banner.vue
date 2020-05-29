@@ -1,53 +1,8 @@
 <template lang="pug">
-  div.main-container.blue.white--text
+  v-system-bar(app absolute flat height="40" color="#11346b")
     v-container
-      v-row(v-if="!isMobile").px-4
-        v-col(cols="11").pt-2.text-center
-          | {{ bannerText }}
-          u.font-weight-bold impacts of COVID.19
-      v-row(v-else).pl-3
-        v-col(cols="10").text-center
-          | {{ bannerText }}
-          u.font-weight-bold impacts of COVID.19
+      v-row(justify="center").text-center.white--text
+        v-col(cols="12")
+          | The world needs independent businesses. Learn about the actions we're taking to address the&nbsp;
+          u.font-weight-bold impact of COVID-19
 </template>
-
-<script>
-// components
-import CookieLaw from 'vue-cookie-law';
-export default {
-  components: {
-    CookieLaw,
-  },
-  data () {
-    this.bannerText = 'The world needs independent businesses. Learn about the actions we\'re taking to address the ';
-    return {
-      isMobile: true,
-    };
-  },
-  computed: {
-    position () {
-      return 'top';
-    },
-    bannerClasses () {
-      const webClasses = ['font-16', 'py-3'];
-      return this.isMobile
-        ? ['py-1']
-        : webClasses;
-    },
-  },
-  watch: {
-    $isMobile (val) {
-      this.isMobile = val;
-    },
-  },
-  mounted () {
-    this.isMobile = this.$isMobile;
-  },
-};
-</script>
-
-<style scoped>
-.main-container {
-  width: 100%
-}
-</style>
