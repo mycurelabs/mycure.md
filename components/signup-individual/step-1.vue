@@ -284,6 +284,9 @@ export default {
           const { location } = country;
           this.user.countryCallingCode = location ? location.calling_code : '63';
           this.user.countryFlag = location ? location.country_flag : 'https://assets.ipstack.com/flags/ph.svg';
+
+          // Check if an email was passed
+          this.user.email = this.$route.params.email || '';
         }
         // Load countries
         this.getCountries();

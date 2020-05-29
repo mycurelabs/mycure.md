@@ -34,6 +34,7 @@
         block
         color="accent"
         large
+        @click="onGetStarted"
       ).text-none.font-weight-bold.font-18.mt-5 Get Started
 </template>
 

@@ -1,7 +1,7 @@
 <template lang="pug">
   div#top.white
     //- 1st panel
-    usp(@getStarted="getStarted")
+    usp(@getStarted="goToSignupIndividual($event)")
     //- 2nd panel
     health-suites#health-suites.mt-10
     //- 3rd panel
@@ -77,6 +77,9 @@ export default {
   methods: {
     getStarted () {
       VueScrollTo.scrollTo('#health-suites', 500, { easing: 'ease' });
+    },
+    goToSignupIndividual (email) {
+      this.$router.push({ name: 'signup-individual', params: { email } });
     },
     handleWatchFeatures () {
       this.$ga.event({
