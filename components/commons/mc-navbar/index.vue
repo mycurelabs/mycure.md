@@ -1,5 +1,6 @@
 <template lang="pug">
   fragment
+    //- WEB
     //- MOBILE
     div(v-if="isMobile")
       toolbar-mobile(
@@ -10,7 +11,6 @@
         @toolbarLinkClick="handleToolbarLinkClick($event)"
         @logoClick="handleMycureLogo"
       )
-    //- WEB
     div(v-else).toolbarMain
       toolbar-web(
         :loginURL="loginURL"
@@ -21,7 +21,7 @@
         @toolbarLinkClick="handleToolbarLinkClick($event)"
         @logoClick="handleMycureLogo"
       )
-    mc-cookie-prompt(v-if="!cookieAccepted").cookie-prompt
+    mc-cookie-prompt.cookie-prompt
 </template>
 
 <script>
@@ -71,12 +71,6 @@ export default {
   computed: {
     isMd () {
       return this.wMD;
-    },
-    cookieAccepted () {
-      if (process.browser) {
-        return localStorage.getItem('cookie:accepted');
-      }
-      return false;
     },
   },
   watch: {
@@ -132,6 +126,7 @@ export default {
 <style scoped>
 .toolbarMain {
   position: fixed;
+  height: 30px;
   width: 100%;
   z-index: 200;
 }

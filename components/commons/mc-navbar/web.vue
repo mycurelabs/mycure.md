@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-app-bar(fixed flat height="70" color="white" :class="[shadow]")
+  v-app-bar(app fixed flat height="70" color="white" :class="[shadow]")
     v-container
       v-row(justify="center")
         v-col(cols="12" md="12").toolbarMargin

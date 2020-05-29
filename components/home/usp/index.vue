@@ -1,40 +1,85 @@
 <template lang="pug">
   div.white
-    usp-template(
-      :uspTitle="uspTitle"
-      :uspDescription="uspDescription"
-      :btnRoute="uspContents.route"
-      :btnId="uspContents.btnId"
-      :btnText="uspContents.btnText"
-      :coverImg="uspContents.coverImg"
-      @btnClick="getStarted"
+    generic-background-panel(
+      :background-image="backgroundImage"
+      :background-image-mobile="backgroundImageMobile"
+      :background-image-configs="backgroundImageConfigs"
+      :background-image-mobile-configs="backgroundImageMobileConfigs"
+      :class="{'mt-10': isMobile}"
     )
+      v-row(slot="content").row-content
+        v-col(cols="12" md="6" lg="5" :class="[{'web-content-margin': !isMobile}]")
+          h1(:class="[centerText]").font-work-sans.font-xl.lh-title {{ uspTitle }}
+          p(:class="[centerText]").font-italic.font-18 {{ uspSubtitle }}
+          div(v-if="!isMobile").text-field-container.white
+            v-text-field(
+              v-model="email"
+              outlined
+              placeholder="myname@email.com"
+            )
+          v-btn(
+            v-if="!isMobile"
+            block
+            color="accent"
+            large
+            @click="getStarted"
+          ).text-none.font-weight-bold.font-18.mt-5 Get Started
+    template(v-if="isMobile")
+      div.text-field-container.white
+        v-text-field(
+          v-model="email"
+          outlined
+          placeholder="myname@email.com"
+        )
+      v-btn(
+        block
+        color="accent"
+        large
+      ).text-none.font-weight-bold.font-18.mt-5 Get Started
 </template>
 
 <script>
-import { USP_CONTENTS } from './constants';
-import { parseTextWithNewLine } from '~/utils/newline';
-import UspTemplate from '~/components/commons/usp';
+// components
+import GenericBackgroundPanel from '~/components/commons/generic-background-panel';
 export default {
   components: {
-    UspTemplate,
+    GenericBackgroundPanel,
   },
   data () {
+    this.backgroundImage = 'MYCURE-virtual-clinic-healthcare-practice-online-homepage-usp-cover.png';
+    this.backgroundImageMobile = 'MYCURE-virtual-clinic-healthcare-practice-online-homepage-usp-cover-mobile.png';
+    this.imagePath = '../../../assets/images';
+    this.uspTitle = 'Build your virtual clinic today.';
+    this.uspSubtitle = 'For Modern Doctors, Virtual is the new normal.';
     return {
-      uspContents: USP_CONTENTS,
+      email: '',
+      isMobile: true,
     };
   },
   computed: {
-    uspTitle () {
-      const title = this.uspContents.title;
-      return !this.$isMobile
-        ? parseTextWithNewLine(title, ['workflows'])
-        : parseTextWithNewLine(title, ['your', 'workflows', 'maximize']);
+    centerText () {
+      return { 'text-center': this.isMobile };
     },
-    uspDescription () {
-      const description = this.uspContents.description;
-      return !this.$isMobile ? parseTextWithNewLine(description, ['system']) : description;
+    backgroundImageConfigs () {
+      return {
+        'background-size': '120%',
+        'background-position': 'top',
+      };
     },
+    backgroundImageMobileConfigs () {
+      return {
+        'background-size': '100%',
+        'background-position': '0px 200px',
+      };
+    },
+  },
+  watch: {
+    $isMobile (val) {
+      this.isMobile = val;
+    },
+  },
+  mounted () {
+    this.isMobile = this.$isMobile;
   },
   methods: {
     getStarted () {
@@ -45,7 +90,13 @@ export default {
 </script>
 
 <style scoped>
-.gradient-bg-color {
-  background-color: #f0f0f0
+.text-field-container {
+  height: 52px;
+}
+.web-content-margin {
+  margin-top: 80px;
+}
+.row-content {
+  height: 100vh;
 }
 </style>
