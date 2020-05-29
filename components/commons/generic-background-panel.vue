@@ -1,6 +1,6 @@
 <template lang="pug">
-  div(:class="[...mainContainerClasses]" :style="backgroundImageStyleConfig")
-    img(v-if="!isMobile" :src="imageSrc" alt="Usp background").source-image
+  div(:class="[...mainContainerClasses]" :style="mobileStyleConfig")
+    img(v-if="!isMobile" :src="imageSrc" alt="Usp background" :style="webStyleConfig").source-image
     v-container.content
       slot(name="content")
 </template>
@@ -19,6 +19,15 @@ export default {
     customPath: {
       type: String,
       default: '',
+    },
+    backgroundImageConfigs: {
+      type: Object,
+      default: () => ({
+        width: '100%',
+        position: 'absolute',
+        left: '0',
+        top: '0',
+      }),
     },
     backgroundImageMobileConfigs: {
       type: Object,
@@ -40,7 +49,13 @@ export default {
         ? defaultClasses.push('pt-10', 'mt-10')
         : defaultClasses;
     },
-    backgroundImageStyleConfig () {
+    webStyleConfig () {
+      if (!this.backgroundImage) {
+        return;
+      }
+      return this.backgroundImageConfigs;
+    },
+    mobileStyleConfig () {
       if (!this.isMobile) {
         return;
       }
@@ -72,12 +87,6 @@ export default {
 .main-container {
   width: 100vw;
   min-height: 100vh;
-}
-.source-image {
-  width: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
 }
 .content {
   position: relative;
