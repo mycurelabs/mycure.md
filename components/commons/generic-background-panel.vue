@@ -1,9 +1,7 @@
 <template lang="pug">
   div(:class="[...mainContainerClasses]" :style="backgroundImageStyleConfig")
     v-container
-      v-row
-        //- v-col(cols="12" md="6" :style="{ 'margin': isMobile ? '30px 0px 50px 0px': '50px 0px 0px 0px' }")
-        slot(name="content")
+      slot(name="content")
 </template>
 
 <script>
@@ -13,9 +11,27 @@ export default {
       type: String,
       default: null,
     },
+    backgroundImageMobile: {
+      type: String,
+      default: null,
+    },
     customPath: {
       type: String,
       default: '',
+    },
+    backgroundImageConfigs: {
+      type: Object,
+      default: () => ({
+        'background-size': 'cover',
+        'background-position': 'top',
+      }),
+    },
+    backgroundImageMobileConfigs: {
+      type: Object,
+      default: () => ({
+        'background-size': 'cover',
+        'background-position': 'center',
+      }),
     },
   },
   data () {
@@ -25,26 +41,30 @@ export default {
   },
   computed: {
     mainContainerClasses () {
-      const defaultClasses = ['usp-container', 'white'];
+      const defaultClasses = ['main-container', 'white'];
       return this.isMobile
-        ? defaultClasses.push('pt-10')
+        ? defaultClasses.push('pt-10', 'mt-10')
         : defaultClasses;
     },
     backgroundImageStyleConfig () {
-      if (!this.backgroundImage) {
+      if (!this.backgroundImage && !this.isMobile) {
         return {};
       }
+      if (!this.backgroundImageMobile && this.isMobile) {
+        return {};
+      }
+      const image = this.isMobile ? this.backgroundImageMobile : this.backgroundImage;
       const styleConfig = {
-        'background-image': `url(${require(`~/assets/images/${this.customPath}${this.backgroundImage}`)})`,
+        'background-image': `url(${require(`~/assets/images/${this.customPath}${image}`)})`,
+        ...this.isMobile && this.backgroundImageMobileConfigs,
+        ...!this.isMobile && this.backgroundImageConfigs,
       };
       return styleConfig;
     },
   },
   watch: {
-    $isMobile: {
-      handler (val) {
-        this.isMobile = val;
-      },
+    $isMobile (val) {
+      this.isMobile = val;
     },
   },
   mounted () {
@@ -54,9 +74,8 @@ export default {
 </script>
 
 <style scoped>
-.usp-container {
+.main-container {
   width: 100vw;
-  min-height: 100vh;
-  background-size: cover;
+  min-height: 110vh !important;
 }
 </style>
