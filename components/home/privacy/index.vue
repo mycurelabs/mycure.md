@@ -42,7 +42,7 @@ export default {
   data () {
     this.panelTitle = 'Protect your patients\' medical records with confidence';
     this.panelText = 'With MYCURE you\'ll never have to worry much about data privacy concerns. Keeping them secure is our #1 priority.';
-    this.panelImage = 'mycure-web-banner-data-privacy-law';
+    this.panelImage = 'MYCURE-virtual-clinic-healthcare-practice-online-homepage-F-features-01-data-privacy';
     this.privacyItems = [
       { text: 'Secure Cloud Hosting', image: 'cloud' },
       { text: 'Data Encryption', image: 'encryption' },

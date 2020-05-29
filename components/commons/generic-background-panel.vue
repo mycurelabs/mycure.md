@@ -1,6 +1,6 @@
 <template lang="pug">
   div(:class="[...mainContainerClasses]" :style="backgroundImageStyleConfig")
-    img(v-if="!isMobile" :src="imageSrc").source-image
+    img(v-if="!isMobile" :src="imageSrc" alt="Usp background").source-image
     v-container.content
       slot(name="content")
 </template>
