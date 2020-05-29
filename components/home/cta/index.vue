@@ -9,11 +9,11 @@
       v-row(slot="content" align="center").row-content.mt-10
         v-col(
           cols="12"
-          md="6"
+          md="5"
           offset-md="6"
           class="[{'web-content-margin': !isMobile}]"
         ).mt-10
-          h1(:class="[centerText]").font-xl.lh-title {{ uspTitle }}
+          h1(:class="[centerText]").font-40.lh-title {{ uspTitle }}
           p(:class="[centerText]").font-italic.font-18 {{ uspSubtitle }}
           v-btn(
             v-if="!isMobile"

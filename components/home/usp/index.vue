@@ -7,9 +7,9 @@
       :class="{'mt-10': isMobile}"
     )
       v-row(slot="content").row-content
-        v-col(cols="12" md="6" lg="5" :class="[{'web-content-margin': !isMobile}]")
-          h1(:class="[centerText]").font-poppins.font-xl.lh-title {{ uspTitle }}
-          p(:class="[centerText]").font-italic.font-18 {{ uspSubtitle }}
+        v-col(cols="12" md="5" :class="[{'web-content-margin': !isMobile}]")
+          h1(:class="titleClasses").font-poppins.font-40.lh-title {{ uspTitle }}
+          p(:class="[centerText]").font-italic.font-18.mx-1 {{ uspSubtitle }}
           div(v-if="!isMobile").text-field-container.white
             v-text-field(
               v-model="email"
@@ -38,6 +38,8 @@
 </template>
 
 <script>
+// utils
+import { parseTextWithNewLine } from '~/utils/newline';
 // components
 import GenericBackgroundPanel from '~/components/commons/generic-background-panel';
 export default {
@@ -48,7 +50,7 @@ export default {
     this.backgroundImage = 'MYCURE-virtual-clinic-healthcare-practice-online-homepage-usp-cover.png';
     this.backgroundImageMobile = 'MYCURE-virtual-clinic-healthcare-practice-online-homepage-usp-cover-mobile.png';
     this.imagePath = '../../../assets/images';
-    this.uspTitle = 'Build your virtual clinic today.';
+    this.panelTitle = 'Build your virtual clinic today.';
     this.uspSubtitle = 'For Modern Doctors, Virtual is the new normal.';
     return {
       email: '',
@@ -56,14 +58,24 @@ export default {
     };
   },
   computed: {
-    centerText () {
-      return { 'text-center': this.isMobile };
-    },
     backgroundImageMobileConfigs () {
       return {
         'background-size': '100%',
         'background-position': '0px 200px',
       };
+    },
+    centerText () {
+      return { 'text-center': this.isMobile };
+    },
+    titleClasses () {
+      return this.isMobile
+        ? [this.centerText]
+        : ['pre-white-space'];
+    },
+    uspTitle () {
+      return this.isMobile
+        ? this.panelTitle
+        : parseTextWithNewLine(this.panelTitle, ['virtual ']);
     },
   },
   watch: {
