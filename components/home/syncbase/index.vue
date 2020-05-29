@@ -5,7 +5,7 @@
       v-container
         v-row(justify="center")
           v-col(cols="6" align-self="center").px-3.content
-            h1.panelTitle.font-40.font-work-sans.lh-title {{ webTitle }}
+            h1.panelTitle.font-40.lh-title {{ webTitle }}
             br
             br
             p.font-22 {{ panelContent }}
@@ -29,7 +29,7 @@
     //- MOBILE
     div(v-else).pt-10.mt-10
       v-container.text-center
-        h1.font-35.lh-title.text-center.font-work-sans {{ panelTitle }}
+        h1.font-35.lh-title.text-center {{ panelTitle }}
         br
         p.font-18.text-center {{ panelContent }}
         p.font-18 This feature is available for multispecialty and enterprise clinic setup.

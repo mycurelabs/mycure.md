@@ -4,7 +4,7 @@
     div(v-if="!isMobile").px-5.workflow.py-10.white
       v-container.px-5
         v-row(justify="center").text-center
-          h1.font-40.text-center.font-work-sans {{ title }}
+          h1.font-40.text-center {{ title }}
         v-row(justify="center").pt-3.mx-3
           v-col(cols="12" md="5")
             v-list(two-line)
@@ -40,7 +40,7 @@
     div(v-else).pt-10.mt-10
       v-container
         v-row(justify="center")
-          h1.font-36.font-work-sans.text-center.pre-white-space {{ mobileTitle }}
+          h1.font-36.text-center.pre-white-space {{ mobileTitle }}
       v-container
         v-row(justify="center")
           v-list(two-line)

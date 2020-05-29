@@ -26,7 +26,7 @@ export default {
 #app {
   max-width: 100%;
   overflow-x: hidden;
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: 'Poppins', sans-serif;
 };
 
 h1 {
@@ -36,13 +36,10 @@ h1 {
 /* --FONT CSS-- */
 
 /* Font Styles */
-.font-work-sans {
-  font-family: 'Work Sans', 'Source Sans Pro', sans-serif !important;
+.font-poppins {
+  font-family: 'Poppins', 'sans-serif' !important;
 }
-.font-source-sans {
-  font-family: 'Source Sans Pro', 'Source Sans Pro', sans-serif !important;
 /* Font Sizes */
-}
 .font-xl {
   font-size: 50px !important;
 }

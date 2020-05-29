@@ -8,7 +8,7 @@
     )
       v-row(slot="content").row-content
         v-col(cols="12" md="6" lg="5" :class="[{'web-content-margin': !isMobile}]")
-          h1(:class="[centerText]").font-work-sans.font-xl.lh-title {{ uspTitle }}
+          h1(:class="[centerText]").font-poppins.font-xl.lh-title {{ uspTitle }}
           p(:class="[centerText]").font-italic.font-18 {{ uspSubtitle }}
           div(v-if="!isMobile").text-field-container.white
             v-text-field(

@@ -10,7 +10,7 @@
           ).link-to-home.mb-3
           br
           h2.font-18.primary--text Specialized Clinic: Sign Up (Step 1 of 3)
-          h1.font-work-sans Choose your specialized clinic:
+          h1 Choose your specialized clinic:
       v-row(justify="center" dense)
         v-col(
           v-for="(type, key) in specializedTypes"

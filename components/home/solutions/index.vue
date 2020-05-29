@@ -2,7 +2,7 @@
   div
     div(v-if="isMobile")
       v-container
-        h1.font-work-sans.font-30.pre-white-space.text-center.lh-title {{ title }}
+        h1.font-30.pre-white-space.text-center.lh-title {{ title }}
         br
         p.font-s.text-center.pt-3 {{ panelContent.description }}
         mobile-diagram-carousel(

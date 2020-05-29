@@ -1,5 +1,5 @@
 <template lang="pug">
-  div.main-container.font-work-sans.blue.white--text
+  div.main-container.blue.white--text
     v-container
       v-row(v-if="!isMobile").px-4
         v-col(cols="11").pt-2.text-center

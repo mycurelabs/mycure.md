@@ -3,7 +3,7 @@
     v-container
       v-row
         v-col(cols="12" md="8" offset-md="4")
-          h1(:class="{'text-center': isMobile}").font-40.font-work-sans Meet Paulette
+          h1(:class="{'text-center': isMobile}").font-40 Meet Paulette
       v-row(justify="center").pt-3
         v-col(cols="12" md="4" align-self="center").text-center
           img(width="80%" v-lazy="require('~/assets/images/our-story/mycure-web-our-story-paulette.png')" alt="Our Story Paulette")

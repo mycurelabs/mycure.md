@@ -5,7 +5,7 @@
       v-container
         v-row(justify="center")
           v-col(cols="6" align-self="center").px-3
-            h1.panelTitle.font-40.font-work-sans.lh-title {{ webTitle }}
+            h1.panelTitle.font-40.lh-title {{ webTitle }}
             br
             br
             p.font-s {{ panelContent }}
@@ -23,7 +23,7 @@
     //- MOBILE
     div(v-else).pt-5
       v-container.text-center
-        h1.font-36.lh-title.font-work-sans.pb-5 {{ panelTitle }}
+        h1.font-36.lh-title.pb-5 {{ panelTitle }}
         br
         img(width="85%" v-lazy="require(`~/assets/images/${panelImage}.png`)" :alt="panelImage").pb-3
         br
