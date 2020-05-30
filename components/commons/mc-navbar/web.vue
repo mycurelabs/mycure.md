@@ -141,6 +141,14 @@ export default {
 a {
   text-decoration: none
 }
+.banner-description{
+  color: white;
+  letter-spacing: 1px;
+}
+.emphasis-impact {
+  font-weight: bold;
+  text-decoration: underline;
+}
 .toolbarMargin{
   margin-top: 3px;
 }
