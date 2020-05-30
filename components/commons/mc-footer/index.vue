@@ -201,7 +201,4 @@ a:link {
 .footer-grey {
   background-color: #f0f0f0 !important;
 }
-.mycure-footer{
-  font-weight: bold;
-}
 </style>
