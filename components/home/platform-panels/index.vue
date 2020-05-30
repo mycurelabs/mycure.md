@@ -1,5 +1,10 @@
 <template lang="pug">
   v-container
+    v-row(justify="center")
+      v-col(cols="6" xs12).content
+        h1.font-40.font-weight-light.text-center {{BRING_YOUR_PRACTICE_ONLINE.header}}
+        br
+        p.text-center.font-s.mt-3 {{BRING_YOUR_PRACTICE_ONLINE.description}}
     v-row(justify="center" d-flex).py-12
       v-col(align="center" xs12)
         img(src="@/assets/images/home/MYCURE-virtual-clinic-healthcare-practice-online-homepage-A-telehealth.png")
@@ -12,7 +17,6 @@
         v-btn(text @click="onGetStarted")
           label.text-capitalize.primary--text {{HOME_START_YOUR_PHYSICAL.btnTxt}}
           v-icon.primary--text {{HOME_START_YOUR_PHYSICAL.btnIcon}}
-
     v-row(justify="center" d-flex).py-12
       v-col(
         offset="1"
@@ -29,7 +33,6 @@
           v-icon.primary--text {{YOUR_ONLINE_CLINIC.btnIcon}}
       v-col(align="center" xs12)
         img(src="@/assets/images/home/MYCURE-virtual-clinic-healthcare-practice-online-homepage-B-appointment.png")
-
     v-row(justify="center" d-flex).py-12
       v-col(align="center" xs12)
         img(src="@/assets/images/home/MYCURE-virtual-clinic-healthcare-practice-online-homepage-C-doctor-website.png")
@@ -42,7 +45,6 @@
         v-btn(@click="onGetStarted" text)
           label.text-capitalize.primary--text {{GET_MORE_PATIENTS.btnTxt}}
           v-icon.primary--text {{GET_MORE_PATIENTS.btnIcon}}
-
     v-row(justify="center" d-flex).pt-12
       v-col(
         offset="1"
@@ -63,6 +65,7 @@
 
 <script>
 import {
+  BRING_YOUR_PRACTICE_ONLINE,
   HOME_START_YOUR_PHYSICAL,
   YOUR_ONLINE_CLINIC,
   GET_MORE_PATIENTS,
@@ -74,6 +77,7 @@ export default {
     this.YOUR_ONLINE_CLINIC = YOUR_ONLINE_CLINIC;
     this.GET_MORE_PATIENTS = GET_MORE_PATIENTS;
     this.MANAGE_EVERYTHING_EASILY = MANAGE_EVERYTHING_EASILY;
+    this.BRING_YOUR_PRACTICE_ONLINE = BRING_YOUR_PRACTICE_ONLINE;
     return {
     };
   },
