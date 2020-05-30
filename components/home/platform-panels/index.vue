@@ -134,10 +134,6 @@ export default {
       },
     },
   },
-  mounted () {
-    this.image = HOME_START_YOUR_PHYSICAL.image;
-    this.isMobile = this.$isMobile;
-  },
   methods: {
     onGetStarted () {
       this.$emit('getStarted');
