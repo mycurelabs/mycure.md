@@ -4,16 +4,16 @@
       v-toolbar(flat).footer-grey
         nuxt-link(:to="{ name: 'index' }" title="MYCURE | Clinic Management System | Cloud EMR Philippines")
           v-row.text-center
-            img(src="~/assets/images/mycure-footer-logo.png" height="40" alt="MYCURE logo")
+            img(src="~/assets/images/mycure-header-logo.png" height="40" alt="MYCURE logo")
         v-spacer
-        div(v-for="(account,key) in socMed" :key="key")
+        div(v-for="(account, key) in socMed" :key="key")
           a(:href="account.link" target="_blank")
-            img(:src="require(`~/assets/images/${ account.icon }`)" height="25" :alt="account.name").px-2
-    div(v-else).footer-grey.secondary--text
+            img(:src="require(`~/assets/images/${ account.icon }`)" height="35" :alt="account.name").px-5
+    div(v-else).footer-grey.justify-center
       div
         nuxt-link(:to="{ name: 'index' }" title="MYCURE | Clinic Management System | Cloud EMR Philippines")
           v-row(align="center").text-center
-            img(src="~/assets/images/mycure-footer-logo.png" width="130" alt="MYCURE logo")
+            img(src="~/assets/images/mycure-header-logo.png" width="130" alt="MYCURE logo")
       br
       strong FOLLOW US
       br
@@ -29,7 +29,7 @@
           v-expansion-panel-header(:color="expansionPanelColor")
             span.iconMargin.font-18.feature-text CLINIC SOLUTIONS
             template(v-slot:actions)
-              v-icon(color="grey").iconMargin mdi-chevron-down
+              v-icon(color="grey").iconMargin mdi-menu-down
           v-expansion-panel-content.iconMargin
             template(v-for="solution in clinicSolutions").link.py-2
               nuxt-link(:to="{ name: solution.learnLink }")
@@ -42,7 +42,7 @@
           v-expansion-panel-header(:color="expansionPanelColor")
             span.iconMargin.font-18.feature-text ABOUT
             template(v-slot:actions)
-              v-icon(color="grey").iconMargin mdi-chevron-down
+              v-icon(color="grey").iconMargin mdi-menu-down
           v-expansion-panel-content.iconMargin
             nuxt-link(id="footer-our-story-btn" :to="{ name: 'our-story' }" title="MYCURE Our Story | Caring the Extra Mile").link.py-2
               span.py-2.font-18.white--text Our Story
@@ -58,7 +58,7 @@
           v-expansion-panel-header(:color="expansionPanelColor")
             span.iconMargin.font-18.feature-text LEGAL
             template(v-slot:actions)
-              v-icon(color="grey").iconMargin mdi-chevron-down
+              v-icon(color="grey").iconMargin mdi-menu-down
           v-expansion-panel-content.iconMargin
             nuxt-link(id="footer-terms-btn" :to="{ name: 'terms' }" title="MYCURE Terms and Conditions").link.py-2
               span.py-2.font-18.white--text Terms of Use
@@ -70,7 +70,7 @@
           v-expansion-panel-header(:color="expansionPanelColor")
             span.iconMargin.font-18.feature-text CONTACT US
             template(v-slot:actions)
-              v-icon(color="grey").iconMargin mdi-chevron-down
+              v-icon(color="grey").iconMargin mdi-menu-down
           v-expansion-panel-content.iconMargin
             a(id="footer-email-btn" title="MYCURE - Email" href="mailto:hello@mycure.md").link.font-mc-blue.py-2
               span.py-2.font-18.primary--text hello@mycure.md
@@ -98,16 +98,16 @@ export default {
   data () {
     this.socMed = [
       {
+        name: 'MYCURE - Instagram',
+        link: 'https://www.instagram.com/mycure.md/',
+        icon: 'mycure-homepage-wireframe-icon-ig.png',
+        id: 'footer-ig-btn',
+      },
+      {
         name: 'MYCURE - LinkedIn',
         link: 'https://www.linkedin.com/company/mycure',
         icon: 'mycure-homepage-wireframe-icon-linkedin.png',
         id: 'footer-linkedin-btn',
-      },
-      {
-        name: 'MYCURE - Facebook',
-        link: 'https://www.facebook.com/mycure.md',
-        icon: 'mycure-homepage-wireframe-icon-fb.png',
-        id: 'footer-fb-btn',
       },
       {
         name: 'MYCURE - YouTube',
@@ -116,10 +116,10 @@ export default {
         id: 'footer-yt-btn',
       },
       {
-        name: 'MYCURE - Instagram',
-        link: 'https://www.instagram.com/mycure.md/',
-        icon: 'mycure-homepage-wireframe-icon-ig.png',
-        id: 'footer-ig-btn',
+        name: 'MYCURE - Facebook',
+        link: 'https://www.facebook.com/mycure.md',
+        icon: 'mycure-homepage-wireframe-icon-fb.png',
+        id: 'footer-fb-btn',
       },
       {
         name: 'MYCURE - Twitter',
@@ -128,7 +128,7 @@ export default {
         id: 'footer-twitter-btn',
       },
     ];
-    this.expansionPanelColor = '#343a40';
+    this.expansionPanelColor = '#f0f0f0';
     return {
       clinicSolutions: HEALTH_SUITES_ITEMS,
       clinicSol: false,
@@ -155,13 +155,7 @@ a:link {
 .feature-text {
   color: grey;
 }
-.expansionPanelBg {
-  background-color: #343a40 !important;
-}
-.iconMargin {
-  margin-left: -24px;
-}
 .footer-grey {
-  background-color: #343a40 !important
+  background-color: #f0f0f0 !important;
 }
 </style>

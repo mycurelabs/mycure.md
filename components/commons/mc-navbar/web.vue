@@ -1,23 +1,56 @@
 <template lang="pug">
-  v-app-bar(app fixed flat height="70" color="white" :class="[shadow]")
+  v-app-bar(
+    app
+    fixed
+    flat
+    height="130"
+    color="white"
+    :class="[shadow]"
+  )
     v-container
+      v-app-bar(
+        app
+        fixed
+        flat
+        height="60"
+        color="#003366"
+      ).justify-center
+        v-layout.justify-center.pt-2
+          p.banner-description The World needs independent businesses. Learn about the actions we're taking to address the <span class="emphasis-impact">impact of COVID-19</span>
       v-row(justify="center")
-        v-col(cols="12" md="12").toolbarMargin
-          v-toolbar(flat).white
-            nuxt-link(:to="{ name: 'index' }" title="MYCURE | Clinic Management System | Cloud EMR Philippines" id="toolbar-mycure-logo" @click.stop="handleMycureLogo").mr-3.mt-2
-              img(src="~/assets/images/mycure-header-logo.png" width="140" alt="MYCURE logo")
+        v-col(
+          cols="12"
+          md="12"
+        ).toolbarMargin
+          v-toolbar(
+            flat
+          ).white.pt-7
+            nuxt-link(
+              :to="{ name: 'index' }"
+              title="MYCURE | Clinic Management System | Cloud EMR Philippines"
+              id="toolbar-mycure-logo"
+              @click.stop="handleMycureLogo"
+            ).mr-3.mt-2
+              img(
+                src="~/assets/images/mycure-header-logo.png"
+                width="140"
+                alt="MYCURE logo"
+              )
             v-spacer
             v-menu(
               v-model="solutionsMenuModel"
               offset-y
             ).solutions-menu
-              template(slot="activator" slot-scope="props")
+              template(
+                slot="activator"
+                slot-scope="props"
+              )
                 v-btn(
                   text
                   v-on="props.on"
                 ).mx-1
-                  span.font-14.tab.text-none {{solutionsText}}
-                  v-icon(small) mdi-chevron-down
+                  span.font-14.tab.text-none {{ solutionsText }}
+                  v-icon(medium) mdi-menu-down
               v-card
                 v-list
                   v-list-item(
@@ -27,8 +60,10 @@
                     @click="handleToolbarLinkClick(item.route)"
                   )
                     v-list-item-content
-                      v-list-item-title {{item.name}}
-            div(v-for="(link, key) in toolbarLinks" :key="key")
+                      v-list-item-title {{ item.name }}
+            div(
+              v-for="(link, key) in toolbarLinks"
+              :key="key")
               v-btn(
                 :to="{ name: link.route }"
                 :id="link.id"
@@ -134,6 +169,14 @@ export default {
 <style scoped>
 a {
   text-decoration: none
+}
+.banner-description{
+  color: white;
+  letter-spacing: 1px;
+}
+.emphasis-impact {
+  font-weight: bold;
+  text-decoration: underline;
 }
 .toolbarMargin{
   margin-top: 3px;
