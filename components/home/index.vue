@@ -1,9 +1,9 @@
 <template lang="pug">
-  v-container(fluid)
+  v-container
     v-row(
       justify="center"
       d-flex
-      )
+    ).py-12
       v-col(
         align="center"
         xs12
@@ -12,31 +12,40 @@
           src="@/assets/images/home/MYCURE-virtual-clinic-healthcare-practice-online-homepage-A-telehealth.png"
         )
       v-col(
-        align="center"
+        align-self="center"
         xs12
       ).content
-        h1 {{HOME_START_YOUR_PHYSICAL.header}}
-        span {{HOME_START_YOUR_PHYSICAL.description}}
+        h1.font-40.lh-title.pb-3.font-weight-light {{HOME_START_YOUR_PHYSICAL.header}}
+        br
+        span.font-s.mt-3 {{HOME_START_YOUR_PHYSICAL.description}}
+        br
+        br
         v-btn(
-          flat
+          text
+          @click="onGetStarted"
         )
-          label(text-left).primary--text {{HOME_START_YOUR_PHYSICAL.btnTxt}}
+          label.text-capitalize.primary--text {{HOME_START_YOUR_PHYSICAL.btnTxt}}
           v-icon.primary--text {{HOME_START_YOUR_PHYSICAL.btnIcon}}
 
     v-row(
       justify="center"
       d-flex
-      )
+    ).py-12
       v-col(
+        offset="1"
         align="center"
         xs12
       ).content
-        h1 {{YOUR_ONLINE_CLINIC.header}}
-        span {{YOUR_ONLINE_CLINIC.description}}
+        h1.font-40.font-weight-light {{YOUR_ONLINE_CLINIC.header}}
+        br
+        span.font-s {{YOUR_ONLINE_CLINIC.description}}
+        br
+        br
         v-btn(
-          flat
+          text
+          @click="onGetStarted"
         )
-          label(text-left).primary--text {{YOUR_ONLINE_CLINIC.btnTxt}}
+          label.text-capitalize.primary--text {{YOUR_ONLINE_CLINIC.btnTxt}}
           v-icon.primary--text {{YOUR_ONLINE_CLINIC.btnIcon}}
       v-col(
         align="center"
@@ -49,7 +58,7 @@
     v-row(
       justify="center"
       d-flex
-      )
+      ).py-12
       v-col(
         align="center"
         xs12
@@ -61,28 +70,37 @@
         align="center"
         xs12
       ).content
-        h1 {{GET_MORE_PATIENTS.header}}
-        span {{GET_MORE_PATIENTS.description}}
+        h1.font-40.font-weight-light {{GET_MORE_PATIENTS.header}}
+        br
+        span.font-s {{GET_MORE_PATIENTS.description}}
+        br
+        br
         v-btn(
-          flat
+          @click="onGetStarted"
+          text
         )
-          label(text-left).primary--text {{GET_MORE_PATIENTS.btnTxt}}
+          label.text-capitalize.primary--text {{GET_MORE_PATIENTS.btnTxt}}
           v-icon.primary--text {{GET_MORE_PATIENTS.btnIcon}}
 
     v-row(
       justify="center"
       d-flex
-      )
+    ).pt-12
       v-col(
+        offset="1"
         align="center"
         xs12
       ).content
-        h1 {{MANAGE_EVERYTHING_EASILY.header}}
-        span {{MANAGE_EVERYTHING_EASILY.description}}
+        h1.font-40.font-weight-light {{MANAGE_EVERYTHING_EASILY.header}}
+        br
+        span.font-s {{MANAGE_EVERYTHING_EASILY.description}}
+        br
+        br
         v-btn(
-          flat
+          @click="onGetStarted"
+          text
         )
-          label(text-left).primary--text {{MANAGE_EVERYTHING_EASILY.btnTxt}}
+          label.text-capitalize.primary--text {{MANAGE_EVERYTHING_EASILY.btnTxt}}
           v-icon.primary--text {{MANAGE_EVERYTHING_EASILY.btnIcon}}
       v-col(
         align="center"
@@ -119,6 +137,11 @@ export default {
   mounted () {
     this.image = HOME_START_YOUR_PHYSICAL.image;
     this.isMobile = this.$isMobile;
+  },
+  methods: {
+    onGetStarted () {
+      this.$emit('getStarted');
+    },
   },
 };
 </script>

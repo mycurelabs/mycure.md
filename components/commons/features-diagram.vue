@@ -3,7 +3,7 @@
     v-container
       v-row(align="center")
         v-col(cols="12").text-center
-          h1(:class="[{'pre-white-space': !isMobile}, isMobile ? 'font-36' : 'font-40']").text-xs-center.font-work-sans.lh-title {{title}}
+          h1(:class="[{'pre-white-space': !isMobile}, isMobile ? 'font-36' : 'font-40']").text-xs-center.lh-title {{title}}
           p(:class="{'pre-white-space': !isMobile}").font-s.text-xs-center.my-5 {{description}}
             slot(name="add-content")
       div(v-if="image").pt-5.text-center.justify-center.center

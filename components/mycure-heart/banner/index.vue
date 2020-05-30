@@ -10,7 +10,7 @@
               v-row(justify="center" align="center").text-center
                 v-col(cols="10")
                   img(:src="require('~/assets/images/mycure-header-logo.png')" alt="MYCURE logo" width="140")
-                  h1.font-40.font-work-sans {{ bannerTitle }}
+                  h1.font-40 {{ bannerTitle }}
                   p.font-21.pt-5 {{ bannerDescription }}
           div.femaleDoctor
             img(:src="require('~/assets/images/mycure-web-video-cover-decor-doctor-right.png')" alt="Female doctor")
@@ -20,7 +20,7 @@
         v-row(justify="center" align="center").text-center
           v-col(cols="10").pt-5
             img(:src="require('~/assets/images/mycure-header-logo.png')" alt="MYCURE logo" width="140")
-            h1.font-30.lh-title.font-work-sans {{ bannerTitle }}
+            h1.font-30.lh-title {{ bannerTitle }}
             p.pt-5.font-21 {{ bannerDescription }}
 </template>
 

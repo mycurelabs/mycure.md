@@ -126,6 +126,7 @@ export default {
 <style scoped>
 .toolbarMain {
   position: fixed;
+  height: 30px;
   width: 100%;
   z-index: 200;
 }

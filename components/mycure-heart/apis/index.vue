@@ -5,7 +5,7 @@
       v-container
         v-row(justify="center")
           v-col(cols="6" align-self="center").px-3
-            h1.panelTitle.font-40.font-work-sans.lh-title {{ panelTitle }}
+            h1.panelTitle.font-40.lh-title {{ panelTitle }}
             br
             br
             p(
@@ -27,7 +27,7 @@
     //- MOBILE
     div(v-else).pt-10
       v-container.text-center
-        h1.font-36.lh-title.font-work-sans.pb-5 {{ panelTitle }}
+        h1.font-36.lh-title.pb-5 {{ panelTitle }}
         br
         img(width="85%" v-lazy="require(`~/assets/images/mycure-heart/${panelImage}${panelImageExtension}`)" :alt="panelImage").pb-3
         br
