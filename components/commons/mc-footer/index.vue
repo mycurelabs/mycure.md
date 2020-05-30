@@ -73,7 +73,7 @@
           v-row(justify="center")
             span Copyright &copy; 2016 - {{new Date().getFullYear()}}
               a(href="https://mycure.md")
-                span.mycure-footer &nbsp;MYCURE Inc.&nbsp;
+                strong &nbsp;MYCURE Inc.&nbsp;
                 span All Rights Reserved.
     div(v-else).footer-grey.pa-4
       mc-footer-toolbar
