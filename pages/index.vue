@@ -6,7 +6,7 @@
     health-suites#health-suites.mt-10
     //- 3rd panel
     //- TODO: Insert Gerald's component here, then erase this comment
-    home(@getStarted="getStarted")
+    platform-panels(@getStarted="getStarted")
     //- 4th panel
     storyflow(
       :storyflow="storyflowItems"
@@ -35,7 +35,7 @@ import Usp from '~/components/home/usp';
 export default {
   components: {
     Usp,
-    Home: () => import('~/components/home'),
+    PlatformPanels: () => import('~/components/home/platform-panels'),
     HealthSuites: () => import('~/components/home/health-suites'),
     Storyflow: () => import('~/components/commons/storyflow'),
     Privacy: () => import('~/components/home/privacy'),
