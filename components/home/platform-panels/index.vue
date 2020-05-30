@@ -1,36 +1,19 @@
 <template lang="pug">
   v-container
-    v-row(
-      justify="center"
-      d-flex
-    ).py-12
-      v-col(
-        align="center"
-        xs12
-      )
-        img(
-          src="@/assets/images/home/MYCURE-virtual-clinic-healthcare-practice-online-homepage-A-telehealth.png"
-        )
-      v-col(
-        align-self="center"
-        xs12
-      ).content
+    v-row(justify="center" d-flex).py-12
+      v-col(align="center" xs12)
+        img(src="@/assets/images/home/MYCURE-virtual-clinic-healthcare-practice-online-homepage-A-telehealth.png")
+      v-col(align-self="center" xs12).content
         h1.font-40.lh-title.pb-3.font-weight-light {{HOME_START_YOUR_PHYSICAL.header}}
         br
         span.font-s.mt-3 {{HOME_START_YOUR_PHYSICAL.description}}
         br
         br
-        v-btn(
-          text
-          @click="onGetStarted"
-        )
+        v-btn(text @click="onGetStarted")
           label.text-capitalize.primary--text {{HOME_START_YOUR_PHYSICAL.btnTxt}}
           v-icon.primary--text {{HOME_START_YOUR_PHYSICAL.btnIcon}}
 
-    v-row(
-      justify="center"
-      d-flex
-    ).py-12
+    v-row(justify="center" d-flex).py-12
       v-col(
         offset="1"
         align="center"
@@ -41,51 +24,26 @@
         span.font-s {{YOUR_ONLINE_CLINIC.description}}
         br
         br
-        v-btn(
-          text
-          @click="onGetStarted"
-        )
+        v-btn(text @click="onGetStarted")
           label.text-capitalize.primary--text {{YOUR_ONLINE_CLINIC.btnTxt}}
           v-icon.primary--text {{YOUR_ONLINE_CLINIC.btnIcon}}
-      v-col(
-        align="center"
-        xs12
-      )
-        img(
-          src="@/assets/images/home/MYCURE-virtual-clinic-healthcare-practice-online-homepage-B-appointment.png"
-        )
+      v-col(align="center" xs12)
+        img(src="@/assets/images/home/MYCURE-virtual-clinic-healthcare-practice-online-homepage-B-appointment.png")
 
-    v-row(
-      justify="center"
-      d-flex
-      ).py-12
-      v-col(
-        align="center"
-        xs12
-      )
-        img(
-          src="@/assets/images/home/MYCURE-virtual-clinic-healthcare-practice-online-homepage-C-doctor-website.png"
-        )
-      v-col(
-        align="center"
-        xs12
-      ).content
+    v-row(justify="center" d-flex).py-12
+      v-col(align="center" xs12)
+        img(src="@/assets/images/home/MYCURE-virtual-clinic-healthcare-practice-online-homepage-C-doctor-website.png")
+      v-col(align="center" xs12).content
         h1.font-40.font-weight-light {{GET_MORE_PATIENTS.header}}
         br
         span.font-s {{GET_MORE_PATIENTS.description}}
         br
         br
-        v-btn(
-          @click="onGetStarted"
-          text
-        )
+        v-btn(@click="onGetStarted" text)
           label.text-capitalize.primary--text {{GET_MORE_PATIENTS.btnTxt}}
           v-icon.primary--text {{GET_MORE_PATIENTS.btnIcon}}
 
-    v-row(
-      justify="center"
-      d-flex
-    ).pt-12
+    v-row(justify="center" d-flex).pt-12
       v-col(
         offset="1"
         align="center"
@@ -96,19 +54,11 @@
         span.font-s {{MANAGE_EVERYTHING_EASILY.description}}
         br
         br
-        v-btn(
-          @click="onGetStarted"
-          text
-        )
+        v-btn(@click="onGetStarted" text)
           label.text-capitalize.primary--text {{MANAGE_EVERYTHING_EASILY.btnTxt}}
           v-icon.primary--text {{MANAGE_EVERYTHING_EASILY.btnIcon}}
-      v-col(
-        align="center"
-        xs12
-      )
-        img(
-          src="@/assets/images/home/MYCURE-virtual-clinic-healthcare-practice-online-homepage-D-billing-encounter-summary.png"
-        )
+      v-col(align="center" xs12)
+        img(src="@/assets/images/home/MYCURE-virtual-clinic-healthcare-practice-online-homepage-D-billing-encounter-summary.png")
 </template>
 
 <script>
