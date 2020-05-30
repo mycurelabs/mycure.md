@@ -5,7 +5,6 @@
     //- 2nd panel
     health-suites#health-suites.mt-10
     //- 3rd panel
-    //- TODO: Insert Gerald's component here, then erase this comment
     platform-panels(@getStarted="getStarted")
     //- 4th panel
     storyflow(
