@@ -26,7 +26,7 @@ export default {
 #app {
   max-width: 100%;
   overflow-x: hidden;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Poppins', sans-serif, 'Arial';
 };
 
 h1 {
