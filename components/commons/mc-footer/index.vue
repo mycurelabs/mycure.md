@@ -14,6 +14,7 @@
               h3 CLINIC SOLUTIONS
               v-layout(
                 v-for="(solution, key) in clinicSolutions"
+                :key="key"
               )
                 nuxt-link(
                   :to="{ name: solution.learnLink }"

@@ -7,7 +7,7 @@
         p.text-center.font-s.mt-3 {{BRING_YOUR_PRACTICE_ONLINE.description}}
     v-row(justify="center" d-flex).py-12
       v-col(align="center" xs12)
-        img(src="@/assets/images/home/MYCURE-virtual-clinic-healthcare-practice-online-homepage-A-telehealth.png")
+        img(src="@/assets/images/home/MYCURE-virtual-clinic-healthcare-practice-online-homepage-A-telehealth.png" height="350")
       v-col(align-self="center" xs12).content
         h1.font-40.lh-title.pb-3.font-weight-light {{HOME_START_YOUR_PHYSICAL.header}}
         br
@@ -19,7 +19,6 @@
           v-icon.primary--text {{HOME_START_YOUR_PHYSICAL.btnIcon}}
     v-row(justify="center" d-flex).py-12
       v-col(
-        offset="1"
         align="center"
         xs12
       ).content
@@ -47,7 +46,6 @@
           v-icon.primary--text {{GET_MORE_PATIENTS.btnIcon}}
     v-row(justify="center" d-flex).pt-12
       v-col(
-        offset="1"
         align="center"
         xs12
       ).content
