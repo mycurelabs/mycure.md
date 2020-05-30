@@ -1,63 +1,6 @@
 <template lang="pug">
   div#top.white
-    //- hippocrates
-    //- TODO: Temporarily hide
-    //- hippocrates-usp
-    //- 1st panel
-    usp(@getStarted="getStarted").mt-10
-    //- 2nd panel
-    health-suites#health-suites
-    //- 3rd panel
-    solutions
-    //- 4th panel
-    storyflow(
-      :storyflow="storyflowItems"
-      :introduction="introText"
-      featuresButton
-      horizontal
-    ).showPanel
-      div(slot="extra-content").text-center
-        v-btn(
-          text
-          bottom
-          large
-          color="primary"
-          @click="handleWatchFeatures"
-        ).font-21.text-none.video-button
-          v-icon mdi-play-circle
-          | &nbsp;Watch Our Features In Action
-
-        //- Video
-        v-dialog(v-model="featuresVideoDialog" max-width="600")
-          v-card(width="600").pt-5
-            v-card-text.text-center
-              iframe(
-                align="middle"
-                :height="!$isMobile ? '400' : '175'"
-                width="100%"
-                src="https://www.youtube.com/embed/YjymFVmKX_U"
-                frameborder="0"
-                allowfullscreen
-              )
-    //- 5th panel
-    vid
-    //- 6th panel
-    syncbase
-    hr
-    //- 7th panel
-    privacy
-    hr
-    //- 8th panel
-    apis
-    //- 9th panel
-    testimonial
-    //- final panel
-    mc-cta-bottom(
-      parse-text
-      :parseIndicators="['for']"
-      :ctaContent="ctaContent"
-      @btnClick="getStarted"
-    )
+    home
 </template>
 
 <script>
@@ -74,6 +17,7 @@ export default {
     // - TODO: Temporarily hide
     // HippocratesUsp,
     Usp,
+    Home: () => import('~/components/home'),
     HealthSuites: () => import('~/components/home/health-suites'),
     Solutions: () => import('~/components/home/solutions'),
     Storyflow: () => import('~/components/commons/storyflow'),
