@@ -78,10 +78,8 @@ export default {
     };
   },
   watch: {
-    $isMobile: {
-      handler (val) {
-        this.isMobile = val;
-      },
+    $isMobile (val) {
+      this.isMobile = val;
     },
   },
   methods: {
