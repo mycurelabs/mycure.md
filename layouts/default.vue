@@ -102,11 +102,6 @@ h1 {
 .pre-white-space {
   white-space: pre;
 }
-/* This class lets the panel avoid being covered by the web sky background */
-.showPanel {
-  position: relative;
-  z-index: 1;
-}
 .cta-btn {
   padding: 25px 30px 25px 30px;
 }

@@ -12,7 +12,7 @@
       :introduction="storyflowIntroText"
       horizontal
       horizontal-image-size="50%"
-    ).showPanel
+    ).mt-10
     //- 5th panel
     privacy
     //- 6th panel
