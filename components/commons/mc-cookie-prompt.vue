@@ -46,7 +46,7 @@ export default {
   },
   computed: {
     position () {
-      return this.$isMobile ? 'bottom' : 'top';
+      return this.isMobile ? 'bottom' : 'top';
     },
     cookieClasses () {
       const webClasses = ['font-14', 'py-3'];
