@@ -7,7 +7,7 @@
         p.text-center.font-s.mt-3 {{BRING_YOUR_PRACTICE_ONLINE.description}}
     v-row(justify="center" d-flex).py-12
       v-col(align="center" xs12)
-        img(src="@/assets/images/home/MYCURE-virtual-clinic-healthcare-practice-online-homepage-A-telehealth.png" height="350")
+        img(v-lazy="require('~/assets/images/home/MYCURE-virtual-clinic-healthcare-practice-online-homepage-A-telehealth.png')" height="350" alt="Start your physical and digital clinic journey")
       v-col(align-self="center" xs12).content
         h1.font-40.lh-title.pb-3.font-weight-light {{HOME_START_YOUR_PHYSICAL.header}}
         br
@@ -31,10 +31,10 @@
           label.text-capitalize.primary--text {{YOUR_ONLINE_CLINIC.btnTxt}}
           v-icon.primary--text {{YOUR_ONLINE_CLINIC.btnIcon}}
       v-col(align="center" xs12)
-        img(src="@/assets/images/home/MYCURE-virtual-clinic-healthcare-practice-online-homepage-B-appointment.png")
+        img(v-lazy="require('~/assets/images/home/MYCURE-virtual-clinic-healthcare-practice-online-homepage-B-appointment.png')" alt="Your online clinic everywhere")
     v-row(justify="center" d-flex).py-12
       v-col(align="center" xs12)
-        img(src="@/assets/images/home/MYCURE-virtual-clinic-healthcare-practice-online-homepage-C-doctor-website.png")
+        img(v-lazy="require('~/assets/images/home/MYCURE-virtual-clinic-healthcare-practice-online-homepage-C-doctor-website.png')" alt="Get more patients")
       v-col(align="center" xs12).content
         h1.font-40.font-weight-light {{GET_MORE_PATIENTS.header}}
         br
@@ -58,7 +58,7 @@
           label.text-capitalize.primary--text {{MANAGE_EVERYTHING_EASILY.btnTxt}}
           v-icon.primary--text {{MANAGE_EVERYTHING_EASILY.btnIcon}}
       v-col(align="center" xs12)
-        img(src="@/assets/images/home/MYCURE-virtual-clinic-healthcare-practice-online-homepage-D-billing-encounter-summary.png")
+        img(v-lazy="require('~/assets/images/home/MYCURE-virtual-clinic-healthcare-practice-online-homepage-D-billing-encounter-summary.png')" alt="Manage everything easily")
 </template>
 
 <script>
