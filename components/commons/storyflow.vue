@@ -186,9 +186,6 @@ export default {
 </script>
 
 <style scoped>
-.introText {
-  font-family: 'Work Sans', 'Poppins', sans-serif !important;
-}
 .storyflowAsset {
   width: 275px;
 }

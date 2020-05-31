@@ -4,10 +4,10 @@
       cookie-law(
         :position="position"
         transitionName="fade"
-        :class="[{'font-16': !isMobile}, isMobile ? 'py-1' : 'py-3']"
+        :class="cookieClasses"
       ).Cookie--mcCookie.white--text.px-1
         div(slot-scope="props").width100
-          v-container.py-1.widht100
+          v-container.py-1.width100
             v-row(v-if="!isMobile").px-4
               v-col(cols="11").pt-2
                 | We use third-party services to understand web traffic data for us and they may collect cookies during the process.
@@ -46,7 +46,14 @@ export default {
   },
   computed: {
     position () {
-      return this.$isMobile ? 'bottom' : 'top';
+      return this.isMobile ? 'bottom' : 'top';
+    },
+    cookieClasses () {
+      const webClasses = ['font-14', 'py-3'];
+      const mobileClasses = ['py-1'];
+      return this.isMobile
+        ? mobileClasses
+        : webClasses;
     },
   },
   watch: {
@@ -106,7 +113,7 @@ export default {
 }
 @media (min-width: 1100px) {
   .Cookie--mcCookie {
-    margin-top: 60px;
+    margin-top: 100px;
   }
 }
 </style>

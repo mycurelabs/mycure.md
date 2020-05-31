@@ -29,18 +29,25 @@ import VueScrollTo from 'vue-scrollto';
 import headMeta from '~/utils/head-meta';
 import { parseTextWithNewLine } from '~/utils/newline';
 // - components
+import Apis from '~/components/home/apis';
+import Cta from '~/components/home/cta';
+import HealthSuites from '~/components/home/health-suites';
+import PlatformPanels from '~/components/home/platform-panels';
+import Privacy from '~/components/home/privacy';
+import Storyflow from '~/components/commons/storyflow';
+import Testimonial from '~/components/home/testimonial';
 import Usp from '~/components/home/usp';
 
 export default {
   components: {
+    Apis,
+    Cta,
+    HealthSuites,
+    PlatformPanels,
+    Privacy,
+    Storyflow,
+    Testimonial,
     Usp,
-    PlatformPanels: () => import('~/components/home/platform-panels'),
-    HealthSuites: () => import('~/components/home/health-suites'),
-    Storyflow: () => import('~/components/commons/storyflow'),
-    Privacy: () => import('~/components/home/privacy'),
-    Apis: () => import('~/components/home/apis'),
-    Testimonial: () => import('~/components/home/testimonial'),
-    Cta: () => import('~/components/home/cta'),
   },
   data () {
     this.storyflowItems = [
