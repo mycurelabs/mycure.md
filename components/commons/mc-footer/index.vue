@@ -182,6 +182,9 @@ a:link {
 li {
   list-style: none;
 }
+.link {
+  color: black;
+}
 .link:hover {
   color: #aaaaaa;
 }
