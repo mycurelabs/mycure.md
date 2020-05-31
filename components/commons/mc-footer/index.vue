@@ -6,8 +6,7 @@
       v-row(justify="center" d-flex).py-5
         v-col(cols="3")
           ul
-            li
-              h3 CLINIC SOLUTIONS
+            li #[h3 CLINIC SOLUTIONS]
             li(
               v-for="(solution, key) in clinicSolutions"
               :key="key"
@@ -31,9 +30,9 @@
             title="MYCURE Our Story | Caring the Extra Mile"
           ).link Our Story
           br
-          a(href="http://blog.mycure.md/" target="_blank").link Blog
+          a(href="http://blog.mycure.md/" target="_blank" rel="noopener noreferrer").link Blog
           br
-          a(href="https://culture.mycure.md/" target="_blank").link Careers
+          a(href="https://culture.mycure.md/" target="_blank" rel="noopener noreferrer").link Careers
         v-col(cols="3")
           h3 LEGAL
           nuxt-link(

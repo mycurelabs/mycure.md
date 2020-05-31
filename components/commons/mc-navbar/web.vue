@@ -42,7 +42,7 @@
                   span.font-14.tab.text-none {{link.name}}
               v-btn(
                 text
-                :to="{ name: loginURL}"
+                :to="{ name: loginURL }"
                 id="login-btn"
                 @click.stop="handleToolbarLinkClick('login-btn')"
               ).mr-2.ml-1
