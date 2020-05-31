@@ -2,7 +2,7 @@
   div.main-container
     v-row(justify="center" align="center")
       v-col(cols="10").text-center
-          h1(:class="[{'pre-white-space': !isMobile}, isMobile ? 'font-36' : 'font-40']").text-center.font-work-sans.lh-title {{ title }}
+          h1(:class="[{'pre-white-space': !isMobile}, isMobile ? 'font-36' : 'font-40']").text-center.lh-title {{ title }}
           img(
             v-lazy="require(`~/assets/images/multispecialty/${image}.png`)"
             :alt="image"

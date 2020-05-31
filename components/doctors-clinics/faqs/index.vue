@@ -3,7 +3,7 @@
     v-container.pt-5
       v-row(align="center")
         v-col(cols="12").text-center
-          h1.font-40.font-work-sans {{ faqsTitle }}
+          h1.font-40 {{ faqsTitle }}
       v-row(v-if="!isMobile" justify="center").pt-5
         v-col(v-for="(column, key) in 2" :key="key" cols="12" md="6").font-source-sans
           template(v-for="(item, key) in faqsItems")
@@ -28,7 +28,7 @@
           div(
             v-for="(item, key) in faqsItems"
             :key="key"
-          ).font-source-sans
+          )
             img(:src="require(`~/assets/images/${questionMark}.png`)" :alt="questionMark" width="18px")
             strong.font-21 &nbsp;{{ item.question }}
             p.font-21.pl-1.pt-2 {{ item.answer }}

@@ -5,7 +5,7 @@
       v-container
         v-row(justify="center")
           v-col(cols="6" align-self="center")
-            strong.font-40.lh-title.pb-3.font-work-sans {{ panelTitle }}
+            strong.font-40.lh-title.pb-3 {{ panelTitle }}
             br
             br
             span.font-s.mt-3 {{ panelText }}
@@ -17,7 +17,7 @@
         v-row
           v-col(cols="12").text-center
             br
-            h2.lh-title.font-36.pb-5.font-work-sans {{ panelTitle }}
+            h2.lh-title.font-36.pb-5 {{ panelTitle }}
             br
             v-row(no-gutters justify="center")
               v-col(

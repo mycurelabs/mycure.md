@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-container.font-source-sans
+  v-container
     client-only
       cookie-law(
         :position="position"

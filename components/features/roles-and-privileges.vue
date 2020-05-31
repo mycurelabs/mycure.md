@@ -6,7 +6,7 @@
           v-row(justify="center").text-center
             strong.font-21.primary--text ROLES AND PRIVILEGES
           v-row(justify="center").add-spacing.text-center
-            strong.font-40.font-work-sans Everybody's got a special&nbsp;
+            strong.font-40 Everybody's got a special&nbsp;
               br
               | role to play.
           v-row(justify="center").add-spacing
@@ -28,7 +28,7 @@
         br
         v-row(justify="center")
           v-col(cols="12")
-            p.font-weight-bold.font-30.text-center.lh-title.font-work-sans Everybody's got a special role to play.
+            p.font-weight-bold.font-30.text-center.lh-title Everybody's got a special role to play.
           br
           v-col(cols="12")
             p.font-18.text-center Collaborate with your clinic staff more efficiently using a clinic system that's so user-friendly, you wouldn't even feel that you're working.
