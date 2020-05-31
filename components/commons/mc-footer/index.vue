@@ -65,7 +65,7 @@
         span Copyright &copy; 2016 - {{new Date().getFullYear()}}
           a(href="https://mycure.md")
             strong.link &nbsp;MYCURE Inc.&nbsp;
-            span All Rights Reserved.
+        span All Rights Reserved.
     v-container(v-else).footer-grey.pa-4
       mc-footer-toolbar
 </template>
