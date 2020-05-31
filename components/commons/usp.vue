@@ -171,12 +171,8 @@ export default {
   line-height: 1.25em;
 }
 .uspTitle {
-  font-family: 'Work Sans', 'Poppins', sans-serif !important;
   line-height: 1.25em;
   font-weight: 700 !important;
-}
-.uspDescription {
-  font-family: 'Source Sans Pro', 'Poppins', sans-serif !important;
 }
 .uspMetaTitle {
   white-space: pre;

@@ -2,7 +2,7 @@
   v-container.pt-3
     v-row(v-if="!imageOnly" justify="center").pt-5
       v-col(cols="12").text-center
-        h2(:class="[{'pre-white-space' : !isMobile}, isMobile ? 'font-36' : 'font-40']").lh-title.cta-text {{ctaText}}
+        h2(:class="[{'pre-white-space' : !isMobile}, isMobile ? 'font-36' : 'font-40']").lh-title {{ctaText}}
         p(:class="{'pre-white-space' : !isMobile}").font-18.pt-3 {{ctaSubText}}
         div.text-xs-center.pt-2
           v-btn(
@@ -156,8 +156,5 @@ export default {
 <style>
 .cta-btn {
   letter-spacing: normal;
-}
-.cta-text {
-  font-family: 'Work Sans', 'Source Sans Pro', sans-serif;
 }
 </style>
