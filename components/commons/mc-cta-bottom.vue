@@ -2,7 +2,7 @@
   v-container.pt-3
     v-row(v-if="!imageOnly" justify="center").pt-5
       v-col(cols="12").text-center
-        h2(:class="[{'pre-white-space' : !isMobile}, isMobile ? 'font-36' : 'font-40']").lh-title {{ctaText}}
+        h2(:class="ctaTextClasses").lh-title {{ctaText}}
         p(:class="{'pre-white-space' : !isMobile}").font-18.pt-3 {{ctaSubText}}
         div.text-xs-center.pt-2
           v-btn(
@@ -85,6 +85,13 @@ export default {
           ? parseTextWithNewLine(this.ctaContent.text, this.parseIndicators)
           : this.ctaContent.text;
       }
+    },
+    ctaTextClasses () {
+      const webClasses = ['pre-white-space', 'font-40'];
+      const mobileClasses = ['font-36'];
+      return this.isMobile
+        ? mobileClasses
+        : webClasses;
     },
     ctaSubText () {
       return !this.ctaContent ? ''
