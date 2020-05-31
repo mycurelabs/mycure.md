@@ -1,82 +1,73 @@
 <template lang="pug">
-  div
-    div(v-if="!$isMobile")
-      div.footer-grey
-        v-container.justify-center
-          mc-footer-toolbar
-          hr.my-4
-          v-row(justify="center").py-5
-            v-layout(
-              d-flex
-              column
-              space-between
-            ).pl-5
+  v-container(fluid).footer-grey
+    v-container(v-if="!$isMobile")
+      mc-footer-toolbar
+      hr.my-4
+      v-row(justify="center" d-flex).py-5
+        v-col(cols="3")
+          ul
+            li
               h3 CLINIC SOLUTIONS
-              v-layout(
-                v-for="(solution, key) in clinicSolutions"
-                :key="key"
-              )
-                nuxt-link(
-                  :to="{ name: solution.learnLink }"
-                  @click.stop="handleFooterSolution(solution.learnLink)"
-                ).link {{solution.header}}
-              nuxt-link(
-                id="footer-features-link"
-                @click.stop="handleFooterFeaturesLink"
-                :to="{name: 'features'}"
-                title="MYCURE Features"
-              ).link Features
-            v-layout(
-              d-flex
-              column
-            ).px-12
-              h3 ABOUT
-              nuxt-link(
-                id="footer-our-story-link"
-                @click.stop="handleFooterOurStoryLink"
-                :to="{name: 'our-story'}"
-                title="MYCURE Our Story | Caring the Extra Mile"
-              ).link Our Story
-              a(href="http://blog.mycure.md/" target="_blank").link Blog
-              a(href="https://culture.mycure.md/" target="_blank").link Careers
-            v-layout(
-              d-flex
-              column
-            ).px-12
-              h3 LEGAL
-              nuxt-link(
-                id="footer-terms-link"
-                @click.stop="handleFooterTermsLink"
-                :to="{name: 'terms'}"
-                title="MYCURE Terms and Conditions"
-              ).link Terms of Use
-              nuxt-link(
-                id="footer-privacy-policy-link"
-                @click.stop="handleFooterPrivacyPolicyLink"
-                :to="{name: 'privacy-policy'}"
-                itle="MYCURE Privacy Policy"
-              ).link Privacy Policy
-            v-layout(
-              d-flex
-              column
+            li(
+              v-for="(solution, key) in clinicSolutions"
+              :key="key"
             )
-              h3 CONTACT US
-              a(
-                id="footer-email-link"
-                @click.stop="handleFooterEmailLink"
-                title="MYCURE - Email"
-                href="mailto:hello@mycure.md"
-              ) hello@mycure.md
-              span (+632) 7799 6262
-              span (+63) 917 303 4350
-          v-divider(color="black")
-          hr.my-4
-          v-row(justify="center")
-            span Copyright &copy; 2016 - {{new Date().getFullYear()}}
-              a(href="https://mycure.md")
-                strong &nbsp;MYCURE Inc.&nbsp;
-                span All Rights Reserved.
-    div(v-else).footer-grey.pa-4
+              nuxt-link(
+              :to="{ name: solution.learnLink }"
+              @click.stop="handleFooterSolution(solution.learnLink)"
+              ).link {{solution.header}}
+            nuxt-link(
+              id="footer-features-link"
+              @click.stop="handleFooterFeaturesLink"
+              :to="{name: 'features'}"
+              title="MYCURE Features"
+            ).link Features
+        v-col(cols="3").pl-12
+          h3 ABOUT
+          nuxt-link(
+            id="footer-our-story-link"
+            @click.stop="handleFooterOurStoryLink"
+            :to="{name: 'our-story'}"
+            title="MYCURE Our Story | Caring the Extra Mile"
+          ).link Our Story
+          br
+          a(href="http://blog.mycure.md/" target="_blank").link Blog
+          br
+          a(href="https://culture.mycure.md/" target="_blank").link Careers
+        v-col(cols="3")
+          h3 LEGAL
+          nuxt-link(
+            id="footer-terms-link"
+            @click.stop="handleFooterTermsLink"
+            :to="{name: 'terms'}"
+            title="MYCURE Terms and Conditions"
+          ).link Terms of Use
+          br
+          nuxt-link(
+            id="footer-privacy-policy-link"
+            @click.stop="handleFooterPrivacyPolicyLink"
+            :to="{name: 'privacy-policy'}"
+            title="MYCURE Privacy Policy"
+          ).link Privacy Policy
+        v-col(cols="3")
+          h3 CONTACT US
+          a(
+            id="footer-email-link"
+            @click.stop="handleFooterEmailLink"
+            title="MYCURE - Email"
+            href="mailto:hello@mycure.md"
+          ).link hello@mycure.md
+          br
+          span (+632) 7799 6262
+          br
+          span (+63) 917 303 4350
+      hr.my-4
+      v-row(justify="center")
+        span Copyright &copy; 2016 - {{new Date().getFullYear()}}
+          a(href="https://mycure.md")
+            strong.link &nbsp;MYCURE Inc.&nbsp;
+            span All Rights Reserved.
+    v-container(v-else).footer-grey.pa-4
       mc-footer-toolbar
 </template>
 
@@ -189,8 +180,15 @@ a:link {
   color: inherit;
   text-decoration: none;
 }
+li {
+  list-style: none;
+}
 .link:hover {
   color: #aaaaaa;
+}
+.clinic-header {
+  font-size: 1.7em;
+  font-weight: bold;
 }
 .center {
   padding: auto;
