@@ -7,7 +7,7 @@
           v-col(cols="5")
             img(width="85%" v-lazy="require(`@/assets/images/${panelImage}.png`)" alt="Data Privacy Law")
           v-col(cols="6" align-self="center")
-            strong.font-40.lh-title.pb-3 {{ panelTitle }}
+            strong.font-40.lh-title.pb-3.font-work-sans {{ panelTitle }}
             br
             br
             span.font-s.mt-3 {{ panelText }}
@@ -17,7 +17,7 @@
         v-row
           v-col(cols="12").text-center
             br
-            h2.lh-title.font-36.pb-5 {{ panelTitle }}
+            h2.lh-title.font-36.pb-5.font-work-sans {{ panelTitle }}
             br
             v-row(no-gutters justify="center")
               v-col(

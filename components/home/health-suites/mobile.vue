@@ -2,7 +2,7 @@
   v-container
     v-row(align="center")
       v-col(cols="12").text-center
-        h1.font-36.text-center.pre-white-space {{ panelTitle }}
+        h1.font-36.text-center.font-work-sans.pre-white-space {{ panelTitle }}
         br
         p.font-s.text-center {{ panelSubtitle }}
     v-row(
