@@ -1,11 +1,11 @@
 <template lang="pug">
   fragment
-    mc-covid-banner
-    v-app-bar(app fixed flat height="70" color="white" :class="[shadow]")
+    //- mc-covid-banner
+    v-app-bar(app fixed flat height="70" :color="appBarColor" :class="[shadow]")
       v-container
         v-row(justify="center")
           v-col(cols="12" md="12").toolbarMargin
-            v-toolbar(flat).white
+            v-toolbar(flat :color="appBarColor")
               nuxt-link(:to="{ name: 'index' }" title="MYCURE | Clinic Management System | Cloud EMR Philippines" id="toolbar-mycure-logo" @click.stop="handleMycureLogo").mr-3.mt-2
                 img(src="~/assets/images/mycure-header-logo.png" width="140" alt="MYCURE logo")
               v-spacer
@@ -96,23 +96,27 @@ export default {
   props: {
     solutionsMenuItems: {
       type: Array,
-      default: () => [],
+      default: () => ([]),
     },
     toolbarLinks: {
       type: Array,
-      default: () => [],
+      default: () => ([]),
     },
     solutionsText: {
       type: String,
-      default: () => 'Solutions',
+      default: 'Solutions',
     },
     loginURL: {
       type: String,
-      default: () => 'signin',
+      default: 'signin',
     },
     shadow: {
       type: String,
-      default: () => '',
+      default: '',
+    },
+    scrollPosition: {
+      type: Number,
+      default: 0,
     },
   },
   data () {
@@ -124,6 +128,14 @@ export default {
   computed: {
     currentRoute () {
       return this.$nuxt.$route.name;
+    },
+    appBarColor () {
+      if (!this.scrollPosition) {
+        return 'transparent';
+      }
+      return this.scrollPosition === 0
+        ? 'transparent'
+        : 'white';
     },
   },
   methods: {

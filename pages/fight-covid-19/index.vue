@@ -118,6 +118,10 @@ export default {
 </script>
 
 <style scoped>
+#top {
+  margin-top: 12vh;
+}
+
 .hearts {
   background-image: url('../../assets/images/mycure-heart/heart-decor-right.webp');
   background-position: top right;

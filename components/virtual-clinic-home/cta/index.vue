@@ -4,13 +4,14 @@
       :background-image="backgroundImage"
       :background-image-configs="backgroundImageConfigs"
       :customPath="customPath"
+      :webContainerStyleConfigs="webContainerStyleConfigs"
     )
       v-row(slot="content" align="center").row-content
         v-col(
           cols="12"
           md="5"
           offset-md="6"
-          class="[{'web-content-margin': !isMobile}]"
+          :class="[{'web-content-margin': !isMobile}]"
         )
           h1.font-40.lh-title {{ uspTitle }}
           p.font-italic.font-18 {{ uspSubtitle }}
@@ -54,6 +55,9 @@ export default {
         bottom: '0',
       };
     },
+    webContainerStyleConfigs () {
+      return { position: 'relative' };
+    },
     panelImageSrc () {
       return require(`~/assets/images/virtual-clinic-home/${this.backgroundImageMobile}`);
     },
@@ -75,9 +79,6 @@ export default {
 </script>
 
 <style scoped>
-.text-field-container {
-  height: 52px;
-}
 .web-content-margin {
   margin-top: 80px;
 }

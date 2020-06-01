@@ -3,10 +3,8 @@
     //- 1st panel
     usp(@getStarted="goToSignupIndividual($event)")
     //- 2nd panel
-    health-suites#health-suites
+    platform-panels(@getStarted="getStarted").platform-panel
     //- 3rd panel
-    platform-panels(@getStarted="getStarted")
-    //- 4th panel
     storyflow(
       :storyflow="storyflowItems"
       :introduction="storyflowIntroText"
@@ -14,11 +12,11 @@
       horizontal
       horizontal-image-size="50%"
     ).mt-10
-    //- 5th panel
+    //- 4th panel
     privacy
-    //- 6th panel
+    //- 5th panel
     apis
-    //- 7th panel
+    //- 6th panel
     testimonial
     //- final panel
     cta(@getStarted="getStarted")
@@ -32,7 +30,6 @@ import { parseTextWithNewLine } from '~/utils/newline';
 // - components
 import Apis from '~/components/virtual-clinic-home/apis';
 import Cta from '~/components/virtual-clinic-home/cta';
-import HealthSuites from '~/components/virtual-clinic-home/health-suites';
 import PlatformPanels from '~/components/virtual-clinic-home/platform-panels';
 import Privacy from '~/components/virtual-clinic-home/privacy';
 import Storyflow from '~/components/commons/storyflow';
@@ -43,7 +40,6 @@ export default {
   components: {
     Apis,
     Cta,
-    HealthSuites,
     PlatformPanels,
     Privacy,
     Storyflow,
@@ -110,3 +106,9 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.platform-panel {
+  margin-top: 10vh;
+}
+</style>

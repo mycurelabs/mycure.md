@@ -7,12 +7,12 @@
       v-btn(icon large @click="drawer = !drawer")
         v-icon.font-35 mdi-menu
       //- Banner
-      template(v-slot:extension)
-        div.banner
-          v-row(justify="center").text-center.white--text
-            v-col(cols="12")
-              | The world needs independent businesses. Learn about the actions we're taking to address the&nbsp;
-              u.font-weight-bold impact of COVID-19
+      //- template(v-slot:extension)
+      //-   div.banner
+      //-     v-row(justify="center").text-center.white--text
+      //-       v-col(cols="12")
+      //-         | The world needs independent businesses. Learn about the actions we're taking to address the&nbsp;
+      //-         u.font-weight-bold impact of COVID-19
     v-navigation-drawer(fixed v-model="drawer" right width="500").navMain
       div.navHeader
         v-toolbar(:class="shadow").white
