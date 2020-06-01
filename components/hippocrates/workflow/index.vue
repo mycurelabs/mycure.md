@@ -13,7 +13,7 @@
     div(v-else)
       v-container
         v-row(justify="center")
-          h1.font-36.text-center.lh-title.font-work-sans {{ title }}
+          h1.font-36.text-center.lh-title {{ title }}
         br
         v-row(
           v-for="(step, key) in steps"

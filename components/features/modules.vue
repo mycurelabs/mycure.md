@@ -3,7 +3,7 @@
     v-container(v-for="(panel,key) in moduleList" :key="key")
       v-row(justify="center")
         v-col(cols="10").text-center
-          strong(:class="isMobile ? 'font-30' : 'font-40'").font-work-sans {{ panel.type }}
+          strong(:class="isMobile ? 'font-30' : 'font-40'") {{ panel.type }}
           br
           span(:class="isMobile ? 'font-18' : 'font-21'") {{ panel.description }}
       br
@@ -19,7 +19,7 @@
             v-card-text(v-if="!isMobile").black--text
               v-row.flex-nowrap
                 img(v-lazy="require(`~/assets/images/module-icons/${ moduleItem.icon }`)" width="10%" height="10%" :alt="moduleItem.title")
-                span(:class="panel.doubleCol ? 'pt-2' : 'pt-1'").font-21.font-work-sans &nbsp; {{ moduleItem.title }}
+                span(:class="panel.doubleCol ? 'pt-2' : 'pt-1'").font-21 &nbsp; {{ moduleItem.title }}
               br
               i(v-if="panel.hasSubtext") {{ moduleItem.subtext}}
                 br

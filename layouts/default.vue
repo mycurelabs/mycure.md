@@ -26,23 +26,16 @@ export default {
 #app {
   max-width: 100%;
   overflow-x: hidden;
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: 'Poppins', sans-serif, 'Arial';
 };
-
-h1 {
-  font-family: 'Work Sans', 'Source Sans Pro', sans-serif;
-}
 
 /* --FONT CSS-- */
 
 /* Font Styles */
-.font-work-sans {
-  font-family: 'Work Sans', 'Source Sans Pro', sans-serif !important;
+.font-poppins {
+  font-family: 'Poppins', 'sans-serif' !important;
 }
-.font-source-sans {
-  font-family: 'Source Sans Pro', 'Source Sans Pro', sans-serif !important;
 /* Font Sizes */
-}
 .font-xl {
   font-size: 50px !important;
 }
@@ -104,11 +97,6 @@ h1 {
 }
 .pre-white-space {
   white-space: pre;
-}
-/* This class lets the panel avoid being covered by the web sky background */
-.showPanel {
-  position: relative;
-  z-index: 1;
 }
 .cta-btn {
   padding: 25px 30px 25px 30px;

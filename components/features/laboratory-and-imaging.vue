@@ -6,7 +6,7 @@
           v-row(justify="center").text-center
             strong.font-21.primary--text LABORATORY AND IMAGING
           v-row(justify="center").add-spacing
-            h1.font-40.text-center.font-work-sans.pre-white-space {{ primaryDescription }}
+            h1.font-40.text-center.pre-white-space {{ primaryDescription }}
           v-row(justify="center").add-spacing
             span.font-21.text-center MYCURE can communicate with modern diagnostic machines through
               br
@@ -38,7 +38,7 @@
           br
           br
           v-row(justify="center")
-            p.font-weight-bold.font-30.text-center.font-work-sans Record and retrieve
+            p.font-weight-bold.font-30.text-center Record and retrieve
               br
               | diagnostic results
               br
