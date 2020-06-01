@@ -1,81 +1,117 @@
 <template lang="pug">
   div#top.white
+    //- hippocrates
+    //- TODO: Temporarily hide
+    //- hippocrates-usp
     //- 1st panel
-    usp(@getStarted="goToSignupIndividual($event)")
+    usp(@getStarted="getStarted").mt-10
     //- 2nd panel
-    health-suites#health-suites.mt-10
+    health-suites#health-suites
     //- 3rd panel
-    platform-panels(@getStarted="getStarted")
+    solutions
     //- 4th panel
     storyflow(
       :storyflow="storyflowItems"
-      :introduction="storyflowIntroText"
+      :introduction="introText"
+      featuresButton
       horizontal
-      horizontal-image-size="50%"
-    ).mt-10
+    ).showPanel
+      div(slot="extra-content").text-center
+        v-btn(
+          text
+          bottom
+          large
+          color="primary"
+          @click="handleWatchFeatures"
+        ).font-21.text-none.video-button
+          v-icon mdi-play-circle
+          | &nbsp;Watch Our Features In Action
+
+        //- Video
+        v-dialog(v-model="featuresVideoDialog" max-width="600")
+          v-card(width="600").pt-5
+            v-card-text.text-center
+              iframe(
+                align="middle"
+                :height="!$isMobile ? '400' : '175'"
+                width="100%"
+                src="https://www.youtube.com/embed/YjymFVmKX_U"
+                frameborder="0"
+                allowfullscreen
+              )
     //- 5th panel
-    privacy
+    vid
     //- 6th panel
-    apis
+    syncbase
+    hr
     //- 7th panel
+    privacy
+    hr
+    //- 8th panel
+    apis
+    //- 9th panel
     testimonial
     //- final panel
-    cta(@getStarted="getStarted")
+    mc-cta-bottom(
+      parse-text
+      :parseIndicators="['for']"
+      :ctaContent="ctaContent"
+      @btnClick="getStarted"
+    )
 </template>
 
 <script>
 // - utils
 import VueScrollTo from 'vue-scrollto';
 import headMeta from '~/utils/head-meta';
-import { parseTextWithNewLine } from '~/utils/newline';
 // - components
-import Apis from '~/components/home/apis';
-import Cta from '~/components/home/cta';
-import HealthSuites from '~/components/home/health-suites';
-import PlatformPanels from '~/components/home/platform-panels';
-import Privacy from '~/components/home/privacy';
-import Storyflow from '~/components/commons/storyflow';
-import Testimonial from '~/components/home/testimonial';
+// - TODO: Temporarily hide
+// import HippocratesUsp from '~/components/hippocrates/usp';
 import Usp from '~/components/home/usp';
 
 export default {
   components: {
-    Apis,
-    Cta,
-    HealthSuites,
-    PlatformPanels,
-    Privacy,
-    Storyflow,
-    Testimonial,
+    // - TODO: Temporarily hide
+    // HippocratesUsp,
     Usp,
+    HealthSuites: () => import('~/components/home/health-suites'),
+    Solutions: () => import('~/components/home/solutions'),
+    Storyflow: () => import('~/components/commons/storyflow'),
+    Vid: () => import('~/components/home/vid'),
+    Syncbase: () => import('~/components/home/syncbase'),
+    Privacy: () => import('~/components/home/privacy'),
+    Apis: () => import('~/components/home/apis'),
+    Testimonial: () => import('~/components/home/testimonial'),
+    McCtaBottom: () => import('~/components/commons/mc-cta-bottom'),
   },
   data () {
+    this.ctaContent = {
+      text: 'Find the best solution for your health facility',
+      btnText: 'Get Started',
+      image: 'mycure-web-footer',
+      mobileImage: 'mycure-web-footer-mobile',
+    };
     this.storyflowItems = [
       {
         title: 'Secure Electronic Health Records (EHR)',
         text: 'Powerful, robust and proven solution that organizes health records based on global health standards.',
-        image: 'MYCURE-virtual-clinic-healthcare-practice-online-homepage-E-benefits-01-secure-ehr.png',
+        image: 'mycure-homepage-secure.png',
       },
       {
         title: 'Solving Everyday Challenges Efficiently',
         text: 'Duplicate or missing charts, billing mishaps, excess costs, and crazy workflows become the least of your worries.',
-        image: 'MYCURE-virtual-clinic-healthcare-practice-online-homepage-E-benefits-02-analytics.png',
+        image: 'mycure-homepage-workflow.png',
       },
       {
         title: 'Holistic Patient Care Experience',
         text: 'From registration to billing, evaluate your patient care performance through fast reporting and analytics.',
-        image: 'MYCURE-virtual-clinic-healthcare-practice-online-homepage-E-benefits-03-holistic-patient-care.png',
+        image: 'mycure-homepage-holistic.png',
       },
     ];
-    this.introText = 'The best tech tool you\'ll need every step of the way';
-    return {};
-  },
-  computed: {
-    storyflowIntroText () {
-      return this.$isMobile
-        ? this.introText
-        : parseTextWithNewLine(this.introText, ['need']);
-    },
+    this.introText = 'Designed for your health facility';
+    return {
+      featuresVideoDialog: false,
+    };
   },
   mounted () {
     this.$nuxt.$route.params.scrollHealthSuites ? this.getStarted()
@@ -85,9 +121,6 @@ export default {
   methods: {
     getStarted () {
       VueScrollTo.scrollTo('#health-suites', 500, { easing: 'ease' });
-    },
-    goToSignupIndividual (email) {
-      this.$router.push({ name: 'signup-individual', params: { email } });
     },
     handleWatchFeatures () {
       this.$ga.event({
@@ -109,3 +142,17 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+#top{
+  margin-top: 12vh;
+}
+hr {
+  border: 1px solid #2e9fdf;
+  margin: auto;
+  width: 10%;
+}
+.video-button {
+  letter-spacing: normal;
+}
+</style>

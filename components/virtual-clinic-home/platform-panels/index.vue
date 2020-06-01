@@ -8,7 +8,7 @@
     v-row(justify="center").py-12
       v-col(v-if="!isMobile" align="center" cols="12" md="6")
         img(
-          v-lazy="require('~/assets/images/home/MYCURE-virtual-clinic-healthcare-practice-online-homepage-A-telehealth.png')"
+          v-lazy="require('~/assets/images/virtual-clinic-home/MYCURE-virtual-clinic-healthcare-practice-online-homepage-A-telehealth.png')"
           height="350"
           alt="Start your physical and digital clinic journey"
         ).fit-size
@@ -22,7 +22,7 @@
           strong.text-capitalize.primary--text {{HOME_START_YOUR_PHYSICAL.btnTxt}}
           v-icon.primary--text {{HOME_START_YOUR_PHYSICAL.btnIcon}}
       img(
-        v-lazy="require('~/assets/images/home/MYCURE-virtual-clinic-healthcare-practice-online-homepage-A-telehealth.png')"
+        v-lazy="require('~/assets/images/virtual-clinic-home/MYCURE-virtual-clinic-healthcare-practice-online-homepage-A-telehealth.png')"
         width="95%"
         alt="Start your physical and digital clinic journey"
         v-if="isMobile"
@@ -38,11 +38,11 @@
           strong.text-capitalize.primary--text {{YOUR_ONLINE_CLINIC.btnTxt}}
           v-icon.primary--text {{YOUR_ONLINE_CLINIC.btnIcon}}
       v-col(align="center" cols="12" md="6")
-        img(v-lazy="require('~/assets/images/home/MYCURE-virtual-clinic-healthcare-practice-online-homepage-B-appointment.png')" alt="Your online clinic everywhere")
+        img(v-lazy="require('~/assets/images/virtual-clinic-home/MYCURE-virtual-clinic-healthcare-practice-online-homepage-B-appointment.png')" alt="Your online clinic everywhere")
     v-row(justify="center").py-12
       v-col(v-if="!isMobile" align="center" cols="12" md="6")
         img(
-          v-lazy="require('~/assets/images/home/MYCURE-virtual-clinic-healthcare-practice-online-homepage-C-doctor-website.png')"
+          v-lazy="require('~/assets/images/virtual-clinic-home/MYCURE-virtual-clinic-healthcare-practice-online-homepage-C-doctor-website.png')"
           alt="Get more patients"
         ).fit-size
       v-col(align="center" cols="12" md="6").text-left
@@ -55,7 +55,7 @@
           strong.text-capitalize.primary--text {{GET_MORE_PATIENTS.btnTxt}}
           v-icon.primary--text {{GET_MORE_PATIENTS.btnIcon}}
       img(
-        v-lazy="require('~/assets/images/home/MYCURE-virtual-clinic-healthcare-practice-online-homepage-C-doctor-website.png')"
+        v-lazy="require('~/assets/images/virtual-clinic-home/MYCURE-virtual-clinic-healthcare-practice-online-homepage-C-doctor-website.png')"
         alt="Get more patients"
         width="95%"
         v-if="isMobile"
@@ -71,7 +71,7 @@
           strong.text-capitalize.primary--text {{MANAGE_EVERYTHING_EASILY.btnTxt}}
           v-icon.primary--text {{MANAGE_EVERYTHING_EASILY.btnIcon}}
       v-col(align="center" cols="12" md="6")
-        img(v-lazy="require('~/assets/images/home/MYCURE-virtual-clinic-healthcare-practice-online-homepage-D-billing-encounter-summary.png')" alt="Manage everything easily" width="95%")
+        img(v-lazy="require('~/assets/images/virtual-clinic-home/MYCURE-virtual-clinic-healthcare-practice-online-homepage-D-billing-encounter-summary.png')" alt="Manage everything easily" width="95%")
 </template>
 
 <script>

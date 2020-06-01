@@ -5,7 +5,7 @@
       v-container
         v-row(justify="center")
           v-col(cols="6" align-self="center").px-3
-            h1.panelTitle.font-40.font-work-sans.lh-title {{ webTitle }}
+            h1.panelTitle.font-40.lh-title.font-weight-light {{ webTitle }}
             br
             br
             p.font-s {{ panelContent }}
@@ -19,13 +19,13 @@
                 v-list-item-content
                   span.font-s {{ item }}
           v-col(cols="6" align-self="center").px-3.text-center
-            img(:src="require(`~/assets/images/${panelImage}.png`)" width="80%" :alt="panelImage")
+            img(v-lazy="panelImageSrc" width="80%" :alt="panelImage")
     //- MOBILE
     div(v-else).pt-5
       v-container.text-center
-        h1.font-36.lh-title.font-work-sans.pb-5 {{ panelTitle }}
+        h1.font-36.lh-title.pb-5 {{ panelTitle }}
         br
-        img(width="85%" v-lazy="require(`~/assets/images/${panelImage}.png`)" :alt="panelImage").pb-3
+        img(width="85%" v-lazy="panelImageSrc" :alt="panelImage").pb-3
         br
         p.font-s {{ panelContent }}
         v-list(two-line).text-left
@@ -51,20 +51,17 @@ export default {
       'Customize the CMS as needed',
       'Complete documentation',
     ];
-    this.panelImage = 'mycure-web-banner-api';
-    this.btnData = {
-      id: 'home-syncbase-video-btn',
-      text: 'Watch How It Works',
-    };
+    this.panelImage = 'MYCURE-virtual-clinic-healthcare-practice-online-homepage-F-features-02-api';
     return {
-      videoDialog: false,
-      videoPlay: false,
       isMobile: true,
     };
   },
   computed: {
     webTitle () {
       return parseTextWithNewLine(this.panelTitle, ['your ', 'systems ']);
+    },
+    panelImageSrc () {
+      return require(`~/assets/images/virtual-clinic-home/${this.panelImage}.png`);
     },
   },
   watch: {
@@ -76,18 +73,6 @@ export default {
   },
   mounted () {
     this.isMobile = this.$isMobile;
-  },
-  methods: {
-    handleVideoBtn () {
-      this.$ga.event({
-        eventCategory: 'video',
-        eventAction: `play-${this.btnData.id}`,
-        eventLabel: this.btnData.id,
-      });
-      if (!this.$isMobile) {
-        this.videoDialog = true;
-      }
-    },
   },
 };
 </script>

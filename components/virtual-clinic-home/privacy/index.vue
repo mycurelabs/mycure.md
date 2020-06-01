@@ -5,9 +5,9 @@
       v-container
         v-row(justify="center")
           v-col(cols="5")
-            img(width="85%" v-lazy="require(`@/assets/images/${panelImage}.png`)" alt="Data Privacy Law")
+            img(width="85%" v-lazy="require(`@/assets/images/virtual-clinic-home/${panelImage}.png`)" alt="Data Privacy Law")
           v-col(cols="6" align-self="center")
-            strong.font-40.lh-title.pb-3.font-work-sans {{ panelTitle }}
+            h1.font-40.lh-title.pb-3.font-weight-light {{ panelTitle }}
             br
             br
             span.font-s.mt-3 {{ panelText }}
@@ -17,7 +17,7 @@
         v-row
           v-col(cols="12").text-center
             br
-            h2.lh-title.font-36.pb-5.font-work-sans {{ panelTitle }}
+            h2.lh-title.font-36.pb-5 {{ panelTitle }}
             br
             v-row(no-gutters justify="center")
               v-col(
@@ -42,7 +42,7 @@ export default {
   data () {
     this.panelTitle = 'Protect your patients\' medical records with confidence';
     this.panelText = 'With MYCURE you\'ll never have to worry much about data privacy concerns. Keeping them secure is our #1 priority.';
-    this.panelImage = 'mycure-web-banner-data-privacy-law';
+    this.panelImage = 'MYCURE-virtual-clinic-healthcare-practice-online-homepage-F-features-01-data-privacy';
     this.privacyItems = [
       { text: 'Secure Cloud Hosting', image: 'cloud' },
       { text: 'Data Encryption', image: 'encryption' },

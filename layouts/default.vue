@@ -1,9 +1,8 @@
 <template lang="pug">
   v-app#app
-    mc-navbar
-    v-content
-      nuxt
-    mc-footer
+    mc-navbar(v-if="!loading")
+    nuxt(v-if="!loading")
+    mc-footer(v-if="!loading")
 </template>
 
 <script>
@@ -16,8 +15,14 @@ export default {
     McNavbar,
     McFooter,
   },
+  data () {
+    return {
+      loading: true,
+    };
+  },
   mounted () {
     this.$vuetify.theme.dark = false;
+    this.loading = false;
   },
 };
 </script>
@@ -28,10 +33,6 @@ export default {
   overflow-x: hidden;
   font-family: 'Poppins', sans-serif, 'Arial';
 };
-
-h1 {
-  font-family: 'Work Sans', 'Source Sans Pro', sans-serif;
-}
 
 /* --FONT CSS-- */
 

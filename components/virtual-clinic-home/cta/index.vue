@@ -3,13 +3,15 @@
     generic-background-panel(
       :background-image="backgroundImage"
       :background-image-configs="backgroundImageConfigs"
+      :customPath="customPath"
+      :webContainerStyleConfigs="webContainerStyleConfigs"
     )
       v-row(slot="content" align="center").row-content
         v-col(
           cols="12"
           md="5"
           offset-md="6"
-          class="[{'web-content-margin': !isMobile}]"
+          :class="[{'web-content-margin': !isMobile}]"
         )
           h1.font-40.lh-title {{ uspTitle }}
           p.font-italic.font-18 {{ uspSubtitle }}
@@ -20,7 +22,7 @@
           ).text-none.font-weight-bold.font-18.mt-5 Get Started
           img(
             v-if="isMobile"
-            v-lazy="require(`~/assets/images/${backgroundImageMobile}`)"
+            v-lazy="panelImageSrc"
             alt="Home CTA"
             width="100%"
           ).pt-10
@@ -38,6 +40,7 @@ export default {
     this.backgroundImageMobile = 'MYCURE-virtual-clinic-healthcare-practice-online-homepage-final-cta-cover-mobile.png';
     this.uspTitle = 'Start your modern clinic experience with MYCURE';
     this.uspSubtitle = 'Explore all the tools and services you need to run and grow your clinic online and offline.';
+    this.customPath = 'virtual-clinic-home/';
     return {
       email: '',
       isMobile: true,
@@ -51,6 +54,12 @@ export default {
         left: '0',
         bottom: '0',
       };
+    },
+    webContainerStyleConfigs () {
+      return { position: 'relative' };
+    },
+    panelImageSrc () {
+      return require(`~/assets/images/virtual-clinic-home/${this.backgroundImageMobile}`);
     },
   },
   watch: {
@@ -70,9 +79,6 @@ export default {
 </script>
 
 <style scoped>
-.text-field-container {
-  height: 52px;
-}
 .web-content-margin {
   margin-top: 80px;
 }

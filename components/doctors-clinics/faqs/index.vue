@@ -5,7 +5,7 @@
         v-col(cols="12").text-center
           h1.font-40 {{ faqsTitle }}
       v-row(v-if="!isMobile" justify="center").pt-5
-        v-col(v-for="(column, key) in 2" :key="key" cols="12" md="6").font-source-sans
+        v-col(v-for="(column, key) in 2" :key="key" cols="12" md="6")
           template(v-for="(item, key) in faqsItems")
             div(v-if="key < 6 && column === 1")
               img(:src="require(`~/assets/images/${questionMark}.png`)" :alt="questionMark" width="18px")
