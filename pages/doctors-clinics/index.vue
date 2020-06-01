@@ -3,20 +3,21 @@
     //- 1st panel
     usp
     //- 2nd panel
-    workflow
-    //- 3rd panel
-    features
-    //- 4th panel
-    pricing
-    //- 5th panel
-    faqs
-    //- CTA
-    mc-cta-bottom(
-      parse-text
-      :parseIndicators="['when']"
-      :ctaContent="ctaContent"
-      btnColor="accent"
-    )
+    platform-panels
+    //- workflow
+    //- //- 3rd panel
+    //- features
+    //- //- 4th panel
+    //- pricing
+    //- //- 5th panel
+    //- faqs
+    //- //- CTA
+    //- mc-cta-bottom(
+    //-   parse-text
+    //-   :parseIndicators="['when']"
+    //-   :ctaContent="ctaContent"
+    //-   btnColor="accent"
+    //- )
 </template>
 
 <script>
@@ -29,6 +30,7 @@ import Usp from '~/components/doctors-clinics/usp';
 export default {
   components: {
     Usp,
+    PlatformPanels: () => import('~/components/doctors-clinics/platform-panels'),
     Workflow: () => import('~/components/doctors-clinics/workflow'),
     Features: () => import('~/components/doctors-clinics/features'),
     Pricing: () => import('~/components/doctors-clinics/pricing'),
