@@ -29,9 +29,9 @@ module.exports = {
     ],
     script: [
       {
-        src: 'https://app.heyflow.co/pixel/Ol00Wv3kMUxpaalI'
-      }
-    ]
+        src: 'https://app.heyflow.co/pixel/Ol00Wv3kMUxpaalI',
+      },
+    ],
   },
   /*
   ** Customize the progress-bar color
