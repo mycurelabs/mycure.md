@@ -101,7 +101,9 @@ export default {
 
 <style scoped>
 .text-field-container {
-  height: 52px;
+  height: 58px;
+  border: 1px solid black;
+  border-radius: 2px;
 }
 .web-content-margin {
   margin-top: 80px;
