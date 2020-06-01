@@ -3,7 +3,7 @@
     //- 1st panel
     usp(@getStarted="goToSignupIndividual($event)")
     //- 2nd panel
-    health-suites#health-suites.mt-10
+    health-suites#health-suites
     //- 3rd panel
     platform-panels(@getStarted="getStarted")
     //- 4th panel
