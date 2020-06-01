@@ -1,0 +1,94 @@
+<template lang="pug">
+  div(:class="[...mainContainerClasses]" :style="mobileStyleConfig")
+    img(v-if="!isMobile" :src="imageSrc" alt="Usp background" :style="webStyleConfig").source-image
+    v-container.content
+      slot(name="content")
+</template>
+
+<script>
+export default {
+  props: {
+    backgroundImage: {
+      type: String,
+      default: null,
+    },
+    backgroundImageMobile: {
+      type: String,
+      default: null,
+    },
+    customPath: {
+      type: String,
+      default: '',
+    },
+    backgroundImageConfigs: {
+      type: Object,
+      default: () => ({
+        width: '100%',
+        position: 'absolute',
+        left: '0',
+        top: '0',
+      }),
+    },
+    backgroundImageMobileConfigs: {
+      type: Object,
+      default: () => ({
+        'background-size': 'cover',
+        'background-position': 'center',
+      }),
+    },
+  },
+  data () {
+    return {
+      isMobile: true,
+    };
+  },
+  computed: {
+    mainContainerClasses () {
+      const defaultClasses = ['main-container', 'white'];
+      return this.isMobile
+        ? defaultClasses.push('pt-10', 'mt-10')
+        : defaultClasses;
+    },
+    webStyleConfig () {
+      if (!this.backgroundImage) {
+        return;
+      }
+      return this.backgroundImageConfigs;
+    },
+    mobileStyleConfig () {
+      if (!this.isMobile) {
+        return;
+      }
+      if (!this.backgroundImageMobile && this.isMobile) {
+        return {};
+      }
+      const styleConfig = {
+        'background-image': `url(${require(`~/assets/images/${this.customPath}${this.backgroundImageMobile}`)})`,
+        ...this.backgroundImageMobileConfigs,
+      };
+      return styleConfig;
+    },
+    imageSrc () {
+      return require(`~/assets/images/${this.backgroundImage}`);
+    },
+  },
+  watch: {
+    $isMobile (val) {
+      this.isMobile = val;
+    },
+  },
+  mounted () {
+    this.isMobile = this.$isMobile;
+  },
+};
+</script>
+
+<style scoped>
+.main-container {
+  width: 100vw;
+  min-height: 100vh;
+}
+.content {
+  position: relative;
+}
+</style>

@@ -5,7 +5,7 @@
         v-row(v-if="metaTitle" justify="center").text-center
           strong.font-21.primary--text {{ metaTitle }}
         v-row(v-if="introduction" justify="center").text-center.pb50
-          strong.font-40.introText.pre-white-space {{introduction}}
+          span.font-40.introText.pre-white-space {{introduction}}
         v-row(v-if="description" justify="center").text-center.pb60
           span.font-18.pre-white-space {{ description }}
         div(v-if="!horizontal")
@@ -35,9 +35,13 @@
               :key="index"
               cols="4"
             ).text-center
-              img(v-lazy="require(`@/assets/images/${customPath}${highlight.image}`)" :alt="highlight.title").storyflowAssetHorizontal
+              img(
+                v-lazy="require(`@/assets/images/${customPath}${highlight.image}`)"
+                :alt="highlight.title"
+                :style="storyflowAssetHorizontal"
+              )
               br
-              strong(
+              span(
                 v-if="hasTitle"
                 :style="highlightTitleFontStyle"
                 :class="{'pre-white-space': parseTitles}"
@@ -118,6 +122,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    horizontalImageSize: {
+      type: String,
+      default: '65%',
+    },
     customPath: {
       type: String,
       default: '',
@@ -142,6 +150,13 @@ export default {
     return {
       isMobile: true,
     };
+  },
+  computed: {
+    storyflowAssetHorizontal () {
+      return {
+        width: this.horizontalImageSize,
+      };
+    },
   },
   watch: {
     $isMobile: {
@@ -171,9 +186,6 @@ export default {
 </script>
 
 <style scoped>
-.introText {
-  font-family: 'Work Sans', 'Poppins', sans-serif !important;
-}
 .storyflowAsset {
   width: 275px;
 }
@@ -182,9 +194,5 @@ export default {
 }
 .pb60 {
   padding-bottom: 60px;
-}
-.storyflowAssetHorizontal {
-  width: 65%;
-  font-family: 'Work Sans', 'Poppins', sans-serif !important;
 }
 </style>
