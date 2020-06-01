@@ -15,7 +15,7 @@
           :class="{'text-center': $isMobile }"
         )
           img(src="~/assets/images/mycure-logo.svg" height="50")
-          h1.font-work-sans YOUR TRIAL IS NOW ACTIVE!
+          h1 YOUR TRIAL IS NOW ACTIVE!
           p.mt-3 Congratulations! You can now starting exploring MYCURE.
           v-btn(
             color="accent"

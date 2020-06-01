@@ -5,7 +5,7 @@
         v-col(cols="12")
           v-row(justify="center")
             v-col(cols="12").px-4.pb-3.text-center
-              h1.pt-5.font-40.pb-3.font-work-sans Our Purpose
+              h1.pt-5.font-40.pb-3 Our Purpose
             v-col(cols="11" md="12" :class="{'pt-3' : isMobile}").px-4.font-21
               img(width="100%" v-lazy="require('~/assets/images/our-story/mycure-team.png')" alt="Our Story - Team").pb-4
               p MYCURE’s vision is to&nbsp;

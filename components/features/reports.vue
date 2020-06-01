@@ -6,7 +6,7 @@
           v-row(justify="center").text-center
             strong.font-21.primary--text REPORTS AND ANALYTICS
           v-row(justify="center").add-spacing
-            strong.font-40.text-center.font-work-sans Never miss out on important&nbsp;
+            strong.font-40.text-center Never miss out on important&nbsp;
               br
               | business decisions.
           v-row(justify="center").add-spacing
@@ -26,7 +26,7 @@
           br
           br
           v-row(justify="center")
-            p.font-weight-bold.font-30.text-center.font-work-sans Never miss out
+            p.font-weight-bold.font-30.text-center Never miss out
               br
               | on important
               br

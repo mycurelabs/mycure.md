@@ -80,7 +80,7 @@ module.exports = {
   ],
   webfontloader: {
     google: {
-      families: ['Work+Sans:400,700,900', 'Source+Sans+Pro:400,700'],
+      families: ['Poppins:400,700,900'],
     },
   },
   /*
