@@ -29,10 +29,6 @@ export default {
   font-family: 'Poppins', sans-serif, 'Arial';
 };
 
-h1 {
-  font-family: 'Work Sans', 'Source Sans Pro', sans-serif;
-}
-
 /* --FONT CSS-- */
 
 /* Font Styles */
