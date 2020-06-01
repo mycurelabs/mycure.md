@@ -4,6 +4,7 @@
       :background-image="backgroundImage"
       :background-image-mobile="backgroundImageMobile"
       :background-image-mobile-configs="backgroundImageMobileConfigs"
+      :customPath="customPath"
       :class="{'mt-10': isMobile}"
     )
       v-row(slot="content").row-content
@@ -52,6 +53,7 @@ export default {
     this.backgroundImageMobile = 'MYCURE-virtual-clinic-healthcare-practice-online-homepage-usp-cover-mobile.png';
     this.panelTitle = 'Build your virtual clinic today.';
     this.uspSubtitle = 'For Modern Doctors, Virtual is the new normal.';
+    this.customPath = 'virtual-clinic-home/';
     return {
       email: '',
       isMobile: true,

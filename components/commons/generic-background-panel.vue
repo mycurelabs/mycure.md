@@ -69,7 +69,7 @@ export default {
       return styleConfig;
     },
     imageSrc () {
-      return require(`~/assets/images/${this.backgroundImage}`);
+      return require(`~/assets/images/${this.customPath}${this.backgroundImage}`);
     },
   },
   watch: {
