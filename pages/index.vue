@@ -144,6 +144,9 @@ export default {
 </script>
 
 <style scoped>
+#top{
+  margin-top: 12vh;
+}
 hr {
   border: 1px solid #2e9fdf;
   margin: auto;

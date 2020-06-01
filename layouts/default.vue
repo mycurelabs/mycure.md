@@ -1,8 +1,7 @@
 <template lang="pug">
   v-app#app
     mc-navbar
-    v-content
-      nuxt
+    nuxt
     mc-footer
 </template>
 

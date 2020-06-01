@@ -52,3 +52,9 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+#top {
+  margin-top: 12vh;
+}
+</style>
