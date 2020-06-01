@@ -5,7 +5,7 @@
       v-container
         v-row(justify="center")
           v-col(cols="6" align-self="center").px-3
-            h1.panelTitle.font-40.lh-title {{ webTitle }}
+            h1.panelTitle.font-40.font-work-sans.lh-title {{ webTitle }}
             br
             br
             p.font-s {{ panelContent }}
@@ -23,7 +23,7 @@
     //- MOBILE
     div(v-else).pt-5
       v-container.text-center
-        h1.font-36.lh-title.pb-5 {{ panelTitle }}
+        h1.font-36.lh-title.font-work-sans.pb-5 {{ panelTitle }}
         br
         img(width="85%" v-lazy="require(`~/assets/images/${panelImage}.png`)" :alt="panelImage").pb-3
         br
@@ -51,8 +51,14 @@ export default {
       'Customize the CMS as needed',
       'Complete documentation',
     ];
-    this.panelImage = 'MYCURE-virtual-clinic-healthcare-practice-online-homepage-F-features-02-api';
+    this.panelImage = 'mycure-web-banner-api';
+    this.btnData = {
+      id: 'home-syncbase-video-btn',
+      text: 'Watch How It Works',
+    };
     return {
+      videoDialog: false,
+      videoPlay: false,
       isMobile: true,
     };
   },
@@ -70,6 +76,18 @@ export default {
   },
   mounted () {
     this.isMobile = this.$isMobile;
+  },
+  methods: {
+    handleVideoBtn () {
+      this.$ga.event({
+        eventCategory: 'video',
+        eventAction: `play-${this.btnData.id}`,
+        eventLabel: this.btnData.id,
+      });
+      if (!this.$isMobile) {
+        this.videoDialog = true;
+      }
+    },
   },
 };
 </script>

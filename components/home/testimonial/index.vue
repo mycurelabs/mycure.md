@@ -1,16 +1,16 @@
 <template lang="pug">
-  div.white
+  div.gradient-grey
     client-only
       v-container(v-if="!isMobile" @mouseover="playCarousel = true")
         v-row(justify="center")
-          v-col(cols="12" md="11").pt-2.pb-1
+          v-col(cols="12" md="9").pt-2.pb-1
             v-carousel(
               dark
               hide-delimiters
               :cycle="playCarousel"
               :interval="4000"
               next-icon="mdi-chevron-right"
-              height="450"
+              height="350"
             ).elevation-0.testimonial-carousel
               v-carousel-item(
                 v-for="(testimonial,i) in testimonials"
@@ -18,8 +18,8 @@
               ).pt-10
                 v-row(justify="center" align="center")
                   v-col(cols="10").text-center.pa-5
-                    h1.black--text.mb-5.font-36.font-weight-light {{ testimonial.message }}
-                    span.font-s.primary--text {{ testimonial.name }}
+                    h2.black--text.mb-5.font-25 {{ testimonial.message }}
+                    strong.font-s.primary--text {{ testimonial.name }}
                     br
                     span.font-s.subheading.grey--text {{ testimonial.position }}
       div(v-else).transparent.pt-5
@@ -38,7 +38,7 @@
                 navigationPrevLabel=" "
               )
                 slide(v-for="(testimonial,index) in testimonials" :key="index" :data-index="index+1").text-center
-                  h2.black--text.font-weight-light {{ testimonial.message }}
+                  h2.black--text {{ testimonial.message }}
                   br
                   br
                   strong.font-16.primary--text {{ testimonial.name }}

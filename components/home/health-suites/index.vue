@@ -57,7 +57,7 @@ export default {
 <style scoped>
 .health-suites {
   background-color: white;
-  padding-bottom: 50px;
+  padding-bottom: 100px;
 }
 .mobile {
   margin-top: 10vh;
@@ -65,7 +65,7 @@ export default {
 
 @media screen and (min-height: 1080px) {
   .health-suites {
-    padding: 100px 0px 300px 0px !important;
+    padding: 100px 0px 350px 0px !important;
   }
 }
 </style>
