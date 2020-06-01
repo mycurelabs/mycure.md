@@ -18,10 +18,11 @@
         :solutionsMenuItems="solutionsMenuItems"
         :solutionsText="solutionsText"
         :toolbarLinks="toolbarLinks"
+        :scroll-position="scrollPosition"
         @toolbarLinkClick="handleToolbarLinkClick($event)"
         @logoClick="handleMycureLogo"
       )
-    mc-cookie-prompt.cookie-prompt
+    //- mc-cookie-prompt.cookie-prompt
 </template>
 
 <script>
