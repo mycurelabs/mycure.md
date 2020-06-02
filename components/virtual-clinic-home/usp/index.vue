@@ -5,11 +5,7 @@
       :background-image-mobile="backgroundImageMobile"
       :background-image-mobile-configs="backgroundImageMobileConfigs"
       :customPath="customPath"
-<<<<<<< HEAD
-      :class="{'pt-12': isMobile}"
-=======
       :class="{'mt-10': $isMobile}"
->>>>>>> 2f9b89bd0bb7db5a1e5181f1b7c3ca955627e8e5
     )
       v-row(slot="content" :align="$isMobile ? 'start' : 'center'" :class="rowContentClass")
         v-col(cols="12" md="5" xl="4" :class="{'pt-10': $isMobile}")
