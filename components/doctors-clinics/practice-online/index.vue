@@ -10,9 +10,14 @@
         v-btn(text @click="onGetStarted")
           strong.text-capitalize.primary--text {{TAKE_PRACTICE_ONLINE.btnTxt}}
           v-icon.primary--text {{TAKE_PRACTICE_ONLINE.btnIcon}}
+      v-col(align-self="center" cols="12" md="6" v-if="!isMobile")
+        img(v-lazy="require('~/assets/images/doctors-clinics/MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-C-group-practice.png')"
+          alt="Safekeep your important medical data"
+        ).pl-10
       img(v-lazy="require('~/assets/images/doctors-clinics/MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-C-group-practice.png')"
-        alt="Safekeep your important medical data"
-      ).pl-10
+        alt="Safekeep your important medical data" v-if="isMobile"
+        width="100%"
+      )
 </template>
 
 <script>

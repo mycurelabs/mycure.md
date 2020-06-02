@@ -1,25 +1,29 @@
 <template lang="pug">
   v-container
-    v-row(justify="center").pb-12
-      v-col(cols="12" md="10")
+    v-row(justify="center")
+      v-col(cols="12" md="10" v-if="!isMobile")
         img(
           v-lazy="require('~/assets/images/doctors-clinics/MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-A-online-consult.png')"
           width="95%"
           alt="Medical records"
-        )#increase-revenue
-      v-col(justify="center" cols="12" md="5")
-        h1(
-          :class="[{'title': $isMobile}]"
-        ).font-30.lh-title.pb-3.font-weight-light {{INCREASE_YOUR_REVENUE.header}}
+        )#increase-revenue.pt-12
+      img(
+        v-if="isMobile"
+        v-lazy="require('~/assets/images/doctors-clinics/MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-A-online-consult.png')"
+        width="100%"
+        alt="Medical records"
+      )#increase-revenue
+      v-col(justify="center" cols="12" md="5").pt-12
+        h1.font-30.lh-title.pb-3.font-weight-light {{INCREASE_YOUR_REVENUE.header}}
         br
-        span(:class="[{'subtitle-1': $isMobile}]").font-18.mt-3 {{INCREASE_YOUR_REVENUE.description}}
+        span.font-18.mt-3 {{INCREASE_YOUR_REVENUE.description}}
         br
         br
         br
         v-btn(text @click="onGetStarted")
           strong.text-capitalize.primary--text {{INCREASE_YOUR_REVENUE.btnTxt}}
           v-icon.primary--text {{INCREASE_YOUR_REVENUE.btnIcon}}
-      v-col(justify="center" cols="12" md="5")
+      v-col(justify="center" cols="12" md="5").pt-12
         h1.font-30.lh-title.pb-3.font-weight-light {{BUILD_YOUR_CLIENTELE.header}}
         br
         span.font-18.mt-3 {{BUILD_YOUR_CLIENTELE.description}}
