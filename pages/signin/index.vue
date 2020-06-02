@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-container.main-container
+  v-container(v-if="!pageLoading").main-container
     v-row(align="center" justify="center").mx-1
       v-col(cols="12" sm="8" md="4")
         v-card
@@ -98,6 +98,7 @@ export default {
     return {
       valid: false,
       otpValid: false,
+      pageLoading: true,
       loading: false,
       signInDisabled: false,
       email: '',
@@ -136,6 +137,9 @@ export default {
   },
   created () {
     this.init();
+  },
+  mounted () {
+    this.pageLoading = false;
   },
   methods: {
     init () {

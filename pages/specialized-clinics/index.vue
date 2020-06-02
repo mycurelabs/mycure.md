@@ -1,5 +1,5 @@
 <template lang="pug">
-  div#top
+  div(v-if="!loading")#top
     //- 1st panel
     usp
     //- 2nd panel
@@ -36,10 +36,13 @@ export default {
       btnLink: 'signup-specialized',
       image: 'mycure-web-footer',
     };
-    return {};
+    return {
+      loading: true,
+    };
   },
   mounted () {
     VueScrollTo.scrollTo('#app', 500, { easing: 'ease' });
+    this.loading = false;
   },
   head () {
     return headMeta({

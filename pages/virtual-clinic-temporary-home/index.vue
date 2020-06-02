@@ -1,5 +1,5 @@
 <template lang="pug">
-  div#top.white
+  div(v-if="!loading")#top.white
     //- 1st panel
     usp(@getStarted="goToSignupIndividual($event)")
     //- 2nd panel
@@ -65,7 +65,9 @@ export default {
       },
     ];
     this.introText = 'The best tech tool you\'ll need every step of the way';
-    return {};
+    return {
+      loading: true,
+    };
   },
   computed: {
     storyflowIntroText () {
@@ -78,6 +80,7 @@ export default {
     this.$nuxt.$route.params.scrollHealthSuites ? this.getStarted()
       : VueScrollTo.scrollTo('#app', 500, { easing: 'ease' });
     window.$crisp.push(['safe', true]);
+    this.loading = false;
   },
   methods: {
     getStarted () {
