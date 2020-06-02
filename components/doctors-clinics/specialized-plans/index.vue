@@ -30,7 +30,6 @@
 </template>
 
 <script>
-import VueScrollTo from 'vue-scrollto';
 import {
   SPECIALIZED_PLANS,
   SKIN_AND_AESTHETHIC,
@@ -59,17 +58,8 @@ export default {
   mounted () {
     this.isMobile = this.$isMobile;
   },
-  methods: {
-    onGetStarted () {
-      VueScrollTo.scrollTo('#health-suites', 500, { easing: 'ease' });
-    },
-  },
 };
 </script>
 
 <style scoped>
-a {
-  text-decoration-color: #2e9fdf;
-  text-decoration: none;
-}
 </style>

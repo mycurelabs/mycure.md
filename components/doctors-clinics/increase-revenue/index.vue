@@ -6,13 +6,13 @@
           v-lazy="require('~/assets/images/doctors-clinics/MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-A-online-consult.png')"
           width="95%"
           alt="Medical records"
-        )#health-suites
+        )#increase-revenue
       v-col(justify="center" cols="12" md="5")
         h1(
           :class="[{'title': $isMobile}]"
         ).font-30.lh-title.pb-3.font-weight-light {{INCREASE_YOUR_REVENUE.header}}
         br
-        span.font-18.mt-3 {{INCREASE_YOUR_REVENUE.description}}
+        span(:class="[{'subtitle-1': $isMobile}]").font-18.mt-3 {{INCREASE_YOUR_REVENUE.description}}
         br
         br
         br
@@ -54,7 +54,7 @@ export default {
   },
   methods: {
     onGetStarted () {
-      VueScrollTo.scrollTo('#health-suites', 500, { easing: 'ease' });
+      VueScrollTo.scrollTo('#increase-revenue', 500, { easing: 'ease' });
     },
   },
 };

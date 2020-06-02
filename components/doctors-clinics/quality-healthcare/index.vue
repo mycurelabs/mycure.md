@@ -38,7 +38,7 @@ export default {
   },
   methods: {
     onGetStarted () {
-      VueScrollTo.scrollTo('#health-suites', 500, { easing: 'ease' });
+      VueScrollTo.scrollTo('#increase-revenue', 500, { easing: 'ease' });
     },
   },
 };
