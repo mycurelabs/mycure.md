@@ -42,7 +42,9 @@ export default {
     Cta,
   },
   data () {
-    return {};
+    return {
+      loading: true,
+    };
   },
   mounted () {
     VueScrollTo.scrollTo('#app', 500, { easing: 'ease' });
