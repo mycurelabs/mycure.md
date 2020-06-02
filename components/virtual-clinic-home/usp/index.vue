@@ -5,7 +5,7 @@
       :background-image-mobile="backgroundImageMobile"
       :background-image-mobile-configs="backgroundImageMobileConfigs"
       :customPath="customPath"
-      :class="{'mt-10': isMobile}"
+      :class="{'pt-12': isMobile}"
     )
       v-row(slot="content").row-content
         v-col(cols="12" md="5" :class="[{'web-content-margin': !isMobile}]")

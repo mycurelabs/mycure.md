@@ -1,0 +1,68 @@
+<template lang="pug">
+  v-container
+    v-row(justify="center").pb-12
+      v-col(cols="12" md="10")
+        img(
+          v-lazy="require('~/assets/images/doctors-clinics/MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-A-online-consult.png')"
+          width="95%"
+          alt="Medical records"
+        )#health-suites
+      v-col(justify="center" cols="12" md="5")
+        h1(
+          :class="[{'title': $isMobile}]"
+        ).font-30.lh-title.pb-3.font-weight-light {{INCREASE_YOUR_REVENUE.header}}
+        br
+        span.font-18.mt-3 {{INCREASE_YOUR_REVENUE.description}}
+        br
+        br
+        br
+        v-btn(text @click="onGetStarted")
+          strong.text-capitalize.primary--text {{INCREASE_YOUR_REVENUE.btnTxt}}
+          v-icon.primary--text {{INCREASE_YOUR_REVENUE.btnIcon}}
+      v-col(justify="center" cols="12" md="5")
+        h1.font-30.lh-title.pb-3.font-weight-light {{BUILD_YOUR_CLIENTELE.header}}
+        br
+        span.font-18.mt-3 {{BUILD_YOUR_CLIENTELE.description}}
+        br
+        br
+        v-btn(text @click="onGetStarted")
+          strong.text-capitalize.primary--text {{BUILD_YOUR_CLIENTELE.btnTxt}}
+          v-icon.primary--text {{BUILD_YOUR_CLIENTELE.btnIcon}}
+</template>
+
+<script>
+import VueScrollTo from 'vue-scrollto';
+import {
+  INCREASE_YOUR_REVENUE,
+  BUILD_YOUR_CLIENTELE,
+} from '../doctors-clinics-content';
+export default {
+  data () {
+    this.INCREASE_YOUR_REVENUE = INCREASE_YOUR_REVENUE;
+    this.BUILD_YOUR_CLIENTELE = BUILD_YOUR_CLIENTELE;
+    return {
+      isMobile: true,
+    };
+  },
+  watch: {
+    $isMobile (val) {
+      this.isMobile = val;
+    },
+  },
+  mounted () {
+    this.isMobile = this.$isMobile;
+  },
+  methods: {
+    onGetStarted () {
+      VueScrollTo.scrollTo('#health-suites', 500, { easing: 'ease' });
+    },
+  },
+};
+</script>
+
+<style scoped>
+a {
+  text-decoration-color: #2e9fdf;
+  text-decoration: none;
+}
+</style>

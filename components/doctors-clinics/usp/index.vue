@@ -11,8 +11,9 @@
           p(:class="[centerText]").font-18.mx-1 {{ uspSubheader }}
           h1(:class="titleClasses").font-poppins.font-40.lh-title {{ uspTitle }}
           p(:class="[centerText]").font-18.mx-1.pt-5 {{ uspSubtitle }}
-          v-btn(text).align-center
-            v-icon(v-if="isMobile" large) mdi-arrow-down
+          div(v-if="isMobile").text-center
+            v-btn(text).align-center
+              v-icon(large) mdi-arrow-down
           v-btn(
             v-if="!isMobile"
             color="accent"
@@ -44,8 +45,8 @@ export default {
     GenericBackgroundPanel,
   },
   data () {
-    this.backgroundImage = 'MYCURE-virtual-clinic-healthcare-practice-online-homepage-usp-cover.png';
-    this.backgroundImageMobile = 'MYCURE-virtual-clinic-healthcare-practice-online-homepage-usp-cover-mobile.png';
+    this.backgroundImage = 'MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-usp-cover.png';
+    this.backgroundImageMobile = 'MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-usp-cover-mobile.png';
     this.imagePath = '../../../assets/images';
     this.uspSubheader = 'For Doctors Clinics';
     this.panelTitle = 'Everything you need\n to build your virtual practice.';

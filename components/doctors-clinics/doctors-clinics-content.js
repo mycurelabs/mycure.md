@@ -47,8 +47,8 @@ export const DIAGNOSTIC = {
   description: 'Interoperable Laboratory & Imaging modules with HL7 machine integrations, send-outs and specimen tracking functions.',
 };
 export const ACCESS_QUALITY_HEALTHCARE = {
-  header: 'Access quality healthcare-- instantly',
-  description: 'Set-up appointments and consultations, and release diagnostics results--all that and more with an online portal to interact with your patients .',
+  header: 'Access quality healthcare -instantly',
+  description: 'Set-up appointments and consultations, coordinate patient care, issure ePresciptions and release diagnostics results- all that and more with an online portal to interact with your patients.',
   btnTxt: 'Get Started',
   btnIcon: 'mdi-arrow-right-thick',
 };
