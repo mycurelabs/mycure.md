@@ -13,8 +13,8 @@
     //- 6th panel
     QualityHealthcare
     //- 7th panel
-    div.cta-container.pb-lg-12
-      CtaBot
+    div.cta-container
+      Cta
     //- )
 </template>
 
@@ -29,7 +29,7 @@ import SafekeepData from '~/components/doctors-clinics/safekeep-data';
 import PracticeOnline from '~/components/doctors-clinics/practice-online';
 import SpecializedPlans from '~/components/doctors-clinics/specialized-plans';
 import QualityHealthcare from '~/components/doctors-clinics/quality-healthcare';
-import CtaBot from '~/components/virtual-clinic-home/usp';
+import Cta from '~/components/doctors-clinics/cta';
 
 export default {
   components: {
@@ -39,7 +39,7 @@ export default {
     PracticeOnline,
     SpecializedPlans,
     QualityHealthcare,
-    CtaBot,
+    Cta,
   },
   data () {
     return {};
@@ -64,5 +64,7 @@ export default {
 }
 .cta-container {
     position: relative;
+    margin-bottom: -30px;
+    z-index: 1;
 }
 </style>
