@@ -106,7 +106,7 @@ export default {
   border-radius: 2px;
 }
 .web-content-margin {
-  margin-top: 80px;
+  margin-top: 120px;
 }
 .row-content {
   height: 100vh;
