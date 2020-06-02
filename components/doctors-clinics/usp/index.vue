@@ -28,14 +28,15 @@
         v-text-field(
           v-model="email"
           placeholder="myname@email.com"
-          outlined
+          height="60"
         )
       v-btn(
         block
         color="accent"
-        large
+        height="65"
+        x-large
         @click="onGetStarted"
-      ).text-none.font-weight-bold.font-18.mt-5 Get Started
+      ).text-none.font-weight-bold.font-18 Get Started
 </template>
 
 <script>
@@ -63,7 +64,7 @@ export default {
     backgroundImageMobileConfigs () {
       return {
         'background-size': '100%',
-        'background-position': '0px 200px',
+        'background-position': '0px 270px',
       };
     },
     centerText () {
@@ -111,12 +112,12 @@ export default {
 }
 @media screen and (max-width: 375px) {
   .text-field-container {
-    margin-top: -60%;
+    margin-top: -72%;
   }
 }
 @media screen and (max-width: 360px) {
   .text-field-container {
-  margin-top: -20%;
+  margin-top: -30%;
   }
 }
 </style>

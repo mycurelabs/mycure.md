@@ -67,7 +67,8 @@ export default {
     backgroundImageMobileConfigs () {
       return {
         'background-size': '100%',
-        'background-position': '0px 200px',
+        'background-position': '0px 450px',
+        'padding-bottom': '10%',
       };
     },
     centerText () {
@@ -117,11 +118,12 @@ export default {
 }
 @media screen and (max-width: 375px) {
   .cta-form {
-    margin-top: -10%;
+    margin-top: 5%;
   }
 }
 @media screen and (max-width: 360px) {
-  /* .form {
-  } */
+  .cta-form {
+    margin-top: 5%;
+  }
 }
 </style>
