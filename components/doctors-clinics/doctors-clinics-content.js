@@ -12,7 +12,7 @@ export const BUILD_YOUR_CLIENTELE = {
 };
 export const SAFEKEEP_MEDICAL_DATA = {
   header: 'Safekeep your important medical data',
-  description: 'Your patient\'s medical records are both accessible and secure in our system that complies with internation data privacy standards. We make it our business to make sure your electronic health records are kept safe so you can focus on what you do best-- taking care of your patients.',
+  description: 'Your patient\'s medical records are both accessible and secure in our system that complies with international data privacy standards. We make it our business to make sure your electronic health records are kept safe so you can focus on what you do best- taking care of your patients.',
   btnTxt: 'Get Started',
   btnIcon: 'mdi-arrow-right-thick',
 };

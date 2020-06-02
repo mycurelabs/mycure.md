@@ -3,7 +3,7 @@
     v-row(justify="center").pt-11
       v-col(cols="12" md="10" fluid)
         img(
-          v-lazy="require('~/assets/images/home/MYCURE-virtual-clinic-healthcare-practice-online-homepage-A-telehealth.png')"
+          v-lazy="require('~/assets/images/doctors-clinics/MYCURE-virtual-clinic-healthcare-practice-online-homepage-A-telehealth.png')"
           width="100%"
           alt="Medical records"
         )
@@ -26,34 +26,26 @@
         v-btn(text @click="onGetStarted")
           strong.text-capitalize.primary--text {{BUILD_YOUR_CLIENTELE.btnTxt}}
           v-icon.primary--text {{BUILD_YOUR_CLIENTELE.btnIcon}}
+    v-row(justify="center").py-12
+      img(
+        v-lazy="require('~/assets/images/doctors-clinics/safekeep.png')"
+        alt="Safekeep your important medical data"
+      )
+      v-col(align-self="center" cols="12" md="6").pl-10
+        h1.font-40.lh-title.pb-3.font-weight-light {{SAFEKEEP_MEDICAL_DATA.header}}
+        br
+        span.font-s.mt-3 {{SAFEKEEP_MEDICAL_DATA.description}}
+        br
+        br
+        v-btn(text @click="onGetStarted")
+          strong.text-capitalize.primary--text {{SAFEKEEP_MEDICAL_DATA.btnTxt}}
+          v-icon.primary--text {{SAFEKEEP_MEDICAL_DATA.btnIcon}}
 
     v-row(justify="center")
       v-col(cols="12" md="8")
         h1.font-40.font-weight-light.text-center {{}}
         br
         p.text-center.font-s.mt-3 {{}}
-    v-row(justify="center").py-12
-      v-col(v-if="!isMobile" align="center" cols="12" md="6")
-        img(
-          v-lazy="require('~/assets/images/home/MYCURE-virtual-clinic-healthcare-practice-online-homepage-A-telehealth.png')"
-          height="350"
-          alt="Start your physical and digital clinic journey"
-        ).fit-size
-      v-col(align-self="center" cols="12" md="6")
-        h1.font-40.lh-title.pb-3.font-weight-light {{}}
-        br
-        span.font-s.mt-3 {{}}
-        br
-        br
-        v-btn(text @click="onGetStarted")
-          strong.text-capitalize.primary--text {{}}
-          v-icon.primary--text {{}}
-      img(
-        v-lazy="require('~/assets/images/home/MYCURE-virtual-clinic-healthcare-practice-online-homepage-A-telehealth.png')"
-        width="95%"
-        alt="Start your physical and digital clinic journey"
-        v-if="isMobile"
-      )
     v-row(justify="center").py-12
       v-col(cols="12" md="6")
         h1.font-40.font-weight-light {{}}
