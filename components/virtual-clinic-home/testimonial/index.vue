@@ -38,7 +38,7 @@
                 navigationPrevLabel=" "
               )
                 slide(v-for="(testimonial,index) in testimonials" :key="index" :data-index="index+1").text-center
-                  h2.black--text.font-weight-light.font-36 {{ testimonial.message }}
+                  h2.black--text.font-weight-light {{ testimonial.message }}
                   br
                   br
                   strong.font-16.primary--text {{ testimonial.name }}
