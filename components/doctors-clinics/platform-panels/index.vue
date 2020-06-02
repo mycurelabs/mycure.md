@@ -50,10 +50,33 @@
         v-btn(text @click="onGetStarted")
           strong.text-capitalize.primary--text {{TAKE_PRACTICE_ONLINE.btnTxt}}
           v-icon.primary--text {{TAKE_PRACTICE_ONLINE.btnIcon}}
-      img(
-        v-lazy="require('~/assets/images/doctors-clinics/practice.png')"
+      img(v-lazy="require('~/assets/images/doctors-clinics/practice.png')"
         alt="Safekeep your important medical data"
       ).pl-10
+    v-row(justify="center").py-12
+      v-col(cols="12" md="7")
+        h1.font-40.lh-title.pb-3.font-weight-light.text-center {{SPECIALIZED_PLANS.header}}
+    v-row(justify="center" align="center")
+      v-col(cols="12" md="4")
+        img(v-lazy="require('~/assets/images/doctors-clinics/skin-aesthetic.png')" alt="Skin and Aesthetic" width="30%")
+        h1.font-30.lh-title.pb-3.font-weight-light {{SKIN_AND_AESTHETHIC.header}}
+        span.font-s.mt-3 {{SKIN_AND_AESTHETHIC.description}}
+      v-col(cols="12" md="4")
+        img(v-lazy="require('~/assets/images/doctors-clinics/pediatrics.png')" alt="Pediatrics" width="30%")
+        h1.font-30.lh-title.pb-3.font-weight-light {{PEDIATRICS.header}}
+        span.font-s.mt-3 {{PEDIATRICS.description}}
+      v-col(cols="12" md="4")
+        img(v-lazy="require('~/assets/images/doctors-clinics/maternity.png')" alt="Maternity Care" width="30%")
+        h1.font-30.lh-title.pb-3.font-weight-light {{MATERNITY_CARE.header}}
+        span.font-s.mt-3 {{MATERNITY_CARE.description}}
+      v-col(cols="12" md="4").pl-12
+        img(v-lazy="require('~/assets/images/doctors-clinics/dental.png')" alt="Dental" width="30%")
+        h1.font-30.lh-title.pb-3.font-weight-light {{DENTAL.header}}
+        span.font-s.mt-3 {{DENTAL.description}}
+      v-col(cols="12" md="4").pl-12
+        img(v-lazy="require('~/assets/images/doctors-clinics/diagnostic.png')" alt="Diagnostic" width="30%")
+        h1.font-30.lh-title.pb-3.font-weight-light {{DIAGNOSTIC.header}}
+        span.font-s.mt-3 {{DIAGNOSTIC.description}}
       //-
       //-
     v-row(justify="center")

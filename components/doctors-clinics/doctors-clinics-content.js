@@ -22,19 +22,13 @@ export const TAKE_PRACTICE_ONLINE = {
   btnTxt: 'Get Started',
   btnIcon: 'mdi-arrow-right-thick',
 };
-export const ACCESS_QUALITY_HEALTHCARE = {
-  header: 'Access quality healthcare-- instantly',
-  description: 'Set-up appointments and consultations, and release diagnostics results--all that and more with an online portal to interact with your patients .',
-  btnTxt: 'Get Started',
-  btnIcon: 'mdi-arrow-right-thick',
-};
 export const SPECIALIZED_PLANS = {
   header: 'Do more with specialized plan for your specialized clinics',
   description: '*All specialized plans come with Pharmacy, Inventory and Point-of-Sales modules',
 };
 export const SKIN_AND_AESTHETHIC = {
   header: 'Skin and Aesthetic',
-  description: 'A comprehensive EMR module with image upload and medical drawings.',
+  description: 'A comprehensive EMR module with image uploads and medical drawings.',
 };
 export const PEDIATRICS = {
   header: 'Pediatrics',
@@ -51,4 +45,10 @@ export const DENTAL = {
 export const DIAGNOSTIC = {
   header: 'Diagnostic',
   description: 'Interoperable Laboratory & Imaging modules with HL7 machine integrations, send-outs and specimen tracking functions.',
+};
+export const ACCESS_QUALITY_HEALTHCARE = {
+  header: 'Access quality healthcare-- instantly',
+  description: 'Set-up appointments and consultations, and release diagnostics results--all that and more with an online portal to interact with your patients .',
+  btnTxt: 'Get Started',
+  btnIcon: 'mdi-arrow-right-thick',
 };
