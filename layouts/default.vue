@@ -1,7 +1,7 @@
 <template lang="pug">
   v-app#app
     mc-navbar(v-if="!loading")
-    nuxt(v-if="!loading")
+    nuxt
     mc-footer(v-if="!loading")
 </template>
 

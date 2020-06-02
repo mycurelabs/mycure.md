@@ -5,7 +5,7 @@
       v-container
         v-row(justify="center")
           v-col(cols="6" align-self="center").px-3
-            h1.panelTitle.font-40.lh-title.font-weight-light {{ webTitle }}
+            h1.panelTitle.font-36.lh-title.font-weight-light {{ webTitle }}
             br
             br
             p.font-s {{ panelContent }}
