@@ -46,6 +46,7 @@ export default {
   },
   mounted () {
     VueScrollTo.scrollTo('#app', 500, { easing: 'ease' });
+    this.loading = false;
   },
   head () {
     return headMeta({
