@@ -40,7 +40,22 @@
         v-btn(text @click="onGetStarted")
           strong.text-capitalize.primary--text {{SAFEKEEP_MEDICAL_DATA.btnTxt}}
           v-icon.primary--text {{SAFEKEEP_MEDICAL_DATA.btnIcon}}
-
+    v-row(justify="center").py-12
+      v-col(align-self="center" cols="12" md="6")
+        h1.font-40.lh-title.pb-3.font-weight-light {{TAKE_PRACTICE_ONLINE.header}}
+        br
+        span.font-s.mt-3 {{TAKE_PRACTICE_ONLINE.description}}
+        br
+        br
+        v-btn(text @click="onGetStarted")
+          strong.text-capitalize.primary--text {{TAKE_PRACTICE_ONLINE.btnTxt}}
+          v-icon.primary--text {{TAKE_PRACTICE_ONLINE.btnIcon}}
+      img(
+        v-lazy="require('~/assets/images/doctors-clinics/practice.png')"
+        alt="Safekeep your important medical data"
+      ).pl-10
+      //-
+      //-
     v-row(justify="center")
       v-col(cols="12" md="8")
         h1.font-40.font-weight-light.text-center {{}}
