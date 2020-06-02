@@ -5,7 +5,7 @@
         v-row(v-if="metaTitle" justify="center").text-center
           strong.font-21.primary--text {{ metaTitle }}
         v-row(v-if="introduction" justify="center").text-center.pb50
-          span.font-40.introText.pre-white-space {{introduction}}
+          span.font-36.introText.pre-white-space {{introduction}}
         v-row(v-if="description" justify="center").text-center.pb60
           span.font-18.pre-white-space {{ description }}
         div(v-if="!horizontal")

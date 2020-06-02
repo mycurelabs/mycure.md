@@ -7,7 +7,7 @@
           v-col(cols="5")
             img(width="85%" v-lazy="require(`@/assets/images/virtual-clinic-home/${panelImage}.png`)" alt="Data Privacy Law")
           v-col(cols="6" align-self="center")
-            h1.font-40.lh-title.pb-3.font-weight-light {{ panelTitle }}
+            h1.font-36.lh-title.pb-3.font-weight-light {{ panelTitle }}
             br
             br
             span.font-s.mt-3 {{ panelText }}

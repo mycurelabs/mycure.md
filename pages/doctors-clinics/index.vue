@@ -1,5 +1,5 @@
 <template lang="pug">
-  div#top
+  div(v-if="!loading")#top
     //- 1st panel
     Usp
     //- 2nd panel

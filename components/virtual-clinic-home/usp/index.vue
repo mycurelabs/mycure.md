@@ -5,26 +5,30 @@
       :background-image-mobile="backgroundImageMobile"
       :background-image-mobile-configs="backgroundImageMobileConfigs"
       :customPath="customPath"
+<<<<<<< HEAD
       :class="{'pt-12': isMobile}"
+=======
+      :class="{'mt-10': $isMobile}"
+>>>>>>> 2f9b89bd0bb7db5a1e5181f1b7c3ca955627e8e5
     )
-      v-row(slot="content").row-content
-        v-col(cols="12" md="5" :class="[{'web-content-margin': !isMobile}]")
+      v-row(slot="content" :align="$isMobile ? 'start' : 'center'" :class="rowContentClass")
+        v-col(cols="12" md="5" xl="4" :class="{'pt-10': $isMobile}")
           h1(:class="titleClasses").font-poppins.font-40.lh-title {{ uspTitle }}
           p(:class="[centerText]").font-italic.font-18.mx-1 {{ uspSubtitle }}
-          div(v-if="!isMobile").text-field-container.white
+          div(v-if="!$isMobile").text-field-container.white
             v-text-field(
               v-model="email"
               outlined
               placeholder="myname@email.com"
             )
           v-btn(
-            v-if="!isMobile"
+            v-if="!$isMobile"
             block
             color="accent"
             large
             @click="onGetStarted"
           ).text-none.font-weight-bold.font-18.mt-5 Get Started
-    template(v-if="isMobile")
+    template(v-if="$isMobile")
       div.text-field-container.white
         v-text-field(
           v-model="email"
@@ -56,7 +60,6 @@ export default {
     this.customPath = 'virtual-clinic-home/';
     return {
       email: '',
-      isMobile: true,
     };
   },
   computed: {
@@ -67,26 +70,23 @@ export default {
       };
     },
     centerText () {
-      return { 'text-center': this.isMobile };
+      return { 'text-center': this.$isMobile };
     },
     titleClasses () {
-      return this.isMobile
+      return this.$isMobile
         ? [this.centerText]
         : ['pre-white-space'];
     },
     uspTitle () {
-      return this.isMobile
+      return this.$isMobile
         ? this.panelTitle
         : parseTextWithNewLine(this.panelTitle, ['virtual ']);
     },
-  },
-  watch: {
-    $isMobile (val) {
-      this.isMobile = val;
+    rowContentClass () {
+      return this.$isMobile
+        ? ['web-row-content']
+        : ['mobile-row-content'];
     },
-  },
-  mounted () {
-    this.isMobile = this.$isMobile;
   },
   methods: {
     onGetStarted () {
@@ -105,10 +105,10 @@ export default {
   border: 1px solid black;
   border-radius: 2px;
 }
-.web-content-margin {
-  margin-top: 80px;
+.web-row-content {
+  height: 90vh;
 }
-.row-content {
+.mobile-row-content {
   height: 100vh;
 }
 </style>

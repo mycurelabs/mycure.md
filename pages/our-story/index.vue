@@ -1,5 +1,5 @@
 <template lang="pug">
-  div#top
+  div(v-if="!loading")#top
     //- 1st panel
     usp.pb-5
     //- 2nd panel
@@ -35,6 +35,7 @@ export default {
   data () {
     return {
       isMobile: true,
+      loading: true,
     };
   },
   watch: {
@@ -46,6 +47,7 @@ export default {
   },
   mounted () {
     this.isMobile = this.$isMobile;
+    this.loading = false;
   },
   head () {
     return headMeta({

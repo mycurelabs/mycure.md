@@ -1,5 +1,5 @@
 <template lang="pug">
-  div#top.white
+  div(v-if="!loading")#top.white
     //- hippocrates
     //- TODO: Temporarily hide
     //- hippocrates-usp
@@ -111,12 +111,14 @@ export default {
     this.introText = 'Designed for your health facility';
     return {
       featuresVideoDialog: false,
+      loading: true,
     };
   },
   mounted () {
     this.$nuxt.$route.params.scrollHealthSuites ? this.getStarted()
       : VueScrollTo.scrollTo('#app', 500, { easing: 'ease' });
     window.$crisp.push(['safe', true]);
+    this.loading = false;
   },
   methods: {
     getStarted () {
