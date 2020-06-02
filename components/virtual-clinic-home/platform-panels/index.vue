@@ -1,8 +1,8 @@
 <template lang="pug">
   v-container
     v-row(justify="center" align="center")
-      v-col(cols="12" md="8")
-        h1.font-40.font-weight-light.text-center {{BRING_YOUR_PRACTICE_ONLINE.header}}
+      v-col(cols="12" md="6")
+        h1.font-36.font-weight-light.text-center {{BRING_YOUR_PRACTICE_ONLINE.header}}
         br
         p.text-center.font-18.mt-3 {{BRING_YOUR_PRACTICE_ONLINE.description}}
     v-row(justify="center" align="center").py-5
