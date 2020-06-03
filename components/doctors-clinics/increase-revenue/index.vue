@@ -1,14 +1,14 @@
 <template lang="pug">
   v-container
     v-row(justify="center")
-      v-col(cols="12" md="10" v-if="!isMobile")
+      v-col(cols="12" md="10" v-if="!$isMobile")
         img(
           v-lazy="require('~/assets/images/doctors-clinics/MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-A-online-consult.png')"
           width="95%"
           alt="Medical records"
         )#increase-revenue.pt-12
       img(
-        v-if="isMobile"
+        v-if="$isMobile"
         v-lazy="require('~/assets/images/doctors-clinics/MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-A-online-consult.png')"
         width="100%"
         alt="Medical records"
@@ -45,16 +45,7 @@ export default {
     this.INCREASE_YOUR_REVENUE = INCREASE_YOUR_REVENUE;
     this.BUILD_YOUR_CLIENTELE = BUILD_YOUR_CLIENTELE;
     return {
-      isMobile: true,
     };
-  },
-  watch: {
-    $isMobile (val) {
-      this.isMobile = val;
-    },
-  },
-  mounted () {
-    this.isMobile = this.$isMobile;
   },
   methods: {
     onGetStarted () {
