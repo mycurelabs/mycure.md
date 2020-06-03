@@ -11,11 +11,7 @@
     //- 5th panel
     MultipleBranches
     //- 6th panel
-    //- QualityHealthcare
-    //- 7th panel
-    //- div.cta-container
-    //-   Cta
-    //- )
+    Cta
 </template>
 
 <script>
@@ -28,6 +24,7 @@ import YourPatients from '~/components/enterprise/your-patients';
 import HandleOutpatient from '~/components/enterprise/handle-outpatient';
 import SmarterDecisions from '~/components/enterprise/smarter-decisions';
 import MultipleBranches from '~/components/enterprise/multiple-branches';
+import Cta from '~/components/enterprise/cta';
 
 export default {
   components: {
@@ -36,6 +33,7 @@ export default {
     HandleOutpatient,
     SmarterDecisions,
     MultipleBranches,
+    Cta,
   },
   data () {
     return {
