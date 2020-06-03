@@ -12,7 +12,7 @@
         span.font-18.mt-3 {{SAFEKEEP_MEDICAL_DATA.description}}
         br
         br
-        v-btn(text @click="onGetStarted")
+        v-btn(text)
           strong.text-capitalize.primary--text {{SAFEKEEP_MEDICAL_DATA.btnTxt}}
           v-icon.primary--text {{SAFEKEEP_MEDICAL_DATA.btnIcon}}
       img(
@@ -24,20 +24,12 @@
 </template>
 
 <script>
-import VueScrollTo from 'vue-scrollto';
-import {
-  SAFEKEEP_MEDICAL_DATA,
-} from '../doctors-clinics-content';
+import { SAFEKEEP_MEDICAL_DATA } from '../doctors-clinics-content';
 export default {
   data () {
     this.SAFEKEEP_MEDICAL_DATA = SAFEKEEP_MEDICAL_DATA;
     return {
     };
-  },
-  methods: {
-    onGetStarted () {
-      VueScrollTo.scrollTo('#increase-revenue', 500, { easing: 'ease' });
-    },
   },
 };
 </script>

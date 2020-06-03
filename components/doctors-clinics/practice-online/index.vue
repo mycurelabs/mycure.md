@@ -7,7 +7,7 @@
         span.font-18.mt-3 {{TAKE_PRACTICE_ONLINE.description}}
         br
         br
-        v-btn(text @click="onGetStarted")
+        v-btn(text)
           strong.text-capitalize.primary--text {{TAKE_PRACTICE_ONLINE.btnTxt}}
           v-icon.primary--text {{TAKE_PRACTICE_ONLINE.btnIcon}}
       v-col(align-self="center" cols="12" md="6" v-if="!$isMobile")
@@ -21,20 +21,12 @@
 </template>
 
 <script>
-import VueScrollTo from 'vue-scrollto';
-import {
-  TAKE_PRACTICE_ONLINE,
-} from '../doctors-clinics-content';
+import { TAKE_PRACTICE_ONLINE } from '../doctors-clinics-content';
 export default {
   data () {
     this.TAKE_PRACTICE_ONLINE = TAKE_PRACTICE_ONLINE;
     return {
     };
-  },
-  methods: {
-    onGetStarted () {
-      VueScrollTo.scrollTo('#increase-revenue', 500, { easing: 'ease' });
-    },
   },
 };
 </script>

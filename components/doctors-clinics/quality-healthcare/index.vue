@@ -12,7 +12,7 @@
         span.font-18.mt-3 {{ACCESS_QUALITY_HEALTHCARE.description}}
         br
         br
-        v-btn(text @click="onGetStarted")
+        v-btn(text)
           strong.text-capitalize.primary--text {{ACCESS_QUALITY_HEALTHCARE.btnTxt}}
           v-icon.primary--text {{ACCESS_QUALITY_HEALTHCARE.btnIcon}}
       img(
@@ -24,20 +24,12 @@
 </template>
 
 <script>
-import VueScrollTo from 'vue-scrollto';
-import {
-  ACCESS_QUALITY_HEALTHCARE,
-} from '../doctors-clinics-content';
+import { ACCESS_QUALITY_HEALTHCARE } from '../doctors-clinics-content';
 export default {
   data () {
     this.ACCESS_QUALITY_HEALTHCARE = ACCESS_QUALITY_HEALTHCARE;
     return {
     };
-  },
-  methods: {
-    onGetStarted () {
-      VueScrollTo.scrollTo('#increase-revenue', 500, { easing: 'ease' });
-    },
   },
 };
 </script>

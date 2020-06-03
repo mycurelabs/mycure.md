@@ -12,7 +12,7 @@
         v-lazy="require('~/assets/images/doctors-clinics/MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-A-online-consult.png')"
         width="100%"
         alt="Medical records"
-      )#increase-revenue.pt-12
+      ).pt-12
       v-col(
         justify="center"
         cols="12"
