@@ -25,8 +25,8 @@
           ).text-none.font-weight-bold.font-18.mt-3 Get Started
           p.font-16.font-weight-light.px-1.pt-1.text-center.white--text {{ ctaAgreement }}
         v-col(cols="12" md="5" v-if="$isMobile" one-line).cta-form
-          h1.font-poppins.font-30.lh-title {{ uspTitle }}
-          div.text-field-container.white
+          h1.font-poppins.font-30.lh-title {{ panelTitle }}
+          div.text-field-container.white.mt-5
             v-text-field(
               v-model="email"
               outlined
