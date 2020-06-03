@@ -5,7 +5,7 @@
     //- 2nd panel
     YourPatients
     //- 3rd panel
-    //- SafekeepData
+    HandleOutpatient
     //- 4th panel
     //- PracticeOnline
     //- 5th panel
@@ -25,11 +25,13 @@ import headMeta from '~/utils/head-meta';
 // components
 import Usp from '~/components/enterprise/usp';
 import YourPatients from '~/components/enterprise/your-patients';
+import HandleOutpatient from '~/components/enterprise/handle-outpatient';
 
 export default {
   components: {
     Usp,
     YourPatients,
+    HandleOutpatient,
   },
   data () {
     return {
