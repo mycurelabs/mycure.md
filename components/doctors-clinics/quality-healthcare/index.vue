@@ -1,7 +1,7 @@
 <template lang="pug">
   v-container
     v-row(justify="center").py-12
-      v-col(align-self="center" cols="12" md="6" v-if="!isMobile")
+      v-col(align-self="center" cols="12" md="6" v-if="!$isMobile")
         img(
           v-lazy="require('~/assets/images/doctors-clinics/MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-E-patient-portal.png')"
           alt="Access quality healthcare"
@@ -16,7 +16,7 @@
           strong.text-capitalize.primary--text {{ACCESS_QUALITY_HEALTHCARE.btnTxt}}
           v-icon.primary--text {{ACCESS_QUALITY_HEALTHCARE.btnIcon}}
       img(
-        v-if="isMobile"
+        v-if="$isMobile"
         v-lazy="require('~/assets/images/doctors-clinics/MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-E-patient-portal.png')"
         alt="Access quality healthcare"
         width="100%"
@@ -32,16 +32,7 @@ export default {
   data () {
     this.ACCESS_QUALITY_HEALTHCARE = ACCESS_QUALITY_HEALTHCARE;
     return {
-      isMobile: true,
     };
-  },
-  watch: {
-    $isMobile (val) {
-      this.isMobile = val;
-    },
-  },
-  mounted () {
-    this.isMobile = this.$isMobile;
   },
   methods: {
     onGetStarted () {
