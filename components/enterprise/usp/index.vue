@@ -5,40 +5,44 @@
       :background-image-mobile="backgroundImageMobile"
       :background-image-mobile-configs="backgroundImageMobileConfigs"
       :customPath="customPath"
-      :class="{'pt-12': isMobile}"
+      :class="{'pt-12': $isMobile}"
     )
       v-row(slot="content").row-content
-        v-col(cols="12" md="5" :class="[{'web-content-margin': !isMobile}]" v-if="!isMobile")
+        v-col(cols="12" md="5" :class="[{'web-content-margin': !$isMobile}]" v-if="!$isMobile")
           p.font-18.px-1 {{ uspSubtitle }}
           h1(:class="titleClasses").font-poppins.font-40.lh-title {{ uspTitle }}
-          div(v-if="!isMobile").text-field-container.white
+          div(v-if="!$isMobile").text-field-container.white.py-5
             v-text-field(
               v-model="email"
               outlined
               placeholder="myname@email.com"
             )
           v-btn(
-            v-if="!isMobile"
+            v-if="!$isMobile"
             block
             color="accent"
             large
             @click="onGetStarted"
           ).text-none.font-weight-bold.font-18.mt-6 Sign Up via Email
-        v-col(cols="12" md="5" v-if="isMobile" one-line).cta-form
+        v-col(cols="12" md="5" v-if="$isMobile" one-line).text-center
+          p.font-18.font-weight-light.px-1 {{ uspSubtitle }}
           h1.font-poppins.font-30.lh-title {{ uspTitle }}
-          p.font-italic.font-18.font-weight-light.px-1.pt-1 {{ uspSubtitle }}
-          div.text-field-container.white
-            v-text-field(
-              v-model="email"
-              outlined
-              placeholder="myname@email.com"
-            )
-          v-btn(
-            color="accent"
-            large
-            @click="onGetStarted"
-          ).text-none.font-weight-bold.font-18.mt-5 Get Started
-          p.font-16.font-weight-light.px-1.pt-1 {{ uspAgreement }}
+          div(v-if="$isMobile").text-center
+            v-btn(text).align-center
+              v-icon(large) mdi-arrow-down
+    template(v-if="$isMobile")
+      div.text-field-container.white
+        v-text-field(
+          v-model="email"
+          outlined
+          placeholder="myname@email.com"
+        )
+      v-btn(
+        color="accent"
+        @click="onGetStarted"
+        large
+        block
+      ).text-none.font-weight-bold.font-18 Get Started
 </template>
 
 <script>
@@ -113,5 +117,15 @@ export default {
 }
 .row-content {
   height: 100vh;
+}
+@media screen and (max-width: 375px) {
+  .text-field-container {
+    margin-top: -90%;
+  }
+}
+@media screen and (max-width: 360px) {
+  .text-field-container {
+  margin-top: -50%;
+  }
 }
 </style>
