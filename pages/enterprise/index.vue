@@ -11,7 +11,8 @@
     //- 5th panel
     MultipleBranches
     //- 6th panel
-    Cta
+    div.cta-container
+      Cta
 </template>
 
 <script>
@@ -60,8 +61,8 @@ export default {
   margin-top: 12vh;
 }
 .cta-container {
-    position: relative;
-    margin-bottom: -30px;
-    z-index: 1;
+  position: relative;
+  margin-bottom: -30px;
+  z-index: 1;
 }
 </style>
