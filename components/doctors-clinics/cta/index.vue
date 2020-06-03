@@ -84,14 +84,6 @@ export default {
         : parseTextWithNewLine(this.panelTitle, ['virtual ']);
     },
   },
-  watch: {
-    $isMobile (val) {
-      this.isMobile = val;
-    },
-  },
-  mounted () {
-    this.isMobile = this.$isMobile;
-  },
   methods: {
     onGetStarted () {
       if (!this.email) {
