@@ -1,15 +1,17 @@
-export const INCREASE_YOUR_REVENUE = {
-  header: 'Increase your revenue',
-  description: 'Treat more patients and reduce no-shows and cancellations with online consultations via secure and video and voice calls.',
-  btnTxt: 'Get Started',
-  btnIcon: 'mdi-arrow-right-thick',
-};
-export const BUILD_YOUR_CLIENTELE = {
-  header: 'Build your clientele',
-  description: 'Build patient loyalty and accommodate patients outside of your physical workhours. It\'s incredibly easy for your old and new patients to set appointments with you.',
-  btnTxt: 'Get Started',
-  btnIcon: 'mdi-arrow-right-thick',
-};
+export const INCREASE_YOUR_REVENUE = [
+  {
+    header: 'Increase your revenue',
+    description: 'Treat more patients and reduce no-shows and cancellations with online consultations via secure and video and voice calls.',
+    btnTxt: 'Get Started',
+    btnIcon: 'mdi-arrow-right-thick',
+  },
+  {
+    header: 'Build your clientele',
+    description: 'Build patient loyalty and accommodate patients outside of your physical workhours. It\'s incredibly easy for your old and new patients to set appointments with you.',
+    btnTxt: 'Get Started',
+    btnIcon: 'mdi-arrow-right-thick',
+  },
+];
 export const SAFEKEEP_MEDICAL_DATA = {
   header: 'Safekeep your important medical data',
   description: 'Your patient\'s medical records are both accessible and secure in our system that complies with international data privacy standards. We make it our business to make sure your electronic health records are kept safe so you can focus on what you do best- taking care of your patients.',
