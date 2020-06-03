@@ -9,8 +9,8 @@
     )
       v-row(slot="content").row-content
         v-col(cols="12" md="5" :class="[{'web-content-margin': !isMobile}]" v-if="!isMobile")
-          h1(:class="titleClasses").font-poppins.font-40.lh-title {{ uspTitle }}
           p.font-18.px-1 {{ uspSubtitle }}
+          h1(:class="titleClasses").font-poppins.font-40.lh-title {{ uspTitle }}
           div(v-if="!isMobile").text-field-container.white
             v-text-field(
               v-model="email"
@@ -24,7 +24,6 @@
             large
             @click="onGetStarted"
           ).text-none.font-weight-bold.font-18.mt-5 Get Started
-          p(:class="[centerText]").white--text.font-16.px-1.text-center.py-2 {{ uspAgreement }}
         v-col(cols="12" md="5" v-if="isMobile" one-line).cta-form
           h1.font-poppins.font-30.lh-title {{ uspTitle }}
           p.font-italic.font-18.font-weight-light.px-1.pt-1 {{ uspSubtitle }}
@@ -54,7 +53,7 @@ export default {
   data () {
     this.backgroundImage = 'MYCURE-virtual-clinic-healthcare-practice-online-enterprise-usp-cover.png';
     this.backgroundImageMobile = 'MYCURE-virtual-clinic-healthcare-practice-online-enterprise-usp-cover-mobile.png';
-    this.panelTitle = 'Taking your entire clinic enterprise online is possible with MYCURE.';
+    this.panelTitle = 'Taking your entire clinic\nenterprise online is\npossible with MYCURE.';
     this.uspSubtitle = 'For Medical Enterprise';
     this.uspAgreement = 'By entering your email, you agree to receive marketing emails from MYCURE.';
     this.customPath = 'enterprise/';
