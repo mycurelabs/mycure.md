@@ -167,7 +167,6 @@ hr {
   background-color: grey;
   border: none;
 }
-
 .no-style-type {
   list-style-type: none;
   padding-left: 0;
@@ -200,6 +199,8 @@ li {
   color: inherit;
 }
 .footer-grey {
+  z-index: 5;
   background-color: #f0f0f0 !important;
+
 }
 </style>

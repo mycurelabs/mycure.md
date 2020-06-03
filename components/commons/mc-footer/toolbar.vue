@@ -1,6 +1,6 @@
 <template lang="pug">
   v-container
-    div(v-if="!$isMobile")
+    v-row(v-if="!$isMobile")
       v-toolbar(flat).footer-grey
         nuxt-link(:to="{ name: 'index' }" title="MYCURE | Clinic Management System | Cloud EMR Philippines")
           v-row.text-center
@@ -9,7 +9,7 @@
         div(v-for="(account, key) in socMed" :key="key")
           a(:href="account.link" target="_blank")
             img(:src="require(`~/assets/images/${ account.icon }`)" height="35" :alt="account.name").px-5
-    div(v-else).footer-grey.justify-center
+    v-row(v-else).footer-grey.justify-center
       div
         nuxt-link(:to="{ name: 'index' }" title="MYCURE | Clinic Management System | Cloud EMR Philippines")
           v-row(align="center").text-center
