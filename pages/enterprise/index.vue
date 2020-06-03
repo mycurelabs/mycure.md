@@ -9,7 +9,7 @@
     //- 4th panel
     SmarterDecisions
     //- 5th panel
-    //- SpecializedPlans
+    MultipleBranches
     //- 6th panel
     //- QualityHealthcare
     //- 7th panel
@@ -27,6 +27,7 @@ import Usp from '~/components/enterprise/usp';
 import YourPatients from '~/components/enterprise/your-patients';
 import HandleOutpatient from '~/components/enterprise/handle-outpatient';
 import SmarterDecisions from '~/components/enterprise/smarter-decisions';
+import MultipleBranches from '~/components/enterprise/multiple-branches';
 
 export default {
   components: {
@@ -34,6 +35,7 @@ export default {
     YourPatients,
     HandleOutpatient,
     SmarterDecisions,
+    MultipleBranches,
   },
   data () {
     return {
