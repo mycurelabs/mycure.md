@@ -23,11 +23,11 @@ export const OUTPATIENT = {
   btnTxt: 'Get Started',
   btnIcon: 'mdi-arrow-right-thick',
 };
-export const SMARTER = [
-  {
-    header: 'Make smarter decisions with real-time business and medical insights ',
-    description: 'One of the perks to having one smart system for all is keeping accurate record of all transactions accross all branches.',
-  },
+export const SMARTER = {
+  header: 'Make smarter decisions with real-time business and medical insights ',
+  description: 'One of the perks to having one smart system for all is keeping accurate record of all transactions accross all branches.',
+};
+export const SMARTER_ITEMS = [
   {
     image: 'MYCURE-virtual-clinic-healthcare-practice-online-enterprise-D-benefits-01-daily-census.png',
     imageTitle: 'Daily Census',

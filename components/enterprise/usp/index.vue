@@ -23,7 +23,7 @@
             color="accent"
             large
             @click="onGetStarted"
-          ).text-none.font-weight-bold.font-18.mt-5 Get Started
+          ).text-none.font-weight-bold.font-18.mt-6 Sign Up via Email
         v-col(cols="12" md="5" v-if="isMobile" one-line).cta-form
           h1.font-poppins.font-30.lh-title {{ uspTitle }}
           p.font-italic.font-18.font-weight-light.px-1.pt-1 {{ uspSubtitle }}

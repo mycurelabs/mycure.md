@@ -7,7 +7,7 @@
     //- 3rd panel
     HandleOutpatient
     //- 4th panel
-    //- PracticeOnline
+    SmarterDecisions
     //- 5th panel
     //- SpecializedPlans
     //- 6th panel
@@ -26,12 +26,14 @@ import headMeta from '~/utils/head-meta';
 import Usp from '~/components/enterprise/usp';
 import YourPatients from '~/components/enterprise/your-patients';
 import HandleOutpatient from '~/components/enterprise/handle-outpatient';
+import SmarterDecisions from '~/components/enterprise/smarter-decisions';
 
 export default {
   components: {
     Usp,
     YourPatients,
     HandleOutpatient,
+    SmarterDecisions,
   },
   data () {
     return {
