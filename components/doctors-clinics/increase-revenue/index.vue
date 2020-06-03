@@ -17,7 +17,7 @@
         justify="center"
         cols="12"
         md="5"
-        v-for="(data, key) in increase_revenue"
+        v-for="(data, key) in secondPanelContents"
         :key="key"
       ).pt-12
         h1.font-30.lh-title.pb-3.font-weight-light {{data.header}}
@@ -32,11 +32,11 @@
 </template>
 
 <script>
-import { INCREASE_YOUR_REVENUE } from '../doctors-clinics-content';
+import { SECOND_PANEL_CONTENTS } from '../doctors-clinics-content';
 export default {
   data () {
     return {
-      increase_revenue: INCREASE_YOUR_REVENUE,
+      secondPanelContents: SECOND_PANEL_CONTENTS,
     };
   },
 };
