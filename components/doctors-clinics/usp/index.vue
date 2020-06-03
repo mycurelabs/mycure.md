@@ -29,14 +29,13 @@
         v-text-field(
           v-model="email"
           placeholder="myname@email.com"
-          height="60"
+          outlined
         )
       v-btn(
-        block
-        color="accent"
-        height="65"
-        x-large
         @click="onGetStarted"
+        color="accent"
+        block
+        x-large
       ).text-none.font-weight-bold.font-18 Get Started
 </template>
 
@@ -109,12 +108,12 @@ export default {
 }
 @media screen and (max-width: 375px) {
   .text-field-container {
-    margin-top: -72%;
+    margin-top: -69%;
   }
 }
 @media screen and (max-width: 360px) {
   .text-field-container {
-  margin-top: -30%;
+  margin-top: -28%;
   }
 }
 </style>
