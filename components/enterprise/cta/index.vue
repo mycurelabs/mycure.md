@@ -5,28 +5,27 @@
       :background-image-mobile="backgroundImageMobile"
       :background-image-mobile-configs="backgroundImageMobileConfigs"
       :customPath="customPath"
-      :class="{'pt-12': isMobile}"
+      :class="{'pt-12': $isMobile}"
     )
       v-row(slot="content").row-content
-        v-col(cols="12" md="5" :class="[{'web-content-margin': !isMobile}]" v-if="!isMobile")
-          h1(:class="titleClasses").font-poppins.font-40.lh-title {{ panelTitle }}
-          div(v-if="!isMobile").text-field-container.white
+        v-col(cols="12" md="5" :class="[{'web-content-margin': !$isMobile}]" v-if="!$isMobile").pt-12
+          h1(:class="titleClasses" white--text).font-poppins.font-40.py-10.white--text {{ panelTitle }}
+          div(v-if="!$isMobile").text-field-container.white
             v-text-field(
               v-model="email"
               outlined
               placeholder="myname@email.com"
             )
           v-btn(
-            v-if="!isMobile"
+            v-if="!$isMobile"
             block
             color="accent"
             large
             @click="onGetStarted"
-          ).text-none.font-weight-bold.font-18.mt-6 Get Started
-          p.font-16.font-weight-light.px-1.pt-1 {{ uspAgreement }}
-        v-col(cols="12" md="5" v-if="isMobile" one-line).cta-form
+          ).text-none.font-weight-bold.font-18.mt-3 Get Started
+          p.font-16.font-weight-light.px-1.pt-1.text-center.white--text {{ ctaAgreement }}
+        v-col(cols="12" md="5" v-if="$isMobile" one-line).cta-form
           h1.font-poppins.font-30.lh-title {{ uspTitle }}
-          p.font-italic.font-18.font-weight-light.px-1.pt-1 {{ uspSubtitle }}
           div.text-field-container.white
             v-text-field(
               v-model="email"
@@ -37,8 +36,8 @@
             color="accent"
             large
             @click="onGetStarted"
-          ).text-none.font-weight-bold.font-18.mt-5 Get Started
-          p.font-16.font-weight-light.px-1.pt-1 {{ uspAgreement }}
+          ).text-none.font-weight-medium.font-18.mt-2 Get Started
+          p.font-16.font-weight-light.px-1.pt-1.one-line {{ ctaAgreement }}
 </template>
 
 <script>
@@ -52,7 +51,7 @@ export default {
   },
   data () {
     this.backgroundImage = 'MYCURE-virtual-clinic-healthcare-practice-online-enterprise-final-cta.png';
-    this.backgroundImageMobile = 'MYCURE-virtual-clinic-healthcare-practice-online-enterprise-usp-cover-mobile.png';
+    this.backgroundImageMobile = 'MYCURE-virtual-clinic-healthcare-practice-online-enterprise-final-cta-cover-mobile.png';
     this.panelTitle = 'Book A Demo Today.';
     this.ctaAgreement = 'By entering your email, you agree to receive marketing emails from MYCURE.';
     this.customPath = 'enterprise/';
@@ -65,7 +64,7 @@ export default {
     backgroundImageMobileConfigs () {
       return {
         'background-size': '100%',
-        'background-position': '0px 200px',
+        'background-position': '0px 410px',
       };
     },
     centerText () {
