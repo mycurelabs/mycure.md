@@ -10,8 +10,8 @@
       v-row(slot="content").row-content
         v-col(cols="12" md="5" :class="[{'web-content-margin': !$isMobile}]" v-if="!$isMobile")
           p.font-18.px-1 {{ uspSubtitle }}
-          h1(:class="titleClasses").font-poppins.font-40.lh-title {{ uspTitle }}
-          div(v-if="!$isMobile").text-field-container.white.py-5
+          h1(:class="titleClasses").font-poppins.font-40.lh-title.pb-10 {{ uspTitle }}
+          div(v-if="!$isMobile").text-field-container.white
             v-text-field(
               v-model="email"
               outlined
@@ -23,7 +23,7 @@
             color="accent"
             large
             @click="onGetStarted"
-          ).text-none.font-weight-bold.font-18.mt-6 Sign Up via Email
+          ).text-none.font-weight-bold.font-18.mt-3 Sign Up via Email
         v-col(cols="12" md="5" v-if="$isMobile" one-line).text-center
           p.font-18.font-weight-light.px-1 {{ uspSubtitle }}
           h1.font-poppins.font-30.lh-title {{ uspTitle }}
