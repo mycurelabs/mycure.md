@@ -29,6 +29,7 @@ export default {
   data () {
     this.SAFEKEEP_MEDICAL_DATA = SAFEKEEP_MEDICAL_DATA;
     return {
+
     };
   },
 };

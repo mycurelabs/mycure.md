@@ -29,6 +29,7 @@ export default {
   data () {
     this.ACCESS_QUALITY_HEALTHCARE = ACCESS_QUALITY_HEALTHCARE;
     return {
+
     };
   },
 };

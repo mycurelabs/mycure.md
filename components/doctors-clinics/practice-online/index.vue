@@ -26,6 +26,7 @@ export default {
   data () {
     this.TAKE_PRACTICE_ONLINE = TAKE_PRACTICE_ONLINE;
     return {
+
     };
   },
 };
