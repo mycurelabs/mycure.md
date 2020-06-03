@@ -60,7 +60,6 @@ export default {
     this.customPath = 'doctors-clinics/';
     return {
       email: '',
-      isMobile: true,
     };
   },
   computed: {
