@@ -47,16 +47,7 @@ export default {
     this.DENTAL = DENTAL;
     this.DIAGNOSTIC = DIAGNOSTIC;
     return {
-      isMobile: true,
     };
-  },
-  watch: {
-    $isMobile (val) {
-      this.isMobile = val;
-    },
-  },
-  mounted () {
-    this.isMobile = this.$isMobile;
   },
 };
 </script>
