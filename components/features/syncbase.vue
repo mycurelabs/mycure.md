@@ -7,7 +7,7 @@
             v-row(justify="center").text-center
               strong.font-21.primary--text SYNCBASE TECHNOLOGY
             v-row(justify="center").add-spacing
-              strong.font-40.text-center.font-work-sans Go offline safely and securely
+              strong.font-40.text-center Go offline safely and securely
             v-row(justify="center").add-spacing
               span.font-21.text-center The holy grail of online-offline technology is here. Work within your local
                 br
@@ -29,7 +29,7 @@
             br
             br
             v-row(justify="center")
-              p.font-weight-bold.font-30.text-center.font-work-sans Go offline safely
+              p.font-weight-bold.font-30.text-center Go offline safely
                 br
                 | and securely.
             br

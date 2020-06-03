@@ -6,7 +6,7 @@
           v-row(justify="center").text-center
             strong.font-21.font-mc-blue BILLING AND PAYMENTS
           v-row(justify="center").text-center.add-spacing
-            strong.font-40.font-work-sans Simplified billing, beautiful reports.
+            strong.font-40 Simplified billing, beautiful reports.
           v-row(justify="center").add-spacing
             span.font-21.text-center Produce neatly-organized reports in a minute or less.
           v-row(justify="center").add-spacing
@@ -37,7 +37,7 @@
           br
           br
           v-row(justify="center")
-            p.font-weight-bold.font-30.text-center.font-work-sans Simplified billing,
+            p.font-weight-bold.font-30.text-center Simplified billing,
               br
               | beautiful reports.
           br

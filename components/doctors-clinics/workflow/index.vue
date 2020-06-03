@@ -3,7 +3,7 @@
     div(v-if="!isMobile").px-5.white.workFlow.py-10
       v-container.px-5
         v-row(justify="center").text-center
-          h1.font-40.pa-5.text-center.font-work-sans {{ title }}
+          h1.font-40.pa-5.text-center {{ title }}
         v-row(justify="center")
           v-col(cols="12" md="4")
             v-list(two-line).check-list.white
@@ -24,7 +24,7 @@
     div(v-else).white.mt-10.pt-10
       v-container
         v-row(justify="center")
-          h1.font-40.text-center.font-work-sans {{ title }}
+          h1.font-40.text-center {{ title }}
       v-container
         v-row(justify="center")
           v-list(two-line).white

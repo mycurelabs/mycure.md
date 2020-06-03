@@ -1,5 +1,5 @@
 <template lang="pug">
-  div#top.white
+  div(v-if="!loading")#top.white
     //- 1st panel
     usp
     //- 2nd panel
@@ -55,6 +55,7 @@ export default {
         image: 'mycure-web-footer',
       },
       isMobile: true,
+      loading: true,
     };
   },
   computed: {
@@ -73,6 +74,7 @@ export default {
   mounted () {
     VueScrollTo.scrollTo('#app', 500, { easing: 'ease' });
     this.isMobile = this.$isMobile;
+    this.loading = false;
   },
   methods: {
     parseCtaSubText () {
@@ -90,3 +92,9 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+#top {
+  margin-top: 12vh;
+}
+</style>

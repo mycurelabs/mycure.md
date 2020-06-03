@@ -4,8 +4,8 @@
       v-container
         v-row(align="center")
           v-col(cols="12").text-center
-            h1(:class="{'pre-white-space': !$isMobile}").text-center.font-40.font-work-sans {{ pricingTitle }}
-            p(:class="{'pre-white-space': !$isMobile}" v-if="description").text-center.pt-1.font-21.font-source-sans {{ description }}
+            h1(:class="{'pre-white-space': !$isMobile}").text-center.font-40 {{ pricingTitle }}
+            p(:class="{'pre-white-space': !$isMobile}" v-if="description").text-center.pt-1.font-21 {{ description }}
         v-row(:class="{'flex-nowrap': $isMobile}" justify="center").pt-5.fill-height
           v-col(
             v-for="(item, key) in pricingItems"
@@ -25,7 +25,7 @@
                       :alt="item.image"
                       width="95%"
                     )
-                    h1(:class="[{'pt-5': !$isMobile }]").font-40.font-work-sans.lh-title.black--text {{ item.title }}
+                    h1(:class="[{'pt-5': !$isMobile }]").font-40.lh-title.black--text {{ item.title }}
                     p(:class="{'pre-white-space' : !$isMobile}").font-18 {{ parseDescription(item) }}
                   v-col(cols="12" md="6")
                     v-container.text-left

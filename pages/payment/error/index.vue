@@ -15,7 +15,7 @@
           :class="{'text-center': $isMobile }"
         )
           img(src="~/assets/images/mycure-logo.svg" height="50")
-          h1.font-work-sans TRIAL FAILED
+          h1 TRIAL FAILED
           p.mt-3
             | Oops! Something went wrong!
             br

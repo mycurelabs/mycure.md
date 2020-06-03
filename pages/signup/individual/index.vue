@@ -4,15 +4,26 @@
 </template>
 
 <script>
+// components
 import Loader from '~/components/commons/loader';
+// utils
 import headMeta from '~/utils/head-meta';
+
 export default {
   layout: 'empty',
   components: {
     Loader,
   },
+  computed: {
+    email () {
+      return this.$route.params.email;
+    },
+  },
   created () {
-    this.$nuxt.$router.push({ name: 'signup-individual-step-1' });
+    this.$nuxt.$router.push({
+      name: 'signup-individual-step-1',
+      ...this.email && { params: { email: this.email } },
+    });
   },
   head () {
     return headMeta({
