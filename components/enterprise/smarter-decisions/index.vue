@@ -1,13 +1,12 @@
 <template lang="pug">
   v-container.py-12
     v-row(justify="center")
-      v-col(cols="12" md="7" justify="center" v-if="!$isMobile")
+      v-col(cols="12" md="7" justify="center")
         h1.text-center.font-30.lh-title.pb-3.font-weight-light {{smarter.header}}
         p.text-center.font-18.mt-3 {{smarter.description}}
     v-row(justify="center")
       v-col(
-        v-if="!$isMobile"
-        cols="12"
+        cols="6"
         md="3"
         align="center"
         justify="center"
