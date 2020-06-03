@@ -1,7 +1,7 @@
 <template lang="pug">
   v-container
     v-row(justify="center").py-12
-      v-col(align-self="center" v-if="!isMobile" cols="12" md="6")
+      v-col(align-self="center" v-if="!$isMobile" cols="12" md="6")
         img(
           v-lazy="require('~/assets/images/doctors-clinics/MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-B-secure-data.png')"
           alt="Safekeep your important medical data"
@@ -16,7 +16,7 @@
           strong.text-capitalize.primary--text {{SAFEKEEP_MEDICAL_DATA.btnTxt}}
           v-icon.primary--text {{SAFEKEEP_MEDICAL_DATA.btnIcon}}
       img(
-        v-if="isMobile"
+        v-if="$isMobile"
         v-lazy="require('~/assets/images/doctors-clinics/MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-B-secure-data.png')"
         alt="Safekeep your important medical data"
         width="100%"
@@ -32,16 +32,7 @@ export default {
   data () {
     this.SAFEKEEP_MEDICAL_DATA = SAFEKEEP_MEDICAL_DATA;
     return {
-      isMobile: true,
     };
-  },
-  watch: {
-    $isMobile (val) {
-      this.isMobile = val;
-    },
-  },
-  mounted () {
-    this.isMobile = this.$isMobile;
   },
   methods: {
     onGetStarted () {
