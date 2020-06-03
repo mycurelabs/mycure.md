@@ -10,12 +10,12 @@
         v-btn(text @click="onGetStarted")
           strong.text-capitalize.primary--text {{TAKE_PRACTICE_ONLINE.btnTxt}}
           v-icon.primary--text {{TAKE_PRACTICE_ONLINE.btnIcon}}
-      v-col(align-self="center" cols="12" md="6" v-if="!isMobile")
+      v-col(align-self="center" cols="12" md="6" v-if="!$isMobile")
         img(v-lazy="require('~/assets/images/doctors-clinics/MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-C-group-practice.png')"
-          alt="Safekeep your important medical data"
+          alt="Take your practice online"
         ).pl-10
       img(v-lazy="require('~/assets/images/doctors-clinics/MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-C-group-practice.png')"
-        alt="Safekeep your important medical data" v-if="isMobile"
+        alt="Take your practice online" v-if="$isMobile"
         width="100%"
       )
 </template>
@@ -29,16 +29,7 @@ export default {
   data () {
     this.TAKE_PRACTICE_ONLINE = TAKE_PRACTICE_ONLINE;
     return {
-      isMobile: true,
     };
-  },
-  watch: {
-    $isMobile (val) {
-      this.isMobile = val;
-    },
-  },
-  mounted () {
-    this.isMobile = this.$isMobile;
   },
   methods: {
     onGetStarted () {
