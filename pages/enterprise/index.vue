@@ -3,7 +3,7 @@
     //- 1st panel
     Usp
     //- 2nd panel
-    //- IncreaseRevenue
+    YourPatients
     //- 3rd panel
     //- SafekeepData
     //- 4th panel
@@ -24,22 +24,12 @@ import VueScrollTo from 'vue-scrollto';
 import headMeta from '~/utils/head-meta';
 // components
 import Usp from '~/components/enterprise/usp';
-// import IncreaseRevenue from '~/components/doctors-clinics/increase-revenue';
-// import SafekeepData from '~/components/doctors-clinics/safekeep-data';
-// import PracticeOnline from '~/components/doctors-clinics/practice-online';
-// import SpecializedPlans from '~/components/doctors-clinics/specialized-plans';
-// import QualityHealthcare from '~/components/doctors-clinics/quality-healthcare';
-// import Cta from '~/components/doctors-clinics/cta';
+import YourPatients from '~/components/enterprise/your-patients';
 
 export default {
   components: {
     Usp,
-    // IncreaseRevenue,
-    // SafekeepData,
-    // PracticeOnline,
-    // SpecializedPlans,
-    // QualityHealthcare,
-    // Cta,
+    YourPatients,
   },
   data () {
     return {
