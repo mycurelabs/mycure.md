@@ -11,6 +11,8 @@
         v-col(cols="12" md="5" xl="4")
           p(:class="[centerText]").font-18.mx-1 {{ metaTitle }}
           h1(:class="titleClasses").font-poppins.font-40.lh-title {{ uspTitle }}
+          div(v-if="$isMobile").text-center
+            v-icon mdi-arrow-down
           v-btn(
             v-if="!$isMobile"
             color="accent"
