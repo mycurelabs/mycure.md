@@ -5,13 +5,13 @@ export const PATIENTS = {
 export const AUTOMATED = [
   {
     image: 'MYCURE-virtual-clinic-healthcare-practice-online-enterprise-A-queue-system.png',
-    header: 'Automated\nqueueing system',
+    header: 'Automated queueing system',
     btnTxt: 'Get Started',
     btnIcon: 'mdi-arrow-right-thick',
   },
   {
     image: 'MYCURE-virtual-clinic-healthcare-practice-online-enterprise-B-kiosk-displays.png',
-    header: 'Customizable patient\nkiosk displays',
+    header: 'Customizable patient kiosk displays',
     btnTxt: 'Get Started',
     btnIcon: 'mdi-arrow-right-thick',
   },
