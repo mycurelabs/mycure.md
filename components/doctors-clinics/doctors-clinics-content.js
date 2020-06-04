@@ -1,4 +1,4 @@
-export const INCREASE_YOUR_REVENUE = [
+export const SECOND_PANEL_CONTENTS = [
   {
     header: 'Increase your revenue',
     description: 'Treat more patients and reduce no-shows and cancellations with online consultations via secure and video and voice calls.',

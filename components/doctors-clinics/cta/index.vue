@@ -5,27 +5,27 @@
       :background-image-mobile="backgroundImageMobile"
       :background-image-mobile-configs="backgroundImageMobileConfigs"
       :customPath="customPath"
-      :class="{'pt-12': isMobile}"
+      :class="{'pt-12': $isMobile}"
     )
       v-row(slot="content").row-content
-        v-col(cols="12" md="5" :class="[{'web-content-margin': !isMobile}]" v-if="!isMobile")
-          h1(:class="titleClasses").white--text.font-poppins.font-40.lh-title {{ uspTitle }}
+        v-col(cols="12" md="5" :class="[{'web-content-margin': !$isMobile}]" v-if="!$isMobile")
+          h1(:class="titleClasses").font-poppins.font-40.lh-title {{ uspTitle }}
           p(:class="[centerText]").font-italic.font-18.px-1 {{ uspSubtitle }}
-          div(v-if="!isMobile").text-field-container.white
+          div(v-if="!$isMobile").text-field-container.white
             v-text-field(
               v-model="email"
               outlined
               placeholder="myname@email.com"
             )
           v-btn(
-            v-if="!isMobile"
+            v-if="!$isMobile"
             block
             color="accent"
             large
             @click="onGetStarted"
           ).text-none.font-weight-bold.font-18.mt-5 Get Started
           p(:class="[centerText]").white--text.font-16.px-1.text-center.py-2 {{ uspAgreement }}
-        v-col(cols="12" md="5" v-if="isMobile" one-line).cta-form
+        v-col(cols="12" md="5" v-if="$isMobile" one-line).cta-form
           h1.font-poppins.font-30.lh-title {{ uspTitle }}
           p.font-italic.font-18.font-weight-light.px-1.pt-1 {{ uspSubtitle }}
           div.text-field-container.white
@@ -60,7 +60,6 @@ export default {
     this.customPath = 'doctors-clinics/';
     return {
       email: '',
-      isMobile: true,
     };
   },
   computed: {
@@ -72,26 +71,18 @@ export default {
       };
     },
     centerText () {
-      return { 'text-center': this.isMobile };
+      return { 'text-center': this.$isMobile };
     },
     titleClasses () {
-      return this.isMobile
+      return this.$isMobile
         ? [this.centerText]
         : ['pre-white-space'];
     },
     uspTitle () {
-      return this.isMobile
+      return this.$isMobile
         ? this.panelTitle
         : parseTextWithNewLine(this.panelTitle, ['virtual ']);
     },
-  },
-  watch: {
-    $isMobile (val) {
-      this.isMobile = val;
-    },
-  },
-  mounted () {
-    this.isMobile = this.$isMobile;
   },
   methods: {
     onGetStarted () {
