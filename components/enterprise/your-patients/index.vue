@@ -2,15 +2,15 @@
   v-container.py-12
     v-row(justify="center")
       v-col(cols="12" md="6" justify="center")
-        h1.text-center.font-30.lh-title.pb-3.font-weight-light {{panelTitle.header}}
-        p.text-center.font-18.mt-3 {{panelTitle.description}}
+        h1.text-center.font-30.lh-title.pb-3.font-weight-light {{secondPanelHeader.header}}
+        p.text-center.font-18.mt-3 {{secondPanelHeader.description}}
     v-row(justify="center")
       v-col(
         cols="12"
         md="5"
         align="center"
         justify="center"
-        v-for="(data, key) in panelContents"
+        v-for="(data, key) in secondPanelContents"
         :key="key"
         v-if="!$isMobile"
       )
@@ -24,7 +24,7 @@
         md="5"
         align="center"
         justify="center"
-        v-for="(data, key) in panelContents"
+        v-for="(data, key) in secondPanelContents"
         :key="key"
         v-if="$isMobile"
       )
@@ -40,12 +40,12 @@
 </template>
 
 <script>
-import { PATIENTS, AUTOMATED } from '../enterprise-contents';
+import { SECOND_PANEL_HEADER, SECOND_PANEL_CONTENTS } from '../enterprise-contents';
 export default {
   data () {
+    this.secondPanelHeader = SECOND_PANEL_HEADER;
+    this.secondPanelContents = SECOND_PANEL_CONTENTS;
     return {
-      panelTitle: PATIENTS,
-      panelContents: AUTOMATED,
     };
   },
 };

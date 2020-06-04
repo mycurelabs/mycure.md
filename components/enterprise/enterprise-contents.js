@@ -1,8 +1,8 @@
-export const PATIENTS = {
+export const SECOND_PANEL_HEADER = {
   header: 'Make it easy for your patients',
   description: 'With all your clinical departments integrated into one system, your patients will have a breeze moving through your clinic',
 };
-export const AUTOMATED = [
+export const SECOND_PANEL_CONTENTS = [
   {
     image: 'MYCURE-virtual-clinic-healthcare-practice-online-enterprise-A-queue-system.png',
     header: 'Automated queueing system',
