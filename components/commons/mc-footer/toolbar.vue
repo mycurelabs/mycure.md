@@ -9,13 +9,10 @@
         div(v-for="(account, key) in socMed" :key="key")
           a(:href="account.link" target="_blank")
             img(:src="require(`~/assets/images/${ account.icon }`)" height="35" :alt="account.name").px-5
-    v-row(v-else).footer-grey.justify-center
-      div
-        nuxt-link(:to="{ name: 'index' }" title="MYCURE | Clinic Management System | Cloud EMR Philippines")
-          v-row(align="center").text-center
-            img(src="~/assets/images/mycure-header-logo.png" width="130" alt="MYCURE logo")
-      br
-      strong FOLLOW US
+    v-row(v-else justify="center").footer-grey
+      nuxt-link(:to="{ name: 'index' }" title="MYCURE | Clinic Management System | Cloud EMR Philippines")
+        v-row(align="center").text-center
+          img(src="~/assets/images/mycure-header-logo.png" width="130" alt="MYCURE logo")
       br
       br
       v-row(justify="center")
