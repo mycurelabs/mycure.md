@@ -4,6 +4,7 @@
       :background-image="backgroundImage"
       :background-image-mobile="backgroundImageMobile"
       :background-image-mobile-configs="backgroundImageMobileConfigs"
+      :custom-path="customPath"
     )
       v-row(slot="content").row-content
         v-col(cols="12" md="5" :class="[{'web-content-margin': !$isMobile}]" v-if="!$isMobile")
@@ -54,6 +55,7 @@ export default {
     this.uspSubheader = 'For Doctors Clinics';
     this.panelTitle = 'Everything you need\nto build your virtual practice.';
     this.uspSubtitle = 'Starting a virtual practice has never been\neasier. Give your patients the quality care\nthey deserve.';
+    this.customPath = 'doctors-clinics/';
     return {
       email: '',
     };
