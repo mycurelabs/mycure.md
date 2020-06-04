@@ -2,31 +2,34 @@
   div(v-if="!loading")#top.white
     //- 1st panel
     usp
-    //- 2nd panel
-    roles-and-privileges(:isMobile="isMobile")
-    //- 3rd panel
-    medical-records(:isMobile="isMobile")
-    //- 4th panel
-    reports(:isMobile="isMobile")
-    //- 5th panel
-    billing(:isMobile="isMobile")
-    //- 6th panel
-    registration-and-queuing(:isMobile="isMobile")
-    //- 7th panel
-    laboratory-and-imaging(:isMobile="isMobile")
-    //- 8th panel
-    inventory(:isMobile="isMobile")
-    //- 9th panel
-    syncbase(:isMobile="isMobile")
-    //- cta
-    mc-cta-bottom(
-      :ctaContent="ctaContent"
-      btnColor="accent"
-    )
+
+    //- Old components
+    //- //- 2nd panel
+    //- roles-and-privileges(:isMobile="isMobile")
+    //- //- 3rd panel
+    //- medical-records(:isMobile="isMobile")
+    //- //- 4th panel
+    //- reports(:isMobile="isMobile")
+    //- //- 5th panel
+    //- billing(:isMobile="isMobile")
+    //- //- 6th panel
+    //- registration-and-queuing(:isMobile="isMobile")
+    //- //- 7th panel
+    //- laboratory-and-imaging(:isMobile="isMobile")
+    //- //- 8th panel
+    //- inventory(:isMobile="isMobile")
+    //- //- 9th panel
+    //- syncbase(:isMobile="isMobile")
+    //- //- cta
+    //- mc-cta-bottom(
+    //-   :ctaContent="ctaContent"
+    //-   btnColor="accent"
+    //- )
 </template>
 
 <script>
 import VueScrollTo from 'vue-scrollto';
+// - Import all new components here
 // - components
 import Usp from '~/components/features/usp';
 // - utils
@@ -36,15 +39,16 @@ import headMeta from '~/utils/head-meta';
 export default {
   components: {
     Usp,
-    RolesAndPrivileges: () => import('~/components/features/roles-and-privileges'),
-    MedicalRecords: () => import('~/components/features/medical-records'),
-    Reports: () => import('~/components/features/reports'),
-    Billing: () => import('~/components/features/billing'),
-    RegistrationAndQueuing: () => import('~/components/features/registration-and-queuing'),
-    LaboratoryAndImaging: () => import('~/components/features/laboratory-and-imaging'),
-    Inventory: () => import('~/components/features/inventory'),
-    Syncbase: () => import('~/components/features/syncbase'),
-    McCtaBottom: () => import('~/components/commons/mc-cta-bottom'),
+    // - Old components
+    // RolesAndPrivileges: () => import('~/components/features/roles-and-privileges'),
+    // MedicalRecords: () => import('~/components/features/medical-records'),
+    // Reports: () => import('~/components/features/reports'),
+    // Billing: () => import('~/components/features/billing'),
+    // RegistrationAndQueuing: () => import('~/components/features/registration-and-queuing'),
+    // LaboratoryAndImaging: () => import('~/components/features/laboratory-and-imaging'),
+    // Inventory: () => import('~/components/features/inventory'),
+    // Syncbase: () => import('~/components/features/syncbase'),
+    // McCtaBottom: () => import('~/components/commons/mc-cta-bottom'),
   },
   data () {
     return {
