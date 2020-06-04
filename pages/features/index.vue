@@ -16,17 +16,10 @@
     registration-and-queuing
     //- 8th panel
     laboratory-and-imaging
-    //- //- 7th panel
-    //- laboratory-and-imaging(:isMobile="isMobile")
-    //- //- 8th panel
-    //- inventory(:isMobile="isMobile")
+    //- 9th panel
+    inventory
     //- //- 9th panel
     //- syncbase(:isMobile="isMobile")
-    //- //- cta
-    //- mc-cta-bottom(
-    //-   :ctaContent="ctaContent"
-    //-   btnColor="accent"
-    //- )
 </template>
 
 <script>
@@ -41,6 +34,7 @@ import Reports from '~/components/features/reports';
 import Billing from '~/components/features/billing';
 import RegistrationAndQueuing from '~/components/features/registration-and-queuing';
 import LaboratoryAndImaging from '~/components/features/laboratory-and-imaging';
+import Inventory from '~/components/features/inventory';
 // - utils
 import { parseTextWithNewLine } from '~/utils/newline';
 import headMeta from '~/utils/head-meta';
@@ -55,13 +49,8 @@ export default {
     Billing,
     RegistrationAndQueuing,
     LaboratoryAndImaging,
-    // Reports: () => import('~/components/features/reports'),
-    // Billing: () => import('~/components/features/billing'),
-    // RegistrationAndQueuing: () => import('~/components/features/registration-and-queuing'),
-    // LaboratoryAndImaging: () => import('~/components/features/laboratory-and-imaging'),
-    // Inventory: () => import('~/components/features/inventory'),
+    Inventory,
     // Syncbase: () => import('~/components/features/syncbase'),
-    // McCtaBottom: () => import('~/components/commons/mc-cta-bottom'),
   },
   data () {
     return {
