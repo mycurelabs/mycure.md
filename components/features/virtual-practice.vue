@@ -7,7 +7,7 @@
     web-image-width="90%"
     :custom-image-path="customPath"
   )
-    div(slot="additional-content").text-center
+    div(slot="additional-content" :class="{'text-center': !$isMobile}").pb-10
       v-btn(text).text-none
         strong.primary--text Get Started
         v-icon.primary--text mdi-arrow-right

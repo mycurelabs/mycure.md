@@ -43,7 +43,7 @@
       )
     //- CENTER VIEW
     v-row(v-else justify="center").py-10
-      v-col(cols="12" md="10").text-center
+      v-col(cols="12" md="10" :class="{'text-center': !$isMobile}")
         h1.font-30.lh-title.pb-3.font-weight-light {{header}}
         img(
           v-if="!$isMobile"
