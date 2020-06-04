@@ -1,6 +1,6 @@
 <template lang="pug">
   div(:class="[...mainContainerClasses]" :style="containerStyleConfig")
-    img(v-if="!isMobile && !loading" :src="imageSrc" alt="Usp background" :style="webStyleConfig").source-image
+    img(v-if="!$isMobile && !loading" :src="imageSrc" alt="Usp background" :style="webStyleConfig").source-image
     v-container.content
       slot(name="content")
 </template>
@@ -43,19 +43,18 @@ export default {
   },
   data () {
     return {
-      isMobile: true,
       loading: true,
     };
   },
   computed: {
     mainContainerClasses () {
       const defaultClasses = ['main-container', 'white'];
-      return this.isMobile
+      return this.$isMobile
         ? defaultClasses.push('pt-10', 'mt-10')
         : defaultClasses.concat(this.customContainerClasses);
     },
     containerStyleConfig () {
-      return this.isMobile
+      return this.$isMobile
         ? this.mobileStyleConfig
         : this.webContainerStyleConfigs;
     },
@@ -66,7 +65,7 @@ export default {
       return this.backgroundImageConfigs;
     },
     mobileStyleConfig () {
-      if ((!this.backgroundImageMobile && this.isMobile) || this.loading) {
+      if ((!this.backgroundImageMobile && this.$isMobile) || this.loading) {
         return {};
       }
       const styleConfig = {
@@ -79,13 +78,7 @@ export default {
       return require(`~/assets/images/${this.customPath}${this.backgroundImage}`);
     },
   },
-  watch: {
-    $isMobile (val) {
-      this.isMobile = val;
-    },
-  },
   mounted () {
-    this.isMobile = this.$isMobile;
     this.loading = false;
   },
 };

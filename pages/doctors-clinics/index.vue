@@ -1,22 +1,21 @@
 <template lang="pug">
   div(v-if="!loading")#top
     //- 1st panel
-    usp
+    Usp(@getStarted="getStarted")
     //- 2nd panel
-    workflow
+    IncreaseRevenue(@getStarted="getStarted")
     //- 3rd panel
-    features
+    SafekeepData(@getStarted="getStarted")
     //- 4th panel
-    pricing
+    PracticeOnline(@getStarted="getStarted")
     //- 5th panel
-    faqs
-    //- CTA
-    mc-cta-bottom(
-      parse-text
-      :parseIndicators="['when']"
-      :ctaContent="ctaContent"
-      btnColor="accent"
-    )
+    SpecializedPlans
+    //- 6th panel
+    QualityHealthcare(@getStarted="getStarted")
+    //- 7th panel
+    div.cta-container
+      Cta(@getStarted="goToSignupIndividual($event)")
+    //- )
 </template>
 
 <script>
@@ -25,23 +24,24 @@ import VueScrollTo from 'vue-scrollto';
 import headMeta from '~/utils/head-meta';
 // components
 import Usp from '~/components/doctors-clinics/usp';
+import IncreaseRevenue from '~/components/doctors-clinics/increase-revenue';
+import SafekeepData from '~/components/doctors-clinics/safekeep-data';
+import PracticeOnline from '~/components/doctors-clinics/practice-online';
+import SpecializedPlans from '~/components/doctors-clinics/specialized-plans';
+import QualityHealthcare from '~/components/doctors-clinics/quality-healthcare';
+import Cta from '~/components/doctors-clinics/cta';
 
 export default {
   components: {
     Usp,
-    Workflow: () => import('~/components/doctors-clinics/workflow'),
-    Features: () => import('~/components/doctors-clinics/features'),
-    Pricing: () => import('~/components/doctors-clinics/pricing'),
-    Faqs: () => import('~/components/doctors-clinics/faqs'),
-    McCtaBottom: () => import('~/components/commons/mc-cta-bottom'),
+    IncreaseRevenue,
+    SafekeepData,
+    PracticeOnline,
+    SpecializedPlans,
+    QualityHealthcare,
+    Cta,
   },
   data () {
-    this.ctaContent = {
-      text: 'It\'s always better when we work together',
-      subtext: 'Experience what more you can do with MYCURE technology by your side.',
-      btnText: 'Start Free',
-      btnLink: 'signup-individual',
-    };
     return {
       loading: true,
     };
@@ -49,6 +49,14 @@ export default {
   mounted () {
     VueScrollTo.scrollTo('#app', 500, { easing: 'ease' });
     this.loading = false;
+  },
+  methods: {
+    getStarted () {
+      this.$router.push({ name: 'signup-individual' });
+    },
+    goToSignupIndividual (email) {
+      this.$router.push({ name: 'signup-individual', params: { email } });
+    },
   },
   head () {
     return headMeta({
@@ -64,5 +72,10 @@ export default {
 <style scoped>
 #top {
   margin-top: 12vh;
+}
+.cta-container {
+    position: relative;
+    margin-bottom: -4%;
+    z-index: 1;
 }
 </style>

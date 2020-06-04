@@ -1,40 +1,116 @@
 <template lang="pug">
   div.white
-    usp-template(
-      :uspTitle="uspTitle"
-      :uspMetaTitle="uspContents.metaTitle"
-      :btnRoute="uspContents.btnRoute"
-      :btnId="uspContents.btnId"
-      :btnText="uspContents.btnText"
-      :coverImg="uspContents.coverImg"
-      :customPath="uspContents.customPath"
+    generic-background-panel(
+      :background-image="backgroundImage"
+      :background-image-mobile="backgroundImageMobile"
+      :background-image-mobile-configs="backgroundImageMobileConfigs"
+      :custom-path="customPath"
     )
+      v-row(slot="content").row-content
+        v-col(cols="12" md="5" :class="[{'web-content-margin': !$isMobile}]" v-if="!$isMobile")
+          p(:class="[centerText]").font-18.mx-1.pt-5 {{ uspSubheader }}
+          h1(:class="titleClasses").font-poppins.font-40.lh-title {{ uspTitle }}
+          p(:class="[centerText]").font-18.mx-1.pt-5 {{ uspSubtitle }}
+          v-btn(
+            v-if="!$isMobile"
+            color="accent"
+            large
+            @click="onGetStarted"
+          ).text-none.font-weight-bold.font-18.mt-5 Get Started
+        v-col(cols="12" md="5" :class="[{'web-content-margin': !$isMobile}]" v-if="$isMobile" one-line)
+          p(:class="[centerText]").font-18 {{ uspSubheader }}
+          h1(:class="titleClasses").font-poppins.font-30.lh-title {{ uspTitle }}
+          p(:class="[centerText]").font-18.font-weight-light.px-1.pt-1 {{ uspSubtitle }}
+          div(v-if="$isMobile").text-center
+            v-btn(text).align-center
+              v-icon(large) mdi-arrow-down
+    template(v-if="$isMobile")
+      div.text-field-container.white
+        v-text-field(
+          v-model="email"
+          placeholder="myname@email.com"
+          outlined
+        )
+      v-btn(
+        @click="onGetStarted"
+        color="accent"
+        block
+        x-large
+      ).text-none.font-weight-bold.font-18 Get Started
 </template>
 
 <script>
-
-// constants
-import USP_CONTENTS from './constants.json';
-// components
-import UspTemplate from '~/components/commons/usp';
 // utils
 import { parseTextWithNewLine } from '~/utils/newline';
+// components
+import GenericBackgroundPanel from '~/components/commons/generic-background-panel';
 export default {
   components: {
-    UspTemplate,
+    GenericBackgroundPanel,
   },
   data () {
+    this.backgroundImage = 'MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-usp-cover.png';
+    this.backgroundImageMobile = 'MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-usp-cover-mobile.png';
+    this.uspSubheader = 'For Doctors Clinics';
+    this.panelTitle = 'Everything you need\nto build your virtual practice.';
+    this.uspSubtitle = 'Starting a virtual practice has never been\neasier. Give your patients the quality care\nthey deserve.';
+    this.customPath = 'doctors-clinics/';
     return {
-      uspContents: USP_CONTENTS,
+      email: '',
     };
   },
   computed: {
+    backgroundImageMobileConfigs () {
+      return {
+        'background-size': '100%',
+        'background-position': '0px 270px',
+      };
+    },
+    centerText () {
+      return { 'text-center': this.$isMobile };
+    },
+    titleClasses () {
+      return this.$isMobile
+        ? [this.centerText]
+        : ['pre-white-space'];
+    },
     uspTitle () {
-      const title = USP_CONTENTS.title;
-      return !this.$isMobile
-        ? parseTextWithNewLine(title, ['for', 'solo or'])
-        : parseTextWithNewLine(title, ['perfect', 'system', 'doctors', ' or']);
+      return this.$isMobile
+        ? this.panelTitle
+        : parseTextWithNewLine(this.panelTitle, ['virtual ']);
+    },
+  },
+  watch: {
+    $isMobile (val) {
+      this.isMobile = val;
+    },
+  },
+  methods: {
+    onGetStarted () {
+      this.$emit('getStarted');
     },
   },
 };
 </script>
+
+<style scoped>
+.text-field-container {
+  height: 52px;
+}
+.web-content-margin {
+  margin-top: 80px;
+}
+.row-content {
+  height: 100vh;
+}
+@media screen and (max-width: 375px) {
+  .text-field-container {
+    margin-top: -69%;
+  }
+}
+@media screen and (max-width: 360px) {
+  .text-field-container {
+  margin-top: -28%;
+  }
+}
+</style>
