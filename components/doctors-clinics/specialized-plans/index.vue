@@ -3,13 +3,13 @@
     v-row(justify="center").py-12
       v-col(cols="12" md="7")
         h1.font-30.lh-title.pb-3.font-weight-light.text-center {{SPECIALIZED_PLANS.header}}
-    v-row(justify="center" align="start"
-    )
+    v-row(justify="center" align="start")
       v-col(
         cols="12"
         md="4"
         v-for="(data, key) in plans"
         :key="key"
+        :class="mobileClasses"
       )
         img(v-lazy="require(`~/assets/images/doctors-clinics/${data.images}`)" :alt="data.header")
         h1.font-22.lh-title.pb-3.font-weight-medium {{data.header}}
@@ -27,6 +27,11 @@ export default {
     return {
       plans: LISTS_OF_PLANS,
     };
+  },
+  computed: {
+    mobileClasses () {
+      return this.$isMobile ? ['text-center', 'py-3'] : [];
+    },
   },
 };
 </script>
