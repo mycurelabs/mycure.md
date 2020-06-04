@@ -29,31 +29,22 @@
               alt="Charting"
               width="100%"
             )
-      //- div(v-else).panel-container.pt-5
-      //-     v-row(justify="center").mx-2
-      //-       p.font-18.text-center Record full medical history, vitals, and physical exam records according
-      //-         |  to SOAP charting. Eliminate the haste of scribbling with Rx printing, ICD-10
-      //-         | database, multiple image uploads, and more.
-      //-     v-row(justify="center").add-spacing
-      //-       img(src="~/assets/images/features/mycure-cms-web-features-arrow-down.png" alt="Arrow down")
-      //-     br
-      //-     br
-      //-     v-row(justify="center")
-      //-       carousel(
-      //-         :per-page="1"
-      //-         autoplay
-      //-         loop
-      //-         adjustableHeight
-      //-         paginationActiveColor="#3498db"
-      //-         paginationColor="#808080"
-      //-       )
-      //-         slide(
-      //-           v-for="(feature,index) in features"
-      //-           :key="index"
-      //-           :data-index="index+1"
-      //-         ).pa-1
-      //-           v-row(justify="center")
-      //-             img(v-lazy="require(`~/assets/images/features/mycure-web-features-mockup-01-${feature}.png`)" alt="Medical records" height="200px")
+      v-container(v-else)
+        v-row(justify="center")
+          carousel(
+            :per-page="1"
+            autoplay
+            loop
+            paginationActiveColor="#3498db"
+            paginationColor="#808080"
+          )
+            slide(
+              v-for="(image,index) in panelImages"
+              :key="index"
+              :data-index="index+1"
+            ).pa-1
+              v-row(justify="center")
+                img(v-lazy="require(`~/assets/images/features/${image}`)" alt="Medical records" width="90%")
 </template>
 
 <script>
