@@ -45,6 +45,7 @@ export default {
     this.secondPanelHeader = SECOND_PANEL_HEADER;
     this.secondPanelContents = SECOND_PANEL_CONTENTS;
     return {
+
     };
   },
 };
