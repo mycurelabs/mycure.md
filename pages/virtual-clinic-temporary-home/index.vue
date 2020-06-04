@@ -84,7 +84,7 @@ export default {
   },
   methods: {
     getStarted () {
-      VueScrollTo.scrollTo('#health-suites', 500, { easing: 'ease' });
+      this.$router.push({ name: 'signup-individual' });
     },
     goToSignupIndividual (email) {
       this.$router.push({ name: 'signup-individual', params: { email } });

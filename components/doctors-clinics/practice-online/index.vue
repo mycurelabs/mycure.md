@@ -7,7 +7,7 @@
         span.font-18.mt-3 {{TAKE_PRACTICE_ONLINE.description}}
         br
         br
-        v-btn(text)
+        v-btn(@click="onGetStarted" text)
           strong.text-capitalize.primary--text {{TAKE_PRACTICE_ONLINE.btnTxt}}
           v-icon.primary--text {{TAKE_PRACTICE_ONLINE.btnIcon}}
       v-col(align-self="center" cols="12" md="6" v-if="!$isMobile")
@@ -28,6 +28,11 @@ export default {
     return {
 
     };
+  },
+  methods: {
+    onGetStarted () {
+      this.$emit('getStarted');
+    },
   },
 };
 </script>

@@ -1,20 +1,20 @@
 <template lang="pug">
   div(v-if="!loading")#top
     //- 1st panel
-    Usp
+    Usp(@getStarted="getStarted")
     //- 2nd panel
-    IncreaseRevenue
+    IncreaseRevenue(@getStarted="getStarted")
     //- 3rd panel
-    SafekeepData
+    SafekeepData(@getStarted="getStarted")
     //- 4th panel
-    PracticeOnline
+    PracticeOnline(@getStarted="getStarted")
     //- 5th panel
     SpecializedPlans
     //- 6th panel
-    QualityHealthcare
+    QualityHealthcare(@getStarted="getStarted")
     //- 7th panel
     div.cta-container
-      Cta
+      Cta(@getStarted="goToSignupIndividual($event)")
     //- )
 </template>
 
@@ -49,6 +49,14 @@ export default {
   mounted () {
     VueScrollTo.scrollTo('#app', 500, { easing: 'ease' });
     this.loading = false;
+  },
+  methods: {
+    getStarted () {
+      this.$router.push({ name: 'signup-individual' });
+    },
+    goToSignupIndividual (email) {
+      this.$router.push({ name: 'signup-individual', params: { email } });
+    },
   },
   head () {
     return headMeta({

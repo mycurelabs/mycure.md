@@ -4,23 +4,29 @@
       :background-image="backgroundImage"
       :background-image-mobile="backgroundImageMobile"
       :background-image-mobile-configs="backgroundImageMobileConfigs"
-      :custom-path="customPath"
+      :customPath="customPath"
+      :class="{'pt-12': $isMobile}"
     )
       v-row(slot="content").row-content
         v-col(cols="12" md="5" :class="[{'web-content-margin': !$isMobile}]" v-if="!$isMobile")
-          p(:class="[centerText]").font-18.mx-1.pt-5 {{ uspSubheader }}
-          h1(:class="titleClasses").font-poppins.font-40.lh-title {{ uspTitle }}
-          p(:class="[centerText]").font-18.mx-1.pt-5 {{ uspSubtitle }}
+          p.font-18.px-1 {{ uspSubtitle }}
+          h1(:class="titleClasses").font-poppins.font-40.lh-title.pb-10 {{ uspTitle }}
+          div(v-if="!$isMobile").text-field-container.white
+            v-text-field(
+              v-model="email"
+              outlined
+              placeholder="myname@email.com"
+            )
           v-btn(
             v-if="!$isMobile"
+            block
             color="accent"
             large
             @click="onGetStarted"
-          ).text-none.font-weight-bold.font-18.mt-5 Get Started
-        v-col(cols="12" md="5" :class="[{'web-content-margin': !$isMobile}]" v-if="$isMobile" one-line)
-          p(:class="[centerText]").font-18 {{ uspSubheader }}
-          h1(:class="titleClasses").font-poppins.font-30.lh-title {{ uspTitle }}
-          p(:class="[centerText]").font-18.font-weight-light.px-1.pt-1 {{ uspSubtitle }}
+          ).text-none.font-weight-bold.font-18.mt-3 Sign Up via Email
+        v-col(cols="12" md="5" v-if="$isMobile" one-line).text-center
+          p.font-18.font-weight-light.px-1 {{ uspSubtitle }}
+          h1.font-poppins.font-30.lh-title {{ uspTitle }}
           div(v-if="$isMobile").text-center
             v-btn(text).align-center
               v-icon(large) mdi-arrow-down
@@ -28,14 +34,14 @@
       div.text-field-container.white
         v-text-field(
           v-model="email"
-          placeholder="myname@email.com"
           outlined
+          placeholder="myname@email.com"
         )
       v-btn(
-        @click="onGetStarted"
         color="accent"
+        @click="onGetStarted"
+        large
         block
-        x-large
       ).text-none.font-weight-bold.font-18 Get Started
 </template>
 
@@ -49,12 +55,12 @@ export default {
     GenericBackgroundPanel,
   },
   data () {
-    this.backgroundImage = 'MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-usp-cover.png';
-    this.backgroundImageMobile = 'MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-usp-cover-mobile.png';
-    this.uspSubheader = 'For Doctors Clinics';
-    this.panelTitle = 'Everything you need\nto build your virtual practice.';
-    this.uspSubtitle = 'Starting a virtual practice has never been\neasier. Give your patients the quality care\nthey deserve.';
-    this.customPath = 'doctors-clinics/';
+    this.backgroundImage = 'MYCURE-virtual-clinic-healthcare-practice-online-enterprise-usp-cover.png';
+    this.backgroundImageMobile = 'MYCURE-virtual-clinic-healthcare-practice-online-enterprise-usp-cover-mobile.png';
+    this.panelTitle = 'Taking your entire clinic\nenterprise online is\npossible with MYCURE.';
+    this.uspSubtitle = 'For Medical Enterprise';
+    this.uspAgreement = 'By entering your email, you agree to receive marketing emails from MYCURE.';
+    this.customPath = 'enterprise/';
     return {
       email: '',
     };
@@ -63,7 +69,7 @@ export default {
     backgroundImageMobileConfigs () {
       return {
         'background-size': '100%',
-        'background-position': '0px 270px',
+        'background-position': '0px 200px',
       };
     },
     centerText () {
@@ -80,14 +86,12 @@ export default {
         : parseTextWithNewLine(this.panelTitle, ['virtual ']);
     },
   },
-  watch: {
-    $isMobile (val) {
-      this.isMobile = val;
-    },
-  },
   methods: {
     onGetStarted () {
-      this.$emit('getStarted');
+      if (!this.email) {
+        return;
+      }
+      this.$emit('getStarted', this.email);
     },
   },
 };
@@ -95,7 +99,9 @@ export default {
 
 <style scoped>
 .text-field-container {
-  height: 52px;
+  height: 58px;
+  border: 1px solid black;
+  border-radius: 2px;
 }
 .web-content-margin {
   margin-top: 80px;
@@ -105,12 +111,12 @@ export default {
 }
 @media screen and (max-width: 375px) {
   .text-field-container {
-    margin-top: -69%;
+    margin-top: -90%;
   }
 }
 @media screen and (max-width: 360px) {
   .text-field-container {
-  margin-top: -28%;
+  margin-top: -50%;
   }
 }
 </style>
