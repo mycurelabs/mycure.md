@@ -18,8 +18,11 @@
     laboratory-and-imaging
     //- 9th panel
     inventory
-    //- //- 9th panel
-    //- syncbase(:isMobile="isMobile")
+    //- 10th panel
+    syncbase
+    //- 11th panel
+    //- TODO: Insert modules panel here, then remove this comment
+    //- CTA
 </template>
 
 <script>
@@ -35,6 +38,7 @@ import Billing from '~/components/features/billing';
 import RegistrationAndQueuing from '~/components/features/registration-and-queuing';
 import LaboratoryAndImaging from '~/components/features/laboratory-and-imaging';
 import Inventory from '~/components/features/inventory';
+import Syncbase from '~/components/features/syncbase';
 // - utils
 import { parseTextWithNewLine } from '~/utils/newline';
 import headMeta from '~/utils/head-meta';
@@ -50,7 +54,7 @@ export default {
     RegistrationAndQueuing,
     LaboratoryAndImaging,
     Inventory,
-    // Syncbase: () => import('~/components/features/syncbase'),
+    Syncbase,
   },
   data () {
     return {
