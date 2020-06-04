@@ -63,7 +63,6 @@ export default {
     this.customPath = 'enterprise/';
     return {
       email: '',
-      isMobile: true,
     };
   },
   computed: {
@@ -74,26 +73,18 @@ export default {
       };
     },
     centerText () {
-      return { 'text-center': this.isMobile };
+      return { 'text-center': this.$isMobile };
     },
     titleClasses () {
-      return this.isMobile
+      return this.$isMobile
         ? [this.centerText]
         : ['pre-white-space'];
     },
     uspTitle () {
-      return this.isMobile
+      return this.$isMobile
         ? this.panelTitle
         : parseTextWithNewLine(this.panelTitle, ['virtual ']);
     },
-  },
-  watch: {
-    $isMobile (val) {
-      this.isMobile = val;
-    },
-  },
-  mounted () {
-    this.isMobile = this.$isMobile;
   },
   methods: {
     onGetStarted () {
