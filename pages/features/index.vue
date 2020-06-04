@@ -21,7 +21,7 @@
     //- 10th panel
     syncbase
     //- 11th panel
-    //- TODO: Insert modules panel here, then remove this comment
+    modules
     //- CTA
     div.cta-container
       features-cta
@@ -40,6 +40,7 @@ import RegistrationAndQueuing from '~/components/features/registration-and-queui
 import LaboratoryAndImaging from '~/components/features/laboratory-and-imaging';
 import Inventory from '~/components/features/inventory';
 import Syncbase from '~/components/features/syncbase';
+import Modules from '~/components/features/modules';
 import FeaturesCta from '~/components/features/cta';
 // - utils
 import { parseTextWithNewLine } from '~/utils/newline';
@@ -57,6 +58,7 @@ export default {
     LaboratoryAndImaging,
     Inventory,
     Syncbase,
+    Modules,
     FeaturesCta,
   },
   data () {
