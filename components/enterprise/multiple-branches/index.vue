@@ -23,8 +23,9 @@
 import { BRANCHES } from '../enterprise-contents';
 export default {
   data () {
+    this.branches = BRANCHES;
     return {
-      branches: BRANCHES,
+
     };
   },
 };

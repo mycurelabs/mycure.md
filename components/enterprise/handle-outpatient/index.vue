@@ -17,8 +17,9 @@
 import { OUTPATIENT } from '../enterprise-contents';
 export default {
   data () {
+    this.outpatient = OUTPATIENT;
     return {
-      outpatient: OUTPATIENT,
+
     };
   },
 };
