@@ -80,8 +80,8 @@ export default {
     },
     rowContentClass () {
       return this.$isMobile
-        ? ['web-row-content']
-        : ['mobile-row-content'];
+        ? ['mobile-row-content']
+        : ['web-row-content'];
     },
   },
   methods: {
@@ -102,9 +102,9 @@ export default {
   border-radius: 2px;
 }
 .web-row-content {
-  height: 90vh;
+  height: 100vh;
 }
 .mobile-row-content {
-  height: 100vh;
+  min-height: 100vh;
 }
 </style>
