@@ -2,29 +2,28 @@
   div(v-if="!loading")#top.white
     //- 1st panel
     usp
+    //- 2nd panel
+    roles-and-privileges
+    //- 3rd panel
+    medical-records
+    //- 4th panel
+    virtual-practice
+    //- 5th panel
+    reports
+    //- 6th panel
+    billing
+    //- 7th panel
+    registration-and-queuing
+    //- 8th panel
+    laboratory-and-imaging
+    //- 9th panel
+    inventory
+    //- 10th panel
+    syncbase
+    //- 11th panel
+    modules
+    //- CTA
 
-    //- Old components
-    //- //- 2nd panel
-    //- roles-and-privileges(:isMobile="isMobile")
-    //- //- 3rd panel
-    //- medical-records(:isMobile="isMobile")
-    //- //- 4th panel
-    //- reports(:isMobile="isMobile")
-    //- //- 5th panel
-    //- billing(:isMobile="isMobile")
-    //- //- 6th panel
-    //- registration-and-queuing(:isMobile="isMobile")
-    //- //- 7th panel
-    //- laboratory-and-imaging(:isMobile="isMobile")
-    //- //- 8th panel
-    //- inventory(:isMobile="isMobile")
-    //- //- 9th panel
-    modules(:isMobile="isMobile")
-    //- //- cta
-    //- mc-cta-bottom(
-    //-   :ctaContent="ctaContent"
-    //-   btnColor="accent"
-    //- )
 </template>
 
 <script>
@@ -32,6 +31,16 @@ import VueScrollTo from 'vue-scrollto';
 // - Import all new components here
 // - components
 import Usp from '~/components/features/usp';
+import RolesAndPrivileges from '~/components/features/roles-and-privileges';
+import MedicalRecords from '~/components/features/medical-records';
+import VirtualPractice from '~/components/features/virtual-practice';
+import Reports from '~/components/features/reports';
+import Billing from '~/components/features/billing';
+import RegistrationAndQueuing from '~/components/features/registration-and-queuing';
+import LaboratoryAndImaging from '~/components/features/laboratory-and-imaging';
+import Inventory from '~/components/features/inventory';
+import Syncbase from '~/components/features/syncbase';
+import Modules from '~/components/features/modules';
 // - utils
 import { parseTextWithNewLine } from '~/utils/newline';
 import headMeta from '~/utils/head-meta';
@@ -39,17 +48,16 @@ import headMeta from '~/utils/head-meta';
 export default {
   components: {
     Usp,
-    // - Old components
-    // RolesAndPrivileges: () => import('~/components/features/roles-and-privileges'),
-    // MedicalRecords: () => import('~/components/features/medical-records'),
-    // Reports: () => import('~/components/features/reports'),
-    // Billing: () => import('~/components/features/billing'),
-    // RegistrationAndQueuing: () => import('~/components/features/registration-and-queuing'),
-    // LaboratoryAndImaging: () => import('~/components/features/laboratory-and-imaging'),
-    // Inventory: () => import('~/components/features/inventory'),
-    // Syncbase: () => import('~/components/features/syncbase'),
-    Modules: () => import('~/components/features/modules'),
-    // McCtaBottom: () => import('~/components/commons/mc-cta-bottom'),
+    RolesAndPrivileges,
+    MedicalRecords,
+    VirtualPractice,
+    Reports,
+    Billing,
+    RegistrationAndQueuing,
+    LaboratoryAndImaging,
+    Inventory,
+    Syncbase,
+    Modules,
   },
   data () {
     return {

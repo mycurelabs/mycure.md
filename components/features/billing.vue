@@ -1,111 +1,92 @@
 <template lang="pug">
   div
     client-only
-      div(v-if="!isMobile").billing-container.py-10
-        v-container
-          v-row(justify="center").text-center
-            strong.font-21.font-mc-blue BILLING AND PAYMENTS
-          v-row(justify="center").text-center.add-spacing
-            strong.font-40 Simplified billing, beautiful reports.
-          v-row(justify="center").add-spacing
-            span.font-21.text-center Produce neatly-organized reports in a minute or less.
-          v-row(justify="center").add-spacing
-            ul
-              li
-                v-row(v-for="(item, index) in items" :key="index" row align="start").pb-3
-                  img(src="~/assets/images/mycure-web-bullet-check.png" alt="Check icon")
-                  span.font-18.pl-3 {{item}}
-          v-row(justify="center").add-spacing
-            img(src="~/assets/images/features/mycure-cms-web-features-arrow-down.png" alt="Arrow down icon")
-          v-row(justify="center").add-spacing
-            carousel(
-              :key="isMobile"
-              :per-page="1"
-              :autoplay="true"
-              :loop="true"
-              paginationActiveColor="white"
-              paginationColor="grey"
-              navigationNextLabel=" "
-              navigationPrevLabel=" "
-            ).text-center
-              slide(v-for="(feature,index) in features" :key="index" :data-index="index+1").pa-1
-                img(:src="require(`~/assets/images/features/mycure-web-features-mockup-03-${feature}.png`)" alt="Clinic Billing and Payments" width="70%")
-      div(v-else).billing-container.pt-5
-        v-container
-          v-row(justify="center")
-            strong.font-16.font-mc-blue BILLING AND PAYMENTS
-          br
-          br
-          v-row(justify="center")
-            p.font-weight-bold.font-30.text-center Simplified billing,
-              br
-              | beautiful reports.
-          br
-          br
-          v-row(justify="center").mx-2
-            p.font-18.text-center Produce neatly-organized reports in a minute or less.
-          br
-          br
-          v-row(justify="center")
-            ul
-              li
-                v-row(v-for="(item, index) in items" :key="index" align="start").pb-3
-                  img(src="~/assets/images/mycure-web-bullet-check.png" alt="Check icon" height="29px")
-                  span.font-14.pl-3 {{ item }}
-          v-row(justify="center").add-spacing
-            img(src="~/assets/images/features/mycure-cms-web-features-arrow-down.png")
-          br
-          br
-          v-row(justify="center")
-            carousel(
-              :per-page="1"
-              autoplay
-              loop
-              adjustableHeight
-              paginationActiveColor="#3498db"
-              paginationColor="#808080"
+      generic-media-panel(
+        content-align-right
+        align-left-column="start"
+        :header="header"
+        :descriptions="descriptions"
+        :web-image="mediaImage"
+        :custom-image-path="customPath"
+        hide-image-mobile
+      )
+        //- Check list
+        template(slot="additional-content")
+          template(v-for="item in checkListItems")
+            v-row(align="center" dense)
+              v-col(cols="1").pr-2.pt-2
+                img(width="20" src="~/assets/images/mycure-check.png" alt="Check icon")
+              v-col(shrink)
+                span.font-18 {{ item }}
+      //- Bottom images
+      v-container(v-if="!$isMobile")
+        v-row
+          v-col(cols="12" md="5")
+            img(
+              v-lazy="leftBottomImage"
+              alt="Print prescription"
+              width="100%"
+            )
+          v-col(cols="12" md="7")
+            img(
+              v-lazy="rightBottomImage"
+              alt="Charting"
+              width="100%"
+            )
+      v-container(v-else)
+        v-row(justify="center")
+          carousel(
+            :per-page="1"
+            autoplay
+            loop
+            paginationActiveColor="#3498db"
+            paginationColor="#808080"
+          )
+            slide(
+              v-for="(image,index) in panelImages"
+              :key="index"
+              :data-index="index+1"
             ).pa-1
-              slide(v-for="(feature,index) in features" :key="index" :data-index="index+1")
-                v-row(justify="center")
-                  img(v-lazy="require(`~/assets/images/features/mycure-web-features-mockup-03-${feature}.png`)" alt="Clinic Billing and Payments" height="175px")
+              v-row(justify="center")
+                img(v-lazy="require(`~/assets/images/features/${image}`)" alt="Medical records" width="90%")
 </template>
 
 <script>
+// components
+import GenericMediaPanel from '~/components/commons/generic-media-panel';
 export default {
-  props: {
-    isMobile: {
-      type: Boolean,
-      default: true,
-    },
+  components: {
+    GenericMediaPanel,
   },
   data () {
-    this.items = [
+    this.header = 'Simplified billing, beautiful reports.';
+    this.descriptions = [
+      'Produce neatly-organized reports in a minute or less.',
+    ];
+    this.panelImages = [
+      'MYCURE-virtual-clinic-healthcare-practice-online-features-E-01-billing-payment.png',
+      'MYCURE-virtual-clinic-healthcare-practice-online-features-E-02-charge-slip.png',
+      'MYCURE-virtual-clinic-healthcare-practice-online-features-E-03-daily-census.png',
+    ];
+    this.checkListItems = [
       'Payment Management & History',
       'Invoice & Receipt Printing',
       'HMO Statements, Collections, & Reports',
       'Interface with Materials Management',
     ];
-    this.features = ['A', 'B', 'C'];
+    this.customPath = 'features/';
     return {};
+  },
+  computed: {
+    mediaImage () {
+      return this.panelImages[0];
+    },
+    leftBottomImage () {
+      return require(`~/assets/images/features/${this.panelImages[1]}`);
+    },
+    rightBottomImage () {
+      return require(`~/assets/images/features/${this.panelImages[2]}`);
+    },
   },
 };
 </script>
-
-<style scoped>
-.billing-container {
-  background-image: url('../../assets/images/features/mycure-web-features-gradient-background.png');
-  background-position: center bottom;
-  background-repeat: no-repeat;
-  background-size: 100% auto;
-}
-.carousel-container {
-  height: 600px !important;
-}
-ul {
-  list-style-type: none;
-}
-
-.add-spacing {
-  padding-top: 32px;
-}
-</style>
