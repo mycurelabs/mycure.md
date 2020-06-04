@@ -16,7 +16,7 @@
           strong.text-capitalize.primary--text {{branches.btnTxt}}
           v-icon.primary--text {{branches.btnIcon}}
       v-col(cols="12" md="6" align="center" v-if="$isMobile")
-        img(v-lazy="require(`~/assets/images/enterprise/${branches.image}`)" :alt="branches.header" width="100%")
+        img(v-lazy="require(`~/assets/images/enterprise/${branches.imageMobile}`)" :alt="branches.header" width="100%")
 </template>
 
 <script>
