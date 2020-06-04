@@ -1,6 +1,7 @@
 <template lang="pug">
   v-container
-    v-row(justify="center").py-12
+    //- COLUMN VIEW
+    v-row(v-if="!centerMedia" justify="center").py-10
       //- Left column
       v-col(:align-self="alignLeftColumn" cols="12" :md="contentAlignLeft ? '5' : '7'")
         img(
@@ -40,6 +41,28 @@
         :alt="header || 'media-image'"
         :width="mobileImageWidth"
       )
+    //- CENTER VIEW
+    v-row(v-else justify="center").py-10
+      v-col(cols="12" md="10").text-center
+        h1.font-30.lh-title.pb-3.font-weight-light {{header}}
+        img(
+          v-if="!$isMobile"
+          v-lazy="webImagePath"
+          :alt="header || 'media-image'"
+          :width="webImageWidth"
+        )
+        br
+        template(v-if="descriptions.length")
+          p(v-for="(description, key) in descriptions" :key="key").font-18.mt-3 {{description}}
+          br
+          br
+        slot(name="additional-content")
+        img(
+          v-if="$isMobile && !hideImageMobile"
+          v-lazy="mobileImagePath"
+          :alt="header || 'media-image'"
+          :width="mobileImageWidth"
+        )
 </template>
 
 <script>
@@ -52,6 +75,10 @@ export default {
     alignRightColumn: {
       type: String,
       default: 'center',
+    },
+    centerMedia: {
+      type: Boolean,
+      default: false,
     },
     contentAlignLeft: {
       type: Boolean,
