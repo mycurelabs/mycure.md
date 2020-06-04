@@ -19,7 +19,7 @@
     //- //- 8th panel
     //- inventory(:isMobile="isMobile")
     //- //- 9th panel
-    //- syncbase(:isMobile="isMobile")
+    modules(:isMobile="isMobile")
     //- //- cta
     //- mc-cta-bottom(
     //-   :ctaContent="ctaContent"
@@ -48,6 +48,7 @@ export default {
     // LaboratoryAndImaging: () => import('~/components/features/laboratory-and-imaging'),
     // Inventory: () => import('~/components/features/inventory'),
     // Syncbase: () => import('~/components/features/syncbase'),
+    Modules: () => import('~/components/features/modules'),
     // McCtaBottom: () => import('~/components/commons/mc-cta-bottom'),
   },
   data () {
