@@ -23,11 +23,12 @@
     //- 11th panel
     //- TODO: Insert modules panel here, then remove this comment
     //- CTA
+    div.cta-container
+      features-cta
 </template>
 
 <script>
 import VueScrollTo from 'vue-scrollto';
-// - Import all new components here
 // - components
 import Usp from '~/components/features/usp';
 import RolesAndPrivileges from '~/components/features/roles-and-privileges';
@@ -39,6 +40,7 @@ import RegistrationAndQueuing from '~/components/features/registration-and-queui
 import LaboratoryAndImaging from '~/components/features/laboratory-and-imaging';
 import Inventory from '~/components/features/inventory';
 import Syncbase from '~/components/features/syncbase';
+import FeaturesCta from '~/components/features/cta';
 // - utils
 import { parseTextWithNewLine } from '~/utils/newline';
 import headMeta from '~/utils/head-meta';
@@ -55,6 +57,7 @@ export default {
     LaboratoryAndImaging,
     Inventory,
     Syncbase,
+    FeaturesCta,
   },
   data () {
     return {
@@ -106,5 +109,10 @@ export default {
 <style scoped>
 #top {
   margin-top: 12vh;
+}
+.cta-container {
+  position: relative;
+  margin-bottom: -4%;
+  z-index: 1;
 }
 </style>
