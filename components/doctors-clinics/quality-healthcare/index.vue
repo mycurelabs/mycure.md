@@ -12,7 +12,7 @@
         span.font-18.mt-3 {{ACCESS_QUALITY_HEALTHCARE.description}}
         br
         br
-        v-btn(text)
+        v-btn(@click="onGetStarted" text)
           strong.text-capitalize.primary--text {{ACCESS_QUALITY_HEALTHCARE.btnTxt}}
           v-icon.primary--text {{ACCESS_QUALITY_HEALTHCARE.btnIcon}}
       img(
@@ -31,6 +31,11 @@ export default {
     return {
 
     };
+  },
+  methods: {
+    onGetStarted () {
+      this.$emit('getStarted');
+    },
   },
 };
 </script>

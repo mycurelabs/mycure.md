@@ -12,7 +12,7 @@
         span.font-18.mt-3 {{SAFEKEEP_MEDICAL_DATA.description}}
         br
         br
-        v-btn(text)
+        v-btn(@click="onGetStarted" text)
           strong.text-capitalize.primary--text {{SAFEKEEP_MEDICAL_DATA.btnTxt}}
           v-icon.primary--text {{SAFEKEEP_MEDICAL_DATA.btnIcon}}
       img(
@@ -31,6 +31,11 @@ export default {
     return {
 
     };
+  },
+  methods: {
+    onGetStarted () {
+      this.$emit('getStarted');
+    },
   },
 };
 </script>
