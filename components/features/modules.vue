@@ -1,21 +1,21 @@
 <template lang="pug">
-  div(:class="isMobile ? 'pt-5' : ''")
+  div(:class="$isMobile ? 'pt-5' : ''")
     v-container(v-for="(panel,key) in moduleGroup" :key="key").mb-10
       v-row(justify="center")
         v-col(cols="10").text-center
-          span(:class="isMobile ? 'font-30' : 'font-40'") {{ panel.group }}
+          span(:class="$isMobile ? 'font-30' : 'font-40'") {{ panel.group }}
           br
-          span(:class="isMobile ? 'font-18' : 'font-21'").module-group-description {{ panel.description }}
+          span(:class="$isMobile ? 'font-18' : 'font-21'").module-group-description {{ panel.description }}
       br
-      v-row.fi
+      v-row
         v-col(
           v-for="(moduleItem, index) in panel.modules"
           :key="index"
           cols="12"
           md="4"
-          :class="!isMobile && moduleItem.offset ? 'offset-md-2' : 'offset-md-0'"
+          :class="!$isMobile && moduleItem.offset ? 'offset-md-2' : 'offset-md-0'"
         ).pa-10.module-item
-          ModuleItem(:moduleItem="moduleItem")
+          module-item(:moduleItem="moduleItem")
 </template>
 
 <script>
@@ -25,12 +25,6 @@ import ModuleItem from './module-item.vue';
 export default {
   components: {
     ModuleItem,
-  },
-  props: {
-    isMobile: {
-      type: Boolean,
-      default: true,
-    },
   },
   data () {
     this.moduleGroup = FEATURE_MODULE_GROUPS;
