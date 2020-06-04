@@ -10,9 +10,8 @@
     virtual-practice
     //- 5th panel
     reports
-
-    //- //- 5th panel
-    //- billing(:isMobile="isMobile")
+    //- 6th panel
+    billing
     //- //- 6th panel
     //- registration-and-queuing(:isMobile="isMobile")
     //- //- 7th panel
@@ -37,6 +36,7 @@ import RolesAndPrivileges from '~/components/features/roles-and-privileges';
 import MedicalRecords from '~/components/features/medical-records';
 import VirtualPractice from '~/components/features/virtual-practice';
 import Reports from '~/components/features/reports';
+import Billing from '~/components/features/billing';
 // - utils
 import { parseTextWithNewLine } from '~/utils/newline';
 import headMeta from '~/utils/head-meta';
@@ -48,6 +48,7 @@ export default {
     MedicalRecords,
     VirtualPractice,
     Reports,
+    Billing,
     // Reports: () => import('~/components/features/reports'),
     // Billing: () => import('~/components/features/billing'),
     // RegistrationAndQueuing: () => import('~/components/features/registration-and-queuing'),
