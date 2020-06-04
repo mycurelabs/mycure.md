@@ -2,7 +2,7 @@
   v-container
     v-row(justify="center").py-12
       //- Left column
-      v-col(align-self="center" cols="12" :md="contentAlignLeft ? '5' : '6'")
+      v-col(:align-self="alignLeftColumn" cols="12" :md="contentAlignLeft ? '5' : '7'")
         img(
           v-if="!$isMobile && contentAlignRight"
           v-lazy="webImagePath"
@@ -18,7 +18,7 @@
             br
           slot(name="additional-content")
       //- Right Column
-      v-col(align-self="center" cols="12" :md="contentAlignRight ? '5' : '6'" :offset-md="contentAlignLeft ? '1' : '0'")
+      v-col(:align-self="alignRightColumn" cols="12" :md="contentAlignRight ? '5' : '6'" :offset-md="contentAlignLeft ? '1' : '0'")
         img(
           v-if="!$isMobile && contentAlignLeft"
           v-lazy="webImagePath"
@@ -35,7 +35,7 @@
           slot(name="additional-content")
       //- Mobile Image
       img(
-        v-if="$isMobile"
+        v-if="$isMobile && !hideImageMobile"
         v-lazy="mobileImagePath"
         :alt="header || 'media-image'"
         :width="mobileImageWidth"
@@ -45,6 +45,14 @@
 <script>
 export default {
   props: {
+    alignLeftColumn: {
+      type: String,
+      default: 'center',
+    },
+    alignRightColumn: {
+      type: String,
+      default: 'center',
+    },
     contentAlignLeft: {
       type: Boolean,
       default: false,
@@ -80,6 +88,10 @@ export default {
     mobileImageWidth: {
       type: String,
       default: '100%',
+    },
+    hideImageMobile: {
+      type: Boolean,
+      default: false,
     },
   },
   computed: {

@@ -4,12 +4,9 @@
     usp
     //- 2nd panel
     roles-and-privileges
-
+    //- 3rd panel
+    medical-records
     //- Old components
-    //- //- 2nd panel
-    //- roles-and-privileges(:isMobile="isMobile")
-    //- //- 3rd panel
-    //- medical-records(:isMobile="isMobile")
     //- //- 4th panel
     //- reports(:isMobile="isMobile")
     //- //- 5th panel
@@ -35,6 +32,7 @@ import VueScrollTo from 'vue-scrollto';
 // - components
 import Usp from '~/components/features/usp';
 import RolesAndPrivileges from '~/components/features/roles-and-privileges';
+import MedicalRecords from '~/components/features/medical-records';
 // - utils
 import { parseTextWithNewLine } from '~/utils/newline';
 import headMeta from '~/utils/head-meta';
@@ -43,9 +41,7 @@ export default {
   components: {
     Usp,
     RolesAndPrivileges,
-    // - Old components
-    // RolesAndPrivileges: () => import('~/components/features/roles-and-privileges'),
-    // MedicalRecords: () => import('~/components/features/medical-records'),
+    MedicalRecords,
     // Reports: () => import('~/components/features/reports'),
     // Billing: () => import('~/components/features/billing'),
     // RegistrationAndQueuing: () => import('~/components/features/registration-and-queuing'),
