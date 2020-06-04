@@ -8,34 +8,40 @@
     medical-records
     //- 4th panel
     virtual-practice
-    //- Old components
-    //- //- 4th panel
-    //- reports(:isMobile="isMobile")
-    //- //- 5th panel
-    //- billing(:isMobile="isMobile")
-    //- //- 6th panel
-    //- registration-and-queuing(:isMobile="isMobile")
-    //- //- 7th panel
-    //- laboratory-and-imaging(:isMobile="isMobile")
-    //- //- 8th panel
-    //- inventory(:isMobile="isMobile")
-    //- //- 9th panel
-    //- syncbase(:isMobile="isMobile")
-    //- //- cta
-    //- mc-cta-bottom(
-    //-   :ctaContent="ctaContent"
-    //-   btnColor="accent"
-    //- )
+    //- 5th panel
+    reports
+    //- 6th panel
+    billing
+    //- 7th panel
+    registration-and-queuing
+    //- 8th panel
+    laboratory-and-imaging
+    //- 9th panel
+    inventory
+    //- 10th panel
+    syncbase
+    //- 11th panel
+    modules
+    //- CTA
+    div.cta-container
+      features-cta
 </template>
 
 <script>
 import VueScrollTo from 'vue-scrollto';
-// - Import all new components here
 // - components
 import Usp from '~/components/features/usp';
 import RolesAndPrivileges from '~/components/features/roles-and-privileges';
 import MedicalRecords from '~/components/features/medical-records';
 import VirtualPractice from '~/components/features/virtual-practice';
+import Reports from '~/components/features/reports';
+import Billing from '~/components/features/billing';
+import RegistrationAndQueuing from '~/components/features/registration-and-queuing';
+import LaboratoryAndImaging from '~/components/features/laboratory-and-imaging';
+import Inventory from '~/components/features/inventory';
+import Syncbase from '~/components/features/syncbase';
+import Modules from '~/components/features/modules';
+import FeaturesCta from '~/components/features/cta';
 // - utils
 import { parseTextWithNewLine } from '~/utils/newline';
 import headMeta from '~/utils/head-meta';
@@ -46,13 +52,14 @@ export default {
     RolesAndPrivileges,
     MedicalRecords,
     VirtualPractice,
-    // Reports: () => import('~/components/features/reports'),
-    // Billing: () => import('~/components/features/billing'),
-    // RegistrationAndQueuing: () => import('~/components/features/registration-and-queuing'),
-    // LaboratoryAndImaging: () => import('~/components/features/laboratory-and-imaging'),
-    // Inventory: () => import('~/components/features/inventory'),
-    // Syncbase: () => import('~/components/features/syncbase'),
-    // McCtaBottom: () => import('~/components/commons/mc-cta-bottom'),
+    Reports,
+    Billing,
+    RegistrationAndQueuing,
+    LaboratoryAndImaging,
+    Inventory,
+    Syncbase,
+    Modules,
+    FeaturesCta,
   },
   data () {
     return {
@@ -104,5 +111,10 @@ export default {
 <style scoped>
 #top {
   margin-top: 12vh;
+}
+.cta-container {
+  position: relative;
+  margin-bottom: -4%;
+  z-index: 1;
 }
 </style>

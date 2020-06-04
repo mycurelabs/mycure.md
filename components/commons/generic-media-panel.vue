@@ -16,7 +16,6 @@
           template(v-if="descriptions.length")
             p(v-for="(description, key) in descriptions" :key="key").font-18.mt-3 {{description}}
             br
-            br
           slot(name="additional-content")
       //- Right Column
       v-col(:align-self="alignRightColumn" cols="12" :md="contentAlignRight ? '5' : '6'" :offset-md="contentAlignLeft ? '1' : '0'")
@@ -31,7 +30,6 @@
           br
           template(v-if="descriptions.length")
             p(v-for="(description, key) in descriptions" :key="key").font-18.mt-3 {{description}}
-            br
             br
           slot(name="additional-content")
       //- Mobile Image
