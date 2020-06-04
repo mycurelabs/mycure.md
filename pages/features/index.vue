@@ -14,6 +14,8 @@
     billing
     //- 7th panel
     registration-and-queuing
+    //- 8th panel
+    laboratory-and-imaging
     //- //- 7th panel
     //- laboratory-and-imaging(:isMobile="isMobile")
     //- //- 8th panel
@@ -38,6 +40,7 @@ import VirtualPractice from '~/components/features/virtual-practice';
 import Reports from '~/components/features/reports';
 import Billing from '~/components/features/billing';
 import RegistrationAndQueuing from '~/components/features/registration-and-queuing';
+import LaboratoryAndImaging from '~/components/features/laboratory-and-imaging';
 // - utils
 import { parseTextWithNewLine } from '~/utils/newline';
 import headMeta from '~/utils/head-meta';
@@ -51,6 +54,7 @@ export default {
     Reports,
     Billing,
     RegistrationAndQueuing,
+    LaboratoryAndImaging,
     // Reports: () => import('~/components/features/reports'),
     // Billing: () => import('~/components/features/billing'),
     // RegistrationAndQueuing: () => import('~/components/features/registration-and-queuing'),
