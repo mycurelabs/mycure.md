@@ -42,6 +42,7 @@ export default {
   data () {
     this.solutionsMenuItems = [
       { name: 'Doctors Clinics', route: 'doctors-clinics' },
+      { name: 'Enterprise', route: 'enterprise' },
       { name: 'Specialized Clinics', route: 'specialized-clinics' },
       { name: 'Multispecialty Clinics', route: 'multispecialty-clinics' },
       // - TODO: Temporarily hide
