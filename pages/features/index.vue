@@ -21,8 +21,9 @@
     //- 10th panel
     syncbase
     //- 11th panel
-    //- TODO: Insert modules panel here, then remove this comment
+    modules
     //- CTA
+
 </template>
 
 <script>
@@ -39,6 +40,7 @@ import RegistrationAndQueuing from '~/components/features/registration-and-queui
 import LaboratoryAndImaging from '~/components/features/laboratory-and-imaging';
 import Inventory from '~/components/features/inventory';
 import Syncbase from '~/components/features/syncbase';
+import Modules from '~/components/features/modules';
 // - utils
 import { parseTextWithNewLine } from '~/utils/newline';
 import headMeta from '~/utils/head-meta';
@@ -55,6 +57,7 @@ export default {
     LaboratoryAndImaging,
     Inventory,
     Syncbase,
+    Modules,
   },
   data () {
     return {
