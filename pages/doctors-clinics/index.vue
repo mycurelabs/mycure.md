@@ -67,7 +67,7 @@ export default {
 }
 .cta-container {
     position: relative;
-    margin-bottom: -30px;
+    margin-bottom: -4%;
     z-index: 1;
 }
 </style>
