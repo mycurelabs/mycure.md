@@ -26,17 +26,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-
-.mobile-container {
-  background-image: url('../../assets/images/features/mycure-web-features-gradient-background.png');
-  background-position: center bottom;
-  background-repeat: no-repeat;
-  background-size: 100% auto;
-}
-
-.add-spacing {
-  padding-top: 32px;
-}
-</style>
