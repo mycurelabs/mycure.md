@@ -2,6 +2,8 @@
   div(v-if="!loading")#top.white
     //- 1st panel
     usp
+    //- 2nd panel
+    roles-and-privileges
 
     //- Old components
     //- //- 2nd panel
@@ -32,6 +34,7 @@ import VueScrollTo from 'vue-scrollto';
 // - Import all new components here
 // - components
 import Usp from '~/components/features/usp';
+import RolesAndPrivileges from '~/components/features/roles-and-privileges';
 // - utils
 import { parseTextWithNewLine } from '~/utils/newline';
 import headMeta from '~/utils/head-meta';
@@ -39,6 +42,7 @@ import headMeta from '~/utils/head-meta';
 export default {
   components: {
     Usp,
+    RolesAndPrivileges,
     // - Old components
     // RolesAndPrivileges: () => import('~/components/features/roles-and-privileges'),
     // MedicalRecords: () => import('~/components/features/medical-records'),
