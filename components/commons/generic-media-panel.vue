@@ -55,7 +55,6 @@
         template(v-if="descriptions.length")
           p(v-for="(description, key) in descriptions" :key="key").font-18.mt-3 {{description}}
           br
-          br
         slot(name="additional-content")
         img(
           v-if="$isMobile && !hideImageMobile"

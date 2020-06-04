@@ -6,6 +6,8 @@
     roles-and-privileges
     //- 3rd panel
     medical-records
+    //- 4th panel
+    virtual-practice
     //- Old components
     //- //- 4th panel
     //- reports(:isMobile="isMobile")
@@ -33,6 +35,7 @@ import VueScrollTo from 'vue-scrollto';
 import Usp from '~/components/features/usp';
 import RolesAndPrivileges from '~/components/features/roles-and-privileges';
 import MedicalRecords from '~/components/features/medical-records';
+import VirtualPractice from '~/components/features/virtual-practice';
 // - utils
 import { parseTextWithNewLine } from '~/utils/newline';
 import headMeta from '~/utils/head-meta';
@@ -42,6 +45,7 @@ export default {
     Usp,
     RolesAndPrivileges,
     MedicalRecords,
+    VirtualPractice,
     // Reports: () => import('~/components/features/reports'),
     // Billing: () => import('~/components/features/billing'),
     // RegistrationAndQueuing: () => import('~/components/features/registration-and-queuing'),
