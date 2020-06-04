@@ -1,11 +1,11 @@
 <template lang="pug">
   div
     div
-        img(v-lazy="require(`~/assets/images/module-icons/${ moduleItem.icon }`)" width="40%" height="40%" :alt="moduleItem.title")
+        img(v-lazy="require(`~/assets/images/module-icons/${moduleItem.icon}`)" width="40%" height="40%" :alt="moduleItem.title")
         br
-        span.font-21 &nbsp; {{ moduleItem.title }}
+        span.font-21 {{ moduleItem.title }}
         br
-        p.font-15.module-item-subTitle &nbsp; {{ moduleItem.subTitle }}
+        p.font-15.module-item-subTitle {{ moduleItem.subTitle }}
     br
     div.module-item-description {{ moduleItem.description }}
 </template>
