@@ -26,7 +26,7 @@
             @click="onGetStarted"
           ).text-none.font-weight-bold.font-18.mt-5 Get Started
     template(v-if="$isMobile")
-      div.text-field-container.white
+      div.text-field-container
         v-text-field(
           v-model="email"
           outlined
@@ -99,7 +99,6 @@ export default {
 <style scoped>
 .text-field-container {
   height: 58px;
-  border: 1px solid black;
   border-radius: 2px;
 }
 .web-row-content {
