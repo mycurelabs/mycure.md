@@ -11,11 +11,12 @@
         v-col(cols="12" md="5" xl="4" :class="{'pt-10': $isMobile}")
           h1(:class="titleClasses").font-poppins.font-40.lh-title {{ uspTitle }}
           p(:class="[centerText]").font-italic.font-18.mx-1 {{ uspSubtitle }}
-          div(v-if="!$isMobile").text-field-container.white
+          div(v-if="!$isMobile").text-field-container
             v-text-field(
+              background-color="white"
               v-model="email"
-              outlined
               placeholder="myname@email.com"
+              outlined
             )
           v-btn(
             v-if="!$isMobile"
