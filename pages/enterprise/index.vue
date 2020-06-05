@@ -12,7 +12,7 @@
     multiple-branches
     //- 6th panel
     div.cta-container
-      Cta
+      cta
 </template>
 
 <script>
