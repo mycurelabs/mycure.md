@@ -56,7 +56,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 #top {
   margin-top: 12vh;
 }
@@ -64,5 +64,8 @@ export default {
   position: relative;
   margin-bottom: -30px;
   z-index: 1;
+}
+.get-started-btn {
+  margin-left: -3%;
 }
 </style>
