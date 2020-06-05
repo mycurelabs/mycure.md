@@ -39,7 +39,8 @@
                   depressed
                   @click.stop="handleToolbarLinkClick(link.id)"
                 ).mx-1
-                  span.font-14.tab.text-none {{link.name}}
+                  u(v-if="key === 1").font-14.tab.text-underline {{link.name}}
+                  span(v-else).font-14.tab.text-none {{link.name}}
               v-btn(
                 text
                 :to="{ name: loginURL }"
