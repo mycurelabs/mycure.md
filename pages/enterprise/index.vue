@@ -1,15 +1,15 @@
 <template lang="pug">
   div(v-if="!loading")#top
     //- 1st panel
-    Usp
+    usp
     //- 2nd panel
-    YourPatients
+    your-patients
     //- 3rd panel
-    HandleOutpatient
+    handle-outpatient
     //- 4th panel
-    SmarterDecisions
+    smarter-decisions
     //- 5th panel
-    MultipleBranches
+    multiple-branches
     //- 6th panel
     div.cta-container
       Cta
