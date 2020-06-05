@@ -6,7 +6,7 @@
         align-left-column="start"
         :header="header"
         :descriptions="descriptions"
-        :web-image="mediaImage"
+        :web-image="panelImages.mediaImage"
         :custom-image-path="customPath"
         hide-image-mobile
       )
@@ -19,13 +19,13 @@
         v-row
           v-col(cols="12" md="5")
             img(
-              v-lazy="leftBottomImage"
+              v-lazy="panelImages.leftBottomImage"
               alt="Print prescription"
               width="100%"
             )
           v-col(cols="12" md="7")
             img(
-              v-lazy="rightBottomImage"
+              v-lazy="panelImages.rightBottomImage"
               alt="Charting"
               width="100%"
             )
@@ -59,24 +59,13 @@ export default {
     this.descriptions = [
       'Record full medical history, vitals, and physical exam records according to SOAP charting. Eliminate the haste of scribbling with Rx printing, ICD-10 database, multiple image uploads, and more.',
     ];
-    this.panelImages = [
-      'MYCURE-virtual-clinic-healthcare-practice-online-features-B-01-emr.png',
-      'MYCURE-virtual-clinic-healthcare-practice-online-features-B-02-print-prescription.png',
-      'MYCURE-virtual-clinic-healthcare-practice-online-features-B-03-charting.png',
-    ];
+    this.panelImages = {
+      mediaImage: 'MYCURE-virtual-clinic-healthcare-practice-online-features-B-01-emr.png',
+      leftBottomImage: require('~/assets/images/features/MYCURE-virtual-clinic-healthcare-practice-online-features-B-02-print-prescription.png'),
+      rightBottomImage: require('~/assets/images/features/MYCURE-virtual-clinic-healthcare-practice-online-features-B-03-charting.png'),
+    };
     this.customPath = 'features/';
     return {};
-  },
-  computed: {
-    mediaImage () {
-      return this.panelImages[0];
-    },
-    leftBottomImage () {
-      return require(`~/assets/images/features/${this.panelImages[1]}`);
-    },
-    rightBottomImage () {
-      return require(`~/assets/images/features/${this.panelImages[2]}`);
-    },
   },
   methods: {
     onGetStarted () {
