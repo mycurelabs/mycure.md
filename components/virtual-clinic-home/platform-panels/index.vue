@@ -18,7 +18,7 @@
         span.font-16.mt-3 {{HOME_START_YOUR_PHYSICAL.description}}
         br
         br
-        v-btn(text @click="onGetStarted")
+        v-btn(text @click="onGetStarted").ml-n4
           strong.text-capitalize.primary--text {{HOME_START_YOUR_PHYSICAL.btnTxt}}
           v-icon.primary--text {{HOME_START_YOUR_PHYSICAL.btnIcon}}
       img(
@@ -34,7 +34,7 @@
         span.font-16 {{YOUR_ONLINE_CLINIC.description}}
         br
         br
-        v-btn(text @click="onGetStarted")
+        v-btn(text @click="onGetStarted").ml-n4
           strong.text-capitalize.primary--text {{YOUR_ONLINE_CLINIC.btnTxt}}
           v-icon.primary--text {{YOUR_ONLINE_CLINIC.btnIcon}}
       v-col(align="center" cols="12" md="6")
@@ -51,7 +51,7 @@
         span.font-16 {{GET_MORE_PATIENTS.description}}
         br
         br
-        v-btn(@click="onGetStarted" text)
+        v-btn(@click="onGetStarted" text).ml-n4
           strong.text-capitalize.primary--text {{GET_MORE_PATIENTS.btnTxt}}
           v-icon.primary--text {{GET_MORE_PATIENTS.btnIcon}}
       img(
@@ -67,7 +67,7 @@
         span.font-16 {{MANAGE_EVERYTHING_EASILY.description}}
         br
         br
-        v-btn(@click="onGetStarted" text)
+        v-btn(@click="onGetStarted" text).ml-n4
           strong.text-capitalize.primary--text {{MANAGE_EVERYTHING_EASILY.btnTxt}}
           v-icon.primary--text {{MANAGE_EVERYTHING_EASILY.btnIcon}}
       v-col(align="center" cols="12" md="6")
