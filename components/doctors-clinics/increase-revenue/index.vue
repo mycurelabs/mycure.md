@@ -26,7 +26,7 @@
         br
         br
         br
-        v-btn(@click="onGetStarted" text)
+        v-btn(@click="onGetStarted" text).ml-n4
           strong.text-capitalize.primary--text {{data.btnTxt}}
           v-icon.primary--text {{data.btnIcon}}
 </template>

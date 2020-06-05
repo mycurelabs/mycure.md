@@ -12,7 +12,7 @@
         span.font-18.mt-3 {{ACCESS_QUALITY_HEALTHCARE.description}}
         br
         br
-        v-btn(@click="onGetStarted" text)
+        v-btn(@click="onGetStarted" text).ml-n4
           strong.text-capitalize.primary--text {{ACCESS_QUALITY_HEALTHCARE.btnTxt}}
           v-icon.primary--text {{ACCESS_QUALITY_HEALTHCARE.btnIcon}}
       img(
