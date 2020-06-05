@@ -7,7 +7,7 @@
         span.font-18.mt-3 {{TAKE_PRACTICE_ONLINE.description}}
         br
         br
-        v-btn(@click="onGetStarted" text)
+        v-btn(@click="onGetStarted" text ).get-started-btn
           strong.text-capitalize.primary--text {{TAKE_PRACTICE_ONLINE.btnTxt}}
           v-icon.primary--text {{TAKE_PRACTICE_ONLINE.btnIcon}}
       v-col(align-self="center" cols="12" md="6" v-if="!$isMobile")
