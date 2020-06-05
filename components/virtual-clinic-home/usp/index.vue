@@ -11,7 +11,7 @@
         v-col(cols="12" md="5" xl="4" :class="{'pt-10': $isMobile}")
           h1(:class="titleClasses").font-poppins.font-40.lh-title {{ uspTitle }}
           p(:class="[centerText]").font-italic.font-18.mx-1 {{ uspSubtitle }}
-          div(v-if="!$isMobile").text-field-container.white
+          div(v-if="!$isMobile").text-field-container
             v-text-field(
               v-model="email"
               outlined
@@ -25,7 +25,7 @@
             @click="onGetStarted"
           ).text-none.font-weight-bold.font-18.mt-5 Get Started
     template(v-if="$isMobile")
-      div.text-field-container.white
+      div.text-field-container
         v-text-field(
           v-model="email"
           outlined
@@ -36,7 +36,7 @@
         color="accent"
         large
         @click="onGetStarted"
-      ).text-none.font-weight-bold.font-18.mt-5 Get Started
+      ).text-none.font-weight-bold.font-18 Get Started
 </template>
 
 <script>
@@ -98,7 +98,6 @@ export default {
 <style scoped>
 .text-field-container {
   height: 58px;
-  border: 1px solid black;
   border-radius: 2px;
 }
 .web-row-content {
@@ -106,5 +105,10 @@ export default {
 }
 .mobile-row-content {
   min-height: 100vh;
+}
+@media screen and (max-width: 375px) {
+  .text-field-container {
+    margin-top: -75px;
+  }
 }
 </style>
