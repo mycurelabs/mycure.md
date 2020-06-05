@@ -26,7 +26,7 @@
         br
         br
         br
-        v-btn(text)
+        v-btn(@click="onGetStarted" text)
           strong.text-capitalize.primary--text {{data.btnTxt}}
           v-icon.primary--text {{data.btnIcon}}
 </template>
@@ -38,6 +38,11 @@ export default {
     return {
       secondPanelContents: SECOND_PANEL_CONTENTS,
     };
+  },
+  methods: {
+    onGetStarted () {
+      this.$emit('getStarted');
+    },
   },
 };
 </script>
