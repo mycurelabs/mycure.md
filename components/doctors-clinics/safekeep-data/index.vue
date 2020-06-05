@@ -12,7 +12,7 @@
         span.font-18.mt-3 {{SAFEKEEP_MEDICAL_DATA.description}}
         br
         br
-        v-btn(@click="onGetStarted" text).get-started-btn
+        v-btn(@click="onGetStarted" text).ml-n4.get-started-btn
           strong.text-capitalize.primary--text {{SAFEKEEP_MEDICAL_DATA.btnTxt}}
           v-icon.primary--text {{SAFEKEEP_MEDICAL_DATA.btnIcon}}
       img(
