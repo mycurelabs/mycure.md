@@ -7,7 +7,7 @@
       :customPath="customPath"
       :class="{'mt-10': $isMobile}"
     )
-      v-row(slot="content" :align="$isMobile ? 'start' : 'center'" :class="rowContentClass")
+      v-row(slot="content" :align="$isMobile ? 'start' : 'center'" :class="rowContentClass").usp-content
         v-col(cols="12" md="5" xl="4" :class="{'pt-10': $isMobile}")
           h1(:class="titleClasses").font-poppins.font-40.lh-title {{ uspTitle }}
           p(:class="[centerText]").font-italic.font-18.mx-1 {{ uspSubtitle }}
@@ -24,7 +24,7 @@
             color="accent"
             large
             @click="onGetStarted"
-          ).text-none.font-weight-bold.font-18.mt-5 Get Started
+          ).text-none.font-weight-bold.font-18.mt-3 Get Started
     template(v-if="$isMobile")
       div.text-field-container
         v-text-field(
@@ -108,14 +108,24 @@ export default {
 .mobile-row-content {
   min-height: 100vh;
 }
-@media screen and (max-width: 375px) {
+@media screen and (device-width: 375px) {
   .text-field-container {
     margin-top: -45%;
   }
 }
-@media screen and (max-width: 360px) {
+@media screen and (device-width: 360px) {
   .text-field-container {
     margin-top: -50px;
+  }
+}
+@media screen and (device-width: 1024px) {
+  .usp-content {
+    margin-top: -67%;
+  }
+}
+@media screen and (device-width: 1366px) {
+  .usp-content {
+    margin-top: -10%;
   }
 }
 </style>
