@@ -13,7 +13,7 @@
       )
         img(v-lazy="require(`~/assets/images/doctors-clinics/${data.images}`)" :alt="data.header")
         h1.font-22.lh-title.pb-3.font-weight-medium {{data.header}}
-        span.font-18.mt-3 {{data.description}}
+        span.font-18.mt-3.font-gray {{data.description}}
     v-row(justify="center").py-12
       v-col(cols="12" md="6")
         h1.font-18.font-weight-light.text-center.font-italic {{SPECIALIZED_PLANS.description}}
