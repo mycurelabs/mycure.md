@@ -19,14 +19,15 @@
         md="5"
         v-for="(data, key) in secondPanelContents"
         :key="key"
-      ).pt-12
+      ).pt-12.content-container
         h1.font-30.lh-title.pb-3.font-weight-light {{data.header}}
         br
         span.font-18.mt-3 {{data.description}}
         br
         br
         br
-        v-btn(@click="onGetStarted" text).ml-n4
+        v-btn(@click="onGetStarted" text).ml-n4.get-started-btn
+
           strong.text-capitalize.primary--text {{data.btnTxt}}
           v-icon.primary--text {{data.btnIcon}}
 </template>
@@ -51,5 +52,13 @@ export default {
 a {
   text-decoration-color: #2e9fdf;
   text-decoration: none;
+}
+.content-container {
+  position: relative;
+}
+.get-started-btn {
+  margin-left: -3%;
+  position: absolute;
+  bottom: 0;
 }
 </style>
