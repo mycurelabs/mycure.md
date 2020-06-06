@@ -28,6 +28,7 @@
     template(v-if="$isMobile")
       div.text-field-container
         v-text-field(
+          background-color="white"
           v-model="email"
           outlined
           placeholder="myname@email.com"
@@ -37,7 +38,7 @@
         color="accent"
         large
         @click="onGetStarted"
-      ).text-none.font-weight-bold.font-18 Get Started
+      ).text-none.font-weight-bold.font-18.mt-n1 Get Started
 </template>
 
 <script>
@@ -109,17 +110,25 @@ export default {
 }
 @media screen and (max-width: 375px) {
   .text-field-container {
+<<<<<<< HEAD
     margin-top: -30%;
+=======
+    margin-top: -45%;
+>>>>>>> ded2a518e366438dc02cb93dcdfa64ec6fa46fdb
   }
 }
 @media screen and (max-width: 360px) {
   .text-field-container {
+<<<<<<< HEAD
     margin-top: 0%;
   }
 }
 @media screen and (max-width: 1024px) {
   .usp-content {
     margin-top: -100%;
+=======
+    margin-top: -50px;
+>>>>>>> ded2a518e366438dc02cb93dcdfa64ec6fa46fdb
   }
 }
 </style>

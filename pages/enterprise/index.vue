@@ -1,18 +1,18 @@
 <template lang="pug">
   div(v-if="!loading")#top
     //- 1st panel
-    Usp
+    usp
     //- 2nd panel
-    YourPatients
+    your-patients
     //- 3rd panel
-    HandleOutpatient
+    handle-outpatient
     //- 4th panel
-    SmarterDecisions
+    smarter-decisions
     //- 5th panel
-    MultipleBranches
+    multiple-branches
     //- 6th panel
     div.cta-container
-      Cta
+      cta
 </template>
 
 <script>
@@ -56,7 +56,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 #top {
   margin-top: 12vh;
 }
@@ -64,5 +64,8 @@ export default {
   position: relative;
   margin-bottom: -30px;
   z-index: 1;
+}
+.get-started-btn {
+  margin-left: -3%;
 }
 </style>
