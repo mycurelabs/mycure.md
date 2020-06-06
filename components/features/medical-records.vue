@@ -39,7 +39,7 @@
             paginationColor="#808080"
           )
             slide(
-              v-for="(image,index) in panelImages"
+              v-for="(image,index) in mobilePanelImages"
               :key="index"
               :data-index="index+1"
             ).pa-1
@@ -63,6 +63,11 @@ export default {
       mediaImage: 'MYCURE-virtual-clinic-healthcare-practice-online-features-B-01-emr.png',
       leftBottomImage: require('~/assets/images/features/MYCURE-virtual-clinic-healthcare-practice-online-features-B-02-print-prescription.png'),
       rightBottomImage: require('~/assets/images/features/MYCURE-virtual-clinic-healthcare-practice-online-features-B-03-charting.png'),
+    };
+    this.mobilePanelImages = {
+      mediaImage: 'MYCURE-virtual-clinic-healthcare-practice-online-features-B-01-emr.png',
+      leftBottomImage: 'MYCURE-virtual-clinic-healthcare-practice-online-features-B-02-print-prescription-mobile.png',
+      rightBottomImage: 'MYCURE-virtual-clinic-healthcare-practice-online-features-B-03-charting-mobile.png',
     };
     this.customPath = 'features/';
     return {};
