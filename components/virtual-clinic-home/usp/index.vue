@@ -108,17 +108,17 @@ export default {
 .mobile-row-content {
   min-height: 100vh;
 }
-@media screen and (max-width: 375px) {
+@media screen and (device-width: 375px) {
   .text-field-container {
     margin-top: -45%;
   }
 }
-@media screen and (max-width: 360px) {
+@media screen and (device-width: 360px) {
   .text-field-container {
     margin-top: -50px;
   }
 }
-@media screen and (max-width: 1024px) {
+@media screen and (device-width: 1024px) {
   .usp-content {
     margin-top: -32%;
   }
