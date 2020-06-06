@@ -138,6 +138,7 @@ module.exports = {
       '/doctors/jeanrivera',
       '/doctors/william',
       '/doctors/paulette',
+      '/doctors/telehealth',
     ],
   },
 };
