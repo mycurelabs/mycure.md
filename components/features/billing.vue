@@ -17,7 +17,7 @@
               v-col(cols="1").pr-2.pt-2
                 img(width="20" src="~/assets/images/mycure-check.png" alt="Check icon")
               v-col(shrink)
-                span.font-18 {{ item }}
+                span.font-18.font-gray {{ item }}
       //- Bottom images
       v-container(v-if="!$isMobile")
         v-row

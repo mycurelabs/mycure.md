@@ -95,6 +95,10 @@ export default {
 .font-12 {
   font-size: 12px !important
 }
+/* Font Color */
+.font-gray {
+  color: rgba(0,0,0,0.5);
+}
 
 /* --OTHER CSS-- */
 .lh-title {

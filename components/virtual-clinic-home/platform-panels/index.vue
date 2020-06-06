@@ -4,7 +4,7 @@
       v-col(cols="12" md="6")
         h1.font-36.font-weight-light.text-center {{BRING_YOUR_PRACTICE_ONLINE.header}}
         br
-        p.text-center.font-18 {{BRING_YOUR_PRACTICE_ONLINE.description}}
+        p.text-center.font-18.font-gray {{BRING_YOUR_PRACTICE_ONLINE.description}}
     v-row(justify="center" align="center").py-12
       v-col(v-if="!$isMobile" align="center" cols="12" md="6").first-column
         img(
@@ -15,7 +15,7 @@
       v-col(align-self="center" cols="12" md="6" lg="4").second-column
         h1.font-30.lh-title.pb-3.font-weight-light {{HOME_START_YOUR_PHYSICAL.header}}
         br
-        span.font-16.mt-3 {{HOME_START_YOUR_PHYSICAL.description}}
+        span.font-16.mt-3.font-gray {{HOME_START_YOUR_PHYSICAL.description}}
         br
         br
         v-btn(text @click="onGetStarted").ml-n4
@@ -31,7 +31,7 @@
       v-col(cols="12" md="6" lg="4").first-column.img-online-clinic
         h1.font-30.font-weight-light {{YOUR_ONLINE_CLINIC.header}}
         br
-        span.font-16 {{YOUR_ONLINE_CLINIC.description}}
+        span.font-16.font-gray {{YOUR_ONLINE_CLINIC.description}}
         br
         br
         v-btn(@click="onGetStarted" text).ml-n4
@@ -49,7 +49,7 @@
       v-col(align="center" cols="12" md="6" lg="4").text-left.second-column
         h1.font-30.font-weight-light {{GET_MORE_PATIENTS.header}}
         br
-        span.font-16 {{GET_MORE_PATIENTS.description}}
+        span.font-16.font-gray {{GET_MORE_PATIENTS.description}}
         br
         br
         v-btn(@click="onGetStarted" text).ml-n4
@@ -65,7 +65,7 @@
       v-col(cols="12" md="6" lg="4").first-column
         h1.font-30.font-weight-light {{MANAGE_EVERYTHING_EASILY.header}}
         br
-        span.font-16 {{MANAGE_EVERYTHING_EASILY.description}}
+        span.font-16.font-gray {{MANAGE_EVERYTHING_EASILY.description}}
         br
         br
         v-btn(@click="onGetStarted" text).ml-n4
