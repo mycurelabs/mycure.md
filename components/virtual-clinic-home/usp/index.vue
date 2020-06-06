@@ -123,4 +123,9 @@ export default {
     margin-top: -67%;
   }
 }
+@media screen and (device-width: 1366px) {
+  .usp-content {
+    margin-top: -10%;
+  }
+}
 </style>

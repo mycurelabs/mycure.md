@@ -6,12 +6,12 @@
       :customPath="customPath"
       :webContainerStyleConfigs="webContainerStyleConfigs"
     ).cta-content
-      v-row(slot="content" align="center")
+      v-row(slot="content" align="center" v-if="!$isMobile")
         v-col(
           cols="12"
           md="5"
           offset-md="6"
-          :class="[{'web-content-margin': !isMobile}]"
+          :class="[{'web-content-margin': !$isMobile}]"
         ).cta-title
           h1.font-40.lh-title {{ uspTitle }}
           p.font-italic.font-18 {{ uspSubtitle }}
@@ -19,9 +19,25 @@
             color="accent"
             large
             @click="onGetStarted"
-          ).text-none.font-weight-bold.font-18.mt-5 Get Started
+          ).text-none.font-weight-bold.font-18.mt-5.cta-btn Get Started
+        img(
+          v-if="isMobile"
+          v-lazy="panelImageSrc"
+          alt="Home CTA"
+          width="100%"
+        ).pt-10
+      v-row(slot="content" align="center" v-if="$isMobile")
+        v-col(
+          cols="12"
+        )
+          h1.font-40.lh-title.px-5.cta-title {{ uspTitle }}
+          p.font-italic.font-18.px-5.cta-subtitle {{ uspSubtitle }}
+          v-btn(
+            color="accent"
+            large
+            @click="onGetStarted"
+          ).text-none.font-weight-bold.font-18.mt-5.cta-btn Get Started
           img(
-            v-if="isMobile"
             v-lazy="panelImageSrc"
             alt="Home CTA"
             width="100%"
@@ -82,6 +98,43 @@ export default {
 .web-content-margin {
   margin-top: 80px;
 }
+@media screen and (device-width: 360px) {
+  .cta-content {
+    width: 110%;
+    margin-left: -5%;
+    margin-bottom: -10%;
+  }
+  .cta-btn {
+    margin-left: 16px;
+  }
+}
+@media screen and (device-width: 375px) {
+  .cta-content {
+    width: 110%;
+    margin-left: -5%;
+    margin-bottom: -10%;
+  }
+  .cta-btn {
+    margin-left: 16px;
+  }
+}
+@media screen and (device-width: 768px) {
+  .cta-content {
+    width: 110%;
+    margin-top: 10%;
+    margin-left: -5%;
+    margin-bottom: -10%;
+  }
+  .cta-title {
+    margin-left: 3%;
+  }
+  .cta-subtitle {
+    margin-left: 3%;
+  }
+  .cta-btn {
+    margin-left: 50px;
+  }
+}
 @media screen and (device-width: 1024px) {
   .cta-content {
     position: absolute;
@@ -92,6 +145,11 @@ export default {
 @media screen and (device-width: 1024px) {
   .cta-title {
     margin-bottom: -245%;
+  }
+}
+@media screen and (device-width: 1366px) {
+  .cta-title {
+    margin-bottom: -60%;
   }
 }
 </style>
