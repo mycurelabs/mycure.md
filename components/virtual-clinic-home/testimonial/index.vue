@@ -1,5 +1,5 @@
 <template lang="pug">
-  div.white
+  div.white.testimonial-contents
     client-only
       v-container(v-if="!isMobile" @mouseover="playCarousel = true")
         v-row(justify="center")
@@ -97,5 +97,8 @@ export default {
 <style scoped>
 .gradient-grey {
   background-color: #f0f0f0;
+}
+.testimonial-contents {
+  z-index: 2;
 }
 </style>

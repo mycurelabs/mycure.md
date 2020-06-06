@@ -8,7 +8,7 @@
       :class="{'mt-10': $isMobile}"
     )
       v-row(slot="content" :align="$isMobile ? 'start' : 'center'" :class="rowContentClass")
-        v-col(cols="12" md="5" xl="4" :class="{'pt-10': $isMobile}")
+        v-col(cols="12" md="5" xl="4" :class="{'pt-10': $isMobile}").usp-content
           h1(:class="titleClasses").font-poppins.font-40.lh-title {{ uspTitle }}
           p(:class="[centerText]").font-italic.font-18.mx-1 {{ uspSubtitle }}
           div(v-if="!$isMobile").text-field-container.white
@@ -23,7 +23,7 @@
             color="accent"
             large
             @click="onGetStarted"
-          ).text-none.font-weight-bold.font-18.mt-5 Get Started
+          ).text-none.font-weight-bold.font-18.mt-3 Get Started
     template(v-if="$isMobile")
       div.text-field-container.white
         v-text-field(
@@ -36,7 +36,7 @@
         color="accent"
         large
         @click="onGetStarted"
-      ).text-none.font-weight-bold.font-18.mt-5 Get Started
+      ).text-none.font-weight-bold.font-18 Get Started
 </template>
 
 <script>
@@ -106,5 +106,20 @@ export default {
 }
 .mobile-row-content {
   min-height: 100vh;
+}
+@media screen and (max-width: 375px) {
+  .text-field-container {
+    margin-top: -30%;
+  }
+}
+@media screen and (max-width: 360px) {
+  .text-field-container {
+    margin-top: 0%;
+  }
+}
+@media screen and (max-width: 1024px) {
+  .usp-content {
+    margin-top: -100%;
+  }
 }
 </style>

@@ -12,7 +12,7 @@
           md="5"
           offset-md="6"
           :class="[{'web-content-margin': !isMobile}]"
-        )
+        ).cta-content
           h1.font-40.lh-title {{ uspTitle }}
           p.font-italic.font-18 {{ uspSubtitle }}
           v-btn(
@@ -84,5 +84,10 @@ export default {
 }
 .row-content {
   min-height: 100vh;
+}
+@media screen and (max-width: 1024px) {
+  .cta-content {
+    margin-bottom: -100%;
+  }
 }
 </style>
