@@ -7,7 +7,7 @@
         v-row(v-if="introduction" justify="center").text-center.pb50
           span.font-36.introText.pre-white-space {{introduction}}
         v-row(v-if="description" justify="center").text-center.pb60
-          span.font-18.pre-white-space {{ description }}
+          span.font-18.pre-white-space.font-gray {{ description }}
         div(v-if="!horizontal")
           v-row(v-for="(highlight,index) in storyflow" :key="index" justify="center").pb60
             v-col(cols="4" align-self="center").pr-5
@@ -16,7 +16,7 @@
               span(v-if="hasTitle"  :style="highlightTitleFontStyle").lh-title {{highlight.title}}
               br
               br
-              span.font-18 {{highlight.text}}
+              span.font-18.font-gray {{highlight.text}}
           br
           v-row(v-if="featuresButton" justify="center").pt-5
             v-btn(
@@ -47,7 +47,7 @@
                 :class="{'pre-white-space': parseTitles}"
               ) {{ parseTitle(highlight) }}
               br
-              p.font-18.pt-3.mx-2 {{highlight.text}}
+              p.font-18.pt-3.mx-2.font-gray {{highlight.text}}
           v-row(v-if="featuresButton" justify="center" align="center").pt-10
             v-col(cols="4").text-center
               v-btn(
@@ -65,7 +65,7 @@
         v-row(justify="center").text-center.pb-10
           strong.font-36.introText.lh-title {{introduction}}
         v-row(v-if="description" justify="center").text-center.pb-10
-          span.font-18 {{ description }}
+          span.font-18.font-gray {{ description }}
         v-col(v-for="(highlight,index) in storyflow" :key="index" justify="center")
           v-row(justify="center" align="center").pb-2
             img(v-lazy="require(`@/assets/images/${customPath}${highlight.image}`)" :alt="highlight.title").storyflowAsset
@@ -76,7 +76,7 @@
           br
           v-row(align="center").px-2
             v-col(cols="12").text-center
-              span.font-18 {{highlight.text}}
+              span.font-18.font-gray {{highlight.text}}
           br
         v-row(v-if="featuresButton" justify="center")
           v-btn(

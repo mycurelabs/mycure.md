@@ -10,7 +10,7 @@
             h1.font-36.lh-title.pb-3.font-weight-light {{ panelTitle }}
             br
             br
-            span.font-s.mt-3 {{ panelText }}
+            span.font-s.mt-3.font-gray {{ panelText }}
     //- MOBILE
     div(v-else).pt-5
       v-container
@@ -34,7 +34,7 @@
                       v-on="on"
                     )
                   | {{item.text}}
-            p.font-s.mt-3 {{ panelText }}
+            p.font-s.mt-3.font-gray {{ panelText }}
 </template>
 
 <script>
