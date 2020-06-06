@@ -3,7 +3,7 @@
     v-row(justify="center")
       v-col(cols="12" md="7" justify="center")
         h1.text-center.font-30.lh-title.pb-3.font-weight-light {{fourthPanelHeader.header}}
-        p.text-center.font-18.mt-3 {{fourthPanelHeader.description}}
+        p.text-center.font-18.mt-3.font-gray {{fourthPanelHeader.description}}
     v-row(justify="center")
       v-col(
         cols="6"
