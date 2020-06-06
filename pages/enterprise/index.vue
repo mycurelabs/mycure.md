@@ -1,18 +1,18 @@
 <template lang="pug">
   div(v-if="!loading")#top
     //- 1st panel
-    usp
+    usp(@getStarted="onGetStarted($event)")
     //- 2nd panel
-    your-patients
+    your-patients(@getStarted="goToSignup")
     //- 3rd panel
-    handle-outpatient
+    handle-outpatient(@getStarted="goToSignup")
     //- 4th panel
     smarter-decisions
     //- 5th panel
     multiple-branches
     //- 6th panel
     div.cta-container
-      cta
+      cta(@getStarted="onGetStarted($event)")
 </template>
 
 <script>
@@ -44,6 +44,15 @@ export default {
   mounted () {
     VueScrollTo.scrollTo('#app', 500, { easing: 'ease' });
     this.loading = false;
+  },
+  methods: {
+    onGetStarted (email) {
+      localStorage.setItem('multi:step3:email', email);
+      this.goToSignup();
+    },
+    goToSignup () {
+      this.$nuxt.$router.push({ name: 'signup-multispecialty' });
+    },
   },
   head () {
     return headMeta({

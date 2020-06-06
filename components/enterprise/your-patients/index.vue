@@ -16,7 +16,7 @@
         div.img-container
           img(v-lazy="require(`~/assets/images/enterprise/${data.image}`)" :alt="data.header")
         h1.font-30.lh-title.pb-3.font-weight-light.column-head.mt-4 {{data.header}}
-        v-btn(text).get-started-btn.mt-4
+        v-btn(text @click="onClick").get-started-btn.mt-4
           strong.text-capitalize.primary--text {{data.btnTxt}}
           v-icon.primary--text {{data.btnIcon}}
     v-row(justify="center" v-if="$isMobile")
@@ -29,7 +29,7 @@
         :key="key"
       )
         h1.font-30.lh-title.pb-3.font-weight-light {{data.header}}
-        v-btn(text).my-5
+        v-btn(text @click="onClick").my-5
           strong.text-capitalize.primary--text {{data.btnTxt}}
           v-icon.primary--text {{data.btnIcon}}
         img(
@@ -46,6 +46,11 @@ export default {
     this.secondPanelHeader = SECOND_PANEL_HEADER;
     this.secondPanelContents = SECOND_PANEL_CONTENTS;
     return {};
+  },
+  methods: {
+    onClick () {
+      this.$emit('getStarted');
+    },
   },
 };
 </script>

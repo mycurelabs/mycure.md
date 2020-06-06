@@ -1,5 +1,5 @@
 <template lang="pug">
-  div(:class="{'white' : whiteBg }")
+  div(:class="{'white' : whiteBg }").py-12
     div(v-if="!isMobile").pt-10.mt-10
       v-container
         v-row(v-if="metaTitle" justify="center").text-center
@@ -27,14 +27,14 @@
               large
             ).mt-3.cta-btn
               strong.font-s.white--text.text-none Explore the Features
-        div(v-else)
+        div(v-else).story-container
           v-row(justify="center")
             v-col(
               v-for="(highlight, index) in storyflow"
               align="center"
               :key="index"
               cols="4"
-            ).text-center
+            ).text-center.description-holder
               img(
                 v-lazy="require(`@/assets/images/${customPath}${highlight.image}`)"
                 :alt="highlight.title"
@@ -45,9 +45,9 @@
                 v-if="hasTitle"
                 :style="highlightTitleFontStyle"
                 :class="{'pre-white-space': parseTitles}"
-              ) {{ parseTitle(highlight) }}
+              ).font-21 {{ parseTitle(highlight) }}
               br
-              p.font-18.pt-3.mx-2.font-gray {{highlight.text}}
+              p.font-16.pt-3.mx-2.story-description.font-gray {{highlight.text}}
           v-row(v-if="featuresButton" justify="center" align="center").pt-10
             v-col(cols="4").text-center
               v-btn(
@@ -63,20 +63,20 @@
         v-row(v-if="metaTitle" justify="center").text-center.pb-10
           strong.font-18.primary--text {{ metaTitle }}
         v-row(justify="center").text-center.pb-10
-          strong.font-36.introText.lh-title {{introduction}}
+          strong.font-30.introText.lh-title.px-2.font-weight-light.title-storyflow {{introduction}}
         v-row(v-if="description" justify="center").text-center.pb-10
           span.font-18.font-gray {{ description }}
         v-col(v-for="(highlight,index) in storyflow" :key="index" justify="center")
           v-row(justify="center" align="center").pb-2
-            img(v-lazy="require(`@/assets/images/${customPath}${highlight.image}`)" :alt="highlight.title").storyflowAsset
-          br
+            img(v-lazy="require(`@/assets/images/${customPath}${highlight.image}`)" :alt="highlight.title" width="70%").img-storyflow
           v-row(align="center").text-center
             v-col(cols="12")
-              strong(v-if="hasTitle").font-30.lh-title.text-center {{highlight.title}}
+              strong(v-if="hasTitle").font-21.lh-title.font-weight-medium.text-center {{highlight.title}}
           br
-          v-row(align="center").px-2
-            v-col(cols="12").text-center
-              span.font-18.font-gray {{highlight.text}}
+          v-row(align="center").px-2.description-storyflow
+            v-col(cols="12").text-center.mt-n10
+              span.font-18.story-description.font-gray {{highlight.text}}
+
           br
         v-row(v-if="featuresButton" justify="center")
           v-btn(
@@ -186,13 +186,34 @@ export default {
 </script>
 
 <style scoped>
-.storyflowAsset {
-  width: 275px;
+.story-container{
+  padding-bottom: 100px;
+}
+.description-holder {
+  position: relative;
+  min-height: 200px;
+}
+.story-description {
+  color: #a7a7a7;
+  position: absolute;
+  bottom: -80px;
 }
 .pb50 {
   padding-bottom: 50px;
 }
 .pb60 {
   padding-bottom: 60px;
+}
+@media screen and (device-width: 768px) {
+  .img-storyflow {
+    width: 35%;
+  }
+  .title-storyflow {
+    width: 80%;
+  }
+  .description-storyflow {
+    margin-left: 10%;
+    width: 80%;
+  }
 }
 </style>
