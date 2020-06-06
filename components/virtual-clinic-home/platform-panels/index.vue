@@ -118,7 +118,7 @@ a {
 }
 @media screen and (max-width: 1024px) {
   .platform-panels {
-    margin-top: -115%;
+    margin-top: -110%;
   }
 }
 @media screen and (max-width: 768px) {
