@@ -17,7 +17,7 @@
               alt="MYCURE logo"
               @click="$nuxt.$router.push({ name: 'index' })"
             ).link-to-home.mb-3
-            h1.signin-title It's nice to see you here!
+            h1.signin-title.pb-2 It's nice to see you here!
             span.grey--text Welcome to MYCURE. Sign in to your account
           v-card-text.pa-4
             v-form(ref="form" v-model="valid" @keydown.native.enter="valid && submit()")
@@ -226,6 +226,7 @@ export default {
 
 .signin-title {
   font-weight: 500;
+  font-size: 25px;
 }
 
 .router-link {
