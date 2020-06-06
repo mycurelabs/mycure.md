@@ -1,5 +1,5 @@
 <template lang="pug">
-  div
+  div.api-content
     //- WEB
     div(v-if="!isMobile").py-5.mb-3
       v-container
@@ -78,6 +78,10 @@ export default {
 </script>
 
 <style scoped>
+.api-content {
+  position: relative;
+  z-index: 3;
+}
 .panelTitle {
   white-space: pre;
 }

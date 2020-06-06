@@ -5,14 +5,14 @@
       :background-image-configs="backgroundImageConfigs"
       :customPath="customPath"
       :webContainerStyleConfigs="webContainerStyleConfigs"
-    )
-      v-row(slot="content" align="center").row-content
+    ).cta-content
+      v-row(slot="content" align="center")
         v-col(
           cols="12"
           md="5"
           offset-md="6"
           :class="[{'web-content-margin': !isMobile}]"
-        ).cta-content
+        ).cta-title
           h1.font-40.lh-title {{ uspTitle }}
           p.font-italic.font-18 {{ uspSubtitle }}
           v-btn(
@@ -82,12 +82,16 @@ export default {
 .web-content-margin {
   margin-top: 80px;
 }
-.row-content {
-  min-height: 100vh;
-}
-@media screen and (max-width: 1024px) {
+@media screen and (device-width: 1024px) {
   .cta-content {
-    margin-bottom: -100%;
+    position: absolute;
+    margin-top: -80%;
+    z-index: 1;
+  }
+}
+@media screen and (device-width: 1024px) {
+  .cta-title {
+    margin-bottom: -245%;
   }
 }
 </style>

@@ -116,12 +116,12 @@ a {
   text-decoration-color: #2e9fdf;
   text-decoration: none;
 }
-@media screen and (max-width: 1024px) {
+@media screen and (device-width: 1024px) {
   .platform-panels {
-    margin-top: -110%;
+    margin-top: -125%;
   }
 }
-@media screen and (max-width: 768px) {
+@media screen and (device-width: 768px) {
   .platform-panels {
     margin-top: 0%;
   }

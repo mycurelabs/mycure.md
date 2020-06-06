@@ -99,6 +99,7 @@ export default {
   background-color: #f0f0f0;
 }
 .testimonial-contents {
+  position: relative;
   z-index: 2;
 }
 </style>

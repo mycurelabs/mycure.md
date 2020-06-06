@@ -8,7 +8,7 @@
       :class="{'mt-10': $isMobile}"
     )
       v-row(slot="content" :align="$isMobile ? 'start' : 'center'" :class="rowContentClass").usp-content
-        v-col(cols="12" md="5" xl="4" :class="{'pt-10': $isMobile}").usp-content
+        v-col(cols="12" md="5" xl="4" :class="{'pt-10': $isMobile}")
           h1(:class="titleClasses").font-poppins.font-40.lh-title {{ uspTitle }}
           p(:class="[centerText]").font-italic.font-18.mx-1 {{ uspSubtitle }}
           div(v-if="!$isMobile").text-field-container
@@ -120,7 +120,7 @@ export default {
 }
 @media screen and (device-width: 1024px) {
   .usp-content {
-    margin-top: -32%;
+    margin-top: -67%;
   }
 }
 </style>
