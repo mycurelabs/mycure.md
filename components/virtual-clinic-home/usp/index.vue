@@ -7,7 +7,7 @@
       :customPath="customPath"
       :class="{'mt-10': $isMobile}"
     )
-      v-row(slot="content" :align="$isMobile ? 'start' : 'center'" :class="rowContentClass")
+      v-row(slot="content" :align="$isMobile ? 'start' : 'center'" :class="rowContentClass").usp-content
         v-col(cols="12" md="5" xl="4" :class="{'pt-10': $isMobile}").usp-content
           h1(:class="titleClasses").font-poppins.font-40.lh-title {{ uspTitle }}
           p(:class="[centerText]").font-italic.font-18.mx-1 {{ uspSubtitle }}
@@ -110,25 +110,17 @@ export default {
 }
 @media screen and (max-width: 375px) {
   .text-field-container {
-<<<<<<< HEAD
-    margin-top: -30%;
-=======
     margin-top: -45%;
->>>>>>> ded2a518e366438dc02cb93dcdfa64ec6fa46fdb
   }
 }
 @media screen and (max-width: 360px) {
   .text-field-container {
-<<<<<<< HEAD
-    margin-top: 0%;
+    margin-top: -50px;
   }
 }
 @media screen and (max-width: 1024px) {
   .usp-content {
-    margin-top: -100%;
-=======
-    margin-top: -50px;
->>>>>>> ded2a518e366438dc02cb93dcdfa64ec6fa46fdb
+    margin-top: -32%;
   }
 }
 </style>
