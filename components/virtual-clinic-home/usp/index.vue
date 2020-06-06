@@ -13,6 +13,7 @@
           p(:class="[centerText]").font-italic.font-18.mx-1 {{ uspSubtitle }}
           div(v-if="!$isMobile").text-field-container
             v-text-field(
+              background-color="white"
               v-model="email"
               outlined
               placeholder="myname@email.com"
@@ -27,6 +28,7 @@
     template(v-if="$isMobile")
       div.text-field-container
         v-text-field(
+          background-color="white"
           v-model="email"
           outlined
           placeholder="myname@email.com"
@@ -36,7 +38,7 @@
         color="accent"
         large
         @click="onGetStarted"
-      ).text-none.font-weight-bold.font-18 Get Started
+      ).text-none.font-weight-bold.font-18.mt-n1 Get Started
 </template>
 
 <script>
@@ -108,7 +110,12 @@ export default {
 }
 @media screen and (max-width: 375px) {
   .text-field-container {
-    margin-top: -75px;
+    margin-top: -45%;
+  }
+}
+@media screen and (max-width: 360px) {
+  .text-field-container {
+    margin-top: -50px;
   }
 }
 </style>
