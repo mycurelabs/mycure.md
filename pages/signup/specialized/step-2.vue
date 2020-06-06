@@ -4,7 +4,7 @@
 </template>
 
 <script>
-import Step2Specialized from '~/components/signup-individual/step-1';
+import Step2Specialized from '~/components/signup-specialized/step-2';
 import headMeta from '~/utils/head-meta';
 export default {
   layout: 'user',

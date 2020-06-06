@@ -18,10 +18,11 @@
         :solutionsMenuItems="solutionsMenuItems"
         :solutionsText="solutionsText"
         :toolbarLinks="toolbarLinks"
+        :scroll-position="scrollPosition"
         @toolbarLinkClick="handleToolbarLinkClick($event)"
         @logoClick="handleMycureLogo"
       )
-    mc-cookie-prompt.cookie-prompt
+    //- mc-cookie-prompt.cookie-prompt
 </template>
 
 <script>
@@ -41,6 +42,7 @@ export default {
   data () {
     this.solutionsMenuItems = [
       { name: 'Doctors Clinics', route: 'doctors-clinics' },
+      { name: 'Enterprise', route: 'enterprise' },
       { name: 'Specialized Clinics', route: 'specialized-clinics' },
       { name: 'Multispecialty Clinics', route: 'multispecialty-clinics' },
       // - TODO: Temporarily hide
@@ -101,7 +103,8 @@ export default {
     },
     handleToolbarLinkClick (link) {
       const getStartedBtns = ['get-started-btn', 'mobile-navdrawer-get-started-btn'];
-      if (getStartedBtns.includes(link) && this.$nuxt.$route.name === 'index') {
+      const routes = ['index', 'virtual-clinic-temporary-home'];
+      if (getStartedBtns.includes(link) && routes.includes(this.$nuxt.$route.name)) {
         VueScrollTo.scrollTo('#health-suites', 500, { easing: 'ease' });
       } else if (getStartedBtns.includes(link)) {
         this.$nuxt.$router.push({
@@ -110,7 +113,7 @@ export default {
         });
       } else if (link === 'fight-covid-19-get-started-btn') {
         if (process.browser) {
-          window.open('https://forms.gle/y4qpv7ajERaGE5Lr7', '_blank');
+          window.open('https://forms.gle/y4qpv7ajERaGE5Lr7', '_blank', 'noopener, noreferrer');
         }
       }
       this.$ga.event({
@@ -126,6 +129,7 @@ export default {
 <style scoped>
 .toolbarMain {
   position: fixed;
+  height: 30px;
   width: 100%;
   z-index: 200;
 }

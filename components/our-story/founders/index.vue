@@ -3,7 +3,7 @@
     v-container
       v-row(justify="center")
         v-col(cols="12").text-center
-          h1.font-40.font-work-sans.pb-3 About the Founders
+          h1.font-40.pb-3 About the Founders
           br
           br
         v-col(cols="11" md="5").px-3.text-center

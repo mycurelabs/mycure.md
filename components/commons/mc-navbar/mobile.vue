@@ -1,12 +1,19 @@
 <template lang="pug">
   fragment
-    v-app-bar(app fixed flat height="70" color="white" :class="shadow")
+    v-app-bar(app flat height="70" extension-height="95" color="white" :class="shadow")
       nuxt-link(:to="{ name: 'index' }" title="MYCURE | Clinic Management System | Cloud EMR Philippines").logo-a
         img(src="~/assets/images/mycure-header-logo.png" width="130" alt="MYCURE logo").mt-1
       v-spacer
       v-btn(icon large @click="drawer = !drawer")
         v-icon.font-35 mdi-menu
-    v-navigation-drawer(fixed app v-model="drawer" right width="500").navMain
+      //- Banner
+      //- template(v-slot:extension)
+      //-   div.banner
+      //-     v-row(justify="center").text-center.white--text
+      //-       v-col(cols="12")
+      //-         | The world needs independent businesses. Learn about the actions we're taking to address the&nbsp;
+      //-         u.font-weight-bold impact of COVID-19
+    v-navigation-drawer(fixed v-model="drawer" right width="500").navMain
       div.navHeader
         v-toolbar(:class="shadow").white
           nuxt-link(:to="{ name: 'index' }" title="MYCURE | Clinic Management System | Cloud EMR Philippines" id="toolbar-mycure-logo" @click.stop="handleMycureLogo").logo-a
@@ -161,5 +168,14 @@ a {
   top: 0px;
   z-index: 9999;
   width: 100%;
+}
+.banner {
+  background-color:#11346b;
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
 }
 </style>
