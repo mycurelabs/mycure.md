@@ -27,14 +27,14 @@
               large
             ).mt-3.cta-btn
               strong.font-s.white--text.text-none Explore the Features
-        div(v-else)
+        div(v-else).story-container
           v-row(justify="center")
             v-col(
               v-for="(highlight, index) in storyflow"
               align="center"
               :key="index"
               cols="4"
-            ).text-center
+            ).text-center.description-holder
               img(
                 v-lazy="require(`@/assets/images/${customPath}${highlight.image}`)"
                 :alt="highlight.title"
@@ -185,8 +185,17 @@ export default {
 </script>
 
 <style scoped>
+.story-container{
+  padding-bottom: 100px;
+}
+.description-holder {
+  position: relative;
+  min-height: 200px;
+}
 .story-description {
   color: #a7a7a7;
+  position: absolute;
+  bottom: -80px;
 }
 .pb50 {
   padding-bottom: 50px;
