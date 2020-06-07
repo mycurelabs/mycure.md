@@ -136,8 +136,5 @@ a {
   .img-online-clinic {
     margin-left: 5%;
   }
-  /* .img-manage-easily {
-    margin-right: -5%;
-  } */
 }
 </style>

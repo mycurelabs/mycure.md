@@ -21,7 +21,7 @@
             @click="onGetStarted"
           ).text-none.font-weight-bold.font-18.mt-5.cta-btn Get Started
         img(
-          v-if="isMobile"
+          v-if="$isMobile"
           v-lazy="panelImageSrc"
           alt="Home CTA"
           width="100%"
@@ -59,7 +59,6 @@ export default {
     this.customPath = 'virtual-clinic-home/';
     return {
       email: '',
-      isMobile: true,
     };
   },
   computed: {
@@ -77,14 +76,6 @@ export default {
     panelImageSrc () {
       return require(`~/assets/images/virtual-clinic-home/${this.backgroundImageMobile}`);
     },
-  },
-  watch: {
-    $isMobile (val) {
-      this.isMobile = val;
-    },
-  },
-  mounted () {
-    this.isMobile = this.$isMobile;
   },
   methods: {
     onGetStarted () {

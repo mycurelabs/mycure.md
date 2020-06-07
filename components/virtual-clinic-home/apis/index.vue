@@ -1,7 +1,7 @@
 <template lang="pug">
   div.api-content.py-12
     //- WEB
-    div(v-if="!isMobile").py-5.mb-3
+    div(v-if="!$isMobile").py-5.mb-3
       v-container
         v-row(justify="center")
           v-col(cols="6" align-self="center").px-3
@@ -53,7 +53,6 @@ export default {
     ];
     this.panelImage = 'MYCURE-virtual-clinic-healthcare-practice-online-homepage-F-features-02-api';
     return {
-      isMobile: true,
     };
   },
   computed: {
@@ -63,16 +62,6 @@ export default {
     panelImageSrc () {
       return require(`~/assets/images/virtual-clinic-home/${this.panelImage}.png`);
     },
-  },
-  watch: {
-    $isMobile: {
-      handler (val) {
-        this.isMobile = val;
-      },
-    },
-  },
-  mounted () {
-    this.isMobile = this.$isMobile;
   },
 };
 </script>
