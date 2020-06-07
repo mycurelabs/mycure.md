@@ -1,7 +1,7 @@
 <template lang="pug">
   div.white.testimonial-contents.py-12
     client-only
-      v-container(v-if="!isMobile" @mouseover="playCarousel = true")
+      v-container(v-if="!$isMobile" @mouseover="playCarousel = true")
         v-row(justify="center")
           v-col(cols="12" md="11").pt-2.pb-1
             v-carousel(
@@ -77,19 +77,8 @@ export default {
       },
     ];
     return {
-      isMobile: true,
       playCarousel: false,
     };
-  },
-  watch: {
-    $isMobile: {
-      handler (val) {
-        this.isMobile = val;
-      },
-    },
-  },
-  mounted () {
-    this.isMobile = this.$isMobile;
   },
 };
 </script>

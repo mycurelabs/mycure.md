@@ -1,7 +1,7 @@
 <template lang="pug">
   div.py-12
     //- WEB
-    div(v-if="!isMobile").py-5
+    div(v-if="!$isMobile").py-5
       v-container
         v-row(justify="center")
           v-col(cols="5")
@@ -50,19 +50,7 @@ export default {
       { text: 'User Designated Access', image: 'user-access' },
       { text: 'Grade A+ SSL', image: 'ssl' },
     ];
-    return {
-      isMobile: true,
-    };
-  },
-  watch: {
-    $isMobile: {
-      handler (val) {
-        this.isMobile = val;
-      },
-    },
-  },
-  mounted () {
-    this.isMobile = this.$isMobile;
+    return {};
   },
 };
 </script>
