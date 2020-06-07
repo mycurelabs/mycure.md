@@ -1,14 +1,14 @@
 <template lang="pug">
-  div
+  div.api-content.py-12
     //- WEB
-    div(v-if="!isMobile").py-5.mb-3
+    div(v-if="!$isMobile").py-5.mb-3
       v-container
         v-row(justify="center")
           v-col(cols="6" align-self="center").px-3
             h1.panelTitle.font-36.lh-title.font-weight-light {{ webTitle }}
             br
             br
-            p.font-s {{ panelContent }}
+            p.font-s.font-gray {{ panelContent }}
             v-list(dense)
               v-list-item(
                 v-for="(item, key) in checkList"
@@ -17,7 +17,7 @@
                 v-list-item-action
                   img(v-lazy="require('~/assets/images/mycure-web-bullet-check.png')" alt="Check icon")
                 v-list-item-content
-                  span.font-s {{ item }}
+                  span.font-s.font-gray {{ item }}
           v-col(cols="6" align-self="center").px-3.text-center
             img(v-lazy="panelImageSrc" width="80%" :alt="panelImage")
     //- MOBILE
@@ -27,7 +27,7 @@
         br
         img(width="85%" v-lazy="panelImageSrc" :alt="panelImage").pb-3
         br
-        p.font-s {{ panelContent }}
+        p.font-s.font-gray {{ panelContent }}
         v-list(two-line).text-left
           v-list-item(
             v-for="(item, key) in checkList"
@@ -36,7 +36,7 @@
             v-list-item-action
               img(src="~/assets/images/mycure-web-bullet-check.png" alt="Check icon")
             v-list-item-content
-              span.font-s {{ item }}
+              span.font-s.font-gray {{ item }}
         br
 </template>
 
@@ -53,7 +53,6 @@ export default {
     ];
     this.panelImage = 'MYCURE-virtual-clinic-healthcare-practice-online-homepage-F-features-02-api';
     return {
-      isMobile: true,
     };
   },
   computed: {
@@ -64,20 +63,14 @@ export default {
       return require(`~/assets/images/virtual-clinic-home/${this.panelImage}.png`);
     },
   },
-  watch: {
-    $isMobile: {
-      handler (val) {
-        this.isMobile = val;
-      },
-    },
-  },
-  mounted () {
-    this.isMobile = this.$isMobile;
-  },
 };
 </script>
 
 <style scoped>
+.api-content {
+  position: relative;
+  z-index: 3;
+}
 .panelTitle {
   white-space: pre;
 }

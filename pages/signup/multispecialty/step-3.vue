@@ -306,6 +306,13 @@ export default {
   async created () {
     await this.init();
   },
+  mounted () {
+    // Prefill email
+    const email = localStorage.getItem('multi:step3:email');
+    if (email) {
+      this.contact.email = email;
+    }
+  },
   methods: {
     async init () {
       if (process.browser) {

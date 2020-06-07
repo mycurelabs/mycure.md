@@ -1,7 +1,7 @@
 <template lang="pug">
-  div
+  div.py-12
     //- WEB
-    div(v-if="!isMobile").py-5
+    div(v-if="!$isMobile").py-5
       v-container
         v-row(justify="center")
           v-col(cols="5")
@@ -10,7 +10,7 @@
             h1.font-36.lh-title.pb-3.font-weight-light {{ panelTitle }}
             br
             br
-            span.font-s.mt-3 {{ panelText }}
+            span.font-s.mt-3.font-gray {{ panelText }}
     //- MOBILE
     div(v-else).pt-5
       v-container
@@ -34,7 +34,7 @@
                       v-on="on"
                     )
                   | {{item.text}}
-            p.font-s.mt-3 {{ panelText }}
+            p.font-s.mt-3.font-gray {{ panelText }}
 </template>
 
 <script>
@@ -50,19 +50,7 @@ export default {
       { text: 'User Designated Access', image: 'user-access' },
       { text: 'Grade A+ SSL', image: 'ssl' },
     ];
-    return {
-      isMobile: true,
-    };
-  },
-  watch: {
-    $isMobile: {
-      handler (val) {
-        this.isMobile = val;
-      },
-    },
-  },
-  mounted () {
-    this.isMobile = this.$isMobile;
+    return {};
   },
 };
 </script>

@@ -9,10 +9,10 @@
       v-col(align-self="center" cols="12" md="6")
         h1.font-30.lh-title.pb-3.font-weight-light {{ACCESS_QUALITY_HEALTHCARE.header}}
         br
-        span.font-18.mt-3 {{ACCESS_QUALITY_HEALTHCARE.description}}
+        span.font-18.mt-3.font-gray {{ACCESS_QUALITY_HEALTHCARE.description}}
         br
         br
-        v-btn(@click="onGetStarted" text)
+        v-btn(@click="onGetStarted" text).ml-n4.get-started-btn
           strong.text-capitalize.primary--text {{ACCESS_QUALITY_HEALTHCARE.btnTxt}}
           v-icon.primary--text {{ACCESS_QUALITY_HEALTHCARE.btnIcon}}
       img(
@@ -28,9 +28,7 @@ import { ACCESS_QUALITY_HEALTHCARE } from '../doctors-clinics-content';
 export default {
   data () {
     this.ACCESS_QUALITY_HEALTHCARE = ACCESS_QUALITY_HEALTHCARE;
-    return {
-
-    };
+    return {};
   },
   methods: {
     onGetStarted () {

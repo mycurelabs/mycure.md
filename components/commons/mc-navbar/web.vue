@@ -39,7 +39,8 @@
                   depressed
                   @click.stop="handleToolbarLinkClick(link.id)"
                 ).mx-1
-                  span.font-14.tab.text-none {{link.name}}
+                  u(v-if="key === 1").font-14.tab.text-none {{link.name}}
+                  span(v-else).font-14.tab.text-none {{link.name}}
               v-btn(
                 text
                 :to="{ name: loginURL }"
@@ -49,7 +50,7 @@
                 span.font-14.tab.text-none &nbsp;Login
               v-btn(
                 v-if="currentRoute === 'doctors-clinics'"
-                color="accent"
+                color="#98be58"
                 :to="currentRoute === 'doctors-clinics' ? { name: 'signup-individual' } : { name: 'signup-multispecialty' }"
                 id="start-free-btn"
                 @click.stop="handleToolbarLinkClick('start-free-btn')"
@@ -57,7 +58,7 @@
                 strong.font-14.white--text.tab.text-none Start Free
               v-btn(
                 v-else-if="currentRoute === 'multispecialty-clinics' || currentRoute === 'hippocrates'"
-                color="accent"
+                color="#98be58"
                 :to="{ name: 'signup-multispecialty', ...($nuxt.$route.name === 'hippocrates') && { params: { route: 'hippocrates' } }}"
                 id="multispecialty-book-demo-btn"
                 @click.stop="handleToolbarLinkClick('multispecialty-book-demo-btn')"
@@ -65,7 +66,7 @@
                 strong.font-14.white--text.tab.text-none Book A Free Demo
               v-btn(
                 v-else-if="currentRoute === 'specialized-clinics'"
-                color="accent"
+                color="#98be58"
                 :to="{ name: 'signup-specialized' }"
                 id="specialized-signup-btn"
                 @click.stop="handleToolbarLinkClick('specialized-signup-btn')"
@@ -73,14 +74,14 @@
                 strong.font-14.white--text.tab.text-none Start 14-Day Trial
               v-btn(
                 v-else-if="currentRoute === 'fight-covid-19'"
-                color="accent"
+                color="#98be58"
                 id="fight-covid-19-get-started-btn"
                 @click.stop="handleToolbarLinkClick('fight-covid-19-get-started-btn')"
               )
                 strong.font-14.white--text.tab.text-none Get Started
               v-btn(
                 v-else
-                color="accent"
+                color="#98be58"
                 id="get-started-btn"
                 @click.stop="handleToolbarLinkClick('get-started-btn')"
               )

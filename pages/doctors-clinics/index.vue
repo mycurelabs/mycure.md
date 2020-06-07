@@ -1,20 +1,20 @@
 <template lang="pug">
   div(v-if="!loading")#top
     //- 1st panel
-    Usp(@getStarted="getStarted")
+    usp(@getStarted="getStarted")
     //- 2nd panel
-    IncreaseRevenue(@getStarted="getStarted")
+    increase-revenue(@getStarted="getStarted")
     //- 3rd panel
-    SafekeepData(@getStarted="getStarted")
+    safekeep-data(@getStarted="getStarted")
     //- 4th panel
-    PracticeOnline(@getStarted="getStarted")
+    practice-online(@getStarted="getStarted")
     //- 5th panel
-    SpecializedPlans
+    specialized-plans
     //- 6th panel
-    QualityHealthcare(@getStarted="getStarted")
+    quality-healthcare(@getStarted="getStarted")
     //- 7th panel
     div.cta-container
-      Cta(@getStarted="goToSignupIndividual($event)")
+      cta(@getStarted="goToSignupIndividual($event)")
     //- )
 </template>
 
@@ -69,13 +69,19 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 #top {
   margin-top: 12vh;
 }
 .cta-container {
-    position: relative;
-    margin-bottom: -4%;
-    z-index: 1;
+  position: relative;
+  margin-bottom: -4%;
+  z-index: 1;
+}
+.content-container {
+  position: relative;
+}
+.get-started-btn {
+  margin-left: -3%;
 }
 </style>

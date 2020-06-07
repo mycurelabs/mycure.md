@@ -9,10 +9,10 @@
       v-col(align-self="center" cols="12" md="6")
         h1.font-30.lh-title.pb-3.font-weight-light {{SAFEKEEP_MEDICAL_DATA.header}}
         br
-        span.font-18.mt-3 {{SAFEKEEP_MEDICAL_DATA.description}}
+        span.font-18.mt-3.font-gray {{SAFEKEEP_MEDICAL_DATA.description}}
         br
         br
-        v-btn(@click="onGetStarted" text)
+        v-btn(@click="onGetStarted" text).ml-n4.get-started-btn
           strong.text-capitalize.primary--text {{SAFEKEEP_MEDICAL_DATA.btnTxt}}
           v-icon.primary--text {{SAFEKEEP_MEDICAL_DATA.btnIcon}}
       img(
@@ -28,9 +28,7 @@ import { SAFEKEEP_MEDICAL_DATA } from '../doctors-clinics-content';
 export default {
   data () {
     this.SAFEKEEP_MEDICAL_DATA = SAFEKEEP_MEDICAL_DATA;
-    return {
-
-    };
+    return {};
   },
   methods: {
     onGetStarted () {

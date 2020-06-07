@@ -17,7 +17,7 @@
               v-col(cols="1").pr-2.pt-2
                 img(width="20" src="~/assets/images/mycure-check.png" alt="Check icon")
               v-col(shrink)
-                span.font-18 {{ item }}
+                span.font-18.font-gray {{ item }}
       //- Bottom images
       v-container(v-if="!$isMobile")
         v-row
@@ -43,7 +43,7 @@
             paginationColor="#808080"
           )
             slide(
-              v-for="(image,index) in panelImages"
+              v-for="(image,index) in mobilePanelImages"
               :key="index"
               :data-index="index+1"
             ).pa-1
@@ -67,6 +67,11 @@ export default {
       'MYCURE-virtual-clinic-healthcare-practice-online-features-E-01-billing-payment.png',
       'MYCURE-virtual-clinic-healthcare-practice-online-features-E-02-charge-slip.png',
       'MYCURE-virtual-clinic-healthcare-practice-online-features-E-03-daily-census.png',
+    ];
+    this.mobilePanelImages = [
+      this.panelImages[0],
+      'MYCURE-virtual-clinic-healthcare-practice-online-features-E-02-charge-slip-mobile.png',
+      'MYCURE-virtual-clinic-healthcare-practice-online-features-E-03-daily-census-mobile.png',
     ];
     this.checkListItems = [
       'Payment Management & History',

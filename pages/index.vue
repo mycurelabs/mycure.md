@@ -10,7 +10,7 @@
       :introduction="storyflowIntroText"
       customPath="virtual-clinic-home/"
       horizontal
-      horizontal-image-size="50%"
+      horizontal-image-size="40%"
     ).mt-10
     //- 4th panel
     privacy
