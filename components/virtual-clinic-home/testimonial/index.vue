@@ -1,5 +1,5 @@
 <template lang="pug">
-  div.white.testimonial-contents
+  div.white.testimonial-contents.py-12
     client-only
       v-container(v-if="!isMobile" @mouseover="playCarousel = true")
         v-row(justify="center")

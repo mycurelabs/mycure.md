@@ -1,5 +1,5 @@
 <template lang="pug">
-  div.api-content
+  div.api-content.py-12
     //- WEB
     div(v-if="!isMobile").py-5.mb-3
       v-container

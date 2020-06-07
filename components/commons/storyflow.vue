@@ -1,5 +1,5 @@
 <template lang="pug">
-  div(:class="{'white' : whiteBg }")
+  div(:class="{'white' : whiteBg }").py-12
     div(v-if="!isMobile").pt-10.mt-10
       v-container
         v-row(v-if="metaTitle" justify="center").text-center

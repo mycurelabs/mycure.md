@@ -1,5 +1,5 @@
 <template lang="pug">
-  div
+  div.py-12
     //- WEB
     div(v-if="!isMobile").py-5
       v-container
