@@ -1,13 +1,13 @@
 <template lang="pug">
   v-container.py-12.your-patients-contents
     v-row(justify="center")
-      v-col(cols="12" md="6" justify="center")
+      v-col(cols="12" md="8" lg="6" justify="center")
         h1.text-center.font-30.lh-title.pb-3.font-weight-light {{secondPanelHeader.header}}
         p.text-center.font-18.mt-3.font-gray {{secondPanelHeader.description}}
     v-row(justify="center" v-if="!$isMobile")
       v-col(
         cols="12"
-        md="5"
+        md="6"
         align="center"
         justify="center"
         v-for="(data, key) in secondPanelContents"
