@@ -6,12 +6,13 @@
       :background-image-mobile-configs="backgroundImageMobileConfigs"
       :customPath="customPath"
       :class="{'pt-12': $isMobile}"
-    )
-      v-row(slot="content").row-content
-        v-col(cols="12" md="5" :class="[{'web-content-margin': !$isMobile}]" v-if="!$isMobile").pt-12
+    ).enterprise-cta-content
+      v-row(slot="content" v-if="!$isMobile").row-content
+        v-col(cols="12" md="5" :class="[{'web-content-margin': !$isMobile}]").pt-12
           h1(:class="titleClasses" white--text).font-poppins.font-40.py-10.white--text {{ panelTitle }}
-          div(v-if="!$isMobile").text-field-container.white
+          div(v-if="!$isMobile").text-field-container
             v-text-field(
+              background-color="white"
               v-model="email"
               outlined
               placeholder="myname@email.com"
@@ -24,19 +25,21 @@
             @click="onGetStarted"
           ).text-none.font-weight-bold.font-18.mt-3 Get Started
           p.font-16.font-weight-light.px-1.pt-1.text-center.white--text {{ ctaAgreement }}
-        v-col(cols="12" md="5" v-if="$isMobile" one-line)
+      v-row(slot="content" v-if="$isMobile").row-content
+        v-col(cols="12" md="5" one-line).text-field-container-mobile
           h1.font-poppins.font-30.lh-title {{ panelTitle }}
-          div.text-field-container.white.mt-5
+          div.mt-5
             v-text-field(
+              background-color="white"
               v-model="email"
-              outlined
               placeholder="myname@email.com"
+              outlined
             )
           v-btn(
             color="accent"
             large
             @click="onGetStarted"
-          ).text-none.font-weight-medium.font-18.mt-2 Get Started
+          ).text-none.font-weight-medium.font-18 Get Started
           p.font-16.font-weight-light.px-1.pt-1.one-line {{ ctaAgreement }}
 </template>
 
@@ -63,7 +66,7 @@ export default {
     backgroundImageMobileConfigs () {
       return {
         'background-size': '100%',
-        'background-position': '0px 410px',
+        'background-position': '0px 350px',
       };
     },
     centerText () {
@@ -94,7 +97,7 @@ export default {
 <style scoped>
 .text-field-container {
   height: 58px;
-  border: 1px solid black;
+  /* border: 1px solid black; */
   border-radius: 2px;
 }
 .web-content-margin {
@@ -102,5 +105,15 @@ export default {
 }
 .row-content {
   height: 100vh;
+}
+@media screen and (device-width: 360px) {
+   .enterprise-cta-content {
+     margin-bottom: -90px;
+   }
+}
+@media screen and (device-width: 375px) {
+  .enterprise-cta-content {
+    margin-bottom: -67%;
+  }
 }
 </style>
