@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-container.py-12
+  v-container.py-12.your-patients-contents
     v-row(justify="center")
       v-col(cols="12" md="6" justify="center")
         h1.text-center.font-30.lh-title.pb-3.font-weight-light {{secondPanelHeader.header}}
@@ -72,5 +72,10 @@ export default {
   position: absolute;
   bottom: 0;
   margin-left: -14%;
+}
+@media screen and (device-width: 1024px) {
+  .your-patients-contents {
+  margin-top: -90%;
+  }
 }
 </style>

@@ -129,9 +129,4 @@ export default {
   margin-top: -20%;
   }
 }
-/* @media screen and (min-width: 1366px) {
-  .row-content {
-  margin-top: -10%;
-  }
-} */
 </style>
