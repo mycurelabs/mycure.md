@@ -116,4 +116,9 @@ export default {
     margin-bottom: -67%;
   }
 }
+@media screen and (device-width: 768px) {
+  .enterprise-cta-content {
+    margin-bottom: -22%;
+  }
+}
 </style>
