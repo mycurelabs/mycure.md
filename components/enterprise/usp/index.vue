@@ -30,7 +30,7 @@
           div(v-if="$isMobile").text-center
             v-btn(text).align-center
               v-icon(large) mdi-arrow-down
-    template(v-if="$isMobile")
+    template(v-if="$isMobile").row-content
       div.text-field-container.white
         v-text-field(
           v-model="email"
@@ -119,4 +119,19 @@ export default {
   margin-top: -50%;
   }
 }
+@media screen and (device-width: 768px) {
+  .row-content {
+  margin-top: -10%;
+  }
+}
+@media screen and (device-width: 1024px) {
+  .row-content {
+  margin-top: -20%;
+  }
+}
+/* @media screen and (min-width: 1366px) {
+  .row-content {
+  margin-top: -10%;
+  }
+} */
 </style>
