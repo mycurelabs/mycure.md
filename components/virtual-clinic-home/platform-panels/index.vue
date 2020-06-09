@@ -1,6 +1,6 @@
 <template lang="pug">
-  v-container
-    v-row(justify="center" align="center").py-5.platform-panels
+  v-container.platform-panels
+    v-row(justify="center" align="center").py-5
       v-col(cols="12" md="6")
         h1.font-36.font-weight-light.text-center {{BRING_YOUR_PRACTICE_ONLINE.header}}
         br
@@ -116,14 +116,12 @@ a {
   text-decoration-color: #2e9fdf;
   text-decoration: none;
 }
+.platform-panels {
+  margin-top: 50%;
+}
 @media screen and (device-width: 768px) {
   .platform-panels {
-    margin-top: 0%;
-  }
-}
-@media screen and (device-width: 1024px) {
-  .platform-panels {
-    margin-top: -125%;
+    margin-top: 10%;
   }
 }
 @media screen and (min-width: 1366px) {

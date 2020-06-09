@@ -71,7 +71,7 @@ export default {
       };
     },
     webContainerStyleConfigs () {
-      return { position: 'relative' };
+      return { position: 'relative', height: '100vh' };
     },
     panelImageSrc () {
       return require(`~/assets/images/virtual-clinic-home/${this.backgroundImageMobile}`);
@@ -128,12 +128,12 @@ export default {
 }
 @media screen and (device-width: 1024px) {
   .cta-content {
-    position: absolute;
-    margin-top: -80%;
+    position: relative;
+    margin-top: -85%;
     z-index: 1;
   }
   .cta-title {
-    margin-bottom: -245%;
+    margin-bottom: -235%;
   }
 }
 @media screen and (device-width: 1366px) {

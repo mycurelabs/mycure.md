@@ -112,6 +112,6 @@ export default {
 
 <style scoped>
 .platform-panel {
-  margin-top: 10vh;
+  position: relative;
 }
 </style>

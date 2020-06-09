@@ -1,9 +1,10 @@
 <template lang="pug">
-  div.white
+  div
     generic-background-panel(
       :background-image="backgroundImage"
       :background-image-mobile="backgroundImageMobile"
       :background-image-mobile-configs="backgroundImageMobileConfigs"
+      :webContainerStyleConfigs="webContainerStyleConfigs"
       :customPath="customPath"
       :class="{'mt-10': $isMobile}"
     )
@@ -72,6 +73,13 @@ export default {
         'background-position': '0px 200px',
       };
     },
+    webContainerStyleConfigs () {
+      return {
+        position: 'absolute',
+        top: '0',
+        height: '500px',
+      };
+    },
     centerText () {
       return { 'text-center': this.$isMobile };
     },
@@ -113,7 +121,7 @@ export default {
   opacity: 0.9;
 }
 .web-row-content {
-  height: 100vh;
+  height: 90vh;
 }
 .mobile-row-content {
   min-height: 100vh;
@@ -130,7 +138,7 @@ export default {
 }
 @media screen and (device-width: 1024px) {
   .usp-content {
-    margin-top: -67%;
+    margin-top: -25vh;
   }
 }
 @media screen and (max-width: 1038px) {
