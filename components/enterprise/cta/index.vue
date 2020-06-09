@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-container.white
+  div.white
     generic-background-panel(
       :background-image="backgroundImage"
       :background-image-mobile="backgroundImageMobile"
@@ -127,13 +127,11 @@ export default {
     margin-bottom: -91%;
   }
   .row-content {
-    margin-left: -80px;
     margin-top: -50px;
   }
 }
 @media screen and (device-width: 1366px) {
   .enterprise-cta-content {
-    margin-left: -15px;
     margin-bottom: -5%;
   }
 }
