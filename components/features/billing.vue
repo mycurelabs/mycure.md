@@ -7,7 +7,7 @@
         :header="header"
         :descriptions="descriptions"
         :web-image="mediaImage"
-        :custom-image-path="customPath"
+        custom-image-path="features/"
         hide-image-mobile
       )
         //- Check list
@@ -65,11 +65,11 @@ export default {
     ];
     this.panelImages = [
       'MYCURE-virtual-clinic-healthcare-practice-online-features-E-01-billing-payment.png',
-      'MYCURE-virtual-clinic-healthcare-practice-online-features-E-02-charge-slip.png',
-      'MYCURE-virtual-clinic-healthcare-practice-online-features-E-03-daily-census.png',
+      'MYCURE-virtual-clinic-healthcare-practice-online-features-E-02-charge-slip.webp',
+      'MYCURE-virtual-clinic-healthcare-practice-online-features-E-03-daily-census.webp',
     ];
     this.mobilePanelImages = [
-      this.panelImages[0],
+      'MYCURE-virtual-clinic-healthcare-practice-online-features-E-01-billing-payment.png',
       'MYCURE-virtual-clinic-healthcare-practice-online-features-E-02-charge-slip-mobile.png',
       'MYCURE-virtual-clinic-healthcare-practice-online-features-E-03-daily-census-mobile.png',
     ];
@@ -79,7 +79,7 @@ export default {
       'HMO Statements, Collections, & Reports',
       'Interface with Materials Management',
     ];
-    this.customPath = 'features/';
+    this.customPath = 'features/webp/';
     return {};
   },
   computed: {
@@ -87,10 +87,10 @@ export default {
       return this.panelImages[0];
     },
     leftBottomImage () {
-      return require(`~/assets/images/features/${this.panelImages[1]}`);
+      return require(`~/assets/images/${this.customPath}${this.panelImages[1]}`);
     },
     rightBottomImage () {
-      return require(`~/assets/images/features/${this.panelImages[2]}`);
+      return require(`~/assets/images/${this.customPath}${this.panelImages[2]}`);
     },
   },
 };
