@@ -14,8 +14,8 @@
             v-text-field(
               background-color="white"
               v-model="email"
-              outlined
               placeholder="myname@email.com"
+              outlined
             )
           v-btn(
             v-if="!$isMobile"

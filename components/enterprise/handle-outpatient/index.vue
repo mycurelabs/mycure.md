@@ -3,7 +3,7 @@
     v-row(justify="center")
       v-col(cols="12" md="6" justify="center" align="center" v-if="!$isMobile")
         img(v-lazy="require(`~/assets/images/enterprise/${outpatient.image}`)" :alt="outpatient.header").outpatient-image
-      v-col(cols="12" md="5" align-self="center").outpatient-description
+      v-col(cols="12" md="5" lg="5" align-self="center").outpatient-description
         h1.font-30.lh-title.pb-3.font-weight-light {{outpatient.header}}
         p.font-18.mt-3.font-gray {{outpatient.description}}
         v-btn(text @click="onClick").mt-5.ml-n4.get-started-btn
@@ -35,6 +35,11 @@ export default {
   }
   .outpatient-description {
     margin-left: 50px;
+  }
+}
+@media screen and (device-width: 1366px) {
+  .outpatient-description {
+    padding-left: 100px;
   }
 }
 </style>
