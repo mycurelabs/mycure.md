@@ -31,7 +31,7 @@ export default {
     this.descriptions = [
       'Deliver the right supplies to the right people at the right time.',
     ];
-    this.mediaImage = 'MYCURE-virtual-clinic-healthcare-practice-online-features-H-inventory.png';
+    this.mediaImage = 'MYCURE-virtual-clinic-healthcare-practice-online-features-H-inventory.webp';
     this.checkListItems = [
       'Product Identification',
       'Inventory levels, orders, and deliveries tracking',
@@ -39,7 +39,7 @@ export default {
       'Warehouse Inventory Management',
       'Interface with Medical Billing',
     ];
-    this.customPath = 'features/';
+    this.customPath = 'features/webp/';
     return {};
   },
 };
