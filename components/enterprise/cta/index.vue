@@ -1,12 +1,12 @@
 <template lang="pug">
-  v-container.white.enterprise-cta-content
+  v-container.white
     generic-background-panel(
       :background-image="backgroundImage"
       :background-image-mobile="backgroundImageMobile"
       :background-image-mobile-configs="backgroundImageMobileConfigs"
       :customPath="customPath"
       :class="{'pt-12': $isMobile}"
-    )
+    ).enterprise-cta-content
       v-row(slot="content" v-if="!$isMobile").row-content
         v-col(cols="12" md="5" :class="[{'web-content-margin': !$isMobile}]").pt-12
           h1(:class="titleClasses" white--text).font-poppins.font-40.py-10.white--text {{ panelTitle }}
