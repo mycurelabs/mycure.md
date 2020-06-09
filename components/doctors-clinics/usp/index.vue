@@ -104,12 +104,12 @@ export default {
   height: 100vh;
   margin-top: -5%;
 }
-@media screen and (max-width: 360px) {
+@media screen and (device-width: 360px) {
   .text-field-container {
   margin-top: -28%;
   }
 }
-@media screen and (max-width: 375px) {
+@media screen and (device-width: 375px) {
   .text-field-container {
     margin-top: -62%;
   }
