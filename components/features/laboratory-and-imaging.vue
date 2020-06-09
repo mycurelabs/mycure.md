@@ -3,6 +3,8 @@
     client-only
       generic-media-panel(
         content-align-right
+        cols-left="7"
+        cols-right="5"
         custom-image-path="features/webp/"
         :header="header"
         :descriptions="descriptions"
