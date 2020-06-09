@@ -21,15 +21,20 @@ import VueScrollTo from 'vue-scrollto';
 import headMeta from '~/utils/head-meta';
 // components
 import Usp from '~/components/enterprise/usp';
+import YourPatients from '~/components/enterprise/your-patients';
+import HandleOutpatient from '~/components/enterprise/handle-outpatient';
+import SmarterDecisions from '~/components/enterprise/smarter-decisions';
+import MultipleBranches from '~/components/enterprise/multiple-branches';
+import Cta from '~/components/enterprise/cta';
 
 export default {
   components: {
     Usp,
-    YourPatients: () => import('~/components/enterprise/your-patients'),
-    HandleOutpatient: () => import('~/components/enterprise/handle-outpatient'),
-    SmarterDecisions: () => import('~/components/enterprise/smarter-decisions'),
-    MultipleBranches: () => import('~/components/enterprise/multiple-branches'),
-    Cta: () => import('~/components/enterprise/cta'),
+    YourPatients,
+    HandleOutpatient,
+    SmarterDecisions,
+    MultipleBranches,
+    Cta,
   },
   data () {
     return {

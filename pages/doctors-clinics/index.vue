@@ -24,16 +24,22 @@ import VueScrollTo from 'vue-scrollto';
 import headMeta from '~/utils/head-meta';
 // components
 import Usp from '~/components/doctors-clinics/usp';
+import IncreaseRevenue from '~/components/doctors-clinics/increase-revenue';
+import SafekeepData from '~/components/doctors-clinics/safekeep-data';
+import PracticeOnline from '~/components/doctors-clinics/practice-online';
+import SpecializedPlans from '~/components/doctors-clinics/specialized-plans';
+import QualityHealthcare from '~/components/doctors-clinics/quality-healthcare';
+import Cta from '~/components/doctors-clinics/cta';
 
 export default {
   components: {
     Usp,
-    IncreaseRevenue: () => import('~/components/doctors-clinics/increase-revenue'),
-    SafekeepData: () => import('~/components/doctors-clinics/safekeep-data'),
-    PracticeOnline: () => import('~/components/doctors-clinics/practice-online'),
-    SpecializedPlans: () => import('~/components/doctors-clinics/specialized-plans'),
-    QualityHealthcare: () => import('~/components/doctors-clinics/quality-healthcare'),
-    Cta: () => import('~/components/doctors-clinics/cta'),
+    IncreaseRevenue,
+    SafekeepData,
+    PracticeOnline,
+    SpecializedPlans,
+    QualityHealthcare,
+    Cta,
   },
   data () {
     return {

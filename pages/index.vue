@@ -29,16 +29,22 @@ import headMeta from '~/utils/head-meta';
 import { parseTextWithNewLine } from '~/utils/newline';
 // - components
 import Usp from '~/components/virtual-clinic-home/usp';
+import Apis from '~/components/virtual-clinic-home/apis';
+import Cta from '~/components/virtual-clinic-home/cta';
+import PlatformPanels from '~/components/virtual-clinic-home/platform-panels';
+import Privacy from '~/components/virtual-clinic-home/privacy';
+import Storyflow from '~/components/commons/storyflow';
+import Testimonial from '~/components/virtual-clinic-home/testimonial';
 
 export default {
   components: {
     Usp,
-    Apis: () => import('~/components/virtual-clinic-home/apis'),
-    Cta: () => import('~/components/virtual-clinic-home/cta'),
-    PlatformPanels: () => import('~/components/virtual-clinic-home/platform-panels'),
-    Privacy: () => import('~/components/virtual-clinic-home/privacy'),
-    Storyflow: () => import('~/components/commons/storyflow'),
-    Testimonial: () => import('~/components/virtual-clinic-home/testimonial'),
+    Apis,
+    Cta,
+    PlatformPanels,
+    Privacy,
+    Storyflow,
+    Testimonial,
   },
   data () {
     this.storyflowItems = [
