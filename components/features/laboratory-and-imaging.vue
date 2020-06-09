@@ -3,7 +3,7 @@
     client-only
       generic-media-panel(
         content-align-right
-        custom-image-path="features/"
+        custom-image-path="features/webp/"
         :header="header"
         :descriptions="descriptions"
         :web-image="image"
@@ -35,7 +35,7 @@ export default {
     GenericMediaPanel,
   },
   data () {
-    this.image = 'MYCURE-virtual-clinic-healthcare-practice-online-features-G-diagnostic-results.png';
+    this.image = 'MYCURE-virtual-clinic-healthcare-practice-online-features-G-diagnostic-results.webp';
     this.header = 'Record and retrieve diagnostic results right where you need them.';
     this.descriptions = [
       'MYCURE can communicate with modern diagnostic machines through HL7 interfacing and PACS configurations.',
