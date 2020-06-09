@@ -48,18 +48,18 @@ import headMeta from '~/utils/head-meta';
 
 export default {
   components: {
-    Usp,
-    RolesAndPrivileges,
-    MedicalRecords,
-    VirtualPractice,
-    Reports,
-    Billing,
-    RegistrationAndQueuing,
-    LaboratoryAndImaging,
-    Inventory,
-    Syncbase,
-    Modules,
-    FeaturesCta,
+    Usp: () => import('~/components/features/usp'),
+    RolesAndPrivileges: () => import('~/components/features/roles-and-privileges'),
+    MedicalRecords: () => import('~/components/features/medical-records'),
+    VirtualPractice: () => import('~/components/features/virtual-practice'),
+    Reports: () => import('~/components/features/reports'),
+    Billing: () => import('~/components/features/billing'),
+    RegistrationAndQueuing: () => import('~/components/features/registration-and-queuing'),
+    LaboratoryAndImaging: () => import('~/components/features/laboratory-and-imaging'),
+    Inventory: () => import('~/components/features/inventory'),
+    Syncbase: () => import('~/components/features/syncbase'),
+    Modules: () => import('~/components/features/modules'),
+    FeaturesCta: () => import('~/components/features/cta'),
   },
   data () {
     return {
