@@ -38,13 +38,13 @@ import Usp from '~/components/virtual-clinic-home/usp';
 
 export default {
   components: {
-    Apis,
-    Cta,
-    PlatformPanels,
-    Privacy,
-    Storyflow,
-    Testimonial,
-    Usp,
+    Apis: () => import('~/components/virtual-clinic-home/apis'),
+    Cta: () => import('~/components/virtual-clinic-home/cta'),
+    PlatformPanels: () => import('~/components/virtual-clinic-home/platform-panels'),
+    Privacy: () => import('~/components/virtual-clinic-home/privacy'),
+    Storyflow: () => import('~/components/commons/storyflow'),
+    Testimonial: () => import('~/components/virtual-clinic-home/testimonial'),
+    Usp: () => import('~/components/virtual-clinic-home/usp'),
   },
   data () {
     this.storyflowItems = [
