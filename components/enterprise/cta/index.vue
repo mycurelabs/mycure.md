@@ -127,7 +127,14 @@ export default {
     margin-bottom: -91%;
   }
   .row-content {
+    margin-left: -80px;
     margin-top: -50px;
+  }
+}
+@media screen and (device-width: 1366px) {
+  .enterprise-cta-content {
+    margin-left: -15px;
+    margin-bottom: -5%;
   }
 }
 </style>
