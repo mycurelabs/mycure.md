@@ -33,8 +33,8 @@
               v-for="(highlight, index) in storyflow"
               align="center"
               :key="index"
-              cols="4"
-            ).text-center.description-holder
+              cols="3"
+            ).text-center.mx-6.description-holder
               img(
                 v-lazy="require(`@/assets/images/${customPath}${highlight.image}`)"
                 :alt="highlight.title"
@@ -189,15 +189,6 @@ export default {
 .story-container{
   padding-bottom: 100px;
 }
-.description-holder {
-  position: relative;
-  min-height: 200px;
-}
-.story-description {
-  color: #a7a7a7;
-  position: absolute;
-  bottom: -80px;
-}
 .pb50 {
   padding-bottom: 50px;
 }
@@ -214,6 +205,22 @@ export default {
   .description-storyflow {
     margin-left: 10%;
     width: 80%;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .description-holder {
+    position: relative;
+    min-height: 340px;
+  }
+  .story-description {
+    color: #a7a7a7;
+    position: absolute;
+    bottom: 0px;
+  }
+}
+@media screen and (min-width: 1264px) {
+  .description-holder {
+    min-height: 320px;
   }
 }
 </style>

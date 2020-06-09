@@ -3,6 +3,8 @@
     client-only
       generic-media-panel(
         content-align-right
+        cols-left="7"
+        cols-right="5"
         align-left-column="start"
         :header="header"
         :descriptions="descriptions"
@@ -60,16 +62,16 @@ export default {
       'Record full medical history, vitals, and physical exam records according to SOAP charting. Eliminate the haste of scribbling with Rx printing, ICD-10 database, multiple image uploads, and more.',
     ];
     this.panelImages = {
-      mediaImage: 'MYCURE-virtual-clinic-healthcare-practice-online-features-B-01-emr.png',
-      leftBottomImage: require('~/assets/images/features/MYCURE-virtual-clinic-healthcare-practice-online-features-B-02-print-prescription.png'),
-      rightBottomImage: require('~/assets/images/features/MYCURE-virtual-clinic-healthcare-practice-online-features-B-03-charting.png'),
+      mediaImage: 'MYCURE-virtual-clinic-healthcare-practice-online-features-B-01-emr.webp',
+      leftBottomImage: require('~/assets/images/features/webp/MYCURE-virtual-clinic-healthcare-practice-online-features-B-02-print-prescription.webp'),
+      rightBottomImage: require('~/assets/images/features/webp/MYCURE-virtual-clinic-healthcare-practice-online-features-B-03-charting.webp'),
     };
     this.mobilePanelImages = {
       mediaImage: 'MYCURE-virtual-clinic-healthcare-practice-online-features-B-01-emr.png',
       leftBottomImage: 'MYCURE-virtual-clinic-healthcare-practice-online-features-B-02-print-prescription-mobile.png',
       rightBottomImage: 'MYCURE-virtual-clinic-healthcare-practice-online-features-B-03-charting-mobile.png',
     };
-    this.customPath = 'features/';
+    this.customPath = 'features/webp/';
     return {};
   },
   methods: {

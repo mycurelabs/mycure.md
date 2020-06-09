@@ -1,6 +1,8 @@
 <template lang="pug">
   generic-media-panel(
     content-align-right
+    cols-left="7"
+    cols-right="5"
     custom-image-path="features/"
     :header="header"
     :descriptions="descriptions"

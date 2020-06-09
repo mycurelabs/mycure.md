@@ -1,6 +1,9 @@
 <template lang="pug">
   generic-media-panel(
     content-align-left
+    cols-left="5"
+    cols-right="6"
+    offset-cols-right="1"
     custom-image-path="features/"
     :header="header"
     :descriptions="descriptions"
@@ -18,7 +21,7 @@ export default {
     GenericMediaPanel,
   },
   data () {
-    this.image = 'MYCURE-virtual-clinic-healthcare-practice-online-features-D-analytics.png';
+    this.image = 'webp/MYCURE-virtual-clinic-healthcare-practice-online-features-D-analytics.webp';
     this.mobileImage = 'MYCURE-virtual-clinic-healthcare-practice-online-features-D-analytics-mobile.png';
     this.header = 'Never miss out on important business decisions.';
     this.descriptions = [
