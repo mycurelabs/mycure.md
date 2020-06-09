@@ -127,12 +127,12 @@ export default {
     width: 110%;
   }
 }
-/* @media screen and (device-width: 768px) {
+@media screen and (device-width: 768px) {
   .image-mobile {
     margin-left: -5%;
     width: 110%;
   }
-} */
+}
 /* @media screen and (device-width: 1024px) {
   .cta-content {
     position: absolute;
