@@ -118,7 +118,7 @@ export default {
     font-size: 30px !important;
   }
 }
-/* @media screen and (device-width: 375px) {
+@media screen and (device-width: 375px) {
   .cta-content {
     margin-bottom: -10%;
   }
@@ -126,7 +126,7 @@ export default {
     margin-left: -5%;
     width: 110%;
   }
-} */
+}
 /* @media screen and (device-width: 768px) {
   .image-mobile {
     margin-left: -5%;
