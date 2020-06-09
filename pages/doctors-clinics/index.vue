@@ -27,7 +27,7 @@ import Usp from '~/components/doctors-clinics/usp';
 
 export default {
   components: {
-    Usp: () => import('~/components/doctors-clinics/usp'),
+    Usp,
     IncreaseRevenue: () => import('~/components/doctors-clinics/increase-revenue'),
     SafekeepData: () => import('~/components/doctors-clinics/safekeep-data'),
     PracticeOnline: () => import('~/components/doctors-clinics/practice-online'),
