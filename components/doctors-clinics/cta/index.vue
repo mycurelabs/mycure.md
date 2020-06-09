@@ -1,50 +1,66 @@
 <template lang="pug">
-  div.white
+  div.white.pt-12
     generic-background-panel(
       :background-image="backgroundImage"
-      :background-image-mobile="backgroundImageMobile"
-      :background-image-mobile-configs="backgroundImageMobileConfigs"
+      :background-image-configs="backgroundImageConfigs"
+      :webContainerStyleConfigs="webContainerStyleConfigs"
       :customPath="customPath"
-      :class="{'pt-12': $isMobile}"
-    )
-      v-row(slot="content").row-content
-        v-col(cols="12" md="5" :class="[{'web-content-margin': !$isMobile}]" v-if="!$isMobile")
-          h1(:class="titleClasses").font-poppins.font-40.lh-title {{ uspTitle }}
-          p(:class="[centerText]").font-italic.font-18.px-1 {{ uspSubtitle }}
-          div(v-if="!$isMobile").text-field-container.white
+    ).cta-content
+      v-row(slot="content" align="center" v-if="!$isMobile")
+        v-col(
+          cols="12"
+          md="5"
+          :class="[{'web-content-margin': !$isMobile}]"
+        ).pt-5.cta-title
+          h1.font-40.lh-title.panel-title {{ panelTitle }}
+          p.font-italic.mt-3.font-18.cta-subtitle {{ ctaSubtitle }}
+          div(v-if="!$isMobile").pt-5.text-field-container
             v-text-field(
+              background-color="white"
               v-model="email"
-              outlined
               placeholder="myname@email.com"
+              outlined
             )
           v-btn(
-            v-if="!$isMobile"
+            @click="onGetStarted"
+            color="accent"
             block
-            color="accent"
             large
-            @click="onGetStarted"
-          ).text-none.font-weight-bold.font-18.mt-5 Get Started
-          p(:class="[centerText]").white--text.font-16.px-1.text-center.py-2 {{ uspAgreement }}
-        v-col(cols="12" md="5" v-if="$isMobile" one-line).cta-form
-          h1.font-poppins.font-30.lh-title {{ uspTitle }}
-          p.font-italic.font-18.font-weight-light.px-1.pt-1 {{ uspSubtitle }}
-          div.text-field-container.white
+          ).mt-n3.text-none.font-weight-bold.font-18.cta-btn Get Started
+          p.mt-3.font-18.white--text.text-center.cta-agreement {{ ctaAgreement }}
+        img(
+          v-if="$isMobile"
+          v-lazy="panelImageSrc"
+          alt="Home CTA"
+          width="100%"
+        ).pt-10
+      v-row(slot="content" align="center" v-if="$isMobile")
+        v-col(
+          cols="12"
+        )
+          h1.font-40.lh-title.panel-title {{ panelTitle }}
+          p.font-italic.mt-3.font-18.cta-subtitle {{ ctaSubtitle }}
+          div.mt-5.text-field-container
             v-text-field(
+              background-color="white"
               v-model="email"
-              outlined
               placeholder="myname@email.com"
+              outlined
             )
           v-btn(
             color="accent"
             large
             @click="onGetStarted"
-          ).text-none.font-weight-bold.font-18.mt-5 Get Started
-          p.font-16.font-weight-light.px-1.pt-1 {{ uspAgreement }}
+          ).text-none.font-weight-bold.font-18.mt-n3.cta-btn Get Started
+          p.mt-2.cta-agreement {{ ctaAgreement }}
+          img(
+            v-lazy="panelImageSrc"
+            alt="Home CTA"
+            width="100%"
+          ).pt-10.image-mobile
 </template>
 
 <script>
-// utils
-import { parseTextWithNewLine } from '~/utils/newline';
 // components
 import GenericBackgroundPanel from '~/components/commons/generic-background-panel';
 export default {
@@ -55,66 +71,82 @@ export default {
     this.backgroundImage = 'MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-final-cta-cover.png';
     this.backgroundImageMobile = 'MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-final-cta-cover-mobile.png';
     this.panelTitle = 'Build your virtual clinic today.';
-    this.uspSubtitle = 'For Modern Doctors, Virtual is the new normal.';
-    this.uspAgreement = 'By entering your email, you agree to receive marketing emails from MYCURE.';
+    this.ctaSubtitle = 'For Modern Doctors, Virtual is the new normal.';
+    this.ctaAgreement = 'By entering your email, you agree to receive marketing emails from MYCURE.';
     this.customPath = 'doctors-clinics/';
     return {
       email: '',
     };
   },
   computed: {
-    backgroundImageMobileConfigs () {
+    backgroundImageConfigs () {
       return {
-        'background-size': '100%',
-        'background-position': '0px 450px',
-        'padding-bottom': '10%',
+        width: '100%',
+        position: 'absolute',
+        left: '0',
+        bottom: '0',
       };
     },
-    centerText () {
-      return { 'text-center': this.$isMobile };
+    webContainerStyleConfigs () {
+      return { position: 'relative' };
     },
-    titleClasses () {
-      return this.$isMobile
-        ? [this.centerText]
-        : ['pre-white-space'];
-    },
-    uspTitle () {
-      return this.$isMobile
-        ? this.panelTitle
-        : parseTextWithNewLine(this.panelTitle, ['virtual ']);
+    panelImageSrc () {
+      return require(`~/assets/images/doctors-clinics/${this.backgroundImageMobile}`);
     },
   },
   methods: {
     onGetStarted () {
-      if (!this.email) {
-        return;
-      }
-      this.$emit('getStarted', this.email);
+      this.$emit('getStarted');
     },
   },
 };
 </script>
 
 <style scoped>
-.text-field-container {
-  height: 58px;
-  border: 1px solid black;
-  border-radius: 2px;
-}
 .web-content-margin {
   margin-top: 80px;
 }
-.row-content {
-  height: 100vh;
-}
-@media screen and (max-width: 375px) {
-  .cta-form {
-    margin-top: 5%;
+@media screen and (device-width: 360px) {
+  .cta-content {
+    margin-bottom: -10%;
+  }
+  .image-mobile {
+    margin-left: -5%;
+    width: 110%;
+  }
+  .panel-title{
+    font-size: 30px !important;
   }
 }
-@media screen and (max-width: 360px) {
-  .cta-form {
-    margin-top: 5%;
+/* @media screen and (device-width: 375px) {
+  .cta-content {
+    margin-bottom: -10%;
   }
-}
+  .image-mobile {
+    margin-left: -5%;
+    width: 110%;
+  }
+} */
+/* @media screen and (device-width: 768px) {
+  .image-mobile {
+    margin-left: -5%;
+    width: 110%;
+  }
+} */
+/* @media screen and (device-width: 1024px) {
+  .cta-content {
+    position: absolute;
+    margin-top: -80%;
+    z-index: 1;
+  }
+  .cta-title {
+    margin-bottom: -245%;
+  }
+  .panel-title {
+    font-size: 30px !important;
+  }
+  .cta-agreement {
+    font-size: 16px !important;
+  }
+} */
 </style>
