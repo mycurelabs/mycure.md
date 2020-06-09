@@ -5,7 +5,7 @@
         img(
           v-lazy="require('~/assets/images/doctors-clinics/MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-E-patient-portal.png')"
           alt="Access quality healthcare"
-        )
+        ).web-image
       v-col(align-self="center" cols="12" md="6")
         h1.font-30.lh-title.pb-3.font-weight-light {{ACCESS_QUALITY_HEALTHCARE.header}}
         br
@@ -42,5 +42,10 @@ export default {
 a {
   text-decoration-color: #2e9fdf;
   text-decoration: none;
+}
+@media screen and (device-width: 1024px) {
+  .web-image {
+    width: 100%;
+  }
 }
 </style>

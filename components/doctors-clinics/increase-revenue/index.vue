@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-container.increase-revenue-content
+  v-container.pb-12.increase-revenue-content
     v-row(justify="center")
       v-col(cols="12" md="10" v-if="!$isMobile")
         img(
