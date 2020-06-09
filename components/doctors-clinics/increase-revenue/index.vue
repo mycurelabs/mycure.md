@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-container
+  v-container.increase-revenue-content
     v-row(justify="center")
       v-col(cols="12" md="10" v-if="!$isMobile")
         img(
@@ -60,5 +60,10 @@ a {
   margin-left: -3%;
   position: absolute;
   bottom: 0;
+}
+@media screen and (device-width: 1024px) {
+  .increase-revenue-content {
+  margin-top: -90%;
+  }
 }
 </style>
