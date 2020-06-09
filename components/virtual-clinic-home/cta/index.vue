@@ -132,8 +132,6 @@ export default {
     margin-top: -80%;
     z-index: 1;
   }
-}
-@media screen and (device-width: 1024px) {
   .cta-title {
     margin-bottom: -245%;
   }

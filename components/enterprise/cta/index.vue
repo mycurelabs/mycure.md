@@ -1,12 +1,12 @@
 <template lang="pug">
-  div.white
+  v-container.white.enterprise-cta-content
     generic-background-panel(
       :background-image="backgroundImage"
       :background-image-mobile="backgroundImageMobile"
       :background-image-mobile-configs="backgroundImageMobileConfigs"
       :customPath="customPath"
       :class="{'pt-12': $isMobile}"
-    ).enterprise-cta-content
+    )
       v-row(slot="content" v-if="!$isMobile").row-content
         v-col(cols="12" md="5" :class="[{'web-content-margin': !$isMobile}]").pt-12
           h1(:class="titleClasses" white--text).font-poppins.font-40.py-10.white--text {{ panelTitle }}
@@ -36,9 +36,10 @@
               outlined
             )
           v-btn(
+            background-color="white"
             color="accent"
-            large
             @click="onGetStarted"
+            large
           ).text-none.font-weight-medium.font-18 Get Started
           p.font-16.font-weight-light.px-1.pt-1.one-line {{ ctaAgreement }}
 </template>
@@ -97,15 +98,14 @@ export default {
 <style scoped>
 .text-field-container {
   height: 58px;
-  /* border: 1px solid black; */
   border-radius: 2px;
 }
 .web-content-margin {
   margin-top: 80px;
 }
-.row-content {
+/* .row-content {
   height: 100vh;
-}
+} */
 @media screen and (device-width: 360px) {
    .enterprise-cta-content {
      margin-bottom: -90px;
@@ -119,6 +119,14 @@ export default {
 @media screen and (device-width: 768px) {
   .enterprise-cta-content {
     margin-bottom: -22%;
+  }
+}
+@media screen and (device-width: 1024px){
+  .enterprise-cta-content {
+    margin-top: 10%;
+  }
+  .row-content {
+    margin-top: -50px;
   }
 }
 </style>
