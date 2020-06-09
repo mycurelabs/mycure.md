@@ -1,18 +1,18 @@
 <template lang="pug">
   div(v-if="!loading")#top
     //- 1st panel
-    usp(@getStarted="onGetStarted($event)")
+    usp(@getStarted="goToSignupIndividual($event)")
     //- 2nd panel
-    your-patients(@getStarted="goToSignup")
+    your-patients(@getStarted="onGetStarted")
     //- 3rd panel
-    handle-outpatient(@getStarted="goToSignup")
+    handle-outpatient(@getStarted="onGetStarted")
     //- 4th panel
     smarter-decisions
     //- 5th panel
-    multiple-branches
+    multiple-branches(@getStarted="onGetStarted")
     //- 6th panel
     div.cta-container
-      cta(@getStarted="onGetStarted($event)")
+      cta(@getStarted="goToSignupIndividual($event)")
 </template>
 
 <script>
@@ -46,12 +46,11 @@ export default {
     this.loading = false;
   },
   methods: {
-    onGetStarted (email) {
-      localStorage.setItem('multi:step3:email', email);
-      this.goToSignup();
+    onGetStarted () {
+      this.$router.push({ name: 'signup-individual' });
     },
-    goToSignup () {
-      this.$nuxt.$router.push({ name: 'signup-multispecialty' });
+    goToSignupIndividual (email) {
+      this.$router.push({ name: 'signup-individual', params: { email } });
     },
   },
   head () {
