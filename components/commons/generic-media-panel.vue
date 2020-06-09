@@ -3,7 +3,7 @@
     //- COLUMN VIEW
     v-row(v-if="!centerMedia" justify="center").py-10
       //- Left column
-      v-col(:align-self="alignLeftColumn" cols="12" :md="contentAlignLeft ? '5' : '7'")
+      v-col(:align-self="alignLeftColumn" cols="12" :md="colsLeft" :offset-md="offsetColsLeft")
         img(
           v-if="!$isMobile && contentAlignRight"
           v-lazy="webImagePath"
@@ -18,7 +18,7 @@
             br
           slot(name="additional-content")
       //- Right Column
-      v-col(:align-self="alignRightColumn" cols="12" :md="contentAlignRight ? '5' : '6'" :offset-md="contentAlignLeft ? '1' : '0'")
+      v-col(:align-self="alignRightColumn" cols="12" :md="colsRight" :offset-md="offsetColsRight")
         img(
           v-if="!$isMobile && contentAlignLeft"
           v-lazy="webImagePath"
@@ -76,6 +76,22 @@ export default {
     centerMedia: {
       type: Boolean,
       default: false,
+    },
+    colsLeft: {
+      type: String,
+      default: '5',
+    },
+    colsRight: {
+      type: String,
+      default: '6',
+    },
+    offsetColsLeft: {
+      type: String,
+      default: '0',
+    },
+    offsetColsRight: {
+      type: String,
+      default: '0',
     },
     contentAlignLeft: {
       type: Boolean,
