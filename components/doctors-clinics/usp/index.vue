@@ -8,7 +8,7 @@
     ).usp-content
       v-row(slot="content").row-content
         v-col(cols="12" md="5" :class="[{'web-content-margin': !$isMobile}]" v-if="!$isMobile")
-          p(:class="[centerText]").font-18.mx-1.pt-5 {{ uspSubheader }}
+          p(:class="[centerText]").font-18.mx-1 {{ uspSubheader }}
           h1(:class="titleClasses").font-poppins.font-40.lh-title {{ uspTitle }}
           p(:class="[centerText]").font-18.mx-1.pt-5 {{ uspSubtitle }}
           v-btn(
@@ -102,15 +102,16 @@ export default {
 }
 .row-content {
   height: 100vh;
-}
-@media screen and (max-width: 375px) {
-  .text-field-container {
-    margin-top: -69%;
-  }
+  margin-top: -5%;
 }
 @media screen and (max-width: 360px) {
   .text-field-container {
   margin-top: -28%;
+  }
+}
+@media screen and (max-width: 375px) {
+  .text-field-container {
+    margin-top: -62%;
   }
 }
 @media screen and (device-width: 1024px) {
