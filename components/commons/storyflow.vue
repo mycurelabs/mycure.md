@@ -33,8 +33,8 @@
               v-for="(highlight, index) in storyflow"
               align="center"
               :key="index"
-              cols="4"
-            ).text-center.description-holder
+              cols="3"
+            ).text-center.mx-6.description-holder
               img(
                 v-lazy="require(`@/assets/images/${customPath}${highlight.image}`)"
                 :alt="highlight.title"
@@ -210,12 +210,17 @@ export default {
 @media screen and (min-width: 1024px) {
   .description-holder {
     position: relative;
-    min-height: 320px;
+    min-height: 340px;
   }
   .story-description {
     color: #a7a7a7;
     position: absolute;
     bottom: 0px;
+  }
+}
+@media screen and (min-width: 1264px) {
+  .description-holder {
+    min-height: 320px;
   }
 }
 </style>
