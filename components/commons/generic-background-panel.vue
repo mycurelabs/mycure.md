@@ -87,7 +87,6 @@ export default {
 <style scoped>
 .main-container {
   width: 100vw;
-  height: 500px;
 }
 .content {
   position: relative;
