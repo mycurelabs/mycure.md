@@ -103,9 +103,9 @@ export default {
 .web-content-margin {
   margin-top: 80px;
 }
-/* .row-content {
+.row-content {
   height: 100vh;
-} */
+}
 @media screen and (device-width: 360px) {
    .enterprise-cta-content {
      margin-bottom: -90px;
@@ -124,6 +124,7 @@ export default {
 @media screen and (device-width: 1024px){
   .enterprise-cta-content {
     margin-top: 10%;
+    margin-bottom: -91%;
   }
   .row-content {
     margin-top: -50px;
