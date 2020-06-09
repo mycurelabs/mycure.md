@@ -52,11 +52,11 @@ export default {
     GenericBackgroundPanel,
   },
   data () {
-    this.backgroundImage = 'MYCURE-virtual-clinic-healthcare-practice-online-homepage-final-cta-cover.png';
+    this.backgroundImage = 'MYCURE-virtual-clinic-healthcare-practice-online-homepage-final-cta-cover.webp';
     this.backgroundImageMobile = 'MYCURE-virtual-clinic-healthcare-practice-online-homepage-final-cta-cover-mobile.png';
     this.uspTitle = 'Start your modern clinic experience with MYCURE';
     this.uspSubtitle = 'Explore all the tools and services you need to run and grow your clinic online and offline.';
-    this.customPath = 'virtual-clinic-home/';
+    this.customPath = 'virtual-clinic-home/webp/';
     return {
       email: '',
     };
