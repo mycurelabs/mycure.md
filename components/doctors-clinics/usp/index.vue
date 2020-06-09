@@ -5,7 +5,7 @@
       :background-image-mobile="backgroundImageMobile"
       :background-image-mobile-configs="backgroundImageMobileConfigs"
       :custom-path="customPath"
-    )
+    ).usp-content
       v-row(slot="content").row-content
         v-col(cols="12" md="5" :class="[{'web-content-margin': !$isMobile}]" v-if="!$isMobile")
           p(:class="[centerText]").font-18.mx-1.pt-5 {{ uspSubheader }}
@@ -111,6 +111,11 @@ export default {
 @media screen and (max-width: 360px) {
   .text-field-container {
   margin-top: -28%;
+  }
+}
+@media screen and (device-width: 1024px) {
+  .row-content {
+  margin-top: -20%;
   }
 }
 </style>
