@@ -8,23 +8,28 @@
       :class="{'mt-10': $isMobile}"
     )
       v-row(slot="content" :align="$isMobile ? 'start' : 'center'" :class="rowContentClass").usp-content
-        v-col(cols="12" md="5" xl="4" :class="{'pt-10': $isMobile}")
-          h1(:class="titleClasses").font-poppins.font-40.lh-title {{ uspTitle }}
+        v-col(cols="12" md="6" xl="4" :class="{'pt-10': $isMobile}")
+          h1(:class="titleClasses").font-poppins.font-50.lh-title {{ uspTitle }}
           p(:class="[centerText]").font-italic.font-18.mx-1 {{ uspSubtitle }}
-          div(v-if="!$isMobile").text-field-container
+          div(v-if="!$isMobile").text-field-container.mr-3
             v-text-field(
+              elevation="2"
               background-color="white"
               v-model="email"
               placeholder="myname@email.com"
               outlined
-            )
+              dense
+              height="52"
+            ).text-field-input
           v-btn(
+            elevation="2"
             v-if="!$isMobile"
-            block
             color="accent"
             large
+            width="160"
+            height="50"
             @click="onGetStarted"
-          ).text-none.font-weight-bold.font-18.mt-3 Get Started
+          ).text-none.font-weight-bold.font-18.py-4.text-field-btn Get Started
     template(v-if="$isMobile")
       div.text-field-container
         v-text-field(
@@ -53,8 +58,8 @@ export default {
   data () {
     this.backgroundImage = 'MYCURE-virtual-clinic-healthcare-practice-online-homepage-usp-cover.webp';
     this.backgroundImageMobile = 'MYCURE-virtual-clinic-healthcare-practice-online-homepage-usp-cover-mobile.png';
-    this.panelTitle = 'Build your virtual clinic today.';
-    this.uspSubtitle = 'For Modern Doctors, Virtual is the new normal.';
+    this.panelTitle = 'For Modern Doctors, Virtual is the new normal.';
+    this.uspSubtitle = 'Build your virtual clinic today.';
     this.customPath = 'virtual-clinic-home/';
     return {
       email: '',
@@ -78,7 +83,7 @@ export default {
     uspTitle () {
       return this.$isMobile
         ? this.panelTitle
-        : parseTextWithNewLine(this.panelTitle, ['virtual ']);
+        : parseTextWithNewLine(this.panelTitle, ['Modern ', 'Virtual ']);
     },
     rowContentClass () {
       return this.$isMobile
@@ -99,8 +104,13 @@ export default {
 
 <style scoped>
 .text-field-container {
-  height: 58px;
+  height: 52px;
   border-radius: 2px;
+  display: inline-block;
+}
+.text-field-container .text-field-input{
+  width: 295px;
+  opacity: 0.9;
 }
 .web-row-content {
   height: 100vh;
@@ -121,6 +131,16 @@ export default {
 @media screen and (device-width: 1024px) {
   .usp-content {
     margin-top: -67%;
+  }
+}
+@media screen and (max-width: 1038px) {
+  .text-field-container {
+    display: unset;
+  }
+}
+@media screen and (max-width: 1264px) {
+  .text-field-container .text-field-input{
+    width: 254px;
   }
 }
 @media screen and (device-width: 1366px) {

@@ -19,7 +19,7 @@
         br
         br
         v-btn(text @click="onGetStarted").ml-n4
-          strong.text-capitalize.primary--text {{HOME_START_YOUR_PHYSICAL.btnTxt}}
+          strong.text-capitalize.primary--text.font-18 {{HOME_START_YOUR_PHYSICAL.btnTxt}}
           v-icon.primary--text {{HOME_START_YOUR_PHYSICAL.btnIcon}}
       img(
         v-if="$isMobile"
@@ -35,7 +35,7 @@
         br
         br
         v-btn(@click="onGetStarted" text).ml-n4
-          strong.text-capitalize.primary--text {{YOUR_ONLINE_CLINIC.btnTxt}}
+          strong.text-capitalize.primary--text.font-18 {{YOUR_ONLINE_CLINIC.btnTxt}}
           v-icon.primary--text {{YOUR_ONLINE_CLINIC.btnIcon}}
       v-col(justify="end" align="center" cols="12" md="5" v-if="!$isMobile").second-column
         img(v-lazy="require('~/assets/images/virtual-clinic-home/webp/MYCURE-virtual-clinic-healthcare-practice-online-homepage-B-appointment.webp')" width="90%" alt="Your online clinic everywhere").pl-12
@@ -53,7 +53,7 @@
         br
         br
         v-btn(@click="onGetStarted" text).ml-n4
-          strong.text-capitalize.primary--text {{GET_MORE_PATIENTS.btnTxt}}
+          strong.text-capitalize.primary--text.font-18 {{GET_MORE_PATIENTS.btnTxt}}
           v-icon.primary--text {{GET_MORE_PATIENTS.btnIcon}}
       img(
         v-if="$isMobile"
@@ -69,7 +69,7 @@
         br
         br
         v-btn(@click="onGetStarted" text).ml-n4
-          strong.text-capitalize.primary--text {{MANAGE_EVERYTHING_EASILY.btnTxt}}
+          strong.text-capitalize.primary--text.font-18 {{MANAGE_EVERYTHING_EASILY.btnTxt}}
           v-icon.primary--text {{MANAGE_EVERYTHING_EASILY.btnIcon}}
       v-col(align="center" cols="12" md="5" v-if="!$isMobile").second-column.img-manage-easily
         img(v-lazy="require('~/assets/images/virtual-clinic-home/webp/MYCURE-virtual-clinic-healthcare-practice-online-homepage-D-billing-encounter-summary.webp')" alt="Manage everything easily" width="110%")
