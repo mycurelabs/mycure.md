@@ -1,48 +1,56 @@
 <template lang="pug">
-  div.white
+  div.white.pt-12
     generic-background-panel(
       :background-image="backgroundImage"
-      :background-image-mobile="backgroundImageMobile"
-      :background-image-mobile-configs="backgroundImageMobileConfigs"
+      :background-image-configs="backgroundImageConfigs"
+      :webContainerStyleConfigs="webContainerStyleConfigs"
       :customPath="customPath"
-      :class="{'pt-12': $isMobile}"
-    )
-      v-row(slot="content").row-content
-        v-col(cols="12" md="5" :class="[{'web-content-margin': !$isMobile}]" v-if="!$isMobile").pt-12
-          h1(:class="titleClasses" white--text).font-poppins.font-40.py-10.white--text {{ panelTitle }}
-          div(v-if="!$isMobile").text-field-container.white
+    ).cta-content
+      v-row(slot="content")
+        v-col(
+          cols="12"
+          md="5"
+          v-if="!$isMobile"
+          :class="[{'web-content-margin': !$isMobile}]"
+        ).pt-5.cta-title
+          h1.font-40.lh-title.white--text.panel-title {{ panelTitle }}
+          div(v-if="!$isMobile").pt-5.text-field-container
             v-text-field(
+              background-color="white"
               v-model="email"
-              outlined
               placeholder="myname@email.com"
+              outlined
             )
           v-btn(
-            v-if="!$isMobile"
+            @click="onGetStarted"
+            color="accent"
             block
-            color="accent"
             large
-            @click="onGetStarted"
-          ).text-none.font-weight-bold.font-18.mt-3 Get Started
-          p.font-16.font-weight-light.px-1.pt-1.text-center.white--text {{ ctaAgreement }}
-        v-col(cols="12" md="5" v-if="$isMobile" one-line)
-          h1.font-poppins.font-30.lh-title {{ panelTitle }}
-          div.text-field-container.white.mt-5
+          ).mt-n3.text-none.font-weight-bold.font-18.cta-btn Get Started
+          p.mt-3.font-18.text-center.white--text.cta-agreement {{ ctaAgreement }}
+        v-col(cols="12" v-if="$isMobile")
+          h1.font-40.lh-title.cta-title {{ panelTitle }}
+          div.mt-5.text-field-container
             v-text-field(
+              background-color="white"
               v-model="email"
-              outlined
               placeholder="myname@email.com"
+              outlined
             )
           v-btn(
             color="accent"
             large
             @click="onGetStarted"
-          ).text-none.font-weight-medium.font-18.mt-2 Get Started
-          p.font-16.font-weight-light.px-1.pt-1.one-line {{ ctaAgreement }}
+          ).text-none.font-weight-bold.font-18.mt-n3.cta-btn Get Started
+          p.mt-2 {{ ctaAgreement }}
+          img(
+            v-lazy="panelImageSrc"
+            alt="Home CTA"
+            width="100%"
+          ).pt-10.image-mobile
 </template>
 
 <script>
-// utils
-import { parseTextWithNewLine } from '~/utils/newline';
 // components
 import GenericBackgroundPanel from '~/components/commons/generic-background-panel';
 export default {
@@ -60,24 +68,19 @@ export default {
     };
   },
   computed: {
-    backgroundImageMobileConfigs () {
+    backgroundImageConfigs () {
       return {
-        'background-size': '100%',
-        'background-position': '0px 410px',
+        width: '100%',
+        position: 'absolute',
+        left: '0',
+        bottom: '0',
       };
     },
-    centerText () {
-      return { 'text-center': this.$isMobile };
+    webContainerStyleConfigs () {
+      return { position: 'relative' };
     },
-    titleClasses () {
-      return this.$isMobile
-        ? [this.centerText]
-        : ['pre-white-space'];
-    },
-    uspTitle () {
-      return this.$isMobile
-        ? this.panelTitle
-        : parseTextWithNewLine(this.panelTitle, ['virtual ']);
+    panelImageSrc () {
+      return require(`~/assets/images/enterprise/${this.backgroundImageMobile}`);
     },
   },
   methods: {
@@ -92,15 +95,47 @@ export default {
 </script>
 
 <style scoped>
-.text-field-container {
-  height: 58px;
-  border: 1px solid black;
-  border-radius: 2px;
-}
 .web-content-margin {
   margin-top: 80px;
 }
-.row-content {
-  height: 100vh;
+@media screen and (device-width: 360px) {
+  .cta-content {
+    margin-bottom: -10%;
+  }
+  .image-mobile {
+    margin-left: -5%;
+    width: 110%;
+  }
+}
+@media screen and (device-width: 375px) {
+  .cta-content {
+    margin-bottom: -10%;
+  }
+  .image-mobile {
+    margin-left: -5%;
+    width: 110%;
+  }
+}
+@media screen and (device-width: 768px) {
+  .image-mobile {
+    margin-left: -5%;
+    width: 110%;
+  }
+}
+@media screen and (device-width: 1024px) {
+  .cta-content {
+    position: absolute;
+    margin-top: -80%;
+    z-index: 1;
+  }
+  .cta-title {
+    margin-top: 110%;
+  }
+  .panel-title {
+    font-size: 30px !important;
+  }
+  .cta-agreement {
+    font-size: 16px !important;
+  }
 }
 </style>
