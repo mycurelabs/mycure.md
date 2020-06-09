@@ -31,24 +31,13 @@
 import VueScrollTo from 'vue-scrollto';
 // - components
 import Usp from '~/components/features/usp';
-import RolesAndPrivileges from '~/components/features/roles-and-privileges';
-import MedicalRecords from '~/components/features/medical-records';
-import VirtualPractice from '~/components/features/virtual-practice';
-import Reports from '~/components/features/reports';
-import Billing from '~/components/features/billing';
-import RegistrationAndQueuing from '~/components/features/registration-and-queuing';
-import LaboratoryAndImaging from '~/components/features/laboratory-and-imaging';
-import Inventory from '~/components/features/inventory';
-import Syncbase from '~/components/features/syncbase';
-import Modules from '~/components/features/modules';
-import FeaturesCta from '~/components/features/cta';
 // - utils
 import { parseTextWithNewLine } from '~/utils/newline';
 import headMeta from '~/utils/head-meta';
 
 export default {
   components: {
-    Usp: () => import('~/components/features/usp'),
+    Usp,
     RolesAndPrivileges: () => import('~/components/features/roles-and-privileges'),
     MedicalRecords: () => import('~/components/features/medical-records'),
     VirtualPractice: () => import('~/components/features/virtual-practice'),
