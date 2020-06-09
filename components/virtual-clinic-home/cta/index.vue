@@ -87,7 +87,7 @@ export default {
 
 <style scoped>
 .web-content-margin {
-  margin-top: 80px;
+  margin-top: 190px;
 }
 @media screen and (device-width: 360px) {
   .cta-content {
