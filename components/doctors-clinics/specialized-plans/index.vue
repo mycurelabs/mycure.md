@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-container
+  v-container.specialized-plans-contents
     v-row(justify="center").py-12
       v-col(cols="12" md="7")
         h1.font-30.lh-title.pb-3.font-weight-light.text-center {{SPECIALIZED_PLANS.header}}
@@ -37,4 +37,10 @@ export default {
 </script>
 
 <style scoped>
+@media screen and (device-width: 1024px) {
+  .specialized-plans-contents {
+    position: relative;
+    z-index: 2;
+  }
+}
 </style>

@@ -133,10 +133,10 @@ export default {
     width: 110%;
   }
 }
-/* @media screen and (device-width: 1024px) {
+@media screen and (device-width: 1024px) {
   .cta-content {
     position: absolute;
-    margin-top: -80%;
+    margin-top: -85%;
     z-index: 1;
   }
   .cta-title {
@@ -148,5 +148,11 @@ export default {
   .cta-agreement {
     font-size: 16px !important;
   }
-} */
+  .text-field-container{
+    margin-top: -35px !important;
+  }
+  .cta-subtitle {
+    font-size: 16px !important;
+  }
+}
 </style>

@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-container
+  v-container.quality-healthcare-contents
     v-row(justify="center").py-12
       v-col(align-self="center" cols="12" md="6" v-if="!$isMobile")
         img(
@@ -46,6 +46,10 @@ a {
 @media screen and (device-width: 1024px) {
   .web-image {
     width: 100%;
+  }
+  .quality-healthcare-contents {
+    position: relative;
+    z-index: 2;
   }
 }
 </style>
