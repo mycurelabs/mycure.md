@@ -56,6 +56,9 @@ export default {
 .font-60 {
   font-size: 60px !important;
 }
+.font-50 {
+  font-size: 50px !important;
+}
 .font-48 {
   font-size: 48px !important;
 }
