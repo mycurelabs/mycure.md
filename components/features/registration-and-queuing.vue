@@ -6,7 +6,7 @@
         cols-left="5"
         cols-right="6"
         offset-cols-right="1"
-        custom-image-path="features/"
+        custom-image-path="features/webp/"
         :header="header"
         :descriptions="descriptions"
         :web-image="image"
@@ -38,7 +38,7 @@ export default {
     GenericMediaPanel,
   },
   data () {
-    this.image = 'MYCURE-virtual-clinic-healthcare-practice-online-features-F-queue.png';
+    this.image = 'MYCURE-virtual-clinic-healthcare-practice-online-features-F-queue.webp';
     this.header = 'Value everyone\'s time more effectively.';
     this.descriptions = [
       'With MYCURE, queueing is easier done than spelled. Patients easily register themselves via kiosks',

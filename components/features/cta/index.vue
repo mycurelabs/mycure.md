@@ -51,11 +51,11 @@ export default {
     GenericBackgroundPanel,
   },
   data () {
-    this.backgroundImage = 'MYCURE-virtual-clinic-healthcare-practice-online-features-I-final-cta-cover.png';
+    this.backgroundImage = 'MYCURE-virtual-clinic-healthcare-practice-online-features-I-final-cta-cover.webp';
     this.backgroundImageMobile = 'MYCURE-virtual-clinic-healthcare-practice-online-features-I-final-cta-cover-mobile.png';
     this.uspTitle = 'Embrace a new habit.';
     this.uspSubtitle = 'Let your patients experience top-of-the-line services with the help of MYCURE.';
-    this.customPath = 'features/';
+    this.customPath = 'features/webp/';
     return {
       email: '',
     };
