@@ -58,7 +58,7 @@ export default {
   data () {
     this.backgroundImage = 'MYCURE-virtual-clinic-healthcare-practice-online-homepage-usp-cover.png';
     this.backgroundImageMobile = 'MYCURE-virtual-clinic-healthcare-practice-online-homepage-usp-cover-mobile.png';
-    this.panelTitle = 'For Modern Doctors, Virtual is the new normal.';
+    this.panelTitle = 'For modern doctors, virtual is the new normal.';
     this.uspSubtitle = 'Build your virtual clinic today.';
     this.customPath = 'virtual-clinic-home/';
     return {
