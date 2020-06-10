@@ -7,10 +7,20 @@
     //- 3rd panel
     handle-outpatient(@getStarted="goToSignup")
     //- 4th panel
-    smarter-decisions
+    patients-loop(@getStarted="goToSignup")
     //- 5th panel
-    multiple-branches
+    smarter-decisions
     //- 6th panel
+    multiple-branches
+    //- 7th panel
+    one-stop
+    //- 8th panel
+    keep-employees
+    //- 9th panel
+    enriching-hearts
+    //- 10th panel
+    release-diagnostics
+    //- cta panel
     div.cta-container
       cta(@getStarted="onGetStarted($event)")
 </template>
@@ -23,8 +33,13 @@ import headMeta from '~/utils/head-meta';
 import Usp from '~/components/enterprise/usp';
 import YourPatients from '~/components/enterprise/your-patients';
 import HandleOutpatient from '~/components/enterprise/handle-outpatient';
+import PatientsLoop from '~/components/enterprise/patients-loop';
 import SmarterDecisions from '~/components/enterprise/smarter-decisions';
 import MultipleBranches from '~/components/enterprise/multiple-branches';
+import OneStop from '~/components/enterprise/one-stop';
+import KeepEmployees from '~/components/enterprise/keep-employees';
+import EnrichingHearts from '~/components/enterprise/enriching-hearts';
+import ReleaseDiagnostics from '~/components/enterprise/release-diagnostics';
 import Cta from '~/components/enterprise/cta';
 
 export default {
@@ -32,8 +47,13 @@ export default {
     Usp,
     YourPatients,
     HandleOutpatient,
+    PatientsLoop,
     SmarterDecisions,
     MultipleBranches,
+    OneStop,
+    KeepEmployees,
+    EnrichingHearts,
+    ReleaseDiagnostics,
     Cta,
   },
   data () {

@@ -1,5 +1,5 @@
 <template lang="pug">
-  div.white
+  div.white.features-usp
     generic-background-panel(
       :background-image="backgroundImage"
       :background-image-mobile="backgroundImageMobile"
@@ -105,4 +105,13 @@ export default {
 .mobile-row-content {
   min-height: 100vh;
 }
+@media screen and (device-width: 1024px) and (orientation: portrait) {
+  .web-row-content {
+    height: 20vh;
+  }
+  .features-usp{
+    height: 32vh;
+  }
+}
+
 </style>

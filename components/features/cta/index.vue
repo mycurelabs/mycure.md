@@ -93,4 +93,24 @@ export default {
 .row-content {
   height: 120vh;
 }
+@media screen and (device-width: 768px) and (orientation: portrait) {
+  .row-content {
+    height: 84vh;
+  }
+}
+@media screen and (device-height: 768px) and (orientation: landscape) {
+  .row-content {
+    height: 73vh;
+  }
+}
+@media screen and (device-width: 1024px) and (orientation: portrait) {
+  .row-content {
+    height: 41vh;
+  }
+}
+@media screen and (device-height: 1024px) and (orientation: landscape) {
+  .row-content {
+    height: 74vh;
+  }
+}
 </style>

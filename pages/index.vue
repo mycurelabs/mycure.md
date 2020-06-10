@@ -101,8 +101,8 @@ export default {
   },
   head () {
     return headMeta({
-      title: 'MYCURE Advanced Complete Clinic Management System',
-      description: 'MYCURE is an advanced clinic management system that optimizes workflows, gives real-time EMR and business insights — loved by doctors and medical staff.',
+      title: 'MYCURE Virtual Clinic | Healthcare Practice Online',
+      description: 'MYCURE is an advanced clinic management system that allows you to securely consult with patients online and get real-time medical and business insights.',
       // - TODO: Replace with local if applicable
       socialBanner: 'https://firebasestorage.googleapis.com/v0/b/mc-v4-prod.appspot.com/o/web-main-assets%2FMYCURE-Open-Graph-Images-Home.png?alt=media&token=61978d70-326f-4323-8e6a-17d7b9c9a53b',
     });

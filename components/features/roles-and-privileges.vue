@@ -1,15 +1,14 @@
 <template lang="pug">
   generic-media-panel(
     content-align-left
-    cols-left="5"
+    cols-left="4"
     cols-right="6"
-    offset-cols-right="1"
     custom-image-path="features/"
     :header="header"
     :descriptions="descriptions"
     :web-image="image"
     mobile-image-width="90%"
-  )
+  ).roles-and-privileges
 </template>
 
 <script>
@@ -29,3 +28,34 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.roles-and-privileges {
+  margin-top: 17%;
+}
+@media screen and (max-width: 1038px){
+  .roles-and-privileges {
+    margin-top: 0%;
+  }
+}
+@media screen and (device-width: 768px) and (orientation: portrait) {
+  .roles-and-privileges {
+    margin-top: 5%;
+  }
+}
+@media screen and (device-height: 768px) and (orientation: landscape) {
+  .roles-and-privileges {
+    margin-top: 2%;
+  }
+}
+@media screen and (device-width: 1024px) and (orientation: portrait) {
+  .roles-and-privileges {
+    margin-top: 2%;
+  }
+}
+@media screen and (device-height: 1024px) and (orientation: landscape) {
+  .roles-and-privileges {
+    margin-top: 0%;
+  }
+}
+</style>
