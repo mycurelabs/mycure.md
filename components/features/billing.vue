@@ -3,8 +3,8 @@
     client-only
       generic-media-panel(
         content-align-right
-        cols-left="7"
-        cols-right="5"
+        cols-left="6"
+        cols-right="4"
         align-left-column="start"
         :header="header"
         :descriptions="descriptions"
