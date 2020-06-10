@@ -68,7 +68,7 @@ export default {
     GenericBackgroundPanel,
   },
   data () {
-    this.backgroundImage = 'MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-final-cta-cover.png';
+    this.backgroundImage = 'MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-final-cta-cover.webp';
     this.backgroundImageMobile = 'MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-final-cta-cover-mobile.png';
     this.panelTitle = 'Build your virtual clinic today.';
     this.ctaSubtitle = 'For Modern Doctors, Virtual is the new normal.';
