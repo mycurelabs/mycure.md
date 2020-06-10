@@ -9,7 +9,7 @@
     :descriptions="descriptions"
     :web-image="image"
     mobile-image-width="90%"
-  )
+  ).roles-and-privileges
 </template>
 
 <script>
@@ -29,3 +29,9 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.roles-and-privileges {
+  margin-top: 12%;
+}
+</style>
