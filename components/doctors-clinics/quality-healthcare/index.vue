@@ -1,12 +1,12 @@
 <template lang="pug">
   v-container.quality-healthcare-contents
     v-row(justify="center").py-12
-      v-col(align-self="center" cols="12" md="6" v-if="!$isMobile")
+      v-col(align-self="center" cols="12" md="5" v-if="!$isMobile")
         img(
           v-lazy="require('~/assets/images/doctors-clinics/MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-E-patient-portal.png')"
           alt="Access quality healthcare"
         ).web-image
-      v-col(align-self="center" cols="12" md="6")
+      v-col(align-self="center" cols="12" md="5")
         h1.font-30.lh-title.pb-3.font-weight-light {{ACCESS_QUALITY_HEALTHCARE.header}}
         br
         span.font-18.mt-3.font-gray {{ACCESS_QUALITY_HEALTHCARE.description}}
@@ -50,6 +50,12 @@ a {
   .quality-healthcare-contents {
     position: relative;
     z-index: 2;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .web-image {
+    margin-left: -20%;
+    width: 115%;
   }
 }
 </style>
