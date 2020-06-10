@@ -1,5 +1,5 @@
 <template lang="pug">
-  div.white.pt-12
+  div.white
     generic-background-panel(
       :background-image="backgroundImage"
       :background-image-configs="backgroundImageConfigs"
@@ -69,7 +69,7 @@ export default {
   },
   data () {
     this.backgroundImage = 'MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-final-cta-cover.webp';
-    this.backgroundImageMobile = 'MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-final-cta-cover-mobile.png';
+    this.backgroundImageMobile = 'MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-final-cta-cover-mobile.webp';
     this.panelTitle = 'Build your virtual clinic today.';
     this.ctaSubtitle = 'For Modern Doctors, Virtual is the new normal.';
     this.ctaAgreement = 'By entering your email, you agree to receive marketing emails from MYCURE.';
@@ -91,7 +91,7 @@ export default {
       return { position: 'relative' };
     },
     panelImageSrc () {
-      return require(`~/assets/images/doctors-clinics/${this.backgroundImageMobile}`);
+      return require(`@/assets/images/doctors-clinics/${this.backgroundImageMobile}`);
     },
   },
   methods: {
