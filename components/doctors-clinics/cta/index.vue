@@ -6,10 +6,11 @@
       :webContainerStyleConfigs="webContainerStyleConfigs"
       :customPath="customPath"
     ).cta-content
-      v-row(slot="content" align="center" v-if="!$isMobile")
+      v-row(slot="content" align="center")
         v-col(
           cols="12"
           md="5"
+          v-if="!$isMobile"
           :class="[{'web-content-margin': !$isMobile}]"
         ).pt-5.cta-title
           h1.font-40.lh-title.panel-title {{ panelTitle }}
@@ -28,16 +29,7 @@
             large
           ).mt-n3.text-none.font-weight-bold.font-18.cta-btn Get Started
           p.mt-3.font-18.white--text.text-center.cta-agreement {{ ctaAgreement }}
-        img(
-          v-if="$isMobile"
-          v-lazy="panelImageSrc"
-          alt="Home CTA"
-          width="100%"
-        ).pt-10
-      v-row(slot="content" align="center" v-if="$isMobile")
-        v-col(
-          cols="12"
-        )
+        v-col(cols="12" v-if="$isMobile")
           h1.font-40.lh-title.panel-title {{ panelTitle }}
           p.font-italic.mt-3.font-18.cta-subtitle {{ ctaSubtitle }}
           div.mt-5.text-field-container
