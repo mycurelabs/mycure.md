@@ -3,7 +3,7 @@
     v-row(justify="center").py-12
       v-col(align-self="center" v-if="!$isMobile" cols="12" md="5")
         img(
-          v-lazy="require('~/assets/images/doctors-clinics/MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-B-secure-data.png')"
+          v-lazy="require('~/assets/images/doctors-clinics/MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-B-secure-data.webp')"
           alt="Safekeep your important medical data"
         ).web-image
       v-col(align-self="center" cols="12" md="5")
@@ -17,7 +17,7 @@
           v-icon.primary--text {{SAFEKEEP_MEDICAL_DATA.btnIcon}}
       img(
         v-if="$isMobile"
-        v-lazy="require('~/assets/images/doctors-clinics/MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-B-secure-data.png')"
+        v-lazy="require('~/assets/images/doctors-clinics/MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-B-secure-data.webp')"
         alt="Safekeep your important medical data"
         width="100%"
       )
