@@ -2,15 +2,15 @@
   v-container.py-12.panel-decision
     v-row(justify="center")
       v-col(cols="12" md="7" justify="center")
-        h1.text-center.font-30.lh-title.pb-3.font-weight-light {{fourthPanelHeader.header}}
-        p.text-center.font-18.mt-3.font-gray {{fourthPanelHeader.description}}
+        h1.text-center.font-30.lh-title.pb-3.font-weight-light {{fifthPanelHeader.header}}
+        p.text-center.font-18.mt-3.font-gray {{fifthPanelHeader.description}}
     v-row(justify="center")
       v-col(
         cols="6"
         md="3"
         align="center"
         justify="center"
-        v-for="(data, key) in fourthPanelContent"
+        v-for="(data, key) in fifthPanelContent"
         :key="key"
       ).py-12
         img(v-lazy="require(`~/assets/images/enterprise/${data.image}`)" :alt="data.imageTitle")
@@ -18,11 +18,11 @@
 </template>
 
 <script>
-import { FOURTH_PANEL_HEADER, FOURTH_PANEL_CONTENT } from '../enterprise-contents';
+import { FIFTH_PANEL_HEADER, FIFTH_PANEL_CONTENT } from '../enterprise-contents';
 export default {
   data () {
-    this.fourthPanelHeader = FOURTH_PANEL_HEADER;
-    this.fourthPanelContent = FOURTH_PANEL_CONTENT;
+    this.fifthPanelHeader = FIFTH_PANEL_HEADER;
+    this.fifthPanelContent = FIFTH_PANEL_CONTENT;
     return {
 
     };

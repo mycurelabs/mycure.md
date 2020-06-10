@@ -7,13 +7,11 @@
     v-row(justify="center" v-if="!$isMobile")
       v-col(
         cols="12"
-        md="6"
-        align="center"
-        justify="center"
+        md="4"
         v-for="(data, key) in secondPanelContents"
         :key="key"
-      ).column-container
-        div.img-container
+      ).text-center.column-container
+        div.text-center.img-container
           img(v-lazy="require(`~/assets/images/enterprise/${data.image}`)" :alt="data.header")
         h1.font-30.lh-title.pb-3.font-weight-light.column-head.mt-4 {{data.header}}
         v-btn(text @click="onClick").get-started-btn.mt-4
@@ -58,9 +56,10 @@ export default {
 <style scoped>
 .column-container {
   position: relative;
+  min-height: 200px;
 }
 .img-container {
-  height: 400px;
+  height: 350px;
 }
 .img-container img {
   height: 100%;
@@ -70,12 +69,21 @@ export default {
 }
 .get-started-btn {
   position: absolute;
-  bottom: 0;
-  margin-left: -14%;
+  margin-left: -19%;
+  bottom: 0px;
 }
 @media screen and (device-width: 1024px) {
   .your-patients-contents {
-  margin-top: -90%;
+    margin-top: -85%;
+  }
+  .img-container {
+    height: 250px;
+  }
+  .img-container img {
+    height: 100%;
+  }
+  .get-started-btn {
+    margin-left: -25%;
   }
 }
 </style>

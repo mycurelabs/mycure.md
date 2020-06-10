@@ -9,29 +9,30 @@
     )
       v-row(slot="content").row-content
         v-col(cols="12" md="5" :class="[{'web-content-margin': !$isMobile}]" v-if="!$isMobile")
-          p.font-18.px-1 {{ uspSubtitle }}
-          h1(:class="titleClasses").font-poppins.font-40.lh-title.pb-10 {{ uspTitle }}
-          div(v-if="!$isMobile").text-field-container.white
+          p.font-18.px-1 {{ uspPreSubtitle }}
+          h1(:class="titleClasses").font-poppins.font-40.lh-title {{ panelTitle }}
+          p.font-18.px-1.pt-5 {{ uspPostSubtitle }}
+          div(v-if="!$isMobile").text-field-container
             v-text-field(
+              background-color="white"
               v-model="email"
-              outlined
               placeholder="myname@email.com"
-            )
-          v-btn(
-            v-if="!$isMobile"
-            block
-            color="accent"
-            large
-            @click="onGetStarted"
-          ).text-none.font-weight-bold.font-18.mt-3 Sign Up via Email
+              outlined
+            ).input-field
+            v-btn(
+              v-if="!$isMobile"
+              color="accent"
+              @click="onGetStarted"
+              x-large
+            ).text-none.font-weight-bold.font-18.btn-book Book a Demo
         v-col(cols="12" md="5" v-if="$isMobile" one-line).text-center
-          p.font-18.font-weight-light.px-1 {{ uspSubtitle }}
-          h1.font-poppins.font-30.lh-title {{ uspTitle }}
+          p.font-18.font-weight-light.px-1 {{ uspPreSubtitle }}
+          h1.font-poppins.font-30.lh-title {{ panelTitleMobile }}
           div(v-if="$isMobile").text-center
             v-btn(text).align-center
               v-icon(large) mdi-arrow-down
     template(v-if="$isMobile").row-content
-      div.text-field-container.white
+      div.text-field-container-mobile.white
         v-text-field(
           v-model="email"
           outlined
@@ -42,7 +43,7 @@
         @click="onGetStarted"
         large
         block
-      ).text-none.font-weight-bold.font-18 Get Started
+      ).text-none.font-weight-bold.font-18.mt-n8 Book a Demo
 </template>
 
 <script>
@@ -57,8 +58,10 @@ export default {
   data () {
     this.backgroundImage = 'MYCURE-virtual-clinic-healthcare-practice-online-enterprise-usp-cover.png';
     this.backgroundImageMobile = 'MYCURE-virtual-clinic-healthcare-practice-online-enterprise-usp-cover-mobile.png';
-    this.panelTitle = 'Taking your entire clinic\nenterprise online is\npossible with MYCURE.';
-    this.uspSubtitle = 'For Medical Enterprise';
+    this.uspPreSubtitle = 'For Medical Enterprise';
+    this.panelTitle = 'Take your healthcare\nenterprise to a\nbroader audience';
+    this.panelTitleMobile = 'Taking your\nentire clinic\nenterprise online\nis possible with\nMYCURE';
+    this.uspPostSubtitle = 'Build and online brand for your health facility and MYCURE will do the rest.';
     this.uspAgreement = 'By entering your email, you agree to receive marketing emails from MYCURE.';
     this.customPath = 'enterprise/';
     return {
@@ -83,7 +86,7 @@ export default {
     uspTitle () {
       return this.$isMobile
         ? this.panelTitle
-        : parseTextWithNewLine(this.panelTitle, ['virtual ']);
+        : parseTextWithNewLine(this.panelTitle, ['']);
     },
   },
   methods: {
@@ -99,24 +102,31 @@ export default {
 
 <style scoped>
 .text-field-container {
+  display: flex;
+}
+.input-field {
+  width: 50%;
   height: 58px;
-  border: 1px solid black;
-  border-radius: 2px;
+  border-radius: 5px;
+}
+.btn-book {
+  margin-left: 8px;
 }
 .web-content-margin {
   margin-top: 80px;
 }
 .row-content {
   height: 100vh;
+  margin-top: -5%;
 }
-@media screen and (max-width: 375px) {
-  .text-field-container {
-    margin-top: -90%;
+@media screen and (device-width: 360px) {
+  .text-field-container-mobile {
+  margin-top: -45%;
   }
 }
-@media screen and (max-width: 360px) {
-  .text-field-container {
-  margin-top: -50%;
+@media screen and (device-width: 375px) {
+  .text-field-container-mobile {
+    margin-top: -85%;
   }
 }
 @media screen and (device-width: 768px) {
@@ -126,7 +136,17 @@ export default {
 }
 @media screen and (device-width: 1024px) {
   .row-content {
-  margin-top: -20%;
+    margin-top: -20%;
+  }
+  .text-field-container {
+    flex-direction: column;
+  }
+  .input-field {
+    width: 100%;
+  }
+  .btn-book {
+    margin-left: 0px;
+    margin-top: 2%;
   }
 }
 </style>

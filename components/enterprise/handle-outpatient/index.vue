@@ -37,9 +37,4 @@ export default {
     margin-left: 50px;
   }
 }
-@media screen and (device-width: 1366px) {
-  .outpatient-description {
-    padding-left: 100px;
-  }
-}
 </style>

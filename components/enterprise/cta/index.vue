@@ -1,5 +1,5 @@
 <template lang="pug">
-  div.white.pt-12
+  div.white.pt-12.cta-panel
     generic-background-panel(
       :background-image="backgroundImage"
       :background-image-configs="backgroundImageConfigs"
@@ -14,20 +14,20 @@
           :class="[{'web-content-margin': !$isMobile}]"
         ).pt-5.cta-title
           h1.font-40.lh-title.white--text.panel-title {{ panelTitle }}
-          div(v-if="!$isMobile").pt-5.text-field-container
+          div(v-if="!$isMobile").py-5.text-field-container
             v-text-field(
               background-color="white"
               v-model="email"
               placeholder="myname@email.com"
               outlined
-            )
-          v-btn(
-            @click="onGetStarted"
-            color="accent"
-            block
-            large
-          ).mt-n3.text-none.font-weight-bold.font-18.cta-btn Get Started
-          p.mt-3.font-18.text-center.white--text.cta-agreement {{ ctaAgreement }}
+            ).input-field
+            v-btn(
+              v-if="!$isMobile"
+              color="accent"
+              @click="onGetStarted"
+              x-large
+            ).text-none.font-weight-bold.font-18.btn-book Book a Demo
+          p.mt-3.font-18.white--text.cta-agreement {{ ctaAgreement }}
         v-col(cols="12" v-if="$isMobile")
           h1.font-40.lh-title.cta-title {{ panelTitle }}
           div.mt-5.text-field-container
@@ -95,6 +95,17 @@ export default {
 </script>
 
 <style scoped>
+.text-field-container {
+  display: flex;
+}
+.input-field {
+  width: 50%;
+  height: 58px;
+  border-radius: 5px;
+}
+.btn-book {
+  margin-left: 8px;
+}
 .web-content-margin {
   margin-top: 80px;
 }
@@ -123,19 +134,25 @@ export default {
   }
 }
 @media screen and (device-width: 1024px) {
-  .cta-content {
-    position: absolute;
-    margin-top: -80%;
-    z-index: 1;
+  .cta-panel {
+    margin-top: 0%;
   }
   .cta-title {
-    margin-top: 110%;
+    margin-bottom: 8%;
   }
   .panel-title {
     font-size: 30px !important;
   }
   .cta-agreement {
     font-size: 16px !important;
+  }
+}
+@media screen and (min-width: 1366px) {
+  .cta-panel {
+    margin-top: 10%;
+  }
+  .cta-title {
+    margin-bottom: 10%;
   }
 }
 </style>
