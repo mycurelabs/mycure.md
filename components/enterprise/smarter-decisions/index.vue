@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-container.py-12
+  v-container.py-12.panel-decision
     v-row(justify="center")
       v-col(cols="12" md="7" justify="center")
         h1.text-center.font-30.lh-title.pb-3.font-weight-light {{fourthPanelHeader.header}}
@@ -29,3 +29,10 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.panel-decision {
+  position: relative;
+  z-index: 2;
+}
+</style>

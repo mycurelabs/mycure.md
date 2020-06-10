@@ -55,7 +55,7 @@ export default {
     GenericBackgroundPanel,
   },
   data () {
-    this.backgroundImage = 'MYCURE-virtual-clinic-healthcare-practice-online-usp-cover.png';
+    this.backgroundImage = 'webp/MYCURE-virtual-clinic-healthcare-practice-online-usp-cover.webp';
     this.backgroundImageMobile = 'MYCURE-virtual-clinic-healthcare-practice-online-usp-cover-mobile.png';
     this.panelTitle = 'User-friendly and time-efficient features for a more patient-centric care';
     this.metaTitle = 'MYCURE Features';

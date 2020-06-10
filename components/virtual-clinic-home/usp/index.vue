@@ -1,9 +1,10 @@
 <template lang="pug">
-  div.white
+  div
     generic-background-panel(
       :background-image="backgroundImage"
       :background-image-mobile="backgroundImageMobile"
       :background-image-mobile-configs="backgroundImageMobileConfigs"
+      :webContainerStyleConfigs="webContainerStyleConfigs"
       :customPath="customPath"
       :class="{'mt-10': $isMobile}"
     )
@@ -57,7 +58,7 @@ export default {
     GenericBackgroundPanel,
   },
   data () {
-    this.backgroundImage = 'MYCURE-virtual-clinic-healthcare-practice-online-homepage-usp-cover.png';
+    this.backgroundImage = 'MYCURE-virtual-clinic-healthcare-practice-online-homepage-usp-cover.webp';
     this.backgroundImageMobile = 'MYCURE-virtual-clinic-healthcare-practice-online-homepage-usp-cover-mobile.png';
     this.panelTitleSub = 'For Modern Doctors:';
     this.panelTitleMain = 'Virtual is the new normal.';
@@ -72,6 +73,13 @@ export default {
       return {
         'background-size': '100%',
         'background-position': '0px 200px',
+      };
+    },
+    webContainerStyleConfigs () {
+      return {
+        position: 'absolute',
+        top: '0',
+        height: '500px',
       };
     },
     centerText () {
@@ -115,7 +123,7 @@ export default {
   opacity: 0.9;
 }
 .web-row-content {
-  height: 100vh;
+  height: 90vh;
 }
 .mobile-row-content {
   min-height: 100vh;

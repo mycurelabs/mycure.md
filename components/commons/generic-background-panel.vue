@@ -51,7 +51,7 @@ export default {
       const defaultClasses = ['main-container', 'white'];
       return this.$isMobile
         ? defaultClasses.push('pt-10', 'mt-10')
-        : defaultClasses.concat(this.customContainerClasses);
+        : defaultClasses;
     },
     containerStyleConfig () {
       return this.$isMobile
@@ -87,9 +87,9 @@ export default {
 <style scoped>
 .main-container {
   width: 100vw;
-  min-height: 100vh;
 }
 .content {
   position: relative;
+  height: 100%
 }
 </style>

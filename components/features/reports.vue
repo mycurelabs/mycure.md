@@ -21,7 +21,7 @@ export default {
     GenericMediaPanel,
   },
   data () {
-    this.image = 'MYCURE-virtual-clinic-healthcare-practice-online-features-D-analytics.png';
+    this.image = 'webp/MYCURE-virtual-clinic-healthcare-practice-online-features-D-analytics.webp';
     this.mobileImage = 'MYCURE-virtual-clinic-healthcare-practice-online-features-D-analytics-mobile.png';
     this.header = 'Never miss out on important business decisions.';
     this.descriptions = [

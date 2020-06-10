@@ -1,25 +1,25 @@
 <template lang="pug">
-  v-container
+  v-container.pb-12.increase-revenue-content
     v-row(justify="center")
       v-col(cols="12" md="10" v-if="!$isMobile")
         img(
-          v-lazy="require('~/assets/images/doctors-clinics/MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-A-online-consult.png')"
+          v-lazy="require('~/assets/images/doctors-clinics/MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-A-online-consult.webp')"
           width="95%"
           alt="Medical records"
         ).pt-12
       img(
         v-if="$isMobile"
-        v-lazy="require('~/assets/images/doctors-clinics/MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-A-online-consult.png')"
+        v-lazy="require('~/assets/images/doctors-clinics/MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-A-online-consult.webp')"
         width="100%"
         alt="Medical records"
-      ).pt-12
+      ).pr-2.pl-2.pt-12
       v-col(
         justify="center"
         cols="12"
-        md="5"
+        md="4"
         v-for="(data, key) in secondPanelContents"
         :key="key"
-      ).pt-12.content-container
+      ).pt-12.content-container.pr-12
         h1.font-30.lh-title.pb-3.font-weight-light {{data.header}}
         br
         span.font-18.mt-3.font-gray {{data.description}}
@@ -60,5 +60,10 @@ a {
   margin-left: -3%;
   position: absolute;
   bottom: 0;
+}
+@media screen and (device-width: 1024px) {
+  .increase-revenue-content {
+  margin-top: -90%;
+  }
 }
 </style>

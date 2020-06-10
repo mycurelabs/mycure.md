@@ -1,6 +1,6 @@
 <template lang="pug">
-  v-container
-    v-row(justify="center" align="center").py-5.platform-panels
+  v-container.platform-panels
+    v-row(justify="center" align="center").py-5
       v-col(cols="12" md="6")
         h1.font-36.font-weight-light.text-center {{BRING_YOUR_PRACTICE_ONLINE.header}}
         br
@@ -8,7 +8,7 @@
     v-row(justify="center" align="center").py-12.line-below
       v-col(v-if="!$isMobile" align="center" cols="12" md="6").first-column
         img(
-          v-lazy="require('~/assets/images/virtual-clinic-home/MYCURE-virtual-clinic-healthcare-practice-online-homepage-A-telehealth.png')"
+          v-lazy="require('~/assets/images/virtual-clinic-home/webp/MYCURE-virtual-clinic-healthcare-practice-online-homepage-A-telehealth.webp')"
           width="100%"
           alt="Start your physical and digital clinic journey"
         ).pr-12
@@ -23,7 +23,7 @@
           v-icon.primary--text {{HOME_START_YOUR_PHYSICAL.btnIcon}}
       img(
         v-if="$isMobile"
-        v-lazy="require('~/assets/images/virtual-clinic-home/MYCURE-virtual-clinic-healthcare-practice-online-homepage-A-telehealth.png')"
+        v-lazy="require('~/assets/images/virtual-clinic-home/webp/MYCURE-virtual-clinic-healthcare-practice-online-homepage-A-telehealth.webp')"
         width="95%"
         alt="Start your physical and digital clinic journey"
       )
@@ -72,8 +72,8 @@
           strong.text-capitalize.primary--text.font-18 {{MANAGE_EVERYTHING_EASILY.btnTxt}}
           v-icon.primary--text {{MANAGE_EVERYTHING_EASILY.btnIcon}}
       v-col(align="center" cols="12" md="5" v-if="!$isMobile").second-column.img-manage-easily
-        img(v-lazy="require('~/assets/images/virtual-clinic-home/MYCURE-virtual-clinic-healthcare-practice-online-homepage-D-billing-encounter-summary.png')" alt="Manage everything easily" width="110%")
-      img(v-lazy="require('~/assets/images/virtual-clinic-home/MYCURE-virtual-clinic-healthcare-practice-online-homepage-D-billing-encounter-summary.png')" alt="Manage everything easily" width="100%" v-if="$isMobile")
+        img(v-lazy="require('~/assets/images/virtual-clinic-home/webp/MYCURE-virtual-clinic-healthcare-practice-online-homepage-D-billing-encounter-summary.webp')" alt="Manage everything easily" width="110%")
+      img(v-lazy="require('~/assets/images/virtual-clinic-home/webp/MYCURE-virtual-clinic-healthcare-practice-online-homepage-D-billing-encounter-summary.webp')" alt="Manage everything easily" width="100%" v-if="$isMobile")
 </template>
 
 <script>
@@ -133,9 +133,9 @@ a {
     margin-top: 0%;
   }
 }
-@media screen and (device-width: 1024px) {
+@media screen and (device-width: 768px) {
   .platform-panels {
-    margin-top: -125%;
+    margin-top: 10%;
   }
 }
 @media screen and (min-width: 1366px) {

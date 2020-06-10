@@ -28,23 +28,23 @@ import VueScrollTo from 'vue-scrollto';
 import headMeta from '~/utils/head-meta';
 import { parseTextWithNewLine } from '~/utils/newline';
 // - components
+import Usp from '~/components/virtual-clinic-home/usp';
 import Apis from '~/components/virtual-clinic-home/apis';
 import Cta from '~/components/virtual-clinic-home/cta';
 import PlatformPanels from '~/components/virtual-clinic-home/platform-panels';
 import Privacy from '~/components/virtual-clinic-home/privacy';
 import Storyflow from '~/components/commons/storyflow';
 import Testimonial from '~/components/virtual-clinic-home/testimonial';
-import Usp from '~/components/virtual-clinic-home/usp';
 
 export default {
   components: {
+    Usp,
     Apis,
     Cta,
     PlatformPanels,
     Privacy,
     Storyflow,
     Testimonial,
-    Usp,
   },
   data () {
     this.storyflowItems = [
@@ -112,6 +112,6 @@ export default {
 
 <style scoped>
 .platform-panel {
-  margin-top: 10vh;
+  position: relative;
 }
 </style>
