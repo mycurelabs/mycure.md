@@ -12,7 +12,7 @@
           md="5"
           v-if="!$isMobile"
           :class="[{'web-content-margin': !$isMobile}]"
-        ).pt-5.cta-title
+        ).pt-12.cta-title
           h1.font-40.lh-title.panel-title {{ panelTitle }}
           p.font-italic.mt-3.font-18.cta-subtitle {{ ctaSubtitle }}
           div(v-if="!$isMobile").pt-5.text-field-container
@@ -135,7 +135,7 @@ export default {
     z-index: 1;
   }
   .cta-title {
-    margin-bottom: -245%;
+    margin-bottom: -240%;
   }
   .panel-title {
     font-size: 30px !important;
@@ -143,7 +143,7 @@ export default {
   .cta-agreement {
     font-size: 16px !important;
   }
-  .text-field-container{
+  .text-field-container {
     margin-top: -35px !important;
   }
   .cta-subtitle {
