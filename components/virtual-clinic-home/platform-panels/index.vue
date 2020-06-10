@@ -128,6 +128,9 @@ a {
   height: 2px;
   background-color: rgba(227, 227, 227, 0.5);
 }
+.platform-panels{
+  margin-top: 50%;
+}
 @media screen and (device-width: 768px) {
   .platform-panels {
     margin-top: 0%;
