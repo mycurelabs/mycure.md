@@ -6,10 +6,11 @@
       :webContainerStyleConfigs="webContainerStyleConfigs"
       :customPath="customPath"
     ).cta-content
-      v-row(slot="content" align="center" v-if="!$isMobile")
+      v-row(slot="content")
         v-col(
           cols="12"
           md="5"
+          v-if="!$isMobile"
           :class="[{'web-content-margin': !$isMobile}]"
         ).pt-5.cta-title
           h1.font-40.lh-title.white--text.panel-title {{ panelTitle }}
@@ -27,10 +28,7 @@
             large
           ).mt-n3.text-none.font-weight-bold.font-18.cta-btn Get Started
           p.mt-3.font-18.text-center.white--text.cta-agreement {{ ctaAgreement }}
-      v-row(slot="content" align="center" v-if="$isMobile")
-        v-col(
-          cols="12"
-        )
+        v-col(cols="12" v-if="$isMobile")
           h1.font-40.lh-title.cta-title {{ panelTitle }}
           div.mt-5.text-field-container
             v-text-field(
@@ -131,7 +129,7 @@ export default {
     z-index: 1;
   }
   .cta-title {
-    margin-bottom: -245%;
+    margin-top: 110%;
   }
   .panel-title {
     font-size: 30px !important;
