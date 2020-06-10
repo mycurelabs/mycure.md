@@ -5,7 +5,7 @@
         h1.font-36.font-weight-light.text-center {{BRING_YOUR_PRACTICE_ONLINE.header}}
         br
         p.text-center.font-18.font-gray {{BRING_YOUR_PRACTICE_ONLINE.description}}
-    v-row(justify="center" align="center").py-12
+    v-row(justify="center" align="center").py-12.line-below
       v-col(v-if="!$isMobile" align="center" cols="12" md="6").first-column
         img(
           v-lazy="require('~/assets/images/virtual-clinic-home/MYCURE-virtual-clinic-healthcare-practice-online-homepage-A-telehealth.png')"
@@ -27,7 +27,7 @@
         width="95%"
         alt="Start your physical and digital clinic journey"
       )
-    v-row(justify="center" align="center").py-12
+    v-row(justify="center" align="center").py-12.line-below
       v-col(cols="12" md="6" lg="4").first-column.img-online-clinic
         h1.font-30.font-weight-light {{YOUR_ONLINE_CLINIC.header}}
         br
@@ -39,7 +39,7 @@
           v-icon.primary--text {{YOUR_ONLINE_CLINIC.btnIcon}}
       v-col(justify="end" align="center" cols="12" md="5" v-if="!$isMobile").second-column
         img(v-lazy="require('~/assets/images/virtual-clinic-home/MYCURE-virtual-clinic-healthcare-practice-online-homepage-B-appointment.png')" width="90%" alt="Your online clinic everywhere").pl-12
-    v-row(justify="center" align="center").py-12
+    v-row(justify="center" align="center").py-12.line-below
       v-col(v-if="!$isMobile" align="center" cols="12" md="6").first-column
         img(
           v-lazy="require('~/assets/images/virtual-clinic-home/MYCURE-virtual-clinic-healthcare-practice-online-homepage-C-doctor-website.png')"
@@ -115,6 +115,18 @@ export default {
 a {
   text-decoration-color: #2e9fdf;
   text-decoration: none;
+}
+.line-below{
+  position: relative;
+}
+.line-below:after{
+  content: '';
+  position: absolute;
+  bottom: 0px;
+  left: -3000px;
+  width: 10000px;
+  height: 2px;
+  background-color: rgba(227, 227, 227, 0.5);
 }
 @media screen and (device-width: 768px) {
   .platform-panels {

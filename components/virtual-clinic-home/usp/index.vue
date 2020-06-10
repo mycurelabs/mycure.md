@@ -8,8 +8,9 @@
       :class="{'mt-10': $isMobile}"
     )
       v-row(slot="content" :align="$isMobile ? 'start' : 'center'" :class="rowContentClass").usp-content
-        v-col(cols="12" md="6" xl="4" :class="{'pt-10': $isMobile}")
-          h1(:class="titleClasses").font-poppins.font-50.lh-title {{ uspTitle }}
+        v-col(cols="12" md="6" xl="4" :class="{'pt-10': $isMobile, 'mt-n10': !$isMobile}")
+          h3(:class="titleClasses").font-poppins.font-36.lh-title {{ panelTitleSub }}
+          h1(:class="titleClasses").font-poppins.font-60.lh-title {{ uspTitle }}
           p(:class="[centerText]").font-italic.font-18.mx-1 {{ uspSubtitle }}
           div(v-if="!$isMobile").text-field-container.mr-3
             v-text-field(
@@ -58,7 +59,8 @@ export default {
   data () {
     this.backgroundImage = 'MYCURE-virtual-clinic-healthcare-practice-online-homepage-usp-cover.png';
     this.backgroundImageMobile = 'MYCURE-virtual-clinic-healthcare-practice-online-homepage-usp-cover-mobile.png';
-    this.panelTitle = 'For modern doctors, virtual is the new normal.';
+    this.panelTitleSub = 'For Modern Doctors:';
+    this.panelTitleMain = 'Virtual is the new normal.';
     this.uspSubtitle = 'Build your virtual clinic today.';
     this.customPath = 'virtual-clinic-home/';
     return {
@@ -82,8 +84,8 @@ export default {
     },
     uspTitle () {
       return this.$isMobile
-        ? this.panelTitle
-        : parseTextWithNewLine(this.panelTitle, ['modern ', 'virtual ']);
+        ? this.panelTitleMain
+        : parseTextWithNewLine(this.panelTitleMain, ['the ']);
     },
     rowContentClass () {
       return this.$isMobile
@@ -130,7 +132,10 @@ export default {
 }
 @media screen and (device-width: 1024px) {
   .usp-content {
-    margin-top: -67%;
+    margin-top: -25vh;
+  }
+  .text-field-container {
+    display: inline-block !important;
   }
 }
 @media screen and (max-width: 1038px) {
