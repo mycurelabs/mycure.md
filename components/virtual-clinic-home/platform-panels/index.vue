@@ -38,7 +38,7 @@
           strong.text-capitalize.primary--text.font-18 {{YOUR_ONLINE_CLINIC.btnTxt}}
           v-icon.primary--text {{YOUR_ONLINE_CLINIC.btnIcon}}
       v-col(justify="end" align="center" cols="12" md="5" v-if="!$isMobile").second-column
-        img(v-lazy="require('~/assets/images/virtual-clinic-home/MYCURE-virtual-clinic-healthcare-practice-online-homepage-B-appointment.png')" width="90%" alt="Your online clinic everywhere").pl-12
+        img(v-lazy="require('~/assets/images/virtual-clinic-home/webp/MYCURE-virtual-clinic-healthcare-practice-online-homepage-B-appointment.webp')" width="90%" alt="Your online clinic everywhere").pl-12
     v-row(justify="center" align="center").py-12.line-below
       v-col(v-if="!$isMobile" align="center" cols="12" md="6").first-column
         img(
