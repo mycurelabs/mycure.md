@@ -87,7 +87,10 @@ export default {
   },
   methods: {
     onGetStarted () {
-      this.$emit('getStarted');
+      if (!this.email) {
+        return;
+      }
+      this.$emit('getStarted', this.email);
     },
   },
 };
