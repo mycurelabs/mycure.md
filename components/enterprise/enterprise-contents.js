@@ -53,3 +53,49 @@ export const BRANCHES = {
   btnTxt: 'Get Started',
   btnIcon: 'mdi-arrow-right-thick',
 };
+export const SEVENTH_PANEL = {
+  subHeader: 'FOR MULTISPECIALTY CLINICS',
+  header: 'Best for one-stop, multi-staff clinics',
+  description: 'Because you offer a hollistic patient care experience, we are here to help you with all the crazy paperwork! Consolidate all your clinic activities in one place with this complete clinic management system.',
+  descriptionLink: 'See Features',
+  btnTxt: 'Book a Demo',
+  btnIcon: 'mdi-arrow-right-thick',
+};
+export const EIGTHT_PANEL = {
+  subHeader: 'FOR CORPORATE CLINICS',
+  header: 'Keep your employees healthy and active',
+  description: 'Monitor the physical and mental health of your workplace by making sure your employees visit your in-house medical providers whenever they need to. Level up your services and your corporate clinics and easily pair up with your human resources department now.',
+  descriptionLink: 'See Features',
+  btnTxt: 'Book a Demo',
+  btnIcon: 'mdi-arrow-right-thick',
+};
+export const NINTH_PANEL = {
+  subHeader: 'FOR MEDICAL ARTS CENTER',
+  header: 'Enriching the heart of hospitals with seamless consultation workflows',
+  description: 'Whether doing or online face-to-face consults, engage your healthcare specialists and their secretaries by giving them more convenient way to connect with their patients.',
+  descriptionLink: 'See Features',
+  btnTxt: 'Book a Demo',
+  btnIcon: 'mdi-arrow-right-thick',
+};
+export const TENTH_PANEL = {
+  subHeader: 'FOR DIAGNOSTICS CENTER',
+  header: 'Create, finalized and release diagnostic test results online',
+  description: 'Designed for laboratory and imaging test centers so your patients can securely view their test results without having to leave their house.',
+  descriptionLink: 'See Features',
+  btnTxt: 'Book a Demo',
+  btnIcon: 'mdi-arrow-right-thick',
+  list: [
+    {
+      icon: 'mdi-check-circle',
+      description: 'Track specimen collection',
+    },
+    {
+      icon: 'mdi-check-circle',
+      description: 'Produce beautiful reports',
+    },
+    {
+      icon: 'mdi-check-circle',
+      description: 'Integrate with HL7 and DICOM machines',
+    },
+  ],
+};
