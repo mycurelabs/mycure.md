@@ -83,7 +83,7 @@ export default {
     uspTitle () {
       return this.$isMobile
         ? this.panelTitle
-        : parseTextWithNewLine(this.panelTitle, ['Modern ', 'Virtual ']);
+        : parseTextWithNewLine(this.panelTitle, ['modern ', 'virtual ']);
     },
     rowContentClass () {
       return this.$isMobile
