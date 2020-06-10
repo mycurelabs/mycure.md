@@ -1,5 +1,5 @@
 <template lang="pug">
-  div.white
+  div.white.cta-panel
     generic-background-panel(
       :background-image="backgroundImage"
       :background-image-configs="backgroundImageConfigs"
@@ -12,7 +12,7 @@
           md="5"
           v-if="!$isMobile"
           :class="[{'web-content-margin': !$isMobile}]"
-        ).pt-12.cta-title
+        ).cta-title
           h1.font-40.lh-title.panel-title {{ panelTitle }}
           p.font-italic.mt-3.font-18.cta-subtitle {{ ctaSubtitle }}
           div(v-if="!$isMobile").pt-5.text-field-container
@@ -131,11 +131,11 @@ export default {
 @media screen and (device-width: 1024px) {
   .cta-content {
     position: absolute;
-    margin-top: -85%;
+    margin-top: -5%;
     z-index: 1;
   }
   .cta-title {
-    margin-bottom: -240%;
+    margin-bottom: 2%;
   }
   .panel-title {
     font-size: 30px !important;
@@ -148,6 +148,14 @@ export default {
   }
   .cta-subtitle {
     font-size: 16px !important;
+  }
+}
+@media screen and (min-width: 1366px) {
+  .cta-panel {
+    padding-top: 5%;
+  }
+  .cta-title {
+    padding-bottom: 7%;
   }
 }
 </style>
