@@ -11,10 +11,10 @@
           strong.text-capitalize.primary--text {{TAKE_PRACTICE_ONLINE.btnTxt}}
           v-icon.primary--text {{TAKE_PRACTICE_ONLINE.btnIcon}}
       v-col(align-self="center" cols="12" md="5" v-if="!$isMobile")
-        img(v-lazy="require('~/assets/images/doctors-clinics/MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-C-group-practice.png')"
-          alt="Take your practice online"
+        img(v-lazy="require('~/assets/images/doctors-clinics/MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-C-group-practice.webp')"
+          alt="Take your practice online" width="105%"
         ).pl-10
-      img(v-lazy="require('~/assets/images/doctors-clinics/MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-C-group-practice.png')"
+      img(v-lazy="require('~/assets/images/doctors-clinics/MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-C-group-practice.webp')"
         alt="Take your practice online" v-if="$isMobile"
         width="100%"
       )
