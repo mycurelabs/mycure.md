@@ -1,7 +1,7 @@
 <template lang="pug">
   v-container
     v-row(justify="center").py-12
-      v-col(align-self="center" cols="12" md="6")
+      v-col(align-self="center" cols="12" md="4")
         h1.font-30.lh-title.pb-3.font-weight-light {{TAKE_PRACTICE_ONLINE.header}}
         br
         span.font-18.mt-3.font-gray {{TAKE_PRACTICE_ONLINE.description}}
@@ -10,7 +10,7 @@
         v-btn(@click="onGetStarted" text).ml-n4.get-started-btn
           strong.text-capitalize.primary--text {{TAKE_PRACTICE_ONLINE.btnTxt}}
           v-icon.primary--text {{TAKE_PRACTICE_ONLINE.btnIcon}}
-      v-col(align-self="center" cols="12" md="6" v-if="!$isMobile")
+      v-col(align-self="center" cols="12" md="5" v-if="!$isMobile")
         img(v-lazy="require('~/assets/images/doctors-clinics/MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-C-group-practice.png')"
           alt="Take your practice online"
         ).pl-10

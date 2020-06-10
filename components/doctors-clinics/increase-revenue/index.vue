@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-container
+  v-container.pb-12.increase-revenue-content
     v-row(justify="center")
       v-col(cols="12" md="10" v-if="!$isMobile")
         img(
@@ -16,10 +16,10 @@
       v-col(
         justify="center"
         cols="12"
-        md="5"
+        md="4"
         v-for="(data, key) in secondPanelContents"
         :key="key"
-      ).pt-12.content-container
+      ).pt-12.content-container.pr-12
         h1.font-30.lh-title.pb-3.font-weight-light {{data.header}}
         br
         span.font-18.mt-3.font-gray {{data.description}}
@@ -60,5 +60,10 @@ a {
   margin-left: -3%;
   position: absolute;
   bottom: 0;
+}
+@media screen and (device-width: 1024px) {
+  .increase-revenue-content {
+  margin-top: -90%;
+  }
 }
 </style>
