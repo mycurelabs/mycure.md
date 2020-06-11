@@ -87,7 +87,22 @@ export default {
 
 <style scoped>
 .web-content-margin {
-  margin-top: 190px;
+  margin-top: 260px;
+}
+@media screen and (max-width: 1448px) {
+  .web-content-margin {
+    margin-top: 310px;
+  }
+}
+@media screen and (max-width: 1300px) {
+  .web-content-margin {
+    margin-top: 360px;
+  }
+}
+@media screen and (max-width: 1100px) {
+  .web-content-margin {
+    margin-top: 384px;
+  }
 }
 @media screen and (device-width: 360px) {
   .cta-content {
@@ -109,7 +124,7 @@ export default {
     margin-left: 16px;
   }
 }
-@media screen and (device-width: 768px) {
+@media screen and (device-width: 768px) and (orientation: portrait) {
   .cta-content {
     width: 110%;
     margin-top: 10%;
@@ -126,19 +141,27 @@ export default {
     margin-left: 50px;
   }
 }
-@media screen and (device-width: 1024px) {
+@media screen and (device-height: 768px) and (orientation: landscape) {
+  .cta-title {
+    margin-bottom: -55%;
+  }
+  .web-content-margin {
+    margin-top: 360px;
+  }
+}
+@media screen and (device-width: 1024px) and (orientation: portrait) {
   .cta-content {
     position: relative;
     margin-top: -85%;
     z-index: 1;
   }
   .cta-title {
-    margin-bottom: -235%;
+    margin-bottom: -214%;
   }
 }
-@media screen and (device-width: 1366px) {
+@media screen and (device-width: 1366px) and (orientation: landscape) {
   .cta-title {
-    margin-bottom: -60%;
+    margin-bottom: -96%;
   }
 }
 </style>
