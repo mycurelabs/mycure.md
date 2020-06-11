@@ -9,7 +9,7 @@
       :class="{'mt-10': $isMobile}"
     )
       v-row(slot="content" :align="$isMobile ? 'start' : 'center'" :class="rowContentClass").usp-content
-        v-col(cols="12" md="6" xl="4" :class="{'pt-10': $isMobile, 'mt-n10': !$isMobile}")
+        v-col(cols="12" md="6" xl="4")
           h3(:class="titleClasses").font-poppins.font-36.lh-title {{ panelTitleSub }}
           h1(:class="titleClasses").font-poppins.font-60.lh-title {{ uspTitle }}
           p(:class="[centerText]").font-italic.font-24.mx-1 {{ uspSubtitle }}
@@ -72,7 +72,7 @@ export default {
     backgroundImageMobileConfigs () {
       return {
         'background-size': '100%',
-        'background-position': '0px 200px',
+        'background-position': '0px 275px',
       };
     },
     webContainerStyleConfigs () {
@@ -153,12 +153,26 @@ export default {
     margin-top: -50px;
   }
 }
-@media screen and (device-width: 1024px) {
+@media screen and (device-width: 1024px) and (orientation: landscape)  {
+  .usp-content {
+    margin-top: -10vh;
+  }
+  .web-row-content {
+    height: 90vh;
+  }
+  .text-field-container {
+    display: inline-block !important;
+  }
+}
+@media screen and (device-width: 1024px) and (orientation: portrait)  {
   .usp-content {
     margin-top: -25vh;
   }
   .text-field-container {
     display: inline-block !important;
+  }
+  .web-row-content {
+    height: 90vh;
   }
 }
 @media screen and (max-width: 1038px) {
