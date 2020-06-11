@@ -11,15 +11,15 @@
     //- 5th panel
     smarter-decisions
     //- 6th panel
-    multiple-branches
+    multiple-branches(@getStarted="goToSignup")
     //- 7th panel
-    one-stop(@goToFeatures="goToFeatures")
+    one-stop(@goToFeatures="goToFeatures" @getStarted="goToSignup")
     //- 8th panel
-    keep-employees(@goToFeatures="goToFeatures")
+    keep-employees(@goToFeatures="goToFeatures" @getStarted="goToSignup")
     //- 9th panel
-    enriching-hearts(@goToFeatures="goToFeatures")
+    enriching-hearts(@goToFeatures="goToFeatures" @getStarted="goToSignup")
     //- 10th panel
-    release-diagnostics(@goToFeatures="goToFeatures")
+    release-diagnostics(@goToFeatures="goToFeatures" @getStarted="goToSignup")
     //- cta panel
     div.cta-container
       cta(@getStarted="onGetStarted($event)")
