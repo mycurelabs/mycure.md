@@ -4,7 +4,7 @@
       v-col(cols="12" md="5" align-self="center" v-if="$isMobile").tenthPanel-description
         p.font-18.mt-3.font-gray.primary--text {{tenthPanel.subHeader}}
         h1.font-30.lh-title.pb-3.font-weight-light {{tenthPanel.header}}
-        p.font-18.mt-3.font-gray {{tenthPanel.description}} <span class="font-18 font-weight-black"> {{tenthPanel.descriptionLink}}</span>
+        p.font-18.mt-3.font-gray {{tenthPanel.description}} <span class="font-18 font-weight-bold"><a class="font-gray" @click="goToFeatures">{{tenthPanel.descriptionLink}}</a></span>
         div(v-for="(data, key) in tenthPanel.list" :key="key")
           v-icon.primary--text {{data.icon}}
           span.font-18.font-gray.pl-3 {{data.description}}
@@ -16,7 +16,7 @@
       v-col(cols="12" md="5" align-self="center" v-if="!$isMobile").tenthPanel-description
         p.font-18.mt-3.font-gray.primary--text {{tenthPanel.subHeader}}
         h1.font-30.lh-title.pb-3.font-weight-light {{tenthPanel.header}}
-        p.font-18.mt-3.font-gray {{tenthPanel.description}} <span class="font-18 font-weight-black"> {{tenthPanel.descriptionLink}}</span>
+        p.font-18.mt-3.font-gray {{tenthPanel.description}} <span class="font-18 font-weight-bold"><a class="font-gray" @click="goToFeatures">{{tenthPanel.descriptionLink}}</a></span>
         div(v-for="(data, key) in tenthPanel.list" :key="key")
           v-icon.primary--text {{data.icon}}
           span.font-18.font-gray.pl-3 {{data.description}}
@@ -36,11 +36,17 @@ export default {
     onGetStarted () {
       this.$emit('getStarted');
     },
+    goToFeatures () {
+      this.$emit('goToFeatures');
+    },
   },
 };
 </script>
 
 <style scoped>
+a {
+  color: gray;
+}
 @media screen and (device-width: 1024px) {
   .tenthPanel-image {
     margin-left: -20%;
