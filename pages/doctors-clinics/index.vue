@@ -7,9 +7,9 @@
     //- 3rd panel
     safekeep-data(@getStarted="getStarted")
     //- 4th panel
-    practice-online(@getStarted="getStarted")
+    practice-online(@getStarted="getStarted")#group-practice
     //- 5th panel
-    specialized-plans
+    specialized-plans#specialized-practice
     //- 6th panel
     quality-healthcare(@getStarted="getStarted")
     //- 7th panel
@@ -46,9 +46,19 @@ export default {
       loading: true,
     };
   },
+  computed: {
+    scrollPanel () {
+      const panel = this.$nuxt.$route.params.panel;
+      return panel ? `#${panel}` : null;
+    },
+  },
   mounted () {
-    VueScrollTo.scrollTo('#app', 500, { easing: 'ease' });
     this.loading = false;
+    const panel = this.scrollPanel || '#app';
+    const offset = panel === '#app' ? 0 : 700;
+    this.$nextTick(() => {
+      VueScrollTo.scrollTo(panel, 500, { easing: 'ease', offset });
+    });
   },
   methods: {
     getStarted () {

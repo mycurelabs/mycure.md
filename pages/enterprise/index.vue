@@ -13,13 +13,13 @@
     //- 6th panel
     multiple-branches(@getStarted="goToSignup")
     //- 7th panel
-    one-stop(@goToFeatures="goToFeatures" @getStarted="goToSignup")
+    one-stop#multispecialty-clinics(@goToFeatures="goToFeatures" @getStarted="goToSignup")
     //- 8th panel
-    keep-employees(@goToFeatures="goToFeatures" @getStarted="goToSignup")
+    keep-employees#corporate-clinics(@goToFeatures="goToFeatures" @getStarted="goToSignup")
     //- 9th panel
-    enriching-hearts(@goToFeatures="goToFeatures" @getStarted="goToSignup")
+    enriching-hearts#medical-arts-centers(@goToFeatures="goToFeatures" @getStarted="goToSignup")
     //- 10th panel
-    release-diagnostics(@goToFeatures="goToFeatures" @getStarted="goToSignup")
+    release-diagnostics#diagnostic-centers(@goToFeatures="goToFeatures" @getStarted="goToSignup")
     //- cta panel
     div.cta-container
       cta(@getStarted="onGetStarted($event)")
@@ -61,9 +61,19 @@ export default {
       loading: true,
     };
   },
+  computed: {
+    scrollPanel () {
+      const panel = this.$nuxt.$route.params.panel;
+      return panel ? `#${panel}` : null;
+    },
+  },
   mounted () {
-    VueScrollTo.scrollTo('#app', 500, { easing: 'ease' });
     this.loading = false;
+    const panel = this.scrollPanel || '#app';
+    const offset = panel === '#app' ? 0 : 400;
+    this.$nextTick(() => {
+      VueScrollTo.scrollTo(panel, 500, { easing: 'ease', offset });
+    });
   },
   methods: {
     onGetStarted (email) {
