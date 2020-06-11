@@ -91,7 +91,18 @@ export default {
   margin-top: 80px;
 }
 .row-content {
-  height: 120vh;
+  height: 100vh;
+}
+
+@media screen and (max-width: 1448px) {
+  .row-content {
+    height: 90vh;
+  }
+}
+@media screen and (max-width: 1300px) {
+  .row-content {
+    height: 72vh;
+  }
 }
 @media screen and (device-width: 768px) and (orientation: portrait) {
   .row-content {
