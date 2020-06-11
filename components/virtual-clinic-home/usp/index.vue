@@ -123,10 +123,25 @@ export default {
   opacity: 0.9;
 }
 .web-row-content {
-  height: 90vh;
+  height: 85vh;
 }
 .mobile-row-content {
   min-height: 100vh;
+}
+@media screen and (max-width: 1448px) {
+  .web-row-content {
+    height: 80vh;
+  }
+}
+@media screen and (max-width: 1300px) {
+  .web-row-content {
+    height: 74vh;
+  }
+}
+@media screen and (max-width: 1100px) {
+  .web-row-content {
+    height: 70vh;
+  }
 }
 @media screen and (device-width: 375px) {
   .text-field-container {
