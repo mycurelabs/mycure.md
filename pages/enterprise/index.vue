@@ -7,10 +7,11 @@
     //- 3rd panel
     handle-outpatient(@getStarted="goToSignup")
     //- 4th panel
-    smarter-decisions
+    patients-loop(@getStarted="goToSignup")
     //- 5th panel
-    multiple-branches
+    smarter-decisions
     //- 6th panel
+    multiple-branches
     div.cta-container
       cta(@getStarted="onGetStarted($event)")
 </template>
@@ -23,6 +24,7 @@ import headMeta from '~/utils/head-meta';
 import Usp from '~/components/enterprise/usp';
 import YourPatients from '~/components/enterprise/your-patients';
 import HandleOutpatient from '~/components/enterprise/handle-outpatient';
+import PatientsLoop from '~/components/enterprise/patients-loop';
 import SmarterDecisions from '~/components/enterprise/smarter-decisions';
 import MultipleBranches from '~/components/enterprise/multiple-branches';
 import Cta from '~/components/enterprise/cta';
@@ -32,6 +34,7 @@ export default {
     Usp,
     YourPatients,
     HandleOutpatient,
+    PatientsLoop,
     SmarterDecisions,
     MultipleBranches,
     Cta,

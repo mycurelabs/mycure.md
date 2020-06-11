@@ -29,11 +29,18 @@ export const OUTPATIENT = {
   btnTxt: 'Get Started',
   btnIcon: 'mdi-arrow-right-thick',
 };
-export const FOURTH_PANEL_HEADER = {
+export const FOURTH_PANEL = {
+  image: 'MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-E-patient-portal.webp',
+  header: 'Keep your patients in the loop',
+  description: 'Making sure your patients are informed is easier and faster with an online patient portal. Release diagnostic result right as they\'re finalized and coordinate with your patients easier with online consultations.',
+  btnTxt: 'Get Started',
+  btnIcon: 'mdi-arrow-right-thick',
+};
+export const FIFTH_PANEL_HEADER = {
   header: 'Make smarter decisions with real-time business and medical insights ',
   description: 'One of the perks to having one smart system for all is keeping accurate record of all transactions accross all branches.',
 };
-export const FOURTH_PANEL_CONTENT = [
+export const FIFTH_PANEL_CONTENT = [
   {
     image: 'MYCURE-virtual-clinic-healthcare-practice-online-enterprise-D-benefits-01-daily-census.png',
     imageTitle: 'Daily Census',
@@ -67,7 +74,7 @@ export const SEVENTH_PANEL = {
   btnTxt: 'Book a Demo',
   btnIcon: 'mdi-arrow-right-thick',
 };
-export const EIGTHT_PANEL = {
+export const EIGHT_PANEL = {
   subHeader: 'FOR CORPORATE CLINICS',
   header: 'Keep your employees healthy and active',
   description: 'Monitor the physical and mental health of your workplace by making sure your employees visit your in-house medical providers whenever they need to. Level up your services and your corporate clinics and easily pair up with your human resources department now.',
