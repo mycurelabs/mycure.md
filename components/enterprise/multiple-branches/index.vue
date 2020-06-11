@@ -3,7 +3,7 @@
     v-row(justify="center")
       v-col(cols="12" md="6" align="center" v-if="!$isMobile")
         img(v-lazy="require(`~/assets/images/enterprise/${branches.image}`)" :alt="branches.header" width="100%").branches-image
-      v-col(cols="12" md="5" lg="5" align-self="center" v-if="!$isMobile").branches-description
+      v-col(cols="12" md="4" lg="4" align-self="center" v-if="!$isMobile").branches-description
         h1.font-30.lh-title.pb-3.font-weight-light {{branches.header}}
         p.font-18.mt-3.font-gray {{branches.description}}
         v-btn(@click="onGetStarted" text).mt-5.ml-n4.get-started-btn
