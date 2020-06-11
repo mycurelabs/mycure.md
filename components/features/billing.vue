@@ -66,7 +66,7 @@ export default {
       'Produce neatly-organized reports in a minute or less.',
     ];
     this.panelImages = [
-      'MYCURE-virtual-clinic-healthcare-practice-online-features-E-01-billing-payment.png',
+      'MYCURE-virtual-clinic-healthcare-practice-online-features-E-01-billing-payment.webp',
       'MYCURE-virtual-clinic-healthcare-practice-online-features-E-02-charge-slip.webp',
       'MYCURE-virtual-clinic-healthcare-practice-online-features-E-03-daily-census.webp',
     ];
@@ -86,7 +86,7 @@ export default {
   },
   computed: {
     mediaImage () {
-      return this.panelImages[0];
+      return 'webp/' + this.panelImages[0];
     },
     leftBottomImage () {
       return require(`~/assets/images/${this.customPath}${this.panelImages[1]}`);
