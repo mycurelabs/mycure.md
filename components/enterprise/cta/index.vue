@@ -149,10 +149,10 @@ export default {
 }
 @media screen and (min-width: 1366px) {
   .cta-panel {
-    margin-top: 10%;
+    margin-top: 5%;
   }
   .cta-title {
-    margin-bottom: 10%;
+    margin-bottom: 17%;
   }
 }
 </style>
