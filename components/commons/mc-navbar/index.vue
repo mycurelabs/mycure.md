@@ -8,6 +8,7 @@
         :solutionsMenuItems="solutionsMenuItems"
         :toolbarLinks="toolbarLinks"
         @toolbarLinkClick="handleToolbarLinkClick($event)"
+        @subMenuClick="handleSubMenuClick($event)"
         @logoClick="handleMycureLogo"
       )
     //- WEB
