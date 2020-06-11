@@ -16,7 +16,7 @@
       v-col(cols="12" md="5" align-self="center" v-if="!$isMobile").tenthPanel-description
         p.font-18.mt-3.font-gray.primary--text {{tenthPanel.subHeader}}
         h1.font-30.lh-title.pb-3.font-weight-light {{tenthPanel.header}}
-        p.font-18.mt-3.font-gray {{tenthPanel.description}} <span class="font-18 font-weight-bold"><a @click="goToFeatures">{{tenthPanel.descriptionLink}}</a></span>
+        p.text-justify.font-18.mt-3.font-gray {{tenthPanel.description}} <span class="font-18 font-weight-bold"><a @click="goToFeatures">{{tenthPanel.descriptionLink}}</a></span>
         div(v-for="(data, key) in tenthPanel.list" :key="key")
           img(width="20" src="~/assets/images/mycure-check.png" alt="Check icon")
           span.font-18.font-gray.pl-3 {{data.description}}
