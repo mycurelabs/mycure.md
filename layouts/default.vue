@@ -80,6 +80,9 @@ export default {
 .font-25 {
   font-size: 25px !important
 }
+.font-24 {
+  font-size: 24px !important
+}
 .font-22 {
   font-size: 22px !important
 }
