@@ -30,6 +30,15 @@ export default {
 @media screen and (device-width: 1024px) {
   .fourthPanel-image {
     width: 110%;
+    margin-left: 50px;
+  }
+  .fourthPanel-description {
+    margin-left: -10%;
+  }
+}
+@media screen and (min-width: 1366px) {
+  .fourthPanel-description {
+    margin-left: 55px;
   }
 }
 </style>
