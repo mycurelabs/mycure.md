@@ -12,7 +12,7 @@
         v-col(cols="12" md="6" xl="4" :class="{'pt-10': $isMobile, 'mt-n10': !$isMobile}")
           h3(:class="titleClasses").font-poppins.font-36.lh-title {{ panelTitleSub }}
           h1(:class="titleClasses").font-poppins.font-60.lh-title {{ uspTitle }}
-          p(:class="[centerText]").font-italic.font-18.mx-1 {{ uspSubtitle }}
+          p(:class="[centerText]").font-italic.font-24.mx-1 {{ uspSubtitle }}
           div(v-if="!$isMobile").text-field-container.mr-3
             v-text-field(
               elevation="2"
