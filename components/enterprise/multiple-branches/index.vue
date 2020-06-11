@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-container.py-12.content.panel-branches
+  v-container.py-12.content-panel-branches
     v-row(justify="center")
       v-col(cols="12" md="6" align="center" v-if="!$isMobile")
         img(v-lazy="require(`~/assets/images/enterprise/${branches.image}`)" :alt="branches.header" width="100%").branches-image
@@ -35,7 +35,7 @@ export default {
 </script>
 
 <style scoped>
-.panel-branches {
+.content-panel-branches {
   position: relative;
   z-index: 2;
 }
@@ -45,8 +45,8 @@ export default {
   }
 }
 @media screen and (min-width: 1366px) {
-  .branches-description {
-    margin-left: 55px;
+  .branches-image {
+    margin-left: -60px;
   }
 }
 </style>
