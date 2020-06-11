@@ -142,11 +142,11 @@ export default {
 @media screen and (device-width: 1024px) {
   .cta-content {
     position: absolute;
-    margin-top: -5%;
+    margin-top: 5%;
     z-index: 1;
   }
   .cta-title {
-    margin-bottom: 2%;
+    margin-bottom: 5%;
   }
   .panel-title {
     font-size: 30px !important;
