@@ -12,6 +12,15 @@
     smarter-decisions
     //- 6th panel
     multiple-branches
+    //- 7th panel
+    one-stop
+    //- 8th panel
+    keep-employees
+    //- 9th panel
+    enriching-hearts
+    //- 10th panel
+    release-diagnostics
+    //- cta panel
     div.cta-container
       cta(@getStarted="onGetStarted($event)")
 </template>
@@ -27,6 +36,10 @@ import HandleOutpatient from '~/components/enterprise/handle-outpatient';
 import PatientsLoop from '~/components/enterprise/patients-loop';
 import SmarterDecisions from '~/components/enterprise/smarter-decisions';
 import MultipleBranches from '~/components/enterprise/multiple-branches';
+import OneStop from '~/components/enterprise/one-stop';
+import KeepEmployees from '~/components/enterprise/keep-employees';
+import EnrichingHearts from '~/components/enterprise/enriching-hearts';
+import ReleaseDiagnostics from '~/components/enterprise/release-diagnostics';
 import Cta from '~/components/enterprise/cta';
 
 export default {
@@ -37,6 +50,10 @@ export default {
     PatientsLoop,
     SmarterDecisions,
     MultipleBranches,
+    OneStop,
+    KeepEmployees,
+    EnrichingHearts,
+    ReleaseDiagnostics,
     Cta,
   },
   data () {
