@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-container.py-12.panel-keep-employees
+  v-container#corporate-clinics.py-12.panel-keep-employees
     v-row(justify="center" align="center")
       v-col(cols="12" md="5" align-self="center" v-if="$isMobile").eightPanel-description
         p.font-18.mt-3.font-gray.primary--text {{eightPanel.subHeader}}
