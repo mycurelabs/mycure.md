@@ -14,21 +14,21 @@
           :class="[{'web-content-margin': !$isMobile}]"
         ).cta-title
           h1.font-40.lh-title.panel-title {{ panelTitle }}
-          p.font-italic.mt-3.font-18.cta-subtitle {{ ctaSubtitle }}
-          div(v-if="!$isMobile").pt-5.text-field-container
+          p.font-italic.mt-6.font-18.cta-subtitle {{ ctaSubtitle }}
+          div(v-if="!$isMobile").py-5.text-field-container
             v-text-field(
               background-color="white"
               v-model="email"
               placeholder="myname@email.com"
               outlined
-            )
-          v-btn(
-            @click="onGetStarted"
-            color="accent"
-            block
-            large
-          ).mt-n3.text-none.font-weight-bold.font-18.cta-btn Get Started
-          p.mt-3.font-18.white--text.text-center.cta-agreement {{ ctaAgreement }}
+            ).input-field
+            v-btn(
+              height="55"
+              v-if="!$isMobile"
+              color="accent"
+              @click="onGetStarted"
+            ).text-none.font-weight-bold.font-18.btn-book Get Started
+          p.mt-3.font-18.white--text.cta-agreement {{ ctaAgreement }}
         v-col(cols="12" v-if="$isMobile")
           h1.font-40.lh-title.panel-title {{ panelTitle }}
           p.font-italic.mt-3.font-18.cta-subtitle {{ ctaSubtitle }}
@@ -60,7 +60,7 @@ export default {
     GenericBackgroundPanel,
   },
   data () {
-    this.backgroundImage = 'MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-final-cta-cover.webp';
+    this.backgroundImage = 'MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-final-cta-cover (1).webp';
     this.backgroundImageMobile = 'MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-final-cta-cover-mobile.webp';
     this.panelTitle = 'Build your virtual clinic today.';
     this.ctaSubtitle = 'For Modern Doctors, Virtual is the new normal.';
@@ -98,6 +98,17 @@ export default {
 </script>
 
 <style scoped>
+.text-field-container {
+  display: flex;
+}
+.input-field {
+  width: 50%;
+  height: 58px;
+  border-radius: 5px;
+}
+.btn-book {
+  margin-left: 8px;
+}
 .web-content-margin {
   margin-top: 80px;
 }
@@ -155,7 +166,7 @@ export default {
     padding-top: 5%;
   }
   .cta-title {
-    padding-bottom: 7%;
+    padding-bottom: 10%;
   }
 }
 </style>
