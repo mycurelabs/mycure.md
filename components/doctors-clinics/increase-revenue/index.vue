@@ -63,7 +63,12 @@ a {
 }
 @media screen and (device-width: 1024px) {
   .increase-revenue-content {
-  margin-top: -90%;
+  margin-top: -70%;
+  }
+}
+@media screen and (min-width: 1366px) {
+  .increase-revenue-content {
+  margin-top: 10%;
   }
 }
 </style>
