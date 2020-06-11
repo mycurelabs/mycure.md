@@ -25,7 +25,7 @@
               v-if="!$isMobile"
               color="accent"
               @click="onGetStarted"
-              x-large
+              height="55"
             ).text-none.font-weight-bold.font-18.btn-book Book a Demo
           p.mt-3.font-18.white--text.cta-agreement {{ ctaAgreement }}
         v-col(cols="12" v-if="$isMobile")

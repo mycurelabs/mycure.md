@@ -23,7 +23,7 @@
               v-if="!$isMobile"
               color="accent"
               @click="onGetStarted"
-              x-large
+              height="55"
             ).text-none.font-weight-bold.font-18.btn-book Book a Demo
         v-col(cols="12" md="5" v-if="$isMobile" one-line).text-center
           p.font-18.font-weight-light.px-1 {{ uspPreSubtitle }}
