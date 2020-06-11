@@ -15,6 +15,12 @@ export const SECOND_PANEL_CONTENTS = [
     btnTxt: 'Get Started',
     btnIcon: 'mdi-arrow-right-thick',
   },
+  {
+    image: 'MYCURE-virtual-clinic-healthcare-practice-online-enterprise-B2-group-practice.webp',
+    header: 'Role-based user access',
+    btnTxt: 'Get Started',
+    btnIcon: 'mdi-arrow-right-thick',
+  },
 ];
 export const OUTPATIENT = {
   image: 'MYCURE-virtual-clinic-healthcare-practice-online-enterprise-C-book-online-calendar.png',
