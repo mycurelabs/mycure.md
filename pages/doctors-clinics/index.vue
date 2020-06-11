@@ -7,9 +7,9 @@
     //- 3rd panel
     safekeep-data(@getStarted="getStarted")
     //- 4th panel
-    practice-online(@getStarted="getStarted")
+    practice-online(@getStarted="getStarted")#group-practice
     //- 5th panel
-    specialized-plans
+    specialized-plans#specialized-practice
     //- 6th panel
     quality-healthcare(@getStarted="getStarted")
     //- 7th panel

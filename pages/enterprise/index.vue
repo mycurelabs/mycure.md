@@ -13,13 +13,13 @@
     //- 6th panel
     multiple-branches
     //- 7th panel
-    one-stop
+    one-stop#multispecialty-clinics
     //- 8th panel
-    keep-employees
+    keep-employees#corporate-clinics
     //- 9th panel
-    enriching-hearts
+    enriching-hearts#medical-arts-centers
     //- 10th panel
-    release-diagnostics
+    release-diagnostics#diagnostic-centers
     //- cta panel
     div.cta-container
       cta(@getStarted="onGetStarted($event)")
