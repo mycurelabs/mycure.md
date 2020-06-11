@@ -25,8 +25,8 @@
               v-if="!$isMobile"
               color="accent"
               @click="onGetStarted"
-              x-large
-            ).text-none.font-weight-bold.font-18.btn-book Book a Demo
+              height="55"
+            ).text-none.font-weight-bold.font-18.btn-book Book A Demo
           p.mt-3.font-18.white--text.cta-agreement {{ ctaAgreement }}
         v-col(cols="12" v-if="$isMobile")
           h1.font-40.lh-title.cta-title {{ panelTitle }}
@@ -58,7 +58,7 @@ export default {
     GenericBackgroundPanel,
   },
   data () {
-    this.backgroundImage = 'MYCURE-virtual-clinic-healthcare-practice-online-enterprise-final-cta.png';
+    this.backgroundImage = 'MYCURE-virtual-clinic-healthcare-practice-online-enterprise-final-cta.webp';
     this.backgroundImageMobile = 'MYCURE-virtual-clinic-healthcare-practice-online-enterprise-final-cta-cover-mobile.png';
     this.panelTitle = 'Book A Demo Today.';
     this.ctaAgreement = 'By entering your email, you agree to receive marketing emails from MYCURE.';
@@ -149,10 +149,10 @@ export default {
 }
 @media screen and (min-width: 1366px) {
   .cta-panel {
-    margin-top: 10%;
+    margin-top: 5%;
   }
   .cta-title {
-    margin-bottom: 10%;
+    margin-bottom: 17%;
   }
 }
 </style>

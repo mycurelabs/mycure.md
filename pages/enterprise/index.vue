@@ -11,15 +11,15 @@
     //- 5th panel
     smarter-decisions
     //- 6th panel
-    multiple-branches
+    multiple-branches(@getStarted="goToSignup")
     //- 7th panel
-    one-stop#multispecialty-clinics
+    one-stop#multispecialty-clinics(@goToFeatures="goToFeatures" @getStarted="goToSignup")
     //- 8th panel
-    keep-employees#corporate-clinics
+    keep-employees#corporate-clinics(@goToFeatures="goToFeatures" @getStarted="goToSignup")
     //- 9th panel
-    enriching-hearts#medical-arts-centers
+    enriching-hearts#medical-arts-centers(@goToFeatures="goToFeatures" @getStarted="goToSignup")
     //- 10th panel
-    release-diagnostics#diagnostic-centers
+    release-diagnostics#diagnostic-centers(@goToFeatures="goToFeatures" @getStarted="goToSignup")
     //- cta panel
     div.cta-container
       cta(@getStarted="onGetStarted($event)")
@@ -83,11 +83,14 @@ export default {
     goToSignup () {
       this.$nuxt.$router.push({ name: 'signup-multispecialty' });
     },
+    goToFeatures () {
+      this.$router.push({ name: 'features' });
+    },
   },
   head () {
     return headMeta({
-      title: 'MYCURE EMR Practice Management Solution for Doctors',
-      description: 'MYCURE is the best EMR clinic practice management system that helps doctors doing solo or group practice manage their daily clinical needs. Start FREE today!',
+      title: 'MYCURE Virtual Clinic | Healthcare Practice Online',
+      description: 'MYCURE is an advanced clinic management system that allows you to securely consult with patients online and get real-time medical and business insights.',
       // - TODO: Replace with local if applicable
       socialBanner: 'https://firebasestorage.googleapis.com/v0/b/mc-v4-prod.appspot.com/o/web-main-assets%2FMYCURE-Open-Graph-Images-Doctors-Clinic.png?alt=media&token=a4c57fe8-8ac7-479c-a959-949930299ca5',
     });

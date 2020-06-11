@@ -23,8 +23,8 @@
               v-if="!$isMobile"
               color="accent"
               @click="onGetStarted"
-              x-large
-            ).text-none.font-weight-bold.font-18.btn-book Book a Demo
+              height="55"
+            ).text-none.font-weight-bold.font-18.btn-book Book A Demo
         v-col(cols="12" md="5" v-if="$isMobile" one-line).text-center
           p.font-18.font-weight-light.px-1 {{ uspPreSubtitle }}
           h1.font-poppins.font-30.lh-title {{ panelTitleMobile }}
@@ -43,7 +43,7 @@
         @click="onGetStarted"
         large
         block
-      ).text-none.font-weight-bold.font-18.mt-n8 Book a Demo
+      ).text-none.font-weight-bold.font-18.mt-n8 Get Started
 </template>
 
 <script>
