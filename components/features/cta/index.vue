@@ -6,7 +6,7 @@
       :class="{'pt-12': $isMobile}"
     )
       v-row(slot="content" align="center").row-content
-        v-col(v-if="!$isMobile" cols="12" md="6")
+        v-col(v-if="!$isMobile" cols="12" md="6").col-content
           h1(:class="titleClasses").font-poppins.font-40.lh-title {{ uspTitle }}
           p(:class="[centerText]").font-italic.font-18.px-1 {{ uspSubtitle }}
           div(v-if="!$isMobile").text-field-container.mr-3
@@ -103,15 +103,23 @@ export default {
 .row-content {
   height: 100vh;
 }
-
+.col-content{
+  margin-top: -300px;
+}
 @media screen and (max-width: 1448px) {
   .row-content {
     height: 90vh;
+  }
+  .col-content{
+    margin-top: -250px;
   }
 }
 @media screen and (max-width: 1300px) {
   .row-content {
     height: 72vh;
+  }
+  .col-content{
+    margin-top: -160px;
   }
 }
 @media screen and (max-width: 1264px) {
@@ -136,6 +144,9 @@ export default {
   .text-field-container {
     display: inline-block !important;
   }
+  .col-content{
+    margin-top: -210px;
+  }
 }
 @media screen and (device-width: 1024px) and (orientation: portrait) {
   .row-content {
@@ -144,10 +155,16 @@ export default {
   .text-field-container {
     display: inline-block !important;
   }
+  .col-content{
+    margin-top: -210px;
+  }
 }
 @media screen and (device-height: 1024px) and (orientation: landscape) {
   .row-content {
     height: 74vh;
+  }
+  .col-content{
+    margin-top: -290px;
   }
 }
 </style>
