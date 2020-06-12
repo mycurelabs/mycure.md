@@ -21,7 +21,7 @@
               v-col(shrink)
                 span.font-18.font-gray {{ item }}
       //- Bottom images
-      v-container(v-if="!$isMobile")
+      v-container(v-if="!$isMobile").py-10
         v-row
           v-col(cols="12" md="5")
             img(
