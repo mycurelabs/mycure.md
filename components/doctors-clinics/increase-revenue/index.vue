@@ -22,7 +22,7 @@
       ).pt-12.content-container.pr-12
         h1.font-30.lh-title.pb-3.font-weight-light {{data.header}}
         br
-        span.font-18.mt-3.font-gray {{data.description}}
+        p.text-justify.font-18.mt-3.font-gray {{data.description}}
         br
         br
         br

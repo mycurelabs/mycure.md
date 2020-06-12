@@ -9,7 +9,7 @@
       v-col(align-self="center" cols="12" md="5")
         h1.font-30.lh-title.pb-3.font-weight-light {{ACCESS_QUALITY_HEALTHCARE.header}}
         br
-        span.font-18.mt-3.font-gray {{ACCESS_QUALITY_HEALTHCARE.description}}
+        p.text-justify.font-18.mt-3.font-gray {{ACCESS_QUALITY_HEALTHCARE.description}}
         br
         br
         v-btn(@click="onGetStarted" text).ml-n4.get-started-btn

@@ -4,7 +4,7 @@
       v-col(align-self="center" cols="12" md="4")
         h1.font-30.lh-title.pb-3.font-weight-light {{TAKE_PRACTICE_ONLINE.header}}
         br
-        span.font-18.mt-3.font-gray {{TAKE_PRACTICE_ONLINE.description}}
+        p.text-justify.font-18.mt-3.font-gray {{TAKE_PRACTICE_ONLINE.description}}
         br
         br
         v-btn(@click="onGetStarted" text).ml-n4.get-started-btn
