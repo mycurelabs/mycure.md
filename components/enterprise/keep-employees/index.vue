@@ -5,8 +5,7 @@
         p.font-18.mt-3.font-gray.primary--text {{eightPanel.subHeader}}
         h1.font-30.lh-title.pb-3.font-weight-light {{eightPanel.header}}
         p.font-18.mt-3.font-gray {{eightPanel.description}}
-          span.font-18
-          a(@click="goToFeatures").font-weight-bold {{eightPanel.descriptionLink}}
+          a(@click="goToFeatures").font-18.font-weight-bold {{eightPanel.descriptionLink}}
         v-btn(text @click="onGetStarted").mt-5.ml-n4.get-started-btn
           strong.text-capitalize.primary--text {{eightPanel.btnTxt}}
           v-icon.primary--text {{eightPanel.btnIcon}}
@@ -16,8 +15,7 @@
         p.font-18.mt-3.font-gray.primary--text {{eightPanel.subHeader}}
         h1.font-30.lh-title.pb-3.font-weight-light {{eightPanel.header}}
         p.text-justify.font-18.mt-3.font-gray {{eightPanel.description}}
-          span.font-18
-          a(@click="goToFeatures").font-weight-bold {{eightPanel.descriptionLink}}
+          a(@click="goToFeatures").font-18.font-weight-bold {{eightPanel.descriptionLink}}
         v-btn(text @click="onGetStarted").mt-5.ml-n4.get-started-btn
           strong.text-capitalize.primary--text {{eightPanel.btnTxt}}
           v-icon.primary--text {{eightPanel.btnIcon}}

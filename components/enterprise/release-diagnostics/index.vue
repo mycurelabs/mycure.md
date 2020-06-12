@@ -5,8 +5,7 @@
         p.font-18.mt-3.font-gray.primary--text {{tenthPanel.subHeader}}
         h1.font-30.lh-title.pb-3.font-weight-light {{tenthPanel.header}}
         p.font-18.mt-3.font-gray {{tenthPanel.description}}
-          span.font-18
-          a(@click="goToFeatures").font-weight-bold {{tenthPanel.descriptionLink}}
+          a(@click="goToFeatures").font-18.font-weight-bold {{tenthPanel.descriptionLink}}
         div(v-for="(data, key) in tenthPanel.list" :key="key")
           v-icon.primary--text {{data.icon}}
           span.font-18.font-gray.pl-3 {{data.description}}
@@ -19,8 +18,7 @@
         p.font-18.mt-3.font-gray.primary--text {{tenthPanel.subHeader}}
         h1.font-30.lh-title.pb-3.font-weight-light {{tenthPanel.header}}
         p.text-justify.font-18.mt-3.font-gray {{tenthPanel.description}}
-          span.font-18
-          a(@click="goToFeatures").font-weight-bold {{tenthPanel.descriptionLink}}
+          a(@click="goToFeatures").font-18.font-weight-bold {{tenthPanel.descriptionLink}}
         div(v-for="(data, key) in tenthPanel.list" :key="key")
           img(width="20" src="~/assets/images/mycure-check.png" alt="Check icon")
           span.font-18.font-gray.pl-3 {{data.description}}
