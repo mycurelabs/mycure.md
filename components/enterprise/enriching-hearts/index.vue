@@ -4,7 +4,9 @@
       v-col(cols="12" md="5" align-self="center").ninthPanel-description
         p.font-18.mt-3.font-gray.primary--text {{ninthPanel.subHeader}}
         h1.font-30.lh-title.pb-3.font-weight-light {{ninthPanel.header}}
-        p.text-justify.font-18.mt-3.font-gray {{ninthPanel.description}} <span class="font-18 font-weight-bold"><a @click="goToFeatures">{{ninthPanel.descriptionLink}}</a></span>
+        p.text-justify.font-18.mt-3.font-gray {{ninthPanel.description}}
+          span.font-18
+          a(@click="goToFeatures").font-weight-bold {{ninthPanel.descriptionLink}}
         v-btn(text @click="onGetStarted").mt-5.ml-n4.get-started-btn
           strong.text-capitalize.primary--text {{ninthPanel.btnTxt}}
           v-icon.primary--text {{ninthPanel.btnIcon}}
