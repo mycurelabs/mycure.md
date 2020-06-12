@@ -163,6 +163,14 @@ export default {
     font-size: 16px !important;
   }
 }
+@media screen and (device-width: 1280px) {
+  .cta-panel {
+    margin-top: 12%;
+  }
+  .cta-title {
+    margin-bottom: 8%;
+  }
+}
 @media screen and (device-width: 1366px) {
   .cta-panel {
     padding-top: 15%;
@@ -170,6 +178,46 @@ export default {
   }
   .cta-title {
     padding-bottom: 10%;
+  }
+}
+@media screen and (device-width: 1440px) {
+  .cta-panel {
+    margin-top: 8%;
+  }
+  .cta-title {
+    margin-bottom: 12%;
+  }
+}
+@media screen and (device-width: 1680px) {
+  .cta-panel {
+    margin-top: 13%;
+  }
+  .cta-title {
+    margin-bottom: 15%;
+  }
+}
+@media screen and (device-width: 1920px) {
+  .cta-panel {
+    margin-top: 15%;
+  }
+  .cta-title {
+    margin-bottom: 15%;
+  }
+}
+@media screen and (device-width: 2304px) {
+    .cta-panel {
+      margin-top: 20%;
+    }
+  .cta-title {
+    margin-bottom: 20%;
+  }
+}
+@media screen and (device-width: 2560px) {
+  .cta-panel {
+    margin-top: 15%;
+  }
+  .cta-title {
+    margin-bottom: 25%;
   }
 }
 </style>
