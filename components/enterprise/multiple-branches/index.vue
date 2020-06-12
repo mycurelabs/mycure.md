@@ -13,7 +13,7 @@
       v-col(cols="12" md="6" align-self="center" v-if="$isMobile")
         p.font-18.mt-3.font-gray.primary--text {{branches.subHeader}}
         h1.font-30.lh-title.pb-3.font-weight-light {{branches.header}}
-        p.font-18.mt-3.font-gray {{branches.description}}
+        p.text-justify.font-18.mt-3.font-gray {{branches.description}}
         v-btn(@click="onGetStarted" text).mt-5.ml-n4.get-started-btn
           strong.text-capitalize.primary--text {{branches.btnTxt}}
           v-icon.primary--text {{branches.btnIcon}}
