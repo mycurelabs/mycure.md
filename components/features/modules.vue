@@ -4,7 +4,7 @@
       v-for="(panel,key) in moduleGroup"
       :key="key"
       :class="key === 0 ? 'line-below' : ''"
-    ).mb-10
+    ).py-10
       v-row(justify="center")
         v-col(cols="10").text-center
           span(:class="$isMobile ? 'font-30' : 'font-40'") {{ panel.group }}
