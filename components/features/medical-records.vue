@@ -19,13 +19,13 @@
       //- Bottom images
       v-container(v-if="!$isMobile").py-10
         v-row
-          v-col(cols="12" md="5")
+          v-col(cols="12" md="6")
             img(
               v-lazy="panelImages.leftBottomImage"
               alt="Print prescription"
               width="100%"
             )
-          v-col(cols="12" md="7")
+          v-col(cols="12" md="6")
             img(
               v-lazy="panelImages.rightBottomImage"
               alt="Charting"
