@@ -1,10 +1,10 @@
 <template lang="pug">
-  v-container.pb-12.increase-revenue-content
+  v-container.py-12.increase-revenue-content
     v-row(justify="center")
       v-col(cols="12" md="10" v-if="!$isMobile")
         img(
           v-lazy="require('~/assets/images/doctors-clinics/MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-A-online-consult.webp')"
-          width="95%"
+          width="100%"
           alt="Medical records"
         ).pt-12
       img(
@@ -16,18 +16,17 @@
       v-col(
         justify="center"
         cols="12"
-        md="4"
+        md="5"
         v-for="(data, key) in secondPanelContents"
         :key="key"
-      ).pt-12.content-container.pr-12
-        h1.font-30.lh-title.pb-3.font-weight-light {{data.header}}
+      ).pt-12.content-container.pl-6
+        h1.font-30.lh-title.pb-6.font-weight-light {{data.header}}
         br
-        span.font-18.mt-3.font-gray {{data.description}}
+        p.text-justify.font-18.font-gray.pr-2 {{data.description}}
         br
         br
         br
         v-btn(@click="onGetStarted" text).ml-n4.get-started-btn
-
           strong.text-capitalize.primary--text {{data.btnTxt}}
           v-icon.primary--text {{data.btnIcon}}
 </template>
@@ -68,7 +67,7 @@ a {
 }
 @media screen and (min-width: 1366px) {
   .increase-revenue-content {
-  margin-top: 10%;
+  margin-top: 8%;
   }
 }
 </style>
