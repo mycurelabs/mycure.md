@@ -4,7 +4,7 @@
       v-col(cols="12" md="10" v-if="!$isMobile")
         img(
           v-lazy="require('~/assets/images/doctors-clinics/MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-A-online-consult.webp')"
-          width="95%"
+          width="100%"
           alt="Medical records"
         ).pt-12
       img(
@@ -19,10 +19,10 @@
         md="4"
         v-for="(data, key) in secondPanelContents"
         :key="key"
-      ).pt-12.content-container.pr-12
-        h1.font-30.lh-title.pb-3.font-weight-light {{data.header}}
+      ).pt-12.pl-5.content-container
+        h1.font-30.lh-title.pb-6.font-weight-light {{data.header}}
         br
-        p.text-justify.font-18.mt-3.font-gray {{data.description}}
+        p.text-justify.font-18.font-gray.pr-5 {{data.description}}
         br
         br
         br
