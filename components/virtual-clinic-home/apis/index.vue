@@ -7,7 +7,7 @@
           v-col(cols="5" align-self="center").px-3
             h1.panelTitle.font-36.lh-title.font-weight-light {{ webTitle }}
             br
-            p.font-18.font-gray {{ panelContent }}
+            p.font-18.font-gray.text-justify {{ panelContent }}
             v-list(dense)
               v-list-item(
                 v-for="(item, key) in checkList"
@@ -26,7 +26,7 @@
         br
         img(width="85%" v-lazy="panelImageSrc" :alt="panelImage").pb-3
         br
-        p.font-18.font-gray {{ panelContent }}
+        p.font-18.font-gray.text-justify.mt-3 {{ panelContent }}
         v-list(two-line).text-left
           v-list-item(
             v-for="(item, key) in checkList"
