@@ -1,10 +1,10 @@
 <template lang="pug">
   v-container.py-12.quality-healthcare-contents
     v-row(justify="center")
-      v-col(align-self="center" cols="12" md="5" v-if="!$isMobile")
+      v-col(align-self="center" cols="12" md="6" v-if="!$isMobile")
         img(
           v-lazy="require('~/assets/images/doctors-clinics/MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-E-patient-portal.webp')"
-          alt="Access quality healthcare"
+          alt="Access quality healthcare" width="100%"
         ).web-image
       v-col(align-self="center" cols="12" md="5")
         h1.font-30.lh-title.pb-3.font-weight-light {{ACCESS_QUALITY_HEALTHCARE.header}}
@@ -39,10 +39,6 @@ export default {
 </script>
 
 <style scoped>
-a {
-  text-decoration-color: #2e9fdf;
-  text-decoration: none;
-}
 @media screen and (device-width: 1024px) {
   .web-image {
     width: 100%;
@@ -50,12 +46,6 @@ a {
   .quality-healthcare-contents {
     position: relative;
     z-index: 2;
-  }
-}
-@media screen and (min-width: 1024px) {
-  .web-image {
-    margin-left: -20%;
-    width: 115%;
   }
 }
 </style>

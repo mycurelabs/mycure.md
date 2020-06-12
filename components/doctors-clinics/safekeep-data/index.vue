@@ -1,7 +1,7 @@
 <template lang="pug">
   v-container.py-12
     v-row(justify="center")
-      v-col(align-self="center" v-if="!$isMobile" cols="12" md="6")
+      v-col(align-self="center" cols="12" md="6" v-if="!$isMobile")
         img(
           v-lazy="require('~/assets/images/doctors-clinics/MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-B-secure-data.webp')"
           alt="Safekeep your important medical data" width="100%"
@@ -37,12 +37,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-/* @media screen and (device-width: 1024px) {
-  .web-image {
-    margin-left: -20%;
-    width: 100%;
-  }
-} */
-</style>
