@@ -13,13 +13,13 @@
     //- 6th panel
     multiple-branches(@getStarted="goToSignup")
     //- 7th panel
-    one-stop(#multispecialty-clinics @goToFeatures="goToFeatures" @getStarted="goToSignup")
+    one-stop(@goToFeatures="goToFeatures" @getStarted="goToSignup")#multispecialty-clinics
     //- 8th panel
-    keep-employees(#corporate-clinics @goToFeatures="goToFeatures" @getStarted="goToSignup")
+    keep-employees(@goToFeatures="goToFeatures" @getStarted="goToSignup")#corporate-clinics
     //- 9th panel
-    enriching-hearts(#medical-arts-centers @goToFeatures="goToFeatures" @getStarted="goToSignup")
+    enriching-hearts(@goToFeatures="goToFeatures" @getStarted="goToSignup")#medical-arts-centers
     //- 10th panel
-    release-diagnostics(#diagnostic-centers @goToFeatures="goToFeatures" @getStarted="goToSignup")
+    release-diagnostics(@goToFeatures="goToFeatures" @getStarted="goToSignup")#diagnostic-centers
     //- cta panel
     div.cta-container
       cta(@getStarted="onGetStarted($event)")
