@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-container.pb-12.increase-revenue-content
+  v-container.py-12.increase-revenue-content
     v-row(justify="center")
       v-col(cols="12" md="10" v-if="!$isMobile")
         img(
@@ -27,7 +27,6 @@
         br
         br
         v-btn(@click="onGetStarted" text).ml-n4.get-started-btn
-
           strong.text-capitalize.primary--text {{data.btnTxt}}
           v-icon.primary--text {{data.btnIcon}}
 </template>
@@ -68,7 +67,7 @@ a {
 }
 @media screen and (min-width: 1366px) {
   .increase-revenue-content {
-  margin-top: 10%;
+  margin-top: 8%;
   }
 }
 </style>
