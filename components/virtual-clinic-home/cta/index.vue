@@ -19,7 +19,7 @@
             color="accent"
             large
             @click="onGetStarted"
-          ).text-none.font-weight-bold.font-18.mt-5.cta-btn Get Started
+          ).text-none.font-16.p-7.mt-5.cta-btn Get Started
         img(
           v-if="$isMobile"
           v-lazy="panelImageSrc"
@@ -36,7 +36,7 @@
             color="accent"
             large
             @click="onGetStarted"
-          ).text-none.font-weight-bold.font-18.mt-5.cta-btn Get Started
+          ).text-none.font-16.p-7.mt-5.cta-btn Get Started
           img(
             v-lazy="panelImageSrc"
             alt="Home CTA"
