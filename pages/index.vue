@@ -11,7 +11,7 @@
       customPath="virtual-clinic-home/"
       horizontal
       horizontal-image-size="40%"
-    ).mt-10
+    )
     //- 4th panel
     privacy
     //- 5th panel
