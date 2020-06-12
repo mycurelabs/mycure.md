@@ -147,7 +147,7 @@ export default {
     z-index: 1;
   }
   .cta-title {
-    margin-bottom: 5%;
+    margin-bottom: 7%;
   }
   .panel-title {
     font-size: 30px !important;
