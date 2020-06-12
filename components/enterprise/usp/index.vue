@@ -24,7 +24,8 @@
               color="accent"
               @click="onGetStarted"
               height="55"
-            ).text-none.font-weight-bold.font-18.btn-book Book A Demo
+              width="160"
+            ).text-none.font-16.p-7.btn-book Book A Demo
         v-col(cols="12" md="5" v-if="$isMobile" one-line).text-center
           p.font-18.font-weight-light.px-1 {{ uspPreSubtitle }}
           h1.font-poppins.font-30.lh-title {{ panelTitleMobile }}
@@ -147,6 +148,35 @@ export default {
   .btn-book {
     margin-left: 0px;
     margin-top: 2%;
+  }
+}
+@media screen and (device-width: 1440px) {
+  .row-content {
+    height: 85vh;
+  }
+}
+@media screen and (device-width: 1680px) {
+  .row-content {
+    margin-top: 0%;
+    height: 75vh;
+  }
+}
+@media screen and (device-width: 1920px) {
+  .row-content {
+    margin-top: 5%;
+    height: 80vh;
+  }
+}
+@media screen and (device-width: 2304px) {
+  .row-content {
+    margin-top: 10%;
+    height: 80vh;
+  }
+}
+@media screen and (device-width: 2560px) {
+  .row-content {
+    margin-top: 15%;
+    height: 70vh;
   }
 }
 </style>
