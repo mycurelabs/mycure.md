@@ -9,23 +9,17 @@
               nuxt-link(:to="{ name: 'index' }" title="MYCURE | Clinic Management System | Cloud EMR Philippines" id="toolbar-mycure-logo" @click.stop="handleMycureLogo").mr-3.mt-2
                 img(src="~/assets/images/MYCURE-virtual-clinic-healthcare-practice-online-logo.svg" width="140" alt="MYCURE logo")
               v-spacer
-              v-menu(
-                ref="menuRef"
-                offset-y
-                :close-on-content-click="false"
-              ).solutions-menu
-                template(slot="activator" slot-scope="props")
-                  v-btn(
-                    text
-                    v-on="props.on"
-                  ).mx-1
-                    span.font-14.tab.text-none {{solutionsText}}
-                    v-icon(small) mdi-chevron-down
-                v-card
-                  v-list
-                    v-list-group(v-for="(item, key) in solutionsMenuItems" :key="key")
-                      template(v-slot:activator)
-                        v-list-item-title {{ item.name }}
+              template(v-for="(item, key) in solutionsMenuItems")
+                v-menu(offset-y).solutions-menu
+                  template(slot="activator" slot-scope="props")
+                    v-btn(
+                      text
+                      v-on="props.on"
+                    ).mx-1
+                      span.font-14.tab.text-none {{item.name}}
+                      v-icon(small) mdi-chevron-down
+                  v-card
+                    v-list
                       v-list-item(
                         v-for="(menu, index) in item.subMenus"
                         :key="index"
@@ -106,10 +100,6 @@ export default {
       type: Array,
       default: () => ([]),
     },
-    solutionsText: {
-      type: String,
-      default: 'Solutions',
-    },
     loginURL: {
       type: String,
       default: 'signin',
@@ -150,7 +140,6 @@ export default {
       this.$emit('logoClick');
     },
     handleSubMenuClick (link, menu) {
-      this.$refs.menuRef.isActive = false;
       this.$emit('subMenuClick', { link, menu });
     },
   },
