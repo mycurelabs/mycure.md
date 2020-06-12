@@ -80,9 +80,8 @@ export default {
   components: {
     McFooterToolbar,
   },
-  data () {
+  created () {
     this.clinicSolutions = CLINIC_SOLUTIONS;
-    return {};
   },
   methods: {
     handleFooterSolution (link) {
