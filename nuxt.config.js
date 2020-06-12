@@ -1,5 +1,5 @@
 const colors = require('vuetify/es5/util/colors').default;
-const test = 'test linter';
+
 module.exports = {
   mode: 'universal',
   /*
