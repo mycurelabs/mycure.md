@@ -118,7 +118,4 @@ export default {
 .platform-panel {
   position: relative;
 }
-.edge-divider{
-  margin: 0 1% !important
-}
 </style>
