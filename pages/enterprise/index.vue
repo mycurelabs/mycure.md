@@ -4,20 +4,28 @@
     usp(@getStarted="onGetStarted($event)")
     //- 2nd panel
     your-patients(@getStarted="goToSignup")
+    v-divider
     //- 3rd panel
     handle-outpatient(@getStarted="goToSignup")
+    v-divider
     //- 4th panel
     patients-loop(@getStarted="goToSignup")
+    v-divider
     //- 5th panel
     smarter-decisions
+    v-divider
     //- 6th panel
     multiple-branches(@getStarted="goToSignup")
+    v-divider
     //- 7th panel
     one-stop(@goToFeatures="goToFeatures" @getStarted="goToSignup")#multispecialty-clinics
+    v-divider
     //- 8th panel
     keep-employees(@goToFeatures="goToFeatures" @getStarted="goToSignup")#corporate-clinics
+    v-divider
     //- 9th panel
     enriching-hearts(@goToFeatures="goToFeatures" @getStarted="goToSignup")#medical-arts-centers
+    v-divider
     //- 10th panel
     release-diagnostics(@goToFeatures="goToFeatures" @getStarted="goToSignup")#diagnostic-centers
     //- cta panel
