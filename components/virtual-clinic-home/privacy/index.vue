@@ -9,8 +9,7 @@
           v-col(cols="5" offset="1" align-self="center")
             h1.font-36.lh-title.pb-3.font-weight-light {{ panelTitle }}
             br
-            br
-            span.font-s.mt-3.font-gray {{ panelText }}
+            span.font-18.mt-3.font-gray {{ panelText }}
     //- MOBILE
     div(v-else).pt-5
       v-container
@@ -34,7 +33,7 @@
                       v-on="on"
                     )
                   | {{item.text}}
-            p.font-s.mt-3.font-gray {{ panelText }}
+            p.font-18.mt-3.font-gray {{ panelText }}
 </template>
 
 <script>
