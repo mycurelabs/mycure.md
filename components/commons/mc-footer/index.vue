@@ -12,9 +12,9 @@
               :key="key"
             )
               nuxt-link(
-              :to="{ name: solution.learnLink }"
-              @click.stop="handleFooterSolution(solution.learnLink)"
-              ).link {{solution.header}}
+              :to="{ name: solution.route }"
+              @click.stop="handleFooterSolution(solution.route)"
+              ).link {{solution.name}}
             nuxt-link(
               id="footer-features-link"
               @click.stop="handleFooterFeaturesLink"
@@ -74,16 +74,14 @@
 // - components
 import McFooterToolbar from './toolbar';
 // - constants
-import { HEALTH_SUITES_ITEMS } from '~/components/home/health-suites/constants';
+import { CLINIC_SOLUTIONS } from './constants';
 
 export default {
   components: {
     McFooterToolbar,
   },
-  data () {
-    return {
-      clinicSolutions: HEALTH_SUITES_ITEMS,
-    };
+  created () {
+    this.clinicSolutions = CLINIC_SOLUTIONS;
   },
   methods: {
     handleFooterSolution (link) {

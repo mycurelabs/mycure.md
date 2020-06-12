@@ -24,14 +24,16 @@
       v-row
         v-col(cols="12")
           v-list
-            v-list-item(
-              v-for="(item, key) in solutionsMenuItems.concat(toolbarLinks)"
-              :key="key"
-              @click.stop="handleToolbarLinkClick(item)"
-            )
-              v-list-item-content
-                v-list-item-title
-                  b {{item.name}}
+            v-list-group(v-for="(item, key) in solutionsMenuItems" :key="key")
+              template(v-slot:activator)
+                v-list-item-title {{ item.name }}
+              v-list-item(
+                v-for="(menu, index) in item.subMenus"
+                :key="index"
+                link
+                dense
+                @click="handleSubMenuClick(item, menu)"
+              ).pl-7 {{ menu.name }}
           br
           v-divider
         v-col(cols="12")
@@ -137,6 +139,10 @@ export default {
     },
     handleUserLinkClick (id) {
       this.$emit('toolbarLinkClick', id);
+      this.drawer = false;
+    },
+    handleSubMenuClick (link, menu) {
+      this.$emit('subMenuClick', { link, menu });
       this.drawer = false;
     },
   },

@@ -13,7 +13,7 @@
       ).text-center.column-container
         div.text-center.img-container
           img(v-lazy="require(`~/assets/images/enterprise/${data.image}`)" :alt="data.header")
-        h1.font-30.lh-title.pb-3.font-weight-light.column-head.mt-4 {{data.header}}
+        h1.font-25.lh-title.pb-3.font-weight-light.column-head.mt-4 {{data.header}}
         v-btn(text @click="onClick").get-started-btn.mt-4
           strong.text-capitalize.primary--text {{data.btnTxt}}
           v-icon.primary--text {{data.btnIcon}}

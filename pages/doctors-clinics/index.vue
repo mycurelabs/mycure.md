@@ -7,9 +7,9 @@
     //- 3rd panel
     safekeep-data(@getStarted="getStarted")
     //- 4th panel
-    practice-online(@getStarted="getStarted")
+    practice-online(@getStarted="getStarted")#group-practice
     //- 5th panel
-    specialized-plans
+    specialized-plans#specialized-practice
     //- 6th panel
     quality-healthcare(@getStarted="getStarted")
     //- 7th panel
@@ -46,9 +46,19 @@ export default {
       loading: true,
     };
   },
+  computed: {
+    scrollPanel () {
+      const panel = this.$nuxt.$route.params.panel;
+      return panel ? `#${panel}` : null;
+    },
+  },
   mounted () {
-    VueScrollTo.scrollTo('#app', 500, { easing: 'ease' });
     this.loading = false;
+    const panel = this.scrollPanel || '#app';
+    const offset = panel === '#app' ? 0 : 700;
+    this.$nextTick(() => {
+      VueScrollTo.scrollTo(panel, 500, { easing: 'ease', offset });
+    });
   },
   methods: {
     getStarted () {
@@ -60,8 +70,8 @@ export default {
   },
   head () {
     return headMeta({
-      title: 'MYCURE EMR Practice Management Solution for Doctors',
-      description: 'MYCURE is the best EMR clinic practice management system that helps doctors doing solo or group practice manage their daily clinical needs. Start FREE today!',
+      title: 'MYCURE Virtual Clinic | Healthcare Practice Online',
+      description: 'MYCURE is an advanced clinic management system that allows you to securely consult with patients online and get real-time medical and business insights.',
       // - TODO: Replace with local if applicable
       socialBanner: 'https://firebasestorage.googleapis.com/v0/b/mc-v4-prod.appspot.com/o/web-main-assets%2FMYCURE-Open-Graph-Images-Doctors-Clinic.png?alt=media&token=a4c57fe8-8ac7-479c-a959-949930299ca5',
     });

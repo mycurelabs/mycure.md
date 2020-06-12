@@ -25,7 +25,7 @@ export const SECOND_PANEL_CONTENTS = [
 export const OUTPATIENT = {
   image: 'MYCURE-virtual-clinic-healthcare-practice-online-enterprise-C-book-online-calendar.png',
   header: 'Handle outpatient consultations online',
-  description: 'Continue to give your patients quality care online while keeping your physicians safe',
+  description: 'Continue to give your patients quality care online while keeping your physicians safe.',
   btnTxt: 'Get Started',
   btnIcon: 'mdi-arrow-right-thick',
 };
@@ -59,9 +59,10 @@ export const FIFTH_PANEL_CONTENT = [
   },
 ];
 export const BRANCHES = {
+  subHeader: 'FOR MULTI-BRANCH FACILITIES',
   image: 'MYCURE-virtual-clinic-healthcare-practice-online-enterprise-E-multiple-branches.png',
   imageMobile: 'MYCURE-virtual-clinic-healthcare-practice-online-enterprise-E-multiple-branches-mobile.png',
-  header: 'Monitor multiple branches one one system',
+  header: 'Monitor multiple branches on one system',
   description: 'All you need is one clean dashboard to see how your clinics are faring. Your data from multiple branches is automatically aggregated to show you a comprehensive summary of patient encounters, transactions, sales, expenses and even staff performance.',
   btnTxt: 'Get Started',
   btnIcon: 'mdi-arrow-right-thick',
@@ -71,8 +72,8 @@ export const SEVENTH_PANEL = {
   header: 'Best for one-stop, multi-staff clinics',
   image: 'MYCURE-virtual-clinic-healthcare-practice-online-enterprise-F-multi-specialty.webp',
   description: 'Because you offer a hollistic patient care experience, we are here to help you with all the crazy paperwork! Consolidate all your clinic activities in one place with this complete clinic management system.',
-  descriptionLink: 'See Features',
-  btnTxt: 'Book a Demo',
+  descriptionLink: ' See Features',
+  btnTxt: 'Book A Demo',
   btnIcon: 'mdi-arrow-right-thick',
 };
 export const EIGHT_PANEL = {
@@ -80,8 +81,8 @@ export const EIGHT_PANEL = {
   header: 'Keep your employees healthy and active',
   image: 'MYCURE-virtual-clinic-healthcare-practice-online-enterprise-G-corporate-clinics.webp',
   description: 'Monitor the physical and mental health of your workplace by making sure your employees visit your in-house medical providers whenever they need to. Level up your services and your corporate clinics and easily pair up with your human resources department now.',
-  descriptionLink: 'See Features',
-  btnTxt: 'Book a Demo',
+  descriptionLink: ' See Features',
+  btnTxt: 'Book A Demo',
   btnIcon: 'mdi-arrow-right-thick',
 };
 export const NINTH_PANEL = {
@@ -89,8 +90,8 @@ export const NINTH_PANEL = {
   header: 'Enriching the heart of hospitals with seamless consultation workflows',
   image: 'MYCURE-virtual-clinic-healthcare-practice-online-enterprise-H-medical-arts-center.webp',
   description: 'Whether doing or online face-to-face consults, engage your healthcare specialists and their secretaries by giving them more convenient way to connect with their patients.',
-  descriptionLink: 'See Features',
-  btnTxt: 'Book a Demo',
+  descriptionLink: ' See Features',
+  btnTxt: 'Book A Demo',
   btnIcon: 'mdi-arrow-right-thick',
 };
 export const TENTH_PANEL = {
@@ -98,8 +99,8 @@ export const TENTH_PANEL = {
   header: 'Create, finalized and release diagnostic test results online',
   image: 'MYCURE-virtual-clinic-healthcare-practice-online-enterprise-I-diagnostic-centers.webp',
   description: 'Designed for laboratory and imaging test centers so your patients can securely view their test results without having to leave their house.',
-  descriptionLink: 'See Features',
-  btnTxt: 'Book a Demo',
+  descriptionLink: ' See Features',
+  btnTxt: 'Book A Demo',
   btnIcon: 'mdi-arrow-right-thick',
   list: [
     {

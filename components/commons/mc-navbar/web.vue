@@ -10,8 +10,9 @@
                 img(src="~/assets/images/mycure-header-logo.png" width="140" alt="MYCURE logo")
               v-spacer
               v-menu(
-                v-model="solutionsMenuModel"
+                ref="menuRef"
                 offset-y
+                :close-on-content-click="false"
               ).solutions-menu
                 template(slot="activator" slot-scope="props")
                   v-btn(
@@ -22,14 +23,16 @@
                     v-icon(small) mdi-chevron-down
                 v-card
                   v-list
-                    v-list-item(
-                      v-for="(item, key) in solutionsMenuItems"
-                      :key="key"
-                      :to="{ name: item.route }"
-                      @click="handleToolbarLinkClick(item.route)"
-                    )
-                      v-list-item-content
-                        v-list-item-title {{item.name}}
+                    v-list-group(v-for="(item, key) in solutionsMenuItems" :key="key")
+                      template(v-slot:activator)
+                        v-list-item-title {{ item.name }}
+                      v-list-item(
+                        v-for="(menu, index) in item.subMenus"
+                        :key="index"
+                        link
+                        dense
+                        @click="handleSubMenuClick(item, menu)"
+                      ).pl-7 {{ menu.name }}
               div(v-for="(link, key) in toolbarLinks" :key="key")
                 v-btn(
                   :to="{ name: link.route }"
@@ -145,6 +148,10 @@ export default {
     },
     handleMycureLogo () {
       this.$emit('logoClick');
+    },
+    handleSubMenuClick (link, menu) {
+      this.$refs.menuRef.isActive = false;
+      this.$emit('subMenuClick', { link, menu });
     },
   },
 };
