@@ -4,6 +4,7 @@
     usp(@getStarted="goToSignupIndividual($event)")
     //- 2nd panel
     platform-panels(@getStarted="getStarted").platform-panel
+    v-divider.edge-divider
     //- 3rd panel
     storyflow(
       :storyflow="storyflowItems"
@@ -12,10 +13,13 @@
       horizontal
       horizontal-image-size="40%"
     )
+    v-divider.edge-divider
     //- 4th panel
     privacy
+    v-divider.edge-divider
     //- 5th panel
     apis
+    v-divider.edge-divider
     //- 6th panel
     testimonial
     //- final panel
@@ -113,5 +117,8 @@ export default {
 <style scoped>
 .platform-panel {
   position: relative;
+}
+.edge-divider{
+  margin: 0 1% !important
 }
 </style>

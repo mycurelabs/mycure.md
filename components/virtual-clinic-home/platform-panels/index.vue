@@ -122,11 +122,13 @@ a {
 .line-below:after{
   content: '';
   position: absolute;
+  display: inline-block;
   bottom: 0px;
-  left: -3000px;
-  width: 10000px;
-  height: 2px;
-  background-color: rgba(227, 227, 227, 0.5);
+  left: 50%;
+  transform: translateX(-50%);
+  width: 97vw;
+  height: 1px;
+  background-color: rgba(0, 0, 0, 0.12);
 }
 .platform-panels{
   margin-top: 55%;
