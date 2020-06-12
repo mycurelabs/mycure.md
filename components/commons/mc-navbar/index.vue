@@ -119,7 +119,7 @@ export default {
       const getStartedBtns = ['get-started-btn', 'mobile-navdrawer-get-started-btn'];
       const routes = ['index', 'virtual-clinic-temporary-home'];
       if (getStartedBtns.includes(link) && routes.includes(this.$nuxt.$route.name)) {
-        VueScrollTo.scrollTo('#health-suites', 500, { easing: 'ease' });
+        this.$nuxt.$router.push({ name: 'signup-individual' });
       } else if (getStartedBtns.includes(link)) {
         this.$nuxt.$router.push({
           name: 'index',

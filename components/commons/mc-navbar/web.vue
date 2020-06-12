@@ -52,15 +52,15 @@
                 id="start-free-btn"
                 @click.stop="handleToolbarLinkClick('start-free-btn')"
               )
-                strong.font-14.white--text.tab.text-none Start Free
+                strong.font-14.white--text.tab.text-none Get Started
               v-btn(
-                v-else-if="currentRoute === 'multispecialty-clinics' || currentRoute === 'hippocrates'"
+                v-else-if="currentRoute === 'enterprise'"
                 color="#98be58"
-                :to="{ name: 'signup-multispecialty', ...($nuxt.$route.name === 'hippocrates') && { params: { route: 'hippocrates' } }}"
-                id="multispecialty-book-demo-btn"
-                @click.stop="handleToolbarLinkClick('multispecialty-book-demo-btn')"
+                :to="{ name: 'signup-multispecialty' }"
+                id="enterprise-book-demo-btn"
+                @click.stop="handleToolbarLinkClick('enterprise-book-demo-btn')"
               )
-                strong.font-14.white--text.tab.text-none Book A Free Demo
+                strong.font-14.white--text.tab.text-none Book A Demo
               v-btn(
                 v-else-if="currentRoute === 'specialized-clinics'"
                 color="#98be58"
