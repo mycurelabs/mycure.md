@@ -42,7 +42,7 @@
     v-row(justify="center" align="center").py-12.line-below
       v-col(v-if="!$isMobile" align="center" cols="12" md="6").first-column
         img(
-          v-lazy="require('~/assets/images/virtual-clinic-home/MYCURE-virtual-clinic-healthcare-practice-online-homepage-C-doctor-website.png')"
+          v-lazy="require('~/assets/images/virtual-clinic-home/webp/MYCURE-virtual-clinic-healthcare-practice-online-homepage-C-doctor-website.webp')"
           width="100%"
           alt="Get more patients"
         ).pr-12
@@ -57,7 +57,7 @@
           v-icon.primary--text {{GET_MORE_PATIENTS.btnIcon}}
       img(
         v-if="$isMobile"
-        v-lazy="require('~/assets/images/virtual-clinic-home/MYCURE-virtual-clinic-healthcare-practice-online-homepage-C-doctor-website.png')"
+        v-lazy="require('~/assets/images/virtual-clinic-home/webp/MYCURE-virtual-clinic-healthcare-practice-online-homepage-C-doctor-website.webp')"
         alt="Get more patients"
         width="95%"
       ).pr-n12
