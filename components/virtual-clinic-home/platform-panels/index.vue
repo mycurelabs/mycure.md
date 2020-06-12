@@ -15,7 +15,7 @@
       v-col(align-self="center" cols="12" md="6" lg="4").second-column
         h1.font-30.lh-title.pb-3.font-weight-light {{HOME_START_YOUR_PHYSICAL.header}}
         br
-        span.font-16.mt-3.font-gray {{HOME_START_YOUR_PHYSICAL.description}}
+        p.font-16.font-gray.text-justify.my-0 {{HOME_START_YOUR_PHYSICAL.description}}
         br
         br
         v-btn(text @click="onGetStarted").ml-n4
@@ -31,7 +31,7 @@
       v-col(cols="12" md="6" lg="4").first-column.img-online-clinic
         h1.font-30.font-weight-light {{YOUR_ONLINE_CLINIC.header}}
         br
-        span.font-16.font-gray {{YOUR_ONLINE_CLINIC.description}}
+        p.font-16.font-gray.text-justify.mb-0 {{YOUR_ONLINE_CLINIC.description}}
         br
         br
         v-btn(@click="onGetStarted" text).ml-n4
@@ -42,14 +42,14 @@
     v-row(justify="center" align="center").py-12.line-below
       v-col(v-if="!$isMobile" align="center" cols="12" md="6").first-column
         img(
-          v-lazy="require('~/assets/images/virtual-clinic-home/MYCURE-virtual-clinic-healthcare-practice-online-homepage-C-doctor-website.png')"
+          v-lazy="require('~/assets/images/virtual-clinic-home/webp/MYCURE-virtual-clinic-healthcare-practice-online-homepage-C-doctor-website.webp')"
           width="100%"
           alt="Get more patients"
         ).pr-12
       v-col(align="center" cols="12" md="6" lg="4").text-left.second-column
         h1.font-30.font-weight-light {{GET_MORE_PATIENTS.header}}
         br
-        span.font-16.font-gray {{GET_MORE_PATIENTS.description}}
+        p.font-16.font-gray.text-justify.mb-0 {{GET_MORE_PATIENTS.description}}
         br
         br
         v-btn(@click="onGetStarted" text).ml-n4
@@ -57,7 +57,7 @@
           v-icon.primary--text {{GET_MORE_PATIENTS.btnIcon}}
       img(
         v-if="$isMobile"
-        v-lazy="require('~/assets/images/virtual-clinic-home/MYCURE-virtual-clinic-healthcare-practice-online-homepage-C-doctor-website.png')"
+        v-lazy="require('~/assets/images/virtual-clinic-home/webp/MYCURE-virtual-clinic-healthcare-practice-online-homepage-C-doctor-website.webp')"
         alt="Get more patients"
         width="95%"
       ).pr-n12
@@ -65,7 +65,7 @@
       v-col(cols="12" md="6" lg="4").first-column
         h1.font-30.font-weight-light {{MANAGE_EVERYTHING_EASILY.header}}
         br
-        span.font-16.font-gray {{MANAGE_EVERYTHING_EASILY.description}}
+        p.font-16.font-gray.text-justify.mb-0 {{MANAGE_EVERYTHING_EASILY.description}}
         br
         br
         v-btn(@click="onGetStarted" text).ml-n4
@@ -122,23 +122,37 @@ a {
 .line-below:after{
   content: '';
   position: absolute;
+  display: inline-block;
   bottom: 0px;
-  left: -3000px;
-  width: 10000px;
-  height: 2px;
-  background-color: rgba(227, 227, 227, 0.5);
+  left: 50%;
+  transform: translateX(-50%);
+  width: 97vw;
+  height: 1px;
+  background-color: rgba(0, 0, 0, 0.12);
 }
 .platform-panels{
-  margin-top: 50%;
+  margin-top: 55%;
 }
-@media screen and (device-width: 768px) {
-  .platform-panels {
-    margin-top: 0%;
+@media screen and (max-width: 1037px) {
+  .platform-panels{
+    margin-top: 5%;
   }
 }
-@media screen and (device-width: 768px) {
+@media screen and (device-width: 768px) and (orientation: portrait)  {
   .platform-panels {
-    margin-top: 10%;
+    margin-top: 5%;
+  }
+}
+@media screen and (device-width: 1024px) and (orientation: portrait)  {
+  /* ipad pro */
+  .platform-panels {
+    margin-top: 55%;
+  }
+}
+@media screen and (device-width: 1024px) and (orientation: landscape)  {
+  /* ipad */
+  .platform-panels {
+    margin-top: 55%;
   }
 }
 @media screen and (min-width: 1366px) {
@@ -146,9 +160,6 @@ a {
     margin-left: -5%;
   }
   .second-column {
-    margin-left: 5%;
-  }
-  .img-online-clinic {
     margin-left: 5%;
   }
 }

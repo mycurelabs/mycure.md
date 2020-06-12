@@ -12,11 +12,12 @@
           h1(:class="titleClasses").font-poppins.font-40.lh-title {{ uspTitle }}
           p(:class="[centerText]").font-18.mx-1.pt-5 {{ uspSubtitle }}
           v-btn(
+            height="54"
+            width="160"
             v-if="!$isMobile"
             color="accent"
-            large
             @click="onGetStarted"
-          ).text-none.font-weight-bold.font-18.mt-5 Get Started
+          ).text-none.font-16.p-7.btn-book Get Started
         v-col(cols="12" md="5" :class="[{'web-content-margin': !$isMobile}]" v-if="$isMobile" one-line)
           p(:class="[centerText]").font-18 {{ uspSubheader }}
           h1(:class="titleClasses").font-poppins.font-30.lh-title {{ uspTitle }}
@@ -106,7 +107,7 @@ export default {
 }
 @media screen and (device-width: 360px) {
   .text-field-container {
-  margin-top: -28%;
+    margin-top: -28%;
   }
 }
 @media screen and (device-width: 375px) {
@@ -116,7 +117,12 @@ export default {
 }
 @media screen and (device-width: 1024px) {
   .row-content {
-  margin-top: -20%;
+    margin-top: -20%;
+  }
+}
+@media screen and (device-width: 1920px) {
+  .row-content {
+    margin-top: 5%;
   }
 }
 </style>

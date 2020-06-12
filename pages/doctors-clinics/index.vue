@@ -4,12 +4,16 @@
     usp(@getStarted="getStarted")
     //- 2nd panel
     increase-revenue(@getStarted="getStarted")
+    v-divider.edge-divider
     //- 3rd panel
     safekeep-data(@getStarted="getStarted")
+    v-divider.edge-divider
     //- 4th panel
     practice-online(@getStarted="getStarted")#group-practice
+    v-divider.edge-divider
     //- 5th panel
     specialized-plans#specialized-practice
+    v-divider.edge-divider
     //- 6th panel
     quality-healthcare(@getStarted="getStarted")
     //- 7th panel

@@ -7,25 +7,19 @@
           v-col(cols="12" md="12").toolbarMargin
             v-toolbar(flat :color="appBarColor")
               nuxt-link(:to="{ name: 'index' }" title="MYCURE | Clinic Management System | Cloud EMR Philippines" id="toolbar-mycure-logo" @click.stop="handleMycureLogo").mr-3.mt-2
-                img(src="~/assets/images/mycure-header-logo.png" width="140" alt="MYCURE logo")
+                img(src="~/assets/images/MYCURE-virtual-clinic-healthcare-practice-online-logo.svg" width="140" alt="MYCURE logo")
               v-spacer
-              v-menu(
-                ref="menuRef"
-                offset-y
-                :close-on-content-click="false"
-              ).solutions-menu
-                template(slot="activator" slot-scope="props")
-                  v-btn(
-                    text
-                    v-on="props.on"
-                  ).mx-1
-                    span.font-14.tab.text-none {{solutionsText}}
-                    v-icon(small) mdi-chevron-down
-                v-card
-                  v-list
-                    v-list-group(v-for="(item, key) in solutionsMenuItems" :key="key")
-                      template(v-slot:activator)
-                        v-list-item-title {{ item.name }}
+              template(v-for="(item, key) in solutionsMenuItems")
+                v-menu(offset-y).solutions-menu
+                  template(slot="activator" slot-scope="props")
+                    v-btn(
+                      text
+                      v-on="props.on"
+                    ).mx-1
+                      span.font-14.tab.text-none {{item.name}}
+                      v-icon(small) mdi-chevron-down
+                  v-card
+                    v-list
                       v-list-item(
                         v-for="(menu, index) in item.subMenus"
                         :key="index"
@@ -58,15 +52,15 @@
                 id="start-free-btn"
                 @click.stop="handleToolbarLinkClick('start-free-btn')"
               )
-                strong.font-14.white--text.tab.text-none Start Free
+                strong.font-14.white--text.tab.text-none Get Started
               v-btn(
-                v-else-if="currentRoute === 'multispecialty-clinics' || currentRoute === 'hippocrates'"
+                v-else-if="currentRoute === 'enterprise'"
                 color="#98be58"
-                :to="{ name: 'signup-multispecialty', ...($nuxt.$route.name === 'hippocrates') && { params: { route: 'hippocrates' } }}"
-                id="multispecialty-book-demo-btn"
-                @click.stop="handleToolbarLinkClick('multispecialty-book-demo-btn')"
+                :to="{ name: 'signup-multispecialty' }"
+                id="enterprise-book-demo-btn"
+                @click.stop="handleToolbarLinkClick('enterprise-book-demo-btn')"
               )
-                strong.font-14.white--text.tab.text-none Book A Free Demo
+                strong.font-14.white--text.tab.text-none Book A Demo
               v-btn(
                 v-else-if="currentRoute === 'specialized-clinics'"
                 color="#98be58"
@@ -105,10 +99,6 @@ export default {
     toolbarLinks: {
       type: Array,
       default: () => ([]),
-    },
-    solutionsText: {
-      type: String,
-      default: 'Solutions',
     },
     loginURL: {
       type: String,
@@ -150,7 +140,6 @@ export default {
       this.$emit('logoClick');
     },
     handleSubMenuClick (link, menu) {
-      this.$refs.menuRef.isActive = false;
       this.$emit('subMenuClick', { link, menu });
     },
   },

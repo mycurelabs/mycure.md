@@ -4,6 +4,7 @@
     usp(@getStarted="goToSignupIndividual($event)")
     //- 2nd panel
     platform-panels(@getStarted="getStarted").platform-panel
+    v-divider.edge-divider
     //- 3rd panel
     storyflow(
       :storyflow="storyflowItems"
@@ -11,11 +12,14 @@
       customPath="virtual-clinic-home/"
       horizontal
       horizontal-image-size="40%"
-    ).mt-10
+    )
+    v-divider.edge-divider
     //- 4th panel
     privacy
+    v-divider.edge-divider
     //- 5th panel
     apis
+    v-divider.edge-divider
     //- 6th panel
     testimonial
     //- final panel

@@ -27,7 +27,7 @@
             width="160"
             height="50"
             @click="onGetStarted"
-          ).text-none.font-weight-bold.font-18.mt-n1.text-field-btn Get Started
+          ).text-none.font-16.p-7.mt-0.text-field-btn Get Started
         v-col(cols="12" md="5" v-if="$isMobile" one-line)
           h1.font-poppins.font-30.lh-title {{ uspTitle }}
           p.font-italic.font-18.font-weight-light.px-1.pt-1 {{ uspSubtitle }}
@@ -41,7 +41,7 @@
             color="accent"
             large
             @click="onGetStarted"
-          ).text-none.font-weight-bold.font-18.mt-5 Get Started Today
+          ).text-none.font-16.p-7.mt-5 Get Started Today
           img(
             v-lazy="require(`~/assets/images/features/${backgroundImageMobile}`)"
             alt="Features CTA"
