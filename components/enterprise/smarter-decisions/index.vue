@@ -55,4 +55,25 @@ export default {
   right: 0;
   top: 60%;
 }
+@media screen and (device-width: 360px) {
+  .item-container {
+    min-height: 250px;
+  }
+  .item-description {
+    top: 30%;
+  }
+}
+@media screen and (device-width: 375px) {
+  .item-container {
+    min-height: 250px;
+  }
+  .item-description {
+    top: 30%;
+  }
+}
+@media screen and (device-width: 768px) {
+  .item-container {
+    min-height: 300px;
+  }
+}
 </style>
