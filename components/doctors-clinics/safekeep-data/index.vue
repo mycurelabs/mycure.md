@@ -1,10 +1,10 @@
 <template lang="pug">
   v-container.py-12
     v-row(justify="center")
-      v-col(align-self="center" v-if="!$isMobile" cols="12" md="5")
+      v-col(align-self="center" v-if="!$isMobile" cols="12" md="6")
         img(
           v-lazy="require('~/assets/images/doctors-clinics/MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-B-secure-data.webp')"
-          alt="Safekeep your important medical data"
+          alt="Safekeep your important medical data" width="100%"
         ).web-image
       v-col(align-self="center" cols="12" md="5")
         h1.font-30.lh-title.pb-3.font-weight-light {{SAFEKEEP_MEDICAL_DATA.header}}
@@ -39,14 +39,10 @@ export default {
 </script>
 
 <style scoped>
-a {
-  text-decoration-color: #2e9fdf;
-  text-decoration: none;
-}
-@media screen and (min-width: 1024px) {
+/* @media screen and (device-width: 1024px) {
   .web-image {
     margin-left: -20%;
-    width: 115%;
+    width: 100%;
   }
-}
+} */
 </style>
