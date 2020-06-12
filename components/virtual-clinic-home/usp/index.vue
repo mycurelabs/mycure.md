@@ -31,7 +31,7 @@
             width="160"
             height="50"
             @click="onGetStarted"
-          ).text-none.font-weight-bold.font-18.py-4.text-field-btn Get Started
+          ).text-none.font-16.p-7.py-4.text-field-btn Get Started
     template(v-if="$isMobile")
       div.text-field-container
         v-text-field(
@@ -45,7 +45,7 @@
         color="accent"
         large
         @click="onGetStarted"
-      ).text-none.font-weight-bold.font-18.mt-n1 Get Started
+      ).text-none.font-16.p-7.mt-n1 Get Started
 </template>
 
 <script>
