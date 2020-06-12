@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-container.py-12
+  v-container#diagnostic-centers.py-12
     v-row(justify="center" align="center")
       v-col(cols="12" md="5" align-self="center" v-if="$isMobile").tenthPanel-description
         p.font-18.mt-3.font-gray.primary--text {{tenthPanel.subHeader}}

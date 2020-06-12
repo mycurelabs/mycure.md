@@ -13,13 +13,13 @@
     //- 6th panel
     multiple-branches(@getStarted="goToSignup")
     //- 7th panel
-    one-stop#multispecialty-clinics(@goToFeatures="goToFeatures" @getStarted="goToSignup")
+    one-stop(#multispecialty-clinics @goToFeatures="goToFeatures" @getStarted="goToSignup")
     //- 8th panel
-    keep-employees#corporate-clinics(@goToFeatures="goToFeatures" @getStarted="goToSignup")
+    keep-employees(#corporate-clinics @goToFeatures="goToFeatures" @getStarted="goToSignup")
     //- 9th panel
-    enriching-hearts#medical-arts-centers(@goToFeatures="goToFeatures" @getStarted="goToSignup")
+    enriching-hearts(#medical-arts-centers @goToFeatures="goToFeatures" @getStarted="goToSignup")
     //- 10th panel
-    release-diagnostics#diagnostic-centers(@goToFeatures="goToFeatures" @getStarted="goToSignup")
+    release-diagnostics(#diagnostic-centers @goToFeatures="goToFeatures" @getStarted="goToSignup")
     //- cta panel
     div.cta-container
       cta(@getStarted="onGetStarted($event)")
@@ -84,7 +84,7 @@ export default {
       this.$nuxt.$router.push({ name: 'signup-multispecialty' });
     },
     goToFeatures () {
-      this.$router.push({ name: 'features' });
+      this.$nuxt.$router.push({ name: 'features' });
     },
   },
   head () {
