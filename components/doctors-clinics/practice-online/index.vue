@@ -1,6 +1,6 @@
 <template lang="pug">
-  v-container
-    v-row(justify="center").py-12
+  v-container.py-12
+    v-row(justify="center")
       v-col(align-self="center" cols="12" md="4")
         h1.font-30.lh-title.pb-3.font-weight-light {{TAKE_PRACTICE_ONLINE.header}}
         br

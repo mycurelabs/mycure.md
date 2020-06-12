@@ -1,6 +1,6 @@
 <template lang="pug">
-  v-container
-    v-row(justify="center").py-12
+  v-container.py-12
+    v-row(justify="center")
       v-col(align-self="center" v-if="!$isMobile" cols="12" md="5")
         img(
           v-lazy="require('~/assets/images/doctors-clinics/MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-B-secure-data.webp')"

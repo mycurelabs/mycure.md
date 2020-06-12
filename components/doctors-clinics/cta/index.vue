@@ -6,10 +6,11 @@
       :webContainerStyleConfigs="webContainerStyleConfigs"
       :customPath="customPath"
     ).cta-content
-      v-row(slot="content" align="center")
+      v-row(slot="content")
         v-col(
           cols="12"
           md="5"
+          justify-self="center"
           v-if="!$isMobile"
           :class="[{'web-content-margin': !$isMobile}]"
         ).cta-title
@@ -163,7 +164,8 @@ export default {
 }
 @media screen and (min-width: 1366px) {
   .cta-panel {
-    padding-top: 5%;
+    padding-top: 15%;
+    margin-bottom: 2%;
   }
   .cta-title {
     padding-bottom: 10%;
