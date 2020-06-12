@@ -17,7 +17,7 @@
       div.navHeader
         v-toolbar(:class="shadow").white
           nuxt-link(:to="{ name: 'index' }" title="MYCURE | Clinic Management System | Cloud EMR Philippines" id="toolbar-mycure-logo" @click.stop="handleMycureLogo").logo-a
-            img(src="~/assets/images/mycure-header-logo.png" width="130" alt="MYCURE logo").mt-1
+            img(src="~/assets/images/MYCURE-virtual-clinic-healthcare-practice-online-logo.svg" width="130" alt="MYCURE logo").mt-1
           v-spacer
           v-btn(icon large @click="drawer = !drawer")
             v-icon.font-35 mdi-close
