@@ -25,7 +25,7 @@ export const SECOND_PANEL_CONTENTS = [
 export const OUTPATIENT = {
   image: 'MYCURE-virtual-clinic-healthcare-practice-online-enterprise-C-book-online-calendar.png',
   header: 'Handle outpatient consultations online',
-  description: 'Continue to give your patients quality care online while keeping your physicians safe',
+  description: 'Continue to give your patients quality care online while keeping your physicians safe.',
   btnTxt: 'Get Started',
   btnIcon: 'mdi-arrow-right-thick',
 };
@@ -59,9 +59,10 @@ export const FIFTH_PANEL_CONTENT = [
   },
 ];
 export const BRANCHES = {
+  subHeader: 'FOR MULTI-BRANCH FACILITIES',
   image: 'MYCURE-virtual-clinic-healthcare-practice-online-enterprise-E-multiple-branches.png',
   imageMobile: 'MYCURE-virtual-clinic-healthcare-practice-online-enterprise-E-multiple-branches-mobile.png',
-  header: 'Monitor multiple branches one one system',
+  header: 'Monitor multiple branches on one system',
   description: 'All you need is one clean dashboard to see how your clinics are faring. Your data from multiple branches is automatically aggregated to show you a comprehensive summary of patient encounters, transactions, sales, expenses and even staff performance.',
   btnTxt: 'Get Started',
   btnIcon: 'mdi-arrow-right-thick',
