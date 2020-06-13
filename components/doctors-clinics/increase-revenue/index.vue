@@ -60,14 +60,22 @@ a {
   position: absolute;
   bottom: 0;
 }
+@media screen
+  and (min-device-width: 320px)
+  and (max-device-height: 812px)
+  and (orientation: portrait) {
+    .content-container {
+      margin-left: -24px;
+    }
+}
 @media screen and (device-width: 1024px) {
   .increase-revenue-content {
-  margin-top: -70%;
+    margin-top: -70%;
   }
 }
 @media screen and (min-width: 1366px) {
   .increase-revenue-content {
-  margin-top: 8%;
+   margin-top: 8%;
   }
 }
 </style>
