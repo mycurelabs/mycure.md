@@ -4,28 +4,28 @@
     usp(@getStarted="onGetStarted($event)")
     //- 2nd panel
     your-patients(@getStarted="goToSignup")
-    v-divider
+    v-divider.edge-divider
     //- 3rd panel
     handle-outpatient(@getStarted="goToSignup")
-    v-divider
+    v-divider.edge-divider
     //- 4th panel
     patients-loop(@getStarted="goToSignup")
-    v-divider
+    v-divider.edge-divider
     //- 5th panel
     smarter-decisions
-    v-divider
+    v-divider.edge-divider
     //- 6th panel
     multiple-branches(@getStarted="goToSignup")
-    v-divider
+    v-divider.edge-divider
     //- 7th panel
     one-stop(@goToFeatures="goToFeatures" @getStarted="goToSignup")#multispecialty-clinics
-    v-divider
+    v-divider.edge-divider
     //- 8th panel
     keep-employees(@goToFeatures="goToFeatures" @getStarted="goToSignup")#corporate-clinics
-    v-divider
+    v-divider.edge-divider
     //- 9th panel
     enriching-hearts(@goToFeatures="goToFeatures" @getStarted="goToSignup")#medical-arts-centers
-    v-divider
+    v-divider.edge-divider
     //- 10th panel
     release-diagnostics(@goToFeatures="goToFeatures" @getStarted="goToSignup")#diagnostic-centers
     //- cta panel
@@ -77,13 +77,23 @@ export default {
   },
   mounted () {
     this.loading = false;
-    const panel = this.scrollPanel || '#app';
-    const offset = panel === '#app' ? 0 : 400;
-    this.$nextTick(() => {
-      VueScrollTo.scrollTo(panel, 500, { easing: 'ease', offset });
-    });
+    this.scrollToPosition();
   },
   methods: {
+    scrollToPosition () {
+      const panel = this.scrollPanel || '#app';
+      const offsetMappings = [
+        { key: '#app', offset: 0 },
+        { key: '#multispecialty-clinics', offset: 600 },
+        { key: '#corporate-clinics', offset: 700 },
+        { key: '#medical-arts-centers', offset: 900 },
+        { key: '#diagnostic-centers', offset: 1200 },
+      ];
+      const { offset } = offsetMappings.find(mapping => mapping.key === panel);
+      this.$nextTick(() => {
+        VueScrollTo.scrollTo(panel, 500, { easing: 'ease', offset });
+      });
+    },
     onGetStarted (email) {
       localStorage.setItem('multi:step3:email', email);
       this.goToSignup();

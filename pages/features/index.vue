@@ -126,7 +126,4 @@ export default {
   margin-bottom: -4%;
   z-index: 1;
 }
-.edge-divider{
-  margin: 0 1% !important
-}
 </style>
