@@ -98,5 +98,9 @@ export default {
   .get-started-btn {
     margin-left: -12%;
   }
+}@media screen and (device-width: 2560px) {
+  .get-started-btn {
+    margin-left: -12%;
+  }
 }
 </style>
