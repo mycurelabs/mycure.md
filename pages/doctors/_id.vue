@@ -76,40 +76,40 @@ export default {
   },
   computed: {
     picURL () {
-      const sex = this.doctor.sex;
+      const sex = this.doctor?.sex;
       if (sex === 'female') {
-        return this.doctor.picURL || require('~/assets/images/doctor-website/doctor-website-profile-female.png');
+        return this.doctor?.picURL || require('~/assets/images/doctor-website/doctor-website-profile-female.png');
       }
-      return this.doctor.picURL || require('~/assets/images/doctor-website/doctor-website-profile-male.png');
+      return this.doctor?.picURL || require('~/assets/images/doctor-website/doctor-website-profile-male.png');
     },
     name () {
-      return this.doctor.name;
+      return this.doctor?.name;
     },
     fullName () {
-      return formatName(this.doctor.name || {}, 'firstName middleInitial lastName generationalSuffix');
+      return formatName(this.doctor?.name || {}, 'firstName middleInitial lastName generationalSuffix');
     },
     fullNameWithSuffixes () {
       return [
         this.fullName,
         ...this.professions,
-        this.doctor.name.academicSuffix,
-        this.doctor.name.professionalSuffix,
+        this.doctor?.name.academicSuffix,
+        this.doctor?.name.professionalSuffix,
       ].filter(Boolean).join(', ');
     },
     bio () {
-      return this.doctor.doc_bio || ''; // eslint-disable-line
+      return this.doctor?.doc_bio || ''; // eslint-disable-line
     },
     specialties () {
-      return this.doctor.doc_specialties || []; // eslint-disable-line
+      return this.doctor?.doc_specialties || []; // eslint-disable-line
     },
     professions () {
-      return this.doctor.doc_professions || []; // eslint-disable-line
+      return this.doctor?.doc_professions || []; // eslint-disable-line
     },
     practicingSince () {
-      return this.doctor.doc_practicingSince; // eslint-disable-line
+      return this.doctor?.doc_practicingSince; // eslint-disable-line
     },
     services () {
-      return this.doctor.doc_services; // eslint-disable-line
+      return this.doctor?.doc_services; // eslint-disable-line
     },
     education () {
       return this.doctor?.educations;
