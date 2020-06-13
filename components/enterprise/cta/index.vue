@@ -26,7 +26,8 @@
               color="accent"
               @click="onGetStarted"
               height="55"
-            ).text-none.font-weight-bold.font-18.btn-book Book A Demo
+              width="160"
+            ).text-none.font-16.p-7.btn-book Book A Demo
           p.mt-3.font-18.white--text.cta-agreement {{ ctaAgreement }}
         v-col(cols="12" v-if="$isMobile")
           h1.font-40.lh-title.cta-title {{ panelTitle }}

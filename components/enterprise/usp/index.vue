@@ -24,7 +24,8 @@
               color="accent"
               @click="onGetStarted"
               height="55"
-            ).text-none.font-weight-bold.font-18.btn-book Book A Demo
+              width="160"
+            ).text-none.font-16.p-7.btn-book Book A Demo
         v-col(cols="12" md="5" v-if="$isMobile" one-line).text-center
           p.font-18.font-weight-light.px-1 {{ uspPreSubtitle }}
           h1.font-poppins.font-30.lh-title {{ panelTitleMobile }}
