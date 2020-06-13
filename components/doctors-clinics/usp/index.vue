@@ -156,4 +156,29 @@ export default {
     margin-top: -20%;
   }
 }
+@media screen and (device-width: 1440px) {
+  .row-content {
+    height: 80vh;
+  }
+}
+@media screen and (device-width: 1680px) {
+  .row-content {
+    height: 80vh;
+  }
+}
+@media screen and (device-width: 1920px) {
+  .row-content {
+    height: 90vh;
+  }
+}
+@media screen and (device-width: 2304px) {
+  .row-content {
+    height: 80vh;
+  }
+}
+@media screen and (device-width: 2560px) {
+  .row-content {
+    height: 90vh;
+  }
+}
 </style>
