@@ -3,13 +3,12 @@
     generic-background-panel(
       :background-image="backgroundImage"
       :background-image-configs="backgroundImageConfigs"
-      :customPath="customPath"
     ).cta-content
       v-row(slot="content" align="center" v-if="!$isMobile").row-content
         v-col(
           cols="12"
-          md="5"
-          offset-md="6"
+          md="6"
+          offset-md="3"
           :class="[{'web-content-margin': !$isMobile}]"
         ).cta-title
           h1.font-40.lh-title {{ uspTitle }}
@@ -25,7 +24,7 @@
           alt="Home CTA"
           width="100%"
         ).pt-10
-      v-row(slot="content" align="center" v-if="$isMobile")
+      v-row(slot="content" align="center" v-if="$isMobile").mobile-content
         v-col(
           cols="12"
         )
@@ -51,11 +50,10 @@ export default {
     GenericBackgroundPanel,
   },
   data () {
-    this.backgroundImage = 'MYCURE-virtual-clinic-healthcare-practice-online-homepage-final-cta-cover.webp';
-    this.backgroundImageMobile = 'MYCURE-virtual-clinic-healthcare-practice-online-homepage-final-cta-cover-mobile.png';
+    this.backgroundImage = 'mycure-final-cta-background-full.webp';
+    this.backgroundImageMobile = 'mycure-final-cta-background-full.webp';
     this.uspTitle = 'Start your modern clinic experience with MYCURE';
     this.uspSubtitle = 'Explore all the tools and services you need to run and grow your clinic online and offline.';
-    this.customPath = 'virtual-clinic-home/webp/';
     return {
       email: '',
     };
@@ -70,7 +68,7 @@ export default {
       };
     },
     panelImageSrc () {
-      return require(`~/assets/images/virtual-clinic-home/${this.backgroundImageMobile}`);
+      return require('~/assets/images/mycure-final-cta-background-full.webp');
     },
   },
   methods: {
@@ -83,10 +81,15 @@ export default {
 
 <style scoped>
 .web-content-margin {
-  margin-top: -13%;
+  margin-top: -20%;
 }
 .row-content {
-  height: 80vh;
+  height: 100vh;
+  text-align: center;
+  margin-bottom: 10vh;
+}
+.mobile-content {
+  text-align: center;
 }
 @media screen and (max-width: 1800px) {
   .row-content {
@@ -97,16 +100,10 @@ export default {
   .row-content {
     height: 62vh;
   }
-  .web-content-margin {
-    margin-top: -10%;
-  }
 }
 @media screen and (max-width: 1448px) {
   .row-content {
     height: 60vh;
-  }
-  .web-content-margin {
-    margin-top: -6%;
   }
 }
 @media screen and (max-width: 1370px) {
@@ -118,24 +115,15 @@ export default {
   .row-content {
     height: 52vh;
   }
-  .web-content-margin {
-    margin-top: 2%;
-  }
 }
 @media screen and (max-width: 1150px) {
   .row-content {
     height: 47vh;
   }
-  .web-content-margin {
-    margin-top: 0%;
-  }
 }
 @media screen and (max-width: 1050px) {
   .row-content {
     height: 43vh;
-  }
-  .web-content-margin {
-    margin-top: -1%;
   }
 }
 @media screen and (device-width: 360px) {
