@@ -54,7 +54,7 @@ export default {
       {
         name: 'Enterprise',
         subMenus: [
-          { name: 'Multi-branch Facilities', route: 'enterprise', panel: 'app' },
+          { name: 'Multi-branch Facilities', route: 'enterprise', panel: 'multibranch-facilities' },
           { name: 'Multispecialty Clinics', route: 'enterprise', panel: 'multispecialty-clinics' },
           { name: 'Corporate Clinics', route: 'enterprise', panel: 'corporate-clinics' },
           { name: 'Medical Arts Centers', route: 'enterprise', panel: 'medical-arts-centers' },
