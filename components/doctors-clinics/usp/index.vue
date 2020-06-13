@@ -8,9 +8,9 @@
     ).usp-content
       v-row(slot="content").row-content
         v-col(cols="12" md="5" :class="[{'web-content-margin': !$isMobile}]" v-if="!$isMobile")
-          p(:class="[centerText]").font-18.mx-1 {{ uspSubheader }}
-          h1(:class="titleClasses").font-poppins.font-40.lh-title {{ uspTitle }}
-          p(:class="[centerText]").font-18.mx-1.pt-5 {{ uspSubtitle }}
+          p(:class="[centerText]").font-18.mx-1.usp-subtitle {{ uspSubheader }}
+          h1(:class="titleClasses").font-poppins.font-40.lh-title.usp-title {{ uspTitle }}
+          p(:class="[centerText]").font-18.mx-1.pt-5.usp-subtitle {{ uspSubtitle }}
           v-btn(
             height="54"
             width="160"
@@ -170,15 +170,45 @@ export default {
   .row-content {
     height: 90vh;
   }
+  .usp-title {
+    font-size: 300% !important;
+  }
+  .usp-subtitle {
+    font-size: 150% !important;
+  }
+  .btn-book {
+    width: 30% !important;
+    font-size: 150% !important;
+  }
 }
 @media screen and (device-width: 2304px) {
   .row-content {
     height: 80vh;
   }
+  .usp-title {
+    font-size: 350% !important;
+  }
+  .usp-subtitle {
+    font-size: 175% !important;
+  }
+  .btn-book {
+    width: 30% !important;
+    font-size: 150% !important;
+  }
 }
 @media screen and (device-width: 2560px) {
   .row-content {
     height: 90vh;
+  }
+  .usp-title {
+    font-size: 400% !important;
+  }
+  .usp-subtitle {
+    font-size: 200% !important;
+  }
+  .btn-book {
+    width: 35% !important;
+    font-size: 160% !important;
   }
 }
 </style>

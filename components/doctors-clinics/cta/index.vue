@@ -208,7 +208,7 @@ export default {
 }
 @media screen and (device-width: 1280px) {
   .cta-panel {
-    margin-top: 12%;
+    margin-top: 10%;
   }
   .cta-title {
     margin-bottom: 8%;
@@ -240,18 +240,44 @@ export default {
 }
 @media screen and (device-width: 1920px) {
   .cta-panel {
-    margin-top: 15%;
+    margin-top: 13%;
   }
   .cta-title {
-    margin-bottom: 15%;
+    margin-bottom: 13%;
+  }
+  .panel-title {
+    font-size: 300% !important;
+  }
+  .cta-subtitle {
+    font-size: 150% !important;
+  }
+  .cta-agreement {
+    font-size: 150% !important;
+  }
+  .btn-book {
+    width: 30% !important;
+    font-size: 150% !important;
   }
 }
 @media screen and (device-width: 2304px) {
     .cta-panel {
-      margin-top: 20%;
+      margin-top: 17%;
     }
   .cta-title {
-    margin-bottom: 20%;
+    margin-bottom: 17%;
+  }
+  .panel-title {
+    font-size: 350% !important;
+  }
+  .cta-subtitle {
+    font-size: 175% !important;
+  }
+  .cta-agreement {
+    font-size: 175% !important;
+  }
+  .btn-book {
+    width: 30% !important;
+    font-size: 150% !important;
   }
 }
 @media screen and (device-width: 2560px) {
@@ -259,7 +285,20 @@ export default {
     margin-top: 15%;
   }
   .cta-title {
-    margin-bottom: 25%;
+    margin-bottom: 17%;
+  }
+  .panel-title {
+    font-size: 400% !important;
+  }
+  .cta-subtitle {
+    font-size: 200% !important;
+  }
+  .cta-agreement {
+    font-size: 200% !important;
+  }
+  .btn-book {
+    width: 35% !important;
+    font-size: 160% !important;
   }
 }
 </style>
