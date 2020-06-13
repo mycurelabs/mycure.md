@@ -3,13 +3,15 @@
     client-only
       generic-media-panel(
         content-align-right
+        cols-left="6"
+        cols-right="4"
         align-left-column="start"
         :header="header"
         :descriptions="descriptions"
         :web-image="mediaImage"
-        :custom-image-path="customPath"
+        custom-image-path="features/"
         hide-image-mobile
-      )
+      ).mt-n1
         //- Check list
         template(slot="additional-content")
           template(v-for="item in checkListItems")
@@ -17,9 +19,9 @@
               v-col(cols="1").pr-2.pt-2
                 img(width="20" src="~/assets/images/mycure-check.png" alt="Check icon")
               v-col(shrink)
-                span.font-18 {{ item }}
+                span.font-18.font-gray {{ item }}
       //- Bottom images
-      v-container(v-if="!$isMobile")
+      v-container(v-if="!$isMobile").py-10.mb-n1
         v-row
           v-col(cols="12" md="5")
             img(
@@ -43,7 +45,7 @@
             paginationColor="#808080"
           )
             slide(
-              v-for="(image,index) in panelImages"
+              v-for="(image,index) in mobilePanelImages"
               :key="index"
               :data-index="index+1"
             ).pa-1
@@ -64,9 +66,14 @@ export default {
       'Produce neatly-organized reports in a minute or less.',
     ];
     this.panelImages = [
+      'MYCURE-virtual-clinic-healthcare-practice-online-features-E-01-billing-payment.webp',
+      'MYCURE-virtual-clinic-healthcare-practice-online-features-E-02-charge-slip.webp',
+      'MYCURE-virtual-clinic-healthcare-practice-online-features-E-03-daily-census.webp',
+    ];
+    this.mobilePanelImages = [
       'MYCURE-virtual-clinic-healthcare-practice-online-features-E-01-billing-payment.png',
-      'MYCURE-virtual-clinic-healthcare-practice-online-features-E-02-charge-slip.png',
-      'MYCURE-virtual-clinic-healthcare-practice-online-features-E-03-daily-census.png',
+      'MYCURE-virtual-clinic-healthcare-practice-online-features-E-02-charge-slip-mobile.png',
+      'MYCURE-virtual-clinic-healthcare-practice-online-features-E-03-daily-census-mobile.png',
     ];
     this.checkListItems = [
       'Payment Management & History',
@@ -74,18 +81,18 @@ export default {
       'HMO Statements, Collections, & Reports',
       'Interface with Materials Management',
     ];
-    this.customPath = 'features/';
+    this.customPath = 'features/webp/';
     return {};
   },
   computed: {
     mediaImage () {
-      return this.panelImages[0];
+      return 'webp/' + this.panelImages[0];
     },
     leftBottomImage () {
-      return require(`~/assets/images/features/${this.panelImages[1]}`);
+      return require(`~/assets/images/${this.customPath}${this.panelImages[1]}`);
     },
     rightBottomImage () {
-      return require(`~/assets/images/features/${this.panelImages[2]}`);
+      return require(`~/assets/images/${this.customPath}${this.panelImages[2]}`);
     },
   },
 };

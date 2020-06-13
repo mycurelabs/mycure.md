@@ -1,12 +1,15 @@
 <template lang="pug">
   generic-media-panel(
     content-align-left
+    cols-left="4"
+    cols-right="6"
     custom-image-path="features/"
     :header="header"
     :descriptions="descriptions"
     :web-image="image"
+    :mobile-image="mobileImage"
     mobile-image-width="90%"
-  )
+  ).mt-n2.mb-n4
 </template>
 
 <script>
@@ -17,7 +20,8 @@ export default {
     GenericMediaPanel,
   },
   data () {
-    this.image = 'MYCURE-virtual-clinic-healthcare-practice-online-features-D-analytics.png';
+    this.image = 'webp/MYCURE-virtual-clinic-healthcare-practice-online-features-D-analytics.webp';
+    this.mobileImage = 'MYCURE-virtual-clinic-healthcare-practice-online-features-D-analytics-mobile.png';
     this.header = 'Never miss out on important business decisions.';
     this.descriptions = [
       'Measure your day-to-day clinic performance analyzing comprehensive graphs based on your KPIs. Census, billing, diagnostics, sales, and physical exam reports can be generated instantly.',

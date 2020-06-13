@@ -4,7 +4,7 @@
       v-toolbar(flat).footer-grey
         nuxt-link(:to="{ name: 'index' }" title="MYCURE | Clinic Management System | Cloud EMR Philippines")
           v-row.text-center
-            img(src="~/assets/images/mycure-header-logo.png" height="40" alt="MYCURE logo")
+            img(src="~/assets/images/MYCURE-virtual-clinic-healthcare-practice-online-logo.svg" height="40" alt="MYCURE logo")
         v-spacer
         div(v-for="(account, key) in socMed" :key="key")
           a(:href="account.link" target="_blank")
@@ -12,7 +12,7 @@
     v-row(v-else justify="center").footer-grey
       nuxt-link(:to="{ name: 'index' }" title="MYCURE | Clinic Management System | Cloud EMR Philippines")
         v-row(align="center").text-center
-          img(src="~/assets/images/mycure-header-logo.png" width="130" alt="MYCURE logo")
+          img(src="~/assets/images/MYCURE-virtual-clinic-healthcare-practice-online-logo.svg" width="130" alt="MYCURE logo")
       br
       br
       v-row(justify="center")
@@ -29,8 +29,8 @@
               v-icon(color="grey").iconMargin mdi-menu-down
           v-expansion-panel-content.iconMargin
             template(v-for="solution in clinicSolutions").link.py-2
-              nuxt-link(:to="{ name: solution.learnLink }")
-                span.py-2.font-18.link {{solution.header}}
+              nuxt-link(:to="{ name: solution.route }")
+                span.py-2.font-18.link {{solution.name}}
               br
               br
             nuxt-link(id="footer-features-btn" :to="{ name: 'features' }" title="MYCURE | Features").link.py-2
@@ -91,7 +91,7 @@
 
 <script>
 // - constants
-import { HEALTH_SUITES_ITEMS } from '~/components/home/health-suites/constants';
+import { CLINIC_SOLUTIONS } from './constants';
 export default {
   data () {
     this.socMed = [
@@ -128,7 +128,7 @@ export default {
     ];
     this.expansionPanelColor = '#f0f0f0';
     return {
-      clinicSolutions: HEALTH_SUITES_ITEMS,
+      clinicSolutions: CLINIC_SOLUTIONS,
       clinicSol: false,
       about: false,
       support: false,

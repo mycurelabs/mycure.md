@@ -17,21 +17,23 @@
       div.navHeader
         v-toolbar(:class="shadow").white
           nuxt-link(:to="{ name: 'index' }" title="MYCURE | Clinic Management System | Cloud EMR Philippines" id="toolbar-mycure-logo" @click.stop="handleMycureLogo").logo-a
-            img(src="~/assets/images/mycure-header-logo.png" width="130" alt="MYCURE logo").mt-1
+            img(src="~/assets/images/MYCURE-virtual-clinic-healthcare-practice-online-logo.svg" width="130" alt="MYCURE logo").mt-1
           v-spacer
           v-btn(icon large @click="drawer = !drawer")
             v-icon.font-35 mdi-close
       v-row
         v-col(cols="12")
           v-list
-            v-list-item(
-              v-for="(item, key) in solutionsMenuItems.concat(toolbarLinks)"
-              :key="key"
-              @click.stop="handleToolbarLinkClick(item)"
-            )
-              v-list-item-content
-                v-list-item-title
-                  b {{item.name}}
+            v-list-group(v-for="(item, key) in solutionsMenuItems" :key="key")
+              template(v-slot:activator)
+                v-list-item-title {{ item.name }}
+              v-list-item(
+                v-for="(menu, index) in item.subMenus"
+                :key="index"
+                link
+                dense
+                @click="handleSubMenuClick(item, menu)"
+              ).pl-7 {{ menu.name }}
           br
           v-divider
         v-col(cols="12")
@@ -137,6 +139,10 @@ export default {
     },
     handleUserLinkClick (id) {
       this.$emit('toolbarLinkClick', id);
+      this.drawer = false;
+    },
+    handleSubMenuClick (link, menu) {
+      this.$emit('subMenuClick', { link, menu });
       this.drawer = false;
     },
   },

@@ -1,21 +1,22 @@
 <template lang="pug">
-  v-container
-    v-row(justify="center").py-12
-      v-col(cols="12" md="7")
+  v-container.py-12.specialized-plans-contents
+    v-row(justify="center")
+      v-col(cols="12" md="5")
         h1.font-30.lh-title.pb-3.font-weight-light.text-center {{SPECIALIZED_PLANS.header}}
     v-row(justify="center" align="start")
       v-col(
         cols="12"
-        md="4"
+        md="3"
         v-for="(data, key) in plans"
         :key="key"
         :class="mobileClasses"
-      )
+        :offset-md-="key === 3 ? '1' : '0'"
+      ).mr-9.ml-9
         img(v-lazy="require(`~/assets/images/doctors-clinics/${data.images}`)" :alt="data.header")
         h1.font-22.lh-title.pb-3.font-weight-medium {{data.header}}
-        span.font-18.mt-3 {{data.description}}
-    v-row(justify="center").py-12
-      v-col(cols="12" md="6")
+        p.text-justify.font-18.mt-3.font-gray {{data.description}}
+    v-row(justify="center").pt-12
+      v-col(cols="12" md="5")
         h1.font-18.font-weight-light.text-center.font-italic {{SPECIALIZED_PLANS.description}}
 </template>
 
@@ -37,4 +38,10 @@ export default {
 </script>
 
 <style scoped>
+@media screen and (device-width: 1024px) {
+  .specialized-plans-contents {
+    position: relative;
+    z-index: 2;
+  }
+}
 </style>

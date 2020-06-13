@@ -4,22 +4,31 @@
     usp
     //- 2nd panel
     roles-and-privileges
+    v-divider.edge-divider
     //- 3rd panel
     medical-records
+    v-divider.edge-divider
     //- 4th panel
     virtual-practice
+    v-divider.edge-divider
     //- 5th panel
     reports
+    v-divider.edge-divider
     //- 6th panel
     billing
+    v-divider.edge-divider
     //- 7th panel
     registration-and-queuing
+    v-divider.edge-divider
     //- 8th panel
     laboratory-and-imaging
+    v-divider.edge-divider
     //- 9th panel
     inventory
+    v-divider.edge-divider
     //- 10th panel
     syncbase
+    v-divider.edge-divider
     //- 11th panel
     modules
     //- CTA

@@ -1,5 +1,5 @@
 <template lang="pug">
-  div.white
+  div.white.features-usp
     generic-background-panel(
       :background-image="backgroundImage"
       :background-image-mobile="backgroundImageMobile"
@@ -18,7 +18,7 @@
             color="accent"
             large
             @click="onWatch"
-          ).text-none.font-weight-bold.font-18.mt-5
+          ).text-none.font-16.mt-5.p-7
             v-icon(left) mdi-play-circle
             | Watch Walkthrough
     template(v-if="$isMobile")
@@ -27,7 +27,7 @@
         color="accent"
         large
         @click="onWatch"
-      ).text-none.font-weight-bold.font-18
+      ).text-none.font-16.p-7
         v-icon(left) mdi-play-circle
         | Watch Walkthrough
 
@@ -55,7 +55,7 @@ export default {
     GenericBackgroundPanel,
   },
   data () {
-    this.backgroundImage = 'MYCURE-virtual-clinic-healthcare-practice-online-usp-cover.png';
+    this.backgroundImage = 'webp/MYCURE-virtual-clinic-healthcare-practice-online-usp-cover.webp';
     this.backgroundImageMobile = 'MYCURE-virtual-clinic-healthcare-practice-online-usp-cover-mobile.png';
     this.panelTitle = 'User-friendly and time-efficient features for a more patient-centric care';
     this.metaTitle = 'MYCURE Features';
@@ -105,4 +105,13 @@ export default {
 .mobile-row-content {
   min-height: 100vh;
 }
+@media screen and (device-width: 1024px) and (orientation: portrait) {
+  .web-row-content {
+    height: 20vh;
+  }
+  .features-usp{
+    height: 32vh;
+  }
+}
+
 </style>

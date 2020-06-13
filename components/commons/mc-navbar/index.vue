@@ -1,6 +1,5 @@
 <template lang="pug">
   fragment
-    //- WEB
     //- MOBILE
     div(v-if="isMobile")
       toolbar-mobile(
@@ -9,8 +8,10 @@
         :solutionsMenuItems="solutionsMenuItems"
         :toolbarLinks="toolbarLinks"
         @toolbarLinkClick="handleToolbarLinkClick($event)"
+        @subMenuClick="handleSubMenuClick($event)"
         @logoClick="handleMycureLogo"
       )
+    //- WEB
     div(v-else).toolbarMain
       toolbar-web(
         :loginURL="loginURL"
@@ -20,6 +21,7 @@
         :toolbarLinks="toolbarLinks"
         :scroll-position="scrollPosition"
         @toolbarLinkClick="handleToolbarLinkClick($event)"
+        @subMenuClick="handleSubMenuClick($event)"
         @logoClick="handleMycureLogo"
       )
     //- mc-cookie-prompt.cookie-prompt
@@ -41,12 +43,24 @@ export default {
   },
   data () {
     this.solutionsMenuItems = [
-      { name: 'Doctors Clinics', route: 'doctors-clinics' },
-      { name: 'Enterprise', route: 'enterprise' },
-      { name: 'Specialized Clinics', route: 'specialized-clinics' },
-      { name: 'Multispecialty Clinics', route: 'multispecialty-clinics' },
-      // - TODO: Temporarily hide
-      // { name: 'Hippocrates by MYCURE', route: 'hippocrates' },
+      {
+        name: 'Digital Clinics',
+        subMenus: [
+          { name: 'Solo Practice', route: 'doctors-clinics', panel: 'app' },
+          { name: 'Group Practice', route: 'doctors-clinics', panel: 'group-practice' },
+          { name: 'Specialized Practice', route: 'doctors-clinics', panel: 'specialized-practice' },
+        ],
+      },
+      {
+        name: 'Enterprise',
+        subMenus: [
+          { name: 'Multi-branch Facilities', route: 'enterprise', panel: 'multibranch-facilities' },
+          { name: 'Multispecialty Clinics', route: 'enterprise', panel: 'multispecialty-clinics' },
+          { name: 'Corporate Clinics', route: 'enterprise', panel: 'corporate-clinics' },
+          { name: 'Medical Arts Centers', route: 'enterprise', panel: 'medical-arts-centers' },
+          { name: 'Diagnostic Centers', route: 'enterprise', panel: 'diagnostic-centers' },
+        ],
+      },
     ];
     this.toolbarLinks = [
       {
@@ -59,7 +73,7 @@ export default {
         name: 'Fight COVID-19: Free EMR',
         id: 'mycure-heart-nav-btn',
         route: 'fight-covid-19',
-        color: '#C2F3FF',
+        text: true,
       },
     ];
     return {
@@ -105,7 +119,7 @@ export default {
       const getStartedBtns = ['get-started-btn', 'mobile-navdrawer-get-started-btn'];
       const routes = ['index', 'virtual-clinic-temporary-home'];
       if (getStartedBtns.includes(link) && routes.includes(this.$nuxt.$route.name)) {
-        VueScrollTo.scrollTo('#health-suites', 500, { easing: 'ease' });
+        this.$nuxt.$router.push({ name: 'signup-individual' });
       } else if (getStartedBtns.includes(link)) {
         this.$nuxt.$router.push({
           name: 'index',
@@ -121,6 +135,19 @@ export default {
         eventAction: `click-toolbar-${link}`,
         eventLabel: link,
       });
+    },
+    handleSubMenuClick (item) {
+      const { link, menu } = item;
+      this.handleToolbarLinkClick(link);
+      if (menu.route !== this.$nuxt.$route.name) {
+        this.$nuxt.$router.push({
+          name: menu.route,
+          params: { panel: menu.panel },
+        });
+        return;
+      }
+      const panelId = `#${menu.panel}`;
+      VueScrollTo.scrollTo(panelId, 500, { easing: 'ease' });
     },
   },
 };

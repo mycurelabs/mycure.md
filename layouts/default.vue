@@ -56,6 +56,9 @@ export default {
 .font-60 {
   font-size: 60px !important;
 }
+.font-50 {
+  font-size: 50px !important;
+}
 .font-48 {
   font-size: 48px !important;
 }
@@ -77,6 +80,9 @@ export default {
 .font-25 {
   font-size: 25px !important
 }
+.font-24 {
+  font-size: 24px !important
+}
 .font-22 {
   font-size: 22px !important
 }
@@ -95,8 +101,15 @@ export default {
 .font-12 {
   font-size: 12px !important
 }
+/* Font Color */
+.font-gray {
+  color: rgba(0,0,0,0.5);
+}
 
 /* --OTHER CSS-- */
+.edge-divider{
+  margin: 0% 11% !important;
+}
 .lh-title {
   line-height: 1.25em !important
 }

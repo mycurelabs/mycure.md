@@ -1,7 +1,7 @@
 <template lang="pug">
-  div.white
+  div.white.testimonial-contents
     client-only
-      v-container(v-if="!isMobile" @mouseover="playCarousel = true")
+      v-container(v-if="!$isMobile" @mouseover="playCarousel = true")
         v-row(justify="center")
           v-col(cols="12" md="11").pt-2.pb-1
             v-carousel(
@@ -18,7 +18,7 @@
               ).pt-10
                 v-row(justify="center" align="center")
                   v-col(cols="10").text-center.pa-5
-                    h1.black--text.mb-5.font-36.font-weight-light {{ testimonial.message }}
+                    h1.black--text.mb-5.font-30.font-weight-light {{ testimonial.message }}
                     span.font-s.primary--text {{ testimonial.name }}
                     br
                     span.font-s.subheading.grey--text {{ testimonial.position }}
@@ -77,19 +77,8 @@ export default {
       },
     ];
     return {
-      isMobile: true,
       playCarousel: false,
     };
-  },
-  watch: {
-    $isMobile: {
-      handler (val) {
-        this.isMobile = val;
-      },
-    },
-  },
-  mounted () {
-    this.isMobile = this.$isMobile;
   },
 };
 </script>
@@ -97,5 +86,9 @@ export default {
 <style scoped>
 .gradient-grey {
   background-color: #f0f0f0;
+}
+.testimonial-contents {
+  position: relative;
+  z-index: 2;
 }
 </style>

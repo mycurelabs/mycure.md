@@ -1,20 +1,20 @@
 <template lang="pug">
-  v-container
-    v-row(justify="center").py-12
-      v-col(align-self="center" cols="12" md="6")
+  v-container.py-12
+    v-row(justify="center")
+      v-col(align-self="center" cols="12" md="5")
         h1.font-30.lh-title.pb-3.font-weight-light {{TAKE_PRACTICE_ONLINE.header}}
         br
-        span.font-18.mt-3 {{TAKE_PRACTICE_ONLINE.description}}
+        p.text-justify.font-18.mt-3.font-gray {{TAKE_PRACTICE_ONLINE.description}}
         br
         br
-        v-btn(@click="onGetStarted" text)
+        v-btn(@click="onGetStarted" text).ml-n4.get-started-btn
           strong.text-capitalize.primary--text {{TAKE_PRACTICE_ONLINE.btnTxt}}
           v-icon.primary--text {{TAKE_PRACTICE_ONLINE.btnIcon}}
       v-col(align-self="center" cols="12" md="6" v-if="!$isMobile")
-        img(v-lazy="require('~/assets/images/doctors-clinics/MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-C-group-practice.png')"
-          alt="Take your practice online"
+        img(v-lazy="require('~/assets/images/doctors-clinics/MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-C-group-practice.webp')"
+          alt="Take your practice online" width="100%"
         ).pl-10
-      img(v-lazy="require('~/assets/images/doctors-clinics/MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-C-group-practice.png')"
+      img(v-lazy="require('~/assets/images/doctors-clinics/MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-C-group-practice.webp')"
         alt="Take your practice online" v-if="$isMobile"
         width="100%"
       )

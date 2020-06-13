@@ -3,10 +3,12 @@
     client-only
       generic-media-panel(
         content-align-right
+        cols-left="6"
+        cols-right="4"
         align-left-column="start"
         :header="header"
         :descriptions="descriptions"
-        :web-image="mediaImage"
+        :web-image="panelImages.mediaImage"
         :custom-image-path="customPath"
         hide-image-mobile
       )
@@ -15,17 +17,17 @@
             strong.primary--text Get Started
             v-icon.primary--text mdi-arrow-right
       //- Bottom images
-      v-container(v-if="!$isMobile")
+      v-container(v-if="!$isMobile").py-10.mb-n3
         v-row
-          v-col(cols="12" md="5")
+          v-col(cols="12" md="6")
             img(
-              v-lazy="leftBottomImage"
+              v-lazy="panelImages.leftBottomImage"
               alt="Print prescription"
               width="100%"
             )
-          v-col(cols="12" md="7")
+          v-col(cols="12" md="6")
             img(
-              v-lazy="rightBottomImage"
+              v-lazy="panelImages.rightBottomImage"
               alt="Charting"
               width="100%"
             )
@@ -39,7 +41,7 @@
             paginationColor="#808080"
           )
             slide(
-              v-for="(image,index) in panelImages"
+              v-for="(image,index) in mobilePanelImages"
               :key="index"
               :data-index="index+1"
             ).pa-1
@@ -59,24 +61,18 @@ export default {
     this.descriptions = [
       'Record full medical history, vitals, and physical exam records according to SOAP charting. Eliminate the haste of scribbling with Rx printing, ICD-10 database, multiple image uploads, and more.',
     ];
-    this.panelImages = [
-      'MYCURE-virtual-clinic-healthcare-practice-online-features-B-01-emr.png',
-      'MYCURE-virtual-clinic-healthcare-practice-online-features-B-02-print-prescription.png',
-      'MYCURE-virtual-clinic-healthcare-practice-online-features-B-03-charting.png',
-    ];
-    this.customPath = 'features/';
+    this.panelImages = {
+      mediaImage: 'MYCURE-virtual-clinic-healthcare-practice-online-features-B-01-emr.webp',
+      leftBottomImage: require('~/assets/images/features/webp/MYCURE-virtual-clinic-healthcare-practice-online-features-B-02-print-prescription.webp'),
+      rightBottomImage: require('~/assets/images/features/webp/MYCURE-virtual-clinic-healthcare-practice-online-features-B-03-charting.webp'),
+    };
+    this.mobilePanelImages = {
+      mediaImage: 'MYCURE-virtual-clinic-healthcare-practice-online-features-B-01-emr.png',
+      leftBottomImage: 'MYCURE-virtual-clinic-healthcare-practice-online-features-B-02-print-prescription-mobile.png',
+      rightBottomImage: 'MYCURE-virtual-clinic-healthcare-practice-online-features-B-03-charting-mobile.png',
+    };
+    this.customPath = 'features/webp/';
     return {};
-  },
-  computed: {
-    mediaImage () {
-      return this.panelImages[0];
-    },
-    leftBottomImage () {
-      return require(`~/assets/images/features/${this.panelImages[1]}`);
-    },
-    rightBottomImage () {
-      return require(`~/assets/images/features/${this.panelImages[2]}`);
-    },
   },
   methods: {
     onGetStarted () {

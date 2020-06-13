@@ -1,48 +1,57 @@
 <template lang="pug">
-  div.white
+  div.white.pt-12.cta-panel
     generic-background-panel(
       :background-image="backgroundImage"
-      :background-image-mobile="backgroundImageMobile"
-      :background-image-mobile-configs="backgroundImageMobileConfigs"
+      :background-image-configs="backgroundImageConfigs"
+      :webContainerStyleConfigs="webContainerStyleConfigs"
       :customPath="customPath"
-      :class="{'pt-12': $isMobile}"
-    )
-      v-row(slot="content").row-content
-        v-col(cols="12" md="5" :class="[{'web-content-margin': !$isMobile}]" v-if="!$isMobile").pt-12
-          h1(:class="titleClasses" white--text).font-poppins.font-40.py-10.white--text {{ panelTitle }}
-          div(v-if="!$isMobile").text-field-container.white
+    ).cta-content
+      v-row(slot="content")
+        v-col(
+          cols="12"
+          md="5"
+          v-if="!$isMobile"
+          :class="[{'web-content-margin': !$isMobile}]"
+        ).pt-5.cta-title
+          h1.font-40.lh-title.white--text.panel-title {{ panelTitle }}
+          div(v-if="!$isMobile").py-5.text-field-container
             v-text-field(
+              background-color="white"
               v-model="email"
-              outlined
               placeholder="myname@email.com"
+              outlined
+            ).input-field
+            v-btn(
+              v-if="!$isMobile"
+              color="accent"
+              @click="onGetStarted"
+              height="55"
+              width="160"
+            ).text-none.font-16.p-7.btn-book Book A Demo
+          p.mt-3.font-18.white--text.cta-agreement {{ ctaAgreement }}
+        v-col(cols="12" v-if="$isMobile")
+          h1.font-40.lh-title.cta-title {{ panelTitle }}
+          div.mt-5.text-field-container
+            v-text-field(
+              background-color="white"
+              v-model="email"
+              placeholder="myname@email.com"
+              outlined
             )
           v-btn(
-            v-if="!$isMobile"
-            block
             color="accent"
             large
             @click="onGetStarted"
-          ).text-none.font-weight-bold.font-18.mt-3 Get Started
-          p.font-16.font-weight-light.px-1.pt-1.text-center.white--text {{ ctaAgreement }}
-        v-col(cols="12" md="5" v-if="$isMobile" one-line)
-          h1.font-poppins.font-30.lh-title {{ panelTitle }}
-          div.text-field-container.white.mt-5
-            v-text-field(
-              v-model="email"
-              outlined
-              placeholder="myname@email.com"
-            )
-          v-btn(
-            color="accent"
-            large
-            @click="onGetStarted"
-          ).text-none.font-weight-medium.font-18.mt-2 Get Started
-          p.font-16.font-weight-light.px-1.pt-1.one-line {{ ctaAgreement }}
+          ).text-none.font-weight-bold.font-18.mt-n3.cta-btn Get Started
+          p.mt-2 {{ ctaAgreement }}
+          img(
+            v-lazy="panelImageSrc"
+            alt="Home CTA"
+            width="100%"
+          ).pt-10.image-mobile
 </template>
 
 <script>
-// utils
-import { parseTextWithNewLine } from '~/utils/newline';
 // components
 import GenericBackgroundPanel from '~/components/commons/generic-background-panel';
 export default {
@@ -50,7 +59,7 @@ export default {
     GenericBackgroundPanel,
   },
   data () {
-    this.backgroundImage = 'MYCURE-virtual-clinic-healthcare-practice-online-enterprise-final-cta.png';
+    this.backgroundImage = 'MYCURE-virtual-clinic-healthcare-practice-online-enterprise-final-cta.webp';
     this.backgroundImageMobile = 'MYCURE-virtual-clinic-healthcare-practice-online-enterprise-final-cta-cover-mobile.png';
     this.panelTitle = 'Book A Demo Today.';
     this.ctaAgreement = 'By entering your email, you agree to receive marketing emails from MYCURE.';
@@ -60,24 +69,19 @@ export default {
     };
   },
   computed: {
-    backgroundImageMobileConfigs () {
+    backgroundImageConfigs () {
       return {
-        'background-size': '100%',
-        'background-position': '0px 410px',
+        width: '100%',
+        position: 'absolute',
+        left: '0',
+        bottom: '0',
       };
     },
-    centerText () {
-      return { 'text-center': this.$isMobile };
+    webContainerStyleConfigs () {
+      return { position: 'relative' };
     },
-    titleClasses () {
-      return this.$isMobile
-        ? [this.centerText]
-        : ['pre-white-space'];
-    },
-    uspTitle () {
-      return this.$isMobile
-        ? this.panelTitle
-        : parseTextWithNewLine(this.panelTitle, ['virtual ']);
+    panelImageSrc () {
+      return require(`~/assets/images/enterprise/${this.backgroundImageMobile}`);
     },
   },
   methods: {
@@ -93,14 +97,139 @@ export default {
 
 <style scoped>
 .text-field-container {
+  display: flex;
+}
+.input-field {
+  width: 50%;
   height: 58px;
-  border: 1px solid black;
-  border-radius: 2px;
+  border-radius: 5px;
+}
+.btn-book {
+  margin-left: 8px;
 }
 .web-content-margin {
   margin-top: 80px;
 }
-.row-content {
-  height: 100vh;
+/* iphone 5SE */
+@media only screen
+  and (min-device-width: 320px)
+  and (max-device-width: 568px)
+  and (-webkit-min-device-pixel-ratio: 2) {
+  .cta-content {
+    margin-bottom: -10%;
+  }
+  .image-mobile {
+    margin-left: -5%;
+    width: 110%;
+  }
+  .cta-title {
+    font-size: 30px !important;
+  }
+}
+@media screen and (device-width: 768px) {
+  .image-mobile {
+    margin-left: -5%;
+    width: 110%;
+  }
+}
+@media screen and (device-width: 1024px) {
+  .cta-panel {
+    margin-top: 0%;
+  }
+  .cta-title {
+    margin-bottom: 8%;
+  }
+  .panel-title {
+    font-size: 30px !important;
+  }
+  .cta-agreement {
+    font-size: 16px !important;
+  }
+}
+@media screen and (device-width: 1280px) {
+  .cta-panel {
+    margin-top: 8%;
+  }
+  .cta-title {
+    margin-bottom: 13%;
+  }
+}
+@media screen and (device-width: 1366px) {
+  .cta-panel {
+    margin-top: 5%;
+  }
+  .cta-title {
+    margin-bottom: 17%;
+  }
+}
+@media screen and (device-width: 1440px) {
+  .cta-panel {
+    margin-top: 10%;
+  }
+  .cta-title {
+    margin-bottom: 17%;
+  }
+}
+@media screen and (device-width: 1680px) {
+  .cta-panel {
+    margin-top: 12%;
+  }
+  .cta-title {
+    margin-bottom: 22%;
+  }
+}
+@media screen and (device-width: 1920px) {
+  .cta-panel {
+    margin-top: 12%;
+  }
+  .cta-title {
+    margin-bottom: 18%;
+  }
+  .panel-title {
+    font-size: 300% !important;
+  }
+  .cta-agreement {
+    font-size: 150% !important;
+  }
+  .btn-book {
+    width: 30% !important;
+    font-size: 150% !important;
+  }
+}
+@media screen and (device-width: 2304px) {
+  .cta-panel {
+    margin-top: 15%;
+  }
+  .cta-title {
+    margin-bottom: 22%;
+  }
+  .panel-title {
+    font-size: 350% !important;
+  }
+  .cta-agreement {
+    font-size: 175% !important;
+  }
+  .btn-book {
+    width: 30% !important;
+    font-size: 150% !important;
+  }
+}
+@media screen and (device-width: 2560px) {
+  .cta-panel {
+    margin-top: 15%;
+  }
+  .cta-title {
+    margin-bottom: 25%;
+  }
+  .panel-title {
+    font-size: 400% !important;
+  }
+  .cta-agreement {
+    font-size: 200% !important;
+  }
+  .btn-book {
+    width: 35% !important;
+    font-size: 160% !important;
+  }
 }
 </style>

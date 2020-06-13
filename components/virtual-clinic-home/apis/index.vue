@@ -1,14 +1,13 @@
 <template lang="pug">
-  div
+  div.api-content.py-10.mt-n1.mb-n6
     //- WEB
-    div(v-if="!isMobile").py-5.mb-3
+    div(v-if="!$isMobile")
       v-container
         v-row(justify="center")
-          v-col(cols="6" align-self="center").px-3
+          v-col(cols="5" align-self="center").px-3
             h1.panelTitle.font-36.lh-title.font-weight-light {{ webTitle }}
             br
-            br
-            p.font-s {{ panelContent }}
+            p.font-16.font-gray.text-justify {{ panelContent }}
             v-list(dense)
               v-list-item(
                 v-for="(item, key) in checkList"
@@ -17,8 +16,8 @@
                 v-list-item-action
                   img(v-lazy="require('~/assets/images/mycure-web-bullet-check.png')" alt="Check icon")
                 v-list-item-content
-                  span.font-s {{ item }}
-          v-col(cols="6" align-self="center").px-3.text-center
+                  span.font-16.font-gray {{ item }}
+          v-col(cols="4" offset="1" align-self="center").px-3.text-center
             img(v-lazy="panelImageSrc" width="80%" :alt="panelImage")
     //- MOBILE
     div(v-else).pt-5
@@ -27,7 +26,7 @@
         br
         img(width="85%" v-lazy="panelImageSrc" :alt="panelImage").pb-3
         br
-        p.font-s {{ panelContent }}
+        p.font-16.font-gray.text-justify.mt-3 {{ panelContent }}
         v-list(two-line).text-left
           v-list-item(
             v-for="(item, key) in checkList"
@@ -36,7 +35,7 @@
             v-list-item-action
               img(src="~/assets/images/mycure-web-bullet-check.png" alt="Check icon")
             v-list-item-content
-              span.font-s {{ item }}
+              span.font-16.font-gray {{ item }}
         br
 </template>
 
@@ -53,7 +52,6 @@ export default {
     ];
     this.panelImage = 'MYCURE-virtual-clinic-healthcare-practice-online-homepage-F-features-02-api';
     return {
-      isMobile: true,
     };
   },
   computed: {
@@ -64,20 +62,14 @@ export default {
       return require(`~/assets/images/virtual-clinic-home/${this.panelImage}.png`);
     },
   },
-  watch: {
-    $isMobile: {
-      handler (val) {
-        this.isMobile = val;
-      },
-    },
-  },
-  mounted () {
-    this.isMobile = this.$isMobile;
-  },
 };
 </script>
 
 <style scoped>
+.api-content {
+  position: relative;
+  z-index: 3;
+}
 .panelTitle {
   white-space: pre;
 }

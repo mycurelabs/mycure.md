@@ -1,6 +1,10 @@
 <template lang="pug">
   div(:class="$isMobile ? 'pt-5' : ''")
-    v-container(v-for="(panel,key) in moduleGroup" :key="key").mb-10
+    v-container(
+      v-for="(panel, key) in moduleGroup"
+      :key="key"
+      :class="key === 0 ? 'mb-n3' : 'mb-n4'"
+    ).py-10
       v-row(justify="center")
         v-col(cols="10").text-center
           span(:class="$isMobile ? 'font-30' : 'font-40'") {{ panel.group }}

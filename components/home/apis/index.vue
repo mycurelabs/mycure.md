@@ -8,7 +8,7 @@
             h1.panelTitle.font-40.font-work-sans.lh-title {{ webTitle }}
             br
             br
-            p.font-s {{ panelContent }}
+            p.font-s.font-gray {{ panelContent }}
             v-list(dense)
               v-list-item(
                 v-for="(item, key) in checkList"
@@ -27,7 +27,7 @@
         br
         img(width="85%" v-lazy="require(`~/assets/images/${panelImage}.png`)" :alt="panelImage").pb-3
         br
-        p.font-s {{ panelContent }}
+        p.font-s.font-gray {{ panelContent }}
         v-list(two-line).text-left
           v-list-item(
             v-for="(item, key) in checkList"

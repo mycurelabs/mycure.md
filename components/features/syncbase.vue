@@ -1,13 +1,15 @@
 <template lang="pug">
   generic-media-panel(
     content-align-right
+    cols-left="4"
+    cols-right="4"
     custom-image-path="features/"
     :header="header"
     :descriptions="descriptions"
     :web-image="image"
     web-image-width="70%"
     mobile-image-width="90%"
-  )
+  ).mb-n10
 </template>
 
 <script>

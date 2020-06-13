@@ -4,7 +4,7 @@
       div(
         :style="styleConfig"
         :class="[dayOrNight === 'night' ? 'night-sky' : 'day-bg']"
-      ).bg-positions.pt-5.px-3#top
+      ).bg-positions.px-3#top
         nuxt
       div(:class="[dayOrNight === 'night' ? 'night-sky' : 'day-bg', 'fixed-footer']")
         v-img(:src="require(`../assets/images/mycure-onboarding-background${dayOrNight === 'night' ? '-dark-mode' : ''}.png`)" alt="Sign up background")
@@ -41,6 +41,9 @@ export default {
 </script>
 
 <style scoped>
+#top {
+  height: 100%;
+}
 .day-bg {
   background-color: #fafafa;
 }

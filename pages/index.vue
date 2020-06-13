@@ -4,22 +4,27 @@
     usp(@getStarted="goToSignupIndividual($event)")
     //- 2nd panel
     platform-panels(@getStarted="getStarted").platform-panel
+    v-divider.edge-divider
     //- 3rd panel
     storyflow(
       :storyflow="storyflowItems"
       :introduction="storyflowIntroText"
       customPath="virtual-clinic-home/"
       horizontal
-      horizontal-image-size="50%"
-    ).mt-10
+      horizontal-image-size="40%"
+    )
+    v-divider.edge-divider
     //- 4th panel
     privacy
+    v-divider.edge-divider
     //- 5th panel
     apis
+    v-divider.edge-divider
     //- 6th panel
     testimonial
     //- final panel
-    cta(@getStarted="getStarted")
+    div.cta-container
+      cta(@getStarted="getStarted")
 </template>
 
 <script>
@@ -28,23 +33,23 @@ import VueScrollTo from 'vue-scrollto';
 import headMeta from '~/utils/head-meta';
 import { parseTextWithNewLine } from '~/utils/newline';
 // - components
+import Usp from '~/components/virtual-clinic-home/usp';
 import Apis from '~/components/virtual-clinic-home/apis';
 import Cta from '~/components/virtual-clinic-home/cta';
 import PlatformPanels from '~/components/virtual-clinic-home/platform-panels';
 import Privacy from '~/components/virtual-clinic-home/privacy';
 import Storyflow from '~/components/commons/storyflow';
 import Testimonial from '~/components/virtual-clinic-home/testimonial';
-import Usp from '~/components/virtual-clinic-home/usp';
 
 export default {
   components: {
+    Usp,
     Apis,
     Cta,
     PlatformPanels,
     Privacy,
     Storyflow,
     Testimonial,
-    Usp,
   },
   data () {
     this.storyflowItems = [
@@ -101,8 +106,8 @@ export default {
   },
   head () {
     return headMeta({
-      title: 'MYCURE Advanced Complete Clinic Management System',
-      description: 'MYCURE is an advanced clinic management system that optimizes workflows, gives real-time EMR and business insights — loved by doctors and medical staff.',
+      title: 'MYCURE Virtual Clinic | Healthcare Practice Online',
+      description: 'MYCURE is an advanced clinic management system that allows you to securely consult with patients online and get real-time medical and business insights.',
       // - TODO: Replace with local if applicable
       socialBanner: 'https://firebasestorage.googleapis.com/v0/b/mc-v4-prod.appspot.com/o/web-main-assets%2FMYCURE-Open-Graph-Images-Home.png?alt=media&token=61978d70-326f-4323-8e6a-17d7b9c9a53b',
     });
@@ -112,6 +117,11 @@ export default {
 
 <style scoped>
 .platform-panel {
-  margin-top: 10vh;
+  position: relative;
+}
+.cta-container {
+  position: relative;
+  margin-bottom: 0%;
+  z-index: 1;
 }
 </style>

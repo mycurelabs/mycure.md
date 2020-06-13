@@ -1,16 +1,15 @@
 <template lang="pug">
-  div
+  div.py-10.mt-1.mb-n1
     //- WEB
-    div(v-if="!isMobile").py-5
+    div(v-if="!$isMobile")
       v-container
         v-row(justify="center")
-          v-col(cols="5")
+          v-col(cols="4")
             img(width="85%" v-lazy="require(`@/assets/images/virtual-clinic-home/${panelImage}.png`)" alt="Data Privacy Law")
-          v-col(cols="6" align-self="center")
+          v-col(cols="5" offset="1" align-self="center")
             h1.font-36.lh-title.pb-3.font-weight-light {{ panelTitle }}
             br
-            br
-            span.font-s.mt-3 {{ panelText }}
+            p.font-16.font-gray.text-justify.my-0 {{ panelText }}
     //- MOBILE
     div(v-else).pt-5
       v-container
@@ -34,7 +33,7 @@
                       v-on="on"
                     )
                   | {{item.text}}
-            p.font-s.mt-3 {{ panelText }}
+            p.font-16.mt-3.font-gray.text-justify {{ panelText }}
 </template>
 
 <script>
@@ -50,19 +49,7 @@ export default {
       { text: 'User Designated Access', image: 'user-access' },
       { text: 'Grade A+ SSL', image: 'ssl' },
     ];
-    return {
-      isMobile: true,
-    };
-  },
-  watch: {
-    $isMobile: {
-      handler (val) {
-        this.isMobile = val;
-      },
-    },
-  },
-  mounted () {
-    this.isMobile = this.$isMobile;
+    return {};
   },
 };
 </script>

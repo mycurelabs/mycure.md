@@ -1,5 +1,5 @@
 <template lang="pug">
-  fragment
+  v-container.pt-12
     div(v-if="error.statusCode === 404").white
       v-container(fluid align="start").mb-3
         v-row(align="center")
