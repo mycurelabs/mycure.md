@@ -163,6 +163,14 @@ export default {
     font-size: 16px !important;
   }
 }
+@media screen and (device-width: 1280px) {
+  .cta-panel {
+    margin-top: 12%;
+  }
+  .cta-title {
+    margin-bottom: 8%;
+  }
+}
 @media screen and (device-width: 1366px) {
   .cta-panel {
     padding-top: 15%;
