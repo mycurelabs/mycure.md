@@ -120,9 +120,4 @@ export default {
     margin-top: -20%;
   }
 }
-@media screen and (device-width: 1920px) {
-  .row-content {
-    margin-top: 5%;
-  }
-}
 </style>
