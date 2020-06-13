@@ -18,7 +18,7 @@
             color="accent"
             large
             @click="onWatch"
-          ).text-none.font-weight-bold.font-18.mt-5
+          ).text-none.font-16.mt-5.p-7
             v-icon(left) mdi-play-circle
             | Watch Walkthrough
     template(v-if="$isMobile")
@@ -27,7 +27,7 @@
         color="accent"
         large
         @click="onWatch"
-      ).text-none.font-weight-bold.font-18
+      ).text-none.font-16.p-7
         v-icon(left) mdi-play-circle
         | Watch Walkthrough
 
