@@ -16,6 +16,7 @@ module.exports = {
     STRIPE_CHECKOUT_SUCCESS_URL: process.env.STRIPE_CHECKOUT_SUCCESS_URL,
     STRIPE_CHECKOUT_CANCEL_URL: process.env.STRIPE_CHECKOUT_CANCEL_URL,
     GA_ID: process.env.GA_ID,
+    PX_PORTAL_URL: process.env.PX_PORTAL_URL,
   },
   head: {
     titleTemplate: '%s',
