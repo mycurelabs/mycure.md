@@ -74,7 +74,7 @@ export default {
 }
 @media screen and (device-width: 1024px) {
   .your-patients-contents {
-    margin-top: -85%;
+    margin-top: -60%;
   }
   .img-container {
     height: 250px;
@@ -84,11 +84,6 @@ export default {
   }
   .get-started-btn {
     margin-left: -25%;
-  }
-}
-@media screen and (device-width: 1280px) {
-  .your-patients-contents {
-    margin-top: -10%;
   }
 }
 @media screen and (device-width: 1440px) {
