@@ -4,7 +4,7 @@
       v-toolbar(flat).footer-grey
         nuxt-link(:to="{ name: 'index' }" title="MYCURE | Clinic Management System | Cloud EMR Philippines")
           v-row.text-center
-            img(src="~/assets/images/MYCURE-virtual-clinic-healthcare-practice-online-logo.svg" height="40" alt="MYCURE logo")
+            img(src="~/assets/images/mycure-footer-logo.png" height="40" alt="MYCURE logo")
         v-spacer
         div(v-for="(account, key) in socMed" :key="key")
           a(:href="account.link" target="_blank")
@@ -12,7 +12,7 @@
     v-row(v-else justify="center").footer-grey
       nuxt-link(:to="{ name: 'index' }" title="MYCURE | Clinic Management System | Cloud EMR Philippines")
         v-row(align="center").text-center
-          img(src="~/assets/images/MYCURE-virtual-clinic-healthcare-practice-online-logo.svg" width="130" alt="MYCURE logo")
+          img(src="~/assets/images/mycure-footer-logo.png" width="130" alt="MYCURE logo")
       br
       br
       v-row(justify="center")
@@ -154,6 +154,6 @@ a:link {
   color: grey;
 }
 .footer-grey {
-  background-color: #f0f0f0 !important;
+  background-color: #343a40 !important;
 }
 </style>
