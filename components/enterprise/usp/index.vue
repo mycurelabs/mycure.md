@@ -150,6 +150,11 @@ export default {
     margin-top: 2%;
   }
 }
+@media screen and (device-width: 1440px) {
+  .row-content {
+    height: 85vh;
+  }
+}
 @media screen and (device-width: 2304px) {
   .row-content {
     margin-top: 10%;
