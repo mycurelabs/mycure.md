@@ -10,9 +10,7 @@
       ).pt-12.content-container.pl-6
         h1.font-30.lh-title.pb-6.font-weight-light {{data.header}}
         br
-        p.text-justify.font-16.font-gray.pr-2 {{data.description}}
-        br
-        br
+        p.text-justify.font-16.font-gray.pr-2.mb-1 {{data.description}}
         br
         v-btn(@click="onGetStarted" text).ml-n4.get-started-btn
           strong.text-capitalize.primary--text {{data.btnTxt}}
