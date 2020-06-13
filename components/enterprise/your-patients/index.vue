@@ -88,7 +88,7 @@ export default {
 }
 @media screen and (device-width: 1280px) {
   .your-patients-contents {
-    margin-top: -15%;
+    margin-top: -10%;
   }
 }
 </style>
