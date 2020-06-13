@@ -12,7 +12,7 @@ export const HOME_START_YOUR_PHYSICAL = {
 export const YOUR_ONLINE_CLINIC = {
   image: 'MYCURE-virtual-clinic-healthcare-practice-online-homepage-B-appointment',
   header: 'Your online clinic everywhere',
-  description: 'With video chat advancements, accommodate follow-up consults conveniently where you are right now. You can save more time skipping traffic and hospital hassle.',
+  description: 'You can accommodate follow-up consults conveniently from where you are right now with video chat advancements. You can save more time skipping traffic and hospital hassle.',
   btnTxt: 'Get Started',
   btnIcon: 'mdi-arrow-right',
 };
