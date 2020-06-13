@@ -1,7 +1,7 @@
 <template lang="pug">
   v-container.py-12.specialized-plans-contents
     v-row(justify="center")
-      v-col(cols="12" md="7")
+      v-col(cols="12" md="5")
         h1.font-30.lh-title.pb-3.font-weight-light.text-center {{SPECIALIZED_PLANS.header}}
     v-row(justify="center" align="start")
       v-col(
@@ -16,7 +16,7 @@
         h1.font-22.lh-title.pb-3.font-weight-medium {{data.header}}
         p.text-justify.font-18.mt-3.font-gray {{data.description}}
     v-row(justify="center").pt-12
-      v-col(cols="12" md="6")
+      v-col(cols="12" md="5")
         h1.font-18.font-weight-light.text-center.font-italic {{SPECIALIZED_PLANS.description}}
 </template>
 
