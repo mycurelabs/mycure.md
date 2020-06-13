@@ -148,12 +148,20 @@ export default {
     font-size: 16px !important;
   }
 }
-@media screen and (min-width: 1366px) {
+@media screen and (device-width: 1366px) {
   .cta-panel {
     margin-top: 5%;
   }
   .cta-title {
     margin-bottom: 17%;
+  }
+}
+@media screen and (device-width: 1280px) {
+  .cta-panel {
+    margin-top: 8%;
+  }
+  .cta-title {
+    margin-bottom: 13%;
   }
 }
 </style>
