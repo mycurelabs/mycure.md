@@ -24,11 +24,12 @@
               outlined
             ).input-field
             v-btn(
-              height="55"
+              height="54"
+              width="160"
               v-if="!$isMobile"
               color="accent"
               @click="onGetStarted"
-            ).text-none.font-weight-bold.font-18.btn-book Get Started
+            ).text-none.font-16.p-7.btn-book Get Started
           p.mt-3.font-18.white--text.cta-agreement {{ ctaAgreement }}
         v-col(cols="12" v-if="$isMobile")
           h1.font-40.lh-title.panel-title {{ panelTitle }}
