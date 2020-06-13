@@ -1,7 +1,7 @@
 <template lang="pug">
-  div.py-12
+  div.py-10.mt-1.mb-n1
     //- WEB
-    div(v-if="!$isMobile").py-5
+    div(v-if="!$isMobile")
       v-container
         v-row(justify="center")
           v-col(cols="4")
@@ -9,7 +9,7 @@
           v-col(cols="5" offset="1" align-self="center")
             h1.font-36.lh-title.pb-3.font-weight-light {{ panelTitle }}
             br
-            p.font-18.font-gray.text-justify.my-0 {{ panelText }}
+            p.font-16.font-gray.text-justify.my-0 {{ panelText }}
     //- MOBILE
     div(v-else).pt-5
       v-container
@@ -33,7 +33,7 @@
                       v-on="on"
                     )
                   | {{item.text}}
-            p.font-18.mt-3.font-gray.text-justify {{ panelText }}
+            p.font-16.mt-3.font-gray.text-justify {{ panelText }}
 </template>
 
 <script>

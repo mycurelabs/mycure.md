@@ -1,7 +1,7 @@
 export const SECOND_PANEL_CONTENTS = [
   {
     header: 'Increase your revenue',
-    description: 'Treat more patients and reduce no-shows and cancellations with online consultations via secure and video and voice calls.',
+    description: 'Treat more patients and reduce no-shows and cancellations with online consultations via secure video and voice calls.',
     btnTxt: 'Get Started',
     btnIcon: 'mdi-arrow-right-thick',
   },
@@ -29,8 +29,8 @@ export const SPECIALIZED_PLANS = {
   description: '*All specialized plans come with Pharmacy, Inventory and Point-of-Sales modules',
 };
 export const ACCESS_QUALITY_HEALTHCARE = {
-  header: 'Access quality healthcare -instantly',
-  description: 'Set-up appointments and consultations, coordinate patient care, issure ePresciptions and release diagnostics results- all that and more with an online portal to interact with your patients.',
+  header: 'Access quality healthcare\xA0\xA0\xA0\xA0\xA0\xA0\xA0\xA0 - instantly',
+  description: 'Set-up appointments and consultations, coordinate patient care, issue ePresciptions and release diagnostics results- all that and more with an online portal to interact with your patients.',
   btnTxt: 'Get Started',
   btnIcon: 'mdi-arrow-right-thick',
 };
@@ -43,21 +43,21 @@ export const LISTS_OF_PLANS = [
   {
     images: 'MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-D-specialization-02-pediatrics.png',
     header: 'Pediatrics',
-    description: 'An EMR complete with growth charts, vaccination trackers and developmental milestones.',
+    description: 'An EMR complete with growth charts, vaccination trackers & developmental milestones.',
   },
   {
     images: 'MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-D-specialization-03-maternity.png',
     header: 'Maternity Care',
-    description: 'Laboratory & Imaging modules to store lab and ultrasounds results with AOG and EDD calculators.',
+    description: 'Laboratory and Imaging modules to store lab and ultrasounds results with AOG and EDD calculators.',
   },
   {
     images: 'MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-D-specialization-04-dental.png',
     header: 'Dental',
-    description: 'A special Dental EMR for baseline dental charting, proposed work documentation and other attachments.',
+    description: 'A special Dental EMR for baseline dental charting, proposed documentation for work and other attachments.',
   },
   {
     images: 'MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-D-specialization-05-diagnostic.png',
     header: 'Diagnostic',
-    description: 'Interoperable Laboratory & Imaging modules with HL7 machine integrations, send-outs and specimen tracking functions.',
+    description: 'Interoperable Laboratory and Imaging modules with HL7 machine integrations, send-outs and specimen tracking functions.',
   },
 ];

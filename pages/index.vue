@@ -23,7 +23,8 @@
     //- 6th panel
     testimonial
     //- final panel
-    cta(@getStarted="getStarted")
+    div.cta-container
+      cta(@getStarted="getStarted")
 </template>
 
 <script>
@@ -117,5 +118,10 @@ export default {
 <style scoped>
 .platform-panel {
   position: relative;
+}
+.cta-container {
+  position: relative;
+  margin-bottom: 0%;
+  z-index: 1;
 }
 </style>

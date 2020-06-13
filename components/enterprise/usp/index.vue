@@ -9,9 +9,9 @@
     )
       v-row(slot="content").row-content
         v-col(cols="12" md="5" :class="[{'web-content-margin': !$isMobile}]" v-if="!$isMobile")
-          p.font-18.px-1 {{ uspPreSubtitle }}
-          h1(:class="titleClasses").font-poppins.font-40.lh-title {{ panelTitle }}
-          p.font-18.px-1.pt-5 {{ uspPostSubtitle }}
+          p.font-18.px-1.usp-subtitle {{ uspPreSubtitle }}
+          h1(:class="titleClasses").font-poppins.font-40.lh-title.usp-title {{ panelTitle }}
+          p.font-18.px-1.pt-5.usp-subtitle {{ uspPostSubtitle }}
           div(v-if="!$isMobile").text-field-container
             v-text-field(
               background-color="white"
@@ -62,7 +62,7 @@ export default {
     this.uspPreSubtitle = 'For Medical Enterprise';
     this.panelTitle = 'Take your healthcare\nenterprise to a\nbroader audience';
     this.panelTitleMobile = 'Taking your\nentire clinic\nenterprise online\nis possible with\nMYCURE';
-    this.uspPostSubtitle = 'Build and online brand for your health facility and MYCURE will do the rest.';
+    this.uspPostSubtitle = 'Build an online brand for your health facility and MYCURE will do the rest.';
     this.uspAgreement = 'By entering your email, you agree to receive marketing emails from MYCURE.';
     this.customPath = 'enterprise/';
     return {
@@ -120,14 +120,48 @@ export default {
   height: 100vh;
   margin-top: -5%;
 }
-@media screen and (device-width: 360px) {
+/* iphone 5SE */
+@media only screen
+  and (min-device-width: 320px)
+  and (max-device-width: 568px)
+  and (-webkit-min-device-pixel-ratio: 2) {
   .text-field-container-mobile {
-  margin-top: -45%;
+    margin-top: -38%;
   }
 }
-@media screen and (device-width: 375px) {
+/* iphone 6/7/8 */
+@media only screen
+  and (min-device-width: 375px)
+  and (max-device-width: 667px)
+  and (-webkit-min-device-pixel-ratio: 2) {
+  .text-field-container-mobile {
+    margin-top: -45%;
+  }
+}
+/* iphone 6/7/8 PLUS */
+@media only screen
+  and (min-device-width: 414px)
+  and (max-device-width: 736px)
+  and (-webkit-min-device-pixel-ratio: 3) {
+  .text-field-container-mobile {
+    margin-top: -48%;
+  }
+}
+/* iphone X */
+@media only screen
+  and (device-width: 375px)
+  and (-webkit-min-device-pixel-ratio: 3) {
   .text-field-container-mobile {
     margin-top: -85%;
+  }
+}
+/* Pixel XL */
+@media only screen
+  and (device-width: 411px)
+  and (device-height: 823px)
+  and (-webkit-min-device-pixel-ratio: 3) {
+  .text-field-container-mobile {
+    margin-top: -70%;
   }
 }
 @media screen and (device-width: 768px) {
@@ -139,15 +173,8 @@ export default {
   .row-content {
     margin-top: -20%;
   }
-  .text-field-container {
-    flex-direction: column;
-  }
-  .input-field {
-    width: 100%;
-  }
   .btn-book {
-    margin-left: 0px;
-    margin-top: 2%;
+    margin-left: 5px;
   }
 }
 @media screen and (device-width: 1440px) {
@@ -157,26 +184,52 @@ export default {
 }
 @media screen and (device-width: 1680px) {
   .row-content {
-    margin-top: 0%;
-    height: 75vh;
+    height: 80vh;
   }
 }
 @media screen and (device-width: 1920px) {
   .row-content {
-    margin-top: 5%;
-    height: 80vh;
+    height: 95vh;
+  }
+  .usp-title {
+    font-size: 300% !important;
+  }
+  .usp-subtitle {
+    font-size: 150% !important;
+  }
+  .btn-book {
+    width: 30% !important;
+    font-size: 150% !important;
   }
 }
 @media screen and (device-width: 2304px) {
   .row-content {
-    margin-top: 10%;
-    height: 80vh;
+    height: 105vh;
+  }
+  .usp-title {
+    font-size: 350% !important;
+  }
+  .usp-subtitle {
+    font-size: 175% !important;
+  }
+  .btn-book {
+    width: 30% !important;
+    font-size: 150% !important;
   }
 }
 @media screen and (device-width: 2560px) {
   .row-content {
-    margin-top: 15%;
-    height: 70vh;
+    height: 95vh;
+  }
+  .usp-title {
+    font-size: 400% !important;
+  }
+  .usp-subtitle {
+    font-size: 200% !important;
+  }
+  .btn-book {
+    width: 35% !important;
+    font-size: 160% !important;
   }
 }
 </style>

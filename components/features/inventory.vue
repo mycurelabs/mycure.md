@@ -10,7 +10,7 @@
         :descriptions="descriptions"
         :web-image="mediaImage"
         :custom-image-path="customPath"
-      )
+      ).mb-n3
         //- Check list
         template(slot="additional-content")
           template(v-for="item in checkListItems")

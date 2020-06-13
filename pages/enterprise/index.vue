@@ -15,7 +15,7 @@
     smarter-decisions
     v-divider.edge-divider
     //- 6th panel
-    multiple-branches(@getStarted="goToSignup")
+    multiple-branches(@getStarted="goToSignup")#multibranch-facilities
     v-divider.edge-divider
     //- 7th panel
     one-stop(@goToFeatures="goToFeatures" @getStarted="goToSignup")#multispecialty-clinics
@@ -84,6 +84,7 @@ export default {
       const panel = this.scrollPanel || '#app';
       const offsetMappings = [
         { key: '#app', offset: 0 },
+        { key: '#multibranch-facilities', offset: 500 },
         { key: '#multispecialty-clinics', offset: 600 },
         { key: '#corporate-clinics', offset: 700 },
         { key: '#medical-arts-centers', offset: 900 },

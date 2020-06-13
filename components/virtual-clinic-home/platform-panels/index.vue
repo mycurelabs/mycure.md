@@ -1,11 +1,11 @@
 <template lang="pug">
   v-container.platform-panels
-    v-row(justify="center" align="center").py-5
+    v-row(justify="center" align="center")
       v-col(cols="12" md="6")
         h1.font-36.font-weight-light.text-center {{BRING_YOUR_PRACTICE_ONLINE.header}}
         br
         p.text-center.font-18.font-gray {{BRING_YOUR_PRACTICE_ONLINE.description}}
-    v-row(justify="center" align="center").py-12.line-below
+    v-row(justify="center" align="center").py-10.mb-n4
       v-col(v-if="!$isMobile" align="center" cols="12" md="6").first-column
         img(
           v-lazy="require('~/assets/images/virtual-clinic-home/webp/MYCURE-virtual-clinic-healthcare-practice-online-homepage-A-telehealth.webp')"
@@ -27,7 +27,7 @@
         width="95%"
         alt="Start your physical and digital clinic journey"
       )
-    v-row(justify="center" align="center").py-12.line-below
+    v-row(justify="center" align="center").py-10.mb-n4
       v-col(cols="12" md="6" lg="4").first-column.img-online-clinic
         h1.font-30.font-weight-light {{YOUR_ONLINE_CLINIC.header}}
         br
@@ -39,7 +39,7 @@
           v-icon.primary--text {{YOUR_ONLINE_CLINIC.btnIcon}}
       v-col(justify="end" align="center" cols="12" md="5" v-if="!$isMobile").second-column
         img(v-lazy="require('~/assets/images/virtual-clinic-home/webp/MYCURE-virtual-clinic-healthcare-practice-online-homepage-B-appointment.webp')" width="90%" alt="Your online clinic everywhere").pl-12
-    v-row(justify="center" align="center").py-12.line-below
+    v-row(justify="center" align="center").py-10.mb-n4
       v-col(v-if="!$isMobile" align="center" cols="12" md="6").first-column
         img(
           v-lazy="require('~/assets/images/virtual-clinic-home/webp/MYCURE-virtual-clinic-healthcare-practice-online-homepage-C-doctor-website.webp')"
@@ -61,7 +61,7 @@
         alt="Get more patients"
         width="95%"
       ).pr-n12
-    v-row(justify="center" align="center").py-12
+    v-row(justify="center" align="center").py-10.mb-n4
       v-col(cols="12" md="6" lg="4").first-column
         h1.font-30.font-weight-light {{MANAGE_EVERYTHING_EASILY.header}}
         br
@@ -115,20 +115,6 @@ export default {
 a {
   text-decoration-color: #2e9fdf;
   text-decoration: none;
-}
-.line-below{
-  position: relative;
-}
-.line-below:after{
-  content: '';
-  position: absolute;
-  display: inline-block;
-  bottom: 0px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 97vw;
-  height: 1px;
-  background-color: rgba(0, 0, 0, 0.12);
 }
 .platform-panels{
   margin-top: 55%;

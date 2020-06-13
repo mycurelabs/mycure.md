@@ -1,9 +1,9 @@
 <template lang="pug">
   div(:class="$isMobile ? 'pt-5' : ''")
     v-container(
-      v-for="(panel,key) in moduleGroup"
+      v-for="(panel, key) in moduleGroup"
       :key="key"
-      :class="key === 0 ? 'line-below' : ''"
+      :class="key === 0 ? 'mb-n3' : 'mb-n4'"
     ).py-10
       v-row(justify="center")
         v-col(cols="10").text-center
@@ -44,19 +44,5 @@ export default {
 
 .module-item {
   text-align: center;
-}
-.line-below{
-  position: relative;
-}
-.line-below:after{
-  content: '';
-  position: absolute;
-  display: inline-block;
-  bottom: 0px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 97vw;
-  height: 1px;
-  background-color: rgba(0, 0, 0, 0.12);
 }
 </style>

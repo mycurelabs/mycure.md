@@ -114,7 +114,12 @@ export default {
 .web-content-margin {
   margin-top: 80px;
 }
-@media screen and (device-width: 360px) {
+/* galaxy s5 */
+@media screen
+  and (device-width: 320px)
+  and (device-height: 640px)
+  and (-webkit-device-pixel-ratio: 3)
+  and (orientation: portrait) {
   .cta-content {
     margin-bottom: -10%;
   }
@@ -126,7 +131,45 @@ export default {
     font-size: 30px !important;
   }
 }
-@media screen and (device-width: 375px) {
+/* iphone 5/SE */
+@media only screen
+  and (min-device-width: 320px)
+  and (max-device-width: 568px)
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (orientation: portrait) {
+  .cta-content {
+    margin-bottom: -10%;
+  }
+  .image-mobile {
+    margin-left: -5%;
+    width: 110%;
+  }
+  .panel-title{
+    font-size: 30px !important;
+  }
+}
+/* iphone 6/7/8 */
+@media only screen
+  and (min-device-width: 375px)
+  and (max-device-width: 667px)
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (orientation: portrait) {
+  .cta-content {
+    margin-bottom: -10%;
+  }
+  .image-mobile {
+    margin-left: -5%;
+    width: 110%;
+  }
+  .panel-title{
+    font-size: 30px !important;
+  }
+}
+/* iphone X */
+@media only screen
+  and (device-width: 375px)
+  and (-webkit-min-device-pixel-ratio: 3)
+  and (orientation: portrait) {
   .cta-content {
     margin-bottom: -10%;
   }
@@ -165,7 +208,7 @@ export default {
 }
 @media screen and (device-width: 1280px) {
   .cta-panel {
-    margin-top: 12%;
+    margin-top: 10%;
   }
   .cta-title {
     margin-bottom: 8%;
@@ -173,8 +216,7 @@ export default {
 }
 @media screen and (device-width: 1366px) {
   .cta-panel {
-    padding-top: 15%;
-    margin-bottom: 2%;
+    margin-top: 8%;
   }
   .cta-title {
     padding-bottom: 10%;
@@ -198,18 +240,44 @@ export default {
 }
 @media screen and (device-width: 1920px) {
   .cta-panel {
-    margin-top: 15%;
+    margin-top: 13%;
   }
   .cta-title {
-    margin-bottom: 15%;
+    margin-bottom: 13%;
+  }
+  .panel-title {
+    font-size: 300% !important;
+  }
+  .cta-subtitle {
+    font-size: 150% !important;
+  }
+  .cta-agreement {
+    font-size: 150% !important;
+  }
+  .btn-book {
+    width: 30% !important;
+    font-size: 150% !important;
   }
 }
 @media screen and (device-width: 2304px) {
     .cta-panel {
-      margin-top: 20%;
+      margin-top: 17%;
     }
   .cta-title {
-    margin-bottom: 20%;
+    margin-bottom: 17%;
+  }
+  .panel-title {
+    font-size: 350% !important;
+  }
+  .cta-subtitle {
+    font-size: 175% !important;
+  }
+  .cta-agreement {
+    font-size: 175% !important;
+  }
+  .btn-book {
+    width: 30% !important;
+    font-size: 150% !important;
   }
 }
 @media screen and (device-width: 2560px) {
@@ -217,7 +285,20 @@ export default {
     margin-top: 15%;
   }
   .cta-title {
-    margin-bottom: 25%;
+    margin-bottom: 17%;
+  }
+  .panel-title {
+    font-size: 400% !important;
+  }
+  .cta-subtitle {
+    font-size: 200% !important;
+  }
+  .cta-agreement {
+    font-size: 200% !important;
+  }
+  .btn-book {
+    width: 35% !important;
+    font-size: 160% !important;
   }
 }
 </style>

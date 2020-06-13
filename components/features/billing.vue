@@ -11,7 +11,7 @@
         :web-image="mediaImage"
         custom-image-path="features/"
         hide-image-mobile
-      )
+      ).mt-n1
         //- Check list
         template(slot="additional-content")
           template(v-for="item in checkListItems")
@@ -21,7 +21,7 @@
               v-col(shrink)
                 span.font-18.font-gray {{ item }}
       //- Bottom images
-      v-container(v-if="!$isMobile").py-10
+      v-container(v-if="!$isMobile").py-10.mb-n1
         v-row
           v-col(cols="12" md="5")
             img(
