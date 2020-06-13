@@ -120,14 +120,48 @@ export default {
   height: 100vh;
   margin-top: -5%;
 }
-@media screen and (device-width: 360px) {
+/* iphone 5SE */
+@media only screen
+  and (min-device-width: 320px)
+  and (max-device-width: 568px)
+  and (-webkit-min-device-pixel-ratio: 2) {
   .text-field-container-mobile {
-  margin-top: -45%;
+    margin-top: -38%;
   }
 }
-@media screen and (device-width: 375px) {
+/* iphone 6/7/8 */
+@media only screen
+  and (min-device-width: 375px)
+  and (max-device-width: 667px)
+  and (-webkit-min-device-pixel-ratio: 2) {
+  .text-field-container-mobile {
+    margin-top: -45%;
+  }
+}
+/* iphone 6/7/8 PLUS */
+@media only screen
+  and (min-device-width: 414px)
+  and (max-device-width: 736px)
+  and (-webkit-min-device-pixel-ratio: 3) {
+  .text-field-container-mobile {
+    margin-top: -48%;
+  }
+}
+/* iphone X */
+@media only screen
+  and (device-width: 375px)
+  and (-webkit-min-device-pixel-ratio: 3) {
   .text-field-container-mobile {
     margin-top: -85%;
+  }
+}
+/* Pixel XL */
+@media only screen
+  and (device-width: 411px)
+  and (device-height: 823px)
+  and (-webkit-min-device-pixel-ratio: 3) {
+  .text-field-container-mobile {
+    margin-top: -70%;
   }
 }
 @media screen and (device-width: 768px) {
