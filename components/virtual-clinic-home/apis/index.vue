@@ -7,7 +7,7 @@
           v-col(cols="5" align-self="center").px-3
             h1.panelTitle.font-36.lh-title.font-weight-light {{ webTitle }}
             br
-            p.font-18.font-gray.text-justify {{ panelContent }}
+            p.font-16.font-gray.text-justify {{ panelContent }}
             v-list(dense)
               v-list-item(
                 v-for="(item, key) in checkList"
@@ -16,7 +16,7 @@
                 v-list-item-action
                   img(v-lazy="require('~/assets/images/mycure-web-bullet-check.png')" alt="Check icon")
                 v-list-item-content
-                  span.font-18.font-gray {{ item }}
+                  span.font-16.font-gray {{ item }}
           v-col(cols="4" offset="1" align-self="center").px-3.text-center
             img(v-lazy="panelImageSrc" width="80%" :alt="panelImage")
     //- MOBILE
@@ -26,7 +26,7 @@
         br
         img(width="85%" v-lazy="panelImageSrc" :alt="panelImage").pb-3
         br
-        p.font-18.font-gray.text-justify.mt-3 {{ panelContent }}
+        p.font-16.font-gray.text-justify.mt-3 {{ panelContent }}
         v-list(two-line).text-left
           v-list-item(
             v-for="(item, key) in checkList"
@@ -35,7 +35,7 @@
             v-list-item-action
               img(src="~/assets/images/mycure-web-bullet-check.png" alt="Check icon")
             v-list-item-content
-              span.font-18.font-gray {{ item }}
+              span.font-16.font-gray {{ item }}
         br
 </template>
 
