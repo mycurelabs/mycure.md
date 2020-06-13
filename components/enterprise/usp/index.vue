@@ -167,4 +167,10 @@ export default {
     height: 80vh;
   }
 }
+@media screen and (device-width: 2560px) {
+  .row-content {
+    margin-top: 15%;
+    height: 70vh;
+  }
+}
 </style>
