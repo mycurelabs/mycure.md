@@ -53,6 +53,8 @@ module.exports = {
     { src: '~plugins/crisp.js', mode: 'client' },
     { src: '~/plugins/vue-analytics.js', mode: 'client' },
     { src: '~/plugins/ga.js', mode: 'client' },
+    { src: '~/plugins/vue-social-sharing.js', mode: 'client' },
+    { src: '~/plugins/vue-morphling.js', mode: 'client' },
     '~/plugins/vue-lazyload.js',
   ],
   /*
@@ -129,5 +131,14 @@ module.exports = {
     */
     extend (config, ctx) {
     },
+  },
+  generate: {
+    routes: [
+      '/doctors/jofftiquez',
+      '/doctors/jeanrivera',
+      '/doctors/william',
+      '/doctors/paulette',
+      '/doctors/telehealth',
+    ],
   },
 };

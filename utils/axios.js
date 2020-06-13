@@ -43,6 +43,22 @@ function handleError (e) {
 //   }
 // }
 
+export const getDoctorWebsite = async (opts) => {
+  const { data } = await axios({
+    method: 'get',
+    url: `${process.env.API_URL}/personal-details?doc_website=${opts.username}`,
+  });
+  return data.data[0];
+};
+
+export const getDoctorClinics = async (opts) => {
+  const { data } = await axios({
+    method: 'GET',
+    url: `${process.env.API_URL}/organizations?createdBy=${opts.uid}`,
+  });
+  return data.data;
+};
+
 export const signin = async (opts) => {
   try {
     const payload = {
@@ -259,6 +275,27 @@ export const resendVerificationCode = async (opts) => {
       headers: {
         Authorization: 'Bearer ' + opts.token,
       },
+      data: payload,
+    });
+    return data;
+  } catch (e) {
+    console.error(e);
+    throw handleError(e);
+  }
+};
+
+export const recordWebsiteVisit = async (opts) => {
+  try {
+    const payload = {
+      account: opts.uid,
+      type: 'doctor-website-visit',
+      label: 'Website Visit',
+      campaign: 'Website Visit',
+      source: window.location.href,
+    };
+    const { data } = await axios({
+      method: 'post',
+      url: `${process.env.API_URL}/system-counters`,
       data: payload,
     });
     return data;
