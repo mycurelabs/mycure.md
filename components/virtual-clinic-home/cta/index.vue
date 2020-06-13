@@ -4,9 +4,8 @@
       :background-image="backgroundImage"
       :background-image-configs="backgroundImageConfigs"
       :customPath="customPath"
-      :webContainerStyleConfigs="webContainerStyleConfigs"
     ).cta-content
-      v-row(slot="content" align="center" v-if="!$isMobile")
+      v-row(slot="content" align="center" v-if="!$isMobile").row-content
         v-col(
           cols="12"
           md="5"
@@ -14,7 +13,7 @@
           :class="[{'web-content-margin': !$isMobile}]"
         ).cta-title
           h1.font-40.lh-title {{ uspTitle }}
-          p.font-italic.font-18 {{ uspSubtitle }}
+          p.font-italic.font-18.my-4 {{ uspSubtitle }}
           v-btn(
             color="accent"
             large
@@ -31,12 +30,12 @@
           cols="12"
         )
           h1.font-40.lh-title.px-5.cta-title {{ uspTitle }}
-          p.font-italic.font-18.px-5.cta-subtitle {{ uspSubtitle }}
+          p.font-italic.font-18.px-5.my-2.cta-subtitle {{ uspSubtitle }}
           v-btn(
             color="accent"
             large
             @click="onGetStarted"
-          ).text-none.font-16.p-7.mt-5.cta-btn Get Started
+          ).text-none.font-16.p-7.mt-3.cta-btn Get Started
           img(
             v-lazy="panelImageSrc"
             alt="Home CTA"
@@ -70,9 +69,6 @@ export default {
         bottom: '0',
       };
     },
-    webContainerStyleConfigs () {
-      return { position: 'relative', height: '100vh' };
-    },
     panelImageSrc () {
       return require(`~/assets/images/virtual-clinic-home/${this.backgroundImageMobile}`);
     },
@@ -87,21 +83,59 @@ export default {
 
 <style scoped>
 .web-content-margin {
-  margin-top: 260px;
+  margin-top: -13%;
+}
+.row-content {
+  height: 80vh;
+}
+@media screen and (max-width: 1800px) {
+  .row-content {
+    height: 70vh;
+  }
+}
+@media screen and (max-width: 1650px) {
+  .row-content {
+    height: 62vh;
+  }
+  .web-content-margin {
+    margin-top: -10%;
+  }
 }
 @media screen and (max-width: 1448px) {
+  .row-content {
+    height: 60vh;
+  }
   .web-content-margin {
-    margin-top: 310px;
+    margin-top: -6%;
   }
 }
-@media screen and (max-width: 1300px) {
-  .web-content-margin {
-    margin-top: 360px;
+@media screen and (max-width: 1370px) {
+  .row-content {
+    height: 57vh;
   }
 }
-@media screen and (max-width: 1100px) {
+@media screen and (max-width: 1290px) {
+  .row-content {
+    height: 52vh;
+  }
   .web-content-margin {
-    margin-top: 384px;
+    margin-top: 2%;
+  }
+}
+@media screen and (max-width: 1150px) {
+  .row-content {
+    height: 47vh;
+  }
+  .web-content-margin {
+    margin-top: 0%;
+  }
+}
+@media screen and (max-width: 1050px) {
+  .row-content {
+    height: 43vh;
+  }
+  .web-content-margin {
+    margin-top: -1%;
   }
 }
 @media screen and (device-width: 360px) {
@@ -145,8 +179,14 @@ export default {
   .cta-title {
     margin-bottom: -55%;
   }
+  .row-content {
+    height: 48vh;
+  }
   .web-content-margin {
-    margin-top: 360px;
+    margin-top: -55%;
+  }
+  .cta-btn{
+    margin-top: 0 !important;
   }
 }
 @media screen and (device-width: 1024px) and (orientation: portrait) {
@@ -158,8 +198,23 @@ export default {
   .cta-title {
     margin-bottom: -214%;
   }
+  .row-content {
+    height: 90vh;
+  }
+  .web-content-margin {
+    margin-top: -118%;
+  }
+  .cta-btn{
+    margin-top: 0 !important;
+  }
 }
 @media screen and (device-width: 1366px) and (orientation: landscape) {
+  .row-content {
+    height: 49vh;
+  }
+  .web-content-margin {
+    margin-top: -96%;
+  }
   .cta-title {
     margin-bottom: -96%;
   }
