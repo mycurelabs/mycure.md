@@ -114,7 +114,12 @@ export default {
 .web-content-margin {
   margin-top: 80px;
 }
-@media screen and (device-width: 360px) {
+/* galaxy s5 */
+@media screen
+  and (device-width: 320px)
+  and (device-height: 640px)
+  and (-webkit-device-pixel-ratio: 3)
+  and (orientation: portrait) {
   .cta-content {
     margin-bottom: -10%;
   }
@@ -126,7 +131,45 @@ export default {
     font-size: 30px !important;
   }
 }
-@media screen and (device-width: 375px) {
+/* iphone 5/SE */
+@media only screen
+  and (min-device-width: 320px)
+  and (max-device-width: 568px)
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (orientation: portrait) {
+  .cta-content {
+    margin-bottom: -10%;
+  }
+  .image-mobile {
+    margin-left: -5%;
+    width: 110%;
+  }
+  .panel-title{
+    font-size: 30px !important;
+  }
+}
+/* iphone 6/7/8 */
+@media only screen
+  and (min-device-width: 375px)
+  and (max-device-width: 667px)
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (orientation: portrait) {
+  .cta-content {
+    margin-bottom: -10%;
+  }
+  .image-mobile {
+    margin-left: -5%;
+    width: 110%;
+  }
+  .panel-title{
+    font-size: 30px !important;
+  }
+}
+/* iphone X */
+@media only screen
+  and (device-width: 375px)
+  and (-webkit-min-device-pixel-ratio: 3)
+  and (orientation: portrait) {
   .cta-content {
     margin-bottom: -10%;
   }
