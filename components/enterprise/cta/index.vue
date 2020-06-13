@@ -110,7 +110,11 @@ export default {
 .web-content-margin {
   margin-top: 80px;
 }
-@media screen and (device-width: 360px) {
+/* iphone 5SE */
+@media only screen
+  and (min-device-width: 320px)
+  and (max-device-width: 568px)
+  and (-webkit-min-device-pixel-ratio: 2) {
   .cta-content {
     margin-bottom: -10%;
   }
@@ -118,14 +122,8 @@ export default {
     margin-left: -5%;
     width: 110%;
   }
-}
-@media screen and (device-width: 375px) {
-  .cta-content {
-    margin-bottom: -10%;
-  }
-  .image-mobile {
-    margin-left: -5%;
-    width: 110%;
+  .cta-title {
+    font-size: 30px !important;
   }
 }
 @media screen and (device-width: 768px) {
