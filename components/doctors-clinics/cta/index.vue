@@ -4,15 +4,16 @@
       :background-image="backgroundImage"
       :background-image-configs="backgroundImageConfigs"
       :webContainerStyleConfigs="webContainerStyleConfigs"
-      :customPath="customPath"
     ).cta-content
       v-row(slot="content")
         v-col(
           cols="12"
-          md="5"
+          md="6"
+          offset-md="3"
           justify-self="center"
           v-if="!$isMobile"
           :class="[{'web-content-margin': !$isMobile}]"
+          style="text-align: center; margin-bottom: 25vh;"
         ).cta-title
           h1.font-40.lh-title.panel-title {{ panelTitle }}
           p.font-italic.mt-6.font-18.cta-subtitle {{ ctaSubtitle }}
@@ -30,8 +31,8 @@
               color="accent"
               @click="onGetStarted"
             ).text-none.font-16.p-7.btn-book Get Started
-          p.mt-3.font-18.white--text.cta-agreement {{ ctaAgreement }}
-        v-col(cols="12" v-if="$isMobile")
+          p.mt-3.font-16.grey--text.cta-agreement {{ ctaAgreement }}
+        v-col(cols="12" v-if="$isMobile" style="text-align: center;")
           h1.font-40.lh-title.panel-title {{ panelTitle }}
           p.font-italic.mt-3.font-18.cta-subtitle {{ ctaSubtitle }}
           div.mt-5.text-field-container
@@ -62,12 +63,11 @@ export default {
     GenericBackgroundPanel,
   },
   data () {
-    this.backgroundImage = 'MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-final-cta-cover.webp';
-    this.backgroundImageMobile = 'MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-final-cta-cover-mobile.webp';
+    this.backgroundImage = 'mycure-final-cta-background-full.webp';
+    this.backgroundImageMobile = 'mycure-final-cta-background-full.webp';
     this.panelTitle = 'Build your virtual clinic today.';
     this.ctaSubtitle = 'For Modern Doctors, Virtual is the new normal.';
     this.ctaAgreement = 'By entering your email, you agree to receive marketing emails from MYCURE.';
-    this.customPath = 'doctors-clinics/';
     return {
       email: '',
     };
@@ -85,7 +85,7 @@ export default {
       return { position: 'relative' };
     },
     panelImageSrc () {
-      return require(`@/assets/images/doctors-clinics/${this.backgroundImageMobile}`);
+      return require(`@/assets/images/${this.backgroundImageMobile}`);
     },
   },
   methods: {
