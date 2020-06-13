@@ -71,6 +71,17 @@ export default {
     top: 30%;
   }
 }
+@media only screen
+  and (device-width: 411px)
+  and (device-height: 731px)
+  and (-webkit-min-device-pixel-ratio: 2) {
+  .item-container {
+    min-height: 250px;
+  }
+  .item-description {
+    top: 35%;
+  }
+}
 @media screen and (device-width: 768px) {
   .item-container {
     min-height: 300px;
