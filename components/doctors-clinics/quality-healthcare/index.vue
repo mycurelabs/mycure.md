@@ -3,7 +3,7 @@
     v-row(justify="center")
       v-col(align-self="center" cols="12" md="6" v-if="!$isMobile")
         img(
-          v-lazy="require('~/assets/images/doctors-clinics/MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-E-patient-portal.webp')"
+          v-lazy="require('~/assets/images/doctors-clinics/MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-final-E-patient-portal.webp')"
           alt="Access quality healthcare" width="100%"
         ).web-image
       v-col(align-self="center" cols="12" md="5")
@@ -17,7 +17,7 @@
           v-icon.primary--text {{ACCESS_QUALITY_HEALTHCARE.btnIcon}}
       img(
         v-if="$isMobile"
-        v-lazy="require('~/assets/images/doctors-clinics/MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-E-patient-portal.webp')"
+        v-lazy="require('~/assets/images/doctors-clinics/MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-final-E-patient-portal.webp')"
         alt="Access quality healthcare"
         width="100%"
       )
