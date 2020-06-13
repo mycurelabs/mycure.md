@@ -107,7 +107,7 @@ export default {
 }
 @media screen and (device-width: 360px) {
   .text-field-container {
-  margin-top: -28%;
+    margin-top: -28%;
   }
 }
 @media screen and (device-width: 375px) {
@@ -117,7 +117,12 @@ export default {
 }
 @media screen and (device-width: 1024px) {
   .row-content {
-  margin-top: -20%;
+    margin-top: -20%;
+  }
+}
+@media screen and (device-width: 1920px) {
+  .row-content {
+    margin-top: 5%;
   }
 }
 </style>
