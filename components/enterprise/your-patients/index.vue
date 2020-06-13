@@ -91,4 +91,12 @@ export default {
     margin-top: -10%;
   }
 }
+@media screen and (device-width: 2304px) {
+  .your-patients-contents {
+    margin-top: -10%;
+  }
+  .get-started-btn {
+    margin-left: -12%;
+  }
+}
 </style>
