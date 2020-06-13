@@ -76,4 +76,19 @@ export default {
     min-height: 300px;
   }
 }
+@media screen and (device-width: 1920px) {
+  .item-container {
+    min-height: 300px;
+  }
+}
+@media screen and (device-width: 2304px) {
+  .item-container {
+    min-height: 300px;
+  }
+}
+@media screen and (device-width: 2560px) {
+  .item-container {
+    min-height: 300px;
+  }
+}
 </style>
