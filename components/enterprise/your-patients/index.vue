@@ -86,4 +86,9 @@ export default {
     margin-left: -25%;
   }
 }
+@media screen and (device-width: 1280px) {
+  .your-patients-contents {
+    margin-top: -15%;
+  }
+}
 </style>
