@@ -6,10 +6,11 @@
       :webContainerStyleConfigs="webContainerStyleConfigs"
       :customPath="customPath"
     ).cta-content
-      v-row(slot="content" align="center")
+      v-row(slot="content")
         v-col(
           cols="12"
           md="5"
+          justify-self="center"
           v-if="!$isMobile"
           :class="[{'web-content-margin': !$isMobile}]"
         ).cta-title
@@ -23,11 +24,12 @@
               outlined
             ).input-field
             v-btn(
-              height="55"
+              height="54"
+              width="160"
               v-if="!$isMobile"
               color="accent"
               @click="onGetStarted"
-            ).text-none.font-weight-bold.font-18.btn-book Get Started
+            ).text-none.font-16.p-7.btn-book Get Started
           p.mt-3.font-18.white--text.cta-agreement {{ ctaAgreement }}
         v-col(cols="12" v-if="$isMobile")
           h1.font-40.lh-title.panel-title {{ panelTitle }}
@@ -146,7 +148,7 @@ export default {
     z-index: 1;
   }
   .cta-title {
-    margin-bottom: 5%;
+    margin-bottom: 7%;
   }
   .panel-title {
     font-size: 30px !important;
@@ -161,9 +163,10 @@ export default {
     font-size: 16px !important;
   }
 }
-@media screen and (min-width: 1366px) {
+@media screen and (device-width: 1366px) {
   .cta-panel {
-    padding-top: 5%;
+    padding-top: 15%;
+    margin-bottom: 2%;
   }
   .cta-title {
     padding-bottom: 10%;
