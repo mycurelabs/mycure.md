@@ -1,6 +1,6 @@
 <template lang="pug">
-  div(:class="{'white' : whiteBg }").py-12
-    div(v-if="!isMobile").pt-10.mt-10
+  div(:class="{'white' : whiteBg }").py-12.mt-n1.mb-n3
+    div(v-if="!isMobile")
       v-container
         v-row(v-if="metaTitle" justify="center").text-center
           strong.font-21.primary--text {{ metaTitle }}
@@ -27,7 +27,7 @@
               large
             ).mt-3.cta-btn
               strong.font-s.white--text.text-none Explore the Features
-        div(v-else).story-container
+        div(v-else)
           v-row(justify="center")
             v-col(
               v-for="(highlight, index) in storyflow"
@@ -186,9 +186,6 @@ export default {
 </script>
 
 <style scoped>
-.story-container{
-  padding-bottom: 100px;
-}
 .pb50 {
   padding-bottom: 50px;
 }
