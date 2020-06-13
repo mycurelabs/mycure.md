@@ -172,6 +172,14 @@ export default {
     padding-bottom: 10%;
   }
 }
+@media screen and (device-width: 1440px) {
+  .cta-panel {
+    margin-top: 8%;
+  }
+  .cta-title {
+    margin-bottom: 12%;
+  }
+}
 @media screen and (device-width: 1920px) {
   .cta-panel {
     margin-top: 15%;
