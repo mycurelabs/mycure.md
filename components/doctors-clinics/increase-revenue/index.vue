@@ -16,13 +16,13 @@
       v-col(
         justify="center"
         cols="12"
-        md="4"
+        md="5"
         v-for="(data, key) in secondPanelContents"
         :key="key"
-      ).pt-12.pl-5.content-container
+      ).pt-12.content-container.pl-6
         h1.font-30.lh-title.pb-6.font-weight-light {{data.header}}
         br
-        p.text-justify.font-18.font-gray.pr-5 {{data.description}}
+        p.text-justify.font-18.font-gray.pr-2 {{data.description}}
         br
         br
         br
