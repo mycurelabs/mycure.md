@@ -1,7 +1,7 @@
 <template lang="pug">
-  div.py-12
+  div.py-10.mt-1.mb-n1
     //- WEB
-    div(v-if="!$isMobile").py-5
+    div(v-if="!$isMobile")
       v-container
         v-row(justify="center")
           v-col(cols="4")
