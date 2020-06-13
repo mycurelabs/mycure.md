@@ -6,7 +6,7 @@
     :web-image="mediaImage"
     web-image-width="90%"
     :custom-image-path="customPath"
-  )
+  ).mt-n1.mb-1
     div(slot="additional-content" :class="{'text-center': !$isMobile}")
       v-btn(text).text-none
         strong.primary--text Get Started
