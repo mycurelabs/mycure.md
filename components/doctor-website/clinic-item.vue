@@ -18,7 +18,7 @@
             v-btn(color="primary" depressed v-if="clinic.website" @click="visitWebsite(clinic.website)") Clinic Website
         v-col(cols="12" sm="12" md="4")
           h3 Schedules
-          template(v-if="clinicSchedules.length === 0")
+          template(v-if="clinicSchedules && clinicSchedules.length === 0")
             i No schedules available
           table(v-else)
             tr(v-for="sched in clinicSchedules")
@@ -58,7 +58,7 @@ export default {
   },
   watch: {
     clinicSchedulesExpanded (val) {
-      if (!val && this.clinic?.mf_schedule.length >= 3) { // eslint-disable-line
+      if (!val && this.clinic?.mf_schedule && this.clinic?.mf_schedule.length >= 3) { // eslint-disable-line
         this.clinicSchedules = this.clinic?.mf_schedule.slice(0, 3) || []; // eslint-disable-line
         return;
       }
