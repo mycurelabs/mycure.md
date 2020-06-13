@@ -1,7 +1,7 @@
 <template lang="pug">
   div(:class="$isMobile ? 'pt-5' : ''")
     v-container(
-      v-for="(panel,key) in moduleGroup"
+      v-for="(panel, key) in moduleGroup"
       :key="key"
       :class="key === 0 ? 'mb-n3' : 'mb-n4'"
     ).py-10
