@@ -68,7 +68,7 @@ export default {
       };
     },
     panelImageSrc () {
-      return require('~/assets/images/mycure-final-cta-background-full.webp');
+      return require('~/assets/images/mycure-final-cta-background-image-right.webp');
     },
   },
   methods: {
@@ -98,22 +98,7 @@ export default {
 }
 @media screen and (max-width: 1650px) {
   .row-content {
-    height: 62vh;
-  }
-}
-@media screen and (max-width: 1448px) {
-  .row-content {
-    height: 60vh;
-  }
-}
-@media screen and (max-width: 1370px) {
-  .row-content {
-    height: 57vh;
-  }
-}
-@media screen and (max-width: 1290px) {
-  .row-content {
-    height: 52vh;
+    height: 80vh;
   }
 }
 @media screen and (max-width: 1150px) {
@@ -187,7 +172,7 @@ export default {
     margin-bottom: -214%;
   }
   .row-content {
-    height: 90vh;
+    height: 100vh;
   }
   .web-content-margin {
     margin-top: -118%;
@@ -198,7 +183,7 @@ export default {
 }
 @media screen and (device-width: 1366px) and (orientation: landscape) {
   .row-content {
-    height: 49vh;
+    height: 100vh;
   }
   .web-content-margin {
     margin-top: -96%;
