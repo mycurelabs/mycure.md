@@ -101,7 +101,7 @@ module.exports = {
         themes: {
           light: {
             primary: '#2e9fdf',
-            accent: '#82B1FF',
+            accent: '#7fad33',
             secondary: '#424242',
             info: '#2196F3',
             warning: '#FFC107',
@@ -110,7 +110,7 @@ module.exports = {
           },
           dark: {
             primary: '#2e9fdf',
-            accent: '#82B1FF',
+            accent: '#7fad33',
             secondary: '#424242',
             info: '#2196F3',
             warning: '#FFC107',
