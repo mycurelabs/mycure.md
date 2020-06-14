@@ -62,7 +62,7 @@ export default {
     this.uspPreSubtitle = 'For Medical Enterprise';
     this.panelTitle = 'Take your healthcare\nenterprise to a\nbroader audience';
     this.panelTitleMobile = 'Taking your\nentire clinic\nenterprise online\nis possible with\nMYCURE';
-    this.uspPostSubtitle = 'Build and online brand for your health facility and MYCURE will do the rest.';
+    this.uspPostSubtitle = 'Build an online brand for your health facility and MYCURE will do the rest.';
     this.uspAgreement = 'By entering your email, you agree to receive marketing emails from MYCURE.';
     this.customPath = 'enterprise/';
     return {
