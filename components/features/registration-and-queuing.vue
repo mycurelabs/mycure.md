@@ -10,7 +10,7 @@
         :descriptions="descriptions"
         :web-image="image"
         hide-image-mobile
-      )
+      ).mt-n3.mb-n6
       v-container(v-if="$isMobile")
         v-row(justify="center")
           carousel(

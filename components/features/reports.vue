@@ -9,7 +9,7 @@
     :web-image="image"
     :mobile-image="mobileImage"
     mobile-image-width="90%"
-  )
+  ).mt-n2.mb-n4
 </template>
 
 <script>

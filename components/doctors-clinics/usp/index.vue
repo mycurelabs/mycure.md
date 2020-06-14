@@ -105,14 +105,50 @@ export default {
   height: 100vh;
   margin-top: -5%;
 }
+/* galaxy S5 */
+@media screen and (device-width: 320px) {
+  .text-field-container {
+    margin-top: -16%;
+  }
+}
 @media screen and (device-width: 360px) {
   .text-field-container {
     margin-top: -28%;
   }
 }
-@media screen and (device-width: 375px) {
+/* iphone 6/7/8 */
+@media only screen
+  and (min-device-width: 375px)
+  and (max-device-width: 667px)
+  and (-webkit-min-device-pixel-ratio: 2) {
   .text-field-container {
-    margin-top: -62%;
+    margin-top: -27%;
+  }
+}
+/* iphone 6/7/8 PLUS */
+@media only screen
+  and (min-device-width: 414px)
+  and (max-device-width: 736px)
+  and (-webkit-min-device-pixel-ratio: 3) {
+  .text-field-container {
+    margin-top: -28%;
+  }
+}
+/* iphone X */
+@media only screen
+  and (device-width: 375px)
+  and (-webkit-min-device-pixel-ratio: 3) {
+  .text-field-container {
+    margin-top: -63%;
+  }
+}
+/* Pixel */
+@media screen
+  and (device-width: 360px)
+  and (device-height: 640px)
+  and (-webkit-device-pixel-ratio: 3) {
+  .text-field-container {
+    margin-top: -28%;
   }
 }
 @media screen and (device-width: 1024px) {
@@ -120,9 +156,29 @@ export default {
     margin-top: -20%;
   }
 }
+@media screen and (device-width: 1440px) {
+  .row-content {
+    height: 80vh;
+  }
+}
+@media screen and (device-width: 1680px) {
+  .row-content {
+    height: 80vh;
+  }
+}
 @media screen and (device-width: 1920px) {
   .row-content {
-    margin-top: 5%;
+    height: 90vh;
+  }
+}
+@media screen and (device-width: 2304px) {
+  .row-content {
+    height: 80vh;
+  }
+}
+@media screen and (device-width: 2560px) {
+  .row-content {
+    height: 90vh;
   }
 }
 </style>

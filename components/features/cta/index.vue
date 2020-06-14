@@ -8,7 +8,7 @@
       v-row(slot="content" align="center").row-content
         v-col(v-if="!$isMobile" cols="12" md="6").col-content
           h1(:class="titleClasses").font-poppins.font-40.lh-title {{ uspTitle }}
-          p(:class="[centerText]").font-italic.font-18.px-1 {{ uspSubtitle }}
+          p(:class="[centerText]").font-italic.font-18.px-1.mt-3 {{ uspSubtitle }}
           div(v-if="!$isMobile").text-field-container.mr-3
             v-text-field(
               elevation="2"
@@ -104,14 +104,19 @@ export default {
   height: 100vh;
 }
 .col-content{
-  margin-top: -300px;
+  margin-top: -210px;
+}
+@media screen and (max-width: 1800px) {
+  .col-content{
+    margin-top: -300px;
+  }
 }
 @media screen and (max-width: 1448px) {
   .row-content {
     height: 90vh;
   }
   .col-content{
-    margin-top: -250px;
+    margin-top: -268px;
   }
 }
 @media screen and (max-width: 1300px) {
