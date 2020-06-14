@@ -9,9 +9,9 @@
     )
       v-row(slot="content").row-content
         v-col(cols="12" md="5" :class="[{'web-content-margin': !$isMobile}]" v-if="!$isMobile")
-          p.font-18.px-1.cta-subtitle {{ uspPreSubtitle }}
-          h1(:class="titleClasses").font-poppins.font-40.lh-title.cta-title {{ panelTitle }}
-          p.font-18.px-1.pt-5.cta-subtitle {{ uspPostSubtitle }}
+          p.font-18.px-1.usp-subtitle {{ uspPreSubtitle }}
+          h1(:class="titleClasses").font-poppins.font-40.lh-title.usp-title {{ panelTitle }}
+          p.font-18.px-1.pt-5.usp-subtitle {{ uspPostSubtitle }}
           div(v-if="!$isMobile").text-field-container
             v-text-field(
               background-color="white"
@@ -198,10 +198,10 @@ export default {
   .row-content {
     height: 95vh;
   }
-  .cta-title {
+  .usp-title {
     font-size: 300% !important;
   }
-  .cta-subtitle {
+  .usp-subtitle {
     font-size: 150% !important;
   }
   .btn-book {
@@ -213,10 +213,10 @@ export default {
   .row-content {
     height: 105vh;
   }
-  .cta-title {
+  .usp-title {
     font-size: 350% !important;
   }
-  .cta-subtitle {
+  .usp-subtitle {
     font-size: 175% !important;
   }
   .btn-book {
@@ -228,10 +228,10 @@ export default {
   .row-content {
     height: 95vh;
   }
-  .cta-title {
+  .usp-title {
     font-size: 400% !important;
   }
-  .cta-subtitle {
+  .usp-subtitle {
     font-size: 200% !important;
   }
   .btn-book {
