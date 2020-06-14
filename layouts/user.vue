@@ -1,23 +1,25 @@
 <template lang="pug">
   v-app
-    div(
-      :style="styleConfig"
-      :class="[dayOrNight === 'night' ? 'night-sky' : 'day-bg']"
-    ).bg-positions.pa-3#top
-      nuxt
-    div(:class="[dayOrNight === 'night' ? 'night-sky' : 'day-bg', 'fixed-footer']")
-      v-img(:src="require(`../assets/images/mycure-onboarding-background${dayOrNight === 'night' ? '-dark-mode' : ''}.png`)" alt="Sign up background")
+    template(v-if="!loading")
+      div(
+        :style="styleConfig"
+        :class="[dayOrNight === 'night' ? 'night-sky' : 'day-bg']"
+      ).bg-positions.pa-3
+        nuxt
+      div(:class="[dayOrNight === 'night' ? 'night-sky' : 'day-bg', 'fixed-footer']")
+        v-img(:src="require(`../assets/images/mycure-onboarding-background${dayOrNight === 'night' ? '-dark-mode' : ''}.png`)" alt="Sign up background")
 </template>
 
 <script>
 // - utils
-import VueScrollTo from 'vue-scrollto';
+// import VueScrollTo from 'vue-scrollto';
 import dayOrNight from '../utils/day-or-night';
 
 export default {
   data () {
     return {
       dayOrNight: '',
+      loading: true,
     };
   },
   computed: {
@@ -32,9 +34,14 @@ export default {
     },
   },
   mounted () {
-    VueScrollTo.scrollTo('#top', 500, { easing: 'ease' });
-    this.dayOrNight = dayOrNight();
-    this.$vuetify.theme.dark = this.dayOrNight === 'night';
+    this.init();
+  },
+  methods: {
+    async init () {
+      this.dayOrNight = await dayOrNight();
+      this.$vuetify.theme.dark = this.dayOrNight === 'night';
+      this.loading = false;
+    },
   },
 };
 </script>
