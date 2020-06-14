@@ -24,7 +24,6 @@ export default {
     styleConfig () {
       const style = {
         'background-image': `url(${require('../assets/images/MYCURE-Sign-Up-background-left-corner.png')}), url(${require('../assets/images/MYCURE-Sign-Up-background-right-corner.png')})`,
-        'overflow-y': 'hidden',
       };
       return this.$isMobile ? {} : style;
     },
