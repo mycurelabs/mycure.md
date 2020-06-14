@@ -1,55 +1,66 @@
 <template lang="pug">
-  div.white.pt-12.cta-panel
+  div.white
     generic-background-panel(
       :background-image="backgroundImage"
       :background-image-configs="backgroundImageConfigs"
-      :webContainerStyleConfigs="webContainerStyleConfigs"
     ).cta-content
-      v-row(slot="content")
+      v-row(slot="content" align="center").row-content
         v-col(
+          v-if="!$isMobile"
           cols="12"
           md="6"
           offset-md="3"
-          v-if="!$isMobile"
           :class="[{'web-content-margin': !$isMobile}]"
-          style="text-align: center; margin-bottom: 35vh;"
-        ).pt-5.cta-title
-          h1.font-40.lh-title.panel-title {{ panelTitle }}
-          div(v-if="!$isMobile").py-5.text-field-container
-            v-text-field(
-              background-color="white"
-              v-model="email"
-              placeholder="myname@email.com"
-              outlined
-            ).input-field
-            v-btn(
-              v-if="!$isMobile"
-              color="accent"
-              @click="onGetStarted"
-              height="55"
-              width="160"
-            ).text-none.font-16.p-7.btn-book Book A Demo
-          p.mt-3.font-1.grey--text.cta-agreement {{ ctaAgreement }}
-        v-col(cols="12" v-if="$isMobile" style="text-align: center;")
-          h1.font-40.lh-title.cta-title {{ panelTitle }}
-          div.mt-5.text-field-container
-            v-text-field(
-              background-color="white"
-              v-model="email"
-              placeholder="myname@email.com"
-              outlined
-            )
-          v-btn(
-            color="accent"
-            large
-            @click="onGetStarted"
-          ).text-none.font-weight-bold.font-18.mt-n3.cta-btn Get Started
-          p.mt-2 {{ ctaAgreement }}
+        ).cta-title.text-center
+          h1.font-40.lh-title {{ ctaTitle }}
+          v-row(justify="center").mt-5
+            v-col(cols="12" md="9")
+              v-text-field(
+                elevation="2"
+                v-model="email"
+                background-color="white"
+                outlined
+                dense
+                height="52"
+                placeholder="myname@email.com"
+              )
+            v-col(cols="12" md="3" align-self="start")
+              v-btn(
+                color="accent"
+                large
+                @click="onGetStarted"
+              ).text-none.font-16.cta-btn Book A Demo
+            v-col(cols="10")
+              p.font-16.grey--text {{ ctaAgreementText }}
+        v-col(
+          v-if="$isMobile"
+          cols="12"
+        ).text-center.mobile-content
+          h1.font-40.lh-title.px-5.cta-title {{ ctaTitle }}
+          v-row(justify="center")
+            v-col(cols="10")
+              v-text-field(
+                elevation="2"
+                v-model="email"
+                background-color="white"
+                outlined
+                dense
+                height="52"
+                placeholder="myname@email.com"
+              )
+            v-col(cols="10")
+              v-btn(
+                color="accent"
+                large
+                @click="onGetStarted"
+              ).text-none.font-16.cta-btn Book A Demo
+            v-col(cols="10")
+              p.font-16.grey--text {{ ctaAgreementText }}
           img(
             v-lazy="panelImageSrc"
-            alt="Home CTA"
-            width="100%"
-          ).pt-10.image-mobile
+            alt="Enterprise CTA"
+            width="90%"
+          ).pt-10
 </template>
 
 <script>
@@ -62,8 +73,8 @@ export default {
   data () {
     this.backgroundImage = 'mycure-final-cta-background-full.webp';
     this.backgroundImageMobile = 'mycure-final-cta-background-full.webp';
-    this.panelTitle = 'Book A Demo Today.';
-    this.ctaAgreement = 'By entering your email, you agree to receive marketing emails from MYCURE.';
+    this.ctaTitle = 'Book A Demo Today.';
+    this.ctaAgreementText = 'By entering your email, you agree to receive marketing emails from MYCURE.';
     return {
       email: '',
     };
@@ -77,11 +88,8 @@ export default {
         bottom: '0',
       };
     },
-    webContainerStyleConfigs () {
-      return { position: 'relative' };
-    },
     panelImageSrc () {
-      return require(`~/assets/images/${this.backgroundImageMobile}`);
+      return require('~/assets/images/mycure-final-cta-background-image-right.webp');
     },
   },
   methods: {
@@ -96,140 +104,46 @@ export default {
 </script>
 
 <style scoped>
-.text-field-container {
-  display: flex;
-}
-.input-field {
-  width: 50%;
-  height: 58px;
-  border-radius: 5px;
-}
-.btn-book {
-  margin-left: 8px;
-}
 .web-content-margin {
-  margin-top: 80px;
+  margin-top: -15%;
 }
-/* iphone 5SE */
-@media only screen
-  and (min-device-width: 320px)
-  and (max-device-width: 568px)
-  and (-webkit-min-device-pixel-ratio: 2) {
+.row-content {
+  height: 100vh;
+  text-align: center;
+  margin-top: 5vh;
+}
+.mobile-content {
+  text-align: center;
+}
+@media screen and (max-width: 1020px) {
   .cta-content {
-    margin-bottom: -10%;
-  }
-  .image-mobile {
-    margin-left: -5%;
     width: 110%;
-  }
-  .cta-title {
-    font-size: 30px !important;
-  }
-}
-@media screen and (device-width: 768px) {
-  .image-mobile {
     margin-left: -5%;
-    width: 110%;
+  }
+  .cta-btn {
+    margin-left: 16px;
+  }
+  .row-content {
+    height: 120vh;
+    margin-bottom: 10vh;
   }
 }
-@media screen and (device-width: 1024px) {
-  .cta-panel {
-    margin-top: 0%;
+@media screen and (device-width: 1024px) and (orientation: portrait) {
+  .cta-content {
+    position: relative;
+    margin-top: -20%;
+    z-index: 1;
   }
-  .cta-title {
-    margin-bottom: 8%;
+  .cta-btn{
+    margin-top: 0 !important;
   }
-  .panel-title {
-    font-size: 30px !important;
-  }
-  .cta-agreement {
-    font-size: 16px !important;
-  }
-}
-@media screen and (device-width: 1280px) {
-  .cta-panel {
-    margin-top: 8%;
-  }
-  .cta-title {
-    margin-bottom: 13%;
+  .row-content {
+    height: 60vh;
   }
 }
-@media screen and (device-width: 1366px) {
-  .cta-panel {
-    margin-top: 5%;
-  }
-  .cta-title {
-    margin-bottom: 17%;
-  }
-}
-@media screen and (device-width: 1440px) {
-  .cta-panel {
-    margin-top: 10%;
-  }
-  .cta-title {
-    margin-bottom: 17%;
-  }
-}
-@media screen and (device-width: 1680px) {
-  .cta-panel {
-    margin-top: 12%;
-  }
-  .cta-title {
-    margin-bottom: 22%;
-  }
-}
-@media screen and (device-width: 1920px) {
-  .cta-panel {
-    margin-top: 12%;
-  }
-  .cta-title {
-    margin-bottom: 18%;
-  }
-  .panel-title {
-    font-size: 300% !important;
-  }
-  .cta-agreement {
-    font-size: 150% !important;
-  }
-  .btn-book {
-    width: 30% !important;
-    font-size: 150% !important;
-  }
-}
-@media screen and (device-width: 2304px) {
-  .cta-panel {
-    margin-top: 15%;
-  }
-  .cta-title {
-    margin-bottom: 22%;
-  }
-  .panel-title {
-    font-size: 350% !important;
-  }
-  .cta-agreement {
-    font-size: 175% !important;
-  }
-  .btn-book {
-    width: 30% !important;
-    font-size: 150% !important;
-  }
-}
-@media screen and (device-width: 2560px) {
-  .cta-panel {
-    margin-top: 15%;
-  }
-  .cta-title {
-    margin-bottom: 25%;
-  }
-  .panel-title {
-    font-size: 400% !important;
-  }
-  .cta-agreement {
-    font-size: 200% !important;
-  }
-  .btn-book {
-    width: 35% !important;
-    font-size: 160% !important;
+@media screen and (device-width: 1366px) and (orientation: landscape) {
+  .row-content {
+    height: 49vh;
   }
 }
 </style>
