@@ -133,13 +133,13 @@ module.exports = {
     extend (config, ctx) {
     },
   },
-  generate: {
-    routes: [
-      '/doctors/jofftiquez',
-      '/doctors/jeanrivera',
-      '/doctors/william',
-      '/doctors/paulette',
-      '/doctors/telehealth',
-    ],
-  },
+  // generate: {
+  //   routes: [
+  //     '/doctors/jofftiquez',
+  //     '/doctors/jeanrivera',
+  //     '/doctors/william',
+  //     '/doctors/paulette',
+  //     '/doctors/telehealth',
+  //   ],
+  // },
 };
