@@ -5,7 +5,7 @@
         img(v-lazy="require(`~/assets/images/enterprise/${outpatient.image}`)" :alt="outpatient.header" width="100%").outpatient-image
       v-col(cols="12" md="5" lg="5" align-self="center").outpatient-description
         h1.font-30.lh-title.pb-3.font-weight-light {{outpatient.header}}
-        p.text-justify.font-18.mt-3.font-gray {{outpatient.description}}
+        p.text-justify.font-16.mt-3.font-gray {{outpatient.description}}
         v-btn(text @click="onClick").mt-5.ml-n4.get-started-btn
           strong.text-capitalize.primary--text {{outpatient.btnTxt}}
           v-icon.primary--text {{outpatient.btnIcon}}

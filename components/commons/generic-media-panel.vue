@@ -14,7 +14,7 @@
           h1.font-30.lh-title.pb-3.font-weight-light {{header}}
           br
           template(v-if="descriptions.length")
-            p(v-for="(description, key) in descriptions" :key="key").font-18.mt-3.font-gray.text-justify {{description}}
+            p(v-for="(description, key) in descriptions" :key="key").font-16.mt-3.font-gray.text-justify {{description}}
             br
           slot(name="additional-content")
       //- Right Column
@@ -29,7 +29,7 @@
           h1.font-30.lh-title.pb-3.font-weight-light {{header}}
           br
           template(v-if="descriptions.length")
-            p(v-for="(description, key) in descriptions" :key="key").font-18.mt-3.font-gray.text-justify {{description}}
+            p(v-for="(description, key) in descriptions" :key="key").font-16.mt-3.font-gray.text-justify {{description}}
             br
           slot(name="additional-content")
       //- Mobile Image
@@ -51,7 +51,7 @@
         )
         br
         template(v-if="descriptions.length")
-          p(v-for="(description, key) in descriptions" :key="key").font-18.mt-3.font-gray {{description}}
+          p(v-for="(description, key) in descriptions" :key="key").font-16.mt-3.font-gray {{description}}
           br
         slot(name="additional-content")
         img(
