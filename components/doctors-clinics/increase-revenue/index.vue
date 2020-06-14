@@ -23,7 +23,7 @@
         :key="key"
       ).pt-12.content-container.pl-6
         div.header-icon-text
-          img(v-lazy="require(`~/assets/images/doctors-clinics/${data.headerIcon}`)" height="30%")
+          img(v-lazy="require(`~/assets/images/doctors-clinics/${data.headerIcon}`)" height="30%" :class="{'pt-3': $isMobile}")
           h1.font-30.lh-title.pb-6.mt-3.ml-3.font-weight-light {{data.header}}
         br
         p.text-justify.font-16.font-gray.pr-2.mb-1 {{data.description}}
