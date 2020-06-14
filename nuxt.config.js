@@ -1,5 +1,3 @@
-const colors = require('vuetify/es5/util/colors').default;
-
 module.exports = {
   mode: 'universal',
   /*
@@ -103,21 +101,21 @@ module.exports = {
         themes: {
           light: {
             primary: '#2e9fdf',
-            accent: '#7fad33',
-            secondary: '#616161',
-            info: colors.teal.lighten1,
-            warning: colors.amber.base,
-            error: '#ff5252',
-            success: colors.green.accent3,
+            accent: '#82B1FF',
+            secondary: '#424242',
+            info: '#2196F3',
+            warning: '#FFC107',
+            error: '#f75a5f',
+            success: '#7fad33',
           },
           dark: {
             primary: '#2e9fdf',
-            accent: '#7fad33',
-            secondary: '#616161',
-            info: colors.teal.lighten1,
-            warning: colors.amber.base,
-            error: '#ff5252',
-            success: colors.green.accent3,
+            accent: '#82B1FF',
+            secondary: '#424242',
+            info: '#2196F3',
+            warning: '#FFC107',
+            error: '#f75a5f',
+            success: '#7fad33',
           },
         },
       },
