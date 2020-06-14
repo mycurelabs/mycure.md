@@ -2,7 +2,7 @@
   v-container(v-if="!pageLoading").main-container
     v-row(align="center" justify="center").mx-1
       v-col(cols="12" sm="8" md="4")
-        v-card
+        v-card.login-card
           v-card-text.pa-4
             img(
               v-if="dayOrNight === 'day'"
@@ -253,5 +253,12 @@ export default {
 
 .link-to-home:hover {
   cursor: pointer;
+}
+
+@media screen and (min-width: 1500px) {
+  .login-card.v-card {
+    width: 350px;
+    margin: 0 auto;
+  }
 }
 </style>
