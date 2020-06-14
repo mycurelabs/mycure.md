@@ -15,7 +15,7 @@
     smarter-decisions
     v-divider.edge-divider
     //- 6th panel
-    multiple-branches(@getStarted="goToSignup")
+    multiple-branches(@getStarted="goToSignup")#multibranch-facilities
     v-divider.edge-divider
     //- 7th panel
     one-stop(@goToFeatures="goToFeatures" @getStarted="goToSignup")#multispecialty-clinics
