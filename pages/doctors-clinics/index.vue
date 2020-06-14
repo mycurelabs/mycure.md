@@ -1,22 +1,25 @@
 <template lang="pug">
-  div#top
+  div(v-if="!loading")#top
     //- 1st panel
-    usp
+    usp(@getStarted="getStarted")
     //- 2nd panel
-    workflow
+    increase-revenue(@getStarted="getStarted")
+    v-divider.edge-divider
     //- 3rd panel
-    features
+    safekeep-data(@getStarted="getStarted")
+    v-divider.edge-divider
     //- 4th panel
-    pricing
+    practice-online(@getStarted="getStarted")#group-practice
+    v-divider.edge-divider
     //- 5th panel
-    faqs
-    //- CTA
-    mc-cta-bottom(
-      parse-text
-      :parseIndicators="['when']"
-      :ctaContent="ctaContent"
-      btnColor="accent"
-    )
+    specialized-plans#specialized-practice
+    v-divider.edge-divider
+    //- 6th panel
+    quality-healthcare(@getStarted="getStarted")
+    //- 7th panel
+    div.cta-container
+      cta(@getStarted="goToSignupIndividual($event)")
+    //- )
 </template>
 
 <script>
@@ -25,35 +28,74 @@ import VueScrollTo from 'vue-scrollto';
 import headMeta from '~/utils/head-meta';
 // components
 import Usp from '~/components/doctors-clinics/usp';
+import IncreaseRevenue from '~/components/doctors-clinics/increase-revenue';
+import SafekeepData from '~/components/doctors-clinics/safekeep-data';
+import PracticeOnline from '~/components/doctors-clinics/practice-online';
+import SpecializedPlans from '~/components/doctors-clinics/specialized-plans';
+import QualityHealthcare from '~/components/doctors-clinics/quality-healthcare';
+import Cta from '~/components/doctors-clinics/cta';
 
 export default {
   components: {
     Usp,
-    Workflow: () => import('~/components/doctors-clinics/workflow'),
-    Features: () => import('~/components/doctors-clinics/features'),
-    Pricing: () => import('~/components/doctors-clinics/pricing'),
-    Faqs: () => import('~/components/doctors-clinics/faqs'),
-    McCtaBottom: () => import('~/components/commons/mc-cta-bottom'),
+    IncreaseRevenue,
+    SafekeepData,
+    PracticeOnline,
+    SpecializedPlans,
+    QualityHealthcare,
+    Cta,
   },
   data () {
-    this.ctaContent = {
-      text: 'It\'s always better when we work together',
-      subtext: 'Experience what more you can do with MYCURE technology by your side.',
-      btnText: 'Start Free',
-      btnLink: 'signup-individual',
+    return {
+      loading: true,
     };
-    return {};
+  },
+  computed: {
+    scrollPanel () {
+      const panel = this.$nuxt.$route.params.panel;
+      return panel ? `#${panel}` : null;
+    },
   },
   mounted () {
-    VueScrollTo.scrollTo('#app', 500, { easing: 'ease' });
+    this.loading = false;
+    const panel = this.scrollPanel || '#app';
+    const offset = panel === '#app' ? 0 : 700;
+    this.$nextTick(() => {
+      VueScrollTo.scrollTo(panel, 500, { easing: 'ease', offset });
+    });
+  },
+  methods: {
+    getStarted () {
+      this.$router.push({ name: 'signup-individual' });
+    },
+    goToSignupIndividual (email) {
+      this.$router.push({ name: 'signup-individual', params: { email } });
+    },
   },
   head () {
     return headMeta({
-      title: 'MYCURE EMR Practice Management Solution for Doctors',
-      description: 'MYCURE is the best EMR clinic practice management system that helps doctors doing solo or group practice manage their daily clinical needs. Start FREE today!',
+      title: 'MYCURE Virtual Clinic | Healthcare Practice Online',
+      description: 'MYCURE is an advanced clinic management system that allows you to securely consult with patients online and get real-time medical and business insights.',
       // - TODO: Replace with local if applicable
       socialBanner: 'https://firebasestorage.googleapis.com/v0/b/mc-v4-prod.appspot.com/o/web-main-assets%2FMYCURE-Open-Graph-Images-Doctors-Clinic.png?alt=media&token=a4c57fe8-8ac7-479c-a959-949930299ca5',
     });
   },
 };
 </script>
+
+<style>
+#top {
+  margin-top: 12vh;
+}
+.cta-container {
+  position: relative;
+  margin-bottom: 0%;
+  z-index: 1;
+}
+.content-container {
+  position: relative;
+}
+.get-started-btn {
+  margin-left: -3%;
+}
+</style>

@@ -41,22 +41,22 @@ export default ({ title, description, socialBanner }) => {
         content: TYPE,
       },
       {
-        hid: 'type',
+        hid: 'og:url',
         name: 'og:url',
         content: URL,
       },
       {
-        hid: 'type',
+        hid: 'og:title',
         name: 'og:title',
         content: title,
       },
       {
-        hid: 'type',
+        hid: 'og:site_name',
         name: 'og:site_name',
         content: SITE_NAME,
       },
       {
-        hid: 'type',
+        hid: 'og:description',
         name: 'og:description',
         content: description,
       },

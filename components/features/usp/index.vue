@@ -1,16 +1,35 @@
 <template lang="pug">
-  div.white
-    usp-template(
-      :uspTitle="uspTitle"
-      :uspMetaTitle="uspMetaTitle"
-      :btnId="uspContents.btnId"
-      :btnText="uspContents.btnText"
-      :btnIconLeft="uspContents.btnIconLeft"
-      :coverImg="uspContents.coverImg"
-      :customPath="uspContents.customPath"
-      @btnClick="showVideo"
-      :title-mobile-size="28"
+  div.white.features-usp
+    generic-background-panel(
+      :background-image="backgroundImage"
+      :background-image-mobile="backgroundImageMobile"
+      :background-image-mobile-configs="backgroundImageMobileConfigs"
+      :customPath="customPath"
+      :class="{'mt-5': $isMobile}"
     )
+      v-row(slot="content" :align="$isMobile ? 'start' : 'center'" :class="rowContentClass")
+        v-col(cols="12" md="5" xl="4")
+          p(:class="[centerText]").font-18.mx-1 {{ metaTitle }}
+          h1(:class="titleClasses").font-poppins.font-40.lh-title {{ uspTitle }}
+          div(v-if="$isMobile").text-center
+            v-icon mdi-arrow-down
+          v-btn(
+            v-if="!$isMobile"
+            color="accent"
+            large
+            @click="onWatch"
+          ).text-none.font-16.mt-5.p-7
+            v-icon(left) mdi-play-circle
+            | Watch Walkthrough
+    template(v-if="$isMobile")
+      v-btn(
+        block
+        color="accent"
+        large
+        @click="onWatch"
+      ).text-none.font-16.p-7
+        v-icon(left) mdi-play-circle
+        | Watch Walkthrough
 
     //- Video
     v-dialog(v-model="videoDialog" max-width="600")
@@ -27,39 +46,72 @@
 </template>
 
 <script>
-// constants
-import USP_CONTENTS from './constants.json';
 // utils
 import { parseTextWithNewLine } from '~/utils/newline';
 // components
-import UspTemplate from '~/components/commons/usp';
-
+import GenericBackgroundPanel from '~/components/commons/generic-background-panel';
 export default {
   components: {
-    UspTemplate,
+    GenericBackgroundPanel,
   },
   data () {
-    this.uspContents = USP_CONTENTS;
+    this.backgroundImage = 'webp/MYCURE-virtual-clinic-healthcare-practice-online-usp-cover.webp';
+    this.backgroundImageMobile = 'MYCURE-virtual-clinic-healthcare-practice-online-usp-cover-mobile.png';
+    this.panelTitle = 'User-friendly and time-efficient features for a more patient-centric care';
+    this.metaTitle = 'MYCURE Features';
+    this.customPath = 'features/';
     return {
       videoDialog: false,
     };
   },
   computed: {
-    uspTitle () {
-      const title = this.uspContents.title;
-      return !this.$isMobile
-        ? parseTextWithNewLine(title, ['time', 'more'])
-        : parseTextWithNewLine(title, ['friendly', 'time', 'features', 'more']);
+    backgroundImageMobileConfigs () {
+      return {
+        'background-size': '100%',
+        'background-position': '0px 200px',
+      };
     },
-    uspMetaTitle () {
-      const metaTitle = this.uspContents.metaTitle;
-      return metaTitle;
+    centerText () {
+      return { 'text-center': this.$isMobile };
+    },
+    titleClasses () {
+      return this.$isMobile
+        ? [this.centerText]
+        : ['pre-white-space'];
+    },
+    uspTitle () {
+      return this.$isMobile
+        ? this.panelTitle
+        : parseTextWithNewLine(this.panelTitle, ['and ', 'for ']);
+    },
+    rowContentClass () {
+      return this.$isMobile
+        ? ['mobile-row-content']
+        : ['web-row-content'];
     },
   },
   methods: {
-    showVideo () {
+    onWatch () {
       this.videoDialog = true;
     },
   },
 };
 </script>
+
+<style scoped>
+.web-row-content {
+  height: 70vh;
+}
+.mobile-row-content {
+  min-height: 100vh;
+}
+@media screen and (device-width: 1024px) and (orientation: portrait) {
+  .web-row-content {
+    height: 20vh;
+  }
+  .features-usp{
+    height: 32vh;
+  }
+}
+
+</style>

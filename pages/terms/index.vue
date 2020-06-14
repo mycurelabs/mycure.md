@@ -1,5 +1,5 @@
 <template lang="pug">
-  div#top
+  div(v-if="!loading")#top
     div.header.mb-5
       v-container
         v-row(align="center" :class="{'header-container': !$isMobile}")
@@ -163,8 +163,14 @@ import VueScrollTo from 'vue-scrollto';
 import headMeta from '~/utils/head-meta';
 
 export default {
+  data () {
+    return {
+      loading: true,
+    };
+  },
   mounted () {
     VueScrollTo.scrollTo('#app', 500, { easing: 'ease' });
+    this.loading = false;
   },
   methods: {
     toggleChat () {
@@ -183,6 +189,9 @@ export default {
 </script>
 
 <style scoped>
+#top {
+  margin-top: 12vh;
+}
 p {
   text-align: justify;
   font-size: 18px;

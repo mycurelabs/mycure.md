@@ -171,12 +171,8 @@ export default {
   line-height: 1.25em;
 }
 .uspTitle {
-  font-family: 'Work Sans', 'Poppins', sans-serif !important;
   line-height: 1.25em;
   font-weight: 700 !important;
-}
-.uspDescription {
-  font-family: 'Source Sans Pro', 'Poppins', sans-serif !important;
 }
 .uspMetaTitle {
   white-space: pre;
@@ -194,7 +190,7 @@ export default {
 }
 
 .outer-image-container {
-  margin-bottom: -63.5px;
+  margin-bottom: -58px;
   padding-top: 6vh;
 }
 .offset-container {
@@ -216,6 +212,11 @@ export default {
 @media screen and (min-height: 1080px) {
   .whole-page {
     height: 30vh !important;
+  }
+}
+@media screen and (min-height: 650px) {
+  .outer-image-container {
+    margin-bottom: -63.5px !important;
   }
 }
 </style>

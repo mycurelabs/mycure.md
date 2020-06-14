@@ -1,90 +1,84 @@
 <template lang="pug">
   div
     client-only
-      div(v-if="!isMobile").pt-10.panel-container
-        v-container
-          v-row(justify="center").text-center
-            strong.font-21.primary--text MEDICAL RECORDS
-          v-row(justify="center").add-spacing.text-center
-            strong.font-40.font-work-sans Designed for doctors, by doctors.
-          v-row(justify="center").add-spacing
-            v-col(cols="7" align-self="center").text-center
-              span.font-21 Record full medical history, vitals, and physical exam records according to SOAP charting.&nbsp;
-                | Eliminate the haste of scribbling with Rx printing, ICD-10 database, multiple image uploads, and more.
-          v-row(justify="center").add-spacing
-            img(src="~/assets/images/features/mycure-cms-web-features-arrow-down.png" alt="Arrow down")
-          v-row(justify="center").add-spacing
-            carousel(
-              :key="isMobile"
-              :per-page="1"
-              :autoplay="true"
-              :loop="true"
-              paginationActiveColor="white"
-              paginationColor="grey"
-              navigationNextLabel=" "
-              navigationPrevLabel=" "
-            ).text-center
-              slide(v-for="(feature,index) in features" :key="index" :data-index="index+1").pa-1
-                img(:src="require(`~/assets/images/features/mycure-web-features-mockup-01-${feature}.png`)" alt="Medical records" width="70%")
-      div(v-else).panel-container.pt-5
-        v-container
-          v-row(justify="center")
-            strong.font-16.primary--text MEDICAL RECORDS
-          br
-          br
-          v-row(justify="center").mx-2
-            p.font-30.font-weight-bold.text-center.font-work-sans Designed for doctors, by doctors.
-          br
-          v-row(justify="center").mx-2
-            p.font-18.text-center Record full medical history, vitals, and physical exam records according
-              |  to SOAP charting. Eliminate the haste of scribbling with Rx printing, ICD-10
-              | database, multiple image uploads, and more.
-          v-row(justify="center").add-spacing
-            img(src="~/assets/images/features/mycure-cms-web-features-arrow-down.png" alt="Arrow down")
-          br
-          br
-          v-row(justify="center")
-            carousel(
-              :per-page="1"
-              autoplay
-              loop
-              adjustableHeight
-              paginationActiveColor="#3498db"
-              paginationColor="#808080"
+      generic-media-panel(
+        content-align-right
+        cols-left="6"
+        cols-right="4"
+        align-left-column="start"
+        :header="header"
+        :descriptions="descriptions"
+        :web-image="panelImages.mediaImage"
+        :custom-image-path="customPath"
+        hide-image-mobile
+      )
+        div(slot="additional-content")
+          v-btn(text :to="{ name: 'signup-individual' }").text-none.get-started-btn
+            strong.primary--text Get Started
+            v-icon.primary--text mdi-arrow-right
+      //- Bottom images
+      v-container(v-if="!$isMobile").py-10.mb-n3
+        v-row
+          v-col(cols="12" md="6")
+            img(
+              v-lazy="panelImages.leftBottomImage"
+              alt="Print prescription"
+              width="100%"
             )
-              slide(
-                v-for="(feature,index) in features"
-                :key="index"
-                :data-index="index+1"
-              ).pa-1
-                v-row(justify="center")
-                  img(v-lazy="require(`~/assets/images/features/mycure-web-features-mockup-01-${feature}.png`)" alt="Medical records" height="200px")
+          v-col(cols="12" md="6")
+            img(
+              v-lazy="panelImages.rightBottomImage"
+              alt="Charting"
+              width="100%"
+            )
+      v-container(v-else)
+        v-row(justify="center")
+          carousel(
+            :per-page="1"
+            autoplay
+            loop
+            paginationActiveColor="#3498db"
+            paginationColor="#808080"
+          )
+            slide(
+              v-for="(image,index) in mobilePanelImages"
+              :key="index"
+              :data-index="index+1"
+            ).pa-1
+              v-row(justify="center")
+                img(v-lazy="require(`~/assets/images/features/${image}`)" alt="Medical records" width="90%")
 </template>
 
 <script>
+// components
+import GenericMediaPanel from '~/components/commons/generic-media-panel';
 export default {
-  props: {
-    isMobile: {
-      type: Boolean,
-      default: true,
-    },
+  components: {
+    GenericMediaPanel,
   },
   data () {
-    this.features = ['A', 'B', 'C'];
+    this.header = 'Designed for doctors, by doctors.';
+    this.descriptions = [
+      'Record full medical history, vitals, and physical exam records according to SOAP charting. Eliminate the haste of scribbling with Rx printing, ICD-10 database, multiple image uploads, and more.',
+    ];
+    this.panelImages = {
+      mediaImage: 'MYCURE-virtual-clinic-healthcare-practice-online-features-B-01-emr.webp',
+      leftBottomImage: require('~/assets/images/features/webp/MYCURE-virtual-clinic-healthcare-practice-online-features-B-02-print-prescription.webp'),
+      rightBottomImage: require('~/assets/images/features/webp/MYCURE-virtual-clinic-healthcare-practice-online-features-B-03-charting.webp'),
+    };
+    this.mobilePanelImages = {
+      mediaImage: 'MYCURE-virtual-clinic-healthcare-practice-online-features-B-01-emr.png',
+      leftBottomImage: 'MYCURE-virtual-clinic-healthcare-practice-online-features-B-02-print-prescription-mobile.png',
+      rightBottomImage: 'MYCURE-virtual-clinic-healthcare-practice-online-features-B-03-charting-mobile.png',
+    };
+    this.customPath = 'features/webp/';
     return {};
   },
 };
 </script>
 
 <style scoped>
-.panel-container {
-  background-image: url('../../assets/images/features/mycure-web-features-gradient-background.png');
-  background-position: center bottom;
-  background-repeat: no-repeat;
-  background-size: 100% auto;
-}
-
-.add-spacing {
-  padding-top: 32px;
+.get-started-btn {
+  margin-left: -3%;
 }
 </style>

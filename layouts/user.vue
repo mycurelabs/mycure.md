@@ -1,10 +1,10 @@
 <template lang="pug">
   v-app
-    v-content
+    template(v-if="!loading")
       div(
         :style="styleConfig"
         :class="[dayOrNight === 'night' ? 'night-sky' : 'day-bg']"
-      ).bg-positions.pt-5.px-3#top
+      ).bg-positions.pa-3
         nuxt
       div(:class="[dayOrNight === 'night' ? 'night-sky' : 'day-bg', 'fixed-footer']")
         v-img(:src="require(`../assets/images/mycure-onboarding-background${dayOrNight === 'night' ? '-dark-mode' : ''}.png`)" alt="Sign up background")
@@ -12,13 +12,14 @@
 
 <script>
 // - utils
-import VueScrollTo from 'vue-scrollto';
+// import VueScrollTo from 'vue-scrollto';
 import dayOrNight from '../utils/day-or-night';
 
 export default {
   data () {
     return {
       dayOrNight: '',
+      loading: true,
     };
   },
   computed: {
@@ -33,14 +34,22 @@ export default {
     },
   },
   mounted () {
-    VueScrollTo.scrollTo('#top', 500, { easing: 'ease' });
-    this.dayOrNight = dayOrNight();
-    this.$vuetify.theme.dark = this.dayOrNight === 'night';
+    this.init();
+  },
+  methods: {
+    async init () {
+      this.dayOrNight = await dayOrNight();
+      this.$vuetify.theme.dark = this.dayOrNight === 'night';
+      this.loading = false;
+    },
   },
 };
 </script>
 
 <style scoped>
+#top {
+  height: 100%;
+}
 .day-bg {
   background-color: #fafafa;
 }

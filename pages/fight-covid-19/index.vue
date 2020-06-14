@@ -1,5 +1,5 @@
 <template lang="pug">
-  div#top.white
+  div(v-if="!loading")#top.white
     //- 1st panel
     usp
     //- 2nd panel
@@ -83,6 +83,7 @@ export default {
         image: 'mycure-heart-footer-image',
         mobileImage: 'mycure-heart-footer-mobile',
       },
+      loading: true,
     };
   },
   computed: {
@@ -94,6 +95,9 @@ export default {
       const text = 'Overcoming many difficult obstacles while following protocols can become a challenge. Having an effective system helps you automate processes so you can focus on more important matters.';
       return parseTextWithNewLine(text, ['challenge.']);
     },
+  },
+  mounted () {
+    this.loading = false;
   },
   methods: {
     parseCtaSubText () {
@@ -118,6 +122,10 @@ export default {
 </script>
 
 <style scoped>
+#top {
+  margin-top: 12vh;
+}
+
 .hearts {
   background-image: url('../../assets/images/mycure-heart/heart-decor-right.webp');
   background-position: top right;

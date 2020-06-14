@@ -1,83 +1,86 @@
 <template lang="pug">
-  div#top.white
+  div(v-if="!loading")#top.white
     //- 1st panel
     usp
     //- 2nd panel
-    roles-and-privileges(:isMobile="isMobile")
+    roles-and-privileges
+    v-divider.edge-divider
     //- 3rd panel
-    medical-records(:isMobile="isMobile")
+    medical-records
+    v-divider.edge-divider
     //- 4th panel
-    reports(:isMobile="isMobile")
+    virtual-practice
+    v-divider.edge-divider
     //- 5th panel
-    billing(:isMobile="isMobile")
+    reports
+    v-divider.edge-divider
     //- 6th panel
-    registration-and-queuing(:isMobile="isMobile")
+    billing
+    v-divider.edge-divider
     //- 7th panel
-    laboratory-and-imaging(:isMobile="isMobile")
+    registration-and-queuing
+    v-divider.edge-divider
     //- 8th panel
-    inventory(:isMobile="isMobile")
+    laboratory-and-imaging
+    v-divider.edge-divider
     //- 9th panel
-    syncbase(:isMobile="isMobile")
-    //- cta
-    mc-cta-bottom(
-      :ctaContent="ctaContent"
-      btnColor="accent"
-    )
+    inventory
+    v-divider.edge-divider
+    //- 10th panel
+    syncbase
+    v-divider.edge-divider
+    //- 11th panel
+    modules
+    //- CTA
+    div.cta-container.pa-0
+      features-cta(@getStarted="goToSignupIndividual($event)")
 </template>
 
 <script>
 import VueScrollTo from 'vue-scrollto';
 // - components
 import Usp from '~/components/features/usp';
+import RolesAndPrivileges from '~/components/features/roles-and-privileges';
+import MedicalRecords from '~/components/features/medical-records';
+import VirtualPractice from '~/components/features/virtual-practice';
+import Reports from '~/components/features/reports';
+import Billing from '~/components/features/billing';
+import RegistrationAndQueuing from '~/components/features/registration-and-queuing';
+import LaboratoryAndImaging from '~/components/features/laboratory-and-imaging';
+import Inventory from '~/components/features/inventory';
+import Syncbase from '~/components/features/syncbase';
+import Modules from '~/components/features/modules';
+import FeaturesCta from '~/components/features/cta';
 // - utils
-import { parseTextWithNewLine } from '~/utils/newline';
 import headMeta from '~/utils/head-meta';
 
 export default {
   components: {
     Usp,
-    RolesAndPrivileges: () => import('~/components/features/roles-and-privileges'),
-    MedicalRecords: () => import('~/components/features/medical-records'),
-    Reports: () => import('~/components/features/reports'),
-    Billing: () => import('~/components/features/billing'),
-    RegistrationAndQueuing: () => import('~/components/features/registration-and-queuing'),
-    LaboratoryAndImaging: () => import('~/components/features/laboratory-and-imaging'),
-    Inventory: () => import('~/components/features/inventory'),
-    Syncbase: () => import('~/components/features/syncbase'),
-    McCtaBottom: () => import('~/components/commons/mc-cta-bottom'),
+    RolesAndPrivileges,
+    MedicalRecords,
+    VirtualPractice,
+    Reports,
+    Billing,
+    RegistrationAndQueuing,
+    LaboratoryAndImaging,
+    Inventory,
+    Syncbase,
+    Modules,
+    FeaturesCta,
   },
   data () {
     return {
-      ctaContent: {
-        text: 'Embrace a new habit',
-        subtext: this.parseCtaSubText(),
-        btnText: 'Get Started Today',
-        image: 'mycure-web-footer',
-      },
-      isMobile: true,
+      loading: true,
     };
-  },
-  computed: {
-    uspTitle () {
-      const { title } = this.uspContents;
-      return parseTextWithNewLine(title, ['time', 'more']);
-    },
-  },
-  watch: {
-    $isMobile: {
-      handler (val) {
-        this.isMobile = val;
-      },
-    },
   },
   mounted () {
     VueScrollTo.scrollTo('#app', 500, { easing: 'ease' });
-    this.isMobile = this.$isMobile;
+    this.loading = false;
   },
   methods: {
-    parseCtaSubText () {
-      const subtext = 'Let your patients experience top-of-the-line services with the help of MYCURE.';
-      return subtext;
+    goToSignupIndividual (email) {
+      this.$router.push({ name: 'signup-individual', params: { email } });
     },
   },
   head () {
@@ -90,3 +93,15 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+#top {
+  margin-top: 12vh;
+}
+.cta-container {
+  position: relative;
+  margin-bottom: 0%;
+  z-index: 1;
+}
+
+</style>

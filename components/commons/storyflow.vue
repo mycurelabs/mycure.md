@@ -1,13 +1,13 @@
 <template lang="pug">
-  div(:class="{'white' : whiteBg }")
-    div(v-if="!isMobile").pt-10.mt-10
+  div(:class="{'white' : whiteBg }").py-12.mt-n1.mb-n3
+    div(v-if="!isMobile")
       v-container
         v-row(v-if="metaTitle" justify="center").text-center
           strong.font-21.primary--text {{ metaTitle }}
         v-row(v-if="introduction" justify="center").text-center.pb50
-          strong.font-40.introText.pre-white-space {{introduction}}
+          span.font-36.introText.pre-white-space {{introduction}}
         v-row(v-if="description" justify="center").text-center.pb60
-          span.font-18.pre-white-space {{ description }}
+          span.font-18.pre-white-space.font-gray {{ description }}
         div(v-if="!horizontal")
           v-row(v-for="(highlight,index) in storyflow" :key="index" justify="center").pb60
             v-col(cols="4" align-self="center").pr-5
@@ -16,7 +16,7 @@
               span(v-if="hasTitle"  :style="highlightTitleFontStyle").lh-title {{highlight.title}}
               br
               br
-              span.font-18 {{highlight.text}}
+              span.font-18.font-gray {{highlight.text}}
           br
           v-row(v-if="featuresButton" justify="center").pt-5
             v-btn(
@@ -33,17 +33,21 @@
               v-for="(highlight, index) in storyflow"
               align="center"
               :key="index"
-              cols="4"
-            ).text-center
-              img(v-lazy="require(`@/assets/images/${customPath}${highlight.image}`)" :alt="highlight.title").storyflowAssetHorizontal
+              cols="3"
+            ).text-center.mx-6.description-holder
+              img(
+                v-lazy="require(`@/assets/images/${customPath}${highlight.image}`)"
+                :alt="highlight.title"
+                :style="storyflowAssetHorizontal"
+              )
               br
-              strong(
+              span(
                 v-if="hasTitle"
                 :style="highlightTitleFontStyle"
                 :class="{'pre-white-space': parseTitles}"
-              ) {{ parseTitle(highlight) }}
+              ).font-21 {{ parseTitle(highlight) }}
               br
-              p.font-18.pt-3.mx-2 {{highlight.text}}
+              p.font-16.pt-3.mx-2.story-description.font-gray {{highlight.text}}
           v-row(v-if="featuresButton" justify="center" align="center").pt-10
             v-col(cols="4").text-center
               v-btn(
@@ -59,20 +63,20 @@
         v-row(v-if="metaTitle" justify="center").text-center.pb-10
           strong.font-18.primary--text {{ metaTitle }}
         v-row(justify="center").text-center.pb-10
-          strong.font-36.introText.lh-title {{introduction}}
+          strong.font-30.introText.lh-title.px-2.font-weight-light.title-storyflow {{introduction}}
         v-row(v-if="description" justify="center").text-center.pb-10
-          span.font-18 {{ description }}
+          span.font-18.font-gray {{ description }}
         v-col(v-for="(highlight,index) in storyflow" :key="index" justify="center")
           v-row(justify="center" align="center").pb-2
-            img(v-lazy="require(`@/assets/images/${customPath}${highlight.image}`)" :alt="highlight.title").storyflowAsset
-          br
+            img(v-lazy="require(`@/assets/images/${customPath}${highlight.image}`)" :alt="highlight.title" width="70%").img-storyflow
           v-row(align="center").text-center
             v-col(cols="12")
-              strong(v-if="hasTitle").font-30.lh-title.text-center {{highlight.title}}
+              strong(v-if="hasTitle").font-21.lh-title.font-weight-medium.text-center {{highlight.title}}
           br
-          v-row(align="center").px-2
-            v-col(cols="12").text-center
-              span.font-18 {{highlight.text}}
+          v-row(align="center").px-2.description-storyflow
+            v-col(cols="12").text-center.mt-n10
+              span.font-18.story-description.font-gray {{highlight.text}}
+
           br
         v-row(v-if="featuresButton" justify="center")
           v-btn(
@@ -118,6 +122,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    horizontalImageSize: {
+      type: String,
+      default: '65%',
+    },
     customPath: {
       type: String,
       default: '',
@@ -142,6 +150,13 @@ export default {
     return {
       isMobile: true,
     };
+  },
+  computed: {
+    storyflowAssetHorizontal () {
+      return {
+        width: this.horizontalImageSize,
+      };
+    },
   },
   watch: {
     $isMobile: {
@@ -171,20 +186,38 @@ export default {
 </script>
 
 <style scoped>
-.introText {
-  font-family: 'Work Sans', 'Poppins', sans-serif !important;
-}
-.storyflowAsset {
-  width: 275px;
-}
 .pb50 {
   padding-bottom: 50px;
 }
 .pb60 {
   padding-bottom: 60px;
 }
-.storyflowAssetHorizontal {
-  width: 65%;
-  font-family: 'Work Sans', 'Poppins', sans-serif !important;
+@media screen and (device-width: 768px) {
+  .img-storyflow {
+    width: 35%;
+  }
+  .title-storyflow {
+    width: 80%;
+  }
+  .description-storyflow {
+    margin-left: 10%;
+    width: 80%;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .description-holder {
+    position: relative;
+    min-height: 340px;
+  }
+  .story-description {
+    color: #a7a7a7;
+    position: absolute;
+    bottom: 0px;
+  }
+}
+@media screen and (min-width: 1264px) {
+  .description-holder {
+    min-height: 320px;
+  }
 }
 </style>

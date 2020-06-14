@@ -1,5 +1,3 @@
-const colors = require('vuetify/es5/util/colors').default;
-
 module.exports = {
   mode: 'universal',
   /*
@@ -16,6 +14,7 @@ module.exports = {
     STRIPE_CHECKOUT_SUCCESS_URL: process.env.STRIPE_CHECKOUT_SUCCESS_URL,
     STRIPE_CHECKOUT_CANCEL_URL: process.env.STRIPE_CHECKOUT_CANCEL_URL,
     GA_ID: process.env.GA_ID,
+    PX_PORTAL_URL: process.env.PX_PORTAL_URL,
   },
   head: {
     titleTemplate: '%s',
@@ -29,9 +28,9 @@ module.exports = {
     ],
     script: [
       {
-        src: 'https://app.heyflow.co/pixel/Ol00Wv3kMUxpaalI'
-      }
-    ]
+        src: 'https://app.heyflow.co/pixel/Ol00Wv3kMUxpaalI',
+      },
+    ],
   },
   /*
   ** Customize the progress-bar color
@@ -53,6 +52,8 @@ module.exports = {
     { src: '~plugins/crisp.js', mode: 'client' },
     { src: '~/plugins/vue-analytics.js', mode: 'client' },
     { src: '~/plugins/ga.js', mode: 'client' },
+    { src: '~/plugins/vue-social-sharing.js', mode: 'client' },
+    { src: '~/plugins/vue-morphling.js', mode: 'client' },
     '~/plugins/vue-lazyload.js',
   ],
   /*
@@ -80,7 +81,7 @@ module.exports = {
   ],
   webfontloader: {
     google: {
-      families: ['Work+Sans:400,700,900', 'Source+Sans+Pro:400,700'],
+      families: ['Poppins:400,700,900'],
     },
   },
   /*
@@ -101,20 +102,20 @@ module.exports = {
           light: {
             primary: '#2e9fdf',
             accent: '#7fad33',
-            secondary: '#616161',
-            info: colors.teal.lighten1,
-            warning: colors.amber.base,
-            error: '#ff5252',
-            success: colors.green.accent3,
+            secondary: '#424242',
+            info: '#2196F3',
+            warning: '#FFC107',
+            error: '#f75a5f',
+            success: '#7fad33',
           },
           dark: {
             primary: '#2e9fdf',
             accent: '#7fad33',
-            secondary: '#616161',
-            info: colors.teal.lighten1,
-            warning: colors.amber.base,
-            error: '#ff5252',
-            success: colors.green.accent3,
+            secondary: '#424242',
+            info: '#2196F3',
+            warning: '#FFC107',
+            error: '#f75a5f',
+            success: '#7fad33',
           },
         },
       },
@@ -130,4 +131,13 @@ module.exports = {
     extend (config, ctx) {
     },
   },
+  // generate: {
+  //   routes: [
+  //     '/doctors/jofftiquez',
+  //     '/doctors/jeanrivera',
+  //     '/doctors/william',
+  //     '/doctors/paulette',
+  //     '/doctors/telehealth',
+  //   ],
+  // },
 };

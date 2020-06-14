@@ -8,18 +8,7 @@
             @click="$nuxt.$router.push({ name: 'index' })"
             alt="MYCURE logo"
           ).link-to-home.mb-3
-          h2.font-18.primary--text {{ pageType === 'signup-individual-step-1' ? 'Doctors' : 'Specialized'}} Clinic: Sign Up (Step&nbsp;
-            | {{ pageType === 'signup-individual-step-1' ? '1' : '2' }} of&nbsp;
-            | {{ pageType === 'signup-individual-step-1' ? '2' : '3'}})
-          div(v-if="pageType === 'signup-specialized-step-2'")
-            i.font-16 {{ specializedClinicType.title }} Clinic
-            br
-            br
-            img(
-              :src="require(`~/assets/images/${specializedClinicType.image}-active.png`)"
-              :alt="specializedClinicType.image"
-              width="25%"
-            )
+          h2.font-18.primary--text Doctors Clinic: Sign Up (Step 1 of 2)
           h1#step-1-title Become a techy doctor in minutes!
           br
           v-row(v-for="(item, key) in checkListItems" :key="key" align="center" dense)
@@ -33,13 +22,6 @@
                 nuxt-link(:to="{ name: 'signin' }") Sign in.
         v-col(cols="12" md="5")
           v-card
-            v-card-actions(v-if="pageType === 'signup-specialized-step-2'")
-              v-btn(
-                icon
-                medium
-                :to="{ name: 'signup-specialized-step-1' }"
-              )
-                v-icon(medium) mdi-arrow-left
             v-card-text
               h1 Create a MYCURE Account
             v-card-text
@@ -149,7 +131,6 @@
             v-card-actions
               v-spacer
               v-btn(
-                v-if="pageType === 'signup-individual-step-1'"
                 color="accent"
                 @click="next"
                 :disabled="loading || !valid"
@@ -157,20 +138,6 @@
                 large
               ).font-weight-bold Create My Account
 
-              stripe-checkout(
-                v-else
-                ref="checkouRef"
-                :pk="stripePK"
-                :sessionId="stripeCheckoutSessionId"
-              )
-                template(slot="checkout-button")
-                  v-btn(
-                    color="accent"
-                    :disabled="loading || !valid || startTrialBtnDisabled"
-                    :loading="loading"
-                    @click="checkout"
-                    large
-                  ).font-weight-bold.font-18 Start Trial Now
     v-dialog(v-model="countryDialog" width="500" scrollable)
       v-card
         v-toolbar(flat)
@@ -198,13 +165,11 @@
 </template>
 
 <script>
-import { StripeCheckout } from 'vue-stripe-checkout';
-import _ from 'lodash';
 import { parsePhoneNumberFromString } from 'libphonenumber-js';
 // - components
 import EmailVerificationDialog from './email-verification-dialog';
 // - utils
-import { getCountry, getCountries, signupIndividual, signupSpecialized } from '~/utils/axios';
+import { getCountry, getCountries, signupIndividual } from '~/utils/axios';
 import dayOrNight from '~/utils/day-or-night';
 
 const PASS_LENGTH = 6;
@@ -212,10 +177,8 @@ const PASS_LENGTH = 6;
 export default {
   components: {
     EmailVerificationDialog,
-    StripeCheckout,
   },
   data () {
-    this.stripePK = process.env.STRIPE_PK;
     this.dayOrNight = dayOrNight();
     this.checkListItems = [
       'Manage your clinic more efficiently',
@@ -226,7 +189,6 @@ export default {
       valid: false,
       loading: false,
       loadingForm: false,
-      startTrialBtnDisabled: false,
       countryDialog: false,
       emailVerificationMessageDialog: false,
       showPass: false,
@@ -253,7 +215,6 @@ export default {
       errorMessage: 'There was an error please try again later.',
       mobileNoError: false,
       mobileNoErrorMessage: '',
-      stripeCheckoutSessionId: '',
     };
   },
   computed: {
@@ -278,9 +239,6 @@ export default {
   },
   async created () {
     await this.init();
-  },
-  mounted () {
-    this.startTrialBtnDisabled = false;
   },
   methods: {
     async next () {
@@ -311,38 +269,8 @@ export default {
         this.loading = false;
       }
     },
-    async checkout () {
-      try {
-        this.loading = true;
-        this.error = false;
-        this.validateForm();
-        if (!this.valid) {
-          return;
-        }
-        const data = await signupSpecialized(this.user);
-        const checkoutSession = _.get(data, 'organization.subscription.updatesPending');
-        this.stripeCheckoutSessionId = checkoutSession.stripeSession;
-        this.startTrialBtnDisabled = true;
-        this.$refs.checkouRef.redirectToCheckout();
-        if (process.browser) {
-          localStorage.clear();
-        }
-      } catch (e) {
-        console.error(e);
-        this.error = true;
-        if (e.code === 11000) {
-          this.errorMessage = 'The email or mobile number you have entered is invalid or taken. Please try again.';
-        } else {
-          this.errorMessage = 'There was an error in creating your account. Please try again.';
-        }
-        this.startTrialBtnDisabled = false;
-      } finally {
-        this.loading = false;
-      }
-    },
     async init () {
       this.loadingForm = true;
-
       // Load model
       if (process.browser) {
         if (localStorage.getItem('individual:step1:model') && this.pageType === 'signup-individual-step-1') {
@@ -351,24 +279,14 @@ export default {
             password: '',
             confirmPassword: '',
           };
-        } else if (localStorage.getItem('specialized:step1:model') && this.pageType === 'signup-specialized-step-2') {
-          this.user = {
-            ...JSON.parse(localStorage.getItem('specialized:step1:model')),
-          };
-          this.specializedClinicType = this.user.clinicTypeData;
-          delete this.user.clinicTypeData;
-
-          const country = await getCountry();
-          const { location } = country;
-          this.user.countryCallingCode = location ? location.calling_code : '63';
-          this.user.countryFlag = location ? location.country_flag : 'https://assets.ipstack.com/flags/ph.svg';
-        } else if (!localStorage.getItem('specialized:step1:model') && this.pageType === 'signup-specialized-step-2') {
-          this.$nuxt.$router.push({ name: 'signup-specialized-step-1' });
         } else {
           const country = await getCountry();
           const { location } = country;
           this.user.countryCallingCode = location ? location.calling_code : '63';
           this.user.countryFlag = location ? location.country_flag : 'https://assets.ipstack.com/flags/ph.svg';
+
+          // Check if an email was passed
+          this.user.email = this.$route.params.email || '';
         }
         // Load countries
         this.getCountries();
@@ -402,11 +320,15 @@ export default {
     },
     goToTerms () {
       const routeData = this.$nuxt.$router.resolve({ name: 'terms' });
-      window.open(routeData.href, '_blank');
+      if (process.client) {
+        window.open(routeData.href, '_blank');
+      }
     },
     goToPrivacy () {
       const routeData = this.$nuxt.$router.resolve({ name: 'privacy-policy' });
-      window.open(routeData.href, '_blank');
+      if (process.client) {
+        window.open(routeData.href, '_blank');
+      }
     },
     validateForm () {
       const valid = this.$refs.formRef.validate();
