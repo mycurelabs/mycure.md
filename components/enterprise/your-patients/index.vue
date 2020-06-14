@@ -91,6 +91,16 @@ export default {
     margin-top: -10%;
   }
 }
+@media screen and (device-width: 1440px) {
+  .get-started-btn {
+    margin-left: -18%;
+  }
+}
+@media screen and (device-width: 1680px) {
+  .get-started-btn {
+    margin-left: -18%;
+  }
+}
 @media screen and (device-width: 1920px) {
   .get-started-btn {
     margin-left: -12%;
