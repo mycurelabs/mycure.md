@@ -5,7 +5,7 @@
         h1.font-30.lh-title.pb-3.font-weight-light.text-center {{SPECIALIZED_PLANS.header}}
     v-row(justify="center" align="start")
       v-col(
-        cols="12"
+        cols="10"
         md="3"
         v-for="(data, key) in plans"
         :key="key"
