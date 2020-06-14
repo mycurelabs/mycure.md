@@ -34,7 +34,14 @@
                 dense
                 @click="handleSubMenuClick(item, menu)"
               ).pl-7 {{ menu.name }}
-          br
+            div
+              v-list-item(
+                v-for="(item, key) in toolbarLinks"
+                :key="key"
+                link
+                dense
+                @click="handleToolbarLinkClick(item)"
+              ) {{ item.name }}
           v-divider
         v-col(cols="12")
             div(v-for="(section, key) in navSectionLinks" :key="key")

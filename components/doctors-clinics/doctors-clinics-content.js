@@ -1,11 +1,13 @@
 export const SECOND_PANEL_CONTENTS = [
   {
+    headerIcon: 'doctors-clinics-increase-revenue.png',
     header: 'Increase your revenue',
     description: 'Treat more patients and reduce no-shows and cancellations with online consultations via secure video and voice calls.',
     btnTxt: 'Get Started',
     btnIcon: 'mdi-arrow-right-thick',
   },
   {
+    headerIcon: 'doctors-clinics-build-clientele.png',
     header: 'Build your clientele',
     description: 'Build patient loyalty and accommodate patients outside of your physical workhours. It\'s incredibly easy for your old and new patients to set appointments with you.',
     btnTxt: 'Get Started',
@@ -29,7 +31,7 @@ export const SPECIALIZED_PLANS = {
   description: '*All specialized plans come with Pharmacy, Inventory and Point-of-Sales modules',
 };
 export const ACCESS_QUALITY_HEALTHCARE = {
-  header: 'Access quality healthcare\xA0\xA0\xA0\xA0\xA0\xA0\xA0\xA0 - instantly',
+  header: 'Access quality healthcare - instantly',
   description: 'Set-up appointments and consultations, coordinate patient care, issue ePresciptions and release diagnostics results- all that and more with an online portal to interact with your patients.',
   btnTxt: 'Get Started',
   btnIcon: 'mdi-arrow-right-thick',

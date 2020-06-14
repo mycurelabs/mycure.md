@@ -23,17 +23,19 @@
       //- Bottom images
       v-container(v-if="!$isMobile").py-10.mb-n1
         v-row
-          v-col(cols="12" md="5")
+          v-col(cols="12" md="6").mt-3
             img(
               v-lazy="leftBottomImage"
               alt="Print prescription"
               width="100%"
+              height="100%"
             )
-          v-col(cols="12" md="7")
+          v-col(cols="12" md="6")
             img(
               v-lazy="rightBottomImage"
               alt="Charting"
               width="100%"
+              height="100%"
             )
       v-container(v-else)
         v-row(justify="center")

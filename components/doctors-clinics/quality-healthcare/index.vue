@@ -7,14 +7,14 @@
           alt="Access quality healthcare" width="100%"
         ).web-image
       v-col(align-self="center" cols="12" md="5")
-        h1.font-30.lh-title.pb-3.font-weight-light {{ACCESS_QUALITY_HEALTHCARE.header}}
+        h1(:class="{'pre-white-space': !$isMobile}").font-30.lh-title.pb-3.font-weight-light {{ title }}
         br
-        p.text-justify.font-16.mt-3.font-gray {{ACCESS_QUALITY_HEALTHCARE.description}}
+        p.text-justify.font-16.mt-3.font-gray {{panelContent.description}}
         br
         br
         v-btn(@click="onGetStarted" text).ml-n4.get-started-btn
-          strong.text-capitalize.primary--text {{ACCESS_QUALITY_HEALTHCARE.btnTxt}}
-          v-icon.primary--text {{ACCESS_QUALITY_HEALTHCARE.btnIcon}}
+          strong.text-capitalize.primary--text {{panelContent.btnTxt}}
+          v-icon.primary--text {{panelContent.btnIcon}}
       img(
         v-if="$isMobile"
         v-lazy="require('~/assets/images/doctors-clinics/MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-final-E-patient-portal.webp')"
@@ -24,11 +24,21 @@
 </template>
 
 <script>
+// constants
 import { ACCESS_QUALITY_HEALTHCARE } from '../doctors-clinics-content';
+// utils
+import { parseTextWithNewLine } from '~/utils/newline';
 export default {
   data () {
-    this.ACCESS_QUALITY_HEALTHCARE = ACCESS_QUALITY_HEALTHCARE;
+    this.panelContent = ACCESS_QUALITY_HEALTHCARE;
     return {};
+  },
+  computed: {
+    title () {
+      return this.$isMobile
+        ? this.panelContent.header
+        : parseTextWithNewLine(this.panelContent.header, ['healthcare ']);
+    },
   },
   methods: {
     onGetStarted () {

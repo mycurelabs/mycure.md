@@ -1,73 +1,87 @@
 <template lang="pug">
-  div.white.cta-panel
+  div.white
     generic-background-panel(
       :background-image="backgroundImage"
       :background-image-configs="backgroundImageConfigs"
-      :webContainerStyleConfigs="webContainerStyleConfigs"
+      :background-image-mobile="backgroundImageMobile"
+      :background-image-mobile-configs="backgroundImageMobileConfigs"
     ).cta-content
-      v-row(slot="content")
+      v-row(slot="content" align="center").row-content
         v-col(
+          v-if="!$isMobile"
           cols="12"
           md="6"
           offset-md="3"
-          justify-self="center"
-          v-if="!$isMobile"
           :class="[{'web-content-margin': !$isMobile}]"
-          style="text-align: center; margin-bottom: 25vh;"
-        ).cta-title
-          h1.font-40.lh-title.panel-title {{ panelTitle }}
-          p.font-italic.mt-6.font-18.cta-subtitle {{ ctaSubtitle }}
-          div(v-if="!$isMobile").py-5.text-field-container
-            v-text-field(
-              background-color="white"
-              v-model="email"
-              placeholder="myname@email.com"
-              outlined
-            ).input-field
-            v-btn(
-              height="54"
-              width="160"
-              v-if="!$isMobile"
-              color="accent"
-              @click="onGetStarted"
-            ).text-none.font-16.p-7.btn-book Get Started
-          p.mt-3.font-16.grey--text.cta-agreement {{ ctaAgreement }}
-        v-col(cols="12" v-if="$isMobile" style="text-align: center;")
-          h1.font-40.lh-title.panel-title {{ panelTitle }}
-          p.font-italic.mt-3.font-18.cta-subtitle {{ ctaSubtitle }}
-          div.mt-5.text-field-container
-            v-text-field(
-              background-color="white"
-              v-model="email"
-              placeholder="myname@email.com"
-              outlined
-            )
-          v-btn(
-            color="accent"
-            large
-            @click="onGetStarted"
-          ).text-none.font-weight-bold.font-18.mt-n3.cta-btn Get Started
-          p.mt-2.cta-agreement {{ ctaAgreement }}
+        ).cta-title.text-center
+          h1.font-40.lh-title.pre-white-space {{ ctaWebTitle }}
+          p.font-italic.font-18.my-4 {{ ctaSubtitle }}
+          v-row(justify="center")
+            v-col(cols="12" md="7")
+              v-text-field(
+                elevation="2"
+                v-model="email"
+                background-color="white"
+                outlined
+                dense
+                height="52"
+                placeholder="myname@email.com"
+              )
+            v-col(cols="12" md="3" align-self="start")
+              v-btn(
+                color="accent"
+                large
+                @click="onGetStarted"
+              ).text-none.font-16.cta-btn Get Started
+            v-col(cols="10")
+              p.font-16.grey--text {{ ctaAgreementText }}
+        v-col(
+          v-if="$isMobile"
+          cols="12"
+        ).text-center.mobile-content
+          h1.font-40.lh-title.px-5.cta-title {{ ctaTitle }}
+          p.font-italic.font-18.px-5.my-2.cta-subtitle {{ ctaSubtitle }}
+          v-row(justify="center")
+            v-col(cols="10")
+              v-text-field(
+                elevation="2"
+                v-model="email"
+                background-color="white"
+                outlined
+                dense
+                height="52"
+                placeholder="myname@email.com"
+              )
+            v-col(cols="10")
+              v-btn(
+                color="accent"
+                large
+                @click="onGetStarted"
+              ).text-none.font-16.cta-btn Get Started
+            v-col(cols="10")
+              p.mt-3.font-16.grey--text {{ ctaAgreementText }}
           img(
             v-lazy="panelImageSrc"
-            alt="Home CTA"
-            width="100%"
-          ).pt-10.image-mobile
+            alt="Doctors Clinics CTA"
+            width="90%"
+          ).pt-10
 </template>
 
 <script>
 // components
 import GenericBackgroundPanel from '~/components/commons/generic-background-panel';
+// utils
+import { parseTextWithNewLine } from '~/utils/newline';
 export default {
   components: {
     GenericBackgroundPanel,
   },
   data () {
     this.backgroundImage = 'mycure-final-cta-background-full.webp';
-    this.backgroundImageMobile = 'mycure-final-cta-background-full.webp';
-    this.panelTitle = 'Build your virtual clinic today.';
+    this.backgroundImageMobile = 'mycure-final-cta-background.webp';
+    this.ctaTitle = 'Build your virtual clinic today.';
     this.ctaSubtitle = 'For Modern Doctors, Virtual is the new normal.';
-    this.ctaAgreement = 'By entering your email, you agree to receive marketing emails from MYCURE.';
+    this.ctaAgreementText = 'By entering your email, you agree to receive marketing emails from MYCURE.';
     return {
       email: '',
     };
@@ -81,11 +95,16 @@ export default {
         bottom: '0',
       };
     },
-    webContainerStyleConfigs () {
-      return { position: 'relative' };
+    backgroundImageMobileConfigs () {
+      return {
+        'background-position': 'bottom',
+      };
     },
     panelImageSrc () {
-      return require(`@/assets/images/${this.backgroundImageMobile}`);
+      return require('~/assets/images/mycure-final-cta-background-image-right.webp');
+    },
+    ctaWebTitle () {
+      return parseTextWithNewLine(this.ctaTitle, ['virtual']);
     },
   },
   methods: {
@@ -100,205 +119,71 @@ export default {
 </script>
 
 <style scoped>
-.text-field-container {
-  display: flex;
-}
-.input-field {
-  width: 50%;
-  height: 58px;
-  border-radius: 5px;
-}
-.btn-book {
-  margin-left: 8px;
-}
 .web-content-margin {
-  margin-top: 80px;
+  margin-top: -15%;
 }
-/* galaxy s5 */
-@media screen
-  and (device-width: 320px)
-  and (device-height: 640px)
-  and (-webkit-device-pixel-ratio: 3)
-  and (orientation: portrait) {
+.row-content {
+  height: 100vh;
+  text-align: center;
+  margin-top: 5vh;
+}
+.mobile-content {
+  text-align: center;
+}
+@media screen and (max-width: 360px) {
   .cta-content {
-    margin-bottom: -10%;
-  }
-  .image-mobile {
-    margin-left: -5%;
     width: 110%;
+    margin-left: -5%;
   }
-  .panel-title{
-    font-size: 30px !important;
+  .cta-btn {
+    margin-left: 16px;
+  }
+  .row-content {
+    height: 70vh;
+    margin-bottom: 10vh;
   }
 }
-/* iphone 5/SE */
-@media only screen
-  and (min-device-width: 320px)
-  and (max-device-width: 568px)
-  and (-webkit-min-device-pixel-ratio: 2)
-  and (orientation: portrait) {
+@media screen and (max-width: 414px) {
   .cta-content {
-    margin-bottom: -10%;
-  }
-  .image-mobile {
-    margin-left: -5%;
     width: 110%;
+    margin-left: -5%;
   }
-  .panel-title{
-    font-size: 30px !important;
+  .cta-btn {
+    margin-left: 16px;
+  }
+  .row-content {
+    height: 70vh;
+    margin-bottom: 10vh;
   }
 }
-/* iphone 6/7/8 */
-@media only screen
-  and (min-device-width: 375px)
-  and (max-device-width: 667px)
-  and (-webkit-min-device-pixel-ratio: 2)
-  and (orientation: portrait) {
+@media screen and (max-width: 1020px) {
   .cta-content {
-    margin-bottom: -10%;
-  }
-  .image-mobile {
-    margin-left: -5%;
     width: 110%;
+    margin-left: -5%;
   }
-  .panel-title{
-    font-size: 30px !important;
+  .cta-btn {
+    margin-left: 16px;
+  }
+  .row-content {
+    height: 120vh;
   }
 }
-/* iphone X */
-@media only screen
-  and (device-width: 375px)
-  and (-webkit-min-device-pixel-ratio: 3)
-  and (orientation: portrait) {
+@media screen and (device-width: 1024px) and (orientation: portrait) {
   .cta-content {
-    margin-bottom: -10%;
-  }
-  .image-mobile {
-    margin-left: -5%;
-    width: 110%;
-  }
-}
-@media screen and (device-width: 768px) {
-  .image-mobile {
-    margin-left: -5%;
-    width: 110%;
-  }
-}
-@media screen and (device-width: 1024px) {
-  .cta-content {
-    position: absolute;
-    margin-top: 5%;
+    position: relative;
+    margin-top: -20%;
     z-index: 1;
   }
-  .cta-title {
-    margin-bottom: 7%;
+  .cta-btn{
+    margin-top: 0 !important;
   }
-  .panel-title {
-    font-size: 30px !important;
-  }
-  .cta-agreement {
-    font-size: 16px !important;
-  }
-  .text-field-container {
-    margin-top: -35px !important;
-  }
-  .cta-subtitle {
-    font-size: 16px !important;
+  .row-content {
+    height: 60vh;
   }
 }
-@media screen and (device-width: 1280px) {
-  .cta-panel {
-    margin-top: 10%;
-  }
-  .cta-title {
-    margin-bottom: 8%;
-  }
-}
-@media screen and (device-width: 1366px) {
-  .cta-panel {
-    margin-top: 8%;
-  }
-  .cta-title {
-    padding-bottom: 10%;
-  }
-}
-@media screen and (device-width: 1440px) {
-  .cta-panel {
-    margin-top: 8%;
-  }
-  .cta-title {
-    margin-bottom: 12%;
-  }
-}
-@media screen and (device-width: 1680px) {
-  .cta-panel {
-    margin-top: 13%;
-  }
-  .cta-title {
-    margin-bottom: 15%;
-  }
-}
-@media screen and (device-width: 1920px) {
-  .cta-panel {
-    margin-top: 13%;
-  }
-  .cta-title {
-    margin-bottom: 13%;
-  }
-  .panel-title {
-    font-size: 300% !important;
-  }
-  .cta-subtitle {
-    font-size: 150% !important;
-  }
-  .cta-agreement {
-    font-size: 150% !important;
-  }
-  .btn-book {
-    width: 30% !important;
-    font-size: 150% !important;
-  }
-}
-@media screen and (device-width: 2304px) {
-    .cta-panel {
-      margin-top: 17%;
-    }
-  .cta-title {
-    margin-bottom: 17%;
-  }
-  .panel-title {
-    font-size: 350% !important;
-  }
-  .cta-subtitle {
-    font-size: 175% !important;
-  }
-  .cta-agreement {
-    font-size: 175% !important;
-  }
-  .btn-book {
-    width: 30% !important;
-    font-size: 150% !important;
-  }
-}
-@media screen and (device-width: 2560px) {
-  .cta-panel {
-    margin-top: 15%;
-  }
-  .cta-title {
-    margin-bottom: 17%;
-  }
-  .panel-title {
-    font-size: 400% !important;
-  }
-  .cta-subtitle {
-    font-size: 200% !important;
-  }
-  .cta-agreement {
-    font-size: 200% !important;
-  }
-  .btn-book {
-    width: 35% !important;
-    font-size: 160% !important;
+@media screen and (device-width: 1366px) and (orientation: landscape) {
+  .row-content {
+    height: 49vh;
   }
 }
 </style>

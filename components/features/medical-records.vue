@@ -13,7 +13,7 @@
         hide-image-mobile
       )
         div(slot="additional-content")
-          v-btn(text @click="onGetStarted").text-none.get-started-btn
+          v-btn(text :to="{ name: 'signup-individual' }").text-none.get-started-btn
             strong.primary--text Get Started
             v-icon.primary--text mdi-arrow-right
       //- Bottom images
@@ -73,11 +73,6 @@ export default {
     };
     this.customPath = 'features/webp/';
     return {};
-  },
-  methods: {
-    onGetStarted () {
-      // TODO: Go to signup
-    },
   },
 };
 </script>

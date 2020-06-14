@@ -4,22 +4,16 @@ export const SECOND_PANEL_HEADER = {
 };
 export const SECOND_PANEL_CONTENTS = [
   {
-    image: 'MYCURE-virtual-clinic-healthcare-practice-online-enterprise-A-queue-system.png',
+    image: 'MYCURE-virtual-clinic-healthcare-practice-online-enterprise-A-queue-system.webp',
     header: 'Automated queueing system',
-    btnTxt: 'Get Started',
-    btnIcon: 'mdi-arrow-right-thick',
   },
   {
-    image: 'MYCURE-virtual-clinic-healthcare-practice-online-enterprise-B-kiosk-displays.png',
+    image: 'MYCURE-virtual-clinic-healthcare-practice-online-enterprise-B-kiosk-displays.webp',
     header: 'Customizable patient kiosk displays',
-    btnTxt: 'Get Started',
-    btnIcon: 'mdi-arrow-right-thick',
   },
   {
     image: 'MYCURE-virtual-clinic-healthcare-practice-online-enterprise-B2-group-practice.webp',
     header: 'Role-based user access',
-    btnTxt: 'Get Started',
-    btnIcon: 'mdi-arrow-right-thick',
   },
 ];
 export const OUTPATIENT = {
