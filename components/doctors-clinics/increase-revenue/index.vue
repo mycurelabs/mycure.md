@@ -1,7 +1,7 @@
 <template lang="pug">
   v-container.py-12.increase-revenue-content
-    v-row(justify="center")
-      v-col(cols="12" style="text-align: center;")
+    v-row(justify="center").pt-10
+      v-col(cols="12").text-center
         h1.font-30.lh-title.font-weight-light Your New Virtual Clinic
       v-col(cols="12" md="10" v-if="!$isMobile")
         img(
