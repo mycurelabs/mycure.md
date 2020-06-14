@@ -1,22 +1,8 @@
 <template lang="pug">
   v-container.py-12.increase-revenue-content
     v-row(justify="center")
-      v-col(
-        justify="center"
-        cols="12"
-        md="5"
-        v-for="(data, key) in secondPanelContents"
-        :key="key"
-      ).pt-12.content-container.pl-6
-        h1.font-30.lh-title.pb-6.font-weight-light {{data.header}}
-        br
-        p.text-justify.font-18.font-gray.pr-2 {{data.description}}
-        br
-        br
-        br
-        v-btn(@click="onGetStarted" text).ml-n4.get-started-btn
-          strong.text-capitalize.primary--text {{data.btnTxt}}
-          v-icon.primary--text {{data.btnIcon}}
+      v-col(cols="12" style="text-align: center;")
+        h1.font-30.lh-title.font-weight-light Your New Virtual Clinic
       v-col(cols="12" md="10" v-if="!$isMobile")
         img(
           v-lazy="require('~/assets/images/doctors-clinics/MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-A-online-consult.webp')"
@@ -29,6 +15,20 @@
         width="100%"
         alt="Medical records"
       ).pr-2.pl-2.pt-12
+      v-col(
+        justify="center"
+        cols="12"
+        md="5"
+        v-for="(data, key) in secondPanelContents"
+        :key="key"
+      ).pt-12.content-container.pl-6
+        h1.font-30.lh-title.pb-6.font-weight-light {{data.header}}
+        br
+        p.text-justify.font-16.font-gray.pr-2.mb-1 {{data.description}}
+        br
+        v-btn(@click="onGetStarted" text).ml-n4.get-started-btn
+          strong.text-capitalize.primary--text {{data.btnTxt}}
+          v-icon.primary--text {{data.btnIcon}}
 </template>
 
 <script>

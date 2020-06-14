@@ -2,10 +2,10 @@
   v-container#multispecialty-clinics.py-12
     v-row(justify="center" align="center")
       v-col(cols="12" md="5" align-self="center").seventhPanel-description
-        p.font-18.mt-3.font-gray.primary--text {{seventhPanel.subHeader}}
+        p.font-16.mt-3.font-gray.primary--text {{seventhPanel.subHeader}}
         h1.font-30.lh-title.pb-3.font-weight-light {{seventhPanel.header}}
-        p.text-justify.font-18.mt-3.font-gray {{seventhPanel.description}}
-          a(@click="goToFeatures").font-18.font-weight-bold {{seventhPanel.descriptionLink}}
+        p.text-justify.font-16.mt-3.font-gray {{seventhPanel.description}}
+          a(@click="goToFeatures").font-16.font-weight-bold {{seventhPanel.descriptionLink}}
         v-btn(text @click="onGetStarted").mt-5.ml-n4.get-started-btn
           strong.text-capitalize.primary--text {{seventhPanel.btnTxt}}
           v-icon.primary--text {{seventhPanel.btnIcon}}

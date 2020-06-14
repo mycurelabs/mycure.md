@@ -4,16 +4,17 @@
       :background-image="backgroundImage"
       :background-image-configs="backgroundImageConfigs"
       :webContainerStyleConfigs="webContainerStyleConfigs"
-      :customPath="customPath"
     ).cta-content
       v-row(slot="content")
         v-col(
           cols="12"
-          md="5"
+          md="6"
+          offset-md="3"
           v-if="!$isMobile"
           :class="[{'web-content-margin': !$isMobile}]"
+          style="text-align: center; margin-bottom: 35vh;"
         ).pt-5.cta-title
-          h1.font-40.lh-title.white--text.panel-title {{ panelTitle }}
+          h1.font-40.lh-title.panel-title {{ panelTitle }}
           div(v-if="!$isMobile").py-5.text-field-container
             v-text-field(
               background-color="white"
@@ -28,8 +29,8 @@
               height="55"
               width="160"
             ).text-none.font-16.p-7.btn-book Book A Demo
-          p.mt-3.font-18.white--text.cta-agreement {{ ctaAgreement }}
-        v-col(cols="12" v-if="$isMobile")
+          p.mt-3.font-1.grey--text.cta-agreement {{ ctaAgreement }}
+        v-col(cols="12" v-if="$isMobile" style="text-align: center;")
           h1.font-40.lh-title.cta-title {{ panelTitle }}
           div.mt-5.text-field-container
             v-text-field(
@@ -59,11 +60,10 @@ export default {
     GenericBackgroundPanel,
   },
   data () {
-    this.backgroundImage = 'MYCURE-virtual-clinic-healthcare-practice-online-enterprise-final-cta.webp';
-    this.backgroundImageMobile = 'MYCURE-virtual-clinic-healthcare-practice-online-enterprise-final-cta-cover-mobile.png';
+    this.backgroundImage = 'mycure-final-cta-background-full.webp';
+    this.backgroundImageMobile = 'mycure-final-cta-background-full.webp';
     this.panelTitle = 'Book A Demo Today.';
     this.ctaAgreement = 'By entering your email, you agree to receive marketing emails from MYCURE.';
-    this.customPath = 'enterprise/';
     return {
       email: '',
     };
@@ -81,7 +81,7 @@ export default {
       return { position: 'relative' };
     },
     panelImageSrc () {
-      return require(`~/assets/images/enterprise/${this.backgroundImageMobile}`);
+      return require(`~/assets/images/${this.backgroundImageMobile}`);
     },
   },
   methods: {

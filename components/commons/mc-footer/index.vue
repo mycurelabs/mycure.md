@@ -1,12 +1,12 @@
 <template lang="pug">
-  v-container(fluid).footer-grey
+  v-container(fluid).footer-dark
     v-container(v-if="!$isMobile")
       mc-footer-toolbar
       hr.my-4
       v-row(justify="center" d-flex).py-5
         v-col(cols="3")
           ul
-            li #[h3 CLINIC SOLUTIONS]
+            li #[h3.primary--text CLINIC SOLUTIONS]
             li(
               v-for="(solution, key) in clinicSolutions"
               :key="key"
@@ -22,7 +22,7 @@
               title="MYCURE Features"
             ).link Features
         v-col(cols="3").pl-12
-          h3 ABOUT
+          h3.primary--text ABOUT
           nuxt-link(
             id="footer-our-story-link"
             @click.stop="handleFooterOurStoryLink"
@@ -34,7 +34,7 @@
           br
           a(href="https://culture.mycure.md/" target="_blank" rel="noopener noreferrer").link Careers
         v-col(cols="3")
-          h3 LEGAL
+          h3.primary--text LEGAL
           nuxt-link(
             id="footer-terms-link"
             @click.stop="handleFooterTermsLink"
@@ -49,7 +49,7 @@
             title="MYCURE Privacy Policy"
           ).link Privacy Policy
         v-col(cols="3")
-          h3 CONTACT US
+          h3.primary--text CONTACT US
           a(
             id="footer-email-link"
             @click.stop="handleFooterEmailLink"
@@ -57,16 +57,16 @@
             href="mailto:hello@mycure.md"
           ).link hello@mycure.md
           br
-          span (+632) 7799 6262
+          span.call-number (+632) 7799 6262
           br
-          span (+63) 917 303 4350
+          span.call-number (+63) 917 303 4350
       hr.my-4
       v-row(justify="center")
-        span Copyright &copy; 2016 - {{new Date().getFullYear()}}
+        span.call-number Copyright &copy; 2016 - {{new Date().getFullYear()}}
           a(href="https://mycure.md")
-            strong.link &nbsp;MYCURE Inc.&nbsp;
-        span All Rights Reserved.
-    v-container(v-else).footer-grey.pa-4
+            strong.primary--text &nbsp;MYCURE Inc.&nbsp;
+        span.call-number All Rights Reserved.
+    v-container(v-else).footer-dark.pa-4
       mc-footer-toolbar
 </template>
 
@@ -170,20 +170,20 @@ hr {
   padding-left: 0;
 }
 a {
-  color: inherit;
+  color: #aaaaaa;
 }
 a:link {
-  color: inherit;
+  color: #aaaaaa;
   text-decoration: none;
 }
 li {
   list-style: none;
 }
 .link {
-  color: black;
+  color: #aaaaaa;
 }
 .link:hover {
-  color: #aaaaaa;
+  color: #ffffff;
 }
 .clinic-header {
   font-size: 1.7em;
@@ -196,8 +196,11 @@ li {
   font-weight: bold;
   color: inherit;
 }
-.footer-grey {
+.footer-dark {
   z-index: 5;
-  background-color: #f0f0f0 !important;
+  background-color: #343a40 !important;
+}
+.call-number {
+  color: #aaaaaa;
 }
 </style>
