@@ -183,7 +183,17 @@ export default {
     margin-top: 12%;
   }
   .cta-title {
-    margin-bottom: 20%;
+    margin-bottom: 18%;
+  }
+  .panel-title {
+    font-size: 300% !important;
+  }
+  .cta-agreement {
+    font-size: 150% !important;
+  }
+  .btn-book {
+    width: 30% !important;
+    font-size: 150% !important;
   }
 }
 @media screen and (device-width: 2304px) {
@@ -191,7 +201,17 @@ export default {
     margin-top: 15%;
   }
   .cta-title {
-    margin-bottom: 25%;
+    margin-bottom: 22%;
+  }
+  .panel-title {
+    font-size: 350% !important;
+  }
+  .cta-agreement {
+    font-size: 175% !important;
+  }
+  .btn-book {
+    width: 30% !important;
+    font-size: 150% !important;
   }
 }
 @media screen and (device-width: 2560px) {
@@ -199,7 +219,17 @@ export default {
     margin-top: 15%;
   }
   .cta-title {
-    margin-bottom: 30%;
+    margin-bottom: 25%;
+  }
+  .panel-title {
+    font-size: 400% !important;
+  }
+  .cta-agreement {
+    font-size: 200% !important;
+  }
+  .btn-book {
+    width: 35% !important;
+    font-size: 160% !important;
   }
 }
 </style>
