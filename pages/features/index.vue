@@ -32,7 +32,7 @@
     //- 11th panel
     modules
     //- CTA
-    div.cta-container
+    div.cta-container.pa-0
       features-cta
 </template>
 
@@ -123,7 +123,6 @@ export default {
 }
 .cta-container {
   position: relative;
-  margin-bottom: -4%;
   z-index: 1;
 }
 </style>
