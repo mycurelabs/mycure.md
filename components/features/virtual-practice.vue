@@ -8,7 +8,7 @@
     :custom-image-path="customPath"
   ).mt-n1.mb-1
     div(slot="additional-content" :class="{'text-center': !$isMobile}")
-      v-btn(text).text-none
+      v-btn(text :to="{ name: 'signup-individual' }").text-none
         strong.primary--text Get Started
         v-icon.primary--text mdi-arrow-right
 </template>
