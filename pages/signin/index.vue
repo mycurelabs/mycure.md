@@ -255,8 +255,10 @@ export default {
   cursor: pointer;
 }
 
-.login-card.v-card {
-  max-width: 350px;
-  margin: 0 auto;
+@media screen and (min-width: 1500px) {
+  .login-card.v-card {
+    width: 350px;
+    margin: 0 auto;
+  }
 }
 </style>
