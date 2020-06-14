@@ -108,7 +108,6 @@ export default {
 .row-content {
   height: 100vh;
   text-align: center;
-  margin-bottom: 10vh;
   margin-top: 5vh;
 }
 .mobile-content {
@@ -124,6 +123,7 @@ export default {
   }
   .row-content {
     height: 120vh;
+    margin-bottom: 10vh;
   }
 }
 @media screen and (device-width: 1024px) and (orientation: portrait) {
@@ -135,16 +135,13 @@ export default {
   .cta-btn{
     margin-top: 0 !important;
   }
+  .row-content {
+    height: 60vh;
+  }
 }
 @media screen and (device-width: 1366px) and (orientation: landscape) {
   .row-content {
     height: 49vh;
-  }
-  .web-content-margin {
-    margin-top: -96%;
-  }
-  .cta-title {
-    margin-bottom: -96%;
   }
 }
 </style>
