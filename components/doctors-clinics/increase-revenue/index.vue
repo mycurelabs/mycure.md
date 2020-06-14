@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-container.pb-12.pt-5.increase-revenue-content
+  v-container.py-10.increase-revenue-content
     v-row(justify="center")
       v-col(cols="12").text-center
         h1.font-30.lh-title.font-weight-light Your New Virtual Clinic
@@ -79,9 +79,14 @@ a {
     margin-top: -70%;
   }
 }
-@media screen and (min-width: 1366px) {
+@media screen and (min-width: 1260px) {
   .increase-revenue-content {
-   margin-top: 8%;
+    margin-top: 8%;
+  }
+}
+@media screen and (min-width: 1600px) {
+  .increase-revenue-content {
+    margin-top: 5%;
   }
 }
 </style>
