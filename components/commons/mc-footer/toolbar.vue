@@ -78,12 +78,12 @@
       br
       br
       br
-      v-row(justify="center").text-center
+      v-row(justify="center").text-center.copyright-text
         strong Copyright &copy; 2016 - {{new Date().getFullYear()}}
       v-row(justify="center").text-center
         nuxt-link(:to="{ name: 'index' }" title="MYCURE | Clinic Management System | Cloud EMR Philippines")
           strong.primary--text &nbsp;MYCURE Inc.
-      v-row(justify="center").text-center
+      v-row(justify="center").text-center.copyright-text
         strong All Rights Reserved.
       br
       br
@@ -126,7 +126,7 @@ export default {
         id: 'footer-twitter-btn',
       },
     ];
-    this.expansionPanelColor = '#f0f0f0';
+    this.expansionPanelColor = '#343a40';
     return {
       clinicSolutions: CLINIC_SOLUTIONS,
       clinicSol: false,
@@ -155,5 +155,8 @@ a:link {
 }
 .footer-grey {
   background-color: #343a40 !important;
+}
+.copyright-text {
+  color: #aaaaaa;
 }
 </style>

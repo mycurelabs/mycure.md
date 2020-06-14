@@ -3,6 +3,8 @@
     generic-background-panel(
       :background-image="backgroundImage"
       :background-image-configs="backgroundImageConfigs"
+      :background-image-mobile="backgroundImageMobile"
+      :background-image-mobile-configs="backgroundImageMobileConfigs"
     ).cta-content
       v-row(slot="content" align="center" v-if="!$isMobile").row-content
         v-col(
@@ -38,7 +40,7 @@
           img(
             v-lazy="panelImageSrc"
             alt="Home CTA"
-            width="100%"
+            width="85%"
           ).pt-10
 </template>
 
@@ -51,7 +53,7 @@ export default {
   },
   data () {
     this.backgroundImage = 'mycure-final-cta-background-full.webp';
-    this.backgroundImageMobile = 'mycure-final-cta-background-full.webp';
+    this.backgroundImageMobile = 'mycure-final-cta-background.webp';
     this.uspTitle = 'Start your modern clinic experience with MYCURE';
     this.uspSubtitle = 'Explore all the tools and services you need to run and grow your clinic online and offline.';
     return {
@@ -67,8 +69,13 @@ export default {
         bottom: '0',
       };
     },
+    backgroundImageMobileConfigs () {
+      return {
+        'background-position': 'bottom',
+      };
+    },
     panelImageSrc () {
-      return require('~/assets/images/mycure-final-cta-background-full.webp');
+      return require('~/assets/images/mycure-final-cta-background-image-right.webp');
     },
   },
   methods: {
@@ -98,22 +105,7 @@ export default {
 }
 @media screen and (max-width: 1650px) {
   .row-content {
-    height: 62vh;
-  }
-}
-@media screen and (max-width: 1448px) {
-  .row-content {
-    height: 60vh;
-  }
-}
-@media screen and (max-width: 1370px) {
-  .row-content {
-    height: 57vh;
-  }
-}
-@media screen and (max-width: 1290px) {
-  .row-content {
-    height: 52vh;
+    height: 80vh;
   }
 }
 @media screen and (max-width: 1150px) {
@@ -151,7 +143,6 @@ export default {
     width: 110%;
     margin-top: 10%;
     margin-left: -5%;
-    margin-bottom: -10%;
   }
   .cta-title {
     margin-left: 3%;
@@ -187,7 +178,7 @@ export default {
     margin-bottom: -214%;
   }
   .row-content {
-    height: 90vh;
+    height: 100vh;
   }
   .web-content-margin {
     margin-top: -118%;
@@ -198,7 +189,7 @@ export default {
 }
 @media screen and (device-width: 1366px) and (orientation: landscape) {
   .row-content {
-    height: 49vh;
+    height: 100vh;
   }
   .web-content-margin {
     margin-top: -96%;

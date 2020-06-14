@@ -33,7 +33,7 @@
     modules
     //- CTA
     div.cta-container.pa-0
-      features-cta
+      features-cta(@getStarted="goToSignupIndividual($event)")
 </template>
 
 <script>
@@ -52,7 +52,6 @@ import Syncbase from '~/components/features/syncbase';
 import Modules from '~/components/features/modules';
 import FeaturesCta from '~/components/features/cta';
 // - utils
-import { parseTextWithNewLine } from '~/utils/newline';
 import headMeta from '~/utils/head-meta';
 
 export default {
@@ -72,38 +71,16 @@ export default {
   },
   data () {
     return {
-      ctaContent: {
-        text: 'Embrace a new habit',
-        subtext: this.parseCtaSubText(),
-        btnText: 'Get Started Today',
-        image: 'mycure-web-footer',
-      },
-      isMobile: true,
       loading: true,
     };
   },
-  computed: {
-    uspTitle () {
-      const { title } = this.uspContents;
-      return parseTextWithNewLine(title, ['time', 'more']);
-    },
-  },
-  watch: {
-    $isMobile: {
-      handler (val) {
-        this.isMobile = val;
-      },
-    },
-  },
   mounted () {
     VueScrollTo.scrollTo('#app', 500, { easing: 'ease' });
-    this.isMobile = this.$isMobile;
     this.loading = false;
   },
   methods: {
-    parseCtaSubText () {
-      const subtext = 'Let your patients experience top-of-the-line services with the help of MYCURE.';
-      return subtext;
+    goToSignupIndividual (email) {
+      this.$router.push({ name: 'signup-individual', params: { email } });
     },
   },
   head () {
@@ -123,6 +100,8 @@ export default {
 }
 .cta-container {
   position: relative;
+  margin-bottom: 0%;
   z-index: 1;
 }
+
 </style>

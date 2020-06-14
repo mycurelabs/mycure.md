@@ -1,49 +1,65 @@
 <template lang="pug">
-  div(style="margin-top: 10vh;").white
+  div.white
     generic-background-panel(
       :background-image="backgroundImage"
-    )
-      v-row(slot="content" align="center").pa-0
-        v-col(v-if="!$isMobile" cols="12" md="6" offset-md="3" style="text-align: center; margin-bottom: 35vh;").pa-0
-          h1(:class="titleClasses").font-poppins.font-40.lh-title {{ uspTitle }}
-          p(:class="[centerText]").font-italic.font-18.px-1.mt-3 {{ uspSubtitle }}
-          div(v-if="!$isMobile").text-field-container.mr-3
-            v-text-field(
-              elevation="2"
-              v-model="email"
-              background-color="white"
-              outlined
-              dense
-              height="52"
-              placeholder="myname@email.com"
-            ).text-field-input
-          v-btn(
-            elevation="2"
-            v-if="!$isMobile"
-            color="accent"
-            large
-            width="160"
-            height="50"
-            @click="onGetStarted"
-          ).text-none.font-16.p-7.mt-0.text-field-btn Get Started
-        v-col(cols="12" v-if="$isMobile" one-line style="text-align: center;")
-          h1.font-poppins.font-30.lh-title {{ uspTitle }}
-          p.font-italic.font-18.font-weight-light.px-1.pt-1 {{ uspSubtitle }}
-          div.text-field-container.white
-            v-text-field(
-              v-model="email"
-              outlined
-              placeholder="myname@email.com"
-            )
-            v-btn(
-              color="accent"
-              large
-              @click="onGetStarted"
-            ).text-none.font-16 Get Started Today
+      :background-image-configs="backgroundImageConfigs"
+      :background-image-mobile="backgroundImageMobile"
+      :background-image-mobile-configs="backgroundImageMobileConfigs"
+    ).cta-content
+      v-row(slot="content" align="center").row-content
+        v-col(
+          v-if="!$isMobile"
+          cols="12"
+          md="6"
+          offset-md="3"
+          :class="[{'web-content-margin': !$isMobile}]"
+        ).cta-title.text-center
+          h1.font-40.lh-title {{ ctaTitle }}
+          p.font-italic.font-18.my-4 {{ ctaSubtitle }}
+          v-row(justify="center")
+            v-col(cols="12" md="7")
+              v-text-field(
+                elevation="2"
+                v-model="email"
+                background-color="white"
+                outlined
+                dense
+                height="52"
+                placeholder="myname@email.com"
+              )
+            v-col(cols="12" md="3" align-self="start")
+              v-btn(
+                color="accent"
+                large
+                @click="onGetStarted"
+              ).text-none.font-16.cta-btn Get Started
+        v-col(
+          v-if="$isMobile"
+          cols="12"
+        ).text-center.mobile-content
+          h1.font-40.lh-title.px-5.cta-title {{ ctaTitle }}
+          p.font-italic.font-18.px-5.my-2.cta-subtitle {{ ctaSubtitle }}
+          v-row(justify="center")
+            v-col(cols="10")
+              v-text-field(
+                elevation="2"
+                v-model="email"
+                background-color="white"
+                outlined
+                dense
+                height="52"
+                placeholder="myname@email.com"
+              )
+            v-col(cols="10")
+              v-btn(
+                color="accent"
+                large
+                @click="onGetStarted"
+              ).text-none.font-16.cta-btn Get Started
           img(
-            v-lazy="require(`~/assets/images/${backgroundImageMobile}`)"
+            v-lazy="panelImageSrc"
             alt="Features CTA"
-            width="100%"
+            width="90%"
           ).pt-10
 </template>
 
@@ -56,21 +72,29 @@ export default {
   },
   data () {
     this.backgroundImage = 'mycure-final-cta-background-full.webp';
-    this.backgroundImageMobile = 'mycure-final-cta-background-full.webp';
-    this.uspTitle = 'Embrace a new habit.';
-    this.uspSubtitle = 'Let your patients experience top-of-the-line services with the help of MYCURE.';
+    this.backgroundImageMobile = 'mycure-final-cta-background.webp';
+    this.ctaTitle = 'Embrace a new habit.';
+    this.ctaSubtitle = 'Let your patients experience top-of-the-line services with the help of MYCURE.';
     return {
       email: '',
     };
   },
   computed: {
-    centerText () {
-      return { 'text-center': this.$isMobile };
+    backgroundImageConfigs () {
+      return {
+        width: '100%',
+        position: 'absolute',
+        left: '0',
+        bottom: '0',
+      };
     },
-    titleClasses () {
-      return this.$isMobile
-        ? [this.centerText]
-        : ['pre-white-space'];
+    backgroundImageMobileConfigs () {
+      return {
+        'background-position': 'bottom',
+      };
+    },
+    panelImageSrc () {
+      return require('~/assets/images/mycure-final-cta-background-image-right.webp');
     },
   },
   methods: {
@@ -85,65 +109,70 @@ export default {
 </script>
 
 <style scoped>
-.text-field-container {
-  height: 52px;
-  border-radius: 2px;
-  display: inline-block;
-}
-.text-field-container .text-field-input{
-  width: 295px;
-  opacity: 0.9;
-}
 .web-content-margin {
-  margin-top: 80px;
+  margin-top: -15%;
 }
 .row-content {
   height: 100vh;
+  text-align: center;
+  margin-top: 5vh;
 }
-@media screen and (max-width: 1800px) {
-  .col-content{
-    margin-top: -300px;
+.mobile-content {
+  text-align: center;
+}
+@media screen and (max-width: 360px) {
+  .cta-content {
+    width: 110%;
+    margin-left: -5%;
+  }
+  .cta-btn {
+    margin-left: 16px;
+  }
+  .row-content {
+    height: 70vh;
   }
 }
-@media screen and (max-width: 1448px) {
-  .col-content{
-    margin-top: -268px;
+@media screen and (max-width: 414px) {
+  .cta-content {
+    width: 110%;
+    margin-left: -5%;
+  }
+  .cta-btn {
+    margin-left: 16px;
+  }
+  .row-content {
+    height: 70vh;
+    margin-bottom: -5vh;
   }
 }
-@media screen and (max-width: 1300px) {
-  .col-content{
-    margin-top: -160px;
+@media screen and (max-width: 1020px) {
+  .cta-content {
+    width: 110%;
+    margin-left: -5%;
   }
-}
-@media screen and (max-width: 1264px) {
-  .text-field-container .text-field-input{
-    width: 254px;
+  .cta-btn {
+    margin-left: 16px;
   }
-}
-@media screen and (max-width: 1038px) {
-  .text-field-container {
-    display: unset;
-  }
-}
-@media screen and (device-height: 768px) and (orientation: landscape) {
-  .text-field-container {
-    display: inline-block !important;
-  }
-  .col-content{
-    margin-top: -210px;
+  .row-content {
+    height: 120vh;
   }
 }
 @media screen and (device-width: 1024px) and (orientation: portrait) {
-  .text-field-container {
-    display: inline-block !important;
+  .cta-content {
+    position: relative;
+    margin-top: -20%;
+    z-index: 1;
   }
-  .col-content{
-    margin-top: -210px;
+  .cta-btn{
+    margin-top: 0 !important;
+  }
+  .row-content {
+    height: 60vh;
   }
 }
-@media screen and (device-height: 1024px) and (orientation: landscape) {
-  .col-content{
-    margin-top: -290px;
+@media screen and (device-width: 1366px) and (orientation: landscape) {
+  .row-content {
+    height: 49vh;
   }
 }
 </style>

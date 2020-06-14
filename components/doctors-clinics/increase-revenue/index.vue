@@ -1,7 +1,7 @@
 <template lang="pug">
-  v-container.py-12.increase-revenue-content
+  v-container.py-10.increase-revenue-content
     v-row(justify="center")
-      v-col(cols="12" style="text-align: center;")
+      v-col(cols="12").text-center
         h1.font-30.lh-title.font-weight-light Your New Virtual Clinic
       v-col(cols="12" md="10" v-if="!$isMobile")
         img(
@@ -22,7 +22,9 @@
         v-for="(data, key) in secondPanelContents"
         :key="key"
       ).pt-12.content-container.pl-6
-        h1.font-30.lh-title.pb-6.font-weight-light {{data.header}}
+        div.header-icon-text
+          img(v-lazy="require(`~/assets/images/doctors-clinics/${data.headerIcon}`)" height="30%" :class="{'pt-3': $isMobile}")
+          h1.font-30.lh-title.pb-6.mt-3.ml-3.font-weight-light {{data.header}}
         br
         p.text-justify.font-16.font-gray.pr-2.mb-1 {{data.description}}
         br
@@ -60,6 +62,10 @@ a {
   position: absolute;
   bottom: 0;
 }
+.header-icon-text{
+  display: flex;
+  align-content: flex-end;
+}
 @media screen
   and (min-device-width: 320px)
   and (max-device-height: 812px)
@@ -73,9 +79,14 @@ a {
     margin-top: -70%;
   }
 }
-@media screen and (min-width: 1366px) {
+@media screen and (min-width: 1260px) {
   .increase-revenue-content {
-   margin-top: 8%;
+    margin-top: 8%;
+  }
+}
+@media screen and (min-width: 1600px) {
+  .increase-revenue-content {
+    margin-top: 5%;
   }
 }
 </style>
