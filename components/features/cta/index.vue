@@ -3,6 +3,8 @@
     generic-background-panel(
       :background-image="backgroundImage"
       :background-image-configs="backgroundImageConfigs"
+      :background-image-mobile="backgroundImageMobile"
+      :background-image-mobile-configs="backgroundImageMobileConfigs"
     ).cta-content
       v-row(slot="content" align="center").row-content
         v-col(
@@ -12,8 +14,8 @@
           offset-md="3"
           :class="[{'web-content-margin': !$isMobile}]"
         ).cta-title.text-center
-          h1.font-40.lh-title {{ uspTitle }}
-          p.font-italic.font-18.my-4 {{ uspSubtitle }}
+          h1.font-40.lh-title {{ ctaTitle }}
+          p.font-italic.font-18.my-4 {{ ctaSubtitle }}
           v-row(justify="center")
             v-col(cols="12" md="7")
               v-text-field(
@@ -35,8 +37,8 @@
           v-if="$isMobile"
           cols="12"
         ).text-center.mobile-content
-          h1.font-40.lh-title.px-5.cta-title {{ uspTitle }}
-          p.font-italic.font-18.px-5.my-2.cta-subtitle {{ uspSubtitle }}
+          h1.font-40.lh-title.px-5.cta-title {{ ctaTitle }}
+          p.font-italic.font-18.px-5.my-2.cta-subtitle {{ ctaSubtitle }}
           v-row(justify="center")
             v-col(cols="10")
               v-text-field(
@@ -70,9 +72,9 @@ export default {
   },
   data () {
     this.backgroundImage = 'mycure-final-cta-background-full.webp';
-    this.backgroundImageMobile = 'mycure-final-cta-background-full.webp';
-    this.uspTitle = 'Embrace a new habit.';
-    this.uspSubtitle = 'Let your patients experience top-of-the-line services with the help of MYCURE.';
+    this.backgroundImageMobile = 'mycure-final-cta-background.webp';
+    this.ctaTitle = 'Embrace a new habit.';
+    this.ctaSubtitle = 'Let your patients experience top-of-the-line services with the help of MYCURE.';
     return {
       email: '',
     };
@@ -84,6 +86,11 @@ export default {
         position: 'absolute',
         left: '0',
         bottom: '0',
+      };
+    },
+    backgroundImageMobileConfigs () {
+      return {
+        'background-position': 'bottom',
       };
     },
     panelImageSrc () {
@@ -113,6 +120,31 @@ export default {
 .mobile-content {
   text-align: center;
 }
+@media screen and (max-width: 360px) {
+  .cta-content {
+    width: 110%;
+    margin-left: -5%;
+  }
+  .cta-btn {
+    margin-left: 16px;
+  }
+  .row-content {
+    height: 70vh;
+  }
+}
+@media screen and (max-width: 414px) {
+  .cta-content {
+    width: 110%;
+    margin-left: -5%;
+  }
+  .cta-btn {
+    margin-left: 16px;
+  }
+  .row-content {
+    height: 70vh;
+    margin-bottom: -5vh;
+  }
+}
 @media screen and (max-width: 1020px) {
   .cta-content {
     width: 110%;
@@ -123,13 +155,12 @@ export default {
   }
   .row-content {
     height: 120vh;
-    margin-bottom: 10vh;
   }
 }
 @media screen and (device-width: 1024px) and (orientation: portrait) {
   .cta-content {
     position: relative;
-    margin-top: -50%;
+    margin-top: -20%;
     z-index: 1;
   }
   .cta-btn{
