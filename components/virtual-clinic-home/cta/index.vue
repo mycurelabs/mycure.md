@@ -40,7 +40,7 @@
           img(
             v-lazy="panelImageSrc"
             alt="Home CTA"
-            width="100%"
+            width="85%"
           ).pt-10
 </template>
 
@@ -143,7 +143,6 @@ export default {
     width: 110%;
     margin-top: 10%;
     margin-left: -5%;
-    margin-bottom: -10%;
   }
   .cta-title {
     margin-left: 3%;
