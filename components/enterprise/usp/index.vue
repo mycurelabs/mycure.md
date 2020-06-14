@@ -173,15 +173,8 @@ export default {
   .row-content {
     margin-top: -20%;
   }
-  .text-field-container {
-    flex-direction: column;
-  }
-  .input-field {
-    width: 100%;
-  }
   .btn-book {
-    margin-left: 0px;
-    margin-top: 2%;
+    margin-left: 5px;
   }
 }
 @media screen and (device-width: 1440px) {
