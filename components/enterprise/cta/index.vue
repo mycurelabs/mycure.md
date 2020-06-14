@@ -3,6 +3,8 @@
     generic-background-panel(
       :background-image="backgroundImage"
       :background-image-configs="backgroundImageConfigs"
+      :background-image-mobile="backgroundImageMobile"
+      :background-image-mobile-configs="backgroundImageMobileConfigs"
     ).cta-content
       v-row(slot="content" align="center").row-content
         v-col(
@@ -72,7 +74,7 @@ export default {
   },
   data () {
     this.backgroundImage = 'mycure-final-cta-background-full.webp';
-    this.backgroundImageMobile = 'mycure-final-cta-background-full.webp';
+    this.backgroundImageMobile = 'mycure-final-cta-background.webp';
     this.ctaTitle = 'Book A Demo Today.';
     this.ctaAgreementText = 'By entering your email, you agree to receive marketing emails from MYCURE.';
     return {
@@ -86,6 +88,11 @@ export default {
         position: 'absolute',
         left: '0',
         bottom: '0',
+      };
+    },
+    backgroundImageMobileConfigs () {
+      return {
+        'background-position': 'bottom',
       };
     },
     panelImageSrc () {
@@ -115,6 +122,31 @@ export default {
 .mobile-content {
   text-align: center;
 }
+@media screen and (max-width: 360px) {
+  .cta-content {
+    width: 110%;
+    margin-left: -5%;
+  }
+  .cta-btn {
+    margin-left: 16px;
+  }
+  .row-content {
+    height: 70vh;
+  }
+}
+@media screen and (max-width: 414px) {
+  .cta-content {
+    width: 110%;
+    margin-left: -5%;
+  }
+  .cta-btn {
+    margin-left: 16px;
+  }
+  .row-content {
+    height: 70vh;
+    margin-bottom: -5vh;
+  }
+}
 @media screen and (max-width: 1020px) {
   .cta-content {
     width: 110%;
@@ -125,7 +157,6 @@ export default {
   }
   .row-content {
     height: 120vh;
-    margin-bottom: 10vh;
   }
 }
 @media screen and (device-width: 1024px) and (orientation: portrait) {
