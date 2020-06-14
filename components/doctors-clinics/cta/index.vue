@@ -60,7 +60,7 @@
               p.mt-3.font-16.grey--text {{ ctaAgreementText }}
           img(
             v-lazy="panelImageSrc"
-            alt="Features CTA"
+            alt="Doctors Clinics CTA"
             width="90%"
           ).pt-10
 </template>
