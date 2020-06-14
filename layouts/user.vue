@@ -1,13 +1,12 @@
 <template lang="pug">
   v-app
-    v-content
-      div(
-        :style="styleConfig"
-        :class="[dayOrNight === 'night' ? 'night-sky' : 'day-bg']"
-      ).bg-positions.px-3#top
-        nuxt
-      div(:class="[dayOrNight === 'night' ? 'night-sky' : 'day-bg', 'fixed-footer']")
-        v-img(:src="require(`../assets/images/mycure-onboarding-background${dayOrNight === 'night' ? '-dark-mode' : ''}.png`)" alt="Sign up background")
+    div(
+      :style="styleConfig"
+      :class="[dayOrNight === 'night' ? 'night-sky' : 'day-bg']"
+    ).bg-positions.pa-3#top
+      nuxt
+    div(:class="[dayOrNight === 'night' ? 'night-sky' : 'day-bg', 'fixed-footer']")
+      v-img(:src="require(`../assets/images/mycure-onboarding-background${dayOrNight === 'night' ? '-dark-mode' : ''}.png`)" alt="Sign up background")
 </template>
 
 <script>
@@ -25,6 +24,7 @@ export default {
     styleConfig () {
       const style = {
         'background-image': `url(${require('../assets/images/MYCURE-Sign-Up-background-left-corner.png')}), url(${require('../assets/images/MYCURE-Sign-Up-background-right-corner.png')})`,
+        'overflow-y': 'hidden',
       };
       return this.$isMobile ? {} : style;
     },
