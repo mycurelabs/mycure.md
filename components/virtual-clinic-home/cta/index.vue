@@ -3,6 +3,8 @@
     generic-background-panel(
       :background-image="backgroundImage"
       :background-image-configs="backgroundImageConfigs"
+      :background-image-mobile="backgroundImageMobile"
+      :background-image-mobile-configs="backgroundImageMobileConfigs"
     ).cta-content
       v-row(slot="content" align="center" v-if="!$isMobile").row-content
         v-col(
@@ -51,7 +53,7 @@ export default {
   },
   data () {
     this.backgroundImage = 'mycure-final-cta-background-full.webp';
-    this.backgroundImageMobile = 'mycure-final-cta-background-full.webp';
+    this.backgroundImageMobile = 'mycure-final-cta-background.webp';
     this.uspTitle = 'Start your modern clinic experience with MYCURE';
     this.uspSubtitle = 'Explore all the tools and services you need to run and grow your clinic online and offline.';
     return {
@@ -65,6 +67,11 @@ export default {
         position: 'absolute',
         left: '0',
         bottom: '0',
+      };
+    },
+    backgroundImageMobileConfigs () {
+      return {
+        'background-position': 'bottom',
       };
     },
     panelImageSrc () {
