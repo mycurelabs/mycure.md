@@ -29,7 +29,7 @@ export const SPECIALIZED_PLANS = {
   description: '*All specialized plans come with Pharmacy, Inventory and Point-of-Sales modules',
 };
 export const ACCESS_QUALITY_HEALTHCARE = {
-  header: 'Access quality healthcare -instantly',
+  header: 'Access quality healthcare\xA0\xA0\xA0\xA0\xA0\xA0\xA0\xA0 - instantly',
   description: 'Set-up appointments and consultations, coordinate patient care, issure ePresciptions and release diagnostics results- all that and more with an online portal to interact with your patients.',
   btnTxt: 'Get Started',
   btnIcon: 'mdi-arrow-right-thick',
