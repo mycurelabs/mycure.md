@@ -1,6 +1,7 @@
 'use strict';
 const path = require('path');
 const consola = require('consola');
+const sslRedirect = require('heroku-ssl-redirect');
 const feathers = require('@feathersjs/feathers');
 const express = require('@feathersjs/express');
 
@@ -10,6 +11,8 @@ async function start () {
   const app = express(feathers());
 
   const { Nuxt, Builder } = require('nuxt');
+
+  app.use(sslRedirect(['production'], 301));
 
   // Setup nuxt.js
   const config = require('../nuxt.config.js');
