@@ -4,33 +4,21 @@
       v-col(cols="12" md="8" lg="6" justify="center")
         h1.text-center.font-30.lh-title.pb-3.font-weight-light {{secondPanelHeader.header}}
         p.text-center.font-16.mt-3.font-gray {{secondPanelHeader.description}}
-    v-row(justify="center" v-if="!$isMobile")
+    v-row(justify="center")
       v-col(
         cols="12"
-        md="4"
+        :md="$isMobile ? '5' : '4'"
         v-for="(data, key) in secondPanelContents"
         :key="key"
-      ).text-center.column-container
-        div.text-center.img-container
-          img(v-lazy="require(`~/assets/images/enterprise/${data.image}`)" :alt="data.header")
-        h1.font-25.lh-title.pb-3.font-weight-light.column-head.mt-4 {{data.header}}
-        v-btn(text @click="onClick").get-started-btn.mt-4
-          strong.text-capitalize.primary--text {{data.btnTxt}}
-          v-icon.primary--text {{data.btnIcon}}
-    v-row(justify="center" v-if="$isMobile")
-      v-col(
-        cols="12"
-        md="5"
         align="center"
         justify="center"
-        v-for="(data, key) in secondPanelContents"
-        :key="key"
+        :class="columnClasses"
       )
-        h1.font-30.lh-title.pb-3.font-weight-light {{data.header}}
-        v-btn(text @click="onClick").my-5
-          strong.text-capitalize.primary--text {{data.btnTxt}}
-          v-icon.primary--text {{data.btnIcon}}
+        div(v-if="!$isMobile").text-center.img-container
+          img(v-lazy="require(`~/assets/images/enterprise/${data.image}`)" :alt="data.header")
+        h1(:class="headerClasses").lh-title.pb-3.font-weight-bold {{data.header}}
         img(
+          v-if="$isMobile"
           v-lazy="require(`~/assets/images/enterprise/${data.image}`)"
           :alt="data.header"
           width="100%"
@@ -44,6 +32,20 @@ export default {
     this.secondPanelHeader = SECOND_PANEL_HEADER;
     this.secondPanelContents = SECOND_PANEL_CONTENTS;
     return {};
+  },
+  computed: {
+    headerClasses () {
+      const webClasses = ['font-16', 'column-head', 'mt-4'];
+      const mobileClasses = ['font-16'];
+      return this.$isMobile
+        ? mobileClasses
+        : webClasses;
+    },
+    columnClasses () {
+      return !this.$isMobile
+        ? ['text-center', 'column-container']
+        : ['my-5'];
+    },
   },
   methods: {
     onClick () {
