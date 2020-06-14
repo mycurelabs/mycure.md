@@ -1,3 +1,5 @@
+import redirectSSL from 'redirect-ssl';
+
 module.exports = {
   mode: 'universal',
   /*
@@ -131,13 +133,9 @@ module.exports = {
     extend (config, ctx) {
     },
   },
-  // generate: {
-  //   routes: [
-  //     '/doctors/jofftiquez',
-  //     '/doctors/jeanrivera',
-  //     '/doctors/william',
-  //     '/doctors/paulette',
-  //     '/doctors/telehealth',
-  //   ],
-  // },
+  serverMiddleware: [
+    redirectSSL.create({
+      enabled: process.env.NODE_ENV === 'production'
+    }),
+  ],
 };
