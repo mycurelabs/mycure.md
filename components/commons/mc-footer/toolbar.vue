@@ -126,7 +126,7 @@ export default {
         id: 'footer-twitter-btn',
       },
     ];
-    this.expansionPanelColor = '#f0f0f0';
+    this.expansionPanelColor = '#343a40';
     return {
       clinicSolutions: CLINIC_SOLUTIONS,
       clinicSol: false,
