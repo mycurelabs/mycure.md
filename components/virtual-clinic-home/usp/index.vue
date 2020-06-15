@@ -21,7 +21,7 @@
               placeholder="myname@email.com"
               outlined
               dense
-              height="52"
+              height="50"
             ).text-field-input
           v-btn(
             elevation="2"
@@ -114,11 +114,12 @@ export default {
 
 <style scoped>
 .text-field-container {
-  height: 52px;
+  height: 50px;
   border-radius: 2px;
   display: inline-block;
 }
 .text-field-container .text-field-input{
+  top: 1px;
   width: 295px;
   opacity: 0.9;
 }
@@ -175,7 +176,7 @@ export default {
     height: 90vh;
   }
 }
-@media screen and (max-width: 1038px) {
+@media screen and (max-width: 1000px) {
   .text-field-container {
     display: unset;
   }
