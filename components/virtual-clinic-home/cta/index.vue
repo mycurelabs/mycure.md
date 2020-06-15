@@ -110,12 +110,7 @@ export default {
 }
 @media screen and (max-width: 1150px) {
   .row-content {
-    height: 47vh;
-  }
-}
-@media screen and (max-width: 1050px) {
-  .row-content {
-    height: 43vh;
+    height: 60vh;
   }
 }
 @media screen and (device-width: 360px) {

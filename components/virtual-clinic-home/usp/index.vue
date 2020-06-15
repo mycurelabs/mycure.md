@@ -175,7 +175,7 @@ export default {
     height: 90vh;
   }
 }
-@media screen and (max-width: 1038px) {
+@media screen and (max-width: 1000px) {
   .text-field-container {
     display: unset;
   }
