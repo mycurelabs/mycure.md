@@ -1,4 +1,4 @@
-import redirectSSL from 'redirect-ssl';
+const redirectSSL = require('redirect-ssl');
 
 module.exports = {
   mode: 'universal',
