@@ -22,7 +22,7 @@ $ yarn generate
 For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
 
 
-# Old CI Configs
+# Old CI Configs Backup
 
 
 ### Staging
