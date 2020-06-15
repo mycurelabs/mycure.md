@@ -77,7 +77,7 @@ export default {
       title: 'MYCURE for Doctors | Healthcare Practice Online',
       description: 'Give your patients the quality care they deserve with MYCURE Clinic Management and Telemedicine Solutions.',
       // - TODO: Replace with local if applicable
-      socialBanner: 'https://firebasestorage.googleapis.com/v0/b/mc-v4-prod.appspot.com/o/web-main-assets%2FMYCURE-Open-Graph-Images-Doctors-Clinic.png?alt=media&token=a4c57fe8-8ac7-479c-a959-949930299ca5',
+      socialBanner: '~/assets/images/banners/MYCURE Open Graph Images - Doctors Clinic.png',
     });
   },
 };
