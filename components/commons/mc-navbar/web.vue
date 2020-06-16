@@ -20,13 +20,13 @@
                       v-icon(small) mdi-chevron-down
                   v-card
                     v-list
-                      v-list-item(
-                        v-for="(menu, index) in item.subMenus"
-                        :key="index"
-                        link
-                        dense
-                        @click="handleSubMenuClick(item, menu)"
-                      ).pl-7 {{ menu.name }}
+                      template(v-for="(menu, index) in item.subMenus")
+                        v-list-item(
+                          link
+                          dense
+                          @click="handleSubMenuClick(item, menu)"
+                        ).pl-7 {{ menu.name }}
+                        v-divider(v-if="key === 1 && index === 0").edge-divider
               div(v-for="(link, key) in toolbarLinks" :key="key")
                 v-btn(
                   :to="{ name: link.route }"
