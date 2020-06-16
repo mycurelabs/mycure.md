@@ -116,7 +116,7 @@
                     :max="maxDate"
                     color="#0099cc"
                   )
-        v-col(cols="12" md="10" :class="[{'mb-10': $isMobile}]").mt-2
+        v-col(cols="12" md="10" :class="mobileMargin").mt-2
           v-card(flat)
             v-card-actions(
               :class="dayOrNight === 'day' ? 'day-card-actions' : 'night-card-actions'"
@@ -281,6 +281,9 @@ export default {
 
       const [year, month, day] = date.split('-');
       return `${month}/${day}/${year}`;
+    },
+    mobileMargin () {
+      return [{ 'mb-10': this.$isMobile }];
     },
   },
   watch: {
