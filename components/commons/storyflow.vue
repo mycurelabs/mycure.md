@@ -204,12 +204,13 @@ export default {
     width: 80%;
   }
 }
-@media screen and (min-width: 1024px) {
+@media screen and (device-width: 1024px) {
   .description-holder {
     position: relative;
-    min-height: 340px;
+    min-height: 425px;
   }
   .story-description {
+    min-height: 200px;
     color: #a7a7a7;
     position: absolute;
     bottom: 0px;
