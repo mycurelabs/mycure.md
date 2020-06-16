@@ -110,7 +110,7 @@ export default {
     return headMeta({
       title: 'MYCURE Enterprise | Healthcare Practice Online',
       description: 'Build an online brand for your healthcare facility with MYCURE. Best for multispecialty clinics, multi-branch clinic chains, medical arts centers, and more.',
-      socialBanner: '~/assets/images/banners/MYCURE Open Graph Images - Enterprise.png',
+      socialBanner: require('~/assets/images/banners/MYCURE Open Graph Images - Enterprise.png'),
     });
   },
 };

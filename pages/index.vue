@@ -108,7 +108,7 @@ export default {
     return headMeta({
       title: 'MYCURE Virtual Clinic | Healthcare Practice Online',
       description: 'MYCURE is an advanced clinic management system that allows you to securely consult with patients online and get real-time medical and business insights.',
-      socialBanner: '~/assets/images/banners/MYCURE Open Graph Images -  Homepage.png',
+      socialBanner: require('~/assets/images/banners/MYCURE Open Graph Images -  Homepage.png'),
     });
   },
 };

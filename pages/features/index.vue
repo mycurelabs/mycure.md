@@ -87,7 +87,7 @@ export default {
     return headMeta({
       title: 'MYCURE Clinic Management System and EMR Features',
       description: 'MYCURE Clinic Management System includes modularized features that are customizable, user-friendly and efficient for a more patient-centric care.',
-      socialBanner: '~/assets/images/banners/MYCURE Open Graph Images - Features.png',
+      socialBanner: require('~/assets/images/banners/MYCURE Open Graph Images - Features.png'),
     });
   },
 };
