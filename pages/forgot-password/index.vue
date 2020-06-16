@@ -71,7 +71,7 @@ export default {
       ],
       error: false,
       errorMsg: '',
-      successDialog: true,
+      successDialog: false,
     };
   },
   methods: {
