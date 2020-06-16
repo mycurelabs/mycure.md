@@ -44,7 +44,7 @@
                     width="80%"
                   )
               v-card-text.card-title-container
-                h2(:class="[$isMobile ? 'font-m' : 'font-16']") {{ type.title }}
+                h2(:class="mobileFontSize") {{ type.title }}
               v-card-text.inclusions-container.grow
                 p The trial includes:
                 v-row(dense).checklist-item
@@ -110,6 +110,11 @@ export default {
       // - enum
       specializedTypes: SPECIALIZED_CLINIC_TYPES,
     };
+  },
+  computed: {
+    mobileFontSize () {
+      return [this.$isMobile ? 'font-m' : 'font-16'];
+    },
   },
   mounted () {
     this.selectedType = {};
