@@ -1,5 +1,5 @@
 <template lang="pug">
-  div(:class="$isMobile ? 'pt-5' : ''")
+  div(:class="$isMobile ? 'pt-5' : ''").modulesPanel
     v-container(
       v-for="(panel, key) in moduleGroup"
       :key="key"
@@ -38,6 +38,10 @@ export default {
 </script>
 
 <style scoped>
+.modulesPanel {
+  position: relative;
+  z-index: 5;
+}
 .module-group-description {
   color: #a7a7a7;
 }
