@@ -18,7 +18,7 @@
             | &nbsp;and a mobile photo diary meant to tell your story through photos called Pickld. He regularly shares experiences being a Mentor and Director at Founder Institute (Manila). He also started&nbsp;
             a(href="http://www.mightyminds.org/" target="_blank").primary--text Mighty Minds
             | , a nonprofit organization that helps kids finish school.
-        v-col(cols="11" md="5" :class="{'pt-5': isMobile}").px-3.text-center
+        v-col(cols="11" md="5" :class="ourStoryFounders").px-3.text-center
           img(width="60%" v-lazy="require('~/assets/images/our-story/mycure-ourstory-joel.png')" alt="Our Story - Joel")
           br
           br
@@ -38,6 +38,11 @@ export default {
   },
   data () {
     return {};
+  },
+  computed: {
+    ourStoryFounders () {
+      return [{ 'pt-5': this.$isMobile }];
+    },
   },
 };
 </script>
