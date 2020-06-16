@@ -3,7 +3,7 @@
     v-row(v-if="!imageOnly" justify="center").pt-5
       v-col(cols="12").text-center
         h2(:class="ctaTextClasses").lh-title {{ctaText}}
-        p(:class="subText").font-18.pt-3 {{ctaSubText}}
+        p(:class="whitespaceSubText").font-18.pt-3 {{ctaSubText}}
         div.text-xs-center.pt-2
           v-btn(
             :color="btnColor"
@@ -122,7 +122,7 @@ export default {
     ctaSecondaryBtnLink () {
       return !this.ctaContent || !this.ctaContent.secondaryBtnLink ? 'calendly' : this.ctaContent.secondaryBtnLink;
     },
-    subText () {
+    whitespaceSubText () {
       return [{ 'pre-white-space': !this.isMobile }];
     },
   },
