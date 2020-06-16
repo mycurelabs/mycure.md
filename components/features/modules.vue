@@ -3,9 +3,8 @@
     v-container(
       v-for="(panel, key) in moduleGroup"
       :key="key"
-      :class="key === 0 ? 'mb-n3' : 'mb-n4'"
     ).py-10
-      v-row(justify="center")
+      v-row(justify="center" v-if="key === 0 ? 'mb-n3' : 'mb-n4'")
         v-col(cols="10").text-center
           span(:class="panelGroup") {{ panel.group }}
           br
