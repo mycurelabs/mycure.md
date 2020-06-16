@@ -45,10 +45,11 @@
 
     v-dialog(v-model="successDialog" width="400" persistent)
       v-card.pa-1
-        v-card-text.text-center.black--text.pt-5
-          h1.accent--text Success!
+        v-card-text.text-center.pt-5
+          v-icon(size="55").accent--text mdi-check-circle
+          h2.accent--text Success!
           br
-          h2 Password reset link sent to&nbsp;
+          h3 Password reset link sent to&nbsp;
             span.primary--text {{email}}
         v-card-text.text-center#success-image
           v-btn(color="accent" @click="done").font-weight-bold Done
@@ -70,7 +71,7 @@ export default {
       ],
       error: false,
       errorMsg: '',
-      successDialog: false,
+      successDialog: true,
     };
   },
   methods: {
