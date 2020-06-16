@@ -5,7 +5,7 @@
         v-row(align="center" justify="center")
           v-col(cols="12").text-center
             h2.font-21.grey--text.pb-5 To further go the extra mile, we practice the following codes:
-            h2(:class="isMobile ? 'font-36' : 'font-40'") 8 Codes of Being
+            h2(:class="codesOfBeing") 8 Codes of Being
         v-row(justify="center").fill-height.pt-3
           template(v-if="!isMobile")
             v-col(cols="12" md="4")
@@ -53,6 +53,11 @@ export default {
       'We promise to help each other and make this world a better place.',
     ];
     return {};
+  },
+  computed: {
+    codesOfBeing () {
+      return [this.isMobile ? 'font-36' : 'font-40'];
+    },
   },
 };
 </script>
