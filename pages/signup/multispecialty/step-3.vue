@@ -286,7 +286,7 @@ export default {
       return [{ 'mb-10': this.$isMobile }];
     },
     checkTime () {
-      return [dayOrNight === 'day' ? 'day-card-actions' : 'night-card-actions'];
+      return [this.dayOrNight === 'day' ? 'day-card-actions' : 'night-card-actions'];
     },
   },
   watch: {
