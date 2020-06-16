@@ -1,5 +1,5 @@
 <template lang="pug">
-  div(:class="$isMobile ? 'pt-5' : ''")
+  div(:class="mainDiv")
     v-container(
       v-for="(panel, key) in moduleGroup"
       :key="key"
@@ -7,9 +7,9 @@
     ).py-10
       v-row(justify="center")
         v-col(cols="10").text-center
-          span(:class="$isMobile ? 'font-30' : 'font-40'") {{ panel.group }}
+          span(:class="panelGroup") {{ panel.group }}
           br
-          span(:class="$isMobile ? 'font-18' : 'font-21'").module-group-description {{ panel.description }}
+          span(:class="panelDescription").module-group-description {{ panel.description }}
       br
       v-row
         v-col(
@@ -33,6 +33,17 @@ export default {
   data () {
     this.moduleGroup = FEATURE_MODULE_GROUPS;
     return {};
+  },
+  computed: {
+    mainDiv () {
+      return [this.$isMobile ? 'pt-5' : ''];
+    },
+    panelGroup () {
+      return [this.$isMobile ? 'font-30' : 'font-40'];
+    },
+    panelDescription () {
+      return [this.$isMobile ? 'font-18' : 'font-21'];
+    },
   },
 };
 </script>
