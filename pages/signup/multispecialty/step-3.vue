@@ -119,7 +119,7 @@
         v-col(cols="12" md="10" :class="mobileMargin").mt-2
           v-card(flat)
             v-card-actions(
-              :class="dayOrNight === 'day' ? 'day-card-actions' : 'night-card-actions'"
+              :class="checkTime"
             )
               v-btn(
                 text
@@ -284,6 +284,9 @@ export default {
     },
     mobileMargin () {
       return [{ 'mb-10': this.$isMobile }];
+    },
+    checkTime () {
+      return [dayOrNight === 'day' ? 'day-card-actions' : 'night-card-actions'];
     },
   },
   watch: {
