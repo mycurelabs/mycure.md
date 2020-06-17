@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-container#diagnostic-centers.py-12
+  v-container#diagnostic-centers.py-12.diagnostic-centers
     v-row(justify="center" align="center")
       v-col(cols="12" md="5" align-self="center" v-if="$isMobile").tenthPanel-description
         p.font-16.mt-3.font-gray.primary--text {{tenthPanel.subHeader}}
@@ -48,6 +48,10 @@ export default {
 <style scoped>
 a {
   color: gray;
+}
+.diagnostic-centers {
+  position: relative;
+  z-index: 5;
 }
 @media screen and (device-width: 1024px) {
   .tenthPanel-image {
