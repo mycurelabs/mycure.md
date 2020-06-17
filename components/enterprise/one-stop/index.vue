@@ -10,7 +10,20 @@
           strong.text-capitalize.primary--text {{seventhPanel.btnTxt}}
           v-icon.primary--text {{seventhPanel.btnIcon}}
       v-col(cols="12" md="6" justify="center" align="center")
-        img(v-lazy="require(`~/assets/images/enterprise/${seventhPanel.image}`)" width="100%" :alt="seventhPanel.header").seventhPanel-image
+        picture
+          source(
+            :srcset="seventhPanel.image"
+            width="100%"
+            :alt="seventhPanel.header"
+            type="image/webp"
+          )
+          source(
+            :srcset="seventhPanel.imagePng"
+            width="100%"
+            :alt="seventhPanel.header"
+            type="image/png"
+          )
+          img(v-lazy="seventhPanel.image" width="100%" :alt="seventhPanel.header").seventhPanel-image
 </template>
 
 <script>
