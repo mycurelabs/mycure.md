@@ -7,23 +7,13 @@
         p.text-center.font-18.font-gray {{BRING_YOUR_PRACTICE_ONLINE.description}}
     v-row(justify="center" align="center").py-10.mb-n4
       v-col(v-if="!$isMobile" align="center" cols="12" md="6").first-column
-        picture
-          source(
-            srcset="~/assets/images/virtual-clinic-home/webp/MYCURE-virtual-clinic-healthcare-practice-online-homepage-A-telehealth.webp"
-            width="100%"
-            alt="Start your physical and digital clinic journey"
-            type="image/webp"
-          )
-          source(
-            srcset="~/assets/images/virtual-clinic-home/png/MYCURE-virtual-clinic-healthcare-practice-online-homepage-A-telehealth.png"
-            width="100%"
-            alt="Start your physical and digital clinic journey" type="image/png"
-          )
-          img(
-            v-lazy="require('~/assets/images/virtual-clinic-home/webp/MYCURE-virtual-clinic-healthcare-practice-online-homepage-A-telehealth.webp')"
-            width="100%"
-            alt="Start your physical and digital clinic journey"
-          ).pr-12
+        picture-source(
+          customPath="virtual-clinic-home/"
+          :image="HOME_START_YOUR_PHYSICAL.image"
+          imageAlt="Start your physical and digital journey"
+          imageFileExtension=".webp"
+          :imageClasses="['pr-12']"
+        )
       v-col(align-self="center" cols="12" md="6" lg="4").second-column
         h1.font-30.lh-title.pb-3.font-weight-light {{HOME_START_YOUR_PHYSICAL.header}}
         br
@@ -33,23 +23,13 @@
         v-btn(text @click="onGetStarted").ml-n4
           strong.text-capitalize.primary--text.font-18 {{HOME_START_YOUR_PHYSICAL.btnTxt}}
           v-icon.primary--text {{HOME_START_YOUR_PHYSICAL.btnIcon}}
-      picture(v-if="$isMobile")
-        source(
-          srcset="~/assets/images/virtual-clinic-home/webp/MYCURE-virtual-clinic-healthcare-practice-online-homepage-A-telehealth.webp"
-          width="100%"
-          alt="Start your physical and digital clinic journey"
-          type="image/webp"
-        )
-        source(
-          srcset="~/assets/images/virtual-clinic-home/png/MYCURE-virtual-clinic-healthcare-practice-online-homepage-A-telehealth.png"
-          width="100%"
-          alt="Start your physical and digital clinic journey" type="image/png"
-        )
-        img(
-          v-lazy="require('~/assets/images/virtual-clinic-home/webp/MYCURE-virtual-clinic-healthcare-practice-online-homepage-A-telehealth.webp')"
-          width="100%"
-          alt="Start your physical and digital clinic journey"
-        )
+      picture-source(
+        v-if="$isMobile"
+        customPath="virtual-clinic-home/"
+        :image="HOME_START_YOUR_PHYSICAL.image"
+        imageAlt="Start your physical and digital journey"
+        imageFileExtension=".webp"
+      )
     v-row(justify="center" align="center").py-10.mb-n4
       v-col(cols="12" md="6" lg="4").first-column.img-online-clinic
         h1.font-30.font-weight-light {{YOUR_ONLINE_CLINIC.header}}
@@ -61,54 +41,21 @@
           strong.text-capitalize.primary--text.font-18 {{YOUR_ONLINE_CLINIC.btnTxt}}
           v-icon.primary--text {{YOUR_ONLINE_CLINIC.btnIcon}}
       v-col(justify="center" align="center" cols="12" md="5").second-column
-        picture(v-if="!isMobile")
-          source(
-            srcset="~/assets/images/virtual-clinic-home/webp/MYCURE-virtual-clinic-healthcare-practice-online-homepage-B-appointment.webp"
-            width="100%"
-            alt="Your online clinic everywhere"
-            type="image/webp"
-          )
-          source(
-            srcset="~/assets/images/virtual-clinic-home/png/MYCURE-virtual-clinic-healthcare-practice-online-homepage-B-appointment.png"
-            width="100%"
-            alt="Your online clinic everywhere"
-            type="image/png"
-          )
-          img(v-lazy="require('~/assets/images/virtual-clinic-home/webp/MYCURE-virtual-clinic-healthcare-practice-online-homepage-B-appointment.webp')" width="100%" alt="Your online clinic everywhere").pl-12
-        picture(v-if="isMobile")
-          source(
-            srcset="~/assets/images/virtual-clinic-home/webp/MYCURE-virtual-clinic-healthcare-practice-online-homepage-B-appointment.webp"
-            width="100%"
-            alt="Your online clinic everywhere"
-            type="image/webp"
-          )
-          source(
-            srcset="~/assets/images/virtual-clinic-home/png/MYCURE-virtual-clinic-healthcare-practice-online-homepage-B-appointment.png"
-            width="100%"
-            alt="Your online clinic everywhere"
-            type="image/png"
-          )
-          img(v-lazy="require('~/assets/images/virtual-clinic-home/webp/MYCURE-virtual-clinic-healthcare-practice-online-homepage-B-appointment.webp')" width="100%" alt="Your online clinic everywhere")
+        picture-source(
+          customPath="virtual-clinic-home/"
+          :image="YOUR_ONLINE_CLINIC.image"
+          imageAlt="Your online clinic everywhere"
+          imageFileExtension=".webp"
+        )
     v-row(justify="center" align="center").py-10.mb-n4
       v-col(v-if="!$isMobile" align="center" cols="12" md="6").first-column
-        picture
-          source(
-            srcset="~/assets/images/virtual-clinic-home/webp/MYCURE-virtual-clinic-healthcare-practice-online-homepage-C-doctor-website.webp"
-            width="100%"
-            alt="Get more patients"
-            type="image/webp"
-          )
-          source(
-            srcset="~/assets/images/virtual-clinic-home/png/MYCURE-virtual-clinic-healthcare-practice-online-homepage-C-doctor-website.png"
-            width="100%"
-            alt="Get more patients"
-            type="image/png"
-          )
-          img(
-            v-lazy="require('~/assets/images/virtual-clinic-home/webp/MYCURE-virtual-clinic-healthcare-practice-online-homepage-C-doctor-website.webp')"
-            width="100%"
-            alt="Get more patients"
-          ).pr-12
+        picture-source(
+          customPath="virtual-clinic-home/"
+          :image="GET_MORE_PATIENTS.image"
+          imageAlt="Get more patients"
+          imageFileExtension=".webp"
+          :imageClasses="['pr-12']"
+        )
       v-col(align="center" cols="12" md="6" lg="4").text-left.second-column
         h1.font-30.font-weight-light {{GET_MORE_PATIENTS.header}}
         br
@@ -118,24 +65,13 @@
         v-btn(@click="onGetStarted" text).ml-n4
           strong.text-capitalize.primary--text.font-18 {{GET_MORE_PATIENTS.btnTxt}}
           v-icon.primary--text {{GET_MORE_PATIENTS.btnIcon}}
-      picture(v-if="$isMobile")
-          source(
-            srcset="~/assets/images/virtual-clinic-home/webp/MYCURE-virtual-clinic-healthcare-practice-online-homepage-C-doctor-website.webp"
-            width="100%"
-            alt="Get more patients"
-            type="image/webp"
-          )
-          source(
-            srcset="~/assets/images/virtual-clinic-home/png/MYCURE-virtual-clinic-healthcare-practice-online-homepage-C-doctor-website.png"
-            width="100%"
-            alt="Get more patients"
-            type="image/png"
-          )
-          img(
-            v-lazy="require('~/assets/images/virtual-clinic-home/webp/MYCURE-virtual-clinic-healthcare-practice-online-homepage-C-doctor-website.webp')"
-            alt="Get more patients"
-            width="100%"
-          )
+      picture-source(
+        v-if="$isMobile"
+        customPath="virtual-clinic-home/"
+        :image="GET_MORE_PATIENTS.image"
+        imageAlt="Get more patients"
+        imageFileExtension=".webp"
+      )
     v-row(justify="center" align="center").py-10.mb-n4
       v-col(cols="12" md="6" lg="4").first-column
         h1.font-30.font-weight-light {{MANAGE_EVERYTHING_EASILY.header}}
@@ -146,38 +82,17 @@
         v-btn(@click="onGetStarted" text).ml-n4
           strong.text-capitalize.primary--text.font-18 {{MANAGE_EVERYTHING_EASILY.btnTxt}}
           v-icon.primary--text {{MANAGE_EVERYTHING_EASILY.btnIcon}}
-      v-col(align="center" cols="12" md="5" v-if="!$isMobile").second-column.img-manage-easily
-        picture
-          source(
-            srcset="~/assets/images/virtual-clinic-home/webp/MYCURE-virtual-clinic-healthcare-practice-online-homepage-D-billing-encounter-summary.webp"
-            width="110%"
-            alt="Manage everything easily"
-            type="image/webp"
-          )
-          source(
-            srcset="~/assets/images/virtual-clinic-home/png/MYCURE-virtual-clinic-healthcare-practice-online-homepage-D-billing-encounter-summary.png"
-            width="110%"
-            alt="Manage everything easily"
-            type="image/png"
-          )
-          img(v-lazy="require('~/assets/images/virtual-clinic-home/webp/MYCURE-virtual-clinic-healthcare-practice-online-homepage-D-billing-encounter-summary.webp')" alt="Manage everything easily" width="110%")
-      picture(v-if="$isMobile")
-        source(
-          srcset="~/assets/images/virtual-clinic-home/webp/MYCURE-virtual-clinic-healthcare-practice-online-homepage-D-billing-encounter-summary.webp"
-          width="100%"
-          alt="Manage everything easily"
-          type="image/webp"
+      v-col(align="center" cols="12" md="5").second-column.img-manage-easily
+        picture-source(
+          customPath="virtual-clinic-home/"
+          :image="MANAGE_EVERYTHING_EASILY.image"
+          imageAlt="Manage everything easily"
+          imageFileExtension=".webp"
         )
-        source(
-          srcset="~/assets/images/virtual-clinic-home/png/MYCURE-virtual-clinic-healthcare-practice-online-homepage-D-billing-encounter-summary.png"
-          width="100%"
-          alt="Manage everything easily"
-          type="image/png"
-        )
-        img(v-lazy="require('~/assets/images/virtual-clinic-home/webp/MYCURE-virtual-clinic-healthcare-practice-online-homepage-D-billing-encounter-summary.webp')" alt="Manage everything easily" width="100%")
 </template>
 
 <script>
+// constants
 import {
   BRING_YOUR_PRACTICE_ONLINE,
   HOME_START_YOUR_PHYSICAL,
@@ -185,7 +100,13 @@ import {
   GET_MORE_PATIENTS,
   MANAGE_EVERYTHING_EASILY,
 } from './home-content';
+// components
+import PictureSource from '~/components/commons/PictureSource';
+
 export default {
+  components: {
+    PictureSource,
+  },
   data () {
     this.HOME_START_YOUR_PHYSICAL = HOME_START_YOUR_PHYSICAL;
     this.YOUR_ONLINE_CLINIC = YOUR_ONLINE_CLINIC;
