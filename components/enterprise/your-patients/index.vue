@@ -15,36 +15,30 @@
         :class="columnClasses"
       )
         div(v-if="!$isMobile").text-center.img-container
-          picture
-            source(
-              :srcset="data.image"
-              :alt="data.header"
-              type="image/webp"
-            )
-            source(
-              :srcset="data.imagePng"
-              :alt="data.header"
-              type="image/png"
-            )
-            img(v-lazy="data.image" :alt="data.header")
+          picture-source(
+            customPath="enterprise/"
+            :image="data.image"
+            :imageAlt="data.header"
+            imageFileExtension=".webp"
+            imageWidth="70%"
+          )
         h1(:class="headerClasses").lh-title.pb-3.font-weight-bold {{data.header}}
-        picture(v-if="$isMobile")
-          source(
-            :srcset="data.image"
-            :alt="data.header"
-            type="image/webp"
-          )
-          source(
-            :srcset="data.imagePng"
-            :alt="data.header"
-            type="image/png"
-          )
-          img(v-lazy="data.image" width="100%" :alt="data.header")
+        picture-source(
+          v-if="$isMobile"
+          customPath="enterprise/"
+          :image="data.image"
+          :imageAlt="data.header"
+          imageFileExtension=".webp"
+        )
 </template>
 
 <script>
+// constants
 import { SECOND_PANEL_HEADER, SECOND_PANEL_CONTENTS } from '../enterprise-contents';
+// components
+import PictureSource from '~/components/commons/PictureSource';
 export default {
+  components: { PictureSource },
   data () {
     this.secondPanelHeader = SECOND_PANEL_HEADER;
     this.secondPanelContents = SECOND_PANEL_CONTENTS;
