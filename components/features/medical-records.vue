@@ -20,17 +20,43 @@
       v-container(v-if="!$isMobile").py-10.mb-n3
         v-row
           v-col(cols="12" md="6")
-            img(
-              v-lazy="panelImages.leftBottomImage"
-              alt="Print prescription"
-              width="100%"
-            )
+            picture
+              source(
+                :srcset="panelImages.leftBottomImage"
+                alt="Print prescription"
+                width="100%"
+                type="image/webp"
+              )
+              source(
+                :srcset="panelImages.leftBottomImagePng"
+                alt="Print prescription"
+                width="100%"
+                type="image/png"
+              )
+              img(
+                v-lazy="panelImages.leftBottomImage"
+                alt="Print prescription"
+                width="100%"
+              )
           v-col(cols="12" md="6")
-            img(
-              v-lazy="panelImages.rightBottomImage"
-              alt="Charting"
-              width="100%"
-            )
+            picture
+              source(
+                :srcset="panelImages.rightBottomImage"
+                alt="Charting"
+                width="100%"
+                type="image/webp"
+              )
+              source(
+                :srcset="panelImages.rightBottomImagePng"
+                alt="Charting"
+                width="100%"
+                type="image/png"
+              )
+              img(
+                v-lazy="panelImages.rightBottomImage"
+                alt="Charting"
+                width="100%"
+              )
       v-container(v-else)
         v-row(justify="center")
           carousel(
@@ -63,8 +89,11 @@ export default {
     ];
     this.panelImages = {
       mediaImage: 'MYCURE-virtual-clinic-healthcare-practice-online-features-B-01-emr.webp',
+      mediaImagePng: 'MYCURE-virtual-clinic-healthcare-practice-online-features-B-01-emr-web.png',
       leftBottomImage: require('~/assets/images/features/webp/MYCURE-virtual-clinic-healthcare-practice-online-features-B-02-print-prescription.webp'),
+      leftBottomImagePng: require('~/assets/images/features/MYCURE-virtual-clinic-healthcare-practice-online-features-B-02-print-prescription-web.png'),
       rightBottomImage: require('~/assets/images/features/webp/MYCURE-virtual-clinic-healthcare-practice-online-features-B-03-charting.webp'),
+      rightBottomImagePng: require('~/assets/images/features/MYCURE-virtual-clinic-healthcare-practice-online-features-B-03-charting-web.png'),
     };
     this.mobilePanelImages = {
       mediaImage: 'MYCURE-virtual-clinic-healthcare-practice-online-features-B-01-emr.png',
