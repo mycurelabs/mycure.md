@@ -9,6 +9,8 @@
     :web-image="image"
     :mobile-image="mobileImage"
     mobile-image-width="90%"
+    mobile-file-extension=".png"
+    :extension-exclusive="$isMobile"
   ).mt-n2.mb-n4
 </template>
 
@@ -21,8 +23,8 @@ export default {
   },
   data () {
     // this.image = 'webp/MYCURE-virtual-clinic-healthcare-practice-online-features-D-analytics.webp';
-    this.image = 'webp/MYCURE-virtual-clinic-healthcare-practice-online-features-D-analytics';
-    this.mobileImage = 'MYCURE-virtual-clinic-healthcare-practice-online-features-D-analytics-mobile.png';
+    this.image = 'MYCURE-virtual-clinic-healthcare-practice-online-features-D-analytics';
+    this.mobileImage = 'MYCURE-virtual-clinic-healthcare-practice-online-features-D-analytics-mobile';
     this.header = 'Never miss out on important business decisions.';
     this.descriptions = [
       'Measure your day-to-day clinic performance analyzing comprehensive graphs based on your KPIs. Census, billing, diagnostics, sales, and physical exam reports can be generated instantly.',

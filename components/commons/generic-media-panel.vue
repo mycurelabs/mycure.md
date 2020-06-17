@@ -246,7 +246,7 @@ export default {
      */
     mobileFileExtension: {
       type: String,
-      default: '.webp',
+      default: null,
     },
   },
 };
