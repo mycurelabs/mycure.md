@@ -18,7 +18,7 @@
             type="image/png"
           )
           img(
-          v-lazy="require('~/assets/images/doctors-clinics/MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-A-online-consult.webp')"
+            v-lazy="require('~/assets/images/doctors-clinics/MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-A-online-consult.webp')"
             width="100%"
             alt="Medical records"
           ).pt-12
