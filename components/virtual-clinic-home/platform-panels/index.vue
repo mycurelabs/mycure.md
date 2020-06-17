@@ -36,20 +36,20 @@
       picture(v-if="$isMobile")
         source(
           srcset="~/assets/images/virtual-clinic-home/webp/MYCURE-virtual-clinic-healthcare-practice-online-homepage-A-telehealth.webp"
-          width="95%"
+          width="100%"
           alt="Start your physical and digital clinic journey"
           type="image/webp"
         )
         source(
           srcset="~/assets/images/virtual-clinic-home/png/MYCURE-virtual-clinic-healthcare-practice-online-homepage-A-telehealth.png"
-          width="95%"
+          width="100%"
           alt="Start your physical and digital clinic journey" type="image/png"
         )
         img(
           v-lazy="require('~/assets/images/virtual-clinic-home/webp/MYCURE-virtual-clinic-healthcare-practice-online-homepage-A-telehealth.webp')"
-          width="95%"
+          width="100%"
           alt="Start your physical and digital clinic journey"
-        ).pr-12
+        )
     v-row(justify="center" align="center").py-10.mb-n4
       v-col(cols="12" md="6" lg="4").first-column.img-online-clinic
         h1.font-30.font-weight-light {{YOUR_ONLINE_CLINIC.header}}
@@ -61,7 +61,7 @@
           strong.text-capitalize.primary--text.font-18 {{YOUR_ONLINE_CLINIC.btnTxt}}
           v-icon.primary--text {{YOUR_ONLINE_CLINIC.btnIcon}}
       v-col(justify="center" align="center" cols="12" md="5").second-column
-        picture
+        picture(v-if="!isMobile")
           source(
             srcset="~/assets/images/virtual-clinic-home/webp/MYCURE-virtual-clinic-healthcare-practice-online-homepage-B-appointment.webp"
             width="100%"
@@ -75,6 +75,20 @@
             type="image/png"
           )
           img(v-lazy="require('~/assets/images/virtual-clinic-home/webp/MYCURE-virtual-clinic-healthcare-practice-online-homepage-B-appointment.webp')" width="100%" alt="Your online clinic everywhere").pl-12
+        picture(v-if="isMobile")
+          source(
+            srcset="~/assets/images/virtual-clinic-home/webp/MYCURE-virtual-clinic-healthcare-practice-online-homepage-B-appointment.webp"
+            width="100%"
+            alt="Your online clinic everywhere"
+            type="image/webp"
+          )
+          source(
+            srcset="~/assets/images/virtual-clinic-home/png/MYCURE-virtual-clinic-healthcare-practice-online-homepage-B-appointment.png"
+            width="100%"
+            alt="Your online clinic everywhere"
+            type="image/png"
+          )
+          img(v-lazy="require('~/assets/images/virtual-clinic-home/webp/MYCURE-virtual-clinic-healthcare-practice-online-homepage-B-appointment.webp')" width="100%" alt="Your online clinic everywhere")
     v-row(justify="center" align="center").py-10.mb-n4
       v-col(v-if="!$isMobile" align="center" cols="12" md="6").first-column
         picture
@@ -107,21 +121,21 @@
       picture(v-if="$isMobile")
           source(
             srcset="~/assets/images/virtual-clinic-home/webp/MYCURE-virtual-clinic-healthcare-practice-online-homepage-C-doctor-website.webp"
-            width="95%"
+            width="100%"
             alt="Get more patients"
             type="image/webp"
           )
           source(
             srcset="~/assets/images/virtual-clinic-home/png/MYCURE-virtual-clinic-healthcare-practice-online-homepage-C-doctor-website.png"
-            width="95%"
+            width="100%"
             alt="Get more patients"
             type="image/png"
           )
           img(
             v-lazy="require('~/assets/images/virtual-clinic-home/webp/MYCURE-virtual-clinic-healthcare-practice-online-homepage-C-doctor-website.webp')"
             alt="Get more patients"
-            width="95%"
-          ).pr-n12
+            width="100%"
+          )
     v-row(justify="center" align="center").py-10.mb-n4
       v-col(cols="12" md="6" lg="4").first-column
         h1.font-30.font-weight-light {{MANAGE_EVERYTHING_EASILY.header}}
