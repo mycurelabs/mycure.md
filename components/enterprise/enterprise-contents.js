@@ -88,7 +88,8 @@ export const EIGHT_PANEL = {
 export const NINTH_PANEL = {
   subHeader: 'FOR MEDICAL ARTS CENTER',
   header: 'Enriching the heart of hospitals with seamless consultation workflows',
-  image: 'MYCURE-virtual-clinic-healthcare-practice-online-enterprise-H-medical-arts-center.webp',
+  image: require('~/assets/images/enterprise/MYCURE-virtual-clinic-healthcare-practice-online-enterprise-H-medical-arts-center.webp'),
+  imagePng: require('~/assets/images/enterprise/MYCURE-virtual-clinic-healthcare-practice-online-enterprise-H-medical-arts-center.png'),
   description: 'Whether doing or online face-to-face consults, engage your healthcare specialists and their secretaries by giving them more convenient way to connect with their patients.',
   descriptionLink: ' See Features',
   btnTxt: 'Book A Demo',
