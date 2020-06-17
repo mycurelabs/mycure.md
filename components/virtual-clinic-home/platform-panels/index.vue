@@ -77,11 +77,24 @@
           img(v-lazy="require('~/assets/images/virtual-clinic-home/webp/MYCURE-virtual-clinic-healthcare-practice-online-homepage-B-appointment.webp')" width="90%" alt="Your online clinic everywhere").pl-12
     v-row(justify="center" align="center").py-10.mb-n4
       v-col(v-if="!$isMobile" align="center" cols="12" md="6").first-column
-        img(
-          v-lazy="require('~/assets/images/virtual-clinic-home/webp/MYCURE-virtual-clinic-healthcare-practice-online-homepage-C-doctor-website.webp')"
-          width="100%"
-          alt="Get more patients"
-        ).pr-12
+        picture
+          source(
+            srcset="~/assets/images/virtual-clinic-home/webp/MYCURE-virtual-clinic-healthcare-practice-online-homepage-C-doctor-website.webp"
+            width="100%"
+            alt="Get more patients"
+            type="image/webp"
+          )
+          source(
+            srcset="~/assets/images/virtual-clinic-home/png/MYCURE-virtual-clinic-healthcare-practice-online-homepage-C-doctor-website.png"
+            width="100%"
+            alt="Get more patients"
+            type="image/png"
+          )
+          img(
+            v-lazy="require('~/assets/images/virtual-clinic-home/webp/MYCURE-virtual-clinic-healthcare-practice-online-homepage-C-doctor-website.webp')"
+            width="100%"
+            alt="Get more patients"
+          ).pr-12
       v-col(align="center" cols="12" md="6" lg="4").text-left.second-column
         h1.font-30.font-weight-light {{GET_MORE_PATIENTS.header}}
         br
@@ -91,12 +104,24 @@
         v-btn(@click="onGetStarted" text).ml-n4
           strong.text-capitalize.primary--text.font-18 {{GET_MORE_PATIENTS.btnTxt}}
           v-icon.primary--text {{GET_MORE_PATIENTS.btnIcon}}
-      img(
-        v-if="$isMobile"
-        v-lazy="require('~/assets/images/virtual-clinic-home/webp/MYCURE-virtual-clinic-healthcare-practice-online-homepage-C-doctor-website.webp')"
-        alt="Get more patients"
-        width="95%"
-      ).pr-n12
+      picture(v-if="$isMobile")
+          source(
+            srcset="~/assets/images/virtual-clinic-home/webp/MYCURE-virtual-clinic-healthcare-practice-online-homepage-C-doctor-website.webp"
+            width="95%"
+            alt="Get more patients"
+            type="image/webp"
+          )
+          source(
+            srcset="~/assets/images/virtual-clinic-home/png/MYCURE-virtual-clinic-healthcare-practice-online-homepage-C-doctor-website.png"
+            width="95%"
+            alt="Get more patients"
+            type="image/png"
+          )
+          img(
+            v-lazy="require('~/assets/images/virtual-clinic-home/webp/MYCURE-virtual-clinic-healthcare-practice-online-homepage-C-doctor-website.webp')"
+            alt="Get more patients"
+            width="95%"
+          ).pr-n12
     v-row(justify="center" align="center").py-10.mb-n4
       v-col(cols="12" md="6" lg="4").first-column
         h1.font-30.font-weight-light {{MANAGE_EVERYTHING_EASILY.header}}
