@@ -11,6 +11,7 @@
       :width="imageWidth"
       :alt="imageAlt"
       :class="imageClasses"
+      :style="imageStyles"
     )
 </template>
 
@@ -52,6 +53,14 @@ export default {
     image: {
       type: String,
       required: true,
+    },
+    /**
+     * Image css styles
+     * @type {Object}
+     */
+    imageStyles: {
+      type: Object,
+      default: () => ({}),
     },
     /**
      * Width of image
