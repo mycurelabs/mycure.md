@@ -21,13 +21,13 @@
     registration-and-queuing
     v-divider.edge-divider
     //- 8th panel
-    //- laboratory-and-imaging
+    laboratory-and-imaging
     v-divider.edge-divider
     //- 9th panel
-    //- inventory
+    inventory
     v-divider.edge-divider
     //- 10th panel
-    //- syncbase
+    syncbase
     v-divider.edge-divider
     //- 11th panel
     modules
@@ -46,9 +46,9 @@ import VirtualPractice from '~/components/features/virtual-practice';
 import Reports from '~/components/features/reports';
 import Billing from '~/components/features/billing';
 import RegistrationAndQueuing from '~/components/features/registration-and-queuing';
-// import LaboratoryAndImaging from '~/components/features/laboratory-and-imaging';
-// import Inventory from '~/components/features/inventory';
-// import Syncbase from '~/components/features/syncbase';
+import LaboratoryAndImaging from '~/components/features/laboratory-and-imaging';
+import Inventory from '~/components/features/inventory';
+import Syncbase from '~/components/features/syncbase';
 import Modules from '~/components/features/modules';
 import FeaturesCta from '~/components/features/cta';
 // - utils
@@ -63,9 +63,9 @@ export default {
     Reports,
     Billing,
     RegistrationAndQueuing,
-    // LaboratoryAndImaging,
-    // Inventory,
-    // Syncbase,
+    LaboratoryAndImaging,
+    Inventory,
+    Syncbase,
     Modules,
     FeaturesCta,
   },

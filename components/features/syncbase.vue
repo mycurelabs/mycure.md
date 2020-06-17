@@ -3,12 +3,13 @@
     content-align-right
     cols-left="4"
     cols-right="4"
-    custom-image-path="features/webp/"
+    custom-image-path="features/"
     :header="header"
     :descriptions="descriptions"
     :web-image="image"
     web-image-width="70%"
     mobile-image-width="90%"
+    extension-exclusive
   ).mb-n10
 </template>
 
@@ -20,7 +21,6 @@ export default {
     GenericMediaPanel,
   },
   data () {
-    // this.image = 'MYCURE-virtual-clinic-healthcare-practice-online-features-I-syncbase.webp';
     this.image = 'MYCURE-virtual-clinic-healthcare-practice-online-features-I-syncbase';
     this.header = 'Go offline safely and securely';
     this.descriptions = [
