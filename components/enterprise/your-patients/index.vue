@@ -15,14 +15,31 @@
         :class="columnClasses"
       )
         div(v-if="!$isMobile").text-center.img-container
-          img(v-lazy="require(`~/assets/images/enterprise/${data.image}`)" :alt="data.header")
+          picture
+            source(
+              :srcset="data.image"
+              :alt="data.header"
+              type="image/webp"
+            )
+            source(
+              :srcset="data.imagePng"
+              :alt="data.header"
+              type="image/png"
+            )
+            img(v-lazy="data.image" :alt="data.header")
         h1(:class="headerClasses").lh-title.pb-3.font-weight-bold {{data.header}}
-        img(
-          v-if="$isMobile"
-          v-lazy="require(`~/assets/images/enterprise/${data.image}`)"
-          :alt="data.header"
-          width="100%"
-        )
+        picture(v-if="$isMobile")
+          source(
+            :srcset="data.image"
+            :alt="data.header"
+            type="image/webp"
+          )
+          source(
+            :srcset="data.imagePng"
+            :alt="data.header"
+            type="image/png"
+          )
+          img(v-lazy="data.image" width="100%" :alt="data.header")
 </template>
 
 <script>

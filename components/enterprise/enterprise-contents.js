@@ -4,15 +4,18 @@ export const SECOND_PANEL_HEADER = {
 };
 export const SECOND_PANEL_CONTENTS = [
   {
-    image: 'MYCURE-virtual-clinic-healthcare-practice-online-enterprise-A-queue-system.webp',
+    image: require('~/assets/images/enterprise/MYCURE-virtual-clinic-healthcare-practice-online-enterprise-A-queue-system.webp'),
+    imagePng: require('~/assets/images/enterprise/MYCURE-virtual-clinic-healthcare-practice-online-enterprise-A-queue-system.png'),
     header: 'Automated queueing system',
   },
   {
-    image: 'MYCURE-virtual-clinic-healthcare-practice-online-enterprise-B-kiosk-displays.webp',
+    image: require('~/assets/images/enterprise/MYCURE-virtual-clinic-healthcare-practice-online-enterprise-B-kiosk-displays.webp'),
+    imagePng: require('~/assets/images/enterprise/MYCURE-virtual-clinic-healthcare-practice-online-enterprise-B-kiosk-displays.png'),
     header: 'Customizable patient kiosk displays',
   },
   {
-    image: 'MYCURE-virtual-clinic-healthcare-practice-online-enterprise-B2-group-practice.webp',
+    image: require('~/assets/images/enterprise/MYCURE-virtual-clinic-healthcare-practice-online-enterprise-B2-group-practice.webp'),
+    imagePng: require('~/assets/images/enterprise/MYCURE-virtual-clinic-healthcare-practice-online-enterprise-B2-group-practice.png'),
     header: 'Role-based user access',
   },
 ];
