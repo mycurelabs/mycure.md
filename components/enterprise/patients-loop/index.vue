@@ -8,25 +8,22 @@
           strong.text-capitalize.primary--text {{fourthPanel.btnTxt}}
           v-icon.primary--text {{fourthPanel.btnIcon}}
       v-col(cols="12" md="6" justify="center" align="center")
-        picture
-          source(
-            :srcset="fourthPanel.image"
-            :alt="fourthPanel.header"
-            width="100%"
-            type="image/webp"
-          )
-          source(
-            :srcset="fourthPanel.imagePng"
-            :alt="fourthPanel.header"
-            width="100%"
-            type="image/png"
-          )
-          img(v-lazy="fourthPanel.image" width="100%" :alt="fourthPanel.header").fourthPanel-image
+        picture-source(
+          customPath="enterprise/"
+          :image="fourthPanel.image"
+          :imageAlt="fourthPanel.header"
+          imageFileExtension=".webp"
+        ).fourthPanel-image
 </template>
 
 <script>
+// constants
 import { FOURTH_PANEL } from '../enterprise-contents';
+// components
+import PictureSource from '~/components/commons/PictureSource';
+
 export default {
+  components: { PictureSource },
   data () {
     this.fourthPanel = FOURTH_PANEL;
     return {};
