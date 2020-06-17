@@ -9,13 +9,13 @@
       v-col(v-if="!$isMobile" align="center" cols="12" md="6").first-column
         picture
           source(
-            v-lazy="require('~/assets/images/virtual-clinic-home/webp/MYCURE-virtual-clinic-healthcare-practice-online-homepage-A-telehealth.webp')"
+            srcset="~/assets/images/virtual-clinic-home/webp/MYCURE-virtual-clinic-healthcare-practice-online-homepage-A-telehealth.webp"
             width="100%"
             alt="Start your physical and digital clinic journey"
             type="image/webp"
           )
           source(
-            v-lazy="require('~/assets/images/virtual-clinic-home/png/MYCURE-virtual-clinic-healthcare-practice-online-homepage-A-telehealth.png')"
+            srcset="~/assets/images/virtual-clinic-home/png/MYCURE-virtual-clinic-healthcare-practice-online-homepage-A-telehealth.png"
             width="100%"
             alt="Start your physical and digital clinic journey" type="image/png"
           )
@@ -33,15 +33,15 @@
         v-btn(text @click="onGetStarted").ml-n4
           strong.text-capitalize.primary--text.font-18 {{HOME_START_YOUR_PHYSICAL.btnTxt}}
           v-icon.primary--text {{HOME_START_YOUR_PHYSICAL.btnIcon}}
-      picture
+      picture(v-if="$isMobile")
         source(
-          v-lazy="require('~/assets/images/virtual-clinic-home/webp/MYCURE-virtual-clinic-healthcare-practice-online-homepage-A-telehealth.webp')"
+          srcset="~/assets/images/virtual-clinic-home/webp/MYCURE-virtual-clinic-healthcare-practice-online-homepage-A-telehealth.webp"
           width="95%"
           alt="Start your physical and digital clinic journey"
           type="image/webp"
         )
         source(
-          v-lazy="require('~/assets/images/virtual-clinic-home/png/MYCURE-virtual-clinic-healthcare-practice-online-homepage-A-telehealth.png')"
+          srcset="~/assets/images/virtual-clinic-home/png/MYCURE-virtual-clinic-healthcare-practice-online-homepage-A-telehealth.png"
           width="95%"
           alt="Start your physical and digital clinic journey" type="image/png"
         )
