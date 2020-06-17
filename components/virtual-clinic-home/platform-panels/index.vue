@@ -33,12 +33,23 @@
         v-btn(text @click="onGetStarted").ml-n4
           strong.text-capitalize.primary--text.font-18 {{HOME_START_YOUR_PHYSICAL.btnTxt}}
           v-icon.primary--text {{HOME_START_YOUR_PHYSICAL.btnIcon}}
-      img(
-        v-if="$isMobile"
-        v-lazy="require('~/assets/images/virtual-clinic-home/webp/MYCURE-virtual-clinic-healthcare-practice-online-homepage-A-telehealth.webp')"
-        width="95%"
-        alt="Start your physical and digital clinic journey"
-      )
+      picture
+        source(
+          v-lazy="require('~/assets/images/virtual-clinic-home/webp/MYCURE-virtual-clinic-healthcare-practice-online-homepage-A-telehealth.webp')"
+          width="95%"
+          alt="Start your physical and digital clinic journey"
+          type="image/webp"
+        )
+        source(
+          v-lazy="require('~/assets/images/virtual-clinic-home/png/MYCURE-virtual-clinic-healthcare-practice-online-homepage-A-telehealth.png')"
+          width="95%"
+          alt="Start your physical and digital clinic journey" type="image/png"
+        )
+        img(
+          v-lazy="require('~/assets/images/virtual-clinic-home/webp/MYCURE-virtual-clinic-healthcare-practice-online-homepage-A-telehealth.webp')"
+          width="95%"
+          alt="Start your physical and digital clinic journey"
+        ).pr-12
     v-row(justify="center" align="center").py-10.mb-n4
       v-col(cols="12" md="6" lg="4").first-column.img-online-clinic
         h1.font-30.font-weight-light {{YOUR_ONLINE_CLINIC.header}}
