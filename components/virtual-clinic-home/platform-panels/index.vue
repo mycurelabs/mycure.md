@@ -60,21 +60,21 @@
         v-btn(@click="onGetStarted" text).ml-n4
           strong.text-capitalize.primary--text.font-18 {{YOUR_ONLINE_CLINIC.btnTxt}}
           v-icon.primary--text {{YOUR_ONLINE_CLINIC.btnIcon}}
-      v-col(justify="end" align="center" cols="12" md="5" v-if="!$isMobile").second-column
+      v-col(justify="center" align="center" cols="12" md="5").second-column
         picture
           source(
             srcset="~/assets/images/virtual-clinic-home/webp/MYCURE-virtual-clinic-healthcare-practice-online-homepage-B-appointment.webp"
-            width="90%"
+            width="100%"
             alt="Your online clinic everywhere"
             type="image/webp"
           )
           source(
             srcset="~/assets/images/virtual-clinic-home/png/MYCURE-virtual-clinic-healthcare-practice-online-homepage-B-appointment.png"
-            width="90%"
+            width="100%"
             alt="Your online clinic everywhere"
             type="image/png"
           )
-          img(v-lazy="require('~/assets/images/virtual-clinic-home/webp/MYCURE-virtual-clinic-healthcare-practice-online-homepage-B-appointment.webp')" width="90%" alt="Your online clinic everywhere").pl-12
+          img(v-lazy="require('~/assets/images/virtual-clinic-home/webp/MYCURE-virtual-clinic-healthcare-practice-online-homepage-B-appointment.webp')" width="100%" alt="Your online clinic everywhere").pl-12
     v-row(justify="center" align="center").py-10.mb-n4
       v-col(v-if="!$isMobile" align="center" cols="12" md="6").first-column
         picture
@@ -133,8 +133,34 @@
           strong.text-capitalize.primary--text.font-18 {{MANAGE_EVERYTHING_EASILY.btnTxt}}
           v-icon.primary--text {{MANAGE_EVERYTHING_EASILY.btnIcon}}
       v-col(align="center" cols="12" md="5" v-if="!$isMobile").second-column.img-manage-easily
-        img(v-lazy="require('~/assets/images/virtual-clinic-home/webp/MYCURE-virtual-clinic-healthcare-practice-online-homepage-D-billing-encounter-summary.webp')" alt="Manage everything easily" width="110%")
-      img(v-lazy="require('~/assets/images/virtual-clinic-home/webp/MYCURE-virtual-clinic-healthcare-practice-online-homepage-D-billing-encounter-summary.webp')" alt="Manage everything easily" width="100%" v-if="$isMobile")
+        picture
+          source(
+            srcset="~/assets/images/virtual-clinic-home/webp/MYCURE-virtual-clinic-healthcare-practice-online-homepage-D-billing-encounter-summary.webp"
+            width="110%"
+            alt="Manage everything easily"
+            type="image/webp"
+          )
+          source(
+            srcset="~/assets/images/virtual-clinic-home/png/MYCURE-virtual-clinic-healthcare-practice-online-homepage-D-billing-encounter-summary.png"
+            width="110%"
+            alt="Manage everything easily"
+            type="image/png"
+          )
+          img(v-lazy="require('~/assets/images/virtual-clinic-home/webp/MYCURE-virtual-clinic-healthcare-practice-online-homepage-D-billing-encounter-summary.webp')" alt="Manage everything easily" width="110%")
+      picture(v-if="$isMobile")
+        source(
+          srcset="~/assets/images/virtual-clinic-home/webp/MYCURE-virtual-clinic-healthcare-practice-online-homepage-D-billing-encounter-summary.webp"
+          width="100%"
+          alt="Manage everything easily"
+          type="image/webp"
+        )
+        source(
+          srcset="~/assets/images/virtual-clinic-home/png/MYCURE-virtual-clinic-healthcare-practice-online-homepage-D-billing-encounter-summary.png"
+          width="100%"
+          alt="Manage everything easily"
+          type="image/png"
+        )
+        img(v-lazy="require('~/assets/images/virtual-clinic-home/webp/MYCURE-virtual-clinic-healthcare-practice-online-homepage-D-billing-encounter-summary.webp')" alt="Manage everything easily" width="100%")
 </template>
 
 <script>
