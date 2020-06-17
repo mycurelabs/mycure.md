@@ -2,6 +2,8 @@
   div.white
     generic-background-panel(
       :background-image="backgroundImage"
+      background-image-file-extension=".webp"
+      background-image-file-extension-exclusive
       :background-image-configs="backgroundImageConfigs"
       :background-image-mobile="backgroundImageMobile"
       :background-image-mobile-configs="backgroundImageMobileConfigs"
@@ -52,7 +54,7 @@ export default {
     GenericBackgroundPanel,
   },
   data () {
-    this.backgroundImage = 'mycure-final-cta-background-full.webp';
+    this.backgroundImage = 'mycure-final-cta-background-full';
     this.backgroundImageMobile = 'mycure-final-cta-background.webp';
     this.uspTitle = 'Start your modern clinic experience with MYCURE';
     this.uspSubtitle = 'Explore all the tools and services you need to run and grow your clinic online and offline.';

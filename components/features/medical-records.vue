@@ -20,16 +20,20 @@
       v-container(v-if="!$isMobile").py-10.mb-n3
         v-row
           v-col(cols="12" md="6")
-            img(
-              v-lazy="panelImages.leftBottomImage"
-              alt="Print prescription"
-              width="100%"
+            picture-source(
+              :customPath="customPath"
+              :image="panelImages.leftBottomImage"
+              imageFileExtension=".webp"
+              imageAlt="Print prescription"
+              imageWidth="100%"
             )
           v-col(cols="12" md="6")
-            img(
-              v-lazy="panelImages.rightBottomImage"
-              alt="Charting"
-              width="100%"
+            picture-source(
+              :customPath="customPath"
+              :image="panelImages.rightBottomImage"
+              imageFileExtension=".webp"
+              imageAlt="Charting"
+              imageWidth="100%"
             )
       v-container(v-else)
         v-row(justify="center")
@@ -46,15 +50,24 @@
               :data-index="index+1"
             ).pa-1
               v-row(justify="center")
-                img(v-lazy="require(`~/assets/images/features/${image}`)" alt="Medical records" width="90%")
+                picture-source(
+                  :customPath="customPath",
+                  :image="image"
+                  :imageFileExtension="index === 0 ? '.webp' : '.png'"
+                  imageWidth="90%"
+                  imageAlt="Medical records"
+                  extension-exclusive
+                )
 </template>
 
 <script>
 // components
 import GenericMediaPanel from '~/components/commons/generic-media-panel';
+import PictureSource from '~/components/commons/PictureSource';
 export default {
   components: {
     GenericMediaPanel,
+    PictureSource,
   },
   data () {
     this.header = 'Designed for doctors, by doctors.';
@@ -62,16 +75,17 @@ export default {
       'Record full medical history, vitals, and physical exam records according to SOAP charting. Eliminate the haste of scribbling with Rx printing, ICD-10 database, multiple image uploads, and more.',
     ];
     this.panelImages = {
-      mediaImage: 'MYCURE-virtual-clinic-healthcare-practice-online-features-B-01-emr.webp',
-      leftBottomImage: require('~/assets/images/features/webp/MYCURE-virtual-clinic-healthcare-practice-online-features-B-02-print-prescription.webp'),
-      rightBottomImage: require('~/assets/images/features/webp/MYCURE-virtual-clinic-healthcare-practice-online-features-B-03-charting.webp'),
+      // mediaImage: 'MYCURE-virtual-clinic-healthcare-practice-online-features-B-01-emr.webp',
+      mediaImage: 'MYCURE-virtual-clinic-healthcare-practice-online-features-B-01-emr',
+      leftBottomImage: 'MYCURE-virtual-clinic-healthcare-practice-online-features-B-02-print-prescription',
+      rightBottomImage: 'MYCURE-virtual-clinic-healthcare-practice-online-features-B-03-charting',
     };
     this.mobilePanelImages = {
-      mediaImage: 'MYCURE-virtual-clinic-healthcare-practice-online-features-B-01-emr.png',
-      leftBottomImage: 'MYCURE-virtual-clinic-healthcare-practice-online-features-B-02-print-prescription-mobile.png',
-      rightBottomImage: 'MYCURE-virtual-clinic-healthcare-practice-online-features-B-03-charting-mobile.png',
+      mediaImage: 'MYCURE-virtual-clinic-healthcare-practice-online-features-B-01-emr',
+      leftBottomImage: 'MYCURE-virtual-clinic-healthcare-practice-online-features-B-02-print-prescription-mobile',
+      rightBottomImage: 'MYCURE-virtual-clinic-healthcare-practice-online-features-B-03-charting-mobile',
     };
-    this.customPath = 'features/webp/';
+    this.customPath = 'features/';
     return {};
   },
 };

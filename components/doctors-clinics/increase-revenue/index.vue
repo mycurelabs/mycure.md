@@ -3,18 +3,14 @@
     v-row(justify="center")
       v-col(cols="12").text-center
         h1.font-30.lh-title.font-weight-light Your New Virtual Clinic
-      v-col(cols="12" md="10" v-if="!$isMobile")
-        img(
-          v-lazy="require('~/assets/images/doctors-clinics/MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-A-online-consult.webp')"
-          width="100%"
-          alt="Medical records"
-        ).pt-12
-      img(
-        v-if="$isMobile"
-        v-lazy="require('~/assets/images/doctors-clinics/MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-A-online-consult.webp')"
-        width="100%"
-        alt="Medical records"
-      ).pr-2.pl-2.pt-12
+      v-col(cols="12" md="10")
+        picture-source(
+          customPath="doctors-clinics/"
+          :image="panelMainImage"
+          imageAlt="New virtual clinic"
+          imageFileExtension=".webp"
+          :imageClasses="['pt-12']"
+        )
       v-col(
         justify="center"
         cols="12"
@@ -34,11 +30,18 @@
 </template>
 
 <script>
+// constants
 import { SECOND_PANEL_CONTENTS } from '../doctors-clinics-content';
+// components
+import PictureSource from '~/components/commons/PictureSource';
 export default {
+  components: {
+    PictureSource,
+  },
   data () {
     return {
       secondPanelContents: SECOND_PANEL_CONTENTS,
+      panelMainImage: 'MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-A-online-consult',
     };
   },
   methods: {

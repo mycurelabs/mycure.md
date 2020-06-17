@@ -2,6 +2,7 @@
   div
     generic-background-panel(
       :background-image="backgroundImage"
+      background-image-file-extension='.webp'
       :background-image-mobile="backgroundImageMobile"
       :background-image-mobile-configs="backgroundImageMobileConfigs"
       :webContainerStyleConfigs="webContainerStyleConfigs"
@@ -58,7 +59,7 @@ export default {
     GenericBackgroundPanel,
   },
   data () {
-    this.backgroundImage = 'MYCURE-virtual-clinic-healthcare-practice-online-homepage-usp-cover.webp';
+    this.backgroundImage = 'MYCURE-virtual-clinic-healthcare-practice-online-homepage-usp-cover';
     this.backgroundImageMobile = 'MYCURE-virtual-clinic-healthcare-practice-online-homepage-usp-cover-mobile.png';
     this.panelTitleSub = 'For Modern Doctors:';
     this.panelTitleMain = 'Virtual is the new normal.';
