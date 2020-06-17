@@ -45,21 +45,22 @@
         :extensionExclusive="extensionExclusive"
         :image="mobileImage || webImage"
         :imageAlt="header || 'media-image'"
-        :imageFileExtension="fileExtension"
+        :imageFileExtension="mobileFileExtension || fileExtension"
         :imageWidth="mobileImageWidth"
       )
     //- CENTER VIEW
     v-row(v-else justify="center").py-10
       v-col(cols="12" md="10" :class="{'text-center': !$isMobile}")
         h1.font-30.lh-title.pb-3.font-weight-light {{header}}
+        //- Mobile image
         picture-source(
-          v-if="$isMobile"
+          v-if="$isMobile && !hideImageMobile"
           :customPath="customImagePath"
           :extensionExclusive="extensionExclusive"
-          :image="webImage"
+          :image="mobileImage || webImage"
           :imageAlt="header || 'media-image'"
-          :imageFileExtension="fileExtension"
-          :imageWidth="webImageWidth"
+          :imageFileExtension="mobileFileExtension || fileExtension"
+          :imageWidth="mobileImageWidth"
         )
         br
         template(v-if="descriptions.length")
@@ -67,13 +68,13 @@
           br
         slot(name="additional-content")
         picture-source(
-          v-if="!$isMobile && !hideImageMobile"
+          v-if="!$isMobile"
           :customPath="customImagePath"
           :extensionExclusive="extensionExclusive"
-          :image="mobileImage || webImage"
+          :image="webImage"
           :imageAlt="header || 'media-image'"
           :imageFileExtension="fileExtension"
-          :imageWidth="mobileImageWidth"
+          :imageWidth="webImageWidth"
         )
 </template>
 
@@ -235,6 +236,15 @@ export default {
      * @example .webp
      */
     fileExtension: {
+      type: String,
+      default: '.webp',
+    },
+    /**
+     * File extension of the mobile image file
+     * @type {String}
+     * @example .webp
+     */
+    mobileFileExtension: {
       type: String,
       default: '.webp',
     },
