@@ -6,5 +6,5 @@
  * @param {String} customPath - custompath if not in root images folder
  */
 export default (source, image, customPath = '') => {
-  return require(`~/assets/images/${customPath}${image}${source}`)
+  return require(`~/assets/images/${customPath}${image}${source}`);
 };
