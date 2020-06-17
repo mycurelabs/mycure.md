@@ -16,7 +16,7 @@
           :imageAlt="ninthPanel.header"
           imageFileExtension=".webp"
           imageWidth="90%"
-        )
+        ).ninthPanel-image
 </template>
 
 <script>
