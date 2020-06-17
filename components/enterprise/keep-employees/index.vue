@@ -10,7 +10,20 @@
           strong.text-capitalize.primary--text {{eightPanel.btnTxt}}
           v-icon.primary--text {{eightPanel.btnIcon}}
       v-col(cols="12" md="6" justify="center" align="center")
-        img(v-lazy="require(`~/assets/images/enterprise/${eightPanel.image}`)" width="100%" :alt="eightPanel.header").eightPanel-image
+        picture
+          source(
+            :srcset="eightPanel.image"
+            width="100%"
+            :alt="eightPanel.header"
+            type="image/webp"
+          )
+          source(
+            :srcset="eightPanel.imagePng"
+            width="100%"
+            :alt="eightPanel.header"
+            type="image/png"
+          )
+          img(v-lazy="eightPanel.image" width="100%" :alt="eightPanel.header").eightPanel-image
       v-col(cols="12" md="5" align-self="center" v-if="!$isMobile").eightPanel-description
         p.font-16.mt-3.font-gray.primary--text {{eightPanel.subHeader}}
         h1.font-30.lh-title.pb-3.font-weight-light {{eightPanel.header}}
