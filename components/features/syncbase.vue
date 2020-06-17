@@ -9,7 +9,6 @@
     :web-image="image"
     web-image-width="70%"
     mobile-image-width="90%"
-    extension-exclusive
   ).mb-n10
 </template>
 

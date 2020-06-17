@@ -3,7 +3,6 @@
     generic-background-panel(
       :background-image="backgroundImage"
       background-image-file-extension=".webp"
-      background-image-file-extension-exclusive
       :background-image-mobile="backgroundImageMobile"
       :background-image-mobile-configs="backgroundImageMobileConfigs"
       :customPath="customPath"
