@@ -361,4 +361,10 @@ export default {
   background-image: linear-gradient(to left, white 70%, rgba(255, 255, 255, 0) 0%) !important;
   color: white;
 }
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
 </style>
