@@ -119,7 +119,7 @@ a {
 .platform-panels{
   margin-top: 55%;
 }
-@media screen and (max-width: 1037px) {
+@media screen and (max-width: 1000px) {
   .platform-panels{
     margin-top: 5%;
   }
