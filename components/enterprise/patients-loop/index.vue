@@ -8,7 +8,20 @@
           strong.text-capitalize.primary--text {{fourthPanel.btnTxt}}
           v-icon.primary--text {{fourthPanel.btnIcon}}
       v-col(cols="12" md="6" justify="center" align="center")
-        img(v-lazy="require(`~/assets/images/enterprise/${fourthPanel.image}`)" width="100%" :alt="fourthPanel.header").fourthPanel-image
+        picture
+          source(
+            :srcset="fourthPanel.image"
+            :alt="fourthPanel.header"
+            width="100%"
+            type="image/webp"
+          )
+          source(
+            :srcset="fourthPanel.imagePng"
+            :alt="fourthPanel.header"
+            width="100%"
+            type="image/png"
+          )
+          img(v-lazy="fourthPanel.image" width="100%" :alt="fourthPanel.header").fourthPanel-image
 </template>
 
 <script>

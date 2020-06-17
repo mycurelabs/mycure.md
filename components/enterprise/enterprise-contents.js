@@ -27,7 +27,8 @@ export const OUTPATIENT = {
   btnIcon: 'mdi-arrow-right-thick',
 };
 export const FOURTH_PANEL = {
-  image: 'MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-E-patient-portal.webp',
+  image: require('~/assets/images/enterprise/MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-final-E-patient-portal.webp'),
+  imagePng: require('~/assets/images/enterprise/MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-final-E-patient-portal.png'),
   header: 'Keep your patients in the loop',
   description: 'Making sure your patients are informed is easier and faster with an online patient portal. Release diagnostic result right as they\'re finalized and coordinate with your patients easier with online consultations.',
   btnTxt: 'Get Started',
