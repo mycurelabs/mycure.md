@@ -5,7 +5,7 @@
         content-align-left
         cols-left="4"
         cols-right="6"
-        custom-image-path="features/webp/"
+        custom-image-path="features/"
         :header="header"
         :descriptions="descriptions"
         :web-image="image"
