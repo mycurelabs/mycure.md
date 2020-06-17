@@ -2,10 +2,23 @@
   v-container.py-12.quality-healthcare-contents
     v-row(justify="center")
       v-col(align-self="center" cols="12" md="6" v-if="!$isMobile")
-        img(
-          v-lazy="require('~/assets/images/doctors-clinics/MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-final-E-patient-portal.webp')"
-          alt="Access quality healthcare" width="100%"
-        ).web-image
+        picture
+          source(
+            srcset="~/assets/images/doctors-clinics/MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-final-E-patient-portal.webp"
+            alt="Access quality healthcare"
+            width="100%"
+            type="image/webp"
+          )
+          source(
+            srcset="~/assets/images/doctors-clinics/MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-E-patient-portal-final.png"
+            alt="Access quality healthcare"
+            width="100%"
+            type="image/png"
+          )
+          img(
+            v-lazy="require('~/assets/images/doctors-clinics/MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-final-E-patient-portal.webp')"
+            alt="Access quality healthcare" width="100%"
+          ).web-image
       v-col(align-self="center" cols="12" md="5")
         h1(:class="{'pre-white-space': !$isMobile}").font-30.lh-title.pb-3.font-weight-light {{ title }}
         br
@@ -15,12 +28,24 @@
         v-btn(@click="onGetStarted" text).ml-n4.get-started-btn
           strong.text-capitalize.primary--text {{panelContent.btnTxt}}
           v-icon.primary--text {{panelContent.btnIcon}}
-      img(
-        v-if="$isMobile"
-        v-lazy="require('~/assets/images/doctors-clinics/MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-final-E-patient-portal.webp')"
-        alt="Access quality healthcare"
-        width="100%"
-      )
+      picture(v-if="$isMobile")
+        source(
+          srcset="~/assets/images/doctors-clinics/MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-final-E-patient-portal.webp"
+          alt="Access quality healthcare"
+          width="100%"
+          type="image/webp"
+        )
+        source(
+          srcset="~/assets/images/doctors-clinics/MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-E-patient-portal-final.png"
+          alt="Access quality healthcare"
+          width="100%"
+          type="image/png"
+        )
+        img(
+          v-lazy="require('~/assets/images/doctors-clinics/MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-final-E-patient-portal.webp')"
+          alt="Access quality healthcare"
+          width="100%"
+        )
 </template>
 
 <script>
