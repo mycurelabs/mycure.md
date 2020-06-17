@@ -30,8 +30,8 @@
             v-col(cols="12" md="3" align-self="start")
               v-btn(
                 color="accent"
-                large
                 @click="onGetStarted"
+                height="52"
               ).text-none.font-16.cta-btn Get Started
         v-col(
           v-if="$isMobile"
