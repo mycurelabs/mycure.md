@@ -3,7 +3,6 @@
     generic-background-panel(
       :background-image="backgroundImage"
       background-image-file-extension=".webp"
-      background-image-file-extension-exclusive
       :background-image-configs="backgroundImageConfigs"
       :background-image-mobile="backgroundImageMobile"
       :background-image-mobile-configs="backgroundImageMobileConfigs"
@@ -62,25 +61,30 @@
               ).text-none.font-16.cta-btn Get Started
             v-col(cols="10")
               p.mt-3.font-16.grey--text {{ ctaAgreementText }}
-          img(
-            v-lazy="panelImageSrc"
-            alt="Doctors Clinics CTA"
-            width="90%"
-          ).pt-10
+          picture-source(
+            :image="ctaMobileImage"
+            image-file-extension=".webp"
+            image-width="90%"
+            image-alt="Doctors CTA"
+            :image-classes="['pt-10']"
+          )
 </template>
 
 <script>
 // components
 import GenericBackgroundPanel from '~/components/commons/generic-background-panel';
+import PictureSource from '~/components/commons/PictureSource';
 // utils
 import { parseTextWithNewLine } from '~/utils/newline';
 export default {
   components: {
     GenericBackgroundPanel,
+    PictureSource,
   },
   data () {
     this.backgroundImage = 'mycure-final-cta-background-full';
-    this.backgroundImageMobile = 'mycure-final-cta-background.webp';
+    this.backgroundImageMobile = 'mycure-final-cta-background.png';
+    this.ctaMobileImage = 'mycure-final-cta-background-image-right';
     this.ctaTitle = 'Build your virtual clinic today.';
     this.ctaSubtitle = 'For Modern Doctors, Virtual is the new normal.';
     this.ctaAgreementText = 'By entering your email, you agree to receive marketing emails from MYCURE.';
@@ -101,9 +105,6 @@ export default {
       return {
         'background-position': 'bottom',
       };
-    },
-    panelImageSrc () {
-      return require('~/assets/images/mycure-final-cta-background-image-right.webp');
     },
     ctaWebTitle () {
       return parseTextWithNewLine(this.ctaTitle, ['virtual']);
