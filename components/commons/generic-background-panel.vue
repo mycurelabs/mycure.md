@@ -8,7 +8,7 @@
       :imageStyles="backgroundImageConfigs"
       imageAlt="MYCURE Media"
       :imageFileExtension="backgroundImageFileExtension"
-      :extensionExclusive="backgroundImageExtensionExclusive"
+      :extensionExclusive="backgroundImageFileExtensionExclusive"
     ).source-image
     v-container.content
       slot(name="content")
@@ -42,7 +42,7 @@ export default {
      * If background image file extension will be the only source
      * @type {Boolean}
      */
-    backgroundImageExtensionExclusive: {
+    backgroundImageFileExtensionExclusive: {
       type: Boolean,
       required: false,
     },
