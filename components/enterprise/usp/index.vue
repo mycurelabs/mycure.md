@@ -171,6 +171,7 @@ export default {
 }
 @media screen and (device-width: 1024px) {
   .row-content {
+    height: 85vh;
     margin-top: -20%;
   }
   .btn-book {

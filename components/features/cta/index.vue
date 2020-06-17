@@ -30,8 +30,8 @@
             v-col(cols="12" md="3" align-self="start")
               v-btn(
                 color="accent"
-                large
                 @click="onGetStarted"
+                height="52"
               ).text-none.font-16.cta-btn Get Started
         v-col(
           v-if="$isMobile"
@@ -160,14 +160,15 @@ export default {
 @media screen and (device-width: 1024px) and (orientation: portrait) {
   .cta-content {
     position: relative;
-    margin-top: -20%;
+    margin-top: -15%;
     z-index: 1;
   }
   .cta-btn{
     margin-top: 0 !important;
   }
   .row-content {
-    height: 60vh;
+    height: 50vh;
+    margin-bottom: -20%;
   }
 }
 @media screen and (device-width: 1366px) and (orientation: landscape) {
