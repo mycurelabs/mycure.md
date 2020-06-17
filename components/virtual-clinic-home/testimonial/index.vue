@@ -75,6 +75,11 @@ export default {
         position: 'Chief Information Privacy & Security Officer, Henry Ford Health System',
         message: '“What I preach to our executives is that it is not about the data; it is about the people. Behind every line of data and medical record number, there is a person.”',
       },
+      {
+        name: 'Forrester Research',
+        position: '',
+        message: '“The adoption of telemedicine shifted into hyper-drive over the past month (March to April 2020), with virtual health-care interactions on pace to top 1 billion by year’s end.”',
+      },
     ];
     return {
       playCarousel: false,
