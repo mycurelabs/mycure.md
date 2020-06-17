@@ -61,7 +61,20 @@
           strong.text-capitalize.primary--text.font-18 {{YOUR_ONLINE_CLINIC.btnTxt}}
           v-icon.primary--text {{YOUR_ONLINE_CLINIC.btnIcon}}
       v-col(justify="end" align="center" cols="12" md="5" v-if="!$isMobile").second-column
-        img(v-lazy="require('~/assets/images/virtual-clinic-home/webp/MYCURE-virtual-clinic-healthcare-practice-online-homepage-B-appointment.webp')" width="90%" alt="Your online clinic everywhere").pl-12
+        picture
+          source(
+            srcset="~/assets/images/virtual-clinic-home/webp/MYCURE-virtual-clinic-healthcare-practice-online-homepage-B-appointment.webp"
+            width="90%"
+            alt="Your online clinic everywhere"
+            type="image/webp"
+          )
+          source(
+            srcset="~/assets/images/virtual-clinic-home/png/MYCURE-virtual-clinic-healthcare-practice-online-homepage-B-appointment.png"
+            width="90%"
+            alt="Your online clinic everywhere"
+            type="image/png"
+          )
+          img(v-lazy="require('~/assets/images/virtual-clinic-home/webp/MYCURE-virtual-clinic-healthcare-practice-online-homepage-B-appointment.webp')" width="90%" alt="Your online clinic everywhere").pl-12
     v-row(justify="center" align="center").py-10.mb-n4
       v-col(v-if="!$isMobile" align="center" cols="12" md="6").first-column
         img(
