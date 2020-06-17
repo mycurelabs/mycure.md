@@ -8,6 +8,7 @@
     :descriptions="descriptions"
     :web-image="image"
     fileExtension=".png"
+    extension-exclusive
     mobile-image-width="90%"
   ).roles-and-privileges
 </template>

@@ -25,6 +25,7 @@
         picture-source(
           v-if="!$isMobile && contentAlignLeft"
           :customPath="customImagePath"
+          :extensionExclusive="extensionExclusive"
           :image="webImage"
           :imageAlt="header || 'media-image'"
           :imageFileExtension="fileExtension"
@@ -100,14 +101,6 @@ export default {
       default: 'center',
     },
     /**
-     * If passed file extension is the only source to use
-     * @type {Boolean}
-     */
-    extensionExclusive: {
-      type: Boolean,
-      default: false,
-    },
-    /**
      * Panel will have media centered instead of two columns
      * @type {Boolean}
      */
@@ -130,6 +123,14 @@ export default {
     colsRight: {
       type: String,
       default: '6',
+    },
+    /**
+     * If passed file extension is the only source to use
+     * @type {Boolean}
+     */
+    extensionExclusive: {
+      type: Boolean,
+      default: false,
     },
     /**
      * Number of offset-cols of the left column
@@ -237,6 +238,9 @@ export default {
       type: String,
       default: '.webp',
     },
+  },
+  mounted () {
+    console.warn('gen exclusive', this.extensionExclusive);
   },
 };
 </script>
