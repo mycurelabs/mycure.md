@@ -3,18 +3,43 @@
     v-row(justify="center")
       v-col(cols="12").text-center
         h1.font-30.lh-title.font-weight-light Your New Virtual Clinic
-      v-col(cols="12" md="10" v-if="!$isMobile")
-        img(
+      v-col(cols="12" md="10")
+        picture(v-if="!$isMobile")
+          source(
+            srcset="~/assets/images/doctors-clinics/MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-A-online-consult.webp"
+            width="100%"
+            alt="Medical records"
+            type="image/webp"
+          )
+          source(
+            srcset="~/assets/images/doctors-clinics/MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-A-online-consult.png"
+            width="100%"
+            alt="Medical records"
+            type="image/png"
+          )
+          img(
           v-lazy="require('~/assets/images/doctors-clinics/MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-A-online-consult.webp')"
-          width="100%"
-          alt="Medical records"
-        ).pt-12
-      img(
-        v-if="$isMobile"
-        v-lazy="require('~/assets/images/doctors-clinics/MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-A-online-consult.webp')"
-        width="100%"
-        alt="Medical records"
-      ).pr-2.pl-2.pt-12
+            width="100%"
+            alt="Medical records"
+          ).pt-12
+        picture(v-if="$isMobile")
+          source(
+            srcset="~/assets/images/doctors-clinics/MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-A-online-consult.webp"
+            width="100%"
+            alt="Medical records"
+            type="image/webp"
+          )
+          source(
+            srcset="~/assets/images/doctors-clinics/MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-A-online-consult.png"
+            width="100%"
+            alt="Medical records"
+            type="image/png"
+          )
+          img(
+          v-lazy="require('~/assets/images/doctors-clinics/MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-A-online-consult.webp')"
+            width="100%"
+            alt="Medical records"
+          ).pt-12
       v-col(
         justify="center"
         cols="12"
