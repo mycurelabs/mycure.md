@@ -113,17 +113,7 @@ export default {
     this.GET_MORE_PATIENTS = GET_MORE_PATIENTS;
     this.MANAGE_EVERYTHING_EASILY = MANAGE_EVERYTHING_EASILY;
     this.BRING_YOUR_PRACTICE_ONLINE = BRING_YOUR_PRACTICE_ONLINE;
-    return {
-      isMobile: true,
-    };
-  },
-  watch: {
-    $isMobile (val) {
-      this.isMobile = val;
-    },
-  },
-  mounted () {
-    this.isMobile = this.$isMobile;
+    return {};
   },
   methods: {
     onGetStarted () {
