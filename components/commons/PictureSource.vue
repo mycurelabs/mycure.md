@@ -12,6 +12,7 @@
       :alt="imageAlt"
       :class="imageClasses"
       :style="imageStyles"
+      @load="onLoad"
     )
 </template>
 
@@ -107,6 +108,9 @@ export default {
   methods: {
     getSrcSetValue (source, image) {
       return parseSrcSet(source, image, this.customPath);
+    },
+    onLoad () {
+      this.$emit('load');
     },
   },
 };
