@@ -239,8 +239,5 @@ export default {
       default: '.webp',
     },
   },
-  mounted () {
-    console.warn('gen exclusive', this.extensionExclusive);
-  },
 };
 </script>
