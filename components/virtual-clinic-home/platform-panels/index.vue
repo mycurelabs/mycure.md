@@ -7,11 +7,23 @@
         p.text-center.font-18.font-gray {{BRING_YOUR_PRACTICE_ONLINE.description}}
     v-row(justify="center" align="center").py-10.mb-n4
       v-col(v-if="!$isMobile" align="center" cols="12" md="6").first-column
-        img(
-          v-lazy="require('~/assets/images/virtual-clinic-home/webp/MYCURE-virtual-clinic-healthcare-practice-online-homepage-A-telehealth.webp')"
-          width="100%"
-          alt="Start your physical and digital clinic journey"
-        ).pr-12
+        picture
+          source(
+            v-lazy="require('~/assets/images/virtual-clinic-home/webp/MYCURE-virtual-clinic-healthcare-practice-online-homepage-A-telehealth.webp')"
+            width="100%"
+            alt="Start your physical and digital clinic journey"
+            type="image/webp"
+          )
+          source(
+            v-lazy="require('~/assets/images/virtual-clinic-home/png/MYCURE-virtual-clinic-healthcare-practice-online-homepage-A-telehealth.png')"
+            width="100%"
+            alt="Start your physical and digital clinic journey" type="image/png"
+          )
+          img(
+            v-lazy="require('~/assets/images/virtual-clinic-home/webp/MYCURE-virtual-clinic-healthcare-practice-online-homepage-A-telehealth.webp')"
+            width="100%"
+            alt="Start your physical and digital clinic journey"
+          ).pr-12
       v-col(align-self="center" cols="12" md="6" lg="4").second-column
         h1.font-30.lh-title.pb-3.font-weight-light {{HOME_START_YOUR_PHYSICAL.header}}
         br
