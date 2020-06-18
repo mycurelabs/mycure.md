@@ -10,24 +10,28 @@
         v-btn(@click="onGetStarted" text).ml-n4.get-started-btn
           strong.text-capitalize.primary--text {{TAKE_PRACTICE_ONLINE.btnTxt}}
           v-icon.primary--text {{TAKE_PRACTICE_ONLINE.btnIcon}}
-      v-col(align-self="center" cols="12" md="6" v-if="!$isMobile")
-        img(v-lazy="require('~/assets/images/doctors-clinics/MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-C-group-practice.webp')"
-          alt="Take your practice online" width="100%"
-        ).pl-10
-      img(v-lazy="require('~/assets/images/doctors-clinics/MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-C-group-practice.webp')"
-        alt="Take your practice online" v-if="$isMobile"
-        width="100%"
-      )
+      v-col(align-self="center" cols="12" md="6")
+        picture-source(
+          customPath="doctors-clinics/"
+          :image="panelMainImage"
+          imageAlt="Take your practice online"
+          imageFileExtension=".webp"
+          :imageClasses="[{'pl-10': !$isMobile}]"
+        )
 </template>
 
 <script>
+// constants
 import { TAKE_PRACTICE_ONLINE } from '../doctors-clinics-content';
+// components
+import PictureSource from '~/components/commons/PictureSource';
+
 export default {
+  components: { PictureSource },
   data () {
     this.TAKE_PRACTICE_ONLINE = TAKE_PRACTICE_ONLINE;
-    return {
-
-    };
+    this.panelMainImage = 'MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-C-group-practice';
+    return {};
   },
   methods: {
     onGetStarted () {

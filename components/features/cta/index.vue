@@ -2,6 +2,7 @@
   div.white
     generic-background-panel(
       :background-image="backgroundImage"
+      background-image-file-extension=".webp"
       :background-image-configs="backgroundImageConfigs"
       :background-image-mobile="backgroundImageMobile"
       :background-image-mobile-configs="backgroundImageMobileConfigs"
@@ -56,23 +57,28 @@
                 large
                 @click="onGetStarted"
               ).text-none.font-16.cta-btn Get Started
-          img(
-            v-lazy="panelImageSrc"
-            alt="Features CTA"
-            width="90%"
-          ).pt-10
+          picture-source(
+            :image="ctaMobileImage"
+            image-file-extension=".webp"
+            image-width="90%"
+            image-alt="Features CTA"
+            :image-classes="['pt-10']"
+          )
 </template>
 
 <script>
 // components
 import GenericBackgroundPanel from '~/components/commons/generic-background-panel';
+import PictureSource from '~/components/commons/PictureSource';
 export default {
   components: {
     GenericBackgroundPanel,
+    PictureSource,
   },
   data () {
-    this.backgroundImage = 'mycure-final-cta-background-full.webp';
-    this.backgroundImageMobile = 'mycure-final-cta-background.webp';
+    this.backgroundImage = 'mycure-final-cta-background-full';
+    this.backgroundImageMobile = 'mycure-final-cta-background.png';
+    this.ctaMobileImage = 'mycure-final-cta-background-image-right';
     this.ctaTitle = 'Embrace a new habit.';
     this.ctaSubtitle = 'Let your patients experience top-of-the-line services with the help of MYCURE.';
     return {
@@ -92,9 +98,6 @@ export default {
       return {
         'background-position': 'bottom',
       };
-    },
-    panelImageSrc () {
-      return require('~/assets/images/mycure-final-cta-background-image-right.webp');
     },
   },
   methods: {

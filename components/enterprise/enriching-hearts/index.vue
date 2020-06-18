@@ -10,12 +10,23 @@
           strong.text-capitalize.primary--text {{ninthPanel.btnTxt}}
           v-icon.primary--text {{ninthPanel.btnIcon}}
       v-col(cols="12" md="6" justify="center" align="center")
-        img(v-lazy="require(`~/assets/images/enterprise/${ninthPanel.image}`)" width="90%" :alt="ninthPanel.header").ninthPanel-image
+        picture-source(
+          customPath="enterprise/"
+          :image="ninthPanel.image"
+          :imageAlt="ninthPanel.header"
+          imageFileExtension=".webp"
+          imageWidth="90%"
+        ).ninthPanel-image
 </template>
 
 <script>
+// constants
 import { NINTH_PANEL } from '../enterprise-contents';
+// components
+import PictureSource from '~/components/commons/PictureSource';
+
 export default {
+  components: { PictureSource },
   data () {
     this.ninthPanel = NINTH_PANEL;
     return {};

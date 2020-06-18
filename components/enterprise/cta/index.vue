@@ -2,6 +2,8 @@
   div.white
     generic-background-panel(
       :background-image="backgroundImage"
+      background-image-file-extension=".webp"
+      background-image-file-extension-exclusive
       :background-image-configs="backgroundImageConfigs"
       :background-image-mobile="backgroundImageMobile"
       :background-image-mobile-configs="backgroundImageMobileConfigs"
@@ -58,23 +60,29 @@
               ).text-none.font-16.cta-btn Book A Demo
             v-col(cols="10")
               p.font-16.grey--text {{ ctaAgreementText }}
-          img(
-            v-lazy="panelImageSrc"
-            alt="Enterprise CTA"
-            width="90%"
-          ).pt-10
+          picture-source(
+            :image="ctaMobileImage"
+            image-file-extension=".webp"
+            image-width="90%"
+            image-alt="Enterprise CTA"
+            :image-classes="['pt-10']"
+          )
 </template>
 
 <script>
 // components
 import GenericBackgroundPanel from '~/components/commons/generic-background-panel';
+import PictureSource from '~/components/commons/PictureSource';
+
 export default {
   components: {
     GenericBackgroundPanel,
+    PictureSource,
   },
   data () {
-    this.backgroundImage = 'mycure-final-cta-background-full.webp';
-    this.backgroundImageMobile = 'mycure-final-cta-background.webp';
+    this.backgroundImage = 'mycure-final-cta-background-full';
+    this.backgroundImageMobile = 'mycure-final-cta-background.png';
+    this.ctaMobileImage = 'mycure-final-cta-background-image-right';
     this.ctaTitle = 'Book A Demo Today.';
     this.ctaAgreementText = 'By entering your email, you agree to receive marketing emails from MYCURE.';
     return {
@@ -94,9 +102,6 @@ export default {
       return {
         'background-position': 'bottom',
       };
-    },
-    panelImageSrc () {
-      return require('~/assets/images/mycure-final-cta-background-image-right.webp');
     },
   },
   methods: {

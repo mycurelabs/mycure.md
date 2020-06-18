@@ -24,19 +24,32 @@
               strong(:class="{'pl-1' : btnIconLeft}").font-s {{btnText}}
     div.outer-image-container(:class="isMobile ? 'pb-5' : 'web-padding'")
       div.usp-image-container.text-center.justify-center
-        img(
-          v-show="isImageLoaded"
-          :src="require(`~/assets/images/${customPath}${coverImg}${isMobile ? '-mobile' : ''}${coverImgExtension}`)"
-          :alt="coverImg"
+        template(v-if="!usePictureSource")
+          img(
+            v-show="isImageLoaded"
+            :src="require(`~/assets/images/${customPath}${coverImg}${isMobile ? '-mobile' : ''}${coverImgExtension}`)"
+            :alt="coverImg"
+            :width="coverImgWidth"
+            @load="loadedImage"
+          ).justify-center
+          div(v-show="!isImageLoaded").white.empty-image-container
+        picture-source(
+          v-else
+          :customPath="customPath"
+          :image="`${coverImg}${$isMobile ? '-mobile' : ''}`"
+          :imageAlt="coverImg"
           :width="coverImgWidth"
-          @load="loadedImage"
-        ).justify-center
-        div(v-show="!isImageLoaded").white.empty-image-container
+          :imageFileExtension="coverImgExtension"
+          :imageClasses="['justify-center']"
+        )
     div.offset-container(v-show="isImageLoaded && !isMobile && !noOffset")
 </template>
 
 <script>
+import PictureSource from './PictureSource';
+
 export default {
+  components: { PictureSource },
   props: {
     uspTitle: {
       type: String,
@@ -94,6 +107,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    usePictureSource: {
+      type: Boolean,
+      default: false,
+    },
   },
   data () {
     this.fontStyle = {
@@ -108,11 +125,6 @@ export default {
     };
   },
   computed: {
-    // titleClasses () {
-    //   const webClasses = ['pre-white-space', 'font-xl'];
-    //   const mobileClasses = ['pt-3', 'pre-white-space'];
-    //   return this.isMobile ? mobileClasses : webClasses;
-    // },
     getMetaFontSize () {
       return this.$route.name === 'multispecialty-clinics'
         ? 'font-18'

@@ -10,12 +10,21 @@
           strong.text-capitalize.primary--text {{seventhPanel.btnTxt}}
           v-icon.primary--text {{seventhPanel.btnIcon}}
       v-col(cols="12" md="6" justify="center" align="center")
-        img(v-lazy="require(`~/assets/images/enterprise/${seventhPanel.image}`)" width="100%" :alt="seventhPanel.header").seventhPanel-image
+        picture-source(
+          customPath="enterprise/"
+          :image="seventhPanel.image"
+          :imageAlt="seventhPanel.header"
+          imageFileExtension=".webp"
+        ).seventhPanel-image
 </template>
 
 <script>
+// constants
 import { SEVENTH_PANEL } from '../enterprise-contents';
+// components
+import PictureSource from '~/components/commons/PictureSource';
 export default {
+  components: { PictureSource },
   data () {
     this.seventhPanel = SEVENTH_PANEL;
     return {};
