@@ -3,10 +3,10 @@
     template(v-if="!loading")
       div(
         :style="styleConfig"
-        :class="checkTime"
+        :class="contentClasses"
       ).bg-positions.pa-3
         nuxt
-      div(:class="checkTimeFooter")
+      div(:class="footerClasses")
         v-img(:src="require(`../assets/images/mycure-onboarding-background${dayOrNight === 'night' ? '-dark-mode' : ''}.png`)" alt="Sign up background")
 </template>
 
@@ -32,10 +32,10 @@ export default {
     page () {
       return this.$route.name;
     },
-    checkTime () {
+    contentClasses () {
       return [this.dayOrNight === 'night' ? 'night-sky' : 'day-bg'];
     },
-    checkTimeFooter () {
+    footerClasses () {
       return [this.dayOrNight === 'night' ? 'night-sky' : 'day-bg', 'fixed-footer'];
     },
   },
