@@ -2,7 +2,7 @@
   div(v-if="!loading")#top
     div.header.mb-5
       v-container
-        v-row(align="center" :class="notMobileContainer")
+        v-row(align="center" :class="headerClasses")
           v-col(cols="12")
             h1.font-60.text-center Privacy Policy
     div.content
@@ -127,7 +127,7 @@ export default {
     };
   },
   computed: {
-    notMobileContainer () {
+    headerClasses () {
       return [{ 'header-container': !this.$isMobile }];
     },
   },
