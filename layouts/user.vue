@@ -3,10 +3,10 @@
     template(v-if="!loading")
       div(
         :style="styleConfig"
-        :class="[dayOrNight === 'night' ? 'night-sky' : 'day-bg']"
+        :class="contentClasses"
       ).bg-positions.pa-3
         nuxt
-      div(:class="[dayOrNight === 'night' ? 'night-sky' : 'day-bg', 'fixed-footer']")
+      div(:class="footerClasses")
         v-img(:src="require(`../assets/images/mycure-onboarding-background${dayOrNight === 'night' ? '-dark-mode' : ''}.png`)" alt="Sign up background")
 </template>
 
@@ -31,6 +31,12 @@ export default {
     },
     page () {
       return this.$route.name;
+    },
+    contentClasses () {
+      return [this.dayOrNight === 'night' ? 'night-sky' : 'day-bg'];
+    },
+    footerClasses () {
+      return [this.dayOrNight === 'night' ? 'night-sky' : 'day-bg', 'fixed-footer'];
     },
   },
   mounted () {

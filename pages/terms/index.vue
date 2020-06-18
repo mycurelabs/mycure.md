@@ -2,7 +2,7 @@
   div(v-if="!loading")#top
     div.header.mb-5
       v-container
-        v-row(align="center" :class="{'header-container': !$isMobile}")
+        v-row(align="center" :class="headerClasses")
           v-col(cols="12")
             h1.font-60.text-center Terms and Conditions
     div.content
@@ -167,6 +167,11 @@ export default {
     return {
       loading: true,
     };
+  },
+  computed: {
+    headerClasses () {
+      return [{ 'header-container': !this.$isMobile }];
+    },
   },
   mounted () {
     VueScrollTo.scrollTo('#app', 500, { easing: 'ease' });
