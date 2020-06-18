@@ -1,14 +1,14 @@
 <template lang="pug">
-  div(:class="mainDiv")
+  div(:class="mainDivClasses")
     v-container(
       v-for="(panel, key) in moduleGroup"
       :key="key"
     ).py-10
       v-row(justify="center" v-if="key === 0 ? 'mb-n3' : 'mb-n4'")
         v-col(cols="10").text-center
-          span(:class="panelGroup") {{ panel.group }}
+          span(:class="panelGroupClasses") {{ panel.group }}
           br
-          span(:class="panelDescription").module-group-description {{ panel.description }}
+          span(:class="panelDescriptionClasses").module-group-description {{ panel.description }}
       br
       v-row
         v-col(
@@ -34,13 +34,13 @@ export default {
     return {};
   },
   computed: {
-    mainDiv () {
-      return [this.$isMobile ? 'pt-5' : ''];
+    mainDivClasses () {
+      return [{'pt-5': this.$isMobile}];
     },
-    panelGroup () {
+    panelGroupClasses () {
       return [this.$isMobile ? 'font-30' : 'font-40'];
     },
-    panelDescription () {
+    panelDescriptionClasses () {
       return [this.$isMobile ? 'font-18' : 'font-21'];
     },
   },
