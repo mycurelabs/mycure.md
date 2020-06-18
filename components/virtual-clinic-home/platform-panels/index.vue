@@ -84,6 +84,15 @@
           v-icon.primary--text {{MANAGE_EVERYTHING_EASILY.btnIcon}}
       v-col(align="center" cols="12" md="5").second-column.img-manage-easily
         picture-source(
+          v-if="!$isMobile"
+          customPath="virtual-clinic-home/"
+          imageWidth="120%"
+          :image="MANAGE_EVERYTHING_EASILY.image"
+          imageAlt="Manage everything easily"
+          imageFileExtension=".webp"
+        )
+        picture-source(
+          v-if="$isMobile"
           customPath="virtual-clinic-home/"
           :image="MANAGE_EVERYTHING_EASILY.image"
           imageAlt="Manage everything easily"
