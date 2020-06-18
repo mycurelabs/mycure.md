@@ -20,7 +20,8 @@ export default {
     GenericMediaPanel,
   },
   data () {
-    this.image = 'webp/MYCURE-virtual-clinic-healthcare-practice-online-features-D-analytics.webp';
+    // this.image = 'webp/MYCURE-virtual-clinic-healthcare-practice-online-features-D-analytics.webp';
+    this.image = 'webp/MYCURE-virtual-clinic-healthcare-practice-online-features-D-analytics';
     this.mobileImage = 'MYCURE-virtual-clinic-healthcare-practice-online-features-D-analytics-mobile.png';
     this.header = 'Never miss out on important business decisions.';
     this.descriptions = [

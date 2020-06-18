@@ -37,7 +37,8 @@ export default {
     GenericMediaPanel,
   },
   data () {
-    this.image = 'MYCURE-virtual-clinic-healthcare-practice-online-features-G-diagnostic-results.webp';
+    // this.image = 'MYCURE-virtual-clinic-healthcare-practice-online-features-G-diagnostic-results.webp';
+    this.image = 'MYCURE-virtual-clinic-healthcare-practice-online-features-G-diagnostic-results';
     this.header = 'Record and retrieve diagnostic results right where you need them.';
     this.descriptions = [
       'MYCURE can communicate with modern diagnostic machines through HL7 interfacing and PACS configurations.',

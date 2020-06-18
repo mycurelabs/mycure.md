@@ -22,7 +22,8 @@ export default {
   },
   data () {
     this.header = 'Build your virtual practice';
-    this.mediaImage = 'MYCURE-virtual-clinic-healthcare-practice-online-features-C-telehealth.webp';
+    // this.mediaImage = 'MYCURE-virtual-clinic-healthcare-practice-online-features-C-telehealth.webp';
+    this.mediaImage = 'MYCURE-virtual-clinic-healthcare-practice-online-features-C-telehealth';
     this.descriptions = [
       'Make the most of advanced technology and start accomodating your patients online. Make quality healthcare accessible with a patient portal for online video and audio consultations, ePrescriptions, releasing diagnostic results, and so much more.',
     ];

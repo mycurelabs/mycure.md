@@ -20,7 +20,8 @@ export default {
     GenericMediaPanel,
   },
   data () {
-    this.image = 'MYCURE-virtual-clinic-healthcare-practice-online-features-I-syncbase.webp';
+    // this.image = 'MYCURE-virtual-clinic-healthcare-practice-online-features-I-syncbase.webp';
+    this.image = 'MYCURE-virtual-clinic-healthcare-practice-online-features-I-syncbase';
     this.header = 'Go offline safely and securely';
     this.descriptions = [
       'The holy grail of online-offline technology is here. Work within your local network using multiple devices even if the internet goes down and just sync data when back online.',

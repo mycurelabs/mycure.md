@@ -68,9 +68,12 @@ export default {
       'Produce neatly-organized reports in a minute or less.',
     ];
     this.panelImages = [
-      'MYCURE-virtual-clinic-healthcare-practice-online-features-E-01-billing-payment.webp',
-      'MYCURE-virtual-clinic-healthcare-practice-online-features-E-02-charge-slip.webp',
-      'MYCURE-virtual-clinic-healthcare-practice-online-features-E-03-daily-census.webp',
+      // 'MYCURE-virtual-clinic-healthcare-practice-online-features-E-01-billing-payment.webp',
+      // 'MYCURE-virtual-clinic-healthcare-practice-online-features-E-02-charge-slip.webp',
+      // 'MYCURE-virtual-clinic-healthcare-practice-online-features-E-03-daily-census.webp',
+      'MYCURE-virtual-clinic-healthcare-practice-online-features-E-01-billing-payment',
+      'MYCURE-virtual-clinic-healthcare-practice-online-features-E-02-charge-slip',
+      'MYCURE-virtual-clinic-healthcare-practice-online-features-E-03-daily-census',
     ];
     this.mobilePanelImages = [
       'MYCURE-virtual-clinic-healthcare-practice-online-features-E-01-billing-payment.png',

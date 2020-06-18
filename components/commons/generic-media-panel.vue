@@ -4,12 +4,24 @@
     v-row(v-if="!centerMedia" justify="center").py-10
       //- Left column
       v-col(:align-self="alignLeftColumn" cols="12" :md="colsLeft" :offset-md="offsetColsLeft")
-        img(
-          v-if="!$isMobile && contentAlignRight"
-          v-lazy="webImagePath"
-          :alt="header || 'media-image'"
-          :width="webImageWidth"
-        )
+        picture(v-if="!$isMobile && contentAlignRight")
+          source(
+            :srcset="getSrcsetValue('.webp')"
+            :alt="header || 'media-image'"
+            :width="webImageWidth"
+            type="image/webp"
+          )
+          source(
+            :srcset="getSrcsetValue('.png')"
+            :alt="header || 'media-image'"
+            :width="webImageWidth"
+            type="image/png"
+          )
+          img(
+            v-lazy="webImagePath"
+            :alt="header || 'media-image'"
+            :width="webImageWidth"
+          )
         template(v-if="contentAlignLeft")
           h1.font-30.lh-title.pb-3.font-weight-light {{header}}
           br
@@ -19,12 +31,24 @@
           slot(name="additional-content")
       //- Right Column
       v-col(:align-self="alignRightColumn" cols="12" :md="colsRight" :offset-md="offsetColsRight")
-        img(
-          v-if="!$isMobile && contentAlignLeft"
-          v-lazy="webImagePath"
-          :alt="header || 'media-image'"
-          :width="webImageWidth"
-        )
+        picture(v-if="!$isMobile && contentAlignLeft")
+          source(
+            :srcset="getSrcsetValue('.webp')"
+            :alt="header || 'media-image'"
+            :width="webImageWidth"
+            type="image/webp"
+          )
+          source(
+            :srcset="getSrcsetValue('.png')"
+            :alt="header || 'media-image'"
+            :width="webImageWidth"
+            type="image/png"
+          )
+          img(
+            v-lazy="webImagePath"
+            :alt="header || 'media-image'"
+            :width="webImageWidth"
+          )
         template(v-if="contentAlignRight")
           h1.font-30.lh-title.pb-3.font-weight-light {{header}}
           br
@@ -33,33 +57,69 @@
             br
           slot(name="additional-content")
       //- Mobile Image
-      img(
-        v-if="$isMobile && !hideImageMobile"
-        v-lazy="mobileImagePath"
-        :alt="header || 'media-image'"
-        :width="mobileImageWidth"
-      )
+      picture(v-if="$isMobile && !hideImageMobile")
+        source(
+          :srcset="getSrcsetValue('.webp')"
+          :alt="header || 'media-image'"
+          :width="webImageWidth"
+          type="image/webp"
+        )
+        source(
+          :srcset="getSrcsetValue('.png')"
+          :alt="header || 'media-image'"
+          :width="mobileImageWidth"
+          type="image/png"
+        )
+        img(
+          v-lazy="mobileImagePath"
+          :alt="header || 'media-image'"
+          :width="mobileImageWidth"
+        )
     //- CENTER VIEW
     v-row(v-else justify="center").py-10
       v-col(cols="12" md="10" :class="{'text-center': !$isMobile}")
         h1.font-30.lh-title.pb-3.font-weight-light {{header}}
-        img(
-          v-if="!$isMobile"
-          v-lazy="webImagePath"
-          :alt="header || 'media-image'"
-          :width="webImageWidth"
-        )
+        picture(v-if="!$isMobile")
+          source(
+            :srcset="getSrcsetValue('.webp')"
+            :alt="header || 'media-image'"
+            :width="webImageWidth"
+            type="image/webp"
+          )
+          source(
+            :srcset="getSrcsetValue('.png')"
+            :alt="header || 'media-image'"
+            :width="webImageWidth"
+            type="image/png"
+          )
+          img(
+            v-lazy="webImagePath"
+            :alt="header || 'media-image'"
+            :width="webImageWidth"
+          )
         br
         template(v-if="descriptions.length")
           p(v-for="(description, key) in descriptions" :key="key").font-16.mt-3.font-gray {{description}}
           br
         slot(name="additional-content")
-        img(
-          v-if="$isMobile && !hideImageMobile"
-          v-lazy="mobileImagePath"
-          :alt="header || 'media-image'"
-          :width="mobileImageWidth"
-        )
+        picture(v-if="$isMobile && !hideImageMobile")
+          source(
+            :srcset="getSrcsetValue('.webp')"
+            :alt="header || 'media-image'"
+            :width="mobileImageWidth"
+            type="image/webp"
+          )
+          source(
+            :srcset="getSrcsetValue('.png')"
+            :alt="header || 'media-image'"
+            :width="mobileImageWidth"
+            type="image/png"
+          )
+          img(
+            v-lazy="mobileImagePath"
+            :alt="header || 'media-image'"
+            :width="mobileImageWidth"
+          )
 </template>
 
 <script>
@@ -133,14 +193,23 @@ export default {
       type: Boolean,
       default: false,
     },
+    fileExtension: {
+      type: String,
+      default: '.webp',
+    },
   },
   computed: {
     webImagePath () {
-      return require(`~/assets/images/${this.customImagePath}${this.webImage}`);
+      return require(`~/assets/images/${this.customImagePath}${this.webImage}${this.fileExtension}`);
     },
     mobileImagePath () {
       const image = this.mobileImage || this.webImage;
-      return require(`~/assets/images/${this.customImagePath}${image}`);
+      return require(`~/assets/images/${this.customImagePath}${image}${this.fileExtension}`);
+    },
+  },
+  methods: {
+    getSrcsetValue (fileExtension) {
+      return require(`~/assets/images/${this.customPath}${this.webImage}${fileExtension}`);
     },
   },
 };
