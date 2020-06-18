@@ -3,7 +3,7 @@
     v-content(:class="checkTime").content-padding
       div(:class="checkTime")
         nuxt
-      div(:class="checkTimeFooter").footer-bg
+      div(:class="footerClasses").footer-bg
 </template>
 
 <script>
@@ -18,7 +18,7 @@ export default {
     checkTime () {
       return [this.dayOrNight === 'night' ? 'night-sky' : 'white'];
     },
-    checkTimeFooter () {
+    footerClasses () {
       return [this.dayOrNight === 'night' ? 'night-sky' : 'white', this.dayOrNight === 'night' ? 'night-bg' : 'day-bg'];
     },
   },
