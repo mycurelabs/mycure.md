@@ -2,7 +2,7 @@
   v-row(justify="center" align="center")
     v-col(cols="12" md="10")
       v-row(justify="center" no-gutters)
-        v-col(cols="12" md="5" :class="notMobilePadding")
+        v-col(cols="12" md="5" :class="contentClasses")
           img(
             src=`~/assets/images/mycure-${dayOrNight === 'night' ? 'footer' : 'header'}-logo.png`
             @click="$nuxt.$router.push({ name: 'index' })"
@@ -221,7 +221,7 @@ export default {
     pageType () {
       return this.$nuxt.$route.name;
     },
-    notMobilePadding () {
+    contentClasses () {
       return [{ 'content-padding': !this.$isMobile }];
     },
   },
