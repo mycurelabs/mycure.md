@@ -116,11 +116,9 @@
                     :max="maxDate"
                     color="#0099cc"
                   )
-        v-col(cols="12" md="10" :class="mobileMargin").mt-2
+        v-col(cols="12" md="10" :class="actionContainerClasses").mt-2
           v-card(flat)
-            v-card-actions(
-              :class="checkTime"
-            )
+            v-card-actions(:class="cardActionsClasses")
               v-btn(
                 text
                 large
@@ -282,10 +280,10 @@ export default {
       const [year, month, day] = date.split('-');
       return `${month}/${day}/${year}`;
     },
-    mobileMargin () {
+    actionContainerClasses () {
       return [{ 'mb-10': this.$isMobile }];
     },
-    checkTime () {
+    cardActionsClasses () {
       return [this.dayOrNight === 'day' ? 'day-card-actions' : 'night-card-actions'];
     },
   },
