@@ -1,7 +1,7 @@
 <template lang="pug">
   v-app
-    v-content(:class="checkTime").content-padding
-      div(:class="checkTime")
+    v-content(:class="contentClasses").content-padding
+      div(:class="contentClasses")
         nuxt
       div(:class="footerClasses").footer-bg
 </template>
@@ -15,7 +15,7 @@ export default {
     };
   },
   computed: {
-    checkTime () {
+    contentClasses () {
       return [this.dayOrNight === 'night' ? 'night-sky' : 'white'];
     },
     footerClasses () {
