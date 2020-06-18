@@ -35,7 +35,7 @@ export default {
   },
   computed: {
     mainDivClasses () {
-      return [{'pt-5': this.$isMobile}];
+      return [{ 'pt-5': this.$isMobile }];
     },
     panelGroupClasses () {
       return [this.$isMobile ? 'font-30' : 'font-40'];
