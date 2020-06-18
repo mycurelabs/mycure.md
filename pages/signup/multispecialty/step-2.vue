@@ -38,10 +38,10 @@
                 v-col.pa-1
                   h3 {{module.name}}
                   p {{module.description}}
-        v-col(cols="12" md="10" :class="mobileMargin").pa-1.mt-3
+        v-col(cols="12" md="10" :class="actionContainerClasses").pa-1.mt-3
           v-card(flat)
             v-card-actions(
-              :class="checkTime"
+              :class="cardActionsClasses"
             )
               v-btn(
                 text
@@ -99,10 +99,10 @@ export default {
     route () {
       return this.$nuxt.$route?.params?.route || 'multispecialty';
     },
-    mobileMargin () {
+    actionContainerClasses () {
       return [{ 'mb-10': this.$isMobile }];
     },
-    checkTime () {
+    cardActionsClasses () {
       return [this.dayOrNight === 'day' ? 'day-card-actions' : 'night-card-actions'];
     },
   },
