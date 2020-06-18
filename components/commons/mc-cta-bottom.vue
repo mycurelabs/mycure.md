@@ -123,7 +123,7 @@ export default {
       return !this.ctaContent || !this.ctaContent.secondaryBtnLink ? 'calendly' : this.ctaContent.secondaryBtnLink;
     },
     ctaSubTextClasses () {
-      return [{ 'pre-white-space': !this.isMobile }];
+      return [{ 'pre-white-space': !this.$isMobile }];
     },
   },
   watch: {
