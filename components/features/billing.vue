@@ -24,19 +24,49 @@
       v-container(v-if="!$isMobile").py-10.mb-n1
         v-row
           v-col(cols="12" md="6").mt-3
-            img(
-              v-lazy="leftBottomImage"
-              alt="Print prescription"
-              width="100%"
-              height="100%"
-            )
+            picture
+              source(
+                :srcset="getSrcsetValue('.webp',  panelImages[1])"
+                alt="Print prescription"
+                width="100%"
+                height="100%"
+                type="image/webp"
+              )
+              source(
+                :srcset="getSrcsetValue('.png',  panelImages[1])"
+                alt="Print prescription"
+                width="100%"
+                height="100%"
+                type="image/png"
+              )
+              img(
+                v-lazy="leftBottomImage"
+                alt="Print prescription"
+                width="100%"
+                height="100%"
+              )
           v-col(cols="12" md="6")
-            img(
-              v-lazy="rightBottomImage"
-              alt="Charting"
-              width="100%"
-              height="100%"
-            )
+            picture
+              source(
+                :srcset="getSrcsetValue('.webp',  panelImages[2])"
+                alt="Charting"
+                width="100%"
+                height="100%"
+                type="image/webp"
+              )
+              source(
+                :srcset="getSrcsetValue('.png',  panelImages[2])"
+                alt="Charting"
+                width="100%"
+                height="100%"
+                type="image/png"
+              )
+              img(
+                v-lazy="rightBottomImage"
+                alt="Charting"
+                width="100%"
+                height="100%"
+              )
       v-container(v-else)
         v-row(justify="center")
           carousel(
@@ -94,10 +124,15 @@ export default {
       return 'webp/' + this.panelImages[0];
     },
     leftBottomImage () {
-      return require(`~/assets/images/${this.customPath}${this.panelImages[1]}`);
+      return require(`~/assets/images/${this.customPath}${this.panelImages[1]}.webp`);
     },
     rightBottomImage () {
-      return require(`~/assets/images/${this.customPath}${this.panelImages[2]}`);
+      return require(`~/assets/images/${this.customPath}${this.panelImages[2]}.webp`);
+    },
+  },
+  methods: {
+    getSrcsetValue (fileExtension, image) {
+      return require(`~/assets/images/${this.customPath}${image}${fileExtension}`);
     },
   },
 };

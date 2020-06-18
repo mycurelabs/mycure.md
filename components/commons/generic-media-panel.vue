@@ -6,12 +6,14 @@
       v-col(:align-self="alignLeftColumn" cols="12" :md="colsLeft" :offset-md="offsetColsLeft")
         picture(v-if="!$isMobile && contentAlignRight")
           source(
+            v-if="fileExtension !== '.png'"
             :srcset="getSrcsetValue('.webp')"
             :alt="header || 'media-image'"
             :width="webImageWidth"
             type="image/webp"
           )
           source(
+            v-if="fileExtension !== '.webp'"
             :srcset="getSrcsetValue('.png')"
             :alt="header || 'media-image'"
             :width="webImageWidth"
@@ -33,12 +35,14 @@
       v-col(:align-self="alignRightColumn" cols="12" :md="colsRight" :offset-md="offsetColsRight")
         picture(v-if="!$isMobile && contentAlignLeft")
           source(
+            v-if="fileExtension !== '.png'"
             :srcset="getSrcsetValue('.webp')"
             :alt="header || 'media-image'"
             :width="webImageWidth"
             type="image/webp"
           )
           source(
+            v-if="fileExtension !== '.webp'"
             :srcset="getSrcsetValue('.png')"
             :alt="header || 'media-image'"
             :width="webImageWidth"
@@ -59,12 +63,14 @@
       //- Mobile Image
       picture(v-if="$isMobile && !hideImageMobile")
         source(
+          v-if="fileExtension !== '.png'"
           :srcset="getSrcsetValue('.webp')"
           :alt="header || 'media-image'"
           :width="webImageWidth"
           type="image/webp"
         )
         source(
+          v-if="fileExtension !== '.webp'"
           :srcset="getSrcsetValue('.png')"
           :alt="header || 'media-image'"
           :width="mobileImageWidth"
@@ -81,12 +87,14 @@
         h1.font-30.lh-title.pb-3.font-weight-light {{header}}
         picture(v-if="!$isMobile")
           source(
+            v-if="fileExtension !== '.png'"
             :srcset="getSrcsetValue('.webp')"
             :alt="header || 'media-image'"
             :width="webImageWidth"
             type="image/webp"
           )
           source(
+            v-if="fileExtension !== '.webp'"
             :srcset="getSrcsetValue('.png')"
             :alt="header || 'media-image'"
             :width="webImageWidth"
@@ -104,12 +112,14 @@
         slot(name="additional-content")
         picture(v-if="$isMobile && !hideImageMobile")
           source(
+            v-if="fileExtension !== '.png'"
             :srcset="getSrcsetValue('.webp')"
             :alt="header || 'media-image'"
             :width="mobileImageWidth"
             type="image/webp"
           )
           source(
+            v-if="fileExtension !== '.webp'"
             :srcset="getSrcsetValue('.png')"
             :alt="header || 'media-image'"
             :width="mobileImageWidth"
@@ -209,7 +219,7 @@ export default {
   },
   methods: {
     getSrcsetValue (fileExtension) {
-      return require(`~/assets/images/${this.customPath}${this.webImage}${fileExtension}`);
+      return require(`~/assets/images/${this.customImagePath}${this.webImage}${this.fileExtension}`);
     },
   },
 };
