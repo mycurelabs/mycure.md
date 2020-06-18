@@ -48,6 +48,10 @@ export default {
 </script>
 
 <style scoped>
+.modulesPanel {
+  position: relative;
+  z-index: 5;
+}
 .module-group-description {
   color: #a7a7a7;
 }
