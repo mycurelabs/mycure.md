@@ -44,7 +44,7 @@
                     width="80%"
                   )
               v-card-text.card-title-container
-                h2(:class="mobileFontSize") {{ type.title }}
+                h2(:class="typeTitleClasses") {{ type.title }}
               v-card-text.inclusions-container.grow
                 p The trial includes:
                 v-row(dense).checklist-item
@@ -112,7 +112,7 @@ export default {
     };
   },
   computed: {
-    mobileFontSize () {
+    typeTitleClasses () {
       return [this.$isMobile ? 'font-m' : 'font-16'];
     },
   },
