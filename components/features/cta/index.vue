@@ -2,6 +2,7 @@
   div.white
     generic-background-panel(
       :background-image="backgroundImage"
+      background-image-file-extension=".webp"
       :background-image-configs="backgroundImageConfigs"
       :background-image-mobile="backgroundImageMobile"
       :background-image-mobile-configs="backgroundImageMobileConfigs"
@@ -30,8 +31,8 @@
             v-col(cols="12" md="3" align-self="start")
               v-btn(
                 color="accent"
-                large
                 @click="onGetStarted"
+                height="52"
               ).text-none.font-16.cta-btn Get Started
         v-col(
           v-if="$isMobile"
@@ -56,23 +57,28 @@
                 large
                 @click="onGetStarted"
               ).text-none.font-16.cta-btn Get Started
-          img(
-            v-lazy="panelImageSrc"
-            alt="Features CTA"
-            width="90%"
-          ).pt-10
+          picture-source(
+            :image="ctaMobileImage"
+            image-file-extension=".webp"
+            image-width="90%"
+            image-alt="Features CTA"
+            :image-classes="['pt-10']"
+          )
 </template>
 
 <script>
 // components
 import GenericBackgroundPanel from '~/components/commons/generic-background-panel';
+import PictureSource from '~/components/commons/PictureSource';
 export default {
   components: {
     GenericBackgroundPanel,
+    PictureSource,
   },
   data () {
-    this.backgroundImage = 'mycure-final-cta-background-full.webp';
-    this.backgroundImageMobile = 'mycure-final-cta-background.webp';
+    this.backgroundImage = 'mycure-final-cta-background-full';
+    this.backgroundImageMobile = 'mycure-final-cta-background.png';
+    this.ctaMobileImage = 'mycure-final-cta-background-image-right';
     this.ctaTitle = 'Embrace a new habit.';
     this.ctaSubtitle = 'Let your patients experience top-of-the-line services with the help of MYCURE.';
     return {
@@ -92,9 +98,6 @@ export default {
       return {
         'background-position': 'bottom',
       };
-    },
-    panelImageSrc () {
-      return require('~/assets/images/mycure-final-cta-background-image-right.webp');
     },
   },
   methods: {
@@ -160,14 +163,15 @@ export default {
 @media screen and (device-width: 1024px) and (orientation: portrait) {
   .cta-content {
     position: relative;
-    margin-top: -20%;
+    margin-top: -15%;
     z-index: 1;
   }
   .cta-btn{
     margin-top: 0 !important;
   }
   .row-content {
-    height: 60vh;
+    height: 50vh;
+    margin-bottom: -20%;
   }
 }
 @media screen and (device-width: 1366px) and (orientation: landscape) {

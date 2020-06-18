@@ -2,7 +2,7 @@
   v-row(justify="center" align="center")
     v-col(cols="12" md="10")
       v-row(justify="center")
-        v-col(cols="12" md="5" :class="[{'content-padding': !$isMobile}]")
+        v-col(cols="12" md="5" :class="contentClasses")
           img(
             src=`~/assets/images/mycure-${dayOrNight === 'night' ? 'footer' : 'header'}-logo.png`
             @click="$nuxt.$router.push({ name: 'index' })"
@@ -21,7 +21,7 @@
             v-col.mb-3
               b.font-18 Already have an account?&nbsp;
                 nuxt-link(:to="{ name: 'signin' }") Sign in.
-        v-col(cols="12" md="5" :class="[{'mb-10': $isMobile}]")
+        v-col(cols="12" md="5" :class="formCardClasses")
           v-card
             v-card-text
               h1 Tell us about your facility.
@@ -100,6 +100,12 @@ export default {
   computed: {
     route () {
       return this.$nuxt.$route?.params?.route || 'multispecialty';
+    },
+    formCardClasses () {
+      return [{ 'mb-10': this.$isMobile }];
+    },
+    contentClasses () {
+      return [{ 'content-padding': !this.$isMobile }];
     },
   },
   created () {

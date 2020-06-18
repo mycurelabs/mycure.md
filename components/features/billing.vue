@@ -24,18 +24,20 @@
       v-container(v-if="!$isMobile").py-10.mb-n1
         v-row
           v-col(cols="12" md="6").mt-3
-            img(
-              v-lazy="leftBottomImage"
-              alt="Print prescription"
-              width="100%"
-              height="100%"
+            picture-source(
+              :customPath="customPath"
+              :image="leftBottomImage"
+              imageFileExtension=".webp"
+              imageAlt="Charge slip"
+              imageWidth="100%"
             )
           v-col(cols="12" md="6")
-            img(
-              v-lazy="rightBottomImage"
-              alt="Charting"
-              width="100%"
-              height="100%"
+            picture-source(
+              :customPath="customPath"
+              :image="rightBottomImage"
+              imageFileExtension=".webp"
+              imageAlt="Daily census"
+              imageWidth="100%"
             )
       v-container(v-else)
         v-row(justify="center")
@@ -52,15 +54,25 @@
               :data-index="index+1"
             ).pa-1
               v-row(justify="center")
-                img(v-lazy="require(`~/assets/images/features/${image}`)" alt="Medical records" width="90%")
+                picture-source(
+                  :customPath="customPath",
+                  :image="image"
+                  :imageFileExtension="index === 0 ? '.webp' : '.png'"
+                  imageWidth="90%"
+                  imageAlt="Billing"
+                  extension-exclusive
+                )
 </template>
 
 <script>
 // components
 import GenericMediaPanel from '~/components/commons/generic-media-panel';
+import PictureSource from '~/components/commons/PictureSource';
+
 export default {
   components: {
     GenericMediaPanel,
+    PictureSource,
   },
   data () {
     this.header = 'Simplified billing, beautiful reports.';
@@ -68,14 +80,14 @@ export default {
       'Produce neatly-organized reports in a minute or less.',
     ];
     this.panelImages = [
-      'MYCURE-virtual-clinic-healthcare-practice-online-features-E-01-billing-payment.webp',
-      'MYCURE-virtual-clinic-healthcare-practice-online-features-E-02-charge-slip.webp',
-      'MYCURE-virtual-clinic-healthcare-practice-online-features-E-03-daily-census.webp',
+      'MYCURE-virtual-clinic-healthcare-practice-online-features-E-01-billing-payment',
+      'MYCURE-virtual-clinic-healthcare-practice-online-features-E-02-charge-slip',
+      'MYCURE-virtual-clinic-healthcare-practice-online-features-E-03-daily-census',
     ];
     this.mobilePanelImages = [
-      'MYCURE-virtual-clinic-healthcare-practice-online-features-E-01-billing-payment.png',
-      'MYCURE-virtual-clinic-healthcare-practice-online-features-E-02-charge-slip-mobile.png',
-      'MYCURE-virtual-clinic-healthcare-practice-online-features-E-03-daily-census-mobile.png',
+      'MYCURE-virtual-clinic-healthcare-practice-online-features-E-01-billing-payment',
+      'MYCURE-virtual-clinic-healthcare-practice-online-features-E-02-charge-slip-mobile',
+      'MYCURE-virtual-clinic-healthcare-practice-online-features-E-03-daily-census-mobile',
     ];
     this.checkListItems = [
       'Payment Management & History',
@@ -83,18 +95,18 @@ export default {
       'HMO Statements, Collections, & Reports',
       'Interface with Materials Management',
     ];
-    this.customPath = 'features/webp/';
+    this.customPath = 'features/';
     return {};
   },
   computed: {
     mediaImage () {
-      return 'webp/' + this.panelImages[0];
+      return this.panelImages[0];
     },
     leftBottomImage () {
-      return require(`~/assets/images/${this.customPath}${this.panelImages[1]}`);
+      return this.panelImages[1];
     },
     rightBottomImage () {
-      return require(`~/assets/images/${this.customPath}${this.panelImages[2]}`);
+      return this.panelImages[2];
     },
   },
 };

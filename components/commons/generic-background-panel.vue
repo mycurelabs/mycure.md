@@ -1,26 +1,73 @@
 <template lang="pug">
   div(:class="[...mainContainerClasses]" :style="containerStyleConfig")
     //- Web background
-    img(v-if="!$isMobile && !loading" :src="imageSrc" alt="Usp background" :style="webStyleConfig").source-image
+    picture-source(
+      v-if="!$isMobile && !loading"
+      :customPath="customPath"
+      :image="backgroundImage"
+      :imageStyles="backgroundImageConfigs"
+      imageAlt="MYCURE Media"
+      :imageFileExtension="backgroundImageFileExtension"
+      :extensionExclusive="backgroundImageFileExtensionExclusive"
+    ).source-image
     v-container.content
       slot(name="content")
 </template>
 
 <script>
+// components
+import PictureSource from '~/components/commons/PictureSource';
+
 export default {
+  components: { PictureSource },
   props: {
+    /**
+     * Background image file in web view (without file extension)
+     * @type {String}
+     */
     backgroundImage: {
       type: String,
       default: null,
     },
+    /**
+     * File extension of web background image
+     * @type {String}
+     * @example .webp
+     */
+    backgroundImageFileExtension: {
+      type: String,
+      required: true,
+    },
+    /**
+     * If background image file extension will be the only source
+     * @type {Boolean}
+     */
+    backgroundImageFileExtensionExclusive: {
+      type: Boolean,
+      required: false,
+    },
+    /**
+     * Background image file in mobile view (with file extension)
+     * @type {String}
+     */
     backgroundImageMobile: {
       type: String,
       default: null,
     },
+    /**
+     * Custom path of image files from root images folder
+     * @type {String}
+     * @example features/
+     *  - will result to ~/assets/images/features/
+     */
     customPath: {
       type: String,
       default: '',
     },
+    /**
+     * Styles for the background image (web)
+     * @type {Object}
+     */
     backgroundImageConfigs: {
       type: Object,
       default: () => ({
@@ -30,6 +77,10 @@ export default {
         top: '0',
       }),
     },
+    /**
+     * Styles for the background image (mobile)
+     * @type {Object}
+     */
     backgroundImageMobileConfigs: {
       type: Object,
       default: () => ({
@@ -37,6 +88,10 @@ export default {
         'background-position': 'center',
       }),
     },
+    /**
+     * Styles for the main component node when in web view
+     * @type {Object}
+     */
     webContainerStyleConfigs: {
       type: Object,
       default: () => ({}),
@@ -59,12 +114,7 @@ export default {
         ? this.mobileStyleConfig
         : this.webContainerStyleConfigs;
     },
-    webStyleConfig () {
-      if (!this.backgroundImage) {
-        return;
-      }
-      return this.backgroundImageConfigs;
-    },
+    // Sets the mobile background
     mobileStyleConfig () {
       if ((!this.backgroundImageMobile && this.$isMobile) || this.loading) {
         return {};

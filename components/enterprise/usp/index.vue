@@ -2,6 +2,8 @@
   div.white
     generic-background-panel(
       :background-image="backgroundImage"
+      background-image-file-extension=".png"
+      background-image-file-extension-exclusive
       :background-image-mobile="backgroundImageMobile"
       :background-image-mobile-configs="backgroundImageMobileConfigs"
       :customPath="customPath"
@@ -57,7 +59,7 @@ export default {
     GenericBackgroundPanel,
   },
   data () {
-    this.backgroundImage = 'MYCURE-virtual-clinic-healthcare-practice-online-enterprise-usp-cover.png';
+    this.backgroundImage = 'MYCURE-virtual-clinic-healthcare-practice-online-enterprise-usp-cover';
     this.backgroundImageMobile = 'MYCURE-virtual-clinic-healthcare-practice-online-enterprise-usp-cover-mobile.png';
     this.uspPreSubtitle = 'For Medical Enterprise';
     this.panelTitle = 'Take your healthcare\nenterprise to a\nbroader audience';
@@ -171,6 +173,7 @@ export default {
 }
 @media screen and (device-width: 1024px) {
   .row-content {
+    height: 85vh;
     margin-top: -20%;
   }
   .btn-book {

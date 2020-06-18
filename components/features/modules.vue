@@ -1,15 +1,14 @@
 <template lang="pug">
-  div(:class="$isMobile ? 'pt-5' : ''")
+  div(:class="mainDivClasses")
     v-container(
       v-for="(panel, key) in moduleGroup"
       :key="key"
-      :class="key === 0 ? 'mb-n3' : 'mb-n4'"
     ).py-10
-      v-row(justify="center")
+      v-row(justify="center" v-if="key === 0 ? 'mb-n3' : 'mb-n4'")
         v-col(cols="10").text-center
-          span(:class="$isMobile ? 'font-30' : 'font-40'") {{ panel.group }}
+          span(:class="panelGroupClasses") {{ panel.group }}
           br
-          span(:class="$isMobile ? 'font-18' : 'font-21'").module-group-description {{ panel.description }}
+          span(:class="panelDescriptionClasses").module-group-description {{ panel.description }}
       br
       v-row
         v-col(
@@ -34,10 +33,25 @@ export default {
     this.moduleGroup = FEATURE_MODULE_GROUPS;
     return {};
   },
+  computed: {
+    mainDivClasses () {
+      return [{ 'pt-5': this.$isMobile }];
+    },
+    panelGroupClasses () {
+      return [this.$isMobile ? 'font-30' : 'font-40'];
+    },
+    panelDescriptionClasses () {
+      return [this.$isMobile ? 'font-18' : 'font-21'];
+    },
+  },
 };
 </script>
 
 <style scoped>
+.modulesPanel {
+  position: relative;
+  z-index: 5;
+}
 .module-group-description {
   color: #a7a7a7;
 }

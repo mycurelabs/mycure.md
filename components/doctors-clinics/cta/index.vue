@@ -2,6 +2,7 @@
   div.white
     generic-background-panel(
       :background-image="backgroundImage"
+      background-image-file-extension=".webp"
       :background-image-configs="backgroundImageConfigs"
       :background-image-mobile="backgroundImageMobile"
       :background-image-mobile-configs="backgroundImageMobileConfigs"
@@ -30,8 +31,8 @@
             v-col(cols="12" md="3" align-self="start")
               v-btn(
                 color="accent"
-                large
                 @click="onGetStarted"
+                height="52"
               ).text-none.font-16.cta-btn Get Started
             v-col(cols="10")
               p.font-16.grey--text {{ ctaAgreementText }}
@@ -60,25 +61,30 @@
               ).text-none.font-16.cta-btn Get Started
             v-col(cols="10")
               p.mt-3.font-16.grey--text {{ ctaAgreementText }}
-          img(
-            v-lazy="panelImageSrc"
-            alt="Doctors Clinics CTA"
-            width="90%"
-          ).pt-10
+          picture-source(
+            :image="ctaMobileImage"
+            image-file-extension=".webp"
+            image-width="90%"
+            image-alt="Doctors CTA"
+            :image-classes="['pt-10']"
+          )
 </template>
 
 <script>
 // components
 import GenericBackgroundPanel from '~/components/commons/generic-background-panel';
+import PictureSource from '~/components/commons/PictureSource';
 // utils
 import { parseTextWithNewLine } from '~/utils/newline';
 export default {
   components: {
     GenericBackgroundPanel,
+    PictureSource,
   },
   data () {
-    this.backgroundImage = 'mycure-final-cta-background-full.webp';
-    this.backgroundImageMobile = 'mycure-final-cta-background.webp';
+    this.backgroundImage = 'mycure-final-cta-background-full';
+    this.backgroundImageMobile = 'mycure-final-cta-background.png';
+    this.ctaMobileImage = 'mycure-final-cta-background-image-right';
     this.ctaTitle = 'Build your virtual clinic today.';
     this.ctaSubtitle = 'For Modern Doctors, Virtual is the new normal.';
     this.ctaAgreementText = 'By entering your email, you agree to receive marketing emails from MYCURE.';
@@ -99,9 +105,6 @@ export default {
       return {
         'background-position': 'bottom',
       };
-    },
-    panelImageSrc () {
-      return require('~/assets/images/mycure-final-cta-background-image-right.webp');
     },
     ctaWebTitle () {
       return parseTextWithNewLine(this.ctaTitle, ['virtual']);
@@ -171,14 +174,15 @@ export default {
 @media screen and (device-width: 1024px) and (orientation: portrait) {
   .cta-content {
     position: relative;
-    margin-top: -20%;
+    margin-top: -15%;
     z-index: 1;
   }
   .cta-btn{
     margin-top: 0 !important;
   }
   .row-content {
-    height: 60vh;
+    height: 50vh;
+    margin-bottom: -20%;
   }
 }
 @media screen and (device-width: 1366px) and (orientation: landscape) {

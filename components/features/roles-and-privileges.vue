@@ -7,6 +7,8 @@
     :header="header"
     :descriptions="descriptions"
     :web-image="image"
+    fileExtension=".png"
+    extension-exclusive
     mobile-image-width="90%"
   ).roles-and-privileges
 </template>
@@ -19,7 +21,8 @@ export default {
     GenericMediaPanel,
   },
   data () {
-    this.image = 'MYCURE-virtual-clinic-healthcare-practice-online-features-A-role.png';
+    // this.image = 'MYCURE-virtual-clinic-healthcare-practice-online-features-A-role.png';
+    this.image = 'MYCURE-virtual-clinic-healthcare-practice-online-features-A-role';
     this.header = 'Everybody\'s got a special role to play.';
     this.descriptions = [
       'Collaborate with your clinic staff more efficiently using a clinic system that\'s so user-friendly, you wouldn\'t even feel that you\'re working.',

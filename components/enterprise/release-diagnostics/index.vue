@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-container#diagnostic-centers.py-12
+  v-container#diagnostic-centers.py-12.diagnostic-centers
     v-row(justify="center" align="center")
       v-col(cols="12" md="5" align-self="center" v-if="$isMobile").tenthPanel-description
         p.font-16.mt-3.font-gray.primary--text {{tenthPanel.subHeader}}
@@ -13,7 +13,12 @@
           strong.text-capitalize.primary--text {{tenthPanel.btnTxt}}
           v-icon.primary--text {{tenthPanel.btnIcon}}
       v-col(cols="12" md="6" justify="center" align="center")
-        img(v-lazy="require(`~/assets/images/enterprise/${tenthPanel.image}`)" width="100%" :alt="tenthPanel.header").tenthPanel-image
+        picture-source(
+          customPath="enterprise/"
+          :image="tenthPanel.image"
+          :imageAlt="tenthPanel.header"
+          imageFileExtension=".webp"
+        ).tenthPanel-image
       v-col(cols="12" md="5" align-self="center" v-if="!$isMobile").tenthPanel-description
         p.font-16.mt-3.font-gray.primary--text {{tenthPanel.subHeader}}
         h1.font-30.lh-title.pb-3.font-weight-light {{tenthPanel.header}}
@@ -28,8 +33,12 @@
 </template>
 
 <script>
+// constants
 import { TENTH_PANEL } from '../enterprise-contents';
+// components
+import PictureSource from '~/components/commons/PictureSource';
 export default {
+  components: { PictureSource },
   data () {
     this.tenthPanel = TENTH_PANEL;
     return {};
@@ -48,6 +57,10 @@ export default {
 <style scoped>
 a {
   color: gray;
+}
+.diagnostic-centers {
+  position: relative;
+  z-index: 5;
 }
 @media screen and (device-width: 1024px) {
   .tenthPanel-image {
