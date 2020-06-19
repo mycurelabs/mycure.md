@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-container(v-if="!pageLoading").main-container
+  v-container(v-if="!pageLoading" fluid).main-container
     v-row(align="center" justify="center").mx-1
       v-col(cols="12" sm="8" md="5")
         v-col.text-center
@@ -40,21 +40,8 @@
             @click="submit"
             large
           ) Sign in
-          //- v-row
-          //-   v-col
-          //-     span No account yet?
-          //-     br
-          //-     nuxt-link(:to="{ name: 'index' , params: { scrollHealthSuites: true}}").router-link Create an account here.
         //- v-row(align="center" justify="center")
         //-   v-col(cols="12").text-center.font-14
-        //-     span.white--text Copyright &copy; 2016 - {{new Date().getFullYear()}}
-        //-     br
-        //-     p
-        //-       b MYCURE Inc.
-        //-       | &nbsp;All Rights Reserved.
-        //-     a(@click.stop="goToTerms") Terms of Use
-        //-     | &nbsp;|&nbsp;
-        //-     a(@click.stop="goToPrivacy") Privacy Policy
     v-dialog(v-model="otpDialog" width="400" persistent)
       v-card
         v-toolbar(flat)
@@ -76,6 +63,18 @@
               color="primary"
               type="submit"
             ) Submit
+    v-row(align="center" justify="center").footer
+      v-col(md="12").text-center
+        span.white--text Don't have MYCURE yet?
+        nuxt-link(:to="{ name: 'index' , params: { scrollHealthSuites: true}}").router-link.primary--text &nbsp;&nbsp;Get your account here.
+        v-divider(dark).mt-5.edge-divider
+      v-row(align="center" justify="center").text-center
+        v-col(cols="12" md="6")
+          span.white--text Copyright &copy; 2016 - {{new Date().getFullYear()}} MYCURE Inc. All Rights Reserved.
+        v-col(cols="12" md="6")
+          a(@click.stop="goToTerms") Terms of Use
+          span.white--text &nbsp;&nbsp;|&nbsp;&nbsp;
+          a(@click.stop="goToPrivacy") Privacy Policy
 </template>
 
 <script>
@@ -212,7 +211,11 @@ export default {
 
 <style scoped>
 .main-container {
-  min-height: 90vh;
+  min-height: 100vh;
+}
+.footer {
+  height: 20%;
+  background-color: #343a40 !important;
 }
 
 /* .signin-title {
