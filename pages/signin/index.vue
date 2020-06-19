@@ -14,45 +14,47 @@
           v-form(ref="form" v-model="valid" @keydown.native.enter="valid && submit()")
             v-text-field(
               v-model="email"
-              solo
               label="Email Address"
               :rules="emailRules"
+              outlined
             )
             v-text-field(
               v-model="password"
-              solo
               type="password"
               label="Password"
               :rules="passwordRules"
+              outlined
+              append-icon="mdi-help-circle"
             )
           v-alert(
             :value="error"
             type="error"
           ) {{errorMsg}}
           nuxt-link(:to="{ name: 'forgot-password' }").router-link Forgot Password?
-          v-row
-            v-col
-              span No account yet?
-              br
-              nuxt-link(:to="{ name: 'index' , params: { scrollHealthSuites: true}}").router-link Create an account here.
-            v-col.text-right
-              v-btn(
-                @click="submit"
-                color="accent"
-                :disabled="!valid || loading || signInDisabled"
-                :loading="loading"
-              ).font-weight-bold Sign in
-        v-row(align="center" justify="center")
-          v-col(cols="12").text-center.font-14
-            span.white--text Copyright &copy; 2016 - {{new Date().getFullYear()}}
-            br
-            p
-              b MYCURE Inc.
-              | &nbsp;All Rights Reserved.
-            a(@click.stop="goToTerms") Terms of Use
-            | &nbsp;|&nbsp;
-            a(@click.stop="goToPrivacy") Privacy Policy
-
+        v-col.text-center
+          v-btn(
+            width="45%"
+            color="primary"
+            :disabled="!valid || loading || signInDisabled"
+            :loading="loading"
+            @click="submit"
+            large
+          ) Sign in
+          //- v-row
+          //-   v-col
+          //-     span No account yet?
+          //-     br
+          //-     nuxt-link(:to="{ name: 'index' , params: { scrollHealthSuites: true}}").router-link Create an account here.
+        //- v-row(align="center" justify="center")
+        //-   v-col(cols="12").text-center.font-14
+        //-     span.white--text Copyright &copy; 2016 - {{new Date().getFullYear()}}
+        //-     br
+        //-     p
+        //-       b MYCURE Inc.
+        //-       | &nbsp;All Rights Reserved.
+        //-     a(@click.stop="goToTerms") Terms of Use
+        //-     | &nbsp;|&nbsp;
+        //-     a(@click.stop="goToPrivacy") Privacy Policy
     v-dialog(v-model="otpDialog" width="400" persistent)
       v-card
         v-toolbar(flat)
