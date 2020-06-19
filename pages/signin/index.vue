@@ -1,58 +1,47 @@
 <template lang="pug">
   v-container(v-if="!pageLoading").main-container
     v-row(align="center" justify="center").mx-1
-      v-col(cols="12" sm="8" md="4")
-        v-card.login-card
-          v-card-text.pa-4
-            img(
-              v-if="dayOrNight === 'day'"
-              src="~/assets/images/mycure-header-logo.png"
-              alt="MYCURE logo"
-              @click="$nuxt.$router.push({ name: 'index' })"
-            ).link-to-home.mb-3
-            img(
-              v-else
-              width="120"
-              src="~/assets/images/mycure-footer-logo.png"
-              alt="MYCURE logo"
-              @click="$nuxt.$router.push({ name: 'index' })"
-            ).link-to-home.mb-3
-            h1.signin-title.pb-2 It's nice to see you here!
-            span.grey--text Welcome to MYCURE. Sign in to your account
-          v-card-text.pa-4
-            v-form(ref="form" v-model="valid" @keydown.native.enter="valid && submit()")
-              v-text-field(
-                v-model="email"
-                solo
-                label="Email Address"
-                :rules="emailRules"
-              )
-              v-text-field(
-                v-model="password"
-                solo
-                type="password"
-                label="Password"
-                :rules="passwordRules"
-              )
-            v-alert(
-              :value="error"
-              type="error"
-            ) {{errorMsg}}
-          v-card-text.pa-4
-            nuxt-link(:to="{ name: 'forgot-password' }").router-link Forgot Password?
-          v-card-text.pa-4
-            v-row
-              v-col
-                span No account yet?
-                br
-                nuxt-link(:to="{ name: 'index' , params: { scrollHealthSuites: true}}").router-link Create an account here.
-              v-col.text-right
-                v-btn(
-                  @click="submit"
-                  color="accent"
-                  :disabled="!valid || loading || signInDisabled"
-                  :loading="loading"
-                ).font-weight-bold Sign in
+      v-col(cols="12" sm="8" md="5")
+        v-col.text-center
+          img(
+            src="~/assets/images/sign-in/mycure-sso-sign-in-logo.svg"
+            alt="MYCURE logo"
+            @click="$nuxt.$router.push({ name: 'index' })"
+          ).link-to-home.mb-3
+          h1.signin-title.font-weight-bold.pb-2 Sign in to MYCURE
+          span.grey--text Because you care the extra mile.
+        v-col
+          v-form(ref="form" v-model="valid" @keydown.native.enter="valid && submit()")
+            v-text-field(
+              v-model="email"
+              solo
+              label="Email Address"
+              :rules="emailRules"
+            )
+            v-text-field(
+              v-model="password"
+              solo
+              type="password"
+              label="Password"
+              :rules="passwordRules"
+            )
+          v-alert(
+            :value="error"
+            type="error"
+          ) {{errorMsg}}
+          nuxt-link(:to="{ name: 'forgot-password' }").router-link Forgot Password?
+          v-row
+            v-col
+              span No account yet?
+              br
+              nuxt-link(:to="{ name: 'index' , params: { scrollHealthSuites: true}}").router-link Create an account here.
+            v-col.text-right
+              v-btn(
+                @click="submit"
+                color="accent"
+                :disabled="!valid || loading || signInDisabled"
+                :loading="loading"
+              ).font-weight-bold Sign in
         v-row(align="center" justify="center")
           v-col(cols="12").text-center.font-14
             span.white--text Copyright &copy; 2016 - {{new Date().getFullYear()}}
@@ -224,10 +213,10 @@ export default {
   min-height: 90vh;
 }
 
-.signin-title {
+/* .signin-title {
   font-weight: 500;
   font-size: 25px;
-}
+} */
 
 .router-link {
   text-decoration: none;
