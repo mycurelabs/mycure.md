@@ -42,7 +42,7 @@ export default {
 }
 
 .day-bg {
-  background-image: url('../assets/images/mycure-onboarding-background.png');
+  background-image: url('../assets/images/sign-in/mycure-final-cta-background.png');
 }
 
 .night-bg {
