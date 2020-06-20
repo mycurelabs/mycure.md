@@ -13,9 +13,9 @@
         v-col(cols="12" md="6").pl-12.pr-12
           span.white--text Copyright &copy; 2016 - {{new Date().getFullYear()}} MYCURE Inc. All Rights Reserved.
         v-col(cols="12" md="6")
-          a(@click.stop="goToTerms" rel="noopener noreferrer") Terms of Use
+          a(@click.stop="goToTerms") Terms of Use
           span.white--text &nbsp;&nbsp;|&nbsp;&nbsp;
-          a(@click.stop="goToPrivacy" rel="noopener noreferrer") Privacy Policy
+          a(@click.stop="goToPrivacy") Privacy Policy
 </template>
 
 <script>
@@ -41,11 +41,15 @@ export default {
   methods: {
     goToTerms () {
       const routeData = this.$nuxt.$router.resolve({ name: 'terms' });
-      window.open(routeData.href, '_blank');
+      const changeRoute = window.open(routeData.href, '_blank');
+      changeRoute.opener = null;
+      changeRoute.rel = 'noopener noreferrer';
     },
     goToPrivacy () {
       const routeData = this.$nuxt.$router.resolve({ name: 'privacy-policy' });
-      window.open(routeData.href, '_blank');
+      const changeRoute = window.open(routeData.href, '_blank');
+      changeRoute.opener = null;
+      changeRoute.rel = 'noopener noreferrer';
     },
   },
 };
