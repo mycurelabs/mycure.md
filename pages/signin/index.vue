@@ -1,69 +1,44 @@
 <template lang="pug">
   v-container(v-if="!pageLoading").main-container
     v-row(align="center" justify="center").mx-1
-      v-col(cols="12" sm="8" md="4")
-        v-card.login-card
-          v-card-text.pa-4
-            img(
-              v-if="dayOrNight === 'day'"
-              src="~/assets/images/mycure-header-logo.png"
-              alt="MYCURE logo"
-              @click="$nuxt.$router.push({ name: 'index' })"
-            ).link-to-home.mb-3
-            img(
-              v-else
-              width="120"
-              src="~/assets/images/mycure-footer-logo.png"
-              alt="MYCURE logo"
-              @click="$nuxt.$router.push({ name: 'index' })"
-            ).link-to-home.mb-3
-            h1.signin-title.pb-2 It's nice to see you here!
-            span.grey--text Welcome to MYCURE. Sign in to your account
-          v-card-text.pa-4
-            v-form(ref="form" v-model="valid" @keydown.native.enter="valid && submit()")
-              v-text-field(
-                v-model="email"
-                solo
-                label="Email Address"
-                :rules="emailRules"
-              )
-              v-text-field(
-                v-model="password"
-                solo
-                type="password"
-                label="Password"
-                :rules="passwordRules"
-              )
-            v-alert(
-              :value="error"
-              type="error"
-            ) {{errorMsg}}
-          v-card-text.pa-4
-            nuxt-link(:to="{ name: 'forgot-password' }").router-link Forgot Password?
-          v-card-text.pa-4
-            v-row
-              v-col
-                span No account yet?
-                br
-                nuxt-link(:to="{ name: 'index' , params: { scrollHealthSuites: true}}").router-link Create an account here.
-              v-col.text-right
-                v-btn(
-                  @click="submit"
-                  color="accent"
-                  :disabled="!valid || loading || signInDisabled"
-                  :loading="loading"
-                ).font-weight-bold Sign in
-        v-row(align="center" justify="center")
-          v-col(cols="12").text-center.font-14
-            span.white--text Copyright &copy; 2016 - {{new Date().getFullYear()}}
-            br
-            p
-              b MYCURE Inc.
-              | &nbsp;All Rights Reserved.
-            a(@click.stop="goToTerms") Terms of Use
-            | &nbsp;|&nbsp;
-            a(@click.stop="goToPrivacy") Privacy Policy
-
+      v-col(cols="12" sm="8" md="5")
+        v-col.text-center
+          img(
+            src="~/assets/images/sign-in/mycure-sso-sign-in-logo.svg"
+            alt="MYCURE logo"
+            @click="$nuxt.$router.push({ name: 'index' })"
+          ).link-to-home.mb-3
+          h1(:class="titleSizeClasses").signin-title.font-weight-bold.pb-2 Sign in to MYCURE
+          span.grey--text Because you care the extra mile.
+        v-col
+          v-form(ref="form" v-model="valid" @keydown.native.enter="valid && submit()")
+            v-text-field(
+              v-model="email"
+              label="Email Address"
+              :rules="emailRules"
+              outlined
+            )
+            v-text-field(
+              v-model="password"
+              type="password"
+              label="Password"
+              :rules="passwordRules"
+              outlined
+            )
+          v-alert(
+            :value="error"
+            type="error"
+          ) {{errorMsg}}
+          nuxt-link(:to="{ name: 'forgot-password' }").router-link Forgot Password?
+        v-col.text-center
+          v-btn(
+            width="45%"
+            color="primary"
+            :disabled="!valid || loading || signInDisabled"
+            :loading="loading"
+            @click="submit"
+            large
+          ) Sign in
     v-dialog(v-model="otpDialog" width="400" persistent)
       v-card
         v-toolbar(flat)
@@ -124,6 +99,9 @@ export default {
       return this.isMFAMobileNoEnabled
         ? 'We sent the authentication code to your mobile number. Enter the code in the form above to verify your identity.'
         : 'Enter the code from Google Authenticator in the form above to verify your identity.';
+    },
+    titleSizeClasses () {
+      return [this.$isMobile ? 'font-24' : 'font-32'];
     },
   },
   watch: {
@@ -199,14 +177,6 @@ export default {
       queries.unshift(`token=${accessToken}`);
       return `${this.target}?${queries.join('&')}`;
     },
-    goToTerms () {
-      const routeData = this.$nuxt.$router.resolve({ name: 'terms' });
-      window.open(routeData.href, '_blank');
-    },
-    goToPrivacy () {
-      const routeData = this.$nuxt.$router.resolve({ name: 'privacy-policy' });
-      window.open(routeData.href, '_blank');
-    },
   },
   head () {
     return headMeta({
@@ -221,18 +191,8 @@ export default {
 
 <style scoped>
 .main-container {
-  min-height: 90vh;
+  min-height: 20vh;
 }
-
-.signin-title {
-  font-weight: 500;
-  font-size: 25px;
-}
-
-.router-link {
-  text-decoration: none;
-}
-
 .otp-field {
   height: 50px;
   width: 100%;
