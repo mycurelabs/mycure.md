@@ -187,9 +187,34 @@ export default {
     width: 254px;
   }
 }
+@media screen and (device-width: 1280px) {
+  .usp-content {
+    margin-top: -2%;
+  }
+}
 @media screen and (device-width: 1366px) {
   .usp-content {
+    margin-top: 0%;
+  }
+}
+@media screen and (device-width: 1440px) {
+  .usp-content {
+    margin-top: -6%;
+  }
+}
+@media screen and (device-width: 1680px) {
+  .usp-content {
+    margin-top: -12%;
+  }
+}
+@media screen and (device-width: 1920px) {
+  .usp-content {
     margin-top: -10%;
+  }
+}
+@media screen and (min-width: 2304px) {
+  .usp-content {
+    margin-top: -16%;
   }
 }
 </style>
