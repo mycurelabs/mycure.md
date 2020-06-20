@@ -1,5 +1,15 @@
 <template lang="pug">
   v-container
+    v-row
+      v-col(justify="end" align="end" md="3").offset-md-9
+        template(v-slot:activator="{ on }")
+          v-icon(large @click="showInfo === !showInfo").primary--text.mb-n12 mdi-help-circle
+        v-dialog(v-model="showInfo" width="300")
+          v-card
+            v-card-title
+              h3 Become a techy doctor in minutes!
+            v-card-text(v-for="(item, key) in checkListItems" :key="key")
+              p.font-18 {{item}}
     v-row(justify="center" align="center")
       v-col(cols="12" md="10" justify="center" align="center")
         img(
@@ -11,25 +21,25 @@
         h1 Create a MYCURE Account
       v-col(cols="12" md="5" justify="center" align="center")
         v-form(ref="formRef" v-model="valid")
-          v-row
-            v-col
+          v-row(no-gutters)
+            v-col(xs="12")
               v-text-field(
                 v-model="user.firstName"
                 outlined
                 label="First Name"
                 :rules="[requiredRule]"
                 :disabled="loading"
-              ).step-one-text-field
+              ).step-one-text-field.pr-1
                 template(v-slot:append v-if="user.firstName")
                   v-icon(color="accent") mdi-check
-            v-col
+            v-col(xs="12")
               v-text-field(
                 v-model="user.lastName"
                 outlined
                 label="Last Name"
                 :rules="[requiredRule]"
                 :disabled="loading"
-              )
+              ).pl-1
                 template(v-slot:append v-if="user.lastName")
                   v-icon(color="accent") mdi-check
           v-text-field(
@@ -100,8 +110,9 @@
           )
             template(v-slot: append v-if="confirmPassword && confirmPassword === user.password")
               v-icon(color="accent") mdi-check
-        v-divider
       v-col(cols="12" md="10" justify="center" align="center")
+        v-divider
+      v-col(cols="12" md="10" justify="start" align="center")
         v-checkbox(
           v-model="user.acceptTerms"
           hide-details
@@ -115,17 +126,16 @@
               a(@click.stop="goToTerms") Terms
               | &nbsp;and&nbsp;
               a(@click.stop="goToPrivacy") Privacy Policy
-      v-col(cols="12" md="10" justify="center" align="center")
         v-alert(:value="error" type="error").mt-5 {{errorMessage}}
-          v-spacer
-          v-btn(
-            color="accent"
-            @click="next"
-            :disabled="loading || !valid"
-            :loading="loading"
-            large
-          ).font-weight-bold Create My Account
-
+      v-col(cols="12" md="10" justify="center" align="center")
+        v-spacer
+        v-btn(
+          color="primary"
+          @click="next"
+          :disabled="loading || !valid"
+          :loading="loading"
+          large
+        ).font-weight-bold Create My Account
     v-dialog(v-model="countryDialog" width="500" scrollable)
       v-card
         v-toolbar(flat)
@@ -174,6 +184,7 @@ export default {
       'Save on time and save more lives!',
     ];
     return {
+      showInfo: false,
       valid: false,
       loading: false,
       loadingForm: false,
@@ -373,6 +384,9 @@ h1 {
 
 .content-padding {
   padding-top: 100px;
+}
+.divider-vertical {
+  width: 10% !important;
 }
 /* TODO: confirm if needed. This will defeat uniformity across other forms. */
 /* .step-one-text-field {

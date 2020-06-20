@@ -6,8 +6,8 @@
         :class="contentClasses"
       ).bg-positions.pa-3
         nuxt
-      //- div(:class="footerClasses")
-      //-   v-img(:src="require(`../assets/images/mycure-onboarding-background${dayOrNight === 'night' ? '-dark-mode' : ''}.png`)" alt="Sign up background")
+      div(:class="footerClasses")
+        v-img(:src="require(`../assets/images/sign-up-individual-step-1/mycure-final-cta-background-full.png`)" alt="Sign up background")
 </template>
 
 <script>
@@ -23,12 +23,12 @@ export default {
     };
   },
   computed: {
-    styleConfig () {
-      const style = {
-        'background-image': `url(${require('../assets/images/MYCURE-Sign-Up-background-left-corner.png')}), url(${require('../assets/images/MYCURE-Sign-Up-background-right-corner.png')})`,
-      };
-      return this.$isMobile ? {} : style;
-    },
+    // styleConfig () {
+    //   const style = {
+    //     'background-image': `url(${require('../assets/images/MYCURE-Sign-Up-background-left-corner.png')}), url(${require('../assets/images/MYCURE-Sign-Up-background-right-corner.png')})`,
+    //   };
+    //   return this.$isMobile ? {} : style;
+    // },
     page () {
       return this.$route.name;
     },
