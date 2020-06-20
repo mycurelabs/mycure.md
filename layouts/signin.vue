@@ -1,9 +1,8 @@
 <template lang="pug">
   v-app.sign-in-page
-    v-content(:class="contentClasses").content-padding
-      div(:class="contentClasses")
+    v-layout(:class="contentClasses" fill-height fluid)
+      v-row(align="center" justify="center" :class="[contentClasses, footerClasses]").footer-bg
         nuxt
-      div(:class="footerClasses").footer-bg
     v-row(align="center" justify="center").footer
       v-col(cols="12").mt-2.text-center
         span.white--text Don't have MYCURE yet?
@@ -56,20 +55,18 @@ export default {
 </script>
 
 <style scoped>
-.content-padding {
-  padding-top: 10px;
-}
 .footer-bg {
   background-repeat: repeat-x;
   background-position: bottom center;
-  bottom: 0;
-  min-height: 290px;
+  padding-bottom: 100px;
 }
 .day-bg {
   background-image: url('../assets/images/sign-in/mycure-final-cta-background.png');
+  background-size: auto 18%;
 }
 .night-bg {
   background-image: url('../assets/images/mycure-onboarding-background-dark-mode.png');
+  background-size: auto 18%;
 }
 .night-sky {
   background-color: rgb(28,28,28);
@@ -84,22 +81,9 @@ export default {
 .router-link {
   text-decoration: none;
 }
-@media screen and (min-height: 700px) {
-  .content-padding {
-    padding-top: 15vh !important;
-  }
-}
-@media screen and (device-width: 1024px) {
-  .content-padding {
-    padding-top: 30vh !important;
-  }
-  .footer {
-    max-height: 160px;
-  }
-}
-@media screen and (min-width: 2304px) {
-  .content-padding {
-    padding-top: 32vh !important;
+@media screen and (min-width: 768px) {
+  .footer-bg {
+    padding-bottom: unset;
   }
 }
 </style>
