@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-container(v-if="!pageLoading" fluid).main-container
+  v-container(v-if="!pageLoading").main-container
     v-row(align="center" justify="center").mx-1
       v-col(cols="12" sm="8" md="5")
         v-col.text-center
@@ -8,7 +8,7 @@
             alt="MYCURE logo"
             @click="$nuxt.$router.push({ name: 'index' })"
           ).link-to-home.mb-3
-          h1.signin-title.font-weight-bold.pb-2 Sign in to MYCURE
+          h1(:class="titleSizeClasses").signin-title.font-weight-bold.pb-2 Sign in to MYCURE
           span.grey--text Because you care the extra mile.
         v-col
           v-form(ref="form" v-model="valid" @keydown.native.enter="valid && submit()")
@@ -24,7 +24,6 @@
               label="Password"
               :rules="passwordRules"
               outlined
-              append-icon="mdi-help-circle"
             )
           v-alert(
             :value="error"
@@ -40,8 +39,6 @@
             @click="submit"
             large
           ) Sign in
-        //- v-row(align="center" justify="center")
-        //-   v-col(cols="12").text-center.font-14
     v-dialog(v-model="otpDialog" width="400" persistent)
       v-card
         v-toolbar(flat)
@@ -63,18 +60,6 @@
               color="primary"
               type="submit"
             ) Submit
-    v-row(align="center" justify="center").footer
-      v-col(md="12").text-center
-        span.white--text Don't have MYCURE yet?
-        nuxt-link(:to="{ name: 'index' , params: { scrollHealthSuites: true}}").router-link.primary--text &nbsp;&nbsp;Get your account here.
-        v-divider(dark).mt-5.edge-divider
-      v-row(align="center" justify="center").text-center
-        v-col(cols="12" md="6")
-          span.white--text Copyright &copy; 2016 - {{new Date().getFullYear()}} MYCURE Inc. All Rights Reserved.
-        v-col(cols="12" md="6")
-          a(@click.stop="goToTerms") Terms of Use
-          span.white--text &nbsp;&nbsp;|&nbsp;&nbsp;
-          a(@click.stop="goToPrivacy") Privacy Policy
 </template>
 
 <script>
@@ -114,6 +99,9 @@ export default {
       return this.isMFAMobileNoEnabled
         ? 'We sent the authentication code to your mobile number. Enter the code in the form above to verify your identity.'
         : 'Enter the code from Google Authenticator in the form above to verify your identity.';
+    },
+    titleSizeClasses () {
+      return [this.$isMobile ? 'font-24' : 'font-32'];
     },
   },
   watch: {
@@ -189,14 +177,6 @@ export default {
       queries.unshift(`token=${accessToken}`);
       return `${this.target}?${queries.join('&')}`;
     },
-    goToTerms () {
-      const routeData = this.$nuxt.$router.resolve({ name: 'terms' });
-      window.open(routeData.href, '_blank');
-    },
-    goToPrivacy () {
-      const routeData = this.$nuxt.$router.resolve({ name: 'privacy-policy' });
-      window.open(routeData.href, '_blank');
-    },
   },
   head () {
     return headMeta({
@@ -211,22 +191,8 @@ export default {
 
 <style scoped>
 .main-container {
-  min-height: 100vh;
+  min-height: 20vh;
 }
-.footer {
-  height: 20%;
-  background-color: #343a40 !important;
-}
-
-/* .signin-title {
-  font-weight: 500;
-  font-size: 25px;
-} */
-
-.router-link {
-  text-decoration: none;
-}
-
 .otp-field {
   height: 50px;
   width: 100%;
