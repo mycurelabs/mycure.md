@@ -6,8 +6,8 @@
         :class="contentClasses"
       ).bg-positions.pa-3
         nuxt
-      div(:class="footerClasses")
-        v-img(:src="require(`../assets/images/mycure-onboarding-background${dayOrNight === 'night' ? '-dark-mode' : ''}.png`)" alt="Sign up background")
+      //- div(:class="footerClasses")
+      //-   v-img(:src="require(`../assets/images/mycure-onboarding-background${dayOrNight === 'night' ? '-dark-mode' : ''}.png`)" alt="Sign up background")
 </template>
 
 <script>
