@@ -1,22 +1,23 @@
 <template lang="pug">
-  v-container
+  v-container.content-padding
     v-row
       v-col(justify="end" align="end" md="3").offset-md-9
-        template(v-slot:activator="{ on }")
-          v-icon(large @click="showInfo === !showInfo").primary--text.mb-n12 mdi-help-circle
-        v-dialog(v-model="showInfo" width="300")
-          v-card
-            v-card-title
-              h3 Become a techy doctor in minutes!
-            v-card-text(v-for="(item, key) in checkListItems" :key="key")
-              p.font-18 {{item}}
+        v-btn(icon @click="showInfo = !showInfo").mb-n12
+          v-icon(large).primary--text mdi-help-circle
+    v-dialog(v-model="showInfo" width="300")
+      v-card
+        v-card-title
+          h4 Become a techy doctor in minutes!
+        v-card-text(v-for="(item, key) in checkListItems" :key="key")
+          v-icon mdi-circle-medium
+          span.font-16 {{ item }}
     v-row(justify="center" align="center")
       v-col(cols="12" md="10" justify="center" align="center")
         img(
           src="~/assets/images/sign-up-individual-step-1/mycure-sso-sign-in-logo.svg"
           @click="$nuxt.$router.push({ name: 'index' })"
           alt="MYCURE logo"
-        ).link-to-home
+        ).link-to-home.pb-5
         h2.font-18.primary--text Doctors Clinic: Sign Up (Step 1 of 2)
         h1 Create a MYCURE Account
       v-col(cols="12" md="5" justify="center" align="center")
@@ -77,8 +78,8 @@
             //-     v-btn(small icon slot="activator" @click="countryDialog = true" :disabled="loading")
             //-       v-icon mdi-earth
             //-     | Change Country
-      v-divider(vertical)
-      v-col(cols="12" md="5")
+      v-divider(v-if="!$isMobile" vertical).vertical-divider
+      v-col(cols="12" md="5" :class="credentialClasses")
         v-form(ref="formRef" v-model="valid")
           v-text-field(
             v-model="user.email"
@@ -110,7 +111,7 @@
           )
             template(v-slot: append v-if="confirmPassword && confirmPassword === user.password")
               v-icon(color="accent") mdi-check
-      v-col(cols="12" md="10" justify="center" align="center")
+      v-col(cols="12" md="10" justify="center" v-if="!$isMobile").mt-md-n5
         v-divider
       v-col(cols="12" md="10" justify="start" align="center")
         v-checkbox(
@@ -119,7 +120,7 @@
           style="margin-top: -10px"
           :rules="[requiredRule]"
           :disabled="loading"
-          color="accent"
+          color="primary"
         )
           template(slot="label")
             p(style="margin-bottom: -6px") By creating a MYCURE account, you're agreeing to accept MYCURE&nbsp;
@@ -223,6 +224,9 @@ export default {
     contentClasses () {
       return [{ 'content-padding': !this.$isMobile }];
     },
+    credentialClasses () {
+      return [this.$isMobile ? 'mt-n6' : ''];
+    },
   },
   watch: {
     'user.mobileNo': {
@@ -323,13 +327,17 @@ export default {
     goToTerms () {
       const routeData = this.$nuxt.$router.resolve({ name: 'terms' });
       if (process.client) {
-        window.open(routeData.href, '_blank');
+        const changeRoute = window.open(routeData.href, '_blank');
+        changeRoute.opener = null;
+        changeRoute.rel = 'noopener noreferrer';
       }
     },
     goToPrivacy () {
       const routeData = this.$nuxt.$router.resolve({ name: 'privacy-policy' });
       if (process.client) {
-        window.open(routeData.href, '_blank');
+        const changeRoute = window.open(routeData.href, '_blank');
+        changeRoute.opener = null;
+        changeRoute.rel = 'noopener noreferrer';
       }
     },
     validateForm () {
@@ -385,8 +393,49 @@ h1 {
 .content-padding {
   padding-top: 100px;
 }
-.divider-vertical {
-  width: 10% !important;
+.vertical-divider {
+  margin-top: 10px;
+  height: 230px !important;
+}
+@media screen and (device-width: 1024px) {
+  .content-padding {
+    padding-top: 20vh;
+  }
+}
+@media screen and (device-width: 1440px) {
+  .content-padding {
+    margin-bottom: -10%;
+    position: relative;
+    z-index: 2;
+  }
+}
+@media screen and (device-width: 1680px) {
+  .content-padding {
+    margin-bottom: -15%;
+    position: relative;
+    z-index: 2;
+  }
+}
+@media screen and (device-width: 1920px) {
+  .content-padding {
+    margin-bottom: -5%;
+    position: relative;
+    z-index: 2;
+  }
+}
+@media screen and (device-width: 2304px) {
+  .content-padding {
+    margin-bottom: -7%;
+    position: relative;
+    z-index: 2;
+  }
+}
+@media screen and (device-width: 2560px) {
+  .content-padding {
+    margin-bottom: -10%;
+    position: relative;
+    z-index: 2;
+  }
 }
 /* TODO: confirm if needed. This will defeat uniformity across other forms. */
 /* .step-one-text-field {
