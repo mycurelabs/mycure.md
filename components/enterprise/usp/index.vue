@@ -1,13 +1,12 @@
 <template lang="pug">
   fragment
-    v-layout(
+    v-container(
       fluid
-      fill-height
       style="height: 100vh"
       :class="[backgroundClasses]"
     )
       v-container
-        v-layout(style="height: 100%" fluid)
+        v-container(style="height: 100%" fluid)
           v-row(align="start" justify="center")
             v-col(cols="12" :class="{ 'pt-12 mt-4': $isMobile, 'pl-5 usp-content': !$isMobile }")
               p(:class="[centerText, subtitleClasses]") {{ uspPreSubtitle }}
@@ -33,7 +32,7 @@
                 width="160"
               ).text-none.font-16.p-7 Book A Demo
     template(v-if="$isMobile")
-      v-layout(fluid).mobile-form
+      v-container(fluid).mobile-form
         v-row.px-6
           v-text-field(
             background-color="white"
@@ -52,12 +51,7 @@
 <script>
 // utils
 import { parseTextWithNewLine } from '~/utils/newline';
-// components
-import GenericBackgroundPanel from '~/components/commons/generic-background-panel';
 export default {
-  components: {
-    GenericBackgroundPanel,
-  },
   data () {
     this.uspPreSubtitle = 'For Medical Enterprise';
     this.panelTitle = 'Take your healthcare enterprise to a broader audience';
@@ -133,7 +127,7 @@ export default {
   opacity: 0.9;
 }
 .mobile-form {
-  margin-top: -100px;
+  margin-top: -112px;
 }
 .mobile-form .text-field-input {
   height: 56px;

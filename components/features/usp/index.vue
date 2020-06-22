@@ -1,13 +1,12 @@
 <template lang="pug">
   fragment
-    v-layout(
+    v-container(
       fluid
-      fill-height
       style="height: 100vh"
       :class="[backgroundClasses, backgroundImages]"
     )
       v-container
-        v-layout(style="height: 100%" fluid)
+        v-container(style="height: 100%" fluid)
           v-row(align="start" justify="center")
             v-col(cols="12" :class="{ 'pt-12 mt-4': $isMobile, 'pl-5 usp-content': !$isMobile }")
               p(:class="[centerText, subtitleClasses]") {{ metaTitle }}
@@ -23,7 +22,7 @@
                 v-icon(left) mdi-play-circle
                 | Watch Walkthrough
     template(v-if="$isMobile")
-      v-layout(fluid).mobile-form
+      v-container(fluid).mobile-form
         v-row.px-6
           v-btn(
             block
@@ -52,12 +51,7 @@
 // utils
 import { parseTextWithNewLine } from '~/utils/newline';
 import canUseWebp from '~/utils/can-use-webp';
-// components
-import GenericBackgroundPanel from '~/components/commons/generic-background-panel';
 export default {
-  components: {
-    GenericBackgroundPanel,
-  },
   data () {
     this.panelTitle = 'User-friendly and time-efficient features for a more patient-centric care';
     this.metaTitle = 'MYCURE Features';
@@ -127,6 +121,6 @@ export default {
   margin-top: 150px;
 }
 .mobile-form {
-  margin-top: -45px;
+  margin-top: -57px;
 }
 </style>
