@@ -8,7 +8,7 @@
     )
       v-container
         v-layout(style="height: 100%" fluid)
-          v-row(:align="!$isMobile ? 'center' : 'start'" justify="center")
+          v-row(align="start" justify="center")
             v-col(cols="12" :class="{ 'pt-12 mt-4': $isMobile, 'pl-5 usp-content': !$isMobile }")
               h3(:class="titleClasses").font-poppins.font-36.lh-title {{ panelTitleSub }}
               h1(:class="titleClasses").font-poppins.font-60.lh-title {{ uspTitle }}
@@ -124,7 +124,7 @@ export default {
   background-size: 100%;
 }
 .usp-content{
-  margin-top: -150px;
+  margin-top: 150px;
 }
 .text-field-container {
   height: 50px;

@@ -8,11 +8,11 @@
     )
       v-container
         v-layout(style="height: 100%" fluid)
-          v-row(:align="!$isMobile ? 'center' : 'start'" justify="center")
+          v-row(align="start" justify="center")
             v-col(cols="12" :class="{ 'pt-12 mt-4': $isMobile, 'pl-5 usp-content': !$isMobile }")
-              p(:class="[centerText]").font-18.mx-1.usp-subtitle {{ uspSubheader }}
+              p(:class="[centerText, subtitleClasses]").mx-1.usp-subtitle {{ uspSubheader }}
               h1(:class="titleClasses").font-poppins.lh-title.usp-title {{ uspTitle }}
-              p(:class="subtitleClasses").font-18.mx-1.pt-5 {{ uspSubtitle }}
+              p(:class="subtitleClasses").mx-1.pt-5 {{ uspSubtitle }}
               div(v-show="$isMobile").text-center
                 v-btn(text).align-center
                   v-icon(large) mdi-arrow-down
@@ -72,8 +72,8 @@ export default {
     },
     subtitleClasses () {
       return this.$isMobile
-        ? [this.centerText]
-        : ['pre-white-space'];
+        ? [this.centerText, 'font-18']
+        : ['pre-white-space', 'font-24'];
     },
     uspTitle () {
       return this.$isMobile
@@ -83,7 +83,7 @@ export default {
     uspSubtitle () {
       return this.$isMobile
         ? this.panelSubtitle
-        : parseTextWithNewLine(this.panelSubtitle, ['easier. ']);
+        : parseTextWithNewLine(this.panelSubtitle, ['never ', 'the ']);
     },
     backgroundClasses () {
       return !this.$isMobile ? 'bg' : 'bg-mobile';
@@ -129,7 +129,7 @@ export default {
   background-size: 100%;
 }
 .usp-content{
-  margin-top: -150px;
+  margin-top: 150px;
 }
 @media screen and (device-width: 1920px) {
   .usp-title {
