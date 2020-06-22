@@ -21,7 +21,7 @@
         h2.font-18.primary--text Doctors Clinic: Sign Up (Step 1 of 2)
         h1 Create a MYCURE Account
       v-col(cols="12" md="5" justify="center" align="center")
-        v-form(ref="formRef" v-model="valid")
+        v-form(ref="formRef" v-model="validPersonal")
           v-row(no-gutters)
             v-col(xs="12")
               v-text-field(
@@ -80,7 +80,7 @@
             //-     | Change Country
       v-divider(v-if="!$isMobile" vertical).vertical-divider
       v-col(cols="12" md="5" :class="credentialClasses")
-        v-form(ref="formRef" v-model="valid")
+        v-form(ref="formRef" v-model="validAccount")
           v-text-field(
             v-model="user.email"
             type="email"
@@ -114,26 +114,27 @@
       v-col(cols="12" md="10" justify="center" v-if="!$isMobile").mt-md-n5
         v-divider
       v-col(cols="12" md="10" justify="start" align="center")
-        v-checkbox(
-          v-model="user.acceptTerms"
-          hide-details
-          style="margin-top: -10px"
-          :rules="[requiredRule]"
-          :disabled="loading"
-          color="primary"
-        )
-          template(slot="label")
-            p(style="margin-bottom: -6px") By creating a MYCURE account, you're agreeing to accept MYCURE&nbsp;
-              a(@click.stop="goToTerms") Terms
-              | &nbsp;and&nbsp;
-              a(@click.stop="goToPrivacy") Privacy Policy
-        v-alert(:value="error" type="error").mt-5 {{errorMessage}}
+        v-form(ref="formRef" v-model="validAgreement")
+          v-checkbox(
+            v-model="user.acceptTerms"
+            hide-details
+            style="margin-top: -10px"
+            :rules="[requiredRule]"
+            :disabled="loading"
+            color="primary"
+          )
+            template(slot="label")
+              p.checkbox-label By creating a MYCURE account, you're agreeing to accept MYCURE&nbsp;
+                a(@click.stop="goToTerms") Terms
+                | &nbsp;and&nbsp;
+                a(@click.stop="goToPrivacy") Privacy Policy
+          v-alert(:value="error" type="error").mt-5 {{errorMessage}}
       v-col(cols="12" md="10" justify="center" align="center")
         v-spacer
         v-btn(
           color="primary"
           @click="next"
-          :disabled="loading || !valid"
+          :disabled="loading || !validForm"
           :loading="loading"
           large
         ).font-weight-bold Create My Account
@@ -186,7 +187,9 @@ export default {
     ];
     return {
       showInfo: false,
-      valid: false,
+      validPersonal: false,
+      validAccount: false,
+      validAgreement: false,
       loading: false,
       loadingForm: false,
       countryDialog: false,
@@ -226,6 +229,9 @@ export default {
     },
     credentialClasses () {
       return [this.$isMobile ? 'mt-n6' : ''];
+    },
+    validForm () {
+      return this.validPersonal && this.validAccount && this.validAgreement;
     },
   },
   watch: {
@@ -343,7 +349,7 @@ export default {
     validateForm () {
       const valid = this.$refs.formRef.validate();
       this.validatePhoneNo();
-      this.valid = valid && this.mobileNoError;
+      this.valid = valid && this.mobileNoError && this.user?.acceptTerms;
     },
     validatePhoneNo () {
       this.mobileNoError = false;
@@ -393,6 +399,11 @@ h1 {
 .content-padding {
   padding-top: 100px;
 }
+
+.checkbox-label {
+  margin-bottom: 0;
+}
+
 .vertical-divider {
   margin-top: 10px;
   height: 230px !important;
