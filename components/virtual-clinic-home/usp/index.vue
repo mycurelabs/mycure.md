@@ -46,7 +46,7 @@
             color="accent"
             large
             @click="onGetStarted"
-          ).text-none.font-16.p-7.mt-n1 Get Started
+          ).text-none.font-16 Get Started
 </template>
 
 <script>
