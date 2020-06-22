@@ -11,7 +11,7 @@
       v-row(align="center" justify="center").mt-n2.text-center
         v-col(cols="12" md="6").pl-12.pr-12
           span.white--text Copyright &copy; 2016 - {{new Date().getFullYear()}} MYCURE Inc. All Rights Reserved.
-        v-col(cols="12" md="6")
+        v-col(cols="12" md="6" :class="footerPaddingClasses")
           a(@click.stop="goToTerms") Terms of Use
           span.white--text &nbsp;&nbsp;|&nbsp;&nbsp;
           a(@click.stop="goToPrivacy") Privacy Policy
@@ -31,6 +31,9 @@ export default {
     },
     footerClasses () {
       return [this.dayOrNight === 'night' ? 'night-sky' : 'white', this.dayOrNight === 'night' ? 'night-bg' : 'day-bg'];
+    },
+    footerPaddingClasses () {
+      return [this.$isMobile ? 'pb-6' : ''];
     },
   },
   mounted () {
