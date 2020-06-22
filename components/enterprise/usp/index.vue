@@ -33,13 +33,14 @@
                 width="160"
               ).text-none.font-16.p-7 Book A Demo
     template(v-if="$isMobile")
-      v-layout(fluid)
-        v-row
+      v-layout(fluid).mobile-form
+        v-row.px-6
           v-text-field(
+            background-color="white"
             v-model="email"
             outlined
             placeholder="myname@email.com"
-          )
+          ).text-field-input
           v-btn(
             color="accent"
             @click="onGetStarted"
@@ -114,7 +115,7 @@ export default {
 }
 .bg-mobile {
   background-image: url('../../../assets/images/enterprise/MYCURE-virtual-clinic-healthcare-practice-online-enterprise-usp-cover-mobile.png');
-  background-position: 0 275px;
+  background-position: 0 402px;
   background-repeat: no-repeat;
   background-size: 100%;
 }
@@ -130,5 +131,14 @@ export default {
   top: 1px;
   width: 295px;
   opacity: 0.9;
+}
+.mobile-form {
+  margin-top: -100px;
+}
+.mobile-form .text-field-input {
+  height: 56px;
+}
+.mobile-form .text-field-input >>> input {
+  text-align: center
 }
 </style>

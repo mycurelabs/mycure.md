@@ -24,18 +24,19 @@
                 @click="onGetStarted"
               ).text-none.font-16.p-7 Get Started
     template(v-if="$isMobile")
-      v-layout(fluid)
-        v-row
+      v-layout(fluid).mobile-form
+        v-row.px-6
           v-text-field(
+            background-color="white"
             v-model="email"
             placeholder="myname@email.com"
             outlined
-          )
+          ).text-field-input
           v-btn(
             @click="onGetStarted"
             color="accent"
             block
-            x-large
+            large
           ).text-none.font-16 Get Started
 </template>
 
@@ -121,11 +122,20 @@ export default {
 }
 .bg-mobile {
   background-image: url('../../../assets/images/doctors-clinics/MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-usp-cover-mobile.png');
-  background-position: 0 360px;
+  background-position: 0 400px;
   background-repeat: no-repeat;
   background-size: 100%;
 }
 .usp-content {
   margin-top: 150px;
+}
+.mobile-form {
+  margin-top: -100px;
+}
+.mobile-form .text-field-input {
+  height: 56px;
+}
+.mobile-form .text-field-input >>> input {
+  text-align: center
 }
 </style>

@@ -33,14 +33,14 @@
                 @click="onGetStarted"
               ).text-none.font-16.p-7.py-4 Get Started
     template(v-if="$isMobile")
-      v-layout(fluid)
-        v-row
+      v-layout(fluid).mobile-form
+        v-row.px-6
           v-text-field(
             background-color="white"
             v-model="email"
             outlined
             placeholder="myname@email.com"
-          )
+          ).text-field-input
           v-btn(
             block
             color="accent"
@@ -74,17 +74,17 @@ export default {
     },
     titleHeaderClasses () {
       return this.$isMobile
-        ? [this.centerText, 'font-24']
+        ? [this.centerText, 'font-30']
         : ['pre-white-space', 'font-36'];
     },
     titleClasses () {
       return this.$isMobile
-        ? [this.centerText, 'font-40']
+        ? [this.centerText, 'font-50']
         : ['pre-white-space', 'font-60'];
     },
     subtitleClasses () {
       return this.$isMobile
-        ? [this.centerText, 'font-18']
+        ? [this.centerText, 'font-21']
         : ['pre-white-space', 'font-24'];
     },
     uspTitle () {
@@ -145,5 +145,14 @@ export default {
   top: 1px;
   width: 295px;
   opacity: 0.9;
+}
+.mobile-form {
+  margin-top: -100px;
+}
+.mobile-form .text-field-input {
+  height: 56px;
+}
+.mobile-form .text-field-input >>> input {
+  text-align: center
 }
 </style>

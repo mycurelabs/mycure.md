@@ -23,14 +23,16 @@
                 v-icon(left) mdi-play-circle
                 | Watch Walkthrough
     template(v-if="$isMobile")
-      v-btn(
-        block
-        color="accent"
-        large
-        @click="onWatch"
-      ).text-none.font-16.p-7
-        v-icon(left) mdi-play-circle
-        | Watch Walkthrough
+      v-layout(fluid).mobile-form
+        v-row.px-6
+          v-btn(
+            block
+            color="accent"
+            large
+            @click="onWatch"
+          ).text-none.font-16.p-7
+            v-icon(left) mdi-play-circle
+            | Watch Walkthrough
 
     //- Video
     v-dialog(v-model="videoDialog" max-width="600")
@@ -117,11 +119,14 @@ export default {
 }
 .bg-mobile {
   background-image: url('../../../assets/images/features/MYCURE-virtual-clinic-healthcare-practice-online-usp-cover-mobile.png');
-  background-position: 0 275px;
+  background-position: 0 235px;
   background-repeat: no-repeat;
   background-size: 100%;
 }
 .usp-content {
   margin-top: 150px;
+}
+.mobile-form {
+  margin-top: -45px;
 }
 </style>
