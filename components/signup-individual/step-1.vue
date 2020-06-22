@@ -1,6 +1,6 @@
 <template lang="pug">
   v-form(ref="formRef" v-model="valid")
-    v-container.content-padding
+    v-container
       v-row
         v-col(justify="end" align="end" md="3").offset-md-9
           v-btn(icon @click="showInfo = !showInfo").mb-n12
@@ -387,10 +387,6 @@ h1 {
 
 .flag-img:hover {
   cursor: pointer;
-}
-
-.content-padding {
-  padding-top: 100px;
 }
 
 .checkbox-label {
