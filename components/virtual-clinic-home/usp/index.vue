@@ -123,7 +123,7 @@ export default {
   background-repeat: no-repeat;
   background-size: 100%;
 }
-.usp-content{
+.usp-content {
   margin-top: 150px;
 }
 .text-field-container {
@@ -131,7 +131,7 @@ export default {
   border-radius: 2px;
   display: inline-block;
 }
-.text-field-container .text-field-input{
+.text-field-container .text-field-input {
   top: 1px;
   width: 295px;
   opacity: 0.9;

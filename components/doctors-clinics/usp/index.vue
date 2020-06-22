@@ -125,7 +125,7 @@ export default {
   background-repeat: no-repeat;
   background-size: 100%;
 }
-.usp-content{
+.usp-content {
   margin-top: 150px;
 }
 </style>
