@@ -26,7 +26,6 @@
                           dense
                           @click="handleSubMenuClick(item, menu)"
                         ).pl-7 {{ menu.name }}
-                        v-divider(v-if="key === 1 && index === 0").pb-5.edge-divider
               div(v-for="(link, key) in toolbarLinks" :key="key")
                 v-btn(
                   :to="{ name: link.route }"
