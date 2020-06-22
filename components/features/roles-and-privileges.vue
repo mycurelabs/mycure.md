@@ -61,9 +61,9 @@ export default {
     margin-top: 0%;
   }
 }
-@media screen and (min-width: 2304px){
+@media screen and (device-width: 1366px){
   .roles-and-privileges {
-    margin-top: 25%;
+    padding-top: 15%;
   }
 }
 </style>
