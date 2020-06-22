@@ -1,31 +1,42 @@
 <template lang="pug">
-  div.white
-    generic-background-panel(
-      :background-image="backgroundImage"
-      background-image-file-extension=".webp"
-      :background-image-mobile="backgroundImageMobile"
-      :background-image-mobile-configs="backgroundImageMobileConfigs"
-      :custom-path="customPath"
-    ).usp-content
-      v-row(slot="content").row-content
-        v-col(cols="12" md="5" :class="[{'web-content-margin': !$isMobile}]" v-if="!$isMobile")
-          p(:class="[centerText]").font-18.mx-1.usp-subtitle {{ uspSubheader }}
-          h1(:class="titleClasses").font-poppins.font-40.lh-title.usp-title {{ uspTitle }}
-          p(:class="[centerText]").font-18.mx-1.pt-5.usp-subtitle {{ uspSubtitle }}
-          v-btn(
-            height="54"
-            width="160"
-            v-if="!$isMobile"
-            color="accent"
-            @click="onGetStarted"
-          ).text-none.font-16.p-7.btn-book Get Started
-        v-col(cols="12" md="5" :class="[{'web-content-margin': !$isMobile}]" v-if="$isMobile" one-line)
-          p(:class="[centerText]").font-18 {{ uspSubheader }}
-          h1(:class="titleClasses").font-poppins.font-30.lh-title {{ uspTitle }}
-          p(:class="[centerText]").font-18.font-weight-light.px-1.pt-1 {{ uspSubtitle }}
-          div(v-if="$isMobile").text-center
-            v-btn(text).align-center
-              v-icon(large) mdi-arrow-down
+  fragment
+    v-layout(
+      fluid
+      fill-height
+      style="height: 100vh"
+      :class="[backgroundClasses, backgroundImages]"
+    )
+      //- generic-background-panel(
+      //-   :background-image="backgroundImage"
+      //-   background-image-file-extension=".webp"
+      //-   :background-image-mobile="backgroundImageMobile"
+      //-   :background-image-mobile-configs="backgroundImageMobileConfigs"
+      //-   :custom-path="customPath"
+      //- ).usp-content
+      v-container
+        v-layout(style="height: 100%" fluid)
+          v-row(:align="!$isMobile ? 'center' : 'start'" justify="center")
+            v-col(cols="12" :class="{ 'pt-12 mt-4': $isMobile, 'pl-5': !$isMobile }")
+              p(:class="[centerText]").font-18.mx-1.usp-subtitle {{ uspSubheader }}
+              h1(:class="titleClasses").font-poppins.lh-title.usp-title {{ uspTitle }}
+              p(:class="subtitleClasses").mx-1.pt-5 {{ uspSubtitle }}
+              div(v-show="$isMobile").text-center
+                v-btn(text).align-center
+                  v-icon(large) mdi-arrow-down
+              v-btn(
+                height="54"
+                width="160"
+                v-if="!$isMobile"
+                color="accent"
+                @click="onGetStarted"
+              ).text-none.font-16.p-7 Get Started
+            //- v-col(cols="12" md="5" :class="[{'web-content-margin': !$isMobile}]" v-if="$isMobile" one-line)
+            //-   p(:class="[centerText]").font-18 {{ uspSubheader }}
+            //-   h1(:class="titleClasses").font-poppins.font-30.lh-title {{ uspTitle }}
+            //-   p(:class="[centerText]").font-18.font-weight-light.px-1.pt-1 {{ uspSubtitle }}
+            //-   div(v-if="$isMobile").text-center
+            //-     v-btn(text).align-center
+            //-       v-icon(large) mdi-arrow-down
     template(v-if="$isMobile")
       div.text-field-container.white
         v-text-field(
@@ -38,12 +49,13 @@
         color="accent"
         block
         x-large
-      ).text-none.font-weight-bold.font-18 Get Started
+      ).text-none.font-16 Get Started
 </template>
 
 <script>
 // utils
 import { parseTextWithNewLine } from '~/utils/newline';
+import canUseWebp from '~/utils/can-use-webp';
 // components
 import GenericBackgroundPanel from '~/components/commons/generic-background-panel';
 export default {
@@ -54,11 +66,12 @@ export default {
     this.backgroundImage = 'MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-usp-cover';
     this.backgroundImageMobile = 'MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-usp-cover-mobile.png';
     this.uspSubheader = 'For Doctors Clinics';
-    this.panelTitle = 'Everything you need\nto build your virtual practice.';
-    this.uspSubtitle = 'Starting a virtual practice has never been\neasier. Give your patients the quality care\nthey deserve.';
+    this.panelTitle = 'Everything you need to build your virtual practice.';
+    this.panelSubtitle = 'Starting a virtual practice has never been easier. Give your patients the quality care they deserve.';
     this.customPath = 'doctors-clinics/';
     return {
       email: '',
+      canUseWebp: false,
     };
   },
   computed: {
@@ -73,19 +86,40 @@ export default {
     },
     titleClasses () {
       return this.$isMobile
-        ? [this.centerText]
-        : ['pre-white-space'];
+        ? [this.centerText, 'font-30']
+        : ['pre-white-space', 'font-40'];
+    },
+    subtitleClasses () {
+      return this.$isMobile
+        ? [this.centerText, 'font-18']
+        : ['pre-white-space', 'font-24'];
     },
     uspTitle () {
       return this.$isMobile
         ? this.panelTitle
-        : parseTextWithNewLine(this.panelTitle, ['virtual ']);
+        : parseTextWithNewLine(this.panelTitle, ['need ', 'virtual ']);
+    },
+    uspSubtitle () {
+      return this.$isMobile
+        ? this.panelSubtitle
+        : parseTextWithNewLine(this.panelSubtitle, ['never ', 'the ']);
+    },
+    backgroundClasses () {
+      return !this.$isMobile ? 'bg' : 'bg-mobile';
+    },
+    backgroundImages () {
+      return this.canUseWebp ? 'bg-webp' : 'bg-png';
     },
   },
   watch: {
     $isMobile (val) {
       this.isMobile = val;
     },
+  },
+  mounted () {
+    canUseWebp().then((result) => {
+      this.canUseWebp = result;
+    });
   },
   methods: {
     onGetStarted () {
@@ -96,6 +130,23 @@ export default {
 </script>
 
 <style scoped>
+.bg {
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.bg-webp {
+  background-image: url('../../../assets/images/doctors-clinics/MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-usp-cover.webp');
+}
+.bg-png {
+  background-image: url('../../../assets/images/doctors-clinics/MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-usp-cover.png');
+}
+.bg-mobile {
+  background-image: url('../../../assets/images/doctors-clinics/MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-usp-cover-mobile.png');
+  background-position: 0 275px;
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
 .text-field-container {
   height: 52px;
 }
