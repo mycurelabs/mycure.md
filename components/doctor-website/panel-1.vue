@@ -2,7 +2,7 @@
   v-container
     v-row(justify="center")
       v-col(cols="12").text-center
-        v-avatar(size="150")
+        v-avatar(size="150").elevation-3
           img(:src="picUrl")
       v-col(cols="12" md="10").text-center
         h1 {{fullName}}
