@@ -270,7 +270,9 @@ export default {
         this.error = true;
         if (e.code === 11000) {
           this.errorMessage = 'The email or mobile number you have entered is invalid or taken. Please try again.';
+          return;
         }
+        this.errorMessage = e.message;
       } finally {
         this.loading = false;
       }
