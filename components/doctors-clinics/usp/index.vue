@@ -84,11 +84,6 @@ export default {
       return this.canUseWebp ? 'bg-webp' : 'bg-png';
     },
   },
-  watch: {
-    $isMobile (val) {
-      this.isMobile = val;
-    },
-  },
   mounted () {
     canUseWebp().then((result) => {
       this.canUseWebp = result;
