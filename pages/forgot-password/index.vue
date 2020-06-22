@@ -14,9 +14,10 @@
             src="~/assets/images/forgot-password/mycure-password-banner-forgot.png"
           ).mx-auto
           v-card-text.px-4
-            h1.signin-title Forgot your password?
+            div.text-center
+              h1(:class="titleSizeClasses").signin-title Forgot your password?
             br
-            p No worries! Just follow these steps:
+            p.font-16 No worries! Just follow these steps :
             v-badge(
               v-for="(data, key) in forgotPasswordStep"
               :key="key"
@@ -53,7 +54,6 @@
                   :disabled="!valid || loading"
                   :loading="loading"
                 ).font-weight-bold Submit
-
     v-dialog(v-model="successDialog" width="250" persistent)
       v-card.pa-1
         v-card-text.text-center.pt-5
@@ -63,8 +63,7 @@
           )
           p Password reset link sent to&nbsp;
             br
-            span.primary--text.font-weight-regular sample@gmail.com
-            //- {{email}}
+            span.primary--text {{email}}
         v-card-text.text-center#success-image
           v-btn(color="primary" @click="done" rounded).font-weight-bold Got it!
 </template>
@@ -90,12 +89,15 @@ export default {
       ],
       error: false,
       errorMsg: '',
-      successDialog: true,
+      successDialog: false,
     };
   },
   computed: {
     logoWidthClasses () {
       return [this.$isMobile ? '50%' : '15%'];
+    },
+    titleSizeClasses () {
+      return [this.$isMobile ? 'font-24' : 'font-34'];
     },
   },
   methods: {
