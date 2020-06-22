@@ -72,12 +72,6 @@
                       img(width="25" :src="user.countryFlag").flag-img.mt-2
                   | Change Country
                 v-icon(v-if="mobileNoError" color="accent") mdi-check
-            //- NOTE: DO NOT REMOVE YET
-            //- template(slot="append-outer")
-            //-   v-tooltip(bottom)
-            //-     v-btn(small icon slot="activator" @click="countryDialog = true" :disabled="loading")
-            //-       v-icon mdi-earth
-            //-     | Change Country
       v-divider(v-if="!$isMobile" vertical).vertical-divider
       v-col(cols="12" md="5" :class="credentialClasses")
         v-form(ref="formRef" v-model="valid")
