@@ -1,41 +1,54 @@
 <template lang="pug">
-  div.white
-    generic-background-panel(
-      :background-image="backgroundImage"
-      background-image-file-extension=".png"
-      background-image-file-extension-exclusive
-      :background-image-mobile="backgroundImageMobile"
-      :background-image-mobile-configs="backgroundImageMobileConfigs"
-      :customPath="customPath"
-      :class="{'pt-12': $isMobile}"
+  fragment
+    v-layout(
+      fluid
+      fill-height
+      style="height: 100vh"
+      :class="[backgroundClasses]"
     )
-      v-row(slot="content").row-content
-        v-col(cols="12" md="5" :class="[{'web-content-margin': !$isMobile}]" v-if="!$isMobile")
-          p.font-18.px-1.usp-subtitle {{ uspPreSubtitle }}
-          h1(:class="titleClasses").font-poppins.font-40.lh-title.usp-title {{ panelTitle }}
-          p.font-18.px-1.pt-5.usp-subtitle {{ uspPostSubtitle }}
-          div(v-if="!$isMobile").text-field-container
-            v-text-field(
-              background-color="white"
-              v-model="email"
-              placeholder="myname@email.com"
-              outlined
-            ).input-field
-            v-btn(
-              v-if="!$isMobile"
-              color="accent"
-              @click="onGetStarted"
-              height="55"
-              width="160"
-            ).text-none.font-16.p-7.btn-book Book A Demo
-        v-col(cols="12" md="5" v-if="$isMobile" one-line).text-center
-          p.font-18.font-weight-light.px-1 {{ uspPreSubtitle }}
-          h1.font-poppins.font-30.lh-title {{ panelTitleMobile }}
-          div(v-if="$isMobile").text-center
-            v-btn(text).align-center
-              v-icon(large) mdi-arrow-down
-    template(v-if="$isMobile").row-content
-      div.text-field-container-mobile.white
+      //- generic-background-panel(
+      //-   :background-image="backgroundImage"
+      //-   background-image-file-extension=".png"
+      //-   background-image-file-extension-exclusive
+      //-   :background-image-mobile="backgroundImageMobile"
+      //-   :background-image-mobile-configs="backgroundImageMobileConfigs"
+      //-   :customPath="customPath"
+      //-   :class="{'pt-12': $isMobile}"
+      //- )
+      v-container
+        v-layout(style="height: 100%" fluid)
+          v-row(:align="!$isMobile ? 'center' : 'start'" justify="center")
+            v-col(cols="12" :class="{ 'pt-12 mt-4': $isMobile, 'pl-5': !$isMobile }")
+              p(:class="[centerText]").font-18.px-1.usp-subtitle {{ uspPreSubtitle }}
+              h1(:class="titleClasses").font-poppins.lh-title {{ uspTitle }}
+              p(v-show="!$isMobile").pre-white-space.font-18.px-1.pt-5.usp-subtitle {{ uspSubtitle }}
+              div(v-if="$isMobile").text-center
+                v-btn(text).align-center
+                  v-icon(large) mdi-arrow-down
+              div(v-if="!$isMobile").text-field-container.mr-3
+                v-text-field(
+                  background-color="white"
+                  v-model="email"
+                  placeholder="myname@email.com"
+                  outlined
+                  dense
+                  height="50"
+                ).text-field-input
+              v-btn(
+                v-if="!$isMobile"
+                color="accent"
+                @click="onGetStarted"
+                height="50"
+                width="160"
+              ).text-none.font-16.p-7 Book A Demo
+            //- v-col(cols="12" md="5" v-if="$isMobile" one-line).text-center
+            //-   p.font-18.font-weight-light.px-1 {{ uspPreSubtitle }}
+            //-   h1.font-poppins.font-30.lh-title {{ panelTitleMobile }}
+            //-   div(v-if="$isMobile").text-center
+            //-     v-btn(text).align-center
+            //-       v-icon(large) mdi-arrow-down
+    template(v-if="$isMobile")
+      div.white
         v-text-field(
           v-model="email"
           outlined
@@ -62,9 +75,9 @@ export default {
     this.backgroundImage = 'MYCURE-virtual-clinic-healthcare-practice-online-enterprise-usp-cover';
     this.backgroundImageMobile = 'MYCURE-virtual-clinic-healthcare-practice-online-enterprise-usp-cover-mobile.png';
     this.uspPreSubtitle = 'For Medical Enterprise';
-    this.panelTitle = 'Take your healthcare\nenterprise to a\nbroader audience';
+    this.panelTitle = 'Take your healthcare enterprise to a broader audience';
     this.panelTitleMobile = 'Taking your\nentire clinic\nenterprise online\nis possible with\nMYCURE';
-    this.uspPostSubtitle = 'Build an online brand for your health facility and MYCURE will do the rest.';
+    this.panelSubtitle = 'Build an online brand for your health facility and MYCURE will do the rest.';
     this.uspAgreement = 'By entering your email, you agree to receive marketing emails from MYCURE.';
     this.customPath = 'enterprise/';
     return {
@@ -83,13 +96,21 @@ export default {
     },
     titleClasses () {
       return this.$isMobile
-        ? [this.centerText]
-        : ['pre-white-space'];
+        ? [this.centerText, 'font-30']
+        : ['pre-white-space', 'font-48'];
     },
     uspTitle () {
       return this.$isMobile
-        ? this.panelTitle
-        : parseTextWithNewLine(this.panelTitle, ['']);
+        ? this.panelTitleMobile
+        : parseTextWithNewLine(this.panelTitle, ['healthcare ', 'to a ']);
+    },
+    uspSubtitle () {
+      return this.$isMobile
+        ? this.panelSubtitle
+        : parseTextWithNewLine(this.panelSubtitle, ['health ']);
+    },
+    backgroundClasses () {
+      return !this.$isMobile ? 'bg' : 'bg-mobile';
     },
   },
   methods: {
@@ -104,17 +125,36 @@ export default {
 </script>
 
 <style scoped>
+.bg {
+  background-image: url('../../../assets/images/enterprise/MYCURE-virtual-clinic-healthcare-practice-online-enterprise-usp-cover.png');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.bg-mobile {
+  background-image: url('../../../assets/images/enterprise/MYCURE-virtual-clinic-healthcare-practice-online-enterprise-usp-cover-mobile.png');
+  background-position: 0 275px;
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
 .text-field-container {
-  display: flex;
+  height: 50px;
+  border-radius: 2px;
+  display: inline-block;
+}
+.text-field-container .text-field-input{
+  top: 1px;
+  width: 295px;
+  opacity: 0.9;
 }
 .input-field {
   width: 50%;
   height: 58px;
   border-radius: 5px;
 }
-.btn-book {
+/* .btn-book {
   margin-left: 8px;
-}
+} */
 .web-content-margin {
   margin-top: 80px;
 }
@@ -200,10 +240,10 @@ export default {
   .usp-subtitle {
     font-size: 150% !important;
   }
-  .btn-book {
+  /* .btn-book {
     width: 30% !important;
     font-size: 150% !important;
-  }
+  } */
 }
 @media screen and (device-width: 2304px) {
   .row-content {
@@ -215,10 +255,10 @@ export default {
   .usp-subtitle {
     font-size: 175% !important;
   }
-  .btn-book {
+  /* .btn-book {
     width: 30% !important;
     font-size: 150% !important;
-  }
+  } */
 }
 @media screen and (device-width: 2560px) {
   .row-content {
@@ -230,9 +270,9 @@ export default {
   .usp-subtitle {
     font-size: 200% !important;
   }
-  .btn-book {
+  /* .btn-book {
     width: 35% !important;
     font-size: 160% !important;
-  }
+  } */
 }
 </style>
