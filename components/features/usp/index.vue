@@ -10,8 +10,8 @@
         v-layout(style="height: 100%" fluid)
           v-row(align="start" justify="center")
             v-col(cols="12" :class="{ 'pt-12 mt-4': $isMobile, 'pl-5 usp-content': !$isMobile }")
-              p(:class="[centerText]").font-18.mx-1 {{ metaTitle }}
-              h1(:class="titleClasses").font-poppins.font-40.lh-title {{ uspTitle }}
+              p(:class="[centerText, subtitleClasses]") {{ metaTitle }}
+              h1(:class="titleClasses").font-poppins.lh-title {{ uspTitle }}
               div(v-if="$isMobile").text-center
                 v-icon mdi-arrow-down
               v-btn(
@@ -19,7 +19,7 @@
                 color="accent"
                 large
                 @click="onWatch"
-              ).text-none.font-16.mt-5.p-7
+              ).text-none.font-16.mt-5
                 v-icon(left) mdi-play-circle
                 | Watch Walkthrough
     template(v-if="$isMobile")
@@ -70,8 +70,13 @@ export default {
     },
     titleClasses () {
       return this.$isMobile
-        ? [this.centerText]
-        : ['pre-white-space'];
+        ? [this.centerText, 'font-30']
+        : ['pre-white-space', 'font-48'];
+    },
+    subtitleClasses () {
+      return this.$isMobile
+        ? [this.centerText, 'font-18']
+        : ['pre-white-space', 'font-24'];
     },
     uspTitle () {
       return this.$isMobile
