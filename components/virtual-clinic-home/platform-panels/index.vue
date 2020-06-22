@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-container.platform-panels
+  v-container.mt-12
     v-row(justify="center" align="center")
       v-col(cols="12" md="6")
         h1.font-36.font-weight-light.text-center {{BRING_YOUR_PRACTICE_ONLINE.header}}
@@ -85,6 +85,7 @@
       v-col(align="center" cols="12" md="5").second-column.img-manage-easily
         picture-source(
           customPath="virtual-clinic-home/"
+          :image-width="$isMobile ? '100%' : '120%'"
           :image="MANAGE_EVERYTHING_EASILY.image"
           imageAlt="Manage everything easily"
           imageFileExtension=".webp"
@@ -127,31 +128,6 @@ export default {
 a {
   text-decoration-color: #2e9fdf;
   text-decoration: none;
-}
-.platform-panels{
-  margin-top: 55%;
-}
-@media screen and (max-width: 1000px) {
-  .platform-panels{
-    margin-top: 5%;
-  }
-}
-@media screen and (device-width: 768px) and (orientation: portrait)  {
-  .platform-panels {
-    margin-top: 5%;
-  }
-}
-@media screen and (device-width: 1024px) and (orientation: portrait)  {
-  /* ipad pro */
-  .platform-panels {
-    margin-top: 55%;
-  }
-}
-@media screen and (device-width: 1024px) and (orientation: landscape)  {
-  /* ipad */
-  .platform-panels {
-    margin-top: 55%;
-  }
 }
 @media screen and (min-width: 1366px) {
   .first-column {
