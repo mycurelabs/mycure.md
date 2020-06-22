@@ -10,9 +10,9 @@
         v-layout(style="height: 100%" fluid)
           v-row(align="start" justify="center")
             v-col(cols="12" :class="{ 'pt-12 mt-4': $isMobile, 'pl-5 usp-content': !$isMobile }")
-              h3(:class="titleClasses").font-poppins.font-36.lh-title {{ panelTitleSub }}
-              h1(:class="titleClasses").font-poppins.font-60.lh-title {{ uspTitle }}
-              p(:class="[centerText]").font-italic.font-24.mx-1 {{ uspSubtitle }}
+              h3(:class="titleHeaderClasses").font-poppins.lh-title {{ panelTitleHeader }}
+              h1(:class="titleClasses").font-poppins.lh-title {{ uspTitle }}
+              p(:class="[centerText, subtitleClasses]").font-italic {{ uspSubtitle }}
               div(v-if="!$isMobile").text-field-container.mr-3.mt-n1
                 v-text-field(
                   elevation="2"
@@ -60,7 +60,7 @@ export default {
     GenericBackgroundPanel,
   },
   data () {
-    this.panelTitleSub = 'For Modern Doctors:';
+    this.panelTitleHeader = 'For Modern Doctors:';
     this.panelTitleMain = 'Virtual is the new normal.';
     this.uspSubtitle = 'Build your virtual clinic today.';
     return {
@@ -72,10 +72,20 @@ export default {
     centerText () {
       return { 'text-center': this.$isMobile };
     },
+    titleHeaderClasses () {
+      return this.$isMobile
+        ? [this.centerText, 'font-24']
+        : ['pre-white-space', 'font-36'];
+    },
     titleClasses () {
       return this.$isMobile
-        ? [this.centerText]
-        : ['pre-white-space'];
+        ? [this.centerText, 'font-40']
+        : ['pre-white-space', 'font-60'];
+    },
+    subtitleClasses () {
+      return this.$isMobile
+        ? [this.centerText, 'font-18']
+        : ['pre-white-space', 'font-24'];
     },
     uspTitle () {
       return this.$isMobile
