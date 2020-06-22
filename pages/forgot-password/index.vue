@@ -3,31 +3,37 @@
     v-row(align="center" justify="center")
       v-col(cols="12" sm="8" md="4")
         v-card(width="100%")
+          img(
+            width="100%"
+            src="~/assets/images/forgot-password/mycure-password-banner-forgot.png"
+            @click="$nuxt.$router.push({ name: 'index' })"
+          ).mx-auto.link-to-home
           v-card-text.px-4
-            img(
-              width="120"
-              src="~/assets/images/mycure-header-logo.png"
-              @click="$nuxt.$router.push({ name: 'index' })"
-            ).link-to-home.mb-3
             h1.signin-title Forgot your password?
             br
             p No worries! Just follow these steps:
-            p 1. Enter your MYCURE email address below.
-            p 2. Carefully follow the instructions we sent to your email address.
-            p 3. Login to MYCURE using your new password.
+            v-badge(
+              v-for="(data, key) in forgotPasswordStep"
+              :key="key"
+              color="primary"
+              :content="key + 1"
+              inline
+              left
+            ).px-2.py-2.font-16
+              span.pl-3.pr-5 {{data.step}}
           v-card-text.px-4
             v-form(ref="form" v-model="valid" @submit.prevent="submit")
               v-text-field(
                 v-model="email"
-                solo
                 label="Email Address"
                 :rules="emailRules"
+                outlined
               )
             v-alert(
               :value="error"
               type="error"
             ) {{errorMsg}}
-          v-card-text
+          v-card-text.mt-n5
             v-row
               v-col
                 v-btn(
@@ -38,7 +44,7 @@
               v-col.text-right
                 v-btn(
                   @click="submit"
-                  color="accent"
+                  color="primary"
                   :disabled="!valid || loading"
                   :loading="loading"
                 ).font-weight-bold Submit
@@ -62,6 +68,11 @@ export default {
   layout: 'signin',
   data () {
     return {
+      forgotPasswordStep: [
+        { step: 'Enter your MYCURE email address below.' },
+        { step: 'Carefully follow the instructions we sent to your email address.' },
+        { step: 'Login to MYCURE using your new password.' },
+      ],
       valid: false,
       loading: false,
       email: '',
@@ -71,7 +82,7 @@ export default {
       ],
       error: false,
       errorMsg: '',
-      successDialog: false,
+      successDialog: true,
     };
   },
   methods: {
