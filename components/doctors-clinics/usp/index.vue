@@ -10,9 +10,9 @@
         v-layout(style="height: 100%" fluid)
           v-row(align="start" justify="center")
             v-col(cols="12" :class="{ 'pt-12 mt-4': $isMobile, 'pl-5 usp-content': !$isMobile }")
-              p(:class="[centerText, subtitleClasses]").mx-1.usp-subtitle {{ uspSubheader }}
-              h1(:class="titleClasses").font-poppins.lh-title.usp-title {{ uspTitle }}
-              p(:class="subtitleClasses").mx-1.pt-5 {{ uspSubtitle }}
+              p(:class="[centerText, subtitleClasses]") {{ uspSubheader }}
+              h1(:class="titleClasses").font-poppins.lh-title {{ uspTitle }}
+              p(:class="subtitleClasses").pt-5 {{ uspSubtitle }}
               div(v-show="$isMobile").text-center
                 v-btn(text).align-center
                   v-icon(large) mdi-arrow-down
@@ -50,12 +50,9 @@ export default {
     GenericBackgroundPanel,
   },
   data () {
-    this.backgroundImage = 'MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-usp-cover';
-    this.backgroundImageMobile = 'MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-usp-cover-mobile.png';
     this.uspSubheader = 'For Doctors Clinics';
     this.panelTitle = 'Everything you need to build your virtual practice.';
     this.panelSubtitle = 'Starting a virtual practice has never been easier. Give your patients the quality care they deserve.';
-    this.customPath = 'doctors-clinics/';
     return {
       email: '',
       canUseWebp: false,
@@ -68,7 +65,7 @@ export default {
     titleClasses () {
       return this.$isMobile
         ? [this.centerText, 'font-30']
-        : ['pre-white-space', 'font-40'];
+        : ['pre-white-space', 'font-48'];
     },
     subtitleClasses () {
       return this.$isMobile
@@ -130,41 +127,5 @@ export default {
 }
 .usp-content{
   margin-top: 150px;
-}
-@media screen and (device-width: 1920px) {
-  .usp-title {
-    font-size: 300% !important;
-  }
-  .usp-subtitle {
-    font-size: 150% !important;
-  }
-  .btn-book {
-    width: 30% !important;
-    font-size: 150% !important;
-  }
-}
-@media screen and (device-width: 2304px) {
-  .usp-title {
-    font-size: 350% !important;
-  }
-  .usp-subtitle {
-    font-size: 175% !important;
-  }
-  .btn-book {
-    width: 30% !important;
-    font-size: 150% !important;
-  }
-}
-@media screen and (device-width: 2560px) {
-  .usp-title {
-    font-size: 400% !important;
-  }
-  .usp-subtitle {
-    font-size: 200% !important;
-  }
-  .btn-book {
-    width: 35% !important;
-    font-size: 160% !important;
-  }
 }
 </style>
