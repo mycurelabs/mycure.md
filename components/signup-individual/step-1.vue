@@ -1,27 +1,27 @@
 <template lang="pug">
-  v-container.content-padding
-    v-row
-      v-col(justify="end" align="end" md="3").offset-md-9
-        v-btn(icon @click="showInfo = !showInfo").mb-n12
-          v-icon(large).primary--text mdi-help-circle
-    v-dialog(v-model="showInfo" width="300")
-      v-card
-        v-card-title
-          h4 Become a techy doctor in minutes!
-        v-card-text(v-for="(item, key) in checkListItems" :key="key")
-          v-icon mdi-circle-medium
-          span.font-16 {{ item }}
-    v-row(justify="center" align="center")
-      v-col(cols="12" md="10" justify="center" align="center")
-        img(
-          src="~/assets/images/sign-up-individual-step-1/mycure-sso-sign-in-logo.svg"
-          @click="$nuxt.$router.push({ name: 'index' })"
-          alt="MYCURE logo"
-        ).link-to-home.pb-5
-        h2.font-18.primary--text Doctors Clinic: Sign Up (Step 1 of 2)
-        h1 Create a MYCURE Account
-      v-col(cols="12" md="5" justify="center" align="center")
-        v-form(ref="formRef" v-model="validPersonal")
+  v-form(ref="formRef" v-model="valid")
+    v-container.content-padding
+      v-row
+        v-col(justify="end" align="end" md="3").offset-md-9
+          v-btn(icon @click="showInfo = !showInfo").mb-n12
+            v-icon(large).primary--text mdi-help-circle
+      v-dialog(v-model="showInfo" width="300")
+        v-card
+          v-card-title
+            h4 Become a techy doctor in minutes!
+          v-card-text(v-for="(item, key) in checkListItems" :key="key")
+            v-icon mdi-circle-medium
+            span.font-16 {{ item }}
+      v-row(justify="center" align="center")
+        v-col(cols="12" md="10" justify="center" align="center")
+          img(
+            src="~/assets/images/sign-up-individual-step-1/mycure-sso-sign-in-logo.svg"
+            @click="$nuxt.$router.push({ name: 'index' })"
+            alt="MYCURE logo"
+          ).link-to-home.pb-5
+          h2.font-18.primary--text Doctors Clinic: Sign Up (Step 1 of 2)
+          h1 Create a MYCURE Account
+        v-col(cols="12" md="5" justify="center" align="center")
           v-row(no-gutters)
             v-col(xs="12")
               v-text-field(
@@ -78,9 +78,8 @@
             //-     v-btn(small icon slot="activator" @click="countryDialog = true" :disabled="loading")
             //-       v-icon mdi-earth
             //-     | Change Country
-      v-divider(v-if="!$isMobile" vertical).vertical-divider
-      v-col(cols="12" md="5" :class="credentialClasses")
-        v-form(ref="formRef" v-model="validAccount")
+        v-divider(v-if="!$isMobile" vertical).vertical-divider
+        v-col(cols="12" md="5" :class="credentialClasses")
           v-text-field(
             v-model="user.email"
             type="email"
@@ -111,10 +110,9 @@
           )
             template(v-slot: append v-if="confirmPassword && confirmPassword === user.password")
               v-icon(color="accent") mdi-check
-      v-col(cols="12" md="10" justify="center" v-if="!$isMobile").mt-md-n5
-        v-divider
-      v-col(cols="12" md="10" justify="start" align="center")
-        v-form(ref="formRef" v-model="validAgreement")
+        v-col(cols="12" md="10" justify="center" v-if="!$isMobile").mt-md-n5
+          v-divider
+        v-col(cols="12" md="10" justify="start" align="center")
           v-checkbox(
             v-model="user.acceptTerms"
             hide-details
@@ -129,39 +127,39 @@
                 | &nbsp;and&nbsp;
                 a(@click.stop="goToPrivacy") Privacy Policy
           v-alert(:value="error" type="error").mt-5 {{errorMessage}}
-      v-col(cols="12" md="10" justify="center" align="center")
-        v-spacer
-        v-btn(
-          color="primary"
-          @click="next"
-          :disabled="loading || !validForm"
-          :loading="loading"
-          large
-        ).font-weight-bold Create My Account
-    v-dialog(v-model="countryDialog" width="500" scrollable)
-      v-card
-        v-toolbar(flat)
-          v-text-field(
-            v-model="searchString"
-            label="Search Country"
-            solo
-            hide-details
-            clearable
-            autofocus
-            flat
-          )
-        v-card-text(style="height: 300px").pa-0
-          v-list
-            v-list-item(v-for="(country, key) in countries" @click="selectCountry(country)" :key="key")
-              v-list-item-action
-                img(width="25" :src="country.flag")
-              v-list-item-content
-                v-list-item-title {{country.name}}
-    email-verification-dialog(
-      v-model="emailVerificationMessageDialog"
-      :email="user.email"
-      @confirm="doneSignupNonPH"
-    )
+        v-col(cols="12" md="10" justify="center" align="center")
+          v-spacer
+          v-btn(
+            color="primary"
+            @click="next"
+            :disabled="loading || !valid"
+            :loading="loading"
+            large
+          ).font-weight-bold Create My Account
+      v-dialog(v-model="countryDialog" width="500" scrollable)
+        v-card
+          v-toolbar(flat)
+            v-text-field(
+              v-model="searchString"
+              label="Search Country"
+              solo
+              hide-details
+              clearable
+              autofocus
+              flat
+            )
+          v-card-text(style="height: 300px").pa-0
+            v-list
+              v-list-item(v-for="(country, key) in countries" @click="selectCountry(country)" :key="key")
+                v-list-item-action
+                  img(width="25" :src="country.flag")
+                v-list-item-content
+                  v-list-item-title {{country.name}}
+      email-verification-dialog(
+        v-model="emailVerificationMessageDialog"
+        :email="user.email"
+        @confirm="doneSignupNonPH"
+      )
 </template>
 
 <script>
@@ -187,9 +185,7 @@ export default {
     ];
     return {
       showInfo: false,
-      validPersonal: false,
-      validAccount: false,
-      validAgreement: false,
+      valid: false,
       loading: false,
       loadingForm: false,
       countryDialog: false,
@@ -229,9 +225,6 @@ export default {
     },
     credentialClasses () {
       return [this.$isMobile ? 'mt-n6' : ''];
-    },
-    validForm () {
-      return this.validPersonal && this.validAccount && this.validAgreement;
     },
   },
   watch: {
@@ -349,7 +342,7 @@ export default {
     validateForm () {
       const valid = this.$refs.formRef.validate();
       this.validatePhoneNo();
-      this.valid = valid && this.mobileNoError && this.user?.acceptTerms;
+      this.valid = valid && this.mobileNoError;
     },
     validatePhoneNo () {
       this.mobileNoError = false;
