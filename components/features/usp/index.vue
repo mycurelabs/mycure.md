@@ -6,18 +6,10 @@
       style="height: 100vh"
       :class="[backgroundClasses, backgroundImages]"
     )
-      //- generic-background-panel(
-      //-   :background-image="backgroundImage"
-      //-   background-image-file-extension=".webp"
-      //-   :background-image-mobile="backgroundImageMobile"
-      //-   :background-image-mobile-configs="backgroundImageMobileConfigs"
-      //-   :customPath="customPath"
-      //-   :class="{'mt-5': $isMobile}"
-      //- )
       v-container
         v-layout(style="height: 100%" fluid)
-          v-row(:align="!$isMobile ? 'center' : 'start'" justify="center")
-            v-col(cols="12" :class="{ 'pt-12 mt-4': $isMobile, 'pl-5': !$isMobile }")
+          v-row(align="start" justify="center")
+            v-col(cols="12" :class="{ 'pt-12 mt-4': $isMobile, 'pl-5 usp-content': !$isMobile }")
               p(:class="[centerText]").font-18.mx-1 {{ metaTitle }}
               h1(:class="titleClasses").font-poppins.font-40.lh-title {{ uspTitle }}
               div(v-if="$isMobile").text-center
@@ -65,23 +57,14 @@ export default {
     GenericBackgroundPanel,
   },
   data () {
-    this.backgroundImage = 'MYCURE-virtual-clinic-healthcare-practice-online-usp-cover';
-    this.backgroundImageMobile = 'MYCURE-virtual-clinic-healthcare-practice-online-usp-cover-mobile.png';
     this.panelTitle = 'User-friendly and time-efficient features for a more patient-centric care';
     this.metaTitle = 'MYCURE Features';
-    this.customPath = 'features/';
     return {
       videoDialog: false,
       canUseWebp: false,
     };
   },
   computed: {
-    backgroundImageMobileConfigs () {
-      return {
-        'background-size': '100%',
-        'background-position': '0px 200px',
-      };
-    },
     centerText () {
       return { 'text-center': this.$isMobile };
     },
@@ -94,11 +77,6 @@ export default {
       return this.$isMobile
         ? this.panelTitle
         : parseTextWithNewLine(this.panelTitle, ['and ', 'for ']);
-    },
-    rowContentClass () {
-      return this.$isMobile
-        ? ['mobile-row-content']
-        : ['web-row-content'];
     },
     backgroundClasses () {
       return !this.$isMobile ? 'bg' : 'bg-mobile';
@@ -138,49 +116,7 @@ export default {
   background-repeat: no-repeat;
   background-size: 100%;
 }
-.web-row-content {
-  height: 70vh;
+.usp-content{
+  margin-top: 150px;
 }
-.mobile-row-content {
-  min-height: 100vh;
-}
-@media screen and (device-width: 1280px) {
-  .usp-content {
-    margin-top: -10%;
-  }
-}
-@media screen and (device-width: 1366px) {
-  .usp-content {
-    margin-top: -5%;
-  }
-}
-@media screen and (device-width: 1440px) {
-  .usp-content {
-    margin-top: -13%;
-  }
-}
-@media screen and (device-width: 1680px) {
-  .usp-content {
-    margin-top: -18%;
-  }
-}
-@media screen and (device-width: 1920px) {
-  .usp-content {
-    margin-top: -14%;
-  }
-}
-@media screen and (min-width: 2304px) {
-  .usp-content {
-    margin-top: -21%;
-  }
-}
-@media screen and (device-width: 1024px) and (orientation: portrait) {
-  .web-row-content {
-    height: 20vh;
-  }
-  .features-usp{
-    height: 32vh;
-  }
-}
-
 </style>
