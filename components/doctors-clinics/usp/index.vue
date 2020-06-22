@@ -84,10 +84,8 @@ export default {
       return this.canUseWebp ? 'bg-webp' : 'bg-png';
     },
   },
-  mounted () {
-    canUseWebp().then((result) => {
-      this.canUseWebp = result;
-    });
+  async mounted () {
+    this.canUseWebp = await canUseWebp();
   },
   methods: {
     onGetStarted () {
