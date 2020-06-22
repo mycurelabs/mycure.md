@@ -6,20 +6,10 @@
       style="height: 100vh"
       :class="[backgroundClasses, backgroundImages]"
     )
-      // :class="{ 'bg': !$isMobile, 'bg-mobile': $isMobile }"
-      //- generic-background-panel(
-      //-   :background-image="backgroundImage"
-      //-   background-image-file-extension='.webp'
-      //-   :background-image-mobile="backgroundImageMobile"
-      //-   :background-image-mobile-configs="backgroundImageMobileConfigs"
-      //-   :webContainerStyleConfigs="webContainerStyleConfigs"
-      //-   :customPath="customPath"
-      //-   :class="{'mt-10': $isMobile}"
-      //- )
       v-container
         v-layout(style="height: 100%" fluid)
           v-row(:align="!$isMobile ? 'center' : 'start'" justify="center")
-            v-col(cols="12" :class="{ 'pt-12 mt-4': $isMobile, 'pl-5': !$isMobile }")
+            v-col(cols="12" :class="{ 'pt-12 mt-4': $isMobile, 'pl-5 usp-content': !$isMobile }")
               h3(:class="titleClasses").font-poppins.font-36.lh-title {{ panelTitleSub }}
               h1(:class="titleClasses").font-poppins.font-60.lh-title {{ uspTitle }}
               p(:class="[centerText]").font-italic.font-24.mx-1 {{ uspSubtitle }}
@@ -44,7 +34,6 @@
               ).text-none.font-16.p-7.py-4 Get Started
     template(v-if="$isMobile")
       v-layout(fluid)
-        //- div.text-field-container
         v-row
           v-text-field(
             background-color="white"
@@ -71,31 +60,15 @@ export default {
     GenericBackgroundPanel,
   },
   data () {
-    this.backgroundImage = 'MYCURE-virtual-clinic-healthcare-practice-online-homepage-usp-cover';
-    this.backgroundImageMobile = 'MYCURE-virtual-clinic-healthcare-practice-online-homepage-usp-cover-mobile.png';
     this.panelTitleSub = 'For Modern Doctors:';
     this.panelTitleMain = 'Virtual is the new normal.';
     this.uspSubtitle = 'Build your virtual clinic today.';
-    this.customPath = 'virtual-clinic-home/';
     return {
       email: '',
       canUseWebp: false,
     };
   },
   computed: {
-    backgroundImageMobileConfigs () {
-      return {
-        'background-size': '100%',
-        'background-position': '0px 275px',
-      };
-    },
-    webContainerStyleConfigs () {
-      return {
-        position: 'absolute',
-        top: '0',
-        height: '500px',
-      };
-    },
     centerText () {
       return { 'text-center': this.$isMobile };
     },
@@ -108,11 +81,6 @@ export default {
       return this.$isMobile
         ? this.panelTitleMain
         : parseTextWithNewLine(this.panelTitleMain, ['the ']);
-    },
-    rowContentClass () {
-      return this.$isMobile
-        ? ['mobile-row-content']
-        : ['web-row-content'];
     },
     backgroundClasses () {
       return !this.$isMobile ? 'bg' : 'bg-mobile';
@@ -155,6 +123,9 @@ export default {
   background-repeat: no-repeat;
   background-size: 100%;
 }
+.usp-content{
+  margin-top: -150px;
+}
 .text-field-container {
   height: 50px;
   border-radius: 2px;
@@ -164,68 +135,5 @@ export default {
   top: 1px;
   width: 295px;
   opacity: 0.9;
-}
-.web-row-content {
-  height: 85vh;
-}
-.mobile-row-content {
-  min-height: 100vh;
-}
-@media screen and (max-width: 1448px) {
-  .web-row-content {
-    height: 80vh;
-  }
-}
-@media screen and (max-width: 1300px) {
-  .web-row-content {
-    height: 74vh;
-  }
-}
-@media screen and (max-width: 1100px) {
-  .web-row-content {
-    height: 70vh;
-  }
-}
-@media screen and (device-width: 375px) {
-  .text-field-container {
-    margin-top: -45%;
-  }
-}
-@media screen and (device-width: 360px) {
-  .text-field-container {
-    margin-top: -50px;
-  }
-}
-@media screen and (device-width: 1024px) and (orientation: landscape)  {
-  .usp-content {
-    margin-top: -10vh;
-  }
-  .web-row-content {
-    height: 90vh;
-  }
-  .text-field-container {
-    display: inline-block !important;
-  }
-}
-@media screen and (device-width: 1024px) and (orientation: portrait)  {
-  .usp-content {
-    margin-top: -25vh;
-  }
-  .text-field-container {
-    display: inline-block !important;
-  }
-  .web-row-content {
-    height: 90vh;
-  }
-}
-@media screen and (max-width: 1000px) {
-  .text-field-container {
-    display: unset;
-  }
-}
-@media screen and (max-width: 1264px) {
-  .text-field-container .text-field-input{
-    width: 254px;
-  }
 }
 </style>

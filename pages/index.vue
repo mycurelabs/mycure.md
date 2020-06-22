@@ -3,7 +3,7 @@
     //- 1st panel
     usp(@getStarted="goToSignupIndividual($event)")
     //- 2nd panel
-    platform-panels(@getStarted="getStarted").platform-panel
+    platform-panels(@getStarted="getStarted")
     v-divider.edge-divider
     //- 3rd panel
     storyflow(
@@ -115,9 +115,6 @@ export default {
 </script>
 
 <style scoped>
-.platform-panel {
-  position: relative;
-}
 .cta-container {
   position: relative;
   margin-bottom: 0%;
