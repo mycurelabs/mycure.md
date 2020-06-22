@@ -1,5 +1,5 @@
 <template lang="pug">
-  div(v-if="!loading")#top
+  div(v-if="!loading")
     //- 1st panel
     usp(@getStarted="onGetStarted($event)")
     //- 2nd panel
@@ -18,7 +18,7 @@
     multiple-branches(@getStarted="goToSignup")#multibranch-facilities
     v-divider.edge-divider
     //- 7th panel
-    one-stop(@goToFeatures="goToFeatures" @getStarted="goToSignup")#multispecialty-clinics
+    one-stop(@goToFeatures="goToFeatures" @getStarted="goToSignup")
     v-divider.edge-divider
     //- 8th panel
     keep-employees(@goToFeatures="goToFeatures" @getStarted="goToSignup")#corporate-clinics
@@ -85,7 +85,6 @@ export default {
       const offsetMappings = [
         { key: '#app', offset: 0 },
         { key: '#multibranch-facilities', offset: 500 },
-        { key: '#multispecialty-clinics', offset: 600 },
         { key: '#corporate-clinics', offset: 700 },
         { key: '#medical-arts-centers', offset: 900 },
         { key: '#diagnostic-centers', offset: 1200 },

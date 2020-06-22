@@ -1,5 +1,5 @@
 <template lang="pug">
-  div(v-if="!loading")#top
+  div(v-if="!loading")
     //- 1st panel
     usp(@getStarted="getStarted")
     //- 2nd panel
@@ -59,9 +59,8 @@ export default {
   mounted () {
     this.loading = false;
     const panel = this.scrollPanel || '#app';
-    const offset = panel === '#app' ? 0 : 700;
     this.$nextTick(() => {
-      VueScrollTo.scrollTo(panel, 500, { easing: 'ease', offset });
+      VueScrollTo.scrollTo(panel, 500, { easing: 'ease' });
     });
   },
   methods: {

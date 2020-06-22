@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-container.py-12.your-patients-contents
+  v-container.py-12
     v-row(justify="center")
       v-col(cols="12" md="8" lg="6" justify="center")
         h1.text-center.font-30.lh-title.pb-3.font-weight-light {{secondPanelHeader.header}}

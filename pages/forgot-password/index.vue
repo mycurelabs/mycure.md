@@ -1,33 +1,45 @@
 <template lang="pug">
-  v-container(class="fill-height")
+  v-container
     v-row(align="center" justify="center")
-      v-col(cols="12" sm="8" md="4")
+      v-col(cols="12" sm="8" md="12" align="center" justify="center")
+        img(
+          :width="logoWidth"
+          src="~/assets/images/MYCURE-virtual-clinic-healthcare-practice-online-logo.svg"
+          @click="$nuxt.$router.push({ name: 'index' })"
+        ).link-to-home
+      v-col(cols="12" sm="8" md="4" justify="center")
         v-card(width="100%")
+          img(
+            width="100%"
+            src="~/assets/images/forgot-password/mycure-password-banner-forgot.png"
+          ).mx-auto
           v-card-text.px-4
-            img(
-              width="120"
-              src="~/assets/images/mycure-header-logo.png"
-              @click="$nuxt.$router.push({ name: 'index' })"
-            ).link-to-home.mb-3
-            h1.signin-title Forgot your password?
+            div.text-center
+              h1(:class="titleSizeClasses").signin-title Forgot your password?
             br
-            p No worries! Just follow these steps:
-            p 1. Enter your MYCURE email address below.
-            p 2. Carefully follow the instructions we sent to your email address.
-            p 3. Login to MYCURE using your new password.
+            p.font-16 No worries! Just follow these steps :
+            v-badge(
+              v-for="(data, key) in forgotPasswordStep"
+              :key="key"
+              color="primary"
+              :content="key + 1"
+              inline
+              left
+            ).px-2.py-2.font-16
+              span.pl-3.pr-5 {{data.step}}
           v-card-text.px-4
             v-form(ref="form" v-model="valid" @submit.prevent="submit")
               v-text-field(
                 v-model="email"
-                solo
                 label="Email Address"
                 :rules="emailRules"
+                outlined
               )
             v-alert(
               :value="error"
               type="error"
             ) {{errorMsg}}
-          v-card-text
+          v-card-text.mt-n5
             v-row
               v-col
                 v-btn(
@@ -38,21 +50,20 @@
               v-col.text-right
                 v-btn(
                   @click="submit"
-                  color="accent"
+                  color="primary"
                   :disabled="!valid || loading"
                   :loading="loading"
                 ).font-weight-bold Submit
-
-    v-dialog(v-model="successDialog" width="400" persistent)
+    v-dialog(v-model="successDialog" width="250" persistent)
       v-card.pa-1
         v-card-text.text-center.pt-5
-          v-icon(size="55").accent--text mdi-check-circle
-          h2.accent--text Success!
-          br
-          h3 Password reset link sent to&nbsp;
+          h2 Success!
+          img(src="~/assets/images/forgot-password/mycure-password-modal-success.png")
+          p Password reset link sent to&nbsp;
+            br
             span.primary--text {{email}}
         v-card-text.text-center#success-image
-          v-btn(color="accent" @click="done").font-weight-bold Done
+          v-btn(color="primary" @click="done" rounded).font-weight-bold Got it!
 </template>
 
 <script>
@@ -62,6 +73,11 @@ export default {
   layout: 'signin',
   data () {
     return {
+      forgotPasswordStep: [
+        { step: 'Enter your MYCURE email address below.' },
+        { step: 'Carefully follow the instructions we sent to your email address.' },
+        { step: 'Login to MYCURE using your new password.' },
+      ],
       valid: false,
       loading: false,
       email: '',
@@ -73,6 +89,14 @@ export default {
       errorMsg: '',
       successDialog: false,
     };
+  },
+  computed: {
+    logoWidth () {
+      return [this.$isMobile ? '50%' : '15%'];
+    },
+    titleSizeClasses () {
+      return [this.$isMobile ? 'font-24' : 'font-34'];
+    },
   },
   methods: {
     async submit () {

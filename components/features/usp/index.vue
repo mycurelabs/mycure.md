@@ -1,36 +1,37 @@
 <template lang="pug">
-  div.white.features-usp
-    generic-background-panel(
-      :background-image="backgroundImage"
-      background-image-file-extension=".webp"
-      :background-image-mobile="backgroundImageMobile"
-      :background-image-mobile-configs="backgroundImageMobileConfigs"
-      :customPath="customPath"
-      :class="{'mt-5': $isMobile}"
+  fragment
+    v-container(
+      fluid
+      style="height: 100vh"
+      :class="[backgroundClasses, backgroundImages]"
     )
-      v-row(slot="content" :align="$isMobile ? 'start' : 'center'" :class="rowContentClass").usp-content
-        v-col(cols="12" md="5" xl="4")
-          p(:class="[centerText]").font-18.mx-1 {{ metaTitle }}
-          h1(:class="titleClasses").font-poppins.font-40.lh-title {{ uspTitle }}
-          div(v-if="$isMobile").text-center
-            v-icon mdi-arrow-down
+      v-container
+        v-container(style="height: 100%" fluid)
+          v-row(align="start" justify="center")
+            v-col(cols="12" :class="{ 'pt-12 mt-4': $isMobile, 'pl-5 usp-content': !$isMobile }")
+              p(:class="[centerText, subtitleClasses]") {{ metaTitle }}
+              h1(:class="titleClasses").font-poppins.lh-title {{ uspTitle }}
+              div(v-if="$isMobile").text-center
+                v-icon mdi-arrow-down
+              v-btn(
+                v-if="!$isMobile"
+                color="accent"
+                large
+                @click="onWatch"
+              ).text-none.font-16.mt-5
+                v-icon(left) mdi-play-circle
+                | Watch Walkthrough
+    template(v-if="$isMobile")
+      v-container(fluid).mobile-form
+        v-row.px-6
           v-btn(
-            v-if="!$isMobile"
+            block
             color="accent"
             large
             @click="onWatch"
-          ).text-none.font-16.mt-5.p-7
+          ).text-none.font-16.p-7
             v-icon(left) mdi-play-circle
             | Watch Walkthrough
-    template(v-if="$isMobile")
-      v-btn(
-        block
-        color="accent"
-        large
-        @click="onWatch"
-      ).text-none.font-16.p-7
-        v-icon(left) mdi-play-circle
-        | Watch Walkthrough
 
     //- Video
     v-dialog(v-model="videoDialog" max-width="600")
@@ -49,47 +50,44 @@
 <script>
 // utils
 import { parseTextWithNewLine } from '~/utils/newline';
-// components
-import GenericBackgroundPanel from '~/components/commons/generic-background-panel';
+import canUseWebp from '~/utils/can-use-webp';
 export default {
-  components: {
-    GenericBackgroundPanel,
-  },
   data () {
-    this.backgroundImage = 'MYCURE-virtual-clinic-healthcare-practice-online-usp-cover';
-    this.backgroundImageMobile = 'MYCURE-virtual-clinic-healthcare-practice-online-usp-cover-mobile.png';
     this.panelTitle = 'User-friendly and time-efficient features for a more patient-centric care';
     this.metaTitle = 'MYCURE Features';
-    this.customPath = 'features/';
     return {
       videoDialog: false,
+      canUseWebp: false,
     };
   },
   computed: {
-    backgroundImageMobileConfigs () {
-      return {
-        'background-size': '100%',
-        'background-position': '0px 200px',
-      };
-    },
     centerText () {
       return { 'text-center': this.$isMobile };
     },
     titleClasses () {
       return this.$isMobile
-        ? [this.centerText]
-        : ['pre-white-space'];
+        ? [this.centerText, 'font-30']
+        : ['pre-white-space', 'font-48'];
+    },
+    subtitleClasses () {
+      return this.$isMobile
+        ? [this.centerText, 'font-18']
+        : ['pre-white-space', 'font-24'];
     },
     uspTitle () {
       return this.$isMobile
         ? this.panelTitle
         : parseTextWithNewLine(this.panelTitle, ['and ', 'for ']);
     },
-    rowContentClass () {
-      return this.$isMobile
-        ? ['mobile-row-content']
-        : ['web-row-content'];
+    backgroundClasses () {
+      return !this.$isMobile ? 'bg' : 'bg-mobile';
     },
+    backgroundImages () {
+      return this.canUseWebp ? 'bg-webp' : 'bg-png';
+    },
+  },
+  async mounted () {
+    this.canUseWebp = await canUseWebp();
   },
   methods: {
     onWatch () {
@@ -100,49 +98,27 @@ export default {
 </script>
 
 <style scoped>
-.web-row-content {
-  height: 70vh;
+.bg {
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
-.mobile-row-content {
-  min-height: 100vh;
+.bg-webp {
+  background-image: url('../../../assets/images/features/MYCURE-virtual-clinic-healthcare-practice-online-usp-cover.webp');
 }
-@media screen and (device-width: 1280px) {
-  .usp-content {
-    margin-top: -10%;
-  }
+.bg-png {
+  background-image: url('../../../assets/images/features/MYCURE-virtual-clinic-healthcare-practice-online-usp-cover.png');
 }
-@media screen and (device-width: 1366px) {
-  .usp-content {
-    margin-top: -5%;
-  }
+.bg-mobile {
+  background-image: url('../../../assets/images/features/MYCURE-virtual-clinic-healthcare-practice-online-usp-cover-mobile.png');
+  background-position: 0 235px;
+  background-repeat: no-repeat;
+  background-size: 100%;
 }
-@media screen and (device-width: 1440px) {
-  .usp-content {
-    margin-top: -13%;
-  }
+.usp-content {
+  margin-top: 150px;
 }
-@media screen and (device-width: 1680px) {
-  .usp-content {
-    margin-top: -18%;
-  }
+.mobile-form {
+  margin-top: -57px;
 }
-@media screen and (device-width: 1920px) {
-  .usp-content {
-    margin-top: -14%;
-  }
-}
-@media screen and (min-width: 2304px) {
-  .usp-content {
-    margin-top: -21%;
-  }
-}
-@media screen and (device-width: 1024px) and (orientation: portrait) {
-  .web-row-content {
-    height: 20vh;
-  }
-  .features-usp{
-    height: 32vh;
-  }
-}
-
 </style>

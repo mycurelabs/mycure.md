@@ -26,7 +26,6 @@
                           dense
                           @click="handleSubMenuClick(item, menu)"
                         ).pl-7 {{ menu.name }}
-                        v-divider(v-if="key === 1 && index === 0").pb-5.edge-divider
               div(v-for="(link, key) in toolbarLinks" :key="key")
                 v-btn(
                   :to="{ name: link.route }"
@@ -46,6 +45,7 @@
               ).mr-2.ml-1
                 span.font-14.tab.text-none &nbsp;Login
               v-btn(
+                width="130"
                 v-if="currentRoute === 'doctors-clinics'"
                 color="#98be58"
                 :to="currentRoute === 'doctors-clinics' ? { name: 'signup-individual' } : { name: 'signup-multispecialty' }"
@@ -54,6 +54,7 @@
               )
                 strong.font-14.white--text.tab.text-none Get Started
               v-btn(
+                width="130"
                 v-else-if="currentRoute === 'enterprise'"
                 color="#98be58"
                 :to="{ name: 'signup-multispecialty' }"
@@ -70,6 +71,7 @@
               )
                 strong.font-14.white--text.tab.text-none Start 14-Day Trial
               v-btn(
+                width="130"
                 v-else-if="currentRoute === 'fight-covid-19'"
                 color="#98be58"
                 id="fight-covid-19-get-started-btn"
@@ -78,6 +80,7 @@
                 strong.font-14.white--text.tab.text-none Get Started
               v-btn(
                 v-else
+                width="130"
                 color="#98be58"
                 id="get-started-btn"
                 @click.stop="handleToolbarLinkClick('get-started-btn')"
