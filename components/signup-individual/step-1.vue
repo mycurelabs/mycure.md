@@ -1,143 +1,142 @@
 <template lang="pug">
-  v-row(justify="center" align="center")
-    v-col(cols="12" md="10")
-      v-row(justify="center" no-gutters)
-        v-col(cols="12" md="5" :class="contentClasses")
-          img(
-            src=`~/assets/images/mycure-${dayOrNight === 'night' ? 'footer' : 'header'}-logo.png`
-            @click="$nuxt.$router.push({ name: 'index' })"
-            alt="MYCURE logo"
-          ).link-to-home.mb-3
-          h2.font-18.primary--text Doctors Clinic: Sign Up (Step 1 of 2)
-          h1#step-1-title Become a techy doctor in minutes!
-          br
-          v-row(v-for="(item, key) in checkListItems" :key="key" align="center" dense)
-            v-col(cols="1").pr-2.pt-2
-              img(width="20" src="~/assets/images/mycure-check.png" alt="Check icon")
-            v-col(shrink)
-              p.font-21 {{ item }}
-          v-row(v-if="pageType === 'signup-individual-step-1'").pt-5
-            v-col.mb-3
-              b.font-18 Already have an account?&nbsp;
-                nuxt-link(:to="{ name: 'signin' }") Sign in.
-        v-col(cols="12" md="5")
-          v-card
-            v-card-text
-              h1 Create a MYCURE Account
-            v-card-text
-              v-form(ref="formRef" v-model="valid")
-                v-row
-                  v-col
-                    v-text-field(
-                      v-model="user.firstName"
-                      outlined
-                      label="First Name"
-                      :rules="[requiredRule]"
-                      :disabled="loading"
-                    ).step-one-text-field
-                      template(v-slot:append v-if="user.firstName")
-                        v-icon(color="accent") mdi-check
-                  v-col
-                    v-text-field(
-                      v-model="user.lastName"
-                      outlined
-                      label="Last Name"
-                      :rules="[requiredRule]"
-                      :disabled="loading"
-                    )
-                      template(v-slot:append v-if="user.lastName")
-                        v-icon(color="accent") mdi-check
-                v-text-field(
-                  v-model="user.doc_PRCLicenseNo"
-                  label="Physician License No"
-                  outlined
-                  :rules="[requiredRule, numberRule]"
-                  :disabled="loading"
-                )
-                  template(v-slot:append v-if="user.doc_PRCLicenseNo && user.doc_PRCLicenseNo>=0")
-                    v-icon(color="accent") mdi-check
-                v-text-field(
-                  v-model="user.mobileNo"
-                  label="Mobile Number"
-                  type="number"
-                  outlined
-                  :prefix="`+${user.countryCallingCode}`"
-                  :loading="loadingForm || loading"
-                  :disabled="loadingForm || loading"
-                  :error-messages="mobileNoErrorMessage"
-                  :rules="[requiredRule]"
-                  @blur="validatePhoneNo"
-                )
-                  template(slot="append")
-                    div(style="margin-top: -5px")
-                      v-tooltip(bottom)
-                        template(v-slot:activator="{ on }")
-                          v-btn(icon @click="countryDialog = true" v-on="on").ma-0
-                            img(width="25" :src="user.countryFlag").flag-img.mt-2
-                        | Change Country
-                      v-icon(v-if="mobileNoError" color="accent") mdi-check
-                  //- NOTE: DO NOT REMOVE YET
-                  //- template(slot="append-outer")
-                  //-   v-tooltip(bottom)
-                  //-     v-btn(small icon slot="activator" @click="countryDialog = true" :disabled="loading")
-                  //-       v-icon mdi-earth
-                  //-     | Change Country
-                v-divider
-                br
-                v-text-field(
-                  v-model="user.email"
-                  type="email"
-                  label="Email Address"
-                  outlined
-                  :rules="[requiredRule, emailRule]"
-                  :disabled="loading"
-                )
-                  template(v-slot:append v-if="user.email &&  /.+@.+/.test(user.email)")
-                    v-icon(color="accent") mdi-check
-                v-text-field(
-                  v-model="user.password"
-                  label="Your MYCURE Password"
-                  outlined
-                  :type="showPass ? 'text' : 'password'"
-                  :rules="[requiredRule, passwordRule]"
-                  :append-icon="showPass ? 'mdi-eye-off' : 'mdi-eye'"
-                  :disabled="loading"
-                  @click:append="showPass = !showPass"
-                )
-                v-text-field(
-                  v-model="confirmPassword"
-                  label="Confirm Password"
-                  outlined
-                  type="password"
-                  :rules="[requiredRule, matchPasswordRule]"
-                  :disabled="loading"
-                )
-                  template(v-slot: append v-if="confirmPassword && confirmPassword === user.password")
-                    v-icon(color="accent") mdi-check
-                v-checkbox(
-                  v-model="user.acceptTerms"
-                  hide-details
-                  style="margin-top: -10px"
-                  :rules="[requiredRule]"
-                  :disabled="loading"
-                  color="accent"
-                ).mb-4
-                  template(slot="label")
-                    p(style="margin-bottom: -12px") By creating a MYCURE account, you're agreeing to accept MYCURE&nbsp;
-                      a(@click.stop="goToTerms") Terms
-                      | &nbsp;and&nbsp;
-                      a(@click.stop="goToPrivacy") Privacy Policy
-                v-alert(:value="error" type="error").mt-5 {{errorMessage}}
-            v-card-actions
-              v-spacer
-              v-btn(
-                color="accent"
-                @click="next"
-                :disabled="loading || !valid"
-                :loading="loading"
-                large
-              ).font-weight-bold Create My Account
-
+  v-container.content-padding
+    v-row
+      v-col(justify="end" align="end" md="3").offset-md-9
+        v-btn(icon @click="showInfo = !showInfo").mb-n12
+          v-icon(large).primary--text mdi-help-circle
+    v-dialog(v-model="showInfo" width="300")
+      v-card
+        v-card-title
+          h4 Become a techy doctor in minutes!
+        v-card-text(v-for="(item, key) in checkListItems" :key="key")
+          v-icon mdi-circle-medium
+          span.font-16 {{ item }}
+    v-row(justify="center" align="center")
+      v-col(cols="12" md="10" justify="center" align="center")
+        img(
+          src="~/assets/images/sign-up-individual-step-1/mycure-sso-sign-in-logo.svg"
+          @click="$nuxt.$router.push({ name: 'index' })"
+          alt="MYCURE logo"
+        ).link-to-home.pb-5
+        h2.font-18.primary--text Doctors Clinic: Sign Up (Step 1 of 2)
+        h1 Create a MYCURE Account
+      v-col(cols="12" md="5" justify="center" align="center")
+        v-form(ref="formRef" v-model="valid")
+          v-row(no-gutters)
+            v-col(xs="12")
+              v-text-field(
+                v-model="user.firstName"
+                outlined
+                label="First Name"
+                :rules="[requiredRule]"
+                :disabled="loading"
+              ).step-one-text-field.pr-1
+                template(v-slot:append v-if="user.firstName")
+                  v-icon(color="accent") mdi-check
+            v-col(xs="12")
+              v-text-field(
+                v-model="user.lastName"
+                outlined
+                label="Last Name"
+                :rules="[requiredRule]"
+                :disabled="loading"
+              ).pl-1
+                template(v-slot:append v-if="user.lastName")
+                  v-icon(color="accent") mdi-check
+          v-text-field(
+            v-model="user.doc_PRCLicenseNo"
+            label="Physician License No"
+            outlined
+            :rules="[requiredRule, numberRule]"
+            :disabled="loading"
+          )
+            template(v-slot:append v-if="user.doc_PRCLicenseNo && user.doc_PRCLicenseNo>=0")
+              v-icon(color="accent") mdi-check
+          v-text-field(
+            v-model="user.mobileNo"
+            label="Mobile Number"
+            type="number"
+            outlined
+            :prefix="`+${user.countryCallingCode}`"
+            :loading="loadingForm || loading"
+            :disabled="loadingForm || loading"
+            :error-messages="mobileNoErrorMessage"
+            :rules="[requiredRule]"
+            @blur="validatePhoneNo"
+          )
+            template(slot="append")
+              div(style="margin-top: -5px")
+                v-tooltip(bottom)
+                  template(v-slot:activator="{ on }")
+                    v-btn(icon @click="countryDialog = true" v-on="on").ma-0
+                      img(width="25" :src="user.countryFlag").flag-img.mt-2
+                  | Change Country
+                v-icon(v-if="mobileNoError" color="accent") mdi-check
+            //- NOTE: DO NOT REMOVE YET
+            //- template(slot="append-outer")
+            //-   v-tooltip(bottom)
+            //-     v-btn(small icon slot="activator" @click="countryDialog = true" :disabled="loading")
+            //-       v-icon mdi-earth
+            //-     | Change Country
+      v-divider(v-if="!$isMobile" vertical).vertical-divider
+      v-col(cols="12" md="5" :class="credentialClasses")
+        v-form(ref="formRef" v-model="valid")
+          v-text-field(
+            v-model="user.email"
+            type="email"
+            label="Email Address"
+            outlined
+            :rules="[requiredRule, emailRule]"
+            :disabled="loading"
+          )
+            template(v-slot:append v-if="user.email &&  /.+@.+/.test(user.email)")
+              v-icon(color="accent") mdi-check
+          v-text-field(
+            v-model="user.password"
+            label="Your MYCURE Password"
+            outlined
+            :type="showPass ? 'text' : 'password'"
+            :rules="[requiredRule, passwordRule]"
+            :append-icon="showPass ? 'mdi-eye-off' : 'mdi-eye'"
+            :disabled="loading"
+            @click:append="showPass = !showPass"
+          )
+          v-text-field(
+            v-model="confirmPassword"
+            label="Confirm Password"
+            outlined
+            type="password"
+            :rules="[requiredRule, matchPasswordRule]"
+            :disabled="loading"
+          )
+            template(v-slot: append v-if="confirmPassword && confirmPassword === user.password")
+              v-icon(color="accent") mdi-check
+      v-col(cols="12" md="10" justify="center" v-if="!$isMobile").mt-md-n5
+        v-divider
+      v-col(cols="12" md="10" justify="start" align="center")
+        v-checkbox(
+          v-model="user.acceptTerms"
+          hide-details
+          style="margin-top: -10px"
+          :rules="[requiredRule]"
+          :disabled="loading"
+          color="primary"
+        )
+          template(slot="label")
+            p(style="margin-bottom: -6px") By creating a MYCURE account, you're agreeing to accept MYCURE&nbsp;
+              a(@click.stop="goToTerms") Terms
+              | &nbsp;and&nbsp;
+              a(@click.stop="goToPrivacy") Privacy Policy
+        v-alert(:value="error" type="error").mt-5 {{errorMessage}}
+      v-col(cols="12" md="10" justify="center" align="center")
+        v-spacer
+        v-btn(
+          color="primary"
+          @click="next"
+          :disabled="loading || !valid"
+          :loading="loading"
+          large
+        ).font-weight-bold Create My Account
     v-dialog(v-model="countryDialog" width="500" scrollable)
       v-card
         v-toolbar(flat)
@@ -186,6 +185,7 @@ export default {
       'Save on time and save more lives!',
     ];
     return {
+      showInfo: false,
       valid: false,
       loading: false,
       loadingForm: false,
@@ -223,6 +223,9 @@ export default {
     },
     contentClasses () {
       return [{ 'content-padding': !this.$isMobile }];
+    },
+    credentialClasses () {
+      return [this.$isMobile ? 'mt-n6' : ''];
     },
   },
   watch: {
@@ -324,13 +327,17 @@ export default {
     goToTerms () {
       const routeData = this.$nuxt.$router.resolve({ name: 'terms' });
       if (process.client) {
-        window.open(routeData.href, '_blank');
+        const changeRoute = window.open(routeData.href, '_blank');
+        changeRoute.opener = null;
+        changeRoute.rel = 'noopener noreferrer';
       }
     },
     goToPrivacy () {
       const routeData = this.$nuxt.$router.resolve({ name: 'privacy-policy' });
       if (process.client) {
-        window.open(routeData.href, '_blank');
+        const changeRoute = window.open(routeData.href, '_blank');
+        changeRoute.opener = null;
+        changeRoute.rel = 'noopener noreferrer';
       }
     },
     validateForm () {
@@ -385,6 +392,50 @@ h1 {
 
 .content-padding {
   padding-top: 100px;
+}
+.vertical-divider {
+  margin-top: 10px;
+  height: 230px !important;
+}
+@media screen and (device-width: 1024px) {
+  .content-padding {
+    padding-top: 20vh;
+  }
+}
+@media screen and (device-width: 1440px) {
+  .content-padding {
+    margin-bottom: -10%;
+    position: relative;
+    z-index: 2;
+  }
+}
+@media screen and (device-width: 1680px) {
+  .content-padding {
+    margin-bottom: -15%;
+    position: relative;
+    z-index: 2;
+  }
+}
+@media screen and (device-width: 1920px) {
+  .content-padding {
+    margin-bottom: -5%;
+    position: relative;
+    z-index: 2;
+  }
+}
+@media screen and (device-width: 2304px) {
+  .content-padding {
+    margin-bottom: -7%;
+    position: relative;
+    z-index: 2;
+  }
+}
+@media screen and (device-width: 2560px) {
+  .content-padding {
+    margin-bottom: -10%;
+    position: relative;
+    z-index: 2;
+  }
 }
 /* TODO: confirm if needed. This will defeat uniformity across other forms. */
 /* .step-one-text-field {
