@@ -215,6 +215,11 @@ export default {
   cursor: pointer;
 }
 
+@media screen and (min-width: 1280px) and (max-width: 1366px) {
+  .main-container {
+    margin-bottom: 5%;
+  }
+}
 @media screen and (min-width: 1500px) {
   .login-card.v-card {
     width: 350px;
