@@ -7,7 +7,7 @@
             v-icon(large).primary--text mdi-help-circle
       v-dialog(v-model="showInfo" width="300")
         v-card
-          v-card-title
+          v-card-title.text-justify
             h4 Become a techy doctor in minutes!
           v-card-text(v-for="(item, key) in checkListItems" :key="key")
             v-icon mdi-circle-medium
