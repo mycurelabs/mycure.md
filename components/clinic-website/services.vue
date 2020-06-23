@@ -50,7 +50,7 @@
 export default {
   props: {
     services: {
-      type: String,
+      type: Array,
       default: () => ([]),
     },
     headerText: {
