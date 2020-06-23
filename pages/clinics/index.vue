@@ -2,8 +2,8 @@
   v-container(fluid)
     // TODO: navbar -- done
     // TODO: hero panel -- done / refactor needed
-    // TODO: services -- doing
-    // TODO: clinic info
+    // TODO: services -- done / check for refactors
+    // TODO: clinic info -- doing
     // TODO: doctors list
     // TODO: about clinic
     // TODO: social panel
@@ -24,6 +24,12 @@
       :services="services"
     )
     v-divider
+    clinic-info(
+      :schedules="schedules"
+      :rates="rates"
+      clinic-name="MYCURE Virtual Clinic"
+      clinic-address="1036, Delos Santos STI Medical Center 201 E. Rodriguez Avenue Quezon City"
+    )
     //- panel-1(
     //-   :pic-url="picURL"
     //-   :full-name="fullNameWithSuffixes"
@@ -66,6 +72,7 @@ import headMeta from '~/utils/head-meta';
 import AppBar from '~/components/clinic-website/app-bar';
 import Panel1 from '~/components/clinic-website/panel-1';
 import Services from '~/components/clinic-website/services';
+import ClinicInfo from '~/components/clinic-website/clinic-info';
 // import Services from '~/components/doctor-website/services';
 import Tabs from '~/components/doctor-website/tabs';
 import Social from '~/components/doctor-website/social';
@@ -76,6 +83,7 @@ export default {
     AppBar,
     Panel1,
     Services,
+    ClinicInfo,
     Tabs,
     Social,
   },
@@ -110,6 +118,21 @@ export default {
         'Endocrinology',
         'Gastroenterology',
       ],
+      schedules: [
+        {
+          day: 'Mon - Sat',
+          time: '04:00 PM - 09:00 PM',
+        },
+        {
+          day: 'Sun',
+          time: '09:00 PM - 12:00 PM',
+        },
+      ],
+      rates: {
+        currency: '₱',
+        min: '500',
+        max: '1,000',
+      },
     };
   },
   computed: {
