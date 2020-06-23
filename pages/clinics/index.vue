@@ -1,10 +1,10 @@
 <template lang="pug">
   v-container(fluid)
-    // TODO: navbar -- done
+    // TODO: navbar -- done / refactor needed?
     // TODO: hero panel -- done / refactor needed
     // TODO: services -- done / check for refactors
-    // TODO: clinic info -- doing
-    // TODO: doctors list
+    // TODO: clinic info -- done / check for refactors
+    // TODO: doctors list -- doing
     // TODO: about clinic
     // TODO: social panel
     // TODO: final cta
@@ -29,6 +29,10 @@
       :rates="rates"
       clinic-name="MYCURE Virtual Clinic"
       clinic-address="1036, Delos Santos STI Medical Center 201 E. Rodriguez Avenue Quezon City"
+    )
+    v-divider
+    doctors(
+      :doctors="doctors"
     )
     //- panel-1(
     //-   :pic-url="picURL"
@@ -73,6 +77,7 @@ import AppBar from '~/components/clinic-website/app-bar';
 import Panel1 from '~/components/clinic-website/panel-1';
 import Services from '~/components/clinic-website/services';
 import ClinicInfo from '~/components/clinic-website/clinic-info';
+import Doctors from '~/components/clinic-website/doctors';
 // import Services from '~/components/doctor-website/services';
 import Tabs from '~/components/doctor-website/tabs';
 import Social from '~/components/doctor-website/social';
@@ -84,6 +89,7 @@ export default {
     Panel1,
     Services,
     ClinicInfo,
+    Doctors,
     Tabs,
     Social,
   },
@@ -133,6 +139,68 @@ export default {
         min: '500',
         max: '1,000',
       },
+      doctors: [
+        {
+          firstName: 'Jean',
+          lastName: 'Rivera',
+          title: 'MD',
+          imageUrl: '~/assets/images/doctor-website/doctor-website-profile-female.png',
+          specialization: 'Pediatrician',
+          specializationTags: ['kids', 'family', 'eyes', 'nose', 'elderly'],
+          experience: 25,
+          siteUrl: 'https://www.google.com',
+          availability: [
+            {
+              day: 'Mon - Sat',
+              time: '04:00 PM - 09:00 PM',
+            },
+            {
+              day: 'Sun',
+              time: '09:00 PM - 12:00 PM',
+            },
+          ],
+        },
+        {
+          firstName: 'Arthas',
+          lastName: 'Menethil',
+          title: 'MD',
+          imageUrl: '~/assets/images/doctor-website/doctor-website-profile-male.png',
+          specialization: 'Pulmonology',
+          specializationTags: ['kids', 'family', 'eyes', 'nose', 'elderly'],
+          experience: 3,
+          siteUrl: 'https://www.google.com',
+          availability: [
+            {
+              day: 'Mon - Sat',
+              time: '04:00 PM - 09:00 PM',
+            },
+            {
+              day: 'Sun',
+              time: '09:00 PM - 12:00 PM',
+            },
+          ],
+        },
+        {
+          firstName: 'Jaina',
+          lastName: 'Proudmoore',
+          title: 'MD',
+          imageUrl: '~/assets/images/doctor-website/doctor-website-profile-female.png',
+          specialization: 'Internist',
+          specializationTags: ['kids', 'family', 'eyes', 'nose', 'elderly'],
+          experience: 5,
+          siteUrl: 'https://www.google.com',
+          availability: [
+            {
+              day: 'Mon - Sat',
+              time: '04:00 PM - 09:00 PM',
+            },
+            {
+              day: 'Sun',
+              time: '09:00 PM - 12:00 PM',
+            },
+          ],
+        },
+      ],
     };
   },
   computed: {
