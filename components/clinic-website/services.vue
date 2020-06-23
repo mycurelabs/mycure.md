@@ -49,10 +49,18 @@
 <script>
 export default {
   props: {
+    /**
+     * Array of services strings
+     * @type {Array}
+     */
     services: {
       type: Array,
       default: () => ([]),
     },
+    /**
+     * String header text
+     * @type {String}
+     */
     headerText: {
       type: String,
       default: null,

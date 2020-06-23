@@ -24,6 +24,10 @@
 <script>
 export default {
   props: {
+    /**
+     * Array of doctor objects
+     * @type {Array}
+     */
     doctors: {
       type: Array,
       default: () => ([]),

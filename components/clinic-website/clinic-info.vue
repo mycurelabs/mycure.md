@@ -24,18 +24,34 @@
 <script>
 export default {
   props: {
+    /**
+     * Array of schedule objects
+     * @type {Array}
+     */
     schedules: {
       type: Array,
       default: () => ([]),
     },
+    /**
+     * String name of clinic
+     * @type {String}
+     */
     clinicName: {
       type: String,
       default: null,
     },
+    /**
+     * String address of clinic
+     * @type {String}
+     */
     clinicAddress: {
       type: String,
       default: null,
     },
+    /**
+     * Object rates of clinic (min, max, currency)
+     * @type {Object}
+     */
     rates: {
       type: Object,
       default: null,
