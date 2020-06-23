@@ -1,14 +1,14 @@
 <template lang="pug">
   div.my-10
     v-row(justify="center" align="center")
-      v-col(align="right" cols="12" md="5" order-sm="2" order-md="1")
+      v-col(cols="12" md="5" order-sm="2" order-md="1")
         picture-source(
           :customPath="picCustomPath"
           :image="picUrl"
           :imageAlt="picAlt"
           :imageFileExtension="picExtension"
         )
-      v-col(align="left" cols="12" md="7" order-sm="1" order-md="2")
+      v-col(cols="12" md="7" order-sm="1" order-md="2")
         h1.font-weight-bold.font-64 {{ clinicCopy }}
         br
         p.font-32 {{ clinicTagline }}
