@@ -1,8 +1,8 @@
 <template lang="pug">
   v-container(fluid)
     // TODO: navbar -- done
-    // TODO: hero panel -- doing
-    // TODO: services
+    // TODO: hero panel -- done / refactor needed
+    // TODO: services -- doing
     // TODO: clinic info
     // TODO: doctors list
     // TODO: about clinic
@@ -10,21 +10,14 @@
     // TODO: footer -- done
     app-bar
     //- panel 1
-    div
-      v-row(justify="center" align="center")
-        v-col(align="right" cols="12" md="5" order-sm="2" order-md="1")
-          picture-source(
-            customPath="enterprise/"
-            image="MYCURE-virtual-clinic-healthcare-practice-online-enterprise-F-multi-specialty"
-            imageAlt="Clinic Image"
-            imageFileExtension=".webp"
-          )
-        v-col(align="left" cols="12" md="7" order-sm="1" order-md="2")
-          h1.font-weight-bold.font-64 Copy of the clinic. Ex. The best clinic since 1945
-          br
-          p.font-32 Up to 50 characters plus a tagline up to well 60 characters.
-          br
-          v-btn(color="primary" large) Book Appoinment
+    panel-1(
+      pic-url="MYCURE-virtual-clinic-healthcare-practice-online-enterprise-F-multi-specialty"
+      pic-extension=".webp"
+      pic-alt="Clinic Image"
+      pic-custom-path="enterprise/"
+      clinic-copy="Copy of the clinic. Ex. The best clinic since 1945"
+      clinic-tagline="Up to 50 characters plus a tagline up to well 60 characters."
+    )
     //- panel-1(
     //-   :pic-url="picURL"
     //-   :full-name="fullNameWithSuffixes"
@@ -65,7 +58,7 @@ import PictureSource from '~/components/commons/PictureSource';
 // import { formatName } from '~/utils/formats';
 import headMeta from '~/utils/head-meta';
 import AppBar from '~/components/clinic-website/app-bar';
-import Panel1 from '~/components/doctor-website/panel-1';
+import Panel1 from '~/components/clinic-website/panel-1';
 import Services from '~/components/doctor-website/services';
 import Tabs from '~/components/doctor-website/tabs';
 import Social from '~/components/doctor-website/social';
