@@ -3,7 +3,7 @@
     v-row(align="center" justify="center")
       v-col(cols="12" sm="8" md="12" align="center" justify="center")
         img(
-          :width="logoWidthClasses"
+          :width="logoWidth"
           src="~/assets/images/MYCURE-virtual-clinic-healthcare-practice-online-logo.svg"
           @click="$nuxt.$router.push({ name: 'index' })"
         ).link-to-home
@@ -93,7 +93,7 @@ export default {
     };
   },
   computed: {
-    logoWidthClasses () {
+    logoWidth () {
       return [this.$isMobile ? '50%' : '15%'];
     },
     titleSizeClasses () {
