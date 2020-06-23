@@ -1,6 +1,6 @@
 <template lang="pug">
   v-container(fluid)
-    // TODO: navbar -- done / refactor needed?
+    // TODO: navbar -- done / refactor needed
     // TODO: hero panel -- done / refactor needed
     // TODO: services -- done / check for refactors
     // TODO: clinic info -- done / check for refactors
@@ -8,9 +8,8 @@
     // TODO: about clinic
     // TODO: social panel
     // TODO: final cta
-    // TODO: footer -- done
+    // TODO: footer -- done / refactor needed
     app-bar
-    //- panel 1
     panel-1(
       pic-url="MYCURE-virtual-clinic-healthcare-practice-online-enterprise-F-multi-specialty"
       pic-extension=".webp"
