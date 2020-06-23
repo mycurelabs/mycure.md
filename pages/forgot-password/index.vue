@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-container()
+  v-container
     v-row(align="center" justify="center")
       v-col(cols="12" sm="8" md="12" align="center" justify="center")
         img(
