@@ -58,9 +58,7 @@
       v-card.pa-1
         v-card-text.text-center.pt-5
           h2 Success!
-          img(
-            src="~/assets/images/forgot-password/mycure-password-modal-success.png"
-          )
+          img(src="~/assets/images/forgot-password/mycure-password-modal-success.png")
           p Password reset link sent to&nbsp;
             br
             span.primary--text {{email}}
