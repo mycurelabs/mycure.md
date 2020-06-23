@@ -1,14 +1,30 @@
 <template lang="pug">
   v-container(fluid)
-    // TODO: navbar
-    // TODO: hero panel
+    // TODO: navbar -- done
+    // TODO: hero panel -- doing
     // TODO: services
     // TODO: clinic info
     // TODO: doctors list
     // TODO: about clinic
     // TODO: final cta
-    // TODO: footer
+    // TODO: footer -- done
     app-bar
+    //- panel 1
+    div
+      v-row(justify="center" align="center")
+        v-col(align="right" cols="12" md="5" order-sm="2" order-md="1")
+          picture-source(
+            customPath="enterprise/"
+            image="MYCURE-virtual-clinic-healthcare-practice-online-enterprise-F-multi-specialty"
+            imageAlt="Clinic Image"
+            imageFileExtension=".webp"
+          )
+        v-col(align="left" cols="12" md="7" order-sm="1" order-md="2")
+          h1.font-weight-bold.font-64 Copy of the clinic. Ex. The best clinic since 1945
+          br
+          p.font-32 Up to 50 characters plus a tagline up to well 60 characters.
+          br
+          v-btn(color="primary" large) Book Appoinment
     //- panel-1(
     //-   :pic-url="picURL"
     //-   :full-name="fullNameWithSuffixes"
@@ -38,11 +54,12 @@
     )
       v-row
         v-col.text-center
-          span.black--text Copyright {{new Date().getFullYear()}} | All Rights Reserved | Powered by #[a(href="https://mycure.md" target="_blank").mycure-link MYCURE]
+          span.black--text Copyright {{new Date().getFullYear()}} | All Rights Reserved | Powered by #[a(href="https://mycure.md" target="_blank").mycure-link.font-weight-bold MYCURE]
     //- pre {{doctor}}
 </template>
 
 <script>
+import PictureSource from '~/components/commons/PictureSource';
 // import _ from 'lodash';
 // import { getDoctorWebsite, getDoctorClinics, recordWebsiteVisit } from '~/utils/axios';
 // import { formatName } from '~/utils/formats';
@@ -55,6 +72,7 @@ import Social from '~/components/doctor-website/social';
 export default {
   layout: 'clinic-website',
   components: {
+    PictureSource,
     AppBar,
     Panel1,
     Services,
@@ -143,7 +161,7 @@ export default {
 
 <style scoped>
 .mycure-link {
-  color: white;
+  color: #2e9fdf;
   text-decoration: none;
 }
 </style>
