@@ -1,5 +1,5 @@
 <template lang="pug">
-  div.my-10
+  v-container.my-10
     v-row(justify="center" align="center")
       v-col(cols="12" md="5" order-sm="2" order-md="1")
         picture-source(
