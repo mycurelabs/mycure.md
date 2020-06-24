@@ -17,12 +17,18 @@
       v-col
         p display component
     v-row
-      v-col(cols="12")
-        p doctors list here
+      template(v-for="(item) in doctors")
+        doctor-item(
+          :doctor="item"
+        )
 </template>
 
 <script>
+import DoctorItem from '~/components/clinic-website/doctor-item';
 export default {
+  components: {
+    DoctorItem,
+  },
   props: {
     /**
      * Array of doctor objects
