@@ -9,6 +9,7 @@
     // TODO: social panel
     // TODO: final cta
     // TODO: footer -- done / refactor needed
+    // TODO: recheck all on mobile
     app-bar
     panel-1(
       pic-url="MYCURE-virtual-clinic-healthcare-practice-online-enterprise-F-multi-specialty"
