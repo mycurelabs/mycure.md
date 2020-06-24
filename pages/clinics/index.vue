@@ -34,7 +34,7 @@
     doctors(
       :doctors="doctors"
     )
-    v-divider
+    //- About panel
     about-clinic(:about="aboutInfo")
 
     v-divider
