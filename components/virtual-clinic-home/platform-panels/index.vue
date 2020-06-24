@@ -14,7 +14,6 @@
           imageAlt="Start your physical and digital journey"
           imageFileExtension=".webp"
         )
-          //- :imageClasses="['pr-12']"
       v-col(align-self="center" cols="12" md="6" lg="4").second-column
         h1.font-30.lh-title.pb-3.font-weight-light {{HOME_START_YOUR_PHYSICAL.header}}
         br
@@ -48,7 +47,7 @@
           :image="YOUR_ONLINE_CLINIC.image"
           imageAlt="Your online clinic everywhere"
           imageFileExtension=".webp"
-          :imageClasses="['pl-12']"
+          :imageClasses="[!$isMobile ?'pl-12' : '']"
         )
     //- THIRD PANEL
     v-row(justify="center" align="center").py-10.mb-n4
@@ -94,7 +93,7 @@
           :image="MANAGE_EVERYTHING_EASILY.image"
           imageAlt="Manage everything easily"
           imageFileExtension=".webp"
-          :imageClasses="['pl-10']"
+          :imageClasses="[!$isMobile ?'pl-10' : '']"
         )
 </template>
 
@@ -141,6 +140,21 @@ a {
   }
   .second-column {
     margin-left: 5%;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .second-column {
+    margin-left: 5%;
+  }
+}
+@media screen and (min-width: 1920px) {
+  .second-column {
+    margin-left: 7%;
+  }
+}
+@media screen and (min-width: 2304px) {
+  .second-column {
+    margin-left: 7%;
   }
 }
 </style>
