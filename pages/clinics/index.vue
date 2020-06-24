@@ -35,6 +35,9 @@
       :doctors="doctors"
     )
     v-divider
+    about-clinic(:about="aboutInfo")
+
+    v-divider
     v-footer(
       height="auto"
       color="white"
@@ -52,6 +55,7 @@ import Panel1 from '~/components/clinic-website/panel-1';
 import Services from '~/components/clinic-website/services';
 import ClinicInfo from '~/components/clinic-website/clinic-info';
 import Doctors from '~/components/clinic-website/doctors';
+import AboutClinic from '~/components/clinic-website/about-clinic';
 export default {
   layout: 'clinic-website',
   components: {
@@ -60,6 +64,7 @@ export default {
     Services,
     ClinicInfo,
     Doctors,
+    AboutClinic,
   },
   data () {
     return {
@@ -151,6 +156,11 @@ export default {
           ],
         },
       ],
+      aboutInfo: [{
+        clinicName: 'Mycure Clinic',
+        firstInfo: 'MYCURE Virtual Clinic specializes in telehealth services. MYCURE Virtual Clinic\'s telemedicine service is committed to provide medial consultation via video conference or phone call to our patient 24 hours a day 7 days a week.',
+        secondInfo: 'MCURE virtual clinic also offers a robust clinic management system that are being used by hundreds of satisfied clients nationwide. All doctors onboard here are certified under the Philippine Medical Association.',
+      }],
     };
   },
   head () {
