@@ -91,8 +91,8 @@ export default {
       },
       doctors: [
         {
-          firstName: 'Jean',
-          lastName: 'Rivera',
+          firstName: 'Jean Stefan',
+          lastName: 'Rivera Restituto',
           title: 'MD',
           imageFile: 'doctor-website-profile-female.png',
           specialization: 'Pediatrician',
@@ -151,8 +151,8 @@ export default {
           ],
         },
         {
-          firstName: 'Jean',
-          lastName: 'Rivera',
+          firstName: 'Grom',
+          lastName: 'Hellscream',
           title: 'MD',
           imageFile: 'doctor-website-profile-female.png',
           specialization: 'Pediatrician',
@@ -171,8 +171,8 @@ export default {
           ],
         },
         {
-          firstName: 'Arthas',
-          lastName: 'Menethil',
+          firstName: 'Crash',
+          lastName: 'Bandicoot',
           title: 'MD',
           imageFile: 'doctor-website-profile-male.png',
           specialization: 'Pulmonology',
@@ -191,8 +191,8 @@ export default {
           ],
         },
         {
-          firstName: 'Jaina',
-          lastName: 'Proudmoore',
+          firstName: 'Neo',
+          lastName: 'Cortex',
           title: 'MD',
           imageFile: 'doctor-website-profile-female.png',
           specialization: 'Internist',
@@ -211,8 +211,8 @@ export default {
           ],
         },
         {
-          firstName: 'Jean',
-          lastName: 'Rivera',
+          firstName: 'Doom',
+          lastName: 'Guy',
           title: 'MD',
           imageFile: 'doctor-website-profile-female.png',
           specialization: 'Pediatrician',
@@ -231,8 +231,8 @@ export default {
           ],
         },
         {
-          firstName: 'Arthas',
-          lastName: 'Menethil',
+          firstName: 'Adrian',
+          lastName: 'Tepes',
           title: 'MD',
           imageFile: 'doctor-website-profile-male.png',
           specialization: 'Pulmonology',
@@ -251,8 +251,8 @@ export default {
           ],
         },
         {
-          firstName: 'Jaina',
-          lastName: 'Proudmoore',
+          firstName: 'Lisa',
+          lastName: 'Tepes',
           title: 'MD',
           imageFile: 'doctor-website-profile-female.png',
           specialization: 'Internist',
