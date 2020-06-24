@@ -62,7 +62,6 @@ export default {
   },
   data () {
     return {
-      selectedTab: 'clinics',
       services: [
         'Obstetrics and Gynecology',
         'Pediatrics and Neonatology',
