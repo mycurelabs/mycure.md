@@ -291,6 +291,7 @@ export default {
           { icon: 'mdi-email', link: 'mailto:' },
           { icon: 'mdi-linkedin', link: 'https://www.linkedin.com/' },
         ],
+      }],
       aboutInfo: [{
         clinicName: 'Mycure Clinic',
         firstInfo: 'MYCURE Virtual Clinic specializes in telehealth services. MYCURE Virtual Clinic\'s telemedicine service is committed to provide medial consultation via video conference or phone call to our patient 24 hours a day 7 days a week.',
