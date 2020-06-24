@@ -2,7 +2,7 @@
   v-col(cols="12" lg="2" md="4" sm="6" xs="12")
     v-card(height="250" elevation="8" style="width: 100%;").d-flex.flex-column
       v-row(justify="center" align="center" no-gutters)
-        v-avatar(size="70" rounded).ma-1
+        v-avatar(:size="$isMobile ? 90 : 70" rounded).ma-1
           img(
             v-lazy="require(`~/assets/images/doctor-website/${this.doctor.imageFile}`)"
           )

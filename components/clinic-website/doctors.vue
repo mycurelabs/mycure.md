@@ -39,16 +39,23 @@
           v-icon(x-large color="primary") mdi-view-list
     v-row
       template(v-for="(item) in doctors")
-        doctor-item(
+        doctor-item-grid(
+          v-if="isGridView"
+          :doctor="item"
+        )
+        doctor-item-list(
+          v-else
           :doctor="item"
         )
 </template>
 
 <script>
-import DoctorItem from '~/components/clinic-website/doctor-item';
+import DoctorItemGrid from '~/components/clinic-website/doctor-item-grid';
+import DoctorItemList from '~/components/clinic-website/doctor-item-list';
 export default {
   components: {
-    DoctorItem,
+    DoctorItemGrid,
+    DoctorItemList,
   },
   props: {
     /**
@@ -59,6 +66,11 @@ export default {
       type: Array,
       default: () => ([]),
     },
+  },
+  data () {
+    return {
+      isGridView: true,
+    };
   },
   computed: {
     doctorsLength () {
