@@ -4,7 +4,7 @@
       div(:class="contentClasses").bg-positions.pa-3.content-padding
         nuxt
       div(:class="footerClasses").footer-bg
-        v-img(:src="require(`../assets/images/sign-up-individual-step-1/mycure-final-cta-background-full.png`)" alt="Sign up background")
+        v-img(:src="require(`../assets/images/sign-up-individual-step-1/mycure-final-cta-background.png`)" alt="Sign up background")
     v-row(align="center" justify="center").footer
       v-row(align="center" justify="center").text-center
         v-col(cols="12" md="6").pl-12.pr-12
@@ -88,7 +88,7 @@ export default {
   background-color: #343a40 !important;
   min-height: 60px;
 }
-@media screen and (device-width: 1024px) {
+@media screen and (min-width: 1024px) {
   .footer {
     max-height: 60px;
   }
