@@ -8,7 +8,7 @@
         p search component
     v-row(justify="start" align="start")
       v-col(cols="4")
-        p.grey--text We have {{ doctors.length }} doctors in our clinic. Who would you like to schedule for an appointment?
+        p.grey--text We have {{ doctorsLength }} doctors in our clinic. Who would you like to schedule for an appointment?
       v-spacer
       v-col
         p filter component
@@ -31,6 +31,11 @@ export default {
     doctors: {
       type: Array,
       default: () => ([]),
+    },
+  },
+  computed: {
+    doctorsLength () {
+      return this.doctors?.length || 0;
     },
   },
 };
