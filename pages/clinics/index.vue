@@ -37,6 +37,8 @@
 
     v-divider
     social(:social="socialItem")
+    //- About panel
+    about-clinic(:about="aboutInfo")
 
     v-divider
     v-footer(
@@ -57,6 +59,7 @@ import Services from '~/components/clinic-website/services';
 import ClinicInfo from '~/components/clinic-website/clinic-info';
 import Doctors from '~/components/clinic-website/doctors';
 import Social from '~/components/clinic-website/social';
+import AboutClinic from '~/components/clinic-website/about-clinic';
 export default {
   layout: 'clinic-website',
   components: {
@@ -66,6 +69,7 @@ export default {
     ClinicInfo,
     Doctors,
     Social,
+    AboutClinic,
   },
   data () {
     return {
@@ -97,10 +101,10 @@ export default {
       },
       doctors: [
         {
-          firstName: 'Jean',
-          lastName: 'Rivera',
+          firstName: 'Jean Stefan',
+          lastName: 'Rivera Restituto',
           title: 'MD',
-          imageUrl: '~/assets/images/doctor-website/doctor-website-profile-female.png',
+          imageFile: 'doctor-website-profile-female.png',
           specialization: 'Pediatrician',
           specializationTags: ['kids', 'family', 'eyes', 'nose', 'elderly'],
           experience: 25,
@@ -120,7 +124,7 @@ export default {
           firstName: 'Arthas',
           lastName: 'Menethil',
           title: 'MD',
-          imageUrl: '~/assets/images/doctor-website/doctor-website-profile-male.png',
+          imageFile: 'doctor-website-profile-male.png',
           specialization: 'Pulmonology',
           specializationTags: ['kids', 'family', 'eyes', 'nose', 'elderly'],
           experience: 3,
@@ -140,7 +144,127 @@ export default {
           firstName: 'Jaina',
           lastName: 'Proudmoore',
           title: 'MD',
-          imageUrl: '~/assets/images/doctor-website/doctor-website-profile-female.png',
+          imageFile: 'doctor-website-profile-female.png',
+          specialization: 'Internist',
+          specializationTags: ['kids', 'family', 'eyes', 'nose', 'elderly'],
+          experience: 5,
+          siteUrl: 'https://www.google.com',
+          availability: [
+            {
+              day: 'Mon - Sat',
+              time: '04:00 PM - 09:00 PM',
+            },
+            {
+              day: 'Sun',
+              time: '09:00 PM - 12:00 PM',
+            },
+          ],
+        },
+        {
+          firstName: 'Grom',
+          lastName: 'Hellscream',
+          title: 'MD',
+          imageFile: 'doctor-website-profile-female.png',
+          specialization: 'Pediatrician',
+          specializationTags: ['kids', 'family', 'eyes', 'nose', 'elderly'],
+          experience: 25,
+          siteUrl: 'https://www.google.com',
+          availability: [
+            {
+              day: 'Mon - Sat',
+              time: '04:00 PM - 09:00 PM',
+            },
+            {
+              day: 'Sun',
+              time: '09:00 PM - 12:00 PM',
+            },
+          ],
+        },
+        {
+          firstName: 'Crash',
+          lastName: 'Bandicoot',
+          title: 'MD',
+          imageFile: 'doctor-website-profile-male.png',
+          specialization: 'Pulmonology',
+          specializationTags: ['kids', 'family', 'eyes', 'nose', 'elderly'],
+          experience: 3,
+          siteUrl: 'https://www.google.com',
+          availability: [
+            {
+              day: 'Mon - Sat',
+              time: '04:00 PM - 09:00 PM',
+            },
+            {
+              day: 'Sun',
+              time: '09:00 PM - 12:00 PM',
+            },
+          ],
+        },
+        {
+          firstName: 'Neo',
+          lastName: 'Cortex',
+          title: 'MD',
+          imageFile: 'doctor-website-profile-female.png',
+          specialization: 'Internist',
+          specializationTags: ['kids', 'family', 'eyes', 'nose', 'elderly'],
+          experience: 5,
+          siteUrl: 'https://www.google.com',
+          availability: [
+            {
+              day: 'Mon - Sat',
+              time: '04:00 PM - 09:00 PM',
+            },
+            {
+              day: 'Sun',
+              time: '09:00 PM - 12:00 PM',
+            },
+          ],
+        },
+        {
+          firstName: 'Doom',
+          lastName: 'Guy',
+          title: 'MD',
+          imageFile: 'doctor-website-profile-female.png',
+          specialization: 'Pediatrician',
+          specializationTags: ['kids', 'family', 'eyes', 'nose', 'elderly'],
+          experience: 25,
+          siteUrl: 'https://www.google.com',
+          availability: [
+            {
+              day: 'Mon - Sat',
+              time: '04:00 PM - 09:00 PM',
+            },
+            {
+              day: 'Sun',
+              time: '09:00 PM - 12:00 PM',
+            },
+          ],
+        },
+        {
+          firstName: 'Adrian',
+          lastName: 'Tepes',
+          title: 'MD',
+          imageFile: 'doctor-website-profile-male.png',
+          specialization: 'Pulmonology',
+          specializationTags: ['kids', 'family', 'eyes', 'nose', 'elderly'],
+          experience: 3,
+          siteUrl: 'https://www.google.com',
+          availability: [
+            {
+              day: 'Mon - Sat',
+              time: '04:00 PM - 09:00 PM',
+            },
+            {
+              day: 'Sun',
+              time: '09:00 PM - 12:00 PM',
+            },
+          ],
+        },
+        {
+          firstName: 'Lisa',
+          lastName: 'Tepes',
+          title: 'MD',
+          imageFile: 'doctor-website-profile-female.png',
           specialization: 'Internist',
           specializationTags: ['kids', 'family', 'eyes', 'nose', 'elderly'],
           experience: 5,
@@ -165,6 +289,10 @@ export default {
           { icon: 'mdi-email', link: 'mailto:' },
           { icon: 'mdi-linkedin', link: 'https://www.linkedin.com/' },
         ],
+      aboutInfo: [{
+        clinicName: 'Mycure Clinic',
+        firstInfo: 'MYCURE Virtual Clinic specializes in telehealth services. MYCURE Virtual Clinic\'s telemedicine service is committed to provide medial consultation via video conference or phone call to our patient 24 hours a day 7 days a week.',
+        secondInfo: 'MCURE virtual clinic also offers a robust clinic management system that are being used by hundreds of satisfied clients nationwide. All doctors onboard here are certified under the Philippine Medical Association.',
       }],
     };
   },
