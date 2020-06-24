@@ -5,6 +5,7 @@
         h1.font-36.font-weight-light.text-center {{BRING_YOUR_PRACTICE_ONLINE.header}}
         br
         p.text-center.font-18.font-gray {{BRING_YOUR_PRACTICE_ONLINE.description}}
+    //- FIRST PANEL
     v-row(justify="center" align="center").py-10.mb-n4
       v-col(v-if="!$isMobile" align="center" cols="12" md="6").first-column
         picture-source(
@@ -12,8 +13,8 @@
           :image="HOME_START_YOUR_PHYSICAL.image"
           imageAlt="Start your physical and digital journey"
           imageFileExtension=".webp"
-          :imageClasses="['pr-12']"
         )
+          //- :imageClasses="['pr-12']"
       v-col(align-self="center" cols="12" md="6" lg="4").second-column
         h1.font-30.lh-title.pb-3.font-weight-light {{HOME_START_YOUR_PHYSICAL.header}}
         br
@@ -30,6 +31,7 @@
         imageAlt="Start your physical and digital journey"
         imageFileExtension=".webp"
       )
+    //- SECOND PANEL
     v-row(justify="center" align="center").py-10.mb-n4
       v-col(cols="12" md="6" lg="4").first-column.img-online-clinic
         h1.font-30.font-weight-light {{YOUR_ONLINE_CLINIC.header}}
@@ -46,7 +48,9 @@
           :image="YOUR_ONLINE_CLINIC.image"
           imageAlt="Your online clinic everywhere"
           imageFileExtension=".webp"
+          :imageClasses="['pl-12']"
         )
+    //- THIRD PANEL
     v-row(justify="center" align="center").py-10.mb-n4
       v-col(v-if="!$isMobile" align="center" cols="12" md="6").first-column
         picture-source(
@@ -54,8 +58,8 @@
           :image="GET_MORE_PATIENTS.image"
           imageAlt="Get more patients"
           imageFileExtension=".webp"
-          :imageClasses="['pr-12']"
         )
+          //- :imageClasses="['pr-12']"
       v-col(align="center" cols="12" md="6" lg="4").text-left.second-column
         h1.font-30.font-weight-light {{GET_MORE_PATIENTS.header}}
         br
@@ -72,6 +76,7 @@
         imageAlt="Get more patients"
         imageFileExtension=".webp"
       )
+    //- FOURTH PANEL
     v-row(justify="center" align="center").py-10.mb-n4
       v-col(cols="12" md="6" lg="4").first-column
         h1.font-30.font-weight-light {{MANAGE_EVERYTHING_EASILY.header}}
@@ -85,10 +90,11 @@
       v-col(align="center" cols="12" md="5").second-column.img-manage-easily
         picture-source(
           customPath="virtual-clinic-home/"
-          :image-width="$isMobile ? '100%' : '120%'"
+          :image-width="$isMobile ? '100%' : '130%'"
           :image="MANAGE_EVERYTHING_EASILY.image"
           imageAlt="Manage everything easily"
           imageFileExtension=".webp"
+          :imageClasses="['pl-10']"
         )
 </template>
 

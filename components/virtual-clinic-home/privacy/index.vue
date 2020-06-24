@@ -4,9 +4,9 @@
     div(v-if="!$isMobile")
       v-container
         v-row(justify="center")
-          v-col(cols="4")
+          v-col(cols="6")
             img(width="85%" v-lazy="require(`@/assets/images/virtual-clinic-home/${panelImage}.png`)" alt="Data Privacy Law")
-          v-col(cols="5" offset="1" align-self="center")
+          v-col(cols="6" lg="4" align-self="center")
             h1.font-36.lh-title.pb-3.font-weight-light {{ panelTitle }}
             br
             p.font-16.font-gray.text-justify.my-0 {{ panelText }}

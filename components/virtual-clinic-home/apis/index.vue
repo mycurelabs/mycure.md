@@ -4,7 +4,7 @@
     div(v-if="!$isMobile")
       v-container
         v-row(justify="center")
-          v-col(cols="5" align-self="center").px-3
+          v-col(cols="6" lg="4" align-self="center").px-3
             h1.panelTitle.font-36.lh-title.font-weight-light {{ webTitle }}
             br
             p.font-16.font-gray.text-justify {{ panelContent }}
@@ -17,7 +17,7 @@
                   img(v-lazy="require('~/assets/images/mycure-web-bullet-check.png')" alt="Check icon")
                 v-list-item-content
                   span.font-16.font-gray {{ item }}
-          v-col(cols="4" offset="1" align-self="center").px-3.text-center
+          v-col(cols="6" offset="1" align-self="center").px-3.text-center
             img(v-lazy="panelImageSrc" width="80%" :alt="panelImage")
     //- MOBILE
     div(v-else).pt-5
