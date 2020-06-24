@@ -34,12 +34,12 @@
     doctors(
       :doctors="doctors"
     )
-
-    v-divider
-    social(:social="socialItem")
     //- About panel
     about-clinic(:about="aboutInfo")
-
+    v-divider
+    social(:social="socialItem")
+    v-divider
+    cta
     v-divider
     v-footer(
       height="auto"
@@ -58,6 +58,7 @@ import Panel1 from '~/components/clinic-website/panel-1';
 import Services from '~/components/clinic-website/services';
 import ClinicInfo from '~/components/clinic-website/clinic-info';
 import Doctors from '~/components/clinic-website/doctors';
+import Cta from '~/components/clinic-website/final-cta';
 import Social from '~/components/clinic-website/social';
 import AboutClinic from '~/components/clinic-website/about-clinic';
 export default {
@@ -68,6 +69,7 @@ export default {
     Services,
     ClinicInfo,
     Doctors,
+    Cta,
     Social,
     AboutClinic,
   },
