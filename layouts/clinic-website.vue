@@ -10,4 +10,7 @@
 .font-32 {
   font-size: 32px !important;
 }
+.font-26 {
+  font-size: 26px !important;
+}
 </style>
