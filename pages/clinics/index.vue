@@ -34,6 +34,9 @@
     doctors(
       :doctors="doctors"
     )
+
+    v-divider
+    social(:social="socialItem")
     //- About panel
     about-clinic(:about="aboutInfo")
 
@@ -55,6 +58,7 @@ import Panel1 from '~/components/clinic-website/panel-1';
 import Services from '~/components/clinic-website/services';
 import ClinicInfo from '~/components/clinic-website/clinic-info';
 import Doctors from '~/components/clinic-website/doctors';
+import Social from '~/components/clinic-website/social';
 import AboutClinic from '~/components/clinic-website/about-clinic';
 export default {
   layout: 'clinic-website',
@@ -64,6 +68,7 @@ export default {
     Services,
     ClinicInfo,
     Doctors,
+    Social,
     AboutClinic,
   },
   data () {
@@ -276,6 +281,14 @@ export default {
           ],
         },
       ],
+      socialItem: [{
+        title: 'Love this clinic? Share the love.',
+        icons: [
+          { icon: 'mdi-facebook', link: 'https://facebook.com/' },
+          { icon: 'mdi-twitter', link: 'https://twitter.com/' },
+          { icon: 'mdi-email', link: 'mailto:' },
+          { icon: 'mdi-linkedin', link: 'https://www.linkedin.com/' },
+        ],
       aboutInfo: [{
         clinicName: 'Mycure Clinic',
         firstInfo: 'MYCURE Virtual Clinic specializes in telehealth services. MYCURE Virtual Clinic\'s telemedicine service is committed to provide medial consultation via video conference or phone call to our patient 24 hours a day 7 days a week.',
