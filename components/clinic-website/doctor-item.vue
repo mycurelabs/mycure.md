@@ -1,12 +1,16 @@
 <template lang="pug">
-  v-col(lg="2" md="3" sm="6")
-    v-card(width="200" height="250" elevation="8").d-flex.flex-column
+  v-col(cols="12" lg="2" md="4" sm="6" xs="12")
+    v-card(height="250" elevation="8" style="width: 100%;").d-flex.flex-column
       v-row(justify="center" align="center" no-gutters)
-        v-avatar(size="70" rounded).red.ma-1
-          img(:src="doctor.imageUrl")
+        v-avatar(size="70" rounded).ma-1
+          img(
+            v-lazy="require(`~/assets/images/doctor-website/${this.doctor.imageFile}`)"
+          )
       v-row(justify="center" no-gutters)
-        p.text-center.mb-0 {{ doctor.firstName }} {{ doctor.lastName }} {{ doctor.title }}
-        p.text-center.grey--text.caption.mb-0.mt-n2 {{ doctor.specialization }} | {{ doctor.experience }} Years
+        v-col(cols="12")
+          p.text-center.mb-0 {{ doctor.firstName }} {{ doctor.lastName }} {{ doctor.title }}
+        v-col(cols="12")
+          p.text-center.grey--text.caption.mb-0.mt-n2 {{ doctor.specialization }} | {{ doctor.experience }} Years
       v-row(align="end" justify="center" no-gutters dense)
         v-btn(color="primary" small elevation="0").letter-spacing-normal.text-none Book Now!
       v-row(align="end" no-gutters dense)
