@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-container.py12
+  v-container.py-12
     //- WEB
     v-row(v-if="!$isMobile" justify="center").panel-content
       v-col(cols="6" lg="4" align-self="center").first-column
