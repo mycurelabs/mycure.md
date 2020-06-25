@@ -299,6 +299,9 @@ export default {
       }],
     };
   },
+  mounted () {
+    console.log(this.$route);
+  },
   head () {
     // TODO: update meta tags
     return headMeta({
