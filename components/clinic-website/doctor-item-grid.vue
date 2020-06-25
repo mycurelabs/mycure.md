@@ -3,9 +3,7 @@
     v-card(height="250" elevation="8" style="width: 100%; border-radius: 5px;").d-flex.flex-column
       v-row(justify="center" align="center" no-gutters)
         v-avatar(size="80" rounded).ma-1.pt-2
-          img(
-            v-lazy="require(`~/assets/images/doctor-website/${this.doctor.imageFile}`)"
-          )
+          img(v-lazy="require(`~/assets/images/doctor-website/${this.doctor.imageFile}`)")
       v-row(justify="center" no-gutters)
         v-col.text-center
           p.mb-1 {{ doctorName }}
