@@ -1,21 +1,20 @@
 <template lang="pug">
   v-col(cols="6" lg="2" md="4" sm="6")
-    v-card(height="250" elevation="8" style="width: 100%;").d-flex.flex-column
+    v-card(height="250" elevation="8" style="width: 100%; border-radius: 5px;").d-flex.flex-column
       v-row(justify="center" align="center" no-gutters)
-        v-avatar(:size="$isMobile ? 90 : 70" rounded).ma-1
+        v-avatar(size="80" rounded).ma-1.pt-2
           img(
             v-lazy="require(`~/assets/images/doctor-website/${this.doctor.imageFile}`)"
           )
       v-row(justify="center" no-gutters)
-        v-col(cols="12")
-          p.text-center.mb-0 {{ doctorName }}
-        v-col(cols="12")
-          p.text-center.grey--text.caption.mb-0.mt-n2 {{ doctor.specialization }} | {{ doctor.experience }} Years
-      v-row(align="end" justify="center" no-gutters dense)
-        v-btn(color="primary" small elevation="0").letter-spacing-normal.text-none Book Now!
+        v-col.text-center
+          p.mb-1 {{ doctorName }}
+          p.grey--text.caption.mb-0.mt-n2 {{ doctor.specialization }} | {{ doctor.experience }} Years
+      v-row(align="start" justify="center" no-gutters dense)
+        v-btn(color="primary" small elevation="0").mb-1.letter-spacing-normal.text-none Book Now!
       v-row(align="end" no-gutters dense)
-        v-btn(:small="!$isMobile" :x-small="$isMobile" style="width: 50%;" color="#fafcff" tile elevation="0").right-border.letter-spacing-normal.text-none Availability
-        v-btn(:small="!$isMobile" :x-small="$isMobile" style="width: 50%;" color="#fafcff" tile elevation="0").letter-spacing-normal.text-none View Site
+        v-btn(:small="!$isMobile" :x-small="$isMobile" width="50%" height="100%" color="#f0f0f0" tile elevation="0").btn-bottom-left.right-border.letter-spacing-normal.text-none.primary--text Availability
+        v-btn(:small="!$isMobile" :x-small="$isMobile" width="50%" height="100%" color="#f0f0f0" tile elevation="0").btn-bottom-right.letter-spacing-normal.text-none.primary--text View Site
 </template>
 
 <script>
@@ -35,8 +34,8 @@ export default {
       const name = `${this.doctor.firstName} ${this.doctor.lastName} ${this.doctor.title}`;
 
       if (this.$vuetify.breakpoint.name === 'xs') {
-        if (name.length > 11) {
-          return `${name.substring(0, 11)}..`;
+        if (name.length > 15) {
+          return `${name.substring(0, 15)}..`;
         }
       }
 
@@ -52,5 +51,11 @@ export default {
 }
 .letter-spacing-normal {
   letter-spacing: normal;
+}
+.btn-bottom-left {
+  border-bottom-left-radius: 5px;
+}
+.btn-bottom-right {
+  border-bottom-right-radius: 5px;
 }
 </style>
