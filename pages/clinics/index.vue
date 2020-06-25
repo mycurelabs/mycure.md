@@ -34,6 +34,10 @@
     doctors(
       :doctors="doctors"
     )
+
+    v-divider
+    social(:social="socialItem")
+
     v-divider
     v-footer(
       height="auto"
@@ -52,6 +56,7 @@ import Panel1 from '~/components/clinic-website/panel-1';
 import Services from '~/components/clinic-website/services';
 import ClinicInfo from '~/components/clinic-website/clinic-info';
 import Doctors from '~/components/clinic-website/doctors';
+import Social from '~/components/clinic-website/social';
 export default {
   layout: 'clinic-website',
   components: {
@@ -60,6 +65,7 @@ export default {
     Services,
     ClinicInfo,
     Doctors,
+    Social,
   },
   data () {
     return {
@@ -151,6 +157,15 @@ export default {
           ],
         },
       ],
+      socialItem: [{
+        title: 'Love this clinic? Share the love.',
+        icons: [
+          { icon: 'mdi-facebook', link: 'https://facebook.com/' },
+          { icon: 'mdi-twitter', link: 'https://twitter.com/' },
+          { icon: 'mdi-email', link: 'mailto:' },
+          { icon: 'mdi-linkedin', link: 'https://www.linkedin.com/' },
+        ],
+      }],
     };
   },
   head () {
