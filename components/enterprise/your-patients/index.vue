@@ -22,7 +22,7 @@
             imageFileExtension=".webp"
             imageWidth="70%"
           )
-        h1(:class="headerClasses").lh-title.pb-3.font-weight-bold {{data.header}}
+        h1(:class="headerClasses").image-title.lh-title.pb-3.font-weight-bold {{data.header}}
         picture-source(
           v-if="$isMobile"
           customPath="enterprise/"
@@ -84,6 +84,11 @@ export default {
   position: absolute;
   margin-left: -19%;
   bottom: 0px;
+}
+@media screen and  (min-width: 1920px) {
+  .image-title {
+    padding-top: 30%;
+  }
 }
 @media screen and (min-width: 1260px) {
   .your-patients-contents {

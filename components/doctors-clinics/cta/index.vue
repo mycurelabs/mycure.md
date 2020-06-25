@@ -185,9 +185,4 @@ export default {
     margin-bottom: -20%;
   }
 }
-@media screen and (device-width: 1366px) and (orientation: landscape) {
-  .row-content {
-    height: 49vh;
-  }
-}
 </style>
