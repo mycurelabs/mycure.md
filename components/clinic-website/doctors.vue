@@ -1,10 +1,54 @@
 <template lang="pug">
   v-container(fluid)
     v-row(justify="start" align="end" dense)
-      v-col
-        h2 Our Doctors
-      v-spacer
-      v-col
+      template(v-if="!$isMobile")
+        v-col
+          h2 Our Doctors
+        v-spacer
+        v-col
+          v-text-field(
+            outlined
+            clearable
+            label="Search Doctor"
+            type="text"
+            dense
+            append-icon="mdi-magnify"
+            v-model="searchTerm"
+            :loading="isLoading"
+            @click:append="searchDoctor()"
+            @click:clear="isSearching = false"
+            @keydown.enter="searchDoctor()"
+          ).search-field
+      template(v-else)
+        v-col
+          h2 Our Doctors
+          p.grey--text.font-26.message-line-height We have {{ doctorsLength }} doctors in our clinic. Who would you like to schedule for an appointment?
+    v-row(justify="start" align="start")
+      template(v-if="!$isMobile")
+        v-col(cols="4")
+          p.grey--text.font-26.message-line-height We have {{ doctorsLength }} doctors in our clinic. Who would you like to schedule for an appointment?
+        v-spacer
+        v-col(cols="3")
+          p Specialization
+          v-select(
+            :items="specializations"
+            dense
+            outlined
+          )
+        v-col(cols="3")
+          p Sort By
+          v-select(
+            :items="sortBy"
+            dense
+            outlined
+          )
+        v-col(align-self="center" cols="1")
+          div
+            v-btn(tile large icon @click="changeToGrid(true)")
+              v-icon(large color="primary") mdi-view-grid
+            v-btn(tile large icon @click="changeToGrid(false)")
+              v-icon(x-large color="primary") mdi-view-list
+      template(v-else)
         v-text-field(
           outlined
           clearable
@@ -15,33 +59,26 @@
           v-model="searchTerm"
           :loading="isLoading"
           @click:append="searchDoctor()"
-          @click:clear="isSearching = false"
           @keydown.enter="searchDoctor()"
-        ).search-field
-    v-row(justify="start" align="start")
-      v-col(cols="4")
-        p.grey--text.font-26.message-line-height We have {{ doctorsLength }} doctors in our clinic. Who would you like to schedule for an appointment?
-      v-spacer
-      v-col(cols="3")
-        p Specialization
-        v-select(
-          :items="specializations"
-          dense
-          outlined
-        )
-      v-col(cols="3")
-        p Sort By
-        v-select(
-          :items="sortBy"
-          dense
-          outlined
-        )
-      v-col(align-self="center" cols="1")
-        div
-          v-btn(tile large icon @click="changeToGrid(true)")
-            v-icon(large color="primary") mdi-view-grid
-          v-btn(tile large icon @click="changeToGrid(false)")
-            v-icon(x-large color="primary") mdi-view-list
+        ).align-baseline
+          template(v-slot:append-outer)
+            div
+              v-btn(icon @click="isOptionDialogOpen = !isOptionDialogOpen")
+                  v-icon(color="primary") mdi-cog
+            v-dialog(v-model="isOptionDialogOpen" max-width="300")
+              v-container.white
+                v-row
+                  p text here
+                v-row
+                  p buttons here
+                v-row
+                  p specializations
+                  p seleciton here
+                v-row
+                  p sort by
+                  p selection here
+                v-row
+                  p buttons here
     v-row
       template(v-if="isLoading")
         v-row(justify="center" align="center").my-10
@@ -91,6 +128,7 @@ export default {
       searchTerm: '',
       isLoading: false,
       doctorsRes: [],
+      isOptionDialogOpen: false,
     };
   },
   computed: {
