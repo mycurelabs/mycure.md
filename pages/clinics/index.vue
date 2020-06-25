@@ -34,6 +34,10 @@
     doctors(
       :doctors="doctors"
     )
+
+    v-divider
+    cta
+
     v-divider
     v-footer(
       height="auto"
@@ -52,6 +56,7 @@ import Panel1 from '~/components/clinic-website/panel-1';
 import Services from '~/components/clinic-website/services';
 import ClinicInfo from '~/components/clinic-website/clinic-info';
 import Doctors from '~/components/clinic-website/doctors';
+import Cta from '~/components/clinic-website/final-cta';
 export default {
   layout: 'clinic-website',
   components: {
@@ -60,6 +65,7 @@ export default {
     Services,
     ClinicInfo,
     Doctors,
+    Cta,
   },
   data () {
     return {
