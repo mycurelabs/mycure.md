@@ -5,14 +5,14 @@
       v-col(cols="12" align-self="center" md="6").first-column
         img(width="80%" v-lazy="require(`@/assets/images/virtual-clinic-home/${panelImage}.png`)" alt="Data Privacy Law")
       v-col(lg="4" align-self="center").second-column
-        h1.font-36.lh-title.pb-3.font-weight-light {{ panelTitle }}
+        h1.font-30.lh-title.pb-3.font-weight-light {{ panelTitle }}
         br
         p.font-16.font-gray.text-justify.my-0 {{ panelText }}
     //- MOBILE
     v-row(v-else).pt-5
       v-col(cols="12").text-center
         br
-        h2.lh-title.font-36.pb-5 {{ panelTitle }}
+        h2.lh-title.font-30.pb-5 {{ panelTitle }}
         br
         v-row(no-gutters justify="center")
           v-col(

@@ -3,7 +3,7 @@
     //- WEB
     v-row(v-if="!$isMobile" justify="center").panel-content
       v-col(cols="6" lg="4" align-self="center").first-column
-        h1.panelTitle.font-36.lh-title.font-weight-light {{ webTitle }}
+        h1.font-30.lh-title.font-weight-light {{ panelTitle }}
         br
         p.font-16.font-gray.text-justify {{ panelContent }}
         v-list(dense)
@@ -20,7 +20,7 @@
     //- MOBILE
     v-row(v-else).pt-5
       v-col(cols="12").text-center
-        h1.font-36.lh-title.pb-5 {{ panelTitle }}
+        h1.font-30.lh-title.pb-5 {{ panelTitle }}
         br
         img(width="85%" v-lazy="panelImageSrc" :alt="panelImage").pb-3
         br
@@ -38,7 +38,6 @@
 </template>
 
 <script>
-import { parseTextWithNewLine } from '~/utils/newline';
 export default {
   data () {
     this.panelTitle = 'APIs built to make your existing health systems more powerful.';
@@ -53,9 +52,6 @@ export default {
     };
   },
   computed: {
-    webTitle () {
-      return parseTextWithNewLine(this.panelTitle, ['your ', 'systems ']);
-    },
     panelImageSrc () {
       return require(`~/assets/images/virtual-clinic-home/${this.panelImage}.png`);
     },
@@ -67,9 +63,6 @@ export default {
 .api-content {
   position: relative;
   z-index: 3;
-}
-.panelTitle {
-  white-space: pre;
 }
 @media screen and (min-width: 1280px) {
   .first-column {
