@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-form(ref="formRef" v-model="valid")
+  v-form(ref="formRef" v-model="valid").content-padding
     v-container
       v-row
         v-col(justify="end" align="end" md="3").offset-md-9
@@ -7,7 +7,7 @@
             v-icon(large).primary--text mdi-help-circle
       v-dialog(v-model="showInfo" width="300")
         v-card
-          v-card-title
+          v-card-title.text-justify
             h4 Become a techy doctor in minutes!
           v-card-text(v-for="(item, key) in checkListItems" :key="key")
             v-icon mdi-circle-medium
@@ -401,40 +401,43 @@ h1 {
 }
 @media screen and (device-width: 1024px) {
   .content-padding {
-    padding-top: 20vh;
+    padding-top: 15vh;
+    padding-bottom: 24%;
   }
 }
 @media screen and (device-width: 1440px) {
   .content-padding {
-    margin-bottom: -10%;
+    margin-bottom: -4%;
     position: relative;
     z-index: 2;
   }
 }
 @media screen and (device-width: 1680px) {
   .content-padding {
-    margin-bottom: -15%;
+    padding-bottom: 4%;
     position: relative;
     z-index: 2;
   }
 }
-@media screen and (device-width: 1920px) {
+@media screen and (min-width: 1920px) {
   .content-padding {
-    margin-bottom: -5%;
+    padding-bottom: 3%;
     position: relative;
     z-index: 2;
   }
 }
-@media screen and (device-width: 2304px) {
+@media screen and (min-width: 2304px) {
   .content-padding {
-    margin-bottom: -7%;
+    padding-top: 5%;
+    padding-bottom: 11%;
     position: relative;
     z-index: 2;
   }
 }
 @media screen and (device-width: 2560px) {
   .content-padding {
-    margin-bottom: -10%;
+    padding-top: 5%;
+    padding-bottom: 8%;
     position: relative;
     z-index: 2;
   }
