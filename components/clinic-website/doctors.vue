@@ -11,9 +11,11 @@
           label="Search Doctor"
           type="text"
           dense
+          append-icon="mdi-magnify"
+          v-model="searchTerm"
+          @click:append="searchDoctor()"
+          @keydown.enter="searchDoctor()"
         ).search-field
-          template(v-slot:append)
-            v-icon mdi-magnify
     v-row(justify="start" align="start")
       v-col(cols="4")
         p.grey--text.font-26.message-line-height We have {{ doctorsLength }} doctors in our clinic. Who would you like to schedule for an appointment?
@@ -33,10 +35,11 @@
           outlined
         )
       v-col(align-self="center" cols="1")
-        v-btn(tile large icon)
-          v-icon(large color="primary" @click="changeToGrid(true)") mdi-view-grid
-        v-btn(tile large icon)
-          v-icon(x-large color="primary" @click="changeToGrid(false)") mdi-view-list
+        div
+          v-btn(tile large icon @click="changeToGrid(true)")
+            v-icon(large color="primary") mdi-view-grid
+          v-btn(tile large icon @click="changeToGrid(false)")
+            v-icon(x-large color="primary") mdi-view-list
     v-row
       template(v-if="isGridView")
         template(v-for="(item) in doctors")
@@ -79,6 +82,7 @@ export default {
   data () {
     return {
       isGridView: true,
+      searchTerm: '',
     };
   },
   computed: {
@@ -95,6 +99,9 @@ export default {
   methods: {
     changeToGrid (isGrid) {
       this.isGridView = isGrid;
+    },
+    searchDoctor () {
+      console.log(this.searchTerm);
     },
   },
 };
