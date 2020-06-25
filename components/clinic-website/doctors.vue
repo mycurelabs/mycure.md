@@ -65,20 +65,32 @@
             div
               v-btn(icon @click="isOptionDialogOpen = !isOptionDialogOpen")
                   v-icon(color="primary") mdi-cog
-            v-dialog(v-model="isOptionDialogOpen" max-width="300")
+            v-dialog(v-model="isOptionDialogOpen" max-width="280")
               v-container.white
                 v-row
-                  p text here
+                  p Filter Settings
                 v-row
-                  p buttons here
+                  v-btn(tile large icon @click="changeToGrid(true)")
+                    v-icon(large color="primary") mdi-view-grid
+                  v-btn(tile large icon @click="changeToGrid(false)")
+                    v-icon(x-large color="primary") mdi-view-list
                 v-row
-                  p specializations
-                  p seleciton here
+                  p Specialization
+                  v-select(
+                    :items="specializations"
+                    dense
+                    outlined
+                  )
                 v-row
-                  p sort by
-                  p selection here
+                  p Sort by
+                  v-select(
+                    :items="sortBy"
+                    dense
+                    outlined
+                  )
                 v-row
-                  p buttons here
+                  v-btn Cancel
+                  v-btn Update
     v-row
       template(v-if="isLoading")
         v-row(justify="center" align="center").my-10
