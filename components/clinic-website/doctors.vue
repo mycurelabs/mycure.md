@@ -34,28 +34,37 @@
         )
       v-col(align-self="center" cols="1")
         v-btn(tile large icon)
-          v-icon(large color="primary") mdi-view-grid
+          v-icon(large color="primary" @click="changeToGrid(true)") mdi-view-grid
         v-btn(tile large icon)
-          v-icon(x-large color="primary") mdi-view-list
+          v-icon(x-large color="primary" @click="changeToGrid(false)") mdi-view-list
     v-row
-      template(v-for="(item) in doctors")
-        doctor-item-grid(
-          v-if="isGridView"
-          :doctor="item"
-        )
-        doctor-item-list(
-          v-else
-          :doctor="item"
-        )
+      template(v-if="isGridView")
+        template(v-for="(item) in doctors")
+          doctor-item-grid(
+            v-if="isGridView"
+            :doctor="item"
+          )
+      template(v-else)
+        template(v-if="$isMobile")
+          template(v-for="(item) in doctors")
+            doctor-item-list-mobile(
+              :doctor="item"
+            )
+        template(v-else)
+          doctor-item-list-desktop(
+            :doctors="doctors"
+          )
 </template>
 
 <script>
 import DoctorItemGrid from '~/components/clinic-website/doctor-item-grid';
-import DoctorItemList from '~/components/clinic-website/doctor-item-list';
+import DoctorItemListMobile from '~/components/clinic-website/doctor-item-list-mobile';
+import DoctorItemListDesktop from '~/components/clinic-website/doctor-item-list-desktop';
 export default {
   components: {
     DoctorItemGrid,
-    DoctorItemList,
+    DoctorItemListMobile,
+    DoctorItemListDesktop,
   },
   props: {
     /**
@@ -81,6 +90,11 @@ export default {
     },
     sortBy () {
       return ['Alphabetical Order', 'Reverse Alphabetical', 'Specialization', 'Years of Experience'];
+    },
+  },
+  methods: {
+    changeToGrid (isGrid) {
+      this.isGridView = isGrid;
     },
   },
 };
