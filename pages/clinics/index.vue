@@ -103,8 +103,8 @@ export default {
       },
       doctors: [
         {
-          firstName: 'Jean Stefan',
-          lastName: 'Rivera Restituto',
+          firstName: 'Jean',
+          lastName: 'Rivera',
           title: 'MD',
           imageFile: 'doctor-website-profile-female.png',
           specialization: 'Pediatrician',
@@ -123,8 +123,68 @@ export default {
           ],
         },
         {
-          firstName: 'Arthas',
-          lastName: 'Menethil',
+          firstName: 'Christ',
+          lastName: 'Hilpert',
+          title: 'MD',
+          imageFile: 'doctor-website-profile-male.png',
+          specialization: 'Pulmonology',
+          specializationTags: ['kids', 'eyes', 'nose'],
+          experience: 3,
+          siteUrl: 'https://www.google.com',
+          availability: [
+            {
+              day: 'Mon - Sat',
+              time: '04:00 PM - 09:00 PM',
+            },
+            {
+              day: 'Sun',
+              time: '09:00 PM - 12:00 PM',
+            },
+          ],
+        },
+        {
+          firstName: 'Adrienne',
+          lastName: 'Gleichner',
+          title: 'MD',
+          imageFile: 'doctor-website-profile-female.png',
+          specialization: 'Internist',
+          specializationTags: ['family', 'nose', 'elderly'],
+          experience: 5,
+          siteUrl: 'https://www.google.com',
+          availability: [
+            {
+              day: 'Mon - Sat',
+              time: '04:00 PM - 09:00 PM',
+            },
+            {
+              day: 'Sun',
+              time: '09:00 PM - 12:00 PM',
+            },
+          ],
+        },
+        {
+          firstName: 'Norberto',
+          lastName: 'Jones',
+          title: 'MD',
+          imageFile: 'doctor-website-profile-male.png',
+          specialization: 'Pediatrician',
+          specializationTags: ['eyes', 'nose'],
+          experience: 25,
+          siteUrl: 'https://www.google.com',
+          availability: [
+            {
+              day: 'Mon - Sat',
+              time: '04:00 PM - 09:00 PM',
+            },
+            {
+              day: 'Sun',
+              time: '09:00 PM - 12:00 PM',
+            },
+          ],
+        },
+        {
+          firstName: 'Vicente',
+          lastName: 'Reinger',
           title: 'MD',
           imageFile: 'doctor-website-profile-male.png',
           specialization: 'Pulmonology',
@@ -143,12 +203,12 @@ export default {
           ],
         },
         {
-          firstName: 'Jaina',
-          lastName: 'Proudmoore',
+          firstName: 'Angela',
+          lastName: 'Mosciski',
           title: 'MD',
           imageFile: 'doctor-website-profile-female.png',
           specialization: 'Internist',
-          specializationTags: ['kids', 'family', 'eyes', 'nose', 'elderly'],
+          specializationTags: ['family'],
           experience: 5,
           siteUrl: 'https://www.google.com',
           availability: [
@@ -163,12 +223,12 @@ export default {
           ],
         },
         {
-          firstName: 'Grom',
-          lastName: 'Hellscream',
+          firstName: 'Cathy',
+          lastName: 'Ledner',
           title: 'MD',
           imageFile: 'doctor-website-profile-female.png',
           specialization: 'Pediatrician',
-          specializationTags: ['kids', 'family', 'eyes', 'nose', 'elderly'],
+          specializationTags: ['kids'],
           experience: 25,
           siteUrl: 'https://www.google.com',
           availability: [
@@ -183,72 +243,12 @@ export default {
           ],
         },
         {
-          firstName: 'Crash',
-          lastName: 'Bandicoot',
+          firstName: 'Fisher',
+          lastName: 'Bergstrom',
           title: 'MD',
           imageFile: 'doctor-website-profile-male.png',
           specialization: 'Pulmonology',
-          specializationTags: ['kids', 'family', 'eyes', 'nose', 'elderly'],
-          experience: 3,
-          siteUrl: 'https://www.google.com',
-          availability: [
-            {
-              day: 'Mon - Sat',
-              time: '04:00 PM - 09:00 PM',
-            },
-            {
-              day: 'Sun',
-              time: '09:00 PM - 12:00 PM',
-            },
-          ],
-        },
-        {
-          firstName: 'Neo',
-          lastName: 'Cortex',
-          title: 'MD',
-          imageFile: 'doctor-website-profile-female.png',
-          specialization: 'Internist',
-          specializationTags: ['kids', 'family', 'eyes', 'nose', 'elderly'],
-          experience: 5,
-          siteUrl: 'https://www.google.com',
-          availability: [
-            {
-              day: 'Mon - Sat',
-              time: '04:00 PM - 09:00 PM',
-            },
-            {
-              day: 'Sun',
-              time: '09:00 PM - 12:00 PM',
-            },
-          ],
-        },
-        {
-          firstName: 'Doom',
-          lastName: 'Guy',
-          title: 'MD',
-          imageFile: 'doctor-website-profile-female.png',
-          specialization: 'Pediatrician',
-          specializationTags: ['kids', 'family', 'eyes', 'nose', 'elderly'],
-          experience: 25,
-          siteUrl: 'https://www.google.com',
-          availability: [
-            {
-              day: 'Mon - Sat',
-              time: '04:00 PM - 09:00 PM',
-            },
-            {
-              day: 'Sun',
-              time: '09:00 PM - 12:00 PM',
-            },
-          ],
-        },
-        {
-          firstName: 'Adrian',
-          lastName: 'Tepes',
-          title: 'MD',
-          imageFile: 'doctor-website-profile-male.png',
-          specialization: 'Pulmonology',
-          specializationTags: ['kids', 'family', 'eyes', 'nose', 'elderly'],
+          specializationTags: ['family', 'elderly'],
           experience: 3,
           siteUrl: 'https://www.google.com',
           availability: [
@@ -268,7 +268,7 @@ export default {
           title: 'MD',
           imageFile: 'doctor-website-profile-female.png',
           specialization: 'Internist',
-          specializationTags: ['kids', 'family', 'eyes', 'nose', 'elderly'],
+          specializationTags: ['eyes', 'nose'],
           experience: 5,
           siteUrl: 'https://www.google.com',
           availability: [
