@@ -6,23 +6,17 @@
         p.text-center.font-16.mt-3.font-gray {{fifthPanelHeader.description}}
     v-row(justify="center" align="center")
       v-col(
-        cols="6"
-        md="3"
+        cols="12"
+        md="4"
         justify="center"
         align="center"
         v-for="(data, key) in fifthPanelContent"
         :key="key"
-      ).item-container
-        img(:src="require(`~/assets/images/${data.image}`)" :alt="data.imageTitle")
-        span.pl-3.font-16 {{data.imageTitle}}
-        //- v-col(
-        //-   cols="6"
-        //-   md="4"
-        //- )
-        //- v-col(
-        //-   cols="6"
-        //-   md="8"
-        //- ).item-description
+        offset-md="1"
+      ).d-inline-flex.item-container
+        img(:src="require(`~/assets/images/${data.image}`)" :alt="data.imageTitle" height="30").items
+        v-col(align="start").items.mt-n2
+          span.font-16 {{data.imageTitle}}
 </template>
 
 <script>
@@ -45,15 +39,9 @@ export default {
 }
 .item-container {
   position: relative;
-  min-height: 85px;
-  background-color: red;
+  min-height: 80px;
 }
-/* .item-description {
-  position: absolute;
-  margin-left: auto;
-  margin-right: auto;
-  left: 0;
-  right: 0;
-  top: 60%;
-} */
+.items {
+  top: 0;
+}
 </style>
