@@ -13,7 +13,9 @@
           dense
           append-icon="mdi-magnify"
           v-model="searchTerm"
+          :loading="isLoading"
           @click:append="searchDoctor()"
+          @click:clear="isSearching = false"
           @keydown.enter="searchDoctor()"
         ).search-field
     v-row(justify="start" align="start")
@@ -41,22 +43,26 @@
           v-btn(tile large icon @click="changeToGrid(false)")
             v-icon(x-large color="primary") mdi-view-list
     v-row
-      template(v-if="isGridView")
-        template(v-for="(item) in doctors")
-          doctor-item-grid(
-            v-if="isGridView"
-            :doctor="item"
-          )
+      template(v-if="isLoading")
+        v-row(justify="center" align="center").my-10
+          v-progress-circular(:size="70" :width="7" color="primary" indeterminate)
       template(v-else)
-        template(v-if="$isMobile")
-          template(v-for="(item) in doctors")
-            doctor-item-list-mobile(
+        template(v-if="isGridView")
+          template(v-for="(item) in doctorsToList")
+            doctor-item-grid(
+              v-if="isGridView"
               :doctor="item"
             )
         template(v-else)
-          doctor-item-list-desktop(
-            :doctors="doctors"
-          )
+          template(v-if="$isMobile")
+            template(v-for="(item) in doctorsToList")
+              doctor-item-list-mobile(
+                :doctor="item"
+              )
+          template(v-else)
+            doctor-item-list-desktop(
+              :doctors="doctorsToList"
+            )
 </template>
 
 <script>
@@ -83,6 +89,8 @@ export default {
     return {
       isGridView: true,
       searchTerm: '',
+      isLoading: false,
+      doctorsRes: [],
     };
   },
   computed: {
@@ -95,12 +103,21 @@ export default {
     sortBy () {
       return ['Alphabetical Order', 'Reverse Alphabetical', 'Specialization', 'Years of Experience'];
     },
+    doctorsToList () {
+      return this.isSearching ? this.doctorsRes : this.doctors;
+    },
   },
   methods: {
     changeToGrid (isGrid) {
       this.isGridView = isGrid;
     },
     searchDoctor () {
+      this.isSearching = true;
+      this.isLoading = true;
+
+      setTimeout(() => {
+        this.isLoading = false;
+      }, 1000);
       console.log(this.searchTerm);
     },
   },
