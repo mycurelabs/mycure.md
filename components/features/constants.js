@@ -41,37 +41,37 @@ export const FEATURE_MODULE_GROUPS = [
     description: 'Add these on top of the core modules to boost your digital clinic experience.',
     modules: [
       {
-        icon: 'mycure-web-clinic-feature-icon-premium-laboratory.png',
+        icon: 'MYCURE-virtual-clinic-healthcare-practice-online-features-H-premium-01-laboratory.png',
         title: 'Laboratory',
         subTitle: 'Record and retrieve results when you need them.',
         description: 'A Laboratory Information System that communicates with modern diagnostic machines through HL7 interfacing.',
       },
       {
-        icon: 'mycure-web-clinic-feature-icon-premium-imaging.png',
+        icon: 'MYCURE-virtual-clinic-healthcare-practice-online-features-H-premium-02-imaging.png',
         title: 'Imaging',
         subTitle: 'Interpret imaging results in an instant.',
         description: 'An Imaging Information System that allows doctors to view DICOM images remotely, and patients to view imaging results online.',
       },
       {
-        icon: 'mycure-web-clinic-feature-icon-premium-materials-management.png',
+        icon: 'MYCURE-virtual-clinic-healthcare-practice-online-features-H-premium-03-inventory.png',
         title: 'Materials Management',
         subTitle: 'Your medical supplies at a glance.',
         description: 'A Materials Management System built for healthcare facilities to monitor in-house supplies and over-the-counter products.',
       },
       {
-        icon: 'mycure-web-clinic-feature-icon-premium-pme.png',
+        icon: 'MYCURE-virtual-clinic-healthcare-practice-online-features-H-premium-04-pme.png',
         title: 'Physical Medical Exam',
         subTitle: 'Monitor groups of PME patients effectively.',
         description: 'Manage corporate and private Annual Physical Exams, Pre-employment Medical Exams, Executive Checkups, and Full Medical Exams.',
       },
       {
-        icon: 'mycure-web-clinic-feature-icon-premium-pharmacy.png',
+        icon: 'MYCURE-virtual-clinic-healthcare-practice-online-features-H-premium-05-pharmacy.png',
         title: 'Pharmacy',
         subTitle: 'Sell medicines in a very efficient way.',
         description: 'A Pharmacy Management System with Point-of-Sales functions, Rx access, inventory management, and reports in one place.',
       },
       {
-        icon: 'mycure-web-clinic-feature-icon-premium-syncbase-technology.png',
+        icon: 'MYCURE-virtual-clinic-healthcare-practice-online-features-H-premium-06-syncbase.png',
         title: 'Syncbase Technology',
         subTitle: 'Use MYCURE even if your internet connection is down.',
         description: 'Work within your local network using multiple devices even if the internet goes down and just sync data when back online.',
