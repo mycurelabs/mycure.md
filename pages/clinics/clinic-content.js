@@ -29,8 +29,7 @@ export const RATES = {
 
 export const DOCTORS_LIST = [
   {
-    firstName: 'Jean',
-    lastName: 'Rivera',
+    fullName: 'Jean Rivera',
     title: 'MD',
     imageFile: 'doctor-website-profile-female.png',
     specialization: 'Pediatrician',
@@ -49,8 +48,7 @@ export const DOCTORS_LIST = [
     ],
   },
   {
-    firstName: 'Christ',
-    lastName: 'Hilpert',
+    fullName: 'Christ Hilpert',
     title: 'MD',
     imageFile: 'doctor-website-profile-male.png',
     specialization: 'Pulmonology',
@@ -69,8 +67,7 @@ export const DOCTORS_LIST = [
     ],
   },
   {
-    firstName: 'Adrienne',
-    lastName: 'Gleichner',
+    fullName: 'Adrienne Gleichner',
     title: 'MD',
     imageFile: 'doctor-website-profile-female.png',
     specialization: 'Internist',
@@ -89,8 +86,7 @@ export const DOCTORS_LIST = [
     ],
   },
   {
-    firstName: 'Norberto',
-    lastName: 'Jones',
+    fullName: 'Norberto Jones',
     title: 'MD',
     imageFile: 'doctor-website-profile-male.png',
     specialization: 'Pediatrician',
@@ -109,8 +105,26 @@ export const DOCTORS_LIST = [
     ],
   },
   {
-    firstName: 'Vicente',
-    lastName: 'Reinger',
+    fullName: 'Jeanne Escobar',
+    title: 'MD',
+    imageFile: 'doctor-website-profile-female.png',
+    specialization: 'Pediatrician',
+    specializationTags: ['kids', 'family', 'elderly'],
+    experience: 25,
+    siteUrl: 'https://www.google.com',
+    availability: [
+      {
+        day: 'Mon - Sat',
+        time: '04:00 PM - 09:00 PM',
+      },
+      {
+        day: 'Sun',
+        time: '09:00 PM - 12:00 PM',
+      },
+    ],
+  },
+  {
+    fullName: 'Vicente Reinger',
     title: 'MD',
     imageFile: 'doctor-website-profile-male.png',
     specialization: 'Pulmonology',
@@ -129,8 +143,7 @@ export const DOCTORS_LIST = [
     ],
   },
   {
-    firstName: 'Angela',
-    lastName: 'Mosciski',
+    fullName: 'Angela Mosciski',
     title: 'MD',
     imageFile: 'doctor-website-profile-female.png',
     specialization: 'Internist',
@@ -149,8 +162,7 @@ export const DOCTORS_LIST = [
     ],
   },
   {
-    firstName: 'Cathy',
-    lastName: 'Ledner',
+    fullName: 'Cathy Ledner',
     title: 'MD',
     imageFile: 'doctor-website-profile-female.png',
     specialization: 'Pediatrician',
@@ -169,8 +181,7 @@ export const DOCTORS_LIST = [
     ],
   },
   {
-    firstName: 'Fisher',
-    lastName: 'Bergstrom',
+    fullName: 'Fisher Bergstrom',
     title: 'MD',
     imageFile: 'doctor-website-profile-male.png',
     specialization: 'Pulmonology',
@@ -189,8 +200,7 @@ export const DOCTORS_LIST = [
     ],
   },
   {
-    firstName: 'Lisa',
-    lastName: 'Tepes',
+    fullName: 'Lisa Tepes',
     title: 'MD',
     imageFile: 'doctor-website-profile-female.png',
     specialization: 'Internist',

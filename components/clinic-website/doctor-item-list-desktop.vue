@@ -75,7 +75,7 @@ export default {
       return this.doctors.map(doctor => (
         {
           imageUrl: doctor?.imageFile || 'doctor-website-profile-male.png',
-          name: `${doctor?.firstName || ''} ${doctor?.lastName || ''} ${doctor?.title || ''}`,
+          name: `${doctor?.fullName || ''} ${doctor?.title || ''}`,
           specialization: doctor?.specialization || '',
           experience: `${doctor?.experience || ''} years`,
         }
