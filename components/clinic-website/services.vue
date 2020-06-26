@@ -63,7 +63,7 @@ export default {
      */
     headerText: {
       type: String,
-      default: null,
+      default: "",
     },
   },
   computed: {
