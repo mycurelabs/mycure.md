@@ -33,6 +33,8 @@
     v-divider
     doctors(
       :doctors="doctors"
+      :specializations="sortItems"
+      :sort-by="filterItems"
     )
     //- About panel
     about-clinic(:about="aboutInfo")
@@ -59,6 +61,8 @@ import {
   DOCTORS_LIST,
   SOCIAL_ITEM,
   ABOUT_INFO,
+  FILTER_ITEMS,
+  SORT_ITEMS,
 } from './clinic-content';
 
 import headMeta from '~/utils/head-meta';
@@ -89,6 +93,8 @@ export default {
     this.doctors = DOCTORS_LIST;
     this.socialItem = SOCIAL_ITEM;
     this.aboutInfo = ABOUT_INFO;
+    this.filterItems = FILTER_ITEMS;
+    this.sortItems = SORT_ITEMS;
     return {};
   },
   mounted () {

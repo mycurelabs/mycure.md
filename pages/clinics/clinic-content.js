@@ -1,3 +1,53 @@
+export const FILTER_ITEMS = [
+  {
+    tag: 'default',
+    info: 'Choose type',
+  },
+  {
+    tag: 'family',
+    info: 'For my family',
+  },
+  {
+    tag: 'elderly',
+    info: 'For the elderly',
+  },
+  {
+    tag: 'kids',
+    info: 'For my kids',
+  },
+  {
+    tag: 'eyes',
+    info: 'For my eyes',
+  },
+  {
+    tag: 'nose',
+    info: 'For my nose',
+  },
+];
+
+export const SORT_ITEMS = [
+  {
+    tag: 'default',
+    info: 'Choose type',
+  },
+  {
+    tag: 'alu',
+    info: 'Alphabetical Order',
+  },
+  {
+    tag: 'ald',
+    info: 'Alphabetical Reverse',
+  },
+  {
+    tag: 'spc',
+    info: 'Specialization',
+  },
+  {
+    tag: 'exp',
+    info: 'Years of Experience',
+  },
+];
+
 export const SERVICES_LIST = [
   'Obstetrics and Gynecology',
   'Pediatrics and Neonatology',
@@ -33,7 +83,7 @@ export const DOCTORS_LIST = [
     title: 'MD',
     imageFile: 'doctor-website-profile-female.png',
     specialization: 'Pediatrician',
-    specializationTags: ['kids', 'family', 'eyes', 'nose', 'elderly'],
+    specializationTags: ['kids', 'family', 'nose', 'elderly'],
     experience: 25,
     siteUrl: 'https://www.google.com',
     availability: [
@@ -52,7 +102,7 @@ export const DOCTORS_LIST = [
     title: 'MD',
     imageFile: 'doctor-website-profile-male.png',
     specialization: 'Pulmonology',
-    specializationTags: ['kids', 'eyes', 'nose'],
+    specializationTags: ['kids', 'nose'],
     experience: 3,
     siteUrl: 'https://www.google.com',
     availability: [
@@ -71,7 +121,7 @@ export const DOCTORS_LIST = [
     title: 'MD',
     imageFile: 'doctor-website-profile-female.png',
     specialization: 'Internist',
-    specializationTags: ['family', 'nose', 'elderly'],
+    specializationTags: ['family', 'nose'],
     experience: 5,
     siteUrl: 'https://www.google.com',
     availability: [
@@ -128,7 +178,7 @@ export const DOCTORS_LIST = [
     title: 'MD',
     imageFile: 'doctor-website-profile-male.png',
     specialization: 'Pulmonology',
-    specializationTags: ['kids', 'family', 'eyes', 'nose', 'elderly'],
+    specializationTags: ['family', 'nose', 'elderly'],
     experience: 3,
     siteUrl: 'https://www.google.com',
     availability: [
@@ -204,7 +254,7 @@ export const DOCTORS_LIST = [
     title: 'MD',
     imageFile: 'doctor-website-profile-female.png',
     specialization: 'Internist',
-    specializationTags: ['eyes', 'nose'],
+    specializationTags: ['eyes'],
     experience: 5,
     siteUrl: 'https://www.google.com',
     availability: [

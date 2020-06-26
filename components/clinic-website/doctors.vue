@@ -14,7 +14,6 @@
             dense
             append-icon="mdi-magnify"
             v-model="searchTerm"
-            :loading="isLoading"
             @click:append="searchDoctor()"
             @click:clear="isSearching = false"
             @keydown.enter="searchDoctor()"
@@ -29,14 +28,22 @@
         v-col(cols="3")
           p.mb-3 Specialization
           v-select(
+            v-model="selectedSpecialization"
             :items="specializations"
+            item-text="info"
+            item-value="tag"
+            @change="specFilterDoctor"
             dense
             outlined
           )
         v-col(cols="3")
           p.mb-3 Sort By
           v-select(
+            v-model="selectedSort"
             :items="sortBy"
+            item-text="info"
+            item-value="tag"
+            @change="sortDoctor"
             dense
             outlined
           )
@@ -61,7 +68,6 @@
           dense
           append-icon="mdi-magnify"
           v-model="searchTerm"
-          :loading="isLoading"
           @click:append="searchDoctor()"
           @click:clear="isSearching = false"
           @keydown.enter="searchDoctor()"
@@ -70,84 +76,34 @@
             div
               v-btn(icon @click="isOptionDialogOpen = !isOptionDialogOpen")
                 v-icon(color="primary") mdi-cog
-        v-dialog(v-model="isOptionDialogOpen" max-width="280")
-          v-container.white.px-0
-            div.px-4
-              p.font-20.primary--text Filter Settings
-            div
-              v-btn(
-                :outlined="!isGridView"
-                width="50%"
-                :color="isGridView ? 'primary' : 'grey'"
-                tile
-                @click="toggleView('grid')"
-                elevation="0"
-              )
-                v-icon(
-                  size="24"
-                  :color="isGridView ? 'white' : 'grey'"
-                ) mdi-view-grid
-              v-btn(
-                :outlined="isGridView"
-                width="50%"
-                :color="!isGridView ? 'primary' : 'grey'"
-                tile
-                @click="toggleView('list')"
-                elevation="0"
-              )
-                v-icon(
-                  size="32"
-                  :color="!isGridView ? 'white' : 'grey'"
-                ) mdi-view-list
-            div.px-4.mt-3
-              p.mb-3 Specialization
-              v-select(
-                :items="specializations"
-                dense
-                outlined
-              ).input-field
-            div.px-4.mt-3
-              p.mb-3 Sort by
-              v-select(
-                :items="sortBy"
-                dense
-                outlined
-              ).input-field
-            div.px-4.mt-6
-              v-btn(
-                width="50%"
-                tile
-                elevation="0"
-                rounded
-                @click="isOptionDialogOpen = !isOptionDialogOpen"
-              ).letter-spacing-normal.text-none Cancel
-              v-btn(
-                width="50%"
-                color="primary"
-                tile
-                elevation="0"
-                rounded
-                @click="filterDoctor"
-              ).letter-spacing-normal.text-none Update
+        doctor-filter-dialog-mobile(
+          :is-option-dialog-open="isOptionDialogOpen"
+          @apply-filters-mobile="applyFiltersMobile"
+          @close-dialog="closeDialog"
+          @update-mobile-view="updateMobileView"
+          :mobile-view-type="mobileViewType"
+          :specializations="specializations"
+          :sort-by="sortBy"
+        )
     v-row
       template(v-if="isLoading")
         v-row(justify="center" align="center").my-10
           v-progress-circular(:size="70" :width="7" color="primary" indeterminate)
       template(v-else)
         template(v-if="viewType === 'grid'")
-          template(v-for="item in doctorsToList")
+          template(v-for="item in doctors")
             doctor-item-grid(
               :doctor="item"
             )
         template(v-else)
           template(v-if="$isMobile")
-            template(v-for="item in doctorsToList")
+            template(v-for="item in doctors")
               doctor-item-list-mobile(
                 :doctor="item"
               )
           template(v-else)
             doctor-item-list-desktop(
-              :doctors="doctorsToList"
+              :doctors="doctors"
             )
 </template>
 
@@ -155,11 +111,13 @@
 import DoctorItemGrid from '~/components/clinic-website/doctor-item-grid';
 import DoctorItemListMobile from '~/components/clinic-website/doctor-item-list-mobile';
 import DoctorItemListDesktop from '~/components/clinic-website/doctor-item-list-desktop';
+import DoctorFilterDialogMobile from '~/components/clinic-website/doctor-filter-dialog-mobile';
 export default {
   components: {
     DoctorItemGrid,
     DoctorItemListMobile,
     DoctorItemListDesktop,
+    DoctorFilterDialogMobile,
   },
   props: {
     /**
@@ -170,29 +128,40 @@ export default {
       type: Array,
       default: () => ([]),
     },
+    /**
+     * Array of sorting objects
+     * @type {Array}
+     */
+    specializations: {
+      type: Array,
+      default: () => ([]),
+    },
+    /**
+     * Array of filter objects
+     * @type {Array}
+     */
+    sortBy: {
+      type: Array,
+      default: () => ([]),
+    },
   },
   data () {
     return {
       viewType: 'grid',
+      mobileViewType: 'grid',
       searchTerm: '',
       isLoading: false,
-      doctorsRes: [],
       isOptionDialogOpen: false,
       isSearching: false,
+      isSorting: false,
+      isSpecFiltering: false,
+      selectedSpecialization: 'default',
+      selectedSort: 'default',
     };
   },
   computed: {
     doctorsLength () {
       return this.doctors?.length || 0;
-    },
-    specializations () {
-      return ['For my family', 'For my kids', 'For my eyes', 'For my nose'];
-    },
-    sortBy () {
-      return ['Alphabetical Order', 'Reverse Alphabetical', 'Specialization', 'Years of Experience'];
-    },
-    doctorsToList () {
-      return this.isSearching ? this.doctorsRes : this.doctors;
     },
     isGridView () {
       return this.viewType === 'grid';
@@ -206,20 +175,30 @@ export default {
       }, 500);
     },
     toggleView (type) {
-      this.isSearching = false;
-      this.searchTerm = '';
-      this.doctorsRes = [];
+      this.mobileViewType = type;
       this.viewType = type;
+      this.selectedSpecialization = 'default';
+      this.selectedSort = 'default';
     },
     searchDoctor () {
       this.mockLoading();
-      this.isSearching = true;
-      this.doctorsRes = this.doctors.filter(i => i.fullName.toLowerCase().includes(this.searchTerm));
     },
-    filterDoctor () {
-      console.log('----> filter doctor');
+    specFilterDoctor () {
       this.mockLoading();
+    },
+    sortDoctor () {
+      this.mockLoading();
+    },
+    applyFiltersMobile () {
+      this.mockLoading();
+      this.toggleView(this.mobileViewType);
+      this.closeDialog();
+    },
+    closeDialog () {
       this.isOptionDialogOpen = false;
+    },
+    updateMobileView (type) {
+      this.mobileViewType = type;
     },
   },
 };
