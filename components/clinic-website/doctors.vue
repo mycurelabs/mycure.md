@@ -161,7 +161,6 @@ export default {
     searchDoctor () {
       this.isSearching = true;
       this.isLoading = true;
-
       setTimeout(() => {
         this.isLoading = false;
       }, 1000);
