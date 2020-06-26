@@ -31,10 +31,8 @@ export default {
     doctorName () {
       const name = `${this.doctor.firstName} ${this.doctor.lastName} ${this.doctor.title}`;
 
-      if (this.$vuetify.breakpoint.name === 'xs') {
-        if (name.length > 15) {
-          return `${name.substring(0, 15)}..`;
-        }
+      if (this.$vuetify.breakpoint.name === 'xs' && name.length > 15) {
+        return `${name.substring(0, 15)}..`;
       }
 
       return name;
