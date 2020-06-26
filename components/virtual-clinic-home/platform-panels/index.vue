@@ -47,7 +47,7 @@
           :image="YOUR_ONLINE_CLINIC.image"
           imageAlt="Your online clinic everywhere"
           imageFileExtension=".webp"
-          :imageClasses="[!$isMobile ?'pl-12' : '']"
+          :imageClasses="[!$isMobile ? 'pl-12' : '']"
         )
     //- THIRD PANEL
     v-row(justify="center" align="center").py-10.mb-n4
@@ -93,7 +93,7 @@
           :image="MANAGE_EVERYTHING_EASILY.image"
           imageAlt="Manage everything easily"
           imageFileExtension=".webp"
-          :imageClasses="[!$isMobile ?'pl-10' : '']"
+          :imageClasses="[!$isMobile ? 'pl-10' : '']"
         )
 </template>
 
