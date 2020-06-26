@@ -21,31 +21,31 @@
           ).search-field
       template(v-else)
         p.grey--text.font-26.message-line-height We have {{ doctorsLength }} doctors in our clinic. Who would you like to schedule for an appointment?
-    v-row(justify="start" align="start")
+    v-row(justify="start" align="center")
       template(v-if="!$isMobile")
         v-col(cols="4")
           p.grey--text.font-26.message-line-height We have {{ doctorsLength }} doctors in our clinic. Who would you like to schedule for an appointment?
         v-spacer
         v-col(cols="3")
-          p Specialization
+          p.mb-3 Specialization
           v-select(
             :items="specializations"
             dense
             outlined
           )
         v-col(cols="3")
-          p Sort By
+          p.mb-3 Sort By
           v-select(
             :items="sortBy"
             dense
             outlined
           )
-        v-col(align-self="center" cols="1")
-          div
-            v-btn(tile large icon @click="toggleView('grid')")
-              v-icon(large color="primary") mdi-view-grid
-            v-btn(tile large icon @click="toggleView('list')")
-              v-icon(x-large color="primary") mdi-view-list
+        v-col(cols="1" style="max-width: 85px;").pl-0.mt-2
+          div.d-flex.justify-end
+            v-btn(tile icon @click="toggleView('grid')")
+              v-icon(size="28" color="primary") mdi-view-grid
+            v-btn(tile icon @click="toggleView('list')")
+              v-icon(size="36" color="primary") mdi-view-list
       template(v-else)
         v-text-field(
           outlined
