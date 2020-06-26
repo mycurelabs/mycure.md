@@ -1,9 +1,9 @@
 <template lang="pug">
   v-container(fluid)
     v-row(justify="start" align="end" dense)
+      v-col
+        h2 Our Doctors
       template(v-if="!$isMobile")
-        v-col
-          h2 Our Doctors
         v-spacer
         v-col
           v-text-field(
@@ -20,9 +20,7 @@
             @keydown.enter="searchDoctor()"
           ).search-field
       template(v-else)
-        v-col
-          h2 Our Doctors
-          p.grey--text.font-26.message-line-height We have {{ doctorsLength }} doctors in our clinic. Who would you like to schedule for an appointment?
+        p.grey--text.font-26.message-line-height We have {{ doctorsLength }} doctors in our clinic. Who would you like to schedule for an appointment?
     v-row(justify="start" align="start")
       template(v-if="!$isMobile")
         v-col(cols="4")
