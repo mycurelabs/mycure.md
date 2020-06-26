@@ -63,6 +63,7 @@
           v-model="searchTerm"
           :loading="isLoading"
           @click:append="searchDoctor()"
+          @click:clear="isSearching = false"
           @keydown.enter="searchDoctor()"
         ).align-baseline
           template(v-slot:append-outer)
@@ -177,6 +178,7 @@ export default {
       isLoading: false,
       doctorsRes: [],
       isOptionDialogOpen: false,
+      isSearching: false,
     };
   },
   computed: {
@@ -201,15 +203,18 @@ export default {
       this.isLoading = true;
       setTimeout(() => {
         this.isLoading = false;
-      }, 1000);
+      }, 500);
     },
     toggleView (type) {
+      this.isSearching = false;
+      this.searchTerm = '';
+      this.doctorsRes = [];
       this.viewType = type;
     },
     searchDoctor () {
-      console.log(this.searchTerm);
       this.mockLoading();
       this.isSearching = true;
+      this.doctorsRes = this.doctors.filter(i => i.fullName.toLowerCase().includes(this.searchTerm));
     },
     filterDoctor () {
       console.log('----> filter doctor');
