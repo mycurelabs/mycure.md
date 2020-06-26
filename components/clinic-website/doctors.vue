@@ -44,9 +44,9 @@
           )
         v-col(align-self="center" cols="1")
           div
-            v-btn(tile large icon @click="changeToGrid(true)")
+            v-btn(tile large icon @click="toggleView('grid')")
               v-icon(large color="primary") mdi-view-grid
-            v-btn(tile large icon @click="changeToGrid(false)")
+            v-btn(tile large icon @click="toggleView('list')")
               v-icon(x-large color="primary") mdi-view-list
       template(v-else)
         v-text-field(
@@ -70,9 +70,9 @@
                 v-row
                   p Filter Settings
                 v-row
-                  v-btn(tile large icon @click="changeToGrid(true)")
+                  v-btn(tile large icon @click="toggleView('grid')")
                     v-icon(large color="primary") mdi-view-grid
-                  v-btn(tile large icon @click="changeToGrid(false)")
+                  v-btn(tile large icon @click="toggleView('list')")
                     v-icon(x-large color="primary") mdi-view-list
                 v-row
                   p Specialization
@@ -136,7 +136,7 @@ export default {
   },
   data () {
     return {
-      isGridView: true,
+      viewType: 'grid',
       searchTerm: '',
       isLoading: false,
       doctorsRes: [],
@@ -158,8 +158,8 @@ export default {
     },
   },
   methods: {
-    changeToGrid (isGrid) {
-      this.isGridView = isGrid;
+    toggleView (type) {
+      this.viewType = type;
     },
     searchDoctor () {
       this.isSearching = true;
