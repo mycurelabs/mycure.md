@@ -76,10 +76,10 @@ export default {
     doctorsTableContents () {
       return this.doctors.map(doctor => (
         {
-          imageUrl: doctor.imageFile,
-          name: `${doctor.firstName} ${doctor.lastName} ${doctor.title}`,
-          specialization: doctor.specialization,
-          experience: `${doctor.experience} years`,
+          imageUrl: doctor?.imageFile || 'doctor-website-profile-male.png',
+          name: `${doctor?.firstName || ''} ${doctor?.lastName || ''} ${doctor?.title || ''}`,
+          specialization: doctor?.specialization || '',
+          experience: `${doctor?.experience || ''} years`,
         }
       ));
     },

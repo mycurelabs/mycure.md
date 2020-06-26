@@ -37,7 +37,7 @@ export default {
   },
   computed: {
     doctorName () {
-      const name = `${this.doctor.firstName} ${this.doctor.lastName} ${this.doctor.title}`;
+      const name = `${this.doctor?.firstName || ''} ${this.doctor?.lastName || ''} ${this.doctor?.title || ''}`;
 
       if (this.$vuetify.breakpoint.name === 'xs' && name.length > 15) {
         return this.$morphTruncate(name, 15);
