@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-container(fluid fill-height).py-12
+  v-container(fluid).py-12
     v-row.panel-background
       v-col(cols="12" offset-md="1" md="4" :class="paddingClass")
         img(v-lazy="require(`~/assets/images/clinics-website/patient-portal-badge-appointment.png`)").ml-n2
