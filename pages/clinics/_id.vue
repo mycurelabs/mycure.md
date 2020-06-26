@@ -33,6 +33,8 @@
     v-divider
     doctors(
       :doctors="doctors"
+      :specializations="sortItems"
+      :sort-by="filterItems"
     )
     //- About panel
     about-clinic(:about="aboutInfo")
@@ -58,6 +60,17 @@
 </template>
 
 <script>
+import {
+  SERVICES_LIST,
+  SCHEDULES_LIST,
+  RATES,
+  DOCTORS_LIST,
+  SOCIAL_ITEM,
+  ABOUT_INFO,
+  FILTER_ITEMS,
+  SORT_ITEMS,
+} from './clinic-content';
+
 import headMeta from '~/utils/head-meta';
 import AppBar from '~/components/clinic-website/app-bar';
 import Panel1 from '~/components/clinic-website/panel-1';
@@ -80,230 +93,15 @@ export default {
     AboutClinic,
   },
   data () {
-    return {
-      services: [
-        'Obstetrics and Gynecology',
-        'Pediatrics and Neonatology',
-        'Internal Medicine',
-        'Cardiology',
-        'Pulmonology',
-        'General Surgery',
-        'Pathology, Radiology, and Sonology',
-        'Endocrinology',
-        'Gastroenterology',
-      ],
-      schedules: [
-        {
-          day: 'Mon - Sat',
-          time: '04:00 PM - 09:00 PM',
-        },
-        {
-          day: 'Sun',
-          time: '09:00 PM - 12:00 PM',
-        },
-      ],
-      rates: {
-        currency: '₱',
-        min: '500',
-        max: '1,000',
-      },
-      doctors: [
-        {
-          firstName: 'Jean',
-          lastName: 'Rivera',
-          title: 'MD',
-          imageFile: 'doctor-website-profile-female.png',
-          specialization: 'Pediatrician',
-          specializationTags: ['kids', 'family', 'eyes', 'nose', 'elderly'],
-          experience: 25,
-          siteUrl: 'https://www.google.com',
-          availability: [
-            {
-              day: 'Mon - Sat',
-              time: '04:00 PM - 09:00 PM',
-            },
-            {
-              day: 'Sun',
-              time: '09:00 PM - 12:00 PM',
-            },
-          ],
-        },
-        {
-          firstName: 'Christ',
-          lastName: 'Hilpert',
-          title: 'MD',
-          imageFile: 'doctor-website-profile-male.png',
-          specialization: 'Pulmonology',
-          specializationTags: ['kids', 'eyes', 'nose'],
-          experience: 3,
-          siteUrl: 'https://www.google.com',
-          availability: [
-            {
-              day: 'Mon - Sat',
-              time: '04:00 PM - 09:00 PM',
-            },
-            {
-              day: 'Sun',
-              time: '09:00 PM - 12:00 PM',
-            },
-          ],
-        },
-        {
-          firstName: 'Adrienne',
-          lastName: 'Gleichner',
-          title: 'MD',
-          imageFile: 'doctor-website-profile-female.png',
-          specialization: 'Internist',
-          specializationTags: ['family', 'nose', 'elderly'],
-          experience: 5,
-          siteUrl: 'https://www.google.com',
-          availability: [
-            {
-              day: 'Mon - Sat',
-              time: '04:00 PM - 09:00 PM',
-            },
-            {
-              day: 'Sun',
-              time: '09:00 PM - 12:00 PM',
-            },
-          ],
-        },
-        {
-          firstName: 'Norberto',
-          lastName: 'Jones',
-          title: 'MD',
-          imageFile: 'doctor-website-profile-male.png',
-          specialization: 'Pediatrician',
-          specializationTags: ['eyes', 'nose'],
-          experience: 25,
-          siteUrl: 'https://www.google.com',
-          availability: [
-            {
-              day: 'Mon - Sat',
-              time: '04:00 PM - 09:00 PM',
-            },
-            {
-              day: 'Sun',
-              time: '09:00 PM - 12:00 PM',
-            },
-          ],
-        },
-        {
-          firstName: 'Vicente',
-          lastName: 'Reinger',
-          title: 'MD',
-          imageFile: 'doctor-website-profile-male.png',
-          specialization: 'Pulmonology',
-          specializationTags: ['kids', 'family', 'eyes', 'nose', 'elderly'],
-          experience: 3,
-          siteUrl: 'https://www.google.com',
-          availability: [
-            {
-              day: 'Mon - Sat',
-              time: '04:00 PM - 09:00 PM',
-            },
-            {
-              day: 'Sun',
-              time: '09:00 PM - 12:00 PM',
-            },
-          ],
-        },
-        {
-          firstName: 'Angela',
-          lastName: 'Mosciski',
-          title: 'MD',
-          imageFile: 'doctor-website-profile-female.png',
-          specialization: 'Internist',
-          specializationTags: ['family'],
-          experience: 5,
-          siteUrl: 'https://www.google.com',
-          availability: [
-            {
-              day: 'Mon - Sat',
-              time: '04:00 PM - 09:00 PM',
-            },
-            {
-              day: 'Sun',
-              time: '09:00 PM - 12:00 PM',
-            },
-          ],
-        },
-        {
-          firstName: 'Cathy',
-          lastName: 'Ledner',
-          title: 'MD',
-          imageFile: 'doctor-website-profile-female.png',
-          specialization: 'Pediatrician',
-          specializationTags: ['kids'],
-          experience: 25,
-          siteUrl: 'https://www.google.com',
-          availability: [
-            {
-              day: 'Mon - Sat',
-              time: '04:00 PM - 09:00 PM',
-            },
-            {
-              day: 'Sun',
-              time: '09:00 PM - 12:00 PM',
-            },
-          ],
-        },
-        {
-          firstName: 'Fisher',
-          lastName: 'Bergstrom',
-          title: 'MD',
-          imageFile: 'doctor-website-profile-male.png',
-          specialization: 'Pulmonology',
-          specializationTags: ['family', 'elderly'],
-          experience: 3,
-          siteUrl: 'https://www.google.com',
-          availability: [
-            {
-              day: 'Mon - Sat',
-              time: '04:00 PM - 09:00 PM',
-            },
-            {
-              day: 'Sun',
-              time: '09:00 PM - 12:00 PM',
-            },
-          ],
-        },
-        {
-          firstName: 'Lisa',
-          lastName: 'Tepes',
-          title: 'MD',
-          imageFile: 'doctor-website-profile-female.png',
-          specialization: 'Internist',
-          specializationTags: ['eyes', 'nose'],
-          experience: 5,
-          siteUrl: 'https://www.google.com',
-          availability: [
-            {
-              day: 'Mon - Sat',
-              time: '04:00 PM - 09:00 PM',
-            },
-            {
-              day: 'Sun',
-              time: '09:00 PM - 12:00 PM',
-            },
-          ],
-        },
-      ],
-      socialItem: [{
-        title: 'Love this clinic? Share the love.',
-        icons: [
-          { icon: 'mdi-facebook', link: 'https://facebook.com/' },
-          { icon: 'mdi-twitter', link: 'https://twitter.com/' },
-          { icon: 'mdi-email', link: 'mailto:' },
-          { icon: 'mdi-linkedin', link: 'https://www.linkedin.com/' },
-        ],
-      }],
-      aboutInfo: [{
-        clinicName: 'Mycure Clinic',
-        clinicsInfo: 'MYCURE Virtual Clinic specializes in telehealth services. MYCURE Virtual Clinic\'s telemedicine service is committed to provide medial consultation via video conference or phone call to our patient 24 hours a day 7 days a week.<br><br>MCURE virtual clinic also offers a robust clinic management system that are being used by hundreds of satisfied clients nationwide. All doctors onboard here are certified under the Philippine Medical Association.',
-      }],
-      readMore: false,
-    };
+    this.services = SERVICES_LIST;
+    this.schedules = SCHEDULES_LIST;
+    this.rates = RATES;
+    this.doctors = DOCTORS_LIST;
+    this.socialItem = SOCIAL_ITEM;
+    this.aboutInfo = ABOUT_INFO;
+    this.filterItems = FILTER_ITEMS;
+    this.sortItems = SORT_ITEMS;
+    return {};
   },
   mounted () {
     console.log(this.$route);

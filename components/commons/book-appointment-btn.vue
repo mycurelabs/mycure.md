@@ -20,7 +20,6 @@ export default {
     },
   },
   computed: {
-    // TODO: update url to be props?
     url () {
       const pxPortalUrl = process.env.PX_PORTAL_URL;
       const { id } = this.$route.params;
