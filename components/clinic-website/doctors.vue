@@ -96,10 +96,9 @@
         v-row(justify="center" align="center").my-10
           v-progress-circular(:size="70" :width="7" color="primary" indeterminate)
       template(v-else)
-        template(v-if="isGridView")
+        template(v-if="viewType === 'grid'")
           template(v-for="item in doctorsToList")
             doctor-item-grid(
-              v-if="isGridView"
               :doctor="item"
             )
         template(v-else)
