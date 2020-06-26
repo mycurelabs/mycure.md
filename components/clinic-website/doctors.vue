@@ -97,14 +97,14 @@
           v-progress-circular(:size="70" :width="7" color="primary" indeterminate)
       template(v-else)
         template(v-if="isGridView")
-          template(v-for="(item) in doctorsToList")
+          template(v-for="item in doctorsToList")
             doctor-item-grid(
               v-if="isGridView"
               :doctor="item"
             )
         template(v-else)
           template(v-if="$isMobile")
-            template(v-for="(item) in doctorsToList")
+            template(v-for="item in doctorsToList")
               doctor-item-list-mobile(
                 :doctor="item"
               )

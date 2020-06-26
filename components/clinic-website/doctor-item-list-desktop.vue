@@ -74,14 +74,14 @@ export default {
   },
   computed: {
     doctorsTableContents () {
-      return this.doctors.map((doctor) => {
-        return {
+      return this.doctors.map(doctor => (
+        {
           imageUrl: doctor.imageFile,
           name: `${doctor.firstName} ${doctor.lastName} ${doctor.title}`,
           specialization: doctor.specialization,
           experience: `${doctor.experience} years`,
-        };
-      });
+        }
+      ));
     },
   },
 };
