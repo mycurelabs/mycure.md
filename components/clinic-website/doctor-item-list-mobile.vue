@@ -3,9 +3,7 @@
     v-card
       div.d-flex
         v-avatar(size="100" rounded).ma-4
-          img(
-            v-lazy="require(`~/assets/images/doctor-website/${this.doctor.imageFile}`)"
-          )
+          img(v-lazy="require(`~/assets/images/doctor-website/${this.doctor.imageFile}`)")
         div
           v-card-title.headline.word-break {{ doctorName }}
           v-card-subtitle.pb-2 {{ doctor.specialization }} | {{ doctor.experience }} Years

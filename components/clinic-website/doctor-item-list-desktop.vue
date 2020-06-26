@@ -8,9 +8,7 @@
     )
       template(v-slot:item.imageUrl="{ item }")
         v-avatar(size="50" rounded).ma-4
-          img(
-            v-lazy="require(`~/assets/images/doctor-website/${item.imageUrl}`)"
-          )
+          img(v-lazy="require(`~/assets/images/doctor-website/${item.imageUrl}`)")
       template(v-slot:item.name="{ item }")
         p.mb-2 {{ item.name }}
         v-btn(color="primary" small elevation="0").letter-spacing-normal.text-none.font-weight-bold Book Now
