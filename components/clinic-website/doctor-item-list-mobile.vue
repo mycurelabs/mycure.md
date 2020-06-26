@@ -49,7 +49,4 @@ export default {
 .word-break {
   word-break: break-word;
 }
-.letter-spacing-normal {
-  letter-spacing: normal;
-}
 </style>

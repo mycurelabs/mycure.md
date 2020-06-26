@@ -227,7 +227,4 @@ export default {
 .input-field {
   height: 40px;
 }
-.letter-spacing-normal {
-  letter-spacing: normal;
-}
 </style>

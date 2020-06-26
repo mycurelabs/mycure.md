@@ -84,9 +84,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-.letter-spacing-normal {
-  letter-spacing: normal;
-}
-</style>

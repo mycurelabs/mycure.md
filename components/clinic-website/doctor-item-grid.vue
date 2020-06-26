@@ -43,9 +43,6 @@ export default {
 .right-border {
   border-right: 1px solid #bfc3cc !important;
 }
-.letter-spacing-normal {
-  letter-spacing: normal;
-}
 .btn-bottom-left {
   border-bottom-left-radius: 5px;
 }

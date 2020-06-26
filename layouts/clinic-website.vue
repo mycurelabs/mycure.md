@@ -16,4 +16,8 @@
 .font-20 {
   font-size: 20px !important;
 }
+
+.letter-spacing-normal {
+  letter-spacing: normal !important;
+}
 </style>
