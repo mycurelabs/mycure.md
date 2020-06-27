@@ -27,7 +27,7 @@
       :sort-by="filterItems"
     )
     //- Usp
-    usp(:uspInfo="usp")
+    usp(:uspInfo="usp" :specialization-items="specializations")
 
     //- About panel
     about-clinic(:about="aboutInfo")
@@ -58,6 +58,7 @@ import {
   RATES,
   DOCTORS_LIST,
   USP,
+  SPECIALIZATIONS,
   ABOUT_INFO,
   SOCIAL_ITEM,
   FILTER_ITEMS,
@@ -93,6 +94,7 @@ export default {
     this.rates = RATES;
     this.doctors = DOCTORS_LIST;
     this.usp = USP;
+    this.specializations = SPECIALIZATIONS;
     this.aboutInfo = ABOUT_INFO;
     this.socialItem = SOCIAL_ITEM;
     this.filterItems = FILTER_ITEMS;

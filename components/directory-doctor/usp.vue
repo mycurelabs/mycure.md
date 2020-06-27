@@ -1,9 +1,9 @@
 <template lang="pug">
-  v-container(fluid).usp-panel
-    v-row(justify="center" align="center")
-      v-col(cols="12" md="10" v-for="(data, key) in uspInfo" :key="key")
+  v-container.usp-panel
+    v-row(justify="center" align="center" v-for="(data, key) in uspInfo" :key="key")
+      v-col(cols="12" md="10")
         h1(:class="titleSizeClass").text-center.font-weight-bold {{data.title}}
-      v-col(cols="12" md="6")
+      v-col(cols="12" md="8")
         v-text-field(
           label="Search Doctor, Specialization"
           append-icon="mdi-magnify"
@@ -12,15 +12,41 @@
           @keydown.enter="searchDoctorSpecialization()"
           @click:clear="isSearching = false"
           :loading="isLoading"
+          :class="paddingClass"
           clearable
           outlined
-        )
+        ).search-field
+      v-col(cols="12" md="5" :class="marginClass")
+        p Popular Searches:
+          template(v-for="(search, key) in data.popularSearches")
+              span(style="background-color: dcdcdc").pl-3 {{search}}
+      v-col(cols="12" md="2" :class="marginClass")
+          v-select(
+          v-model="selectedSpecialization"
+          :items="specializationItems"
+          :item-text="specializationItems"
+          :item-value="specializationItems"
+          label="Others"
+          outlined
+          )
 </template>
 
 <script>
 export default {
   props: {
+    /**
+     * Array of doctor objects
+     * @type {Array}
+     */
     uspInfo: {
+      type: Array,
+      default: () => ([]),
+    },
+    /**
+     * Array of doctor objects
+     * @type {Array}
+     */
+    specializationItems: {
       type: Array,
       default: () => ([]),
     },
@@ -28,6 +54,9 @@ export default {
   data () {
     return {
       searchItem: '',
+      selectedSpecialization: {
+        default: 'Others',
+      },
       isSearching: false,
       isLoading: false,
     };
@@ -35,6 +64,12 @@ export default {
   computed: {
     titleSizeClass () {
       return [this.$isMobile ? 'font-34' : 'font-50'];
+    },
+    paddingClass () {
+      return [this.$isMobile ? '' : 'px-12'];
+    },
+    marginClass () {
+      return [this.$isMobile ? 'mt-n5' : 'mt-n5'];
     },
   },
   methods: {
@@ -48,6 +83,9 @@ export default {
 };
 </script>
 
-<style lang="stylus" scoped>
-
+<style scoped>
+.usp-panel {
+  background-image: url('../../assets/images/directory-doctor/MYCURE-Doctor-Directory-Left-First-Panel-Image.png'), url('../../assets/images/directory-doctor/MYCURE-Doctor-Directory-Right-First-Panel-Image.png');
+  background-position: left bottom, right bottom;
+}
 </style>

@@ -270,10 +270,14 @@ export const DOCTORS_LIST = [
   },
 ];
 
-export const USP = [{
-  title: 'Hundreds of doctors with different specializations from amazing clinics all over the country.',
-  popularSearches: ['Dermatologist', 'Pediatrician'],
-}];
+export const USP = [
+  {
+    title: 'Hundreds of doctors with different specializations from amazing clinics all over the country.',
+    popularSearches: ['Dermatologist', 'Pediatrician'],
+  },
+];
+
+export const SPECIALIZATIONS = ['Dermatologist', 'Dermatologist', 'Physician', 'Gynecologist', 'Surgeon'];
 
 export const ABOUT_INFO = [{
   clinicName: 'Mycure Clinic',
