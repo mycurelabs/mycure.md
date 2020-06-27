@@ -1,6 +1,9 @@
 <template lang="pug">
   v-container(fluid)
-    app-bar
+    app-bar(
+      :doctor-sign-up-url="'https://www.mycure.md/'"
+      :patient-sign-up-url="'https://www.mycure.md/'"
+    )
     panel-1(
       pic-url="MYCURE-virtual-clinic-healthcare-practice-online-enterprise-F-multi-specialty"
       pic-extension=".webp"
