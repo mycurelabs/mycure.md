@@ -8,9 +8,7 @@
     )
       template(v-slot:item.imageUrl="{ item }")
         v-avatar(size="50" rounded).ma-4
-          img(
-            v-lazy="require(`~/assets/images/doctor-website/${item.imageUrl}`)"
-          )
+          img(v-lazy="require(`~/assets/images/doctor-website/${item.imageUrl}`)")
       template(v-slot:item.name="{ item }")
         p.mb-2 {{ item.name }}
         v-btn(color="primary" small elevation="0").letter-spacing-normal.text-none.font-weight-bold Book Now
@@ -74,21 +72,15 @@ export default {
   },
   computed: {
     doctorsTableContents () {
-      return this.doctors.map((doctor) => {
-        return {
-          imageUrl: doctor.imageFile,
-          name: `${doctor.firstName} ${doctor.lastName} ${doctor.title}`,
-          specialization: doctor.specialization,
-          experience: `${doctor.experience} years`,
-        };
-      });
+      return this.doctors.map(doctor => (
+        {
+          imageUrl: doctor?.imageFile || 'doctor-website-profile-male.png',
+          name: `${doctor?.fullName || ''} ${doctor?.title || ''}`,
+          specialization: doctor?.specialization || '',
+          experience: `${doctor?.experience || ''} years`,
+        }
+      ));
     },
   },
 };
 </script>
-
-<style scoped>
-.letter-spacing-normal {
-  letter-spacing: normal;
-}
-</style>

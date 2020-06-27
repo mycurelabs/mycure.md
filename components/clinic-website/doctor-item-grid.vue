@@ -3,9 +3,7 @@
     v-card(height="250" elevation="8" style="width: 100%; border-radius: 5px;").d-flex.flex-column
       v-row(justify="center" align="center" no-gutters)
         v-avatar(size="80" rounded).ma-1.pt-2
-          img(
-            v-lazy="require(`~/assets/images/doctor-website/${this.doctor.imageFile}`)"
-          )
+          img(v-lazy="require(`~/assets/images/doctor-website/${this.doctor.imageFile}`)")
       v-row(justify="center" no-gutters)
         v-col.text-center
           p.mb-1 {{ doctorName }}
@@ -31,14 +29,10 @@ export default {
   },
   computed: {
     doctorName () {
-      const name = `${this.doctor.firstName} ${this.doctor.lastName} ${this.doctor.title}`;
-
-      if (this.$vuetify.breakpoint.name === 'xs') {
-        if (name.length > 15) {
-          return `${name.substring(0, 15)}..`;
-        }
+      const name = `${this.doctor?.fullName || ''} ${this.doctor?.title || ''}`;
+      if (this.$vuetify.breakpoint.name === 'xs' && name.length > 15) {
+        return this.$morphTruncate(name, 15);
       }
-
       return name;
     },
   },
@@ -48,9 +42,6 @@ export default {
 <style scoped>
 .right-border {
   border-right: 1px solid #bfc3cc !important;
-}
-.letter-spacing-normal {
-  letter-spacing: normal;
 }
 .btn-bottom-left {
   border-bottom-left-radius: 5px;

@@ -33,6 +33,8 @@
     v-divider
     doctors(
       :doctors="doctors"
+      :specializations="sortItems"
+      :sort-by="filterItems"
     )
     //- About panel
     about-clinic(:about="aboutInfo")
@@ -58,6 +60,17 @@
 </template>
 
 <script>
+import {
+  SERVICES_LIST,
+  SCHEDULES_LIST,
+  RATES,
+  DOCTORS_LIST,
+  SOCIAL_ITEM,
+  ABOUT_INFO,
+  FILTER_ITEMS,
+  SORT_ITEMS,
+} from './clinic-content';
+
 import headMeta from '~/utils/head-meta';
 import AppBar from '~/components/clinic-website/app-bar';
 import Panel1 from '~/components/clinic-website/panel-1';
@@ -80,6 +93,7 @@ export default {
     AboutClinic,
   },
   data () {
+<<<<<<< HEAD
     return {
       services: [
         'Obstetrics and Gynecology',
@@ -304,6 +318,17 @@ export default {
       }],
       readMore: false,
     };
+=======
+    this.services = SERVICES_LIST;
+    this.schedules = SCHEDULES_LIST;
+    this.rates = RATES;
+    this.doctors = DOCTORS_LIST;
+    this.socialItem = SOCIAL_ITEM;
+    this.aboutInfo = ABOUT_INFO;
+    this.filterItems = FILTER_ITEMS;
+    this.sortItems = SORT_ITEMS;
+    return {};
+>>>>>>> a1be68da2cd8891ef0fb3b6a8a98fedc76805de1
   },
   mounted () {
     console.log(this.$route);
