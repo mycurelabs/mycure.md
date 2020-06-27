@@ -1,3 +1,275 @@
+export const FILTER_ITEMS = [
+  {
+    tag: 'default',
+    info: 'Choose type',
+  },
+  {
+    tag: 'family',
+    info: 'For my family',
+  },
+  {
+    tag: 'elderly',
+    info: 'For the elderly',
+  },
+  {
+    tag: 'kids',
+    info: 'For my kids',
+  },
+  {
+    tag: 'eyes',
+    info: 'For my eyes',
+  },
+  {
+    tag: 'nose',
+    info: 'For my nose',
+  },
+];
+
+export const SORT_ITEMS = [
+  {
+    tag: 'default',
+    info: 'Choose type',
+  },
+  {
+    tag: 'alu',
+    info: 'Alphabetical Order',
+  },
+  {
+    tag: 'ald',
+    info: 'Alphabetical Reverse',
+  },
+  {
+    tag: 'spc',
+    info: 'Specialization',
+  },
+  {
+    tag: 'exp',
+    info: 'Years of Experience',
+  },
+];
+
+export const SERVICES_LIST = [
+  'Obstetrics and Gynecology',
+  'Pediatrics and Neonatology',
+  'Internal Medicine',
+  'Cardiology',
+  'Pulmonology',
+  'General Surgery',
+  'Pathology, Radiology, and Sonology',
+  'Endocrinology',
+  'Gastroenterology',
+];
+
+export const SCHEDULES_LIST = [
+  {
+    day: 'Mon - Sat',
+    time: '04:00 PM - 09:00 PM',
+  },
+  {
+    day: 'Sun',
+    time: '09:00 PM - 12:00 PM',
+  },
+];
+
+export const RATES = {
+  currency: '₱',
+  min: '500',
+  max: '1,000',
+};
+
+export const DOCTORS_LIST = [
+  {
+    fullName: 'Jean Rivera',
+    title: 'MD',
+    imageFile: 'doctor-website-profile-female.png',
+    specialization: 'Pediatrician',
+    specializationTags: ['kids', 'family', 'nose', 'elderly'],
+    experience: 25,
+    siteUrl: 'https://www.google.com',
+    availability: [
+      {
+        day: 'Mon - Sat',
+        time: '04:00 PM - 09:00 PM',
+      },
+      {
+        day: 'Sun',
+        time: '09:00 PM - 12:00 PM',
+      },
+    ],
+  },
+  {
+    fullName: 'Christ Hilpert',
+    title: 'MD',
+    imageFile: 'doctor-website-profile-male.png',
+    specialization: 'Pulmonology',
+    specializationTags: ['kids', 'nose'],
+    experience: 3,
+    siteUrl: 'https://www.google.com',
+    availability: [
+      {
+        day: 'Mon - Sat',
+        time: '04:00 PM - 09:00 PM',
+      },
+      {
+        day: 'Sun',
+        time: '09:00 PM - 12:00 PM',
+      },
+    ],
+  },
+  {
+    fullName: 'Adrienne Gleichner',
+    title: 'MD',
+    imageFile: 'doctor-website-profile-female.png',
+    specialization: 'Internist',
+    specializationTags: ['family', 'nose'],
+    experience: 5,
+    siteUrl: 'https://www.google.com',
+    availability: [
+      {
+        day: 'Mon - Sat',
+        time: '04:00 PM - 09:00 PM',
+      },
+      {
+        day: 'Sun',
+        time: '09:00 PM - 12:00 PM',
+      },
+    ],
+  },
+  {
+    fullName: 'Norberto Jones',
+    title: 'MD',
+    imageFile: 'doctor-website-profile-male.png',
+    specialization: 'Pediatrician',
+    specializationTags: ['eyes', 'nose'],
+    experience: 25,
+    siteUrl: 'https://www.google.com',
+    availability: [
+      {
+        day: 'Mon - Sat',
+        time: '04:00 PM - 09:00 PM',
+      },
+      {
+        day: 'Sun',
+        time: '09:00 PM - 12:00 PM',
+      },
+    ],
+  },
+  {
+    fullName: 'Jeanne Escobar',
+    title: 'MD',
+    imageFile: 'doctor-website-profile-female.png',
+    specialization: 'Pediatrician',
+    specializationTags: ['kids', 'family', 'elderly'],
+    experience: 25,
+    siteUrl: 'https://www.google.com',
+    availability: [
+      {
+        day: 'Mon - Sat',
+        time: '04:00 PM - 09:00 PM',
+      },
+      {
+        day: 'Sun',
+        time: '09:00 PM - 12:00 PM',
+      },
+    ],
+  },
+  {
+    fullName: 'Vicente Reinger',
+    title: 'MD',
+    imageFile: 'doctor-website-profile-male.png',
+    specialization: 'Pulmonology',
+    specializationTags: ['family', 'nose', 'elderly'],
+    experience: 3,
+    siteUrl: 'https://www.google.com',
+    availability: [
+      {
+        day: 'Mon - Sat',
+        time: '04:00 PM - 09:00 PM',
+      },
+      {
+        day: 'Sun',
+        time: '09:00 PM - 12:00 PM',
+      },
+    ],
+  },
+  {
+    fullName: 'Angela Mosciski',
+    title: 'MD',
+    imageFile: 'doctor-website-profile-female.png',
+    specialization: 'Internist',
+    specializationTags: ['family'],
+    experience: 5,
+    siteUrl: 'https://www.google.com',
+    availability: [
+      {
+        day: 'Mon - Sat',
+        time: '04:00 PM - 09:00 PM',
+      },
+      {
+        day: 'Sun',
+        time: '09:00 PM - 12:00 PM',
+      },
+    ],
+  },
+  {
+    fullName: 'Cathy Ledner',
+    title: 'MD',
+    imageFile: 'doctor-website-profile-female.png',
+    specialization: 'Pediatrician',
+    specializationTags: ['kids'],
+    experience: 25,
+    siteUrl: 'https://www.google.com',
+    availability: [
+      {
+        day: 'Mon - Sat',
+        time: '04:00 PM - 09:00 PM',
+      },
+      {
+        day: 'Sun',
+        time: '09:00 PM - 12:00 PM',
+      },
+    ],
+  },
+  {
+    fullName: 'Fisher Bergstrom',
+    title: 'MD',
+    imageFile: 'doctor-website-profile-male.png',
+    specialization: 'Pulmonology',
+    specializationTags: ['family', 'elderly'],
+    experience: 3,
+    siteUrl: 'https://www.google.com',
+    availability: [
+      {
+        day: 'Mon - Sat',
+        time: '04:00 PM - 09:00 PM',
+      },
+      {
+        day: 'Sun',
+        time: '09:00 PM - 12:00 PM',
+      },
+    ],
+  },
+  {
+    fullName: 'Lisa Tepes',
+    title: 'MD',
+    imageFile: 'doctor-website-profile-female.png',
+    specialization: 'Internist',
+    specializationTags: ['eyes'],
+    experience: 5,
+    siteUrl: 'https://www.google.com',
+    availability: [
+      {
+        day: 'Mon - Sat',
+        time: '04:00 PM - 09:00 PM',
+      },
+      {
+        day: 'Sun',
+        time: '09:00 PM - 12:00 PM',
+      },
+    ],
+  },
+];
+
 export const USP = [
   {
     title: 'Hundreds of doctors with different specializations from amazing clinics all over the country.',
