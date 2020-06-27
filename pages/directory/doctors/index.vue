@@ -22,7 +22,7 @@
     //- Sign Up
     sign-me-up(:signUpInfo="signMeUp")
     //- Category
-    category(:cardItems="categoryItems")
+    //- category(:cardItems="categoryItems")
     //- About panel
     about-clinic(:about="aboutInfo")
     v-divider
@@ -56,8 +56,6 @@ import {
   SPECIALIZATIONS,
   SIGN_ME_UP,
   CATEGORY,
-  ABOUT_INFO,
-  SOCIAL_ITEM,
 } from './directory-content';
 
 import headMeta from '~/utils/head-meta';
