@@ -20,4 +20,7 @@
 .letter-spacing-normal {
   letter-spacing: normal !important;
 }
+.pre-white-space {
+  white-space: pre;
+}
 </style>
