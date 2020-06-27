@@ -4,6 +4,8 @@
       :doctor-sign-up-url="'https://www.mycure.md/'"
       :patient-sign-up-url="'https://www.mycure.md/'"
     )
+    //- Usp
+    usp(:uspInfo="usp" :specialization-items="specializations")
     featured-doctor(
       :doctors="doctors.slice(0,6)"
       :doctor-sign-up-url="'https://www.mycure.md/'"
@@ -17,13 +19,22 @@
       :doctors="doctors"
       :is-loading="isLoading"
     )
+    //- Sign Up
+    sign-me-up(:signUpInfo="signMeUp")
+    //- Category
+    category(:cardItems="categoryItems")
     //- About panel
     about-clinic(:about="aboutInfo")
     v-divider
+
+    //- Social panel
     social(:social="socialItem")
     v-divider
+
+    //- Cta
     cta
     v-divider
+
     v-footer(
       height="auto"
       color="white"
@@ -41,28 +52,38 @@ import {
   ABOUT_INFO,
   FILTER_ITEMS,
   SORT_ITEMS,
+  USP,
+  SPECIALIZATIONS,
+  SIGN_ME_UP,
+  CATEGORY,
+  ABOUT_INFO,
+  SOCIAL_ITEM,
 } from './directory-content';
 
 import headMeta from '~/utils/head-meta';
 import AppBar from '~/components/directory-doctor/app-bar';
-import Panel1 from '~/components/clinic-website/panel-1';
 import FeaturedDoctor from '~/components/directory-doctor/featured-doctor';
 import FilterOptions from '~/components/directory-doctor/filter-options';
 import DoctorsList from '~/components/directory-doctor/doctors-list';
-import Cta from '~/components/clinic-website/final-cta';
-import Social from '~/components/clinic-website/social';
-import AboutClinic from '~/components/clinic-website/about-clinic';
+import Usp from '~/components/directory-doctor/usp';
+import Category from '~/components/directory-doctor/category';
+import SignMeUp from '~/components/directory-doctor/sign-me-up';
+import AboutClinic from '~/components/directory-doctor/about-clinic';
+import Social from '~/components/directory-doctor/social';
+import Cta from '~/components/directory-doctor/final-cta';
 export default {
   layout: 'directory-doctor',
   components: {
     AppBar,
-    Panel1,
+    Usp,
+    SignMeUp,
+    Category,
     FeaturedDoctor,
     FilterOptions,
     DoctorsList,
-    Cta,
-    Social,
     AboutClinic,
+    Social,
+    Cta,
   },
   data () {
     this.doctors = DOCTORS_LIST;
@@ -70,6 +91,12 @@ export default {
     this.aboutInfo = ABOUT_INFO;
     this.filterItems = FILTER_ITEMS;
     this.sortItems = SORT_ITEMS;
+    this.usp = USP;
+    this.specializations = SPECIALIZATIONS;
+    this.signMeUp = SIGN_ME_UP;
+    this.categoryItems = CATEGORY;
+    this.aboutInfo = ABOUT_INFO;
+    this.socialItem = SOCIAL_ITEM;
     return {
       isLoading: false,
     };
