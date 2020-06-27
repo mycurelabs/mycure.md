@@ -53,10 +53,10 @@ import {
   ABOUT_INFO,
   FILTER_ITEMS,
   SORT_ITEMS,
-} from './clinic-content';
+} from './directory-content';
 
 import headMeta from '~/utils/head-meta';
-import AppBar from '~/components/clinic-website/app-bar';
+import AppBar from '~/components/directory-doctor/app-bar';
 import Panel1 from '~/components/clinic-website/panel-1';
 import Services from '~/components/clinic-website/services';
 import ClinicInfo from '~/components/clinic-website/clinic-info';
