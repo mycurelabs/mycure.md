@@ -26,13 +26,21 @@
       :specializations="sortItems"
       :sort-by="filterItems"
     )
+    //- Usp
+    usp(:uspInfo="usp")
+
     //- About panel
     about-clinic(:about="aboutInfo")
     v-divider
+
+    //- Social panel
     social(:social="socialItem")
     v-divider
+
+    //- Cta
     cta
     v-divider
+
     v-footer(
       height="auto"
       color="white"
@@ -49,8 +57,9 @@ import {
   SCHEDULES_LIST,
   RATES,
   DOCTORS_LIST,
-  SOCIAL_ITEM,
+  USP,
   ABOUT_INFO,
+  SOCIAL_ITEM,
   FILTER_ITEMS,
   SORT_ITEMS,
 } from './directory-content';
@@ -61,9 +70,10 @@ import Panel1 from '~/components/clinic-website/panel-1';
 import Services from '~/components/clinic-website/services';
 import ClinicInfo from '~/components/clinic-website/clinic-info';
 import Doctors from '~/components/clinic-website/doctors';
-import Cta from '~/components/directory-doctor/final-cta';
-import Social from '~/components/directory-doctor/social';
+import Usp from '~/components/directory-doctor/usp';
 import AboutClinic from '~/components/directory-doctor/about-clinic';
+import Social from '~/components/directory-doctor/social';
+import Cta from '~/components/directory-doctor/final-cta';
 export default {
   layout: 'directory-doctor',
   components: {
@@ -72,17 +82,19 @@ export default {
     Services,
     ClinicInfo,
     Doctors,
-    Cta,
-    Social,
+    Usp,
     AboutClinic,
+    Social,
+    Cta,
   },
   data () {
     this.services = SERVICES_LIST;
     this.schedules = SCHEDULES_LIST;
     this.rates = RATES;
     this.doctors = DOCTORS_LIST;
-    this.socialItem = SOCIAL_ITEM;
+    this.usp = USP;
     this.aboutInfo = ABOUT_INFO;
+    this.socialItem = SOCIAL_ITEM;
     this.filterItems = FILTER_ITEMS;
     this.sortItems = SORT_ITEMS;
     return {};

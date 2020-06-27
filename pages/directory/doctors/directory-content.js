@@ -270,6 +270,16 @@ export const DOCTORS_LIST = [
   },
 ];
 
+export const USP = [{
+  title: 'Hundreds of doctors with different specializations from amazing clinics all over the country.',
+  popularSearches: ['Dermatologist', 'Pediatrician'],
+}];
+
+export const ABOUT_INFO = [{
+  clinicName: 'Mycure Clinic',
+  firstInfo: 'MYCURE Virtual Clinic specializes in telehealth services. MYCURE Virtual Clinic\'s telemedicine service is committed to provide medial consultation via video conference or phone call to our patient 24 hours a day 7 days a week.',
+  secondInfo: 'MCURE virtual clinic also offers a robust clinic management system that are being used by hundreds of satisfied clients nationwide. All doctors onboard here are certified under the Philippine Medical Association.',
+}];
 export const SOCIAL_ITEM = [{
   title: 'Love this clinic? Share the love.',
   icons: [
@@ -278,10 +288,4 @@ export const SOCIAL_ITEM = [{
     { icon: 'mdi-email', link: 'mailto:' },
     { icon: 'mdi-linkedin', link: 'https://www.linkedin.com/' },
   ],
-}];
-
-export const ABOUT_INFO = [{
-  clinicName: 'Mycure Clinic',
-  firstInfo: 'MYCURE Virtual Clinic specializes in telehealth services. MYCURE Virtual Clinic\'s telemedicine service is committed to provide medial consultation via video conference or phone call to our patient 24 hours a day 7 days a week.',
-  secondInfo: 'MCURE virtual clinic also offers a robust clinic management system that are being used by hundreds of satisfied clients nationwide. All doctors onboard here are certified under the Philippine Medical Association.',
 }];
