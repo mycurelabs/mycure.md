@@ -53,7 +53,7 @@ import {
   ABOUT_INFO,
   FILTER_ITEMS,
   SORT_ITEMS,
-} from './clinic-content';
+} from './directory-content';
 
 import headMeta from '~/utils/head-meta';
 import AppBar from '~/components/clinic-website/app-bar';
@@ -61,9 +61,9 @@ import Panel1 from '~/components/clinic-website/panel-1';
 import Services from '~/components/clinic-website/services';
 import ClinicInfo from '~/components/clinic-website/clinic-info';
 import Doctors from '~/components/clinic-website/doctors';
-import Cta from '~/components/clinic-website/final-cta';
-import Social from '~/components/clinic-website/social';
-import AboutClinic from '~/components/clinic-website/about-clinic';
+import Cta from '~/components/directory-doctor/final-cta';
+import Social from '~/components/directory-doctor/social';
+import AboutClinic from '~/components/directory-doctor/about-clinic';
 export default {
   layout: 'directory-doctor',
   components: {
