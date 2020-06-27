@@ -12,9 +12,9 @@
       clinic-copy="Copy of the clinic. Ex. The best clinic since 1945"
       clinic-tagline="Up to 50 characters plus a tagline up to well 60 characters."
     )
-    services(
-      header-text="We offer this healthcare services for you."
-      :services="services"
+    featured-doctor(
+      :doctors="doctors.slice(0,6)"
+      :doctor-sign-up-url="'https://www.mycure.md/'"
     )
     v-divider
     clinic-info(
@@ -48,7 +48,6 @@
 
 <script>
 import {
-  SERVICES_LIST,
   SCHEDULES_LIST,
   RATES,
   DOCTORS_LIST,
@@ -61,7 +60,7 @@ import {
 import headMeta from '~/utils/head-meta';
 import AppBar from '~/components/directory-doctor/app-bar';
 import Panel1 from '~/components/clinic-website/panel-1';
-import Services from '~/components/clinic-website/services';
+import FeaturedDoctor from '~/components/directory-doctor/featured-doctor';
 import ClinicInfo from '~/components/clinic-website/clinic-info';
 import Doctors from '~/components/clinic-website/doctors';
 import Cta from '~/components/clinic-website/final-cta';
@@ -72,7 +71,7 @@ export default {
   components: {
     AppBar,
     Panel1,
-    Services,
+    FeaturedDoctor,
     ClinicInfo,
     Doctors,
     Cta,
@@ -80,7 +79,6 @@ export default {
     AboutClinic,
   },
   data () {
-    this.services = SERVICES_LIST;
     this.schedules = SCHEDULES_LIST;
     this.rates = RATES;
     this.doctors = DOCTORS_LIST;
