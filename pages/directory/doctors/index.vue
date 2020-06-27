@@ -1,33 +1,21 @@
 <template lang="pug">
-  v-container(fluid)
+  v-container
     app-bar(
       :doctor-sign-up-url="'https://www.mycure.md/'"
       :patient-sign-up-url="'https://www.mycure.md/'"
-    )
-    panel-1(
-      pic-url="MYCURE-virtual-clinic-healthcare-practice-online-enterprise-F-multi-specialty"
-      pic-extension=".webp"
-      pic-alt="Clinic Image"
-      pic-custom-path="enterprise/"
-      clinic-copy="Copy of the clinic. Ex. The best clinic since 1945"
-      clinic-tagline="Up to 50 characters plus a tagline up to well 60 characters."
     )
     featured-doctor(
       :doctors="doctors.slice(0,6)"
       :doctor-sign-up-url="'https://www.mycure.md/'"
     )
-    v-divider
-    clinic-info(
-      :schedules="schedules"
-      :rates="rates"
-      clinic-name="MYCURE Virtual Clinic"
-      clinic-address="1036, Delos Santos STI Medical Center 201 E. Rodriguez Avenue Quezon City"
+    filter-options(
+      :specializations="filterItems"
+      :sort-by="sortItems"
+      v-on:mock-load="mockLoading"
     )
-    v-divider
-    doctors(
+    doctors-list(
       :doctors="doctors"
-      :specializations="sortItems"
-      :sort-by="filterItems"
+      :is-loading="isLoading"
     )
     //- About panel
     about-clinic(:about="aboutInfo")
@@ -48,8 +36,6 @@
 
 <script>
 import {
-  SCHEDULES_LIST,
-  RATES,
   DOCTORS_LIST,
   SOCIAL_ITEM,
   ABOUT_INFO,
@@ -61,8 +47,8 @@ import headMeta from '~/utils/head-meta';
 import AppBar from '~/components/directory-doctor/app-bar';
 import Panel1 from '~/components/clinic-website/panel-1';
 import FeaturedDoctor from '~/components/directory-doctor/featured-doctor';
-import ClinicInfo from '~/components/clinic-website/clinic-info';
-import Doctors from '~/components/clinic-website/doctors';
+import FilterOptions from '~/components/directory-doctor/filter-options';
+import DoctorsList from '~/components/directory-doctor/doctors-list';
 import Cta from '~/components/clinic-website/final-cta';
 import Social from '~/components/clinic-website/social';
 import AboutClinic from '~/components/clinic-website/about-clinic';
@@ -72,24 +58,32 @@ export default {
     AppBar,
     Panel1,
     FeaturedDoctor,
-    ClinicInfo,
-    Doctors,
+    FilterOptions,
+    DoctorsList,
     Cta,
     Social,
     AboutClinic,
   },
   data () {
-    this.schedules = SCHEDULES_LIST;
-    this.rates = RATES;
     this.doctors = DOCTORS_LIST;
     this.socialItem = SOCIAL_ITEM;
     this.aboutInfo = ABOUT_INFO;
     this.filterItems = FILTER_ITEMS;
     this.sortItems = SORT_ITEMS;
-    return {};
+    return {
+      isLoading: false,
+    };
   },
   mounted () {
     console.log(this.$route);
+  },
+  methods: {
+    mockLoading () {
+      this.isLoading = true;
+      setTimeout(() => {
+        this.isLoading = false;
+      }, 1000);
+    },
   },
   head () {
     // TODO: update meta tags
