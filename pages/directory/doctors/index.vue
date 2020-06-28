@@ -29,6 +29,9 @@
     //- Usp
     usp(:uspInfo="usp" :specialization-items="specializations")
 
+    //- Sign Up
+    sign-me-up(:signUpInfo="signMeUp")
+
     //- About panel
     about-clinic(:about="aboutInfo")
     v-divider
@@ -59,6 +62,7 @@ import {
   DOCTORS_LIST,
   USP,
   SPECIALIZATIONS,
+  SIGN_ME_UP,
   ABOUT_INFO,
   SOCIAL_ITEM,
   FILTER_ITEMS,
@@ -72,6 +76,7 @@ import Services from '~/components/clinic-website/services';
 import ClinicInfo from '~/components/clinic-website/clinic-info';
 import Doctors from '~/components/clinic-website/doctors';
 import Usp from '~/components/directory-doctor/usp';
+import SignMeUp from '~/components/directory-doctor/sign-me-up';
 import AboutClinic from '~/components/directory-doctor/about-clinic';
 import Social from '~/components/directory-doctor/social';
 import Cta from '~/components/directory-doctor/final-cta';
@@ -84,6 +89,7 @@ export default {
     ClinicInfo,
     Doctors,
     Usp,
+    SignMeUp,
     AboutClinic,
     Social,
     Cta,
@@ -95,6 +101,7 @@ export default {
     this.doctors = DOCTORS_LIST;
     this.usp = USP;
     this.specializations = SPECIALIZATIONS;
+    this.signMeUp = SIGN_ME_UP;
     this.aboutInfo = ABOUT_INFO;
     this.socialItem = SOCIAL_ITEM;
     this.filterItems = FILTER_ITEMS;
