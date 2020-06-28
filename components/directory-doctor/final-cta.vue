@@ -5,8 +5,8 @@
         img(v-lazy="require(`~/assets/images/clinics-website/patient-portal-badge-appointment.png`)").ml-n2
         h2 {{contents.title}}
         p.py-5.font-18 {{contents.subtitle}}
-        v-btn(height="55" color="primary"
-        ).font-18 Book Appointment
+        v-btn(height="55" color="amber"
+        ).font-18.white--text Book Appointment
 
 </template>
 
