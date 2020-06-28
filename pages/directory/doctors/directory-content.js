@@ -295,9 +295,8 @@ export const SIGN_ME_UP = [
 ];
 
 export const ABOUT_INFO = [{
-  clinicName: 'Mycure Clinic',
-  firstInfo: 'MYCURE Virtual Clinic specializes in telehealth services. MYCURE Virtual Clinic\'s telemedicine service is committed to provide medial consultation via video conference or phone call to our patient 24 hours a day 7 days a week.',
-  secondInfo: 'MCURE virtual clinic also offers a robust clinic management system that are being used by hundreds of satisfied clients nationwide. All doctors onboard here are certified under the Philippine Medical Association.',
+  clinicName: 'MYCURE',
+  clinicsInfo: 'MYCURE Virtual Clinic specializes in telehealth services. MYCURE Virtual Clinic\'s telemedicine service is committed to provide medial consultation via video conference or phone call to our patient 24 hours a day 7 days a week. <br><br>MYCURE virtual clinic also offers a robust clinic management system that are being used by hundreds of satisfied clients nationwide. All doctors onboard here are certified under the Philippine Medical Association.',
 }];
 
 export const SOCIAL_ITEM = [{
