@@ -1,33 +1,36 @@
 <template lang="pug">
-  v-container
-    filter-options(
-      :specializations="filterItems"
-      :sort-by="sortItems"
-      v-on:mock-load="mockLoading"
-      :is-header="true"
-    )
-    doctors-list(
-      :doctors="doctors"
-      :is-loading="isLoading"
-      :is-header="true"
-      :current-page="'1'"
-      :total-pages="'42'"
-    )
-    //- About panel
-    about-clinic(:about="aboutInfo")
-    v-divider
-    social(:social="socialItem")
-    v-divider
-    cta
-    v-divider
-    v-footer(
-      height="auto"
-      color="white"
-    )
-      v-row
-        v-col.text-center
-          span.black--text Copyright {{new Date().getFullYear()}} | All Rights Reserved | Powered by #[a(href="https://mycure.md" target="_blank").mycure-link.font-weight-bold MYCURE]
-    //- pre {{doctor}}
+  fragment
+    v-container
+      filter-options(
+        :specializations="filterItems"
+        :sort-by="sortItems"
+        v-on:mock-load="mockLoading"
+        :is-header="true"
+      )
+    trivia-carousel
+    v-container
+      doctors-list(
+        :doctors="doctors"
+        :is-loading="isLoading"
+        :is-header="true"
+        :current-page="'1'"
+        :total-pages="'42'"
+      )
+      //- About panel
+      about-clinic(:about="aboutInfo")
+      v-divider
+      social(:social="socialItem")
+      v-divider
+      cta
+      v-divider
+      v-footer(
+        height="auto"
+        color="white"
+      )
+        v-row
+          v-col.text-center
+            span.black--text Copyright {{new Date().getFullYear()}} | All Rights Reserved | Powered by #[a(href="https://mycure.md" target="_blank").mycure-link.font-weight-bold MYCURE]
+      //- pre {{doctor}}
 </template>
 
 <script>
@@ -42,6 +45,7 @@ import {
 import headMeta from '~/utils/head-meta';
 import AppBar from '~/components/directory-doctor/app-bar';
 import FilterOptions from '~/components/directory-doctor/filter-options';
+import TriviaCarousel from '~/components/directory-doctor/trivia-carousel';
 import DoctorsList from '~/components/directory-doctor/doctors-list';
 import Cta from '~/components/clinic-website/final-cta';
 import Social from '~/components/clinic-website/social';
@@ -51,6 +55,7 @@ export default {
   components: {
     AppBar,
     FilterOptions,
+    TriviaCarousel,
     DoctorsList,
     Cta,
     Social,
