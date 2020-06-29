@@ -14,9 +14,9 @@
             dense
             append-icon="mdi-magnify"
             v-model="searchTerm"
-            @click:append="searchDoctor()"
+            @click:append="searchDoctor"
             @click:clear="isSearching = false"
-            @keydown.enter="searchDoctor()"
+            @keydown.enter="searchDoctor"
           ).input-field
       template(v-else)
         p.grey--text.font-26.message-line-height We have {{ doctorsLength }} doctors in our clinic. Who would you like to schedule for an appointment?
@@ -68,9 +68,9 @@
           dense
           append-icon="mdi-magnify"
           v-model="searchTerm"
-          @click:append="searchDoctor()"
+          @click:append="searchDoctor"
           @click:clear="isSearching = false"
-          @keydown.enter="searchDoctor()"
+          @keydown.enter="searchDoctor"
         ).align-baseline
           template(v-slot:append-outer)
             div
