@@ -55,12 +55,10 @@ export default {
   async asyncData ({ app, router, params, error }) {
     try {
       const doctor = await getDoctorWebsite({ username: params.id });
-      console.warn('doctor', doctor);
       if (_.isEmpty(doctor)) {
         error({ statusCode: 404, message: 'doctor-not-found' });
       }
       const clinics = await getDoctorClinics({ uid: doctor.id });
-      console.warn('clinics', clinics);
       return {
         doctor,
         clinics: clinics || [],
