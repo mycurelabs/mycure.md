@@ -7,6 +7,9 @@
 .font-64 {
   font-size: 64px !important;
 }
+.font-56 {
+  font-size: 56px !important;
+}
 .font-32 {
   font-size: 32px !important;
 }
