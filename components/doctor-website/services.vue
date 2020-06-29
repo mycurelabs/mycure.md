@@ -17,7 +17,7 @@
             ).pa-1
               media(image-position="left")
                 template(slot="media-image")
-                  img(src="../../assets/images/mycure-check.png")
+                  img(src="../../assets/images/mycure-check.png" width="25px")
                 template(slot="media-content")
                   span {{service}}
 </template>
