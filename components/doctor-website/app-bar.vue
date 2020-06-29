@@ -7,8 +7,10 @@
         to="/"
       )
     v-spacer
-    book-appointment-btn.mr-2
-    online-consult-btn
+    //- Hide in mobile view since they overlap with logo,
+    //- The same btns exist on the center
+    book-appointment-btn(v-if="!$isMobile").mr-2
+    online-consult-btn(v-if="!$isMobile")
 </template>
 
 <script>
