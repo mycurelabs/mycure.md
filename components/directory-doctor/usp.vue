@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-container(:class="uspBgClass")
+  v-container(:class="uspBgClass").py-10
     v-row(justify="center" align="center" v-for="(data, key) in uspInfo" :key="key")
       v-col(cols="12" md="10")
         h1(:class="titleSizeClass").text-center.font-weight-bold {{data.title}}
@@ -90,5 +90,10 @@ export default {
 .usp-panel {
   background-image: url('../../assets/images/directory-doctor/MYCURE-Doctor-Directory-Left-First-Panel-Image.png'), url('../../assets/images/directory-doctor/MYCURE-Doctor-Directory-Right-First-Panel-Image.png');
   background-position: left bottom, right bottom;
+}
+@media screen and (min-width: 1920px) {
+  .search-field {
+    padding: 0 75px !important;
+  }
 }
 </style>
