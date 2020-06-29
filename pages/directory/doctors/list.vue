@@ -7,7 +7,9 @@
         v-on:mock-load="mockLoading"
         :is-header="true"
       )
-    trivia-carousel
+    trivia-carousel(
+      :slide-content="triviaSlideContent"
+    )
     v-container
       doctors-list(
         :doctors="doctors"
@@ -40,6 +42,7 @@ import {
   ABOUT_INFO,
   FILTER_ITEMS,
   SORT_ITEMS,
+  TRIVIA_SLIDE_CONTENT,
 } from './directory-content';
 
 import headMeta from '~/utils/head-meta';
@@ -67,6 +70,7 @@ export default {
     this.aboutInfo = ABOUT_INFO;
     this.filterItems = FILTER_ITEMS;
     this.sortItems = SORT_ITEMS;
+    this.triviaSlideContent = TRIVIA_SLIDE_CONTENT;
     return {
       isLoading: false,
     };
