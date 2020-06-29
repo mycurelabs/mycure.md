@@ -168,9 +168,9 @@ export default {
     },
   },
   methods: {
-    mockLoading () {
+    async mockLoading () {
       this.isLoading = true;
-      setTimeout(() => {
+      await setTimeout(() => {
         this.isLoading = false;
       }, 500);
     },
