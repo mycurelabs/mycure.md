@@ -1,5 +1,5 @@
 <template lang="pug">
-  div
+  div(v-if="!loading")
     app-bar
     panel-1(
       :pic-url="picURL"
@@ -72,6 +72,7 @@ export default {
   data () {
     return {
       selectedTab: 'clinics',
+      loading: true,
     };
   },
   computed: {
@@ -116,6 +117,7 @@ export default {
     },
   },
   async mounted () {
+    this.loading = false;
     if (this.$route.query.audience === 'self') {
       return;
     };
