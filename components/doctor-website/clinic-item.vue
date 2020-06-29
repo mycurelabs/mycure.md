@@ -79,6 +79,43 @@ export default {
         'email',
         'website',
       ],
+      days: [
+        {
+          order: 1,
+          day: 'mon',
+          dayName: 'Monday',
+        },
+        {
+          order: 2,
+          day: 'tue',
+          dayName: 'Tuesday',
+        },
+        {
+          order: 3,
+          day: 'wed',
+          dayName: 'Wednesday',
+        },
+        {
+          order: 4,
+          day: 'thu',
+          dayName: 'Thursday',
+        },
+        {
+          order: 5,
+          day: 'fri',
+          dayName: 'Friday',
+        },
+        {
+          order: 6,
+          day: 'sat',
+          dayName: 'Saturday',
+        },
+        {
+          order: 7,
+          day: 'sun',
+          dayName: 'Sunday',
+        },
+      ],
     };
   },
   computed: {
@@ -88,11 +125,21 @@ export default {
   },
   watch: {
     clinicSchedulesExpanded (val) {
-      if (!val && this.clinic?.mf_schedule && this.clinic?.mf_schedule.length >= 3) { // eslint-disable-line
-        this.clinicSchedules = this.clinic?.mf_schedule.slice(0, 3) || []; // eslint-disable-line
+      // Sort the schedules
+      const groupedSchedules = this.clinic?.mf_schedule // eslint-disable-line
+        ?.map((schedule) => {
+          const { order } = this.days.find(day => day.day === schedule.day);
+          return {
+            order,
+            ...schedule,
+          };
+        })
+        ?.sort((a, b) => a.day !== b.day ? a.order - b.order : a.opening - b.opening) || [];
+      if (!val && groupedSchedules && groupedSchedules.length >= 3) { // eslint-disable-line
+        this.clinicSchedules = groupedSchedules.slice(0, 3) || []; // eslint-disable-line
         return;
       }
-      this.clinicSchedules = this.clinic?.mf_schedule || []; // eslint-disable-line
+      this.clinicSchedules = groupedSchedules || []; // eslint-disable-line
     },
   },
   created () {
