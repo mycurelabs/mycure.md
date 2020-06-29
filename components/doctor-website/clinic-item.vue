@@ -10,7 +10,15 @@
       v-row(wrap)
         v-col(cols="12" sm="12" md="8").pt-0
           h3(style="margin-top: -5px") {{clinic.name}}
-          span {{clinic.description}}
+          template(v-for="key in clinicKeys")
+            template(v-if="clinic[key] && key === 'address'")
+              | {{clinic.address | prettify-address}}
+              br
+            template(v-else-if="clinic[key] && key !== 'address'")
+              span
+                span(v-if="key === 'phone'") +
+                | {{clinic[key]}}
+              br
           v-col(cols="12" sm="12").pa-0.mt-2
             //- TODO: check if clinic lat lng is available
             //- Hide for now until location is implemented
@@ -39,6 +47,21 @@
 
 <script>
 export default {
+  filters: {
+    prettifyAddress (address) {
+      if (!address) {
+        return '';
+      }
+      const formattedArray = [
+        address.street1,
+        address.street2,
+        address.city,
+        address.province,
+        address.country,
+      ].filter(Boolean).join(', ');
+      return formattedArray;
+    },
+  },
   props: {
     clinic: {
       type: Object,
@@ -49,6 +72,13 @@ export default {
     return {
       clinicSchedules: [],
       clinicSchedulesExpanded: null,
+      clinicKeys: [
+        'description',
+        'address',
+        'phone',
+        'email',
+        'website',
+      ],
     };
   },
   computed: {
