@@ -4,9 +4,9 @@
       v-carousel-item(v-for="(slide, i) in slideContent" :key="i")
         v-row(align="center" justify="center" class="fill-height").text-center
           div(:class="containerClass")
-            h3(:class="headerClasses").mb-2 {{ slide[0] }}
-            h1(:class="contentClasses").mb-2.white--text {{ slide[1] }}
-            p(:class="sourceClasses").white--text {{ slide[2] }}
+            h3(:class="headerClasses").mb-2 {{ slide.header }}
+            h1(:class="contentClasses").mb-2.white--text {{ slide.content }}
+            p(:class="sourceClasses").white--text {{ slide.source }}
 </template>
 
 <script>

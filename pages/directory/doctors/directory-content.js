@@ -271,31 +271,31 @@ export const DOCTORS_LIST = [
 ];
 
 export const TRIVIA_SLIDE_CONTENT = [
-  [
-    'MYCURE 1',
-    '"64% of consumers would see a doctor via video."',
-    'www.americanwell.com',
-  ],
-  [
-    'MYCURE 2',
-    '"64% of consumers would see a doctor via video."',
-    'www.americanwell.com',
-  ],
-  [
-    'MYCURE 3',
-    '"64% of consumers would see a doctor via video."',
-    'www.americanwell.com',
-  ],
-  [
-    'MYCURE 4',
-    '"64% of consumers would see a doctor via video."',
-    'www.americanwell.com',
-  ],
-  [
-    'MYCURE 5',
-    '"64% of consumers would see a doctor via video."',
-    'www.americanwell.com',
-  ],
+  {
+    header: 'MYCURE 1',
+    content: '"64% of consumers would see a doctor via video."',
+    source: 'www.americanwell.com',
+  },
+  {
+    header: 'MYCURE 2',
+    content: '"64% of consumers would see a doctor via video."',
+    source: 'www.americanwell.com',
+  },
+  {
+    header: 'MYCURE 3',
+    content: '"64% of consumers would see a doctor via video."',
+    source: 'www.americanwell.com',
+  },
+  {
+    header: 'MYCURE 4',
+    content: '"64% of consumers would see a doctor via video."',
+    source: 'www.americanwell.com',
+  },
+  {
+    header: 'MYCURE 5',
+    content: '"64% of consumers would see a doctor via video."',
+    source: 'www.americanwell.com',
+  },
 ];
 
 export const USP = [
