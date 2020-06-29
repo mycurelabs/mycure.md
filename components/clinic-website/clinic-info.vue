@@ -6,7 +6,7 @@
         p.grey--text {{ clinicAddress }}
         v-row
           v-col(cols="12" md="6")
-            template(v-for="(item) in schedules")
+            template(v-for="item in schedules")
               h3 {{ item.day }}
               p {{ item.time }}
           v-col(cols="12" md="6")
