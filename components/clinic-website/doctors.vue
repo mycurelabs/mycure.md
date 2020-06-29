@@ -14,9 +14,9 @@
             dense
             append-icon="mdi-magnify"
             v-model="searchTerm"
-            @click:append="searchDoctor"
+            @click:append="mockFilter"
             @click:clear="isSearching = false"
-            @keydown.enter="searchDoctor"
+            @keydown.enter="mockFilter"
           ).input-field
       template(v-else)
         p.grey--text.font-26.message-line-height We have {{ doctorsLength }} doctors in our clinic. Who would you like to schedule for an appointment?
@@ -32,7 +32,7 @@
             :items="specializations"
             item-text="info"
             item-value="tag"
-            @change="specFilterDoctor"
+            @change="mockFilter"
             dense
             outlined
           )
@@ -43,7 +43,7 @@
             :items="sortBy"
             item-text="info"
             item-value="tag"
-            @change="sortDoctor"
+            @change="mockFilter"
             dense
             outlined
           )
@@ -68,9 +68,9 @@
           dense
           append-icon="mdi-magnify"
           v-model="searchTerm"
-          @click:append="searchDoctor"
+          @click:append="mockFilter"
           @click:clear="isSearching = false"
-          @keydown.enter="searchDoctor"
+          @keydown.enter="mockFilter"
         ).align-baseline
           template(v-slot:append-outer)
             div
@@ -180,13 +180,7 @@ export default {
       this.selectedSpecialization = 'default';
       this.selectedSort = 'default';
     },
-    searchDoctor () {
-      this.mockLoading();
-    },
-    specFilterDoctor () {
-      this.mockLoading();
-    },
-    sortDoctor () {
+    mockFilter () {
       this.mockLoading();
     },
     applyFiltersMobile () {
