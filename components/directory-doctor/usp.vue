@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-container.usp-panel
+  v-container(:class="uspBgClass")
     v-row(justify="center" align="center" v-for="(data, key) in uspInfo" :key="key")
       v-col(cols="12" md="10")
         h1(:class="titleSizeClass").text-center.font-weight-bold {{data.title}}
@@ -62,6 +62,9 @@ export default {
     };
   },
   computed: {
+    uspBgClass () {
+      return [{ 'usp-panel': !this.$isMobile }];
+    },
     titleSizeClass () {
       return [this.$isMobile ? 'font-34' : 'font-50'];
     },
