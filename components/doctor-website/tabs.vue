@@ -28,7 +28,7 @@
                   h3 Educational Background
                   i(v-if="education.length === 0") No data
                   template(v-else v-for="educ in education")
-                    span {{educ.degree}} - {{educ.school}}
+                    span {{ educ | format-school }}
                     br
                     span {{educ.from}} - {{educ.to}}
                     br
@@ -39,6 +39,11 @@ import ClinicItem from './clinic-item';
 export default {
   components: {
     ClinicItem,
+  },
+  filters: {
+    formatSchool (educ) {
+      return `${educ?.degree ? educ.degree + ' - ' : ''}${educ.school}`;
+    },
   },
   props: {
     clinics: {
