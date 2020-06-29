@@ -39,10 +39,16 @@
     //- About panel
     about-clinic(:about="aboutInfo")
     v-divider
+
+    //- Social Panel
     social(:social="socialItem")
     v-divider
+
+    //- CTA
     cta
     v-divider
+    //- Footer
+
     v-footer(
       height="auto"
       color="white"

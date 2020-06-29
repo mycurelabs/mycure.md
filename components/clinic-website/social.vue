@@ -25,7 +25,7 @@ export default {
   },
   computed: {
     paddingClasses () {
-      return [this.$isMobile ? 'pt-3' : ''];
+      return [{ 'pt-3': this.$isMobile }];
     },
   },
 };
