@@ -5,9 +5,7 @@
     template(v-else)
       template(v-if="$isMobile")
         template(v-for="item in doctors")
-          doctor-item-list-mobile(
-            :doctor="item"
-          )
+          doctor-item-list-mobile(:doctor="item")
         div(v-if="!isHeader")
           v-btn(
             large

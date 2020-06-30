@@ -18,9 +18,20 @@
                 v-icon mdi-dots-vertical
             v-list
               v-list-item
-                v-btn(width="110" color="#fafcff" tile elevation="0" :class="{ 'mr-2': $isMobile }").letter-spacing-normal.text-none Availability
+                v-btn(
+                  width="110"
+                  color="#fafcff"
+                  tile
+                  elevation="0"
+                  :class="{ 'mr-2': $isMobile }"
+                ).letter-spacing-normal.text-none Availability
               v-list-item
-                v-btn(width="110" color="#fafcff" tile elevation="0").letter-spacing-normal.text-none View Site
+                v-btn(
+                  width="110"
+                  color="#fafcff"
+                  tile
+                  elevation="0"
+                ).letter-spacing-normal.text-none View Site
 </template>
 
 <script>
