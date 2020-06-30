@@ -111,9 +111,9 @@ export default {
     console.log(this.$route);
   },
   methods: {
-    mockLoading () {
+    async mockLoading () {
       this.isLoading = true;
-      setTimeout(() => {
+      await setTimeout(() => {
         this.isLoading = false;
       }, 1000);
     },
