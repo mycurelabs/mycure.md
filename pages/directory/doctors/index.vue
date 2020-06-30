@@ -1,14 +1,14 @@
 <template lang="pug">
   v-container
     app-bar(
-      :doctor-sign-up-url="'https://www.mycure.md/'"
-      :patient-sign-up-url="'https://www.mycure.md/'"
+      :doctor-sign-up-url="'https://www.mycure.md/signup/individual/'"
+      :patient-sign-up-url="patientSignUpUrl"
     )
     //- Usp
     usp(:uspInfo="usp" :specialization-items="specializations")
     featured-doctor(
       :doctors="doctors.slice(0,6)"
-      :doctor-sign-up-url="'https://www.mycure.md/'"
+      :doctor-sign-up-url="'https://www.mycure.md/signup/individual/'"
     )
     filter-options(
       :specializations="filterItems"
@@ -101,6 +101,11 @@ export default {
     return {
       isLoading: false,
     };
+  },
+  computed: {
+    patientSignUpUrl () {
+      return `${process.env.PX_PORTAL_URL}/signup`;
+    },
   },
   mounted () {
     console.log(this.$route);

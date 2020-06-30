@@ -50,11 +50,11 @@ export default {
   props: {
     doctorSignUpUrl: {
       type: String,
-      default: 'https://www.mycure.md/',
+      default: 'https://www.mycure.md/signup/individual/',
     },
     patientSignUpUrl: {
       type: String,
-      default: 'https://www.mycure.md',
+      default: `${process.env.PX_PORTAL_URL}/signup`,
     },
   },
 };
