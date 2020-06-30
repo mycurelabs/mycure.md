@@ -51,10 +51,10 @@
             :prefix="`+${user.countryCallingCode}`"
             :error-messages="mobileNoErrorMessage"
             :rules="[requiredRule]"
+            :loading="loadingForm || loading"
+            :disabled="loadingForm || loading"
             @blur="validatePhoneNo"
           )
-            //- :loading="loadingForm || loading"
-            //- :disabled="loadingForm || loading"
             template(slot="append")
               div(style="margin-top: -5px")
                 v-tooltip(bottom)
