@@ -13,6 +13,7 @@
           @click:clear="isSearching = false"
           :loading="isLoading"
           :class="paddingClass"
+          background-color="white"
           clearable
           outlined
         ).search-field
@@ -27,6 +28,7 @@
           :item-text="specializationItems"
           :item-value="specializationItems"
           label="Others"
+          background-color="white"
           outlined
           )
 </template>
