@@ -10,8 +10,8 @@
             width="70"
           ).link-to-home.pb-5
           h1.pb-3 Create a MYCURE Account
-          template(v-for="(item, key) in checkListItems")
-            span(v-html="item").font-16
+          //- template(v-for="(item, key) in checkListItems")
+          //-   span(v-html="item").font-16
         v-col(cols="12" md="5" justify="center" align="center")
           v-row(no-gutters)
             v-col(xs="12")
@@ -34,35 +34,38 @@
               ).pl-1
                 template(v-slot:append v-if="user.lastName")
                   v-icon(color="accent") mdi-check
-          v-text-field(
-            v-model="user.doc_PRCLicenseNo"
-            label="Physician License No"
-            outlined
-            :rules="[requiredRule, numberRule]"
-            :disabled="loading"
-          )
-            template(v-slot:append v-if="user.doc_PRCLicenseNo && user.doc_PRCLicenseNo>=0")
-              v-icon(color="accent") mdi-check
-          v-text-field(
-            v-model="user.mobileNo"
-            label="Mobile Number"
-            type="number"
-            outlined
-            :prefix="`+${user.countryCallingCode}`"
-            :error-messages="mobileNoErrorMessage"
-            :rules="[requiredRule]"
-            :loading="loadingForm || loading"
-            :disabled="loadingForm || loading"
-            @blur="validatePhoneNo"
-          )
-            template(slot="append")
-              div(style="margin-top: -5px")
-                v-tooltip(bottom)
-                  template(v-slot:activator="{ on }")
-                    v-btn(icon @click="countryDialog = true" v-on="on").ma-0
-                      img(width="25" :src="user.countryFlag").flag-img.mt-2
-                  | Change Country
-                v-icon(v-if="mobileNoError" color="accent") mdi-check
+          v-row(no-gutters)
+            v-col(xs="12")
+              v-text-field(
+                v-model="user.doc_PRCLicenseNo"
+                label="Physician License No"
+                outlined
+                :rules="[requiredRule, numberRule]"
+                :disabled="loading"
+              ).pr-1
+                template(v-slot:append v-if="user.doc_PRCLicenseNo && user.doc_PRCLicenseNo>=0")
+                  v-icon(color="accent") mdi-check
+            v-col(xs="12")
+              v-text-field(
+                v-model="user.mobileNo"
+                label="Mobile Number"
+                type="number"
+                outlined
+                :prefix="`+${user.countryCallingCode}`"
+                :error-messages="mobileNoErrorMessage"
+                :rules="[requiredRule]"
+                :loading="loadingForm || loading"
+                :disabled="loadingForm || loading"
+                @blur="validatePhoneNo"
+              ).pl-1
+                template(slot="append")
+                  div(style="margin-top: -5px")
+                    v-icon(v-if="mobileNoError" color="accent").ml-n10 mdi-check
+                    v-tooltip(bottom)
+                      template(v-slot:activator="{ on }")
+                        v-btn(icon @click="countryDialog = true" v-on="on")
+                          img(width="25" :src="user.countryFlag").flag-img.mt-2
+                      | Change Country
             //- NOTE: DO NOT REMOVE YET
             //- template(slot="append-outer")
             //-   v-tooltip(bottom)
@@ -81,26 +84,29 @@
           )
             template(v-slot:append v-if="user.email &&  /.+@.+/.test(user.email)")
               v-icon(color="accent") mdi-check
-          v-text-field(
-            v-model="user.password"
-            label="Your MYCURE Password"
-            outlined
-            :type="showPass ? 'text' : 'password'"
-            :rules="[requiredRule, passwordRule]"
-            :append-icon="showPass ? 'mdi-eye-off' : 'mdi-eye'"
-            :disabled="loading"
-            @click:append="showPass = !showPass"
-          )
-          v-text-field(
-            v-model="confirmPassword"
-            label="Confirm Password"
-            outlined
-            type="password"
-            :rules="[requiredRule, matchPasswordRule]"
-            :disabled="loading"
-          )
-            template(v-slot: append v-if="confirmPassword && confirmPassword === user.password")
-              v-icon(color="accent") mdi-check
+          v-row(no-gutters)
+            v-col(xs="12")
+              v-text-field(
+                v-model="user.password"
+                label="Your MYCURE Password"
+                outlined
+                :type="showPass ? 'text' : 'password'"
+                :rules="[requiredRule, passwordRule]"
+                :append-icon="showPass ? 'mdi-eye-off' : 'mdi-eye'"
+                :disabled="loading"
+                @click:append="showPass = !showPass"
+              ).pr-1
+            v-col(xs="12")
+              v-text-field(
+                v-model="confirmPassword"
+                label="Confirm Password"
+                outlined
+                type="password"
+                :rules="[requiredRule, matchPasswordRule]"
+                :disabled="loading"
+              ).pl-1
+                template(v-slot: append v-if="confirmPassword && confirmPassword === user.password")
+                  v-icon(color="accent") mdi-check
         v-col(cols="12" md="10" justify="center" v-if="!$isMobile").mt-md-n5
           v-divider
         v-col(cols="12" md="10" justify="center" align="start")
@@ -379,6 +385,12 @@ h1 {
   line-height: 35px;
 }
 
+::v-deep input::-webkit-outer-spin-button,
+::v-deep input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 .link-to-home:hover {
   cursor: pointer;
 }
@@ -397,60 +409,74 @@ h1 {
 
 .vertical-divider {
   margin-top: 10px;
-  height: 230px !important;
+  height: 150px !important;
+}
+@media screen and (min-width: 768px) {
+  .content-padding {
+    /* padding-top: 15vh; */
+    padding-bottom: 19%;
+  }
 }
 @media screen and (min-width: 1024px) {
   .content-padding {
-    padding-top: 15vh;
-    padding-bottom: 27%;
+    padding-top: 20vh;
+    padding-bottom: 40%;
   }
 }
-@media screen and (min-width: 1280px) and (max-height: 1024px) {
+@media screen and (device-width: 1280px) and (device-height: 800px) {
   .content-padding {
     padding-top: 5vh;
     padding-bottom: 6%;
   }
 }
+@media screen and (device-width: 1280px) and (device-height: 1024px) {
+  .content-padding {
+    padding-top: 7vh;
+    padding-bottom: 21%;
+  }
+}
 @media screen and (min-width: 1366px) {
   .content-padding {
-    margin-bottom: -10%;
+    margin-top: -11%;
+    margin-bottom: -4%;
+    height: 75vh;
     position: relative;
     z-index: 2;
   }
 }
 @media screen and (min-width: 1440px) {
   .content-padding {
-    margin-bottom: -10%;
+    margin-bottom: 9%;
     position: relative;
     z-index: 2;
   }
 }
 @media screen and (min-width: 1680px) {
   .content-padding {
-    padding-bottom: 7%;
+    margin-bottom: 10%;
     position: relative;
     z-index: 2;
   }
 }
 @media screen and (min-width: 1920px) {
   .content-padding {
-    padding-bottom: 7%;
+    margin-bottom: 5%;
     position: relative;
     z-index: 2;
   }
 }
 @media screen and (min-width: 2304px) {
   .content-padding {
-    padding-top: 5%;
-    padding-bottom: 23%;
+    padding-top: 16%;
+    margin-bottom: 7%;
     position: relative;
     z-index: 2;
   }
 }
 @media screen and (device-width: 2560px) {
   .content-padding {
-    padding-top: 5%;
-    padding-bottom: 20%;
+    padding-top: 15%;
+    margin-bottom: 2%;
     position: relative;
     z-index: 2;
   }

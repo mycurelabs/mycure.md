@@ -374,42 +374,48 @@ input[type=number]::-webkit-outer-spin-button {
 }
 @media screen and (min-width: 1024px) {
   .main-container {
-    min-height: 83vh;
+    min-height: 87vh;
   }
 }
-@media screen and (device-width: 1280px) and (max-height: 1024px) {
+@media screen and (device-width: 1280px) and (device-height: 800px) {
   .main-container {
-    min-height: 74vh;
+    min-height: 76vh;
+  }
+}
+@media screen and (device-width: 1280px) and (device-height: 1024px) {
+  .main-container {
+    min-height: 81vh;
   }
 }
 @media screen and (min-width: 1366px) {
   .main-container {
-    min-height: 63vh;
+    min-height: 60vh;
+    margin-bottom: -3%;
   }
 }
 @media screen and (min-width: 1440px) {
   .main-container {
-    min-height: 68vh;
+    min-height: 82vh;
   }
 }
 @media screen and (min-width: 1680px) {
   .main-container {
-    min-height: 70vh;
+    min-height: 84vh;
   }
 }
 @media screen and (min-width: 1920px) {
   .main-container {
-    min-height: 68vh;
+    min-height: 83vh;
   }
 }
 @media screen and (min-width: 2304px) {
   .main-container {
-    min-height: 73vh;
+    min-height: 86vh;
   }
 }
 @media screen and (min-width: 2560px) {
   .main-container {
-    min-height: 70vh;
+    min-height: 85vh;
   }
 }
 </style>
