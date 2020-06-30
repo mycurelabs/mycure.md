@@ -38,7 +38,7 @@ export default {
     },
     doctorSignUpUrl: {
       type: String,
-      default: 'https://www.mycure.md/',
+      default: 'https://www.mycure.md/signup/individual/',
     },
   },
   data () {
