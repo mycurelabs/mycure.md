@@ -68,7 +68,7 @@
               v-btn(icon @click="isOptionDialogOpen = !isOptionDialogOpen")
                 v-icon(color="primary") mdi-cog
         doctor-filter-dialog-mobile(
-          :is-option-dialog-open="isOptionDialogOpen"
+          :option-dialog="isOptionDialogOpen"
           @apply-filters-mobile="$emit('mock-load')"
           @close-dialog="closeDialog"
           @update-mobile-view="updateMobileView"
