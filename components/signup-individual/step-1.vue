@@ -103,7 +103,7 @@
               v-icon(color="accent") mdi-check
         v-col(cols="12" md="10" justify="center" v-if="!$isMobile").mt-md-n5
           v-divider
-        v-col(cols="12" md="10" justify="start" align="center")
+        v-col(cols="12" md="10" justify="center" align="start").d-inline-flex
           v-checkbox(
             v-model="user.acceptTerms"
             hide-details
@@ -112,11 +112,10 @@
             :disabled="loading"
             color="primary"
           )
-            template(slot="label")
-              p.checkbox-label By creating a MYCURE account, you're agreeing to accept MYCURE&nbsp;
-                a(@click.stop="goToTerms") Terms
-                | &nbsp;and&nbsp;
-                a(@click.stop="goToPrivacy") Privacy Policy
+          span.mt-n1 By creating a MYCURE account, you're agreeing to accept MYCURE&nbsp;
+            a(@click.stop="goToTerms") Terms
+            | &nbsp;and&nbsp;
+            a(@click.stop="goToPrivacy") Privacy Policy
           v-alert(:value="error" type="error").mt-5 {{errorMessage}}
         v-col(cols="12" md="10" justify="center" align="center")
           v-spacer
