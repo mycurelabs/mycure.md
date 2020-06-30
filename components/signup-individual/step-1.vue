@@ -20,7 +20,6 @@
             alt="MYCURE logo"
             width="70"
           ).link-to-home.pb-5
-          h2.font-18.primary--text Doctors Clinic: Sign Up (Step 1 of 2)
           h1 Create a MYCURE Account
         v-col(cols="12" md="5" justify="center" align="center")
           v-row(no-gutters)
