@@ -1,26 +1,17 @@
 <template lang="pug">
   v-form(ref="formRef" v-model="valid").content-padding
     v-container
-      v-row
-        v-col(justify="end" align="end" md="3").offset-md-9
-          v-btn(icon @click="showInfo = !showInfo").mb-n12
-            v-icon(large).primary--text mdi-help-circle
-      v-dialog(v-model="showInfo" width="300")
-        v-card
-          v-card-title.text-justify
-            h4 Become a techy doctor in minutes!
-          v-card-text(v-for="(item, key) in checkListItems" :key="key")
-            v-icon mdi-circle-medium
-            span.font-16 {{ item }}
       v-row(justify="center" align="center")
-        v-col(cols="12" md="10" justify="center" align="center")
+        v-col(cols="12" md="8" justify="center" align="center")
           img(
             src="~/assets/images/sign-up-individual-step-1/mycure-sso-sign-in-logo.svg"
             @click="$nuxt.$router.push({ name: 'index' })"
             alt="MYCURE logo"
             width="70"
           ).link-to-home.pb-5
-          h1 Create a MYCURE Account
+          h1.pb-3 Create a MYCURE Account
+          template(v-for="(item, key) in checkListItems")
+            span(v-html="item").font-16
         v-col(cols="12" md="5" justify="center" align="center")
           v-row(no-gutters)
             v-col(xs="12")
@@ -179,9 +170,7 @@ export default {
   data () {
     this.dayOrNight = dayOrNight();
     this.checkListItems = [
-      'Manage your clinic more efficiently',
-      'Produce beautiful and useful reports',
-      'Save on time and save more lives!',
+      'Become a techy doctor in minutes! Manage your clinic more efficiently,<br>produce beautiful and useful reports. Save on time and save more lives!',
     ];
     return {
       showInfo: false,
