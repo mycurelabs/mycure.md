@@ -2,11 +2,13 @@
   v-col(cols="12")
     v-card(elevation="2")
       div.d-flex
-        v-avatar(size="100" rounded).ma-4
+        v-avatar(size="100" rounded).align-self-center.ma-4.mr-0
           img(v-lazy="require(`~/assets/images/doctor-website/${this.doctor.imageFile}`)")
         div
           v-card-title.headline.word-break {{ doctorName }}
-          v-card-subtitle.pb-2 {{ doctor.specialization }} | {{ doctor.experience }} Years
+          v-card-subtitle.pb-2
+            p.mb-0 {{ doctor.specialization }}
+            p.mb-0 {{ doctor.experience }} Years Experience
           v-card-actions.ml-2
             v-btn(color="primary" elevation="0" width="110").letter-spacing-normal.text-none Book Now!
         div.ml-auto.mr-1
