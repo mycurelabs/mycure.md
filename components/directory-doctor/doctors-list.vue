@@ -8,6 +8,13 @@
           doctor-item-list-mobile(
             :doctor="item"
           )
+        div(v-if="!isHeader")
+          v-btn(
+            large
+            color="primary"
+            elevation="0"
+            @click="onViewMore"
+          ).text-none.letter-spacing-normal.white--text.font-weight-bold.my-6 VIEW MORE
       template(v-else)
         v-col(cols="12")
           v-data-table(
@@ -34,6 +41,7 @@
                   large
                   color="primary"
                   elevation="0"
+                  @click="onViewMore"
                 ).text-none.letter-spacing-normal.white--text.font-weight-bold.my-6 VIEW MORE
               div(v-else)
                 div.d-flex.justify-center.align-center.py-10
@@ -127,6 +135,11 @@ export default {
           experience: `${doctor?.experience || ''} years`,
         }
       ));
+    },
+  },
+  methods: {
+    onViewMore () {
+      this.$emit('viewMore');
     },
   },
 };

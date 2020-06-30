@@ -18,6 +18,7 @@
     doctors-list(
       :doctors="doctors"
       :is-loading="isLoading"
+      @viewMore="viewMore"
     )
     //- Sign Up
     sign-me-up(:signUpInfo="signMeUp")
@@ -110,6 +111,9 @@ export default {
       setTimeout(() => {
         this.isLoading = false;
       }, 1000);
+    },
+    viewMore () {
+      this.$router.push({ name: 'directory-doctors-list' });
     },
   },
   head () {
