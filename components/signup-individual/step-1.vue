@@ -49,12 +49,12 @@
             type="number"
             outlined
             :prefix="`+${user.countryCallingCode}`"
-            :loading="loadingForm || loading"
-            :disabled="loadingForm || loading"
             :error-messages="mobileNoErrorMessage"
             :rules="[requiredRule]"
             @blur="validatePhoneNo"
           )
+            //- :loading="loadingForm || loading"
+            //- :disabled="loadingForm || loading"
             template(slot="append")
               div(style="margin-top: -5px")
                 v-tooltip(bottom)
@@ -103,19 +103,20 @@
               v-icon(color="accent") mdi-check
         v-col(cols="12" md="10" justify="center" v-if="!$isMobile").mt-md-n5
           v-divider
-        v-col(cols="12" md="10" justify="center" align="start").d-inline-flex
-          v-checkbox(
-            v-model="user.acceptTerms"
-            hide-details
-            style="margin-top: -10px"
-            :rules="[requiredRule]"
-            :disabled="loading"
-            color="primary"
-          )
-          span.mt-n1 By creating a MYCURE account, you're agreeing to accept MYCURE&nbsp;
-            a(@click.stop="goToTerms") Terms
-            | &nbsp;and&nbsp;
-            a(@click.stop="goToPrivacy") Privacy Policy
+        v-col(cols="12" md="10" justify="center" align="start")
+          div.d-inline-flex
+            v-checkbox(
+              v-model="user.acceptTerms"
+              hide-details
+              style="margin-top: -10px"
+              :rules="[requiredRule]"
+              :disabled="loading"
+              color="primary"
+            )
+            span.mt-n1 By creating a MYCURE account, you're agreeing to accept MYCURE&nbsp;
+              a(@click.stop="goToTerms") Terms
+              | &nbsp;and&nbsp;
+              a(@click.stop="goToPrivacy") Privacy Policy
           v-alert(:value="error" type="error").mt-5 {{errorMessage}}
         v-col(cols="12" md="10" justify="center" align="center")
           v-spacer
@@ -387,29 +388,42 @@ h1 {
   margin-top: 10px;
   height: 230px !important;
 }
-@media screen and (device-width: 1024px) {
+@media screen and (min-width: 1024px) {
   .content-padding {
     padding-top: 15vh;
-    padding-bottom: 24%;
+    padding-bottom: 27%;
   }
 }
-@media screen and (device-width: 1440px) {
+@media screen and (min-width: 1280px) and (max-height: 1024px) {
   .content-padding {
-    margin-bottom: -4%;
+    padding-top: 5vh;
+    padding-bottom: 6%;
+  }
+}
+@media screen and (min-width: 1366px) {
+  .content-padding {
+    margin-bottom: -10%;
     position: relative;
     z-index: 2;
   }
 }
-@media screen and (device-width: 1680px) {
+@media screen and (min-width: 1440px) {
   .content-padding {
-    padding-bottom: 4%;
+    margin-bottom: -10%;
+    position: relative;
+    z-index: 2;
+  }
+}
+@media screen and (min-width: 1680px) {
+  .content-padding {
+    padding-bottom: 7%;
     position: relative;
     z-index: 2;
   }
 }
 @media screen and (min-width: 1920px) {
   .content-padding {
-    padding-bottom: 3%;
+    padding-bottom: 7%;
     position: relative;
     z-index: 2;
   }
@@ -417,7 +431,7 @@ h1 {
 @media screen and (min-width: 2304px) {
   .content-padding {
     padding-top: 5%;
-    padding-bottom: 11%;
+    padding-bottom: 23%;
     position: relative;
     z-index: 2;
   }
@@ -425,7 +439,7 @@ h1 {
 @media screen and (device-width: 2560px) {
   .content-padding {
     padding-top: 5%;
-    padding-bottom: 8%;
+    padding-bottom: 20%;
     position: relative;
     z-index: 2;
   }
