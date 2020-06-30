@@ -6,7 +6,7 @@ function handleError (e) {
     // that falls out of the range of 2xx
     // console.log(e.response.data);
     // console.log(e.response.status);
-    const { data } = e.response.data;
+    const { data } = e.response;
     return data;
   } else {
     // Something happened in setting up the request that triggered an Error
@@ -194,9 +194,9 @@ export const signupIndividual = async (opts) => {
     });
     // await resendVerificationEmail({ email: opts.email, password: opts.password });
     return data;
-  } catch (e) {
-    console.error(e);
-    throw handleError(e);
+  } catch (error) {
+    console.error(error);
+    throw handleError(error);
   }
 };
 
