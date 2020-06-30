@@ -1,26 +1,17 @@
 <template lang="pug">
   v-form(ref="formRef" v-model="valid").content-padding
     v-container
-      v-row
-        v-col(justify="end" align="end" md="3").offset-md-9
-          v-btn(icon @click="showInfo = !showInfo").mb-n12
-            v-icon(large).primary--text mdi-help-circle
-      v-dialog(v-model="showInfo" width="300")
-        v-card
-          v-card-title.text-justify
-            h4 Become a techy doctor in minutes!
-          v-card-text(v-for="(item, key) in checkListItems" :key="key")
-            v-icon mdi-circle-medium
-            span.font-16 {{ item }}
       v-row(justify="center" align="center")
-        v-col(cols="12" md="10" justify="center" align="center")
+        v-col(cols="12" md="8" justify="center" align="center")
           img(
             src="~/assets/images/sign-up-individual-step-1/mycure-sso-sign-in-logo.svg"
             @click="$nuxt.$router.push({ name: 'index' })"
             alt="MYCURE logo"
+            width="70"
           ).link-to-home.pb-5
-          h2.font-18.primary--text Doctors Clinic: Sign Up (Step 1 of 2)
-          h1 Create a MYCURE Account
+          h1.pb-3 Create a MYCURE Account
+          template(v-for="(item, key) in checkListItems")
+            span(v-html="item").font-16
         v-col(cols="12" md="5" justify="center" align="center")
           v-row(no-gutters)
             v-col(xs="12")
@@ -58,10 +49,10 @@
             type="number"
             outlined
             :prefix="`+${user.countryCallingCode}`"
-            :loading="loadingForm || loading"
-            :disabled="loadingForm || loading"
             :error-messages="mobileNoErrorMessage"
             :rules="[requiredRule]"
+            :loading="loadingForm || loading"
+            :disabled="loadingForm || loading"
             @blur="validatePhoneNo"
           )
             template(slot="append")
@@ -112,20 +103,20 @@
               v-icon(color="accent") mdi-check
         v-col(cols="12" md="10" justify="center" v-if="!$isMobile").mt-md-n5
           v-divider
-        v-col(cols="12" md="10" justify="start" align="center")
-          v-checkbox(
-            v-model="user.acceptTerms"
-            hide-details
-            style="margin-top: -10px"
-            :rules="[requiredRule]"
-            :disabled="loading"
-            color="primary"
-          )
-            template(slot="label")
-              p.checkbox-label By creating a MYCURE account, you're agreeing to accept MYCURE&nbsp;
-                a(@click.stop="goToTerms") Terms
-                | &nbsp;and&nbsp;
-                a(@click.stop="goToPrivacy") Privacy Policy
+        v-col(cols="12" md="10" justify="center" align="start")
+          div.d-inline-flex
+            v-checkbox(
+              v-model="user.acceptTerms"
+              hide-details
+              style="margin-top: -10px"
+              :rules="[requiredRule]"
+              :disabled="loading"
+              color="primary"
+            )
+            span.mt-n1 By creating a MYCURE account, you're agreeing to accept MYCURE&nbsp;
+              a(@click.stop="goToTerms") Terms
+              | &nbsp;and&nbsp;
+              a(@click.stop="goToPrivacy") Privacy Policy
           v-alert(:value="error" type="error").mt-5 {{errorMessage}}
         v-col(cols="12" md="10" justify="center" align="center")
           v-spacer
@@ -179,9 +170,7 @@ export default {
   data () {
     this.dayOrNight = dayOrNight();
     this.checkListItems = [
-      'Manage your clinic more efficiently',
-      'Produce beautiful and useful reports',
-      'Save on time and save more lives!',
+      'Become a techy doctor in minutes! Manage your clinic more efficiently,<br>produce beautiful and useful reports. Save on time and save more lives!',
     ];
     return {
       showInfo: false,
@@ -410,29 +399,42 @@ h1 {
   margin-top: 10px;
   height: 230px !important;
 }
-@media screen and (device-width: 1024px) {
+@media screen and (min-width: 1024px) {
   .content-padding {
     padding-top: 15vh;
-    padding-bottom: 24%;
+    padding-bottom: 27%;
   }
 }
-@media screen and (device-width: 1440px) {
+@media screen and (min-width: 1280px) and (max-height: 1024px) {
   .content-padding {
-    margin-bottom: -4%;
+    padding-top: 5vh;
+    padding-bottom: 6%;
+  }
+}
+@media screen and (min-width: 1366px) {
+  .content-padding {
+    margin-bottom: -10%;
     position: relative;
     z-index: 2;
   }
 }
-@media screen and (device-width: 1680px) {
+@media screen and (min-width: 1440px) {
   .content-padding {
-    padding-bottom: 4%;
+    margin-bottom: -10%;
+    position: relative;
+    z-index: 2;
+  }
+}
+@media screen and (min-width: 1680px) {
+  .content-padding {
+    padding-bottom: 7%;
     position: relative;
     z-index: 2;
   }
 }
 @media screen and (min-width: 1920px) {
   .content-padding {
-    padding-bottom: 3%;
+    padding-bottom: 7%;
     position: relative;
     z-index: 2;
   }
@@ -440,7 +442,7 @@ h1 {
 @media screen and (min-width: 2304px) {
   .content-padding {
     padding-top: 5%;
-    padding-bottom: 11%;
+    padding-bottom: 23%;
     position: relative;
     z-index: 2;
   }
@@ -448,7 +450,7 @@ h1 {
 @media screen and (device-width: 2560px) {
   .content-padding {
     padding-top: 5%;
-    padding-bottom: 8%;
+    padding-bottom: 20%;
     position: relative;
     z-index: 2;
   }
