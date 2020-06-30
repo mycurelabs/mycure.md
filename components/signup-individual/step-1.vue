@@ -18,6 +18,7 @@
             src="~/assets/images/sign-up-individual-step-1/mycure-sso-sign-in-logo.svg"
             @click="$nuxt.$router.push({ name: 'index' })"
             alt="MYCURE logo"
+            width="70"
           ).link-to-home.pb-5
           h2.font-18.primary--text Doctors Clinic: Sign Up (Step 1 of 2)
           h1 Create a MYCURE Account
