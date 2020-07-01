@@ -45,12 +45,12 @@ export const LISTS_OF_PLANS = [
   {
     images: 'MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-D-specialization-02-pediatrics.png',
     header: 'Pediatrics',
-    description: 'An EMR complete with growth charts, vaccination trackers & developmental milestones.',
+    description: 'An EMR complete with growth charts, vaccination trackers and developmental milestones.',
   },
   {
     images: 'MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-D-specialization-03-maternity.png',
     header: 'Maternity Care',
-    description: 'Laboratory and Imaging modules to store lab and ultrasounds results with AOG and EDD calculators.',
+    description: 'Laboratory and Imaging modules to store lab & ultrasounds results with AOG and EDD calculators.',
   },
   {
     images: 'MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-D-specialization-04-dental.png',
