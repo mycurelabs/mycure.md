@@ -3,7 +3,7 @@
     nuxt-link(:to="{ name: 'index' }" title="MYCURE | Clinic Management System | Cloud EMR Philippines" id="toolbar-mycure-logo")
       img(
         height="45"
-        src="../../assets/images/mycure-header-logo.png"
+        src="~/assets/images/mycure-header-logo.png"
         to="/"
       )
     v-spacer
@@ -50,11 +50,11 @@ export default {
   props: {
     doctorSignUpUrl: {
       type: String,
-      default: 'https://www.mycure.md/',
+      default: 'https://www.mycure.md/signup/individual/',
     },
     patientSignUpUrl: {
       type: String,
-      default: 'https://www.mycure.md',
+      default: `${process.env.PX_PORTAL_URL}/signup`,
     },
   },
 };

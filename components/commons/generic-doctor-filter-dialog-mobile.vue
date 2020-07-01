@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-dialog(v-model="isOptionDialogOpen" max-width="280" persistent)
+  v-dialog(v-model="optionDialog" max-width="280" persistent)
     v-container.white.px-0
       div.px-4
         p.font-20.primary--text Filter Settings
@@ -69,11 +69,7 @@
 <script>
 export default {
   props: {
-    /**
-     * Array of doctor objects
-     * @type {Array}
-     */
-    isOptionDialogOpen: {
+    optionDialog: {
       type: Boolean,
       default: false,
     },

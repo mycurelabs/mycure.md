@@ -1,14 +1,14 @@
 <template lang="pug">
   v-container
     app-bar(
-      :doctor-sign-up-url="'https://www.mycure.md/'"
-      :patient-sign-up-url="'https://www.mycure.md/'"
+      :doctor-sign-up-url="'https://www.mycure.md/signup/individual/'"
+      :patient-sign-up-url="patientSignUpUrl"
     )
     //- Usp
     usp(:uspInfo="usp" :specialization-items="specializations")
     featured-doctor(
       :doctors="doctors.slice(0,6)"
-      :doctor-sign-up-url="'https://www.mycure.md/'"
+      :doctor-sign-up-url="'https://www.mycure.md/signup/individual/'"
     )
     filter-options(
       :specializations="filterItems"
@@ -18,11 +18,14 @@
     doctors-list(
       :doctors="doctors"
       :is-loading="isLoading"
+      @viewMore="viewMore"
     )
     //- Sign Up
     sign-me-up(:signUpInfo="signMeUp")
+
     //- Category
-    //- category(:cardItems="categoryItems")
+    category(:cardItems="categoryItems")
+
     //- About panel
     about-clinic(:about="aboutInfo")
     v-divider
@@ -41,7 +44,7 @@
     )
       v-row
         v-col.text-center
-          span.black--text Copyright {{new Date().getFullYear()}} | All Rights Reserved | Powered by #[a(href="https://mycure.md" target="_blank").mycure-link.font-weight-bold MYCURE]
+          span.black--text Copyright {{new Date().getFullYear()}} | All Rights Reserved | Powered by #[a(href="https://mycure.md" target="_blank" rel="noopener noreferrer").mycure-link.font-weight-bold MYCURE]
     //- pre {{doctor}}
 </template>
 
@@ -99,15 +102,23 @@ export default {
       isLoading: false,
     };
   },
+  computed: {
+    patientSignUpUrl () {
+      return `${process.env.PX_PORTAL_URL}/signup`;
+    },
+  },
   mounted () {
     console.log(this.$route);
   },
   methods: {
-    mockLoading () {
+    async mockLoading () {
       this.isLoading = true;
-      setTimeout(() => {
+      await setTimeout(() => {
         this.isLoading = false;
       }, 1000);
+    },
+    viewMore () {
+      this.$router.push({ name: 'directory-doctors-list' });
     },
   },
   head () {

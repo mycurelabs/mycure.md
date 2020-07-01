@@ -270,6 +270,34 @@ export const DOCTORS_LIST = [
   },
 ];
 
+export const TRIVIA_SLIDE_CONTENT = [
+  {
+    header: 'MYCURE 1',
+    content: '"64% of consumers would see a doctor via video."',
+    source: 'www.americanwell.com',
+  },
+  {
+    header: 'MYCURE 2',
+    content: '"64% of consumers would see a doctor via video."',
+    source: 'www.americanwell.com',
+  },
+  {
+    header: 'MYCURE 3',
+    content: '"64% of consumers would see a doctor via video."',
+    source: 'www.americanwell.com',
+  },
+  {
+    header: 'MYCURE 4',
+    content: '"64% of consumers would see a doctor via video."',
+    source: 'www.americanwell.com',
+  },
+  {
+    header: 'MYCURE 5',
+    content: '"64% of consumers would see a doctor via video."',
+    source: 'www.americanwell.com',
+  },
+];
+
 export const USP = [
   {
     title: 'Hundreds of doctors with different specializations from amazing clinics all over the country.',

@@ -1,14 +1,20 @@
 <template lang="pug">
   v-container(fluid).my-10
-    v-row(justify="center" align="center" :class="{ 'mb-6': !$isMobile }").px-6
+    v-row(
+      justify="center"
+      align="center"
+      :class="{ 'mb-6': !$isMobile }"
+    ).px-6
       h1.text-center {{ panelTitle }}
-    v-row(justify="center" align="center" :class="{ 'mb-6': !$isMobile }").px-6
+    v-row(
+      justify="center"
+      align="center"
+      :class="{ 'mb-6': !$isMobile }"
+    ).px-6
       p(:class="subtitleClasses") {{ subtitleText }}
     v-row.mb-6
       template(v-for="item in doctors")
-        doctor-item-grid(
-          :doctor="item"
-        )
+        doctor-item-grid(:doctor="item")
     v-row(justify="center" align="center" :class="{ 'mb-6': !$isMobile }")
       v-btn(
         large
@@ -32,7 +38,7 @@ export default {
     },
     doctorSignUpUrl: {
       type: String,
-      default: 'https://www.mycure.md/',
+      default: 'https://www.mycure.md/signup/individual/',
     },
   },
   data () {

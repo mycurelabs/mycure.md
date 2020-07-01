@@ -1,6 +1,10 @@
 <template lang="pug">
   v-col(cols="6" lg="2" md="4" sm="6")
-    v-card(height="250" elevation="2" style="width: 100%; border-radius: 5px;").d-flex.flex-column
+    v-card(
+      height="250"
+      elevation="2"
+      style="width: 100%; border-radius: 5px;"
+    ).d-flex.flex-column
       v-row(justify="center" align="center" no-gutters)
         v-avatar(size="80" rounded).ma-1.pt-2
           img(v-lazy="require(`~/assets/images/doctor-website/${this.doctor.imageFile}`)")
