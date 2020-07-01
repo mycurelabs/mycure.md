@@ -1,6 +1,6 @@
 export const SECOND_PANEL_HEADER = {
   header: 'Make it easy for your patients',
-  description: 'With all your clinical departments integrated into one system, your patients will have a breeze moving through your clinic',
+  description: 'With all your clinical departments integrated into one system,\nyour patients will have a breeze moving through your clinic',
 };
 export const SECOND_PANEL_CONTENTS = [
   {
