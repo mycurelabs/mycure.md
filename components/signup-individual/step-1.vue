@@ -60,12 +60,12 @@
               ).pl-1
                 template(slot="append")
                   div(style="margin-top: -5px")
+                    v-icon(v-if="mobileNoError" color="accent").ml-n10 mdi-check
                     v-tooltip(bottom)
                       template(v-slot:activator="{ on }")
-                        v-btn(icon @click="countryDialog = true" v-on="on").ma-0
+                        v-btn(icon @click="countryDialog = true" v-on="on")
                           img(width="25" :src="user.countryFlag").flag-img.mt-2
                       | Change Country
-                    v-icon(v-if="mobileNoError" color="accent") mdi-check
             //- NOTE: DO NOT REMOVE YET
             //- template(slot="append-outer")
             //-   v-tooltip(bottom)
