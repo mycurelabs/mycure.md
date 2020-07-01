@@ -8,8 +8,8 @@
           label="Search Doctor, Specialization"
           append-icon="mdi-magnify"
           v-model="searchItem"
-          @click:append="searchDoctorSpecialization()"
-          @keydown.enter="searchDoctorSpecialization()"
+          @click:append="searchDoctorSpecialization"
+          @keydown.enter="searchDoctorSpecialization"
           @click:clear="isSearching = false"
           :loading="isLoading"
           :class="paddingClass"
@@ -66,7 +66,7 @@ export default {
       return [this.$isMobile ? 'font-34' : 'font-50'];
     },
     paddingClass () {
-      return [this.$isMobile ? '' : 'px-12'];
+      return [{ 'px-12': !this.$isMobile }];
     },
     marginClass () {
       return [this.$isMobile ? 'mt-n5' : 'mt-n5'];
