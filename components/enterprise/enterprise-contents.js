@@ -65,7 +65,7 @@ export const SEVENTH_PANEL = {
   subHeader: 'FOR MULTISPECIALTY CLINICS',
   header: 'Best for one-stop, multi-staff clinics',
   image: 'MYCURE-virtual-clinic-healthcare-practice-online-enterprise-F-multi-specialty',
-  description: 'Because you offer a hollistic patient care experience, we are here to help you with all the crazy paperwork! Consolidate all your clinic activities in one place with this complete clinic management system.',
+  description: 'Because you offer a holistic patient care experience, we are here to help you with all the crazy paperwork! Consolidate all your clinic activities in one place with this complete clinic management system.',
   descriptionLink: ' See Features',
   btnTxt: 'Book A Demo',
   btnIcon: 'mdi-arrow-right-thick',
