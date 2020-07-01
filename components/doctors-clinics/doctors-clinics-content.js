@@ -32,7 +32,7 @@ export const SPECIALIZED_PLANS = {
 };
 export const ACCESS_QUALITY_HEALTHCARE = {
   header: 'Access quality healthcare - instantly',
-  description: 'Set-up appointments and consultations, coordinate patient care, issue ePresciptions and release diagnostics results- all that and more with an online portal to interact with your patients.',
+  description: 'Set-up appointments and consultations, coordinate patient care, issue ePresciptions and release diagnostics results - all that and more with an online portal to interact with your patients.',
   btnTxt: 'Get Started',
   btnIcon: 'mdi-arrow-right-thick',
 };
