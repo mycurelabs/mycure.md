@@ -1,9 +1,9 @@
 <template lang="pug">
   v-container.py-12
     v-row(justify="center")
-      v-col(cols="12" md="6" justify="center" align="center" v-if="!$isMobile")
-        img(v-lazy="require(`~/assets/images/enterprise/${outpatient.image}`)" :alt="outpatient.header" width="100%").outpatient-image
-      v-col(cols="12" md="5" lg="5" align-self="center").outpatient-description
+      v-col(cols="12" md="6" justify="center" align="center" v-if="!$isMobile").panel-image
+        img(v-lazy="require(`~/assets/images/enterprise/${outpatient.image}`)" :alt="outpatient.header" width="100%")
+      v-col(cols="12" md="5" lg="5" align-self="center")
         h1.font-30.lh-title.pb-3.font-weight-light {{outpatient.header}}
         p.text-justify.font-16.mt-3.font-gray {{outpatient.description}}
         v-btn(text @click="onClick").mt-5.ml-n4.get-started-btn
@@ -29,14 +29,9 @@ export default {
 </script>
 
 <style scoped>
-@media screen and (device-width: 1024px) {
-  .outpatient-image {
-    width: 100%;
-  }
-}
-@media screen and (min-width: 1366px) {
-  .outpatient-description {
-    margin-left: 55px;
+@media screen and (min-width: 1024px) {
+  .panel-image {
+    margin-right: 4%;
   }
 }
 </style>
