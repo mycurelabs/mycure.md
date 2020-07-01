@@ -1,19 +1,19 @@
 <template lang="pug">
   v-container.py-12
     v-row(justify="center")
-      v-col(cols="12" md="5" align-self="center").fourthPanel-description
+      v-col(cols="12" md="5" align-self="center")
         h1.font-30.lh-title.pb-3.font-weight-light {{fourthPanel.header}}
         p.text-justify.font-16.mt-3.font-gray {{fourthPanel.description}}
         v-btn(text @click="onGetStarted").mt-5.ml-n4.get-started-btn
           strong.text-capitalize.primary--text {{fourthPanel.btnTxt}}
           v-icon.primary--text {{fourthPanel.btnIcon}}
-      v-col(cols="12" md="6" justify="center" align="center")
+      v-col(cols="12" md="6" justify="center" align="center").panel-image
         picture-source(
           customPath="enterprise/"
           :image="fourthPanel.image"
           :imageAlt="fourthPanel.header"
           imageFileExtension=".webp"
-        ).fourthPanel-image
+        )
 </template>
 
 <script>
@@ -37,7 +37,12 @@ export default {
 </script>
 
 <style scoped>
-@media screen and (device-width: 1024px) {
+@media screen and (min-width: 1024px) {
+  .panel-image {
+    margin-left: 4%;
+  }
+}
+/* @media screen and (device-width: 1024px) {
   .fourthPanel-image {
     width: 110%;
     margin-left: 50px;
@@ -50,5 +55,5 @@ export default {
   .fourthPanel-description {
     margin-left: 55px;
   }
-}
+} */
 </style>
