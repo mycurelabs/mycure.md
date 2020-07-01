@@ -5,6 +5,7 @@
         h1.font-36.font-weight-light.text-center {{BRING_YOUR_PRACTICE_ONLINE.header}}
         br
         p.text-center.font-18.font-gray {{BRING_YOUR_PRACTICE_ONLINE.description}}
+          a(@click="goToFeatures").font-16.font-weight-bold {{ BRING_YOUR_PRACTICE_ONLINE.descriptionLink }}
     //- FIRST PANEL
     v-row(justify="center" align="center").py-10.mb-n4
       v-col(v-if="!$isMobile" align="center" cols="12" md="6").first-column
@@ -124,6 +125,9 @@ export default {
   methods: {
     onGetStarted () {
       this.$emit('getStarted');
+    },
+    goToFeatures () {
+      this.$emit('goToFeatures');
     },
   },
 };
