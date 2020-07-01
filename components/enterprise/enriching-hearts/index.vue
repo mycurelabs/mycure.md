@@ -11,10 +11,10 @@
           v-icon.primary--text {{ninthPanel.btnIcon}}
       v-col(cols="12" md="6" justify="center" align="center").panel-image
         picture-source(
-          customPath="enterprise/"
+          custom-path="enterprise/"
           :image="ninthPanel.image"
-          :imageAlt="ninthPanel.header"
-          imageFileExtension=".webp"
+          :image-alt="ninthPanel.header"
+          image-file-extension=".webp"
           image-width="90%"
         )
 </template>

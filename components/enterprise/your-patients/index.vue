@@ -16,19 +16,19 @@
       )
         div(v-if="!$isMobile").text-center.img-container
           picture-source(
-            customPath="enterprise/"
+            custom-path="enterprise/"
             :image="data.image"
-            :imageAlt="data.header"
-            imageFileExtension=".webp"
-            imageWidth="70%"
+            :image-alt="data.header"
+            image-file-extension=".webp"
+            image-width="70%"
           )
         h1(:class="headerClasses").image-title.lh-title.pb-3.font-weight-bold {{data.header}}
         picture-source(
           v-if="$isMobile"
-          customPath="enterprise/"
+          custom-path="enterprise/"
           :image="data.image"
-          :imageAlt="data.header"
-          imageFileExtension=".webp"
+          :image-alt="data.header"
+          image-file-extension=".webp"
         )
 </template>
 
