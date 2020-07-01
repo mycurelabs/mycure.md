@@ -42,7 +42,8 @@ export default {
   },
   filters: {
     formatSchool (educ) {
-      return `${educ?.degree ? educ.degree + ' - ' : ''}${educ.school}`;
+      if (!educ.degree) return educ.school;
+      return `${educ.degree} - ${educ.school}`;
     },
   },
   props: {
