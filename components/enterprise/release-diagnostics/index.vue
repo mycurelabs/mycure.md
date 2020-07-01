@@ -6,7 +6,7 @@
         h1.font-30.lh-title.pb-3.font-weight-light {{tenthPanel.header}}
         p.text-justify.font-16.mt-3.font-gray {{tenthPanel.description}}
           a(@click="goToFeatures").font-16.font-weight-bold {{tenthPanel.descriptionLink}}
-        div(v-for="(data, key) in tenthPanel.list" :key="key")
+        div(v-for="(data, key) in tenthPanel.list" :key="key").d-flex.align-center.mb-2
           img(width="20" src="~/assets/images/mycure-check.png" alt="Check icon")
           span.font-16.font-gray.pl-3 {{data.description}}
         v-btn(text @click="onGetStarted").mt-5.ml-n4.get-started-btn
@@ -24,7 +24,7 @@
         h1.font-30.lh-title.pb-3.font-weight-light {{tenthPanel.header}}
         p.text-justify.font-16.mt-3.font-gray {{tenthPanel.description}}
           a(@click="goToFeatures").font-16.font-weight-bold {{tenthPanel.descriptionLink}}
-        div(v-for="(data, key) in tenthPanel.list" :key="key")
+        div(v-for="(data, key) in tenthPanel.list" :key="key").d-flex.align-center.mb-3
           img(width="20" src="~/assets/images/mycure-check.png" alt="Check icon")
           span.font-16.font-gray.pl-3 {{data.description}}
         v-btn(text @click="onGetStarted").mt-5.ml-n4.get-started-btn
