@@ -14,12 +14,12 @@
       ).mt-n1
         //- Check list
         template(slot="additional-content")
-          template(v-for="item in checkListItems")
-            v-row(align="center" dense)
+          template(v-for="(item, i) in checkListItems")
+            v-row(:align="i === 2 && 'center'" dense)
               v-col(cols="1").pr-2.pt-2
                 img(width="20" src="~/assets/images/mycure-check.png" alt="Check icon")
-              v-col(shrink)
-                span.font-18.font-gray {{ item }}
+              v-col
+                span(:class="i === 2 && 'pre-white-space'").font-18.font-gray {{ item }}
       //- Bottom images
       v-container(v-if="!$isMobile").py-10.mb-n1
         v-row
@@ -92,7 +92,7 @@ export default {
     this.checkListItems = [
       'Payment Management & History',
       'Invoice & Receipt Printing',
-      'HMO Statements, Collections, & Reports',
+      'HMO Statements, Collections,\n& Reports',
       'Interface with Materials Management',
     ];
     this.customPath = 'features/';
