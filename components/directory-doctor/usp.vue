@@ -78,9 +78,9 @@ export default {
     },
   },
   methods: {
-    searchDoctorSpecialization () {
+    async searchDoctorSpecialization () {
       this.isLoading = true;
-      setTimeout(() => {
+      await setTimeout(() => {
         this.isLoading = false;
       }, 2000);
     },
