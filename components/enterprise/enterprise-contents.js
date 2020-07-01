@@ -32,7 +32,7 @@ export const FOURTH_PANEL = {
 };
 export const FIFTH_PANEL_HEADER = {
   header: 'Make smarter decisions with real-time business and medical insights ',
-  description: 'One of the perks to having one smart system for all is keeping accurate record of all transactions accross all branches.',
+  description: 'One of the perks to having one smart system for all is keeping accurate record of all transactions across all branches.',
 };
 export const FIFTH_PANEL_CONTENT = [
   {
