@@ -3,7 +3,7 @@
     v-row(justify="center")
       v-col(cols="12" md="8" lg="6" justify="center")
         h1.text-center.font-30.lh-title.pb-3.font-weight-light {{secondPanelHeader.header}}
-        p.text-center.font-16.mt-3.font-gray {{secondPanelHeader.description}}
+        p.pre-white-space.text-center.font-16.mt-3.font-gray {{secondPanelHeader.description}}
     v-row(justify="center")
       v-col(
         cols="12"
@@ -16,19 +16,19 @@
       )
         div(v-if="!$isMobile").text-center.img-container
           picture-source(
-            customPath="enterprise/"
+            custom-path="enterprise/"
             :image="data.image"
-            :imageAlt="data.header"
-            imageFileExtension=".webp"
-            imageWidth="70%"
+            :image-alt="data.header"
+            image-file-extension=".webp"
+            image-width="70%"
           )
         h1(:class="headerClasses").image-title.lh-title.pb-3.font-weight-bold {{data.header}}
         picture-source(
           v-if="$isMobile"
-          customPath="enterprise/"
+          custom-path="enterprise/"
           :image="data.image"
-          :imageAlt="data.header"
-          imageFileExtension=".webp"
+          :image-alt="data.header"
+          image-file-extension=".webp"
         )
 </template>
 

@@ -3,10 +3,10 @@
     v-row(justify="center")
       v-col(align-self="center" cols="12" md="6" v-if="!$isMobile").panel-image
         picture-source(
-          customPath="doctors-clinics/"
+          custom-path="doctors-clinics/"
           :image="panelMainImage"
-          imageAlt="Access quality healthcare"
-          imageFileExtension=".webp"
+          image-alt="Access quality healthcare"
+          image-file-extension=".webp"
         )
       v-col(align-self="center" cols="12" md="5")
         h1(:class="{'pre-white-space': !$isMobile}").font-30.lh-title.pb-3.font-weight-light {{ title }}
@@ -19,10 +19,10 @@
           v-icon.primary--text {{panelContent.btnIcon}}
       picture-source(
         v-if="$isMobile"
-        customPath="doctors-clinics/"
+        custom-path="doctors-clinics/"
         :image="panelMainImage"
-        imageAlt="Access quality healthcare"
-        imageFileExtension=".webp"
+        image-alt="Access quality healthcare"
+        image-file-extension=".webp"
       )
 </template>
 

@@ -9,10 +9,10 @@
           v-icon.primary--text {{fourthPanel.btnIcon}}
       v-col(cols="12" md="6" justify="center" align="center").panel-image
         picture-source(
-          customPath="enterprise/"
+          custom-path="enterprise/"
           :image="fourthPanel.image"
-          :imageAlt="fourthPanel.header"
-          imageFileExtension=".webp"
+          :image-alt="fourthPanel.header"
+          image-file-extension=".webp"
         )
 </template>
 
@@ -40,6 +40,11 @@ export default {
 @media screen and (min-width: 1024px) {
   .panel-image {
     margin-left: 4%;
+  }
+}
+@media screen and (min-width: 1920px) {
+  .panel-image {
+    margin-left: 5%;
   }
 }
 </style>
