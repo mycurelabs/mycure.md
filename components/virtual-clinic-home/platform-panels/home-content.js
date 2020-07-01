@@ -1,6 +1,6 @@
 export const BRING_YOUR_PRACTICE_ONLINE = {
   header: 'Bring your practice online',
-  description: 'One platform built with online appointments, video chat, EMR system, Point-of-sale, medical billing and more',
+  description: 'One platform built with online appointments, video chat, EMR system, point-of-sale, medical billing and more',
 };
 export const HOME_START_YOUR_PHYSICAL = {
   image: 'MYCURE-virtual-clinic-healthcare-practice-online-homepage-A-telehealth',
