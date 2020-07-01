@@ -374,6 +374,12 @@ h1 {
   line-height: 35px;
 }
 
+::v-deep input::-webkit-outer-spin-button,
+::v-deep input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 .link-to-home:hover {
   cursor: pointer;
 }
