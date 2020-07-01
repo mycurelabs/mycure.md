@@ -42,4 +42,9 @@ export default {
     margin-left: 4%;
   }
 }
+@media screen and (min-width: 1920px) {
+  .panel-image {
+    margin-left: 5%;
+  }
+}
 </style>

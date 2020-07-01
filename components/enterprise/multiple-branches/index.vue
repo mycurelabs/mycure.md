@@ -46,4 +46,9 @@ export default {
     margin-right: 4%;
   }
 }
+@media screen and (min-width: 1920px) {
+  .panel-image {
+    margin-right: 5%;
+  }
+}
 </style>

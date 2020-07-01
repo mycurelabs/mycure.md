@@ -64,7 +64,7 @@ a {
 }
 @media screen and (min-width: 1024px) {
   .panel-image {
-    margin-right: 4%;
+    margin-right: 5%;
   }
 }
 </style>
