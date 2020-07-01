@@ -262,12 +262,12 @@ export default {
         } else {
           this.$nuxt.$router.push({ name: 'signup-individual-step-2' });
         }
-      } catch (error) {
-        console.error(error);
+      } catch (e) {
+        console.error(e);
         this.error = true;
         // Get the E<code> part of the error message.
-        const errorCode = parseInt(error?.message?.replace(/ .*/, '').substr(1));
-        if (errorCode && errorCode === 11000) {
+        const errorCode = parseInt(e?.message?.replace(/ .*/, '').substr(1));
+        if (errorCode === 11000) {
           this.errorMessage = 'The email or mobile number you have entered is invalid or taken. Please try again.';
           return;
         }

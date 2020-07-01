@@ -194,9 +194,9 @@ export const signupIndividual = async (opts) => {
     });
     // await resendVerificationEmail({ email: opts.email, password: opts.password });
     return data;
-  } catch (error) {
-    console.error(error);
-    throw handleError(error);
+  } catch (e) {
+    console.error(e);
+    throw handleError(e);
   }
 };
 
