@@ -12,10 +12,10 @@
           v-icon.primary--text {{TAKE_PRACTICE_ONLINE.btnIcon}}
       v-col(align-self="center" cols="12" md="6").panel-image
         picture-source(
-          customPath="doctors-clinics/"
+          custom-path="doctors-clinics/"
           :image="panelMainImage"
-          imageAlt="Take your practice online"
-          imageFileExtension=".webp"
+          image-alt="Take your practice online"
+          image-file-extension=".webp"
         )
 </template>
 

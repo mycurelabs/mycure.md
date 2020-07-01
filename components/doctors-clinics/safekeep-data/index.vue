@@ -3,10 +3,10 @@
     v-row(justify="center")
       v-col(align="end" cols="12" md="6" v-if="!$isMobile").panel-image
         picture-source(
-          customPath="doctors-clinics/"
+          custom-path="doctors-clinics/"
           :image="panelMainImage"
-          imageAlt="Safekeep your important medical data"
-          imageFileExtension=".webp"
+          image-alt="Safekeep your important medical data"
+          image-file-extension=".webp"
         )
       v-col(align-self="center" cols="12" md="5")
         h1.font-30.lh-title.pb-3.font-weight-light {{SAFEKEEP_MEDICAL_DATA.header}}
@@ -19,10 +19,10 @@
           v-icon.primary--text {{SAFEKEEP_MEDICAL_DATA.btnIcon}}
       picture-source(
         v-if="$isMobile"
-        customPath="doctors-clinics/"
+        custom-path="doctors-clinics/"
         :image="panelMainImage"
-        imageAlt="Safekeep your important medical data"
-        imageFileExtension=".webp"
+        image-alt="Safekeep your important medical data"
+        image-file-extension=".webp"
       )
 </template>
 
