@@ -15,7 +15,7 @@
         //- Check list
         template(slot="additional-content")
           template(v-for="(item, i) in checkListItems")
-            v-row(:align="i === 2 && 'center'" dense)
+            v-row(:align="i === 2 ? 'center' : 'start'" dense)
               v-col(cols="1").pr-2.pt-2
                 img(width="20" src="~/assets/images/mycure-check.png" alt="Check icon")
               v-col
