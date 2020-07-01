@@ -69,6 +69,43 @@ export default {
     },
   },
   data () {
+    this.days = [
+      {
+        order: 1,
+        day: 'mon',
+        dayName: 'Monday',
+      },
+      {
+        order: 2,
+        day: 'tue',
+        dayName: 'Tuesday',
+      },
+      {
+        order: 3,
+        day: 'wed',
+        dayName: 'Wednesday',
+      },
+      {
+        order: 4,
+        day: 'thu',
+        dayName: 'Thursday',
+      },
+      {
+        order: 5,
+        day: 'fri',
+        dayName: 'Friday',
+      },
+      {
+        order: 6,
+        day: 'sat',
+        dayName: 'Saturday',
+      },
+      {
+        order: 7,
+        day: 'sun',
+        dayName: 'Sunday',
+      },
+    ];
     return {
       clinicSchedules: [],
       clinicSchedulesExpanded: null,
@@ -78,43 +115,6 @@ export default {
         'phone',
         'email',
         'website',
-      ],
-      days: [
-        {
-          order: 1,
-          day: 'mon',
-          dayName: 'Monday',
-        },
-        {
-          order: 2,
-          day: 'tue',
-          dayName: 'Tuesday',
-        },
-        {
-          order: 3,
-          day: 'wed',
-          dayName: 'Wednesday',
-        },
-        {
-          order: 4,
-          day: 'thu',
-          dayName: 'Thursday',
-        },
-        {
-          order: 5,
-          day: 'fri',
-          dayName: 'Friday',
-        },
-        {
-          order: 6,
-          day: 'sat',
-          dayName: 'Saturday',
-        },
-        {
-          order: 7,
-          day: 'sun',
-          dayName: 'Sunday',
-        },
       ],
     };
   },
@@ -126,20 +126,21 @@ export default {
   watch: {
     clinicSchedulesExpanded (val) {
       // Sort the schedules
-      const groupedSchedules = this.clinic?.mf_schedule // eslint-disable-line
-        ?.map((schedule) => {
+      const mfSchedules = this.clinic?.mf_schedules || []; // eslint-disable-line
+      const groupedSchedules = mfSchedules
+        .map((schedule) => {
           const { order } = this.days.find(day => day.day === schedule.day);
           return {
             order,
             ...schedule,
           };
         })
-        ?.sort((a, b) => a.day !== b.day ? a.order - b.order : a.opening - b.opening) || [];
-      if (!val && groupedSchedules && groupedSchedules.length >= 3) { // eslint-disable-line
-        this.clinicSchedules = groupedSchedules.slice(0, 3) || []; // eslint-disable-line
+        .sort((a, b) => a.day !== b.day ? a.order - b.order : a.opening - b.opening) || [];
+      if (!val && groupedSchedules && groupedSchedules.length >= 3) {
+        this.clinicSchedules = groupedSchedules.slice(0, 3);
         return;
       }
-      this.clinicSchedules = groupedSchedules || []; // eslint-disable-line
+      this.clinicSchedules = groupedSchedules;
     },
   },
   created () {
