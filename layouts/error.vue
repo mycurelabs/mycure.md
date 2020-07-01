@@ -1,8 +1,8 @@
 <template lang="pug">
-  v-container.pt-12
-    div(v-if="error.statusCode === 404").white
-      v-container(fluid align="start").mb-3
-        v-row(align="center")
+  v-container(fluid).pt-12.fill-height
+    template(v-if="error.statusCode === 404")
+      v-container(fluid align="start").my-3.white
+        v-row(align="center" justify="center")
           v-col
             v-row(justify="center")
               img(:width="$isMobile ? '90%' : 'auto'" src="~/assets/images/mycure-error-404-image.png" alt="Error 404")
@@ -17,9 +17,9 @@
               v-col(cols="12")
                 nuxt-link(:to="{ name: 'index' }" title="MYCURE | Clinic Management System | Cloud EMR Philippines")
                   p.font-16 Back to Home
-    div(v-else).my-10
+    template(v-else).my-10
       v-container(fluid align="start")
-        v-row(align="center")
+        v-row(align="center" justify="center")
           v-col(cols="12").text-center
             h1.font-40 {{ otherError }}
             br

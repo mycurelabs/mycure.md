@@ -36,19 +36,19 @@ export const FIFTH_PANEL_HEADER = {
 };
 export const FIFTH_PANEL_CONTENT = [
   {
-    image: 'MYCURE-virtual-clinic-healthcare-practice-online-enterprise-D-benefits-01-daily-census.png',
+    image: 'mycure-check.png',
     imageTitle: 'Daily Census',
   },
   {
-    image: 'MYCURE-virtual-clinic-healthcare-practice-online-enterprise-D-benefits-02-patient-turnovers.png',
+    image: 'mycure-check.png',
     imageTitle: 'Time Studies & Patient Turnovers',
   },
   {
-    image: 'MYCURE-virtual-clinic-healthcare-practice-online-enterprise-D-benefits-03-queue-reports.png',
+    image: 'mycure-check.png',
     imageTitle: 'Queue Reports',
   },
   {
-    image: 'MYCURE-virtual-clinic-healthcare-practice-online-enterprise-D-benefits-04-sales-billing.png',
+    image: 'mycure-check.png',
     imageTitle: 'Sales & Billing',
   },
 ];
