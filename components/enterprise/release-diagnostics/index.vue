@@ -14,10 +14,10 @@
           v-icon.primary--text {{tenthPanel.btnIcon}}
       v-col(cols="12" md="6" justify="center" align="center").panel-image
         picture-source(
-          customPath="enterprise/"
+          custom-path="enterprise/"
           :image="tenthPanel.image"
-          :imageAlt="tenthPanel.header"
-          imageFileExtension=".webp"
+          :image-alt="tenthPanel.header"
+          image-file-extension=".webp"
         )
       v-col(cols="12" md="5" align-self="center" v-if="!$isMobile")
         p.font-16.mt-3.font-gray.primary--text {{tenthPanel.subHeader}}
@@ -60,7 +60,7 @@ a {
 }
 .diagnostic-centers {
   position: relative;
-  z-index: 5;
+  z-index: 2;
 }
 @media screen and (min-width: 1024px) {
   .panel-image {

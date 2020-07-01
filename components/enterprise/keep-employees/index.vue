@@ -11,10 +11,10 @@
           v-icon.primary--text {{eightPanel.btnIcon}}
       v-col(cols="12" md="6" justify="center" align="center").panel-image
         picture-source(
-          customPath="enterprise/"
+          custom-path="enterprise/"
           :image="eightPanel.image"
-          :imageAlt="eightPanel.header"
-          imageFileExtension=".webp"
+          :image-alt="eightPanel.header"
+          image-file-extension=".webp"
         )
       v-col(cols="12" md="5" align-self="center" v-if="!$isMobile")
         p.font-16.mt-3.font-gray.primary--text {{eightPanel.subHeader}}
