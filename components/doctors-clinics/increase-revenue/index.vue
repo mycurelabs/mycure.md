@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-container.py-10
+  v-container.py-12
     v-row(justify="center")
       v-col(cols="12").text-center
         h1.font-30.lh-title.font-weight-light Your New Virtual Clinic
