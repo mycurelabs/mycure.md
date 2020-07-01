@@ -1,6 +1,6 @@
 export const BRING_YOUR_PRACTICE_ONLINE = {
   header: 'Bring your practice online',
-  description: 'One platform built with online appointments, video chat, EMR system, point-of-sale, medical billing and ',
+  description: 'One platform built with online appointments, video chat, EMR system, point-of-sale, telehealth, medical billing and ',
   descriptionLink: 'more',
 };
 export const HOME_START_YOUR_PHYSICAL = {
