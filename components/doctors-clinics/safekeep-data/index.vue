@@ -1,7 +1,7 @@
 <template lang="pug">
   v-container.py-12
     v-row(justify="center")
-      v-col(align-self="center" cols="12" md="6" v-if="!$isMobile")
+      v-col(align="end" cols="12" md="6" v-if="!$isMobile").panel-image
         picture-source(
           customPath="doctors-clinics/"
           :image="panelMainImage"
@@ -45,3 +45,10 @@ export default {
   },
 };
 </script>
+<style scoped>
+@media screen and (min-width: 1024px) {
+  .panel-image {
+    margin-right: 4%;
+  }
+}
+</style>>
