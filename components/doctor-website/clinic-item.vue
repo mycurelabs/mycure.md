@@ -34,7 +34,7 @@
               td {{sched.opening | morph-date-format('hh:mm A')}}
               td -
               td {{sched.closing | morph-date-format('hh:mm A')}}
-            tr
+            tr(v-if="fullSchedules.length > 3")
               td(colspan="4")
                 a(@click="clinicSchedulesExpanded = !clinicSchedulesExpanded") View {{clinicSchedulesExpanded ? 'less' : 'more'}}
         //- TODO: apply services
@@ -109,6 +109,7 @@ export default {
     return {
       clinicSchedules: [],
       clinicSchedulesExpanded: null,
+      fullSchedules: [],
       clinicKeys: [
         'description',
         'address',
@@ -126,8 +127,8 @@ export default {
   watch: {
     clinicSchedulesExpanded (val) {
       // Sort the schedules
-      const mfSchedules = this.clinic?.mf_schedules || []; // eslint-disable-line
-      const groupedSchedules = mfSchedules
+      this.fullSchedules = this.clinic?.mf_schedule || []; // eslint-disable-line
+      const groupedSchedules = this.fullSchedules
         .map((schedule) => {
           const { order } = this.days.find(day => day.day === schedule.day);
           return {
