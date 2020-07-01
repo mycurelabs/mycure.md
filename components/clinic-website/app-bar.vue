@@ -3,7 +3,7 @@
     nuxt-link(:to="{ name: 'index' }" title="MYCURE | Clinic Management System | Cloud EMR Philippines" id="toolbar-mycure-logo")
       img(
         height="45"
-        src="../../assets/images/mycure-header-logo.png"
+        src="~/assets/images/mycure-header-logo.png"
         to="/"
       )
     v-spacer
