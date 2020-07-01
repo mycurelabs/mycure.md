@@ -32,7 +32,7 @@
                   outlined
                   label="Clinic Name"
                   :rules="[requiredRule]"
-                ).step-one-field.font-21
+                )#clinicName.step-one-field.font-21
                   template(v-slot:append v-if="clinic.facilityName")
                     v-icon(color="accent") mdi-check
                 v-text-field(
@@ -115,6 +115,13 @@ export default {
       } else {
         this.clinic.hasOtherBranches = true;
       }
+    }
+  },
+  mounted () {
+    if (process.browser) {
+      this.$nextTick(() => {
+        document.getElementById('clinicName') && document.getElementById('clinicName').focus();
+      });
     }
   },
   methods: {

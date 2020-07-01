@@ -3,7 +3,7 @@
     //- 1st panel
     usp(@getStarted="goToSignupIndividual($event)")
     //- 2nd panel
-    platform-panels(@getStarted="getStarted")
+    platform-panels(@getStarted="getStarted" @goToFeatures="goToFeatures")
     v-divider.edge-divider
     //- 3rd panel
     storyflow(
@@ -90,6 +90,9 @@ export default {
   methods: {
     getStarted () {
       this.$router.push({ name: 'signup-individual' });
+    },
+    goToFeatures () {
+      this.$nuxt.$router.push({ name: 'features' });
     },
     goToSignupIndividual (email) {
       this.$router.push({ name: 'signup-individual', params: { email } });
