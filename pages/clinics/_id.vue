@@ -1,15 +1,5 @@
 <template lang="pug">
   v-container(fluid)
-    // TODO: navbar -- done / refactor needed
-    // TODO: hero panel -- done / refactor needed
-    // TODO: services -- done / check for refactors
-    // TODO: clinic info -- done / check for refactors
-    // TODO: doctors list -- doing
-    // TODO: about clinic
-    // TODO: social panel
-    // TODO: final cta
-    // TODO: footer -- done / refactor needed
-    // TODO: recheck all on mobile
     app-bar
     panel-1(
       pic-url="MYCURE-virtual-clinic-healthcare-practice-online-enterprise-F-multi-specialty"
@@ -102,9 +92,6 @@ export default {
     this.filterItems = FILTER_ITEMS;
     this.sortItems = SORT_ITEMS;
     return {};
-  },
-  mounted () {
-    console.log(this.$route);
   },
   head () {
     // TODO: update meta tags
