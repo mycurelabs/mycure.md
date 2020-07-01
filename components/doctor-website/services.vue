@@ -19,7 +19,7 @@
                 template(slot="media-image")
                   img(src="../../assets/images/mycure-check.png" width="25px")
                 template(slot="media-content")
-                  span {{service}}
+                  span {{ service }}
 </template>
 
 <script>
