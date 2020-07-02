@@ -19,7 +19,7 @@
               v-col(cols="1").pr-2.pt-2
                 img(width="20" src="~/assets/images/mycure-check.png" alt="Check icon")
               v-col
-                span(:class="i === 2 && 'pre-white-space'").font-18.font-gray {{ item }}
+                span(:class="i === 2 && 'pre-white-space'").font-16.font-gray {{ item }}
       //- Bottom images
       v-container(v-if="!$isMobile").py-10.mb-n1
         v-row
@@ -92,7 +92,7 @@ export default {
     this.checkListItems = [
       'Payment Management & History',
       'Invoice & Receipt Printing',
-      'HMO Statements, Collections,\n& Reports',
+      'HMO Statements, Collections\n& Reports',
       'Interface with Materials Management',
     ];
     this.customPath = 'features/';
