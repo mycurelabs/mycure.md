@@ -2,30 +2,28 @@
   fragment
     //- MOBILE
     div(v-if="$isMobile")
+      mc-cookie-prompt.cookie-prompt
       toolbar-mobile(
         :shadow="shadow"
         :loginURL="loginURL"
         :solutionsMenuItems="solutionsMenuItems"
-        :toolbarLinks="toolbarLinks"
         @toolbarLinkClick="handleToolbarLinkClick($event)"
         @subMenuClick="handleSubMenuClick($event)"
         @logoClick="handleMycureLogo"
       )
-      mc-cookie-prompt.cookie-prompt
     //- WEB
     div(v-else).toolbarMain
+      //- mc-cookie-prompt.cookie-prompt
       toolbar-web(
         :loginURL="loginURL"
         :shadow="shadow"
         :solutionsMenuItems="solutionsMenuItems"
         :solutionsText="solutionsText"
-        :toolbarLinks="toolbarLinks"
         :scroll-position="scrollPosition"
         @toolbarLinkClick="handleToolbarLinkClick($event)"
         @subMenuClick="handleSubMenuClick($event)"
         @logoClick="handleMycureLogo"
       )
-      mc-cookie-prompt.cookie-prompt
 </template>
 
 <script>
@@ -46,52 +44,100 @@ export default {
     this.solutionsMenuItems = [
       {
         name: 'For Patients',
+        position: 'left',
         subMenus: [
-          { name: 'Patient Portal', route: '', panel: '' },
-          { name: 'Doctor\'s Directory', route: '', panel: '' },
+          {
+            name: 'Patient Portal',
+            route: process.env.PX_PORTAL_URL,
+            new: true,
+            external: true,
+          },
+          {
+            name: 'Doctor\'s Directory',
+            route: 'directory-doctors',
+            new: true,
+            external: false,
+          },
         ],
       },
       {
         name: 'For Healthcare Professionals',
+        position: 'right',
         subMenus: [
           {
             name: 'Digital Clinics',
-            sampleMenu: [
-              { name: 'Solo Practice', route: 'doctors-clinics', panel: 'app' },
-              { name: 'Group Practice', route: 'doctors-clinics', panel: 'group-practice' },
-              { name: 'Specialized Practice', route: 'doctors-clinics', panel: 'specialized-practice' },
+            underSubMenus: [
+              {
+                name: 'Solo Practice',
+                route: 'doctors-clinics',
+                panel: 'app',
+                new: false,
+                external: false,
+              },
+              {
+                name: 'Group Practice',
+                route: 'doctors-clinics',
+                panel: 'group-practice',
+                new: false,
+                external: false,
+              },
+              {
+                name: 'Specialized Practice',
+                route: 'doctors-clinics',
+                panel: 'specialized-practice',
+                new: false,
+                external: false,
+              },
             ],
           },
           {
             name: 'Enterprise',
-            sampleMenu: [
-              { name: 'Multispecialty Clinics', route: 'enterprise', panel: 'app' },
-              { name: 'Multi-branch Facilities', route: 'enterprise', panel: 'multibranch-facilities' },
-              { name: 'Corporate Clinics', route: 'enterprise', panel: 'corporate-clinics' },
-              { name: 'Medical Arts Centers', route: 'enterprise', panel: 'medical-arts-centers' },
-              { name: 'Diagnostic Centers', route: 'enterprise', panel: 'diagnostic-centers' },
+            underSubMenus: [
+              {
+                name: 'Multispecialty Clinics',
+                route: 'enterprise',
+                panel: 'app',
+                new: false,
+                external: false,
+              },
+              {
+                name: 'Multi-branch Facilities',
+                route: 'enterprise',
+                panel: 'multibranch-facilities',
+                new: false,
+                external: false,
+              },
+              {
+                name: 'Corporate Clinics',
+                route: 'enterprise',
+                panel: 'corporate-clinics',
+                new: false,
+                external: false,
+              },
+              {
+                name: 'Medical Arts Centers',
+                route: 'enterprise',
+                panel: 'medical-arts-centers',
+                new: false,
+                external: false,
+              },
+              {
+                name: 'Diagnostic Centers',
+                route: 'enterprise',
+                panel: 'diagnostic-centers',
+                new: false,
+                external: false,
+              },
             ],
           },
           {
             name: 'Features',
             route: 'features',
+            new: false,
+            external: false,
           },
         ],
       },
-    ];
-    this.toolbarLinks = [
-      // {
-      //   name: 'Features',
-      //   id: 'features-nav-btn',
-      //   route: 'features',
-      //   text: true,
-      // },
-      // {
-      //   name: 'Fight COVID-19: Free EMR',
-      //   id: 'mycure-heart-nav-btn',
-      //   route: 'fight-covid-19',
-      //   text: true,
-      // },
     ];
     return {
       loginURL: 'signin',
@@ -155,6 +201,10 @@ export default {
     },
     handleSubMenuClick (item) {
       const { link, menu } = item;
+      if (menu.external) {
+        window.open(menu.route, '_blank', 'noopener, noreferrer');
+        return;
+      }
       this.handleToolbarLinkClick(link);
       if (menu.route !== this.$nuxt.$route.name) {
         this.$nuxt.$router.push({
