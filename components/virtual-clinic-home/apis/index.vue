@@ -1,12 +1,12 @@
 <template lang="pug">
   v-container.py-12
     //- WEB
-    v-row(v-if="!$isMobile" justify="center").panel-content
-      v-col(cols="6" lg="4" align-self="center").first-column
+    v-row(v-if="!$isMobile" justify="center" align="center").panel-content
+      v-col(md="4" align-self="center").first-column
         h1.font-30.lh-title.font-weight-light {{ panelTitle }}
         br
         p.font-16.font-gray.text-justify {{ panelContent }}
-        v-list(dense)
+        v-list(dense).ml-n5
           v-list-item(
             v-for="(item, key) in checkList"
             :key="key"
@@ -15,8 +15,8 @@
               img(v-lazy="require('~/assets/images/mycure-web-bullet-check.png')" alt="Check icon")
             v-list-item-content
               span.font-16.font-gray {{ item }}
-      v-col(cols="6" align-self="center").second-column.text-center
-        img(v-lazy="panelImageSrc" width="80%" :alt="panelImage").column-image
+      v-col(md="6" justify="center" align="center").second-column
+        img(v-lazy="panelImageSrc" width="60%" :alt="panelImage").column-image
     //- MOBILE
     v-row(v-else).pt-5
       v-col(cols="12").text-center
@@ -64,33 +64,20 @@ export default {
   position: relative;
   z-index: 3;
 }
-@media screen and (min-width: 1280px) {
-  .first-column {
-    padding-left: 3%;
+@media screen and (min-width: 1024px) {
+  .panel-content {
+    margin-left: 0%;
   }
   .second-column {
-    padding-left: 9%;
-  }
-  .column-image {
-    width: 80%;
-  }
-}
-@media screen and (min-width: 1280px) {
-  .second-column {
-    padding-left: 9%;
+    margin-left: -5%;
   }
 }
 @media screen and (min-width: 1920px) {
   .panel-content {
-    margin-left: -2%;
-  }
-}
-@media screen and (min-width: 2304px) {
-  .first-column {
-    margin-left: -2%;
+    margin-left: 0%;
   }
   .second-column {
-    padding-left: 7%;
+    margin-left: -4%;
   }
 }
 </style>
