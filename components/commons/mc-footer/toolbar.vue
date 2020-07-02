@@ -88,9 +88,9 @@
             a(id="footer-email-btn" title="MYCURE - Email" href="mailto:hello@mycure.md").link.primary--text.py-2
               span.py-2.font-18.primary--text hello@mycure.md
             br
-            span.py-2.font-18 (+632) 7799 6262
+            span.call-number.py-2.font-18 (+632) 7799 6262
             br
-            span.py-2.font-18 (+63) 917 303 4350
+            span.call-number.py-2.font-18 (+63) 917 303 4350
       br
       br
       br
@@ -161,6 +161,9 @@ export default {
 </script>
 
 <style scoped>
+.call-number {
+  color: #aaaaaa
+}
 .logo-img {
   height: 20%;
 }
