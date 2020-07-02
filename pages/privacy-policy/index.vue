@@ -9,23 +9,32 @@
       v-container
         v-row(justify="center")
           v-col(cols="12" md="10").mb-3
-            strong.font-18 Last Updated | March 22, 2020
+            strong.font-18 Updated: July 2, 2020
             br
             br
-            h2 Privacy Statement
+            h3 Your privacy is very important to us. Accordingly, we have developed this Policy in order for you to understand how we collect, use, communicate, and disclose and make use of personal information. We are committed to conducting our business in accordance with these principles in order to ensure that the confidentiality of personal information is protected and maintained.
             br
-            p MYCURE, Inc. - USA and Team O.P.S. Inc. - Philippines ("company", "us", "we", or "our") operate the www.MYCURE.md website and the MYCURE mobile applications (the "Service").
-            p Your privacy is very important to us. Accordingly, we have developed this Policy in order for you to understand how we collect, use, communicate, and disclose and make use of Personal Information when you use our Service. MYCURE is very much committed to conducting our business in accordance with these principles in order to ensure that the confidentiality of personal information is protected and maintained.
-            p Any sensitive, privileged and personal information that you provide shall be kept protected under the Republic Act No. 10173, or the Data Privacy Act of 2012, and its Implementing Rules and Regulations (collectively, the "Data Privacy Act").
-            p We will not use or share your Personal Information with anyone except as described in this Privacy Policy and in MYCURE's&nbsp;
-              nuxt-link(:to="{name:'terms'}" title="MYCURE Terms and Conditions").blue--text Terms and Conditions.
-              |&nbspInformation will only be used for its intended purpose (or as may be required by existing national and local laws, rules and regulations).
-            p We use your Personal Information for providing and improving the Service. By using the Service, you agree to the collection and use of information in accordance with this policy. Unless otherwise defined in this Privacy Policy, terms used in this Privacy Policy have the same meanings as in our&nbsp;
-              nuxt-link(:to="{name:'terms'}" title="MYCURE Terms and Conditions").blue--text Terms and Conditions.
+            p MYCURE, Inc. - USA and Team O.P.S. Inc. - Philippines ("us", "we", or "our") operate the www.mycure.md website and the MYCURE mobile applications (the "Service").
+            p This page informs you of our policies regarding the collection, use and disclosure of Personal Information when you use our Service.
+            p We will not use or share your information with anyone except as described in this Privacy Policy.
+            br
+            h2 User Consent
+            br
+            p We use your Personal Information for providing and improving the Service. By using the Service, you agree to the collection and use of information in accordance with this policy. Unless otherwise defined in this Privacy Policy, terms used in this Privacy Policy have the same meanings as in our Terms and Conditions.
+            //- h2 Privacy Statement
+            //- br
+            //- p MYCURE, Inc. - USA and Team O.P.S. Inc. - Philippines ("company", "us", "we", or "our") operate the www.MYCURE.md website and the MYCURE mobile applications (the "Service").
+            //- p Your privacy is very important to us. Accordingly, we have developed this Policy in order for you to understand how we collect, use, communicate, and disclose and make use of Personal Information when you use our Service. MYCURE is very much committed to conducting our business in accordance with these principles in order to ensure that the confidentiality of personal information is protected and maintained.
+            //- p Any sensitive, privileged and personal information that you provide shall be kept protected under the Republic Act No. 10173, or the Data Privacy Act of 2012, and its Implementing Rules and Regulations (collectively, the "Data Privacy Act").
+            //- p We will not use or share your Personal Information with anyone except as described in this Privacy Policy and in MYCURE's&nbsp;
+            //-   nuxt-link(:to="{name:'terms'}" title="MYCURE Terms and Conditions").blue--text Terms and Conditions.
+            //-   |&nbspInformation will only be used for its intended purpose (or as may be required by existing national and local laws, rules and regulations).
+            //- p We use your Personal Information for providing and improving the Service. By using the Service, you agree to the collection and use of information in accordance with this policy. Unless otherwise defined in this Privacy Policy, terms used in this Privacy Policy have the same meanings as in our&nbsp;
+            //-   nuxt-link(:to="{name:'terms'}" title="MYCURE Terms and Conditions").blue--text Terms and Conditions.
           v-col(cols="12" md="10").mb-3
             h2 Information Collection And Use
             br
-            p While using our Service, we may ask you to provide us with certain personally identifiable information that can be used to contact or identify you. Personally identifiable information may include, but is not limited to, your email address, name, phone number, age, date of birth, nationality, civil status, postal address, organization/company information, job title/occupation, and other information ("Personal Information").
+            p While using our Service, we may ask you to provide us with certain personally identifiable information that can be used to contact or identify you. Personally identifiable information may include, but is not limited to, your email address, name, phone number, postal address, other information ("Personal Information").
           v-col(cols="12" md="10").mb-3
             h2 Log Data
             br
@@ -40,19 +49,18 @@
           v-col(cols="12" md="10").mb-3
             h2 Cookies
             br
-            p Cookies are files with small amount of data, which may include an anonymous unique identifier. Cookies are sent to your browser from a web site and stored on your computer's hard drive.
+            p Cookies are files with a small amount of data, which may include an anonymous unique identifier. Cookies are sent to your browser from a web site and stored on your computer's hard drive.
             p We use "cookies" to collect information. You can instruct your browser to refuse all cookies or to indicate when a cookie is being sent. However, if you do not accept cookies, you may not be able to use some portions of our Service.
           v-col(cols="12" md="10").mb-3
             h2 DoubleClick Cookie
             br
             p Google, as a third party vendor, uses cookies to serve ads on our Service. Google's use of the DoubleClick cookie enables it and its partners to serve ads to our users based on their visit to our Service or other web sites on the Internet.
-            p You may opt out of the use of the DoubleClick Cookie for interest-based advertising by visiting the Google Ads Settings web page: http://www.google.com/ads/preferences/.
+            p You may opt out of the use of the DoubleClick Cookie for interest-based advertising by visiting the Google Ads Settings web page: http://www.google.com/ads/preferences/
           v-col(cols="12" md="10").mb-3
-            h2 Sharing of Personal Information
+            h2 Service Providers
             br
             p We may employ third party companies and individuals to facilitate our Service, to provide the Service on our behalf, to perform Service-related services or to assist us in analyzing how our Service is used.
             p These third parties have access to your Personal Information only to perform these tasks on our behalf and are obligated not to disclose or use it for any other purpose.
-            p Whenever necessary, a data sharing agreement shall cover any sharing of data between MYCURE and other service providers. MYCURE may also share information in accordance with any requirements from any relevant government agency as provided by law.
           v-col(cols="12" md="10").mb-3
             h2 Communications
             br
@@ -66,21 +74,20 @@
             br
             p If MYCURE, Inc. is involved in a merger, acquisition or asset sale, your Personal Information may be transferred. We will provide notice before your Personal Information is transferred and becomes subject to a different Privacy Policy.
           v-col(cols="12" md="10").mb-3
-            h2 Storage and Protection of Personal Information
+            h2 Security
             br
-            p MYCURE is implementing technological and physical security measures in addition to instituting policies and procedures to protect Personal Information from loss, misuse and unauthorized access or disclosure or destruction.  MYCURE Team undergoes orientation and training on its data privacy policy to ensure that they are knowledgeable about protecting sensitive data. They are likewise  required to execute a non-disclosure agreement among others.
-            p MYCURE's web and mobile applications go through regular scanning for possible security holes and know vulnerabilities. Your Personal Information is contained behind secured servers and is only accessible by a limited, qualified and authorized personnel who hold your information with strict confidentiality. Protocols and operational checks and balances are likewise in place on how to access these servers while deploying encryption and physical security controls for sensitive data.
-            p We highly regard the security of your Personal Information, but remember that no method of transmission over the Internet, or method of electronic storage is 100% secure. While we strive to use commercially acceptable means to protect your Personal Information, we cannot guarantee its absolute security and there will always be a risk of unauthorized disclosure of personal data. However, MYCURE believes that protocols and safeguards in place are sufficient to prevent the occurrence of such risk and it is deeply committed to continuous updates and improvements to protect your Personal Information in compliance with the Data Privacy Act.
-          v-col(cols="12" md="10").mb-3
-            h2 Retention Period
-            br
-            p A part of MYCURE platform is being a storage service provider and as such it will keep your data until your subscription expires or upon your request to have it deleted from its systems/databases.
+            p The security of your Personal Information is important to us, but remember that no method of transmission over the Internet, or method of electronic storage is 100% secure. While we strive to use commercially acceptable means to protect your Personal Information, we cannot guarantee its absolute security.
           v-col(cols="12" md="10").mb-3
             h2 International Transfer
             br
-            p Your information, including Personal Information, may be transferred to - and maintained on - computers located outside of your state, province, country or other governmental jurisdiction where the data protection laws may differ than those from your jurisdiction.
-            p If you are located outside Philippines and choose to provide information to us, please note that we may transfer the information, including Personal Information, to Philippines and process it there.
+            p Your information, including Personal Information, may be transferred to — and maintained on — computers located outside of your state, province, country or other governmental jurisdiction where the data protection laws may differ than those from your jurisdiction.
+            p If you are located outside the Philippines and choose to provide information to us, please note that we transfer the information, including Personal Information, to the Philippines and process it there.
+            p We may also use cloud-based tools like Stripe, Google Cloud, MongoDB in processing personal information.  Their servers may be distributed globally.
             p Your consent to this Privacy Policy followed by your submission of such information represents your agreement to that transfer.
+          v-col(cols="12" md="10").mb-3
+            h2 Note to Users
+            br
+            p Your Personal Data may be processed in the country in which it was collected and in other countries where laws regarding processing of Personal Data may be less stringent than the laws in your country. We constantly improve our service to comply with the US Health Insurance Portability and Accountability Act (HIPAA) and the Data Privacy Act (DPA) of the Philippines.
           v-col(cols="12" md="10").mb-3
             h2 Links To Other Sites
             br
@@ -90,31 +97,16 @@
             h2 Children's Privacy
             br
             p Our Service does not address anyone under the age of 13 ("Children").
-            p We do not knowingly collect personally identifiable information from children under 13. If you are a parent or guardian and you are aware that your Children has provided us with Personal Information, please contact us. If we become aware that we have collected Personal Information from a child under age 13 without verification of parental consent, we take steps to remove that information from our servers.
-          v-col(cols="12" md="10").mb-3
-            h2 Your Rights under the Data Privacy Act
-            br
-            p Under the Data Privacy Act of 2012, you have the right to be informed, to have reasonable access, to correct any inaccuracy, to obtain copy, to remove and/or object to any processing of Personal Information that you have provided to us. You may do so by contacting our Data Privacy Officer (DPO), see Contact Us below.
-            p Any request for correction, erasure and objection to process of the personal data, however, is subject to any exceptions under applicable laws, rules, and regulations.
+            p We do not knowingly collect personally identifiable information from children under 13. If you are a parent or guardian and you are aware that your Children have provided us with Personal Information, please contact us. If we become aware that we have collected Personal Information from a child under age 13 without verification of parental consent, we take steps to remove that information from our servers.
           v-col(cols="12" md="10").mb-3
             h2 Changes To This Privacy Policy
             br
             p We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page.
             p You are advised to review this Privacy Policy periodically for any changes. Changes to this Privacy Policy are effective when they are posted on this page.
           v-col(cols="12" md="10").mb-3
-            h2 Consent
-            br
-            p By agreeing to this policy, you explicitly consent and allow to the collection, processing and storage of your Personal Information by MYCURE for the purpose(s) described in this Data Privacy Policy.
-            p MYCURE requires you to get and secure consent from your parents or legal guardians in order to use the Service if you are below eighteen (18) years old. MYCURE does not specifically cater to persons under eighteen (18) years old.
-          v-col(cols="12" md="10").mb-3
             h2 Contact Us
             br
-            p If you have any questions about this Privacy Policy, please contact:
-            ul
-              li Title: Data Protection Officer
-              li Address: #107 TKC Square (Formerly Luisa Bldg. 2) Maginhawa St, Teacher's Village - East, QC 1101
-              li Phone No: (+632) 7799 6262
-              li Email Address: privacy@mycure.md
+            p If you have any questions about this Privacy Policy, please contact us at #[a(href="mailto:hello@mycure.md").mycure-link hello@mycure.md].
 </template>
 
 <script>
