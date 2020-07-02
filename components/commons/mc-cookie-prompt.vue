@@ -77,11 +77,14 @@ export default {
 
 <style scoped>
 .Cookie--mcCookie {
+  border-radius: 10px;
+  width: 80vw;
+  margin-left: 10vw;
   margin-top: 15%;
   background-color: #075b76;
 }
 .width100 {
-  width: 100%;
+  width: 80vw;
 }
 
 .policy-links {
@@ -106,12 +109,12 @@ export default {
     margin-top: 6%;
   }
 }
-@media (min-width: 1023px) {
+@media screen and (min-width: 1024px) {
   .Cookie--mcCookie {
-    margin-top: 8%;
+    margin-top: 7%;
   }
 }
-@media (min-width: 1100px) {
+@media screen and (min-width: 1280px) {
   .Cookie--mcCookie {
     margin-top: 70px;
   }

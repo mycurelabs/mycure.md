@@ -1,7 +1,8 @@
 <template lang="pug">
   fragment
     //- MOBILE
-    div(v-if="isMobile")
+    div(v-if="$isMobile")
+      mc-cookie-prompt.cookie-prompt
       toolbar-mobile(
         :shadow="shadow"
         :loginURL="loginURL"
@@ -13,6 +14,7 @@
       )
     //- WEB
     div(v-else).toolbarMain
+      mc-cookie-prompt.cookie-prompt
       toolbar-web(
         :loginURL="loginURL"
         :shadow="shadow"
@@ -24,7 +26,6 @@
         @subMenuClick="handleSubMenuClick($event)"
         @logoClick="handleMycureLogo"
       )
-    //- mc-cookie-prompt.cookie-prompt
 </template>
 
 <script>
