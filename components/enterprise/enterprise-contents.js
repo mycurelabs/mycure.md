@@ -41,11 +41,11 @@ export const FIFTH_PANEL_CONTENT = [
   },
   {
     image: 'mycure-check.png',
-    imageTitle: 'Time Studies & Patient Turnovers',
+    imageTitle: 'Queue Reports',
   },
   {
     image: 'mycure-check.png',
-    imageTitle: 'Queue Reports',
+    imageTitle: 'Time Studies & Patient Turnovers',
   },
   {
     image: 'mycure-check.png',
