@@ -5,16 +5,17 @@
         h1.font-36.font-weight-light.text-center {{BRING_YOUR_PRACTICE_ONLINE.header}}
         br
         p.text-center.font-18.font-gray {{BRING_YOUR_PRACTICE_ONLINE.description}}
+          a(@click="goToFeatures").font-16.font-weight-bold {{ BRING_YOUR_PRACTICE_ONLINE.descriptionLink }}
     //- FIRST PANEL
-    v-row(justify="center" align="center").py-10.mb-n4
-      v-col(v-if="!$isMobile" align="center" cols="12" md="6").first-column
+    v-row(align="center").py-10.mb-n4
+      v-col(v-if="!$isMobile" cols="12" md="6").pr-0.ml-2
         picture-source(
           customPath="virtual-clinic-home/"
           :image="HOME_START_YOUR_PHYSICAL.image"
           imageAlt="Start your physical and digital journey"
           imageFileExtension=".webp"
         )
-      v-col(align-self="center" cols="12" md="6" lg="4").second-column
+      v-col(cols="12" md="4" :class="{ 'ml-10': !$isMobile }")
         h1.font-30.lh-title.pb-3.font-weight-light {{HOME_START_YOUR_PHYSICAL.header}}
         br
         p.font-16.font-gray.text-justify.my-0 {{HOME_START_YOUR_PHYSICAL.description}}
@@ -31,8 +32,8 @@
         imageFileExtension=".webp"
       )
     //- SECOND PANEL
-    v-row(justify="center" align="center").py-10.mb-n4
-      v-col(cols="12" md="6" lg="4").first-column.img-online-clinic
+    v-row(justify="end" align="center").py-10.mb-n4
+      v-col(cols="12" offset-md="1" md="4" :class="{ 'mr-10': !$isMobile }")
         h1.font-30.font-weight-light {{YOUR_ONLINE_CLINIC.header}}
         br
         p.font-16.font-gray.text-justify.mb-0 {{YOUR_ONLINE_CLINIC.description}}
@@ -41,25 +42,23 @@
         v-btn(@click="onGetStarted" text).ml-n4
           strong.text-capitalize.primary--text.font-18 {{YOUR_ONLINE_CLINIC.btnTxt}}
           v-icon.primary--text {{YOUR_ONLINE_CLINIC.btnIcon}}
-      v-col(justify="center" align="center" cols="12" md="5").second-column
+      v-col(cols="12" md="6" :class="{ 'pl-0': !$isMobile }")
         picture-source(
           customPath="virtual-clinic-home/"
           :image="YOUR_ONLINE_CLINIC.image"
           imageAlt="Your online clinic everywhere"
           imageFileExtension=".webp"
-          :imageClasses="[!$isMobile ? 'pl-12' : '']"
         )
     //- THIRD PANEL
-    v-row(justify="center" align="center").py-10.mb-n4
-      v-col(v-if="!$isMobile" align="center" cols="12" md="6").first-column
+    v-row(align="center").py-10.mb-n4
+      v-col(v-if="!$isMobile" cols="12" md="6").pr-0.ml-2
         picture-source(
           customPath="virtual-clinic-home/"
           :image="GET_MORE_PATIENTS.image"
           imageAlt="Get more patients"
           imageFileExtension=".webp"
         )
-          //- :imageClasses="['pr-12']"
-      v-col(align="center" cols="12" md="6" lg="4").text-left.second-column
+      v-col(cols="12" md="4"  :class="{ 'ml-10': !$isMobile }")
         h1.font-30.font-weight-light {{GET_MORE_PATIENTS.header}}
         br
         p.font-16.font-gray.text-justify.mb-0 {{GET_MORE_PATIENTS.description}}
@@ -76,8 +75,8 @@
         imageFileExtension=".webp"
       )
     //- FOURTH PANEL
-    v-row(justify="center" align="center").py-10.mb-n4
-      v-col(cols="12" md="6" lg="4").first-column
+    v-row(justify="end" align="center").py-10.mb-n4
+      v-col(cols="12" offset-md="1" md="4" :class="{ 'mr-10': !$isMobile }")
         h1.font-30.font-weight-light {{MANAGE_EVERYTHING_EASILY.header}}
         br
         p.font-16.font-gray.text-justify.mb-0 {{MANAGE_EVERYTHING_EASILY.description}}
@@ -86,14 +85,12 @@
         v-btn(@click="onGetStarted" text).ml-n4
           strong.text-capitalize.primary--text.font-18 {{MANAGE_EVERYTHING_EASILY.btnTxt}}
           v-icon.primary--text {{MANAGE_EVERYTHING_EASILY.btnIcon}}
-      v-col(align="center" cols="12" md="5").second-column.img-manage-easily
+      v-col(cols="12" md="6" :class="{ 'pl-0': !$isMobile }")
         picture-source(
           customPath="virtual-clinic-home/"
-          :image-width="$isMobile ? '100%' : '130%'"
           :image="MANAGE_EVERYTHING_EASILY.image"
           imageAlt="Manage everything easily"
           imageFileExtension=".webp"
-          :imageClasses="[!$isMobile ? 'pl-10' : '']"
         )
 </template>
 
@@ -125,6 +122,9 @@ export default {
     onGetStarted () {
       this.$emit('getStarted');
     },
+    goToFeatures () {
+      this.$emit('goToFeatures');
+    },
   },
 };
 </script>
@@ -133,28 +133,5 @@ export default {
 a {
   text-decoration-color: #2e9fdf;
   text-decoration: none;
-}
-@media screen and (min-width: 1366px) {
-  .first-column {
-    margin-left: -5%;
-  }
-  .second-column {
-    margin-left: 5%;
-  }
-}
-@media screen and (min-width: 1280px) {
-  .second-column {
-    margin-left: 5%;
-  }
-}
-@media screen and (min-width: 1920px) {
-  .second-column {
-    margin-left: 7%;
-  }
-}
-@media screen and (min-width: 2304px) {
-  .second-column {
-    margin-left: 7%;
-  }
 }
 </style>
