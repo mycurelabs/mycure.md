@@ -14,7 +14,7 @@
       )
     //- WEB
     div(v-else).toolbarMain
-      mc-cookie-prompt.cookie-prompt
+      //- mc-cookie-prompt.cookie-prompt
       toolbar-web(
         :loginURL="loginURL"
         :shadow="shadow"
@@ -45,37 +45,53 @@ export default {
   data () {
     this.solutionsMenuItems = [
       {
-        name: 'Digital Clinics',
+        name: 'For Patients',
         subMenus: [
-          { name: 'Solo Practice', route: 'doctors-clinics', panel: 'app' },
-          { name: 'Group Practice', route: 'doctors-clinics', panel: 'group-practice' },
-          { name: 'Specialized Practice', route: 'doctors-clinics', panel: 'specialized-practice' },
+          { name: 'Patient Portal', route: '', panel: '' },
+          { name: 'Doctor\'s Directory', route: '', panel: '' },
         ],
       },
       {
-        name: 'Enterprise',
+        name: 'For Healthcare Professionals',
         subMenus: [
-          { name: 'Multispecialty Clinics', route: 'enterprise', panel: 'app' },
-          { name: 'Multi-branch Facilities', route: 'enterprise', panel: 'multibranch-facilities' },
-          { name: 'Corporate Clinics', route: 'enterprise', panel: 'corporate-clinics' },
-          { name: 'Medical Arts Centers', route: 'enterprise', panel: 'medical-arts-centers' },
-          { name: 'Diagnostic Centers', route: 'enterprise', panel: 'diagnostic-centers' },
+          {
+            name: 'Digital Clinics',
+            sampleMenu: [
+              { name: 'Solo Practice', route: 'doctors-clinics', panel: 'app' },
+              { name: 'Group Practice', route: 'doctors-clinics', panel: 'group-practice' },
+              { name: 'Specialized Practice', route: 'doctors-clinics', panel: 'specialized-practice' },
+            ],
+          },
+          {
+            name: 'Enterprise',
+            sampleMenu: [
+              { name: 'Multispecialty Clinics', route: 'enterprise', panel: 'app' },
+              { name: 'Multi-branch Facilities', route: 'enterprise', panel: 'multibranch-facilities' },
+              { name: 'Corporate Clinics', route: 'enterprise', panel: 'corporate-clinics' },
+              { name: 'Medical Arts Centers', route: 'enterprise', panel: 'medical-arts-centers' },
+              { name: 'Diagnostic Centers', route: 'enterprise', panel: 'diagnostic-centers' },
+            ],
+          },
+          {
+            name: 'Features',
+            route: 'features',
+          },
         ],
       },
     ];
     this.toolbarLinks = [
-      {
-        name: 'Features',
-        id: 'features-nav-btn',
-        route: 'features',
-        text: true,
-      },
-      {
-        name: 'Fight COVID-19: Free EMR',
-        id: 'mycure-heart-nav-btn',
-        route: 'fight-covid-19',
-        text: true,
-      },
+      // {
+      //   name: 'Features',
+      //   id: 'features-nav-btn',
+      //   route: 'features',
+      //   text: true,
+      // },
+      // {
+      //   name: 'Fight COVID-19: Free EMR',
+      //   id: 'mycure-heart-nav-btn',
+      //   route: 'fight-covid-19',
+      //   text: true,
+      // },
     ];
     return {
       loginURL: 'signin',
