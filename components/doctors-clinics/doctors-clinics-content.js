@@ -21,7 +21,7 @@ export const SAFEKEEP_MEDICAL_DATA = {
   btnIcon: 'mdi-arrow-right-thick',
 };
 export const TAKE_PRACTICE_ONLINE = {
-  header: 'Take your entire practice online - even your group clinic',
+  header: 'Take your entire practice online\n- even your group clinic',
   description: 'Easily coordinate with other doctors in your group practice and centralize your clinic system under one subscription.',
   btnTxt: 'Get Started',
   btnIcon: 'mdi-arrow-right-thick',

@@ -2,7 +2,7 @@
   v-container.py-12
     v-row(justify="center")
       v-col(align-self="center" cols="12" md="5")
-        h1.font-30.lh-title.pb-3.font-weight-light {{TAKE_PRACTICE_ONLINE.header}}
+        h1.pre-white-space.font-30.lh-title.pb-3.font-weight-light {{TAKE_PRACTICE_ONLINE.header}}
         br
         p.text-justify.font-16.mt-3.font-gray {{TAKE_PRACTICE_ONLINE.description}}
         br
