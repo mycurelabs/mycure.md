@@ -1,7 +1,6 @@
 <template lang="pug">
   fragment
     //- mc-covid-banner
-    mc-cookie-prompt
     v-app-bar(app fixed flat height="70" :color="appBarColor" :class="[shadow]")
       v-container
         v-row(justify="center")
@@ -90,11 +89,9 @@
 </template>
 
 <script>
-import McCookiePrompt from '~/components/commons/mc-cookie-prompt';
 import McCovidBanner from '~/components/commons/mc-covid-banner';
 export default {
   components: {
-    McCookiePrompt,
     McCovidBanner,
   },
   props: {

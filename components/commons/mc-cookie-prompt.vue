@@ -9,7 +9,7 @@
         div(slot-scope="props").width100
           v-container.py-1.width100
             v-row(v-if="!isMobile").px-4
-              v-col(cols="11").pt-2
+              v-col(cols="11").pt-2.text-justify
                 | We use third-party services to understand web traffic data for us and they may collect cookies during the process.
                 | By continuing to browse our site, you agree to MYCURE's&nbsp;
                 nuxt-link(:to="{name: 'terms'}").policy-links Terms of Use
@@ -20,7 +20,7 @@
               v-btn(text icon color="white" @click="onClick(props)").mt-2
                 v-icon mdi-close
             v-row(v-else).pl-3
-              v-col(cols="10")
+              v-col(cols="10").text-justify
                 | We use third-party services to understand web traffic data for us and they may collect cookies during the process.
                 | By continuing to browse our site, you agree to MYCURE's&nbsp;
                 nuxt-link(:to="{name: 'terms'}").policy-links Terms of Use
@@ -46,7 +46,7 @@ export default {
   },
   computed: {
     position () {
-      return this.isMobile ? 'bottom' : 'top';
+      return this.isMobile ? 'bottom' : 'bottom';
     },
     cookieClasses () {
       const webClasses = ['font-14', 'py-3'];
@@ -77,46 +77,14 @@ export default {
 
 <style scoped>
 .Cookie--mcCookie {
-  border-radius: 10px;
-  width: 80vw;
-  margin-left: 10vw;
-  margin-top: 15%;
   background-color: #075b76;
 }
 .width100 {
-  width: 80vw;
+  width: 100%;
 }
 
 .policy-links {
   color: white;
   font-weight: bold
-}
-
-@media (min-width: 576px) {
-  .Cookie--mcCookie {
-    margin-top: 6.5%;
-  }
-}
-
-@media (min-width: 768px){
-  .Cookie--mcCookie {
-    margin-top: 5%;
-  }
-}
-
-@media (min-width: 960px) {
-  .Cookie--mcCookie {
-    margin-top: 6%;
-  }
-}
-@media screen and (min-width: 1024px) {
-  .Cookie--mcCookie {
-    margin-top: 7%;
-  }
-}
-@media screen and (min-width: 1280px) {
-  .Cookie--mcCookie {
-    margin-top: 70px;
-  }
 }
 </style>
