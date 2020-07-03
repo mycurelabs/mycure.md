@@ -26,7 +26,7 @@
                 step="1"
                 maxlength="1"
                 :class="{'night-field': dayOrNight === 'night'}"
-                v-on:keyup.delete="onDelete(2)"
+                v-on:keyup.delete="onDelete(3)"
               )#secondDigit.single-field
               input(
                 v-model="thirdDigit"
@@ -34,7 +34,7 @@
                 step="1"
                 maxlength="1"
                 :class="{'night-field': dayOrNight === 'night'}"
-                v-on:keyup.delete="onDelete(3)"
+                v-on:keyup.delete="onDelete(4)"
               )#thirdDigit.single-field
               input(
                 v-model="fourthDigit"
@@ -42,7 +42,7 @@
                 step="1"
                 maxlength="1"
                 :class="{'night-field': dayOrNight === 'night'}"
-                v-on:keyup.delete="onDelete(4)"
+                v-on:keyup.delete="onDelete(5)"
               )#fourthDigit.single-field
               input(
                 v-model="fifthDigit"
@@ -50,7 +50,7 @@
                 step="1"
                 maxlength="1"
                 :class="{'night-field': dayOrNight === 'night'}"
-                v-on:keyup.delete="onDelete(5)"
+                v-on:keyup.delete="onDelete(6)"
               )#fifthDigit.single-field
               input(
                 v-model="sixthDigit"
@@ -58,7 +58,7 @@
                 step="1"
                 maxlength="1"
                 :class="{'night-field': dayOrNight === 'night'}"
-                v-on:keyup.delete="onDelete(6)"
+                v-on:keyup.delete="onDelete(7)"
               )#sixthDigit.single-field
             v-col(v-if="loading").shrink
               v-progress-circular(indeterminate size="15" color="primary")
