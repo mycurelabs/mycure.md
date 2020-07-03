@@ -96,7 +96,10 @@
           div
             p.subheading
               b(v-if="step1Data.firstName") Dr. {{ step1Data.firstName }}
-              | {{ step1Data.firstName ? `, you've` : `You've` }} taken the first step in securely organizing your medical records.&nbsp;
+              | {{ step1Data.firstName ? `, you've` : `You've` }} taken the first step
+              br
+              | in securely organizing your medical records.
+              br
               | Now get ready for the ultimate clinic make-over.
           v-btn(
             color="accent"

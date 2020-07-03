@@ -10,10 +10,10 @@
     v-row(align="center").py-10.mb-n4
       v-col(v-if="!$isMobile" cols="12" md="6").pr-0.ml-2
         picture-source(
-          customPath="virtual-clinic-home/"
+          custom-path="virtual-clinic-home/"
           :image="HOME_START_YOUR_PHYSICAL.image"
-          imageAlt="Start your physical and digital journey"
-          imageFileExtension=".webp"
+          image-alt="Start your physical and digital journey"
+          image-file-extension=".webp"
         )
       v-col(cols="12" md="4" :class="{ 'ml-10': !$isMobile }")
         h1.font-30.lh-title.pb-3.font-weight-light {{HOME_START_YOUR_PHYSICAL.header}}
@@ -26,10 +26,10 @@
           v-icon.primary--text {{HOME_START_YOUR_PHYSICAL.btnIcon}}
       picture-source(
         v-if="$isMobile"
-        customPath="virtual-clinic-home/"
+        custom-path="virtual-clinic-home/"
         :image="HOME_START_YOUR_PHYSICAL.image"
-        imageAlt="Start your physical and digital journey"
-        imageFileExtension=".webp"
+        image-alt="Start your physical and digital journey"
+        image-file-extension=".webp"
       )
     //- SECOND PANEL
     v-row(justify="end" align="center").py-10.mb-n4
@@ -44,19 +44,19 @@
           v-icon.primary--text {{YOUR_ONLINE_CLINIC.btnIcon}}
       v-col(cols="12" md="6" :class="{ 'pl-0': !$isMobile }")
         picture-source(
-          customPath="virtual-clinic-home/"
+          custom-path="virtual-clinic-home/"
           :image="YOUR_ONLINE_CLINIC.image"
-          imageAlt="Your online clinic everywhere"
-          imageFileExtension=".webp"
+          image-alt="Your online clinic everywhere"
+          image-file-extension=".webp"
         )
     //- THIRD PANEL
     v-row(align="center").py-10.mb-n4
       v-col(v-if="!$isMobile" cols="12" md="6").pr-0.ml-2
         picture-source(
-          customPath="virtual-clinic-home/"
+          custom-path="virtual-clinic-home/"
           :image="GET_MORE_PATIENTS.image"
-          imageAlt="Get more patients"
-          imageFileExtension=".webp"
+          image-alt="Get more patients"
+          image-file-extension=".webp"
         )
       v-col(cols="12" md="4"  :class="{ 'ml-10': !$isMobile }")
         h1.font-30.font-weight-light {{GET_MORE_PATIENTS.header}}
@@ -69,10 +69,10 @@
           v-icon.primary--text {{GET_MORE_PATIENTS.btnIcon}}
       picture-source(
         v-if="$isMobile"
-        customPath="virtual-clinic-home/"
+        custom-path="virtual-clinic-home/"
         :image="GET_MORE_PATIENTS.image"
-        imageAlt="Get more patients"
-        imageFileExtension=".webp"
+        image-alt="Get more patients"
+        image-file-extension=".webp"
       )
     //- FOURTH PANEL
     v-row(justify="end" align="center").py-10.mb-n4
@@ -87,10 +87,10 @@
           v-icon.primary--text {{MANAGE_EVERYTHING_EASILY.btnIcon}}
       v-col(cols="12" md="6" :class="{ 'pl-0': !$isMobile }")
         picture-source(
-          customPath="virtual-clinic-home/"
+          custom-path="virtual-clinic-home/"
           :image="MANAGE_EVERYTHING_EASILY.image"
-          imageAlt="Manage everything easily"
-          imageFileExtension=".webp"
+          image-alt="Manage everything easily"
+          image-file-extension=".webp"
         )
 </template>
 

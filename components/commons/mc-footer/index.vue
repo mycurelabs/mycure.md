@@ -6,14 +6,14 @@
       v-row(justify="center" d-flex).py-5
         v-col(cols="3")
           ul
-            li #[h3.primary--text CLINIC SOLUTIONS]
+            li #[h3.primary--text.footer-header FOR HEALTHCARE PROFESSIONALS]
             li(
               v-for="(solution, key) in clinicSolutions"
               :key="key"
             )
               nuxt-link(
-              :to="{ name: solution.route }"
-              @click.stop="handleFooterSolution(solution.route)"
+                :to="{ name: solution.route }"
+                @click.stop="handleFooterSolution(solution.route)"
               ).link {{solution.name}}
             nuxt-link(
               id="footer-features-link"
@@ -22,7 +22,34 @@
               title="MYCURE Features"
             ).link Features
         v-col(cols="3").pl-12
-          h3.primary--text ABOUT
+          div.mb-4
+            h3.primary--text.footer-header FOR PATIENTS
+            a(:href="patientPortalUrl" target="_blank" rel="noopener noreferrer").link.new-link Patient's Portal
+            br
+            //- directory / doctor
+            nuxt-link(
+              id="footer-directory-doctors-link"
+              @click.stop="handleFooterDirectoryDoctorsLink"
+              :to="{name: 'directory-doctors'}"
+              title="MYCURE Doctor's Directory"
+            ).link.new-link Doctor's Directory
+          div
+            h3.primary--text.footer-header LEGAL
+            nuxt-link(
+              id="footer-terms-link"
+              @click.stop="handleFooterTermsLink"
+              :to="{name: 'terms'}"
+              title="MYCURE Terms and Conditions"
+            ).link Terms of Use
+            br
+            nuxt-link(
+              id="footer-privacy-policy-link"
+              @click.stop="handleFooterPrivacyPolicyLink"
+              :to="{name: 'privacy-policy'}"
+              title="MYCURE Privacy Policy"
+            ).link Privacy Policy
+        v-col(cols="3")
+          h3.primary--text.footer-header ABOUT
           nuxt-link(
             id="footer-our-story-link"
             @click.stop="handleFooterOurStoryLink"
@@ -33,23 +60,15 @@
           a(href="http://blog.mycure.md/" target="_blank" rel="noopener noreferrer").link Blog
           br
           a(href="https://culture.mycure.md/" target="_blank" rel="noopener noreferrer").link Careers
-        v-col(cols="3")
-          h3.primary--text LEGAL
-          nuxt-link(
-            id="footer-terms-link"
-            @click.stop="handleFooterTermsLink"
-            :to="{name: 'terms'}"
-            title="MYCURE Terms and Conditions"
-          ).link Terms of Use
           br
           nuxt-link(
-            id="footer-privacy-policy-link"
+            id="footer-fight-covid-19-link"
             @click.stop="handleFooterPrivacyPolicyLink"
-            :to="{name: 'privacy-policy'}"
-            title="MYCURE Privacy Policy"
-          ).link Privacy Policy
+            :to="{name: 'fight-covid-19'}"
+            title="Fight COVID-19: Free EMR"
+          ).link Fight COVID-19: Free EMR
         v-col(cols="3")
-          h3.primary--text CONTACT US
+          h3.primary--text.footer-header CONTACT US
           a(
             id="footer-email-link"
             @click.stop="handleFooterEmailLink"
@@ -63,7 +82,7 @@
       hr.my-4
       v-row(justify="center")
         span.call-number Copyright &copy; 2016 - {{new Date().getFullYear()}}
-          a(href="https://mycure.md")
+          a(href="https://mycure.md" rel="noopener noreferrer")
             strong.primary--text &nbsp;MYCURE Inc.&nbsp;
         span.call-number All Rights Reserved.
     v-container(v-else).footer-dark.pa-4
@@ -79,6 +98,11 @@ import { CLINIC_SOLUTIONS } from './constants';
 export default {
   components: {
     McFooterToolbar,
+  },
+  computed: {
+    patientPortalUrl () {
+      return process.env.PX_PORTAL_URL;
+    },
   },
   created () {
     this.clinicSolutions = CLINIC_SOLUTIONS;
@@ -147,6 +171,20 @@ export default {
         eventLabel: 'footer-privacy-policy-link',
       });
     },
+    handleFooterFightCovidLink () {
+      this.$ga.event({
+        eventCategory: 'link',
+        eventAction: 'click-footer-fight-covid-19-link',
+        eventLabel: 'footer-fight-covid-19-link',
+      });
+    },
+    handleFooterDirectoryDoctorsLink () {
+      this.$ga.event({
+        eventCategory: 'link',
+        eventAction: 'click-footer-directory-doctors-link',
+        eventLabel: 'footer-directory-doctors-link',
+      });
+    },
     handleFooterEmailLink () {
       this.$ga.event({
         eventCategory: 'link',
@@ -169,6 +207,9 @@ hr {
   list-style-type: none;
   padding-left: 0;
 }
+.footer-header {
+  font-size: 14px;
+}
 a {
   color: #aaaaaa;
 }
@@ -185,9 +226,18 @@ li {
 .link:hover {
   color: #ffffff;
 }
-.clinic-header {
-  font-size: 1.7em;
-  font-weight: bold;
+.new-link {
+  position: relative;
+}
+.new-link:after {
+  content: '';
+  position: absolute;
+  background-color: red;
+  top: 8px;
+  right: -13px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
 }
 .center {
   padding: auto;

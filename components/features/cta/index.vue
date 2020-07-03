@@ -122,6 +122,8 @@ export default {
 }
 .mobile-content {
   text-align: center;
+  position: absolute;
+  bottom: 0;
 }
 @media screen and (max-width: 360px) {
   .cta-content {

@@ -119,10 +119,10 @@
               :disabled="loading"
               color="primary"
             )
-            span.mt-n1 By creating a MYCURE account, you're agreeing to accept MYCURE&nbsp;
-              a(@click.stop="goToTerms") Terms
-              | &nbsp;and&nbsp;
-              a(@click.stop="goToPrivacy") Privacy Policy
+            span.mt-n1 By creating a MYCURE account, you're agreeing to accept MYCURE's&nbsp;
+              a(@click.stop="goToPrivacy") Privacy Policy,&nbsp;
+              a(@click.stop="goToTerms") Terms of Use,&nbsp;
+              | and BAA
           v-alert(:value="error" type="error").mt-5 {{errorMessage}}
         v-col(cols="12" md="10" justify="center" align="center")
           v-spacer
@@ -413,14 +413,20 @@ h1 {
 }
 @media screen and (min-width: 768px) {
   .content-padding {
-    /* padding-top: 15vh; */
-    padding-bottom: 19%;
+    padding-top: 5vh;
+    padding-bottom: 10%;
   }
 }
 @media screen and (min-width: 1024px) {
   .content-padding {
-    padding-top: 20vh;
-    padding-bottom: 40%;
+    padding-top: 27vh;
+    padding-bottom: 30%;
+  }
+}
+@media screen and (min-width: 1024px) and (device-height: 768px) {
+  .content-padding {
+    padding-top: 5vh;
+    padding-bottom: 3%;
   }
 }
 @media screen and (device-width: 1280px) and (device-height: 800px) {
@@ -437,8 +443,8 @@ h1 {
 }
 @media screen and (min-width: 1366px) {
   .content-padding {
-    margin-top: -11%;
-    margin-bottom: -4%;
+    margin-top: -4%;
+    margin-bottom: 3%;
     height: 75vh;
     position: relative;
     z-index: 2;
@@ -446,20 +452,31 @@ h1 {
 }
 @media screen and (min-width: 1440px) {
   .content-padding {
-    margin-bottom: 9%;
+    padding-top: 13%;
+    margin-bottom: 7%;
+    position: relative;
+    z-index: 2;
+  }
+}
+@media screen and (min-width: 1600px) {
+  .content-padding {
+    padding-top: 12%;
+    margin-bottom: 6%;
     position: relative;
     z-index: 2;
   }
 }
 @media screen and (min-width: 1680px) {
   .content-padding {
-    margin-bottom: 10%;
+    padding-top: 15%;
+    margin-bottom: 8%;
     position: relative;
     z-index: 2;
   }
 }
 @media screen and (min-width: 1920px) {
   .content-padding {
+    padding-top: 15%;
     margin-bottom: 5%;
     position: relative;
     z-index: 2;
@@ -467,15 +484,15 @@ h1 {
 }
 @media screen and (min-width: 2304px) {
   .content-padding {
-    padding-top: 16%;
-    margin-bottom: 7%;
+    padding-top: 21%;
+    margin-bottom: 6%;
     position: relative;
     z-index: 2;
   }
 }
 @media screen and (device-width: 2560px) {
   .content-padding {
-    padding-top: 15%;
+    padding-top: 19%;
     margin-bottom: 2%;
     position: relative;
     z-index: 2;

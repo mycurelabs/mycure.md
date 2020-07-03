@@ -9,7 +9,7 @@
       v-container
         v-row(justify="center")
           v-col(cols="12" md="10").mb-3
-            strong.font-18 Last Updated | February 21, 2018
+            strong.font-18 Updated | July 02, 2020
             br
             br
             p These&nbsp;
@@ -29,24 +29,24 @@
           v-col(cols="12" md="10").mb-3
             h2 Character, Trust and Integrity
             br
-            p MYCURE values Character, Trust, and Integrity. These are values  very  important to the Founders thus was brought about and integrated into MYCURE's Culture!
+            p MYCURE values Character, Trust, and Integrity. These are values  very  important to the Founders, thus were brought about and integrated in MYCURE’s Culture!
           v-col(cols="12" md="10").mb-3
             v-row
               v-col(cols="12" md="6").px-3
                 span.font-21 TRUST AND INTEGRITY
                 br
                 br
-                p We are looking forward to you entrusting to MYCURE your personal data. We know how important this is to you. Our tech team has established standard security protocols (and more) to keep your data safe. But does this mean we are 100% hack-proof? Well, we want to be. But let's admit it, even the world's biggest banks and government institutions are not. Rest assured, however, that we have set up our backend infrastructure to protect your data and continue to work on it constantly.
-                p Personal data like name, photos, phone numbers and email address are yours and yours alone. We are committed to not selling these types of data to third parties. But we are sure you understand that in the interest of science and for the potential to save more lives in the future, MYCURE may have partnerships with hospitals and medical companies. In other words, records like diseases, types of medicine used, general location and anything that would help medical practitioners make better medical decisions in the future - as long as it does not directly identify you - could possibly be shared to make our world a better place.&nbsp;
+                p We are looking forward to you entrusting to MYCURE your personal data. We know how important this is to you. Our tech team has established standard security protocols (and more) to keep your data safe. But does this mean we are 100% hack-proof? Well, we want to be. But let’s admit it, even the world’s biggest banks and government institutions are not. Rest assured, however, that we have set up our backend infrastructure to protect your data and continue to work on it constantly.
+                p Personal data like name, photos, phone numbers and email address are yours and yours alone. We are committed to not selling these types of data to third parties. But we are sure you understand that in the interest of science and for the potential to save more lives in the future, MYCURE may have partnerships with hospitals, universities, and health organizations. In other words, records like diseases, types of medicine used, general location and anything that would help medical practitioners for research purposes and other endeavors that will make better medical decisions - as long as it does not directly identify you - could possibly be shared to make our world a better place.&nbsp;
                 nuxt-link(:to="{name: 'privacy-policy'}" title="MYCURE Privacy Policy").primary--text See also MYCURE Privacy Policy >>&nbsp;
               v-col(cols="12" md="6").px-3
                 span.font-21 CHARACTER
                 br
                 br
                 p Please be nice! We worked hard to put this application together and spent many long hours and sleepless nights (we still do as we keep on improving and adding more features!). So please do not copy, share or modify MYCURE copyrights, trademarks, and patents for distribution to others. Should you have an idea or want to improve our services, please feel free to contact us at hello@mycure.md.
-                p Please do not try and hack (what is hacking? See 'Use License' below to know what we mean) MYCURE's website or its apps.  Let us respect each other's space, please, thank you!
+                p Please do not try and hack (what is hacking? See ‘Use License’ below to know what we mean) MYCURE’s website or its apps.  Let us respect each other’s space, please, thank you!
                 p For Doctors App: This is strictly exclusive for Licensed Medical Doctors only.
-                p For Patients App: Please do not lie about your age. Considering the sensitivity of medical data, we are only allowing users 18 years of age (or whatever is the legal age in your country) and above. Should you want to enroll a child then it can be done by using your name and registering him/her under you. We also understand that you would need to keep and monitor records of your children.
+                p For Patients App: Please do not lie about your age. Considering the sensitivity of medical data, we are only allowing users 18 years of age (or whatever is legal age in your country) and above. Should you want to enroll a child then it can be done by using your name and registering him/her under you. We also understand that you would need to keep and monitor records of your children.
           v-col(cols="12" md="10").mb-3
             img(width="100%" src="../../assets/images/mycure-terms-and-conditions-artwork.png" alt="MYCURE Terms and Conditions")
           v-col(cols="12" md="10").mb-3
@@ -61,7 +61,7 @@
             br
             p MYCURE, Inc. may, at its sole discretion, offer a Subscription with a free trial for a limited period of time ("Free Trial").
             p You may be required to enter your billing information in order to sign up for the Free Trial.
-            p If you do enter your billing information when signing up for the Free Trial, you will not be charged by MYCURE, Inc. until the Free Trial has expired. On the last day of the Free Trial period, unless you canceled your Subscription, you will be automatically charged the applicable Subscription fees for the type of Subscription you have selected.
+            p If you do enter your billing information when signing up for the Free Trial, you will not be charged by MYCURE, Inc. until the Free Trial has expired. On the last day of the Free Trial period, unless you cancelled your Subscription, you will be automatically charged the applicable Subscription fees for the type of Subscription you have selected.
             p At any time and without notice, MYCURE, Inc. reserves the right to (i) modify the terms and conditions of the Free Trial offer, or (ii) cancel such Free Trial offer.
           v-col(cols="12" md="10").mb-3
             h2 Fee Charges
@@ -84,7 +84,7 @@
           v-col(cols="12" md="10").mb-3
             h2 Refunds
             br
-            p Certain refund requests for Subscriptions may be considered by MYCURE, Inc. on a case-by-case basis and granted in the sole discretion of MYCURE, Inc..
+            p Certain refund requests for Subscriptions may be considered by MYCURE, Inc. on a case-by-case basis and granted in sole discretion of MYCURE, Inc.
           v-col(cols="12" md="10").mb-3
             h2 Your Content
             br
@@ -105,20 +105,30 @@
           v-col(cols="12" md="10").mb-3
             h2 Accounts
             br
-            p When you create an account with us, you must provide us with information that is accurate, complete, and current at all times. Failure to do so constitutes a breach of the Terms, which may result in immediate termination of your account on our Service.
-            p You are responsible for safeguarding the password that you use to access the Service and for any activities or actions under your password, whether your password is with our Service or a third-party service.
+            p When you create an account with us, you must provide us information that is accurate, complete, and current at all times. Failure to do so constitutes a breach of the Terms, which may result in immediate termination of your account on our Service.
+            p Your account may have access to Protected Health Information (PHI). As such, you should be aware of the data privacy laws that apply in your country (see Data Privacy Compliance below). These laws call for higher security protocols covering, but not limited to, physical, administrative and technical safeguards. You are responsible for its compliance and that your Service’s account is protected at all times.
+            p You are likewise responsible for safeguarding the password that you use to access the Service and for any activities or actions under your password, whether your password is with our Service or a third-party service.
             p You agree not to disclose your password to any third party. You must notify us immediately upon becoming aware of any breach of security or unauthorized use of your account.
             p You may not use as a username the name of another person or entity or that is not lawfully available for use, a name or trademark that is subject to any rights of another person or entity other than you without appropriate authorization, or a name that is otherwise offensive, vulgar or obscene.
           v-col(cols="12" md="10").mb-3
+            h2 Data Privacy Compliance
+            br
+            p Your data may be processed in the country in which it was collected and in other countries where laws regarding processing of personal data may be less stringent than the laws in your country.  It is your responsibility to determine what applicable laws and data privacy policies are required of you and/or your health facility to be compliant.
+            p We take data privacy seriously. We constantly improve our Service to comply with the US Health Insurance Portability and Accountability Act (HIPAA) and the Data Privacy Act (DPA) of the Philippines. While MYCURE adheres to the aforementioned policies and provides a secure  application for the storage and processing of Protected Health Information (PHI), you are responsible for ensuring that the rest of the necessary processes are also implemented according to your country’s data privacy requirements. Likewise, if the said laws require more than what are covered in HIPAA and DPA, please do not use this Service.
+          v-col(cols="12" md="10").mb-3
+            h2 Business Associate Agreement
+            br
+            p If you fall under Covered Entity (CE) or Personal Information Controller (PIC) under HIPAA or DPA, you agree to adhere to the Business Associate Agreement (BAA) with MYCURE. The BAA can be found in the Settings page of your MYCURE’s Dashboard. You will also be notified during the sign up process.
+          v-col(cols="12" md="10").mb-3
             h2 Intellectual Property
             br
-            p The Service and its original content (excluding Content provided by users), features and functionality are and will remain the exclusive property of MYCURE, Inc. and its licensors. The Service is protected by copyright, trademark, and other laws of both the Philippines and foreign countries. Our trademarks and trade dress may not be used in connection with any product or service without the prior written consent of MYCURE, Inc..
+            p The Service and its original content (excluding Content provided by users), features and functionality are and will remain the exclusive property of MYCURE, Inc. and its licensors. The Service is protected by copyright, trademark, and other laws in the USA, Philippines and foreign countries. Our trademarks and trade dress may not be used in connection with any product or service without the prior written consent of MYCURE, Inc.
           v-col(cols="12" md="10").mb-3
             h2 Links To Other Web Sites
             br
-            p Our Service may contain links to third-party websites or services that are not owned or controlled by MYCURE, Inc.
-            p MYCURE, Inc. has no control over, and assumes no responsibility for, the content, privacy policies, or practices of any third party websites or services. You further acknowledge and agree that MYCURE, Inc. shall not be responsible or liable, directly or indirectly, for any damage or loss caused or alleged to be caused by or in connection with the use of or reliance on any such content, goods or services available on or through any such websites or services.
-            p We strongly advise you to read the terms and conditions and privacy policies of any third-party websites or services that you visit.
+            p Our Service may contain links to third-party web sites or services that are not owned or controlled by MYCURE, Inc.
+            p MYCURE, Inc. has no control over, and assumes no responsibility for, the content, privacy policies, or practices of any third party web sites or services. You further acknowledge and agree that MYCURE, Inc. shall not be responsible or liable, directly or indirectly, for any damage or loss caused or alleged to be caused by or in connection with use of or reliance on any such content, goods or services available on or through any such web sites or services.
+            p We strongly advise you to read the terms and conditions and privacy policies of any third-party web sites or services that you visit.
           v-col(cols="12" md="10").mb-3
             h2 Termination
             br
@@ -137,7 +147,7 @@
           v-col(cols="12" md="10").mb-3
             h2 Disclaimer
             br
-            p Your use of the Service is at your sole risk. The Service is provided on an "AS IS" and "AS AVAILABLE" basis. The Service is provided without warranties of any kind, whether express or implied, including, but not limited to, implied warranties of merchantability, fitness for a particular purpose, non-infringement or course of performance.&nbsp;
+            p Your use of the Service is at your sole risk. The Service is provided on an "AS IS" and "AS AVAILABLE" basis. The Service is provided without warranties of any kind, whether express or implied, including, but not limited to, implied warranties of merchantability, fitness for a particular purpose, non-infringement or course of performance. &nbsp;
             p Your use of and/or reliance upon the application and any third party content and service is at your own risk and discretion. Further, MYCURE does not warrant or make any representations concerning the accuracy, likely results, or reliability of the use of the materials on its apps or otherwise relating to such materials.
             p MYCURE, Inc. its subsidiaries, affiliates, and its licensors do not warrant that a) the Service will function uninterrupted, secure or available at any particular time or location; b) any errors or defects will be corrected; c) the Service is free of viruses or other harmful components; or d) the results of using the Service will meet your requirements.
           v-col(cols="12" md="10").mb-3
@@ -153,7 +163,7 @@
           v-col(cols="12" md="10").mb-3
             h2 Contact Us
             br
-            p If you have any questions about these Terms,
+            p If you have any questions about these Terms, please contact us.
               a
                 strong(@click="toggleChat").font-18.toggle-chat.text-none.primary--text &nbsp; please contact us.
 </template>
