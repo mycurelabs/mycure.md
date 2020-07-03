@@ -9,7 +9,7 @@ export const SECOND_PANEL_CONTENTS = [
   {
     headerIcon: 'doctors-clinics-build-clientele.png',
     header: 'Build your clientele',
-    description: 'Build patient loyalty and accommodate patients outside of your physical workhours. It\'s incredibly easy for your old and new patients to set appointments with you.',
+    description: 'Build patient loyalty and accommodate patients outside of your physical work hours. It\'s incredibly easy for your old and new patients to set appointments with you.',
     btnTxt: 'Get Started',
     btnIcon: 'mdi-arrow-right-thick',
   },
@@ -32,7 +32,7 @@ export const SPECIALIZED_PLANS = {
 };
 export const ACCESS_QUALITY_HEALTHCARE = {
   header: 'Access quality healthcare - instantly',
-  description: 'Set-up appointments and consultations, coordinate patient care, issue ePresciptions and release diagnostics results- all that and more with an online portal to interact with your patients.',
+  description: 'Set-up appointments and consultations, coordinate patient care, issue ePresciptions and release diagnostics results - all that and more with an online portal to interact with your patients.',
   btnTxt: 'Get Started',
   btnIcon: 'mdi-arrow-right-thick',
 };
@@ -45,12 +45,12 @@ export const LISTS_OF_PLANS = [
   {
     images: 'MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-D-specialization-02-pediatrics.png',
     header: 'Pediatrics',
-    description: 'An EMR complete with growth charts, vaccination trackers & developmental milestones.',
+    description: 'An EMR complete with growth charts, vaccination trackers and developmental milestones.',
   },
   {
     images: 'MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-D-specialization-03-maternity.png',
     header: 'Maternity Care',
-    description: 'Laboratory and Imaging modules to store lab and ultrasounds results with AOG and EDD calculators.',
+    description: 'Laboratory and Imaging modules to store lab & ultrasounds results with AOG and EDD calculators.',
   },
   {
     images: 'MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-D-specialization-04-dental.png',

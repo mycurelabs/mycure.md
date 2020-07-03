@@ -3,12 +3,14 @@
     nuxt-link(:to="{ name: 'index' }" title="MYCURE | Clinic Management System | Cloud EMR Philippines" id="toolbar-mycure-logo")
       img(
         height="45"
-        src="../../assets/images/mycure-header-logo.png"
+        src="../../assets/images/MYCURE-virtual-clinic-healthcare-practice-online-logo.svg"
         to="/"
       )
     v-spacer
-    book-appointment-btn.mr-2
-    online-consult-btn
+    //- Hide in mobile view since they overlap with logo,
+    //- The same btns exist on the center
+    book-appointment-btn(v-if="!$isMobile").mr-2
+    online-consult-btn(v-if="!$isMobile")
 </template>
 
 <script>

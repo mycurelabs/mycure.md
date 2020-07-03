@@ -1,7 +1,7 @@
 <template lang="pug">
   v-container#multispecialty-clinics.py-12
     v-row(justify="center" align="center")
-      v-col(cols="12" md="5" align-self="center").seventhPanel-description
+      v-col(cols="12" md="5" align-self="center")
         p.font-16.mt-3.font-gray.primary--text {{seventhPanel.subHeader}}
         h1.font-30.lh-title.pb-3.font-weight-light {{seventhPanel.header}}
         p.text-justify.font-16.mt-3.font-gray {{seventhPanel.description}}
@@ -9,12 +9,12 @@
         v-btn(text @click="onGetStarted").mt-5.ml-n4.get-started-btn
           strong.text-capitalize.primary--text {{seventhPanel.btnTxt}}
           v-icon.primary--text {{seventhPanel.btnIcon}}
-      v-col(cols="12" md="6" justify="center" align="center")
+      v-col(cols="12" md="6" justify="center" align="center").panel-image
         picture-source(
-          customPath="enterprise/"
+          custom-path="enterprise/"
           :image="seventhPanel.image"
-          :imageAlt="seventhPanel.header"
-          imageFileExtension=".webp"
+          :image-alt="seventhPanel.header"
+          image-file-extension=".webp"
         ).seventhPanel-image
 </template>
 
@@ -44,18 +44,9 @@ export default {
 a {
   color:gray;
 }
-@media screen and (device-width: 1024px) {
-  .seventhPanel-image {
-    width: 110%;
-    margin-left: 50px;
-  }
-  .seventhPanel-description {
-    margin-left: -10%;
-  }
-}
-@media screen and (min-width: 1366px) {
-  .seventhPanel-description {
-    margin-left: 55px;
+@media screen and (min-width: 1024px) {
+  .panel-image {
+    margin-left: 4%;
   }
 }
 </style>

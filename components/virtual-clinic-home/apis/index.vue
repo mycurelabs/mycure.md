@@ -1,28 +1,26 @@
 <template lang="pug">
-  div.api-content.py-10.mt-n1.mb-n6
+  v-container.py-12
     //- WEB
-    div(v-if="!$isMobile")
-      v-container
-        v-row(justify="center")
-          v-col(cols="5" align-self="center").px-3
-            h1.panelTitle.font-36.lh-title.font-weight-light {{ webTitle }}
-            br
-            p.font-16.font-gray.text-justify {{ panelContent }}
-            v-list(dense)
-              v-list-item(
-                v-for="(item, key) in checkList"
-                :key="key"
-              )
-                v-list-item-action
-                  img(v-lazy="require('~/assets/images/mycure-web-bullet-check.png')" alt="Check icon")
-                v-list-item-content
-                  span.font-16.font-gray {{ item }}
-          v-col(cols="4" offset="1" align-self="center").px-3.text-center
-            img(v-lazy="panelImageSrc" width="80%" :alt="panelImage")
+    v-row(v-if="!$isMobile" justify="center" align="center").panel-content
+      v-col(md="4" align-self="center").first-column
+        h1.font-30.lh-title.font-weight-light {{ panelTitle }}
+        br
+        p.font-16.font-gray.text-justify {{ panelContent }}
+        v-list(dense).ml-n5
+          v-list-item(
+            v-for="(item, key) in checkList"
+            :key="key"
+          )
+            v-list-item-action
+              img(v-lazy="require('~/assets/images/mycure-web-bullet-check.png')" alt="Check icon")
+            v-list-item-content
+              span.font-16.font-gray {{ item }}
+      v-col(md="6" justify="center" align="center").second-column
+        img(v-lazy="panelImageSrc" width="60%" :alt="panelImage").column-image
     //- MOBILE
-    div(v-else).pt-5
-      v-container.text-center
-        h1.font-36.lh-title.pb-5 {{ panelTitle }}
+    v-row(v-else).pt-5
+      v-col(cols="12").text-center
+        h1.font-30.lh-title.pb-5 {{ panelTitle }}
         br
         img(width="85%" v-lazy="panelImageSrc" :alt="panelImage").pb-3
         br
@@ -40,7 +38,6 @@
 </template>
 
 <script>
-import { parseTextWithNewLine } from '~/utils/newline';
 export default {
   data () {
     this.panelTitle = 'APIs built to make your existing health systems more powerful.';
@@ -55,9 +52,6 @@ export default {
     };
   },
   computed: {
-    webTitle () {
-      return parseTextWithNewLine(this.panelTitle, ['your ', 'systems ']);
-    },
     panelImageSrc () {
       return require(`~/assets/images/virtual-clinic-home/${this.panelImage}.png`);
     },
@@ -70,7 +64,20 @@ export default {
   position: relative;
   z-index: 3;
 }
-.panelTitle {
-  white-space: pre;
+@media screen and (min-width: 1024px) {
+  .panel-content {
+    margin-left: 0%;
+  }
+  .second-column {
+    margin-left: -5%;
+  }
+}
+@media screen and (min-width: 1920px) {
+  .panel-content {
+    margin-left: 0%;
+  }
+  .second-column {
+    margin-left: -4%;
+  }
 }
 </style>

@@ -62,7 +62,7 @@ export default {
     this.backgroundImageMobile = 'mycure-final-cta-background.png';
     this.ctaMobileImage = 'mycure-final-cta-background-image-right';
     this.uspTitle = 'Start your modern clinic experience with MYCURE';
-    this.uspSubtitle = 'Explore all the tools and services you need to run and grow your clinic online and offline.';
+    this.uspSubtitle = 'Explore all the tools and services you need to run and grow\nyour clinic online and offline.';
     return {
       email: '',
     };

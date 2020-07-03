@@ -1,39 +1,35 @@
 <template lang="pug">
-  div.py-10.mt-1.mb-n1
+  v-container.py-12
     //- WEB
-    div(v-if="!$isMobile")
-      v-container
-        v-row(justify="center")
-          v-col(cols="4")
-            img(width="85%" v-lazy="require(`@/assets/images/virtual-clinic-home/${panelImage}.png`)" alt="Data Privacy Law")
-          v-col(cols="5" offset="1" align-self="center")
-            h1.font-36.lh-title.pb-3.font-weight-light {{ panelTitle }}
-            br
-            p.font-16.font-gray.text-justify.my-0 {{ panelText }}
+    v-row(v-if="!$isMobile" justify="center" align="center").panel-content
+      v-col(md="6" justify="center" align="center").first-column
+        img(width="60%" v-lazy="require(`@/assets/images/virtual-clinic-home/${panelImage}.png`)" alt="Data Privacy Law")
+      v-col(md="4" align-self="center").second-column
+        h1.font-30.lh-title.pb-3.font-weight-light {{ panelTitle }}
+        br
+        p.font-16.font-gray.text-justify.my-0 {{ panelText }}
     //- MOBILE
-    div(v-else).pt-5
-      v-container
-        v-row
-          v-col(cols="12").text-center
-            br
-            h2.lh-title.font-36.pb-5 {{ panelTitle }}
-            br
-            v-row(no-gutters justify="center")
-              v-col(
-                v-for="(item, key) in privacyItems"
-                :key="key"
-                cols="4"
-              )
-                v-tooltip(bottom)
-                  template(v-slot:activator="{ on }")
-                    img(
-                      v-lazy="require(`~/assets/images/mycure-data-privacy-mobile-${item.image}.png`)"
-                      :alt="item.text"
-                      width="80%"
-                      v-on="on"
-                    )
-                  | {{item.text}}
-            p.font-16.mt-3.font-gray.text-justify {{ panelText }}
+    v-row(v-else).pt-5
+      v-col(cols="12").text-center
+        br
+        h2.lh-title.font-30.pb-5 {{ panelTitle }}
+        br
+        v-row(no-gutters justify="center")
+          v-col(
+            v-for="(item, key) in privacyItems"
+            :key="key"
+            cols="4"
+          )
+            v-tooltip(bottom)
+              template(v-slot:activator="{ on }")
+                img(
+                  v-lazy="require(`~/assets/images/mycure-data-privacy-mobile-${item.image}.png`)"
+                  :alt="item.text"
+                  width="80%"
+                  v-on="on"
+                )
+              | {{item.text}}
+        p.font-16.mt-3.font-gray.text-justify {{ panelText }}
 </template>
 
 <script>
@@ -58,5 +54,13 @@ export default {
 a {
   text-decoration-color: #2e9fdf;
   text-decoration: none;
+}
+@media screen and (min-width: 1024px) {
+  .panel-content{
+    margin-right: 0%;
+  }
+  .second-column {
+    margin-left: -6%;
+  }
 }
 </style>
