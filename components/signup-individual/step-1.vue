@@ -432,8 +432,8 @@ h1 {
 }
 @media screen and (min-width: 1366px) {
   .content-padding {
-    margin-top: -11%;
-    margin-bottom: -4%;
+    margin-top: -4%;
+    margin-bottom: 3%;
     height: 75vh;
     position: relative;
     z-index: 2;
@@ -441,48 +441,48 @@ h1 {
 }
 @media screen and (min-width: 1440px) {
   .content-padding {
-    padding-top: 20%;
-    margin-bottom: 2%;
+    padding-top: 13%;
+    margin-bottom: 7%;
     position: relative;
     z-index: 2;
   }
 }
 @media screen and (min-width: 1600px) {
   .content-padding {
-    padding-top: 18%;
-    margin-bottom: -2%;
+    padding-top: 12%;
+    margin-bottom: 6%;
     position: relative;
     z-index: 2;
   }
 }
 @media screen and (min-width: 1680px) {
   .content-padding {
-    padding-top: 23%;
-    margin-bottom: 0%;
+    padding-top: 15%;
+    margin-bottom: 8%;
     position: relative;
     z-index: 2;
   }
 }
 @media screen and (min-width: 1920px) {
   .content-padding {
-    padding-top: 20%;
-    margin-bottom: -3%;
+    padding-top: 15%;
+    margin-bottom: 5%;
     position: relative;
     z-index: 2;
   }
 }
 @media screen and (min-width: 2304px) {
   .content-padding {
-    padding-top: 27%;
-    margin-bottom: -3%;
+    padding-top: 21%;
+    margin-bottom: 6%;
     position: relative;
     z-index: 2;
   }
 }
 @media screen and (device-width: 2560px) {
   .content-padding {
-    padding-top: 24%;
-    margin-bottom: -6%;
+    padding-top: 19%;
+    margin-bottom: 2%;
     position: relative;
     z-index: 2;
   }
