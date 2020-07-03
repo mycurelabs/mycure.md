@@ -17,7 +17,7 @@
                 nuxt-link(:to="{name: 'privacy-policy'}").policy-links Privacy Policy
                 | . Feel free to check out our policies anytime for more info.
               v-spacer
-              v-btn(text icon color="white" @click="onClick(props)").mt-2
+              v-btn(text icon color="white" @click="onClick(props)").mt-2.mr-5
                 v-icon mdi-close
             v-row(v-else).pl-3
               v-col(cols="10").text-justify
