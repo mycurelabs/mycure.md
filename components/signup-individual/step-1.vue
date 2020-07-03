@@ -119,10 +119,10 @@
               :disabled="loading"
               color="primary"
             )
-            span.mt-n1 By creating a MYCURE account, you're agreeing to accept MYCURE&nbsp;
-              a(@click.stop="goToTerms") Terms
-              | &nbsp;and&nbsp;
-              a(@click.stop="goToPrivacy") Privacy Policy
+            span.mt-n1 By creating a MYCURE account, you're agreeing to accept MYCURE's&nbsp;
+              a(@click.stop="goToPrivacy") Privacy Policy,&nbsp;
+              a(@click.stop="goToTerms") Terms of Use&nbsp;
+              | and BAA
           v-alert(:value="error" type="error").mt-5 {{errorMessage}}
         v-col(cols="12" md="10" justify="center" align="center")
           v-spacer
