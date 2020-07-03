@@ -21,7 +21,7 @@
                 label="First Name"
                 :rules="[requiredRule]"
                 :disabled="loading"
-              ).step-one-text-field.pr-1
+              )#firstName.step-one-text-field.pr-1
                 template(v-slot:append v-if="user.firstName")
                   v-icon(color="accent") mdi-check
             v-col(xs="12")
@@ -240,6 +240,15 @@ export default {
   async created () {
     await this.init();
   },
+  mounted () {
+    // Select first text field
+    if (process.browser) {
+      this.$nextTick(() => {
+        document.getElementById('firstName') && document.getElementById('firstName').focus();
+      });
+    }
+    this.$refs.formRef.resetValidation();
+  },
   methods: {
     async next () {
       try {
@@ -262,11 +271,13 @@ export default {
       } catch (e) {
         console.error(e);
         this.error = true;
-        if (e.code === 11000) {
+        // Get the E<code> part of the error message.
+        const errorCode = parseInt(e?.message?.replace(/ .*/, '').substr(1));
+        if (errorCode === 11000) {
           this.errorMessage = 'The email or mobile number you have entered is invalid or taken. Please try again.';
           return;
         }
-        this.errorMessage = e.message;
+        this.errorMessage = 'There was an error please try again later';
       } finally {
         this.loading = false;
       }
@@ -288,7 +299,7 @@ export default {
           this.user.countryFlag = location ? location.country_flag : 'https://assets.ipstack.com/flags/ph.svg';
 
           // Check if an email was passed
-          this.user.email = this.$route.params.email || '';
+          this.user.email = this.$route.params.email;
         }
         // Load countries
         this.getCountries();
