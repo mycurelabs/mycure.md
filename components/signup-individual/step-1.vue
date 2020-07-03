@@ -402,14 +402,20 @@ h1 {
 }
 @media screen and (min-width: 768px) {
   .content-padding {
-    /* padding-top: 15vh; */
-    padding-bottom: 19%;
+    padding-top: 5vh;
+    padding-bottom: 10%;
   }
 }
 @media screen and (min-width: 1024px) {
   .content-padding {
-    padding-top: 20vh;
-    padding-bottom: 40%;
+    padding-top: 27vh;
+    padding-bottom: 30%;
+  }
+}
+@media screen and (min-width: 1024px) and (device-height: 768px) {
+  .content-padding {
+    padding-top: 5vh;
+    padding-bottom: 3%;
   }
 }
 @media screen and (device-width: 1280px) and (device-height: 800px) {
@@ -435,37 +441,48 @@ h1 {
 }
 @media screen and (min-width: 1440px) {
   .content-padding {
-    margin-bottom: 9%;
+    padding-top: 20%;
+    margin-bottom: 2%;
+    position: relative;
+    z-index: 2;
+  }
+}
+@media screen and (min-width: 1600px) {
+  .content-padding {
+    padding-top: 18%;
+    margin-bottom: -2%;
     position: relative;
     z-index: 2;
   }
 }
 @media screen and (min-width: 1680px) {
   .content-padding {
-    margin-bottom: 10%;
+    padding-top: 23%;
+    margin-bottom: 0%;
     position: relative;
     z-index: 2;
   }
 }
 @media screen and (min-width: 1920px) {
   .content-padding {
-    margin-bottom: 5%;
+    padding-top: 20%;
+    margin-bottom: -3%;
     position: relative;
     z-index: 2;
   }
 }
 @media screen and (min-width: 2304px) {
   .content-padding {
-    padding-top: 16%;
-    margin-bottom: 7%;
+    padding-top: 27%;
+    margin-bottom: -3%;
     position: relative;
     z-index: 2;
   }
 }
 @media screen and (device-width: 2560px) {
   .content-padding {
-    padding-top: 15%;
-    margin-bottom: 2%;
+    padding-top: 24%;
+    margin-bottom: -6%;
     position: relative;
     z-index: 2;
   }
