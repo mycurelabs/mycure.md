@@ -2,7 +2,7 @@
   v-container
     client-only
       cookie-law(
-        :position="position"
+        position="bottom"
         transitionName="fade"
         :class="cookieClasses"
       ).Cookie--mcCookie.white--text.px-1
@@ -45,9 +45,6 @@ export default {
     };
   },
   computed: {
-    position () {
-      return this.isMobile ? 'bottom' : 'bottom';
-    },
     cookieClasses () {
       const webClasses = ['font-14', 'py-3'];
       const mobileClasses = ['py-1'];
