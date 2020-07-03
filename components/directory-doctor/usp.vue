@@ -1,81 +1,36 @@
 <template lang="pug">
-  v-container(:class="uspBgClass").py-10
-    v-row(justify="center" align="center" v-for="(data, key) in uspInfo" :key="key")
-      v-col(cols="12" md="10")
-        h1(:class="titleSizeClass").text-center.font-weight-bold {{data.title}}
-      v-col(cols="12" md="8")
-        v-text-field(
-          label="Search Doctor, Specialization"
-          append-icon="mdi-magnify"
-          v-model="searchItem"
-          @click:append="searchDoctorSpecialization"
-          @keydown.enter="searchDoctorSpecialization"
-          @click:clear="isSearching = false"
-          :loading="isLoading"
-          :class="paddingClass"
-          background-color="white"
-          clearable
-          outlined
-        ).search-field
-      v-col(cols="12" md="5" :class="marginClass")
-        p Popular Searches:
-          template(v-for="(search, key) in data.popularSearches")
-              span(style="background-color: dcdcdc").pl-3 {{search}}
-      v-col(cols="12" md="2" :class="marginClass")
-          v-select(
-          v-model="selectedSpecialization"
-          :items="specializationItems"
-          :item-text="specializationItems"
-          :item-value="specializationItems"
-          label="Others"
-          background-color="white"
-          outlined
-          )
+  generic-container
+    v-row(justify="center" align="center" style="height: 300px")
+      v-col(cols="12").text-center.pa-1
+        h1.font-weight-bold Hundreds of doctors with different specializations #[br] from amazing clinics all over the country.
+        v-row(justify="center")
+          v-col(cols="12" md="8").pa-1
+            v-text-field(
+              label="Search doctor name, or specialization"
+              append-icon="mdi-magnify"
+              background-color="white"
+              clearable
+              outlined
+              hide-details
+              :loading="isLoading"
+              @click:append="searchDoctorSpecialization"
+              @keydown.enter="searchDoctorSpecialization"
+              @click:clear="isSearching = false"
+            )
 </template>
 
 <script>
+import GenericContainer from '~/components/commons/generic-container';
 export default {
-  props: {
-    /**
-     * Array of doctor objects
-     * @type {Array}
-     */
-    uspInfo: {
-      type: Array,
-      default: () => ([]),
-    },
-    /**
-     * Array of doctor objects
-     * @type {Array}
-     */
-    specializationItems: {
-      type: Array,
-      default: () => ([]),
-    },
+  components: {
+    GenericContainer,
   },
   data () {
     return {
       searchItem: '',
-      selectedSpecialization: {
-        default: 'Others',
-      },
       isSearching: false,
       isLoading: false,
     };
-  },
-  computed: {
-    uspBgClass () {
-      return [{ 'usp-panel': !this.$isMobile }];
-    },
-    titleSizeClass () {
-      return [this.$isMobile ? 'font-34' : 'font-50'];
-    },
-    paddingClass () {
-      return [{ 'px-12': !this.$isMobile }];
-    },
-    marginClass () {
-      return [this.$isMobile ? 'mt-n5' : 'mt-n5'];
-    },
   },
   methods: {
     async searchDoctorSpecialization () {
