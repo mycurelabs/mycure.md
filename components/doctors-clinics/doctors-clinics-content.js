@@ -21,7 +21,7 @@ export const SAFEKEEP_MEDICAL_DATA = {
   btnIcon: 'mdi-arrow-right-thick',
 };
 export const TAKE_PRACTICE_ONLINE = {
-  header: 'Take your entire practice online - even your group clinic',
+  header: 'Take your entire practice online\n- even your group clinic',
   description: 'Easily coordinate with other doctors in your group practice and centralize your clinic system under one subscription.',
   btnTxt: 'Get Started',
   btnIcon: 'mdi-arrow-right-thick',
@@ -32,7 +32,7 @@ export const SPECIALIZED_PLANS = {
 };
 export const ACCESS_QUALITY_HEALTHCARE = {
   header: 'Access quality healthcare - instantly',
-  description: 'Set-up appointments and consultations, coordinate patient care, issue ePresciptions and release diagnostics results- all that and more with an online portal to interact with your patients.',
+  description: 'Set-up appointments and consultations, coordinate patient care, issue ePresciptions and release diagnostics results - all that and more with an online portal to interact with your patients.',
   btnTxt: 'Get Started',
   btnIcon: 'mdi-arrow-right-thick',
 };
@@ -45,12 +45,12 @@ export const LISTS_OF_PLANS = [
   {
     images: 'MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-D-specialization-02-pediatrics.png',
     header: 'Pediatrics',
-    description: 'An EMR complete with growth charts, vaccination trackers & developmental milestones.',
+    description: 'An EMR complete with growth charts, vaccination trackers and developmental milestones.',
   },
   {
     images: 'MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-D-specialization-03-maternity.png',
     header: 'Maternity Care',
-    description: 'Laboratory and Imaging modules to store lab and ultrasounds results with AOG and EDD calculators.',
+    description: 'Laboratory and Imaging modules to store lab & ultrasounds results with AOG and EDD calculators.',
   },
   {
     images: 'MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-D-specialization-04-dental.png',
