@@ -1,11 +1,8 @@
 <template lang="pug">
   v-container
-    app-bar(
-      :doctor-sign-up-url="'https://www.mycure.md/signup/individual/'"
-      :patient-sign-up-url="patientSignUpUrl"
-    )
-    //- Usp
-    usp(:uspInfo="usp" :specialization-items="specializations")
+    app-bar
+    quick-search
+    usp
     featured-doctor(
       :doctors="doctors.slice(0,6)"
       :doctor-sign-up-url="'https://www.mycure.md/signup/individual/'"
@@ -62,6 +59,7 @@ import {
 } from './directory-content';
 
 import headMeta from '~/utils/head-meta';
+import QuickSearch from '~/components/directory-doctor/quick-search';
 import AppBar from '~/components/directory-doctor/app-bar';
 import FeaturedDoctor from '~/components/directory-doctor/featured-doctor';
 import FilterOptions from '~/components/directory-doctor/filter-options';
@@ -76,6 +74,7 @@ export default {
   layout: 'directory-doctor',
   components: {
     AppBar,
+    QuickSearch,
     Usp,
     SignMeUp,
     Category,
@@ -102,11 +101,6 @@ export default {
       isLoading: false,
     };
   },
-  computed: {
-    patientSignUpUrl () {
-      return `${process.env.PX_PORTAL_URL}/signup`;
-    },
-  },
   mounted () {
     console.log(this.$route);
   },
@@ -124,9 +118,9 @@ export default {
   head () {
     // TODO: update meta tags
     return headMeta({
-      title: `${this.fullNameWithSuffixes}`,
-      description: `${this.bio || 'Visit my professional website and schedule an appointment with me today.'}`,
-      socialBanner: this.picURL,
+      title: 'MYCURE - Doctor Directory',
+      description: 'Search doctors in your area.',
+      // socialBanner: this.picURL, TODO: Add banner
     });
   },
 };
