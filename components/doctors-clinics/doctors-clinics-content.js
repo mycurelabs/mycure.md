@@ -9,7 +9,7 @@ export const SECOND_PANEL_CONTENTS = [
   {
     headerIcon: 'doctors-clinics-build-clientele.png',
     header: 'Build your clientele',
-    description: 'Build patient loyalty and accommodate patients outside of your physical workhours. It\'s incredibly easy for your old and new patients to set appointments with you.',
+    description: 'Build patient loyalty and accommodate patients outside of your physical work hours. It\'s incredibly easy for your old and new patients to set appointments with you.',
     btnTxt: 'Get Started',
     btnIcon: 'mdi-arrow-right-thick',
   },
@@ -21,7 +21,7 @@ export const SAFEKEEP_MEDICAL_DATA = {
   btnIcon: 'mdi-arrow-right-thick',
 };
 export const TAKE_PRACTICE_ONLINE = {
-  header: 'Take your entire practice online\n- even your group clinic',
+  header: 'Take your entire practice online - even your group clinic',
   description: 'Easily coordinate with other doctors in your group practice and centralize your clinic system under one subscription.',
   btnTxt: 'Get Started',
   btnIcon: 'mdi-arrow-right-thick',

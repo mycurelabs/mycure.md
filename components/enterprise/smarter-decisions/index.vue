@@ -4,19 +4,19 @@
       v-col(cols="12" md="7" justify="center")
         h1.text-center.font-30.lh-title.pb-3.font-weight-light {{fifthPanelHeader.header}}
         p.text-center.font-16.mt-3.font-gray {{fifthPanelHeader.description}}
-    v-row(justify="center" align="center")
+    v-row.pb-2
       v-col(
-        cols="12"
-        md="4"
-        justify="center"
-        align="center"
         v-for="(data, key) in fifthPanelContent"
         :key="key"
-        offset-md="1"
-      ).d-inline-flex.item-container
+        justify="center"
+        cols="12"
+        md="4"
+        :offset-md="key === 0 || key === 2 ? '3' : ''"
+        :class="itemPaddingClass"
+      ).d-inline-flex
         img(:src="require(`~/assets/images/${data.image}`)" :alt="data.imageTitle" height="30").items
-        v-col(align="start").items.mt-n2
-          span.font-16 {{data.imageTitle}}
+        v-col().items.mt-n2
+          span.font-gray.font-16 {{data.imageTitle}}
 </template>
 
 <script>
@@ -29,17 +29,27 @@ export default {
 
     };
   },
+  computed: {
+    itemPaddingClass () {
+      return [this.$isMobile ? 'item-mobile' : 'item-web'];
+    },
+  },
 };
 </script>
 
 <style scoped>
 .panel-decision {
-  position: relative;
+  /* position: relative; */
   z-index: 2;
 }
-.item-container {
-  position: relative;
-  min-height: 80px;
+.item-web {
+  min-height: 85px;
+  margin-bottom: -3%;
+}
+.item-mobile {
+  margin-left: 10%;
+  min-height: 50px;
+  margin-bottom: -3%;
 }
 .items {
   top: 0;

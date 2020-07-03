@@ -132,6 +132,8 @@ export default {
 }
 .mobile-content {
   text-align: center;
+  position: absolute;
+  bottom: 0;
 }
 @media screen and (max-width: 360px) {
   .cta-content {
@@ -143,7 +145,7 @@ export default {
   }
   .row-content {
     height: 70vh;
-    margin-bottom: 10vh;
+    margin-top: 30vh;
   }
 }
 @media screen and (max-width: 414px) {

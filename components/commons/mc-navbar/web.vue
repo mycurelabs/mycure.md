@@ -1,6 +1,7 @@
 <template lang="pug">
   fragment
     //- mc-covid-banner
+    mc-cookie-prompt
     v-app-bar(app fixed flat height="70" :color="appBarColor" :class="[shadow]")
       v-container
         v-row(justify="center")
@@ -10,40 +11,58 @@
                 img(src="~/assets/images/MYCURE-virtual-clinic-healthcare-practice-online-logo.svg" width="140" alt="MYCURE logo")
               v-spacer
               template(v-for="(item, key) in solutionsMenuItems")
-                v-menu(offset-y).solutions-menu
-                  template(slot="activator" slot-scope="props")
+                v-menu(
+                  offset-y
+                  :left="item.position === 'left'"
+                  :right="item.position === 'right'"
+                  :nudge-right="item.position === 'right' ? '50': '0'"
+                  :value="item.position === 'right' ? professionalSubMenuOpen : patientSubMenuOpen"
+                  :max-width="item.position === 'right' ? '210' : '250'"
+                ).solutions-menu
+                  template(v-slot:activator="{ on }")
                     v-btn(
                       text
-                      v-on="props.on"
+                      v-on="on"
+                      @click="handleSubMenuOpen(item)"
                     ).mx-1
                       span.font-14.tab.text-none {{item.name}}
                       v-icon(small) mdi-chevron-down
                   v-card
                     v-list
-                      template(v-for="(menu, index) in item.subMenus")
-                        v-list-item(
-                          link
-                          dense
-                          @click="handleSubMenuClick(item, menu)"
-                        ).pl-7 {{ menu.name }}
-              div(v-for="(link, key) in toolbarLinks" :key="key")
-                v-btn(
-                  :to="{ name: link.route }"
-                  :id="link.id"
-                  :text="link.text"
-                  :color="link.color"
-                  depressed
-                  @click.stop="handleToolbarLinkClick(link.id)"
-                ).mx-1
-                  u(v-if="key === 1").font-14.tab.text-none {{link.name}}
-                  span(v-else).font-14.tab.text-none {{link.name}}
+                      template(v-for="(subMenu, key) in item.subMenus")
+                        template(v-if="subMenu.underSubMenus === undefined")
+                          v-list-item(
+                            link
+                            dense
+                            @click="handleSubMenuClick(item, subMenu)"
+                          )
+                            span {{ subMenu.name }}
+                            span(v-show="subMenu.new").ml-2.px-1.white--text.red.font-weight-bold.font-14.pill NEW
+                        template(v-else)
+                          v-menu(offset-x)
+                            template(slot="activator" slot-scope="props")
+                              v-btn(
+                                text
+                                v-on="props.on"
+                                width="100%"
+                              ).font-16.d-block.d-flex.justify-space-between
+                                span.tab.text-none {{subMenu.name}}
+                                v-icon(small) mdi-chevron-right
+                            v-card
+                              v-list
+                                template(v-for="(underSubMenu, key) in subMenu.underSubMenus")
+                                  v-list-item(
+                                    link
+                                    dense
+                                    @click="handleSubMenuClick(subMenu, underSubMenu)"
+                                  ).px-4 {{ underSubMenu.name }}
               v-btn(
                 text
                 :to="{ name: loginURL }"
                 id="login-btn"
                 @click.stop="handleToolbarLinkClick('login-btn')"
               ).mr-2.ml-1
-                span.font-14.tab.text-none &nbsp;Login
+                span.font-14.tab.text-none.font-weight-bold &nbsp;Login
               v-btn(
                 width="130"
                 v-if="currentRoute === 'doctors-clinics'"
@@ -89,17 +108,15 @@
 </template>
 
 <script>
+import McCookiePrompt from '~/components/commons/mc-cookie-prompt';
 import McCovidBanner from '~/components/commons/mc-covid-banner';
 export default {
   components: {
+    McCookiePrompt,
     McCovidBanner,
   },
   props: {
     solutionsMenuItems: {
-      type: Array,
-      default: () => ([]),
-    },
-    toolbarLinks: {
       type: Array,
       default: () => ([]),
     },
@@ -119,6 +136,8 @@ export default {
   data () {
     this.loginIcon = 'login-icon';
     return {
+      patientSubMenuOpen: false,
+      professionalSubMenuOpen: false,
       solutionsMenuModel: false,
     };
   },
@@ -136,20 +155,39 @@ export default {
     },
   },
   methods: {
+    handleDisableSubMenus () {
+      this.patientSubMenuOpen = false;
+      this.professionalSubMenuOpen = false;
+    },
     handleToolbarLinkClick (link) {
+      this.professionalSubMenuOpen = false;
       this.$emit('toolbarLinkClick', link);
     },
     handleMycureLogo () {
+      this.professionalSubMenuOpen = false;
       this.$emit('logoClick');
     },
     handleSubMenuClick (link, menu) {
+      this.professionalSubMenuOpen = false;
       this.$emit('subMenuClick', { link, menu });
+    },
+    handleSubMenuOpen (item) {
+      if (item.position === 'right') {
+        this.professionalSubMenuOpen = true;
+        this.patientSubMenuOpen = false;
+      } else {
+        this.professionalSubMenuOpen = false;
+        this.patientSubMenuOpen = true;
+      }
     },
   },
 };
 </script>
 
 <style scoped>
+.pill {
+  border-radius: 10px;
+}
 a {
   text-decoration: none
 }

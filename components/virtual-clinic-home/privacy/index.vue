@@ -1,10 +1,10 @@
 <template lang="pug">
   v-container.py-12
     //- WEB
-    v-row(v-if="!$isMobile" justify="center").panel-content
-      v-col(cols="12" align-self="center" md="6").first-column
-        img(width="80%" v-lazy="require(`@/assets/images/virtual-clinic-home/${panelImage}.png`)" alt="Data Privacy Law")
-      v-col(lg="4" align-self="center").second-column
+    v-row(v-if="!$isMobile" justify="center" align="center").panel-content
+      v-col(md="6" justify="center" align="center").first-column
+        img(width="60%" v-lazy="require(`@/assets/images/virtual-clinic-home/${panelImage}.png`)" alt="Data Privacy Law")
+      v-col(md="4" align-self="center").second-column
         h1.font-30.lh-title.pb-3.font-weight-light {{ panelTitle }}
         br
         p.font-16.font-gray.text-justify.my-0 {{ panelText }}
@@ -55,44 +55,12 @@ a {
   text-decoration-color: #2e9fdf;
   text-decoration: none;
 }
-@media screen and (min-width: 1280px) {
-  .first-column {
-    margin-left: 5%;
+@media screen and (min-width: 1024px) {
+  .panel-content{
+    margin-right: 0%;
   }
   .second-column {
-    margin-left: -5%;
-  }
-  .panel-content {
-    padding-left: 5%;
-  }
-}
-@media screen and (min-width: 1366px) {
-  .panel-content {
-    padding-left: 0%;
-  }
-  .second-column {
-    padding-left: 1%;
-  }
-}
-@media screen and (min-width: 1920px) {
-  .panel-content {
-    margin-left: -4%;
-  }
-  .second-column {
-    padding-left: 3%;
-  }
-}
-@media screen and (min-width: 2304px) {
-  .panel-content {
-    margin-left: -3%;
-  }
-  .second-column {
-    padding-left: 2%;
-  }
-}
-@media screen and (min-width: 2560px) {
-  .second-column {
-    padding-left: 2%;
+    margin-left: -6%;
   }
 }
 </style>

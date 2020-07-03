@@ -27,21 +27,25 @@
             v-list-group(v-for="(item, key) in solutionsMenuItems" :key="key")
               template(v-slot:activator)
                 v-list-item-title {{ item.name }}
-              v-list-item(
-                v-for="(menu, index) in item.subMenus"
-                :key="index"
-                link
-                dense
-                @click="handleSubMenuClick(item, menu)"
-              ).pl-7 {{ menu.name }}
-            div
-              v-list-item(
-                v-for="(item, key) in toolbarLinks"
-                :key="key"
-                link
-                dense
-                @click="handleToolbarLinkClick(item)"
-              ) {{ item.name }}
+              template(v-for="(subMenu, key) in item.subMenus")
+                template(v-if="subMenu.underSubMenus === undefined")
+                  v-list-item(
+                    link
+                    dense
+                    @click="handleSubMenuClick(item, subMenu)"
+                  ).pl-10
+                    span {{ subMenu.name }}
+                    span(v-show="subMenu.new").ml-2.px-1.white--text.red.font-weight-bold.font-14.pill NEW
+                template(v-else)
+                  v-list-group(:key="subMenu.name" sub-group)
+                    template(v-slot:activator)
+                      v-list-item-title {{ subMenu.name }}
+                    template(v-for="(underSubMenu, key) in subMenu.underSubMenus")
+                      v-list-item(
+                        link
+                        dense
+                        @click="handleSubMenuClick(subMenu, underSubMenu)"
+                      ) {{ underSubMenu.name }}
           v-divider
         v-col(cols="12")
             div(v-for="(section, key) in navSectionLinks" :key="key")
@@ -157,6 +161,9 @@ export default {
 </script>
 
 <style scoped>
+.pill {
+  border-radius: 10px;
+}
 a {
   text-decoration: none
 }
