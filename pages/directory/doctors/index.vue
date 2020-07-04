@@ -21,7 +21,7 @@
     sign-me-up(:signUpInfo="signMeUp")
 
     //- Category
-    category(:cardItems="categoryItems")
+    //- category(:cardItems="categoryItems")
 
     //- About panel
     about-clinic(:about="aboutInfo")
