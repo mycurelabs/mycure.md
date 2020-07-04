@@ -1,31 +1,33 @@
 <template lang="pug">
-  v-container.pt-6
-    v-row(justify="center" align="center" v-for="(data, key) in social" :key="key")
-      v-col(cols="12" md="7" justify="center" align="center").panel-content
-        p.pt-1 {{data.title}}
-        template(v-if="!$isMobile" v-for="(data, key) in data.icons")
-          a(:href="data.link" target="_blank" rel="noopener noreferrer")
-            v-icon(:class="paddingClasses").font-30.primary--text.pl-4 {{data.icon}}
-      v-col(v-if="$isMobile" v-for="(icon, key) in data.icons" :key="key" align="center")
-        a(:href="icon.link" target="_blank" rel="noopener noreferrer")
-          v-icon(:class="paddingClasses").font-30.primary--text.mt-n12 {{icon.icon}}
+  generic-container.my-10.text-center
+      p(:class="{ 'd-inline-block mr-10': !$isMobile, 'mb-4': $isMobile }").mb-1 {{social.title}}
+      template(v-for="(soc, key) in social.icons")
+        a(
+          :href="soc.link"
+          target="_blank"
+          rel="noopener noreferrer"
+        ).pr-4
+          v-icon.font-30.primary--text {{soc.icon}}
 </template>
 
 <script>
+import GenericContainer from '~/components/commons/generic-container';
 export default {
-  props: {
-    /**
-     * Array of doctor objects
-     * @type {Array}
-     */
-    social: {
-      type: Array,
-      default: () => ([]),
-    },
+  components: {
+    GenericContainer,
   },
-  computed: {
-    paddingClasses () {
-      return [{ 'pt-3': this.$isMobile }];
+  props: {
+    social: {
+      type: Object,
+      default: () => ({
+        title: '',
+        icons: [
+          { icon: 'mdi-facebook', link: 'https://facebook.com/' },
+          { icon: 'mdi-twitter', link: 'https://twitter.com/' },
+          { icon: 'mdi-email', link: 'mailto:' },
+          { icon: 'mdi-linkedin', link: 'https://www.linkedin.com/' },
+        ],
+      }),
     },
   },
 };
@@ -34,9 +36,5 @@ export default {
 <style scoped>
 a {
   text-decoration: none;
-}
-.panel-content {
-  display: flex;
-  justify-content: center;
 }
 </style>

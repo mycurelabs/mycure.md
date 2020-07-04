@@ -1,25 +1,25 @@
 <template lang="pug">
-  v-container.py-12
-    v-row(justify="center" align="center" v-for="(data, key) in about" :key="key")
-      v-col(justify="center" cols="12" md="8").text-center
-        h1 About {{data.clinicName}}
-      v-col(justify="center" align="center" cols="12" md="8")
-        p(v-if="readMore" v-html="data.clinicsInfo.slice(0, 189)").grey--text
-        a(v-if="readMore" @click="toggleReadMore").primary-text Read More...
-        p(v-if="!readMore" v-html="data.clinicsInfo").grey--text
-        a(v-if="!readMore" @click="toggleReadMore").pl-3.primary-text Read Less
+  generic-container.mb-10
+    v-row(justify="center" align="center")
+      v-col(cols="12" md="8").text-center
+        h1 About {{about.clinicName}}
+        p.grey--text.white-space {{ readMore ? about.clinicsInfo.slice(0, 189) : about.clinicsInfo }}
+        a(@click="readMore = !readMore").primary-text {{ readMore ? 'Read More...' : 'Read Less' }}
 </template>
 
 <script>
+import GenericContainer from '~/components/commons/generic-container';
 export default {
+  components: {
+    GenericContainer,
+  },
   props: {
-    /**
-     * Array of doctor objects
-     * @type {Array}
-     */
     about: {
-      type: Array,
-      default: () => ([]),
+      type: Object,
+      default: () => ({
+        clinicName: '',
+        clinicsInfo: '',
+      }),
     },
   },
   data () {
@@ -27,10 +27,11 @@ export default {
       readMore: true,
     };
   },
-  methods: {
-    toggleReadMore () {
-      this.readMore = !this.readMore;
-    },
-  },
 };
 </script>
+
+<style scoped>
+.white-space {
+  white-space: break-spaces;
+}
+</style>
