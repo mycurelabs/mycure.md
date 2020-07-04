@@ -1,68 +1,71 @@
 <template lang="pug">
-  v-row(justify="center" align="center")
-    template(v-if="isLoading")
-      v-progress-circular(:size="70" :width="7" color="primary" indeterminate)
-    template(v-else)
-      template(v-if="$isMobile")
-        template(v-for="item in doctors")
-          doctor-item-list-mobile(:doctor="item")
-        div(v-if="!isHeader")
-          v-btn(
-            large
-            color="primary"
-            elevation="0"
-            @click="onViewMore"
-          ).text-none.letter-spacing-normal.white--text.font-weight-bold.my-6 VIEW MORE
+  generic-container
+    v-row(justify="center" align="center")
+      template(v-if="isLoading")
+        v-progress-circular(:size="70" :width="7" color="primary" indeterminate)
       template(v-else)
-        v-col(cols="12")
-          v-data-table(
-            :headers="doctorsTableHeaders"
-            :items="doctorsTableContents"
-            :items-per-page="6"
-            disable-sort
-            hide-default-footer
-          ).elevation-2.doctors-table
-            template(v-slot:item.imageUrl="{ item }")
-              v-avatar(size="50" rounded).ma-4
-                img(v-lazy="require(`~/assets/images/doctor-website/${item.imageUrl}`)")
-            template(v-slot:item.name="{ item }")
-              p.mb-2 {{ item.name }}
-              v-btn(color="primary" small elevation="0").letter-spacing-normal.text-none.font-weight-bold Book Now
-            template(v-slot:item.actions="{ item }")
-              div.text-center
-                v-btn(width="110" tile elevation="0" icon).letter-spacing-normal.text-none.primary--text.font-weight-bold Availability
-                span |
-                v-btn(width="110" tile elevation="0" icon).letter-spacing-normal.text-none.primary--text.font-weight-bold View Site
-            template(v-slot:footer)
-              div(v-if="!isHeader").text-center
-                v-btn(
-                  large
-                  color="primary"
-                  elevation="0"
-                  @click="onViewMore"
-                ).text-none.letter-spacing-normal.white--text.font-weight-bold.my-6 VIEW MORE
-              div(v-else)
-                div.d-flex.justify-center.align-center.py-10
-                  span Page
-                  span
-                    v-text-field(outlined :value="currentPage" dense).page-field.mx-2
-                  span of {{ totalPages }}
-                  v-btn(tile icon).ml-2
-                    v-icon(
-                      size="28"
-                      color="grey"
-                    ) mdi-chevron-left
-                  v-btn(tile icon).ml-2
-                    v-icon(
-                      size="28"
-                      color="grey"
-                    ) mdi-chevron-right
+        template(v-if="$isMobile")
+          template(v-for="item in doctors")
+            doctor-item-list-mobile(:doctor="item")
+          div(v-if="!isHeader")
+            v-btn(
+              large
+              color="primary"
+              elevation="0"
+              @click="onViewMore"
+            ).text-none.letter-spacing-normal.white--text.font-weight-bold.my-6 VIEW MORE
+        template(v-else)
+          v-col(cols="12").pa-0
+            v-data-table(
+              :headers="doctorsTableHeaders"
+              :items="doctorsTableContents"
+              :items-per-page="6"
+              disable-sort
+              hide-default-footer
+            ).elevation-2.doctors-table
+              template(v-slot:item.imageUrl="{ item }")
+                v-avatar(size="50" rounded).ma-4
+                  img(v-lazy="require(`~/assets/images/doctor-website/${item.imageUrl}`)")
+              template(v-slot:item.name="{ item }")
+                p.mb-2 {{ item.name }}
+                v-btn(color="primary" small dense).text-none.font-weight-bold Book Now
+              template(v-slot:item.actions="{ item }")
+                div.text-center.text-no-wrap
+                  v-btn(width="110" tile dense icon).text-none.primary--text.font-weight-bold Availability
+                  span |
+                  v-btn(width="110" tile dense icon).text-none.primary--text.font-weight-bold View Site
+              template(v-slot:footer)
+                div(v-if="!isHeader").text-center
+                  v-btn(
+                    large
+                    color="primary"
+                    elevation="0"
+                    @click="onViewMore"
+                  ).text-none.letter-spacing-normal.white--text.font-weight-bold.my-6 VIEW MORE
+                div(v-else)
+                  div.d-flex.justify-center.align-center.py-10
+                    span Page
+                    span
+                      v-text-field(outlined :value="currentPage" dense).page-field.mx-2
+                    span of {{ totalPages }}
+                    v-btn(tile icon).ml-2
+                      v-icon(
+                        size="28"
+                        color="grey"
+                      ) mdi-chevron-left
+                    v-btn(tile icon).ml-2
+                      v-icon(
+                        size="28"
+                        color="grey"
+                      ) mdi-chevron-right
 </template>
 
 <script>
+import GenericContainer from '~/components/commons/generic-container';
 import DoctorItemListMobile from '~/components/commons/generic-doctor-item-list-mobile';
 export default {
   components: {
+    GenericContainer,
     DoctorItemListMobile,
   },
   props: {
