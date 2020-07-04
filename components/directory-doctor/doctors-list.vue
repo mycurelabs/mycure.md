@@ -13,7 +13,7 @@
               dense
               large
               @click="onViewMore"
-            ).text-none.white--text VIEW MORE
+            ).text-none.white--text.mt-4 VIEW MORE
         template(v-else)
           v-col(cols="12").pa-1
             v-data-table(
