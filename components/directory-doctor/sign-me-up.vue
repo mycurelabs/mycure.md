@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-container.py-12
+  generic-container
     v-row(justify="center" align="center" v-for="(data, key) in signUpInfo" :key="key")
       v-col(v-if="!$isMobile" cols="12" md="6")
         v-card(v-for="(data, key) in data.doctor" :key="key")
@@ -37,7 +37,11 @@
 </template>
 
 <script>
+import GenericContainer from '~/components/commons/generic-container';
 export default {
+  components: {
+    GenericContainer,
+  },
   props: {
     /**
      * Array of doctor objects
