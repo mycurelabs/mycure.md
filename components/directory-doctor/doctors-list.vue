@@ -9,39 +9,39 @@
             doctor-item-list-mobile(:doctor="item")
           div(v-if="!isHeader")
             v-btn(
-              large
               color="primary"
-              elevation="0"
+              dense
+              large
               @click="onViewMore"
-            ).text-none.letter-spacing-normal.white--text.font-weight-bold.my-6 VIEW MORE
+            ).text-none.white--text VIEW MORE
         template(v-else)
           v-col(cols="12").pa-0
             v-data-table(
+              disable-sort
+              hide-default-footer
               :headers="doctorsTableHeaders"
               :items="doctorsTableContents"
               :items-per-page="6"
-              disable-sort
-              hide-default-footer
             ).elevation-2.doctors-table
               template(v-slot:item.imageUrl="{ item }")
                 v-avatar(size="50" rounded).ma-4
                   img(v-lazy="require(`~/assets/images/doctor-website/${item.imageUrl}`)")
               template(v-slot:item.name="{ item }")
                 p.mb-2 {{ item.name }}
-                v-btn(color="primary" small dense).text-none.font-weight-bold Book Now
+                v-btn(color="primary" small dense).text-none Book Now
               template(v-slot:item.actions="{ item }")
                 div.text-center.text-no-wrap
-                  v-btn(width="110" tile dense icon).text-none.primary--text.font-weight-bold Availability
+                  v-btn(width="110" tile dense icon).text-none.primary--text Availability
                   span |
-                  v-btn(width="110" tile dense icon).text-none.primary--text.font-weight-bold View Site
+                  v-btn(width="110" tile dense icon).text-none.primary--text View Site
               template(v-slot:footer)
                 div(v-if="!isHeader").text-center
                   v-btn(
                     large
                     color="primary"
-                    elevation="0"
+                    dense
                     @click="onViewMore"
-                  ).text-none.letter-spacing-normal.white--text.font-weight-bold.my-6 VIEW MORE
+                  ).text-none.white--text.my-6 VIEW MORE
                 div(v-else)
                   div.d-flex.justify-center.align-center.py-10
                     span Page
