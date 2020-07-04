@@ -1,38 +1,24 @@
 <template lang="pug">
-  v-col(cols="6" lg="2" md="4" sm="6")
-    v-card(
-      height="250"
-      elevation="2"
-      style="width: 100%; border-radius: 5px;"
-    ).d-flex.flex-column
-      v-row(justify="center" align="center" no-gutters)
-        v-avatar(size="80" rounded).ma-1.pt-2
-          img(v-lazy="require(`~/assets/images/doctor-website/${this.doctor.imageFile}`)")
-      v-row(justify="center" no-gutters)
-        v-col.text-center
-          p.mb-1 {{ doctorName }}
-          p.grey--text.caption.mb-0.mt-n2 {{ doctor.specialization }} | {{ doctor.experience }} Years
-      v-row(align="start" justify="center" no-gutters dense)
-        v-btn(color="primary" small elevation="0").mb-1.letter-spacing-normal.text-none Book Now!
-      v-row(align="end" no-gutters dense)
+  v-col(cols="6" lg="2" md="4" sm="6").pa-1
+    v-card(height="100%").elevation-1
+      v-card-text.pa-1.py-4.text-center
+        v-avatar(size="80" rounded)
+          img(v-lazy="require(`~/assets/images/doctor-website/${doctor.imageFile}`)")
+      v-card-text(style="min-height: 55px").pa-1.text-center
+        p(style="line-height: 15px;").mb-0.grey--text.caption {{ doctor.specialization }} | {{ doctor.experience }} Years
+        p(style="line-height: 15px;").mb-0 #[b {{ doctorName }}]
+      v-card-text.pa-1.text-center
         v-btn(
-          :small="!$isMobile"
-          :x-small="$isMobile"
-          width="50%"
-          height="100%"
-          color="#f0f0f0"
-          tile
+          color="primary"
           elevation="0"
-        ).btn-bottom-left.right-border.letter-spacing-normal.text-none.primary--text Availability
+          small
+        ).mb-1.text-none Book Now!
+      v-card-actions.pa-0
         v-btn(
-          :small="!$isMobile"
-          :x-small="$isMobile"
-          width="50%"
-          height="100%"
-          color="#f0f0f0"
-          tile
-          elevation="0"
-        ).btn-bottom-right.letter-spacing-normal.text-none.primary--text View Site
+          depressed
+          small
+          block
+        ).text-none View Website
 </template>
 
 <script>
