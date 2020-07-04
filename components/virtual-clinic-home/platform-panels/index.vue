@@ -44,6 +44,7 @@
           v-icon.primary--text {{YOUR_ONLINE_CLINIC.btnIcon}}
       v-col(cols="12" md="6" :class="{ 'pl-0': !$isMobile }")
         picture-source(
+          :image-width="$isMobile ? '100%' : '65%'"
           custom-path="virtual-clinic-home/"
           :image="YOUR_ONLINE_CLINIC.image"
           image-alt="Your online clinic everywhere"

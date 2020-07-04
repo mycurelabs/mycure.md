@@ -4,7 +4,7 @@
     v-row(v-if="!$isMobile" justify="center" align="center").panel-content
       v-col(md="6" justify="center" align="center").first-column
         img(width="60%" v-lazy="require(`@/assets/images/virtual-clinic-home/${panelImage}.png`)" alt="Data Privacy Law")
-      v-col(md="4" align-self="center").second-column
+      v-col(md="4" align-self="center").pr-6.second-column
         h1.font-30.lh-title.pb-3.font-weight-light {{ panelTitle }}
         br
         p.font-16.font-gray.text-justify.my-0 {{ panelText }}
@@ -60,7 +60,7 @@ a {
     margin-right: 0%;
   }
   .second-column {
-    margin-left: -6%;
+    margin-left: -5%;
   }
 }
 </style>

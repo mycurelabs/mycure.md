@@ -437,8 +437,8 @@ h1 {
 }
 @media screen and (device-width: 1280px) and (device-height: 1024px) {
   .content-padding {
-    padding-top: 7vh;
-    padding-bottom: 21%;
+    padding-top: 16vh;
+    padding-bottom: 13%;
   }
 }
 @media screen and (min-width: 1366px) {
