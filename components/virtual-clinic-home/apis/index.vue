@@ -2,7 +2,7 @@
   v-container.py-12
     //- WEB
     v-row(v-if="!$isMobile" justify="center" align="center").panel-content
-      v-col(md="4" align-self="center").first-column
+      v-col(md="4" align-self="center").pr-5.first-column
         h1.font-30.lh-title.font-weight-light {{ panelTitle }}
         br
         p.font-16.font-gray.text-justify {{ panelContent }}
@@ -15,10 +15,10 @@
               img(v-lazy="require('~/assets/images/mycure-web-bullet-check.png')" alt="Check icon")
             v-list-item-content
               span.font-16.font-gray {{ item }}
-      v-col(md="6" justify="center" align="center").second-column
-        img(v-lazy="panelImageSrc" width="60%" :alt="panelImage").column-image
+      v-col(md="5" justify="start" align="center").second-column
+        img(v-lazy="panelImageSrc" width="75%" :alt="panelImage")
     //- MOBILE
-    v-row(v-else).pt-5
+    v-row(v-if="$isMobile").pt-5
       v-col(cols="12").text-center
         h1.font-30.lh-title.pb-5 {{ panelTitle }}
         br
@@ -66,10 +66,10 @@ export default {
 }
 @media screen and (min-width: 1024px) {
   .panel-content {
-    margin-left: 0%;
+    margin-left: 2%;
   }
   .second-column {
-    margin-left: -5%;
+    margin-left: -2%;
   }
 }
 @media screen and (min-width: 1920px) {
@@ -77,7 +77,7 @@ export default {
     margin-left: 0%;
   }
   .second-column {
-    margin-left: -4%;
+    margin-left: -3%;
   }
 }
 </style>
