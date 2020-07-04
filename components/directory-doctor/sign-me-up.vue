@@ -1,46 +1,30 @@
 <template lang="pug">
   generic-container
-    v-row(justify="center" align="center" v-for="(data, key) in signUpInfo" :key="key")
-      v-col(v-if="!$isMobile" cols="12" md="6")
-        v-card(v-for="(data, key) in data.doctor" :key="key")
-          v-img(:src="require(`~/assets/images/directory-doctor/MYCURE-Doctor-Directory-Banner-Sign-Up-Doctor.png`)" width="100%")
-            v-col(align-contents="center").pl-5
-              h2.white--text.py-5 {{data.title}}
-              span(v-html="data.subTitle")
-              v-card-actions.pt-5
-                v-btn(color="accent" width="135").ml-n2
-                  strong {{data.btnTxt}}
-      v-col(v-if="!$isMobile" cols="12" md="6")
-        v-card(v-for="(data, key) in data.consult" :key="key")
-          v-img(:src="require(`~/assets/images/directory-doctor/MYCURE-Doctor-Directory-Banner-Sign-Up-Patient.png`)" width="100%")
-            v-col(align-contents="center").pl-5
-              h2.py-5 {{data.title}}
-              span(v-html="data.subTitle")
-              v-card-actions.pt-5
-                v-btn(color="amber" width="135").ml-n2
-                  strong.white--text {{data.btnTxt}}
-      v-row(v-if="$isMobile" no-gutters)
-        v-col(cols="12" v-for="(data, key) in data.doctor" :key="'doctor' + key").text-center.bg-color-doctor.py-12
-          h2.white--text {{data.title}}
-          img(:src="require(`~/assets/images/directory-doctor/mycure-sign-up-doctor-cms-blue-banner-mobile.png`)" width="100%").pb-5
-          span.font-gray(v-html="data.subTitle")
-          br
-          v-btn(color="accent").mt-5
-            strong {{data.btnTxt}}
-        v-col(cols="12" v-for="(data, key) in data.consult" :key="'patient' + key").text-center.bg-color-px.py-12
-          h2 {{data.title}}
-          img(:src="require(`~/assets/images/directory-doctor/mycure-sign-up-patient-portal-orange-banner-mobile.png`)" width="100%").pb-5
-          span.font-gray(v-html="data.subTitle")
-          br
-          v-btn(color="accent").mt-5
-            strong {{data.btnTxt}}
+    v-row(justify="center" align="center").mb-10
+      generic-sign-up-card(
+        btn-color="accent"
+        image-url="MYCURE-Doctor-Directory-Banner-Sign-Up-Doctor.png"
+        image-path="/directory-doctor"
+        header-text="Are you a Doctor?"
+        content-text="Join the crusade.\nCreate your MYCURE account.\nOnboard now in 5 easy steps"
+      ).pl-1
+      generic-sign-up-card(
+        :is-left="false"
+        btn-color="amber"
+        image-url="MYCURE-Doctor-Directory-Banner-Sign-Up-Patient.png"
+        image-path="/directory-doctor"
+        header-text="Want to consult online?"
+        content-text="Join the family.\nCreate your patient portal now.\nIt's secure and easy to use!"
+      ).pr-1
 </template>
 
 <script>
 import GenericContainer from '~/components/commons/generic-container';
+import GenericSignUpCard from '~/components/commons/generic-sign-up-card';
 export default {
   components: {
     GenericContainer,
+    GenericSignUpCard,
   },
   props: {
     /**
