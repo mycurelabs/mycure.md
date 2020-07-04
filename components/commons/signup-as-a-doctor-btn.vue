@@ -1,6 +1,7 @@
 <template lang="pug">
   v-btn(
     v-bind="bindings"
+    href="href"
     :class="[...defaultClasses, ...extraClasses]"
   ) A Doctor
 </template>
@@ -25,7 +26,6 @@ export default {
       return {
         color: '#8db738',
         depressed: true,
-        href: this.href,
       };
     },
     bindings () {
