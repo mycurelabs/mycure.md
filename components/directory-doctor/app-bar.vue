@@ -13,7 +13,7 @@
               src="~/assets/images/mycure-header-logo.png"
               to="/"
             ).mt-2
-        v-col
+        v-spacer
         v-col.col-auto
           template(v-if="!$isMobile")
             span.mr-1 #[b Sign up as:]
