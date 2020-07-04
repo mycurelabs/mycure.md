@@ -1,35 +1,27 @@
 <template lang="pug">
-  v-container(fluid).my-10
-    v-row(
-      justify="center"
-      align="center"
-      :class="{ 'mb-6': !$isMobile }"
-    ).px-6
-      h1.text-center {{ panelTitle }}
-    v-row(
-      justify="center"
-      align="center"
-      :class="{ 'mb-6': !$isMobile }"
-    ).px-6
-      p(:class="subtitleClasses") {{ subtitleText }}
-    v-row.mb-6
-      template(v-for="item in doctors")
-        doctor-item-grid(:doctor="item")
-    v-row(justify="center" align="center" :class="{ 'mb-6': !$isMobile }")
-      v-btn(
-        large
-        color="#8db738"
-        elevation="0"
-        :href="doctorSignUpUrl"
-      ).text-none.letter-spacing-normal.white--text.font-weight-bold.px-8 I'M A DOCTOR. SIGN ME UP.
+  generic-container
+    v-row.mb-10
+      v-col(cols="12").text-center
+        h1 Our Featured Doctors
+        p.font-20.grey--text See our newest addition to the crusade and #[br(v-if="!$isMobile")] doctors most loved by the community.
+      template(v-for="doctor in doctors")
+        doctor-item-grid(:doctor="doctor")
+      v-col(cols="12").text-center
+        v-btn(
+          color="#8db738"
+          large
+          depressed
+          :href="doctorSignUpUrl"
+        ).text-none.white--text.px-8 I'm a doctor. Sign me up.
 </template>
 
 <script>
-import { parseTextWithNewLine } from '~/utils/newline';
 import DoctorItemGrid from '~/components/commons/generic-doctor-item-grid';
+import GenericContainer from '~/components/commons/generic-container';
 export default {
   components: {
     DoctorItemGrid,
+    GenericContainer,
   },
   props: {
     doctors: {
@@ -47,11 +39,6 @@ export default {
     return {};
   },
   computed: {
-    subtitleText () {
-      return this.$isMobile
-        ? this.panelSubtitle
-        : parseTextWithNewLine(this.panelSubtitle, ['and ']);
-    },
     subtitleClasses () {
       return this.$isMobile
         ? ['text-center', 'font-20', 'grey--text']
