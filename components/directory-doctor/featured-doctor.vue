@@ -11,7 +11,7 @@
           color="#8db738"
           large
           depressed
-          :href="doctorSignUpUrl"
+          :href="href"
         ).text-none.white--text.px-8 I'm a doctor. Sign me up.
 </template>
 
@@ -28,10 +28,6 @@ export default {
       type: Array,
       default: () => ([]),
     },
-    doctorSignUpUrl: {
-      type: String,
-      default: 'https://www.mycure.md/signup/individual/',
-    },
   },
   data () {
     this.panelTitle = 'Our Featured Doctors';
@@ -39,10 +35,8 @@ export default {
     return {};
   },
   computed: {
-    subtitleClasses () {
-      return this.$isMobile
-        ? ['text-center', 'font-20', 'grey--text']
-        : ['text-center', 'font-20', 'grey--text', 'pre-white-space'];
+    href () {
+      return process.browser && `${window.location.origin}/signup/individual`;
     },
   },
 };
