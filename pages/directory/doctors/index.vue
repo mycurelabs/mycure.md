@@ -6,7 +6,7 @@
     featured-doctor(
       :doctors="doctors.slice(0,6)"
       :doctor-sign-up-url="'https://www.mycure.md/signup/individual/'"
-    ).mb-10
+    )
     filter-options(
       :specializations="filterItems"
       :sort-by="sortItems"
