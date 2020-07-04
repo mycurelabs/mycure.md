@@ -1,7 +1,7 @@
 <template lang="pug">
   generic-container
     v-row(justify="center" align="center").mb-10
-      v-col(cols="12").text-center.pa-1
+      v-col(cols="12").text-center.pa-1.mb-4
         h1.font-weight-bold Hundreds of doctors with different specializations #[br] from amazing clinics all over the country.
       v-col(cols="12" md="8").pa-1
         v-text-field(

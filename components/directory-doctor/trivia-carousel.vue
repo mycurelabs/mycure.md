@@ -1,12 +1,14 @@
 <template lang="pug">
   v-container(fluid :class="{ 'py-12': !$isMobile }").primary
-    v-carousel(:height="$isMobile ? '250' : '300'" show-arrows-on-hover hide-delimiters)
-      v-carousel-item(v-for="(slide, i) in slideContent" :key="i")
-        v-row(align="center" justify="center" class="fill-height").text-center
-          div(:class="containerClass")
-            h3(:class="headerClasses").mb-2 {{ slide.header }}
-            h1(:class="contentClasses").mb-2.white--text {{ slide.content }}
-            p(:class="sourceClasses").white--text {{ slide.source }}
+    v-row(justify="center" align="center" no-gutters)
+      v-col(cols="12" sm="12" md="12" lg="10" xl="8")
+        v-carousel(:height="$isMobile ? '250' : '300'" show-arrows-on-hover hide-delimiters)
+          v-carousel-item(v-for="(slide, i) in slideContent" :key="i")
+            v-row(align="center" justify="center" class="fill-height").text-center
+              div(:class="containerClass")
+                h3(:class="headerClasses").mb-2 {{ slide.header }}
+                h1(:class="contentClasses").mb-2.white--text {{ slide.content }}
+                p(:class="sourceClasses").white--text {{ slide.source }}
 </template>
 
 <script>

@@ -50,9 +50,9 @@ import AppBar from '~/components/directory-doctor/app-bar';
 import FilterOptions from '~/components/directory-doctor/filter-options';
 import TriviaCarousel from '~/components/directory-doctor/trivia-carousel';
 import DoctorsList from '~/components/directory-doctor/doctors-list';
-import Cta from '~/components/clinic-website/final-cta';
-import Social from '~/components/clinic-website/social';
-import AboutClinic from '~/components/clinic-website/about-clinic';
+import AboutClinic from '~/components/directory-doctor/about-clinic';
+import Social from '~/components/directory-doctor/social';
+import Cta from '~/components/directory-doctor/final-cta';
 export default {
   layout: 'directory-doctor',
   components: {
