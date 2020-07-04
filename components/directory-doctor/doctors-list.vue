@@ -15,7 +15,7 @@
               @click="onViewMore"
             ).text-none.white--text VIEW MORE
         template(v-else)
-          v-col(cols="12").pa-0
+          v-col(cols="12").pa-0.mb-10
             v-data-table(
               disable-sort
               hide-default-footer
