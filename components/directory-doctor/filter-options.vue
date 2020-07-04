@@ -2,9 +2,9 @@
   generic-container
     template(v-if="!$isMobile")
       v-row(justify="start" align="end").mb-2
-        v-col(v-show="isHeader" cols="1" style="max-width: 70px;").pl-0
+        v-col(v-show="isHeader" cols="1" style="max-width: 70px;").pl-1
           img(src="~/assets/images/sign-in/mycure-sso-sign-in-logo.svg" height="60").mb-n3
-        v-col(:cols="isHeader ? 4 : 5").pl-0
+        v-col(:cols="isHeader ? 4 : 5").pl-1
           v-text-field(
             label="Search Doctor"
             append-icon="mdi-magnify"
@@ -38,7 +38,7 @@
             :items="sortBy"
             @change="$emit('mock-load')"
           ).input-field
-        v-col(cols="1").pr-0
+        v-col(cols="1").pr-1
           div.d-flex.justify-end
             v-btn(tile icon)
               v-icon(
