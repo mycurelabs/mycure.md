@@ -1,6 +1,6 @@
 <template lang="pug">
   generic-container
-    v-row(style="margin-top: 60px")
+    v-row(style="margin-top: 60px").mb-10
       template(v-for="item in firstFive")
         v-col(cols="4" sm="4" md="2" lg="2").pa-1
           v-card(hover height="100%")
