@@ -1,6 +1,6 @@
 <template lang="pug">
   generic-container
-    v-row(justify="center" align="center")
+    v-row(justify="center" align="center").mb-10
       template(v-if="isLoading")
         v-progress-circular(:size="70" :width="7" color="primary" indeterminate)
       template(v-else)
@@ -15,7 +15,7 @@
               @click="onViewMore"
             ).text-none.white--text VIEW MORE
         template(v-else)
-          v-col(cols="12").pa-0.mb-10
+          v-col(cols="12").pa-1
             v-data-table(
               disable-sort
               hide-default-footer
