@@ -3,10 +3,7 @@
     app-bar
     quick-search
     usp
-    featured-doctor(
-      :doctors="doctors.slice(0,6)"
-      :doctor-sign-up-url="'https://www.mycure.md/signup/individual/'"
-    )
+    featured-doctor(:doctors="featuredDoctorsData")
     filter-options(
       :specializations="filterItems"
       :sort-by="sortItems"
@@ -47,7 +44,6 @@
 
 <script>
 import {
-  DOCTORS_LIST,
   SOCIAL_ITEM,
   ABOUT_INFO,
   FILTER_ITEMS,
@@ -70,6 +66,7 @@ import SignMeUp from '~/components/directory-doctor/sign-me-up';
 import AboutClinic from '~/components/directory-doctor/about-clinic';
 import Social from '~/components/directory-doctor/social';
 import Cta from '~/components/directory-doctor/final-cta';
+import { getDoctors, getFeaturedDoctors } from '~/utils/axios';
 export default {
   layout: 'directory-doctor',
   components: {
@@ -85,8 +82,26 @@ export default {
     Social,
     Cta,
   },
+  async asyncData ({ app, router, params, error }) {
+    try {
+      const [
+        doctorsData,
+        featuredDoctorsData,
+      ] = await Promise.all([
+        getDoctors(),
+        getFeaturedDoctors(),
+      ]);
+      return {
+        doctorsData: doctorsData?.data,
+        // doctorsTotal: doctors?.total,
+        featuredDoctorsData: featuredDoctorsData?.data,
+        // featuredDoctorsTotal: featuredDoctors?.total,
+      };
+    } catch (e) {
+      console.error(e);
+    }
+  },
   data () {
-    this.doctors = DOCTORS_LIST;
     this.socialItem = SOCIAL_ITEM;
     this.aboutInfo = ABOUT_INFO;
     this.filterItems = FILTER_ITEMS;
@@ -100,6 +115,14 @@ export default {
     return {
       isLoading: false,
     };
+  },
+  computed: {
+    doctors () {
+      return this.doctorsData;
+    },
+    featuredDoctors () {
+      return this.featuredDoctorsData;
+    },
   },
   mounted () {
     console.log(this.$route);
