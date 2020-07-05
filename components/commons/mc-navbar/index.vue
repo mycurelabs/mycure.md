@@ -52,12 +52,13 @@ export default {
             new: true,
             external: true,
           },
-          {
-            name: 'Doctor\'s Directory',
-            route: 'directory-doctors',
-            new: true,
-            external: false,
-          },
+          // TODO: bring back later
+          // {
+          //   name: 'Doctor\'s Directory',
+          //   route: 'directory-doctors',
+          //   new: true,
+          //   external: false,
+          // },
         ],
       },
       {
