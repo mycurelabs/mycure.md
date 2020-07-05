@@ -27,12 +27,12 @@
             a(:href="patientPortalUrl" target="_blank" rel="noopener noreferrer").link.new-link Patient's Portal
             br
             //- directory / doctor
-            nuxt-link(
-              id="footer-directory-doctors-link"
-              @click.stop="handleFooterDirectoryDoctorsLink"
-              :to="{name: 'directory-doctors'}"
-              title="MYCURE Doctor's Directory"
-            ).link.new-link Doctor's Directory
+            //- nuxt-link(
+            //-   id="footer-directory-doctors-link"
+            //-   @click.stop="handleFooterDirectoryDoctorsLink"
+            //-   :to="{name: 'directory-doctors'}"
+            //-   title="MYCURE Doctor's Directory"
+            //- ).link.new-link Doctor's Directory
           div
             h3.primary--text.footer-header LEGAL
             nuxt-link(
