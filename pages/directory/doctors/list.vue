@@ -1,15 +1,23 @@
 <template lang="pug">
   fragment
-    v-container
-      filter-options(
-        :specializations="filterItems"
-        :sort-by="sortItems"
-        v-on:mock-load="mockLoading"
-        :is-header="true"
-      )
+    v-app-bar(
+      fixed
+      elevate-on-scroll
+    )
+      generic-container
+        v-row(align="center" justify="center")
+          v-col.col-auto
+            img(src="~/assets/images/sign-in/mycure-sso-sign-in-logo.svg" height="45").mt-2
+          v-col
+            search-controls(
+              :specializations="filterItems"
+              :sort-by="sortItems"
+              v-on:mock-load="mockLoading"
+              :is-header="true"
+            ).mb-2
     trivia-carousel(
       :slide-content="triviaSlideContent"
-    )
+    ).mt-10
     v-container
       doctors-list(
         :doctors="doctors"
@@ -46,23 +54,25 @@ import {
 } from './directory-content';
 
 import headMeta from '~/utils/head-meta';
-import AppBar from '~/components/directory-doctor/app-bar';
-import FilterOptions from '~/components/directory-doctor/filter-options';
-import TriviaCarousel from '~/components/directory-doctor/trivia-carousel';
-import DoctorsList from '~/components/directory-doctor/doctors-list';
 import AboutClinic from '~/components/directory-doctor/about-clinic';
-import Social from '~/components/directory-doctor/social';
+import AppBar from '~/components/directory-doctor/app-bar';
 import Cta from '~/components/directory-doctor/final-cta';
+import DoctorsList from '~/components/directory-doctor/doctors-list';
+import GenericContainer from '~/components/commons/generic-container.vue';
+import SearchControls from '~/components/directory-doctor/search-controls';
+import Social from '~/components/directory-doctor/social';
+import TriviaCarousel from '~/components/directory-doctor/trivia-carousel';
 export default {
   layout: 'directory-doctor',
   components: {
-    AppBar,
-    FilterOptions,
-    TriviaCarousel,
-    DoctorsList,
-    Cta,
-    Social,
     AboutClinic,
+    AppBar,
+    Cta,
+    DoctorsList,
+    GenericContainer,
+    SearchControls,
+    Social,
+    TriviaCarousel,
   },
   data () {
     this.doctors = DOCTORS_LIST;
