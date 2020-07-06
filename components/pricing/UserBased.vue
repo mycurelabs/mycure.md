@@ -2,7 +2,6 @@
   v-container
     v-col.text-center
       h2.font-30 USER-BASED PRICING
-      br
       p.font-18 Ideal for Small & Medium Clinics
     v-row
       v-col(v-for="(type, key) in pricingTypes" :key="key" cols="12" md="4")
@@ -33,8 +32,8 @@
                   v-if="type.actionBtn"
                   large
                   color="success"
-                  :to="type.actionBtn.route"
-                ).action-btn {{ type.actionBtn.text }}
+                  :to="{name: type.actionBtn.route}"
+                ).action-btn.font-weight-bold {{ type.actionBtn.text }}
                 p(v-else).primary--text.font-16.pt-3 COMING SOON
 
 </template>
@@ -101,12 +100,12 @@ export default {
   display : table;
 }
 .inclusions-container {
-  height: 250px;
+  min-height: 250px;
 }
 .btn-container {
   display : table-row;
   vertical-align : bottom;
-  height : 1px;
+  height : 5px;
 }
 .action-btn {
   width: 200px;
