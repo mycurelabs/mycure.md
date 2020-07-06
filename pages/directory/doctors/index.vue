@@ -3,12 +3,15 @@
     app-bar
     quick-search
     usp
-    featured-doctor(:doctors="featuredDoctorsData")
-    filter-options(
-      :specializations="filterItems"
-      :sort-by="sortItems"
-      v-on:mock-load="mockLoading"
-    )
+    featured-doctor(:doctors="featuredDoctors")
+    generic-container
+      v-row
+        v-col.pa-1
+          search-controls(
+            :specializations="filterItems"
+            :sort-by="sortItems"
+            @search="searchFromControls"
+          )
     doctors-list(
       :doctors="doctors"
       :is-loading="isLoading"
@@ -55,47 +58,40 @@ import {
 } from './directory-content';
 
 import headMeta from '~/utils/head-meta';
-import QuickSearch from '~/components/directory-doctor/quick-search';
-import AppBar from '~/components/directory-doctor/app-bar';
-import FeaturedDoctor from '~/components/directory-doctor/featured-doctor';
-import FilterOptions from '~/components/directory-doctor/filter-options';
-import DoctorsList from '~/components/directory-doctor/doctors-list';
-import Usp from '~/components/directory-doctor/usp';
-import Category from '~/components/directory-doctor/category';
-import SignMeUp from '~/components/directory-doctor/sign-me-up';
 import AboutClinic from '~/components/directory-doctor/about-clinic';
-import Social from '~/components/directory-doctor/social';
+import AppBar from '~/components/directory-doctor/app-bar';
+import Category from '~/components/directory-doctor/category';
 import Cta from '~/components/directory-doctor/final-cta';
-import { getDoctors, getFeaturedDoctors } from '~/utils/axios';
+import DoctorsList from '~/components/directory-doctor/doctors-list';
+import FeaturedDoctor from '~/components/directory-doctor/featured-doctor';
+import GenericContainer from '~/components/commons/generic-container';
+import QuickSearch from '~/components/directory-doctor/quick-search';
+import SearchControls from '~/components/directory-doctor/search-controls';
+import SignMeUp from '~/components/directory-doctor/sign-me-up';
+import Social from '~/components/directory-doctor/social';
+import Usp from '~/components/directory-doctor/usp';
+import { /* getDoctors */ getFeaturedDoctors, searchDoctors } from '~/utils/axios';
 export default {
   layout: 'directory-doctor',
   components: {
-    AppBar,
-    QuickSearch,
-    Usp,
-    SignMeUp,
-    Category,
-    FeaturedDoctor,
-    FilterOptions,
-    DoctorsList,
     AboutClinic,
-    Social,
+    AppBar,
+    Category,
     Cta,
+    DoctorsList,
+    FeaturedDoctor,
+    GenericContainer,
+    QuickSearch,
+    SearchControls,
+    SignMeUp,
+    Social,
+    Usp,
   },
   async asyncData ({ app, router, params, error }) {
     try {
-      const [
-        doctorsData,
-        featuredDoctorsData,
-      ] = await Promise.all([
-        getDoctors(),
-        getFeaturedDoctors(),
-      ]);
+      const featuredDoctors = await getFeaturedDoctors();
       return {
-        doctorsData: doctorsData?.data,
-        // doctorsTotal: doctors?.total,
-        featuredDoctorsData: featuredDoctorsData?.data,
-        // featuredDoctorsTotal: featuredDoctors?.total,
+        featuredDoctors: featuredDoctors?.data,
       };
     } catch (e) {
       console.error(e);
@@ -114,20 +110,26 @@ export default {
     this.socialItem = SOCIAL_ITEM;
     return {
       isLoading: false,
+      doctors: [],
+      featuredDoctors: [],
     };
   },
-  computed: {
-    doctors () {
-      return this.doctorsData;
-    },
-    featuredDoctors () {
-      return this.featuredDoctorsData;
-    },
-  },
-  mounted () {
-    console.log(this.$route);
+  created () {
+    this.searchDoctors();
   },
   methods: {
+    async searchDoctors (searchString) {
+      const query = {};
+      if (searchString) {
+        query.searchString = searchString;
+      }
+      const { data } = await searchDoctors({ searchString });
+      this.doctors = data;
+    },
+    searchFromControls (searchObject) {
+      console.warn(searchObject);
+    },
+    // REMOVE LATER
     async mockLoading () {
       this.isLoading = true;
       await setTimeout(() => {
