@@ -1,44 +1,41 @@
 <template lang="pug">
-  generic-container
+  div
     template(v-if="!$isMobile")
-      v-row(justify="start" align="end").mb-2
-        v-col(v-show="isHeader" cols="1" style="max-width: 70px;").pl-1
-          img(src="~/assets/images/sign-in/mycure-sso-sign-in-logo.svg" height="60").mb-n3
-        v-col(:cols="isHeader ? 4 : 5").pl-1
+      v-row(justify="center" align="end")
+        v-col
           v-text-field(
-            label="Search Doctor"
+            v-model="searchObject.searchString"
             append-icon="mdi-magnify"
+            label="Search Doctor"
             type="text"
-            outlined
             clearable
             dense
-            v-model="searchTerm"
-            @click:append="$emit('mock-load')"
-            @keydown.enter="$emit('mock-load')"
+            hide-details
+            outlined
           ).input-field
-        v-col(cols="3")
-          p.mb-2 Specialization
+        v-col
           v-select(
+            v-model="searchObject.specializationFilter"
+            label="Specialization"
             item-text="info"
             item-value="tag"
             outlined
+            hide-details
             dense
-            v-model="selectedSpecialization"
             :items="specializations"
-            @change="$emit('mock-load')"
           ).input-field
-        v-col(cols="3")
-          p.mb-2 Sort by
+        v-col
           v-select(
+            v-model="searchObject.sortBy"
+            label="Sort By"
             item-text="info"
             item-value="tag"
             dense
+            hide-details
             outlined
-            v-model="selectedSort"
             :items="sortBy"
-            @change="$emit('mock-load')"
           ).input-field
-        v-col(cols="1").pr-1
+        v-col.col-auto
           div.d-flex.justify-end
             v-btn(tile icon)
               v-icon(
@@ -53,15 +50,13 @@
     template(v-else)
       v-row.mb-2
         v-text-field(
+          v-model="searchObject.searchString"
           label="Search Doctor"
           type="text"
           append-icon="mdi-magnify"
           outlined
           clearable
           dense
-          v-model="searchTerm"
-          @click:append="$emit('mock-load')"
-          @keydown.enter="$emit('mock-load')"
         ).align-baseline
           template(v-slot:append-outer)
             div
@@ -102,6 +97,11 @@ export default {
   },
   data () {
     return {
+      searchObject: {
+        searchString: '',
+        specializationFilter: {},
+        sortBy: {},
+      },
       viewType: 'grid',
       mobileViewType: 'grid',
       searchTerm: '',
@@ -117,6 +117,14 @@ export default {
     },
     isGridView () {
       return this.viewType === 'grid';
+    },
+  },
+  watch: {
+    searchObject: {
+      handler (val) {
+        this.$emit('search', val);
+      },
+      deep: true,
     },
   },
   methods: {
