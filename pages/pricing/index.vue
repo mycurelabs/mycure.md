@@ -13,6 +13,7 @@
               span.font-18.font-mc-grey {{ tab.subtitle }}
     div.content
       user-based(v-if="pricingType === 'user-based'")
+      unlimited(v-else-if="pricingType === 'unlimited'")
 </template>
 
 <script>
@@ -20,9 +21,11 @@
 import VueScrollTo from 'vue-scrollto';
 import headMeta from '~/utils/head-meta';
 // components
+import Unlimited from '~/components/pricing/Unlimited';
 import UserBased from '~/components/pricing/UserBased';
 export default {
   components: {
+    Unlimited,
     UserBased,
   },
   data () {
