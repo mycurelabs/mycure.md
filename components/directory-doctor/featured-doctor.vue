@@ -1,6 +1,6 @@
 <template lang="pug">
   generic-container
-    v-row.mb-10
+    v-row(justify="center").mb-10
       v-col(cols="12").text-center
         h1 Our Featured Doctors
         p.font-20.grey--text See our newest addition to the crusade and #[br(v-if="!$isMobile")] doctors most loved by the community.
