@@ -9,12 +9,7 @@
           v-col.col-auto
             img(src="~/assets/images/sign-in/mycure-sso-sign-in-logo.svg" height="45").mt-2
           v-col
-            search-controls(
-              :specializations="filterItems"
-              :sort-by="sortItems"
-              v-on:mock-load="mockLoading"
-              :is-header="true"
-            ).mb-2
+            search-controls.mb-2
     trivia-carousel(
       :slide-content="triviaSlideContent"
     ).mt-10
