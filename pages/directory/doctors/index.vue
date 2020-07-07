@@ -10,11 +10,7 @@
           search-controls(
             @search="searchFromControls"
           )
-    doctors-list(
-      :doctors="doctors"
-      :is-loading="isLoading"
-      @viewMore="viewMore"
-    )
+    doctors-list(:doctors="doctors")
     //- Sign Up
     sign-me-up(:signUpInfo="signMeUp")
 
