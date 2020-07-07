@@ -13,10 +13,8 @@
       horizontal
       horizontal-image-size="40%"
     )
-    v-divider.edge-divider
     //- 4th panel
     privacy
-    v-divider.edge-divider
     //- 5th panel
     apis
     v-divider.edge-divider
