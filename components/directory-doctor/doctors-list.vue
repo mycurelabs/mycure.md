@@ -1,20 +1,19 @@
 <template lang="pug">
   generic-container
-    v-row(justify="center" align="center").mb-10
-      template(v-if="isLoading")
-        v-progress-circular(:size="70" :width="7" color="primary" indeterminate)
-      template(v-else)
+    pre {{doctors}}
+    //- v-row(justify="center" align="center").mb-10
+      template
         template(v-if="$isMobile")
           template(v-for="item in doctors")
             doctor-item-list-mobile(:doctor="item")
-          div(v-if="!isHeader")
+          div
             v-btn(
               color="primary"
               dense
               large
               @click="onViewMore"
             ).text-none.white--text.mt-4 VIEW MORE
-        template(v-else)
+        template
           v-col(cols="12").pa-1
             v-data-table(
               disable-sort
@@ -62,32 +61,14 @@
 
 <script>
 import GenericContainer from '~/components/commons/generic-container';
-import DoctorItemListMobile from '~/components/commons/generic-doctor-item-list-mobile';
 export default {
   components: {
     GenericContainer,
-    DoctorItemListMobile,
   },
   props: {
     doctors: {
       type: Array,
       default: () => ([]),
-    },
-    isLoading: {
-      type: Boolean,
-      default: false,
-    },
-    isHeader: {
-      type: Boolean,
-      default: false,
-    },
-    currentPage: {
-      type: String,
-      default: '',
-    },
-    totalPages: {
-      type: String,
-      default: '',
     },
   },
   data () {
@@ -126,21 +107,9 @@ export default {
       ],
     };
   },
-  computed: {
-    doctorsTableContents () {
-      return this.doctors.map(doctor => (
-        {
-          imageUrl: doctor?.imageFile || 'doctor-website-profile-male.png',
-          name: `${doctor?.fullName || ''} ${doctor?.title || ''}`,
-          specialization: doctor?.specialization || '',
-          experience: `${doctor?.experience || ''} years`,
-        }
-      ));
-    },
-  },
-  methods: {
-    onViewMore () {
-      this.$emit('viewMore');
+  watch: {
+    doctors (val) {
+      console.warn(val.map(doctor => (`${doctor.name.lastName}, ${doctor.name.firstName}`)));
     },
   },
 };
