@@ -3,7 +3,7 @@
     //- WEB
     v-row(v-if="!$isMobile" justify="center" align="center" no-gutters)
       v-col(justify="start" align="center" md="5")
-        img(width="75%" v-lazy="require(`@/assets/images/virtual-clinic-home/${panelImage}.png`)" alt="Data Privacy Law").panel-image
+        img(width="65%" v-lazy="require(`@/assets/images/virtual-clinic-home/${panelImage}.png`)" alt="Data Privacy Law").panel-image
       v-col(align-self="center" md="5")
         h1.text-justify.font-30.lh-title.pb-3.font-weight-light {{ panelTitle }}
         br
@@ -53,7 +53,7 @@ export default {
 <style scoped>
 @media screen and (min-width: 1024px) {
   .panel-image{
-    margin-left: -20%;
+    margin-left: -30%;
   }
 }
 </style>

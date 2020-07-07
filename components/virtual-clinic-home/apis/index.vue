@@ -16,7 +16,7 @@
             v-list-item-content
               span.font-16.font-gray {{ item }}
       v-col(md="5" align="center")
-        img(v-lazy="panelImageSrc" width="75%" :alt="panelImage").panel-image
+        img(v-lazy="panelImageSrc" width="65%" :alt="panelImage").panel-image
     //- MOBILE
     v-row(v-if="$isMobile").pt-5
       v-col(cols="12").text-center
@@ -62,7 +62,7 @@ export default {
 <style scoped>
 @media screen and (min-width: 1024px) {
   .panel-image{
-    margin-right: -25%;
+    margin-right: -35%;
   }
 }
 </style>
