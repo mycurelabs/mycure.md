@@ -2,15 +2,15 @@
   div(v-if="!loading")#top
     v-container(fluid).header
       v-row(justify="center" align="center" :class="headerClasses")
-        v-col(cols="10")
-          h1.font-40.text-center Complete and affordable practice management system from your first sale to full scale
+        v-col(cols="12" md="10")
+          h1(:class="titleClasses").text-center Complete and affordable practice management system from your first sale to full scale
       v-row(justify="center" no-gutters).mb-n3
-        v-col(cols="4" v-for="(tab, key) in pricingTabs" :key="key")
+        v-col(cols="6" md="4" v-for="(tab, key) in pricingTabs" :key="key")
           a(@click="pricingType = tab.type")
-            div(:class="[pricingType === tab.type ? 'tabActive': 'tab']").pa-3.text-center
-              strong.font-25 {{ tab.title }}
+            div(:class="isTabActive(tab.type)").pa-3.text-center
+              strong(:class="tabTitleClass") {{ tab.title }}
               br
-              span.font-18.font-mc-grey {{ tab.subtitle }}
+              span(:class="tabSubtitleClass").font-mc-grey {{ tab.subtitle }}
     div.content
       user-based(v-if="pricingType === 'user-based'")
       unlimited(v-else-if="pricingType === 'unlimited'")
@@ -50,10 +50,24 @@ export default {
     headerClasses () {
       return [{ 'header-container': !this.$isMobile }];
     },
+    titleClasses () {
+      return [this.$isMobile ? 'font-30' : 'font-40'];
+    },
+    tabTitleClass () {
+      return [this.$isMobile ? 'font-18' : 'font-25'];
+    },
+    tabSubtitleClass () {
+      return [this.$isMobile ? 'font-14' : 'font-18'];
+    },
   },
   mounted () {
     VueScrollTo.scrollTo('#app', 500, { easing: 'ease' });
     this.loading = false;
+  },
+  methods: {
+    isTabActive (tabType) {
+      return [this.pricingType === tabType ? 'tabActive' : 'tab'];
+    },
   },
   head () {
     return headMeta({
@@ -67,8 +81,9 @@ export default {
 
 <style scoped>
 #top {
-  margin-top: 12vh;
+  margin-top: 70px;
 }
+
 .header {
   background-image: url('../../assets/images/mycure-clinic-background-legal.png');
   background-position: center center;
