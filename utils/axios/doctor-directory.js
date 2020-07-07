@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import axios from 'axios';
 import { handleError } from './error-handler';
 
@@ -51,10 +52,28 @@ export const getFeaturedDoctors = async (opts) => {
 
 export const searchDoctors = async (opts) => {
   try {
+    let url = `${process.env.API_URL}/personal-details?doc_website[$exists]=true`;
+
+    if (opts?.searchString) {
+      url += `&$search=${opts?.searchString}`;
+    }
+
+    if (opts?.specialty) {
+      url += `&doc_specialties=${opts?.specialty}`;
+    }
+
+    if (!_.isEmpty(opts?.sortBy)) {
+      url += `&$sort[${opts.sortBy.field}]=${opts?.sortBy.sort}`;
+    }
+
+    console.warn('url', url);
+
     const { data } = await axios({
-      method: 'post',
-      url: `${process.env.API_URL}/personal-details?doc_website[$exists]=true&$search=${opts.searchString}`,
+      method: 'get',
+      url,
     });
+
+    console.warn('search', data.data);
     return data;
   } catch (e) {
     console.error(e);
