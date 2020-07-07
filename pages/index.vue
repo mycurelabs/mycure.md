@@ -19,6 +19,9 @@
     apis
     v-divider.edge-divider
     //- 6th panel
+    patient-portal(@goToPatientPortal="goToPatientPortal")
+    v-divider.edge-divider
+    //- 7th panel
     testimonial
     //- final panel
     div.cta-container
@@ -32,22 +35,24 @@ import headMeta from '~/utils/head-meta';
 import { parseTextWithNewLine } from '~/utils/newline';
 // - components
 import Usp from '~/components/virtual-clinic-home/usp';
-import Apis from '~/components/virtual-clinic-home/apis';
-import Cta from '~/components/virtual-clinic-home/cta';
 import PlatformPanels from '~/components/virtual-clinic-home/platform-panels';
-import Privacy from '~/components/virtual-clinic-home/privacy';
 import Storyflow from '~/components/commons/storyflow';
+import Privacy from '~/components/virtual-clinic-home/privacy';
+import Apis from '~/components/virtual-clinic-home/apis';
 import Testimonial from '~/components/virtual-clinic-home/testimonial';
+import PatientPortal from '~/components/virtual-clinic-home/patient-portal';
+import Cta from '~/components/virtual-clinic-home/cta';
 
 export default {
   components: {
     Usp,
-    Apis,
-    Cta,
     PlatformPanels,
-    Privacy,
     Storyflow,
+    Privacy,
+    Apis,
+    PatientPortal,
     Testimonial,
+    Cta,
   },
   data () {
     this.storyflowItems = [
@@ -94,6 +99,12 @@ export default {
     },
     goToSignupIndividual (email) {
       this.$router.push({ name: 'signup-individual', params: { email } });
+    },
+    goToPatientPortal () {
+      const routeData = this.$router.push({ route: process.env.PX_PORTAL_URL });
+      const changeRoute = window.open(routeData, '_blank');
+      changeRoute.opener = null;
+      changeRoute.rel = 'noopener noreferrer';
     },
     handleWatchFeatures () {
       this.$ga.event({
