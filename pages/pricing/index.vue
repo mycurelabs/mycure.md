@@ -87,7 +87,7 @@ export default {
 
 .tab {
   border-radius: 10px 10px 0 0;
-  background-color: lightgrey;
+  background-color: #BDCCD9;
   opacity: 1;
   height: 100%;
   box-shadow: 0px 0px 10px 2px #f0f0f0 inset;
