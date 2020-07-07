@@ -17,10 +17,8 @@
     privacy
     //- 5th panel
     apis
-    v-divider.edge-divider
     //- 6th panel
     patient-portal(@goToPatientPortal="goToPatientPortal")
-    v-divider.edge-divider
     //- 7th panel
     testimonial
     //- final panel
@@ -101,10 +99,7 @@ export default {
       this.$router.push({ name: 'signup-individual', params: { email } });
     },
     goToPatientPortal () {
-      const routeData = this.$router.push({ route: process.env.PX_PORTAL_URL });
-      const changeRoute = window.open(routeData, '_blank');
-      changeRoute.opener = null;
-      changeRoute.rel = 'noopener noreferrer';
+      window.open('https://staging-web-pxportal.web.app', '_blank', 'noopener, noreferrer');
     },
     handleWatchFeatures () {
       this.$ga.event({
