@@ -33,8 +33,12 @@
                 span.py-2.font-18.link {{solution.name}}
               br
               br
-            nuxt-link(id="footer-features-btn" :to="{ name: 'features' }" title="MYCURE | Features").link.py-2
+            nuxt-link(id="footer-features-btn" :to="{ name: 'features' }" title="MYCURE Features").link.py-2
               span.py-2.font-18 Features
+            br
+            br
+            nuxt-link(id="footer-pricing-btn" :to="{ name: 'pricing' }" title="MYCURE Pricing").link.py-2
+              span.py-2.font-18 Pricing
         v-expansion-panel.footer-grey
           v-expansion-panel-header(:color="expansionPanelColor")
             span.iconMargin.feature-text FOR PATIENTS
