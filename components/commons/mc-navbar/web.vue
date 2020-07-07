@@ -66,7 +66,7 @@
               v-btn(
                 width="130"
                 v-if="currentRoute === 'doctors-clinics'"
-                color="#98be58"
+                color="accent"
                 :to="currentRoute === 'doctors-clinics' ? { name: 'signup-individual' } : { name: 'signup-multispecialty' }"
                 id="start-free-btn"
                 @click.stop="handleToolbarLinkClick('start-free-btn')"
@@ -75,7 +75,7 @@
               v-btn(
                 width="130"
                 v-else-if="currentRoute === 'enterprise'"
-                color="#98be58"
+                color="accent"
                 :to="{ name: 'signup-multispecialty' }"
                 id="enterprise-book-demo-btn"
                 @click.stop="handleToolbarLinkClick('enterprise-book-demo-btn')"
@@ -83,7 +83,7 @@
                 strong.font-14.white--text.tab.text-none Book A Demo
               v-btn(
                 v-else-if="currentRoute === 'specialized-clinics'"
-                color="#98be58"
+                color="accent"
                 :to="{ name: 'signup-specialized' }"
                 id="specialized-signup-btn"
                 @click.stop="handleToolbarLinkClick('specialized-signup-btn')"
@@ -92,7 +92,7 @@
               v-btn(
                 width="130"
                 v-else-if="currentRoute === 'fight-covid-19'"
-                color="#98be58"
+                color="accent"
                 id="fight-covid-19-get-started-btn"
                 @click.stop="handleToolbarLinkClick('fight-covid-19-get-started-btn')"
               )
@@ -100,7 +100,7 @@
               v-btn(
                 v-else
                 width="130"
-                color="#98be58"
+                color="accent"
                 id="get-started-btn"
                 @click.stop="handleToolbarLinkClick('get-started-btn')"
               )
