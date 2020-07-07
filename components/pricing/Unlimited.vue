@@ -5,20 +5,22 @@
     v-row.pt-5
       v-col(v-for="(type, key) in pricingTypes" :key="key" cols="12" md="4")
         v-card(height="100%")
-          v-card-title
-            v-spacer
-            v-card-title-text.font-weight-bold {{ type.title }}
-            v-spacer
+          v-img(
+            :src="require(`~/assets/images/pricing/${type.image}.png`)"
+            :alt="type.title"
+          )
+            v-col(:class="{'white--text': key === 1}")
+              h2.font-weight-bold {{ type.title }}&nbsp;
+                v-chip(v-if="key === 1" color="warning" x-small).black--text BEST VALUE
+              strong.font-16 $
+              span.font-40.font-weight-medium {{ type.price }}
+              br
+              | per clinic monthly
+              br
+              strong.font-16 {{type.storage}}GB&nbsp;
+              span.font-16 Storage
           v-card-text
             v-container.content
-              v-col.text-center
-                strong.font-16 $
-                strong.font-30 {{ type.price }}
-                br
-                | per clinic monthly
-                br
-                br
-                span.font-16 {{type.storage}}GB Storage
               v-col.inclusions-container
                 v-row(
                   v-for="(inclusion, inclusionKey) in type.inclusions"
@@ -51,6 +53,7 @@ export default {
     this.pricingTypes = [
       {
         title: 'Arabica',
+        image: 'MYCURE-virtual-clinic-healthcare-practice-online-pricing-unli-arabica',
         price: 80,
         storage: 10,
         inclusions: [
@@ -64,6 +67,7 @@ export default {
       },
       {
         title: 'Robusta',
+        image: 'MYCURE-virtual-clinic-healthcare-practice-online-pricing-unli-robusta',
         price: 200,
         storage: 15,
         inclusions: [
@@ -78,6 +82,7 @@ export default {
       },
       {
         title: 'Liberica',
+        image: 'MYCURE-virtual-clinic-healthcare-practice-online-pricing-unli-liberica',
         price: 400,
         storage: 25,
         inclusions: [
