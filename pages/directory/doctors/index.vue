@@ -8,8 +8,6 @@
       v-row
         v-col.pa-1
           search-controls(
-            :specializations="filterItems"
-            :sort-by="sortItems"
             @search="searchFromControls"
           )
     doctors-list(
@@ -118,16 +116,12 @@ export default {
     this.searchDoctors();
   },
   methods: {
-    async searchDoctors (searchString) {
-      const query = {};
-      if (searchString) {
-        query.searchString = searchString;
-      }
-      const { data } = await searchDoctors({ searchString });
+    async searchDoctors (searchOpts) {
+      const { data } = await searchDoctors(searchOpts);
       this.doctors = data;
     },
     searchFromControls (searchObject) {
-      console.warn(searchObject);
+      this.searchDoctors(searchObject);
     },
     // REMOVE LATER
     async mockLoading () {
