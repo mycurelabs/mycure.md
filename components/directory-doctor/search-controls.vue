@@ -14,25 +14,23 @@
             outlined
           ).input-field
         v-col
-          v-select(
-            v-model="searchObject.specializationFilter"
+          v-autocomplete(
+            v-model="searchObject.specialty"
             label="Specialization"
-            item-text="info"
-            item-value="tag"
             outlined
             hide-details
             dense
-            :items="specializations"
+            :items="specialties"
           ).input-field
         v-col
           v-select(
             v-model="searchObject.sortBy"
             label="Sort By"
-            item-text="info"
-            item-value="tag"
+            item-text="text"
             dense
             hide-details
             outlined
+            return-object
             :items="sortBy"
           ).input-field
         v-col.col-auto
@@ -74,6 +72,8 @@
 </template>
 
 <script>
+import _ from 'lodash';
+import specialties from '~/assets/fixtures/specialties';
 import GenericContainer from '~/components/commons/generic-container';
 import DoctorFilterDialogMobile from '~/components/commons/generic-doctor-filter-dialog-mobile';
 export default {
@@ -81,27 +81,54 @@ export default {
     DoctorFilterDialogMobile,
     GenericContainer,
   },
-  props: {
-    specializations: {
-      type: Array,
-      default: () => ([]),
-    },
-    sortBy: {
-      type: Array,
-      default: () => ([]),
-    },
-    isHeader: {
-      type: Boolean,
-      default: false,
-    },
-  },
   data () {
+    this.specialties = specialties;
+    this.sortBy = [
+      {
+        text: 'Specialization Ascending',
+        sort: {
+          'doc_specialties[0]': 1,
+        },
+      },
+      {
+        text: 'Specialization Descending',
+        sort: {
+          'doc_specialties[0]': -1,
+        },
+      },
+      {
+        text: 'First Name Ascending',
+        sort: {
+          'name.firstName': 1,
+        },
+      },
+      {
+        text: 'First Name Descending',
+        sort: {
+          'name.firstName': -1,
+        },
+      },
+      {
+        text: 'Last Name Ascending',
+        sort: {
+          'name.lastName': 1,
+        },
+      },
+      {
+        text: 'Last Name Descending',
+        sort: {
+          'name.lastName': -1,
+        },
+      },
+    ];
     return {
       searchObject: {
         searchString: '',
-        specializationFilter: {},
+        specialty: '',
         sortBy: {},
       },
+      debouncedFetch: _.debounce(this.onSearch, 1000),
+      //
       viewType: 'grid',
       mobileViewType: 'grid',
       searchTerm: '',
@@ -120,14 +147,28 @@ export default {
     },
   },
   watch: {
-    searchObject: {
-      handler (val) {
-        this.$emit('search', val);
+    'searchObject.searchString': {
+      handler () {
+        this.debouncedFetch();
+      },
+    },
+    'searchObject.specialty': {
+      handler () {
+        this.onSearch();
+      },
+    },
+    'searchObject.sortBy': {
+      handler () {
+        this.onSearch();
       },
       deep: true,
     },
   },
   methods: {
+    onSearch () {
+      this.$emit('search', this.searchObject);
+    },
+    // Review below
     async mockLoading () {
       this.isLoading = true;
       await setTimeout(() => {
