@@ -1,7 +1,7 @@
 <template lang="pug">
   v-container.py-12
     //- WEB
-    v-row(v-if="!$isMobile" justify="center" align="center" no-gutters)
+    v-row(v-if="!$isMobile" justify="center" align="center" no-gutters).pb-5
       v-col(justify="start" align-self="center" md="5").ml-2.mr-n2
         h1.text-justify.font-30.lh-title.font-weight-light {{ panelTitle }}
         br
