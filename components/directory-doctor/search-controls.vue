@@ -17,9 +17,10 @@
           v-autocomplete(
             v-model="searchObject.specialty"
             label="Specialization"
-            outlined
-            hide-details
+            clearable
             dense
+            hide-details
+            outlined
             :items="specialties"
           ).input-field
         v-col
@@ -27,6 +28,7 @@
             v-model="searchObject.sortBy"
             label="Sort By"
             item-text="text"
+            clearable
             dense
             hide-details
             outlined
@@ -86,39 +88,33 @@ export default {
     this.sortBy = [
       {
         text: 'Specialization Ascending',
-        sort: {
-          'doc_specialties[0]': 1,
-        },
+        field: 'doc_specialties',
+        sort: 1,
       },
       {
         text: 'Specialization Descending',
-        sort: {
-          'doc_specialties[0]': -1,
-        },
+        field: 'doc_specialties',
+        sort: -1,
       },
       {
         text: 'First Name Ascending',
-        sort: {
-          'name.firstName': 1,
-        },
+        field: 'name.firstName',
+        sort: 1,
       },
       {
         text: 'First Name Descending',
-        sort: {
-          'name.firstName': -1,
-        },
+        field: 'name.firstName',
+        sort: -1,
       },
       {
         text: 'Last Name Ascending',
-        sort: {
-          'name.lastName': 1,
-        },
+        field: 'name.lastName',
+        sort: 1,
       },
       {
         text: 'Last Name Descending',
-        sort: {
-          'name.lastName': -1,
-        },
+        field: 'name.lastName',
+        sort: 1,
       },
     ];
     return {
