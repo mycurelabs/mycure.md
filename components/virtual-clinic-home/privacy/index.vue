@@ -1,11 +1,11 @@
 <template lang="pug">
   v-container.py-12
     //- WEB
-    v-row(v-if="!$isMobile" justify="center" align="center").panel-content
-      v-col(md="6" justify="center" align="center").first-column
-        img(width="60%" v-lazy="require(`@/assets/images/virtual-clinic-home/${panelImage}.png`)" alt="Data Privacy Law")
-      v-col(md="4" align-self="center").pr-6.second-column
-        h1.font-30.lh-title.pb-3.font-weight-light {{ panelTitle }}
+    v-row(v-if="!$isMobile" justify="center" align="center" no-gutters)
+      v-col(justify="start" align="center" md="5")
+        img(width="75%" v-lazy="require(`@/assets/images/virtual-clinic-home/${panelImage}.png`)" alt="Data Privacy Law").panel-image
+      v-col(align-self="center" md="5")
+        h1.text-justify.font-30.lh-title.pb-3.font-weight-light {{ panelTitle }}
         br
         p.font-16.font-gray.text-justify.my-0 {{ panelText }}
     //- MOBILE
@@ -51,16 +51,9 @@ export default {
 </script>
 
 <style scoped>
-a {
-  text-decoration-color: #2e9fdf;
-  text-decoration: none;
-}
 @media screen and (min-width: 1024px) {
-  .panel-content{
-    margin-right: 0%;
-  }
-  .second-column {
-    margin-left: -5%;
+  .panel-image{
+    margin-left: -20%;
   }
 }
 </style>
