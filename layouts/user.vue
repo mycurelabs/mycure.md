@@ -1,10 +1,8 @@
 <template lang="pug">
   v-app
-    template(v-if="!loading")
-      div(:class="contentClasses").bg-positions.pa-3.content-padding
+    v-row(v-if="!loading" :class="contentClasses" fill-height fluid)
+      v-col(:class="[contentClasses, footerClasses]").footer-bg
         nuxt
-      div(:class="footerClasses").footer-bg
-        v-img(:src="require(`../assets/images/sign-up-individual-step-1/mycure-final-cta-background-dense.png`)" alt="Sign up background")
     v-row(align="center" justify="center").footer
       v-row(align="center" justify="center").text-center
         v-col(cols="12" md="6").pl-12.pr-12
@@ -24,18 +22,15 @@ export default {
   data () {
     return {
       dayOrNight: '',
-      loading: true,
+      loading: false,
     };
   },
   computed: {
-    page () {
-      return this.$route.name;
-    },
     contentClasses () {
-      return [this.dayOrNight === 'night' ? 'night-sky' : 'day-bg'];
+      return [this.dayOrNight === 'night' ? 'night-sky' : 'white'];
     },
     footerClasses () {
-      return [this.dayOrNight === 'night' ? 'night-sky' : 'day-bg', 'fixed-footer'];
+      return [this.dayOrNight === 'night' ? 'night-sky' : 'white', this.dayOrNight === 'night' ? 'night-bg' : 'day-bg'];
     },
   },
   mounted () {
@@ -64,14 +59,17 @@ export default {
 </script>
 
 <style scoped>
-#top {
-  height: 100%;
+.footer-bg {
+  background-repeat: repeat-x;
+  background-position: bottom center;
 }
 .day-bg {
-  background-color: #fafafa;
+  background-image: url('../assets/images/sign-up-individual-step-1/mycure-final-cta-background-dense.png');
+  background-size: contain;
 }
-.bg-positions {
-  background-position: left center, right center;
+.night-bg {
+  background-image: url('../assets/images/sign-up-individual-step-1/mycure-final-cta-background-dark-mode.png');
+  background-size: contain;
 }
 .night-sky {
   background-color: rgb(28,28,28);
