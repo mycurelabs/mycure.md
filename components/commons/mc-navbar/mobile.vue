@@ -24,24 +24,25 @@
       v-row
         v-col(cols="12")
           v-list
-            v-list-group(v-for="(item, key) in solutionsMenuItems" :key="key")
-              template(v-slot:activator)
-                v-list-item-title {{ item.name }}
+            template(v-for="(item, key) in solutionsMenuItems")
               v-list-item(
-                v-for="(menu, index) in item.subMenus"
-                :key="index"
+                v-if="!item.subMenus"
                 link
                 dense
-                @click="handleSubMenuClick(item, menu)"
-              ).pl-7 {{ menu.name }}
-            div
-              v-list-item(
-                v-for="(item, key) in toolbarLinks"
-                :key="key"
-                link
-                dense
-                @click="handleToolbarLinkClick(item)"
-              ) {{ item.name }}
+                @click="onNavLinkClick(item)"
+              )
+                v-list-item-title.font-16 {{ item.name }}
+                span(v-if="item.new").ml-2.px-1.white--text.red.font-weight-bold.font-14.pill NEW
+              v-list-group(v-else)
+                template(v-slot:activator)
+                  v-list-item-title {{ item.name }}
+                template(v-for="(subMenu, key) in item.subMenus")
+                  v-list-item(
+                    link
+                    dense
+                    @click="onNavLinkClick(subMenu)"
+                  ).pl-10
+                    span {{ subMenu.name }}
           v-divider
         v-col(cols="12")
             div(v-for="(section, key) in navSectionLinks" :key="key")
@@ -49,11 +50,11 @@
               v-list-item(
                 v-for="(item, key) in section.items"
                 :key="key"
-                @click="handleToolbarLinkClick(item)"
+                @click="handleSectionLinkClick(item)"
               )
                 v-list-item-content
                   v-list-item-title
-                    b {{item.name}}
+                    b {{ item.name }}
               v-divider
         v-col(cols="12")
           v-subheader {{contactDetails.header}}
@@ -63,7 +64,7 @@
           )
             v-list-item-content
               v-list-item-title
-                b {{contact}}
+                b {{ contact }}
       div.navBottomBtns.py-3
         v-row(justify="center")
           v-btn(
@@ -75,6 +76,7 @@
           v-btn(
             id="mobile-navdrawer-get-started-btn"
             color="accent"
+            :to="{ name: 'signup-individual'}"
             @click.stop="handleUserLinkClick(`mobile-navdrawer-get-started-btn`)"
           ).ml-2
             strong.font-14.white--text.tab GET STARTED
@@ -131,12 +133,12 @@ export default {
     };
   },
   methods: {
-    handleToolbarLinkClick (link) {
+    handleSectionLinkClick (link) {
       if (link?.external) {
         window.open(link.external);
       } else {
         const id = `mobile-${link.route}`;
-        this.$emit('toolbarLinkClick', id);
+        this.$emit('actionBtnClick', id);
         this.$nuxt.$router.push({ name: link.route });
       }
       this.drawer = false;
@@ -148,8 +150,8 @@ export default {
       this.$emit('toolbarLinkClick', id);
       this.drawer = false;
     },
-    handleSubMenuClick (link, menu) {
-      this.$emit('subMenuClick', { link, menu });
+    onNavLinkClick (navLink) {
+      this.$emit('navLinkClick', navLink);
       this.drawer = false;
     },
   },
@@ -157,6 +159,9 @@ export default {
 </script>
 
 <style scoped>
+.pill {
+  border-radius: 10px;
+}
 a {
   text-decoration: none
 }

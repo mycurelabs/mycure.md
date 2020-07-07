@@ -1,30 +1,29 @@
 <template lang="pug">
   fragment
     //- MOBILE
-    div(v-if="isMobile")
+    div(v-if="$isMobile")
+      mc-cookie-prompt.cookie-prompt
       toolbar-mobile(
         :shadow="shadow"
         :loginURL="loginURL"
         :solutionsMenuItems="solutionsMenuItems"
-        :toolbarLinks="toolbarLinks"
-        @toolbarLinkClick="handleToolbarLinkClick($event)"
-        @subMenuClick="handleSubMenuClick($event)"
+        @actionBtnClick="recordActionBtn($event)"
+        @navLinkClick="onNavLinkClick($event)"
         @logoClick="handleMycureLogo"
       )
     //- WEB
     div(v-else).toolbarMain
+      //- mc-cookie-prompt.cookie-prompt
       toolbar-web(
         :loginURL="loginURL"
         :shadow="shadow"
         :solutionsMenuItems="solutionsMenuItems"
         :solutionsText="solutionsText"
-        :toolbarLinks="toolbarLinks"
         :scroll-position="scrollPosition"
-        @toolbarLinkClick="handleToolbarLinkClick($event)"
-        @subMenuClick="handleSubMenuClick($event)"
+        @actionBtnClick="recordActionBtn($event)"
+        @navLinkClick="onNavLinkClick($event)"
         @logoClick="handleMycureLogo"
       )
-    //- mc-cookie-prompt.cookie-prompt
 </template>
 
 <script>
@@ -45,36 +44,83 @@ export default {
     this.solutionsMenuItems = [
       {
         name: 'Digital Clinics',
+        new: false,
         subMenus: [
-          { name: 'Solo Practice', route: 'doctors-clinics', panel: 'app' },
-          { name: 'Group Practice', route: 'doctors-clinics', panel: 'group-practice' },
-          { name: 'Specialized Practice', route: 'doctors-clinics', panel: 'specialized-practice' },
+          {
+            name: 'Solo Practice',
+            route: 'doctors-clinics',
+            panel: 'app',
+            external: false,
+          },
+          {
+            name: 'Group Practice',
+            route: 'doctors-clinics',
+            panel: 'group-practice',
+            external: false,
+          },
+          {
+            name: 'Specialized Practice',
+            route: 'doctors-clinics',
+            panel: 'specialized-practice',
+            external: false,
+          },
         ],
       },
       {
         name: 'Enterprise',
+        new: false,
         subMenus: [
-          { name: 'Multispecialty Clinics', route: 'enterprise', panel: 'app' },
-          { name: 'Multi-branch Facilities', route: 'enterprise', panel: 'multibranch-facilities' },
-          { name: 'Corporate Clinics', route: 'enterprise', panel: 'corporate-clinics' },
-          { name: 'Medical Arts Centers', route: 'enterprise', panel: 'medical-arts-centers' },
-          { name: 'Diagnostic Centers', route: 'enterprise', panel: 'diagnostic-centers' },
+          {
+            name: 'Multispecialty Clinics',
+            route: 'enterprise',
+            panel: 'app',
+            external: false,
+          },
+          {
+            name: 'Multi-branch Facilities',
+            route: 'enterprise',
+            panel: 'multibranch-facilities',
+            external: false,
+          },
+          {
+            name: 'Corporate Clinics',
+            route: 'enterprise',
+            panel: 'corporate-clinics',
+            external: false,
+          },
+          {
+            name: 'Medical Arts Centers',
+            route: 'enterprise',
+            panel: 'medical-arts-centers',
+            external: false,
+          },
+          {
+            name: 'Diagnostic Centers',
+            route: 'enterprise',
+            panel: 'diagnostic-centers',
+            external: false,
+          },
         ],
       },
-    ];
-    this.toolbarLinks = [
       {
         name: 'Features',
-        id: 'features-nav-btn',
         route: 'features',
-        text: true,
+        new: false,
+        external: false,
       },
       {
-        name: 'Fight COVID-19: Free EMR',
-        id: 'mycure-heart-nav-btn',
-        route: 'fight-covid-19',
-        text: true,
+        name: 'Patient Portal',
+        route: process.env.PX_PORTAL_URL,
+        new: true,
+        external: true,
       },
+      // TODO: bring back later
+      // {
+      //   name: 'Doctor\'s Directory',
+      //   route: 'directory-doctors',
+      //   new: true,
+      //   external: false,
+      // },
     ];
     return {
       loginURL: 'signin',
@@ -115,38 +161,46 @@ export default {
         eventLabel: 'toolbar-mycure-logo',
       });
     },
-    handleToolbarLinkClick (link) {
-      const getStartedBtns = ['get-started-btn', 'mobile-navdrawer-get-started-btn'];
-      const routes = ['index', 'virtual-clinic-temporary-home'];
-      if (getStartedBtns.includes(link) && routes.includes(this.$nuxt.$route.name)) {
-        this.$nuxt.$router.push({ name: 'signup-individual' });
-      } else if (getStartedBtns.includes(link)) {
-        this.$nuxt.$router.push({
-          name: 'index',
-          params: { scrollHealthSuites: true },
-        });
-      } else if (link === 'fight-covid-19-get-started-btn') {
-        if (process.browser) {
-          window.open('https://forms.gle/y4qpv7ajERaGE5Lr7', '_blank', 'noopener, noreferrer');
-        }
+    /**
+     * Records action btn click to Google analytics
+     */
+    recordActionBtn (actionBtn) {
+      if (process.browser && actionBtn === 'fight-covid-19-get-started-btn') {
+        window.open('https://forms.gle/y4qpv7ajERaGE5Lr7', '_blank', 'noopener, noreferrer');
       }
       this.$ga.event({
         eventCategory: 'button',
-        eventAction: `click-toolbar-${link}`,
-        eventLabel: link,
+        eventAction: `click-toolbar-${actionBtn}`,
+        eventLabel: actionBtn,
       });
     },
-    handleSubMenuClick (item) {
-      const { link, menu } = item;
-      this.handleToolbarLinkClick(link);
-      if (menu.route !== this.$nuxt.$route.name) {
+    /**
+     * Redirects the nav link to specified route or panel
+     */
+    onNavLinkClick (navLink) {
+      // Record Google analytics
+      this.$ga.event({
+        eventCategory: 'button',
+        eventAction: `click-toolbar-${navLink.route}`,
+        eventLabel: navLink.route,
+      });
+
+      if (navLink.external) {
+        window.open(navLink.route, '_blank', 'noopener, noreferrer');
+        return;
+      }
+
+      if (navLink.route !== this.$nuxt.$route.name) {
         this.$nuxt.$router.push({
-          name: menu.route,
-          params: { panel: menu.panel },
+          name: navLink.route,
+          params: {
+            ...navLink.panel && { panel: navLink.panel },
+          },
         });
         return;
       }
-      const panelId = `#${menu.panel}`;
+      if (!navLink.panel) return;
+      const panelId = `#${navLink.panel}`;
       VueScrollTo.scrollTo(panelId, 500, { easing: 'ease' });
     },
   },

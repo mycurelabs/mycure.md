@@ -1,18 +1,5 @@
 import axios from 'axios';
-
-function handleError (e) {
-  if (e.response) {
-    // The request was made and the server responded with a status code
-    // that falls out of the range of 2xx
-    // console.log(e.response.data);
-    // console.log(e.response.status);
-    const { data } = e.response.data;
-    return data;
-  } else {
-    // Something happened in setting up the request that triggered an Error
-    return e;
-  }
-}
+import { handleError } from './error-handler';
 
 // NOTE: Do not remove yet
 // async function resendVerificationEmail (opts) {
@@ -304,3 +291,5 @@ export const recordWebsiteVisit = async (opts) => {
     throw handleError(e);
   }
 };
+
+export * from './doctor-directory';

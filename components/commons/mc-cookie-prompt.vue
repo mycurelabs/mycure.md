@@ -2,14 +2,14 @@
   v-container
     client-only
       cookie-law(
-        :position="position"
+        position="bottom"
         transitionName="fade"
         :class="cookieClasses"
       ).Cookie--mcCookie.white--text.px-1
         div(slot-scope="props").width100
           v-container.py-1.width100
             v-row(v-if="!isMobile").px-4
-              v-col(cols="11").pt-2
+              v-col(cols="11").pt-2.text-justify
                 | We use third-party services to understand web traffic data for us and they may collect cookies during the process.
                 | By continuing to browse our site, you agree to MYCURE's&nbsp;
                 nuxt-link(:to="{name: 'terms'}").policy-links Terms of Use
@@ -17,10 +17,10 @@
                 nuxt-link(:to="{name: 'privacy-policy'}").policy-links Privacy Policy
                 | . Feel free to check out our policies anytime for more info.
               v-spacer
-              v-btn(text icon color="white" @click="onClick(props)").mt-2
+              v-btn(text icon color="white" @click="onClick(props)").mt-2.mr-5
                 v-icon mdi-close
             v-row(v-else).pl-3
-              v-col(cols="10")
+              v-col(cols="10").text-justify
                 | We use third-party services to understand web traffic data for us and they may collect cookies during the process.
                 | By continuing to browse our site, you agree to MYCURE's&nbsp;
                 nuxt-link(:to="{name: 'terms'}").policy-links Terms of Use
@@ -45,9 +45,6 @@ export default {
     };
   },
   computed: {
-    position () {
-      return this.isMobile ? 'bottom' : 'top';
-    },
     cookieClasses () {
       const webClasses = ['font-14', 'py-3'];
       const mobileClasses = ['py-1'];
@@ -77,7 +74,6 @@ export default {
 
 <style scoped>
 .Cookie--mcCookie {
-  margin-top: 15%;
   background-color: #075b76;
 }
 .width100 {
@@ -87,33 +83,5 @@ export default {
 .policy-links {
   color: white;
   font-weight: bold
-}
-
-@media (min-width: 576px) {
-  .Cookie--mcCookie {
-    margin-top: 6.5%;
-  }
-}
-
-@media (min-width: 768px){
-  .Cookie--mcCookie {
-    margin-top: 5%;
-  }
-}
-
-@media (min-width: 960px) {
-  .Cookie--mcCookie {
-    margin-top: 6%;
-  }
-}
-@media (min-width: 1023px) {
-  .Cookie--mcCookie {
-    margin-top: 8%;
-  }
-}
-@media (min-width: 1100px) {
-  .Cookie--mcCookie {
-    margin-top: 70px;
-  }
 }
 </style>

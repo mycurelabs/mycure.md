@@ -7,7 +7,7 @@
             img(src="~/assets/images/mycure-footer-logo.png" height="40" alt="MYCURE logo")
         v-spacer
         div(v-for="(account, key) in socMed" :key="key")
-          a(:href="account.link" target="_blank")
+          a(:href="account.link" target="_blank" rel="noopener noreferrer")
             img(:src="require(`~/assets/images/${ account.icon }`)" height="35" :alt="account.name").px-5
     v-row(v-else justify="center").footer-grey
       nuxt-link(:to="{ name: 'index' }" title="MYCURE | Clinic Management System | Cloud EMR Philippines")
@@ -17,14 +17,14 @@
       br
       v-row(justify="center")
         div(v-for="(account,key) in socMed" :key="key")
-          a(:href="account.link" target="_blank")
+          a(:href="account.link" target="_blank" rel="noopener noreferrer")
             img(:src="require(`~/assets/images/${ account.icon }`)" height="30" :alt="account.name").px-3
       br
       br
       v-expansion-panels(flat).footer-grey.elevation-0
         v-expansion-panel.footer-grey
           v-expansion-panel-header(:color="expansionPanelColor")
-            span.iconMargin.font-18.feature-text CLINIC SOLUTIONS
+            span.iconMargin.feature-text FOR HEALTHCARE PROFESSIONALS
             template(v-slot:actions)
               v-icon(color="grey").iconMargin mdi-menu-down
           v-expansion-panel-content.iconMargin
@@ -37,23 +37,19 @@
               span.py-2.font-18 Features
         v-expansion-panel.footer-grey
           v-expansion-panel-header(:color="expansionPanelColor")
-            span.iconMargin.font-18.feature-text ABOUT
+            span.iconMargin.feature-text FOR PATIENTS
             template(v-slot:actions)
               v-icon(color="grey").iconMargin mdi-menu-down
           v-expansion-panel-content.iconMargin
-            nuxt-link(id="footer-our-story-btn" :to="{ name: 'our-story' }" title="MYCURE Our Story | Caring the Extra Mile").link.py-2
-              span.py-2.font-18 Our Story
+            a(:href="patientPortalUrl" target="_blank" rel="noopener noreferrer").link.py-2
+              span.py-2.font-18.new-link Patient's Portal
             br
             br
-            a(href="http://blog.mycure.md/" target="_blank").py-2
-              span.py-2.font-18 Blog
-            br
-            br
-            a(href="https://culture.mycure.md/" target="_blank").py-2
-              span.py-2.font-18 Careers
+            //- nuxt-link(id="footer-directory-doctors-link" :to="{ name: 'directory-doctors' }" title="MYCURE Doctor's Directory").link.py-2
+              span.py-2.font-18.new-link Doctor's Directory
         v-expansion-panel.footer-grey
           v-expansion-panel-header(:color="expansionPanelColor")
-            span.iconMargin.font-18.feature-text LEGAL
+            span.iconMargin.feature-text LEGAL
             template(v-slot:actions)
               v-icon(color="grey").iconMargin mdi-menu-down
           v-expansion-panel-content.iconMargin
@@ -65,16 +61,36 @@
               span.py-2.font-18 Privacy Policy
         v-expansion-panel.footer-grey
           v-expansion-panel-header(:color="expansionPanelColor")
-            span.iconMargin.font-18.feature-text CONTACT US
+            span.iconMargin.feature-text ABOUT
+            template(v-slot:actions)
+              v-icon(color="grey").iconMargin mdi-menu-down
+          v-expansion-panel-content.iconMargin
+            nuxt-link(id="footer-our-story-btn" :to="{ name: 'our-story' }" title="MYCURE Our Story | Caring the Extra Mile").link.py-2
+              span.py-2.font-18 Our Story
+            br
+            br
+            a(href="http://blog.mycure.md/" target="_blank" rel="noopener noreferrer").link.py-2
+              span.py-2.font-18 Blog
+            br
+            br
+            a(href="https://culture.mycure.md/" target="_blank" rel="noopener noreferrer").link.py-2
+              span.py-2.font-18 Careers
+            br
+            br
+            nuxt-link(id="footer-fight-covid-19-link" :to="{ name: 'fight-covid-19' }" title="Fight COVID-19: Free EMR").link.py-2
+              span.py-2.font-18 Fight COVID-19: Free EMR
+        v-expansion-panel.footer-grey
+          v-expansion-panel-header(:color="expansionPanelColor")
+            span.iconMargin.feature-text CONTACT US
             template(v-slot:actions)
               v-icon(color="grey").iconMargin mdi-menu-down
           v-expansion-panel-content.iconMargin
             a(id="footer-email-btn" title="MYCURE - Email" href="mailto:hello@mycure.md").link.primary--text.py-2
               span.py-2.font-18.primary--text hello@mycure.md
             br
-            span.py-2.font-18 (+632) 7799 6262
+            span.call-number.py-2.font-18 (+632) 7799 6262
             br
-            span.py-2.font-18 (+63) 917 303 4350
+            span.call-number.py-2.font-18 (+63) 917 303 4350
       br
       br
       br
@@ -136,10 +152,18 @@ export default {
       contact: false,
     };
   },
+  computed: {
+    patientPortalUrl () {
+      return process.env.PX_PORTAL_URL;
+    },
+  },
 };
 </script>
 
 <style scoped>
+.call-number {
+  color: #aaaaaa
+}
 .logo-img {
   height: 20%;
 }
@@ -152,6 +176,20 @@ a:link {
 }
 .feature-text {
   color: grey;
+  font-size: 14px;
+}
+.new-link {
+  position: relative;
+}
+.new-link:after {
+  content: '';
+  position: absolute;
+  background-color: red;
+  top: 14px;
+  right: -13px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
 }
 .footer-grey {
   background-color: #343a40 !important;
