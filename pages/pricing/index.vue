@@ -59,8 +59,7 @@ export default {
     return headMeta({
       title: 'MYCURE Pricing',
       description: 'MYCURE is a complete and affordable Clinic and Practice Management System that works for healthcare facilities of all shapes and sizes.',
-      // - TODO: Replace with local if applicable
-      socialBanner: 'https://firebasestorage.googleapis.com/v0/b/mc-v4-prod.appspot.com/o/web-main-assets%2FMYCURE_Open_Graph_Images_Privacy_Policy.png?alt=media&token=f68b2956-ed80-421b-bbcd-a7c129f7430c',
+      socialBanner: require('~/assets/images/banners/MYCURE Open Graph Images -  Homepage.png'),
     });
   },
 };
