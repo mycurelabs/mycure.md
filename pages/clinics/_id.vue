@@ -1,7 +1,7 @@
 <template lang="pug">
   v-container(fluid)
     app-bar
-    panel-1(
+    usp(
       pic-url="MYCURE-virtual-clinic-healthcare-practice-online-enterprise-F-multi-specialty"
       pic-extension=".webp"
       pic-alt="Clinic Image"
@@ -63,7 +63,7 @@ import {
 
 import headMeta from '~/utils/head-meta';
 import AppBar from '~/components/clinic-website/app-bar';
-import Panel1 from '~/components/clinic-website/panel-1';
+import Usp from '~/components/clinic-website/usp';
 import Services from '~/components/clinic-website/services';
 import ClinicInfo from '~/components/clinic-website/clinic-info';
 import Doctors from '~/components/clinic-website/doctors';
@@ -74,7 +74,7 @@ export default {
   layout: 'clinic-website',
   components: {
     AppBar,
-    Panel1,
+    Usp,
     Services,
     ClinicInfo,
     Doctors,
