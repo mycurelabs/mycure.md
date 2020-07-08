@@ -167,7 +167,7 @@ export default {
     height: 120vh;
   }
 }
-@media screen and (device-width: 1024px) and (orientation: portrait) {
+@media screen and (device-width: 1024px) and (device-height: 1366px) {
   .cta-content {
     position: relative;
     margin-top: -15%;
@@ -178,10 +178,9 @@ export default {
   }
   .row-content {
     height: 50vh;
-    margin-bottom: -20%;
   }
 }
-@media screen and (device-width: 1366px) and (orientation: landscape) {
+@media screen and (device-width: 1366px) and (device-height: 1024px) {
   .row-content {
     height: 49vh;
   }
