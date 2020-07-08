@@ -12,6 +12,7 @@
           :imageAlt="header || 'media-image'"
           :imageFileExtension="fileExtension"
           :imageWidth="webImageWidth"
+          :class="webImageClass"
         )
         template(v-if="contentAlignLeft")
           h1.font-30.lh-title.pb-3.font-weight-light {{header}}
@@ -30,6 +31,7 @@
           :imageAlt="header || 'media-image'"
           :imageFileExtension="fileExtension"
           :imageWidth="webImageWidth"
+          :class="webImageClass"
         )
         template(v-if="contentAlignRight")
           h1.font-30.lh-title.pb-3.font-weight-light {{header}}
@@ -75,6 +77,7 @@
           :imageAlt="header || 'media-image'"
           :imageFileExtension="fileExtension"
           :imageWidth="webImageWidth"
+          :class="webImageClass"
         )
 </template>
 
@@ -205,6 +208,14 @@ export default {
     webImageWidth: {
       type: String,
       default: '100%',
+    },
+    /**
+     * Classes of web image
+     * @type {String}
+     */
+    webImageClass: {
+      type: String,
+      default: '',
     },
     /**
      * File name of image for mobile view (without file extension)
