@@ -4,12 +4,13 @@
     cols-right="5"
     offsetColsRight="1"
     fileExtension=".png"
-    extension-exclusive
+    web-image-width="102%"
+    web-image-class="ml-n2"
     mobile-image-width="95%"
-    custom-image-path="features/"
-    web-image-class="ml-n1"
     mobile-image-class="ml-4"
+    custom-image-path="features/"
     content-align-left
+    extension-exclusive
     :header="header"
     :descriptions="descriptions"
     :web-image="image"
@@ -24,7 +25,6 @@ export default {
     GenericMediaPanel,
   },
   data () {
-    // this.image = 'MYCURE-virtual-clinic-healthcare-practice-online-features-A-role.png';
     this.image = 'MYCURE-virtual-clinic-healthcare-practice-online-features-A-role';
     this.header = 'Everybody\'s got a special role to play.';
     this.descriptions = [
