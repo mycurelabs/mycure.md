@@ -16,7 +16,7 @@
           image-file-extension=".webp"
         )
       v-col(cols="12" md="4" offset-md="1")
-        h1.font-30.lh-title.pb-3.font-weight-light {{HOME_START_YOUR_PHYSICAL.header}}
+        h1(v-html="HOME_START_YOUR_PHYSICAL.header").font-30.lh-title.pb-3.font-weight-light
         br
         p.font-16.font-gray.text-justify.my-0 {{HOME_START_YOUR_PHYSICAL.description}}
         br
@@ -30,11 +30,11 @@
         :image="HOME_START_YOUR_PHYSICAL.image"
         image-alt="Start your physical and digital journey"
         image-file-extension=".webp"
-      )
+      ).pt-6
     //- SECOND PANEL
     v-row(justify="center" align="center").py-10.mb-n4
-      v-col(justify="start" cols="12" md="4").ml-2.mr-n2
-        h1.font-30.font-weight-light {{YOUR_ONLINE_CLINIC.header}}
+      v-col(justify="start" cols="12" md="4" :class="{ 'ml-3': !$isMobile }")
+        h1(v-html="YOUR_ONLINE_CLINIC.header").font-30.font-weight-light
         br
         p.font-16.font-gray.text-justify.mb-0 {{YOUR_ONLINE_CLINIC.description}}
         br
@@ -45,9 +45,11 @@
       v-col(cols="12" md="5" offset-md="1")
         picture-source(
           custom-path="virtual-clinic-home/"
-          :image="YOUR_ONLINE_CLINIC.image"
           image-alt="Your online clinic everywhere"
           image-file-extension=".webp"
+          image-width="105%"
+          :image="YOUR_ONLINE_CLINIC.image"
+          :class="[!$isMobile ? 'ml-n5' : 'ml-n2']"
         )
     //- THIRD PANEL
     v-row(justify="center" align="center" no-gutters).py-10.mb-n4
@@ -73,11 +75,11 @@
         :image="GET_MORE_PATIENTS.image"
         image-alt="Get more patients"
         image-file-extension=".webp"
-      )
+      ).pt-6
     //- FOURTH PANEL
     v-row(justify="center" align="center").py-10.mb-n4
-      v-col(cols="12" md="4" justify="start").ml-2.mr-n2
-        h1.font-30.font-weight-light {{MANAGE_EVERYTHING_EASILY.header}}
+      v-col(cols="12" md="4" justify="start" :class="{ 'ml-3': !$isMobile }")
+        h1(v-html="MANAGE_EVERYTHING_EASILY.header").font-30.font-weight-light
         br
         p.font-16.font-gray.text-justify.mb-0 {{MANAGE_EVERYTHING_EASILY.description}}
         br
@@ -88,9 +90,11 @@
       v-col(cols="12" md="5" offset-md="1")
         picture-source(
           custom-path="virtual-clinic-home/"
-          :image="MANAGE_EVERYTHING_EASILY.image"
           image-alt="Manage everything easily"
           image-file-extension=".webp"
+          image-width="105%"
+          :image="MANAGE_EVERYTHING_EASILY.image"
+          :class="[!$isMobile ? 'ml-n5' : 'ml-n2']"
         )
 </template>
 
