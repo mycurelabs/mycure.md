@@ -139,6 +139,7 @@ export default {
     margin-left: 16px;
   }
   .row-content {
+    margin-top: 50%;
     height: 70vh;
   }
 }
