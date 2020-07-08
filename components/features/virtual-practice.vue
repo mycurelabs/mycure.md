@@ -6,7 +6,7 @@
     :descriptions="descriptions"
     :web-image="mediaImage"
     :custom-image-path="customPath"
-  ).mb-n3
+  ).mb-n1
     div(slot="additional-content" :class="{'text-center': !$isMobile}")
       v-btn(text :to="{ name: 'signup-individual' }").text-none
         strong.primary--text Get Started

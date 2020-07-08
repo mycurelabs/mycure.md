@@ -2,8 +2,8 @@
   generic-media-panel(
     cols-left="4"
     cols-right="5"
-    offsetColsRight="1"
-    fileExtension=".png"
+    offset-cols-right="1"
+    file-extension=".png"
     web-image-width="102%"
     web-image-class="ml-n2"
     mobile-image-width="95%"

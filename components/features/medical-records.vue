@@ -4,7 +4,7 @@
       generic-media-panel(
         cols-left="5"
         cols-right="4"
-        offsetColsRight="1"
+        offset-cols-right="1"
         content-align-right
         hide-image-mobile
         :header="header"
