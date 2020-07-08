@@ -34,8 +34,8 @@
                 @click="onGetStarted"
                 height="52"
               ).text-none.font-16.cta-btn Get Started
-            v-col(cols="10")
-              p.font-16.grey--text {{ ctaAgreementText }}
+            v-col(cols="10").mt-n8
+              p.font-16.grey--text.pre-white-space {{ ctaAgreementText }}
         v-col(
           v-if="$isMobile"
           cols="12"
@@ -87,7 +87,7 @@ export default {
     this.ctaMobileImage = 'mycure-final-cta-background-image-right';
     this.ctaTitle = 'Build your virtual clinic today.';
     this.ctaSubtitle = 'For Modern Doctors, Virtual is the new normal.';
-    this.ctaAgreementText = 'By entering your email, you agree to receive marketing emails from MYCURE.';
+    this.ctaAgreementText = 'By entering your email, you agree to receive\nmarketing emails from MYCURE.';
     return {
       email: '',
     };
