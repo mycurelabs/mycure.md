@@ -2,17 +2,20 @@
   div
     client-only
       generic-media-panel(
-        content-align-left
         cols-left="4"
-        cols-right="6"
+        cols-right="5"
+        offset-cols-right="1"
         custom-image-path="features/"
+        web-image-width="106%"
+        web-image-class="ml-n5"
+        content-align-left
+        hide-image-mobile
         :header="header"
         :descriptions="descriptions"
         :web-image="image"
-        hide-image-mobile
-      ).mt-n3.mb-n6
+      )
       v-container(v-if="$isMobile")
-        v-row(justify="center")
+        v-row(justify="center").mt-n12
           carousel(
             :per-page="1"
             autoplay
