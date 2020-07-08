@@ -3,14 +3,17 @@
     client-only
       generic-media-panel(
         content-align-right
-        cols-left="6"
+        cols-left="5"
         cols-right="4"
+        offset-cols-right="1"
+        web-image-class="ml-n2"
+        web-image-width="106%"
         custom-image-path="features/"
+        hide-image-mobile
         :header="header"
         :descriptions="descriptions"
         :web-image="image"
-        hide-image-mobile
-      ).mt-n3.mb-n5
+      )
       v-container(v-if="$isMobile")
         v-row(justify="center")
           carousel(
