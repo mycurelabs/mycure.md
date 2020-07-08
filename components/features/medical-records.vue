@@ -17,7 +17,7 @@
             strong.primary--text Get Started
             v-icon.primary--text mdi-arrow-right
       //- Bottom images
-      v-container(v-if="!$isMobile").py-10.mb-n3
+      v-container(v-if="!$isMobile").mt-n8.pb-12
         v-row(no-gutters)
           v-col(cols="12" md="5" offset-md="1")
             picture-source(

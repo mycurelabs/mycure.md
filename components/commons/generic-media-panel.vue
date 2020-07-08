@@ -68,7 +68,7 @@
         )
         br
         template(v-if="descriptions.length")
-          p(v-for="(description, key) in descriptions" :key="key").font-16.mt-3.font-gray {{description}}
+          p(v-for="(description, key) in descriptions" :key="key" :class="{'text-justify': $isMobile}").font-16.mt-3.font-gray {{description}}
           br
         slot(name="additional-content")
         picture-source(
