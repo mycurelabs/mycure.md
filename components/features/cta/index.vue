@@ -168,6 +168,8 @@ export default {
     height: 120vh;
   }
 }
+/* PAGE RESPONSIVENESS SPECIFIC FOR IPAD PRO SCREEN ONLY */
+/* IPAD PRO ORIENTATION : PORTRAIT */
 @media screen and (device-width: 1024px) and (device-height: 1366px) {
   .cta-content {
     position: relative;
@@ -181,6 +183,7 @@ export default {
     height: 50vh;
   }
 }
+/* IPAD PRO ORIENTATION : LANDSCAPE */
 @media screen and (device-width: 1366px) and (device-height: 1024px) {
   .row-content {
     height: 49vh;
