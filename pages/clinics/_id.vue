@@ -2,12 +2,9 @@
   v-container(fluid)
     app-bar
     usp(
-      pic-url="MYCURE-virtual-clinic-healthcare-practice-online-enterprise-F-multi-specialty"
-      pic-extension=".webp"
-      pic-alt="Clinic Image"
-      pic-custom-path="enterprise/"
-      clinic-copy="Copy of the clinic. Ex. The best clinic since 1945"
-      clinic-tagline="Up to 50 characters plus a tagline up to well 60 characters."
+      image-url="mycure-homepage-usp-cover-mobile.png"
+      clinic-copy="Family clinic since 1945"
+      clinic-tagline="A family centered clinic with traditions that goes way back."
     )
     services(
       header-text="We offer this healthcare services for you."
