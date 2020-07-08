@@ -1,8 +1,8 @@
 <template lang="pug">
-  v-container(fluid).my-10
-    v-row(justify="center" align="center" :class="{ 'mb-10': !$isMobile }").px-6
+  generic-container
+    v-row(justify="center" align="center")
       h1 {{ headerText }}
-    v-row(v-if="!$isMobile" justify="center" align="center").px-6
+    v-row(v-if="!$isMobile" justify="center" align="center")
       v-col(cols="12" md="4" align-self="start")
         v-list(two-line).text-left
           v-list-item(
@@ -47,7 +47,11 @@
 </template>
 
 <script>
+import GenericContainer from '~/components/commons/generic-container';
 export default {
+  components: {
+    GenericContainer,
+  },
   props: {
     /**
      * Array of services strings
