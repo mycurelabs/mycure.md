@@ -2,9 +2,7 @@
   v-container(fluid)
     app-bar
     usp(
-      image-url="mycure-homepage-usp-cover-mobile.png"
-      clinic-copy="Family clinic since 1945"
-      clinic-tagline="A family centered clinic with traditions that goes way back."
+      :content="uspInfo"
     )
     services(
       header-text="We offer this healthcare services for you."
@@ -51,6 +49,7 @@ import {
   SERVICES_LIST,
   SCHEDULES_LIST,
   RATES,
+  USP_INFO,
   DOCTORS_LIST,
   SOCIAL_ITEM,
   ABOUT_INFO,
@@ -88,6 +87,7 @@ export default {
     this.aboutInfo = ABOUT_INFO;
     this.filterItems = FILTER_ITEMS;
     this.sortItems = SORT_ITEMS;
+    this.uspInfo = USP_INFO;
     return {};
   },
   head () {

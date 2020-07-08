@@ -1,3 +1,9 @@
+export const USP_INFO = {
+  copy: 'Family clinic since 1945',
+  tagline: 'A family centered clinic with traditions that goes way back.',
+  imageUrl: 'mycure-homepage-usp-cover-mobile.png',
+};
+
 export const FILTER_ITEMS = [
   {
     tag: 'default',

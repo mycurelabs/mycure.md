@@ -2,10 +2,12 @@
   generic-container
     v-row(justify="center" align="center").my-10
       v-col(cols="12" md="5" order-sm="2" order-md="1")
-        img(v-lazy="require(`~/assets/images/${this.imageUrl}`)")
-      v-col(cols="12" md="7" order-sm="1" order-md="2")
+        img(v-lazy="require(`~/assets/images/${this.clinicImage}`)")
+      v-col(cols="12" md="7" order-sm="1" order-md="2" :class="{ 'text-center': $isMobile }")
         h1.font-weight-bold.font-50 {{ clinicCopy }}
         p.font-32 {{ clinicTagline }}
+        //- TODO: add url params?
+        //- TODO: could also be refactored along with doctor directory nav buttons
         book-appointment-clinic-btn(
           content="Book Appointment"
           :extra-bindings="{ color: 'primary' }"
@@ -23,29 +25,20 @@ export default {
     BookAppointmentClinicBtn,
   },
   props: {
-    /**
-     * String url of image
-     * @type {String}
-     */
-    imageUrl: {
-      type: String,
-      default: null,
+    content: {
+      type: Object,
+      default: () => ({}),
     },
-    /**
-     * String text copy of panel 1
-     * @type {String}
-     */
-    clinicCopy: {
-      type: String,
-      default: null,
+  },
+  computed: {
+    clinicCopy () {
+      return this.content?.copy || '';
     },
-    /**
-     * String tagline copy of panel 1
-     * @type {String}
-     */
-    clinicTagline: {
-      type: String,
-      default: null,
+    clinicTagline () {
+      return this.content?.tagline || '';
+    },
+    clinicImage () {
+      return this.content?.imageUrl || 'mycure-homepage-usp-cover-mobile.png';
     },
   },
 };
