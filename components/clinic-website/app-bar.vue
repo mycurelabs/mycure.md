@@ -16,6 +16,8 @@
         v-spacer
         v-col.col-auto
         template(v-if="!$isMobile")
+          //- TODO: add url params?
+          //- TODO: could also be refactored along with doctor directory nav buttons
           book-appointment-clinic-btn(content="Book Appointment")
         template(v-else)
           v-menu(bottom left)
@@ -24,6 +26,8 @@
                 v-icon mdi-menu
             v-list(style="width: 250px")
               v-list-item
+                //- TODO: add url params?
+                //- TODO: could also be refactored along with doctor directory nav buttons
                 book-appointment-clinic-btn(
                   content="Book Appointment"
                   :extra-bindings="{ block: true }"
