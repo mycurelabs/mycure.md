@@ -1,17 +1,20 @@
 <template lang="pug">
   generic-container
-    v-row(justify="start" align="start")
+    v-row(justify="start" align="start" :class="{ 'text-center': $isMobile }")
       v-col(cols="12" md="6")
         h3 {{ clinicName }}
         p.grey--text {{ clinicAddress }}
         v-row
           v-col(cols="12" md="6")
-            template(v-for="item in schedules")
-              h3 {{ item.day }}
-              p {{ item.time }}
+            template(v-if="schedules.length > 0")
+              template(v-for="item in schedules")
+                h3 {{ item.day }}
+                p {{ item.time }}
+            template(v-else)
+              h3 No schedules added
           v-col(cols="12" md="6")
-            h3 {{ `${rates.currency}${rates.min}` }} - {{ `${rates.currency}${rates.max}` }}
-            p Service Fee Range
+            h3 {{ rates }}
+            p(v-if="!!hasRange") Service Fee Range
       v-col(cols="12" md="4" offset-md="1")
         h2.mb-10 Book an appointment with us.
         book-appointment-clinic-btn(
@@ -29,37 +32,28 @@ export default {
     BookAppointmentClinicBtn,
   },
   props: {
-    /**
-     * Array of schedule objects
-     * @type {Array}
-     */
-    schedules: {
-      type: Array,
-      default: () => ([]),
-    },
-    /**
-     * String name of clinic
-     * @type {String}
-     */
-    clinicName: {
-      type: String,
-      default: null,
-    },
-    /**
-     * String address of clinic
-     * @type {String}
-     */
-    clinicAddress: {
-      type: String,
-      default: null,
-    },
-    /**
-     * Object rates of clinic (min, max, currency)
-     * @type {Object}
-     */
-    rates: {
+    info: {
       type: Object,
-      default: null,
+      default: () => ({}),
+    },
+  },
+  computed: {
+    clinicName () {
+      return this.info?.name || '';
+    },
+    clinicAddress () {
+      return this.info?.address || '';
+    },
+    rates () {
+      return this.hasRange !== undefined
+        ? `${this.info.rates.currency}${this.info.rates.min} - ${this.info.rates.currency}${this.info.rates.max}`
+        : 'No range added';
+    },
+    schedules () {
+      return this.info?.schedules || [];
+    },
+    hasRange () {
+      return this.info?.rates?.currency && this.info?.rates?.min && this.info?.rates?.max;
     },
   },
 };

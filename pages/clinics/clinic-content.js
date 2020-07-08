@@ -66,21 +66,24 @@ export const SERVICES_LIST = [
   'Gastroenterology',
 ];
 
-export const SCHEDULES_LIST = [
-  {
-    day: 'Mon - Sat',
-    time: '04:00 PM - 09:00 PM',
+export const CLINIC_INFORMATION = {
+  name: 'MYCURE Virtual Clinic',
+  address: '1036, Delos Santos STI Medical Center 201 E. Rodriguez Avenue Quezon City',
+  rates: {
+    currency: '₱',
+    min: '500',
+    max: '1,000',
   },
-  {
-    day: 'Sun',
-    time: '09:00 PM - 12:00 PM',
-  },
-];
-
-export const RATES = {
-  currency: '₱',
-  min: '500',
-  max: '1,000',
+  schedules: [
+    {
+      day: 'Mon - Sat',
+      time: '04:00 PM - 09:00 PM',
+    },
+    {
+      day: 'Sun',
+      time: '09:00 PM - 12:00 PM',
+    },
+  ],
 };
 
 export const DOCTORS_LIST = [

@@ -10,10 +10,7 @@
     )
     v-divider
     clinic-info(
-      :schedules="schedules"
-      :rates="rates"
-      clinic-name="MYCURE Virtual Clinic"
-      clinic-address="1036, Delos Santos STI Medical Center 201 E. Rodriguez Avenue Quezon City"
+      :info="clinicInformation"
     )
     v-divider
     doctors(
@@ -47,8 +44,7 @@
 <script>
 import {
   SERVICES_LIST,
-  SCHEDULES_LIST,
-  RATES,
+  CLINIC_INFORMATION,
   USP_INFO,
   DOCTORS_LIST,
   SOCIAL_ITEM,
@@ -80,8 +76,7 @@ export default {
   },
   data () {
     this.services = SERVICES_LIST;
-    this.schedules = SCHEDULES_LIST;
-    this.rates = RATES;
+    this.clinicInformation = CLINIC_INFORMATION;
     this.doctors = DOCTORS_LIST;
     this.socialItem = SOCIAL_ITEM;
     this.aboutInfo = ABOUT_INFO;
