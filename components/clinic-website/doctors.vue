@@ -1,89 +1,12 @@
 <template lang="pug">
-  v-container(fluid)
-    v-row(justify="start" align="end" dense)
-      v-col
+  generic-container.my-10
+    v-row(justify="center" align="center" dense)
+      v-col(cols="12").text-center
         h2 Our Doctors
-      template(v-if="!$isMobile")
-        v-spacer
-        v-col
-          v-text-field(
-            outlined
-            clearable
-            label="Search Doctor"
-            type="text"
-            dense
-            append-icon="mdi-magnify"
-            v-model="searchTerm"
-            @click:append="mockFilter"
-            @click:clear="isSearching = false"
-            @keydown.enter="mockFilter"
-          ).input-field
-      template(v-else)
-        p.grey--text.font-26.message-line-height We have {{ doctorsLength }} doctors in our clinic. Who would you like to schedule for an appointment?
-    v-row(justify="start" align="center")
-      template(v-if="!$isMobile")
-        v-col(cols="4")
-          p.grey--text.font-26.message-line-height We have {{ doctorsLength }} doctors in our clinic. Who would you like to schedule for an appointment?
-        v-spacer
-        v-col(cols="3")
-          p.mb-3 Specialization
-          v-select(
-            v-model="selectedSpecialization"
-            :items="specializations"
-            item-text="info"
-            item-value="tag"
-            @change="mockFilter"
-            dense
-            outlined
-          )
-        v-col(cols="3")
-          p.mb-3 Sort By
-          v-select(
-            v-model="selectedSort"
-            :items="sortBy"
-            item-text="info"
-            item-value="tag"
-            @change="mockFilter"
-            dense
-            outlined
-          )
-        v-col(cols="1" style="max-width: 85px;").pl-0.mt-2
-          div.d-flex.justify-end
-            v-btn(tile icon @click="toggleView('grid')")
-              v-icon(
-                size="28"
-                :color="isGridView ? 'primary' : 'grey'"
-              ) mdi-view-grid
-            v-btn(tile icon @click="toggleView('list')")
-              v-icon(
-                size="36"
-                :color="!isGridView ? 'primary' : 'grey'"
-              ) mdi-view-list
-      template(v-else)
-        v-text-field(
-          outlined
-          clearable
-          label="Search Doctor"
-          type="text"
-          dense
-          append-icon="mdi-magnify"
-          v-model="searchTerm"
-          @click:append="mockFilter"
-          @click:clear="isSearching = false"
-          @keydown.enter="mockFilter"
-        ).align-baseline
-          template(v-slot:append-outer)
-            div
-              v-btn(icon @click="isOptionDialogOpen = !isOptionDialogOpen")
-                v-icon(color="primary") mdi-cog
-        doctor-filter-dialog-mobile(
-          :is-option-dialog-open="isOptionDialogOpen"
-          @apply-filters-mobile="applyFiltersMobile"
-          @close-dialog="closeDialog"
-          @update-mobile-view="updateMobileView"
-          :mobile-view-type="mobileViewType"
-          :specializations="specializations"
-          :sort-by="sortBy"
+        p.grey--text.font-20.message-line-height We have {{ doctorsLength }} doctors in our clinic. Who would you like to schedule for an appointment?
+      v-col.pa-1
+        search-controls(
+          @search="searchFromControls"
         )
     v-row
       template(v-if="isLoading")
@@ -108,12 +31,16 @@
 </template>
 
 <script>
+import GenericContainer from '~/components/commons/generic-container';
+import SearchControls from '~/components/directory-doctor/search-controls';
 import DoctorItemGrid from '~/components/clinic-website/doctor-item-grid';
 import DoctorItemListMobile from '~/components/clinic-website/doctor-item-list-mobile';
 import DoctorItemListDesktop from '~/components/clinic-website/doctor-item-list-desktop';
 import DoctorFilterDialogMobile from '~/components/clinic-website/doctor-filter-dialog-mobile';
 export default {
   components: {
+    SearchControls,
+    GenericContainer,
     DoctorItemGrid,
     DoctorItemListMobile,
     DoctorItemListDesktop,
@@ -125,22 +52,6 @@ export default {
      * @type {Array}
      */
     doctors: {
-      type: Array,
-      default: () => ([]),
-    },
-    /**
-     * Array of sorting objects
-     * @type {Array}
-     */
-    specializations: {
-      type: Array,
-      default: () => ([]),
-    },
-    /**
-     * Array of filter objects
-     * @type {Array}
-     */
-    sortBy: {
       type: Array,
       default: () => ([]),
     },
@@ -173,6 +84,9 @@ export default {
       await setTimeout(() => {
         this.isLoading = false;
       }, 500);
+    },
+    searchFromControls () {
+      // this.$emit('search');
     },
     toggleView (type) {
       this.mobileViewType = type;
