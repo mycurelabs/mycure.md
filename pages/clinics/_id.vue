@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-container(fluid)
+  v-container
     app-bar
     usp(
       :content="uspInfo"
