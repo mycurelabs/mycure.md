@@ -16,7 +16,7 @@
           :class="[{'web-content-margin': !$isMobile}]"
         ).cta-title.text-center
           h1.font-40.lh-title {{ ctaTitle }}
-          p.font-italic.font-18.my-4 {{ ctaSubtitle }}
+          p.font-italic.font-18.my-4.pre-white-space {{ ctaSubtitle }}
           v-row(justify="center")
             v-col(cols="12" md="7")
               v-text-field(
@@ -34,6 +34,8 @@
                 @click="onGetStarted"
                 height="52"
               ).text-none.font-16.cta-btn Get Started
+            v-col(cols="10").mt-n8
+              p.font-16.grey--text.pre-white-space {{ ctaAgreementText }}
         v-col(
           v-if="$isMobile"
           cols="12"
@@ -57,6 +59,8 @@
                 large
                 @click="onGetStarted"
               ).text-none.font-16.cta-btn Get Started
+            v-col(cols="10")
+              p.font-16.grey--text {{ ctaAgreementText }}
           picture-source(
             :image="ctaMobileImage"
             image-file-extension=".webp"
@@ -80,7 +84,8 @@ export default {
     this.backgroundImageMobile = 'mycure-final-cta-background.png';
     this.ctaMobileImage = 'mycure-final-cta-background-image-right';
     this.ctaTitle = 'Embrace a new habit.';
-    this.ctaSubtitle = 'Let your patients experience top-of-the-line services with the help of MYCURE.';
+    this.ctaSubtitle = 'Let your patients experience top-of-the-line services\nwith the help of MYCURE.';
+    this.ctaAgreementText = 'By entering your email, you agree to receive\nmarketing emails from MYCURE.';
     return {
       email: '',
     };
