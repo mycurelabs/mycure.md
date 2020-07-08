@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-container(fluid)
+  generic-container
     v-row(justify="start" align="start")
       v-col(cols="12" md="6")
         h3 {{ clinicName }}
@@ -13,16 +13,21 @@
             h3 {{ `${rates.currency}${rates.min}` }} - {{ `${rates.currency}${rates.max}` }}
             p Service Fee Range
       v-col(cols="12" md="4" offset-md="1")
-        h1 Book an appointment with us.
-        br
-        v-btn(
-          x-large
-          color="primary"
-        ).text-none Book Appointment
+        h2.mb-10 Book an appointment with us.
+        book-appointment-clinic-btn(
+          content="Book Appointment"
+          :extra-bindings="{ color: 'primary' }"
+        )
 </template>
 
 <script>
+import GenericContainer from '~/components/commons/generic-container';
+import BookAppointmentClinicBtn from '~/components/commons/book-appointment-clinic-btn';
 export default {
+  components: {
+    GenericContainer,
+    BookAppointmentClinicBtn,
+  },
   props: {
     /**
      * Array of schedule objects
