@@ -5,9 +5,10 @@
     offsetColsRight="1"
     fileExtension=".png"
     extension-exclusive
-    mobile-image-width="90%"
+    mobile-image-width="95%"
     custom-image-path="features/"
     web-image-class="ml-n1"
+    mobile-image-class="ml-4"
     content-align-left
     :header="header"
     :descriptions="descriptions"
