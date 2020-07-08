@@ -5,7 +5,7 @@
         img(v-lazy="require(`~/assets/images/${this.clinicImage}`)")
       v-col(cols="12" md="7" order-sm="1" order-md="2" :class="{ 'text-center': $isMobile }")
         h1.font-weight-bold.font-50 {{ clinicCopy }}
-        p.font-32 {{ clinicTagline }}
+        p.font-26 {{ clinicTagline }}
         //- TODO: add url params?
         //- TODO: could also be refactored along with doctor directory nav buttons
         book-appointment-clinic-btn(
