@@ -2,15 +2,17 @@
   div
     client-only
       generic-media-panel(
-        content-align-left
         cols-left="4"
-        cols-right="6"
-        align-left-column="start"
+        cols-right="5"
+        offset-cols-right="1"
+        web-image-width="103%"
+        web-image-class="ml-n2"
+        content-align-left
         :header="header"
         :descriptions="descriptions"
         :web-image="mediaImage"
         :custom-image-path="customPath"
-      ).mb-n3
+      )
         //- Check list
         template(slot="additional-content")
           template(v-for="item in checkListItems")
