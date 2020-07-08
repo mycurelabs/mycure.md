@@ -49,6 +49,7 @@
         :imageAlt="header || 'media-image'"
         :imageFileExtension="mobileFileExtension || fileExtension"
         :imageWidth="mobileImageWidth"
+        :class="mobileImageClass"
       )
     //- CENTER VIEW
     v-row(v-else justify="center").py-10
@@ -63,6 +64,7 @@
           :imageAlt="header || 'media-image'"
           :imageFileExtension="mobileFileExtension || fileExtension"
           :imageWidth="mobileImageWidth"
+          :class="mobileImageClass"
         )
         br
         template(v-if="descriptions.length")
@@ -233,6 +235,15 @@ export default {
       type: String,
       default: '100%',
     },
+    /**
+     * Classes of mobile image
+     * @type {String}
+     */
+    mobileImageClass: {
+      type: String,
+      default: '',
+    },
+    /**
     /**
      * Hides image in mobile view
      * @type {Boolean}
