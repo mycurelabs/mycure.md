@@ -15,16 +15,28 @@
             )
         v-spacer
         v-col.col-auto
-          book-appointment-btn(:outlined="false" btn-color="success")
+        template(v-if="!$isMobile")
+          book-appointment-clinic-btn(content="Book Appointment")
+        template(v-else)
+          v-menu(bottom left)
+            template(v-slot:activator="{ on, attrs }")
+              v-btn(icon v-bind="attrs" v-on="on")
+                v-icon mdi-menu
+            v-list(style="width: 250px")
+              v-list-item
+                book-appointment-clinic-btn(
+                  content="Book Appointment"
+                  :extra-bindings="{ block: true }"
+                )
 </template>
 
 <script>
 import GenericContainer from '~/components/commons/generic-container';
-import BookAppointmentBtn from '~/components/commons/book-appointment-btn';
+import BookAppointmentClinicBtn from '~/components/commons/book-appointment-clinic-btn';
 export default {
   components: {
     GenericContainer,
-    BookAppointmentBtn,
+    BookAppointmentClinicBtn,
   },
 };
 </script>
