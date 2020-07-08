@@ -18,7 +18,7 @@
     //- 5th panel
     apis
     //- 6th panel
-    patient-portal(@goToPatientPortal="goToPatientPortal")
+    patient-portal(@goToPatientPortal="goToPatientPortal")#patient-portal
     //- 7th panel
     testimonial
     //- final panel
@@ -76,6 +76,10 @@ export default {
     };
   },
   computed: {
+    scrollPanel () {
+      const panel = this.$nuxt.$route.params.panel;
+      return panel ? `#${panel}` : null;
+    },
     storyflowIntroText () {
       return this.$isMobile
         ? this.introText
@@ -83,12 +87,25 @@ export default {
     },
   },
   mounted () {
+    this.loading = false;
+    this.scrollToPosition();
     this.$nuxt.$route.params.scrollHealthSuites ? this.getStarted()
       : VueScrollTo.scrollTo('#app', 500, { easing: 'ease' });
     window.$crisp.push(['safe', true]);
     this.loading = false;
   },
   methods: {
+    scrollToPosition () {
+      const panel = this.scrollPanel || '#app';
+      const offsetMappings = [
+        { key: '#app', offset: 0 },
+        { key: '#patient-portal', offset: 400 },
+      ];
+      const { offset } = offsetMappings.find(mapping => mapping.key === panel);
+      this.$nextTick(() => {
+        VueScrollTo.scrollTo(panel, 400, { easing: 'ease', offset });
+      });
+    },
     getStarted () {
       this.$router.push({ name: 'signup-individual' });
     },

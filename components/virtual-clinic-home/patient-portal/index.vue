@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-container(style="background-color: #f7e8e6" :class="{ 'border-radius': !$isMobile }")#patient-portal.py-12
+  v-container(style="background-color: #f7e8e6" :class="{ 'border-radius': !$isMobile }").py-12
     v-row(justify="center" align="center" no-gutters)
       v-col(v-if="!$isMobile" cols="12" md="5")
         picture-source(
