@@ -45,7 +45,7 @@
               span.py-2.font-18.new-link Patient's Portal
             br
             br
-            nuxt-link(id="footer-directory-doctors-link" :to="{ name: 'directory-doctors' }" title="MYCURE Doctor's Directory").link.py-2
+            //- nuxt-link(id="footer-directory-doctors-link" :to="{ name: 'directory-doctors' }" title="MYCURE Doctor's Directory").link.py-2
               span.py-2.font-18.new-link Doctor's Directory
         v-expansion-panel.footer-grey
           v-expansion-panel-header(:color="expansionPanelColor")

@@ -87,16 +87,19 @@
         v-col(cols="12" md="6").pa-1.text-center
           img(src="~/assets/images/mycure-onboarding-phone-verification.png" alt="Phone")
 
-    v-dialog(v-model="successDialog" width="600" persistent)
+    v-dialog(v-model="successDialog" width="400" height="auto" persistent)
       v-card
         v-card-text.text-center
-          img(width="300" src="~/assets/images/mycure-signup-image-jumping-doctors.png" alt="Jumping doctors")
+          h1.pt-5.font-30 Welcome to MYCURE!
           br
-          h1.font-40 Welcome to MYCURE!
-          div.px-5.pt-5
+          img(width="100%" src="~/assets/images/mycure-signup-image-jumping-doctors.png" alt="Jumping doctors")
+          div
             p.subheading
               b(v-if="step1Data.firstName") Dr. {{ step1Data.firstName }}
-              | {{ step1Data.firstName ? `, you've` : `You've` }} taken the first step in securely organizing your medical records.&nbsp;
+              | {{ step1Data.firstName ? `, you've` : `You've` }} taken the first step
+              br
+              | in securely organizing your medical records.
+              br
               | Now get ready for the ultimate clinic make-over.
           v-btn(
             color="accent"
@@ -366,5 +369,56 @@ input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+@media screen and (min-width: 768px) {
+  .main-container {
+    min-height: 73vh;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .main-container {
+    min-height: 87vh;
+  }
+}
+@media screen and (device-width: 1280px) and (device-height: 800px) {
+  .main-container {
+    min-height: 76vh;
+  }
+}
+@media screen and (device-width: 1280px) and (device-height: 1024px) {
+  .main-container {
+    min-height: 81vh;
+  }
+}
+@media screen and (min-width: 1366px) {
+  .main-container {
+    min-height: 60vh;
+    margin-bottom: -3%;
+  }
+}
+@media screen and (min-width: 1440px) {
+  .main-container {
+    min-height: 82vh;
+  }
+}
+@media screen and (min-width: 1680px) {
+  .main-container {
+    min-height: 84vh;
+  }
+}
+@media screen and (min-width: 1920px) {
+  .main-container {
+    min-height: 83vh;
+  }
+}
+@media screen and (min-width: 2304px) {
+  .main-container {
+    min-height: 86vh;
+  }
+}
+@media screen and (min-width: 2560px) {
+  .main-container {
+    min-height: 85vh;
+  }
 }
 </style>
