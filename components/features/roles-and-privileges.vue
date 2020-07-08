@@ -1,15 +1,17 @@
 <template lang="pug">
   generic-media-panel(
-    content-align-left
     cols-left="4"
-    cols-right="6"
-    custom-image-path="features/"
-    :header="header"
-    :descriptions="descriptions"
-    :web-image="image"
+    cols-right="5"
+    offsetColsRight="1"
     fileExtension=".png"
     extension-exclusive
     mobile-image-width="90%"
+    custom-image-path="features/"
+    web-image-class="ml-n1"
+    content-align-left
+    :header="header"
+    :descriptions="descriptions"
+    :web-image="image"
   )
 </template>
 
