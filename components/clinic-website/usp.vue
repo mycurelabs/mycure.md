@@ -1,61 +1,35 @@
 <template lang="pug">
-  v-container.my-10
-    v-row(justify="center" align="center")
+  generic-container
+    v-row(justify="center" align="center").my-10
       v-col(cols="12" md="5" order-sm="2" order-md="1")
-        picture-source(
-          :customPath="picCustomPath"
-          :image="picUrl"
-          :imageAlt="picAlt"
-          :imageFileExtension="picExtension"
-        )
+        img(v-lazy="require(`~/assets/images/${this.imageUrl}`)")
       v-col(cols="12" md="7" order-sm="1" order-md="2")
-        h1.font-weight-bold.font-64 {{ clinicCopy }}
-        br
+        h1.font-weight-bold.font-50 {{ clinicCopy }}
         p.font-32 {{ clinicTagline }}
-        br
-        book-appointment-btn(:outlined="false")
+        book-appointment-clinic-btn(
+          content="Book Appointment"
+          :extra-bindings="{ color: 'primary' }"
+        )
 </template>
 
 <script>
+import GenericContainer from '~/components/commons/generic-container';
 import PictureSource from '~/components/commons/PictureSource';
-import BookAppointmentBtn from '~/components/commons/book-appointment-btn';
+import BookAppointmentClinicBtn from '~/components/commons/book-appointment-clinic-btn';
 export default {
   components: {
+    GenericContainer,
     PictureSource,
-    BookAppointmentBtn,
+    BookAppointmentClinicBtn,
   },
   props: {
     /**
      * String url of image
      * @type {String}
      */
-    picUrl: {
+    imageUrl: {
       type: String,
       default: null,
-    },
-    /**
-     * String extension of image
-     * @type {String}
-     */
-    picExtension: {
-      type: String,
-      required: true,
-    },
-    /**
-     * String alt caption
-     * @type {String}
-     */
-    picAlt: {
-      type: String,
-      default: null,
-    },
-    /**
-     * String custom path for image
-     * @type {String}
-     */
-    picCustomPath: {
-      type: String,
-      default: '',
     },
     /**
      * String text copy of panel 1
