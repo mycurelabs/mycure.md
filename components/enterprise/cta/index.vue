@@ -19,7 +19,7 @@
           h1.font-40.lh-title {{ ctaTitle }}
           p.font-italic.font-18.my-4 {{ ctaSubtitle }}
           v-row(justify="center").mt-5
-            v-col(cols="12" md="9")
+            v-col(cols="12" md="7")
               v-text-field(
                 elevation="2"
                 v-model="email"
@@ -33,6 +33,7 @@
               v-btn(
                 color="accent"
                 @click="onGetStarted"
+                width="140"
                 height="52"
               ).text-none.font-16.cta-btn Book A Demo
             v-col(cols="10").mt-n8
