@@ -1,5 +1,5 @@
 <template lang="pug">
-  generic-container
+  generic-container.my-10
     v-row(justify="start" align="start" :class="{ 'text-center': $isMobile }")
       v-col(cols="12" md="6")
         h3 {{ clinicName }}
