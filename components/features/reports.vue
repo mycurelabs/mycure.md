@@ -6,7 +6,7 @@
     custom-image-path="features/"
     web-image-class="ml-n3"
     web-image-width="104%"
-    mobile-image-width="90%"
+    mobile-image-width="100%"
     mobile-file-extension=".png"
     content-align-left
     :header="header"
