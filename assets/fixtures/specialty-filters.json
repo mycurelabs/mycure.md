@@ -1,6 +1,6 @@
 [
   {
-    "text": "Skin",
+    "text": "For my skin",
     "filters": [
       "Dermatology",
       "Pediatric Dermatology",
@@ -8,7 +8,7 @@
     ]
   },
   {
-    "text": "Eyes",
+    "text": "For my eyes",
     "filters": [
       "Ophthalmology",
       "Pediatric Ophthalmology",
@@ -17,7 +17,7 @@
     ]
   },
   {
-    "text": "Ears, Nose, Throat",
+    "text": "Ears, nose, throat",
     "filters": [
       "ENT (Otolaryngology)",
       "Otorhinolaryngology",
@@ -28,7 +28,7 @@
     ]
   },
   {
-    "text": "Heart",
+    "text": "For my heart",
     "filters": [
       "Cardiology",
       "Pediatric Cardiology",
@@ -41,14 +41,14 @@
     ]
   },
   {
-    "text": "Stomach, digestive system",
+    "text": "For my stomach",
     "filters": [
       "Gastroenterology",
       "Pediatric Gastroenterology"
     ]
   },
   {
-    "text": "Kidneys, urinary tract",
+    "text": "For my kidneys",
     "filters": [
       "Nephrology",
       "Urology",
