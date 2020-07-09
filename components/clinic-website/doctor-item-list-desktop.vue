@@ -6,14 +6,6 @@
       :items-per-page="5"
       disable-sort
     )
-      //- template(v-slot:item.imageUrl="{ item }")
-      //-   v-avatar(size="50" rounded).ma-4
-      //-     img(v-lazy="item.imageUrl")
-      //- template(v-slot:item.name="{ item }")
-      //-   p.mb-2 {{ item.name }}
-      //-   v-btn(color="primary" small elevation="0").letter-spacing-normal.text-none.font-weight-bold Book Now
-      //- template(v-slot:item.viewSite="{ item }")
-      //-   v-btn(width="110" tile elevation="0" icon).letter-spacing-normal.text-none.primary--text.font-weight-bold View Website
       template(v-slot:body="{ items }")
         tbody
           tr(v-for="item in items" :key="item.name")
