@@ -161,7 +161,11 @@ export default {
         }
         // Get error code
         const errorCode = e.data.code;
-        if (errorCode === 'auth/user-not-found' || errorCode === 'auth/wrong-password') {
+        if (errorCode === 'auth/user-not-found') {
+          this.errorMsg = 'This user does not exist';
+          return;
+        } 
+        if (errorCode === 'auth/wrong-password') {
           this.errorMsg = 'Email address or password is incorrect!';
           return;
         }
