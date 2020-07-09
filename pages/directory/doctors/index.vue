@@ -4,13 +4,14 @@
     quick-search
     usp
     featured-doctor(:doctors="featuredDoctors")
+    div#search-control-container
     generic-container
       v-row
         v-col.pa-1
           search-controls(
             @search="searchFromControls"
           )
-    doctors-list(:doctors="doctors")
+    doctors-table(:doctors="doctors")
     //- Sign Up
     sign-me-up(:signUpInfo="signMeUp")
 
@@ -56,7 +57,7 @@ import AboutClinic from '~/components/directory-doctor/about-clinic';
 import AppBar from '~/components/directory-doctor/app-bar';
 import Category from '~/components/directory-doctor/category';
 import Cta from '~/components/directory-doctor/final-cta';
-import DoctorsList from '~/components/directory-doctor/doctors-list';
+import DoctorsTable from '~/components/directory-doctor/doctors-table';
 import FeaturedDoctor from '~/components/directory-doctor/featured-doctor';
 import GenericContainer from '~/components/commons/generic-container';
 import QuickSearch from '~/components/directory-doctor/quick-search';
@@ -72,7 +73,7 @@ export default {
     AppBar,
     Category,
     Cta,
-    DoctorsList,
+    DoctorsTable,
     FeaturedDoctor,
     GenericContainer,
     QuickSearch,
