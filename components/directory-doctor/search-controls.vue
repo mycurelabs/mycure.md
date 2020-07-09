@@ -117,7 +117,7 @@ export default {
       {
         text: 'Last Name Descending',
         field: 'name.lastName',
-        sort: 1,
+        sort: -1,
       },
     ];
     return {
