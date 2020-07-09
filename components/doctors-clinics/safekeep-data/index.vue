@@ -1,12 +1,12 @@
 <template lang="pug">
   v-container.py-12
-    v-row(justify="center")
-      v-col(justify="center" cols="12" md="5" v-if="!$isMobile").panel-image
+    v-row(justify="center" align="center")
+      v-col(justify="start" v-if="!$isMobile" cols="12" md="5")
         picture-source(
           custom-path="doctors-clinics/"
           image-alt="Safekeep your important medical data"
-          image-file-extension=".webp"
           image-width="105%"
+          image-file-extension=".webp"
           :image="panelMainImage"
         )
       v-col(align-self="center" cols="12" md="4" offset-md="1")
@@ -21,9 +21,9 @@
       picture-source(
         v-if="$isMobile"
         custom-path="doctors-clinics/"
-        :image="panelMainImage"
         image-alt="Safekeep your important medical data"
         image-file-extension=".webp"
+        :image="panelMainImage"
       )
 </template>
 
