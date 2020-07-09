@@ -5,13 +5,15 @@
         v-col(cols="4" sm="4" md="2" lg="2").pa-1
           v-card(hover height="100%" @click="go(item)" href="#search-control-container")
             v-card-actions.py-5
-              span {{item.text}}
+              small {{item.text}}
+              v-spacer
+              v-icon mdi-face
       v-menu(offset-y left)
         template(v-slot:activator="{ on, attrs }")
           v-col(cols="4" sm="4" md="2" lg="2" v-on="on").pa-1
             v-card(hover height="100%")
               v-card-actions.py-5
-                span Other
+                small Other
                 v-spacer
                 v-icon mdi-dots-vertical
         v-list(style="width: 200px;")
