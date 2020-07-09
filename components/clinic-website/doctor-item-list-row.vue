@@ -1,5 +1,5 @@
 <template lang="pug">
-  fragment
+  tr
     td
       v-avatar(size="50" rounded).ma-4
         img(v-lazy="picURL")

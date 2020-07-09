@@ -8,7 +8,7 @@
     )
       template(v-slot:body="{ items }")
         tbody
-          tr(v-for="item in items" :key="item.name")
+          template(v-for="item in items")
             doctor-item-list-row(:doctor="item")
 </template>
 
