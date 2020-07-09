@@ -1,5 +1,5 @@
 <template lang="pug">
-  //- TODO: could also be refactored along with doctor website services?
+  //- TODO: used on clinic website; can be used on doctor website;
   generic-container.mb-10
     v-row(justify="center")
       v-col(cols="12").text-center
