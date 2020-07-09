@@ -14,7 +14,7 @@
       :slide-content="triviaSlideContent"
     ).mt-10
     v-container
-      doctors-list(
+      doctors-table(
         :doctors="doctors"
         :is-loading="isLoading"
         :is-header="true"
@@ -52,7 +52,7 @@ import headMeta from '~/utils/head-meta';
 import AboutClinic from '~/components/directory-doctor/about-clinic';
 import AppBar from '~/components/directory-doctor/app-bar';
 import Cta from '~/components/directory-doctor/final-cta';
-import DoctorsList from '~/components/directory-doctor/doctors-list';
+import DoctorsTable from '~/components/directory-doctor/doctors-table';
 import GenericContainer from '~/components/commons/generic-container.vue';
 import SearchControls from '~/components/directory-doctor/search-controls';
 import Social from '~/components/directory-doctor/social';
@@ -63,7 +63,7 @@ export default {
     AboutClinic,
     AppBar,
     Cta,
-    DoctorsList,
+    DoctorsTable,
     GenericContainer,
     SearchControls,
     Social,
