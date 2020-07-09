@@ -15,12 +15,14 @@
           ).input-field
         v-col
           v-autocomplete(
-            v-model="searchObject.specialty"
+            v-model="searchObject.specialties"
             label="Specialization"
             clearable
             dense
             hide-details
             outlined
+            multiple
+            small-chips
             :items="specialties"
           ).input-field
         v-col
@@ -120,7 +122,7 @@ export default {
     return {
       searchObject: {
         searchString: '',
-        specialty: '',
+        specialties: [],
         sortBy: {},
       },
       debouncedFetch: _.debounce(this.onSearch, 1000),
@@ -148,10 +150,11 @@ export default {
         this.debouncedFetch();
       },
     },
-    'searchObject.specialty': {
+    'searchObject.specialties': {
       handler () {
         this.onSearch();
       },
+      deep: true,
     },
     'searchObject.sortBy': {
       handler () {
