@@ -11,7 +11,11 @@
           search-controls(
             @search="searchFromControls"
           )
-    doctors-table(:doctors="doctors")
+    doctors-table(
+      :doctors="doctors"
+      :serverItemsLength="doctorsTableTotalItems"
+      @paginate="doctorsTablePaginate"
+    )
     //- Sign Up
     sign-me-up(:signUpInfo="signMeUp")
 
@@ -105,20 +109,37 @@ export default {
     this.socialItem = SOCIAL_ITEM;
     return {
       isLoading: false,
+      searchObject: {},
+      doctorsTableTotalItems: 0,
+      doctorsTablePaginationOptions: {
+        page: null,
+        itemsPerPage: null,
+      },
       doctors: [],
       featuredDoctors: [],
     };
   },
-  created () {
-    this.searchDoctors();
-  },
   methods: {
-    async searchDoctors (searchOpts) {
-      const { data } = await searchDoctors(searchOpts);
+    async searchDoctors () {
+      const { page, itemsPerPage } = this.doctorsTablePaginationOptions;
+      const query = {
+        ...this.searchObject,
+      };
+      if (page && itemsPerPage) {
+        query.limit = itemsPerPage;
+        query.skip = query.limit * (page - 1);
+      }
+      const { data, total } = await searchDoctors(query);
+      this.doctorsTableTotalItems = total;
       this.doctors = data;
     },
+    doctorsTablePaginate (doctorsTablePaginationOptions) {
+      this.doctorsTablePaginationOptions = doctorsTablePaginationOptions;
+      this.searchDoctors();
+    },
     searchFromControls (searchObject) {
-      this.searchDoctors(searchObject);
+      this.searchObject = searchObject;
+      this.searchDoctors();
     },
     // REMOVE LATER
     async mockLoading () {
