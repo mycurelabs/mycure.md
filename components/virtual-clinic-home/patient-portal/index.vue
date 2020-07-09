@@ -9,9 +9,9 @@
           image-file-extension=".webp"
         )
       v-col(cols="12" md="4" offset-md="1" wrap)
-        h1.font-30.lh-title.pb-3.font-weight-light.pre-white-space {{patientPortalContent.title}}
+        h1.font-30.lh-title.pb-3.font-weight-light.pre-white-space {{ patientPortalContent.title }}
         br
-        p.text-justify.font-16.mt-3.font-gray {{patientPortalContent.description}}
+        p.text-justify.font-16.mt-3.font-gray {{ patientPortalContent.description }}
         br
         v-btn(@click="goToPatientPortal" color="#EDBA42" depressed)
           span.white--text.text-none Learn More

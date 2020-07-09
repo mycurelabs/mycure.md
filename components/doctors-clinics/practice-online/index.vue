@@ -15,8 +15,8 @@
           custom-path="doctors-clinics/"
           image-alt="Take your practice online"
           image-file-extension=".webp"
-          :image-width="[!$isMobile ? '105%' : '100%']"
-          :class="[!$isMobile ? 'ml-n6' : '']"
+          :image-width="[ !$isMobile ? '105%' : '100%' ]"
+          :class="{ 'ml-n6' : !$isMobile }"
           :image="panelMainImage"
         )
 </template>
