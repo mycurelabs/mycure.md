@@ -152,20 +152,21 @@ export default {
           this.otpDialog = false;
         }
       } catch (e) {
+        console.error(e);
+        this.error = true;
+        this.signInDisabled = false;
         if (/network error/gi.test(e.message)) {
-          this.error = true;
           this.errorMsg = 'Can\'t connect to the server.';
           return;
         }
-
-        if (e.code === 'auth/user-not-found' || e.code === 'auth/wrong-password') {
-          this.error = true;
+        // Get error code
+        const errorCode = e.data.code;
+        if (errorCode === 'auth/user-not-found' || errorCode === 'auth/wrong-password') {
           this.errorMsg = 'Email address or password is incorrect!';
-        } else {
-          this.error = true;
-          this.errorMsg = 'There was an error. Please try again later.';
+          return;
         }
-        this.signInDisabled = false;
+        this.errorMsg = 'There was an error. Please try again later.';
+        return;
       } finally {
         this.loading = false;
       }
