@@ -16,6 +16,7 @@
         v-col
           v-autocomplete(
             v-model="searchObject.specialties"
+            color="primary"
             label="Specialization"
             clearable
             dense
