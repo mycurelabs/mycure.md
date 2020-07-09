@@ -1,14 +1,15 @@
 <template lang="pug">
   v-container.py-12
     v-row(justify="center")
-      v-col(align="end" cols="12" md="6" v-if="!$isMobile").panel-image
+      v-col(justify="center" cols="12" md="5" v-if="!$isMobile").panel-image
         picture-source(
           custom-path="doctors-clinics/"
-          :image="panelMainImage"
           image-alt="Safekeep your important medical data"
           image-file-extension=".webp"
+          image-width="105%"
+          :image="panelMainImage"
         )
-      v-col(align-self="center" cols="12" md="5")
+      v-col(align-self="center" cols="12" md="4" offset-md="1")
         h1.font-30.lh-title.pb-3.font-weight-light {{SAFEKEEP_MEDICAL_DATA.header}}
         br
         p.text-justify.font-16.mt-3.font-gray {{SAFEKEEP_MEDICAL_DATA.description}}
@@ -46,9 +47,9 @@ export default {
 };
 </script>
 <style scoped>
-@media screen and (min-width: 1024px) {
+/* @media screen and (min-width: 1024px) {
   .panel-image {
     margin-right: 4%;
   }
-}
+} */
 </style>>
