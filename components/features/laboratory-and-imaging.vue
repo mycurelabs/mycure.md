@@ -7,29 +7,30 @@
         cols-right="4"
         offset-cols-right="1"
         web-image-class="ml-n2"
-        web-image-width="106%"
+        web-image-width="105%"
         custom-image-path="features/"
-        hide-image-mobile
         :header="header"
         :descriptions="descriptions"
         :web-image="image"
       )
-      v-container(v-if="$isMobile")
-        v-row(justify="center")
-          carousel(
-            :per-page="1"
-            autoplay
-            loop
-            paginationActiveColor="#3498db"
-            paginationColor="#808080"
-          )
-            slide(
-              v-for="(image,index) in mobilePanelImages"
-              :key="index"
-              :data-index="index+1"
-            ).pa-1
-              v-row(justify="center")
-                img(v-lazy="require(`~/assets/images/features/${image}`)" alt="Medical records" width="90%")
+      //- DO NOT DELETE THIS YET
+        //- hide-image-mobile
+      //- v-container(v-if="$isMobile")
+      //-   v-row(justify="center")
+      //-     carousel(
+      //-       :per-page="1"
+      //-       autoplay
+      //-       loop
+      //-       paginationActiveColor="#3498db"
+      //-       paginationColor="#808080"
+      //-     )
+      //-       slide(
+      //-         v-for="(image,index) in mobilePanelImages"
+      //-         :key="index"
+      //-         :data-index="index+1"
+      //-       ).pa-1
+      //-         v-row(justify="center")
+      //-           img(v-lazy="require(`~/assets/images/features/${image}`)" alt="Medical records" width="90%")
 </template>
 
 <script>
@@ -40,8 +41,7 @@ export default {
     GenericMediaPanel,
   },
   data () {
-    // this.image = 'MYCURE-virtual-clinic-healthcare-practice-online-features-G-diagnostic-results.webp';
-    this.image = 'MYCURE-virtual-clinic-healthcare-practice-online-features-G-diagnostic-results';
+    this.image = 'MYCURE-virtual-clinic-healthcare-practice-online-features-G-diagnostic-results-new';
     this.header = 'Record and retrieve diagnostic results right where you need them.';
     this.descriptions = [
       'MYCURE can communicate with modern diagnostic machines through HL7 interfacing and PACS configurations.',
