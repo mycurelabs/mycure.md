@@ -7,7 +7,7 @@
         v-text-field(
           append-icon="mdi-magnify"
           background-color="white"
-          label="Search doctor name, or specialization"
+          label="Search doctor name"
           clearable
           hide-details
           outlined
