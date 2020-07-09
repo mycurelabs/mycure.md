@@ -56,7 +56,7 @@ import Services from '~/components/commons/generic-services-panel';
 import ClinicInfo from '~/components/clinic-website/clinic-info';
 import Doctors from '~/components/clinic-website/doctors';
 import Cta from '~/components/clinic-website/final-cta';
-import Social from '~/components/clinic-website/social';
+import Social from '~/components/commons/generic-social-panel';
 import About from '~/components/commons/generic-about-panel';
 export default {
   layout: 'clinic-website',

@@ -1,5 +1,5 @@
 <template lang="pug">
-  //- TODO: could also be refactored along with doctor directory social?
+  //- TODO: used on clinic website; can be used on doctor directory;
   generic-container.my-10.text-center
       p(:class="{ 'd-inline-block mr-10': !$isMobile, 'mb-4': $isMobile }").mb-1 {{social.title}}
       template(v-for="(soc, key) in social.icons")
