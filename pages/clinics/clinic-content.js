@@ -88,194 +88,175 @@ export const CLINIC_INFORMATION = {
 
 export const DOCTORS_LIST = [
   {
-    fullName: 'Jean Rivera',
-    title: 'MD',
-    imageFile: 'doctor-website-profile-female.png',
-    specialization: 'Pediatrician',
-    specializationTags: ['kids', 'family', 'nose', 'elderly'],
-    experience: 25,
-    siteUrl: 'https://www.google.com',
-    availability: [
-      {
-        day: 'Mon - Sat',
-        time: '04:00 PM - 09:00 PM',
-      },
-      {
-        day: 'Sun',
-        time: '09:00 PM - 12:00 PM',
-      },
+    doc_website: 'docsitetest',
+    sex: 'female',
+    name: {
+      firstName: 'Jean',
+      middleName: 'E',
+      lastName: 'Rivera',
+      generationalSuffix: '',
+      academicSuffix: 'MD',
+      professionalSuffix: 'Dr',
+    },
+    doc_specialties: [
+      'Cardiology',
     ],
+    doc_professions: [
+      'MD',
+    ],
+    doc_practicingSince: '2015',
   },
   {
-    fullName: 'Christ Hilpert',
-    title: 'MD',
-    imageFile: 'doctor-website-profile-male.png',
-    specialization: 'Pulmonology',
-    specializationTags: ['kids', 'nose'],
-    experience: 3,
-    siteUrl: 'https://www.google.com',
-    availability: [
-      {
-        day: 'Mon - Sat',
-        time: '04:00 PM - 09:00 PM',
-      },
-      {
-        day: 'Sun',
-        time: '09:00 PM - 12:00 PM',
-      },
+    doc_website: 'docsitetest',
+    sex: 'male',
+    name: {
+      firstName: 'Henry',
+      middleName: 'O',
+      lastName: 'Great',
+      generationalSuffix: 'IV',
+      academicSuffix: 'MD',
+      professionalSuffix: 'Dr',
+    },
+    doc_specialties: [
+      'Neurology',
     ],
+    doc_professions: [
+      'MD',
+    ],
+    doc_practicingSince: '1995',
   },
   {
-    fullName: 'Adrienne Gleichner',
-    title: 'MD',
-    imageFile: 'doctor-website-profile-female.png',
-    specialization: 'Internist',
-    specializationTags: ['family', 'nose'],
-    experience: 5,
-    siteUrl: 'https://www.google.com',
-    availability: [
-      {
-        day: 'Mon - Sat',
-        time: '04:00 PM - 09:00 PM',
-      },
-      {
-        day: 'Sun',
-        time: '09:00 PM - 12:00 PM',
-      },
+    doc_website: 'docsitetest',
+    sex: 'female',
+    name: {
+      firstName: 'El',
+      middleName: 'E',
+      lastName: 'Cid',
+      generationalSuffix: 'III',
+      academicSuffix: 'DMD',
+      professionalSuffix: 'Dr',
+    },
+    doc_specialties: [
+      'Dental',
     ],
+    doc_professions: [
+      'DMD',
+    ],
+    doc_practicingSince: '2008',
   },
   {
-    fullName: 'Norberto Jones',
-    title: 'MD',
-    imageFile: 'doctor-website-profile-male.png',
-    specialization: 'Pediatrician',
-    specializationTags: ['eyes', 'nose'],
-    experience: 25,
-    siteUrl: 'https://www.google.com',
-    availability: [
-      {
-        day: 'Mon - Sat',
-        time: '04:00 PM - 09:00 PM',
-      },
-      {
-        day: 'Sun',
-        time: '09:00 PM - 12:00 PM',
-      },
+    doc_website: 'docsitetest',
+    sex: 'female',
+    name: {
+      firstName: 'Jean',
+      middleName: 'E',
+      lastName: 'Rivera',
+      generationalSuffix: '',
+      academicSuffix: 'MD',
+      professionalSuffix: 'Dr',
+    },
+    doc_specialties: [
+      'Cardiology',
     ],
+    doc_professions: [
+      'MD',
+    ],
+    doc_practicingSince: '2015',
   },
   {
-    fullName: 'Jeanne Escobar',
-    title: 'MD',
-    imageFile: 'doctor-website-profile-female.png',
-    specialization: 'Pediatrician',
-    specializationTags: ['kids', 'family', 'elderly'],
-    experience: 25,
-    siteUrl: 'https://www.google.com',
-    availability: [
-      {
-        day: 'Mon - Sat',
-        time: '04:00 PM - 09:00 PM',
-      },
-      {
-        day: 'Sun',
-        time: '09:00 PM - 12:00 PM',
-      },
+    doc_website: 'docsitetest',
+    sex: 'male',
+    name: {
+      firstName: 'Henry',
+      middleName: 'D',
+      lastName: 'Great',
+      generationalSuffix: 'VIII',
+      academicSuffix: 'MD',
+      professionalSuffix: 'Dr',
+    },
+    doc_specialties: [
+      'Neurology',
     ],
+    doc_professions: [
+      'MD',
+    ],
+    doc_practicingSince: '1995',
   },
   {
-    fullName: 'Vicente Reinger',
-    title: 'MD',
-    imageFile: 'doctor-website-profile-male.png',
-    specialization: 'Pulmonology',
-    specializationTags: ['family', 'nose', 'elderly'],
-    experience: 3,
-    siteUrl: 'https://www.google.com',
-    availability: [
-      {
-        day: 'Mon - Sat',
-        time: '04:00 PM - 09:00 PM',
-      },
-      {
-        day: 'Sun',
-        time: '09:00 PM - 12:00 PM',
-      },
+    doc_website: 'docsitetest',
+    sex: 'female',
+    name: {
+      firstName: 'El',
+      middleName: 'E',
+      lastName: 'Cid',
+      generationalSuffix: 'III',
+      academicSuffix: 'DMD',
+      professionalSuffix: 'Dr',
+    },
+    doc_specialties: [
+      'Dental',
     ],
+    doc_professions: [
+      'DMD',
+    ],
+    doc_practicingSince: '2008',
   },
   {
-    fullName: 'Angela Mosciski',
-    title: 'MD',
-    imageFile: 'doctor-website-profile-female.png',
-    specialization: 'Internist',
-    specializationTags: ['family'],
-    experience: 5,
-    siteUrl: 'https://www.google.com',
-    availability: [
-      {
-        day: 'Mon - Sat',
-        time: '04:00 PM - 09:00 PM',
-      },
-      {
-        day: 'Sun',
-        time: '09:00 PM - 12:00 PM',
-      },
+    doc_website: 'docsitetest',
+    sex: 'female',
+    name: {
+      firstName: 'Jean',
+      middleName: 'E',
+      lastName: 'Rivera',
+      generationalSuffix: '',
+      academicSuffix: 'MD',
+      professionalSuffix: 'Dr',
+    },
+    doc_specialties: [
+      'Cardiology',
     ],
+    doc_professions: [
+      'MD',
+    ],
+    doc_practicingSince: '2015',
   },
   {
-    fullName: 'Cathy Ledner',
-    title: 'MD',
-    imageFile: 'doctor-website-profile-female.png',
-    specialization: 'Pediatrician',
-    specializationTags: ['kids'],
-    experience: 25,
-    siteUrl: 'https://www.google.com',
-    availability: [
-      {
-        day: 'Mon - Sat',
-        time: '04:00 PM - 09:00 PM',
-      },
-      {
-        day: 'Sun',
-        time: '09:00 PM - 12:00 PM',
-      },
+    doc_website: 'docsitetest',
+    sex: 'male',
+    name: {
+      firstName: 'Henry',
+      middleName: 'D',
+      lastName: 'Great',
+      generationalSuffix: 'VIII',
+      academicSuffix: 'MD',
+      professionalSuffix: 'Dr',
+    },
+    doc_specialties: [
+      'Neurology',
     ],
+    doc_professions: [
+      'MD',
+    ],
+    doc_practicingSince: '1995',
   },
   {
-    fullName: 'Fisher Bergstrom',
-    title: 'MD',
-    imageFile: 'doctor-website-profile-male.png',
-    specialization: 'Pulmonology',
-    specializationTags: ['family', 'elderly'],
-    experience: 3,
-    siteUrl: 'https://www.google.com',
-    availability: [
-      {
-        day: 'Mon - Sat',
-        time: '04:00 PM - 09:00 PM',
-      },
-      {
-        day: 'Sun',
-        time: '09:00 PM - 12:00 PM',
-      },
+    doc_website: 'docsitetest',
+    sex: 'female',
+    name: {
+      firstName: 'El',
+      middleName: 'E',
+      lastName: 'Cid',
+      generationalSuffix: 'III',
+      academicSuffix: 'DMD',
+      professionalSuffix: 'Dr',
+    },
+    doc_specialties: [
+      'Dental',
     ],
-  },
-  {
-    fullName: 'Lisa Tepes',
-    title: 'MD',
-    imageFile: 'doctor-website-profile-female.png',
-    specialization: 'Internist',
-    specializationTags: ['eyes'],
-    experience: 5,
-    siteUrl: 'https://www.google.com',
-    availability: [
-      {
-        day: 'Mon - Sat',
-        time: '04:00 PM - 09:00 PM',
-      },
-      {
-        day: 'Sun',
-        time: '09:00 PM - 12:00 PM',
-      },
+    doc_professions: [
+      'DMD',
     ],
+    doc_practicingSince: '2008',
   },
 ];
 
