@@ -164,7 +164,7 @@ export default {
         if (errorCode === 'auth/user-not-found') {
           this.errorMsg = 'This user does not exist';
           return;
-        } 
+        }
         if (errorCode === 'auth/wrong-password') {
           this.errorMsg = 'Email address or password is incorrect!';
           return;
