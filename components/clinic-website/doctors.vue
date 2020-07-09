@@ -13,7 +13,7 @@
       template(v-else)
         template(v-if="viewType === 'grid'")
           template(v-for="item in doctors")
-            doctor-item-grid(
+            generic-doctor-item-grid(
               :doctor="item"
             )
         template(v-else)
@@ -31,7 +31,7 @@
 <script>
 import GenericContainer from '~/components/commons/generic-container';
 import SearchControls from '~/components/directory-doctor/search-controls';
-import DoctorItemGrid from '~/components/clinic-website/doctor-item-grid';
+import GenericDoctorItemGrid from '~/components/commons/generic-doctor-item-grid';
 import DoctorItemListMobile from '~/components/clinic-website/doctor-item-list-mobile';
 import DoctorItemListDesktop from '~/components/clinic-website/doctor-item-list-desktop';
 import DoctorFilterDialogMobile from '~/components/clinic-website/doctor-filter-dialog-mobile';
@@ -39,7 +39,7 @@ export default {
   components: {
     SearchControls,
     GenericContainer,
-    DoctorItemGrid,
+    GenericDoctorItemGrid,
     DoctorItemListMobile,
     DoctorItemListDesktop,
     DoctorFilterDialogMobile,
