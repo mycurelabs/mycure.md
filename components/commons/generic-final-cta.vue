@@ -1,5 +1,5 @@
 <template lang="pug">
-  //- TODO: could also be refactored along with doctor directory final cta?
+  //- TODO: used on clinic website; can be used on doctor directory;
   generic-container.mb-10
     v-row(
       :justify="$isMobile ? 'center' : 'start'"
@@ -9,19 +9,14 @@
         img(v-lazy="require(`~/assets/images/clinics-website/patient-portal-badge-appointment.png`)").ml-n2
         h2 {{contents.title}}
         p.py-5.font-18 {{contents.subtitle}}
-        book-appointment-clinic-btn(
-          content="Book Appointment"
-          :extra-bindings="{ block: true, color: 'primary' }"
-        )
+        slot(name="action")
 </template>
 
 <script>
 import GenericContainer from '~/components/commons/generic-container';
-import BookAppointmentClinicBtn from '~/components/commons/book-appointment-clinic-btn';
 export default {
   components: {
     GenericContainer,
-    BookAppointmentClinicBtn,
   },
   data () {
     return {

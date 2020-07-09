@@ -24,6 +24,11 @@
 
     //- CTA
     cta
+      template(slot="action")
+        book-appointment-clinic-btn(
+          content="Book Appointment"
+          :extra-bindings="{ block: true, color: 'primary' }"
+        )
     v-divider
     //- Footer
 
@@ -55,9 +60,10 @@ import Usp from '~/components/clinic-website/usp';
 import Services from '~/components/commons/generic-services-panel';
 import ClinicInfo from '~/components/clinic-website/clinic-info';
 import Doctors from '~/components/clinic-website/doctors';
-import Cta from '~/components/clinic-website/final-cta';
+import Cta from '~/components/commons/generic-final-cta';
 import Social from '~/components/commons/generic-social-panel';
 import About from '~/components/commons/generic-about-panel';
+import BookAppointmentClinicBtn from '~/components/commons/book-appointment-clinic-btn';
 export default {
   layout: 'clinic-website',
   components: {
@@ -69,6 +75,7 @@ export default {
     Cta,
     Social,
     About,
+    BookAppointmentClinicBtn,
   },
   data () {
     this.services = SERVICES_LIST;
