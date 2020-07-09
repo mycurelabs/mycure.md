@@ -4,9 +4,11 @@
       v-col.pa-1
         v-card
           v-data-table(
-            :items="doctors"
             :headers="headers"
-            :items-per-page="20"
+            :items="doctors"
+            :pagination.sync="paginationOptions"
+            :server-items-length="serverItemsLength"
+            :footer-props="footerProps"
           )
             template(v-slot:body="{ items }")
               tbody
@@ -27,9 +29,20 @@ export default {
       type: Array,
       default: () => ([]),
     },
+    serverItemsLength: {
+      type: Number,
+      default: 0,
+    },
   },
   data () {
     return {
+      paginationOptions: {
+        page: 1,
+        itemsPerPage: 20,
+      },
+      footerProps: {
+        'items-per-page-options': [20, 50, 100],
+      },
       headers: [
         {
           text: '',
@@ -62,8 +75,8 @@ export default {
     };
   },
   watch: {
-    doctors (val) {
-      console.warn(val.map(doctor => (`${doctor.name.lastName}, ${doctor.name.firstName}`)));
+    paginationOptions (val) {
+      this.$emit('paginate', val);
     },
   },
 };
