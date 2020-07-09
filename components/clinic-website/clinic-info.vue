@@ -14,7 +14,7 @@
               h3 No schedules added
           v-col(cols="12" md="6")
             h3 {{ rates }}
-            p(v-if="!!hasRange") Service Fee Range
+            p(v-if="hasRange") Service Fee Range
       v-col(cols="12" md="4" offset-md="1")
         h2.mb-10 Book an appointment with us.
         book-appointment-clinic-btn(
@@ -45,7 +45,7 @@ export default {
       return this.info?.address || '';
     },
     rates () {
-      return this.hasRange !== undefined
+      return this.hasRange
         ? `${this.info.rates.currency}${this.info.rates.min} - ${this.info.rates.currency}${this.info.rates.max}`
         : 'No range added';
     },
@@ -53,7 +53,7 @@ export default {
       return this.info?.schedules || [];
     },
     hasRange () {
-      return this.info?.rates?.currency && this.info?.rates?.min && this.info?.rates?.max;
+      return (this.info?.rates?.currency && this.info?.rates?.min && this.info?.rates?.max) !== undefined;
     },
   },
 };
