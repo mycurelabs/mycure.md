@@ -1,17 +1,13 @@
 <template lang="pug">
   v-container
     app-bar
-    usp(
-      :content="uspInfo"
-    )
+    usp(:content="uspInfo")
     services(
       header-text="We offer this healthcare services for you."
       :services="services"
     )
     v-divider
-    clinic-info(
-      :info="clinicInformation"
-    )
+    clinic-info(:info="clinicInformation")
     v-divider
     doctors(
       :doctors="doctors"

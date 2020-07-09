@@ -5,9 +5,7 @@
         h2 Our Doctors
         p.grey--text.font-20.message-line-height We have {{ doctorsLength }} doctors in our clinic. Who would you like to schedule for an appointment?
       v-col.pa-1
-        search-controls(
-          @search="searchFromControls"
-        )
+        search-controls(@search="searchFromControls")
     v-row
       template(v-if="isLoading")
         v-row(justify="center" align="center").my-10
