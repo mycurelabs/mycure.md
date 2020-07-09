@@ -72,6 +72,14 @@ export const searchDoctors = async (opts) => {
       url += `&$sort[${opts.sortBy.field}]=${opts?.sortBy.sort}`;
     }
 
+    if (opts?.limit) {
+      url += `&$limit=${opts.limit}`;
+    }
+
+    if (opts?.skip) {
+      url += `&$skip=${opts.skip}`;
+    }
+
     const { data } = await axios({
       method: 'get',
       url,
