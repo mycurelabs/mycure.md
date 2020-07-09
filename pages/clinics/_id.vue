@@ -15,7 +15,7 @@
       :sort-by="filterItems"
     )
     //- About panel
-    about-clinic(:about="aboutInfo")
+    about(:about="aboutInfo")
     v-divider
 
     //- Social Panel
@@ -57,7 +57,7 @@ import ClinicInfo from '~/components/clinic-website/clinic-info';
 import Doctors from '~/components/clinic-website/doctors';
 import Cta from '~/components/clinic-website/final-cta';
 import Social from '~/components/clinic-website/social';
-import AboutClinic from '~/components/clinic-website/about-clinic';
+import About from '~/components/commons/generic-about-panel';
 export default {
   layout: 'clinic-website',
   components: {
@@ -68,7 +68,7 @@ export default {
     Doctors,
     Cta,
     Social,
-    AboutClinic,
+    About,
   },
   data () {
     this.services = SERVICES_LIST;
