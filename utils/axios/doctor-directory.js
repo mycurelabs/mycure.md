@@ -55,18 +55,18 @@ export const searchDoctors = async (opts) => {
     let url = `${process.env.API_URL}/personal-details?doc_website[$exists]=true`;
 
     if (opts?.searchString) {
-      url += `&$search=${opts?.searchString}`;
+      url += `&$search[text]=${opts?.searchString}`;
     }
 
-    if (opts?.specialty) {
-      url += `&doc_specialties=${opts?.specialty}`;
+    if (!_.isEmpty(opts?.specialties)) {
+      opts?.specialties?.forEach((specialty) => { // eslint-disable-line
+        url += `&doc_specialties[$in]=${specialty}`;
+      });
     }
 
     if (!_.isEmpty(opts?.sortBy)) {
       url += `&$sort[${opts.sortBy.field}]=${opts?.sortBy.sort}`;
     }
-
-    console.warn('url', url);
 
     const { data } = await axios({
       method: 'get',
