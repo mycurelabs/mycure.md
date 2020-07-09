@@ -52,7 +52,7 @@ import {
 import headMeta from '~/utils/head-meta';
 import AppBar from '~/components/clinic-website/app-bar';
 import Usp from '~/components/clinic-website/usp';
-import Services from '~/components/clinic-website/services';
+import Services from '~/components/commons/generic-services-panel';
 import ClinicInfo from '~/components/clinic-website/clinic-info';
 import Doctors from '~/components/clinic-website/doctors';
 import Cta from '~/components/clinic-website/final-cta';
