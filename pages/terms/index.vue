@@ -36,7 +36,7 @@
                 span.font-21 TRUST AND INTEGRITY
                 br
                 br
-                p We are looking forward to you entrusting to MYCURE your personal data. We know how important this is to you. Our tech team has established standard security protocols (and more) to keep your data safe. But does this mean we are 100% hack-proof? Well, we want to be. But let’s admit it, even the world’s biggest banks and government institutions are not. Rest assured, however, that we have set up our backend infrastructure to protect your data and continue to work on it constantly.
+                p We are looking forward to your entrusting to MYCURE your personal data. We know how important this is to you. Our tech team has established standard security protocols (and more) to keep your data safe. But does this mean we are 100% hack-proof? Well, we want to be. But let’s admit it, even the world’s biggest banks and government institutions are not. Rest assured, however, that we have set up our backend infrastructure to protect your data and continue to work on it constantly.
                 p Personal data like name, photos, phone numbers and email address are yours and yours alone. We are committed to not selling these types of data to third parties. But we are sure you understand that in the interest of science and for the potential to save more lives in the future, MYCURE may have partnerships with hospitals, universities, and health organizations. In other words, records like diseases, types of medicine used, general location and anything that would help medical practitioners for research purposes and other endeavors that will make better medical decisions - as long as it does not directly identify you - could possibly be shared to make our world a better place.&nbsp;
                 nuxt-link(:to="{name: 'privacy-policy'}" title="MYCURE Privacy Policy").primary--text See also MYCURE Privacy Policy >>&nbsp;
               v-col(cols="12" md="6").px-3
@@ -46,7 +46,7 @@
                 p Please be nice! We worked hard to put this application together and spent many long hours and sleepless nights (we still do as we keep on improving and adding more features!). So please do not copy, share or modify MYCURE copyrights, trademarks, and patents for distribution to others. Should you have an idea or want to improve our services, please feel free to contact us at hello@mycure.md.
                 p Please do not try and hack (what is hacking? See ‘Use License’ below to know what we mean) MYCURE’s website or its apps.  Let us respect each other’s space, please, thank you!
                 p For Doctors App: This is strictly exclusive for Licensed Medical Doctors only.
-                p For Patients App: Please do not lie about your age. Considering the sensitivity of medical data, we are only allowing users 18 years of age (or whatever is legal age in your country) and above. Should you want to enroll a child then it can be done by using your name and registering him/her under you. We also understand that you would need to keep and monitor records of your children.
+                p For Patients App: Please do not lie about your age. Considering the sensitivity of medical data, we are only allowing users 18 years of age (or whatever is the legal age in your country) and above. Should you want to enroll a child then it can be done by using your name and registering him/her under you. We also understand that you would need to keep and monitor records of your children.
           v-col(cols="12" md="10").mb-3
             img(width="100%" src="../../assets/images/mycure-terms-and-conditions-artwork.png" alt="MYCURE Terms and Conditions")
           v-col(cols="12" md="10").mb-3
@@ -54,7 +54,7 @@
             br
             p Some parts of the Service are billed on a subscription basis ("Subscription(s)"). You will be billed in advance on a recurring and periodic basis ("Billing Cycle"). Billing cycles are set either on a monthly or annual basis, depending on the type of subscription plan you select when purchasing a Subscription.
             p At the end of each Billing Cycle, your Subscription will automatically renew under the exact same conditions unless you cancel it or MYCURE, Inc. cancels it. You may cancel your Subscription renewal either through your online account management page or by contacting MYCURE, Inc. customer support team.
-            p A valid payment method, including credit card, is required to process the payment for your Subscription. You shall provide MYCURE, Inc. with accurate and complete billing information including full name, address, state, zip code, telephone number, and a valid payment method information. By submitting such payment information, you automatically authorize MYCURE, Inc. to charge all Subscription fees incurred through your account to any such payment instruments.
+            p A valid payment method, including a credit card, is required to process the payment for your Subscription. You shall provide MYCURE, Inc. with accurate and complete billing information including full name, address, state, zip code, telephone number, and a valid payment method information. By submitting such payment information, you automatically authorize MYCURE, Inc. to charge all Subscription fees incurred through your account to any such payment instruments.
             p Should automatic billing fail to occur for any reason, MYCURE, Inc. will issue an electronic invoice indicating that you must proceed manually, within a certain deadline date, with the full payment corresponding to the billing period as indicated on the invoice.
           v-col(cols="12" md="10").mb-3
             h2 Free Trial
@@ -72,7 +72,7 @@
           v-col(cols="12" md="10").mb-3
             h2 Use License
             br
-            p Permission is granted to temporarily download a copy of the mobile app, use of the web app and other MYCURE products, whichever you subscribed. This is the grant of a license, not a transfer of title, which is non-exclusive and non-assignable, and under this license you may not:
+            p Permission is granted to temporarily download a copy of the mobile app, use of the web app and other MYCURE products, whichever you subscribed to. This is the grant of a license, not a transfer of title, which is non-exclusive and non-assignable, and under this license you may not:
             ul
               li modify or copy the materials;
               li use the materials for any commercial purpose, or for any public display (commercial or non-commercial);
@@ -84,7 +84,7 @@
           v-col(cols="12" md="10").mb-3
             h2 Refunds
             br
-            p Certain refund requests for Subscriptions may be considered by MYCURE, Inc. on a case-by-case basis and granted in sole discretion of MYCURE, Inc.
+            p Certain refund requests for Subscriptions may be considered by MYCURE, Inc. on a case-by-case basis and granted in the sole discretion of MYCURE, Inc.
           v-col(cols="12" md="10").mb-3
             h2 Your Content
             br
@@ -95,7 +95,7 @@
             h2 MYCURE Contents, Revisions, and Errata
             br
             p The materials appearing on MYCURE apps could include technical, typographical, or photographic errors. MYCURE does not warrant that any of the materials on its apps are accurate, complete, or current. MYCURE may make changes to the materials contained on its apps at any time without notice. MYCURE does not make any commitment to update the materials (but of course, we will do our best to have the latest updates!).
-            p Some contents like medicines, symptoms, and diagnosis are referenced and/or sourced from publicly available data, thus presumed to be general information. In case of proprietary or copyrighted information, please see our Copyright Policy below.
+            p Some contents like medicines, symptoms, and diagnoses are referenced and/or sourced from publicly available data, thus presumed to be general information. In case of proprietary or copyrighted information, please see our Copyright Policy below.
           v-col(cols="12" md="10").mb-3
             h2 Copyright Policy
             br
@@ -105,7 +105,7 @@
           v-col(cols="12" md="10").mb-3
             h2 Accounts
             br
-            p When you create an account with us, you must provide us information that is accurate, complete, and current at all times. Failure to do so constitutes a breach of the Terms, which may result in immediate termination of your account on our Service.
+            p When you create an account with us, you must provide us with information that is accurate, complete, and current at all times. Failure to do so constitutes a breach of the Terms, which may result in immediate termination of your account on our Service.
             p Your account may have access to Protected Health Information (PHI). As such, you should be aware of the data privacy laws that apply in your country (see Data Privacy Compliance below). These laws call for higher security protocols covering, but not limited to, physical, administrative and technical safeguards. You are responsible for its compliance and that your Service’s account is protected at all times.
             p You are likewise responsible for safeguarding the password that you use to access the Service and for any activities or actions under your password, whether your password is with our Service or a third-party service.
             p You agree not to disclose your password to any third party. You must notify us immediately upon becoming aware of any breach of security or unauthorized use of your account.
@@ -124,10 +124,10 @@
             br
             p The Service and its original content (excluding Content provided by users), features and functionality are and will remain the exclusive property of MYCURE, Inc. and its licensors. The Service is protected by copyright, trademark, and other laws in the USA, Philippines and foreign countries. Our trademarks and trade dress may not be used in connection with any product or service without the prior written consent of MYCURE, Inc.
           v-col(cols="12" md="10").mb-3
-            h2 Links To Other Web Sites
+            h2 Links To Other Websites
             br
             p Our Service may contain links to third-party web sites or services that are not owned or controlled by MYCURE, Inc.
-            p MYCURE, Inc. has no control over, and assumes no responsibility for, the content, privacy policies, or practices of any third party web sites or services. You further acknowledge and agree that MYCURE, Inc. shall not be responsible or liable, directly or indirectly, for any damage or loss caused or alleged to be caused by or in connection with use of or reliance on any such content, goods or services available on or through any such web sites or services.
+            p MYCURE, Inc. has no control over, and assumes no responsibility for, the content, privacy policies, or practices of any third-party web sites or services. You further acknowledge and agree that MYCURE, Inc. shall not be responsible or liable, directly or indirectly, for any damage or loss caused or alleged to be caused by or in connection with use of or reliance on any such content, goods or services available on or through any such web sites or services.
             p We strongly advise you to read the terms and conditions and privacy policies of any third-party web sites or services that you visit.
           v-col(cols="12" md="10").mb-3
             h2 Termination
@@ -153,12 +153,12 @@
           v-col(cols="12" md="10").mb-3
             h2 Governing Law
             br
-            p These Terms shall be governed and construed in accordance with the laws of Philippines, without regard to its conflict of law provisions.
+            p These Terms shall be governed and construed in accordance with the laws of the Philippines, without regard to its conflict of law provisions.
             p Our failure to enforce any right or provision of these Terms will not be considered a waiver of those rights. If any provision of these Terms is held to be invalid or unenforceable by a court, the remaining provisions of these Terms will remain in effect. These Terms constitute the entire agreement between us regarding our Service, and supersede and replace any prior agreements we might have between us regarding the Service.
           v-col(cols="12" md="10").mb-3
             h2 Changes
             br
-            p We reserve the right, at our sole discretion, to modify or replace these Terms at any time. If a revision is material we will try to provide at least 30 days notice prior to any new terms taking effect. What constitutes a material change will be determined at our sole discretion.
+            p We reserve the right, at our sole discretion, to modify or replace these Terms at any time. If a revision is material we will try to provide at least 30-day notice prior to any new terms taking effect. What constitutes a material change will be determined at our sole discretion.
             p By continuing to access or use our Service after those revisions become effective, you agree to be bound by the revised terms. If you do not agree to the new terms, please stop using the Service.
           v-col(cols="12" md="10").mb-3
             h2 Contact Us
