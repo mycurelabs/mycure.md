@@ -9,7 +9,6 @@ export const getDoctors = async (opts) => {
       method: 'get',
       url: `${process.env.API_URL}/personal-details?doc_website[$exists]=true&$limit=${limit}`,
     });
-    console.warn(data);
     if (data?.total === 0) {
       return {
         total: 0,
@@ -84,8 +83,6 @@ export const searchDoctors = async (opts) => {
       method: 'get',
       url,
     });
-
-    console.warn('search', data.data);
     return data;
   } catch (e) {
     console.error(e);
