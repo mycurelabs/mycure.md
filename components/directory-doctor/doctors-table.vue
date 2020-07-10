@@ -1,6 +1,6 @@
 <template lang="pug">
   generic-container
-    v-row
+    v-row.mb-10
       v-col.pa-1
         v-card
           v-data-table(
@@ -10,6 +10,14 @@
             :server-items-length="serverItemsLength"
             :footer-props="footerProps"
           )
+            template(slot="no-results")
+              v-row
+                v-col.text-center
+                  h3.grey--text We can't find any result for your searches.
+            template(slot="no-data")
+              v-row
+                v-col.text-center
+                  h3.grey--text We can't find any result for your searches.
             template(v-slot:body="{ items }")
               tbody
                 template(v-for="doctor in items")
