@@ -3,7 +3,7 @@
     v-row(justify="center")
       v-col(cols="12" md="8" lg="6" justify="center")
         h1.text-center.font-30.lh-title.pb-3.font-weight-light {{ secondPanelHeader.header }}
-        p(:class="{ 'pre-white-space' : !$isMobile}").text-center.font-16.mt-3.font-gray {{ secondPanelHeader.description }}
+        p(:class="{ 'pre-white-space' : !$isMobile }").text-center.font-16.mt-3.font-gray {{ secondPanelHeader.description }}
     v-row(justify="center")
       v-col(
         cols="12"
