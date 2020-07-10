@@ -31,7 +31,7 @@
             p We may also collect information that your browser sends whenever you visit our Service or when you access the Service by or through a mobile device ("Log Data").
             p This Log Data may include information such as your computer's Internet Protocol ("IP") address, browser type, browser version, the pages of our Service that you visit, the time and date of your visit, the time spent on those pages and other statistics.
             p When you access the Service by or through a mobile device, this Log Data may include information such as the type of mobile device you use, your mobile device unique ID, the IP address of your mobile device, your mobile operating system, the type of mobile Internet browser you use and other statistics.
-            p In addition, we may use third party services such as Google Analytics that collect, monitor and analyze this type of information in order to increase our Service's functionality. These third party service providers have their own privacy policies addressing how they use such information.
+            p In addition, we may use third-party services such as Google Analytics that collect, monitor and analyze this type of information in order to increase our Service's functionality. These third-party service providers have their own privacy policies addressing how they use such information.
           v-col(cols="12" md="10").mb-3
             h2 Location information
             br
@@ -44,17 +44,17 @@
           v-col(cols="12" md="10").mb-3
             h2 DoubleClick Cookie
             br
-            p Google, as a third party vendor, uses cookies to serve ads on our Service. Google's use of the DoubleClick cookie enables it and its partners to serve ads to our users based on their visit to our Service or other web sites on the Internet.
-            p You may opt out of the use of the DoubleClick Cookie for interest-based advertising by visiting the Google Ads Settings web page: http://www.google.com/ads/preferences/
+            p Google, as a third-party vendor, uses cookies to serve ads on our Service. Google's use of the DoubleClick cookie enables it and its partners to serve ads to our users based on their visit to our Service or other web sites on the Internet.
+            p You may opt-out of the use of the DoubleClick Cookie for interest-based advertising by visiting the Google Ads Settings web page: http://www.google.com/ads/preferences/
           v-col(cols="12" md="10").mb-3
             h2 Service Providers
             br
-            p We may employ third party companies and individuals to facilitate our Service, to provide the Service on our behalf, to perform Service-related services or to assist us in analyzing how our Service is used.
+            p We may employ third-party companies and individuals to facilitate our Service, to provide the Service on our behalf, to perform Service-related services or to assist us in analyzing how our Service is used.
             p These third parties have access to your Personal Information only to perform these tasks on our behalf and are obligated not to disclose or use it for any other purpose.
           v-col(cols="12" md="10").mb-3
             h2 Communications
             br
-            p We may use your Personal Information to contact you with newsletters, marketing or promotional materials and other information that may be of interest to you. You may opt out of receiving any, or all, of these communications from us by following the unsubscribe link or instructions provided in any email we send.
+            p We may use your Personal Information to contact you with newsletters, marketing or promotional materials and other information that may be of interest to you. You may opt-out of receiving any, or all, of these communications from us by following the unsubscribe link or instructions provided in any email we send.
           v-col(cols="12" md="10").mb-3
             h2 Compliance With Laws
             br
@@ -81,8 +81,8 @@
           v-col(cols="12" md="10").mb-3
             h2 Links To Other Sites
             br
-            p Our Service may contain links to other sites that are not operated by us. If you click on a third party link, you will be directed to that third party's site. We strongly advise you to review the Privacy Policy of every site you visit.
-            p We have no control over, and assume no responsibility for the content, privacy policies or practices of any third party sites or services.
+            p Our Service may contain links to other sites that are not operated by us. If you click on a third-party link, you will be directed to that third-party's site. We strongly advise you to review the Privacy Policy of every site you visit.
+            p We have no control over, and assume no responsibility for the content, privacy policies or practices of any third-party sites or services.
           v-col(cols="12" md="10").mb-3
             h2 Children's Privacy
             br
