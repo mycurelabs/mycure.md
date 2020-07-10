@@ -30,7 +30,7 @@
                 width="160"
                 height="50"
                 @click="onGetStarted"
-              ).text-none.font-16.p-7.py-4 Get Started
+              ).text-none.font-16 Get Started
     template(v-if="$isMobile")
       v-container(fluid).mobile-form
         v-row.px-6

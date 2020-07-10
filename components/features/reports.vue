@@ -1,17 +1,20 @@
 <template lang="pug">
   generic-media-panel(
-    content-align-left
     cols-left="4"
-    cols-right="6"
+    cols-right="5"
+    offset-cols-right="1"
     custom-image-path="features/"
+    web-image-class="ml-n3"
+    web-image-width="104%"
+    mobile-image-width="100%"
+    mobile-file-extension=".png"
+    content-align-left
     :header="header"
     :descriptions="descriptions"
     :web-image="image"
     :mobile-image="mobileImage"
-    mobile-image-width="90%"
-    mobile-file-extension=".png"
     :extension-exclusive="$isMobile"
-  ).mt-n2.mb-n4
+  )
 </template>
 
 <script>

@@ -110,9 +110,10 @@ export default {
       },
       {
         name: 'Patient Portal',
-        route: process.env.PX_PORTAL_URL,
+        route: 'index',
+        panel: 'patient-portal',
         new: true,
-        external: true,
+        external: false,
       },
       // TODO: bring back later
       // {

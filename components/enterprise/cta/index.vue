@@ -17,8 +17,9 @@
           :class="[{'web-content-margin': !$isMobile}]"
         ).cta-title.text-center
           h1.font-40.lh-title {{ ctaTitle }}
+          p.font-italic.font-18.my-4 {{ ctaSubtitle }}
           v-row(justify="center").mt-5
-            v-col(cols="12" md="9")
+            v-col(cols="12" md="7")
               v-text-field(
                 elevation="2"
                 v-model="email"
@@ -32,15 +33,17 @@
               v-btn(
                 color="accent"
                 @click="onGetStarted"
+                width="140"
                 height="52"
               ).text-none.font-16.cta-btn Book A Demo
-            v-col(cols="10")
-              p.font-16.grey--text {{ ctaAgreementText }}
+            v-col(cols="10").mt-n8
+              p.font-16.grey--text.pre-white-space {{ ctaAgreementText }}
         v-col(
           v-if="$isMobile"
           cols="12"
         ).text-center.mobile-content
           h1.font-40.lh-title.px-5.cta-title {{ ctaTitle }}
+          p.font-italic.font-18.my-4 {{ ctaSubtitle }}
           v-row(justify="center")
             v-col(cols="10")
               v-text-field(
@@ -84,7 +87,8 @@ export default {
     this.backgroundImageMobile = 'mycure-final-cta-background.png';
     this.ctaMobileImage = 'mycure-final-cta-background-image-right';
     this.ctaTitle = 'Book A Demo Today.';
-    this.ctaAgreementText = 'By entering your email, you agree to receive marketing emails from MYCURE.';
+    this.ctaSubtitle = 'Take your healthcare enterprise to a broader audience';
+    this.ctaAgreementText = 'By entering your email, you agree to receive\nmarketing emails from MYCURE.';
     return {
       email: '',
     };

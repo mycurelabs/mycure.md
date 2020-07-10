@@ -1,15 +1,16 @@
 <template lang="pug">
   generic-media-panel(
-    content-align-right
-    cols-left="4"
+    cols-left="5"
     cols-right="4"
+    offset-cols-right="1"
     custom-image-path="features/"
+    content-align-right
+    web-image-width="106%"
+    web-image-class="ml-n2"
     :header="header"
     :descriptions="descriptions"
     :web-image="image"
-    web-image-width="70%"
-    mobile-image-width="90%"
-  ).mb-n10
+  )
 </template>
 
 <script>
@@ -20,7 +21,7 @@ export default {
     GenericMediaPanel,
   },
   data () {
-    this.image = 'MYCURE-virtual-clinic-healthcare-practice-online-features-I-syncbase';
+    this.image = 'mycure-syncbase-config';
     this.header = 'Go offline safely and securely';
     this.descriptions = [
       'The holy grail of online-offline technology is here. Work within your local network using multiple devices even if the internet goes down and just sync data when back online.',

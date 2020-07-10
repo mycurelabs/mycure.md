@@ -1,18 +1,18 @@
 export const BRING_YOUR_PRACTICE_ONLINE = {
   header: 'Bring your practice online',
   description: 'One platform built with online appointments, video chat, EMR system, point-of-sale, telehealth, medical billing and ',
-  descriptionLink: 'more',
+  descriptionLink: 'more!',
 };
 export const HOME_START_YOUR_PHYSICAL = {
   image: 'MYCURE-virtual-clinic-healthcare-practice-online-homepage-A-telehealth',
-  header: 'Start your physical and digital clinic journey',
+  header: 'Start your physical<br>and digital clinic journey',
   description: 'We strongly agree that the best treatment comes from face-to-face interaction with patients. Imagine using this hybrid platform for both your physical clinic and an online one.',
   btnTxt: 'Get Started',
   btnIcon: 'mdi-arrow-right',
 };
 export const YOUR_ONLINE_CLINIC = {
   image: 'MYCURE-virtual-clinic-healthcare-practice-online-homepage-B-appointment',
-  header: 'Your online clinic everywhere',
+  header: 'Your online<br>clinic everywhere',
   description: 'You can accommodate follow-up consults conveniently from where you are right now with video chat advancements. You can save more time skipping traffic and hospital hassle.',
   btnTxt: 'Get Started',
   btnIcon: 'mdi-arrow-right',
@@ -26,7 +26,7 @@ export const GET_MORE_PATIENTS = {
 };
 export const MANAGE_EVERYTHING_EASILY = {
   image: 'MYCURE-virtual-clinic-healthcare-practice-online-homepage-D-billing-encounter-summary',
-  header: 'Manage everything easily',
+  header: 'Manage<br>everything easily',
   description: 'Get real-time reports and analytics everytime you use the MYCURE platform. Access all your patient charts anytime you need to without having to worry about data privacy and security.',
   btnTxt: 'Get Started',
   btnIcon: 'mdi-arrow-right',
