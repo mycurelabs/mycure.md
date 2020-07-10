@@ -1,15 +1,16 @@
 <template lang="pug">
   v-container.py-12.quality-healthcare-contents
     v-row(justify="center")
-      v-col(align-self="center" cols="12" md="6" v-if="!$isMobile").panel-image
+      v-col(align-self="center" cols="12" md="5" v-if="!$isMobile").panel-image
         picture-source(
           custom-path="doctors-clinics/"
-          :image="panelMainImage"
           image-alt="Access quality healthcare"
           image-file-extension=".webp"
+          image-width="105%"
+          :image="panelMainImage"
         )
-      v-col(align-self="center" cols="12" md="5")
-        h1(:class="{'pre-white-space': !$isMobile}").font-30.lh-title.pb-3.font-weight-light {{ title }}
+      v-col(align-self="center" cols="12" md="4" offset-md="1")
+        h1.font-30.lh-title.pb-3.font-weight-light {{ title }}
         br
         p.text-justify.font-16.mt-3.font-gray {{panelContent.description}}
         br
@@ -56,7 +57,7 @@ export default {
 </script>
 
 <style scoped>
-@media screen and (min-width: 1024px) {
+/* @media screen and (min-width: 1024px) {
   .quality-healthcare-contents {
     position: relative;
     z-index: 2;
@@ -64,5 +65,5 @@ export default {
   .panel-image {
     margin-right: 4%;
   }
-}
+} */
 </style>

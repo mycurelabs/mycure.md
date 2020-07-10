@@ -1,14 +1,24 @@
 <template lang="pug">
   v-btn(
-    outlined
+    :outlined="outlined"
     large
-    color="primary"
+    :color="btnColor"
     :href="url"
   ).text-none Book Appointment
 </template>
 
 <script>
 export default {
+  props: {
+    btnColor: {
+      type: String,
+      default: 'primary',
+    },
+    outlined: {
+      type: Boolean,
+      default: true,
+    },
+  },
   computed: {
     url () {
       const pxPortalUrl = process.env.PX_PORTAL_URL;

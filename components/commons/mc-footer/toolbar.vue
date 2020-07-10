@@ -42,7 +42,7 @@
               v-icon(color="grey").iconMargin mdi-menu-down
           v-expansion-panel-content.iconMargin
             a(:href="patientPortalUrl" target="_blank" rel="noopener noreferrer").link.py-2
-              span.py-2.font-18.new-link Patient's Portal
+              span.py-2.font-18.new-link Patient Portal
             br
             br
             //- nuxt-link(id="footer-directory-doctors-link" :to="{ name: 'directory-doctors' }" title="MYCURE Doctor's Directory").link.py-2

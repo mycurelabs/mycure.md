@@ -1,12 +1,14 @@
 import axios from 'axios';
 import { handleError } from './error-handler';
 
-export const getDoctors = async ({ limit = 20 }) => {
+export const getDoctors = async (opts) => {
   try {
+    const { limit } = opts || {};
     const { data } = await axios({
       method: 'get',
       url: `${process.env.API_URL}/personal-details?doc_website[$exists]=true&$limit=${limit}`,
     });
+    console.warn(data);
     if (data?.total === 0) {
       return {
         total: 0,
@@ -24,8 +26,9 @@ export const getDoctors = async ({ limit = 20 }) => {
 };
 
 // TODO: Add logic for featured doctor
-export const getFeaturedDoctors = async ({ limit = 6 }) => {
+export const getFeaturedDoctors = async (opts) => {
   try {
+    const { limit } = opts || {};
     const { data } = await axios({
       method: 'get',
       url: `${process.env.API_URL}/personal-details?doc_website[$exists]=true&$limit=${limit}`,
@@ -48,12 +51,9 @@ export const getFeaturedDoctors = async ({ limit = 6 }) => {
 
 export const searchDoctors = async (opts) => {
   try {
-    // const payload = {
-    //   $search: opts.search,
-    // };
     const { data } = await axios({
       method: 'post',
-      url: `${process.env.API_URL}/personal-details`,
+      url: `${process.env.API_URL}/personal-details?doc_website[$exists]=true&$search=${opts.searchString}`,
     });
     return data;
   } catch (e) {

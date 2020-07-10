@@ -12,6 +12,7 @@
           :imageAlt="header || 'media-image'"
           :imageFileExtension="fileExtension"
           :imageWidth="webImageWidth"
+          :class="webImageClass"
         )
         template(v-if="contentAlignLeft")
           h1.font-30.lh-title.pb-3.font-weight-light {{header}}
@@ -30,6 +31,7 @@
           :imageAlt="header || 'media-image'"
           :imageFileExtension="fileExtension"
           :imageWidth="webImageWidth"
+          :class="webImageClass"
         )
         template(v-if="contentAlignRight")
           h1.font-30.lh-title.pb-3.font-weight-light {{header}}
@@ -47,6 +49,7 @@
         :imageAlt="header || 'media-image'"
         :imageFileExtension="mobileFileExtension || fileExtension"
         :imageWidth="mobileImageWidth"
+        :class="mobileImageClass"
       )
     //- CENTER VIEW
     v-row(v-else justify="center").py-10
@@ -61,10 +64,11 @@
           :imageAlt="header || 'media-image'"
           :imageFileExtension="mobileFileExtension || fileExtension"
           :imageWidth="mobileImageWidth"
+          :class="mobileImageClass"
         )
         br
         template(v-if="descriptions.length")
-          p(v-for="(description, key) in descriptions" :key="key").font-16.mt-3.font-gray {{description}}
+          p(v-for="(description, key) in descriptions" :key="key" :class="{'text-justify': $isMobile}").font-16.mt-3.font-gray {{description}}
           br
         slot(name="additional-content")
         picture-source(
@@ -75,6 +79,7 @@
           :imageAlt="header || 'media-image'"
           :imageFileExtension="fileExtension"
           :imageWidth="webImageWidth"
+          :class="webImageClass"
         )
 </template>
 
@@ -207,6 +212,14 @@ export default {
       default: '100%',
     },
     /**
+     * Classes of web image
+     * @type {String}
+     */
+    webImageClass: {
+      type: String,
+      default: '',
+    },
+    /**
      * File name of image for mobile view (without file extension)
      * @type {String}
      */
@@ -222,6 +235,15 @@ export default {
       type: String,
       default: '100%',
     },
+    /**
+     * Classes of mobile image
+     * @type {String}
+     */
+    mobileImageClass: {
+      type: String,
+      default: '',
+    },
+    /**
     /**
      * Hides image in mobile view
      * @type {Boolean}

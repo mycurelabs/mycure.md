@@ -1,0 +1,22 @@
+[
+  {
+    "text": "For my addiction",
+    "filters": [
+      "Addiction Medicine"
+    ]
+  },
+  {
+    "text": "For my brain",
+    "filters": [
+      "Neuroradiology",
+      "Neurosurgery"
+    ]
+  },
+  {
+    "text": "For my teeth",
+    "filters": [
+      "Dentistry",
+      "Pediatric Dentistry"
+    ]
+  }
+]

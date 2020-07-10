@@ -24,7 +24,7 @@
         v-col(cols="3").pl-12
           div.mb-4
             h3.primary--text.footer-header FOR PATIENTS
-            a(:href="patientPortalUrl" target="_blank" rel="noopener noreferrer").link.new-link Patient's Portal
+            a(:href="patientPortalUrl" target="_blank" rel="noopener noreferrer").link.new-link Patient Portal
             br
             //- directory / doctor
             //- nuxt-link(

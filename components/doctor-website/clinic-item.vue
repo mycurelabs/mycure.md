@@ -7,8 +7,8 @@
           style="border-radius: 5px"
         )
     v-col.grow
-      v-row(wrap)
-        v-col(cols="12" sm="12" md="8").pt-0
+      v-row
+        v-col(cols="12" sm="12" md="7" lg="8").pt-0
           h3(style="margin-top: -5px") {{clinic.name}}
           template(v-for="key in clinicKeys")
             template(v-if="clinic[key] && key === 'address'")
@@ -24,7 +24,7 @@
             //- Hide for now until location is implemented
             //- v-btn(color="primary" depressed).mr-2 View Map
             v-btn(color="primary" depressed v-if="clinic.website" @click="visitWebsite(clinic.website)") Clinic Website
-        v-col(cols="12" sm="12" md="4")
+        v-col(cols="12" sm="12" md="5" lg="4")
           h3 Schedules
           template(v-if="clinicSchedules && clinicSchedules.length === 0")
             i No schedules available
@@ -149,7 +149,9 @@ export default {
   },
   methods: {
     visitWebsite (url) {
-      window.location.href = url;
+      if (process.browser) {
+        window.location.href = url;
+      }
     },
   },
 };
