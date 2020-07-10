@@ -2,9 +2,9 @@
   v-container.mt-12
     v-row(justify="center" align="center")
       v-col(cols="12" md="6")
-        h1.font-36.font-weight-light.text-center {{BRING_YOUR_PRACTICE_ONLINE.header}}
+        h1.font-36.font-weight-light.text-center {{ BRING_YOUR_PRACTICE_ONLINE.header }}
         br
-        p.text-center.font-18.font-gray {{BRING_YOUR_PRACTICE_ONLINE.description}}
+        p.text-center.font-18.font-gray {{ BRING_YOUR_PRACTICE_ONLINE.description }}
           a(@click="goToFeatures").font-16.font-weight-bold {{ BRING_YOUR_PRACTICE_ONLINE.descriptionLink }}
     //- FIRST PANEL
     v-row(justify="center" align="center" no-gutters).py-10.mb-n4
@@ -18,12 +18,12 @@
       v-col(cols="12" md="4" offset-md="1")
         h1(v-html="HOME_START_YOUR_PHYSICAL.header").font-30.lh-title.pb-3.font-weight-light
         br
-        p.font-16.font-gray.text-justify.my-0 {{HOME_START_YOUR_PHYSICAL.description}}
+        p.font-16.font-gray.text-justify.my-0 {{ HOME_START_YOUR_PHYSICAL.description }}
         br
         br
         v-btn(text @click="onGetStarted").ml-n4
-          strong.text-capitalize.primary--text.font-18 {{HOME_START_YOUR_PHYSICAL.btnTxt}}
-          v-icon.primary--text {{HOME_START_YOUR_PHYSICAL.btnIcon}}
+          strong.text-capitalize.primary--text.font-18 {{ HOME_START_YOUR_PHYSICAL.btnTxt }}
+          v-icon.primary--text {{ HOME_START_YOUR_PHYSICAL.btnIcon }}
       picture-source(
         v-if="$isMobile"
         custom-path="virtual-clinic-home/"
@@ -36,20 +36,20 @@
       v-col(justify="start" cols="12" md="4" :class="{ 'ml-3': !$isMobile }")
         h1(v-html="YOUR_ONLINE_CLINIC.header").font-30.font-weight-light
         br
-        p.font-16.font-gray.text-justify.mb-0 {{YOUR_ONLINE_CLINIC.description}}
+        p.font-16.font-gray.text-justify.mb-0 {{ YOUR_ONLINE_CLINIC.description }}
         br
         br
         v-btn(@click="onGetStarted" text).ml-n4
-          strong.text-capitalize.primary--text.font-18 {{YOUR_ONLINE_CLINIC.btnTxt}}
-          v-icon.primary--text {{YOUR_ONLINE_CLINIC.btnIcon}}
+          strong.text-capitalize.primary--text.font-18 {{ YOUR_ONLINE_CLINIC.btnTxt }}
+          v-icon.primary--text {{ YOUR_ONLINE_CLINIC.btnIcon }}
       v-col(cols="12" md="5" offset-md="1")
         picture-source(
           custom-path="virtual-clinic-home/"
           image-alt="Your online clinic everywhere"
           image-file-extension=".webp"
-          image-width="105%"
           :image="YOUR_ONLINE_CLINIC.image"
-          :class="[!$isMobile ? 'ml-n5' : 'ml-n2']"
+          :image-width="[!$isMobile ? '105%' : '100%']"
+          :class="{ 'ml-n5' : !$isMobile }"
         )
     //- THIRD PANEL
     v-row(justify="center" align="center" no-gutters).py-10.mb-n4
@@ -61,14 +61,14 @@
           image-file-extension=".webp"
         )
       v-col(cols="12" md="4" offset-md="1")
-        h1.font-30.font-weight-light {{GET_MORE_PATIENTS.header}}
+        h1.font-30.font-weight-light {{ GET_MORE_PATIENTS.header }}
         br
-        p.font-16.font-gray.text-justify.mb-0 {{GET_MORE_PATIENTS.description}}
+        p.font-16.font-gray.text-justify.mb-0 {{ GET_MORE_PATIENTS.description }}
         br
         br
         v-btn(@click="onGetStarted" text).ml-n4
-          strong.text-capitalize.primary--text.font-18 {{GET_MORE_PATIENTS.btnTxt}}
-          v-icon.primary--text {{GET_MORE_PATIENTS.btnIcon}}
+          strong.text-capitalize.primary--text.font-18 {{ GET_MORE_PATIENTS.btnTxt }}
+          v-icon.primary--text {{ GET_MORE_PATIENTS.btnIcon }}
       picture-source(
         v-if="$isMobile"
         custom-path="virtual-clinic-home/"
@@ -81,20 +81,20 @@
       v-col(cols="12" md="4" justify="start" :class="{ 'ml-3': !$isMobile }")
         h1(v-html="MANAGE_EVERYTHING_EASILY.header").font-30.font-weight-light
         br
-        p.font-16.font-gray.text-justify.mb-0 {{MANAGE_EVERYTHING_EASILY.description}}
+        p.font-16.font-gray.text-justify.mb-0 {{ MANAGE_EVERYTHING_EASILY.description }}
         br
         br
         v-btn(@click="onGetStarted" text).ml-n4
-          strong.text-capitalize.primary--text.font-18 {{MANAGE_EVERYTHING_EASILY.btnTxt}}
-          v-icon.primary--text {{MANAGE_EVERYTHING_EASILY.btnIcon}}
+          strong.text-capitalize.primary--text.font-18 {{ MANAGE_EVERYTHING_EASILY.btnTxt }}
+          v-icon.primary--text {{ MANAGE_EVERYTHING_EASILY.btnIcon }}
       v-col(cols="12" md="5" offset-md="1")
         picture-source(
           custom-path="virtual-clinic-home/"
           image-alt="Manage everything easily"
           image-file-extension=".webp"
-          image-width="105%"
           :image="MANAGE_EVERYTHING_EASILY.image"
-          :class="[!$isMobile ? 'ml-n5' : 'ml-n2']"
+          :image-width="[!$isMobile ? '105%' : '100%']"
+          :class="{ 'ml-n5' : !$isMobile }"
         )
 </template>
 
