@@ -1,9 +1,9 @@
 <template lang="pug">
   v-container.py-12
     //- WEB
-    v-row(v-if="!$isMobile" justify="center" align="center").panel-content
-      v-col(md="4" align-self="center").pr-5.first-column
-        h1.font-30.lh-title.font-weight-light {{ panelTitle }}
+    v-row(v-if="!$isMobile" justify="center" align="center" no-gutters).pb-5
+      v-col(justify="start" align-self="center" md="5").ml-2.mr-n2
+        h1.text-justify.font-30.lh-title.font-weight-light {{ panelTitle }}
         br
         p.font-16.font-gray.text-justify {{ panelContent }}
         v-list(dense).ml-n5
@@ -15,8 +15,8 @@
               img(v-lazy="require('~/assets/images/mycure-web-bullet-check.png')" alt="Check icon")
             v-list-item-content
               span.font-16.font-gray {{ item }}
-      v-col(md="5" justify="start" align="center").second-column
-        img(v-lazy="panelImageSrc" width="75%" :alt="panelImage")
+      v-col(md="5" align="center")
+        img(v-lazy="panelImageSrc" width="65%" :alt="panelImage").panel-image
     //- MOBILE
     v-row(v-if="$isMobile").pt-5
       v-col(cols="12").text-center
@@ -60,24 +60,9 @@ export default {
 </script>
 
 <style scoped>
-.api-content {
-  position: relative;
-  z-index: 3;
-}
 @media screen and (min-width: 1024px) {
-  .panel-content {
-    margin-left: 2%;
-  }
-  .second-column {
-    margin-left: -2%;
-  }
-}
-@media screen and (min-width: 1920px) {
-  .panel-content {
-    margin-left: 0%;
-  }
-  .second-column {
-    margin-left: -3%;
+  .panel-image{
+    margin-right: -35%;
   }
 }
 </style>

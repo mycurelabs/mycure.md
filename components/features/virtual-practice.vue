@@ -1,12 +1,12 @@
 <template lang="pug">
   generic-media-panel(
+    web-image-width="90%"
     center-media
     :header="header"
     :descriptions="descriptions"
     :web-image="mediaImage"
-    web-image-width="90%"
     :custom-image-path="customPath"
-  ).mt-n1.mb-1
+  ).mb-n1
     div(slot="additional-content" :class="{'text-center': !$isMobile}")
       v-btn(text :to="{ name: 'signup-individual' }").text-none
         strong.primary--text Get Started

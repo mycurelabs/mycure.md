@@ -1,7 +1,7 @@
 <template lang="pug">
   v-container.py-12
-    v-row(justify="center")
-      v-col(align-self="center" cols="12" md="5")
+    v-row(justify="center" align="center")
+      v-col(justify="start" cols="12" md="4" :class="{ 'ml-3': !$isMobile }")
         h1.font-30.lh-title.pb-3.font-weight-light {{TAKE_PRACTICE_ONLINE.header}}
         br
         p.text-justify.font-16.mt-3.font-gray {{TAKE_PRACTICE_ONLINE.description}}
@@ -10,12 +10,14 @@
         v-btn(@click="onGetStarted" text).ml-n4.get-started-btn
           strong.text-capitalize.primary--text {{TAKE_PRACTICE_ONLINE.btnTxt}}
           v-icon.primary--text {{TAKE_PRACTICE_ONLINE.btnIcon}}
-      v-col(align-self="center" cols="12" md="6").panel-image
+      v-col(cols="12" md="5" offset-md="1")
         picture-source(
           custom-path="doctors-clinics/"
-          :image="panelMainImage"
           image-alt="Take your practice online"
           image-file-extension=".webp"
+          :image-width="[ !$isMobile ? '105%' : '100%' ]"
+          :class="{ 'ml-n6' : !$isMobile }"
+          :image="panelMainImage"
         )
 </template>
 
@@ -45,9 +47,9 @@ a {
   text-decoration-color: #2e9fdf;
   text-decoration: none;
 }
-@media screen and (min-width: 1024px) {
+/* @media screen and (min-width: 1024px) {
   .panel-image {
     margin-left: 4%;
   }
-}
+} */
 </style>

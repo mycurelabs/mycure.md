@@ -1,15 +1,19 @@
 <template lang="pug">
   generic-media-panel(
-    content-align-left
     cols-left="4"
-    cols-right="6"
+    cols-right="5"
+    offset-cols-right="1"
+    file-extension=".png"
+    web-image-width="102%"
+    web-image-class="ml-n2"
+    mobile-image-width="95%"
+    mobile-image-class="ml-4"
     custom-image-path="features/"
+    content-align-left
+    extension-exclusive
     :header="header"
     :descriptions="descriptions"
     :web-image="image"
-    fileExtension=".png"
-    extension-exclusive
-    mobile-image-width="90%"
   )
 </template>
 
@@ -21,7 +25,6 @@ export default {
     GenericMediaPanel,
   },
   data () {
-    // this.image = 'MYCURE-virtual-clinic-healthcare-practice-online-features-A-role.png';
     this.image = 'MYCURE-virtual-clinic-healthcare-practice-online-features-A-role';
     this.header = 'Everybody\'s got a special role to play.';
     this.descriptions = [

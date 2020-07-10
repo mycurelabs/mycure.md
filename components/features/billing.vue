@@ -2,16 +2,18 @@
   div
     client-only
       generic-media-panel(
-        content-align-right
-        cols-left="6"
+        cols-left="5"
         cols-right="4"
-        align-left-column="start"
+        offset-cols-right="1"
+        custom-image-path="features/"
+        web-image-class="ml-n1"
+        web-image-width="105%"
+        hide-image-mobile
+        content-align-right
         :header="header"
         :descriptions="descriptions"
         :web-image="mediaImage"
-        custom-image-path="features/"
-        hide-image-mobile
-      ).mt-n1
+      )
         //- Check list
         template(slot="additional-content")
           template(v-for="(item, i) in checkListItems")
@@ -21,24 +23,24 @@
               v-col
                 span(:class="i === 2 && 'pre-white-space'").font-16.font-gray {{ item }}
       //- Bottom images
-      v-container(v-if="!$isMobile").py-10.mb-n1
+      v-container(v-if="!$isMobile").mt-n8.pb-12
         v-row
-          v-col(cols="12" md="6").mt-3
+          v-col(cols="12" md="5" offset-md="1")
             picture-source(
-              :customPath="customPath"
+              :custom-path="customPath"
               :image="leftBottomImage"
-              imageFileExtension=".webp"
-              imageAlt="Charge slip"
-              imageWidth="100%"
-            )
-          v-col(cols="12" md="6")
+              image-file-extension=".webp"
+              image-alt="Charge slip"
+              image-width="105%"
+            ).ml-n1
+          v-col(cols="12" md="5").mt-n4
             picture-source(
-              :customPath="customPath"
+              :custom-path="customPath"
               :image="rightBottomImage"
-              imageFileExtension=".webp"
-              imageAlt="Daily census"
-              imageWidth="100%"
-            )
+              image-file-extension=".webp"
+              image-alt="Daily census"
+              image-width="100%"
+            ).ml-2
       v-container(v-else)
         v-row(justify="center")
           carousel(
@@ -53,13 +55,13 @@
               :key="index"
               :data-index="index+1"
             ).pa-1
-              v-row(justify="center")
+              v-row(justify="center").ml-6
                 picture-source(
-                  :customPath="customPath",
+                  :custom-path="customPath",
                   :image="image"
-                  :imageFileExtension="index === 0 ? '.webp' : '.png'"
-                  imageWidth="90%"
-                  imageAlt="Billing"
+                  :image-file-extension="index === 0 ? '.webp' : '.png'"
+                  image-width="90%"
+                  image-alt="Billing"
                   extension-exclusive
                 )
 </template>

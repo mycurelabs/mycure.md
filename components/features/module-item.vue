@@ -5,7 +5,7 @@
         br
         span.font-21 {{ moduleItem.title }}
         br
-        p.font-15.module-item-subTitle {{ moduleItem.subTitle }}
+        p.font-15.module-item-subTitle.pre-white-space {{ moduleItem.subTitle }}
     br
     div.module-item-description {{ moduleItem.description }}
 </template>
