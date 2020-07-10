@@ -1,6 +1,6 @@
 <template lang="pug">
   div
-    template(v-if="!$isMobile")
+    template
       v-row(justify="center" align="end")
         v-col
           v-text-field(
@@ -16,10 +16,13 @@
         v-col
           v-autocomplete(
             v-model="searchObject.specialty"
+            color="primary"
             label="Specialization"
-            outlined
-            hide-details
+            clearable
             dense
+            hide-details
+            outlined
+            small-chips
             :items="specialties"
           ).input-field
         v-col
@@ -27,6 +30,7 @@
             v-model="searchObject.sortBy"
             label="Sort By"
             item-text="text"
+            clearable
             dense
             hide-details
             outlined
@@ -45,7 +49,25 @@
                 size="36"
                 color="primary"
               ) mdi-view-list
-    template(v-else)
+      v-row
+        v-col.py-0
+          template(v-for="(specialy, index) in searchObject.specialties")
+            v-chip(
+              clearable
+              close
+              small
+              color="primary"
+              @click:close="removeSpecialty(index)"
+            ).ma-1 {{specialy}}
+          v-chip(
+            v-if="searchObject.specialties.length >= 3"
+            clearable
+            close
+            small
+            color="error"
+            @click:close="searchObject.specialties = []"
+          ).ma-1 Clear filters
+    //- template(v-else)
       v-row.mb-2
         v-text-field(
           v-model="searchObject.searchString"
@@ -81,50 +103,55 @@ export default {
     DoctorFilterDialogMobile,
     GenericContainer,
   },
+  props: {
+    searchString: {
+      type: String,
+      default: '',
+    },
+    searchSpecialties: {
+      type: Array,
+      default: () => ([]),
+    },
+  },
   data () {
     this.specialties = specialties;
     this.sortBy = [
       {
         text: 'Specialization Ascending',
-        sort: {
-          'doc_specialties[0]': 1,
-        },
+        field: 'doc_specialties',
+        sort: 1,
       },
       {
         text: 'Specialization Descending',
-        sort: {
-          'doc_specialties[0]': -1,
-        },
+        field: 'doc_specialties',
+        sort: -1,
       },
       {
         text: 'First Name Ascending',
-        sort: {
-          'name.firstName': 1,
-        },
+        field: 'name.firstName',
+        sort: 1,
       },
       {
         text: 'First Name Descending',
-        sort: {
-          'name.firstName': -1,
-        },
+        field: 'name.firstName',
+        sort: -1,
       },
       {
         text: 'Last Name Ascending',
-        sort: {
-          'name.lastName': 1,
-        },
+        field: 'name.lastName',
+        sort: 1,
       },
       {
         text: 'Last Name Descending',
-        sort: {
-          'name.lastName': -1,
-        },
+        field: 'name.lastName',
+        sort: -1,
       },
     ];
     return {
       searchObject: {
         searchString: '',
         specialty: '',
+        specialties: [],
         sortBy: {},
       },
       debouncedFetch: _.debounce(this.onSearch, 1000),
@@ -147,15 +174,32 @@ export default {
     },
   },
   watch: {
+    searchString (val) {
+      if (!val) return;
+      this.searchObject.searchString = val;
+    },
+    searchSpecialties (val) {
+      if (_.isEmpty(val)) return;
+      this.searchObject.specialties = val;
+    },
     'searchObject.searchString': {
       handler () {
         this.debouncedFetch();
       },
     },
     'searchObject.specialty': {
+      handler (val) {
+        if (!val) return;
+        this.searchObject.specialties.push(val);
+        this.onSearch();
+      },
+      deep: true,
+    },
+    'searchObject.specialties': {
       handler () {
         this.onSearch();
       },
+      deep: true,
     },
     'searchObject.sortBy': {
       handler () {
@@ -168,32 +212,15 @@ export default {
     onSearch () {
       this.$emit('search', this.searchObject);
     },
-    // Review below
-    async mockLoading () {
-      this.isLoading = true;
-      await setTimeout(() => {
-        this.isLoading = false;
-      }, 500);
+    removeSpecialty (index) {
+      this.searchObject.specialties.splice(index, 1);
     },
+    // Review below
     toggleView (type) {
       this.mobileViewType = type;
       this.viewType = type;
       this.selectedSpecialization = 'default';
       this.selectedSort = 'default';
-    },
-    searchDoctor () {
-      this.mockLoading();
-    },
-    specFilterDoctor () {
-      this.mockLoading();
-    },
-    sortDoctor () {
-      this.mockLoading();
-    },
-    applyFiltersMobile () {
-      this.mockLoading();
-      this.toggleView(this.mobileViewType);
-      this.closeDialog();
     },
     closeDialog () {
       this.isOptionDialogOpen = false;
