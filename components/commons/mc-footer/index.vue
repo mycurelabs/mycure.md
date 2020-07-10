@@ -15,12 +15,20 @@
                 :to="{ name: solution.route }"
                 @click.stop="handleFooterSolution(solution.route)"
               ).link {{solution.name}}
-            nuxt-link(
-              id="footer-features-link"
-              @click.stop="handleFooterFeaturesLink"
-              :to="{name: 'features'}"
-              title="MYCURE Features"
-            ).link Features
+            li
+              nuxt-link(
+                id="footer-features-link"
+                @click.stop="handleFooterFeaturesLink"
+                :to="{name: 'features'}"
+                title="MYCURE Features"
+              ).link Features
+            li
+              nuxt-link(
+                id="footer-pricing-link"
+                @click.stop="handleFooterPricingLink"
+                :to="{name: 'pricing'}"
+                title="MYCURE Pricing"
+              ).link Pricing
         v-col(cols="3").pl-12
           div.mb-4
             h3.primary--text.footer-header FOR PATIENTS
@@ -120,6 +128,13 @@ export default {
         eventCategory: 'link',
         eventAction: 'click-footer-features-link',
         eventLabel: 'footer-features-link',
+      });
+    },
+    handleFooterPricingLink () {
+      this.$ga.event({
+        eventCategory: 'link',
+        eventAction: 'click-footer-pricing-link',
+        eventLabel: 'footer-pricing-link',
       });
     },
     handleFooterEmrLink () {
