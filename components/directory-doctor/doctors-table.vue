@@ -6,7 +6,7 @@
           v-data-table(
             :headers="headers"
             :items="doctors"
-            :pagination.sync="paginationOptions"
+            :options.sync="paginationOptions"
             :server-items-length="serverItemsLength"
             :footer-props="footerProps"
           )
