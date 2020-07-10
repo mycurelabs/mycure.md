@@ -9,7 +9,7 @@
       v-container
         v-row(justify="center")
           v-col(cols="12" md="10").mb-3
-            strong.font-18 Updated | July 02, 2020
+            strong.font-18 Updated: July 02, 2020
             br
             br
             p These&nbsp;

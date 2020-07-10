@@ -9,7 +9,7 @@
       v-container
         v-row(justify="center")
           v-col(cols="12" md="10").mb-3
-            strong.font-18 Updated: July 2, 2020
+            strong.font-18 Updated: July 02, 2020
             br
             br
             h3 Your privacy is very important to us. Accordingly, we have developed this Policy in order for you to understand how we collect, use, communicate, and disclose and make use of personal information. We are committed to conducting our business in accordance with these principles in order to ensure that the confidentiality of personal information is protected and maintained.
