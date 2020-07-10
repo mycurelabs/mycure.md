@@ -3,11 +3,15 @@
     v-row(style="margin-top: 60px").mb-10
       template(v-for="item in firstFive")
         v-col(cols="4" sm="4" md="2" lg="2").pa-1
-          v-card(hover height="100%" @click="go(item)" href="#search-control-container")
+          v-card(hover height="100%" @click="search(item)")
             v-card-actions.py-5
               small {{item.text}}
               v-spacer
-              v-icon mdi-face
+              img(
+                v-if="item.icon"
+                width="35"
+                :src="require(`../../assets/images/directory-doctor/${item.icon}`)"
+              )
       v-menu(offset-y left)
         template(v-slot:activator="{ on, attrs }")
           v-col(cols="4" sm="4" md="2" lg="2" v-on="on").pa-1
@@ -18,7 +22,7 @@
                 v-icon mdi-dots-vertical
         v-list(style="width: 200px;")
           template(v-for="item in sixAbove")
-            v-list-item(@click="")
+            v-list-item(@click="search(item)")
               v-list-item-title {{item.text}}
 </template>
 
@@ -42,8 +46,8 @@ export default {
     },
   },
   methods: {
-    go (item) {
-      console.warn(item);
+    search (item) {
+      this.$emit('search', item);
     },
   },
 };
