@@ -1,23 +1,89 @@
 [
   {
     "text": "For my skin",
+    "icon": "mycure-doctor-directory-icon-skin.png",
     "filters": [
+      "Addiction Medicine",
       "Dermatology",
       "Pediatric Dermatology",
       "Aesthetics"
     ]
   },
   {
-    "text": "For my eyes",
+    "text": "For my Teeth",
+    "icon": "mycure-doctor-directory-icon-teeth.png",
     "filters": [
-      "Ophthalmology",
+      "Dentistry",
+      "Pediatric Dentistry",
+      "Periodontics",
+      "Endodontics",
+      "Oral and Maxillofacial Surgery",
+      "Orthodontics",
+      "Prosthodontics"
+    ]
+  },
+  {
+    "text": "Babies and Kids",
+    "icon": "mycure-doctor-directory-icon-kids.png",
+    "filters": [
+      "Pediatrics",
+      "Child and adolescent psychiatry and psychotherapy",
+      "Child Neurology",
+      "Pediatric Allergy and Immunology",
+      "Pediatric and Adolescent Psychiatry",
+      "Pediatric Anesthesiology",
+      "Pediatric Cardiology",
+      "Pediatric Cardiothoracic Surgery",
+      "Pediatric Child Abuse",
+      "Pediatric Critical Care Medicine",
+      "Pediatric Dentistry",
+      "Pediatric Dermatology",
+      "Pediatric Developmental Behavioral Health",
+      "Pediatric Emergency Medicine",
+      "Pediatric Endocrinology",
+      "Pediatric Gastroenterology",
+      "Pediatric Intensivist",
+      "Pediatric Medical Genetics",
+      "Pediatric Nephrology",
+      "Pediatric Neurology",
+      "Pediatric Neurosurgery",
+      "Pediatric Oncology",
       "Pediatric Ophthalmology",
-      "EENT",
-      "Cataract and Refractive Surgery"
+      "Pediatric Orthopedics",
+      "Pediatric Orthopedic Surgery",
+      "Pediatric Otolaryngology",
+      "Pediatric Pathology",
+      "Pediatric Plastic Surgery",
+      "Pediatric Pulmonology",
+      "Pediatric Radiology",
+      "Pediatric Rehabilitation Medicine",
+      "Pediatric Rheumatology",
+      "Pediatric Specialties",
+      "Pediatric Sports Medicine",
+      "Pediatric Surgery",
+      "Pediatric Thoracic Surgery",
+      "Pediatric Urology",
+      "Neonatology",
+      "Newborn Medicine"
+    ]
+  },
+  {
+    "text": "For my heart",
+    "icon": "mycure-doctor-directory-icon-heart.png",
+    "filters": [
+      "Cardiology",
+      "Pediatric Cardiology",
+      "Cardiac Surgery",
+      "Cardiothoracic Surgery",
+      "Cardiovascular Pathology",
+      "Cardiovascular Surgery",
+      "Thoracic Cardiovascular Surgery",
+      "Thoracic Surgery"
     ]
   },
   {
     "text": "Ears, nose, throat",
+    "icon": "mycure-doctor-directory-icon-ent.png",
     "filters": [
       "ENT (Otolaryngology)",
       "Otorhinolaryngology",
@@ -28,16 +94,12 @@
     ]
   },
   {
-    "text": "For my heart",
+    "text": "For my eyes",
     "filters": [
-      "Cardiology",
-      "Pediatric Cardiology",
-      "Cardiac Surgery",
-      "Cardiothoracic Surgery",
-      "Cardiovascular Pathology",
-      "Cardiovascular Surgery",
-      "Thoracic Cardiovascular Surgery",
-      "Thoracic Surgery"
+      "Ophthalmology",
+      "Pediatric Ophthalmology",
+      "EENT",
+      "Cataract and Refractive Surgery"
     ]
   },
   {
@@ -129,50 +191,6 @@
     ]
   },
   {
-    "text": "Babies and Kids",
-    "filters": [
-      "Pediatrics",
-      "Child and adolescent psychiatry and psychotherapy",
-      "Child Neurology",
-      "Pediatric Allergy and Immunology",
-      "Pediatric and Adolescent Psychiatry",
-      "Pediatric Anesthesiology",
-      "Pediatric Cardiology",
-      "Pediatric Cardiothoracic Surgery",
-      "Pediatric Child Abuse",
-      "Pediatric Critical Care Medicine",
-      "Pediatric Dentistry",
-      "Pediatric Dermatology",
-      "Pediatric Developmental Behavioral Health",
-      "Pediatric Emergency Medicine",
-      "Pediatric Endocrinology",
-      "Pediatric Gastroenterology",
-      "Pediatric Intensivist",
-      "Pediatric Medical Genetics",
-      "Pediatric Nephrology",
-      "Pediatric Neurology",
-      "Pediatric Neurosurgery",
-      "Pediatric Oncology",
-      "Pediatric Ophthalmology",
-      "Pediatric Orthopedics",
-      "Pediatric Orthopedic Surgery",
-      "Pediatric Otolaryngology",
-      "Pediatric Pathology",
-      "Pediatric Plastic Surgery",
-      "Pediatric Pulmonology",
-      "Pediatric Radiology",
-      "Pediatric Rehabilitation Medicine",
-      "Pediatric Rheumatology",
-      "Pediatric Specialties",
-      "Pediatric Sports Medicine",
-      "Pediatric Surgery",
-      "Pediatric Thoracic Surgery",
-      "Pediatric Urology",
-      "Neonatology",
-      "Newborn Medicine"
-    ]
-  },
-  {
     "text": "Allergy",
     "filters": [
       "Allergy and Immunology",
@@ -231,18 +249,6 @@
       "Thoracic Cardiovascular Surgery",
       "Thoracic Surgery",
       "Cardiothoracic Surgery"
-    ]
-  },
-  {
-    "text": "Teeth",
-    "filters": [
-      "Dentistry",
-      "Pediatric Dentistry",
-      "Periodontics",
-      "Endodontics",
-      "Oral and Maxillofacial Surgery",
-      "Orthodontics",
-      "Prosthodontics"
     ]
   }
 ]
