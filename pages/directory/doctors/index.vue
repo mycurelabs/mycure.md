@@ -1,14 +1,19 @@
 <template lang="pug">
   v-container
     app-bar
-    quick-search
-    usp
+    quick-search(
+      @search="searchFromQuickSearch"
+    )
+    usp(
+      @search="searchFromUSP"
+    )
     featured-doctor(:doctors="featuredDoctors")
-    div#search-control-container
-    generic-container
+    generic-container#search-control-container
       v-row
         v-col.pa-1
           search-controls(
+            :search-string="searchString"
+            :search-specialties="searchSpecialties"
             @search="searchFromControls"
           )
     doctors-table(
@@ -18,9 +23,6 @@
     )
     //- Sign Up
     sign-me-up(:signUpInfo="signMeUp")
-
-    //- Category
-    //- category(:cardItems="categoryItems")
 
     //- About panel
     about-clinic(:about="aboutInfo")
@@ -45,15 +47,11 @@
 </template>
 
 <script>
+import VueScrollTo from 'vue-scrollto';
 import {
   SOCIAL_ITEM,
   ABOUT_INFO,
-  FILTER_ITEMS,
-  SORT_ITEMS,
-  USP,
-  SPECIALIZATIONS,
   SIGN_ME_UP,
-  CATEGORY,
 } from './directory-content';
 
 import headMeta from '~/utils/head-meta';
@@ -99,17 +97,12 @@ export default {
   data () {
     this.socialItem = SOCIAL_ITEM;
     this.aboutInfo = ABOUT_INFO;
-    this.filterItems = FILTER_ITEMS;
-    this.sortItems = SORT_ITEMS;
-    this.usp = USP;
-    this.specializations = SPECIALIZATIONS;
     this.signMeUp = SIGN_ME_UP;
-    this.categoryItems = CATEGORY;
-    this.aboutInfo = ABOUT_INFO;
-    this.socialItem = SOCIAL_ITEM;
     return {
       isLoading: false,
       searchObject: {},
+      searchString: '',
+      searchSpecialties: [],
       doctorsTableTotalItems: 0,
       doctorsTablePaginationOptions: {
         page: null,
@@ -141,15 +134,13 @@ export default {
       this.searchObject = searchObject;
       this.searchDoctors();
     },
-    // REMOVE LATER
-    async mockLoading () {
-      this.isLoading = true;
-      await setTimeout(() => {
-        this.isLoading = false;
-      }, 1000);
+    searchFromUSP (searchString) {
+      this.searchString = searchString;
+      VueScrollTo.scrollTo('#search-control-container', 500, { easing: 'ease', offset: -70 });
     },
-    viewMore () {
-      this.$router.push({ name: 'directory-doctors-list' });
+    searchFromQuickSearch ({ filters }) {
+      this.searchSpecialties = filters;
+      VueScrollTo.scrollTo('#search-control-container', 500, { easing: 'ease', offset: -70 });
     },
   },
   head () {
