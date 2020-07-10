@@ -21,21 +21,13 @@
       :serverItemsLength="doctorsTableTotalItems"
       @paginate="doctorsTablePaginate"
     )
-    //- Sign Up
     sign-me-up(:signUpInfo="signMeUp")
-
-    //- About panel
     about-clinic(:about="aboutInfo")
     v-divider
-
-    //- Social panel
     social(:social="socialItem")
     v-divider
-
-    //- Cta
     cta
     v-divider
-
     v-footer(
       height="auto"
       color="white"
@@ -146,8 +138,8 @@ export default {
   head () {
     // TODO: update meta tags
     return headMeta({
-      title: 'MYCURE - Doctor Directory',
-      description: 'Search doctors in your area.',
+      title: 'MYCURE - Doctors Directory',
+      description: 'Search doctors by specialty, and book an appointment',
       // socialBanner: this.picURL, TODO: Add banner
     });
   },
