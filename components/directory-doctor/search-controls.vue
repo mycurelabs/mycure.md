@@ -1,6 +1,6 @@
 <template lang="pug">
   div
-    template(v-if="!$isMobile")
+    template
       v-row(justify="center" align="end")
         v-col
           v-text-field(
@@ -15,14 +15,13 @@
           ).input-field
         v-col
           v-autocomplete(
-            v-model="searchObject.specialties"
+            v-model="searchObject.specialty"
             color="primary"
             label="Specialization"
             clearable
             dense
             hide-details
             outlined
-            multiple
             small-chips
             :items="specialties"
           ).input-field
@@ -50,7 +49,25 @@
                 size="36"
                 color="primary"
               ) mdi-view-list
-    template(v-else)
+      v-row
+        v-col.py-0
+          template(v-for="(specialy, index) in searchObject.specialties")
+            v-chip(
+              clearable
+              close
+              small
+              color="primary"
+              @click:close="removeSpecialty(index)"
+            ).ma-1 {{specialy}}
+          v-chip(
+            v-if="searchObject.specialties.length >= 3"
+            clearable
+            close
+            small
+            color="error"
+            @click:close="searchObject.specialties = []"
+          ).ma-1 Clear filters
+    //- template(v-else)
       v-row.mb-2
         v-text-field(
           v-model="searchObject.searchString"
@@ -85,6 +102,16 @@ export default {
   components: {
     DoctorFilterDialogMobile,
     GenericContainer,
+  },
+  props: {
+    searchString: {
+      type: String,
+      default: '',
+    },
+    searchSpecialties: {
+      type: Array,
+      default: () => ([]),
+    },
   },
   data () {
     this.specialties = specialties;
@@ -123,6 +150,7 @@ export default {
     return {
       searchObject: {
         searchString: '',
+        specialty: '',
         specialties: [],
         sortBy: {},
       },
@@ -146,10 +174,26 @@ export default {
     },
   },
   watch: {
+    searchString (val) {
+      if (!val) return;
+      this.searchObject.searchString = val;
+    },
+    searchSpecialties (val) {
+      if (_.isEmpty(val)) return;
+      this.searchObject.specialties = val;
+    },
     'searchObject.searchString': {
       handler () {
         this.debouncedFetch();
       },
+    },
+    'searchObject.specialty': {
+      handler (val) {
+        if (!val) return;
+        this.searchObject.specialties.push(val);
+        this.onSearch();
+      },
+      deep: true,
     },
     'searchObject.specialties': {
       handler () {
@@ -168,32 +212,15 @@ export default {
     onSearch () {
       this.$emit('search', this.searchObject);
     },
-    // Review below
-    async mockLoading () {
-      this.isLoading = true;
-      await setTimeout(() => {
-        this.isLoading = false;
-      }, 500);
+    removeSpecialty (index) {
+      this.searchObject.specialties.splice(index, 1);
     },
+    // Review below
     toggleView (type) {
       this.mobileViewType = type;
       this.viewType = type;
       this.selectedSpecialization = 'default';
       this.selectedSort = 'default';
-    },
-    searchDoctor () {
-      this.mockLoading();
-    },
-    specFilterDoctor () {
-      this.mockLoading();
-    },
-    sortDoctor () {
-      this.mockLoading();
-    },
-    applyFiltersMobile () {
-      this.mockLoading();
-      this.toggleView(this.mobileViewType);
-      this.closeDialog();
     },
     closeDialog () {
       this.isOptionDialogOpen = false;
