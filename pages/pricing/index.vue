@@ -11,6 +11,7 @@
               strong(:class="tabTitleClass") {{ tab.title }}
               br
               span(:class="tabSubtitleClass").font-mc-grey {{ tab.subtitle }}
+    //- Tab Content
     div.content
       user-based(v-if="pricingType === 'user-based'")
       unlimited(v-else-if="pricingType === 'unlimited'")
