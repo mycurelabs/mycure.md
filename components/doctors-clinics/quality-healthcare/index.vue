@@ -12,12 +12,12 @@
       v-col(align-self="center" cols="12" md="4" offset-md="1")
         h1.font-30.lh-title.pb-3.font-weight-light {{ title }}
         br
-        p.text-justify.font-16.mt-3.font-gray {{panelContent.description}}
+        p.text-justify.font-16.mt-3.font-gray {{ panelContent.description }}
         br
         br
-        v-btn(@click="onGetStarted" text).ml-n4.get-started-btn
-          strong.font-18.text-capitalize.primary--text {{panelContent.btnTxt}}
-          v-icon.primary--text {{panelContent.btnIcon}}
+        v-btn(text @click="onGetStarted").ml-n4.get-started-btn
+          strong.font-18.text-capitalize.primary--text {{ panelContent.btnTxt }}
+          v-icon.primary--text {{ panelContent.btnIcon }}
       picture-source(
         v-if="$isMobile"
         custom-path="doctors-clinics/"
