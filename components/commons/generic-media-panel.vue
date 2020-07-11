@@ -315,10 +315,10 @@ export default {
       if (!this.header) {
         return 'mycure-media-image';
       }
-      if (this.header && typeof (this.header) === 'string') {
+      if (typeof (this.header) === 'string') {
         return this.header;
       }
-      if (this.header && typeof (this.header) === 'object') {
+      if (typeof (this.header) === 'object') {
         return this.header.text;
       }
       return 'mycure-media-image';
