@@ -45,7 +45,7 @@ export const LISTS_OF_PLANS = [
   {
     images: 'MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-D-specialization-02-pediatrics.png',
     header: 'Pediatrics',
-    description: 'An EMR complete with growth charts, vaccination trackers and developmental milestones.',
+    description: 'An EMR complete with growth charts, vaccination trackers, and developmental milestones.',
   },
   {
     images: 'MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-D-specialization-03-maternity.png',
@@ -55,7 +55,8 @@ export const LISTS_OF_PLANS = [
   {
     images: 'MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-D-specialization-04-dental.png',
     header: 'Dental',
-    description: 'A special Dental EMR for baseline dental charting, proposed documentation for work and other attachments.',
+    description: 'A special Dental EMR for baseline dental charting, proposed documentation for work, and other attachments.',
+    parseDescriptionFields: ['EMR for ', 'proposed ', 'and '],
   },
   {
     images: 'MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-D-specialization-05-diagnostic.png',

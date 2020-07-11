@@ -20,12 +20,12 @@
       ).pt-12.content-container.pl-6
         div.header-icon-text
           img(v-lazy="require(`~/assets/images/doctors-clinics/${data.headerIcon}`)" height="30%" :class="{'pt-3': $isMobile}")
-          h1.font-30.lh-title.pb-6.mt-3.ml-3.font-weight-light {{data.header}}
+          h1.font-30.lh-title.pb-6.mt-3.ml-3.font-weight-light {{ data.header }}
         br
-        p.text-justify.font-16.font-gray.pr-2.pb-12 {{data.description}}
+        p(:class="{'pre-white-space': $isRegularScreen && key === 1}").text-justify.font-16.font-gray.pr-2.pb-12 {{ data.description }}
         v-btn(@click="onGetStarted" text).pt-5.ml-n4.get-started-btn
-          strong.font-18.text-capitalize.primary--text {{data.btnTxt}}
-          v-icon.primary--text {{data.btnIcon}}
+          strong.font-18.text-capitalize.primary--text {{ data.btnTxt }}
+          v-icon.primary--text {{ data.btnIcon }}
 </template>
 
 <script>
@@ -33,13 +33,24 @@
 import { SECOND_PANEL_CONTENTS } from '../doctors-clinics-content';
 // components
 import PictureSource from '~/components/commons/PictureSource';
+// utils
+import { parseTextWithNewLine } from '~/utils/newline';
 export default {
   components: {
     PictureSource,
   },
   data () {
     return {
-      secondPanelContents: SECOND_PANEL_CONTENTS,
+      secondPanelContents: SECOND_PANEL_CONTENTS.map((content, key) => ({
+        ...content,
+        ...key === 1 && {
+          description: parseTextWithNewLine(content.description, [
+            'accommodate patients ',
+            'easy ',
+            'appointments ',
+          ]),
+        },
+      })),
       panelMainImage: 'MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-A-online-consult',
     };
   },

@@ -2,14 +2,14 @@
   v-container.py-12
     v-row(justify="center" align="center")
       v-col(justify="start" cols="12" md="4" :class="{ 'ml-3': !$isMobile }")
-        h1.font-30.lh-title.pb-3.font-weight-light {{TAKE_PRACTICE_ONLINE.header}}
+        h1.font-30.lh-title.pb-3.font-weight-light {{ panelContent.header }}
         br
-        p.text-justify.font-16.mt-3.font-gray {{TAKE_PRACTICE_ONLINE.description}}
+        p(:class="{'pre-white-space': $isRegularScreen }").text-justify.font-16.mt-3.font-gray {{ panelContent.description }}
         br
         br
         v-btn(@click="onGetStarted" text).ml-n4.get-started-btn
-          strong.font-18.text-capitalize.primary--text {{TAKE_PRACTICE_ONLINE.btnTxt}}
-          v-icon.primary--text {{TAKE_PRACTICE_ONLINE.btnIcon}}
+          strong.font-18.text-capitalize.primary--text {{ panelContent.btnTxt }}
+          v-icon.primary--text {{ panelContent.btnIcon }}
       v-col(cols="12" md="5" offset-md="1")
         picture-source(
           custom-path="doctors-clinics/"
@@ -26,11 +26,16 @@
 import { TAKE_PRACTICE_ONLINE } from '../doctors-clinics-content';
 // components
 import PictureSource from '~/components/commons/PictureSource';
+// utils
+import { parseTextWithNewLine } from '~/utils/newline';
 
 export default {
   components: { PictureSource },
   data () {
-    this.TAKE_PRACTICE_ONLINE = TAKE_PRACTICE_ONLINE;
+    this.panelContent = {
+      ...TAKE_PRACTICE_ONLINE,
+      description: parseTextWithNewLine(TAKE_PRACTICE_ONLINE.description, ['doctors in ', 'clinic ']),
+    };
     this.panelMainImage = 'MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-C-group-practice';
     return {};
   },
