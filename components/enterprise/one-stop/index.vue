@@ -13,7 +13,7 @@
         picture-source(
           custom-path="enterprise/"
           image-file-extension=".webp"
-          :image-width="[ !$isMobile ? '109%' : '100%' ]"
+          :image-width="!$isMobile ? '109%' : '100%'"
           :class="{ 'ml-n10' : !$isMobile }"
           :image="seventhPanel.image"
           :image-alt="seventhPanel.header"
