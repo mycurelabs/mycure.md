@@ -18,7 +18,13 @@
           h1.font-30.lh-title.pb-3.font-weight-light {{header}}
           br
           template(v-if="descriptions.length")
-            p(v-for="(description, key) in descriptions" :key="key").font-16.mt-3.font-gray.text-justify {{description}}
+            template(v-for="description in descriptions")
+              p(v-if="typeof(description) === 'string'").font-16.mt-3.font-gray.text-justify {{ description }}
+              p(
+                v-else-if="typeof(description) === 'object'"
+                :class="{'pre-white-space': $isRegularScreen }"
+              ).font-16.mt-3.font-gray.text-justify
+                | {{ description | parse-description }}
             br
           slot(name="additional-content")
       //- Right Column
@@ -86,9 +92,15 @@
 <script>
 // components
 import PictureSource from './PictureSource';
+import { parseTextWithNewLine } from '~/utils/newline';
 
 export default {
   components: { PictureSource },
+  filters: {
+    parseDescription (description) {
+      return parseTextWithNewLine(description.text, description.parseFields);
+    },
+  },
   props: {
     /**
      * Alignment of left column
