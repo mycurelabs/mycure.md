@@ -9,7 +9,7 @@
           :customPath="customImagePath"
           :extensionExclusive="extensionExclusive"
           :image="webImage"
-          :imageAlt="header || 'media-image'"
+          :imageAlt="imageAltValue"
           :imageFileExtension="fileExtension"
           :imageWidth="webImageWidth"
           :class="webImageClass"
@@ -39,7 +39,7 @@
           :customPath="customImagePath"
           :extensionExclusive="extensionExclusive"
           :image="webImage"
-          :imageAlt="header || 'media-image'"
+          :imageAlt="imageAltValue"
           :imageFileExtension="fileExtension"
           :imageWidth="webImageWidth"
           :class="webImageClass"
@@ -68,7 +68,7 @@
         :customPath="customImagePath"
         :extensionExclusive="extensionExclusive"
         :image="mobileImage || webImage"
-        :imageAlt="header || 'media-image'"
+        :imageAlt="imageAltValue"
         :imageFileExtension="mobileFileExtension || fileExtension"
         :imageWidth="mobileImageWidth"
         :class="mobileImageClass"
@@ -88,7 +88,7 @@
           :customPath="customImagePath"
           :extensionExclusive="extensionExclusive"
           :image="mobileImage || webImage"
-          :imageAlt="header || 'media-image'"
+          :imageAlt="imageAltValue"
           :imageFileExtension="mobileFileExtension || fileExtension"
           :imageWidth="mobileImageWidth"
           :class="mobileImageClass"
@@ -109,7 +109,7 @@
           :customPath="customImagePath"
           :extensionExclusive="extensionExclusive"
           :image="webImage"
-          :imageAlt="header || 'media-image'"
+          :imageAlt="imageAltValue"
           :imageFileExtension="fileExtension"
           :imageWidth="webImageWidth"
           :class="webImageClass"
@@ -308,6 +308,20 @@ export default {
     mobileFileExtension: {
       type: String,
       default: null,
+    },
+  },
+  computed: {
+    imageAltValue () {
+      if (!this.header) {
+        return 'mycure-media-image';
+      }
+      if (this.header && typeof (this.header) === 'string') {
+        return this.header;
+      }
+      if (this.header && typeof (this.header) === 'object') {
+        return this.header.text;
+      }
+      return 'mycure-media-image';
     },
   },
 };
