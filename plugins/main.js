@@ -5,5 +5,8 @@ Vue.mixin({
     $isMobile () {
       return this.wXS || this.wSM;
     },
+    $isRegularScreen () {
+      return this.wMD || this.wLG;
+    },
   },
 });
