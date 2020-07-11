@@ -8,7 +8,7 @@
         br
         br
         v-btn(@click="onGetStarted" text).ml-n4.get-started-btn
-          strong.text-capitalize.primary--text {{TAKE_PRACTICE_ONLINE.btnTxt}}
+          strong.font-18.text-capitalize.primary--text {{TAKE_PRACTICE_ONLINE.btnTxt}}
           v-icon.primary--text {{TAKE_PRACTICE_ONLINE.btnIcon}}
       v-col(cols="12" md="5" offset-md="1")
         picture-source(

@@ -24,7 +24,7 @@
         br
         p.text-justify.font-16.font-gray.pr-2.pb-12 {{data.description}}
         v-btn(@click="onGetStarted" text).pt-5.ml-n4.get-started-btn
-          strong.text-capitalize.primary--text {{data.btnTxt}}
+          strong.font-18.text-capitalize.primary--text {{data.btnTxt}}
           v-icon.primary--text {{data.btnIcon}}
 </template>
 

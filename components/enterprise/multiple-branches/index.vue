@@ -10,7 +10,7 @@
         h1.font-30.lh-title.pb-3.font-weight-light {{ branches.header }}
         p.text-justify.font-16.mt-3.font-gray {{ branches.description }}
         v-btn(@click="onGetStarted" text).mt-5.ml-n4.get-started-btn
-          strong.text-capitalize.primary--text {{ branches.btnTxt }}
+          strong.font-18.text-capitalize.primary--text {{ branches.btnTxt }}
           v-icon.primary--text {{ branches.btnIcon }}
       //- MOBILE IMAGE
       v-col(v-if="$isMobile" cols="12" md="6" align="center")

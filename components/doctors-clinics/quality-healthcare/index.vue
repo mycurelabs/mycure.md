@@ -16,7 +16,7 @@
         br
         br
         v-btn(@click="onGetStarted" text).ml-n4.get-started-btn
-          strong.text-capitalize.primary--text {{panelContent.btnTxt}}
+          strong.font-18.text-capitalize.primary--text {{panelContent.btnTxt}}
           v-icon.primary--text {{panelContent.btnIcon}}
       picture-source(
         v-if="$isMobile"

@@ -14,7 +14,7 @@
       )
         div(slot="additional-content")
           v-btn(text :to="{ name: 'signup-individual' }").text-none.get-started-btn
-            strong.primary--text Get Started
+            strong.font-18.primary--text Get Started
             v-icon.primary--text mdi-arrow-right
       //- Bottom images
       v-container(v-if="!$isMobile").mt-n8.pb-12
