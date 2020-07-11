@@ -231,7 +231,7 @@ export default {
      * @type {String}
      */
     header: {
-      type: String,
+      type: [String, Object],
       default: '',
     },
     /**
