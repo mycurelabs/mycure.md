@@ -99,7 +99,7 @@ export default {
       const panel = this.scrollPanel || '#app';
       const offsetMappings = [
         { key: '#app', offset: 0 },
-        { key: '#patient-portal', offset: 400 },
+        { key: '#patient-portal', offset: 100 },
       ];
       const { offset } = offsetMappings.find(mapping => mapping.key === panel);
       this.$nextTick(() => {
