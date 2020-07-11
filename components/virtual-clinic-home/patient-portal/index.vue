@@ -8,10 +8,15 @@
           image-alt="Connect with your patient"
           image-file-extension=".webp"
         )
-      v-col(cols="12" md="4" offset-md="1" wrap)
-        h1.font-30.lh-title.pb-3.font-weight-light.pre-white-space {{ patientPortalContent.title }}
+      v-col(
+        cols="10"
+        md="4"
+        offset-md="1"
+        :class="{'text-center': $isMobile}"
+      )
+        h1(:class="panelTitleClasses").font-30.lh-title.pb-3.font-weight-light {{ patientPortalContent.title }}
         br
-        p.text-justify.font-16.mt-3.font-gray {{ patientPortalContent.description }}
+        p(:class="panelDescriptionClasses").font-16.mt-3.font-gray {{ patientPortalContent.description }}
         br
         v-btn(@click="goToPatientPortal" color="#EDBA42" depressed)
           span.white--text.text-none Learn More
@@ -25,16 +30,29 @@
 </template>
 
 <script>
+// components
 import PictureSource from '~/components/commons/PictureSource';
+// utils
+import { parseTextWithNewLine } from '~/utils/newline';
 export default {
   components: { PictureSource },
   data () {
     this.patientPortalContent = {
-      title: 'Increase your\npatient engagement.\nConnect online!',
-      description: 'Streamline your workflow and save time! Set-up appointments and consultations, coordinate patient care, issue ePresciptions and release diagnostics results - all that and more with an online portal to interact with your patients.',
+      title: parseTextWithNewLine('Increase your patient engagement. Connect online!', ['your ', 'engagement. ']),
+      description: 'Streamline your workflow and save time! Set-up appointments and consultations, coordinate patient care, issue ePresciptions, and release diagnostics results - all that and more with an online portal to interact with your patients.',
     };
     this.patientPortalImage = 'MYCURE-virtual-clinic-healthcare-practice-online-homepage-patient-banner';
     return {};
+  },
+  computed: {
+    panelTitleClasses () {
+      return this.$isMobile
+        ? ['text-center']
+        : ['pre-white-space'];
+    },
+    panelDescriptionClasses () {
+      return [`text-${this.$isMobile ? 'center' : 'justify'}`];
+    },
   },
   methods: {
     goToPatientPortal () {
