@@ -15,7 +15,12 @@
           :class="webImageClass"
         )
         template(v-if="contentAlignLeft")
-          h1.font-30.lh-title.pb-3.font-weight-light {{header}}
+          h1(v-if="typeof(header) === 'string'").font-30.lh-title.pb-3.font-weight-light {{ header }}
+          h1(
+            v-else-if="typeof(header) === 'object'"
+            :class="{'pre-white-space': $isRegularScreen}"
+          ).font-30.lh-title.pb-3.font-weight-light
+            | {{ header | parse-text }}
           br
           template(v-if="descriptions.length")
             template(v-for="description in descriptions")
@@ -24,7 +29,7 @@
                 v-else-if="typeof(description) === 'object'"
                 :class="{'pre-white-space': $isRegularScreen }"
               ).font-16.mt-3.font-gray.text-justify
-                | {{ description | parse-description }}
+                | {{ description | parse-text }}
             br
           slot(name="additional-content")
       //- Right Column
@@ -40,7 +45,12 @@
           :class="webImageClass"
         )
         template(v-if="contentAlignRight")
-          h1.font-30.lh-title.pb-3.font-weight-light {{header}}
+          h1(v-if="typeof(header) === 'string'").font-30.lh-title.pb-3.font-weight-light {{ header }}
+          h1(
+            v-else-if="typeof(header) === 'object'"
+            :class="{'pre-white-space': $isRegularScreen}"
+          ).font-30.lh-title.pb-3.font-weight-light
+            | {{ header | parse-text }}
           br
           template(v-if="descriptions.length")
             template(v-for="description in descriptions")
@@ -49,7 +59,7 @@
                 v-else-if="typeof(description) === 'object'"
                 :class="{'pre-white-space': $isRegularScreen }"
               ).font-16.mt-3.font-gray.text-justify
-                | {{ description | parse-description }}
+                | {{ description | parse-text }}
             br
           slot(name="additional-content")
       //- Mobile Image
@@ -66,7 +76,12 @@
     //- CENTER VIEW
     v-row(v-else justify="center").py-10
       v-col(cols="12" md="10" :class="{'text-center': !$isMobile}")
-        h1.font-30.lh-title.pb-3.font-weight-light {{header}}
+        h1(v-if="typeof(header) === 'string'").font-30.lh-title.pb-3.font-weight-light {{ header }}
+        h1(
+          v-else-if="typeof(header) === 'object'"
+          :class="{'pre-white-space': $isRegularScreen}"
+        ).font-30.lh-title.pb-3.font-weight-light
+          | {{ header | parse-text }}
         //- Mobile image
         picture-source(
           v-if="$isMobile && !hideImageMobile"
@@ -80,7 +95,13 @@
         )
         br
         template(v-if="descriptions.length")
-          p(v-for="(description, key) in descriptions" :key="key" :class="{'text-justify': $isMobile}").font-16.mt-3.font-gray {{description}}
+          template(v-for="description in descriptions")
+            p(v-if="typeof(description) === 'string'").font-16.mt-3.font-gray.text-center {{ description }}
+            p(
+              v-else-if="typeof(description) === 'object'"
+              :class="{'pre-white-space': $isRegularScreen }"
+            ).font-16.mt-3.font-gray.text-center
+              | {{ description | parse-text }}
           br
         slot(name="additional-content")
         picture-source(
@@ -103,8 +124,8 @@ import { parseTextWithNewLine } from '~/utils/newline';
 export default {
   components: { PictureSource },
   filters: {
-    parseDescription (description) {
-      return parseTextWithNewLine(description.text, description.parseFields);
+    parseText (item) {
+      return parseTextWithNewLine(item.text, item.parseFields);
     },
   },
   props: {
