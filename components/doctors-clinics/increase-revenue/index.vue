@@ -22,7 +22,7 @@
           img(v-lazy="require(`~/assets/images/doctors-clinics/${data.headerIcon}`)" height="30%" :class="{'pt-3': $isMobile}")
           h1.font-30.lh-title.pb-6.mt-3.ml-3.font-weight-light {{ data.header }}
         br
-        p(:class="{'pre-white-space': $isRegularScreen && key === 1}").text-justify.font-16.font-gray.pr-2.pb-12 {{ data.description }}
+        p(:class="{'pre-white-space': $isRegularScreen && typeof(data.description) === 'object'}").text-justify.font-16.font-gray.pr-2.pb-12 {{ data.description | parse-description }}
         v-btn(@click="onGetStarted" text).pt-5.ml-n4.get-started-btn
           strong.font-18.text-capitalize.primary--text {{ data.btnTxt }}
           v-icon.primary--text {{ data.btnIcon }}
@@ -39,20 +39,18 @@ export default {
   components: {
     PictureSource,
   },
+  filters: {
+    parseDescription (description) {
+      if (typeof (description) === 'object') {
+        return parseTextWithNewLine(description.text, description.parseFields);
+      }
+      return description;
+    },
+  },
   data () {
-    return {
-      secondPanelContents: SECOND_PANEL_CONTENTS.map((content, key) => ({
-        ...content,
-        ...key === 1 && {
-          description: parseTextWithNewLine(content.description, [
-            'accommodate patients ',
-            'easy ',
-            'appointments ',
-          ]),
-        },
-      })),
-      panelMainImage: 'MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-A-online-consult',
-    };
+    this.secondPanelContents = SECOND_PANEL_CONTENTS;
+    this.panelMainImage = 'MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-A-online-consult';
+    return {};
   },
   methods: {
     onGetStarted () {
