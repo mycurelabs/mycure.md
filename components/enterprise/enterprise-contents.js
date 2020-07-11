@@ -1,6 +1,6 @@
 export const SECOND_PANEL_HEADER = {
   header: 'Make it easy for your patients',
-  description: 'With all your clinical departments integrated into one system,\nyour patients will have a breeze moving through your clinic',
+  description: 'With all your clinical departments integrated into one system,\nyour patients will have a breeze moving through your clinic.',
 };
 export const SECOND_PANEL_CONTENTS = [
   {
@@ -26,7 +26,7 @@ export const OUTPATIENT = {
 export const FOURTH_PANEL = {
   image: 'MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-final-E-patient-portal',
   header: 'Keep your patients in the loop',
-  description: 'Making sure your patients are informed is easier and faster with an online patient portal. Release diagnostic result right as they\'re finalized and coordinate with your patients easier with online consultations.',
+  description: 'Making sure your patients are informed is easier and faster with an online patient portal. Release diagnostic results right as they\'re finalized and coordinate with your patients easier with online consultations.',
   btnTxt: 'Get Started',
   btnIcon: 'mdi-arrow-right-thick',
 };
@@ -83,7 +83,7 @@ export const NINTH_PANEL = {
   subHeader: 'FOR MEDICAL ARTS CENTER',
   header: 'Enriching the heart of hospitals with seamless consultation workflows',
   image: 'MYCURE-virtual-clinic-healthcare-practice-online-enterprise-H-medical-arts-center',
-  description: 'Whether doing or online face-to-face consults, engage your healthcare specialists and their secretaries by giving them more convenient way to connect with their patients.',
+  description: 'Whether doing or online face-to-face consults, engage your healthcare specialists and their secretaries by giving them a more convenient way to connect with their patients.',
   descriptionLink: ' See Features',
   btnTxt: 'Book A Demo',
   btnIcon: 'mdi-arrow-right-thick',
