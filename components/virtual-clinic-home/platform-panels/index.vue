@@ -48,7 +48,7 @@
           image-alt="Your online clinic everywhere"
           image-file-extension=".webp"
           :image="YOUR_ONLINE_CLINIC.image"
-          :image-width="[!$isMobile ? '105%' : '100%']"
+          :image-width="!$isMobile ? '105%' : '100%'"
           :class="{ 'ml-n5' : !$isMobile }"
         )
     //- THIRD PANEL
@@ -93,7 +93,7 @@
           image-alt="Manage everything easily"
           image-file-extension=".webp"
           :image="MANAGE_EVERYTHING_EASILY.image"
-          :image-width="[!$isMobile ? '105%' : '100%']"
+          :image-width="!$isMobile ? '105%' : '100%'"
           :class="{ 'ml-n5' : !$isMobile }"
         )
 </template>
