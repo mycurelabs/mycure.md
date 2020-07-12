@@ -9,7 +9,10 @@ export const SECOND_PANEL_CONTENTS = [
   {
     headerIcon: 'doctors-clinics-build-clientele.png',
     header: 'Build your clientele',
-    description: 'Build patient loyalty and accommodate patients outside of your physical work hours. It\'s incredibly easy for your old and new patients to set appointments with you.',
+    description: {
+      text: 'Build patient loyalty and accommodate patients outside of your physical work hours. It\'s incredibly easy for your old and new patients to set appointments with you.',
+      parseFields: ['accommodate patients ', 'easy ', 'appointments '],
+    },
     btnTxt: 'Get Started',
     btnIcon: 'mdi-arrow-right-thick',
   },
@@ -45,7 +48,7 @@ export const LISTS_OF_PLANS = [
   {
     images: 'MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-D-specialization-02-pediatrics.png',
     header: 'Pediatrics',
-    description: 'An EMR complete with growth charts, vaccination trackers and developmental milestones.',
+    description: 'An EMR complete with growth charts, vaccination trackers, and developmental milestones.',
   },
   {
     images: 'MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-D-specialization-03-maternity.png',
@@ -55,7 +58,8 @@ export const LISTS_OF_PLANS = [
   {
     images: 'MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-D-specialization-04-dental.png',
     header: 'Dental',
-    description: 'A special Dental EMR for baseline dental charting, proposed documentation for work and other attachments.',
+    description: 'A special Dental EMR for baseline dental charting, proposed documentation for work, and other attachments.',
+    parseDescriptionFields: ['EMR for ', 'proposed ', 'and '],
   },
   {
     images: 'MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-D-specialization-05-diagnostic.png',

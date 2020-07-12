@@ -20,7 +20,7 @@
           img(width="20" src="~/assets/images/mycure-check.png" alt="Check icon")
           span.font-16.font-gray.pl-3 {{ data.description }}
         v-btn(text @click="onGetStarted").mt-5.ml-n4.get-started-btn
-          strong.text-capitalize.primary--text {{ tenthPanel.btnTxt }}
+          strong.font-18.text-capitalize.primary--text {{ tenthPanel.btnTxt }}
           v-icon.primary--text {{ tenthPanel.btnIcon }}
       //- MOBILE IMAGE
       v-col(v-if="$isMobile" cols="12" md="6" justify="center" align="center")

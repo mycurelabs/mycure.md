@@ -33,7 +33,10 @@ export default {
   data () {
     this.header = 'Your medical supplies at a glance.';
     this.descriptions = [
-      'Deliver the right supplies to the right people at the right time.',
+      {
+        text: 'Deliver the right supplies to the right people at the right time.',
+        parseFields: ['people '],
+      },
     ];
     this.mediaImage = 'MYCURE-virtual-clinic-healthcare-practice-online-features-H-inventory';
     this.checkListItems = [

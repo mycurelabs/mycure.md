@@ -15,7 +15,7 @@
     specialized-plans#specialized-practice
     v-divider.edge-divider
     //- 6th panel
-    quality-healthcare(@getStarted="getStarted")
+    quality-healthcare(@getStarted="goToPatientPortal")
     //- 7th panel
     div.cta-container
       cta(@getStarted="goToSignupIndividual($event)")
@@ -65,10 +65,13 @@ export default {
   },
   methods: {
     getStarted () {
-      this.$router.push({ name: 'signup-individual' });
+      this.$nuxt.$router.push({ name: 'signup-individual' });
     },
     goToSignupIndividual (email) {
-      this.$router.push({ name: 'signup-individual', params: { email } });
+      this.$nuxt.$router.push({ name: 'signup-individual', params: { email } });
+    },
+    goToPatientPortal () {
+      this.$nuxt.$router.push({ name: 'index', params: { panel: 'patient-portal' } });
     },
   },
   head () {

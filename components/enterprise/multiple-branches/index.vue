@@ -8,9 +8,9 @@
       v-col(cols="12" md="4" offset-md="1" align-self="center")
         p.font-16.mt-3.font-gray.primary--text {{ branches.subHeader }}
         h1.font-30.lh-title.pb-3.font-weight-light {{ branches.header }}
-        p.text-justify.font-16.mt-3.font-gray {{ branches.description }}
+        p(:class="{'pre-white-space': $isRegularScreen}").text-justify.font-16.mt-3.font-gray {{ branches.description }}
         v-btn(@click="onGetStarted" text).mt-5.ml-n4.get-started-btn
-          strong.text-capitalize.primary--text {{ branches.btnTxt }}
+          strong.font-18.text-capitalize.primary--text {{ branches.btnTxt }}
           v-icon.primary--text {{ branches.btnIcon }}
       //- MOBILE IMAGE
       v-col(v-if="$isMobile" cols="12" md="6" align="center")
@@ -18,10 +18,22 @@
 </template>
 
 <script>
+// constants
 import { BRANCHES } from '../enterprise-contents';
+// utils
+import { parseTextWithNewLine } from '~/utils/newline';
 export default {
   data () {
-    this.branches = BRANCHES;
+    this.branches = {
+      ...BRANCHES,
+      description: parseTextWithNewLine(BRANCHES.description, [
+        'dashboard ',
+        'Your data ',
+        'automatically ',
+        'comprehensive ',
+        'transactions, ',
+      ]),
+    };
     return {};
   },
   methods: {

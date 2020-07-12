@@ -40,6 +40,7 @@
             outlined
             placeholder="myname@email.com"
           ).text-field-input
+        v-row.px-6.pt-3
           v-btn(
             block
             color="accent"
@@ -139,7 +140,7 @@ export default {
   opacity: 0.9;
 }
 .mobile-form {
-  margin-top: -112px;
+  margin-top: -125px;
 }
 .mobile-form .text-field-input {
   height: 56px;

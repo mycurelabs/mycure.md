@@ -31,6 +31,7 @@
             placeholder="myname@email.com"
             outlined
           ).text-field-input
+        v-row.px-6.pt-3
           v-btn(
             @click="onGetStarted"
             color="accent"
@@ -117,7 +118,7 @@ export default {
   margin-top: 150px;
 }
 .mobile-form {
-  margin-top: -112px;
+  margin-top: -125px;
 }
 .mobile-form .text-field-input {
   height: 56px;

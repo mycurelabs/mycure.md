@@ -9,7 +9,7 @@
         h1.font-30.lh-title.pb-3.font-weight-light {{ outpatient.header }}
         p.text-justify.font-16.mt-3.font-gray {{ outpatient.description }}
         v-btn(text @click="onClick").mt-5.ml-n4.get-started-btn
-          strong.text-capitalize.primary--text {{ outpatient.btnTxt }}
+          strong.font-18.text-capitalize.primary--text {{ outpatient.btnTxt }}
           v-icon.primary--text {{ outpatient.btnIcon }}
       //- IMAGE MOBILE
       v-col(v-if="$isMobile" cols="12" md="6" align="center")

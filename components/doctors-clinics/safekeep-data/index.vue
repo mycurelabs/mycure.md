@@ -16,7 +16,7 @@
         br
         br
         v-btn(@click="onGetStarted" text).ml-n4.get-started-btn
-          strong.text-capitalize.primary--text {{SAFEKEEP_MEDICAL_DATA.btnTxt}}
+          strong.font-18.text-capitalize.primary--text {{SAFEKEEP_MEDICAL_DATA.btnTxt}}
           v-icon.primary--text {{SAFEKEEP_MEDICAL_DATA.btnIcon}}
       picture-source(
         v-if="$isMobile"

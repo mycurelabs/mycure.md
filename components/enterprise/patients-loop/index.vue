@@ -2,16 +2,16 @@
   v-container.py-12
     v-row(justify="center")
       v-col(cols="12" md="4" align-self="center" :class="{ 'ml-6' : !$isMobile }")
-        h1.font-30.lh-title.pb-3.font-weight-light {{ fourthPanel.header }}
+        h1(:class="{'pre-white-space': !$isMobile}").font-30.lh-title.pb-3.font-weight-light {{ fourthPanel.header }}
         p.text-justify.font-16.mt-3.font-gray {{ fourthPanel.description }}
         v-btn(text @click="onGetStarted").mt-5.ml-n4.get-started-btn
-          strong.text-capitalize.primary--text {{ fourthPanel.btnTxt }}
+          strong.font-18.text-capitalize.primary--text {{ fourthPanel.btnTxt }}
           v-icon.primary--text {{ fourthPanel.btnIcon }}
       v-col(cols="12" md="5" offset-md="1" justify="center" align="center")
         picture-source(
           custom-path="enterprise/"
           image-file-extension=".webp"
-          :image-width="[ !$isMobile ? '106%' : '100%' ]"
+          :image-width="!$isMobile ? '106%' : '100%'"
           :class="{ 'ml-n10' : !$isMobile }"
           :image="fourthPanel.image"
           :image-alt="fourthPanel.header"
@@ -23,11 +23,16 @@
 import { FOURTH_PANEL } from '../enterprise-contents';
 // components
 import PictureSource from '~/components/commons/PictureSource';
+// utils
+import { parseTextWithNewLine } from '~/utils/newline';
 
 export default {
   components: { PictureSource },
   data () {
-    this.fourthPanel = FOURTH_PANEL;
+    this.fourthPanel = {
+      ...FOURTH_PANEL,
+      header: parseTextWithNewLine(FOURTH_PANEL.header, ['patients ']),
+    };
     return {};
   },
   methods: {
