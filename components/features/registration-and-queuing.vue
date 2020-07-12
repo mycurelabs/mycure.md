@@ -45,7 +45,7 @@ export default {
     this.header = 'Value everyone\'s time more effectively.';
     this.descriptions = [
       'With MYCURE, queueing is easier done than spelled. Patients easily register themselves via kiosks.',
-      'Display multiple queues through auxilliary monitors or smart TVs waiting for patients. Incoming doctors even get notified in their devices for every new patient in line.',
+      'Display multiple queues through auxiliary monitors or smart TVs waiting for patients. Incoming doctors even get notified in their devices for every new patient in line.',
     ];
     this.mobilePanelImages = [
       'MYCURE-virtual-clinic-healthcare-practice-online-features-F-queue-01-mobile.png',

@@ -22,10 +22,13 @@ export default {
   },
   data () {
     this.image = 'mycure-syncbase-config';
-    this.header = 'Go offline safely and securely';
+    this.header = { text: 'Go offline safely and securely', parseFields: ['safely '] };
     this.descriptions = [
       'The holy grail of online-offline technology is here. Work within your local network using multiple devices even if the internet goes down and just sync data when back online.',
-      'This feature is available for multispecialty and enterprise clinic setup.',
+      {
+        text: 'This feature is available for multispecialty and enterprise clinic setup.',
+        parseFields: ['multispecialty '],
+      },
     ];
     return {};
   },

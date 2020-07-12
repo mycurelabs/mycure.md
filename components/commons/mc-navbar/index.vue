@@ -112,6 +112,7 @@ export default {
         name: 'Patient Portal',
         route: 'index',
         panel: 'patient-portal',
+        panelOffset: -100,
         new: true,
         external: false,
       },
@@ -201,8 +202,10 @@ export default {
         return;
       }
       if (!navLink.panel) return;
-      const panelId = `#${navLink.panel}`;
-      VueScrollTo.scrollTo(panelId, 500, { easing: 'ease' });
+      VueScrollTo.scrollTo(`#${navLink.panel}`, 500, {
+        easing: 'ease',
+        ...navLink.panelOffset && { offset: navLink.panelOffset },
+      });
     },
   },
 };

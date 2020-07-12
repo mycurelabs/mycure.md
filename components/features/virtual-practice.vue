@@ -9,7 +9,7 @@
   ).mb-n1
     div(slot="additional-content" :class="{'text-center': !$isMobile}")
       v-btn(text :to="{ name: 'signup-individual' }").text-none
-        strong.primary--text Get Started
+        strong.font-18.primary--text Get Started
         v-icon.primary--text mdi-arrow-right
 </template>
 
