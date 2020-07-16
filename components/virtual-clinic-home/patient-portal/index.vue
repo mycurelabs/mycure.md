@@ -19,7 +19,7 @@
         p(:class="panelDescriptionClasses").font-16.mt-3.font-gray {{ patientPortalContent.description }}
         br
         v-btn(@click="goToPatientPortal" color="#EDBA42" depressed)
-          span.white--text.text-none Learn More
+          span.white--text.text-none View Patient Portal
       picture-source(
         v-if="$isMobile"
         custom-path="virtual-clinic-home/"
