@@ -17,7 +17,7 @@ export const FEATURE_MODULE_GROUPS = [
           text: 'A telemedicine platform for online video and audio consultations, interfaced with a patient portal for better access to medical records and forms.',
           parseFields: [
             'online',
-            'consultations',
+            'consultations,',
             'portal for',
             'medical records',
           ],

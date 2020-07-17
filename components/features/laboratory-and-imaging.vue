@@ -45,10 +45,11 @@ export default {
     this.header = 'Record and retrieve diagnostic results right where you need them.';
     this.descriptions = [
       'MYCURE can communicate with modern diagnostic machines through HL7 interfacing and PACS configurations.',
-      {
-        text: 'Doctors can view DICOM images remotely or within clinic premises, while patients can view their lab & imaging results through an online portal.',
-        parseFields: ['remotely ', 'patients can ', 'through an '],
-      },
+      'Doctors can view DICOM images remotely or within clinic premises, while patients can view their lab & imaging results through an online portal.',
+      // {
+      //   text: 'Doctors can view DICOM images remotely or within clinic premises, while patients can view their lab & imaging results through an online portal.',
+      //   parseFields: ['remotely ', 'patients can ', 'through an '],
+      // },
     ];
     this.mobilePanelImages = [
       'MYCURE-virtual-clinic-healthcare-practice-online-features-G-diagnostic-results-01-mobile.png',
