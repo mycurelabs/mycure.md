@@ -9,10 +9,11 @@ export const SECOND_PANEL_CONTENTS = [
   {
     headerIcon: 'doctors-clinics-build-clientele.png',
     header: 'Build your clientele',
-    description: {
-      text: 'Build patient loyalty and accommodate patients outside of your physical work hours. It\'s incredibly easy for your old and new patients to set appointments with you.',
-      parseFields: ['accommodate patients ', 'easy ', 'appointments '],
-    },
+    description: 'Build patient loyalty and accommodate patients outside of your physical work hours. It\'s incredibly easy for your old and new patients to set appointments with you.',
+    // {
+    //   text: 'Build patient loyalty and accommodate patients outside of your physical work hours. It\'s incredibly easy for your old and new patients to set appointments with you.',
+    //   parseFields: ['accommodate patients ', 'easy ', 'appointments '],
+    // },
     btnTxt: 'Get Started',
     btnIcon: 'mdi-arrow-right-thick',
   },
