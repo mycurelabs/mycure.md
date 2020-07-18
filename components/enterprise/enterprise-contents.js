@@ -57,7 +57,7 @@ export const BRANCHES = {
   image: 'MYCURE-virtual-clinic-healthcare-practice-online-enterprise-E-multiple-branches.png',
   imageMobile: 'MYCURE-virtual-clinic-healthcare-practice-online-enterprise-E-multiple-branches-mobile.png',
   header: 'Monitor multiple branches on one system',
-  description: 'All you need is one clean dashboard to see how your clinics are faring. Your data from multiple branches is automatically aggregated to show you a comprehensive summary of patient encounters, transactions, sales, expenses and even staff performance.',
+  description: 'All you need is one clean dashboard to see how your clinics are faring. The precious data from your multiple branches is automatically aggregated to show you a comprehensive summary of patient encounters, transactions, sales, expenses and even staff performance.',
   btnTxt: 'Get Started',
   btnIcon: 'mdi-arrow-right-thick',
 };
