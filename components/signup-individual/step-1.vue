@@ -371,7 +371,10 @@ export default {
       }
     },
     checkNumberInput () {
-      if (!/\d/.test(event.key)) return event.preventDefault();
+      if (!/\d/.test(event.key)) {
+        return event.preventDefault();
+      };
+      return event;
     },
     doneSignupNonPH () {
       this.emailVerificationMessageDialog = false;
