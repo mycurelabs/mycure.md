@@ -5,7 +5,6 @@
         h1.font-30.lh-title.pb-3.font-weight-light {{ panelContent.header }}
         br
         p.text-justify.font-16.mt-3.font-gray {{ panelContent.description }}
-        //- p(:class="{'pre-white-space': $isRegularScreen }").text-justify.font-16.mt-3.font-gray {{ panelContent.description }}
         br
         br
         v-btn(@click="onGetStarted" text).ml-n4.get-started-btn
@@ -27,16 +26,9 @@
 import { TAKE_PRACTICE_ONLINE } from '../doctors-clinics-content';
 // components
 import PictureSource from '~/components/commons/PictureSource';
-// utils
-// import { parseTextWithNewLine } from '~/utils/newline';
-
 export default {
   components: { PictureSource },
   data () {
-    // this.panelContent = {
-    //   ...TAKE_PRACTICE_ONLINE,
-    //   description: parseTextWithNewLine(TAKE_PRACTICE_ONLINE.description, ['doctors in ', 'clinic ']),
-    // };
     this.panelContent = TAKE_PRACTICE_ONLINE;
     this.panelMainImage = 'MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-C-group-practice';
     return {};
@@ -54,9 +46,4 @@ a {
   text-decoration-color: #2e9fdf;
   text-decoration: none;
 }
-/* @media screen and (min-width: 1024px) {
-  .panel-image {
-    margin-left: 4%;
-  }
-} */
 </style>
