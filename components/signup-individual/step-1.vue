@@ -57,7 +57,7 @@
                 :loading="loadingForm || loading"
                 :disabled="loadingForm || loading"
                 @blur="validatePhoneNo"
-                @keypress="isNumber($event)"
+                @keypress="checkNumberInput($event)"
               ).pl-1
                 template(slot="append")
                   div(style="margin-top: -8px")
@@ -370,7 +370,7 @@ export default {
         this.mobileNoErrorMessage = 'Invalid mobile number format';
       }
     },
-    isNumber () {
+    checkNumberInput () {
       if (!/\d/.test(event.key)) return event.preventDefault();
     },
     doneSignupNonPH () {
