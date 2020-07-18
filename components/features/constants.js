@@ -32,7 +32,7 @@ export const FEATURE_MODULE_GROUPS = [
         icon: 'MYCURE-virtual-clinic-healthcare-practice-online-features-J-core-05-administrative.png',
         title: 'Administrative',
         subTitle: 'Better operations with data-\ndriven business decisions.',
-        description: 'A business tool to measure your day-to-day clinic performance with sales reports, daily census, and sophisticated user access control.',
+        description: 'A business tool to measure your daily clinic performance with sales reports, daily census, and user access control.',
       },
     ],
   },
