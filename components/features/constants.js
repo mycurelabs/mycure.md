@@ -56,7 +56,7 @@ export const FEATURE_MODULE_GROUPS = [
         icon: 'MYCURE-virtual-clinic-healthcare-practice-online-features-H-premium-03-inventory.png',
         title: 'Materials Management',
         subTitle: 'Your medical supplies\nat a glance',
-        description: 'A Materials Management System built for healthcare facilities to monitor in-house supplies and over-the-counter products.',
+        description: 'A Materials Management System built for healthcare facilities to easily monitor your in-house supplies and your over-the-counter products.',
       },
       {
         icon: 'MYCURE-virtual-clinic-healthcare-practice-online-features-H-premium-04-pme.png',
