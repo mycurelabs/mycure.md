@@ -13,15 +13,7 @@ export const FEATURE_MODULE_GROUPS = [
         icon: 'MYCURE-virtual-clinic-healthcare-practice-online-features-J-core-02-telehealth.png',
         title: 'Telehealth',
         subTitle: 'Making quality\nhealthcare accessible',
-        description: {
-          text: 'A telemedicine platform for online video and audio consultations, interfaced with a patient portal for better access to medical records and forms.',
-          parseFields: [
-            'online',
-            'consultations',
-            'portal for',
-            'medical records',
-          ],
-        },
+        description: 'A telemedicine platform for online video and audio consultations, interfaced with a patient portal for better access to medical records.',
       },
       {
         icon: 'MYCURE-virtual-clinic-healthcare-practice-online-features-J-core-03-registration.png',
