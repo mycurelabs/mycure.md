@@ -74,7 +74,7 @@ export const EIGHT_PANEL = {
   subHeader: 'FOR CORPORATE CLINICS',
   header: 'Keep your employees healthy and active',
   image: 'MYCURE-virtual-clinic-healthcare-practice-online-enterprise-G-corporate-clinics',
-  description: 'Monitor the physical and mental health of your workplace by making sure your employees visit your in-house medical providers whenever they need to. Level up your services and your corporate clinics and easily pair up with your human resources department now.',
+  description: 'You can now monitor the physical and mental health of your workplace by making sure that your employees visit your in-house medical providers whenever they need to. Level up your services and your corporate clinics and easily pair up with your human resources department now.',
   descriptionLink: ' See Features',
   btnTxt: 'Book A Demo',
   btnIcon: 'mdi-arrow-right-thick',
