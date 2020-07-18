@@ -44,7 +44,7 @@ export const FEATURE_MODULE_GROUPS = [
         icon: 'MYCURE-virtual-clinic-healthcare-practice-online-features-H-premium-01-laboratory.png',
         title: 'Laboratory',
         subTitle: 'Record and retrieve results\nwhen you need them',
-        description: 'A Laboratory Information System that communicates with modern diagnostic machines through HL7 interfacing.',
+        description: 'A Laboratory Information System that seamlessly communicates with modern diagnostic machines through HL7 interfacing.',
       },
       {
         icon: 'MYCURE-virtual-clinic-healthcare-practice-online-features-H-premium-02-imaging.png',
