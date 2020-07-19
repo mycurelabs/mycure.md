@@ -83,7 +83,7 @@ export const NINTH_PANEL = {
   subHeader: 'FOR MEDICAL ARTS CENTER',
   header: 'Enriching the heart of hospitals with seamless consultation workflows',
   image: 'MYCURE-virtual-clinic-healthcare-practice-online-enterprise-H-medical-arts-center',
-  description: 'Whether doing or online face-to-face consults, engage your healthcare specialists and their secretaries by giving them a more convenient way to connect with their patients.',
+  description: 'Whether doing physical or online face-to-face consults, engage your healthcare specialists and their secretaries by giving them a more convenient way to connect with their patients.',
   descriptionLink: ' See Features',
   btnTxt: 'Book A Demo',
   btnIcon: 'mdi-arrow-right-thick',
