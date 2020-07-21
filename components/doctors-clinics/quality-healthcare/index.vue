@@ -1,7 +1,7 @@
 <template lang="pug">
   v-container.py-12.quality-healthcare-contents
     v-row(justify="center")
-      v-col(align-self="center" cols="12" md="5" v-if="!$isMobile").panel-image
+      v-col(align-self="center" cols="12" md="5" v-if="!$isMobile")
         picture-source(
           custom-path="doctors-clinics/"
           image-alt="Access quality healthcare"
@@ -57,13 +57,4 @@ export default {
 </script>
 
 <style scoped>
-/* @media screen and (min-width: 1024px) {
-  .quality-healthcare-contents {
-    position: relative;
-    z-index: 2;
-  }
-  .panel-image {
-    margin-right: 4%;
-  }
-} */
 </style>

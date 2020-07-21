@@ -27,12 +27,13 @@ export default {
   data () {
     this.image = 'MYCURE-virtual-clinic-healthcare-practice-online-features-A-role';
     this.header = 'Everybody\'s got a special role to play.';
-    this.descriptions = [
-      {
-        text: 'Collaborate with your clinic staff more efficiently using a clinic system that\'s so user-friendly, you wouldn\'t even feel that you\'re working.',
-        parseFields: ['more ', 'so ', 'feel that '],
-      },
-    ];
+    this.descriptions = ['Collaborate with your clinic staff more efficiently using a clinic system that\'s so user-friendly, you wouldn\'t even feel that you\'re working.'];
+    // [
+    //   {
+    //     text: 'Collaborate with your clinic staff more efficiently using a clinic system that\'s so user-friendly, you wouldn\'t even feel that you\'re working.',
+    //     parseFields: ['more ', 'so ', 'feel that '],
+    //   },
+    // ];
     return {};
   },
 };

@@ -57,10 +57,10 @@
                 :loading="loadingForm || loading"
                 :disabled="loadingForm || loading"
                 @blur="validatePhoneNo"
-                @keypress="isNumber($event)"
+                @keypress="checkNumberInput($event)"
               ).pl-1
                 template(slot="append")
-                  div(style="margin-top: -5px")
+                  div(style="margin-top: -8px")
                     v-icon(v-if="mobileNoError" color="accent").ml-n10 mdi-check
                     v-tooltip(bottom)
                       template(v-slot:activator="{ on }")
@@ -370,8 +370,11 @@ export default {
         this.mobileNoErrorMessage = 'Invalid mobile number format';
       }
     },
-    isNumber () {
-      if (!/\d/.test(event.key)) return event.preventDefault();
+    checkNumberInput () {
+      if (!/\d/.test(event.key)) {
+        return event.preventDefault();
+      };
+      return event;
     },
     doneSignupNonPH () {
       this.emailVerificationMessageDialog = false;

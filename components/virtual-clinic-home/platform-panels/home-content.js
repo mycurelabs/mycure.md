@@ -27,7 +27,7 @@ export const GET_MORE_PATIENTS = {
 export const MANAGE_EVERYTHING_EASILY = {
   image: 'MYCURE-virtual-clinic-healthcare-practice-online-homepage-D-billing-encounter-summary',
   header: 'Manage<br>everything easily',
-  description: 'Get real-time reports and analytics everytime you use the MYCURE platform. Access all your patient charts anytime you need to without having to worry about data privacy and security.',
+  description: 'Get real-time reports and analytics everytime you use the MYCURE platform. Have access to all your patient charts anytime you need without having to worry about data privacy and security.',
   btnTxt: 'Get Started',
   btnIcon: 'mdi-arrow-right',
 };
