@@ -18,16 +18,18 @@
         v-btn(
           color="primary"
           elevation="0"
+          rel="noreferrer noopener"
           small
           target="_blank"
-          rel="noreferrer noopener"
           :href="bookAppointmentUrl"
         ).mb-1.text-none Book Now!
       v-card-actions.pa-0
         v-btn(
-          depressed
-          small
           block
+          depressed
+          rel="noreferrer noopener"
+          small
+          target="_blank"
           :href="doctorWebsite"
         ).text-none View Website
 </template>
@@ -101,6 +103,9 @@ export default {
     // education () {
     //   return this.doctor?.educations;
     // },
+  },
+  mounted () {
+    console.warn(this.doctorWebsite);
   },
 };
 </script>
