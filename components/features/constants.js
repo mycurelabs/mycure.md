@@ -13,15 +13,7 @@ export const FEATURE_MODULE_GROUPS = [
         icon: 'MYCURE-virtual-clinic-healthcare-practice-online-features-J-core-02-telehealth.png',
         title: 'Telehealth',
         subTitle: 'Making quality\nhealthcare accessible',
-        description: {
-          text: 'A telemedicine platform for online video and audio consultations, interfaced with a patient portal for better access to medical records and forms.',
-          parseFields: [
-            'online',
-            'consultations',
-            'portal for',
-            'medical records',
-          ],
-        },
+        description: 'A telemedicine platform for online video and audio consultations, interfaced with a patient portal for better access to medical records.',
       },
       {
         icon: 'MYCURE-virtual-clinic-healthcare-practice-online-features-J-core-03-registration.png',
@@ -40,7 +32,7 @@ export const FEATURE_MODULE_GROUPS = [
         icon: 'MYCURE-virtual-clinic-healthcare-practice-online-features-J-core-05-administrative.png',
         title: 'Administrative',
         subTitle: 'Better operations with data-\ndriven business decisions.',
-        description: 'A business tool to measure your day-to-day clinic performance with sales reports, daily census, and sophisticated user access control.',
+        description: 'A business tool to measure your daily clinic performance with sales reports, daily census, and user access control.',
       },
     ],
   },
@@ -52,7 +44,7 @@ export const FEATURE_MODULE_GROUPS = [
         icon: 'MYCURE-virtual-clinic-healthcare-practice-online-features-H-premium-01-laboratory.png',
         title: 'Laboratory',
         subTitle: 'Record and retrieve results\nwhen you need them',
-        description: 'A Laboratory Information System that communicates with modern diagnostic machines through HL7 interfacing.',
+        description: 'A Laboratory Information System that seamlessly communicates with modern diagnostic machines through HL7 interfacing.',
       },
       {
         icon: 'MYCURE-virtual-clinic-healthcare-practice-online-features-H-premium-02-imaging.png',
@@ -64,7 +56,7 @@ export const FEATURE_MODULE_GROUPS = [
         icon: 'MYCURE-virtual-clinic-healthcare-practice-online-features-H-premium-03-inventory.png',
         title: 'Materials Management',
         subTitle: 'Your medical supplies\nat a glance',
-        description: 'A Materials Management System built for healthcare facilities to monitor in-house supplies and over-the-counter products.',
+        description: 'A Materials Management System built for healthcare facilities to easily monitor your in-house supplies and your over-the-counter products.',
       },
       {
         icon: 'MYCURE-virtual-clinic-healthcare-practice-online-features-H-premium-04-pme.png',
