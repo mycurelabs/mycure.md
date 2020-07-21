@@ -47,9 +47,4 @@ export default {
 };
 </script>
 <style scoped>
-/* @media screen and (min-width: 1024px) {
-  .panel-image {
-    margin-right: 4%;
-  }
-} */
-</style>>
+</style>
