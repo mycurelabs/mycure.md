@@ -65,10 +65,10 @@ export default {
   },
   methods: {
     getStarted () {
-      this.$nuxt.$router.push({ name: 'signup-individual' });
+      this.$nuxt.$router.push({ name: 'signup-invite' });
     },
     goToSignupIndividual (email) {
-      this.$nuxt.$router.push({ name: 'signup-individual', params: { email } });
+      this.$nuxt.$router.push({ name: 'signup-invite', params: { email } });
     },
     goToPatientPortal () {
       this.$nuxt.$router.push({ name: 'index', params: { panel: 'patient-portal' } });
