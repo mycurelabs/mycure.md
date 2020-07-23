@@ -151,6 +151,63 @@ export const getMycureCountries = async (opts) => {
   }
 };
 
+// signup wait list
+export const signupWaitList = async (user) => {
+  try {
+    const payload = {
+      email: user.email,
+      mobileNo: `+${user.countryCallingCode}${user.mobileNo}`,
+      personalDetails: {
+        name: {
+          firstName: user.firstName,
+          lastName: user.lastName,
+        },
+        doc_PRCLicenseNo: user.doc_PRCLicenseNo,
+      },
+    };
+    console.log(payload);
+    if (user.otp) { payload.totpToken = user.otp; }
+    const { data } = await axios({
+      method: 'post',
+      url: `${process.env.API_URL}/account-waitlist`,
+      data: payload,
+    });
+    return data;
+  } catch (e) {
+    console.error(e);
+    throw handleError(e);
+  }
+};
+
+// signup send codes to user
+export const signupSendCode = async (user) => {
+  let random = '';
+  const length = 8;
+  const characters = 'MYCURECareTheExtraMile0123456789';
+  const charactersLength = characters.length;
+  for (let i = 0; i < length; i++) {
+    random += characters.charAt(Math.floor(Math.random() * charactersLength));
+  }
+  try {
+    const payload = {
+      email: user.email,
+      password: random,
+      invitation: random,
+    };
+    console.log(payload);
+    if (user.otp) { payload.totpToken = user.otp; }
+    const { data } = await axios({
+      method: 'post',
+      url: `${process.env.API_URL}/accounts`,
+      data: payload,
+    });
+    return data;
+  } catch (e) {
+    console.error(e);
+    throw handleError(e);
+  }
+};
+
 export const signupIndividual = async (opts) => {
   try {
     const payload = {

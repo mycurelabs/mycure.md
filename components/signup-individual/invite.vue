@@ -137,6 +137,7 @@
                   width="100%"
                   outlined
                   :rules="[requiredRule]"
+                  :disabled="loading"
                 ).pr-2
                 v-btn(
                   height="55"
@@ -198,18 +199,29 @@
                   img(width="25" :src="country.flag")
                 v-list-item-content
                   v-list-item-title {{ country.name }}
+      //- EMAIL VERIFICATION DIALOG
+      email-verification-dialog(
+        v-model="emailVerificationMessageDialog"
+        :email="user.email"
+        @confirm="doneSignupNonPH"
+      )
 </template>
 
 <script>
 import { parsePhoneNumberFromString } from 'libphonenumber-js';
+// - components
+import EmailVerificationDialog from './email-verification-dialog';
 // - utils
 // import { getCountry, getCountries, signupIndividual } from '~/utils/axios';
-import { getCountry, getCountries } from '~/utils/axios';
+import { getCountry, getCountries, signupWaitList, signupSendCode } from '~/utils/axios';
 import dayOrNight from '~/utils/day-or-night';
 
 // const PASS_LENGTH = 6;
 
 export default {
+  components: {
+    EmailVerificationDialog,
+  },
   data () {
     this.dayOrNight = dayOrNight();
     this.checkListItems = [
@@ -222,6 +234,7 @@ export default {
       countryDialog: false,
       requestSentDialog: false,
       referralCodeDialog: false,
+      emailVerificationMessageDialog: false,
       // showPass: false,
       // models
       referralCode: null,
@@ -283,39 +296,39 @@ export default {
     this.$refs.formRef.resetValidation();
   },
   methods: {
-    // async next () {
-    next () {
-      this.requestSentDialog = true;
-      // try {
-      //   this.loading = true;
-      //   this.error = false;
-      //   this.validateForm();
-      //   if (!this.valid) {
-      //     return;
-      //   }
-      //   this.saveModel(this.user);
-      //   await signupIndividual(this.user);
-      //   if (this.user.countryCallingCode !== '63') {
-      //     if (process.browser) {
-      //       localStorage.clear();
-      //     }
-      //     this.emailVerificationMessageDialog = true;
-      //   } else {
-      //     this.$nuxt.$router.push({ name: 'signup-individual-step-2' });
-      //   }
-      // } catch (e) {
-      //   console.error(e);
-      //   this.error = true;
-      //   // Get the E<code> part of the error message.
-      //   const errorCode = parseInt(e?.message?.replace(/ .*/, '').substr(1));
-      //   if (errorCode === 11000) {
-      //     this.errorMessage = 'The email or mobile number you have entered is invalid or taken. Please try again.';
-      //     return;
-      //   }
-      //   this.errorMessage = 'There was an error please try again later';
-      // } finally {
-      //   this.loading = false;
-      // }
+    async next () {
+      try {
+        this.loading = true;
+        this.error = false;
+        this.validateForm();
+        if (!this.valid) {
+          return;
+        }
+        // this.saveModel(this.user);
+        await signupWaitList(this.user);
+        await signupSendCode(this.user);
+        this.requestSentDialog = true;
+        if (this.user.countryCallingCode !== '63') {
+          if (process.browser) {
+            localStorage.clear();
+          }
+          this.emailVerificationMessageDialog = true;
+        } else {
+          this.$nuxt.$router.push({ name: 'signup-invite' });
+        }
+      } catch (e) {
+        console.error(e);
+        this.error = true;
+        // Get the E<code> part of the error message.
+        const errorCode = parseInt(e?.message?.replace(/ .*/, '').substr(1));
+        if (errorCode === 11000) {
+          this.errorMessage = 'The email you have entered is invalid or taken. Please try again.';
+          return;
+        }
+        this.errorMessage = 'There was an error please try again later';
+      } finally {
+        this.loading = false;
+      }
     },
     async init () {
       this.loadingForm = true;
@@ -341,13 +354,14 @@ export default {
         this.loadingForm = false;
       }
     },
+    // CHECK THIS LATER ***************************************************************************************
     // saveModel (val) {
     //   const saveVal = {
     //     ...val,
     //     acceptTerms: false,
     //   };
     //   if (process.browser) {
-    //     localStorage.setItem('individual:step1:model', JSON.stringify(saveVal));
+    //     localStorage.setItem('signup:invite:credential', JSON.stringify(saveVal));
     //   }
     // },
     async getCountries () {
@@ -469,14 +483,14 @@ h1 {
 }
 @media screen and (min-width: 1024px) and (device-height: 768px) {
   .content-padding {
-    padding-top: 5vh;
-    padding-bottom: 4%;
+    padding-top: 2vh;
+    padding-bottom: 7%;
   }
 }
 @media screen and (device-width: 1280px) and (device-height: 800px) {
   .content-padding {
-    padding-top: 5vh;
-    padding-bottom: 6%;
+    padding-top: 0vh;
+    padding-bottom: 4%;
   }
 }
 @media screen and (device-width: 1280px) and (device-height: 1024px) {
@@ -487,49 +501,48 @@ h1 {
 }
 @media screen and (min-width: 1366px) {
   .content-padding {
-    margin-top: -4%;
-    margin-bottom: 3%;
-    height: 75vh;
+    margin-top: -3%;
+    padding-bottom: 3%;
     position: relative;
     z-index: 2;
   }
 }
 @media screen and (min-width: 1440px) {
   .content-padding {
-    padding-top: 13%;
-    margin-bottom: 7%;
+    padding-top: 5%;
+    padding-bottom: 0%;
     position: relative;
     z-index: 2;
   }
 }
 @media screen and (min-width: 1600px) {
   .content-padding {
-    padding-top: 12%;
-    margin-bottom: 6%;
+    padding-top: 5%;
+    padding-bottom: 0%;
     position: relative;
     z-index: 2;
   }
 }
 @media screen and (min-width: 1680px) {
   .content-padding {
-    padding-top: 15%;
-    margin-bottom: 8%;
+    padding-top: 10%;
+    padding-bottom: 0%;
     position: relative;
     z-index: 2;
   }
 }
 @media screen and (min-width: 1920px) {
   .content-padding {
-    padding-top: 15%;
-    margin-bottom: 5%;
+    padding-top: 10%;
+    padding-bottom: 2%;
     position: relative;
     z-index: 2;
   }
 }
 @media screen and (min-width: 2304px) {
   .content-padding {
-    padding-top: 21%;
-    margin-bottom: 6%;
+    padding-top: 15%;
+    padding-bottom: 6%;
     position: relative;
     z-index: 2;
   }
