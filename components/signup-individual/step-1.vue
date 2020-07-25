@@ -287,6 +287,10 @@ export default {
       this.loadingForm = true;
       // LOAD MODEL
       if (process.browser) {
+        // CHECK IF THERE IS A REFERRAL CODEs
+        if (localStorage.getItem('referral-code:') === null) {
+          this.$nuxt.$router.push({ name: 'signup-individual' });
+        };
         const data = await signupFetchUser(JSON.parse(localStorage.getItem('referral-code:')));
         // PREFILLED DATA
         this.user.firstName = data.personalDetails.name.firstName;
