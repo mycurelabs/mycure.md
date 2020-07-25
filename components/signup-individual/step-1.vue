@@ -287,9 +287,7 @@ export default {
       this.loadingForm = true;
       // LOAD MODEL
       if (process.browser) {
-        // GETTING THE INVITATION CODE
-        const referralCode = JSON.parse(localStorage.getItem('referral-code:'));
-        const data = await signupFetchUser(referralCode);
+        const data = await signupFetchUser(JSON.parse(localStorage.getItem('referral-code:')));
         // PREFILLED DATA
         this.user.firstName = data.personalDetails.name.firstName;
         this.user.lastName = data.personalDetails.name.lastName;
