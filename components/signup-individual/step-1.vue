@@ -5,9 +5,9 @@
         v-col(cols="12" md="8" justify="center" align="center")
           img(
             src="~/assets/images/sign-up-individual-step-1/mycure-sso-sign-in-logo.svg"
-            @click="$nuxt.$router.push({ name: 'index' })"
             alt="MYCURE logo"
             width="70"
+            @click="$nuxt.$router.push({ name: 'index' })"
           ).link-to-home.pb-5
           h1.pb-3 Create a MYCURE Account
           //- template(v-for="(item, key) in checkListItems")
@@ -17,18 +17,18 @@
             v-col(xs="12")
               v-text-field(
                 v-model="user.firstName"
-                outlined
                 label="First Name"
+                outlined
                 :rules="[requiredRule]"
                 :disabled="loading"
-              )#firstName.step-one-text-field.pr-1
+              ).step-one-text-field.pr-1
                 template(v-slot:append v-if="user.firstName")
                   v-icon(color="accent") mdi-check
             v-col(xs="12")
               v-text-field(
                 v-model="user.lastName"
-                outlined
                 label="Last Name"
+                outlined
                 :rules="[requiredRule]"
                 :disabled="loading"
               ).pl-1
@@ -96,13 +96,13 @@
                 :append-icon="showPass ? 'mdi-eye-off' : 'mdi-eye'"
                 :disabled="loading"
                 @click:append="showPass = !showPass"
-              ).pr-1
+              )#password.pr-1
             v-col(xs="12")
               v-text-field(
                 v-model="confirmPassword"
                 label="Confirm Password"
-                outlined
                 type="password"
+                outlined
                 :rules="[requiredRule, matchPasswordRule]"
                 :disabled="loading"
               ).pl-1
@@ -114,11 +114,11 @@
           div.d-inline-flex
             v-checkbox(
               v-model="user.acceptTerms"
-              hide-details
               style="margin-top: -10px"
+              color="primary"
+              hide-details
               :rules="[requiredRule]"
               :disabled="loading"
-              color="primary"
             )
             span.mt-n1 By creating a MYCURE account, you're agreeing to accept MYCURE's&nbsp;
               a(@click.stop="goToPrivacy") Privacy Policy,&nbsp;
@@ -129,10 +129,10 @@
           v-spacer
           v-btn(
             color="primary"
-            @click="next"
+            large
             :disabled="loading || !valid"
             :loading="loading"
-            large
+            @click="next"
           ).font-weight-bold Create My Account
       v-dialog(v-model="countryDialog" width="500" scrollable)
         v-card
@@ -165,7 +165,7 @@ import { parsePhoneNumberFromString } from 'libphonenumber-js';
 // - components
 import EmailVerificationDialog from './email-verification-dialog';
 // - utils
-import { getCountry, getCountries, signupIndividual } from '~/utils/axios';
+import { getCountry, getCountries, signupIndividual, signupFetchUser } from '~/utils/axios';
 import dayOrNight from '~/utils/day-or-night';
 
 const PASS_LENGTH = 6;
@@ -245,7 +245,7 @@ export default {
     // Select first text field
     if (process.browser) {
       this.$nextTick(() => {
-        document.getElementById('firstName') && document.getElementById('firstName').focus();
+        document.querySelector('#password') && document.querySelector('#password').focus();
       });
     }
     this.$refs.formRef.resetValidation();
@@ -285,8 +285,17 @@ export default {
     },
     async init () {
       this.loadingForm = true;
-      // Load model
+      // LOAD MODEL
       if (process.browser) {
+        // GETTING THE INVITATION CODE
+        const referralCode = JSON.parse(localStorage.getItem('referral-code:'));
+        const data = await signupFetchUser(referralCode);
+        // PREFILLED DATA
+        this.user.firstName = data.personalDetails.name.firstName;
+        this.user.lastName = data.personalDetails.name.lastName;
+        this.user.email = data.email;
+        this.user.mobileNo = data.mobileNo;
+        this.user.doc_PRCLicenseNo = data.personalDetails.doc_PRCLicenseNo;
         if (localStorage.getItem('individual:step1:model') && this.pageType === 'signup-individual-step-1') {
           this.user = {
             ...JSON.parse(localStorage.getItem('individual:step1:model')),
