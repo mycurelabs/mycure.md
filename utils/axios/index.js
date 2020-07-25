@@ -181,7 +181,6 @@ export const signupWaitList = async (user) => {
 
 // FETCHING USER DATA FOR PREFILLED FUNCTIONS IN SIGNUP USING INVITE CODE AS PARAMETER
 export const signupFetchUser = async (referralCode) => {
-  console.log(referralCode);
   const { data } = await axios({
     method: 'GET',
     url: `${process.env.API_URL}/account-waitlist/${referralCode}`,
