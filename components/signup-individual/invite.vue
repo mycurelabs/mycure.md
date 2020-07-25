@@ -2,29 +2,47 @@
   v-form(ref="formRef" v-model="valid").content-padding
     v-container
       v-row(justify="center" align="center")
-        v-col(cols="12" md="8" justify="center" align="center")
+        v-col(cols="12" justify="center" align="center")
           img(
             src="~/assets/images/sign-up-individual-step-1/mycure-sso-sign-in-logo.svg"
             alt="MYCURE logo"
-            width="70"
+            width="60"
             @click="$nuxt.$router.push({ name: 'index' })"
           ).link-to-home.pb-5
-          h1.pb-3 Create a MYCURE Account
-          //- template(v-for="(item, key) in checkListItems")
-          //-   span(v-html="item").font-16
-        v-col(cols="12" md="5" justify="center" align="center")
+          h1.pb-3 Getting Started
+        v-col(
+          cols="12"
+          sm="4"
+          md="3"
+          xl="2"
+          align-self="start")
+          img(
+            src="~/assets/images/sign-up-individual-step-1/mycure-su-message@2x.png"
+            alt="Invite message"
+            width="100%"
+          )
+          span.float-right.primary--text
+            a(@click="enterReferralCode") I have a referral code.
+        v-col(
+          cols="12"
+          sm="7"
+          md="5"
+          xl="4"
+          justify="center"
+          align-self="start")
+          //- FIRSTNAME AND LASTNAME
           v-row(no-gutters)
-            v-col(xs="12")
+            v-col
               v-text-field(
                 v-model="user.firstName"
                 label="First Name"
                 outlined
                 :rules="[requiredRule]"
                 :disabled="loading"
-              ).step-one-text-field.pr-1
+              )#firstName.pr-1
                 template(v-slot:append v-if="user.firstName")
                   v-icon(color="accent") mdi-check
-            v-col(xs="12")
+            v-col
               v-text-field(
                 v-model="user.lastName"
                 label="Last Name"
@@ -34,8 +52,20 @@
               ).pl-1
                 template(v-slot:append v-if="user.lastName")
                   v-icon(color="accent") mdi-check
+          //- EMAIL
+          v-text-field(
+            v-model="user.email"
+            type="email"
+            label="Email Address"
+            outlined
+            :rules="[requiredRule, emailRule]"
+            :disabled="loading"
+          )
+            template(v-slot:append v-if="user.email &&  /.+@.+/.test(user.email)")
+              v-icon(color="accent") mdi-check
+          //- LICENSE NO. AND MOBILE NO.
           v-row(no-gutters)
-            v-col(xs="12")
+            v-col
               v-text-field(
                 v-model="user.doc_PRCLicenseNo"
                 label="Physician License No"
@@ -45,7 +75,7 @@
               ).pr-1
                 template(v-slot:append v-if="user.doc_PRCLicenseNo && user.doc_PRCLicenseNo>=0")
                   v-icon(color="accent") mdi-check
-            v-col(xs="12")
+            v-col
               v-text-field(
                 v-model="user.mobileNo"
                 label="Mobile Number"
@@ -67,74 +97,97 @@
                         v-btn(icon @click="countryDialog = true" v-on="on")
                           img(width="25" :src="user.countryFlag").flag-img.mt-2
                       | Change Country
-            //- NOTE: DO NOT REMOVE YET
-            //- template(slot="append-outer")
-            //-   v-tooltip(bottom)
-            //-     v-btn(small icon slot="activator" @click="countryDialog = true" :disabled="loading")
-            //-       v-icon mdi-earth
-            //-     | Change Country
-        v-divider(v-if="!$isMobile" vertical).vertical-divider
-        v-col(cols="12" md="5" :class="credentialClasses")
-          v-text-field(
-            v-model="user.email"
-            type="email"
-            label="Email Address"
-            outlined
-            :rules="[requiredRule, emailRule]"
-            :disabled="loading"
-          )
-            template(v-slot:append v-if="user.email &&  /.+@.+/.test(user.email)")
-              v-icon(color="accent") mdi-check
-          v-row(no-gutters)
-            v-col(xs="12")
-              v-text-field(
-                v-model="user.password"
-                label="Your MYCURE Password"
-                outlined
-                :type="showPass ? 'text' : 'password'"
-                :rules="[requiredRule, passwordRule]"
-                :append-icon="showPass ? 'mdi-eye-off' : 'mdi-eye'"
-                :disabled="loading"
-                @click:append="showPass = !showPass"
-              )#password.pr-1
-            v-col(xs="12")
-              v-text-field(
-                v-model="confirmPassword"
-                label="Confirm Password"
-                type="password"
-                outlined
-                :rules="[requiredRule, matchPasswordRule]"
-                :disabled="loading"
-              ).pl-1
-                template(v-slot: append v-if="confirmPassword && confirmPassword === user.password")
-                  v-icon(color="accent") mdi-check
-        v-col(cols="12" md="10" justify="center" v-if="!$isMobile").mt-md-n5
           v-divider
-        v-col(cols="12" md="10" justify="center" align="start")
-          div.d-inline-flex
-            v-checkbox(
-              v-model="user.acceptTerms"
-              style="margin-top: -10px"
-              color="primary"
-              hide-details
-              :rules="[requiredRule]"
-              :disabled="loading"
-            )
-            span.mt-n1 By creating a MYCURE account, you're agreeing to accept MYCURE's&nbsp;
-              a(@click.stop="goToPrivacy") Privacy Policy,&nbsp;
-              a(@click.stop="goToTerms") Terms of Use,&nbsp;
-              | and BAA
-          v-alert(:value="error" type="error").mt-5 {{errorMessage}}
-        v-col(cols="12" md="10" justify="center" align="center")
-          v-spacer
-          v-btn(
-            color="primary"
-            large
-            :disabled="loading || !valid"
-            :loading="loading"
-            @click="next"
-          ).font-weight-bold Create My Account
-      v-dialog(v-model="countryDialog" width="500" scrollable)
+          //- TERMS AND AGREEMENT
+          v-row(no-gutters)
+            v-col(align="start")
+              div.d-flex
+                v-checkbox(
+                  v-model="user.acceptTerms"
+                  color="primary"
+                  hide-details
+                  :rules="[requiredRule]"
+                  :disabled="loading"
+                )
+                span.pt-6 I agree to&nbsp;
+                  strong MYCURE's&nbsp;
+                  a(@click="goToTerms") Terms&nbsp;
+                  | and&nbsp;
+                  a(@click="goToPrivacy") Privacy Policy.
+          v-alert(:value="error" type="error").mt-5 {{ errorMessage }}
+          v-row(no-gutters)
+            v-col(:align="!$isMobile ? 'end' : 'center'")
+              v-btn(
+                color="primary"
+                large
+                :disabled="loading || !valid"
+                :loading="loading"
+                @click="getAccess"
+              ).mt-6.font-weight-bold Get Free Access
+      //- REFERRAL CODE DIALOG
+      v-dialog(v-model="referralCodeDialog" width="350")
+        v-card.text-center
+          img(
+            src="~/assets/images/sign-up-individual-step-1/mycure-su-banner-invite-code@2x.png"
+            alt="Request Sent"
+            width="100%"
+          )
+          v-card-text
+            h1.py-5 Enter your&nbsp;
+              br(v-if="!$isMobile")
+              | Referral Code.
+            v-row(no-gutters)
+              v-col.d-inline-flex
+                v-text-field(
+                  v-model="user.referralCode"
+                  label="Referral Code"
+                  width="100%"
+                  ref="referralCode"
+                  outlined
+                  :disabled="loading"
+                ).pr-2
+                v-btn(
+                  height="55"
+                  color="primary"
+                  large
+                  :disabled="loading"
+                  :loading="loading"
+                  @click="submitCode"
+                ) Submit
+            v-alert(:value="error" type="error").text-justify {{ referralCodeError }}
+            v-divider.pb-5
+            span Got problems with your code?
+              br(v-if="$isMobile")
+              strong.primary--text
+                a(@click="toggleCrispChat") &nbsp;Contact Us.
+      //- REQUEST SENT DIALOG
+      v-dialog(v-model="requestSentDialog" width="350")
+        v-card.text-center
+          img(
+            src="~/assets/images/sign-up-individual-step-1/mycure-su-banner-waitlist@2x.png"
+            alt="Request Sent"
+            width="100%"
+          )
+          v-card-text
+            h1.py-3 Request Sent!
+            strong Thanks for joining!
+            p A MYCURE specialist will get in touch&nbsp;
+              br(v-if="!$isMobile")
+              | with you soon.
+            p Meanwhile, see if you can find a peer&nbsp;
+              br(v-if="!$isMobile")
+              | in our directory so you can ask for a&nbsp;
+              br(v-if="!$isMobile")
+              | referral code and get free access&nbsp;
+              br(v-if="!$isMobile")
+              | right away!
+            v-btn(
+              color="accent"
+              large
+              @click="goToDocDirectory"
+            ).my-2 VIEW DIRECTORY
+      //- SELECT COUNTRY FOR MOBILE NO. DIALOG
+      v-dialog(v-model="countryDialog" width="400" scrollable)
         v-card
           v-toolbar(flat)
             v-text-field(
@@ -154,8 +207,9 @@
                 v-list-item-action
                   img(width="25" :src="country.flag")
                 v-list-item-content
-                  v-list-item-title.text-wrap {{country.name}}
+                  v-list-item-title {{ country.name }}
                 strong +{{ country.callingCodes[0] }}
+      //- EMAIL VERIFICATION DIALOG
       email-verification-dialog(
         v-model="emailVerificationMessageDialog"
         :email="user.email"
@@ -168,10 +222,8 @@ import { parsePhoneNumberFromString } from 'libphonenumber-js';
 // - components
 import EmailVerificationDialog from './email-verification-dialog';
 // - utils
-import { getCountry, getCountries, signupIndividual, signupFetchUser } from '~/utils/axios';
+import { getCountry, getCountries, signupWaitList } from '~/utils/axios';
 import dayOrNight from '~/utils/day-or-night';
-
-const PASS_LENGTH = 6;
 
 export default {
   components: {
@@ -179,52 +231,33 @@ export default {
   },
   data () {
     this.dayOrNight = dayOrNight();
-    this.checkListItems = [
-      'Become a techy doctor in minutes! Manage your clinic more efficiently,<br>produce beautiful and useful reports. Save on time and save more lives!',
-    ];
     return {
-      showInfo: false,
+      // UI STATE
       valid: false,
       loading: false,
       loadingForm: false,
       countryDialog: false,
+      requestSentDialog: false,
+      referralCodeDialog: false,
       emailVerificationMessageDialog: false,
-      showPass: false,
-      // models
+      // MODELS
       user: {
         countryCallingCode: '',
         countryFlag: null,
       },
-      specializedClinicType: {
-        title: '',
-        image: '',
-      },
       countries: [],
-      confirmPassword: '',
       searchString: '',
-      // rules
+      // RULES
       requiredRule: v => !!v || 'This field is required',
       numberRule: v => v >= 0 || 'Please input a valid number',
       emailRule: v => /.+@.+/.test(v) || 'Email address must be valid',
-      passwordRule: v => v?.length >= PASS_LENGTH || 'Password length must be at least 6 characters.',
-      matchPasswordRule: v => v === this.user.password || 'Passwords do not match',
-      //
+      // ERROR
       error: false,
       errorMessage: 'There was an error please try again later.',
+      referralCodeError: 'Invalid code. Please try again later.',
       mobileNoError: false,
       mobileNoErrorMessage: '',
     };
-  },
-  computed: {
-    pageType () {
-      return this.$nuxt.$route.name;
-    },
-    contentClasses () {
-      return [{ 'content-padding': !this.$isMobile }];
-    },
-    credentialClasses () {
-      return [this.$isMobile ? 'mt-n6' : ''];
-    },
   },
   watch: {
     'user.mobileNo': {
@@ -245,16 +278,27 @@ export default {
     await this.init();
   },
   mounted () {
-    // Select first text field
+    // FOCUS IN FIRSTNAME TEXT FIELD
     if (process.browser) {
       this.$nextTick(() => {
-        document.querySelector('#password') && document.querySelector('#password').focus();
+        document.getElementById('firstName') && document.getElementById('firstName').focus();
       });
     }
     this.$refs.formRef.resetValidation();
   },
   methods: {
-    async next () {
+    async init () {
+      this.loadingForm = true;
+      const country = await getCountry();
+      const { location } = country;
+      this.user.countryCallingCode = location ? location.calling_code : '63';
+      this.user.countryFlag = location ? location.country_flag : 'https://assets.ipstack.com/flags/ph.svg';
+      // CHECK IF EMAIL IS PASSED
+      this.user.email = this.$route.params.email;
+      this.getCountries();
+      this.loadingForm = false;
+    },
+    async getAccess () {
       try {
         this.loading = true;
         this.error = false;
@@ -262,72 +306,20 @@ export default {
         if (!this.valid) {
           return;
         }
-        this.saveModel(this.user);
-        await signupIndividual(this.user);
-        if (this.user.countryCallingCode !== '63') {
-          if (process.browser) {
-            localStorage.clear();
-          }
-          this.emailVerificationMessageDialog = true;
-        } else {
-          this.$nuxt.$router.push({ name: 'signup-individual-step-2' });
-        }
+        await signupWaitList(this.user);
+        this.requestSentDialog = true;
       } catch (e) {
         console.error(e);
         this.error = true;
         // Get the E<code> part of the error message.
         const errorCode = parseInt(e?.message?.replace(/ .*/, '').substr(1));
         if (errorCode === 11000) {
-          this.errorMessage = 'The email or mobile number you have entered is invalid or taken. Please try again.';
+          this.errorMessage = 'The email you have entered is invalid or taken. Please try again.';
           return;
         }
         this.errorMessage = 'There was an error please try again later';
       } finally {
         this.loading = false;
-      }
-    },
-    async init () {
-      this.loadingForm = true;
-      // LOAD MODEL
-      if (process.browser) {
-        // CHECK IF THERE IS A REFERRAL CODEs
-        if (localStorage.getItem('referral-code:') === null) {
-          this.$nuxt.$router.push({ name: 'signup-individual' });
-        };
-        const data = await signupFetchUser(JSON.parse(localStorage.getItem('referral-code:')));
-        // PREFILLED DATA
-        this.user.firstName = data.personalDetails.name.firstName;
-        this.user.lastName = data.personalDetails.name.lastName;
-        this.user.email = data.email;
-        this.user.mobileNo = data.mobileNo;
-        this.user.doc_PRCLicenseNo = data.personalDetails.doc_PRCLicenseNo;
-        if (localStorage.getItem('individual:step1:model') && this.pageType === 'signup-individual-step-1') {
-          this.user = {
-            ...JSON.parse(localStorage.getItem('individual:step1:model')),
-            password: '',
-            confirmPassword: '',
-          };
-        } else {
-          const country = await getCountry();
-          const { location } = country;
-          this.user.countryCallingCode = location ? location.calling_code : '63';
-          this.user.countryFlag = location ? location.country_flag : 'https://assets.ipstack.com/flags/ph.svg';
-
-          // Check if an email was passed
-          this.user.email = this.$route.params.email;
-        }
-        // Load countries
-        this.getCountries();
-        this.loadingForm = false;
-      }
-    },
-    saveModel (val) {
-      const saveVal = {
-        ...val,
-        acceptTerms: false,
-      };
-      if (process.browser) {
-        localStorage.setItem('individual:step1:model', JSON.stringify(saveVal));
       }
     },
     async getCountries () {
@@ -397,6 +389,28 @@ export default {
       }
       this.$nuxt.$router.push({ name: 'signin' });
     },
+    enterReferralCode () {
+      this.referralCodeDialog = true;
+      setTimeout(() => {
+        this.$refs.referralCode.focus();
+      }, 0);
+    },
+    submitCode () {
+      this.loading = true;
+      this.referralCodeDialog = false;
+      localStorage.setItem('referral-code:', JSON.stringify(this.user.referralCode));
+      this.$nuxt.$router.push({ name: 'signup-individual-step-1' });
+    },
+    goToDocDirectory () {
+      this.loading = true;
+      this.requestSentDialog = false;
+      this.$nuxt.$router.push({ name: 'directory-doctors' });
+    },
+    toggleCrispChat () {
+      const message = 'Hello, I have problem with my referral code.';
+      window.$crisp.push(['do', 'chat:toggle']);
+      window.$crisp.push(['do', 'message:send', ['text', message]]);
+    },
   },
 };
 </script>
@@ -405,7 +419,6 @@ export default {
 h1 {
   line-height: 35px;
 }
-
 ::v-deep input::-webkit-outer-spin-button,
 ::v-deep input::-webkit-inner-spin-button {
   -webkit-appearance: none;
@@ -423,37 +436,28 @@ h1 {
 .flag-img:hover {
   cursor: pointer;
 }
-
-.checkbox-label {
-  margin-bottom: 0;
-}
-
-.vertical-divider {
-  margin-top: 10px;
-  height: 150px !important;
-}
 @media screen and (min-width: 768px) {
   .content-padding {
-    padding-top: 5vh;
-    padding-bottom: 10%;
+    padding-top: 10vh;
+    padding-bottom: 15%;
   }
 }
 @media screen and (min-width: 1024px) {
   .content-padding {
-    padding-top: 27vh;
-    padding-bottom: 30%;
+    padding-top: 20vh;
+    padding-bottom: 25%;
   }
 }
 @media screen and (min-width: 1024px) and (device-height: 768px) {
   .content-padding {
-    padding-top: 5vh;
-    padding-bottom: 3%;
+    padding-top: 0vh;
+    padding-bottom: 5%;
   }
 }
 @media screen and (device-width: 1280px) and (device-height: 800px) {
   .content-padding {
-    padding-top: 5vh;
-    padding-bottom: 6%;
+    padding-top: 0vh;
+    padding-bottom: 4%;
   }
 }
 @media screen and (device-width: 1280px) and (device-height: 1024px) {
@@ -464,63 +468,57 @@ h1 {
 }
 @media screen and (min-width: 1366px) {
   .content-padding {
-    margin-top: -4%;
-    margin-bottom: 3%;
-    height: 75vh;
+    padding-bottom: 3%;
     position: relative;
     z-index: 2;
   }
 }
 @media screen and (min-width: 1440px) {
   .content-padding {
-    padding-top: 13%;
-    margin-bottom: 7%;
+    padding-top: 4%;
+    padding-bottom: 0%;
     position: relative;
     z-index: 2;
   }
 }
 @media screen and (min-width: 1600px) {
   .content-padding {
-    padding-top: 12%;
-    margin-bottom: 6%;
+    padding-top: 3%;
+    padding-bottom: 0%;
     position: relative;
     z-index: 2;
   }
 }
 @media screen and (min-width: 1680px) {
   .content-padding {
-    padding-top: 15%;
-    margin-bottom: 8%;
+    padding-top: 7%;
+    padding-bottom: 0%;
     position: relative;
     z-index: 2;
   }
 }
 @media screen and (min-width: 1920px) {
   .content-padding {
-    padding-top: 15%;
-    margin-bottom: 5%;
+    padding-top: 7%;
+    padding-bottom: 2%;
     position: relative;
     z-index: 2;
   }
 }
 @media screen and (min-width: 2304px) {
   .content-padding {
-    padding-top: 21%;
-    margin-bottom: 6%;
+    padding-top: 12%;
+    padding-bottom: 6%;
     position: relative;
     z-index: 2;
   }
 }
 @media screen and (device-width: 2560px) {
   .content-padding {
-    padding-top: 19%;
+    padding-top: 12%;
     margin-bottom: 2%;
     position: relative;
     z-index: 2;
   }
 }
-/* TODO: confirm if needed. This will defeat uniformity across other forms. */
-/* .step-one-text-field {
-  border-width: thin !important;
-} */
 </style>
