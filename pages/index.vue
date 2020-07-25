@@ -107,13 +107,13 @@ export default {
       });
     },
     getStarted () {
-      this.$router.push({ name: 'signup-invite' });
+      this.$router.push({ name: 'signup-individual' });
     },
     goToFeatures () {
       this.$nuxt.$router.push({ name: 'features' });
     },
     goToSignupIndividual (email) {
-      this.$router.push({ name: 'signup-invite', params: { email } });
+      this.$router.push({ name: 'signup-individual', params: { email } });
     },
     goToPatientPortal () {
       window.open('https://staging-web-pxportal.web.app', '_blank', 'noopener, noreferrer');

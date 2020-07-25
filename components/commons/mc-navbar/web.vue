@@ -42,7 +42,7 @@
                 width="130"
                 v-if="currentRoute === 'doctors-clinics'"
                 color="accent"
-                :to="currentRoute === 'doctors-clinics' ? { name: 'signup-invite' } : { name: 'signup-multispecialty' }"
+                :to="currentRoute === 'doctors-clinics' ? { name: 'signup-individual' } : { name: 'signup-multispecialty' }"
                 id="start-free-btn"
                 @click.stop="onActionBtnClick('start-free-btn')"
               )
@@ -77,7 +77,7 @@
                 width="130"
                 color="accent"
                 id="get-started-btn"
-                :to=" { name: 'signup-invite' }"
+                :to=" { name: 'signup-individual' }"
                 @click.stop="onActionBtnClick('get-started-btn')"
               )
                 strong.font-14.white--text.tab.text-none Get Started

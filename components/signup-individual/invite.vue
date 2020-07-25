@@ -384,7 +384,7 @@ export default {
     submitCode () {
       localStorage.setItem('referral-code:', JSON.stringify(this.user.referralCode));
       this.referralCodeDialog = false;
-      this.$nuxt.$router.push({ name: 'signup-individual' });
+      this.$nuxt.$router.push({ name: 'signup-individual-step-1' });
     },
     goToDocDirectory () {
       this.requestSentDialog = false;
