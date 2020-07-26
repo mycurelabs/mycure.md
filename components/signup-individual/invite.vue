@@ -10,22 +10,33 @@
             @click="$nuxt.$router.push({ name: 'index' })"
           ).link-to-home.pb-5
           h1.pb-3 Getting Started
-        v-col(cols="12" sm="4" md="3" xl="2" align-self="start")
+        v-col(
+          cols="12"
+          sm="4"
+          md="3"
+          xl="2"
+          align-self="start")
           img(
             src="~/assets/images/sign-up-individual-step-1/mycure-su-message@2x.png"
             alt="Invite message"
             width="100%"
           )
           span.float-right.primary--text
-            a(@click="referralCodeDialog = true") I have a referral code.
-        v-col(cols="12" sm="7" md="5" xl="4" justify="center" align-self="start")
+            a(@click="enterReferralCode") I have a referral code.
+        v-col(
+          cols="12"
+          sm="7"
+          md="5"
+          xl="4"
+          justify="center"
+          align-self="start")
           //- FIRSTNAME AND LASTNAME
           v-row(no-gutters)
             v-col
               v-text-field(
                 v-model="user.firstName"
-                outlined
                 label="First Name"
+                outlined
                 :rules="[requiredRule]"
                 :disabled="loading"
               )#firstName.pr-1
@@ -34,8 +45,8 @@
             v-col
               v-text-field(
                 v-model="user.lastName"
-                outlined
                 label="Last Name"
+                outlined
                 :rules="[requiredRule]"
                 :disabled="loading"
               ).pl-1
@@ -131,10 +142,10 @@
                   v-model="user.referralCode"
                   label="Referral Code"
                   width="100%"
+                  ref="referralCode"
                   outlined
-                  :rules="[requiredRule]"
                   :disabled="loading"
-                )#referralCode.pr-2
+                ).pr-2
                 v-btn(
                   height="55"
                   color="primary"
@@ -237,18 +248,13 @@ export default {
       requiredRule: v => !!v || 'This field is required',
       numberRule: v => v >= 0 || 'Please input a valid number',
       emailRule: v => /.+@.+/.test(v) || 'Email address must be valid',
-      // ERROR HANDLING
+      // ERROR
       error: false,
       errorMessage: 'There was an error please try again later.',
       referralCodeError: 'Invalid code. Please try again later.',
       mobileNoError: false,
       mobileNoErrorMessage: '',
     };
-  },
-  computed: {
-    pageType () {
-      return this.$nuxt.$route.name;
-    },
   },
   watch: {
     'user.mobileNo': {
@@ -381,12 +387,20 @@ export default {
       }
       this.$nuxt.$router.push({ name: 'signin' });
     },
+    enterReferralCode () {
+      this.referralCodeDialog = true;
+      setTimeout(() => {
+        this.$refs.referralCode.focus();
+      }, 0);
+    },
     submitCode () {
-      localStorage.setItem('referral-code:', JSON.stringify(this.user.referralCode));
+      this.loading = true;
       this.referralCodeDialog = false;
+      localStorage.setItem('referral-code:', JSON.stringify(this.user.referralCode));
       this.$nuxt.$router.push({ name: 'signup-individual-step-1' });
     },
     goToDocDirectory () {
+      this.loading = true;
       this.requestSentDialog = false;
       this.$nuxt.$router.push({ name: 'directory-doctors' });
     },
