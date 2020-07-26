@@ -140,19 +140,22 @@
             v-text-field(
               v-model="searchString"
               label="Search Country"
+              append-icon="mdi-magnify"
               solo
               hide-details
               clearable
               autofocus
               flat
             )
+          v-divider
           v-card-text(style="height: 300px").pa-0
             v-list
               v-list-item(v-for="(country, key) in countries" @click="selectCountry(country)" :key="key")
                 v-list-item-action
                   img(width="25" :src="country.flag")
                 v-list-item-content
-                  v-list-item-title {{country.name}}
+                  v-list-item-title.text-wrap {{country.name}}
+                strong +{{ country.callingCodes[0] }}
       email-verification-dialog(
         v-model="emailVerificationMessageDialog"
         :email="user.email"

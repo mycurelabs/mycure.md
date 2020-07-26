@@ -193,12 +193,14 @@
             v-text-field(
               v-model="searchString"
               label="Search Country"
+              append-icon="mdi-magnify"
               solo
               hide-details
               clearable
               autofocus
               flat
             )
+          v-divider
           v-card-text(style="height: 300px").pa-0
             v-list
               v-list-item(v-for="(country, key) in countries" @click="selectCountry(country)" :key="key")
@@ -206,6 +208,7 @@
                   img(width="25" :src="country.flag")
                 v-list-item-content
                   v-list-item-title {{ country.name }}
+                strong +{{ country.callingCodes[0] }}
       //- EMAIL VERIFICATION DIALOG
       email-verification-dialog(
         v-model="emailVerificationMessageDialog"
@@ -296,7 +299,6 @@ export default {
       this.loadingForm = false;
     },
     async getAccess () {
-      // event.preventDefault();
       try {
         this.loading = true;
         this.error = false;
