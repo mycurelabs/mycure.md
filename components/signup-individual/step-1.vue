@@ -238,7 +238,7 @@ export default {
         return;
       }
       const needle = val.toLowerCase();
-      this.countries = this.countries.filter(v => v?.name?.toLowerCase().indexOf(needle) > -1); // eslint-disable-line
+      this.countries = this.countries.filter(v => v?.name?.toLowerCase().startsWith(needle)); // eslint-disable-line
     },
   },
   async created () {
