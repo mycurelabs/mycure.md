@@ -116,7 +116,7 @@ export default {
       this.$router.push({ name: 'signup-individual', params: { email } });
     },
     goToPatientPortal () {
-      window.open('https://staging-web-pxportal.web.app', '_blank', 'noopener, noreferrer');
+      window.open(process.env.PXP_URL, '_blank', 'noopener, noreferrer');
     },
     handleWatchFeatures () {
       this.$ga.event({

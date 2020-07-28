@@ -2,11 +2,13 @@
   v-container(fluid).footer-dark
     v-container(v-if="!$isMobile")
       mc-footer-toolbar
-      hr.my-4
-      v-row(justify="center" d-flex).py-5
-        v-col(cols="3")
+      v-row(justify="center").pb-8
+        v-col(cols="2")
+          nuxt-link(:to="{ name: 'index' }" title="MYCURE | Clinic Management System | Cloud EMR Philippines")
+            img(src="~/assets/images/mycure-footer-logo.png" height="40" alt="MYCURE logo")
+        v-col(cols="2")
           ul
-            li #[h3.primary--text.footer-header FOR HEALTHCARE PROFESSIONALS]
+            li #[h3.primary--text.footer-header FOR PROVIDERS]
             li(
               v-for="(solution, key) in clinicSolutions"
               :key="key"
@@ -14,18 +16,17 @@
               nuxt-link(
                 :to="{ name: solution.route }"
                 @click.stop="handleFooterSolution(solution.route)"
-              ).link {{solution.name}}
+              ).link {{ solution.name }}
             nuxt-link(
               id="footer-features-link"
-              @click.stop="handleFooterFeaturesLink"
-              :to="{name: 'features'}"
               title="MYCURE Features"
+              :to="{ name: 'features' }"
+              @click.stop="handleFooterFeaturesLink"
             ).link Features
-        v-col(cols="3").pl-12
-          div.mb-4
+        v-col(cols="2")
+          div
             h3.primary--text.footer-header FOR PATIENTS
-            a(:href="patientPortalUrl" target="_blank" rel="noopener noreferrer").link.new-link Patient Portal
-            br
+            a(:href="patientPortalSite" target="_blank" rel="noopener noreferrer").link.new-link Patient Portal
             //- directory / doctor
             //- nuxt-link(
             //-   id="footer-directory-doctors-link"
@@ -33,28 +34,29 @@
             //-   :to="{name: 'directory-doctors'}"
             //-   title="MYCURE Doctor's Directory"
             //- ).link.new-link Doctor's Directory
+        v-col(cols="2")
           div
             h3.primary--text.footer-header LEGAL
             nuxt-link(
               id="footer-terms-link"
-              @click.stop="handleFooterTermsLink"
-              :to="{name: 'terms'}"
               title="MYCURE Terms and Conditions"
+              :to="{ name: 'terms' }"
+              @click.stop="handleFooterTermsLink"
             ).link Terms of Use
             br
             nuxt-link(
               id="footer-privacy-policy-link"
-              @click.stop="handleFooterPrivacyPolicyLink"
-              :to="{name: 'privacy-policy'}"
               title="MYCURE Privacy Policy"
+              :to="{ name: 'privacy-policy' }"
+              @click.stop="handleFooterPrivacyPolicyLink"
             ).link Privacy Policy
-        v-col(cols="3")
+        v-col(cols="2")
           h3.primary--text.footer-header ABOUT
           nuxt-link(
             id="footer-our-story-link"
-            @click.stop="handleFooterOurStoryLink"
-            :to="{name: 'our-story'}"
             title="MYCURE Our Story | Caring the Extra Mile"
+            :to="{ name: 'our-story' }"
+            @click.stop="handleFooterOurStoryLink"
           ).link Our Story
           br
           a(href="http://blog.mycure.md/" target="_blank" rel="noopener noreferrer").link Blog
@@ -63,28 +65,33 @@
           br
           nuxt-link(
             id="footer-fight-covid-19-link"
-            @click.stop="handleFooterPrivacyPolicyLink"
-            :to="{name: 'fight-covid-19'}"
             title="Fight COVID-19: Free EMR"
+            :to="{ name: 'fight-covid-19' }"
+            @click.stop="handleFooterPrivacyPolicyLink"
           ).link Fight COVID-19: Free EMR
-        v-col(cols="3")
+        v-col(cols="2")
           h3.primary--text.footer-header CONTACT US
           a(
             id="footer-email-link"
-            @click.stop="handleFooterEmailLink"
             title="MYCURE - Email"
             href="mailto:hello@mycure.md"
+            @click.stop="handleFooterEmailLink"
           ).link hello@mycure.md
           br
           span.call-number (+632) 7799 6262
           br
           span.call-number (+63) 917 303 4350
-      hr.my-4
-      v-row(justify="center")
-        span.call-number Copyright &copy; 2016 - {{new Date().getFullYear()}}
-          a(href="https://mycure.md" rel="noopener noreferrer")
-            strong.primary--text &nbsp;MYCURE Inc.&nbsp;
-        span.call-number All Rights Reserved.
+      hr.my-5
+      v-row(align="center" no-gutters)
+        v-col(cols="7")
+          span.call-number Copyright &copy; 2016 - {{ new Date().getFullYear() }}
+            a(href="https://mycure.md" rel="noopener noreferrer")
+              strong.primary--text &nbsp;MYCURE Inc.&nbsp;
+          span.call-number All Rights Reserved.
+        v-col(cols="5" align="end")
+          template(v-for="(account, key) in socMed")
+            a(:href="account.link" target="_blank" rel="noopener noreferrer")
+              img(:src="require(`~/assets/images/${ account.icon }`)" height="35" :alt="account.name").pl-8
     v-container(v-else).footer-dark.pa-4
       mc-footer-toolbar
 </template>
@@ -99,9 +106,44 @@ export default {
   components: {
     McFooterToolbar,
   },
+  data () {
+    this.socMed = [
+      {
+        name: 'MYCURE - Instagram',
+        link: 'https://www.instagram.com/mycure.md/',
+        icon: 'mycure-homepage-wireframe-icon-ig.png',
+        id: 'footer-ig-btn',
+      },
+      {
+        name: 'MYCURE - LinkedIn',
+        link: 'https://www.linkedin.com/company/mycure',
+        icon: 'mycure-homepage-wireframe-icon-linkedin.png',
+        id: 'footer-linkedin-btn',
+      },
+      {
+        name: 'MYCURE - YouTube',
+        link: 'https://www.youtube.com/channel/UCfQ5QBdFh6f9Tuj2tWkRmvg',
+        icon: 'mycure-homepage-wireframe-icon-ytub-e.png',
+        id: 'footer-yt-btn',
+      },
+      {
+        name: 'MYCURE - Facebook',
+        link: 'https://www.facebook.com/mycure.md',
+        icon: 'mycure-homepage-wireframe-icon-fb.png',
+        id: 'footer-fb-btn',
+      },
+      {
+        name: 'MYCURE - Twitter',
+        link: 'https://twitter.com/mycureapp',
+        icon: 'mycure-homepage-wireframe-icon-twitter.png',
+        id: 'footer-twitter-btn',
+      },
+    ];
+    return {};
+  },
   computed: {
-    patientPortalUrl () {
-      return process.env.PX_PORTAL_URL;
+    patientPortalSite () {
+      return process.env.PXP_URL;
     },
   },
   created () {

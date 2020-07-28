@@ -1,29 +1,15 @@
 <template lang="pug">
-  fragment
-    loader
+  div
+    invite
 </template>
 
 <script>
-// components
-import Loader from '~/components/commons/loader';
-// utils
+import Invite from '~/components/signup-individual/invite';
 import headMeta from '~/utils/head-meta';
-
 export default {
-  layout: 'empty',
+  layout: 'user',
   components: {
-    Loader,
-  },
-  computed: {
-    email () {
-      return this.$route.params.email;
-    },
-  },
-  created () {
-    this.$nuxt.$router.push({
-      name: 'signup-individual-invite',
-      ...this.email && { params: { email: this.email } },
-    });
+    Invite,
   },
   head () {
     return headMeta({
