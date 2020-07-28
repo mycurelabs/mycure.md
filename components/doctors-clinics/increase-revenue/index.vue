@@ -23,7 +23,8 @@
           h1.font-30.lh-title.pb-6.mt-3.ml-3.font-weight-light {{ data.header }}
         br
         p(:class="{'pre-white-space': $isRegularScreen && typeof(data.description) === 'object'}").text-justify.font-16.font-gray.pr-2.pb-12 {{ data.description | parse-description }}
-        v-btn(@click="onGetStarted" text).pt-5.ml-n4.get-started-btn
+        br
+        v-btn(@click="onGetStarted" text).ml-n4.get-started-btn
           strong.font-18.text-capitalize.primary--text {{ data.btnTxt }}
           v-icon.primary--text {{ data.btnIcon }}
 </template>

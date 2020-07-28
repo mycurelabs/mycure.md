@@ -83,7 +83,7 @@
             :rules="[requiredRule, emailRule]"
             :disabled="loading"
           )
-            template(v-slot:append v-if="user.email &&  /.+@.+/.test(user.email)")
+            template(v-slot:append v-if="user.email && emailRule")
               v-icon(color="accent") mdi-check
           v-row(no-gutters)
             v-col(xs="12")
@@ -205,7 +205,7 @@ export default {
       // rules
       requiredRule: v => !!v || 'This field is required',
       numberRule: v => v >= 0 || 'Please input a valid number',
-      emailRule: v => /.+@.+/.test(v) || 'Email address must be valid',
+      emailRule: v => /^([\w]+.)+@([\w]+\.)+[\w-]{2,4}$/.test(v) || 'Email address must be valid',
       passwordRule: v => v?.length >= PASS_LENGTH || 'Password length must be at least 6 characters.',
       matchPasswordRule: v => v === this.user.password || 'Passwords do not match',
       //
