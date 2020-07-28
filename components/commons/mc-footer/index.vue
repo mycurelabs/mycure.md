@@ -19,14 +19,14 @@
               ).link {{ solution.name }}
             nuxt-link(
               id="footer-features-link"
-              @click.stop="handleFooterFeaturesLink"
-              :to="{ name: 'features' }"
               title="MYCURE Features"
+              :to="{ name: 'features' }"
+              @click.stop="handleFooterFeaturesLink"
             ).link Features
         v-col(cols="2")
           div
             h3.primary--text.footer-header FOR PATIENTS
-            a(:href="goToPatientPortal" target="_blank" rel="noopener noreferrer").link.new-link Patient Portal
+            a(:href="patientPortalSite" target="_blank" rel="noopener noreferrer").link.new-link Patient Portal
             //- directory / doctor
             //- nuxt-link(
             //-   id="footer-directory-doctors-link"
@@ -39,24 +39,24 @@
             h3.primary--text.footer-header LEGAL
             nuxt-link(
               id="footer-terms-link"
-              @click.stop="handleFooterTermsLink"
-              :to="{ name: 'terms' }"
               title="MYCURE Terms and Conditions"
+              :to="{ name: 'terms' }"
+              @click.stop="handleFooterTermsLink"
             ).link Terms of Use
             br
             nuxt-link(
               id="footer-privacy-policy-link"
-              @click.stop="handleFooterPrivacyPolicyLink"
-              :to="{ name: 'privacy-policy' }"
               title="MYCURE Privacy Policy"
+              :to="{ name: 'privacy-policy' }"
+              @click.stop="handleFooterPrivacyPolicyLink"
             ).link Privacy Policy
         v-col(cols="2")
           h3.primary--text.footer-header ABOUT
           nuxt-link(
             id="footer-our-story-link"
-            @click.stop="handleFooterOurStoryLink"
-            :to="{ name: 'our-story' }"
             title="MYCURE Our Story | Caring the Extra Mile"
+            :to="{ name: 'our-story' }"
+            @click.stop="handleFooterOurStoryLink"
           ).link Our Story
           br
           a(href="http://blog.mycure.md/" target="_blank" rel="noopener noreferrer").link Blog
@@ -65,17 +65,17 @@
           br
           nuxt-link(
             id="footer-fight-covid-19-link"
-            @click.stop="handleFooterPrivacyPolicyLink"
-            :to="{ name: 'fight-covid-19' }"
             title="Fight COVID-19: Free EMR"
+            :to="{ name: 'fight-covid-19' }"
+            @click.stop="handleFooterPrivacyPolicyLink"
           ).link Fight COVID-19: Free EMR
         v-col(cols="2")
           h3.primary--text.footer-header CONTACT US
           a(
             id="footer-email-link"
-            @click.stop="handleFooterEmailLink"
             title="MYCURE - Email"
             href="mailto:hello@mycure.md"
+            @click.stop="handleFooterEmailLink"
           ).link hello@mycure.md
           br
           span.call-number (+632) 7799 6262
@@ -142,7 +142,7 @@ export default {
     return {};
   },
   computed: {
-    goToPatientPortal () {
+    patientPortalSite () {
       return process.env.PXP_URL;
     },
   },

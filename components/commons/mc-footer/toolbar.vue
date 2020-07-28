@@ -32,7 +32,7 @@
             template(v-slot:actions)
               v-icon(color="grey").iconMargin mdi-menu-down
           v-expansion-panel-content.iconMargin
-            a(:href="goToPatientPortal" target="_blank" rel="noopener noreferrer").link.py-2
+            a(:href="patientPortalSite" target="_blank" rel="noopener noreferrer").link.py-2
               span.py-2.font-18.new-link Patient Portal
             br
             br
@@ -144,7 +144,7 @@ export default {
     };
   },
   computed: {
-    goToPatientPortal () {
+    patientPortalSite () {
       return process.env.PXP_URL;
     },
   },

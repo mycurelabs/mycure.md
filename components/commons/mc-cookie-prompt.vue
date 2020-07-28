@@ -40,9 +40,7 @@ export default {
     CookieLaw,
   },
   data () {
-    return {
-      isMobile: true,
-    };
+    return {};
   },
   computed: {
     cookieClasses () {
