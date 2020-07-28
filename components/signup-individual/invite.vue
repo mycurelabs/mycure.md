@@ -62,7 +62,7 @@
             :disabled="loading"
           )
             //- template(v-slot:append v-if="user.email &&  /.+@.+/.test(user.email)")
-            template(v-slot:append v-if="user.email &&  emailRule")
+            template(v-slot:append v-if="user.email && emailRule")
               v-icon(color="accent") mdi-check
           //- LICENSE NO. AND MOBILE NO.
           v-row(no-gutters)
@@ -251,7 +251,7 @@ export default {
       // RULES
       requiredRule: v => !!v || 'This field is required',
       numberRule: v => v >= 0 || 'Please input a valid number',
-      emailRule: v => /^[\w]+.+@([\w]+\.)+[\w-]{2,4}$/.test(v) || 'Email address must be valid',
+      emailRule: v => /^([\w]+.)+@([\w]+\.)+[\w-]{2,4}$/.test(v) || 'Email address must be valid',
       // ERROR
       error: false,
       errorMessage: 'There was an error please try again later.',
