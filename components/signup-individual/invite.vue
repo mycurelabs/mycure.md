@@ -60,9 +60,9 @@
             outlined
             :rules="[requiredRule, emailRule]"
             :disabled="loading"
+            @keyup="checkEmail"
           )
-            //- template(v-slot:append v-if="user.email &&  /.+@.+/.test(user.email)")
-            template(v-slot:append v-if="user.email && emailRule")
+            template(v-slot:append v-if="isEmailValid")
               v-icon(color="accent") mdi-check
           //- LICENSE NO. AND MOBILE NO.
           v-row(no-gutters)
@@ -74,7 +74,7 @@
                 :rules="[requiredRule, numberRule]"
                 :disabled="loading"
               ).pr-1
-                template(v-slot:append v-if="user.doc_PRCLicenseNo && user.doc_PRCLicenseNo>=0")
+                template(v-slot:append v-if="user.doc_PRCLicenseNo && user.doc_PRCLicenseNo>=2")
                   v-icon(color="accent") mdi-check
             v-col
               v-text-field(
@@ -237,6 +237,7 @@ export default {
       valid: false,
       loading: false,
       loadingForm: false,
+      isEmailValid: false,
       countryDialog: false,
       requestSentDialog: false,
       referralCodeDialog: false,
@@ -250,8 +251,8 @@ export default {
       searchString: '',
       // RULES
       requiredRule: v => !!v || 'This field is required',
-      numberRule: v => v >= 0 || 'Please input a valid number',
-      emailRule: v => /^([\w]+.)+@([\w]+\.)+[\w-]{2,4}$/.test(v) || 'Email address must be valid',
+      numberRule: v => /^[0-9-]{2,}$/.test(v) || 'Please input a valid number',
+      emailRule: v => /^.+@.+\.+[a-zA-Z]{2,3}$/.test(v) || 'Email address must be valid',
       // ERROR
       error: false,
       errorMessage: 'There was an error please try again later.',
@@ -411,6 +412,9 @@ export default {
       const message = 'Hello, I have problem with my referral code.';
       window.$crisp.push(['do', 'chat:toggle']);
       window.$crisp.push(['do', 'message:send', ['text', message]]);
+    },
+    checkEmail () {
+      this.isEmailValid = /^.+@.+\.+[a-zA-Z]{2,3}$/.test(this.user.email);
     },
   },
 };
