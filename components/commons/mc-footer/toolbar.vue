@@ -1,15 +1,6 @@
 <template lang="pug">
   v-container
-    v-row(v-if="!$isMobile")
-      v-toolbar(flat).footer-grey
-        nuxt-link(:to="{ name: 'index' }" title="MYCURE | Clinic Management System | Cloud EMR Philippines")
-          v-row.text-center
-            img(src="~/assets/images/mycure-footer-logo.png" height="40" alt="MYCURE logo")
-        v-spacer
-        div(v-for="(account, key) in socMed" :key="key")
-          a(:href="account.link" target="_blank" rel="noopener noreferrer")
-            img(:src="require(`~/assets/images/${ account.icon }`)" height="35" :alt="account.name").px-5
-    v-row(v-else justify="center").footer-grey
+    v-row(v-if="$isMobile" justify="center").footer-grey
       nuxt-link(:to="{ name: 'index' }" title="MYCURE | Clinic Management System | Cloud EMR Philippines")
         v-row(align="center").text-center
           img(src="~/assets/images/mycure-footer-logo.png" width="130" alt="MYCURE logo")
@@ -24,7 +15,7 @@
       v-expansion-panels(flat).footer-grey.elevation-0
         v-expansion-panel.footer-grey
           v-expansion-panel-header(:color="expansionPanelColor")
-            span.iconMargin.feature-text FOR HEALTHCARE PROFESSIONALS
+            span.iconMargin.feature-text FOR PROVIDERS
             template(v-slot:actions)
               v-icon(color="grey").iconMargin mdi-menu-down
           v-expansion-panel-content.iconMargin
@@ -41,7 +32,7 @@
             template(v-slot:actions)
               v-icon(color="grey").iconMargin mdi-menu-down
           v-expansion-panel-content.iconMargin
-            a(:href="patientPortalUrl" target="_blank" rel="noopener noreferrer").link.py-2
+            a(href="https://patients.mycure.md" target="_blank" rel="noopener noreferrer").link.py-2
               span.py-2.font-18.new-link Patient Portal
             br
             br
@@ -151,11 +142,6 @@ export default {
       legal: false,
       contact: false,
     };
-  },
-  computed: {
-    patientPortalUrl () {
-      return process.env.PX_PORTAL_URL;
-    },
   },
 };
 </script>
