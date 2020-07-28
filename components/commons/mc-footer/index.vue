@@ -16,17 +16,17 @@
               nuxt-link(
                 :to="{ name: solution.route }"
                 @click.stop="handleFooterSolution(solution.route)"
-              ).link {{solution.name}}
+              ).link {{ solution.name }}
             nuxt-link(
               id="footer-features-link"
               @click.stop="handleFooterFeaturesLink"
-              :to="{name: 'features'}"
+              :to="{ name: 'features' }"
               title="MYCURE Features"
             ).link Features
         v-col(cols="2")
           div
             h3.primary--text.footer-header FOR PATIENTS
-            a(href="https://patients.mycure.md" target="_blank" rel="noopener noreferrer").link.new-link Patient Portal
+            a(:href="goToPatientPortal" target="_blank" rel="noopener noreferrer").link.new-link Patient Portal
             //- directory / doctor
             //- nuxt-link(
             //-   id="footer-directory-doctors-link"
@@ -40,14 +40,14 @@
             nuxt-link(
               id="footer-terms-link"
               @click.stop="handleFooterTermsLink"
-              :to="{name: 'terms'}"
+              :to="{ name: 'terms' }"
               title="MYCURE Terms and Conditions"
             ).link Terms of Use
             br
             nuxt-link(
               id="footer-privacy-policy-link"
               @click.stop="handleFooterPrivacyPolicyLink"
-              :to="{name: 'privacy-policy'}"
+              :to="{ name: 'privacy-policy' }"
               title="MYCURE Privacy Policy"
             ).link Privacy Policy
         v-col(cols="2")
@@ -55,7 +55,7 @@
           nuxt-link(
             id="footer-our-story-link"
             @click.stop="handleFooterOurStoryLink"
-            :to="{name: 'our-story'}"
+            :to="{ name: 'our-story' }"
             title="MYCURE Our Story | Caring the Extra Mile"
           ).link Our Story
           br
@@ -66,7 +66,7 @@
           nuxt-link(
             id="footer-fight-covid-19-link"
             @click.stop="handleFooterPrivacyPolicyLink"
-            :to="{name: 'fight-covid-19'}"
+            :to="{ name: 'fight-covid-19' }"
             title="Fight COVID-19: Free EMR"
           ).link Fight COVID-19: Free EMR
         v-col(cols="2")
@@ -84,7 +84,7 @@
       hr.my-5
       v-row(align="center" no-gutters)
         v-col(cols="7")
-          span.call-number Copyright &copy; 2016 - {{new Date().getFullYear()}}
+          span.call-number Copyright &copy; 2016 - {{ new Date().getFullYear() }}
             a(href="https://mycure.md" rel="noopener noreferrer")
               strong.primary--text &nbsp;MYCURE Inc.&nbsp;
           span.call-number All Rights Reserved.
@@ -140,6 +140,11 @@ export default {
       },
     ];
     return {};
+  },
+  computed: {
+    goToPatientPortal () {
+      return process.env.PXP_URL;
+    },
   },
   created () {
     this.clinicSolutions = CLINIC_SOLUTIONS;

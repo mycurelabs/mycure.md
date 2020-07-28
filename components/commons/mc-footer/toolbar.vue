@@ -21,7 +21,7 @@
           v-expansion-panel-content.iconMargin
             template(v-for="solution in clinicSolutions").link.py-2
               nuxt-link(:to="{ name: solution.route }")
-                span.py-2.font-18.link {{solution.name}}
+                span.py-2.font-18.link {{ solution.name }}
               br
               br
             nuxt-link(id="footer-features-btn" :to="{ name: 'features' }" title="MYCURE | Features").link.py-2
@@ -32,7 +32,7 @@
             template(v-slot:actions)
               v-icon(color="grey").iconMargin mdi-menu-down
           v-expansion-panel-content.iconMargin
-            a(href="https://patients.mycure.md" target="_blank" rel="noopener noreferrer").link.py-2
+            a(:href="goToPatientPortal" target="_blank" rel="noopener noreferrer").link.py-2
               span.py-2.font-18.new-link Patient Portal
             br
             br
@@ -86,7 +86,7 @@
       br
       br
       v-row(justify="center").text-center.copyright-text
-        strong Copyright &copy; 2016 - {{new Date().getFullYear()}}
+        strong Copyright &copy; 2016 - {{ new Date().getFullYear() }}
       v-row(justify="center").text-center
         nuxt-link(:to="{ name: 'index' }" title="MYCURE | Clinic Management System | Cloud EMR Philippines")
           strong.primary--text &nbsp;MYCURE Inc.
@@ -142,6 +142,11 @@ export default {
       legal: false,
       contact: false,
     };
+  },
+  computed: {
+    goToPatientPortal () {
+      return process.env.PXP_URL;
+    },
   },
 };
 </script>
