@@ -43,7 +43,7 @@
                 :rules="[requiredRule, numberRule]"
                 :disabled="loading"
               ).pr-1
-                template(v-slot:append v-if="user.doc_PRCLicenseNo && user.doc_PRCLicenseNo>=0")
+                template(v-slot:append v-if="user.doc_PRCLicenseNo && user.doc_PRCLicenseNo>=2")
                   v-icon(color="accent") mdi-check
             v-col(xs="12")
               v-text-field(
@@ -82,8 +82,9 @@
             outlined
             :rules="[requiredRule, emailRule]"
             :disabled="loading"
+            @keyup="checkEmail"
           )
-            template(v-slot:append v-if="user.email && emailRule")
+            template(v-slot:append v-if="isEmailValid")
               v-icon(color="accent") mdi-check
           v-row(no-gutters)
             v-col(xs="12")
@@ -187,6 +188,7 @@ export default {
       valid: false,
       loading: false,
       loadingForm: false,
+      isEmailValid: false,
       countryDialog: false,
       emailVerificationMessageDialog: false,
       showPass: false,
@@ -204,7 +206,7 @@ export default {
       searchString: '',
       // rules
       requiredRule: v => !!v || 'This field is required',
-      numberRule: v => v >= 0 || 'Please input a valid number',
+      numberRule: v => /^[0-9-]{2,}$/.test(v) || 'Please input a valid number',
       emailRule: v => /^([\w]+.)+@([\w]+\.)+[\w-]{2,4}$/.test(v) || 'Email address must be valid',
       passwordRule: v => v?.length >= PASS_LENGTH || 'Password length must be at least 6 characters.',
       matchPasswordRule: v => v === this.user.password || 'Passwords do not match',
@@ -396,6 +398,9 @@ export default {
         localStorage.clear();
       }
       this.$nuxt.$router.push({ name: 'signin' });
+    },
+    checkEmail () {
+      this.isEmailValid = /^.+@.+\.+[a-zA-Z]{2,3}$/.test(this.user.email);
     },
   },
 };
