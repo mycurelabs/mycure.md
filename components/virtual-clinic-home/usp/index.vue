@@ -6,9 +6,9 @@
     )
       v-row(align="start" justify="center")
         v-col(cols="11" :class="{ 'pt-12 mt-4': $isMobile, 'pl-5 usp-content': !$isMobile }").text-center
-          h3(:class="titleHeaderClasses").font-poppins.lh-title {{ panelTitleHeader }}
-          h1(:class="titleClasses").font-poppins.lh-title {{ panelTitleMain }}
-          p(:class="[centerText, subtitleClasses]").font-italic {{ uspSubtitle }}
+          h3(:class="titleHeaderClasses").font-poppins.lh-title For Modern Doctors:
+          h1(:class="titleClasses").font-poppins.lh-title Virtual is the new normal.
+          p(:class="[centerText, subtitleClasses]").font-italic Build your virtual clinic today.
           div(v-if="!$isMobile").text-field-container.mr-3
             v-text-field(
               background-color="white"
@@ -50,9 +50,6 @@
 import canUseWebp from '~/utils/can-use-webp';
 export default {
   data () {
-    this.panelTitleHeader = 'For Modern Doctors:';
-    this.panelTitleMain = 'Virtual is the new normal.';
-    this.uspSubtitle = 'Build your virtual clinic today.';
     return {
       email: '',
       canUseWebp: false,
