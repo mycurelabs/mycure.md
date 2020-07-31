@@ -16,20 +16,6 @@ export const SECOND_PANEL_CONTENTS = [
     header: 'Role-based user access',
   },
 ];
-export const OUTPATIENT = {
-  image: 'MYCURE-virtual-clinic-healthcare-practice-online-enterprise-C-book-online-calendar.png',
-  header: 'Handle outpatient consultations online',
-  description: 'Continue to give your patients quality care online while keeping your physicians safe.',
-  btnTxt: 'Get Started',
-  btnIcon: 'mdi-arrow-right-thick',
-};
-export const FOURTH_PANEL = {
-  image: 'MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-final-E-patient-portal',
-  header: 'Keep your patients in the loop',
-  description: 'Making sure your patients are informed is easier and faster with an online patient portal. Release diagnostic results right as they\'re finalized and coordinate with your patients easier with online consultations.',
-  btnTxt: 'Get Started',
-  btnIcon: 'mdi-arrow-right-thick',
-};
 export const FIFTH_PANEL_HEADER = {
   header: 'Make smarter decisions with real-time business and medical insights ',
   description: 'One of the perks to having one smart system for all is keeping accurate record of all transactions across all branches.',
@@ -52,15 +38,6 @@ export const FIFTH_PANEL_CONTENT = [
     imageTitle: 'Sales & Billing',
   },
 ];
-export const BRANCHES = {
-  subHeader: 'FOR MULTI-BRANCH FACILITIES',
-  image: 'MYCURE-virtual-clinic-healthcare-practice-online-enterprise-E-multiple-branches.png',
-  imageMobile: 'MYCURE-virtual-clinic-healthcare-practice-online-enterprise-E-multiple-branches-mobile.png',
-  header: 'Monitor multiple branches on one system',
-  description: 'All you need is one clean dashboard to see how your clinics are faring. The precious data from your multiple branches is automatically aggregated to show you a comprehensive summary of patient encounters, transactions, sales, expenses and even staff performance.',
-  btnTxt: 'Get Started',
-  btnIcon: 'mdi-arrow-right-thick',
-};
 export const SEVENTH_PANEL = {
   subHeader: 'FOR MULTISPECIALTY CLINICS',
   header: 'Best for one-stop, multi-staff clinics',
