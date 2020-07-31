@@ -1,36 +1,36 @@
 <template lang="pug">
-  div
-    client-only
-      generic-media-panel(
-        content-align-right
-        cols-left="5"
-        cols-right="4"
-        offset-cols-right="1"
-        web-image-class="ml-n2"
-        web-image-width="105%"
-        custom-image-path="features/"
-        :header="header"
-        :descriptions="descriptions"
-        :web-image="image"
-      )
-      //- DO NOT DELETE THIS YET
-        //- hide-image-mobile
-      //- v-container(v-if="$isMobile")
-      //-   v-row(justify="center")
-      //-     carousel(
-      //-       :per-page="1"
-      //-       autoplay
-      //-       loop
-      //-       paginationActiveColor="#3498db"
-      //-       paginationColor="#808080"
-      //-     )
-      //-       slide(
-      //-         v-for="(image,index) in mobilePanelImages"
-      //-         :key="index"
-      //-         :data-index="index+1"
-      //-       ).pa-1
-      //-         v-row(justify="center")
-      //-           img(v-lazy="require(`~/assets/images/features/${image}`)" alt="Medical records" width="90%")
+  generic-media-panel(
+    align-right-column="center"
+    cols-left="5"
+    cols-right="4"
+    offset-cols-right="1"
+    custom-image-path="features/"
+    web-image-width="104%"
+    mobile-image-width="95%"
+    mobile-image-class="text-center"
+    :content-align-right="true"
+    :header="header"
+    :descriptions="descriptions"
+    :web-image="image"
+  )
+  //- DO NOT DELETE THIS YET
+    //- hide-image-mobile
+  //- v-container(v-if="$isMobile")
+  //-   v-row(justify="center")
+  //-     carousel(
+  //-       :per-page="1"
+  //-       autoplay
+  //-       loop
+  //-       paginationActiveColor="#3498db"
+  //-       paginationColor="#808080"
+  //-     )
+  //-       slide(
+  //-         v-for="(image,index) in mobilePanelImages"
+  //-         :key="index"
+  //-         :data-index="index+1"
+  //-       ).pa-1
+  //-         v-row(justify="center")
+  //-           img(v-lazy="require(`~/assets/images/features/${image}`)" alt="Medical records" width="90%")
 </template>
 
 <script>

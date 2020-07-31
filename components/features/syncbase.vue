@@ -1,12 +1,15 @@
 <template lang="pug">
   generic-media-panel(
+    align-right-column="center"
     cols-left="5"
     cols-right="4"
     offset-cols-right="1"
     custom-image-path="features/"
-    content-align-right
     web-image-width="106%"
-    web-image-class="ml-n2"
+    web-image-class="ml-n1"
+    mobile-image-width="95%"
+    mobile-image-class="text-center"
+    :content-align-right="true"
     :header="header"
     :descriptions="descriptions"
     :web-image="image"

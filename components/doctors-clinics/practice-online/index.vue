@@ -1,36 +1,40 @@
 <template lang="pug">
-  v-container.py-12
-    v-row(justify="center" align="center")
-      v-col(justify="start" cols="12" md="4" :class="{ 'ml-3': !$isMobile }")
-        h1.font-30.lh-title.pb-3.font-weight-light {{ panelContent.header }}
-        br
-        p.text-justify.font-16.mt-3.font-gray {{ panelContent.description }}
-        br
-        br
-        v-btn(@click="onGetStarted" text).ml-n4.get-started-btn
-          strong.font-18.text-capitalize.primary--text {{ panelContent.btnTxt }}
-          v-icon.primary--text {{ panelContent.btnIcon }}
-      v-col(cols="12" md="5" offset-md="1")
-        picture-source(
-          custom-path="doctors-clinics/"
-          image-alt="Take your practice online"
-          image-file-extension=".webp"
-          :image-width="!$isMobile ? '105%' : '100%'"
-          :class="{ 'ml-n6' : !$isMobile }"
-          :image="panelMainImage"
-        )
+  generic-media-panel(
+    align-left-column="center"
+    cols-left="4"
+    cols-right="5"
+    offset-cols-right="1"
+    custom-image-path="doctors-clinics/"
+    file-extension=".webp"
+    web-image-width="104%"
+    mobile-image-width="95%"
+    web-image-class="ml-n3"
+    mobile-image-class="text-center"
+    :content-align-left="true"
+    :header="panelContents.title"
+    :descriptions="[panelContents.description]"
+    :web-image="panelContents.image"
+  )
+    div(slot="additional-content")
+      v-btn(text @click="onGetStarted").ml-n4
+        strong.text-capitalize.primary--text.font-18 {{ panelContents.btnTxt }}
+        v-icon.primary--text {{ panelContents.btnIcon }}
 </template>
 
 <script>
-// constants
-import { TAKE_PRACTICE_ONLINE } from '../doctors-clinics-content';
-// components
-import PictureSource from '~/components/commons/PictureSource';
+import GenericMediaPanel from '~/components/commons/generic-media-panel';
 export default {
-  components: { PictureSource },
+  components: {
+    GenericMediaPanel,
+  },
   data () {
-    this.panelContent = TAKE_PRACTICE_ONLINE;
-    this.panelMainImage = 'MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-C-group-practice';
+    this.panelContents = {
+      image: 'MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-C-group-practice',
+      title: 'Take your entire practice online - even your group clinic',
+      description: 'Easily coordinate with other doctors in your group practice and centralize your clinic system under one subscription.',
+      btnTxt: 'Get Started',
+      btnIcon: 'mdi-arrow-right',
+    };
     return {};
   },
   methods: {
@@ -40,10 +44,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-a {
-  text-decoration-color: #2e9fdf;
-  text-decoration: none;
-}
-</style>
