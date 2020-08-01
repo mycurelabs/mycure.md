@@ -17,7 +17,7 @@
           xl="2"
           align-self="start")
           img(
-            src="~/assets/images/sign-up-individual-step-1/mycure-su-message@2x.png"
+            src="~/assets/images/sign-up-individual-step-1/mycure-su-message-blank@2x.png"
             alt="Invite message"
             width="100%"
           )
