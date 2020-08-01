@@ -1,69 +1,68 @@
 <template lang="pug">
   div
-    client-only
-      generic-media-panel(
-        cols-left="5"
-        cols-right="4"
-        offset-cols-right="1"
-        custom-image-path="features/"
-        web-image-class="ml-n1"
-        web-image-width="105%"
-        hide-image-mobile
-        content-align-right
-        :header="header"
-        :descriptions="descriptions"
-        :web-image="mediaImage"
-      )
-        //- Check list
-        template(slot="additional-content")
-          template(v-for="(item, i) in checkListItems")
-            v-row(:align="i === 2 ? 'center' : 'start'" dense)
-              v-col(cols="1").pr-2.pt-2
-                img(width="20" src="~/assets/images/mycure-check.png" alt="Check icon")
-              v-col
-                span(:class="i === 2 && 'pre-white-space'").font-16.font-gray {{ item }}
-      //- Bottom images
-      v-container(v-if="!$isMobile").mt-n8.pb-12
-        v-row
-          v-col(cols="12" md="5" offset-md="1")
-            picture-source(
-              :custom-path="customPath"
-              :image="leftBottomImage"
-              image-file-extension=".webp"
-              image-alt="Charge slip"
-              image-width="105%"
-            ).ml-n1
-          v-col(cols="12" md="5").mt-n4
-            picture-source(
-              :custom-path="customPath"
-              :image="rightBottomImage"
-              image-file-extension=".webp"
-              image-alt="Daily census"
-              image-width="100%"
-            ).ml-2
-      v-container(v-else)
-        v-row(justify="center")
-          carousel(
-            :per-page="1"
-            autoplay
-            loop
-            paginationActiveColor="#3498db"
-            paginationColor="#808080"
-          )
-            slide(
-              v-for="(image,index) in mobilePanelImages"
-              :key="index"
-              :data-index="index+1"
-            ).pa-1
-              v-row(justify="center").ml-6
-                picture-source(
-                  :custom-path="customPath",
-                  :image="image"
-                  :image-file-extension="index === 0 ? '.webp' : '.png'"
-                  image-width="90%"
-                  image-alt="Billing"
-                  extension-exclusive
-                )
+    generic-media-panel(
+      cols-left="5"
+      cols-right="4"
+      offset-cols-right="1"
+      custom-image-path="features/"
+      web-image-class="ml-n1"
+      web-image-width="105%"
+      hide-image-mobile
+      content-align-right
+      :header="header"
+      :descriptions="descriptions"
+      :web-image="panelImages.mediaImage"
+    )
+      //- Check list
+      template(slot="additional-content")
+        template(v-for="(item, i) in checkListItems")
+          v-row(:align="i === 2 ? 'center' : 'start'" dense)
+            v-col(cols="1").pr-2.pt-2
+              img(width="20" src="~/assets/images/mycure-check.png" alt="Check icon")
+            v-col
+              span(:class="i === 2 && 'pre-white-space'").font-16.font-gray {{ item }}
+    //- Bottom images
+    v-container(v-if="!$isMobile").mt-n8.pb-12
+      v-row
+        v-col(cols="12" md="5" offset-md="1")
+          picture-source(
+            image-file-extension=".webp"
+            image-alt="Charge slip"
+            image-width="105%"
+            :custom-path="customPath"
+            :image="panelImages.leftBottomImage"
+          ).ml-n1
+        v-col(cols="12" md="5").mt-n4
+          picture-source(
+            image-file-extension=".webp"
+            image-alt="Daily census"
+            image-width="100%"
+            :custom-path="customPath"
+            :image="panelImages.rightBottomImage"
+          ).ml-2
+    v-container(v-else)
+      v-row(justify="center")
+        carousel(
+          paginationActiveColor="#3498db"
+          paginationColor="#808080"
+          autoplay
+          loop
+          :per-page="1"
+        )
+          slide(
+            v-for="(image,index) in mobilePanelImages"
+            :key="index"
+            :data-index="index+1"
+          ).pa-1
+            v-row(justify="center").ml-6
+              picture-source(
+                image-width="90%"
+                image-alt="Billing"
+                extension-exclusive
+                :custom-path="customPath",
+                :image="image"
+                :image-file-extension="index === 0 ? '.webp' : '.png'"
+              )
 </template>
 
 <script>
@@ -78,14 +77,12 @@ export default {
   },
   data () {
     this.header = 'Simplified billing, beautiful reports.';
-    this.descriptions = [
-      'Produce neatly-organized reports in a minute or less.',
-    ];
-    this.panelImages = [
-      'MYCURE-virtual-clinic-healthcare-practice-online-features-E-01-billing-payment',
-      'MYCURE-virtual-clinic-healthcare-practice-online-features-E-02-charge-slip',
-      'MYCURE-virtual-clinic-healthcare-practice-online-features-E-03-daily-census',
-    ];
+    this.descriptions = ['Produce neatly-organized reports in a minute or less.'];
+    this.panelImages = {
+      mediaImage: 'MYCURE-virtual-clinic-healthcare-practice-online-features-E-01-billing-payment',
+      leftBottomImage: 'MYCURE-virtual-clinic-healthcare-practice-online-features-E-02-charge-slip',
+      rightBottomImage: 'MYCURE-virtual-clinic-healthcare-practice-online-features-E-03-daily-census',
+    };
     this.mobilePanelImages = [
       'MYCURE-virtual-clinic-healthcare-practice-online-features-E-01-billing-payment',
       'MYCURE-virtual-clinic-healthcare-practice-online-features-E-02-charge-slip-mobile',
@@ -99,17 +96,6 @@ export default {
     ];
     this.customPath = 'features/';
     return {};
-  },
-  computed: {
-    mediaImage () {
-      return this.panelImages[0];
-    },
-    leftBottomImage () {
-      return this.panelImages[1];
-    },
-    rightBottomImage () {
-      return this.panelImages[2];
-    },
   },
 };
 </script>
