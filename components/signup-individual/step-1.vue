@@ -121,10 +121,11 @@
               :rules="[requiredRule]"
               :disabled="loading"
             )
-            span.mt-n1 By creating a MYCURE account, you're agreeing to accept MYCURE's&nbsp;
-              a(@click.stop="goToPrivacy") Privacy Policy,&nbsp;
-              a(@click.stop="goToTerms") Terms of Use,&nbsp;
-              | and BAA
+            span.mt-n1 I agree to&nbsp;
+              b MYCURE's&nbsp;
+              a(@click.stop="goToTerms") Terms&nbsp;
+              | and&nbsp;
+              a(@click.stop="goToPrivacy") Privacy Policy.&nbsp;
           v-alert(:value="error" type="error").mt-5 {{errorMessage}}
         v-col(cols="12" md="10" justify="center" align="center")
           v-spacer
@@ -297,11 +298,12 @@ export default {
           this.$nuxt.$router.push({ name: 'signup-individual' });
         };
         const data = await signupFetchUser(JSON.parse(localStorage.getItem('referral-code:')));
+        const phoneNumber = parsePhoneNumberFromString(data.mobileNo);
         // PREFILLED DATA
         this.user.firstName = data.personalDetails.name.firstName;
         this.user.lastName = data.personalDetails.name.lastName;
         this.user.email = data.email;
-        this.user.mobileNo = data.mobileNo;
+        this.user.mobileNo = parseInt(phoneNumber.nationalNumber);
         this.user.doc_PRCLicenseNo = data.personalDetails.doc_PRCLicenseNo;
         if (localStorage.getItem('individual:step1:model') && this.pageType === 'signup-individual-step-1') {
           this.user = {
@@ -314,9 +316,6 @@ export default {
           const { location } = country;
           this.user.countryCallingCode = location ? location.calling_code : '63';
           this.user.countryFlag = location ? location.country_flag : 'https://assets.ipstack.com/flags/ph.svg';
-
-          // Check if an email was passed
-          this.user.email = this.$route.params.email;
         }
         // Load countries
         this.getCountries();
