@@ -98,23 +98,7 @@
                         v-btn(icon @click="countryDialog = true" v-on="on")
                           img(width="25" :src="user.countryFlag").flag-img.mt-2
                       | Change Country
-          v-divider
-          //- TERMS AND AGREEMENT
-          v-row(no-gutters)
-            v-col(align="start")
-              div.d-flex
-                v-checkbox(
-                  v-model="user.acceptTerms"
-                  color="primary"
-                  hide-details
-                  :rules="[requiredRule]"
-                  :disabled="loading"
-                )
-                span.pt-6 I agree to&nbsp;
-                  strong MYCURE's&nbsp;
-                  a(@click="goToTerms") Terms&nbsp;
-                  | and&nbsp;
-                  a(@click="goToPrivacy") Privacy Policy.
+          v-divider.my-2
           v-alert(:value="error" type="error").mt-5 {{ errorMessage }}
           v-row(no-gutters)
             v-col(:align="!$isMobile ? 'end' : 'center'")
@@ -339,22 +323,6 @@ export default {
       this.user.countryFlag = country.flag;
       this.countryDialog = false;
       this.searchString = '';
-    },
-    goToTerms () {
-      const routeData = this.$nuxt.$router.resolve({ name: 'terms' });
-      if (process.client) {
-        const changeRoute = window.open(routeData.href, '_blank');
-        changeRoute.opener = null;
-        changeRoute.rel = 'noopener noreferrer';
-      }
-    },
-    goToPrivacy () {
-      const routeData = this.$nuxt.$router.resolve({ name: 'privacy-policy' });
-      if (process.client) {
-        const changeRoute = window.open(routeData.href, '_blank');
-        changeRoute.opener = null;
-        changeRoute.rel = 'noopener noreferrer';
-      }
     },
     validateForm () {
       const valid = this.$refs.formRef.validate();
