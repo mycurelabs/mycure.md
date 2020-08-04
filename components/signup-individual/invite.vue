@@ -15,12 +15,16 @@
           sm="4"
           md="3"
           xl="2"
-          align-self="start")
+          align-self="start"
+        )
           img(
+            v-if="!loadingForm"
             src="~/assets/images/sign-up-individual-step-1/mycure-su-message-blank@2x.png"
-            alt="Invite message"
             width="100%"
           )
+          p(v-if="loadingForm").text-justify.pb-12.font-20
+            strong MYCURE virtual clinic is by invite only.&nbsp;
+            | Fill up this form and get your account activated within 1-2 days.
           span.float-right.primary--text
             a(@click="enterReferralCode") I have a referral code.
         v-col(
@@ -29,7 +33,8 @@
           md="5"
           xl="4"
           justify="center"
-          align-self="start")
+          align-self="start"
+        )
           //- FIRSTNAME AND LASTNAME
           v-row(no-gutters)
             v-col
