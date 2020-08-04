@@ -115,7 +115,7 @@
                 @click="getAccess"
               ).mt-6.font-weight-bold Get Free Access
       //- REFERRAL CODE DIALOG
-      v-dialog(v-model="referralCodeDialog" width="350")
+      v-dialog(v-model="referralCodeDialog" width="350" :retain-focus="false")
         v-card.text-center
           img(
             src="~/assets/images/sign-up-individual-step-1/mycure-su-banner-invite-code@2x.png"
@@ -382,6 +382,7 @@ export default {
       this.$nuxt.$router.push({ name: 'directory-doctors' });
     },
     toggleCrispChat () {
+      this.referralCodeDialog = false;
       const message = 'Hello, I have problem with my referral code.';
       window.$crisp.push(['do', 'chat:toggle']);
       window.$crisp.push(['do', 'message:send', ['text', message]]);
