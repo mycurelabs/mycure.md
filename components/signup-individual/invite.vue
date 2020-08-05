@@ -15,12 +15,16 @@
           sm="4"
           md="3"
           xl="2"
-          align-self="start")
+          align-self="start"
+        )
           img(
-            src="~/assets/images/sign-up-individual-step-1/mycure-su-message@2x.png"
-            alt="Invite message"
+            v-if="!loadingForm"
+            src="~/assets/images/sign-up-individual-step-1/mycure-su-message-blank@2x.png"
             width="100%"
           )
+          p(v-if="loadingForm").text-justify.pb-12.font-20
+            strong MYCURE virtual clinic is by invite only.&nbsp;
+            | Fill up this form and get your account activated within 1-2 days.
           span.float-right.primary--text
             a(@click="enterReferralCode") I have a referral code.
         v-col(
@@ -29,7 +33,8 @@
           md="5"
           xl="4"
           justify="center"
-          align-self="start")
+          align-self="start"
+        )
           //- FIRSTNAME AND LASTNAME
           v-row(no-gutters)
             v-col
@@ -98,23 +103,7 @@
                         v-btn(icon @click="countryDialog = true" v-on="on")
                           img(width="25" :src="user.countryFlag").flag-img.mt-2
                       | Change Country
-          v-divider
-          //- TERMS AND AGREEMENT
-          v-row(no-gutters)
-            v-col(align="start")
-              div.d-flex
-                v-checkbox(
-                  v-model="user.acceptTerms"
-                  color="primary"
-                  hide-details
-                  :rules="[requiredRule]"
-                  :disabled="loading"
-                )
-                span.pt-6 I agree to&nbsp;
-                  strong MYCURE's&nbsp;
-                  a(@click="goToTerms") Terms&nbsp;
-                  | and&nbsp;
-                  a(@click="goToPrivacy") Privacy Policy.
+          v-divider.my-2
           v-alert(:value="error" type="error").mt-5 {{ errorMessage }}
           v-row(no-gutters)
             v-col(:align="!$isMobile ? 'end' : 'center'")
@@ -126,7 +115,7 @@
                 @click="getAccess"
               ).mt-6.font-weight-bold Get Free Access
       //- REFERRAL CODE DIALOG
-      v-dialog(v-model="referralCodeDialog" width="350")
+      v-dialog(v-model="referralCodeDialog" width="350" :retain-focus="false")
         v-card.text-center
           img(
             src="~/assets/images/sign-up-individual-step-1/mycure-su-banner-invite-code@2x.png"
@@ -162,7 +151,7 @@
               strong.primary--text
                 a(@click="toggleCrispChat") &nbsp;Contact Us.
       //- REQUEST SENT DIALOG
-      v-dialog(v-model="requestSentDialog" width="350")
+      v-dialog(v-model="requestSentDialog" width="350" persistent)
         v-card.text-center
           img(
             src="~/assets/images/sign-up-individual-step-1/mycure-su-banner-waitlist@2x.png"
@@ -340,22 +329,6 @@ export default {
       this.countryDialog = false;
       this.searchString = '';
     },
-    goToTerms () {
-      const routeData = this.$nuxt.$router.resolve({ name: 'terms' });
-      if (process.client) {
-        const changeRoute = window.open(routeData.href, '_blank');
-        changeRoute.opener = null;
-        changeRoute.rel = 'noopener noreferrer';
-      }
-    },
-    goToPrivacy () {
-      const routeData = this.$nuxt.$router.resolve({ name: 'privacy-policy' });
-      if (process.client) {
-        const changeRoute = window.open(routeData.href, '_blank');
-        changeRoute.opener = null;
-        changeRoute.rel = 'noopener noreferrer';
-      }
-    },
     validateForm () {
       const valid = this.$refs.formRef.validate();
       this.validatePhoneNo();
@@ -409,6 +382,7 @@ export default {
       this.$nuxt.$router.push({ name: 'directory-doctors' });
     },
     toggleCrispChat () {
+      this.referralCodeDialog = false;
       const message = 'Hello, I have problem with my referral code.';
       window.$crisp.push(['do', 'chat:toggle']);
       window.$crisp.push(['do', 'message:send', ['text', message]]);
