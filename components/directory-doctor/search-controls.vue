@@ -12,6 +12,7 @@
             dense
             hide-details
             outlined
+            :loading="isLoading"
           ).input-field
         v-col
           v-autocomplete(
@@ -24,6 +25,7 @@
             outlined
             small-chips
             :items="specialties"
+            :loading="isLoading"
           ).input-field
         v-col
           v-select(
@@ -36,6 +38,7 @@
             outlined
             return-object
             :items="sortBy"
+            :loading="isLoading"
           ).input-field
         v-col.col-auto
           div.d-flex.justify-end
@@ -67,6 +70,11 @@
             color="error"
             @click:close="searchObject.specialties = []"
           ).ma-1 Clear filters
+        v-col(v-if="isLoading" cols="12" align="center")
+          img(
+            width="60"
+            :src="require('../../assets/images/mycure-loader.gif')"
+          )
     //- template(v-else)
       v-row.mb-2
         v-text-field(
@@ -107,6 +115,10 @@ export default {
     searchString: {
       type: String,
       default: '',
+    },
+    isLoading: {
+      type: Boolean,
+      default: false,
     },
     searchSpecialties: {
       type: Array,
@@ -159,7 +171,6 @@ export default {
       viewType: 'grid',
       mobileViewType: 'grid',
       searchTerm: '',
-      isLoading: false,
       isOptionDialogOpen: false,
       selectedSpecialization: 'default',
       selectedSort: 'default',
