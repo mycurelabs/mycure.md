@@ -121,7 +121,7 @@
               :rules="[requiredRule]"
               :disabled="loading"
             )
-            span.mt-n1 I agree to&nbsp;
+            span(style="margin-top: -6px;") I agree to&nbsp;
               b MYCURE's&nbsp;
               a(@click.stop="goToTerms") Terms&nbsp;
               | and&nbsp;
