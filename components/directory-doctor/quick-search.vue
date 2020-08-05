@@ -5,7 +5,7 @@
         v-col(cols="4" sm="4" md="2" lg="2").pa-1
           v-card(hover height="100%" @click="search(item)")
             v-card-actions.py-5
-              small {{item.text}}
+              small {{ item.text }}
               v-spacer
               img(
                 v-if="item.icon"
@@ -23,11 +23,11 @@
         v-list(v-if="$isMobile" style="width: 200px;")
           template(v-for="item in sixAbove")
             v-list-item(@click="search(item)")
-              v-list-item-title {{item.text}}
+              v-list-item-title {{ item.text }}
         v-row(v-if="!$isMobile" style="background-color: #F0F0F0;" justify="center" no-gutters).pa-3
           v-card(v-for="(item, key) in sixAbove" :key="key" @click="search(item)").ma-1.px-1
             v-card-actions
-              small {{item.text}}
+              small {{ item.text }}
 </template>
 
 <script>
