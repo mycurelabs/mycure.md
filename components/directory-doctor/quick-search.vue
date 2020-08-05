@@ -12,7 +12,7 @@
                 width="35"
                 :src="require(`../../assets/images/directory-doctor/${item.icon}`)"
               )
-      v-menu(offset-y left)
+      v-menu(offset-y left max-width="60%" nudge-left="4")
         template(v-slot:activator="{ on, attrs }")
           v-col(cols="4" sm="4" md="2" lg="2" v-on="on").pa-1
             v-card(hover height="100%")
@@ -20,10 +20,14 @@
                 small Other
                 v-spacer
                 v-icon mdi-dots-vertical
-        v-list(style="width: 200px;")
+        v-list(v-if="$isMobile" style="width: 200px;")
           template(v-for="item in sixAbove")
             v-list-item(@click="search(item)")
               v-list-item-title {{item.text}}
+        v-row(v-if="!$isMobile" style="background-color: #F0F0F0;" justify="center" no-gutters).pa-3
+          v-card(v-for="(item, key) in sixAbove" :key="key" @click="search(item)").ma-1.px-1
+            v-card-actions
+              small {{item.text}}
 </template>
 
 <script>
