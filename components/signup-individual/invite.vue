@@ -151,7 +151,7 @@
               strong.primary--text
                 a(@click="toggleCrispChat") &nbsp;Contact Us.
       //- REQUEST SENT DIALOG
-      v-dialog(v-model="requestSentDialog" width="350")
+      v-dialog(v-model="requestSentDialog" width="350" persistent)
         v-card.text-center
           img(
             src="~/assets/images/sign-up-individual-step-1/mycure-su-banner-waitlist@2x.png"
