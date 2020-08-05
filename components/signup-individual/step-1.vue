@@ -126,7 +126,7 @@
               a(@click.stop="goToTerms") Terms&nbsp;
               | and&nbsp;
               a(@click.stop="goToPrivacy") Privacy Policy.&nbsp;
-          v-alert(:value="error" type="error").mt-5 {{errorMessage}}
+          v-alert(:value="error" type="error").mt-5 {{ errorMessage }}
         v-col(cols="12" md="10" justify="center" align="center")
           v-spacer
           v-btn(
@@ -156,7 +156,7 @@
                 v-list-item-action
                   img(width="25" :src="country.flag")
                 v-list-item-content
-                  v-list-item-title.text-wrap {{country.name}}
+                  v-list-item-title.text-wrap {{ country.name }}
                 strong +{{ country.callingCodes[0] }}
       email-verification-dialog(
         v-model="emailVerificationMessageDialog"
