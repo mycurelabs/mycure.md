@@ -16,7 +16,7 @@
         template(v-slot:activator="{ on, attrs }")
           v-col(cols="4" sm="4" md="2" lg="2" v-on="on").pa-1
             v-card(hover height="100%")
-              v-card-actions.py-5
+              v-card-actions.py-6
                 small Other
                 v-spacer
                 v-icon mdi-dots-vertical
