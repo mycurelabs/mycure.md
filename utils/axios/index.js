@@ -151,43 +151,6 @@ export const getMycureCountries = async (opts) => {
   }
 };
 
-// SIGNUP WAIT LIST
-export const signupWaitList = async (user) => {
-  try {
-    const payload = {
-      email: user.email,
-      mobileNo: `+${user.countryCallingCode}${user.mobileNo}`,
-      personalDetails: {
-        name: {
-          firstName: user.firstName,
-          lastName: user.lastName,
-        },
-        doc_PRCLicenseNo: user.doc_PRCLicenseNo,
-      },
-    };
-    console.log(payload);
-    if (user.otp) { payload.totpToken = user.otp; }
-    const { data } = await axios({
-      method: 'POST',
-      url: `${process.env.API_URL}/account-waitlist`,
-      data: payload,
-    });
-    return data;
-  } catch (e) {
-    console.error(e);
-    throw handleError(e);
-  }
-};
-
-// FETCHING USER DATA FOR PREFILLED FUNCTIONS IN SIGNUP USING INVITE CODE AS PARAMETER
-export const signupFetchUser = async (referralCode) => {
-  const { data } = await axios({
-    method: 'GET',
-    url: `${process.env.API_URL}/account-waitlist/${referralCode}`,
-  });
-  return data;
-};
-
 // CREATING AN ACCOUNT
 export const signupIndividual = async (opts) => {
   try {
@@ -332,3 +295,5 @@ export const recordWebsiteVisit = async (opts) => {
 };
 
 export * from './doctor-directory';
+export * from './account-invitations';
+export * from './account-waitlist';
