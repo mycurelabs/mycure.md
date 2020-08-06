@@ -1,4 +1,5 @@
 <template lang="pug">
+  //- FIXME: Don't wrap the whole page with form
   v-form(ref="formRef" v-model="valid").content-padding
     v-container
       v-row(justify="center" align="center")
@@ -19,6 +20,7 @@
                 v-model="user.firstName"
                 label="First Name"
                 outlined
+                autofocus
                 :rules="[requiredRule]"
                 :disabled="loading"
               ).step-one-text-field.pr-1
@@ -89,6 +91,7 @@
           v-row(no-gutters)
             v-col(xs="12")
               v-text-field(
+                ref="passwordRef"
                 v-model="user.password"
                 label="Your MYCURE Password"
                 outlined
@@ -146,7 +149,6 @@
               solo
               hide-details
               clearable
-              autofocus
               flat
             )
           v-divider
@@ -170,7 +172,13 @@ import { parsePhoneNumberFromString } from 'libphonenumber-js';
 // - components
 import EmailVerificationDialog from './email-verification-dialog';
 // - utils
-import { getCountry, getCountries, signupIndividual, signupFetchUser } from '~/utils/axios';
+import {
+  getCountries,
+  getCountry,
+  getWaitlist,
+  signupIndividual,
+} from '~/utils/axios';
+import { getItem } from '~/utils/localStorage';
 import dayOrNight from '~/utils/day-or-night';
 
 const PASS_LENGTH = 6;
@@ -196,7 +204,12 @@ export default {
       // models
       user: {
         countryCallingCode: '',
-        countryFlag: null,
+        countryFlag: '',
+        doc_PRCLicenseNo: '',
+        email: '',
+        firstName: '',
+        lastName: '',
+        mobileNo: '',
       },
       specializedClinicType: {
         title: '',
@@ -206,6 +219,7 @@ export default {
       confirmPassword: '',
       searchString: '',
       // rules
+      // FIXME: These rules also exists in other forms. Put this on a constants file for better reusability
       requiredRule: v => !!v || 'This field is required',
       numberRule: v => /^[0-9-]{2,}$/.test(v) || 'Please input a valid number',
       emailRule: v => /^([\w]+.)+@([\w]+\.)+[\w-]{2,4}$/.test(v) || 'Email address must be valid',
@@ -248,12 +262,6 @@ export default {
     await this.init();
   },
   mounted () {
-    // Select first text field
-    if (process.browser) {
-      this.$nextTick(() => {
-        document.querySelector('#password') && document.querySelector('#password').focus();
-      });
-    }
     this.$refs.formRef.resetValidation();
   },
   methods: {
@@ -290,35 +298,48 @@ export default {
       }
     },
     async init () {
-      this.loadingForm = true;
-      // LOAD MODEL
-      if (process.browser) {
+      try {
+        this.loadingForm = true;
+
+        // Load defaults, replace with
+        // localStorage data later if available
+        await this.getCountries();
+        const country = await getCountry();
+        const { location } = country;
+        this.user.countryCallingCode = location ? location.calling_code : '63';
+        this.user.countryFlag = location ? location.country_flag : 'https://assets.ipstack.com/flags/ph.svg';
+
         // CHECK IF THERE IS A REFERRAL CODEs
-        if (localStorage.getItem('referral-code:') === null) {
+        if (getItem('account-invitation') === null) {
           this.$nuxt.$router.push({ name: 'signup-individual' });
+          return;
         };
-        const data = await signupFetchUser(JSON.parse(localStorage.getItem('referral-code:')));
-        const phoneNumber = parsePhoneNumberFromString(data.mobileNo);
-        // PREFILLED DATA
-        this.user.firstName = data.personalDetails.name.firstName;
-        this.user.lastName = data.personalDetails.name.lastName;
-        this.user.email = data.email;
-        this.user.mobileNo = parseInt(phoneNumber.nationalNumber);
-        this.user.doc_PRCLicenseNo = data.personalDetails.doc_PRCLicenseNo;
-        if (localStorage.getItem('individual:step1:model') && this.pageType === 'signup-individual-step-1') {
+
+        const accountInvitationData = getItem('account-invitation');
+
+        const accountInvitation = await getWaitlist({ referralCode: accountInvitationData.referralCode });
+        if (!accountInvitation) return;
+
+        const phoneNumber = accountInvitation?.mobileNo && parsePhoneNumberFromString(accountInvitation.mobileNo);
+        this.user.firstName = accountInvitation.personalDetails.name.firstName;
+        this.user.lastName = accountInvitation.personalDetails.name.lastName;
+        this.user.email = accountInvitation.email;
+        this.user.mobileNo = parseInt(phoneNumber?.nationalNumber);
+        this.user.doc_PRCLicenseNo = accountInvitation.personalDetails.doc_PRCLicenseNo;
+
+        if (getItem('individual:step1:model') && this.pageType === 'signup-individual-step-1') {
           this.user = {
-            ...JSON.parse(localStorage.getItem('individual:step1:model')),
+            ...getItem('individual:step1:model'),
             password: '',
             confirmPassword: '',
           };
-        } else {
-          const country = await getCountry();
-          const { location } = country;
-          this.user.countryCallingCode = location ? location.calling_code : '63';
-          this.user.countryFlag = location ? location.country_flag : 'https://assets.ipstack.com/flags/ph.svg';
         }
-        // Load countries
-        this.getCountries();
+
+        this.$refs.passwordRef.focus();
+        this.$refs.formRef.resetValidation();
+      } catch (e) {
+        console.error(e);
+      } finally {
         this.loadingForm = false;
       }
     },
