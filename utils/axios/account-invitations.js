@@ -8,6 +8,7 @@ export const getAccountInvitations = async (opts) => {
       method: 'get',
       url: `${process.env.API_URL}/account-invitations/${opts.referralCode}`,
     });
+    console.log(data);
   } catch (e) {
     console.error(e);
     throw handleError(e);
