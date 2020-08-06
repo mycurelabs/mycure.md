@@ -1,4 +1,5 @@
 <template lang="pug">
+  //- FIXME: Don't wrap the whole page with form. Fix ASAP.
   v-form(ref="formRef" v-model="valid").content-padding
     v-container
       v-row(justify="center" align="center")
@@ -35,6 +36,7 @@
           justify="center"
           align-self="start"
         )
+          //- TODO: this is the only part that should be form
           //- FIRSTNAME AND LASTNAME
           v-row(no-gutters)
             v-col
@@ -115,14 +117,20 @@
                 @click="getAccess"
               ).mt-6.font-weight-bold Get Free Access
       //- REFERRAL CODE DIALOG
-      v-dialog(v-model="referralCodeDialog" width="350" :retain-focus="false")
-        v-card.text-center
+      v-dialog(v-model="referralCodeDialog" width="350" persistent :retain-focus="false")
+        v-card
+          v-btn(
+            style="position: absolute; right: 0; margin: 5px;"
+            icon
+            @click="referralCodeDialog = false"
+          )
+            v-icon mdi-close
           img(
             src="~/assets/images/sign-up-individual-step-1/mycure-su-banner-invite-code@2x.png"
             alt="Request Sent"
             width="100%"
           )
-          v-card-text
+          v-card-text.text-center
             h1.py-5 Enter your&nbsp;
               br(v-if="!$isMobile")
               | Referral Code.
@@ -134,17 +142,18 @@
                   width="100%"
                   ref="referralCode"
                   outlined
+                  required
                   :disabled="loading"
                 ).pr-2
                 v-btn(
                   height="55"
                   color="primary"
                   large
-                  :disabled="loading"
+                  :disabled="loading || !user.referralCode"
                   :loading="loading"
                   @click="submitCode"
                 ) Submit
-            v-alert(:value="error" type="error").text-justify {{ referralCodeError }}
+            v-alert(:value="referralCodeError" type="error").text-justify {{ referralCodeErrorMessage }}
             v-divider.pb-5
             span Got problems with your code?
               br(v-if="$isMobile")
@@ -212,8 +221,14 @@ import { parsePhoneNumberFromString } from 'libphonenumber-js';
 // - components
 import EmailVerificationDialog from './email-verification-dialog';
 // - utils
-import { getCountry, getCountries, signupWaitList } from '~/utils/axios';
+import {
+  getCountries,
+  getCountry,
+  getWaitlist,
+  createWaitlist,
+} from '~/utils/axios';
 import dayOrNight from '~/utils/day-or-night';
+import { setItem } from '~/utils/localStorage';
 
 export default {
   components: {
@@ -235,6 +250,7 @@ export default {
       user: {
         countryCallingCode: '',
         countryFlag: null,
+        referralCode: '',
       },
       countries: [],
       searchString: '',
@@ -245,7 +261,8 @@ export default {
       // ERROR
       error: false,
       errorMessage: 'There was an error please try again later.',
-      referralCodeError: 'Invalid code. Please try again later.',
+      referralCodeError: false,
+      referralCodeErrorMessage: 'Invalid referral code.',
       mobileNoError: false,
       mobileNoErrorMessage: '',
     };
@@ -266,6 +283,12 @@ export default {
     },
   },
   async created () {
+    const { referralCode } = this.$route.query;
+    if (referralCode) {
+      this.referralCodeDialog = true;
+      this.user.referralCode = referralCode;
+      return;
+    }
     await this.init();
   },
   mounted () {
@@ -297,7 +320,7 @@ export default {
         if (!this.valid) {
           return;
         }
-        await signupWaitList(this.user);
+        await createWaitlist(this.user);
         this.requestSentDialog = true;
       } catch (e) {
         console.error(e);
@@ -370,11 +393,24 @@ export default {
         this.$refs.referralCode.focus();
       }, 0);
     },
-    submitCode () {
-      this.loading = true;
-      this.referralCodeDialog = false;
-      localStorage.setItem('referral-code:', JSON.stringify(this.user.referralCode));
-      this.$nuxt.$router.push({ name: 'signup-individual-step-1' });
+    async submitCode () {
+      try {
+        this.loading = true;
+        this.referralCodeError = false;
+        const accountInvitation = await getWaitlist({ referralCode: this.user.referralCode });
+        if (!accountInvitation) {
+          this.referralCodeError = true;
+          return;
+        }
+        this.referralCodeDialog = false;
+        setItem('account-invitation', { referralCode: this.user.referralCode });
+        this.$nuxt.$router.push({ name: 'signup-individual-step-1' });
+      } catch (e) {
+        this.referralCodeError = true;
+        console.error(e);
+      } finally {
+        this.loading = false;
+      }
     },
     goToDocDirectory () {
       this.loading = true;
