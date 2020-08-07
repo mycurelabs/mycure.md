@@ -1,42 +1,40 @@
 <template lang="pug">
-  //- FIXME: Don't wrap the whole page with form. Fix ASAP.
-  v-form(ref="formRef" v-model="valid").content-padding
-    v-container
-      v-row(justify="center" align="center")
-        v-col(cols="12" justify="center" align="center")
-          img(
-            src="~/assets/images/sign-up-individual-step-1/mycure-sso-sign-in-logo.svg"
-            alt="MYCURE logo"
-            width="60"
-            @click="$nuxt.$router.push({ name: 'index' })"
-          ).link-to-home.pb-5
-          h1.pb-3 Getting Started
-        v-col(
-          cols="12"
-          sm="4"
-          md="3"
-          xl="2"
-          align-self="start"
+  v-container.content-padding
+    v-row(justify="center" align="center")
+      v-col(cols="12" justify="center" align="center")
+        img(
+          src="~/assets/images/sign-up-individual-step-1/mycure-sso-sign-in-logo.svg"
+          alt="MYCURE logo"
+          width="60"
+          @click="$nuxt.$router.push({ name: 'index' })"
+        ).link-to-home.pb-5
+        h1.pb-3 Getting Started
+      v-col(
+        cols="12"
+        sm="4"
+        md="3"
+        xl="2"
+        align-self="start"
+      )
+        img(
+          v-if="!loadingForm"
+          src="~/assets/images/sign-up-individual-step-1/mycure-su-message-blank@2x.png"
+          width="100%"
         )
-          img(
-            v-if="!loadingForm"
-            src="~/assets/images/sign-up-individual-step-1/mycure-su-message-blank@2x.png"
-            width="100%"
-          )
-          p(v-if="loadingForm").text-justify.pb-12.font-20
-            strong MYCURE virtual clinic is by invite only.&nbsp;
-            | Fill up this form and get your account activated within 1-2 days.
-          span.float-right.primary--text
-            a(@click="enterReferralCode") I have a referral code.
-        v-col(
-          cols="12"
-          sm="7"
-          md="5"
-          xl="4"
-          justify="center"
-          align-self="start"
-        )
-          //- TODO: this is the only part that should be form
+        p(v-if="loadingForm").text-justify.pb-12.font-20
+          strong MYCURE virtual clinic is by invite only.&nbsp;
+          | Fill up this form and get your account activated within 1-2 days.
+        span.float-right.primary--text
+          a(@click="enterReferralCode") I have a referral code.
+      v-col(
+        cols="12"
+        sm="7"
+        md="5"
+        xl="4"
+        justify="center"
+        align-self="start"
+      )
+        v-form(ref="formRef" v-model="valid")
           //- FIRSTNAME AND LASTNAME
           v-row(no-gutters)
             v-col
