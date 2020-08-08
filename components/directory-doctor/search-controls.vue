@@ -70,11 +70,6 @@
             color="error"
             @click:close="searchObject.specialties = []"
           ).ma-1 Clear filters
-        v-col(v-if="isLoading" cols="12" align="center")
-          img(
-            width="60"
-            :src="require('../../assets/images/mycure-loader.gif')"
-          )
     //- template(v-else)
       v-row.mb-2
         v-text-field(
@@ -119,6 +114,10 @@ export default {
     isLoading: {
       type: Boolean,
       default: false,
+    },
+    loaded: {
+      type: Boolean,
+      default: true,
     },
     searchSpecialties: {
       type: Array,
