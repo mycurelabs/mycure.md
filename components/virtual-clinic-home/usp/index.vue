@@ -6,9 +6,9 @@
   )
     v-row(align="start" justify="center")
       v-col(cols="12" md="10" :class="{ 'pt-12 mt-4': $isMobile, 'pl-5 usp-content': !$isMobile }").text-center
-        h3(:class="titleHeaderClasses").font-poppins.lh-title For Modern Doctors:
-        h1(:class="titleClasses").font-poppins.lh-title Virtual is the new normal.
-        p(:class="[centerText, subtitleClasses]").font-italic Build your virtual clinic today.
+        h3(:class="titleHeaderClasses").font-poppins.lh-title For Modern Doctors: Virtual is the new normal.
+        //- h1(:class="titleClasses").font-poppins.lh-title Virtual is the new normal.
+        p(:class="[centerText, titleHeaderClasses]").font-italic Build your virtual clinic today.
         div(v-if="!$isMobile").text-field-container.mr-3
           v-text-field(
             background-color="white"
@@ -26,8 +26,8 @@
           large
           @click="onGetStarted"
         ).text-none.font-16 Get Started
-        img(v-if="!$isMobile" src="~/assets/images/virtual-clinic-home/mycure-web-usp-telehealth-robocop-consult.png" width="100%").pt-3
-    v-row(v-if="$isMobile" justify="center" align="center").mobile-form.px-2
+        img(v-if="!$isMobile" src="~/assets/images/virtual-clinic-home/mycure-web-usp-telehealth-robocop-consult.png" width="100%").pt-6
+    v-row(v-if="$isMobile" justify="center" align="center").mobile-form.px-2.mt-n6
       v-col(cols="12")
         v-text-field(
           background-color="white"
@@ -63,7 +63,7 @@ export default {
     titleHeaderClasses () {
       return this.$isMobile
         ? [this.centerText, 'font-30']
-        : ['pre-white-space', 'font-36'];
+        : ['pre-white-space', 'font-30'];
     },
     titleClasses () {
       return this.$isMobile
@@ -117,7 +117,7 @@ export default {
   padding: 0px;
 }
 .usp-content {
-  margin-top: 100px;
+  margin-top: 90px;
 }
 .text-field-container {
   height: 50px;
