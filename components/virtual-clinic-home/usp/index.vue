@@ -1,7 +1,6 @@
 <template lang="pug">
   v-container(
     fluid
-    fill-height
     :class="[backgroundClasses, backgroundImages]"
   )
     v-row(align="start" justify="center")
@@ -43,7 +42,7 @@
         ).text-none.font-16 Get Started
     v-row(v-if="$isMobile" justify="center" align="end" no-gutters).ml-n5
       v-col(cols="12")
-        img(v-if="$isMobile" src="~/assets/images/virtual-clinic-home/mycure-web-usp-telehealth-robocop-consult.png" width="105%")
+        img(v-if="$isMobile" src="~/assets/images/virtual-clinic-home/mycure-web-usp-telehealth-robocop-consult.png" width="106%").ml-sm-n3
 </template>
 
 <script>
@@ -111,10 +110,8 @@ export default {
 .bg-mobile {
   background-image: url('../../../assets/images/virtual-clinic-home/mycure-web-usp-cover-background-blur.png');
   background-repeat: no-repeat;
-  justify-content: center;
   background-size: cover;
-  min-height: 100vh;
-  padding: 0px;
+  min-height: 100%;
 }
 .usp-content {
   margin-top: 90px;
