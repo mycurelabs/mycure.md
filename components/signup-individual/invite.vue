@@ -12,7 +12,8 @@
       v-col(
         cols="12"
         sm="4"
-        md="3"
+        md="4"
+        lg="3"
         xl="2"
         align-self="start"
       )
@@ -21,15 +22,13 @@
           src="~/assets/images/sign-up-individual-step-1/mycure-su-message-blank@2x.png"
           width="100%"
         )
-        p(v-if="loadingForm").text-justify.pb-12.font-20
-          strong MYCURE virtual clinic is by invite only.&nbsp;
-          | Fill up this form and get your account activated within 1-2 days.
-        span.float-right.primary--text
-          a(@click="enterReferralCode") I have a referral code.
+        p(v-if="loadingForm").text-justify.font-20
+          | MYCURE virtual clinic is&nbsp;
+          strong by invite only.
       v-col(
         cols="12"
         sm="7"
-        md="5"
+        lg="5"
         xl="4"
         justify="center"
         align-self="start"
@@ -106,14 +105,16 @@
           v-divider.my-2
           v-alert(:value="error" type="error").mt-5 {{ errorMessage }}
           v-row(no-gutters)
-            v-col(:align="!$isMobile ? 'end' : 'center'")
+            v-col(:align="!$isMobile ? 'end' : 'center'" align-self="center").mt-6
+              p(:class="{ 'float-left mt-3': !$isMobile }").primary--text
+                a(@click="enterReferralCode") I have a referral code.
               v-btn(
                 color="primary"
                 large
                 :disabled="loading || !valid"
                 :loading="loading"
                 @click="getAccess"
-              ).mt-6.font-weight-bold Get Free Access
+              ).font-weight-bold Get Free Access
       //- REFERRAL CODE DIALOG
       v-dialog(v-model="referralCodeDialog" width="350" persistent :retain-focus="false")
         v-card
