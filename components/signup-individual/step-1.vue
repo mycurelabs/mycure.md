@@ -309,23 +309,39 @@ export default {
         this.user.countryCallingCode = location ? location.calling_code : '63';
         this.user.countryFlag = location ? location.country_flag : 'https://assets.ipstack.com/flags/ph.svg';
 
-        // CHECK IF THERE IS A REFERRAL CODEs
-        if (getItem('account-invitation') === null) {
+        this.$refs.passwordRef.focus();
+
+        // ACCOUNT DATA RECEIVED AS PARAMETER
+        const accountData = this.$route.params.data;
+
+        // CHECK IF THERE IS REFERRAL CODE AND ACCOUNT DATA
+        if (!accountData && getItem('account-invitation') === null) {
           this.$nuxt.$router.push({ name: 'signup-individual' });
           return;
         };
 
+        if (accountData) {
+          const phoneNumber = accountData?.mobileNo && parsePhoneNumberFromString(accountData.mobileNo);
+          this.user.firstName = accountData.personalDetails.name.firstName;
+          this.user.lastName = accountData.personalDetails.name.lastName;
+          this.user.email = accountData.email;
+          this.user.mobileNo = phoneNumber?.nationalNumber;
+          this.user.doc_PRCLicenseNo = accountData.personalDetails.doc_PRCLicenseNo;
+          return;
+        }
+
         const accountInvitationData = getItem('account-invitation');
+        if (accountInvitationData) {
+          const accountInvitation = await getWaitlist({ referralCode: accountInvitationData.referralCode });
+          if (!accountInvitation) return;
 
-        const accountInvitation = await getWaitlist({ referralCode: accountInvitationData.referralCode });
-        if (!accountInvitation) return;
-
-        const phoneNumber = accountInvitation?.mobileNo && parsePhoneNumberFromString(accountInvitation.mobileNo);
-        this.user.firstName = accountInvitation.personalDetails.name.firstName;
-        this.user.lastName = accountInvitation.personalDetails.name.lastName;
-        this.user.email = accountInvitation.email;
-        this.user.mobileNo = phoneNumber?.nationalNumber;
-        this.user.doc_PRCLicenseNo = accountInvitation.personalDetails.doc_PRCLicenseNo;
+          const phoneNumber = accountInvitation?.mobileNo && parsePhoneNumberFromString(accountInvitation.mobileNo);
+          this.user.firstName = accountInvitation.personalDetails.name.firstName;
+          this.user.lastName = accountInvitation.personalDetails.name.lastName;
+          this.user.email = accountInvitation.email;
+          this.user.mobileNo = phoneNumber?.nationalNumber;
+          this.user.doc_PRCLicenseNo = accountInvitation.personalDetails.doc_PRCLicenseNo;
+        }
 
         if (getItem('individual:step1:model') && this.pageType === 'signup-individual-step-1') {
           this.user = {
@@ -335,7 +351,6 @@ export default {
           };
         }
 
-        this.$refs.passwordRef.focus();
         this.$refs.formRef.resetValidation();
       } catch (e) {
         console.error(e);

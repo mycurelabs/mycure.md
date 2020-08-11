@@ -109,7 +109,7 @@ export default {
           return;
         }
         setItem('account-invitation', { referralCode: this.user.referralCode });
-        this.$nuxt.$router.push({ name: 'signup-individual-step-1' });
+        this.$nuxt.$router.push({ name: 'signup-individual-step-1', params: { data: accountInvitation } });
       } catch (e) {
         this.referralCodeError = true;
         console.error(e);
