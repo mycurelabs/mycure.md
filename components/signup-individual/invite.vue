@@ -1,7 +1,7 @@
 <template lang="pug">
-  v-container.content-padding
-    v-row(justify="center" align="center")
-      v-col(cols="12" justify="center" align="center")
+  v-container
+    v-row(justify="center" align="center" style="min-height: 80vh")
+      v-col(cols="12" align="center" align-self="end")
         img(
           src="~/assets/images/sign-up-individual-step-1/mycure-sso-sign-in-logo.svg"
           alt="MYCURE logo"
@@ -115,49 +115,6 @@
                 :loading="loading"
                 @click="getAccess"
               ).font-weight-bold Get Free Access
-      //- REFERRAL CODE DIALOG
-      v-dialog(v-model="referralCodeDialog" width="350" persistent :retain-focus="false")
-        v-card
-          v-btn(
-            style="position: absolute; right: 0; margin: 5px;"
-            icon
-            @click="referralCodeDialog = false"
-          )
-            v-icon mdi-close
-          img(
-            src="~/assets/images/sign-up-individual-step-1/mycure-su-banner-invite-code@2x.png"
-            alt="Request Sent"
-            width="100%"
-          )
-          v-card-text.text-center
-            h1.py-5 Enter your&nbsp;
-              br(v-if="!$isMobile")
-              | Referral Code.
-            v-row(no-gutters)
-              v-col.d-inline-flex
-                v-text-field(
-                  v-model="user.referralCode"
-                  label="Referral Code"
-                  width="100%"
-                  ref="referralCode"
-                  outlined
-                  required
-                  :disabled="loading"
-                ).pr-2
-                v-btn(
-                  height="55"
-                  color="primary"
-                  large
-                  :disabled="loading || !user.referralCode"
-                  :loading="loading"
-                  @click="submitCode"
-                ) Submit
-            v-alert(:value="referralCodeError" type="error").text-justify {{ referralCodeErrorMessage }}
-            v-divider.pb-5
-            span Got problems with your code?
-              br(v-if="$isMobile")
-              strong.primary--text
-                a(@click="toggleCrispChat") &nbsp;Contact Us.
       //- REQUEST SENT DIALOG
       v-dialog(v-model="requestSentDialog" width="350" persistent)
         v-card.text-center
@@ -223,11 +180,9 @@ import EmailVerificationDialog from './email-verification-dialog';
 import {
   getCountries,
   getCountry,
-  getWaitlist,
   createWaitlist,
 } from '~/utils/axios';
 import dayOrNight from '~/utils/day-or-night';
-import { setItem } from '~/utils/localStorage';
 
 export default {
   components: {
@@ -243,13 +198,11 @@ export default {
       isEmailValid: false,
       countryDialog: false,
       requestSentDialog: false,
-      referralCodeDialog: false,
       emailVerificationMessageDialog: false,
       // MODELS
       user: {
         countryCallingCode: '',
         countryFlag: null,
-        referralCode: '',
       },
       countries: [],
       searchString: '',
@@ -260,8 +213,6 @@ export default {
       // ERROR
       error: false,
       errorMessage: 'There was an error please try again later.',
-      referralCodeError: false,
-      referralCodeErrorMessage: 'Invalid referral code.',
       mobileNoError: false,
       mobileNoErrorMessage: '',
     };
@@ -282,12 +233,6 @@ export default {
     },
   },
   async created () {
-    const { referralCode } = this.$route.query;
-    if (referralCode) {
-      this.referralCodeDialog = true;
-      this.user.referralCode = referralCode;
-      return;
-    }
     await this.init();
   },
   mounted () {
@@ -387,40 +332,17 @@ export default {
       this.$nuxt.$router.push({ name: 'signin' });
     },
     enterReferralCode () {
-      this.referralCodeDialog = true;
-      setTimeout(() => {
-        this.$refs.referralCode.focus();
-      }, 0);
-    },
-    async submitCode () {
-      try {
-        this.loading = true;
-        this.referralCodeError = false;
-        const accountInvitation = await getWaitlist({ referralCode: this.user.referralCode });
-        if (!accountInvitation) {
-          this.referralCodeError = true;
-          return;
-        }
-        this.referralCodeDialog = false;
-        setItem('account-invitation', { referralCode: this.user.referralCode });
-        this.$nuxt.$router.push({ name: 'signup-individual-step-1' });
-      } catch (e) {
-        this.referralCodeError = true;
-        console.error(e);
-      } finally {
-        this.loading = false;
+      const routeData = this.$nuxt.$router.resolve({ name: 'signup-individual-referral-code' });
+      if (process.client) {
+        const changeRoute = window.open(routeData.href, '_blank');
+        changeRoute.opener = null;
+        changeRoute.rel = 'noopener noreferrer';
       }
     },
     goToDocDirectory () {
       this.loading = true;
       this.requestSentDialog = false;
       this.$nuxt.$router.push({ name: 'directory-doctors' });
-    },
-    toggleCrispChat () {
-      this.referralCodeDialog = false;
-      const message = 'Hello, I have problem with my referral code.';
-      window.$crisp.push(['do', 'chat:toggle']);
-      window.$crisp.push(['do', 'message:send', ['text', message]]);
     },
     checkEmail () {
       this.isEmailValid = /^.+@.+\.+[a-zA-Z]{2,3}$/.test(this.user.email);
@@ -449,90 +371,5 @@ h1 {
 
 .flag-img:hover {
   cursor: pointer;
-}
-@media screen and (min-width: 768px) {
-  .content-padding {
-    padding-top: 10vh;
-    padding-bottom: 15%;
-  }
-}
-@media screen and (min-width: 1024px) {
-  .content-padding {
-    padding-top: 20vh;
-    padding-bottom: 25%;
-  }
-}
-@media screen and (min-width: 1024px) and (device-height: 768px) {
-  .content-padding {
-    padding-top: 0vh;
-    padding-bottom: 5%;
-  }
-}
-@media screen and (device-width: 1280px) and (device-height: 800px) {
-  .content-padding {
-    padding-top: 0vh;
-    padding-bottom: 4%;
-  }
-}
-@media screen and (device-width: 1280px) and (device-height: 1024px) {
-  .content-padding {
-    padding-top: 16vh;
-    padding-bottom: 13%;
-  }
-}
-@media screen and (min-width: 1366px) {
-  .content-padding {
-    padding-bottom: 3%;
-    position: relative;
-    z-index: 2;
-  }
-}
-@media screen and (min-width: 1440px) {
-  .content-padding {
-    padding-top: 4%;
-    padding-bottom: 0%;
-    position: relative;
-    z-index: 2;
-  }
-}
-@media screen and (min-width: 1600px) {
-  .content-padding {
-    padding-top: 3%;
-    padding-bottom: 0%;
-    position: relative;
-    z-index: 2;
-  }
-}
-@media screen and (min-width: 1680px) {
-  .content-padding {
-    padding-top: 7%;
-    padding-bottom: 0%;
-    position: relative;
-    z-index: 2;
-  }
-}
-@media screen and (min-width: 1920px) {
-  .content-padding {
-    padding-top: 7%;
-    padding-bottom: 2%;
-    position: relative;
-    z-index: 2;
-  }
-}
-@media screen and (min-width: 2304px) {
-  .content-padding {
-    padding-top: 12%;
-    padding-bottom: 6%;
-    position: relative;
-    z-index: 2;
-  }
-}
-@media screen and (device-width: 2560px) {
-  .content-padding {
-    padding-top: 12%;
-    margin-bottom: 2%;
-    position: relative;
-    z-index: 2;
-  }
 }
 </style>
