@@ -9,7 +9,6 @@
           :image="panelMainImage"
           image-alt="New virtual clinic"
           image-file-extension=".webp"
-          :image-classes="['pt-12']"
         )
       v-col(
         justify="center"
