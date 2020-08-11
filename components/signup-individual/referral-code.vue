@@ -1,7 +1,15 @@
 <template lang="pug">
   v-container
     v-row(justify="center" align="center" style="min-height: 80vh")
-      v-col(cols="12" align="center" align-self="end")
+      v-col(cols="12" align="center" align-self="end" :class="{ 'pt-12': $isMobile }")
+        v-btn(
+          v-if="backButton"
+          style="position: absolute; left: 0; top: 0; margin: 30px"
+          text
+          @click="$nuxt.$router.push({ name: 'signup-individual-invite' })"
+        )
+          v-icon.primary--text mdi-arrow-left
+          strong.text-capitalize.primary--text.font-18 Back
         img(
           src="~/assets/images/MYCURE-virtual-clinic-healthcare-practice-online-logo.svg"
           alt="MYCURE logo"
@@ -66,6 +74,7 @@ export default {
     return {
       // UI STATE
       loading: false,
+      backButton: true,
       // MODELS
       user: {
         referralCode: '',
@@ -78,6 +87,7 @@ export default {
   created () {
     const { referralCode } = this.$route.query;
     if (referralCode) {
+      this.backButton = false;
       this.user.referralCode = referralCode;
     }
   },
