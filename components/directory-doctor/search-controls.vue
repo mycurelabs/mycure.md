@@ -12,6 +12,7 @@
             dense
             hide-details
             outlined
+            :loading="isLoading"
           ).input-field
         v-col
           v-autocomplete(
@@ -24,6 +25,7 @@
             outlined
             small-chips
             :items="specialties"
+            :loading="isLoading"
           ).input-field
         v-col
           v-select(
@@ -36,6 +38,7 @@
             outlined
             return-object
             :items="sortBy"
+            :loading="isLoading"
           ).input-field
         v-col.col-auto
           div.d-flex.justify-end
@@ -108,6 +111,14 @@ export default {
       type: String,
       default: '',
     },
+    isLoading: {
+      type: Boolean,
+      default: false,
+    },
+    loaded: {
+      type: Boolean,
+      default: true,
+    },
     searchSpecialties: {
       type: Array,
       default: () => ([]),
@@ -159,7 +170,6 @@ export default {
       viewType: 'grid',
       mobileViewType: 'grid',
       searchTerm: '',
-      isLoading: false,
       isOptionDialogOpen: false,
       selectedSpecialization: 'default',
       selectedSort: 'default',

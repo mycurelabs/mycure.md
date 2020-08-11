@@ -39,9 +39,6 @@ export default {
   components: {
     CookieLaw,
   },
-  data () {
-    return {};
-  },
   computed: {
     cookieClasses () {
       return [this.$isMobile ? 'mobile' : 'web'];

@@ -1,39 +1,50 @@
 <template lang="pug">
-  v-container.py-12
-    v-row(justify="center")
-      v-col(cols="12" md="4" align-self="center" :class="{ 'ml-6' : !$isMobile }")
-        h1(:class="{'pre-white-space': !$isMobile}").font-30.lh-title.pb-3.font-weight-light {{ fourthPanel.header }}
-        p.text-justify.font-16.mt-3.font-gray {{ fourthPanel.description }}
-        v-btn(text @click="onGetStarted").mt-5.ml-n4.get-started-btn
-          strong.font-18.text-capitalize.primary--text {{ fourthPanel.btnTxt }}
-          v-icon.primary--text {{ fourthPanel.btnIcon }}
-      v-col(cols="12" md="5" offset-md="1" justify="center" align="center")
-        picture-source(
-          custom-path="enterprise/"
-          image-file-extension=".webp"
-          :image-width="!$isMobile ? '106%' : '100%'"
-          :class="{ 'ml-n10' : !$isMobile }"
-          :image="fourthPanel.image"
-          :image-alt="fourthPanel.header"
-        )
+  generic-media-panel(
+    align-left-column="center"
+    cols-left="4"
+    cols-right="5"
+    offset-cols-right="1"
+    custom-image-path="enterprise/"
+    file-extension=".webp"
+    web-image-width="104%"
+    mobile-image-width="95%"
+    web-image-class="ml-n3"
+    mobile-image-class="text-center"
+    :content-align-left="true"
+    :header="title"
+    :descriptions="[panelContents.description]"
+    :web-image="panelContents.image"
+  )
+    div(slot="additional-content")
+      v-btn(text @click="onGetStarted").ml-n4
+        strong.text-capitalize.primary--text.font-18 {{ panelContents.btnTxt }}
+        v-icon.primary--text {{ panelContents.btnIcon }}
 </template>
 
 <script>
-// constants
-import { FOURTH_PANEL } from '../enterprise-contents';
-// components
-import PictureSource from '~/components/commons/PictureSource';
+import GenericMediaPanel from '~/components/commons/generic-media-panel';
 // utils
 import { parseTextWithNewLine } from '~/utils/newline';
-
 export default {
-  components: { PictureSource },
+  components: {
+    GenericMediaPanel,
+  },
   data () {
-    this.fourthPanel = {
-      ...FOURTH_PANEL,
-      header: parseTextWithNewLine(FOURTH_PANEL.header, ['patients ']),
+    this.panelContents = {
+      image: 'MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-final-E-patient-portal',
+      title: 'Keep your patients in the loop',
+      description: 'Making sure your patients are informed is easier and faster with an online patient portal. Release diagnostic results right as they\'re finalized and coordinate with your patients easier with online consultations.',
+      btnTxt: 'Get Started',
+      btnIcon: 'mdi-arrow-right',
     };
     return {};
+  },
+  computed: {
+    title () {
+      return this.$isMobile
+        ? this.panelContents.title
+        : parseTextWithNewLine(this.panelContents.title, ['patients ']);
+    },
   },
   methods: {
     onGetStarted () {
@@ -42,6 +53,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-</style>

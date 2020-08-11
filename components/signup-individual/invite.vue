@@ -1,35 +1,39 @@
 <template lang="pug">
-  v-form(ref="formRef" v-model="valid").content-padding
-    v-container
-      v-row(justify="center" align="center")
-        v-col(cols="12" justify="center" align="center")
-          img(
-            src="~/assets/images/sign-up-individual-step-1/mycure-sso-sign-in-logo.svg"
-            alt="MYCURE logo"
-            width="60"
-            @click="$nuxt.$router.push({ name: 'index' })"
-          ).link-to-home.pb-5
-          h1.pb-3 Getting Started
-        v-col(
-          cols="12"
-          sm="4"
-          md="3"
-          xl="2"
-          align-self="start")
-          img(
-            src="~/assets/images/sign-up-individual-step-1/mycure-su-message@2x.png"
-            alt="Invite message"
-            width="100%"
-          )
-          span.float-right.primary--text
-            a(@click="enterReferralCode") I have a referral code.
-        v-col(
-          cols="12"
-          sm="7"
-          md="5"
-          xl="4"
-          justify="center"
-          align-self="start")
+  v-container.content-padding
+    v-row(justify="center" align="center")
+      v-col(cols="12" justify="center" align="center")
+        img(
+          src="~/assets/images/sign-up-individual-step-1/mycure-sso-sign-in-logo.svg"
+          alt="MYCURE logo"
+          width="60"
+          @click="$nuxt.$router.push({ name: 'index' })"
+        ).link-to-home.pb-5
+        h1.pb-3 Getting Started
+      v-col(
+        cols="12"
+        sm="4"
+        md="4"
+        lg="3"
+        xl="2"
+        align-self="start"
+      )
+        img(
+          v-if="!loadingForm"
+          src="~/assets/images/sign-up-individual-step-1/mycure-su-message-blank@2x.png"
+          width="100%"
+        )
+        p(v-if="loadingForm").text-justify.font-20
+          | MYCURE virtual clinic is&nbsp;
+          strong by invite only.
+      v-col(
+        cols="12"
+        sm="7"
+        lg="5"
+        xl="4"
+        justify="center"
+        align-self="start"
+      )
+        v-form(ref="formRef" v-model="valid")
           //- FIRSTNAME AND LASTNAME
           v-row(no-gutters)
             v-col
@@ -60,9 +64,9 @@
             outlined
             :rules="[requiredRule, emailRule]"
             :disabled="loading"
+            @keyup="checkEmail"
           )
-            //- template(v-slot:append v-if="user.email &&  /.+@.+/.test(user.email)")
-            template(v-slot:append v-if="user.email && emailRule")
+            template(v-slot:append v-if="isEmailValid")
               v-icon(color="accent") mdi-check
           //- LICENSE NO. AND MOBILE NO.
           v-row(no-gutters)
@@ -74,7 +78,7 @@
                 :rules="[requiredRule, numberRule]"
                 :disabled="loading"
               ).pr-1
-                template(v-slot:append v-if="user.doc_PRCLicenseNo && user.doc_PRCLicenseNo>=0")
+                template(v-slot:append v-if="user.doc_PRCLicenseNo && user.doc_PRCLicenseNo>=2")
                   v-icon(color="accent") mdi-check
             v-col
               v-text-field(
@@ -98,42 +102,34 @@
                         v-btn(icon @click="countryDialog = true" v-on="on")
                           img(width="25" :src="user.countryFlag").flag-img.mt-2
                       | Change Country
-          v-divider
-          //- TERMS AND AGREEMENT
-          v-row(no-gutters)
-            v-col(align="start")
-              div.d-flex
-                v-checkbox(
-                  v-model="user.acceptTerms"
-                  color="primary"
-                  hide-details
-                  :rules="[requiredRule]"
-                  :disabled="loading"
-                )
-                span.pt-6 I agree to&nbsp;
-                  strong MYCURE's&nbsp;
-                  a(@click="goToTerms") Terms&nbsp;
-                  | and&nbsp;
-                  a(@click="goToPrivacy") Privacy Policy.
+          v-divider.my-2
           v-alert(:value="error" type="error").mt-5 {{ errorMessage }}
           v-row(no-gutters)
-            v-col(:align="!$isMobile ? 'end' : 'center'")
+            v-col(:align="!$isMobile ? 'end' : 'center'" align-self="center").mt-6
+              p(:class="{ 'float-left mt-3': !$isMobile }").primary--text
+                a(@click="enterReferralCode") I have a referral code.
               v-btn(
                 color="primary"
                 large
                 :disabled="loading || !valid"
                 :loading="loading"
                 @click="getAccess"
-              ).mt-6.font-weight-bold Get Free Access
+              ).font-weight-bold Get Free Access
       //- REFERRAL CODE DIALOG
-      v-dialog(v-model="referralCodeDialog" width="350")
-        v-card.text-center
+      v-dialog(v-model="referralCodeDialog" width="350" persistent :retain-focus="false")
+        v-card
+          v-btn(
+            style="position: absolute; right: 0; margin: 5px;"
+            icon
+            @click="referralCodeDialog = false"
+          )
+            v-icon mdi-close
           img(
             src="~/assets/images/sign-up-individual-step-1/mycure-su-banner-invite-code@2x.png"
             alt="Request Sent"
             width="100%"
           )
-          v-card-text
+          v-card-text.text-center
             h1.py-5 Enter your&nbsp;
               br(v-if="!$isMobile")
               | Referral Code.
@@ -145,24 +141,25 @@
                   width="100%"
                   ref="referralCode"
                   outlined
+                  required
                   :disabled="loading"
                 ).pr-2
                 v-btn(
                   height="55"
                   color="primary"
                   large
-                  :disabled="loading"
+                  :disabled="loading || !user.referralCode"
                   :loading="loading"
                   @click="submitCode"
                 ) Submit
-            v-alert(:value="error" type="error").text-justify {{ referralCodeError }}
+            v-alert(:value="referralCodeError" type="error").text-justify {{ referralCodeErrorMessage }}
             v-divider.pb-5
             span Got problems with your code?
               br(v-if="$isMobile")
               strong.primary--text
                 a(@click="toggleCrispChat") &nbsp;Contact Us.
       //- REQUEST SENT DIALOG
-      v-dialog(v-model="requestSentDialog" width="350")
+      v-dialog(v-model="requestSentDialog" width="350" persistent)
         v-card.text-center
           img(
             src="~/assets/images/sign-up-individual-step-1/mycure-su-banner-waitlist@2x.png"
@@ -223,8 +220,14 @@ import { parsePhoneNumberFromString } from 'libphonenumber-js';
 // - components
 import EmailVerificationDialog from './email-verification-dialog';
 // - utils
-import { getCountry, getCountries, signupWaitList } from '~/utils/axios';
+import {
+  getCountries,
+  getCountry,
+  getWaitlist,
+  createWaitlist,
+} from '~/utils/axios';
 import dayOrNight from '~/utils/day-or-night';
+import { setItem } from '~/utils/localStorage';
 
 export default {
   components: {
@@ -237,6 +240,7 @@ export default {
       valid: false,
       loading: false,
       loadingForm: false,
+      isEmailValid: false,
       countryDialog: false,
       requestSentDialog: false,
       referralCodeDialog: false,
@@ -245,17 +249,19 @@ export default {
       user: {
         countryCallingCode: '',
         countryFlag: null,
+        referralCode: '',
       },
       countries: [],
       searchString: '',
       // RULES
       requiredRule: v => !!v || 'This field is required',
-      numberRule: v => v >= 0 || 'Please input a valid number',
-      emailRule: v => /^([\w]+.)+@([\w]+\.)+[\w-]{2,4}$/.test(v) || 'Email address must be valid',
+      numberRule: v => /^[0-9-]{2,}$/.test(v) || 'Please input a valid number',
+      emailRule: v => /^.+@.+\.+[a-zA-Z]{2,3}$/.test(v) || 'Email address must be valid',
       // ERROR
       error: false,
       errorMessage: 'There was an error please try again later.',
-      referralCodeError: 'Invalid code. Please try again later.',
+      referralCodeError: false,
+      referralCodeErrorMessage: 'Invalid referral code.',
       mobileNoError: false,
       mobileNoErrorMessage: '',
     };
@@ -276,6 +282,12 @@ export default {
     },
   },
   async created () {
+    const { referralCode } = this.$route.query;
+    if (referralCode) {
+      this.referralCodeDialog = true;
+      this.user.referralCode = referralCode;
+      return;
+    }
     await this.init();
   },
   mounted () {
@@ -307,7 +319,7 @@ export default {
         if (!this.valid) {
           return;
         }
-        await signupWaitList(this.user);
+        await createWaitlist(this.user);
         this.requestSentDialog = true;
       } catch (e) {
         console.error(e);
@@ -338,22 +350,6 @@ export default {
       this.user.countryFlag = country.flag;
       this.countryDialog = false;
       this.searchString = '';
-    },
-    goToTerms () {
-      const routeData = this.$nuxt.$router.resolve({ name: 'terms' });
-      if (process.client) {
-        const changeRoute = window.open(routeData.href, '_blank');
-        changeRoute.opener = null;
-        changeRoute.rel = 'noopener noreferrer';
-      }
-    },
-    goToPrivacy () {
-      const routeData = this.$nuxt.$router.resolve({ name: 'privacy-policy' });
-      if (process.client) {
-        const changeRoute = window.open(routeData.href, '_blank');
-        changeRoute.opener = null;
-        changeRoute.rel = 'noopener noreferrer';
-      }
     },
     validateForm () {
       const valid = this.$refs.formRef.validate();
@@ -396,11 +392,24 @@ export default {
         this.$refs.referralCode.focus();
       }, 0);
     },
-    submitCode () {
-      this.loading = true;
-      this.referralCodeDialog = false;
-      localStorage.setItem('referral-code:', JSON.stringify(this.user.referralCode));
-      this.$nuxt.$router.push({ name: 'signup-individual-step-1' });
+    async submitCode () {
+      try {
+        this.loading = true;
+        this.referralCodeError = false;
+        const accountInvitation = await getWaitlist({ referralCode: this.user.referralCode });
+        if (!accountInvitation) {
+          this.referralCodeError = true;
+          return;
+        }
+        this.referralCodeDialog = false;
+        setItem('account-invitation', { referralCode: this.user.referralCode });
+        this.$nuxt.$router.push({ name: 'signup-individual-step-1' });
+      } catch (e) {
+        this.referralCodeError = true;
+        console.error(e);
+      } finally {
+        this.loading = false;
+      }
     },
     goToDocDirectory () {
       this.loading = true;
@@ -408,9 +417,13 @@ export default {
       this.$nuxt.$router.push({ name: 'directory-doctors' });
     },
     toggleCrispChat () {
+      this.referralCodeDialog = false;
       const message = 'Hello, I have problem with my referral code.';
       window.$crisp.push(['do', 'chat:toggle']);
       window.$crisp.push(['do', 'message:send', ['text', message]]);
+    },
+    checkEmail () {
+      this.isEmailValid = /^.+@.+\.+[a-zA-Z]{2,3}$/.test(this.user.email);
     },
   },
 };

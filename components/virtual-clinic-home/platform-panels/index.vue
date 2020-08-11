@@ -1,128 +1,92 @@
 <template lang="pug">
-  v-container.mt-12
-    v-row(justify="center" align="center")
-      v-col(cols="12" md="6")
-        h1.font-36.font-weight-light.text-center {{ BRING_YOUR_PRACTICE_ONLINE.header }}
+  v-container.mt-12.mb-6
+    v-row(justify="center")
+      v-col(cols="12" md="6" align="center")
+        h1.font-36.font-weight-light.text-center {{ panelHeader.title }}
         br
-        p.text-center.font-18.font-gray {{ BRING_YOUR_PRACTICE_ONLINE.description }}
-          a(@click="goToFeatures").font-16.font-weight-bold {{ BRING_YOUR_PRACTICE_ONLINE.descriptionLink }}
-    //- FIRST PANEL
-    v-row(justify="center" align="center" no-gutters).py-10.mb-n4
-      v-col(v-if="!$isMobile" cols="12" md="5").mr-n2.ml-2
-        picture-source(
-          custom-path="virtual-clinic-home/"
-          :image="HOME_START_YOUR_PHYSICAL.image"
-          image-alt="Start your physical and digital journey"
-          image-file-extension=".webp"
-        )
-      v-col(cols="12" md="4" offset-md="1")
-        h1(v-html="HOME_START_YOUR_PHYSICAL.header").font-30.lh-title.pb-3.font-weight-light
-        br
-        p.font-16.font-gray.text-justify.my-0 {{ HOME_START_YOUR_PHYSICAL.description }}
-        br
-        br
-        v-btn(text @click="onGetStarted").ml-n4
-          strong.text-capitalize.primary--text.font-18 {{ HOME_START_YOUR_PHYSICAL.btnTxt }}
-          v-icon.primary--text {{ HOME_START_YOUR_PHYSICAL.btnIcon }}
-      picture-source(
-        v-if="$isMobile"
-        custom-path="virtual-clinic-home/"
-        :image="HOME_START_YOUR_PHYSICAL.image"
-        image-alt="Start your physical and digital journey"
-        image-file-extension=".webp"
-      ).pt-6
-    //- SECOND PANEL
-    v-row(justify="center" align="center").py-10.mb-n4
-      v-col(justify="start" cols="12" md="4" :class="{ 'ml-3': !$isMobile }")
-        h1(v-html="YOUR_ONLINE_CLINIC.header").font-30.font-weight-light
-        br
-        p.font-16.font-gray.text-justify.mb-0 {{ YOUR_ONLINE_CLINIC.description }}
-        br
-        br
-        v-btn(@click="onGetStarted" text).ml-n4
-          strong.text-capitalize.primary--text.font-18 {{ YOUR_ONLINE_CLINIC.btnTxt }}
-          v-icon.primary--text {{ YOUR_ONLINE_CLINIC.btnIcon }}
-      v-col(cols="12" md="5" offset-md="1")
-        picture-source(
-          custom-path="virtual-clinic-home/"
-          image-alt="Your online clinic everywhere"
-          image-file-extension=".webp"
-          :image="YOUR_ONLINE_CLINIC.image"
-          :image-width="!$isMobile ? '105%' : '100%'"
-          :class="{ 'ml-n5' : !$isMobile }"
-        )
-    //- THIRD PANEL
-    v-row(justify="center" align="center" no-gutters).py-10.mb-n4
-      v-col(v-if="!$isMobile" cols="12" md="5").mr-n2.ml-2
-        picture-source(
-          custom-path="virtual-clinic-home/"
-          :image="GET_MORE_PATIENTS.image"
-          image-alt="Get more patients"
-          image-file-extension=".webp"
-        )
-      v-col(cols="12" md="4" offset-md="1")
-        h1.font-30.font-weight-light {{ GET_MORE_PATIENTS.header }}
-        br
-        p.font-16.font-gray.text-justify.mb-0 {{ GET_MORE_PATIENTS.description }}
-        br
-        br
-        v-btn(@click="onGetStarted" text).ml-n4
-          strong.text-capitalize.primary--text.font-18 {{ GET_MORE_PATIENTS.btnTxt }}
-          v-icon.primary--text {{ GET_MORE_PATIENTS.btnIcon }}
-      picture-source(
-        v-if="$isMobile"
-        custom-path="virtual-clinic-home/"
-        :image="GET_MORE_PATIENTS.image"
-        image-alt="Get more patients"
-        image-file-extension=".webp"
-      ).pt-6
-    //- FOURTH PANEL
-    v-row(justify="center" align="center").py-10.mb-n4
-      v-col(cols="12" md="4" justify="start" :class="{ 'ml-3': !$isMobile }")
-        h1(v-html="MANAGE_EVERYTHING_EASILY.header").font-30.font-weight-light
-        br
-        p.font-16.font-gray.text-justify.mb-0 {{ MANAGE_EVERYTHING_EASILY.description }}
-        br
-        br
-        v-btn(@click="onGetStarted" text).ml-n4
-          strong.text-capitalize.primary--text.font-18 {{ MANAGE_EVERYTHING_EASILY.btnTxt }}
-          v-icon.primary--text {{ MANAGE_EVERYTHING_EASILY.btnIcon }}
-      v-col(cols="12" md="5" offset-md="1")
-        picture-source(
-          custom-path="virtual-clinic-home/"
-          image-alt="Manage everything easily"
-          image-file-extension=".webp"
-          :image="MANAGE_EVERYTHING_EASILY.image"
-          :image-width="!$isMobile ? '105%' : '100%'"
-          :class="{ 'ml-n5' : !$isMobile }"
-        )
+        p.text-center.font-18.font-gray {{ panelHeader.description }}
+          a(@click="goToFeatures").font-16.font-weight-bold {{ panelHeader.descriptionLink }}
+      template(v-for="(panel, key) in panelContents")
+        generic-media-panel(
+          v-bind="getColumnPosition(key)"
+          custom-image-path="virtual-clinic-home/"
+          file-extension=".webp"
+          offset-cols-right="1"
+          web-image-width="104%"
+          mobile-image-width="95%"
+          mobile-image-class="text-center"
+          :header="panel.title"
+          :descriptions="[panel.description]"
+          :web-image="panel.image"
+        ).mb-n10
+          div(slot="additional-content")
+            v-btn(text @click="onGetStarted").ml-n4
+              strong.text-capitalize.primary--text.font-18 {{ panel.btnTxt }}
+              v-icon.primary--text {{ panel.btnIcon }}
 </template>
 
 <script>
-// constants
-import {
-  BRING_YOUR_PRACTICE_ONLINE,
-  HOME_START_YOUR_PHYSICAL,
-  YOUR_ONLINE_CLINIC,
-  GET_MORE_PATIENTS,
-  MANAGE_EVERYTHING_EASILY,
-} from './home-content';
-// components
-import PictureSource from '~/components/commons/PictureSource';
-
+import GenericMediaPanel from '~/components/commons/generic-media-panel';
 export default {
   components: {
-    PictureSource,
+    GenericMediaPanel,
   },
   data () {
-    this.HOME_START_YOUR_PHYSICAL = HOME_START_YOUR_PHYSICAL;
-    this.YOUR_ONLINE_CLINIC = YOUR_ONLINE_CLINIC;
-    this.GET_MORE_PATIENTS = GET_MORE_PATIENTS;
-    this.MANAGE_EVERYTHING_EASILY = MANAGE_EVERYTHING_EASILY;
-    this.BRING_YOUR_PRACTICE_ONLINE = BRING_YOUR_PRACTICE_ONLINE;
+    this.panelHeader = {
+      title: 'Bring your practice online',
+      description: 'One platform built with online appointments, video chat, EMR system, point-of-sale, telehealth, medical billing, and ',
+      descriptionLink: 'more!',
+    };
+    this.panelContents = [
+      {
+        image: 'MYCURE-virtual-clinic-healthcare-practice-online-homepage-A-telehealth',
+        title: 'Start your physical and digital clinic journey',
+        description: 'We strongly agree that the best treatment comes from face-to-face interaction with patients. Imagine using this hybrid platform for both your physical clinic & an online one.',
+        btnTxt: 'Get Started',
+        btnIcon: 'mdi-arrow-right',
+      },
+      {
+        image: 'MYCURE-virtual-clinic-healthcare-practice-online-homepage-B-appointment',
+        title: 'Your online clinic everywhere',
+        description: 'You can accommodate follow-up consults conveniently from where you are right now with video chat advancements. You can save more time skipping traffic and hospital hassle.',
+        btnTxt: 'Get Started',
+        btnIcon: 'mdi-arrow-right',
+      },
+      {
+        image: 'MYCURE-virtual-clinic-healthcare-practice-online-homepage-C-doctor-website',
+        title: 'Get more patients',
+        description: 'Reach more patients anywhere on the globe. Share your professional website online and get patients who need your help with the power of the internet.',
+        btnTxt: 'Get Started',
+        btnIcon: 'mdi-arrow-right',
+      },
+      {
+        image: 'MYCURE-virtual-clinic-healthcare-practice-online-homepage-D-billing-encounter-summary',
+        title: 'Manage everything easily',
+        description: 'Get real-time reports and analytics everytime you use the MYCURE platform. Have access to all your patient charts anytime you need without having to worry about data privacy and security.',
+        btnTxt: 'Get Started',
+        btnIcon: 'mdi-arrow-right',
+      },
+    ];
     return {};
   },
   methods: {
+    getColumnPosition (key) {
+      if (key % 2 === 0) {
+        return {
+          contentAlignRight: true,
+          alignLeftColumn: 'center',
+          colsLeft: '5',
+          colsRight: '4',
+        };
+      }
+      return {
+        contentAlignLeft: true,
+        alignRightColumn: 'center',
+        colsLeft: '4',
+        colsRight: '5',
+        webImageClass: 'ml-n3',
+      };
+    },
     onGetStarted () {
       this.$emit('getStarted');
     },

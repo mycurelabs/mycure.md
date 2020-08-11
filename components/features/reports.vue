@@ -1,19 +1,20 @@
 <template lang="pug">
   generic-media-panel(
+    align-left-column="center"
     cols-left="4"
     cols-right="5"
     offset-cols-right="1"
     custom-image-path="features/"
-    web-image-class="ml-n3"
+    file-extension=".webp"
     web-image-width="104%"
+    web-image-class="ml-n3"
     mobile-image-width="100%"
-    mobile-file-extension=".png"
-    content-align-left
+    mobile-image-class="text-center"
+    :content-align-left="true"
     :header="header"
     :descriptions="descriptions"
     :web-image="image"
     :mobile-image="mobileImage"
-    :extension-exclusive="$isMobile"
   )
 </template>
 
@@ -25,13 +26,10 @@ export default {
     GenericMediaPanel,
   },
   data () {
-    // this.image = 'webp/MYCURE-virtual-clinic-healthcare-practice-online-features-D-analytics.webp';
     this.image = 'MYCURE-virtual-clinic-healthcare-practice-online-features-D-analytics';
     this.mobileImage = 'MYCURE-virtual-clinic-healthcare-practice-online-features-D-analytics-mobile';
     this.header = 'Never miss out on important business decisions.';
-    this.descriptions = [
-      'Measure your day-to-day clinic performance analyzing comprehensive graphs based on your KPIs. Census, billing, diagnostics, sales, and physical exam reports can be generated instantly.',
-    ];
+    this.descriptions = ['Measure your day-to-day clinic performance analyzing comprehensive graphs based on your KPIs. Census, billing, diagnostics, sales, and physical exam reports can be generated instantly.'];
     return {};
   },
 };
