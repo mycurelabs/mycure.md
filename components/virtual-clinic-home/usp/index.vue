@@ -7,11 +7,13 @@
       v-col(cols="12" md="10" :class="{ 'pt-12 mt-4': $isMobile, 'pl-5 usp-content': !$isMobile }").text-center
         h3(:class="titleHeaderClasses").font-poppins.lh-title For Modern Doctors: Virtual is the new normal.
         //- h1(:class="titleClasses").font-poppins.lh-title Virtual is the new normal.
-        p(:class="[centerText, titleHeaderClasses]").font-italic Build your virtual clinic today.
+        p(:class="[centerText, titleHeaderClasses]").font-italic The first and only Telehealth-Focused&nbsp;
+          br(v-if="!$isMobile")
+          | Practice Management System
         div(v-if="!$isMobile").text-field-container.mr-3
           v-text-field(
-            background-color="white"
             v-model="email"
+            background-color="white"
             placeholder="myname@email.com"
             height="50"
             outlined
@@ -29,8 +31,8 @@
     v-row(v-if="$isMobile" justify="center" align="center").mobile-form.px-2.mt-n6
       v-col(cols="12")
         v-text-field(
-          background-color="white"
           v-model="email"
+          background-color="white"
           placeholder="myname@email.com"
           outlined
         ).mb-3.text-field-input
