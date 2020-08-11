@@ -332,12 +332,7 @@ export default {
       this.$nuxt.$router.push({ name: 'signin' });
     },
     enterReferralCode () {
-      const routeData = this.$nuxt.$router.resolve({ name: 'signup-individual-referral-code' });
-      if (process.client) {
-        const changeRoute = window.open(routeData.href, '_blank');
-        changeRoute.opener = null;
-        changeRoute.rel = 'noopener noreferrer';
-      }
+      this.$nuxt.$router.push({ name: 'signup-individual-referral-code' });
     },
     goToDocDirectory () {
       this.loading = true;
