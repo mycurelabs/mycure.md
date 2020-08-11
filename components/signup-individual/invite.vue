@@ -107,7 +107,7 @@
           v-row(no-gutters)
             v-col(:align="!$isMobile ? 'end' : 'center'" align-self="center").mt-6
               p(:class="{ 'float-left mt-3': !$isMobile }").primary--text
-                a(@click="enterReferralCode") I have a referral code.
+                a(@click="$nuxt.$router.push({ name: 'signup-individual-referral-code' })") I have a referral code.
               v-btn(
                 color="primary"
                 large
@@ -330,9 +330,6 @@ export default {
         localStorage.clear();
       }
       this.$nuxt.$router.push({ name: 'signin' });
-    },
-    enterReferralCode () {
-      this.$nuxt.$router.push({ name: 'signup-individual-referral-code' });
     },
     goToDocDirectory () {
       this.loading = true;
