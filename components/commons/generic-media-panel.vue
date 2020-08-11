@@ -15,7 +15,7 @@
           :class="webImageClass"
         )
         template(v-if="contentAlignLeft")
-          p.font-16.primary--text {{ subHeader}}
+          span.font-16.primary--text {{ subHeader }}
           h1(v-if="typeof(header) === 'string'").font-30.lh-title.pb-3.font-weight-light {{ header }}
           h1(
             v-else-if="typeof(header) === 'object'"
@@ -46,7 +46,7 @@
           :class="webImageClass"
         )
         template(v-if="contentAlignRight")
-          p.font-16.primary--text {{ subHeader}}
+          span.font-16.primary--text {{ subHeader }}
           h1(v-if="typeof(header) === 'string'").font-30.lh-title.pb-3.font-weight-light {{ header }}
           h1(
             v-else-if="typeof(header) === 'object'"
@@ -78,7 +78,7 @@
     //- CENTER VIEW
     v-row(v-else justify="center").py-10
       v-col(cols="12" md="10" :class="{'text-center': !$isMobile}")
-        p.font-16.primary--text {{ subHeader}}
+        span.font-16.primary--text {{ subHeader }}
         h1(v-if="typeof(header) === 'string'").font-30.lh-title.pb-3.font-weight-light {{ header }}
         h1(
           v-else-if="typeof(header) === 'object'"

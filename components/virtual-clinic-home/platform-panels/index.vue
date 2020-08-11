@@ -33,7 +33,7 @@ export default {
   },
   data () {
     this.panelHeader = {
-      title: 'Bring your practice online',
+      title: 'Build your virtual clinic today',
       description: 'One platform built with online appointments, video chat, EMR system, point-of-sale, telehealth, medical billing, and ',
       descriptionLink: 'more!',
     };
