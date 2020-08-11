@@ -25,7 +25,7 @@
           large
           @click="onGetStarted"
         ).text-none.font-16 Get Started
-        img(v-if="!$isMobile" src="~/assets/images/virtual-clinic-home/mycure-web-usp-telehealth-robocop-consult.png" width="100%").pt-6
+        img(v-if="!$isMobile" src="~/assets/images/virtual-clinic-home/mycure-web-usp-telehealth-robocop-consult.png" width="100%").robocop-image.mt-8
     v-row(v-if="$isMobile" justify="center" align="center").mobile-form.px-2.mt-n6
       v-col(cols="12")
         v-text-field(
@@ -40,9 +40,9 @@
           large
           @click="onGetStarted"
         ).text-none.font-16 Get Started
-    v-row(v-if="$isMobile" justify="center" align="end" no-gutters).ml-n5
+    v-row(v-if="$isMobile" justify="center" align="end" no-gutters).ml-n3.mt-5
       v-col(cols="12")
-        img(v-if="$isMobile" src="~/assets/images/virtual-clinic-home/mycure-web-usp-telehealth-robocop-consult.png" width="106%").ml-sm-n3
+        img(v-if="$isMobile" src="~/assets/images/virtual-clinic-home/mycure-web-usp-telehealth-robocop-consult.png" style="width: 100vw").robocop-image
 </template>
 
 <script>
@@ -120,6 +120,9 @@ export default {
   height: 50px;
   border-radius: 2px;
   display: inline-block;
+}
+.robocop-image {
+  box-shadow: 5px 5px 30px 5px #999999;
 }
 .text-field-container .text-field-input {
   top: 1px;
