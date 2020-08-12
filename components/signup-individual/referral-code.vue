@@ -1,11 +1,12 @@
 <template lang="pug">
   v-container
     v-row(justify="center" align="center" style="min-height: 80vh")
-      v-col(cols="12" align="center" align-self="end" :class="{ 'pt-12': $isMobile }")
+      v-col(cols="12" align="center" align-self="end" :class="{ 'mt-2': $isMobile }")
         v-btn(
           v-if="backButton"
-          style="position: absolute; left: 0; top: 0; margin: 30px"
+          style="position: absolute; left: 0; top: 0;"
           text
+          :class="!$isMobile ? 'ma-7' : 'ma-2'"
           @click="$nuxt.$router.push({ name: 'signup-individual-invite' })"
         )
           v-icon.primary--text mdi-arrow-left
