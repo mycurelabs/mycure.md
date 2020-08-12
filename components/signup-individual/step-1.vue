@@ -321,9 +321,9 @@ export default {
         };
 
         if (accountData) {
-          const phoneNumber = accountData?.mobileNo && parsePhoneNumberFromString(accountData.mobileNo);
-          this.user.firstName = accountData.personalDetails.name.firstName;
-          this.user.lastName = accountData.personalDetails.name.lastName;
+          const phoneNumber = accountData.mobileNo && parsePhoneNumberFromString(accountData.mobileNo);
+          this.user.firstName = accountData.personalDetails?.name?.firstName;
+          this.user.lastName = accountData.personalDetails?.name?.lastName;
           this.user.email = accountData.email;
           this.user.mobileNo = phoneNumber?.nationalNumber;
           this.user.doc_PRCLicenseNo = accountData.personalDetails.doc_PRCLicenseNo;
@@ -335,9 +335,9 @@ export default {
           const accountInvitation = await getWaitlist({ referralCode: accountInvitationData.referralCode });
           if (!accountInvitation) return;
 
-          const phoneNumber = accountInvitation?.mobileNo && parsePhoneNumberFromString(accountInvitation.mobileNo);
-          this.user.firstName = accountInvitation.personalDetails.name.firstName;
-          this.user.lastName = accountInvitation.personalDetails.name.lastName;
+          const phoneNumber = accountInvitation.mobileNo && parsePhoneNumberFromString(accountInvitation.mobileNo);
+          this.user.firstName = accountInvitation.personalDetails?.name?.firstName;
+          this.user.lastName = accountInvitation.personalDetails?.name?.lastName;
           this.user.email = accountInvitation.email;
           this.user.mobileNo = phoneNumber?.nationalNumber;
           this.user.doc_PRCLicenseNo = accountInvitation.personalDetails.doc_PRCLicenseNo;
