@@ -1,14 +1,21 @@
 <template lang="pug">
   v-container
     v-row(justify="center" align="center" style="min-height: 80vh")
+      v-col(cols="12" align="center" align-self="end")
+        img(
+          src="~/assets/images/MYCURE-virtual-clinic-healthcare-practice-online-logo.svg"
+          alt="MYCURE logo"
+          width="220"
+          @click="$nuxt.$router.push({ name: 'index' })"
+        ).link-to-home
       v-col(
         cols="11"
         sm="6"
         md="5"
         lg="4"
         xl="3"
-        justify="center"
         align="center"
+        align-self="start"
       )
         v-card
           img(
@@ -112,5 +119,8 @@ export default {
 <style scoped>
 h1 {
   line-height: 35px;
+}
+.link-to-home:hover {
+  cursor: pointer;
 }
 </style>
