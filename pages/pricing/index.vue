@@ -84,22 +84,18 @@ export default {
 #top {
   margin-top: 70px;
 }
-
 .header {
   background-image: url('../../assets/images/mycure-clinic-background-legal.png');
   background-position: center center;
   background-size: cover;
 }
-
 .header-container {
   height: 250px;
 }
-
 .content {
   padding-top: 50px;
   padding-bottom: 50px;
 }
-
 .tab {
   border-radius: 10px 10px 0 0;
   background-color: #BDCCD9;
