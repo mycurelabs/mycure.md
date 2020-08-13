@@ -316,7 +316,7 @@ export default {
 
         // CHECK IF THERE IS REFERRAL CODE AND ACCOUNT DATA
         if (!accountData && getItem('account-invitation') === null) {
-          this.$nuxt.$router.push({ name: 'signup-individual' });
+          this.$nuxt.$router.push({ name: 'signup-individual-invite' });
           return;
         };
 

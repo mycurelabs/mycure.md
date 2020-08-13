@@ -107,13 +107,13 @@ export default {
       });
     },
     getStarted () {
-      this.$router.push({ name: 'signup-individual' });
+      this.$router.push({ name: 'signup-individual-invite' });
     },
     goToFeatures () {
       this.$nuxt.$router.push({ name: 'features' });
     },
     goToSignupIndividual (email) {
-      this.$router.push({ name: 'signup-individual', params: { email } });
+      this.$router.push({ name: 'signup-individual-invite', params: { email } });
     },
     goToPatientPortal () {
       window.open(process.env.PXP_URL, '_blank', 'noopener, noreferrer');

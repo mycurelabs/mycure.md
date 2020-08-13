@@ -12,7 +12,7 @@
       :web-image="panelImages.mediaImage"
     )
       div(slot="additional-content")
-        v-btn(text :to="{ name: 'signup-individual' }").ml-n4.text-none
+        v-btn(text :to="{ name: 'signup-individual-invite' }").ml-n4.text-none
           strong.font-18.primary--text Get Started
           v-icon.primary--text mdi-arrow-right
     //- Bottom images
