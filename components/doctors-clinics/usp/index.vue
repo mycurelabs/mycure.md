@@ -1,8 +1,8 @@
 <template lang="pug">
   fragment
     v-container(
-      fluid
       style="height: 100vh"
+      fluid
       :class="[backgroundClasses, backgroundImages]"
     )
       v-container
@@ -16,28 +16,21 @@
                 v-btn(text).align-center
                   v-icon(large) mdi-arrow-down
               v-btn(
+                v-if="!$isMobile"
                 height="54"
                 width="160"
-                v-if="!$isMobile"
                 color="accent"
                 @click="onGetStarted"
               ).text-none.font-16.p-7 Get Started
     template(v-if="$isMobile")
       v-container(fluid).mobile-form
-        v-row.px-6
-          v-text-field(
-            background-color="white"
-            v-model="email"
-            placeholder="myname@email.com"
-            outlined
-          ).text-field-input
-        v-row.px-6.pt-3
+        v-row.px-6.pt-12
           v-btn(
             @click="onGetStarted"
             color="accent"
             block
             large
-          ).text-none.font-16 Get Started
+          ).text-none.font-16.mt-5 Get Started
 </template>
 
 <script>
@@ -110,7 +103,7 @@ export default {
 }
 .bg-mobile {
   background-image: url('../../../assets/images/doctors-clinics/MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-usp-cover-mobile.png');
-  background-position: 0 400px;
+  background-position: 0 350px;
   background-repeat: no-repeat;
   background-size: 100%;
 }

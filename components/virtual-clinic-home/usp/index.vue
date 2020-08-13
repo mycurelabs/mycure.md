@@ -18,6 +18,7 @@
             height="50"
             outlined
             dense
+            :error-messages="emailErrorMessage"
           ).text-field-input
         v-btn(
           v-if="!$isMobile"
@@ -35,7 +36,8 @@
           background-color="white"
           placeholder="myname@email.com"
           outlined
-        ).mb-3.text-field-input
+          :error-messages="emailErrorMessage"
+        ).mb-6.text-field-input
         v-btn(
           color="primary"
           block
@@ -55,6 +57,7 @@ export default {
     return {
       email: '',
       canUseWebp: false,
+      emailErrorMessage: '',
     };
   },
   computed: {
@@ -89,6 +92,7 @@ export default {
   methods: {
     onGetStarted () {
       if (!this.email) {
+        this.emailErrorMessage = 'Please enter your email';
         return;
       }
       this.$emit('getStarted', this.email);
