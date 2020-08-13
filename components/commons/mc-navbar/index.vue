@@ -62,6 +62,7 @@ export default {
             name: 'Specialized Practice',
             route: 'doctors-clinics',
             panel: 'specialized-practice',
+            panelOffset: -70,
             external: false,
           },
         ],

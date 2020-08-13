@@ -60,7 +60,7 @@ export default {
     this.loading = false;
     const panel = this.scrollPanel || '#app';
     this.$nextTick(() => {
-      VueScrollTo.scrollTo(panel, 500, { easing: 'ease' });
+      VueScrollTo.scrollTo(panel, 500, { easing: 'ease', offset: -70 });
     });
   },
   methods: {
