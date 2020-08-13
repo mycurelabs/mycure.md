@@ -223,14 +223,9 @@ export default {
       countries: [],
       confirmPassword: '',
       searchString: '',
-      // rules
-      // FIXME: These rules also exists in other forms. Put this on a constants file for better reusability
-      // requiredRule: v => !!v || 'This field is required',
-      // numberRule: v => /^[0-9-]{2,}$/.test(v) || 'Please input a valid number',
-      // emailRule: v => /^([\w]+.)+@([\w]+\.)+[\w-]{2,4}$/.test(v) || 'Email address must be valid',
-      // passwordRule: v => v?.length >= PASS_LENGTH || 'Password length must be at least 6 characters.',
+
       matchPasswordRule: v => v === this.user.password || 'Passwords do not match',
-      //
+
       error: false,
       errorMessage: 'There was an error please try again later.',
       mobileNoError: false,
@@ -331,7 +326,7 @@ export default {
           this.user.lastName = accountData.personalDetails?.name?.lastName;
           this.user.email = accountData.email;
           this.user.mobileNo = phoneNumber?.nationalNumber;
-          this.user.doc_PRCLicenseNo = accountData.personalDetails.doc_PRCLicenseNo;
+          this.user.doc_PRCLicenseNo = accountData.personalDetails?.doc_PRCLicenseNo; // eslint-disable-line
           return;
         }
 
@@ -345,7 +340,7 @@ export default {
           this.user.lastName = accountInvitation.personalDetails?.name?.lastName;
           this.user.email = accountInvitation.email;
           this.user.mobileNo = phoneNumber?.nationalNumber;
-          this.user.doc_PRCLicenseNo = accountInvitation.personalDetails.doc_PRCLicenseNo;
+          this.user.doc_PRCLicenseNo = accountInvitation.personalDetails?.doc_PRCLicenseNo; // eslint-disable-line
         }
 
         if (getItem('individual:step1:model') && this.pageType === 'signup-individual-step-1') {
