@@ -1,15 +1,6 @@
 <template lang="pug">
   v-container
-    v-row(v-if="!$isMobile")
-      v-toolbar(flat).footer-grey
-        nuxt-link(:to="{ name: 'index' }" title="MYCURE | Clinic Management System | Cloud EMR Philippines")
-          v-row.text-center
-            img(src="~/assets/images/mycure-footer-logo.png" height="40" alt="MYCURE logo")
-        v-spacer
-        div(v-for="(account, key) in socMed" :key="key")
-          a(:href="account.link" target="_blank" rel="noopener noreferrer")
-            img(:src="require(`~/assets/images/${ account.icon }`)" height="35" :alt="account.name").px-5
-    v-row(v-else justify="center").footer-grey
+    v-row(v-if="$isMobile" justify="center").footer-grey
       nuxt-link(:to="{ name: 'index' }" title="MYCURE | Clinic Management System | Cloud EMR Philippines")
         v-row(align="center").text-center
           img(src="~/assets/images/mycure-footer-logo.png" width="130" alt="MYCURE logo")
@@ -24,29 +15,25 @@
       v-expansion-panels(flat).footer-grey.elevation-0
         v-expansion-panel.footer-grey
           v-expansion-panel-header(:color="expansionPanelColor")
-            span.iconMargin.feature-text FOR HEALTHCARE PROFESSIONALS
+            span.iconMargin.feature-text FOR PROVIDERS
             template(v-slot:actions)
               v-icon(color="grey").iconMargin mdi-menu-down
           v-expansion-panel-content.iconMargin
             template(v-for="solution in clinicSolutions").link.py-2
               nuxt-link(:to="{ name: solution.route }")
-                span.py-2.font-18.link {{solution.name}}
+                span.py-2.font-18.link {{ solution.name }}
               br
               br
-            nuxt-link(id="footer-features-btn" :to="{ name: 'features' }" title="MYCURE Features").link.py-2
+            nuxt-link(id="footer-features-btn" :to="{ name: 'features' }" title="MYCURE | Features").link.py-2
               span.py-2.font-18 Features
-            br
-            br
-            nuxt-link(id="footer-pricing-btn" :to="{ name: 'pricing' }" title="MYCURE Pricing").link.py-2
-              span.py-2.font-18 Pricing
         v-expansion-panel.footer-grey
           v-expansion-panel-header(:color="expansionPanelColor")
             span.iconMargin.feature-text FOR PATIENTS
             template(v-slot:actions)
               v-icon(color="grey").iconMargin mdi-menu-down
           v-expansion-panel-content.iconMargin
-            a(:href="patientPortalUrl" target="_blank" rel="noopener noreferrer").link.py-2
-              span.py-2.font-18.new-link Patient's Portal
+            a(:href="patientPortalSite" target="_blank" rel="noopener noreferrer").link.py-2
+              span.py-2.font-18.new-link Patient Portal
             br
             br
             //- nuxt-link(id="footer-directory-doctors-link" :to="{ name: 'directory-doctors' }" title="MYCURE Doctor's Directory").link.py-2
@@ -99,7 +86,7 @@
       br
       br
       v-row(justify="center").text-center.copyright-text
-        strong Copyright &copy; 2016 - {{new Date().getFullYear()}}
+        strong Copyright &copy; 2016 - {{ new Date().getFullYear() }}
       v-row(justify="center").text-center
         nuxt-link(:to="{ name: 'index' }" title="MYCURE | Clinic Management System | Cloud EMR Philippines")
           strong.primary--text &nbsp;MYCURE Inc.
@@ -157,8 +144,8 @@ export default {
     };
   },
   computed: {
-    patientPortalUrl () {
-      return process.env.PX_PORTAL_URL;
+    patientPortalSite () {
+      return process.env.PXP_URL;
     },
   },
 };

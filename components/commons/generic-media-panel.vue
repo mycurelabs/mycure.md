@@ -9,15 +9,28 @@
           :customPath="customImagePath"
           :extensionExclusive="extensionExclusive"
           :image="webImage"
-          :imageAlt="header || 'media-image'"
+          :imageAlt="imageAltValue"
           :imageFileExtension="fileExtension"
           :imageWidth="webImageWidth"
+          :class="webImageClass"
         )
         template(v-if="contentAlignLeft")
-          h1.font-30.lh-title.pb-3.font-weight-light {{header}}
+          span.font-16.primary--text {{ subHeader }}
+          h1(v-if="typeof(header) === 'string'").font-30.lh-title.pb-3.font-weight-light {{ header }}
+          h1(
+            v-else-if="typeof(header) === 'object'"
+            :class="{'pre-white-space': $isRegularScreen}"
+          ).font-30.lh-title.pb-3.font-weight-light
+            | {{ header | parse-text }}
           br
           template(v-if="descriptions.length")
-            p(v-for="(description, key) in descriptions" :key="key").font-16.mt-3.font-gray.text-justify {{description}}
+            template(v-for="description in descriptions")
+              p(v-if="typeof(description) === 'string'").font-16.mt-3.font-gray.text-justify {{ description }}
+              p(
+                v-else-if="typeof(description) === 'object'"
+                :class="{'pre-white-space': $isRegularScreen }"
+              ).font-16.mt-3.font-gray.text-justify
+                | {{ description | parse-text }}
             br
           slot(name="additional-content")
       //- Right Column
@@ -27,15 +40,28 @@
           :customPath="customImagePath"
           :extensionExclusive="extensionExclusive"
           :image="webImage"
-          :imageAlt="header || 'media-image'"
+          :imageAlt="imageAltValue"
           :imageFileExtension="fileExtension"
           :imageWidth="webImageWidth"
+          :class="webImageClass"
         )
         template(v-if="contentAlignRight")
-          h1.font-30.lh-title.pb-3.font-weight-light {{header}}
+          span.font-16.primary--text {{ subHeader }}
+          h1(v-if="typeof(header) === 'string'").font-30.lh-title.pb-3.font-weight-light {{ header }}
+          h1(
+            v-else-if="typeof(header) === 'object'"
+            :class="{'pre-white-space': $isRegularScreen}"
+          ).font-30.lh-title.pb-3.font-weight-light
+            | {{ header | parse-text }}
           br
           template(v-if="descriptions.length")
-            p(v-for="(description, key) in descriptions" :key="key").font-16.mt-3.font-gray.text-justify {{description}}
+            template(v-for="description in descriptions")
+              p(v-if="typeof(description) === 'string'").font-16.mt-3.font-gray.text-justify {{ description }}
+              p(
+                v-else-if="typeof(description) === 'object'"
+                :class="{'pre-white-space': $isRegularScreen }"
+              ).font-16.mt-3.font-gray.text-justify
+                | {{ description | parse-text }}
             br
           slot(name="additional-content")
       //- Mobile Image
@@ -44,27 +70,41 @@
         :customPath="customImagePath"
         :extensionExclusive="extensionExclusive"
         :image="mobileImage || webImage"
-        :imageAlt="header || 'media-image'"
+        :imageAlt="imageAltValue"
         :imageFileExtension="mobileFileExtension || fileExtension"
         :imageWidth="mobileImageWidth"
+        :class="mobileImageClass"
       )
     //- CENTER VIEW
     v-row(v-else justify="center").py-10
       v-col(cols="12" md="10" :class="{'text-center': !$isMobile}")
-        h1.font-30.lh-title.pb-3.font-weight-light {{header}}
+        span.font-16.primary--text {{ subHeader }}
+        h1(v-if="typeof(header) === 'string'").font-30.lh-title.pb-3.font-weight-light {{ header }}
+        h1(
+          v-else-if="typeof(header) === 'object'"
+          :class="{'pre-white-space': $isRegularScreen}"
+        ).font-30.lh-title.pb-3.font-weight-light
+          | {{ header | parse-text }}
         //- Mobile image
         picture-source(
           v-if="$isMobile && !hideImageMobile"
           :customPath="customImagePath"
           :extensionExclusive="extensionExclusive"
           :image="mobileImage || webImage"
-          :imageAlt="header || 'media-image'"
+          :imageAlt="imageAltValue"
           :imageFileExtension="mobileFileExtension || fileExtension"
           :imageWidth="mobileImageWidth"
+          :class="mobileImageClass"
         )
         br
         template(v-if="descriptions.length")
-          p(v-for="(description, key) in descriptions" :key="key").font-16.mt-3.font-gray {{description}}
+          template(v-for="description in descriptions")
+            p(v-if="typeof(description) === 'string'").font-16.mt-3.font-gray.text-center {{ description }}
+            p(
+              v-else-if="typeof(description) === 'object'"
+              :class="{'pre-white-space': $isRegularScreen }"
+            ).font-16.mt-3.font-gray.text-center
+              | {{ description | parse-text }}
           br
         slot(name="additional-content")
         picture-source(
@@ -72,18 +112,25 @@
           :customPath="customImagePath"
           :extensionExclusive="extensionExclusive"
           :image="webImage"
-          :imageAlt="header || 'media-image'"
+          :imageAlt="imageAltValue"
           :imageFileExtension="fileExtension"
           :imageWidth="webImageWidth"
+          :class="webImageClass"
         )
 </template>
 
 <script>
 // components
 import PictureSource from './PictureSource';
+import { parseTextWithNewLine } from '~/utils/newline';
 
 export default {
   components: { PictureSource },
+  filters: {
+    parseText (item) {
+      return parseTextWithNewLine(item.text, item.parseFields);
+    },
+  },
   props: {
     /**
      * Alignment of left column
@@ -187,7 +234,15 @@ export default {
      * @type {String}
      */
     header: {
-      type: String,
+      type: [String, Object],
+      default: '',
+    },
+    /**
+     * Panel sub-header
+     * @type {String}
+     */
+    subHeader: {
+      type: [String, Object],
       default: '',
     },
     /**
@@ -207,6 +262,14 @@ export default {
       default: '100%',
     },
     /**
+     * Classes of web image
+     * @type {String}
+     */
+    webImageClass: {
+      type: String,
+      default: '',
+    },
+    /**
      * File name of image for mobile view (without file extension)
      * @type {String}
      */
@@ -222,6 +285,15 @@ export default {
       type: String,
       default: '100%',
     },
+    /**
+     * Classes of mobile image
+     * @type {String}
+     */
+    mobileImageClass: {
+      type: String,
+      default: '',
+    },
+    /**
     /**
      * Hides image in mobile view
      * @type {Boolean}
@@ -247,6 +319,20 @@ export default {
     mobileFileExtension: {
       type: String,
       default: null,
+    },
+  },
+  computed: {
+    imageAltValue () {
+      if (!this.header) {
+        return 'mycure-media-image';
+      }
+      if (typeof (this.header) === 'string') {
+        return this.header;
+      }
+      if (typeof (this.header) === 'object') {
+        return this.header.text;
+      }
+      return 'mycure-media-image';
     },
   },
 };

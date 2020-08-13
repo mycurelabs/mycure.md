@@ -13,14 +13,13 @@
       horizontal
       horizontal-image-size="40%"
     )
-    v-divider.edge-divider
     //- 4th panel
     privacy
-    v-divider.edge-divider
     //- 5th panel
     apis
-    v-divider.edge-divider
     //- 6th panel
+    patient-portal(@goToPatientPortal="goToPatientPortal")#patient-portal
+    //- 7th panel
     testimonial
     //- final panel
     div.cta-container
@@ -34,28 +33,30 @@ import headMeta from '~/utils/head-meta';
 import { parseTextWithNewLine } from '~/utils/newline';
 // - components
 import Usp from '~/components/virtual-clinic-home/usp';
-import Apis from '~/components/virtual-clinic-home/apis';
-import Cta from '~/components/virtual-clinic-home/cta';
 import PlatformPanels from '~/components/virtual-clinic-home/platform-panels';
-import Privacy from '~/components/virtual-clinic-home/privacy';
 import Storyflow from '~/components/commons/storyflow';
+import Privacy from '~/components/virtual-clinic-home/privacy';
+import Apis from '~/components/virtual-clinic-home/apis';
 import Testimonial from '~/components/virtual-clinic-home/testimonial';
+import PatientPortal from '~/components/virtual-clinic-home/patient-portal';
+import Cta from '~/components/virtual-clinic-home/cta';
 
 export default {
   components: {
     Usp,
-    Apis,
-    Cta,
     PlatformPanels,
-    Privacy,
     Storyflow,
+    Privacy,
+    Apis,
+    PatientPortal,
     Testimonial,
+    Cta,
   },
   data () {
     this.storyflowItems = [
       {
         title: 'Secure Electronic Health Records (EHR)',
-        text: 'Powerful, robust and proven solution that organizes health records based on global health standards.',
+        text: 'Powerful, robust and proven solution that organizes health records based on global<br>health standards.',
         image: 'MYCURE-virtual-clinic-healthcare-practice-online-homepage-E-benefits-01-secure-ehr.png',
       },
       {
@@ -75,6 +76,10 @@ export default {
     };
   },
   computed: {
+    scrollPanel () {
+      const panel = this.$nuxt.$route.params.panel;
+      return panel ? `#${panel}` : null;
+    },
     storyflowIntroText () {
       return this.$isMobile
         ? this.introText
@@ -82,12 +87,25 @@ export default {
     },
   },
   mounted () {
+    this.loading = false;
+    this.scrollToPosition();
     this.$nuxt.$route.params.scrollHealthSuites ? this.getStarted()
       : VueScrollTo.scrollTo('#app', 500, { easing: 'ease' });
     window.$crisp.push(['safe', true]);
     this.loading = false;
   },
   methods: {
+    scrollToPosition () {
+      const panel = this.scrollPanel || '#app';
+      const offsetMappings = [
+        { key: '#app', offset: 0 },
+        { key: '#patient-portal', offset: 100 },
+      ];
+      const { offset } = offsetMappings.find(mapping => mapping.key === panel);
+      this.$nextTick(() => {
+        VueScrollTo.scrollTo(panel, 400, { easing: 'ease', offset });
+      });
+    },
     getStarted () {
       this.$router.push({ name: 'signup-individual' });
     },
@@ -96,6 +114,9 @@ export default {
     },
     goToSignupIndividual (email) {
       this.$router.push({ name: 'signup-individual', params: { email } });
+    },
+    goToPatientPortal () {
+      window.open(process.env.PXP_URL, '_blank', 'noopener, noreferrer');
     },
     handleWatchFeatures () {
       this.$ga.event({

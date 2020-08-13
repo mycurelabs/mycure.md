@@ -1,35 +1,40 @@
 <template lang="pug">
-  v-container.py-12
-    v-row(justify="center")
-      v-col(align-self="center" cols="12" md="5")
-        h1.font-30.lh-title.pb-3.font-weight-light {{TAKE_PRACTICE_ONLINE.header}}
-        br
-        p.text-justify.font-16.mt-3.font-gray {{TAKE_PRACTICE_ONLINE.description}}
-        br
-        br
-        v-btn(@click="onGetStarted" text).ml-n4.get-started-btn
-          strong.text-capitalize.primary--text {{TAKE_PRACTICE_ONLINE.btnTxt}}
-          v-icon.primary--text {{TAKE_PRACTICE_ONLINE.btnIcon}}
-      v-col(align-self="center" cols="12" md="6").panel-image
-        picture-source(
-          custom-path="doctors-clinics/"
-          :image="panelMainImage"
-          image-alt="Take your practice online"
-          image-file-extension=".webp"
-        )
+  generic-media-panel(
+    align-left-column="center"
+    cols-left="4"
+    cols-right="5"
+    offset-cols-right="1"
+    custom-image-path="doctors-clinics/"
+    file-extension=".webp"
+    web-image-width="104%"
+    mobile-image-width="95%"
+    web-image-class="ml-n3"
+    mobile-image-class="text-center"
+    :content-align-left="true"
+    :header="panelContents.title"
+    :descriptions="[panelContents.description]"
+    :web-image="panelContents.image"
+  )
+    div(slot="additional-content")
+      v-btn(text @click="onGetStarted").ml-n4
+        strong.text-capitalize.primary--text.font-18 {{ panelContents.btnTxt }}
+        v-icon.primary--text {{ panelContents.btnIcon }}
 </template>
 
 <script>
-// constants
-import { TAKE_PRACTICE_ONLINE } from '../doctors-clinics-content';
-// components
-import PictureSource from '~/components/commons/PictureSource';
-
+import GenericMediaPanel from '~/components/commons/generic-media-panel';
 export default {
-  components: { PictureSource },
+  components: {
+    GenericMediaPanel,
+  },
   data () {
-    this.TAKE_PRACTICE_ONLINE = TAKE_PRACTICE_ONLINE;
-    this.panelMainImage = 'MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-C-group-practice';
+    this.panelContents = {
+      image: 'MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-C-group-practice',
+      title: 'Take your entire practice online - even your group clinic',
+      description: 'Easily coordinate with other doctors in your group practice and centralize your clinic system under one subscription.',
+      btnTxt: 'Get Started',
+      btnIcon: 'mdi-arrow-right',
+    };
     return {};
   },
   methods: {
@@ -39,15 +44,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-a {
-  text-decoration-color: #2e9fdf;
-  text-decoration: none;
-}
-@media screen and (min-width: 1024px) {
-  .panel-image {
-    margin-left: 4%;
-  }
-}
-</style>

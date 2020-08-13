@@ -1,8 +1,10 @@
+import _ from 'lodash';
 import axios from 'axios';
 import { handleError } from './error-handler';
 
-export const getDoctors = async ({ limit = 20 }) => {
+export const getDoctors = async (opts) => {
   try {
+    const { limit } = opts || {};
     const { data } = await axios({
       method: 'get',
       url: `${process.env.API_URL}/personal-details?doc_website[$exists]=true&$limit=${limit}`,
@@ -24,8 +26,9 @@ export const getDoctors = async ({ limit = 20 }) => {
 };
 
 // TODO: Add logic for featured doctor
-export const getFeaturedDoctors = async ({ limit = 6 }) => {
+export const getFeaturedDoctors = async (opts) => {
   try {
+    const { limit } = opts || {};
     const { data } = await axios({
       method: 'get',
       url: `${process.env.API_URL}/personal-details?doc_website[$exists]=true&$limit=${limit}`,
@@ -48,12 +51,37 @@ export const getFeaturedDoctors = async ({ limit = 6 }) => {
 
 export const searchDoctors = async (opts) => {
   try {
-    // const payload = {
-    //   $search: opts.search,
-    // };
+    let url = `${process.env.API_URL}/personal-details?doc_website[$exists]=true`;
+
+    if (opts?.searchString) {
+      url += `&$search[text]=${opts?.searchString}`;
+    }
+
+    if (!_.isEmpty(opts?.specialties)) {
+      if (opts?.specialties.length === 1) {
+        url += `&doc_specialties=${opts?.specialties[0]}`;
+      } else {
+        opts?.specialties?.forEach((specialty) => { // eslint-disable-line
+          url += `&doc_specialties[$in]=${specialty}`;
+        });
+      }
+    }
+
+    if (!_.isEmpty(opts?.sortBy)) {
+      url += `&$sort[${opts.sortBy.field}]=${opts?.sortBy.sort}`;
+    }
+
+    if (opts?.limit) {
+      url += `&$limit=${opts.limit}`;
+    }
+
+    if (opts?.skip) {
+      url += `&$skip=${opts.skip}`;
+    }
+
     const { data } = await axios({
-      method: 'post',
-      url: `${process.env.API_URL}/personal-details`,
+      method: 'get',
+      url,
     });
     return data;
   } catch (e) {

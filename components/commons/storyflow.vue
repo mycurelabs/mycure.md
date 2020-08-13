@@ -47,7 +47,7 @@
                 :class="{'pre-white-space': parseTitles}"
               ).font-21 {{ parseTitle(highlight) }}
               br
-              p.font-16.pt-3.mx-2.story-description.font-gray {{highlight.text}}
+              p(v-html="highlight.text").font-16.pt-3.mx-2.story-description.font-gray
           v-row(v-if="featuresButton" justify="center" align="center").pt-10
             v-col(cols="4").text-center
               v-btn(
@@ -75,7 +75,7 @@
           br
           v-row(align="center").px-2.description-storyflow
             v-col(cols="12").text-center.mt-n10
-              span.font-18.story-description.font-gray {{highlight.text}}
+              span(v-html="highlight.text").font-18.story-description.font-gray
 
           br
         v-row(v-if="featuresButton" justify="center")
