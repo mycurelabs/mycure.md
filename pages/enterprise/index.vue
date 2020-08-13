@@ -77,23 +77,12 @@ export default {
   },
   mounted () {
     this.loading = false;
-    this.scrollToPosition();
+    const panel = this.scrollPanel || '#app';
+    this.$nextTick(() => {
+      VueScrollTo.scrollTo(panel, 500, { easing: 'ease', offset: -70 });
+    });
   },
   methods: {
-    scrollToPosition () {
-      const panel = this.scrollPanel || '#app';
-      const offsetMappings = [
-        { key: '#app', offset: 0 },
-        { key: '#multibranch-facilities', offset: 500 },
-        { key: '#corporate-clinics', offset: 700 },
-        { key: '#medical-arts-centers', offset: 900 },
-        { key: '#diagnostic-centers', offset: 1200 },
-      ];
-      const { offset } = offsetMappings.find(mapping => mapping.key === panel);
-      this.$nextTick(() => {
-        VueScrollTo.scrollTo(panel, 500, { easing: 'ease', offset });
-      });
-    },
     onGetStarted (email) {
       localStorage.setItem('multi:step3:email', email);
       this.goToSignup();
