@@ -119,4 +119,10 @@ export default {
 .action-btn {
   width: 200px;
 }
+
+@media screen and (min-width: 1900px){
+  .inclusions-container {
+    min-height: 400px !important;
+  }
+}
 </style>

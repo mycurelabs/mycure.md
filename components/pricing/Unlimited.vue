@@ -123,4 +123,9 @@ export default {
   padding-top: 100px;
   padding-bottom: 25px;
 }
+@media screen and (min-width: 1900px){
+  .inclusions-container {
+    min-height: 400px !important;
+  }
+}
 </style>
