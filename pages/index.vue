@@ -116,7 +116,7 @@ export default {
       this.$router.push({ name: 'signup-individual', params: { email } });
     },
     goToPatientPortal () {
-      window.open(process.env.PXP_URL, '_blank', 'noopener, noreferrer');
+      window.open(process.env.PX_PORTAL_URL, '_blank', 'noopener, noreferrer');
     },
     handleWatchFeatures () {
       this.$ga.event({
