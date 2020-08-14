@@ -13,7 +13,7 @@
           cols="12"
           md="6"
           offset-md="3"
-          :class="[{'web-content-margin': !$isMobile}]"
+          align-self="start"
         ).cta-title.text-center
           h1.font-40.lh-title.pre-white-space {{ ctaWebTitle }}
           p.font-italic.font-18.my-4 {{ ctaSubtitle }}
@@ -126,11 +126,8 @@ export default {
 </script>
 
 <style scoped>
-.web-content-margin {
-  margin-top: -15%;
-}
 .row-content {
-  height: 100vh;
+  height: 80vh;
   text-align: center;
   margin-top: 5vh;
 }
