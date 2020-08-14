@@ -117,7 +117,7 @@ export default {
   background-image: url('../../../assets/images/virtual-clinic-home/mycure-web-usp-cover-background-blur.png');
   background-repeat: no-repeat;
   background-size: cover;
-  min-height: 100%;
+  min-height: 100vh;
 }
 .usp-content {
   margin-top: 90px;

@@ -13,7 +13,7 @@
     :header="title"
     :descriptions="[panelContents.description]"
     :web-image="panelContents.image"
-  )
+  ).cta-container
     div(slot="additional-content")
       v-btn(text @click="onGetStarted").ml-n4
         strong.text-capitalize.primary--text.font-18 {{ panelContents.btnTxt }}
@@ -52,3 +52,9 @@ export default {
   },
 };
 </script>
+<style scoped>
+.cta-container {
+  position: relative;
+  z-index: 2;
+}
+</style>

@@ -184,6 +184,7 @@ export default {
   .row-content {
     height: 50vh;
     margin-bottom: -20%;
+    margin-top: 10vh;
   }
 }
 </style>

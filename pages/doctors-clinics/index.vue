@@ -1,7 +1,7 @@
 <template lang="pug">
   div(v-if="!loading")
     //- 1st panel
-    usp(@getStarted="getStarted")
+    usp(@getStarted="getStarted($event)")
     //- 2nd panel
     increase-revenue(@getStarted="getStarted")
     v-divider.edge-divider
@@ -64,8 +64,8 @@ export default {
     });
   },
   methods: {
-    getStarted () {
-      this.$nuxt.$router.push({ name: 'signup-individual' });
+    getStarted (email) {
+      this.$nuxt.$router.push({ name: 'signup-individual', params: { email } });
     },
     goToSignupIndividual (email) {
       this.$nuxt.$router.push({ name: 'signup-individual', params: { email } });

@@ -24,13 +24,21 @@
               ).text-none.font-16.p-7 Get Started
     template(v-if="$isMobile")
       v-container(fluid).mobile-form
-        v-row.px-6.pt-12
+        v-row.px-6.mt-n3
+          v-text-field(
+            v-model="email"
+            background-color="white"
+            placeholder="myname@email.com"
+            outlined
+            :error-messages="emailErrorMessage"
+          ).text-field-input
+        v-row.px-6.pt-6
           v-btn(
             @click="onGetStarted"
             color="accent"
             block
             large
-          ).text-none.font-16.mt-5 Get Started
+          ).text-none.font-16 Get Started
 </template>
 
 <script>
@@ -45,6 +53,7 @@ export default {
     return {
       email: '',
       canUseWebp: false,
+      emailErrorMessage: '',
     };
   },
   computed: {
@@ -83,7 +92,11 @@ export default {
   },
   methods: {
     onGetStarted () {
-      this.$emit('getStarted');
+      if (this.$isMobile && !this.email) {
+        this.emailErrorMessage = 'Please enter your email';
+        return;
+      }
+      this.$emit('getStarted', this.email);
     },
   },
 };
@@ -103,7 +116,7 @@ export default {
 }
 .bg-mobile {
   background-image: url('../../../assets/images/doctors-clinics/MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-usp-cover-mobile.png');
-  background-position: 0 350px;
+  background-position: 0 400px;
   background-repeat: no-repeat;
   background-size: 100%;
 }
