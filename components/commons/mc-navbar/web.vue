@@ -8,7 +8,7 @@
           v-col(cols="12" md="12").toolbarMargin
             v-toolbar(flat :color="appBarColor")
               nuxt-link(:to="{ name: 'index' }" title="MYCURE | Clinic Management System | Cloud EMR Philippines" id="toolbar-mycure-logo" @click.stop="handleMycureLogo").mr-3.mt-2
-                img(src="~/assets/images/MYCURE-virtual-clinic-healthcare-practice-online-logo.svg" width="140" alt="MYCURE logo")
+                img(src="~/assets/images/MYCURE-virtual-clinic-healthcare-practice-online-logo.svg" width="140" alt="MYCURE logo" @click="scrollToTop")
               template(v-for="(item, key) in solutionsMenuItems")
                 v-btn(v-if="!item.subMenus" text @click="onNavLinkClick(item)")
                   span.font-14.tab.text-none {{item.name}}
@@ -139,6 +139,11 @@ export default {
     },
     onNavLinkClick (navLink) {
       this.$emit('navLinkClick', navLink);
+    },
+    scrollToTop () {
+      if (this.$nuxt.$route.name === 'index') {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
     },
   },
 };
