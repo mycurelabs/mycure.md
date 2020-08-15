@@ -2,10 +2,15 @@
   fragment
     //- mc-covid-banner
     mc-cookie-prompt
-    v-app-bar(app fixed flat height="70" :color="appBarColor" :class="[shadow]")
-      v-container
-        v-row(justify="center")
-          v-col(cols="12" md="12").toolbarMargin
+    v-app-bar(
+      height="70"
+      app
+      elevate-on-scroll
+      :color="appBarColor"
+    )
+      v-container.pa-0
+        v-row(justify="center" align="center" no-gutters)
+          v-col(cols="12")
             v-toolbar(flat :color="appBarColor")
               nuxt-link(:to="{ name: 'index' }" title="MYCURE | Clinic Management System | Cloud EMR Philippines" id="toolbar-mycure-logo" @click.stop="handleMycureLogo").mr-3.mt-2
                 img(src="~/assets/images/MYCURE-virtual-clinic-healthcare-practice-online-logo.svg" width="140" alt="MYCURE logo" @click="scrollToTop")
@@ -163,9 +168,6 @@ a {
 .emphasis-impact {
   font-weight: bold;
   text-decoration: underline;
-}
-.toolbarMargin{
-  margin-top: 3px;
 }
 .toolbarHeight {
   height: 70px !important;
