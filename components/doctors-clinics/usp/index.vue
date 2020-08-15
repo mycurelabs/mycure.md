@@ -28,7 +28,7 @@
           v-text-field(
             v-model="email"
             background-color="white"
-            placeholder="myname@email.com"
+            placeholder="johndoe@gmail.com"
             outlined
             :error-messages="emailErrorMessage"
           ).text-field-input

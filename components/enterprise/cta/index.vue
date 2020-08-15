@@ -23,7 +23,7 @@
               v-text-field(
                 v-model="email"
                 background-color="white"
-                placeholder="myname@email.com"
+                placeholder="johndoe@gmail.com"
                 elevation="2"
                 height="52"
                 outlined
@@ -50,7 +50,7 @@
               v-text-field(
                 v-model="email"
                 background-color="white"
-                placeholder="myname@email.com"
+                placeholder="johndoe@gmail.com"
                 elevation="2"
                 height="52"
                 outlined

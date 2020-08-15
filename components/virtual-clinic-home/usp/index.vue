@@ -14,7 +14,7 @@
           v-text-field(
             v-model="email"
             background-color="white"
-            placeholder="myname@email.com"
+            placeholder="johndoe@gmail.com"
             height="50"
             outlined
             dense
@@ -34,7 +34,7 @@
         v-text-field(
           v-model="email"
           background-color="white"
-          placeholder="myname@email.com"
+          placeholder="johndoe@gmail.com"
           outlined
           :error-messages="emailErrorMessage"
         ).mb-6.text-field-input
