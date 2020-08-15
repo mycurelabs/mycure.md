@@ -222,6 +222,7 @@ export default {
         };
         await verifyMobileNo(payload);
         this.$router.replace({ query: { success: true } });
+        this.otpCountdown = null;
         this.successDialog = true;
       } catch (e) {
         this.verificationError = true;

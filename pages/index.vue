@@ -107,10 +107,10 @@ export default {
       });
     },
     getStarted () {
-      this.$router.push({ name: 'signup-individual' });
+      this.$router.push({ name: 'signup-individual-invite' });
     },
     goToSignupIndividual (email) {
-      this.$router.push({ name: 'signup-individual', params: { email } });
+      this.$router.push({ name: 'signup-individual-invite', params: { email } });
     },
     goToPatientPortal () {
       window.open(process.env.PX_PORTAL_URL, '_blank', 'noopener, noreferrer');

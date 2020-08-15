@@ -80,7 +80,7 @@ export default {
   },
   methods: {
     goToSignupIndividual (email) {
-      this.$router.push({ name: 'signup-individual', params: { email } });
+      this.$router.push({ name: 'signup-individual-invite', params: { email } });
     },
   },
   head () {
