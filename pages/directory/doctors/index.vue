@@ -14,6 +14,7 @@
           search-controls(
             :search-string="searchString"
             :search-specialties="searchSpecialties"
+            :isLoading="isLoading"
             @search="searchFromControls"
           )
     doctors-table(
@@ -104,7 +105,16 @@ export default {
       featuredDoctors: [],
     };
   },
+  created () {
+    this.init();
+    if (process.browser) {
+      this.isLoading = false;
+    };
+  },
   methods: {
+    init () {
+      this.isLoading = true;
+    },
     async searchDoctors () {
       const { page, itemsPerPage } = this.doctorsTablePaginationOptions;
       const query = {
@@ -123,16 +133,22 @@ export default {
       this.searchDoctors();
     },
     searchFromControls (searchObject) {
+      this.isLoading = true;
       this.searchObject = searchObject;
       this.searchDoctors();
+      this.isLoading = false;
     },
     searchFromUSP (searchString) {
+      this.isLoading = true;
       this.searchString = searchString;
       VueScrollTo.scrollTo('#search-control-container', 500, { easing: 'ease', offset: -70 });
+      this.isLoading = false;
     },
     searchFromQuickSearch ({ filters }) {
+      this.isLoading = true;
       this.searchSpecialties = filters;
       VueScrollTo.scrollTo('#search-control-container', 500, { easing: 'ease', offset: -70 });
+      this.isLoading = false;
     },
   },
   head () {

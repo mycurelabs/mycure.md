@@ -3,31 +3,33 @@
     td.pa-1
       v-avatar
         img(:src="picURL")
-    td {{fullNameWithSuffixes}}
-    td {{specialties && specialties.join(', ')}}
+    td {{ fullNameWithSuffixes }}
+    td {{ specialties && specialties.join(', ') }}
     td
-      span(v-if="yearsOfExperience") {{yearsOfExperience}} year/s
+      span(v-if="yearsOfExperience") {{ yearsOfExperience }} year/s
       span(v-else) --
     td(width="229").pa-0
-      v-row(no-gutters justify="end")
+      v-row(no-gutters align="center" justify="end")
         v-col.pa-1.shrink
           v-btn(
             color="primary"
             rel="noreferrer noopener"
             target="_blank"
-            small
-            text
-            :href="doctorWebsite"
-          ).text-none Visit Website
-        v-col.pa-1.shrink
-          v-btn(
-            color="primary"
             depressed
             small
-            rel="noreferrer noopener"
-            target="_blank"
             :href="bookAppointmentUrl"
           ).text-none Book Now!
+        v-col.pa-1.shrink
+          v-menu(offset-y left)
+            template(v-slot:activator="{ on, attrs }")
+              v-icon(v-on="on").mx-3 mdi-dots-vertical
+            v-btn(
+              color="white"
+              rel="noreferrer noopener"
+              target="_blank"
+              small
+              :href="doctorWebsite"
+            ).primary--text.text-none Visit Website
 </template>
 
 <script>
@@ -42,7 +44,7 @@ export default {
   computed: {
     doctorWebsite () {
       const username = this.doctor?.doc_website; // eslint-disable-line
-      return process.browser && `${window.location.origin}/doctors/${username}`;
+      return `${process.env.WEB_MAIN_URL}/doctors/${username}`;
     },
     bookAppointmentUrl () {
       const username = this.doctor?.doc_website; // eslint-disable-line

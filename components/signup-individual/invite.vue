@@ -1,35 +1,39 @@
 <template lang="pug">
-  v-form(ref="formRef" v-model="valid").content-padding
-    v-container
-      v-row(justify="center" align="center")
-        v-col(cols="12" justify="center" align="center")
-          img(
-            src="~/assets/images/sign-up-individual-step-1/mycure-sso-sign-in-logo.svg"
-            alt="MYCURE logo"
-            width="60"
-            @click="$nuxt.$router.push({ name: 'index' })"
-          ).link-to-home.pb-5
-          h1.pb-3 Getting Started
-        v-col(
-          cols="12"
-          sm="4"
-          md="3"
-          xl="2"
-          align-self="start")
-          img(
-            src="~/assets/images/sign-up-individual-step-1/mycure-su-message@2x.png"
-            alt="Invite message"
-            width="100%"
-          )
-          span.float-right.primary--text
-            a(@click="enterReferralCode") I have a referral code.
-        v-col(
-          cols="12"
-          sm="7"
-          md="5"
-          xl="4"
-          justify="center"
-          align-self="start")
+  v-container
+    v-row(justify="center" align="center" style="min-height: 80vh")
+      v-col(cols="12" align="center" align-self="end")
+        img(
+          src="~/assets/images/sign-up-individual-step-1/mycure-sso-sign-in-logo.svg"
+          alt="MYCURE logo"
+          width="60"
+          @click="$nuxt.$router.push({ name: 'index' })"
+        ).link-to-home.pb-5
+        h1.pb-3 Getting Started
+      v-col(
+        cols="12"
+        sm="4"
+        md="4"
+        lg="3"
+        xl="2"
+        align-self="start"
+      )
+        img(
+          v-if="!loadingForm"
+          src="~/assets/images/sign-up-individual-step-1/mycure-su-message-blank@2x.png"
+          width="100%"
+        )
+        p(v-if="loadingForm").text-justify.font-20
+          | MYCURE virtual clinic is&nbsp;
+          strong by invite only.
+      v-col(
+        cols="12"
+        sm="7"
+        lg="5"
+        xl="4"
+        justify="center"
+        align-self="start"
+      )
+        v-form(ref="formRef" v-model="valid")
           //- FIRSTNAME AND LASTNAME
           v-row(no-gutters)
             v-col
@@ -37,7 +41,7 @@
                 v-model="user.firstName"
                 label="First Name"
                 outlined
-                :rules="[requiredRule]"
+                :rules="requiredRule"
                 :disabled="loading"
               )#firstName.pr-1
                 template(v-slot:append v-if="user.firstName")
@@ -47,7 +51,7 @@
                 v-model="user.lastName"
                 label="Last Name"
                 outlined
-                :rules="[requiredRule]"
+                :rules="requiredRule"
                 :disabled="loading"
               ).pl-1
                 template(v-slot:append v-if="user.lastName")
@@ -58,11 +62,11 @@
             type="email"
             label="Email Address"
             outlined
-            :rules="[requiredRule, emailRule]"
+            :rules="emailRules"
             :disabled="loading"
+            @keyup="checkEmail"
           )
-            //- template(v-slot:append v-if="user.email &&  /.+@.+/.test(user.email)")
-            template(v-slot:append v-if="user.email && emailRule")
+            template(v-slot:append v-if="isEmailValid")
               v-icon(color="accent") mdi-check
           //- LICENSE NO. AND MOBILE NO.
           v-row(no-gutters)
@@ -71,10 +75,10 @@
                 v-model="user.doc_PRCLicenseNo"
                 label="Physician License No"
                 outlined
-                :rules="[requiredRule, numberRule]"
+                :rules="numberRule"
                 :disabled="loading"
               ).pr-1
-                template(v-slot:append v-if="user.doc_PRCLicenseNo && user.doc_PRCLicenseNo>=0")
+                template(v-slot:append v-if="user.doc_PRCLicenseNo && user.doc_PRCLicenseNo>=2")
                   v-icon(color="accent") mdi-check
             v-col
               v-text-field(
@@ -84,7 +88,7 @@
                 outlined
                 :prefix="`+${user.countryCallingCode}`"
                 :error-messages="mobileNoErrorMessage"
-                :rules="[requiredRule]"
+                :rules="requiredRule"
                 :loading="loadingForm || loading"
                 :disabled="loadingForm || loading"
                 @blur="validatePhoneNo"
@@ -98,71 +102,21 @@
                         v-btn(icon @click="countryDialog = true" v-on="on")
                           img(width="25" :src="user.countryFlag").flag-img.mt-2
                       | Change Country
-          v-divider
-          //- TERMS AND AGREEMENT
-          v-row(no-gutters)
-            v-col(align="start")
-              div.d-flex
-                v-checkbox(
-                  v-model="user.acceptTerms"
-                  color="primary"
-                  hide-details
-                  :rules="[requiredRule]"
-                  :disabled="loading"
-                )
-                span.pt-6 I agree to&nbsp;
-                  strong MYCURE's&nbsp;
-                  a(@click="goToTerms") Terms&nbsp;
-                  | and&nbsp;
-                  a(@click="goToPrivacy") Privacy Policy.
+          v-divider.my-2
           v-alert(:value="error" type="error").mt-5 {{ errorMessage }}
           v-row(no-gutters)
-            v-col(:align="!$isMobile ? 'end' : 'center'")
+            v-col(:align="!$isMobile ? 'end' : 'center'" align-self="center").mt-6
+              p(:class="{ 'float-left mt-3': !$isMobile }").primary--text
+                a(@click="$nuxt.$router.push({ name: 'signup-individual-referral-code' })") I have a referral code.
               v-btn(
                 color="primary"
                 large
                 :disabled="loading || !valid"
                 :loading="loading"
                 @click="getAccess"
-              ).mt-6.font-weight-bold Get Free Access
-      //- REFERRAL CODE DIALOG
-      v-dialog(v-model="referralCodeDialog" width="350")
-        v-card.text-center
-          img(
-            src="~/assets/images/sign-up-individual-step-1/mycure-su-banner-invite-code@2x.png"
-            alt="Request Sent"
-            width="100%"
-          )
-          v-card-text
-            h1.py-5 Enter your&nbsp;
-              br(v-if="!$isMobile")
-              | Referral Code.
-            v-row(no-gutters)
-              v-col.d-inline-flex
-                v-text-field(
-                  v-model="user.referralCode"
-                  label="Referral Code"
-                  width="100%"
-                  ref="referralCode"
-                  outlined
-                  :disabled="loading"
-                ).pr-2
-                v-btn(
-                  height="55"
-                  color="primary"
-                  large
-                  :disabled="loading"
-                  :loading="loading"
-                  @click="submitCode"
-                ) Submit
-            v-alert(:value="error" type="error").text-justify {{ referralCodeError }}
-            v-divider.pb-5
-            span Got problems with your code?
-              br(v-if="$isMobile")
-              strong.primary--text
-                a(@click="toggleCrispChat") &nbsp;Contact Us.
+              ).font-weight-bold Get Free Access
       //- REQUEST SENT DIALOG
-      v-dialog(v-model="requestSentDialog" width="350")
+      v-dialog(v-model="requestSentDialog" width="350" persistent)
         v-card.text-center
           img(
             src="~/assets/images/sign-up-individual-step-1/mycure-su-banner-waitlist@2x.png"
@@ -223,7 +177,16 @@ import { parsePhoneNumberFromString } from 'libphonenumber-js';
 // - components
 import EmailVerificationDialog from './email-verification-dialog';
 // - utils
-import { getCountry, getCountries, signupWaitList } from '~/utils/axios';
+import {
+  getCountries,
+  getCountry,
+  createWaitlist,
+} from '~/utils/axios';
+import {
+  requiredRule,
+  numberRule,
+  emailRules,
+} from '~/utils/text-field-rules';
 import dayOrNight from '~/utils/day-or-night';
 
 export default {
@@ -232,14 +195,17 @@ export default {
   },
   data () {
     this.dayOrNight = dayOrNight();
+    this.requiredRule = requiredRule;
+    this.numberRule = numberRule;
+    this.emailRules = emailRules;
     return {
       // UI STATE
       valid: false,
       loading: false,
       loadingForm: false,
+      isEmailValid: false,
       countryDialog: false,
       requestSentDialog: false,
-      referralCodeDialog: false,
       emailVerificationMessageDialog: false,
       // MODELS
       user: {
@@ -248,14 +214,9 @@ export default {
       },
       countries: [],
       searchString: '',
-      // RULES
-      requiredRule: v => !!v || 'This field is required',
-      numberRule: v => v >= 0 || 'Please input a valid number',
-      emailRule: v => /^([\w]+.)+@([\w]+\.)+[\w-]{2,4}$/.test(v) || 'Email address must be valid',
       // ERROR
       error: false,
       errorMessage: 'There was an error please try again later.',
-      referralCodeError: 'Invalid code. Please try again later.',
       mobileNoError: false,
       mobileNoErrorMessage: '',
     };
@@ -307,7 +268,7 @@ export default {
         if (!this.valid) {
           return;
         }
-        await signupWaitList(this.user);
+        await createWaitlist(this.user);
         this.requestSentDialog = true;
       } catch (e) {
         console.error(e);
@@ -338,22 +299,6 @@ export default {
       this.user.countryFlag = country.flag;
       this.countryDialog = false;
       this.searchString = '';
-    },
-    goToTerms () {
-      const routeData = this.$nuxt.$router.resolve({ name: 'terms' });
-      if (process.client) {
-        const changeRoute = window.open(routeData.href, '_blank');
-        changeRoute.opener = null;
-        changeRoute.rel = 'noopener noreferrer';
-      }
-    },
-    goToPrivacy () {
-      const routeData = this.$nuxt.$router.resolve({ name: 'privacy-policy' });
-      if (process.client) {
-        const changeRoute = window.open(routeData.href, '_blank');
-        changeRoute.opener = null;
-        changeRoute.rel = 'noopener noreferrer';
-      }
     },
     validateForm () {
       const valid = this.$refs.formRef.validate();
@@ -390,27 +335,13 @@ export default {
       }
       this.$nuxt.$router.push({ name: 'signin' });
     },
-    enterReferralCode () {
-      this.referralCodeDialog = true;
-      setTimeout(() => {
-        this.$refs.referralCode.focus();
-      }, 0);
-    },
-    submitCode () {
-      this.loading = true;
-      this.referralCodeDialog = false;
-      localStorage.setItem('referral-code:', JSON.stringify(this.user.referralCode));
-      this.$nuxt.$router.push({ name: 'signup-individual-step-1' });
-    },
     goToDocDirectory () {
       this.loading = true;
       this.requestSentDialog = false;
       this.$nuxt.$router.push({ name: 'directory-doctors' });
     },
-    toggleCrispChat () {
-      const message = 'Hello, I have problem with my referral code.';
-      window.$crisp.push(['do', 'chat:toggle']);
-      window.$crisp.push(['do', 'message:send', ['text', message]]);
+    checkEmail () {
+      this.isEmailValid = /^.+@.+\.+[a-zA-Z]{2,3}$/.test(this.user.email);
     },
   },
 };
@@ -436,90 +367,5 @@ h1 {
 
 .flag-img:hover {
   cursor: pointer;
-}
-@media screen and (min-width: 768px) {
-  .content-padding {
-    padding-top: 10vh;
-    padding-bottom: 15%;
-  }
-}
-@media screen and (min-width: 1024px) {
-  .content-padding {
-    padding-top: 20vh;
-    padding-bottom: 25%;
-  }
-}
-@media screen and (min-width: 1024px) and (device-height: 768px) {
-  .content-padding {
-    padding-top: 0vh;
-    padding-bottom: 5%;
-  }
-}
-@media screen and (device-width: 1280px) and (device-height: 800px) {
-  .content-padding {
-    padding-top: 0vh;
-    padding-bottom: 4%;
-  }
-}
-@media screen and (device-width: 1280px) and (device-height: 1024px) {
-  .content-padding {
-    padding-top: 16vh;
-    padding-bottom: 13%;
-  }
-}
-@media screen and (min-width: 1366px) {
-  .content-padding {
-    padding-bottom: 3%;
-    position: relative;
-    z-index: 2;
-  }
-}
-@media screen and (min-width: 1440px) {
-  .content-padding {
-    padding-top: 4%;
-    padding-bottom: 0%;
-    position: relative;
-    z-index: 2;
-  }
-}
-@media screen and (min-width: 1600px) {
-  .content-padding {
-    padding-top: 3%;
-    padding-bottom: 0%;
-    position: relative;
-    z-index: 2;
-  }
-}
-@media screen and (min-width: 1680px) {
-  .content-padding {
-    padding-top: 7%;
-    padding-bottom: 0%;
-    position: relative;
-    z-index: 2;
-  }
-}
-@media screen and (min-width: 1920px) {
-  .content-padding {
-    padding-top: 7%;
-    padding-bottom: 2%;
-    position: relative;
-    z-index: 2;
-  }
-}
-@media screen and (min-width: 2304px) {
-  .content-padding {
-    padding-top: 12%;
-    padding-bottom: 6%;
-    position: relative;
-    z-index: 2;
-  }
-}
-@media screen and (device-width: 2560px) {
-  .content-padding {
-    padding-top: 12%;
-    margin-bottom: 2%;
-    position: relative;
-    z-index: 2;
-  }
 }
 </style>

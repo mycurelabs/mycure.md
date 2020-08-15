@@ -15,6 +15,7 @@
           :class="webImageClass"
         )
         template(v-if="contentAlignLeft")
+          span.font-16.primary--text {{ subHeader }}
           h1(v-if="typeof(header) === 'string'").font-30.lh-title.pb-3.font-weight-light {{ header }}
           h1(
             v-else-if="typeof(header) === 'object'"
@@ -45,6 +46,7 @@
           :class="webImageClass"
         )
         template(v-if="contentAlignRight")
+          span.font-16.primary--text {{ subHeader }}
           h1(v-if="typeof(header) === 'string'").font-30.lh-title.pb-3.font-weight-light {{ header }}
           h1(
             v-else-if="typeof(header) === 'object'"
@@ -76,6 +78,7 @@
     //- CENTER VIEW
     v-row(v-else justify="center").py-10
       v-col(cols="12" md="10" :class="{'text-center': !$isMobile}")
+        span.font-16.primary--text {{ subHeader }}
         h1(v-if="typeof(header) === 'string'").font-30.lh-title.pb-3.font-weight-light {{ header }}
         h1(
           v-else-if="typeof(header) === 'object'"
@@ -231,6 +234,14 @@ export default {
      * @type {String}
      */
     header: {
+      type: [String, Object],
+      default: '',
+    },
+    /**
+     * Panel sub-header
+     * @type {String}
+     */
+    subHeader: {
       type: [String, Object],
       default: '',
     },

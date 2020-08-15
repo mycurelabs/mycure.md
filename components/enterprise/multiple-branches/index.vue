@@ -1,28 +1,41 @@
 <template lang="pug">
-  v-container#multibranch-facilities.py-12.content-panel-branches
-    v-row(justify="center")
-      //- IMAGE
-      v-col(v-if="!$isMobile" cols="12" md="5" align-self="center")
-        img(v-lazy="require(`~/assets/images/enterprise/${branches.image}`)" :alt="branches.header" width="105%")
-      //- DESCRIPTION
-      v-col(cols="12" md="4" offset-md="1" align-self="center")
-        p.font-16.mt-3.font-gray.primary--text {{ branches.subHeader }}
-        h1.font-30.lh-title.pb-3.font-weight-light {{ branches.header }}
-        p.text-justify.font-16.mt-3.font-gray {{ branches.description }}
-        v-btn(@click="onGetStarted" text).mt-5.ml-n4.get-started-btn
-          strong.font-18.text-capitalize.primary--text {{ branches.btnTxt }}
-          v-icon.primary--text {{ branches.btnIcon }}
-      //- MOBILE IMAGE
-      v-col(v-if="$isMobile" cols="12" md="6" align="center")
-        img(v-lazy="require(`~/assets/images/enterprise/${branches.imageMobile}`)" :alt="branches.header" width="100%")
+  generic-media-panel(
+    align-right-column="center"
+    cols-left="5"
+    cols-right="4"
+    offset-cols-right="1"
+    custom-image-path="enterprise/"
+    file-extension=".webp"
+    web-image-width="104%"
+    mobile-image-width="95%"
+    mobile-image-class="text-center"
+    :content-align-right="true"
+    :header="panelContents.title"
+    :sub-header="panelContents.subHeader"
+    :descriptions="[panelContents.description]"
+    :web-image="panelContents.image"
+  )
+    div(slot="additional-content")
+      v-btn(text @click="onGetStarted").ml-n4
+        strong.text-capitalize.primary--text.font-18 {{ panelContents.btnTxt }}
+        v-icon.primary--text {{ panelContents.btnIcon }}
 </template>
 
 <script>
-// constants
-import { BRANCHES } from '../enterprise-contents';
+import GenericMediaPanel from '~/components/commons/generic-media-panel';
 export default {
+  components: {
+    GenericMediaPanel,
+  },
   data () {
-    this.branches = BRANCHES;
+    this.panelContents = {
+      image: 'MYCURE-virtual-clinic-healthcare-practice-online-enterprise-E-multiple-branches',
+      subHeader: 'FOR MULTI-BRANCH FACILITIES',
+      title: 'Monitor multiple branches on one system',
+      description: 'All you need is one clean dashboard to see how your clinics are faring. The precious data from your multiple branches is automatically aggregated to show you a comprehensive summary of patient encounters, transactions, sales, expenses and even staff performance.',
+      btnTxt: 'Get Started',
+      btnIcon: 'mdi-arrow-right',
+    };
     return {};
   },
   methods: {
@@ -32,10 +45,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-.content-panel-branches {
-  position: relative;
-  z-index: 2;
-}
-</style>

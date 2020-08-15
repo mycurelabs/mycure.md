@@ -1,166 +1,170 @@
 <template lang="pug">
-  v-form(ref="formRef" v-model="valid").content-padding
-    v-container
-      v-row(justify="center" align="center")
-        v-col(cols="12" md="8" justify="center" align="center")
-          img(
-            src="~/assets/images/sign-up-individual-step-1/mycure-sso-sign-in-logo.svg"
-            alt="MYCURE logo"
-            width="70"
-            @click="$nuxt.$router.push({ name: 'index' })"
-          ).link-to-home.pb-5
-          h1.pb-3 Create a MYCURE Account
-          //- template(v-for="(item, key) in checkListItems")
-          //-   span(v-html="item").font-16
-        v-col(cols="12" md="5" justify="center" align="center")
-          v-row(no-gutters)
-            v-col(xs="12")
-              v-text-field(
-                v-model="user.firstName"
-                label="First Name"
-                outlined
-                :rules="[requiredRule]"
-                :disabled="loading"
-              ).step-one-text-field.pr-1
-                template(v-slot:append v-if="user.firstName")
-                  v-icon(color="accent") mdi-check
-            v-col(xs="12")
-              v-text-field(
-                v-model="user.lastName"
-                label="Last Name"
-                outlined
-                :rules="[requiredRule]"
-                :disabled="loading"
-              ).pl-1
-                template(v-slot:append v-if="user.lastName")
-                  v-icon(color="accent") mdi-check
-          v-row(no-gutters)
-            v-col(xs="12")
-              v-text-field(
-                v-model="user.doc_PRCLicenseNo"
-                label="Physician License No"
-                outlined
-                :rules="[requiredRule, numberRule]"
-                :disabled="loading"
-              ).pr-1
-                template(v-slot:append v-if="user.doc_PRCLicenseNo && user.doc_PRCLicenseNo>=0")
-                  v-icon(color="accent") mdi-check
-            v-col(xs="12")
-              v-text-field(
-                v-model="user.mobileNo"
-                label="Mobile Number"
-                type="number"
-                outlined
-                :prefix="`+${user.countryCallingCode}`"
-                :error-messages="mobileNoErrorMessage"
-                :rules="[requiredRule]"
-                :loading="loadingForm || loading"
-                :disabled="loadingForm || loading"
-                @blur="validatePhoneNo"
-                @keypress="checkNumberInput($event)"
-              ).pl-1
-                template(slot="append")
-                  div(style="margin-top: -8px")
-                    v-icon(v-if="mobileNoError" color="accent").ml-n10 mdi-check
-                    v-tooltip(bottom)
-                      template(v-slot:activator="{ on }")
-                        v-btn(icon @click="countryDialog = true" v-on="on")
-                          img(width="25" :src="user.countryFlag").flag-img.mt-2
-                      | Change Country
-            //- NOTE: DO NOT REMOVE YET
-            //- template(slot="append-outer")
-            //-   v-tooltip(bottom)
-            //-     v-btn(small icon slot="activator" @click="countryDialog = true" :disabled="loading")
-            //-       v-icon mdi-earth
-            //-     | Change Country
-        v-divider(v-if="!$isMobile" vertical).vertical-divider
-        v-col(cols="12" md="5" :class="credentialClasses")
-          v-text-field(
-            v-model="user.email"
-            type="email"
-            label="Email Address"
-            outlined
-            :rules="[requiredRule, emailRule]"
-            :disabled="loading"
-          )
-            template(v-slot:append v-if="user.email && emailRule")
-              v-icon(color="accent") mdi-check
-          v-row(no-gutters)
-            v-col(xs="12")
-              v-text-field(
-                v-model="user.password"
-                label="Your MYCURE Password"
-                outlined
-                :type="showPass ? 'text' : 'password'"
-                :rules="[requiredRule, passwordRule]"
-                :append-icon="showPass ? 'mdi-eye-off' : 'mdi-eye'"
-                :disabled="loading"
-                @click:append="showPass = !showPass"
-              )#password.pr-1
-            v-col(xs="12")
-              v-text-field(
-                v-model="confirmPassword"
-                label="Confirm Password"
-                type="password"
-                outlined
-                :rules="[requiredRule, matchPasswordRule]"
-                :disabled="loading"
-              ).pl-1
-                template(v-slot: append v-if="confirmPassword && confirmPassword === user.password")
-                  v-icon(color="accent") mdi-check
-        v-col(cols="12" md="10" justify="center" v-if="!$isMobile").mt-md-n5
-          v-divider
-        v-col(cols="12" md="10" justify="center" align="start")
-          div.d-inline-flex
-            v-checkbox(
-              v-model="user.acceptTerms"
-              style="margin-top: -10px"
-              color="primary"
-              hide-details
-              :rules="[requiredRule]"
-              :disabled="loading"
-            )
-            span.mt-n1 By creating a MYCURE account, you're agreeing to accept MYCURE's&nbsp;
-              a(@click.stop="goToPrivacy") Privacy Policy,&nbsp;
-              a(@click.stop="goToTerms") Terms of Use,&nbsp;
-              | and BAA
-          v-alert(:value="error" type="error").mt-5 {{errorMessage}}
-        v-col(cols="12" md="10" justify="center" align="center")
-          v-spacer
-          v-btn(
-            color="primary"
-            large
-            :disabled="loading || !valid"
-            :loading="loading"
-            @click="next"
-          ).font-weight-bold Create My Account
-      v-dialog(v-model="countryDialog" width="500" scrollable)
-        v-card
-          v-toolbar(flat)
+  v-container.content-padding
+    v-row(justify="center" align="center")
+      v-col(cols="12" justify="center" align="center")
+        img(
+          src="~/assets/images/sign-up-individual-step-1/mycure-sso-sign-in-logo.svg"
+          alt="MYCURE logo"
+          width="70"
+          @click="$nuxt.$router.push({ name: 'index' })"
+        ).link-to-home.pb-5
+        h1.pb-3 Create a MYCURE Account
+        //- template(v-for="(item, key) in checkListItems")
+        //-   span(v-html="item").font-16
+      v-form(ref="formRef" v-model="valid").px-3
+        v-row(justify="center" align="center")
+          v-col(cols="12" md="5" justify="center" align-self="start")
+            v-row(no-gutters)
+              v-col(xs="12")
+                v-text-field(
+                  v-model="user.firstName"
+                  label="First Name"
+                  outlined
+                  autofocus
+                  :rules="requiredRule"
+                  :disabled="loading"
+                ).step-one-text-field.pr-1
+                  template(v-slot:append v-if="user.firstName")
+                    v-icon(color="accent") mdi-check
+              v-col(xs="12")
+                v-text-field(
+                  v-model="user.lastName"
+                  label="Last Name"
+                  outlined
+                  :rules="requiredRule"
+                  :disabled="loading"
+                ).pl-1
+                  template(v-slot:append v-if="user.lastName")
+                    v-icon(color="accent") mdi-check
+            v-row(no-gutters)
+              v-col(xs="12")
+                v-text-field(
+                  v-model="user.doc_PRCLicenseNo"
+                  label="Physician License No"
+                  outlined
+                  :rules="numberRule"
+                  :disabled="loading"
+                ).pr-1
+                  template(v-slot:append v-if="user.doc_PRCLicenseNo && user.doc_PRCLicenseNo>=2")
+                    v-icon(color="accent") mdi-check
+              v-col(xs="12")
+                v-text-field(
+                  v-model="user.mobileNo"
+                  label="Mobile Number"
+                  type="number"
+                  outlined
+                  :prefix="`+${user.countryCallingCode}`"
+                  :error-messages="mobileNoErrorMessage"
+                  :rules="requiredRule"
+                  :loading="loadingForm || loading"
+                  :disabled="loadingForm || loading"
+                  @blur="validatePhoneNo"
+                  @keypress="checkNumberInput($event)"
+                ).pl-1
+                  template(slot="append")
+                    div(style="margin-top: -8px")
+                      v-icon(v-if="mobileNoError" color="accent").ml-n10 mdi-check
+                      v-tooltip(bottom)
+                        template(v-slot:activator="{ on }")
+                          v-btn(icon @click="countryDialog = true" v-on="on")
+                            img(width="25" :src="user.countryFlag").flag-img.mt-2
+                        | Change Country
+              //- NOTE: DO NOT REMOVE YET
+              //- template(slot="append-outer")
+              //-   v-tooltip(bottom)
+              //-     v-btn(small icon slot="activator" @click="countryDialog = true" :disabled="loading")
+              //-       v-icon mdi-earth
+              //-     | Change Country
+          v-divider(v-if="!$isMobile" vertical).vertical-divider
+          v-col(cols="12" md="5" :class="credentialClasses")
             v-text-field(
-              v-model="searchString"
-              label="Search Country"
-              append-icon="mdi-magnify"
-              solo
-              hide-details
-              clearable
-              autofocus
-              flat
+              v-model="user.email"
+              type="email"
+              label="Email Address"
+              outlined
+              :rules="emailRule"
+              :disabled="loading"
+              @keyup="checkEmail"
             )
-          v-divider
-          v-card-text(style="height: 300px").pa-0
-            v-list
-              v-list-item(v-for="(country, key) in countries" @click="selectCountry(country)" :key="key")
-                v-list-item-action
-                  img(width="25" :src="country.flag")
-                v-list-item-content
-                  v-list-item-title.text-wrap {{country.name}}
-                strong +{{ country.callingCodes[0] }}
-      email-verification-dialog(
-        v-model="emailVerificationMessageDialog"
-        :email="user.email"
-        @confirm="doneSignupNonPH"
-      )
+              template(v-slot:append v-if="isEmailValid")
+                v-icon(color="accent") mdi-check
+            v-row(no-gutters)
+              v-col(xs="12")
+                v-text-field(
+                  ref="passwordRef"
+                  v-model="user.password"
+                  label="Your MYCURE Password"
+                  outlined
+                  :type="showPass ? 'text' : 'password'"
+                  :rules="passwordRule"
+                  :append-icon="showPass ? 'mdi-eye-off' : 'mdi-eye'"
+                  :disabled="loading"
+                  @click:append="showPass = !showPass"
+                )#password.pr-1
+              v-col(xs="12")
+                v-text-field(
+                  v-model="confirmPassword"
+                  label="Confirm Password"
+                  type="password"
+                  outlined
+                  :rules="[...requiredRule, matchPasswordRule]"
+                  :disabled="loading"
+                ).pl-1
+                  template(v-slot: append v-if="confirmPassword && confirmPassword === user.password")
+                    v-icon(color="accent") mdi-check
+          v-col(cols="12" md="10" justify="center" v-if="!$isMobile").mt-md-n5
+            v-divider
+          v-col(cols="12" md="10" justify="center" align="start")
+            div.d-inline-flex
+              v-checkbox(
+                v-model="user.acceptTerms"
+                style="margin-top: -10px"
+                color="primary"
+                hide-details
+                :rules="requiredRule"
+                :disabled="loading"
+              )
+              span(style="margin-top: -6px;") I agree to&nbsp;
+                b MYCURE's&nbsp;
+                a(@click.stop="goToTerms") Terms&nbsp;
+                | and&nbsp;
+                a(@click.stop="goToPrivacy") Privacy Policy.&nbsp;
+            v-alert(:value="error" type="error").mt-5 {{ errorMessage }}
+          v-col(cols="12" md="10" justify="center" align="center")
+            v-spacer
+            v-btn(
+              color="primary"
+              large
+              :disabled="loading || !valid"
+              :loading="loading"
+              @click="next"
+            ).font-weight-bold Create My Account
+    v-dialog(v-model="countryDialog" width="500" scrollable)
+      v-card
+        v-toolbar(flat)
+          v-text-field(
+            v-model="searchString"
+            label="Search Country"
+            append-icon="mdi-magnify"
+            solo
+            hide-details
+            clearable
+            flat
+          )
+        v-divider
+        v-card-text(style="height: 300px").pa-0
+          v-list
+            v-list-item(v-for="(country, key) in countries" @click="selectCountry(country)" :key="key")
+              v-list-item-action
+                img(width="25" :src="country.flag")
+              v-list-item-content
+                v-list-item-title.text-wrap {{ country.name }}
+              strong +{{ country.callingCodes[0] }}
+    email-verification-dialog(
+      v-model="emailVerificationMessageDialog"
+      :email="user.email"
+      @confirm="doneSignupNonPH"
+    )
 </template>
 
 <script>
@@ -168,10 +172,20 @@ import { parsePhoneNumberFromString } from 'libphonenumber-js';
 // - components
 import EmailVerificationDialog from './email-verification-dialog';
 // - utils
-import { getCountry, getCountries, signupIndividual, signupFetchUser } from '~/utils/axios';
+import {
+  getCountries,
+  getCountry,
+  getWaitlist,
+  signupIndividual,
+} from '~/utils/axios';
+import {
+  requiredRule,
+  emailRules,
+  passwordRules,
+  numberRule,
+} from '~/utils/text-field-rules';
+import { getItem } from '~/utils/localStorage';
 import dayOrNight from '~/utils/day-or-night';
-
-const PASS_LENGTH = 6;
 
 export default {
   components: {
@@ -179,21 +193,28 @@ export default {
   },
   data () {
     this.dayOrNight = dayOrNight();
-    this.checkListItems = [
-      'Become a techy doctor in minutes! Manage your clinic more efficiently,<br>produce beautiful and useful reports. Save on time and save more lives!',
-    ];
+    this.requiredRule = requiredRule;
+    this.emailRule = emailRules;
+    this.passwordRule = passwordRules;
+    this.numberRule = numberRule;
     return {
       showInfo: false,
       valid: false,
       loading: false,
       loadingForm: false,
+      isEmailValid: false,
       countryDialog: false,
       emailVerificationMessageDialog: false,
       showPass: false,
       // models
       user: {
         countryCallingCode: '',
-        countryFlag: null,
+        countryFlag: '',
+        doc_PRCLicenseNo: '',
+        email: '',
+        firstName: '',
+        lastName: '',
+        mobileNo: '',
       },
       specializedClinicType: {
         title: '',
@@ -202,13 +223,9 @@ export default {
       countries: [],
       confirmPassword: '',
       searchString: '',
-      // rules
-      requiredRule: v => !!v || 'This field is required',
-      numberRule: v => v >= 0 || 'Please input a valid number',
-      emailRule: v => /^([\w]+.)+@([\w]+\.)+[\w-]{2,4}$/.test(v) || 'Email address must be valid',
-      passwordRule: v => v?.length >= PASS_LENGTH || 'Password length must be at least 6 characters.',
+
       matchPasswordRule: v => v === this.user.password || 'Passwords do not match',
-      //
+
       error: false,
       errorMessage: 'There was an error please try again later.',
       mobileNoError: false,
@@ -245,12 +262,6 @@ export default {
     await this.init();
   },
   mounted () {
-    // Select first text field
-    if (process.browser) {
-      this.$nextTick(() => {
-        document.querySelector('#password') && document.querySelector('#password').focus();
-      });
-    }
     this.$refs.formRef.resetValidation();
   },
   methods: {
@@ -287,37 +298,65 @@ export default {
       }
     },
     async init () {
-      this.loadingForm = true;
-      // LOAD MODEL
-      if (process.browser) {
-        // CHECK IF THERE IS A REFERRAL CODEs
-        if (localStorage.getItem('referral-code:') === null) {
-          this.$nuxt.$router.push({ name: 'signup-individual' });
+      try {
+        this.loadingForm = true;
+
+        // Load defaults, replace with
+        // localStorage data later if available
+        await this.getCountries();
+        const country = await getCountry();
+        const { location } = country;
+        this.user.countryCallingCode = location ? location.calling_code : '63';
+        this.user.countryFlag = location ? location.country_flag : 'https://assets.ipstack.com/flags/ph.svg';
+
+        this.$refs.passwordRef.focus();
+
+        // ACCOUNT DATA RECEIVED AS PARAMETER
+        const accountData = this.$route.params.data;
+
+        // CHECK IF THERE IS REFERRAL CODE AND ACCOUNT DATA
+        if (!accountData && getItem('account-invitation') === null) {
+          this.$nuxt.$router.push({ name: 'signup-individual-invite' });
+          return;
         };
-        const data = await signupFetchUser(JSON.parse(localStorage.getItem('referral-code:')));
-        // PREFILLED DATA
-        this.user.firstName = data.personalDetails.name.firstName;
-        this.user.lastName = data.personalDetails.name.lastName;
-        this.user.email = data.email;
-        this.user.mobileNo = data.mobileNo;
-        this.user.doc_PRCLicenseNo = data.personalDetails.doc_PRCLicenseNo;
-        if (localStorage.getItem('individual:step1:model') && this.pageType === 'signup-individual-step-1') {
+
+        if (accountData) {
+          const phoneNumber = accountData.mobileNo && parsePhoneNumberFromString(accountData.mobileNo);
+          this.user.firstName = accountData.personalDetails?.name?.firstName;
+          this.user.lastName = accountData.personalDetails?.name?.lastName;
+          this.user.email = accountData.email;
+          this.user.mobileNo = phoneNumber?.nationalNumber;
+          this.user.doc_PRCLicenseNo = accountData.personalDetails?.doc_PRCLicenseNo; // eslint-disable-line
+          return;
+        }
+
+        const accountInvitationData = getItem('account-invitation');
+        if (accountInvitationData) {
+          const accountInvitation = await getWaitlist({ referralCode: accountInvitationData.referralCode });
+          if (!accountInvitation) return;
+
+          const phoneNumber = accountInvitation.mobileNo && parsePhoneNumberFromString(accountInvitation.mobileNo);
+          this.user.firstName = accountInvitation.personalDetails?.name?.firstName;
+          this.user.lastName = accountInvitation.personalDetails?.name?.lastName;
+          this.user.email = accountInvitation.email;
+          this.user.mobileNo = phoneNumber?.nationalNumber;
+          this.user.doc_PRCLicenseNo = accountInvitation.personalDetails?.doc_PRCLicenseNo; // eslint-disable-line
+        }
+
+        if (getItem('individual:step1:model') && this.pageType === 'signup-individual-step-1') {
           this.user = {
-            ...JSON.parse(localStorage.getItem('individual:step1:model')),
+            ...getItem('individual:step1:model'),
             password: '',
             confirmPassword: '',
           };
-        } else {
-          const country = await getCountry();
-          const { location } = country;
-          this.user.countryCallingCode = location ? location.calling_code : '63';
-          this.user.countryFlag = location ? location.country_flag : 'https://assets.ipstack.com/flags/ph.svg';
-
-          // Check if an email was passed
-          this.user.email = this.$route.params.email;
         }
-        // Load countries
-        this.getCountries();
+
+        this.$refs.formRef.resetValidation();
+      } catch (e) {
+        console.error(e);
+      } finally {
+        this.checkEmail();
+        this.validateForm();
         this.loadingForm = false;
       }
     },
@@ -396,6 +435,9 @@ export default {
         localStorage.clear();
       }
       this.$nuxt.$router.push({ name: 'signin' });
+    },
+    checkEmail () {
+      this.isEmailValid = /^.+@.+\.+[a-zA-Z]{2,3}$/.test(this.user.email);
     },
   },
 };

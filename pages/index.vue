@@ -3,7 +3,7 @@
     //- 1st panel
     usp(@getStarted="goToSignupIndividual($event)")
     //- 2nd panel
-    platform-panels(@getStarted="getStarted" @goToFeatures="goToFeatures")
+    platform-panels(@getStarted="getStarted")
     v-divider.edge-divider
     //- 3rd panel
     storyflow(
@@ -107,16 +107,13 @@ export default {
       });
     },
     getStarted () {
-      this.$router.push({ name: 'signup-individual' });
-    },
-    goToFeatures () {
-      this.$nuxt.$router.push({ name: 'features' });
+      this.$router.push({ name: 'signup-individual-invite' });
     },
     goToSignupIndividual (email) {
-      this.$router.push({ name: 'signup-individual', params: { email } });
+      this.$router.push({ name: 'signup-individual-invite', params: { email } });
     },
     goToPatientPortal () {
-      window.open(process.env.PXP_URL, '_blank', 'noopener, noreferrer');
+      window.open(process.env.PX_PORTAL_URL, '_blank', 'noopener, noreferrer');
     },
     handleWatchFeatures () {
       this.$ga.event({
