@@ -20,10 +20,3 @@ export const numberRule = [
   v => !!v || 'License No. is required',
   v => /^[0-9-]{2,}$/.test(v) || 'At least 2 numbers',
 ];
-
-export default {
-  requiredRule,
-  emailRules,
-  passwordRules,
-  numberRule,
-};
