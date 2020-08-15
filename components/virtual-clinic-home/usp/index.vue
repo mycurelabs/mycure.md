@@ -4,7 +4,7 @@
     :class="[backgroundClasses, backgroundImages]"
   )
     v-row(align="start" justify="center")
-      v-col(cols="12" md="10" :class="{ 'pt-12 mt-4': $isMobile, 'pl-5 usp-content': !$isMobile }").text-center
+      v-col(cols="12" md="10" :class="{ 'pt-12 mt-4': $isMobile, 'usp-content': !$isMobile }").text-center
         h3(:class="titleHeaderClasses").font-poppins.lh-title For Modern Doctors: Virtual is the new normal.
         //- h1(:class="titleClasses").font-poppins.lh-title Virtual is the new normal.
         p(:class="[centerText, titleHeaderClasses]").font-italic The first and only Telehealth-Focused&nbsp;
@@ -18,6 +18,7 @@
             height="50"
             outlined
             dense
+            :error-messages="emailErrorMessage"
           ).text-field-input
         v-btn(
           v-if="!$isMobile"
@@ -35,7 +36,8 @@
           background-color="white"
           placeholder="myname@email.com"
           outlined
-        ).mb-3.text-field-input
+          :error-messages="emailErrorMessage"
+        ).mb-6.text-field-input
         v-btn(
           color="primary"
           block
@@ -55,6 +57,7 @@ export default {
     return {
       email: '',
       canUseWebp: false,
+      emailErrorMessage: '',
     };
   },
   computed: {
@@ -89,6 +92,7 @@ export default {
   methods: {
     onGetStarted () {
       if (!this.email) {
+        this.emailErrorMessage = 'Please enter your email';
         return;
       }
       this.$emit('getStarted', this.email);
@@ -113,7 +117,7 @@ export default {
   background-image: url('../../../assets/images/virtual-clinic-home/mycure-web-usp-cover-background-blur.png');
   background-repeat: no-repeat;
   background-size: cover;
-  min-height: 100%;
+  min-height: 100vh;
 }
 .usp-content {
   margin-top: 90px;
