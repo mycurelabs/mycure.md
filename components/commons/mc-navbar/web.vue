@@ -47,7 +47,7 @@
                 width="130"
                 v-if="currentRoute === 'doctors-clinics'"
                 color="accent"
-                :to="currentRoute === 'doctors-clinics' ? { name: 'signup-individual-invite' } : { name: 'signup-multispecialty' }"
+                :to="currentRoute === 'doctors-clinics' ? { name: 'signup-individual-invite' } : { name: 'signup-multispecialty-step-1' }"
                 id="start-free-btn"
                 @click.stop="onActionBtnClick('start-free-btn')"
               )
@@ -56,7 +56,7 @@
                 width="130"
                 v-else-if="currentRoute === 'enterprise'"
                 color="accent"
-                :to="{ name: 'signup-multispecialty' }"
+                :to="{ name: 'signup-multispecialty-step-1' }"
                 id="enterprise-book-demo-btn"
                 @click.stop="onActionBtnClick('enterprise-book-demo-btn')"
               )

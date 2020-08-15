@@ -1,76 +1,100 @@
 <template lang="pug">
-  v-row(justify="center" align="center")
-    v-col(cols="12" md="10")
-      v-row(justify="center")
-        v-col(cols="12" md="5" :class="contentClasses")
-          img(
-            src=`~/assets/images/mycure-${dayOrNight === 'night' ? 'footer' : 'header'}-logo.png`
-            @click="$nuxt.$router.push({ name: 'index' })"
-            alt="MYCURE logo"
-          ).link-to-home.mb-3
-          h2.font-18.primary--text {{ route === 'hippocrates' ? 'Hippocrates' : 'Multispecialty Clinic' }}: Sign Up (Step 1 of 3)
-          br
-          h1#step-1-title Make your clinic more efficient in minutes.
-          br
-          v-row(v-for="(item, key) in checkListItems" :key="key" align="center" no-gutters)
-            v-col(cols="1")
-              img(width="20" src="~/assets/images/mycure-check.png" alt="Check icon")
-            v-col(cols="11")
-              p.font-21 {{ item }}
-          v-row.pt-5
-            v-col.mb-3
-              b.font-18 Already have an account?&nbsp;
-                nuxt-link(:to="{ name: 'signin' }") Sign in.
-        v-col(cols="12" md="5" :class="formCardClasses")
-          v-card
-            v-card-text
-              h1 Tell us about your facility.
-            v-card-text
-              v-form(ref="formRef" v-model="valid")
-                v-text-field(
-                  v-model="clinic.facilityName"
-                  outlined
-                  label="Clinic Name"
-                  :rules="[requiredRule]"
-                )#clinicName.step-one-field.font-21
-                  template(v-slot:append v-if="clinic.facilityName")
-                    v-icon(color="accent") mdi-check
-                v-text-field(
-                  v-model="clinic.facilityAddress"
-                  outlined
-                  label="Clinic Address"
-                  :rules="[requiredRule]"
-                ).step-one-field.font-21
-                  template(v-slot:append v-if="clinic.facilityAddress")
-                    v-icon(color="accent") mdi-check
-                v-text-field(
-                  v-model="clinic.numberOfStaff"
-                  outlined
-                  label="No. of staff (?)"
-                  :rules="[requiredRule, ...numberRules]"
-                ).step-one-field.font-21
-                  template(v-slot:append v-if="clinic.numberOfStaff && clinic.numberOfStaff > 0 && !decimalTest(clinic.numberOfStaff)")
-                    v-icon(color="accent") mdi-check
-                v-text-field(
-                  v-model="clinic.numberOfPatients"
-                  outlined
-                  label="Average patients per day (?)"
-                  :rules="[requiredRule, ...numberRules]"
-                ).step-one-field.font-21
-                  template(v-slot:append v-if="clinic.numberOfPatients && clinic.numberOfPatients > 0 && !decimalTest(clinic.numberOfPatients)")
-                    v-icon(color="accent") mdi-check
-                h5(style="margin-bottom: -20px;").grey--text.font-21 Does your clinic have other branches?
-                v-radio-group(row v-model="clinic.hasOtherBranches")
-                  v-radio(label="Yes" :value="true").step-one-field
-                  v-radio(label="No" :value="false").step-one-field
-            v-card-actions
-              v-spacer
-              v-btn(
-                color="accent"
-                :disabled="!valid"
-                @click="next"
-                large
-              ).font-weight-bold Next
+  v-container
+    v-row(
+      justify="center"
+      align="center"
+      style="min-height: 80vh"
+    )
+      v-col(
+        cols="12"
+        sm="5"
+        md="6"
+        lg="5"
+        xl="3"
+      )
+        img(
+          src=`~/assets/images/mycure-${dayOrNight === 'night' ? 'footer' : 'header'}-logo.png`
+          alt="MYCURE logo"
+          @click="$nuxt.$router.push({ name: 'index' })"
+        ).link-to-home.mb-3
+        h2.font-18.primary--text {{ route === 'hippocrates' ? 'Hippocrates' : 'Multispecialty Clinic' }}:
+          br(v-if="$isMobile")
+          | Sign Up (Step 1 of 3)
+        br
+        h1#step-1-title Make your clinic more efficient in minutes.
+        br
+        v-row(
+          v-for="(item, key) in checkListItems"
+          align="center"
+          no-gutters
+          :key="key"
+        )
+          v-col(cols="1").mt-n2
+            img(width="20" src="~/assets/images/mycure-check.png" alt="Check icon")
+          v-col(cols="11")
+            p.font-21 {{ item }}
+        v-row.pt-5
+          v-col.mb-3
+            b.font-18 Already have an account?&nbsp;
+              br(v-if="$isMobile")
+              nuxt-link(:to="{ name: 'signin' }") Sign in.
+      v-col(
+        cols="12"
+        sm="5"
+        md="6"
+        lg="5"
+        xl="3"
+        :class="formCardClasses"
+      )
+        v-card
+          v-card-text
+            h1 Tell us about your facility.
+          v-card-text
+            v-form(ref="formRef" v-model="valid")
+              v-text-field(
+                v-model="clinic.facilityName"
+                label="Clinic Name"
+                outlined
+                :rules="[requiredRule]"
+              )#clinicName.step-one-field.font-21
+                template(v-if="clinic.facilityName" v-slot:append)
+                  v-icon(color="accent") mdi-check
+              v-text-field(
+                v-model="clinic.facilityAddress"
+                label="Clinic Address"
+                outlined
+                :rules="[requiredRule]"
+              ).step-one-field.font-21
+                template(v-if="clinic.facilityAddress" v-slot:append)
+                  v-icon(color="accent") mdi-check
+              v-text-field(
+                v-model="clinic.numberOfStaff"
+                label="No. of staff (?)"
+                outlined
+                :rules="[requiredRule, ...numberRules]"
+              ).step-one-field.font-21
+                template(v-slot:append v-if="clinic.numberOfStaff && clinic.numberOfStaff > 0 && !decimalTest(clinic.numberOfStaff)")
+                  v-icon(color="accent") mdi-check
+              v-text-field(
+                v-model="clinic.numberOfPatients"
+                label="Average patients per day (?)"
+                outlined
+                :rules="[requiredRule, ...numberRules]"
+              ).step-one-field.font-21
+                template(v-slot:append v-if="clinic.numberOfPatients && clinic.numberOfPatients > 0 && !decimalTest(clinic.numberOfPatients)")
+                  v-icon(color="accent") mdi-check
+              h5(style="margin-bottom: -20px;").grey--text.font-21 Does your clinic have other branches?
+              v-radio-group(row v-model="clinic.hasOtherBranches")
+                v-radio(label="Yes" :value="true").step-one-field
+                v-radio(label="No" :value="false").step-one-field
+          v-card-actions
+            v-spacer
+            v-btn(
+              color="accent"
+              large
+              :disabled="!valid"
+              @click="next"
+            ).font-weight-bold Next
 </template>
 
 <script>
@@ -103,9 +127,6 @@ export default {
     },
     formCardClasses () {
       return [{ 'mb-10': this.$isMobile }];
-    },
-    contentClasses () {
-      return [{ 'content-padding': !this.$isMobile }];
     },
   },
   created () {
@@ -155,10 +176,6 @@ h1 {
 
 .link-to-home:hover {
   cursor: pointer;
-}
-
-.content-padding {
-  padding-top: 100px;
 }
 
 .step-one-field >>> label {
