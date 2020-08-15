@@ -50,7 +50,7 @@ export default {
   computed: {
     doctorWebsite () {
       const username = this.doctor?.doc_website; // eslint-disable-line
-      return process.browser && `${window.location.origin}/doctors/${username}`;
+      return `${process.env.WEB_MAIN_URL}/doctors/${username}`;
     },
     bookAppointmentUrl () {
       const username = this.doctor?.doc_website; // eslint-disable-line
