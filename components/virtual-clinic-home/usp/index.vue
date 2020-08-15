@@ -4,7 +4,7 @@
     :class="[backgroundClasses, backgroundImages]"
   )
     v-row(align="start" justify="center")
-      v-col(cols="12" md="10" :class="{ 'pt-12 mt-4': $isMobile, 'pl-5 usp-content': !$isMobile }").text-center
+      v-col(cols="12" md="10" :class="{ 'pt-12 mt-4': $isMobile, 'usp-content': !$isMobile }").text-center
         h3(:class="titleHeaderClasses").font-poppins.lh-title For Modern Doctors: Virtual is the new normal.
         //- h1(:class="titleClasses").font-poppins.lh-title Virtual is the new normal.
         p(:class="[centerText, titleHeaderClasses]").font-italic The first and only Telehealth-Focused&nbsp;
