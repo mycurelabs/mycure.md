@@ -1,17 +1,13 @@
 <template lang="pug">
   v-container
     v-row(v-if="$isMobile" justify="center").footer-grey
-      nuxt-link(:to="{ name: 'index' }" title="MYCURE | Clinic Management System | Cloud EMR Philippines")
-        v-row(align="center").text-center
+      v-col(cols="12" align="center").pa-0
+        nuxt-link(:to="{ name: 'index' }" title="MYCURE | Clinic Management System | Cloud EMR Philippines")
           img(src="~/assets/images/mycure-footer-logo.png" width="130" alt="MYCURE logo")
-      br
-      br
-      v-row(justify="center")
-        div(v-for="(account,key) in socMed" :key="key")
+      v-col(cols="12" align="center")
+        template(v-for="(account,key) in socMed")
           a(:href="account.link" target="_blank" rel="noopener noreferrer")
-            img(:src="require(`~/assets/images/${ account.icon }`)" height="30" :alt="account.name").px-3
-      br
-      br
+            img(:src="require(`~/assets/images/${ account.icon }`)" height="30" :alt="account.name").px-2
       v-expansion-panels(flat).footer-grey.elevation-0
         v-expansion-panel.footer-grey
           v-expansion-panel-header(:color="expansionPanelColor")

@@ -1,9 +1,9 @@
 <template lang="pug">
   div(v-if="!loading")
     //- 1st panel
-    usp(@getStarted="onGetStarted($event)")
+    usp(@getStarted="onGetStarted($event)" @startNow="startNow")
     //- 2nd panel
-    your-patients(@getStarted="goToSignup")
+    your-patients(@getStarted="goToSignup")#your-patients
     v-divider.edge-divider
     //- 3rd panel
     handle-outpatient(@getStarted="goToSignup")
@@ -88,10 +88,13 @@ export default {
       this.goToSignup();
     },
     goToSignup () {
-      this.$nuxt.$router.push({ name: 'signup-multispecialty' });
+      this.$nuxt.$router.push({ name: 'signup-multispecialty-step-1' });
     },
     goToFeatures () {
       this.$nuxt.$router.push({ name: 'features' });
+    },
+    startNow () {
+      VueScrollTo.scrollTo('#your-patients', 500, { easing: 'ease', offset: -70 });
     },
   },
   head () {

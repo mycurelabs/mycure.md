@@ -5,12 +5,12 @@
         v-row(justify="center")
           v-col(cols="12" md="11").pt-2.pb-1
             v-carousel(
+              next-icon="mdi-chevron-right"
+              height="450"
               dark
               hide-delimiters
               :cycle="playCarousel"
               :interval="4000"
-              next-icon="mdi-chevron-right"
-              height="450"
             ).elevation-0.testimonial-carousel
               v-carousel-item(
                 v-for="(testimonial,i) in testimonials"
@@ -27,15 +27,15 @@
           v-row(justify="center").px-3
             v-col(cols="12")
               carousel(
+                paginationActiveColor="#3498DB"
+                paginationColor="grey"
+                navigationNextLabel=" "
+                navigationPrevLabel=" "
+                :navigationClickTargetSize="50"
                 :per-page="1"
                 :autoplay="false"
                 :loop="true"
                 :navigationEnabled="true"
-                paginationActiveColor="white"
-                paginationColor="grey"
-                :navigationClickTargetSize="50"
-                navigationNextLabel=" "
-                navigationPrevLabel=" "
               )
                 slide(v-for="(testimonial,index) in testimonials" :key="index" :data-index="index+1").text-center
                   h2(v-html="testimonial.message").black--text.font-weight-light

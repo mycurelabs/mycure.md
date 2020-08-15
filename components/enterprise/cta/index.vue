@@ -8,14 +8,15 @@
       :background-image-mobile="backgroundImageMobile"
       :background-image-mobile-configs="backgroundImageMobileConfigs"
     ).cta-content
-      v-row(slot="content" align="center").row-content
+      v-row(slot="content" align="center")
         v-col(
           v-if="!$isMobile"
           cols="12"
           md="6"
           offset-md="3"
+          align="center"
           align-self="start"
-        ).cta-title.text-center
+        ).row-content
           h1.font-40.lh-title {{ ctaTitle }}
           p.font-italic.font-18.my-4 {{ ctaSubtitle }}
           v-row(justify="center").mt-5
@@ -23,7 +24,7 @@
               v-text-field(
                 v-model="email"
                 background-color="white"
-                placeholder="myname@email.com"
+                placeholder="johndoe@gmail.com"
                 elevation="2"
                 height="52"
                 outlined
@@ -42,15 +43,16 @@
         v-col(
           v-if="$isMobile"
           cols="12"
-        ).text-center.mobile-content
-          h1.font-40.lh-title.px-5.cta-title {{ ctaTitle }}
+          align="center"
+        )
+          h1.font-40.lh-title.px-5 {{ ctaTitle }}
           p.font-italic.font-18.my-4 {{ ctaSubtitle }}
           v-row(justify="center")
             v-col(cols="10")
               v-text-field(
                 v-model="email"
                 background-color="white"
-                placeholder="myname@email.com"
+                placeholder="johndoe@gmail.com"
                 elevation="2"
                 height="52"
                 outlined
@@ -62,7 +64,7 @@
                 color="accent"
                 large
                 @click="onGetStarted"
-              ).text-none.font-16.cta-btn Book A Demo
+              ).text-none.font-16 Book A Demo
             v-col(cols="10")
               p.font-16.grey--text {{ ctaAgreementText }}
           picture-source(
@@ -129,62 +131,29 @@ export default {
   text-align: center;
   margin-top: 5vh;
 }
-.mobile-content {
-  text-align: center;
-  position: absolute;
-  bottom: 0;
-}
-@media screen and (max-width: 360px) {
+@media screen and (device-width: 360px) {
   .cta-content {
     width: 110%;
     margin-left: -5%;
   }
-  .cta-btn {
-    margin-left: 16px;
-  }
-  .row-content {
-    height: 70vh;
-    margin-top: 30vh;
-  }
 }
-@media screen and (max-width: 414px) {
+@media screen and (device-width: 375px) {
   .cta-content {
     width: 110%;
     margin-left: -5%;
   }
-  .cta-btn {
-    margin-left: 16px;
-  }
-  .row-content {
-    height: 70vh;
-    margin-bottom: -5vh;
-  }
 }
-@media screen and (max-width: 1020px) {
-  .cta-content {
-    width: 110%;
-    margin-left: -5%;
-  }
-  .cta-btn {
-    margin-left: 16px;
-  }
-  .row-content {
-    height: 120vh;
-  }
-}
-@media screen and (device-width: 1024px) and (orientation: portrait) {
-  .cta-content {
-    position: relative;
-    margin-top: -15%;
-    z-index: 1;
-  }
-  .cta-btn{
-    margin-top: 0 !important;
-  }
+/* PAGE RESPONSIVENESS SPECIFIC FOR IPAD PRO SCREEN ONLY */
+/* IPAD PRO ORIENTATION : PORTRAIT */
+@media screen and (device-width: 1024px) and (device-height: 1366px) {
   .row-content {
     height: 50vh;
-    margin-bottom: -20%;
-    margin-top: 10vh;
+  }
+}
+/* IPAD PRO ORIENTATION : LANDSCAPE */
+@media screen and (device-width: 1366px) and (device-height: 1024px) {
+  .row-content {
+    height: 50vh;
   }
 }
 </style>
