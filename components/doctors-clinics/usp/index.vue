@@ -13,7 +13,7 @@
               h1(:class="titleClasses").font-poppins.lh-title {{ uspTitle }}
               p(:class="subtitleClasses").pt-5 {{ uspSubtitle }}
               div(v-show="$isMobile").text-center
-                v-btn(text).align-center
+                v-btn(text icon @click="startNow").align-center
                   v-icon(large) mdi-arrow-down
               v-btn(
                 v-if="!$isMobile"
@@ -28,7 +28,7 @@
           v-text-field(
             v-model="email"
             background-color="white"
-            placeholder="myname@email.com"
+            placeholder="johndoe@gmail.com"
             outlined
             :error-messages="emailErrorMessage"
           ).text-field-input
@@ -97,6 +97,9 @@ export default {
         return;
       }
       this.$emit('getStarted', this.email);
+    },
+    startNow () {
+      this.$emit('startNow');
     },
   },
 };

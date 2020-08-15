@@ -40,18 +40,19 @@
             :items="sortBy"
             :loading="isLoading"
           ).input-field
-        v-col.col-auto
-          div.d-flex.justify-end
-            v-btn(tile icon)
-              v-icon(
-                size="28"
-                color="grey"
-              ) mdi-view-grid
-            v-btn(tile icon)
-              v-icon(
-                size="36"
-                color="primary"
-              ) mdi-view-list
+        //- TEMPORARILY REMOVED REFER TO https://github.com/mycurelabs/web-main/issues/762
+        //- v-col.col-auto
+        //-   div.d-flex.justify-end
+        //-     v-btn(tile icon)
+        //-       v-icon(
+        //-         size="28"
+        //-         color="grey"
+        //-       ) mdi-view-grid
+        //-     v-btn(tile icon)
+        //-       v-icon(
+        //-         size="36"
+        //-         color="primary"
+        //-       ) mdi-view-list
       v-row
         v-col.py-0
           template(v-for="(specialy, index) in searchObject.specialties")
