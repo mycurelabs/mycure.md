@@ -145,7 +145,7 @@ export default {
   },
   computed: {
     patientPortalSite () {
-      return process.env.PXP_URL;
+      return process.env.PX_PORTAL_URL;
     },
   },
 };

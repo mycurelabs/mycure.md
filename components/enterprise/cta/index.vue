@@ -1,9 +1,9 @@
 <template lang="pug">
   div.white
     generic-background-panel(
-      :background-image="backgroundImage"
       background-image-file-extension=".webp"
       background-image-file-extension-exclusive
+      :background-image="backgroundImage"
       :background-image-configs="backgroundImageConfigs"
       :background-image-mobile="backgroundImageMobile"
       :background-image-mobile-configs="backgroundImageMobileConfigs"
@@ -14,27 +14,28 @@
           cols="12"
           md="6"
           offset-md="3"
-          :class="[{'web-content-margin': !$isMobile}]"
+          align-self="start"
         ).cta-title.text-center
           h1.font-40.lh-title {{ ctaTitle }}
           p.font-italic.font-18.my-4 {{ ctaSubtitle }}
           v-row(justify="center").mt-5
             v-col(cols="12" md="7")
               v-text-field(
-                elevation="2"
                 v-model="email"
                 background-color="white"
+                placeholder="myname@email.com"
+                elevation="2"
+                height="52"
                 outlined
                 dense
-                height="52"
-                placeholder="myname@email.com"
+                :error-messages="emailErrorMessage"
               )
             v-col(cols="12" md="3" align-self="start")
               v-btn(
                 color="accent"
-                @click="onGetStarted"
                 width="140"
                 height="52"
+                @click="onGetStarted"
               ).text-none.font-16.cta-btn Book A Demo
             v-col(cols="10").mt-n8
               p.font-16.grey--text.pre-white-space {{ ctaAgreementText }}
@@ -47,13 +48,14 @@
           v-row(justify="center")
             v-col(cols="10")
               v-text-field(
-                elevation="2"
                 v-model="email"
                 background-color="white"
+                placeholder="myname@email.com"
+                elevation="2"
+                height="52"
                 outlined
                 dense
-                height="52"
-                placeholder="myname@email.com"
+                :error-messages="emailErrorMessage"
               )
             v-col(cols="10")
               v-btn(
@@ -64,11 +66,11 @@
             v-col(cols="10")
               p.font-16.grey--text {{ ctaAgreementText }}
           picture-source(
-            :image="ctaMobileImage"
             image-file-extension=".webp"
             image-width="90%"
             image-alt="Enterprise CTA"
             :image-classes="['pt-10']"
+            :image="ctaMobileImage"
           )
 </template>
 
@@ -91,6 +93,7 @@ export default {
     this.ctaAgreementText = 'By entering your email, you agree to receive\nmarketing emails from MYCURE.';
     return {
       email: '',
+      emailErrorMessage: '',
     };
   },
   computed: {
@@ -111,6 +114,7 @@ export default {
   methods: {
     onGetStarted () {
       if (!this.email) {
+        this.emailErrorMessage = 'Please enter your email';
         return;
       }
       this.$emit('getStarted', this.email);
@@ -120,11 +124,8 @@ export default {
 </script>
 
 <style scoped>
-.web-content-margin {
-  margin-top: -15%;
-}
 .row-content {
-  height: 100vh;
+  height: 80vh;
   text-align: center;
   margin-top: 5vh;
 }
@@ -183,6 +184,7 @@ export default {
   .row-content {
     height: 50vh;
     margin-bottom: -20%;
+    margin-top: 10vh;
   }
 }
 </style>

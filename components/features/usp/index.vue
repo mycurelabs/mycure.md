@@ -38,12 +38,13 @@
       v-card(width="600").pt-5
         v-card-text
           iframe(
+            v-if="videoDialog"
             align="middle"
-            :height="!$isMobile ? '400' : '175'"
             width="100%"
             src="https://www.youtube.com/embed/YjymFVmKX_U"
             frameborder="0"
             allowfullscreen
+            :height="!$isMobile ? '400' : '175'"
           )
 </template>
 
