@@ -94,9 +94,6 @@ export default {
   height: 80vh;
   text-align: center;
 }
-.mobile-content {
-  text-align: center;
-}
 @media screen and (device-width: 360px) {
   .cta-content {
     width: 110%;
