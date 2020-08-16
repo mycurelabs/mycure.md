@@ -88,7 +88,7 @@ export default {
       this.goToSignup();
     },
     goToSignup () {
-      this.$nuxt.$router.push({ name: 'signup-multispecialty' });
+      this.$nuxt.$router.push({ name: 'signup-multispecialty-step-1' });
     },
     goToFeatures () {
       this.$nuxt.$router.push({ name: 'features' });
