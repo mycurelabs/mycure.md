@@ -13,7 +13,7 @@
               h1(:class="titleClasses").font-poppins.lh-title {{ uspTitle }}
               p(v-show="!$isMobile" :class="subtitleClasses").pt-5 {{ uspSubtitle }}
               div(v-if="$isMobile").text-center
-                v-btn(text).align-center
+                v-btn(text icon @click="startNow").align-center
                   v-icon(large) mdi-arrow-down
               div(v-if="!$isMobile").text-field-container.mr-3
                 v-text-field(
@@ -100,6 +100,9 @@ export default {
         return;
       }
       this.$emit('getStarted', this.email);
+    },
+    startNow () {
+      this.$emit('startNow');
     },
   },
 };

@@ -1,9 +1,9 @@
 <template lang="pug">
   div(v-if="!loading")
     //- 1st panel
-    usp(@getStarted="getStarted($event)")
+    usp(@getStarted="getStarted($event)" @startNow="startNow")
     //- 2nd panel
-    increase-revenue(@getStarted="getStarted")
+    increase-revenue(@getStarted="getStarted")#increase-revenue
     v-divider.edge-divider
     //- 3rd panel
     safekeep-data(@getStarted="getStarted")
@@ -72,6 +72,9 @@ export default {
     },
     goToPatientPortal () {
       this.$nuxt.$router.push({ name: 'index', params: { panel: 'patient-portal' } });
+    },
+    startNow () {
+      VueScrollTo.scrollTo('#increase-revenue', 500, { easing: 'ease', offset: -70 });
     },
   },
   head () {

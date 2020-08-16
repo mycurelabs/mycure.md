@@ -12,7 +12,8 @@
               p(:class="[centerText, subtitleClasses]") {{ metaTitle }}
               h1(:class="titleClasses").font-poppins.lh-title {{ uspTitle }}
               div(v-if="$isMobile").text-center
-                v-icon mdi-arrow-down
+                v-btn(text icon @click="startNow").align-center
+                  v-icon(large) mdi-arrow-down
               v-btn(
                 v-if="!$isMobile"
                 color="accent"
@@ -93,6 +94,9 @@ export default {
   methods: {
     onWatch () {
       this.videoDialog = true;
+    },
+    startNow () {
+      this.$emit('startNow');
     },
   },
 };
