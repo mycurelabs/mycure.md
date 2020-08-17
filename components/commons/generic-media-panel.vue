@@ -15,13 +15,26 @@
           :class="webImageClass"
         )
         template(v-if="contentAlignLeft")
-          span.font-16.primary--text {{ subHeader }}
+          p(:v-show="withSubheader" :class="subHeaderClass").font-16.primary--text {{ subHeader }}
           h1(v-if="typeof(header) === 'string'").font-30.lh-title.pb-3.font-weight-light {{ header }}
           h1(
             v-else-if="typeof(header) === 'object'"
             :class="{'pre-white-space': $isRegularScreen}"
           ).font-30.lh-title.pb-3.font-weight-light
             | {{ header | parse-text }}
+          //- MOBILE IMAGE
+          br(v-if="$isMobile")
+          div.text-center
+            picture-source(
+              v-if="$isMobile && !hideImageMobile"
+              :customPath="customImagePath"
+              :extensionExclusive="extensionExclusive"
+              :image="mobileImage || webImage"
+              :imageAlt="imageAltValue"
+              :imageFileExtension="mobileFileExtension || fileExtension"
+              :imageWidth="mobileImageWidth"
+              :class="mobileImageClass"
+            )
           br
           template(v-if="descriptions.length")
             template(v-for="description in descriptions")
@@ -46,13 +59,26 @@
           :class="webImageClass"
         )
         template(v-if="contentAlignRight")
-          span.font-16.primary--text {{ subHeader }}
+          p(:v-show="withSubheader" :class="subHeaderClass").font-16.primary--text {{ subHeader }}
           h1(v-if="typeof(header) === 'string'").font-30.lh-title.pb-3.font-weight-light {{ header }}
           h1(
             v-else-if="typeof(header) === 'object'"
             :class="{'pre-white-space': $isRegularScreen}"
           ).font-30.lh-title.pb-3.font-weight-light
             | {{ header | parse-text }}
+          //- MOBILE IMAGE
+          br(v-if="$isMobile")
+          div.text-center
+            picture-source(
+              v-if="$isMobile && !hideImageMobile"
+              :customPath="customImagePath"
+              :extensionExclusive="extensionExclusive"
+              :image="mobileImage || webImage"
+              :imageAlt="imageAltValue"
+              :imageFileExtension="mobileFileExtension || fileExtension"
+              :imageWidth="mobileImageWidth"
+              :class="mobileImageClass"
+            )
           br
           template(v-if="descriptions.length")
             template(v-for="description in descriptions")
@@ -64,21 +90,22 @@
                 | {{ description | parse-text }}
             br
           slot(name="additional-content")
+      //- ** DO NOT DELETE THIS YET **
       //- Mobile Image
-      picture-source(
-        v-if="$isMobile && !hideImageMobile"
-        :customPath="customImagePath"
-        :extensionExclusive="extensionExclusive"
-        :image="mobileImage || webImage"
-        :imageAlt="imageAltValue"
-        :imageFileExtension="mobileFileExtension || fileExtension"
-        :imageWidth="mobileImageWidth"
-        :class="mobileImageClass"
-      )
+      //- picture-source(
+      //-   v-if="$isMobile && !hideImageMobile"
+      //-   :customPath="customImagePath"
+      //-   :extensionExclusive="extensionExclusive"
+      //-   :image="mobileImage || webImage"
+      //-   :imageAlt="imageAltValue"
+      //-   :imageFileExtension="mobileFileExtension || fileExtension"
+      //-   :imageWidth="mobileImageWidth"
+      //-   :class="mobileImageClass"
+      //- )
     //- CENTER VIEW
     v-row(v-else justify="center").py-10
       v-col(cols="12" md="10" :class="{'text-center': !$isMobile}")
-        span.font-16.primary--text {{ subHeader }}
+        p(:v-show="withSubheader" :class="subHeaderClass").font-16.primary--text {{ subHeader }}
         h1(v-if="typeof(header) === 'string'").font-30.lh-title.pb-3.font-weight-light {{ header }}
         h1(
           v-else-if="typeof(header) === 'object'"
@@ -246,6 +273,14 @@ export default {
       default: '',
     },
     /**
+     * Panel sub-header state
+     * @type {Boolean}
+     */
+    withSubheader: {
+      type: Boolean,
+      default: false,
+    },
+    /**
      * File name of image for web view (without file extension)
      * @type {String}
      */
@@ -333,6 +368,9 @@ export default {
         return this.header.text;
       }
       return 'mycure-media-image';
+    },
+    subHeaderClass () {
+      return [{ 'mb-n1': !this.withSubheader }];
     },
   },
 };

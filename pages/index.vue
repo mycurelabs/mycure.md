@@ -56,7 +56,7 @@ export default {
     this.storyflowItems = [
       {
         title: 'Secure Electronic Health Records (EHR)',
-        text: 'Powerful, robust and proven solution that organizes health records based on global<br>health standards.',
+        text: 'Powerful, robust and proven solution that organizes health records based on global health standards.',
         image: 'MYCURE-virtual-clinic-healthcare-practice-online-homepage-E-benefits-01-secure-ehr.png',
       },
       {
