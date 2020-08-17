@@ -7,7 +7,7 @@
       v-col(cols="12" md="10" :class="{ 'pt-12 mt-4': $isMobile, 'usp-content': !$isMobile }").text-center
         h3(:class="titleHeaderClasses").font-poppins.lh-title For Modern Doctors: Virtual is the new normal.
         //- h1(:class="titleClasses").font-poppins.lh-title Virtual is the new normal.
-        p(:class="[centerText, titleHeaderClasses]").font-italic The first and only Telehealth-Focused&nbsp;
+        p(:class="[centerText, subtitleClasses]").font-italic The first and only Telehealth-Focused&nbsp;
           br(v-if="!$isMobile")
           | Practice Management System
         div(v-if="!$isMobile").text-field-container.mr-3
@@ -77,7 +77,7 @@ export default {
     subtitleClasses () {
       return this.$isMobile
         ? [this.centerText, 'font-21']
-        : ['pre-white-space', 'font-24'];
+        : ['font-24'];
     },
     backgroundClasses () {
       return !this.$isMobile ? 'bg' : 'bg-mobile';
