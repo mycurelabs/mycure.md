@@ -12,6 +12,7 @@
     :header="header"
     :descriptions="descriptions"
     :web-image="image"
+    :class="{ 'mb-n8': $isMobile }"
   )
   //- DO NOT DELETE THIS YET
     //- hide-image-mobile

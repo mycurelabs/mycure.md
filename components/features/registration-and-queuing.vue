@@ -1,6 +1,7 @@
 <template lang="pug">
   div
     generic-media-panel(
+      v-if="!$isMobile"
       align-left-column="center"
       cols-left="4"
       cols-right="5"
@@ -14,22 +15,36 @@
       :descriptions="descriptions"
       :web-image="image"
     )
-    v-container(v-if="$isMobile")
-      v-row(justify="center").mt-n12
-        carousel(
-          paginationActiveColor="#3498db"
-          paginationColor="#808080"
-          autoplay
-          loop
-          :per-page="1"
-        )
-          slide(
-            v-for="(image,index) in mobilePanelImages"
-            :key="index"
-            :data-index="index+1"
-          ).pa-1
-            v-row(justify="center")
-              img(v-lazy="require(`~/assets/images/features/${image}`)" alt="Medical records" width="90%")
+    template(v-if="$isMobile")
+      generic-media-panel(
+        align-left-column="center"
+        custom-image-path="features/"
+        hide-image-mobile
+        :content-align-left="true"
+        :header="header"
+        :web-image="image"
+      )
+      carousel(
+        paginationActiveColor="#3498db"
+        paginationColor="#808080"
+        autoplay
+        loop
+        :per-page="1"
+      ).mobile-carousel
+        slide(
+          v-for="(image,index) in mobilePanelImages"
+          :key="index"
+          :data-index="index+1"
+        ).pa-1
+          v-row(justify="center")
+            img(v-lazy="require(`~/assets/images/features/${image}`)" alt="Medical records" width="90%")
+      generic-media-panel(
+        custom-image-path="features/"
+        hide-image-mobile
+        :content-align-left="true"
+        :descriptions="descriptions"
+        :web-image="image"
+      ).mb-n10
 </template>
 
 <script>
@@ -54,3 +69,14 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.mobile-carousel {
+  margin: -35% 0 -30% 0;
+}
+@media screen and (device-width: 768px) {
+  .mobile-carousel {
+      margin: -15% 0 -10% 0;
+  }
+}
+</style>
