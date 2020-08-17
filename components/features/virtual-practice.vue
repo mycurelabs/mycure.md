@@ -8,7 +8,7 @@
     :web-image="image"
   )
     div(slot="additional-content" :class="{'text-center': !$isMobile}").pb-6
-      v-btn(text :to="{ name: 'signup-individual' }").text-none
+      v-btn(text :to="{ name: 'signup-individual-invite' }").text-none
         strong.font-18.primary--text Get Started
         v-icon.primary--text mdi-arrow-right
 </template>

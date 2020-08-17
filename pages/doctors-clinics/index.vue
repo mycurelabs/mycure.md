@@ -64,11 +64,11 @@ export default {
     });
   },
   methods: {
-    getStarted (email) {
-      this.$nuxt.$router.push({ name: 'signup-individual', params: { email } });
+    getStarted () {
+      this.$nuxt.$router.push({ name: 'signup-individual-invite' });
     },
     goToSignupIndividual (email) {
-      this.$nuxt.$router.push({ name: 'signup-individual', params: { email } });
+      this.$nuxt.$router.push({ name: 'signup-individual-invite', params: { email } });
     },
     goToPatientPortal () {
       this.$nuxt.$router.push({ name: 'index', params: { panel: 'patient-portal' } });

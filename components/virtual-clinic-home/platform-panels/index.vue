@@ -5,7 +5,7 @@
         h1.font-36.font-weight-light.text-center {{ panelHeader.title }}
         br
         p.text-center.font-18.font-gray {{ panelHeader.description }}
-          a(@click="goToFeatures").font-16.font-weight-bold {{ panelHeader.descriptionLink }}
+          router-link(:to="{ name: 'features' }").font-16.font-weight-bold.primary--text {{ panelHeader.descriptionLink }}
       template(v-for="(panel, key) in panelContents")
         generic-media-panel(
           v-bind="getColumnPosition(key)"
@@ -89,9 +89,6 @@ export default {
     },
     onGetStarted () {
       this.$emit('getStarted');
-    },
-    goToFeatures () {
-      this.$emit('goToFeatures');
     },
   },
 };

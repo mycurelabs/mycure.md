@@ -6,17 +6,18 @@ module.exports = {
   ** Headers of the page
   */
   env: {
-    ENV: process.env.ENV,
     API_URL: process.env.API_URL,
-    SIGNIN_URL: process.env.SIGNIN_URL,
     CMS_URL: process.env.CMS_URL,
-    IPSTACK_API: process.env.IPSTACK_API,
-    IPSTACK_API_KEY: process.env.IPSTACK_API_KEY,
-    STRIPE_PK: process.env.STRIPE_PK,
-    STRIPE_CHECKOUT_SUCCESS_URL: process.env.STRIPE_CHECKOUT_SUCCESS_URL,
-    STRIPE_CHECKOUT_CANCEL_URL: process.env.STRIPE_CHECKOUT_CANCEL_URL,
+    ENV: process.env.ENV,
     GA_ID: process.env.GA_ID,
+    IPSTACK_API_KEY: process.env.IPSTACK_API_KEY,
+    IPSTACK_API: process.env.IPSTACK_API,
     PX_PORTAL_URL: process.env.PX_PORTAL_URL,
+    SIGNIN_URL: process.env.SIGNIN_URL,
+    STRIPE_CHECKOUT_CANCEL_URL: process.env.STRIPE_CHECKOUT_CANCEL_URL,
+    STRIPE_CHECKOUT_SUCCESS_URL: process.env.STRIPE_CHECKOUT_SUCCESS_URL,
+    STRIPE_PK: process.env.STRIPE_PK,
+    WEB_MAIN_URL: process.env.WEB_MAIN_URL,
   },
   head: {
     titleTemplate: '%s',

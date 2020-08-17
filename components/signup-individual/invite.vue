@@ -41,7 +41,7 @@
                 v-model="user.firstName"
                 label="First Name"
                 outlined
-                :rules="[requiredRule]"
+                :rules="requiredRule"
                 :disabled="loading"
               )#firstName.pr-1
                 template(v-slot:append v-if="user.firstName")
@@ -51,7 +51,7 @@
                 v-model="user.lastName"
                 label="Last Name"
                 outlined
-                :rules="[requiredRule]"
+                :rules="requiredRule"
                 :disabled="loading"
               ).pl-1
                 template(v-slot:append v-if="user.lastName")
@@ -62,7 +62,7 @@
             type="email"
             label="Email Address"
             outlined
-            :rules="[requiredRule, emailRule]"
+            :rules="emailRules"
             :disabled="loading"
             @keyup="checkEmail"
           )
@@ -75,7 +75,7 @@
                 v-model="user.doc_PRCLicenseNo"
                 label="Physician License No"
                 outlined
-                :rules="[requiredRule, numberRule]"
+                :rules="numberRule"
                 :disabled="loading"
               ).pr-1
                 template(v-slot:append v-if="user.doc_PRCLicenseNo && user.doc_PRCLicenseNo>=2")
@@ -88,7 +88,7 @@
                 outlined
                 :prefix="`+${user.countryCallingCode}`"
                 :error-messages="mobileNoErrorMessage"
-                :rules="[requiredRule]"
+                :rules="requiredRule"
                 :loading="loadingForm || loading"
                 :disabled="loadingForm || loading"
                 @blur="validatePhoneNo"
@@ -107,7 +107,7 @@
           v-row(no-gutters)
             v-col(:align="!$isMobile ? 'end' : 'center'" align-self="center").mt-6
               p(:class="{ 'float-left mt-3': !$isMobile }").primary--text
-                a(@click="enterReferralCode") I have a referral code.
+                a(@click="$nuxt.$router.push({ name: 'signup-individual-referral-code' })") I have a referral code.
               v-btn(
                 color="primary"
                 large
@@ -182,6 +182,11 @@ import {
   getCountry,
   createWaitlist,
 } from '~/utils/axios';
+import {
+  requiredRule,
+  numberRule,
+  emailRules,
+} from '~/utils/text-field-rules';
 import dayOrNight from '~/utils/day-or-night';
 
 export default {
@@ -190,6 +195,9 @@ export default {
   },
   data () {
     this.dayOrNight = dayOrNight();
+    this.requiredRule = requiredRule;
+    this.numberRule = numberRule;
+    this.emailRules = emailRules;
     return {
       // UI STATE
       valid: false,
@@ -206,10 +214,6 @@ export default {
       },
       countries: [],
       searchString: '',
-      // RULES
-      requiredRule: v => !!v || 'This field is required',
-      numberRule: v => /^[0-9-]{2,}$/.test(v) || 'Please input a valid number',
-      emailRule: v => /^.+@.+\.+[a-zA-Z]{2,3}$/.test(v) || 'Email address must be valid',
       // ERROR
       error: false,
       errorMessage: 'There was an error please try again later.',
@@ -330,14 +334,6 @@ export default {
         localStorage.clear();
       }
       this.$nuxt.$router.push({ name: 'signin' });
-    },
-    enterReferralCode () {
-      const routeData = this.$nuxt.$router.resolve({ name: 'signup-individual-referral-code' });
-      if (process.client) {
-        const changeRoute = window.open(routeData.href, '_blank');
-        changeRoute.opener = null;
-        changeRoute.rel = 'noopener noreferrer';
-      }
     },
     goToDocDirectory () {
       this.loading = true;

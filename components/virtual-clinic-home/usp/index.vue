@@ -28,7 +28,13 @@
           large
           @click="onGetStarted"
         ).text-none.font-16 Get Started
-        img(v-if="!$isMobile" src="~/assets/images/virtual-clinic-home/mycure-web-usp-telehealth-robocop-consult.png" width="100%").robocop-image.mt-8
+        img(
+          v-show="!$isMobile && isImageLoaded"
+          src="~/assets/images/virtual-clinic-home/mycure-web-usp-telehealth-robocop-consult.png"
+          width="100%"
+          @load="loadedImage"
+        ).robocop-image.mt-8
+        div(v-show="!$isMobile && !isImageLoaded").white.empty-image-container
     v-row(v-if="$isMobile" justify="center" align="center").mobile-form.px-2.mt-n6
       v-col(cols="12")
         v-text-field(
@@ -57,6 +63,7 @@ export default {
     return {
       email: '',
       canUseWebp: false,
+      isImageLoaded: false,
       emailErrorMessage: '',
     };
   },
@@ -97,6 +104,9 @@ export default {
       }
       this.$emit('getStarted', this.email);
     },
+    loadedImage () {
+      this.isImageLoaded = true;
+    },
   },
 };
 </script>
@@ -129,6 +139,9 @@ export default {
 }
 .robocop-image {
   box-shadow: 5px 5px 30px 5px #999999;
+}
+.empty-image-container {
+  height: 350px;
 }
 .text-field-container .text-field-input {
   top: 1px;
