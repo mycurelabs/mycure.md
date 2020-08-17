@@ -15,6 +15,7 @@
     :header="header"
     :descriptions="descriptions"
     :web-image="image"
+    :class="{ 'mb-n10': $isMobile }"
   )
 </template>
 
