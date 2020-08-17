@@ -59,7 +59,7 @@
               ).mt-3.cta-btn
                 strong.font-s.white--text.text-none Explore the Features
     div(v-else).pt-5
-      v-container.mx-1
+      v-container
         v-row(v-if="metaTitle" justify="center").text-center.pb-10
           strong.font-18.primary--text {{ metaTitle }}
         v-row(justify="center").text-center.pb-10
@@ -68,7 +68,7 @@
           span.font-18.font-gray {{ description }}
         v-col(v-for="(highlight,index) in storyflow" :key="index" justify="center")
           v-row(justify="center" align="center").pb-2
-            img(v-lazy="require(`@/assets/images/${customPath}${highlight.image}`)" :alt="highlight.title" width="70%").img-storyflow
+            img(v-lazy="require(`@/assets/images/${customPath}${highlight.image}`)" :alt="highlight.title" width="40%").img-storyflow
           v-row(align="center").text-center
             v-col(cols="12")
               strong(v-if="hasTitle").font-21.lh-title.font-weight-medium.text-center {{highlight.title}}
@@ -194,7 +194,7 @@ export default {
 }
 @media screen and (device-width: 768px) {
   .img-storyflow {
-    width: 35%;
+    width: 25%;
   }
   .title-storyflow {
     width: 80%;
