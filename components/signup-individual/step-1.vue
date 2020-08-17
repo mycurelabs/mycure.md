@@ -356,7 +356,6 @@ export default {
         console.error(e);
       } finally {
         this.checkEmail();
-        this.validateForm();
         this.loadingForm = false;
       }
     },
