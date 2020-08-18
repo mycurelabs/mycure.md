@@ -1,43 +1,46 @@
 <template lang="pug">
   v-container.py-12
-    //- WEB
-    v-row(v-if="!$isMobile" justify="center" align="center" no-gutters)
-      v-col(justify="start" align="center" md="5")
-        img(width="65%" v-lazy="require(`@/assets/images/virtual-clinic-home/${panelImage}.png`)" alt="Data Privacy Law").panel-image
-      v-col(align-self="center" md="5")
-        h1.text-justify.font-30.lh-title.pb-3.font-weight-light {{ panelTitle }}
+    v-row(justify="center" align="center")
+      v-col(
+        v-if="!$isMobile"
+        cols="12"
+        md="4"
+        align="start"
+        align-self="center"
+      )
+        img(:src="require(`~/assets/images/virtual-clinic-home/MYCURE-virtual-clinic-healthcare-practice-online-homepage-F-features-01-data-privacy.png`)" width="80%" alt="Data Privacy Law")
+      v-col(
+        cols="12"
+        md="5"
+        offset-md="1"
+        align-self="center"
+      )
+        h1(:class="titleClasses").font-30.lh-title Protect your patients' medical records with confidence
         br
-        p.font-16.font-gray.text-justify.my-0 {{ panelText }}
-    //- MOBILE
-    v-row(v-else).pt-5
-      v-col(cols="12").text-center
-        br
-        h2.lh-title.font-30.pb-5 {{ panelTitle }}
-        br
-        v-row(no-gutters justify="center")
+        v-row(justify="center" align="center")
           v-col(
+            v-if="$isMobile"
+            cols="4"
+            align="center"
             v-for="(item, key) in privacyItems"
             :key="key"
-            cols="4"
           )
             v-tooltip(bottom)
               template(v-slot:activator="{ on }")
                 img(
-                  v-lazy="require(`~/assets/images/mycure-data-privacy-mobile-${item.image}.png`)"
-                  :alt="item.text"
                   width="80%"
                   v-on="on"
+                  :src="require(`~/assets/images/mycure-data-privacy-mobile-${item.image}.png`)"
+                  :alt="item.text"
                 )
               | {{item.text}}
-        p.font-16.mt-3.font-gray.text-justify {{ panelText }}
+          br
+        p.font-16.font-gray.text-justify With MYCURE you'll never have to worry much about data privacy concerns. Keeping them secure is our #1 priority.
 </template>
 
 <script>
 export default {
   data () {
-    this.panelTitle = 'Protect your patients\' medical records with confidence';
-    this.panelText = 'With MYCURE you\'ll never have to worry much about data privacy concerns. Keeping them secure is our #1 priority.';
-    this.panelImage = 'MYCURE-virtual-clinic-healthcare-practice-online-homepage-F-features-01-data-privacy';
     this.privacyItems = [
       { text: 'Secure Cloud Hosting', image: 'cloud' },
       { text: 'Data Encryption', image: 'encryption' },
@@ -47,13 +50,10 @@ export default {
     ];
     return {};
   },
+  computed: {
+    titleClasses () {
+      return [!this.$isMobile ? 'text-justify font-weight-light' : 'text-center'];
+    },
+  },
 };
 </script>
-
-<style scoped>
-@media screen and (min-width: 1024px) {
-  .panel-image{
-    margin-left: -30%;
-  }
-}
-</style>
