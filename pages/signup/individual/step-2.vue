@@ -95,12 +95,10 @@
           img(width="100%" src="~/assets/images/mycure-signup-image-jumping-doctors.png" alt="Jumping doctors")
           div
             p.subheading
-              b(v-if="step1Data.firstName") Dr. {{ step1Data.firstName }}
-              | {{ step1Data.firstName ? `, you've` : `You've` }} taken the first step
+              b(v-if="step1Data.firstName") Dr. {{ step1Data.firstName }}!&nbsp;
+              | Get ready to take your practice anywhere you are with your own virtual clinic.
               br
-              | in securely organizing your medical records.
-              br
-              | Now get ready for the ultimate clinic make-over.
+              | Organize your online and face-to-face consultations securely, everyday.
           v-btn(
             color="accent"
             @click="onAcknowledgment"
