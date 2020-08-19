@@ -10,6 +10,7 @@
     mobile-image-width="95%"
     mobile-image-class="text-center"
     :content-align-right="true"
+    :with-subheader="true"
     :header="panelContents.title"
     :sub-header="panelContents.subHeader"
     :descriptions="[panelContents.description]"

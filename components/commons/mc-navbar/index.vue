@@ -56,6 +56,7 @@ export default {
             name: 'Group Practice',
             route: 'doctors-clinics',
             panel: 'group-practice',
+            panelOffset: -70,
             external: false,
           },
           {
