@@ -88,24 +88,17 @@ export default {
   },
   mounted () {
     this.loading = false;
-    this.scrollToPosition();
+    const panel = this.scrollPanel || '#app';
+    setTimeout(() => {
+      VueScrollTo.scrollTo(panel, 500, { easing: 'ease', offset: -100 });
+    }, 0);
+
     this.$nuxt.$route.params.scrollHealthSuites ? this.getStarted()
       : VueScrollTo.scrollTo('#app', 500, { easing: 'ease' });
     window.$crisp.push(['safe', true]);
     this.loading = false;
   },
   methods: {
-    scrollToPosition () {
-      const panel = this.scrollPanel || '#app';
-      const offsetMappings = [
-        { key: '#app', offset: 0 },
-        { key: '#patient-portal', offset: 100 },
-      ];
-      const { offset } = offsetMappings.find(mapping => mapping.key === panel);
-      this.$nextTick(() => {
-        VueScrollTo.scrollTo(panel, 400, { easing: 'ease', offset });
-      });
-    },
     getStarted () {
       this.$router.push({ name: 'signup-individual-invite' });
     },
@@ -129,7 +122,7 @@ export default {
     return headMeta({
       title: 'MYCURE Virtual Clinic | Healthcare Practice Online',
       description: 'MYCURE is an advanced clinic management system that allows you to securely consult with patients online and get real-time medical and business insights.',
-      socialBanner: require('~/assets/images/banners/MYCURE Open Graph Images -  Homepage.png'),
+      socialBanner: require('~/assets/images/banners/MYCURE Open Graph Images -  Home.png'),
     });
   },
 };
