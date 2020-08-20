@@ -6,7 +6,6 @@
     v-row(align="start" justify="center")
       v-col(cols="12" md="10" :class="{ 'pt-12 mt-4': $isMobile, 'usp-content': !$isMobile }").text-center
         h3(:class="titleHeaderClasses").font-poppins.lh-title For Modern Doctors: Virtual is the new normal.
-        //- h1(:class="titleClasses").font-poppins.lh-title Virtual is the new normal.
         p(:class="[centerText, subtitleClasses]").font-italic The first and only Telehealth-Focused&nbsp;
           br(v-if="!$isMobile")
           | Practice Management System
@@ -30,8 +29,9 @@
         ).text-none.font-16 Get Started
         img(
           v-show="!$isMobile && isImageLoaded"
-          src="~/assets/images/virtual-clinic-home/mycure-web-usp-telehealth-robocop-consult.png"
+          v-lazy="require(`~/assets/images/virtual-clinic-home/mycure-web-usp-telehealth-robocop-consult.png`)"
           width="100%"
+          alt="Robocop Consult"
           @load="loadedImage"
         ).robocop-image.mt-8
         div(v-show="!$isMobile && !isImageLoaded").white.empty-image-container
@@ -52,7 +52,7 @@
         ).text-none.font-16 Get Started
     v-row(v-if="$isMobile" justify="center" align="end" no-gutters).ml-n3.mt-5
       v-col(cols="12")
-        img(v-if="$isMobile" src="~/assets/images/virtual-clinic-home/mycure-web-usp-telehealth-robocop-consult.png" style="width: 100vw").robocop-image
+        img(v-if="$isMobile" v-lazy="require(`~/assets/images/virtual-clinic-home/mycure-web-usp-telehealth-robocop-consult.png`)" style="width: 100vw" alt="Robocop Consult").robocop-image
 </template>
 
 <script>

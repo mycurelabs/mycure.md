@@ -10,13 +10,13 @@
           align="center"
           align-self="center"
         )
-          img(:src="require(`~/assets/images/virtual-clinic-home/MYCURE-virtual-clinic-healthcare-practice-online-homepage-F-features-02-api.png`)" width="100%" alt="Health systems more powerful")
+          img(v-lazy="require(`~/assets/images/virtual-clinic-home/MYCURE-virtual-clinic-healthcare-practice-online-homepage-F-features-02-api.png`)" width="100%" alt="Health systems more powerful")
         br
         p.font-16.font-gray.text-justify MYCURE is made to augment your IT innovations. We created our APIs to be simple to use, excellent in performance, and boundless in possibilities.
         v-list(dense).ml-n5
           v-list-item(v-for="(item, key) in checkList" :key="key")
             v-list-item-action
-              img(:src="require('~/assets/images/mycure-web-bullet-check.png')" alt="Check icon")
+              img(v-lazy="require('~/assets/images/mycure-web-bullet-check.png')" alt="Check icon")
             v-list-item-content
               span.font-16.font-gray {{ item }}
       v-col(
@@ -27,7 +27,7 @@
         align="end"
         align-self="center"
       )
-        img(:src="require(`~/assets/images/virtual-clinic-home/MYCURE-virtual-clinic-healthcare-practice-online-homepage-F-features-02-api.png`)" width="80%" alt="Health systems more powerful")
+        img(v-lazy="require(`~/assets/images/virtual-clinic-home/MYCURE-virtual-clinic-healthcare-practice-online-homepage-F-features-02-api.png`)" width="80%" alt="Health systems more powerful")
 </template>
 
 <script>

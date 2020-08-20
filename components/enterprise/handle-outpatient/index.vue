@@ -16,8 +16,8 @@
   )
     div(slot="additional-content")
       v-btn(text @click="onGetStarted").ml-n4
-        strong.text-capitalize.primary--text.font-18 {{ panelContents.btnTxt }}
-        v-icon.primary--text {{ panelContents.btnIcon }}
+        strong.text-capitalize.primary--text.font-18 Get Started
+        v-icon.primary--text mdi-arrow-right
 </template>
 
 <script>
@@ -31,8 +31,6 @@ export default {
       image: 'MYCURE-virtual-clinic-healthcare-practice-online-enterprise-C-book-online-calendar',
       title: 'Handle outpatient consultations online',
       description: 'Continue to give your patients quality care online while keeping your physicians safe.',
-      btnTxt: 'Get Started',
-      btnIcon: 'mdi-arrow-right',
     };
     return {};
   },

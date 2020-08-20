@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-container#corporate-clinics.py-12.panel-keep-employees
+  v-container.py-12
     v-row(justify="center" align="center")
       //- IMAGE
       v-col(
@@ -35,7 +35,7 @@
         br
         //- DESCRIPTION
         p.text-justify.font-16.mt-3.font-gray {{ eightPanel.description }}
-          a(@click="goToFeatures").font-16.font-weight-bold {{ eightPanel.descriptionLink }}
+          a(@click="goToFeatures" style="color: gray;").font-16.font-weight-bold {{ eightPanel.descriptionLink }}
         v-btn(text @click="onGetStarted").mt-5.ml-n4.get-started-btn
           strong.font-18.text-capitalize.primary--text {{ eightPanel.btnTxt }}
           v-icon.primary--text {{ eightPanel.btnIcon }}
@@ -62,13 +62,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-a {
-  color: gray;
-}
-.panel-keep-employees {
-  position: relative;
-  z-index: 2;
-}
-</style>

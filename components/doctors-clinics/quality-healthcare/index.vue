@@ -16,8 +16,8 @@
   ).cta-container
     div(slot="additional-content")
       v-btn(text @click="onGetStarted").ml-n4
-        strong.text-capitalize.primary--text.font-18 {{ panelContents.btnTxt }}
-        v-icon.primary--text {{ panelContents.btnIcon }}
+        strong.text-capitalize.primary--text.font-18 Get Started
+        v-icon.primary--text mdi-arrow-right
 </template>
 
 <script>
@@ -33,8 +33,6 @@ export default {
       image: 'MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-E-patient-portal',
       title: 'Access quality healthcare - instantly',
       description: 'Set-up appointments and consultations, coordinate patient care, issue ePresciptions and release diagnostics results - all that and more with an online portal to interact with your patients.',
-      btnTxt: 'Get Started',
-      btnIcon: 'mdi-arrow-right',
     };
     return {};
   },
@@ -52,9 +50,3 @@ export default {
   },
 };
 </script>
-<style scoped>
-.cta-container {
-  position: relative;
-  z-index: 2;
-}
-</style>
