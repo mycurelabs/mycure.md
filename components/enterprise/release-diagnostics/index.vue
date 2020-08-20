@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-container#diagnostic-centers.py-12.diagnostic-centers
+  v-container.py-12
     v-row(justify="center" align="center")
       //- IMAGE
       v-col(
@@ -36,7 +36,7 @@
         br
         //- DESCRIPTION
         p.text-justify.font-16.mt-3.font-gray {{ tenthPanel.description }}
-          a(@click="goToFeatures").font-16.font-weight-bold {{ tenthPanel.descriptionLink }}
+          a(@click="goToFeatures" style="color: gray;").font-16.font-weight-bold {{ tenthPanel.descriptionLink }}
         div(v-for="(data, key) in tenthPanel.list" :key="key").d-flex.align-center.mb-3
           img(width="20" src="~/assets/images/mycure-check.png" alt="Check icon")
           span.font-16.font-gray.pl-3 {{ data.description }}
@@ -66,13 +66,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-a {
-  color: gray;
-}
-.diagnostic-centers {
-  position: relative;
-  z-index: 2;
-}
-</style>

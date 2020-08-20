@@ -38,10 +38,6 @@ export default {
 </script>
 
 <style scoped>
-.panel-decision {
-  /* position: relative; */
-  z-index: 2;
-}
 .item-web {
   min-height: 85px;
   margin-bottom: -3%;
@@ -50,8 +46,5 @@ export default {
   margin-left: 10%;
   min-height: 50px;
   margin-bottom: -3%;
-}
-.items {
-  top: 0;
 }
 </style>

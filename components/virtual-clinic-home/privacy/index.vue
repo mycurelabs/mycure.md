@@ -8,7 +8,7 @@
         align="start"
         align-self="center"
       )
-        img(:src="require(`~/assets/images/virtual-clinic-home/MYCURE-virtual-clinic-healthcare-practice-online-homepage-F-features-01-data-privacy.png`)" width="80%" alt="Data Privacy Law")
+        img(v-lazy="require(`~/assets/images/virtual-clinic-home/MYCURE-virtual-clinic-healthcare-practice-online-homepage-F-features-01-data-privacy.png`)" width="80%" alt="Data Privacy Law")
       v-col(
         cols="12"
         md="5"
@@ -28,9 +28,9 @@
             v-tooltip(bottom)
               template(v-slot:activator="{ on }")
                 img(
+                  v-lazy="require(`~/assets/images/mycure-data-privacy-mobile-${item.image}.png`)"
                   width="80%"
                   v-on="on"
-                  :src="require(`~/assets/images/mycure-data-privacy-mobile-${item.image}.png`)"
                   :alt="item.text"
                 )
               | {{item.text}}
