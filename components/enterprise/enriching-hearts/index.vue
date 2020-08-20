@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-container#medical-arts-centers.py-12.panel-enriching-hearts
+  v-container.py-12
     v-row(justify="center" align="center")
       v-col(
         cols="12"
@@ -21,7 +21,7 @@
         br
         //- DESCRIPTION
         p.text-justify.font-16.mt-3.font-gray {{ ninthPanel.description }}
-          a(@click="goToFeatures").font-16.font-weight-bold {{ ninthPanel.descriptionLink }}
+          a(@click="goToFeatures" style="color: gray;").font-16.font-weight-bold {{ ninthPanel.descriptionLink }}
         v-btn(text @click="onGetStarted").mt-5.ml-n4.get-started-btn
           strong.font-18.text-capitalize.primary--text {{ ninthPanel.btnTxt }}
           v-icon.primary--text {{ ninthPanel.btnIcon }}
@@ -65,18 +65,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-a {
-  color:gray;
-}
-.panel-enriching-hearts {
-  position: relative;
-  z-index: 2;
-}
-@media screen and (min-width: 1024px) {
-  .panel-image {
-    margin-left: 3%;
-  }
-}
-</style>

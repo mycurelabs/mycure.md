@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-container#multispecialty-clinics.py-12
+  v-container.py-12
     v-row(justify="center" align="center")
       v-col(
         cols="12"
@@ -21,7 +21,7 @@
         br
         //- DESCRIPTION
         p.text-justify.font-16.mt-3.font-gray {{ seventhPanel.description }}
-          a(@click="goToFeatures").font-16.font-weight-bold {{ seventhPanel.descriptionLink }}
+          a(@click="goToFeatures" style="color: gray;").font-16.font-weight-bold {{ seventhPanel.descriptionLink }}
         v-btn(text @click="onGetStarted").mt-5.ml-n4.get-started-btn
           strong.font-18.text-capitalize.primary--text {{ seventhPanel.btnTxt }}
           v-icon.primary--text {{ seventhPanel.btnIcon }}
@@ -71,9 +71,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-a {
-  color:gray;
-}
-</style>
