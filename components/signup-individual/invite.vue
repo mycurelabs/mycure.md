@@ -279,7 +279,7 @@ export default {
           this.errorMessage = 'The email you have entered is invalid or taken. Please try again.';
           return;
         }
-        this.errorMessage = 'There was an error please try again later';
+        this.errorMessage = 'The email or mobile number you have entered is already taken.';
       } finally {
         this.loading = false;
       }
