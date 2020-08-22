@@ -276,7 +276,7 @@ export default {
         // Get the E<code> part of the error message.
         const errorCode = parseInt(e?.message?.replace(/ .*/, '').substr(1));
         if (errorCode === 11000) {
-          this.errorMessage = 'The email you have entered is invalid or taken. Please try again.';
+          this.errorMessage = 'This email or mobile number is already on the waitlist. You will receive an exclusive referral code 1-2 days after your request.';
           return;
         }
         this.errorMessage = 'The email or mobile number you have entered is already taken.';
