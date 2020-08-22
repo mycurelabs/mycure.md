@@ -114,7 +114,7 @@
                 :disabled="loading || !valid"
                 :loading="loading"
                 @click="getAccess"
-              ).font-weight-bold Get Free Access
+              ).font-weight-bold Get Exclusive Access
       //- REQUEST SENT DIALOG
       v-dialog(v-model="requestSentDialog" width="350" persistent)
         v-card.text-center
