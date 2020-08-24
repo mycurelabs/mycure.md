@@ -33,9 +33,10 @@
             width="100%"
           )
           v-card-text.text-center
-            h1.py-5 Enter your&nbsp;
-              br(v-if="!$isMobile")
-              | Referral Code.
+            h1 Enter your&nbsp;
+              br
+              | Referral Code
+            br
             v-row(no-gutters)
               v-col.d-inline-flex
                 v-text-field(
