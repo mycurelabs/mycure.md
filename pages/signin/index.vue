@@ -17,6 +17,7 @@
               label="Email Address"
               :rules="emailRules"
               outlined
+              @focus="onFocusEmail"
             )
             v-text-field(
               v-model="password"
@@ -24,6 +25,7 @@
               label="Password"
               :rules="passwordRules"
               outlined
+              @focus="onFocusPassword"
             )
           v-alert(
             :value="error"
@@ -123,6 +125,12 @@ export default {
     init () {
       this.target = this.$nuxt.$route.query.target || process.env.CMS_URL;
     },
+    onFocusEmail (e) {
+      window.amplitude.getInstance().logEvent('RET002 Enter creds');
+    },
+    onFocusPassword (e) {
+      window.amplitude.getInstance().logEvent('RET002 Enter creds');
+    },
     async submit () {
       try {
         this.loading = true;
@@ -141,6 +149,7 @@ export default {
           this.otpDialog = true;
         } else if (accessToken) {
           this.signInDisabled = true;
+          window.amplitude.getInstance().logEvent('RET003 Btn > Sign in');
           window.location = this.composeTarget(accessToken);
         } else {
           throw new Error({
@@ -161,6 +170,7 @@ export default {
         }
         // Get error code
         const errorCode = e.data.code;
+        window.amplitude.getInstance().logEvent('RET004 Err');
         if (errorCode === 'auth/user-not-found') {
           this.errorMsg = 'This user does not exist';
           return;
