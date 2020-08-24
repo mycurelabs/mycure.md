@@ -104,9 +104,6 @@ export default {
     //   return this.doctor?.educations;
     // },
   },
-  mounted () {
-    console.warn(this.doctorWebsite);
-  },
 };
 </script>
 
