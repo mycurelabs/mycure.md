@@ -58,6 +58,7 @@ module.exports = {
     { src: '~/plugins/vue-social-sharing.js', mode: 'client' },
     { src: '~/plugins/vue-morphling.js', mode: 'client' },
     '~/plugins/vue-lazyload.js',
+    { src: '~/plugins/amplitude.js', mode: 'client' },
   ],
   /*
   ** Nuxt.js dev-modules
