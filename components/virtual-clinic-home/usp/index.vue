@@ -20,11 +20,10 @@
         v-btn(
           v-if="!$isMobile"
           color="primary"
-          width="160"
           height="50"
           large
           @click="onGetStarted"
-        ).text-none.font-16 Get Started
+        ).text-none.font-16 Request an Invite
         img(
           v-show="!$isMobile && isImageLoaded"
           v-lazy="require(`~/assets/images/virtual-clinic-home/mycure-web-usp-telehealth-robocop-consult.png`)"
@@ -47,7 +46,7 @@
           block
           large
           @click="onGetStarted"
-        ).text-none.font-16 Get Started
+        ).text-none.font-16 Request an Invite
     v-row(v-if="$isMobile" justify="center" align="end" no-gutters).ml-n3.mt-5
       v-col(cols="12")
         img(v-if="$isMobile" v-lazy="require(`~/assets/images/virtual-clinic-home/mycure-web-usp-telehealth-robocop-consult.png`)" style="width: 100vw" alt="Robocop Consult").robocop-image
