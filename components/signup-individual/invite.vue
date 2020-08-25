@@ -12,7 +12,6 @@
       v-col(
         cols="12"
         sm="4"
-        md="4"
         lg="3"
         xl="2"
         align-self="start"
@@ -114,7 +113,7 @@
                 :disabled="loading || !valid"
                 :loading="loading"
                 @click="getAccess"
-              ).font-weight-bold Get Free Access
+              ).font-weight-bold Get Exclusive Access
       //- REQUEST SENT DIALOG
       v-dialog(v-model="requestSentDialog" width="350" persistent)
         v-card.text-center
@@ -276,10 +275,10 @@ export default {
         // Get the E<code> part of the error message.
         const errorCode = parseInt(e?.message?.replace(/ .*/, '').substr(1));
         if (errorCode === 11000) {
-          this.errorMessage = 'The email you have entered is invalid or taken. Please try again.';
+          this.errorMessage = 'This email or mobile number is already on the waitlist. You will receive an exclusive referral code 1-2 days after your request.';
           return;
         }
-        this.errorMessage = 'There was an error please try again later';
+        this.errorMessage = 'The email or mobile number you have entered is already taken.';
       } finally {
         this.loading = false;
       }
