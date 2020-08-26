@@ -6,6 +6,7 @@ module.exports = {
   ** Headers of the page
   */
   env: {
+    AMPLITUDE_API_KEY: process.env.AMPLITUDE_API_KEY,
     API_URL: process.env.API_URL,
     CMS_URL: process.env.CMS_URL,
     ENV: process.env.ENV,
@@ -58,6 +59,7 @@ module.exports = {
     { src: '~/plugins/vue-social-sharing.js', mode: 'client' },
     { src: '~/plugins/vue-morphling.js', mode: 'client' },
     '~/plugins/vue-lazyload.js',
+    { src: '~/plugins/amplitude.js', mode: 'client' },
   ],
   /*
   ** Nuxt.js dev-modules
