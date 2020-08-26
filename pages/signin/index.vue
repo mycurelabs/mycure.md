@@ -117,6 +117,7 @@ export default {
   },
   created () {
     this.init();
+    this.$amplitude.logEvent('RET001 Page > Sign in');
   },
   mounted () {
     this.pageLoading = false;
