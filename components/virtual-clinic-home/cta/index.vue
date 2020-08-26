@@ -21,7 +21,7 @@
             color="accent"
             large
             @click="onGetStarted"
-          ).text-none.font-16.p-7.mt-5 Get Started
+          ).text-none.font-16.p-7.mt-5 Request an Invite
         img(
           v-if="$isMobile"
           v-lazy="panelImageSrc"
@@ -36,7 +36,7 @@
             color="accent"
             large
             @click="onGetStarted"
-          ).text-none.font-16.p-7.mt-3 Get Started
+          ).text-none.font-16.p-7.mt-3 Request an Invite
           picture-source(
             image-file-extension=".webp"
             image-width="90%"

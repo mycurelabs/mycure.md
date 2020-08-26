@@ -18,10 +18,9 @@
               v-btn(
                 v-if="!$isMobile"
                 height="54"
-                width="160"
                 color="accent"
                 @click="onGetStarted"
-              ).text-none.font-16.p-7 Get Started
+              ).text-none.font-16.p-7 Request an Invite
     template(v-if="$isMobile")
       v-container(fluid).mobile-form
         v-row.px-6.mt-n3
@@ -38,7 +37,7 @@
             color="accent"
             block
             large
-          ).text-none.font-16 Get Started
+          ).text-none.font-16 Request an Invite
 </template>
 
 <script>
