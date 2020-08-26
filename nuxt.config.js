@@ -6,6 +6,7 @@ module.exports = {
   ** Headers of the page
   */
   env: {
+    AMPLITUDE_API_KEY: process.env.AMPLITUDE_API_KEY,
     API_URL: process.env.API_URL,
     CMS_URL: process.env.CMS_URL,
     ENV: process.env.ENV,
@@ -18,7 +19,6 @@ module.exports = {
     STRIPE_CHECKOUT_SUCCESS_URL: process.env.STRIPE_CHECKOUT_SUCCESS_URL,
     STRIPE_PK: process.env.STRIPE_PK,
     WEB_MAIN_URL: process.env.WEB_MAIN_URL,
-    AMPLITUDE_API_KEY: process.env.AMPLITUDE_API_KEY,
   },
   head: {
     titleTemplate: '%s',
