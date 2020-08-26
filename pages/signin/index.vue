@@ -60,6 +60,17 @@
               color="primary"
               type="submit"
             ) Submit
+    v-dialog(v-if="checkDevice" v-model="bestUseDialog" width="300" persistent)
+      v-card.text-center
+        v-card-text.pa-8
+          img(src="~/assets/images/sign-in/MYCURE-modal-best-used-in-big-screens-image.png" width="100%")
+          p.py-3
+            strong MYCURE&nbsp;
+            | is best used on
+            br
+            | tablets and laptops
+          v-btn(color="accent" @click="bestUseDialog = false" large)
+            strong.text-capitalize Got It
 </template>
 
 <script>
@@ -90,6 +101,7 @@ export default {
       errorMsg: '',
       isMFAMobileNoEnabled: false,
       otpDialog: false,
+      bestUseDialog: true,
       otp: '',
       errors: [],
     };
@@ -102,6 +114,9 @@ export default {
     },
     titleSizeClasses () {
       return [this.$isMobile ? 'font-24' : 'font-32'];
+    },
+    checkDevice () {
+      return this.$vuetify.breakpoint.smAndDown;
     },
   },
   watch: {
