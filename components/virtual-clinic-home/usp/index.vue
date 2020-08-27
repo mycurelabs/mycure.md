@@ -137,7 +137,6 @@ export default {
           const startAt = Date.now();
           const url = `${process.env.CMS_URL_BASE}/virtual-consult-experience/${uid}?startAt=${startAt}`;
           window.open(url, '_blank', 'noopener, noreferrer');
-          alert();
         }, 1500);
       } catch (e) {
         console.error(e);
