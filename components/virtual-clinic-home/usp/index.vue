@@ -24,13 +24,34 @@
           large
           @click="onGetStarted"
         ).text-none.font-16 Request an Invite
-        img(
-          v-show="!$isMobile && isImageLoaded"
-          v-lazy="require(`~/assets/images/virtual-clinic-home/mycure-web-usp-telehealth-robocop-consult.png`)"
-          width="100%"
-          alt="Robocop Consult"
-          @load="loadedImage"
-        ).robocop-image.mt-8
+        v-hover.mt-8
+          template(v-slot:default="{ hover }")
+            v-card(flat)
+              v-card-text.pa-0
+                img(
+                  hover
+                  v-show="!$isMobile && isImageLoaded"
+                  v-lazy="require(`~/assets/images/virtual-clinic-home/mycure-web-usp-telehealth-robocop-consult.png`)"
+                  width="100%"
+                  alt="Robocop Consult"
+                  @load="loadedImage"
+                ).robocop-image
+              v-fade-transition
+                v-overlay(
+                  v-if="hover"
+                  absolute
+                  opacity="0.8"
+                )
+                  h2.mb-4 Try it Now
+                  p.body-1 Take a sneak peek of how a MYCURE Virtual Consult looks like inside. No sign up needed!
+                  v-btn(
+                    x-large
+                    color="success"
+                    style="min-width: 150px"
+                    :disabled="loadingVirtualConsult"
+                    :loading="loadingVirtualConsult"
+                    @click="createVirtualConsult"
+                  ).text-none #[b Go!]
         div(v-show="!$isMobile && !isImageLoaded").white.empty-image-container
     v-row(v-if="$isMobile" justify="center" align="center").mobile-form.px-2.mt-n6
       v-col(cols="12")
@@ -54,11 +75,14 @@
 
 <script>
 // utils
+import { v4 as uuidv4 } from 'uuid';
 import canUseWebp from '~/utils/can-use-webp';
+
 export default {
   data () {
     return {
       email: '',
+      loadingVirtualConsult: false,
       canUseWebp: false,
       isImageLoaded: false,
       emailErrorMessage: '',
@@ -103,6 +127,21 @@ export default {
     },
     loadedImage () {
       this.isImageLoaded = true;
+    },
+    createVirtualConsult () {
+      try {
+        this.loadingVirtualConsult = true;
+        setTimeout(() => {
+          this.loadingVirtualConsult = false;
+          const uid = uuidv4();
+          const startAt = Date.now();
+          const url = `${process.env.CMS_URL_BASE}/virtual-consult-experience/${uid}?startAt=${startAt}`;
+          window.open(url, '_blank', 'noopener, noreferrer');
+          alert();
+        }, 1500);
+      } catch (e) {
+        console.error(e);
+      }
     },
   },
 };
