@@ -1,65 +1,67 @@
 <template lang="pug">
-  fragment
-    v-container(
-      fluid
-      style="height: 100vh"
-      :class="[backgroundClasses, backgroundImages]"
-    )
-      v-container
-        v-container(style="height: 100%" fluid)
-          v-row(align="start" justify="center")
-            v-col(cols="12" :class="{ 'pt-12 mt-4': $isMobile, 'pl-5 usp-content': !$isMobile }")
-              h3(:class="titleHeaderClasses").font-poppins.lh-title {{ panelTitleHeader }}
-              h1(:class="titleClasses").font-poppins.lh-title {{ uspTitle }}
-              p(:class="[centerText, subtitleClasses]").font-italic {{ uspSubtitle }}
-              div(v-if="!$isMobile").text-field-container.mr-3.mt-n1
-                v-text-field(
-                  elevation="2"
-                  background-color="white"
-                  v-model="email"
-                  placeholder="myname@email.com"
-                  outlined
-                  dense
-                  height="50"
-                ).text-field-input
-              v-btn(
-                elevation="2"
-                v-if="!$isMobile"
-                color="accent"
-                large
-                width="160"
-                height="50"
-                @click="onGetStarted"
-              ).text-none.font-16.p-7.py-4 Get Started
-    template(v-if="$isMobile")
-      v-container(fluid).mobile-form
-        v-row.px-6
+  v-container(
+    fluid
+    :class="[backgroundClasses, backgroundImages]"
+  )
+    v-row(align="start" justify="center")
+      v-col(cols="12" md="10" :class="{ 'pt-12 mt-4': $isMobile, 'usp-content': !$isMobile }").text-center
+        h3(:class="titleHeaderClasses").font-poppins.lh-title For Modern Doctors: Virtual is the new normal.
+        p(:class="[centerText, subtitleClasses]") The first and only Telehealth-Focused Practice Management System
+        div(v-if="!$isMobile").text-field-container.mr-3
           v-text-field(
-            background-color="white"
             v-model="email"
+            background-color="white"
+            placeholder="johndoe@gmail.com"
+            height="50"
             outlined
-            placeholder="myname@email.com"
+            dense
+            :error-messages="emailErrorMessage"
           ).text-field-input
-          v-btn(
-            block
-            color="accent"
-            large
-            @click="onGetStarted"
-          ).text-none.font-16 Get Started
+        v-btn(
+          v-if="!$isMobile"
+          color="primary"
+          height="50"
+          large
+          @click="onGetStarted"
+        ).text-none.font-16 Request an Invite
+        img(
+          v-show="!$isMobile && isImageLoaded"
+          v-lazy="require(`~/assets/images/virtual-clinic-home/mycure-web-usp-telehealth-robocop-consult.png`)"
+          width="100%"
+          alt="Robocop Consult"
+          @load="loadedImage"
+        ).robocop-image.mt-8
+        div(v-show="!$isMobile && !isImageLoaded").white.empty-image-container
+    v-row(v-if="$isMobile" justify="center" align="center").mobile-form.px-2.mt-n6
+      v-col(cols="12")
+        v-text-field(
+          v-model="email"
+          background-color="white"
+          placeholder="johndoe@gmail.com"
+          outlined
+          :error-messages="emailErrorMessage"
+        ).mb-6.text-field-input
+        v-btn(
+          color="primary"
+          block
+          large
+          @click="onGetStarted"
+        ).text-none.font-16 Request an Invite
+    v-row(v-if="$isMobile" justify="center" align="end" no-gutters).ml-n3.mt-5
+      v-col(cols="12")
+        img(v-if="$isMobile" v-lazy="require(`~/assets/images/virtual-clinic-home/mycure-web-usp-telehealth-robocop-consult.png`)" style="width: 100vw" alt="Robocop Consult").robocop-image
 </template>
 
 <script>
 // utils
-import { parseTextWithNewLine } from '~/utils/newline';
 import canUseWebp from '~/utils/can-use-webp';
 export default {
   data () {
-    this.panelTitleHeader = 'For Modern Doctors:';
-    this.panelTitleMain = 'Virtual is the new normal.';
-    this.uspSubtitle = 'Build your virtual clinic today.';
     return {
       email: '',
       canUseWebp: false,
+      isImageLoaded: false,
+      emailErrorMessage: '',
     };
   },
   computed: {
@@ -69,7 +71,7 @@ export default {
     titleHeaderClasses () {
       return this.$isMobile
         ? [this.centerText, 'font-30']
-        : ['pre-white-space', 'font-36'];
+        : ['font-30'];
     },
     titleClasses () {
       return this.$isMobile
@@ -79,12 +81,7 @@ export default {
     subtitleClasses () {
       return this.$isMobile
         ? [this.centerText, 'font-21']
-        : ['pre-white-space', 'font-24'];
-    },
-    uspTitle () {
-      return this.$isMobile
-        ? this.panelTitleMain
-        : parseTextWithNewLine(this.panelTitleMain, ['the ']);
+        : ['font-20'];
     },
     backgroundClasses () {
       return !this.$isMobile ? 'bg' : 'bg-mobile';
@@ -99,9 +96,13 @@ export default {
   methods: {
     onGetStarted () {
       if (!this.email) {
+        this.emailErrorMessage = 'Please enter your email';
         return;
       }
       this.$emit('getStarted', this.email);
+    },
+    loadedImage () {
+      this.isImageLoaded = true;
     },
   },
 };
@@ -114,32 +115,35 @@ export default {
   background-size: cover;
 }
 .bg-webp {
-  background-image: url('../../../assets/images/virtual-clinic-home/MYCURE-virtual-clinic-healthcare-practice-online-homepage-usp-cover.webp');
+  background-image: url('../../../assets/images/virtual-clinic-home/mycure-web-usp-cover-background-blur.webp');
 }
 .bg-png {
-  background-image: url('../../../assets/images/virtual-clinic-home/MYCURE-virtual-clinic-healthcare-practice-online-homepage-usp-cover.png');
+  background-image: url('../../../assets/images/virtual-clinic-home/mycure-web-usp-cover-background-blur.png');
 }
 .bg-mobile {
-  background-image: url('../../../assets/images/virtual-clinic-home/MYCURE-virtual-clinic-healthcare-practice-online-homepage-usp-cover-mobile.png');
-  background-position: 0 275px;
+  background-image: url('../../../assets/images/virtual-clinic-home/mycure-web-usp-cover-background-blur.png');
   background-repeat: no-repeat;
-  background-size: 100%;
+  background-size: cover;
+  min-height: 100vh;
 }
 .usp-content {
-  margin-top: 150px;
+  margin-top: 90px;
 }
 .text-field-container {
   height: 50px;
   border-radius: 2px;
   display: inline-block;
 }
+.robocop-image {
+  box-shadow: 5px 5px 30px 5px #999999;
+}
+.empty-image-container {
+  height: 350px;
+}
 .text-field-container .text-field-input {
   top: 1px;
   width: 295px;
   opacity: 0.9;
-}
-.mobile-form {
-  margin-top: -112px;
 }
 .mobile-form .text-field-input {
   height: 56px;

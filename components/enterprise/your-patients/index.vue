@@ -2,33 +2,33 @@
   v-container.py-12
     v-row(justify="center")
       v-col(cols="12" md="8" lg="6" justify="center")
-        h1.text-center.font-30.lh-title.pb-3.font-weight-light {{secondPanelHeader.header}}
-        p.pre-white-space.text-center.font-16.mt-3.font-gray {{secondPanelHeader.description}}
+        h1.text-center.font-30.lh-title.pb-3.font-weight-light {{ secondPanelHeader.header }}
+        p(:class="{ 'pre-white-space' : !$isMobile }").text-center.font-16.mt-3.font-gray {{ secondPanelHeader.description }}
     v-row(justify="center")
       v-col(
-        cols="12"
-        :md="$isMobile ? '5' : '4'"
         v-for="(data, key) in secondPanelContents"
-        :key="key"
+        cols="12"
         align="center"
         justify="center"
+        :md="$isMobile ? '5' : '4'"
+        :key="key"
         :class="columnClasses"
       )
         div(v-if="!$isMobile").text-center.img-container
           picture-source(
             custom-path="enterprise/"
-            :image="data.image"
-            :image-alt="data.header"
             image-file-extension=".webp"
             image-width="70%"
+            :image="data.image"
+            :image-alt="data.header"
           )
-        h1(:class="headerClasses").image-title.lh-title.pb-3.font-weight-bold {{data.header}}
+        h1(:class="headerClasses").image-title.lh-title.pb-3.font-weight-bold {{ data.header }}
         picture-source(
           v-if="$isMobile"
           custom-path="enterprise/"
+          image-file-extension=".webp"
           :image="data.image"
           :image-alt="data.header"
-          image-file-extension=".webp"
         )
 </template>
 

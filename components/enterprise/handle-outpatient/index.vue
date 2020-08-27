@@ -1,37 +1,43 @@
 <template lang="pug">
-  v-container.py-12
-    v-row(justify="center")
-      v-col(cols="12" md="6" justify="center" align="center" v-if="!$isMobile").panel-image
-        img(v-lazy="require(`~/assets/images/enterprise/${outpatient.image}`)" :alt="outpatient.header" width="100%")
-      v-col(cols="12" md="5" lg="5" align-self="center")
-        h1.font-30.lh-title.pb-3.font-weight-light {{outpatient.header}}
-        p.text-justify.font-16.mt-3.font-gray {{outpatient.description}}
-        v-btn(text @click="onClick").mt-5.ml-n4.get-started-btn
-          strong.text-capitalize.primary--text {{outpatient.btnTxt}}
-          v-icon.primary--text {{outpatient.btnIcon}}
-      v-col(cols="12" md="6" align="center" v-if="$isMobile" )
-        img(v-lazy="require(`~/assets/images/enterprise/${outpatient.image}`)" :alt="outpatient.header" width="100%")
+  generic-media-panel(
+    align-right-column="center"
+    cols-left="5"
+    cols-right="4"
+    offset-cols-right="1"
+    custom-image-path="enterprise/"
+    file-extension=".webp"
+    web-image-width="104%"
+    mobile-image-width="95%"
+    mobile-image-class="text-center"
+    :content-align-right="true"
+    :header="panelContents.title"
+    :descriptions="[panelContents.description]"
+    :web-image="panelContents.image"
+  )
+    div(slot="additional-content")
+      v-btn(text @click="onGetStarted").ml-n4
+        strong.text-capitalize.primary--text.font-18 Get Started
+        v-icon.primary--text mdi-arrow-right
 </template>
 
 <script>
-import { OUTPATIENT } from '../enterprise-contents';
+import GenericMediaPanel from '~/components/commons/generic-media-panel';
 export default {
+  components: {
+    GenericMediaPanel,
+  },
   data () {
-    this.outpatient = OUTPATIENT;
+    this.panelContents = {
+      image: 'MYCURE-virtual-clinic-healthcare-practice-online-enterprise-C-book-online-calendar',
+      title: 'Handle outpatient consultations online',
+      description: 'Continue to give your patients quality care online while keeping your physicians safe.',
+    };
     return {};
   },
   methods: {
-    onClick () {
+    onGetStarted () {
       this.$emit('getStarted');
     },
   },
 };
 </script>
-
-<style scoped>
-@media screen and (min-width: 1024px) {
-  .panel-image {
-    margin-right: 4%;
-  }
-}
-</style>

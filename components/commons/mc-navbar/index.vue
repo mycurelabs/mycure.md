@@ -56,12 +56,14 @@ export default {
             name: 'Group Practice',
             route: 'doctors-clinics',
             panel: 'group-practice',
+            panelOffset: -70,
             external: false,
           },
           {
             name: 'Specialized Practice',
             route: 'doctors-clinics',
             panel: 'specialized-practice',
+            panelOffset: -70,
             external: false,
           },
         ],
@@ -80,24 +82,28 @@ export default {
             name: 'Multi-branch Facilities',
             route: 'enterprise',
             panel: 'multibranch-facilities',
+            panelOffset: -70,
             external: false,
           },
           {
             name: 'Corporate Clinics',
             route: 'enterprise',
             panel: 'corporate-clinics',
+            panelOffset: -70,
             external: false,
           },
           {
             name: 'Medical Arts Centers',
             route: 'enterprise',
             panel: 'medical-arts-centers',
+            panelOffset: -70,
             external: false,
           },
           {
             name: 'Diagnostic Centers',
             route: 'enterprise',
             panel: 'diagnostic-centers',
+            panelOffset: -70,
             external: false,
           },
         ],
@@ -110,9 +116,11 @@ export default {
       },
       {
         name: 'Patient Portal',
-        route: process.env.PX_PORTAL_URL,
+        route: 'index',
+        panel: 'patient-portal',
+        panelOffset: -100,
         new: true,
-        external: true,
+        external: false,
       },
       // TODO: bring back later
       // {
@@ -200,8 +208,10 @@ export default {
         return;
       }
       if (!navLink.panel) return;
-      const panelId = `#${navLink.panel}`;
-      VueScrollTo.scrollTo(panelId, 500, { easing: 'ease' });
+      VueScrollTo.scrollTo(`#${navLink.panel}`, 500, {
+        easing: 'ease',
+        ...navLink.panelOffset && { offset: navLink.panelOffset },
+      });
     },
   },
 };

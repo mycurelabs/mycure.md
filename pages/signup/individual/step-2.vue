@@ -95,12 +95,10 @@
           img(width="100%" src="~/assets/images/mycure-signup-image-jumping-doctors.png" alt="Jumping doctors")
           div
             p.subheading
-              b(v-if="step1Data.firstName") Dr. {{ step1Data.firstName }}
-              | {{ step1Data.firstName ? `, you've` : `You've` }} taken the first step
+              b(v-if="step1Data.firstName") Dr. {{ step1Data.firstName }}!&nbsp;
+              | Get ready to take your practice anywhere you are with your own virtual clinic.
               br
-              | in securely organizing your medical records.
-              br
-              | Now get ready for the ultimate clinic make-over.
+              | Organize your online and face-to-face consultations securely, everyday.
           v-btn(
             color="accent"
             @click="onAcknowledgment"
@@ -222,6 +220,7 @@ export default {
         };
         await verifyMobileNo(payload);
         this.$router.replace({ query: { success: true } });
+        this.otpCountdown = null;
         this.successDialog = true;
       } catch (e) {
         this.verificationError = true;
@@ -326,8 +325,7 @@ export default {
     return headMeta({
       title: 'Start Free EMR Doctor Practice Management System',
       description: 'Create a free MYCURE account today and become a techy doctor in minutes! Better operations, beautiful reports, bye paperworks!',
-      // - TODO: Replace with local if applicable
-      socialBanner: 'https://firebasestorage.googleapis.com/v0/b/mc-v4-prod.appspot.com/o/web-main-assets%2FMYCURE-Open-Graph-Images-Home.png?alt=media&token=61978d70-326f-4323-8e6a-17d7b9c9a53b',
+      socialBanner: require('~/assets/images/banners/MYCURE Open Graph Images -  Home.png'),
     });
   },
 };

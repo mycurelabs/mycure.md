@@ -1,83 +1,49 @@
 <template lang="pug">
   v-container.py-12
-    //- WEB
-    v-row(v-if="!$isMobile" justify="center" align="center").panel-content
-      v-col(md="4" align-self="center").pr-5.first-column
-        h1.font-30.lh-title.font-weight-light {{ panelTitle }}
+    v-row(justify="center" align="center").pb-5
+      v-col(cols="12" md="5" align-self="center")
+        h1(:class="titleClasses").font-30.lh-title APIs built to make your existing health systems more powerful.
         br
-        p.font-16.font-gray.text-justify {{ panelContent }}
+        v-col(
+          v-if="$isMobile"
+          cols="12"
+          align="center"
+          align-self="center"
+        )
+          img(v-lazy="require(`~/assets/images/virtual-clinic-home/MYCURE-virtual-clinic-healthcare-practice-online-homepage-F-features-02-api.png`)" width="100%" alt="Health systems more powerful")
+        br
+        p.font-16.font-gray.text-justify MYCURE is made to augment your IT innovations. We created our APIs to be simple to use, excellent in performance, and boundless in possibilities.
         v-list(dense).ml-n5
-          v-list-item(
-            v-for="(item, key) in checkList"
-            :key="key"
-          )
+          v-list-item(v-for="(item, key) in checkList" :key="key")
             v-list-item-action
               img(v-lazy="require('~/assets/images/mycure-web-bullet-check.png')" alt="Check icon")
             v-list-item-content
               span.font-16.font-gray {{ item }}
-      v-col(md="5" justify="start" align="center").second-column
-        img(v-lazy="panelImageSrc" width="75%" :alt="panelImage")
-    //- MOBILE
-    v-row(v-if="$isMobile").pt-5
-      v-col(cols="12").text-center
-        h1.font-30.lh-title.pb-5 {{ panelTitle }}
-        br
-        img(width="85%" v-lazy="panelImageSrc" :alt="panelImage").pb-3
-        br
-        p.font-16.font-gray.text-justify.mt-3 {{ panelContent }}
-        v-list(two-line).text-left
-          v-list-item(
-            v-for="(item, key) in checkList"
-            :key="key"
-          )
-            v-list-item-action
-              img(src="~/assets/images/mycure-web-bullet-check.png" alt="Check icon")
-            v-list-item-content
-              span.font-16.font-gray {{ item }}
-        br
+      v-col(
+        v-if="!$isMobile"
+        cols="12"
+        md="4"
+        offset-md="1"
+        align="end"
+        align-self="center"
+      )
+        img(v-lazy="require(`~/assets/images/virtual-clinic-home/MYCURE-virtual-clinic-healthcare-practice-online-homepage-F-features-02-api.png`)" width="80%" alt="Health systems more powerful")
 </template>
 
 <script>
 export default {
   data () {
-    this.panelTitle = 'APIs built to make your existing health systems more powerful.';
-    this.panelContent = 'MYCURE is made to augment your IT innovations. We created our APIs to be simple to use, excellent in performance, and boundless in possibilities.';
     this.checkList = [
       'Integrate with your database systems',
       'Customize the CMS as needed',
       'Complete documentation',
     ];
-    this.panelImage = 'MYCURE-virtual-clinic-healthcare-practice-online-homepage-F-features-02-api';
-    return {
-    };
+    return {};
   },
   computed: {
-    panelImageSrc () {
-      return require(`~/assets/images/virtual-clinic-home/${this.panelImage}.png`);
+    titleClasses () {
+      return [!this.$isMobile ? 'text-justify font-weight-light' : 'text-center'];
     },
   },
 };
 </script>
-
-<style scoped>
-.api-content {
-  position: relative;
-  z-index: 3;
-}
-@media screen and (min-width: 1024px) {
-  .panel-content {
-    margin-left: 2%;
-  }
-  .second-column {
-    margin-left: -2%;
-  }
-}
-@media screen and (min-width: 1920px) {
-  .panel-content {
-    margin-left: 0%;
-  }
-  .second-column {
-    margin-left: -3%;
-  }
-}
-</style>

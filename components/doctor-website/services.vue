@@ -3,13 +3,16 @@
     v-row(justify="center")
       v-col(cols="12").text-center
         h1 Services Offered
-    v-row(justify="center")
+    v-row(align="center" justify="center")
       v-col(cols="12" md="8")
-        v-row(justify="center")
-          template(v-if="services.length === 0")
-            div.text-center.pa-5
-              h3.grey--text #[i No services to show]
-          template(v-else v-for="(service, index) in services")
+        div(v-if="services.length === 0").text-center.pa-5
+          h3.grey--text #[i No services to show]
+        template(v-else)
+          v-row(
+            v-for="(service, index) in services"
+            :key="index"
+            justify="center"
+          )
             v-col(
               cols="12"
               sm="12"

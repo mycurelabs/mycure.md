@@ -3,7 +3,7 @@
     //- 1st panel
     usp(@getStarted="goToSignupIndividual($event)")
     //- 2nd panel
-    platform-panels(@getStarted="getStarted" @goToFeatures="goToFeatures")
+    platform-panels(@getStarted="getStarted")
     v-divider.edge-divider
     //- 3rd panel
     storyflow(
@@ -13,14 +13,13 @@
       horizontal
       horizontal-image-size="40%"
     )
-    v-divider.edge-divider
     //- 4th panel
     privacy
-    v-divider.edge-divider
     //- 5th panel
     apis
-    v-divider.edge-divider
     //- 6th panel
+    patient-portal(@goToPatientPortal="goToPatientPortal")#patient-portal
+    //- 7th panel
     testimonial
     //- final panel
     div.cta-container
@@ -34,22 +33,24 @@ import headMeta from '~/utils/head-meta';
 import { parseTextWithNewLine } from '~/utils/newline';
 // - components
 import Usp from '~/components/virtual-clinic-home/usp';
-import Apis from '~/components/virtual-clinic-home/apis';
-import Cta from '~/components/virtual-clinic-home/cta';
 import PlatformPanels from '~/components/virtual-clinic-home/platform-panels';
-import Privacy from '~/components/virtual-clinic-home/privacy';
 import Storyflow from '~/components/commons/storyflow';
+import Privacy from '~/components/virtual-clinic-home/privacy';
+import Apis from '~/components/virtual-clinic-home/apis';
 import Testimonial from '~/components/virtual-clinic-home/testimonial';
+import PatientPortal from '~/components/virtual-clinic-home/patient-portal';
+import Cta from '~/components/virtual-clinic-home/cta';
 
 export default {
   components: {
     Usp,
-    Apis,
-    Cta,
     PlatformPanels,
-    Privacy,
     Storyflow,
+    Privacy,
+    Apis,
+    PatientPortal,
     Testimonial,
+    Cta,
   },
   data () {
     this.storyflowItems = [
@@ -75,6 +76,10 @@ export default {
     };
   },
   computed: {
+    scrollPanel () {
+      const panel = this.$nuxt.$route.params.panel;
+      return panel ? `#${panel}` : null;
+    },
     storyflowIntroText () {
       return this.$isMobile
         ? this.introText
@@ -82,6 +87,12 @@ export default {
     },
   },
   mounted () {
+    this.loading = false;
+    const panel = this.scrollPanel || '#app';
+    setTimeout(() => {
+      VueScrollTo.scrollTo(panel, 500, { easing: 'ease', offset: -100 });
+    }, 0);
+
     this.$nuxt.$route.params.scrollHealthSuites ? this.getStarted()
       : VueScrollTo.scrollTo('#app', 500, { easing: 'ease' });
     window.$crisp.push(['safe', true]);
@@ -89,13 +100,13 @@ export default {
   },
   methods: {
     getStarted () {
-      this.$router.push({ name: 'signup-individual' });
-    },
-    goToFeatures () {
-      this.$nuxt.$router.push({ name: 'features' });
+      this.$router.push({ name: 'signup-individual-invite' });
     },
     goToSignupIndividual (email) {
-      this.$router.push({ name: 'signup-individual', params: { email } });
+      this.$router.push({ name: 'signup-individual-invite', params: { email } });
+    },
+    goToPatientPortal () {
+      window.open(process.env.PX_PORTAL_URL, '_blank', 'noopener, noreferrer');
     },
     handleWatchFeatures () {
       this.$ga.event({
@@ -111,7 +122,7 @@ export default {
     return headMeta({
       title: 'MYCURE Virtual Clinic | Healthcare Practice Online',
       description: 'MYCURE is an advanced clinic management system that allows you to securely consult with patients online and get real-time medical and business insights.',
-      socialBanner: require('~/assets/images/banners/MYCURE Open Graph Images -  Homepage.png'),
+      socialBanner: require('~/assets/images/banners/MYCURE Open Graph Images -  Home.png'),
     });
   },
 };

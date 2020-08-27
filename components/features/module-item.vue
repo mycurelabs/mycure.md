@@ -5,14 +5,24 @@
         br
         span.font-21 {{ moduleItem.title }}
         br
-        p.font-15.module-item-subTitle {{ moduleItem.subTitle }}
+        p.font-15.module-item-subTitle.pre-white-space {{ moduleItem.subTitle }}
     br
-    div.module-item-description {{ moduleItem.description }}
+    div(v-if="typeof(moduleItem.description) === 'string'").module-item-description {{ moduleItem.description }}
+    div(
+      v-else-if="typeof(moduleItem.description) === 'object'"
+      :class="{'pre-white-space': $isRegularScreen }"
+    ).module-item-description {{ moduleItem.description | parse-description }}
 </template>
 
 <script>
+import { parseTextWithNewLine } from '~/utils/newline';
 export default {
   name: 'ModuleItem',
+  filters: {
+    parseDescription (description) {
+      return parseTextWithNewLine(description.text, description.parseFields);
+    },
+  },
   props: {
     moduleItem: {
       type: Object,

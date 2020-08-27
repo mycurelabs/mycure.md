@@ -1,9 +1,9 @@
 <template lang="pug">
   div(v-if="!loading")
     //- 1st panel
-    usp(@getStarted="onGetStarted($event)")
+    usp(@getStarted="onGetStarted($event)" @startNow="startNow")
     //- 2nd panel
-    your-patients(@getStarted="goToSignup")
+    your-patients(@getStarted="goToSignup")#your-patients
     v-divider.edge-divider
     //- 3rd panel
     handle-outpatient(@getStarted="goToSignup")
@@ -77,32 +77,24 @@ export default {
   },
   mounted () {
     this.loading = false;
-    this.scrollToPosition();
+    const panel = this.scrollPanel || '#app';
+    this.$nextTick(() => {
+      VueScrollTo.scrollTo(panel, 500, { easing: 'ease', offset: -70 });
+    });
   },
   methods: {
-    scrollToPosition () {
-      const panel = this.scrollPanel || '#app';
-      const offsetMappings = [
-        { key: '#app', offset: 0 },
-        { key: '#multibranch-facilities', offset: 500 },
-        { key: '#corporate-clinics', offset: 700 },
-        { key: '#medical-arts-centers', offset: 900 },
-        { key: '#diagnostic-centers', offset: 1200 },
-      ];
-      const { offset } = offsetMappings.find(mapping => mapping.key === panel);
-      this.$nextTick(() => {
-        VueScrollTo.scrollTo(panel, 500, { easing: 'ease', offset });
-      });
-    },
     onGetStarted (email) {
       localStorage.setItem('multi:step3:email', email);
       this.goToSignup();
     },
     goToSignup () {
-      this.$nuxt.$router.push({ name: 'signup-multispecialty' });
+      this.$nuxt.$router.push({ name: 'signup-multispecialty-step-1' });
     },
     goToFeatures () {
       this.$nuxt.$router.push({ name: 'features' });
+    },
+    startNow () {
+      VueScrollTo.scrollTo('#your-patients', 500, { easing: 'ease', offset: -70 });
     },
   },
   head () {

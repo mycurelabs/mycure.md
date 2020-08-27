@@ -1,101 +1,88 @@
 <template lang="pug">
   v-container
-    v-row(v-if="!$isMobile")
-      v-toolbar(flat).footer-grey
+    v-row(v-if="$isMobile" justify="center").footer-grey
+      v-col(cols="12" align="center").pa-0
         nuxt-link(:to="{ name: 'index' }" title="MYCURE | Clinic Management System | Cloud EMR Philippines")
-          v-row.text-center
-            img(src="~/assets/images/mycure-footer-logo.png" height="40" alt="MYCURE logo")
-        v-spacer
-        div(v-for="(account, key) in socMed" :key="key")
-          a(:href="account.link" target="_blank" rel="noopener noreferrer")
-            img(:src="require(`~/assets/images/${ account.icon }`)" height="35" :alt="account.name").px-5
-    v-row(v-else justify="center").footer-grey
-      nuxt-link(:to="{ name: 'index' }" title="MYCURE | Clinic Management System | Cloud EMR Philippines")
-        v-row(align="center").text-center
           img(src="~/assets/images/mycure-footer-logo.png" width="130" alt="MYCURE logo")
-      br
-      br
-      v-row(justify="center")
-        div(v-for="(account,key) in socMed" :key="key")
+      v-col(cols="12" align="center")
+        template(v-for="(account,key) in socMed")
           a(:href="account.link" target="_blank" rel="noopener noreferrer")
-            img(:src="require(`~/assets/images/${ account.icon }`)" height="30" :alt="account.name").px-3
-      br
-      br
+            img(:src="require(`~/assets/images/${ account.icon }`)" height="30" :alt="account.name").px-2
       v-expansion-panels(flat).footer-grey.elevation-0
         v-expansion-panel.footer-grey
           v-expansion-panel-header(:color="expansionPanelColor")
-            span.iconMargin.feature-text FOR HEALTHCARE PROFESSIONALS
+            span.feature-text FOR PROVIDERS
             template(v-slot:actions)
-              v-icon(color="grey").iconMargin mdi-menu-down
-          v-expansion-panel-content.iconMargin
+              v-icon(color="grey") mdi-menu-down
+          v-expansion-panel-content.iconMargin.pl-3
             template(v-for="solution in clinicSolutions").link.py-2
               nuxt-link(:to="{ name: solution.route }")
-                span.py-2.font-18.link {{solution.name}}
+                span.font-18.link {{ solution.name }}
               br
               br
             nuxt-link(id="footer-features-btn" :to="{ name: 'features' }" title="MYCURE | Features").link.py-2
-              span.py-2.font-18 Features
+              span.font-18 Features
         v-expansion-panel.footer-grey
           v-expansion-panel-header(:color="expansionPanelColor")
-            span.iconMargin.feature-text FOR PATIENTS
+            span.feature-text FOR PATIENTS
             template(v-slot:actions)
-              v-icon(color="grey").iconMargin mdi-menu-down
-          v-expansion-panel-content.iconMargin
-            a(:href="patientPortalUrl" target="_blank" rel="noopener noreferrer").link.py-2
-              span.py-2.font-18.new-link Patient's Portal
+              v-icon(color="grey") mdi-menu-down
+          v-expansion-panel-content.pl-3
+            a(:href="patientPortalSite" target="_blank" rel="noopener noreferrer").link.py-2
+              span.font-18.new-link Patient Portal
             br
             br
             //- nuxt-link(id="footer-directory-doctors-link" :to="{ name: 'directory-doctors' }" title="MYCURE Doctor's Directory").link.py-2
               span.py-2.font-18.new-link Doctor's Directory
         v-expansion-panel.footer-grey
           v-expansion-panel-header(:color="expansionPanelColor")
-            span.iconMargin.feature-text LEGAL
+            span.feature-text LEGAL
             template(v-slot:actions)
-              v-icon(color="grey").iconMargin mdi-menu-down
-          v-expansion-panel-content.iconMargin
+              v-icon(color="grey") mdi-menu-down
+          v-expansion-panel-content.pl-3
             nuxt-link(id="footer-terms-btn" :to="{ name: 'terms' }" title="MYCURE Terms and Conditions").link.py-2
-              span.py-2.font-18 Terms of Use
+              span.font-18.link Terms of Use
             br
             br
             nuxt-link(id="footer-privacy-policy-btn" :to="{ name: 'privacy-policy' }" title="MYCURE Privacy Policy").link.py-2
-              span.py-2.font-18 Privacy Policy
+              span.font-18.link Privacy Policy
         v-expansion-panel.footer-grey
           v-expansion-panel-header(:color="expansionPanelColor")
-            span.iconMargin.feature-text ABOUT
+            span.feature-text ABOUT
             template(v-slot:actions)
-              v-icon(color="grey").iconMargin mdi-menu-down
-          v-expansion-panel-content.iconMargin
+              v-icon(color="grey") mdi-menu-down
+          v-expansion-panel-content.pl-3
             nuxt-link(id="footer-our-story-btn" :to="{ name: 'our-story' }" title="MYCURE Our Story | Caring the Extra Mile").link.py-2
-              span.py-2.font-18 Our Story
+              span.font-18.link Our Story
             br
             br
             a(href="http://blog.mycure.md/" target="_blank" rel="noopener noreferrer").link.py-2
-              span.py-2.font-18 Blog
+              span.font-18.link Blog
             br
             br
             a(href="https://culture.mycure.md/" target="_blank" rel="noopener noreferrer").link.py-2
-              span.py-2.font-18 Careers
+              span.font-18.link Careers
             br
             br
             nuxt-link(id="footer-fight-covid-19-link" :to="{ name: 'fight-covid-19' }" title="Fight COVID-19: Free EMR").link.py-2
-              span.py-2.font-18 Fight COVID-19: Free EMR
+              span.font-18.link Fight COVID-19: Free EMR
         v-expansion-panel.footer-grey
           v-expansion-panel-header(:color="expansionPanelColor")
-            span.iconMargin.feature-text CONTACT US
+            span.feature-text CONTACT US
             template(v-slot:actions)
-              v-icon(color="grey").iconMargin mdi-menu-down
-          v-expansion-panel-content.iconMargin
+              v-icon(color="grey") mdi-menu-down
+          v-expansion-panel-content.pl-3
             a(id="footer-email-btn" title="MYCURE - Email" href="mailto:hello@mycure.md").link.primary--text.py-2
-              span.py-2.font-18.primary--text hello@mycure.md
+              span.font-18.primary--text hello@mycure.md
             br
-            span.call-number.py-2.font-18 (+632) 7799 6262
+            span.call-number.font-18.link (+632) 7799 6262
             br
-            span.call-number.py-2.font-18 (+63) 917 303 4350
+            span.call-number.font-18.link (+63) 917 303 4350
       br
       br
       br
       v-row(justify="center").text-center.copyright-text
-        strong Copyright &copy; 2016 - {{new Date().getFullYear()}}
+        strong Copyright &copy; 2016 - {{ new Date().getFullYear() }}
       v-row(justify="center").text-center
         nuxt-link(:to="{ name: 'index' }" title="MYCURE | Clinic Management System | Cloud EMR Philippines")
           strong.primary--text &nbsp;MYCURE Inc.
@@ -153,7 +140,7 @@ export default {
     };
   },
   computed: {
-    patientPortalUrl () {
+    patientPortalSite () {
       return process.env.PX_PORTAL_URL;
     },
   },
@@ -172,7 +159,7 @@ a:link {
   color: grey;
 }
 .link {
-  color: grey;
+  color: white;
 }
 .feature-text {
   color: grey;

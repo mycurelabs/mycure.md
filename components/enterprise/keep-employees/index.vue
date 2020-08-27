@@ -1,29 +1,44 @@
 <template lang="pug">
-  v-container#corporate-clinics.py-12.panel-keep-employees
+  v-container.py-12
     v-row(justify="center" align="center")
-      v-col(cols="12" md="5" align-self="center" v-if="$isMobile")
-        p.font-16.mt-3.font-gray.primary--text {{eightPanel.subHeader}}
-        h1.font-30.lh-title.pb-3.font-weight-light {{eightPanel.header}}
-        p.text-justify.font-16.mt-3.font-gray {{eightPanel.description}}
-          a(@click="goToFeatures").font-16.font-weight-bold {{eightPanel.descriptionLink}}
-        v-btn(text @click="onGetStarted").mt-5.ml-n4.get-started-btn
-          strong.text-capitalize.primary--text {{eightPanel.btnTxt}}
-          v-icon.primary--text {{eightPanel.btnIcon}}
-      v-col(cols="12" md="6" justify="center" align="center").panel-image
+      //- IMAGE
+      v-col(
+        v-if="!$isMobile"
+        cols="12"
+        md="5"
+        align="center"
+      )
         picture-source(
           custom-path="enterprise/"
+          image-file-extension=".webp"
+          image-width="105%"
           :image="eightPanel.image"
           :image-alt="eightPanel.header"
-          image-file-extension=".webp"
         )
-      v-col(cols="12" md="5" align-self="center" v-if="!$isMobile")
-        p.font-16.mt-3.font-gray.primary--text {{eightPanel.subHeader}}
-        h1.font-30.lh-title.pb-3.font-weight-light {{eightPanel.header}}
-        p.text-justify.font-16.mt-3.font-gray {{eightPanel.description}}
-          a(@click="goToFeatures").font-16.font-weight-bold {{eightPanel.descriptionLink}}
+      v-col(
+        cols="12"
+        md="4"
+        offset-md="1"
+        align-self="center"
+      )
+        p.font-16.mt-3.font-gray.primary--text {{ eightPanel.subHeader }}
+        h1.font-30.lh-title.pb-3.font-weight-light {{ eightPanel.header }}
+        //- MOBILE IMAGE
+        div(v-if="$isMobile").text-center
+          br
+          picture-source(
+            custom-path="enterprise/"
+            image-file-extension=".webp"
+            :image="eightPanel.image"
+            :image-alt="eightPanel.header"
+          )
+        br
+        //- DESCRIPTION
+        p.text-justify.font-16.mt-3.font-gray {{ eightPanel.description }}
+          a(@click="goToFeatures" style="color: gray;").font-16.font-weight-bold {{ eightPanel.descriptionLink }}
         v-btn(text @click="onGetStarted").mt-5.ml-n4.get-started-btn
-          strong.text-capitalize.primary--text {{eightPanel.btnTxt}}
-          v-icon.primary--text {{eightPanel.btnIcon}}
+          strong.font-18.text-capitalize.primary--text {{ eightPanel.btnTxt }}
+          v-icon.primary--text {{ eightPanel.btnIcon }}
 </template>
 
 <script>
@@ -31,7 +46,6 @@
 import { EIGHT_PANEL } from '../enterprise-contents';
 // components
 import PictureSource from '~/components/commons/PictureSource';
-
 export default {
   components: { PictureSource },
   data () {
@@ -48,23 +62,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-a {
-  color: gray;
-}
-.panel-keep-employees {
-  position: relative;
-  z-index: 2;
-}
-@media screen and (min-width: 1024px) {
-  .panel-image {
-    margin-right: 4%;
-  }
-}
-@media screen and (min-width: 1920px) {
-  .panel-image {
-    margin-right: 5%;
-  }
-}
-</style>

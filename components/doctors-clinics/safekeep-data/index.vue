@@ -1,41 +1,37 @@
 <template lang="pug">
-  v-container.py-12
-    v-row(justify="center")
-      v-col(align="end" cols="12" md="6" v-if="!$isMobile").panel-image
-        picture-source(
-          custom-path="doctors-clinics/"
-          :image="panelMainImage"
-          image-alt="Safekeep your important medical data"
-          image-file-extension=".webp"
-        )
-      v-col(align-self="center" cols="12" md="5")
-        h1.font-30.lh-title.pb-3.font-weight-light {{SAFEKEEP_MEDICAL_DATA.header}}
-        br
-        p.text-justify.font-16.mt-3.font-gray {{SAFEKEEP_MEDICAL_DATA.description}}
-        br
-        br
-        v-btn(@click="onGetStarted" text).ml-n4.get-started-btn
-          strong.text-capitalize.primary--text {{SAFEKEEP_MEDICAL_DATA.btnTxt}}
-          v-icon.primary--text {{SAFEKEEP_MEDICAL_DATA.btnIcon}}
-      picture-source(
-        v-if="$isMobile"
-        custom-path="doctors-clinics/"
-        :image="panelMainImage"
-        image-alt="Safekeep your important medical data"
-        image-file-extension=".webp"
-      )
+  generic-media-panel(
+    align-right-column="center"
+    cols-left="5"
+    cols-right="4"
+    offset-cols-right="1"
+    custom-image-path="doctors-clinics/"
+    file-extension=".webp"
+    web-image-width="104%"
+    mobile-image-width="95%"
+    mobile-image-class="text-center"
+    :content-align-right="true"
+    :header="panelContents.title"
+    :descriptions="[panelContents.description]"
+    :web-image="panelContents.image"
+  )
+    div(slot="additional-content")
+      v-btn(text @click="onGetStarted").ml-n4
+        strong.text-capitalize.primary--text.font-18 Request an Invite
+        v-icon.primary--text mdi-arrow-right
 </template>
 
 <script>
-// constants
-import { SAFEKEEP_MEDICAL_DATA } from '../doctors-clinics-content';
-// components
-import PictureSource from '~/components/commons/PictureSource';
+import GenericMediaPanel from '~/components/commons/generic-media-panel';
 export default {
-  components: { PictureSource },
+  components: {
+    GenericMediaPanel,
+  },
   data () {
-    this.SAFEKEEP_MEDICAL_DATA = SAFEKEEP_MEDICAL_DATA;
-    this.panelMainImage = 'MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-B-secure-data';
+    this.panelContents = {
+      image: 'MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-B-secure-data',
+      title: 'Safekeep your important medical data',
+      description: 'Your patient\'s medical records are both accessible and secure in our system that complies with international data privacy standards. We make it our business to make sure your electronic health records are kept safe so you can focus on what you do best-taking care of your patients.',
+    };
     return {};
   },
   methods: {
@@ -45,10 +41,3 @@ export default {
   },
 };
 </script>
-<style scoped>
-@media screen and (min-width: 1024px) {
-  .panel-image {
-    margin-right: 4%;
-  }
-}
-</style>>

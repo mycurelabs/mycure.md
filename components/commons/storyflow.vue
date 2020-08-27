@@ -47,7 +47,7 @@
                 :class="{'pre-white-space': parseTitles}"
               ).font-21 {{ parseTitle(highlight) }}
               br
-              p.font-16.pt-3.mx-2.story-description.font-gray {{highlight.text}}
+              p(v-html="highlight.text").font-16.pt-3.mx-2.story-description.font-gray
           v-row(v-if="featuresButton" justify="center" align="center").pt-10
             v-col(cols="4").text-center
               v-btn(
@@ -59,7 +59,7 @@
               ).mt-3.cta-btn
                 strong.font-s.white--text.text-none Explore the Features
     div(v-else).pt-5
-      v-container.mx-1
+      v-container
         v-row(v-if="metaTitle" justify="center").text-center.pb-10
           strong.font-18.primary--text {{ metaTitle }}
         v-row(justify="center").text-center.pb-10
@@ -68,14 +68,14 @@
           span.font-18.font-gray {{ description }}
         v-col(v-for="(highlight,index) in storyflow" :key="index" justify="center")
           v-row(justify="center" align="center").pb-2
-            img(v-lazy="require(`@/assets/images/${customPath}${highlight.image}`)" :alt="highlight.title" width="70%").img-storyflow
+            img(v-lazy="require(`@/assets/images/${customPath}${highlight.image}`)" :alt="highlight.title" width="40%").img-storyflow
           v-row(align="center").text-center
             v-col(cols="12")
               strong(v-if="hasTitle").font-21.lh-title.font-weight-medium.text-center {{highlight.title}}
           br
           v-row(align="center").px-2.description-storyflow
             v-col(cols="12").text-center.mt-n10
-              span.font-18.story-description.font-gray {{highlight.text}}
+              span(v-html="highlight.text").font-18.story-description.font-gray
 
           br
         v-row(v-if="featuresButton" justify="center")
@@ -194,7 +194,7 @@ export default {
 }
 @media screen and (device-width: 768px) {
   .img-storyflow {
-    width: 35%;
+    width: 25%;
   }
   .title-storyflow {
     width: 80%;

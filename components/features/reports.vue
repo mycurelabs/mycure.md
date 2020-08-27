@@ -1,17 +1,22 @@
 <template lang="pug">
   generic-media-panel(
-    content-align-left
+    align-left-column="center"
     cols-left="4"
-    cols-right="6"
+    cols-right="5"
+    offset-cols-right="1"
     custom-image-path="features/"
+    file-extension=".webp"
+    web-image-width="104%"
+    web-image-class="ml-n3"
+    mobile-image-width="100%"
+    mobile-image-class="text-center"
+    :content-align-left="true"
     :header="header"
     :descriptions="descriptions"
     :web-image="image"
     :mobile-image="mobileImage"
-    mobile-image-width="90%"
-    mobile-file-extension=".png"
-    :extension-exclusive="$isMobile"
-  ).mt-n2.mb-n4
+    :class="{ 'mb-n10': $isMobile }"
+  )
 </template>
 
 <script>
@@ -22,13 +27,10 @@ export default {
     GenericMediaPanel,
   },
   data () {
-    // this.image = 'webp/MYCURE-virtual-clinic-healthcare-practice-online-features-D-analytics.webp';
     this.image = 'MYCURE-virtual-clinic-healthcare-practice-online-features-D-analytics';
     this.mobileImage = 'MYCURE-virtual-clinic-healthcare-practice-online-features-D-analytics-mobile';
     this.header = 'Never miss out on important business decisions.';
-    this.descriptions = [
-      'Measure your day-to-day clinic performance analyzing comprehensive graphs based on your KPIs. Census, billing, diagnostics, sales, and physical exam reports can be generated instantly.',
-    ];
+    this.descriptions = ['Measure your day-to-day clinic performance analyzing comprehensive graphs based on your KPIs. Census, billing, diagnostics, sales, and physical exam reports can be generated instantly.'];
     return {};
   },
 };

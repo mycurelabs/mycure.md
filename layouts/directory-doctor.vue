@@ -3,6 +3,30 @@
     nuxt
 </template>
 
+<script>
+import dayOrNight from '../utils/day-or-night';
+export default {
+  data () {
+    return {
+      dayOrNight: '',
+    };
+  },
+  mounted () {
+    this.init();
+  },
+  methods: {
+    // DISABLE THE DARK THEME AFTER SUCCESSFUL
+    // APPLICATION FOR WAIT LISTS IN SIGN UP
+    async init () {
+      this.dayOrNight = await dayOrNight();
+      if (this.dayOrNight === 'night') {
+        this.$vuetify.theme.dark = false;
+      }
+    },
+  },
+};
+</script>
+
 <style>
 .font-64 {
   font-size: 64px !important;

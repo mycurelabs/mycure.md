@@ -1,15 +1,21 @@
 <template lang="pug">
   generic-media-panel(
-    content-align-left
+    align-left-column="center"
     cols-left="4"
-    cols-right="6"
+    cols-right="5"
+    offset-cols-right="1"
     custom-image-path="features/"
+    file-extension=".png"
+    web-image-width="103%"
+    web-image-class="ml-n3"
+    mobile-image-width="95%"
+    mobile-image-class="text-center"
+    extension-exclusive
+    :content-align-left="true"
     :header="header"
     :descriptions="descriptions"
     :web-image="image"
-    fileExtension=".png"
-    extension-exclusive
-    mobile-image-width="90%"
+    :class="{ 'mb-n10': $isMobile }"
   )
 </template>
 
@@ -21,49 +27,10 @@ export default {
     GenericMediaPanel,
   },
   data () {
-    // this.image = 'MYCURE-virtual-clinic-healthcare-practice-online-features-A-role.png';
     this.image = 'MYCURE-virtual-clinic-healthcare-practice-online-features-A-role';
     this.header = 'Everybody\'s got a special role to play.';
-    this.descriptions = [
-      'Collaborate with your clinic staff more efficiently using a clinic system that\'s so user-friendly, you wouldn\'t even feel that you\'re working.',
-    ];
+    this.descriptions = ['Collaborate with your clinic staff more efficiently using a clinic system that\'s so user-friendly, you wouldn\'t even feel that you\'re working.'];
     return {};
   },
 };
 </script>
-
-<style scoped>
-.roles-and-privileges {
-  margin-top: 17%;
-}
-@media screen and (max-width: 1038px){
-  .roles-and-privileges {
-    margin-top: 0%;
-  }
-}
-@media screen and (device-width: 768px) and (orientation: portrait) {
-  .roles-and-privileges {
-    margin-top: 5%;
-  }
-}
-@media screen and (device-height: 768px) and (orientation: landscape) {
-  .roles-and-privileges {
-    margin-top: 2%;
-  }
-}
-@media screen and (device-width: 1024px) and (orientation: portrait) {
-  .roles-and-privileges {
-    margin-top: 2%;
-  }
-}
-@media screen and (device-height: 1024px) and (orientation: landscape) {
-  .roles-and-privileges {
-    margin-top: 0%;
-  }
-}
-@media screen and (device-width: 1366px){
-  .roles-and-privileges {
-    padding-top: 15%;
-  }
-}
-</style>

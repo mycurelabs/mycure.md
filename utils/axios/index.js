@@ -151,6 +151,7 @@ export const getMycureCountries = async (opts) => {
   }
 };
 
+// CREATING AN ACCOUNT
 export const signupIndividual = async (opts) => {
   try {
     const payload = {
@@ -175,11 +176,33 @@ export const signupIndividual = async (opts) => {
     };
     if (opts.otp) { payload.totpToken = opts.otp; }
     const { data } = await axios({
-      method: 'post',
+      method: 'POST',
       url: `${process.env.API_URL}/accounts`,
       data: payload,
     });
     // await resendVerificationEmail({ email: opts.email, password: opts.password });
+    return data;
+  } catch (e) {
+    console.error(e);
+    throw handleError(e);
+  }
+};
+
+// VERIFYING ACCOUNT'S
+export const verifyMobileNo = async (opts) => {
+  try {
+    const payload = {
+      action: 'applyActionCode',
+      code: opts.code,
+      payload: {
+        code: opts.code,
+      },
+    };
+    const { data } = await axios({
+      method: 'post',
+      url: `${process.env.API_URL}/authentication`,
+      data: payload,
+    });
     return data;
   } catch (e) {
     console.error(e);
@@ -230,27 +253,6 @@ export const signupSpecialized = async (opts) => {
   }
 };
 
-export const verifyMobileNo = async (opts) => {
-  try {
-    const payload = {
-      action: 'applyActionCode',
-      code: opts.code,
-      payload: {
-        code: opts.code,
-      },
-    };
-    const { data } = await axios({
-      method: 'post',
-      url: `${process.env.API_URL}/authentication`,
-      data: payload,
-    });
-    return data;
-  } catch (e) {
-    console.error(e);
-    throw handleError(e);
-  }
-};
-
 export const resendVerificationCode = async (opts) => {
   try {
     const payload = {
@@ -293,3 +295,5 @@ export const recordWebsiteVisit = async (opts) => {
 };
 
 export * from './doctor-directory';
+export * from './account-invitations';
+export * from './account-waitlist';
