@@ -35,7 +35,7 @@
                 color="accent"
                 height="52"
                 @click="onGetStarted"
-              ).text-none.font-16 Get Started
+              ).text-none.font-16 Request an Invite
             v-col(cols="10").mt-n8
               p.font-16.grey--text.pre-white-space {{ ctaAgreementText }}
         v-col(
@@ -62,7 +62,7 @@
                 color="accent"
                 large
                 @click="onGetStarted"
-              ).text-none.font-16 Get Started
+              ).text-none.font-16 Request an Invite
             v-col(cols="10")
               p.font-16.grey--text {{ ctaAgreementText }}
           picture-source(

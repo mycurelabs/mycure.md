@@ -25,7 +25,7 @@
         p.text-justify.font-16.font-gray.pr-2 {{ data.description }}
         br
         v-btn(@click="onGetStarted" text).ml-n4
-          strong.font-18.text-capitalize.primary--text Get Started
+          strong.font-18.text-capitalize.primary--text Request an Invite
           v-icon.primary--text mdi-arrow-right
 </template>
 

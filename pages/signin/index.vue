@@ -62,6 +62,17 @@
               color="primary"
               type="submit"
             ) Submit
+    v-dialog(v-if="checkDevice" v-model="bestUseDialog" width="300" persistent)
+      v-card.text-center
+        v-card-text.pa-8
+          img(src="~/assets/images/sign-in/MYCURE-modal-best-used-in-big-screens-image.png" width="100%")
+          p.py-3
+            strong MYCURE&nbsp;
+            | is best used on
+            br
+            | tablets and laptops
+          v-btn(color="accent" @click="bestUseDialog = false" large)
+            strong.text-capitalize Got It
 </template>
 
 <script>
@@ -92,6 +103,7 @@ export default {
       errorMsg: '',
       isMFAMobileNoEnabled: false,
       otpDialog: false,
+      bestUseDialog: true,
       otp: '',
       errors: [],
     };
@@ -105,6 +117,9 @@ export default {
     titleSizeClasses () {
       return [this.$isMobile ? 'font-24' : 'font-32'];
     },
+    checkDevice () {
+      return this.$vuetify.breakpoint.smAndDown;
+    },
   },
   watch: {
     otpDialog (val) {
@@ -117,20 +132,20 @@ export default {
   },
   created () {
     this.init();
-    this.$amplitude.logEvent('RET001 Page > Sign in');
   },
   mounted () {
     this.pageLoading = false;
+    window.$amplitude.logEvent('RET001 Page > Sign in');
   },
   methods: {
     init () {
       this.target = this.$nuxt.$route.query.target || process.env.CMS_URL;
     },
     onFocusEmail (e) {
-      this.$amplitude.logEvent('RET002 Enter creds');
+      window.$amplitude.logEvent('RET002 Enter creds');
     },
     onFocusPassword (e) {
-      this.$amplitude.logEvent('RET002 Enter creds');
+      window.$amplitude.logEvent('RET002 Enter creds');
     },
     async submit () {
       try {
@@ -150,7 +165,7 @@ export default {
           this.otpDialog = true;
         } else if (accessToken) {
           this.signInDisabled = true;
-          this.$amplitude.logEvent('RET003 Btn > Sign in');
+          window.$amplitude.logEvent('RET003 Btn > Sign in');
           window.location = this.composeTarget(accessToken);
         } else {
           throw new Error({
@@ -171,7 +186,7 @@ export default {
         }
         // Get error code
         const errorCode = e.data.code;
-        this.$amplitude.logEvent('RET004 Err');
+        window.$amplitude.logEvent('RET004 Err');
         if (errorCode === 'auth/user-not-found') {
           this.errorMsg = 'This user does not exist';
           return;

@@ -44,14 +44,13 @@
               ).mr-2.ml-1
                 span.font-14.tab.text-none.font-weight-bold &nbsp;Login
               v-btn(
-                width="130"
                 v-if="currentRoute === 'doctors-clinics'"
                 color="accent"
                 :to="currentRoute === 'doctors-clinics' ? { name: 'signup-individual-invite' } : { name: 'signup-multispecialty-step-1' }"
                 id="start-free-btn"
                 @click.stop="onActionBtnClick('start-free-btn')"
               )
-                strong.font-14.white--text.tab.text-none Get Started
+                strong.font-14.white--text.tab.text-none Request an Invite
               v-btn(
                 width="130"
                 v-else-if="currentRoute === 'enterprise'"
@@ -79,13 +78,12 @@
                 strong.font-14.white--text.tab.text-none Get Started
               v-btn(
                 v-else
-                width="130"
                 color="accent"
                 id="get-started-btn"
                 :to=" { name: 'signup-individual-invite' }"
                 @click.stop="onActionBtnClick('get-started-btn')"
               )
-                strong.font-14.white--text.tab.text-none Get Started
+                strong.font-14.white--text.tab.text-none Request an Invite
 </template>
 
 <script>
