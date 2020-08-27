@@ -1,101 +1,82 @@
 <template lang="pug">
   v-container
     app-bar
-    usp(:content="uspInfo")
-    search-and-sort(:search-string="searchString" @search="searchFromControls")
-    specializations
-    services(
-      header-text="We offer this healthcare services for you."
-      :services="services"
-    )
-    v-divider
-    clinic-info(:info="clinicInformation")
-    v-divider
-    doctors(
-      :doctors="doctors"
-      :specializations="sortItems"
-      :sort-by="filterItems"
-    )
-    //- About panel
-    about(:about="aboutInfo")
-    v-divider
 
-    //- Social Panel
-    social(:social="socialItem")
-    v-divider
+    search-and-sort(:search-string="searchString" @search="searchFromControls").search-panel
 
-    //- CTA
-    cta
-      template(slot="action")
-        book-appointment-clinic-btn(
-          content="Book Appointment"
-          :extra-bindings="{ block: true, color: 'primary' }"
-        )
-    v-divider
-    //- Footer
+    specializations.py-10
+    v-divider.divider
 
-    v-footer(
-      height="auto"
-      color="white"
-    )
-      v-row
-        v-col.text-center
-          span.black--text Copyright {{new Date().getFullYear()}} | All Rights Reserved | Powered by #[a(href="https://mycure.md" target="_blank").mycure-link.font-weight-bold MYCURE]
-    //- pre {{doctor}}
+    featured-hospitals(:hospitals="featuredHospitals" :hospitalsLength="hospitalsLength").py-10
+    v-divider.divider
+
+    featured-clinics(:clinics="featuredClinics" :clinicsLength="clinicsLength").py-10
+    v-divider.divider
+
+    v-footer(color="white").mt-3
+      v-row(justify="center" align="center" no-gutters)
+        v-col(cols="12" md="6" lg="5" xl="4" :align="!$isMobile ? 'start' : 'center'" :class="{'d-flex': !$isMobile}")
+          img(
+            height="45"
+            src="~/assets/images/mycure-header-logo.png"
+            to="/"
+          )
+          p.ml-5.mt-3 &#169;{{new Date().getFullYear()}} All Rights Reserved.
+        v-col(cols="12" md="6" lg="5" xl="4" :align="!$isMobile ? 'end' : 'center'")
+          span Share the love:
+          template(v-for="(icon, key) in icons")
+            a(
+              :href="icon.link"
+              target="_blank"
+              rel="noopener noreferrer"
+            ).pl-3
+              v-icon.font-30 {{ icon.icon }}
 </template>
 
 <script>
-import {
-  SERVICES_LIST,
-  CLINIC_INFORMATION,
-  USP_INFO,
-  DOCTORS_LIST,
-  SOCIAL_ITEM,
-  ABOUT_INFO,
-  FILTER_ITEMS,
-  SORT_ITEMS,
-} from './clinic-content';
-
 import headMeta from '~/utils/head-meta';
 import AppBar from '~/components/clinic-website/app-bar';
 import SearchAndSort from '~/components/clinic-website/search-and-sort';
 import Specializations from '~/components/clinic-website/specializations';
-
-import Usp from '~/components/clinic-website/usp';
-import Services from '~/components/commons/generic-services-panel';
-import ClinicInfo from '~/components/clinic-website/clinic-info';
-import Doctors from '~/components/clinic-website/doctors';
-import Cta from '~/components/commons/generic-final-cta';
-import Social from '~/components/commons/generic-social-panel';
-import About from '~/components/commons/generic-about-panel';
-import BookAppointmentClinicBtn from '~/components/commons/book-appointment-clinic-btn';
+import FeaturedHospitals from '~/components/clinic-website/featured-hospitals';
+import FeaturedClinics from '~/components/clinic-website/featured-clinics';
+import { getFeaturedHospitals, getFeaturedClinics } from '~/utils/axios';
 export default {
   layout: 'clinic-website',
   components: {
     AppBar,
     SearchAndSort,
     Specializations,
-
-    Usp,
-    Services,
-    ClinicInfo,
-    Doctors,
-    Cta,
-    Social,
-    About,
-    BookAppointmentClinicBtn,
+    FeaturedHospitals,
+    FeaturedClinics,
+  },
+  async asyncData ({ app, router, params, error }) {
+    try {
+      const featuredHospitals = await getFeaturedHospitals();
+      const featuredClinics = await getFeaturedClinics();
+      return {
+        hospitalsLength: featuredHospitals?.data.length,
+        clinicsLength: featuredClinics?.data.length,
+        featuredHospitals: featuredHospitals?.data.slice(0, 6),
+        featuredClinics: featuredClinics?.data.slice(0, 6),
+      };
+    } catch (e) {
+      console.error(e);
+    }
   },
   data () {
-    this.services = SERVICES_LIST;
-    this.clinicInformation = CLINIC_INFORMATION;
-    this.doctors = DOCTORS_LIST;
-    this.socialItem = SOCIAL_ITEM;
-    this.aboutInfo = ABOUT_INFO;
-    this.filterItems = FILTER_ITEMS;
-    this.sortItems = SORT_ITEMS;
-    this.uspInfo = USP_INFO;
+    this.icons = [
+      { icon: 'mdi-facebook', link: 'https://facebook.com/' },
+      { icon: 'mdi-twitter', link: 'https://twitter.com/' },
+      { icon: 'mdi-email', link: 'mailto:' },
+      { icon: 'mdi-linkedin', link: 'https://www.linkedin.com/' },
+    ];
     return {
       searchString: '',
+      featuredHospitals: [],
+      hospitalsLength: 0,
+      featuredClinics: [],
+      clinicsLength: 0,
     };
   },
   methods: {
@@ -110,7 +91,6 @@ export default {
   head () {
     // TODO: update meta tags
     return headMeta({
-      // title: `${this.fullNameWithSuffixes}`,
       title: 'MYCURE - Clinics Website',
       description: `${this.bio || 'Visit my professional website and schedule an appointment with me today.'}`,
       socialBanner: this.picURL,
@@ -120,8 +100,18 @@ export default {
 </script>
 
 <style scoped>
-.mycure-link {
-  color: #2e9fdf;
+a {
   text-decoration: none;
+}
+.search-panel {
+  margin-top: 100px;
+}
+.divider {
+  margin: 0% 5% !important;
+}
+@media screen and (min-width: 1920px) {
+  .divider {
+    margin: 0% 15% !important;
+  }
 }
 </style>
