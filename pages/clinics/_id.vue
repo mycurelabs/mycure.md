@@ -2,6 +2,8 @@
   v-container
     app-bar
     usp(:content="uspInfo")
+    search-and-sort(:search-string="searchString" @search="searchFromControls")
+    specializations
     services(
       header-text="We offer this healthcare services for you."
       :services="services"
@@ -56,6 +58,9 @@ import {
 
 import headMeta from '~/utils/head-meta';
 import AppBar from '~/components/clinic-website/app-bar';
+import SearchAndSort from '~/components/clinic-website/search-and-sort';
+import Specializations from '~/components/clinic-website/specializations';
+
 import Usp from '~/components/clinic-website/usp';
 import Services from '~/components/commons/generic-services-panel';
 import ClinicInfo from '~/components/clinic-website/clinic-info';
@@ -68,6 +73,9 @@ export default {
   layout: 'clinic-website',
   components: {
     AppBar,
+    SearchAndSort,
+    Specializations,
+
     Usp,
     Services,
     ClinicInfo,
@@ -86,12 +94,24 @@ export default {
     this.filterItems = FILTER_ITEMS;
     this.sortItems = SORT_ITEMS;
     this.uspInfo = USP_INFO;
-    return {};
+    return {
+      searchString: '',
+    };
+  },
+  methods: {
+    searchFromControls (searchObject) {
+      this.isLoading = true;
+      this.searchObject = searchObject;
+      // ADD SEARCH FUNCTION HERE
+      // this.searchDoctors();
+      this.isLoading = false;
+    },
   },
   head () {
     // TODO: update meta tags
     return headMeta({
-      title: `${this.fullNameWithSuffixes}`,
+      // title: `${this.fullNameWithSuffixes}`,
+      title: 'MYCURE - Clinics Website',
       description: `${this.bio || 'Visit my professional website and schedule an appointment with me today.'}`,
       socialBanner: this.picURL,
     });
