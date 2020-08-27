@@ -6,7 +6,7 @@
   )
     generic-container
       v-row(no-gutters align="center")
-        v-col.col-auto
+        v-col
           nuxt-link(:to="{ name: 'index' }" title="MYCURE | Clinic Management System | Cloud EMR Philippines" id="toolbar-mycure-logo")
             img(
               height="45"
@@ -14,33 +14,47 @@
               to="/"
             )
         v-spacer
-        v-col.col-auto
         template(v-if="!$isMobile")
           //- TODO: add url params?
           //- TODO: could also be refactored along with doctor directory nav buttons
-          book-appointment-clinic-btn(content="Book Appointment")
+          login-account-btn(
+            content="Login"
+            :extra-classes="['font-weight-bold', 'mr-3']"
+            :extra-bindings="{ text: true }"
+          )
+          create-account-btn(
+            content="Create an Account"
+            :extra-bindings="{ color: 'primary' }"
+          )
         template(v-else)
           v-menu(bottom left)
             template(v-slot:activator="{ on, attrs }")
               v-btn(icon v-bind="attrs" v-on="on")
                 v-icon mdi-menu
             v-list(style="width: 250px")
+              //- TODO: add url params?
+              //- TODO: could also be refactored along with doctor directory nav buttons
               v-list-item
-                //- TODO: add url params?
-                //- TODO: could also be refactored along with doctor directory nav buttons
-                book-appointment-clinic-btn(
-                  content="Book Appointment"
-                  :extra-bindings="{ block: true }"
+                login-account-btn(
+                  content="Login"
+                  :extra-bindings="{ block: true, text: true }"
+                )
+              v-list-item
+                create-account-btn(
+                  content="Create an Account"
+                  :extra-bindings="{ color: 'primary', block: true }"
                 )
 </template>
 
 <script>
 import GenericContainer from '~/components/commons/generic-container';
-import BookAppointmentClinicBtn from '~/components/commons/book-appointment-clinic-btn';
+import LoginAccountBtn from '~/components/commons/login-account-btn';
+import CreateAccountBtn from '~/components/commons/create-account-btn';
 export default {
   components: {
     GenericContainer,
-    BookAppointmentClinicBtn,
+    LoginAccountBtn,
+    CreateAccountBtn,
   },
 };
 </script>
