@@ -8,6 +8,7 @@ module.exports = {
   env: {
     AMPLITUDE_API_KEY: process.env.AMPLITUDE_API_KEY,
     API_URL: process.env.API_URL,
+    CMS_URL_BASE: process.env.CMS_URL_BASE,
     CMS_URL: process.env.CMS_URL,
     ENV: process.env.ENV,
     GA_ID: process.env.GA_ID,
