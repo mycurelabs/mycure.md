@@ -136,7 +136,7 @@ export default {
           const uid = uuidv4();
           const startAt = Date.now();
           const url = `${process.env.CMS_URL_BASE}/virtual-consult-experience/${uid}?startAt=${startAt}`;
-          window.$amplitude.logEvent('ACT000 Btn > Go');
+          window.$amplitude.logEvent('ACQ001 Btn > Go');
           window.open(url, '_blank', 'noopener, noreferrer');
         }, 1500);
       } catch (e) {
