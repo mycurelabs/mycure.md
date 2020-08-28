@@ -83,7 +83,7 @@
                 :to=" { name: 'signup-individual-invite' }"
                 @click.stop="onActionBtnClick('get-started-btn')"
               )
-                strong.font-14.white--text.tab.text-none Request an Invite
+                strong.font-14.white--text.tab.text-none Get an Exclusive Invite
 </template>
 
 <script>
