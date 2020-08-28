@@ -1,6 +1,6 @@
 <template lang="pug">
   v-col(cols="6" lg="2" md="4" sm="6").pa-1
-    v-card(height="210" :img="picURL" style="position: relative;")
+    v-card(height="210" :img="picURL" style="position: relative;" @click="viewHospital")
       v-card-text(:style="cardStyles" :class="cardClasses")
         v-icon(color="orange" size="20px") mdi-star
         p {{ hospitalName }}
@@ -22,15 +22,23 @@ export default {
     },
   },
   computed: {
+    viewHospital () {
+      const username = this.hospital?.name;
+      return `${process.env.WEB_MAIN_URL}/hospitals/${username}`;
+    },
+
     picURL () {
       return this.hospital?.picURL || require('~/assets/images/clinics-website/hospital-thumbnail.jpg');
     },
+
     hospitalName () {
       return this.hospital?.name || {};
     },
+
     cardStyles () {
       return { height: '100px', position: 'absolute', bottom: 0, backgroundColor: 'rgba(0, 0, 0, 0.5)' };
     },
+
     cardClasses () {
       return ['pa-1', 'font-weight-bold', 'white--text', 'pl-2'];
     },
