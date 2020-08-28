@@ -26,6 +26,22 @@ export const getFeaturedHospitals = async (opts) => {
   }
 };
 
+export const getHospitalWebsite = async (opts) => {
+  const { data } = await axios({
+    method: 'get',
+    url: `${process.env.API_URL}/organizations?type=cms?name=${opts.username}`,
+  });
+  return data.data[0];
+};
+
+export const getHospitalProfile = async (opts) => {
+  const { data } = await axios({
+    method: 'GET',
+    url: `${process.env.API_URL}/organizations?createdBy=${opts.uid}`,
+  });
+  return data.data;
+};
+
 export const getFeaturedClinics = async (opts) => {
   try {
     // const { limit } = opts || {};
