@@ -26,6 +26,7 @@
     "nuxt": "^2.12.2",
     "nuxt-webfontloader": "^1.1.0",
     "redirect-ssl": "^2.0.0",
+    "uuid": "^8.3.0",
     "vue-analytics": "^5.22.1",
     "vue-carousel": "^0.18.0",
     "vue-cookie-law": "^1.12.0",
