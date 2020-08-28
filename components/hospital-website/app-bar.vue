@@ -21,7 +21,7 @@
             depressed
             :href="url"
           ) Consult Now
-          v-avatar
+          v-avatar.ml-3
             img(:src="picURL")
         template(v-else)
           v-menu(bottom left)
@@ -30,13 +30,11 @@
                 v-icon mdi-menu
             v-list(style="width: 250px")
               v-list-item
-                v-avatar
-                  img(:src="picURL")
-              v-list-item
                 v-btn(
                   color="primary"
                   large
                   depressed
+                  block
                   :href="url"
                 ) Consult Now
 </template>
