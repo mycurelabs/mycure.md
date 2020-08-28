@@ -13,8 +13,10 @@
           width="190"
           height="50"
           large
+          :disabled="loadingVirtualConsult"
+          :loading="loadingVirtualConsult"
           @click="createVirtualConsult"
-        ).text-none.font-16.font-weight-bold Try Virtual Clinic
+        ).text-none.font-16 #[b Try Virtual Clinic]
         v-btn(
           v-if="!$isMobile"
           color="primary"
@@ -127,7 +129,7 @@ export default {
           const uid = uuidv4();
           const startAt = Date.now();
           const url = `${process.env.CMS_URL_BASE}/virtual-consult-experience/${uid}?startAt=${startAt}`;
-          window.$amplitude.logEvent('ACT000 Btn > Go');
+          window.$amplitude.logEvent('ACT000 Btn > Try Virtual Clinic');
           window.open(url, '_blank', 'noopener, noreferrer');
         }, 1500);
       } catch (e) {
