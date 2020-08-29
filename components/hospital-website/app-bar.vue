@@ -1,17 +1,18 @@
 <template lang="pug">
   v-app-bar(
     color="white"
+    height="70"
     elevate-on-scroll
     fixed
   )
-    generic-container
+    v-container
       v-row(no-gutters align="center")
-        v-col
+        v-col(align-self="center")
           nuxt-link(:to="{ name: 'index' }" title="MYCURE | Clinic Management System | Cloud EMR Philippines" id="toolbar-mycure-logo")
             img(
               height="45"
-              src="~/assets/images/mycure-header-logo.png"
-              to="/"
+              src="~/assets/images/MYCURE-virtual-clinic-healthcare-practice-online-logo.svg"
+              @click="$nuxt.$router.push({ name: 'index' })"
             )
         v-spacer
         template(v-if="!$isMobile")
@@ -40,9 +41,7 @@
 </template>
 
 <script>
-import GenericContainer from '~/components/commons/generic-container';
 export default {
-  components: { GenericContainer },
   props: {
     picURL: {
       type: String,
