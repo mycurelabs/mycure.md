@@ -2,7 +2,7 @@
   div
     h2.pb-6 Services Offered
     div(v-for="(service, key) in services" :key="key").d-inline-flex
-      v-img(:src="require(`~/assets/images/${service.image}`)" width="35")
+      v-img(:src="require(`~/assets/images/${service.image}`)" width="35" contain)
       div.ml-3.mt-2
         span {{ service.service }}
     div.pt-6
