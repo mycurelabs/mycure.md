@@ -12,21 +12,12 @@
 <script>
 export default {
   props: {
-    /**
-     * Object hospital item
-     * @type {Object}
-     */
     hospital: {
       type: Object,
       default: null,
     },
   },
   computed: {
-    viewHospital () {
-      const username = this.hospital?.name;
-      return `${process.env.WEB_MAIN_URL}/hospitals/${username}`;
-    },
-
     picURL () {
       return this.hospital?.picURL || require('~/assets/images/clinics-website/hospital-thumbnail.jpg');
     },
@@ -41,6 +32,14 @@ export default {
 
     cardClasses () {
       return ['pa-1', 'font-weight-bold', 'white--text', 'pl-2'];
+    },
+  },
+  methods: {
+    viewHospital () {
+      const id = this.hospital?.id;
+      console.log(id);
+      localStorage.setItem('hospital-id', id);
+      this.$nuxt.$router.push({ name: 'hospitals' });
     },
   },
 };
