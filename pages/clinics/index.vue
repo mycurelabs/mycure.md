@@ -19,7 +19,7 @@
           img(
             height="45"
             src="~/assets/images/mycure-header-logo.png"
-            to="/"
+            @click="$nuxt.$router.push({ name: 'index' })"
           )
           p.ml-5.mt-3 &#169;{{new Date().getFullYear()}} All Rights Reserved.
         v-col(cols="12" md="6" lg="5" xl="4" :align="!$isMobile ? 'end' : 'center'")
