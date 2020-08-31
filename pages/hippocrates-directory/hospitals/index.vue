@@ -12,16 +12,17 @@
           :completeAddress="completeAddress"
         )
         v-row.mt-3
-          v-col(cols="12" md="6")
+          v-col(cols="12" sm="6")
             services(style="background-color: #ececec; border-radius: 5px; min-height: 400px;").pa-3
-          v-col(cols="12" md="6")
+          v-col(cols="12" sm="6")
             schedules(:schedules="schedules" style="background-color: #ececec; border-radius: 5px; min-height: 250px;").pa-3
             v-col(cols="12" style="background-color: #ececec; border-radius: 5px; min-height: 126px;").mt-6
               consultations
 
-        template
-          h2 Testimonials
-          testimonials(:picURL="picURL" :testimonialDate="testimonialDate" :testimonialDescription="testimonialDescription")
+        v-row
+          v-col(cols="12")
+            h2 Testimonials
+            testimonials(:picURL="picURL" :testimonialDate="testimonialDate" :testimonialDescription="testimonialDescription")
 
     v-divider
     v-footer(color="white").mt-3
