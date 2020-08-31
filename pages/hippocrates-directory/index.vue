@@ -50,7 +50,7 @@ export default {
     FeaturedHospitals,
     FeaturedClinics,
   },
-  async asyncData ({ app, router, params, error }) {
+  async asyncData () {
     try {
       const featuredHospitals = await getFeaturedHospitals();
       const featuredClinics = await getFeaturedClinics();
@@ -91,7 +91,7 @@ export default {
   head () {
     // TODO: update meta tags
     return headMeta({
-      title: 'MYCURE - Clinics Website',
+      title: 'MYCURE - Hippocrates Directory',
       description: `${this.bio || 'Visit my professional website and schedule an appointment with me today.'}`,
       socialBanner: this.picURL,
     });
