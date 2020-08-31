@@ -19,10 +19,9 @@
             v-col(cols="12" style="background-color: #ececec; border-radius: 5px; min-height: 126px;").mt-6
               consultations
 
-        v-row.mt-3
-          v-col(cols="12")
-            h2 Testimonials
-            div(style="background-color: #ececec; border-radius: 5px; min-height: 126px;")
+        template
+          h2 Testimonials
+          testimonials(:picURL="picURL" :testimonialDate="testimonialDate" :testimonialDescription="testimonialDescription")
 
     v-divider
     v-footer(color="white").mt-3
@@ -54,6 +53,7 @@ import Info from '~/components/hospital-website/info';
 import Schedules from '~/components/hospital-website/schedules';
 import Services from '~/components/hospital-website/services';
 import Consultations from '~/components/hospital-website/consultations';
+import Testimonials from '~/components/hospital-website/testimonials';
 export default {
   layout: 'clinic-website',
   components: {
@@ -63,6 +63,7 @@ export default {
     Schedules,
     Services,
     Consultations,
+    Testimonials,
   },
   data () {
     this.icons = [
@@ -106,6 +107,12 @@ export default {
     },
     schedules () {
       return this.hospitalWebsite?.mf_schedule; // eslint-disable-line
+    },
+    testimonialDate () {
+      return this.hospitalWebsite?.createdAt;
+    },
+    testimonialDescription () {
+      return this.hospitalWebsite?.description;
     },
   },
   async created () {
