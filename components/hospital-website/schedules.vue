@@ -5,7 +5,10 @@
       i No schedules available
     div(v-else v-for="(day, key) in hospitalSchedules" :key="key")
       h3 {{ day.day | morph-capitalize }}
-      span.pl-2 {{ day.opening | morph-date-format('hh:mm A') }} - {{ day.closing | morph-date-format('hh:mm A') }}
+      table
+        td(width="75") {{ day.opening | morph-date-format('hh:mm A') }}
+        td(width="15").text-center -
+        td {{ day.closing | morph-date-format('hh:mm A') }}
 </template>
 
 <script>
