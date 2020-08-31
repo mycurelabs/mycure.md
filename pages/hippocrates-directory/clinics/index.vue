@@ -46,7 +46,7 @@
 </template>
 
 <script>
-import { getHospitalWebsite, getMembership, getServices } from '~/utils/axios';
+import { getClinicWebsite, getMembership, getServices } from '~/utils/axios';
 import headMeta from '~/utils/head-meta';
 import AppBar from '~/components/hippocrates-website/app-bar';
 import AboutUs from '~/components/hippocrates-website/about-us';
@@ -75,45 +75,45 @@ export default {
     ];
     return {
       loading: false,
-      hospitalWebsite: [],
+      clinicWebsite: [],
       services: [],
     };
   },
   computed: {
     picURL () {
-      return this.hospitalWebsite?.picURL || require('~/assets/images/clinics-website/hospital-thumbnail.jpg');
+      return this.clinicWebsite?.picURL || require('~/assets/images/clinics-website/hospital-thumbnail.jpg');
     },
     description () {
-      return this.hospitalWebsite?.description ||
-      `${this.hospitalWebsite?.name} specializes in telehealth services. ${this.hospitalWebsite?.name} telemedicine service is committed to provide medical consultation via video conference or phone call to our patient 24 hours a day 7 days a week.`;
+      return this.clinicWebsite?.description ||
+      `${this.clinicWebsite?.name} specializes in telehealth services. ${this.clinicWebsite?.name} telemedicine service is committed to provide medical consultation via video conference or phone call to our patient 24 hours a day 7 days a week.`;
     },
     hospitalName () {
-      return this.hospitalWebsite?.name || 'MYCURE Hospital';
+      return this.clinicWebsite?.name || 'MYCURE Clinic';
     },
     address () {
       return [
-        this.hospitalWebsite?.address?.city,
-        this.hospitalWebsite?.address?.province,
-        this.hospitalWebsite?.address?.country,
+        this.clinicWebsite?.address?.city,
+        this.clinicWebsite?.address?.province,
+        this.clinicWebsite?.address?.country,
       ].filter(Boolean).join(', ') || 'Address not available';
     },
     completeAddress () {
       return [
-        this.hospitalWebsite?.address?.street1,
-        this.hospitalWebsite?.address?.street2,
-        this.hospitalWebsite?.address?.city,
-        this.hospitalWebsite?.address?.province,
-        this.hospitalWebsite?.address?.country,
+        this.clinicWebsite?.address?.street1,
+        this.clinicWebsite?.address?.street2,
+        this.clinicWebsite?.address?.city,
+        this.clinicWebsite?.address?.province,
+        this.clinicWebsite?.address?.country,
       ].filter(Boolean).join(', ') || 'Address not available';
     },
     schedules () {
-      return this.hospitalWebsite?.mf_schedule; // eslint-disable-line
+      return this.clinicWebsite?.mf_schedule; // eslint-disable-line
     },
     testimonialDate () {
-      return this.hospitalWebsite?.createdAt;
+      return this.clinicWebsite?.createdAt;
     },
     testimonialDescription () {
-      return this.hospitalWebsite?.description;
+      return this.clinicWebsite?.description;
     },
   },
   async created () {
@@ -122,10 +122,11 @@ export default {
   methods: {
     async init () {
       try {
-        const id = localStorage.getItem('hospital-id');
-        const hospital = await getHospitalWebsite(id);
-        this.hospitalWebsite = hospital[0];
+        const id = localStorage.getItem('clinic-id');
+        const clinic = await getClinicWebsite(id);
+        this.clinicWebsite = clinic[0];
         const membership = await getMembership(id);
+        console.log(membership);
         const services = await getServices(id);
         return {
           membership,
@@ -138,8 +139,8 @@ export default {
   },
   head () {
     return headMeta({
-      title: `${this.hospitalWebsite?.name || 'Hospital Website'}`,
-      description: `${this.bio || 'Visit my professional website and schedule an appointment with me today.'}`,
+      title: `${this.clinicWebsite?.name || 'Clinic Website'}`,
+      description: 'Visit my professional website and schedule an appointment with me today.',
       socialBanner: this.picURL,
     });
   },

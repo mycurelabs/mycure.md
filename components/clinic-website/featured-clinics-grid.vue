@@ -37,9 +37,9 @@ export default {
   },
   methods: {
     viewClinic () {
-      return console.log(this.clinic);
-      // const username = this.clinic?.name;
-      // return `${process.env.WEB_MAIN_URL}/hospitals/${username}`;
+      const id = this.clinic?.id;
+      localStorage.setItem('clinic-id', id);
+      this.$nuxt.$router.push({ name: 'hippocrates-directory-clinics' });
     },
   },
 };
