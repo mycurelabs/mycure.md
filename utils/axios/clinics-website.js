@@ -1,11 +1,10 @@
-// import _ from 'lodash';
 import axios from 'axios';
 import { handleError } from './error-handler';
 
-export const getFeaturedHospitals = async (opts) => {
+export const getFeaturedHospitals = async () => {
   try {
     const { data } = await axios({
-      method: 'get',
+      method: 'GET',
       url: `${process.env.API_URL}/organizations?type=cms`,
     });
     if (data?.total === 0) {
@@ -24,10 +23,10 @@ export const getFeaturedHospitals = async (opts) => {
   }
 };
 
-export const getFeaturedClinics = async (opts) => {
+export const getFeaturedClinics = async () => {
   try {
     const { data } = await axios({
-      method: 'get',
+      method: 'GET',
       url: `${process.env.API_URL}/organizations?type=personal-clinic`,
     });
     if (data?.total === 0) {
@@ -48,7 +47,7 @@ export const getFeaturedClinics = async (opts) => {
 
 export const getHospitalWebsite = async (opts) => {
   const { data } = await axios({
-    method: 'get',
+    method: 'GET',
     url: `${process.env.API_URL}/organizations?type=cms&id=${opts}`,
   });
   return data.data;
@@ -56,7 +55,7 @@ export const getHospitalWebsite = async (opts) => {
 
 export const getClinicWebsite = async (opts) => {
   const { data } = await axios({
-    method: 'get',
+    method: 'GET',
     url: `${process.env.API_URL}/organizations?type=personal-clinic&id=${opts}`,
   });
   return data.data;
@@ -66,6 +65,14 @@ export const getServices = async (opts) => {
   const { data } = await axios({
     method: 'GET',
     url: `${process.env.API_URL}/services?facility=${opts}`,
+  });
+  return data.data;
+};
+
+export const getMembership = async (opts) => {
+  const { data } = await axios({
+    method: 'GET',
+    url: `${process.env.API_URL}/organization-members?organization=${opts}`,
   });
   return data.data;
 };
