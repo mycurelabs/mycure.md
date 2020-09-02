@@ -4,21 +4,22 @@
     p TeleMedicine Clinic | {{ address }}
     v-icon(color="orange" size="20px").mb-4 mdi-star
     p {{ completeAddress }}
-    div
-      v-btn(
-        color="primary"
-        width="160"
-        outlined
-        large
-        @click=""
-      ) #[b VIEW MAP]
-      v-btn(
-        color="primary"
-        width="160"
-        outlined
-        large
-        @click=""
-      ).ml-3 #[b CLINIC WEBSITE]
+    //- HIDE THIS FOR THE MOMENT DO NOT DELETE
+    //- div
+    //-   v-btn(
+    //-     color="primary"
+    //-     width="160"
+    //-     outlined
+    //-     large
+    //-     @click=""
+    //-   ) #[b VIEW MAP]
+    //-   v-btn(
+    //-     color="primary"
+    //-     width="160"
+    //-     outlined
+    //-     large
+    //-     @click=""
+    //-   ).ml-3 #[b CLINIC WEBSITE]
 </template>
 
 <script>
