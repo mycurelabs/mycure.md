@@ -11,6 +11,7 @@
       div.d-inline-flex
         v-img(:src="require(`~/assets/images/${service.image}`)" width="30" contain)
         span.ml-3.mt-1 {{ service.title }}
+    //- UPDATE THE v-if LATER BASE ON servicesOffered PROPS DATA LATER
     div(v-if="servicesFirstFive.length === 5" style="position: absolute; bottom: 10px").pt-6
       strong(@click="showAll = !showAll").primary--text See {{ showAll ? 'Less' : 'All' }}
 </template>

@@ -41,13 +41,12 @@ export default {
     ];
     return {
       showAll: false,
-      fullSchedules: [],
     };
   },
   computed: {
     firstThree () {
-      this.fullSchedules = this.schedules; // eslint-disable-line
-      const groupedSchedules = this.fullSchedules
+      const fullSchedules = this.schedules;
+      const groupedSchedules = [...fullSchedules]
         .map((schedule) => {
           const { order } = this.days.find(day => day.day === schedule.day);
           return {
@@ -59,8 +58,8 @@ export default {
       return groupedSchedules.slice(0, 3);
     },
     allSchedules () {
-      this.fullSchedules = this.schedules; // eslint-disable-line
-      const groupedSchedules = this.fullSchedules
+      const fullSchedules = this.schedules;
+      const groupedSchedules = [...fullSchedules]
         .map((schedule) => {
           const { order } = this.days.find(day => day.day === schedule.day);
           return {
