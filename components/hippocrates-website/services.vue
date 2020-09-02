@@ -1,5 +1,5 @@
 <template lang="pug">
-  div(style="background-color: #ececec; border-radius: 5px; min-height: 400px; position: relative" )
+  div(style="background-color: #ececec; border-radius: 5px; min-height: 434px; position: relative" )
     h2.pb-6 Services Offered
     div(v-if="services.length === 0")
       i No Services available

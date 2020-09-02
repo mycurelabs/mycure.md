@@ -16,7 +16,7 @@
             services(:servicesOffered="servicesOffered").pa-3
           v-col(cols="12" sm="6")
             schedules(:schedules="schedules").pa-3
-            v-col(cols="12" style="background-color: #ececec; border-radius: 5px; min-height: 126px;").mt-6
+            v-col(cols="12" style="background-color: #ececec; border-radius: 5px; min-height: 100px;").mt-6
               consultations
 
         v-row
