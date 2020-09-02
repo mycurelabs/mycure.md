@@ -1,14 +1,24 @@
 <template lang="pug">
-  div
+  div(style="background-color: #ececec; border-radius: 5px; min-height: 300px; position: relative;")
     h2.pb-3 Clinic Schedule
-    template(v-if="hospitalSchedules && hospitalSchedules.length === 0")
+    template(v-if="firstThree && firstThree.length === 0")
       i No schedules available
-    div(v-else v-for="(day, key) in hospitalSchedules" :key="key")
+    div(v-for="(day, key) in firstThree" :key="key")
       h3 {{ day.day | morph-capitalize }}
       table
-        td(width="75") {{ day.opening | morph-date-format('hh:mm A') }}
-        td(width="15").text-center -
-        td {{ day.closing | morph-date-format('hh:mm A') }}
+        tr
+          td(width="75") {{ day.opening | morph-date-format('hh:mm A') }}
+          td(width="15").text-center -
+          td {{ day.closing | morph-date-format('hh:mm A') }}
+    div(v-if="showAll" v-for="(day, key) in allSchedules" :key="'All' + key")
+      h3 {{ day.day | morph-capitalize }}
+      table
+        tr
+          td(width="75") {{ day.opening | morph-date-format('hh:mm A') }}
+          td(width="15").text-center -
+          td {{ day.closing | morph-date-format('hh:mm A') }}
+    div(v-if="schedules.length > 3" style="position: relative; bottom: 10px").pt-6
+      strong(@click="showAll = !showAll").primary--text See {{ showAll ? 'Less' : 'All' }}
 </template>
 
 <script>
@@ -30,11 +40,12 @@ export default {
       { order: 7, day: 'sun' },
     ];
     return {
+      showAll: false,
       fullSchedules: [],
     };
   },
   computed: {
-    hospitalSchedules () {
+    firstThree () {
       this.fullSchedules = this.schedules; // eslint-disable-line
       const groupedSchedules = this.fullSchedules
         .map((schedule) => {
@@ -45,11 +56,28 @@ export default {
           };
         })
         .sort((a, b) => a.day !== b.day ? a.order - b.order : a.opening - b.opening) || [];
-      return groupedSchedules;
+      return groupedSchedules.slice(0, 3);
+    },
+    allSchedules () {
+      this.fullSchedules = this.schedules; // eslint-disable-line
+      const groupedSchedules = this.fullSchedules
+        .map((schedule) => {
+          const { order } = this.days.find(day => day.day === schedule.day);
+          return {
+            order,
+            ...schedule,
+          };
+        })
+        .sort((a, b) => a.day !== b.day ? a.order - b.order : a.opening - b.opening) || [];
+      const length = groupedSchedules.length;
+      return groupedSchedules.slice(3, length);
     },
   },
 };
 </script>
 
 <style scoped>
+strong {
+  cursor: pointer;
+}
 </style>
