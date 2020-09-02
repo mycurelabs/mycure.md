@@ -4,18 +4,15 @@
       v-card-text(:style="cardStyles" :class="cardClasses")
         v-icon(color="orange" size="20px") mdi-star
         p {{ hospitalName }}
-        p(style="position: absolute; bottom: 0; margin: 5px;")
-          v-icon(size="20px").primary--text mdi-map-marker
-          | 35km
+        //- REMOVE THIS FOR THE MOMENT
+        //- p(style="position: absolute; bottom: 0; margin: 5px;")
+        //-   v-icon(size="20px").primary--text mdi-map-marker
+        //-   | 35km
 </template>
 
 <script>
 export default {
   props: {
-    /**
-     * Object clinic item
-     * @type {Object}
-     */
     clinic: {
       type: Object,
       default: null,
