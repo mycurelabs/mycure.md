@@ -13,7 +13,7 @@
         )
         v-row.mt-3
           v-col(cols="12" sm="6")
-            services(style="background-color: #ececec; border-radius: 5px; min-height: 400px;").pa-3
+            services(:servicesOffered="servicesOffered").pa-3
           v-col(cols="12" sm="6")
             schedules(:schedules="schedules" style="background-color: #ececec; border-radius: 5px; min-height: 250px;").pa-3
             v-col(cols="12" style="background-color: #ececec; border-radius: 5px; min-height: 126px;").mt-6
@@ -76,6 +76,7 @@ export default {
     return {
       loading: false,
       hospitalWebsite: [],
+      membership: [],
       services: [],
     };
   },
@@ -105,6 +106,9 @@ export default {
         this.hospitalWebsite?.address?.province,
         this.hospitalWebsite?.address?.country,
       ].filter(Boolean).join(', ') || 'Address not available';
+    },
+    servicesOffered () {
+      return this.services;
     },
     schedules () {
       return this.hospitalWebsite?.mf_schedule; // eslint-disable-line
