@@ -2,7 +2,7 @@
   generic-container
     v-row
       v-col(cols="12").mb-5
-        h2 Featured Hospitals ({{ hospitalsLength }})
+        h2 Hospitals ({{ hospitalsLength }})
       template(v-for="hospital in hospitals")
         featured-hospitals-grid(:hospital="hospital")
 </template>

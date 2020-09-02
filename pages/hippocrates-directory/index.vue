@@ -7,7 +7,7 @@
     specializations.py-10
     v-divider.divider
 
-    featured-hospitals(:hospitals="featuredHospitals" :hospitalsLength="hospitalsLength").py-10
+    featured-hospitals(v-if="hospitalsLength !== 0" :hospitals="featuredHospitals" :hospitalsLength="hospitalsLength").py-10
     v-divider.divider
 
     featured-clinics(:clinics="featuredClinics" :clinicsLength="clinicsLength").py-10
@@ -57,8 +57,8 @@ export default {
       return {
         hospitalsLength: featuredHospitals?.data.length,
         clinicsLength: featuredClinics?.data.length,
-        featuredHospitals: featuredHospitals?.data.slice(0, 6),
-        featuredClinics: featuredClinics?.data.slice(0, 6),
+        featuredHospitals: featuredHospitals?.data,
+        featuredClinics: featuredClinics?.data,
       };
     } catch (e) {
       console.error(e);
