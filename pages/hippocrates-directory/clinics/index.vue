@@ -13,12 +13,15 @@
         )
         v-row.mt-3
           v-col(cols="12" sm="6")
+            //- TODO UPDATE SERVICES DATA
             services(:servicesOffered="servicesOffered").pa-3
           v-col(cols="12" sm="6")
             schedules(:schedules="schedules").pa-3
             v-col(cols="12" style="background-color: #ececec; border-radius: 5px; min-height: 100px;").mt-6
               consultations
 
+        //- TODO hide THIS IF THERE IS NO TESTIMONIAL AVAILABLE
+        //- UPDATE TESTIMONIAL DATA
         v-row
           v-col(cols="12")
             h2 Testimonials

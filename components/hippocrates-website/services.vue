@@ -1,5 +1,5 @@
 <template lang="pug">
-  div(style="background-color: #ececec; border-radius: 5px; min-height: 434px; position: relative" )
+  div(style="background-color: #ececec; border-radius: 5px; min-height: 434px; position: relative")
     h2.pb-6 Services Offered
     div(v-if="services.length === 0")
       i No Services available
@@ -12,7 +12,7 @@
         v-img(:src="require(`~/assets/images/${service.image}`)" width="30" contain)
         span.ml-3.mt-1 {{ service.title }}
     div.py-3
-    //- UPDATE THE v-if LATER BASE ON servicesOffered PROPS DATA LATER
+    //- UPDATE THE v-if LATER BASE ON servicesOffered PROPS DATA
     div(v-if="servicesFirstFive.length === 5" style="position: absolute; bottom: 10px;")
       strong(@click="showAll = !showAll").primary--text See {{ showAll ? 'Less' : 'All' }}
 </template>
