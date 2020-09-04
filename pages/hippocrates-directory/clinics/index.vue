@@ -2,8 +2,10 @@
   v-container(v-if="!loading")
     app-bar(:picURL="picURL")
     v-row(align="start").main-content
+
       v-col(cols="12" md="2" align="center")
         about-us(:picURL="picURL" :description="description")
+
       v-col(cols="12" md="6" :class="{'pl-6': !$isMobile}")
         info(
           :hospitalName="hospitalName"
@@ -18,14 +20,17 @@
           v-col(cols="12" sm="6")
             schedules(:schedules="schedules").pa-3
             v-col(cols="12" style="background-color: #ececec; border-radius: 5px; min-height: 100px;").mt-6
+              //- UPDATE CONSULTATIONS DATA
               consultations
 
-        //- TODO hide THIS IF THERE IS NO TESTIMONIAL AVAILABLE
         //- UPDATE TESTIMONIAL DATA
         v-row
           v-col(cols="12")
             h2 Testimonials
             testimonials(:picURL="picURL" :testimonialDate="testimonialDate" :testimonialDescription="testimonialDescription")
+
+      v-col(cols="12" md="4")
+        specializations-chats(:doctors="doctors")
 
     v-divider
     v-footer(color="white").mt-3
@@ -58,6 +63,7 @@ import Schedules from '~/components/hippocrates-website/schedules';
 import Services from '~/components/hippocrates-website/services';
 import Consultations from '~/components/hippocrates-website/consultations';
 import Testimonials from '~/components/hippocrates-website/testimonials';
+import SpecializationsChats from '~/components/hippocrates-website/specializations-chat';
 export default {
   layout: 'clinic-website',
   components: {
@@ -68,6 +74,7 @@ export default {
     Services,
     Consultations,
     Testimonials,
+    SpecializationsChats,
   },
   data () {
     this.icons = [
@@ -121,6 +128,9 @@ export default {
     },
     testimonialDescription () {
       return this.clinicWebsite?.description;
+    },
+    doctors () {
+      return { data: this.clinicWebsite };
     },
   },
   async created () {
