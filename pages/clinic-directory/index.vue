@@ -102,7 +102,6 @@ export default {
     },
   },
   head () {
-    // TODO: update meta tags
     return headMeta({
       title: 'MYCURE - Hippocrates Directory',
       description: `${this.bio || 'Visit my professional website and schedule an appointment with me today.'}`,

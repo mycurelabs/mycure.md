@@ -38,7 +38,7 @@ export default {
   methods: {
     viewHospital () {
       const id = this.hospital?.id;
-      localStorage.setItem('hospital-id', id);
+      localStorage.setItem('organization-id', id);
       this.$nuxt.$router.push({ name: 'clinic-directory-hospitals' });
     },
   },

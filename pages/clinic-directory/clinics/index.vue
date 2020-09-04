@@ -1,6 +1,6 @@
 <template lang="pug">
   v-container(v-if="!loading")
-    app-bar(:picURL="picURL")
+    app-bar(:picURL="picURL" :consultIDS="consultIDS")
     v-row(align="start").main-content
 
       v-col(cols="12" md="2" align="center")
@@ -91,7 +91,7 @@ export default {
     return {
       loading: false,
       clinicWebsite: [],
-      membership: [],
+      member: [],
       services: [],
     };
   },
@@ -137,6 +137,9 @@ export default {
     doctors () {
       return { data: this.clinicWebsite };
     },
+    consultIDS () {
+      return { docUID: this.member?.uid, clinicID: this.member?.organization };
+    },
   },
   async created () {
     await this.init();
@@ -144,14 +147,13 @@ export default {
   methods: {
     async init () {
       try {
-        const id = localStorage.getItem('clinic-id');
+        const id = localStorage.getItem('organization-id');
         const clinic = await getClinicWebsite(id);
         this.clinicWebsite = clinic[0];
-        console.log(id, this.clinicWebsite);
         const membership = await getMembership(id);
+        this.member = membership[0];
         const services = await getServices(id);
         return {
-          membership,
           services,
         };
       } catch (error) {
