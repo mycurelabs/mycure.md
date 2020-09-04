@@ -3,7 +3,7 @@
     div.text-center
       v-avatar(size="100%")
         img(:src="picURL")
-    div.text-justify
+    div.text-left
       h2.py-5.primary--text About
       p {{ description }}
 </template>
