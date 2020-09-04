@@ -20,7 +20,9 @@
             color="primary"
             large
             depressed
-            :href="url"
+            target="_blank"
+            rel="noopener noreferrer"
+            :href="goToConsult"
           ) Consult Now
           v-avatar.ml-3
             img(:src="picURL")
@@ -36,7 +38,9 @@
                   large
                   depressed
                   block
-                  :href="url"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  :href="goToConsult"
                 ) Consult Now
 </template>
 
@@ -49,7 +53,10 @@ export default {
     },
   },
   computed: {
-    url () {
+    goToConsult () {
+      // const id = localStorage.getItem('hospital-id');
+      // const sample = '5e6fa3bced5b6a92ba3454a9';
+      // return `${process.env.PX_PORTAL_URL}/clinic-appointment/step-1?doctor=${sample}&facility=${id}`;
       return console.log('Dont Forget to add URL here');
     },
   },

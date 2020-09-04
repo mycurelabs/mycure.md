@@ -15,7 +15,7 @@
         )
         v-row.mt-3
           v-col(cols="12" sm="6")
-            //- TODO UPDATE SERVICES DATA
+            //- UPDATE SERVICES DATA
             services(:servicesOffered="servicesOffered").pa-3
           v-col(cols="12" sm="6")
             schedules(:schedules="schedules").pa-3
@@ -142,6 +142,7 @@ export default {
         const id = localStorage.getItem('clinic-id');
         const clinic = await getClinicWebsite(id);
         this.clinicWebsite = clinic[0];
+        console.log(id, this.clinicWebsite);
         const membership = await getMembership(id);
         const services = await getServices(id);
         return {
