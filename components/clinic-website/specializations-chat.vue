@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import SpecializationExpansion from '~/components/hippocrates-website/specialization-expansion';
+import SpecializationExpansion from '~/components/clinic-website/specialization-expansion';
 export default {
   components: {
     SpecializationExpansion,

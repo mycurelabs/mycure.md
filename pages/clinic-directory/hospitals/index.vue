@@ -19,7 +19,7 @@
             services(:servicesOffered="servicesOffered").pa-3
           v-col(cols="12" sm="6")
             schedules(:schedules="schedules").pa-3
-            v-col(cols="12" style="background-color: #ececec; border-radius: 5px; min-height: 100px;").mt-6
+            v-col(cols="12" style="background-color: #ececec; border-radius: 5px; min-height: 110px;").mt-6
               //- UPDATE CONSULTATIONS DATA
               consultations
 
@@ -35,7 +35,12 @@
     v-divider
     v-footer(color="white").mt-3
       v-row(justify="center" align="center" no-gutters)
-        v-col(cols="12" md="6" :align="!$isMobile ? 'start' : 'center'" :class="{'d-flex': !$isMobile}")
+        v-col(
+          cols="12"
+          md="6"
+          :align="!$isMobile ? 'start' : 'center'"
+          :class="{'d-flex': !$isMobile}"
+        )
           img(
             height="45"
             src="~/assets/images/mycure-header-logo.png"
@@ -54,16 +59,16 @@
 </template>
 
 <script>
-import { getClinicWebsite, getMembership, getServices } from '~/utils/axios';
+import { getHospitalWebsite, getMembership, getServices } from '~/utils/axios';
 import headMeta from '~/utils/head-meta';
-import AppBar from '~/components/hippocrates-website/app-bar';
-import AboutUs from '~/components/hippocrates-website/about-us';
-import Info from '~/components/hippocrates-website/info';
-import Schedules from '~/components/hippocrates-website/schedules';
-import Services from '~/components/hippocrates-website/services';
-import Consultations from '~/components/hippocrates-website/consultations';
-import Testimonials from '~/components/hippocrates-website/testimonials';
-import SpecializationsChats from '~/components/hippocrates-website/specializations-chat';
+import AppBar from '~/components/clinic-website/app-bar';
+import AboutUs from '~/components/clinic-website/about-us';
+import Info from '~/components/clinic-website/info';
+import Schedules from '~/components/clinic-website/schedules';
+import Services from '~/components/clinic-website/services';
+import Consultations from '~/components/clinic-website/consultations';
+import Testimonials from '~/components/clinic-website/testimonials';
+import SpecializationsChats from '~/components/clinic-website/specializations-chat';
 export default {
   layout: 'clinic-website',
   components: {
@@ -85,52 +90,52 @@ export default {
     ];
     return {
       loading: false,
-      clinicWebsite: [],
+      hospitalWebsite: [],
       membership: [],
       services: [],
     };
   },
   computed: {
     picURL () {
-      return this.clinicWebsite?.picURL || require('~/assets/images/clinics-website/hospital-thumbnail.jpg');
+      return this.hospitalWebsite?.picURL || require('~/assets/images/clinics-website/hospital-thumbnail.jpg');
     },
     description () {
-      return this.clinicWebsite?.description ||
-      `${this.clinicWebsite?.name} specializes in telehealth services. ${this.clinicWebsite?.name} telemedicine service is committed to provide medical consultation via video conference or phone call to our patient 24 hours a day 7 days a week.`;
+      return this.hospitalWebsite?.description ||
+      `${this.hospitalWebsite?.name} specializes in telehealth services. ${this.hospitalWebsite?.name} telemedicine service is committed to provide medical consultation via video conference or phone call to our patient 24 hours a day 7 days a week.`;
     },
     hospitalName () {
-      return this.clinicWebsite?.name || 'MYCURE Clinic';
+      return this.hospitalWebsite?.name || 'MYCURE Hospital';
     },
     address () {
       return [
-        this.clinicWebsite?.address?.city,
-        this.clinicWebsite?.address?.province,
-        this.clinicWebsite?.address?.country,
+        this.hospitalWebsite?.address?.city,
+        this.hospitalWebsite?.address?.province,
+        this.hospitalWebsite?.address?.country,
       ].filter(Boolean).join(', ') || 'Address not available';
     },
     completeAddress () {
       return [
-        this.clinicWebsite?.address?.street1,
-        this.clinicWebsite?.address?.street2,
-        this.clinicWebsite?.address?.city,
-        this.clinicWebsite?.address?.province,
-        this.clinicWebsite?.address?.country,
+        this.hospitalWebsite?.address?.street1,
+        this.hospitalWebsite?.address?.street2,
+        this.hospitalWebsite?.address?.city,
+        this.hospitalWebsite?.address?.province,
+        this.hospitalWebsite?.address?.country,
       ].filter(Boolean).join(', ') || 'Address not available';
     },
     servicesOffered () {
       return this.services;
     },
     schedules () {
-      return this.clinicWebsite?.mf_schedule; // eslint-disable-line
+      return this.hospitalWebsite?.mf_schedule; // eslint-disable-line
     },
     testimonialDate () {
-      return this.clinicWebsite?.createdAt;
+      return this.hospitalWebsite?.createdAt;
     },
     testimonialDescription () {
-      return this.clinicWebsite?.description;
+      return this.hospitalWebsite?.description;
     },
     doctors () {
-      return { data: this.clinicWebsite };
+      return { data: this.hospitalWebsite };
     },
   },
   async created () {
@@ -139,10 +144,9 @@ export default {
   methods: {
     async init () {
       try {
-        const id = localStorage.getItem('clinic-id');
-        const clinic = await getClinicWebsite(id);
-        this.clinicWebsite = clinic[0];
-        console.log(id, this.clinicWebsite);
+        const id = localStorage.getItem('hospital-id');
+        const hospital = await getHospitalWebsite(id);
+        this.hospitalWebsite = hospital[0];
         const membership = await getMembership(id);
         const services = await getServices(id);
         return {
@@ -156,8 +160,8 @@ export default {
   },
   head () {
     return headMeta({
-      title: `${this.clinicWebsite?.name || 'Clinic Website'}`,
-      description: 'Visit my professional website and schedule an appointment with me today.',
+      title: `${this.hospitalWebsite?.name || 'Hospital Website'}`,
+      description: `${this.bio || 'Visit my professional website and schedule an appointment with me today.'}`,
       socialBanner: this.picURL,
     });
   },

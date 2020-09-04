@@ -36,7 +36,7 @@ export default {
     viewClinic () {
       const id = this.clinic?.id;
       localStorage.setItem('clinic-id', id);
-      this.$nuxt.$router.push({ name: 'hippocrates-directory-clinics' });
+      this.$nuxt.$router.push({ name: 'clinic-directory-clinics' });
     },
   },
 };

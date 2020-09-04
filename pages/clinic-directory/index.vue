@@ -15,14 +15,27 @@
 
     v-footer(color="white").mt-3
       v-row(justify="center" align="center" no-gutters)
-        v-col(cols="12" md="6" lg="5" xl="4" :align="!$isMobile ? 'start' : 'center'" :class="{'d-flex': !$isMobile}")
+        v-col(
+          cols="12"
+          md="6"
+          lg="5"
+          xl="4"
+          :align="!$isMobile ? 'start' : 'center'"
+          :class="{'d-flex': !$isMobile}"
+        )
           img(
             height="45"
             src="~/assets/images/mycure-header-logo.png"
             @click="$nuxt.$router.push({ name: 'index' })"
           )
           p.ml-5.mt-3 &#169;{{new Date().getFullYear()}} All Rights Reserved.
-        v-col(cols="12" md="6" lg="5" xl="4" :align="!$isMobile ? 'end' : 'center'")
+        v-col(
+          cols="12"
+          md="6"
+          lg="5"
+          xl="4"
+          :align="!$isMobile ? 'end' : 'center'"
+        )
           span Share the love:
           template(v-for="(icon, key) in icons")
             a(
@@ -35,11 +48,11 @@
 
 <script>
 import headMeta from '~/utils/head-meta';
-import AppBar from '~/components/clinic-website/app-bar';
-import SearchAndSort from '~/components/clinic-website/search-and-sort';
-import Specializations from '~/components/clinic-website/specializations';
-import FeaturedHospitals from '~/components/clinic-website/featured-hospitals';
-import FeaturedClinics from '~/components/clinic-website/featured-clinics';
+import AppBar from '~/components/clinic-directory/app-bar';
+import SearchAndSort from '~/components/clinic-directory/search-and-sort';
+import Specializations from '~/components/clinic-directory/specializations';
+import FeaturedHospitals from '~/components/clinic-directory/featured-hospitals';
+import FeaturedClinics from '~/components/clinic-directory/featured-clinics';
 import { getFeaturedHospitals, getFeaturedClinics } from '~/utils/axios';
 export default {
   layout: 'clinic-website',

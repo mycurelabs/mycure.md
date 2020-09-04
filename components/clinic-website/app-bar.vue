@@ -5,9 +5,9 @@
     elevate-on-scroll
     fixed
   )
-    generic-container
+    v-container
       v-row(no-gutters align="center")
-        v-col
+        v-col(align-self="center")
           nuxt-link(:to="{ name: 'index' }" title="MYCURE | Clinic Management System | Cloud EMR Philippines" id="toolbar-mycure-logo")
             img(
               height="45"
@@ -16,46 +16,49 @@
             )
         v-spacer
         template(v-if="!$isMobile")
-          //- TODO: add url params?
-          //- TODO: could also be refactored along with doctor directory nav buttons
-          login-account-btn(
-            content="Login"
-            :extra-classes="['font-weight-bold', 'mr-3']"
-            :extra-bindings="{ text: true }"
-          )
-          create-account-btn(
-            content="Create an Account"
-            :extra-bindings="{ color: 'primary' }"
-          )
+          v-btn(
+            color="primary"
+            large
+            depressed
+            target="_blank"
+            rel="noopener noreferrer"
+            :href="goToConsult"
+          ) Consult Now
+          v-avatar.ml-3
+            img(:src="picURL")
         template(v-else)
           v-menu(bottom left)
             template(v-slot:activator="{ on, attrs }")
               v-btn(icon v-bind="attrs" v-on="on")
                 v-icon mdi-menu
             v-list(style="width: 250px")
-              //- TODO: add url params?
-              //- TODO: could also be refactored along with doctor directory nav buttons
               v-list-item
-                login-account-btn(
-                  content="Login"
-                  :extra-bindings="{ block: true, text: true }"
-                )
-              v-list-item
-                create-account-btn(
-                  content="Create an Account"
-                  :extra-bindings="{ color: 'primary', block: true }"
-                )
+                v-btn(
+                  color="primary"
+                  large
+                  depressed
+                  block
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  :href="goToConsult"
+                ) Consult Now
 </template>
 
 <script>
-import GenericContainer from '~/components/commons/generic-container';
-import LoginAccountBtn from '~/components/commons/login-account-btn';
-import CreateAccountBtn from '~/components/commons/create-account-btn';
 export default {
-  components: {
-    GenericContainer,
-    LoginAccountBtn,
-    CreateAccountBtn,
+  props: {
+    picURL: {
+      type: String,
+      default: '',
+    },
+  },
+  computed: {
+    goToConsult () {
+      // const id = localStorage.getItem('hospital-id');
+      // const sample = '5e6fa3bced5b6a92ba3454a9';
+      // return `${process.env.PX_PORTAL_URL}/clinic-appointment/step-1?doctor=${sample}&facility=${id}`;
+      return console.log('Dont Forget to add URL here');
+    },
   },
 };
 </script>
