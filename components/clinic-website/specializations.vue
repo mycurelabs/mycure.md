@@ -9,7 +9,6 @@
             img(src="~/assets/images/clinics-website/specialization-skin.png" width="30")
             span.mx-3 {{ specialization.title }}
             strong {{ specialization.counts }}
-      h4.primary--text.mt-5 See All (35)
 </template>
 
 <script>

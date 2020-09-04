@@ -17,7 +17,8 @@
           td(width="75") {{ day.opening | morph-date-format('hh:mm A') }}
           td(width="15").text-center -
           td {{ day.closing | morph-date-format('hh:mm A') }}
-    div(v-if="schedules.length > 3" style="position: relative; bottom: 10px").pt-6
+    div.py-5
+    div(v-if="schedules.length > 3" style="position: absolute; bottom: 10px")
       strong(@click="showAll = !showAll").primary--text See {{ showAll ? 'Less' : 'All' }}
 </template>
 
