@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-container(v-if="!loading")
+  v-container(v-if="!loading").py-0
     app-bar(:picURL="picURL" :consultIDS="consultIDS")
     v-row(align="start").main-content
 
@@ -29,8 +29,9 @@
             h2 Testimonials
             testimonials(:picURL="picURL" :testimonialDate="testimonialDate" :testimonialDescription="testimonialDescription")
 
+      //- UDPATE DOCTORS DATA
       v-col(cols="12" md="4")
-        specializations-chats(:doctors="doctors")
+        specializations-chats(:doctors="doctors" :consultIDS="consultIDS")
 
     v-divider
     v-footer(color="white").mt-3

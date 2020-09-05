@@ -10,12 +10,25 @@
         v-expansion-panel-content(v-for="(docDetails, key) in specialization.doctorsDetails" :key="key")
           div.d-inline-flex
             v-avatar
-              img(:src="require(`~/assets/images/clinics-website/${docDetails.image}`)")
+              img(:src="require(`~/assets/images/clinics-website/${docDetails.picURL}`)")
             div.ml-3
               strong {{ docDetails.name }}
               p.ma-0 {{ docDetails.specialization }} | {{ docDetails.years }}
-              v-btn(v-if="xlBelow" color="primary" @click="") Consult Now
-            v-btn(v-if="xlOnly" color="primary" style="position: absolute; right: 6px;" @click="") Consult Now
+              v-btn(
+                v-if="xlBelow"
+                color="primary"
+                target="_blank"
+                rel="noopener noreferrer"
+                :href="goToConsult"
+              ) Consult Now
+            v-btn(
+              v-if="xlOnly"
+              color="primary"
+              style="position: absolute; right: 6px;"
+              target="_blank"
+              rel="noopener noreferrer"
+              :href="goToConsult"
+            ) Consult Now
 </template>
 
 <script>
@@ -25,63 +38,67 @@ export default {
       type: Object,
       default: () => ({}),
     },
+    consultIDS: {
+      type: Object,
+      default: () => ({}),
+    },
   },
   data () {
     this.specializations = [
       {
         title: 'For your Family',
         doctorsDetails: [
-          { name: 'Dr. Karlos', specialization: 'Gen. Physician', years: '3 years', image: 'physician-male.png' },
-          { name: 'Dr. Minerva', specialization: 'Gen. Physician', years: '4 years', image: 'physician-female.png' },
-          { name: 'Dr. Lily', specialization: 'Gen. Physician', years: '3 years', image: 'physician-female.png' },
+          { name: 'Dr. Karlos', specialization: 'Gen. Physician', years: '3 years', picURL: 'physician-male.png' },
+          { name: 'Dr. Minerva', specialization: 'Gen. Physician', years: '4 years', picURL: 'physician-female.png' },
+          { name: 'Dr. Lily', specialization: 'Gen. Physician', years: '3 years', picURL: 'physician-female.png' },
         ],
       },
       {
         title: 'For your Kids',
         doctorsDetails: [
-          { name: 'Dr. Minerva', specialization: 'Gen. Physician', years: '4 years', image: 'physician-female.png' },
-          { name: 'Dr. Karlos', specialization: 'Gen. Physician', years: '8 years', image: 'physician-male.png' },
-          { name: 'Dr. Lily', specialization: 'Gen. Physician', years: '3 years', image: 'physician-female.png' },
+          { name: 'Dr. Minerva', specialization: 'Gen. Physician', years: '4 years', picURL: 'physician-female.png' },
+          { name: 'Dr. Karlos', specialization: 'Gen. Physician', years: '8 years', picURL: 'physician-male.png' },
+          { name: 'Dr. Lily', specialization: 'Gen. Physician', years: '3 years', picURL: 'physician-female.png' },
         ],
       },
       {
         title: 'For Mothers',
         doctorsDetails: [
-          { name: 'Dr. Minerva', specialization: 'Gen. Physician', years: '4 years', image: 'physician-female.png' },
-          { name: 'Dr. Lily', specialization: 'Gen. Physician', years: '3 years', image: 'physician-female.png' },
-          { name: 'Dr. Karlos', specialization: 'Gen. Physician', years: '6 years', image: 'physician-male.png' },
+          { name: 'Dr. Minerva', specialization: 'Gen. Physician', years: '4 years', picURL: 'physician-female.png' },
+          { name: 'Dr. Lily', specialization: 'Gen. Physician', years: '3 years', picURL: 'physician-female.png' },
+          { name: 'Dr. Karlos', specialization: 'Gen. Physician', years: '6 years', picURL: 'physician-male.png' },
         ],
       },
       {
         title: 'For your Lungs',
         doctorsDetails: [
-          { name: 'Dr. Minerva', specialization: 'Gen. Physician', years: '4 years', image: 'physician-female.png' },
-          { name: 'Dr. Karlos', specialization: 'Gen. Physician', years: '7 years', image: 'physician-male.png' },
-          { name: 'Dr. Lily', specialization: 'Gen. Physician', years: '3 years', image: 'physician-female.png' },
+          { name: 'Dr. Minerva', specialization: 'Gen. Physician', years: '4 years', picURL: 'physician-female.png' },
+          { name: 'Dr. Karlos', specialization: 'Gen. Physician', years: '7 years', picURL: 'physician-male.png' },
+          { name: 'Dr. Lily', specialization: 'Gen. Physician', years: '3 years', picURL: 'physician-female.png' },
         ],
       },
       {
         title: 'For your Heart',
         doctorsDetails: [
-          { name: 'Dr. Minerva', specialization: 'Gen. Physician', years: '4 years', image: 'physician-female.png' },
-          { name: 'Dr. Lily', specialization: 'Gen. Physician', years: '9 years', image: 'physician-female.png' },
-          { name: 'Dr. Karlos', specialization: 'Gen. Physician', years: '3 years', image: 'physician-male.png' },
+          { name: 'Dr. Minerva', specialization: 'Gen. Physician', years: '4 years', picURL: 'physician-female.png' },
+          { name: 'Dr. Lily', specialization: 'Gen. Physician', years: '9 years', picURL: 'physician-female.png' },
+          { name: 'Dr. Karlos', specialization: 'Gen. Physician', years: '3 years', picURL: 'physician-male.png' },
         ],
       },
       {
         title: 'For your Ears, Nose and Tongue',
         doctorsDetails: [
-          { name: 'Dr. Minerva', specialization: 'Gen. Physician', years: '4 years', image: 'physician-female.png' },
-          { name: 'Dr. Karlos', specialization: 'Gen. Physician', years: '3 years', image: 'physician-male.png' },
-          { name: 'Dr. Lily', specialization: 'Gen. Physician', years: '3 years', image: 'physician-female.png' },
+          { name: 'Dr. Minerva', specialization: 'Gen. Physician', years: '4 years', picURL: 'physician-female.png' },
+          { name: 'Dr. Karlos', specialization: 'Gen. Physician', years: '3 years', picURL: 'physician-male.png' },
+          { name: 'Dr. Lily', specialization: 'Gen. Physician', years: '3 years', picURL: 'physician-female.png' },
         ],
       },
       {
         title: 'For your Mental Care',
         doctorsDetails: [
-          { name: 'Dr. Minerva', specialization: 'Gen. Physician', years: '4 years', image: 'physician-female.png' },
-          { name: 'Dr. Lily', specialization: 'Gen. Physician', years: '3 years', image: 'physician-female.png' },
-          { name: 'Dr. Karlos', specialization: 'Gen. Physician', years: '3 years', image: 'physician-male.png' },
+          { name: 'Dr. Minerva', specialization: 'Gen. Physician', years: '4 years', picURL: 'physician-female.png' },
+          { name: 'Dr. Lily', specialization: 'Gen. Physician', years: '3 years', picURL: 'physician-female.png' },
+          { name: 'Dr. Karlos', specialization: 'Gen. Physician', years: '3 years', picURL: 'physician-male.png' },
         ],
       },
     ];
@@ -93,6 +110,12 @@ export default {
     },
     xlOnly () {
       return this.$vuetify.breakpoint.xlOnly;
+    },
+    goToConsult () {
+      // const docUID = this.consultIDS?.docUID;
+      // const clinicID = this.consultIDS?.clinicID;
+      // return `${process.env.PX_PORTAL_URL}/clinic-appointment/step-1?doctor=${docUID}&facility=${clinicID}`;
+      return console.log('Update docUID and clinicID');
     },
   },
 };
