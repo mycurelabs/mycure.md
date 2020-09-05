@@ -103,7 +103,7 @@ export default {
   },
   head () {
     return headMeta({
-      title: 'MYCURE - Hippocrates Directory',
+      title: 'MYCURE - Clinic Directory',
       description: `${this.bio || 'Visit my professional website and schedule an appointment with me today.'}`,
       socialBanner: this.picURL,
     });
