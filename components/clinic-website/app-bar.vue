@@ -7,8 +7,8 @@
   )
     v-container
       v-row(no-gutters align="center")
-        v-col(align-self="center")
-          nuxt-link(:to="{ name: 'index' }" title="MYCURE | Clinic Management System | Cloud EMR Philippines" id="toolbar-mycure-logo")
+        v-col
+          nuxt-link(:to="{ name: 'index' }" title="MYCURE | Clinic Management System | Cloud EMR Philippines")
             img(
               height="45"
               src="~/assets/images/MYCURE-virtual-clinic-healthcare-practice-online-logo.svg"
@@ -17,10 +17,10 @@
         template(v-if="!$isMobile")
           v-btn(
             color="primary"
-            large
-            depressed
             target="_blank"
             rel="noopener noreferrer"
+            large
+            depressed
             :href="goToConsult"
           ) Consult Now
           v-avatar.ml-3
@@ -34,11 +34,11 @@
               v-list-item
                 v-btn(
                   color="primary"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   large
                   depressed
                   block
-                  target="_blank"
-                  rel="noopener noreferrer"
                   :href="goToConsult"
                 ) Consult Now
 </template>
