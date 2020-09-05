@@ -1,13 +1,13 @@
 <template lang="pug">
   generic-container
-    v-row(align="center" no-gutters)
-      v-col(cols="12" md="6" lg="7" align="start")
+    v-row(align="center")
+      v-col(cols="12" md="6" lg="7" align="start").px-0
         v-text-field(
           v-model="searchObject.searchString"
           prepend-inner-icon="mdi-magnify"
           label="Search a doctor, specialization you need."
-          type="text"
           background-color="yellow accent-1"
+          type="text"
           color="grey"
           clearable
           dense
@@ -15,7 +15,7 @@
           outlined
         )
       v-spacer
-      v-col(cols="12" md="3" align="end")
+      v-col(cols="12" md="3" align="end").px-0
         v-select(
           v-model="searchObject.sortBy"
           label="Sort By"
