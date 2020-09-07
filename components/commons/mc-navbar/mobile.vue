@@ -76,10 +76,10 @@
           v-btn(
             id="mobile-navdrawer-get-started-btn"
             color="accent"
-            :to="{ name: 'signup-individual'}"
+            :to="{ name: 'signup-individual-invite'}"
             @click.stop="handleUserLinkClick(`mobile-navdrawer-get-started-btn`)"
           ).ml-2
-            strong.font-14.white--text.tab GET STARTED
+            strong.font-14.white--text.tab GET AN EXCLUSIVE INVITE
 </template>
 
 <script>

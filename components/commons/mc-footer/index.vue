@@ -27,6 +27,7 @@
           div
             h3.primary--text.footer-header FOR PATIENTS
             a(:href="patientPortalSite" target="_blank" rel="noopener noreferrer").link.new-link Patient Portal
+            span(style="border-radius: 10px;").ml-2.px-1.white--text.red.font-weight-bold.font-14.pill NEW
             //- directory / doctor
             //- nuxt-link(
             //-   id="footer-directory-doctors-link"
@@ -143,7 +144,7 @@ export default {
   },
   computed: {
     patientPortalSite () {
-      return process.env.PXP_URL;
+      return process.env.PX_PORTAL_URL;
     },
   },
   created () {
@@ -267,19 +268,6 @@ li {
 }
 .link:hover {
   color: #ffffff;
-}
-.new-link {
-  position: relative;
-}
-.new-link:after {
-  content: '';
-  position: absolute;
-  background-color: red;
-  top: 8px;
-  right: -13px;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
 }
 .center {
   padding: auto;

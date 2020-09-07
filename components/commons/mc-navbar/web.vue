@@ -2,13 +2,18 @@
   fragment
     //- mc-covid-banner
     mc-cookie-prompt
-    v-app-bar(app fixed flat height="70" :color="appBarColor" :class="[shadow]")
-      v-container
-        v-row(justify="center")
-          v-col(cols="12" md="12").toolbarMargin
+    v-app-bar(
+      height="70"
+      app
+      elevate-on-scroll
+      :color="appBarColor"
+    )
+      v-container.pa-0
+        v-row(justify="center" align="center" no-gutters)
+          v-col(cols="12")
             v-toolbar(flat :color="appBarColor")
               nuxt-link(:to="{ name: 'index' }" title="MYCURE | Clinic Management System | Cloud EMR Philippines" id="toolbar-mycure-logo" @click.stop="handleMycureLogo").mr-3.mt-2
-                img(src="~/assets/images/MYCURE-virtual-clinic-healthcare-practice-online-logo.svg" width="140" alt="MYCURE logo")
+                img(src="~/assets/images/MYCURE-virtual-clinic-healthcare-practice-online-logo.svg" width="140" alt="MYCURE logo" @click="scrollToTop")
               template(v-for="(item, key) in solutionsMenuItems")
                 v-btn(v-if="!item.subMenus" text @click="onNavLinkClick(item)")
                   span.font-14.tab.text-none {{item.name}}
@@ -39,19 +44,18 @@
               ).mr-2.ml-1
                 span.font-14.tab.text-none.font-weight-bold &nbsp;Login
               v-btn(
-                width="130"
                 v-if="currentRoute === 'doctors-clinics'"
                 color="accent"
-                :to="currentRoute === 'doctors-clinics' ? { name: 'signup-individual' } : { name: 'signup-multispecialty' }"
+                :to="currentRoute === 'doctors-clinics' ? { name: 'signup-individual-invite' } : { name: 'signup-multispecialty-step-1' }"
                 id="start-free-btn"
                 @click.stop="onActionBtnClick('start-free-btn')"
               )
-                strong.font-14.white--text.tab.text-none Get Started
+                strong.font-14.white--text.tab.text-none Request an Invite
               v-btn(
                 width="130"
                 v-else-if="currentRoute === 'enterprise'"
                 color="accent"
-                :to="{ name: 'signup-multispecialty' }"
+                :to="{ name: 'signup-multispecialty-step-1' }"
                 id="enterprise-book-demo-btn"
                 @click.stop="onActionBtnClick('enterprise-book-demo-btn')"
               )
@@ -74,13 +78,12 @@
                 strong.font-14.white--text.tab.text-none Get Started
               v-btn(
                 v-else
-                width="130"
                 color="accent"
                 id="get-started-btn"
-                :to=" { name: 'signup-individual' }"
+                :to=" { name: 'signup-individual-invite' }"
                 @click.stop="onActionBtnClick('get-started-btn')"
               )
-                strong.font-14.white--text.tab.text-none Get Started
+                strong.font-14.white--text.tab.text-none Get an Exclusive Invite
 </template>
 
 <script>
@@ -140,6 +143,11 @@ export default {
     onNavLinkClick (navLink) {
       this.$emit('navLinkClick', navLink);
     },
+    scrollToTop () {
+      if (this.$nuxt.$route.name === 'index') {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    },
   },
 };
 </script>
@@ -158,9 +166,6 @@ a {
 .emphasis-impact {
   font-weight: bold;
   text-decoration: underline;
-}
-.toolbarMargin{
-  margin-top: 3px;
 }
 .toolbarHeight {
   height: 70px !important;

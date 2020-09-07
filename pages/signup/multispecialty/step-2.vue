@@ -1,71 +1,83 @@
 <template lang="pug">
-  v-row(justify="center")
-    v-col(cols="12" md="10")
-      v-row(justify="center")
-        v-col(cols="12" md="10").pa-1.mb-3
-          img(
-            src=`~/assets/images/mycure-${dayOrNight === 'night' ? 'footer' : 'header'}-logo.png`
-            @click="$router.push({ name: 'home' })"
-            alt="MYCURE Logo"
-          ).link-to-home.mb-3
-          br
-          h2.font-18.primary--text {{ route === 'hippocrates' ? 'Hippocrates' : 'Multispecialty Clinic' }}: Sign Up (Step 2 of 3)
-          h1(v-if="route !== 'hippocrates'") Choose modules that you will need.
-          p Core modules are already included by default.
+  v-container
+    v-row(justify="center").pa-3
+      v-col(cols="12" md="10").pa-1.mb-3
+        img(
+          src=`~/assets/images/mycure-${dayOrNight === 'night' ? 'footer' : 'header'}-logo.png`
+          @click="$router.push({ name: 'home' })"
+          alt="MYCURE Logo"
+        ).link-to-home.mb-3
+        br
+        h2.font-18.primary--text {{ route === 'hippocrates' ? 'Hippocrates' : 'Multispecialty Clinic' }}:
+          br(v-if="$isMobile")
+          | Sign Up (Step 2 of 3)
+        h1(v-if="route !== 'hippocrates'") Choose modules that you will need.
+        p Core modules are already included by default
+      v-col(cols="12" md="10").pa-1
+        h4 Core modules
+      v-col(
+        v-for="(module, key) in coreModules"
+        cols="12"
+        sm="6"
+        md="5"
+        :key="module.id"
+      ).pa-1
+        v-card(hover).disable-hover.elevation-1
+          v-card-text.pa-0
+            v-row(align="center" no-gutters)
+              v-col.shrink.pa-1
+                img(v-if="module.selected" height="90px" src="~/assets/images/mycure-onboarding-icon-selected.png").mt-1.ml-1
+                img(v-else height="90px" :src="module.icon").mt-1.ml-1
+              v-col.pa-1
+                h3 {{ module.name }}
+                p {{ module.description }}
 
-        v-col(cols="12" md="10").pa-1
-          h4 Core modules
-        v-col(v-for="(module, key) in coreModules" :key="module.id" cols="12" md="5").pa-1
-          v-card(hover).disable-hover.elevation-1
-            v-card-text.pa-0
-              v-row(align="center" no-gutters)
-                v-col.shrink.pa-1
-                  img(v-if="module.selected" height="90px" src="~/assets/images/mycure-onboarding-icon-selected.png").mt-1.ml-1
-                  img(v-else height="90px" :src="module.icon").mt-1.ml-1
-                v-col.pa-1
-                  h3 {{module.name}}
-                  p {{module.description}}
-
-        v-col(cols="12" md="10" v-if="route !== 'hippocrates'").pa-1.mt-5
-          h4 Premium modules
-        v-col(cols="12" md="5" v-for="(module, key) in premiumModules" :key="module.id" v-if="route !== 'hippocrates'").pa-1
-          v-card(hover @click="module.selected = !module.selected; toggleModule(module)").elevation-1
-            v-card-text.pa-0
-              v-row(align="center" no-gutters)
-                v-col.shrink.pa-1
-                  img(v-if="module.selected" height="90px" src="~/assets/images/mycure-onboarding-icon-selected.png").mt-1.ml-1
-                  img(v-else height="90px" :src="module.icon").mt-1.ml-1
-                v-col.pa-1
-                  h3 {{module.name}}
-                  p {{module.description}}
-        v-col(cols="12" md="10" :class="actionContainerClasses").pa-1.mt-3
-          v-card(flat)
-            v-card-actions(
-              :class="cardActionsClasses"
-            )
-              v-btn(
-                text
-                large
-                @click="onBack"
-              ).font-weight-bold Back
-              v-spacer
-              v-btn(
-                color="accent"
-                large
-                @click="next"
-              ).font-weight-bold Next
+      v-col(v-if="route !== 'hippocrates'" cols="12" md="10").pa-1.mt-5
+        h4 Premium modules
+      v-col(
+        v-if="route !== 'hippocrates'"
+        v-for="(module, key) in premiumModules"
+        cols="12"
+        sm="6"
+        md="5"
+        :key="module.id"
+      ).pa-1
+        v-card(hover @click="module.selected = !module.selected; toggleModule(module)").elevation-1
+          v-card-text.pa-0
+            v-row(align="center" no-gutters)
+              v-col.shrink.pa-1
+                img(v-if="module.selected" height="90px" src="~/assets/images/mycure-onboarding-icon-selected.png").mt-1.ml-1
+                img(v-else height="90px" :src="module.icon").mt-1.ml-1
+              v-col.pa-1
+                h3 {{ module.name }}
+                p {{ module.description }}
+      v-col(cols="12" md="10" :class="actionContainerClasses").pa-1.mt-3
+        v-card(flat)
+          v-card-actions(
+            :class="cardActionsClasses"
+          )
+            v-btn(
+              text
+              large
+              @click="onBack"
+            ).font-weight-bold Back
+            v-spacer
+            v-btn(
+              color="accent"
+              large
+              @click="next"
+            ).font-weight-bold Next
 
     v-snackbar(
-      color="accent"
       v-model="added"
+      color="accent"
       :timeout="1000"
-    ) {{selectedModule}} Selected!
+    ) {{ selectedModule }} Selected!
 
     v-snackbar(
       v-model="removed"
       :timeout="1000"
-    ) {{selectedModule}} Removed!
-
+    ) {{ selectedModule }} Removed!
 </template>
 
 <script>

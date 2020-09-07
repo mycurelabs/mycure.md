@@ -17,8 +17,8 @@
   )
     div(slot="additional-content")
       v-btn(text @click="onGetStarted").ml-n4
-        strong.text-capitalize.primary--text.font-18 {{ panelContents.btnTxt }}
-        v-icon.primary--text {{ panelContents.btnIcon }}
+        strong.text-capitalize.primary--text.font-18 Request An Invite
+        v-icon.primary--text mdi-arrow-right
 </template>
 
 <script>

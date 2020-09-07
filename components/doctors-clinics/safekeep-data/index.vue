@@ -16,8 +16,8 @@
   )
     div(slot="additional-content")
       v-btn(text @click="onGetStarted").ml-n4
-        strong.text-capitalize.primary--text.font-18 {{ panelContents.btnTxt }}
-        v-icon.primary--text {{ panelContents.btnIcon }}
+        strong.text-capitalize.primary--text.font-18 Request an Invite
+        v-icon.primary--text mdi-arrow-right
 </template>
 
 <script>
@@ -31,8 +31,6 @@ export default {
       image: 'MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-B-secure-data',
       title: 'Safekeep your important medical data',
       description: 'Your patient\'s medical records are both accessible and secure in our system that complies with international data privacy standards. We make it our business to make sure your electronic health records are kept safe so you can focus on what you do best-taking care of your patients.',
-      btnTxt: 'Get Started',
-      btnIcon: 'mdi-arrow-right',
     };
     return {};
   },

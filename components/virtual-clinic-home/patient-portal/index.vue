@@ -4,9 +4,9 @@
       v-col(v-if="!$isMobile" cols="12" md="5")
         picture-source(
           custom-path="virtual-clinic-home/"
-          :image="patientPortalImage"
           image-alt="Connect with your patient"
           image-file-extension=".webp"
+          :image="patientPortalImage"
         )
       v-col(
         cols="10"
@@ -23,9 +23,9 @@
       picture-source(
         v-if="$isMobile"
         custom-path="virtual-clinic-home/"
-        :image="patientPortalImage"
         image-alt="Connect with your patient"
         image-file-extension=".webp"
+        :image="patientPortalImage"
       ).pt-12
 </template>
 

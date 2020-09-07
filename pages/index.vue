@@ -3,7 +3,7 @@
     //- 1st panel
     usp(@getStarted="goToSignupIndividual($event)")
     //- 2nd panel
-    platform-panels(@getStarted="getStarted" @goToFeatures="goToFeatures")
+    platform-panels(@getStarted="getStarted")
     v-divider.edge-divider
     //- 3rd panel
     storyflow(
@@ -56,7 +56,7 @@ export default {
     this.storyflowItems = [
       {
         title: 'Secure Electronic Health Records (EHR)',
-        text: 'Powerful, robust and proven solution that organizes health records based on global<br>health standards.',
+        text: 'Powerful, robust and proven solution that organizes health records based on global health standards.',
         image: 'MYCURE-virtual-clinic-healthcare-practice-online-homepage-E-benefits-01-secure-ehr.png',
       },
       {
@@ -88,35 +88,25 @@ export default {
   },
   mounted () {
     this.loading = false;
-    this.scrollToPosition();
+    const panel = this.scrollPanel || '#app';
+    setTimeout(() => {
+      VueScrollTo.scrollTo(panel, 500, { easing: 'ease', offset: -100 });
+    }, 0);
+
     this.$nuxt.$route.params.scrollHealthSuites ? this.getStarted()
       : VueScrollTo.scrollTo('#app', 500, { easing: 'ease' });
     window.$crisp.push(['safe', true]);
     this.loading = false;
   },
   methods: {
-    scrollToPosition () {
-      const panel = this.scrollPanel || '#app';
-      const offsetMappings = [
-        { key: '#app', offset: 0 },
-        { key: '#patient-portal', offset: 100 },
-      ];
-      const { offset } = offsetMappings.find(mapping => mapping.key === panel);
-      this.$nextTick(() => {
-        VueScrollTo.scrollTo(panel, 400, { easing: 'ease', offset });
-      });
-    },
     getStarted () {
-      this.$router.push({ name: 'signup-individual' });
-    },
-    goToFeatures () {
-      this.$nuxt.$router.push({ name: 'features' });
+      this.$router.push({ name: 'signup-individual-invite' });
     },
     goToSignupIndividual (email) {
-      this.$router.push({ name: 'signup-individual', params: { email } });
+      this.$router.push({ name: 'signup-individual-invite', params: { email } });
     },
     goToPatientPortal () {
-      window.open(process.env.PXP_URL, '_blank', 'noopener, noreferrer');
+      window.open(process.env.PX_PORTAL_URL, '_blank', 'noopener, noreferrer');
     },
     handleWatchFeatures () {
       this.$ga.event({
@@ -132,7 +122,7 @@ export default {
     return headMeta({
       title: 'MYCURE Virtual Clinic | Healthcare Practice Online',
       description: 'MYCURE is an advanced clinic management system that allows you to securely consult with patients online and get real-time medical and business insights.',
-      socialBanner: require('~/assets/images/banners/MYCURE Open Graph Images -  Homepage.png'),
+      socialBanner: require('~/assets/images/banners/MYCURE Open Graph Images -  Home.png'),
     });
   },
 };

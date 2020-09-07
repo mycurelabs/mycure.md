@@ -1,5 +1,5 @@
 <template lang="pug">
-  div
+  div(v-if="!loading")
     invite
 </template>
 
@@ -10,6 +10,14 @@ export default {
   layout: 'user',
   components: {
     Invite,
+  },
+  data () {
+    return {
+      loading: true,
+    };
+  },
+  mounted () {
+    this.loading = false;
   },
   head () {
     return headMeta({

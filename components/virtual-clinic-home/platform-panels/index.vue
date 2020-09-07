@@ -5,7 +5,7 @@
         h1.font-36.font-weight-light.text-center {{ panelHeader.title }}
         br
         p.text-center.font-18.font-gray {{ panelHeader.description }}
-          a(@click="goToFeatures").font-16.font-weight-bold {{ panelHeader.descriptionLink }}
+          router-link(:to="{ name: 'features' }").font-16.font-weight-bold.primary--text {{ panelHeader.descriptionLink }}
       template(v-for="(panel, key) in panelContents")
         generic-media-panel(
           v-bind="getColumnPosition(key)"
@@ -21,8 +21,8 @@
         ).mb-n10
           div(slot="additional-content")
             v-btn(text @click="onGetStarted").ml-n4
-              strong.text-capitalize.primary--text.font-18 {{ panel.btnTxt }}
-              v-icon.primary--text {{ panel.btnIcon }}
+              strong.text-capitalize.primary--text.font-18 Request an Invite
+              v-icon.primary--text mdi-arrow-right
 </template>
 
 <script>
@@ -42,29 +42,21 @@ export default {
         image: 'MYCURE-virtual-clinic-healthcare-practice-online-homepage-A-telehealth',
         title: 'Start your physical and digital clinic journey',
         description: 'We strongly agree that the best treatment comes from face-to-face interaction with patients. Imagine using this hybrid platform for both your physical clinic & an online one.',
-        btnTxt: 'Get Started',
-        btnIcon: 'mdi-arrow-right',
       },
       {
         image: 'MYCURE-virtual-clinic-healthcare-practice-online-homepage-B-appointment',
         title: 'Your online clinic everywhere',
         description: 'You can accommodate follow-up consults conveniently from where you are right now with video chat advancements. You can save more time skipping traffic and hospital hassle.',
-        btnTxt: 'Get Started',
-        btnIcon: 'mdi-arrow-right',
       },
       {
         image: 'MYCURE-virtual-clinic-healthcare-practice-online-homepage-C-doctor-website',
         title: 'Get more patients',
         description: 'Reach more patients anywhere on the globe. Share your professional website online and get patients who need your help with the power of the internet.',
-        btnTxt: 'Get Started',
-        btnIcon: 'mdi-arrow-right',
       },
       {
         image: 'MYCURE-virtual-clinic-healthcare-practice-online-homepage-D-billing-encounter-summary',
         title: 'Manage everything easily',
         description: 'Get real-time reports and analytics everytime you use the MYCURE platform. Have access to all your patient charts anytime you need without having to worry about data privacy and security.',
-        btnTxt: 'Get Started',
-        btnIcon: 'mdi-arrow-right',
       },
     ];
     return {};
@@ -89,9 +81,6 @@ export default {
     },
     onGetStarted () {
       this.$emit('getStarted');
-    },
-    goToFeatures () {
-      this.$emit('goToFeatures');
     },
   },
 };

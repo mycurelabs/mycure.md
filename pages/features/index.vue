@@ -1,9 +1,9 @@
 <template lang="pug">
   div(v-if="!loading").white
     //- 1st panel
-    usp
+    usp(@startNow="startNow")
     //- 2nd panel
-    roles-and-privileges
+    roles-and-privileges#roles-and-privileges
     v-divider.edge-divider
     //- 3rd panel
     medical-records
@@ -80,7 +80,10 @@ export default {
   },
   methods: {
     goToSignupIndividual (email) {
-      this.$router.push({ name: 'signup-individual', params: { email } });
+      this.$router.push({ name: 'signup-individual-invite', params: { email } });
+    },
+    startNow () {
+      VueScrollTo.scrollTo('#roles-and-privileges', 500, { easing: 'ease', offset: -70 });
     },
   },
   head () {

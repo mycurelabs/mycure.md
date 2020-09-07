@@ -10,6 +10,7 @@
     mobile-image-width="95%"
     mobile-image-class="text-center"
     :content-align-right="true"
+    :with-subheader="true"
     :header="panelContents.title"
     :sub-header="panelContents.subHeader"
     :descriptions="[panelContents.description]"
@@ -17,8 +18,8 @@
   )
     div(slot="additional-content")
       v-btn(text @click="onGetStarted").ml-n4
-        strong.text-capitalize.primary--text.font-18 {{ panelContents.btnTxt }}
-        v-icon.primary--text {{ panelContents.btnIcon }}
+        strong.text-capitalize.primary--text.font-18 Get Started
+        v-icon.primary--text mdi-arrow-right
 </template>
 
 <script>
@@ -33,8 +34,6 @@ export default {
       subHeader: 'FOR MULTI-BRANCH FACILITIES',
       title: 'Monitor multiple branches on one system',
       description: 'All you need is one clean dashboard to see how your clinics are faring. The precious data from your multiple branches is automatically aggregated to show you a comprehensive summary of patient encounters, transactions, sales, expenses and even staff performance.',
-      btnTxt: 'Get Started',
-      btnIcon: 'mdi-arrow-right',
     };
     return {};
   },

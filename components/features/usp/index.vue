@@ -12,7 +12,8 @@
               p(:class="[centerText, subtitleClasses]") {{ metaTitle }}
               h1(:class="titleClasses").font-poppins.lh-title {{ uspTitle }}
               div(v-if="$isMobile").text-center
-                v-icon mdi-arrow-down
+                v-btn(text icon @click="startNow").align-center
+                  v-icon(large) mdi-arrow-down
               v-btn(
                 v-if="!$isMobile"
                 color="accent"
@@ -38,12 +39,13 @@
       v-card(width="600").pt-5
         v-card-text
           iframe(
+            v-if="videoDialog"
             align="middle"
-            :height="!$isMobile ? '400' : '175'"
             width="100%"
             src="https://www.youtube.com/embed/YjymFVmKX_U"
             frameborder="0"
             allowfullscreen
+            :height="!$isMobile ? '400' : '175'"
           )
 </template>
 
@@ -92,6 +94,9 @@ export default {
   methods: {
     onWatch () {
       this.videoDialog = true;
+    },
+    startNow () {
+      this.$emit('startNow');
     },
   },
 };

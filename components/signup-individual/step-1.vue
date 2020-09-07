@@ -21,7 +21,7 @@
                   label="First Name"
                   outlined
                   autofocus
-                  :rules="[requiredRule]"
+                  :rules="requiredRule"
                   :disabled="loading"
                 ).step-one-text-field.pr-1
                   template(v-slot:append v-if="user.firstName")
@@ -31,7 +31,7 @@
                   v-model="user.lastName"
                   label="Last Name"
                   outlined
-                  :rules="[requiredRule]"
+                  :rules="requiredRule"
                   :disabled="loading"
                 ).pl-1
                   template(v-slot:append v-if="user.lastName")
@@ -42,7 +42,7 @@
                   v-model="user.doc_PRCLicenseNo"
                   label="Physician License No"
                   outlined
-                  :rules="[requiredRule, numberRule]"
+                  :rules="numberRule"
                   :disabled="loading"
                 ).pr-1
                   template(v-slot:append v-if="user.doc_PRCLicenseNo && user.doc_PRCLicenseNo>=2")
@@ -55,7 +55,7 @@
                   outlined
                   :prefix="`+${user.countryCallingCode}`"
                   :error-messages="mobileNoErrorMessage"
-                  :rules="[requiredRule]"
+                  :rules="requiredRule"
                   :loading="loadingForm || loading"
                   :disabled="loadingForm || loading"
                   @blur="validatePhoneNo"
@@ -82,7 +82,7 @@
               type="email"
               label="Email Address"
               outlined
-              :rules="[requiredRule, emailRule]"
+              :rules="emailRule"
               :disabled="loading"
               @keyup="checkEmail"
             )
@@ -96,7 +96,7 @@
                   label="Your MYCURE Password"
                   outlined
                   :type="showPass ? 'text' : 'password'"
-                  :rules="[requiredRule, passwordRule]"
+                  :rules="passwordRule"
                   :append-icon="showPass ? 'mdi-eye-off' : 'mdi-eye'"
                   :disabled="loading"
                   @click:append="showPass = !showPass"
@@ -107,7 +107,7 @@
                   label="Confirm Password"
                   type="password"
                   outlined
-                  :rules="[requiredRule, matchPasswordRule]"
+                  :rules="[...requiredRule, matchPasswordRule]"
                   :disabled="loading"
                 ).pl-1
                   template(v-slot: append v-if="confirmPassword && confirmPassword === user.password")
@@ -121,7 +121,7 @@
                 style="margin-top: -10px"
                 color="primary"
                 hide-details
-                :rules="[requiredRule]"
+                :rules="requiredRule"
                 :disabled="loading"
               )
               span(style="margin-top: -6px;") I agree to&nbsp;
@@ -178,10 +178,14 @@ import {
   getWaitlist,
   signupIndividual,
 } from '~/utils/axios';
+import {
+  requiredRule,
+  emailRules,
+  passwordRules,
+  numberRule,
+} from '~/utils/text-field-rules';
 import { getItem } from '~/utils/localStorage';
 import dayOrNight from '~/utils/day-or-night';
-
-const PASS_LENGTH = 6;
 
 export default {
   components: {
@@ -189,9 +193,10 @@ export default {
   },
   data () {
     this.dayOrNight = dayOrNight();
-    this.checkListItems = [
-      'Become a techy doctor in minutes! Manage your clinic more efficiently,<br>produce beautiful and useful reports. Save on time and save more lives!',
-    ];
+    this.requiredRule = requiredRule;
+    this.emailRule = emailRules;
+    this.passwordRule = passwordRules;
+    this.numberRule = numberRule;
     return {
       showInfo: false,
       valid: false,
@@ -218,14 +223,9 @@ export default {
       countries: [],
       confirmPassword: '',
       searchString: '',
-      // rules
-      // FIXME: These rules also exists in other forms. Put this on a constants file for better reusability
-      requiredRule: v => !!v || 'This field is required',
-      numberRule: v => /^[0-9-]{2,}$/.test(v) || 'Please input a valid number',
-      emailRule: v => /^([\w]+.)+@([\w]+\.)+[\w-]{2,4}$/.test(v) || 'Email address must be valid',
-      passwordRule: v => v?.length >= PASS_LENGTH || 'Password length must be at least 6 characters.',
+
       matchPasswordRule: v => v === this.user.password || 'Passwords do not match',
-      //
+
       error: false,
       errorMessage: 'There was an error please try again later.',
       mobileNoError: false,
@@ -309,23 +309,39 @@ export default {
         this.user.countryCallingCode = location ? location.calling_code : '63';
         this.user.countryFlag = location ? location.country_flag : 'https://assets.ipstack.com/flags/ph.svg';
 
-        // CHECK IF THERE IS A REFERRAL CODEs
-        if (getItem('account-invitation') === null) {
-          this.$nuxt.$router.push({ name: 'signup-individual' });
+        this.$refs.passwordRef.focus();
+
+        // ACCOUNT DATA RECEIVED AS PARAMETER
+        const accountData = this.$route.params.data;
+
+        // CHECK IF THERE IS REFERRAL CODE AND ACCOUNT DATA
+        if (!accountData && getItem('account-invitation') === null) {
+          this.$nuxt.$router.push({ name: 'signup-individual-invite' });
           return;
         };
 
+        if (accountData) {
+          const phoneNumber = accountData.mobileNo && parsePhoneNumberFromString(accountData.mobileNo);
+          this.user.firstName = accountData.personalDetails?.name?.firstName;
+          this.user.lastName = accountData.personalDetails?.name?.lastName;
+          this.user.email = accountData.email;
+          this.user.mobileNo = phoneNumber?.nationalNumber;
+          this.user.doc_PRCLicenseNo = accountData.personalDetails?.doc_PRCLicenseNo; // eslint-disable-line
+          return;
+        }
+
         const accountInvitationData = getItem('account-invitation');
+        if (accountInvitationData) {
+          const accountInvitation = await getWaitlist({ referralCode: accountInvitationData.referralCode });
+          if (!accountInvitation) return;
 
-        const accountInvitation = await getWaitlist({ referralCode: accountInvitationData.referralCode });
-        if (!accountInvitation) return;
-
-        const phoneNumber = accountInvitation?.mobileNo && parsePhoneNumberFromString(accountInvitation.mobileNo);
-        this.user.firstName = accountInvitation.personalDetails.name.firstName;
-        this.user.lastName = accountInvitation.personalDetails.name.lastName;
-        this.user.email = accountInvitation.email;
-        this.user.mobileNo = phoneNumber?.nationalNumber;
-        this.user.doc_PRCLicenseNo = accountInvitation.personalDetails.doc_PRCLicenseNo;
+          const phoneNumber = accountInvitation.mobileNo && parsePhoneNumberFromString(accountInvitation.mobileNo);
+          this.user.firstName = accountInvitation.personalDetails?.name?.firstName;
+          this.user.lastName = accountInvitation.personalDetails?.name?.lastName;
+          this.user.email = accountInvitation.email;
+          this.user.mobileNo = phoneNumber?.nationalNumber;
+          this.user.doc_PRCLicenseNo = accountInvitation.personalDetails?.doc_PRCLicenseNo; // eslint-disable-line
+        }
 
         if (getItem('individual:step1:model') && this.pageType === 'signup-individual-step-1') {
           this.user = {
@@ -335,13 +351,11 @@ export default {
           };
         }
 
-        this.$refs.passwordRef.focus();
         this.$refs.formRef.resetValidation();
       } catch (e) {
         console.error(e);
       } finally {
         this.checkEmail();
-        this.validateForm();
         this.loadingForm = false;
       }
     },

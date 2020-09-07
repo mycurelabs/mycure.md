@@ -1,138 +1,160 @@
 <template lang="pug">
-  v-row(justify="center" align="center")
-    v-col(cols="12" md="10")
-      v-row(justify="center")
-        v-col(cols="12" md="5")
-          img(
-            src=`~/assets/images/mycure-${dayOrNight === 'night' ? 'footer' : 'header'}-logo.png`
-            @click="$nuxt.$router.push({ name: 'index' })"
-            alt="MYCURE logo"
-          ).link-to-home.mb-3
-          h2.font-18.primary--text {{ route === 'hippocrates' ? 'Hippocrates' : 'Multispecialty Clinic' }}: Sign Up (Step 3 of 3)
-          br
-          h1#step-1-title Let's talk soon!
-          br
-          p Please fill out the form and expect a call from our experts within 24 hours.
-          div.pt-1
-            p By default, you'll have these Core Modules in your clinic:
-            v-row(v-for="(module, key) in coreModules" :key="key" no-gutters).pa-0
-              v-col.shrink.pr-2
-                img(width="20" src="~/assets/images/mycure-check.png" alt="Check")
-              v-col
-                p {{ module.name }}
-          div(v-if="selectedPremiumModules.length > 0").pt-1
-            p You've added these premium modules:
-            v-row(v-for="(module, key) in selectedPremiumModules" :key="key" no-gutters).pa-0
-              v-col.shrink.pr-2
-                img(width="20" src="~/assets/images/mycure-check.png" alt="Check")
-              v-col
-                p {{ module.name }}
-        v-col(cols="12" md="5")
-          v-card
-            v-card-text
-              h1 Fill out the form below.
-            v-card-text
-              v-form(ref="formRef" v-model="valid")
-                v-text-field(
-                  v-model="contact.firstName"
-                  label="First Name"
-                  outlined
-                  :rules="[requiredRule]"
-                  :disabled="loading"
-                )
-                  template(v-slot:append v-if="contact.firstName")
-                    v-icon(color="accent") mdi-check
-                v-text-field(
-                  v-model="contact.lastName"
-                  label="Last Name"
-                  outlined
-                  :rules="[requiredRule]"
-                  :disabled="loading"
-                )
-                  template(v-slot:append v-if="contact.lastName")
-                    v-icon(color="accent") mdi-check
-                v-text-field(
-                  v-model="contact.mobileNo"
-                  label="Mobile Number"
-                  type="number"
-                  outlined
-                  :prefix="`+${contact.countryCallingCode}`"
-                  :loading="loading"
-                  :disabled="loading"
-                  :error-messages="mobileNoErrorMessage"
-                  :rules="[requiredRule]"
-                )
-                  template(slot="append")
-                    div(style="margin-top: -5px")
-                      v-tooltip(bottom)
-                        template(v-slot:activator="{ on }")
-                          v-btn(icon @click="countryDialog = true" v-on="on").ma-0
-                            img(width="25" :src="contact.countryFlag").flag-img.mt-2
-                        | Change Country
-                      v-icon(v-if="mobileNoError" color="accent") mdi-check
-                v-text-field(
-                  v-model="contact.email"
-                  type="email"
-                  label="Email"
-                  outlined
-                  :rules="[requiredRule, emailRule]"
-                  :disabled="loading"
-                )
-                  template(v-slot:append v-if="contact.email && /.+@+./.test(contact.email)")
-                    v-icon(color="accent") mdi-check
-                v-select(
-                  v-model="contact.designation"
-                  :items="roles"
-                  label="What is your role?"
-                  outlined
-                  :rules="[requiredRule]"
-                  :disabled="loading"
-                )
-                  template(v-slot:append v-if="contact.designation")
-                    v-icon(color="accent") mdi-check
-                v-menu(
-                  v-model="dateMenu"
-                  :close-on-content-click="false"
-                  max-width="290px"
-                  min-width="290px"
-                ).white
-                  template(v-slot:activator="{ on }")
-                    v-text-field(
-                      v-model="dateFormatted"
-                      label="Preferred schedule date"
-                      prepend-inner-icon="mdi-calendar"
-                      outlined
-                      :rules="[requiredRule]"
-                      :disabled="loading"
-                      :error-messages="dateErrorMessage"
-                      v-on="on"
-                    )
-                      template(v-slot:append v-if="dateError")
-                        v-icon(color="accent") mdi-check
-                  v-date-picker(
-                    v-model="contact.preferredScheduleDate"
-                    @input="dateMenu = false"
-                    :min="minDate"
-                    :max="maxDate"
-                    color="#0099cc"
-                  )
-        v-col(cols="12" md="10" :class="actionContainerClasses").mt-2
-          v-card(flat)
-            v-card-actions(:class="cardActionsClasses")
-              v-btn(
-                text
-                large
+  v-container
+    v-row(
+      justify="center"
+      align="center"
+      style="min-height: 80vh"
+    ).pa-3
+      v-col(
+        cols="12"
+        sm="6"
+        md="5"
+        xl="3"
+      )
+        img(
+          src=`~/assets/images/mycure-${dayOrNight === 'night' ? 'footer' : 'header'}-logo.png`
+          alt="MYCURE logo"
+          @click="$nuxt.$router.push({ name: 'index' })"
+        ).link-to-home.mb-3
+        h2.font-18.primary--text {{ route === 'hippocrates' ? 'Hippocrates' : 'Multispecialty Clinic' }}:
+          br(v-if="$isMobile")
+          | Sign Up (Step 3 of 3)
+        br
+        h1#step-1-title Let's talk soon!
+        br
+        p Please fill out the form and expect a call from our experts within 24 hours.
+        div.pt-1
+          p By default, you'll have these Core Modules in your clinic:
+          v-row(v-for="(module, key) in coreModules" :key="key" no-gutters).pa-0
+            v-col.shrink.pr-2
+              img(width="20" src="~/assets/images/mycure-check.png" alt="Check")
+            v-col
+              p {{ module.name }}
+        div(v-if="selectedPremiumModules.length > 0").pt-1
+          p You've added these premium modules:
+          v-row(v-for="(module, key) in selectedPremiumModules" :key="key" no-gutters).pa-0
+            v-col.shrink.pr-2
+              img(width="20" src="~/assets/images/mycure-check.png" alt="Check")
+            v-col
+              p {{ module.name }}
+      v-col(
+        cols="12"
+        sm="6"
+        md="5"
+        xl="3"
+        offset-xl="1"
+      )
+        v-card
+          v-card-text
+            h1 Fill out the form below.
+          v-card-text
+            v-form(ref="formRef" v-model="valid")
+              v-text-field(
+                v-model="contact.firstName"
+                label="First Name"
+                outlined
+                :rules="[requiredRule]"
                 :disabled="loading"
-                @click="onBack"
-              ).font-weight-bold Back
-              v-spacer
-              v-btn(
-                color="accent"
-                large
+              )
+                template(v-if="contact.firstName" v-slot:append)
+                  v-icon(color="accent") mdi-check
+              v-text-field(
+                v-model="contact.lastName"
+                label="Last Name"
+                outlined
+                :rules="[requiredRule]"
                 :disabled="loading"
+              )
+                template(v-slot:append v-if="contact.lastName")
+                  v-icon(color="accent") mdi-check
+              v-text-field(
+                v-model="contact.mobileNo"
+                label="Mobile Number"
+                type="number"
+                outlined
+                :prefix="`+${contact.countryCallingCode}`"
                 :loading="loading"
-                @click="submit"
-              ).font-weight-bold Request for Demo
+                :disabled="loading"
+                :error-messages="mobileNoErrorMessage"
+                :rules="[requiredRule]"
+              )
+                template(slot="append")
+                  div(style="margin-top: -5px")
+                    v-tooltip(bottom)
+                      template(v-slot:activator="{ on }")
+                        v-btn(icon @click="countryDialog = true" v-on="on").ma-0
+                          img(width="25" :src="contact.countryFlag").flag-img.mt-2
+                      | Change Country
+                    v-icon(v-if="mobileNoError" color="accent") mdi-check
+              v-text-field(
+                v-model="contact.email"
+                type="email"
+                label="Email"
+                outlined
+                :rules="[requiredRule, emailRule]"
+                :disabled="loading"
+              )
+                template(v-slot:append v-if="contact.email && /.+@+./.test(contact.email)")
+                  v-icon(color="accent") mdi-check
+              v-select(
+                v-model="contact.designation"
+                label="What is your role?"
+                outlined
+                :items="roles"
+                :rules="[requiredRule]"
+                :disabled="loading"
+              )
+                template(v-slot:append v-if="contact.designation")
+                  v-icon(color="accent") mdi-check
+              v-menu(
+                v-model="dateMenu"
+                max-width="290px"
+                min-width="290px"
+                :close-on-content-click="false"
+              ).white
+                template(v-slot:activator="{ on }")
+                  v-text-field(
+                    v-model="dateFormatted"
+                    v-on="on"
+                    label="Preferred schedule date"
+                    prepend-inner-icon="mdi-calendar"
+                    outlined
+                    :rules="[requiredRule]"
+                    :disabled="loading"
+                    :error-messages="dateErrorMessage"
+                  )
+                    template(v-if="dateError" v-slot:append)
+                      v-icon(color="accent") mdi-check
+                v-date-picker(
+                  v-model="contact.preferredScheduleDate"
+                  color="#0099cc"
+                  :min="minDate"
+                  :max="maxDate"
+                  @input="dateMenu = false"
+                )
+      v-col(
+        cols="12"
+        md="10"
+        xl="7"
+        align-self="start"
+        :class="actionContainerClasses"
+      )
+        v-card(flat)
+          v-card-actions(:class="cardActionsClasses")
+            v-btn(
+              text
+              large
+              :disabled="loading"
+              @click="onBack"
+            ).font-weight-bold Back
+            v-spacer
+            v-btn(
+              color="accent"
+              large
+              :disabled="loading"
+              :loading="loading"
+              @click="submit"
+            ).font-weight-bold Request for Demo
 
     //- Success Dialog
     v-dialog(v-model="successDialog" width="400" persistent)
@@ -157,7 +179,6 @@
       v-model="error"
       color="error"
     ) There was an error. Please try again later!
-
     //- Country dialog
     //- TODO: Make this into a separate component
     v-dialog(v-model="countryDialog" width="500" scrollable)
@@ -178,7 +199,7 @@
               v-list-item-action
                 img(width="25" :src="country.flag")
               v-list-item-content
-                v-list-item-title {{country.name}}
+                v-list-item-title {{ country.name }}
 </template>
 
 <script>

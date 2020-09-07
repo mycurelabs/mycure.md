@@ -1,9 +1,9 @@
 <template lang="pug">
   div(v-if="!loading")
     //- 1st panel
-    usp(@getStarted="getStarted")
+    usp(@getStarted="getStarted($event)" @startNow="startNow")
     //- 2nd panel
-    increase-revenue(@getStarted="getStarted")
+    increase-revenue(@getStarted="getStarted")#increase-revenue
     v-divider.edge-divider
     //- 3rd panel
     safekeep-data(@getStarted="getStarted")
@@ -60,18 +60,21 @@ export default {
     this.loading = false;
     const panel = this.scrollPanel || '#app';
     this.$nextTick(() => {
-      VueScrollTo.scrollTo(panel, 500, { easing: 'ease' });
+      VueScrollTo.scrollTo(panel, 500, { easing: 'ease', offset: -70 });
     });
   },
   methods: {
     getStarted () {
-      this.$nuxt.$router.push({ name: 'signup-individual' });
+      this.$nuxt.$router.push({ name: 'signup-individual-invite' });
     },
     goToSignupIndividual (email) {
-      this.$nuxt.$router.push({ name: 'signup-individual', params: { email } });
+      this.$nuxt.$router.push({ name: 'signup-individual-invite', params: { email } });
     },
     goToPatientPortal () {
       this.$nuxt.$router.push({ name: 'index', params: { panel: 'patient-portal' } });
+    },
+    startNow () {
+      VueScrollTo.scrollTo('#increase-revenue', 500, { easing: 'ease', offset: -70 });
     },
   },
   head () {

@@ -1,8 +1,8 @@
 <template lang="pug">
   fragment
     v-container(
-      fluid
       style="height: 100vh"
+      fluid
       :class="[backgroundClasses, backgroundImages]"
     )
       v-container
@@ -13,31 +13,31 @@
               h1(:class="titleClasses").font-poppins.lh-title {{ uspTitle }}
               p(:class="subtitleClasses").pt-5 {{ uspSubtitle }}
               div(v-show="$isMobile").text-center
-                v-btn(text).align-center
+                v-btn(text icon @click="startNow").align-center
                   v-icon(large) mdi-arrow-down
               v-btn(
-                height="54"
-                width="160"
                 v-if="!$isMobile"
+                height="54"
                 color="accent"
                 @click="onGetStarted"
-              ).text-none.font-16.p-7 Get Started
+              ).text-none.font-16.p-7 Request an Invite
     template(v-if="$isMobile")
       v-container(fluid).mobile-form
-        v-row.px-6
+        v-row.px-6.mt-n3
           v-text-field(
-            background-color="white"
             v-model="email"
-            placeholder="myname@email.com"
+            background-color="white"
+            placeholder="johndoe@gmail.com"
             outlined
+            :error-messages="emailErrorMessage"
           ).text-field-input
-        v-row.px-6.pt-3
+        v-row.px-6.pt-6
           v-btn(
             @click="onGetStarted"
             color="accent"
             block
             large
-          ).text-none.font-16 Get Started
+          ).text-none.font-16 Request an Invite
 </template>
 
 <script>
@@ -52,6 +52,7 @@ export default {
     return {
       email: '',
       canUseWebp: false,
+      emailErrorMessage: '',
     };
   },
   computed: {
@@ -90,7 +91,14 @@ export default {
   },
   methods: {
     onGetStarted () {
-      this.$emit('getStarted');
+      if (this.$isMobile && !this.email) {
+        this.emailErrorMessage = 'Please enter your email';
+        return;
+      }
+      this.$emit('getStarted', this.email);
+    },
+    startNow () {
+      this.$emit('startNow');
     },
   },
 };
