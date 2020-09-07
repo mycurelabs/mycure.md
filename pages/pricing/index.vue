@@ -1,25 +1,54 @@
 <template lang="pug">
-  div(v-if="!loading")#top
-    v-container(fluid).header
-      v-row(justify="center" align="center" :class="headerClasses")
-        v-col(cols="12" md="10")
-          h1(:class="titleClasses").text-center Complete and affordable practice management system from your first sale to full scale
-      v-row(justify="center" no-gutters).mb-n3
-        v-col(cols="6" md="4" v-for="(tab, key) in pricingTabs" :key="key")
-          a(@click="pricingType = tab.type")
-            div(:class="isTabActive(tab.type)").pa-3.text-center
-              strong(:class="tabTitleClass") {{ tab.title }}
-              br
-              span(:class="tabSubtitleClass").font-mc-grey {{ tab.subtitle }}
-    //- Tab Content
-    div.content
-      user-based(v-if="pricingType === 'user-based'")
-      unlimited(v-else-if="pricingType === 'unlimited'")
+  v-container(v-if="!loading").main-container
+    v-row(justify="center" align="center")
+      v-col(cols="12" md="10")
+        h1(:class="titleClasses").text-center Complete and affordable&nbsp;
+          br(v-if="!$isMobile")
+          | practice management system from&nbsp;
+          br(v-if="!$isMobile")
+          | your first sale to full scale&nbsp;
+      v-col(
+        cols="11"
+        sm="5"
+        md="6"
+        lg="5"
+        xl="4"
+        :class="{ 'mt-10': !$isMobile }"
+      ).pa-0
+        v-card(
+          tile
+          flat
+          :color="userBase ? 'primary' : 'white'"
+          @click="toggleUserBase"
+        ).user-base
+          v-card-title(:class="userBase ? 'white--text' : 'primary--text'").justify-center
+            h2(:class="cardTitleClasses") User-based Pricing
+            div(:class="cardSubtitleClasses") Ideal for Small & Medium Clinics
+      v-col(
+        cols="11"
+        sm="5"
+        md="6"
+        lg="5"
+        xl="4"
+        :class="{ 'mt-10': !$isMobile }"
+      ).pa-0
+        v-card(
+          tile
+          flat
+          outlined
+          :color="unlimitedUser ? 'primary' : 'white'"
+          @click="toggleUnlimited"
+        ).unlimited-user
+          v-card-title(:class="unlimitedUser ? 'white--text' : 'primary--text'").justify-center
+            h2(:class="cardTitleClasses") Unlimited Users
+            div(:class="cardSubtitleClasses") Ideal for Large & Multi-branch Clinics
+      template
+        user-based(v-if="userBase")
+        unlimited(v-if="unlimitedUser")
 </template>
 
 <script>
 // utils
-import VueScrollTo from 'vue-scrollto';
 import headMeta from '~/utils/head-meta';
 // components
 import Unlimited from '~/components/pricing/Unlimited';
@@ -30,44 +59,34 @@ export default {
     UserBased,
   },
   data () {
-    this.pricingTabs = [
-      {
-        type: 'user-based',
-        title: 'USER-BASED PRICING',
-        subtitle: 'Ideal for Small & Medium Clinics',
-      },
-      {
-        type: 'unlimited',
-        title: 'UNLIMITED USERS',
-        subtitle: 'Ideal for Large & Multi-branch Clinics',
-      },
-    ];
     return {
       loading: true,
-      pricingType: 'user-based',
+      userBase: true,
+      unlimitedUser: false,
     };
   },
   computed: {
-    headerClasses () {
-      return [{ 'header-container': !this.$isMobile }];
+    cardTitleClasses () {
+      return [{ 'font-25': this.$isMobile }];
+    },
+    cardSubtitleClasses () {
+      return [{ 'font-14': this.$isMobile }];
     },
     titleClasses () {
-      return [this.$isMobile ? 'font-30' : 'font-40'];
-    },
-    tabTitleClass () {
-      return [this.$isMobile ? 'font-18' : 'font-25'];
-    },
-    tabSubtitleClass () {
-      return [this.$isMobile ? 'font-14' : 'font-18'];
+      return [this.$isMobile ? 'font-30' : ['font-36', 'lh-title']];
     },
   },
   mounted () {
-    VueScrollTo.scrollTo('#app', 500, { easing: 'ease' });
     this.loading = false;
   },
   methods: {
-    isTabActive (tabType) {
-      return [this.pricingType === tabType ? 'tabActive' : 'tab'];
+    toggleUserBase () {
+      this.userBase = true;
+      this.unlimitedUser = false;
+    },
+    toggleUnlimited () {
+      this.userBase = false;
+      this.unlimitedUser = true;
     },
   },
   head () {
@@ -81,31 +100,24 @@ export default {
 </script>
 
 <style scoped>
-#top {
-  margin-top: 70px;
+.main-container{
+  margin-top: 100px;
 }
-.header {
-  background-image: url('../../assets/images/mycure-clinic-background-legal.png');
-  background-position: center center;
-  background-size: cover;
+.v-card {
+  border: 2px solid #1E88E5 !important;
 }
-.header-container {
-  height: 250px;
+.v-card__title {
+  word-break: normal;
 }
-.content {
-  padding-top: 50px;
-  padding-bottom: 50px;
+.user-base {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
 }
-.tab {
-  border-radius: 10px 10px 0 0;
-  background-color: #BDCCD9;
-  opacity: 1;
-  height: 100%;
-  box-shadow: 0px 0px 10px 2px #f0f0f0 inset;
+.pricing-active {
+  box-shadow: 0px 5px #cecece;
 }
-.tabActive {
-  border-radius: 10px 10px 0 0;
-  background-color: white;
-  height: 100%;
+.unlimited-user {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
 }
 </style>
