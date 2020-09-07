@@ -1,39 +1,37 @@
 <template lang="pug">
-  v-container
-    v-col.text-center
-      h2.font-30 UNLIMITED USERS
-    v-row.pt-5
-      v-col(v-for="(type, key) in pricingTypes" :key="key" cols="12" md="4")
-        v-card(height="100%")
-          v-img(
-            :src="require(`~/assets/images/pricing/${type.image}.png`)"
-            :alt="type.title"
-          )
-            v-col(:class="{'white--text': key === 1}")
-              h2.font-weight-bold {{ type.title }}&nbsp;
-                v-chip(v-if="key === 1" color="warning" x-small).black--text BEST VALUE
-              strong.font-16 $
-              span.font-40.font-weight-medium {{ type.price }}
-              br
-              | per clinic monthly
-              br
-              strong.font-16 {{type.storage}}GB&nbsp;
-              span.font-16 Storage
-          v-card-text
-            v-container.content
-              v-col.inclusions-container
-                v-row(
-                  v-for="(inclusion, inclusionKey) in type.inclusions"
-                  :key="inclusionKey"
-                ).py-1
-                  img(:src="require('~/assets/images/mycure-web-bullet-check.png')" alt="check" width="7%")
-                  | &nbsp;&nbsp;{{ inclusion }}
-              v-col.text-center.btn-container
-                v-btn(
-                  large
-                  color="primary"
-                  :to="{name: 'signup-multispecialty'}"
-                ).action-btn.font-weight-bold Book A Demo
+  v-container.py-12
+    v-row(justify="center" align="start")
+      v-col(
+        v-for="(type, key) in pricingTypes"
+        cols="12"
+        sm="4"
+        lg="3"
+        :key="key"
+        :class="{'mt-n6': key === 2}"
+      )
+        v-card(height="100%" flat :color="type.color").py-5.mb-4
+          div(v-if="key === 2" :class="libericaClasses") BEST VALUE
+          v-col(:class="cardTitleClasses")
+            h2 {{ type.title }}&nbsp;
+            span(:class="currencyTypeClasses") $
+            span.font-50 {{ type.price }}
+            br
+            | per clinic monthly
+            br
+            p.font-16 {{type.storage}}GB Storage
+            v-btn(
+              v-if="type.actionBtn"
+              width="150"
+              elevation="0"
+              rounded
+              :class="typeBtnClasses"
+              :color="type.btnColor"
+              :to="{ name: type.actionBtn.route }"
+            ) {{ type.actionBtn.text }}
+        div(v-for="(inclusion, inclusionKey) in type.inclusions" :key="inclusionKey").py-1
+          div.d-inline-flex
+            img(:src="require('~/assets/images/pricing/mycure-checklist-grey.png')" height="90%" alt="check")
+            p.ml-2.mt-1 {{ inclusion }}
     v-col.text-center.contact-container
       h1.font-30.lh-title Set up MYCURE in your own cloud server
       br
@@ -54,6 +52,8 @@ export default {
       {
         title: 'Arabica',
         image: 'MYCURE-virtual-clinic-healthcare-practice-online-pricing-unli-arabica',
+        color: '#FBA92B',
+        btnColor: '#F77007',
         price: 80,
         storage: 10,
         inclusions: [
@@ -64,10 +64,16 @@ export default {
           'Telehealth',
           'Reports & Analytics',
         ],
+        actionBtn: {
+          text: 'Book A Demo',
+          route: 'signup-multispecialty-step-1',
+        },
       },
       {
         title: 'Robusta',
         image: 'MYCURE-virtual-clinic-healthcare-practice-online-pricing-unli-robusta',
+        color: '#56BE8E',
+        btnColor: '#1D8E4F',
         price: 200,
         storage: 15,
         inclusions: [
@@ -79,10 +85,16 @@ export default {
           'Pharmacy',
           'Dental',
         ],
+        actionBtn: {
+          text: 'Book A Demo',
+          route: 'signup-multispecialty-step-1',
+        },
       },
       {
         title: 'Liberica',
         image: 'MYCURE-virtual-clinic-healthcare-practice-online-pricing-unli-liberica',
+        color: '#3EA9F5',
+        btnColor: '#0F70EB',
         price: 400,
         storage: 25,
         inclusions: [
@@ -90,9 +102,27 @@ export default {
           'Syncbase Technology',
           'Email & Call Support',
         ],
+        actionBtn: {
+          text: 'Book A Demo',
+          route: 'signup-multispecialty-step-1',
+        },
       },
     ];
     return {};
+  },
+  computed: {
+    cardTitleClasses () {
+      return ['white--text', 'text-center', 'font-weight-bold'];
+    },
+    currencyTypeClasses () {
+      return ['font-25', 'font-weight-medium', 'currency-type'];
+    },
+    typeBtnClasses () {
+      return ['white--text', 'font-weight-bold'];
+    },
+    libericaClasses () {
+      return ['white--text', 'font-weight-bold', 'text-center', 'liberica-background'];
+    },
   },
   methods: {
     toggleChat () {
@@ -103,29 +133,13 @@ export default {
 </script>
 
 <style scoped>
-.content {
-  height: 100%;
-  border-collapse: collapse;
-  display : table;
+.liberica-background {
+  margin-top: -20px;
+  margin-bottom: 20px;
+  background-color: #FBA92B;
 }
-.inclusions-container {
-  min-height: 250px;
-}
-.btn-container {
-  display : table-row;
-  vertical-align : bottom;
-  height : 5px;
-}
-.action-btn {
-  width: 200px;
-}
-.contact-container {
-  padding-top: 100px;
-  padding-bottom: 25px;
-}
-@media screen and (min-width: 1900px){
-  .inclusions-container {
-    min-height: 400px !important;
-  }
+.currency-type {
+  position: relative;
+  bottom: 15px;
 }
 </style>
