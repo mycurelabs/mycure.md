@@ -31,7 +31,7 @@
         div(v-for="(inclusion, inclusionKey) in type.inclusions" :key="inclusionKey").py-1
           div.d-inline-flex
             img(:src="require('~/assets/images/pricing/mycure-checklist-grey.png')" height="90%" alt="check")
-            p.ml-2.mt-1 {{ inclusion }}
+            p(:class="{ 'font-weight-bold': (key === 1 || key === 2) && inclusionKey === 0 }").ml-2.mt-1 {{ inclusion }}
       v-col(cols="12").py-10.text-center
         h1.font-30.lh-title Set up MYCURE in your own cloud server
         br
