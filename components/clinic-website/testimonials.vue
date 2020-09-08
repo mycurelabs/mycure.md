@@ -33,9 +33,6 @@ export default {
       default: '',
     },
   },
-  data () {
-    return {};
-  },
   methods: {
     check () {
       return console.log(this.testimonialDescription);
