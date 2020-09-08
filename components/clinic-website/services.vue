@@ -1,5 +1,5 @@
 <template lang="pug">
-  div(style="background-color: #ececec; border-radius: 5px; min-height: 434px; position: relative")
+  div.main-container
     h2.pb-6 Services Offered
     div(v-if="services.length === 0")
       i No Services available
@@ -56,5 +56,11 @@ export default {
 <style scoped>
 strong {
   cursor: pointer;
+}
+.main-container {
+  background-color: #ececec;
+  border-radius: 5px;
+  min-height: 434px;
+  position: relative;
 }
 </style>

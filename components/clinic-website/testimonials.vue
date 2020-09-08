@@ -1,7 +1,7 @@
 <template lang="pug">
   v-container
     v-row
-      v-col(cols="12" style="background-color: #ececec; border-radius: 5px; min-height: 126px;").d-flex
+      v-col(cols="12").d-flex.testimonial-col-style
         template(v-if="testimonialDescription !== ''")
           div
             v-avatar
@@ -43,3 +43,11 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.testimonial-col-style {
+  background-color: #ececec;
+  border-radius: 5px;
+  min-height: 126px;
+}
+</style>

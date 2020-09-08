@@ -1,5 +1,5 @@
 <template lang="pug">
-  div(style="background-color: #ececec; border-radius: 5px; min-height: 300px; position: relative;")
+  div.main-container
     h2.pb-3 Clinic Schedule
     template(v-if="firstThree && firstThree.length === 0")
       i No schedules available
@@ -18,7 +18,7 @@
           td(width="15").text-center -
           td {{ day.closing | morph-date-format('hh:mm A') }}
     div.py-5
-    div(v-if="schedules.length > 3" style="position: absolute; bottom: 10px")
+    div(v-if="schedules.length > 3").schedules-view-all
       strong(@click="showAll = !showAll").primary--text See {{ showAll ? 'Less' : 'All' }}
 </template>
 
@@ -79,5 +79,15 @@ export default {
 <style scoped>
 strong {
   cursor: pointer;
+}
+.main-container {
+  background-color: #ececec;
+  border-radius: 5px;
+  min-height: 300px;
+  position: relative;
+}
+.schedules-view-all {
+  position: absolute;
+  bottom: 10px
 }
 </style>

@@ -1,5 +1,5 @@
 <template lang="pug">
-  div(style="background-color: #ececec; border-radius: 5px; min-height: 808px;")
+  div.main-container
     v-tabs(background-color="#ececec")
       v-tab.text-none Specializations
       v-tab.text-none Chats
@@ -27,3 +27,11 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.main-container {
+  background-color: #ececec;
+  border-radius: 5px;
+  min-height: 808px;
+}
+</style>
