@@ -67,7 +67,7 @@
               ).step-one-field.font-21
                 template(v-if="clinic.facilityAddress" v-slot:append)
                   v-icon(color="accent") mdi-check
-              //- FORE REFERENCE 'https://github.com/mycurelabs/web-main/issues/822'
+              //- FOR REFERENCE 'https://github.com/mycurelabs/web-main/issues/822'
               //- v-text-field(
               //-   v-model="clinic.numberOfStaff"
               //-   label="No. of staff (?)"
