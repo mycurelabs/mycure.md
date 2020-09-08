@@ -8,7 +8,7 @@
         lg="3"
         :key="key"
         :class="{'mt-n6': key === 2}"
-      )
+      ).pb-10
         v-card(height="100%" flat :color="type.color").py-5.mb-4
           div(v-if="key === 2" :class="libericaClasses") BEST VALUE
           v-col(:class="cardTitleClasses")
@@ -32,17 +32,17 @@
           div.d-inline-flex
             img(:src="require('~/assets/images/pricing/mycure-checklist-grey.png')" height="90%" alt="check")
             p.ml-2.mt-1 {{ inclusion }}
-    v-col.text-center.contact-container
-      h1.font-30.lh-title Set up MYCURE in your own cloud server
-      br
-      p Perfect for organizations with a dedicated IT department that specializes in database management.
-      v-btn(
-        text
-        color="primary"
-        @click="toggleChat"
-      )
-        strong Contact Sales
-        v-icon(right small) mdi-arrow-right
+      v-col(cols="12").py-10.text-center
+        h1.font-30.lh-title Set up MYCURE in your own cloud server
+        br
+        p Perfect for organizations with a dedicated IT department that specializes in database management.
+        v-btn(
+          text
+          color="primary"
+          @click="toggleChat"
+        )
+          strong Contact Sales
+          v-icon(right small) mdi-arrow-right
 </template>
 
 <script>
