@@ -10,7 +10,7 @@
         v-expansion-panel-content(v-for="(docDetails, key) in specialization.doctorsDetails" :key="key")
           div.d-inline-flex
             v-avatar
-              img(:src="require(`~/assets/images/clinics-website/${docDetails.picURL}`)")
+              img(:src="require(`~/assets/images/clinics-website/${docDetails.picURL}`)" alt="Doctor Profile")
             div.ml-3
               strong {{ docDetails.name }}
               p.ma-0 {{ docDetails.specialization }} | {{ docDetails.years }}

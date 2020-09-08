@@ -12,6 +12,7 @@
             img(
               height="45"
               src="~/assets/images/MYCURE-virtual-clinic-healthcare-practice-online-logo.svg"
+              alt="Mycure"
             )
         v-spacer
         template(v-if="!$isMobile")
@@ -24,7 +25,7 @@
             :href="goToConsult"
           ) Consult Now
           v-avatar.ml-3
-            img(:src="picURL")
+            img(:src="picURL" alt="Profile")
         template(v-else)
           v-menu(bottom left)
             template(v-slot:activator="{ on, attrs }")

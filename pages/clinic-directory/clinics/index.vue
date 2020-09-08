@@ -45,6 +45,7 @@
           img(
             height="45"
             src="~/assets/images/mycure-header-logo.png"
+            alt="MYCURE"
             @click="$nuxt.$router.push({ name: 'index' })"
           )
           p.ml-5.mt-3 &#169;{{new Date().getFullYear()}} All Rights Reserved.
