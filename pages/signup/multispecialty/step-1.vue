@@ -17,7 +17,7 @@
           alt="MYCURE logo"
           @click="$nuxt.$router.push({ name: 'index' })"
         ).link-to-home.mb-3
-        h2.font-18.primary--text {{ route === 'hippocrates' ? 'Hippocrates' : 'Multispecialty Clinic' }}:
+        h2.font-18.primary--text {{ route === 'hippocrates' ? 'Hippocrates' : 'Multispecialty Clinic' }}:&nbsp;
           br(v-if="$isMobile")
           | Sign Up (Step 1 of 3)
         br
@@ -67,12 +67,13 @@
               ).step-one-field.font-21
                 template(v-if="clinic.facilityAddress" v-slot:append)
                   v-icon(color="accent") mdi-check
-              v-text-field(
-                v-model="clinic.numberOfStaff"
-                label="No. of staff (?)"
-                outlined
-                :rules="[requiredRule, ...numberRules]"
-              ).step-one-field.font-21
+              //- FORE REFERENCE 'https://github.com/mycurelabs/web-main/issues/822'
+              //- v-text-field(
+              //-   v-model="clinic.numberOfStaff"
+              //-   label="No. of staff (?)"
+              //-   outlined
+              //-   :rules="[requiredRule, ...numberRules]"
+              //- ).step-one-field.font-21
                 template(v-slot:append v-if="clinic.numberOfStaff && clinic.numberOfStaff > 0 && !decimalTest(clinic.numberOfStaff)")
                   v-icon(color="accent") mdi-check
               v-text-field(
@@ -170,6 +171,9 @@ export default {
 </script>
 
 <style scoped>
+a {
+  text-decoration: none;
+}
 h1 {
   line-height: 35px;
 }
