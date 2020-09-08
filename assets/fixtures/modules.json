@@ -80,5 +80,21 @@
     "icon": "mycure-onboarding-icon-syncbase.png",
     "fontIcon": "mdi-cloud-sync",
     "description": "Use MYCURE even if your internet connection is down"
+  },
+  {
+    "selected": false,
+    "type": "premium",
+    "id": "Telehealth",
+    "name": "Telehealth",
+    "icon": "mycure-onboarding-icon-telehealth.png",
+    "description": "Online video and audio consultations that connects with MYCURE Patient Portal"
+  },
+  {
+    "selected": false,
+    "type": "premium",
+    "id": "Dental",
+    "name": "Dental",
+    "icon": "mycure-onboarding-icon-dental.png",
+    "description": "EMR for baseline dental charting with inventory and billing"
   }
 ]
