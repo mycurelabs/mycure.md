@@ -88,6 +88,11 @@
               v-radio-group(row v-model="clinic.hasOtherBranches")
                 v-radio(label="Yes" :value="true").step-one-field
                 v-radio(label="No" :value="false").step-one-field
+            h5.grey--text.font-21 Choose your plan
+          v-row(justify="center").px-5
+            v-col(cols="12" sm="4" align="center" v-for="(image, key) in pricing" :key="key")
+              v-card(flat)
+                img(:src="require(`~/assets/images/signup-multispecialty/${image.active}.png`)" width="100%")
           v-card-actions
             v-spacer
             v-btn(
@@ -107,7 +112,13 @@ export default {
   layout: 'user',
   data () {
     this.dayOrNight = dayOrNight();
+    this.pricing = [
+      { inactive: 'mycure-plan-chiclet-arabica-inactive', active: 'mycure-plan-chiclet-arabica-active', id: 'arabica' },
+      { inactive: 'mycure-plan-chiclet-robusta-inactive', active: 'mycure-plan-chiclet-robusta-active', id: 'robusta' },
+      { inactive: 'mycure-plan-chiclet-liberica-inactive', active: 'mycure-plan-chiclet-liberica-active', id: 'liberica' },
+    ];
     return {
+      selectedImage: false,
       valid: false,
       clinic: {},
       requiredRule: v => !!v || 'This field is required',
