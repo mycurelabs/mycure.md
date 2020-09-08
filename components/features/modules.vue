@@ -10,13 +10,13 @@
           br
           span(:class="panelDescriptionClasses").module-group-description {{ panel.description }}
       br
-      v-row
+      v-row(justify="center")
         v-col(
           v-for="(moduleItem, index) in panel.modules"
-          :key="index"
+          align="center"
           cols="12"
           md="4"
-          :class="!$isMobile && moduleItem.offset ? 'offset-md-2' : 'offset-md-0'"
+          :key="index"
         ).pa-10.module-item
           module-item(:moduleItem="moduleItem")
 </template>

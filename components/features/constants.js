@@ -76,6 +76,12 @@ export const FEATURE_MODULE_GROUPS = [
         subTitle: 'Use MYCURE even if\nyour internet connection is down',
         description: 'Work within your local network using multiple devices even if the internet goes down and just sync data when back online.',
       },
+      {
+        icon: 'MYCURE-virtual-clinic-healthcare-practice-online-features-H-premium-07-dental.png',
+        title: 'Dental',
+        subTitle: 'Advanced digital charting\nfor dentistry',
+        description: 'A special Dental EMR for baseline dental charting, documentation for proposed and completed work, and other attachments.',
+      },
     ],
   },
 ];
