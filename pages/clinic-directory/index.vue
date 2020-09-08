@@ -38,11 +38,11 @@
           :align="!$isMobile ? 'end' : 'center'"
         )
           span Share the love:
-          template(v-for="(icon, key) in icons")
+          template(v-for="icon in icons")
             a(
-              :href="icon.link"
               target="_blank"
               rel="noopener noreferrer"
+              :href="icon.link"
             ).pl-3
               v-icon.font-30 {{ icon.icon }}
 </template>
