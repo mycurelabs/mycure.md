@@ -33,9 +33,6 @@
 import GenericContainer from '~/components/commons/generic-container';
 export default {
   components: { GenericContainer },
-  data () {
-    return {};
-  },
   computed: {
     createBtnClasses () {
       return ['font-weight-bold', 'text-capitalize'];
