@@ -79,13 +79,13 @@
                 :rules="[requiredRule]"
               )
                 template(slot="append")
-                  div(style="margin-top: -5px")
+                  div(style="margin-top: -8px")
+                    v-icon(v-if="mobileNoError" color="accent").ml-n10 mdi-check
                     v-tooltip(bottom)
                       template(v-slot:activator="{ on }")
-                        v-btn(icon @click="countryDialog = true" v-on="on").ma-0
-                          img(width="25" :src="contact.countryFlag").flag-img.mt-2
+                        v-btn(icon @click="countryDialog = true" v-on="on")
+                          img(width="25" :src="contact.countryFlag").flag-img.mt-1
                       | Change Country
-                    v-icon(v-if="mobileNoError" color="accent") mdi-check
               v-text-field(
                 v-model="contact.email"
                 type="email"
@@ -110,6 +110,7 @@
                 v-model="dateMenu"
                 max-width="290px"
                 min-width="290px"
+                top
                 :close-on-content-click="false"
               ).white
                 template(v-slot:activator="{ on }")
