@@ -2,15 +2,15 @@
   v-container
     app-bar
 
-    search-and-sort(:search-string="searchString" @search="searchFromControls").search-panel
+    search-and-sort(:search-string="searchString" @search="searchFacilities").search-panel
 
     specializations.py-10
     v-divider.divider
 
-    featured-hospitals(v-if="hospitalsLength !== 0" :hospitals="featuredHospitals" :hospitalsLength="hospitalsLength").py-10
+    featured-hospitals(v-if="listedHospitals.length !== 0" :hospitals="listedHospitals" :hospitalsLength="listedHospitals.length").py-10
     v-divider.divider
 
-    featured-clinics(:clinics="featuredClinics" :clinicsLength="clinicsLength").py-10
+    featured-clinics(:clinics="listedClinics" :clinicsLength="listedClinics.length").py-10
     v-divider.divider
 
     v-footer(color="white").mt-3
@@ -55,6 +55,7 @@ import Specializations from '~/components/clinic-directory/specializations';
 import FeaturedHospitals from '~/components/clinic-directory/featured-hospitals';
 import FeaturedClinics from '~/components/clinic-directory/featured-clinics';
 import { getFeaturedHospitals, getFeaturedClinics } from '~/utils/axios';
+
 export default {
   layout: 'clinic-website',
   components: {
@@ -73,6 +74,8 @@ export default {
         clinicsLength: featuredClinics?.data.length,
         featuredHospitals: featuredHospitals?.data,
         featuredClinics: featuredClinics?.data,
+        listedHospitals: featuredHospitals?.data || [],
+        listedClinics: featuredClinics?.data || [],
       };
     } catch (e) {
       console.error(e);
@@ -91,15 +94,22 @@ export default {
       hospitalsLength: 0,
       featuredClinics: [],
       clinicsLength: 0,
+      listedHospitals: [],
+      listedClinics: [],
     };
   },
   methods: {
-    searchFromControls (searchObject) {
+    searchFacilities (searchObject) {
+      const { searchString } = searchObject;
+      if (!searchString) {
+        this.listedHospitals = [...this.featuredHospitals];
+        this.listedClinics = [...this.listedClinics];
+        return;
+      };
+      // TODO: Since there is no $search in organizations, front-end searching will be implemented in the meantime
       this.isLoading = true;
-      this.searchObject = searchObject;
-      // ADD SEARCH FUNCTION HERE
-      // this.searchDoctors();
-      this.isLoading = false;
+      this.listedHospitals = this.featuredHospitals.filter(hospital => hospital?.name?.toUpperCase().includes(searchString.toUpperCase()));
+      this.listedClinics = this.featuredClinics.filter(clinic => clinic?.name?.toUpperCase().includes(searchString.toUpperCase()));
     },
   },
   head () {

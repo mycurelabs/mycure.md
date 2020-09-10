@@ -5,7 +5,7 @@
         v-text-field(
           v-model="searchObject.searchString"
           prepend-inner-icon="mdi-magnify"
-          label="Search a doctor, specialization you need."
+          label="Search a clinic you need."
           background-color="yellow accent-1"
           type="text"
           color="grey"
@@ -67,7 +67,7 @@ export default {
     };
   },
   watch: {
-    'searchObject.sortBy': {
+    searchObject: {
       handler () {
         this.onSearch();
       },
