@@ -1,6 +1,6 @@
 <template lang="pug">
   v-col(cols="6" lg="2" md="4" sm="6").pa-1
-    v-card(height="210" :img="picURL" style="position: relative;" :href="viewClinic")
+    v-card(height="210" :img="picURL" style="position: relative;" @click="viewClinic")
       v-card-text(:style="cardStyles" :class="cardClasses")
         v-icon(color="orange" size="20px") mdi-star
         p {{ hospitalName }}
@@ -31,9 +31,12 @@ export default {
     cardClasses () {
       return ['pa-1', 'font-weight-bold', 'white--text', 'pl-2'];
     },
+  },
+  methods: {
     viewClinic () {
       const id = this.clinic?.id;
-      return `${process.env.WEB_MAIN_URL}/clinics/${id}`;
+      if (!id) return;
+      this.$nuxt.$router.push({ name: 'clinics-id', params: { id } });
     },
   },
 };
