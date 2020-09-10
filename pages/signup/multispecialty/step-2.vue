@@ -54,9 +54,10 @@
                 img(v-if="module.selected" height="90px" src="~/assets/images/mycure-onboarding-icon-selected.png").mt-1.ml-1
                 img(v-else height="90px" :src="module.icon").mt-1.ml-1
               v-col.pa-1
-                h3 {{ module.name }}
-                  v-icon(v-if="!module.category.includes(planCategory)").ml-2 mdi-lock
-                p {{ module.description }}
+                div.d-inline-flex
+                  v-icon(v-if="!module.category.includes(planCategory)").mr-2 mdi-lock
+                  h3.mt-1 {{ module.name }}
+                p.pr-2 {{ module.description }}
       v-col(cols="12" md="10" :class="actionContainerClasses").pa-1.mt-3
         v-card(flat)
           v-card-actions(
