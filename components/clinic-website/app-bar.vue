@@ -8,7 +8,7 @@
     v-container
       v-row(no-gutters align="center")
         v-col
-          nuxt-link(:to="{ name: 'index' }" title="MYCURE | Clinic Management System | Cloud EMR Philippines")
+          nuxt-link(:to="{ name: 'directory-facilities' }" title="MYCURE | Clinic Management System | Cloud EMR Philippines")
             img(
               height="45"
               src="~/assets/images/MYCURE-virtual-clinic-healthcare-practice-online-logo.svg"
