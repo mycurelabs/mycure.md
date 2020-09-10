@@ -1,6 +1,8 @@
 export default () => {
   window.$crisp = [];
-  window.CRISP_WEBSITE_ID = '77efedac-1e3a-4bca-b12d-2a4ffc754baf';
+  // PREVIOUS ID
+  // window.CRISP_WEBSITE_ID = '77efedac-1e3a-4bca-b12d-2a4ffc754baf';
+  window.CRISP_WEBSITE_ID = '8ec0faa8-cc7d-4aed-8ffa-e4816dff000b';
 
   (function () {
     const d = document;
