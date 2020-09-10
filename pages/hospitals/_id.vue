@@ -88,7 +88,6 @@ export default {
       const hospitalWebsite = hospital[0];
       const membership = await getMembership({ organization: params.id });
       const member = membership[0];
-      console.log(hospitalWebsite);
       const services = await getServices({ facility: params.id });
       return {
         hospitalWebsite,
@@ -111,6 +110,9 @@ export default {
     };
   },
   computed: {
+    orgId () {
+      return this.$route.params.id;
+    },
     picURL () {
       return this.hospitalWebsite?.picURL || require('~/assets/images/clinics-website/hospital-thumbnail.jpg');
     },
@@ -153,7 +155,7 @@ export default {
       return { data: this.hospitalWebsite };
     },
     consultIDS () {
-      return { docUID: this.member?.uid, clinicID: this.member?.organization };
+      return { docUID: this.member?.uid, clinicID: this.orgId };
     },
   },
   head () {

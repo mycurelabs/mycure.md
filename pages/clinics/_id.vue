@@ -111,6 +111,9 @@ export default {
     };
   },
   computed: {
+    orgId () {
+      return this.$route.params.id;
+    },
     picURL () {
       return this.clinicWebsite?.picURL || require('~/assets/images/clinics-website/hospital-thumbnail.jpg');
     },
@@ -153,7 +156,7 @@ export default {
       return { data: this.clinicWebsite };
     },
     consultIDS () {
-      return { docUID: this.member?.uid, clinicID: this.member?.organization };
+      return { docUID: this.member?.uid, clinicID: this.orgId };
     },
   },
   head () {

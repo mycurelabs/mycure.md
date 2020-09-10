@@ -60,6 +60,9 @@ export default {
     goToConsult () {
       const docUID = this.consultIDS?.docUID;
       const clinicID = this.consultIDS?.clinicID;
+      if (!docUID) {
+        return `${process.env.PX_PORTAL_URL}/clinic-appointment/step-1?facility=${clinicID}`;
+      }
       return `${process.env.PX_PORTAL_URL}/clinic-appointment/step-1?doctor=${docUID}&facility=${clinicID}`;
     },
   },
