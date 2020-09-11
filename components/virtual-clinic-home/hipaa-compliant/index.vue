@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-container(style="background-color: #BBDEFB" :class="{ 'border-radius': !$isMobile }").my-12
+  v-container(:class="containerClasses")
     v-row(justify="center" align="center")
       v-col(v-if="!$isMobile" cols="12" md="5")
         picture-source(
@@ -16,7 +16,7 @@
       )
         h1(:class="titleClasses") {{ hipaaCompliantContent.title }}
         br
-        p(:class="descriptionClasses").font-16.mt-3.font-gray {{ hipaaCompliantContent.description }}
+        p(:class="descriptionClasses") {{ hipaaCompliantContent.description }}
         br
         v-btn(@click="aboutHipaaCompliant" color="primary" depressed)
           span.white--text.text-none Learn More
@@ -30,7 +30,6 @@
 </template>
 
 <script>
-// components
 import PictureSource from '~/components/commons/PictureSource';
 export default {
   components: { PictureSource },
@@ -43,11 +42,14 @@ export default {
     return {};
   },
   computed: {
+    containerClasses () {
+      return [{ 'border-radius': !this.$isMobile }, 'my-12', 'container-color'];
+    },
     titleClasses () {
       return ['font-30', 'lh-title', 'pb-3', 'font-weight-light'];
     },
     descriptionClasses () {
-      return [`text-${this.$isMobile ? 'center' : 'justify'}`];
+      return [`text-${this.$isMobile ? 'center' : 'justify'}`, 'font-16', 'mt-3', 'font-gray'];
     },
   },
   methods: {
@@ -59,6 +61,9 @@ export default {
 </script>
 
 <style scoped>
+.container-color {
+  background-color: #BBDEFB
+}
 .border-radius {
   border-radius: 10px;
 }
