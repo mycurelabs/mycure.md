@@ -90,9 +90,9 @@
                 v-radio(label="No" :value="false").step-one-field
             h5.grey--text.font-21 Choose your plan
           v-row(justify="center").px-5
-            v-col(cols="12" sm="4" align="center" v-for="(image, key) in pricing" :key="key")
-              v-card(@click="selectPlan(image)")
-                v-img(:src="require(`~/assets/images/signup-multispecialty/${image.title}.png`)")
+            v-col(cols="12" sm="4" align="center" v-for="(plan, key) in pricing" :key="key")
+              v-card(@click="selectPlan(plan, key)")
+                v-img(:src="require(`~/assets/images/signup-multispecialty/${plan.isSelected ? plan.active : plan.inactive}`)")
           v-card-actions
             v-spacer
             v-btn(
@@ -114,11 +114,12 @@ export default {
     this.dayOrNight = dayOrNight();
     return {
       pricing: [
-        { title: 'mycure-plan-chiclet-arabica-inactive', id: 'Arabica' },
-        { title: 'mycure-plan-chiclet-robusta-inactive', id: 'Robusta' },
-        { title: 'mycure-plan-chiclet-liberica-inactive', id: 'Liberica' },
+        { inactive: 'mycure-plan-chiclet-arabica-inactive.png', active: 'mycure-plan-chiclet-arabica-active.png', isSelected: false, id: 'Arabica' },
+        { inactive: 'mycure-plan-chiclet-robusta-inactive.png', active: 'mycure-plan-chiclet-robusta-active.png', isSelected: false, id: 'Robusta' },
+        { inactive: 'mycure-plan-chiclet-liberica-inactive.png', active: 'mycure-plan-chiclet-liberica-active.png', isSelected: false, id: 'Liberica' },
       ],
       selectedPlan: false,
+      imageState: false,
       valid: false,
       clinic: {},
       requiredRule: v => !!v || 'This field is required',
@@ -158,32 +159,13 @@ export default {
     }
   },
   methods: {
-    selectPlan (image) {
-      if (image.id === 'Arabica') {
-        this.pricing = [
-          { title: 'mycure-plan-chiclet-arabica-active', id: 'Arabica' },
-          { title: 'mycure-plan-chiclet-robusta-inactive', id: 'Robusta' },
-          { title: 'mycure-plan-chiclet-liberica-inactive', id: 'Liberica' },
-        ];
-        this.selectedPlan = true;
-        localStorage.setItem('selected:plan', image.id);
-      } else if (image.id === 'Robusta') {
-        this.pricing = [
-          { title: 'mycure-plan-chiclet-arabica-inactive', id: 'Arabica' },
-          { title: 'mycure-plan-chiclet-robusta-active', id: 'Robusta' },
-          { title: 'mycure-plan-chiclet-liberica-inactive', id: 'Liberica' },
-        ];
-        this.selectedPlan = true;
-        localStorage.setItem('selected:plan', image.id);
-      } else {
-        this.pricing = [
-          { title: 'mycure-plan-chiclet-arabica-inactive', id: 'Arabica' },
-          { title: 'mycure-plan-chiclet-robusta-inactive', id: 'Robusta' },
-          { title: 'mycure-plan-chiclet-liberica-active', id: 'Liberica' },
-        ];
-        this.selectedPlan = true;
-        localStorage.setItem('selected:plan', 'Liberica');
+    selectPlan (plan, key) {
+      for (key = 0; key < this.pricing.length; key++) {
+        this.pricing[key].isSelected = false;
       }
+      plan.isSelected = true;
+      this.selectedPlan = true;
+      localStorage.setItem('selected:plan', plan.id);
     },
     next () {
       if (this.$refs.formRef.validate()) {
