@@ -2,11 +2,8 @@
   div.main-container
     v-tabs(background-color="#ececec")
       v-tab.text-none Specializations
-      v-tab.text-none Chats
       v-tab-item
         specialization-expansion(:doctors="doctors" :consultIDS="consultIDS")
-      v-tab-item(background-color="#ececec")
-        //- INSERT CHAT COMPONENTS HERE
 </template>
 
 <script>
