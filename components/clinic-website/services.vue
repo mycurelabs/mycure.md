@@ -27,19 +27,17 @@ export default {
     },
   },
   data () {
-    this.services = [
-      { image: 'mycure-check.png', title: 'Newborn Jaundice' },
-      { image: 'mycure-check.png', title: 'Adolescent Medicine' },
-      { image: 'mycure-check.png', title: 'Chickenpox Treatment' },
-      { image: 'mycure-check.png', title: 'Physical Therapy' },
-      { image: 'mycure-check.png', title: 'ENT Service' },
-      { image: 'mycure-check.png', title: 'Weight Management' },
-    ];
     return {
       showAll: false,
     };
   },
   computed: {
+    services () {
+      return this.servicesOffered?.map(service => ({
+        image: 'mycure-check.png',
+        title: service.name,
+      }));
+    },
     servicesFirstFive () {
       // UPDATE THIS servicesOffered PROPS DATA LATER
       return this.services.slice(0, 5);
