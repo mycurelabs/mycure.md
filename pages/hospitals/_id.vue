@@ -26,12 +26,6 @@
                 :price-max="maximumServicePrice"
               )
 
-        //- UPDATE TESTIMONIAL DATA
-        v-row
-          v-col(cols="12")
-            h2 Testimonials
-            testimonials(:picURL="picURL" :testimonialDate="testimonialDate" :testimonialDescription="testimonialDescription")
-
       //- UDPATE DOCTORS DATA
       v-col(cols="12" md="4")
         specializations-chats(:doctors="doctors")
@@ -71,7 +65,6 @@ import Info from '~/components/clinic-website/info';
 import Schedules from '~/components/clinic-website/schedules';
 import Services from '~/components/clinic-website/services';
 import Consultations from '~/components/clinic-website/consultations';
-import Testimonials from '~/components/clinic-website/testimonials';
 import SpecializationsChats from '~/components/clinic-website/specializations-chat';
 export default {
   layout: 'clinic-website',
@@ -82,7 +75,6 @@ export default {
     Schedules,
     Services,
     Consultations,
-    Testimonials,
     SpecializationsChats,
   },
   async asyncData ({ params, error }) {
