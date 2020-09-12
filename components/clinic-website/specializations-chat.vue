@@ -4,8 +4,6 @@
       v-tab.text-none Specializations
       v-tab-item
         specialization-expansion(:doctors="doctors")
-      v-tab-item(background-color="#ececec")
-        //- INSERT CHAT COMPONENTS HERE
 </template>
 
 <script>
@@ -27,6 +25,6 @@ export default {
 .main-container {
   background-color: #ececec;
   border-radius: 5px;
-  min-height: 808px;
+  min-height: 630px;
 }
 </style>
