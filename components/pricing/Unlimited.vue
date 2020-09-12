@@ -27,6 +27,7 @@
               :class="typeBtnClasses"
               :color="type.btnColor"
               :to="{ name: type.actionBtn.route }"
+              @click="bookDemo(type)"
             ) {{ type.actionBtn.text }}
         div(v-for="(inclusion, inclusionKey) in type.inclusions" :key="inclusionKey").py-1
           div.d-inline-flex
@@ -125,6 +126,9 @@ export default {
     },
   },
   methods: {
+    bookDemo (type) {
+      localStorage.setItem('selected:plan', type.title);
+    },
     toggleChat () {
       window.$crisp.push(['do', 'chat:toggle']);
     },
