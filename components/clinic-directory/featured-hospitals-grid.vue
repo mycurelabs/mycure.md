@@ -38,8 +38,8 @@ export default {
   methods: {
     viewHospital () {
       const id = this.hospital?.id;
-      localStorage.setItem('hospital-id', id);
-      this.$nuxt.$router.push({ name: 'hippocrates-directory-hospitals' });
+      if (!id) return;
+      this.$nuxt.$router.push({ name: 'hospitals-id', params: { id } });
     },
   },
 };

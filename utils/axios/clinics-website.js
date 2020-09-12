@@ -48,7 +48,7 @@ export const getFeaturedClinics = async () => {
 export const getHospitalWebsite = async (opts) => {
   const { data } = await axios({
     method: 'GET',
-    url: `${process.env.API_URL}/organizations?type=cms&id=${opts}`,
+    url: `${process.env.API_URL}/organizations?type=cms&id=${opts.username}`,
   });
   return data.data;
 };
@@ -56,7 +56,7 @@ export const getHospitalWebsite = async (opts) => {
 export const getClinicWebsite = async (opts) => {
   const { data } = await axios({
     method: 'GET',
-    url: `${process.env.API_URL}/organizations?type=personal-clinic&id=${opts}`,
+    url: `${process.env.API_URL}/organizations?type=personal-clinic&id=${opts.username}`,
   });
   return data.data;
 };
@@ -64,15 +64,30 @@ export const getClinicWebsite = async (opts) => {
 export const getServices = async (opts) => {
   const { data } = await axios({
     method: 'GET',
-    url: `${process.env.API_URL}/services?facility=${opts}`,
+    url: `${process.env.API_URL}/services?facility=${opts.facility}`,
   });
   return data.data;
 };
 
 export const getMembership = async (opts) => {
-  const { data } = await axios({
+  // fetch memberships
+  const { data: membersData } = await axios({
     method: 'GET',
-    url: `${process.env.API_URL}/organization-members?organization=${opts}`,
+    url: `${process.env.API_URL}/organization-members?organization=${opts.organization}`,
   });
-  return data.data;
+  const members = membersData.data;
+  if (!members?.length) return members;
+
+  // fetch personal details
+  const populatedMembersPromises = members.map(async (member) => {
+    const { data: personalDetailsData } = await axios({
+      method: 'GET',
+      url: `${process.env.API_URL}/personal-details/${member.uid}`,
+    });
+    return {
+      ...member,
+      personalDetails: personalDetailsData,
+    };
+  });
+  return Promise.all(populatedMembersPromises);
 };

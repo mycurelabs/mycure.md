@@ -127,7 +127,7 @@
             strong Thanks for joining!
             p A MYCURE specialist will get in touch&nbsp;
               br(v-if="!$isMobile")
-              | with you soon.
+              | with you within 48 hours.
             p Meanwhile, see if you can find a peer&nbsp;
               br(v-if="!$isMobile")
               | in our directory so you can ask for a&nbsp;

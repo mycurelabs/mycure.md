@@ -1,7 +1,7 @@
 <template lang="pug">
   div
     h1 {{ hospitalName }}
-    p TeleMedicine Clinic | {{ address }}
+    p Medical Arts Center | {{ address }}
     v-icon(color="orange" size="20px").mb-4 mdi-star
     p {{ completeAddress }}
     //- HIDE THIS FOR THE MOMENT DO NOT DELETE

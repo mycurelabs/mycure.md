@@ -3,6 +3,22 @@
     nuxt
 </template>
 
+<script>
+import 'babel-polyfill';
+import Vue from 'vue';
+import sdk from '@mycure/sdk-js';
+Vue.sdk = Vue.prototype.$sdk = sdk;
+
+if (process.browser) {
+  sdk.initialize(process.env.API_URL, {
+    storage: window.localStorage,
+  });
+}
+
+export default {
+};
+</script>
+
 <style>
 .font-50 {
   font-size: 50px !important;
