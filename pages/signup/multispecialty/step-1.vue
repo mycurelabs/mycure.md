@@ -149,6 +149,15 @@ export default {
       } else {
         this.clinic.hasOtherBranches = true;
       }
+
+      if (localStorage.getItem('selected:plan')) {
+        const typeOfPlan = localStorage.getItem('selected:plan');
+        const result = this.pricing.find(({ id }) => id === typeOfPlan);
+        if (result) {
+          result.isSelected = true;
+          this.selectedPlan = true;
+        };
+      }
     }
   },
   mounted () {
