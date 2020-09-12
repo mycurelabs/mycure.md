@@ -70,9 +70,24 @@ export const getServices = async (opts) => {
 };
 
 export const getMembership = async (opts) => {
-  const { data } = await axios({
+  // fetch memberships
+  const { data: membersData } = await axios({
     method: 'GET',
     url: `${process.env.API_URL}/organization-members?organization=${opts.organization}`,
   });
-  return data.data;
+  const members = membersData.data;
+  if (!members?.length) return members;
+
+  // fetch personal details
+  const populatedMembersPromises = members.map(async (member) => {
+    const { data: personalDetailsData } = await axios({
+      method: 'GET',
+      url: `${process.env.API_URL}/personal-details/${member.uid}`,
+    });
+    return {
+      ...member,
+      personalDetails: personalDetailsData,
+    };
+  });
+  return Promise.all(populatedMembersPromises);
 };

@@ -1,6 +1,6 @@
 <template lang="pug">
   v-container(v-if="!loading").py-0
-    app-bar(:picURL="picURL" :consultIDS="consultIDS")
+    app-bar(:picURL="picURL")
     v-row(align="start").main-content
 
       v-col(cols="12" md="2" align="center")
@@ -34,7 +34,7 @@
 
       //- UDPATE DOCTORS DATA
       v-col(cols="12" md="4")
-        specializations-chats(:doctors="doctors" :consultIDS="consultIDS")
+        specializations-chats(:doctors="doctors")
 
     v-divider
     v-footer(color="white").mt-3
@@ -89,13 +89,12 @@ export default {
     try {
       const hospital = await getHospitalWebsite({ username: params.id });
       const hospitalWebsite = hospital[0];
-      const membership = await getMembership({ organization: params.id });
-      const member = membership[0];
+      const members = await getMembership({ organization: params.id });
       const services = await getServices({ facility: params.id });
       return {
         hospitalWebsite,
         services,
-        member,
+        members,
       };
     } catch (error) {
       console.error(error);
@@ -110,7 +109,6 @@ export default {
     ];
     return {
       loading: false,
-      members: [],
     };
   },
   computed: {
@@ -166,20 +164,7 @@ export default {
       return this.hospitalWebsite?.description;
     },
     doctors () {
-      return { data: this.hospitalWebsite };
-    },
-    consultIDS () {
-      return { docUID: this.member?.uid, clinicID: this.orgId };
-    },
-  },
-  created () {
-    this.getMembers();
-  },
-  methods: {
-    async getMembers () {
-      const orgId = this.$route.params.id;
-      const members = await getMembership({ organization: orgId });
-      this.members = members;
+      return this.members;
     },
   },
   head () {
