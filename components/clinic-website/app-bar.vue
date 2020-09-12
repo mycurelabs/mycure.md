@@ -16,14 +16,6 @@
             )
         v-spacer
         template(v-if="!$isMobile")
-          v-btn(
-            color="primary"
-            target="_blank"
-            rel="noopener noreferrer"
-            large
-            depressed
-            :href="goToConsult"
-          ) Consult Now
           v-avatar.ml-3
             img(:src="picURL" alt="Profile")
         template(v-else)

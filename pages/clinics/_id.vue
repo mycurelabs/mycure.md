@@ -21,7 +21,10 @@
             schedules(:schedules="schedules").pa-3
             v-col(cols="12" style="background-color: #ececec; border-radius: 5px; min-height: 100px;").mt-6
               //- UPDATE CONSULTATIONS DATA
-              consultations
+              consultations(
+                :price-min="minimumServicePrice"
+                :price-max="maximumServicePrice"
+              )
 
         //- UPDATE TESTIMONIAL DATA
         v-row
@@ -142,6 +145,16 @@ export default {
     },
     servicesOffered () {
       return this.services;
+    },
+    sortedServices () {
+      if (!this.services) return null;
+      return [...this.services].sort((a, b) => a.price - b.price);
+    },
+    minimumServicePrice () {
+      return this.sortedServices?.shift()?.price;
+    },
+    maximumServicePrice () {
+      return this.sortedServices?.pop()?.price;
     },
     schedules () {
       return this.clinicWebsite?.mf_schedule; // eslint-disable-line
