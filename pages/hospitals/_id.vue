@@ -107,6 +107,7 @@ export default {
     ];
     return {
       loading: false,
+      members: [],
     };
   },
   computed: {
@@ -156,6 +157,16 @@ export default {
     },
     consultIDS () {
       return { docUID: this.member?.uid, clinicID: this.orgId };
+    },
+  },
+  created () {
+    this.getMembers();
+  },
+  methods: {
+    async getMembers () {
+      const orgId = this.$route.params.id;
+      const members = await getMembership({ organization: orgId });
+      this.members = members;
     },
   },
   head () {
