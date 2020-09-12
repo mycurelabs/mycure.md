@@ -90,7 +90,7 @@ export default {
       if (!doctor) return;
       const docUID = doctor.uid;
       const clinicID = doctor.organization;
-      return `${process.env.PX_PORTAL_URL}/clinic-appointment/step-1?doctor=${docUID}&facility=${clinicID}`;
+      return `${process.env.PX_PORTAL_URL}/clinic-appointment/step-1?doctor=${docUID}&organization=${clinicID}`;
     },
   },
 };
