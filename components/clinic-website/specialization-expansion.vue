@@ -1,25 +1,28 @@
 <template lang="pug">
   div
     v-expansion-panels(style="background-color: #ececec;" flat).pa-5
-      v-expansion-panel(v-for="(specialization, key) in specializations" :key="key")
+      v-expansion-panel(v-for="entry in specialtyDoctorsMapEntries" :key="entry.specialty")
         v-expansion-panel-header.pa-1
           template(v-slot:actions)
             v-icon.primary--text.icon mdi-chevron-down
-          span.header-title {{ specialization.title }}
-          span.primary--text.mr-2.doctors-count {{ specialization.doctorsDetails.length }} Doctors
-        v-expansion-panel-content(v-for="(docDetails, key) in specialization.doctorsDetails" :key="key")
+          span.header-title {{ entry.specialty }}
+          span.primary--text.mr-2.doctors-count {{ entry.doctorsLengthText }}
+        v-expansion-panel-content(v-for="doctor in entry.doctors" :key="doctor.id")
           div.d-inline-flex
             v-avatar
-              img(:src="require(`~/assets/images/clinics-website/${docDetails.picURL}`)" alt="Doctor Profile")
+              img(:src="doctor.picURL" alt="Doctor Profile")
             div.ml-3
-              strong {{ docDetails.name }}
-              p.ma-0 {{ docDetails.specialization }} | {{ docDetails.years }}
+              strong {{ doctor.doctorName }}
+              p.ma-0
+                span(v-if="doctor.specialties") {{ doctor.specialties }}
+                span(v-if="doctor.specialties && doctor.yearsPracticing") &nbsp;|&nbsp;
+                span(v-if="doctor.yearsPracticing") {{ doctor.yearsPracticing }}
               v-btn(
                 v-if="xlBelow"
                 color="primary"
                 target="_blank"
                 rel="noopener noreferrer"
-                :href="goToConsult"
+                :href="goToConsult(doctor)"
               ) Consult Now
             v-btn(
               v-if="xlOnly"
@@ -27,7 +30,7 @@
               style="position: absolute; right: 6px;"
               target="_blank"
               rel="noopener noreferrer"
-              :href="goToConsult"
+              :href="goToConsult(doctor)"
             ) Consult Now
 </template>
 
@@ -35,87 +38,59 @@
 export default {
   props: {
     doctors: {
-      type: Object,
-      default: () => ({}),
+      type: Array,
+      default: () => ([]),
     },
-    consultIDS: {
-      type: Object,
-      default: () => ({}),
-    },
-  },
-  data () {
-    this.specializations = [
-      {
-        title: 'For your Family',
-        doctorsDetails: [
-          { name: 'Dr. Karlos', specialization: 'Gen. Physician', years: '3 years', picURL: 'physician-male.png' },
-          { name: 'Dr. Minerva', specialization: 'Gen. Physician', years: '4 years', picURL: 'physician-female.png' },
-          { name: 'Dr. Lily', specialization: 'Gen. Physician', years: '3 years', picURL: 'physician-female.png' },
-        ],
-      },
-      {
-        title: 'For your Kids',
-        doctorsDetails: [
-          { name: 'Dr. Minerva', specialization: 'Gen. Physician', years: '4 years', picURL: 'physician-female.png' },
-          { name: 'Dr. Karlos', specialization: 'Gen. Physician', years: '8 years', picURL: 'physician-male.png' },
-          { name: 'Dr. Lily', specialization: 'Gen. Physician', years: '3 years', picURL: 'physician-female.png' },
-        ],
-      },
-      {
-        title: 'For Mothers',
-        doctorsDetails: [
-          { name: 'Dr. Minerva', specialization: 'Gen. Physician', years: '4 years', picURL: 'physician-female.png' },
-          { name: 'Dr. Lily', specialization: 'Gen. Physician', years: '3 years', picURL: 'physician-female.png' },
-          { name: 'Dr. Karlos', specialization: 'Gen. Physician', years: '6 years', picURL: 'physician-male.png' },
-        ],
-      },
-      {
-        title: 'For your Lungs',
-        doctorsDetails: [
-          { name: 'Dr. Minerva', specialization: 'Gen. Physician', years: '4 years', picURL: 'physician-female.png' },
-          { name: 'Dr. Karlos', specialization: 'Gen. Physician', years: '7 years', picURL: 'physician-male.png' },
-          { name: 'Dr. Lily', specialization: 'Gen. Physician', years: '3 years', picURL: 'physician-female.png' },
-        ],
-      },
-      {
-        title: 'For your Heart',
-        doctorsDetails: [
-          { name: 'Dr. Minerva', specialization: 'Gen. Physician', years: '4 years', picURL: 'physician-female.png' },
-          { name: 'Dr. Lily', specialization: 'Gen. Physician', years: '9 years', picURL: 'physician-female.png' },
-          { name: 'Dr. Karlos', specialization: 'Gen. Physician', years: '3 years', picURL: 'physician-male.png' },
-        ],
-      },
-      {
-        title: 'For your Ears, Nose and Tongue',
-        doctorsDetails: [
-          { name: 'Dr. Minerva', specialization: 'Gen. Physician', years: '4 years', picURL: 'physician-female.png' },
-          { name: 'Dr. Karlos', specialization: 'Gen. Physician', years: '3 years', picURL: 'physician-male.png' },
-          { name: 'Dr. Lily', specialization: 'Gen. Physician', years: '3 years', picURL: 'physician-female.png' },
-        ],
-      },
-      {
-        title: 'For your Mental Care',
-        doctorsDetails: [
-          { name: 'Dr. Minerva', specialization: 'Gen. Physician', years: '4 years', picURL: 'physician-female.png' },
-          { name: 'Dr. Lily', specialization: 'Gen. Physician', years: '3 years', picURL: 'physician-female.png' },
-          { name: 'Dr. Karlos', specialization: 'Gen. Physician', years: '3 years', picURL: 'physician-male.png' },
-        ],
-      },
-    ];
-    return {};
   },
   computed: {
+    formattedDoctors () {
+      return this.doctors?.map((doctor) => {
+        const practicingSince = doctor.personalDetails?.['doc_practicingSince'];
+        const yearsPracticing = practicingSince && (new Date().getFullYear() - practicingSince);
+
+        return {
+          ...doctor,
+          picURL: doctor.personalDetails?.picURL,
+          doctorName: `Dr. ${doctor.personalDetails?.name?.firstName} ${doctor.personalDetails?.name?.lastName}`,
+          specialties: doctor.personalDetails?.['doc_specialties']?.join(', '),
+          yearsPracticing: yearsPracticing && `${yearsPracticing} years`,
+        };
+      });
+    },
+    specialtyDoctorsMap () {
+      return this.formattedDoctors?.reduce((acc, doctor) => {
+        const specialties = doctor.personalDetails?.['doc_specialties'];
+        for (const specialty of specialties) {
+          if (!acc[specialty]) acc[specialty] = [];
+          acc[specialty].push(doctor);
+        }
+        return acc;
+      }, {});
+    },
+    specialtyDoctorsMapEntries () {
+      if (!this.specialtyDoctorsMap) return null;
+      return Object.entries(this.specialtyDoctorsMap)
+        .map(([specialty, doctors]) => ({
+          specialty,
+          doctors,
+          doctorsLengthText: doctors.length === 1
+            ? '1 Doctor'
+            : `${doctors.length} Doctors`,
+        }));
+    },
     xlBelow () {
       return this.$vuetify.breakpoint.lgAndDown;
     },
     xlOnly () {
       return this.$vuetify.breakpoint.xlOnly;
     },
-    goToConsult () {
-      // const docUID = this.consultIDS?.docUID;
-      // const clinicID = this.consultIDS?.clinicID;
-      // return `${process.env.PX_PORTAL_URL}/clinic-appointment/step-1?doctor=${docUID}&facility=${clinicID}`;
-      return console.log('Update docUID and clinicID');
+  },
+  methods: {
+    goToConsult (doctor) {
+      if (!doctor) return;
+      const docUID = doctor.uid;
+      const clinicID = doctor.organization;
+      return `${process.env.PX_PORTAL_URL}/clinic-appointment/step-1?doctor=${docUID}&facility=${clinicID}`;
     },
   },
 };
