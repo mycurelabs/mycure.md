@@ -4,8 +4,9 @@
     usp(@getStarted="goToSignupIndividual($event)")
     //- 2nd panel
     platform-panels(@getStarted="getStarted")
-    v-divider.edge-divider
     //- 3rd panel
+    hipaa-compliant
+    //- 4th panel
     storyflow(
       :storyflow="storyflowItems"
       :introduction="storyflowIntroText"
@@ -13,13 +14,13 @@
       horizontal
       horizontal-image-size="40%"
     )
-    //- 4th panel
-    privacy
     //- 5th panel
-    apis
+    privacy
     //- 6th panel
-    patient-portal(@goToPatientPortal="goToPatientPortal")#patient-portal
+    apis
     //- 7th panel
+    patient-portal(@goToPatientPortal="goToPatientPortal")#patient-portal
+    //- 8th panel
     testimonial
     //- final panel
     div.cta-container
@@ -34,6 +35,7 @@ import { parseTextWithNewLine } from '~/utils/newline';
 // - components
 import Usp from '~/components/virtual-clinic-home/usp';
 import PlatformPanels from '~/components/virtual-clinic-home/platform-panels';
+import HipaaCompliant from '~/components/virtual-clinic-home/hipaa-compliant';
 import Storyflow from '~/components/commons/storyflow';
 import Privacy from '~/components/virtual-clinic-home/privacy';
 import Apis from '~/components/virtual-clinic-home/apis';
@@ -45,6 +47,7 @@ export default {
   components: {
     Usp,
     PlatformPanels,
+    HipaaCompliant,
     Storyflow,
     Privacy,
     Apis,
