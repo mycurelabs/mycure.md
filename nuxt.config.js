@@ -10,6 +10,7 @@ module.exports = {
     API_URL: process.env.API_URL,
     CMS_URL_BASE: process.env.CMS_URL_BASE,
     CMS_URL: process.env.CMS_URL,
+    CRISP_WEBSITE_ID: process.env.CRISP_WEBSITE_ID,
     ENV: process.env.ENV,
     GA_ID: process.env.GA_ID,
     IPSTACK_API_KEY: process.env.IPSTACK_API_KEY,
