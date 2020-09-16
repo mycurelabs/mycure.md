@@ -36,7 +36,7 @@ export default {
   data () {
     this.hipaaCompliantContent = {
       title: 'MYCURE is HIPAA Compliant',
-      description: 'MYCURE demonstrates is commitment to industry-leading best practices for security and privacy of protected health information as required under HIPAA.',
+      description: 'MYCURE demonstrates its commitment to industry-leading best practices for security and privacy of protected health information as required under HIPAA.',
     };
     this.hipaaBadge = 'HIPAA-Badge';
     return {};
