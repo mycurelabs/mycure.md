@@ -17,7 +17,7 @@
           alt="MYCURE logo"
           @click="$nuxt.$router.push({ name: 'index' })"
         ).link-to-home.mb-3
-        h2.font-18.primary--text {{ route === 'hippocrates' ? 'Hippocrates' : 'Multispecialty Clinic' }}:
+        h2.font-18.primary--text {{ route === 'hippocrates' ? 'Hippocrates' : 'Multispecialty Clinic' }}:&nbsp;
           br(v-if="$isMobile")
           | Sign Up (Step 1 of 3)
         br
@@ -67,12 +67,13 @@
               ).step-one-field.font-21
                 template(v-if="clinic.facilityAddress" v-slot:append)
                   v-icon(color="accent") mdi-check
-              v-text-field(
-                v-model="clinic.numberOfStaff"
-                label="No. of staff (?)"
-                outlined
-                :rules="[requiredRule, ...numberRules]"
-              ).step-one-field.font-21
+              //- FOR REFERENCE 'https://github.com/mycurelabs/web-main/issues/822'
+              //- v-text-field(
+              //-   v-model="clinic.numberOfStaff"
+              //-   label="No. of staff (?)"
+              //-   outlined
+              //-   :rules="[requiredRule, ...numberRules]"
+              //- ).step-one-field.font-21
                 template(v-slot:append v-if="clinic.numberOfStaff && clinic.numberOfStaff > 0 && !decimalTest(clinic.numberOfStaff)")
                   v-icon(color="accent") mdi-check
               v-text-field(
@@ -87,12 +88,17 @@
               v-radio-group(row v-model="clinic.hasOtherBranches")
                 v-radio(label="Yes" :value="true").step-one-field
                 v-radio(label="No" :value="false").step-one-field
+            h5.grey--text.font-21 Choose your plan
+          v-row(justify="center").px-5
+            v-col(cols="12" sm="4" align="center" v-for="(plan, key) in pricing" :key="key")
+              v-card(@click="selectPlan(plan, key)")
+                v-img(:src="require(`~/assets/images/signup-multispecialty/${plan.isSelected ? plan.active : plan.inactive}`)")
           v-card-actions
             v-spacer
             v-btn(
               color="accent"
               large
-              :disabled="!valid"
+              :disabled="!valid || !selectedPlan"
               @click="next"
             ).font-weight-bold Next
 </template>
@@ -107,6 +113,13 @@ export default {
   data () {
     this.dayOrNight = dayOrNight();
     return {
+      pricing: [
+        { inactive: 'mycure-plan-chiclet-arabica-inactive.png', active: 'mycure-plan-chiclet-arabica-active.png', isSelected: false, id: 'Arabica' },
+        { inactive: 'mycure-plan-chiclet-robusta-inactive.png', active: 'mycure-plan-chiclet-robusta-active.png', isSelected: false, id: 'Robusta' },
+        { inactive: 'mycure-plan-chiclet-liberica-inactive.png', active: 'mycure-plan-chiclet-liberica-active.png', isSelected: false, id: 'Liberica' },
+      ],
+      selectedPlan: false,
+      imageState: false,
       valid: false,
       clinic: {},
       requiredRule: v => !!v || 'This field is required',
@@ -136,6 +149,15 @@ export default {
       } else {
         this.clinic.hasOtherBranches = true;
       }
+
+      if (localStorage.getItem('selected:plan')) {
+        const typeOfPlan = localStorage.getItem('selected:plan');
+        const result = this.pricing.find(({ id }) => id === typeOfPlan);
+        if (result) {
+          result.isSelected = true;
+          this.selectedPlan = true;
+        };
+      }
     }
   },
   mounted () {
@@ -146,6 +168,14 @@ export default {
     }
   },
   methods: {
+    selectPlan (plan, key) {
+      for (key = 0; key < this.pricing.length; key++) {
+        this.pricing[key].isSelected = false;
+      }
+      plan.isSelected = true;
+      this.selectedPlan = true;
+      localStorage.setItem('selected:plan', plan.id);
+    },
     next () {
       if (this.$refs.formRef.validate()) {
         if (process.browser) {
@@ -170,6 +200,9 @@ export default {
 </script>
 
 <style scoped>
+a {
+  text-decoration: none;
+}
 h1 {
   line-height: 35px;
 }

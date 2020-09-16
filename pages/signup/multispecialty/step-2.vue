@@ -4,8 +4,8 @@
       v-col(cols="12" md="10").pa-1.mb-3
         img(
           src=`~/assets/images/mycure-${dayOrNight === 'night' ? 'footer' : 'header'}-logo.png`
-          @click="$router.push({ name: 'home' })"
           alt="MYCURE Logo"
+          @click="$router.push({ name: 'home' })"
         ).link-to-home.mb-3
         br
         h2.font-18.primary--text {{ route === 'hippocrates' ? 'Hippocrates' : 'Multispecialty Clinic' }}:
@@ -42,15 +42,22 @@
         md="5"
         :key="module.id"
       ).pa-1
-        v-card(hover @click="module.selected = !module.selected; toggleModule(module)").elevation-1
+        v-card(
+          hover
+          :disabled="!module.category.includes(planCategory)"
+          :color="!module.category.includes(planCategory) ? '#ececec' : 'white'"
+          @click="module.selected = !module.selected; toggleModule(module)"
+        ).elevation-1
           v-card-text.pa-0
             v-row(align="center" no-gutters)
               v-col.shrink.pa-1
                 img(v-if="module.selected" height="90px" src="~/assets/images/mycure-onboarding-icon-selected.png").mt-1.ml-1
                 img(v-else height="90px" :src="module.icon").mt-1.ml-1
               v-col.pa-1
-                h3 {{ module.name }}
-                p {{ module.description }}
+                div.d-inline-flex
+                  v-icon(v-if="!module.category.includes(planCategory)").mr-2 mdi-lock
+                  h3.mt-1 {{ module.name }}
+                p.pr-2 {{ module.description }}
       v-col(cols="12" md="10" :class="actionContainerClasses").pa-1.mt-3
         v-card(flat)
           v-card-actions(
@@ -93,6 +100,7 @@ export default {
     this.dayOrNight = dayOrNight();
     return {
       selectedModule: {},
+      planCategory: '',
       added: false,
       removed: false,
       coreModules: modules
@@ -126,6 +134,7 @@ export default {
       if (localStorage.getItem('multi:step2:model')) {
         this.premiumModules = JSON.parse(localStorage.getItem('multi:step2:model'));
       }
+      this.planCategory = localStorage.getItem('selected:plan');
     }
   },
   methods: {

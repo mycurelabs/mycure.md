@@ -79,13 +79,13 @@
                 :rules="[requiredRule]"
               )
                 template(slot="append")
-                  div(style="margin-top: -5px")
+                  div(style="margin-top: -8px")
+                    v-icon(v-if="mobileNoError" color="accent").ml-n10 mdi-check
                     v-tooltip(bottom)
                       template(v-slot:activator="{ on }")
-                        v-btn(icon @click="countryDialog = true" v-on="on").ma-0
-                          img(width="25" :src="contact.countryFlag").flag-img.mt-2
+                        v-btn(icon @click="countryDialog = true" v-on="on")
+                          img(width="25" :src="contact.countryFlag").flag-img.mt-1
                       | Change Country
-                    v-icon(v-if="mobileNoError" color="accent") mdi-check
               v-text-field(
                 v-model="contact.email"
                 type="email"
@@ -110,13 +110,14 @@
                 v-model="dateMenu"
                 max-width="290px"
                 min-width="290px"
+                top
                 :close-on-content-click="false"
               ).white
                 template(v-slot:activator="{ on }")
                   v-text-field(
                     v-model="dateFormatted"
                     v-on="on"
-                    label="Preferred schedule date"
+                    label="Preferred schedule date and time"
                     prepend-inner-icon="mdi-calendar"
                     outlined
                     :rules="[requiredRule]"
@@ -126,11 +127,19 @@
                     template(v-if="dateError" v-slot:append)
                       v-icon(color="accent") mdi-check
                 v-date-picker(
+                  v-if="pickDate"
                   v-model="contact.preferredScheduleDate"
                   color="#0099cc"
                   :min="minDate"
                   :max="maxDate"
-                  @input="dateMenu = false"
+                  @input="pickDate = false, pickTime = true"
+                )
+                v-time-picker(
+                  v-if="pickTime"
+                  v-model="contact.preferredTime"
+                  color="primary"
+                  ampm-in-title
+                  @input="dateMenu = false, pickDate = true, pickTime = false"
                 )
       v-col(
         cols="12"
@@ -222,7 +231,8 @@ export default {
     this.step1Fields = [
       'facilityName',
       'facilityAddress',
-      'numberOfStaff',
+      // FOR REFERENCE https://github.com/mycurelabs/web-main/issues/822
+      // 'numberOfStaff',
       'numberOfPatients',
       'hasOtherBranches',
     ];
@@ -245,6 +255,8 @@ export default {
       valid: false,
       successDialog: false,
       dateMenu: false,
+      pickDate: true,
+      pickTime: false,
       error: false,
       countries: [],
       searchString: '',
@@ -294,12 +306,12 @@ export default {
     },
     dateFormatted () {
       const date = this.contact.preferredScheduleDate;
+      const time = this.contact.preferredTime;
       if (!date) {
         return null;
       }
-
       const [year, month, day] = date.split('-');
-      return `${month}/${day}/${year}`;
+      return `${month}/${day}/${year} ${time}`;
     },
     actionContainerClasses () {
       return [{ 'mb-10': this.$isMobile }];
@@ -504,11 +516,9 @@ export default {
 h1 {
   line-height: 35px;
 }
-
 .link-to-home:hover {
   cursor: pointer;
 }
-
 .day-card-actions {
   background-color: #fafafa;
 }
