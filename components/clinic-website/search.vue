@@ -22,6 +22,7 @@
         p Search results for
           i.font-weight-bold "{{ searchText }}"
         doctor-cards(:doctors="formattedSearchedDoctors")
+    v-divider
 </template>
 
 <script>
