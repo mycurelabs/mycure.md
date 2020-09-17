@@ -7,17 +7,25 @@
   )
     v-container
       v-row(no-gutters align="center")
-        v-col
-          nuxt-link(:to="{ name: 'directory-facilities' }" title="MYCURE | Clinic Management System | Cloud EMR Philippines")
+        v-avatar
+          img(
+            :src="picURL"
+            height="60"
+            alt="Profile"
+          )
+        v-col.pl-2
+          h3 {{ clinicName }}
+          span Telemedicine
+        v-spacer
+        template(v-if="!$isMobile")
+          nuxt-link(:to="{ name: 'directory-facilities' }" title="MYCURE | Clinic Management System | Cloud EMR Philippines").powered-by-link
+            small.powered-by-txt Powered by:
+            br
             img(
-              height="45"
+              height="30"
               src="~/assets/images/MYCURE-virtual-clinic-healthcare-practice-online-logo.svg"
               alt="Mycure"
             )
-        v-spacer
-        template(v-if="!$isMobile")
-          v-avatar.ml-3
-            img(:src="picURL" alt="Profile")
         template(v-else)
           v-menu(bottom left)
             template(v-slot:activator="{ on, attrs }")
@@ -47,6 +55,10 @@ export default {
       type: Object,
       default: () => ({}),
     },
+    clinicName: {
+      type: String,
+      default: '',
+    },
   },
   computed: {
     goToConsult () {
@@ -60,3 +72,16 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.powered-by-link {
+  text-align: right;
+  text-decoration: none;
+}
+
+.powered-by-txt {
+  font-size: 0.7em;
+  font-weight: bold;
+  color: black;
+}
+</style>
