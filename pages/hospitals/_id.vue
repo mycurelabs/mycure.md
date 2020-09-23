@@ -1,80 +1,76 @@
 <template lang="pug">
-  v-container(v-if="!loading").py-0
-    app-bar(:picURL="picURL")
-    v-row(align="start").main-content
-
-      v-col(cols="12" md="2" align="center")
-        about-us(:picURL="picURL" :description="description")
-
-      v-col(cols="12" md="6" :class="{'pl-6': !$isMobile}")
-        info(
-          :hospitalName="hospitalName"
-          :description="description"
-          :address="address"
-          :completeAddress="completeAddress"
-        )
-        v-row.mt-3
-          v-col(cols="12" sm="6")
-            //- UPDATE SERVICES DATA
-            services(:servicesOffered="servicesOffered").pa-3
-          v-col(cols="12" sm="6")
-            schedules(:schedules="schedules").pa-3
-            v-col(cols="12" style="background-color: #ececec; border-radius: 5px; min-height: 110px;").mt-6
-              //- UPDATE CONSULTATIONS DATA
-              consultations(
-                :price-min="minimumServicePrice"
-                :price-max="maximumServicePrice"
-              )
-
-      //- UDPATE DOCTORS DATA
-      v-col(cols="12" md="4")
-        specializations-chats(:doctors="doctors")
-
-    v-divider
-    v-footer(color="white").mt-3
-      v-row(justify="center" align="center" no-gutters)
-        v-col(
-          cols="12"
-          md="6"
-          :align="!$isMobile ? 'start' : 'center'"
-          :class="{'d-flex': !$isMobile}"
-        )
-          img(
-            height="45"
-            src="~/assets/images/mycure-header-logo.png"
-            @click="$nuxt.$router.push({ name: 'index' })"
+  div
+    app-bar(:picURL="picURL" :clinicName="hospitalName")
+    v-col.px-0
+      img(src="~/assets/images/mycure-homepage-usp-cover.png" width="100%").banner-img
+    v-container(v-if="!loading")
+      v-row
+        search(:hospitalName="hospitalName" :orgId="orgId")
+        v-col(cols="12" sm="8")
+          v-tabs(v-model="activeTab")
+            v-tab Specializations
+            v-tab Doctors
+            v-tab Departments
+          v-tabs-items(v-model="activeTab")
+            v-tab-item.pa-4
+              specializations-chats(:doctors="doctors")
+            v-tab-item.pa-4
+              div.main-container
+                doctor-cards(:doctors="formattedDoctors")
+            v-tab-item.pa-4.text-center
+              h3 Departments Coming Soon!
+        v-col(cols="12" sm="4")
+          info(
+            :hospitalName="hospitalName"
+            :address="address"
+            :completeAddress="completeAddress"
+            :picURL="picURL"
+            :description="description"
           )
-          p.ml-5.mt-3 &#169;{{new Date().getFullYear()}} All Rights Reserved.
-        v-col(cols="12" md="6" :align="!$isMobile ? 'end' : 'center'")
-          span Share the love:
-          template(v-for="(icon, key) in icons")
-            a(
-              :href="icon.link"
-              target="_blank"
-              rel="noopener noreferrer"
-            ).pl-3
-              v-icon.font-30 {{ icon.icon }}
+      v-row
+        v-col(cols="12" sm="8")
+      v-divider
+      v-footer(color="white").mt-3
+        v-row(justify="center" align="center" no-gutters)
+          v-col(
+            cols="12"
+            md="6"
+            :align="!$isMobile ? 'start' : 'center'"
+            :class="{'d-flex': !$isMobile}"
+          )
+            img(
+              height="45"
+              src="~/assets/images/mycure-header-logo.png"
+              @click="$nuxt.$router.push({ name: 'index' })"
+            )
+            p.ml-5.mt-3 &#169;{{new Date().getFullYear()}} All Rights Reserved.
+          v-col(cols="12" md="6" :align="!$isMobile ? 'end' : 'center'")
+            span Share the love:
+            template(v-for="(icon, key) in icons")
+              a(
+                :href="icon.link"
+                target="_blank"
+                rel="noopener noreferrer"
+              ).pl-3
+                v-icon.font-30 {{ icon.icon }}
 </template>
 
 <script>
 import { getHospitalWebsite, getMembership, getServices } from '~/utils/axios';
 import headMeta from '~/utils/head-meta';
 import AppBar from '~/components/clinic-website/app-bar';
-import AboutUs from '~/components/clinic-website/about-us';
+import Search from '~/components/clinic-website/search';
 import Info from '~/components/clinic-website/info';
-import Schedules from '~/components/clinic-website/schedules';
-import Services from '~/components/clinic-website/services';
-import Consultations from '~/components/clinic-website/consultations';
+import DoctorCards from '~/components/clinic-website/doctor-card';
 import SpecializationsChats from '~/components/clinic-website/specializations-chat';
+
 export default {
   layout: 'clinic-website',
   components: {
     AppBar,
-    AboutUs,
     Info,
-    Schedules,
-    Services,
-    Consultations,
+    Search,
+    DoctorCards,
     SpecializationsChats,
   },
   async asyncData ({ params, error }) {
@@ -101,6 +97,7 @@ export default {
     ];
     return {
       loading: false,
+      activeTab: null,
     };
   },
   computed: {
@@ -158,6 +155,20 @@ export default {
     doctors () {
       return this.members;
     },
+    formattedDoctors () {
+      return this.doctors?.map((doctor) => {
+        const practicingSince = doctor.personalDetails?.['doc_practicingSince'];
+        const yearsPracticing = practicingSince && (new Date().getFullYear() - practicingSince);
+
+        return {
+          ...doctor,
+          picURL: doctor.personalDetails?.picURL,
+          doctorName: `Dr. ${doctor.personalDetails?.name?.firstName} ${doctor.personalDetails?.name?.lastName}`,
+          specialties: doctor.personalDetails?.['doc_specialties']?.join(', '),
+          yearsPracticing: yearsPracticing && `${yearsPracticing} years`,
+        };
+      });
+    },
   },
   head () {
     return headMeta({
@@ -173,7 +184,11 @@ export default {
 a {
   text-decoration: none;
 }
-.main-content {
+.banner-img{
   margin-top: 100px;
+}
+.main-container {
+  background-color: #ececec;
+  border-radius: 5px;
 }
 </style>

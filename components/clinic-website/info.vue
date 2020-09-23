@@ -1,9 +1,20 @@
 <template lang="pug">
   div
-    h1 {{ hospitalName }}
-    p Medical Arts Center | {{ address }}
-    v-icon(color="orange" size="20px").mb-4 mdi-star
-    p {{ completeAddress }}
+    v-row
+      v-col(cols="12" sm="12").text-center
+        v-avatar(size="200")
+          img(:src="picURL")
+      v-col(cols="12" sm="12")
+        h1 {{ hospitalName }}
+        p {{ completeAddress }}
+        v-icon(color="orange" size="20px" v-for="(star) in 5" :key="star").mb-4 mdi-star
+        br
+    v-row
+      v-col(cols="12" sm="12").pt-0
+        div
+          h2.py-5.primary--text.pt-0 About
+          p {{ description }}
+
     //- HIDE THIS FOR THE MOMENT DO NOT DELETE
     //- div
     //-   v-btn(
@@ -34,6 +45,14 @@ export default {
       default: '',
     },
     completeAddress: {
+      type: String,
+      default: '',
+    },
+    picURL: {
+      type: String,
+      default: '',
+    },
+    description: {
       type: String,
       default: '',
     },

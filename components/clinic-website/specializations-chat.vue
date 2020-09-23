@@ -1,9 +1,6 @@
 <template lang="pug">
   div.main-container
-    v-tabs(background-color="#ececec")
-      v-tab.text-none Specializations
-      v-tab-item
-        specialization-expansion(:doctors="doctors")
+    specialization-expansion(:doctors="doctors")
 </template>
 
 <script>
@@ -25,6 +22,5 @@ export default {
 .main-container {
   background-color: #ececec;
   border-radius: 5px;
-  min-height: 630px;
 }
 </style>

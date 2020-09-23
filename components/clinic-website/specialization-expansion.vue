@@ -1,6 +1,6 @@
 <template lang="pug">
   div
-    v-expansion-panels(style="background-color: #ececec;" flat).pa-5
+    v-expansion-panels(style="background-color: #ececec;" flat :value="0").pa-5
       v-expansion-panel(v-for="entry in specialtyDoctorsMapEntries" :key="entry.specialty")
         v-expansion-panel-header.pa-1
           template(v-slot:actions)

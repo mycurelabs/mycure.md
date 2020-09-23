@@ -1,5 +1,5 @@
 <template lang="pug">
-  div
+  v-row
     div.text-center
       v-avatar(size="100%")
         img(:src="picURL")
