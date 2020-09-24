@@ -8,6 +8,7 @@
       :specialties="specialties"
       :professions="professions"
       :practicing-since="practicingSince"
+      :member-cms-organizations="memberCMSOrganizations"
     )
     services(
       :services="services"
@@ -35,7 +36,7 @@
 
 <script>
 import _ from 'lodash';
-import { getDoctorWebsite, getDoctorClinics, recordWebsiteVisit } from '~/utils/axios';
+import { getDoctorWebsite, getDoctorClinics, getMemberOrganizations, recordWebsiteVisit } from '~/utils/axios';
 import { formatName } from '~/utils/formats';
 import headMeta from '~/utils/head-meta';
 import AppBar from '~/components/doctor-website/app-bar';
@@ -58,10 +59,18 @@ export default {
       if (_.isEmpty(doctor)) {
         error({ statusCode: 404, message: 'doctor-not-found' });
       }
-      const clinics = await getDoctorClinics({ uid: doctor.id });
+      const [clinics, memberCMSOrganizations] = await Promise.all([
+        getDoctorClinics({ uid: doctor.id }),
+        getMemberOrganizations({
+          uid: doctor.id,
+          type: 'cms',
+          select: ['id', 'name', 'picURL'],
+        }),
+      ]);
       return {
         doctor,
         clinics: clinics || [],
+        memberCMSOrganizations,
       };
     } catch (e) {
       console.error(e);
