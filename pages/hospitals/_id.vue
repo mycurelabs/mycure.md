@@ -12,12 +12,11 @@
             v-tab Doctors
             v-tab Departments
           v-tabs-items(v-model="activeTab")
-            v-tab-item.pa-4
-              specializations-chats(:doctors="doctors")
-            v-tab-item.pa-4
-              div.main-container
-                doctor-cards(:doctors="formattedDoctors")
-            v-tab-item.pa-4.text-center
+            v-tab-item.main-container.pa-4
+              specializations(:doctors="doctors")
+            v-tab-item.main-container.pa-4
+              doctor-cards(:doctors="formattedDoctors")
+            v-tab-item.main-container.pa-4.text-center
               h3 Departments Coming Soon!
         v-col(cols="12" sm="4")
           info(
@@ -62,7 +61,7 @@ import AppBar from '~/components/clinic-website/app-bar';
 import Search from '~/components/clinic-website/search';
 import Info from '~/components/clinic-website/info';
 import DoctorCards from '~/components/clinic-website/doctor-card';
-import SpecializationsChats from '~/components/clinic-website/specializations-chat';
+import Specializations from '~/components/clinic-website/specialization-expansion';
 
 export default {
   layout: 'clinic-website',
@@ -71,7 +70,7 @@ export default {
     Info,
     Search,
     DoctorCards,
-    SpecializationsChats,
+    Specializations,
   },
   async asyncData ({ params, error }) {
     try {
@@ -184,9 +183,11 @@ export default {
 a {
   text-decoration: none;
 }
+
 .banner-img{
   margin-top: 100px;
 }
+
 .main-container {
   background-color: #ececec;
   border-radius: 5px;
