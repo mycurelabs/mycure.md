@@ -1,6 +1,6 @@
 <template lang="pug">
   div
-    v-expansion-panels(style="background-color: #ececec;" flat :value="0").pa-5
+    v-expansion-panels(flat :value="0")
       v-expansion-panel(v-for="entry in specialtyDoctorsMapEntries" :key="entry.specialty")
         v-expansion-panel-header.pa-1
           template(v-slot:actions)
@@ -15,8 +15,6 @@
               strong {{ doctor.doctorName }}
               p.ma-0
                 span(v-if="doctor.specialties") {{ doctor.specialties }}
-                span(v-if="doctor.specialties && doctor.yearsPracticing") &nbsp;|&nbsp;
-                span(v-if="doctor.yearsPracticing") {{ doctor.yearsPracticing }}
               v-btn(
                 v-if="xlBelow"
                 color="primary"
