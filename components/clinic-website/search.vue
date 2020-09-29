@@ -27,7 +27,6 @@
       v-col(cols="12" sm="12")
         p No results for&nbsp;
           i.font-weight-bold "{{ searchText }}"
-        chat-now-card(:hospitalName="hospitalName" :orgId="orgId")
     v-divider
 </template>
 
@@ -37,11 +36,10 @@ import _ from 'lodash';
 import { searchClinicDoctors } from '~/utils/axios';
 // components
 import DoctorCards from '~/components/clinic-website/doctor-card';
-import ChatNowCard from '~/components/clinic-website/chat-now-card';
+
 export default {
   components: {
     DoctorCards,
-    ChatNowCard,
   },
   props: {
     hospitalName: {
