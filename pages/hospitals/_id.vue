@@ -7,17 +7,22 @@
       v-row
         search(:hospitalName="hospitalName" :orgId="orgId")
         v-col(cols="12" sm="8")
-          v-tabs(v-model="activeTab")
-            v-tab Specializations
-            v-tab Doctors
-            v-tab Departments
-          v-tabs-items(v-model="activeTab")
-            v-tab-item.main-container.pa-4
-              specializations(:doctors="doctors")
-            v-tab-item.main-container.pa-4
-              doctor-cards(:doctors="formattedDoctors")
-            v-tab-item.main-container.pa-4.text-center
-              h3 Departments Coming Soon!
+          v-row
+            v-col(cols="12" sm="12")
+              v-tabs(v-model="activeTab")
+                v-tab Specializations
+                v-tab Doctors
+                v-tab Departments
+              v-tabs-items(v-model="activeTab")
+                v-tab-item.main-container.pa-4
+                  specializations(:doctors="doctors")
+                v-tab-item.main-container.pa-4
+                  doctor-cards(:doctors="formattedDoctors")
+                v-tab-item.main-container.pa-4.text-center
+                  h3 Departments Coming Soon!
+          v-row(v-if="hasFrontdesk")
+            v-col(cols="12" sm="12")
+              chat-now-card(:hospitalName="hospitalName" :orgId="orgId")
         v-col(cols="12" sm="4")
           info(
             :hospitalName="hospitalName"
@@ -55,13 +60,17 @@
 </template>
 
 <script>
-import { getHospitalWebsite, getMembership, getServices } from '~/utils/axios';
+// services
+import { getHospitalWebsite, getMembership, getServices, getFrontdeskMembers } from '~/utils/axios';
+// utils
 import headMeta from '~/utils/head-meta';
+// components
 import AppBar from '~/components/clinic-website/app-bar';
 import Search from '~/components/clinic-website/search';
 import Info from '~/components/clinic-website/info';
 import DoctorCards from '~/components/clinic-website/doctor-card';
 import Specializations from '~/components/clinic-website/specialization-expansion';
+import ChatNowCard from '~/components/clinic-website/chat-now-card';
 
 export default {
   layout: 'clinic-website',
@@ -71,6 +80,7 @@ export default {
     Search,
     DoctorCards,
     Specializations,
+    ChatNowCard,
   },
   async asyncData ({ params, error }) {
     try {
@@ -78,10 +88,12 @@ export default {
       const hospitalWebsite = hospital[0];
       const members = await getMembership({ organization: params.id });
       const services = await getServices({ facility: params.id });
+      const frontdeskMembers = await getFrontdeskMembers({ organization: params.id });
       return {
         hospitalWebsite,
         services,
         members,
+        frontdeskMembers,
       };
     } catch (error) {
       console.error(error);
@@ -153,6 +165,9 @@ export default {
     },
     doctors () {
       return this.members;
+    },
+    hasFrontdesk () {
+      return this.frontdeskMembers && this.frontdeskMembers.length > 0;
     },
     formattedDoctors () {
       return this.doctors?.map((doctor) => {
