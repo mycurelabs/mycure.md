@@ -73,7 +73,7 @@ export const getMembership = async (opts) => {
   // fetch memberships
   const { data: membersData } = await axios({
     method: 'GET',
-    url: `${process.env.API_URL}/organization-members?organization=${opts.organization}`,
+    url: `${process.env.API_URL}/organization-members?organization=${opts.organization}&roles=doctor`,
   });
   const members = membersData.data;
   if (!members?.length) return members;
@@ -90,6 +90,15 @@ export const getMembership = async (opts) => {
     };
   });
   return Promise.all(populatedMembersPromises);
+};
+
+export const getFrontdeskMembers = async (opts) => {
+  // fetch memberships
+  const { data: membersData } = await axios({
+    method: 'GET',
+    url: `${process.env.API_URL}/organization-members?organization=${opts.organization}&roles=frontdesk`,
+  });
+  return membersData.data;
 };
 
 export const searchClinicDoctors = async (opts) => {
