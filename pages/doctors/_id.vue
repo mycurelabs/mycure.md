@@ -36,7 +36,12 @@
 
 <script>
 import _ from 'lodash';
-import { getDoctorWebsite, getDoctorClinics, getMemberOrganizations, recordWebsiteVisit } from '~/utils/axios';
+import {
+  getDoctorWebsite,
+  getDoctorClinics,
+  getMemberOrganizations,
+  recordWebsiteVisit,
+} from '~/utils/axios';
 import { formatName } from '~/utils/formats';
 import headMeta from '~/utils/head-meta';
 import AppBar from '~/components/doctor-website/app-bar';
@@ -121,6 +126,9 @@ export default {
     },
     education () {
       return this.doctor?.educations;
+    },
+    isVerified () {
+      return this.doctor?.doc_verified;
     },
   },
   async mounted () {
