@@ -276,7 +276,6 @@ export default {
         }
         this.saveModel(this.user);
         await signupIndividual(this.user);
-        // TODO: sign in user here, get jwt, and save to LS
         window.$amplitude.logEvent('ACQ026 Btn > Create Acc');
         if (this.user.countryCallingCode !== '63') {
           if (process.browser) {

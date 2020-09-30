@@ -259,13 +259,25 @@ export default {
         this.sendingCode = false;
       }
     },
-    onAcknowledgment () {
-      if (process.browser) {
-        localStorage.clear();
+    async onAcknowledgment () {
+      try {
+        const { accessToken } = await signin({
+          email: this.step1Data.email,
+          password: this.step1Data.password,
+        });
+        if (process.browser) {
+          localStorage.clear();
+        }
+        window.$amplitude.logEvent('ACQ029 Btn > Get Started');
+        window.location = `${process.env.CMS_URL}/cms?token=${accessToken}`;
+      } catch (error) {
+        console.error(error);
+        this.snackBarModel = {
+          text: 'There was an error in sending. Please try again!',
+          color: 'error',
+        };
+        this.showSnack = true;
       }
-      // TODO: change to CMS route
-      window.$amplitude.logEvent('ACQ029 Btn > Get Started');
-      this.$nuxt.$router.push({ name: 'signin' });
     },
     startCountDown () {
       const interval = setInterval(() => {
