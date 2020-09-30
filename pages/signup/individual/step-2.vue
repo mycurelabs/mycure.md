@@ -185,6 +185,9 @@ export default {
   async created () {
     await this.init();
   },
+  mounted () {
+    window.$amplitude.logEvent('ACQ027 Page > Verification');
+  },
   methods: {
     init () {
       if (process.browser) {
@@ -219,6 +222,7 @@ export default {
           code: this.otp,
         };
         await verifyMobileNo(payload);
+        window.$amplitude.logEvent('ACQ028 Enter Verif Code');
         this.$router.replace({ query: { success: true } });
         this.otpCountdown = null;
         this.successDialog = true;
@@ -259,6 +263,8 @@ export default {
       if (process.browser) {
         localStorage.clear();
       }
+      // TODO: change to CMS route
+      window.$amplitude.logEvent('ACQ029 Btn > Get Started');
       this.$nuxt.$router.push({ name: 'signin' });
     },
     startCountDown () {
