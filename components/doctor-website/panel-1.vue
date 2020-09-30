@@ -4,7 +4,15 @@
     v-row(justify="center")
       //- avatar, name, specialties, years of experience
       v-col(cols="12").text-center
-        v-avatar(size="150").elevation-3
+        template(v-if="isVerified" )
+          v-badge(color="black" overlap bottom right)
+            v-tooltip(slot="badge" bottom)
+              template(v-slot:activator="{ on }")
+                v-icon(v-on="on" medium) mdi-check-decagram
+              | Verified
+            v-avatar(size="150").elevation-3
+              img(:src="picUrl")
+        v-avatar(size="150" v-else).elevation-3
           img(:src="picUrl")
       v-col(cols="12" md="10").text-center
         h1 {{fullName}}
@@ -66,6 +74,10 @@ export default {
     bio: {
       type: String,
       default: null,
+    },
+    isVerified: {
+      type: Boolean,
+      default: false,
     },
     /** @type {Organization[]} */
     memberCmsOrganizations: {

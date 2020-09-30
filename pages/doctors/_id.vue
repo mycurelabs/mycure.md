@@ -9,6 +9,7 @@
       :professions="professions"
       :practicing-since="practicingSince"
       :member-cms-organizations="memberCMSOrganizations"
+      :is-verified="isVerified"
     )
     services(
       :services="services"
@@ -128,7 +129,7 @@ export default {
       return this.doctor?.educations;
     },
     isVerified () {
-      return this.doctor?.doc_verified;
+      return this.doctor?.doc_verified; // eslint-disable-line
     },
   },
   async mounted () {
