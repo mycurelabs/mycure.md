@@ -36,7 +36,10 @@ export default {
   },
   computed: {
     href () {
-      return process.browser && `${window.location.origin}/signup/individual`;
+      if (process.browser) {
+        return `${window.location.origin}/signup/individual`;
+      }
+      return `${process.env.WEB_MAIN_URL}/signup/individual`;
     },
   },
 };
