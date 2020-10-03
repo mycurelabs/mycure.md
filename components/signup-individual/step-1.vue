@@ -263,6 +263,7 @@ export default {
   },
   mounted () {
     this.$refs.formRef.resetValidation();
+    window.$amplitude.logEvent('ACQ025 Page > Sign Up');
   },
   methods: {
     async next () {
@@ -275,6 +276,7 @@ export default {
         }
         this.saveModel(this.user);
         await signupIndividual(this.user);
+        window.$amplitude.logEvent('ACQ026 Btn > Create Acc');
         if (this.user.countryCallingCode !== '63') {
           if (process.browser) {
             localStorage.clear();
