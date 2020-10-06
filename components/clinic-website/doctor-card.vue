@@ -1,6 +1,6 @@
 <template lang="pug">
   div
-    v-card(v-for="(doctor, key) in doctors" :key="key")
+    v-card(v-for="(doctor, key) in doctors" :key="key").mb-3
       v-card-text
         div.d-inline-flex
           v-avatar
@@ -9,8 +9,6 @@
             strong {{ doctor.doctorName }}
             p.ma-0
               span(v-if="doctor.specialties") {{ doctor.specialties }}
-              span(v-if="doctor.specialties && doctor.yearsPracticing") &nbsp;|&nbsp;
-              span(v-if="doctor.yearsPracticing") {{ doctor.yearsPracticing }}
             v-btn(
               v-if="xlBelow"
               color="primary"
