@@ -11,8 +11,24 @@
       v-row(align="start" justify="center" no-gutters dense)
         v-btn(color="primary" small elevation="0").mb-1.letter-spacing-normal.text-none Book Now!
       v-row(align="end" no-gutters dense)
-        v-btn(:small="!$isMobile" :x-small="$isMobile" width="50%" height="100%" color="#f0f0f0" tile elevation="0").btn-bottom-left.right-border.letter-spacing-normal.text-none.primary--text Availability
-        v-btn(:small="!$isMobile" :x-small="$isMobile" width="50%" height="100%" color="#f0f0f0" tile elevation="0").btn-bottom-right.letter-spacing-normal.text-none.primary--text View Site
+        v-btn(
+          :small="!$isMobile"
+          :x-small="$isMobile"
+          width="50%"
+          height="100%"
+          color="#f0f0f0"
+          tile
+          elevation="0"
+        ).btn-bottom-left.right-border.letter-spacing-normal.text-none.primary--text Availability
+        v-btn(
+          :small="!$isMobile"
+          :x-small="$isMobile"
+          width="50%"
+          height="100%"
+          color="#f0f0f0"
+          tile
+          elevation="0"
+        ).btn-bottom-right.letter-spacing-normal.text-none.primary--text View Site
 </template>
 
 <script>
