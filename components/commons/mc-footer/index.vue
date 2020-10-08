@@ -70,7 +70,10 @@
             title="Fight COVID-19: Free EMR"
             :to="{ name: 'fight-covid-19' }"
             @click.stop="handleFooterPrivacyPolicyLink"
-          ).link Fight COVID-19: Free EMR
+          ).link
+            span Fight COVID-19:
+            br
+            span Free EMR
         v-col(cols="2")
           h3.primary--text.footer-header CONTACT US
           a(
