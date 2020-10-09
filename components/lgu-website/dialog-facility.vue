@@ -30,6 +30,13 @@
                       h1 {{ facility.name }}
                       p.grey--text.lighten-1 Description
                       p {{ formattedDescription }}
+                      p.grey--text.lighten-1 Barangay/s under this facility
+                      template(v-if="formattedBrgys.length === 0")
+                        p No barangay available
+                      template(v-else)
+                        ul.mb-2
+                          template(v-for="item in formattedBrgys")
+                            li {{ item }}
                       p.grey--text.lighten-1 Services
                   v-row(v-if="isLoadingFacilityInfo")
                     v-col.text-center
@@ -147,6 +154,13 @@
                       h1 {{ facility.name }}
                       p.grey--text.lighten-1 Description
                       p {{ formattedDescription }}
+                      p.grey--text.lighten-1 Barangay/s under this facility
+                      template(v-if="formattedBrgys.length === 0")
+                        p No barangay available
+                      template(v-else)
+                        ul.mb-2
+                          template(v-for="item in formattedBrgys")
+                            li {{ item }}
                       p.grey--text.lighten-1 Services
                   v-row(v-if="isLoadingFacilityInfo")
                     v-col.text-center
@@ -217,6 +231,10 @@ export default {
     formattedDescription () {
       const description = `${this.facility.description ?? ''}`;
       return description.trim().length < 1 ? 'No description provided' : description;
+    },
+    formattedBrgys () {
+      const brgy = this.facility?.locationTags ?? [];
+      return brgy;
     },
     facilityImage () {
       return this.facility?.picURL;
