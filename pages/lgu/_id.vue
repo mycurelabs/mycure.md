@@ -6,6 +6,7 @@
       :isLoadingFacilityList="isLoadingFacilityList"
       :selectedHcFacilityProviders="selectedHcFacilityProviders"
       :selectedHcFacilityServices="selectedHcFacilityServices"
+      :lguId="lguId"
       @populateServices="getSelectedFacilityServices"
       @searchFacility="searchFacility"
     )
@@ -30,12 +31,13 @@ export default {
       hcFacilities: [],
       selectedHcFacilityProviders: [],
       selectedHcFacilityServices: [],
+      lguId: '5f7d1a1b8d72338cb3b76412', // TODO: update this to route?
     };
   },
   async mounted () {
     // get all healthcare facility for this LGU ID;
     // TODO: change LGU id to var on integration and use this for final
-    const { data } = await getFacilities({ parentId: '5f7d1a1b8d72338cb3b76412' });
+    const { data } = await getFacilities({ parentId: this.lguId });
     this.hcFacilities = data;
     this.isLoading = false;
   },
@@ -55,7 +57,7 @@ export default {
     async searchFacility (searchString) {
       this.isLoadingFacilityList = true;
       // TODO: change lgu id to var
-      const { data } = await searchFacilities({ parentId: '5f7d1a1b8d72338cb3b76412', searchString });
+      const { data } = await searchFacilities({ parentId: this.lguId, searchString });
       this.hcFacilities = data;
       this.isLoadingFacilityList = false;
     },
