@@ -100,6 +100,7 @@
                         :small="$vuetify.breakpoint.smAndDown"
                         depressed
                         color="success"
+                        :href="url"
                       ) CONSULT NOW
         //- desktop
         template(v-else)
@@ -148,6 +149,7 @@
                         large
                         depressed
                         color="success"
+                        :href="url"
                       ) CONSULT NOW
                   v-row
                     v-col
@@ -187,6 +189,7 @@
                         large
                         depressed
                         color="success"
+                        :href="url"
                       ) CONSULT NOW
 </template>
 
@@ -218,6 +221,10 @@ export default {
       type: Array,
       default: () => ([]),
     },
+    lguId: {
+      type: String,
+      default: '',
+    },
   },
   computed: {
     formattedAddress () {
@@ -238,6 +245,10 @@ export default {
     },
     facilityImage () {
       return this.facility?.picURL;
+    },
+    url () {
+      const pxPortalUrl = process.env.PX_PORTAL_URL;
+      return `${pxPortalUrl}/lgu-appointment/step-1?parent=${this.lguId}&child=${this.facility?.id}`;
     },
     model: {
       get () {
