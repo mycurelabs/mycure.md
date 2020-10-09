@@ -55,6 +55,7 @@
       :isLoadingFacilityInfo="isLoadingFacilityInfo"
       :selectedHcFacilityProviders="selectedHcFacilityProviders"
       :selectedHcFacilityServices="selectedHcFacilityServices"
+      :lguId="lguId"
       v-model="facilityDialog"
       @toggleFacilityDialog="toggleFacilityDialog"
     )
@@ -71,6 +72,10 @@ export default {
     hcFacilities: {
       type: Array,
       default: () => ([]),
+    },
+    lguId: {
+      type: String,
+      default: '',
     },
     hcFacilityServices: {
       type: Array,
