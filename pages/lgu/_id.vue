@@ -48,7 +48,6 @@ export default {
       // get and set the new values
       const services = await getFacilityServices({ orgId });
       const providers = await getFacilityMembers({ orgId });
-      console.log(providers);
       this.selectedHcFacilityServices = services;
       this.selectedHcFacilityProviders = providers;
       this.isLoadingFacilityInfo = false;
