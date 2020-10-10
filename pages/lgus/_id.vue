@@ -17,6 +17,7 @@
     select-barangay-dialog(
       v-model="selectBrgyDialog"
       :barangays="locationTags"
+      :orgId="orgId"
       @toggleSelectBrgyDialog="toggleSelectBrgyDialog"
     )
 </template>
