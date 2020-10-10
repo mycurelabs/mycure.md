@@ -2,7 +2,7 @@
   v-container.mt-5
     v-row
       v-col(cols="12").text-left
-        h2.grey--text.text--darken-2 About
+        h2 About
     v-row.px-9.mt-5
       v-col(cols="12" sm="8")
         p {{ description }}
