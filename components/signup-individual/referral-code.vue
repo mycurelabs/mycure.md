@@ -114,6 +114,7 @@ export default {
           return;
         }
         setItem('account-invitation', { referralCode: this.user.referralCode });
+        window.$amplitude.logEvent('ACQ024 Btn > Submit Ref');
         this.$nuxt.$router.push({ name: 'signup-individual-step-1', params: { data: accountInvitation } });
       } catch (e) {
         this.referralCodeError = true;

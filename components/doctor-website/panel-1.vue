@@ -1,14 +1,40 @@
 <template lang="pug">
   v-container
+    //- main header
     v-row(justify="center")
+      //- avatar, name, specialties, years of experience
       v-col(cols="12").text-center
-        v-avatar(size="150").elevation-3
+        template(v-if="isVerified" )
+          v-badge(color="black" overlap bottom right)
+            v-tooltip(slot="badge" bottom)
+              template(v-slot:activator="{ on }")
+                v-icon(v-on="on" medium) mdi-check-decagram
+              | Verified
+            v-avatar(size="150").elevation-3
+              img(:src="picUrl")
+        v-avatar(size="150" v-else).elevation-3
           img(:src="picUrl")
       v-col(cols="12" md="10").text-center
         h1 {{fullName}}
         span {{specialtiesMapped}} #[span(v-if="practicingSince") | {{yearsOfExperience}} Years Experience ]
+      //- affiliated clinics
+      template(v-if="hasMemberCMSOrganizations")
+        v-col(cols="12" md="10").text-center.pa-0
+          v-row(justify="center")
+            v-col(
+              v-for="organization in memberCmsOrganizations"
+              :key="organization.id"
+              shrink
+            ).pa-0
+              v-tooltip(bottom)
+                span {{organization.name}}
+                template(#activator="{ on, attrs }")
+                  v-avatar(v-bind="attrs" v-on="on" size="50")
+                    img(:src="organization.picURL")
+      //- bio
       v-col(cols="12" md="10").text-center
         p {{bio}}
+    //- action buttons: book online appointment
     v-row(justify="center")
       v-col(class="shrink").pa-1.text-center
         book-appointment-btn
@@ -49,8 +75,20 @@ export default {
       type: String,
       default: null,
     },
+    isVerified: {
+      type: Boolean,
+      default: false,
+    },
+    /** @type {Organization[]} */
+    memberCmsOrganizations: {
+      type: Array,
+      default: () => [],
+    },
   },
   computed: {
+    hasMemberCMSOrganizations () {
+      return !!this.memberCmsOrganizations?.length;
+    },
     yearsOfExperience () {
       const from = new Date(this.practicingSince).getFullYear();
       const to = new Date().getFullYear();
