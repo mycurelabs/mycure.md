@@ -24,8 +24,9 @@
               label="Search Barangay"
               solo
               hide-details
+              v-model="searchText"
             )
-        v-row.px-3
+        v-row(v-if="!searchText").px-3
           v-col(
             cols="12"
             sm="12"
@@ -38,10 +39,25 @@
               block
               @click="onSelectBarangay(brgy)"
             ) {{ brgy.locationTag }}
+        v-row(v-else).px-3
+          v-col(
+            cols="12"
+            sm="12"
+            md="6"
+            v-for="(brgy, key) of matchedBrgys"
+            :key="key"
+          ).py-1.px-1
+            v-btn(
+              depressed
+              block
+              @click="onSelectBarangay(brgy)"
+            ) {{ brgy.locationTag }}
       v-card-actions
 </template>
 
 <script>
+import _ from 'lodash';
+
 export default {
   props: {
     value: null, // eslint-disable-line
@@ -58,6 +74,13 @@ export default {
       default: null,
     },
   },
+  data () {
+    return {
+      searchText: null,
+      matchedBrgys: [],
+      debouncedSearch: _.debounce(this.onSearchBarangay, 250),
+    };
+  },
   computed: {
     model: {
       get () {
@@ -68,12 +91,32 @@ export default {
       },
     },
   },
+  watch: {
+    searchText: {
+      handler () {
+        this.debouncedSearch();
+      },
+    },
+  },
   methods: {
     onSelectBarangay (barangay) {
       if (!barangay) return;
       const pxPortalUrl = process.env.PX_PORTAL_URL;
       const bookingAddress = `${pxPortalUrl}/lgu-appointment/step-1?parent=${this.orgId}&child=${barangay.orgId}`;
       window.location.href = bookingAddress;
+    },
+    onSearchBarangay () {
+      const searchString = this.searchText;
+      const searchPattern = new RegExp(`${searchString}`, 'i');
+
+      const barangaySearchReducer = (accumulator, brgy) => {
+        const brgyLocTag = brgy?.locationTag;
+        if (searchPattern.test(brgyLocTag)) accumulator.push(brgy);
+        return accumulator;
+      };
+      const matchedBarangays = [...this.barangays].reduce(barangaySearchReducer, []);
+
+      this.matchedBrgys = matchedBarangays;
     },
   },
 };
