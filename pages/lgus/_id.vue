@@ -6,6 +6,16 @@
       :name="orgName"
       @selectBrgy="openSelectBrgyDialog"
     )
+    healthcare-facilities(
+      :hcFacilities="hcFacilities"
+      :isLoadingFacilityInfo="isLoadingFacilityInfo"
+      :isLoadingFacilityList="isLoadingFacilityList"
+      :selectedHcFacilityProviders="selectedHcFacilityProviders"
+      :selectedHcFacilityServices="selectedHcFacilityServices"
+      :lguId="orgId"
+      @populateServices="getSelectedFacilityServices"
+      @searchFacility="searchFacility"
+    )
     providers(:doctors="healthCareProviders")
     about(
       :description="description"
@@ -23,13 +33,15 @@
 </template>
 
 <script>
-// services
+// utils
+import { getFacilities, getFacilityMembers, getFacilityServices, searchFacilities } from '~/utils/axios/healthcare-facility';
 import { getOrganization, getChildOrganizations, getLocationTags, getProviders } from '~/utils/axios';
 // utils
 import headMeta from '~/utils/head-meta';
 // components
 import AppBar from '~/components/lgu-website/app-bar';
 import Usp from '~/components/lgu-website/usp';
+import HealthcareFacilities from '~/components/lgu-website/healthcare-facilities';
 import Providers from '~/components/lgu-website/healthcare-providers';
 import About from '~/components/lgu-website/about';
 import Cta from '~/components/lgu-website/cta';
@@ -41,6 +53,7 @@ export default {
   components: {
     AppBar,
     Usp,
+    HealthcareFacilities,
     Providers,
     About,
     Cta,
@@ -53,11 +66,13 @@ export default {
       const childOrgs = await getChildOrganizations({ parentOrgId: params.id });
       const locationTags = await getLocationTags({ parentOrgId: params.id });
       const healthCareProviders = await getProviders({ parentOrgId: params.id });
+      const healthCareFacilities = await getFacilities({ parentId: params.id });
       return {
         lguOrganization,
         childOrgs,
         locationTags,
         healthCareProviders,
+        hcFacilities: healthCareFacilities.data,
       };
     } catch (error) {
       console.error(error);
@@ -68,6 +83,13 @@ export default {
       loading: false,
       backgroundPicUrl: 'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/10/6a/fd/bb/dron-mavic-pro.jpg?w=900&h=-1&s=1',
       selectBrgyDialog: false,
+      // healthcare facilities data
+      isLoading: false,
+      isLoadingFacilityInfo: false,
+      isLoadingFacilityList: false,
+      hcFacilities: [],
+      selectedHcFacilityProviders: [],
+      selectedHcFacilityServices: [],
     };
   },
   computed: {
@@ -94,6 +116,24 @@ export default {
     },
     openSelectBrgyDialog () {
       this.selectBrgyDialog = true;
+    },
+    async getSelectedFacilityServices (orgId) {
+      this.isLoadingFacilityInfo = true;
+      // reset services and providers to empty
+      this.selectedHcFacilityServices = [];
+      this.selectedHcFacilityProviders = [];
+      // get and set the new values
+      const services = await getFacilityServices({ orgId });
+      const providers = await getFacilityMembers({ orgId });
+      this.selectedHcFacilityServices = services;
+      this.selectedHcFacilityProviders = providers;
+      this.isLoadingFacilityInfo = false;
+    },
+    async searchFacility (searchString) {
+      this.isLoadingFacilityList = true;
+      const { data } = await searchFacilities({ parentId: this.orgId, searchString });
+      this.hcFacilities = data;
+      this.isLoadingFacilityList = false;
     },
   },
   head () {
