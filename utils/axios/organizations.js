@@ -1,4 +1,5 @@
 import axios from 'axios';
+import _ from 'lodash';
 import { handleError } from './error-handler';
 
 export const getOrganization = async (opts) => {
@@ -90,15 +91,16 @@ export const getProviders = async (opts) => {
     const { parentOrgId } = opts;
 
     const childOrgs = await getChildOrganizations({ parentOrgId });
-
     const providerPromises = childOrgs.map(async (childOrg) => {
       const childOrgMembers = await getOrgDoctorMembers({ organization: childOrg.id });
       for (const childOrgMember of childOrgMembers) {
         return { ...childOrgMember };
       }
     });
+    const results = await Promise.all(providerPromises);
+    const uniqueProviders = _.uniqBy(results, 'uid');
 
-    return Promise.all(providerPromises);
+    return uniqueProviders;
   } catch (e) {
     console.error(e);
     handleError(e);
