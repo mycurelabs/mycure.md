@@ -30,11 +30,16 @@
                   i Sort by
                 v-col(cols="6")
                   v-select(
+                    v-model="materialSorter"
                     outlined
                     dense
+                    clearable
                     label="Newest, Oldest, Alphabetically"
                     :items="sortTypes"
                     item-text="text"
+                    item-value="value"
+                    @change="sortMaterials(materialSorter)"
+                    @clear="filteredMaterials = [...materials]"
                   )
               v-row(v-for="(material, key) in filteredMaterials" :key="key")
                 v-col.shrink
@@ -66,18 +71,22 @@ export default {
     this.sortTypes = [
       {
         text: 'Newest',
+        value: 'newest',
       },
       {
         text: 'Oldest',
+        value: 'oldest',
       },
       {
         text: 'Alphabetically',
+        value: 'alphabetically',
       },
     ];
     return {
       materials: [],
       filteredMaterials: [],
       selectedCategory: null,
+      materialSorter: null,
     };
   },
   computed: {
@@ -116,6 +125,21 @@ export default {
     },
     onCategorySelect (category) {
       this.selectedCategory = category;
+    },
+    sortMaterials (sorter) {
+      switch (sorter) {
+        case 'newest':
+          this.filteredMaterials = this.filteredMaterials.sort((a, b) => b.createdAt - a.createdAt);
+          break;
+        case 'oldest':
+          this.filteredMaterials = this.filteredMaterials.sort((a, b) => a.createdAt - b.createdAt);
+          break;
+        case 'alphabetically':
+          this.filteredMaterials = this.filteredMaterials.sort((a, b) => (a.title > b.title) ? 1 : ((b.title > a.title) ? -1 : 0));
+          break;
+        default:
+          this.filteredMaterials = [...this.materials];
+      }
     },
   },
 };
