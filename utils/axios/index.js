@@ -326,6 +326,20 @@ export const recordWebsiteVisit = async (opts) => {
   }
 };
 
+export const fetchLearningCornerMaterials = async (opts) => {
+  try {
+    const searchQuery = opts.searchText ? `&$search=${opts.searchText}` : '';
+    const { data } = await axios({
+      method: 'get',
+      url: `${process.env.API_URL}/file-links?account=${opts.account}&public=true${searchQuery}`,
+    });
+    return data.data;
+  } catch (e) {
+    console.error(e);
+    throw handleError(e);
+  }
+};
+
 export * from './doctor-directory';
 export * from './account-invitations';
 export * from './account-waitlist';

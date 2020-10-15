@@ -39,14 +39,20 @@
                     span {{educ.from}} - {{educ.to}}
                     br
           v-tab-item(value="learning-corner")
+            learning-corner(
+              :doctor-id="doctorId"
+            )
 </template>
 
 <script>
+// - components
 import ClinicItem from './clinic-item';
+import LearningCorner from './learning-corner';
 import Services from './services';
 export default {
   components: {
     ClinicItem,
+    LearningCorner,
     Services,
   },
   filters: {
@@ -83,6 +89,10 @@ export default {
     services: {
       type: Array,
       default: () => ([]),
+    },
+    doctorId: {
+      type: String,
+      default: null,
     },
   },
   data () {
