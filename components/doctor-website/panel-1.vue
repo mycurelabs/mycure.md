@@ -37,9 +37,7 @@
     //- action buttons: book online appointment
     v-row(justify="center")
       v-col(class="shrink").pa-1.text-center
-        book-appointment-btn
-      v-col(class="shrink").pa-1.text-center
-        online-consult-btn
+        book-appointment-btn(:outlined="false")
 </template>
 
 <script>

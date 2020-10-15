@@ -6,7 +6,7 @@
           :src="clinicPicURL"
           style="border-radius: 5px"
         )
-      v-btn(color="primary").text-none.clinic-book-btn.mt-5 Book Appointment
+      book-appointment-btn(:outlined="false").clinic-book-btn.mt-5
     v-col.grow
       v-row
         v-col(cols="12").pt-0
@@ -35,41 +35,16 @@
           h4 About this Clinic
           p(v-if="description") {{ description }}
           i(v-else) No description available
-    //- v-col.grow
-    //-   v-row
-    //-     v-col(cols="12" sm="12" md="7" lg="8").pt-0
-    //-       h3(style="margin-top: -5px") {{clinic.name}}
-    //-       template(v-for="key in clinicKeys")
-    //-         template(v-if="clinic[key] && key === 'address'")
-    //-           | {{clinic.address | prettify-address}}
-    //-           br
-    //-         template(v-else-if="clinic[key] && key !== 'address'")
-    //-           span
-    //-             span(v-if="key === 'phone'") +
-    //-             | {{clinic[key]}}
-    //-           br
-    //-       v-col(cols="12" sm="12").pa-0.mt-2
-    //-         //- TODO: check if clinic lat lng is available
-    //-         //- Hide for now until location is implemented
-    //-         //- v-btn(color="primary" depressed).mr-2 View Map
-    //-         v-btn(color="primary" depressed v-if="clinic.website" @click="visitWebsite(clinic.website)") Clinic Website
-    //-     v-col(cols="12" sm="12" md="5" lg="4")
-    //-       h3 Schedules
-    //-       template(v-if="clinicSchedules && clinicSchedules.length === 0")
-    //-         i No schedules available
-    //-       table(v-else)
-    //-         tr(v-for="sched in clinicSchedules")
-    //-           td(width="40") #[b {{sched.day | morph-capitalize}}]
-    //-           td {{sched.opening | morph-date-format('hh:mm A')}}
-    //-           td -
-    //-           td {{sched.closing | morph-date-format('hh:mm A')}}
-    //-         tr(v-if="fullSchedules.length > 3")
-    //-           td(colspan="4")
-    //-             a(@click="clinicSchedulesExpanded = !clinicSchedulesExpanded") View {{clinicSchedulesExpanded ? 'less' : 'more'}}
 </template>
 
 <script>
+// - components
+import BookAppointmentBtn from '~/components/commons/book-appointment-btn';
+
 export default {
+  components: {
+    BookAppointmentBtn,
+  },
   filters: {
     prettifyAddress (address) {
       if (!address) {
