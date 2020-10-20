@@ -9,17 +9,14 @@
     v-spacer
     //- Hide in mobile view since they overlap with logo,
     //- The same btns exist on the center
-    book-appointment-btn(v-if="!$isMobile").mr-2
-    online-consult-btn(v-if="!$isMobile")
+    book-appointment-btn(v-if="!$isMobile" :outlined="false").mr-2
 </template>
 
 <script>
 import BookAppointmentBtn from '~/components/commons/book-appointment-btn';
-import OnlineConsultBtn from '~/components/commons/online-consult-btn';
 export default {
   components: {
     BookAppointmentBtn,
-    OnlineConsultBtn,
   },
 };
 </script>

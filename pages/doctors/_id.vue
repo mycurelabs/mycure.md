@@ -11,9 +11,6 @@
       :member-cms-organizations="memberCMSOrganizations"
       :is-verified="isVerified"
     )
-    services(
-      :services="services"
-    )
     tabs(
       :clinics="clinics"
       :bio="bio"
@@ -21,6 +18,8 @@
       :professions="professions"
       :practicing-since="practicingSince"
       :education="education"
+      :services="services"
+      :doctorId="doctor.id"
     )
     social(
       :name="name"
