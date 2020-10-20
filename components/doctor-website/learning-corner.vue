@@ -7,23 +7,24 @@
             v-col(cols="12" md="4")
               h3.primary--text.mt-2 Learning Corner
               span.font-weight-bold Browse by Category:&nbsp;
-                v-btn(
-                  v-if="selectedCategory"
-                  color="error"
-                  text
-                  @click="selectedCategory = null"
-                ).text-none
-                  v-icon(left) mdi-close
-                  | Clear
+                //- v-btn(
+                //-   v-if="selectedCategory"
+                //-   color="error"
+                //-   text
+                //-   @click="selectedCategory = null"
+                //- ).text-none
+                //-   v-icon(left) mdi-close
+                //-   | Clear
               br
-              div(
+              v-checkbox(
                 v-for="(category, key) in categories"
                 :key="key"
-                :class="{ 'primary--text': selectedCategory === category }"
+                :value="selectedCategory === category"
+                :label="category"
+                dense
+                hide-details
                 @click="onCategorySelect(category)"
               )
-                | {{ category }}
-                br
             v-col(cols="12" md="8")
               v-row
                 v-col(cols="2")
@@ -52,6 +53,14 @@
                   h3 {{ material.title }}
                   p {{ material.description }}
                   br
+                  iframe(
+                    v-if="material.type === 'video'"
+                    align="middle"
+                    width="100%"
+                    :src="material.url"
+                    frameborder="0"
+                    allowfullscreen
+                  )
                   p.grey--text {{ material.category }}
                   v-divider
         h4(v-else) This section is empty.
