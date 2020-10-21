@@ -126,9 +126,9 @@ export default {
     },
     createVirtualConsult () {
       try {
-        const uid = uuidv4();
+        const uuid = uuidv4();
         const startAt = Date.now();
-        const url = `${process.env.CMS_URL_BASE}/virtual-consult-experience/${uid}?startAt=${startAt}`;
+        const url = `${process.env.CMS_URL_BASE}/virtual-consult-experience/${uuid}?startAt=${startAt}`;
         if (this.isSafari()) {
           window.$amplitude.logEvent('ACQ001 Btn > Try Virtual Clinic');
           window.open(url, '_blank', 'noopener, noreferrer');
