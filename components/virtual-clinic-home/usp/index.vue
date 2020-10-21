@@ -122,15 +122,14 @@ export default {
       this.isImageLoaded = true;
     },
     isChrome () {
-      // return navigator.userAgent.match(/(iPod|iPhone|iPad)/) && navigator.userAgent.match(/AppleWebKit/);
-      return userAgentString.indexOf("Chrome") > -1;
+      return !!window.chrome;
     },
     createVirtualConsult () {
       try {
         const uuid = uuidv4();
         const startAt = Date.now();
         const url = `${process.env.CMS_URL_BASE}/virtual-consult-experience/${uuid}?startAt=${startAt}`;
-        if (this.isChrome()) {
+        if (!this.isChrome()) {
           window.$amplitude.logEvent('ACQ001 Btn > Try Virtual Clinic');
           window.open(url, '_blank', 'noopener, noreferrer');
         } else {
