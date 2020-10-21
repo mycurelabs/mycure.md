@@ -11,37 +11,11 @@
           img(
             :src="picURL"
             height="60"
-            alt="Profile"
+            alt="Clinic Logo"
           )
         v-col.pl-2
           h3 {{ clinicName }}
           span Telemedicine
-        v-spacer
-        template(v-if="!$isMobile")
-          nuxt-link(:to="{ name: 'directory-facilities' }" title="MYCURE | Clinic Management System | Cloud EMR Philippines").powered-by-link
-            small.powered-by-txt Powered by:
-            br
-            img(
-              height="30"
-              src="~/assets/images/MYCURE-virtual-clinic-healthcare-practice-online-logo.svg"
-              alt="Mycure"
-            )
-        template(v-else)
-          v-menu(bottom left)
-            template(v-slot:activator="{ on, attrs }")
-              v-btn(icon v-bind="attrs" v-on="on")
-                v-icon mdi-menu
-            v-list(style="width: 250px")
-              v-list-item
-                v-btn(
-                  color="primary"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  large
-                  depressed
-                  block
-                  :href="goToConsult"
-                ) Consult Now
 </template>
 
 <script>

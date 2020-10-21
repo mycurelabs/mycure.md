@@ -1,8 +1,8 @@
 <template lang="pug">
   div
     app-bar(:picURL="picURL" :clinicName="hospitalName")
-    v-col.px-0
-      img(src="~/assets/images/mycure-homepage-usp-cover.png" width="100%").banner-img
+    v-col.pa-0
+      img(src="~/assets/images/clinic-website-default-cover.jpg" width="100%").banner-img
     v-container(v-if="!loading")
       v-row
         search(:hospitalName="hospitalName" :orgId="orgId")
@@ -200,7 +200,7 @@ a {
 }
 
 .banner-img{
-  margin-top: 100px;
+  margin-top: 70px;
 }
 
 .main-container {
