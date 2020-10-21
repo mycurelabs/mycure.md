@@ -126,23 +126,37 @@ export default {
     },
     createVirtualConsult () {
       try {
-        const uid = uuidv4();
-        const startAt = Date.now();
-        const url = `${process.env.CMS_URL_BASE}/virtual-consult-experience/${uid}?startAt=${startAt}`;
-        if (this.isSafari()) {
+        this.loadingVirtualConsult = true;
+        console.warn('test');
+        setTimeout(() => {
+          this.loadingVirtualConsult = false;
+          const uid = uuidv4();
+          const startAt = Date.now();
+          const url = `${process.env.CMS_URL_BASE}/virtual-consult-experience/${uid}?startAt=${startAt}`;
           window.$amplitude.logEvent('ACQ001 Btn > Try Virtual Clinic');
           window.open(url, '_blank', 'noopener, noreferrer');
-        } else {
-          this.loadingVirtualConsult = true;
-          setTimeout(() => {
-            this.loadingVirtualConsult = false;
-            window.$amplitude.logEvent('ACQ001 Btn > Try Virtual Clinic');
-            window.open(url, '_blank', 'noopener, noreferrer');
-          }, 1500);
-        }
+        }, 1500);
       } catch (e) {
         console.error(e);
       }
+      // try {
+      //   const uid = uuidv4();
+      //   const startAt = Date.now();
+      //   const url = `${process.env.CMS_URL_BASE}/virtual-consult-experience/${uid}?startAt=${startAt}`;
+      //   if (this.isSafari()) {
+      //     window.$amplitude.logEvent('ACQ001 Btn > Try Virtual Clinic');
+      //     window.open(url, '_blank', 'noopener, noreferrer');
+      //   } else {
+      //     this.loadingVirtualConsult = true;
+      //     setTimeout(() => {
+      //       this.loadingVirtualConsult = false;
+      //       window.$amplitude.logEvent('ACQ001 Btn > Try Virtual Clinic');
+      //       window.open(url, '_blank', 'noopener, noreferrer');
+      //     }, 1500);
+      //   }
+      // } catch (e) {
+      //   console.error(e);
+      // }
     },
   },
 };
