@@ -67,7 +67,7 @@ export const NINTH_PANEL = {
 };
 export const TENTH_PANEL = {
   subHeader: 'FOR DIAGNOSTICS CENTER',
-  header: 'Create, finalized and release diagnostic test results online',
+  header: 'Create, finalize and release diagnostic test results online',
   image: 'MYCURE-virtual-clinic-healthcare-practice-online-enterprise-I-diagnostic-centers',
   description: 'Designed for laboratory and imaging test centers so your patients can securely view their test results without having to leave their house.',
   descriptionLink: ' See Features',

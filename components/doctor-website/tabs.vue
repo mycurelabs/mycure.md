@@ -4,7 +4,9 @@
       v-col(cols="12" md="10")
         v-tabs(v-model="selectedTab")
           v-tab(href="#clinics") Clinics
+          v-tab(href="#services") Services
           v-tab(href="#professional-info") Professional Info
+          v-tab(href="#learning-corner") Learning Corner
         v-tabs-items(v-model="selectedTab")
           v-tab-item(value="clinics")
             template(v-if="clinics.length === 0")
@@ -12,6 +14,10 @@
                 h3.grey--text #[i No clinics to show]
             template(v-else v-for="(clinic, index) in clinics")
               clinic-item(:clinic="clinic")
+          v-tab-item(value="services")
+            services(
+              :services="services"
+            )
           v-tab-item(value="professional-info")
             v-row
               v-col(cols="12" md="5")
@@ -32,13 +38,22 @@
                     br
                     span {{educ.from}} - {{educ.to}}
                     br
+          v-tab-item(value="learning-corner")
+            learning-corner(
+              :doctor-id="doctorId"
+            )
 </template>
 
 <script>
+// - components
 import ClinicItem from './clinic-item';
+import LearningCorner from './learning-corner';
+import Services from './services';
 export default {
   components: {
     ClinicItem,
+    LearningCorner,
+    Services,
   },
   filters: {
     formatSchool (educ) {
@@ -68,6 +83,14 @@ export default {
       default: null,
     },
     bio: {
+      type: String,
+      default: null,
+    },
+    services: {
+      type: Array,
+      default: () => ([]),
+    },
+    doctorId: {
       type: String,
       default: null,
     },
