@@ -12,14 +12,11 @@
               v-tabs(v-model="activeTab")
                 v-tab Specializations
                 v-tab Doctors
-                v-tab Departments
               v-tabs-items(v-model="activeTab")
                 v-tab-item.main-container.pa-4
                   specializations(:doctors="doctors")
                 v-tab-item.main-container.pa-4
                   doctor-cards(:doctors="formattedDoctors")
-                v-tab-item.main-container.pa-4.text-center
-                  h3 Departments Coming Soon!
           v-row(v-if="hasFrontdesk")
             v-col(cols="12" sm="12")
               chat-now-card(:hospitalName="hospitalName" :orgId="orgId")
