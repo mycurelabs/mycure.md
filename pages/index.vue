@@ -14,15 +14,18 @@
       horizontal
       horizontal-image-size="40%"
     )
-    vid
-    hipaa-compliant
     //- 5th panel
-    privacy
+    vid
     //- 6th panel
-    apis
+    syncbase
+    hipaa-compliant
     //- 7th panel
-    patient-portal(@goToPatientPortal="goToPatientPortal")#patient-portal
+    privacy
     //- 8th panel
+    apis
+    //- 9th panel
+    patient-portal(@goToPatientPortal="goToPatientPortal")#patient-portal
+    //- 10th panel
     testimonial
     //- final panel
     div.cta-container
@@ -40,6 +43,7 @@ import HealthSuites from '~/components/virtual-clinic-home/health-suites';
 import Solutions from '~/components/virtual-clinic-home/solutions';
 import Storyflow from '~/components/commons/storyflow';
 import Vid from '~/components/virtual-clinic-home/vid';
+import Syncbase from '~/components/virtual-clinic-home/syncbase';
 import HipaaCompliant from '~/components/virtual-clinic-home/hipaa-compliant';
 import Privacy from '~/components/virtual-clinic-home/privacy';
 import Apis from '~/components/virtual-clinic-home/apis';
@@ -54,6 +58,7 @@ export default {
     Solutions,
     Storyflow,
     Vid,
+    Syncbase,
     HipaaCompliant,
     Privacy,
     Apis,
