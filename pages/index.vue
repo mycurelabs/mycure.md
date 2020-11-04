@@ -1,7 +1,7 @@
 <template lang="pug">
   div(v-if="!loading").white
     //- 1st panel
-    usp(@getStarted="goToSignupIndividual($event)")
+    usp(@getStarted="goToSignupIndividual").mt-10
     //- 2nd panel
     platform-panels(@getStarted="getStarted")
     //- 3rd panel
@@ -33,7 +33,7 @@ import VueScrollTo from 'vue-scrollto';
 import headMeta from '~/utils/head-meta';
 import { parseTextWithNewLine } from '~/utils/newline';
 // - components
-import Usp from '~/components/virtual-clinic-home/usp';
+import Usp from '~/components/virtual-clinic-home/old-usp';
 import PlatformPanels from '~/components/virtual-clinic-home/platform-panels';
 import HipaaCompliant from '~/components/virtual-clinic-home/hipaa-compliant';
 import Storyflow from '~/components/commons/storyflow';
@@ -106,7 +106,7 @@ export default {
       this.$router.push({ name: 'signup-individual-invite' });
     },
     goToSignupIndividual (email) {
-      this.$router.push({ name: 'signup-individual-invite', params: { email } });
+      this.$router.push({ name: 'signup-individual-invite' });
     },
     goToPatientPortal () {
       window.open(process.env.PX_PORTAL_URL, '_blank', 'noopener, noreferrer');
