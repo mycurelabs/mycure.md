@@ -3,9 +3,8 @@
     //- 1st panel
     usp(@getStarted="goToSignupIndividual").mt-10
     //- 2nd panel
-    platform-panels(@getStarted="getStarted")
+    health-suites
     //- 3rd panel
-    hipaa-compliant
     //- 4th panel
     storyflow(
       :storyflow="storyflowItems"
@@ -14,6 +13,7 @@
       horizontal
       horizontal-image-size="40%"
     )
+    hipaa-compliant
     //- 5th panel
     privacy
     //- 6th panel
@@ -34,7 +34,7 @@ import headMeta from '~/utils/head-meta';
 import { parseTextWithNewLine } from '~/utils/newline';
 // - components
 import Usp from '~/components/virtual-clinic-home/old-usp';
-import PlatformPanels from '~/components/virtual-clinic-home/platform-panels';
+import HealthSuites from '~/components/virtual-clinic-home/health-suites';
 import HipaaCompliant from '~/components/virtual-clinic-home/hipaa-compliant';
 import Storyflow from '~/components/commons/storyflow';
 import Privacy from '~/components/virtual-clinic-home/privacy';
@@ -46,7 +46,7 @@ import Cta from '~/components/virtual-clinic-home/cta';
 export default {
   components: {
     Usp,
-    PlatformPanels,
+    HealthSuites,
     HipaaCompliant,
     Storyflow,
     Privacy,
