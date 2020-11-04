@@ -14,6 +14,7 @@
       horizontal
       horizontal-image-size="40%"
     )
+    vid
     hipaa-compliant
     //- 5th panel
     privacy
@@ -37,8 +38,9 @@ import { parseTextWithNewLine } from '~/utils/newline';
 import Usp from '~/components/virtual-clinic-home/old-usp';
 import HealthSuites from '~/components/virtual-clinic-home/health-suites';
 import Solutions from '~/components/virtual-clinic-home/solutions';
-import HipaaCompliant from '~/components/virtual-clinic-home/hipaa-compliant';
 import Storyflow from '~/components/commons/storyflow';
+import Vid from '~/components/virtual-clinic-home/vid';
+import HipaaCompliant from '~/components/virtual-clinic-home/hipaa-compliant';
 import Privacy from '~/components/virtual-clinic-home/privacy';
 import Apis from '~/components/virtual-clinic-home/apis';
 import Testimonial from '~/components/virtual-clinic-home/testimonial';
@@ -50,8 +52,9 @@ export default {
     Usp,
     HealthSuites,
     Solutions,
-    HipaaCompliant,
     Storyflow,
+    Vid,
+    HipaaCompliant,
     Privacy,
     Apis,
     PatientPortal,
