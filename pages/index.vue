@@ -5,6 +5,7 @@
     //- 2nd panel
     health-suites
     //- 3rd panel
+    solutions
     //- 4th panel
     storyflow(
       :storyflow="storyflowItems"
@@ -35,6 +36,7 @@ import { parseTextWithNewLine } from '~/utils/newline';
 // - components
 import Usp from '~/components/virtual-clinic-home/old-usp';
 import HealthSuites from '~/components/virtual-clinic-home/health-suites';
+import Solutions from '~/components/virtual-clinic-home/solutions';
 import HipaaCompliant from '~/components/virtual-clinic-home/hipaa-compliant';
 import Storyflow from '~/components/commons/storyflow';
 import Privacy from '~/components/virtual-clinic-home/privacy';
@@ -47,6 +49,7 @@ export default {
   components: {
     Usp,
     HealthSuites,
+    Solutions,
     HipaaCompliant,
     Storyflow,
     Privacy,
