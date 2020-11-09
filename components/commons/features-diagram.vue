@@ -3,8 +3,8 @@
     v-container
       v-row(align="center")
         v-col(cols="12").text-center
-          h1(:class="[{'pre-white-space': !isMobile}, isMobile ? 'font-36' : 'font-40']").text-xs-center.lh-title {{title}}
-          p(:class="{'pre-white-space': !isMobile}").font-s.text-xs-center.my-5 {{description}}
+          h1(:class="[{'pre-white-space': !$isMobile}, $isMobile ? 'font-36' : 'font-40']").text-xs-center.lh-title {{title}}
+          p(:class="{'pre-white-space': !$isMobile}").font-s.text-xs-center.my-5 {{description}}
             slot(name="add-content")
       div(v-if="image").pt-5.text-center.justify-center.center
         picture-source(
@@ -13,6 +13,7 @@
           :imageAlt="image"
           :imageWidth="imageWidth"
           :imageFileExtension="imageExtension"
+          :extension-exclusive="extensionExclusive"
         )
     slot(name="diagram-content")
 </template>
@@ -47,21 +48,10 @@ export default {
       type: String,
       default: '',
     },
-  },
-  data () {
-    return {
-      isMobile: true,
-    };
-  },
-  watch: {
-    $isMobile: {
-      handler (val) {
-        this.isMobile = val;
-      },
+    extensionExclusive: {
+      type: Boolean,
+      default: false,
     },
-  },
-  mounted () {
-    this.isMobile = this.$isMobile;
   },
 };
 </script>

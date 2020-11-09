@@ -1,11 +1,11 @@
 <template lang="pug">
   div(v-if="!loading").white
     //- 1st panel
-    usp(@getStarted="goToSignupIndividual($event)")
+    usp(@getStarted="goToSignupIndividual").mt-10
     //- 2nd panel
-    platform-panels(@getStarted="getStarted")
+    health-suites
     //- 3rd panel
-    hipaa-compliant
+    solutions
     //- 4th panel
     storyflow(
       :storyflow="storyflowItems"
@@ -15,12 +15,17 @@
       horizontal-image-size="40%"
     )
     //- 5th panel
-    privacy
+    vid
     //- 6th panel
-    apis
+    syncbase
+    hipaa-compliant
     //- 7th panel
-    patient-portal(@goToPatientPortal="goToPatientPortal")#patient-portal
+    privacy
     //- 8th panel
+    apis
+    //- 9th panel
+    patient-portal(@goToPatientPortal="goToPatientPortal")#patient-portal
+    //- 10th panel
     testimonial
     //- final panel
     div.cta-container
@@ -33,10 +38,13 @@ import VueScrollTo from 'vue-scrollto';
 import headMeta from '~/utils/head-meta';
 import { parseTextWithNewLine } from '~/utils/newline';
 // - components
-import Usp from '~/components/virtual-clinic-home/usp';
-import PlatformPanels from '~/components/virtual-clinic-home/platform-panels';
-import HipaaCompliant from '~/components/virtual-clinic-home/hipaa-compliant';
+import Usp from '~/components/virtual-clinic-home/old-usp';
+import HealthSuites from '~/components/virtual-clinic-home/health-suites';
+import Solutions from '~/components/virtual-clinic-home/solutions';
 import Storyflow from '~/components/commons/storyflow';
+import Vid from '~/components/virtual-clinic-home/vid';
+import Syncbase from '~/components/virtual-clinic-home/syncbase';
+import HipaaCompliant from '~/components/virtual-clinic-home/hipaa-compliant';
 import Privacy from '~/components/virtual-clinic-home/privacy';
 import Apis from '~/components/virtual-clinic-home/apis';
 import Testimonial from '~/components/virtual-clinic-home/testimonial';
@@ -46,9 +54,12 @@ import Cta from '~/components/virtual-clinic-home/cta';
 export default {
   components: {
     Usp,
-    PlatformPanels,
-    HipaaCompliant,
+    HealthSuites,
+    Solutions,
     Storyflow,
+    Vid,
+    Syncbase,
+    HipaaCompliant,
     Privacy,
     Apis,
     PatientPortal,
@@ -106,7 +117,7 @@ export default {
       this.$router.push({ name: 'signup-individual-invite' });
     },
     goToSignupIndividual (email) {
-      this.$router.push({ name: 'signup-individual-invite', params: { email } });
+      this.$router.push({ name: 'signup-individual-invite' });
     },
     goToPatientPortal () {
       window.open(process.env.PX_PORTAL_URL, '_blank', 'noopener, noreferrer');

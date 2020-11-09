@@ -231,4 +231,24 @@ export default {
     margin-bottom: -63.5px !important;
   }
 }
+@media screen and (min-width: 1023px) {
+  .outer-image-container {
+    margin-bottom: -50px !important;
+  }
+}
+@media screen and (min-width: 1124px) {
+  .outer-image-container {
+    margin-bottom: -51px !important;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .outer-image-container {
+    margin-bottom: -58px !important;
+  }
+}
+@media screen and (min-width: 1300px) {
+  .outer-image-container {
+    margin-bottom: -63px !important;
+  }
+}
 </style>

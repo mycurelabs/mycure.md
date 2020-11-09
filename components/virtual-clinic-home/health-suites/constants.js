@@ -33,9 +33,9 @@ export const HEALTH_SUITES_ITEMS = [
     ],
     image: 'mycure-p2-badge-specialized-clinic',
     btnText: 'Start 14-Day Trial',
-    btnLink: 'signup-specialized',
+    btnLink: 'signup-individual',
     btnId: 'home-solutions-specialized-clinics-book-demo',
-    learnLink: 'specialized-clinics',
+    learnLink: 'doctors-clinics',
     learnId: 'home-specialized-clinics-learn-more',
   },
   {
@@ -52,7 +52,7 @@ export const HEALTH_SUITES_ITEMS = [
     btnText: 'Book A Free Demo',
     btnLink: 'signup-multispecialty',
     btnId: 'home-solutions-multispecialty-clinics-book-demo',
-    learnLink: 'multispecialty-clinics',
+    learnLink: 'enterprise',
     learnId: 'home-multispecialty-clinics-learn-more',
   },
   // - TODO: Temporarily hide
