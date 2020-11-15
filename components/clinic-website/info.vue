@@ -4,33 +4,12 @@
       v-col(cols="12" sm="12").text-center
         v-avatar(size="200")
           img(:src="picURL")
-      v-col(cols="12" sm="12")
+      v-col(cols="12" offset-sm="2" sm="8").text-center
         h1 {{ hospitalName }}
         p {{ completeAddress }}
-        v-icon(color="orange" size="20px" v-for="(star) in 5" :key="star").mb-4 mdi-star
-        br
     v-row
-      v-col(cols="12" sm="12").pt-0
-        div
-          h2.py-5.primary--text.pt-0 About
-          p {{ description }}
-
-    //- HIDE THIS FOR THE MOMENT DO NOT DELETE
-    //- div
-    //-   v-btn(
-    //-     color="primary"
-    //-     width="160"
-    //-     outlined
-    //-     large
-    //-     @click=""
-    //-   ) #[b VIEW MAP]
-    //-   v-btn(
-    //-     color="primary"
-    //-     width="160"
-    //-     outlined
-    //-     large
-    //-     @click=""
-    //-   ).ml-3 #[b CLINIC WEBSITE]
+      v-col(cols="12" offset-sm="2" sm="8").text-center
+        p {{ description }}
 </template>
 
 <script>
