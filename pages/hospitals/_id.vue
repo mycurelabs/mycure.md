@@ -1,11 +1,28 @@
 <template lang="pug">
   div
     app-bar(:picURL="picURL" :clinicName="hospitalName")
-    v-col.pa-0
-      img(src="~/assets/images/clinic-website-default-cover.jpg" width="100%").banner-img
-    v-container(v-if="!loading")
+    usp(
+      :background-pic="bannerPicUrl"
+      :name="hospitalName"
+      :org-id="orgId"
+      @searchLoading="searchLoading"
+      @searchResultsLoaded="searchResultsLoaded"
+    )
+    v-container#doctorSearchResult
+      v-row(v-if="loadingSearch")
+        v-col(cols="12" sm="12")
+          p Loading...
+      v-row(v-if="searchResults.length && searchText")
+        v-col(cols="12" sm="12").pt-9.mt-9
+          p Search results for
+            i.font-weight-bold "{{ searchText }}"
+          doctor-cards(v-if="formattedSearchedDoctors" :doctors="formattedSearchedDoctors")
+      v-row(v-if="!searchResults.length && searchText && !loadingSearch").pa-1
+        v-col(cols="12" sm="12").pt-9.mt-9
+          p No results for&nbsp;
+            i.font-weight-bold "{{ searchText }}"
+      v-divider(v-if="searchText && !loadingSearch")
       v-row
-        search(:hospitalName="hospitalName" :orgId="orgId")
         v-col(cols="12" sm="8")
           v-row
             v-col(cols="12" sm="12")
@@ -21,6 +38,9 @@
             v-col(cols="12" sm="12")
               chat-now-card(:hospitalName="hospitalName" :orgId="orgId")
         v-col(cols="12" sm="4")
+
+      v-row
+        v-col(cols="12" sm="12")
           info(
             :hospitalName="hospitalName"
             :address="address"
@@ -28,8 +48,6 @@
             :picURL="picURL"
             :description="description"
           )
-      v-row
-        v-col(cols="12" sm="8")
       v-divider
       v-footer(color="white").mt-3
         v-row(justify="center" align="center" no-gutters)
@@ -57,12 +75,14 @@
 </template>
 
 <script>
+// utils
+import VueScrollTo from 'vue-scrollto';
+import headMeta from '~/utils/head-meta';
 // services
 import { getHospitalWebsite, getMembership, getServices, getFrontdeskMembers } from '~/utils/axios';
-// utils
-import headMeta from '~/utils/head-meta';
 // components
 import AppBar from '~/components/clinic-website/app-bar';
+import Usp from '~/components/hospital/usp';
 import Search from '~/components/clinic-website/search';
 import Info from '~/components/clinic-website/info';
 import DoctorCards from '~/components/clinic-website/doctor-card';
@@ -73,6 +93,7 @@ export default {
   layout: 'clinic-website',
   components: {
     AppBar,
+    Usp,
     Info,
     Search,
     DoctorCards,
@@ -104,8 +125,10 @@ export default {
       { icon: 'mdi-linkedin', link: 'https://www.linkedin.com/' },
     ];
     return {
-      loading: false,
       activeTab: null,
+      loadingSearch: false,
+      searchResults: [],
+      searchText: null,
     };
   },
   computed: {
@@ -114,6 +137,10 @@ export default {
     },
     picURL () {
       return this.hospitalWebsite?.picURL || require('~/assets/images/clinics-website/hospital-thumbnail.jpg');
+    },
+    bannerPicUrl () {
+      // TODO: fetch banner pic url from service
+      return require('~/assets/images/clinic-website-default-cover.jpg');
     },
     description () {
       return this.hospitalWebsite?.description ||
@@ -180,11 +207,40 @@ export default {
         };
       });
     },
+    formattedSearchedDoctors () {
+      return this.searchResults?.map((doctor) => {
+        const practicingSince = doctor.doc_practicingSince; // eslint-disable-line
+        const yearsPracticing = practicingSince && (new Date().getFullYear() - practicingSince);
+
+        return {
+          ...doctor,
+          picURL: doctor.picURL,
+          doctorName: `Dr. ${doctor.name?.firstName} ${doctor.name?.lastName}`,
+          specialties: doctor.doc_specialties?.join(', '), // eslint-disable-line
+          yearsPracticing: yearsPracticing && `${yearsPracticing} years`,
+        };
+      });
+    },
+  },
+  methods: {
+    searchLoading (isLoading) {
+      this.loadingSearch = isLoading;
+    },
+    searchResultsLoaded (search) {
+      const { results, text } = search;
+
+      if (results && results.length && text) {
+        VueScrollTo.scrollTo('#doctorSearchResult', 500, { easing: 'ease' });
+      }
+
+      this.searchResults = results;
+      this.searchText = text;
+    },
   },
   head () {
     return headMeta({
-      title: `${this.hospitalWebsite?.name || 'Hospital Website'}`,
-      description: `${this.bio || 'Visit my professional website and schedule an appointment with me today.'}`,
+      title: `${this.hospitalName || 'Hospital Website'}`,
+      description: this.description,
       socialBanner: this.picURL,
     });
   },
