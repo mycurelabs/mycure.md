@@ -1,20 +1,5 @@
 <template lang="pug">
   v-col(cols="12" sm="12")
-    v-row
-      v-col(cols="12" sm="10").pb-0
-        v-text-field(
-          :placeholder="searchPlaceholder"
-          solo
-          v-model="searchText"
-          clearable
-        )
-      v-col(cols="12" sm="2").pb-0
-        v-btn(
-          color="primary"
-          large
-          block
-          @click="onSearch"
-        ) Search
     v-row(v-if="searchLoading")
       v-col(cols="12" sm="12")
         p Loading...
