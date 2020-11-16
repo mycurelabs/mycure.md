@@ -28,7 +28,7 @@
             v-col(cols="12" sm="12")
               v-tabs(v-model="activeTab")
                 v-tab Specializations
-                v-tab Doctors
+                v-tab Doctors ({{ formattedDoctors.length }})
               v-tabs-items(v-model="activeTab")
                 v-tab-item.main-container.pa-4
                   specializations(:doctors="doctors")
@@ -37,8 +37,13 @@
           v-row(v-if="hasFrontdesk")
             v-col(cols="12" sm="12")
               chat-now-card(:hospitalName="hospitalName" :orgId="orgId")
-        v-col(cols="12" sm="4")
-
+        v-col(cols="12" sm="4").service-sched
+          v-row
+            v-col(cols="12" sm="12")
+              hospital-schedules(:schedules="clinicSchedules")
+          v-row
+            v-col(cols="12" sm="12")
+              hospital-services(:services-offered="sortedServices")
       v-row
         v-col(cols="12" sm="12")
           info(
@@ -88,6 +93,8 @@ import Info from '~/components/clinic-website/info';
 import DoctorCards from '~/components/clinic-website/doctor-card';
 import Specializations from '~/components/clinic-website/specialization-expansion';
 import ChatNowCard from '~/components/clinic-website/chat-now-card';
+import HospitalServices from '~/components/clinic-website/services';
+import HospitalSchedules from '~/components/clinic-website/schedules';
 
 export default {
   layout: 'clinic-website',
@@ -99,6 +106,8 @@ export default {
     DoctorCards,
     Specializations,
     ChatNowCard,
+    HospitalServices,
+    HospitalSchedules,
   },
   async asyncData ({ params, error }) {
     try {
@@ -177,6 +186,30 @@ export default {
     },
     maximumServicePrice () {
       return this.sortedServices?.pop()?.price;
+    },
+    clinicSchedules () {
+      if (!this.schedules) return; // eslint-disable-line
+
+      const groupedSched = [...this.schedules].reduce((prev, current) => { // eslint-disable-line
+        const sameDay = prev.find(prev => prev.day === current.day);
+        const { opening, closing } = current;
+        const currentOpeningClosing = { opening, closing };
+
+        if (sameDay && Array.isArray(sameDay.hours)) {
+          sameDay.day = current.day;
+          sameDay.hours.push(currentOpeningClosing);
+        } else if (sameDay && !Array.isArray(sameDay.hours)) {
+          sameDay.day = current.day;
+          sameDay.hours = [currentOpeningClosing];
+        } else {
+          prev.push({
+            day: current.day,
+            hours: [currentOpeningClosing],
+          });
+        }
+        return prev;
+      }, []);
+      return groupedSched;
     },
     schedules () {
       return this.hospitalWebsite?.mf_schedule; // eslint-disable-line
@@ -259,5 +292,9 @@ a {
 .main-container {
   background-color: #ececec;
   border-radius: 5px;
+}
+
+.service-sched {
+  padding-top: 60px;
 }
 </style>
