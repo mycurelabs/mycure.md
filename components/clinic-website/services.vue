@@ -58,7 +58,7 @@ strong {
 .main-container {
   background-color: #ececec;
   border-radius: 5px;
-  min-height: 434px;
   position: relative;
+  padding: 30px;
 }
 </style>
