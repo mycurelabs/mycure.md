@@ -60,8 +60,13 @@ export default {
     this.loading = false;
     const panel = this.scrollPanel || '#app';
     this.$nextTick(() => {
-      VueScrollTo.scrollTo(panel, 500, { easing: 'ease', offset: -70 });
+      if (this.$route.query.scrollToSpecializedClinics) {
+        VueScrollTo.scrollTo('#specialized-practice', 500, { easing: 'ease', offset: 800 });
+      } else {
+        VueScrollTo.scrollTo(panel, 500, { easing: 'ease', offset: -20 });
+      }
     });
+    console.log('scrollpanel', this.$route.query.scrollToSpecializedClinics);
   },
   methods: {
     getStarted () {

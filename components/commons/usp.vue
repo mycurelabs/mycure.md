@@ -3,7 +3,7 @@
     v-container(
       :class="[isMobile ? 'mobile-page-height' : 'whole-page', {'mt-4': visibleCookie}]"
     )
-      v-row(align="center")
+      v-row(align="center").usp-text-container
         v-col(cols="12").text-center
           strong(v-if="uspMetaTitle || slottedMetaTitle" :class="[getMetaFontSize]").text-center.primary--text
             template(v-if="slottedMetaTitle")
@@ -217,6 +217,9 @@ export default {
 }
 .uspMobileBtn {
   height: 75px;
+}
+.usp-text-container {
+  margin-top: 43px;
 }
 /* .web-padding {
   padding-bottom: 14.80px;
