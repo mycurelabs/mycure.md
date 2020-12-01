@@ -52,15 +52,21 @@
                 v-col.grow
                   h3 {{ material.title }}
                   p {{ material.description }}
-                  br
+                  br(v-if="material.description")
                   iframe(
                     v-if="material.type === 'video'"
                     align="middle"
                     width="100%"
+                    height="300"
                     :src="material.url"
                     frameborder="0"
                     allowfullscreen
                   )
+                  v-btn(
+                    v-else
+                    color="primary"
+                    @click="openFile(material)"
+                  ).text-none Open File
                   p.grey--text {{ material.category }}
                   v-divider
         h4(v-else) This section is empty.
@@ -149,6 +155,9 @@ export default {
         default:
           this.filteredMaterials = [...this.materials];
       }
+    },
+    openFile (material) {
+      window.open(material.url, '_blank', 'noopener noreferrer');
     },
   },
 };
