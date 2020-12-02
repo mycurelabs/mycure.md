@@ -1,80 +1,69 @@
 <template lang="pug">
   v-container
-    v-row
-      v-col(cols="12")
-        div(v-if="materials.length")
-          v-row
-            v-col(cols="12" md="4")
-              h3.primary--text.mt-2 Learning Corner
-              span.font-weight-bold Browse by Category:&nbsp;
-                //- v-btn(
-                //-   v-if="selectedCategory"
-                //-   color="error"
-                //-   text
-                //-   @click="selectedCategory = null"
-                //- ).text-none
-                //-   v-icon(left) mdi-close
-                //-   | Clear
-              br
-              v-checkbox(
-                v-for="(category, key) in categories"
-                :key="key"
-                :value="selectedCategory === category"
-                :label="category"
-                dense
-                hide-details
-                @click="onCategorySelect(category)"
-              )
-            v-col(cols="12" md="8")
-              v-row
-                v-col(cols="2")
-                  i Sort by
-                v-col(cols="6")
-                  v-select(
-                    v-model="materialSorter"
-                    outlined
-                    dense
-                    clearable
-                    label="Newest, Oldest, Alphabetically"
-                    :items="sortTypes"
-                    item-text="text"
-                    item-value="value"
-                    @change="sortMaterials(materialSorter)"
-                    @clear="filteredMaterials = [...materials]"
-                  )
-              v-row(v-for="(material, key) in filteredMaterials" :key="key")
-                v-col.shrink
-                  v-avatar(tile size="100")
-                    img(
-                      :src="materialPicURL"
-                      style="border-radius: 5px"
+    client-only
+      v-row
+        v-col(cols="12")
+          div(v-if="materials.length")
+            v-row
+              v-col(cols="12" md="4")
+                h3.primary--text.mt-2 Learning Corner
+                span.font-weight-bold Browse by Category:&nbsp;
+                  //- v-btn(
+                  //-   v-if="selectedCategory"
+                  //-   color="error"
+                  //-   text
+                  //-   @click="selectedCategory = null"
+                  //- ).text-none
+                  //-   v-icon(left) mdi-close
+                  //-   | Clear
+                br
+                v-checkbox(
+                  v-for="(category, key) in categories"
+                  :key="key"
+                  :value="selectedCategory === category"
+                  :label="category"
+                  dense
+                  hide-details
+                  @click="onCategorySelect(category)"
+                )
+              v-col(cols="12" md="8")
+                v-row
+                  v-col(cols="2")
+                    i Sort by
+                  v-col(cols="6")
+                    v-select(
+                      v-model="materialSorter"
+                      outlined
+                      dense
+                      clearable
+                      label="Newest, Oldest, Alphabetically"
+                      :items="sortTypes"
+                      item-text="text"
+                      item-value="value"
+                      @change="sortMaterials(materialSorter)"
+                      @clear="filteredMaterials = [...materials]"
                     )
-                v-col.grow
-                  h3 {{ material.title }}
-                  p {{ material.description }}
-                  br(v-if="material.description")
-                  iframe(
-                    v-if="material.type === 'video'"
-                    align="middle"
-                    width="100%"
-                    height="300"
-                    :src="material.url"
-                    frameborder="0"
-                    allowfullscreen
-                  )
-                  v-btn(
-                    v-else
-                    color="primary"
-                    @click="openFile(material)"
-                  ).text-none Open File
-                  p.grey--text {{ material.category }}
-                  v-divider
-        h4(v-else) This section is empty.
+                v-row
+                  v-col(
+                    v-for="(material, key) in filteredMaterials"
+                    :key="key"
+                    cols="12"
+                    md="4"
+                  ).grow.material-container
+                    div.material-top
+                      h3 {{ material.title }}
+                      p {{ material.description }}
+                    div.material-bottom
+                      a(@click="openFile(material)").primary--text.font-weight-bold View {{ material.type === 'video' ? 'Video' : 'Article'}}
+                      p.grey--text.font-12(v-if="material.category") Category: {{ material.category }}
+                      v-divider
+          h4(v-else) This section is empty.
 </template>
 
 <script>
 import { uniqBy } from 'lodash';
 import { fetchLearningCornerMaterials } from '~/utils/axios';
+
 export default {
   props: {
     doctorId: {
@@ -105,9 +94,6 @@ export default {
     };
   },
   computed: {
-    materialPicURL () {
-      return require('~/assets/images/doctor-website/doctor-website-profile-clinic.png');
-    },
     categories () {
       if (!this.materials.length) {
         return [];
@@ -162,3 +148,16 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.material-container {
+  position: relative;
+}
+.material-top {
+  min-height: 200px;
+}
+.material-bottom {
+  position: absolute;
+  bottom: 0;
+}
+</style>
