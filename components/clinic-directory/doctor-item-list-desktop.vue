@@ -2,24 +2,22 @@
   v-col(cols="12")
     v-data-table(
       :headers="doctorsTableHeaders"
-      :items="doctorsTableContents"
+      :items="doctors"
       :items-per-page="5"
       disable-sort
     )
-      template(v-slot:item.imageUrl="{ item }")
-        v-avatar(size="50" rounded).ma-4
-          img(v-lazy="require(`~/assets/images/doctor-website/${item.imageUrl}`)")
-      template(v-slot:item.name="{ item }")
-        p.mb-2 {{ item.name }}
-        v-btn(color="primary" small elevation="0").letter-spacing-normal.text-none.font-weight-bold Book Now
-      template(v-slot:item.availability="{ item }")
-        v-btn(width="110" tile elevation="0" icon).letter-spacing-normal.text-none.primary--text.font-weight-bold Availability
-      template(v-slot:item.viewSite="{ item }")
-        v-btn(width="110" tile elevation="0" icon).letter-spacing-normal.text-none.primary--text.font-weight-bold View Site
+      template(v-slot:body="{ items }")
+        tbody
+          template(v-for="item in items")
+            doctor-item-list-row(:doctor="item")
 </template>
 
 <script>
+import DoctorItemListRow from '~/components/clinic-website/doctor-item-list-row';
 export default {
+  components: {
+    DoctorItemListRow,
+  },
   props: {
     /**
      * Array of doctor objects
@@ -56,11 +54,6 @@ export default {
           value: 'experience',
           class: 'primary--text font-weight-bold',
           width: '20%',
-        },
-        {
-          text: '',
-          value: 'availability',
-          width: '10%',
         },
         {
           text: '',
