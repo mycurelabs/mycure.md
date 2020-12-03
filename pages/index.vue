@@ -1,7 +1,7 @@
 <template lang="pug">
   div(v-if="!loading").white
     //- 1st panel
-    usp(@getStarted="goToSignupIndividual").mt-10
+    usp(@getStarted="goToSignupIndividual").usp-container
     //- 2nd panel
     health-suites
     //- 3rd panel
@@ -147,5 +147,8 @@ export default {
   position: relative;
   margin-bottom: 0%;
   z-index: 1;
+}
+.usp-container{
+  margin-top: 10em;
 }
 </style>
