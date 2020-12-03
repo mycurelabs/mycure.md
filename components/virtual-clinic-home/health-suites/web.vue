@@ -13,8 +13,8 @@
       )
         v-card(
           height="100%"
-          :color="hoveredClinic === suite.learnLink ? '#fafafa' : '#f0f0f0'"
-          @mouseover="hoveredClinic = suite.learnLink"
+          :color="hoveredClinic === suite.learnId ? '#fafafa' : '#f0f0f0'"
+          @mouseover="hoveredClinic = suite.learnId"
           @mouseout="hoveredClinic = ''"
         ).health-suites-card
           v-card-text.black--text
@@ -23,7 +23,7 @@
             v-row
               v-col(cols="12" md="4").text-center.pt-1
                 img(
-                  :src="require(`~/assets/images/${suite.image}${hoveredClinic === suite.learnLink ? '-active' : ''}.png`)"
+                  :src="require(`~/assets/images/${suite.image}${hoveredClinic === suite.learnId ? '-active' : ''}.png`)"
                   width="100%"
                   :alt="suite.header"
                   @click="$nuxt.$router.push({ name: suite.learnLink })"
@@ -43,11 +43,21 @@
                 ).text-none.font-weight-bold {{ suite.btnText }}
               v-col(cols="12" md="6").pl-1.pr-5.text-xs-right
                 v-btn(
+                  v-if="suite.learnId !== 'home-specialized-clinics-learn-more'"
                   outlined
                   block
                   color="primary"
                   :id="suite.learnId"
-                  :to="{ name: suite.learnLink }"
+                  :to="{ name: suite.learnLink}"
+                  @click.stop="handleLearnMoreBtn(suite.learnId)"
+                ).text-none.font-weight-bold Learn More >
+                v-btn(
+                  v-else="suite.learnId === 'home-specialized-clinics-learn-more'"
+                  outlined
+                  block
+                  color="primary"
+                  :id="suite.learnId"
+                  :to="{ name: suite.learnLink, query: { scrollToSpecializedClinics: 'true' } }"
                   @click.stop="handleLearnMoreBtn(suite.learnId)"
                 ).text-none.font-weight-bold Learn More >
 </template>
