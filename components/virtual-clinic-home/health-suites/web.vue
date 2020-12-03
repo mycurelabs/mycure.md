@@ -52,7 +52,7 @@
                   @click.stop="handleLearnMoreBtn(suite.learnId)"
                 ).text-none.font-weight-bold Learn More >
                 v-btn(
-                  v-if="suite.learnId === 'home-specialized-clinics-learn-more'"
+                  v-else="suite.learnId === 'home-specialized-clinics-learn-more'"
                   outlined
                   block
                   color="primary"

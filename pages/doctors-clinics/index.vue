@@ -66,7 +66,6 @@ export default {
         VueScrollTo.scrollTo(panel, 500, { easing: 'ease', offset: -20 });
       }
     });
-    console.log('scrollpanel', this.$route.query.scrollToSpecializedClinics);
   },
   methods: {
     getStarted () {
