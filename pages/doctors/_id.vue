@@ -20,7 +20,7 @@
       :education="education"
       :services="services"
       :doctorId="doctor.id"
-    )
+    ).mb-12
     social(
       :name="name"
     )
