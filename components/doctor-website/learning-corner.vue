@@ -42,16 +42,15 @@
                     @change="sortMaterials(materialSorter)"
                     @clear="filteredMaterials = [...materials]"
                   )
-              v-row
+              v-row.fill-height
                 v-col(
                   v-for="(material, key) in filteredMaterials"
                   :key="key"
                   cols="12"
                   md="4"
                 ).grow.material-container
-                  div.material-top
-                    h3 {{ material.title }}
-                    p {{ material.description }}
+                  h3 {{ material.title }}
+                  p {{ material.description }}
                   div.material-bottom
                     a(@click="openFile(material)").primary--text.font-weight-bold View {{ material.type === 'video' ? 'Video' : 'Article'}}
                     p.grey--text.font-12(v-if="material.category") Category: {{ material.category }}
@@ -151,9 +150,6 @@ export default {
 <style scoped>
 .material-container {
   position: relative;
-}
-.material-top {
-  min-height: 200px;
 }
 .material-bottom {
   position: absolute;
