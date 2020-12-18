@@ -149,6 +149,6 @@ export default {
   z-index: 1;
 }
 .usp-container{
-  margin-top: 10em;
+  margin-top: 78px;
 }
 </style>
