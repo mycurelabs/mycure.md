@@ -34,8 +34,14 @@
 
 <script>
 // utils
-import { getFacilities, getFacilityMembers, getFacilityServices, searchFacilities } from '~/utils/axios/healthcare-facility';
-import { getOrganization, getChildOrganizations, getLocationTags, getProviders } from '~/utils/axios';
+import {
+  // - Note: Commented out for disabling purposes
+  // getFacilities,
+  getFacilityMembers,
+  getFacilityServices,
+  searchFacilities,
+} from '~/utils/axios/healthcare-facility';
+// import { getOrganization, getChildOrganizations, getLocationTags, getProviders } from '~/utils/axios';
 // utils
 import headMeta from '~/utils/head-meta';
 // components
@@ -60,23 +66,25 @@ export default {
     LguFooter,
     SelectBarangayDialog,
   },
-  async asyncData ({ params, error }) {
-    try {
-      const lguOrganization = await getOrganization({ id: params.id });
-      const childOrgs = await getChildOrganizations({ parentOrgId: params.id });
-      const locationTags = await getLocationTags({ parentOrgId: params.id });
-      const healthCareProviders = await getProviders({ parentOrgId: params.id });
-      const healthCareFacilities = await getFacilities({ parentId: params.id });
-      return {
-        lguOrganization,
-        childOrgs,
-        locationTags,
-        healthCareProviders,
-        hcFacilities: healthCareFacilities.data,
-      };
-    } catch (error) {
-      console.error(error);
-    }
+  asyncData ({ redirect, params, error }) {
+    // - NOTE: For disabling purposes
+    return redirect('/');
+    // try {
+    //   const lguOrganization = await getOrganization({ id: params.id });
+    //   const childOrgs = await getChildOrganizations({ parentOrgId: params.id });
+    //   const locationTags = await getLocationTags({ parentOrgId: params.id });
+    //   const healthCareProviders = await getProviders({ parentOrgId: params.id });
+    //   const healthCareFacilities = await getFacilities({ parentId: params.id });
+    //   return {
+    //     lguOrganization,
+    //     childOrgs,
+    //     locationTags,
+    //     healthCareProviders,
+    //     hcFacilities: healthCareFacilities.data,
+    //   };
+    // } catch (error) {
+    //   console.error(error);
+    // }
   },
   data () {
     return {

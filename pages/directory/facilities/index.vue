@@ -58,6 +58,7 @@ import { getFeaturedHospitals, getFeaturedClinics } from '~/utils/axios';
 
 export default {
   layout: 'clinic-website',
+  middleware: ['disable-route'],
   components: {
     AppBar,
     SearchAndSort,
