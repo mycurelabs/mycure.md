@@ -8,6 +8,7 @@ import Invite from '~/components/signup-individual/invite';
 import headMeta from '~/utils/head-meta';
 export default {
   layout: 'user',
+  middleware: ['disable-route'],
   components: {
     Invite,
   },
