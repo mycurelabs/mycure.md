@@ -46,7 +46,7 @@
               v-btn(
                 v-if="currentRoute === 'doctors-clinics'"
                 color="accent"
-                :to="currentRoute === 'doctors-clinics' ? { name: 'signup-individual-invite' } : { name: 'signup-multispecialty-step-1' }"
+                :to="currentRoute === 'doctors-clinics' ? { name: 'signup-individual' } : { name: 'signup-multispecialty-step-1' }"
                 id="start-free-btn"
                 @click.stop="onActionBtnClick('start-free-btn')"
               )
