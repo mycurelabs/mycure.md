@@ -1,12 +1,11 @@
 <template lang="pug">
-  div.main-container
-    h2.pb-3 Clinic Schedule
-    div(v-for="(sched, key) in schedules" :key="key")
-      v-row
-        v-col(cols="12" sm="4")
-          h3.font-weight-bold.text-capitalize.left {{ sched.day }}
-        v-col(cols="12" sm="8")
-          p(v-for="(hour, key) in sched.hours" :key="key").mb-0.right {{ formatTime(hour.opening) }} - {{ formatTime(hour.closing) }}
+  div(:class="{ 'text-left': !$isMobile, 'text-center': $isMobile  }").main-container
+    h2.pb-3.font-21 Clinic Schedule
+    div(v-for="(sched, key) in schedules" :key="key").d-flex
+      v-col(cols="4").px-0
+        h3.font-weight-bold.text-capitalize.left {{ sched.day }}
+      v-col(cols="8").px-0
+        p.mb-0.right {{ formatTime(sched.opening) }} - {{ formatTime(sched.closing) }}
 </template>
 
 <script>
@@ -37,10 +36,10 @@ strong {
   cursor: pointer;
 }
 .main-container {
-  background-color: #ececec;
+  /* background-color: #ececec; */
   border-radius: 5px;
   min-height: 300px;
   position: relative;
-  padding: 30px;
+  padding: 20px;
 }
 </style>
