@@ -56,11 +56,8 @@
                 v-btn(icon v-bind="attrs" v-on="on")
                   v-icon mdi-menu
               v-list
-                v-list-item
-                  a(
-                    href="/signup/individual/invite"
-                    target="_blank"
-                  ).text-none.ml-2 #[b Create an Account]
+                v-list-item(to="/signup/individual/invite")
+                  v-list-item-title Create an Account
 </template>
 
 <script>
