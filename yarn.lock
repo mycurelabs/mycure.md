@@ -1286,10 +1286,10 @@
   dependencies:
     core-js "^2.5.7"
 
-"@mycure/sdk-js@^5.32.7":
-  version "5.32.7"
-  resolved "https://registry.yarnpkg.com/@mycure/sdk-js/-/sdk-js-5.32.7.tgz#6bad69cc16a8acec7161182dbf466408f56d4e79"
-  integrity sha512-PTnpsjkvGNJ0OgGFWK6qwm+kpNhFfuKRM9eRaBh4P4T1chUT1PDwL2QCIOMPTsXoltxdKjxFNQNJ9NSLy9VPCw==
+"@mycure/sdk-js@^5.32.8":
+  version "5.32.8"
+  resolved "https://registry.yarnpkg.com/@mycure/sdk-js/-/sdk-js-5.32.8.tgz#dd67aab352aec086a3f0aae5fb698d5ba4344e5e"
+  integrity sha512-CrjlHPRjveU338L2SEj5z/idNtGPDZ6kU6A0GLpA/3d18YL3Yua/8Jde1SgBkYpe/y4xoarOC8ntZ3ydKkBa9w==
   dependencies:
     lodash.clonedeep "^4.5.0"
     qs "^6.9.1"

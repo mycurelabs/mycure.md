@@ -47,9 +47,6 @@ export default {
       return this.services.slice(5, servicesLength);
     },
   },
-  mounted () {
-    console.log('services', this.services);
-  },
 };
 </script>
 

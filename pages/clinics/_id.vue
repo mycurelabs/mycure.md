@@ -34,7 +34,13 @@
           ).dropdown
       v-row
         v-col(v-if="!$isMobile" cols="12" md="7")
-          doctor-cards(:formattedDoctors="formattedDoctors" :members="doctors")
+          doctor-cards(
+            :formattedDoctors="formattedDoctors"
+            :members="orgDoctors"
+            :total="doctorsTotal"
+            :limit="doctorsLimit"
+            @onUpdatePage="fetchDoctorMembers"
+            )
         v-col(cols="12" md="5" align="center")
           info(
             :hospitalName="clinicName"
@@ -113,7 +119,7 @@
 </template>
 
 <script>
-import { getClinicWebsite, getMembership, getServices, getOrgDoctorMembers } from '~/utils/axios';
+import { getClinicWebsite, getMembership, getServices } from '~/utils/axios';
 import headMeta from '~/utils/head-meta';
 import AppBar from '~/components/clinic-website/app-bar';
 import Usp from '~/components/clinic-website/usp';
@@ -150,12 +156,10 @@ export default {
       const membership = await getMembership({ organization: params.id });
       const member = membership[0];
       const services = await getServices({ facility: params.id });
-      const orgDoctors = await getOrgDoctorMembers({ organization: params.id });
       return {
         clinicWebsite,
         member,
         services,
-        orgDoctors,
       };
     } catch (error) {
       console.error(error);
@@ -168,10 +172,13 @@ export default {
       { icon: 'mdi-email', link: 'mailto:' },
       { icon: 'mdi-linkedin', link: 'https://www.linkedin.com/' },
     ];
+    this.doctorsLimit = 7;
     return {
       loading: true,
       page: 1,
       pageCount: 2,
+      orgDoctors: [],
+      doctorsTotal: 0,
     };
   },
   computed: {
@@ -228,13 +235,17 @@ export default {
     },
     doctors () {
       // return { data: this.clinicWebsite };
-      return this.orgDoctors;
+      if (this.orgDoctors.length > 0) {
+        return this.orgDoctors;
+      } else {
+        return [];
+      }
     },
     consultIDS () {
       return { docUID: this.member?.uid, clinicID: this.orgId };
     },
     formattedDoctors () {
-      return this.doctors?.map((doctor) => {
+      return this.orgDoctors?.map((doctor) => {
         const practicingSince = doctor.personalDetails?.['doc_practicingSince'];
         const yearsPracticing = practicingSince && (new Date().getFullYear() - practicingSince);
 
@@ -250,6 +261,34 @@ export default {
   },
   mounted () {
     this.loading = false;
+    this.fetchDoctorMembers();
+  },
+  methods: {
+    async fetchDoctorMembers (page = 1) {
+      const skip = this.doctorsLimit * (page - 1);
+      const { items, total } = await this.$sdk.service('organization-members').find({
+        organization: this.orgId,
+        roles: 'doctor',
+        $limit: this.doctorsLimit,
+        $skip: skip,
+      });
+      this.doctorsTotal = total;
+      const members = items;
+      if (!members?.length) return members;
+
+      const doctorPersonalDetails = await this.fetchDoctorPersonalDetails(members);
+      this.orgDoctors = doctorPersonalDetails;
+    },
+    async fetchDoctorPersonalDetails (members) {
+      const populatedMembersPromises = members.map(async (member) => {
+        const data = await this.$sdk.service('personal-details').get(member.uid);
+        return {
+          ...member,
+          personalDetails: data,
+        };
+      });
+      return await Promise.all(populatedMembersPromises);
+    },
   },
   head () {
     return headMeta({

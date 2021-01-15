@@ -58,9 +58,6 @@ export default {
       return this.$vuetify.breakpoint.xlOnly;
     },
   },
-  mounted () {
-    console.log('doctors list', this.doctors);
-  },
   methods: {
     goToConsult (doctor) {
       if (!doctor) return;

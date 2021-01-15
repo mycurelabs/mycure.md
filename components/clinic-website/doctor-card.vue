@@ -2,11 +2,11 @@
   div
     v-card.mb-3
       v-tabs(v-model="activeTab").doctor-card
-        v-tab #[b Doctors] ({{ formattedDoctors.length }})
+        v-tab #[b Doctors] ({{ total }})
         v-tab #[b Specializations]
       v-tabs-items(v-model="activeTab").doctor-card
         v-tab-item.pa-4
-          div(v-for="(doctor, key) in visibleDoctors" :key="key").d-flex.pa-6
+          div(v-for="(doctor, key) in formattedDoctors" :key="key").d-flex.pa-6
             v-avatar
               img(
                 v-if="doctor.picURL"
@@ -49,12 +49,7 @@
         v-pagination(
           v-if="this.activeTab === 0"
           v-model="page"
-          :length="2"
-          prev-icon="mdi-menu-left"
-          next-icon="mdi-menu-right"
-          @next="nextPage(visibleDoctors)"
-          @previous="previousPage(visibleDoctors)"
-          @input="paginate()"
+          :length="length"
         )
         v-tab-item.main-container.pa-4
           specializations(:doctors="members")
@@ -75,13 +70,19 @@ export default {
       type: Array,
       default: () => ([]),
     },
+    total: {
+      type: Number,
+      default: 0,
+    },
+    limit: {
+      type: Number,
+      default: 7,
+    },
   },
   data () {
     return {
       activeTab: null,
       page: 1,
-      currentPage: 0,
-      pageItems: 7,
       visibleDoctors: [],
       prevButtonClicked: false,
     };
@@ -96,28 +97,15 @@ export default {
     isMaleDoctor (doctor) {
       return doctor === 'male';
     },
-    // formattedDoctors () {
-    //   return this.doctors?.map((doctor) => {
-    //     const practicingSince = doctor.personalDetails?.['doc_practicingSince'];
-    //     const yearsPracticing = practicingSince && (new Date().getFullYear() - practicingSince);
-
-    //     return {
-    //       ...doctor,
-    //       picURL: doctor.personalDetails?.picURL,
-    //       doctorName: `Dr. ${doctor.personalDetails?.name?.firstName} ${doctor.personalDetails?.name?.lastName}`,
-    //       specialties: doctor.personalDetails?.['doc_specialties']?.join(', '),
-    //       yearsPracticing: yearsPracticing && `${yearsPracticing} years`,
-    //     };
-    //   });
-    // },
+    length () {
+      return Math.ceil(this.total / this.limit) || 0;
+    },
   },
-  mounted () {
-    console.log('formattedDoctors', this.formattedDoctors);
-    console.log('visibleDoctors', this.visibleDoctors);
-    // this.updateVisibleDoctors();
-  },
-  beforeMount () {
-    this.updateVisibleDoctors();
+  watch: {
+    page (val) {
+      this.$emit('onUpdatePage', val);
+      return val;
+    },
   },
   methods: {
     goToConsult (doctor) {
@@ -125,35 +113,6 @@ export default {
       const docUID = doctor.uid;
       const clinicID = doctor.organization;
       return `${process.env.PX_PORTAL_URL}/clinic-appointment/step-1?doctor=${docUID}&organization=${clinicID}`;
-    },
-    updatePage (pageNumber) {
-      this.currentPage = pageNumber;
-      this.updateVisibleDoctors();
-    },
-    updateVisibleDoctors () {
-      this.visibleDoctors = this.formattedDoctors.slice(this.currentPage * this.pageItems, (this.currentPage * this.pageItems) + this.pageItems);
-
-      // IF there are no visible doctors, go back a page
-      if (this.visibleDoctors.length === 0 && this.currentPage > 0) {
-        this.updatePage(this.currentPage - 1);
-      }
-    },
-    nextPage (visibleDoctors) {
-      this.updatePage(this.currentPage + 1);
-    },
-    previousPage (visibleDoctors) {
-      this.prevButtonClicked = true;
-      this.updatePage(this.currentPage - 1);
-      console.log('this.prevbuttonclicked', this.prevButtonClicked);
-    },
-    paginate (prevButton) {
-      console.log('this.Page', this.page);
-      console.log('this.prevbuttonclicked paginate', this.prevButtonClicked);
-      if (this.page === 1 && !this.prevButtonClicked) {
-        this.updatePage(this.page - 1);
-      } else {
-        this.updatePage(this.page);
-      }
     },
   },
 };

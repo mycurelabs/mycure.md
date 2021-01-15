@@ -98,31 +98,6 @@ export default {
       return this.$vuetify.breakpoint.xlOnly;
     },
   },
-  mounted () {
-    console.log('specialization-expansion', this.formattedDoctors);
-
-    // const result = this.formattedDoctors?.reduce((acc, doctor) => {
-    //   const specialties = doctor.personalDetails?.['doc_specialties'];
-    //   if (!specialties?.length) return acc;
-    //   for (const specialty of specialties) {
-    //     if (!acc[specialty]) acc[specialty] = [];
-    //     acc[specialty].push(doctor);
-    //   }
-    //   return acc;
-    // }, {});
-
-    const result = Object.entries(this.specialtyDoctorsMap)
-      .map(([specialty, doctors]) => ({
-        specialty,
-        doctors,
-        doctorsLengthText: doctors.length === 1
-          ? '1 Doctor'
-          : `${doctors.length} Doctors`,
-      }));
-
-    console.log('result', result);
-    return result;
-  },
   methods: {
     goToConsult (doctor) {
       if (!doctor) return;
