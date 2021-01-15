@@ -4,7 +4,7 @@
     usp.mb-10
     how-it-works.mb-10
     consult.mb-10
-    services.mb-10
+    services-section.mb-10
     hipaa.mb-10
     Cta.mb-10
 </template>
@@ -14,7 +14,7 @@ import AppBar from '~/components/home/AppBar';
 import Usp from '~/components/home/Usp';
 import HowItWorks from '~/components/home/HowItWorks';
 import Consult from '~/components/home/Consult';
-import Services from '~/components/home/Services';
+import ServicesSection from '~/components/home/ServicesSection';
 import Hipaa from '~/components/home/Hipaa';
 import Cta from '~/components/home/Cta';
 export default {
@@ -24,7 +24,7 @@ export default {
     Usp,
     HowItWorks,
     Consult,
-    Services,
+    ServicesSection,
     Hipaa,
     Cta,
   },
