@@ -10,7 +10,7 @@
       v-col(cols="4").d-flex.text-container
         div.ma-auto
           h2.font-50.white--text.text-right Think you #[br] have #[span.highlighted COVID?]
-          a(href="/index").text-decoration-none.white--text.font-25 consult a doctor now
+          a(href="/index").text-decoration-none.white--text.font-25.mt-2 consult a doctor now
             v-icon(color="white").ml-4 mdi-arrow-right
 
 </template>
@@ -29,5 +29,8 @@
 }
 .font-50 {
   font-size: 50px;
+}
+a{
+  text-decoration: none !important;
 }
 </style>
