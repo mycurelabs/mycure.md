@@ -4,12 +4,15 @@
       v-col(cols="12" sm="12").text-center
         v-avatar(size="130")
           img(:src="picURL")
-      v-col(cols="10").text-center
+      v-col(cols="12").text-center
         h1 {{ hospitalName }}
         p.font-14 {{ completeAddress }}
+      v-col(cols="10").text-center
+        v-icon(medium) mdi-phone
+        span.ml-2 #[b {{ contactNumber }}]
     v-row(justify="center" align="center")
       v-col(
-        cols="10"
+        cols="12"
         :class="{ 'text-left': !$isMobile, 'text-center': $isMobile }"
         )
         h3.font-21 About
@@ -39,16 +42,23 @@ export default {
       type: String,
       default: '',
     },
+    contactNumber: {
+      type: String,
+      default: '',
+    },
   },
   data () {
     return {};
+  },
+  mounted () {
+    console.log('contact', this.contactNumber);
   },
 };
 </script>
 
 <style scoped>
 .container {
-  background: rgba(0, 153, 204, 0.2);;
+  /* background: rgba(0, 153, 204, 0.2); */
   /* width:448px; */
 }
 h1{

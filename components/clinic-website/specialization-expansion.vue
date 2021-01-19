@@ -2,13 +2,13 @@
   div
     v-expansion-panels(flat :value="0")
       v-expansion-panel(v-for="entry in specialtyDoctorsMapEntries" :key="entry.specialty")
-        v-expansion-panel-header.pa-1
+        v-expansion-panel-header.pa-1.doctor-card
           template(v-slot:actions)
             v-icon.primary--text.icon mdi-chevron-down
           span.header-title {{ entry.specialty }}
           span.primary--text.mr-2.doctors-count {{ entry.doctorsLengthText }}
-        v-expansion-panel-content(v-for="doctor in entry.doctors" :key="doctor.id")
-          div.d-inline-flex
+        v-expansion-panel-content(v-for="doctor in entry.doctors" :key="doctor.id").doctor-card
+          div.d-flex
             v-avatar
               img(
                 v-if="doctor.picURL"
@@ -29,6 +29,8 @@
               strong {{ doctor.doctorName }}
               p.ma-0
                 span(v-if="doctor.specialties") {{ doctor.specialties }}
+            v-spacer
+            div.ml-auto.my-auto
               v-btn(
                 v-if="xlBelow"
                 color="primary"
@@ -121,5 +123,11 @@ export default {
   position: relative;
   text-align: right;
   order: 2;
+}
+.doctor-card {
+  background-color: #F2F2F2;
+}
+.doctor-card >>> .v-item-group {
+  background-color: #F2F2F2;
 }
 </style>

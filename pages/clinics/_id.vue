@@ -4,19 +4,28 @@
     usp(
       :name="clinicName"
       :org-id="orgId"
+      :coverURL="coverURL"
       @searchLoading="searchLoading"
       @searchResultsLoaded="searchResultsLoaded"
     )
     v-container
       v-row(justify="center" align="center")
-        p.font-21.pb-2 Doctors available:
+        v-icon.pb-2.font-gray mdi-filter-list
+          //- span.font-21 Filter
+        v-col(cols="12" md="3").py-0
+          v-select(
+            :items="items"
+            label="Specialty available"
+            dense
+            outlined
+            width="258"
+          ).dropdown
         v-col(cols="12" md="3").py-0
           v-select(
             :items="items"
             label="Every Monday"
             dense
             outlined
-            width="258"
           ).dropdown
         v-col(cols="12" md="3").py-0
           v-select(
@@ -25,32 +34,27 @@
             dense
             outlined
           ).dropdown
-        v-col(cols="12" md="3").py-0
-          v-select(
-            :items="items"
-            label="Including Holidays"
-            dense
-            outlined
-          ).dropdown
-      v-row
-        v-col(v-if="!$isMobile" cols="12" md="7")
+      v-row(justify="center")
+        v-col(v-if="!$isMobile" cols="12" md="6")
           doctor-cards(
             :formattedDoctors="formattedDoctors"
             :members="orgDoctors"
             :total="doctorsTotal"
             :limit="doctorsLimit"
+            :servicesOffered="servicesOffered"
             @onUpdatePage="fetchDoctorMembers"
             )
-        v-col(cols="12" md="5" align="center")
+        div(v-if="!$isMobile").pa-4
+        v-col(cols="12" md="4" align="center")
+          schedules(:schedules="schedules").mt-2
           info(
             :hospitalName="clinicName"
             :address="address"
             :completeAddress="completeAddress"
             :picURL="picURL"
             :description="description"
+            :contactNumber="contactNumber"
           )
-          services(:servicesOffered="servicesOffered").mt-2
-          schedules(:schedules="schedules").mt-2
     //-         schedules(:schedules="schedules").pa-3
     //-         v-col(cols="12" style="background-color: #ececec; border-radius: 5px; min-height: 100px;").mt-6
     //-           //- UPDATE CONSULTATIONS DATA
@@ -188,6 +192,9 @@ export default {
     picURL () {
       return this.clinicWebsite?.picURL || require('~/assets/images/clinics-website/hospital-thumbnail.jpg');
     },
+    coverURL () {
+      return this.clinicWebsite?.coverURL || require('~/assets/images/clinics-website/usp-background.png');
+    },
     description () {
       return this.clinicWebsite?.description ||
       `${this.clinicWebsite?.name} specializes in telehealth services. ${this.clinicWebsite?.name} telemedicine service is committed to provide medical consultation via video conference or phone call to our patient 24 hours a day 7 days a week.`;
@@ -210,6 +217,9 @@ export default {
         this.clinicWebsite?.address?.province,
         this.clinicWebsite?.address?.country,
       ].filter(Boolean).join(', ') || 'Address not available';
+    },
+    contactNumber () {
+      return this.clinicWebsite?.phone || 'Contact Number not available';
     },
     servicesOffered () {
       return this.services;

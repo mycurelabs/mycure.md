@@ -2,64 +2,40 @@
   div
     v-card.mb-3
       v-tabs(v-model="activeTab").doctor-card
+        v-tab #[b Specialties]
+        v-tab #[b Services Offered]
         v-tab #[b Doctors] ({{ total }})
-        v-tab #[b Specializations]
       v-tabs-items(v-model="activeTab").doctor-card
-        v-tab-item.pa-4
-          div(v-for="(doctor, key) in formattedDoctors" :key="key").d-flex.pa-6
-            v-avatar
-              img(
-                v-if="doctor.picURL"
-                :src="doctor.picURL"
-                alt="Doctor Profile"
-                )
-              img(
-                v-if="!doctor.picURL && doctor.sex === 'male'"
-                src="~/assets/images/clinics-website/physician-male.png"
-                alt="Male Doctor Profile"
-              )
-              img(
-                v-if="!doctor.picURL && doctor.sex === 'female'"
-                src="~/assets/images/clinics-website/physician-female.png"
-                alt="Female Doctor Profile"
-              )
-            div.ml-3
-              strong.font-18 {{ doctor.doctorName}}
-              p.ma-0
-                span(v-if="doctor.specialties") {{ doctor.specialties }}
-            v-spacer
-            v-row(align="center" justify="end")
-              v-btn(
-                v-if="xlBelow"
-                color="primary"
-                target="_blank"
-                rel="noopener noreferrer"
-                :href="goToConsult(doctor)"
-                outlined
-              ) #[b Consult Now]
-            v-btn(
-              v-if="xlOnly"
-              color="primary"
-              style="position: absolute; right: 6px;"
-              target="_blank"
-              rel="noopener noreferrer"
-              :href="goToConsult(doctor)"
-              outlined
-            ) #[b Consult Now]
-        v-pagination(
-          v-if="this.activeTab === 0"
-          v-model="page"
-          :length="length"
-        )
         v-tab-item.main-container.pa-4
           specializations(:doctors="members")
+        v-tab-item.main-container.pa-4
+          template(v-for="(service, key) in servicesOffered").d-flex.pa-6
+            single-card(
+              :service="service"
+              :isService="true"
+              :key="key"
+            )
+        v-tab-item.pa-4
+          template(v-for="(doctor, key) in formattedDoctors")
+            single-card(
+              :doctor="doctor"
+              :isDoctor="true"
+              :key="key"
+            )
+          v-pagination(
+            v-if="this.activeTab === 2"
+            v-model="page"
+            :length="length"
+          )
 </template>
 
 <script>
 import Specializations from '~/components/clinic-website/specialization-expansion';
+import SingleCard from '~/components/commons/single-card';
 export default {
   components: {
     Specializations,
+    SingleCard,
   },
   props: {
     formattedDoctors: {
@@ -77,6 +53,10 @@ export default {
     limit: {
       type: Number,
       default: 7,
+    },
+    servicesOffered: {
+      type: Array,
+      default: () => ([]),
     },
   },
   data () {

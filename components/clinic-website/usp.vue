@@ -24,9 +24,9 @@ import { searchClinicDoctors } from '~/utils/axios';
 
 export default {
   props: {
-    backgroundPic: {
+    coverURL: {
       type: String,
-      default: () => require('~/assets/images/clinics-website/usp-background.png'),
+      default: '',
     },
     name: {
       type: String,
@@ -46,7 +46,7 @@ export default {
   computed: {
     backgroundStyle () {
       const overlay = 'linear-gradient(270deg, rgba(0, 0, 0, .5), rgba(0, 0, 0, .5))';
-      return { 'background-image': `${overlay}, url(${this.backgroundPic})` };
+      return { 'background-image': `${overlay}, url(${this.coverURL})` };
     },
   },
   methods: {
