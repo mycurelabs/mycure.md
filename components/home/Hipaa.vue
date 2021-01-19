@@ -5,7 +5,7 @@
         hr(color="#E7E7E7" height="6")
       v-col(cols="10" md="6").mt-10.mb-10
         v-img(
-          :src="require('~/assets/images/HiPAA Badge.png')"
+          :src="require('~/assets/images/HIPAA Badge.png')"
           alt="Hipaa Badge"
           width="100%"
         )
