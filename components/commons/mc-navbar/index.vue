@@ -43,7 +43,19 @@ export default {
   data () {
     this.solutionsMenuItems = [
       {
-        name: 'Digital Clinics',
+        name: 'What is MYCURE?',
+        route: 'features',
+        new: false,
+        external: false,
+      },
+      {
+        name: 'Features',
+        route: 'features',
+        new: false,
+        external: false,
+      },
+      {
+        name: 'Clinics',
         new: false,
         subMenus: [
           {
@@ -109,13 +121,13 @@ export default {
         ],
       },
       {
-        name: 'Features',
-        route: 'features',
+        name: 'Pricing',
+        route: 'pricing',
         new: false,
         external: false,
       },
       {
-        name: 'Patient Portal',
+        name: 'For Patients',
         route: 'index',
         panel: 'patient-portal',
         panelOffset: -100,
