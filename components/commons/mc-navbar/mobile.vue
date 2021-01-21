@@ -4,6 +4,13 @@
       nuxt-link(:to="{ name: 'index' }" title="MYCURE | Clinic Management System | Cloud EMR Philippines").logo-a
         img(src="~/assets/images/mycure-header-logo.png" width="130" alt="MYCURE logo").mt-1
       v-spacer
+      v-btn(
+        text
+        :to="{ name: loginURL }"
+        id="login-btn"
+        @click.stop="onActionBtnClick('login-btn')"
+      ).mr-2.ml-1
+        span.font-14.tab.text-none.font-weight-bold.header-gray &nbsp;LOGIN
       v-btn(icon large @click="drawer = !drawer")
         v-icon.font-35 mdi-menu
       //- Banner
