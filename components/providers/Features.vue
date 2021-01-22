@@ -3,7 +3,7 @@
     template(v-for="row in rows")
       v-row(v-if="!$isMobile" align="center").my-10
         v-col(cols="12" md="6" :class="{ 'order-last': row.imagePos === 'left' }").header-gray
-          b(v-if="row.superTitle").mr-2.primary--text {{row.superTitle}}
+          b(v-if="row.superTitle").mr-4.primary--text {{row.superTitle}}
             v-chip(
               v-if="row.superTitleChipText"
               dense
@@ -68,7 +68,7 @@ export default {
         {
           imagePos: 'right',
           image: require('../../assets/images/providers/Phone-Mockup.png'),
-          title: 'Making every step of patient care a breeze',
+          title: 'MYCURE makes every step of patient care a breeze',
           list: [
             'Control number of patients for easy COVID safety compliance',
             'Patient and doctor have access to necessary EMR',
@@ -90,7 +90,7 @@ export default {
         {
           imagePos: 'right',
           image: require('../../assets/images/providers/Clinic-Website-cropped.png'),
-          title: 'Impress when patients learn about you on your website',
+          title: 'Impress your patients when they learn about you on your website',
           superTitle: 'FREE WEBSITE',
           list: [
             'Increase exposure for your medical services',

@@ -16,10 +16,10 @@
               p.white--text {{plan.description}}
     v-row(v-else align="center" justify="center").mobile-container
       v-col(cols="10").mt-8
-        h1.text-center.font-30.mb-5.plan-title.white--text Start for free, then pay as you grow.
-      v-col(cols="10").mt-2
+        h1.text-center.font-30.plan-title.white--text Start for free, then pay as you grow.
+      v-col(cols="10")
         template(v-for="plan in plans")
-          h1.font-24.white--text.mt-6 {{plan.name}}
+          h1.font-24.white--text.mt-4 {{plan.name}}
           p.font-20.white--text {{plan.description}}
       v-col(cols="12").text-center.mb-8
           v-btn(
