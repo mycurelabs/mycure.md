@@ -74,7 +74,7 @@ export default {
 
 @media screen and (min-width: 1344px) {
   .bg {
-    background-image: url('../../assets/images/providers/USP Image.png');
+    background-image: url('../../assets/images/providers/USP-Image.png');
     background-size: 800px;
     background-position: right;
     background-repeat: no-repeat;
@@ -85,7 +85,7 @@ export default {
 
 @media screen and (max-width: 1343px) {
   .bg-mobile {
-  background-image: url('../../assets/images/providers/USP Image Mobile.png');
+  background-image: url('../../assets/images/providers/USP-image-mobile.png');
   background-size: 438px;
   background-position: center;
   background-repeat: no-repeat;
