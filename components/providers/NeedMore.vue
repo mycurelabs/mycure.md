@@ -9,7 +9,7 @@
           x-large
           rounded
           color="primary"
-        ).font-weight-bold Learn more
+        ).font-weight-bold.text-none Learn more
 </template>
 
 <style scoped>
