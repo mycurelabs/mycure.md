@@ -62,6 +62,7 @@ module.exports = {
     { src: '~/plugins/vue-morphling.js', mode: 'client' },
     '~/plugins/vue-lazyload.js',
     { src: '~/plugins/amplitude.js', mode: 'client' },
+    { src: '~/plugins/mycure.js', mode: 'client' },
   ],
   /*
   ** Nuxt.js dev-modules
