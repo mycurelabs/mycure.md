@@ -42,85 +42,100 @@ export default {
   },
   data () {
     this.solutionsMenuItems = [
-      {
-        name: 'Digital Clinics',
-        new: false,
-        subMenus: [
-          {
-            name: 'Solo Practice',
-            route: 'doctors-clinics',
-            panel: 'app',
-            external: false,
-          },
-          {
-            name: 'Group Practice',
-            route: 'doctors-clinics',
-            panel: 'group-practice',
-            panelOffset: -70,
-            external: false,
-          },
-          {
-            name: 'Specialized Practice',
-            route: 'doctors-clinics',
-            panel: 'specialized-practice',
-            panelOffset: -70,
-            external: false,
-          },
-        ],
-      },
-      {
-        name: 'Enterprise',
-        new: false,
-        subMenus: [
-          {
-            name: 'Multispecialty Clinics',
-            route: 'enterprise',
-            panel: 'app',
-            external: false,
-          },
-          {
-            name: 'Multi-branch Facilities',
-            route: 'enterprise',
-            panel: 'multibranch-facilities',
-            panelOffset: -70,
-            external: false,
-          },
-          {
-            name: 'Corporate Clinics',
-            route: 'enterprise',
-            panel: 'corporate-clinics',
-            panelOffset: -70,
-            external: false,
-          },
-          {
-            name: 'Medical Arts Centers',
-            route: 'enterprise',
-            panel: 'medical-arts-centers',
-            panelOffset: -70,
-            external: false,
-          },
-          {
-            name: 'Diagnostic Centers',
-            route: 'enterprise',
-            panel: 'diagnostic-centers',
-            panelOffset: -70,
-            external: false,
-          },
-        ],
-      },
+      // {
+      //   name: 'What is MYCURE?',
+      //   route: 'features',
+      //   new: false,
+      //   external: false,
+      // },
       {
         name: 'Features',
         route: 'features',
         new: false,
         external: false,
+        comingSoon: false,
+      },
+      // {
+      //   name: 'Clinics',
+      //   new: false,
+      //   subMenus: [
+      //     {
+      //       name: 'Solo Practice',
+      //       route: 'doctors-clinics',
+      //       panel: 'app',
+      //       external: false,
+      //     },
+      //     {
+      //       name: 'Group Practice',
+      //       route: 'doctors-clinics',
+      //       panel: 'group-practice',
+      //       panelOffset: -70,
+      //       external: false,
+      //     },
+      //     {
+      //       name: 'Specialized Practice',
+      //       route: 'doctors-clinics',
+      //       panel: 'specialized-practice',
+      //       panelOffset: -70,
+      //       external: false,
+      //     },
+      //   ],
+      // },
+      // {
+      //   name: 'Enterprise',
+      //   new: false,
+      //   subMenus: [
+      //     {
+      //       name: 'Multispecialty Clinics',
+      //       route: 'enterprise',
+      //       panel: 'app',
+      //       external: false,
+      //     },
+      //     {
+      //       name: 'Multi-branch Facilities',
+      //       route: 'enterprise',
+      //       panel: 'multibranch-facilities',
+      //       panelOffset: -70,
+      //       external: false,
+      //     },
+      //     {
+      //       name: 'Corporate Clinics',
+      //       route: 'enterprise',
+      //       panel: 'corporate-clinics',
+      //       panelOffset: -70,
+      //       external: false,
+      //     },
+      //     {
+      //       name: 'Medical Arts Centers',
+      //       route: 'enterprise',
+      //       panel: 'medical-arts-centers',
+      //       panelOffset: -70,
+      //       external: false,
+      //     },
+      //     {
+      //       name: 'Diagnostic Centers',
+      //       route: 'enterprise',
+      //       panel: 'diagnostic-centers',
+      //       panelOffset: -70,
+      //       external: false,
+      //     },
+      //   ],
+      // },
+      {
+        name: 'Pricing',
+        route: 'pricing',
+        new: false,
+        external: false,
+        comingSoon: false,
       },
       {
-        name: 'Patient Portal',
+        name: 'For Patients',
         route: 'index',
         panel: 'patient-portal',
         panelOffset: -100,
-        new: true,
+        new: false,
         external: false,
+        comingSoon: true,
       },
       // TODO: bring back later
       // {

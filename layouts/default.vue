@@ -2,18 +2,18 @@
   v-app#app
     mc-navbar(v-if="!loading")
     nuxt
-    mc-footer(v-if="!loading")
+    my-footer(v-if="!loading")
 </template>
 
 <script>
 // - components
 import McNavbar from '~/components/commons/mc-navbar';
-import McFooter from '~/components/commons/mc-footer';
+import MyFooter from '~/components/home/MyFooter';
 
 export default {
   components: {
     McNavbar,
-    McFooter,
+    MyFooter,
   },
   data () {
     return {
@@ -145,5 +145,11 @@ export default {
 /* secondary */
 .mc-grey {
   background-color: #616161 !important;
+}
+.header-gray {
+  color: #4D4D4D;
+}
+.subtitle-gray{
+  color: #777777;
 }
 </style>

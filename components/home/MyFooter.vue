@@ -1,0 +1,148 @@
+<template lang="pug">
+  div.footer-gray
+    v-container
+      v-row(justify="center" align="center" no-gutters)
+        v-col.text-center
+          img(
+            src="~/assets/images/mycure-footer-logo.png"
+            alt="White MYCURE Logo"
+            width="200"
+          ).mt-4
+      v-row(:class="{ 'justify-space-around' : !$isMobile }").mt-4
+        template(v-for="(footerItem, index) in footerItems")
+          v-col(cols="6" md="2").footer-section
+            h4(v-if="footerItem.type === 'footer-header'").primary--text {{ footerItem.value }}
+            a(
+              v-for="(col, index) in footerItem.columns"
+              v-if="col.type === 'link'"
+              :href="col.link"
+              target="_blank"
+              el="noopener noreferrer"
+            ).white--text.d-block.font-16 {{col.value}}
+      hr(v-if="!$isMobile").my-5
+      v-row(align="center" no-gutters)
+        v-col(
+          :class="{ 'text-center order-last' : $isMobile }"
+          cols="12"
+          md="7"
+        )
+          span.call-number.white--text Copyright &copy; 2016 - {{ new Date().getFullYear() }}
+            a(href="https://mycure.md" rel="noopener noreferrer")
+              strong.primary--text &nbsp;MYCURE Inc.&nbsp;
+          span.call-number.white--text #[br(v-if="$isMobile")] All Rights Reserved.
+        v-col(v-if="$isMobile" cols="12")
+          hr.mb-4
+        v-col(
+          :class="{ 'order-first text-center ' : $isMobile, 'text-right' : !$isMobile }"
+          cols="12"
+          md="5"
+        )
+          template(v-for="(account, key) in socMed")
+            a(:href="account.link" target="_blank" rel="noopener noreferrer")
+              img(:src="require(`~/assets/images/${ account.icon }`)" height="35" :alt="account.name").ma-4
+</template>
+
+<script>
+export default {
+  data () {
+    return {
+      footerItems: [
+        {
+          type: 'footer-header',
+          value: 'About',
+          columns: [
+            { type: 'link', value: 'Fight COVID-19:', link: '/index' },
+            { type: 'link', value: 'Our Story', link: '/our-story' },
+            { type: 'link', value: 'Blog', link: 'https://blog.mycure.md' },
+            { type: 'link', value: 'Careers', link: 'https://culture.mycure.md/' },
+          ],
+        },
+        {
+          type: 'footer-header',
+          value: 'Support',
+          columns: [
+            { type: 'link', value: 'FAQs', link: '/faqs' },
+            { type: 'link', value: 'Chat with us', link: '/our-story' },
+          ],
+        },
+        // {
+        //   type: 'footer-header',
+        //   value: 'Patients',
+        //   columns: [
+        //     { type: 'link', value: 'Consult', link: '/' },
+        //     { type: 'link', value: 'Lab & Imaging', link: '/' },
+        //     { type: 'link', value: 'My Health', link: '/' },
+        //     { type: 'link', value: 'Medicine Delivery', link: '/' },
+        //   ],
+        // },
+        {
+          type: 'footer-header',
+          value: 'Providers',
+          columns: [
+            { type: 'link', value: 'Clinics', link: '/' },
+            { type: 'link', value: 'Enterprise', link: '/' },
+          ],
+        },
+        {
+          type: 'footer-header',
+          value: 'Legal',
+          columns: [
+            { type: 'link', value: 'Terms of use', link: '/terms' },
+            { type: 'link', value: 'Privacy Policy', link: '/privacy-policy' },
+          ],
+        },
+        {
+          type: 'footer-header',
+          value: 'Contact Us',
+          columns: [
+            { type: 'link', value: 'hello@mycure.md', link: '/' },
+            { type: 'link', value: '(+632) 7799 6262', link: '/' },
+            { type: 'link', value: '(+63) 917 303 4350', link: '/' },
+          ],
+        },
+      ],
+      socMed: [
+        {
+          name: 'MYCURE - Instagram',
+          link: 'https://www.instagram.com/mycure.md/',
+          icon: 'mycure-homepage-wireframe-icon-ig.png',
+          id: 'footer-ig-btn',
+        },
+        {
+          name: 'MYCURE - LinkedIn',
+          link: 'https://www.linkedin.com/company/mycure',
+          icon: 'mycure-homepage-wireframe-icon-linkedin.png',
+          id: 'footer-linkedin-btn',
+        },
+        {
+          name: 'MYCURE - YouTube',
+          link: 'https://www.youtube.com/channel/UCfQ5QBdFh6f9Tuj2tWkRmvg',
+          icon: 'mycure-homepage-wireframe-icon-ytub-e.png',
+          id: 'footer-yt-btn',
+        },
+        {
+          name: 'MYCURE - Facebook',
+          link: 'https://www.facebook.com/mycure.md',
+          icon: 'mycure-homepage-wireframe-icon-fb.png',
+          id: 'footer-fb-btn',
+        },
+        {
+          name: 'MYCURE - Twitter',
+          link: 'https://twitter.com/mycureapp',
+          icon: 'mycure-homepage-wireframe-icon-twitter.png',
+          id: 'footer-twitter-btn',
+        },
+      ],
+    };
+  },
+};
+</script>
+
+<style scoped>
+.footer-gray {
+  background-color: #343a40 !important;
+}
+a {
+  text-decoration: none !important;
+}
+</style>

@@ -18,6 +18,7 @@
                 v-btn(v-if="!item.subMenus" text @click="onNavLinkClick(item)")
                   span.font-14.tab.text-none {{item.name}}
                   span(v-if="item.new").ml-2.px-1.white--text.red.font-weight-bold.font-14.pill NEW
+                  span(v-if="item.comingSoon").ml-2.px-1.white--text.btn-yellow.font-weight-bold.font-12.pill Coming Soon
                 v-menu(offset-y v-else).solutions-menu
                   template(v-slot:activator="{ on }")
                     v-btn(
@@ -42,7 +43,7 @@
                 id="login-btn"
                 @click.stop="onActionBtnClick('login-btn')"
               ).mr-2.ml-1
-                span.font-14.tab.text-none.font-weight-bold &nbsp;Login
+                span.font-14.tab.text-none.font-weight-bold &nbsp;LOGIN
               v-btn(
                 v-if="currentRoute === 'doctors-clinics'"
                 color="accent"
@@ -80,10 +81,11 @@
                 v-else
                 color="accent"
                 id="get-started-btn"
-                :to=" { name: 'signup-individual' }"
+                rounded
+                :to=" { name: 'signup-individual-invite' }"
                 @click.stop="onActionBtnClick('get-started-btn')"
               )
-                strong.font-14.white--text.tab.text-none Sign Up
+                strong.font-14.white--text.tab.text-none Get started for free
 </template>
 
 <script>
@@ -175,5 +177,9 @@ a {
 }
 .solutions-menu {
   z-index: 250;
+}
+.btn-yellow {
+  background-color: #E7C13A !important;
+;
 }
 </style>
