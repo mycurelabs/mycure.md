@@ -1,14 +1,25 @@
 <template lang="pug">
-  div.need-more-container
-    v-row(align="center")
-      v-col.pa-10.grow
-        h1.white--text Need more?
-        p.white--text Enhance your experience with MYCURE's full suite of modules.
-      v-col.pa-10.shrink
+  div(:class="{ 'need-more-container' : !$isMobile, 'mobile-container' : $isMobile }")
+    v-row(align="center" justify="center")
+      v-col(cols="6" md="8").pa-md-8.grow
+        h1(:class="{ 'font-22' : $isMobile }").white--text Need more?
+        p(:class="{ 'font-12' : $isMobile }").white--text.mb-0.mt-2 Need more? Enhance your facility’s capabilities with MYCURE’s full suite of modules!
+      v-col.pa-md-8.shrink.text-center
         v-btn(
+          v-if="$isMobile"
+          small
+          rounded
+          color="primary"
+          to="/features"
+          target="_blank"
+        ).font-weight-bold Learn more
+        v-btn(
+          v-else
           x-large
           rounded
           color="primary"
+          to="/features"
+          target="_blank"
         ).font-weight-bold Learn more
 </template>
 
@@ -16,5 +27,8 @@
 .need-more-container {
   background-color: #085B77;
   border-radius: 10px;
+}
+.mobile-container{
+  background-color: #085B77;
 }
 </style>

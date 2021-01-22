@@ -1,21 +1,30 @@
 <template lang="pug">
-  v-container
-    v-row.my-10
-      v-col(cols="12").mb-10.text-center
-        h1 Start Easy
-      template(v-for="item in items")
-        v-col(cols="12" md="4").text-center
-          img(
-            :src="item.image"
-            width="80%"
-          ).mb-4
-          h2 {{item.title}}
-          p {{item.description}}
-      v-col(cols="12").mb-5.text-center
-        get-started-button(
-          large
-        )
-    need-more.my-10
+  div.header-gray
+    v-container
+      v-row.my-10
+        v-col(cols="12").mb-10.text-center
+          h1 As easy as
+        div(v-if="!$isMobile").d-flex.align-end
+          template(v-for="item in items")
+            v-col(cols="12" md="4").text-center
+              img(
+                :src="item.image"
+                width="80%"
+              )
+              h2 {{item.title}}
+              p {{item.description}}
+        div(v-else)
+          template(v-for="item in items")
+            div.d-flex
+              v-col(cols="5")
+                img(
+                  :src="item.image"
+                  width="140"
+                )
+              v-col(cols="7")
+                h2 {{item.title}}
+                p {{item.description}}
+    need-more(:class="{ 'need-more-md-up' : !$isMobile }").my-10
 </template>
 
 <script>
@@ -32,7 +41,7 @@ export default {
         {
           image: require('../../assets/images/providers/A Asset 2.png'),
           title: 'Appointments',
-          description: 'Easy booking to get more patients',
+          description: 'Seamless booking to get more patients',
         },
         {
           image: require('../../assets/images/providers/B Asset 2.png'),
@@ -40,7 +49,7 @@ export default {
           description: 'Efficiently measure your clinic\'s growth',
         },
         {
-          image: require('../../assets/images/providers/B Asset 2.png'),
+          image: require('../../assets/images/providers/C Asset 2.png'),
           title: 'Charting',
           description: 'Quick & secure access to medical records',
         },
@@ -49,3 +58,25 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+
+@media (min-width: 960px) {
+  .need-more-md-up{
+    max-width: 900px;
+  }
+}
+
+@media (min-width: 1264px) {
+  .need-more-md-up{
+    max-width: 1185px;
+  }
+}
+.need-more-md-up {
+  width: 100%;
+  padding: 12px;
+  margin-right: auto;
+  margin-left: auto;
+
+}
+</style>
