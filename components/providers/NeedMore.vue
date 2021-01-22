@@ -18,9 +18,7 @@
           x-large
           rounded
           color="primary"
-          to="/features"
-          target="_blank"
-        ).font-weight-bold Learn more
+        ).font-weight-bold.text-none Learn more
 </template>
 
 <style scoped>
