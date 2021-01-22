@@ -46,7 +46,7 @@
               v-btn(
                 v-if="currentRoute === 'doctors-clinics'"
                 color="accent"
-                :to="currentRoute === 'doctors-clinics' ? { name: 'signup-individual-invite' } : { name: 'signup-multispecialty-step-1' }"
+                :to="currentRoute === 'doctors-clinics' ? { name: 'signup-individual' } : { name: 'signup-multispecialty-step-1' }"
                 id="start-free-btn"
                 @click.stop="onActionBtnClick('start-free-btn')"
               )
@@ -80,10 +80,10 @@
                 v-else
                 color="accent"
                 id="get-started-btn"
-                :to=" { name: 'signup-individual-invite' }"
+                :to=" { name: 'signup-individual' }"
                 @click.stop="onActionBtnClick('get-started-btn')"
               )
-                strong.font-14.white--text.tab.text-none Get an Exclusive Invite
+                strong.font-14.white--text.tab.text-none Sign Up
 </template>
 
 <script>

@@ -114,10 +114,10 @@ export default {
   },
   methods: {
     getStarted () {
-      this.$router.push({ name: 'signup-individual-invite' });
+      this.$router.push({ name: 'signup-individual' });
     },
     goToSignupIndividual (email) {
-      this.$router.push({ name: 'signup-individual-invite' });
+      this.$router.push({ name: 'signup-individual' });
     },
     goToPatientPortal () {
       window.open(process.env.PX_PORTAL_URL, '_blank', 'noopener, noreferrer');
