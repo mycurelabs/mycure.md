@@ -3,7 +3,7 @@
     v-container(
       :class="[isMobile ? 'mobile-page-height' : 'whole-page', {'mt-4': visibleCookie}]"
     )
-      v-row(align="center")
+      v-row(align="center").usp-text-container
         v-col(cols="12").text-center
           strong(v-if="uspMetaTitle || slottedMetaTitle" :class="[getMetaFontSize]").text-center.primary--text
             template(v-if="slottedMetaTitle")
@@ -218,6 +218,9 @@ export default {
 .uspMobileBtn {
   height: 75px;
 }
+.usp-text-container {
+  margin-top: 43px;
+}
 /* .web-padding {
   padding-bottom: 14.80px;
 } */
@@ -229,6 +232,26 @@ export default {
 @media screen and (min-height: 650px) {
   .outer-image-container {
     margin-bottom: -63.5px !important;
+  }
+}
+@media screen and (min-width: 1023px) {
+  .outer-image-container {
+    margin-bottom: -50px !important;
+  }
+}
+@media screen and (min-width: 1124px) {
+  .outer-image-container {
+    margin-bottom: -51px !important;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .outer-image-container {
+    margin-bottom: -58px !important;
+  }
+}
+@media screen and (min-width: 1300px) {
+  .outer-image-container {
+    margin-bottom: -63px !important;
   }
 }
 </style>

@@ -46,6 +46,38 @@ export const getDoctorClinics = async (opts) => {
   return data.data;
 };
 
+/**
+ * @param {object} opts
+ * @param {string} opts.uid
+ * @param {string} [opts.type]
+ * @param {string[]} [opts.select]
+ * @param {number} [opts.limit=5]
+ */
+export const getMemberOrganizations = async (opts) => {
+  const { data: memberData } = await axios({
+    method: 'GET',
+    url: `${process.env.API_URL}/organization-members`,
+    params: {
+      uid: opts.uid,
+    },
+  });
+  const memberships = memberData.data;
+  if (!memberships?.length) return null;
+  const { data: organizationData } = await axios({
+    method: 'GET',
+    url: `${process.env.API_URL}/organizations`,
+    params: {
+      id: memberships.length === 1
+        ? memberships[0].organization
+        : { $in: memberships.map(m => m.organization) },
+      $limit: typeof opts.limit === 'number' ? opts.limit : 5,
+      ...typeof opts.type === 'string' && { type: opts.type },
+      ...opts.select?.length && { $select: opts.select },
+    },
+  });
+  return organizationData.data;
+};
+
 export const signin = async (opts) => {
   try {
     const payload = {
@@ -294,6 +326,22 @@ export const recordWebsiteVisit = async (opts) => {
   }
 };
 
+export const fetchLearningCornerMaterials = async (opts) => {
+  try {
+    const searchQuery = opts.searchText ? `&$search=${opts.searchText}` : '';
+    const { data } = await axios({
+      method: 'get',
+      url: `${process.env.API_URL}/file-links?account=${opts.account}&public=true${searchQuery}`,
+    });
+    return data.data;
+  } catch (e) {
+    console.error(e);
+    throw handleError(e);
+  }
+};
+
 export * from './doctor-directory';
+export * from './clinics-website';
 export * from './account-invitations';
 export * from './account-waitlist';
+export * from './organizations';

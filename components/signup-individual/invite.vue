@@ -106,7 +106,7 @@
           v-row(no-gutters)
             v-col(:align="!$isMobile ? 'end' : 'center'" align-self="center").mt-6
               p(:class="{ 'float-left mt-3': !$isMobile }").primary--text
-                a(@click="$nuxt.$router.push({ name: 'signup-individual-referral-code' })") I have a referral code.
+                a(@click="haveReferralHandler") I have a referral code.
               v-btn(
                 color="primary"
                 large
@@ -269,6 +269,7 @@ export default {
         }
         await createWaitlist(this.user);
         this.requestSentDialog = true;
+        window.$amplitude.logEvent('ACQ022 Btn > Get Exc');
       } catch (e) {
         console.error(e);
         this.error = true;
@@ -341,6 +342,10 @@ export default {
     },
     checkEmail () {
       this.isEmailValid = /^.+@.+\.+[a-zA-Z]{2,3}$/.test(this.user.email);
+    },
+    haveReferralHandler () {
+      window.$amplitude.logEvent('ACQ023 Btn > Have Ref');
+      this.$nuxt.$router.push({ name: 'signup-individual-referral-code' });
     },
   },
 };

@@ -31,10 +31,19 @@
     "icon": "mycure-onboarding-icon-admin.png",
     "description": "Staff management, audit trail, & clinic customizations"
   },
-
   {
     "selected": false,
     "type": "premium",
+    "category": ["Arabica", "Robusta", "Liberica"],
+    "id": "Telehealth",
+    "name": "Telehealth",
+    "icon": "mycure-onboarding-icon-telehealth.png",
+    "description": "Online video and audio consultations that connects with MYCURE Patient Portal"
+  },
+  {
+    "selected": false,
+    "type": "premium",
+    "category": ["Robusta", "Liberica"],
     "id": "lis",
     "name": "Laboratory",
     "icon": "mycure-onboarding-icon-lab.png",
@@ -43,6 +52,7 @@
   {
     "selected": false,
     "type": "premium",
+    "category": ["Robusta", "Liberica"],
     "id": "ris",
     "name": "Imaging",
     "icon": "mycure-onboarding-icon-imaging.png",
@@ -51,6 +61,7 @@
   {
     "selected": false,
     "type": "premium",
+    "category": ["Robusta", "Liberica"],
     "id": "pharmacy",
     "name": "Pharmacy",
     "icon": "mycure-onboarding-icon-pharmacy.png",
@@ -59,6 +70,7 @@
   {
     "selected": false,
     "type": "premium",
+    "category": ["Robusta", "Liberica"],
     "id": "PMEorEPE",
     "name": "Physical Medical Exam",
     "icon": "mycure-onboarding-icon-pme.png",
@@ -67,6 +79,7 @@
   {
     "selected": false,
     "type": "premium",
+    "category": ["Robusta","Liberica"],
     "id": "PME",
     "name": "Materials Management",
     "icon": "mycure-onboarding-icon-inventory.png",
@@ -75,6 +88,16 @@
   {
     "selected": false,
     "type": "premium",
+    "category": ["Robusta", "Liberica"],
+    "id": "Dental",
+    "name": "Dental",
+    "icon": "mycure-onboarding-icon-dental.png",
+    "description": "EMR for baseline dental charting with inventory and billing"
+  },
+  {
+    "selected": false,
+    "type": "premium",
+    "category": ["Liberica"],
     "id": "syncGateway",
     "name": "Syncbase",
     "icon": "mycure-onboarding-icon-syncbase.png",

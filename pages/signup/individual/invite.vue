@@ -18,6 +18,7 @@ export default {
   },
   mounted () {
     this.loading = false;
+    window.$amplitude.logEvent('ACQ021 Page > Get Exc');
   },
   head () {
     return headMeta({

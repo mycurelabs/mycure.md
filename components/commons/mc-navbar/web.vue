@@ -42,7 +42,7 @@
                 id="login-btn"
                 @click.stop="onActionBtnClick('login-btn')"
               ).mr-2.ml-1
-                span.font-14.tab.text-none.font-weight-bold &nbsp;Login
+                span.font-14.tab.text-none.font-weight-bold &nbsp;LOGIN
               v-btn(
                 v-if="currentRoute === 'doctors-clinics'"
                 color="accent"
@@ -80,10 +80,11 @@
                 v-else
                 color="accent"
                 id="get-started-btn"
+                rounded
                 :to=" { name: 'signup-individual-invite' }"
                 @click.stop="onActionBtnClick('get-started-btn')"
               )
-                strong.font-14.white--text.tab.text-none Get an Exclusive Invite
+                strong.font-14.white--text.tab.text-none Get started for free
 </template>
 
 <script>

@@ -185,6 +185,9 @@ export default {
   async created () {
     await this.init();
   },
+  mounted () {
+    window.$amplitude.logEvent('ACQ027 Page > Verification');
+  },
   methods: {
     init () {
       if (process.browser) {
@@ -219,6 +222,7 @@ export default {
           code: this.otp,
         };
         await verifyMobileNo(payload);
+        window.$amplitude.logEvent('ACQ028 Enter Verif Code');
         this.$router.replace({ query: { success: true } });
         this.otpCountdown = null;
         this.successDialog = true;
@@ -255,11 +259,25 @@ export default {
         this.sendingCode = false;
       }
     },
-    onAcknowledgment () {
-      if (process.browser) {
-        localStorage.clear();
+    async onAcknowledgment () {
+      try {
+        const { accessToken } = await signin({
+          email: this.step1Data.email,
+          password: this.step1Data.password,
+        });
+        if (process.browser) {
+          localStorage.clear();
+        }
+        window.$amplitude.logEvent('ACQ029 Btn > Get Started');
+        window.location = `${process.env.CMS_URL}/cms?token=${accessToken}`;
+      } catch (error) {
+        console.error(error);
+        this.snackBarModel = {
+          text: 'There was an error in sending. Please try again!',
+          color: 'error',
+        };
+        this.showSnack = true;
       }
-      this.$nuxt.$router.push({ name: 'signin' });
     },
     startCountDown () {
       const interval = setInterval(() => {

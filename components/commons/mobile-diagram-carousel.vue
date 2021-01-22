@@ -24,6 +24,7 @@
                 :image="slide"
                 :imageAlt="slide"
                 :imageFileExtension="slideImageExtension"
+                :extension-exclusive="extensionExclusive"
               )
     br
     v-row(v-for="(item, key) in items" :key="key" align="center" justify="center").pt-3
@@ -68,6 +69,10 @@ export default {
     itemImageExtension: {
       type: String,
       default: '.png',
+    },
+    extensionExclusive: {
+      type: Boolean,
+      default: false,
     },
   },
 };

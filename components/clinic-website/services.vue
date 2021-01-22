@@ -1,116 +1,64 @@
 <template lang="pug">
-  v-container(fluid).my-10
-    v-row(justify="center" align="center" :class="{ 'mb-10': !$isMobile }").px-6
-      h1 {{ headerText }}
-    v-row(v-if="!$isMobile" justify="center" align="center").px-6
-      v-col(cols="12" md="4" align-self="start")
-        v-list(two-line).text-left
-          v-list-item(
-            v-for="(item, key) in servicesColumn1"
-            :key="key"
-          )
-            v-list-item-action
-              img(src="~/assets/images/mycure-web-bullet-check.png" alt="Check icon")
-            v-list-item-content
-              span {{ item }}
-      v-col(v-if="showTwoColumn || showThreeColumn" cols="12" md="4" align-self="start")
-        v-list(two-line).text-left
-          v-list-item(
-            v-for="(item, key) in servicesColumn2"
-            :key="key"
-          )
-            v-list-item-action
-              img(src="~/assets/images/mycure-web-bullet-check.png" alt="Check icon")
-            v-list-item-content
-              span {{ item }}
-      v-col(v-if="showThreeColumn" cols="12" md="4" align-self="start")
-        v-list(two-line).text-left
-          v-list-item(
-            v-for="(item, key) in servicesColumn3"
-            :key="key"
-          )
-            v-list-item-action
-              img(src="~/assets/images/mycure-web-bullet-check.png" alt="Check icon")
-            v-list-item-content
-              span {{ item }}
-    v-row(v-if="$isMobile" justify="start" align="center")
-      v-col(cols="12")
-        v-list(two-line).text-left
-          v-list-item(
-            v-for="(item, key) in services"
-            :key="key"
-          )
-            v-list-item-action
-              img(src="~/assets/images/mycure-web-bullet-check.png" alt="Check icon")
-            v-list-item-content
-              span {{ item }}
+  div.main-container
+    h2.pb-6 Services Offered
+    div(v-if="services.length === 0")
+      i No Services available
+    div(v-for="(service, key) in servicesFirstFive" :key="key")
+      div.d-inline-flex
+        v-img(:src="require(`~/assets/images/${service.image}`)" width="30" contain)
+        span.ml-3.mt-1 {{ service.title }}
+    div(v-if="showAll" v-for="(service, key) in allServices" :key="'All' + key")
+      div.d-inline-flex
+        v-img(:src="require(`~/assets/images/${service.image}`)" width="30" contain)
+        span.ml-3.mt-1 {{ service.title }}
+    div.py-3
+    //- UPDATE THE v-if LATER BASE ON servicesOffered PROPS DATA
+    div(v-if="servicesFirstFive.length === 5" style="position: absolute; bottom: 10px;")
+      strong(@click="showAll = !showAll").primary--text See {{ showAll ? 'Less' : 'All' }}
 </template>
 
 <script>
+// import { length } from '@feathersjs/feathers/lib/version';
 export default {
   props: {
-    /**
-     * Array of services strings
-     * @type {Array}
-     */
-    services: {
+    servicesOffered: {
       type: Array,
       default: () => ([]),
     },
-    /**
-     * String header text
-     * @type {String}
-     */
-    headerText: {
-      type: String,
-      default: '',
-    },
+  },
+  data () {
+    return {
+      showAll: false,
+    };
   },
   computed: {
-    showOneColumn () {
-      return this.services.length < 4;
+    services () {
+      return this.servicesOffered?.map(service => ({
+        image: 'mycure-check.png',
+        title: service.name,
+      }));
     },
-    showTwoColumn () {
-      return this.services.length < 7 && this.services.length > 3;
+    servicesFirstFive () {
+      // UPDATE THIS servicesOffered PROPS DATA LATER
+      return this.services.slice(0, 5);
     },
-    showThreeColumn () {
-      return this.services.length >= 7;
-    },
-    columnCount () {
-      return this.showOneColumn ? '4' : this.showTwoColumn ? '4' : '4';
-    },
-    columnOffsetCount () {
-      return this.showOneColumn ? '4' : this.showTwoColumn ? '2' : '';
-    },
-    servicesColumn1 () {
-      if (this.showOneColumn) {
-        return this.services;
-      }
-
-      if (this.showTwoColumn) {
-        return this.services.filter((v, i) => !(i % 2));
-      }
-
-      return this.services.filter((v, i) => !(i % 3));
-    },
-    servicesColumn2 () {
-      if (this.showOneColumn) {
-        return false;
-      }
-
-      if (this.showTwoColumn) {
-        return this.services.filter((v, i) => (i % 2));
-      }
-
-      return this.services.filter((v, i) => (i % 3 === 1));
-    },
-    servicesColumn3 () {
-      if (this.showThreeColumn) {
-        return this.services.filter((v, i) => (i % 3 > 1));
-      }
-
-      return false;
+    allServices () {
+      // UPDATE THIS servicesOffered PROPS DATA LATER
+      const servicesLength = this.services.length;
+      return this.services.slice(5, servicesLength);
     },
   },
 };
 </script>
+
+<style scoped>
+strong {
+  cursor: pointer;
+}
+.main-container {
+  background-color: #ececec;
+  border-radius: 5px;
+  position: relative;
+  padding: 30px;
+}
+</style>

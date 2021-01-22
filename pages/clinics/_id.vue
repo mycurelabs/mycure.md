@@ -1,110 +1,181 @@
 <template lang="pug">
-  v-container(fluid)
-    // TODO: navbar -- done / refactor needed
-    // TODO: hero panel -- done / refactor needed
-    // TODO: services -- done / check for refactors
-    // TODO: clinic info -- done / check for refactors
-    // TODO: doctors list -- doing
-    // TODO: about clinic
-    // TODO: social panel
-    // TODO: final cta
-    // TODO: footer -- done / refactor needed
-    // TODO: recheck all on mobile
-    app-bar
-    panel-1(
-      pic-url="MYCURE-virtual-clinic-healthcare-practice-online-enterprise-F-multi-specialty"
-      pic-extension=".webp"
-      pic-alt="Clinic Image"
-      pic-custom-path="enterprise/"
-      clinic-copy="Copy of the clinic. Ex. The best clinic since 1945"
-      clinic-tagline="Up to 50 characters plus a tagline up to well 60 characters."
-    )
-    services(
-      header-text="We offer this healthcare services for you."
-      :services="services"
-    )
+  v-container(v-if="!loading").py-0
+    app-bar(:picURL="picURL" :consultIDS="consultIDS")
+    v-row(align="start").main-content
+
+      v-col(cols="12" md="2" align="center")
+        about-us(:picURL="picURL" :description="description")
+
+      v-col(cols="12" md="6" :class="{'pl-6': !$isMobile}")
+        info(
+          :hospitalName="hospitalName"
+          :description="description"
+          :address="address"
+          :completeAddress="completeAddress"
+        )
+        v-row.mt-3
+          v-col(cols="12" sm="6")
+            //- UPDATE SERVICES DATA
+            services(:servicesOffered="servicesOffered").pa-3
+          v-col(cols="12" sm="6")
+            schedules(:schedules="schedules").pa-3
+            v-col(cols="12" style="background-color: #ececec; border-radius: 5px; min-height: 100px;").mt-6
+              //- UPDATE CONSULTATIONS DATA
+              consultations(
+                :price-min="minimumServicePrice"
+                :price-max="maximumServicePrice"
+              )
+
+        //- UPDATE TESTIMONIAL DATA
+        v-row
+          v-col(cols="12")
+            h2 Testimonials
+            testimonials(:picURL="picURL" :testimonialDate="testimonialDate" :testimonialDescription="testimonialDescription")
+
+      //- UDPATE DOCTORS DATA
+      v-col(cols="12" md="4")
+        specializations-chats(:doctors="doctors" :consultIDS="consultIDS")
+
     v-divider
-    clinic-info(
-      :schedules="schedules"
-      :rates="rates"
-      clinic-name="MYCURE Virtual Clinic"
-      clinic-address="1036, Delos Santos STI Medical Center 201 E. Rodriguez Avenue Quezon City"
-    )
-    v-divider
-    doctors(
-      :doctors="doctors"
-      :specializations="sortItems"
-      :sort-by="filterItems"
-    )
-    //- About panel
-    about-clinic(:about="aboutInfo")
-    v-divider
-    social(:social="socialItem")
-    v-divider
-    cta
-    v-divider
-    v-footer(
-      height="auto"
-      color="white"
-    )
-      v-row
-        v-col.text-center
-          span.black--text Copyright {{new Date().getFullYear()}} | All Rights Reserved | Powered by #[a(href="https://mycure.md" target="_blank").mycure-link.font-weight-bold MYCURE]
-    //- pre {{doctor}}
+    v-footer(color="white").mt-3
+      v-row(justify="center" align="center" no-gutters)
+        v-col(
+          cols="12"
+          md="6"
+          :align="!$isMobile ? 'start' : 'center'"
+          :class="{'d-flex': !$isMobile}"
+        )
+          img(
+            height="45"
+            src="~/assets/images/mycure-header-logo.png"
+            alt="MYCURE"
+            @click="$nuxt.$router.push({ name: 'index' })"
+          )
+          p.ml-5.mt-3 &#169;{{new Date().getFullYear()}} All Rights Reserved.
+        v-col(cols="12" md="6" :align="!$isMobile ? 'end' : 'center'")
+          span Share the love:
+          template(v-for="(icon, key) in icons")
+            a(
+              :href="icon.link"
+              target="_blank"
+              rel="noopener noreferrer"
+            ).pl-3
+              v-icon.font-30 {{ icon.icon }}
 </template>
 
 <script>
-import {
-  SERVICES_LIST,
-  SCHEDULES_LIST,
-  RATES,
-  DOCTORS_LIST,
-  SOCIAL_ITEM,
-  ABOUT_INFO,
-  FILTER_ITEMS,
-  SORT_ITEMS,
-} from './clinic-content';
-
+import { getClinicWebsite, getMembership, getServices } from '~/utils/axios';
 import headMeta from '~/utils/head-meta';
 import AppBar from '~/components/clinic-website/app-bar';
-import Panel1 from '~/components/clinic-website/panel-1';
+import AboutUs from '~/components/clinic-website/about-us';
+import Info from '~/components/clinic-website/info';
+import Schedules from '~/components/clinic-website/schedules';
 import Services from '~/components/clinic-website/services';
-import ClinicInfo from '~/components/clinic-website/clinic-info';
-import Doctors from '~/components/clinic-website/doctors';
-import Cta from '~/components/clinic-website/final-cta';
-import Social from '~/components/clinic-website/social';
-import AboutClinic from '~/components/clinic-website/about-clinic';
+import Consultations from '~/components/clinic-website/consultations';
+import Testimonials from '~/components/clinic-website/testimonials';
+import SpecializationsChats from '~/components/clinic-website/specializations-chat';
 export default {
   layout: 'clinic-website',
   components: {
     AppBar,
-    Panel1,
+    AboutUs,
+    Info,
+    Schedules,
     Services,
-    ClinicInfo,
-    Doctors,
-    Cta,
-    Social,
-    AboutClinic,
+    Consultations,
+    Testimonials,
+    SpecializationsChats,
+  },
+  async asyncData ({ params, error }) {
+    try {
+      const clinic = await getClinicWebsite({ username: params.id });
+      const clinicWebsite = clinic[0];
+      const membership = await getMembership({ organization: params.id });
+      const member = membership[0];
+      const services = await getServices({ facility: params.id });
+      return {
+        clinicWebsite,
+        member,
+        services,
+      };
+    } catch (error) {
+      console.error(error);
+    }
   },
   data () {
-    this.services = SERVICES_LIST;
-    this.schedules = SCHEDULES_LIST;
-    this.rates = RATES;
-    this.doctors = DOCTORS_LIST;
-    this.socialItem = SOCIAL_ITEM;
-    this.aboutInfo = ABOUT_INFO;
-    this.filterItems = FILTER_ITEMS;
-    this.sortItems = SORT_ITEMS;
-    return {};
+    this.icons = [
+      { icon: 'mdi-facebook', link: 'https://facebook.com/' },
+      { icon: 'mdi-twitter', link: 'https://twitter.com/' },
+      { icon: 'mdi-email', link: 'mailto:' },
+      { icon: 'mdi-linkedin', link: 'https://www.linkedin.com/' },
+    ];
+    return {
+      loading: false,
+    };
   },
-  mounted () {
-    console.log(this.$route);
+  computed: {
+    orgId () {
+      return this.$route.params.id;
+    },
+    picURL () {
+      return this.clinicWebsite?.picURL || require('~/assets/images/clinics-website/hospital-thumbnail.jpg');
+    },
+    description () {
+      return this.clinicWebsite?.description ||
+      `${this.clinicWebsite?.name} specializes in telehealth services. ${this.clinicWebsite?.name} telemedicine service is committed to provide medical consultation via video conference or phone call to our patient 24 hours a day 7 days a week.`;
+    },
+    hospitalName () {
+      return this.clinicWebsite?.name || 'MYCURE Clinic';
+    },
+    address () {
+      return [
+        this.clinicWebsite?.address?.city,
+        this.clinicWebsite?.address?.province,
+        this.clinicWebsite?.address?.country,
+      ].filter(Boolean).join(', ') || 'Address not available';
+    },
+    completeAddress () {
+      return [
+        this.clinicWebsite?.address?.street1,
+        this.clinicWebsite?.address?.street2,
+        this.clinicWebsite?.address?.city,
+        this.clinicWebsite?.address?.province,
+        this.clinicWebsite?.address?.country,
+      ].filter(Boolean).join(', ') || 'Address not available';
+    },
+    servicesOffered () {
+      return this.services;
+    },
+    sortedServices () {
+      if (!this.services) return null;
+      return [...this.services].sort((a, b) => a.price - b.price);
+    },
+    minimumServicePrice () {
+      return this.sortedServices?.shift()?.price;
+    },
+    maximumServicePrice () {
+      return this.sortedServices?.pop()?.price;
+    },
+    schedules () {
+      return this.clinicWebsite?.mf_schedule; // eslint-disable-line
+    },
+    testimonialDate () {
+      return this.clinicWebsite?.createdAt;
+    },
+    testimonialDescription () {
+      return this.clinicWebsite?.description;
+    },
+    doctors () {
+      return { data: this.clinicWebsite };
+    },
+    consultIDS () {
+      return { docUID: this.member?.uid, clinicID: this.orgId };
+    },
   },
   head () {
-    // TODO: update meta tags
     return headMeta({
-      title: `${this.fullNameWithSuffixes}`,
-      description: `${this.bio || 'Visit my professional website and schedule an appointment with me today.'}`,
+      title: `${this.clinicWebsite?.name || 'Clinic Website'}`,
+      description: 'Visit my professional website and schedule an appointment with me today.',
       socialBanner: this.picURL,
     });
   },
@@ -112,8 +183,10 @@ export default {
 </script>
 
 <style scoped>
-.mycure-link {
-  color: #2e9fdf;
+a {
   text-decoration: none;
+}
+.main-content {
+  margin-top: 100px;
 }
 </style>

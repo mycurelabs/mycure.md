@@ -3,9 +3,10 @@
     v-container(v-if="!$isMobile")
       mc-footer-toolbar
       v-row(justify="center").pb-8
-        v-col(cols="2")
+        v-col(cols="2" align="center")
           nuxt-link(:to="{ name: 'index' }" title="MYCURE | Clinic Management System | Cloud EMR Philippines")
             img(src="~/assets/images/mycure-footer-logo.png" height="40" alt="MYCURE logo")
+          img(src="~/assets/images/HIPAA Badge.png" width="80%" alt="HIPAA Badge")
         v-col(cols="2")
           ul
             li #[h3.primary--text.footer-header FOR PROVIDERS]
@@ -63,7 +64,10 @@
             title="Fight COVID-19: Free EMR"
             :to="{ name: 'fight-covid-19' }"
             @click.stop="handleFooterPrivacyPolicyLink"
-          ).link Fight COVID-19: Free EMR
+          ).link
+            span Fight COVID-19:
+            br
+            span Free EMR
         v-col(cols="2")
           h3.primary--text.footer-header CONTACT US
           a(

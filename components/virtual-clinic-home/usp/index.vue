@@ -121,17 +121,25 @@ export default {
     loadedImage () {
       this.isImageLoaded = true;
     },
+    isChrome () {
+      return !!window.chrome;
+    },
     createVirtualConsult () {
       try {
-        this.loadingVirtualConsult = true;
-        setTimeout(() => {
-          this.loadingVirtualConsult = false;
-          const uid = uuidv4();
-          const startAt = Date.now();
-          const url = `${process.env.CMS_URL_BASE}/virtual-consult-experience/${uid}?startAt=${startAt}`;
+        const uuid = uuidv4();
+        const startAt = Date.now();
+        const url = `${process.env.CMS_URL_BASE}/virtual-consult-experience/${uuid}?startAt=${startAt}`;
+        if (!this.isChrome()) {
           window.$amplitude.logEvent('ACQ001 Btn > Try Virtual Clinic');
           window.open(url, '_blank', 'noopener, noreferrer');
-        }, 1500);
+        } else {
+          this.loadingVirtualConsult = true;
+          setTimeout(() => {
+            this.loadingVirtualConsult = false;
+            window.$amplitude.logEvent('ACQ001 Btn > Try Virtual Clinic');
+            window.open(url, '_blank', 'noopener, noreferrer');
+          }, 1500);
+        }
       } catch (e) {
         console.error(e);
       }

@@ -41,7 +41,7 @@
                   p Dr. {{name.firstName}} is now available for online consults.
                 online-consult-btn
       v-col(cols="12" sm="12").mb-10.text-center
-        span View more doctors and clinics in the #[a.font-weight-bold MYCURE Directory].
+        span View more doctors and clinics in the #[a(@click="$nuxt.$router.push({ name: 'directory-doctors' })").font-weight-bold MYCURE Directory].
 </template>
 
 <script>

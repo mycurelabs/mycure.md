@@ -1,17 +1,16 @@
 <template lang="pug">
   v-container
-    v-row(justify="center")
-      v-col(cols="12").text-center
-        h1 Services Offered
-    v-row(align="center" justify="center")
+    v-row
+      v-col(cols="12")
+        h2.primary--text Services Offered
+    v-row
       v-col(cols="12" md="8")
-        div(v-if="services.length === 0").text-center.pa-5
+        div(v-if="services.length === 0")
           h3.grey--text #[i No services to show]
         template(v-else)
           v-row(
             v-for="(service, index) in services"
             :key="index"
-            justify="center"
           )
             v-col(
               cols="12"
