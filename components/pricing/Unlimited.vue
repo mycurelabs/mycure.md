@@ -1,4 +1,5 @@
 <template lang="pug">
+  //- TODO: not in use
   v-container.py-12
     v-row(justify="center" align="start")
       v-col(
