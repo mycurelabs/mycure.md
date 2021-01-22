@@ -8,6 +8,7 @@ import ReferralCode from '~/components/signup-individual/referral-code';
 import headMeta from '~/utils/head-meta';
 export default {
   layout: 'user',
+  middleware: ['disable-route'],
   components: {
     ReferralCode,
   },

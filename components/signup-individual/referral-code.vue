@@ -7,7 +7,7 @@
           style="position: absolute; left: 0; top: 0;"
           text
           :class="!$isMobile ? 'ma-7' : 'ma-2'"
-          @click="$nuxt.$router.push({ name: 'signup-individual-invite' })"
+          @click="$nuxt.$router.push({ name: 'signup-individual' })"
         )
           v-icon.primary--text mdi-arrow-left
           strong.text-capitalize.primary--text.font-18 Back
