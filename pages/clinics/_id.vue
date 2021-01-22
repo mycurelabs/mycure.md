@@ -1,58 +1,97 @@
 <template lang="pug">
-  v-container(v-if="!loading").py-0
-    app-bar(:picURL="picURL" :consultIDS="consultIDS")
-    v-row(align="start").main-content
+  div(v-if="!loading").py-0
+    app-bar(:picURL="picURL" :clinicName="clinicName")
+    usp(
+      :name="clinicName"
+      :org-id="orgId"
+      :coverURL="coverURL"
+      @searchLoading="searchLoading"
+      @searchResultsLoaded="searchResultsLoaded"
+    )
+    v-container
+      v-row(justify="center" align="center")
+        v-icon.pb-2.font-gray mdi-filter-list
+          //- span.font-21 Filter
+        v-col(cols="12" md="3").py-0
+          v-select(
+            :items="items"
+            label="Specialty available"
+            dense
+            outlined
+            width="258"
+          ).dropdown
+        v-col(cols="12" md="3").py-0
+          v-select(
+            :items="items"
+            label="Every Monday"
+            dense
+            outlined
+          ).dropdown
+        v-col(cols="12" md="3").py-0
+          v-select(
+            :items="items"
+            label="Morning"
+            dense
+            outlined
+          ).dropdown
+      v-row(justify="center")
+        v-col(v-if="!$isMobile" cols="12" md="6")
+          doctor-cards(
+            :formattedDoctors="formattedDoctors"
+            :members="orgDoctors"
+            :total="doctorsTotal"
+            :limit="doctorsLimit"
+            :servicesOffered="servicesOffered"
+            @onUpdatePage="fetchDoctorMembers"
+            )
+        div(v-if="!$isMobile").pa-4
+        v-col(cols="12" md="4" align="center")
+          schedules(:schedules="schedules").mt-2
+          info(
+            :hospitalName="clinicName"
+            :address="address"
+            :completeAddress="completeAddress"
+            :picURL="picURL"
+            :description="description"
+            :contactNumber="contactNumber"
+          )
+    //-         schedules(:schedules="schedules").pa-3
+    //-         v-col(cols="12" style="background-color: #ececec; border-radius: 5px; min-height: 100px;").mt-6
+    //-           //- UPDATE CONSULTATIONS DATA
+    //-           consultations(
+    //-             :price-min="minimumServicePrice"
+    //-             :price-max="maximumServicePrice"
+    //-           )
 
-      v-col(cols="12" md="2" align="center")
-        about-us(:picURL="picURL" :description="description")
+    //-     //- UPDATE TESTIMONIAL DATA
+    //-     v-row
+    //-       v-col(cols="12")
+    //-         h2 Testimonials
+    //-         testimonials(:picURL="picURL" :testimonialDate="testimonialDate" :testimonialDescription="testimonialDescription")
 
-      v-col(cols="12" md="6" :class="{'pl-6': !$isMobile}")
-        info(
-          :hospitalName="hospitalName"
-          :description="description"
-          :address="address"
-          :completeAddress="completeAddress"
-        )
-        v-row.mt-3
-          v-col(cols="12" sm="6")
-            //- UPDATE SERVICES DATA
-            services(:servicesOffered="servicesOffered").pa-3
-          v-col(cols="12" sm="6")
-            schedules(:schedules="schedules").pa-3
-            v-col(cols="12" style="background-color: #ececec; border-radius: 5px; min-height: 100px;").mt-6
-              //- UPDATE CONSULTATIONS DATA
-              consultations(
-                :price-min="minimumServicePrice"
-                :price-max="maximumServicePrice"
-              )
-
-        //- UPDATE TESTIMONIAL DATA
-        v-row
-          v-col(cols="12")
-            h2 Testimonials
-            testimonials(:picURL="picURL" :testimonialDate="testimonialDate" :testimonialDescription="testimonialDescription")
-
-      //- UDPATE DOCTORS DATA
-      v-col(cols="12" md="4")
-        specializations-chats(:doctors="doctors" :consultIDS="consultIDS")
+    //-   //- UDPATE DOCTORS DATA
+    //-   //- v-col(cols="12" md="4")
+    //-   //-   specializations-chats(:doctors="doctors" :consultIDS="consultIDS")
 
     v-divider
-    v-footer(color="white").mt-3
+    v-footer(v-if="!$isMobile" color="white").mt-3
       v-row(justify="center" align="center" no-gutters)
         v-col(
           cols="12"
-          md="6"
-          :align="!$isMobile ? 'start' : 'center'"
-          :class="{'d-flex': !$isMobile}"
+          md="5"
+          align="start"
         )
-          img(
-            height="45"
-            src="~/assets/images/mycure-header-logo.png"
-            alt="MYCURE"
-            @click="$nuxt.$router.push({ name: 'index' })"
-          )
-          p.ml-5.mt-3 &#169;{{new Date().getFullYear()}} All Rights Reserved.
-        v-col(cols="12" md="6" :align="!$isMobile ? 'end' : 'center'")
+          div.d-flex
+            p.ml-5.mt-1 #[b Powered by]
+            img(
+              height="30"
+              src="~/assets/images/MYCURE-logo.png"
+              alt="MYCURE"
+              @click="$nuxt.$router.push({ name: 'index' })"
+            ).ml-2
+          div
+            p.ml-5 &#169;{{new Date().getFullYear()}} All Rights Reserved.
+        v-col(cols="12" md="5" align="end")
           span Share the love:
           template(v-for="(icon, key) in icons")
             a(
@@ -61,30 +100,58 @@
               rel="noopener noreferrer"
             ).pl-3
               v-icon.font-30 {{ icon.icon }}
+    v-footer(v-else color="primary")
+      v-row(justify="center" align="center")
+        v-col(cols="12" align="center")
+          span.white--text Share the love:
+          template(v-for="(icon, key) in icons")
+            a(
+              :href="icon.link"
+              target="_blank"
+              rel="noopener noreferrer"
+            ).pl-3
+              v-icon(color="white").font-30 {{ icon.icon }}
+        v-col(cols="10" align="center")
+          div.d-flex.justify-center
+            img(
+              height="26"
+              src="~/assets/images/MYCURE-logo-white.png"
+              alt="MYCURE"
+              @click="$nuxt.$router.push({ name: 'index' })"
+            )
+            p.white--text.font-14.ml-4.mt-1 &#169;{{new Date().getFullYear()}} All Rights Reserved.
 </template>
 
 <script>
 import { getClinicWebsite, getMembership, getServices } from '~/utils/axios';
 import headMeta from '~/utils/head-meta';
 import AppBar from '~/components/clinic-website/app-bar';
+import Usp from '~/components/clinic-website/usp';
+import DoctorsList from '~/components/clinic-website/doctors-list';
 import AboutUs from '~/components/clinic-website/about-us';
 import Info from '~/components/clinic-website/info';
 import Schedules from '~/components/clinic-website/schedules';
 import Services from '~/components/clinic-website/services';
-import Consultations from '~/components/clinic-website/consultations';
-import Testimonials from '~/components/clinic-website/testimonials';
-import SpecializationsChats from '~/components/clinic-website/specializations-chat';
+// import Consultations from '~/components/clinic-website/consultations';
+// import Testimonials from '~/components/clinic-website/testimonials';
+// import SpecializationsChats from '~/components/clinic-website/specializations-chat';
+import DoctorCards from '~/components/clinic-website/doctor-card';
+import Specializations from '~/components/clinic-website/specialization-expansion';
 export default {
   layout: 'clinic-website',
   components: {
     AppBar,
+    Usp,
+    DoctorsList,
     AboutUs,
     Info,
     Schedules,
     Services,
-    Consultations,
-    Testimonials,
-    SpecializationsChats,
+    // Consultations,
+    // Testimonials,
+    // SpecializationsChats,
+    DoctorCards,
+    Specializations,
   },
   async asyncData ({ params, error }) {
     try {
@@ -109,8 +176,13 @@ export default {
       { icon: 'mdi-email', link: 'mailto:' },
       { icon: 'mdi-linkedin', link: 'https://www.linkedin.com/' },
     ];
+    this.doctorsLimit = 7;
     return {
-      loading: false,
+      loading: true,
+      page: 1,
+      pageCount: 2,
+      orgDoctors: [],
+      doctorsTotal: 0,
     };
   },
   computed: {
@@ -120,11 +192,14 @@ export default {
     picURL () {
       return this.clinicWebsite?.picURL || require('~/assets/images/clinics-website/hospital-thumbnail.jpg');
     },
+    coverURL () {
+      return this.clinicWebsite?.coverURL || require('~/assets/images/clinics-website/usp-background.png');
+    },
     description () {
       return this.clinicWebsite?.description ||
       `${this.clinicWebsite?.name} specializes in telehealth services. ${this.clinicWebsite?.name} telemedicine service is committed to provide medical consultation via video conference or phone call to our patient 24 hours a day 7 days a week.`;
     },
-    hospitalName () {
+    clinicName () {
       return this.clinicWebsite?.name || 'MYCURE Clinic';
     },
     address () {
@@ -142,6 +217,9 @@ export default {
         this.clinicWebsite?.address?.province,
         this.clinicWebsite?.address?.country,
       ].filter(Boolean).join(', ') || 'Address not available';
+    },
+    contactNumber () {
+      return this.clinicWebsite?.phone || 'Contact Number not available';
     },
     servicesOffered () {
       return this.services;
@@ -166,10 +244,60 @@ export default {
       return this.clinicWebsite?.description;
     },
     doctors () {
-      return { data: this.clinicWebsite };
+      // return { data: this.clinicWebsite };
+      if (this.orgDoctors.length > 0) {
+        return this.orgDoctors;
+      } else {
+        return [];
+      }
     },
     consultIDS () {
       return { docUID: this.member?.uid, clinicID: this.orgId };
+    },
+    formattedDoctors () {
+      return this.orgDoctors?.map((doctor) => {
+        const practicingSince = doctor.personalDetails?.['doc_practicingSince'];
+        const yearsPracticing = practicingSince && (new Date().getFullYear() - practicingSince);
+
+        return {
+          ...doctor,
+          picURL: doctor.personalDetails?.picURL,
+          doctorName: `Dr. ${doctor.personalDetails?.name?.firstName} ${doctor.personalDetails?.name?.lastName}`,
+          specialties: doctor.personalDetails?.['doc_specialties']?.join(', '),
+          yearsPracticing: yearsPracticing && `${yearsPracticing} years`,
+        };
+      });
+    },
+  },
+  mounted () {
+    this.loading = false;
+    this.fetchDoctorMembers();
+  },
+  methods: {
+    async fetchDoctorMembers (page = 1) {
+      const skip = this.doctorsLimit * (page - 1);
+      const { items, total } = await this.$sdk.service('organization-members').find({
+        organization: this.orgId,
+        roles: 'doctor',
+        $limit: this.doctorsLimit,
+        $skip: skip,
+      });
+      this.doctorsTotal = total;
+      const members = items;
+      if (!members?.length) return members;
+
+      const doctorPersonalDetails = await this.fetchDoctorPersonalDetails(members);
+      this.orgDoctors = doctorPersonalDetails;
+    },
+    async fetchDoctorPersonalDetails (members) {
+      const populatedMembersPromises = members.map(async (member) => {
+        const data = await this.$sdk.service('personal-details').get(member.uid);
+        return {
+          ...member,
+          personalDetails: data,
+        };
+      });
+      return await Promise.all(populatedMembersPromises);
     },
   },
   head () {
@@ -188,5 +316,8 @@ a {
 }
 .main-content {
   margin-top: 100px;
+}
+.doctors-container {
+  background-color: #F2F2F2;
 }
 </style>

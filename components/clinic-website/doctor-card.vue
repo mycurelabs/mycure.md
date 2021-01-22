@@ -1,38 +1,71 @@
 <template lang="pug">
   div
-    v-card(v-for="(doctor, key) in doctors" :key="key").mb-3
-      v-card-text
-        div.d-inline-flex
-          v-avatar
-            img(:src="doctor.picURL" alt="Doctor Profile")
-          div.ml-3
-            strong {{ doctor.doctorName }}
-            p.ma-0
-              span(v-if="doctor.specialties") {{ doctor.specialties }}
-            v-btn(
-              v-if="xlBelow"
-              color="primary"
-              target="_blank"
-              rel="noopener noreferrer"
-              :href="goToConsult(doctor)"
-            ) Consult Now
-          v-btn(
-            v-if="xlOnly"
-            color="primary"
-            style="position: absolute; right: 6px;"
-            target="_blank"
-            rel="noopener noreferrer"
-            :href="goToConsult(doctor)"
-          ) Consult Now
+    v-card.mb-3
+      v-tabs(v-model="activeTab").doctor-card
+        v-tab #[b Specialties]
+        v-tab #[b Services Offered]
+        v-tab #[b Doctors] ({{ total }})
+      v-tabs-items(v-model="activeTab").doctor-card
+        v-tab-item.main-container.pa-4
+          specializations(:doctors="members")
+        v-tab-item.main-container.pa-4
+          template(v-for="(service, key) in servicesOffered").d-flex.pa-6
+            single-card(
+              :service="service"
+              :isService="true"
+              :key="key"
+            )
+        v-tab-item.pa-4
+          template(v-for="(doctor, key) in formattedDoctors")
+            single-card(
+              :doctor="doctor"
+              :isDoctor="true"
+              :key="key"
+            )
+          v-pagination(
+            v-if="this.activeTab === 2"
+            v-model="page"
+            :length="length"
+          )
 </template>
 
 <script>
+import Specializations from '~/components/clinic-website/specialization-expansion';
+import SingleCard from '~/components/commons/single-card';
 export default {
+  components: {
+    Specializations,
+    SingleCard,
+  },
   props: {
-    doctors: {
+    formattedDoctors: {
       type: Array,
       default: () => ([]),
     },
+    members: {
+      type: Array,
+      default: () => ([]),
+    },
+    total: {
+      type: Number,
+      default: 0,
+    },
+    limit: {
+      type: Number,
+      default: 7,
+    },
+    servicesOffered: {
+      type: Array,
+      default: () => ([]),
+    },
+  },
+  data () {
+    return {
+      activeTab: null,
+      page: 1,
+      visibleDoctors: [],
+      prevButtonClicked: false,
+    };
   },
   computed: {
     xlBelow () {
@@ -40,6 +73,18 @@ export default {
     },
     xlOnly () {
       return this.$vuetify.breakpoint.xlOnly;
+    },
+    isMaleDoctor (doctor) {
+      return doctor === 'male';
+    },
+    length () {
+      return Math.ceil(this.total / this.limit) || 0;
+    },
+  },
+  watch: {
+    page (val) {
+      this.$emit('onUpdatePage', val);
+      return val;
     },
   },
   methods: {
@@ -52,3 +97,15 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.doctor-card {
+  background-color: #F2F2F2;
+}
+.doctor-card >>> .v-item-group {
+  background-color: #F2F2F2;
+}
+.btn {
+  border: 1px solid;
+}
+</style>

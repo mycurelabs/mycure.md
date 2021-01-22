@@ -85,7 +85,7 @@ import VueScrollTo from 'vue-scrollto';
 import headMeta from '~/utils/head-meta';
 // services
 // - NOTE: Commented out for disabling purposes
-// import { getHospitalWebsite, getMembership, getServices, getFrontdeskMembers } from '~/utils/axios';
+import { getHospitalWebsite, getMembership, getServices, getFrontdeskMembers } from '~/utils/axios';
 // components
 import AppBar from '~/components/clinic-website/app-bar';
 import Usp from '~/components/hospital/usp';
@@ -110,24 +110,24 @@ export default {
     HospitalServices,
     HospitalSchedules,
   },
-  asyncData ({ redirect, params, error }) {
+  async asyncData ({ redirect, params, error }) {
     // - NOTE: For disabling purposes
-    return redirect('/');
-    // try {
-    //   const hospital = await getHospitalWebsite({ username: params.id });
-    //   const hospitalWebsite = hospital[0];
-    //   const members = await getMembership({ organization: params.id });
-    //   const services = await getServices({ facility: params.id });
-    //   const frontdeskMembers = await getFrontdeskMembers({ organization: params.id });
-    //   return {
-    //     hospitalWebsite,
-    //     services,
-    //     members,
-    //     frontdeskMembers,
-    //   };
-    // } catch (error) {
-    //   console.error(error);
-    // }
+    // return redirect('/');
+    try {
+      const hospital = await getHospitalWebsite({ username: params.id });
+      const hospitalWebsite = hospital[0];
+      const members = await getMembership({ organization: params.id });
+      const services = await getServices({ facility: params.id });
+      const frontdeskMembers = await getFrontdeskMembers({ organization: params.id });
+      return {
+        hospitalWebsite,
+        services,
+        members,
+        frontdeskMembers,
+      };
+    } catch (error) {
+      console.error(error);
+    }
   },
   data () {
     this.icons = [

@@ -56,7 +56,7 @@ export const getHospitalWebsite = async (opts) => {
 export const getClinicWebsite = async (opts) => {
   const { data } = await axios({
     method: 'GET',
-    url: `${process.env.API_URL}/organizations?type=personal-clinic&id=${opts.username}`,
+    url: `${process.env.API_URL}/organizations?id=${opts.username}`,
   });
   return data.data;
 };

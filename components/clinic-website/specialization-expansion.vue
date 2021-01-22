@@ -2,19 +2,35 @@
   div
     v-expansion-panels(flat :value="0")
       v-expansion-panel(v-for="entry in specialtyDoctorsMapEntries" :key="entry.specialty")
-        v-expansion-panel-header.pa-1
+        v-expansion-panel-header.pa-1.doctor-card
           template(v-slot:actions)
             v-icon.primary--text.icon mdi-chevron-down
           span.header-title {{ entry.specialty }}
           span.primary--text.mr-2.doctors-count {{ entry.doctorsLengthText }}
-        v-expansion-panel-content(v-for="doctor in entry.doctors" :key="doctor.id")
-          div.d-inline-flex
+        v-expansion-panel-content(v-for="doctor in entry.doctors" :key="doctor.id").doctor-card
+          div.d-flex
             v-avatar
-              img(:src="doctor.picURL" alt="Doctor Profile")
+              img(
+                v-if="doctor.picURL"
+                :src="doctor.picURL"
+                alt="Doctor Profile"
+                )
+              img(
+                v-if="!doctor.picURL && doctor.sex === 'male'"
+                src="~/assets/images/clinics-website/physician-male.png"
+                alt="Male Doctor Profile"
+              )
+              img(
+                v-if="!doctor.picURL && doctor.sex === 'female'"
+                src="~/assets/images/clinics-website/physician-female.png"
+                alt="Female Doctor Profile"
+              )
             div.ml-3
               strong {{ doctor.doctorName }}
               p.ma-0
                 span(v-if="doctor.specialties") {{ doctor.specialties }}
+            v-spacer
+            div.ml-auto.my-auto
               v-btn(
                 v-if="xlBelow"
                 color="primary"
@@ -58,6 +74,7 @@ export default {
     specialtyDoctorsMap () {
       return this.formattedDoctors?.reduce((acc, doctor) => {
         const specialties = doctor.personalDetails?.['doc_specialties'];
+        if (!specialties?.length) return acc;
         for (const specialty of specialties) {
           if (!acc[specialty]) acc[specialty] = [];
           acc[specialty].push(doctor);
@@ -106,5 +123,11 @@ export default {
   position: relative;
   text-align: right;
   order: 2;
+}
+.doctor-card {
+  background-color: #F2F2F2;
+}
+.doctor-card >>> .v-item-group {
+  background-color: #F2F2F2;
 }
 </style>
