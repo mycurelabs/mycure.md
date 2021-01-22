@@ -1,77 +1,179 @@
 <template lang="pug">
   v-container(v-if="!loading").main-container
     v-row(justify="center" align="center")
-      v-col(cols="12" md="10")
-        h1(:class="titleClasses").text-center Complete and affordable&nbsp;
-          br(v-if="!$isMobile")
-          | practice management system from&nbsp;
-          br(v-if="!$isMobile")
-          | your first sale to full scale&nbsp;
-      v-col(
-        cols="11"
-        sm="5"
-        md="6"
-        lg="5"
-        xl="4"
-        :class="{ 'mt-10': !$isMobile }"
-      ).pa-0
-        v-card(
-          tile
-          flat
-          :color="userBase ? 'primary' : 'white'"
-          @click="toggleUserBase"
-        ).user-base
-          v-card-title(:class="userBase ? 'white--text' : 'primary--text'").justify-center
-            h2(:class="cardTitleClasses") User-based Pricing
-            div(:class="cardSubtitleClasses") Ideal for Small & Medium Clinics
-      v-col(
-        cols="11"
-        sm="5"
-        md="6"
-        lg="5"
-        xl="4"
-        :class="{ 'mt-10': !$isMobile }"
-      ).pa-0
-        v-card(
-          tile
-          flat
-          outlined
-          :color="unlimitedUser ? 'primary' : 'white'"
-          @click="toggleUnlimited"
-        ).unlimited-user
-          v-card-title(:class="unlimitedUser ? 'white--text' : 'primary--text'").justify-center
-            h2(:class="cardTitleClasses") Unlimited Users
-            div(:class="cardSubtitleClasses") Ideal for Large & Multi-branch Clinics
-      template
-        user-based(v-if="userBase")
-        unlimited(v-if="unlimitedUser")
+      v-col(cols="12" md="10").py-10.text-center
+        h1(:class="titleClasses").mb-2 Start for free, then pay as you grow.
+        p We got you from your first sale to full scale.
+        v-btn(
+          large
+          color="success"
+        ) Start free today
+      v-col(cols="12" md="10").mb-10
+        table(width="100%")
+          tr
+            td(width="33%")
+            td(width="33%").text-center.primary.lighten-2
+              h2 Free
+            td(width="33%").text-center.primary
+              h2 Pay as you grow
+          tr
+            td(width="33%")
+            td(width="33%" valign="bottom").text-center
+              h1 #[money(:value="0")]
+            td(width="33%" valign="bottom").text-center
+              h3 Starts at
+              h1 #[money(:value="4")]
+          tr
+            td(width="33%")
+            td(width="33%" valign="bottom").text-center
+              p All the essential tools you need to run your health facility
+            td(width="33%" valign="bottom").text-center
+              p Only pay for what you use on top of the free plan
+          template(v-for="row in rows")
+            tr
+              td.py-2 {{row.item}}
+              td.py-2.text-center
+                template(v-if="isIcon(row.free)")
+                  v-icon(:class="{ 'success--text': getIconColor(row.free) === 'success', 'error--text': getIconColor(row.free) === 'error' }")
+                    | {{row.free}}
+                template(v-else)
+                  | {{row.free}}
+              td.py-2.text-center
+                template(v-if="isIcon(row.paid)")
+                  v-icon(:class="{ 'success--text': getIconColor(row.paid) === 'success', 'error--text': getIconColor(row.paid) === 'error' }")
+                    | {{row.paid}}
+                template(v-else)
+                  | {{row.paid}}
+          tr
+            td(width="33%")
+            td(width="33%").text-center.primary.lighten-2
+              v-btn(
+                text
+                block
+                x-large
+              ).text-none.font-weight-bold Start free
+            td(width="33%").text-center.primary
+              v-btn(
+                text
+                block
+                x-large
+              ).text-none.font-weight-bold Start free
 </template>
 
 <script>
 // utils
 import headMeta from '~/utils/head-meta';
 // components
-import Unlimited from '~/components/pricing/Unlimited';
-import UserBased from '~/components/pricing/UserBased';
+import Money from '~/components/commons/Money';
 export default {
   components: {
-    Unlimited,
-    UserBased,
+    Money,
   },
   data () {
     return {
       loading: true,
       userBase: true,
       unlimitedUser: false,
+      rows: [
+        {
+          item: 'Health facility',
+          free: '1',
+          paid: '$5/health facility',
+        },
+        {
+          item: 'Users',
+          free: '2',
+          paid: '$5/user',
+        },
+        {
+          item: 'Storage',
+          free: '1 GB',
+          paid: '$4/GB',
+        },
+        {
+          item: 'Classic Website',
+          free: 'mdi-check',
+          paid: 'mdi-check',
+        },
+        {
+          item: 'Online booking',
+          free: 'mdi-check',
+          paid: 'mdi-check',
+        },
+        {
+          item: 'Online payments',
+          free: 'mdi-check',
+          paid: 'mdi-check',
+        },
+        {
+          item: 'Pay later',
+          free: 'mdi-check',
+          paid: 'mdi-check',
+        },
+        {
+          item: 'Patient Registration',
+          free: 'mdi-check',
+          paid: 'mdi-check',
+        },
+        {
+          item: 'EMR',
+          free: 'mdi-check',
+          paid: 'mdi-check',
+        },
+        {
+          item: 'Daily Census',
+          free: 'mdi-check',
+          paid: 'mdi-check',
+        },
+        {
+          item: 'Sales Reports',
+          free: 'mdi-check',
+          paid: 'mdi-check',
+        },
+        {
+          item: 'Laboratory',
+          free: 'mdi-close',
+          paid: '$18/mo',
+        },
+        {
+          item: 'Imaging',
+          free: 'mdi-close',
+          paid: '$18/mo',
+        },
+        {
+          item: 'Imaging',
+          free: 'mdi-close',
+          paid: '$18/mo',
+        },
+        {
+          item: 'Physical Medical Exam',
+          free: 'mdi-close',
+          paid: '$18/mo',
+        },
+        {
+          item: 'Materials Management',
+          free: 'mdi-close',
+          paid: '$18/mo',
+        },
+        {
+          item: 'Pharmacy',
+          free: 'mdi-close',
+          paid: '$18/mo',
+        },
+        {
+          item: 'Dental',
+          free: 'mdi-close',
+          paid: '$18/mo',
+        },
+        {
+          item: 'Syncbase',
+          free: 'mdi-close',
+          paid: '$18/mo',
+        },
+      ],
     };
   },
   computed: {
-    cardTitleClasses () {
-      return [{ 'font-25': this.$isMobile }];
-    },
-    cardSubtitleClasses () {
-      return [{ 'font-14': this.$isMobile }];
-    },
     titleClasses () {
       return [this.$isMobile ? 'font-30' : ['font-36', 'lh-title']];
     },
@@ -80,13 +182,16 @@ export default {
     this.loading = false;
   },
   methods: {
-    toggleUserBase () {
-      this.userBase = true;
-      this.unlimitedUser = false;
+    isIcon (string) {
+      return string?.startsWith('mdi');
     },
-    toggleUnlimited () {
-      this.userBase = false;
-      this.unlimitedUser = true;
+    getIconColor (string) {
+      if (/check/gi.test(string)) {
+        return 'success';
+      }
+      if (/close/gi.test(string)) {
+        return 'error';
+      }
     },
   },
   head () {
@@ -119,5 +224,14 @@ export default {
 .unlimited-user {
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+table, th, td {
+  padding: 5px;
+  /* border: 1px solid lightgrey; */
 }
 </style>
