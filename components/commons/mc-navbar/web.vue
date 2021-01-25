@@ -82,7 +82,6 @@
                 color="accent"
                 id="get-started-btn"
                 rounded
-                :to=" { name: 'signup-individual-invite' }"
                 @click.stop="onActionBtnClick('get-started-btn')"
               )
                 strong.font-14.white--text.tab.text-none Get started for free
