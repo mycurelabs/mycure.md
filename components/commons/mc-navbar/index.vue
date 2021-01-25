@@ -195,7 +195,7 @@ export default {
         this.$router.push({ name: 'signin' });
       }
       if (actionBtn === 'get-started-btn') {
-        this.$router.push({ name: 'signup-individual-step-1' });
+        this.$router.push({ name: 'signup-health-facilities' });
       }
       this.$ga.event({
         eventCategory: 'button',

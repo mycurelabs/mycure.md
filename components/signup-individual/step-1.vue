@@ -424,7 +424,7 @@ export default {
         this.mobileNoErrorMessage = 'Invalid mobile number format';
       }
     },
-    checkNumberInput () {
+    checkNumberInput (event) {
       if (!/\d/.test(event.key)) {
         return event.preventDefault();
       };

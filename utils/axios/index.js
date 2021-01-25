@@ -220,6 +220,42 @@ export const signupIndividual = async (opts) => {
   }
 };
 
+// CREATING AN ACCOUNT (FACILITY)
+export const signupFacility = async (opts) => {
+  try {
+    const payload = {
+      email: opts.email,
+      mobileNo: `+${opts.countryCallingCode}${opts.mobileNo}`,
+      password: opts.password,
+      personalDetails: {
+        name: {
+          firstName: opts.firstName,
+          lastName: opts.lastName,
+        },
+        mobileNo: `+${opts.countryCallingCode}${opts.mobileNo}`,
+      },
+      organization: {
+        type: opts.clinicType,
+        superadmin: {
+          roles: [...opts.roles],
+        },
+        name: `${opts.firstName}'s Clinic`,
+        subscription: {},
+      },
+    };
+    if (opts.otp) { payload.totpToken = opts.otp; }
+    const { data } = await axios({
+      method: 'POST',
+      url: `${process.env.API_URL}/accounts`,
+      data: payload,
+    });
+    return data;
+  } catch (e) {
+    console.error(e);
+    throw handleError(e);
+  }
+};
+
 // VERIFYING ACCOUNT'S
 export const verifyMobileNo = async (opts) => {
   try {

@@ -21,7 +21,7 @@ export default {
   methods: {
     getStarted () {
       const opts = {
-        name: 'signup-individual-step-1',
+        name: 'signup-health-facilities',
       };
       if (this.email) {
         opts.query = {
