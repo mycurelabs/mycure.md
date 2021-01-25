@@ -126,10 +126,13 @@
               md="6"
               :class="{ 'pa-1': !$isMobile }"
             ).order-md-7.order-sm-7
-              v-text-field(
+              v-autocomplete(
                 v-model="clinicType"
                 label="Clinic Type"
+                item-text="text"
+                item-value="value"
                 outlined
+                :items="clinicTypes"
                 :rules="isRequired"
                 :disabled="loading.form"
               )
@@ -138,10 +141,13 @@
               md="6"
               :class="{ 'pa-1': !$isMobile }"
             ).order-md-8.order-sm-8
-              v-text-field(
-                v-model="role"
+              v-autocomplete(
+                v-model="roles"
                 label="Your Role"
+                item-text="text"
+                item-value="value"
                 outlined
+                :items="userRoles"
                 :rules="isRequired"
                 :disabled="loading.form"
               )
@@ -159,6 +165,7 @@
                   a(@click.stop="goToTerms") Terms of Use&nbsp;
                   | and
                   a(@click.stop="goToPrivacy") Privacy Policy.
+              v-alert(:value="error" type="error").mt-5 {{ errorMessage }}
             v-col(
               cols="12"
               :class="{ 'pa-1': !$isMobile }"
@@ -167,7 +174,7 @@
                 type="submit"
                 large
                 color="success"
-                :disabled="loading.form || !valid"
+                :disabled="loading.form || !valid || !agree"
                 :loading="loading.form"
               ).mt-5.text-none #[b Create my free account]
     //- Country Dialog
@@ -199,7 +206,7 @@ import { parsePhoneNumberFromString } from 'libphonenumber-js';
 import {
   getCountries,
   getCountry,
-  // signupIndividual,
+  signupFacility,
 } from '~/utils/axios';
 import {
   requiredRule,
@@ -209,17 +216,31 @@ import {
 export default {
   layout: 'user',
   data () {
+    // TEXT FIELD RULES
     this.isRequired = requiredRule;
     this.emailRules = emailRules;
     this.passwordRules = passwordRules;
     this.matchPasswordRule = v => v === this.password || 'Passwords do not match';
     this.mobileNumberRule = v => this.validatePhoneNo(v) || 'Invalid phone number';
-    // this.isMobileNo = (v) => {
-    //   // TODO: move validation here
-    // };
+    // ENUM
+    // Clinic Types
+    this.clinicTypes = [
+      { text: 'Doctor\'s Clinic', value: 'personal-clinic' },
+      { text: 'Group Clinic', value: 'group-clinic' },
+      { text: 'Multispecialty Clinic', value: 'cms' },
+      { text: 'Diagnostic Clinic', value: 'diagnostic-center' },
+      { text: 'Corporate Clinic', value: 'company' },
+      { text: 'Medical Center', value: 'health-group' },
+      { text: 'Hospital', value: 'his' },
+      { text: 'Other', value: 'facility' },
+    ];
+    this.userRoles = [
+      { text: 'Physician', roles: ['doctor'] },
+      { text: 'Administrator', roles: ['admin'] },
+      { text: 'Both', roles: ['admin', 'doctor'] },
+    ];
     return {
-      countryDialog: false,
-      //
+      // Models
       firstName: '',
       lastName: '',
       email: '',
@@ -227,9 +248,10 @@ export default {
       password: '',
       confirmPassword: '',
       clinicType: '',
-      role: '',
+      roles: [],
       agree: '',
-      //
+      // County Dialog
+      countryDialog: false,
       searchString: '',
       countries: [],
       countryCallingCode: '',
@@ -277,13 +299,38 @@ export default {
         this.loading.form = false;
       }
     },
-    submit () {
+    async submit () {
       try {
+        this.loading.form = true;
+        this.error = false;
         if (!this.$refs.formRef.validate()) {
           return;
         }
+        const payload = {
+          firstName: this.firstName,
+          lastName: this.lastName,
+          email: this.email,
+          password: this.password,
+          mobileNo: this.mobileNo,
+          countryCallingCode: this.countryCallingCode,
+          clinicType: this.clinicType,
+          roles: this.roles,
+        };
+        this.saveModel(payload);
+        await signupFacility(payload);
+        if (this.countryCallingCode !== '63') {
+          this.emailVerificationMessageDialog = true;
+        } else {
+          this.$nuxt.$router.push({ name: 'signup-health-facilities-otp-verification' });
+        }
       } catch (e) {
         console.error(e);
+      }
+    },
+    saveModel (val) {
+      const saveVal = { ...val };
+      if (process.browser) {
+        localStorage.setItem('facility:step1:model', JSON.stringify(saveVal));
       }
     },
     async getCountries () {
@@ -340,7 +387,7 @@ export default {
       }
     },
     checkEmail () {
-      this.isEmailValid = /^.+@.+\.+[a-zA-Z]{2,3}$/.test(this.user.email);
+      this.isEmailValid = /^.+@.+\.+[a-zA-Z]{2,3}$/.test(this.email);
     },
   },
 };
