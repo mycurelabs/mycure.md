@@ -7,17 +7,18 @@
       v-col.pa-md-8.shrink.text-center
         v-btn(
           v-if="$isMobile"
-          small
           rounded
           color="primary"
-          to="/features"
           target="_blank"
-        ).font-weight-bold Learn more
+          :to="{ name: 'features' }"
+        ).font-weight-bold.text-none Learn more
         v-btn(
           v-else
           x-large
           rounded
           color="primary"
+          target="_blank"
+          :to="{ name: 'features' }"
         ).font-weight-bold.text-none Learn more
 </template>
 
