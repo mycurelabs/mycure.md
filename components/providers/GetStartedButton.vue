@@ -13,10 +13,22 @@ export default {
   props: {
     large: Boolean,
     xLarge: Boolean,
+    email: {
+      type: String,
+      default: '',
+    },
   },
   methods: {
     getStarted () {
-      // TODO: get started
+      const opts = {
+        name: 'signup-individual-invite',
+      };
+      if (this.email) {
+        opts.query = {
+          email: this.email,
+        };
+      }
+      this.$router.push(opts);
     },
   },
 };
