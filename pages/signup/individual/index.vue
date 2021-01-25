@@ -21,7 +21,7 @@ export default {
   },
   created () {
     this.$nuxt.$router.push({
-      name: 'signup-individual-invite',
+      name: 'signup-individual-step-1',
       ...this.email && { params: { email: this.email } },
     });
   },

@@ -18,12 +18,6 @@
                 :to="{ name: solution.route }"
                 @click.stop="handleFooterSolution(solution.route)"
               ).link {{ solution.name }}
-            nuxt-link(
-              id="footer-features-link"
-              title="MYCURE Features"
-              :to="{ name: 'features' }"
-              @click.stop="handleFooterFeaturesLink"
-            ).link Features
         v-col(cols="2")
           div
             h3.primary--text.footer-header FOR PATIENTS

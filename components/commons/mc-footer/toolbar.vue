@@ -20,8 +20,8 @@
                 span.font-18.link {{ solution.name }}
               br
               br
-            nuxt-link(id="footer-features-btn" :to="{ name: 'features' }" title="MYCURE | Features").link.py-2
-              span.font-18 Features
+            //- nuxt-link(id="footer-features-btn" :to="{ name: 'features' }" title="MYCURE | Features").link.py-2
+            //-   span.font-18 Features
         v-expansion-panel.footer-grey
           v-expansion-panel-header(:color="expansionPanelColor")
             span.feature-text FOR PATIENTS
