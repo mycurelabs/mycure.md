@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-container
+  v-container(v-if="!loading.page")
     v-row(justify="center" align="center")
       v-col(cols="12" md="7" justify="center" align="center")
         img(
@@ -23,7 +23,10 @@
                 label="First Name"
                 outlined
                 :rules="isRequired"
+                :disabled="loading.form"
               )
+                template(v-slot:append v-if="firstName")
+                  v-icon(color="accent") mdi-check
             v-col(
               cols="12"
               md="6"
@@ -35,7 +38,10 @@
                 label="Last Name"
                 outlined
                 :rules="isRequired"
+                :disabled="loading.form"
               )
+                template(v-slot:append v-if="lastName")
+                  v-icon(color="accent") mdi-check
             v-col(
               cols="12"
               md="6"
@@ -47,7 +53,11 @@
                 label="Email"
                 outlined
                 :rules="emailRules"
+                :disabled="loading.form"
+                @keyup="checkEmail"
               )
+                template(v-slot:append v-if="isEmailValid")
+                  v-icon(color="accent") mdi-check
             v-col(
               cols="12"
               md="6"
@@ -66,11 +76,9 @@
                 type="number"
                 outlined
                 :prefix="`+${countryCallingCode}`"
-                :error-messages="mobileNoErrorMessage"
-                :rules="isRequired"
-                :loading="loading"
-                :disabled="loading"
-                @blur="validatePhoneNo"
+                :loading="loading.form"
+                :disabled="loading.form"
+                :rules="[...isRequired, mobileNumberRule]"
                 @keypress="checkNumberInput($event)"
               )
                 template(slot="append")
@@ -91,7 +99,11 @@
                 v-model="password"
                 label="Password"
                 outlined
+                :type="showPass ? 'text' : 'password'"
                 :rules="passwordRules"
+                :disabled="loading.form"
+                :append-icon="showPass ? 'mdi-eye-off' : 'mdi-eye'"
+                @click:append="showPass = !showPass"
               )
             v-col(
               cols="12"
@@ -102,9 +114,13 @@
               v-text-field(
                 v-model="confirmPassword"
                 label="Confirm Password"
+                type="password"
                 outlined
                 :rules="[...isRequired, matchPasswordRule]"
+                :disabled="loading.form"
               )
+                template(v-slot: append v-if="confirmPassword && confirmPassword === password")
+                  v-icon(color="accent") mdi-check
             v-col(
               cols="12"
               md="6"
@@ -115,6 +131,7 @@
                 label="Clinic Type"
                 outlined
                 :rules="isRequired"
+                :disabled="loading.form"
               )
             v-col(
               cols="12"
@@ -126,6 +143,7 @@
                 label="Your Role"
                 outlined
                 :rules="isRequired"
+                :disabled="loading.form"
               )
             v-col(
               cols="12"
@@ -149,8 +167,8 @@
                 type="submit"
                 large
                 color="success"
-                :disabled="loading || !valid"
-                :loading="loading"
+                :disabled="loading.form || !valid"
+                :loading="loading.form"
               ).mt-5.text-none #[b Create my free account]
     //- Country Dialog
     v-dialog(v-model="countryDialog" width="500" scrollable)
@@ -177,6 +195,7 @@
 </template>
 
 <script>
+import { parsePhoneNumberFromString } from 'libphonenumber-js';
 import {
   getCountries,
   getCountry,
@@ -194,9 +213,10 @@ export default {
     this.emailRules = emailRules;
     this.passwordRules = passwordRules;
     this.matchPasswordRule = v => v === this.password || 'Passwords do not match';
-    this.isMobileNo = (v) => {
-      // TODO: move validation here
-    };
+    this.mobileNumberRule = v => this.validatePhoneNo(v) || 'Invalid phone number';
+    // this.isMobileNo = (v) => {
+    //   // TODO: move validation here
+    // };
     return {
       countryDialog: false,
       //
@@ -215,13 +235,18 @@ export default {
       countryCallingCode: '',
       countryFlag: '',
       // UI States
-      valid: false,
-      loading: false,
+      showPass: false,
+      loading: {
+        page: true,
+        form: false,
+      },
+      // validity
+      valid: false, // Overall form details validity
+      isEmailValid: false, // email validity
       // Errors
       error: false,
       errorMessage: 'There was an error please try again later.',
       mobileNoError: false,
-      mobileNoErrorMessage: '',
     };
   },
   watch: {
@@ -234,19 +259,22 @@ export default {
     },
   },
   created () {
+    this.loading.page = false;
     this.init();
   },
   methods: {
     async init () {
       try {
+        this.loading.form = true;
         await this.getCountries();
         const country = await getCountry();
         const { location } = country;
         this.countryCallingCode = location ? location.calling_code : '63';
         this.countryFlag = location ? location.country_flag : 'https://assets.ipstack.com/flags/ph.svg';
-        this.$refs.firstNameRef.focus();
       } catch (e) {
         console.error(e);
+      } finally {
+        this.loading.form = false;
       }
     },
     submit () {
@@ -259,13 +287,17 @@ export default {
       }
     },
     async getCountries () {
-      if (process.browser) {
-        if (!localStorage.getItem('mycure:countries')) {
-          this.countries = await getCountries();
-          localStorage.setItem('mycure:countries', JSON.stringify(this.countries));
-        } else {
-          this.countries = JSON.parse(localStorage.getItem('mycure:countries'));
+      try {
+        if (process.browser) {
+          if (!localStorage.getItem('mycure:countries')) {
+            this.countries = await getCountries();
+            localStorage.setItem('mycure:countries', JSON.stringify(this.countries));
+          } else {
+            this.countries = JSON.parse(localStorage.getItem('mycure:countries'));
+          }
         }
+      } catch (e) {
+        console.error(e);
       }
     },
     selectCountry (country) {
@@ -274,14 +306,22 @@ export default {
       this.countryDialog = false;
       this.searchString = '';
     },
+    validatePhoneNo (mobileNo) {
+      this.mobileNoError = false;
+      const countryCode = this.countryCallingCode;
+      const phoneNumber = parsePhoneNumberFromString(`+${countryCode}${mobileNo}`);
+      if (!phoneNumber || !phoneNumber.isValid() || mobileNo.charAt(0) === '0') {
+        return false;
+      } else {
+        this.mobileNoError = true;
+        return true;
+      }
+    },
     checkNumberInput (event) {
       if (!/\d/.test(event.key)) {
         return event.preventDefault();
       };
       return event;
-    },
-    validatePhoneNo () {
-      //
     },
     goToTerms () {
       const routeData = this.$nuxt.$router.resolve({ name: 'terms' });
@@ -298,6 +338,9 @@ export default {
         changeRoute.opener = null;
         changeRoute.rel = 'noopener noreferrer';
       }
+    },
+    checkEmail () {
+      this.isEmailValid = /^.+@.+\.+[a-zA-Z]{2,3}$/.test(this.user.email);
     },
   },
 };
