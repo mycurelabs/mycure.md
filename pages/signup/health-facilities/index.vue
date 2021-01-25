@@ -16,33 +16,37 @@
               md="6"
               :class="{ 'pa-1': !$isMobile }"
             ).order-md-1.order-sm-1
+              //- First Name
               v-text-field(
+                ref="firstNameRef"
                 v-model="firstName"
                 label="First Name"
                 outlined
-                :rules="[isRequired]"
+                :rules="isRequired"
               )
             v-col(
               cols="12"
               md="6"
               :class="{ 'pa-1': !$isMobile }"
             ).order-md-2.order-sm-2
+              //- Last Name
               v-text-field(
                 v-model="lastName"
                 label="Last Name"
                 outlined
-                :rules="[isRequired]"
+                :rules="isRequired"
               )
             v-col(
               cols="12"
               md="6"
               :class="{ 'pa-1': !$isMobile }"
             ).order-md-3.order-sm-3
+              //- Email
               v-text-field(
                 v-model="email"
                 label="Email"
                 outlined
-                :rules="[isRequired]"
+                :rules="emailRules"
               )
             v-col(
               cols="12"
@@ -55,6 +59,7 @@
               //-   outlined
               //-   :rules="[isRequired]"
               //- )
+              //- Mobile No.
               v-text-field(
                 v-model="mobileNo"
                 label="Mobile Number"
@@ -62,9 +67,9 @@
                 outlined
                 :prefix="`+${countryCallingCode}`"
                 :error-messages="mobileNoErrorMessage"
-                :rules="requiredRule"
-                :loading="loadingForm || loading"
-                :disabled="loadingForm || loading"
+                :rules="isRequired"
+                :loading="loading"
+                :disabled="loading"
                 @blur="validatePhoneNo"
                 @keypress="checkNumberInput($event)"
               )
@@ -81,22 +86,24 @@
               md="6"
               :class="{ 'pa-1': !$isMobile }"
             ).order-md-5.order-sm-4
+              //- Password
               v-text-field(
                 v-model="password"
                 label="Password"
                 outlined
-                :rules="[isRequired]"
+                :rules="passwordRules"
               )
             v-col(
               cols="12"
               md="6"
               :class="{ 'pa-1': !$isMobile }"
             ).order-md-6.order-sm-5
+              //- Confirm Password
               v-text-field(
                 v-model="confirmPassword"
                 label="Confirm Password"
                 outlined
-                :rules="[isRequired]"
+                :rules="[...isRequired, matchPasswordRule]"
               )
             v-col(
               cols="12"
@@ -107,7 +114,7 @@
                 v-model="clinicType"
                 label="Clinic Type"
                 outlined
-                :rules="[isRequired]"
+                :rules="isRequired"
               )
             v-col(
               cols="12"
@@ -118,7 +125,7 @@
                 v-model="role"
                 label="Your Role"
                 outlined
-                :rules="[isRequired]"
+                :rules="isRequired"
               )
             v-col(
               cols="12"
@@ -130,7 +137,10 @@
                 style="margin-top: 0px"
               )
                 template(slot="label")
-                  span I agree to MYCURE's Terms of use and Privacy Policy.
+                  | I agree to MYCURE's&nbsp;
+                  a(@click.stop="goToTerms") Terms of Use&nbsp;
+                  | and
+                  a(@click.stop="goToPrivacy") Privacy Policy.
             v-col(
               cols="12"
               :class="{ 'pa-1': !$isMobile }"
@@ -139,7 +149,10 @@
                 type="submit"
                 large
                 color="success"
+                :disabled="loading || !valid"
+                :loading="loading"
               ).mt-5.text-none #[b Create my free account]
+    //- Country Dialog
     v-dialog(v-model="countryDialog" width="500" scrollable)
       v-card
         v-toolbar(flat)
@@ -169,10 +182,18 @@ import {
   getCountry,
   // signupIndividual,
 } from '~/utils/axios';
+import {
+  requiredRule,
+  emailRules,
+  passwordRules,
+} from '~/utils/text-field-rules';
 export default {
   layout: 'user',
   data () {
-    this.isRequired = v => !!v || 'This is required';
+    this.isRequired = requiredRule;
+    this.emailRules = emailRules;
+    this.passwordRules = passwordRules;
+    this.matchPasswordRule = v => v === this.password || 'Passwords do not match';
     this.isMobileNo = (v) => {
       // TODO: move validation here
     };
@@ -192,12 +213,16 @@ export default {
       searchString: '',
       countries: [],
       countryCallingCode: '',
-      mobileNoErrorMessage: '',
       countryFlag: '',
+      // UI States
+      valid: false,
+      loading: false,
+      // Errors
+      error: false,
+      errorMessage: 'There was an error please try again later.',
+      mobileNoError: false,
+      mobileNoErrorMessage: '',
     };
-  },
-  created () {
-    this.init();
   },
   watch: {
     searchString (val) {
@@ -208,6 +233,9 @@ export default {
       this.countries = this.countries.filter(v => v?.name?.toLowerCase().startsWith(needle)); // eslint-disable-line
     },
   },
+  created () {
+    this.init();
+  },
   methods: {
     async init () {
       try {
@@ -216,7 +244,7 @@ export default {
         const { location } = country;
         this.countryCallingCode = location ? location.calling_code : '63';
         this.countryFlag = location ? location.country_flag : 'https://assets.ipstack.com/flags/ph.svg';
-        this.$refs.passwordRef.focus();
+        this.$refs.firstNameRef.focus();: fi
       } catch (e) {
         console.error(e);
       }
@@ -251,6 +279,25 @@ export default {
         return event.preventDefault();
       };
       return event;
+    },
+    validatePhoneNo () {
+      //
+    },
+    goToTerms () {
+      const routeData = this.$nuxt.$router.resolve({ name: 'terms' });
+      if (process.client) {
+        const changeRoute = window.open(routeData.href, '_blank');
+        changeRoute.opener = null;
+        changeRoute.rel = 'noopener noreferrer';
+      }
+    },
+    goToPrivacy () {
+      const routeData = this.$nuxt.$router.resolve({ name: 'privacy-policy' });
+      if (process.client) {
+        const changeRoute = window.open(routeData.href, '_blank');
+        changeRoute.opener = null;
+        changeRoute.rel = 'noopener noreferrer';
+      }
     },
   },
 };
