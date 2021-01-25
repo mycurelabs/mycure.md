@@ -2,41 +2,56 @@
   div.bg.bg-mobile
     v-container
       v-row(
-        :align="$isMobile ? 'top' : 'center'"
+        :align="{ 'top' : $isMobile }"
         :style="{ height: $isMobile ? 'auto' : '626px' }"
-        :class="{ 'justify-center ' : $isMobile }"
-      )
+      ).justify-center
         v-col(
           v-if="!$isMobile"
           cols="12"
-          md="5"
-        ).header-gray
-          h1.font-65.mb-8 Grow your Clinic
+          md="7"
+        ).white--text.text-center
+          h1.font-50.mb-8 Grow your #[br]
+            vue-typer(
+              :text="['Practice', 'Clinic', 'Diagnostic Center', 'Hospital']"
+              :repeat="Infinity"
+              :erase-delay="100"
+              erase-style="backspace"
+            ).font-50.typer
+            span.font-50 #[br] safely
           p Bring in more patients using a powerful booking and health management system.
-          v-text-field(
-            outlined
-            rounded
-            large
-            hide-details
-            label="Enter your email address"
-          ).mb-4
-          get-started-button(x-large)
+          div.d-flex
+            v-text-field(
+              v-model="email"
+              outlined
+              rounded
+              large
+              hide-details
+              label="Enter your email address"
+            ).mb-4.mr-2.bg-white
+            get-started-button(x-large :email="email")
         v-col(
           v-else
           cols="12"
           md="5"
-        ).text-center
-          h1.font-30.mb-6 Grow your Clinic, Hospital or Diagnostic Center safely
+        ).white--text.text-center
+          h1.font-30.mb-4 Grow your #[br]
+            vue-typer(
+              :text='["Practice", "Clinic", "Diagnostic Center", "Hospital"]'
+              :repeat='Infinity'
+              :erase-delay='100'
+              erase-style='backspace'
+            ).font-30.typer
+            span.font-30 #[br] safely
           p Bring in more patients using a powerful booking and health management system.
           v-text-field(
+            v-model="email"
             outlined
             rounded
             large
             hide-details
-            color="white"
             label="Enter your email address"
-          ).text-field.mt-8
-          get-started-button(large).mt-2
+          ).text-field.bg-white.mt-8
+          get-started-button(large :email="email").mt-2
 
 </template>
 
@@ -48,7 +63,9 @@ export default {
     GetStartedButton,
   },
   data () {
-    return {};
+    return {
+      email: '',
+    };
   },
   computed: {
     uspTitle () {
@@ -74,26 +91,31 @@ export default {
 
 @media screen and (min-width: 1344px) {
   .bg {
-    background-image: url('../../assets/images/providers/USP-Image.png');
-    background-size: 800px;
-    background-position: right;
+    background-image: url('../../assets/images/providers/USP-Image-3.png');
+    background-size: cover;
+    background-position: center;
     background-repeat: no-repeat;
     border: none;
+    height: 100vh;
+  }
+
+  .bg-white {
+    background-color: white;
   }
 
 }
 
 @media screen and (max-width: 1343px) {
   .bg-mobile {
-  background-image: url('../../assets/images/providers/USP-image-mobile.png');
-  background-size: 438px;
-  background-position: center;
-  background-repeat: no-repeat;
-  border: none;
-  height: 454px;
-  color: white;
-}
-  .text-field {
+    background-image: url('../../assets/images/providers/USP-image-mobile.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: none;
+    height: 454px;
+    color: white;
+  }
+  .bg-white {
     background-color: white;
   }
 }
@@ -107,8 +129,7 @@ export default {
   border-top-left-radius: 300px;
   border-bottom-left-radius: 300px;
 }
-
-.font-65 {
-  font-size: 65px;
+.vue-typer >>> .custom.char.typed  {
+  color: white;
 }
 </style>

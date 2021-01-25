@@ -191,6 +191,9 @@ export default {
       if (process.browser && actionBtn === 'fight-covid-19-get-started-btn') {
         window.open('https://forms.gle/y4qpv7ajERaGE5Lr7', '_blank', 'noopener, noreferrer');
       }
+      if (actionBtn === 'get-started-btn') {
+        this.$router.push({ name: 'signup-individual-invite' });
+      }
       this.$ga.event({
         eventCategory: 'button',
         eventAction: `click-toolbar-${actionBtn}`,

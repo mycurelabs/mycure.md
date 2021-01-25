@@ -8,9 +8,9 @@
             alt="White MYCURE Logo"
             width="200"
           ).mt-4
-      v-row(:class="{ 'justify-space-around' : !$isMobile }").mt-4
+      v-row(:class="{ 'justify-space-around' : !$isMobile}").mt-4
         template(v-for="(footerItem, index) in footerItems")
-          v-col(cols="6" md="2").footer-section
+          v-col(cols="6" md="2").footer-section.pl-10
             h4(v-if="footerItem.type === 'footer-header'").primary--text {{ footerItem.value }}
             a(
               v-for="(col, index) in footerItem.columns"
