@@ -2,7 +2,7 @@
   div.bg.bg-mobile
     v-container
       v-row(
-        :align="{ 'top ' : $isMobile }"
+        :align="{ 'top' : $isMobile }"
         :style="{ height: $isMobile ? 'auto' : '626px' }"
       ).justify-center
         v-col(
