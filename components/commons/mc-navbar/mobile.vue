@@ -75,15 +75,14 @@
       div.navBottomBtns.py-3
         v-row(justify="center")
           v-btn(
-              id="mobile-navdrawer-login-btn"
-              :to="{ name: loginURL }"
-              @click.stop="handleUserLinkClick(`mobile-${loginURL}`)"
-            )
-              strong.font-14.tab LOGIN
+            id="mobile-navdrawer-login-btn"
+            @click.stop="handleUserLinkClick(`login-btn`)"
+          )
+            strong.font-14.tab LOGIN
           v-btn(
             id="mobile-navdrawer-get-started-btn"
             color="accent"
-            @click.stop="handleUserLinkClick(`mobile-navdrawer-get-started-btn`)"
+            @click.stop="handleUserLinkClick(`get-started-btn`)"
           ).ml-2
             strong.font-14.white--text.tab Get started for free
 </template>
@@ -153,7 +152,7 @@ export default {
       this.$emit('logoClick');
     },
     handleUserLinkClick (id) {
-      this.$emit('toolbarLinkClick', id);
+      this.$emit('actionBtnClick', id);
       this.drawer = false;
     },
     onNavLinkClick (navLink) {
