@@ -12,22 +12,23 @@
         ).white--text.text-center
           h1.font-50.mb-8 Grow your #[br]
             vue-typer(
-              :text='["Practice", "Clinic", "Diagnostic Center", "Hospital"]'
-              :repeat='Infinity'
-              :erase-delay='100'
-              erase-style='backspace'
+              :text="['Practice', 'Clinic', 'Diagnostic Center', 'Hospital']"
+              :repeat="Infinity"
+              :erase-delay="100"
+              erase-style="backspace"
             ).font-50.typer
             span.font-50 #[br] safely
           p Bring in more patients using a powerful booking and health management system.
           div.d-flex
             v-text-field(
+              v-model="email"
               outlined
               rounded
               large
               hide-details
               label="Enter your email address"
             ).mb-4.mr-2.bg-white
-            get-started-button(x-large)
+            get-started-button(x-large :email="email")
         v-col(
           v-else
           cols="12"
@@ -43,13 +44,14 @@
             span.font-30 #[br] safely
           p Bring in more patients using a powerful booking and health management system.
           v-text-field(
+            v-model="email"
             outlined
             rounded
             large
             hide-details
             label="Enter your email address"
           ).text-field.bg-white.mt-8
-          get-started-button(large).mt-2
+          get-started-button(large :email="email").mt-2
 
 </template>
 
@@ -61,7 +63,9 @@ export default {
     GetStartedButton,
   },
   data () {
-    return {};
+    return {
+      email: '',
+    };
   },
   computed: {
     uspTitle () {
