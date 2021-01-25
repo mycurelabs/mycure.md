@@ -6,18 +6,10 @@
         p(:class="{ 'font-12' : $isMobile }").white--text.mb-0.mt-2 Need more? Enhance your facility’s capabilities with MYCURE’s full suite of modules!
       v-col.pa-md-8.shrink.text-center
         v-btn(
-          v-if="$isMobile"
           rounded
           color="primary"
           target="_blank"
-          :to="{ name: 'features' }"
-        ).font-weight-bold.text-none Learn more
-        v-btn(
-          v-else
-          x-large
-          rounded
-          color="primary"
-          target="_blank"
+          :x-large="!$isMobile"
           :to="{ name: 'features' }"
         ).font-weight-bold.text-none Learn more
 </template>
