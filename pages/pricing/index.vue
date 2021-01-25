@@ -9,6 +9,7 @@
             x-large
             color="primary"
             rounded
+            :to="{ name: 'signup-individual-step-1' }"
           ).font-weight-bold.text-none Start free today
         v-col(cols="12").mb-10
           table(width="100%")
@@ -55,12 +56,7 @@
                   text
                   block
                   x-large
-                ).text-none.font-weight-bold.white--text Start free
-              //- td(width="33%")#start-free-paid-container.text-center.primary
-                v-btn(
-                  text
-                  block
-                  x-large
+                  :to="{ name: 'signup-individual-step-1' }"
                 ).text-none.font-weight-bold.white--text Start free
     div(style="background-color: #CCEBF5")
       v-container
@@ -101,6 +97,7 @@
                 x-large
                 rounded
                 color="primary"
+                :to="{ name: 'signup-individual-step-1' }"
               ).font-weight-bold.text-none Start free today
 </template>
 
