@@ -244,7 +244,7 @@ export default {
         const { location } = country;
         this.countryCallingCode = location ? location.calling_code : '63';
         this.countryFlag = location ? location.country_flag : 'https://assets.ipstack.com/flags/ph.svg';
-        this.$refs.firstNameRef.focus();: fi
+        this.$refs.firstNameRef.focus();
       } catch (e) {
         console.error(e);
       }
