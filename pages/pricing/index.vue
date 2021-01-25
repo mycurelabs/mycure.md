@@ -9,7 +9,7 @@
             x-large
             color="primary"
             rounded
-            :to="{ name: 'signup-individual-step-1' }"
+            :to="{ name: 'signup-health-facilities' }"
           ).font-weight-bold.text-none Start free today
         v-col(cols="12").mb-10
           table(width="100%")
@@ -56,7 +56,7 @@
                   text
                   block
                   x-large
-                  :to="{ name: 'signup-individual-step-1' }"
+                  :to="{ name: 'signup-health-facilities' }"
                 ).text-none.font-weight-bold.white--text Start free
     div(style="background-color: #CCEBF5")
       v-container
@@ -97,7 +97,7 @@
                 x-large
                 rounded
                 color="primary"
-                :to="{ name: 'signup-individual-step-1' }"
+                :to="{ name: 'signup-health-facilities' }"
               ).font-weight-bold.text-none Start free today
 </template>
 
