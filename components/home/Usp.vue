@@ -13,13 +13,13 @@
             rounded
             @click="openPxPortalSignUp"
           ).mt-2 #[b Get Started]
-      div(v-if="!$isMobile").icon.d-flex.justify-center
-        v-btn(
-          large
-          icon
-          @click="scrollToHowItWorks"
-        )
-          v-icon(large) mdi-chevron-down
+    div(v-if="!$isMobile").icon.d-flex.justify-center
+      v-btn(
+        large
+        icon
+        @click="scrollToHowItWorks"
+      )
+        v-icon(large) mdi-chevron-down
 </template>
 
 <script>
@@ -61,5 +61,11 @@ export default {
 }
 .font-72 {
   font-size: 72px;
+}
+.icon {
+    position: absolute;
+    left: 50%;
+    top: 19%;
+
 }
 </style>

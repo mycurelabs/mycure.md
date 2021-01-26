@@ -4,7 +4,7 @@
       app
       elevate-on-scroll
     )#navbar.bg-transparent
-      v-container(v-if="!$isMobile").pa-0
+      v-container.pa-0
         v-row(justify="center" align="center" no-gutters)
           v-col
             img(
@@ -15,10 +15,12 @@
             )
           v-spacer
           v-btn(
+            v-if="!$isMobile"
             text
             depressed
             to="/"
           ).text-none For Providers
+          //- TO DO: Will add once support page is available
           //- v-btn(
           //-   text
           //-   depressed
@@ -30,20 +32,18 @@
             @click="openPxPortal(pxPortalLogIn)"
           ).text-none #[b Login]
           v-btn(
+            v-if="!$isMobile"
             depressed
             color="success"
             rounded
             @click="openPxPortal(pxPortalSignUp)"
           ).text-none #[b Get Started]
-      v-row(v-else align="center" justify="center")
-        v-col
-          img(src="~/assets/images/home/mycure-logo.png" width="140" alt="MYCURE logo")
-        v-spacer
-        v-btn(
-          text
-          @click="openPxPortal(pxPortalLogIn)"
-        ) #[b Login]
-        v-menu(bottom left large)
+          v-menu(
+            v-else
+            bottom
+            left
+            large
+          )
             template(v-slot:activator="{ on, attrs }")
               v-btn(icon v-bind="attrs" v-on="on")
                 v-icon mdi-menu
