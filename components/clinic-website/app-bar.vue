@@ -23,15 +23,14 @@
             depressed
             Large
             color="#fff"
-            @click="goToSignIn"
-          ) #[b Login]
+            @click="goToPxpSignin"
+          ).text-none #[b Login]
           v-btn(
             depressed
             Large
             color="primary"
-            target="_blank"
-            to="/signup/individual/invite"
-          ).ml-2 #[b Create an Account]
+            @click="goToPxpSignup"
+          ).text-none.ml-2 #[b Create an Account]
       v-container(v-else)
         v-row(align="center")
           v-avatar
@@ -49,15 +48,15 @@
               depressed
               Large
               color="#fff"
-              @click="goToSignIn"
-            ) #[b Login]
+              @click="goToPxpSignin"
+            ).text-none #[b Login]
             v-menu
               template(v-slot:activator="{ on, attrs }")
                 v-btn(icon v-bind="attrs" v-on="on")
                   v-icon mdi-menu
               v-list
-                v-list-item(to="/signup/individual/invite")
-                  v-list-item-title Create an Account
+                v-list-item(@click="goToPxpSignup")
+                  v-list-item-title.text-none Create an Account
 </template>
 
 <script>
@@ -95,8 +94,11 @@ export default {
     this.loading = false;
   },
   methods: {
-    goToSignIn () {
+    goToPxpSignin () {
       window.open(process.env.PX_PORTAL_URL, '_blank', 'noopener, noreferrer');
+    },
+    goToPxpSignup () {
+      window.open(`${process.env.PX_PORTAL_URL}/signup`, '_blank', 'noopener, noreferrer');
     },
   },
 };
