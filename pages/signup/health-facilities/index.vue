@@ -157,13 +157,16 @@
               v-checkbox(
                 v-model="agree"
                 hide-details
+                color="primary"
                 style="margin-top: 0px"
+                :disabled="loading.form"
               )
                 template(slot="label")
-                  | I agree to MYCURE's&nbsp;
-                  a(@click.stop="goToTerms") Terms of Use&nbsp;
-                  | and&nbsp;
-                  a(@click.stop="goToPrivacy") Privacy Policy.
+                  span
+                    | I agree to MYCURE's&nbsp;
+                    a(@click.stop="goToTerms") Terms of Use&nbsp;
+                    | and&nbsp;
+                    a(@click.stop="goToPrivacy") Privacy Policy.
               v-alert(:value="error" type="error").mt-5 {{ errorMessage }}
             v-col(
               cols="12"
