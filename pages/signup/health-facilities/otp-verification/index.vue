@@ -19,6 +19,7 @@
                 step="1"
                 maxlength="1"
                 :class="{'night-field': dayOrNight === 'night'}"
+                @keypress="checkNumberInput($event)"
               )#firstDigit.single-field
               input(
                 v-model="secondDigit"
@@ -27,6 +28,7 @@
                 maxlength="1"
                 :class="{'night-field': dayOrNight === 'night'}"
                 v-on:keyup.delete="onDelete(2)"
+                @keypress="checkNumberInput($event)"
               )#secondDigit.single-field
               input(
                 v-model="thirdDigit"
@@ -35,6 +37,7 @@
                 maxlength="1"
                 :class="{'night-field': dayOrNight === 'night'}"
                 v-on:keyup.delete="onDelete(3)"
+                @keypress="checkNumberInput($event)"
               )#thirdDigit.single-field
               input(
                 v-model="fourthDigit"
@@ -43,6 +46,7 @@
                 maxlength="1"
                 :class="{'night-field': dayOrNight === 'night'}"
                 v-on:keyup.delete="onDelete(4)"
+                @keypress="checkNumberInput($event)"
               )#fourthDigit.single-field
               input(
                 v-model="fifthDigit"
@@ -51,6 +55,7 @@
                 maxlength="1"
                 :class="{'night-field': dayOrNight === 'night'}"
                 v-on:keyup.delete="onDelete(5)"
+                @keypress="checkNumberInput($event)"
               )#fifthDigit.single-field
               input(
                 v-model="sixthDigit"
@@ -59,6 +64,7 @@
                 maxlength="1"
                 :class="{'night-field': dayOrNight === 'night'}"
                 v-on:keyup.delete="onDelete(6)"
+                @keypress="checkNumberInput($event)"
               )#sixthDigit.single-field
             v-col(v-if="loading").shrink
               v-progress-circular(indeterminate size="15" color="primary")
@@ -135,12 +141,12 @@ export default {
         text: 'Success!',
         color: 'accent',
       },
-      firstDigit: '',
-      secondDigit: '',
-      thirdDigit: '',
-      fourthDigit: '',
-      fifthDigit: '',
-      sixthDigit: '',
+      firstDigit: null,
+      secondDigit: null,
+      thirdDigit: null,
+      fourthDigit: null,
+      fifthDigit: null,
+      sixthDigit: null,
     };
   },
   computed: {
@@ -320,13 +326,19 @@ export default {
         }
       }
     },
+    checkNumberInput (event) {
+      if (!/\d/.test(event.key)) {
+        return event.preventDefault();
+      };
+      return event;
+    },
     clearInputs () {
-      this.firstDigit = '';
-      this.secondDigit = '';
-      this.thirdDigit = '';
-      this.fourthDigit = '';
-      this.fifthDigit = '';
-      this.sixthDigit = '';
+      this.firstDigit = null;
+      this.secondDigit = null;
+      this.thirdDigit = null;
+      this.fourthDigit = null;
+      this.fifthDigit = null;
+      this.sixthDigit = null;
       if (process.browser) {
         document.getElementById('firstDigit') && document.getElementById('firstDigit').focus();
       }
