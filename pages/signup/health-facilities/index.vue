@@ -76,7 +76,6 @@
                 type="number"
                 outlined
                 :prefix="`+${countryCallingCode}`"
-                :loading="loading.form"
                 :disabled="loading.form"
                 :rules="[...isRequired, mobileNumberRule]"
                 @keypress="checkNumberInput($event)"
@@ -163,7 +162,7 @@
                 template(slot="label")
                   | I agree to MYCURE's&nbsp;
                   a(@click.stop="goToTerms") Terms of Use&nbsp;
-                  | and
+                  | and&nbsp;
                   a(@click.stop="goToPrivacy") Privacy Policy.
               v-alert(:value="error" type="error").mt-5 {{ errorMessage }}
             v-col(
@@ -327,6 +326,15 @@ export default {
         }
       } catch (e) {
         console.error(e);
+        this.error = true;
+        const errorCode = parseInt(e?.message?.replace(/ .*/, '').substr(1));
+        if (errorCode === 11000) {
+          this.errorMessage = 'The email or mobile number you have entered is invalid or taken. Please try again.';
+          return;
+        }
+        this.errorMessage = 'There was an error please try again later';
+      } finally {
+        this.loading.form = false;
       }
     },
     saveModel (val) {
