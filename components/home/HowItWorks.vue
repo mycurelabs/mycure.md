@@ -8,6 +8,7 @@
             img(
               :src="item.image"
               alt="Steps"
+              height="210"
               ).mt-4
             p.subtitle-1.mt-2 {{item.description}}
         template(v-else)
