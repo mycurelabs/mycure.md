@@ -3,28 +3,28 @@
     v-container(v-if="!loading").main-container
       v-row(justify="center" align="center")
         v-col(cols="12").py-10.mb-10.text-center
-          h1(:class="titleClasses").mb-2 Start for free, then pay as you grow.
-          p We got you from your first sale to full scale.
+          h1(:class="titleClasses").mb-2 Start for free, then pay as you grow
+          p We got you from your first sale to full scale
           v-btn(
             x-large
             color="primary"
             rounded
             :to="{ name: 'signup-health-facilities' }"
           ).font-weight-bold.text-none Start free today
-        v-col(cols="12").mb-10
+        v-col(cols="12" md="10").mb-10
           table(width="100%")
             tr
               td(width="33%")
-              td(width="33%").text-center
-                div#free-container
-                  h2.mb-10 Free
-                  p All the essential tools you need to run your health facility
-              td(width="33%").text-center
-                div#paid-container.primary
-                  h2.mb-10.white--text Pay as you grow
-                  p.white--text Only pay for what you use on top of the free plan
+              td(width="33%")#free-container.text-center
+                div.pa-3
+                  h2.mb-4 #[b(:class=" !isMobile ? 'font-30' : 'font-20' ") LITE] #[br] Free
+                  p(:class="{ 'font-14' : !$isMobile, 'font-10' : $isMobile }") All the essential tools you need to run your health facility
+              td(width="33%")#paid-container.primary.text-center
+                div.pa-3
+                  h2.mb-4.white--text #[b(:class=" !isMobile ? 'font-30' : 'font-20' ") PRO] #[br] Pay as you grow
+                  p(:class="{ 'font-14' : !$isMobile, 'font-10' : $isMobile }").white--text Only pay for what you use on top of the free plan
             tr
-              td(width="33%").styled-td #[span.font-weight-bold Pricing]
+              td(width="33%").styled-td #[span.font-weight-bold.primary--text Products]
               td(width="33%" valign="bottom").styled-td.text-center
                 h1 #[span(style="font-size: 14px;") $]0
               td(width="33%" valign="bottom").styled-td.text-center
@@ -32,7 +32,11 @@
                 h1 #[span(style="font-size: 14px;") $]4#[span(style="font-size: 14px;") /mo]
             template(v-for="(row, index) in rows")
               tr
-                td.styled-td #[span.font-weight-bold {{row.item}}]
+                td.styled-td #[span.font-weight-bold.mr-2 {{row.item}}]
+                  v-tooltip(show right)
+                    template(v-slot:activator="{ on, attrs }")
+                      span #[v-icon(v-on="on" small color="primary") {{row.iconToolTip}}]
+                    span {{row.toolTipContent}}
                 td(:style="{ 'background-color': (index % 2 === 1) ? '' : '#f0f0f0' }").styled-td.text-center
                   template(v-if="isIcon(row.free)")
                     v-icon(
@@ -62,31 +66,27 @@
       v-container
         v-row(justify="center")
           v-col(cols="12").text-center
-            h1 Enterprise-grade solutions for high volume #[br(v-if="!$isMobile")] operations and multi-branch health facilities.
+            h1 Enterprise-grade solutions for high volume #[br(v-if="!$isMobile")] operations and multi-branch health facilities
             br
-            p Get a customized suite of healthcare modules to handle cross-functional #[br(v-if="!$isMobile")] operations across one or more health facilities that you mange.
+            p Get a customized suite of healthcare modules to handle cross-functional #[br(v-if="!$isMobile")] operations across one or more health facilities that you mange
             v-btn(
               large
               color="primary"
               rounded
+              to="/enterprise"
+              target="_blank"
             ).text-none.font-weight-bold Learn more
     v-container
       v-row(justify="center")
         v-col(cols="12").text-center
           h1 FAQs
-        v-col(cols="12" md="6")
-          h2.primary--text General
-          template(v-for="faq in generalFaqs")
-            h4 {{faq.question}}
-            p.text-justify {{faq.answer}}
-            br
-        v-col(cols="12" md="6")
-          h2.primary--text Online
-          template(v-for="faq in onlineFaqs")
-            h4 {{faq.question}}
-            p.text-justify {{faq.answer}}
-            br
-      v-row(justify="center").mb-10.pb-10
+        v-col(cols="12")
+          v-expansion-panels(focusable)
+            v-expansion-panel(v-for="(faq, key) in generalFaqs" :key="key")
+              v-expansion-panel-header.font-18.font-weight-medium  {{faq.question}}
+              v-expansion-panel-content(v-if="!faq.isHTML").mt-4 {{faq.answer}}
+              v-expansion-panel-content(v-if="faq.isHTML" v-html="faq.answer").mt-4
+      v-row(justify="center").mb-10.pb-10.mt-10.pt-10
         div.need-more-container.elevation-2
           v-row(align="center")
             v-col.pa-10.grow
@@ -115,41 +115,56 @@ export default {
       loading: true,
       userBase: true,
       unlimitedUser: false,
+      show: false,
       rows: [
         {
           item: 'Health facility',
           free: '1',
           paid: '$5/health facility',
+          iconToolTip: 'mdi-help-circle',
+          toolTipContent: 'A health facility is a place where patients can avail of healthcare services e.g. doctor’s clinics, group clinics, diagnostic centers, multispecialty clinics, medical centers, and hospitals.',
         },
         {
           item: 'Users',
           free: '2',
           paid: '$5/user',
+          iconToolTip: 'mdi-help-circle',
+          toolTipContent: 'Total number of accounts that can log in to a health facility. Each health facility includes 2 free users.',
         },
         {
           item: 'Storage',
           free: '1 GB',
           paid: '$4/GB',
+          iconToolTip: 'mdi-help-circle',
+          toolTipContent: '1GB is approximately 1,000 patient records.',
         },
         {
           item: 'Classic Website',
           free: 'mdi-check-circle',
           paid: 'mdi-check-circle',
+          iconToolTip: 'mdi-help-circle',
+          toolTipContent: 'Your health facility will have its own website where your patients can view your services and book appointments. Your website will also be listed in the MYCURE Directory for other patients to see.',
         },
         {
           item: 'Online booking',
           free: 'mdi-check-circle',
           paid: 'mdi-check-circle',
+          iconToolTip: 'mdi-help-circle',
+          toolTipContent: 'Patients can book clinic visits, teleconsults, or diagnostic tests through your website.',
         },
         {
           item: 'Online payments',
           free: 'mdi-check-circle',
           paid: 'mdi-check-circle',
+          iconToolTip: 'mdi-help-circle',
+          toolTipContent: 'Get paid using PayPal, credit/debit card, GCash, 7-Eleven, ang Cebuana Lhuillier.',
         },
         {
           item: 'Pay later',
           free: 'mdi-check-circle',
           paid: 'mdi-check-circle',
+          iconToolTip: 'mdi-help-circle',
+          toolTipContent: 'Allow your patients to pay in cash after the service has been completed.',
         },
         {
           item: 'Patient Registration',
@@ -157,7 +172,12 @@ export default {
           paid: 'mdi-check-circle',
         },
         {
-          item: 'EMR',
+          item: 'Electronic Medical Records (EMR)',
+          free: 'mdi-check-circle',
+          paid: 'mdi-check-circle',
+        },
+        {
+          item: 'Telehealth Consultations',
           free: 'mdi-check-circle',
           paid: 'mdi-check-circle',
         },
@@ -173,11 +193,6 @@ export default {
         },
         {
           item: 'Laboratory',
-          free: 'mdi-close',
-          paid: '$18/mo',
-        },
-        {
-          item: 'Imaging',
           free: 'mdi-close',
           paid: '$18/mo',
         },
@@ -214,46 +229,34 @@ export default {
       ],
       generalFaqs: [
         {
-          question: 'Is there a setup fee?',
-          answer: 'No. THere are no setup fees on any of our plans.',
+          question: 'How do I know which plan is right for me?',
+          answer: '<div class="v-expansion-panel-content__wrap"> <div><h3> > Free plan</h3> If you just need a simple booking site, basic EMR, telehealth, and billing tools without needing any support from an IT specialist, our free plan is the perfect start to getting digital. At most two (2) users can access it and it works for any type of health facility: doctor’s clinic, group clinics, diagnostic centers, multispecialty clinics, health centers, and hospitals.</div> <br> <div> <h3> > Pay as you grow</h3> If you want to start with advanced tools such as online diagnostic test results, inventory management, Syncbase online-offline technology, or if you just need more user seats or storage capacity, you can start subscribing to what’s most important to setup first. Our flexible app allows you to pay only for the resources that you consume, allowing you to scale with demand.</div> </div>',
+          isHTML: true,
         },
         {
-          question: 'Do I need to enter my payment details to sign up?',
-          answer: 'No. You can signup up and use MYCURE for 14 days without entering your payment details. At the end of your trial, or when you decide to launch your store, you will need to pick a plan and enter your payment details.',
+          question: 'Can I upgrade, downgrade, or cancel at any time? ',
+          answer: 'Absolutely! Yes, you can upgrade, downgrade, or cancel at any time. Note that we don\'t provide prorated refunds for downgrades or cancellations. This means that if you downgrade or cancel before the end of your billing period, you still pay for the remainder of the month.',
         },
-        {
-          question: 'How long are your contracts?',
-          answer: 'All MYCURE plans are month to month unless you sign up for an annual or biennial plan.',
-        },
-        {
-          question: 'Do you offer any discounted plans?',
-          answer: 'Yes, we offer a 10% discound on annual plans and a 20% discount on biennial plans, when they are paid upfront.',
-        },
-        {
-          question: 'Can I change my plan later on?',
-          answer: 'Absolutely! You can upgrade or downgrade your plan at any time.',
-        },
-      ],
-      onlineFaqs: [
         {
           question: 'Is there a setup fee?',
-          answer: 'No. THere are no setup fees on any of our plans.',
+          answer: '<div class="v-expansion-panel-content__wrap">There are no setup fees for any of our plans. Simply <strong><a style="text-decoration: none;" href="signup/health-facilities">Sign up for free</a> </strong> and you’re all set!</div>',
+          isHTML: true,
         },
         {
-          question: 'Do I need to enter my payment details to sign up?',
-          answer: 'No. You can signup up and use MYCURE for 14 days without entering your payment details. At the end of your trial, or when you decide to launch your store, you will need to pick a plan and enter your payment details.',
+          question: 'If the patient pays online, how do I get it?',
+          answer: 'You can get payments instantly if you set up your PayPal account. For other payment options (e.g. debit/credit card, GCash, 7-Eleven) they will go through a disbursement process with a minimum request of $50.',
         },
         {
-          question: 'How long are your contracts?',
-          answer: 'All MYCURE plans are month to month unless you sign up for an annual or biennial plan.',
+          question: 'Is there a booking fee for patients?',
+          answer: 'Yes. To ensure that your patients have an excellent healthcare booking experience, we charge them $1 convenience fee for every successful booking. This is placed on top of the total amount that they have to pay you.',
         },
         {
-          question: 'Do you offer any discounted plans?',
-          answer: 'Yes, we offer a 10% discound on annual plans and a 20% discount on biennial plans, when they are paid upfront.',
+          question: 'What if I manage more than 1 health facility?',
+          answer: 'You can subscribe for an additional facility account for $5 monthly. If you manage 10 or more health facilities, you may want to check out our Enterprise plan.',
         },
         {
-          question: 'Can I change my plan later on?',
-          answer: 'Absolutely! You can upgrade or downgrade your plan at any time.',
+          question: 'Do you have discounted plan bundles?',
+          answer: 'Yes, we offer customized pricing with valuable discounts for health facility owners that qualify for our Enterprise plan. Let’s talk.',
         },
       ],
     };
@@ -290,7 +293,7 @@ export default {
 </script>
 
 <style scoped>
-.main-container{
+.main-container {
   margin-top: 100px;
 }
 .v-card {
@@ -322,19 +325,19 @@ table, th, td {
 
 .styled-td {
   border: 2px solid lightgrey;
-  padding: 20px;
+  padding: 14px;
 }
 
 #free-container {
   height: 150px;
-  padding: 10px;
+  /* padding: 10px; */
   background-color: #F0f0f0;
   border-top-left-radius: 15px;
 }
 
 #paid-container {
   height: 150px;
-  padding: 10px;
+  /* padding: 10px; */
   border-top-right-radius: 15px;
 }
 
@@ -353,5 +356,12 @@ table, th, td {
 .need-more-container {
   background-color: #f2f2f2;
   border-radius: 10px;
+}
+
+.v-tooltip__content {
+  color: #4D4D4D;
+  background-color: #CCEBF5 !important;
+  width: 350px !important;
+  opacity: 1 !important;
 }
 </style>
