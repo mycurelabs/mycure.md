@@ -4,12 +4,20 @@
       v-row(justify="center" align="center")
         v-col(cols="12" md="6").pa-1.mb-3
           img(
-            src=`~/assets/images/mycure-${dayOrNight === 'night' ? 'footer' : 'header'}-logo.png`
+            v-if="dayOrNight === 'night'"
+            src="~/assets/images/mycure-footer-logo.png"
             @click="$nuxt.$router.push({ name: 'index' })"
             alt="MYCURE logo"
           ).link-to-home.mb-3
+          img(
+            v-else
+            src="~/assets/images/MYCURE-virtual-clinic-healthcare-practice-online-logo.svg"
+            @click="$nuxt.$router.push({ name: 'index' })"
+            alt="MYCURE logo"
+            width="175"
+          ).link-to-home.mb-3
           br
-          h1 Verify it's you.
+          h1 Verify it's you
           p Enter the code sent to your mobile number: +{{step1Data.countryCallingCode}}{{step1Data.mobileNo}}
           v-row(align="center" :class="{'mx-1': $isMobile}" no-gutters).mb-5
             v-col.grow
@@ -17,54 +25,54 @@
                 v-model="firstDigit"
                 type="number"
                 step="1"
-                maxlength="1"
+                max="9"
                 :class="{'night-field': dayOrNight === 'night'}"
-                @keypress="checkNumberInput($event)"
+                @keypress="checkNumberInput($event, firstDigit)"
               )#firstDigit.single-field
               input(
                 v-model="secondDigit"
                 type="number"
                 step="1"
-                maxlength="1"
+                max="9"
                 :class="{'night-field': dayOrNight === 'night'}"
                 v-on:keyup.delete="onDelete(2)"
-                @keypress="checkNumberInput($event)"
+                @keypress="checkNumberInput($event, secondDigit)"
               )#secondDigit.single-field
               input(
                 v-model="thirdDigit"
                 type="number"
                 step="1"
-                maxlength="1"
+                max="9"
                 :class="{'night-field': dayOrNight === 'night'}"
                 v-on:keyup.delete="onDelete(3)"
-                @keypress="checkNumberInput($event)"
+                @keypress="checkNumberInput($event, thirdDigit)"
               )#thirdDigit.single-field
               input(
                 v-model="fourthDigit"
                 type="number"
                 step="1"
-                maxlength="1"
+                max="9"
                 :class="{'night-field': dayOrNight === 'night'}"
                 v-on:keyup.delete="onDelete(4)"
-                @keypress="checkNumberInput($event)"
+                @keypress="checkNumberInput($event, fourthDigit)"
               )#fourthDigit.single-field
               input(
                 v-model="fifthDigit"
                 type="number"
                 step="1"
-                maxlength="1"
+                max="9"
                 :class="{'night-field': dayOrNight === 'night'}"
                 v-on:keyup.delete="onDelete(5)"
-                @keypress="checkNumberInput($event)"
+                @keypress="checkNumberInput($event, fifthDigit)"
               )#fifthDigit.single-field
               input(
                 v-model="sixthDigit"
                 type="number"
                 step="1"
-                maxlength="1"
+                max="9"
                 :class="{'night-field': dayOrNight === 'night'}"
                 v-on:keyup.delete="onDelete(6)"
-                @keypress="checkNumberInput($event)"
+                @keypress="checkNumberInput($event, sixthDigit)"
               )#sixthDigit.single-field
             v-col(v-if="loading").shrink
               v-progress-circular(indeterminate size="15" color="primary")
@@ -77,7 +85,7 @@
             right
             bottom
           ).text-none.font-weight-bold
-            | Resend{{ otpCountdown > 0 ? ` in 00:${otpCountdown / 1000}` : '.' }}
+            | Resend{{ otpCountdown > 0 ? ` in 00:${otpCountdown / 1000}` : '' }}
           v-row
             v-col
               v-alert(
@@ -326,8 +334,8 @@ export default {
         }
       }
     },
-    checkNumberInput (event) {
-      if (!/\d/.test(event.key)) {
+    checkNumberInput (event, value) {
+      if (!/\d/.test(event.key) || value?.length === 1) {
         return event.preventDefault();
       };
       return event;
