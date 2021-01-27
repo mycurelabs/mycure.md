@@ -4,7 +4,7 @@
       v-row(justify="center" align="center" no-gutters)
         v-col.text-center
           img(
-            src="~/assets/images/mycure-footer-logo.png"
+            src="~/assets/images/MYCURE Logo - white.png"
             alt="White MYCURE Logo"
             width="200"
           ).mt-4
