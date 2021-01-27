@@ -5,49 +5,12 @@
       :name="clinicName"
       :org-id="orgId"
       :coverURL="coverURL"
-      @searchLoading="searchLoading"
-      @searchResultsLoaded="searchResultsLoaded"
     )
     v-container
-      v-row(justify="center" align="center")
-        v-icon.pb-2.font-gray mdi-filter-list
-          //- span.font-21 Filter
-        v-col(cols="12" md="3").py-0
-          v-select(
-            :items="items"
-            label="Specialty available"
-            dense
-            outlined
-            width="258"
-          ).dropdown
-        v-col(cols="12" md="3").py-0
-          v-select(
-            :items="items"
-            label="Every Monday"
-            dense
-            outlined
-          ).dropdown
-        v-col(cols="12" md="3").py-0
-          v-select(
-            :items="items"
-            label="Morning"
-            dense
-            outlined
-          ).dropdown
       v-row(justify="center")
-        v-col(v-if="!$isMobile" cols="12" md="6")
-          doctor-cards(
-            :formattedDoctors="formattedDoctors"
-            :members="orgDoctors"
-            :total="doctorsTotal"
-            :limit="doctorsLimit"
-            :servicesOffered="servicesOffered"
-            @onUpdatePage="fetchDoctorMembers"
-            )
-        div(v-if="!$isMobile").pa-4
-        v-col(cols="12" md="4" align="center")
-          schedules(:schedules="schedules").mt-2
-          info(
+        v-col(cols="12" md="4")
+          //- TODO: one property only, `clinic`
+          clinic-info(
             :hospitalName="clinicName"
             :address="address"
             :completeAddress="completeAddress"
@@ -55,24 +18,9 @@
             :description="description"
             :contactNumber="contactNumber"
           )
-    //-         schedules(:schedules="schedules").pa-3
-    //-         v-col(cols="12" style="background-color: #ececec; border-radius: 5px; min-height: 100px;").mt-6
-    //-           //- UPDATE CONSULTATIONS DATA
-    //-           consultations(
-    //-             :price-min="minimumServicePrice"
-    //-             :price-max="maximumServicePrice"
-    //-           )
-
-    //-     //- UPDATE TESTIMONIAL DATA
-    //-     v-row
-    //-       v-col(cols="12")
-    //-         h2 Testimonials
-    //-         testimonials(:picURL="picURL" :testimonialDate="testimonialDate" :testimonialDescription="testimonialDescription")
-
-    //-   //- UDPATE DOCTORS DATA
-    //-   //- v-col(cols="12" md="4")
-    //-   //-   specializations-chats(:doctors="doctors" :consultIDS="consultIDS")
-
+          schedules(:schedules="schedules").mt-2
+        v-col(cols="12" md="8")
+          h1 Directory
     v-divider
     v-footer(v-if="!$isMobile" color="white").mt-3
       v-row(justify="center" align="center" no-gutters)
@@ -81,7 +29,7 @@
           md="5"
           align="start"
         )
-          div.d-flex
+          div.d-flexDirectory
             p.ml-5.mt-1 #[b Powered by]
             img(
               height="30"
@@ -119,24 +67,24 @@
               alt="MYCURE"
               @click="$nuxt.$router.push({ name: 'index' })"
             )
-            p.white--text.font-14.ml-4.mt-1 &#169;{{new Date().getFullYear()}} All Rights Reserved.
+            p.white--text.font-14.ml-4.mt-1 &#169;{{new Date().getFullYear()}} All Rights Reserved. asd
 </template>
 
 <script>
-import { getClinicWebsite, getMembership, getServices } from '~/utils/axios';
+import { getMembership, getServices } from '~/utils/axios';
+import {
+  getOrganizationWebsite,
+} from '~/services/organizations';
 import headMeta from '~/utils/head-meta';
-import AppBar from '~/components/clinic-website/app-bar';
-import Usp from '~/components/clinic-website/usp';
-import DoctorsList from '~/components/clinic-website/doctors-list';
 import AboutUs from '~/components/clinic-website/about-us';
-import Info from '~/components/clinic-website/info';
+import AppBar from '~/components/clinic-website/app-bar';
+import ClinicInfo from '~/components/clinic-website/clinic-info';
+import DoctorCards from '~/components/clinic-website/doctor-card';
+import DoctorsList from '~/components/clinic-website/doctors-list';
 import Schedules from '~/components/clinic-website/schedules';
 import Services from '~/components/clinic-website/services';
-// import Consultations from '~/components/clinic-website/consultations';
-// import Testimonials from '~/components/clinic-website/testimonials';
-// import SpecializationsChats from '~/components/clinic-website/specializations-chat';
-import DoctorCards from '~/components/clinic-website/doctor-card';
 import Specializations from '~/components/clinic-website/specialization-expansion';
+import Usp from '~/components/clinic-website/usp';
 export default {
   layout: 'clinic-website',
   components: {
@@ -144,7 +92,7 @@ export default {
     Usp,
     DoctorsList,
     AboutUs,
-    Info,
+    ClinicInfo,
     Schedules,
     Services,
     // Consultations,
@@ -153,10 +101,12 @@ export default {
     DoctorCards,
     Specializations,
   },
-  async asyncData ({ params, error }) {
+  async asyncData ({ params, error, $sdk }) {
     try {
-      const clinic = await getClinicWebsite({ username: params.id });
+      const clinic = await getOrganizationWebsite($sdk, { id: params.id });
+      console.warn('clinic', clinic);
       const clinicWebsite = clinic[0];
+      console.warn('clinicWebsite', clinicWebsite);
       const membership = await getMembership({ organization: params.id });
       const member = membership[0];
       const services = await getServices({ facility: params.id });
@@ -183,6 +133,7 @@ export default {
       pageCount: 2,
       orgDoctors: [],
       doctorsTotal: 0,
+      items: [],
     };
   },
   computed: {
@@ -276,6 +227,7 @@ export default {
   methods: {
     async fetchDoctorMembers (page = 1) {
       const skip = this.doctorsLimit * (page - 1);
+      // TODO: move logic to service folder
       const { items, total } = await this.$sdk.service('organization-members').find({
         organization: this.orgId,
         roles: 'doctor',
@@ -291,6 +243,7 @@ export default {
     },
     async fetchDoctorPersonalDetails (members) {
       const populatedMembersPromises = members.map(async (member) => {
+        // TODO: move logic to service folder
         const data = await this.$sdk.service('personal-details').get(member.uid);
         return {
           ...member,
