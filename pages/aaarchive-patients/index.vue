@@ -1,8 +1,8 @@
 <template lang="pug">
   div(v-if="!loading")
     app-bar
-    usp.mb-10
-    how-it-works.mb-10
+    usp.mb-10#usp
+    how-it-works.mb-10#howItWorks
     consult(v-if="!$isMobile").mb-10
     services-section.mb-10
     hipaa.mb-10
