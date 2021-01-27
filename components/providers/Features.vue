@@ -3,12 +3,12 @@
     template(v-for="row in rows")
       v-row(v-if="!$isMobile" align="center").my-10
         v-col(cols="12" md="6" :class="{ 'order-last': row.imagePos === 'left' }").header-gray
-          b(v-if="row.superTitle").mr-4.primary--text {{row.superTitle}}
+          b(v-if="row.superTitle").primary--text {{row.superTitle}}
             v-chip(
               v-if="row.superTitleChipText"
               dense
               color="#E6C03A"
-            ) {{row.superTitleChipText}}
+            ).ml-4.white--text {{row.superTitleChipText}}
           h1.mt-2 {{row.title}}
           ul(v-if="row.list && row.list.length")
             template(v-for="listItem in row.list")
@@ -78,7 +78,7 @@ export default {
         {
           imagePos: 'left',
           image: require('../../assets/images/providers/Homepage-cropped.png'),
-          title: 'Patients book your healthcare services online, keeping you both safe',
+          title: 'Patients book your healthcare services, keeping you both safe',
           superTitle: 'DIRECTORY',
           superTitleChipText: 'Coming Soon!',
           list: [

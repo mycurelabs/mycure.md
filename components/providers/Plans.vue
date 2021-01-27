@@ -34,7 +34,7 @@
 <script>
 export default {
   data () {
-    this.title = 'Start for free, then pay as you grow.';
+    this.title = 'Start for free, then pay as you grow';
     this.plans = [
       {
         name: 'FREE',
