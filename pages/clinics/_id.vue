@@ -10,14 +10,7 @@
       v-row(justify="center")
         v-col(cols="12" md="4")
           //- TODO: one property only, `clinic`
-          clinic-info(
-            :hospitalName="clinicName"
-            :address="address"
-            :completeAddress="completeAddress"
-            :picURL="picURL"
-            :description="description"
-            :contactNumber="contactNumber"
-          )
+          clinic-info(:clinic="clinicWebsite")
           schedules(:schedules="schedules").mt-2
         v-col(cols="12" md="8")
           h1 Directory
@@ -143,31 +136,8 @@ export default {
     coverURL () {
       return this.clinicWebsite?.coverURL || require('~/assets/images/clinics-website/usp-background.png');
     },
-    description () {
-      return this.clinicWebsite?.description ||
-      `${this.clinicWebsite?.name} specializes in telehealth services. ${this.clinicWebsite?.name} telemedicine service is committed to provide medical consultation via video conference or phone call to our patient 24 hours a day 7 days a week.`;
-    },
     clinicName () {
       return this.clinicWebsite?.name || 'MYCURE Clinic';
-    },
-    address () {
-      return [
-        this.clinicWebsite?.address?.city,
-        this.clinicWebsite?.address?.province,
-        this.clinicWebsite?.address?.country,
-      ].filter(Boolean).join(', ') || 'Address not available';
-    },
-    completeAddress () {
-      return [
-        this.clinicWebsite?.address?.street1,
-        this.clinicWebsite?.address?.street2,
-        this.clinicWebsite?.address?.city,
-        this.clinicWebsite?.address?.province,
-        this.clinicWebsite?.address?.country,
-      ].filter(Boolean).join(', ') || 'Address not available';
-    },
-    contactNumber () {
-      return this.clinicWebsite?.phone || 'Contact Number not available';
     },
     servicesOffered () {
       return this.services;

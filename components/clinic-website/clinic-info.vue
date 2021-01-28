@@ -5,7 +5,7 @@
         v-avatar(size="130")
           img(:src="picURL")
       v-col(cols="12").text-center
-        h1 {{ hospitalName }}
+        h1 {{ name }}
         p.font-14 {{ completeAddress }}
       v-col(cols="10")
         v-icon(medium) mdi-phone
@@ -22,33 +22,44 @@
 <script>
 export default {
   props: {
-    hospitalName: {
-      type: String,
-      default: '',
-    },
-    address: {
-      type: String,
-      default: '',
-    },
-    completeAddress: {
-      type: String,
-      default: '',
-    },
-    picURL: {
-      type: String,
-      default: '',
-    },
-    description: {
-      type: String,
-      default: '',
-    },
-    contactNumber: {
-      type: String,
-      default: '',
+    clinic: {
+      type: Object,
+      default: () => ({}),
     },
   },
   data () {
     return {};
+  },
+  computed: {
+    name () {
+      return this.clinic?.name || 'MYCURE Clinic';
+    },
+    address () {
+      return [
+        this.clinic?.address?.city,
+        this.clinic?.address?.province,
+        this.clinic?.address?.country,
+      ].filter(Boolean).join(', ') || 'Address not available';
+    },
+    completeAddress () {
+      return [
+        this.clinic?.address?.street1,
+        this.clinic?.address?.street2,
+        this.clinic?.address?.city,
+        this.clinic?.address?.province,
+        this.clinic?.address?.country,
+      ].filter(Boolean).join(', ') || 'Address not available';
+    },
+    contactNumber () {
+      return this.clinic?.phone || 'Contact Number not available';
+    },
+    picURL () {
+      return this.clinic?.picURL || require('~/assets/images/clinics-website/hospital-thumbnail.jpg');
+    },
+    description () {
+      return this.clinic?.description ||
+      `${this.clinic?.name} specializes in telehealth services. ${this.clinic?.name} telemedicine service is committed to provide medical consultation via video conference or phone call to our patient 24 hours a day 7 days a week.`;
+    },
   },
 };
 </script>
