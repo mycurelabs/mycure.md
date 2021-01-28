@@ -13,12 +13,12 @@
           v-col(cols="12")
             v-toolbar(flat :color="appBarColor")
               nuxt-link(:to="{ name: 'index' }" title="MYCURE | Clinic Management System | Cloud EMR Philippines" id="toolbar-mycure-logo" @click.stop="handleMycureLogo").mr-3.mt-2
-                img(src="~/assets/images/MYCURE-virtual-clinic-healthcare-practice-online-logo.svg" width="140" alt="MYCURE logo" @click="scrollToTop")
+                img(src="~/assets/images/MYCURE Logo - black.png" width="140" alt="MYCURE logo" @click="scrollToTop")
               template(v-for="(item, key) in solutionsMenuItems")
                 v-btn(v-if="!item.subMenus" text @click="onNavLinkClick(item)")
                   span.font-14.tab.text-none {{item.name}}
                   span(v-if="item.new").ml-2.px-1.white--text.red.font-weight-bold.font-14.pill NEW
-                  span(v-if="item.comingSoon").ml-2.px-1.white--text.btn-yellow.font-weight-bold.font-12.pill Coming Soon
+                  span(v-if="item.comingSoon").ml-2.px-1.white--text.btn-yellow.font-weight-bold.font-12.pill.text-none Coming Soon!
                 v-menu(offset-y v-else).solutions-menu
                   template(v-slot:activator="{ on }")
                     v-btn(

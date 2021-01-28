@@ -4,21 +4,33 @@
       v-row(justify="center" align="center" no-gutters)
         v-col.text-center
           img(
-            src="~/assets/images/mycure-footer-logo.png"
+            src="~/assets/images/MYCURE Logo - white.png"
             alt="White MYCURE Logo"
             width="200"
           ).mt-4
       v-row(:class="{ 'justify-space-around' : !$isMobile}").mt-4
         template(v-for="(footerItem, index) in footerItems")
-          v-col(cols="6" md="2").footer-section.pl-10
+          v-col(cols="6" md="2" :class="{ 'pl-8' : $isMobile }").footer-section
             h4(v-if="footerItem.type === 'footer-header'").primary--text {{ footerItem.value }}
-            a(
-              v-for="(col, index) in footerItem.columns"
-              v-if="col.type === 'link'"
-              :href="col.link"
-              target="_blank"
-              el="noopener noreferrer"
-            ).white--text.d-block.font-16 {{col.value}}
+            template(v-for="(col, index) in footerItem.columns")
+              a(
+                v-if="col.type === 'link'"
+                :href="col.link"
+                target="_blank"
+                el="noopener noreferrer"
+              ).white--text.d-block.font-16 {{col.value}}
+              a(
+                v-if="col.type === 'phone'"
+                :href="`tel:${col.value}`"
+              ).white--text.d-block.font-16 {{col.value}}
+              a(
+                v-if="col.type === 'email'"
+                :href="`mailto:${col.value}`"
+              ).white--text.d-block.font-16 {{col.value}}
+              a(
+                v-if="col.type === 'chat'"
+                @click.stop="toggleChat()"
+              ).white--text.d-block.font-16 {{col.value}}
       hr(v-if="!$isMobile").my-5
       v-row(align="center" no-gutters)
         v-col(
@@ -51,7 +63,7 @@ export default {
           type: 'footer-header',
           value: 'About',
           columns: [
-            { type: 'link', value: 'Fight COVID-19:', link: '/index' },
+            { type: 'link', value: 'Fight COVID-19: Free EMR', link: '/fight-covid-19' },
             { type: 'link', value: 'Our Story', link: '/our-story' },
             { type: 'link', value: 'Blog', link: 'https://blog.mycure.md' },
             { type: 'link', value: 'Careers', link: 'https://culture.mycure.md/' },
@@ -62,7 +74,7 @@ export default {
           value: 'Support',
           columns: [
             { type: 'link', value: 'FAQs', link: '/faqs' },
-            { type: 'link', value: 'Chat with us', link: '/our-story' },
+            { type: 'chat', value: 'Chat with us', link: '/our-story' },
           ],
         },
         // {
@@ -79,8 +91,8 @@ export default {
           type: 'footer-header',
           value: 'Providers',
           columns: [
-            { type: 'link', value: 'Clinics', link: '/' },
-            { type: 'link', value: 'Enterprise', link: '/' },
+            { type: 'link', value: 'Clinics', link: '/clinics' },
+            { type: 'link', value: 'Enterprise', link: '/enterprise' },
           ],
         },
         {
@@ -95,9 +107,9 @@ export default {
           type: 'footer-header',
           value: 'Contact Us',
           columns: [
-            { type: 'link', value: 'hello@mycure.md', link: '/' },
-            { type: 'link', value: '(+632) 7799 6262', link: '/' },
-            { type: 'link', value: '(+63) 917 303 4350', link: '/' },
+            { type: 'email', value: 'hello@mycure.md' },
+            { type: 'phone', value: '(+632) 7799 6262' },
+            { type: 'phone', value: '(+63) 917 303 4350' },
           ],
         },
       ],
@@ -134,6 +146,11 @@ export default {
         },
       ],
     };
+  },
+  methods: {
+    toggleChat () {
+      window.$crisp.push(['do', 'chat:toggle']);
+    },
   },
 };
 </script>
