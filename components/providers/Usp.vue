@@ -4,6 +4,7 @@
       v-row(
         :align="{ 'top' : $isMobile }"
         :style="{ height: $isMobile ? 'auto' : '626px' }"
+        :class=" !$isMobile ? 'pt-10' : 'pt-2' "
         no-gutters
       ).justify-center
         v-col(cols="12" md="7").white--text.text-center
@@ -14,7 +15,7 @@
               :erase-delay="100"
               :class="{ 'font-50' : !$isMobile, 'font-35' : $isMobile }"
               erase-style="backspace"
-            ).font-50.typer
+            ).typer
             span(:class="{ 'font-50' : !$isMobile, 'font-35' : $isMobile }") #[br] safely
           p Bring in more patients using a powerful booking and health management system
           v-col(cols="12" :class="{ 'd-flex' : !$isMobile, 'pt-6' : $isMobile }")

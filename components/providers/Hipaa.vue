@@ -7,11 +7,11 @@
           src="../../assets/images/HIPAA Badge.png"
         )
       v-col(cols="10" md="6")
-        h1(:class="{ 'text-center font-24' : $isMobile }") MYCURE is HIPAA Compliant
-        p.mt-4 MYCURE demonstrates its commitment to industry-leading best practices for security and privacy of protected health information as required under HIPAA. #[br(v-if="$isMobile")]
+        h1(:class="{ 'text-center font-20' : $isMobile }") MYCURE is HIPAA Compliant
+        p.mt-4 MYCURE demonstrates its commitment to industry-leading best practices for security and privacy of protected health information as required under HIPAA.
           a(
             href="https://blog.mycure.md/mycure-is-hipaa-compliant/"
             target="_blank"
             rel="noreferrer noopener"
-          )  #[b Learn more]
+          ).ml-2  #[b Learn more]
 </template>

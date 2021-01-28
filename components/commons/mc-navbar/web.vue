@@ -18,7 +18,7 @@
                 v-btn(v-if="!item.subMenus" text @click="onNavLinkClick(item)")
                   span.font-14.tab.text-none {{item.name}}
                   span(v-if="item.new").ml-2.px-1.white--text.red.font-weight-bold.font-14.pill NEW
-                  span(v-if="item.comingSoon").ml-2.px-1.white--text.btn-yellow.font-weight-bold.font-12.pill Coming Soon
+                  span(v-if="item.comingSoon").ml-2.px-1.white--text.btn-yellow.font-weight-bold.font-12.pill.text-none Coming Soon!
                 v-menu(offset-y v-else).solutions-menu
                   template(v-slot:activator="{ on }")
                     v-btn(

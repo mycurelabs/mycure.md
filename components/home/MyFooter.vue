@@ -10,7 +10,7 @@
           ).mt-4
       v-row(:class="{ 'justify-space-around' : !$isMobile}").mt-4
         template(v-for="(footerItem, index) in footerItems")
-          v-col(cols="6" md="2").footer-section.pl-10
+          v-col(cols="6" md="2" :class="{ 'pl-8' : $isMobile }").footer-section
             h4(v-if="footerItem.type === 'footer-header'").primary--text {{ footerItem.value }}
             template(v-for="(col, index) in footerItem.columns")
               a(
@@ -63,7 +63,7 @@ export default {
           type: 'footer-header',
           value: 'About',
           columns: [
-            { type: 'link', value: 'Fight COVID-19: Free EMR', link: '/index' },
+            { type: 'link', value: 'Fight COVID-19: Free EMR', link: '/fight-covid-19' },
             { type: 'link', value: 'Our Story', link: '/our-story' },
             { type: 'link', value: 'Blog', link: 'https://blog.mycure.md' },
             { type: 'link', value: 'Careers', link: 'https://culture.mycure.md/' },
