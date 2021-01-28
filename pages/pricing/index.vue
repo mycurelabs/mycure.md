@@ -90,8 +90,8 @@
         div.need-more-container.elevation-2
           v-row(align="center")
             v-col.pa-10.grow
-              h1 Setup your health facility now and get more awesome stuff later.
-              p We got your from your first sale to full scale.
+              h1 Setup your health facility now and get more awesome stuff later
+              p We got your from your first sale to full scale
             v-col.pa-10.shrink
               v-btn(
                 x-large
@@ -157,7 +157,7 @@ export default {
           free: 'mdi-check-circle',
           paid: 'mdi-check-circle',
           iconToolTip: 'mdi-help-circle',
-          toolTipContent: 'Get paid using PayPal, credit/debit card, GCash, 7-Eleven, ang Cebuana Lhuillier.',
+          toolTipContent: 'Get paid using PayPal, credit/debit card, GCash, 7-Eleven, and Cebuana Lhuillier.',
         },
         {
           item: 'Pay later',
@@ -248,10 +248,10 @@ export default {
         },
         {
           question: 'Is there a booking fee for patients?',
-          answer: 'Yes. To ensure that your patients have an excellent healthcare booking experience, we charge them $1 convenience fee for every successful booking. This is placed on top of the total amount that they have to pay you.',
+          answer: 'Yes, to ensure that your patients have an excellent healthcare booking experience, we charge them $1 convenience fee for every successful booking. This is placed on top of the total amount that they have to pay you.',
         },
         {
-          question: 'What if I manage more than 1 health facility?',
+          question: 'What if I manage more than one health facility?',
           answer: 'You can subscribe for an additional facility account for $5 monthly. If you manage 10 or more health facilities, you may want to check out our Enterprise plan.',
         },
         {
