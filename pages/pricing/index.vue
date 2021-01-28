@@ -1,6 +1,6 @@
 <template lang="pug">
   div
-    v-container(v-if="!loading").main-container
+    v-container(v-if="!loading" :class="{ 'main-container' : !$isMobile, 'mobile-container' : $isMobile }")
       v-row(justify="center" align="center")
         v-col(cols="12").py-10.mb-10.text-center
           h1(:class="titleClasses").mb-2 Start for free, then pay as you grow
@@ -16,22 +16,24 @@
             tr
               td(width="33%")
               td(width="33%")#free-container.text-center
-                div.pa-3
-                  h2.mb-4 #[b(:class=" !isMobile ? 'font-30' : 'font-20' ") LITE] #[br] Free
-                  p(:class="{ 'font-14' : !$isMobile, 'font-10' : $isMobile }") All the essential tools you need to run your health facility
+                div
+                  h2(:class=" !isMobile ? 'font-30' : 'font-20' ") LITE
+                  p.font-14 #[b Free]
+                  p(v-if="!$isMobile").font-14 All the essential tools you need to run your health facility
               td(width="33%")#paid-container.primary.text-center
-                div.pa-3
-                  h2.mb-4.white--text #[b(:class=" !isMobile ? 'font-30' : 'font-20' ") PRO] #[br] Pay as you grow
-                  p(:class="{ 'font-14' : !$isMobile, 'font-10' : $isMobile }").white--text Only pay for what you use on top of the free plan
-            tr
+                div.white--text
+                  h2(:class=" !isMobile ? 'font-30' : 'font-20' ") PRO
+                  p.font-14 #[b Pay as you grow]
+                  p(v-if="!$isMobile").font-14 Only pay for what you use on top of the free plan
+            tr(:class="{ 'font-12' : $isMobile }")
               td(width="33%").styled-td #[span.font-weight-bold.primary--text Products]
-              td(width="33%" valign="bottom").styled-td.text-center
-                h1 #[span(style="font-size: 14px;") $]0
+              td(width="33%" valign="bottom" ).styled-td.text-center
+                h1 #[span(:class="!isMobile ? 'font-12' : 'font-10'") $]0
               td(width="33%" valign="bottom").styled-td.text-center
                 h3 Starts at
-                h1 #[span(style="font-size: 14px;") $]4#[span(style="font-size: 14px;") /mo]
+                h1 #[span(:class="!isMobile ? 'font-12' : 'font-10'") $]4#[span(:class="!isMobile ? 'font-12' : 'font-10'") /mo]
             template(v-for="(row, index) in rows")
-              tr
+              tr(:class="{ 'font-12' : $isMobile }")
                 td.styled-td #[span.font-weight-bold.mr-2 {{row.item}}]
                   v-tooltip(show right)
                     template(v-slot:activator="{ on, attrs }")
@@ -41,7 +43,7 @@
                   template(v-if="isIcon(row.free)")
                     v-icon(
                       :class="{ 'success--text': getIconColor(row.free) === 'success', 'error--text': getIconColor(row.free) === 'error' }"
-                      size="30"
+                      :size=" isMobile ? '30' : '20' "
                     ) {{row.free}}
                   template(v-else)
                     span.font-weight-bold {{row.free}}
@@ -49,7 +51,7 @@
                   template(v-if="isIcon(row.paid)")
                     v-icon(
                       :class="{ 'success--text': getIconColor(row.free) === 'success', 'error--text': getIconColor(row.free) === 'error' }"
-                      size="30"
+                      :size=" isMobile ? '30' : '20' "
                     ) {{row.paid}}
                   template(v-else)
                     span.font-weight-bold {{row.paid}}
@@ -66,9 +68,9 @@
       v-container
         v-row(justify="center")
           v-col(cols="12").text-center
-            h1 Enterprise-grade solutions for high volume #[br(v-if="!$isMobile")] operations and multi-branch health facilities
+            h1(:class="{ 'font-20' : $isMobile }") Enterprise-grade solutions for high volume #[br(v-if="!$isMobile")] operations and multi-branch health facilities
             br
-            p Get a customized suite of healthcare modules to handle cross-functional #[br(v-if="!$isMobile")] operations across one or more health facilities that you mange
+            p(:class="{ 'font-14' : $isMobile }") Get a customized suite of healthcare modules to handle cross-functional #[br(v-if="!$isMobile")] operations across one or more health facilities that you mange
             v-btn(
               large
               color="primary"
@@ -79,22 +81,24 @@
     v-container
       v-row(justify="center")
         v-col(cols="12").text-center
-          h1 FAQs
+          h1(:class="{ 'font-20' : $isMobile }") Frequently Asked Questions
         v-col(cols="12")
           v-expansion-panels(focusable)
             v-expansion-panel(v-for="(faq, key) in generalFaqs" :key="key")
-              v-expansion-panel-header.font-18.font-weight-medium  {{faq.question}}
-              v-expansion-panel-content(v-if="!faq.isHTML").mt-4 {{faq.answer}}
-              v-expansion-panel-content(v-if="faq.isHTML" v-html="faq.answer").mt-4
+              v-expansion-panel-header(:class="{ 'font-18' : !$isMobile, 'font-14' : $isMobile }").font-weight-medium  {{faq.question}}
+              v-expansion-panel-content(v-if="!faq.isHTML" :class="{ 'font-12' : $isMobile }").mt-4 {{faq.answer}}
+              v-expansion-panel-content(v-if="faq.isHTML" v-html="faq.answer" :class="{ 'font-12' : $isMobile }").mt-4
       v-row(justify="center").mb-10.pb-10.mt-10.pt-10
-        div.need-more-container.elevation-2
-          v-row(align="center")
-            v-col.pa-10.grow
-              h1 Setup your health facility now and get more awesome stuff later
-              p We got your from your first sale to full scale
-            v-col.pa-10.shrink
+        div.need-more-container
+          v-row(align="center" justify="center" :class="{ 'text-center' : $isMobile }")
+            v-col(cols="1")
+            v-col(cols="12" md="7" :class="{ 'pb-2' : $isMobile, 'mx-auto' : !$isMobile}").pa-10.grow
+              h1(:class="{ 'font-20' : $isMobile }").grayText Get set up today and get more awesome stuff later!
+              p(:class="{ 'font-14' : $isMobile }").mt-2.lightGrayText We got you from your first sale to full scale
+            v-col(cols="12" md="4" :class="{ 'pt-4' : $isMobile}").pa-10.shrink.mx-auto
               v-btn(
-                x-large
+                :x-large="!$isMobile"
+                :large="$isMobile"
                 rounded
                 color="primary"
                 :to="{ name: 'signup-health-facilities' }"
@@ -243,7 +247,7 @@ export default {
           isHTML: true,
         },
         {
-          question: 'If the patient pays online, how do I get it?',
+          question: 'If the patient pays online, how do I encash it?',
           answer: 'You can get payments instantly if you set up your PayPal account. For other payment options (e.g. debit/credit card, GCash, 7-Eleven) they will go through a disbursement process with a minimum request of $50.',
         },
         {
@@ -252,11 +256,13 @@ export default {
         },
         {
           question: 'What if I manage more than one health facility?',
-          answer: 'You can subscribe for an additional facility account for $5 monthly. If you manage 10 or more health facilities, you may want to check out our Enterprise plan.',
+          answer: '<div class="v-expansion-panel-content__wrap">You can subscribe for an additional facility account for $5 monthly. If you manage 10 or more health facilities, you may want to check out our <strong><a style="text-decoration: none;" href="/enterprise"> Enterprise plan</a> </strong> </div>.',
+          isHTML: true,
         },
         {
           question: 'Do you have discounted plan bundles?',
-          answer: 'Yes, we offer customized pricing with valuable discounts for health facility owners that qualify for our Enterprise plan. Let’s talk.',
+          answer: '<div class="v-expansion-panel-content__wrap">Yes, we offer customized pricing with valuable discounts for health facility owners that qualify for our Enterprise plan.<strong><a style="text-decoration: none;" href="https://calendly.com/mycure/demo"> Let’s talk.</a> </strong> </div>',
+          isHTML: true,
         },
       ],
     };
@@ -295,6 +301,9 @@ export default {
 <style scoped>
 .main-container {
   margin-top: 100px;
+}
+.mobile-container{
+  margin-top: 80px;
 }
 .v-card {
   border: 2px solid #1E88E5 !important;
@@ -355,7 +364,16 @@ table, th, td {
 
 .need-more-container {
   background-color: #f2f2f2;
-  border-radius: 10px;
+  box-shadow: 0px 0px 9px rgba(0, 0, 0, 0.4);
+  border-radius: 25px;
+}
+
+.grayText {
+  color: #4D4D4D;
+}
+
+.lightGrayText {
+  color: #777777;
 }
 
 .v-tooltip__content {
