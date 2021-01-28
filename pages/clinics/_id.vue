@@ -13,7 +13,7 @@
           clinic-info(:clinic="clinicWebsite")
           schedules(:schedules="schedules").mt-2
         v-col(cols="12" md="8")
-          h1 Directory
+          services-tabs
     v-divider
     v-footer(v-if="!$isMobile" color="white").mt-3
       v-row(justify="center" align="center" no-gutters)
@@ -75,7 +75,7 @@ import ClinicInfo from '~/components/clinic-website/clinic-info';
 import DoctorCards from '~/components/clinic-website/doctor-card';
 import DoctorsList from '~/components/clinic-website/doctors-list';
 import Schedules from '~/components/clinic-website/schedules';
-import Services from '~/components/clinic-website/services';
+import ServicesTabs from '~/components/clinic-website/services/tabs';
 import Specializations from '~/components/clinic-website/specialization-expansion';
 import Usp from '~/components/clinic-website/usp';
 export default {
@@ -87,7 +87,7 @@ export default {
     AboutUs,
     ClinicInfo,
     Schedules,
-    Services,
+    ServicesTabs,
     // Consultations,
     // Testimonials,
     // SpecializationsChats,
