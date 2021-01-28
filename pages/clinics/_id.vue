@@ -101,17 +101,12 @@ export default {
     DoctorCards,
     Specializations,
   },
-  async asyncData ({ params, error, $sdk }) {
+  async asyncData ({ params, $sdk }) {
     try {
-      const clinic = await getOrganizationWebsite($sdk, { id: params.id });
-      console.warn('clinic', clinic);
-      const clinicWebsite = clinic[0];
-      console.warn('clinicWebsite', clinicWebsite);
       const membership = await getMembership({ organization: params.id });
       const member = membership[0];
       const services = await getServices({ facility: params.id });
       return {
-        clinicWebsite,
         member,
         services,
       };
@@ -132,6 +127,8 @@ export default {
       page: 1,
       pageCount: 2,
       orgDoctors: [],
+      //
+      clinicWebsite: {},
       doctorsTotal: 0,
       items: [],
     };
@@ -222,9 +219,18 @@ export default {
   },
   mounted () {
     this.loading = false;
+    this.init();
     this.fetchDoctorMembers();
   },
   methods: {
+    async init () {
+      try {
+        const clinic = await getOrganizationWebsite(this.$sdk, { id: this.$route.params.id });
+        this.clinicWebsite = clinic[0];
+      } catch (error) {
+        console.error(error);
+      }
+    },
     async fetchDoctorMembers (page = 1) {
       const skip = this.doctorsLimit * (page - 1);
       // TODO: move logic to service folder
