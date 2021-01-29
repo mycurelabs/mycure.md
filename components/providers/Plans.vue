@@ -4,25 +4,25 @@
       v-col(md="8")
         v-row(align="center" justify="center" :class="{ 'plans-container my-10' : !$isMobile }")
           v-col(cols="10" md="5" :class="{ 'pa-12' : !$isMobile }")
-            h1(:class="{ 'font-35 mb-5' : !$isMobile, 'font-24 text-center' : $isMobile }").plan-title.white--text {{title}}
+            h1(:class="{ 'font-35 mb-5' : !$isMobile, 'font-32 text-center' : $isMobile }").plan-title.white--text {{title}}
             v-btn(
               v-if="!$isMobile"
               x-large
               rounded
               color="success"
               :to="{ name: 'pricing' }"
-            ) #[b Learn More]
-          v-col(cols="10" md="6" :class="{ 'pa-12' : !$isMobile }")
+            ).text-none #[b Learn More]
+          v-col(cols="10" md="6" :class="{ 'pa-12' : !$isMobile }").mt-4
             template(v-for="plan in plans")
               h1(:class=" $isMobile ? 'font-20' : 'font-30'").white--text {{plan.name}}
-              p.white--text {{plan.description}}
+              p.white--text.mb-6 {{plan.description}}
           v-col(v-if="$isMobile" cols="12").text-center
             v-btn(
               large
               rounded
               color="success"
               :to="{ name: 'pricing' }"
-            ) #[b Learn More]
+            ).text-none #[b Learn More]
 </template>
 
 <script>
