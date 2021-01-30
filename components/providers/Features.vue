@@ -37,9 +37,9 @@
               v-if="row.superTitleChipText"
               dense
               color="#E6C03A"
-            ) {{row.superTitleChipText}}
-          h1.font-24.mt-2 {{row.title}}
-        v-col(cols="8")
+            ).ml-4.white--text {{row.superTitleChipText}}
+          h1.font-20.mt-2 {{row.title}}
+        v-col(cols="10")
           img(
             :src="row.image"
             width="100%"
