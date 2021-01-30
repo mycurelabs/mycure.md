@@ -5,12 +5,14 @@
         img(
           src="~/assets/images/sign-up-individual-step-1/mycure-sso-sign-in-logo.svg"
           alt="MYCURE logo"
-          width="70"
+          :width="$isMobile ? '50' : '70'"
+          :class="{ 'mb-5': !$isMobile }"
           @click="$router.push({ name: 'index' })"
-        ).link-to-home.mb-5
-        h1.mb-5 Level up your healthcare services and get more patients safely
+        ).link-to-home
+        h1(v-if="!$isMobile").mb-5 Level up your healthcare services and get more patients safely
+        h2(v-else style="line-height: 1.25em;").mb-5 Level up your healthcare services and get more patients safely
         v-form(ref="formRef" v-model="valid" @submit.prevent="submit")
-          v-row
+          v-row(:no-gutters="$isMobile")
             v-col(
               cols="12"
               md="6"
