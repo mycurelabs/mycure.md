@@ -100,6 +100,6 @@ export default {
 }
 
 .usp-mobile {
-  margin-top: 50px;
+  margin-top: 38px;
 }
 </style>

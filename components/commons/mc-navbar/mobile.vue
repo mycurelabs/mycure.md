@@ -1,8 +1,8 @@
 <template lang="pug">
   fragment
-    v-app-bar(app flat height="70" extension-height="95" color="white" :class="shadow")
+    v-app-bar(app height="60" color="white" :class="shadow" hide-on-scroll)
       nuxt-link(:to="{ name: 'index' }" title="MYCURE | Clinic Management System | Cloud EMR Philippines").logo-a
-        img(src="~/assets/images/mycure-header-logo.png" width="130" alt="MYCURE logo").mt-1
+        img(src="~/assets/images/mycure-header-logo.png" width="130" alt="MYCURE logo" @click="scrollToTop").mt-1
       v-spacer
       v-btn(
         text
@@ -158,6 +158,11 @@ export default {
     onNavLinkClick (navLink) {
       this.$emit('navLinkClick', navLink);
       this.drawer = false;
+    },
+    scrollToTop () {
+      if (this.$nuxt.$route.name === 'index') {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
     },
   },
 };

@@ -8,9 +8,9 @@
             alt="White MYCURE Logo"
             width="200"
           ).mt-4
-      v-row(:class="{ 'justify-space-around' : !$isMobile}").mt-4
+      v-row(v-if="!$isMobile").mt-4.justify-space-around
         template(v-for="(footerItem, index) in footerItems")
-          v-col(cols="6" md="2" :class="{ 'pl-8' : $isMobile }").footer-section
+          v-col(cols="6" md="2").footer-section
             h4(v-if="footerItem.type === 'footer-header'").primary--text {{ footerItem.value }}
             template(v-for="(col, index) in footerItem.columns")
               a(
@@ -31,7 +31,30 @@
                 v-if="col.type === 'chat'"
                 @click.stop="toggleChat()"
               ).white--text.d-block.font-16 {{col.value}}
-      hr(v-if="!$isMobile").my-5
+      v-row(v-if="$isMobile")
+        v-expansion-panels(flat).footer-gray.elevation-0.mx-2
+          v-expansion-panel(v-for="(footerItem, index) in footerItems" :key="index").footer-gray
+            v-expansion-panel-header(v-if="footerItem.type === 'footer-header'").primary--text {{ footerItem.value }}
+            template(v-for="(col, index) in footerItem.columns")
+              v-expansion-panel-content
+                a(
+                  v-if="col.type === 'link'"
+                  :href="col.link"
+                  target="_blank"
+                  el="noopener noreferrer"
+                ).white--text.d-block.font-16 {{col.value}}
+                a(
+                  v-if="col.type === 'phone'"
+                  :href="`tel:${col.value}`"
+                ).white--text.d-block.font-16 {{col.value}}
+                a(
+                  v-if="col.type === 'email'"
+                  :href="`mailto:${col.value}`"
+                ).white--text.d-block.font-16 {{col.value}}
+                a(
+                  v-if="col.type === 'chat'"
+                  @click.stop="toggleChat()"
+                ).white--text.d-block.font-16 {{col.value}}
       v-row(align="center" no-gutters)
         v-col(
           :class="{ 'text-center order-last' : $isMobile }"

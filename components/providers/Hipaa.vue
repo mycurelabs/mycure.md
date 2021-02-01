@@ -1,6 +1,6 @@
 <template lang="pug">
   v-container.header-gray
-    v-row(align="center" justify="center").my-10
+    v-row(align="center" justify="center").my-6
       v-col(cols="10" md="6").text-center
         img(
           :width="$isMobile ? '100%' : '80%'"
