@@ -66,8 +66,8 @@
 <script>
 import { getMembership, getServices } from '~/utils/axios';
 import {
-  getOrganizationWebsite,
-} from '~/services/organizations';
+  getOrganization,
+} from '~/utils/axios/organizations';
 import headMeta from '~/utils/head-meta';
 import AboutUs from '~/components/clinic-website/about-us';
 import AppBar from '~/components/clinic-website/app-bar';
@@ -96,10 +96,13 @@ export default {
   },
   async asyncData ({ params, $sdk }) {
     try {
+      const clinic = await getOrganization({ id: params.id }, true) || [];
+      const clinicWebsite = clinic[0];
       const membership = await getMembership({ organization: params.id });
       const member = membership[0];
       const services = await getServices({ facility: params.id });
       return {
+        clinicWebsite,
         member,
         services,
       };
@@ -189,18 +192,9 @@ export default {
   },
   mounted () {
     this.loading = false;
-    this.init();
     this.fetchDoctorMembers();
   },
   methods: {
-    async init () {
-      try {
-        const clinic = await getOrganizationWebsite(this.$sdk, { id: this.$route.params.id });
-        this.clinicWebsite = clinic[0];
-      } catch (error) {
-        console.error(error);
-      }
-    },
     async fetchDoctorMembers (page = 1) {
       const skip = this.doctorsLimit * (page - 1);
       // TODO: move logic to service folder
