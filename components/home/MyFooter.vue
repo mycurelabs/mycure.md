@@ -35,6 +35,8 @@
         v-expansion-panels(flat).footer-gray.elevation-0.mx-2
           v-expansion-panel(v-for="(footerItem, index) in footerItems" :key="index").footer-gray
             v-expansion-panel-header(v-if="footerItem.type === 'footer-header'").primary--text {{ footerItem.value }}
+              template(v-slot:actions)
+                v-icon(color="primary") mdi-chevron-down
             template(v-for="(col, index) in footerItem.columns")
               v-expansion-panel-content
                 a(
@@ -184,5 +186,9 @@ export default {
 }
 a {
   text-decoration: none !important;
+}
+
+.v-expansion-panel-header__icon i{
+  color: #009fdf;
 }
 </style>

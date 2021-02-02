@@ -48,7 +48,7 @@
         v-col(cols="12").ml-4
           ul(v-if="row.list && row.list.length")
             template(v-for="listItem in row.list")
-              li.mt-4.d-flex #[v-icon(size="25").success--text.mr-2 mdi-checkbox-marked-circle]
+              li.mt-4.d-flex #[v-icon(size="25").success--text.mr-2.mb-auto mdi-checkbox-marked-circle]
                 div {{listItem}}
           v-btn(
             v-if="row.cta"
