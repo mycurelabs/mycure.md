@@ -110,6 +110,15 @@ export default {
   border-bottom-left-radius: 300px;
 }
 .vue-typer >>> .custom.char.typed  {
-  color: white;
+  color: #FFFFFF;
+}
+
+.vue-typer >>> .custom.caret {
+  width: 5px;
+  background-color: #FFFFFF;
+}
+
+.vue-typer >>> .custom.caret.typing {
+  background-color: #FFFFFF;
 }
 </style>
