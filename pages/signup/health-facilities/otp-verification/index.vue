@@ -276,7 +276,7 @@ export default {
         if (process.browser) {
           localStorage.clear();
         }
-        window.location = `${process.env.CMS_URL}/cms?token=${accessToken}`;
+        window.location = `${process.env.CMS_URL}?token=${accessToken}`;
       } catch (error) {
         console.error(error);
         this.snackBarModel = {
