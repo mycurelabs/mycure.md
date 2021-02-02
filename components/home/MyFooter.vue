@@ -114,7 +114,7 @@ export default {
           type: 'footer-header',
           value: 'Providers',
           columns: [
-            { type: 'link', value: 'Clinics', link: '/clinics' },
+            { type: 'link', value: 'Clinics', link: '/doctors-clinics' },
             { type: 'link', value: 'Enterprise', link: '/enterprise' },
           ],
         },
