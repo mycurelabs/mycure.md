@@ -6,9 +6,10 @@
       template(v-if="!$isMobile" v-for="service in services")
         v-col(cols="12" md="5").d-flex.justify-center
             v-card(width="325")
-              img(
+              v-img(
                 :src="service.image"
                 width="100%"
+                height="218"
                 alt="services"
               )
               v-card-title #[b.ma-auto {{service.title}}]
