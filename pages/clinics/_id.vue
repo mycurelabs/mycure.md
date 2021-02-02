@@ -1,19 +1,23 @@
 <template lang="pug">
-  div(v-if="!loading").py-0
+  div(v-if="!loading.page").py-0
     app-bar(:picURL="picURL" :clinicName="clinicName")
     usp(
       :name="clinicName"
       :org-id="orgId"
       :coverURL="coverURL"
     )
-    v-container
+    v-container(fluid)
       v-row(justify="center")
-        v-col(cols="12" md="4")
+        v-col(cols="12" md="3")
           //- TODO: one property only, `clinic`
           clinic-info(:clinic="clinicWebsite")
           schedules(:schedules="schedules").mt-2
         v-col(cols="12" md="8")
-          services-tabs
+          services-tabs(
+            v-model="activeTab"
+            :items="listItems"
+            :loading="loading.list"
+          )
     v-divider
     v-footer(v-if="!$isMobile" color="white").mt-3
       v-row(justify="center" align="center" no-gutters)
@@ -64,11 +68,15 @@
 </template>
 
 <script>
+// - utils
 import { getMembership, getServices } from '~/utils/axios';
 import {
   getOrganization,
 } from '~/utils/axios/organizations';
 import headMeta from '~/utils/head-meta';
+// - services
+import { fetchClinicWebsiteDoctors } from '~/services/organization-members';
+// - components
 import AboutUs from '~/components/clinic-website/about-us';
 import AppBar from '~/components/clinic-website/app-bar';
 import ClinicInfo from '~/components/clinic-website/clinic-info';
@@ -119,19 +127,25 @@ export default {
     ];
     this.doctorsLimit = 7;
     return {
-      loading: true,
+      loading: {
+        page: true,
+        list: false,
+      },
       page: 1,
       pageCount: 2,
       orgDoctors: [],
       //
       clinicWebsite: {},
+      activeTab: 'lab',
       doctorsTotal: 0,
       items: [],
+      // Items to show in tab list
+      listItems: [],
     };
   },
   computed: {
     orgId () {
-      return this.$route.params.id;
+      return this.clinicWebsite.id;
     },
     picURL () {
       return this.clinicWebsite?.picURL || require('~/assets/images/clinics-website/hospital-thumbnail.jpg');
@@ -190,37 +204,42 @@ export default {
       });
     },
   },
+  watch: {
+    activeTab (val) {
+      if (val === 'doctors') {
+        this.fetchDoctorMembers();
+        this.listItems = [...this.formattedDoctors];
+        return;
+      }
+      this.listItems = [];
+    },
+  },
   mounted () {
-    this.loading = false;
+    this.loading.page = false;
     this.fetchDoctorMembers();
   },
   methods: {
     async fetchDoctorMembers (page = 1) {
-      const skip = this.doctorsLimit * (page - 1);
-      // TODO: move logic to service folder
-      const { items, total } = await this.$sdk.service('organization-members').find({
-        organization: this.orgId,
-        roles: 'doctor',
-        $limit: this.doctorsLimit,
-        $skip: skip,
-      });
-      this.doctorsTotal = total;
-      const members = items;
-      if (!members?.length) return members;
-
-      const doctorPersonalDetails = await this.fetchDoctorPersonalDetails(members);
-      this.orgDoctors = doctorPersonalDetails;
-    },
-    async fetchDoctorPersonalDetails (members) {
-      const populatedMembersPromises = members.map(async (member) => {
+      try {
+        this.loading.list = true;
+        const skip = this.doctorsLimit * (page - 1);
         // TODO: move logic to service folder
-        const data = await this.$sdk.service('personal-details').get(member.uid);
-        return {
-          ...member,
-          personalDetails: data,
-        };
-      });
-      return await Promise.all(populatedMembersPromises);
+        const { items, total } = await fetchClinicWebsiteDoctors(this.$sdk, {
+          organization: this.orgId,
+          limit: this.doctorsLimit,
+          skip,
+        });
+        this.doctorsTotal = total;
+        const members = items || [];
+        if (!members?.length) return members;
+
+        console.log('members', members);
+        this.orgDoctors = members;
+      } catch (error) {
+        console.error(error);
+      } finally {
+        this.loading.list = false;
+      }
     },
   },
   head () {
