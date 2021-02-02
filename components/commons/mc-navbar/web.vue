@@ -56,11 +56,11 @@
                 width="130"
                 v-else-if="currentRoute === 'enterprise'"
                 color="accent"
-                :to="{ name: 'signup-multispecialty-step-1' }"
+                href="https://calendly.com/mycure/demo"
                 id="enterprise-book-demo-btn"
                 @click.stop="onActionBtnClick('enterprise-book-demo-btn')"
               )
-                strong.font-14.white--text.tab.text-none Book A Demo
+                strong.font-14.white--text.tab.text-none Book a Demo
               v-btn(
                 v-else-if="currentRoute === 'specialized-clinics'"
                 color="accent"

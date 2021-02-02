@@ -18,9 +18,9 @@
           align-self="start"
         ).row-content
           h1.font-40.lh-title {{ ctaTitle }}
-          p.font-italic.font-18.my-4 {{ ctaSubtitle }}
+          p.font-18.my-4 {{ ctaSubtitle }}
           v-row(justify="center").mt-5
-            v-col(cols="12" md="7")
+            //- v-col(cols="12" md="7")
               v-text-field(
                 v-model="email"
                 background-color="white"
@@ -31,13 +31,12 @@
                 dense
                 :error-messages="emailErrorMessage"
               )
-            v-col(cols="12" md="3" align-self="start")
+            v-col(cols="10")
               v-btn(
                 color="accent"
-                width="140"
                 height="52"
                 @click="onGetStarted"
-              ).text-none.font-16.cta-btn Book A Demo
+              ).text-none.font-16.cta-btn Book a demo today
             v-col(cols="10").mt-n8
               p.font-16.grey--text.pre-white-space {{ ctaAgreementText }}
         v-col(
@@ -46,9 +45,9 @@
           align="center"
         )
           h1.font-40.lh-title.px-5 {{ ctaTitle }}
-          p.font-italic.font-18.my-4 {{ ctaSubtitle }}
+          p.font-18.my-4 {{ ctaSubtitle }}
           v-row(justify="center")
-            v-col(cols="10")
+            //- v-col(cols="10")
               v-text-field(
                 v-model="email"
                 background-color="white"
@@ -64,7 +63,7 @@
                 color="accent"
                 large
                 @click="onGetStarted"
-              ).text-none.font-16 Book A Demo
+              ).text-none.font-16 Book a demo today
             v-col(cols="10")
               p.font-16.grey--text {{ ctaAgreementText }}
           picture-source(
@@ -90,9 +89,9 @@ export default {
     this.backgroundImage = 'mycure-final-cta-background-full';
     this.backgroundImageMobile = 'mycure-final-cta-background.png';
     this.ctaMobileImage = 'mycure-final-cta-background-image-right';
-    this.ctaTitle = 'Book A Demo Today.';
-    this.ctaSubtitle = 'Take your healthcare enterprise to a broader audience';
-    this.ctaAgreementText = 'By entering your email, you agree to receive\nmarketing emails from MYCURE.';
+    this.ctaTitle = 'Optimize your clinic workflows and maximize its potential';
+    this.ctaSubtitle = 'Manage and monitor your daily operations and get real-time medical and business insights with MYCURE.';
+    // this.ctaAgreementText = 'By entering your email, you agree to receive\nmarketing emails from MYCURE.';
     return {
       email: '',
       emailErrorMessage: '',
@@ -115,11 +114,12 @@ export default {
   },
   methods: {
     onGetStarted () {
-      if (!this.email) {
-        this.emailErrorMessage = 'Please enter your email';
-        return;
-      }
-      this.$emit('getStarted', this.email);
+      // if (!this.email) {
+      //   this.emailErrorMessage = 'Please enter your email';
+      //   return;
+      // }
+      // this.$emit('getStarted', this.email);
+      window.open('https://calendly.com/mycure/demo', '_blank');
     },
   },
 };

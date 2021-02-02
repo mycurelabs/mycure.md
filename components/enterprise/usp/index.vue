@@ -16,22 +16,22 @@
                 v-btn(text icon @click="startNow").align-center
                   v-icon(large) mdi-arrow-down
               div(v-if="!$isMobile").text-field-container.mr-3
-                v-text-field(
-                  v-model="email"
-                  background-color="white"
-                  placeholder="johndoe@gmail.com"
-                  height="50"
-                  outlined
-                  dense
-                  :error-messages="emailErrorMessage"
-                ).text-field-input
+                //- v-text-field(
+                //-   v-model="email"
+                //-   background-color="white"
+                //-   placeholder="johndoe@gmail.com"
+                //-   height="50"
+                //-   outlined
+                //-   dense
+                //-   :error-messages="emailErrorMessage"
+                //- ).text-field-input
               v-btn(
                 v-if="!$isMobile"
                 color="accent"
                 height="50"
                 width="160"
                 @click="onGetStarted"
-              ).text-none.font-16.p-7 Book A Demo
+              ).text-none.font-16.p-7 Book a Demo
     template(v-if="$isMobile")
       v-container(fluid).mobile-form
         v-row.px-6.mt-n3
@@ -95,11 +95,12 @@ export default {
   },
   methods: {
     onGetStarted () {
-      if (!this.email) {
-        this.emailErrorMessage = 'Please enter your email';
-        return;
-      }
-      this.$emit('getStarted', this.email);
+      window.open('https://calendly.com/mycure/demo', '_blank');
+    //   if (!this.email) {
+    //     this.emailErrorMessage = 'Please enter your email';
+    //     return;
+    //   }
+    //   this.$emit('getStarted', this.email);
     },
     startNow () {
       this.$emit('startNow');
