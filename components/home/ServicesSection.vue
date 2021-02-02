@@ -13,19 +13,21 @@
               )
               v-card-title #[b.ma-auto {{service.title}}]
               v-card-subtitle {{ service.description }}
-      template(v-else)
-        v-row.service-card
-          v-col(cols="4")
-            img(
-              :src="service.image"
-              width="80"
-              alt="services"
-            )
-          v-col(cols="6").text-left
-            h1.font-18 {{service.title}}
-            p.font-16.font-gray {{ service.description }}
-          v-col.my-auto
-            v-icon mdi-chevron-right
+      template(v-if="$isMobile" v-for="service in services")
+        v-col(cols="12")
+          v-row(width="100%").service-card
+            v-col(cols="4")
+              v-img(
+                :src="service.image"
+                width="125"
+                alt="services"
+              ).ma-auto
+            v-col(cols="6").text-left
+              div.my-auto
+                h1.font-18 {{service.title}}
+                p.font-16.font-gray {{ service.description }}
+            v-col.my-auto
+              v-icon mdi-chevron-right
 </template>
 
 <script>
