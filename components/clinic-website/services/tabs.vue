@@ -9,12 +9,15 @@
         v-tab(href="#clinical-procedure") #[b Procedures]
     v-card-text
       v-row(v-if="loading" justify="center")
-        v-col(cols="12" md="4")
+        v-col(cols="12" md="4").text-center
           v-progress-circular(
             color="primary"
             indeterminate
             size="100"
           )
+      v-row(v-else-if="items.length === 0")
+        v-col(cols="12" md="4").text-center
+          h2 No services available
       template(v-else)
         service-item(
           v-for="(item, key) in items"

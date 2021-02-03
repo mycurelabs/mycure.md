@@ -10,25 +10,28 @@
           )
       v-col(cols="12" :md="isDoctor ? '6' : '8'")
         h3 {{ title }}
-        //- TODO: Show schedule for today but make it expandable
-        //- span Mon - Fri
-        //-   | (
-        //-   b 7:00 AM to 3:00 PM
-        //-   | )
-        span.text-capitalize {{ schedule | format-schedule }}
-        br
-        br
+        div(v-if="fullSchedules.length")
+          div(v-if="!scheduleExpanded")
+            span.text-capitalize {{ schedulesToday | format-today-schedule }}
+              a(v-if="fullSchedules.length > 1" @click="scheduleExpanded = true").primary--text &nbsp; View More
+          div(v-else)
+            div(v-for="(schedule, key) in fullSchedules" :key="key")
+              span.text-capitalize {{ schedule | format-individual-schedule }}
+              br
+            a(@click="scheduleExpanded = false").primary--text View Less
+          br
+          br
         template(v-if="hasCoverages")
           span Coverages:
           br
           v-avatar(size="40" color="secondary").mx-1
           v-avatar(size="40" color="secondary").mx-1
-      v-col(v-if="!price && !isDoctor" cols="12" md="2").text-center
+      v-col(v-if="price && !isDoctor" cols="12" md="2").text-right
         v-chip(
           :color="isAvailable ? 'lime' :'grey'"
           small
           label
-        ) {{ isAvailable ? 'AVAILABLE' : 'UNAVAILABLE' }}
+        ) {{ isAvailable ? 'AVAILABLE' : 'NOT AVAILABLE' }}
       v-col.grow.text-right
         h2(v-if="price") PHP {{ price }}
         v-chip(
@@ -36,7 +39,7 @@
           :color="isAvailable ? 'lime' :'grey'"
           small
           label
-        ) {{ isAvailable ? 'AVAILABLE' : 'UNAVAILABLE' }}
+        ) {{ isAvailable ? 'AVAILABLE' : 'NOT AVAILABLE' }}
         br(v-else)
         br
         br
@@ -53,8 +56,15 @@
 import { format } from 'date-fns';
 export default {
   filters: {
-    formatSchedule (schedule) {
-      if (!schedule) return 'No schedules available';
+    formatTodaySchedule (schedules) {
+      if (!schedules?.length) return 'No schedules available';
+      const day = schedules[0].day;
+      const times = schedules.map((schedule) => {
+        return `${format(schedule.opening, 'hh:mm A')} - ${format(schedule.closing, 'hh:mm A')}`;
+      }).join(', ');
+      return `${day} (${times})`;
+    },
+    formatIndividualSchedule (schedule) {
       return `${schedule.day} (${format(schedule.opening, 'hh:mm A')} - ${format(schedule.closing, 'hh:mm A')})`;
     },
   },
@@ -67,6 +77,11 @@ export default {
       type: Boolean,
       default: false,
     },
+  },
+  data () {
+    return {
+      scheduleExpanded: false,
+    };
   },
   computed: {
     title () {
@@ -85,24 +100,24 @@ export default {
     price () {
       return this.item?.price;
     },
-    schedules () {
-      return this.item?.scheduleData || this.item?.schedules;
+    fullSchedules () {
+      return this.item?.scheduleData || this.item?.schedules || [];
     },
-    schedule () {
-      if (!this.schedules) {
+    schedulesToday () {
+      if (!this.fullSchedules) {
         return null;
       }
       const dateToday = new Date();
       const dayToday = dateToday.getDay();
       const dayOrder = dayToday === 7 ? 0 : dayToday;
 
-      return this.schedules.find(schedule => schedule.order === dayOrder);
+      return this.fullSchedules.filter(schedule => schedule.order === dayOrder) || [];
     },
     hasCoverages () {
       return this.item?.$hasCoverages;
     },
     isAvailable () {
-      if (!this.schedule) {
+      if (!this.schedulesToday?.length) {
         return false;
       }
       return true;
