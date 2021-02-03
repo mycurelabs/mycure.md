@@ -11,13 +11,13 @@ export const getOrganization = async (opts, website = false) => {
       url: `${process.env.API_URL}/organizations/${orgId}`,
     });
 
-    if (data?.data?.length || !website) return data.data;
+    if (data || !website) return data;
 
     const { data: websiteData } = await axios({
       method: 'GET',
       url: `${process.env.API_URL}/organizations?websiteId=${orgId}`,
     });
-    return websiteData.data;
+    return websiteData.data[0];
   } catch (e) {
     console.error(e);
     handleError(e);
