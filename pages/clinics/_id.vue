@@ -76,6 +76,7 @@ import {
 import headMeta from '~/utils/head-meta';
 // - services
 import { fetchClinicWebsiteDoctors } from '~/services/organization-members';
+import { fetchClinicServices } from '~/services/services';
 // - components
 import AboutUs from '~/components/clinic-website/about-us';
 import AppBar from '~/components/clinic-website/app-bar';
@@ -104,8 +105,7 @@ export default {
   },
   async asyncData ({ params, $sdk }) {
     try {
-      const clinic = await getOrganization({ id: params.id }, true) || [];
-      const clinicWebsite = clinic[0];
+      const clinicWebsite = await getOrganization({ id: params.id }, true) || [];
       const membership = await getMembership({ organization: params.id });
       const member = membership[0];
       const services = await getServices({ facility: params.id });
@@ -126,6 +126,7 @@ export default {
       { icon: 'mdi-linkedin', link: 'https://www.linkedin.com/' },
     ];
     this.doctorsLimit = 7;
+    this.servicesLimit = 7;
     return {
       loading: {
         page: true,
@@ -138,7 +139,7 @@ export default {
       clinicWebsite: {},
       activeTab: 'lab',
       doctorsTotal: 0,
-      items: [],
+      filteredServices: [],
       // Items to show in tab list
       listItems: [],
     };
@@ -205,25 +206,39 @@ export default {
     },
   },
   watch: {
-    activeTab (val) {
-      if (val === 'doctors') {
-        this.fetchDoctorMembers();
-        this.listItems = [...this.formattedDoctors];
-        return;
-      }
-      this.listItems = [];
+    activeTab: {
+      async handler (val) {
+        if (val === 'lab') {
+          await this.fetchServices({ type: 'diagnostic', subtype: 'lab' });
+          this.listItems = [...this.filteredServices];
+          return;
+        }
+        if (val === 'imaging') {
+          await this.fetchServices({ type: 'diagnostic', subtype: 'imaging' });
+          this.listItems = [...this.filteredServices];
+          return;
+        }
+        if (val === 'doctors') {
+          await this.fetchDoctorMembers();
+          this.listItems = [...this.formattedDoctors];
+          return;
+        }
+        await this.fetchServices({ type: val });
+        this.listItems = [...this.filteredServices];
+      },
     },
   },
-  mounted () {
+  async mounted () {
     this.loading.page = false;
-    this.fetchDoctorMembers();
+    await this.fetchServices({ type: 'diagnostic', subtype: 'lab' });
+    await this.fetchDoctorMembers();
+    this.listItems = this.filteredServices;
   },
   methods: {
     async fetchDoctorMembers (page = 1) {
       try {
         this.loading.list = true;
         const skip = this.doctorsLimit * (page - 1);
-        // TODO: move logic to service folder
         const { items, total } = await fetchClinicWebsiteDoctors(this.$sdk, {
           organization: this.orgId,
           limit: this.doctorsLimit,
@@ -233,8 +248,26 @@ export default {
         const members = items || [];
         if (!members?.length) return members;
 
-        console.log('members', members);
         this.orgDoctors = members;
+      } catch (error) {
+        console.error(error);
+      } finally {
+        this.loading.list = false;
+      }
+    },
+    async fetchServices (service, page = 1) {
+      try {
+        this.loading.list = true;
+        const { type, subtype } = service;
+        const skip = this.servicesLimit * (page - 1);
+        const { items } = await fetchClinicServices(this.$sdk, {
+          facility: this.orgId,
+          type,
+          subtype,
+          limit: this.servicesLimit,
+          skip,
+        });
+        this.filteredServices = items;
       } catch (error) {
         console.error(error);
       } finally {
