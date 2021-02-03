@@ -6,7 +6,7 @@
         v-tab(href="#imaging") #[b Imaging]
         v-tab(href="#pe") #[b PE Packages]
         v-tab(href="#doctors" ) #[b Doctors]
-        v-tab(href="#procedure") #[b Procedures]
+        v-tab(href="#clinical-procedure") #[b Procedures]
     v-card-text
       v-row(v-if="loading" justify="center")
         v-col(cols="12" md="4")

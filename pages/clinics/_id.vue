@@ -11,7 +11,7 @@
         v-col(cols="12" md="3")
           //- TODO: one property only, `clinic`
           clinic-info(:clinic="clinicWebsite")
-          schedules(:schedules="schedules").mt-2
+          schedules(:schedules="groupedSchedules").mt-2
         v-col(cols="12" md="8")
           services-tabs(
             v-model="activeTab"
@@ -125,6 +125,43 @@ export default {
       { icon: 'mdi-email', link: 'mailto:' },
       { icon: 'mdi-linkedin', link: 'https://www.linkedin.com/' },
     ];
+    this.days = [
+      {
+        order: 1,
+        day: 'mon',
+        dayName: 'Monday',
+      },
+      {
+        order: 2,
+        day: 'tue',
+        dayName: 'Tuesday',
+      },
+      {
+        order: 3,
+        day: 'wed',
+        dayName: 'Wednesday',
+      },
+      {
+        order: 4,
+        day: 'thu',
+        dayName: 'Thursday',
+      },
+      {
+        order: 5,
+        day: 'fri',
+        dayName: 'Friday',
+      },
+      {
+        order: 6,
+        day: 'sat',
+        dayName: 'Saturday',
+      },
+      {
+        order: 7,
+        day: 'sun',
+        dayName: 'Sunday',
+      },
+    ];
     this.doctorsLimit = 7;
     this.servicesLimit = 7;
     return {
@@ -173,6 +210,18 @@ export default {
     schedules () {
       return this.clinicWebsite?.mf_schedule; // eslint-disable-line
     },
+    groupedSchedules () {
+      const groupedSchedules = this.schedules
+        .map((schedule) => {
+          const { order } = this.days.find(day => day.day === schedule.day);
+          return {
+            order,
+            ...schedule,
+          };
+        })
+        .sort((a, b) => a.day !== b.day ? a.order - b.order : a.opening - b.opening) || [];
+      return groupedSchedules;
+    },
     testimonialDate () {
       return this.clinicWebsite?.createdAt;
     },
@@ -208,22 +257,23 @@ export default {
   watch: {
     activeTab: {
       async handler (val) {
+        this.page = 1;
         if (val === 'lab') {
-          await this.fetchServices({ type: 'diagnostic', subtype: 'lab' });
+          await this.fetchServices({ type: 'diagnostic', subtype: 'lab' }, this.page);
           this.listItems = [...this.filteredServices];
           return;
         }
         if (val === 'imaging') {
-          await this.fetchServices({ type: 'diagnostic', subtype: 'imaging' });
+          await this.fetchServices({ type: 'diagnostic', subtype: 'imaging' }, this.page);
           this.listItems = [...this.filteredServices];
           return;
         }
         if (val === 'doctors') {
-          await this.fetchDoctorMembers();
+          await this.fetchDoctorMembers(this.page);
           this.listItems = [...this.formattedDoctors];
           return;
         }
-        await this.fetchServices({ type: val });
+        await this.fetchServices({ type: val }, this.page);
         this.listItems = [...this.filteredServices];
       },
     },
@@ -267,7 +317,9 @@ export default {
           limit: this.servicesLimit,
           skip,
         });
-        this.filteredServices = items;
+        // - TODO: Confirm if there are specified schedules for services. Right now the clinic schedule is assigned
+        this.filteredServices = items.filter(item => item.price)
+          .map(item => ({ ...item, schedules: this.groupedSchedules }));
       } catch (error) {
         console.error(error);
       } finally {
