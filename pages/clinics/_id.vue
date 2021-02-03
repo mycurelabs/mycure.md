@@ -17,6 +17,10 @@
             v-model="activeTab"
             :items="listItems"
             :loading="loading.list"
+            :has-next-page="hasNextPage"
+            :has-previous-page="hasPreviousPage"
+            @next="refetchListItems(activeTab, page + 1)"
+            @previous="refetchListItems(activeTab, page - 1)"
           )
     v-divider
     v-footer(v-if="!$isMobile" color="white").mt-3
@@ -162,8 +166,7 @@ export default {
         dayName: 'Sunday',
       },
     ];
-    this.doctorsLimit = 7;
-    this.servicesLimit = 7;
+    this.itemsLimit = 7;
     return {
       loading: {
         page: true,
@@ -175,10 +178,13 @@ export default {
       //
       clinicWebsite: {},
       activeTab: 'lab',
-      doctorsTotal: 0,
       filteredServices: [],
       // Items to show in tab list
       listItems: [],
+      // total items
+      itemsTotal: 0,
+      doctorsTotal: 0,
+      servicesTotal: 0,
     };
   },
   computed: {
@@ -208,7 +214,7 @@ export default {
       return this.sortedServices?.pop()?.price;
     },
     schedules () {
-      return this.clinicWebsite?.mf_schedule; // eslint-disable-line
+      return this.clinicWebsite?.mf_schedule || []; // eslint-disable-line
     },
     groupedSchedules () {
       const groupedSchedules = this.schedules
@@ -253,28 +259,19 @@ export default {
         };
       });
     },
+    hasNextPage () {
+      const nextSkip = this.itemsLimit * (this.page);
+      return nextSkip < this.itemsTotal;
+    },
+    hasPreviousPage () {
+      const previousSkip = this.itemsLimit * (this.page - 1);
+      return previousSkip > 0;
+    },
   },
   watch: {
     activeTab: {
       async handler (val) {
-        this.page = 1;
-        if (val === 'lab') {
-          await this.fetchServices({ type: 'diagnostic', subtype: 'lab' }, this.page);
-          this.listItems = [...this.filteredServices];
-          return;
-        }
-        if (val === 'imaging') {
-          await this.fetchServices({ type: 'diagnostic', subtype: 'imaging' }, this.page);
-          this.listItems = [...this.filteredServices];
-          return;
-        }
-        if (val === 'doctors') {
-          await this.fetchDoctorMembers(this.page);
-          this.listItems = [...this.formattedDoctors];
-          return;
-        }
-        await this.fetchServices({ type: val }, this.page);
-        this.listItems = [...this.filteredServices];
+        await this.refetchListItems(val);
       },
     },
   },
@@ -283,15 +280,16 @@ export default {
     await this.fetchServices({ type: 'diagnostic', subtype: 'lab' });
     await this.fetchDoctorMembers();
     this.listItems = this.filteredServices;
+    this.itemsTotal = this.servicesTotal;
   },
   methods: {
     async fetchDoctorMembers (page = 1) {
       try {
         this.loading.list = true;
-        const skip = this.doctorsLimit * (page - 1);
+        const skip = this.itemsLimit * (page - 1);
         const { items, total } = await fetchClinicWebsiteDoctors(this.$sdk, {
           organization: this.orgId,
-          limit: this.doctorsLimit,
+          limit: this.itemsLimit,
           skip,
         });
         this.doctorsTotal = total;
@@ -309,14 +307,15 @@ export default {
       try {
         this.loading.list = true;
         const { type, subtype } = service;
-        const skip = this.servicesLimit * (page - 1);
-        const { items } = await fetchClinicServices(this.$sdk, {
+        const skip = this.itemsLimit * (page - 1);
+        const { items, total } = await fetchClinicServices(this.$sdk, {
           facility: this.orgId,
           type,
           subtype,
-          limit: this.servicesLimit,
+          limit: this.itemsLimit,
           skip,
         });
+        this.servicesTotal = total;
         // - TODO: Confirm if there are specified schedules for services. Right now the clinic schedule is assigned
         this.filteredServices = items.filter(item => item.price)
           .map(item => ({ ...item, schedules: this.groupedSchedules }));
@@ -325,6 +324,20 @@ export default {
       } finally {
         this.loading.list = false;
       }
+    },
+    async refetchListItems (tab, page = 1) {
+      this.page = page;
+      console.log('refetch page', this.page);
+      if (tab === 'doctors') {
+        await this.fetchDoctorMembers(this.page);
+        this.listItems = [...this.formattedDoctors];
+        this.itemsTotal = this.doctorsTotal;
+        return;
+      }
+      const subtype = tab === 'lab' || tab === 'imaging' ? tab : null;
+      await this.fetchServices({ type: subtype ? 'diagnostic' : tab, ...subtype && { subtype } }, this.page);
+      this.listItems = [...this.filteredServices];
+      this.itemsTotal = this.servicesTotal;
     },
   },
   head () {

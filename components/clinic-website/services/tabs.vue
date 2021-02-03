@@ -26,6 +26,24 @@
           :is-doctor="activeServiceType === 'doctors'"
         )
         v-divider
+    v-card-actions
+      v-spacer
+      v-btn(
+        v-if="hasPreviousPage"
+        outlined
+        color="primary"
+        @click="$emit('previous')"
+      )
+        v-icon(small) mdi-chevron-left
+        | Previous
+      v-btn(
+        v-if="hasNextPage"
+        outlined
+        color="primary"
+        @click="$emit('next')"
+      )
+        | Next
+        v-icon(small) mdi-chevron-right
 </template>
 
 <script>
@@ -46,6 +64,14 @@ export default {
     items: {
       type: Array,
       default: () => ([]),
+    },
+    hasNextPage: {
+      type: Boolean,
+      default: false,
+    },
+    hasPreviousPage: {
+      type: Boolean,
+      default: false,
     },
   },
   data () {
