@@ -13,6 +13,7 @@
     :items="items"
     :loading="loading"
     :disabled="disabled || loading"
+    @click:clear="$emit('clear')"
   )
 </template>
 
@@ -37,8 +38,8 @@ export default {
     return {
       fetchedContracts: [],
       items: [],
-      loading: false,
       model: null,
+      loading: false,
       searchText: null,
       debouncedFetchContracts: debounce(this.fetchContracts, 500),
     };
@@ -73,7 +74,7 @@ export default {
       }
     },
     onSelectContract (contract) {
-      console.log('selected contract', contract);
+      if (!contract) return;
       this.$emit('select', contract.insurer || contract.id);
     },
   },

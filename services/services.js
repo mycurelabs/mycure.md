@@ -24,6 +24,13 @@ export const fetchClinicServices = async (sdk, opts) => {
     },
   };
 
+  if (opts.insurer) {
+    query.$analytics = {
+      type: 'filter-by-insurer',
+      insurer: opts.insurer,
+    };
+  }
+
   if (!isEmpty(opts.searchText)) {
     if (isEmpty(query.$and)) query.$and = [];
     query.$and.push(

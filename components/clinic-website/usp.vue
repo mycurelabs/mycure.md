@@ -23,9 +23,13 @@
             solo
             clearable
             @change="onServiceTypeSelect"
+            @click:clear="clearServiceFilter"
           ).mt-3.search-bar
         v-col(v-if="searchResultsMode" cols="10" md="2")
-          search-insurance-contracts.mt-3.search-bar
+          search-insurance-contracts(
+            @select="onInsuranceSelect"
+            @clear="clearInsuranceFilter"
+          ).mt-3.search-bar
         v-col(v-if="searchResultsMode" cols="10" md="2")
           v-text-field(
             solo
@@ -73,6 +77,8 @@ export default {
       searchText: null,
       searchFilters: {},
       serviceType: null,
+      serviceFilter: null,
+      insurerFilter: null,
       debouncedSearch: _.debounce(this.search, 500),
     };
   },
@@ -89,9 +95,26 @@ export default {
     },
     onServiceTypeSelect () {
       this.searchFilters = {
+        ...this.searchFilters,
         type: this.serviceType === 'lab' || this.serviceType === 'imaging' ? 'diagnostic' : this.serviceType,
         subtype: this.serviceType === 'lab' || this.serviceType === 'imaging' ? this.serviceType : null,
       };
+      this.search();
+    },
+    onInsuranceSelect (insurer) {
+      this.searchFilters = {
+        ...this.searchFilters,
+        insurer,
+      };
+      this.search();
+    },
+    clearServiceFilter () {
+      delete this.searchFilters?.type;
+      delete this.searchFilters?.subtype;
+      this.search();
+    },
+    clearInsuranceFilter () {
+      delete this.searchFilters?.insurer;
       this.search();
     },
   },
