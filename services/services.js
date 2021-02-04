@@ -7,20 +7,20 @@ export const fetchClinicServices = async (sdk, opts) => {
     subtype: opts.subtype,
     $limit: opts.limit || 10,
     $skip: opts.skip,
-    // $populate: {
-    //   coveragesData: {
-    //     service: 'insurance-coverages',
-    //     method: 'find',
-    //     localKey: 'id',
-    //     foreignKey: 'ref',
-    //     $populate: {
-    //       contractData: {
-    //         service: 'insurance-contracts',
-    //         key: 'contract',
-    //       },
-    //     },
-    //   },
-    // },
+    $populate: {
+      coveragesData: {
+        service: 'insurance-coverages',
+        method: 'find',
+        localKey: 'id',
+        foreignKey: 'ref',
+        $populate: {
+          contractData: {
+            service: 'insurance-contracts',
+            key: 'contract',
+          },
+        },
+      },
+    },
   });
 
   return { items: normalizePopulated(items), total };

@@ -24,8 +24,20 @@
         template(v-if="hasCoverages")
           span Coverages:
           br
-          v-avatar(size="40" color="secondary").mx-1
-          v-avatar(size="40" color="secondary").mx-1
+          v-tooltip(
+            v-for="(coverage, key) in coverages"
+            :key="key"
+            top
+          )
+            template(v-slot:activator="{ on, attrs }")
+              v-avatar(
+                size="40"
+                color="secondary"
+                v-on="on"
+              ).mx-1
+                v-img(v-if="coverage.picURL" :src="coverage.picURL")
+                span(v-else).white--text {{ coverage.name.substring(0,1) }}
+            span {{ coverage.name || 'HMO' }}
       v-col(v-if="price && !isDoctor" cols="12" md="2").text-right
         v-chip(
           :color="isAvailable ? 'lime' :'grey'"
@@ -115,6 +127,15 @@ export default {
     },
     hasCoverages () {
       return this.item?.$hasCoverages;
+    },
+    coverages () {
+      if (!this.hasCoverages) return [];
+      return this.item?.coveragesData?.map((coverage) => {
+        return {
+          name: coverage.name || coverage.contractData?.insurerName,
+          ...coverage.contractData?.insurerPicURL && { picURL: coverage.contractData.insurerPicURL },
+        };
+      });
     },
     isAvailable () {
       if (!this.schedulesToday?.length) {
