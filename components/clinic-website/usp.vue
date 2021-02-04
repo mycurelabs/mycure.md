@@ -25,10 +25,7 @@
             @change="onServiceTypeSelect"
           ).mt-3.search-bar
         v-col(v-if="searchResultsMode" cols="10" md="2")
-          v-text-field(
-            solo
-            clearable
-          ).mt-3.search-bar
+          search-insurance-contracts.mt-3.search-bar
         v-col(v-if="searchResultsMode" cols="10" md="2")
           v-text-field(
             solo
@@ -39,8 +36,13 @@
 <script>
 // utils
 import _ from 'lodash';
+// components
+import SearchInsuranceContracts from './services/search-insurance-contracts';
 
 export default {
+  components: {
+    SearchInsuranceContracts,
+  },
   props: {
     coverURL: {
       type: String,
