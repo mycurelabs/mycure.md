@@ -317,12 +317,13 @@ export default {
     async fetchServices (service = {}, searchText, page = 1) {
       try {
         this.loading.list = true;
-        const { type, subtype } = service;
+        const { type, subtype, insurer } = service;
         const skip = this.itemsLimit * (page - 1);
         const { items, total } = await fetchClinicServices(this.$sdk, {
           facility: this.orgId,
           type,
           subtype,
+          insurer,
           searchText,
           limit: this.itemsLimit,
           skip,
@@ -350,11 +351,10 @@ export default {
       this.listItems = [...this.filteredServices];
       this.itemsTotal = this.servicesTotal;
     },
-    async onServiceSearch (searchText) {
+    async onServiceSearch ({ searchText, searchFilters }) {
       if (!this.searchResultsMode) this.searchResultsMode = true;
-
       await this.fetchDoctorMembers(searchText);
-      await this.fetchServices({}, searchText);
+      await this.fetchServices({ ...searchFilters }, searchText);
       this.searchResults = [...this.formattedDoctors, ...this.filteredServices];
     },
   },

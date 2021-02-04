@@ -10,14 +10,19 @@
             placeholder="Search MYCURE Health Center’s doctors, diagnostic tests, and services"
             v-model="searchText"
             @keyup.enter="debouncedSearch"
-            @click:clear="clearSearchText"
           ).mt-3.search-bar
             template(v-slot:append)
               v-icon(color="white").search-icon mdi-magnify
         v-col(v-if="searchResultsMode" cols="10" md="2")
-          v-text-field(
+          v-select(
+            v-model="serviceType"
+            :items="serviceTypes"
+            label="Service Type"
+            item-text="text"
+            item-value="value"
             solo
             clearable
+            @change="onServiceTypeSelect"
           ).mt-3.search-bar
         v-col(v-if="searchResultsMode" cols="10" md="2")
           v-text-field(
@@ -55,8 +60,17 @@ export default {
     },
   },
   data () {
+    this.serviceTypes = [
+      { text: 'Consult', value: 'clinical-consultation' },
+      { text: 'Laboratory', value: 'lab' },
+      { text: 'Imaging', value: 'imaging' },
+      { text: 'PE Package', value: 'pe' },
+      { text: 'Procedure', value: 'clinical-procedure' },
+    ];
     return {
       searchText: null,
+      searchFilters: {},
+      serviceType: null,
       debouncedSearch: _.debounce(this.search, 500),
     };
   },
@@ -67,24 +81,16 @@ export default {
     },
   },
   methods: {
-    clearSearchText () {
-      this.$emit('searchResultsLoaded', { results: [], text: null });
-    },
     search () {
-      if (!this.searchText) {
-        this.clearSearchText();
-      };
-
       this.$emit('searchLoading', true);
-      this.$emit('search', this.searchText);
-      // const query = {
-      //   organization: this.orgId,
-      //   searchString: this.searchText,
-      // };
-      // const results = await searchClinicDoctors(query);
-
-      // this.$emit('searchLoading', false);
-      // this.$emit('searchResultsLoaded', { results, text: this.searchText });
+      this.$emit('search', { searchText: this.searchText, searchFilters: this.searchFilters });
+    },
+    onServiceTypeSelect () {
+      this.searchFilters = {
+        type: this.serviceType === 'lab' || this.serviceType === 'imaging' ? 'diagnostic' : this.serviceType,
+        subtype: this.serviceType === 'lab' || this.serviceType === 'imaging' ? this.serviceType : null,
+      };
+      this.search();
     },
   },
 };
