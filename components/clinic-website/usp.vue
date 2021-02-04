@@ -1,26 +1,39 @@
 <template lang="pug">
-  v-col(:style="backgroundStyle").main-container
+  v-col(:style="backgroundStyle" :class="[searchResultsMode ? 'search-mode-container' : 'full-container']")
     v-container(fluid).pa-0
-      v-row(align="center" justify="center").content-container
+      v-row(align="center" justify="center").content-container.mx-1
         v-col(cols="10" md="6").text-center
-          h1(:class="{ 'font-30': $isMobile }").white--text Consult online with #[br] MYCURE Health Center today
+          h1(v-if="!searchResultsMode" :class="{ 'font-30': $isMobile }").white--text Consult online with #[br] MYCURE Health Center today
           v-text-field(
             solo
             clearable
-            placeholder="Search MYCURE Health Center’s doctors, specializations, etc."
+            placeholder="Search MYCURE Health Center’s doctors, diagnostic tests, and services"
             v-model="searchText"
             @keyup.enter="debouncedSearch"
-            @keydown="debouncedSearch"
             @click:clear="clearSearchText"
           ).mt-3.search-bar
             template(v-slot:append)
               v-icon(color="white").search-icon mdi-magnify
+        v-col(v-if="searchResultsMode" cols="10" md="2")
+          v-text-field(
+            solo
+            clearable
+          ).mt-3.search-bar
+        v-col(v-if="searchResultsMode" cols="10" md="2")
+          v-text-field(
+            solo
+            clearable
+          ).mt-3.search-bar
+        v-col(v-if="searchResultsMode" cols="10" md="2")
+          v-text-field(
+            solo
+            clearable
+          ).mt-3.search-bar
 </template>
 
 <script>
 // utils
 import _ from 'lodash';
-import { searchClinicDoctors } from '~/utils/axios';
 
 export default {
   props: {
@@ -35,6 +48,10 @@ export default {
     orgId: {
       type: String,
       default: null,
+    },
+    searchResultsMode: {
+      type: Boolean,
+      default: false,
     },
   },
   data () {
@@ -53,31 +70,40 @@ export default {
     clearSearchText () {
       this.$emit('searchResultsLoaded', { results: [], text: null });
     },
-    async search () {
+    search () {
       if (!this.searchText) {
         this.clearSearchText();
       };
 
       this.$emit('searchLoading', true);
-      const query = {
-        organization: this.orgId,
-        searchString: this.searchText,
-      };
-      const results = await searchClinicDoctors(query);
+      this.$emit('search', this.searchText);
+      // const query = {
+      //   organization: this.orgId,
+      //   searchString: this.searchText,
+      // };
+      // const results = await searchClinicDoctors(query);
 
-      this.$emit('searchLoading', false);
-      this.$emit('searchResultsLoaded', { results, text: this.searchText });
+      // this.$emit('searchLoading', false);
+      // this.$emit('searchResultsLoaded', { results, text: this.searchText });
     },
   },
 };
 </script>
 
 <style scoped>
-.main-container {
+.full-container {
   margin-top: 70px;
   padding: 0;
   width: 100%;
   height: 425px;
+  background-size: cover;
+  background-position: center;
+}
+
+.search-mode-container {
+  padding: 0;
+  width: 100%;
+  height: 300px;
   background-size: cover;
   background-position: center;
 }

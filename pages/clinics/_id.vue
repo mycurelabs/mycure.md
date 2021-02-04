@@ -2,9 +2,11 @@
   div(v-if="!loading.page").py-0
     app-bar(:picURL="picURL" :clinicName="clinicName")
     usp(
+      :search-results-mode="searchResultsMode"
       :name="clinicName"
       :org-id="orgId"
       :coverURL="coverURL"
+      @search="onServiceSearch"
     )
     v-container(fluid)
       v-row(justify="center")
@@ -14,6 +16,7 @@
           schedules(:schedules="groupedSchedules").mt-2
         v-col(cols="12" md="8")
           services-tabs(
+            v-if="!searchResultsMode"
             v-model="activeTab"
             :items="listItems"
             :loading="loading.list"
@@ -21,6 +24,11 @@
             :has-previous-page="hasPreviousPage"
             @next="refetchListItems(activeTab, page + 1)"
             @previous="refetchListItems(activeTab, page - 1)"
+          )
+          services-search-results(
+            v-else
+            :loading="loading.list"
+            :items="searchResults"
           )
     v-divider
     v-footer(v-if="!$isMobile" color="white").mt-3
@@ -88,24 +96,23 @@ import ClinicInfo from '~/components/clinic-website/clinic-info';
 import DoctorCards from '~/components/clinic-website/doctor-card';
 import DoctorsList from '~/components/clinic-website/doctors-list';
 import Schedules from '~/components/clinic-website/schedules';
+import ServicesSearchResults from '~/components/clinic-website/services/search-results';
 import ServicesTabs from '~/components/clinic-website/services/tabs';
 import Specializations from '~/components/clinic-website/specialization-expansion';
 import Usp from '~/components/clinic-website/usp';
 export default {
   layout: 'clinic-website',
   components: {
-    AppBar,
-    Usp,
-    DoctorsList,
     AboutUs,
+    AppBar,
     ClinicInfo,
-    Schedules,
-    ServicesTabs,
-    // Consultations,
-    // Testimonials,
-    // SpecializationsChats,
     DoctorCards,
+    DoctorsList,
+    Schedules,
+    ServicesSearchResults,
+    ServicesTabs,
     Specializations,
+    Usp,
   },
   async asyncData ({ params, $sdk }) {
     try {
@@ -185,6 +192,9 @@ export default {
       itemsTotal: 0,
       doctorsTotal: 0,
       servicesTotal: 0,
+      // search
+      searchResultsMode: false,
+      searchResults: [],
     };
   },
   computed: {
@@ -283,12 +293,13 @@ export default {
     this.itemsTotal = this.servicesTotal;
   },
   methods: {
-    async fetchDoctorMembers (page = 1) {
+    async fetchDoctorMembers (searchText, page = 1) {
       try {
         this.loading.list = true;
         const skip = this.itemsLimit * (page - 1);
         const { items, total } = await fetchClinicWebsiteDoctors(this.$sdk, {
           organization: this.orgId,
+          searchText,
           limit: this.itemsLimit,
           skip,
         });
@@ -303,7 +314,7 @@ export default {
         this.loading.list = false;
       }
     },
-    async fetchServices (service, page = 1) {
+    async fetchServices (service = {}, searchText, page = 1) {
       try {
         this.loading.list = true;
         const { type, subtype } = service;
@@ -312,6 +323,7 @@ export default {
           facility: this.orgId,
           type,
           subtype,
+          searchText,
           limit: this.itemsLimit,
           skip,
         });
@@ -327,17 +339,23 @@ export default {
     },
     async refetchListItems (tab, page = 1) {
       this.page = page;
-      console.log('refetch page', this.page);
       if (tab === 'doctors') {
-        await this.fetchDoctorMembers(this.page);
+        await this.fetchDoctorMembers({ page: this.page });
         this.listItems = [...this.formattedDoctors];
         this.itemsTotal = this.doctorsTotal;
         return;
       }
       const subtype = tab === 'lab' || tab === 'imaging' ? tab : null;
-      await this.fetchServices({ type: subtype ? 'diagnostic' : tab, ...subtype && { subtype } }, this.page);
+      await this.fetchServices({ type: subtype ? 'diagnostic' : tab, ...subtype && { subtype } }, null, this.page);
       this.listItems = [...this.filteredServices];
       this.itemsTotal = this.servicesTotal;
+    },
+    async onServiceSearch (searchText) {
+      if (!this.searchResultsMode) this.searchResultsMode = true;
+
+      await this.fetchDoctorMembers(searchText);
+      await this.fetchServices({}, searchText);
+      this.searchResults = [...this.formattedDoctors, ...this.filteredServices];
     },
   },
   head () {
