@@ -11,7 +11,7 @@
               rounded
               color="success"
               :to="{ name: 'pricing' }"
-            ).text-none #[b Learn More]
+            ).text-none #[b See pricing plans]
           v-col(cols="10" md="6" :class="{ 'pa-12' : !$isMobile }").mt-4
             template(v-for="plan in plans")
               h1(:class=" $isMobile ? 'font-20' : 'font-30'").white--text {{plan.name}}
@@ -22,7 +22,7 @@
               rounded
               color="success"
               :to="{ name: 'pricing' }"
-            ).text-none #[b Learn More]
+            ).text-none #[b See pricing plans]
 </template>
 
 <script>
@@ -31,7 +31,7 @@ export default {
     this.title = 'Start for free, then pay as you grow';
     this.plans = [
       {
-        name: 'FREE',
+        name: 'ALWAYS FREE',
         description: 'All the essential tools you need to run your health facility',
       },
       {

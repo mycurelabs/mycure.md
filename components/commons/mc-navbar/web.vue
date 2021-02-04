@@ -13,7 +13,7 @@
           v-col(cols="12")
             v-toolbar(flat :color="appBarColor")
               nuxt-link(:to="{ name: 'index' }" title="MYCURE | Clinic Management System | Cloud EMR Philippines" id="toolbar-mycure-logo" @click.stop="handleMycureLogo").mr-3.mt-2
-                img(src="~/assets/images/MYCURE Logo - black.png" width="140" alt="MYCURE logo" @click="scrollToTop")
+                img(src="~/assets/images/MYCURE-virtual-clinic-healthcare-practice-online-logo.svg" width="140" alt="MYCURE logo" @click="scrollToTop")
               template(v-for="(item, key) in solutionsMenuItems")
                 v-btn(v-if="!item.subMenus" text @click="onNavLinkClick(item)")
                   span.font-14.tab.text-none {{item.name}}
@@ -56,11 +56,11 @@
                 width="130"
                 v-else-if="currentRoute === 'enterprise'"
                 color="accent"
-                :to="{ name: 'signup-multispecialty-step-1' }"
+                href="https://calendly.com/mycure/demo"
                 id="enterprise-book-demo-btn"
                 @click.stop="onActionBtnClick('enterprise-book-demo-btn')"
               )
-                strong.font-14.white--text.tab.text-none Book A Demo
+                strong.font-14.white--text.tab.text-none Book a Demo
               v-btn(
                 v-else-if="currentRoute === 'specialized-clinics'"
                 color="accent"

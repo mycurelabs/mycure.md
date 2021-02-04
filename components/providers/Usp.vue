@@ -17,7 +17,7 @@
               erase-style="backspace"
             ).typer
             span(:class="{ 'font-50' : !$isMobile, 'font-35' : $isMobile }") #[br] safely
-          p Bring in more patients using a powerful booking and health management system
+          p(:class="{ 'font-18' : !$isMobile, 'font-16' : $isMobile }") Bring in more patients using a powerful healthcare service booking and management software. It's free, secure, and easy to use.
           v-col(cols="12" :class="{ 'd-flex' : !$isMobile, 'pt-6' : $isMobile }")
             v-text-field(
               v-model="email"
@@ -71,7 +71,7 @@ export default {
 
 @media screen and (min-width: 1344px) {
   .bg {
-    background-image: url('../../assets/images/providers/USP-image-2.png');
+    background-image: url('../../assets/images/providers/USP-image-3.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -110,6 +110,15 @@ export default {
   border-bottom-left-radius: 300px;
 }
 .vue-typer >>> .custom.char.typed  {
-  color: white;
+  color: #FFFFFF;
+}
+
+.vue-typer >>> .custom.caret {
+  width: 5px;
+  background-color: #FFFFFF;
+}
+
+.vue-typer >>> .custom.caret.typing {
+  background-color: #FFFFFF;
 }
 </style>
