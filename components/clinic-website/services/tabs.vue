@@ -19,13 +19,15 @@
         v-col(cols="12" md="4").text-center
           h2 No services available
       template(v-else)
-        service-item(
+        div(
           v-for="(item, key) in items"
           :key="key"
-          :item="item"
-          :is-doctor="activeServiceType === 'doctors'"
         )
-        v-divider
+          service-item(
+            :item="item"
+            :is-doctor="activeServiceType === 'doctors'"
+          )
+          v-divider
     v-card-actions
       v-spacer
       v-btn(
