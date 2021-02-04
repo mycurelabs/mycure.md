@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-card(color="#f0f0f0" flat)
+  v-card(color="#f0f0f0" flat)#servicesList
     v-toolbar(color="#f0f0f0" flat)
       v-tabs(v-model="activeServiceType")
         v-tab(href="#lab") #[b Laboratory]
@@ -32,7 +32,7 @@
         v-if="hasPreviousPage"
         outlined
         color="primary"
-        @click="$emit('previous')"
+        @click="onPaginate('previous')"
       )
         v-icon(small) mdi-chevron-left
         | Previous
@@ -40,13 +40,14 @@
         v-if="hasNextPage"
         outlined
         color="primary"
-        @click="$emit('next')"
+        @click="onPaginate('next')"
       )
         | Next
         v-icon(small) mdi-chevron-right
 </template>
 
 <script>
+import VueScrollTo from 'vue-scrollto';
 import ServiceItem from './service-item';
 export default {
   components: {
@@ -85,6 +86,12 @@ export default {
       set (val) {
         this.$emit('input', val);
       },
+    },
+  },
+  methods: {
+    onPaginate (direction) {
+      VueScrollTo.scrollTo('#servicesList', 500, { offset: -100, easing: 'ease' });
+      this.$emit(direction);
     },
   },
 };
