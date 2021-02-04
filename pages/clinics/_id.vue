@@ -21,6 +21,7 @@
             v-if="!searchResultsMode"
             v-model="activeTab"
             :items="listItems"
+            :organization="orgId"
             :loading="loading.list"
             :has-next-page="hasNextPage"
             :has-previous-page="hasPreviousPage"
@@ -29,6 +30,7 @@
           )
           services-search-results(
             v-else
+            :organization="orgId"
             :loading="loading.list"
             :items="searchResults"
           )

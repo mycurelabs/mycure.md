@@ -14,6 +14,7 @@
       template(v-else)
         div(v-for="(item, key) in items" :key="key")
           service-item(
+            :organization="organization"
             :item="item"
             :is-doctor="!!item.uid"
           )
@@ -27,6 +28,10 @@ export default {
     ServiceItem,
   },
   props: {
+    organization: {
+      type: String,
+      default: null,
+    },
     loading: {
       type: Boolean,
       default: false,

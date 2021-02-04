@@ -25,6 +25,7 @@
         )
           service-item(
             :item="item"
+            :organization="organization"
             :is-doctor="activeServiceType === 'doctors'"
           )
           v-divider
@@ -57,6 +58,10 @@ export default {
   },
   props: {
     value: {
+      type: String,
+      default: null,
+    },
+    organization: {
       type: String,
       default: null,
     },

@@ -23,6 +23,7 @@
           br
         template(v-else)
           i No schedules available
+          br
         template(v-if="hasCoverages")
           span Coverages:
           br
@@ -58,11 +59,31 @@
         br
         br
         br
-        v-btn(
-          color="success"
-          rounded
-          :disabled="!isAvailable"
-        ).text-none Book Now
+        div(v-if="!isDoctor")
+          v-btn(
+            color="success"
+            rounded
+            block
+            :disabled="!isAvailable"
+            :href="bookServiceURL"
+          ).text-none Book Now
+        div(v-else)
+          v-btn(
+            color="success"
+            rounded
+            block
+            :disabled="!isAvailable"
+            :href="bookTeleconsultURL"
+          ).text-none Book a Teleconsult
+          br
+          v-btn(
+            color="success"
+            rounded
+            block
+            outlined
+            :disabled="!isAvailable"
+            :href="bookTeleconsultURL"
+          ).text-none Book a Visit
     v-row
 </template>
 
@@ -90,6 +111,10 @@ export default {
     isDoctor: {
       type: Boolean,
       default: false,
+    },
+    organization: {
+      type: String,
+      default: null,
     },
   },
   data () {
@@ -144,6 +169,16 @@ export default {
         return false;
       }
       return true;
+    },
+    bookServiceURL () {
+      const pxPortalUrl = process.env.PX_PORTAL_URL;
+      const id = this.item?.id;
+      return `${pxPortalUrl}/appointment/step-1?service=${id}&organization=${this.organization}`;
+    },
+    bookTeleconsultURL () {
+      const pxPortalUrl = process.env.PX_PORTAL_URL;
+      const id = this.item?.uid;
+      return `${pxPortalUrl}/appointment/step-1?doctor=${id}&organization=${this.organization}`;
     },
   },
 };
