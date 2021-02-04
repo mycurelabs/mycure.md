@@ -30,11 +30,12 @@
             @select="onInsuranceSelect"
             @clear="clearInsuranceFilter"
           ).mt-3.search-bar
-        v-col(v-if="searchResultsMode" cols="10" md="2")
-          v-text-field(
+        v-col(v-if="searchResultsMode" cols="10" md="2").mt-n3
+          date-picker-menu(
+            v-model="dateFilter"
             solo
-            clearable
-          ).mt-3.search-bar
+            @clear="dateFilter = null"
+          ).search-bar
 </template>
 
 <script>
@@ -42,12 +43,18 @@
 import _ from 'lodash';
 // components
 import SearchInsuranceContracts from './services/search-insurance-contracts';
+import DatePickerMenu from '~/components/commons/date-picker-menu';
 
 export default {
   components: {
+    DatePickerMenu,
     SearchInsuranceContracts,
   },
   props: {
+    value: {
+      type: String,
+      default: null,
+    },
     coverURL: {
       type: String,
       default: '',
@@ -74,18 +81,29 @@ export default {
       { text: 'Procedure', value: 'clinical-procedure' },
     ];
     return {
-      searchText: null,
       searchFilters: {},
       serviceType: null,
-      serviceFilter: null,
-      insurerFilter: null,
+      dateFilter: null,
       debouncedSearch: _.debounce(this.search, 500),
     };
   },
   computed: {
+    searchText: {
+      get () {
+        return this.value;
+      },
+      set (val) {
+        this.$emit('input', val);
+      },
+    },
     backgroundStyle () {
       const overlay = 'linear-gradient(270deg, rgba(0, 0, 0, .5), rgba(0, 0, 0, .5))';
       return { 'background-image': `${overlay}, url(${this.coverURL})` };
+    },
+  },
+  watch: {
+    dateFilter (val) {
+      this.$emit('filter:date', val);
     },
   },
   methods: {

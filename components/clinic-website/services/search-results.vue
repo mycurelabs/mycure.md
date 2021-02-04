@@ -8,6 +8,9 @@
             indeterminate
             size="100"
           )
+      v-row(v-else-if="!items.length")
+        v-col(cols="12" md="4").text-center
+          h2 No results available
       template(v-else)
         div(v-for="(item, key) in items" :key="key")
           service-item(

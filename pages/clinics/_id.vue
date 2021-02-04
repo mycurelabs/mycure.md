@@ -2,11 +2,13 @@
   div(v-if="!loading.page").py-0
     app-bar(:picURL="picURL" :clinicName="clinicName")
     usp(
+      v-model="searchText"
       :search-results-mode="searchResultsMode"
       :name="clinicName"
       :org-id="orgId"
       :coverURL="coverURL"
       @search="onServiceSearch"
+      @filter:date="filterByDate"
     )
     v-container(fluid)
       v-row(justify="center")
@@ -195,6 +197,8 @@ export default {
       // search
       searchResultsMode: false,
       searchResults: [],
+      searchText: null,
+      searchFilters: {},
     };
   },
   computed: {
@@ -353,9 +357,26 @@ export default {
     },
     async onServiceSearch ({ searchText, searchFilters }) {
       if (!this.searchResultsMode) this.searchResultsMode = true;
+      this.searchFilters = searchFilters;
       await this.fetchDoctorMembers(searchText);
       await this.fetchServices(searchFilters, searchText);
       this.searchResults = [...this.formattedDoctors, ...this.filteredServices];
+    },
+    filterByDate (unixDate) {
+      if (!unixDate) {
+        this.onServiceSearch({ searchText: this.searchText, searchFilters: this.searchFilters });
+        return;
+      }
+      const date = new Date(unixDate);
+      let day = date.getDay();
+      if (day === 0) day = 7;
+
+      if (!this.searchResults?.length) return;
+      this.searchResults = this.searchResults.filter((result) => {
+        const schedules = result.scheduleData || result.schedules;
+        const matchDay = schedules?.find(schedule => schedule.order === day);
+        return matchDay;
+      });
     },
   },
   head () {

@@ -21,6 +21,8 @@
             a(@click="scheduleExpanded = false").primary--text View Less
           br
           br
+        template(v-else)
+          i No schedules available
         template(v-if="hasCoverages")
           span Coverages:
           br
