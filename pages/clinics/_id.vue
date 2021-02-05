@@ -8,6 +8,7 @@
       :org-id="orgId"
       :coverURL="coverURL"
       :is-preview-mode="isPreviewMode"
+      :hide-search-bars="$isMobile"
       @search="onServiceSearch"
       @filter:date="filterByDate"
     )
@@ -16,6 +17,19 @@
         v-col(cols="12" md="3")
           clinic-info(:clinic="clinicWebsite")
           schedules(:schedules="groupedSchedules").mt-2
+          usp(
+            v-if="$isMobile"
+            v-model="searchText"
+            hide-banner
+            no-gutters
+            search-results-mode
+            :name="clinicName"
+            :org-id="orgId"
+            :coverURL="coverURL"
+            :is-preview-mode="isPreviewMode"
+            @search="onServiceSearch"
+            @filter:date="filterByDate"
+          )
         v-col(cols="12" md="8")
           services-tabs(
             v-if="!searchResultsMode"
