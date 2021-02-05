@@ -1,29 +1,60 @@
 <template lang="pug">
-  v-col(:style="backgroundStyle").main-container
+  v-col(:style="backgroundStyle" :class="[searchResultsMode ? 'search-mode-container' : 'full-container']")
     v-container(fluid).pa-0
-      v-row(align="center" justify="center").content-container
+      v-row(align="center" justify="center").content-container.mx-1
         v-col(cols="10" md="6").text-center
-          h1(:class="{ 'font-30': $isMobile }").white--text Consult online with #[br] MYCURE Health Center today
+          h1(v-if="!searchResultsMode" :class="{ 'font-30': $isMobile }").white--text Consult online with #[br] MYCURE Health Center today
           v-text-field(
             solo
             clearable
-            placeholder="Search MYCURE Health Center’s doctors, specializations, etc."
+            placeholder="Search MYCURE Health Center’s doctors, diagnostic tests, and services"
             v-model="searchText"
             @keyup.enter="debouncedSearch"
-            @keydown="debouncedSearch"
-            @click:clear="clearSearchText"
           ).mt-3.search-bar
             template(v-slot:append)
               v-icon(color="white").search-icon mdi-magnify
+        v-col(v-if="searchResultsMode" cols="10" md="2")
+          v-select(
+            v-model="serviceType"
+            :items="serviceTypes"
+            label="Service Type"
+            item-text="text"
+            item-value="value"
+            solo
+            clearable
+            @change="onServiceTypeSelect"
+            @click:clear="clearServiceFilter"
+          ).mt-3.search-bar
+        v-col(v-if="searchResultsMode" cols="10" md="2")
+          search-insurance-contracts(
+            @select="onInsuranceSelect"
+            @clear="clearInsuranceFilter"
+          ).mt-3.search-bar
+        v-col(v-if="searchResultsMode" cols="10" md="2").mt-n3
+          date-picker-menu(
+            v-model="dateFilter"
+            solo
+            @clear="dateFilter = null"
+          ).search-bar
 </template>
 
 <script>
 // utils
 import _ from 'lodash';
-import { searchClinicDoctors } from '~/utils/axios';
+// components
+import SearchInsuranceContracts from './services/search-insurance-contracts';
+import DatePickerMenu from '~/components/commons/date-picker-menu';
 
 export default {
+  components: {
+    DatePickerMenu,
+    SearchInsuranceContracts,
+  },
   props: {
+    value: {
+      type: String,
+      default: null,
+    },
     coverURL: {
       type: String,
       default: '',
@@ -36,48 +67,92 @@ export default {
       type: String,
       default: null,
     },
+    searchResultsMode: {
+      type: Boolean,
+      default: false,
+    },
   },
   data () {
+    this.serviceTypes = [
+      { text: 'Consult', value: 'clinical-consultation' },
+      { text: 'Laboratory', value: 'lab' },
+      { text: 'Imaging', value: 'imaging' },
+      { text: 'PE Package', value: 'pe' },
+      { text: 'Procedure', value: 'clinical-procedure' },
+    ];
     return {
-      searchText: null,
+      searchFilters: {},
+      serviceType: null,
+      dateFilter: null,
       debouncedSearch: _.debounce(this.search, 500),
     };
   },
   computed: {
+    searchText: {
+      get () {
+        return this.value;
+      },
+      set (val) {
+        this.$emit('input', val);
+      },
+    },
     backgroundStyle () {
       const overlay = 'linear-gradient(270deg, rgba(0, 0, 0, .5), rgba(0, 0, 0, .5))';
       return { 'background-image': `${overlay}, url(${this.coverURL})` };
     },
   },
-  methods: {
-    clearSearchText () {
-      this.$emit('searchResultsLoaded', { results: [], text: null });
+  watch: {
+    dateFilter (val) {
+      this.$emit('filter:date', val);
     },
-    async search () {
-      if (!this.searchText) {
-        this.clearSearchText();
-      };
-
+  },
+  methods: {
+    search () {
       this.$emit('searchLoading', true);
-      const query = {
-        organization: this.orgId,
-        searchString: this.searchText,
+      this.$emit('search', { searchText: this.searchText, searchFilters: this.searchFilters });
+    },
+    onServiceTypeSelect () {
+      this.searchFilters = {
+        ...this.searchFilters,
+        type: this.serviceType === 'lab' || this.serviceType === 'imaging' ? 'diagnostic' : this.serviceType,
+        subtype: this.serviceType === 'lab' || this.serviceType === 'imaging' ? this.serviceType : null,
       };
-      const results = await searchClinicDoctors(query);
-
-      this.$emit('searchLoading', false);
-      this.$emit('searchResultsLoaded', { results, text: this.searchText });
+      this.search();
+    },
+    onInsuranceSelect (insurer) {
+      this.searchFilters = {
+        ...this.searchFilters,
+        insurer,
+      };
+      this.search();
+    },
+    clearServiceFilter () {
+      delete this.searchFilters?.type;
+      delete this.searchFilters?.subtype;
+      this.search();
+    },
+    clearInsuranceFilter () {
+      delete this.searchFilters?.insurer;
+      this.search();
     },
   },
 };
 </script>
 
 <style scoped>
-.main-container {
+.full-container {
   margin-top: 70px;
   padding: 0;
   width: 100%;
   height: 425px;
+  background-size: cover;
+  background-position: center;
+}
+
+.search-mode-container {
+  padding: 0;
+  width: 100%;
+  height: 300px;
   background-size: cover;
   background-position: center;
 }

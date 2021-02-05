@@ -7,7 +7,7 @@
       fixed
       no-gutters
     )
-      v-container(v-if="!$isMobile")
+      v-container(fluid v-if="!$isMobile")
         v-row(no-gutters align="center")
           v-avatar
             img(
