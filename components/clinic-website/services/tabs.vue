@@ -1,7 +1,7 @@
 <template lang="pug">
   v-card(color="#f0f0f0" flat)#servicesList
     v-toolbar(color="#f0f0f0" flat)
-      v-tabs(v-model="activeServiceType")
+      v-tabs(v-model="activeServiceType" :show-arrows="$isMobile")
         v-tab(href="#lab") #[b Laboratory]
         v-tab(href="#imaging") #[b Imaging]
         v-tab(href="#pe") #[b PE Packages]
