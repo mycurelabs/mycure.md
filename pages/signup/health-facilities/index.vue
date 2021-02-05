@@ -219,6 +219,7 @@ import {
 } from '~/utils/text-field-rules';
 export default {
   layout: 'user',
+  middleware: ['disable-route'],
   data () {
     // TEXT FIELD RULES
     this.isRequired = requiredRule;
