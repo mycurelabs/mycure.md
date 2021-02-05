@@ -9,6 +9,7 @@
             clearable
             placeholder="Search MYCURE Health Center’s doctors, diagnostic tests, and services"
             v-model="searchText"
+            :disabled="isPreviewMode"
             @keyup.enter="debouncedSearch"
           ).mt-3.search-bar
             template(v-slot:append)
@@ -68,6 +69,10 @@ export default {
       default: null,
     },
     searchResultsMode: {
+      type: Boolean,
+      default: false,
+    },
+    isPreviewMode: {
       type: Boolean,
       default: false,
     },
