@@ -320,10 +320,7 @@ export default {
           skip,
         });
         this.doctorsTotal = total;
-        const members = items || [];
-        if (!members?.length) return members;
-
-        this.orgDoctors = members;
+        this.orgDoctors = items || [];
       } catch (error) {
         console.error(error);
       } finally {
