@@ -1,19 +1,24 @@
 <template lang="pug">
-  v-col(:style="backgroundStyle" :class="[searchResultsMode ? 'search-mode-container' : 'full-container']")
+  v-col(
+    :style="!hideBanner ? backgroundStyle : null"
+    :class="[searchResultsMode ? 'search-mode-container' : 'full-container', { 'mobile-height': $isMobile }]"
+  )
     v-container(fluid).pa-0
-      v-row(align="center" justify="center").content-container.mx-1
+      v-row(align="center" justify="center" :no-gutters="noGutters").content-container.mx-1
         v-col(cols="10" md="6").text-center
-          h1(v-if="!searchResultsMode" :class="{ 'font-30': $isMobile }").white--text Consult online with #[br] MYCURE Health Center today
+          h1(v-if="(!searchResultsMode || $isMobile) && !hideBanner" :class="{ 'font-30': $isMobile }").white--text Consult online with #[br] MYCURE Health Center today
           v-text-field(
+            v-if="!hideSearchBars"
             solo
             clearable
             placeholder="Search MYCURE Health Center’s doctors, diagnostic tests, and services"
             v-model="searchText"
+            :disabled="isPreviewMode"
             @keyup.enter="debouncedSearch"
           ).mt-3.search-bar
             template(v-slot:append)
               v-icon(color="white").search-icon mdi-magnify
-        v-col(v-if="searchResultsMode" cols="10" md="2")
+        v-col(v-if="searchResultsMode && !hideSearchBars" cols="10" md="2")
           v-select(
             v-model="serviceType"
             :items="serviceTypes"
@@ -22,20 +27,23 @@
             item-value="value"
             solo
             clearable
+            :class="{ 'mt-3': !$isMobile }"
             @change="onServiceTypeSelect"
             @click:clear="clearServiceFilter"
-          ).mt-3.search-bar
-        v-col(v-if="searchResultsMode" cols="10" md="2")
+          ).search-bar
+        v-col(v-if="searchResultsMode && !hideSearchBars" cols="10" md="2")
           search-insurance-contracts(
+            :class="{ 'mt-3': !$isMobile }"
             @select="onInsuranceSelect"
             @clear="clearInsuranceFilter"
-          ).mt-3.search-bar
-        v-col(v-if="searchResultsMode" cols="10" md="2").mt-n3
+          ).search-bar
+        v-col(v-if="searchResultsMode && !hideSearchBars" cols="10" md="2" :class="{ 'mt-n4': !$isMobile }")
           date-picker-menu(
             v-model="dateFilter"
             solo
+            bordered
             @clear="dateFilter = null"
-          ).search-bar
+          )
 </template>
 
 <script>
@@ -68,6 +76,22 @@ export default {
       default: null,
     },
     searchResultsMode: {
+      type: Boolean,
+      default: false,
+    },
+    isPreviewMode: {
+      type: Boolean,
+      default: false,
+    },
+    hideSearchBars: {
+      type: Boolean,
+      default: false,
+    },
+    hideBanner: {
+      type: Boolean,
+      default: false,
+    },
+    noGutters: {
       type: Boolean,
       default: false,
     },
@@ -156,6 +180,11 @@ export default {
   background-size: cover;
   background-position: center;
 }
+
+.mobile-height {
+  height: 450px !important;
+}
+
 .content-container {
   height: 425px;
 }
