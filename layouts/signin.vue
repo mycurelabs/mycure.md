@@ -6,7 +6,7 @@
     v-row(align="center" justify="center").footer
       v-col(cols="12").mt-2.text-center
         span.white--text Don't have MYCURE yet?
-        nuxt-link(:to="{ name: 'signup-individual-invite' , params: { scrollHealthSuites: true}}").router-link.primary--text &nbsp;&nbsp;Get your account here.
+        nuxt-link(:to="{ name: 'signup-health-facilities' , params: { scrollHealthSuites: true}}").router-link.primary--text &nbsp;&nbsp;Get your account here.
         v-divider(dark).mt-5.edge-divider
       v-row(align="center" justify="center").mt-n2.text-center
         v-col(cols="12" md="6").pl-12.pr-12

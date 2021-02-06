@@ -18,6 +18,7 @@
                 v-btn(v-if="!item.subMenus" text @click="onNavLinkClick(item)")
                   span.font-14.tab.text-none {{item.name}}
                   span(v-if="item.new").ml-2.px-1.white--text.red.font-weight-bold.font-14.pill NEW
+                  span(v-if="item.comingSoon").ml-2.px-1.white--text.btn-yellow.font-weight-bold.font-12.pill.text-none Coming Soon!
                 v-menu(offset-y v-else).solutions-menu
                   template(v-slot:activator="{ on }")
                     v-btn(
@@ -42,11 +43,11 @@
                 id="login-btn"
                 @click.stop="onActionBtnClick('login-btn')"
               ).mr-2.ml-1
-                span.font-14.tab.text-none.font-weight-bold &nbsp;Login
+                span.font-14.tab.text-none.font-weight-bold &nbsp;LOGIN
               v-btn(
                 v-if="currentRoute === 'doctors-clinics'"
                 color="accent"
-                :to="currentRoute === 'doctors-clinics' ? { name: 'signup-individual-invite' } : { name: 'signup-multispecialty-step-1' }"
+                :to="currentRoute === 'doctors-clinics' ? { name: 'signup-individual' } : { name: 'signup-multispecialty-step-1' }"
                 id="start-free-btn"
                 @click.stop="onActionBtnClick('start-free-btn')"
               )
@@ -55,11 +56,11 @@
                 width="130"
                 v-else-if="currentRoute === 'enterprise'"
                 color="accent"
-                :to="{ name: 'signup-multispecialty-step-1' }"
+                href="https://calendly.com/mycure/demo"
                 id="enterprise-book-demo-btn"
                 @click.stop="onActionBtnClick('enterprise-book-demo-btn')"
               )
-                strong.font-14.white--text.tab.text-none Book A Demo
+                strong.font-14.white--text.tab.text-none Book a Demo
               v-btn(
                 v-else-if="currentRoute === 'specialized-clinics'"
                 color="accent"
@@ -80,10 +81,10 @@
                 v-else
                 color="accent"
                 id="get-started-btn"
-                :to=" { name: 'signup-individual-invite' }"
+                rounded
                 @click.stop="onActionBtnClick('get-started-btn')"
               )
-                strong.font-14.white--text.tab.text-none Get an Exclusive Invite
+                strong.font-14.white--text.tab.text-none Get started for free
 </template>
 
 <script>
@@ -175,5 +176,9 @@ a {
 }
 .solutions-menu {
   z-index: 250;
+}
+.btn-yellow {
+  background-color: #E7C13A !important;
+;
 }
 </style>

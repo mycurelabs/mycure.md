@@ -1,58 +1,76 @@
 <template lang="pug">
-  v-container(v-if="!loading").py-0
-    app-bar(:picURL="picURL" :consultIDS="consultIDS")
-    v-row(align="start").main-content
-
-      v-col(cols="12" md="2" align="center")
-        about-us(:picURL="picURL" :description="description")
-
-      v-col(cols="12" md="6" :class="{'pl-6': !$isMobile}")
-        info(
-          :hospitalName="hospitalName"
-          :description="description"
-          :address="address"
-          :completeAddress="completeAddress"
-        )
-        v-row.mt-3
-          v-col(cols="12" sm="6")
-            //- UPDATE SERVICES DATA
-            services(:servicesOffered="servicesOffered").pa-3
-          v-col(cols="12" sm="6")
-            schedules(:schedules="schedules").pa-3
-            v-col(cols="12" style="background-color: #ececec; border-radius: 5px; min-height: 100px;").mt-6
-              //- UPDATE CONSULTATIONS DATA
-              consultations(
-                :price-min="minimumServicePrice"
-                :price-max="maximumServicePrice"
-              )
-
-        //- UPDATE TESTIMONIAL DATA
-        v-row
-          v-col(cols="12")
-            h2 Testimonials
-            testimonials(:picURL="picURL" :testimonialDate="testimonialDate" :testimonialDescription="testimonialDescription")
-
-      //- UDPATE DOCTORS DATA
-      v-col(cols="12" md="4")
-        specializations-chats(:doctors="doctors" :consultIDS="consultIDS")
-
+  div(v-if="!loading.page").py-0
+    app-bar(:picURL="picURL" :clinicName="clinicName")
+    usp(
+      v-model="searchText"
+      :search-results-mode="searchResultsMode"
+      :name="clinicName"
+      :org-id="orgId"
+      :coverURL="coverURL"
+      :is-preview-mode="isPreviewMode"
+      :hide-search-bars="$isMobile"
+      @search="onServiceSearch"
+      @filter:date="filterByDate"
+    )
+    v-container(fluid)
+      v-row(justify="center")
+        v-col(cols="12" md="3")
+          clinic-info(:clinic="clinicWebsite")
+          schedules(:schedules="groupedSchedules").mt-2
+          usp(
+            v-if="$isMobile"
+            v-model="searchText"
+            hide-banner
+            no-gutters
+            search-results-mode
+            :name="clinicName"
+            :org-id="orgId"
+            :coverURL="coverURL"
+            :is-preview-mode="isPreviewMode"
+            @search="onServiceSearch"
+            @filter:date="filterByDate"
+          )
+        v-col(cols="12" md="8")
+          services-tabs(
+            v-if="!searchResultsMode"
+            v-model="activeTab"
+            read-only
+            :items="listItems"
+            :organization="orgId"
+            :loading="loading.list"
+            :has-next-page="hasNextPage"
+            :has-previous-page="hasPreviousPage"
+            :is-preview-mode="isPreviewMode"
+            @next="refetchListItems(activeTab, page + 1)"
+            @previous="refetchListItems(activeTab, page - 1)"
+          )
+          services-search-results(
+            v-else
+            read-only
+            :organization="orgId"
+            :loading="loading.list"
+            :items="searchResults"
+            :is-preview-mode="isPreviewMode"
+          )
     v-divider
-    v-footer(color="white").mt-3
+    v-footer(v-if="!$isMobile" color="white").mt-3
       v-row(justify="center" align="center" no-gutters)
         v-col(
           cols="12"
-          md="6"
-          :align="!$isMobile ? 'start' : 'center'"
-          :class="{'d-flex': !$isMobile}"
+          md="5"
+          align="start"
         )
-          img(
-            height="45"
-            src="~/assets/images/mycure-header-logo.png"
-            alt="MYCURE"
-            @click="$nuxt.$router.push({ name: 'index' })"
-          )
-          p.ml-5.mt-3 &#169;{{new Date().getFullYear()}} All Rights Reserved.
-        v-col(cols="12" md="6" :align="!$isMobile ? 'end' : 'center'")
+          div.d-flexDirectory
+            p.ml-5.mt-1 #[b Powered by]
+            img(
+              height="30"
+              src="~/assets/images/MYCURE-logo.png"
+              alt="MYCURE"
+              @click="$nuxt.$router.push({ name: 'index' })"
+            ).ml-2
+          div
+            p.ml-5 &#169;{{new Date().getFullYear()}} All Rights Reserved.
+        v-col(cols="12" md="5" align="end")
           span Share the love:
           template(v-for="(icon, key) in icons")
             a(
@@ -61,35 +79,66 @@
               rel="noopener noreferrer"
             ).pl-3
               v-icon.font-30 {{ icon.icon }}
+    v-footer(v-else color="primary")
+      v-row(justify="center" align="center")
+        v-col(cols="12" align="center")
+          span.white--text Share the love:
+          template(v-for="(icon, key) in icons")
+            a(
+              :href="icon.link"
+              target="_blank"
+              rel="noopener noreferrer"
+            ).pl-3
+              v-icon(color="white").font-30 {{ icon.icon }}
+        v-col(cols="10" align="center")
+          div.d-flex.justify-center
+            img(
+              height="26"
+              src="~/assets/images/MYCURE-logo-white.png"
+              alt="MYCURE"
+              @click="$nuxt.$router.push({ name: 'index' })"
+            )
+            p.white--text.font-14.ml-4.mt-1 &#169;{{new Date().getFullYear()}} All Rights Reserved. asd
 </template>
 
 <script>
-import { getClinicWebsite, getMembership, getServices } from '~/utils/axios';
+// - utils
+import { getMembership, getServices } from '~/utils/axios';
+import {
+  getOrganization,
+} from '~/utils/axios/organizations';
 import headMeta from '~/utils/head-meta';
-import AppBar from '~/components/clinic-website/app-bar';
+// - services
+import { fetchClinicWebsiteDoctors } from '~/services/organization-members';
+import { fetchClinicServices } from '~/services/services';
+// - components
 import AboutUs from '~/components/clinic-website/about-us';
-import Info from '~/components/clinic-website/info';
+import AppBar from '~/components/clinic-website/app-bar';
+import ClinicInfo from '~/components/clinic-website/clinic-info';
+import DoctorCards from '~/components/clinic-website/doctor-card';
+import DoctorsList from '~/components/clinic-website/doctors-list';
 import Schedules from '~/components/clinic-website/schedules';
-import Services from '~/components/clinic-website/services';
-import Consultations from '~/components/clinic-website/consultations';
-import Testimonials from '~/components/clinic-website/testimonials';
-import SpecializationsChats from '~/components/clinic-website/specializations-chat';
+import ServicesSearchResults from '~/components/clinic-website/services/search-results';
+import ServicesTabs from '~/components/clinic-website/services/tabs';
+import Specializations from '~/components/clinic-website/specialization-expansion';
+import Usp from '~/components/clinic-website/usp';
 export default {
   layout: 'clinic-website',
   components: {
-    AppBar,
     AboutUs,
-    Info,
+    AppBar,
+    ClinicInfo,
+    DoctorCards,
+    DoctorsList,
     Schedules,
-    Services,
-    Consultations,
-    Testimonials,
-    SpecializationsChats,
+    ServicesSearchResults,
+    ServicesTabs,
+    Specializations,
+    Usp,
   },
-  async asyncData ({ params, error }) {
+  async asyncData ({ params, $sdk }) {
     try {
-      const clinic = await getClinicWebsite({ username: params.id });
-      const clinicWebsite = clinic[0];
+      const clinicWebsite = await getOrganization({ id: params.id }, true) || [];
       const membership = await getMembership({ organization: params.id });
       const member = membership[0];
       const services = await getServices({ facility: params.id });
@@ -109,39 +158,87 @@ export default {
       { icon: 'mdi-email', link: 'mailto:' },
       { icon: 'mdi-linkedin', link: 'https://www.linkedin.com/' },
     ];
+    this.days = [
+      {
+        order: 1,
+        day: 'mon',
+        dayName: 'Monday',
+      },
+      {
+        order: 2,
+        day: 'tue',
+        dayName: 'Tuesday',
+      },
+      {
+        order: 3,
+        day: 'wed',
+        dayName: 'Wednesday',
+      },
+      {
+        order: 4,
+        day: 'thu',
+        dayName: 'Thursday',
+      },
+      {
+        order: 5,
+        day: 'fri',
+        dayName: 'Friday',
+      },
+      {
+        order: 6,
+        day: 'sat',
+        dayName: 'Saturday',
+      },
+      {
+        order: 7,
+        day: 'sun',
+        dayName: 'Sunday',
+      },
+    ];
+    this.itemsLimit = 7;
     return {
-      loading: false,
+      loading: {
+        page: true,
+        list: false,
+      },
+      page: 1,
+      pageCount: 2,
+      orgDoctors: [],
+      //
+      clinicWebsite: {},
+      activeTab: 'lab',
+      filteredServices: [],
+      // Items to show in tab list
+      listItems: [],
+      // total items
+      itemsTotal: 0,
+      doctorsTotal: 0,
+      servicesTotal: 0,
+      // search
+      searchResultsMode: false,
+      searchResults: [],
+      searchText: null,
+      searchFilters: {},
     };
   },
   computed: {
+    mode () {
+      return this.$route.query.mode;
+    },
+    isPreviewMode () {
+      return this.mode === 'preview';
+    },
     orgId () {
-      return this.$route.params.id;
+      return this.clinicWebsite.id;
     },
     picURL () {
       return this.clinicWebsite?.picURL || require('~/assets/images/clinics-website/hospital-thumbnail.jpg');
     },
-    description () {
-      return this.clinicWebsite?.description ||
-      `${this.clinicWebsite?.name} specializes in telehealth services. ${this.clinicWebsite?.name} telemedicine service is committed to provide medical consultation via video conference or phone call to our patient 24 hours a day 7 days a week.`;
+    coverURL () {
+      return this.clinicWebsite?.coverURL || require('~/assets/images/clinics-website/usp-background.png');
     },
-    hospitalName () {
+    clinicName () {
       return this.clinicWebsite?.name || 'MYCURE Clinic';
-    },
-    address () {
-      return [
-        this.clinicWebsite?.address?.city,
-        this.clinicWebsite?.address?.province,
-        this.clinicWebsite?.address?.country,
-      ].filter(Boolean).join(', ') || 'Address not available';
-    },
-    completeAddress () {
-      return [
-        this.clinicWebsite?.address?.street1,
-        this.clinicWebsite?.address?.street2,
-        this.clinicWebsite?.address?.city,
-        this.clinicWebsite?.address?.province,
-        this.clinicWebsite?.address?.country,
-      ].filter(Boolean).join(', ') || 'Address not available';
     },
     servicesOffered () {
       return this.services;
@@ -157,7 +254,19 @@ export default {
       return this.sortedServices?.pop()?.price;
     },
     schedules () {
-      return this.clinicWebsite?.mf_schedule; // eslint-disable-line
+      return this.clinicWebsite?.mf_schedule || []; // eslint-disable-line
+    },
+    groupedSchedules () {
+      const groupedSchedules = this.schedules
+        .map((schedule) => {
+          const { order } = this.days.find(day => day.day === schedule.day);
+          return {
+            order,
+            ...schedule,
+          };
+        })
+        .sort((a, b) => a.day !== b.day ? a.order - b.order : a.opening - b.opening) || [];
+      return groupedSchedules;
     },
     testimonialDate () {
       return this.clinicWebsite?.createdAt;
@@ -166,10 +275,131 @@ export default {
       return this.clinicWebsite?.description;
     },
     doctors () {
-      return { data: this.clinicWebsite };
+      // return { data: this.clinicWebsite };
+      if (this.orgDoctors.length > 0) {
+        return this.orgDoctors;
+      } else {
+        return [];
+      }
     },
     consultIDS () {
       return { docUID: this.member?.uid, clinicID: this.orgId };
+    },
+    formattedDoctors () {
+      return this.orgDoctors?.map((doctor) => {
+        const practicingSince = doctor.personalDetails?.['doc_practicingSince'];
+        const yearsPracticing = practicingSince && (new Date().getFullYear() - practicingSince);
+
+        return {
+          ...doctor,
+          picURL: doctor.personalDetails?.picURL,
+          doctorName: `Dr. ${doctor.personalDetails?.name?.firstName} ${doctor.personalDetails?.name?.lastName}`,
+          specialties: doctor.personalDetails?.['doc_specialties']?.join(', '),
+          yearsPracticing: yearsPracticing && `${yearsPracticing} years`,
+        };
+      });
+    },
+    hasNextPage () {
+      const nextSkip = this.itemsLimit * (this.page);
+      return nextSkip < this.itemsTotal;
+    },
+    hasPreviousPage () {
+      const previousSkip = this.itemsLimit * (this.page - 1);
+      return previousSkip > 0;
+    },
+  },
+  watch: {
+    activeTab: {
+      async handler (val) {
+        await this.refetchListItems(val);
+      },
+    },
+  },
+  async mounted () {
+    this.loading.page = false;
+    await this.fetchServices({ type: 'diagnostic', subtype: 'lab' });
+    await this.fetchDoctorMembers();
+    this.listItems = this.filteredServices;
+    this.itemsTotal = this.servicesTotal;
+  },
+  methods: {
+    async fetchDoctorMembers (searchText, page = 1) {
+      try {
+        this.loading.list = true;
+        const skip = this.itemsLimit * (page - 1);
+        const { items, total } = await fetchClinicWebsiteDoctors(this.$sdk, {
+          organization: this.orgId,
+          searchText,
+          limit: this.itemsLimit,
+          skip,
+        });
+        this.doctorsTotal = total;
+        this.orgDoctors = items || [];
+      } catch (error) {
+        console.error(error);
+      } finally {
+        this.loading.list = false;
+      }
+    },
+    async fetchServices (service = {}, searchText, page = 1) {
+      try {
+        this.loading.list = true;
+        const { type, subtype, insurer } = service;
+        const skip = this.itemsLimit * (page - 1);
+        const { items, total } = await fetchClinicServices(this.$sdk, {
+          facility: this.orgId,
+          type,
+          subtype,
+          insurer,
+          searchText,
+          limit: this.itemsLimit,
+          skip,
+        });
+        this.servicesTotal = total;
+        // - TODO: Confirm if there are specified schedules for services. Right now the clinic schedule is assigned
+        this.filteredServices = items.filter(item => item.price)
+          .map(item => ({ ...item, schedules: this.groupedSchedules }));
+      } catch (error) {
+        console.error(error);
+      } finally {
+        this.loading.list = false;
+      }
+    },
+    async refetchListItems (tab, page = 1) {
+      this.page = page;
+      if (tab === 'doctors') {
+        await this.fetchDoctorMembers({ page: this.page });
+        this.listItems = [...this.formattedDoctors];
+        this.itemsTotal = this.doctorsTotal;
+        return;
+      }
+      const subtype = tab === 'lab' || tab === 'imaging' ? tab : null;
+      await this.fetchServices({ type: subtype ? 'diagnostic' : tab, ...subtype && { subtype } }, null, this.page);
+      this.listItems = [...this.filteredServices];
+      this.itemsTotal = this.servicesTotal;
+    },
+    async onServiceSearch ({ searchText, searchFilters }) {
+      if (!this.searchResultsMode) this.searchResultsMode = true;
+      this.searchFilters = searchFilters;
+      await this.fetchDoctorMembers(searchText);
+      await this.fetchServices(searchFilters, searchText);
+      this.searchResults = [...this.formattedDoctors, ...this.filteredServices];
+    },
+    filterByDate (unixDate) {
+      if (!unixDate) {
+        this.onServiceSearch({ searchText: this.searchText, searchFilters: this.searchFilters });
+        return;
+      }
+      const date = new Date(unixDate);
+      let day = date.getDay();
+      if (day === 0) day = 7;
+
+      if (!this.searchResults?.length) return;
+      this.searchResults = this.searchResults.filter((result) => {
+        const schedules = result.scheduleData || result.schedules;
+        const matchDay = schedules?.find(schedule => schedule.order === day);
+        return matchDay;
+      });
     },
   },
   head () {
@@ -188,5 +418,8 @@ a {
 }
 .main-content {
   margin-top: 100px;
+}
+.doctors-container {
+  background-color: #F2F2F2;
 }
 </style>

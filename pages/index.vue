@@ -1,35 +1,12 @@
 <template lang="pug">
   div(v-if="!loading").white
     //- 1st panel
-    usp(@getStarted="goToSignupIndividual").usp-container
-    //- 2nd panel
-    health-suites
-    //- 3rd panel
-    solutions
-    //- 4th panel
-    storyflow(
-      :storyflow="storyflowItems"
-      :introduction="storyflowIntroText"
-      customPath="virtual-clinic-home/"
-      horizontal
-      horizontal-image-size="40%"
-    )
-    //- 5th panel
-    vid
-    //- 6th panel
+    usp(:class="{'usp-container' : !$isMobile, 'usp-mobile' : $isMobile }" @getStarted="goToSignupIndividual")
+    start-easy
+    features
     syncbase
-    hipaa-compliant
-    //- 7th panel
-    privacy
-    //- 8th panel
-    apis
-    //- 9th panel
-    patient-portal(@goToPatientPortal="goToPatientPortal")#patient-portal
-    //- 10th panel
-    testimonial
-    //- final panel
-    div.cta-container
-      cta(@getStarted="getStarted")
+    hipaa
+    plans
 </template>
 
 <script>
@@ -38,53 +15,23 @@ import VueScrollTo from 'vue-scrollto';
 import headMeta from '~/utils/head-meta';
 import { parseTextWithNewLine } from '~/utils/newline';
 // - components
-import Usp from '~/components/virtual-clinic-home/old-usp';
-import HealthSuites from '~/components/virtual-clinic-home/health-suites';
-import Solutions from '~/components/virtual-clinic-home/solutions';
-import Storyflow from '~/components/commons/storyflow';
-import Vid from '~/components/virtual-clinic-home/vid';
-import Syncbase from '~/components/virtual-clinic-home/syncbase';
-import HipaaCompliant from '~/components/virtual-clinic-home/hipaa-compliant';
-import Privacy from '~/components/virtual-clinic-home/privacy';
-import Apis from '~/components/virtual-clinic-home/apis';
-import Testimonial from '~/components/virtual-clinic-home/testimonial';
-import PatientPortal from '~/components/virtual-clinic-home/patient-portal';
-import Cta from '~/components/virtual-clinic-home/cta';
+import Usp from '~/components/providers/Usp';
+import StartEasy from '~/components/providers/StartEasy';
+import Features from '~/components/providers/Features';
+import Syncbase from '~/components/providers/Syncbase';
+import Hipaa from '~/components/providers/Hipaa';
+import Plans from '~/components/providers/Plans';
 
 export default {
   components: {
     Usp,
-    HealthSuites,
-    Solutions,
-    Storyflow,
-    Vid,
+    StartEasy,
+    Features,
     Syncbase,
-    HipaaCompliant,
-    Privacy,
-    Apis,
-    PatientPortal,
-    Testimonial,
-    Cta,
+    Hipaa,
+    Plans,
   },
   data () {
-    this.storyflowItems = [
-      {
-        title: 'Secure Electronic Health Records (EHR)',
-        text: 'Powerful, robust and proven solution that organizes health records based on global health standards.',
-        image: 'MYCURE-virtual-clinic-healthcare-practice-online-homepage-E-benefits-01-secure-ehr.png',
-      },
-      {
-        title: 'Solving Everyday Challenges Efficiently',
-        text: 'Duplicate or missing charts, billing mishaps, excess costs, and crazy workflows become the least of your worries.',
-        image: 'MYCURE-virtual-clinic-healthcare-practice-online-homepage-E-benefits-02-analytics.png',
-      },
-      {
-        title: 'Holistic Patient Care Experience',
-        text: 'From registration to billing, evaluate your patient care performance through fast reporting and analytics.',
-        image: 'MYCURE-virtual-clinic-healthcare-practice-online-homepage-E-benefits-03-holistic-patient-care.png',
-      },
-    ];
-    this.introText = 'The best tech tool you\'ll need every step of the way';
     return {
       loading: true,
     };
@@ -114,10 +61,10 @@ export default {
   },
   methods: {
     getStarted () {
-      this.$router.push({ name: 'signup-individual-invite' });
+      this.$router.push({ name: 'signup-individual' });
     },
     goToSignupIndividual (email) {
-      this.$router.push({ name: 'signup-individual-invite' });
+      this.$router.push({ name: 'signup-individual' });
     },
     goToPatientPortal () {
       window.open(process.env.PX_PORTAL_URL, '_blank', 'noopener, noreferrer');
@@ -148,7 +95,11 @@ export default {
   margin-bottom: 0%;
   z-index: 1;
 }
-.usp-container{
+.usp-container {
   margin-top: 78px;
+}
+
+.usp-mobile {
+  margin-top: 38px;
 }
 </style>

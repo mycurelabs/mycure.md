@@ -1,21 +1,58 @@
 <template lang="pug">
-  v-app-bar(
-    color="white"
-    height="70"
-    elevate-on-scroll
-    fixed
-  )
-    v-container
-      v-row(no-gutters align="center")
-        v-avatar
-          img(
-            :src="picURL"
-            height="60"
-            alt="Clinic Logo"
-          )
-        v-col.pl-2
-          h3 {{ clinicName }}
-          span Telemedicine
+  div(v-if="!loading")
+    v-app-bar(
+      color="white"
+      height="70"
+      elevate-on-scroll
+      fixed
+      no-gutters
+    )
+      v-container(fluid v-if="!$isMobile")
+        v-row(no-gutters align="center")
+          v-avatar
+            img(
+              :src="picURL"
+              height="60"
+              alt="Clinic Logo"
+            )
+          v-col.pl-2
+            h3 {{ clinicName }}
+            span Telemedicine
+          v-spacer
+          v-btn(
+            depressed
+            Large
+            color="#fff"
+            @click="goToPxpSignin"
+          ).text-none #[b Login]
+          v-btn(
+            depressed
+            Large
+            color="primary"
+            @click="goToPxpSignup"
+          ).text-none.ml-2 #[b Create an Account]
+      v-container(v-else)
+        v-row(align="center")
+          v-avatar
+            img(
+              :src="picURL"
+              height="60"
+              alt="Clinic Logo"
+            )
+          div.pl-2
+            h3.font-12 {{ clinicName }}
+            span.font-12 Telemedicine
+          v-spacer
+          div
+            v-menu
+              template(v-slot:activator="{ on, attrs }")
+                v-btn(icon v-bind="attrs" v-on="on")
+                  v-icon mdi-menu
+              v-list
+                v-list-item(@click="goToPxpSignin")
+                  v-list-item-title.text-none Login
+                v-list-item(@click="goToPxpSignup")
+                  v-list-item-title.text-none Create an Account
 </template>
 
 <script>
@@ -34,6 +71,11 @@ export default {
       default: '',
     },
   },
+  data () {
+    return {
+      loading: true,
+    };
+  },
   computed: {
     goToConsult () {
       const docUID = this.consultIDS?.docUID;
@@ -42,6 +84,17 @@ export default {
         return `${process.env.PX_PORTAL_URL}/clinic-appointment/step-1?facility=${clinicID}`;
       }
       return `${process.env.PX_PORTAL_URL}/clinic-appointment/step-1?doctor=${docUID}&facility=${clinicID}`;
+    },
+  },
+  mounted () {
+    this.loading = false;
+  },
+  methods: {
+    goToPxpSignin () {
+      window.open(process.env.PX_PORTAL_URL, '_blank', 'noopener, noreferrer');
+    },
+    goToPxpSignup () {
+      window.open(`${process.env.PX_PORTAL_URL}/signup`, '_blank', 'noopener, noreferrer');
     },
   },
 };

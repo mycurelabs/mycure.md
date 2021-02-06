@@ -1,9 +1,16 @@
 <template lang="pug">
   fragment
-    v-app-bar(app flat height="70" extension-height="95" color="white" :class="shadow")
+    v-app-bar(app height="60" color="white" :class="shadow" hide-on-scroll)
       nuxt-link(:to="{ name: 'index' }" title="MYCURE | Clinic Management System | Cloud EMR Philippines").logo-a
-        img(src="~/assets/images/mycure-header-logo.png" width="130" alt="MYCURE logo").mt-1
+        img(src="~/assets/images/MYCURE-virtual-clinic-healthcare-practice-online-logo.svg" width="130" alt="MYCURE logo" @click="scrollToTop").mt-1
       v-spacer
+      //- v-btn(
+      //-   text
+      //-   :to="{ name: loginURL }"
+      //-   id="login-btn"
+      //-   @click.stop="onActionBtnClick('login-btn')"
+      //- ).mr-2.ml-1
+      //-   span.font-14.tab.text-none.font-weight-bold.header-gray &nbsp;LOGIN
       v-btn(icon large @click="drawer = !drawer")
         v-icon.font-35 mdi-menu
       //- Banner
@@ -31,7 +38,7 @@
                 dense
                 @click="onNavLinkClick(item)"
               )
-                v-list-item-title.font-16 {{ item.name }}
+                v-list-item-title.font-16.mobile-nav-list-item {{ item.name }}
                 span(v-if="item.new").ml-2.px-1.white--text.red.font-weight-bold.font-14.pill NEW
               v-list-group(v-else)
                 template(v-slot:activator)
@@ -68,18 +75,16 @@
       div.navBottomBtns.py-3
         v-row(justify="center")
           v-btn(
-              id="mobile-navdrawer-login-btn"
-              :to="{ name: loginURL }"
-              @click.stop="handleUserLinkClick(`mobile-${loginURL}`)"
-            )
-              strong.font-14.tab LOGIN
+            id="mobile-navdrawer-login-btn"
+            @click.stop="handleUserLinkClick(`login-btn`)"
+          )
+            strong.font-14.tab LOGIN
           v-btn(
             id="mobile-navdrawer-get-started-btn"
             color="accent"
-            :to="{ name: 'signup-individual-invite'}"
-            @click.stop="handleUserLinkClick(`mobile-navdrawer-get-started-btn`)"
+            @click.stop="handleUserLinkClick(`get-started-btn`)"
           ).ml-2
-            strong.font-14.white--text.tab GET AN EXCLUSIVE INVITE
+            strong.font-14.white--text.tab Get started for free
 </template>
 
 <script>
@@ -147,12 +152,17 @@ export default {
       this.$emit('logoClick');
     },
     handleUserLinkClick (id) {
-      this.$emit('toolbarLinkClick', id);
+      this.$emit('actionBtnClick', id);
       this.drawer = false;
     },
     onNavLinkClick (navLink) {
       this.$emit('navLinkClick', navLink);
       this.drawer = false;
+    },
+    scrollToTop () {
+      if (this.$nuxt.$route.name === 'index') {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
     },
   },
 };
@@ -195,5 +205,9 @@ a {
   right: 50%;
   margin-left: -50vw;
   margin-right: -50vw;
+}
+
+.mobile-nav-list-item {
+  line-height: 2rem !important;
 }
 </style>

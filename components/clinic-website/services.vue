@@ -1,17 +1,17 @@
 <template lang="pug">
   div.main-container
-    h2.pb-6 Services Offered
+    h2(:class="{ 'text-left': !$isMobile, 'text-center': $isMobile }").font-21.pb-6 Services Offered
     div(v-if="services.length === 0")
       i No Services available
-    div(v-for="(service, key) in servicesFirstFive" :key="key")
+    div(v-for="(service, key) in servicesFirstFive" :key="key" :class="{ 'justify-center' : $isMobile }").text-left
       div.d-inline-flex
-        v-img(:src="require(`~/assets/images/${service.image}`)" width="30" contain)
+        v-img(:src="require(`~/assets/images/mycure-check.png`)" width="25" contain)
         span.ml-3.mt-1 {{ service.title }}
     div(v-if="showAll" v-for="(service, key) in allServices" :key="'All' + key")
       div.d-inline-flex
         v-img(:src="require(`~/assets/images/${service.image}`)" width="30" contain)
         span.ml-3.mt-1 {{ service.title }}
-    div.py-3
+    div
     //- UPDATE THE v-if LATER BASE ON servicesOffered PROPS DATA
     div(v-if="servicesFirstFive.length === 5" style="position: absolute; bottom: 10px;")
       strong(@click="showAll = !showAll").primary--text See {{ showAll ? 'Less' : 'All' }}
@@ -34,7 +34,6 @@ export default {
   computed: {
     services () {
       return this.servicesOffered?.map(service => ({
-        image: 'mycure-check.png',
         title: service.name,
       }));
     },
@@ -56,9 +55,9 @@ strong {
   cursor: pointer;
 }
 .main-container {
-  background-color: #ececec;
+  /* background-color: #ececec; */
   border-radius: 5px;
   position: relative;
-  padding: 30px;
+  padding: 20px;
 }
 </style>
