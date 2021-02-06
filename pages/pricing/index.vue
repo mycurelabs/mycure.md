@@ -9,8 +9,16 @@
             x-large
             color="primary"
             rounded
-            :to="{ name: 'signup-health-facilities' }"
+            href="https://6rbf27w6k3r.typeform.com/to/V13pJzW9"
+            target="_blank"
+            rel="noopener noreferrer"
           ).font-weight-bold.text-none Start free today
+          //- v-btn(
+          //-   x-large
+          //-   color="primary"
+          //-   rounded
+          //-   :to="{ name: 'signup-health-facilities' }"
+          //- ).font-weight-bold.text-none Start free today
         v-col(cols="12" md="10").mb-10
           table(width="100%")
             tr
@@ -62,8 +70,16 @@
                   text
                   block
                   x-large
-                  :to="{ name: 'signup-health-facilities' }"
+                  href="https://6rbf27w6k3r.typeform.com/to/V13pJzW9"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 ).text-none.font-weight-bold.white--text Start free
+                //- v-btn(
+                //-   text
+                //-   block
+                //-   x-large
+                //-   :to="{ name: 'signup-health-facilities' }"
+                //- ).text-none.font-weight-bold.white--text Start free
     div(style="background-color: #CCEBF5")
       v-container
         v-row(justify="center")
@@ -101,8 +117,17 @@
                 :large="$isMobile"
                 rounded
                 color="primary"
-                :to="{ name: 'signup-health-facilities' }"
+                href="https://6rbf27w6k3r.typeform.com/to/V13pJzW9"
+                target="_blank"
+                rel="noopener noreferrer"
               ).font-weight-bold.text-none Start free today
+              //- v-btn(
+              //-   :x-large="!$isMobile"
+              //-   :large="$isMobile"
+              //-   rounded
+              //-   color="primary"
+              //-   :to="{ name: 'signup-health-facilities' }"
+              //- ).font-weight-bold.text-none Start free today
 </template>
 
 <script>
