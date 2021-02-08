@@ -1,5 +1,5 @@
 <template lang="pug">
-  div
+  div(v-if="showPricingPage")
     v-container(v-if="!loading" :class="{ 'main-container' : !$isMobile, 'mobile-container' : $isMobile }")
       v-row(justify="center" align="center")
         v-col(cols="12").py-10.mb-10.text-center
@@ -103,11 +103,27 @@
                 color="primary"
                 :to="{ name: 'signup-health-facilities' }"
               ).font-weight-bold.text-none Start free today
+  div(v-else)
+    v-container(fluid).pt-12
+      v-container(fluid align="start").my-3.white
+        v-row(align="center" justify="center")
+          v-col
+            v-row(justify="center")
+              img(:width="$isMobile ? '90%' : 'auto'" src="~/assets/images/mycure-error-404-image.png" alt="Error 404")
+            br
+            v-row(justify="center").text-center
+              v-col
+                strong.pb-2.font-18 Oh snap!
+                h2 The page you’re looking for can’t be found.
+              v-col(cols="12")
+                nuxt-link(:to="{ name: 'index' }" title="MYCURE | Clinic Management System | Cloud EMR Philippines")
+                  p.font-16 Back to Home
 </template>
 
 <script>
 // utils
 import headMeta from '~/utils/head-meta';
+import { getCountry } from '~/utils/axios';
 // components
 import Money from '~/components/commons/Money';
 export default {
@@ -265,15 +281,20 @@ export default {
           isHTML: true,
         },
       ],
+      countryCode: 'PH',
     };
   },
   computed: {
     titleClasses () {
       return [this.$isMobile ? 'font-30' : ['font-36', 'lh-title']];
     },
+    showPricingPage () {
+      return this.countryCode !== 'PH';
+    },
   },
   mounted () {
     this.loading = false;
+    this.getCurrentCountry();
   },
   methods: {
     isIcon (string) {
@@ -287,11 +308,15 @@ export default {
         return 'error';
       }
     },
+    async getCurrentCountry () {
+      const country = await getCountry();
+      this.countryCode = country.country_code;
+    },
   },
   head () {
     return headMeta({
       title: 'MYCURE Pricing',
-      description: 'MYCURE is a complete and affordable Clinic and Practice Management System that works for healthcare facilities of all shapes and sizes.',
+      description: 'Start building your online health facility for free and then pay as you grow. We got you from your first sale to full scale',
       socialBanner: require('~/assets/images/banners/MYCURE Open Graph Images -  Homepage.png'),
     });
   },
