@@ -116,14 +116,9 @@ export default {
   components: {
     Money,
   },
-  async asyncData ({ redirect, error }) {
-    try {
-      const country = await getCountry();
-      if (country.country_code === 'PH') {
-        error(error);
-      }
-    } catch {
-      console.error(error);
+  async asyncData ({ error }) {
+    const country = await getCountry();
+    if (country.country_code === 'PH') {
       error(error);
     }
   },
