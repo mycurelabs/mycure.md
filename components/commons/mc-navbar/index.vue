@@ -169,6 +169,10 @@ export default {
       },
     },
   },
+  mounted () {
+    window.addEventListener('scroll', this.updateScroll);
+    this.isMobile = this.$isMobile;
+  },
   methods: {
     updateScroll () {
       this.scrollPosition = window.scrollY;
