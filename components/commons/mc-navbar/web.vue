@@ -5,7 +5,6 @@
     v-app-bar(
       height="70"
       app
-      elevate-on-scroll
       :color="appBarColor"
     )
       v-container.pa-0
