@@ -103,16 +103,28 @@
                 color="primary"
                 :to="{ name: 'signup-health-facilities' }"
               ).font-weight-bold.text-none Start free today
+                  p.font-16 Back to Home
 </template>
 
 <script>
 // utils
 import headMeta from '~/utils/head-meta';
+import { getCountry } from '~/utils/axios';
 // components
 import Money from '~/components/commons/Money';
 export default {
   components: {
     Money,
+  },
+  async asyncData ({ redirect, error }) {
+    try {
+      const country = await getCountry();
+      if (country.country_code === 'PH') {
+        error({ statusCode: 404, message: 'not-available-in-your-country' });
+      }
+    } catch {
+      console.error(error);
+    }
   },
   data () {
     return {
@@ -291,7 +303,7 @@ export default {
   head () {
     return headMeta({
       title: 'MYCURE Pricing',
-      description: 'MYCURE is a complete and affordable Clinic and Practice Management System that works for healthcare facilities of all shapes and sizes.',
+      description: 'Start building your online health facility for free and then pay as you grow. We got you from your first sale to full scale',
       socialBanner: require('~/assets/images/banners/MYCURE Open Graph Images -  Homepage.png'),
     });
   },
