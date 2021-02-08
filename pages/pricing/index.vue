@@ -120,11 +120,10 @@ export default {
     try {
       const country = await getCountry();
       if (country.country_code === 'PH') {
-        return redirect('/error');
+        error({ statusCode: 404, message: 'not-available-in-your-country' });
       }
     } catch {
       console.error(error);
-      error(error);
     }
   },
   data () {
