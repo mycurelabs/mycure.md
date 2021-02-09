@@ -17,21 +17,21 @@
               td(width="33%")
               td(width="33%")#free-container.text-center
                 div
-                  h2(:class=" !isMobile ? 'font-30' : 'font-20' ") LITE
+                  h2(:class=" !$isMobile ? 'font-30' : 'font-20' ") LITE
                   p.font-14 #[b Free]
                   p(v-if="!$isMobile").font-14 All the essential tools you need to run your health facility
               td(width="33%")#paid-container.primary.text-center
                 div.white--text
-                  h2(:class=" !isMobile ? 'font-30' : 'font-20' ") PRO
+                  h2(:class=" !$isMobile ? 'font-30' : 'font-20' ") PRO
                   p.font-14 #[b Pay as you grow]
                   p(v-if="!$isMobile").font-14 Only pay for what you use on top of the free plan
             tr(:class="{ 'font-12' : $isMobile }")
               td(width="33%").styled-td #[span.font-weight-bold.primary--text Products]
               td(width="33%" valign="bottom" ).styled-td.text-center
-                h1 #[span(:class="!isMobile ? 'font-12' : 'font-10'") $]0
+                h1 #[span(:class="!$isMobile ? 'font-12' : 'font-10'") $]0
               td(width="33%" valign="bottom").styled-td.text-center
                 h3 Starts at
-                h1 #[span(:class="!isMobile ? 'font-12' : 'font-10'") $]4#[span(:class="!isMobile ? 'font-12' : 'font-10'") /mo]
+                h1 #[span(:class="!$isMobile ? 'font-12' : 'font-10'") $]4#[span(:class="!$isMobile ? 'font-12' : 'font-10'") /mo]
             template(v-for="(row, index) in rows")
               tr(:class="{ 'font-12' : $isMobile }")
                 td.styled-td #[span.font-weight-bold.mr-2 {{row.item}}]
@@ -43,7 +43,7 @@
                   template(v-if="isIcon(row.free)")
                     v-icon(
                       :class="{ 'success--text': getIconColor(row.free) === 'success', 'error--text': getIconColor(row.free) === 'error' }"
-                      :size=" isMobile ? '30' : '20' "
+                      :size=" $isMobile ? '30' : '20' "
                     ) {{row.free}}
                   template(v-else)
                     span.font-weight-bold {{row.free}}
@@ -51,7 +51,7 @@
                   template(v-if="isIcon(row.paid)")
                     v-icon(
                       :class="{ 'success--text': getIconColor(row.free) === 'success', 'error--text': getIconColor(row.free) === 'error' }"
-                      :size=" isMobile ? '30' : '20' "
+                      :size=" $isMobile ? '30' : '20' "
                     ) {{row.paid}}
                   template(v-else)
                     span.font-weight-bold {{row.paid}}
@@ -103,11 +103,13 @@
                 color="primary"
                 :to="{ name: 'signup-health-facilities' }"
               ).font-weight-bold.text-none Start free today
+                  p.font-16 Back to Home
 </template>
 
 <script>
 // utils
 import headMeta from '~/utils/head-meta';
+import { getCountry } from '~/utils/axios';
 // components
 import Money from '~/components/commons/Money';
 export default {
@@ -274,6 +276,7 @@ export default {
   },
   mounted () {
     this.loading = false;
+    this.disablePage();
   },
   methods: {
     isIcon (string) {
@@ -287,11 +290,17 @@ export default {
         return 'error';
       }
     },
+    async disablePage () {
+      const country = await getCountry();
+      if (country.country_code === 'PH') {
+        this.$nuxt.$router.push('error');
+      }
+    },
   },
   head () {
     return headMeta({
       title: 'MYCURE Pricing',
-      description: 'MYCURE is a complete and affordable Clinic and Practice Management System that works for healthcare facilities of all shapes and sizes.',
+      description: 'Start building your online health facility for free and then pay as you grow. We got you from your first sale to full scale',
       socialBanner: require('~/assets/images/banners/MYCURE Open Graph Images -  Homepage.png'),
     });
   },
