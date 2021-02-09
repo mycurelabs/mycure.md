@@ -12,17 +12,30 @@
         )
     v-row(align="center" justify="center").results-summary
       v-col(cols="12" md="8")
-        h4.font-weight-regular.font-20.text-left.ml-10 #[strong 420] results found on #[strong Endocrinology] in #[strong Quezon City]
+        h4(v-if="!searchQuery").font-weight-regular.font-20.text-left.ml-10 #[strong {{ searchedServicesLength }}] services found
+        h4(v-if="searchQuery").font-weight-regular.font-20.text-left.ml-10 #[strong {{ searchedServicesLength }}] results found on #[strong {{ searchQuery }}] in #[strong {{ locationQuery }}]
       v-col(cols="12")
-        template(v-if="initialServicesList" v-for="initialService in initialServicesList")
+        template(v-if="initialServicesList.length > 1" v-for="initialService in initialServicesList")
           results-card(
             isService
             :service="initialService"
             )
+        v-pagination(
+            v-if="initialServicesList.length > 1"
+            v-model="initialServicesPage"
+            :length="initialServicesLength"
+            total-visible="10"
+          )
         template(v-if="servicesList" v-for="service in servicesList")
           results-card(
             isService
             :service="service"
+          )
+        v-pagination(
+            v-if="servicesList.length > 1"
+            v-model="servicesPage"
+            :length="servicesLength"
+            total-visible="10"
           )
         template(v-if="doctorsList" v-for="doctor in doctorsList")
           results-card(isDoctor)
@@ -49,7 +62,42 @@ export default {
       initialOrgsList: [],
       servicesList: [],
       doctorsList: [],
+      searchQuery: '',
+      locationQuery: '',
+      initialServicesPage: 1,
+      servicesPage: 1,
+      initialServicesTotal: 0,
+      servicesTotal: 0,
+      initialServicesLimit: 6,
+      servicesLimit: 6,
     };
+  },
+  computed: {
+    searchedServicesLength () {
+      if (this.initialServicesList.length > 0) {
+        return this.initialServicesTotal;
+      } else if (this.servicesList.length > 0) {
+        return this.servicesList.length;
+      } else {
+        return 0;
+      }
+    },
+    initialServicesLength () {
+      return Math.ceil(this.initialServicesTotal / this.initialServicesLimit) || 0;
+    },
+    servicesLength () {
+      return Math.ceil(this.servicesTotal / this.servicesLimit) || 0;
+    },
+  },
+  watch: {
+    initialServicesPage (val) {
+      console.log('page', val);
+      this.fetchAllServices(val);
+    },
+    servicesPage (val) {
+      console.log('page', val);
+      this.queryServicesName(this.searchQuery, val);
+    },
   },
   mounted () {
     this.loading = false;
@@ -57,25 +105,38 @@ export default {
   },
   methods: {
     fetchSearchQuery (searchText) {
-      this.initialServicesList = [];
       this.queryServicesName(searchText);
       this.queryServicesSpecialization(searchText);
     },
-    async fetchAllServices () {
-      const { items } = await this.$sdk.service('services').find();
-      if (items) {
-        this.initialServicesList = items;
-      }
+    async fetchAllServices (page = 1) {
+      this.initialServicesList = [];
+      this.servicesList = [];
+      this.searchQuery = '';
+      const skip = this.initialServicesLimit * (page - 1);
+      const { items, total } = await this.$sdk.service('services').find({
+        $limit: this.initialServicesLimit,
+        $skip: skip,
+      });
+      this.initialServicesTotal = total;
+      const initialServices = items;
+      if (!initialServices?.length) return initialServices;
+      this.initialServicesList = initialServices;
     },
-    async queryServicesName (searchText) {
+    async queryServicesName (searchText, page = 1) {
+      const skip = this.servicesLimit * (page - 1);
       const query = {
         name: { $regex: `^${searchText}`, $options: 'i' },
       };
 
-      const { items } = await this.$sdk.service('services').find(query);
-      if (items) {
-        this.servicesList = items;
-      };
+      query.$limit = this.servicesLimit;
+      query.$skip = skip;
+
+      const { items, total } = await this.$sdk.service('services').find(query);
+
+      this.servicesTotal = total;
+      const services = items;
+      if (!services?.length) return services;
+      this.servicesList = services;
       console.log('queryServicesName', items);
     },
     async queryServicesSpecialization (searchText) {
@@ -94,8 +155,11 @@ export default {
 
       console.log('doctors items', items);
     },
-    searchServices (params) {
-      this.fetchSearchQuery(params);
+    searchServices (searchQuery, locationQuery) {
+      this.searchQuery = searchQuery;
+      this.locationQuery = locationQuery;
+      this.initialServicesList = [];
+      this.fetchSearchQuery(searchQuery);
     },
   },
 };

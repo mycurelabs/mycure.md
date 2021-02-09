@@ -1,32 +1,37 @@
 <template lang="pug">
   v-container
-    v-row(v-if="!$isMobile" justify="center" align="center")
-      v-col(cols="10").pb-0
-        v-toolbar(height="84").toolbar
+    v-row(justify="center" align="center")
+      v-col(cols="12" md="10").pb-0
+        v-toolbar(v-if="!$isMobile" height="84").toolbar
           div.d-flex.mt-2.justify-space-between
             v-col(md="3")
               v-toolbar-title.font-14.ml-4.text-left.font-weight-bold Services
                 v-text-field(
                   v-model="serviceSearchQuery"
                   placeholder="Consultation (Virtual)"
+                  clearable
                 ).font-14.font-weight-regular
             v-divider(inset vertical).mt-6.mb-8
             v-col(md="3")
               v-toolbar-title.font-14.ml-4.text-left.font-weight-bold HMO Providers
                 v-text-field(
                   placeholder="All Coverage"
+                  clearable
                 ).font-14.font-weight-regular
             v-divider(inset vertical).mt-6.mb-8
             v-col(md="3")
               v-toolbar-title.font-14.ml-4.text-left.font-weight-bold Date
                 v-text-field(
                   placeholder="Add Dates"
+                  clearable
                 ).font-14.font-weight-regular
             v-divider(inset vertical).mt-6.mb-8
             v-col(md="3")
               v-toolbar-title.font-14.ml-4.text-left.font-weight-bold Location
                 v-text-field(
                   placeholder="Anywhere"
+                  v-model="serviceSearchLocation"
+                  clearable
                 ).font-14.font-weight-regular
           v-spacer
           v-btn(
@@ -41,29 +46,12 @@
             large
             fab
             color="primary"
-            @click="searchServices(serviceSearchQuery)"
+            @click="searchServices(serviceSearchQuery, serviceSearchLocation)"
           )
             v-icon mdi-magnify
-        v-col(v-if="services" cols="12").pb-0
-          v-row.filter-menu.white--text.font-14.ml-8
-            div.d-flex
-              span.mt-2 Filter:
-              v-select(
-                label="Book a Teleconsult"
-                dense
-                solo
-              ).filter.ml-2.font-14.search-select
-            div.d-flex.ml-4
-              span.mt-2 Sort by:
-              v-select(
-                label="Relevance"
-                dense
-                solo
-              ).filter.ml-2.font-14.search-select
-          v-row
-    v-row(v-else justify="center" align="end")
-      v-col(cols="12").pb-0
         v-text-field(
+          v-else
+          v-model="serviceSearchQuery"
           solo
           clearable
           rounded
@@ -71,7 +59,28 @@
           placeholder="Search Services"
         ).bg-white
           template(v-slot:append)
-            v-icon(color="primary").search-icon mdi-magnify
+            v-btn(
+              color="primary"
+              icon
+              @click="searchServices(serviceSearchQuery, serviceSearchLocation)"
+            )
+              v-icon(color="primary") mdi-magnify
+        v-col(v-if="services" cols="12").pb-0
+          v-row(:class="$isMobile ? 'd-block' : ''").filter-menu.white--text.font-14
+            div.d-flex
+              span.mt-2 Filter:
+              v-select(
+                label="Book a Teleconsult"
+                dense
+                solo
+              ).filter.ml-2.font-14.search-select
+            div(:class="$isMobile ? '' : 'ml-4'").d-flex
+              span.mt-2 Sort by:
+              v-select(
+                label="Relevance"
+                dense
+                solo
+              ).filter.ml-2.font-14.search-select
 </template>
 <script>
 export default {
@@ -88,11 +97,19 @@ export default {
   data () {
     return {
       serviceSearchQuery: '',
+      serviceSearchLocation: '',
     };
   },
   methods: {
-    searchServices (servicesQuery) {
-      this.$emit('search-services', servicesQuery);
+    searchServices (searchQuery, locationQuery) {
+      this.$emit('search-services', searchQuery, locationQuery);
+      // if (searchQuery !== '' || searchQuery !== null) {
+      //   console.log('not empty query', searchQuery);
+      //   this.$emit('search-services', searchQuery, locationQuery);
+      // } else {
+      //   console.log('empty query');
+      //   this.$emit('fetch-all-services');
+      // }
     },
   },
 };

@@ -5,7 +5,7 @@
         v-col(cols="12" md="10")
           v-card.results-card
             div(style="background-color: #fafafa").d-flex.pa-2
-              v-col(cols="2" align="center")
+              v-col(cols="4" md="2" align="center")
                 v-avatar(
                   v-if="isDoctor"
                   :size="!$isMobile ? 146 : 80"
@@ -23,7 +23,7 @@
                     )
                 div(v-if="isDoctor")
                   a(href="#") View Website
-              v-col(cols="5" :class="{ 'd-flex' : !$isMobile }").ml-3.text-left
+              v-col(cols="6" md="5").ml-3.text-left
                 strong(v-if="isDoctor").font-18 Jose Rizal, MD, DPSEDM
                 strong(v-if="isService").font-18 {{ service.name }}
                 template(v-if="isService")
@@ -52,8 +52,41 @@
                     div.d-flex
                       v-icon.mr-2.mb-auto mdi-calendar-today
                       p #[strong Mon - Fri 7:00AM to 3:00 PM]
-              v-col(cols="1")
-              v-col
+                    template(v-if="$isMobile")
+                      div.d-flex
+                        v-icon(color="success").mr-2 mdi-shield-check
+                        span HMO Providers:
+                      div(v-if="service.price").d-flex.mb-2
+                        v-icon.mr-2 mdi-wallet
+                        strong.font-18 Php {{ service.price }}
+                      div.my-1
+                      v-btn(
+                          v-if="isService"
+                          color="primary"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          rounded
+                          block
+                        ) #[b Book now]
+                        v-btn(
+                          v-if="isDoctor"
+                          color="primary"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          rounded
+                          block
+                        ).mb-2 #[b Book a Teleconsult]
+                        v-btn(
+                          v-if="isDoctor"
+                          color="primary"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          outlined
+                          rounded
+                          block
+                        ) #[b Book a Visit]
+              v-col(v-if="!$isMobile" cols="1")
+              v-col(v-if="!$isMobile")
                 div(v-if="service.price").d-flex.mb-2
                   v-icon.mr-2 mdi-wallet
                   strong.font-18 Php {{ service.price }}
