@@ -27,7 +27,6 @@
         :hide-details="hideDetails"
         :rules="rules"
         :height="height"
-        :class="{ 'bordered': bordered }"
         @click:clear="$emit('clear')"
       )
     v-date-picker(
@@ -147,10 +146,6 @@ export default {
       type: Boolean,
       default: true,
     },
-    bordered: {
-      type: Boolean,
-      default: false,
-    },
   },
   data () {
     return {
@@ -233,11 +228,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-.bordered >>> .v-input__slot {
-  border-radius: 0px 5px 5px 0px;
-  border: 4px solid #0099CC;
-  padding-right: 0 !important;
-}
-</style>
