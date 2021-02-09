@@ -20,15 +20,17 @@ export default {
   },
   methods: {
     getStarted () {
-      const opts = {
-        name: 'signup-health-facilities',
-      };
-      if (this.email) {
-        opts.query = {
-          email: this.email,
-        };
-      }
-      this.$router.push(opts);
+      // TODO: bring back once onboarding is done
+      // const opts = {
+      //   name: 'signup-health-facilities',
+      // };
+      // if (this.email) {
+      //   opts.query = {
+      //     email: this.email,
+      //   };
+      // }
+      // this.$router.push(opts);
+      window.open('https://6rbf27w6k3r.typeform.com/to/V13pJzW9', '_blank', 'noopener noreferrer');
     },
   },
 };
