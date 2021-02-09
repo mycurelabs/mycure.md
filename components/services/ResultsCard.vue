@@ -2,19 +2,20 @@
   div(style="background-color: #fafafa")
     v-container
       v-row(align="center" justify="center")
-        v-col(cols="10")
+        v-col(cols="12" md="10")
           v-card.results-card
             div(style="background-color: #fafafa").d-flex.pa-2
               v-col(cols="2" align="center")
                 v-avatar(
                   v-if="isDoctor"
+                  :size="!$isMobile ? 146 : 80"
                 )
                   img(
                     alt="Doctor Profile"
                     )
                 v-avatar(
                   v-if="isService"
-                  size="146"
+                  :size="!$isMobile ? 146 : 80"
                 )
                   img(
                     src="~/assets/images/MYCURE-icon.png"
@@ -22,7 +23,7 @@
                     )
                 div(v-if="isDoctor")
                   a(href="#") View Website
-              v-col(cols="5").ml-3.text-left
+              v-col(cols="5" :class="{ 'd-flex' : !$isMobile }").ml-3.text-left
                 strong(v-if="isDoctor").font-18 Jose Rizal, MD, DPSEDM
                 strong(v-if="isService").font-18 {{ service.name }}
                 template(v-if="isService")
