@@ -7,50 +7,32 @@
       :name="clinicName"
       :org-id="orgId"
       :coverURL="coverURL"
-      :is-preview-mode="isPreviewMode"
-      :hide-search-bars="$isMobile"
       @search="onServiceSearch"
       @filter:date="filterByDate"
     )
     v-container(fluid)
       v-row(justify="center")
         v-col(cols="12" md="3")
+          //- TODO: one property only, `clinic`
           clinic-info(:clinic="clinicWebsite")
           schedules(:schedules="groupedSchedules").mt-2
-          usp(
-            v-if="$isMobile"
-            v-model="searchText"
-            hide-banner
-            no-gutters
-            search-results-mode
-            :name="clinicName"
-            :org-id="orgId"
-            :coverURL="coverURL"
-            :is-preview-mode="isPreviewMode"
-            @search="onServiceSearch"
-            @filter:date="filterByDate"
-          )
         v-col(cols="12" md="8")
           services-tabs(
             v-if="!searchResultsMode"
             v-model="activeTab"
-            read-only
             :items="listItems"
             :organization="orgId"
             :loading="loading.list"
             :has-next-page="hasNextPage"
             :has-previous-page="hasPreviousPage"
-            :is-preview-mode="isPreviewMode"
             @next="refetchListItems(activeTab, page + 1)"
             @previous="refetchListItems(activeTab, page - 1)"
           )
           services-search-results(
             v-else
-            read-only
             :organization="orgId"
             :loading="loading.list"
             :items="searchResults"
-            :is-preview-mode="isPreviewMode"
           )
     v-divider
     v-footer(v-if="!$isMobile" color="white").mt-3
@@ -222,12 +204,6 @@ export default {
     };
   },
   computed: {
-    mode () {
-      return this.$route.query.mode;
-    },
-    isPreviewMode () {
-      return this.mode === 'preview';
-    },
     orgId () {
       return this.clinicWebsite.id;
     },
@@ -334,7 +310,10 @@ export default {
           skip,
         });
         this.doctorsTotal = total;
-        this.orgDoctors = items || [];
+        const members = items || [];
+        if (!members?.length) return members;
+
+        this.orgDoctors = members;
       } catch (error) {
         console.error(error);
       } finally {

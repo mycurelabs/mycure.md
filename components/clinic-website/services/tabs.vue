@@ -1,7 +1,7 @@
 <template lang="pug">
   v-card(color="#f0f0f0" flat)#servicesList
     v-toolbar(color="#f0f0f0" flat)
-      v-tabs(v-model="activeServiceType" :show-arrows="$isMobile")
+      v-tabs(v-model="activeServiceType")
         v-tab(href="#lab") #[b Laboratory]
         v-tab(href="#imaging") #[b Imaging]
         v-tab(href="#pe") #[b PE Packages]
@@ -27,8 +27,6 @@
             :item="item"
             :organization="organization"
             :is-doctor="activeServiceType === 'doctors'"
-            :is-preview-mode="isPreviewMode"
-            :read-only="readOnly"
           )
           v-divider
     v-card-actions
@@ -38,7 +36,7 @@
         outlined
         color="primary"
         @click="onPaginate('previous')"
-      ).text-none
+      )
         v-icon(small) mdi-chevron-left
         | Previous
       v-btn(
@@ -46,7 +44,7 @@
         outlined
         color="primary"
         @click="onPaginate('next')"
-      ).text-none
+      )
         | Next
         v-icon(small) mdi-chevron-right
 </template>
@@ -67,11 +65,7 @@ export default {
       type: String,
       default: null,
     },
-    hasNextPage: {
-      type: Boolean,
-      default: false,
-    },
-    hasPreviousPage: {
+    loading: {
       type: Boolean,
       default: false,
     },
@@ -79,15 +73,11 @@ export default {
       type: Array,
       default: () => ([]),
     },
-    isPreviewMode: {
+    hasNextPage: {
       type: Boolean,
       default: false,
     },
-    loading: {
-      type: Boolean,
-      default: false,
-    },
-    readOnly: {
+    hasPreviousPage: {
       type: Boolean,
       default: false,
     },
@@ -107,7 +97,6 @@ export default {
   },
   methods: {
     onPaginate (direction) {
-      if (this.isPreviewMode) return;
       VueScrollTo.scrollTo('#servicesList', 500, { offset: -100, easing: 'ease' });
       this.$emit(direction);
     },
