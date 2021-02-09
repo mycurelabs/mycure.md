@@ -33,14 +33,14 @@
           v-list
             template(v-for="(item, key) in solutionsMenuItems")
               v-list-item(
-                v-if="!item.subMenus"
+                v-if="!item.subMenus && !item.invisible"
                 link
                 dense
                 @click="onNavLinkClick(item)"
               )
                 v-list-item-title.font-16.mobile-nav-list-item {{ item.name }}
                 span(v-if="item.new").ml-2.px-1.white--text.red.font-weight-bold.font-14.pill NEW
-              v-list-group(v-else)
+              v-list-group(v-if="item.subMenus && !item.invisible")
                 template(v-slot:activator)
                   v-list-item-title {{ item.name }}
                 template(v-for="(subMenu, key) in item.subMenus")
