@@ -152,8 +152,6 @@ export default {
       if (items) {
         this.serviceOrganization = items;
       }
-
-      console.log('serviceOrganization', this.serviceOrganization[0]);
     },
   },
 };

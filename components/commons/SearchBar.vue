@@ -103,13 +103,6 @@ export default {
   methods: {
     searchServices (searchQuery, locationQuery) {
       this.$emit('search-services', searchQuery, locationQuery);
-      // if (searchQuery !== '' || searchQuery !== null) {
-      //   console.log('not empty query', searchQuery);
-      //   this.$emit('search-services', searchQuery, locationQuery);
-      // } else {
-      //   console.log('empty query');
-      //   this.$emit('fetch-all-services');
-      // }
     },
   },
 };
