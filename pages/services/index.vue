@@ -145,12 +145,6 @@ export default {
 
       console.log('queryServicesSpecialization', items);
     },
-    async queryDoctorMembers (query) {
-      const { items } = await this.$sdk.service('organization-members').find({
-        roles: 'doctor',
-      });
-
-    },
     searchServices (searchQuery, locationQuery) {
       this.searchQuery = searchQuery;
       this.locationQuery = locationQuery;
