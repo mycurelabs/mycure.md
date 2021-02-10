@@ -31,11 +31,25 @@ import { handleError } from './error-handler';
 // }
 
 export const getDoctorWebsite = async (opts) => {
-  const { data } = await axios({
-    method: 'get',
-    url: `${process.env.API_URL}/personal-details?doc_website=${opts.username}`,
-  });
-  return data.data[0];
+  try {
+    const { data } = await axios({
+      method: 'get',
+      url: `${process.env.API_URL}/personal-details?id=${opts.username}`,
+    });
+
+    if (!data.data[0].id) {
+      const { data: doctorWebsite } = await axios({
+        method: 'get',
+        url: `${process.env.API_URL}/personal-details?doc_website=${opts.username}`,
+      });
+      return doctorWebsite.data[0];
+    }
+
+    return data.data[0];
+  } catch (e) {
+    console.error(e);
+    handleError(e);
+  }
 };
 
 export const getDoctorClinics = async (opts) => {

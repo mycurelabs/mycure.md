@@ -2,6 +2,7 @@
   v-btn(
     :outlined="outlined"
     large
+    :rounded="rounded"
     :color="btnColor"
     :href="url"
   ).text-none Book Appointment
@@ -15,6 +16,10 @@ export default {
       default: 'primary',
     },
     outlined: {
+      type: Boolean,
+      default: true,
+    },
+    rounded: {
       type: Boolean,
       default: true,
     },

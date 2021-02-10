@@ -60,10 +60,11 @@ export default {
   },
   async asyncData ({ app, router, params, error }) {
     try {
-      const doctor = await getDoctorWebsite({ username: params.id });
+      const doctor = await getDoctorWebsite({ username: params.id }, true);
       if (_.isEmpty(doctor)) {
         error({ statusCode: 404, message: 'doctor-not-found' });
       }
+
       const [clinics, memberCMSOrganizations] = await Promise.all([
         getDoctorClinics({ uid: doctor.id }),
         getMemberOrganizations({
