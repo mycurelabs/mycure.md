@@ -12,7 +12,7 @@
                 )
                   img(
                     alt="Doctor Profile"
-                    )
+                  )
                 v-avatar(
                   v-if="isService"
                   :size="!$isMobile ? 146 : 80"
@@ -20,7 +20,7 @@
                   img(
                     src="~/assets/images/MYCURE-icon.png"
                     alt="Services"
-                    )
+                  )
                 div(v-if="isDoctor")
                   a(href="#") View Website
               v-col(cols="6" md="5").ml-3.text-left
@@ -61,12 +61,12 @@
                         strong.font-18 Php {{ service.price }}
                       div.my-1
                       v-btn(
-                          v-if="isService"
-                          color="primary"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          rounded
-                          block
+                        v-if="isService"
+                        color="primary"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        rounded
+                        block
                         ) #[b Book now]
                         v-btn(
                           v-if="isDoctor"
@@ -156,6 +156,7 @@ export default {
   },
 };
 </script>
+
 <style scoped>
 .results-card {
   box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.35);

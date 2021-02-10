@@ -91,11 +91,9 @@ export default {
   },
   watch: {
     initialServicesPage (val) {
-      console.log('page', val);
       this.fetchAllServices(val);
     },
     servicesPage (val) {
-      console.log('page', val);
       this.queryServicesName(this.searchQuery, val);
     },
   },
@@ -137,7 +135,6 @@ export default {
       const services = items;
       if (!services?.length) return services;
       this.servicesList = services;
-      console.log('queryServicesName', items);
     },
     async queryServicesSpecialization (searchText) {
       const query = {
@@ -153,7 +150,6 @@ export default {
         roles: 'doctor',
       });
 
-      console.log('doctors items', items);
     },
     searchServices (searchQuery, locationQuery) {
       this.searchQuery = searchQuery;
@@ -164,6 +160,7 @@ export default {
   },
 };
 </script>
+
 <style scoped>
 .search-container {
   background-color: #0087B5;
