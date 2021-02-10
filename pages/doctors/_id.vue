@@ -11,16 +11,25 @@
       :member-cms-organizations="memberCMSOrganizations"
       :is-verified="isVerified"
     )
-    tabs(
-      :clinics="clinics"
-      :bio="bio"
-      :specialties="specialties"
-      :professions="professions"
-      :practicing-since="practicingSince"
-      :education="education"
-      :services="services"
-      :doctorId="doctor.id"
-    ).mb-12
+    v-row.mt-8
+      v-col(cols="12" md="2")
+        professional-info(
+          :specialties="specialties"
+          :professions="professions"
+          :practicing-since="practicingSince"
+          :education="education"
+        )
+      v-col(cols="12" md="10").pa-0
+        tabs(
+          :clinics="clinics"
+          :bio="bio"
+          :specialties="specialties"
+          :professions="professions"
+          :practicing-since="practicingSince"
+          :education="education"
+          :services="services"
+          :doctorId="doctor.id"
+        ).mb-12
     social(
       :name="name"
     )
@@ -46,6 +55,7 @@ import { formatName } from '~/utils/formats';
 import headMeta from '~/utils/head-meta';
 import AppBar from '~/components/doctor-website/app-bar';
 import Panel1 from '~/components/doctor-website/panel-1';
+import ProfessionalInfo from '~/components/doctor-website/professional-info';
 import Services from '~/components/doctor-website/services';
 import Tabs from '~/components/doctor-website/tabs';
 import Social from '~/components/doctor-website/social';
@@ -54,6 +64,7 @@ export default {
   components: {
     AppBar,
     Panel1,
+    ProfessionalInfo,
     Services,
     Tabs,
     Social,

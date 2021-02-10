@@ -6,35 +6,53 @@
           :src="clinicPicURL"
           style="border-radius: 5px"
         )
-      book-appointment-btn(:outlined="false").clinic-book-btn.mt-5
     v-col.grow
       v-row
         v-col(cols="12").pt-0
-          h3(style="margin-top: -5px").primary--text {{ clinic.name }}
-          | {{ clinic.address | prettify-address }}
-          v-divider
-        v-col(cols="12" md="7" lg="8").pt-3
-          h4 Clinic Schedule
-          template(v-if="clinicSchedules && clinicSchedules.length === 0")
-            i No schedules available
-          table(v-else)
-            tr(v-for="sched in clinicSchedules")
-              td(width="40") #[b {{sched.day | morph-capitalize}}]
-              td {{sched.opening | morph-date-format('hh:mm A')}}
-              td -
-              td {{sched.closing | morph-date-format('hh:mm A')}}
-            tr(v-if="fullSchedules.length > 3")
-              td(colspan="4")
-                a(@click="clinicSchedulesExpanded = !clinicSchedulesExpanded") View {{clinicSchedulesExpanded ? 'less' : 'more'}}
-          div.pt-3
-            h4 Contact Info:
-            span(v-if="phone") +{{ phone }}
-            br
-            | {{ email }}
-        v-col(cols="12" md="5" lg="4")
+          h3(style="margin-top: -5px") {{ clinic.name }}
+        v-col(cols="12" md="7" lg="8").pt-5
           h4 About this Clinic
           p(v-if="description") {{ description }}
           i(v-else) No description available
+        v-col(cols="12" md="5" lg="4")
+          div(v-if="clinic.address || prettify-address").d-flex
+            v-icon(color="primary").mr-2.mb-auto mdi-map-marker
+            p.font-weight-600 {{ clinic.address | prettify-address }}
+          template(v-if="clinicSchedules && clinicSchedules.length === 0")
+            div.d-flex
+              v-icon(color="primary").mr-2.mb-auto mdi-calendar-today
+              i No schedules available
+          div(v-else).d-flex
+            v-icon(color="primary").mr-2.mb-auto mdi-calendar-today
+            table
+              tr(v-for="sched in clinicSchedules").font-weight-600
+                td(width="40") #[b {{sched.day | morph-capitalize}}]
+                td {{sched.opening | morph-date-format('hh:mm A')}}
+                td -
+                td {{sched.closing | morph-date-format('hh:mm A')}}
+              tr(v-if="fullSchedules.length > 3")
+                td(colspan="4")
+                  a(@click="clinicSchedulesExpanded = !clinicSchedulesExpanded") View {{clinicSchedulesExpanded ? 'less' : 'more'}}
+          div(v-if="phone").d-flex.pt-3
+            v-icon(color="primary").mr-2.mb-auto mdi-phone
+            span.font-weight-600 +{{ phone }}
+            br
+            | {{ email }}
+          v-btn(
+            color="success"
+            target="_blank"
+            rel="noopener noreferrer"
+            rounded
+            block
+          ).my-4 #[b Book Appointment]
+          v-btn(
+            color="success"
+            target="_blank"
+            rel="noopener noreferrer"
+            outlined
+            rounded
+            block
+          ) #[b Book a Visit]
 </template>
 
 <script>
@@ -167,5 +185,9 @@ export default {
 <style scoped>
 .clinic-book-btn {
   width: 150px;
+}
+
+td {
+  vertical-align: unset !important;
 }
 </style>

@@ -19,8 +19,22 @@
           h1.white--text {{fullName}}
           span.white--text {{specialtiesMapped}} #[span(v-if="practicingSince") | {{yearsOfExperience}} Years Experience ]
           p.mt-2.white--text {{bio}}
+          //- affiliated clinics
+          template(v-if="hasMemberCMSOrganizations")
+            v-col(cols="12" md="10")
+              v-row(justify="center")
+                v-col(
+                  v-for="organization in memberCmsOrganizations"
+                  :key="organization.id"
+                  shrink
+                ).pa-0
+                  v-tooltip(bottom)
+                    span {{organization.name}}
+                    template(#activator="{ on, attrs }")
+                      v-avatar(v-bind="attrs" v-on="on" size="50")
+                        img(:src="organization.picURL")
           //- action buttons: book online appointment
-          v-row(justify="start")
+          v-row(justify="start").mt-2
             v-col(class="shrink").pa-1.text-center
               book-appointment-btn(:outlined="false" :rounded="true")
             v-col(class="shrink").pa-1.text-center
@@ -38,20 +52,6 @@
                 color="white"
               )
                 v-icon mdi-share-variant
-        //- affiliated clinics
-        template(v-if="hasMemberCMSOrganizations")
-          v-col(cols="12" md="10").text-center.pa-0
-            v-row(justify="center")
-              v-col(
-                v-for="organization in memberCmsOrganizations"
-                :key="organization.id"
-                shrink
-              ).pa-0
-                v-tooltip(bottom)
-                  span {{organization.name}}
-                  template(#activator="{ on, attrs }")
-                    v-avatar(v-bind="attrs" v-on="on" size="50")
-                      img(:src="organization.picURL")
 </template>
 
 <script>
