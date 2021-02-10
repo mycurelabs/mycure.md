@@ -3,12 +3,13 @@
       height="70"
       app
       elevate-on-scroll
-    )#navbar.bg-transparent
+      :style="navBarStyle"
+    )#navbar.border-transparent
       v-container.pa-0
         v-row(justify="center" align="center" no-gutters)
           v-col
             img(
-              src="~/assets/images/home/mycure-logo.png"
+              src="~/assets/images/MYCURE-virtual-clinic-healthcare-practice-online-logo.svg"
               width="140"
               alt="MYCURE logo"
               href="/"
@@ -67,12 +68,21 @@
 
 <script>
 export default {
+  props: {
+    isServices: {
+      type: Boolean,
+      default: false,
+    },
+  },
   computed: {
     pxPortalSignUp () {
       return `${process.env.PX_PORTAL_URL}/signup`;
     },
     pxPortalLogIn () {
       return `${process.env.PX_PORTAL_URL}`;
+    },
+    navBarStyle () {
+      return 'background-color: ' + this.isServices ? '#FFFFFF !important' : 'background-color: rgb(0 0 0 / 0%) !important';
     },
   },
   mounted () {
@@ -96,8 +106,7 @@ export default {
 </script>
 
 <style scoped>
-.bg-transparent {
-  background-color: rgb(0 0 0 / 0%) !important;
+.border-transparent {
   border-color: rgb(0 0 0 / 0%) !important;
 }
 .bg-white {
