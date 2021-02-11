@@ -5,7 +5,7 @@
     :rounded="rounded"
     :color="btnColor"
     :href="url"
-  ).text-none Book Appointment
+  ).text-none.font-weight-600 Book Appointment
 </template>
 
 <script>

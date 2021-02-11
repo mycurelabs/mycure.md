@@ -36,14 +36,17 @@
           //- action buttons: book online appointment
           v-row(justify="start").mt-2
             v-col(class="shrink").pa-1.text-center
-              book-appointment-btn(:outlined="false" :rounded="true")
+              book-appointment-btn(
+                :outlined="false"
+                :rounded="true"
+            )
             v-col(class="shrink").pa-1.text-center
               v-btn(
                 outlined
                 rounded
                 large
                 color="white"
-              ).text-none Virtual Consult
+              ).text-none.font-weight-600 Virtual Consult
             v-col(class="shrink").pa-1.text-center
               v-btn(
                 outlined

@@ -17,6 +17,11 @@
                   h3.grey--text #[i No clinics to show]
               template(v-else v-for="(clinic, index) in clinics")
                 clinic-item(:clinic="clinic")
+              v-pagination(
+                v-if="this.selectedTab === 'clinics'"
+                v-model="page"
+                :length="length"
+              )
             v-tab-item(value="services")
               services(
                 :services="services"
@@ -77,10 +82,19 @@ export default {
       type: String,
       default: null,
     },
+    total: {
+      type: Number,
+      default: 0,
+    },
+    limit: {
+      type: Number,
+      default: 3,
+    },
   },
   data () {
     return {
       selectedTab: 'clinics',
+      page: 1,
     };
   },
   computed: {
@@ -97,6 +111,15 @@ export default {
     },
     educationsMapped () {
       return this.education;
+    },
+    length () {
+      return Math.ceil(this.total / this.limit) || 0;
+    },
+  },
+  watch: {
+    page (val) {
+      this.$emit('onUpdatePage', val);
+      return val;
     },
   },
 };

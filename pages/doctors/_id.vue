@@ -29,6 +29,9 @@
           :education="education"
           :services="services"
           :doctorId="doctor.id"
+          :total="clinicsTotal"
+          :limit="clinicsLimit"
+          @onUpdatePage="fetchDoctorInfo"
         ).mb-12
     social(
       :name="name"
@@ -47,7 +50,6 @@
 import _ from 'lodash';
 import {
   getDoctorWebsite,
-  getDoctorClinics,
   getMemberOrganizations,
   recordWebsiteVisit,
 } from '~/utils/axios';
@@ -76,27 +78,22 @@ export default {
         error({ statusCode: 404, message: 'doctor-not-found' });
       }
 
-      const [clinics, memberCMSOrganizations] = await Promise.all([
-        getDoctorClinics({ uid: doctor.id }),
-        getMemberOrganizations({
-          uid: doctor.id,
-          type: 'cms',
-          select: ['id', 'name', 'picURL'],
-        }),
-      ]);
       return {
         doctor,
-        clinics: clinics || [],
-        memberCMSOrganizations,
       };
     } catch (e) {
       console.error(e);
     }
   },
   data () {
+    this.clinicsLimit = 3;
     return {
       selectedTab: 'clinics',
       loading: true,
+      page: 1,
+      clinicsTotal: 0,
+      clinics: [],
+      memberCMSOrganizations: [],
     };
   },
   computed: {
@@ -149,6 +146,42 @@ export default {
       return;
     };
     await recordWebsiteVisit({ uid: this.doctor.id });
+    this.fetchDoctorInfo();
+  },
+  methods: {
+    async fetchDoctorInfo (page = 1) {
+      const skip = this.clinicsLimit * (page - 1);
+
+      // const [clinics, memberCMSOrganizations, total] = await Promise.all([
+      //   getDoctorClinics({
+      //     uid: this.doctor?.id,
+      //     $limit: this.clinicsLimit,
+      //     $skip: skip,
+      //   }),
+      //   getMemberOrganizations({
+      //     uid: this.doctor?.id,
+      //     type: 'cms',
+      //     select: ['id', 'name', 'picURL'],
+      //   }),
+      // ]);
+
+      const { items, total } = await this.$sdk.service('organizations').find({
+        createdBy: this.doctor?.id,
+        $limit: this.clinicsLimit,
+        $skip: skip,
+      });
+
+      this.clinicsTotal = total;
+      this.clinics = items;
+
+      const [memberCMSOrganizations] = await getMemberOrganizations({
+        uid: this.doctor?.id,
+        type: 'cms',
+        select: ['id', 'name', 'picURL'],
+      });
+
+      this.memberCMSOrganizations = memberCMSOrganizations;
+    },
   },
   head () {
     return headMeta({
