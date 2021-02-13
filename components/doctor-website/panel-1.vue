@@ -15,7 +15,7 @@
                 img(:src="picUrl")
           v-avatar(size="212" v-else).elevation-3
             img(:src="picUrl")
-        v-col(cols="12" md="6").pa-6
+        v-col(:class="{ 'text-center' : $isMobile }" cols="12" md="6").pa-6
           h1.white--text {{fullName}}
           span.white--text {{specialtiesMapped}} #[span(v-if="practicingSince") | {{yearsOfExperience}} Years Experience ]
           p.mt-2.white--text {{bio}}
@@ -34,7 +34,7 @@
                       v-avatar(v-bind="attrs" v-on="on" size="50")
                         img(:src="organization.picURL")
           //- action buttons: book online appointment
-          v-row(justify="start").mt-2
+          v-row(:class="{ 'justify-center' : $isMobile, 'justify-start' : !$isMobile }").mt-2
             v-col(class="shrink").pa-1.text-center
               book-appointment-btn(
                 :outlined="false"

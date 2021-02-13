@@ -124,7 +124,6 @@ export default {
       const membership = await getMembership({ organization: params.id });
       const member = membership[0];
       const services = await getServices({ facility: params.id });
-      console.log('clinicWebsite', clinicWebsite);
       return {
         clinicWebsite,
         member,

@@ -33,16 +33,29 @@
           :limit="clinicsLimit"
           @onUpdatePage="fetchDoctorInfo"
         ).mb-12
-    social(
-      :name="name"
-    )
+    //- social(
+    //-   :name="name"
+    //- )
     v-footer(
       height="auto"
-      color="primary"
     )
       v-row
-        v-col.text-center
-          span.white--text Copyright {{new Date().getFullYear()}} | All Rights Reserved | Powered by #[a(href="https://mycure.md" target="_blank").mycure-link MYCURE]
+        v-col.text-left
+          div.d-flex
+            span Powered by
+            img(
+              src="../../assets/images/MYCURE-virtual-clinic-healthcare-practice-online-logo.svg"
+              to="/"
+              width="100"
+              height=""
+            ).ml-2.mb-2
+          div
+            span Copyright {{new Date().getFullYear()}} All Rights Reserved.
+        v-col.text-right.my-2
+          div
+            span Terms of Use | Privacy Policy | Send us your feedback
+          div
+            span.primary--text See more doctors | Create my own Doctor Website
     //- pre {{doctor}}
 </template>
 

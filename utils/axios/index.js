@@ -34,16 +34,19 @@ export const getDoctorWebsite = async (opts) => {
   try {
     const { data } = await axios({
       method: 'get',
-      url: `${process.env.API_URL}/personal-details?id=${opts.username}`,
+      url: `${process.env.API_URL}/personal-details?$or[0][id]=${opts.username}&$or[1][doc_website]=${opts.username}`,
     });
 
-    if (data) return data.data[0];
+    return data.data[0];
 
-    const { data: doctorWebsite } = await axios({
-      method: 'get',
-      url: `${process.env.API_URL}/personal-details?doc_website=${opts.username}`,
-    });
-    return doctorWebsite.data[0];
+    // console.log('data', data);
+    // if (data.data.length > 0) return data.data[0];
+
+    // const { data: doctorWebsite } = await axios({
+    //   method: 'get',
+    //   url: `${process.env.API_URL}/personal-details?doc_website=${opts.username}`,
+    // });
+    // return doctorWebsite.data[0];
   } catch (e) {
     console.error(e);
     handleError(e);

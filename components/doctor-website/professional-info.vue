@@ -3,15 +3,15 @@
     div.my-4
       h2.header-text Professional Info
     div
-      div.my-2.mb-5.font-28.professional-info-item
+      div(:class="{ 'border-bottom' : !$isMobile }").my-2.mb-5.font-28.professional-info-item
         h3.primary--text Specialization
         span(v-if="specialtiesMapped").mb-3 {{specialtiesMapped}}
         i(v-else).mb-3 No data
-      div.my-2mb-5.professional-info-item
+      div(:class="{ 'border-bottom' : !$isMobile }").my-2.mb-5.professional-info-item
         h3.primary--text Practicing Since
         i(v-if="!practicingSince").mb-3 No data
         span(v-else).mb-3 {{practicingSince | morph-date-format('YYYY')}}
-      div.my-2.mb-5.professional-info-item
+      div(:class="{ 'border-bottom' : !$isMobile }").my-2.mb-5.professional-info-item
         h3.primary--text Educational Background
         i(v-if="education.length === 0").mb-3 No data
         template(v-else v-for="educ in education").mb-3
@@ -53,8 +53,10 @@ export default {
 };
 </script>
 <style scoped>
-.professional-info-item {
+.border-bottom {
   border-bottom: 1px solid;
+}
+.professional-info-item {
   color: #777777;
 }
 .header-text {
