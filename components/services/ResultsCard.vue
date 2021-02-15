@@ -60,31 +60,31 @@
                         v-icon.mr-2 mdi-wallet
                         strong.font-18 Php {{ service.price }}
                       div.my-1
-                      v-btn(
-                        v-if="isService"
-                        color="primary"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        rounded
-                        block
-                        ) #[b Book now]
-                        v-btn(
-                          v-if="isDoctor"
-                          color="primary"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          rounded
-                          block
-                        ).mb-2 #[b Book a Teleconsult]
-                        v-btn(
-                          v-if="isDoctor"
-                          color="primary"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          outlined
-                          rounded
-                          block
-                        ) #[b Book a Visit]
+                      //- v-btn(
+                      //-   v-if="isService"
+                      //-   color="primary"
+                      //-   target="_blank"
+                      //-   rel="noopener noreferrer"
+                      //-   rounded
+                      //-   block
+                      //-   ) #[b Book now]
+                      //-   v-btn(
+                      //-     v-if="isDoctor"
+                      //-     color="primary"
+                      //-     target="_blank"
+                      //-     rel="noopener noreferrer"
+                      //-     rounded
+                      //-     block
+                      //-   ).mb-2 #[b Book a Teleconsult]
+                      //-   v-btn(
+                      //-     v-if="isDoctor"
+                      //-     color="primary"
+                      //-     target="_blank"
+                      //-     rel="noopener noreferrer"
+                      //-     outlined
+                      //-     rounded
+                      //-     block
+                      //-   ) #[b Book a Visit]
               v-col(v-if="!$isMobile" cols="1")
               v-col(v-if="!$isMobile")
                 div(v-if="service.price").d-flex.mb-2
