@@ -1,6 +1,10 @@
 <template lang="pug">
   div(v-if="!loading.page").py-0
-    app-bar(:picURL="picURL" :clinicName="clinicName")
+    app-bar(
+      :picURL="picURL"
+      :clinicName="clinicName"
+      :is-verified="isVerified"
+    )
     usp(
       v-model="searchText"
       :search-results-mode="searchResultsMode"
@@ -13,7 +17,6 @@
     v-container(fluid)
       v-row(justify="center")
         v-col(cols="12" md="3")
-          //- TODO: one property only, `clinic`
           clinic-info(:clinic="clinicWebsite")
           schedules(:schedules="groupedSchedules").mt-2
         v-col(cols="12" md="8")
@@ -85,10 +88,8 @@
 
 <script>
 // - utils
-import { getMembership, getServices } from '~/utils/axios';
-import {
-  getOrganization,
-} from '~/utils/axios/organizations';
+import { getServices } from '~/utils/axios';
+import { getOrganization } from '~/utils/axios/organizations';
 import headMeta from '~/utils/head-meta';
 // - services
 import { fetchClinicWebsiteDoctors } from '~/services/organization-members';
@@ -97,12 +98,9 @@ import { fetchClinicServices } from '~/services/services';
 import AboutUs from '~/components/clinic-website/about-us';
 import AppBar from '~/components/clinic-website/app-bar';
 import ClinicInfo from '~/components/clinic-website/clinic-info';
-import DoctorCards from '~/components/clinic-website/doctor-card';
-import DoctorsList from '~/components/clinic-website/doctors-list';
 import Schedules from '~/components/clinic-website/schedules';
 import ServicesSearchResults from '~/components/clinic-website/services/search-results';
 import ServicesTabs from '~/components/clinic-website/services/tabs';
-import Specializations from '~/components/clinic-website/specialization-expansion';
 import Usp from '~/components/clinic-website/usp';
 export default {
   layout: 'clinic-website',
@@ -110,23 +108,18 @@ export default {
     AboutUs,
     AppBar,
     ClinicInfo,
-    DoctorCards,
-    DoctorsList,
     Schedules,
     ServicesSearchResults,
     ServicesTabs,
-    Specializations,
     Usp,
   },
   async asyncData ({ params, $sdk }) {
     try {
       const clinicWebsite = await getOrganization({ id: params.id }, true) || [];
-      const membership = await getMembership({ organization: params.id });
-      const member = membership[0];
       const services = await getServices({ facility: params.id });
+      console.log('clinic website', clinicWebsite);
       return {
         clinicWebsite,
-        member,
         services,
       };
     } catch (error) {
@@ -207,6 +200,9 @@ export default {
     orgId () {
       return this.clinicWebsite.id;
     },
+    isVerified () {
+      return !!this.clinicWebsite?.websiteId;
+    },
     picURL () {
       return this.clinicWebsite?.picURL || require('~/assets/images/clinics-website/hospital-thumbnail.jpg');
     },
@@ -257,9 +253,6 @@ export default {
       } else {
         return [];
       }
-    },
-    consultIDS () {
-      return { docUID: this.member?.uid, clinicID: this.orgId };
     },
     formattedDoctors () {
       return this.orgDoctors?.map((doctor) => {
