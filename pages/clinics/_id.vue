@@ -117,7 +117,6 @@ export default {
     try {
       const clinicWebsite = await getOrganization({ id: params.id }, true) || [];
       const services = await getServices({ facility: params.id });
-      console.log('clinic website', clinicWebsite);
       return {
         clinicWebsite,
         services,
