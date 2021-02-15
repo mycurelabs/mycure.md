@@ -1,15 +1,14 @@
 <template lang="pug">
   div(v-if="!loading")
     app-bar(isServices)
-    div(align="center" justify="center"
-      )
-      v-col(cols="12")
-      v-col(cols="12").mt-12.text-center.pb-0.search-container
-        search-bar(
-          icon
-          services
-          @search-services="searchServices"
-        )
+    div(align="center" justify="center")
+      //- v-col(cols="12")
+      //- v-col(cols="12").mt-12.text-center.pb-0.search-container
+      //-   search-bar(
+      //-     icon
+      //-     services
+      //-     @search-services="searchServices"
+      //-   )
     v-row(align="center" justify="center").results-summary
       v-col(cols="12" md="8")
         h4(v-if="!searchQuery").font-weight-regular.font-20.text-left.ml-10 #[strong {{ searchedServicesLength }}] services found
@@ -166,6 +165,6 @@ export default {
 .results-summary {
   z-index: -1;
   background-color: #FFFFFF;
-  margin-top: 240px;
+  /* margin-top: 240px; */
 }
 </style>

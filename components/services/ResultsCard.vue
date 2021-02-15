@@ -94,31 +94,31 @@
                   v-icon(color="success").mr-2 mdi-shield-check
                   span HMO Providers:
                 div.my-4
-                v-btn(
-                    v-if="isService"
-                    color="primary"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    rounded
-                    block
-                  ) #[b Book now]
-                  v-btn(
-                    v-if="isDoctor"
-                    color="primary"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    rounded
-                    block
-                  ).mb-2 #[b Book a Teleconsult]
-                  v-btn(
-                    v-if="isDoctor"
-                    color="primary"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    outlined
-                    rounded
-                    block
-                  ) #[b Book a Visit]
+                //- v-btn(
+                //-     v-if="isService"
+                //-     color="primary"
+                //-     target="_blank"
+                //-     rel="noopener noreferrer"
+                //-     rounded
+                //-     block
+                //-   ) #[b Book now]
+                //-   v-btn(
+                //-     v-if="isDoctor"
+                //-     color="primary"
+                //-     target="_blank"
+                //-     rel="noopener noreferrer"
+                //-     rounded
+                //-     block
+                //-   ).mb-2 #[b Book a Teleconsult]
+                //-   v-btn(
+                //-     v-if="isDoctor"
+                //-     color="primary"
+                //-     target="_blank"
+                //-     rel="noopener noreferrer"
+                //-     outlined
+                //-     rounded
+                //-     block
+                //-   ) #[b Book a Visit]
 </template>
 <script>
 export default {
