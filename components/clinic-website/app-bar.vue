@@ -17,7 +17,10 @@
             )
           v-col.pl-2
             h3 {{ clinicName }}
-            span Telemedicine
+            div(v-if="isVerified")
+              i Verified&nbsp;
+              v-avatar(color="primary" size="20")
+                v-icon(dark small) mdi-check
           v-spacer
           v-btn(
             depressed
@@ -66,29 +69,19 @@ export default {
       type: String,
       default: '',
     },
-    consultIDS: {
-      type: Object,
-      default: () => ({}),
-    },
     clinicName: {
       type: String,
       default: '',
+    },
+    isVerified: {
+      type: Boolean,
+      default: false,
     },
   },
   data () {
     return {
       loading: true,
     };
-  },
-  computed: {
-    goToConsult () {
-      const docUID = this.consultIDS?.docUID;
-      const clinicID = this.consultIDS?.clinicID;
-      if (!docUID) {
-        return `${process.env.PX_PORTAL_URL}/clinic-appointment/step-1?facility=${clinicID}`;
-      }
-      return `${process.env.PX_PORTAL_URL}/clinic-appointment/step-1?doctor=${docUID}&facility=${clinicID}`;
-    },
   },
   mounted () {
     this.loading = false;
