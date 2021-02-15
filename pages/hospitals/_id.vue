@@ -46,7 +46,7 @@
               hospital-services(:services-offered="sortedServices")
       v-row
         v-col(cols="12" sm="12")
-          info(
+          clinic-info(
             :hospitalName="hospitalName"
             :address="address"
             :completeAddress="completeAddress"
@@ -90,7 +90,7 @@ import { getHospitalWebsite, getMembership, getServices, getFrontdeskMembers } f
 import AppBar from '~/components/clinic-website/app-bar';
 import Usp from '~/components/hospital/usp';
 import Search from '~/components/clinic-website/search';
-import Info from '~/components/clinic-website/info';
+import ClinicInfo from '~/components/clinic-website/clinic-info';
 import DoctorCards from '~/components/clinic-website/doctor-card';
 import Specializations from '~/components/clinic-website/specialization-expansion';
 import ChatNowCard from '~/components/clinic-website/chat-now-card';
@@ -102,7 +102,7 @@ export default {
   components: {
     AppBar,
     Usp,
-    Info,
+    ClinicInfo,
     Search,
     DoctorCards,
     Specializations,

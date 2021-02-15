@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-app-bar(flat color="white")
+  v-app-bar(color="white")
     nuxt-link(:to="{ name: 'index' }" title="MYCURE | Clinic Management System | Cloud EMR Philippines" id="toolbar-mycure-logo")
       img(
         height="45"
@@ -9,7 +9,6 @@
     v-spacer
     //- Hide in mobile view since they overlap with logo,
     //- The same btns exist on the center
-    book-appointment-btn(v-if="!$isMobile" :outlined="false").mr-2
 </template>
 
 <script>

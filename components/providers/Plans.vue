@@ -1,43 +1,37 @@
 <template lang="pug">
   div
-    v-row(v-if="!$isMobile" align="center" justify="center")
+    v-row(v-align="center" justify="center" :class="{ 'mobile-container' : $isMobile }")
       v-col(md="8")
-        v-row(align="center" justify="center").my-10.plans-container
-          v-col(cols="5").pa-12
-            h1.font-45.mb-5.plan-title.white--text {{title}}
+        v-row(align="center" justify="center" :class="{ 'plans-container my-10' : !$isMobile }")
+          v-col(cols="10" md="5" :class="{ 'pa-12' : !$isMobile }")
+            h1(:class="{ 'font-35 mb-5' : !$isMobile, 'font-32 text-center' : $isMobile }").plan-title.white--text {{title}}
             v-btn(
+              v-if="!$isMobile"
               x-large
               rounded
               color="success"
               :to="{ name: 'pricing' }"
-            ) #[b Learn More]
-          v-col(cols="12" md="6").pa-12
+            ).text-none #[b See pricing plans]
+          v-col(cols="10" md="6" :class="{ 'pa-12' : !$isMobile }").mt-4
             template(v-for="plan in plans")
-              h1.white--text {{plan.name}}
-              p.white--text {{plan.description}}
-    v-row(v-else align="center" justify="center").mobile-container
-      v-col(cols="10").mt-8
-        h1.text-center.font-30.plan-title.white--text {{title}}
-      v-col(cols="10")
-        template(v-for="plan in plans")
-          h1.font-24.white--text.mt-4 {{plan.name}}
-          p.font-20.white--text {{plan.description}}
-      v-col(cols="12").text-center.mb-8
-          v-btn(
-            large
-            rounded
-            color="success"
-            :to="{ name: 'pricing' }"
-          ) #[b Learn More]
+              h1(:class=" $isMobile ? 'font-20' : 'font-30'").white--text {{plan.name}}
+              p.white--text.mb-6 {{plan.description}}
+          v-col(v-if="$isMobile" cols="12").text-center
+            v-btn(
+              large
+              rounded
+              color="success"
+              :to="{ name: 'pricing' }"
+            ).text-none #[b See pricing plans]
 </template>
 
 <script>
 export default {
   data () {
-    this.title = 'Start for free, then pay as you grow.';
+    this.title = 'Start for free, then pay as you grow';
     this.plans = [
       {
-        name: 'FREE',
+        name: 'ALWAYS FREE',
         description: 'All the essential tools you need to run your health facility',
       },
       {

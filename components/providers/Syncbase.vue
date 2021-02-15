@@ -10,6 +10,6 @@
           )
         v-col(cols="12" md="1")
         v-col(cols="12" md="6")
-          h1(:class="{ 'text-center font-20' : $isMobile }") MYCURE works online and offline
-          p Work as if you have an in-house server with the convenience of the cloud. Create your medical records locally using multiple devices even if the internet is down! Once back online, it instantly syncs your data into the cloud.
+          h1(:class="{ 'text-center font-20' : $isMobile }").mb-2 MYCURE works online and offline
+          p(:class="{ 'pl-2' : $isMobile }") Work as if you have an in-house server with the convenience of the cloud. Create your medical records locally using multiple devices even if the internet is down! Once back online, it instantly syncs your data into the cloud.
 </template>

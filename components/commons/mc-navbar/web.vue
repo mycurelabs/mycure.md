@@ -5,7 +5,6 @@
     v-app-bar(
       height="70"
       app
-      elevate-on-scroll
       :color="appBarColor"
     )
       v-container.pa-0
@@ -15,11 +14,11 @@
               nuxt-link(:to="{ name: 'index' }" title="MYCURE | Clinic Management System | Cloud EMR Philippines" id="toolbar-mycure-logo" @click.stop="handleMycureLogo").mr-3.mt-2
                 img(src="~/assets/images/MYCURE-virtual-clinic-healthcare-practice-online-logo.svg" width="140" alt="MYCURE logo" @click="scrollToTop")
               template(v-for="(item, key) in solutionsMenuItems")
-                v-btn(v-if="!item.subMenus" text @click="onNavLinkClick(item)")
+                v-btn(v-if="!item.subMenus && !item.invisible" text @click="onNavLinkClick(item)")
                   span.font-14.tab.text-none {{item.name}}
                   span(v-if="item.new").ml-2.px-1.white--text.red.font-weight-bold.font-14.pill NEW
-                  span(v-if="item.comingSoon").ml-2.px-1.white--text.btn-yellow.font-weight-bold.font-12.pill Coming Soon
-                v-menu(offset-y v-else).solutions-menu
+                  span(v-if="item.comingSoon").ml-2.px-1.white--text.btn-yellow.font-weight-bold.font-12.pill.text-none Coming Soon!
+                v-menu(offset-y v-if="item.subMenus && !item.invisible").solutions-menu
                   template(v-slot:activator="{ on }")
                     v-btn(
                       text
@@ -56,11 +55,11 @@
                 width="130"
                 v-else-if="currentRoute === 'enterprise'"
                 color="accent"
-                :to="{ name: 'signup-multispecialty-step-1' }"
+                href="https://calendly.com/mycure/demo"
                 id="enterprise-book-demo-btn"
                 @click.stop="onActionBtnClick('enterprise-book-demo-btn')"
               )
-                strong.font-14.white--text.tab.text-none Book A Demo
+                strong.font-14.white--text.tab.text-none Book a Demo
               v-btn(
                 v-else-if="currentRoute === 'specialized-clinics'"
                 color="accent"

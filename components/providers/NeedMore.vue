@@ -1,9 +1,9 @@
 <template lang="pug">
   div(:class="{ 'need-more-container' : !$isMobile, 'mobile-container' : $isMobile }")
     v-row(align="center" justify="center")
-      v-col(cols="6" md="8").pa-md-8.grow
-        h1(:class="{ 'font-22' : $isMobile }").white--text Need more?
-        p(:class="{ 'font-12' : $isMobile }").white--text.mb-0.mt-2 Need more? Enhance your facility’s capabilities with MYCURE’s full suite of modules!
+      v-col(cols="12" md="8" :class="{ 'text-center' : $isMobile }").pa-md-8.grow
+        h1(:class="{ 'font-20' : $isMobile }").white--text Need more?
+        p.white--text.mb-0.mt-2 Enhance your facility’s capabilities with MYCURE’s full suite of modules!
       v-col.pa-md-8.shrink.text-center
         v-btn(
           rounded

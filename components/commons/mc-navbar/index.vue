@@ -32,6 +32,7 @@ import VueScrollTo from 'vue-scrollto';
 // - components
 import ToolbarWeb from './web';
 import ToolbarMobile from './mobile';
+import { getCountry } from '~/utils/axios';
 import McCookiePrompt from '~/components/commons/mc-cookie-prompt';
 
 export default {
@@ -41,6 +42,7 @@ export default {
     ToolbarMobile,
   },
   data () {
+    this.countryCode = 'PH';
     this.solutionsMenuItems = [
       // {
       //   name: 'What is MYCURE?',
@@ -127,6 +129,7 @@ export default {
         new: false,
         external: false,
         comingSoon: false,
+        invisible: this.countryCode === 'PH',
       },
       {
         name: 'For Patients',
@@ -233,6 +236,10 @@ export default {
         easing: 'ease',
         ...navLink.panelOffset && { offset: navLink.panelOffset },
       });
+    },
+    async getCurrentCountry () {
+      const country = await getCountry();
+      this.countryCode = country.country_code;
     },
   },
 };

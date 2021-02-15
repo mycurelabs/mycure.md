@@ -2,7 +2,7 @@
   div.header-gray
     v-container
       v-row.my-10
-        v-col(cols="12").mb-10.text-center
+        v-col(cols="12").mb-6.text-center
           h1 As easy as
         div(v-if="!$isMobile").d-flex.align-end
           template(v-for="item in items")
@@ -19,12 +19,12 @@
               v-col(cols="5")
                 img(
                   :src="item.image"
-                  width="140"
+                  width="130"
                 )
               v-col(cols="7")
-                h2 {{item.title}}
+                h2.font-20 {{item.title}}
                 p {{item.description}}
-    need-more(:class="{ 'need-more-md-up' : !$isMobile }").my-10
+    need-more(:class="{ 'need-more-md-up' : !$isMobile }")
 </template>
 
 <script>

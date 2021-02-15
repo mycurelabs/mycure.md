@@ -15,7 +15,7 @@
     :descriptions="[panelContents.description]"
     :web-image="panelContents.image"
   )
-    div(slot="additional-content")
+    //- div(slot="additional-content")
       v-btn(text @click="onGetStarted").ml-n4
         strong.text-capitalize.primary--text.font-18 Get Started
         v-icon.primary--text mdi-arrow-right

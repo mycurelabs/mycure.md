@@ -88,7 +88,8 @@ export default {
       this.goToSignup();
     },
     goToSignup () {
-      this.$nuxt.$router.push({ name: 'signup-multispecialty-step-1' });
+      // this.$nuxt.$router.push({ name: 'signup-multispecialty-step-1' });
+      window.open('https://calendly.com/mycure/demo', '_blank');
     },
     goToFeatures () {
       this.$nuxt.$router.push({ name: 'features' });

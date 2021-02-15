@@ -4,55 +4,35 @@
       v-row(
         :align="{ 'top' : $isMobile }"
         :style="{ height: $isMobile ? 'auto' : '626px' }"
+        :class=" !$isMobile ? 'pt-10' : 'pt-2' "
+        no-gutters
       ).justify-center
-        v-col(
-          v-if="!$isMobile"
-          cols="12"
-          md="7"
-        ).white--text.text-center
-          h1.font-50.mb-8 Grow your #[br]
+        v-col(cols="12" md="7").white--text.text-center
+          h1(:class="{ 'mb-8 font-50' : !$isMobile, 'font-35' : $isMobile }") Grow your #[br]
             vue-typer(
               :text="['Practice', 'Clinic', 'Diagnostic Center', 'Hospital']"
               :repeat="Infinity"
               :erase-delay="100"
+              :class="{ 'font-50' : !$isMobile, 'font-35' : $isMobile }"
               erase-style="backspace"
-            ).font-50.typer
-            span.font-50 #[br] safely
-          p Bring in more patients using a powerful booking and health management system.
-          div.d-flex
+            ).typer
+            span(:class="{ 'font-50' : !$isMobile, 'font-35' : $isMobile }") #[br] safely
+          p(:class="{ 'font-18' : !$isMobile, 'font-16' : $isMobile }") Bring in more patients using a powerful healthcare service booking and management software. It's free, secure, and easy to use.
+          v-col(cols="12" :class="{ 'd-flex' : !$isMobile, 'pt-6' : $isMobile }")
             v-text-field(
               v-model="email"
               outlined
               rounded
               large
               hide-details
-              label="Enter your email address"
-            ).mb-4.mr-2.bg-white
-            get-started-button(x-large :email="email")
-        v-col(
-          v-else
-          cols="12"
-          md="5"
-        ).white--text.text-center
-          h1.font-30.mb-4 Grow your #[br]
-            vue-typer(
-              :text='["Practice", "Clinic", "Diagnostic Center", "Hospital"]'
-              :repeat='Infinity'
-              :erase-delay='100'
-              erase-style='backspace'
-            ).font-30.typer
-            span.font-30 #[br] safely
-          p Bring in more patients using a powerful booking and health management system.
-          v-text-field(
-            v-model="email"
-            outlined
-            rounded
-            large
-            hide-details
-            label="Enter your email address"
-          ).text-field.bg-white.mt-8
-          get-started-button(large :email="email").mt-2
-
+              placeholder="Enter your email address"
+            ).mr-2.bg-white
+            get-started-button(
+              :class="{ 'mt-2' : $isMobile }"
+              :x-large="!$isMobile"
+              :large="$isMobile"
+              :email="email"
+            )
 </template>
 
 <script>
@@ -91,7 +71,7 @@ export default {
 
 @media screen and (min-width: 1344px) {
   .bg {
-    background-image: url('../../assets/images/providers/USP-Image-3.png');
+    background-image: url('../../assets/images/providers/USP-image-3.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -130,6 +110,15 @@ export default {
   border-bottom-left-radius: 300px;
 }
 .vue-typer >>> .custom.char.typed  {
-  color: white;
+  color: #FFFFFF;
+}
+
+.vue-typer >>> .custom.caret {
+  width: 5px;
+  background-color: #FFFFFF;
+}
+
+.vue-typer >>> .custom.caret.typing {
+  background-color: #FFFFFF;
 }
 </style>

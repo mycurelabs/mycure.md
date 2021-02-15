@@ -4,13 +4,13 @@
       v-row(justify="center" align="center" no-gutters)
         v-col.text-center
           img(
-            src="~/assets/images/mycure-footer-logo.png"
+            src="~/assets/images/MYCURE Logo - white.png"
             alt="White MYCURE Logo"
             width="200"
           ).mt-4
-      v-row(:class="{ 'justify-space-around' : !$isMobile}").mt-4
+      v-row(v-if="!$isMobile").mt-4.justify-space-around
         template(v-for="(footerItem, index) in footerItems")
-          v-col(cols="6" md="2").footer-section.pl-10
+          v-col(cols="6" md="2").footer-section
             h4(v-if="footerItem.type === 'footer-header'").primary--text {{ footerItem.value }}
             template(v-for="(col, index) in footerItem.columns")
               a(
@@ -31,7 +31,32 @@
                 v-if="col.type === 'chat'"
                 @click.stop="toggleChat()"
               ).white--text.d-block.font-16 {{col.value}}
-      hr(v-if="!$isMobile").my-5
+      v-row(v-if="$isMobile")
+        v-expansion-panels(flat).footer-gray.elevation-0.mx-2
+          v-expansion-panel(v-for="(footerItem, index) in footerItems" :key="index").footer-gray
+            v-expansion-panel-header(v-if="footerItem.type === 'footer-header'").primary--text {{ footerItem.value }}
+              template(v-slot:actions)
+                v-icon(color="primary") mdi-chevron-down
+            template(v-for="(col, index) in footerItem.columns")
+              v-expansion-panel-content
+                a(
+                  v-if="col.type === 'link'"
+                  :href="col.link"
+                  target="_blank"
+                  el="noopener noreferrer"
+                ).white--text.d-block.font-16 {{col.value}}
+                a(
+                  v-if="col.type === 'phone'"
+                  :href="`tel:${col.value}`"
+                ).white--text.d-block.font-16 {{col.value}}
+                a(
+                  v-if="col.type === 'email'"
+                  :href="`mailto:${col.value}`"
+                ).white--text.d-block.font-16 {{col.value}}
+                a(
+                  v-if="col.type === 'chat'"
+                  @click.stop="toggleChat()"
+                ).white--text.d-block.font-16 {{col.value}}
       v-row(align="center" no-gutters)
         v-col(
           :class="{ 'text-center order-last' : $isMobile }"
@@ -63,7 +88,7 @@ export default {
           type: 'footer-header',
           value: 'About',
           columns: [
-            { type: 'link', value: 'Fight COVID-19: Free EMR', link: '/index' },
+            { type: 'link', value: 'Fight COVID-19: Free EMR', link: '/fight-covid-19' },
             { type: 'link', value: 'Our Story', link: '/our-story' },
             { type: 'link', value: 'Blog', link: 'https://blog.mycure.md' },
             { type: 'link', value: 'Careers', link: 'https://culture.mycure.md/' },
@@ -91,7 +116,7 @@ export default {
           type: 'footer-header',
           value: 'Providers',
           columns: [
-            { type: 'link', value: 'Clinics', link: '/clinics' },
+            { type: 'link', value: 'Clinics', link: '/doctors-clinics' },
             { type: 'link', value: 'Enterprise', link: '/enterprise' },
           ],
         },
@@ -161,5 +186,9 @@ export default {
 }
 a {
   text-decoration: none !important;
+}
+
+.v-expansion-panel-header__icon i{
+  color: #009fdf;
 }
 </style>

@@ -1,0 +1,105 @@
+<template lang="pug">
+  v-card(color="#f0f0f0" flat)#servicesList
+    v-toolbar(color="#f0f0f0" flat)
+      v-tabs(v-model="activeServiceType")
+        v-tab(href="#lab") #[b Laboratory]
+        v-tab(href="#imaging") #[b Imaging]
+        v-tab(href="#pe") #[b PE Packages]
+        v-tab(href="#doctors" ) #[b Doctors]
+        v-tab(href="#clinical-procedure") #[b Procedures]
+    v-card-text
+      v-row(v-if="loading" justify="center")
+        v-col(cols="12" md="4").text-center
+          v-progress-circular(
+            color="primary"
+            indeterminate
+            size="100"
+          )
+      v-row(v-else-if="items.length === 0")
+        v-col(cols="12" md="4").text-center
+          h2 No services available
+      template(v-else)
+        div(
+          v-for="(item, key) in items"
+          :key="key"
+        )
+          service-item(
+            :item="item"
+            :organization="organization"
+            :is-doctor="activeServiceType === 'doctors'"
+          )
+          v-divider
+    v-card-actions
+      v-spacer
+      v-btn(
+        v-if="hasPreviousPage"
+        outlined
+        color="primary"
+        @click="onPaginate('previous')"
+      )
+        v-icon(small) mdi-chevron-left
+        | Previous
+      v-btn(
+        v-if="hasNextPage"
+        outlined
+        color="primary"
+        @click="onPaginate('next')"
+      )
+        | Next
+        v-icon(small) mdi-chevron-right
+</template>
+
+<script>
+import VueScrollTo from 'vue-scrollto';
+import ServiceItem from './service-item';
+export default {
+  components: {
+    ServiceItem,
+  },
+  props: {
+    value: {
+      type: String,
+      default: null,
+    },
+    organization: {
+      type: String,
+      default: null,
+    },
+    loading: {
+      type: Boolean,
+      default: false,
+    },
+    items: {
+      type: Array,
+      default: () => ([]),
+    },
+    hasNextPage: {
+      type: Boolean,
+      default: false,
+    },
+    hasPreviousPage: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  data () {
+    return {};
+  },
+  computed: {
+    activeServiceType: {
+      get () {
+        return this.value;
+      },
+      set (val) {
+        this.$emit('input', val);
+      },
+    },
+  },
+  methods: {
+    onPaginate (direction) {
+      VueScrollTo.scrollTo('#servicesList', 500, { offset: -100, easing: 'ease' });
+      this.$emit(direction);
+    },
+  },
+};
+</script>

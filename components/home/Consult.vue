@@ -9,15 +9,13 @@
             v-for="(item, index) in sliderItems"
             :key="index"
           )
-            v-row(
-              height="300px"
-            )
+            v-row
               v-col(
                 :cols="index === 1 || index === 3 ? '7' : '6'"
               ).mr-0.pr-0
                 v-img(
                   :src="item.image"
-                  width="100%"
+                  height="386"
                   :alt="item.header"
                 )
               v-col(
@@ -95,6 +93,11 @@ export default {
         },
       ],
     };
+  },
+  created () {
+    setInterval(() => {
+      if (++this.sliderPosition >= this.sliderItems.length) this.sliderPosition = 0;
+    }, 3000);
   },
   methods: {
     nextSlide () {

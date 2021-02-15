@@ -81,8 +81,8 @@ export default {
   },
   head () {
     return headMeta({
-      title: 'MYCURE Virtual Clinic | Healthcare Practice Online',
-      description: 'MYCURE is an advanced clinic management system that allows you to securely consult with patients online and get real-time medical and business insights.',
+      title: 'MYCURE Healthcare Service Booking Management Software',
+      description: 'MYCURE helps you bring in more patients using a powerful healthcare service booking and management software. It’s free, secure, and easy to use.',
       socialBanner: require('~/assets/images/banners/MYCURE Open Graph Images -  Home.png'),
     });
   },
@@ -100,6 +100,6 @@ export default {
 }
 
 .usp-mobile {
-  margin-top: 50px;
+  margin-top: 38px;
 }
 </style>
