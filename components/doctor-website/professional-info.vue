@@ -3,14 +3,15 @@
     div.my-4
       h2.header-text Professional Info
     div
-      div(:class="{ 'border-bottom' : !$isMobile }").my-2.mb-5.font-28.professional-info-item
-        h3.primary--text Specialization
-        span(v-if="specialtiesMapped").mb-3 {{specialtiesMapped}}
-        i(v-else).mb-3 No data
-      div(:class="{ 'border-bottom' : !$isMobile }").my-2.mb-5.professional-info-item
-        h3.primary--text Practicing Since
-        i(v-if="!practicingSince").mb-3 No data
-        span(v-else).mb-3 {{practicingSince | morph-date-format('YYYY')}}
+      div(:class="{ 'd-flex' : $isMobile }")
+        div(:class="{ 'border-bottom' : !$isMobile }").my-2.mb-5.mr-4.font-28.professional-info-item
+          h3.primary--text Specialization
+          span(v-if="specialtiesMapped").mb-3 {{specialtiesMapped}}
+          i(v-else).mb-3 No data
+        div(:class="{ 'border-bottom' : !$isMobile }").my-2.mb-5.professional-info-item
+          h3.primary--text Practicing Since
+          i(v-if="!practicingSince").mb-3 No data
+          span(v-else).mb-3 {{practicingSince | morph-date-format('YYYY')}}
       div(:class="{ 'border-bottom' : !$isMobile }").my-2.mb-5.professional-info-item
         h3.primary--text Educational Background
         i(v-if="education.length === 0").mb-3 No data
