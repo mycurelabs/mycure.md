@@ -18,7 +18,7 @@
             ).typer
             span(:class="{ 'font-50' : !$isMobile, 'font-35' : $isMobile }") #[br] safely
           p(:class="{ 'font-18' : !$isMobile, 'font-14' : $isMobile }") Bring in more patients using a powerful healthcare service booking and management software. It's free, secure, and easy to use.
-          v-col(cols="12" :class="{ 'd-flex' : !$isMobile, 'pt-6' : $isMobile }")
+          v-col(cols="12" :class="{ 'd-flex' : !$isMobile, 'pt-2' : $isMobile }")
             v-text-field(
               v-model="email"
               outlined
