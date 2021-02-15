@@ -1,10 +1,11 @@
 <template lang="pug">
   v-btn(
     :outlined="outlined"
-    large
+    :large="!$isMobile"
     :rounded="rounded"
     :color="btnColor"
     :href="url"
+    :class="{ 'font-11' : $isMobile }"
   ).text-none.font-weight-600 Book Appointment
 </template>
 
