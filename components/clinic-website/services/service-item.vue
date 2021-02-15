@@ -173,12 +173,12 @@ export default {
     bookServiceURL () {
       const pxPortalUrl = process.env.PX_PORTAL_URL;
       const id = this.item?.id;
-      return `${pxPortalUrl}/appointment/step-1?service=${id}&organization=${this.organization}`;
+      return `${pxPortalUrl}/appointments/step-1?service=${id}&organization=${this.organization}`;
     },
     bookTeleconsultURL () {
       const pxPortalUrl = process.env.PX_PORTAL_URL;
       const id = this.item?.uid;
-      return `${pxPortalUrl}/appointment/step-1?doctor=${id}&organization=${this.organization}`;
+      return `${pxPortalUrl}/appointments/step-1?doctor=${id}&organization=${this.organization}`;
     },
   },
 };

@@ -14,7 +14,7 @@ export const fetchClinicWebsiteDoctors = async (sdk, opts) => {
       scheduleData: {
         service: 'schedule-slots',
         method: 'get',
-        localKey: 'uid',
+        localKey: 'id',
         foreignKey: 'account',
         organization: opts.organization,
       },
