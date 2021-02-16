@@ -34,7 +34,7 @@
                       v-avatar(v-bind="attrs" v-on="on" size="50")
                         img(:src="organization.picURL")
           //- action buttons: book online appointment
-          v-row(:class="{ 'justify-center' : $isMobile, 'justify-start' : !$isMobile }").mt-2
+          v-row(:class="{ 'justify-center d-block' : $isMobile, 'justify-start' : !$isMobile }").mt-2
             v-col(class="shrink").pa-1.text-center
               book-appointment-btn(
                 :outlined="false"
@@ -44,15 +44,17 @@
               v-btn(
                 outlined
                 rounded
-                large
+                :large="!$isMobile"
                 color="white"
+                :class="{ 'font-11' : $isMobile }"
               ).text-none.font-weight-600 Virtual Consult
             v-col(class="shrink").pa-1.text-center
               v-btn(
                 outlined
                 icon
-                large
+                :large="!$isMobile"
                 color="white"
+                :class="{ 'font-11' : $isMobile }"
               )
                 v-icon mdi-share-variant
 </template>

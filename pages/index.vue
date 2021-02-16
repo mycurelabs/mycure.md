@@ -96,7 +96,7 @@ export default {
   z-index: 1;
 }
 .usp-container {
-  margin-top: 78px;
+  margin-top: 70px;
 }
 
 .usp-mobile {

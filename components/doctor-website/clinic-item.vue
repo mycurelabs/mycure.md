@@ -1,12 +1,12 @@
 <template lang="pug">
   v-row
-    v-col.shrink
+    v-col(:class="{ 'mx-auto' : $isMobile}").shrink
       v-avatar(tile size="150")
         img(
           :src="clinicPicURL"
           style="border-radius: 5px"
         )
-    v-col.grow
+    v-col(:class="{ 'text-center' : $isMobile}").grow
       v-row
         v-col(cols="12").pt-0
           h3(style="margin-top: -5px") {{ clinic.name }}
@@ -15,14 +15,14 @@
           p(v-if="description") {{ description }}
           i(v-else) No description available
         v-col(cols="12" md="5" lg="4")
-          div(v-if="clinic.address || prettify-address").d-flex
+          div(v-if="clinic.address").d-flex
             v-icon(color="primary").mr-2.mb-auto mdi-map-marker
             p.font-weight-600 {{ clinic.address | prettify-address }}
           template(v-if="clinicSchedules && clinicSchedules.length === 0")
-            div.d-flex
+            div(:class="{ 'justify-center' : $isMobile}").d-flex
               v-icon(color="primary").mr-2.mb-auto mdi-calendar-today
               i No schedules available
-          div(v-else).d-flex
+          div(v-else :class="{ 'justify-center' : $isMobile}").d-flex
             v-icon(color="primary").mr-2.mb-auto mdi-calendar-today
             table
               tr(v-for="sched in clinicSchedules").font-weight-600

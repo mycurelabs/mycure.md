@@ -1,6 +1,6 @@
 <template lang="pug">
   v-container
-    v-row(justify="center")
+    v-row(v-if="!$isMobile" justify="center")
       v-col(cols="12" md="10")
         v-card
           v-tabs(
@@ -30,6 +30,46 @@
               learning-corner(
                 :doctor-id="doctorId"
               )
+    v-row(v-else)
+      v-expansion-panels(:class="{ 'd-block' : $isMobile }" focusable).elevation-0.mx-2.tabs-mobile
+        v-card.mb-3.mx-5
+          v-expansion-panel
+            v-expansion-panel-header
+              span.font-weight-bold.font-20 Clinics
+              template(v-slot:actions)
+                v-icon(color="primary") mdi-chevron-right
+            v-expansion-panel-content
+              template(v-if="clinics.length === 0")
+                div.text-center.pa-5
+                  h3.grey--text #[i No clinics to show]
+              template(v-else v-for="(clinic, index) in clinics")
+                clinic-item(:clinic="clinic")
+              v-pagination(
+                v-if="this.selectedTab === 'clinics'"
+                v-model="page"
+                :length="length"
+              )
+        v-card.mb-3.mx-5
+          v-expansion-panel
+            v-expansion-panel-header
+              span.font-weight-bold.font-20 Services
+              template(v-slot:actions)
+                v-icon(color="primary") mdi-chevron-right
+            v-expansion-panel-content
+              services(
+                :services="services"
+              )
+        v-card.mb-3.mx-5
+          v-expansion-panel
+            v-expansion-panel-header
+              span.font-weight-bold.font-20 Learning Corner
+              template(v-slot:actions)
+                v-icon(color="primary") mdi-chevron-right
+            v-expansion-panel-content
+              learning-corner(
+                :doctor-id="doctorId"
+              )
+
 </template>
 
 <script>
@@ -124,3 +164,8 @@ export default {
   },
 };
 </script>
+<style scoped>
+.tabs-mobile span {
+  color: #4D4D4D;
+}
+</style>
