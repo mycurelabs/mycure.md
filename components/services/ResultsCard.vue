@@ -1,5 +1,5 @@
 <template lang="pug">
-  div(style="background-color: #fafafa")
+  div(v-if="emptyLocationSearch || initialServices || locationMatch" style="background-color: #fafafa")
     v-container
       v-row(align="center" justify="center")
         v-col(cols="12" md="10")
@@ -45,7 +45,7 @@
                   div(v-if="serviceOrganization[0] !== undefined").mt-4
                     div(v-if="serviceOrganization[0].address").d-flex
                       v-icon.mr-2.mb-auto mdi-map-marker
-                      p {{ `${serviceOrganization[0].address.street1}, ${serviceOrganization[0].city}, ${serviceOrganization[0].province}, ${serviceOrganization[0].country} ` }}
+                      p {{ `${serviceOrganization[0].address.street1}, ${serviceOrganization[0].address.city}, ${serviceOrganization[0].address.province}, ${serviceOrganization[0].address.country} ` }}
                     div(v-if="serviceOrganization[0].phone").d-flex
                       v-icon.mr-2.mb-auto mdi-phone
                       p.font-weight-bold {{ serviceOrganization[0].phone }}
@@ -60,31 +60,31 @@
                         v-icon.mr-2 mdi-wallet
                         strong.font-18 Php {{ service.price }}
                       div.my-1
-                      //- v-btn(
-                      //-   v-if="isService"
-                      //-   color="primary"
-                      //-   target="_blank"
-                      //-   rel="noopener noreferrer"
-                      //-   rounded
-                      //-   block
-                      //-   ) #[b Book now]
-                      //-   v-btn(
-                      //-     v-if="isDoctor"
-                      //-     color="primary"
-                      //-     target="_blank"
-                      //-     rel="noopener noreferrer"
-                      //-     rounded
-                      //-     block
-                      //-   ).mb-2 #[b Book a Teleconsult]
-                      //-   v-btn(
-                      //-     v-if="isDoctor"
-                      //-     color="primary"
-                      //-     target="_blank"
-                      //-     rel="noopener noreferrer"
-                      //-     outlined
-                      //-     rounded
-                      //-     block
-                      //-   ) #[b Book a Visit]
+                      v-btn(
+                        v-if="isService"
+                        color="primary"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        rounded
+                        block
+                        ) #[b Book now]
+                        v-btn(
+                          v-if="isDoctor"
+                          color="primary"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          rounded
+                          block
+                        ).mb-2 #[b Book a Teleconsult]
+                        v-btn(
+                          v-if="isDoctor"
+                          color="primary"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          outlined
+                          rounded
+                          block
+                        ) #[b Book a Visit]
               v-col(v-if="!$isMobile" cols="1")
               v-col(v-if="!$isMobile")
                 div(v-if="service.price").d-flex.mb-2
@@ -135,14 +135,39 @@ export default {
       type: Object,
       default: () => {},
     },
+    locationText: {
+      type: String,
+      default: '',
+    },
+    emptyLocationSearch: {
+      type: Boolean,
+      default: false,
+    },
+    initialServices: {
+      type: Boolean,
+      default: false,
+    },
   },
   data () {
     return {
       serviceOrganization: [],
     };
   },
+  computed: {
+    locationMatch () {
+      const location = this.locationText;
+      if (location) {
+        // return location?.filter(str => str.toLowerCase().includes(this.serviceOrganization[0].address?.city?.toLowerCase()));
+        return this.serviceOrganization[0]?.address?.city.toLowerCase().includes(location.toLowerCase());
+      }
+
+      return false;
+    },
+  },
   mounted () {
     this.fetchOrganization();
+    console.log('location', this.locationText);
+    console.log('locationMatch', this.emptyLocationSearch);
   },
   methods: {
     async fetchOrganization () {
@@ -151,6 +176,7 @@ export default {
       });
       if (items) {
         this.serviceOrganization = items;
+        console.log('items', items);
       }
     },
   },

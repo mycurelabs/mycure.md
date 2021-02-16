@@ -2,9 +2,14 @@
   v-container
     v-row(justify="center" align="center")
       v-col(cols="12" md="10").pb-0
-        v-toolbar(v-if="!$isMobile" height="84").toolbar
-          div.d-flex.mt-2.justify-space-between
-            v-col(md="3")
+        v-toolbar(
+          v-if="!$isMobile"
+          height="84"
+          color="white"
+          :style="{ opacity: services ? '' : '0.8' }"
+        ).toolbar
+          v-col(cols="12" md="10").d-flex.mt-2.justify-space-between
+            v-col(md="8").search-fields
               v-toolbar-title.font-14.ml-4.text-left.font-weight-bold Services
                 v-text-field(
                   v-model="serviceSearchQuery"
@@ -12,21 +17,7 @@
                   clearable
                 ).font-14.font-weight-regular
             v-divider(inset vertical).mt-6.mb-8
-            v-col(md="3")
-              v-toolbar-title.font-14.ml-4.text-left.font-weight-bold HMO Providers
-                v-text-field(
-                  placeholder="All Coverage"
-                  clearable
-                ).font-14.font-weight-regular
-            v-divider(inset vertical).mt-6.mb-8
-            v-col(md="3")
-              v-toolbar-title.font-14.ml-4.text-left.font-weight-bold Date
-                v-text-field(
-                  placeholder="Add Dates"
-                  clearable
-                ).font-14.font-weight-regular
-            v-divider(inset vertical).mt-6.mb-8
-            v-col(md="3")
+            v-col(md="4").search-fields
               v-toolbar-title.font-14.ml-4.text-left.font-weight-bold Location
                 v-text-field(
                   placeholder="Anywhere"
@@ -70,17 +61,19 @@
             div.d-flex
               span.mt-2 Filter:
               v-select(
-                label="Book a Teleconsult"
+                v-model="defaultSelected"
                 dense
                 solo
-              ).filter.ml-2.font-14.search-select
+                :items="['Laboratory', 'Teleconsult']"
+                @change="selectFilter($event)"
+              ).filter.ml-2.font-14.search-select.white--text
             div(:class="$isMobile ? '' : 'ml-4'").d-flex
               span.mt-2 Sort by:
               v-select(
                 label="Relevance"
                 dense
                 solo
-              ).filter.ml-2.font-14.search-select
+              ).filter.ml-2.font-14.search-select.white--text
 </template>
 <script>
 export default {
@@ -98,11 +91,20 @@ export default {
     return {
       serviceSearchQuery: '',
       serviceSearchLocation: '',
+      filterLabel: '',
+      defaultSelected: 'Laboratory',
     };
+  },
+  watch () {
+
   },
   methods: {
     searchServices (searchQuery, locationQuery) {
       this.$emit('search-services', searchQuery, locationQuery);
+    },
+    selectFilter (label) {
+      this.filterLabel = label;
+      this.$emit('filter-services', label);
     },
   },
 };
@@ -112,7 +114,6 @@ export default {
 .toolbar{
   border-radius: 50px;
   background-color: #ffffff;
-  opacity: 0.8;
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.18);
 }
 
@@ -134,5 +135,13 @@ export default {
 
 .filter >>> i {
   color: #FFFFFF;
+}
+
+.search-fields >>> .v-input__slot::before {
+  border-style: none !important;
+}
+
+.search-select >>> .v-select__selection--comma {
+  color: #FFFFFF !important;
 }
 </style>
