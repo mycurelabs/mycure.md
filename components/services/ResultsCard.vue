@@ -163,17 +163,22 @@ export default {
     locationMatch () {
       const location = this.locationText;
       if (location) {
-        // return location?.filter(str => str.toLowerCase().includes(this.serviceOrganization[0].address?.city?.toLowerCase()));
         return this.serviceOrganization[0]?.address?.city.toLowerCase().includes(location.toLowerCase());
       }
 
       return false;
     },
   },
+  watch: {
+    locationMatch (val) {
+      if (!val) {
+        this.$emit('location-not-matched');
+      }
+    },
+  },
   mounted () {
     this.fetchOrganization();
-    console.log('location', this.locationText);
-    console.log('locationMatch', this.emptyLocationSearch);
+
   },
   methods: {
     async fetchOrganization () {

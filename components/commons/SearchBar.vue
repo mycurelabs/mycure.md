@@ -100,7 +100,9 @@ export default {
   },
   watch: {
     serviceSearchQuery (val) {
-      val.length === 0 && this.$emit('clear-services');
+      if (val !== null) {
+        (val.length === 0 || val === null) && this.$emit('clear-services');
+      }
     },
   },
   methods: {
@@ -112,6 +114,7 @@ export default {
       this.$emit('filter-services', label);
     },
     clearTextfield () {
+      this.serviceSearchLocation = '';
       this.$emit('clear-services');
     },
   },

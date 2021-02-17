@@ -13,8 +13,9 @@
         )
     v-row(align="center" justify="center").results-summary
       v-col(cols="12" md="8")
-        h4(v-if="!searchQuery").font-weight-regular.font-20.text-left.ml-10 #[strong {{ searchedServicesLength }}] services found
-        h4(v-if="searchQuery").font-weight-regular.font-20.text-left.ml-10 #[strong {{ searchedServicesLength }}] results found on #[strong {{ searchQuery }}] in #[strong {{ locationQuery }}]
+        //- h4(v-if="!searchQuery").font-weight-regular.font-20.text-left.ml-10 #[strong {{ searchedServicesLength }}] services found
+        //- h4(v-if="searchQuery").font-weight-regular.font-20.text-left.ml-10 #[strong {{ searchedServicesLength }}] results found on #[strong {{ searchQuery }}] in #[strong {{ locationQuery }}]
+        h4 {{ resultsSummary }}
       v-col(cols="12")
         //- search results on initial page load
         template(v-if="initialServicesList.length > 1" v-for="initialService in initialServicesList")
@@ -38,6 +39,7 @@
             :service="service"
             :locationText="locationQuery"
             :emptyLocationSearch="emptyLocationSearch"
+            @location-not-matched="clearServicesResults"
           )
         v-pagination(
           v-if="servicesList.length > 1"
@@ -99,7 +101,14 @@ export default {
       return Math.ceil(this.servicesTotal / this.servicesLimit) || 0;
     },
     emptyLocationSearch () {
-      return this.locationQuery === '';
+      return !this.locationQuery;
+    },
+    resultsSummary () {
+      if (!this.searchQuery && this.initialServicesList < 1) {
+        return 'No results available. Try searching for a different keyword or location.';
+      } else {
+        return `${this.searchedServicesLength} result${this.searchedServicesLength > 1 || this.searchedServicesLength === 0 ? 's' : ''} found for ${this.searchQuery} ${this.locationQuery ? `in ${this.locationQuery}` : ''}`;
+      }
     },
   },
   watch: {
