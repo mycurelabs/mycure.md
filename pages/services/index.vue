@@ -24,11 +24,11 @@
             :initialServices="true"
             )
         v-pagination(
-            v-if="initialServicesList.length > 1"
-            v-model="initialServicesPage"
-            :length="initialServicesLength"
-            total-visible="10"
-          )
+          v-if="initialServicesList.length > 1"
+          v-model="initialServicesPage"
+          :length="initialServicesLength"
+          total-visible="10"
+        )
         //- services search results on search with text query
         template(v-if="servicesList" v-for="service in servicesList")
           results-card(
@@ -39,11 +39,11 @@
             :emptyLocationSearch="emptyLocationSearch"
           )
         v-pagination(
-            v-if="servicesList.length > 1"
-            v-model="servicesPage"
-            :length="servicesLength"
-            total-visible="10"
-          )
+          v-if="servicesList.length > 1"
+          v-model="servicesPage"
+          :length="servicesLength"
+          total-visible="10"
+        )
         //- doctors search results on search with text query
         template(v-if="doctorsList" v-for="doctor in doctorsList")
           results-card(isDoctor)
