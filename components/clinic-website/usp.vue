@@ -28,12 +28,14 @@
             solo
             clearable
             :class="{ 'mt-3': !$isMobile }"
+            :disabled="isPreviewMode"
             @change="onServiceTypeSelect"
             @click:clear="clearServiceFilter"
           ).search-bar
         v-col(v-if="searchResultsMode && !hideSearchBars" cols="10" md="2")
           search-insurance-contracts(
             :class="{ 'mt-3': !$isMobile }"
+            :disabled="isPreviewMode"
             @select="onInsuranceSelect"
             @clear="clearInsuranceFilter"
           ).search-bar
@@ -42,6 +44,7 @@
             v-model="dateFilter"
             solo
             bordered
+            :disabled="isPreviewMode"
             @clear="dateFilter = null"
           )
 </template>
