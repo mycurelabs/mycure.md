@@ -13,8 +13,8 @@ export const fetchClinicWebsiteDoctors = async (sdk, opts) => {
       },
       scheduleData: {
         service: 'schedule-slots',
-        method: 'get',
-        localKey: 'id',
+        method: 'find',
+        localKey: 'uid',
         foreignKey: 'account',
         organization: opts.organization,
       },
