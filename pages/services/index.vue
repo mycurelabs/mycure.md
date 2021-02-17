@@ -1,24 +1,27 @@
 <template lang="pug">
   div(v-if="!loading")
     app-bar(isServices)
-    div(align="center" justify="center"
-      )
+    div(align="center" justify="center")
       v-col(cols="12")
       v-col(cols="12").mt-12.text-center.pb-0.search-container
         search-bar(
           icon
           services
           @search-services="searchServices"
+          @filter-services="filterServices"
         )
     v-row(align="center" justify="center").results-summary
       v-col(cols="12" md="8")
         h4(v-if="!searchQuery").font-weight-regular.font-20.text-left.ml-10 #[strong {{ searchedServicesLength }}] services found
         h4(v-if="searchQuery").font-weight-regular.font-20.text-left.ml-10 #[strong {{ searchedServicesLength }}] results found on #[strong {{ searchQuery }}] in #[strong {{ locationQuery }}]
       v-col(cols="12")
+        //- search results on initial page load
         template(v-if="initialServicesList.length > 1" v-for="initialService in initialServicesList")
           results-card(
+            v-if="filterLabel !== 'Teleconsult'"
             isService
             :service="initialService"
+            :initialServices="true"
             )
         v-pagination(
             v-if="initialServicesList.length > 1"
@@ -26,10 +29,14 @@
             :length="initialServicesLength"
             total-visible="10"
           )
+        //- services search results on search with text query
         template(v-if="servicesList" v-for="service in servicesList")
           results-card(
+            v-if="filterLabel !== 'Teleconsult'"
             isService
             :service="service"
+            :locationText="locationQuery"
+            :emptyLocationSearch="emptyLocationSearch"
           )
         v-pagination(
             v-if="servicesList.length > 1"
@@ -37,6 +44,7 @@
             :length="servicesLength"
             total-visible="10"
           )
+        //- doctors search results on search with text query
         template(v-if="doctorsList" v-for="doctor in doctorsList")
           results-card(isDoctor)
     my-footer
@@ -70,6 +78,7 @@ export default {
       servicesTotal: 0,
       initialServicesLimit: 6,
       servicesLimit: 6,
+      filterLabel: '',
     };
   },
   computed: {
@@ -87,6 +96,9 @@ export default {
     },
     servicesLength () {
       return Math.ceil(this.servicesTotal / this.servicesLimit) || 0;
+    },
+    emptyLocationSearch () {
+      return this.locationQuery === '';
     },
   },
   watch: {
@@ -150,6 +162,9 @@ export default {
       this.locationQuery = locationQuery;
       this.initialServicesList = [];
       this.fetchSearchQuery(searchQuery);
+    },
+    filterServices (filterLabel) {
+      this.filterLabel = filterLabel;
     },
   },
 };

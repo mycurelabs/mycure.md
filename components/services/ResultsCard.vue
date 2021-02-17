@@ -1,5 +1,5 @@
 <template lang="pug">
-  div(style="background-color: #fafafa")
+  div(v-if="emptyLocationSearch || initialServices || locationMatch" style="background-color: #fafafa")
     v-container
       v-row(align="center" justify="center")
         v-col(cols="12" md="10")
@@ -45,7 +45,7 @@
                   div(v-if="serviceOrganization[0] !== undefined").mt-4
                     div(v-if="serviceOrganization[0].address").d-flex
                       v-icon.mr-2.mb-auto mdi-map-marker
-                      p {{ `${serviceOrganization[0].address.street1}, ${serviceOrganization[0].city}, ${serviceOrganization[0].province}, ${serviceOrganization[0].country} ` }}
+                      p {{ `${serviceOrganization[0].address.street1}, ${serviceOrganization[0].address.city}, ${serviceOrganization[0].address.province}, ${serviceOrganization[0].address.country} ` }}
                     div(v-if="serviceOrganization[0].phone").d-flex
                       v-icon.mr-2.mb-auto mdi-phone
                       p.font-weight-bold {{ serviceOrganization[0].phone }}
@@ -63,6 +63,7 @@
                       v-btn(
                         v-if="isService"
                         color="primary"
+                        @click="openPXPortal"
                         target="_blank"
                         rel="noopener noreferrer"
                         rounded
@@ -71,6 +72,7 @@
                         v-btn(
                           v-if="isDoctor"
                           color="primary"
+                          @click="openPXPortal"
                           target="_blank"
                           rel="noopener noreferrer"
                           rounded
@@ -79,6 +81,7 @@
                         v-btn(
                           v-if="isDoctor"
                           color="primary"
+                          @click="openPXPortal"
                           target="_blank"
                           rel="noopener noreferrer"
                           outlined
@@ -97,6 +100,7 @@
                 v-btn(
                     v-if="isService"
                     color="primary"
+                    @click="openPXPortal"
                     target="_blank"
                     rel="noopener noreferrer"
                     rounded
@@ -105,6 +109,7 @@
                   v-btn(
                     v-if="isDoctor"
                     color="primary"
+                    @click="openPXPortal"
                     target="_blank"
                     rel="noopener noreferrer"
                     rounded
@@ -113,6 +118,7 @@
                   v-btn(
                     v-if="isDoctor"
                     color="primary"
+                    @click="openPXPortal"
                     target="_blank"
                     rel="noopener noreferrer"
                     outlined
@@ -135,14 +141,39 @@ export default {
       type: Object,
       default: () => {},
     },
+    locationText: {
+      type: String,
+      default: '',
+    },
+    emptyLocationSearch: {
+      type: Boolean,
+      default: false,
+    },
+    initialServices: {
+      type: Boolean,
+      default: false,
+    },
   },
   data () {
     return {
       serviceOrganization: [],
     };
   },
+  computed: {
+    locationMatch () {
+      const location = this.locationText;
+      if (location) {
+        // return location?.filter(str => str.toLowerCase().includes(this.serviceOrganization[0].address?.city?.toLowerCase()));
+        return this.serviceOrganization[0]?.address?.city.toLowerCase().includes(location.toLowerCase());
+      }
+
+      return false;
+    },
+  },
   mounted () {
     this.fetchOrganization();
+    console.log('location', this.locationText);
+    console.log('locationMatch', this.emptyLocationSearch);
   },
   methods: {
     async fetchOrganization () {
@@ -151,7 +182,11 @@ export default {
       });
       if (items) {
         this.serviceOrganization = items;
+        console.log('items', items);
       }
+    },
+    openPXPortal () {
+      window.open(`${process.env.PX_PORTAL_URL}/physical-appointment/step-1?organization=5f3f8084c05456557164c3d3&service=5fa121c45491b607c5778bdb`, '_blank', 'noopener, noreferrer');
     },
   },
 };
