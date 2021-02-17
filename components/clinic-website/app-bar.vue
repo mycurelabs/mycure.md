@@ -44,20 +44,19 @@
             )
           div.pl-2
             h3.font-12 {{ clinicName }}
-            span.font-12 Telemedicine
+            div(v-if="isVerified")
+              i.font-12 Verified&nbsp;
+              v-avatar(color="primary" size="20")
+                v-icon(dark small) mdi-check
           v-spacer
           div
-            v-btn(
-              depressed
-              Large
-              color="#fff"
-              @click="goToPxpSignin"
-            ).text-none #[b Login]
             v-menu
               template(v-slot:activator="{ on, attrs }")
                 v-btn(icon v-bind="attrs" v-on="on")
                   v-icon mdi-menu
               v-list
+                v-list-item(@click="goToPxpSignin")
+                  v-list-item-title.text-none Login
                 v-list-item(@click="goToPxpSignup")
                   v-list-item-title.text-none Create an Account
 </template>
