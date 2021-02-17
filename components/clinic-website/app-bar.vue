@@ -44,7 +44,10 @@
             )
           div.pl-2
             h3.font-12 {{ clinicName }}
-            span.font-12 Telemedicine
+            div(v-if="isVerified")
+              i.font-12 Verified&nbsp;
+              v-avatar(color="primary" size="20")
+                v-icon(dark small) mdi-check
           v-spacer
           div
             v-menu
