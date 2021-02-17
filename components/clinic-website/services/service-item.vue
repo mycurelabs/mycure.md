@@ -46,37 +46,40 @@
                 v-img(v-if="coverage.picURL" :src="coverage.picURL")
                 span(v-else).white--text {{ coverage.name.substring(0,1) }}
             span {{ coverage.name || 'HMO' }}
-      v-col.grow.text-right
+      v-col(v-if="!isDoctor && !readOnly").grow.text-right
         h2(v-if="price") PHP {{ price }}
         br
         br
         br
-        div(v-if="!isDoctor && !readOnly")
-          v-btn(
-            color="success"
-            rounded
-            block
-            :disabled="!isAvailable"
-            :href="bookServiceURL"
-          ).text-none Book Now
-        div(v-else-if="isDoctor && !readOnly")
-          v-btn(
-            color="success"
-            rounded
-            block
-            :disabled="!isAvailable"
-            :href="bookTeleconsultURL"
-          ).text-none Book a Teleconsult
-          br
-          v-btn(
-            color="success"
-            rounded
-            block
-            outlined
-            :disabled="!isAvailable"
-            :href="bookTeleconsultURL"
-          ).text-none Book a Visit
-    v-row
+        v-btn(
+          color="success"
+          rounded
+          block
+          :disabled="!isAvailable"
+          :href="bookServiceURL"
+        ).text-none Book Now
+    v-row(justify="end")
+      v-col(
+        v-if="isDoctor && !readOnly"
+        cols="12"
+        md="4"
+      )
+        v-btn(
+          color="success"
+          rounded
+          block
+          :disabled="!isAvailable"
+          :href="bookTeleconsultURL"
+        ).text-none Book a Teleconsult
+        br
+        v-btn(
+          color="success"
+          rounded
+          block
+          outlined
+          :disabled="!isAvailable"
+          :href="bookTeleconsultURL"
+        ).text-none Book a Visit
 </template>
 
 <script>
