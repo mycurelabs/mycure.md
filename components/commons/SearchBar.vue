@@ -15,6 +15,7 @@
                   v-model="serviceSearchQuery"
                   placeholder="Consultation (Virtual)"
                   clearable
+                  v-on:keyup.enter="searchServices(serviceSearchQuery, serviceSearchLocation)"
                 ).font-14.font-weight-regular
             v-divider(inset vertical).mt-6.mb-8
             v-col(md="4").search-fields
@@ -23,6 +24,7 @@
                   placeholder="Anywhere"
                   v-model="serviceSearchLocation"
                   clearable
+                  v-on:keyup.enter="searchServices(serviceSearchQuery, serviceSearchLocation)"
                 ).font-14.font-weight-regular
           v-spacer
           v-btn(
