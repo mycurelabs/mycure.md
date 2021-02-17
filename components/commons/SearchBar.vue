@@ -15,6 +15,7 @@
                   v-model="serviceSearchQuery"
                   placeholder="Consultation (Virtual)"
                   clearable
+                  @click:clear="clearTextfield"
                   v-on:keyup.enter="searchServices(serviceSearchQuery, serviceSearchLocation)"
                 ).font-14.font-weight-regular
             v-divider(inset vertical).mt-6.mb-8
@@ -97,8 +98,10 @@ export default {
       defaultSelected: 'Laboratory',
     };
   },
-  watch () {
-
+  watch: {
+    serviceSearchQuery (val) {
+      val.length === 0 && this.$emit('clear-services');
+    },
   },
   methods: {
     searchServices (searchQuery, locationQuery) {
@@ -107,6 +110,9 @@ export default {
     selectFilter (label) {
       this.filterLabel = label;
       this.$emit('filter-services', label);
+    },
+    clearTextfield () {
+      this.$emit('clear-services');
     },
   },
 };

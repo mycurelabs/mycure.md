@@ -9,6 +9,7 @@
           services
           @search-services="searchServices"
           @filter-services="filterServices"
+          @clear-services="clearServicesResults"
         )
     v-row(align="center" justify="center").results-summary
       v-col(cols="12" md="8")
@@ -165,6 +166,10 @@ export default {
     },
     filterServices (filterLabel) {
       this.filterLabel = filterLabel;
+    },
+    clearServicesResults () {
+      this.initialServicesList = [];
+      this.servicesList = [];
     },
   },
 };
