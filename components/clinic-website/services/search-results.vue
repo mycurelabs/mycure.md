@@ -17,6 +17,8 @@
             :organization="organization"
             :item="item"
             :is-doctor="!!item.uid"
+            :is-preview-mode="isPreviewMode"
+            :read-only="readOnly"
           )
           v-divider
 </template>
@@ -39,6 +41,14 @@ export default {
     items: {
       type: Array,
       default: () => ([]),
+    },
+    isPreviewMode: {
+      type: Boolean,
+      default: false,
+    },
+    readOnly: {
+      type: Boolean,
+      default: false,
     },
   },
 };

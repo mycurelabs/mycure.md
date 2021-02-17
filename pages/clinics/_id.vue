@@ -11,6 +11,8 @@
       :name="clinicName"
       :org-id="orgId"
       :coverURL="coverURL"
+      :is-preview-mode="isPreviewMode"
+      :hide-search-bars="$isMobile"
       @search="onServiceSearch"
       @filter:date="filterByDate"
     )
@@ -19,6 +21,19 @@
         v-col(cols="12" md="3")
           clinic-info(:clinic="clinicWebsite")
           schedules(:schedules="groupedSchedules").mt-2
+          usp(
+            v-if="$isMobile"
+            v-model="searchText"
+            hide-banner
+            no-gutters
+            search-results-mode
+            :name="clinicName"
+            :org-id="orgId"
+            :coverURL="coverURL"
+            :is-preview-mode="isPreviewMode"
+            @search="onServiceSearch"
+            @filter:date="filterByDate"
+          )
         v-col(cols="12" md="8")
           services-tabs(
             v-if="!searchResultsMode"
@@ -28,6 +43,7 @@
             :loading="loading.list"
             :has-next-page="hasNextPage"
             :has-previous-page="hasPreviousPage"
+            :is-preview-mode="isPreviewMode"
             @next="refetchListItems(activeTab, page + 1)"
             @previous="refetchListItems(activeTab, page - 1)"
           )
@@ -36,6 +52,7 @@
             :organization="orgId"
             :loading="loading.list"
             :items="searchResults"
+            :is-preview-mode="isPreviewMode"
           )
     v-divider
     v-footer(v-if="!$isMobile" color="white").mt-3
@@ -196,6 +213,12 @@ export default {
     };
   },
   computed: {
+    mode () {
+      return this.$route.query.mode;
+    },
+    isPreviewMode () {
+      return this.mode === 'preview';
+    },
     orgId () {
       return this.clinicWebsite.id;
     },
@@ -302,10 +325,7 @@ export default {
           skip,
         });
         this.doctorsTotal = total;
-        const members = items || [];
-        if (!members?.length) return members;
-
-        this.orgDoctors = members;
+        this.orgDoctors = items || [];
       } catch (error) {
         console.error(error);
       } finally {

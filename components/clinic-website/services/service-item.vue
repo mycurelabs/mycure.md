@@ -8,8 +8,13 @@
             :alt="title"
             width="100%"
           )
-      v-col(cols="12" :md="isDoctor ? '6' : '8'")
-        h3 {{ title }}
+      v-col(cols="12" md="8")
+        h3 {{ title }}&nbsp;
+          v-chip(
+            :color="isAvailable ? 'lime' :'grey'"
+            small
+            label
+          ) {{ isAvailable ? 'AVAILABLE' : 'NOT AVAILABLE' }}
         div(v-if="fullSchedules.length")
           div(v-if="!scheduleExpanded")
             span.text-capitalize {{ formatTodaySchedule(schedulesToday) }}
@@ -41,25 +46,12 @@
                 v-img(v-if="coverage.picURL" :src="coverage.picURL")
                 span(v-else).white--text {{ coverage.name.substring(0,1) }}
             span {{ coverage.name || 'HMO' }}
-      v-col(v-if="price && !isDoctor" cols="12" md="2").text-right
-        v-chip(
-          :color="isAvailable ? 'lime' :'grey'"
-          small
-          label
-        ) {{ isAvailable ? 'AVAILABLE' : 'NOT AVAILABLE' }}
       v-col.grow.text-right
         h2(v-if="price") PHP {{ price }}
-        v-chip(
-          v-else-if="isDoctor"
-          :color="isAvailable ? 'lime' :'grey'"
-          small
-          label
-        ) {{ isAvailable ? 'AVAILABLE' : 'NOT AVAILABLE' }}
-        br(v-else)
         br
         br
         br
-        div(v-if="!isDoctor")
+        div(v-if="!isDoctor && !readOnly")
           v-btn(
             color="success"
             rounded
@@ -67,7 +59,7 @@
             :disabled="!isAvailable"
             :href="bookServiceURL"
           ).text-none Book Now
-        div(v-else)
+        div(v-else-if="isDoctor && !readOnly")
           v-btn(
             color="success"
             rounded
@@ -99,9 +91,17 @@ export default {
       type: Boolean,
       default: false,
     },
+    isPreviewMode: {
+      type: Boolean,
+      default: false,
+    },
     organization: {
       type: String,
       default: null,
+    },
+    readOnly: {
+      type: Boolean,
+      default: false,
     },
   },
   data () {
@@ -172,11 +172,13 @@ export default {
       return true;
     },
     bookServiceURL () {
+      if (this.isPreviewMode) return null;
       const pxPortalUrl = process.env.PX_PORTAL_URL;
       const id = this.item?.id;
       return `${pxPortalUrl}/appointments/step-1?service=${id}&organization=${this.organization}`;
     },
     bookTeleconsultURL () {
+      if (this.isPreviewMode) return null;
       const pxPortalUrl = process.env.PX_PORTAL_URL;
       const id = this.item?.uid;
       return `${pxPortalUrl}/appointments/step-1?doctor=${id}&organization=${this.organization}`;

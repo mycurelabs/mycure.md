@@ -47,17 +47,13 @@
             span.font-12 Telemedicine
           v-spacer
           div
-            v-btn(
-              depressed
-              Large
-              color="#fff"
-              @click="goToPxpSignin"
-            ).text-none #[b Login]
             v-menu
               template(v-slot:activator="{ on, attrs }")
                 v-btn(icon v-bind="attrs" v-on="on")
                   v-icon mdi-menu
               v-list
+                v-list-item(@click="goToPxpSignin")
+                  v-list-item-title.text-none Login
                 v-list-item(@click="goToPxpSignup")
                   v-list-item-title.text-none Create an Account
 </template>
