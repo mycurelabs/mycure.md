@@ -14,6 +14,7 @@
       :coverURL="coverURL"
       :is-preview-mode="isPreviewMode"
       :hide-search-bars="$isMobile"
+      :service-types="serviceTypes"
       @search="onServiceSearch"
       @filter:date="filterByDate"
     )
@@ -32,6 +33,7 @@
             :org-id="orgId"
             :coverURL="coverURL"
             :is-preview-mode="isPreviewMode"
+            :service-types="serviceTypes"
             @search="onServiceSearch"
             @filter:date="filterByDate"
           )
@@ -45,6 +47,8 @@
             :has-next-page="hasNextPage"
             :has-previous-page="hasPreviousPage"
             :is-preview-mode="isPreviewMode"
+            :service-types="serviceTypes"
+            :has-doctors="hasDoctors"
             @next="refetchListItems(activeTab, page + 1)"
             @previous="refetchListItems(activeTab, page - 1)"
           )
@@ -105,15 +109,16 @@
 </template>
 
 <script>
+import { isEmpty } from 'lodash';
 // - utils
 import { getServices } from '~/utils/axios';
 import { getOrganization } from '~/utils/axios/organizations';
 import headMeta from '~/utils/head-meta';
 // - services
 import { fetchClinicWebsiteDoctors } from '~/services/organization-members';
-import {  
+import {
   fetchClinicServices,
-  // fetchClinicServiceTypes 
+  fetchClinicServiceTypes,
 } from '~/services/services';
 // - components
 import AboutUs from '~/components/clinic-website/about-us';
@@ -198,11 +203,12 @@ export default {
       },
       page: 1,
       pageCount: 2,
+      // Data Models
       orgDoctors: [],
-      //
       clinicWebsite: {},
       activeTab: 'lab',
       filteredServices: [],
+      serviceTypes: [],
       // Items to show in tab list
       listItems: [],
       // total items
@@ -277,14 +283,6 @@ export default {
     testimonialDescription () {
       return this.clinicWebsite?.description;
     },
-    doctors () {
-      // return { data: this.clinicWebsite };
-      if (this.orgDoctors.length > 0) {
-        return this.orgDoctors;
-      } else {
-        return [];
-      }
-    },
     formattedDoctors () {
       return this.orgDoctors?.map((doctor) => {
         const practicingSince = doctor.personalDetails?.['doc_practicingSince'];
@@ -298,6 +296,10 @@ export default {
           yearsPracticing: yearsPracticing && `${yearsPracticing} years`,
         };
       });
+    },
+    hasDoctors () {
+      console.log('doctors', this.orgDoctors);
+      return !isEmpty(this.orgDoctors);
     },
     hasNextPage () {
       const nextSkip = this.itemsLimit * (this.page);
@@ -316,7 +318,7 @@ export default {
     },
   },
   async mounted () {
-    // await this.fetchServiceTypes();
+    await this.fetchServiceTypes();
     this.loading.page = false;
     await this.fetchServices({ type: 'diagnostic', subtype: 'lab' });
     await this.fetchDoctorMembers();
@@ -366,15 +368,14 @@ export default {
         this.loading.list = false;
       }
     },
-    // async fetchServiceTypes () {
-    //   try {
-    //     console.log('run this shit');
-    //     const { items } = await fetchClinicServiceTypes(this.$sdk, { facility: this.orgId });
-    //     console.log('types', items);
-    //   } catch (error) {
-    //     console.error(error);
-    //   }
-    // },
+    async fetchServiceTypes () {
+      try {
+        const { items } = await fetchClinicServiceTypes(this.$sdk, { facility: this.orgId });
+        this.serviceTypes = items || [];
+      } catch (error) {
+        console.error(error);
+      }
+    },
     async refetchListItems (tab, page = 1) {
       this.page = page;
       if (tab === 'doctors') {
