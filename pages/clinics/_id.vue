@@ -21,7 +21,10 @@
     v-container(fluid)
       v-row(justify="center")
         v-col(cols="12" md="3")
-          clinic-info(:clinic="clinicWebsite")
+          clinic-info(
+            :clinic="clinicWebsite"
+            :is-dummy-org="isDummyOrg"
+          )
           schedules(:schedules="groupedSchedules").mt-2
           usp(
             v-if="$isMobile"
@@ -139,9 +142,10 @@ export default {
     ServicesTabs,
     Usp,
   },
-  async asyncData ({ params, $sdk }) {
+  async asyncData ({ params, $sdk, redirect }) {
     try {
-      const clinicWebsite = await getOrganization({ id: params.id }, true) || [];
+      const clinicWebsite = await getOrganization({ id: params.id }, true) || {};
+      if (isEmpty(clinicWebsite)) redirect('/');
       const services = await getServices({ facility: params.id });
       return {
         clinicWebsite,
@@ -235,11 +239,11 @@ export default {
     isVerified () {
       return !!this.clinicWebsite?.websiteId;
     },
-    // isDummyOrg () {
-    //   const { tags } = this.clinicWebsite;
-    //   if (!tags?.length) return false;
-    //   return tags.includes('dummy');
-    // },
+    isDummyOrg () {
+      const { tags } = this.clinicWebsite;
+      if (!tags?.length) return false;
+      return tags.includes('dummy');
+    },
     picURL () {
       return this.clinicWebsite?.picURL || require('~/assets/images/clinics-website/hospital-thumbnail.jpg');
     },
@@ -298,7 +302,6 @@ export default {
       });
     },
     hasDoctors () {
-      console.log('doctors', this.orgDoctors);
       return !isEmpty(this.orgDoctors);
     },
     hasNextPage () {
