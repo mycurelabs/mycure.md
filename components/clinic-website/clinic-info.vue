@@ -2,6 +2,17 @@
   div.container
     v-row(justify="center" align="center")
       v-col(cols="12" sm="12").text-center
+        v-alert(
+          v-if="isDummyOrg"
+          dense
+          type="info"
+        )
+          v-row(no-gutters)
+            v-col.grow.text-left
+              | Do you own this business?
+          v-row(no-gutters)
+            v-col.grow.text-left
+              v-btn(small color="accent" @click="onClaim").text-none Claim now
         v-avatar(size="130")
           img(:src="picURL")
       v-col(cols="12").text-center
@@ -25,6 +36,10 @@ export default {
     clinic: {
       type: Object,
       default: () => ({}),
+    },
+    isDummyOrg: {
+      type: Boolean,
+      default: false,
     },
   },
   data () {
@@ -59,6 +74,13 @@ export default {
     description () {
       return this.clinic?.description ||
       `${this.clinic?.name} specializes in telehealth services. ${this.clinic?.name} telemedicine service is committed to provide medical consultation via video conference or phone call to our patient 24 hours a day 7 days a week.`;
+    },
+  },
+  methods: {
+    onClaim () {
+      const message = `Hi, I want to inquire about claiming ownership of ${this.name} in MYCURE Clinics`;
+      window.$crisp.push(['do', 'chat:toggle']);
+      window.$crisp.push(['do', 'message:send', ['text', message]]);
     },
   },
 };

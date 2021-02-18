@@ -4,6 +4,7 @@
       :picURL="picURL"
       :clinicName="clinicName"
       :is-verified="isVerified"
+      :is-preview-mode="isPreviewMode"
     )
     usp(
       v-model="searchText"
@@ -13,13 +14,17 @@
       :coverURL="coverURL"
       :is-preview-mode="isPreviewMode"
       :hide-search-bars="$isMobile"
+      :service-types="serviceTypes"
       @search="onServiceSearch"
       @filter:date="filterByDate"
     )
     v-container(fluid)
       v-row(justify="center")
         v-col(cols="12" md="3")
-          clinic-info(:clinic="clinicWebsite")
+          clinic-info(
+            :clinic="clinicWebsite"
+            :is-dummy-org="isDummyOrg"
+          )
           schedules(:schedules="groupedSchedules").mt-2
           usp(
             v-if="$isMobile"
@@ -31,6 +36,7 @@
             :org-id="orgId"
             :coverURL="coverURL"
             :is-preview-mode="isPreviewMode"
+            :service-types="serviceTypes"
             @search="onServiceSearch"
             @filter:date="filterByDate"
           )
@@ -44,6 +50,8 @@
             :has-next-page="hasNextPage"
             :has-previous-page="hasPreviousPage"
             :is-preview-mode="isPreviewMode"
+            :service-types="serviceTypes"
+            :has-doctors="hasDoctors"
             @next="refetchListItems(activeTab, page + 1)"
             @previous="refetchListItems(activeTab, page - 1)"
           )
@@ -104,13 +112,17 @@
 </template>
 
 <script>
+import { isEmpty } from 'lodash';
 // - utils
 import { getServices } from '~/utils/axios';
 import { getOrganization } from '~/utils/axios/organizations';
 import headMeta from '~/utils/head-meta';
 // - services
 import { fetchClinicWebsiteDoctors } from '~/services/organization-members';
-import { fetchClinicServices } from '~/services/services';
+import {
+  fetchClinicServices,
+  fetchClinicServiceTypes,
+} from '~/services/services';
 // - components
 import AboutUs from '~/components/clinic-website/about-us';
 import AppBar from '~/components/clinic-website/app-bar';
@@ -130,9 +142,10 @@ export default {
     ServicesTabs,
     Usp,
   },
-  async asyncData ({ params, $sdk }) {
+  async asyncData ({ params, $sdk, redirect }) {
     try {
-      const clinicWebsite = await getOrganization({ id: params.id }, true) || [];
+      const clinicWebsite = await getOrganization({ id: params.id }, true) || {};
+      if (isEmpty(clinicWebsite)) redirect('/');
       const services = await getServices({ facility: params.id });
       return {
         clinicWebsite,
@@ -194,11 +207,12 @@ export default {
       },
       page: 1,
       pageCount: 2,
+      // Data Models
       orgDoctors: [],
-      //
       clinicWebsite: {},
       activeTab: 'lab',
       filteredServices: [],
+      serviceTypes: [],
       // Items to show in tab list
       listItems: [],
       // total items
@@ -224,6 +238,11 @@ export default {
     },
     isVerified () {
       return !!this.clinicWebsite?.websiteId;
+    },
+    isDummyOrg () {
+      const { tags } = this.clinicWebsite;
+      if (!tags?.length) return false;
+      return tags.includes('dummy');
     },
     picURL () {
       return this.clinicWebsite?.picURL || require('~/assets/images/clinics-website/hospital-thumbnail.jpg');
@@ -268,14 +287,6 @@ export default {
     testimonialDescription () {
       return this.clinicWebsite?.description;
     },
-    doctors () {
-      // return { data: this.clinicWebsite };
-      if (this.orgDoctors.length > 0) {
-        return this.orgDoctors;
-      } else {
-        return [];
-      }
-    },
     formattedDoctors () {
       return this.orgDoctors?.map((doctor) => {
         const practicingSince = doctor.personalDetails?.['doc_practicingSince'];
@@ -289,6 +300,9 @@ export default {
           yearsPracticing: yearsPracticing && `${yearsPracticing} years`,
         };
       });
+    },
+    hasDoctors () {
+      return !isEmpty(this.orgDoctors);
     },
     hasNextPage () {
       const nextSkip = this.itemsLimit * (this.page);
@@ -307,6 +321,7 @@ export default {
     },
   },
   async mounted () {
+    await this.fetchServiceTypes();
     this.loading.page = false;
     await this.fetchServices({ type: 'diagnostic', subtype: 'lab' });
     await this.fetchDoctorMembers();
@@ -354,6 +369,14 @@ export default {
         console.error(error);
       } finally {
         this.loading.list = false;
+      }
+    },
+    async fetchServiceTypes () {
+      try {
+        const { items } = await fetchClinicServiceTypes(this.$sdk, { facility: this.orgId });
+        this.serviceTypes = items || [];
+      } catch (error) {
+        console.error(error);
       }
     },
     async refetchListItems (tab, page = 1) {

@@ -42,3 +42,8 @@ export const fetchClinicServices = async (sdk, opts) => {
 
   return { items: normalizePopulated(items), total };
 };
+
+export const fetchClinicServiceTypes = async (sdk, { facility }) => {
+  const { items, total } = await sdk.service('services').find({ facility, $distinct: 'type' });
+  return { items, total };
+};

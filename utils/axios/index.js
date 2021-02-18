@@ -255,7 +255,9 @@ export const signupFacility = async (opts) => {
           roles: [...opts.roles],
         },
         name: `${opts.firstName}'s Clinic`,
-        subscription: {},
+        subscription: {
+          onlineBooking: true,
+        },
       },
     };
     if (opts.otp) { payload.totpToken = opts.otp; }
