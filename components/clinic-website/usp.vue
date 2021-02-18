@@ -21,7 +21,7 @@
         v-col(v-if="searchResultsMode && !hideSearchBars" cols="10" md="2")
           v-select(
             v-model="serviceType"
-            :items="serviceTypes"
+            :items="availableServiceTypes"
             label="Service Type"
             item-text="text"
             item-value="value"
@@ -51,7 +51,7 @@
 
 <script>
 // utils
-import _ from 'lodash';
+import { debounce, isEmpty } from 'lodash';
 // components
 import SearchInsuranceContracts from './services/search-insurance-contracts';
 import DatePickerMenu from '~/components/commons/date-picker-menu';
@@ -98,23 +98,38 @@ export default {
       type: Boolean,
       default: false,
     },
+    serviceTypes: {
+      type: Array,
+      default: () => ([]),
+    },
   },
   data () {
-    this.serviceTypes = [
-      { text: 'Consult', value: 'clinical-consultation' },
-      { text: 'Laboratory', value: 'lab' },
-      { text: 'Imaging', value: 'imaging' },
-      { text: 'PE Package', value: 'pe' },
-      { text: 'Procedure', value: 'clinical-procedure' },
-    ];
+    this.serviceTypeMappings = {
+      'clinical-consultation': [{ text: 'Consult', value: 'clinical-consultation' }],
+      'clinical-procedure': [{ text: 'Procedure', value: 'clinical-procedure' }],
+      diagnostic: [
+        { text: 'Laboratory', value: 'lab' },
+        { text: 'Imaging', value: 'imaging' },
+      ],
+      pe: [{ text: 'PE Package', value: 'pe' }],
+      dental: [{ text: 'Dental', value: 'dental' }],
+    };
     return {
       searchFilters: {},
       serviceType: null,
       dateFilter: null,
-      debouncedSearch: _.debounce(this.search, 500),
+      debouncedSearch: debounce(this.search, 500),
     };
   },
   computed: {
+    availableServiceTypes () {
+      if (isEmpty(this.serviceTypes)) return [];
+      const types = [];
+      this.serviceTypes.map((type) => {
+        types.push(...this.serviceTypeMappings[type]);
+      });
+      return types;
+    },
     searchText: {
       get () {
         return this.value;
