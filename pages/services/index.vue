@@ -145,7 +145,7 @@ export default {
     async queryServicesName (searchText, page = 1) {
       const skip = this.servicesLimit * (page - 1);
       const query = {
-        name: { $regex: `^${searchText}`, $options: 'i' },
+        $search: searchText,
       };
 
       query.$limit = this.servicesLimit;
