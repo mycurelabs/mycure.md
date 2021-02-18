@@ -79,7 +79,7 @@ export default {
     isPreviewMode: {
       type: Boolean,
       default: false,
-    }
+    },
   },
   data () {
     return {
