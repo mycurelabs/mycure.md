@@ -76,6 +76,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    isPreviewMode: {
+      type: Boolean,
+      default: false,
+    }
   },
   data () {
     return {
@@ -87,9 +91,11 @@ export default {
   },
   methods: {
     goToPxpSignin () {
+      if (this.isPreviewMode) return;
       window.open(process.env.PX_PORTAL_URL, '_blank', 'noopener, noreferrer');
     },
     goToPxpSignup () {
+      if (this.isPreviewMode) return;
       window.open(`${process.env.PX_PORTAL_URL}/signup`, '_blank', 'noopener, noreferrer');
     },
   },

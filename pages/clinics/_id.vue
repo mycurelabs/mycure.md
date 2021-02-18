@@ -4,6 +4,7 @@
       :picURL="picURL"
       :clinicName="clinicName"
       :is-verified="isVerified"
+      :is-preview-mode="isPreviewMode"
     )
     usp(
       v-model="searchText"
@@ -110,7 +111,10 @@ import { getOrganization } from '~/utils/axios/organizations';
 import headMeta from '~/utils/head-meta';
 // - services
 import { fetchClinicWebsiteDoctors } from '~/services/organization-members';
-import { fetchClinicServices } from '~/services/services';
+import {  
+  fetchClinicServices,
+  // fetchClinicServiceTypes 
+} from '~/services/services';
 // - components
 import AboutUs from '~/components/clinic-website/about-us';
 import AppBar from '~/components/clinic-website/app-bar';
@@ -225,6 +229,11 @@ export default {
     isVerified () {
       return !!this.clinicWebsite?.websiteId;
     },
+    // isDummyOrg () {
+    //   const { tags } = this.clinicWebsite;
+    //   if (!tags?.length) return false;
+    //   return tags.includes('dummy');
+    // },
     picURL () {
       return this.clinicWebsite?.picURL || require('~/assets/images/clinics-website/hospital-thumbnail.jpg');
     },
@@ -307,6 +316,7 @@ export default {
     },
   },
   async mounted () {
+    // await this.fetchServiceTypes();
     this.loading.page = false;
     await this.fetchServices({ type: 'diagnostic', subtype: 'lab' });
     await this.fetchDoctorMembers();
@@ -356,6 +366,15 @@ export default {
         this.loading.list = false;
       }
     },
+    // async fetchServiceTypes () {
+    //   try {
+    //     console.log('run this shit');
+    //     const { items } = await fetchClinicServiceTypes(this.$sdk, { facility: this.orgId });
+    //     console.log('types', items);
+    //   } catch (error) {
+    //     console.error(error);
+    //   }
+    // },
     async refetchListItems (tab, page = 1) {
       this.page = page;
       if (tab === 'doctors') {
