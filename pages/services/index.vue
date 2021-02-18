@@ -9,11 +9,14 @@
           services
           @search-services="searchServices"
           @filter-services="filterServices"
+          @clear-services="clearServicesResults"
+          :allServices="allServicesList"
         )
     v-row(align="center" justify="center").results-summary
       v-col(cols="12" md="8")
-        h4(v-if="!searchQuery").font-weight-regular.font-20.text-left.ml-10 #[strong {{ searchedServicesLength }}] services found
-        h4(v-if="searchQuery").font-weight-regular.font-20.text-left.ml-10 #[strong {{ searchedServicesLength }}] results found on #[strong {{ searchQuery }}] in #[strong {{ locationQuery }}]
+        //- h4(v-if="!searchQuery").font-weight-regular.font-20.text-left.ml-10 #[strong {{ searchedServicesLength }}] services found
+        //- h4(v-if="searchQuery").font-weight-regular.font-20.text-left.ml-10 #[strong {{ searchedServicesLength }}] results found on #[strong {{ searchQuery }}] in #[strong {{ locationQuery }}]
+        h4 {{ resultsSummary }}
       v-col(cols="12")
         //- search results on initial page load
         template(v-if="initialServicesList.length > 1" v-for="initialService in initialServicesList")
@@ -24,11 +27,11 @@
             :initialServices="true"
             )
         v-pagination(
-            v-if="initialServicesList.length > 1"
-            v-model="initialServicesPage"
-            :length="initialServicesLength"
-            total-visible="10"
-          )
+          v-if="initialServicesList.length > 1"
+          v-model="initialServicesPage"
+          :length="initialServicesLength"
+          total-visible="10"
+        )
         //- services search results on search with text query
         template(v-if="servicesList" v-for="service in servicesList")
           results-card(
@@ -37,13 +40,14 @@
             :service="service"
             :locationText="locationQuery"
             :emptyLocationSearch="emptyLocationSearch"
+            @location-not-matched="clearServicesResults"
           )
         v-pagination(
-            v-if="servicesList.length > 1"
-            v-model="servicesPage"
-            :length="servicesLength"
-            total-visible="10"
-          )
+          v-if="servicesList.length > 1"
+          v-model="servicesPage"
+          :length="servicesLength"
+          total-visible="10"
+        )
         //- doctors search results on search with text query
         template(v-if="doctorsList" v-for="doctor in doctorsList")
           results-card(isDoctor)
@@ -67,6 +71,7 @@ export default {
     return {
       loading: true,
       initialServicesList: [],
+      allServicesList: [],
       initialOrgsList: [],
       servicesList: [],
       doctorsList: [],
@@ -98,7 +103,14 @@ export default {
       return Math.ceil(this.servicesTotal / this.servicesLimit) || 0;
     },
     emptyLocationSearch () {
-      return this.locationQuery === '';
+      return !this.locationQuery;
+    },
+    resultsSummary () {
+      if (!this.searchQuery && this.initialServicesList < 1) {
+        return 'No results available. Try searching for a different keyword or location.';
+      } else {
+        return `${this.searchedServicesLength} result${this.searchedServicesLength > 1 || this.searchedServicesLength === 0 ? 's' : ''} found for ${this.searchQuery} ${this.locationQuery ? `in ${this.locationQuery}` : ''}`;
+      }
     },
   },
   watch: {
@@ -112,6 +124,7 @@ export default {
   mounted () {
     this.loading = false;
     this.fetchAllServices();
+    this.fetchAllServicesNotPaginated();
   },
   methods: {
     fetchSearchQuery (searchText) {
@@ -132,10 +145,17 @@ export default {
       if (!initialServices?.length) return initialServices;
       this.initialServicesList = initialServices;
     },
+    async fetchAllServicesNotPaginated () {
+      this.allServicesList = [];
+      const { items } = await this.$sdk.service('services').find();
+      const allServices = items;
+      if (!allServices?.length) return allServices;
+      this.allServicesList = allServices;
+    },
     async queryServicesName (searchText, page = 1) {
       const skip = this.servicesLimit * (page - 1);
       const query = {
-        name: { $regex: `^${searchText}`, $options: 'i' },
+        $search: searchText,
       };
 
       query.$limit = this.servicesLimit;
@@ -165,6 +185,11 @@ export default {
     },
     filterServices (filterLabel) {
       this.filterLabel = filterLabel;
+    },
+    clearServicesResults () {
+      this.initialServicesList = [];
+      this.servicesList = [];
+      this.searchQuery = null;
     },
   },
 };

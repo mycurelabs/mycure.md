@@ -13,14 +13,19 @@
                   img(
                     alt="Doctor Profile"
                   )
-                v-avatar(
-                  v-if="isService"
-                  :size="!$isMobile ? 146 : 80"
+                img(
+                  src="~/assets/images/MYCURE-icon.png"
+                  alt="Services"
+                  :width="!$isMobile ? 146 : 80"
                 )
-                  img(
-                    src="~/assets/images/MYCURE-icon.png"
-                    alt="Services"
-                  )
+                //- v-avatar(
+                //-   v-if="isService"
+                //-   :size="!$isMobile ? 146 : 80"
+                //- )
+                //-   img(
+                //-     src="~/assets/images/MYCURE-icon.png"
+                //-     alt="Services"
+                //-   )
                 div(v-if="isDoctor")
                   a(href="#") View Website
               v-col(cols="6" md="5").ml-3.text-left
@@ -163,17 +168,21 @@ export default {
     locationMatch () {
       const location = this.locationText;
       if (location) {
-        // return location?.filter(str => str.toLowerCase().includes(this.serviceOrganization[0].address?.city?.toLowerCase()));
         return this.serviceOrganization[0]?.address?.city.toLowerCase().includes(location.toLowerCase());
       }
 
       return false;
     },
   },
+  watch: {
+    locationMatch (val) {
+      if (!val) {
+        this.$emit('location-not-matched');
+      }
+    },
+  },
   mounted () {
     this.fetchOrganization();
-    console.log('location', this.locationText);
-    console.log('locationMatch', this.emptyLocationSearch);
   },
   methods: {
     async fetchOrganization () {

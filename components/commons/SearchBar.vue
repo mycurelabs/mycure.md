@@ -11,11 +11,29 @@
           v-col(cols="12" md="10").d-flex.mt-2.justify-space-between
             v-col(md="8").search-fields
               v-toolbar-title.font-14.ml-4.text-left.font-weight-bold Services
-                v-text-field(
+                //- v-text-field(
+                //-   v-model="serviceSearchQuery"
+                //-   placeholder="Consultation (Virtual)"
+                //-   clearable
+                //-   @click:clear="clearTextfield"
+                //-   v-on:keyup.enter="searchServices(serviceSearchQuery, serviceSearchLocation)"
+                //- ).font-14.font-weight-regular
+                v-autocomplete(
                   v-model="serviceSearchQuery"
-                  placeholder="Consultation (Virtual)"
+                  :items="servicesSuggestions"
+                  color="white"
+                  item-text="name"
                   clearable
+                  v-on:keyup.enter="searchServices(serviceSearchQuery, serviceSearchLocation)"
                 ).font-14.font-weight-regular
+                  template(slot="item" slot-scope="{ item, tile }")
+                    div.d-flex.suggestion-item
+                      div
+                        p {{ item.name }}
+                      v-spacer
+                      div
+                        p.grey--text {{ item.type }}
+                      //- #[span.ml-auto.text-right.grey--text {{ item.type }}]
             v-divider(inset vertical).mt-6.mb-8
             v-col(md="4").search-fields
               v-toolbar-title.font-14.ml-4.text-left.font-weight-bold Location
@@ -23,6 +41,7 @@
                   placeholder="Anywhere"
                   v-model="serviceSearchLocation"
                   clearable
+                  v-on:keyup.enter="searchServices(serviceSearchQuery, serviceSearchLocation)"
                 ).font-14.font-weight-regular
           v-spacer
           v-btn(
@@ -86,6 +105,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    allServices: {
+      type: Array,
+      default: () => [],
+    },
   },
   data () {
     return {
@@ -95,8 +118,20 @@ export default {
       defaultSelected: 'Laboratory',
     };
   },
-  watch () {
-
+  computed: {
+    servicesSuggestions () {
+      // const results = this.allServices.map(service => service.name);
+      const results = this.allServices.map(service => ({
+        name: service.name,
+        type: service.type,
+      }));
+      return results;
+    },
+  },
+  watch: {
+    serviceSearchQuery (val) {
+      (val === null || val === undefined) && this.$emit('clear-services');
+    },
   },
   methods: {
     searchServices (searchQuery, locationQuery) {
@@ -105,6 +140,10 @@ export default {
     selectFilter (label) {
       this.filterLabel = label;
       this.$emit('filter-services', label);
+    },
+    clearTextfield () {
+      this.serviceSearchLocation = '';
+      this.$emit('clear-services');
     },
   },
 };
@@ -143,5 +182,9 @@ export default {
 
 .search-select >>> .v-select__selection--comma {
   color: #FFFFFF !important;
+}
+
+.suggestion-item {
+  flex: auto;
 }
 </style>
