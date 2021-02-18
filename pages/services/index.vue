@@ -10,6 +10,7 @@
           @search-services="searchServices"
           @filter-services="filterServices"
           @clear-services="clearServicesResults"
+          :allServices="allServicesList"
         )
     v-row(align="center" justify="center").results-summary
       v-col(cols="12" md="8")
@@ -70,6 +71,7 @@ export default {
     return {
       loading: true,
       initialServicesList: [],
+      allServicesList: [],
       initialOrgsList: [],
       servicesList: [],
       doctorsList: [],
@@ -122,6 +124,7 @@ export default {
   mounted () {
     this.loading = false;
     this.fetchAllServices();
+    this.fetchAllServicesNotPaginated();
   },
   methods: {
     fetchSearchQuery (searchText) {
@@ -141,6 +144,13 @@ export default {
       const initialServices = items;
       if (!initialServices?.length) return initialServices;
       this.initialServicesList = initialServices;
+    },
+    async fetchAllServicesNotPaginated () {
+      this.allServicesList = [];
+      const { items } = await this.$sdk.service('services').find();
+      const allServices = items;
+      if (!allServices?.length) return allServices;
+      this.allServicesList = allServices;
     },
     async queryServicesName (searchText, page = 1) {
       const skip = this.servicesLimit * (page - 1);
@@ -179,6 +189,7 @@ export default {
     clearServicesResults () {
       this.initialServicesList = [];
       this.servicesList = [];
+      this.searchQuery = null;
     },
   },
 };
