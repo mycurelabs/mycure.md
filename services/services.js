@@ -3,9 +3,9 @@ import { normalizePopulated } from '~/utils/services';
 
 export const fetchClinicServices = async (sdk, opts) => {
   const query = {
-    facility: opts.facility,
-    type: opts.type,
-    subtype: opts.subtype,
+    ...opts.facility && { facility: opts.facility },
+    ...opts.type && { type: opts.type },
+    ...opts.subtype && { subtype: opts.subtype },
     $limit: opts.limit || 10,
     $skip: opts.skip,
     $populate: {

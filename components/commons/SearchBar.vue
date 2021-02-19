@@ -18,13 +18,13 @@
                 //-   @click:clear="clearTextfield"
                 //-   v-on:keyup.enter="searchServices(serviceSearchQuery, serviceSearchLocation)"
                 //- ).font-14.font-weight-regular
-                v-autocomplete(
+                v-combobox(
                   v-model="serviceSearchQuery"
                   :items="servicesSuggestions"
                   color="white"
                   item-text="name"
                   clearable
-                  v-on:keyup.enter="searchServices(serviceSearchQuery, serviceSearchLocation)"
+                  @keyup.enter="searchServices(serviceSearchQuery, serviceSearchLocation)"
                 ).font-14.font-weight-regular
                   template(slot="item" slot-scope="{ item, tile }")
                     div.d-flex.suggestion-item
@@ -32,7 +32,7 @@
                         p {{ item.name }}
                       v-spacer
                       div
-                        p.grey--text {{ item.type }}
+                        p.grey--text {{ serviceTypeMappings[item.type] || ''}}
                       //- #[span.ml-auto.text-right.grey--text {{ item.type }}]
             v-divider(inset vertical).mt-6.mb-8
             v-col(md="4").search-fields
@@ -41,7 +41,7 @@
                   placeholder="Anywhere"
                   v-model="serviceSearchLocation"
                   clearable
-                  v-on:keyup.enter="searchServices(serviceSearchQuery, serviceSearchLocation)"
+                  @keyup.enter="searchServices(serviceSearchQuery, serviceSearchLocation)"
                 ).font-14.font-weight-regular
           v-spacer
           v-btn(
@@ -111,8 +111,15 @@ export default {
     },
   },
   data () {
+    this.serviceTypeMappings = {
+      'clinical-consultation': 'Consult',
+      'clinical-procedure': 'Procedure',
+      diagnostic: 'Diagnostic',
+      pe: 'PE Package',
+      dental: 'Dental',
+    };
     return {
-      serviceSearchQuery: '',
+      serviceSearchQuery: null,
       serviceSearchLocation: '',
       filterLabel: '',
       defaultSelected: 'Laboratory',
@@ -120,12 +127,7 @@ export default {
   },
   computed: {
     servicesSuggestions () {
-      // const results = this.allServices.map(service => service.name);
-      const results = this.allServices.map(service => ({
-        name: service.name,
-        type: service.type,
-      }));
-      return results;
+      return this.allServices;
     },
   },
   watch: {

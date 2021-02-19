@@ -55,10 +55,12 @@
 </template>
 
 <script>
+import { uniqBy } from 'lodash';
 import AppBar from '~/components/home/AppBar';
 import MyFooter from '~/components/home/MyFooter';
 import ResultsCard from '~/components/services/ResultsCard';
 import SearchBar from '~/components/commons/SearchBar';
+import { fetchClinicServices } from '~/services/services';
 export default {
   layout: 'home',
   components: {
@@ -109,7 +111,8 @@ export default {
       if (!this.searchQuery && this.initialServicesList < 1) {
         return 'No results available. Try searching for a different keyword or location.';
       } else {
-        return `${this.searchedServicesLength} result${this.searchedServicesLength > 1 || this.searchedServicesLength === 0 ? 's' : ''} found for ${this.searchQuery} ${this.locationQuery ? `in ${this.locationQuery}` : ''}`;
+        const serviceName = (typeof (this.searchQuery) === 'object' ? this.searchQuery.name : this.searchQuery) || 'the service';
+        return `${this.searchedServicesLength} result${this.searchedServicesLength > 1 || this.searchedServicesLength === 0 ? 's' : ''} found for ${serviceName} ${this.locationQuery ? `in ${this.locationQuery}` : ''}`;
       }
     },
   },
@@ -127,9 +130,9 @@ export default {
     this.fetchAllServicesNotPaginated();
   },
   methods: {
-    fetchSearchQuery (searchText) {
-      this.queryServicesName(searchText);
-      this.queryServicesSpecialization(searchText);
+    fetchSearchQuery (searchQuery) {
+      this.queryServicesName(searchQuery);
+      this.queryServicesSpecialization(searchQuery);
     },
     async fetchAllServices (page = 1) {
       this.initialServicesList = [];
@@ -152,21 +155,27 @@ export default {
       if (!allServices?.length) return allServices;
       this.allServicesList = allServices;
     },
-    async queryServicesName (searchText, page = 1) {
+    async queryServicesName (searchQuery, page = 1) {
       const skip = this.servicesLimit * (page - 1);
-      const query = {
-        $search: searchText,
-      };
 
-      query.$limit = this.servicesLimit;
-      query.$skip = skip;
-
-      const { items, total } = await this.$sdk.service('services').find(query);
+      let searchText = searchQuery;
+      let selection = null;
+      if (typeof (searchText) === 'object') {
+        searchText = searchQuery.name;
+        selection = searchQuery;
+      }
+      const { items, total } = await fetchClinicServices(this.$sdk, {
+        searchText,
+        skip,
+        limit: this.servicesLimit,
+      });
 
       this.servicesTotal = total;
-      const services = items;
-      if (!services?.length) return services;
-      this.servicesList = services;
+      let services = items || [];
+      if (selection) {
+        services = uniqBy([selection].concat(services), 'id');
+      }
+      this.servicesList = services || [];
     },
     async queryServicesSpecialization (searchText) {
       const query = {

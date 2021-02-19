@@ -48,6 +48,7 @@
             span {{ coverage.name || 'HMO' }}
       v-col(v-if="!isDoctor && !readOnly").grow.text-right
         h2(v-if="price") PHP {{ price }}
+        h3(v-else).font-italic No price stated
         br
         br
         br
