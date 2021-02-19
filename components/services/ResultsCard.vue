@@ -173,6 +173,12 @@ export default {
 
       return false;
     },
+    organization () {
+      return this.service.facility;
+    },
+    serviceId () {
+      return this.service.id;
+    },
   },
   watch: {
     locationMatch (val) {
@@ -191,11 +197,10 @@ export default {
       });
       if (items) {
         this.serviceOrganization = items;
-        console.log('items', items);
       }
     },
     openPXPortal () {
-      window.open(`${process.env.PX_PORTAL_URL}/physical-appointment/step-1?organization=5f3f8084c05456557164c3d3&service=5fa121c45491b607c5778bdb`, '_blank', 'noopener, noreferrer');
+      window.open(`${process.env.PX_PORTAL_URL}/appointments/step-1?organization=${this.organization}&service=${this.serviceId}`, '_blank', 'noopener, noreferrer');
     },
   },
 };
