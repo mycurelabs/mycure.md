@@ -67,7 +67,7 @@
       v-row(justify="center" align="center" no-gutters)
         v-col(
           cols="12"
-          md="5"
+          md="4"
           align="start"
         )
           div.d-flexDirectory
@@ -80,26 +80,34 @@
             ).ml-2
           div
             p.ml-5 &#169;{{new Date().getFullYear()}} All Rights Reserved.
-        v-col(cols="12" md="5" align="end")
-          span Share the love:
-          template(v-for="(icon, key) in icons")
+        v-col(cols="12" md="4" align="center")
+          v-row
+            nuxt-link(to="/terms") Terms of Use
+            | &nbsp;&nbsp;|&nbsp;&nbsp;
+            nuxt-link(to="/privacy-policy") Privacy Policy
+            | &nbsp;&nbsp;|&nbsp;&nbsp;
             a(
-              :href="icon.link"
+              :href="feedbackLink"
               target="_blank"
               rel="noopener noreferrer"
-            ).pl-3
-              v-icon.font-30 {{ icon.icon }}
+            ) Send us your feedback
+        v-col(cols="12" md="4" align="end")
+          nuxt-link(to="/signup/health-facilities") Create my own Health Facility Website
     v-footer(v-else color="primary")
       v-row(justify="center" align="center")
         v-col(cols="12" align="center")
-          span.white--text Share the love:
-          template(v-for="(icon, key) in icons")
+          div.d-flex.justify-center.white--text
+            nuxt-link(to="/terms").white--text Terms of Use
+            | &nbsp;&nbsp;|&nbsp;&nbsp;
+            nuxt-link(to="/privacy-policy").white--text Privacy Policy
+            | &nbsp;&nbsp;|&nbsp;&nbsp;
             a(
-              :href="icon.link"
+              :href="feedbackLink"
               target="_blank"
               rel="noopener noreferrer"
-            ).pl-3
-              v-icon(color="white").font-30 {{ icon.icon }}
+            ).white--text Send us your feedback
+        v-col(cols="10" align="center")
+          nuxt-link(to="/signup/health-facilities").white--text Create my own Health Facility Website
         v-col(cols="10" align="center")
           div.d-flex.justify-center
             img(
@@ -108,7 +116,7 @@
               alt="MYCURE"
               @click="$nuxt.$router.push({ name: 'index' })"
             )
-            p.white--text.font-14.ml-4.mt-1 &#169;{{new Date().getFullYear()}} All Rights Reserved. asd
+            p.white--text.font-14.ml-4.mt-1 &#169;{{new Date().getFullYear()}} All Rights Reserved.
 </template>
 
 <script>
@@ -156,6 +164,7 @@ export default {
     }
   },
   data () {
+    this.feedbackLink = 'https://airtable.com/shrgkdR8ASEdbQ1Pa';
     this.icons = [
       { icon: 'mdi-facebook', link: 'https://facebook.com/' },
       { icon: 'mdi-twitter', link: 'https://twitter.com/' },
@@ -311,6 +320,7 @@ export default {
     },
   },
   async mounted () {
+    this.$vuetify.theme.dark = false;
     await this.fetchServiceTypes();
     this.loading.page = false;
     await this.fetchServices({ type: 'diagnostic', subtype: 'lab' });
