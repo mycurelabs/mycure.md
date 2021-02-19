@@ -256,16 +256,6 @@ export default {
     servicesOffered () {
       return this.services;
     },
-    sortedServices () {
-      if (!this.services) return null;
-      return [...this.services].sort((a, b) => a.price - b.price);
-    },
-    minimumServicePrice () {
-      return this.sortedServices?.shift()?.price;
-    },
-    maximumServicePrice () {
-      return this.sortedServices?.pop()?.price;
-    },
     schedules () {
       return this.clinicWebsite?.mf_schedule || []; // eslint-disable-line
     },
@@ -363,8 +353,7 @@ export default {
         });
         this.servicesTotal = total;
         // - TODO: Confirm if there are specified schedules for services. Right now the clinic schedule is assigned
-        this.filteredServices = items.filter(item => item.price)
-          .map(item => ({ ...item, schedules: this.groupedSchedules }));
+        this.filteredServices = items.map(item => ({ ...item, schedules: this.groupedSchedules }));
       } catch (error) {
         console.error(error);
       } finally {
