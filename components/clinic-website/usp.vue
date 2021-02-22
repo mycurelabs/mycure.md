@@ -6,12 +6,12 @@
     v-container(fluid).pa-0
       v-row(align="center" justify="center" :no-gutters="noGutters").content-container.mx-1
         v-col(cols="10" md="6").text-center
-          h1(v-if="(!searchResultsMode || $isMobile) && !hideBanner" :class="{ 'font-30': $isMobile }").white--text Consult online with #[br] MYCURE Health Center today
+          h1(v-if="(!searchResultsMode || $isMobile) && !hideBanner" :class="{ 'font-30': $isMobile }").white--text Easily book your next visit to #[br] {{ name }}
           v-text-field(
             v-if="!hideSearchBars"
             solo
             clearable
-            placeholder="Search MYCURE Health Center’s doctors, diagnostic tests, and services"
+            :placeholder="`Search ${name}’s doctors, diagnostic tests, and services`"
             v-model="searchText"
             :disabled="isPreviewMode"
             @keyup.enter="debouncedSearch"
@@ -72,7 +72,7 @@ export default {
     },
     name: {
       type: String,
-      default: 'Awesome Hospital',
+      default: 'the health center',
     },
     orgId: {
       type: String,
