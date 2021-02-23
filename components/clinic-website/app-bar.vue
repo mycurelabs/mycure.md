@@ -17,7 +17,10 @@
             )
           v-col.pl-2
             h3 {{ clinicName }}
-            span Telemedicine
+            div(v-if="isVerified")
+              i Verified&nbsp;
+              v-avatar(color="primary" size="20")
+                v-icon(dark small) mdi-check
           v-spacer
           v-btn(
             depressed
@@ -41,7 +44,10 @@
             )
           div.pl-2
             h3.font-12 {{ clinicName }}
-            span.font-12 Telemedicine
+            div(v-if="isVerified")
+              i.font-12 Verified&nbsp;
+              v-avatar(color="primary" size="20")
+                v-icon(dark small) mdi-check
           v-spacer
           div
             v-menu
@@ -62,13 +68,17 @@ export default {
       type: String,
       default: '',
     },
-    consultIDS: {
-      type: Object,
-      default: () => ({}),
-    },
     clinicName: {
       type: String,
       default: '',
+    },
+    isVerified: {
+      type: Boolean,
+      default: false,
+    },
+    isPreviewMode: {
+      type: Boolean,
+      default: false,
     },
   },
   data () {
@@ -76,24 +86,16 @@ export default {
       loading: true,
     };
   },
-  computed: {
-    goToConsult () {
-      const docUID = this.consultIDS?.docUID;
-      const clinicID = this.consultIDS?.clinicID;
-      if (!docUID) {
-        return `${process.env.PX_PORTAL_URL}/clinic-appointment/step-1?facility=${clinicID}`;
-      }
-      return `${process.env.PX_PORTAL_URL}/clinic-appointment/step-1?doctor=${docUID}&facility=${clinicID}`;
-    },
-  },
   mounted () {
     this.loading = false;
   },
   methods: {
     goToPxpSignin () {
+      if (this.isPreviewMode) return;
       window.open(process.env.PX_PORTAL_URL, '_blank', 'noopener, noreferrer');
     },
     goToPxpSignup () {
+      if (this.isPreviewMode) return;
       window.open(`${process.env.PX_PORTAL_URL}/signup`, '_blank', 'noopener, noreferrer');
     },
   },

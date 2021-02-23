@@ -1,6 +1,11 @@
 <template lang="pug">
   div(v-if="!loading.page").py-0
-    app-bar(:picURL="picURL" :clinicName="clinicName")
+    app-bar(
+      :picURL="picURL"
+      :clinicName="clinicName"
+      :is-verified="isVerified"
+      :is-preview-mode="isPreviewMode"
+    )
     usp(
       v-model="searchText"
       :search-results-mode="searchResultsMode"
@@ -9,13 +14,17 @@
       :coverURL="coverURL"
       :is-preview-mode="isPreviewMode"
       :hide-search-bars="$isMobile"
+      :service-types="serviceTypes"
       @search="onServiceSearch"
       @filter:date="filterByDate"
     )
     v-container(fluid)
       v-row(justify="center")
         v-col(cols="12" md="3")
-          clinic-info(:clinic="clinicWebsite")
+          clinic-info(
+            :clinic="clinicWebsite"
+            :is-dummy-org="isDummyOrg"
+          )
           schedules(:schedules="groupedSchedules").mt-2
           usp(
             v-if="$isMobile"
@@ -27,6 +36,7 @@
             :org-id="orgId"
             :coverURL="coverURL"
             :is-preview-mode="isPreviewMode"
+            :service-types="serviceTypes"
             @search="onServiceSearch"
             @filter:date="filterByDate"
           )
@@ -34,19 +44,19 @@
           services-tabs(
             v-if="!searchResultsMode"
             v-model="activeTab"
-            read-only
             :items="listItems"
             :organization="orgId"
             :loading="loading.list"
             :has-next-page="hasNextPage"
             :has-previous-page="hasPreviousPage"
             :is-preview-mode="isPreviewMode"
+            :service-types="serviceTypes"
+            :has-doctors="hasDoctors"
             @next="refetchListItems(activeTab, page + 1)"
             @previous="refetchListItems(activeTab, page - 1)"
           )
           services-search-results(
             v-else
-            read-only
             :organization="orgId"
             :loading="loading.list"
             :items="searchResults"
@@ -57,7 +67,7 @@
       v-row(justify="center" align="center" no-gutters)
         v-col(
           cols="12"
-          md="5"
+          md="4"
           align="start"
         )
           div.d-flexDirectory
@@ -70,26 +80,34 @@
             ).ml-2
           div
             p.ml-5 &#169;{{new Date().getFullYear()}} All Rights Reserved.
-        v-col(cols="12" md="5" align="end")
-          span Share the love:
-          template(v-for="(icon, key) in icons")
+        v-col(cols="12" md="4" align="center")
+          v-row
+            nuxt-link(to="/terms") Terms of Use
+            | &nbsp;&nbsp;|&nbsp;&nbsp;
+            nuxt-link(to="/privacy-policy") Privacy Policy
+            | &nbsp;&nbsp;|&nbsp;&nbsp;
             a(
-              :href="icon.link"
+              :href="feedbackLink"
               target="_blank"
               rel="noopener noreferrer"
-            ).pl-3
-              v-icon.font-30 {{ icon.icon }}
+            ) Send us your feedback
+        v-col(cols="12" md="4" align="end")
+          nuxt-link(to="/signup/health-facilities") Create my own Health Facility Website
     v-footer(v-else color="primary")
       v-row(justify="center" align="center")
         v-col(cols="12" align="center")
-          span.white--text Share the love:
-          template(v-for="(icon, key) in icons")
+          div.d-flex.justify-center.white--text
+            nuxt-link(to="/terms").white--text Terms of Use
+            | &nbsp;&nbsp;|&nbsp;&nbsp;
+            nuxt-link(to="/privacy-policy").white--text Privacy Policy
+            | &nbsp;&nbsp;|&nbsp;&nbsp;
             a(
-              :href="icon.link"
+              :href="feedbackLink"
               target="_blank"
               rel="noopener noreferrer"
-            ).pl-3
-              v-icon(color="white").font-30 {{ icon.icon }}
+            ).white--text Send us your feedback
+        v-col(cols="10" align="center")
+          nuxt-link(to="/signup/health-facilities").white--text Create my own Health Facility Website
         v-col(cols="10" align="center")
           div.d-flex.justify-center
             img(
@@ -98,29 +116,28 @@
               alt="MYCURE"
               @click="$nuxt.$router.push({ name: 'index' })"
             )
-            p.white--text.font-14.ml-4.mt-1 &#169;{{new Date().getFullYear()}} All Rights Reserved. asd
+            p.white--text.font-14.ml-4.mt-1 &#169;{{new Date().getFullYear()}} All Rights Reserved.
 </template>
 
 <script>
+import { isEmpty } from 'lodash';
 // - utils
-import { getMembership, getServices } from '~/utils/axios';
-import {
-  getOrganization,
-} from '~/utils/axios/organizations';
+import { getServices } from '~/utils/axios';
+import { getOrganization } from '~/utils/axios/organizations';
 import headMeta from '~/utils/head-meta';
 // - services
 import { fetchClinicWebsiteDoctors } from '~/services/organization-members';
-import { fetchClinicServices } from '~/services/services';
+import {
+  fetchClinicServices,
+  fetchClinicServiceTypes,
+} from '~/services/services';
 // - components
 import AboutUs from '~/components/clinic-website/about-us';
 import AppBar from '~/components/clinic-website/app-bar';
 import ClinicInfo from '~/components/clinic-website/clinic-info';
-import DoctorCards from '~/components/clinic-website/doctor-card';
-import DoctorsList from '~/components/clinic-website/doctors-list';
 import Schedules from '~/components/clinic-website/schedules';
 import ServicesSearchResults from '~/components/clinic-website/services/search-results';
 import ServicesTabs from '~/components/clinic-website/services/tabs';
-import Specializations from '~/components/clinic-website/specialization-expansion';
 import Usp from '~/components/clinic-website/usp';
 export default {
   layout: 'clinic-website',
@@ -128,23 +145,18 @@ export default {
     AboutUs,
     AppBar,
     ClinicInfo,
-    DoctorCards,
-    DoctorsList,
     Schedules,
     ServicesSearchResults,
     ServicesTabs,
-    Specializations,
     Usp,
   },
-  async asyncData ({ params, $sdk }) {
+  async asyncData ({ params, $sdk, redirect }) {
     try {
-      const clinicWebsite = await getOrganization({ id: params.id }, true) || [];
-      const membership = await getMembership({ organization: params.id });
-      const member = membership[0];
+      const clinicWebsite = await getOrganization({ id: params.id }, true) || {};
+      if (isEmpty(clinicWebsite)) redirect('/');
       const services = await getServices({ facility: params.id });
       return {
         clinicWebsite,
-        member,
         services,
       };
     } catch (error) {
@@ -152,6 +164,7 @@ export default {
     }
   },
   data () {
+    this.feedbackLink = 'https://airtable.com/shrgkdR8ASEdbQ1Pa';
     this.icons = [
       { icon: 'mdi-facebook', link: 'https://facebook.com/' },
       { icon: 'mdi-twitter', link: 'https://twitter.com/' },
@@ -203,11 +216,12 @@ export default {
       },
       page: 1,
       pageCount: 2,
+      // Data Models
       orgDoctors: [],
-      //
       clinicWebsite: {},
       activeTab: 'lab',
       filteredServices: [],
+      serviceTypes: [],
       // Items to show in tab list
       listItems: [],
       // total items
@@ -231,6 +245,14 @@ export default {
     orgId () {
       return this.clinicWebsite.id;
     },
+    isVerified () {
+      return !!this.clinicWebsite?.websiteId;
+    },
+    isDummyOrg () {
+      const { tags } = this.clinicWebsite;
+      if (!tags?.length) return false;
+      return tags.includes('dummy');
+    },
     picURL () {
       return this.clinicWebsite?.picURL || require('~/assets/images/clinics-website/hospital-thumbnail.jpg');
     },
@@ -242,16 +264,6 @@ export default {
     },
     servicesOffered () {
       return this.services;
-    },
-    sortedServices () {
-      if (!this.services) return null;
-      return [...this.services].sort((a, b) => a.price - b.price);
-    },
-    minimumServicePrice () {
-      return this.sortedServices?.shift()?.price;
-    },
-    maximumServicePrice () {
-      return this.sortedServices?.pop()?.price;
     },
     schedules () {
       return this.clinicWebsite?.mf_schedule || []; // eslint-disable-line
@@ -274,17 +286,6 @@ export default {
     testimonialDescription () {
       return this.clinicWebsite?.description;
     },
-    doctors () {
-      // return { data: this.clinicWebsite };
-      if (this.orgDoctors.length > 0) {
-        return this.orgDoctors;
-      } else {
-        return [];
-      }
-    },
-    consultIDS () {
-      return { docUID: this.member?.uid, clinicID: this.orgId };
-    },
     formattedDoctors () {
       return this.orgDoctors?.map((doctor) => {
         const practicingSince = doctor.personalDetails?.['doc_practicingSince'];
@@ -298,6 +299,9 @@ export default {
           yearsPracticing: yearsPracticing && `${yearsPracticing} years`,
         };
       });
+    },
+    hasDoctors () {
+      return !isEmpty(this.orgDoctors);
     },
     hasNextPage () {
       const nextSkip = this.itemsLimit * (this.page);
@@ -316,6 +320,8 @@ export default {
     },
   },
   async mounted () {
+    this.$vuetify.theme.dark = false;
+    await this.fetchServiceTypes();
     this.loading.page = false;
     await this.fetchServices({ type: 'diagnostic', subtype: 'lab' });
     await this.fetchDoctorMembers();
@@ -357,12 +363,19 @@ export default {
         });
         this.servicesTotal = total;
         // - TODO: Confirm if there are specified schedules for services. Right now the clinic schedule is assigned
-        this.filteredServices = items.filter(item => item.price)
-          .map(item => ({ ...item, schedules: this.groupedSchedules }));
+        this.filteredServices = items.map(item => ({ ...item, schedules: this.groupedSchedules }));
       } catch (error) {
         console.error(error);
       } finally {
         this.loading.list = false;
+      }
+    },
+    async fetchServiceTypes () {
+      try {
+        const { items } = await fetchClinicServiceTypes(this.$sdk, { facility: this.orgId });
+        this.serviceTypes = items || [];
+      } catch (error) {
+        console.error(error);
       }
     },
     async refetchListItems (tab, page = 1) {
