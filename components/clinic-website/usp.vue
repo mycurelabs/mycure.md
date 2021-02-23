@@ -8,7 +8,7 @@
         v-col(cols="10" md="6").text-center
           h1(v-if="(!searchResultsMode || $isMobile) && !hideBanner" :class="{ 'font-30': $isMobile }").white--text Easily book your next visit to #[br] {{ name }}
           v-text-field(
-            v-if="(searchResultsMode && !hideSearchBars) || (!searchResultsMode && $isMobile)"
+            v-if="isInitialSearchBarVisible"
             solo
             clearable
             :placeholder="`Search ${name}’s doctors, diagnostic tests, and services`"
@@ -141,6 +141,11 @@ export default {
     backgroundStyle () {
       const overlay = 'linear-gradient(270deg, rgba(0, 0, 0, .5), rgba(0, 0, 0, .5))';
       return { 'background-image': `${overlay}, url(${this.coverURL})` };
+    },
+    isInitialSearchBarVisible () {
+      if (this.$isMobile && !this.searchResultsMode) return true;
+      if (!this.$isMobile) return true;
+      return false;
     },
   },
   watch: {
