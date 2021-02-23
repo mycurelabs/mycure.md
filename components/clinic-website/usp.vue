@@ -8,7 +8,7 @@
         v-col(cols="10" md="6").text-center
           h1(v-if="(!searchResultsMode || $isMobile) && !hideBanner" :class="{ 'font-30': $isMobile }").white--text Easily book your next visit to #[br] {{ name }}
           v-text-field(
-            v-if="!hideSearchBars"
+            v-if="(searchResultsMode && !hideSearchBars) || (!searchResultsMode && $isMobile)"
             solo
             clearable
             :placeholder="`Search ${name}’s doctors, diagnostic tests, and services`"
@@ -18,7 +18,7 @@
           ).mt-3.search-bar
             template(v-slot:append)
               v-icon(color="white").search-icon mdi-magnify
-        v-col(v-if="searchResultsMode && !hideSearchBars" cols="10" md="2")
+        v-col(v-if="(searchResultsMode && !hideSearchBars)" cols="10" md="2")
           v-select(
             v-model="serviceType"
             :items="availableServiceTypes"

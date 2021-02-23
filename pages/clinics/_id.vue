@@ -40,9 +40,9 @@
             @search="onServiceSearch"
             @filter:date="filterByDate"
           )
-        v-col(cols="12" md="8")
+        v-col(cols="12" md="8")#services
           services-tabs(
-            v-if="!searchResultsMode"
+            v-if="!searchResultsMode && !$isMobile"
             v-model="activeTab"
             :items="listItems"
             :organization="orgId"
@@ -121,6 +121,7 @@
 
 <script>
 import { isEmpty } from 'lodash';
+import VueScrollTo from 'vue-scrollto';
 // - utils
 import { getServices } from '~/utils/axios';
 import { getOrganization } from '~/utils/axios/organizations';
@@ -397,6 +398,7 @@ export default {
       await this.fetchDoctorMembers(searchText);
       await this.fetchServices(searchFilters, searchText);
       this.searchResults = [...this.formattedDoctors, ...this.filteredServices];
+      VueScrollTo.scrollTo('#services', 500, { offset: -100, easing: 'ease' });
     },
     filterByDate (unixDate) {
       if (!unixDate) {
