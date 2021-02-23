@@ -89,9 +89,11 @@
             div(:class="$isMobile ? '' : 'ml-4'").d-flex
               span.mt-2 Sort by:
               v-select(
-                label="Relevance"
+                v-model="defaultSort"
                 dense
                 solo
+                :items="['Relevance', 'Alphabetical (Ascending)', 'Alphabetical (Descending)']"
+                @change="sortResults($event)"
               ).filter.ml-2.font-14.search-select.white--text
 </template>
 <script>
@@ -123,6 +125,7 @@ export default {
       serviceSearchLocation: '',
       filterLabel: '',
       defaultSelected: 'Laboratory',
+      defaultSort: 'Relevance',
     };
   },
   computed: {
@@ -146,6 +149,9 @@ export default {
     clearTextfield () {
       this.serviceSearchLocation = '';
       this.$emit('clear-services');
+    },
+    sortResults (sortMethod) {
+      this.$emit('sort-results', sortMethod);
     },
   },
 };
