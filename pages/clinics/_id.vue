@@ -24,10 +24,11 @@
           clinic-info(
             :clinic="clinicWebsite"
             :is-dummy-org="isDummyOrg"
+            :is-preview-mode="isPreviewMode"
           )
           schedules(:schedules="groupedSchedules").mt-2
           usp(
-            v-if="$isMobile"
+            v-if="$isMobile && searchResultsMode"
             v-model="searchText"
             hide-banner
             no-gutters
@@ -56,7 +57,7 @@
             @previous="refetchListItems(activeTab, page - 1)"
           )
           services-search-results(
-            v-else
+            v-else-if="searchResultsMode"
             :organization="orgId"
             :loading="loading.list"
             :items="searchResults"
