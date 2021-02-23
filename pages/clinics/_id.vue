@@ -20,6 +20,32 @@
     )
     v-container(fluid)
       v-row(justify="center")
+        v-col(
+          v-if="$isMobile && !searchResultsMode"
+          cols="12"
+        )
+          service-types-mobile-selection(
+            v-if="!mobileServicesListView"
+            :service-types="serviceTypes"
+            :has-doctors="hasDoctors"
+            :is-preview-mode="isPreviewMode"
+            @select="activeTab = $event; mobileServicesListView = true"
+          )
+          services-tabs(
+            v-else
+            hide-tabs
+            show-back-button
+            :items="listItems"
+            :organization="orgId"
+            :loading="loading.list"
+            :has-next-page="hasNextPage"
+            :has-previous-page="hasPreviousPage"
+            :is-preview-mode="isPreviewMode"
+            :service-types="serviceTypes"
+            @back="mobileServicesListView = false"
+            @next="refetchListItems(activeTab, page + 1)"
+            @previous="refetchListItems(activeTab, page - 1)"
+          )
         v-col(cols="12" md="3")
           clinic-info(
             :clinic="clinicWebsite"
@@ -140,6 +166,7 @@ import ClinicInfo from '~/components/clinic-website/clinic-info';
 import Schedules from '~/components/clinic-website/schedules';
 import ServicesSearchResults from '~/components/clinic-website/services/search-results';
 import ServicesTabs from '~/components/clinic-website/services/tabs';
+import ServiceTypesMobileSelection from '~/components/clinic-website/services/service-types-mobile-selection';
 import Usp from '~/components/clinic-website/usp';
 export default {
   layout: 'clinic-website',
@@ -150,6 +177,7 @@ export default {
     Schedules,
     ServicesSearchResults,
     ServicesTabs,
+    ServiceTypesMobileSelection,
     Usp,
   },
   async asyncData ({ params, $sdk, redirect }) {
@@ -212,10 +240,13 @@ export default {
     ];
     this.itemsLimit = 7;
     return {
+      // UI State
       loading: {
         page: true,
         list: false,
       },
+      mobileServicesListView: false,
+      // Pagination
       page: 1,
       pageCount: 2,
       // Data Models
