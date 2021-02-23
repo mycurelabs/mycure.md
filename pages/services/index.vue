@@ -12,6 +12,8 @@
           @clear-services="clearServicesResults"
           @sort-results="sortServicesResults"
           :allServices="allServicesList"
+          :searchQuery="searchQuery"
+          :locationQuery="locationQuery"
         )
     v-row(align="center" justify="center").results-summary
       v-col(cols="12" md="8")
@@ -200,8 +202,15 @@ export default {
   },
   mounted () {
     this.loading = false;
-    this.fetchAllServices();
     this.fetchAllServicesNotPaginated();
+    if (this.$route.params) {
+      console.log('params', this.$route.params);
+      this.searchQuery = this.$route.params.serviceSearchQuery?.name;
+      this.locationQuery = this.$route.params.serviceSearchLocation;
+      this.searchServices(this.searchQuery, this.locationQuery);
+    } else {
+      this.fetchAllServices();
+    }
   },
   methods: {
     fetchSearchQuery (searchQuery) {

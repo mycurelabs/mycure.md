@@ -3,7 +3,7 @@
     v-container
       v-row(align="center" justify="center")
         v-col(cols="12").mt-12.text-center.pb-0
-          search-bar
+          search-bar(:allServices="allServicesList")
         v-col(:class="{ 'text-center pt-0' : $isMobile }").mt-md-8
           h1(:class="{ 'font-72' : !$isMobile }") Instantly Book #[br] Healthcare #[br] Services
           v-btn(
@@ -29,10 +29,26 @@ export default {
   components: {
     SearchBar,
   },
+  props: {
+    renderDropdown: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  data () {
+    return {
+      allServicesList: [],
+    };
+  },
   computed: {
     pxPortalSignUp () {
       return `${process.env.PX_PORTAL_URL}/signup`;
     },
+  },
+  mounted () {
+    if (this.renderDropdown) {
+      this.fetchAllServicesNotPaginated();
+    }
   },
   methods: {
     scrollToHowItWorks () {
@@ -40,6 +56,13 @@ export default {
     },
     openPxPortalSignUp () {
       window.open(this.pxPortalSignUp);
+    },
+    async fetchAllServicesNotPaginated () {
+      this.allServicesList = [];
+      const { items } = await this.$sdk.service('services').find();
+      const allServices = items;
+      if (!allServices?.length) return allServices;
+      this.allServicesList = allServices;
     },
   },
 };
