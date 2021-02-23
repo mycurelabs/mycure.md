@@ -353,7 +353,10 @@ export default {
     },
   },
   async mounted () {
+    // Initial window setups
     this.$vuetify.theme.dark = false;
+    if (this.isPreviewMode) window.$crisp.push(['do', 'chat:hide']);
+
     await this.fetchServiceTypes();
     this.loading.page = false;
     await this.fetchServices({ type: 'diagnostic', subtype: 'lab' });
