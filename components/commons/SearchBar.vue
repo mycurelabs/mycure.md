@@ -20,7 +20,7 @@
                 //-   v-on:keyup.enter="searchServices(serviceSearchQuery, serviceSearchLocation)"
                 //- ).font-14.font-weight-regular
                 v-combobox(
-                  v-model="searchQuery ? searchQuery : serviceSearchQuery"
+                  v-model="serviceSearchQuery"
                   :items="servicesSuggestions"
                   color="white"
                   item-text="name"
@@ -40,7 +40,7 @@
             //-   v-toolbar-title.font-14.ml-4.text-left.font-weight-bold Location
             //-     v-text-field(
             //-       placeholder="Anywhere"
-            //-       v-model="serviceSearchLocation"
+            //-       v-model="locationQuery ? locationQuery : serviceSearchLocation"
             //-       clearable
             //-       @keyup.enter="searchServices(serviceSearchQuery, serviceSearchLocation)"
             //-     ).font-14.font-weight-regular
@@ -127,7 +127,7 @@ export default {
     },
     searchQuery: {
       type: String,
-      default: '',
+      default: null,
     },
     locationQuery: {
       type: String,
@@ -159,6 +159,9 @@ export default {
     serviceSearchQuery (val) {
       (val === null || val === undefined) && this.$emit('clear-services');
     },
+  },
+  mounted () {
+    if (this.searchQuery) this.serviceSearchQuery = this.searchQuery;
   },
   methods: {
     searchServices (searchQuery, locationQuery) {
