@@ -38,8 +38,12 @@
         org-search-bar(
           v-else-if="searchMode === 'facility'"
           icon
+          :provinces="provinces"
+          @search-organizations="searchOrganizations($event)"
+          @clear-organizations="clearOrganizationResults"
         )
     v-row(align="center" justify="center").results-summary
+      //- Service Results
       template(v-if="searchMode === 'service'")
         v-col(cols="12" md="8")
           //- h4(v-if="!searchQuery").font-weight-regular.font-20.text-left.ml-10 #[strong {{ searchedServicesLength }}] services found
@@ -107,6 +111,10 @@
         //- doctors search results on search with text query
         template(v-if="doctorsList" v-for="doctor in doctorsList")
           results-card(isDoctor)
+
+      //- Facility Results
+      template(v-if="searchMode === 'facility'")
+        v-col(cols="12")
     my-footer
 </template>
 
@@ -132,7 +140,6 @@ export default {
       loading: true,
       initialServicesList: [],
       allServicesList: [],
-      initialOrgsList: [],
       servicesList: [],
       doctorsList: [],
       searchQuery: null,
@@ -141,9 +148,13 @@ export default {
       servicesPage: 1,
       initialServicesTotal: 0,
       servicesTotal: 0,
+      orgsTotal: 0,
       initialServicesLimit: 6,
+      orgsLimit: 6,
       servicesLimit: 6,
       filterLabel: '',
+      orgsList: [],
+      municipalityList: [],
       // - facility | service
       searchMode: 'service',
       sortMethod: 'Relevance',
@@ -220,6 +231,9 @@ export default {
       }
       return this.servicesList;
     },
+    provinces () {
+      return this.municipalityList.map(municipality => municipality.name) || [];
+    },
   },
   watch: {
     initialServicesPage (val) {
@@ -227,6 +241,14 @@ export default {
     },
     servicesPage (val) {
       this.queryServicesName(this.searchQuery, val);
+    },
+    async searchMode (val) {
+      if (val === 'service') {
+        await this.fetchAllServices();
+        return;
+      }
+      await this.fetchOrganizations();
+      if (!this.municipalityList.length) await this.fetchMunicipalities();
     },
   },
   async mounted () {
@@ -246,23 +268,73 @@ export default {
       this.queryServicesSpecialization(searchQuery);
     },
     async fetchAllServices (page = 1) {
-      this.initialServicesList = [];
-      this.servicesList = [];
-      this.searchQuery = '';
-      const skip = this.initialServicesLimit * (page - 1);
-      const { items, total } = await this.$sdk.service('services').find({
-        $limit: this.initialServicesLimit,
-        $skip: skip,
-      });
-      this.initialServicesTotal = total;
-      this.initialServicesList = items || [];
+      try {
+        this.initialServicesList = [];
+        this.servicesList = [];
+        this.searchQuery = '';
+        const skip = this.initialServicesLimit * (page - 1);
+        const { items, total } = await this.$sdk.service('services').find({
+          $limit: this.initialServicesLimit,
+          $skip: skip,
+        });
+        this.initialServicesTotal = total;
+        this.initialServicesList = items || [];
+      } catch (error) {
+        console.error(error);
+      }
     },
     async fetchAllServicesNotPaginated () {
-      this.allServicesList = [];
-      const { items } = await this.$sdk.service('services').find();
-      const allServices = items;
-      if (!allServices?.length) return allServices;
-      this.allServicesList = allServices;
+      try {
+        this.allServicesList = [];
+        const { items } = await this.$sdk.service('services').find();
+        const allServices = items;
+        if (!allServices?.length) return allServices;
+        this.allServicesList = allServices;
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    async fetchOrganizations (searchQuery = {}, page = 1) {
+      try {
+        const skip = this.orgsLimit * (page - 1);
+        const query = {
+          $limit: this.orgsLimit,
+          $skip: skip,
+        };
+
+        const { searchText, locationText } = searchQuery;
+
+        if (searchText) {
+          query.$and = [];
+          query.$and.push(
+            { name: { $regex: `^${searchText}`, $options: 'gi' } },
+          );
+        }
+
+        if (locationText) {
+          if (!query.$and) query.$and = [];
+          query.$and.push(
+            { 'address.province': { $regex: `^${locationText}`, $options: 'gi' } },
+          );
+        }
+
+        const { items, total } = await this.$sdk.service('organizations').find(query);
+        this.orgsList = items || [];
+        this.orgsTotal = total;
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    async fetchMunicipalities () {
+      try {
+        const { items } = await this.$sdk.service('fixtures').find({ type: 'address-province' });
+        this.municipalityList = items || [];
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    async searchOrganizations ({ searchText, locationText }) {
+      await this.fetchOrganizations({ searchText, locationText });
     },
     async queryServicesName (searchQuery, page = 1) {
       const skip = this.servicesLimit * (page - 1);
@@ -307,6 +379,10 @@ export default {
     clearServicesResults () {
       this.initialServicesList = [];
       this.servicesList = [];
+      this.searchQuery = null;
+    },
+    clearOrganizationResults () {
+      this.orgsList = [];
       this.searchQuery = null;
     },
     sortServicesResults (sortMethod) {

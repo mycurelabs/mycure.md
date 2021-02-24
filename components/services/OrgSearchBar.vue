@@ -15,7 +15,7 @@
                   placeholder="Search for a health facility"
                   clearable
                   @click:clear="clearTextfield"
-                  v-on:keyup.enter="searchFacility(orgSearchQuery, orgSearchLocation)"
+                  @keyup.enter="searchFacility(orgSearchQuery, orgSearchLocation)"
                 ).font-14.font-weight-regular
             v-divider(inset vertical).mt-6.mb-8
             v-col(md="4").search-fields
@@ -84,8 +84,8 @@ export default {
     },
   },
   methods: {
-    searchFacility (searchQuery, locationQuery) {
-      this.$emit('search-organizations', searchQuery, locationQuery);
+    searchFacility (searchText, locationText) {
+      this.$emit('search-organizations', { searchText, locationText });
     },
     clearTextfield () {
       this.orgSearchLocation = '';
