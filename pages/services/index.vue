@@ -25,7 +25,6 @@
       v-col(cols="12").text-center.pb-0
         search-bar(
           v-if="searchMode === 'service'"
-          v-model="searchQuery"
           icon
           services
           @search-services="searchServices"
@@ -171,10 +170,9 @@ export default {
     },
     resultsSummary () {
       if (!this.searchQuery && this.initialServicesTotal < 1) {
-        console.log('services list', this.initialServicesTotal);
         return 'No results available. Try searching for a different keyword or location.';
       } else {
-        const serviceName = (typeof (this.searchQuery) === 'object' ? this.searchQuery.name : this.searchQuery) || 'the service';
+        const serviceName = (typeof (this.searchQuery) === 'object' ? this.searchQuery?.name : this.searchQuery) || 'the service';
         return `${this.searchedServicesLength} result${this.searchedServicesLength > 1 || this.searchedServicesLength === 0 ? 's' : ''} found for ${serviceName} ${this.locationQuery ? `in ${this.locationQuery}` : ''}`;
       }
     },
@@ -332,5 +330,11 @@ export default {
   z-index: -1;
   background-color: #FFFFFF;
   margin-top: 340px;
+}
+
+@media screen and (max-width: 1020px) {
+  .results-summary {
+    margin-top: 450px;
+  }
 }
 </style>

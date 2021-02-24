@@ -70,6 +70,7 @@
           solo
           clearable
           rounded
+          item-text="name"
           color="white"
           placeholder="Search Services"
         ).bg-white
@@ -81,6 +82,7 @@
               icon
               @click="searchServices(serviceSearchQuery)"
             )
+              v-icon mdi-magnify
             //- Mobile Patients page search button
             v-btn(
               v-else
@@ -88,7 +90,7 @@
               icon
               :to="{name: 'services', params: { serviceSearchQuery: { name: serviceSearchQuery } }}"
             )
-              v-icon(color="primary") mdi-magnify
+              v-icon mdi-magnify
         v-col(v-if="services" cols="12").pb-0
           v-row(:class="$isMobile ? 'd-block' : ''").filter-menu.white--text.font-14
             div.d-flex
