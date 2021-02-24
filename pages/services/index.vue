@@ -1,9 +1,28 @@
 <template lang="pug">
   div(v-if="!loading")
     app-bar(isServices)
-    div(align="center" justify="center")
-      v-col(cols="12")
-      v-col(cols="12").mt-12.text-center.pb-0.search-container
+    v-row(justify="center" no-gutters).search-container.pt-3
+      v-col(cols="12" md="3")
+        v-btn(
+          color="white"
+          x-large
+          block
+          :outlined="searchMode !== 'service'"
+          @click="searchMode = 'service'"
+        ).text-none
+          v-icon(left) mdi-format-list-bulleted
+          strong Search Services
+      v-col(cols="12" md="3")
+        v-btn(
+          color="white"
+          x-large
+          block
+          :outlined="searchMode !== 'facility'"
+          @click="searchMode = 'facility'"
+        ).text-none
+          v-icon(left) mdi-domain
+          strong Search Facilities
+      v-col(cols="12").text-center.pb-0
         search-bar(
           icon
           services
@@ -13,44 +32,45 @@
           :allServices="allServicesList"
         )
     v-row(align="center" justify="center").results-summary
-      v-col(cols="12" md="8")
-        //- h4(v-if="!searchQuery").font-weight-regular.font-20.text-left.ml-10 #[strong {{ searchedServicesLength }}] services found
-        //- h4(v-if="searchQuery").font-weight-regular.font-20.text-left.ml-10 #[strong {{ searchedServicesLength }}] results found on #[strong {{ searchQuery }}] in #[strong {{ locationQuery }}]
-        h4 {{ resultsSummary }}
-      v-col(cols="12")
-        //- search results on initial page load
-        template(v-if="initialServicesList.length > 1" v-for="initialService in initialServicesList")
-          results-card(
-            v-if="filterLabel !== 'Teleconsult'"
-            isService
-            :service="initialService"
-            :initialServices="true"
-            )
-        v-pagination(
-          v-if="initialServicesList.length > 1"
-          v-model="initialServicesPage"
-          :length="initialServicesLength"
-          total-visible="10"
-        )
-        //- services search results on search with text query
-        template(v-if="servicesList" v-for="service in servicesList")
-          results-card(
-            v-if="filterLabel !== 'Teleconsult'"
-            isService
-            :service="service"
-            :locationText="locationQuery"
-            :emptyLocationSearch="emptyLocationSearch"
-            @location-not-matched="clearServicesResults"
+      template(v-if="searchMode === 'service'")
+        v-col(cols="12" md="8")
+          //- h4(v-if="!searchQuery").font-weight-regular.font-20.text-left.ml-10 #[strong {{ searchedServicesLength }}] services found
+          //- h4(v-if="searchQuery").font-weight-regular.font-20.text-left.ml-10 #[strong {{ searchedServicesLength }}] results found on #[strong {{ searchQuery }}] in #[strong {{ locationQuery }}]
+          h4 {{ resultsSummary }}
+        v-col(cols="12")
+          //- search results on initial page load
+          template(v-if="initialServicesList.length > 1" v-for="initialService in initialServicesList")
+            results-card(
+              v-if="filterLabel !== 'Teleconsult'"
+              isService
+              :service="initialService"
+              :initialServices="true"
+              )
+          v-pagination(
+            v-if="initialServicesList.length > 1"
+            v-model="initialServicesPage"
+            :length="initialServicesLength"
+            total-visible="10"
           )
-        v-pagination(
-          v-if="servicesList.length > 1"
-          v-model="servicesPage"
-          :length="servicesLength"
-          total-visible="10"
-        )
-        //- doctors search results on search with text query
-        template(v-if="doctorsList" v-for="doctor in doctorsList")
-          results-card(isDoctor)
+          //- services search results on search with text query
+          template(v-if="servicesList" v-for="service in servicesList")
+            results-card(
+              v-if="filterLabel !== 'Teleconsult'"
+              isService
+              :service="service"
+              :locationText="locationQuery"
+              :emptyLocationSearch="emptyLocationSearch"
+              @location-not-matched="clearServicesResults"
+            )
+          v-pagination(
+            v-if="servicesList.length > 1"
+            v-model="servicesPage"
+            :length="servicesLength"
+            total-visible="10"
+          )
+          //- doctors search results on search with text query
+          template(v-if="doctorsList" v-for="doctor in doctorsList")
+            results-card(isDoctor)
     my-footer
 </template>
 
@@ -86,6 +106,8 @@ export default {
       initialServicesLimit: 6,
       servicesLimit: 6,
       filterLabel: '',
+      // - facility | service
+      searchMode: 'service',
     };
   },
   computed: {
@@ -206,7 +228,9 @@ export default {
 
 <style scoped>
 .search-container {
+  margin-top: 70px;
   background-color: #0087B5;
+  width: 100%;
   position: fixed;
   z-index: 99;
   top: 0;
@@ -215,6 +239,6 @@ export default {
 .results-summary {
   z-index: -1;
   background-color: #FFFFFF;
-  margin-top: 240px;
+  margin-top: 340px;
 }
 </style>
