@@ -2,6 +2,7 @@
   v-container
     v-row(justify="center" align="center")
       v-col(cols="12" md="10").pb-0
+        //- desktop search field
         v-toolbar(
           v-if="!$isMobile"
           height="84"
@@ -19,7 +20,7 @@
                 //-   v-on:keyup.enter="searchServices(serviceSearchQuery, serviceSearchLocation)"
                 //- ).font-14.font-weight-regular
                 v-combobox(
-                  v-model="serviceSearchQuery"
+                  v-model="searchQuery ? searchQuery : serviceSearchQuery"
                   :items="servicesSuggestions"
                   color="white"
                   item-text="name"
@@ -44,21 +45,25 @@
             //-       @keyup.enter="searchServices(serviceSearchQuery, serviceSearchLocation)"
             //-     ).font-14.font-weight-regular
           v-spacer
+          //- Desktop Services page search button
           v-btn(
-            v-if="!icon"
-            depressed
-            large
-            rounded
-            color="primary"
-          ) #[b Search Now]
-          v-btn(
-            v-else
+            v-if="icon"
             large
             fab
             color="primary"
             @click="searchServices(serviceSearchQuery, serviceSearchLocation)"
           )
             v-icon mdi-magnify
+          //- Desktop Patients page search button
+          v-btn(
+            v-else
+            depressed
+            large
+            rounded
+            color="primary"
+            :to="{name: 'services', params: { serviceSearchQuery: { name: serviceSearchQuery }, serviceSearchLocation: serviceSearchLocation }}"
+          ) #[b Search Now]
+        //- mobile search field
         v-text-field(
           v-else
           v-model="serviceSearchQuery"
@@ -69,10 +74,19 @@
           placeholder="Search Services"
         ).bg-white
           template(v-slot:append)
+            //- Mobile Services page search button
             v-btn(
+              v-if="services"
               color="primary"
               icon
-              @click="searchServices(serviceSearchQuery, serviceSearchLocation)"
+              @click="searchServices(serviceSearchQuery)"
+            )
+            //- Mobile Patients page search button
+            v-btn(
+              v-else
+              color="primary"
+              icon
+              :to="{name: 'services', params: { serviceSearchQuery: { name: serviceSearchQuery } }}"
             )
               v-icon(color="primary") mdi-magnify
         v-col(v-if="services" cols="12").pb-0
@@ -89,9 +103,11 @@
             div(:class="$isMobile ? '' : 'ml-4'").d-flex
               span.mt-2 Sort by:
               v-select(
-                label="Relevance"
+                v-model="defaultSort"
                 dense
                 solo
+                :items="['Relevance', 'Alphabetical (Ascending)', 'Alphabetical (Descending)']"
+                @change="sortResults($event)"
               ).filter.ml-2.font-14.search-select.white--text
 </template>
 <script>
@@ -109,6 +125,14 @@ export default {
       type: Array,
       default: () => [],
     },
+    searchQuery: {
+      type: String,
+      default: '',
+    },
+    locationQuery: {
+      type: String,
+      default: '',
+    },
   },
   data () {
     this.serviceTypeMappings = {
@@ -123,6 +147,7 @@ export default {
       serviceSearchLocation: '',
       filterLabel: '',
       defaultSelected: 'Laboratory',
+      defaultSort: 'Relevance',
     };
   },
   computed: {
@@ -146,6 +171,9 @@ export default {
     clearTextfield () {
       this.serviceSearchLocation = '';
       this.$emit('clear-services');
+    },
+    sortResults (sortMethod) {
+      this.$emit('sort-results', sortMethod);
     },
   },
 };

@@ -25,12 +25,16 @@
       v-col(cols="12").text-center.pb-0
         search-bar(
           v-if="searchMode === 'service'"
+          v-model="searchQuery"
           icon
           services
           @search-services="searchServices"
           @filter-services="filterServices"
           @clear-services="clearServicesResults"
+          @sort-results="sortServicesResults"
           :allServices="allServicesList"
+          :searchQuery="searchQuery"
+          :locationQuery="locationQuery"
         )
         org-search-bar(
           v-else-if="searchMode === 'facility'"
@@ -44,7 +48,7 @@
           h4 {{ resultsSummary }}
         v-col(cols="12")
           //- search results on initial page load
-          template(v-if="initialServicesList.length > 1" v-for="initialService in initialServicesList")
+          template(v-if="initialServicesList.length > 1 && sortMethod === 'Relevance'" v-for="initialService in initialServicesList")
             results-card(
               v-if="filterLabel !== 'Teleconsult'"
               isService
@@ -52,13 +56,26 @@
               :initialServices="true"
               )
           v-pagination(
-            v-if="initialServicesList.length > 1"
+            v-if="initialServicesList.length > 1 && sortMethod === 'Relevance'"
+            v-model="initialServicesPage"
+            :length="initialServicesLength"
+            total-visible="10"
+          )
+          template(v-if="filteredItems.length > 1 && sortMethod !== 'Relevance'" v-for="filteredItem in filteredItems")
+            results-card(
+              v-if="filterLabel !== 'Teleconsult'"
+              isService
+              :service="filteredItem"
+              :initialServices="true"
+              )
+          v-pagination(
+            v-if="filteredItems.length > 1 && sortMethod !== 'Relevance'"
             v-model="initialServicesPage"
             :length="initialServicesLength"
             total-visible="10"
           )
           //- services search results on search with text query
-          template(v-if="servicesList" v-for="service in servicesList")
+          template(v-if="servicesList && sortMethod === 'Relevance'" v-for="service in servicesList")
             results-card(
               v-if="filterLabel !== 'Teleconsult'"
               isService
@@ -68,14 +85,29 @@
               @location-not-matched="clearServicesResults"
             )
           v-pagination(
-            v-if="servicesList.length > 1"
+            v-if="servicesList.length > 1 && sortMethod === 'Relevance'"
             v-model="servicesPage"
             :length="servicesLength"
             total-visible="10"
           )
-          //- doctors search results on search with text query
-          template(v-if="doctorsList" v-for="doctor in doctorsList")
-            results-card(isDoctor)
+          template(v-if="servicesList && sortMethod !== 'Relevance'" v-for="filteredResultsService in filteredResultsServices")
+            results-card(
+              v-if="filterLabel !== 'Teleconsult'"
+              isService
+              :service="filteredResultsService"
+              :locationText="locationQuery"
+              :emptyLocationSearch="emptyLocationSearch"
+              @location-not-matched="clearServicesResults"
+            )
+          v-pagination(
+            v-if="filteredResultsServices.length > 1 && sortMethod !== 'Relevance'"
+            v-model="servicesPage"
+            :length="servicesLength"
+            total-visible="10"
+          )
+        //- doctors search results on search with text query
+        template(v-if="doctorsList" v-for="doctor in doctorsList")
+          results-card(isDoctor)
     my-footer
 </template>
 
@@ -104,7 +136,7 @@ export default {
       initialOrgsList: [],
       servicesList: [],
       doctorsList: [],
-      searchQuery: '',
+      searchQuery: null,
       locationQuery: '',
       initialServicesPage: 1,
       servicesPage: 1,
@@ -115,6 +147,7 @@ export default {
       filterLabel: '',
       // - facility | service
       searchMode: 'service',
+      sortMethod: 'Relevance',
     };
   },
   computed: {
@@ -137,12 +170,57 @@ export default {
       return !this.locationQuery;
     },
     resultsSummary () {
-      if (!this.searchQuery && this.initialServicesList < 1) {
+      if (!this.searchQuery && this.initialServicesTotal < 1) {
+        console.log('services list', this.initialServicesTotal);
         return 'No results available. Try searching for a different keyword or location.';
       } else {
         const serviceName = (typeof (this.searchQuery) === 'object' ? this.searchQuery.name : this.searchQuery) || 'the service';
         return `${this.searchedServicesLength} result${this.searchedServicesLength > 1 || this.searchedServicesLength === 0 ? 's' : ''} found for ${serviceName} ${this.locationQuery ? `in ${this.locationQuery}` : ''}`;
       }
+    },
+    filteredItems () {
+      if (!this.loading && this.initialServicesList.length > 1) {
+        const filteredItems = this.initialServicesList;
+        if (this.sortMethod === 'Alphabetical (Ascending)') {
+          filteredItems.sort(function (a, b) {
+            const textA = a.name.toUpperCase();
+            const textB = b.name.toUpperCase();
+            return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+          });
+          return filteredItems;
+        }
+        if (this.sortMethod === 'Alphabetical (Descending)') {
+          filteredItems.reverse(function (a, b) {
+            const textA = a.name.toUpperCase();
+            const textB = b.name.toUpperCase();
+            return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+          });
+          return filteredItems;
+        }
+      }
+      return this.initialServicesList;
+    },
+    filteredResultsServices () {
+      if (!this.loading && this.servicesList.length > 1) {
+        const filteredItems = this.servicesList;
+        if (this.sortMethod === 'Alphabetical (Ascending)') {
+          filteredItems.sort(function (a, b) {
+            const textA = a.name.toUpperCase();
+            const textB = b.name.toUpperCase();
+            return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+          });
+          return filteredItems;
+        }
+        if (this.sortMethod === 'Alphabetical (Descending)') {
+          filteredItems.reverse(function (a, b) {
+            const textA = a.name.toUpperCase();
+            const textB = b.name.toUpperCase();
+            return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+          });
+          return filteredItems;
+        }
+      }
+      return this.servicesList;
     },
   },
   watch: {
@@ -153,10 +231,16 @@ export default {
       this.queryServicesName(this.searchQuery, val);
     },
   },
-  mounted () {
+  async mounted () {
     this.loading = false;
-    this.fetchAllServices();
-    this.fetchAllServicesNotPaginated();
+    await this.fetchAllServicesNotPaginated();
+    if (this.$route.params.serviceSearchQuery || this.$route.params.serviceSearchLocation) {
+      this.searchQuery = this.$route.params.serviceSearchQuery?.name;
+      this.locationQuery = this.$route.params.serviceSearchLocation;
+      this.searchServices(this.searchQuery, this.locationQuery);
+    } else {
+      await this.fetchAllServices();
+    }
   },
   methods: {
     fetchSearchQuery (searchQuery) {
@@ -173,9 +257,7 @@ export default {
         $skip: skip,
       });
       this.initialServicesTotal = total;
-      const initialServices = items;
-      if (!initialServices?.length) return initialServices;
-      this.initialServicesList = initialServices;
+      this.initialServicesList = items || [];
     },
     async fetchAllServicesNotPaginated () {
       this.allServicesList = [];
@@ -228,6 +310,9 @@ export default {
       this.initialServicesList = [];
       this.servicesList = [];
       this.searchQuery = null;
+    },
+    sortServicesResults (sortMethod) {
+      this.sortMethod = sortMethod;
     },
   },
 };
