@@ -24,12 +24,17 @@
           strong Search Facilities
       v-col(cols="12").text-center.pb-0
         search-bar(
+          v-if="searchMode === 'service'"
           icon
           services
           @search-services="searchServices"
           @filter-services="filterServices"
           @clear-services="clearServicesResults"
           :allServices="allServicesList"
+        )
+        org-search-bar(
+          v-else-if="searchMode === 'facility'"
+          icon
         )
     v-row(align="center" justify="center").results-summary
       template(v-if="searchMode === 'service'")
@@ -78,6 +83,7 @@
 import { uniqBy } from 'lodash';
 import AppBar from '~/components/home/AppBar';
 import MyFooter from '~/components/home/MyFooter';
+import OrgSearchBar from '~/components/services/OrgSearchBar';
 import ResultsCard from '~/components/services/ResultsCard';
 import SearchBar from '~/components/commons/SearchBar';
 import { fetchClinicServices } from '~/services/services';
@@ -86,6 +92,7 @@ export default {
   components: {
     AppBar,
     MyFooter,
+    OrgSearchBar,
     ResultsCard,
     SearchBar,
   },

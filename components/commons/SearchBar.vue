@@ -8,8 +8,8 @@
           color="white"
           :style="{ opacity: services ? '' : '0.8' }"
         ).toolbar
-          v-col(cols="12" md="10").d-flex.mt-2.justify-space-between
-            v-col(md="8").search-fields
+          v-col(cols="12" md="11").d-flex.mt-2.justify-space-between
+            v-col(cols="12").search-fields
               v-toolbar-title.font-14.ml-4.text-left.font-weight-bold Services
                 //- v-text-field(
                 //-   v-model="serviceSearchQuery"
@@ -34,15 +34,15 @@
                       div
                         p.grey--text {{ serviceTypeMappings[item.type] || ''}}
                       //- #[span.ml-auto.text-right.grey--text {{ item.type }}]
-            v-divider(inset vertical).mt-6.mb-8
-            v-col(md="4").search-fields
-              v-toolbar-title.font-14.ml-4.text-left.font-weight-bold Location
-                v-text-field(
-                  placeholder="Anywhere"
-                  v-model="serviceSearchLocation"
-                  clearable
-                  @keyup.enter="searchServices(serviceSearchQuery, serviceSearchLocation)"
-                ).font-14.font-weight-regular
+            //- v-divider(inset vertical).mt-6.mb-8
+            //- v-col(md="4").search-fields
+            //-   v-toolbar-title.font-14.ml-4.text-left.font-weight-bold Location
+            //-     v-text-field(
+            //-       placeholder="Anywhere"
+            //-       v-model="serviceSearchLocation"
+            //-       clearable
+            //-       @keyup.enter="searchServices(serviceSearchQuery, serviceSearchLocation)"
+            //-     ).font-14.font-weight-regular
           v-spacer
           v-btn(
             v-if="!icon"
