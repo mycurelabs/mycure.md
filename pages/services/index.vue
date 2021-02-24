@@ -42,86 +42,100 @@
           @search-organizations="searchOrganizations($event)"
           @clear-organizations="clearOrganizationResults"
         )
-    v-row(align="center" justify="center").results-summary
-      //- Service Results
-      template(v-if="searchMode === 'service'")
-        v-col(cols="12" md="8")
-          //- h4(v-if="!searchQuery").font-weight-regular.font-20.text-left.ml-10 #[strong {{ searchedServicesLength }}] services found
-          //- h4(v-if="searchQuery").font-weight-regular.font-20.text-left.ml-10 #[strong {{ searchedServicesLength }}] results found on #[strong {{ searchQuery }}] in #[strong {{ locationQuery }}]
-          h4 {{ resultsSummary }}
-        v-col(cols="12")
-          //- search results on initial page load
-          template(v-if="initialServicesList.length > 1 && sortMethod === 'Relevance'" v-for="initialService in initialServicesList")
-            results-card(
-              v-if="filterLabel !== 'Teleconsult'"
-              isService
-              :service="initialService"
-              :initialServices="true"
-              )
-          v-pagination(
-            v-if="initialServicesList.length > 1 && sortMethod === 'Relevance'"
-            v-model="initialServicesPage"
-            :length="initialServicesLength"
-            total-visible="10"
-          )
-          template(v-if="filteredItems.length > 1 && sortMethod !== 'Relevance'" v-for="filteredItem in filteredItems")
-            results-card(
-              v-if="filterLabel !== 'Teleconsult'"
-              isService
-              :service="filteredItem"
-              :initialServices="true"
-              )
-          v-pagination(
-            v-if="filteredItems.length > 1 && sortMethod !== 'Relevance'"
-            v-model="initialServicesPage"
-            :length="initialServicesLength"
-            total-visible="10"
-          )
-          //- services search results on search with text query
-          template(v-if="servicesList && sortMethod === 'Relevance'" v-for="service in servicesList")
-            results-card(
-              v-if="filterLabel !== 'Teleconsult'"
-              isService
-              :service="service"
-              :locationText="locationQuery"
-              :emptyLocationSearch="emptyLocationSearch"
-              @location-not-matched="clearServicesResults"
+    //- Service Results
+    v-row(align="center" justify="center" v-if="searchMode === 'service'").services-results-summary
+      v-col(cols="12" md="8")
+        //- h4(v-if="!searchQuery").font-weight-regular.font-20.text-left.ml-10 #[strong {{ searchedServicesLength }}] services found
+        //- h4(v-if="searchQuery").font-weight-regular.font-20.text-left.ml-10 #[strong {{ searchedServicesLength }}] results found on #[strong {{ searchQuery }}] in #[strong {{ locationQuery }}]
+        h4 {{ resultsSummary }}
+      v-col(cols="12")
+        //- search results on initial page load
+        template(v-if="initialServicesList.length > 1 && sortMethod === 'Relevance'" v-for="initialService in initialServicesList")
+          results-card(
+            v-if="filterLabel !== 'Teleconsult'"
+            isService
+            :service="initialService"
+            :initialServices="true"
             )
-          v-pagination(
-            v-if="servicesList.length > 1 && sortMethod === 'Relevance'"
-            v-model="servicesPage"
-            :length="servicesLength"
-            total-visible="10"
-          )
-          template(v-if="servicesList && sortMethod !== 'Relevance'" v-for="filteredResultsService in filteredResultsServices")
-            results-card(
-              v-if="filterLabel !== 'Teleconsult'"
-              isService
-              :service="filteredResultsService"
-              :locationText="locationQuery"
-              :emptyLocationSearch="emptyLocationSearch"
-              @location-not-matched="clearServicesResults"
+        v-pagination(
+          v-if="initialServicesList.length > 1 && sortMethod === 'Relevance'"
+          v-model="initialServicesPage"
+          :length="initialServicesLength"
+          total-visible="10"
+        )
+        template(v-if="filteredItems.length > 1 && sortMethod !== 'Relevance'" v-for="filteredItem in filteredItems")
+          results-card(
+            v-if="filterLabel !== 'Teleconsult'"
+            isService
+            :service="filteredItem"
+            :initialServices="true"
             )
-          v-pagination(
-            v-if="filteredResultsServices.length > 1 && sortMethod !== 'Relevance'"
-            v-model="servicesPage"
-            :length="servicesLength"
-            total-visible="10"
+        v-pagination(
+          v-if="filteredItems.length > 1 && sortMethod !== 'Relevance'"
+          v-model="initialServicesPage"
+          :length="initialServicesLength"
+          total-visible="10"
+        )
+        //- services search results on search with text query
+        template(v-if="servicesList && sortMethod === 'Relevance'" v-for="service in servicesList")
+          results-card(
+            v-if="filterLabel !== 'Teleconsult'"
+            isService
+            :service="service"
+            :locationText="locationQuery"
+            :emptyLocationSearch="emptyLocationSearch"
+            @location-not-matched="clearServicesResults"
           )
-        //- doctors search results on search with text query
-        template(v-if="doctorsList" v-for="doctor in doctorsList")
-          results-card(isDoctor)
+        v-pagination(
+          v-if="servicesList.length > 1 && sortMethod === 'Relevance'"
+          v-model="servicesPage"
+          :length="servicesLength"
+          total-visible="10"
+        )
+        template(v-if="servicesList && sortMethod !== 'Relevance'" v-for="filteredResultsService in filteredResultsServices")
+          results-card(
+            v-if="filterLabel !== 'Teleconsult'"
+            isService
+            :service="filteredResultsService"
+            :locationText="locationQuery"
+            :emptyLocationSearch="emptyLocationSearch"
+            @location-not-matched="clearServicesResults"
+          )
+        v-pagination(
+          v-if="filteredResultsServices.length > 1 && sortMethod !== 'Relevance'"
+          v-model="servicesPage"
+          :length="servicesLength"
+          total-visible="10"
+        )
+      //- doctors search results on search with text query
+      template(v-if="doctorsList" v-for="doctor in doctorsList")
+        results-card(isDoctor)
 
-      //- Facility Results
-      template(v-if="searchMode === 'facility'")
-        v-col(cols="12")
+    //- Facility Results
+    v-row(align="center" justify="center" v-else-if="searchMode === 'facility'").org-results-summary
+      v-col(cols="12" md="8")#org-results
+        h4(v-if="orgsTotal") There are {{ orgsTotal }} result{{ orgsTotal > 1 ? 's' : '' }} available.
+        h4(v-else) There are no results available.
+      v-col(cols="12")
+        org-list-card(
+          v-for="(organization, key) in orgsList"
+          :key="key"
+          :organization="organization"
+        )
+        v-pagination(
+          v-model="orgsPage"
+          :length="orgsLength"
+          total-visible="10"
+        )
     my-footer
 </template>
 
 <script>
 import { uniqBy } from 'lodash';
+import VueScrollTo from 'vue-scrollto';
 import AppBar from '~/components/home/AppBar';
 import MyFooter from '~/components/home/MyFooter';
+import OrgListCard from '~/components/organizations/OrgListCard';
 import OrgSearchBar from '~/components/services/OrgSearchBar';
 import ResultsCard from '~/components/services/ResultsCard';
 import SearchBar from '~/components/commons/SearchBar';
@@ -131,6 +145,7 @@ export default {
   components: {
     AppBar,
     MyFooter,
+    OrgListCard,
     OrgSearchBar,
     ResultsCard,
     SearchBar,
@@ -154,6 +169,8 @@ export default {
       servicesLimit: 6,
       filterLabel: '',
       orgsList: [],
+      orgsPage: 1,
+      orgsSearchQuery: {},
       municipalityList: [],
       // - facility | service
       searchMode: 'service',
@@ -175,6 +192,9 @@ export default {
     },
     servicesLength () {
       return Math.ceil(this.servicesTotal / this.servicesLimit) || 0;
+    },
+    orgsLength () {
+      return Math.ceil(this.orgsTotal / this.orgsLimit) || 0;
     },
     emptyLocationSearch () {
       return !this.locationQuery;
@@ -242,6 +262,9 @@ export default {
     servicesPage (val) {
       this.queryServicesName(this.searchQuery, val);
     },
+    async orgsPage (val) {
+      await this.fetchOrganizations(this.orgsSearchQuery, val);
+    },
     async searchMode (val) {
       if (val === 'service') {
         await this.fetchAllServices();
@@ -300,6 +323,8 @@ export default {
         const query = {
           $limit: this.orgsLimit,
           $skip: skip,
+          // TODO: confirm org types that are not included
+          type: { $nin: ['company', 'warehouse', 'insurance'] },
         };
 
         const { searchText, locationText } = searchQuery;
@@ -321,6 +346,7 @@ export default {
         const { items, total } = await this.$sdk.service('organizations').find(query);
         this.orgsList = items || [];
         this.orgsTotal = total;
+        VueScrollTo.scrollTo('#org-results', 500, { offset: -250, easing: 'ease' });
       } catch (error) {
         console.error(error);
       }
@@ -334,7 +360,8 @@ export default {
       }
     },
     async searchOrganizations ({ searchText, locationText }) {
-      await this.fetchOrganizations({ searchText, locationText });
+      this.orgsSearchQuery = { searchText, locationText };
+      await this.fetchOrganizations(this.orgsSearchQuery);
     },
     async queryServicesName (searchQuery, page = 1) {
       const skip = this.servicesLimit * (page - 1);
@@ -402,14 +429,20 @@ export default {
   top: 0;
 }
 
-.results-summary {
+.services-results-summary {
   z-index: -1;
-  background-color: #FFFFFF;
+  background-color: #fafafa;
   margin-top: 340px;
 }
 
+.org-results-summary {
+  z-index: -1;
+  background-color: #fafafa;
+  margin-top: 250px;
+}
+
 @media screen and (max-width: 1020px) {
-  .results-summary {
+  .services-results-summary {
     margin-top: 450px;
   }
 }

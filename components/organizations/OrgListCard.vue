@@ -7,7 +7,7 @@
             div(style="background-color: #fafafa").d-flex.pa-2
               v-col(cols="4" md="2" align="center")
                 img(
-                  :src="organization.picURL"
+                  :src="picURL"
                   alt="Services"
                   :width="!$isMobile ? 146 : 80"
                 )
@@ -17,12 +17,14 @@
                   p.ma-0
                     span {{ organization.description }}
                   div(v-if="organization !== undefined").mt-4
-                    div(v-if="organization.address").d-flex
+                    div.d-flex
                       v-icon.mr-2.mb-auto mdi-map-marker
-                      p {{ `${organization.address.street1}, ${organization.address.city}, ${organization.address.province}, ${organization.address.country} ` }}
-                    div(v-if="organization.phone").d-flex
+                      p(v-if="organization.address") {{ `${organization.address.street1}, ${organization.address.city}, ${organization.address.province}, ${organization.address.country} ` }}
+                      i(v-else) No address available
+                    div.d-flex
                       v-icon.mr-2.mb-auto mdi-phone
-                      p.font-weight-bold {{ organization.phone }}
+                      p(v-if="organization.phone").font-weight-bold {{ organization.phone }}
+                      i(v-else) No phone number available
                     div.d-flex
                       v-icon.mr-2.mb-auto mdi-calendar-today
                       div(v-if="fullSchedules.length")
@@ -61,8 +63,10 @@
                   block
                 ) #[b Visit Facility]
 </template>
+
 <script>
 import { format } from 'date-fns';
+import FacilityPlaceholder from '~/assets/images/clinics-website/hospital-thumbnail.jpg';
 export default {
   props: {
     organization: {
@@ -103,6 +107,9 @@ export default {
       const dayOrder = dayToday === 7 ? 0 : dayToday;
 
       return this.fullSchedules.filter(schedule => schedule.order === dayOrder || schedule.day === dayOrder) || [];
+    },
+    picURL () {
+      return this.organization?.picURL || FacilityPlaceholder;
     },
   },
   methods: {
