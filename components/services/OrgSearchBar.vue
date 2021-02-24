@@ -3,12 +3,11 @@
     v-row(justify="center" align="center")
       v-col(cols="12" md="10").pb-0
         v-toolbar(
-          v-if="!$isMobile"
           height="84"
           color="white"
         ).toolbar
-          v-col(cols="12" md="11").d-flex.mt-2.justify-space-between
-            v-col(md="8").search-fields
+          v-col(cols="10" md="11").d-flex.mt-2.justify-space-between
+            v-col(cols="6" md="8").search-fields
               v-toolbar-title.font-14.ml-4.text-left.font-weight-bold Facility
                 v-text-field(
                   v-model="orgSearchQuery"
@@ -18,7 +17,7 @@
                   @keyup.enter="searchFacility(orgSearchQuery, orgSearchLocation)"
                 ).font-14.font-weight-regular
             v-divider(inset vertical).mt-6.mb-8
-            v-col(md="4").search-fields
+            v-col(cols="4" md="4").search-fields
               v-toolbar-title.font-14.ml-4.text-left.font-weight-bold Location
                 v-autocomplete(
                   placeholder="Municipality"
@@ -43,22 +42,6 @@
             @click="searchFacility(orgSearchQuery, orgSearchLocation)"
           )
             v-icon mdi-magnify
-        v-text-field(
-          v-else
-          v-model="orgSearchQuery"
-          solo
-          clearable
-          rounded
-          color="white"
-          placeholder="Search Services"
-        ).bg-white
-          template(v-slot:append)
-            v-btn(
-              color="primary"
-              icon
-              @click="searchFacility(orgSearchQuery, orgSearchLocation)"
-            )
-              v-icon(color="primary") mdi-magnify
 </template>
 <script>
 export default {

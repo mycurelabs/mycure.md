@@ -2,7 +2,7 @@
   div(v-if="!loading")
     app-bar(isServices)
     v-row(justify="center" no-gutters).search-container.pt-3
-      v-col(cols="12" md="3")
+      v-col(cols="10" md="3")
         v-btn(
           color="white"
           x-large
@@ -12,7 +12,7 @@
         ).text-none
           v-icon(left) mdi-format-list-bulleted
           strong Search Services
-      v-col(cols="12" md="3")
+      v-col(cols="10" md="3")
         v-btn(
           color="white"
           x-large

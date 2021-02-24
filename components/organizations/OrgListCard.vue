@@ -41,17 +41,6 @@
                       template(v-else)
                         i No schedules available
                         br
-              template(v-if="$isMobile")
-                div.d-flex
-                  v-btn(
-                    color="primary"
-                    @click="openFacility"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    rounded
-                    block
-                    ) #[b Visit Facility]
-              v-col(cols="1")
               v-col(v-if="!$isMobile")
                 div.my-4
                 v-btn(
@@ -62,6 +51,16 @@
                   rounded
                   block
                 ) #[b Visit Facility]
+            v-row(justify="center"  v-if="$isMobile")
+              v-col(cols="10")
+                v-btn(
+                  color="primary"
+                  @click="openFacility"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  rounded
+                  block
+                  ) #[b Visit Facility]
 </template>
 
 <script>
