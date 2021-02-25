@@ -9,8 +9,8 @@
           color="white"
           :style="{ opacity: services ? '' : '0.8' }"
         ).toolbar
-          v-col(cols="12" md="10").d-flex.mt-2.justify-space-between
-            v-col(md="8").search-fields
+          v-col(cols="12" md="11").d-flex.mt-2.justify-space-between
+            v-col(cols="12").search-fields
               v-toolbar-title.font-14.ml-4.text-left.font-weight-bold Services
                 //- v-text-field(
                 //-   v-model="serviceSearchQuery"
@@ -20,7 +20,7 @@
                 //-   v-on:keyup.enter="searchServices(serviceSearchQuery, serviceSearchLocation)"
                 //- ).font-14.font-weight-regular
                 v-combobox(
-                  v-model="searchQuery ? searchQuery : serviceSearchQuery"
+                  v-model="serviceSearchQuery"
                   :items="servicesSuggestions"
                   color="white"
                   item-text="name"
@@ -35,15 +35,15 @@
                       div
                         p.grey--text {{ serviceTypeMappings[item.type] || ''}}
                       //- #[span.ml-auto.text-right.grey--text {{ item.type }}]
-            v-divider(inset vertical).mt-6.mb-8
-            v-col(md="4").search-fields
-              v-toolbar-title.font-14.ml-4.text-left.font-weight-bold Location
-                v-text-field(
-                  placeholder="Anywhere"
-                  v-model="locationQuery ? locationQuery : serviceSearchLocation"
-                  clearable
-                  @keyup.enter="searchServices(serviceSearchQuery, serviceSearchLocation)"
-                ).font-14.font-weight-regular
+            //- v-divider(inset vertical).mt-6.mb-8
+            //- v-col(md="4").search-fields
+            //-   v-toolbar-title.font-14.ml-4.text-left.font-weight-bold Location
+            //-     v-text-field(
+            //-       placeholder="Anywhere"
+            //-       v-model="locationQuery ? locationQuery : serviceSearchLocation"
+            //-       clearable
+            //-       @keyup.enter="searchServices(serviceSearchQuery, serviceSearchLocation)"
+            //-     ).font-14.font-weight-regular
           v-spacer
           //- Desktop Services page search button
           v-btn(
@@ -70,6 +70,7 @@
           solo
           clearable
           rounded
+          item-text="name"
           color="white"
           placeholder="Search Services"
         ).bg-white
@@ -81,6 +82,7 @@
               icon
               @click="searchServices(serviceSearchQuery)"
             )
+              v-icon mdi-magnify
             //- Mobile Patients page search button
             v-btn(
               v-else
@@ -88,7 +90,7 @@
               icon
               :to="{name: 'services', params: { serviceSearchQuery: { name: serviceSearchQuery } }}"
             )
-              v-icon(color="primary") mdi-magnify
+              v-icon mdi-magnify
         v-col(v-if="services" cols="12").pb-0
           v-row(:class="$isMobile ? 'd-block' : ''").filter-menu.white--text.font-14
             div.d-flex
@@ -127,7 +129,7 @@ export default {
     },
     searchQuery: {
       type: String,
-      default: '',
+      default: null,
     },
     locationQuery: {
       type: String,
@@ -159,6 +161,9 @@ export default {
     serviceSearchQuery (val) {
       (val === null || val === undefined) && this.$emit('clear-services');
     },
+  },
+  mounted () {
+    if (this.searchQuery) this.serviceSearchQuery = this.searchQuery;
   },
   methods: {
     searchServices (searchQuery, locationQuery) {
