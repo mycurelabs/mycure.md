@@ -133,12 +133,9 @@ export default {
       },
       {
         name: 'For Patients',
-        route: 'index',
-        panel: 'patient-portal',
-        panelOffset: -100,
+        route: 'patients',
         new: false,
         external: false,
-        comingSoon: true,
       },
       // TODO: bring back later
       // {
