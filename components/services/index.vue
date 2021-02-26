@@ -441,7 +441,7 @@ export default {
 .services-results-summary {
   z-index: -1;
   background-color: #fafafa;
-  /* margin-top: 340px; */
+  margin-top: 340px;
 }
 
 .org-results-summary {
@@ -452,7 +452,7 @@ export default {
 
 @media screen and (max-width: 1020px) {
   .services-results-summary {
-    /* margin-top: 450px; */
+    margin-top: 450px;
   }
 }
 </style>
