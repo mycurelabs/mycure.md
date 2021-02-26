@@ -21,7 +21,7 @@
               :src="require('~/assets/images/patients/usp-patients.png')"
               alt="patients-usp"
             )
-      services(:fixed-search-bar="false")
+      services(:fixed-search-bar="false" read-only)
 </template>
 
 <script>

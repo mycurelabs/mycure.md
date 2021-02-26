@@ -41,7 +41,7 @@
                       template(v-else)
                         i No schedules available
                         br
-              v-col(v-if="!$isMobile")
+              v-col(v-if="!$isMobile && !readOnly")
                 div.my-4
                 v-btn(
                   color="primary"
@@ -51,7 +51,7 @@
                   rounded
                   block
                 ) #[b Visit Facility]
-            v-row(justify="center"  v-if="$isMobile")
+            v-row(justify="center"  v-if="$isMobile && !readOnly")
               v-col(cols="10")
                 v-btn(
                   color="primary"
@@ -71,6 +71,10 @@ export default {
     organization: {
       type: Object,
       default: () => {},
+    },
+    readOnly: {
+      type: Boolean,
+      default: false,
     },
   },
   data () {

@@ -66,7 +66,7 @@
                         strong.font-18 Php {{ service.price }}
                       div.my-1
                       v-btn(
-                        v-if="isService"
+                        v-if="isService && !readOnly"
                         color="primary"
                         @click="openPXPortal"
                         target="_blank"
@@ -75,7 +75,7 @@
                         block
                         ) #[b Book now]
                         v-btn(
-                          v-if="isDoctor"
+                          v-if="isDoctor && !readOnly"
                           color="primary"
                           @click="openPXPortal"
                           target="_blank"
@@ -84,7 +84,7 @@
                           block
                         ).mb-2 #[b Book a Teleconsult]
                         v-btn(
-                          v-if="isDoctor"
+                          v-if="isDoctor && !readOnly"
                           color="primary"
                           @click="openPXPortal"
                           target="_blank"
@@ -103,7 +103,7 @@
                   span HMO Providers:
                 div.my-4
                 v-btn(
-                    v-if="isService"
+                    v-if="isService && !readOnly"
                     color="primary"
                     @click="openPXPortal"
                     target="_blank"
@@ -112,7 +112,7 @@
                     block
                   ) #[b Book now]
                   v-btn(
-                    v-if="isDoctor"
+                    v-if="isDoctor && !readOnly"
                     color="primary"
                     @click="openPXPortal"
                     target="_blank"
@@ -121,7 +121,7 @@
                     block
                   ).mb-2 #[b Book a Teleconsult]
                   v-btn(
-                    v-if="isDoctor"
+                    v-if="isDoctor && !readOnly"
                     color="primary"
                     @click="openPXPortal"
                     target="_blank"
@@ -155,6 +155,10 @@ export default {
       default: false,
     },
     initialServices: {
+      type: Boolean,
+      default: false,
+    },
+    readOnly: {
       type: Boolean,
       default: false,
     },
