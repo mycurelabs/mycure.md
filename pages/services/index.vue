@@ -47,7 +47,7 @@
       v-col(cols="12" md="8")
         //- h4(v-if="!searchQuery").font-weight-regular.font-20.text-left.ml-10 #[strong {{ searchedServicesLength }}] services found
         //- h4(v-if="searchQuery").font-weight-regular.font-20.text-left.ml-10 #[strong {{ searchedServicesLength }}] results found on #[strong {{ searchQuery }}] in #[strong {{ locationQuery }}]
-        h4 {{ resultsSummary }}
+        h4.mx-2 {{ resultsSummary }}
       v-col(cols="12")
         //- search results on initial page load
         template(v-if="initialServicesList.length > 1 && sortMethod === 'Relevance'" v-for="initialService in initialServicesList")
