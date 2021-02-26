@@ -62,7 +62,8 @@
             isService
             :service="initialService"
             :initialServices="true"
-            )
+            :read-only="readOnly"
+          )
         v-pagination(
           v-if="initialServicesList.length > 1 && sortMethod === 'Relevance'"
           v-model="initialServicesPage"
@@ -75,7 +76,8 @@
             isService
             :service="filteredItem"
             :initialServices="true"
-            )
+            :read-only="readOnly"
+          )
         v-pagination(
           v-if="filteredItems.length > 1 && sortMethod !== 'Relevance'"
           v-model="initialServicesPage"
@@ -90,6 +92,7 @@
             :service="service"
             :locationText="locationQuery"
             :emptyLocationSearch="emptyLocationSearch"
+             :read-only="readOnly"
             @location-not-matched="clearServicesResults"
           )
         v-pagination(
@@ -105,6 +108,7 @@
             :service="filteredResultsService"
             :locationText="locationQuery"
             :emptyLocationSearch="emptyLocationSearch"
+             :read-only="readOnly"
             @location-not-matched="clearServicesResults"
           )
         v-pagination(
@@ -127,6 +131,7 @@
           v-for="(organization, key) in orgsList"
           :key="key"
           :organization="organization"
+          :read-only="readOnly"
         )
         v-pagination(
           v-model="orgsPage"
@@ -159,6 +164,10 @@ export default {
     fixedSearchBar: {
       type: Boolean,
       default: true,
+    },
+    readOnly: {
+      type: Boolean,
+      default: false,
     },
   },
   data () {
