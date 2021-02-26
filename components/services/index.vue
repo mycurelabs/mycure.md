@@ -44,10 +44,10 @@
         )
     //- Service Results
     v-row(align="center" justify="center" v-if="searchMode === 'service'" :class="{ 'services-results-margin': fixedSearchBar }").services-results-summary
-      v-col(cols="12" md="8")
+      v-col(cols="12" md="9")
         //- h4(v-if="!searchQuery").font-weight-regular.font-20.text-left.ml-10 #[strong {{ searchedServicesLength }}] services found
         //- h4(v-if="searchQuery").font-weight-regular.font-20.text-left.ml-10 #[strong {{ searchedServicesLength }}] results found on #[strong {{ searchQuery }}] in #[strong {{ locationQuery }}]
-        h4.mx-2 {{ resultsSummary }}
+        h4 {{ resultsSummary }}
       v-col(cols="12")
         //- search results on initial page load
         template(v-if="initialServicesList.length > 1 && sortMethod === 'Relevance'" v-for="initialService in initialServicesList")
@@ -113,7 +113,7 @@
 
     //- Facility Results
     v-row(align="center" justify="center" v-else-if="searchMode === 'facility'" :class="{ 'org-results-margin': fixedSearchBar }").org-results-summary
-      v-col(cols="12" md="8")#org-results
+      v-col(cols="12" md="9")#org-results
         h4(v-if="orgsTotal") There are {{ orgsTotal }} result{{ orgsTotal > 1 ? 's' : '' }} available.
         h4(v-else) There are no results available.
       v-col(cols="12")
