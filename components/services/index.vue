@@ -43,7 +43,7 @@
           @clear-organizations="clearOrganizationResults"
         )
     //- Service Results
-    v-row(align="center" justify="center" v-if="searchMode === 'service'").services-results-summary
+    v-row(align="center" justify="center" v-if="searchMode === 'service'" :class="{ 'services-results-margin': fixedSearchBar }").services-results-summary
       v-col(cols="12" md="8")
         //- h4(v-if="!searchQuery").font-weight-regular.font-20.text-left.ml-10 #[strong {{ searchedServicesLength }}] services found
         //- h4(v-if="searchQuery").font-weight-regular.font-20.text-left.ml-10 #[strong {{ searchedServicesLength }}] results found on #[strong {{ searchQuery }}] in #[strong {{ locationQuery }}]
@@ -112,7 +112,7 @@
         results-card(isDoctor)
 
     //- Facility Results
-    v-row(align="center" justify="center" v-else-if="searchMode === 'facility'").org-results-summary
+    v-row(align="center" justify="center" v-else-if="searchMode === 'facility'" :class="{ 'org-results-margin': fixedSearchBar }").org-results-summary
       v-col(cols="12" md="8")#org-results
         h4(v-if="orgsTotal") There are {{ orgsTotal }} result{{ orgsTotal > 1 ? 's' : '' }} available.
         h4(v-else) There are no results available.
@@ -441,17 +441,23 @@ export default {
 .services-results-summary {
   z-index: -1;
   background-color: #fafafa;
+}
+
+.services-results-margin {
   margin-top: 340px;
 }
 
 .org-results-summary {
   z-index: -1;
   background-color: #fafafa;
+}
+
+.org-results-margin {
   margin-top: 250px;
 }
 
 @media screen and (max-width: 1020px) {
-  .services-results-summary {
+  .services-results-margin {
     margin-top: 450px;
   }
 }
