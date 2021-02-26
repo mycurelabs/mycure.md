@@ -410,6 +410,7 @@ export default {
     },
     clearOrganizationResults () {
       this.orgsList = [];
+      this.orgsTotal = 0;
       this.searchQuery = null;
     },
     sortServicesResults (sortMethod) {

@@ -14,7 +14,8 @@
                   placeholder="Search for a health facility"
                   clearable
                   @click:clear="clearTextfield"
-                  @keyup.enter="searchFacility(orgSearchQuery, orgSearchLocation)"
+                  @keyup.enter="searchFacility"
+                  @input="debouncedSearch"
                 ).font-14.font-weight-regular
             v-divider(inset vertical).mt-6.mb-8
             v-col(cols="4" md="4").search-fields
@@ -24,7 +25,7 @@
                   v-model="orgSearchLocation"
                   clearable
                   :items="provinces"
-                  @keyup.enter="searchFacility(orgSearchQuery, orgSearchLocation)"
+                  @keyup.enter="searchFacility"
                 ).font-14.font-weight-regular
           v-spacer
           v-btn(
@@ -39,11 +40,12 @@
             large
             fab
             color="primary"
-            @click="searchFacility(orgSearchQuery, orgSearchLocation)"
+            @click="searchFacility"
           )
             v-icon mdi-magnify
 </template>
 <script>
+import { debounce } from 'lodash';
 export default {
   props: {
     icon: {
@@ -58,7 +60,8 @@ export default {
   data () {
     return {
       orgSearchQuery: null,
-      orgSearchLocation: '',
+      orgSearchLocation: null,
+      debouncedSearch: debounce(this.searchFacility, 500),
     };
   },
   watch: {
@@ -67,8 +70,12 @@ export default {
     },
   },
   methods: {
-    searchFacility (searchText, locationText) {
-      this.$emit('search-organizations', { searchText, locationText });
+    searchFacility () {
+      if (!this.orgSearchQuery) {
+        this.$emit('clear-organizations');
+        return;
+      }
+      this.$emit('search-organizations', { searchText: this.orgSearchQuery, locationText: this.orgSearchLocation });
     },
     clearTextfield () {
       this.orgSearchLocation = '';
