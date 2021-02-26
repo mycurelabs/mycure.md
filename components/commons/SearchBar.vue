@@ -26,7 +26,6 @@
                   item-text="name"
                   clearable
                   @keyup.enter="searchServices(serviceSearchQuery, serviceSearchLocation)"
-                  @input="debouncedSearchText"
                   @update:search-input="searchDebounce"
                 ).font-14.font-weight-regular
                   template(slot="item" slot-scope="{ item, tile }")
