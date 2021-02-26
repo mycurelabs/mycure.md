@@ -75,6 +75,7 @@
           color="white"
           placeholder="Search Services"
           @input="debouncedSearchText"
+          hide-details
         ).bg-white
           template(v-slot:append)
             //- Mobile Services page search button
