@@ -26,6 +26,8 @@
                   item-text="name"
                   clearable
                   @keyup.enter="searchServices(serviceSearchQuery, serviceSearchLocation)"
+                  @input="debouncedSearchText"
+                  @update:search-input="searchDebounce"
                 ).font-14.font-weight-regular
                   template(slot="item" slot-scope="{ item, tile }")
                     div.d-flex.suggestion-item
@@ -73,6 +75,7 @@
           item-text="name"
           color="white"
           placeholder="Search Services"
+          @input="debouncedSearchText"
         ).bg-white
           template(v-slot:append)
             //- Mobile Services page search button
@@ -113,6 +116,7 @@
               ).filter.ml-2.font-14.search-select.white--text
 </template>
 <script>
+import _ from 'lodash';
 export default {
   props: {
     icon: {
@@ -145,11 +149,12 @@ export default {
       dental: 'Dental',
     };
     return {
-      serviceSearchQuery: null,
+      serviceSearchQuery: '',
       serviceSearchLocation: '',
       filterLabel: '',
       defaultSelected: 'Laboratory',
       defaultSort: 'Relevance',
+      debouncedSearchText: _.debounce((e) => { this.serviceSearchQuery = e; }, 500),
     };
   },
   computed: {
@@ -159,7 +164,11 @@ export default {
   },
   watch: {
     serviceSearchQuery (val) {
-      (val === null || val === undefined) && this.$emit('clear-services');
+      if (val === null || val === undefined) {
+        this.$emit('clear-services');
+      } else {
+        this.$emit('search-services', val);
+      }
     },
   },
   mounted () {
@@ -179,6 +188,9 @@ export default {
     },
     sortResults (sortMethod) {
       this.$emit('sort-results', sortMethod);
+    },
+    searchDebounce (searchText) {
+      this.$emit('search-services', searchText);
     },
   },
 };
