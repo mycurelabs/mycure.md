@@ -5,22 +5,28 @@
       v-col(cols="10" md="3")
         v-btn(
           color="white"
-          x-large
+          v-bind="buttonSize"
           block
           :outlined="searchMode !== 'service'"
           @click="searchMode = 'service'"
         ).text-none
-          v-icon(left) mdi-format-list-bulleted
+          v-icon(
+            v-bind="buttonSize"
+            left
+          ) mdi-format-list-bulleted
           strong Search Services
       v-col(cols="10" md="3")
         v-btn(
           color="white"
-          x-large
+          v-bind="buttonSize"
           block
           :outlined="searchMode !== 'facility'"
           @click="searchMode = 'facility'"
         ).text-none
-          v-icon(left) mdi-domain
+          v-icon(
+            v-bind="buttonSize"
+            left
+          ) mdi-domain
           strong Search Facilities
       v-col(cols="12").text-center.pb-0
         search-bar(
@@ -268,6 +274,10 @@ export default {
     provinces () {
       return this.municipalityList.map(municipality => municipality.name) || [];
     },
+    buttonSize () {
+      const size = { xs: 'small', sm: 'large', lg: 'large', xl: 'x-large' }[this.$vuetify.breakpoint.name];
+      return size ? { [size]: true } : {};
+    },
   },
   watch: {
     initialServicesPage (val) {
@@ -467,7 +477,7 @@ export default {
 
 @media screen and (max-width: 1020px) {
   .services-results-margin {
-    margin-top: 450px;
+    margin-top: 380px;
   }
 }
 </style>
