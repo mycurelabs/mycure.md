@@ -1,7 +1,7 @@
 <template lang="pug">
   div(v-if="!loading")
     app-bar(isServices)
-    v-row(justify="center" no-gutters).search-container.pt-3
+    v-row(justify="center" no-gutters :class="{ 'fixed-container': fixedSearchBar }").search-container.pt-3
       v-col(cols="10" md="3")
         v-btn(
           color="white"
@@ -148,6 +148,12 @@ export default {
     OrgSearchBar,
     ResultsCard,
     SearchBar,
+  },
+  props: {
+    fixedSearchBar: {
+      type: Boolean,
+      default: true,
+    },
   },
   data () {
     return {
@@ -424,6 +430,9 @@ export default {
   margin-top: 70px;
   background-color: #0087B5;
   width: 100%;
+}
+
+.fixed-container {
   position: fixed;
   z-index: 99;
   top: 0;
@@ -432,7 +441,7 @@ export default {
 .services-results-summary {
   z-index: -1;
   background-color: #fafafa;
-  margin-top: 340px;
+  /* margin-top: 340px; */
 }
 
 .org-results-summary {
@@ -443,7 +452,7 @@ export default {
 
 @media screen and (max-width: 1020px) {
   .services-results-summary {
-    margin-top: 450px;
+    /* margin-top: 450px; */
   }
 }
 </style>
