@@ -80,7 +80,7 @@ export default {
           image: require('../../assets/images/providers/Homepage-cropped.png'),
           title: 'Patients book your healthcare services, keeping you both safe',
           superTitle: 'DIRECTORY',
-          superTitleChipText: 'Coming Soon!',
+          // superTitleChipText: 'Coming Soon!',
           list: [
             'Acquire patients beyond your reach',
             'Hassle-free from booking to billing',
