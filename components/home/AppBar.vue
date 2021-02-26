@@ -2,6 +2,7 @@
   v-app-bar(
       height="70"
       app
+      color="white"
       elevate-on-scroll
       :style="navBarStyle"
     )#navbar.border-transparent
@@ -18,6 +19,7 @@
           v-btn(
             v-if="!$isMobile"
             text
+            large
             depressed
             to="/"
           ).text-none For Providers
@@ -30,13 +32,15 @@
           v-btn(
             text
             depressed
+            large
             @click="openPxPortal(pxPortalLogIn)"
-          ).text-none #[b Login]
+          ).text-none.mr-2 #[b Log In]
           v-btn(
             v-if="!$isMobile"
             depressed
             color="success"
             rounded
+            large
             @click="openPxPortal(pxPortalSignUp)"
           ).text-none #[b Get Started]
           v-menu(
@@ -61,8 +65,8 @@
                 v-btn(
                   text
                   block
-                  @clicl="openPxPortal(pxPortalSignUp)"
-                ) Get Started
+                  @click="openPxPortal(pxPortalSignUp)"
+                ) Get Started for Free
 
 </template>
 
