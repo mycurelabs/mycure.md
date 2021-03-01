@@ -34,6 +34,7 @@
           ).search-bar
         v-col(v-if="searchResultsMode && !hideSearchBars" cols="10" md="2")
           search-insurance-contracts(
+            solo
             :class="{ 'mt-3': !$isMobile }"
             :disabled="isPreviewMode"
             @select="onInsuranceSelect"
