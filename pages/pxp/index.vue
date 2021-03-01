@@ -14,7 +14,7 @@
               rounded
               large
               dense
-              @click="openPxPortal(pxPortalSignUp)"
+              @click="openPxPortal(pxPortal)"
             ).text-none #[b Get Started Free]
           v-col(cols="12" md="6")
             v-img(
@@ -34,8 +34,8 @@ export default {
     Services,
   },
   computed: {
-    pxPortalSignUp () {
-      return `${process.env.PX_PORTAL_URL}/signup`;
+    pxPortal () {
+      return `${process.env.PX_PORTAL_URL}/`;
     },
   },
   methods: {
