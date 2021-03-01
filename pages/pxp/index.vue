@@ -5,7 +5,7 @@
       //- USP
       v-container
         v-row(justify="center" align="center").my-12
-          v-col(cols="12" md="6")
+          v-col(cols="12" md="6" :class="{ 'text-center' : $isMobile }")
             h1.primary--text Find the right healthcare services near you
             p The best diagnostic clinics, hospitals, and full service clinics in Metro Manila are within your reach whenever you need them.
             v-btn(
@@ -14,11 +14,12 @@
               rounded
               large
               dense
-              @click="openPxPortal(pxPortalSignUp)"
+              @click="openPxPortal(pxPortal)"
             ).text-none #[b Get Started Free]
-          v-col(cols="12" md="6")
+          v-col(cols="8" md="6" :class="{ 'order-first' : $isMobile }")
             v-img(
               :src="require('~/assets/images/patients/usp-patients.png')"
+              width="100%"
               alt="patients-usp"
             )
       services(:fixed-search-bar="false" read-only)
@@ -34,8 +35,8 @@ export default {
     Services,
   },
   computed: {
-    pxPortalSignUp () {
-      return `${process.env.PX_PORTAL_URL}/signup`;
+    pxPortal () {
+      return `${process.env.PX_PORTAL_URL}/`;
     },
   },
   methods: {

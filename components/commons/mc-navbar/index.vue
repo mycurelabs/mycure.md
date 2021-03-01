@@ -133,10 +133,10 @@ export default {
       },
       {
         name: 'For Patients',
-        route: 'patients',
+        route: 'pxp',
         new: false,
         external: false,
-        comingSoon: true,
+        // comingSoon: true,
       },
       // TODO: bring back later
       // {
