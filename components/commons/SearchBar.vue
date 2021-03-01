@@ -175,7 +175,6 @@ export default {
   },
   methods: {
     searchServices () {
-      console.log('service search query', this.serviceSearchQuery);
       this.$emit('search-services', this.serviceSearchQuery, this.serviceSearchLocation, this.serviceSearchHMO);
     },
     selectFilter (label) {

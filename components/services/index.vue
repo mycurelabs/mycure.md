@@ -394,7 +394,7 @@ export default {
       const skip = this.servicesLimit * (page - 1);
       let searchText = searchQuery;
       let selection = null;
-      if (typeof (searchText) === 'object') {
+      if (typeof (searchText) === 'object' && searchText?.name) {
         searchText = searchQuery.name;
         selection = searchQuery;
       }
