@@ -4,11 +4,13 @@
     item-text="insurerName"
     item-value="insurer"
     no-filter
-    label="Search HMO"
     return-object
     chips
-    solo
     clearable
+    :label="!noLabel ? 'Search HMO' : null"
+    :placeholder="placeholder"
+    :solo="solo"
+    :outlined="outlined"
     :search-input.sync="searchText"
     :items="items"
     :loading="loading"
@@ -30,6 +32,22 @@ export default {
       default: undefined,
     },
     disabled: {
+      type: Boolean,
+      default: false,
+    },
+    solo: {
+      type: Boolean,
+      default: false,
+    },
+    outlined: {
+      type: Boolean,
+      default: false,
+    },
+    placeholder: {
+      type: String,
+      default: null,
+    },
+    noLabel: {
       type: Boolean,
       default: false,
     },
