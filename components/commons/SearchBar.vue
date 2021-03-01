@@ -2,14 +2,15 @@
   v-container
     v-row(justify="center" align="center")
       v-col(cols="12" md="10").pb-0
+        //- desktop search field
         v-toolbar(
           v-if="!$isMobile"
           height="84"
           color="white"
           :style="{ opacity: services ? '' : '0.8' }"
         ).toolbar
-          v-col(cols="12" md="10").d-flex.mt-2.justify-space-between
-            v-col(md="8").search-fields
+          v-col(cols="12" md="11").d-flex.mt-2.justify-space-between
+            v-col(cols="12").search-fields
               v-toolbar-title.font-14.ml-4.text-left.font-weight-bold Services
                 //- v-text-field(
                 //-   v-model="serviceSearchQuery"
@@ -25,6 +26,7 @@
                   item-text="name"
                   clearable
                   @keyup.enter="searchServices(serviceSearchQuery, serviceSearchLocation)"
+                  @update:search-input="searchDebounce"
                 ).font-14.font-weight-regular
                   template(slot="item" slot-scope="{ item, tile }")
                     div.d-flex.suggestion-item
@@ -34,47 +36,64 @@
                       div
                         p.grey--text {{ serviceTypeMappings[item.type] || ''}}
                       //- #[span.ml-auto.text-right.grey--text {{ item.type }}]
-            v-divider(inset vertical).mt-6.mb-8
-            v-col(md="4").search-fields
-              v-toolbar-title.font-14.ml-4.text-left.font-weight-bold Location
-                v-text-field(
-                  placeholder="Anywhere"
-                  v-model="serviceSearchLocation"
-                  clearable
-                  @keyup.enter="searchServices(serviceSearchQuery, serviceSearchLocation)"
-                ).font-14.font-weight-regular
+            //- v-divider(inset vertical).mt-6.mb-8
+            //- v-col(md="4").search-fields
+            //-   v-toolbar-title.font-14.ml-4.text-left.font-weight-bold Location
+            //-     v-text-field(
+            //-       placeholder="Anywhere"
+            //-       v-model="locationQuery ? locationQuery : serviceSearchLocation"
+            //-       clearable
+            //-       @keyup.enter="searchServices(serviceSearchQuery, serviceSearchLocation)"
+            //-     ).font-14.font-weight-regular
           v-spacer
+          //- Desktop Services page search button
           v-btn(
-            v-if="!icon"
-            depressed
-            large
-            rounded
-            color="primary"
-          ) #[b Search Now]
-          v-btn(
-            v-else
+            v-if="icon"
             large
             fab
             color="primary"
             @click="searchServices(serviceSearchQuery, serviceSearchLocation)"
           )
             v-icon mdi-magnify
+          //- Desktop Patients page search button
+          v-btn(
+            v-else
+            depressed
+            large
+            rounded
+            color="primary"
+            :to="{name: 'services', params: { serviceSearchQuery: { name: serviceSearchQuery }, serviceSearchLocation: serviceSearchLocation }}"
+          ) #[b Search Now]
+        //- mobile search field
         v-text-field(
           v-else
           v-model="serviceSearchQuery"
           solo
           clearable
           rounded
+          item-text="name"
           color="white"
           placeholder="Search Services"
+          @input="debouncedSearchText"
+          hide-details
         ).bg-white
           template(v-slot:append)
+            //- Mobile Services page search button
             v-btn(
+              v-if="services"
               color="primary"
               icon
-              @click="searchServices(serviceSearchQuery, serviceSearchLocation)"
+              @click="searchServices(serviceSearchQuery)"
             )
-              v-icon(color="primary") mdi-magnify
+              v-icon mdi-magnify
+            //- Mobile Patients page search button
+            v-btn(
+              v-else
+              color="primary"
+              icon
+              :to="{name: 'services', params: { serviceSearchQuery: { name: serviceSearchQuery } }}"
+            )
+              v-icon mdi-magnify
         v-col(v-if="services" cols="12").pb-0
           v-row(:class="$isMobile ? 'd-block' : ''").filter-menu.white--text.font-14
             div.d-flex
@@ -89,12 +108,15 @@
             div(:class="$isMobile ? '' : 'ml-4'").d-flex
               span.mt-2 Sort by:
               v-select(
-                label="Relevance"
+                v-model="defaultSort"
                 dense
                 solo
+                :items="['Relevance', 'Alphabetical (Ascending)', 'Alphabetical (Descending)']"
+                @change="sortResults($event)"
               ).filter.ml-2.font-14.search-select.white--text
 </template>
 <script>
+import _ from 'lodash';
 export default {
   props: {
     icon: {
@@ -109,6 +131,14 @@ export default {
       type: Array,
       default: () => [],
     },
+    searchQuery: {
+      type: String,
+      default: null,
+    },
+    locationQuery: {
+      type: String,
+      default: '',
+    },
   },
   data () {
     this.serviceTypeMappings = {
@@ -119,10 +149,12 @@ export default {
       dental: 'Dental',
     };
     return {
-      serviceSearchQuery: null,
+      serviceSearchQuery: '',
       serviceSearchLocation: '',
       filterLabel: '',
       defaultSelected: 'Laboratory',
+      defaultSort: 'Relevance',
+      debouncedSearchText: _.debounce((e) => { this.serviceSearchQuery = e; }, 500),
     };
   },
   computed: {
@@ -132,8 +164,15 @@ export default {
   },
   watch: {
     serviceSearchQuery (val) {
-      (val === null || val === undefined) && this.$emit('clear-services');
+      if (val === null || val === undefined) {
+        this.$emit('clear-services');
+      } else {
+        this.$emit('search-services', val);
+      }
     },
+  },
+  mounted () {
+    if (this.searchQuery) this.serviceSearchQuery = this.searchQuery;
   },
   methods: {
     searchServices (searchQuery, locationQuery) {
@@ -146,6 +185,12 @@ export default {
     clearTextfield () {
       this.serviceSearchLocation = '';
       this.$emit('clear-services');
+    },
+    sortResults (sortMethod) {
+      this.$emit('sort-results', sortMethod);
+    },
+    searchDebounce (searchText) {
+      this.$emit('search-services', searchText);
     },
   },
 };

@@ -133,12 +133,10 @@ export default {
       },
       {
         name: 'For Patients',
-        route: 'index',
-        panel: 'patient-portal',
-        panelOffset: -100,
+        route: 'pxp',
         new: false,
         external: false,
-        comingSoon: true,
+        // comingSoon: true,
       },
       // TODO: bring back later
       // {

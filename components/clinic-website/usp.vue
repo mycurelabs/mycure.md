@@ -6,19 +6,19 @@
     v-container(fluid).pa-0
       v-row(align="center" justify="center" :no-gutters="noGutters").content-container.mx-1
         v-col(cols="10" md="6").text-center
-          h1(v-if="(!searchResultsMode || $isMobile) && !hideBanner" :class="{ 'font-30': $isMobile }").white--text Consult online with #[br] MYCURE Health Center today
+          h1(v-if="(!searchResultsMode || $isMobile) && !hideBanner" :class="{ 'font-30': $isMobile }").white--text Easily book your next visit to #[br] {{ name }}
           v-text-field(
-            v-if="!hideSearchBars"
+            v-if="isInitialSearchBarVisible"
             solo
             clearable
-            placeholder="Search MYCURE Health Center’s doctors, diagnostic tests, and services"
+            :placeholder="`Search ${name}’s doctors, diagnostic tests, and services`"
             v-model="searchText"
             :disabled="isPreviewMode"
             @keyup.enter="debouncedSearch"
           ).mt-3.search-bar
             template(v-slot:append)
               v-icon(color="white").search-icon mdi-magnify
-        v-col(v-if="searchResultsMode && !hideSearchBars" cols="10" md="2")
+        v-col(v-if="(searchResultsMode && !hideSearchBars)" cols="10" md="2")
           v-select(
             v-model="serviceType"
             :items="availableServiceTypes"
@@ -72,7 +72,7 @@ export default {
     },
     name: {
       type: String,
-      default: 'Awesome Hospital',
+      default: 'the health center',
     },
     orgId: {
       type: String,
@@ -141,6 +141,11 @@ export default {
     backgroundStyle () {
       const overlay = 'linear-gradient(270deg, rgba(0, 0, 0, .5), rgba(0, 0, 0, .5))';
       return { 'background-image': `${overlay}, url(${this.coverURL})` };
+    },
+    isInitialSearchBarVisible () {
+      if (this.$isMobile && !this.searchResultsMode) return true;
+      if (!this.$isMobile) return true;
+      return false;
     },
   },
   watch: {

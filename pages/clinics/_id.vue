@@ -20,14 +20,41 @@
     )
     v-container(fluid)
       v-row(justify="center")
+        v-col(
+          v-if="$isMobile && !searchResultsMode"
+          cols="12"
+        )
+          service-types-mobile-selection(
+            v-if="!mobileServicesListView"
+            :service-types="serviceTypes"
+            :has-doctors="hasDoctors"
+            :is-preview-mode="isPreviewMode"
+            @select="activeTab = $event; mobileServicesListView = true"
+          )
+          services-tabs(
+            v-else
+            hide-tabs
+            show-back-button
+            :items="listItems"
+            :organization="orgId"
+            :loading="loading.list"
+            :has-next-page="hasNextPage"
+            :has-previous-page="hasPreviousPage"
+            :is-preview-mode="isPreviewMode"
+            :service-types="serviceTypes"
+            @back="mobileServicesListView = false"
+            @next="refetchListItems(activeTab, page + 1)"
+            @previous="refetchListItems(activeTab, page - 1)"
+          )
         v-col(cols="12" md="3")
           clinic-info(
             :clinic="clinicWebsite"
             :is-dummy-org="isDummyOrg"
+            :is-preview-mode="isPreviewMode"
           )
           schedules(:schedules="groupedSchedules").mt-2
           usp(
-            v-if="$isMobile"
+            v-if="$isMobile && searchResultsMode"
             v-model="searchText"
             hide-banner
             no-gutters
@@ -40,9 +67,9 @@
             @search="onServiceSearch"
             @filter:date="filterByDate"
           )
-        v-col(cols="12" md="8")
+        v-col(cols="12" md="8")#services
           services-tabs(
-            v-if="!searchResultsMode"
+            v-if="!searchResultsMode && !$isMobile"
             v-model="activeTab"
             :items="listItems"
             :organization="orgId"
@@ -56,7 +83,7 @@
             @previous="refetchListItems(activeTab, page - 1)"
           )
           services-search-results(
-            v-else
+            v-else-if="searchResultsMode"
             :organization="orgId"
             :loading="loading.list"
             :items="searchResults"
@@ -121,6 +148,7 @@
 
 <script>
 import { isEmpty } from 'lodash';
+import VueScrollTo from 'vue-scrollto';
 // - utils
 import { getServices } from '~/utils/axios';
 import { getOrganization } from '~/utils/axios/organizations';
@@ -138,6 +166,7 @@ import ClinicInfo from '~/components/clinic-website/clinic-info';
 import Schedules from '~/components/clinic-website/schedules';
 import ServicesSearchResults from '~/components/clinic-website/services/search-results';
 import ServicesTabs from '~/components/clinic-website/services/tabs';
+import ServiceTypesMobileSelection from '~/components/clinic-website/services/service-types-mobile-selection';
 import Usp from '~/components/clinic-website/usp';
 export default {
   layout: 'clinic-website',
@@ -148,6 +177,7 @@ export default {
     Schedules,
     ServicesSearchResults,
     ServicesTabs,
+    ServiceTypesMobileSelection,
     Usp,
   },
   async asyncData ({ params, $sdk, redirect }) {
@@ -210,10 +240,13 @@ export default {
     ];
     this.itemsLimit = 7;
     return {
+      // UI State
       loading: {
         page: true,
         list: false,
       },
+      mobileServicesListView: false,
+      // Pagination
       page: 1,
       pageCount: 2,
       // Data Models
@@ -320,7 +353,10 @@ export default {
     },
   },
   async mounted () {
+    // Initial window setups
     this.$vuetify.theme.dark = false;
+    if (this.isPreviewMode) window.$crisp.push(['do', 'chat:hide']);
+
     await this.fetchServiceTypes();
     this.loading.page = false;
     await this.fetchServices({ type: 'diagnostic', subtype: 'lab' });
@@ -397,6 +433,7 @@ export default {
       await this.fetchDoctorMembers(searchText);
       await this.fetchServices(searchFilters, searchText);
       this.searchResults = [...this.formattedDoctors, ...this.filteredServices];
+      VueScrollTo.scrollTo('#services', 500, { offset: -100, easing: 'ease' });
     },
     filterByDate (unixDate) {
       if (!unixDate) {

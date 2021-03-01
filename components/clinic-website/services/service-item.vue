@@ -52,35 +52,35 @@
         br
         br
         br
-        v-btn(
-          color="success"
-          rounded
-          block
-          :disabled="!isAvailable"
-          :href="bookServiceURL"
-        ).text-none Book Now
-    v-row(justify="end")
-      v-col(
-        v-if="isDoctor && !readOnly"
-        cols="12"
-        md="4"
-      )
-        v-btn(
-          color="success"
-          rounded
-          block
-          :disabled="!isAvailable"
-          :href="bookTeleconsultURL"
-        ).text-none Book a Teleconsult
-        br
-        v-btn(
-          color="success"
-          rounded
-          block
-          outlined
-          :disabled="!isAvailable"
-          :href="bookTeleconsultURL"
-        ).text-none Book a Visit
+        //- v-btn(
+        //-   color="success"
+        //-   rounded
+        //-   block
+        //-   :disabled="!isAvailable"
+        //-   :href="bookServiceURL"
+        //- ).text-none Book Now
+    //- v-row(justify="end")
+    //-   v-col(
+    //-     v-if="isDoctor && !readOnly"
+    //-     cols="12"
+    //-     md="4"
+    //-   )
+    //-     v-btn(
+    //-       color="success"
+    //-       rounded
+    //-       block
+    //-       :disabled="!isAvailable"
+    //-       :href="bookTeleconsultURL"
+    //-     ).text-none Book a Teleconsult
+    //-     br
+    //-     v-btn(
+    //-       color="success"
+    //-       rounded
+    //-       block
+    //-       outlined
+    //-       :disabled="!isAvailable"
+    //-       :href="bookTeleconsultURL"
+    //-     ).text-none Book a Visit
 </template>
 
 <script>

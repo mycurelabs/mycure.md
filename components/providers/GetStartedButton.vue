@@ -1,10 +1,10 @@
 <template lang="pug">
   v-btn(
-    color="success"
+    color="primary"
     rounded
     :large="large"
     :x-large="xLarge"
-    @click="getStarted"
+    href="https://6rbf27w6k3r.typeform.com/to/V13pJzW9"
   ).text-none.font-weight-bold Get started for free
 </template>
 
@@ -18,18 +18,18 @@ export default {
       default: '',
     },
   },
-  methods: {
-    getStarted () {
-      const opts = {
-        name: 'signup-health-facilities',
-      };
-      if (this.email) {
-        opts.query = {
-          email: this.email,
-        };
-      }
-      this.$router.push(opts);
-    },
-  },
+  // methods: {
+  //   getStarted () {
+  //     const opts = {
+  //       name: 'signup-health-facilities',
+  //     };
+  //     if (this.email) {
+  //       opts.query = {
+  //         email: this.email,
+  //       };
+  //     }
+  //     this.$router.push(opts);
+  //   },
+  // },
 };
 </script>

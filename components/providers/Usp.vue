@@ -1,14 +1,14 @@
 <template lang="pug">
-  div(:class="{ 'bg' : !$isMobile, 'bg-mobile' : $isMobile }")
-    v-container
+  v-content
+    v-container(:class="{'usp-container' : !$isMobile, 'usp-mobile' : $isMobile }")
       v-row(
         :align="{ 'top' : $isMobile }"
         :style="{ height: $isMobile ? 'auto' : '626px' }"
         :class=" !$isMobile ? 'pt-10' : 'pt-2' "
         no-gutters
-      ).justify-center
-        v-col(cols="12" md="7").white--text.text-center
-          h1(:class="{ 'font-50 mb-8' : !$isMobile, 'font-35 mb-6' : $isMobile }") Grow your #[br]
+      )
+        v-col(cols="12" md="7" :class="{ 'text-center' : $isMobile }")
+          h1(:class="{ 'font-50 mb-8' : !$isMobile, 'font-35 mb-6' : $isMobile }").primary--text Grow your #[br]
             vue-typer(
               :text="['Practice', 'Clinic', 'Diagnostic Center', 'Hospital']"
               :repeat="Infinity"
@@ -16,9 +16,9 @@
               :class="{ 'font-50' : !$isMobile, 'font-35' : $isMobile }"
               erase-style="backspace"
             ).typer
-            span(:class="{ 'font-50' : !$isMobile, 'font-35' : $isMobile }") #[br] safely
-          p(:class="{ 'font-18' : !$isMobile, 'font-14' : $isMobile }") Bring in more patients using a powerful healthcare service booking and management software. It's free, secure, and easy to use.
-          v-col(cols="12" :class="{ 'd-flex' : !$isMobile, 'pt-2' : $isMobile }")
+            span(:class="{ 'font-50' : !$isMobile, 'font-35' : $isMobile }").primary--text #[br] Safely
+          p(:class="{ 'font-18' : !$isMobile, 'font-14' : $isMobile }").gray--text Bring in more patients using a powerful healthcare service booking and management software. It's free, secure, and easy to use.
+          v-col(cols="10" md="12" :class="{ 'd-flex' : !$isMobile, 'text-center mx-auto' : $isMobile }").pl-0
             v-text-field(
               v-model="email"
               outlined
@@ -26,13 +26,19 @@
               large
               hide-details
               placeholder="Enter your email address"
-            ).mr-2.bg-white
+            ).bg-white
             get-started-button(
               :class="{ 'mt-2' : $isMobile }"
               :x-large="!$isMobile"
               :large="$isMobile"
               :email="email"
-            )
+            ).ml-2
+        v-col(v-if="!$isMobile" cols="5")
+          v-img(
+            :src="require('../../assets/images/providers/USP-image-3.png')"
+            width="100%"
+            alt="homepage image"
+          )
 </template>
 
 <script>
@@ -68,42 +74,12 @@ export default {
 </script>
 
 <style scoped>
-
-.bg {
-  background-image: url('../../assets/images/providers/USP-image-3.png');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  border: none;
-  height: 100vh;
-}
-
-.bg-mobile {
-  background-image: url('../../assets/images/providers/USP-image-mobile.png');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  border: none;
-  height: 454px;
-  color: white;
-}
-
 .bg-white {
   background-color: white;
 }
 
-.usp-image {
-  position: absolute;
-  /* margin-right: -100px !important; */
-  right: 0px;
-  top: 0px;
-  width: 800px;
-  border-top-left-radius: 300px;
-  border-bottom-left-radius: 300px;
-}
-
 .vue-typer >>> .custom.char.typed  {
-  color: #FFFFFF;
+  color: #2E9FDF;
 }
 
 .vue-typer >>> .custom.caret {
@@ -112,6 +88,14 @@ export default {
 }
 
 .vue-typer >>> .custom.caret.typing {
-  background-color: #FFFFFF;
+  background-color: #2E9FDF;
+}
+
+.usp-container {
+  margin-top: 70px;
+}
+
+.usp-mobile {
+  margin-top: 38px;
 }
 </style>
