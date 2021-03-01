@@ -1,6 +1,6 @@
 <template lang="pug">
   v-btn(
-    color="success"
+    color="primary"
     rounded
     :large="large"
     :x-large="xLarge"
