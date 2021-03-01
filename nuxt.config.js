@@ -134,6 +134,7 @@ module.exports = {
   ** Build configuration
   */
   build: {
+    transpile: ['vue-clamp', 'resize-detector'],
     /*
     ** You can extend webpack config here
     */
