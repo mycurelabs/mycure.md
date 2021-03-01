@@ -11,10 +11,12 @@
     :placeholder="placeholder"
     :solo="solo"
     :outlined="outlined"
+    :rounded="rounded"
     :search-input.sync="searchText"
     :items="items"
     :loading="loading"
     :disabled="disabled || loading"
+    :class="{ 'bg-white': whiteBg }"
     @click:clear="$emit('clear')"
   )
 </template>
@@ -43,11 +45,19 @@ export default {
       type: Boolean,
       default: false,
     },
+    rounded: {
+      type: Boolean,
+      default: false,
+    },
     placeholder: {
       type: String,
       default: null,
     },
     noLabel: {
+      type: Boolean,
+      default: false,
+    },
+    whiteBg: {
       type: Boolean,
       default: false,
     },
@@ -67,6 +77,10 @@ export default {
       this.debouncedFetchContracts();
     },
     model (val) {
+      if (!val) {
+        this.$emit('clear');
+        return;
+      }
       this.onSelectContract(val);
     },
   },
