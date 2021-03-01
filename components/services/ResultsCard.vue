@@ -58,9 +58,25 @@
                       v-icon.mr-2.mb-auto mdi-calendar-today
                       p #[strong Mon - Fri 7:00AM to 3:00 PM]
                     template(v-if="$isMobile")
-                      div.d-flex
-                        v-icon(color="success").mr-2 mdi-shield-check
-                        span HMO Providers:
+                      template(v-if="hasCoverages")
+                        div.d-flex
+                          v-icon(color="success").mr-2 mdi-shield-check
+                          span HMO Providers:
+                        div.d-flex
+                          v-tooltip(
+                            v-for="(coverage, key) in coverages"
+                            :key="key"
+                            top
+                          )
+                            template(v-slot:activator="{ on, attrs }")
+                              v-avatar(
+                                size="40"
+                                color="secondary"
+                                v-on="on"
+                              ).mx-1
+                                v-img(v-if="coverage.picURL" :src="coverage.picURL")
+                                span(v-else).white--text {{ coverage.name.substring(0,1) }}
+                            span {{ coverage.name || 'HMO' }}
                       div(v-if="service.price").d-flex.mb-2
                         v-icon.mr-2 mdi-wallet
                         strong.font-18 Php {{ service.price }}
@@ -98,9 +114,25 @@
                 div(v-if="service.price").d-flex.mb-2
                   v-icon.mr-2 mdi-wallet
                   strong.font-18 Php {{ service.price }}
-                div.d-flex
-                  v-icon(color="success").mr-2 mdi-shield-check
-                  span HMO Providers:
+                template(v-if="hasCoverages")
+                  div.d-flex
+                    v-icon(color="success").mr-2 mdi-shield-check
+                    span HMO Providers:
+                  div.d-flex
+                    v-tooltip(
+                      v-for="(coverage, key) in coverages"
+                      :key="key"
+                      top
+                    )
+                      template(v-slot:activator="{ on, attrs }")
+                        v-avatar(
+                          size="40"
+                          color="secondary"
+                          v-on="on"
+                        ).mx-1
+                          v-img(v-if="coverage.picURL" :src="coverage.picURL")
+                          span(v-else).white--text {{ coverage.name.substring(0,1) }}
+                      span {{ coverage.name || 'HMO' }}
                 div.my-4
                 v-btn(
                     v-if="isService && !readOnly"
@@ -182,6 +214,20 @@ export default {
     },
     serviceId () {
       return this.service.id;
+    },
+    hasCoverages () {
+      return this.service?.coveragesData?.length;
+    },
+    coverages () {
+      const coverages = this.service?.coveragesData;
+      console.log('coverages', coverages);
+      if (!coverages?.length) return [];
+      return coverages.map((coverage) => {
+        return {
+          name: coverage.name || coverage.contractData?.insurerName,
+          ...coverage.contractData?.insurerPicURL && { picURL: coverage.contractData.insurerPicURL },
+        };
+      });
     },
   },
   watch: {

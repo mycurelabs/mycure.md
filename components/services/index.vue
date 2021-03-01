@@ -179,6 +179,7 @@ export default {
       doctorsList: [],
       searchQuery: null,
       locationQuery: '',
+      hmoQuery: null,
       initialServicesPage: 1,
       servicesPage: 1,
       initialServicesTotal: 0,
@@ -224,7 +225,9 @@ export default {
         return 'No results available. Try searching for a different keyword or location.';
       } else {
         const serviceName = (typeof (this.searchQuery) === 'object' ? this.searchQuery?.name : this.searchQuery) || 'the service';
-        return `${this.searchedServicesLength} result${this.searchedServicesLength > 1 || this.searchedServicesLength === 0 ? 's' : ''} found for ${serviceName} ${this.locationQuery ? `in ${this.locationQuery}` : ''}`;
+        const resultsLength = !this.searchQuery && !this.hmoQuery ? this.initialServicesTotal : this.searchedServicesLength;
+        const resultText = `${resultsLength} result${resultsLength > 1 || resultsLength === 0 ? 's' : ''} found for ${serviceName} ${this.locationQuery ? `in ${this.locationQuery}` : ''}`;
+        return resultText;
       }
     },
     filteredItems () {
@@ -310,9 +313,9 @@ export default {
     }
   },
   methods: {
-    fetchSearchQuery (searchQuery) {
-      this.queryServicesName(searchQuery);
-      this.queryServicesSpecialization(searchQuery);
+    async fetchSearchQuery (searchQuery) {
+      await this.queryServicesName(searchQuery);
+      await this.queryServicesSpecialization(searchQuery);
     },
     async fetchAllServices (page = 1) {
       try {
@@ -320,7 +323,7 @@ export default {
         this.servicesList = [];
         this.searchQuery = '';
         const skip = this.initialServicesLimit * (page - 1);
-        const { items, total } = await this.$sdk.service('services').find({
+        const { items, total } = await fetchClinicServices(this.$sdk, {
           $limit: this.initialServicesLimit,
           $skip: skip,
         });
@@ -389,22 +392,23 @@ export default {
     },
     async queryServicesName (searchQuery, page = 1) {
       const skip = this.servicesLimit * (page - 1);
-
       let searchText = searchQuery;
       let selection = null;
       if (typeof (searchText) === 'object') {
         searchText = searchQuery.name;
         selection = searchQuery;
       }
+
       const { items, total } = await fetchClinicServices(this.$sdk, {
         searchText,
+        ...this.hmoQuery && { insurer: this.hmoQuery },
         skip,
         limit: this.servicesLimit,
       });
 
       this.servicesTotal = total;
       let services = items || [];
-      if (selection) {
+      if (selection && !this.hmoQuery) {
         services = uniqBy([selection].concat(services), 'id');
       }
       this.servicesList = services || [];
@@ -418,9 +422,10 @@ export default {
 
       console.log('queryServicesSpecialization', items);
     },
-    searchServices (searchQuery, locationQuery) {
+    searchServices (searchQuery, locationQuery, hmoQuery) {
       this.searchQuery = searchQuery;
       this.locationQuery = locationQuery;
+      this.hmoQuery = hmoQuery;
       this.initialServicesList = [];
       this.fetchSearchQuery(searchQuery);
     },
@@ -428,9 +433,9 @@ export default {
       this.filterLabel = filterLabel;
     },
     clearServicesResults () {
-      this.initialServicesList = [];
       this.servicesList = [];
       this.searchQuery = null;
+      this.fetchAllServices();
     },
     clearOrganizationResults () {
       this.orgsList = [];
@@ -478,6 +483,11 @@ export default {
 @media screen and (max-width: 1020px) {
   .services-results-margin {
     margin-top: 380px;
+  }
+}
+@media screen and (max-width: 400px) {
+  .services-results-margin {
+    margin-top: 450px;
   }
 }
 </style>

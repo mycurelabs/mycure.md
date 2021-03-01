@@ -9,23 +9,18 @@
           color="white"
           :style="{ opacity: services ? '' : '0.8' }"
         ).toolbar
-          v-col(cols="12" md="11").d-flex.mt-2.justify-space-between
-            v-col(cols="12").search-fields
+          v-col(cols="12" md="11" :class="{ 'justify-space-between': !$isMobile }").d-flex.mt-2
+            v-col(cols="12" md="8").search-fields
               v-toolbar-title.font-14.ml-4.text-left.font-weight-bold Services
-                //- v-text-field(
-                //-   v-model="serviceSearchQuery"
-                //-   placeholder="Consultation (Virtual)"
-                //-   clearable
-                //-   @click:clear="clearTextfield"
-                //-   v-on:keyup.enter="searchServices(serviceSearchQuery, serviceSearchLocation)"
-                //- ).font-14.font-weight-regular
                 v-combobox(
+                  v-if="!$isMobile"
                   v-model="serviceSearchQuery"
                   :items="servicesSuggestions"
                   color="white"
                   item-text="name"
                   clearable
-                  @keyup.enter="searchServices(serviceSearchQuery, serviceSearchLocation)"
+                  return-object
+                  @keyup.enter="searchServices"
                   @update:search-input="searchDebounce"
                 ).font-14.font-weight-regular
                   template(slot="item" slot-scope="{ item, tile }")
@@ -35,16 +30,15 @@
                       v-spacer
                       div
                         p.grey--text {{ serviceTypeMappings[item.type] || ''}}
-                      //- #[span.ml-auto.text-right.grey--text {{ item.type }}]
-            //- v-divider(inset vertical).mt-6.mb-8
-            //- v-col(md="4").search-fields
-            //-   v-toolbar-title.font-14.ml-4.text-left.font-weight-bold Location
-            //-     v-text-field(
-            //-       placeholder="Anywhere"
-            //-       v-model="locationQuery ? locationQuery : serviceSearchLocation"
-            //-       clearable
-            //-       @keyup.enter="searchServices(serviceSearchQuery, serviceSearchLocation)"
-            //-     ).font-14.font-weight-regular
+            v-divider(inset vertical).mt-6.mb-8
+            v-col(cols="4" md="4").search-fields
+              v-toolbar-title.font-14.ml-4.text-left.font-weight-bold HMO
+                search-insurance-contracts(
+                  no-label
+                  placeholder="Search HMO"
+                  @select="onInsuranceSelect"
+                  @clear="onInsuranceClear"
+                )
           v-spacer
           //- Desktop Services page search button
           v-btn(
@@ -52,7 +46,7 @@
             large
             fab
             color="primary"
-            @click="searchServices(serviceSearchQuery, serviceSearchLocation)"
+            @click="searchServices"
           )
             v-icon mdi-magnify
           //- Desktop Patients page search button
@@ -65,35 +59,42 @@
             :to="{name: 'services', params: { serviceSearchQuery: { name: serviceSearchQuery }, serviceSearchLocation: serviceSearchLocation }}"
           ) #[b Search Now]
         //- mobile search field
-        v-text-field(
-          v-else
-          v-model="serviceSearchQuery"
-          solo
-          clearable
-          rounded
-          item-text="name"
-          color="white"
-          placeholder="Search Services"
-          @input="debouncedSearchText"
-          hide-details
-        ).bg-white
-          template(v-slot:append)
-            //- Mobile Services page search button
-            v-btn(
-              v-if="services"
-              color="primary"
-              icon
-              @click="searchServices(serviceSearchQuery)"
-            )
-              v-icon mdi-magnify
-            //- Mobile Patients page search button
-            v-btn(
-              v-else
-              color="primary"
-              icon
-              :to="{name: 'services', params: { serviceSearchQuery: { name: serviceSearchQuery } }}"
-            )
-              v-icon mdi-magnify
+        template(v-else)
+          v-text-field(
+            v-model="serviceSearchQuery"
+            solo
+            clearable
+            rounded
+            item-text="name"
+            color="white"
+            placeholder="Search Services"
+            @input="debouncedSearchText"
+            hide-details
+          ).bg-white
+            template(v-slot:append)
+              //- Mobile Services page search button
+              v-btn(
+                v-if="services"
+                color="primary"
+                icon
+                @click="searchServices"
+              )
+                v-icon mdi-magnify
+              //- Mobile Patients page search button
+              v-btn(
+                v-else
+                color="primary"
+                icon
+                :to="{name: 'services', params: { serviceSearchQuery: { name: serviceSearchQuery } }}"
+              )
+                v-icon mdi-magnify
+          search-insurance-contracts(
+            rounded
+            solo
+            white-bg
+            @select="onInsuranceSelect"
+            @clear="onInsuranceClear"
+          ).mt-3
         v-col(v-if="services" cols="12").pb-0
           v-row(:class="$isMobile ? 'd-block' : ''").filter-menu.white--text.font-14
             div.d-flex
@@ -115,9 +116,15 @@
                 @change="sortResults($event)"
               ).filter.ml-2.font-14.search-select.white--text
 </template>
+
 <script>
 import _ from 'lodash';
+import SearchInsuranceContracts from '~/components/clinic-website/services/search-insurance-contracts';
+
 export default {
+  components: {
+    SearchInsuranceContracts,
+  },
   props: {
     icon: {
       type: Boolean,
@@ -132,7 +139,7 @@ export default {
       default: () => [],
     },
     searchQuery: {
-      type: String,
+      type: [String, Object],
       default: null,
     },
     locationQuery: {
@@ -149,8 +156,9 @@ export default {
       dental: 'Dental',
     };
     return {
-      serviceSearchQuery: '',
-      serviceSearchLocation: '',
+      serviceSearchQuery: null,
+      serviceSearchLocation: null,
+      serviceSearchHMO: null,
       filterLabel: '',
       defaultSelected: 'Laboratory',
       defaultSort: 'Relevance',
@@ -162,21 +170,13 @@ export default {
       return this.allServices;
     },
   },
-  watch: {
-    serviceSearchQuery (val) {
-      if (val === null || val === undefined) {
-        this.$emit('clear-services');
-      } else {
-        this.$emit('search-services', val);
-      }
-    },
-  },
   mounted () {
     if (this.searchQuery) this.serviceSearchQuery = this.searchQuery;
   },
   methods: {
-    searchServices (searchQuery, locationQuery) {
-      this.$emit('search-services', searchQuery, locationQuery);
+    searchServices () {
+      console.log('service search query', this.serviceSearchQuery);
+      this.$emit('search-services', this.serviceSearchQuery, this.serviceSearchLocation, this.serviceSearchHMO);
     },
     selectFilter (label) {
       this.filterLabel = label;
@@ -190,7 +190,19 @@ export default {
       this.$emit('sort-results', sortMethod);
     },
     searchDebounce (searchText) {
-      this.$emit('search-services', searchText);
+      if (searchText === null || searchText === undefined) {
+        this.$emit('clear-services');
+        return;
+      }
+      this.searchServices();
+    },
+    onInsuranceSelect (insurer) {
+      this.serviceSearchHMO = insurer;
+      this.searchServices();
+    },
+    onInsuranceClear () {
+      this.serviceSearchHMO = null;
+      this.searchServices();
     },
   },
 };
