@@ -5,8 +5,9 @@
     item-value="insurer"
     no-filter
     return-object
-    chips
     clearable
+    chips
+    :allow-overflow="false"
     :label="!noLabel ? 'Search HMO' : null"
     :placeholder="placeholder"
     :solo="solo"
@@ -19,13 +20,20 @@
     :class="{ 'bg-white': whiteBg }"
     @click:clear="$emit('clear')"
   )
+    template(v-slot:selection="data")
+      v-chip(small color="primary")
+        v-clamp(:max-lines="1" autoresize).font-12 {{ `${data.item.insurerName.substr(0, 20)} ...` }}
 </template>
 
 <script>
+import VClamp from 'vue-clamp';
 import { debounce } from 'lodash';
 import { fetchInsuranceContracts } from '~/services/insurance-contracts';
 
 export default {
+  components: {
+    VClamp,
+  },
   props: {
     // FIXME: set proper type
     value: null, // eslint-disable-line
