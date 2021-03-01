@@ -133,7 +133,6 @@ export default {
       },
       {
         name: 'For Patients',
-        route: 'patients',
         new: false,
         external: false,
         comingSoon: true,
