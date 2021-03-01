@@ -136,6 +136,7 @@ export default {
         route: 'patients',
         new: false,
         external: false,
+        comingSoon: true,
       },
       // TODO: bring back later
       // {

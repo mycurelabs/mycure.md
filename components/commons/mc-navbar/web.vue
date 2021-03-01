@@ -42,7 +42,7 @@
                 id="login-btn"
                 @click.stop="onActionBtnClick('login-btn')"
               ).mr-2.ml-1
-                span.font-14.tab.text-none.font-weight-bold &nbsp;LOGIN
+                span.font-14.tab.text-none.font-weight-bold &nbsp;Log In
               v-btn(
                 v-if="currentRoute === 'doctors-clinics'"
                 color="accent"

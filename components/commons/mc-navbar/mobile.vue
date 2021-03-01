@@ -78,7 +78,7 @@
             id="mobile-navdrawer-login-btn"
             @click.stop="handleUserLinkClick(`login-btn`)"
           )
-            strong.font-14.tab LOGIN
+            strong.font-14.tab Log In
           v-btn(
             id="mobile-navdrawer-get-started-btn"
             color="accent"
