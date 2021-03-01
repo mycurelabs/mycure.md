@@ -38,21 +38,21 @@
             span.font-weight-600 +{{ phone }}
             br
             | {{ email }}
-          v-btn(
-            color="success"
-            target="_blank"
-            rel="noopener noreferrer"
-            rounded
-            block
-          ).my-4 #[b Book Appointment]
-          v-btn(
-            color="success"
-            target="_blank"
-            rel="noopener noreferrer"
-            outlined
-            rounded
-            block
-          ) #[b Book a Visit]
+          //- v-btn(
+          //-   color="success"
+          //-   target="_blank"
+          //-   rel="noopener noreferrer"
+          //-   rounded
+          //-   block
+          //- ).my-4 #[b Book Appointment]
+          //- v-btn(
+          //-   color="success"
+          //-   target="_blank"
+          //-   rel="noopener noreferrer"
+          //-   outlined
+          //-   rounded
+          //-   block
+          //- ) #[b Book a Visit]
 </template>
 
 <script>

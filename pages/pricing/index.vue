@@ -103,7 +103,13 @@
                 color="primary"
                 :to="{ name: 'signup-health-facilities' }"
               ).font-weight-bold.text-none Start free today
-                  p.font-16 Back to Home
+              //- v-btn(
+              //-   :x-large="!$isMobile"
+              //-   :large="$isMobile"
+              //-   rounded
+              //-   color="primary"
+              //-   :to="{ name: 'signup-health-facilities' }"
+              //- ).font-weight-bold.text-none Start free today
 </template>
 
 <script>
