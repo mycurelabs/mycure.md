@@ -6,6 +6,7 @@
       height="70"
       app
       :color="appBarColor"
+      elevate-on-scroll
     )
       v-container.pa-0
         v-row(justify="center" align="center" no-gutters)
