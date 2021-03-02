@@ -9,7 +9,6 @@ export const fetchInsuranceContracts = async (sdk, opts) => {
   };
 
   if (!isEmpty(opts.searchText)) {
-    console.log('has search');
     query.insurerName = { $regex: `^${opts.searchText}`, $options: 'i' };
   }
 
