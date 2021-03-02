@@ -4,24 +4,36 @@
     item-text="insurerName"
     item-value="insurer"
     no-filter
-    label="Search HMO"
     return-object
-    chips
-    solo
     clearable
+    chips
+    :allow-overflow="false"
+    :label="!noLabel ? 'Search HMO' : null"
+    :placeholder="placeholder"
+    :solo="solo"
+    :outlined="outlined"
+    :rounded="rounded"
     :search-input.sync="searchText"
     :items="items"
     :loading="loading"
     :disabled="disabled || loading"
+    :class="{ 'bg-white': whiteBg }"
     @click:clear="$emit('clear')"
   )
+    template(v-slot:selection="data")
+      v-chip(small color="primary")
+        v-clamp(:max-lines="1" autoresize).font-12 {{ `${data.item.insurerName.substr(0, 20)} ...` }}
 </template>
 
 <script>
+import VClamp from 'vue-clamp';
 import { debounce } from 'lodash';
 import { fetchInsuranceContracts } from '~/services/insurance-contracts';
 
 export default {
+  components: {
+    VClamp,
+  },
   props: {
     // FIXME: set proper type
     value: null, // eslint-disable-line
@@ -30,6 +42,30 @@ export default {
       default: undefined,
     },
     disabled: {
+      type: Boolean,
+      default: false,
+    },
+    solo: {
+      type: Boolean,
+      default: false,
+    },
+    outlined: {
+      type: Boolean,
+      default: false,
+    },
+    rounded: {
+      type: Boolean,
+      default: false,
+    },
+    placeholder: {
+      type: String,
+      default: null,
+    },
+    noLabel: {
+      type: Boolean,
+      default: false,
+    },
+    whiteBg: {
       type: Boolean,
       default: false,
     },
@@ -49,6 +85,10 @@ export default {
       this.debouncedFetchContracts();
     },
     model (val) {
+      if (!val) {
+        this.$emit('clear');
+        return;
+      }
       this.onSelectContract(val);
     },
   },

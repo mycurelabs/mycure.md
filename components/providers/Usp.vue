@@ -2,12 +2,18 @@
   v-content
     v-container(:class="{'usp-container' : !$isMobile, 'usp-mobile' : $isMobile }")
       v-row(
-        :align="{ 'top' : $isMobile }"
+        align="center"
+        justify="center"
         :style="{ height: $isMobile ? 'auto' : '626px' }"
-        :class=" !$isMobile ? 'pt-10' : 'pt-2' "
         no-gutters
       )
-        v-col(cols="12" md="7" :class="{ 'text-center' : $isMobile }")
+        v-col(cols="8" md="5" :class="{ 'order-last' : !$isMobile }")
+          v-img(
+            :src="require('../../assets/images/providers/USP-image-3.png')"
+            width="100%"
+            alt="homepage image"
+          )
+        v-col(cols="12" md="6" :class="{ 'text-center' : $isMobile }")
           h1(:class="{ 'font-50 mb-8' : !$isMobile, 'font-35 mb-6' : $isMobile }").primary--text Grow your #[br]
             vue-typer(
               :text="['Practice', 'Clinic', 'Diagnostic Center', 'Hospital']"
@@ -33,12 +39,6 @@
               :large="$isMobile"
               :email="email"
             ).ml-2
-        v-col(v-if="!$isMobile" cols="5")
-          v-img(
-            :src="require('../../assets/images/providers/USP-image-3.png')"
-            width="100%"
-            alt="homepage image"
-          )
 </template>
 
 <script>
