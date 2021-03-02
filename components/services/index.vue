@@ -3,7 +3,7 @@
     app-bar(isServices)
     v-row(justify="center" no-gutters :class="{ 'fixed-container': fixedSearchBar }").search-container.pt-3
       v-col(cols="12").text-center
-        v-btn-toggle(color="primary" tile)
+        v-btn-toggle(color="primary" tile mandatory)
           v-btn(
             v-bind="buttonSize"
             @click="searchMode = 'facility'"
@@ -287,6 +287,7 @@ export default {
     },
     async orgsPage (val) {
       await this.fetchOrganizations(this.orgsSearchQuery, val);
+      VueScrollTo.scrollTo('#org-results', 500, { offset: -250, easing: 'ease' });
     },
     async searchMode (val) {
       if (val === 'service') {
@@ -299,6 +300,7 @@ export default {
   },
   async mounted () {
     this.loading = false;
+    await this.fetchOrganizations();
     await this.fetchAllServicesNotPaginated();
     if (this.$route.params.serviceSearchQuery || this.$route.params.serviceSearchLocation) {
       this.searchQuery = this.$route.params.serviceSearchQuery?.name;
@@ -369,7 +371,6 @@ export default {
         const { items, total } = await this.$sdk.service('organizations').find(query);
         this.orgsList = items || [];
         this.orgsTotal = total;
-        VueScrollTo.scrollTo('#org-results', 500, { offset: -250, easing: 'ease' });
       } catch (error) {
         console.error(error);
       }
@@ -385,6 +386,7 @@ export default {
     async searchOrganizations ({ searchText, locationText }) {
       this.orgsSearchQuery = { searchText, locationText };
       await this.fetchOrganizations(this.orgsSearchQuery);
+      VueScrollTo.scrollTo('#org-results', 500, { offset: -250, easing: 'ease' });
     },
     async queryServicesName (searchQuery, page = 1) {
       const skip = this.servicesLimit * (page - 1);
