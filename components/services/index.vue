@@ -2,32 +2,28 @@
   div(v-if="!loading")
     app-bar(isServices)
     v-row(justify="center" no-gutters :class="{ 'fixed-container': fixedSearchBar }").search-container.pt-3
-      v-col(cols="10" md="3")
-        v-btn(
-          color="white"
-          v-bind="buttonSize"
-          block
-          :outlined="searchMode !== 'service'"
-          @click="searchMode = 'service'"
-        ).text-none
-          v-icon(
+      v-col(cols="12").text-center
+        v-btn-toggle(color="primary" tile)
+          v-btn(
             v-bind="buttonSize"
-            left
-          ) mdi-format-list-bulleted
-          strong Search Services
-      v-col(cols="10" md="3")
-        v-btn(
-          color="white"
-          v-bind="buttonSize"
-          block
-          :outlined="searchMode !== 'facility'"
-          @click="searchMode = 'facility'"
-        ).text-none
-          v-icon(
+            @click="searchMode = 'facility'"
+          ).text-none
+            v-icon(
+              v-bind="buttonSize"
+              :color="searchMode === 'facility' ? 'primary' : 'black'"
+              left
+            ) mdi-domain
+            strong Search Facilities
+          v-btn(
             v-bind="buttonSize"
-            left
-          ) mdi-domain
-          strong Search Facilities
+            @click="searchMode = 'service'"
+          ).text-none
+            v-icon(
+              v-bind="buttonSize"
+              :color="searchMode === 'service' ? 'primary' : 'black'"
+              left
+            ) mdi-format-list-bulleted
+            strong Search Services
       v-col(cols="12").text-center.pb-0
         search-bar(
           v-if="searchMode === 'service'"
@@ -194,7 +190,7 @@ export default {
       orgsSearchQuery: {},
       municipalityList: [],
       // - facility | service
-      searchMode: 'service',
+      searchMode: 'facility',
       sortMethod: 'Relevance',
     };
   },
