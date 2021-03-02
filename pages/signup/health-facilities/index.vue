@@ -1,5 +1,11 @@
 <template lang="pug">
   v-container(v-if="!loading.page")
+    v-row(justify="end")
+      | Already have an account?&nbsp;&nbsp;
+      v-btn(
+        color="primary"
+        :to="{ name: 'signin' }"
+      ).text-none Log In
     v-row(justify="center" align="center")
       v-col(cols="12" md="7" justify="center" align="center")
         img(
@@ -129,7 +135,7 @@
             ).order-md-7.order-sm-7
               v-autocomplete(
                 v-model="clinicType"
-                label="Clinic Type"
+                label="Health Facility Type"
                 item-text="text"
                 item-value="value"
                 outlined
@@ -219,7 +225,6 @@ import {
 } from '~/utils/text-field-rules';
 export default {
   layout: 'user',
-  middleware: ['disable-route'],
   data () {
     // TEXT FIELD RULES
     this.isRequired = requiredRule;
@@ -240,9 +245,8 @@ export default {
       { text: 'Other', value: 'facility' },
     ];
     this.userRoles = [
-      { text: 'Physician', roles: ['doctor'] },
+      { text: 'Physician/Owner', roles: ['doctor', 'admin'] },
       { text: 'Administrator', roles: ['admin'] },
-      { text: 'Both', roles: ['admin', 'doctor'] },
     ];
     return {
       // Models

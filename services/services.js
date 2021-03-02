@@ -3,9 +3,9 @@ import { normalizePopulated } from '~/utils/services';
 
 export const fetchClinicServices = async (sdk, opts) => {
   const query = {
-    facility: opts.facility,
-    type: opts.type,
-    subtype: opts.subtype,
+    ...opts.facility && { facility: opts.facility },
+    ...opts.type && { type: opts.type },
+    ...opts.subtype && { subtype: opts.subtype },
     $limit: opts.limit || 10,
     $skip: opts.skip,
     $populate: {
@@ -41,4 +41,9 @@ export const fetchClinicServices = async (sdk, opts) => {
   const { items, total } = await sdk.service('services').find(query);
 
   return { items: normalizePopulated(items), total };
+};
+
+export const fetchClinicServiceTypes = async (sdk, { facility }) => {
+  const { items, total } = await sdk.service('services').find({ facility, $distinct: 'type' });
+  return { items, total };
 };

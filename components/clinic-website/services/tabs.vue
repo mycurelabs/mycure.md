@@ -1,12 +1,16 @@
 <template lang="pug">
   v-card(color="#f0f0f0" flat)#servicesList
     v-toolbar(color="#f0f0f0" flat)
-      v-tabs(v-model="activeServiceType" :show-arrows="$isMobile")
-        v-tab(href="#lab") #[b Laboratory]
-        v-tab(href="#imaging") #[b Imaging]
-        v-tab(href="#pe") #[b PE Packages]
-        v-tab(href="#doctors" ) #[b Doctors]
-        v-tab(href="#clinical-procedure") #[b Procedures]
+      v-btn(v-if="showBackButton" color="primary" outlined @click="$emit('back')").text-none
+        v-icon(small left) mdi-arrow-left
+        | Back
+      v-tabs(v-if="!hideTabs" v-model="activeServiceType" :show-arrows="$isMobile")
+        v-tab(v-if="hasServiceType('diagnostic')" href="#lab") #[b Laboratory]
+        v-tab(v-if="hasServiceType('diagnostic')" href="#imaging") #[b Imaging]
+        v-tab(v-if="hasServiceType('pe')" href="#pe") #[b PE Packages]
+        v-tab(v-if="hasDoctors" href="#doctors") #[b Doctors]
+        v-tab(v-if="hasServiceType('clinical-procedure')" href="#clinical-procedure") #[b Procedures]
+        v-tab(v-if="hasServiceType('dental')" href="#dental") #[b Dental]
     v-card-text
       v-row(v-if="loading" justify="center")
         v-col(cols="12" md="4").text-center
@@ -75,6 +79,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    hideTabs: {
+      type: Boolean,
+      default: false,
+    },
     items: {
       type: Array,
       default: () => ([]),
@@ -88,6 +96,18 @@ export default {
       default: false,
     },
     readOnly: {
+      type: Boolean,
+      default: false,
+    },
+    serviceTypes: {
+      type: Array,
+      default: () => ([]),
+    },
+    showBackButton: {
+      type: Boolean,
+      default: false,
+    },
+    hasDoctors: {
       type: Boolean,
       default: false,
     },
@@ -110,6 +130,9 @@ export default {
       if (this.isPreviewMode) return;
       VueScrollTo.scrollTo('#servicesList', 500, { offset: -100, easing: 'ease' });
       this.$emit(direction);
+    },
+    hasServiceType (type) {
+      return this.serviceTypes.includes(type);
     },
   },
 };

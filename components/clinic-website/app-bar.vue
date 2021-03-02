@@ -17,7 +17,10 @@
             )
           v-col.pl-2
             h3 {{ clinicName }}
-            span Telemedicine
+            div(v-if="isVerified")
+              i Verified&nbsp;
+              v-avatar(color="primary" size="20")
+                v-icon(dark small) mdi-check
           v-spacer
           v-btn(
             depressed
@@ -29,7 +32,8 @@
             depressed
             Large
             color="primary"
-            @click="goToPxpSignup"
+            target="_blank"
+            href="https://6rbf27w6k3r.typeform.com/to/V13pJzW9"
           ).text-none.ml-2 #[b Create an Account]
       v-container(v-else)
         v-row(align="center")
@@ -41,7 +45,10 @@
             )
           div.pl-2
             h3.font-12 {{ clinicName }}
-            span.font-12 Telemedicine
+            div(v-if="isVerified")
+              i.font-12 Verified&nbsp;
+              v-avatar(color="primary" size="20")
+                v-icon(dark small) mdi-check
           v-spacer
           div
             v-menu
@@ -51,7 +58,7 @@
               v-list
                 v-list-item(@click="goToPxpSignin")
                   v-list-item-title.text-none Login
-                v-list-item(@click="goToPxpSignup")
+                v-list-item(href="https://6rbf27w6k3r.typeform.com/to/V13pJzW9")
                   v-list-item-title.text-none Create an Account
 </template>
 
@@ -62,13 +69,17 @@ export default {
       type: String,
       default: '',
     },
-    consultIDS: {
-      type: Object,
-      default: () => ({}),
-    },
     clinicName: {
       type: String,
       default: '',
+    },
+    isVerified: {
+      type: Boolean,
+      default: false,
+    },
+    isPreviewMode: {
+      type: Boolean,
+      default: false,
     },
   },
   data () {
@@ -76,25 +87,23 @@ export default {
       loading: true,
     };
   },
-  computed: {
-    goToConsult () {
-      const docUID = this.consultIDS?.docUID;
-      const clinicID = this.consultIDS?.clinicID;
-      if (!docUID) {
-        return `${process.env.PX_PORTAL_URL}/clinic-appointment/step-1?facility=${clinicID}`;
-      }
-      return `${process.env.PX_PORTAL_URL}/clinic-appointment/step-1?doctor=${docUID}&facility=${clinicID}`;
-    },
-  },
   mounted () {
     this.loading = false;
   },
   methods: {
     goToPxpSignin () {
+      if (this.isPreviewMode) return;
       window.open(process.env.PX_PORTAL_URL, '_blank', 'noopener, noreferrer');
     },
     goToPxpSignup () {
+      if (this.isPreviewMode) return;
       window.open(`${process.env.PX_PORTAL_URL}/signup`, '_blank', 'noopener, noreferrer');
+    },
+    getStarted () {
+      const opts = {
+        name: 'signup-health-facilities',
+      };
+      this.$router.push(opts);
     },
   },
 };

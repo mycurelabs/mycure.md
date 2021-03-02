@@ -6,34 +6,37 @@
     v-container(fluid).pa-0
       v-row(align="center" justify="center" :no-gutters="noGutters").content-container.mx-1
         v-col(cols="10" md="6").text-center
-          h1(v-if="(!searchResultsMode || $isMobile) && !hideBanner" :class="{ 'font-30': $isMobile }").white--text Consult online with #[br] MYCURE Health Center today
+          h1(v-if="(!searchResultsMode || $isMobile) && !hideBanner" :class="{ 'font-30': $isMobile }").white--text Easily book your next visit to #[br] {{ name }}
           v-text-field(
-            v-if="!hideSearchBars"
+            v-if="isInitialSearchBarVisible"
             solo
             clearable
-            placeholder="Search MYCURE Health Center’s doctors, diagnostic tests, and services"
+            :placeholder="`Search ${name}’s doctors, diagnostic tests, and services`"
             v-model="searchText"
             :disabled="isPreviewMode"
             @keyup.enter="debouncedSearch"
           ).mt-3.search-bar
             template(v-slot:append)
               v-icon(color="white").search-icon mdi-magnify
-        v-col(v-if="searchResultsMode && !hideSearchBars" cols="10" md="2")
+        v-col(v-if="(searchResultsMode && !hideSearchBars)" cols="10" md="2")
           v-select(
             v-model="serviceType"
-            :items="serviceTypes"
+            :items="availableServiceTypes"
             label="Service Type"
             item-text="text"
             item-value="value"
             solo
             clearable
             :class="{ 'mt-3': !$isMobile }"
+            :disabled="isPreviewMode"
             @change="onServiceTypeSelect"
             @click:clear="clearServiceFilter"
           ).search-bar
         v-col(v-if="searchResultsMode && !hideSearchBars" cols="10" md="2")
           search-insurance-contracts(
+            solo
             :class="{ 'mt-3': !$isMobile }"
+            :disabled="isPreviewMode"
             @select="onInsuranceSelect"
             @clear="clearInsuranceFilter"
           ).search-bar
@@ -42,13 +45,14 @@
             v-model="dateFilter"
             solo
             bordered
+            :disabled="isPreviewMode"
             @clear="dateFilter = null"
           )
 </template>
 
 <script>
 // utils
-import _ from 'lodash';
+import { debounce, isEmpty } from 'lodash';
 // components
 import SearchInsuranceContracts from './services/search-insurance-contracts';
 import DatePickerMenu from '~/components/commons/date-picker-menu';
@@ -69,7 +73,7 @@ export default {
     },
     name: {
       type: String,
-      default: 'Awesome Hospital',
+      default: 'the health center',
     },
     orgId: {
       type: String,
@@ -95,23 +99,38 @@ export default {
       type: Boolean,
       default: false,
     },
+    serviceTypes: {
+      type: Array,
+      default: () => ([]),
+    },
   },
   data () {
-    this.serviceTypes = [
-      { text: 'Consult', value: 'clinical-consultation' },
-      { text: 'Laboratory', value: 'lab' },
-      { text: 'Imaging', value: 'imaging' },
-      { text: 'PE Package', value: 'pe' },
-      { text: 'Procedure', value: 'clinical-procedure' },
-    ];
+    this.serviceTypeMappings = {
+      'clinical-consultation': [{ text: 'Consult', value: 'clinical-consultation' }],
+      'clinical-procedure': [{ text: 'Procedure', value: 'clinical-procedure' }],
+      diagnostic: [
+        { text: 'Laboratory', value: 'lab' },
+        { text: 'Imaging', value: 'imaging' },
+      ],
+      pe: [{ text: 'PE Package', value: 'pe' }],
+      dental: [{ text: 'Dental', value: 'dental' }],
+    };
     return {
       searchFilters: {},
       serviceType: null,
       dateFilter: null,
-      debouncedSearch: _.debounce(this.search, 500),
+      debouncedSearch: debounce(this.search, 500),
     };
   },
   computed: {
+    availableServiceTypes () {
+      if (isEmpty(this.serviceTypes)) return [];
+      const types = [];
+      this.serviceTypes.map((type) => {
+        types.push(...this.serviceTypeMappings[type]);
+      });
+      return types;
+    },
     searchText: {
       get () {
         return this.value;
@@ -123,6 +142,11 @@ export default {
     backgroundStyle () {
       const overlay = 'linear-gradient(270deg, rgba(0, 0, 0, .5), rgba(0, 0, 0, .5))';
       return { 'background-image': `${overlay}, url(${this.coverURL})` };
+    },
+    isInitialSearchBarVisible () {
+      if (this.$isMobile && !this.searchResultsMode) return true;
+      if (!this.$isMobile) return true;
+      return false;
     },
   },
   watch: {

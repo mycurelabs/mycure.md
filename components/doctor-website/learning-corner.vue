@@ -1,61 +1,54 @@
 <template lang="pug">
   v-container
     v-row
-      v-col(cols="12")
-        div(v-if="materials.length")
+      v-col(cols="12" md="4")
+        h2.primary--text Learning Corner
+    template(v-if="materials.length")
+      v-row
+        v-col(cols="12" md="4")
+          span.font-weight-bold Browse by Category:&nbsp;
+          br
+          v-checkbox(
+            v-for="(category, key) in categories"
+            :key="key"
+            :value="selectedCategory === category"
+            :label="category"
+            dense
+            hide-details
+            @click="onCategorySelect(category)"
+          )
+        v-col(cols="12" md="8")
           v-row
-            v-col(cols="12" md="4")
-              h3.primary--text.mt-2 Learning Corner
-              span.font-weight-bold Browse by Category:&nbsp;
-                //- v-btn(
-                //-   v-if="selectedCategory"
-                //-   color="error"
-                //-   text
-                //-   @click="selectedCategory = null"
-                //- ).text-none
-                //-   v-icon(left) mdi-close
-                //-   | Clear
-              br
-              v-checkbox(
-                v-for="(category, key) in categories"
-                :key="key"
-                :value="selectedCategory === category"
-                :label="category"
-                dense
-                hide-details
-                @click="onCategorySelect(category)"
-              )
-            v-col(cols="12" md="8")
-              v-row
-                v-col(cols="2")
-                  i Sort by
-                v-col(cols="6")
-                  v-select(
-                    v-model="materialSorter"
-                    outlined
-                    dense
-                    clearable
-                    label="Newest, Oldest, Alphabetically"
-                    :items="sortTypes"
-                    item-text="text"
-                    item-value="value"
-                    @change="sortMaterials(materialSorter)"
-                    @clear="filteredMaterials = [...materials]"
-                  )
-              v-row.fill-height
-                v-col(
-                  v-for="(material, key) in filteredMaterials"
-                  :key="key"
-                  cols="12"
-                  md="4"
-                ).grow.material-container
-                  h3 {{ material.title }}
-                  p {{ material.description }}
-                  div.material-bottom
-                    a(@click="openFile(material)").primary--text.font-weight-bold View {{ material.type === 'video' ? 'Video' : 'Article'}}
-                    p.grey--text.font-12(v-if="material.category") Category: {{ material.category }}
-                    v-divider
-        h4(v-else) This section is empty.
+            span.font-weight-600 Sort by
+          v-row
+            v-select(
+              v-model="materialSorter"
+              outlined
+              dense
+              clearable
+              label="Newest, Oldest, Alphabetically"
+              :items="sortTypes"
+              item-text="text"
+              item-value="value"
+              @change="sortMaterials(materialSorter)"
+              @clear="filteredMaterials = [...materials]"
+            )
+      v-row
+        v-col(cols="12")
+          v-col(
+            v-for="(material, key) in filteredMaterials"
+            :key="key"
+            cols="12"
+            md="4"
+          ).grow.material-container
+            v-card.pa-4
+              h3.my-2 {{ material.title }}
+              p.my-2 {{ material.description }}
+              i.primary--text.font-12(v-if="material.category") {{ material.category }}
+              div.my-2.text-center
+                a(@click="openFile(material)").primary--text.font-weight-bold View
+    template(v-else)
+      h4 This section is empty.
 </template>
 
 <script>
@@ -148,9 +141,9 @@ export default {
 </script>
 
 <style scoped>
-.material-container {
+/* .material-container {
   position: relative;
-}
+} */
 .material-bottom {
   position: absolute;
   bottom: 0;

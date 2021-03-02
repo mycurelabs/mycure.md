@@ -2,13 +2,15 @@
   v-app-bar(
       height="70"
       app
+      color="white"
       elevate-on-scroll
-    )#navbar.bg-transparent
+      :style="navBarStyle"
+    )#navbar.border-transparent
       v-container.pa-0
         v-row(justify="center" align="center" no-gutters)
           v-col
             img(
-              src="~/assets/images/home/mycure-logo.png"
+              src="~/assets/images/MYCURE-virtual-clinic-healthcare-practice-online-logo.svg"
               width="140"
               alt="MYCURE logo"
               href="/"
@@ -17,6 +19,7 @@
           v-btn(
             v-if="!$isMobile"
             text
+            large
             depressed
             to="/"
           ).text-none For Providers
@@ -29,13 +32,15 @@
           v-btn(
             text
             depressed
+            large
             @click="openPxPortal(pxPortalLogIn)"
-          ).text-none #[b Login]
+          ).text-none.mr-2 #[b Log In]
           v-btn(
             v-if="!$isMobile"
             depressed
             color="success"
             rounded
+            large
             @click="openPxPortal(pxPortalSignUp)"
           ).text-none #[b Get Started]
           v-menu(
@@ -60,19 +65,28 @@
                 v-btn(
                   text
                   block
-                  @clicl="openPxPortal(pxPortalSignUp)"
-                ) Get Started
+                  @click="openPxPortal(pxPortalSignUp)"
+                ) Get Started for Free
 
 </template>
 
 <script>
 export default {
+  props: {
+    isServices: {
+      type: Boolean,
+      default: false,
+    },
+  },
   computed: {
     pxPortalSignUp () {
       return `${process.env.PX_PORTAL_URL}/signup`;
     },
     pxPortalLogIn () {
       return `${process.env.PX_PORTAL_URL}`;
+    },
+    navBarStyle () {
+      return 'background-color: ' + this.isServices ? '#FFFFFF !important' : 'background-color: rgb(0 0 0 / 0%) !important';
     },
   },
   mounted () {
@@ -96,8 +110,7 @@ export default {
 </script>
 
 <style scoped>
-.bg-transparent {
-  background-color: rgb(0 0 0 / 0%) !important;
+.border-transparent {
   border-color: rgb(0 0 0 / 0%) !important;
 }
 .bg-white {

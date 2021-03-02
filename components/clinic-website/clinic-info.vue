@@ -1,22 +1,45 @@
 <template lang="pug">
   div.container
     v-row(justify="center" align="center")
-      v-col(cols="12" sm="12").text-center
-        v-avatar(size="130")
-          img(:src="picURL")
-      v-col(cols="12").text-center
-        h1 {{ name }}
-        p.font-14 {{ completeAddress }}
-      v-col(cols="10")
-        v-icon(medium) mdi-phone
-        span.ml-2 #[b {{ contactNumber }}]
+      v-col(v-if="isDummyOrg" cols="12" sm="12").text-center
+        v-alert(
+          dense
+          type="info"
+        )
+          v-row(no-gutters)
+            v-col.grow.text-left
+              | Do you own this business?
+          v-row(no-gutters)
+            v-col.grow.text-left
+              v-btn(small color="accent" @click="onClaim").text-none Claim now
+      v-col(cols="12" :class="{ 'text-center': $isMobile }")
+        h3.font-21 Contact Us
+        v-row(no-gutters)
+          v-col.shrink
+            v-icon(color="primary" medium) mdi-map-marker
+          v-col.grow
+            span.ml-2.font-14 {{ completeAddress }}
+        v-row(no-gutters)
+          v-col.shrink
+            v-icon(color="primary" medium) mdi-phone
+          v-col.grow
+            span.ml-2.font-14 #[b {{ contactNumber }}]
+      v-col(cols="12" :class="{ 'text-center': $isMobile }")
+        v-btn(
+          color="primary"
+          shaped
+          @click="onInquiry"
+        ).text-none
+          v-icon(left) mdi-forum
+          | Questions? Chat with us now.
+    v-divider
     v-row(justify="center" align="center")
       v-col(
         cols="12"
         :class="{ 'text-left': !$isMobile, 'text-center': $isMobile }"
       )
         h3.font-21 About
-        p.text-justify.font-14 {{ description }}
+        p(:class="{ 'text-justify': !$isMobile }").font-14 {{ description }}
 </template>
 
 <script>
@@ -25,6 +48,14 @@ export default {
     clinic: {
       type: Object,
       default: () => ({}),
+    },
+    isDummyOrg: {
+      type: Boolean,
+      default: false,
+    },
+    isPreviewMode: {
+      type: Boolean,
+      default: false,
     },
   },
   data () {
@@ -59,6 +90,20 @@ export default {
     description () {
       return this.clinic?.description ||
       `${this.clinic?.name} specializes in telehealth services. ${this.clinic?.name} telemedicine service is committed to provide medical consultation via video conference or phone call to our patient 24 hours a day 7 days a week.`;
+    },
+  },
+  methods: {
+    onClaim () {
+      if (this.isPreviewMode) return;
+      const message = `Hi, I want to inquire about claiming ownership of ${this.name} in MYCURE Clinics`;
+      window.$crisp.push(['do', 'chat:toggle']);
+      window.$crisp.push(['do', 'message:send', ['text', message]]);
+    },
+    onInquiry () {
+      if (this.isPreviewMode) return;
+      const message = 'Hi, I have an inquiry about a health facility';
+      window.$crisp.push(['do', 'chat:toggle']);
+      window.$crisp.push(['do', 'message:send', ['text', message]]);
     },
   },
 };

@@ -1,7 +1,7 @@
 <template lang="pug">
   div(v-if="!loading").white
     //- 1st panel
-    usp(:class="{'usp-container' : !$isMobile, 'usp-mobile' : $isMobile }" @getStarted="goToSignupIndividual")
+    usp(@getStarted="goToSignupIndividual")
     start-easy
     features
     syncbase
@@ -94,12 +94,5 @@ export default {
   position: relative;
   margin-bottom: 0%;
   z-index: 1;
-}
-.usp-container {
-  margin-top: 78px;
-}
-
-.usp-mobile {
-  margin-top: 38px;
 }
 </style>

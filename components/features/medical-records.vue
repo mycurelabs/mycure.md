@@ -12,10 +12,10 @@
         :descriptions="descriptions"
         :web-image="panelImages.mediaImage"
       )
-        div(slot="additional-content")
-          v-btn(text :to="{ name: 'signup-individual' }").ml-n4.text-none
-            strong.font-18.primary--text Request An Invite
-            v-icon.primary--text mdi-arrow-right
+        //- div(slot="additional-content")
+        //-   v-btn(text :to="{ name: 'signup-individual' }").ml-n4.text-none
+        //-     strong.font-18.primary--text Request An Invite
+        //-     v-icon.primary--text mdi-arrow-right
       //- Bottom images
       v-container.mt-n8.mb-12
         v-row(no-gutters)

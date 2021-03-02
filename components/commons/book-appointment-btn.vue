@@ -1,10 +1,12 @@
 <template lang="pug">
   v-btn(
     :outlined="outlined"
-    large
+    :large="!$isMobile"
+    :rounded="rounded"
     :color="btnColor"
     :href="url"
-  ).text-none Book Appointment
+    :class="{ 'font-11' : $isMobile }"
+  ).text-none.font-weight-600 Book Appointment
 </template>
 
 <script>
@@ -15,6 +17,10 @@ export default {
       default: 'primary',
     },
     outlined: {
+      type: Boolean,
+      default: true,
+    },
+    rounded: {
       type: Boolean,
       default: true,
     },
