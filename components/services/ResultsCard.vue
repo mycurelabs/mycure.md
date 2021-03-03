@@ -14,7 +14,7 @@
                     alt="Doctor Profile"
                   )
                 img(
-                  src="~/assets/images/MYCURE-icon.png"
+                  src="~/assets/images/facility-placeholder.png"
                   alt="Services"
                   :width="!$isMobile ? 146 : 80"
                 )
@@ -29,8 +29,8 @@
                 div(v-if="isDoctor")
                   a(href="#") View Website
               v-col(cols="6" md="5").ml-3.text-left
-                strong(v-if="isDoctor").font-18 Jose Rizal, MD, DPSEDM
-                strong(v-if="isService").font-18 {{ service.name }}
+                span(v-if="isDoctor").font-18 Jose Rizal, MD, DPSEDM
+                span(v-if="isService").font-18 {{ service.name }}
                 template(v-if="isService")
                   div(v-if="serviceOrganization[0] !== undefined")
                     p.ma-0.font-weight-bold.primary--text {{ serviceOrganization[0].name }}
@@ -40,7 +40,7 @@
                   span Quezon City
                 div.mt-4(v-if="isDoctor")
                   div.d-flex
-                    v-icon mdi-map-marker
+                    v-icon(color="primary") mdi-map-marker
                     span Clinics:
                   ul.clinics-list
                     li Providence Hospital
@@ -49,13 +49,13 @@
                 template(v-if="isService")
                   div(v-if="serviceOrganization[0] !== undefined").mt-4
                     div(v-if="serviceOrganization[0].address").d-flex
-                      v-icon.mr-2.mb-auto mdi-map-marker
+                      v-icon(color="primary").mr-2.mb-auto mdi-map-marker
                       p {{ `${serviceOrganization[0].address.street1}, ${serviceOrganization[0].address.city}, ${serviceOrganization[0].address.province}, ${serviceOrganization[0].address.country} ` }}
                     div(v-if="serviceOrganization[0].phone").d-flex
-                      v-icon.mr-2.mb-auto mdi-phone
+                      v-icon(color="primary").mr-2.mb-auto mdi-phone
                       p.font-weight-bold {{ serviceOrganization[0].phone }}
                     div.d-flex
-                      v-icon.mr-2.mb-auto mdi-calendar-today
+                      v-icon(color="primary").mr-2.mb-auto mdi-calendar-today
                       p #[strong Mon - Fri 7:00AM to 3:00 PM]
                     template(v-if="$isMobile")
                       template(v-if="hasCoverages")
@@ -78,8 +78,8 @@
                                 span(v-else).white--text {{ coverage.name.substring(0,1) }}
                             span {{ coverage.name || 'HMO' }}
                       div(v-if="service.price").d-flex.mb-2
-                        v-icon.mr-2 mdi-wallet
-                        strong.font-18 Php {{ service.price }}
+                        v-icon(color="primary").mr-2 mdi-wallet
+                        span.font-18 Php {{ service.price }}
                       div.my-1
                       v-btn(
                         v-if="isService && !readOnly"
@@ -112,8 +112,8 @@
               v-col(v-if="!$isMobile" cols="1")
               v-col(v-if="!$isMobile")
                 div(v-if="service.price").d-flex.mb-2
-                  v-icon.mr-2 mdi-wallet
-                  strong.font-18 Php {{ service.price }}
+                  v-icon(color="primary").mr-2 mdi-wallet
+                  span.font-18 Php {{ service.price }}
                 template(v-if="hasCoverages")
                   div.d-flex
                     v-icon(color="success").mr-2 mdi-shield-check

@@ -65,7 +65,7 @@
 
 <script>
 import { format } from 'date-fns';
-import FacilityPlaceholder from '~/assets/images/clinics-website/hospital-thumbnail.jpg';
+import FacilityPlaceholder from '~/assets/images/facility-placeholder.png';
 export default {
   props: {
     organization: {
