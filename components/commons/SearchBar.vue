@@ -14,15 +14,13 @@
               v-toolbar-title.font-14.ml-4.text-left.font-weight-bold Services
                 v-combobox(
                   v-if="!$isMobile"
-                  v-model="serviceSearchQuery"
                   :items="servicesSuggestions"
                   color="white"
                   item-text="name"
                   placeholder="Search for a service"
                   clearable
                   return-object
-                  @keyup.enter="searchServices"
-                  @update:search-input="searchDebounce"
+                  @update:search-input="debouncedSearch"
                 ).font-14.font-weight-regular
                   template(slot="item" slot-scope="{ item, tile }")
                     div.d-flex.suggestion-item
@@ -68,6 +66,7 @@
             item-text="name"
             color="white"
             placeholder="Search Services"
+            @keyup.enter="searchServices"
             @input="debouncedSearchText"
             hide-details
           ).bg-white
@@ -119,7 +118,7 @@
 </template>
 
 <script>
-import _ from 'lodash';
+import { debounce } from 'lodash';
 import SearchInsuranceContracts from '~/components/clinic-website/services/search-insurance-contracts';
 
 export default {
@@ -163,7 +162,8 @@ export default {
       filterLabel: '',
       defaultSelected: 'Laboratory',
       defaultSort: 'Relevance',
-      debouncedSearchText: _.debounce((e) => { this.serviceSearchQuery = e; }, 500),
+      debouncedSearchText: debounce((e) => { this.serviceSearchQuery = e; }, 500),
+      debouncedSearch: debounce((e) => { this.searchDebounce(e); }, 500),
     };
   },
   computed: {
@@ -194,6 +194,7 @@ export default {
         this.$emit('clear-services');
         return;
       }
+      this.serviceSearchQuery = searchText;
       this.searchServices();
     },
     onInsuranceSelect (insurer) {
