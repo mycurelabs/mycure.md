@@ -40,7 +40,7 @@
                       template(v-else)
                         i No schedules available
                         br
-              v-col(v-if="!$isMobile && !readOnly && hasWebsite")
+              v-col(v-if="!$isMobile && !readOnly && hasWebsite").grow.text-right
                 div.my-4
                 v-btn(
                   color="primary"
@@ -48,7 +48,6 @@
                   target="_blank"
                   rel="noopener noreferrer"
                   rounded
-                  block
                 ) #[b Visit Facility]
             v-row(justify="center"  v-if="$isMobile && !readOnly && hasWebsite")
               v-col(cols="10")
