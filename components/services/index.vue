@@ -222,7 +222,7 @@ export default {
         const serviceName = (typeof (this.searchQuery) === 'object' ? this.searchQuery?.name : this.searchQuery) || 'the service';
         const resultsLength = !this.searchQuery && !this.hmoQuery ? this.initialServicesTotal : this.searchedServicesLength;
         const resultText = `${resultsLength} result${resultsLength > 1 || resultsLength === 0 ? 's' : ''} found for ${serviceName} ${this.locationQuery ? `in ${this.locationQuery}` : ''}`;
-        return resultText;
+        return !this.searchQuery && !this.hmoQuery ? '' : resultText;
       }
     },
     filteredItems () {
