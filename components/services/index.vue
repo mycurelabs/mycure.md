@@ -40,7 +40,6 @@
         org-search-bar(
           v-else-if="searchMode === 'facility'"
           icon
-          :provinces="provinces"
           @search-organizations="searchOrganizations($event)"
           @clear-organizations="clearOrganizationResults"
         )
@@ -295,7 +294,7 @@ export default {
         return;
       }
       await this.fetchOrganizations();
-      if (!this.municipalityList.length) await this.fetchMunicipalities();
+      // if (!this.municipalityList.length) await this.fetchMunicipalities();
     },
   },
   async mounted () {
@@ -364,7 +363,7 @@ export default {
         if (locationText) {
           if (!query.$and) query.$and = [];
           query.$and.push(
-            { 'address.province': { $regex: `^${locationText}`, $options: 'gi' } },
+            { 'address.city': { $regex: `^${locationText}`, $options: 'gi' } },
           );
         }
 

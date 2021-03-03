@@ -24,7 +24,7 @@
                   placeholder="Municipality"
                   v-model="orgSearchLocation"
                   clearable
-                  :items="provinces"
+                  :items="cities"
                   @keyup.enter="searchFacility"
                 ).font-14.font-weight-regular
           v-spacer
@@ -44,6 +44,7 @@
 </template>
 <script>
 import { debounce } from 'lodash';
+import NCR_CITIES from '~/assets/fixtures/ncr-cities';
 export default {
   props: {
     icon: {
@@ -56,6 +57,7 @@ export default {
     },
   },
   data () {
+    this.cities = NCR_CITIES;
     return {
       orgSearchQuery: null,
       orgSearchLocation: null,
@@ -63,13 +65,17 @@ export default {
     };
   },
   watch: {
-    orgSearchQuery (val) {
-      (val === null || val === undefined) && this.$emit('clear-organizations');
+    orgSearchLocation (val) {
+      if (!val && !this.orgSearchQuery) {
+        this.$emit('clear-organizations');
+        return;
+      }
+      this.searchFacility();
     },
   },
   methods: {
     searchFacility () {
-      if (!this.orgSearchQuery) {
+      if (!this.orgSearchQuery && !this.orgSearchLocation) {
         this.$emit('clear-organizations');
         return;
       }
