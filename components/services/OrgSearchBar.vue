@@ -3,10 +3,10 @@
     v-row(justify="center" align="center")
       v-col(cols="12" md="10").pb-0
         v-toolbar(
-          height="84"
+          height="65"
           color="white"
         ).toolbar
-          v-col(cols="10" md="11").d-flex.mt-2.justify-space-between
+          v-col(cols="10" md="11").d-flex.mt-3.justify-space-between
             v-col(cols="6" md="8").search-fields
               v-toolbar-title.font-14.ml-4.text-left.font-weight-bold Facility
                 v-text-field(
@@ -31,13 +31,11 @@
           v-btn(
             v-if="!icon"
             depressed
-            large
             rounded
             color="primary"
           ) #[b Search Now]
           v-btn(
             v-else
-            large
             fab
             color="primary"
             @click="searchFacility"
