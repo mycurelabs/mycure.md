@@ -32,6 +32,7 @@ import headMeta from '~/utils/head-meta';
 
 export default {
   layout: 'home',
+  middleware: ['disable-route'],
   components: {
     AppBar,
     Services,
