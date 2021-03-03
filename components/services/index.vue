@@ -119,7 +119,7 @@
     //- Facility Results
     v-row(align="center" justify="center" v-else-if="searchMode === 'facility'" :class="{ 'org-results-margin': fixedSearchBar }").org-results-summary
       v-col(cols="11" md="9")#org-results
-        h4(v-if="orgsTotal") There are {{ orgsTotal }} result{{ orgsTotal > 1 ? 's' : '' }} available.
+        h4(v-if="orgsTotal") There are {{ orgsTotal }} organization{{ orgsTotal > 1 ? 's' : '' }} available.
         h4(v-else) There are no results available.
       v-col(cols="12")
         org-list-card(
