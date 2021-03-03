@@ -18,15 +18,14 @@
                     span {{ organization.description }}
                   div(v-if="organization !== undefined").mt-4
                     div.d-flex
-                      v-icon.mr-2.mb-auto mdi-map-marker
-                      p(v-if="organization.address") {{ `${organization.address.street1}, ${organization.address.city}, ${organization.address.province}, ${organization.address.country} ` }}
-                      i(v-else) No address available
+                      v-icon(color="primary").mr-2.mb-auto mdi-map-marker
+                      p(:class="{ 'font-italic': !organization.address }") {{ address }}
                     div.d-flex
-                      v-icon.mr-2.mb-auto mdi-phone
+                      v-icon(color="primary)").mr-2.mb-auto mdi-phone
                       p(v-if="organization.phone").font-weight-bold {{ organization.phone }}
                       i(v-else) No phone number available
                     div.d-flex
-                      v-icon.mr-2.mb-auto mdi-calendar-today
+                      v-icon(color="primary").mr-2.mb-auto mdi-calendar-today
                       div(v-if="fullSchedules.length")
                         div(v-if="!scheduleExpanded")
                           span.text-capitalize {{ formatTodaySchedule(schedulesToday) }}
@@ -41,7 +40,7 @@
                       template(v-else)
                         i No schedules available
                         br
-              v-col(v-if="!$isMobile && !readOnly")
+              v-col(v-if="!$isMobile && !readOnly && hasWebsite")
                 div.my-4
                 v-btn(
                   color="primary"
@@ -51,7 +50,7 @@
                   rounded
                   block
                 ) #[b Visit Facility]
-            v-row(justify="center"  v-if="$isMobile && !readOnly")
+            v-row(justify="center"  v-if="$isMobile && !readOnly && hasWebsite")
               v-col(cols="10")
                 v-btn(
                   color="primary"
@@ -65,6 +64,8 @@
 
 <script>
 import { format } from 'date-fns';
+import { isEmpty } from 'lodash';
+import { formatAddress } from '~/utils/formats';
 import FacilityPlaceholder from '~/assets/images/facility-placeholder.png';
 export default {
   props: {
@@ -113,6 +114,14 @@ export default {
     },
     picURL () {
       return this.organization?.picURL || FacilityPlaceholder;
+    },
+    address () {
+      const { address } = this.organization;
+      if (isEmpty(address)) return 'No address available';
+      return formatAddress(address, 'street1, city, province, country');
+    },
+    hasWebsite () {
+      return !!this.organization?.websiteId;
     },
   },
   methods: {

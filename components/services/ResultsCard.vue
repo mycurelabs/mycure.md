@@ -50,7 +50,7 @@
                   div(v-if="serviceOrganization[0] !== undefined").mt-4
                     div(v-if="serviceOrganization[0].address").d-flex
                       v-icon(color="primary").mr-2.mb-auto mdi-map-marker
-                      p {{ `${serviceOrganization[0].address.street1}, ${serviceOrganization[0].address.city}, ${serviceOrganization[0].address.province}, ${serviceOrganization[0].address.country} ` }}
+                      p {{ serviceAddress  }}
                     div(v-if="serviceOrganization[0].phone").d-flex
                       v-icon(color="primary").mr-2.mb-auto mdi-phone
                       p.font-weight-bold {{ serviceOrganization[0].phone }}
@@ -164,6 +164,8 @@
                   ) #[b Book a Visit]
 </template>
 <script>
+import { isEmpty } from 'lodash';
+import { formatAddress } from '~/utils/formats';
 export default {
   props: {
     isService: {
@@ -214,6 +216,11 @@ export default {
     },
     serviceId () {
       return this.service.id;
+    },
+    serviceAddress () {
+      const { address } = this.serviceOrganization[0];
+      if (isEmpty(address)) return 'No address available';
+      return formatAddress(address, 'street1, city, province, country');
     },
     hasCoverages () {
       return this.service?.coveragesData?.length;
