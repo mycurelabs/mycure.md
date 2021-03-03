@@ -61,7 +61,7 @@
                       template(v-if="hasCoverages")
                         div.d-flex
                           v-icon(color="success").mr-2 mdi-shield-check
-                          span HMO Providers:
+                          span HMO:
                         div.d-flex
                           v-tooltip(
                             v-for="(coverage, key) in coverages"
@@ -117,7 +117,7 @@
                 template(v-if="hasCoverages")
                   div.d-flex
                     v-icon(color="success").mr-2 mdi-shield-check
-                    span HMO Providers:
+                    span HMO:
                   div.d-flex
                     v-tooltip(
                       v-for="(coverage, key) in coverages"
