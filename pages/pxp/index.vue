@@ -22,7 +22,7 @@
               width="100%"
               alt="patients-usp"
             )
-      services(:fixed-search-bar="false")
+      services(:fixed-search-bar="false" read-only)
 </template>
 
 <script>
