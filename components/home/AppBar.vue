@@ -9,12 +9,12 @@
       v-container.pa-0
         v-row(justify="center" align="center" no-gutters)
           v-col
-            img(
-              src="~/assets/images/MYCURE-virtual-clinic-healthcare-practice-online-logo.svg"
-              width="140"
-              alt="MYCURE logo"
-              href="/"
-            )
+            nuxt-link(to="/")
+              img(
+                src="~/assets/images/MYCURE-virtual-clinic-healthcare-practice-online-logo.svg"
+                width="140"
+                alt="MYCURE logo"
+              )
           v-spacer
           v-btn(
             v-if="!$isMobile"
