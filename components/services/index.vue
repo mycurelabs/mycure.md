@@ -118,16 +118,21 @@
 
     //- Facility Results
     v-row(align="center" justify="center" v-else-if="searchMode === 'facility'" :class="{ 'org-results-margin': fixedSearchBar }").org-results-summary
-      v-col(cols="11" md="9")#org-results
+      v-col(cols="11" md="10")#org-results
         h4(v-if="orgsTotal") There are {{ orgsTotal }} organization{{ orgsTotal > 1 ? 's' : '' }} available.
         h4(v-else) There are no results available.
       v-col(cols="12")
-        org-list-card(
-          v-for="(organization, key) in orgsList"
-          :key="key"
-          :organization="organization"
-          :read-only="readOnly"
-        )
+        v-row(justify="center" align="stretch")
+          v-col(
+            v-for="(organization, key) in orgsList"
+            :key="key"
+            cols="12"
+            md="5"
+          )
+            org-list-card(
+              :organization="organization"
+              :read-only="readOnly"
+            )
         v-pagination(
           v-model="orgsPage"
           :length="orgsLength"
