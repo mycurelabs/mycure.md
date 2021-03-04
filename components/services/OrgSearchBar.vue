@@ -1,7 +1,7 @@
 <template lang="pug">
   v-container
     v-row(justify="center" align="center")
-      v-col(cols="12" md="10").pb-0
+      v-col(cols="12" md="11").pb-0
         v-toolbar(
           height="65"
           color="white"
