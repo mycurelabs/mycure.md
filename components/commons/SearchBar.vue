@@ -5,23 +5,22 @@
         //- desktop search field
         v-toolbar(
           v-if="!$isMobile"
-          height="84"
+          height="65"
           color="white"
           :style="{ opacity: services ? '' : '0.8' }"
         ).toolbar
-          v-col(cols="12" md="11" :class="{ 'justify-space-between': !$isMobile }").d-flex.mt-2
-            v-col(cols="12" md="8").search-fields
+          v-col(cols="12" md="11" :class="{ 'justify-space-between': !$isMobile }").d-flex.mt-3
+            v-col(cols="12").search-fields
               v-toolbar-title.font-14.ml-4.text-left.font-weight-bold Services
                 v-combobox(
                   v-if="!$isMobile"
-                  v-model="serviceSearchQuery"
                   :items="servicesSuggestions"
                   color="white"
                   item-text="name"
+                  placeholder="Search for a service"
                   clearable
                   return-object
-                  @keyup.enter="searchServices"
-                  @update:search-input="searchDebounce"
+                  @update:search-input="debouncedSearch"
                 ).font-14.font-weight-regular
                   template(slot="item" slot-scope="{ item, tile }")
                     div.d-flex.suggestion-item
@@ -30,20 +29,20 @@
                       v-spacer
                       div
                         p.grey--text {{ serviceTypeMappings[item.type] || ''}}
-            v-divider(inset vertical).mt-6.mb-8
-            v-col(cols="4" md="4").search-fields
-              v-toolbar-title.font-14.ml-4.text-left.font-weight-bold HMO
-                search-insurance-contracts(
-                  no-label
-                  placeholder="Search HMO"
-                  @select="onInsuranceSelect"
-                  @clear="onInsuranceClear"
-                )
+            //- TODO: Hide HMO filter temporarily as per instruction
+            //- v-divider(inset vertical).mt-6.mb-8
+            //- v-col(cols="4" md="4").search-fields
+            //-   v-toolbar-title.font-14.ml-4.text-left.font-weight-bold HMO
+            //-     search-insurance-contracts(
+            //-       no-label
+            //-       placeholder="Search HMO"
+            //-       @select="onInsuranceSelect"
+            //-       @clear="onInsuranceClear"
+            //-     )
           v-spacer
           //- Desktop Services page search button
           v-btn(
             v-if="icon"
-            large
             fab
             color="primary"
             @click="searchServices"
@@ -53,7 +52,6 @@
           v-btn(
             v-else
             depressed
-            large
             rounded
             color="primary"
             :to="{name: 'services', params: { serviceSearchQuery: { name: serviceSearchQuery }, serviceSearchLocation: serviceSearchLocation }}"
@@ -68,6 +66,7 @@
             item-text="name"
             color="white"
             placeholder="Search Services"
+            @keyup.enter="searchServices"
             @input="debouncedSearchText"
             hide-details
           ).bg-white
@@ -88,37 +87,38 @@
                 :to="{name: 'services', params: { serviceSearchQuery: { name: serviceSearchQuery } }}"
               )
                 v-icon mdi-magnify
-          search-insurance-contracts(
-            rounded
-            solo
-            white-bg
-            @select="onInsuranceSelect"
-            @clear="onInsuranceClear"
-          ).mt-3
-        v-col(v-if="services" cols="12").pb-0
-          v-row(:class="$isMobile ? 'd-block' : ''").filter-menu.white--text.font-14
-            div.d-flex
-              span.mt-2 Filter:
-              v-select(
-                v-model="defaultSelected"
-                dense
-                solo
-                :items="['Laboratory', 'Teleconsult']"
-                @change="selectFilter($event)"
-              ).filter.ml-2.font-14.search-select.white--text
-            div(:class="$isMobile ? '' : 'ml-4'").d-flex
-              span.mt-2 Sort by:
-              v-select(
-                v-model="defaultSort"
-                dense
-                solo
-                :items="['Relevance', 'Alphabetical (Ascending)', 'Alphabetical (Descending)']"
-                @change="sortResults($event)"
-              ).filter.ml-2.font-14.search-select.white--text
+          //- TODO: Hide HMO filter temporarily as per instruction
+          //- search-insurance-contracts(
+          //-   rounded
+          //-   solo
+          //-   white-bg
+          //-   @select="onInsuranceSelect"
+          //-   @clear="onInsuranceClear"
+          //- ).mt-3
+        //- v-col(v-if="services" cols="12").pb-0
+        //-   v-row(:class="$isMobile ? 'd-block' : ''").filter-menu.white--text.font-14
+        //-     div.d-flex
+        //-       span.mt-2 Filter:
+        //-       v-select(
+        //-         v-model="defaultSelected"
+        //-         dense
+        //-         solo
+        //-         :items="['Laboratory', 'Teleconsult']"
+        //-         @change="selectFilter($event)"
+        //-       ).filter.ml-2.font-14.search-select.white--text
+        //-     div(:class="$isMobile ? '' : 'ml-4'").d-flex
+        //-       span.mt-2 Sort by:
+        //-       v-select(
+        //-         v-model="defaultSort"
+        //-         dense
+        //-         solo
+        //-         :items="['Relevance', 'Alphabetical (Ascending)', 'Alphabetical (Descending)']"
+        //-         @change="sortResults($event)"
+        //-       ).filter.ml-2.font-14.search-select.white--text
 </template>
 
 <script>
-import _ from 'lodash';
+import { debounce } from 'lodash';
 import SearchInsuranceContracts from '~/components/clinic-website/services/search-insurance-contracts';
 
 export default {
@@ -162,7 +162,8 @@ export default {
       filterLabel: '',
       defaultSelected: 'Laboratory',
       defaultSort: 'Relevance',
-      debouncedSearchText: _.debounce((e) => { this.serviceSearchQuery = e; }, 500),
+      debouncedSearchText: debounce((e) => { this.serviceSearchQuery = e; }, 500),
+      debouncedSearch: debounce((e) => { this.searchDebounce(e); }, 500),
     };
   },
   computed: {
@@ -193,6 +194,7 @@ export default {
         this.$emit('clear-services');
         return;
       }
+      this.serviceSearchQuery = searchText;
       this.searchServices();
     },
     onInsuranceSelect (insurer) {

@@ -43,6 +43,9 @@
 </template>
 
 <script>
+import { isEmpty } from 'lodash';
+import { formatAddress } from '~/utils/formats';
+
 export default {
   props: {
     clinic: {
@@ -65,21 +68,10 @@ export default {
     name () {
       return this.clinic?.name || 'MYCURE Clinic';
     },
-    address () {
-      return [
-        this.clinic?.address?.city,
-        this.clinic?.address?.province,
-        this.clinic?.address?.country,
-      ].filter(Boolean).join(', ') || 'Address not available';
-    },
     completeAddress () {
-      return [
-        this.clinic?.address?.street1,
-        this.clinic?.address?.street2,
-        this.clinic?.address?.city,
-        this.clinic?.address?.province,
-        this.clinic?.address?.country,
-      ].filter(Boolean).join(', ') || 'Address not available';
+      const { address } = this.clinic;
+      if (isEmpty(address)) return 'Address not available';
+      return formatAddress(address, 'street1, street2, city, province, country');
     },
     contactNumber () {
       return this.clinic?.phone || 'Contact Number not available';

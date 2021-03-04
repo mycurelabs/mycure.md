@@ -6,6 +6,7 @@
 import Services from '~/components/services';
 export default {
   layout: 'home',
+  middleware: ['disable-route'],
   components: {
     Services,
   },
