@@ -2,32 +2,28 @@
   div(v-if="!loading")
     app-bar(isServices)
     v-row(justify="center" no-gutters :class="{ 'fixed-container': fixedSearchBar }").search-container.pt-3
-      v-col(cols="10" md="3")
-        v-btn(
-          color="white"
-          v-bind="buttonSize"
-          block
-          :outlined="searchMode !== 'service'"
-          @click="searchMode = 'service'"
-        ).text-none
-          v-icon(
+      v-col(cols="12").text-center
+        v-btn-toggle(color="primary" tile mandatory)
+          v-btn(
             v-bind="buttonSize"
-            left
-          ) mdi-format-list-bulleted
-          strong Search Services
-      v-col(cols="10" md="3")
-        v-btn(
-          color="white"
-          v-bind="buttonSize"
-          block
-          :outlined="searchMode !== 'facility'"
-          @click="searchMode = 'facility'"
-        ).text-none
-          v-icon(
+            @click="searchMode = 'facility'"
+          ).text-none
+            v-icon(
+              v-bind="buttonSize"
+              :color="searchMode === 'facility' ? 'primary' : 'black'"
+              left
+            ) mdi-domain
+            strong Search Facilities
+          v-btn(
             v-bind="buttonSize"
-            left
-          ) mdi-domain
-          strong Search Facilities
+            @click="searchMode = 'service'"
+          ).text-none
+            v-icon(
+              v-bind="buttonSize"
+              :color="searchMode === 'service' ? 'primary' : 'black'"
+              left
+            ) mdi-format-list-bulleted
+            strong Search Services
       v-col(cols="12").text-center.pb-0
         search-bar(
           v-if="searchMode === 'service'"
@@ -44,7 +40,6 @@
         org-search-bar(
           v-else-if="searchMode === 'facility'"
           icon
-          :provinces="provinces"
           @search-organizations="searchOrganizations($event)"
           @clear-organizations="clearOrganizationResults"
         )
@@ -124,7 +119,7 @@
     //- Facility Results
     v-row(align="center" justify="center" v-else-if="searchMode === 'facility'" :class="{ 'org-results-margin': fixedSearchBar }").org-results-summary
       v-col(cols="11" md="9")#org-results
-        h4(v-if="orgsTotal") There are {{ orgsTotal }} result{{ orgsTotal > 1 ? 's' : '' }} available.
+        h4(v-if="orgsTotal") There are {{ orgsTotal }} organization{{ orgsTotal > 1 ? 's' : '' }} available.
         h4(v-else) There are no results available.
       v-col(cols="12")
         org-list-card(
@@ -194,7 +189,7 @@ export default {
       orgsSearchQuery: {},
       municipalityList: [],
       // - facility | service
-      searchMode: 'service',
+      searchMode: 'facility',
       sortMethod: 'Relevance',
     };
   },
@@ -227,7 +222,7 @@ export default {
         const serviceName = (typeof (this.searchQuery) === 'object' ? this.searchQuery?.name : this.searchQuery) || 'the service';
         const resultsLength = !this.searchQuery && !this.hmoQuery ? this.initialServicesTotal : this.searchedServicesLength;
         const resultText = `${resultsLength} result${resultsLength > 1 || resultsLength === 0 ? 's' : ''} found for ${serviceName} ${this.locationQuery ? `in ${this.locationQuery}` : ''}`;
-        return resultText;
+        return !this.searchQuery && !this.hmoQuery ? '' : resultText;
       }
     },
     filteredItems () {
@@ -291,6 +286,7 @@ export default {
     },
     async orgsPage (val) {
       await this.fetchOrganizations(this.orgsSearchQuery, val);
+      VueScrollTo.scrollTo('#org-results', 500, { offset: -250, easing: 'ease' });
     },
     async searchMode (val) {
       if (val === 'service') {
@@ -298,11 +294,12 @@ export default {
         return;
       }
       await this.fetchOrganizations();
-      if (!this.municipalityList.length) await this.fetchMunicipalities();
+      // if (!this.municipalityList.length) await this.fetchMunicipalities();
     },
   },
   async mounted () {
     this.loading = false;
+    await this.fetchOrganizations();
     await this.fetchAllServicesNotPaginated();
     if (this.$route.params.serviceSearchQuery || this.$route.params.serviceSearchLocation) {
       this.searchQuery = this.$route.params.serviceSearchQuery?.name;
@@ -366,14 +363,13 @@ export default {
         if (locationText) {
           if (!query.$and) query.$and = [];
           query.$and.push(
-            { 'address.province': { $regex: `^${locationText}`, $options: 'gi' } },
+            { 'address.city': { $regex: `^${locationText}`, $options: 'gi' } },
           );
         }
 
         const { items, total } = await this.$sdk.service('organizations').find(query);
         this.orgsList = items || [];
         this.orgsTotal = total;
-        VueScrollTo.scrollTo('#org-results', 500, { offset: -250, easing: 'ease' });
       } catch (error) {
         console.error(error);
       }
@@ -389,6 +385,7 @@ export default {
     async searchOrganizations ({ searchText, locationText }) {
       this.orgsSearchQuery = { searchText, locationText };
       await this.fetchOrganizations(this.orgsSearchQuery);
+      VueScrollTo.scrollTo('#org-results', 500, { offset: -250, easing: 'ease' });
     },
     async queryServicesName (searchQuery, page = 1) {
       const skip = this.servicesLimit * (page - 1);

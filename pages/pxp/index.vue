@@ -22,12 +22,14 @@
               width="100%"
               alt="patients-usp"
             )
-      services(:fixed-search-bar="false" read-only)
+      services(:fixed-search-bar="false")
 </template>
 
 <script>
 import AppBar from '~/components/home/AppBar';
 import Services from '~/components/services';
+import headMeta from '~/utils/head-meta';
+
 export default {
   layout: 'home',
   components: {
@@ -43,6 +45,12 @@ export default {
     openPxPortal (location) {
       window.open(location);
     },
+  },
+  head () {
+    return headMeta({
+      title: 'MYCURE Healthcare Directory',
+      description: 'Search for facilities and services in the MYCURE Healthcare Directory',
+    });
   },
 };
 </script>
