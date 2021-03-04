@@ -10,7 +10,12 @@
       v-col.grow
         strong.font-18 {{ organization.name }}
         div
-          v-clamp(:max-lines="2" autoresize) {{ organization.description }}
+          template(v-if="!isDescriptionExpanded && organization.description")
+            v-clamp(:max-lines="2" autoresize) {{ organization.description }}
+            a(@click="isDescriptionExpanded = true").primary--text See more
+          template(v-else-if="isDescriptionExpanded")
+            p {{ organization.description }}
+            a(@click="isDescriptionExpanded = false").primary--text Collapse
           div(v-if="organization !== undefined").mt-4
             div.d-flex
               v-icon(color="primary").mr-2.mb-auto mdi-map-marker
@@ -89,6 +94,7 @@ export default {
     ];
     return {
       scheduleExpanded: false,
+      isDescriptionExpanded: false,
     };
   },
   computed: {
