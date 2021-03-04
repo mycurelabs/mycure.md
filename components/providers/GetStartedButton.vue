@@ -5,7 +5,7 @@
     :large="large"
     :x-large="xLarge"
     @click="getStarted"
-  ).text-none.font-weight-bold Get started for free
+  ).text-none.font-weight-bold Get Started Free
 </template>
 
 <script>

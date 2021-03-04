@@ -66,7 +66,7 @@
                   text
                   block
                   @click="openPxPortal(pxPortalSignUp)"
-                ) Get Started for Free
+                ) Get Started Free
 
 </template>
 
