@@ -39,7 +39,7 @@
                 fab
                 color="primary"
                 @click="searchFacility"
-              )
+              ).elevation-0
                 v-icon mdi-magnify
 </template>
 <script>

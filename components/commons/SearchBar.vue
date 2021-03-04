@@ -46,7 +46,7 @@
                 fab
                 color="primary"
                 @click="searchServices"
-              )
+              ).elevation-0
                 v-icon mdi-magnify
               //- Desktop Patients page search button
               v-btn(
