@@ -3,10 +3,10 @@
     v-row(justify="center" align="center")
       v-col(cols="12" md="10").pb-0
         v-toolbar(
-          height="84"
+          height="65"
           color="white"
         ).toolbar
-          v-col(cols="10" md="11").d-flex.mt-2.justify-space-between
+          v-col(cols="10" md="11").d-flex.mt-3.justify-space-between
             v-col(cols="6" md="8").search-fields
               v-toolbar-title.font-14.ml-4.text-left.font-weight-bold Facility
                 v-text-field(
@@ -24,20 +24,18 @@
                   placeholder="Municipality"
                   v-model="orgSearchLocation"
                   clearable
-                  :items="provinces"
+                  :items="cities"
                   @keyup.enter="searchFacility"
                 ).font-14.font-weight-regular
           v-spacer
           v-btn(
             v-if="!icon"
             depressed
-            large
             rounded
             color="primary"
           ) #[b Search Now]
           v-btn(
             v-else
-            large
             fab
             color="primary"
             @click="searchFacility"
@@ -46,6 +44,7 @@
 </template>
 <script>
 import { debounce } from 'lodash';
+import NCR_CITIES from '~/assets/fixtures/ncr-cities';
 export default {
   props: {
     icon: {
@@ -58,6 +57,7 @@ export default {
     },
   },
   data () {
+    this.cities = NCR_CITIES;
     return {
       orgSearchQuery: null,
       orgSearchLocation: null,
@@ -65,13 +65,17 @@ export default {
     };
   },
   watch: {
-    orgSearchQuery (val) {
-      (val === null || val === undefined) && this.$emit('clear-organizations');
+    orgSearchLocation (val) {
+      if (!val && !this.orgSearchQuery) {
+        this.$emit('clear-organizations');
+        return;
+      }
+      this.searchFacility();
     },
   },
   methods: {
     searchFacility () {
-      if (!this.orgSearchQuery) {
+      if (!this.orgSearchQuery && !this.orgSearchLocation) {
         this.$emit('clear-organizations');
         return;
       }

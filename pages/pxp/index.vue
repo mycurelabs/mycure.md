@@ -28,8 +28,11 @@
 <script>
 import AppBar from '~/components/home/AppBar';
 import Services from '~/components/services';
+import headMeta from '~/utils/head-meta';
+
 export default {
   layout: 'home',
+  middleware: ['disable-route'],
   components: {
     AppBar,
     Services,
@@ -43,6 +46,12 @@ export default {
     openPxPortal (location) {
       window.open(location);
     },
+  },
+  head () {
+    return headMeta({
+      title: 'MYCURE Healthcare Directory',
+      description: 'Search for facilities and services in the MYCURE Healthcare Directory',
+    });
   },
 };
 </script>

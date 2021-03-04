@@ -14,3 +14,18 @@ export const formatCurrency = (num = 0, currency = 'USD') => {
     currency,
   }).format(num);
 };
+
+export const formatAddress = (address, format) => {
+  if (!address) return null;
+  const { street1, street2, village, city, municipality, province, state, region, country } = address;
+  return format.replace(/street1/gi, street1)
+    .replace(/street2/gi, street2 || '')
+    .replace(/village/gi, village || '')
+    .replace(/city/gi, city || '')
+    .replace(/municipality/gi, municipality || '')
+    .replace(/province/gi, province || '')
+    .replace(/state/gi, state || '')
+    .replace(/region/gi, region || '')
+    .replace(/country/gi, country || '')
+    .trim();
+};
