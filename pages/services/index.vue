@@ -1,5 +1,5 @@
 <template lang="pug">
-  services
+  services(read-only)
 </template>
 
 <script>
