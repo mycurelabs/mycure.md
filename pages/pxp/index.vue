@@ -48,7 +48,7 @@ export default {
   },
   head () {
     return headMeta({
-      title: 'MYCURE Healthcare Directory',
+      title: 'MYCURE Healthcare Service Booking Management Software',
       description: 'Search for facilities and services in the MYCURE Healthcare Directory',
     });
   },
