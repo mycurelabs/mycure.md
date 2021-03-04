@@ -4,7 +4,7 @@
     v-content
       //- USP
       v-container
-        v-row(justify="center" align="center").my-12
+        v-row(justify="center" align="center").mt-10.mb-12
           v-col(cols="12" md="6" :class="{ 'text-center' : $isMobile }")
             h1.primary--text Find the right healthcare services near you
             p Diagnostic clinics, hospitals, and full service clinics in Metro Manila are within your reach whenever you need them.
