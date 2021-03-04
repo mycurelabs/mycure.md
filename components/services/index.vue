@@ -186,7 +186,7 @@ export default {
       servicesTotal: 0,
       orgsTotal: 0,
       initialServicesLimit: 6,
-      orgsLimit: 6,
+      orgsLimit: 10,
       servicesLimit: 6,
       filterLabel: '',
       orgsList: [],
