@@ -9,7 +9,7 @@
             @click="searchMode = 'facility'"
           ).text-none
             v-icon(
-              v-bind="buttonSize"
+              v-bind="iconSize"
               :color="searchMode === 'facility' ? 'primary' : 'black'"
               left
             ) mdi-domain
@@ -19,7 +19,7 @@
             @click="searchMode = 'service'"
           ).text-none
             v-icon(
-              v-bind="buttonSize"
+              v-bind="iconSize"
               :color="searchMode === 'service' ? 'primary' : 'black'"
               left
             ) mdi-format-list-bulleted
@@ -275,6 +275,10 @@ export default {
     buttonSize () {
       const size = { xs: 'small', sm: 'large', lg: 'large', xl: 'x-large' }[this.$vuetify.breakpoint.name];
       return size ? { [size]: true } : {};
+    },
+    iconSize () {
+      const size = this.$vuetify.breakpoint.name !== 'xs' && this.$vuetify.breakpoint.name !== 'sm' ? 'medium' : 'small';
+      return { [size]: true };
     },
   },
   watch: {
