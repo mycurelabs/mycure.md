@@ -13,7 +13,14 @@
           h4(:class="{ 'text-center' : $isMobile }").primary--text SYNCBASE TECHNOLOGY
           h1(:class="{ 'text-center font-20' : $isMobile }").mb-2 MYCURE works online and offline
           p(:class="{ 'pl-2' : $isMobile }") Work as if you have an in-house server with the convenience of the cloud. Create your medical records locally using multiple devices even if the internet is down! Once back online, it instantly syncs your data into the cloud.
-          a(href="/pricing" :class="{ 'pl-2' : $isMobile }") Get MYCURE Syncbase in Pro Plan #[v-icon(color="primary").ml-2 mdi-arrow-right]
+          a(
+            href="https://calendly.com/mycure/demo"
+            target="_blank"
+            rel="noopener noreferrer"
+            :class="{ 'pl-2' : $isMobile }"
+          )
+            | Book a Demo
+            v-icon(color="primary").ml-2 mdi-arrow-right
 </template>
 
 <style scoped>

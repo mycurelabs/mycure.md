@@ -131,13 +131,13 @@ export default {
         comingSoon: false,
         invisible: this.countryCode === 'PH',
       },
-      // {
-      //   name: 'For Patients',
-      //   route: 'pxp',
-      //   new: false,
-      //   external: false,
-      //   // comingSoon: true,
-      // },
+      {
+        name: 'For Patients',
+        route: 'pxp',
+        new: false,
+        external: false,
+        // comingSoon: true,
+      },
       // TODO: bring back later
       // {
       //   name: 'Doctor\'s Directory',

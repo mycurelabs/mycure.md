@@ -66,7 +66,7 @@
                   text
                   block
                   @click="openPxPortal(pxPortalSignUp)"
-                ) Get Started for Free
+                ) Get Started Free
 
 </template>
 
@@ -80,7 +80,7 @@ export default {
   },
   computed: {
     pxPortalSignUp () {
-      return `${process.env.PX_PORTAL_URL}/signup`;
+      return `${process.env.PX_PORTAL_URL}`;
     },
     pxPortalLogIn () {
       return `${process.env.PX_PORTAL_URL}`;

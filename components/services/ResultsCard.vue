@@ -3,7 +3,7 @@
     v-container
       v-row(align="center" justify="center")
         v-col(cols="12" md="10")
-          v-card.results-card
+          v-card(flat).results-card
             div(style="background-color: #fafafa").d-flex.pa-2
               v-col(cols="4" md="2" align="center")
                 v-avatar(
