@@ -9,7 +9,7 @@
             @click="searchMode = 'facility'"
           ).text-none
             v-icon(
-              v-bind="buttonSize"
+              v-bind="iconSize"
               :color="searchMode === 'facility' ? 'primary' : 'black'"
               left
             ) mdi-domain
@@ -19,7 +19,7 @@
             @click="searchMode = 'service'"
           ).text-none
             v-icon(
-              v-bind="buttonSize"
+              v-bind="iconSize"
               :color="searchMode === 'service' ? 'primary' : 'black'"
               left
             ) mdi-format-list-bulleted
@@ -118,16 +118,21 @@
 
     //- Facility Results
     v-row(align="center" justify="center" v-else-if="searchMode === 'facility'" :class="{ 'org-results-margin': fixedSearchBar }").org-results-summary
-      v-col(cols="11" md="9")#org-results
+      v-col(cols="11" md="10")#org-results
         h4(v-if="orgsTotal") There are {{ orgsTotal }} organization{{ orgsTotal > 1 ? 's' : '' }} available.
         h4(v-else) There are no results available.
       v-col(cols="12")
-        org-list-card(
-          v-for="(organization, key) in orgsList"
-          :key="key"
-          :organization="organization"
-          :read-only="readOnly"
-        )
+        v-row(justify="center" align="stretch")
+          v-col(
+            v-for="(organization, key) in orgsList"
+            :key="key"
+            cols="12"
+            md="5"
+          )
+            org-list-card(
+              :organization="organization"
+              :read-only="readOnly"
+            )
         v-pagination(
           v-model="orgsPage"
           :length="orgsLength"
@@ -181,7 +186,7 @@ export default {
       servicesTotal: 0,
       orgsTotal: 0,
       initialServicesLimit: 6,
-      orgsLimit: 6,
+      orgsLimit: 10,
       servicesLimit: 6,
       filterLabel: '',
       orgsList: [],
@@ -275,6 +280,10 @@ export default {
     buttonSize () {
       const size = { xs: 'small', sm: 'large', lg: 'large', xl: 'x-large' }[this.$vuetify.breakpoint.name];
       return size ? { [size]: true } : {};
+    },
+    iconSize () {
+      const size = this.$vuetify.breakpoint.name !== 'xs' && this.$vuetify.breakpoint.name !== 'sm' ? 'medium' : 'small';
+      return { [size]: true };
     },
   },
   watch: {

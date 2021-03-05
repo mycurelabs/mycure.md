@@ -1,13 +1,13 @@
 <template lang="pug">
   v-container
     v-row(justify="center" align="center")
-      v-col(cols="12" md="10").pb-0
+      v-col(cols="12" md="11").pb-0
         v-toolbar(
           height="65"
           color="white"
         ).toolbar
-          v-col(cols="10" md="11").d-flex.mt-3.justify-space-between
-            v-col(cols="6" md="8").search-fields
+          v-row.search-container.d-flex.mt-5.ml-1
+            v-col.grow.search-fields
               v-toolbar-title.font-14.ml-4.text-left.font-weight-bold Facility
                 v-text-field(
                   v-model="orgSearchQuery"
@@ -27,20 +27,20 @@
                   :items="cities"
                   @keyup.enter="searchFacility"
                 ).font-14.font-weight-regular
-          v-spacer
-          v-btn(
-            v-if="!icon"
-            depressed
-            rounded
-            color="primary"
-          ) #[b Search Now]
-          v-btn(
-            v-else
-            fab
-            color="primary"
-            @click="searchFacility"
-          )
-            v-icon mdi-magnify
+            v-col(cols="1")
+              v-btn(
+                v-if="!icon"
+                depressed
+                rounded
+                color="primary"
+              ) #[b Search Now]
+              v-btn(
+                v-else
+                fab
+                color="primary"
+                @click="searchFacility"
+              ).elevation-0
+                v-icon mdi-magnify
 </template>
 <script>
 import { debounce } from 'lodash';
@@ -126,5 +126,16 @@ export default {
 
 .suggestion-item {
   flex: auto;
+}
+
+@media screen and (max-width: 1269px) {
+  .search-container {
+    margin-right: -5px;
+  }
+}
+@media screen and (min-width: 1270px) {
+  .search-container {
+    margin-right: -20px;
+  }
 }
 </style>

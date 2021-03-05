@@ -122,6 +122,12 @@ export default {
   components: {
     Money,
   },
+  async asyncData ({ redirect }) {
+    const country = await getCountry();
+    if (country.country_code === 'PH') {
+      redirect('/error');
+    }
+  },
   data () {
     return {
       loading: true,
@@ -282,7 +288,6 @@ export default {
   },
   mounted () {
     this.loading = false;
-    this.disablePage();
   },
   methods: {
     isIcon (string) {
@@ -294,12 +299,6 @@ export default {
       }
       if (/close/gi.test(string)) {
         return 'error';
-      }
-    },
-    async disablePage () {
-      const country = await getCountry();
-      if (country.country_code === 'PH') {
-        this.$nuxt.$router.push('error');
       }
     },
   },
