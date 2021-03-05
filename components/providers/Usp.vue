@@ -4,7 +4,7 @@
       v-row(
         align="center"
         justify="center"
-        :style="{ height: $isMobile ? 'auto' : '626px' }"
+        :style="{ height: $isMobile ? 'auto' : '520px' }"
         no-gutters
       )
         v-col(cols="8" md="5" :class="{ 'order-last' : !$isMobile }")

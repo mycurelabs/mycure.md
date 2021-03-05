@@ -5,7 +5,7 @@
     :large="large"
     :x-large="xLarge"
     href="https://6rbf27w6k3r.typeform.com/to/V13pJzW9"
-  ).text-none.font-weight-bold Get started for free
+  ).text-none.font-weight-bold Get Started Free
 </template>
 
 <script>

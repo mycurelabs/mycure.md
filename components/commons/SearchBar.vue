@@ -9,8 +9,8 @@
           color="white"
           :style="{ opacity: services ? '' : '0.8' }"
         ).toolbar
-          v-col(cols="12" md="11" :class="{ 'justify-space-between': !$isMobile }").d-flex.mt-3
-            v-col(cols="12").search-fields
+          v-row.d-flex.mt-5.ml-1.search-container
+            v-col.grow.search-fields
               v-toolbar-title.font-14.ml-4.text-left.font-weight-bold Services
                 v-combobox(
                   v-if="!$isMobile"
@@ -39,23 +39,23 @@
             //-       @select="onInsuranceSelect"
             //-       @clear="onInsuranceClear"
             //-     )
-          v-spacer
-          //- Desktop Services page search button
-          v-btn(
-            v-if="icon"
-            fab
-            color="primary"
-            @click="searchServices"
-          )
-            v-icon mdi-magnify
-          //- Desktop Patients page search button
-          v-btn(
-            v-else
-            depressed
-            rounded
-            color="primary"
-            :to="{name: 'services', params: { serviceSearchQuery: { name: serviceSearchQuery }, serviceSearchLocation: serviceSearchLocation }}"
-          ) #[b Search Now]
+            v-col(cols="1")
+              //- Desktop Services page search button
+              v-btn(
+                v-if="icon"
+                fab
+                color="primary"
+                @click="searchServices"
+              ).elevation-0
+                v-icon mdi-magnify
+              //- Desktop Patients page search button
+              v-btn(
+                v-else
+                depressed
+                rounded
+                color="primary"
+                :to="{name: 'services', params: { serviceSearchQuery: { name: serviceSearchQuery }, serviceSearchLocation: serviceSearchLocation }}"
+              ) #[b Search Now]
         //- mobile search field
         template(v-else)
           v-text-field(
@@ -167,6 +167,9 @@ export default {
     };
   },
   computed: {
+    isWideScreen () {
+      return !this.$isMobile && !this.$isRegularScreen;
+    },
     servicesSuggestions () {
       return this.allServices;
     },
@@ -246,5 +249,16 @@ export default {
 
 .suggestion-item {
   flex: auto;
+}
+
+@media screen and (max-width: 1269px) {
+  .search-container {
+    margin-right: -5px;
+  }
+}
+@media screen and (min-width: 1270px) {
+  .search-container {
+    margin-right: -20px;
+  }
 }
 </style>

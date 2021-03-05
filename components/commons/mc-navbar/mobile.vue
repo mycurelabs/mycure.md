@@ -84,7 +84,7 @@
             color="accent"
             @click.stop="handleUserLinkClick(`get-started-btn`)"
           ).ml-2
-            strong.font-14.white--text.tab Get started for free
+            strong.font-14.white--text.tab Get Started Free
 </template>
 
 <script>

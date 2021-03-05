@@ -97,7 +97,7 @@ export default {
     },
     goToPxpSignup () {
       if (this.isPreviewMode) return;
-      window.open(`${process.env.PX_PORTAL_URL}/signup`, '_blank', 'noopener, noreferrer');
+      window.open(process.env.PX_PORTAL_URL, '_blank', 'noopener, noreferrer');
     },
     getStarted () {
       const opts = {
