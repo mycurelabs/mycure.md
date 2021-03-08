@@ -28,6 +28,7 @@ export default {
     return headMeta({
       title: 'MYCURE Healthcare Service Booking Management Software',
       description: 'Search for facilities and services in the MYCURE Healthcare Directory',
+      socialBanner: require('~/assets/images/banners/MYCURE Open Graph-Patients.jpg'),
     });
   },
 };
