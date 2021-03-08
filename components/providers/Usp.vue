@@ -9,7 +9,7 @@
       )
         v-col(cols="8" md="5" :class="{ 'order-last' : !$isMobile }")
           v-img(
-            :src="require('../../assets/images/providers/USP-image-3.png')"
+            :src="require('../../assets/images/providers/website-image-providers.png')"
             width="100%"
             alt="homepage image"
           )
