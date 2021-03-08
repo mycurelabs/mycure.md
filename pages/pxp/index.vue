@@ -2,7 +2,7 @@
   div(v-if="!loading")
     v-content
       usp
-      services(:fixed-search-bar="false")
+      //- services(:fixed-search-bar="false")
 </template>
 
 <script>
@@ -11,7 +11,7 @@ import Usp from '~/components/pxp/Usp';
 import headMeta from '~/utils/head-meta';
 
 export default {
-  layout: 'home',
+  layout: 'pxp',
   components: {
     Services,
     Usp,
