@@ -1,6 +1,5 @@
 <template lang="pug">
   div(v-if="!loading")
-    app-bar(isServices)
     v-row(justify="center" no-gutters :class="{ 'fixed-container': fixedSearchBar }").search-container.pt-3
       v-col(cols="12").text-center
         v-btn-toggle(color="primary" tile mandatory)
@@ -474,7 +473,7 @@ export default {
 }
 
 .services-results-margin {
-  margin-top: 340px;
+  margin-top: 225px;
 }
 
 .org-results-summary {
@@ -484,16 +483,5 @@ export default {
 
 .org-results-margin {
   margin-top: 250px;
-}
-
-@media screen and (max-width: 1020px) {
-  .services-results-margin {
-    margin-top: 380px;
-  }
-}
-@media screen and (max-width: 400px) {
-  .services-results-margin {
-    margin-top: 450px;
-  }
 }
 </style>
