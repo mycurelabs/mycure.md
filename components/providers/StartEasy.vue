@@ -46,7 +46,7 @@ export default {
         {
           image: require('../../assets/images/providers/B Asset 2.png'),
           title: 'Billing',
-          description: 'Efficiently measure your clinic\'s growth',
+          description: 'Efficiently measure your growth',
         },
         {
           image: require('../../assets/images/providers/C Asset 2.png'),

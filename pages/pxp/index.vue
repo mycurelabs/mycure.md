@@ -1,55 +1,34 @@
 <template lang="pug">
-  div
-    app-bar
+  div(v-if="!loading")
     v-content
-      //- USP
-      v-container
-        v-row(justify="center" align="center").mt-10.mb-12
-          v-col(cols="12" md="6" :class="{ 'text-center' : $isMobile }")
-            h1.primary--text Find the right healthcare services near you
-            p Diagnostic clinics, hospitals, and full service clinics in Metro Manila are within your reach whenever you need them.
-            v-btn(
-              depressed
-              color="primary"
-              rounded
-              large
-              dense
-              @click="openPxPortal(pxPortalSignUp)"
-            ).text-none #[b Get Started Free]
-          v-col(cols="8" md="6" :class="{ 'order-first' : $isMobile }")
-            v-img(
-              :src="require('~/assets/images/patients/usp-patients.png')"
-              width="100%"
-              alt="patients-usp"
-            )
-      services(:fixed-search-bar="false" read-only)
+      usp
+      locations
 </template>
 
 <script>
-import AppBar from '~/components/home/AppBar';
-import Services from '~/components/services';
+import Locations from '~/components/pxp/Locations';
+import Usp from '~/components/pxp/Usp';
 import headMeta from '~/utils/head-meta';
 
 export default {
-  layout: 'home',
+  layout: 'pxp',
   components: {
-    AppBar,
-    Services,
+    Locations,
+    Usp,
   },
-  computed: {
-    pxPortalSignUp () {
-      return process.env.PX_PORTAL_URL;
-    },
+  data () {
+    return {
+      loading: true,
+    };
   },
-  methods: {
-    openPxPortal (location) {
-      window.open(location);
-    },
+  mounted () {
+    this.loading = false;
   },
   head () {
     return headMeta({
       title: 'MYCURE Healthcare Service Booking Management Software',
       description: 'Search for facilities and services in the MYCURE Healthcare Directory',
+      socialBanner: require('~/assets/images/banners/MYCURE Open Graph-Patients.jpg'),
     });
   },
 };
