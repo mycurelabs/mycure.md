@@ -43,6 +43,6 @@ export default {
 
 <style scoped>
 .usp-container {
-  padding-bottom: 20px;
+  padding-bottom: 70px;
 }
 </style>

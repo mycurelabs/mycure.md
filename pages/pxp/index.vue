@@ -2,18 +2,18 @@
   div(v-if="!loading")
     v-content
       usp
-      //- services(:fixed-search-bar="false")
+      locations
 </template>
 
 <script>
-import Services from '~/components/services';
+import Locations from '~/components/pxp/Locations';
 import Usp from '~/components/pxp/Usp';
 import headMeta from '~/utils/head-meta';
 
 export default {
   layout: 'pxp',
   components: {
-    Services,
+    Locations,
     Usp,
   },
   data () {
