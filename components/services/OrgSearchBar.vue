@@ -55,13 +55,17 @@ export default {
       type: Array,
       default: () => ([]),
     },
+    requireAction: {
+      type: Boolean,
+      default: false,
+    },
   },
   data () {
     this.cities = NCR_CITIES;
     return {
       orgSearchQuery: null,
       orgSearchLocation: null,
-      debouncedSearch: debounce(this.searchFacility, 500),
+      debouncedSearch: debounce(this.searchDebounce, 500),
     };
   },
   watch: {
@@ -74,7 +78,14 @@ export default {
     },
   },
   methods: {
+    searchDebounce () {
+      if (this.requireAction) return;
+      this.searchFacility();
+    },
     searchFacility () {
+      if (!this.orgSearchQuery && this.orgSearchLocation && this.requireAction) {
+        return;
+      }
       if (!this.orgSearchQuery && !this.orgSearchLocation) {
         this.$emit('clear-organizations');
         return;

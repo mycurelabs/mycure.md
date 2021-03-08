@@ -307,15 +307,22 @@ export default {
   },
   async mounted () {
     this.loading = false;
-    await this.fetchOrganizations();
-    await this.fetchAllServicesNotPaginated();
+    if (this.$route.params.facilitySearchText || this.$route.params.facilityLocationText) {
+      await this.searchOrganizations({
+        searchText: this.$route.params.facilitySearchText,
+        locationText: this.$route.params.facilityLocationText,
+      });
+      return;
+    }
     if (this.$route.params.serviceSearchQuery || this.$route.params.serviceSearchLocation) {
       this.searchQuery = this.$route.params.serviceSearchQuery?.name;
       this.locationQuery = this.$route.params.serviceSearchLocation;
       this.searchServices(this.searchQuery, this.locationQuery);
-    } else {
-      await this.fetchAllServices();
+      return;
     }
+    await this.fetchOrganizations();
+    await this.fetchAllServicesNotPaginated();
+    await this.fetchAllServices();
   },
   methods: {
     async fetchSearchQuery (searchQuery) {
