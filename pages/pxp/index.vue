@@ -1,6 +1,5 @@
 <template lang="pug">
-  div
-    app-bar
+  div(v-if="!loading")
     v-content
       //- USP
       v-container
@@ -36,10 +35,18 @@ export default {
     AppBar,
     Services,
   },
+  data () {
+    return {
+      loading: true,
+    };
+  },
   computed: {
     pxPortal () {
       return `${process.env.PX_PORTAL_URL}/`;
     },
+  },
+  mounted () {
+    this.loading = false;
   },
   methods: {
     openPxPortal (location) {
