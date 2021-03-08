@@ -17,6 +17,7 @@
             :key="key"
             cols="6"
             md="4"
+            @click="onLocationClick(city)"
           )
             v-btn(
               text
@@ -32,6 +33,11 @@ export default {
   data () {
     this.ncrCities = NCR_CITIES;
     return {};
+  },
+  methods: {
+    onLocationClick (city) {
+      this.$nuxt.$router.push({ name: 'services', params: { facilityLocationText: city } });
+    },
   },
 };
 </script>
