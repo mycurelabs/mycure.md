@@ -42,6 +42,7 @@
 import VueScrollTo from 'vue-scrollto';
 import OrgListCard from '~/components/organizations/OrgListCard';
 import OrgSearchBar from '~/components/services/OrgSearchBar';
+import { fetchOrganizations } from '~/services/organizations';
 export default {
   components: {
     OrgListCard,
@@ -90,6 +91,9 @@ export default {
       await this.fetchOrganizations(this.orgsSearchQuery, val);
       VueScrollTo.scrollTo('#org-results', 500, { offset: -250, easing: 'ease' });
     },
+    orgsLength (val) {
+      this.$emit('results:filled', !!val);
+    },
   },
   async mounted () {
     this.loading.page = false;
@@ -106,31 +110,19 @@ export default {
     async fetchOrganizations (searchQuery = {}, page = 1) {
       try {
         this.loading.results = true;
+        this.$emit('results:filled', false);
+        const { searchText, locationText } = searchQuery;
         const skip = this.orgsLimit * (page - 1);
         const query = {
-          $limit: this.orgsLimit,
-          $skip: skip,
+          limit: this.orgsLimit,
+          skip,
+          searchText,
+          locationText,
           // TODO: confirm org types that are not included
           type: { $nin: ['company', 'warehouse', 'insurance'] },
         };
 
-        const { searchText, locationText } = searchQuery;
-
-        if (searchText) {
-          query.$and = [];
-          query.$and.push(
-            { name: { $regex: `^${searchText}`, $options: 'gi' } },
-          );
-        }
-
-        if (locationText) {
-          if (!query.$and) query.$and = [];
-          query.$and.push(
-            { 'address.city': { $regex: `^${locationText}`, $options: 'gi' } },
-          );
-        }
-
-        const { items, total } = await this.$sdk.service('organizations').find(query);
+        const { items, total } = await fetchOrganizations(this.$sdk, query);
         this.orgsList = items || [];
         this.orgsTotal = total;
       } catch (error) {
