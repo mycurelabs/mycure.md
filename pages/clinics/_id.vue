@@ -147,7 +147,7 @@
 </template>
 
 <script>
-import { isEmpty } from 'lodash';
+import { isEmpty, intersection } from 'lodash';
 import VueScrollTo from 'vue-scrollto';
 // - utils
 import { getServices } from '~/utils/axios';
@@ -168,6 +168,16 @@ import ServicesSearchResults from '~/components/clinic-website/services/search-r
 import ServicesTabs from '~/components/clinic-website/services/tabs';
 import ServiceTypesMobileSelection from '~/components/clinic-website/services/service-types-mobile-selection';
 import Usp from '~/components/clinic-website/usp';
+
+const SERVICE_TYPES = [
+  'clinical-consultation',
+  'clinical-procedure',
+  'dental',
+  'pe',
+  'lab',
+  'imaging',
+];
+
 export default {
   layout: 'clinic-website',
   components: {
@@ -409,7 +419,32 @@ export default {
     async fetchServiceTypes () {
       try {
         const { items } = await fetchClinicServiceTypes(this.$sdk, { facility: this.orgId });
-        this.serviceTypes = items || [];
+        this.serviceTypes = intersection(SERVICE_TYPES, items) || [];
+        console.log('service-types', this.serviceTypes);
+        // const typeSchedulesPromises = this.serviceTypes.map((type) => {
+        //   const tags = [];
+        //   switch (type) {
+        //     case 'clinic-consultation':
+        //       if (service.tags && service.tags.includes('telehealth')) {
+        //         tags.push('telehealth');
+        //       }
+        //       query.account = { $exists: true };
+        //       break;
+        //     case 'diagnostic':
+        //       if (service.subtype === 'lab') {
+        //         tags.push('lab');
+        //       } else {
+        //         tags.push('imaging');
+        //       }
+        //       break;
+        //     case 'procedure':
+        //       tags.push('procedure');
+        //       break;
+        //   }
+        //   if (!isEmpty(tags)) {
+        //     query.tags = { $in: uniq(tags) };
+        //   }
+        // });
       } catch (error) {
         console.error(error);
       }
