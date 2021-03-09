@@ -1,6 +1,6 @@
 <template lang="pug">
   v-btn(
-    color="primary"
+    :color="color"
     rounded
     :large="large"
     :x-large="xLarge"
@@ -16,6 +16,10 @@ export default {
     email: {
       type: String,
       default: '',
+    },
+    color: {
+      type: String,
+      default: 'primary',
     },
   },
   // methods: {
