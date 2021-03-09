@@ -17,8 +17,8 @@
           ) {{ isAvailable ? 'AVAILABLE' : 'NOT AVAILABLE' }}
         div(v-if="fullSchedules.length")
           div(v-if="!scheduleExpanded")
-            span.text-capitalize {{ formatTodaySchedule(schedulesToday) }}
-              a(v-if="fullSchedules.length > 1" @click="scheduleExpanded = true").primary--text &nbsp; View More
+            p(v-if="scheduleNow").text-capitalize {{ formatTodaySchedule(scheduleNow) }}
+            a(v-if="fullSchedules.length > 1" @click="scheduleExpanded = true").primary--text View Schedules >
           div(v-else)
             div(v-for="(schedule, key) in groupedSchedules" :key="key")
               span.text-capitalize {{ formatIndividualSchedule(schedule) }}
@@ -139,23 +139,43 @@ export default {
     price () {
       return this.item?.price;
     },
+    nonMfSchedule () {
+      // - Doctor schedules automatically do not use mf_schedule
+      return this.item?.nonMfSchedule || this.isDoctor;
+    },
     fullSchedules () {
       return this.item?.scheduleData || this.item?.schedules || [];
     },
     groupedSchedules () {
       const schedules = this.fullSchedules;
-      if (this.isDoctor) return schedules.sort((a, b) => a.day !== b.day ? a.day - b.day : a.startTime - b.startTime);
+      if (this.nonMfSchedule) return schedules.sort((a, b) => a.day !== b.day ? a.day - b.day : a.startTime - b.startTime);
       return schedules.sort((a, b) => a.day !== b.day ? a.order - b.order : a.opening - b.opening) || [];
     },
-    schedulesToday () {
+    todaySchedules () {
       if (!this.fullSchedules?.length) {
-        return null;
+        return [];
       }
       const dateToday = new Date();
       const dayToday = dateToday.getDay();
       const dayOrder = dayToday === 7 ? 0 : dayToday;
 
       return this.fullSchedules.filter(schedule => schedule.order === dayOrder || schedule.day === dayOrder) || [];
+    },
+    scheduleNow () {
+      if (!this.todaySchedules.length) return null;
+
+      const timeNow = format(Date.now(), 'HH:mm');
+
+      const availableNow = this.todaySchedules.find((schedule) => {
+        const opening = this.nonMfSchedule ? schedule.startTime : schedule.opening;
+        const closing = this.nonMfSchedule ? schedule.endTime : schedule.closing;
+        const openingHour = format(opening, 'HH:mm');
+        const closingHour = format(closing, 'HH:mm');
+
+        return timeNow >= openingHour && timeNow <= closingHour;
+      });
+
+      return availableNow;
     },
     hasCoverages () {
       return this.item?.$hasCoverages;
@@ -170,10 +190,7 @@ export default {
       });
     },
     isAvailable () {
-      if (!this.schedulesToday?.length) {
-        return false;
-      }
-      return true;
+      return this.todaySchedules.length;
     },
     bookServiceURL () {
       if (this.isPreviewMode) return null;
@@ -189,24 +206,20 @@ export default {
     },
   },
   methods: {
-    formatTodaySchedule (schedules) {
-      if (!schedules || !schedules?.length) return 'Unavailable today';
-      if (this.isDoctor) {
-        const today = schedules[0].day;
+    formatTodaySchedule (schedule) {
+      if (!schedule) return 'Unavailable at this hour';
+      if (this.nonMfSchedule) {
+        const today = schedule.day;
         const day = this.days.find(day => day.value === today);
-        const times = schedules.map((schedule) => {
-          return `${format(schedule.startTime, 'hh:mm A')} - ${format(schedule.endTime, 'hh:mm A')}`;
-        }).join(', ');
+        const times = `${format(schedule.startTime, 'hh:mm A')} - ${format(schedule.endTime, 'hh:mm A')}`;
         return `${day?.text} (${times})`;
       }
-      const day = schedules[0].day;
-      const times = schedules.map((schedule) => {
-        return `${format(schedule.opening, 'hh:mm A')} - ${format(schedule.closing, 'hh:mm A')}`;
-      }).join(', ');
+      const day = schedule.day;
+      const times = `${format(schedule.opening, 'hh:mm A')} - ${format(schedule.closing, 'hh:mm A')}`;
       return `${day} (${times})`;
     },
     formatIndividualSchedule (schedule) {
-      if (this.isDoctor) {
+      if (this.nonMfSchedule) {
         const currentDay = schedule.day;
         const day = this.days.find(day => day.value === currentDay) || '';
         return `${day.text} (${format(schedule.startTime, 'hh:mm A')} - ${format(schedule.endTime, 'hh:mm A')})`;
