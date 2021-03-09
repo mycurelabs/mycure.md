@@ -43,8 +43,8 @@
                   br
                   br
                 p(v-else).font-italic No schedules available
-      v-row(v-if="!readOnly && hasWebsite" justify="end")
-        v-col(cols="12" md="4")
+      v-row(v-if="!readOnly && hasWebsite" :justify="$isMobile ? 'center' : 'end'")
+        v-col(cols="10" md="4")
           v-btn(
             color="primary"
             target="_blank"
