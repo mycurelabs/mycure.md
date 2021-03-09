@@ -93,10 +93,6 @@ export default {
       await this.fetchOrganizations(this.orgsSearchQuery, val);
       VueScrollTo.scrollTo('#org-results', 500, { offset: -250, easing: 'ease' });
     },
-    orgsLength (val) {
-      console.log('orgslength', val);
-      this.$emit('results:filled', !!val);
-    },
   },
   mounted () {
     this.init();
@@ -188,5 +184,11 @@ export default {
 
 .org-results-margin {
   margin-top: 160px;
+}
+
+@media screen and (max-width: 970px) {
+  .org-results-margin {
+    margin-top: 330px;
+  }
 }
 </style>

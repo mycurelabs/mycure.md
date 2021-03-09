@@ -1,7 +1,7 @@
 <template lang="pug">
   div
-    services(@results:filled="absoluteFooter = !$event")
-    results-footer(v-if="!loading" :absolute="absoluteFooter")
+    services.services
+    results-footer(v-if="!loading" absolute)
 </template>
 
 <script>
@@ -17,7 +17,6 @@ export default {
   },
   data () {
     return {
-      absoluteFooter: false,
       loading: true,
     };
   },
@@ -33,3 +32,15 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.services {
+  padding-bottom: 220px;
+}
+
+@media screen and (min-width: 1044px) {
+  .services {
+    padding-bottom: 125px;
+  }
+}
+</style>
