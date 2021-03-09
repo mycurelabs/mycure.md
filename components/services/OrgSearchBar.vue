@@ -35,6 +35,7 @@
                   dense
                   @click:clear="clearSearch"
                   @update:search-input="debouncedSuggestionsSearch"
+                  @keyup.enter="searchFacility"
                   @change="onSelectOrganization"
                   :items="orgSuggestions"
                   :append-icon="null"
