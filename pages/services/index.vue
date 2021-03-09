@@ -6,7 +6,7 @@
 import Services from '~/components/services';
 import headMeta from '~/utils/head-meta';
 export default {
-  layout: 'pxp',
+  layout: 'results',
   // middleware: ['disable-route'],
   components: {
     Services,
