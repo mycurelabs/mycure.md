@@ -3,13 +3,14 @@
     v-row(justify="center" no-gutters :class="{ 'fixed-container': fixedSearchBar, 'primary': fixedSearchBar }").search-container
       v-col(cols="12").text-center.pb-0
         org-search-bar(
+          :mobile-search-btn-color="fixedSearchBar ? 'success' : 'primary'"
           @search-organizations="searchOrganizations($event)"
           @clear-organizations="clearOrganizationResults"
         )
     //- Facility Results
     v-row(align="center" justify="center" :class="{ 'org-results-margin': fixedSearchBar }").org-results-summary
       v-col(v-if="!loading.results" cols="11" md="10")#org-results
-        h4(v-if="orgsTotal") There are {{ orgsTotal }} organization{{ orgsTotal > 1 ? 's' : '' }} available.
+        h4(v-if="orgsTotal") There {{ orgsTotal > 1 ? 'are' : 'is' }} {{ orgsTotal }} organization{{ orgsTotal > 1 ? 's' : '' }} available.
         h4(v-else) There are no results available.
       v-col(cols="12")
         //- Loading
@@ -40,6 +41,7 @@
 
 <script>
 import VueScrollTo from 'vue-scrollto';
+import { uniqBy } from 'lodash';
 import OrgListCard from '~/components/organizations/OrgListCard';
 import OrgSearchBar from '~/components/services/OrgSearchBar';
 import { fetchOrganizations } from '~/services/organizations';
@@ -92,21 +94,36 @@ export default {
       VueScrollTo.scrollTo('#org-results', 500, { offset: -250, easing: 'ease' });
     },
     orgsLength (val) {
+      console.log('orgslength', val);
       this.$emit('results:filled', !!val);
     },
   },
-  async mounted () {
-    this.loading.page = false;
-    if (this.$route.params.facilitySearchText || this.$route.params.facilityLocationText) {
-      await this.searchOrganizations({
-        searchText: this.$route.params.facilitySearchText,
-        locationText: this.$route.params.facilityLocationText,
-      });
-      return;
-    }
-    await this.fetchOrganizations();
+  mounted () {
+    this.init();
   },
   methods: {
+    async init () {
+      this.loading.page = false;
+      const { facilitySearchText, facilityLocationText, facilitySuggestion } = this.$route.params;
+      let finalOrgResults = [];
+      if (facilitySuggestion) {
+        const suggestion = await this.$sdk.service('organizations').get(facilitySuggestion);
+        if (suggestion) finalOrgResults.push(suggestion);
+      }
+      if (facilitySearchText || facilityLocationText) {
+        await this.searchOrganizations({
+          searchText: facilitySearchText,
+          locationText: facilityLocationText,
+        });
+
+        if (!this.orgsTotal && finalOrgResults.length) this.orgsTotal++;
+
+        finalOrgResults = uniqBy([...finalOrgResults, ...this.orgsList], 'id');
+        this.orgsList = finalOrgResults;
+        return;
+      }
+      await this.fetchOrganizations();
+    },
     async fetchOrganizations (searchQuery = {}, page = 1) {
       try {
         this.loading.results = true;
