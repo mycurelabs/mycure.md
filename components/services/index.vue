@@ -1,5 +1,5 @@
 <template lang="pug">
-  div(v-if="!loading")
+  div(v-if="!loading.page")
     v-row(justify="center" no-gutters :class="{ 'fixed-container': fixedSearchBar, 'primary': fixedSearchBar }").search-container
       v-col(cols="12").text-center.pb-0
         org-search-bar(
@@ -8,11 +8,19 @@
         )
     //- Facility Results
     v-row(align="center" justify="center" :class="{ 'org-results-margin': fixedSearchBar }").org-results-summary
-      v-col(cols="11" md="10")#org-results
-        //- h4(v-if="orgsTotal") There are {{ orgsTotal }} organization{{ orgsTotal > 1 ? 's' : '' }} available.
-        //- h4(v-else) There are no results available.
+      v-col(v-if="!loading.results" cols="11" md="10")#org-results
+        h4(v-if="orgsTotal") There are {{ orgsTotal }} organization{{ orgsTotal > 1 ? 's' : '' }} available.
+        h4(v-else) There are no results available.
       v-col(cols="12")
-        v-row(justify="center" align="stretch")
+        //- Loading
+        v-row(v-if="loading.results" justify="center")
+          v-col(cols="12" md="4").text-center
+            v-progress-circular(
+              color="primary"
+              indeterminate
+              size="100"
+            )
+        v-row(v-else justify="center" align="stretch")
           v-col(
             v-for="(organization, key) in orgsList"
             :key="key"
@@ -51,7 +59,10 @@ export default {
   },
   data () {
     return {
-      loading: true,
+      loading: {
+        page: true,
+        results: false,
+      },
       locationQuery: '',
       orgsTotal: 0,
       orgsLimit: 10,
@@ -81,7 +92,7 @@ export default {
     },
   },
   async mounted () {
-    this.loading = false;
+    this.loading.page = false;
     if (this.$route.params.facilitySearchText || this.$route.params.facilityLocationText) {
       await this.searchOrganizations({
         searchText: this.$route.params.facilitySearchText,
@@ -94,6 +105,7 @@ export default {
   methods: {
     async fetchOrganizations (searchQuery = {}, page = 1) {
       try {
+        this.loading.results = true;
         const skip = this.orgsLimit * (page - 1);
         const query = {
           $limit: this.orgsLimit,
@@ -123,6 +135,8 @@ export default {
         this.orgsTotal = total;
       } catch (error) {
         console.error(error);
+      } finally {
+        this.loading.results = false;
       }
     },
     async fetchMunicipalities () {

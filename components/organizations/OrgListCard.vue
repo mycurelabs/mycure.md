@@ -24,11 +24,11 @@
               div.d-flex
                 v-icon(small color="error").mr-2.mb-auto.mt-1 mdi-map-marker
                 p(v-if="organization.address") {{ address }}
-                i(v-else) No address available
+                p(v-else).font-italic No address available
               div.d-flex
                 v-icon(small color="success").mr-2.mb-auto.mt-1 mdi-phone
                 p(v-if="organization.phone" ).font-weight-bold {{ organization.phone }}
-                i(v-else) No phone number available
+                p(v-else).font-italic No phone number available
               div.d-flex
                 v-icon(small color="primary").mr-2.mb-auto.mt-1 mdi-calendar-today
                 div(v-if="fullSchedules.length")
@@ -42,9 +42,7 @@
                     a(@click="scheduleExpanded = false").primary--text View Less
                   br
                   br
-                template(v-else)
-                  i No schedules available
-                  br
+                p(v-else).font-italic No schedules available
       v-row(v-if="!readOnly && hasWebsite" justify="end")
         v-col(cols="12" md="4")
           v-btn(
