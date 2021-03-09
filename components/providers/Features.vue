@@ -77,7 +77,7 @@ export default {
         },
         {
           imagePos: 'left',
-          image: require('../../assets/images/providers/Homepage-cropped.png'),
+          image: require('../../assets/images/providers/pxp-page.jpg'),
           title: 'Patients book your healthcare services, keeping you both safe',
           superTitle: 'DIRECTORY',
           // superTitleChipText: 'Coming Soon!',
