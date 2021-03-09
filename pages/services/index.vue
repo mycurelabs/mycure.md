@@ -1,15 +1,28 @@
 <template lang="pug">
-  services
+  div
+    services(@results:filled="absoluteFooter = !$event")
+    results-footer(v-if="!loading" :absolute="absoluteFooter")
 </template>
 
 <script>
+import ResultsFooter from '~/components/services/ResultsFooter';
 import Services from '~/components/services';
 import headMeta from '~/utils/head-meta';
 export default {
   layout: 'results',
   // middleware: ['disable-route'],
   components: {
+    ResultsFooter,
     Services,
+  },
+  data () {
+    return {
+      absoluteFooter: false,
+      loading: true,
+    };
+  },
+  mounted () {
+    this.loading = false;
   },
   head () {
     return headMeta({

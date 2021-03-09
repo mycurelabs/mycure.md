@@ -1,5 +1,9 @@
 <template lang="pug">
-  div.footer-gray
+  v-footer(
+    color="#343a40"
+    height="auto"
+    :absolute="absolute"
+  )
     v-container
       v-row(align="center" no-gutters)
         v-col(
@@ -38,6 +42,12 @@
 
 <script>
 export default {
+  props: {
+    absolute: {
+      type: Boolean,
+      default: false,
+    },
+  },
   methods: {
     toggleChat () {
       window.$crisp.push(['do', 'chat:toggle']);
@@ -47,8 +57,11 @@ export default {
 </script>
 
 <style scoped>
-.footer-gray {
+.footer {
   background-color: #343a40 !important;
+  bottom: 0;
+  position: absolute;
+  width: 100%;
 }
 a {
   text-decoration: none !important;
