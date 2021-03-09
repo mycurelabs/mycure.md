@@ -9,7 +9,10 @@
             :width="!$isMobile ? 146 : 80"
           )
         v-col.grow
-          strong.font-18 {{ organization.name }}
+          p
+            strong.font-18 {{ organization.name }}&nbsp;
+            v-avatar(v-if="hasWebsite" color="primary" size="16")
+                v-icon(dark small) mdi-check
           div
             template(v-if="!isDescriptionExpanded && organization.description")
               v-clamp(:max-lines="2" autoresize) {{ organization.description }}
@@ -19,14 +22,15 @@
               a(@click="isDescriptionExpanded = false").primary--text Collapse
             div(v-if="organization !== undefined").mt-4
               div.d-flex
-                v-icon(color="primary").mr-2.mb-auto mdi-map-marker
-                p(:class="{ 'font-italic': !organization.address }") {{ address }}
+                v-icon(small color="error").mr-2.mb-auto.mt-1 mdi-map-marker
+                p(v-if="organization.address") {{ address }}
+                p(v-else).font-italic No address available
               div.d-flex
-                v-icon(color="primary)").mr-2.mb-auto mdi-phone
-                p(v-if="organization.phone").font-weight-bold {{ organization.phone }}
-                i(v-else) No phone number available
+                v-icon(small color="success").mr-2.mb-auto.mt-1 mdi-phone
+                p(v-if="organization.phone" ).font-weight-bold {{ organization.phone }}
+                p(v-else).font-italic No phone number available
               div.d-flex
-                v-icon(color="primary").mr-2.mb-auto mdi-calendar-today
+                v-icon(small color="primary").mr-2.mb-auto.mt-1 mdi-calendar-today
                 div(v-if="fullSchedules.length")
                   div(v-if="!scheduleExpanded")
                     span.text-capitalize {{ formatTodaySchedule(schedulesToday) }}
@@ -38,27 +42,23 @@
                     a(@click="scheduleExpanded = false").primary--text View Less
                   br
                   br
-                template(v-else)
-                  i No schedules available
-                  br
-      v-row(v-if="!readOnly" justify="end")
-        v-col(cols="12" md="4")
+                p(v-else).font-italic No schedules available
+      v-row(v-if="!readOnly && hasWebsite" :justify="$isMobile ? 'center' : 'end'")
+        v-col(cols="10" md="4")
           v-btn(
             color="primary"
             target="_blank"
             rel="noopener noreferrer"
             rounded
             block
-            :disabled="!hasWebsite"
             @click="openFacility"
           ).text-none.elevation-0
-            b {{ hasWebsite ? 'Visit Facility' : 'Unavailable' }}
+            b Visit Facility
 </template>
 
 <script>
 import VClamp from 'vue-clamp';
 import { format } from 'date-fns';
-import { isEmpty } from 'lodash';
 import { formatAddress } from '~/utils/formats';
 import FacilityPlaceholder from '~/assets/images/facility-placeholder.png';
 
@@ -116,7 +116,6 @@ export default {
     },
     address () {
       const { address } = this.organization;
-      if (isEmpty(address)) return 'No address available';
       return formatAddress(address, 'street1, city, province, country');
     },
     hasWebsite () {

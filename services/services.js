@@ -44,6 +44,7 @@ export const fetchClinicServices = async (sdk, opts) => {
 };
 
 export const fetchClinicServiceTypes = async (sdk, { facility }) => {
-  const { items, total } = await sdk.service('services').find({ facility, $distinct: 'type' });
-  return { items, total };
+  const { items: serviceTypes } = await sdk.service('services').find({ facility, $distinct: 'type' });
+  const { items: serviceSubtypes } = await sdk.service('services').find({ facility, $distinct: 'subtype' });
+  return { items: [...serviceTypes, ...serviceSubtypes] };
 };
