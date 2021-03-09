@@ -1,15 +1,27 @@
 <template lang="pug">
-  services(read-only)
+  div
+    services(read-only).services
+    results-footer(v-if="!loading" absolute)
 </template>
 
 <script>
+import ResultsFooter from '~/components/services/ResultsFooter';
 import Services from '~/components/services';
 import headMeta from '~/utils/head-meta';
 export default {
-  layout: 'pxp',
+  layout: 'results',
   // middleware: ['disable-route'],
   components: {
+    ResultsFooter,
     Services,
+  },
+  data () {
+    return {
+      loading: true,
+    };
+  },
+  mounted () {
+    this.loading = false;
   },
   head () {
     return headMeta({
@@ -20,3 +32,15 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.services {
+  padding-bottom: 220px;
+}
+
+@media screen and (min-width: 1044px) {
+  .services {
+    padding-bottom: 125px;
+  }
+}
+</style>

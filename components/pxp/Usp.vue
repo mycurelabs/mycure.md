@@ -9,8 +9,8 @@
     )
       v-col(cols="12")
         org-search-bar(
-          icon
           require-action
+          show-suggestions
           @search-organizations="onSearch($event)"
         )
       v-col(cols="8" md="5" :class="{ 'order-last' : !$isMobile }")
@@ -31,10 +31,14 @@ export default {
     OrgSearchBar,
   },
   methods: {
-    onSearch ({ searchText, locationText }) {
+    onSearch ({ searchText, locationText, suggestion }) {
       this.$nuxt.$router.push({
         name: 'services',
-        params: { facilitySearchText: searchText, facilityLocationText: locationText },
+        params: {
+          facilitySearchText: searchText,
+          facilityLocationText: locationText,
+          facilitySuggestion: suggestion,
+        },
       });
     },
   },

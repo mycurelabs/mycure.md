@@ -7,7 +7,7 @@
             img(
               src="~/assets/images/patients/location.png"
               alt="Location icon"
-              width="50"
+              width="23%"
             )
             h1(:class="{ 'font-25': $isMobile }") &nbsp;Locations
       v-col(cols="12" md="10")

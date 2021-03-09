@@ -5,8 +5,8 @@
         v-icon(small left) mdi-arrow-left
         | Back
       v-tabs(v-if="!hideTabs" v-model="activeServiceType" :show-arrows="$isMobile")
-        v-tab(v-if="hasServiceType('diagnostic')" href="#lab") #[b Laboratory]
-        v-tab(v-if="hasServiceType('diagnostic')" href="#imaging") #[b Imaging]
+        v-tab(v-if="hasServiceType('lab')" href="#lab") #[b Laboratory]
+        v-tab(v-if="hasServiceType('imaging')" href="#imaging") #[b Imaging]
         v-tab(v-if="hasServiceType('pe')" href="#pe") #[b PE Packages]
         v-tab(v-if="hasDoctors" href="#doctors") #[b Doctors]
         v-tab(v-if="hasServiceType('clinical-procedure')" href="#clinical-procedure") #[b Procedures]
