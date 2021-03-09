@@ -7,38 +7,38 @@
           color="white"
         ).toolbar
           v-row.search-container.d-flex.mt-5.ml-1
-            v-col.grow.search-fields
+            v-col.grow.search-fields.mt-2
               v-toolbar-title.font-14.ml-4.text-left.font-weight-bold Facility
                 v-text-field(
                   v-model="orgSearchQuery"
                   placeholder="Search for a health facility"
                   clearable
+                  solo
+                  flat
+                  dense
                   @click:clear="clearTextfield"
                   @keyup.enter="searchFacility"
                   @input="debouncedSearch"
                 ).font-14.font-weight-regular
-            v-divider(inset vertical).mt-6.mb-8
-            v-col(cols="4" md="4").search-fields
+            v-divider(inset vertical).mt-5.mb-10
+            v-col(cols="4" md="4").search-fields.mt-2
               v-toolbar-title.font-14.ml-4.text-left.font-weight-bold Location
                 v-autocomplete(
                   placeholder="Municipality"
                   v-model="orgSearchLocation"
                   clearable
+                  solo
+                  flat
+                  dense
+                  :append-icon="null"
                   :items="cities"
                   @keyup.enter="searchFacility"
                 ).font-14.font-weight-regular
-            v-col(cols="1")
+            v-col(cols="1").mt-2
               v-btn(
-                v-if="!icon"
-                depressed
-                rounded
-                color="primary"
-              ) #[b Search Now]
-              v-btn(
-                v-else
                 fab
                 color="primary"
-                @click="searchFacility"
+                @click="searchFacility(true)"
               ).elevation-0
                 v-icon mdi-magnify
 </template>
@@ -47,10 +47,6 @@ import { debounce } from 'lodash';
 import NCR_CITIES from '~/assets/fixtures/ncr-cities';
 export default {
   props: {
-    icon: {
-      type: Boolean,
-      default: false,
-    },
     provinces: {
       type: Array,
       default: () => ([]),
@@ -82,7 +78,11 @@ export default {
       if (this.requireAction) return;
       this.searchFacility();
     },
-    searchFacility () {
+    searchFacility (forceSearch = false) {
+      if (forceSearch && (this.orgSearchQuery || this.orgSearchLocation)) {
+        this.$emit('search-organizations', { searchText: this.orgSearchQuery, locationText: this.orgSearchLocation });
+        return;
+      }
       if (!this.orgSearchQuery && this.orgSearchLocation && this.requireAction) {
         return;
       }
@@ -93,7 +93,7 @@ export default {
       this.$emit('search-organizations', { searchText: this.orgSearchQuery, locationText: this.orgSearchLocation });
     },
     clearTextfield () {
-      this.orgSearchLocation = '';
+      this.orgSearchQuery = '';
       this.$emit('clear-organizations');
     },
   },
