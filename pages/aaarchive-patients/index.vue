@@ -1,13 +1,11 @@
 <template lang="pug">
   div(v-if="!loading")
-    app-bar
     usp(renderDropdown).mb-10#usp
     how-it-works.mb-10#howItWorks
     consult(v-if="!$isMobile").mb-10
     services-section.mb-10
     hipaa.mb-10
     Cta.mb-10
-    my-footer
 </template>
 
 <script>
@@ -20,7 +18,7 @@ import Hipaa from '~/components/home/Hipaa';
 import Cta from '~/components/home/Cta';
 import MyFooter from '~/components/home/MyFooter';
 export default {
-  layout: 'home',
+  layout: 'pxp',
   components: {
     AppBar,
     Usp,
