@@ -158,6 +158,7 @@ export default {
         searchText,
         ...this.orgSearchLocation && { locationText: this.orgSearchLocation },
         limit: 10,
+        type: 'diagnostic-center',
       };
 
       const { items } = await fetchOrganizations(this.$sdk, query);
