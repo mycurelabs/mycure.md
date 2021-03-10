@@ -197,7 +197,9 @@ export default {
         this.$router.push({ name: 'signin' });
       }
       if (actionBtn === 'get-started-btn') {
-        this.$router.push({ name: 'signup-health-facilities' });
+        // TODO: bring back later
+        // this.$router.push({ name: 'signup-health-facilities' });
+        window.open('https://6rbf27w6k3r.typeform.com/to/V13pJzW9', '_blank', 'noopener, noreferrer');
       }
       this.$ga.event({
         eventCategory: 'button',
