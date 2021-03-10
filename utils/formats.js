@@ -26,6 +26,6 @@ export const formatAddress = (address, format) => {
     .replace(/province,/gi, province ? `${province},` : '')
     .replace(/state,/gi, state ? `${state},` : '')
     .replace(/region,/gi, region ? `${region},` : '')
-    .replace(/country,/gi, country ? `${country},` : '')
+    .replace(/country/gi, country || '')
     .trim();
 };
