@@ -31,6 +31,7 @@
             :is-preview-mode="isPreviewMode"
             @select="activeTab = $event; mobileServicesListView = true"
           )
+          //- TODO: Organize to not use separate components for mobile and web
           services-tabs(
             v-else
             hide-tabs
@@ -147,7 +148,7 @@
 </template>
 
 <script>
-import { isEmpty } from 'lodash';
+import { isEmpty, intersection, uniq } from 'lodash';
 import VueScrollTo from 'vue-scrollto';
 // - utils
 import { getServices } from '~/utils/axios';
@@ -168,6 +169,16 @@ import ServicesSearchResults from '~/components/clinic-website/services/search-r
 import ServicesTabs from '~/components/clinic-website/services/tabs';
 import ServiceTypesMobileSelection from '~/components/clinic-website/services/service-types-mobile-selection';
 import Usp from '~/components/clinic-website/usp';
+
+const SERVICE_TYPES = [
+  'clinical-consultation',
+  'clinical-procedure',
+  'dental',
+  'pe',
+  'lab',
+  'imaging',
+];
+
 export default {
   layout: 'clinic-website',
   components: {
@@ -255,6 +266,7 @@ export default {
       activeTab: 'lab',
       filteredServices: [],
       serviceTypes: [],
+      serviceSchedules: [],
       // Items to show in tab list
       listItems: [],
       // total items
@@ -357,8 +369,8 @@ export default {
     this.$vuetify.theme.dark = false;
     if (this.isPreviewMode) window.$crisp.push(['do', 'chat:hide']);
 
-    await this.fetchServiceTypes();
     this.loading.page = false;
+    await this.fetchServiceTypes();
     await this.fetchServices({ type: 'diagnostic', subtype: 'lab' });
     await this.fetchDoctorMembers();
     this.listItems = this.filteredServices;
@@ -398,8 +410,21 @@ export default {
           skip,
         });
         this.servicesTotal = total;
-        // - TODO: Confirm if there are specified schedules for services. Right now the clinic schedule is assigned
-        this.filteredServices = items.map(item => ({ ...item, schedules: this.groupedSchedules }));
+
+        /*
+          Checks if there is a specific schedule for the service type, if not then it assigns the clinic's schedule.
+          A flag for mf_schedule formatting is also included for rendering purposes.
+        */
+        this.filteredServices = items.map((item) => {
+          const { type, subtype } = item;
+          const primaryType = subtype || type;
+          const schedules = this.serviceSchedules.find(schedule => schedule.type === primaryType);
+          return {
+            ...item,
+            nonMfSchedule: !!schedules,
+            schedules: schedules?.items || this.groupedSchedules,
+          };
+        });
       } catch (error) {
         console.error(error);
       } finally {
@@ -409,7 +434,23 @@ export default {
     async fetchServiceTypes () {
       try {
         const { items } = await fetchClinicServiceTypes(this.$sdk, { facility: this.orgId });
-        this.serviceTypes = items || [];
+        this.serviceTypes = intersection(SERVICE_TYPES, items) || [];
+        const typeSchedulesPromises = this.serviceTypes.map(async (type) => {
+          const serviceScheduleQuery = {
+            organization: this.orgId,
+          };
+          const serviceTags = [];
+          serviceTags.push(type);
+          if (!isEmpty(serviceTags)) {
+            serviceScheduleQuery.tags = { $in: uniq(serviceTags) };
+          }
+          const data = await this.$sdk.service('schedule-slots').find(serviceScheduleQuery);
+          return {
+            type,
+            items: data.items,
+          };
+        });
+        this.serviceSchedules = await Promise.all(typeSchedulesPromises) || [];
       } catch (error) {
         console.error(error);
       }
