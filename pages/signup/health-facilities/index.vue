@@ -225,6 +225,7 @@ import {
 } from '~/utils/text-field-rules';
 export default {
   layout: 'user',
+  middleware: 'disable-route', // TODO: remove later
   data () {
     // TEXT FIELD RULES
     this.isRequired = requiredRule;
