@@ -186,7 +186,7 @@ export default {
     // - Check if suggestion satisfies location
     mapSuggestion () {
       if (!this.orgSearchLocation) return null;
-      const { city } = this.selectedSuggestion?.address;
+      const city = this.selectedSuggestion?.address?.city;
       if (!city) return null;
       return city.includes(this.orgSearchLocation)
         ? this.selectedSuggestion?.id
