@@ -156,7 +156,6 @@ export default {
       // - If location is selected, only places within that location will be suggested
       const query = {
         searchText,
-        ...this.orgSearchLocation && { locationText: this.orgSearchLocation },
         limit: 10,
         type: 'diagnostic-center',
       };
@@ -170,10 +169,11 @@ export default {
         this.$emit('clear-organizations');
         return;
       }
+      const suggestion = this.mapSuggestion();
       this.$emit('search-organizations', {
         searchText: this.orgSearchQuery,
         locationText: this.orgSearchLocation,
-        ...this.selectedSuggestion && { suggestion: this.selectedSuggestion },
+        ...suggestion && { suggestion },
       });
     },
     clearSearch () {
@@ -181,7 +181,16 @@ export default {
       this.$emit('clear-organizations');
     },
     onSelectOrganization (organization) {
-      this.selectedSuggestion = organization?.id;
+      this.selectedSuggestion = organization;
+    },
+    // - Check if suggestion satisfies location
+    mapSuggestion () {
+      if (!this.orgSearchLocation) return null;
+      const { city } = this.selectedSuggestion?.address;
+      if (!city) return null;
+      return city.includes(this.orgSearchLocation)
+        ? this.selectedSuggestion?.id
+        : null;
     },
   },
 };
