@@ -27,7 +27,7 @@
                 p(v-else).font-italic No address available
               div.d-flex
                 v-icon(small color="success").mr-2.mb-auto.mt-1 mdi-phone
-                p(v-if="organization.phone" ).font-weight-bold {{ organization.phone }}
+                p(v-if="organization.phone || organization.phones" ).font-weight-bold {{ phoneNumber }}
                 p(v-else).font-italic No phone number available
               div.d-flex
                 v-icon(small color="primary").mr-2.mb-auto.mt-1 mdi-calendar-today
@@ -116,7 +116,13 @@ export default {
     },
     address () {
       const { address } = this.organization;
-      return formatAddress(address, 'street1, city, province, country');
+      return formatAddress(address, 'street1, street2, city, province, region, country');
+    },
+    phoneNumber () {
+      const { phone, phones } = this.organization;
+      if (phones) return phones.join(', ');
+      if (phone) return phone;
+      return '';
     },
     hasWebsite () {
       return !!this.organization?.websiteId;
