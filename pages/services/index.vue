@@ -1,5 +1,5 @@
 <template lang="pug">
-  div
+  div(style="background-color: #fafafa;")
     services.services
     results-footer(v-if="!loading" absolute)
 </template>
