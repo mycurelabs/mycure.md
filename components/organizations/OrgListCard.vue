@@ -138,7 +138,7 @@ export default {
       }
     },
     openFacility () {
-      this.$router.push(`/clinics/${this.organization.id}`);
+      this.$router.push(`/facilities/${this.organization.id}`);
     },
     formatTodaySchedule (schedules) {
       if (!schedules || !schedules?.length) return 'Unavailable today';

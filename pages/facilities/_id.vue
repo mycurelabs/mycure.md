@@ -495,7 +495,7 @@ export default {
   },
   head () {
     return headMeta({
-      title: `${this.clinicWebsite?.name || 'Clinic Website'}`,
+      title: `${this.clinicWebsite?.name || 'Facility Website'}`,
       description: 'Visit my professional website and schedule an appointment with me today.',
       socialBanner: this.picURL,
     });
