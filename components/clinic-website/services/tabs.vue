@@ -37,22 +37,12 @@
           v-divider
     v-card-actions
       v-spacer
-      v-btn(
-        v-if="hasPreviousPage"
-        outlined
-        color="primary"
-        @click="onPaginate('previous')"
-      ).text-none
-        v-icon(small) mdi-chevron-left
-        | Previous
-      v-btn(
-        v-if="hasNextPage"
-        outlined
-        color="primary"
-        @click="onPaginate('next')"
-      ).text-none
-        | Next
-        v-icon(small) mdi-chevron-right
+      v-pagination(
+        v-model="itemsPage"
+        :length="itemsTotal"
+        total-visible="10"
+      )
+      v-spacer
 </template>
 
 <script>
@@ -87,6 +77,10 @@ export default {
       type: Array,
       default: () => ([]),
     },
+    itemsTotal: {
+      type: Number,
+      default: 0,
+    },
     isPreviewMode: {
       type: Boolean,
       default: false,
@@ -113,7 +107,9 @@ export default {
     },
   },
   data () {
-    return {};
+    return {
+      itemsPage: 1,
+    };
   },
   computed: {
     activeServiceType: {
@@ -125,12 +121,13 @@ export default {
       },
     },
   },
-  methods: {
-    onPaginate (direction) {
-      if (this.isPreviewMode) return;
+  watch: {
+    itemsPage (page) {
+      this.$emit('paginate', page);
       VueScrollTo.scrollTo('#servicesList', 500, { offset: -100, easing: 'ease' });
-      this.$emit(direction);
     },
+  },
+  methods: {
     hasServiceType (type) {
       return this.serviceTypes.includes(type);
     },

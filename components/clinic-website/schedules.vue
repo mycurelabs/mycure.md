@@ -1,6 +1,6 @@
 <template lang="pug">
   v-container(:class="{ 'text-left': !$isMobile, 'text-center': $isMobile  }").main-container
-    h2.font-21.font-gray Clinic Schedule
+    h2.font-21.font-gray Facility Schedule
     v-row(v-for="(sched, key) in schedules" :key="key")
       v-col(cols="4").pb-0
         h3.font-weight-bold.text-capitalize.left.font-gray {{ sched.day }}

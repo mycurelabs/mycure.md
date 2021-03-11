@@ -37,6 +37,7 @@
             hide-tabs
             show-back-button
             :items="listItems"
+            :items-total="itemsTotal"
             :organization="orgId"
             :loading="loading.list"
             :has-next-page="hasNextPage"
@@ -44,8 +45,7 @@
             :is-preview-mode="isPreviewMode"
             :service-types="serviceTypes"
             @back="mobileServicesListView = false"
-            @next="refetchListItems(activeTab, page + 1)"
-            @previous="refetchListItems(activeTab, page - 1)"
+            @paginate="refetchListItems(activeTab, $event)"
           )
         v-col(cols="12" md="3")
           clinic-info(
@@ -73,6 +73,7 @@
             v-if="!searchResultsMode && !$isMobile"
             v-model="activeTab"
             :items="listItems"
+            :items-total="itemsTotal"
             :organization="orgId"
             :loading="loading.list"
             :has-next-page="hasNextPage"
@@ -80,8 +81,7 @@
             :is-preview-mode="isPreviewMode"
             :service-types="serviceTypes"
             :has-doctors="hasDoctors"
-            @next="refetchListItems(activeTab, page + 1)"
-            @previous="refetchListItems(activeTab, page - 1)"
+            @paginate="refetchListItems(activeTab, $event)"
           )
           services-search-results(
             v-else-if="searchResultsMode"
@@ -249,7 +249,7 @@ export default {
         dayName: 'Sunday',
       },
     ];
-    this.itemsLimit = 7;
+    this.itemsLimit = 10;
     return {
       // UI State
       loading: {
@@ -343,7 +343,7 @@ export default {
           specialties: doctor.personalDetails?.['doc_specialties']?.join(', '),
           yearsPracticing: yearsPracticing && `${yearsPracticing} years`,
         };
-      });
+      }) || [];
     },
     hasDoctors () {
       return !isEmpty(this.orgDoctors);
@@ -424,7 +424,7 @@ export default {
             nonMfSchedule: !!schedules,
             schedules: schedules?.items || this.groupedSchedules,
           };
-        });
+        }) || [];
       } catch (error) {
         console.error(error);
       } finally {
@@ -490,12 +490,12 @@ export default {
         const schedules = result.scheduleData || result.schedules;
         const matchDay = schedules?.find(schedule => schedule.order === day);
         return matchDay;
-      });
+      }) || [];
     },
   },
   head () {
     return headMeta({
-      title: `${this.clinicWebsite?.name || 'Clinic Website'}`,
+      title: `${this.clinicWebsite?.name || 'Facility Website'}`,
       description: 'Visit my professional website and schedule an appointment with me today.',
       socialBanner: this.picURL,
     });
