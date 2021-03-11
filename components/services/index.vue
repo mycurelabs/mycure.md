@@ -158,8 +158,9 @@ export default {
       VueScrollTo.scrollTo('#org-results', 500, { offset: -250, easing: 'ease' });
     },
     clearOrganizationResults () {
-      this.orgsList = [];
-      this.orgsTotal = 0;
+      this.orgsSearchQuery = '';
+      this.orgsPage = 1;
+      this.fetchOrganizations();
       this.searchQuery = null;
     },
   },

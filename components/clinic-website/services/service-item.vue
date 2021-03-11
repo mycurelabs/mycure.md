@@ -16,14 +16,16 @@
             label
           ) {{ isAvailable ? 'AVAILABLE' : 'NOT AVAILABLE' }}
         div(v-if="fullSchedules.length")
-          div(v-if="!scheduleExpanded")
-            p(v-if="scheduleNow").text-capitalize {{ formatTodaySchedule(scheduleNow) }}
-            a(v-if="fullSchedules.length > 1" @click="scheduleExpanded = true").primary--text View Schedules >
-          div(v-else)
-            div(v-for="(schedule, key) in groupedSchedules" :key="key")
+          //- div(v-if="!scheduleExpanded")
+          //-   p(v-if="scheduleNow").text-capitalize {{ formatTodaySchedule(scheduleNow) }}
+          //-   a(v-if="fullSchedules.length > 1" @click="scheduleExpanded = true").primary--text View Schedules >
+          div
+            div(v-for="(schedule, key) in previewSchedules" :key="key")
+              v-icon(color="primary" small left) mdi-calendar
               span.text-capitalize {{ formatIndividualSchedule(schedule) }}
               br
-            a(@click="scheduleExpanded = false").primary--text View Less
+            br
+            a(@click="scheduleExpanded = true").primary--text View More Schedules >
           br
           br
         template(v-else)
@@ -81,11 +83,30 @@
           :disabled="!isAvailable"
           :href="bookTeleconsultURL"
         ).text-none Book a Visit
+
+    //- Schedule dialog
+    v-dialog(v-model="scheduleExpanded" width="1000")
+      v-toolbar(flat)
+        v-toolbar-title.primary--text Available Schedules
+        v-spacer
+        v-btn(icon @click="scheduleExpanded = false")
+          v-icon mdi-close
+      v-card
+        v-card-text
+          service-schedules(
+            :items="groupedSchedules"
+            :non-mf-schedule="nonMfSchedule"
+          )
 </template>
 
 <script>
 import { format } from 'date-fns';
+import ServiceSchedules from './service-schedules';
+
 export default {
+  components: {
+    ServiceSchedules,
+  },
   props: {
     item: {
       type: Object,
@@ -150,6 +171,9 @@ export default {
       const schedules = this.fullSchedules;
       if (this.nonMfSchedule) return schedules.sort((a, b) => a.day !== b.day ? a.day - b.day : a.startTime - b.startTime);
       return schedules.sort((a, b) => a.day !== b.day ? a.order - b.order : a.opening - b.opening) || [];
+    },
+    previewSchedules () {
+      return this.todaySchedules?.slice(0, 3);
     },
     todaySchedules () {
       if (!this.fullSchedules?.length) {

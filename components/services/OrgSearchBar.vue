@@ -133,7 +133,7 @@ export default {
   watch: {
     orgSearchLocation (val) {
       if (!val && !this.orgSearchQuery) {
-        this.$emit('clear-organizations');
+        this.clearSearch();
         return;
       }
       if (this.showSuggestions && !this.$isMobile) this.handleSuggestions();
@@ -166,7 +166,7 @@ export default {
     searchFacility (forceSearch = false) {
       if (this.requireAction && !forceSearch) return;
       if (!this.orgSearchQuery && !this.orgSearchLocation) {
-        this.$emit('clear-organizations');
+        this.clearSearch();
         return;
       }
       const suggestion = this.mapSuggestion();
@@ -206,36 +206,12 @@ export default {
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.18);
 }
 
-.filter-menu {
-  flex-wrap: nowrap !important;
-  font-weight: 600;
-}
-
-.filter >>> .v-input__slot {
-  box-shadow: none !important;
-  background-color: #0369A5 !important;
-  border: none !important;
-}
-
-.filter >>> label {
-  font-size: 14px;
-  color: #FFFFFF;
-}
-
-.filter >>> i {
-  color: #FFFFFF;
-}
-
 .search-fields >>> .v-input__slot::before {
   border-style: none !important;
 }
 
 .search-select >>> .v-select__selection--comma {
   color: #FFFFFF !important;
-}
-
-.suggestion-item {
-  flex: auto;
 }
 
 @media screen and (max-width: 1269px) {
