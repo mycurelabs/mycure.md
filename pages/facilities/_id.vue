@@ -343,7 +343,7 @@ export default {
           specialties: doctor.personalDetails?.['doc_specialties']?.join(', '),
           yearsPracticing: yearsPracticing && `${yearsPracticing} years`,
         };
-      });
+      }) || [];
     },
     hasDoctors () {
       return !isEmpty(this.orgDoctors);
@@ -424,7 +424,7 @@ export default {
             nonMfSchedule: !!schedules,
             schedules: schedules?.items || this.groupedSchedules,
           };
-        });
+        }) || [];
       } catch (error) {
         console.error(error);
       } finally {
@@ -490,7 +490,7 @@ export default {
         const schedules = result.scheduleData || result.schedules;
         const matchDay = schedules?.find(schedule => schedule.order === day);
         return matchDay;
-      });
+      }) || [];
     },
   },
   head () {
