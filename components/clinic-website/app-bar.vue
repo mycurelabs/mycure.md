@@ -16,10 +16,8 @@
               alt="Clinic Logo"
             )
           v-col.pl-2
-            h3 {{ clinicName }}
-            div(v-if="isVerified")
-              i Verified&nbsp;
-              v-avatar(color="primary" size="20")
+            h3 {{ clinicName }}&nbsp;
+              v-avatar(v-if="isVerified" color="primary" size="20")
                 v-icon(dark small) mdi-check
           v-spacer
           v-btn(
