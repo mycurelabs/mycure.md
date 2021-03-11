@@ -33,7 +33,7 @@ export default {
   methods: {
     onSearch ({ searchText, locationText, suggestion }) {
       this.$nuxt.$router.push({
-        name: 'services',
+        name: 'directory-results',
         params: {
           facilitySearchText: searchText,
           facilityLocationText: locationText,

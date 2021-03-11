@@ -36,7 +36,7 @@ export default {
   },
   methods: {
     onLocationClick (city) {
-      this.$nuxt.$router.push({ name: 'services', params: { facilityLocationText: city } });
+      this.$nuxt.$router.push({ name: 'directory-results', params: { facilityLocationText: city } });
     },
   },
 };

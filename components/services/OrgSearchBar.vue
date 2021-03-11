@@ -133,7 +133,7 @@ export default {
   watch: {
     orgSearchLocation (val) {
       if (!val && !this.orgSearchQuery) {
-        this.$emit('clear-organizations');
+        this.clearSearch();
         return;
       }
       if (this.showSuggestions && !this.$isMobile) this.handleSuggestions();
@@ -166,7 +166,7 @@ export default {
     searchFacility (forceSearch = false) {
       if (this.requireAction && !forceSearch) return;
       if (!this.orgSearchQuery && !this.orgSearchLocation) {
-        this.$emit('clear-organizations');
+        this.clearSearch();
         return;
       }
       const suggestion = this.mapSuggestion();
