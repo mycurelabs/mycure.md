@@ -17,8 +17,7 @@
             )
           v-col.pl-2
             h3 {{ clinicName }}&nbsp;
-              v-avatar(v-if="isVerified" color="primary" size="20")
-                v-icon(dark small) mdi-check
+              v-icon(v-if="isVerified" color="primary") mdi-check-decagram
           v-spacer
           v-btn(
             depressed
