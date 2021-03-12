@@ -60,7 +60,7 @@
 import VClamp from 'vue-clamp';
 import { format } from 'date-fns';
 import { formatAddress } from '~/utils/formats';
-import FacilityPlaceholder from '~/assets/images/facility-placeholder.png';
+import FacilityPlaceholder from '~/assets/images/facility-placeholder.jpg';
 
 export default {
   components: {
