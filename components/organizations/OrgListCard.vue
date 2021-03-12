@@ -11,8 +11,7 @@
         v-col.grow
           div.d-inline-flex
             p.font-weight-bold.font-18 {{ organization.name }}&nbsp;
-              v-avatar(color="primary" size="16")
-                  v-icon(dark small) mdi-check
+              v-icon(v-if="hasWebsite" color="primary") mdi-check-decagram
           div
             template(v-if="!isDescriptionExpanded && organization.description")
               v-clamp(:max-lines="2" autoresize) {{ organization.description }}
