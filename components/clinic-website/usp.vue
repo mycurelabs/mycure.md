@@ -56,7 +56,6 @@ import { debounce, isEmpty } from 'lodash';
 // components
 import SearchInsuranceContracts from './services/search-insurance-contracts';
 import DatePickerMenu from '~/components/commons/date-picker-menu';
-
 export default {
   components: {
     DatePickerMenu,
@@ -106,14 +105,12 @@ export default {
   },
   data () {
     this.serviceTypeMappings = {
-      'clinical-consultation': [{ text: 'Consult', value: 'clinical-consultation' }],
-      'clinical-procedure': [{ text: 'Procedure', value: 'clinical-procedure' }],
-      diagnostic: [
-        { text: 'Laboratory', value: 'lab' },
-        { text: 'Imaging', value: 'imaging' },
-      ],
-      pe: [{ text: 'PE Package', value: 'pe' }],
-      dental: [{ text: 'Dental', value: 'dental' }],
+      'clinical-consultation': { text: 'Consult', value: 'clinical-consultation' },
+      'clinical-procedure': { text: 'Procedure', value: 'clinical-procedure' },
+      lab: { text: 'Laboratory', value: 'lab' },
+      imaging: { text: 'Imaging', value: 'imaging' },
+      pe: { text: 'PE Package', value: 'pe' },
+      dental: { text: 'Dental', value: 'dental' },
     };
     return {
       searchFilters: {},
@@ -127,7 +124,7 @@ export default {
       if (isEmpty(this.serviceTypes)) return [];
       const types = [];
       this.serviceTypes.map((type) => {
-        types.push(...this.serviceTypeMappings[type]);
+        types.push(this.serviceTypeMappings[type]);
       });
       return types;
     },

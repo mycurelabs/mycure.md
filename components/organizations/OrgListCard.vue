@@ -9,10 +9,10 @@
             :width="!$isMobile ? 146 : 80"
           )
         v-col.grow
-          p
-            strong.font-18 {{ organization.name }}&nbsp;
-            v-avatar(v-if="hasWebsite" color="primary" size="16")
-                v-icon(dark small) mdi-check
+          div.d-inline-flex
+            p.font-weight-bold.font-18 {{ organization.name }}&nbsp;
+              v-avatar(color="primary" size="16")
+                  v-icon(dark small) mdi-check
           div
             template(v-if="!isDescriptionExpanded && organization.description")
               v-clamp(:max-lines="2" autoresize) {{ organization.description }}
@@ -23,17 +23,17 @@
             div(v-if="organization !== undefined").mt-4
               div.d-flex
                 v-icon(small color="error").mr-2.mb-auto.mt-1 mdi-map-marker
-                p(v-if="organization.address") {{ address }}
+                v-clamp(:max-lines="2" autoresize v-if="organization.address") {{ address }}
                 p(v-else).font-italic No address available
               div.d-flex
                 v-icon(small color="success").mr-2.mb-auto.mt-1 mdi-phone
-                p(v-if="organization.phone" ).font-weight-bold {{ organization.phone }}
+                v-clamp(:max-lines="2" autoresize v-if="organization.phone || organization.phones").font-weight-bold {{ phoneNumber }}
                 p(v-else).font-italic No phone number available
               div.d-flex
                 v-icon(small color="primary").mr-2.mb-auto.mt-1 mdi-calendar-today
                 div(v-if="fullSchedules.length")
                   div(v-if="!scheduleExpanded")
-                    span.text-capitalize {{ formatTodaySchedule(schedulesToday) }}
+                    v-clamp(:max-lines="2" autoresize).text-capitalize {{ formatTodaySchedule(schedulesToday) }}
                       a(v-if="fullSchedules.length > 1" @click="scheduleExpanded = true").primary--text &nbsp; View More
                   div(v-else)
                     div(v-for="(schedule, key) in groupedSchedules" :key="key")
@@ -116,7 +116,13 @@ export default {
     },
     address () {
       const { address } = this.organization;
-      return formatAddress(address, 'street1, city, province, country');
+      return formatAddress(address, 'street1, street2, city, province, region, country');
+    },
+    phoneNumber () {
+      const { phone, phones } = this.organization;
+      if (phones) return phones.join(', ');
+      if (phone) return phone;
+      return '';
     },
     hasWebsite () {
       return !!this.organization?.websiteId;
@@ -132,7 +138,7 @@ export default {
       }
     },
     openFacility () {
-      this.$router.push(`/clinics/${this.organization.id}`);
+      this.$router.push(`/facilities/${this.organization.id}`);
     },
     formatTodaySchedule (schedules) {
       if (!schedules || !schedules?.length) return 'Unavailable today';
