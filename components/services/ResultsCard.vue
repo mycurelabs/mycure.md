@@ -14,7 +14,7 @@
                     alt="Doctor Profile"
                   )
                 img(
-                  src="~/assets/images/facility-placeholder.png"
+                  src="~/assets/images/facility-placeholder.jpg"
                   alt="Services"
                   :width="!$isMobile ? 146 : 80"
                 )
