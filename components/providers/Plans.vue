@@ -1,6 +1,6 @@
 <template lang="pug">
   div
-    v-row(v-align="center" justify="center" :class="{ 'mobile-container' : $isMobile }")
+    v-row(align="center" justify="center" :class="{ 'mobile-container' : $isMobile }")
       v-col(md="8")
         v-row(align="center" justify="center" :class="{ 'plans-container my-10' : !$isMobile }")
           v-col(cols="10" md="5" :class="{ 'pa-12' : !$isMobile }")
