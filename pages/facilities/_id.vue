@@ -37,7 +37,7 @@
             hide-tabs
             show-back-button
             :items="listItems"
-            :items-total="itemsTotal"
+            :items-pagination-length="itemsPaginationLength"
             :organization="orgId"
             :loading="loading.list"
             :has-next-page="hasNextPage"
@@ -73,7 +73,7 @@
             v-if="!searchResultsMode && !$isMobile"
             v-model="activeTab"
             :items="listItems"
-            :items-total="itemsTotal"
+            :items-pagination-length="itemsPaginationLength"
             :organization="orgId"
             :loading="loading.list"
             :has-next-page="hasNextPage"
@@ -161,7 +161,6 @@ import {
   fetchClinicServiceTypes,
 } from '~/services/services';
 // - components
-import AboutUs from '~/components/clinic-website/about-us';
 import AppBar from '~/components/clinic-website/app-bar';
 import ClinicInfo from '~/components/clinic-website/clinic-info';
 import Schedules from '~/components/clinic-website/schedules';
@@ -182,7 +181,6 @@ const SERVICE_TYPES = [
 export default {
   layout: 'clinic-website',
   components: {
-    AboutUs,
     AppBar,
     ClinicInfo,
     Schedules,
@@ -344,6 +342,9 @@ export default {
           yearsPracticing: yearsPracticing && `${yearsPracticing} years`,
         };
       }) || [];
+    },
+    itemsPaginationLength () {
+      return Math.ceil(this.itemsTotal / this.itemsLimit) || 0;
     },
     hasDoctors () {
       return !isEmpty(this.orgDoctors);
