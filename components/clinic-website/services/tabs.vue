@@ -39,7 +39,7 @@
       v-spacer
       v-pagination(
         v-model="itemsPage"
-        :length="itemsTotal"
+        :length="itemsPaginationLength"
         total-visible="10"
       )
       v-spacer
@@ -77,7 +77,7 @@ export default {
       type: Array,
       default: () => ([]),
     },
-    itemsTotal: {
+    itemsPaginationLength: {
       type: Number,
       default: 0,
     },
