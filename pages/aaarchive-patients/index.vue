@@ -16,7 +16,7 @@ import Consult from '~/components/home/Consult';
 import ServicesSection from '~/components/home/ServicesSection';
 import Hipaa from '~/components/home/Hipaa';
 import Cta from '~/components/home/Cta';
-import MyFooter from '~/components/home/MyFooter';
+import McFooter from '~/components/commons/mc-footer';
 export default {
   layout: 'pxp',
   components: {
@@ -27,7 +27,7 @@ export default {
     ServicesSection,
     Hipaa,
     Cta,
-    MyFooter,
+    McFooter,
   },
   data () {
     return {

@@ -2,18 +2,18 @@
   v-app#app
     mc-navbar(v-if="!loading")
     nuxt
-    my-footer(v-if="!loading")
+    mc-footer(v-if="!loading")
 </template>
 
 <script>
 // - components
 import McNavbar from '~/components/commons/mc-navbar';
-import MyFooter from '~/components/home/MyFooter';
+import McFooter from '~/components/commons/mc-footer';
 
 export default {
   components: {
     McNavbar,
-    MyFooter,
+    McFooter,
   },
   data () {
     return {

@@ -33,7 +33,7 @@
           :limit="clinicsLimit"
           @onUpdatePage="fetchDoctorInfo"
         ).mb-12
-    my-footer
+    mc-footer
     //- social(
     //-   :name="name"
     //- )
@@ -70,7 +70,7 @@ import {
 import { formatName } from '~/utils/formats';
 import headMeta from '~/utils/head-meta';
 import AppBar from '~/components/doctor-website/app-bar';
-import MyFooter from '~/components/home/MyFooter';
+import McFooter from '~/components/commons/mc-footer';
 import Panel1 from '~/components/doctor-website/panel-1';
 import ProfessionalInfo from '~/components/doctor-website/professional-info';
 import Services from '~/components/doctor-website/services';
@@ -80,7 +80,7 @@ export default {
   layout: 'doctor-website',
   components: {
     AppBar,
-    MyFooter,
+    McFooter,
     Panel1,
     ProfessionalInfo,
     Services,
