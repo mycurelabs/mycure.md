@@ -461,14 +461,12 @@ export default {
       if (tab === 'doctors') {
         await this.fetchDoctorMembers({ page: this.page });
         this.listItems = [...this.formattedDoctors];
-        console.log('doctorstotal', this.doctorsTotal);
         this.itemsTotal = this.doctorsTotal;
         return;
       }
       const subtype = tab === 'lab' || tab === 'imaging' ? tab : null;
       await this.fetchServices({ type: subtype ? 'diagnostic' : tab, ...subtype && { subtype } }, null, this.page);
       this.listItems = [...this.filteredServices];
-      console.log('servicesTotal', this.servicesTotal);
       this.itemsTotal = this.servicesTotal;
     },
     async onServiceSearch ({ searchText, searchFilters }) {
