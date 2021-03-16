@@ -1,12 +1,13 @@
 <template lang="pug">
   div(v-if="!loading").white
     //- 1st panel
-    usp(@getStarted="goToSignupIndividual")
-    start-easy
-    features
-    syncbase
-    hipaa
-    plans
+    seven-wonders
+    //- usp(@getStarted="goToSignupIndividual")
+    //- start-easy
+    //- features
+    //- syncbase
+    //- hipaa
+    //- plans
 </template>
 
 <script>
@@ -18,12 +19,14 @@ import { parseTextWithNewLine } from '~/utils/newline';
 import Usp from '~/components/providers/Usp';
 import StartEasy from '~/components/providers/StartEasy';
 import Features from '~/components/providers/Features';
+import SevenWonders from '~/components/home/SevenWonders';
 import Syncbase from '~/components/providers/Syncbase';
 import Hipaa from '~/components/providers/Hipaa';
 import Plans from '~/components/providers/Plans';
 
 export default {
   components: {
+    SevenWonders,
     Usp,
     StartEasy,
     Features,
