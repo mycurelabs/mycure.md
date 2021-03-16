@@ -5,7 +5,7 @@
       justify="center"
       align="center"
       no-gutters
-      :style="{ height: $isMobile ? 'auto' : '620px' }"
+      :style="{ height: $isMobile ? 'auto' : '650px' }"
     )
       v-col(cols="12" md="5" :class="{ 'text-center' : $isMobile }")
         h1(:class="{ 'font-50 mb-8' : !$isMobile, 'font-35 mb-6' : $isMobile }").primary--text Make Healthcare Accessible to All
@@ -107,6 +107,6 @@ export default {
 
 <style scoped>
 .usp-container {
-  padding-bottom: 70px;
+  padding-bottom: 50px;
 }
 </style>

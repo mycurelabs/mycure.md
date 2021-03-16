@@ -2,6 +2,7 @@
   div(v-if="!loading").white
     //- 1st panel
     seven-wonders
+    care
     //- usp(@getStarted="goToSignupIndividual")
     //- start-easy
     //- features
@@ -16,6 +17,7 @@ import VueScrollTo from 'vue-scrollto';
 import headMeta from '~/utils/head-meta';
 import { parseTextWithNewLine } from '~/utils/newline';
 // - components
+import Care from '~/components/home/Care';
 import Usp from '~/components/providers/Usp';
 import StartEasy from '~/components/providers/StartEasy';
 import Features from '~/components/providers/Features';
@@ -26,6 +28,7 @@ import Plans from '~/components/providers/Plans';
 
 export default {
   components: {
+    Care,
     SevenWonders,
     Usp,
     StartEasy,
