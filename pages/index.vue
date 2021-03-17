@@ -6,6 +6,7 @@
     simple
     patients
     tools
+    join-next-generation
     //- usp(@getStarted="goToSignupIndividual")
     //- start-easy
     //- features
@@ -20,6 +21,7 @@ import VueScrollTo from 'vue-scrollto';
 import headMeta from '~/utils/head-meta';
 // - components
 import Care from '~/components/home/Care';
+import JoinNextGeneration from '~/components/home/JoinNextGeneration';
 import Patients from '~/components/home/Patients';
 import SevenWonders from '~/components/home/SevenWonders';
 import Simple from '~/components/home/Simple';
@@ -28,6 +30,7 @@ import Tools from '~/components/home/Tools';
 export default {
   components: {
     Care,
+    JoinNextGeneration,
     Patients,
     SevenWonders,
     Simple,

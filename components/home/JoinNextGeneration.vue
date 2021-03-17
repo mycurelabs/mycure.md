@@ -1,0 +1,19 @@
+<template lang="pug">
+  v-container(:class="{'usp-container' : !$isMobile }")
+    v-row(
+      justify="center"
+      align="center"
+      no-gutters
+    )
+      v-col(cols="12" md="8").text-center
+        h1(:class="{ 'font-50 mb-8' : !$isMobile, 'font-35 mb-6' : $isMobile }").title-line-spacing Join the next generation of healthcare providers today.
+        v-btn(color="primary" large depressed).text-none Get Started
+</template>
+<style scoped>
+.usp-container {
+  padding-bottom: 70px;
+}
+.title-line-spacing {
+  line-height: 1.25em;
+}
+</style>
