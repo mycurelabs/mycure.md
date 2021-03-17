@@ -36,6 +36,7 @@ export default {
     Simple,
     Tools,
   },
+  layout: 'refactor-default',
   data () {
     return {
       loading: true,
