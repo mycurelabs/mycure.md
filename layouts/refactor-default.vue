@@ -7,7 +7,7 @@
 
 <script>
 // - components
-import McNavbar from '~/components/home/Navbar';
+import McNavbar from '~/components/home/AppNavbar';
 import McFooter from '~/components/home/AppFooter';
 
 export default {
