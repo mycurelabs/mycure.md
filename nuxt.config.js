@@ -90,7 +90,7 @@ module.exports = {
   ],
   webfontloader: {
     google: {
-      families: ['Poppins:400,700,900'],
+      families: ['Poppins:400'],
     },
   },
   /*
