@@ -11,14 +11,15 @@
         h1(:class="{ 'font-50 mb-8' : !$isMobile, 'font-35 mb-6' : $isMobile }").primary--text Make Healthcare Accessible to All
         p(:class="{ 'font-18' : !$isMobile, 'font-14' : $isMobile }") THE&nbsp;
           span.primary--text SEVEN WONDERS&nbsp;
-          | OF HEALTHCARE EMPOWERED BY MYCURE
+          | OF HEALTHCARE
+          br
+          | EMPOWERED BY MYCURE
       v-col(cols="12" md="6")
       v-col(cols="12")
         carousel(
           :per-page="1"
           :navigationEnabled="true"
           :adjustableHeight="true"
-          :paginationEnabled="false"
           :navigationClickTargetSize="50"
           navigationNextLabel=" "
           navigationPrevLabel=" "
