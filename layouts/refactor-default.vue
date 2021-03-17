@@ -8,7 +8,7 @@
 <script>
 // - components
 import McNavbar from '~/components/home/Navbar';
-import McFooter from '~/components/commons/mc-footer';
+import McFooter from '~/components/home/AppFooter';
 
 export default {
   components: {
