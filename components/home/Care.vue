@@ -1,5 +1,4 @@
 <template lang="pug">
-  //- USP
   v-container(:class="{'usp-container' : !$isMobile }")
     v-row(
       justify="center"

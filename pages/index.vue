@@ -3,6 +3,8 @@
     //- 1st panel
     seven-wonders
     care
+    simple
+    patients
     //- usp(@getStarted="goToSignupIndividual")
     //- start-easy
     //- features
@@ -15,43 +17,23 @@
 // - utils
 import VueScrollTo from 'vue-scrollto';
 import headMeta from '~/utils/head-meta';
-import { parseTextWithNewLine } from '~/utils/newline';
 // - components
 import Care from '~/components/home/Care';
-import Usp from '~/components/providers/Usp';
-import StartEasy from '~/components/providers/StartEasy';
-import Features from '~/components/providers/Features';
 import SevenWonders from '~/components/home/SevenWonders';
-import Syncbase from '~/components/providers/Syncbase';
-import Hipaa from '~/components/providers/Hipaa';
-import Plans from '~/components/providers/Plans';
+import Simple from '~/components/home/Simple';
+import Patients from '~/components/home/Patients';
 
 export default {
   components: {
     Care,
+    Patients,
     SevenWonders,
-    Usp,
-    StartEasy,
-    Features,
-    Syncbase,
-    Hipaa,
-    Plans,
+    Simple,
   },
   data () {
     return {
       loading: true,
     };
-  },
-  computed: {
-    scrollPanel () {
-      const panel = this.$nuxt.$route.params.panel;
-      return panel ? `#${panel}` : null;
-    },
-    storyflowIntroText () {
-      return this.$isMobile
-        ? this.introText
-        : parseTextWithNewLine(this.introText, ['need']);
-    },
   },
   mounted () {
     this.loading = false;
@@ -65,26 +47,6 @@ export default {
     window.$crisp.push(['safe', true]);
     this.loading = false;
   },
-  methods: {
-    getStarted () {
-      this.$router.push({ name: 'signup-individual' });
-    },
-    goToSignupIndividual (email) {
-      this.$router.push({ name: 'signup-individual' });
-    },
-    goToPatientPortal () {
-      window.open(process.env.PX_PORTAL_URL, '_blank', 'noopener, noreferrer');
-    },
-    handleWatchFeatures () {
-      this.$ga.event({
-        eventCategory: 'button',
-        eventLabel: 'home-watch-features-btn',
-        eventAction: 'click-home-watch-features-btn',
-      });
-
-      this.featuresVideoDialog = true;
-    },
-  },
   head () {
     return headMeta({
       title: 'MYCURE Healthcare Service Booking Management Software',
@@ -94,11 +56,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-.cta-container {
-  position: relative;
-  margin-bottom: 0%;
-  z-index: 1;
-}
-</style>
