@@ -5,6 +5,7 @@
     care
     simple
     patients
+    tools
     //- usp(@getStarted="goToSignupIndividual")
     //- start-easy
     //- features
@@ -19,9 +20,10 @@ import VueScrollTo from 'vue-scrollto';
 import headMeta from '~/utils/head-meta';
 // - components
 import Care from '~/components/home/Care';
+import Patients from '~/components/home/Patients';
 import SevenWonders from '~/components/home/SevenWonders';
 import Simple from '~/components/home/Simple';
-import Patients from '~/components/home/Patients';
+import Tools from '~/components/home/Tools';
 
 export default {
   components: {
@@ -29,6 +31,7 @@ export default {
     Patients,
     SevenWonders,
     Simple,
+    Tools,
   },
   data () {
     return {
