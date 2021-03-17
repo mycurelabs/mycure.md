@@ -97,18 +97,6 @@ export default {
     ];
     return {};
   },
-  mounted () {
-    window.onscroll = () => {
-      const nav = document.querySelector('#navbar');
-      if (this.scrollY >= 5) {
-        nav.classList.remove('bg-white');
-        !nav.className.includes('bg-transparent') ? nav.className += ' ' + 'bg-transparent' : nav.className += '';
-      } else {
-        !nav.className.includes('bg-white') ? nav.className += ' ' + 'bg-white' : nav.className += '';
-        nav.classList.remove('bg-transparent');
-      }
-    };
-  },
 };
 </script>
 
