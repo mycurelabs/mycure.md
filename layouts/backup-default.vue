@@ -7,8 +7,8 @@
 
 <script>
 // - components
-import McNavbar from '~/components/home/AppNavbar';
-import McFooter from '~/components/home/AppFooter';
+import McNavbar from '~/components/commons/mc-navbar';
+import McFooter from '~/components/commons/mc-footer';
 
 export default {
   components: {
@@ -40,24 +40,18 @@ export default {
 .font-poppins {
   font-family: 'Poppins', 'sans-serif' !important;
 }
-.font-open-sans {
-  font-family: 'Open Sans', 'sans-serif' !important;
-}
 /* Font Sizes */
 .font-xl {
-  font-size: 64px !important;
+  font-size: 50px !important;
 }
 .font-l {
-  font-size: 48px !important;
+  font-size: 30px !important;
 }
 .font-m {
-  font-size: 32px !important;
-}
-.font-s {
   font-size: 24px !important;
 }
-.font-xs {
-  font-size: 18px !important;
+.font-s {
+  font-size: 21px !important;
 }
 .font-60 {
   font-size: 60px !important;
