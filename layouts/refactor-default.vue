@@ -42,16 +42,19 @@ export default {
 }
 /* Font Sizes */
 .font-xl {
-  font-size: 50px !important;
+  font-size: 64px !important;
 }
 .font-l {
-  font-size: 30px !important;
+  font-size: 48px !important;
 }
 .font-m {
-  font-size: 24px !important;
+  font-size: 32px !important;
 }
 .font-s {
-  font-size: 21px !important;
+  font-size: 24px !important;
+}
+.font-xs {
+  font-size: 18px !important;
 }
 .font-60 {
   font-size: 60px !important;
