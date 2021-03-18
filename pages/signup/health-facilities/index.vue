@@ -418,4 +418,10 @@ export default {
 .link-to-home:hover {
   cursor: pointer;
 }
+
+::v-deep input::-webkit-outer-spin-button,
+::v-deep input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
 </style>
