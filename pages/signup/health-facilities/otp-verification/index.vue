@@ -117,6 +117,8 @@
             color="accent"
             @click="onAcknowledgment"
             large
+            :disabled="loading"
+            :loading="loading"
           ).text-none.font-weight-bold Get Started
     v-snackbar(
       v-model="showSnack"
@@ -269,6 +271,7 @@ export default {
     },
     async onAcknowledgment () {
       try {
+        this.loading = true;
         const { accessToken } = await signin({
           email: this.step1Data.email,
           password: this.step1Data.password,
@@ -284,6 +287,8 @@ export default {
           color: 'error',
         };
         this.showSnack = true;
+      } finally {
+        this.loading = false;
       }
     },
     startCountDown () {
