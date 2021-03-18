@@ -24,7 +24,7 @@
               text
               depressed
               large
-              :to="{ name: nav.route }"
+              @click="onNavClick(nav)"
             ).text-none.mr-2
               b {{ nav.name }}
             v-btn(
@@ -61,7 +61,7 @@
           v-list-item(
             dense
             link
-            :to="{ name: nav.route }"
+            @click="onNavClick(nav)"
           )
             v-list-item-title {{ nav.name }}
       v-divider
@@ -103,6 +103,7 @@
 </template>
 
 <script>
+import VueScrollTo from 'vue-scrollto';
 export default {
   data () {
     this.navs = [
@@ -117,6 +118,7 @@ export default {
       {
         name: 'Diagnostics',
         route: 'enterprise',
+        panel: 'diagnostic-centers',
       },
       {
         name: 'Hospitals',
@@ -130,6 +132,23 @@ export default {
     return {
       drawer: false,
     };
+  },
+  methods: {
+    onNavClick (nav) {
+      if (nav.route === this.$route.name && nav.panel) {
+        VueScrollTo.scrollTo(`#${nav.panel}`, 500, {
+          easing: 'ease',
+          ...nav.panelOffset && { offset: nav.panelOffset },
+        });
+        return;
+      }
+      this.$router.push({
+        name: nav.route,
+        params: {
+          ...nav.panel && { panel: nav.panel },
+        },
+      });
+    },
   },
 };
 </script>
