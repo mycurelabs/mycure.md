@@ -5,17 +5,19 @@
       justify="center"
       align="center"
       no-gutters
-      :style="{ height: $isMobile ? 'auto' : '700px' }"
+      :style="{ height: $isMobile ? '300px' : '475px' }"
+      :class="{ 'pt-10': $isMobile }"
     )
-      v-col(cols="12" md="5" :class="{ 'text-center' : $isMobile }")
-        h1(:class="{ 'font-50 mb-8' : !$isMobile, 'font-35 mb-6' : $isMobile }").primary--text Make Healthcare Accessible to All
-        p(:class="{ 'font-18' : !$isMobile, 'font-14' : $isMobile }") THE&nbsp;
+      v-col(cols="12" md="6" :class="{ 'text-center' : $isMobile }")
+        h1(:class="{ 'font-xl mb-8' : !$isMobile, 'font-35 mb-6' : $isMobile }").line-spacing-title Make Healthcare Accessible to All
+        p(:class="{ 'font-m' : !$isMobile, 'font-14' : $isMobile }").grey--text THE&nbsp;
           span.primary--text SEVEN WONDERS&nbsp;
-          | OF HEALTHCARE
+          span.grey--text OF HEALTHCARE
           br
           | EMPOWERED BY MYCURE
       v-col(cols="12" md="6")
-      v-col(cols="12")
+    v-row(justify="center" align="center" no-gutters)
+      v-col(v-if="!$isMobile" cols="12")
         carousel(
           :per-page="1"
           :navigationEnabled="true"
@@ -33,18 +35,7 @@
                 color="#fafafa"
                 flat
               )
-                v-card(flat color="#fafafa")
-                  v-card-text.text-center
-                    h1 {{ wonder.title }}
-                    p {{ wonder.description }}
-                  v-card-actions
-                    v-btn(text small).text-none
-                      | Learn More
-                      v-icon(right small) mdi-chevron-right
-                    v-spacer
-                    v-btn(text small color="primary").text-none
-                      | Buy Now
-                      v-icon(right small) mdi-chevron-rigth
+                wonder(:wonder="wonder")
           slide(:data-index="2")
             v-row
               v-col(
@@ -54,22 +45,18 @@
                 color="#fafafa"
                 flat
               )
-                v-card(flat color="#fafafa")
-                  v-card-text.text-center
-                    h1 {{ wonder.title }}
-                    p {{ wonder.description }}
-                  v-card-actions
-                    v-btn(text small).text-none
-                      | Learn More
-                      v-icon(right small) mdi-chevron-right
-                    v-spacer
-                    v-btn(text small color="primary").text-none
-                      | Buy Now
-                      v-icon(right small) mdi-chevron-right
+                wonder(:wonder="wonder")
+      template(v-else)
+        v-col(cols="12" v-for="(wonder, key) in wonders" :key="key").ma-1
+          wonder(:wonder="wonder")
 </template>
 
 <script>
+import Wonder from './Wonder';
 export default {
+  components: {
+    Wonder,
+  },
   data () {
     this.wonders = [
       {
@@ -109,5 +96,8 @@ export default {
 <style scoped>
 .usp-container {
   padding-bottom: 50px;
+}
+.line-spacing-title {
+  line-height: 1.25em;
 }
 </style>
