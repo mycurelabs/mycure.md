@@ -90,7 +90,10 @@ module.exports = {
   ],
   webfontloader: {
     google: {
-      families: ['Poppins:400'],
+      families: [
+        'Poppins:400', 
+        'Open Sans:300,400',
+      ],
     },
   },
   /*
@@ -109,7 +112,7 @@ module.exports = {
       theme: {
         themes: {
           light: {
-            primary: '#2e9fdf',
+            primary: '#04B1E7',
             accent: '#7fad33',
             secondary: '#424242',
             info: '#2196F3',
@@ -118,7 +121,7 @@ module.exports = {
             success: '#7fad33',
           },
           dark: {
-            primary: '#2e9fdf',
+            primary: '#04B1E7',
             accent: '#7fad33',
             secondary: '#424242',
             info: '#2196F3',

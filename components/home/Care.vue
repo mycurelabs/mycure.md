@@ -7,7 +7,7 @@
     )
       v-col(cols="12" md="6").text-center
         h1(:class="{ 'font-50 mb-8' : !$isMobile, 'font-35 mb-6' : $isMobile }") Caring for people who care for people
-        p(:class="{ 'font-18' : !$isMobile, 'font-14' : $isMobile }").grey--text MYCURE is dedicated to help healthcare providers save more lives each day
+        p(:class="{ 'font-18' : !$isMobile, 'font-14' : $isMobile }").grey--text.font-open-sans MYCURE is dedicated to help healthcare providers save more lives each day
     v-row
       v-col(
         v-for="(stat, key) in stats"

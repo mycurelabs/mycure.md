@@ -40,6 +40,9 @@ export default {
 .font-poppins {
   font-family: 'Poppins', 'sans-serif' !important;
 }
+.font-open-sans {
+  font-family: 'Open Sans', 'sans-serif' !important;
+}
 /* Font Sizes */
 .font-xl {
   font-size: 64px !important;

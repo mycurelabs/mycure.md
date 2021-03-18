@@ -9,7 +9,7 @@
             width="150"
           ).mt-4
       v-row(justify="center" align="center")
-        v-col(cols="12" md="2").text-right
+        v-col(v-if="!$isMobile" cols="12" md="2").text-right
           strong.primary--text Share the love:
         v-col(
           :class="{ 'order-first text-center ' : $isMobile, 'text-left' : !$isMobile }"

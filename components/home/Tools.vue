@@ -7,7 +7,7 @@
     )
       v-col(cols="12" md="8").text-center
         h1(:class="{ 'font-50 mb-8' : !$isMobile, 'font-35 mb-6' : $isMobile }") Your quality healthcare services deserve quality tools
-        p(:class="{ 'font-18' : !$isMobile, 'font-14' : $isMobile }").grey--text MYCURE ensures that you get the right tools to boost your health tech initiatives.
+        p(:class="{ 'font-18' : !$isMobile, 'font-14' : $isMobile }").grey--text.font-open-sans MYCURE ensures that you get the right tools to boost your health tech initiatives.
     v-row(justify="center")
       v-col(cols="12" md="8")
         v-row(justify="center")
