@@ -2,26 +2,25 @@
   div.ml-8
     div.my-4
       h2.header-text Professional Info
-    div
+    div(v-if="hasInfo")
       div(:class="{ 'd-flex' : $isMobile }")
-        div(:class="{ 'border-bottom' : !$isMobile }").my-2.mb-5.mr-4.font-28.professional-info-item
+        div(v-if="specialtiesMapped" :class="{ 'border-bottom' : !$isMobile }").my-2.mb-5.mr-4.font-28.professional-info-item
           h3.primary--text Specialization
-          span(v-if="specialtiesMapped").mb-3 {{specialtiesMapped}}
-          i(v-else).mb-3 No data
-        div(:class="{ 'border-bottom' : !$isMobile }").my-2.mb-5.professional-info-item
+          span.mb-3 {{specialtiesMapped}}
+        div(v-if="practicingSince" :class="{ 'border-bottom' : !$isMobile }").my-2.mb-5.professional-info-item
           h3.primary--text Practicing Since
-          i(v-if="!practicingSince").mb-3 No data
-          span(v-else).mb-3 {{practicingSince | morph-date-format('YYYY')}}
-      div(:class="{ 'border-bottom' : !$isMobile }").my-2.mb-5.professional-info-item
+          span.mb-3 {{practicingSince | morph-date-format('YYYY')}}
+      div(v-if="education.length" :class="{ 'border-bottom' : !$isMobile }").my-2.mb-5.professional-info-item
         h3.primary--text Educational Background
-        i(v-if="education.length === 0").mb-3 No data
-        template(v-else v-for="educ in education").mb-3
+        template(v-for="educ in education").mb-3
           span {{ educ | format-school }}
           br
           span {{educ.from}} - {{educ.to}}
           br
-
+    div(v-else)
+      h5.font-italic.grey--text No information available
 </template>
+
 <script>
 export default {
   props: {
@@ -49,6 +48,9 @@ export default {
     },
     educationsMapped () {
       return this.education;
+    },
+    hasInfo () {
+      return this.specialtiesMapped || this.education?.length || this.practicingSince;
     },
   },
 };

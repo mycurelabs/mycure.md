@@ -3,16 +3,16 @@
     :outlined="outlined"
     :large="!$isMobile"
     :rounded="rounded"
-    :color="btnColor"
+    :color="color"
     :href="url"
     :class="{ 'font-11' : $isMobile }"
-  ).text-none.font-weight-600 Book Appointment
+  ).text-none.font-weight-600 {{ btnText }}
 </template>
 
 <script>
 export default {
   props: {
-    btnColor: {
+    color: {
       type: String,
       default: 'primary',
     },
@@ -24,12 +24,16 @@ export default {
       type: Boolean,
       default: true,
     },
+    btnText: {
+      type: String,
+      default: 'Book Appointment',
+    },
   },
   computed: {
     url () {
       const pxPortalUrl = process.env.PX_PORTAL_URL;
       const { id } = this.$route.params;
-      return `${pxPortalUrl}/appointment/step-1?doctor=${id}`;
+      return `${pxPortalUrl}/appointments/step-1?doctor=${id}`;
     },
   },
 };
