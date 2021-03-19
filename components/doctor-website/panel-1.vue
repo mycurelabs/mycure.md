@@ -36,10 +36,10 @@
           //- action buttons: book online appointment
           v-row(:class="{ 'justify-center d-block' : $isMobile, 'justify-start' : !$isMobile }").mt-2
             v-col(class="shrink").pa-1.text-center
-              book-appointment-btn(
-                :outlined="false"
-                :rounded="true"
-            )
+            //-   book-appointment-btn(
+            //-     :outlined="false"
+            //-     :rounded="true"
+            //- )
             v-col(class="shrink").pa-1.text-center
               book-appointment-btn(
                 outlined
