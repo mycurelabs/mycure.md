@@ -130,6 +130,11 @@ export default {
       default: () => [],
     },
   },
+  data () {
+    return {
+      socialMenu: false,
+    };
+  },
   computed: {
     hasMemberCMSOrganizations () {
       return !!this.memberCmsOrganizations?.length;
@@ -148,6 +153,12 @@ export default {
     doctorLink () {
       if (process.client) {
         return window.location.href;
+      }
+      return '';
+    },
+    windowTitle () {
+      if (process.client) {
+        return window.document.title;
       }
       return '';
     },
