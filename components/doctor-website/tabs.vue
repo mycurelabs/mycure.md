@@ -16,7 +16,10 @@
                 div.text-center.pa-5
                   h3.grey--text #[i No clinics to show]
               template(v-else v-for="(clinic, index) in clinics")
-                clinic-item(:clinic="clinic")
+                clinic-item(
+                  :clinic="clinic"
+                  :doctor-id="doctorId"
+                )
               v-pagination(
                 v-if="this.selectedTab === 'clinics'"
                 v-model="page"
@@ -43,7 +46,10 @@
                 div.text-center.pa-5
                   h3.grey--text #[i No clinics to show]
               template(v-else v-for="(clinic, index) in clinics")
-                clinic-item(:clinic="clinic")
+                clinic-item(
+                  :clinic="clinic"
+                  :doctor-id="doctorId"
+                )
               v-pagination(
                 v-if="this.selectedTab === 'clinics'"
                 v-model="page"

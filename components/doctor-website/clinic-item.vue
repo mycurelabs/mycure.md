@@ -44,6 +44,8 @@
             rel="noopener noreferrer"
             rounded
             block
+            :disabled="!canBook"
+            :href="bookURL"
           ).my-4 #[b Book Appointment]
           v-btn(
             color="success"
@@ -52,6 +54,8 @@
             outlined
             rounded
             block
+            :disabled="!canBook"
+            :href="bookURL"
           ) #[b Book a Visit]
 </template>
 
@@ -82,6 +86,10 @@ export default {
     clinic: {
       type: Object,
       default: () => ({}),
+    },
+    doctorId: {
+      type: String,
+      default: null,
     },
   },
   data () {
@@ -136,6 +144,16 @@ export default {
     };
   },
   computed: {
+    canBook () {
+      return this.clinicId && this.doctorId;
+    },
+    bookURL () {
+      const pxPortalUrl = process.env.PX_PORTAL_URL;
+      return `${pxPortalUrl}/appointments/step-1?doctor=${this.doctorId}&organization=${this.clinicId}`;
+    },
+    clinicId () {
+      return this.clinic?.id;
+    },
     clinicPicURL () {
       return this.clinic?.picURL || require('~/assets/images/doctor-website/doctor-website-profile-clinic.png');
     },
