@@ -1,6 +1,5 @@
 <template lang="pug">
   div(v-if="!loading")
-    app-bar
     panel-1(
       :pic-url="picURL"
       :full-name="fullNameWithSuffixes"
@@ -12,7 +11,7 @@
       :is-verified="isVerified"
     )
     v-row.mt-8
-      v-col(cols="12" md="2" :class="{ 'order-last' : $isMobile }")
+      v-col(cols="12" md="2" :class="{ 'order-last pb-12' : $isMobile }")
         professional-info(
           :specialties="specialties"
           :professions="professions"
@@ -33,7 +32,6 @@
           :limit="clinicsLimit"
           @onUpdatePage="fetchDoctorInfo"
         ).mb-12
-    my-footer
 </template>
 
 <script>
@@ -45,8 +43,6 @@ import {
 } from '~/utils/axios';
 import { formatName } from '~/utils/formats';
 import headMeta from '~/utils/head-meta';
-import AppBar from '~/components/doctor-website/app-bar';
-import MyFooter from '~/components/home/MyFooter';
 import Panel1 from '~/components/doctor-website/panel-1';
 import ProfessionalInfo from '~/components/doctor-website/professional-info';
 import Services from '~/components/doctor-website/services';
@@ -54,8 +50,6 @@ import Tabs from '~/components/doctor-website/tabs';
 export default {
   layout: 'doctor-website',
   components: {
-    AppBar,
-    MyFooter,
     Panel1,
     ProfessionalInfo,
     Services,
