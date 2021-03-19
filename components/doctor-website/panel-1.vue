@@ -50,14 +50,41 @@
                 :class="{ 'font-11' : $isMobile }"
               ).text-none.font-weight-600
             v-col(class="shrink").pa-1.text-center
-              v-btn(
-                outlined
-                icon
-                :large="!$isMobile"
-                color="white"
-                :class="{ 'font-11' : $isMobile }"
+              v-menu(
+                v-model="socialMenu"
+                :close-on-content-click="false"
+                offset-y
               )
-                v-icon mdi-share-variant
+                template(v-slot:activator="{ on }")
+                  v-btn(
+                    v-on="on"
+                    outlined
+                    icon
+                    :large="!$isMobile"
+                    color="white"
+                    :class="{ 'font-11' : $isMobile }"
+                  )
+                    v-icon mdi-share-variant
+                v-card
+                  v-card-text
+                    h3.primary--text Share this website:
+                    v-row(no-gutters)
+                      v-col(cols="12")
+                        social-sharing(
+                          :url="doctorLink"
+                          :title="windowTitle"
+                          inline-template
+                        )
+                          div
+                            network(network="facebook").social-image
+                              img(src="~/assets/images/doctor-website/facebook.png").pa-3
+                            network(network="twitter").social-image
+                              img(src="~/assets/images/doctor-website/twitter.png").pa-3
+                            network(network="linkedin").social-image
+                              img(src="~/assets/images/doctor-website/linkedin.png").pa-3
+                            network(network="email").social-image
+                              img(src="~/assets/images/doctor-website/email.png").pa-3
+
 </template>
 
 <script>
@@ -118,12 +145,22 @@ export default {
     professionsMapped () {
       return this.professions.join(', ');
     },
+    doctorLink () {
+      if (process.client) {
+        return window.location.href;
+      }
+      return '';
+    },
   },
 };
 </script>
+
 <style scoped>
 .doctor-panel {
   background-color: rgb(0 43 57 / 50%);
   backdrop-filter: blur(35px);
+}
+.social-image:hover {
+  cursor: pointer !important;
 }
 </style>
