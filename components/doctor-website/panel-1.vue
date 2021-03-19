@@ -41,13 +41,14 @@
                 :rounded="true"
             )
             v-col(class="shrink").pa-1.text-center
-              v-btn(
+              book-appointment-btn(
                 outlined
                 rounded
-                :large="!$isMobile"
+                btn-text="Virtual Consult"
                 color="white"
+                :large="!$isMobile"
                 :class="{ 'font-11' : $isMobile }"
-              ).text-none.font-weight-600 Virtual Consult
+              ).text-none.font-weight-600
             v-col(class="shrink").pa-1.text-center
               v-btn(
                 outlined
