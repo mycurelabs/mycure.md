@@ -40,7 +40,10 @@ export default {
   },
   computed: {
     doctorSignup () {
-      return process.browser && `${window.location.origin}/signup/health-facilities`;
+      if (process.browser) {
+        return `${window.location.origin}/signup/health-facilities`;
+      }
+      return `${process.env.WEB_MAIN_URL}/signup/health-facilities`;
     },
     patientSignup () {
       return process.env.PX_PORTAL_URL;
