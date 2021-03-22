@@ -10,14 +10,19 @@
       v-row
         v-col(cols="12").pt-0
           h3(style="margin-top: -5px") {{ clinic.name }}
-        v-col(cols="12" md="7" lg="8").pt-5
+        v-col(cols="12" md="7").pt-5
           h4 About this Clinic
           p(v-if="description") {{ description }}
           i(v-else) No description available
-        v-col(cols="12" md="5" lg="4")
+        v-col(cols="12" md="5")
           div(v-if="clinic.address").d-flex
-            v-icon(color="primary").mr-2.mb-auto mdi-map-marker
+            v-icon(color="error").mr-2.mb-auto mdi-map-marker
             p.font-weight-600 {{ clinic.address | prettify-address }}
+          div(v-if="phone").d-flex.pt-3
+            v-icon(color="success").mr-2.mb-auto mdi-phone
+            span.font-weight-600 +{{ phone }}
+            br
+            | {{ email }}
           template(v-if="clinicSchedules && clinicSchedules.length === 0")
             div(:class="{ 'justify-center' : $isMobile}").d-flex
               v-icon(color="primary").mr-2.mb-auto mdi-calendar-today
@@ -33,31 +38,31 @@
               tr(v-if="fullSchedules.length > 3")
                 td(colspan="4")
                   a(@click="clinicSchedulesExpanded = !clinicSchedulesExpanded") View {{clinicSchedulesExpanded ? 'less' : 'more'}}
-          div(v-if="phone").d-flex.pt-3
-            v-icon(color="primary").mr-2.mb-auto mdi-phone
-            span.font-weight-600 +{{ phone }}
-            br
-            | {{ email }}
-          //- v-btn(
-          //-   color="success"
-          //-   target="_blank"
-          //-   rel="noopener noreferrer"
-          //-   rounded
-          //-   block
-          //- ).my-4 #[b Book Appointment]
-          //- v-btn(
-          //-   color="success"
-          //-   target="_blank"
-          //-   rel="noopener noreferrer"
-          //-   outlined
-          //-   rounded
-          //-   block
-          //- ) #[b Book a Visit]
+          v-btn(
+            color="success"
+            target="_blank"
+            rel="noopener noreferrer"
+            rounded
+            block
+            :disabled="!canBook"
+            :href="bookURL"
+          ).my-4 #[b Book Appointment]
+          v-btn(
+            color="success"
+            target="_blank"
+            rel="noopener noreferrer"
+            outlined
+            rounded
+            block
+            :disabled="!canBook"
+            :href="bookURL"
+          ) #[b Book a Visit]
 </template>
 
 <script>
 // - components
 import BookAppointmentBtn from '~/components/commons/book-appointment-btn';
+import { formatAddress } from '~/utils/formats';
 
 export default {
   components: {
@@ -66,22 +71,22 @@ export default {
   filters: {
     prettifyAddress (address) {
       if (!address) {
-        return '';
+        return 'No address available';
       }
-      const formattedArray = [
-        address.street1,
-        address.street2,
-        address.city,
-        address.province,
-        address.country,
-      ].filter(Boolean).join(', ');
-      return formattedArray;
+      if (address?.formattedString) {
+        return address.formattedString;
+      }
+      return formatAddress(address, 'street1, street2, city, province, region, country');
     },
   },
   props: {
     clinic: {
       type: Object,
       default: () => ({}),
+    },
+    doctorId: {
+      type: String,
+      default: null,
     },
   },
   data () {
@@ -136,6 +141,16 @@ export default {
     };
   },
   computed: {
+    canBook () {
+      return this.clinicId && this.doctorId;
+    },
+    bookURL () {
+      const pxPortalUrl = process.env.PX_PORTAL_URL;
+      return `${pxPortalUrl}/appointments/step-1?doctor=${this.doctorId}&organization=${this.clinicId}`;
+    },
+    clinicId () {
+      return this.clinic?.id;
+    },
     clinicPicURL () {
       return this.clinic?.picURL || require('~/assets/images/doctor-website/doctor-website-profile-clinic.png');
     },

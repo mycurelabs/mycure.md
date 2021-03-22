@@ -158,6 +158,13 @@
                 :rules="isRequired"
                 :disabled="loading.form"
               )
+              v-text-field(
+                v-if="isDoctor"
+                v-model="doc_PRCLicenseNo"
+                label="PRC License No"
+                outlined
+                hint="Please enter your PRC License No for verification"
+              )
             v-col(
               cols="12"
               :class="{ 'pa-1': !$isMobile }"
@@ -245,8 +252,8 @@ export default {
       { text: 'Other', value: 'facility' },
     ];
     this.userRoles = [
-      { text: 'Physician/Owner', roles: ['doctor', 'admin'] },
-      { text: 'Administrator', roles: ['admin'] },
+      { text: 'Physician/Owner', value: ['doctor', 'admin'] },
+      { text: 'Administrator', value: ['admin'] },
     ];
     return {
       // Models
@@ -257,6 +264,7 @@ export default {
       password: '',
       confirmPassword: '',
       clinicType: '',
+      doc_PRCLicenseNo: '',
       roles: [],
       agree: '',
       // County Dialog
@@ -279,6 +287,11 @@ export default {
       errorMessage: 'There was an error please try again later.',
       mobileNoError: false,
     };
+  },
+  computed: {
+    isDoctor () {
+      return this.roles.includes('doctor');
+    },
   },
   watch: {
     searchString (val) {
@@ -326,6 +339,7 @@ export default {
           countryCallingCode: this.countryCallingCode,
           clinicType: this.clinicType,
           roles: this.roles,
+          doc_PRCLicenseNo: this.doc_PRCLicenseNo,
         };
         this.saveModel(payload);
         await signupFacility(payload);
@@ -416,5 +430,11 @@ export default {
 <style scoped>
 .link-to-home:hover {
   cursor: pointer;
+}
+
+::v-deep input::-webkit-outer-spin-button,
+::v-deep input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 </style>

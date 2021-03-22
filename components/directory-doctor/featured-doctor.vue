@@ -37,9 +37,9 @@ export default {
   computed: {
     href () {
       if (process.browser) {
-        return `${window.location.origin}/signup/individual`;
+        return `${window.location.origin}/signup/health-facilities`;
       }
-      return `${process.env.WEB_MAIN_URL}/signup/individual`;
+      return `${process.env.WEB_MAIN_URL}/signup/health-facilities`;
     },
   },
 };
