@@ -169,7 +169,8 @@ export default {
 <style scoped>
 .doctor-panel {
   background-color: rgb(0 43 57 / 50%);
-  backdrop-filter: blur(35px);
+  background-image: url('../../assets/images/doctor-website/mycure-doctor-website-banner.png');
+  background-size: cover;
 }
 .social-image:hover {
   cursor: pointer !important;
