@@ -2,6 +2,7 @@
   generic-container
     v-row(justify="center" align="center").mb-10
       generic-sign-up-card(
+        :btn-href="doctorSignup"
         btn-color="accent"
         image-url="MYCURE-Doctor-Directory-Banner-Sign-Up-Doctor.png"
         image-path="/directory-doctor"
@@ -10,6 +11,7 @@
       ).pl-1
       generic-sign-up-card(
         :is-left="false"
+        :btn-href="patientSignup"
         btn-color="amber"
         image-url="MYCURE-Doctor-Directory-Banner-Sign-Up-Patient.png"
         image-path="/directory-doctor"
@@ -34,6 +36,17 @@ export default {
     signUpInfo: {
       type: Array,
       default: () => ([]),
+    },
+  },
+  computed: {
+    doctorSignup () {
+      if (process.browser) {
+        return `${window.location.origin}/signup/health-facilities`;
+      }
+      return `${process.env.WEB_MAIN_URL}/signup/health-facilities`;
+    },
+    patientSignup () {
+      return process.env.PX_PORTAL_URL;
     },
   },
 };
