@@ -26,12 +26,12 @@
               @click="onNavClick(nav)"
             ).text-none.mr-2.font-12
               b {{ nav.name }}
-            v-btn(
-              text
-              depressed
-              large
-              :to="{ name: 'pxp' }"
-            ).text-none.mr-2.font-12 #[b For Patients]
+            //- v-btn(
+            //-   text
+            //-   depressed
+            //-   large
+            //-   :to="{ name: 'pxp' }"
+            //- ).text-none.mr-2.font-12 #[b For Patients]
             v-spacer
             v-btn(
               text
@@ -126,6 +126,10 @@ export default {
       {
         name: 'Scheduling',
         route: 'pxp',
+      },
+      {
+        name: 'For Patients',
+        route: 'patients',
       },
     ];
     return {
