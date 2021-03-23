@@ -1,11 +1,11 @@
 <template lang="pug">
   v-btn(
-    :color="color"
+    color="success"
     rounded
     :large="large"
     :x-large="xLarge"
     @click="getStarted"
-  ).text-none.font-weight-bold Get Started Free
+  ).text-none.font-weight-bold Get started for free
 </template>
 
 <script>
@@ -16,10 +16,6 @@ export default {
     email: {
       type: String,
       default: '',
-    },
-    color: {
-      type: String,
-      default: 'primary',
     },
   },
   methods: {

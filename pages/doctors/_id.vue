@@ -1,6 +1,5 @@
 <template lang="pug">
   div(v-if="!loading")
-    app-bar
     panel-1(
       :pic-url="picURL"
       :full-name="fullNameWithSuffixes"
@@ -12,7 +11,7 @@
       :is-verified="isVerified"
     )
     v-row.mt-8
-      v-col(cols="12" md="2" :class="{ 'order-last' : $isMobile }")
+      v-col(cols="12" md="2" :class="{ 'order-last pb-12' : $isMobile }")
         professional-info(
           :specialties="specialties"
           :professions="professions"
@@ -75,7 +74,6 @@ import Panel1 from '~/components/doctor-website/panel-1';
 import ProfessionalInfo from '~/components/doctor-website/professional-info';
 import Services from '~/components/doctor-website/services';
 import Tabs from '~/components/doctor-website/tabs';
-import Social from '~/components/doctor-website/social';
 export default {
   layout: 'doctor-website',
   components: {
@@ -85,7 +83,6 @@ export default {
     ProfessionalInfo,
     Services,
     Tabs,
-    Social,
   },
   async asyncData ({ app, router, params, error }) {
     try {

@@ -1,7 +1,7 @@
 <template lang="pug">
   v-btn(
     v-bind="bindings"
-    href="href"
+    :to="{ name: 'signup-health-facilities' }"
     :class="[...defaultClasses, ...extraClasses]"
   ) A Doctor
 </template>
@@ -19,9 +19,6 @@ export default {
     },
   },
   computed: {
-    href () {
-      return process.browser && `${window.location.origin}/signup/individual`;
-    },
     defaultBindings () {
       return {
         color: '#8db738',

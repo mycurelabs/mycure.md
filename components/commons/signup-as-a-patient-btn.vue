@@ -1,7 +1,7 @@
 <template lang="pug">
   v-btn(
     v-bind="bindings"
-    href="href"
+    :href="href"
     :class="[...defaultClasses, ...extraClasses]"
   ) A Patient
 </template>
@@ -20,7 +20,7 @@ export default {
   },
   computed: {
     href () {
-      return `${process.env.PX_PORTAL_URL}/signup`;
+      return `${process.env.PX_PORTAL_URL}`;
     },
     defaultBindings () {
       return {

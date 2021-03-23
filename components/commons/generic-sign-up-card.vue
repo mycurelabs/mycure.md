@@ -13,7 +13,11 @@
             h2.py-5 {{ headerText }}
             p.pre-white-space {{ contentText }}
             v-card-actions.pt-5
-              v-btn(:color="btnColor" width="135").white--text.ml-n2 Sign Me Up
+              v-btn(
+                :color="btnColor"
+                :href="btnHref"
+                width="135"
+              ).white--text.ml-n2 Sign Me Up
     template(v-else)
       h2 {{ headerText }}
       img(:src="require(`~/assets/images/directory-doctor/mycure-sign-up-doctor-cms-blue-banner-mobile.png`)" width="100%").pb-5
@@ -44,6 +48,10 @@ export default {
     btnColor: {
       type: String,
       default: 'accent',
+    },
+    btnHref: {
+      type: String,
+      default: `${process.env.WEB_MAIN_URL}`,
     },
     isLeft: {
       type: Boolean,

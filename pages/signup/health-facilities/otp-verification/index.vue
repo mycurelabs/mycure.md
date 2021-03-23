@@ -117,6 +117,8 @@
             color="accent"
             @click="onAcknowledgment"
             large
+            :disabled="loading"
+            :loading="loading"
           ).text-none.font-weight-bold Get Started
     v-snackbar(
       v-model="showSnack"
@@ -269,6 +271,7 @@ export default {
     },
     async onAcknowledgment () {
       try {
+        this.loading = true;
         const { accessToken } = await signin({
           email: this.step1Data.email,
           password: this.step1Data.password,
@@ -284,6 +287,8 @@ export default {
           color: 'error',
         };
         this.showSnack = true;
+      } finally {
+        this.loading = false;
       }
     },
     startCountDown () {
@@ -354,7 +359,7 @@ export default {
   },
   head () {
     return headMeta({
-      title: 'Start Free EMR Doctor Practice Management System',
+      title: 'MYCURE | Create an Account',
       description: 'Create a free MYCURE account today and become a techy doctor in minutes! Better operations, beautiful reports, bye paperworks!',
       socialBanner: require('~/assets/images/banners/MYCURE Open Graph Images -  Home.png'),
     });

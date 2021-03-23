@@ -29,7 +29,8 @@
             depressed
             Large
             color="primary"
-            @click="goToPxpSignup"
+            target="_blank"
+            href="https://6rbf27w6k3r.typeform.com/to/V13pJzW9"
           ).text-none.ml-2 #[b Create an Account]
       v-container(v-else)
         v-row(align="center")
@@ -54,7 +55,7 @@
               v-list
                 v-list-item(@click="goToPxpSignin")
                   v-list-item-title.text-none Login
-                v-list-item(@click="goToPxpSignup")
+                v-list-item(href="https://6rbf27w6k3r.typeform.com/to/V13pJzW9")
                   v-list-item-title.text-none Create an Account
 </template>
 
@@ -94,6 +95,12 @@ export default {
     goToPxpSignup () {
       if (this.isPreviewMode) return;
       window.open(process.env.PX_PORTAL_URL, '_blank', 'noopener, noreferrer');
+    },
+    getStarted () {
+      const opts = {
+        name: 'signup-health-facilities',
+      };
+      this.$router.push(opts);
     },
   },
 };
