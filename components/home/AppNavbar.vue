@@ -16,7 +16,6 @@
                 width="120"
                 alt="MYCURE logo"
               )
-          v-spacer
           template(v-if="!$isMobile")
             v-btn(
               v-for="(nav, key) in navs"
@@ -25,26 +24,26 @@
               depressed
               large
               @click="onNavClick(nav)"
-            ).text-none.mr-2
+            ).text-none.mr-2.font-12
               b {{ nav.name }}
             v-btn(
               text
               depressed
               large
               :to="{ name: 'pxp' }"
-            ).text-none.mr-2 #[b For Patients]
+            ).text-none.mr-2.font-12 #[b For Patients]
             v-spacer
             v-btn(
               text
               depressed
               large
-            ).text-none.mr-2 #[b LOG IN]
+            ).text-none.mr-2.font-12 #[b LOG IN]
             v-btn(
               color="success"
               large
               shaped
               :to="{name: 'signup-health-facilities'}"
-            ).text-none #[b SIGN UP]
+            ).text-none.font-12 #[b SIGN UP]
           v-app-bar-nav-icon(v-else @click.stop="drawer = !drawer")
 
     v-navigation-drawer(
