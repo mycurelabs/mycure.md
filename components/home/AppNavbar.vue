@@ -112,7 +112,7 @@ export default {
       },
       {
         name: 'Clinics',
-        route: 'doctors-clinics',
+        route: 'clinics',
       },
       {
         name: 'Diagnostics',
