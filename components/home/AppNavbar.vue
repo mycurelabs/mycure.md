@@ -116,8 +116,7 @@ export default {
       },
       {
         name: 'Diagnostics',
-        route: 'enterprise',
-        panel: 'diagnostic-centers',
+        route: 'diagnostics',
       },
       {
         name: 'Hospitals',
