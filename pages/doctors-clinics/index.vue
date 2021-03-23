@@ -12,9 +12,10 @@
       :description="featuresDescription"
       :items="features"
     )
-    //- 3rd panel
+    //- 3rd to 5th panels
+    info-panels
+    //- 6th panel
     mycure-csi
-    v-divider.edge-divider
     //- 4th panel
     practice-online(@getStarted="getStarted")#group-practice
     v-divider.edge-divider
@@ -35,6 +36,7 @@ import VueScrollTo from 'vue-scrollto';
 import headMeta from '~/utils/head-meta';
 // components
 import Features from '~/components/commons/Features';
+import InfoPanels from '~/components/doctors-clinics/InfoPanels';
 import MycureCsi from '~/components/commons/MycureCsi';
 import Usp from '~/components/commons/SevenWondersUsp';
 import PracticeOnline from '~/components/doctors-clinics/practice-online';
@@ -45,6 +47,7 @@ import Cta from '~/components/doctors-clinics/cta';
 export default {
   components: {
     Features,
+    InfoPanels,
     MycureCsi,
     Usp,
     PracticeOnline,
