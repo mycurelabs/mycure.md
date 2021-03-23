@@ -12,9 +12,8 @@
       :description="featuresDescription"
       :items="features"
     )
-    v-divider.edge-divider
     //- 3rd panel
-    safekeep-data(@getStarted="getStarted")
+    mycure-csi
     v-divider.edge-divider
     //- 4th panel
     practice-online(@getStarted="getStarted")#group-practice
@@ -36,8 +35,8 @@ import VueScrollTo from 'vue-scrollto';
 import headMeta from '~/utils/head-meta';
 // components
 import Features from '~/components/commons/Features';
+import MycureCsi from '~/components/commons/MycureCsi';
 import Usp from '~/components/commons/SevenWondersUsp';
-import SafekeepData from '~/components/doctors-clinics/safekeep-data';
 import PracticeOnline from '~/components/doctors-clinics/practice-online';
 import SpecializedPlans from '~/components/doctors-clinics/specialized-plans';
 import QualityHealthcare from '~/components/doctors-clinics/quality-healthcare';
@@ -46,8 +45,8 @@ import Cta from '~/components/doctors-clinics/cta';
 export default {
   components: {
     Features,
+    MycureCsi,
     Usp,
-    SafekeepData,
     PracticeOnline,
     SpecializedPlans,
     QualityHealthcare,

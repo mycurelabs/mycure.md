@@ -1,7 +1,7 @@
 <template lang="pug">
   v-container
     v-row(justify="center")
-      v-col(cols="12" md="6").text-center
+      v-col(cols="12" md="7").text-center
         h1(:class="titleClasses").font-weight-bold {{ title }}
         p(:class="descriptionClasses").grey--text {{ description }}
       v-col(cols="12")
