@@ -5,7 +5,7 @@
       //- Left column
       v-col(:align-self="alignLeftColumn" cols="12" :md="colsLeft" :offset-md="offsetColsLeft")
         picture-source(
-          v-if="!$isMobile && contentAlignRight"
+          v-if="!$isMobile && contentAlignRight && webImage"
           :customPath="customImagePath"
           :extensionExclusive="extensionExclusive"
           :image="webImage"
@@ -16,17 +16,17 @@
         )
         template(v-if="contentAlignLeft")
           p(:v-show="withSubheader" :class="subHeaderClass").font-16.primary--text {{ subHeader }}
-          h1(v-if="typeof(header) === 'string'").font-30.lh-title.pb-3.font-weight-light {{ header }}
+          h1(v-if="typeof(header) === 'string'" :class="panelHeaderClasses") {{ header }}
           h1(
             v-else-if="typeof(header) === 'object'"
-            :class="{'pre-white-space': $isRegularScreen}"
-          ).font-30.lh-title.pb-3.font-weight-light
+            :class="[{'pre-white-space': $isRegularScreen}, ...panelHeaderClasses]"
+          )
             | {{ header | parse-text }}
           //- MOBILE IMAGE
           br(v-if="$isMobile")
           div.text-center
             picture-source(
-              v-if="$isMobile && !hideImageMobile"
+              v-if="$isMobile && !hideImageMobile && webImage"
               :customPath="customImagePath"
               :extensionExclusive="extensionExclusive"
               :image="mobileImage || webImage"
@@ -49,7 +49,7 @@
       //- Right Column
       v-col(:align-self="alignRightColumn" cols="12" :md="colsRight" :offset-md="offsetColsRight")
         picture-source(
-          v-if="!$isMobile && contentAlignLeft"
+          v-if="!$isMobile && contentAlignLeft && webImage"
           :customPath="customImagePath"
           :extensionExclusive="extensionExclusive"
           :image="webImage"
@@ -60,17 +60,17 @@
         )
         template(v-if="contentAlignRight")
           p(:v-show="withSubheader" :class="subHeaderClass").font-16.primary--text {{ subHeader }}
-          h1(v-if="typeof(header) === 'string'").font-30.lh-title.pb-3.font-weight-light {{ header }}
+          h1(v-if="typeof(header) === 'string'" :class="panelHeaderClasses") {{ header }}
           h1(
             v-else-if="typeof(header) === 'object'"
-            :class="{'pre-white-space': $isRegularScreen}"
-          ).font-30.lh-title.pb-3.font-weight-light
+            :class="[{'pre-white-space': $isRegularScreen}, ...panelHeaderClasses]"
+          )
             | {{ header | parse-text }}
           //- MOBILE IMAGE
           br(v-if="$isMobile")
           div.text-center
             picture-source(
-              v-if="$isMobile && !hideImageMobile"
+              v-if="$isMobile && !hideImageMobile && webImage"
               :customPath="customImagePath"
               :extensionExclusive="extensionExclusive"
               :image="mobileImage || webImage"
@@ -106,15 +106,15 @@
     v-row(v-else justify="center").py-10
       v-col(cols="12" md="10" :class="{'text-center': !$isMobile}")
         p(:v-show="withSubheader" :class="subHeaderClass").font-16.primary--text {{ subHeader }}
-        h1(v-if="typeof(header) === 'string'").font-30.lh-title.pb-3.font-weight-light {{ header }}
+        h1(v-if="typeof(header) === 'string'" :class="panelHeaderClasses") {{ header }}
         h1(
           v-else-if="typeof(header) === 'object'"
-          :class="{'pre-white-space': $isRegularScreen}"
-        ).font-30.lh-title.pb-3.font-weight-light
+          :class="[{'pre-white-space': $isRegularScreen}, ...panelHeaderClasses]"
+        )
           | {{ header | parse-text }}
         //- Mobile image
         picture-source(
-          v-if="$isMobile && !hideImageMobile"
+          v-if="$isMobile && !hideImageMobile && webImage"
           :customPath="customImagePath"
           :extensionExclusive="extensionExclusive"
           :image="mobileImage || webImage"
@@ -135,7 +135,7 @@
           br
         slot(name="additional-content")
         picture-source(
-          v-if="!$isMobile"
+          v-if="!$isMobile && webImage"
           :customPath="customImagePath"
           :extensionExclusive="extensionExclusive"
           :image="webImage"
@@ -185,10 +185,10 @@ export default {
     },
     /**
      * Number of cols of the left column
-     * @type {String}
+     * @type {String, Number}
      */
     colsLeft: {
-      type: String,
+      type: [String, Number],
       default: '5',
     },
     /**
@@ -196,7 +196,7 @@ export default {
      * @type {String}
      */
     colsRight: {
-      type: String,
+      type: [String, Number],
       default: '6',
     },
     /**
@@ -286,7 +286,7 @@ export default {
      */
     webImage: {
       type: String,
-      required: true,
+      default: null,
     },
     /**
      * Width of web image
@@ -371,6 +371,10 @@ export default {
     },
     subHeaderClass () {
       return [{ 'mb-n1': !this.withSubheader }];
+    },
+    panelHeaderClasses () {
+      const defaultClasses = ['font-30', 'lh-title', 'pb-3', 'font-weight-light'];
+      return defaultClasses;
     },
   },
 };
