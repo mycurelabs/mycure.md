@@ -16,9 +16,7 @@
     :web-image="panelContents.image"
   )
     div(slot="additional-content")
-      v-btn(text @click="onGetStarted").ml-n4
-        strong.text-capitalize.primary--text.font-18 Request An Invite
-        v-icon.primary--text mdi-arrow-right
+      //- TODO: List
 </template>
 
 <script>
@@ -30,10 +28,8 @@ export default {
   data () {
     this.panelContents = {
       image: 'MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-C-group-practice',
-      title: 'Take your entire practice online - even your group clinic',
-      description: 'Easily coordinate with other doctors in your group practice and centralize your clinic system under one subscription.',
-      btnTxt: 'Get Started',
-      btnIcon: 'mdi-arrow-right',
+      title: 'Practice as a Group',
+      description: 'Easily coordinate with other physicians in your group practice and centralize your medical records in one comprehenesive workspace.',
     };
     return {};
   },
