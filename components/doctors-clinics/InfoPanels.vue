@@ -37,6 +37,13 @@ export default {
         ],
         contentAlign: 'left',
       },
+      {
+        header: 'Expand Your Reach',
+        descriptions: [
+          'Opt in to MYCURE ONE, a global online directory of modern healthcare practitioners and facilities',
+        ],
+        contentAlign: 'right',
+      },
     ];
     return {};
   },
