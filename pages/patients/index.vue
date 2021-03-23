@@ -14,15 +14,26 @@
     )
     //- 3rd panel
     generic-media-panel(
+      content-align-right
       header="Integrates with Your Existing EMR"
       cols-left="5"
       cols-right="4"
-      content-align-right
       offset-cols-right="1"
       :descriptions="['If you already have an existing Medical Records system, MYCURE PRM comes with open APIs that allows your provider to integrate with it.']"
     )
     //- 4th panel
     mycure-csi
+    //- 5th to 7th panel
+    generic-media-panel(
+      v-for="(info, key) in infoPanels"
+      :key="key"
+      content-align-right
+      cols-left="5"
+      cols-right="4"
+      offset-cols-right="1"
+      :header="info.header"
+      :descriptions="info.descriptions"
+    )
 </template>
 
 <script>
@@ -58,6 +69,27 @@ export default {
       },
       {
         title: 'Appointment Booking',
+      },
+    ];
+    this.infoPanels = [
+      {
+        header: 'Patients and You. Perfect Match.',
+        descriptions: [
+          'MYCURE Hospital works ideally with MYCURE PRM (Patient Relationship Management System). Communication is easier, booking is a breeze, sharing campaigns is fun.',
+        ],
+      },
+      {
+        header: 'Expand your Reach',
+        descriptions: [
+          'Using MYCURE allows you to be part of MYCURE ONE, a global online directory of modern healthcare practitioners and facilities so patients can easily find you and order online.',
+          'Your profile in MYCURE ONE links to your professional website that is likewise provided to you by MYCURE.',
+        ],
+      },
+      {
+        header: 'Worrying about upgrading your system? We got you covered!',
+        descriptions: [
+          'We understand that it may be difficult to change what you’re used to doing. That’s why we have happiness agents that would give you the right guidance when you sign up for MYCURE.',
+        ],
       },
     ];
     return {
