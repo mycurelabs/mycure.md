@@ -16,44 +16,31 @@
     info-panels
     //- 6th panel
     mycure-csi
-    //- 4th panel
-    practice-online(@getStarted="getStarted")#group-practice
-    v-divider.edge-divider
-    //- 5th panel
-    specialized-plans#specialized-practice
-    v-divider.edge-divider
-    //- 6th panel
-    quality-healthcare(@getStarted="goToPatientPortal")
     //- 7th panel
-    div.cta-container
-      cta(@getStarted="goToSignupIndividual($event)")
-    //- )
+    practice-online(@getStarted="getStarted")#group-practice
+    //- 8th panel
+    think-long-term(extended)
 </template>
 
 <script>
 // utils
-import VueScrollTo from 'vue-scrollto';
 import headMeta from '~/utils/head-meta';
 // components
 import Features from '~/components/commons/Features';
 import InfoPanels from '~/components/doctors-clinics/InfoPanels';
 import MycureCsi from '~/components/commons/MycureCsi';
-import Usp from '~/components/commons/SevenWondersUsp';
 import PracticeOnline from '~/components/doctors-clinics/practice-online';
-import SpecializedPlans from '~/components/doctors-clinics/specialized-plans';
-import QualityHealthcare from '~/components/doctors-clinics/quality-healthcare';
-import Cta from '~/components/doctors-clinics/cta';
+import ThinkLongTerm from '~/components/commons/ThinkLongTerm';
+import Usp from '~/components/commons/SevenWondersUsp';
 
 export default {
   components: {
     Features,
     InfoPanels,
     MycureCsi,
-    Usp,
     PracticeOnline,
-    SpecializedPlans,
-    QualityHealthcare,
-    Cta,
+    ThinkLongTerm,
+    Usp,
   },
   data () {
     // Panel content
@@ -80,36 +67,8 @@ export default {
       loading: true,
     };
   },
-  computed: {
-    scrollPanel () {
-      const panel = this.$nuxt.$route.params.panel;
-      return panel ? `#${panel}` : null;
-    },
-  },
   mounted () {
     this.loading = false;
-    const panel = this.scrollPanel || '#app';
-    this.$nextTick(() => {
-      if (this.$route.query.scrollToSpecializedClinics) {
-        VueScrollTo.scrollTo('#specialized-practice', 500, { easing: 'ease', offset: 800 });
-      } else {
-        VueScrollTo.scrollTo(panel, 500, { easing: 'ease', offset: -20 });
-      }
-    });
-  },
-  methods: {
-    getStarted () {
-      this.$nuxt.$router.push({ name: 'signup-individual' });
-    },
-    goToSignupIndividual (email) {
-      this.$nuxt.$router.push({ name: 'signup-individual', params: { email } });
-    },
-    goToPatientPortal () {
-      this.$nuxt.$router.push({ name: 'index', params: { panel: 'patient-portal' } });
-    },
-    startNow () {
-      VueScrollTo.scrollTo('#increase-revenue', 500, { easing: 'ease', offset: -70 });
-    },
   },
   head () {
     return headMeta({
