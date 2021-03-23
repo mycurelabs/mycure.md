@@ -34,6 +34,8 @@
       :header="info.header"
       :descriptions="info.descriptions"
     )
+    //- 8th panel
+    think-long-term
 </template>
 
 <script>
@@ -43,6 +45,7 @@ import headMeta from '~/utils/head-meta';
 import Features from '~/components/commons/Features';
 import GenericMediaPanel from '~/components/commons/generic-media-panel';
 import MycureCsi from '~/components/commons/MycureCsi';
+import ThinkLongTerm from '~/components/commons/ThinkLongTerm';
 import Usp from '~/components/commons/SevenWondersUsp';
 
 export default {
@@ -50,6 +53,7 @@ export default {
     Features,
     GenericMediaPanel,
     MycureCsi,
+    ThinkLongTerm,
     Usp,
   },
   data () {
