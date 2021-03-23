@@ -120,7 +120,7 @@ export default {
       },
       {
         name: 'Hospitals',
-        route: 'enterprise',
+        route: 'hospitals',
       },
       {
         name: 'Scheduling',
