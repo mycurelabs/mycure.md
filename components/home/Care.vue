@@ -5,9 +5,10 @@
       align="center"
       no-gutters
     )
-      v-col(cols="12" md="6").text-center
-        h1(:class="{ 'font-50 mb-8' : !$isMobile, 'font-35 mb-6' : $isMobile }") Caring for people who care for people
-        p(:class="{ 'font-18' : !$isMobile, 'font-14' : $isMobile }").grey--text.font-open-sans MYCURE is dedicated to help healthcare providers save more lives each day
+      v-col(cols="12" md="9").text-center
+        h1(:class="{ 'font-xl mb-8' : !$isMobile, 'font-m mb-6' : $isMobile }").lh-title Caring for people who care for people
+      v-col(cols="12" md="7").text-center
+        p(:class="{ 'font-s' : !$isMobile, 'font-xs' : $isMobile }").grey--text.font-open-sans MYCURE is dedicated to help healthcare providers save more lives each day
     v-row
       v-col(
         v-for="(stat, key) in stats"
@@ -15,8 +16,8 @@
         cols="12"
         md="4"
       ).text-center
-        h1.primary--text {{ stat.amount }}
-        h3.font-weight-regular.grey--text {{ stat.title }}
+        h1(:class="{ 'font-l' : !$isMobile, 'font-xs' : $isMobile }").primary--text {{ stat.amount }}
+        h3(:class="{ 'font-s' : !$isMobile, 'font-12' : $isMobile }").font-weight-regular.grey--text {{ stat.title }}
 </template>
 
 <script>

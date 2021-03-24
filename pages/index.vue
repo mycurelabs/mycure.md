@@ -2,11 +2,11 @@
   div(v-if="!loading").white
     //- 1st panel
     seven-wonders
-    care
-    simple
-    patients
-    tools
-    join-next-generation
+    care(:class="panelMargins")
+    simple(:class="panelMargins")
+    patients(:class="panelMargins")
+    tools(:class="panelMargins")
+    join-next-generation(:class="panelMargins").mb-8
     //- usp(@getStarted="goToSignupIndividual")
     //- start-easy
     //- features
@@ -41,6 +41,11 @@ export default {
     return {
       loading: true,
     };
+  },
+  computed: {
+    panelMargins () {
+      return { 'mt-10': this.$isMobile };
+    },
   },
   mounted () {
     this.loading = false;
