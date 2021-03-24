@@ -4,7 +4,7 @@
       justify="center"
       align="center"
       no-gutters
-      :style="{ height: $isMobile ? '400px' : '520px' }"
+      :style="{ height: $isMobile ? '400px' : '620px' }"
     )
       v-col(cols="8" md="5" :class="{ 'order-last' : !$isMobile }")
         //- v-img(
@@ -14,7 +14,7 @@
         //- )
       v-col(cols="12" md="7" :class="{ 'text-center' : $isMobile }")
         p(:class="metaTitleClasses").font-weight-bold {{ uspMetaTitle }}
-        h1(:class="titleClasses") {{ uspTitle  }}
+        h1(:class="titleClasses").lh-title {{ uspTitle }}
         p(:class="descriptionClasses").grey--text {{ uspDescription }}
         v-btn(
           depressed
@@ -25,6 +25,7 @@
 
 <script>
 import classBinder from '~/utils/class-binder';
+import { parseTextWithNewLine } from '~/utils/newline';
 
 export default {
   props: {
@@ -40,11 +41,20 @@ export default {
       type: String,
       default: '',
     },
+    parseTitle: {
+      type: Boolean,
+      default: false,
+    },
+    parseTitleFields: {
+      type: Array,
+      default: () => ([]),
+    },
   },
   computed: {
     // NOTE: For customizations
     uspTitle () {
-      return this.title;
+      if (!this.parseTitle) return this.title;
+      return parseTextWithNewLine(this.title, this.parseTitleFields);
     },
     uspMetaTitle () {
       return this.metaTitle;
@@ -55,11 +65,14 @@ export default {
     // Classes
     titleClasses () {
       const classes = classBinder(this, {
-        mobile: ['font-xl'],
-        regular: ['font-l'],
-        wide: ['font-xl'],
+        mobile: ['font-m'],
+        regular: ['font-xl'],
       });
-      return ['mb-8', classes];
+      return [
+        'mb-8',
+        { 'pre-white-space': this.parseTitle && !this.$isMobile },
+        classes,
+      ];
     },
     metaTitleClasses () {
       const classes = classBinder(this, {
