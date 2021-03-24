@@ -38,11 +38,11 @@
           br
           template(v-if="descriptions.length")
             template(v-for="description in descriptions")
-              p(v-if="typeof(description) === 'string'").font-16.mt-3.font-gray.text-justify {{ description }}
+              p(v-if="typeof(description) === 'string'" :class="panelDescriptionClasses").mt-3.text-justify {{ description }}
               p(
                 v-else-if="typeof(description) === 'object'"
-                :class="{'pre-white-space': $isRegularScreen }"
-              ).font-16.mt-3.font-gray.text-justify
+                :class="[{'pre-white-space': $isRegularScreen }, ...panelDescriptionClasses]"
+              ).mt-3.text-justify
                 | {{ description | parse-text }}
             br
           slot(name="additional-content")
@@ -82,26 +82,15 @@
           br
           template(v-if="descriptions.length")
             template(v-for="description in descriptions")
-              p(v-if="typeof(description) === 'string'").font-16.mt-3.font-gray.text-justify {{ description }}
+              p(v-if="typeof(description) === 'string'" :class="panelDescriptionClasses").mt-3.text-justify {{ description }}
               p(
                 v-else-if="typeof(description) === 'object'"
-                :class="{'pre-white-space': $isRegularScreen }"
-              ).font-16.mt-3.font-gray.text-justify
+                :class="[{'pre-white-space': $isRegularScreen }, ...panelDescriptionClasses]"
+              ).mt-3.text-justify
                 | {{ description | parse-text }}
             br
           slot(name="additional-content")
-      //- ** DO NOT DELETE THIS YET **
-      //- Mobile Image
-      //- picture-source(
-      //-   v-if="$isMobile && !hideImageMobile"
-      //-   :customPath="customImagePath"
-      //-   :extensionExclusive="extensionExclusive"
-      //-   :image="mobileImage || webImage"
-      //-   :imageAlt="imageAltValue"
-      //-   :imageFileExtension="mobileFileExtension || fileExtension"
-      //-   :imageWidth="mobileImageWidth"
-      //-   :class="mobileImageClass"
-      //- )
+
     //- CENTER VIEW
     v-row(v-else justify="center").py-10
       v-col(cols="12" md="10" :class="{'text-center': !$isMobile}")
@@ -126,11 +115,11 @@
         br
         template(v-if="descriptions.length")
           template(v-for="description in descriptions")
-            p(v-if="typeof(description) === 'string'").font-16.mt-3.font-gray.text-center {{ description }}
+            p(v-if="typeof(description) === 'string'" :class="panelDescriptionClasses").mt-3.text-center {{ description }}
             p(
               v-else-if="typeof(description) === 'object'"
-              :class="{'pre-white-space': $isRegularScreen }"
-            ).font-16.mt-3.font-gray.text-center
+              :class="[{'pre-white-space': $isRegularScreen }, ...panelDescriptionClasses]"
+            ).mt-3.text-center
               | {{ description | parse-text }}
           br
         slot(name="additional-content")
@@ -257,12 +246,28 @@ export default {
       default: () => ([]),
     },
     /**
+     * Description classes
+     * @type {String []}
+     */
+    descriptionClasses: {
+      type: Array,
+      default: () => ([]),
+    },
+    /**
      * Panel header
      * @type {String}
      */
     header: {
       type: [String, Object],
       default: '',
+    },
+    /**
+     * Header classes
+     * @type {String []}
+     */
+    headerClasses: {
+      type: Array,
+      default: () => ([]),
     },
     /**
      * Panel sub-header
@@ -374,7 +379,13 @@ export default {
     },
     panelHeaderClasses () {
       const defaultClasses = ['font-30', 'lh-title', 'pb-3', 'font-weight-light'];
-      return defaultClasses;
+      if (!this.headerClasses.length) return defaultClasses;
+      return this.headerClasses;
+    },
+    panelDescriptionClasses () {
+      const defaultClasses = ['font-16, font-gray'];
+      if (!this.descriptionClasses.length) return defaultClasses;
+      return this.descriptionClasses;
     },
   },
 };
