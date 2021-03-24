@@ -3,7 +3,7 @@
     v-row(justify="center")
       v-col(cols="12" md="6").text-center
         strong.font-xs.primary--text Why MYCURE?
-        h1.font-l Think Long-Term
+        h1(:class="panelHeaderClasses") Think Long-Term
     v-row(v-if="extended" justify="center")
       //- TODO: Loop
       v-col(
@@ -17,9 +17,11 @@
             h2(:class="headerClasses").lh-title {{ item.header }}
             br
             p(:class="descriptionClasses").font-open-sans.lh-title {{ item.description }}
-    v-row(v-else justify="center")
-      v-col(cols="12" md="8").text-center
-        p.font-xs.grey--text.font-open-sans MYCURE is not just an app! It’s a platform built for the healthcare ecosystem. As your practice grows, your tech solution needs grows as well, which is a great thing! Finding these added solutions will be much easier since they would most likely be available with MYCURE platform. Not only that, MYCURE has open APIs so you can integrate it with your other systems giving you more flexibility.
+    v-row(v-else justify="center").grey--text.font-open-sans
+      v-col(cols="12" md="6")
+        p(:class="descriptionClasses") MYCURE is not just an app! It’s a platform built for the healthcare ecosystem. As your practice grows, your tech solution needs grows as well, which is a great thing!
+      v-col(cols="12" md="6")
+        p(:class="descriptionClasses") Finding these added solutions will be much easier since they would most likely be available with MYCURE platform. Not only that, MYCURE has open APIs so you can integrate it with your other systems giving you more flexibility.
 </template>
 
 <script>
@@ -45,6 +47,12 @@ export default {
     return {};
   },
   computed: {
+    panelHeaderClasses () {
+      return classBinder(this, {
+        mobile: ['font-m'],
+        regular: ['font-l'],
+      });
+    },
     headerClasses () {
       return classBinder(this, {
         mobile: ['font-s'],

@@ -4,7 +4,7 @@
       justify="center"
       align="center"
       no-gutters
-      :style="{ height: $isMobile ? '400px' : '620px' }"
+      :style="{ height: $isMobile ? '400px' : '650px' }"
     )
       v-col(cols="8" md="5" :class="{ 'order-last' : !$isMobile }")
         //- v-img(

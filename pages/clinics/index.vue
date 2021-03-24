@@ -17,26 +17,28 @@
       title="Customized for Your Specialty"
       description="MYCURE has already built in workflows and processes for different setups."
       :items="features"
-    )
+    ).mt-10
     //- 4th panel
     generic-media-panel(
       content-align-right
-      cols-left="5"
-      cols-right="4"
-      offset-cols-right="1"
+      cols-left="7"
+      cols-right="5"
       :header="infoPanels[0].header"
       :descriptions="infoPanels[0].descriptions"
+      :header-classes="headerClasses"
+      :descriptionClasses="descriptionClasses"
     )
     //- 5th panel
     mycure-csi
     //- 6th panel
     generic-media-panel(
       content-align-right
-      cols-left="5"
-      cols-right="4"
-      offset-cols-right="1"
+      cols-left="7"
+      cols-right="5"
       :header="infoPanels[1].header"
       :descriptions="infoPanels[1].descriptions"
+      :header-classes="headerClasses"
+      :descriptionClasses="descriptionClasses"
     )
     //- 7th panel
     think-long-term
@@ -44,6 +46,7 @@
 
 <script>
 // - utils
+import classBinder from '~/utils/class-binder';
 import headMeta from '~/utils/head-meta';
 // - components
 import Features from '~/components/commons/Features';
@@ -97,6 +100,29 @@ export default {
     return {
       loading: true,
     };
+  },
+  computed: {
+    headerClasses () {
+      const headerClasses = [
+        classBinder(this, {
+          mobile: ['font-m'],
+          regular: ['font-l'],
+        }),
+        'lh-title',
+      ];
+      return headerClasses;
+    },
+    descriptionClasses () {
+      const descriptionClasses = [
+        classBinder(this, {
+          mobile: ['font-xs'],
+          regular: ['font-s'],
+        }),
+        'font-open-sans',
+        'font-gray',
+      ];
+      return descriptionClasses;
+    },
   },
   mounted () {
     this.loading = false;
