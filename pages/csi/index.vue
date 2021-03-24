@@ -6,6 +6,8 @@
       meta-title="MYCURE CSI"
       description="Using MYCURE adds more of these to your operations giving you more protection and flexibiity."
     )
+    //- 2nd panel
+    protect
     //- 3rd panel
     features(
       title="Integration. Interoperability."
@@ -34,6 +36,7 @@ import headMeta from '~/utils/head-meta';
 import Features from '~/components/commons/Features';
 import GenericMediaPanel from '~/components/commons/generic-media-panel';
 import MycureCsi from '~/components/commons/MycureCsi';
+import Protect from '~/components/csi/Protect';
 import ThinkLongTerm from '~/components/commons/ThinkLongTerm';
 import Usp from '~/components/commons/SevenWondersUsp';
 
@@ -42,6 +45,7 @@ export default {
     Features,
     GenericMediaPanel,
     MycureCsi,
+    Protect,
     ThinkLongTerm,
     Usp,
   },
