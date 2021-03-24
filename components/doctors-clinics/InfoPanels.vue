@@ -3,13 +3,21 @@
     generic-media-panel(
       v-for="(content, key) in contents"
       :key="key"
-      offset-cols-right="1"
       v-bind="getPanelBindings(content)"
     )
+      //- Check list
+      template(slot="additional-content" v-if="content.list")
+        template(v-for="(item, i) in content.list")
+          v-row(:align="i === 2 ? 'center' : 'start'" dense)
+            v-col(cols="1").pr-2.pt-2
+              v-icon(color="black") mdi-arrow-right
+            v-col
+              span(:class="checkListClasses") {{ item }}
 </template>
 
 <script>
 import GenericMediaPanel from '~/components/commons/generic-media-panel';
+import classBinder from '~/utils/class-binder';
 export default {
   components: {
     GenericMediaPanel,
@@ -42,26 +50,60 @@ export default {
         descriptions: [
           'Opt in to MYCURE ONE, a global online directory of modern healthcare practitioners and facilities',
         ],
+        list: [
+          'Patients can easily find you',
+          'Get more organized appointments',
+          'Comes with a Professional Website',
+        ],
         contentAlign: 'right',
       },
     ];
     return {};
   },
+  computed: {
+    checkListClasses () {
+      return [
+        classBinder(this, {
+          mobile: ['font-xs'],
+          regular: ['font-s'],
+        }),
+        'font-open-sans',
+        'font-gray',
+      ];
+    },
+  },
   methods: {
     getPanelBindings (content) {
       const contentLeftBindings = {
         contentAlignLeft: true,
-        colsLeft: 4,
-        colsRight: 5,
+        colsLeft: 5,
+        colsRight: 7,
       };
       const contentRightBindings = {
         contentAlignRight: true,
-        colsLeft: 5,
-        colsRight: 4,
+        colsLeft: 7,
+        colsRight: 5,
       };
+      const headerClasses = [
+        classBinder(this, {
+          mobile: ['font-m'],
+          regular: ['font-l'],
+        }),
+        'lh-title',
+      ];
+      const descriptionClasses = [
+        classBinder(this, {
+          mobile: ['font-xs'],
+          regular: ['font-s'],
+        }),
+        'font-open-sans',
+        'font-gray',
+      ];
       return {
         header: content.header,
         descriptions: content.descriptions,
+        headerClasses,
+        descriptionClasses,
         ...content.contentAlign === 'left' && contentLeftBindings,
         ...content.contentAlign === 'right' && contentRightBindings,
       };

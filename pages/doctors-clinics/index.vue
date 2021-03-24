@@ -4,6 +4,8 @@
     usp(
       title="Bring Out the Hero in You"
       meta-title="MYCURE DOCTOR"
+      parse-title
+      :parse-title-fields="['Hero ']"
       :description="uspDescription"
     )
     //- 2nd panel
@@ -11,15 +13,16 @@
       title="Your Practice. Your Call"
       :description="featuresDescription"
       :items="features"
+      :class="panelMargins"
     )
     //- 3rd to 5th panels
-    info-panels
+    info-panels(:class="panelMargins")
     //- 6th panel
-    mycure-csi
+    mycure-csi(:class="panelMargins")
     //- 7th panel
-    practice-online(@getStarted="getStarted")#group-practice
+    practice-online(:class="panelMargins")#group-practice
     //- 8th panel
-    think-long-term(extended)
+    think-long-term(extended :class="panelMargins")
 </template>
 
 <script>
@@ -67,13 +70,18 @@ export default {
       loading: true,
     };
   },
+  computed: {
+    panelMargins () {
+      return { 'mt-10': this.$isMobile };
+    },
+  },
   mounted () {
     this.loading = false;
   },
   head () {
     return headMeta({
-      title: 'MYCURE for Doctors | Healthcare Practice Online',
-      description: 'Give your patients the quality care they deserve with MYCURE Clinic Management and Telemedicine Solutions.',
+      title: 'MYCURE EMR Practice Management System for Doctors',
+      description: 'MYCURE organizes your daily tasks to make your practice more simple, secure, and efficient.',
       socialBanner: require('~/assets/images/banners/MYCURE Open Graph Images - Doctors Clinic.png'),
     });
   },
