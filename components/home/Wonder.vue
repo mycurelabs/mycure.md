@@ -4,7 +4,7 @@
       h1.font-s {{ wonder.title }}
       p {{ wonder.description }}
     v-card-actions
-      v-btn(text small).text-none
+      v-btn(text small :to="{ name: wonder.infoLink }").text-none
         | Learn More
         v-icon(right small) mdi-chevron-right
       v-spacer
