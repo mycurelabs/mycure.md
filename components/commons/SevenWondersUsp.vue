@@ -42,10 +42,23 @@ export default {
       default: '',
     },
     parseTitle: {
-      type: Boolean,
+      type: [Boolean, String],
       default: false,
     },
     parseTitleFields: {
+      type: Array,
+      default: () => ([]),
+    },
+    /**
+     * Meta title
+     * @type {Boolean | String}
+     * 'mobile | regular | wide'
+     */
+    parseMetaTitle: {
+      type: [Boolean, String],
+      default: false,
+    },
+    parseMetaTitleFields: {
       type: Array,
       default: () => ([]),
     },
@@ -53,11 +66,12 @@ export default {
   computed: {
     // NOTE: For customizations
     uspTitle () {
-      if (!this.parseTitle) return this.title;
+      if (!this.toParse(this.parseTitle)) return this.title;
       return parseTextWithNewLine(this.title, this.parseTitleFields);
     },
     uspMetaTitle () {
-      return this.metaTitle;
+      if (!this.toParse(this.parseMetaTitle)) return this.metaTitle;
+      return parseTextWithNewLine(this.metaTitle, this.parseMetaTitleFields);
     },
     uspDescription () {
       return this.description;
@@ -70,7 +84,7 @@ export default {
       });
       return [
         'mb-8',
-        { 'pre-white-space': this.parseTitle && !this.$isMobile },
+        { 'pre-white-space': this.toParse(this.parseTitle) },
         classes,
       ];
     },
@@ -80,13 +94,30 @@ export default {
         regular: ['font-s'],
         wide: ['font-m'],
       });
-      return ['font-open-sans', classes];
+      return [
+        'font-open-sans',
+        { 'pre-white-space': this.toParse(this.parseMetaTitle) },
+        classes,
+      ];
     },
     descriptionClasses () {
       return classBinder(this, {
         mobile: ['font-xs'],
         regular: ['font-s'],
       });
+    },
+  },
+  methods: {
+    toParse (parseFlag) {
+      if (typeof (parseFlag) === 'string') {
+        switch (parseFlag) {
+          case 'mobile': return this.$isMobile;
+          case 'regular': return this.$isRegularScreen;
+          case 'wide': return this.$isWideScreen;
+          default: return !this.$isMobile;
+        }
+      }
+      return parseFlag && !this.$isMobile;
     },
   },
 };
