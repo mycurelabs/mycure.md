@@ -1,7 +1,7 @@
 <template lang="pug">
   v-container
     //- COLUMN VIEW
-    v-row(v-if="!centerMedia" justify="center").py-10
+    v-row(v-if="!centerMedia" justify="center" :class="{'py-10': !dense , 'py-1': dense}")
       //- Left column
       v-col(:align-self="alignLeftColumn" cols="12" :md="colsLeft" :offset-md="offsetColsLeft")
         picture-source(
@@ -14,6 +14,14 @@
           :imageWidth="webImageWidth"
           :class="webImageClass"
         )
+        v-card(
+          v-else-if="dummy && contentAlignRight && !$isMobile"
+          width="100%"
+          height="450px"
+          color="primary"
+          flat
+        )
+          | &nbsp;
         template(v-if="contentAlignLeft")
           p(v-if="withSubheader" :class="panelSubHeaderclasses") {{ subHeader }}
           h1(v-if="typeof(header) === 'string'" :class="panelHeaderClasses") {{ header }}
@@ -35,6 +43,14 @@
               :imageWidth="mobileImageWidth"
               :class="mobileImageClass"
             )
+            v-card(
+              v-else-if="dummy && !hideImageMobile && $isMobile"
+              width="100%"
+              height="450px"
+              color="primary"
+              flat
+            )
+              | &nbsp;
           br
           template(v-if="descriptions.length")
             template(v-for="description in descriptions")
@@ -58,6 +74,14 @@
           :imageWidth="webImageWidth"
           :class="webImageClass"
         )
+        v-card(
+          v-else-if="dummy && contentAlignLeft && !$isMobile"
+          width="100%"
+          height="450px"
+          color="primary"
+          flat
+        )
+          | &nbsp;
         template(v-if="contentAlignRight")
           p(v-if="withSubheader" :class="panelSubHeaderclasses") {{ subHeader }}
           h1(v-if="typeof(header) === 'string'" :class="panelHeaderClasses") {{ header }}
@@ -79,6 +103,14 @@
               :imageWidth="mobileImageWidth"
               :class="mobileImageClass"
             )
+            v-card(
+              v-else-if="dummy && !hideImageMobile && $isMobile"
+              width="100%"
+              height="450px"
+              color="primary"
+              flat
+            )
+              | &nbsp;
           br
           template(v-if="descriptions.length")
             template(v-for="description in descriptions")
@@ -112,6 +144,14 @@
           :imageWidth="mobileImageWidth"
           :class="mobileImageClass"
         )
+        v-card(
+          v-else-if="dummy && !hideImageMobile && $isMobile"
+          width="100%"
+          height="450px"
+          color="primary"
+          flat
+        )
+          | &nbsp;
         br
         template(v-if="descriptions.length")
           template(v-for="description in descriptions")
@@ -133,6 +173,14 @@
           :imageWidth="webImageWidth"
           :class="webImageClass"
         )
+        v-card(
+          v-else-if="dummy && !$isMobile"
+          width="100%"
+          height="450px"
+          color="primary"
+          flat
+        )
+          | &nbsp;
 </template>
 
 <script>
@@ -238,6 +286,14 @@ export default {
       default: '',
     },
     /**
+     * Reduce spacing of panel
+     * @type {Boolean}
+     */
+    dense: {
+      type: Boolean,
+      default: false,
+    },
+    /**
      * Content paragraphs
      * @type {string []}
      */
@@ -252,6 +308,14 @@ export default {
     descriptionClasses: {
       type: Array,
       default: () => ([]),
+    },
+    /**
+     * Adds a dummy image
+     * @type {Boolean}
+     */
+    dummy: {
+      type: Boolean,
+      default: false,
     },
     /**
      * Panel header

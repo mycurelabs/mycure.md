@@ -24,6 +24,8 @@
       :descriptions="panel.descriptions"
       :header-classes="headerClasses"
       :descriptionClasses="descriptionClasses"
+      :dense="$isMobile"
+      dummy
     )
     //- 5th panel
     mycure-csi
@@ -39,19 +41,23 @@
     think-long-term(extended)
     //- 9th panel
     generic-media-panel(
-      center-media
+      :center-media="!$isMobile"
+      :content-align-left="$isMobile"
       :header="ninthPanel.header"
       :header-classes="headerClasses"
       :descriptions="ninthPanel.descriptions"
       :descriptionClasses="descriptionClasses"
+      :dense="$isMobile"
     )
     //- 10th panel
     generic-media-panel(
-      center-media
+      :center-media="!$isMobile"
+      :content-align-left="$isMobile"
       header="Take the first step today"
       :header-classes="headerClasses"
       :descriptions="['Start now and get all your questions answered.']"
       :descriptionClasses="descriptionClasses"
+      :dense="$isMobile"
     )
 </template>
 
