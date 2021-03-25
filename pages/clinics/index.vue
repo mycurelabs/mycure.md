@@ -2,46 +2,55 @@
   div(v-if="!loading").white
     //- 1st panel
     usp(
-      title="The Most Complete Clinic Management System"
-      meta-title="MYCURE CLINIC"
-      description="Designed for small to large sized modern clinics with complex operations. This platform makes your clinic much more efficient, increases revenue and builds more patient loyalty."
+      title="Simplified workflows, faster results, better performance."
+      meta-title="MYCURE Most Complete Clinic Management System"
+      description="Designed for modern clinics with complex operations. Large or small, MYCURE enables clinics to be much more efficient, increase in revenue, and build more patient loyalty."
     )
     //- 2nd panel
     features(
-      title="Covers every step of your patient journey."
-      description="MYCURE provides the right tools making your patient experience flawless from booking to consults to billing."
-      :items="features"
+      title="Why do clinics switch to MYCURE?"
+      description="MYCURE integrates critical clinic operations into a clean, simple interface to make record management much easier for everyone. Say goodbye to multiple, complicated systems."
     )
-    //- 3rd panel
-    features(
-      title="Customized for Your Specialty"
-      description="MYCURE has already built in workflows and processes for different setups."
-      :items="features"
-    ).mt-10
-    //- 4th panel
+    //- 3rd to 4th panel
     generic-media-panel(
+      v-for="(panel, key) in infoPanels"
+      :key="key"
       content-align-right
-      cols-left="7"
-      cols-right="5"
-      :header="infoPanels[0].header"
-      :descriptions="infoPanels[0].descriptions"
+      cols-left="6"
+      cols-right="6"
+      :header="panel.header"
+      :descriptions="panel.descriptions"
       :header-classes="headerClasses"
       :descriptionClasses="descriptionClasses"
     )
     //- 5th panel
     mycure-csi
     //- 6th panel
+    multiple-branches
+    //- 7th panel
+    features(
+      title="Customized for Your Specialty"
+      description="MYCURE has already built in workflows and processes for different setups."
+      :items="features"
+    ).mt-10
+    //- 8th panel
+    think-long-term(extended)
+    //- 9th panel
     generic-media-panel(
-      content-align-right
-      cols-left="7"
-      cols-right="5"
-      :header="infoPanels[1].header"
-      :descriptions="infoPanels[1].descriptions"
+      center-media
+      :header="ninthPanel.header"
       :header-classes="headerClasses"
+      :descriptions="ninthPanel.descriptions"
       :descriptionClasses="descriptionClasses"
     )
-    //- 7th panel
-    think-long-term
+    //- 10th panel
+    generic-media-panel(
+      center-media
+      header="Take the first step today"
+      :header-classes="headerClasses"
+      :descriptions="['Start now and get all your questions answered.']"
+      :descriptionClasses="descriptionClasses"
+    )
 </template>
 
 <script>
@@ -51,6 +60,7 @@ import headMeta from '~/utils/head-meta';
 // - components
 import Features from '~/components/commons/Features';
 import GenericMediaPanel from '~/components/commons/generic-media-panel';
+import MultipleBranches from '~/components/enterprise/multiple-branches';
 import MycureCsi from '~/components/commons/MycureCsi';
 import ThinkLongTerm from '~/components/commons/ThinkLongTerm';
 import Usp from '~/components/commons/SevenWondersUsp';
@@ -59,44 +69,56 @@ export default {
   components: {
     Features,
     GenericMediaPanel,
+    MultipleBranches,
     MycureCsi,
     ThinkLongTerm,
     Usp,
   },
   data () {
-    // - TODO: Update info
     this.features = [
       {
-        title: 'Digital Records',
+        title: 'Multispecialty',
       },
       {
-        title: 'Telehealth',
+        title: 'Skin & Aesthetics',
       },
       {
-        title: 'Daily Reports',
+        title: 'Maternity Care',
       },
       {
-        title: 'Professional Website',
+        title: 'Pediatric Care',
       },
       {
-        title: 'Appointment Booking',
+        title: 'Dentistry',
+      },
+      {
+        title: 'Diagnostics',
+      },
+      {
+        title: 'Corporate',
       },
     ];
     this.infoPanels = [
       {
-        header: 'Expand your Reach',
+        header: 'Internet connection won’t be a problem',
         descriptions: [
-          'Using MYCURE allows you to be part of MYCURE ONE, a global online directory of modern healthcare practitioners and facilities so patients can easily find you and book an appointment.',
-          'Your profile in MYCURE ONE links to your professional website that is likewise provided to you by MYCURE.',
+          'With MYCURE Syncbase, work as if you have an in-house server with the convenience of the cloud. Create your medical records locally using multiple devices even if the internet is down! Once back online, it instantly syncs your data into the cloud.',
         ],
       },
       {
-        header: 'Worrying about upgrading your system? We got you covered!',
+        header: 'Expand your Reach',
         descriptions: [
-          'We understand that it may be difficult to change what you’re used to doing. That’s why we have happiness agents that would give you the right guidance when you sign up for MYCURE.',
+          'Join MYCURE ONE, a global online directory of modern healthcare facilities so patients can easily find and book an appointment with you anytime.',
         ],
       },
     ];
+    this.ninthPanel = {
+      header: 'Let us do the work for you',
+      descriptions: [
+        'Worrying about upgrading your system? We got you covered.',
+        'We know it’s challenging to shift your entire operations into a new system. Our lean implementation process ensures that you get what you need—customized forms, optimized workflows, and well-trained staff. Our experts are here to guide you from training to winning.',
+      ],
+    };
     return {
       loading: true,
     };
@@ -130,7 +152,7 @@ export default {
   head () {
     // - TODO: Update
     return headMeta({
-      title: 'MYCURE CLINIC',
+      title: 'MYCURE Clinic Management System',
       description: 'MYCURE helps you bring in more patients using a powerful healthcare service booking and management software. It’s free, secure, and easy to use.',
       socialBanner: require('~/assets/images/banners/MYCURE Open Graph-Providers.jpg'),
     });
