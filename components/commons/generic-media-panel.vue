@@ -15,7 +15,7 @@
           :class="webImageClass"
         )
         template(v-if="contentAlignLeft")
-          p(:v-show="withSubheader" :class="subHeaderClass").font-16.primary--text {{ subHeader }}
+          p(v-if="withSubheader" :class="panelSubHeaderclasses") {{ subHeader }}
           h1(v-if="typeof(header) === 'string'" :class="panelHeaderClasses") {{ header }}
           h1(
             v-else-if="typeof(header) === 'object'"
@@ -59,7 +59,7 @@
           :class="webImageClass"
         )
         template(v-if="contentAlignRight")
-          p(:v-show="withSubheader" :class="subHeaderClass").font-16.primary--text {{ subHeader }}
+          p(v-if="withSubheader" :class="panelSubHeaderclasses") {{ subHeader }}
           h1(v-if="typeof(header) === 'string'" :class="panelHeaderClasses") {{ header }}
           h1(
             v-else-if="typeof(header) === 'object'"
@@ -94,7 +94,7 @@
     //- CENTER VIEW
     v-row(v-else justify="center").py-10
       v-col(cols="12" md="10" :class="{'text-center': !$isMobile}")
-        p(:v-show="withSubheader" :class="subHeaderClass").font-16.primary--text {{ subHeader }}
+        p(v-if="withSubheader" :class="panelSubHeaderclasses") {{ subHeader }}
         h1(v-if="typeof(header) === 'string'" :class="panelHeaderClasses") {{ header }}
         h1(
           v-else-if="typeof(header) === 'object'"
@@ -278,7 +278,15 @@ export default {
       default: '',
     },
     /**
-     * Panel sub-header state
+     * Sub header classes
+     * @type {String []}
+     */
+    subHeaderClasses: {
+      type: Array,
+      default: () => ([]),
+    },
+    /**
+     * Panel sub-header visibility
      * @type {Boolean}
      */
     withSubheader: {
@@ -374,8 +382,12 @@ export default {
       }
       return 'mycure-media-image';
     },
-    subHeaderClass () {
-      return [{ 'mb-n1': !this.withSubheader }];
+    panelSubHeaderclasses () {
+      const subHeaderClasses = this.subHeaderClasses.length ? this.subHeaderClasses : ['font-16', 'primary--text'];
+      return [
+        { 'mb-n1': !this.withSubheader },
+        ...subHeaderClasses,
+      ];
     },
     panelHeaderClasses () {
       const defaultClasses = ['font-30', 'lh-title', 'pb-3', 'font-weight-light'];
