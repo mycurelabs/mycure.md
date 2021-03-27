@@ -232,6 +232,7 @@ import {
 } from '~/utils/text-field-rules';
 export default {
   layout: 'user',
+  middleware: ['typeform-signup'],
   data () {
     // TEXT FIELD RULES
     this.isRequired = requiredRule;
