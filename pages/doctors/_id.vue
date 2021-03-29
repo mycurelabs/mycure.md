@@ -153,6 +153,14 @@ export default {
         createdBy: this.doctor?.id,
         $limit: this.clinicsLimit,
         $skip: skip,
+        $populate: {
+          doctorSchedules: {
+            service: 'schedule-slots',
+            method: 'find',
+            localKey: 'createdBy',
+            foreignKey: 'account',
+          },
+        },
       });
 
       this.clinicsTotal = total;
