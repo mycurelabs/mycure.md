@@ -1,6 +1,8 @@
 {
-  "name": "web-nuxt-setup",
+  "name": "web-main",
   "version": "1.0.0",
+  "description": "MYCURE Main Website",
+  "author": "Jofferson R. Tiquez & Marc Almond Valleza",
   "private": true,
   "scripts": {
     "dev": "nuxt",
