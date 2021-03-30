@@ -35,18 +35,22 @@
             )
       v-row
         v-col(cols="12")
-          v-col(
-            v-for="(material, key) in filteredMaterials"
-            :key="key"
-            cols="12"
-            md="4"
-          ).grow.material-container
-            v-card.pa-4
-              h3.my-2 {{ material.title }}
-              p.my-2 {{ material.description }}
-              i.primary--text.font-12(v-if="material.category") {{ material.category }}
-              div.my-2.text-center
-                a(@click="openFile(material)").primary--text.font-weight-bold View
+          v-row(align="stretch")
+            v-col(
+              v-for="(material, key) in filteredMaterials"
+              :key="key"
+              cols="12"
+              md="4"
+            ).material-container
+              v-card(height="100%").px-4
+                v-card-text
+                  h3.my-2 {{ material.title }}
+                  p.my-2 {{ material.description }}
+                  i.primary--text.font-12(v-if="material.category") {{ material.category }}
+                v-card-actions
+                  v-spacer
+                  a(@click="openFile(material)").primary--text.font-weight-bold View
+                  v-spacer
     template(v-else)
       h4 This section is empty.
 </template>

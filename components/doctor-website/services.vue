@@ -16,7 +16,7 @@
               cols="12"
               sm="12"
               md="4"
-            ).pa-1
+            ).py-0
               media(image-position="left")
                 template(slot="media-image")
                   img(src="../../assets/images/mycure-check.png" width="25px")

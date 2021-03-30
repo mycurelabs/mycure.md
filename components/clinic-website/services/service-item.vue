@@ -83,7 +83,6 @@
           :disabled="!isAvailable"
           :href="bookTeleconsultURL"
         ).text-none Book a Visit
-
     //- Schedule dialog
     v-dialog(v-model="scheduleExpanded" width="1000")
       v-toolbar(flat)

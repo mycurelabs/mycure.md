@@ -21,13 +21,13 @@
       :doctors="doctors"
       :serverItemsLength="doctorsTableTotalItems"
       @paginate="doctorsTablePaginate"
-    )
+    )#doctors-table
     sign-me-up(:signUpInfo="signMeUp")
     about-clinic(:about="aboutInfo")
     v-divider
     social(:social="socialItem")
     v-divider
-    cta
+    cta(@book="onBook")
     v-divider
     v-footer(
       height="auto"
@@ -149,6 +149,9 @@ export default {
       this.searchSpecialties = filters;
       VueScrollTo.scrollTo('#search-control-container', 500, { easing: 'ease', offset: -70 });
       this.isLoading = false;
+    },
+    onBook () {
+      VueScrollTo.scrollTo('#doctors-table', 500, { easing: 'ease', offset: -70 });
     },
   },
   head () {

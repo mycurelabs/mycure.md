@@ -247,6 +247,7 @@ export const signupFacility = async (opts) => {
           firstName: opts.firstName,
           lastName: opts.lastName,
         },
+        doc_PRCLicenseNo: opts.doc_PRCLicenseNo,
         mobileNo: `+${opts.countryCallingCode}${opts.mobileNo}`,
       },
       organization: {

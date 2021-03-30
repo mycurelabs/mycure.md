@@ -10,14 +10,19 @@
       v-row
         v-col(cols="12").pt-0
           h3(style="margin-top: -5px") {{ clinic.name }}
-        v-col(cols="12" md="7" lg="8").pt-5
+        v-col(cols="12" md="7").pt-5
           h4 About this Clinic
           p(v-if="description") {{ description }}
           i(v-else) No description available
-        v-col(cols="12" md="5" lg="4")
+        v-col(cols="12" md="5")
           div(v-if="clinic.address").d-flex
-            v-icon(color="primary").mr-2.mb-auto mdi-map-marker
+            v-icon(color="error").mr-2.mb-auto mdi-map-marker
             p.font-weight-600 {{ clinic.address | prettify-address }}
+          div(v-if="phone").d-flex.pt-3
+            v-icon(color="success").mr-2.mb-auto mdi-phone
+            span.font-weight-600 +{{ phone }}
+            br
+            | {{ email }}
           template(v-if="clinicSchedules && clinicSchedules.length === 0")
             div(:class="{ 'justify-center' : $isMobile}").d-flex
               v-icon(color="primary").mr-2.mb-auto mdi-calendar-today
@@ -26,24 +31,21 @@
             v-icon(color="primary").mr-2.mb-auto mdi-calendar-today
             table
               tr(v-for="sched in clinicSchedules").font-weight-600
-                td(width="40") #[b {{sched.day | morph-capitalize}}]
-                td {{sched.opening | morph-date-format('hh:mm A')}}
+                td(width="40") #[b.text-capitalize {{ formatDay(sched.day) }}]
+                td {{sched.startTime | morph-date-format('hh:mm A')}}
                 td -
-                td {{sched.closing | morph-date-format('hh:mm A')}}
+                td {{sched.endTime | morph-date-format('hh:mm A')}}
               tr(v-if="fullSchedules.length > 3")
                 td(colspan="4")
                   a(@click="clinicSchedulesExpanded = !clinicSchedulesExpanded") View {{clinicSchedulesExpanded ? 'less' : 'more'}}
-          div(v-if="phone").d-flex.pt-3
-            v-icon(color="primary").mr-2.mb-auto mdi-phone
-            span.font-weight-600 +{{ phone }}
-            br
-            | {{ email }}
           v-btn(
             color="success"
             target="_blank"
             rel="noopener noreferrer"
             rounded
             block
+            :disabled="!canBook"
+            :href="bookURL"
           ).my-4 #[b Book Appointment]
           v-btn(
             color="success"
@@ -52,12 +54,15 @@
             outlined
             rounded
             block
+            :disabled="!canBook"
+            :href="bookURL"
           ) #[b Book a Visit]
 </template>
 
 <script>
 // - components
 import BookAppointmentBtn from '~/components/commons/book-appointment-btn';
+import { formatAddress } from '~/utils/formats';
 
 export default {
   components: {
@@ -66,22 +71,22 @@ export default {
   filters: {
     prettifyAddress (address) {
       if (!address) {
-        return '';
+        return 'No address available';
       }
-      const formattedArray = [
-        address.street1,
-        address.street2,
-        address.city,
-        address.province,
-        address.country,
-      ].filter(Boolean).join(', ');
-      return formattedArray;
+      if (address?.formattedString) {
+        return address.formattedString;
+      }
+      return formatAddress(address, 'street1, street2, city, province, region, country');
     },
   },
   props: {
     clinic: {
       type: Object,
       default: () => ({}),
+    },
+    doctorId: {
+      type: String,
+      default: null,
     },
   },
   data () {
@@ -117,7 +122,7 @@ export default {
         dayName: 'Saturday',
       },
       {
-        order: 7,
+        order: 0,
         day: 'sun',
         dayName: 'Sunday',
       },
@@ -136,6 +141,16 @@ export default {
     };
   },
   computed: {
+    canBook () {
+      return this.clinicId && this.doctorId;
+    },
+    bookURL () {
+      const pxPortalUrl = process.env.PX_PORTAL_URL;
+      return `${pxPortalUrl}/appointments/step-1?doctor=${this.doctorId}&organization=${this.clinicId}`;
+    },
+    clinicId () {
+      return this.clinic?.id;
+    },
     clinicPicURL () {
       return this.clinic?.picURL || require('~/assets/images/doctor-website/doctor-website-profile-clinic.png');
     },
@@ -152,16 +167,18 @@ export default {
   watch: {
     clinicSchedulesExpanded (val) {
       // Sort the schedules
-      this.fullSchedules = this.clinic?.mf_schedule || []; // eslint-disable-line
+      this.fullSchedules = this.clinic?.$populated?.doctorSchedules || []; // eslint-disable-line
+      if (!this.fullSchedules?.length) this.clinicSchedules = [];
       const groupedSchedules = this.fullSchedules
+        .filter(schedule => schedule.organization === this.clinic.id)
         .map((schedule) => {
-          const { order } = this.days.find(day => day.day === schedule.day);
+          const { day } = this.days.find(day => day.order === schedule.day);
           return {
-            order,
+            day,
             ...schedule,
           };
         })
-        .sort((a, b) => a.day !== b.day ? a.order - b.order : a.opening - b.opening) || [];
+        .sort((a, b) => a.day !== b.day ? a.day - b.day : a.startTime - b.startTime) || [];
       if (!val && groupedSchedules && groupedSchedules.length >= 3) {
         this.clinicSchedules = groupedSchedules.slice(0, 3);
         return;
@@ -177,6 +194,9 @@ export default {
       if (process.browser) {
         window.location.href = url;
       }
+    },
+    formatDay (scheduleDay) {
+      return this.days.find(day => day.order === scheduleDay).day;
     },
   },
 };
