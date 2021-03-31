@@ -23,6 +23,12 @@
 
 <script>
 export default {
+  filters: {
+    formatSchool (educ) {
+      if (!educ.degree) return educ.school;
+      return `${educ.degree} - ${educ.school}`;
+    },
+  },
   props: {
     specialties: {
       type: Array,

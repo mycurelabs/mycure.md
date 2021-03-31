@@ -31,10 +31,10 @@
             v-icon(color="primary").mr-2.mb-auto mdi-calendar-today
             table
               tr(v-for="sched in clinicSchedules").font-weight-600
-                td(width="40") #[b {{sched.day | morph-capitalize}}]
-                td {{sched.opening | morph-date-format('hh:mm A')}}
+                td(width="40") #[b.text-capitalize {{ formatDay(sched.day) }}]
+                td {{sched.startTime | morph-date-format('hh:mm A')}}
                 td -
-                td {{sched.closing | morph-date-format('hh:mm A')}}
+                td {{sched.endTime | morph-date-format('hh:mm A')}}
               tr(v-if="fullSchedules.length > 3")
                 td(colspan="4")
                   a(@click="clinicSchedulesExpanded = !clinicSchedulesExpanded") View {{clinicSchedulesExpanded ? 'less' : 'more'}}
@@ -122,7 +122,7 @@ export default {
         dayName: 'Saturday',
       },
       {
-        order: 7,
+        order: 0,
         day: 'sun',
         dayName: 'Sunday',
       },
@@ -167,16 +167,18 @@ export default {
   watch: {
     clinicSchedulesExpanded (val) {
       // Sort the schedules
-      this.fullSchedules = this.clinic?.mf_schedule || []; // eslint-disable-line
+      this.fullSchedules = this.clinic?.$populated?.doctorSchedules || []; // eslint-disable-line
+      if (!this.fullSchedules?.length) this.clinicSchedules = [];
       const groupedSchedules = this.fullSchedules
+        .filter(schedule => schedule.organization === this.clinic.id)
         .map((schedule) => {
-          const { order } = this.days.find(day => day.day === schedule.day);
+          const { day } = this.days.find(day => day.order === schedule.day);
           return {
-            order,
+            day,
             ...schedule,
           };
         })
-        .sort((a, b) => a.day !== b.day ? a.order - b.order : a.opening - b.opening) || [];
+        .sort((a, b) => a.day !== b.day ? a.day - b.day : a.startTime - b.startTime) || [];
       if (!val && groupedSchedules && groupedSchedules.length >= 3) {
         this.clinicSchedules = groupedSchedules.slice(0, 3);
         return;
@@ -192,6 +194,9 @@ export default {
       if (process.browser) {
         window.location.href = url;
       }
+    },
+    formatDay (scheduleDay) {
+      return this.days.find(day => day.order === scheduleDay).day;
     },
   },
 };
