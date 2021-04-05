@@ -9,7 +9,7 @@
     v-row(justify="center" align="center")
       v-col(cols="12" md="7" justify="center" align="center")
         img(
-          src="~/assets/images/sign-up-individual-step-1/mycure-sso-sign-in-logo.svg"
+          src="~/assets/images/sign-up/mycure-sso-sign-in-logo.svg"
           alt="MYCURE logo"
           :width="$isMobile ? '50' : '70'"
           :class="{ 'mb-5': !$isMobile }"
