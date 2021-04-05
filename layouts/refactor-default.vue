@@ -44,11 +44,8 @@ export default {
   font-family: 'Open Sans', 'sans-serif' !important;
 }
 /* Font Sizes */
-.font-2xl {
-  font-size: 64px !important;
-}
 .font-xl {
-  font-size: 56px !important;
+  font-size: 64px !important;
 }
 .font-l {
   font-size: 48px !important;
