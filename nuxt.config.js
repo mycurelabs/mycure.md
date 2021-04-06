@@ -70,6 +70,7 @@ export default {
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
     '@nuxtjs/dotenv',
+    'nuxt-webfontloader',
   ],
   webfontloader: {
     google: {
@@ -93,27 +94,25 @@ export default {
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
   vuetify: {
     customVariables: ['~/assets/variables.scss'],
-    frameworkOptions: {
-      theme: {
-        themes: {
-          light: {
-            primary: '#04B1E7',
-            accent: '#7fad33',
-            secondary: '#424242',
-            info: '#2196F3',
-            warning: '#FFC107',
-            error: '#f75a5f',
-            success: '#7fad33',
-          },
-          dark: {
-            primary: '#04B1E7',
-            accent: '#7fad33',
-            secondary: '#424242',
-            info: '#2196F3',
-            warning: '#FFC107',
-            error: '#f75a5f',
-            success: '#7fad33',
-          },
+    theme: {
+      themes: {
+        light: {
+          primary: '#04B1E7',
+          accent: '#7fad33',
+          secondary: '#424242',
+          info: '#2196F3',
+          warning: '#FFC107',
+          error: '#f75a5f',
+          success: '#7fad33',
+        },
+        dark: {
+          primary: '#04B1E7',
+          accent: '#7fad33',
+          secondary: '#424242',
+          info: '#2196F3',
+          warning: '#FFC107',
+          error: '#f75a5f',
+          success: '#7fad33',
         },
       },
     },
