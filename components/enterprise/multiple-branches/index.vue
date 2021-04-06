@@ -3,7 +3,7 @@
     align-right-column="center"
     cols-left="6"
     cols-right="6"
-    custom-image-path="enterprise/"
+    custom-image-path="clinics/"
     file-extension=".webp"
     web-image-width="100%"
     mobile-image-width="95%"
