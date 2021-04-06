@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-card(flat color="#fafafa" height="100%").orgs-card
+  v-card(flat color="#f0f0f0" height="100%").orgs-card
     v-card-text.py-0.pl-0
       div.d-flex
         v-col.shrink
