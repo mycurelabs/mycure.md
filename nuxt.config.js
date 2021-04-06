@@ -43,6 +43,7 @@ export default {
     '~/plugins/main.js',
     '~/plugins/vue-fragment.js',
     '~/plugins/vue-media-query-mixin.js',
+    { src: '~plugins/vue-cookie-law', mode: 'client' },
     { src: '~/plugins/vue-carousel.js', mode: 'client' },
     { src: '~plugins/crisp.js', mode: 'client' },
     { src: '~/plugins/vue-social-sharing.js', mode: 'client' },
