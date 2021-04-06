@@ -8,7 +8,7 @@
           :class="{'toolbar-shadow': !$isMobile }"
         ).toolbar
           v-row.search-container.d-flex.mt-5.ml-1
-            v-col.grow.search-fields.mt-2
+            v-col.grow.search-fields
               v-toolbar-title.font-14.ml-4.text-left.font-weight-bold Facility
                 v-text-field(
                   v-if="!showSuggestions || $isMobile"
@@ -43,7 +43,7 @@
 
             template(v-if="!$isMobile")
               v-divider(inset vertical).mt-5.mb-10
-              v-col(cols="4" md="4").search-fields.mt-2
+              v-col(cols="4" md="4").search-fields
                 v-toolbar-title.font-14.ml-4.text-left.font-weight-bold Location
                   v-autocomplete(
                     placeholder="Municipality"
@@ -56,7 +56,7 @@
                     :items="cities"
                     @keyup.enter="searchFacility"
                   ).font-14.font-weight-regular
-              v-col(cols="1").mt-2
+              v-col(cols="1")
                 v-btn(
                   fab
                   color="primary"
