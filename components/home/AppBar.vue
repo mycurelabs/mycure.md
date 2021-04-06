@@ -83,7 +83,7 @@ export default {
       return `${process.env.PX_PORTAL_URL}`;
     },
     pxPortalLogIn () {
-      return `${process.env.PX_PORTAL_URL}`;
+      return `${process.env.WEB_MAIN_URL}/signin/?target=${process.env.PX_PORTAL_URL}/dashboard/home`;
     },
     navBarStyle () {
       return 'background-color: ' + this.isServices ? '#FFFFFF !important' : 'background-color: rgb(0 0 0 / 0%) !important';
