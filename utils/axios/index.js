@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { pick } from 'lodash';
 import { handleError } from './error-handler';
 
 // NOTE: Do not remove yet
@@ -95,10 +96,7 @@ export const getMemberOrganizations = async (opts) => {
 
 export const signin = async (opts) => {
   try {
-    const payload = {
-      email: opts.email,
-      password: opts.password,
-    };
+    const payload = pick(opts, 'email', 'password', 'strategy', 'redirectURI', 'code');
     if (opts.otp) { payload.totpToken = opts.otp; }
     const { data } = await axios({
       method: 'post',

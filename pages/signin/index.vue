@@ -40,7 +40,27 @@
             :loading="loading"
             @click="submit"
             large
-          ) Sign in
+          ).mb-5 Sign in
+          template(v-if="facebookLoginOauthURI || googleLoginOauthURI")
+            br
+            span.grey--text or sign in with
+            v-row(justify="center").mt-5
+              v-btn(
+                v-if="googleLoginOauthURI"
+                :href="googleLoginOauthURI"
+                color="primary"
+                large
+              ).text-none.mx-1
+                v-icon.mr-2 mdi-google
+                | Google
+              v-btn(
+                v-if="facebookLoginOauthURI"
+                :href="facebookLoginOauthURI"
+                color="primary"
+                large
+              ).text-none.mx-1
+                v-icon.mr-2 mdi-facebook
+                | Facebook
     v-dialog(v-model="otpDialog" width="400" persistent)
       v-card
         v-toolbar(flat)
@@ -119,6 +139,36 @@ export default {
     },
     checkDevice () {
       return this.$vuetify.breakpoint.smAndDown;
+    },
+    facebookLoginOauthURI () {
+      const clientId = process.env.FACEBOOK_CLIENT_ID;
+      if (!clientId) return;
+      const queryParams = new URLSearchParams({
+        client_id: clientId,
+        redirect_uri: [window.location.href.split('?')[0], 'oauth', 'facebook'].join('/'),
+        scope: 'email',
+        // encode query params
+        state: window.btoa(new URLSearchParams(window.location.search)),
+      }).toString();
+      return 'https://www.facebook.com/v10.0/dialog/oauth?' + queryParams;
+    },
+    googleLoginOauthURI () {
+      const clientId = process.env.GOOGLE_CLIENT_ID;
+      if (!clientId) return;
+      const queryParams = new URLSearchParams({
+        client_id: clientId,
+        redirect_uri: [window.location.href.split('?')[0], 'oauth', 'google'].join('/'),
+        scope: [
+          'https://www.googleapis.com/auth/userinfo.email',
+          'https://www.googleapis.com/auth/userinfo.profile',
+        ].join(' '),
+        response_type: 'code',
+        access_type: 'offline',
+        prompt: 'consent',
+        // encode query params
+        state: window.btoa(new URLSearchParams(window.location.search)),
+      }).toString();
+      return 'https://accounts.google.com/o/oauth2/v2/auth?' + queryParams;
     },
   },
   watch: {
@@ -218,7 +268,6 @@ export default {
   },
 };
 </script>
-
 <style scoped>
 .main-container {
   min-height: 20vh;
