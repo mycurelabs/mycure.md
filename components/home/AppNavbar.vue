@@ -6,7 +6,7 @@
       color="black"
       dark
       elevate-on-scroll
-    )#navbar.border-transparent
+    )
       v-container.pa-0
         v-row(justify="center" align="center" no-gutters)
           v-col.mt-2
