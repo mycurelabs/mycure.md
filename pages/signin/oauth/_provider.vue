@@ -68,7 +68,7 @@ export default {
 
         // add the access token to the query params
         const usp = new URLSearchParams(window.atob(this.queryParams));
-        if (res.accessToken) usp.append('accessToken', res.accessToken);
+        if (res.accessToken) usp.append('token', res.accessToken);
 
         let target = usp.get('target') || process.env.CMS_URL || '';
 
