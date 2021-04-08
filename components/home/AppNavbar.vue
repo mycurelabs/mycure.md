@@ -33,15 +33,17 @@
             //-   :to="{ name: 'pxp' }"
             //- ).text-none.mr-2.font-12 #[b For Patients]
             v-spacer
-            v-btn(
+            mc-btn(
               text
               depressed
               large
+              event-label="login"
             ).text-none.mr-2.font-12 #[b LOG IN]
-            v-btn(
+            mc-btn(
               color="success"
               large
               shaped
+              event-label="signup"
               :to="{name: 'signup-health-facilities'}"
             ).text-none.font-12 #[b SIGN UP]
           v-app-bar-nav-icon(v-else @click.stop="drawer = !drawer")
