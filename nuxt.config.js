@@ -1,5 +1,3 @@
-import colors from 'vuetify/es5/util/colors'
-
 export default {
   env: {
     AMPLITUDE_API_KEY: process.env.AMPLITUDE_API_KEY,
@@ -28,7 +26,7 @@ export default {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
-    ]
+    ],
   },
 
   // Progress bar loader
@@ -50,6 +48,7 @@ export default {
     { src: '~/plugins/vue-morphling.js', mode: 'client' },
     '~/plugins/vue-lazyload.js',
     { src: '~/plugins/mycure.js', mode: 'client' },
+    { src: '~/plugins/mc-btn', mode: 'client' },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -61,6 +60,7 @@ export default {
     '@nuxtjs/eslint-module',
     // https://go.nuxtjs.dev/vuetify
     '@nuxtjs/vuetify',
+    '@nuxtjs/google-analytics',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -75,7 +75,7 @@ export default {
   webfontloader: {
     google: {
       families: [
-        'Poppins:400', 
+        'Poppins:400',
         'Open Sans:300,400',
       ],
     },
@@ -87,8 +87,8 @@ export default {
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {
     manifest: {
-      lang: 'en'
-    }
+      lang: 'en',
+    },
   },
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
@@ -114,6 +114,21 @@ export default {
           error: '#f75a5f',
           success: '#7fad33',
         },
+      },
+    },
+  },
+
+  googleAnalytics: {
+    id: process.env.GA_ID,
+    autoTracking: {
+      screenview: true,
+    },
+  },
+  publicRuntimeConfig: {
+    googleAnalytics: {
+      id: process.env.GA_ID,
+      autoTracking: {
+        screenview: true,
       },
     },
   },
