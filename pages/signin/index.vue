@@ -44,24 +44,78 @@
     v-dialog(v-model="otpDialog" width="400" persistent)
       v-card
         v-toolbar(flat)
-          h2 One-Time Pin
+          h2 Enter 2FA Code
         v-card-text
-          v-form(v-model="otpValid" @submit.prevent="otpValid && submit()")
-            p {{label}}
-            input(
-              v-model="otp"
-              placeholder="Enter One-Time Pin (OTP)"
-              type="text"
-              maxlength="6"
-              autofocus
-              :rules="[v => !!v || 'OTP is required']"
-              :disabled="loading"
-            )#otpField.otp-field.mb-5
-            v-btn(
-              large
-              color="primary"
-              type="submit"
-            ) Submit
+          p {{label}}
+          //- input(
+          //-   v-model="otp"
+          //-   placeholder="Enter One-Time Pin (OTP)"
+          //-   type="text"
+          //-   maxlength="6"
+          //-   autofocus
+          //-   :rules="[v => !!v || 'OTP is required']"
+          //-   :disabled="loading"
+          //- )#otpField.otp-field.mb-5
+          v-row(justify="center")
+            v-flex(xs12 md10)
+              input(
+                v-model="firstDigit"
+                type="number"
+                step="1"
+                max="9"
+                :class="{'night-field': dayOrNight === 'night'}"
+                @keypress="checkNumberInput($event, firstDigit)"
+              )#firstDigit.single-field
+              input(
+                v-model="secondDigit"
+                type="number"
+                step="1"
+                max="9"
+                :class="{'night-field': dayOrNight === 'night'}"
+                v-on:keyup.delete="onDeleteDigit(2)"
+                @keypress="checkNumberInput($event, secondDigit)"
+              )#secondDigit.single-field
+              input(
+                v-model="thirdDigit"
+                type="number"
+                step="1"
+                max="9"
+                :class="{'night-field': dayOrNight === 'night'}"
+                v-on:keyup.delete="onDeleteDigit(3)"
+                @keypress="checkNumberInput($event, thirdDigit)"
+              )#thirdDigit.single-field
+              input(
+                v-model="fourthDigit"
+                type="number"
+                step="1"
+                max="9"
+                :class="{'night-field': dayOrNight === 'night'}"
+                v-on:keyup.delete="onDeleteDigit(4)"
+                @keypress="checkNumberInput($event, fourthDigit)"
+              )#fourthDigit.single-field
+              input(
+                v-model="fifthDigit"
+                type="number"
+                step="1"
+                max="9"
+                :class="{'night-field': dayOrNight === 'night'}"
+                v-on:keyup.delete="onDeleteDigit(5)"
+                @keypress="checkNumberInput($event, fifthDigit)"
+              )#fifthDigit.single-field
+              input(
+                v-model="sixthDigit"
+                type="number"
+                step="1"
+                max="9"
+                :class="{'night-field': dayOrNight === 'night'}"
+                v-on:keyup.delete="onDeleteDigit(6)"
+                @keypress="checkNumberInput($event, sixthDigit)"
+              )#sixthDigit.single-field
+          //- v-btn(
+          //-   large
+          //-   color="primary"
+          //-   type="submit"
+          //- ) Submit
     v-dialog(v-if="checkDevice" v-model="bestUseDialog" width="300" persistent)
       v-card.text-center
         v-card-text.pa-8
@@ -85,12 +139,12 @@ export default {
     this.dayOrNight = dayOrNight();
     return {
       valid: false,
-      otpValid: false,
       pageLoading: true,
       loading: false,
       signInDisabled: false,
       email: '',
       password: '',
+      //
       emailRules: [
         v => !!v || 'Email address is required',
         v => /.+@.+/.test(v) || 'Email address must be valid',
@@ -98,14 +152,22 @@ export default {
       passwordRules: [
         v => !!v || 'Password is required',
       ],
+      //
       target: '',
       error: false,
       errorMsg: '',
       isMFAMobileNoEnabled: false,
       otpDialog: false,
       bestUseDialog: true,
-      otp: '',
+      otp: null,
       errors: [],
+      // OTP Digits
+      firstDigit: null,
+      secondDigit: null,
+      thirdDigit: null,
+      fourthDigit: null,
+      fifthDigit: null,
+      sixthDigit: null,
     };
   },
   computed: {
@@ -125,8 +187,40 @@ export default {
     otpDialog (val) {
       if (val) {
         this.$nextTick(() => {
-          document.getElementById('otpField').focus();
+          document.getElementById('firstDigit').focus();
         });
+      }
+    },
+    firstDigit (val) {
+      if (val?.length === 1) {
+        document.getElementById('secondDigit') && document.getElementById('secondDigit').focus();
+      }
+    },
+    secondDigit (val) {
+      if (val?.length === 1) {
+        document.getElementById('thirdDigit') && document.getElementById('thirdDigit').focus();
+      }
+    },
+    thirdDigit (val) {
+      if (val?.length === 1) {
+        document.getElementById('fourthDigit') && document.getElementById('fourthDigit').focus();
+      }
+    },
+    fourthDigit (val) {
+      if (val?.length === 1) {
+        document.getElementById('fifthDigit') && document.getElementById('fifthDigit').focus();
+      }
+    },
+    fifthDigit (val) {
+      if (val?.length === 1) {
+        document.getElementById('sixthDigit') && document.getElementById('sixthDigit').focus();
+      }
+    },
+    sixthDigit (val) {
+      if (val?.length === 1) {
+        const code = `${this.firstDigit}${this.secondDigit}${this.thirdDigit}${this.fourthDigit}${this.fifthDigit}${val}`;
+        this.otp = code;
+        this.submit();
       }
     },
   },
@@ -208,6 +302,36 @@ export default {
       queries.unshift(`token=${accessToken}`);
       return `${this.target}?${queries.join('&')}`;
     },
+    checkNumberInput (event, value) {
+      if (!/\d/.test(event.key) || value?.length === 1) {
+        return event.preventDefault();
+      };
+      return event;
+    },
+    onDeleteDigit (digit) {
+      if (process.browser) {
+        switch (digit) {
+          case 2:
+            document.getElementById('firstDigit') && document.getElementById('firstDigit').focus();
+            break;
+          case 3:
+            document.getElementById('secondDigit') && document.getElementById('secondDigit').focus();
+            break;
+          case 4:
+            document.getElementById('thirdDigit') && document.getElementById('thirdDigit').focus();
+            break;
+          case 5:
+            document.getElementById('fourthDigit') && document.getElementById('fourthDigit').focus();
+            break;
+          case 6:
+            document.getElementById('fifthDigit') && document.getElementById('fifthDigit').focus();
+            break;
+          default: {
+            break;
+          }
+        }
+      }
+    },
   },
   head () {
     return headMeta({
@@ -223,22 +347,31 @@ export default {
 .main-container {
   min-height: 20vh;
 }
-.otp-field {
+
+.single-field {
+  width: 50px;
   height: 50px;
-  width: 100%;
-  border-bottom: 2px solid grey;
-  font-size: 30px;
-  text-align: center;
-  letter-spacing: 20px;
+  font-size: 20px;
+  background-image: linear-gradient(to left, black 70%, rgba(255, 255, 255, 0) 0%);
+  background-position: bottom;
+  background-size: 90px 2px;
+  border: 0;
+  padding-left: 25px;
 }
 
-.otp-field:focus {
+.single-field:focus {
   outline: none;
 }
 
-.otp-field::placeholder {
-  font-size: 18px;
-  letter-spacing: 1px;
+.night-field {
+  background-image: linear-gradient(to left, white 70%, rgba(255, 255, 255, 0) 0%) !important;
+  color: white;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 .link-to-home:hover {
