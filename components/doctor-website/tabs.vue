@@ -1,7 +1,7 @@
 <template lang="pug">
   v-container
     v-row(v-if="!$isMobile" justify="center")
-      v-col(cols="12" md="10")
+      v-col(cols="12" md="11")
         v-card
           v-tabs(
             v-model="selectedTab"

@@ -11,14 +11,14 @@
       :is-verified="isVerified"
     )
     v-row.mt-8
-      v-col(cols="12" md="2" :class="{ 'order-last pb-12' : $isMobile }")
+      v-col(cols="12" md="3" :class="{ 'order-last pb-12' : $isMobile }")
         professional-info(
           :specialties="specialties"
           :professions="professions"
           :practicing-since="practicingSince"
           :education="education"
         )
-      v-col(cols="12" md="10").pa-0
+      v-col(cols="12" md="9").pa-0
         tabs(
           :clinics="clinics"
           :bio="bio"
