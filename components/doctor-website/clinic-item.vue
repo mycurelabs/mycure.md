@@ -144,7 +144,7 @@ export default {
   },
   computed: {
     canBook () {
-      return this.clinicId && this.doctorId;
+      return this.clinicId && this.doctorId && this.clinicSchedules?.length;
     },
     bookURL () {
       const pxPortalUrl = process.env.PX_PORTAL_URL;
