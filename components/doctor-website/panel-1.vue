@@ -65,9 +65,9 @@
                     :class="{ 'font-11' : $isMobile }"
                   )
                     v-icon mdi-share-variant
-                v-card
+                v-card(color="primary" width="275")
                   v-card-text
-                    h3.primary--text Share this website:
+                    h3.white--text Share this website:
                     v-row(no-gutters)
                       v-col(cols="12")
                         social-sharing(
@@ -77,13 +77,13 @@
                         )
                           div
                             network(network="facebook").social-image
-                              img(src="~/assets/images/doctor-website/facebook.png").pa-3
+                              img(src="~/assets/images/doctor-website/facebook-logo-white.png" width="20%").pa-3
                             network(network="twitter").social-image
-                              img(src="~/assets/images/doctor-website/twitter.png").pa-3
+                              img(src="~/assets/images/doctor-website/twitter-logo-white.png" width="20%").pa-3
                             network(network="linkedin").social-image
-                              img(src="~/assets/images/doctor-website/linkedin.png").pa-3
+                              img(src="~/assets/images/doctor-website/linkedin-logo-white.png" width="20%").pa-3
                             network(network="email").social-image
-                              img(src="~/assets/images/doctor-website/email.png").pa-3
+                              img(src="~/assets/images/doctor-website/gmail-logo-white.png" width="20%").pa-3
 
 </template>
 
