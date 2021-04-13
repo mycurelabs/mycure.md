@@ -1,10 +1,10 @@
 <template lang="pug">
   v-row
     v-col(:class="{ 'mx-auto' : $isMobile}").shrink
-      v-avatar(tile size="150")
+      v-card(width="175")
         img(
           :src="clinicPicURL"
-          style="border-radius: 5px"
+          width="100%"
         )
     v-col(:class="{ 'text-center' : $isMobile}").grow
       v-row
@@ -18,11 +18,12 @@
           div(v-if="clinic.address").d-flex
             v-icon(color="error").mr-2.mb-auto mdi-map-marker
             p.font-weight-600 {{ clinic.address | prettify-address }}
-          div(v-if="phone").d-flex.pt-3
+          div(v-if="phone").d-flex
             v-icon(color="success").mr-2.mb-auto mdi-phone
-            span.font-weight-600 +{{ phone }}
-            br
-            | {{ email }}
+            p.font-weight-600 +{{ phone }}
+          div(v-if="email").d-flex
+            v-icon.mr-2.mb-auto mdi-email
+            p.font-weight-600 {{ email }}
           template(v-if="clinicSchedules && clinicSchedules.length === 0")
             div(:class="{ 'justify-center' : $isMobile}").d-flex
               v-icon(color="primary").mr-2.mb-auto mdi-calendar-today
@@ -60,6 +61,7 @@
 </template>
 
 <script>
+import { uniqWith } from 'lodash';
 // - components
 import BookAppointmentBtn from '~/components/commons/book-appointment-btn';
 import { formatAddress } from '~/utils/formats';
@@ -142,7 +144,7 @@ export default {
   },
   computed: {
     canBook () {
-      return this.clinicId && this.doctorId;
+      return this.clinicId && this.doctorId && this.clinicSchedules?.length;
     },
     bookURL () {
       const pxPortalUrl = process.env.PX_PORTAL_URL;
@@ -169,7 +171,7 @@ export default {
       // Sort the schedules
       this.fullSchedules = this.clinic?.$populated?.doctorSchedules || []; // eslint-disable-line
       if (!this.fullSchedules?.length) this.clinicSchedules = [];
-      const groupedSchedules = this.fullSchedules
+      const groupedSchedules = uniqWith(this.fullSchedules
         .filter(schedule => schedule.organization === this.clinic.id)
         .map((schedule) => {
           const { day } = this.days.find(day => day.order === schedule.day);
@@ -178,7 +180,8 @@ export default {
             ...schedule,
           };
         })
-        .sort((a, b) => a.day !== b.day ? a.day - b.day : a.startTime - b.startTime) || [];
+        .sort((a, b) => a.day !== b.day ? a.day - b.day : a.startTime - b.startTime) || []
+      , (a, b) => a.day === b.day && a.startTime === b.startTime);
       if (!val && groupedSchedules && groupedSchedules.length >= 3) {
         this.clinicSchedules = groupedSchedules.slice(0, 3);
         return;

@@ -28,17 +28,16 @@
                   color="white"
                   item-text="name"
                   placeholder="Search for a health facility"
-                  clearable
                   return-object
                   solo
                   flat
                   dense
-                  @click:clear="clearSearch"
                   @update:search-input="debouncedSuggestionsSearch"
                   @keyup.enter="searchFacility"
                   @change="onSelectOrganization"
                   :items="orgSuggestions"
                   :append-icon="null"
+                  :clear-icon="null"
                 ).font-14.font-weight-regular
 
             template(v-if="!$isMobile")
@@ -48,7 +47,6 @@
                   v-autocomplete(
                     placeholder="Municipality"
                     v-model="orgSearchLocation"
-                    clearable
                     solo
                     flat
                     dense
@@ -76,7 +74,6 @@
                   v-autocomplete(
                     placeholder="Municipality"
                     v-model="orgSearchLocation"
-                    clearable
                     solo
                     flat
                     dense

@@ -43,7 +43,7 @@
               to="/directory/doctors"
               text
               color="primary"
-            ).text-none.letter-spacing-normal See more Doctors
+            ).text-none.letter-spacing-normal.font-weight-bold See more Doctors
              v-btn(
               href="https://doctors.mycure.md"
               text
