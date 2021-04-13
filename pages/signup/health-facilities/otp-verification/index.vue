@@ -109,17 +109,19 @@
           img(width="100%" src="~/assets/images/mycure-signup-image-jumping-doctors.png" alt="Jumping doctors")
           div
             p.subheading
-              b(v-if="step1Data.firstName") Dr. {{ step1Data.firstName }}!&nbsp;
-              | Get ready to take your practice anywhere you are with your own virtual clinic.
+              | Awesome, your account is verified!
               br
-              | Organize your online and face-to-face consultations securely, everyday.
-          v-btn(
-            color="accent"
-            @click="onAcknowledgment"
-            large
-            :disabled="loading"
-            :loading="loading"
-          ).text-none.font-weight-bold Get Started
+              | Opening your digital health facility...
+          br
+          div.text-center
+            v-progress-circular(color="primary" indeterminate)
+          //- v-btn(
+          //-   color="accent"
+          //-   @click="onAcknowledgment"
+          //-   large
+          //-   :disabled="loading"
+          //-   :loading="loading"
+          //- ).text-none.font-weight-bold Get Started
     v-snackbar(
       v-model="showSnack"
       :color="snackBarModel.color"
@@ -236,6 +238,10 @@ export default {
         this.$router.replace({ query: { success: true } });
         this.otpCountdown = null;
         this.successDialog = true;
+        // - Mock loading then run acknowledgment
+        await setTimeout(() => {
+          this.onAcknowledgment();
+        }, 300);
       } catch (e) {
         this.verificationError = true;
         this.clearInputs();
