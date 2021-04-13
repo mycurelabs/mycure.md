@@ -1,9 +1,11 @@
 <template lang="pug">
   v-container
     v-row(justify="center")
-      v-col(cols="12" md="6").text-center
+      v-col(cols="12" md="8").text-center
         strong(v-if="metaTitle").font-xs.primary--text {{ metaTitle }}
         h1(:class="titleClasses").lh-title {{ title }}
+      v-col(cols="12" md="6" v-if="description").text-center
+        p(:class="descriptionClasses").grey--text.font-open-sans {{ description }}
     v-row(justify="center")
       v-col(cols="12" md="4").text-center
         mc-btn(
@@ -30,12 +32,14 @@
             v-spacer
           v-card-text.py-8
             div.text-center
-              p.font-weight-bold {{ details.currency }}&nbsp;
-                span(v-if="pricingMode === 'monthly'").font-m {{ details.monthlyPrice }}
-                span(v-else).font-m {{ details.annualMonthlyPrice ? details.annualMonthlyPrice : details.monthlyPrice }}
-              p {{ details.users }} user
-                br
-                | per month
+              p(v-if="details.requireContact").font-m.font-weight-bold.pb-10 Contact Us
+              template(v-else)
+                p.font-weight-bold {{ details.currency }}&nbsp;
+                  span(v-if="pricingMode === 'monthly'").font-m {{ details.monthlyPrice }}
+                  span(v-else).font-m {{ details.annualMonthlyPrice ? details.annualMonthlyPrice : details.monthlyPrice }}
+                p {{ details.users }} user
+                  br
+                  | per month
               template(v-for="inclusion in details.inclusions")
                 v-icon(small color="primary" left) mdi-check
                 span {{ inclusion }}
@@ -44,8 +48,8 @@
             mc-btn(
               depressed
               block
-              :to="{ name: details.btnRoute }"
               color="success"
+              @click="onBtnClick(details)"
             ).text-none {{ details.btnText }}
 </template>
 
@@ -56,6 +60,10 @@ export default {
     title: {
       type: String,
       default: '',
+    },
+    description: {
+      type: String,
+      default: null,
     },
     metaTitle: {
       type: String,
@@ -98,11 +106,27 @@ export default {
         regular: ['font-l'],
       });
     },
+    descriptionClasses () {
+      return classBinder(this, {
+        mobile: ['font-xs'],
+        regular: ['font-s'],
+      });
+    },
   },
   methods: {
     modeBtnBindings (mode) {
       if (mode === this.pricingMode) return;
       return { outlined: true };
+    },
+    onBtnClick (details) {
+      const { btnRoute, requireContact } = details;
+      if (requireContact) {
+        window.$crisp.push(['do', 'chat:toggle']);
+        return;
+      }
+      if (btnRoute) {
+        this.$router.push({ name: btnRoute });
+      }
     },
   },
 };

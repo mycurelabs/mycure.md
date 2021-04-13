@@ -13,24 +13,34 @@
       title="Why do clinics switch to MYCURE?"
       description="MYCURE integrates critical clinic operations into a clean, simple interface to make record management much easier for everyone. Say goodbye to multiple, complicated systems."
     )
-    //- 3rd to 4th panel
+    //- 3rd panel
+    multiple-branches
+    //- 4th panel
     generic-media-panel(
-      v-for="(panel, key) in infoPanels"
-      :key="key"
       content-align-right
       cols-left="6"
       cols-right="6"
-      :header="panel.header"
-      :descriptions="panel.descriptions"
+      :header="infoPanels[1].header"
+      :descriptions="infoPanels[1].descriptions"
       :header-classes="headerClasses"
       :descriptionClasses="descriptionClasses"
       :dense="$isMobile"
       dummy
     )
     //- 5th panel
-    mycure-csi
+    flexibility
     //- 6th panel
-    multiple-branches
+    generic-media-panel(
+      content-align-right
+      cols-left="6"
+      cols-right="6"
+      :header="infoPanels[0].header"
+      :descriptions="infoPanels[0].descriptions"
+      :header-classes="headerClasses"
+      :descriptionClasses="descriptionClasses"
+      :dense="$isMobile"
+      dummy
+    )
     //- 7th panel
     features(
       title="Customized for Your Specialty"
@@ -40,24 +50,12 @@
     //- 8th panel
     think-long-term(extended)
     //- 9th panel
-    generic-media-panel(
-      :center-media="!$isMobile"
-      :content-align-left="$isMobile"
-      :header="ninthPanel.header"
-      :header-classes="headerClasses"
-      :descriptions="ninthPanel.descriptions"
-      :descriptionClasses="descriptionClasses"
-      :dense="$isMobile"
-    )
+    call-to-action
     //- 10th panel
-    generic-media-panel(
-      :center-media="!$isMobile"
-      :content-align-left="$isMobile"
-      header="Take the first step today"
-      :header-classes="headerClasses"
-      :descriptions="['Start now and get all your questions answered.']"
-      :descriptionClasses="descriptionClasses"
-      :dense="$isMobile"
+    pricing(
+      title="Take the first step today"
+      description="Start free and only pay as you grow."
+      :pricing-details="pricingDetails"
     )
 </template>
 
@@ -66,19 +64,25 @@
 import classBinder from '~/utils/class-binder';
 import headMeta from '~/utils/head-meta';
 // - components
+import CallToAction from '~/components/commons/CallToAction';
 import Features from '~/components/commons/Features';
+import Flexibility from '~/components/outpatient-clinics/Flexibility';
 import GenericMediaPanel from '~/components/commons/generic-media-panel';
 import MultipleBranches from '~/components/enterprise/multiple-branches';
 import MycureCsi from '~/components/commons/MycureCsi';
+import Pricing from '~/components/commons/Pricing';
 import ThinkLongTerm from '~/components/commons/ThinkLongTerm';
 import Usp from '~/components/commons/SevenWondersUsp';
 
 export default {
   components: {
+    CallToAction,
     Features,
+    Flexibility,
     GenericMediaPanel,
     MultipleBranches,
     MycureCsi,
+    Pricing,
     ThinkLongTerm,
     Usp,
   },
@@ -120,16 +124,81 @@ export default {
         ],
       },
     ];
-    this.ninthPanel = {
-      header: 'Let us do the work for you',
-      descriptions: [
-        'Worrying about upgrading your system? We got you covered.',
-        'We know it’s challenging to shift your entire operations into a new system. Our lean implementation process ensures that you get what you need—customized forms, optimized workflows, and well-trained staff. Our experts are here to guide you from training to winning.',
-      ],
-    };
+    this.pricingDetails = [
+      {
+        title: 'ESSENTIALS',
+        currency: 'PHP',
+        monthlyPrice: 0,
+        users: 1,
+        inclusions: [
+          'Unlimited Patients',
+          '3 clinics',
+          '200 MB Storage',
+          'Core Features',
+        ],
+        btnText: 'Start Free',
+        btnRoute: 'signup-health-facilities',
+      },
+      {
+        title: 'PREMIUM',
+        currency: 'PHP',
+        monthlyPrice: 488,
+        annualMonthlyPrice: 399,
+        users: 'per',
+        inclusions: [
+          'Unlimited Patients',
+          'Unlimited clinics',
+          '10 GB Storage',
+          'Core Features',
+          'Premium Features',
+          'Add Ons',
+          'Chat Support',
+        ],
+        btnText: 'Get Started',
+        btnRoute: 'signup-health-facilities',
+      },
+      {
+        title: 'PLATINUM',
+        currency: 'PHP',
+        monthlyPrice: 788,
+        annualMonthlyPrice: 699,
+        users: 'per',
+        inclusions: [
+          'Unlimited Patients',
+          'Unlimited clinics',
+          '10 GB Storage',
+          'Core Features',
+          'Premium Features',
+          'Add Ons',
+          'Chat Support',
+          'Call & Email Support',
+        ],
+        btnText: 'Get Started',
+        btnRoute: 'signup-health-facilities',
+      },
+      {
+        title: 'ENTERPRISE',
+        requireContact: true,
+        inclusions: [
+          'Customizable Features',
+          'Flexible Storage',
+          'Dedicated Support',
+          'Dedicated Project Timeline',
+        ],
+        btnText: 'Contact Us',
+      },
+    ];
     return {
       loading: true,
     };
+  },
+  head () {
+    // - TODO: Update
+    return headMeta({
+      title: 'MYCURE Clinic Management System',
+      description: 'MYCURE helps you bring in more patients using a powerful healthcare service booking and management software. It’s free, secure, and easy to use.',
+      socialBanner: require('~/assets/images/banners/MYCURE Open Graph-Providers.jpg'),
+    });
   },
   computed: {
     headerClasses () {
@@ -156,14 +225,6 @@ export default {
   },
   mounted () {
     this.loading = false;
-  },
-  head () {
-    // - TODO: Update
-    return headMeta({
-      title: 'MYCURE Clinic Management System',
-      description: 'MYCURE helps you bring in more patients using a powerful healthcare service booking and management software. It’s free, secure, and easy to use.',
-      socialBanner: require('~/assets/images/banners/MYCURE Open Graph-Providers.jpg'),
-    });
   },
 };
 </script>
