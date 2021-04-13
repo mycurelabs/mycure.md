@@ -69,10 +69,11 @@ import Features from '~/components/commons/Features';
 import Flexibility from '~/components/outpatient-clinics/Flexibility';
 import GenericMediaPanel from '~/components/commons/generic-media-panel';
 import MultipleBranches from '~/components/enterprise/multiple-branches';
-import MycureCsi from '~/components/commons/MycureCsi';
 import Pricing from '~/components/commons/Pricing';
 import ThinkLongTerm from '~/components/commons/ThinkLongTerm';
 import Usp from '~/components/commons/SevenWondersUsp';
+// - constants
+import { ENTERPRISE_PRICING } from '~/constants/pricing';
 
 export default {
   components: {
@@ -81,7 +82,6 @@ export default {
     Flexibility,
     GenericMediaPanel,
     MultipleBranches,
-    MycureCsi,
     Pricing,
     ThinkLongTerm,
     Usp,
@@ -124,70 +124,7 @@ export default {
         ],
       },
     ];
-    this.pricingDetails = [
-      {
-        title: 'ESSENTIALS',
-        currency: 'PHP',
-        monthlyPrice: 0,
-        users: 1,
-        inclusions: [
-          'Unlimited Patients',
-          '3 clinics',
-          '200 MB Storage',
-          'Core Features',
-        ],
-        btnText: 'Start Free',
-        btnRoute: 'signup-health-facilities',
-      },
-      {
-        title: 'PREMIUM',
-        currency: 'PHP',
-        monthlyPrice: 488,
-        annualMonthlyPrice: 399,
-        users: 'per',
-        inclusions: [
-          'Unlimited Patients',
-          'Unlimited clinics',
-          '10 GB Storage',
-          'Core Features',
-          'Premium Features',
-          'Add Ons',
-          'Chat Support',
-        ],
-        btnText: 'Get Started',
-        btnRoute: 'signup-health-facilities',
-      },
-      {
-        title: 'PLATINUM',
-        currency: 'PHP',
-        monthlyPrice: 788,
-        annualMonthlyPrice: 699,
-        users: 'per',
-        inclusions: [
-          'Unlimited Patients',
-          'Unlimited clinics',
-          '10 GB Storage',
-          'Core Features',
-          'Premium Features',
-          'Add Ons',
-          'Chat Support',
-          'Call & Email Support',
-        ],
-        btnText: 'Get Started',
-        btnRoute: 'signup-health-facilities',
-      },
-      {
-        title: 'ENTERPRISE',
-        requireContact: true,
-        inclusions: [
-          'Customizable Features',
-          'Flexible Storage',
-          'Dedicated Support',
-          'Dedicated Project Timeline',
-        ],
-        btnText: 'Contact Us',
-      },
-    ];
+    this.pricingDetails = ENTERPRISE_PRICING;
     return {
       loading: true,
     };

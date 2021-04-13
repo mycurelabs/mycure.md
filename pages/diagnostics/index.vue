@@ -48,9 +48,20 @@
       :descriptions="['Join MYCURE ONE, a global online directory of modern healthcare practitioners and facilities so patients can easily find and book an appointment anytime.']"
       :header-classes="headerClasses"
       :description-classes="descriptionClasses"
+      dummy
     )
     //- 7th panel
-    mycure-csi
+    generic-media-panel(
+      header="Grow into a full service clinic anytime"
+      sub-header="MYCURE CLINIC MANAGEMENT SYSTEM"
+      with-subheader
+      :center-media="!$isMobile"
+      :content-align-left="$isMobile"
+      :dense="$isMobile"
+      :descriptions="['Cover all your patient journeys with MYCURE’s most complete clinic management system.']"
+      :header-classes="headerClasses"
+      :description-classes="descriptionClasses"
+    )
     //- 8th panel
     generic-media-panel(
       content-align-right
@@ -63,24 +74,17 @@
       :header-classes="headerClasses"
       :sub-header-classes="subHeaderClasses"
       :description-classes="descriptionClasses"
+      dummy
     )
     //- 9th panel
     think-long-term(extended)
     //- 10th panel
-    generic-media-panel(
-      center-media
-      :header="callToAction.header"
-      :header-classes="headerClasses"
-      :descriptions="callToAction.descriptions"
-      :descriptionClasses="descriptionClasses"
-    )
+    call-to-action
     //- 11th panel
-    generic-media-panel(
-      center-media
-      header="Take the first step today"
-      :header-classes="headerClasses"
-      :descriptions="['Start now and get all your questions answered.']"
-      :descriptionClasses="descriptionClasses"
+    pricing(
+      title="Take the first step today"
+      description="Start free and only pay as you grow."
+      :pricing-details="pricingDetails"
     )
 </template>
 
@@ -88,18 +92,22 @@
 // - utils
 import headMeta from '~/utils/head-meta';
 import classBinder from '~/utils/class-binder';
+// - constants
+import { ENTERPRISE_PRICING } from '~/constants/pricing';
 // - components
+import CallToAction from '~/components/commons/CallToAction';
 import Features from '~/components/commons/Features';
 import GenericMediaPanel from '~/components/commons/generic-media-panel';
-import MycureCsi from '~/components/commons/MycureCsi';
+import Pricing from '~/components/commons/Pricing';
 import ThinkLongTerm from '~/components/commons/ThinkLongTerm';
 import Usp from '~/components/commons/SevenWondersUsp';
 
 export default {
   components: {
+    CallToAction,
     Features,
     GenericMediaPanel,
-    MycureCsi,
+    Pricing,
     ThinkLongTerm,
     Usp,
   },
@@ -150,16 +158,18 @@ export default {
         ],
       },
     ];
-    this.callToAction = {
-      header: 'Let us do the work for you',
-      descriptions: [
-        'Worrying about upgrading your system? We got you covered.',
-        'We know it’s challenging to shift your entire operations into a new system. Our lean implementation process ensures that you get what you need—customized forms, optimized workflows, and well-trained staff. Our experts are here to guide you from training to winning.',
-      ],
-    };
+    this.pricingDetails = ENTERPRISE_PRICING;
     return {
       loading: true,
     };
+  },
+  head () {
+    // - TODO: Update
+    return headMeta({
+      title: 'MYCURE Diagnostics',
+      description: 'MYCURE helps you bring in more patients using a powerful healthcare service booking and management software. It’s free, secure, and easy to use.',
+      socialBanner: require('~/assets/images/banners/MYCURE Open Graph-Providers.jpg'),
+    });
   },
   computed: {
     headerClasses () {
@@ -197,14 +207,6 @@ export default {
   },
   mounted () {
     this.loading = false;
-  },
-  head () {
-    // - TODO: Update
-    return headMeta({
-      title: 'MYCURE Diagnostics',
-      description: 'MYCURE helps you bring in more patients using a powerful healthcare service booking and management software. It’s free, secure, and easy to use.',
-      socialBanner: require('~/assets/images/banners/MYCURE Open Graph-Providers.jpg'),
-    });
   },
 };
 </script>

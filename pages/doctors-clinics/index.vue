@@ -35,6 +35,8 @@
 <script>
 // utils
 import headMeta from '~/utils/head-meta';
+// constants
+import { DOCTORS_PRICING } from '~/constants/pricing';
 // components
 import CallToAction from '~/components/commons/CallToAction';
 import Features from '~/components/commons/Features';
@@ -77,39 +79,7 @@ export default {
         title: 'Appointment Booking',
       },
     ];
-    this.pricingDetails = [
-      {
-        title: 'ALWAYS FREE',
-        currency: 'PHP',
-        monthlyPrice: 0,
-        users: 1,
-        inclusions: [
-          'Unlimited Patients',
-          '3 clinics',
-          '200 MB Storage',
-          'Core Features',
-        ],
-        btnText: 'Get Started Free',
-        btnRoute: 'signup-health-facilities',
-      },
-      {
-        title: 'PREMIUM',
-        currency: 'PHP',
-        monthlyPrice: 488,
-        annualMonthlyPrice: 399,
-        users: 'per',
-        inclusions: [
-          'Unlimited Patients',
-          'Unlimited clinics',
-          '10 GB Storage',
-          'Core Features',
-          'Premium Features',
-          'Add Ons',
-        ],
-        btnText: 'Get Started Free',
-        btnRoute: 'signup-health-facilities',
-      },
-    ];
+    this.pricingDetails = DOCTORS_PRICING;
     return {
       loading: true,
     };
