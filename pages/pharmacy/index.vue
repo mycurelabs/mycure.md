@@ -2,99 +2,140 @@
   div(v-if="!loading").white
     //- 1st panel
     usp(
-      title="Run Your Drugstore Like a Pro"
-      meta-title="MYCURE Pharma"
-      description="Designed for small to medium sized drugstores. MYCURE Pharma is a custom POS and Inventory solutions specifically made for drugstores."
+      title="Sales and stock reporting made simple"
+      meta-title="MYCURE Pharmacy"
+      description="MYCURE provides POS and Inventory solutions specifically designed for pharmacies and drugstores."
     )
     //- 2nd panel
     features(
-      title="PharmaCentric"
-      description="Not only will this make your drugstore more efficient, MYCURE Pharma also provides you custom reports for Dangerous Drugs..."
+      title="Manage your pharmacy like a pro"
       :items="features"
     )
     //- 3rd panel
-    mycure-csi
-    //- 4th to 5th panel
     generic-media-panel(
-      v-for="(info, key) in infoPanels"
-      :key="key"
       content-align-right
-      cols-left="5"
-      cols-right="4"
-      offset-cols-right="1"
-      :header="info.header"
-      :descriptions="info.descriptions"
+      cols-left="7"
+      cols-right="5"
+      :header="thirdPanel.header"
+      :header-classes="headerClasses"
     )
-    //- 6th panel
-    think-long-term
+      //- Check list
+      template(slot="additional-content")
+        template(v-for="(item, i) in thirdPanel.list")
+          v-row(:align="i === 2 ? 'center' : 'start'" dense)
+            v-col(cols="1").pr-2.pt-2
+              img(width="20" src="~/assets/images/mycure-check.png" alt="Check icon")
+            v-col
+              span(:class="checkListClasses") {{ item }}
+    //- 4th panel
+    call-to-action
+    //- 5th panel
+    generic-media-panel(
+    :center-media="!$isMobile"
+    :content-align-left="$isMobile"
+    :header="fifthPanel.header"
+    :header-classes="headerClasses"
+    :descriptions="fifthPanel.descriptions"
+    :descriptionClasses="descriptionClasses"
+    :dense="$isMobile"
+  )
+
 </template>
 
 <script>
 // - utils
+import classBinder from '~/utils/class-binder';
 import headMeta from '~/utils/head-meta';
 // - components
+import CallToAction from '~/components/commons/CallToAction';
 import Features from '~/components/commons/Features';
 import GenericMediaPanel from '~/components/commons/generic-media-panel';
-import MycureCsi from '~/components/commons/MycureCsi';
-import ThinkLongTerm from '~/components/commons/ThinkLongTerm';
 import Usp from '~/components/commons/SevenWondersUsp';
 
 export default {
   components: {
+    CallToAction,
     Features,
     GenericMediaPanel,
-    MycureCsi,
-    ThinkLongTerm,
     Usp,
   },
   data () {
     // - TODO: Update info
     this.features = [
       {
-        title: 'Digital Records',
+        title: 'Point of Sales',
+        description: 'Easy to use, barcode-ready POS',
       },
       {
-        title: 'Telehealth',
+        title: 'Inventory Tracking',
+        description: 'Know where all your products go',
       },
       {
-        title: 'Daily Reports',
-      },
-      {
-        title: 'Professional Website',
-      },
-      {
-        title: 'Appointment Booking',
+        title: 'Smart Reports',
+        description: 'Get real-time business analytics',
       },
     ];
-    this.infoPanels = [
-      {
-        header: 'Expand your Reach',
-        descriptions: [
-          'Using MYCURE allows you to be part of MYCURE ONE, a global online directory of modern healthcare practitioners and facilities so patients can easily find you and book an appointment.',
-          'Your profile in MYCURE ONE links to your professional website that is likewise provided to you by MYCURE.',
-        ],
-      },
-      {
-        header: 'Worrying about upgrading your system? We got you covered!',
-        descriptions: [
-          'We understand that it may be difficult to change what you’re used to doing. That’s why we have happiness agents that would give you the right guidance when you sign up for MYCURE.',
-        ],
-      },
-    ];
+    this.thirdPanel = {
+      header: 'Connect with physicians and clinics near you',
+      list: [
+        'Get more customers through referrals',
+        'Easily validate prescriptions',
+        'Promote your products',
+      ],
+    };
+    this.fifthPanel = {
+      header: 'Time to make that change today',
+      descriptions: [
+        'Get exclusive access for free. Limited slots only.',
+      ],
+    };
     return {
       loading: true,
     };
   },
-  mounted () {
-    this.loading = false;
-  },
   head () {
     // - TODO: Update
     return headMeta({
-      title: 'MYCURE CLINIC',
-      description: 'MYCURE helps you bring in more patients using a powerful healthcare service booking and management software. It’s free, secure, and easy to use.',
+      title: 'MYCURE for Pharmacy and Drugstores',
+      description: 'MYCURE provides medical POS and Inventory solutions that make pharmacy and drugstore management so much simpler.',
       socialBanner: require('~/assets/images/banners/MYCURE Open Graph-Providers.jpg'),
     });
+  },
+  computed: {
+    headerClasses () {
+      const headerClasses = [
+        classBinder(this, {
+          mobile: ['font-m'],
+          regular: ['font-l'],
+        }),
+        'lh-title',
+      ];
+      return headerClasses;
+    },
+    descriptionClasses () {
+      const descriptionClasses = [
+        classBinder(this, {
+          mobile: ['font-xs'],
+          regular: ['font-s'],
+        }),
+        'font-open-sans',
+        'font-gray',
+      ];
+      return descriptionClasses;
+    },
+    checkListClasses () {
+      return [
+        classBinder(this, {
+          mobile: ['font-xs'],
+          regular: ['font-s'],
+        }),
+        'font-open-sans',
+        'font-gray',
+      ];
+    },
+  },
+  mounted () {
+    this.loading = false;
   },
 };
 </script>

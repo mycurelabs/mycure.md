@@ -60,6 +60,7 @@
       :dense="$isMobile"
       :descriptions="['Cover all your patient journeys with MYCURE’s most complete clinic management system.']"
       :header-classes="headerClasses"
+      :sub-headerClasses="subHeaderClasses"
       :description-classes="descriptionClasses"
     )
     //- 8th panel
