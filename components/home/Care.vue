@@ -34,7 +34,7 @@ export default {
       },
       {
         title: 'Partner Providers',
-        amount: '2100+',
+        amount: '2,100+',
       },
     ];
     return {};
