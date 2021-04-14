@@ -31,14 +31,14 @@
     call-to-action
     //- 5th panel
     generic-media-panel(
-    :center-media="!$isMobile"
-    :content-align-left="$isMobile"
-    :header="fifthPanel.header"
-    :header-classes="headerClasses"
-    :descriptions="fifthPanel.descriptions"
-    :descriptionClasses="descriptionClasses"
-    :dense="$isMobile"
-  )
+      :center-media="!$isMobile"
+      :content-align-left="$isMobile"
+      :header="fifthPanel.header"
+      :header-classes="headerClasses"
+      :descriptions="fifthPanel.descriptions"
+      :descriptionClasses="descriptionClasses"
+      :dense="$isMobile"
+    )
 
 </template>
 

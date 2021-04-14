@@ -29,7 +29,17 @@
       :description-classes="descriptionClasses"
     )
     //- 7th panel
-    call-to-action
+    call-to-action(:version="2")
+    //- 8th panel
+    generic-media-panel(
+      :center-media="!$isMobile"
+      :content-align-left="$isMobile"
+      :header="bookDemoPanel.header"
+      :header-classes="headerClasses"
+      :descriptions="bookDemoPanel.descriptions"
+      :descriptionClasses="descriptionClasses"
+      :dense="$isMobile"
+    )
 </template>
 
 <script>
@@ -82,11 +92,16 @@ export default {
       {
         header: 'Expand your Reach',
         descriptions: [
-          'Using MYCURE allows you to be part of MYCURE ONE, a global online directory of modern healthcare practitioners and facilities so patients can easily find you and order online.',
-          'Your profile in MYCURE ONE links to your professional website that is likewise provided to you by MYCURE.',
+          'Join MYCURE ONE, a global online directory of modern healthcare practitioners and facilities so patients can easily find and book an appointment anytime.',
         ],
       },
     ];
+    this.bookDemoPanel = {
+      header: 'Book a Demo Today',
+      descriptions: [
+        'Know how MYCURE works straight from the experts. The newest technologies are just within your reach.',
+      ],
+    };
     return {
       loading: true,
     };

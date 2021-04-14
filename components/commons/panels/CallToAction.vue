@@ -17,17 +17,37 @@ export default {
   components: {
     GenericMediaPanel,
   },
+  props: {
+    version: {
+      type: Number,
+      default: 1,
+    },
+  },
   data () {
-    this.callToActionPanel = {
+    this.versionOne = {
       header: 'Learn the basics with ease',
       descriptions: [
-        'Worrying about the shift to digital records? We got you covered. ',
+        'Worrying about the shift to digital records? We got you covered.',
         'We understand that it may be difficult to change what you’re used to doing. That’s why we have happiness agents who’d love to guide you through each step via one-on-one training session.',
+      ],
+    };
+    this.versionTwo = {
+      header: 'Let us do the work for you',
+      descriptions: [
+        'Worrying about the shift to digital records? We got you covered.',
+        'We know it’s challenging to shift your entire operations into a new system. Our lean implementation process ensures that you get what you need—customized forms, optimized workflows, and well-trained staff. Our experts are here to guide you from training to winning.',
       ],
     };
     return {};
   },
   computed: {
+    callToActionPanel () {
+      switch (this.version) {
+        case 1: return this.versionOne;
+        case 2: return this.versionTwo;
+        default: return this.versionOne;
+      }
+    },
     headerClasses () {
       const headerClasses = [
         classBinder(this, {
