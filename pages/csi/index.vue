@@ -2,51 +2,58 @@
   div(v-if="!loading").white
     //- 1st panel
     usp(
-      title="Compliance. Security. Interoperability."
+      title="Simply plug and play"
       meta-title="MYCURE CSI"
-      description="Using MYCURE adds more of these to your operations giving you more protection and flexibiity."
+      description="MYCURE as your partner helps your facility to comply with international standards when it comes to digital information processing. Being HIPAA Compliant, we demonstrate our commitment to industry-leading best practices for your security and privacy of protected health information."
     )
     //- 2nd panel
-    protect
+    generic-media-panel(
+      header="Set the bar high"
+      :descriptions="['MYCURE as your partner helps your facility to comply with international standards when it comes to digital information processing. Being HIPAA Compliant, we demonstrate our commitment to industry-leading best practices for your security and privacy of protected health information.']"
+      :center-media="!$isMobile"
+      :content-align-left="$isMobile"
+      :header-classes="headerClasses"
+      :description-classes="descriptionClasses"
+      :dense="$isMobile"
+    )
     //- 3rd panel
     features(
+      title="Protect your medical records with confidence"
+      description="Data privacy concerns are the least of your worries. Keeping personal and sensitive information secure such as medical records is our priority."
+    )
+    //- 4th panel
+    features(
       title="Integration. Interoperability."
-      description="MYCURE follows global standards and has open APIs that allow you to integrate your other systems with MYCURE. OR if you just want to boost your existing one, you can choose from a wide array of MYCURE modules to add in your system."
+      description="MYCURE follows global standards and has open APIs that allow you to integrate or fortify your other systems with MYCURE. "
       :items="features"
     )
-    //- 4th to 5th panel
+    //- 5th to 6th panel
     generic-media-panel(
       v-for="(info, key) in infoPanels"
       :key="key"
-      content-align-right
-      cols-left="5"
-      cols-right="4"
-      offset-cols-right="1"
+      :center-media="!$isMobile"
+      :content-align-left="$isMobile"
+      :header-classes="headerClasses"
+      :description-classes="descriptionClasses"
+      :dense="$isMobile"
       :header="info.header"
       :descriptions="info.descriptions"
     )
-    //- 6th panel
-    think-long-term
 </template>
 
 <script>
 // - utils
 import headMeta from '~/utils/head-meta';
+import classBinder from '~/utils/class-binder';
 // - components
 import Features from '~/components/commons/panels/Features';
 import GenericMediaPanel from '~/components/commons/generic-media-panel';
-import MycureCsi from '~/components/commons/panels/MycureCsi';
-import Protect from '~/components/csi/Protect';
-import ThinkLongTerm from '~/components/commons/panels/ThinkLongTerm';
 import Usp from '~/components/commons/panels/SevenWondersUsp';
 
 export default {
   components: {
     Features,
     GenericMediaPanel,
-    MycureCsi,
-    Protect,
-    ThinkLongTerm,
     Usp,
   },
   data () {
@@ -70,25 +77,21 @@ export default {
     ];
     this.infoPanels = [
       {
-        header: 'Expand your Reach',
+        header: 'Accessibility like never before.',
         descriptions: [
-          'Using MYCURE allows you to be part of MYCURE ONE, a global online directory of modern healthcare practitioners and facilities so patients can easily find you and order online.',
-          'Your profile in MYCURE ONE links to your professional website that is likewise provided to you by MYCURE.',
+          'Work online and offline across multiple locations with MYCURE Syncbase.',
         ],
       },
       {
-        header: 'Worrying about upgrading your system? We got you covered!',
+        header: 'Time to call for CSI',
         descriptions: [
-          'We understand that it may be difficult to change what you’re used to doing. That’s why we have happiness agents that would give you the right guidance when you sign up for MYCURE.',
+          'Partner with MYCURE today and see progress in no time.',
         ],
       },
     ];
     return {
       loading: true,
     };
-  },
-  mounted () {
-    this.loading = false;
   },
   head () {
     // - TODO: Update
@@ -97,6 +100,32 @@ export default {
       description: 'MYCURE helps you bring in more patients using a powerful healthcare service booking and management software. It’s free, secure, and easy to use.',
       socialBanner: require('~/assets/images/banners/MYCURE Open Graph-Providers.jpg'),
     });
+  },
+  computed: {
+    headerClasses () {
+      const headerClasses = [
+        classBinder(this, {
+          mobile: ['font-m'],
+          regular: ['font-l'],
+        }),
+        'lh-title',
+      ];
+      return headerClasses;
+    },
+    descriptionClasses () {
+      const descriptionClasses = [
+        classBinder(this, {
+          mobile: ['font-xs'],
+          regular: ['font-s'],
+        }),
+        'font-open-sans',
+        'font-gray',
+      ];
+      return descriptionClasses;
+    },
+  },
+  mounted () {
+    this.loading = false;
   },
 };
 </script>

@@ -1,10 +1,11 @@
 <template lang="pug">
   v-container
     v-row(justify="center")
-      v-col(cols="12" md="8").text-center
+      v-col(cols="12" :md="titleColSize" :class="{'text-center': !$isMobile }")
+        p {{ $isMobile }}
         strong(v-if="metaTitle").font-xs.primary--text {{ metaTitle }}
         h1(:class="titleClasses").lh-title {{ title }}
-      v-col(cols="12" md="6").text-center
+      v-col(cols="12" :md="contentColSize" :class="{'text-center': !$isMobile}")
         p(:class="descriptionClasses").grey--text.font-open-sans {{ description }}
       v-col(cols="12")
         v-row(justify="center" align="center")
@@ -37,6 +38,14 @@ export default {
     hideLearnMore: {
       type: Boolean,
       default: false,
+    },
+    titleColSize: {
+      type: [Number, String],
+      default: '8',
+    },
+    contentColSize: {
+      type: [Number, String],
+      default: '6',
     },
   },
   computed: {
