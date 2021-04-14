@@ -20,7 +20,8 @@
           depressed
           color="primary"
           x-large
-        ).text-none.letter-spacing-normal.font-xs Talk to Us
+          @click="$emit('click')"
+        ).text-none.letter-spacing-normal.font-xs {{ btnText }}
 </template>
 
 <script>
@@ -61,6 +62,10 @@ export default {
     parseMetaTitleFields: {
       type: Array,
       default: () => ([]),
+    },
+    btnText: {
+      type: String,
+      default: 'Talk to Us',
     },
   },
   computed: {
