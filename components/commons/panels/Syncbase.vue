@@ -1,12 +1,12 @@
 <template lang="pug">
   generic-media-panel(
-    :center-media="!$isMobile"
-    :content-align-left="$isMobile"
-    :header="callToActionPanel.header"
+    content-align-right
+    header="Enjoy the best of both worlds. MYCURE works online and offline"
+    cols-left="6"
+    cols-right="6"
     :header-classes="headerClasses"
-    :descriptions="callToActionPanel.descriptions"
-    :descriptionClasses="descriptionClasses"
-    :dense="$isMobile"
+    :description-classes="descriptionClasses"
+    :descriptions="['Work as if you have an in-house server with the convenience of the cloud. Create your medical records locally using multiple devices even if the internet is down! Once back online, it instantly syncs your data into the cloud.']"
   )
 </template>
 
@@ -16,16 +16,6 @@ import GenericMediaPanel from '~/components/commons/generic-media-panel';
 export default {
   components: {
     GenericMediaPanel,
-  },
-  data () {
-    this.callToActionPanel = {
-      header: 'Learn the basics with ease',
-      descriptions: [
-        'Worrying about the shift to digital records? We got you covered. ',
-        'We understand that it may be difficult to change what you’re used to doing. That’s why we have happiness agents who’d love to guide you through each step via one-on-one training session.',
-      ],
-    };
-    return {};
   },
   computed: {
     headerClasses () {

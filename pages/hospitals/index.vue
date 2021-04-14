@@ -37,12 +37,12 @@
 import headMeta from '~/utils/head-meta';
 import classBinder from '~/utils/class-binder';
 // - components
-import CallToAction from '~/components/commons/CallToAction';
-import Features from '~/components/commons/Features';
+import CallToAction from '~/components/commons/panels/CallToAction';
+import Features from '~/components/commons/panels/Features';
 import GenericMediaPanel from '~/components/commons/generic-media-panel';
-import MycureCsi from '~/components/commons/MycureCsi';
-import Syncbase from '~/components/commons/Syncbase';
-import Usp from '~/components/commons/SevenWondersUsp';
+import MycureCsi from '~/components/commons/panels/MycureCsi';
+import Syncbase from '~/components/commons/panels/Syncbase';
+import Usp from '~/components/commons/panels/SevenWondersUsp';
 
 export default {
   components: {

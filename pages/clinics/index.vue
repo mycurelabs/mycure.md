@@ -64,14 +64,14 @@
 import classBinder from '~/utils/class-binder';
 import headMeta from '~/utils/head-meta';
 // - components
-import CallToAction from '~/components/commons/CallToAction';
-import Features from '~/components/commons/Features';
+import CallToAction from '~/components/commons/panels/CallToAction';
+import Features from '~/components/commons/panels/Features';
 import Flexibility from '~/components/outpatient-clinics/Flexibility';
 import GenericMediaPanel from '~/components/commons/generic-media-panel';
 import MultipleBranches from '~/components/enterprise/multiple-branches';
-import Pricing from '~/components/commons/Pricing';
-import ThinkLongTerm from '~/components/commons/ThinkLongTerm';
-import Usp from '~/components/commons/SevenWondersUsp';
+import Pricing from '~/components/commons/panels/Pricing';
+import ThinkLongTerm from '~/components/commons/panels/ThinkLongTerm';
+import Usp from '~/components/commons/panels/SevenWondersUsp';
 // - constants
 import { ENTERPRISE_PRICING } from '~/constants/pricing';
 

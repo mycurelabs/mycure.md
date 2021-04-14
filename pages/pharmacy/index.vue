@@ -47,10 +47,10 @@
 import classBinder from '~/utils/class-binder';
 import headMeta from '~/utils/head-meta';
 // - components
-import CallToAction from '~/components/commons/CallToAction';
-import Features from '~/components/commons/Features';
+import CallToAction from '~/components/commons/panels/CallToAction';
+import Features from '~/components/commons/panels/Features';
 import GenericMediaPanel from '~/components/commons/generic-media-panel';
-import Usp from '~/components/commons/SevenWondersUsp';
+import Usp from '~/components/commons/panels/SevenWondersUsp';
 
 export default {
   components: {

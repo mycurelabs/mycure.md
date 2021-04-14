@@ -33,12 +33,12 @@
 // - utils
 import headMeta from '~/utils/head-meta';
 // - components
-import Features from '~/components/commons/Features';
+import Features from '~/components/commons/panels/Features';
 import GenericMediaPanel from '~/components/commons/generic-media-panel';
-import MycureCsi from '~/components/commons/MycureCsi';
+import MycureCsi from '~/components/commons/panels/MycureCsi';
 import Protect from '~/components/csi/Protect';
-import ThinkLongTerm from '~/components/commons/ThinkLongTerm';
-import Usp from '~/components/commons/SevenWondersUsp';
+import ThinkLongTerm from '~/components/commons/panels/ThinkLongTerm';
+import Usp from '~/components/commons/panels/SevenWondersUsp';
 
 export default {
   components: {

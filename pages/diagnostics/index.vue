@@ -96,12 +96,12 @@ import classBinder from '~/utils/class-binder';
 // - constants
 import { ENTERPRISE_PRICING } from '~/constants/pricing';
 // - components
-import CallToAction from '~/components/commons/CallToAction';
-import Features from '~/components/commons/Features';
+import CallToAction from '~/components/commons/panels/CallToAction';
+import Features from '~/components/commons/panels/Features';
 import GenericMediaPanel from '~/components/commons/generic-media-panel';
-import Pricing from '~/components/commons/Pricing';
-import ThinkLongTerm from '~/components/commons/ThinkLongTerm';
-import Usp from '~/components/commons/SevenWondersUsp';
+import Pricing from '~/components/commons/panels/Pricing';
+import ThinkLongTerm from '~/components/commons/panels/ThinkLongTerm';
+import Usp from '~/components/commons/panels/SevenWondersUsp';
 
 export default {
   components: {
