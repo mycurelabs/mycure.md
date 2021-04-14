@@ -2,58 +2,55 @@
   div(v-if="!loading").white
     //- 1st panel
     usp(
-      title="Patient Centric Hospital System"
-      meta-title="MYCURE Hospital"
-      description="Designed for small to medium sized hospitals. MYCURE Hospital provides a flawless patient journey. This helps you focus more on patient care and less of your system."
+      title="Advanced Patient-centric hospital software"
+      meta-title="MYCURE Hospital Information System"
+      description="MYCURE smoothly handles the critical process flows inside hospitals that enables healthcare professionals to focus more on patient care."
     )
     //- 2nd panel
     features(
-      title="Everything Your Hospital Needs. Plus More."
-      description="All the tools and solutions to run your hospital. It just works seamlessly from one station to another.  With its open APIs, MYCURE can integrate with your other existing system."
+      title="Easy to implement. Easy to maintain"
+      description="Work seamlessly from one station to another.  With its open APIs, MYCURE can integrate with your other existing systems."
       :items="features"
     )
     //- 3rd panel
-    generic-media-panel(
-      content-align-right
-      header="Enjoy the best of both worlds. MYCURE works online and offline"
-      cols-left="5"
-      cols-right="4"
-      offset-cols-right="1"
-      :descriptions="['Work as if you have an in-house server with the convenience of the cloud. Create your medical records locally using multiple devices even if the internet is down! Once back online, it instantly syncs your data into the cloud.']"
-    )
+    syncbase
     //- 4th panel
     mycure-csi
-    //- 5th to 7th panel
+    //- 5th to 6th panel
     generic-media-panel(
       v-for="(info, key) in infoPanels"
       :key="key"
       content-align-right
-      cols-left="5"
-      cols-right="4"
-      offset-cols-right="1"
+      cols-left="6"
+      cols-right="6"
       :header="info.header"
       :descriptions="info.descriptions"
+      :header-classes="headerClasses"
+      :description-classes="descriptionClasses"
     )
-    //- 8th panel
-    think-long-term
+    //- 7th panel
+    call-to-action
 </template>
 
 <script>
 // - utils
 import headMeta from '~/utils/head-meta';
+import classBinder from '~/utils/class-binder';
 // - components
+import CallToAction from '~/components/commons/CallToAction';
 import Features from '~/components/commons/Features';
 import GenericMediaPanel from '~/components/commons/generic-media-panel';
 import MycureCsi from '~/components/commons/MycureCsi';
-import ThinkLongTerm from '~/components/commons/ThinkLongTerm';
+import Syncbase from '~/components/commons/Syncbase';
 import Usp from '~/components/commons/SevenWondersUsp';
 
 export default {
   components: {
+    CallToAction,
     Features,
     GenericMediaPanel,
     MycureCsi,
-    ThinkLongTerm,
+    Syncbase,
     Usp,
   },
   data () {
@@ -89,27 +86,44 @@ export default {
           'Your profile in MYCURE ONE links to your professional website that is likewise provided to you by MYCURE.',
         ],
       },
-      {
-        header: 'Worrying about upgrading your system? We got you covered!',
-        descriptions: [
-          'We understand that it may be difficult to change what you’re used to doing. That’s why we have happiness agents that would give you the right guidance when you sign up for MYCURE.',
-        ],
-      },
     ];
     return {
       loading: true,
     };
   },
-  mounted () {
-    this.loading = false;
-  },
   head () {
     // - TODO: Update
     return headMeta({
-      title: 'MYCURE Hospital',
+      title: 'MYCURE for Hospitals',
       description: 'MYCURE helps you bring in more patients using a powerful healthcare service booking and management software. It’s free, secure, and easy to use.',
       socialBanner: require('~/assets/images/banners/MYCURE Open Graph-Providers.jpg'),
     });
+  },
+  computed: {
+    headerClasses () {
+      const headerClasses = [
+        classBinder(this, {
+          mobile: ['font-m'],
+          regular: ['font-l'],
+        }),
+        'lh-title',
+      ];
+      return headerClasses;
+    },
+    descriptionClasses () {
+      const descriptionClasses = [
+        classBinder(this, {
+          mobile: ['font-xs'],
+          regular: ['font-s'],
+        }),
+        'font-open-sans',
+        'font-gray',
+      ];
+      return descriptionClasses;
+    },
+  },
+  mounted () {
+    this.loading = false;
   },
 };
 </script>
