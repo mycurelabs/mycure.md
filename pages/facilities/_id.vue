@@ -92,13 +92,9 @@
           )
     v-divider
     v-footer(v-if="!$isMobile" color="white").mt-3
-      v-row(justify="center" align="center" no-gutters)
-        v-col(
-          cols="12"
-          md="4"
-          align="start"
-        )
-          div.d-flexDirectory
+      v-row.d-flex
+        v-col.font-14
+          div.d-flex
             p.ml-5.mt-1 #[b Powered by]
             img(
               height="30"
@@ -106,36 +102,39 @@
               alt="MYCURE"
               @click="$nuxt.$router.push({ name: 'index' })"
             ).ml-2
-          div
-            p.ml-5 &#169;{{new Date().getFullYear()}} All Rights Reserved.
-        v-col(cols="12" md="4" align="center")
-          v-row
-            nuxt-link(to="/terms") Terms of Use
-            | &nbsp;&nbsp;|&nbsp;&nbsp;
-            nuxt-link(to="/privacy-policy") Privacy Policy
-            | &nbsp;&nbsp;|&nbsp;&nbsp;
-            a(
-              :href="feedbackLink"
-              target="_blank"
-              rel="noopener noreferrer"
-            ) Send us your feedback
-        v-col(cols="12" md="4" align="end")
-          nuxt-link(to="/signup/health-facilities") Create my own Health Facility Website
+          p.ml-5 Copyright &#169;{{new Date().getFullYear()}} All Rights Reserved.
+        v-col.d-flex
+          nuxt-link(to="/terms").font-14 Terms of Use
+          | &nbsp;|&nbsp;
+          nuxt-link(to="/privacy-policy").font-14 Privacy Policy
+          | &nbsp;|&nbsp;
+          a(
+            :href="feedbackLink"
+            target="_blank"
+            rel="noopener noreferrer"
+          ).font-14 Send us your feedback
+        v-col.d-flex.text-center
+          nuxt-link(to="/directory/results").font-14 See more Health Facilities
+          | &nbsp;|&nbsp;
+          nuxt-link(to="/signup/health-facilities").font-14 Create my own Health Facility Website
     v-footer(v-else color="primary")
       v-row(justify="center" align="center")
         v-col(cols="12" align="center")
           div.d-flex.justify-center.white--text
-            nuxt-link(to="/terms").white--text Terms of Use
+            nuxt-link(to="/terms").white--text.font-14 Terms of Use
             | &nbsp;&nbsp;|&nbsp;&nbsp;
-            nuxt-link(to="/privacy-policy").white--text Privacy Policy
+            nuxt-link(to="/privacy-policy").white--text.font-14 Privacy Policy
             | &nbsp;&nbsp;|&nbsp;&nbsp;
             a(
               :href="feedbackLink"
               target="_blank"
               rel="noopener noreferrer"
-            ).white--text Send us your feedback
+            ).white--text.font-14 Send us your feedback
         v-col(cols="10" align="center")
-          nuxt-link(to="/signup/health-facilities").white--text Create my own Health Facility Website
+          div.d-flex.white--text
+            nuxt-link(to="/directory/results").white--text.font-14 See more Health Facilities
+            | &nbsp;&nbsp;|&nbsp;&nbsp;
+            nuxt-link(to="/signup/health-facilities").white--text.font-14 Create my own Health Facility Website
         v-col(cols="10" align="center")
           div.d-flex.justify-center
             img(
