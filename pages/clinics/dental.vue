@@ -155,8 +155,8 @@ export default {
   head () {
     // - TODO: Update
     return headMeta({
-      title: 'MYCURE Diagnostics',
-      description: 'MYCURE helps you bring in more patients using a powerful healthcare service booking and management software. It’s free, secure, and easy to use.',
+      title: 'MYCURE for Dental Clinics',
+      description: 'Experience the most versatile software for dental clinics that seamlessly manages dental charts, inventory, and billing.',
       socialBanner: require('~/assets/images/banners/MYCURE Open Graph-Providers.jpg'),
     });
   },
