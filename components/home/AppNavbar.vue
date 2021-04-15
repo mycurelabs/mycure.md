@@ -5,6 +5,7 @@
       app
       color="black"
       dark
+      flat
       elevate-on-scroll
     )
       v-container.d-flex

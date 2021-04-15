@@ -1,12 +1,12 @@
 <template lang="pug">
   generic-media-panel(
     content-align-right
-    header="Enjoy the best of both worlds. MYCURE works online and offline"
+    header="Enjoy the best of both worlds"
     cols-left="6"
     cols-right="6"
     :header-classes="headerClasses"
     :description-classes="descriptionClasses"
-    :descriptions="['Work as if you have an in-house server with the convenience of the cloud. Create your medical records locally using multiple devices even if the internet is down! Once back online, it instantly syncs your data into the cloud.']"
+    :descriptions="['MYCURE works online and offline', 'Work as if you have an in-house server with the convenience of the cloud. Create your medical records locally using multiple devices even if the internet is down! Once back online, it instantly syncs your data into the cloud.']"
   )
 </template>
 

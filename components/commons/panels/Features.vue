@@ -2,7 +2,6 @@
   v-container
     v-row(justify="center")
       v-col(cols="12" :md="titleColSize" :class="{'text-center': !$isMobile }")
-        p {{ $isMobile }}
         strong(v-if="metaTitle").font-xs.primary--text {{ metaTitle }}
         h1(:class="titleClasses").lh-title {{ title }}
       v-col(cols="12" :md="contentColSize" :class="{'text-center': !$isMobile}")
