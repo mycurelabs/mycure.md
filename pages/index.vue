@@ -17,7 +17,6 @@
 
 <script>
 // - utils
-import VueScrollTo from 'vue-scrollto';
 import headMeta from '~/utils/head-meta';
 // - components
 import Care from '~/components/home/Care';
@@ -36,11 +35,17 @@ export default {
     Simple,
     Tools,
   },
-  layout: 'refactor-default',
   data () {
     return {
       loading: true,
     };
+  },
+  head () {
+    return headMeta({
+      title: 'MYCURE | Making Healthcare Accessible to All',
+      description: 'MYCURE is a healthcare platform that connects physicians, clinics, hospitals, and medical organizations to anyone in need.',
+      socialBanner: require('~/assets/images/banners/MYCURE Open Graph-Providers.jpg'),
+    });
   },
   computed: {
     panelMargins () {
@@ -49,22 +54,8 @@ export default {
   },
   mounted () {
     this.loading = false;
-    const panel = this.scrollPanel || '#app';
-    setTimeout(() => {
-      VueScrollTo.scrollTo(panel, 500, { easing: 'ease', offset: -100 });
-    }, 0);
-
-    this.$nuxt.$route.params.scrollHealthSuites ? this.getStarted()
-      : VueScrollTo.scrollTo('#app', 500, { easing: 'ease' });
     window.$crisp.push(['safe', true]);
     this.loading = false;
-  },
-  head () {
-    return headMeta({
-      title: 'MYCURE | Making Healthcare Accessible to All',
-      description: 'MYCURE is a healthcare platform that connects physicians, clinics, hospitals, and medical organizations to anyone in need.',
-      socialBanner: require('~/assets/images/banners/MYCURE Open Graph-Providers.jpg'),
-    });
   },
 };
 </script>

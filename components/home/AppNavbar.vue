@@ -1,5 +1,5 @@
 <template lang="pug">
-  fragment
+  div
     v-app-bar(
       height="50"
       app
@@ -7,46 +7,46 @@
       dark
       elevate-on-scroll
     )
-      v-container.pa-0
-        v-row(justify="center" align="center" no-gutters)
-          v-col.mt-2
-            nuxt-link(to="/")
-              img(
-                src="~/assets/images/MYCURE Logo - white.png"
-                width="120"
-                alt="MYCURE logo"
-              )
-          template(v-if="!$isMobile")
-            v-btn(
-              v-for="(nav, key) in navs"
-              :key="key"
-              text
-              depressed
-              large
-              @click="onNavClick(nav)"
-            ).text-none.mr-2.font-12
-              b {{ nav.name }}
-            //- v-btn(
-            //-   text
-            //-   depressed
-            //-   large
-            //-   :to="{ name: 'pxp' }"
-            //- ).text-none.mr-2.font-12 #[b For Patients]
-            v-spacer
-            mc-btn(
-              text
-              depressed
-              large
-              event-label="login"
-            ).text-none.mr-2.font-12 #[b LOG IN]
-            mc-btn(
-              color="success"
-              large
-              shaped
-              event-label="signup"
-              :to="{name: 'signup-health-facilities'}"
-            ).text-none.font-12 #[b SIGN UP]
-          v-app-bar-nav-icon(v-else @click.stop="drawer = !drawer")
+      v-container.d-flex
+        nuxt-link(to="/")
+          img(
+            src="~/assets/images/MYCURE Logo - white.png"
+            width="120"
+            alt="MYCURE logo"
+          ).mt-1
+        template(v-if="!$isMobile")
+          v-btn(
+            v-for="(nav, key) in navs"
+            :key="key"
+            text
+            depressed
+            large
+            @click="onNavClick(nav)"
+          ).text-none.font-12
+            b {{ nav.name }}
+          //- v-btn(
+          //-   text
+          //-   depressed
+          //-   large
+          //-   :to="{ name: 'pxp' }"
+          //- ).text-none.mr-2.font-12 #[b For Patients]
+          v-spacer
+          mc-btn(
+            text
+            depressed
+            large
+            event-label="login"
+          ).text-none.mr-2.font-12 #[b LOG IN]
+          mc-btn(
+            color="success"
+            large
+            shaped
+            event-label="signup"
+            :to="{name: 'signup-health-facilities'}"
+          ).text-none.font-12 #[b SIGN UP]
+        template(v-else)
+          v-spacer
+          v-app-bar-nav-icon(@click.stop="drawer = !drawer")
 
     v-navigation-drawer(
       v-if="$isMobile"
