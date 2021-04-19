@@ -61,7 +61,7 @@
 </template>
 
 <script>
-// import { uniqBy } from 'lodash';
+import { uniqWith } from 'lodash';
 // - components
 import BookAppointmentBtn from '~/components/commons/book-appointment-btn';
 import { formatAddress } from '~/utils/formats';
@@ -171,7 +171,7 @@ export default {
       // Sort the schedules
       this.fullSchedules = this.clinic?.$populated?.doctorSchedules || []; // eslint-disable-line
       if (!this.fullSchedules?.length) this.clinicSchedules = [];
-      const groupedSchedules = this.fullSchedules
+      const groupedSchedules = uniqWith(this.fullSchedules
         .filter(schedule => schedule.organization === this.clinic.id)
         .map((schedule) => {
           const { day } = this.days.find(day => day.order === schedule.day);
@@ -180,7 +180,8 @@ export default {
             ...schedule,
           };
         })
-        .sort((a, b) => a.day !== b.day ? a.day - b.day : a.startTime - b.startTime) || [];
+        .sort((a, b) => a.day !== b.day ? a.day - b.day : a.startTime - b.startTime) || []
+      , (a, b) => a.day === b.day && a.startTime === b.startTime);
       if (!val && groupedSchedules && groupedSchedules.length >= 3) {
         this.clinicSchedules = groupedSchedules.slice(0, 3);
         return;
