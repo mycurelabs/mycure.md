@@ -26,7 +26,6 @@
       :header-classes="headerClasses"
       :descriptionClasses="descriptionClasses"
       :dense="$isMobile"
-      dummy
     )
     //- 4th panel
     generic-media-panel(

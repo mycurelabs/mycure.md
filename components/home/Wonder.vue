@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-card(flat color="#fafafa")
+  v-card(flat color="#fafafa" height="100%")
     v-card-text.text-center
       h1.font-s {{ wonder.title }}
       p {{ wonder.description }}

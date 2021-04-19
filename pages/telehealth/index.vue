@@ -25,7 +25,6 @@
       :header-classes="headerClasses"
       :descriptionClasses="descriptionClasses"
       :dense="$isMobile"
-      dummy
     )
       //- Check list
       template(slot="additional-content" v-if="info.list")

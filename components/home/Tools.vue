@@ -29,8 +29,6 @@ export default {
       { name: 'Privacy Standards' },
       { name: 'Interoperable Systems' },
       { name: 'Customizable Features' },
-      { name: 'Feature 4 (name to be supplied' },
-      { name: 'Feature 5 (name to be supplied)' },
     ];
     return {};
   },

@@ -25,7 +25,6 @@
       :header-classes="headerClasses"
       :descriptionClasses="descriptionClasses"
       :dense="$isMobile"
-      dummy
     )
     //- 5th panel
     flexibility
@@ -39,7 +38,6 @@
       :header-classes="headerClasses"
       :descriptionClasses="descriptionClasses"
       :dense="$isMobile"
-      dummy
     )
     //- 7th panel
     features(

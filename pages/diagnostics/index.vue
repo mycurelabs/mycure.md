@@ -48,7 +48,6 @@
       :descriptions="['Join MYCURE ONE, a global online directory of modern healthcare practitioners and facilities so patients can easily find and book an appointment anytime.']"
       :header-classes="headerClasses"
       :description-classes="descriptionClasses"
-      dummy
     )
     //- 7th panel
     generic-media-panel(
@@ -75,7 +74,6 @@
       :header-classes="headerClasses"
       :sub-header-classes="subHeaderClasses"
       :description-classes="descriptionClasses"
-      dummy
     )
     //- 9th panel
     think-long-term(extended)
