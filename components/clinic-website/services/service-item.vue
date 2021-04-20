@@ -24,8 +24,8 @@
               v-icon(color="primary" small left) mdi-calendar
               span.text-capitalize {{ formatIndividualSchedule(schedule) }}
               br
-            br
-            a(@click="scheduleExpanded = true").primary--text View More Schedules >
+            //- br
+            //- a(@click="scheduleExpanded = true").primary--text View More Schedules >
           br
           br
         template(v-else)
