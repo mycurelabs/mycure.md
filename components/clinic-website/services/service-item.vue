@@ -17,7 +17,7 @@
           ) {{ isAvailable ? 'AVAILABLE' : 'NOT AVAILABLE' }}
         div(v-if="fullSchedules.length")
           div
-            v-icon(color="primary" small left) mdi-calendar
+            v-icon(color="primary" small left) mdi-calendar-today
             span(v-if="filteredDays.length > 1").text-capitalize {{ formatDay(filteredDays[0]) }} - {{ formatDay(filteredDays[filteredDays.length - 1]) }}
             span(v-else).text-capitalize {{ formatDay(filteredDays[0]) }}
             //- div(v-for="(schedule, key) in previewSchedules" :key="key")

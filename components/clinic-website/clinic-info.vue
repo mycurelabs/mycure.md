@@ -16,12 +16,12 @@
         h3.font-21 Contact Us
         v-row(no-gutters)
           v-col.shrink
-            v-icon(color="primary" medium) mdi-map-marker
+            v-icon(color="error" medium) mdi-map-marker
           v-col.grow
             span.ml-2.font-14 {{ completeAddress }}
         v-row(no-gutters)
           v-col.shrink
-            v-icon(color="primary" medium) mdi-phone
+            v-icon(color="success" medium) mdi-phone
           v-col.grow
             span.ml-2.font-14 #[b {{ contactNumber }}]
       v-col(cols="12" :class="{ 'text-center': $isMobile }")
