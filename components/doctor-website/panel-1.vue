@@ -67,7 +67,7 @@
                     v-icon mdi-share-variant
                 v-card(color="primary" width="275")
                   v-card-text
-                    h3.white--text Share this website:
+                    h4.white--text Love this doctor? Let your friends know by sharing this website!
                     v-row(no-gutters)
                       v-col(cols="12")
                         social-sharing(
