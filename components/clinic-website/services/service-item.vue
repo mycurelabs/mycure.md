@@ -16,24 +16,24 @@
             label
           ) {{ isAvailable ? 'AVAILABLE' : 'NOT AVAILABLE' }}
         div(v-if="fullSchedules.length")
-          //- div(v-if="!scheduleExpanded")
-          //-   p(v-if="scheduleNow").text-capitalize {{ formatTodaySchedule(scheduleNow) }}
-          //-   a(v-if="fullSchedules.length > 1" @click="scheduleExpanded = true").primary--text View Schedules >
           div
-            div(v-for="(schedule, key) in previewSchedules" :key="key")
-              v-icon(color="primary" small left) mdi-calendar
-              span.text-capitalize {{ formatIndividualSchedule(schedule) }}
-              br
-            br
-            a(@click="scheduleExpanded = true").primary--text View More Schedules >
+            v-icon(color="primary" small left) mdi-calendar-today
+            span(v-if="filteredDays.length > 1").text-capitalize {{ formatDay(filteredDays[0]) }} - {{ formatDay(filteredDays[filteredDays.length - 1]) }}
+            span(v-else).text-capitalize {{ formatDay(filteredDays[0]) }}
+            //- div(v-for="(schedule, key) in previewSchedules" :key="key")
+            //-   v-icon(color="primary" small left) mdi-calendar
+            //-   span.text-capitalize {{ formatIndividualSchedule(schedule) }}
+            //-   br
+            //- br
+            //- a(@click="scheduleExpanded = true").primary--text View More Schedules >
           br
           br
         template(v-else)
           i No schedules available
           br
+        span Coverages:
+        br
         template(v-if="hasCoverages")
-          span Coverages:
-          br
           v-tooltip(
             v-for="(coverage, key) in coverages"
             :key="key"
@@ -48,6 +48,7 @@
                 v-img(v-if="coverage.picURL" :src="coverage.picURL")
                 span(v-else).white--text {{ coverage.name.substring(0,1) }}
             span {{ coverage.name || 'HMO' }}
+        i(v-else) No coverages available
       v-col(v-if="!isDoctor && !readOnly").grow.text-right
         h2(v-if="price") PHP {{ price }}
         h3(v-else).font-italic No price stated
@@ -100,6 +101,7 @@
 
 <script>
 import { format } from 'date-fns';
+import { uniqBy } from 'lodash';
 import ServiceSchedules from './service-schedules';
 
 export default {
@@ -184,6 +186,9 @@ export default {
 
       return this.fullSchedules.filter(schedule => schedule.order === dayOrder || schedule.day === dayOrder) || [];
     },
+    filteredDays () {
+      return uniqBy(this.groupedSchedules, 'day').map(schedule => schedule.day);
+    },
     scheduleNow () {
       if (!this.todaySchedules.length) return null;
 
@@ -248,6 +253,10 @@ export default {
         return `${day.text} (${format(schedule.startTime, 'hh:mm A')} - ${format(schedule.endTime, 'hh:mm A')})`;
       }
       return `${schedule.day} (${format(schedule.opening, 'hh:mm A')} - ${format(schedule.closing, 'hh:mm A')})`;
+    },
+    formatDay (day) {
+      if (this.nonMfSchedule) return this.days.find(item => item.value === day).text || '';
+      return day;
     },
   },
 };

@@ -1,11 +1,11 @@
 <template lang="pug">
   v-row
     v-col(:class="{ 'mx-auto' : $isMobile}").shrink
-      v-card(width="175")
-        img(
-          :src="clinicPicURL"
-          width="100%"
-        )
+      v-img(
+        :src="clinicPicURL"
+        width="175"
+        height="100%"
+      ).elevation-4
     v-col(:class="{ 'text-center' : $isMobile}").grow
       v-row
         v-col(cols="12").pt-0
