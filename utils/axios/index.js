@@ -213,6 +213,7 @@ export const signupIndividual = async (opts) => {
         doc_PRCLicenseNo: opts.doc_PRCLicenseNo,
         mobileNo: `+${opts.countryCallingCode}${opts.mobileNo}`,
       },
+      // TODO: Update query to accomodate 'type: facility'
       organization: {
         type: 'personal-clinic',
         superadmin: {
