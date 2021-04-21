@@ -27,6 +27,7 @@
       :descriptions="info.descriptions"
       :header-classes="headerClasses"
       :description-classes="descriptionClasses"
+      dummy
     )
     //- 7th panel
     call-to-action(:version="2")
@@ -39,6 +40,7 @@
       :descriptions="bookDemoPanel.descriptions"
       :descriptionClasses="descriptionClasses"
       :dense="$isMobile"
+      dummy
     )
 </template>
 
@@ -106,14 +108,6 @@ export default {
       loading: true,
     };
   },
-  head () {
-    // - TODO: Update
-    return headMeta({
-      title: 'MYCURE for Hospitals',
-      description: 'MYCURE helps you bring in more patients using a powerful healthcare service booking and management software. It’s free, secure, and easy to use.',
-      socialBanner: require('~/assets/images/banners/MYCURE Open Graph-Providers.jpg'),
-    });
-  },
   computed: {
     headerClasses () {
       const headerClasses = [
@@ -139,6 +133,14 @@ export default {
   },
   mounted () {
     this.loading = false;
+  },
+  head () {
+    // - TODO: Update
+    return headMeta({
+      title: 'MYCURE for Hospitals',
+      description: 'MYCURE helps you bring in more patients using a powerful healthcare service booking and management software. It’s free, secure, and easy to use.',
+      socialBanner: require('~/assets/images/banners/MYCURE Open Graph-Providers.jpg'),
+    });
   },
 };
 </script>

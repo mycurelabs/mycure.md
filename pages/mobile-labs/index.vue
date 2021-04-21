@@ -18,6 +18,7 @@
       :header-classes="headerClasses"
       :descriptions="info.descriptions"
       :description-classes="descriptionClasses"
+      dummy
     )
       //- List
       template(slot="additional-content" v-if="info.list")
@@ -40,6 +41,7 @@
       :descriptions="['Start now and get all your questions answered']"
       :descriptionClasses="descriptionClasses"
       :dense="$isMobile"
+      dummy
     )
       template(slot="additional-content")
         v-row(justify="center")
@@ -98,14 +100,6 @@ export default {
       loading: true,
     };
   },
-  head () {
-    // - TODO: Update
-    return headMeta({
-      title: 'MYCURE LIS for Mobile Labs',
-      description: 'Discover the simplest and most affordable laboratory information software designed for mobile labs. It’s cloud-based and works offline.',
-      socialBanner: require('~/assets/images/banners/MYCURE Open Graph-Providers.jpg'),
-    });
-  },
   computed: {
     headerClasses () {
       const headerClasses = [
@@ -142,6 +136,14 @@ export default {
   },
   mounted () {
     this.loading = false;
+  },
+  head () {
+    // - TODO: Update
+    return headMeta({
+      title: 'MYCURE LIS for Mobile Labs',
+      description: 'Discover the simplest and most affordable laboratory information software designed for mobile labs. It’s cloud-based and works offline.',
+      socialBanner: require('~/assets/images/banners/MYCURE Open Graph-Providers.jpg'),
+    });
   },
 };
 </script>

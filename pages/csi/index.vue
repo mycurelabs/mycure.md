@@ -15,6 +15,7 @@
       :header-classes="headerClasses"
       :description-classes="descriptionClasses"
       :dense="$isMobile"
+      dummy
     )
     //- 3rd panel
     features(
@@ -38,6 +39,7 @@
       :dense="$isMobile"
       :header="info.header"
       :descriptions="info.descriptions"
+      dummy
     )
 </template>
 

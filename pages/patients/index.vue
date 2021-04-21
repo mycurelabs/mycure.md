@@ -21,6 +21,7 @@
       :header-classes="headerClasses"
       :description-classes="descriptionClasses"
       :descriptions="['MYCURE allows API integrations with other EMR software.']"
+      dummy
     )
     //- 4th panel
     generic-media-panel(
@@ -29,6 +30,7 @@
       :content-align-left="$isMobile"
       :header-classes="headerClasses"
       :dense="$isMobile"
+      dummy
     )
     //- 5th to 6th panel
     generic-media-panel(
@@ -41,6 +43,7 @@
       :descriptions="info.descriptions"
       :header-classes="headerClasses"
       :description-classes="descriptionClasses"
+      dummy
     )
       //- Check list
       template(slot="additional-content" v-if="info.list")
@@ -59,6 +62,7 @@
       :header-classes="headerClasses"
       :description-classes="descriptionClasses"
       :dense="$isMobile"
+      dummy
     )
 </template>
 
@@ -121,14 +125,6 @@ export default {
       loading: true,
     };
   },
-  head () {
-    // - TODO: Update
-    return headMeta({
-      title: 'MYCURE Patient Relationship Management',
-      description: 'Build lasting connections with your patients with MYCURE’s medical CRM. Let them know you are there. Make quick calls, chats, appointments, and reminders to your patients and reinforce continuity of care in an effective and timely way.',
-      socialBanner: require('~/assets/images/banners/MYCURE Open Graph-Providers.jpg'),
-    });
-  },
   computed: {
     headerClasses () {
       const headerClasses = [
@@ -154,6 +150,14 @@ export default {
   },
   mounted () {
     this.loading = false;
+  },
+  head () {
+    // - TODO: Update
+    return headMeta({
+      title: 'MYCURE Patient Relationship Management',
+      description: 'Build lasting connections with your patients with MYCURE’s medical CRM. Let them know you are there. Make quick calls, chats, appointments, and reminders to your patients and reinforce continuity of care in an effective and timely way.',
+      socialBanner: require('~/assets/images/banners/MYCURE Open Graph-Providers.jpg'),
+    });
   },
 };
 </script>

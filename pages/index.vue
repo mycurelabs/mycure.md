@@ -40,13 +40,6 @@ export default {
       loading: true,
     };
   },
-  head () {
-    return headMeta({
-      title: 'MYCURE | Making Healthcare Accessible to All',
-      description: 'MYCURE is a healthcare platform that connects physicians, clinics, hospitals, and medical organizations to anyone in need.',
-      socialBanner: require('~/assets/images/banners/MYCURE Open Graph-Providers.jpg'),
-    });
-  },
   computed: {
     panelMargins () {
       return { 'mt-10': this.$isMobile, 'mt-5': !this.$isMobile };
@@ -56,6 +49,13 @@ export default {
     this.loading = false;
     window.$crisp.push(['safe', true]);
     this.loading = false;
+  },
+  head () {
+    return headMeta({
+      title: 'MYCURE | Making Healthcare Accessible to All',
+      description: 'MYCURE is a healthcare platform that connects physicians, clinics, hospitals, and medical organizations to anyone in need.',
+      socialBanner: require('~/assets/images/banners/MYCURE Open Graph-Providers.jpg'),
+    });
   },
 };
 </script>

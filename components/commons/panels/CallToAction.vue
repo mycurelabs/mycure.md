@@ -7,6 +7,7 @@
     :descriptions="callToActionPanel.descriptions"
     :descriptionClasses="descriptionClasses"
     :dense="$isMobile"
+    dummy
   )
 </template>
 

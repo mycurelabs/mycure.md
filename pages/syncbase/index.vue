@@ -15,6 +15,7 @@
       :descriptions="['Download our comparative analysis on the different healthcare software setups.']"
       :descriptionClasses="descriptionClasses"
       :dense="$isMobile"
+      dummy
     )
     //- 3rd panel
     generic-media-panel(
@@ -26,6 +27,7 @@
       :header-classes="headerClasses"
       :descriptionClasses="descriptionClasses"
       :dense="$isMobile"
+      dummy
     )
     //- 4th panel
     generic-media-panel(
@@ -34,6 +36,7 @@
       header="Secure cloud-based software with the benefits of an on-premise system"
       :header-classes="headerClasses"
       :dense="$isMobile"
+      dummy
     )
     //- 5th panel
     generic-media-panel(
@@ -42,6 +45,7 @@
       header="See it in action. Book a demo today"
       :header-classes="headerClasses"
       :dense="$isMobile"
+      dummy
     )
 </template>
 
@@ -62,14 +66,6 @@ export default {
     return {
       loading: true,
     };
-  },
-  head () {
-    // - TODO: Update
-    return headMeta({
-      title: 'MYCURE Syncbase',
-      description: 'Digitally process your medical records in your local network using multiple devices, even if the internet goes down. Then once back online, it automatically synchronizes data back in the cloud. It’s like getting the best of both worlds — reliability of an on-premise server, and affordability of the cloud. Like magic, but scientifically-blended. ',
-      socialBanner: require('~/assets/images/banners/MYCURE Open Graph-Providers.jpg'),
-    });
   },
   computed: {
     headerClasses () {
@@ -96,6 +92,14 @@ export default {
   },
   mounted () {
     this.loading = false;
+  },
+  head () {
+    // - TODO: Update
+    return headMeta({
+      title: 'MYCURE Syncbase',
+      description: 'Digitally process your medical records in your local network using multiple devices, even if the internet goes down. Then once back online, it automatically synchronizes data back in the cloud. It’s like getting the best of both worlds — reliability of an on-premise server, and affordability of the cloud. Like magic, but scientifically-blended. ',
+      socialBanner: require('~/assets/images/banners/MYCURE Open Graph-Providers.jpg'),
+    });
   },
 };
 </script>

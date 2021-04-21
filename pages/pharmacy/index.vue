@@ -18,6 +18,7 @@
       cols-right="5"
       :header="thirdPanel.header"
       :header-classes="headerClasses"
+      dummy
     )
       //- Check list
       template(slot="additional-content")
@@ -38,6 +39,7 @@
       :descriptions="fifthPanel.descriptions"
       :descriptionClasses="descriptionClasses"
       :dense="$isMobile"
+      dummy
     )
 
 </template>
@@ -93,14 +95,6 @@ export default {
       loading: true,
     };
   },
-  head () {
-    // - TODO: Update
-    return headMeta({
-      title: 'MYCURE for Pharmacy and Drugstores',
-      description: 'MYCURE provides medical POS and Inventory solutions that make pharmacy and drugstore management so much simpler.',
-      socialBanner: require('~/assets/images/banners/MYCURE Open Graph-Providers.jpg'),
-    });
-  },
   computed: {
     headerClasses () {
       const headerClasses = [
@@ -136,6 +130,14 @@ export default {
   },
   mounted () {
     this.loading = false;
+  },
+  head () {
+    // - TODO: Update
+    return headMeta({
+      title: 'MYCURE for Pharmacy and Drugstores',
+      description: 'MYCURE provides medical POS and Inventory solutions that make pharmacy and drugstore management so much simpler.',
+      socialBanner: require('~/assets/images/banners/MYCURE Open Graph-Providers.jpg'),
+    });
   },
 };
 </script>

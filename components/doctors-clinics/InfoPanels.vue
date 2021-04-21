@@ -4,6 +4,7 @@
       v-for="(content, key) in contents"
       :key="key"
       v-bind="getPanelBindings(content)"
+      dummy
     )
       //- Check list
       template(slot="additional-content" v-if="content.list")

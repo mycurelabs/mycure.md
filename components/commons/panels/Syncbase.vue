@@ -7,6 +7,7 @@
     :header-classes="headerClasses"
     :description-classes="descriptionClasses"
     :descriptions="['MYCURE works online and offline', 'Work as if you have an in-house server with the convenience of the cloud. Create your medical records locally using multiple devices even if the internet is down! Once back online, it instantly syncs your data into the cloud.']"
+    dummy
   )
 </template>
 

@@ -25,6 +25,7 @@
       :header-classes="headerClasses"
       :descriptionClasses="descriptionClasses"
       :dense="$isMobile"
+      dummy
     )
     //- 5th panel
     flexibility
@@ -38,6 +39,7 @@
       :header-classes="headerClasses"
       :descriptionClasses="descriptionClasses"
       :dense="$isMobile"
+      dummy
     )
     //- 7th panel
     features(
@@ -127,14 +129,6 @@ export default {
       loading: true,
     };
   },
-  head () {
-    // - TODO: Update
-    return headMeta({
-      title: 'MYCURE Clinic Management System',
-      description: 'MYCURE helps you bring in more patients using a powerful healthcare service booking and management software. It’s free, secure, and easy to use.',
-      socialBanner: require('~/assets/images/banners/MYCURE Open Graph-Providers.jpg'),
-    });
-  },
   computed: {
     headerClasses () {
       const headerClasses = [
@@ -160,6 +154,14 @@ export default {
   },
   mounted () {
     this.loading = false;
+  },
+  head () {
+    // - TODO: Update
+    return headMeta({
+      title: 'MYCURE Clinic Management System',
+      description: 'MYCURE helps you bring in more patients using a powerful healthcare service booking and management software. It’s free, secure, and easy to use.',
+      socialBanner: require('~/assets/images/banners/MYCURE Open Graph-Providers.jpg'),
+    });
   },
 };
 </script>
