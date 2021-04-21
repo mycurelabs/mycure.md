@@ -47,8 +47,6 @@ export default {
   },
   mounted () {
     this.loading = false;
-    window.$crisp.push(['safe', true]);
-    this.loading = false;
   },
   head () {
     return headMeta({
