@@ -9,6 +9,19 @@
     :dense="$isMobile"
     dummy
   )
+    template(slot="additional-content")
+      v-row(justify="center").mb-10
+        v-col(cols="12" md="3")
+          mc-btn(depressed x-large block color="success").text-none Book a full training
+        v-col(cols="12" md="3")
+          mc-btn(
+            depressed
+            x-large
+            block
+            color="primary"
+            event-label="signup"
+            :to="{ name: 'signup-health-facilities' }"
+          ).text-none Get Started Free
 </template>
 
 <script>

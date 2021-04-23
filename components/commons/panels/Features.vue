@@ -11,7 +11,7 @@
           v-col(cols="12" md="4" v-for="(item, key) in items" :key="key").text-center
             h3.font-s.grey--text {{ item.title }}
             p(v-if="item.description").font-xs.grey--text {{ item.description }}
-            a(v-if="!hideLearnMore").primary--text.font-weight-bold Learn more.
+            nuxt-link(v-if="!hideLearnMore && item.route" :to="{ name: item.route }").primary--text.font-weight-bold.learnLink Learn more
 </template>
 
 <script>
@@ -63,3 +63,9 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.learnLink {
+  text-decoration: none;
+}
+</style>

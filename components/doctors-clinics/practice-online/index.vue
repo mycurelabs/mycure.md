@@ -1,8 +1,8 @@
 <template lang="pug">
   generic-media-panel(
     align-left-column="center"
-    cols-left="5"
-    cols-right="6"
+    cols-left="4"
+    cols-right="5"
     offset-cols-right="1"
     custom-image-path="doctors-clinics/"
     file-extension=".webp"

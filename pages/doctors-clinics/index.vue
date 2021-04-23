@@ -7,6 +7,8 @@
       parse-title
       :parse-title-fields="['Hero ']"
       :description="uspDescription"
+      btn-text="Get Started Free"
+      @click="$nuxt.$router.push({ name: 'signup-health-facilities' })"
     )
     //- 2nd panel
     features(
@@ -84,6 +86,13 @@ export default {
       loading: true,
     };
   },
+  head () {
+    return headMeta({
+      title: 'MYCURE EMR Practice Management System for Doctors',
+      description: 'MYCURE organizes your daily tasks to make your practice more simple, secure, and efficient.',
+      socialBanner: require('~/assets/images/banners/MYCURE Open Graph Images - Doctors Clinic.png'),
+    });
+  },
   computed: {
     panelMargins () {
       return { 'mt-10': this.$isMobile };
@@ -91,13 +100,6 @@ export default {
   },
   mounted () {
     this.loading = false;
-  },
-  head () {
-    return headMeta({
-      title: 'MYCURE EMR Practice Management System for Doctors',
-      description: 'MYCURE organizes your daily tasks to make your practice more simple, secure, and efficient.',
-      socialBanner: require('~/assets/images/banners/MYCURE Open Graph Images - Doctors Clinic.png'),
-    });
   },
 };
 </script>

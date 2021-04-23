@@ -16,12 +16,15 @@ export default {
     this.items = [
       {
         title: 'Compliance',
+        route: 'csi',
       },
       {
         title: 'Security',
+        route: 'csi',
       },
       {
         title: 'Interoperability',
+        route: 'csi',
       },
     ];
     return {};

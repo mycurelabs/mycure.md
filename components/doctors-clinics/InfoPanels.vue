@@ -7,13 +7,25 @@
       dummy
     )
       //- Check list
-      template(slot="additional-content" v-if="content.list")
-        template(v-for="(item, i) in content.list")
-          v-row(:align="i === 2 ? 'center' : 'start'" dense)
+      template(slot="additional-content")
+        div(v-if="content.list").mb-5
+          v-row(
+            v-for="(item, i) in content.list"
+            :align="i === 2 ? 'center' : 'start'"
+            :key="i"
+            dense
+          )
             v-col(cols="1").pr-2.pt-2
               v-icon(color="black") mdi-arrow-right
             v-col
               span(:class="checkListClasses") {{ item }}
+        mc-btn(
+          depressed
+          large
+          color="primary"
+          event-label="signup"
+          :to="{ name: 'signup-health-facilities' }"
+        ).text-none.font-xs Get Started Free
 </template>
 
 <script>
@@ -77,13 +89,16 @@ export default {
     getPanelBindings (content) {
       const contentLeftBindings = {
         contentAlignLeft: true,
-        colsLeft: 5,
-        colsRight: 7,
+        colsLeft: 4,
+        colsRight: 5,
+        offsetColsRight: 1,
+        alignLeftColumn: 'center',
       };
       const contentRightBindings = {
         contentAlignRight: true,
-        colsLeft: 7,
-        colsRight: 5,
+        colsLeft: 5,
+        colsRight: 4,
+        offsetColsRight: 1,
       };
       const headerClasses = [
         classBinder(this, {
