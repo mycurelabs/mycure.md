@@ -9,7 +9,7 @@
     :dense="$isMobile"
     dummy
   )
-    template(slot="additional-content")
+    template(slot="additional-content" v-if="version === 1")
       v-row(justify="center").mb-10
         v-col(cols="12" md="3")
           mc-btn(depressed x-large block color="success").text-none Book a full training
@@ -22,6 +22,26 @@
             event-label="signup"
             :to="{ name: 'signup-health-facilities' }"
           ).text-none Get Started Free
+    template(slot="additional-content" v-if="version === 2")
+      v-row(justify="center")
+        v-col(cols="12")
+          mc-btn(
+            depressed
+            x-large
+            color="primary"
+            event-label="signup"
+            :to="{ name: 'signup-health-facilities' }"
+          ).text-none Start Now
+      v-row(justify="center").mb-10
+        v-col(cols="12")
+          mc-btn(
+            depressed
+            text
+            x-large
+            color="primary"
+          ).text-none
+            span Download MYCURE's implementation workflow
+            v-icon(right) mdi-download
 </template>
 
 <script>

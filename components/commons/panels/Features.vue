@@ -12,6 +12,7 @@
             h3.font-s.grey--text {{ item.title }}
             p(v-if="item.description").font-xs.grey--text {{ item.description }}
             nuxt-link(v-if="!hideLearnMore && item.route" :to="{ name: item.route }").primary--text.font-weight-bold.learnLink Learn more
+    slot(name="additional-content")
 </template>
 
 <script>

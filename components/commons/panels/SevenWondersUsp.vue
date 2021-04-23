@@ -16,7 +16,7 @@
         p(:class="metaTitleClasses").font-weight-bold {{ uspMetaTitle }}
         h1(:class="titleClasses").lh-title {{ uspTitle }}
         p(:class="descriptionClasses").grey--text {{ uspDescription }}
-        v-btn(
+        mc-btn(
           depressed
           color="primary"
           x-large
