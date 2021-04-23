@@ -17,8 +17,10 @@
       v-for="(info, key) in infoPanels"
       :key="key"
       content-align-right
-      cols-left="6"
-      cols-right="6"
+      align-content-right="center"
+      cols-left="5"
+      cols-right="4"
+      offset-cols-right="1"
       :header="info.header"
       :header-classes="headerClasses"
       :descriptions="info.descriptions"
@@ -43,14 +45,34 @@
     //- 6th panel
     generic-media-panel(
       content-align-right
-      cols-left="6"
-      cols-right="6"
+      cols-left="5"
+      cols-right="4"
+      offset-cols-right="1"
+      align-content-right="center"
       header="Expand Your Reach"
       :descriptions="['Join MYCURE ONE, a global online directory of modern healthcare practitioners and facilities so patients can easily find and book an appointment anytime.']"
       :header-classes="headerClasses"
       :description-classes="descriptionClasses"
       dummy
     )
+      template(slot="additional-content")
+        v-row(:justify="$isMobile ? 'center' : 'start'")
+          v-col
+            mc-btn(
+              text
+              color="primary"
+              :block="$isMobile"
+            ).text-none.font-xs
+              span Create my website
+              v-icon(right) mdi-chevron-right
+        v-row
+          mc-btn(
+            text
+            color="primary"
+            :block="$isMobile"
+          ).text-none.font-xs
+            span View a sample website
+            v-icon(right) mdi-chevron-right
     //- 7th panel
     generic-media-panel(
       header="Grow into a full service clinic anytime"
@@ -61,29 +83,24 @@
       :dense="$isMobile"
       :descriptions="['Cover all your patient journeys with MYCURE’s most complete clinic management system.']"
       :header-classes="headerClasses"
-      :sub-headerClasses="subHeaderClasses"
-      :description-classes="descriptionClasses"
-      dummy
-    )
-    //- 8th panel
-    generic-media-panel(
-      content-align-right
-      cols-left="6"
-      cols-right="6"
-      header="Grow into a full service anytime."
-      sub-header="MYCURE CLINIC MANAGEMENT SYSTEM"
-      with-subheader
-      :descriptions="['Cover all your patient journeys with MYCURE’s most complete clinic management system.']"
-      :header-classes="headerClasses"
       :sub-header-classes="subHeaderClasses"
       :description-classes="descriptionClasses"
       dummy
     )
-    //- 9th panel
+      template(slot="additional-content")
+        v-row(justify="center").mb-10
+         mc-btn(
+           text
+           color="primary"
+           :block="$isMobile"
+         ).text-none.font-xs
+          span Learn more
+          v-icon(right) mdi-chevron-right
+    //- 8th panel
     think-long-term(extended)
+    //- 9th panel
+    call-to-action(:version="2")
     //- 10th panel
-    call-to-action
-    //- 11th panel
     pricing(
       title="Take the first step today"
       description="Start free and only pay as you grow."
