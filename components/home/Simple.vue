@@ -20,11 +20,37 @@
         p.font-s.grey--text Say goodbye to paperwork and hello to an easy, compact database.
         p.font-xs.font-open-sans MYCURE is infused with advanced user experience that you can never compare with another medical software. Experience smooth transitions from one workflow
           | &nbsp;to another -- you probably won't even consider using pen and paper ever again.
-
+        v-row(dense v-for="(service, key) in services" :key="key")
+          v-col(col="4")
+            nuxt-link(:to="{ name: service.route }").primary--text.service-link.font-xs.font-open-sans
+              v-icon(small left color="primary") mdi-chevron-right
+              span {{ service.text }}
 </template>
+
+<script>
+export default {
+  data () {
+    this.services = [
+      {
+        text: 'For Physicians',
+        route: 'doctors-clinics',
+      },
+      {
+        text: 'For Clinics',
+        route: 'clinics',
+      },
+    ];
+    return {};
+  },
+};
+</script>
 
 <style scoped>
 .usp-container {
   padding-bottom: 70px;
+}
+
+.service-link {
+  text-decoration: none;
 }
 </style>

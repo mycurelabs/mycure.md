@@ -7,7 +7,13 @@
     )
       v-col(cols="12" md="8").text-center
         h1(:class="{ 'font-xl mb-8' : !$isMobile, 'font-m mb-6' : $isMobile }").title-line-spacing Join the next generation of healthcare providers today.
-        v-btn(color="primary" large depressed).text-none Get Started
+        mc-btn(
+          event-label="signup"
+          color="primary"
+          large
+          depressed
+          :to="{ name: 'signup-health-facilities' }"
+        ).text-none Get Started
 </template>
 <style scoped>
 .usp-container {
