@@ -39,6 +39,10 @@ export default {
         text: 'For Clinics',
         route: 'clinics',
       },
+      {
+        text: 'For Hospitals',
+        route: 'hospitals',
+      },
     ];
     return {};
   },
