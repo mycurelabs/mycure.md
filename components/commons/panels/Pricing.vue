@@ -50,7 +50,7 @@
               block
               color="success"
               event-category="Pricing"
-              :event-label="`click-pricing-${detaisl.title}`"
+              :event-label="`click-pricing-${details.title}`"
               @click="onBtnClick(details)"
             ).text-none {{ details.btnText }}
 </template>
