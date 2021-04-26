@@ -116,8 +116,9 @@ export default {
           type: 'footer-header',
           value: 'Providers',
           columns: [
-            { type: 'link', value: 'Clinics', link: '/doctors-clinics' },
-            { type: 'link', value: 'Enterprise', link: '/enterprise' },
+            { type: 'link', value: 'Doctor\'s Clinics', link: '/doctors-clinics' },
+            { type: 'link', value: 'Outpatient Clinics', link: '/clinics' },
+            { type: 'link', value: 'Diagnostics', link: '/diagnostics' },
           ],
         },
         {
