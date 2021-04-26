@@ -8,7 +8,7 @@
         p(:class="descriptionClasses").grey--text.font-open-sans {{ description }}
     v-row(justify="center")
       v-col(cols="12" md="4").text-center
-        mc-btn(
+        v-btn(
           v-for="(mode, key) in modeBtns"
           :key="key"
           color="primary"
@@ -49,6 +49,8 @@
               depressed
               block
               color="success"
+              event-category="Pricing"
+              :event-label="`click-pricing-${detaisl.title}`"
               @click="onBtnClick(details)"
             ).text-none {{ details.btnText }}
 </template>
