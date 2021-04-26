@@ -121,18 +121,18 @@ export default {
         name: 'Diagnostics',
         route: 'diagnostics',
       },
-      {
-        name: 'Hospitals',
-        route: 'hospitals',
-      },
+      // {
+      //   name: 'Hospitals',
+      //   route: 'hospitals',
+      // },
       {
         name: 'Scheduling',
         route: 'pxp',
       },
-      {
-        name: 'For Patients',
-        route: 'patients',
-      },
+      // {
+      //   name: 'For Patients',
+      //   route: 'patients',
+      // },
     ];
     return {
       drawer: false,

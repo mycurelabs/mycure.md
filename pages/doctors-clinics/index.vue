@@ -3,7 +3,7 @@
     //- 1st panel
     usp(
       title="Bring Out the Hero in You"
-      meta-title="MYCURE DOCTOR"
+      meta-title="MYCURE Doctor"
       parse-title
       :parse-title-fields="['Hero ']"
       :description="uspDescription"
