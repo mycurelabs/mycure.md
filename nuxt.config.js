@@ -44,6 +44,7 @@ export default {
     { src: '~plugins/vue-cookie-law', mode: 'client' },
     { src: '~/plugins/vue-carousel.js', mode: 'client' },
     { src: '~plugins/crisp.js', mode: 'client' },
+    { src: '~plugins/amplitude.js', mode: 'client' },
     { src: '~/plugins/vue-social-sharing.js', mode: 'client' },
     { src: '~/plugins/vue-morphling.js', mode: 'client' },
     '~/plugins/vue-lazyload.js',
