@@ -8,7 +8,7 @@
       :parse-title-fields="['Hero ']"
       :description="uspDescription"
       btn-text="Get Started Free"
-      @click="$nuxt.$router.push({ name: 'signup-health-facilities' })"
+      @click="$nuxt.$router.push({ name: 'signup-health-facilities', params: { type: 'doctors' }})"
     )
     //- 2nd panel
     features(

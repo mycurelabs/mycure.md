@@ -1,7 +1,7 @@
 <template lang="pug">
   v-container(v-if="!loading.page")
-    v-row(justify="end")
-      | Already have an account?&nbsp;&nbsp;
+    v-row(justify="end").pt-1
+      span.mt-2 Already have an account?&nbsp;&nbsp;
       v-btn(
         color="primary"
         :to="{ name: 'signin' }"
@@ -134,14 +134,15 @@
               :class="{ 'pa-1': !$isMobile }"
             ).order-md-7.order-sm-7
               v-autocomplete(
-                v-model="clinicType"
+                v-model="facilityType"
                 label="Health Facility Type"
                 item-text="text"
                 item-value="value"
                 outlined
-                :items="clinicTypes"
+                :items="facilityTypes"
                 :rules="isRequired"
                 :disabled="loading.form"
+                return-object
               )
             v-col(
               cols="12"
@@ -242,15 +243,31 @@ export default {
     this.mobileNumberRule = v => this.validatePhoneNo(v) || 'Invalid phone number';
     // ENUM
     // Clinic Types
-    this.clinicTypes = [
-      { text: 'Doctor\'s Clinic', value: 'personal-clinic' },
-      { text: 'Group Clinic', value: 'group-clinic' },
-      { text: 'Multispecialty Clinic', value: 'cms' },
-      { text: 'Diagnostic Clinic', value: 'diagnostic-center' },
-      { text: 'Corporate Clinic', value: 'company' },
-      { text: 'Medical Center', value: 'health-group' },
-      { text: 'Hospital', value: 'his' },
-      { text: 'Other', value: 'facility' },
+    this.facilityTypes = [
+      {
+        text: 'Doctor\'s Clinic',
+        orgProps: {
+          type: 'facility',
+          types: ['doctor'],
+        },
+        value: 'doctors',
+      },
+      {
+        text: 'Outpatient Clinic',
+        orgProps: {
+          type: 'facility',
+          types: ['clinic'],
+        },
+        value: 'clinic',
+      },
+      {
+        text: 'Diagnostics',
+        orgProps: {
+          type: 'facility',
+          types: ['clinic-diagnostic'],
+        },
+        value: 'clinic-diagnostic',
+      },
     ];
     this.userRoles = [
       { text: 'Physician/Owner', value: ['doctor', 'admin'] },
@@ -264,7 +281,7 @@ export default {
       mobileNo: '',
       password: '',
       confirmPassword: '',
-      clinicType: '',
+      facilityType: null,
       doc_PRCLicenseNo: '',
       roles: [],
       agree: '',
@@ -311,13 +328,18 @@ export default {
     async init () {
       try {
         this.loading.form = true;
+        // - Fetch countries
         await this.getCountries();
         const country = await getCountry();
         const { location } = country;
         this.countryCallingCode = location ? location.calling_code : '63';
         this.countryFlag = location ? location.country_flag : 'https://assets.ipstack.com/flags/ph.svg';
+
         // Check if email has been passed
         this.email = this.$route.query.email;
+
+        // Check if user has been prefilled a type
+        this.facilityType = this.$route.params.type;
       } catch (e) {
         console.error(e);
       } finally {
@@ -338,7 +360,7 @@ export default {
           password: this.password,
           mobileNo: this.mobileNo,
           countryCallingCode: this.countryCallingCode,
-          clinicType: this.clinicType,
+          facilityType: this.facilityType,
           roles: this.roles,
           doc_PRCLicenseNo: this.doc_PRCLicenseNo,
         };

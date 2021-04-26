@@ -42,10 +42,10 @@
           mc-btn(
             color="success"
             large
-            shaped
+            tile
             event-label="signup"
             :to="{name: 'signup-health-facilities'}"
-          ).text-none.font-12 #[b SIGN UP]
+          ).text-none.font-12.font-weight-bold #[b SIGN UP]
         template(v-else)
           v-spacer
           v-app-bar-nav-icon(@click.stop="drawer = !drawer")

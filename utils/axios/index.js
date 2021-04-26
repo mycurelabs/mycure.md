@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { pick } from 'lodash';
 import { handleError } from './error-handler';
 
 // NOTE: Do not remove yet
@@ -248,11 +249,11 @@ export const signupFacility = async (opts) => {
           firstName: opts.firstName,
           lastName: opts.lastName,
         },
-        doc_PRCLicenseNo: opts.doc_PRCLicenseNo,
+        ...opts.doc_PRCLicenseNo && { doc_PRCLicenseNo: opts.doc_PRCLicenseNo },
         mobileNo: `+${opts.countryCallingCode}${opts.mobileNo}`,
       },
       organization: {
-        type: opts.clinicType,
+        ...pick(opts.facilityType, 'orgProps'),
         superadmin: {
           roles: [...opts.roles],
         },

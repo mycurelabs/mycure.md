@@ -8,6 +8,7 @@
       parse-meta-title="mobile"
       btn-text="Watch How It Works"
       :parse-meta-title-fields="['Complete ']"
+      @click="$nuxt.$router.push({ name: 'signup-health-facilities', params: { type: 'clinic' }})"
     )
     //- 2nd panel
     features(
