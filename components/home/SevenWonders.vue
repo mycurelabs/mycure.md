@@ -19,33 +19,11 @@
     v-row(justify="center" align="center" no-gutters)
       v-col(v-if="!$isMobile" cols="12")
         carousel(
-          :per-page="1"
+          :perPage="4"
           :navigationEnabled="true"
-          :adjustableHeight="true"
-          :navigationClickTargetSize="50"
-          navigationNextLabel=" "
-          navigationPrevLabel=" "
         )
-          slide(:data-index="1")
-            v-row
-              v-col(
-                v-for="(wonder, key) in wonders.slice(0, 4)"
-                :key="key"
-                cols="3"
-                color="#fafafa"
-                flat
-              )
-                wonder(:wonder="wonder")
-          slide(:data-index="2")
-            v-row
-              v-col(
-                v-for="(wonder, key) in wonders.slice(4)"
-                :key="key"
-                cols="3"
-                color="#fafafa"
-                flat
-              )
-                wonder(:wonder="wonder")
+          slide(v-for="(wonder, key) in wonders" :key="key")
+            wonder(:wonder="wonder").ma-1
       template(v-else)
         v-col(cols="12" v-for="(wonder, key) in wonders" :key="key").ma-1
           wonder(:wonder="wonder")
@@ -77,17 +55,19 @@ export default {
       {
         title: 'Pharmacy',
         description: 'Make medicines available anytime, anywhere',
-        infoLink: 'pharmacy',
+        comingSoon: true,
       },
       {
         title: 'Hospitals',
         description: 'Take control of a more streamlined inpatient care',
         infoLink: 'hospitals',
+        comingSoon: true,
       },
       {
         title: 'Patient Relationship',
-        description: 'Build continuity of care for patients',
+        description: 'Build continuity of care for your patients.',
         infoLink: 'patients',
+        comingSoon: true,
       },
       {
         title: 'Compliance, security, interoperability',

@@ -16,7 +16,10 @@
         p(:class="metaTitleClasses").font-weight-bold {{ uspMetaTitle }}
         h1(:class="titleClasses").lh-title {{ uspTitle }}
         p(:class="descriptionClasses").grey--text {{ uspDescription }}
+        template(v-if="slotted-btn")
+          slot(name="usp btn")
         mc-btn(
+          v-else
           depressed
           color="primary"
           x-large
@@ -65,7 +68,12 @@ export default {
     },
     btnText: {
       type: String,
-      default: 'Talk to Us',
+      default: 'Get Started',
+    },
+    // - If custom btn
+    slottedBtn: {
+      type: Boolean,
+      default: false,
     },
   },
   computed: {

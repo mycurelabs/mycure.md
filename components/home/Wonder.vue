@@ -4,13 +4,15 @@
       h1.font-s {{ wonder.title }}
       p {{ wonder.description }}
     v-card-actions
-      v-btn(text small :to="{ name: wonder.infoLink }").text-none
+      v-spacer
+      v-chip(v-if="wonder.comingSoon" color="warning" small) COMING SOON!
+      v-btn(v-else text small :to="{ name: wonder.infoLink }" color="primary").text-none.font-weight-bold
         | Learn More
         v-icon(right small) mdi-chevron-right
       v-spacer
-      v-btn(text small color="primary").text-none
-        | Buy Now
-        v-icon(right small) mdi-chevron-right
+      //- v-btn(text small color="primary").text-none
+      //-   | Buy Now
+      //-   v-icon(right small) mdi-chevron-right
 </template>
 
 <script>
