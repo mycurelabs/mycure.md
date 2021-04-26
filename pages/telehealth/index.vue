@@ -124,6 +124,14 @@ export default {
       loading: true,
     };
   },
+  head () {
+    // - TODO: Update
+    return headMeta({
+      title: 'MYCURE Telehealth',
+      description: 'Starting a virtual practice has never been easier. Give your patients the quality care they deserve wherever they are.',
+      socialBanner: require('~/assets/images/banners/MYCURE Open Graph-Providers.jpg'),
+    });
+  },
   computed: {
     headerClasses () {
       const headerClasses = [
@@ -149,14 +157,6 @@ export default {
   },
   mounted () {
     this.loading = false;
-  },
-  head () {
-    // - TODO: Update
-    return headMeta({
-      title: 'MYCURE Telehealth',
-      description: 'Starting a virtual practice has never been easier. Give your patients the quality care they deserve wherever they are.',
-      socialBanner: require('~/assets/images/banners/MYCURE Open Graph-Providers.jpg'),
-    });
   },
 };
 </script>
