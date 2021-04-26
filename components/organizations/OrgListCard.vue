@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-card(flat color="#fafafa" height="100%").orgs-card
+  v-card(flat color="#f0f0f0" height="100%").orgs-card
     v-card-text.py-0.pl-0
       div.d-flex
         v-col.shrink
@@ -14,7 +14,7 @@
               v-icon(v-if="hasWebsite" color="primary") mdi-check-decagram
           div
             template(v-if="!isDescriptionExpanded && organization.description")
-              v-clamp(:max-lines="2" autoresize) {{ organization.description }}
+              span(:max-lines="2" autoresize) {{ organization.description }}
               a(@click="isDescriptionExpanded = true").primary--text See more
             template(v-else-if="isDescriptionExpanded")
               p {{ organization.description }}
@@ -22,11 +22,11 @@
             div(v-if="organization !== undefined").mt-4
               div.d-flex
                 v-icon(small color="error").mr-2.mb-auto.mt-1 mdi-map-marker
-                v-clamp(:max-lines="2" autoresize v-if="organization.address") {{ address }}
+                span(:max-lines="2" autoresize v-if="organization.address") {{ address }}
                 p(v-else).font-italic No address available
               div.d-flex
                 v-icon(small color="success").mr-2.mb-auto.mt-1 mdi-phone
-                v-clamp(:max-lines="2" autoresize v-if="organization.phone || organization.phones").font-weight-bold {{ phoneNumber }}
+                span(:max-lines="2" autoresize v-if="organization.phone || organization.phones").font-weight-bold {{ phoneNumber }}
                 p(v-else).font-italic No phone number available
               div.d-flex
                 v-icon(small color="primary").mr-2.mb-auto.mt-1 mdi-calendar-today
@@ -58,7 +58,7 @@
 </template>
 
 <script>
-import VClamp from 'vue-clamp';
+// import VClamp from 'vue-clamp';
 import { format } from 'date-fns';
 import { uniqBy } from 'lodash';
 import { formatAddress } from '~/utils/formats';
@@ -66,7 +66,7 @@ import FacilityPlaceholder from '~/assets/images/facility-placeholder.jpg';
 
 export default {
   components: {
-    VClamp,
+    // VClamp,
   },
   props: {
     organization: {

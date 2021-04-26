@@ -1,4 +1,4 @@
-export const FEATURE_MODULE_GROUPS = [
+export default () => ([
   {
     group: 'Core Modules',
     description: 'Professional systems that are essential for your clinic.',
@@ -84,4 +84,4 @@ export const FEATURE_MODULE_GROUPS = [
       },
     ],
   },
-];
+]);

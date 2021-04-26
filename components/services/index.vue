@@ -1,7 +1,7 @@
 <template lang="pug">
   div(v-if="!loading.page")
     v-row(justify="center" no-gutters :class="{ 'fixed-container': fixedSearchBar, 'primary': fixedSearchBar }").search-container
-      v-col(cols="12").text-center.pb-0
+      v-col(cols="12").text-center.py-1
         org-search-bar(
           :mobile-search-btn-color="fixedSearchBar ? 'success' : 'primary'"
           @search-organizations="searchOrganizations($event)"

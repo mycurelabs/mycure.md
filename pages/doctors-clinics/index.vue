@@ -1,92 +1,105 @@
 <template lang="pug">
   div(v-if="!loading")
     //- 1st panel
-    usp(@getStarted="getStarted($event)" @startNow="startNow")
+    usp(
+      title="Bring Out the Hero in You"
+      meta-title="MYCURE Doctor"
+      parse-title
+      :parse-title-fields="['Hero ']"
+      :description="uspDescription"
+      btn-text="Get Started Free"
+      @click="$nuxt.$router.push({ name: 'signup-health-facilities', params: { type: 'doctors' }})"
+    )
     //- 2nd panel
-    increase-revenue(@getStarted="getStarted")#increase-revenue
-    v-divider.edge-divider
-    //- 3rd panel
-    safekeep-data(@getStarted="getStarted")
-    v-divider.edge-divider
-    //- 4th panel
-    practice-online(@getStarted="getStarted")#group-practice
-    v-divider.edge-divider
-    //- 5th panel
-    specialized-plans#specialized-practice
-    v-divider.edge-divider
+    features(
+      title="Your Practice. Your Call"
+      :description="featuresDescription"
+      :items="features"
+      :class="panelMargins"
+    )
+    //- 3rd to 5th panels
+    info-panels(:class="panelMargins")
     //- 6th panel
-    quality-healthcare(@getStarted="goToPatientPortal")
+    mycure-csi(:class="panelMargins")
     //- 7th panel
-    div.cta-container
-      cta(@getStarted="goToSignupIndividual($event)")
-    //- )
+    practice-online(:class="panelMargins")#group-practice
+    //- 8th panel
+    think-long-term(extended :class="panelMargins")
+    //- 9th panel
+    pricing(
+      title="Start free and only pay as you grow"
+      :pricing-details="pricingDetails"
+    ).py-10.my-10
+    //- 10th panel
+    call-to-action
 </template>
 
 <script>
 // utils
-import VueScrollTo from 'vue-scrollto';
 import headMeta from '~/utils/head-meta';
+// constants
+import { DOCTORS_PRICING } from '~/constants/pricing';
 // components
-import Usp from '~/components/doctors-clinics/usp';
-import IncreaseRevenue from '~/components/doctors-clinics/increase-revenue';
-import SafekeepData from '~/components/doctors-clinics/safekeep-data';
+import CallToAction from '~/components/commons/panels/CallToAction';
+import Features from '~/components/commons/panels/Features';
+import InfoPanels from '~/components/doctors-clinics/InfoPanels';
+import MycureCsi from '~/components/commons/panels/MycureCsi';
 import PracticeOnline from '~/components/doctors-clinics/practice-online';
-import SpecializedPlans from '~/components/doctors-clinics/specialized-plans';
-import QualityHealthcare from '~/components/doctors-clinics/quality-healthcare';
-import Cta from '~/components/doctors-clinics/cta';
+import Pricing from '~/components/commons/panels/Pricing';
+import ThinkLongTerm from '~/components/commons/panels/ThinkLongTerm';
+import Usp from '~/components/commons/panels/SevenWondersUsp';
 
 export default {
   components: {
-    Usp,
-    IncreaseRevenue,
-    SafekeepData,
+    CallToAction,
+    Features,
+    InfoPanels,
+    MycureCsi,
     PracticeOnline,
-    SpecializedPlans,
-    QualityHealthcare,
-    Cta,
+    Pricing,
+    ThinkLongTerm,
+    Usp,
   },
   data () {
+    // Panel content
+    this.uspDescription = 'Designed for modern doctors, MYCURE lets you focus on what you do best — caring for your patients.  MYCURE organizes your daily tasks to make your practice more simple, secure, and efficient.';
+    this.featuresDescription = 'Use the tools that work best for you. Everything you need is here. It’s FREE.';
+    this.features = [
+      {
+        title: 'Digital Records',
+      },
+      {
+        title: 'Telehealth',
+      },
+      {
+        title: 'Daily Reports',
+      },
+      {
+        title: 'Professional Website',
+      },
+      {
+        title: 'Appointment Booking',
+      },
+    ];
+    this.pricingDetails = DOCTORS_PRICING;
     return {
       loading: true,
     };
   },
+  head () {
+    return headMeta({
+      title: 'MYCURE EMR Practice Management System for Doctors',
+      description: 'MYCURE organizes your daily tasks to make your practice more simple, secure, and efficient.',
+      socialBanner: require('~/assets/images/banners/MYCURE Open Graph Images - Doctors Clinic.png'),
+    });
+  },
   computed: {
-    scrollPanel () {
-      const panel = this.$nuxt.$route.params.panel;
-      return panel ? `#${panel}` : null;
+    panelMargins () {
+      return { 'mt-10': this.$isMobile };
     },
   },
   mounted () {
     this.loading = false;
-    const panel = this.scrollPanel || '#app';
-    this.$nextTick(() => {
-      if (this.$route.query.scrollToSpecializedClinics) {
-        VueScrollTo.scrollTo('#specialized-practice', 500, { easing: 'ease', offset: 800 });
-      } else {
-        VueScrollTo.scrollTo(panel, 500, { easing: 'ease', offset: -20 });
-      }
-    });
-  },
-  methods: {
-    getStarted () {
-      this.$nuxt.$router.push({ name: 'signup-individual' });
-    },
-    goToSignupIndividual (email) {
-      this.$nuxt.$router.push({ name: 'signup-individual', params: { email } });
-    },
-    goToPatientPortal () {
-      this.$nuxt.$router.push({ name: 'index', params: { panel: 'patient-portal' } });
-    },
-    startNow () {
-      VueScrollTo.scrollTo('#increase-revenue', 500, { easing: 'ease', offset: -70 });
-    },
-  },
-  head () {
-    return headMeta({
-      title: 'MYCURE for Doctors | Healthcare Practice Online',
-      description: 'Give your patients the quality care they deserve with MYCURE Clinic Management and Telemedicine Solutions.',
-      socialBanner: require('~/assets/images/banners/MYCURE Open Graph Images - Doctors Clinic.png'),
-    });
   },
 };
 </script>

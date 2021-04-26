@@ -1,10 +1,4 @@
-const redirectSSL = require('redirect-ssl');
-
-module.exports = {
-  mode: 'universal',
-  /*
-  ** Headers of the page
-  */
+export default {
   env: {
     AMPLITUDE_API_KEY: process.env.AMPLITUDE_API_KEY,
     API_URL: process.env.API_URL,
@@ -22,117 +16,125 @@ module.exports = {
     STRIPE_PK: process.env.STRIPE_PK,
     WEB_MAIN_URL: process.env.WEB_MAIN_URL,
   },
+  // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     titleTemplate: '%s',
-    title: 'MYCURE Advanced Complete Clinic Management System',
+    title: 'MYCURE Advanced Clinic Management System',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-    ],
-    script: [
-      {
-        src: 'https://app.heyflow.co/pixel/Ol00Wv3kMUxpaalI',
-      },
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ],
   },
-  /*
-  ** Customize the progress-bar color
-  */
+
+  // Progress bar loader
   loading: { color: '#2e9fdf', throttle: 0 },
-  /*
-  ** Global CSS
-  */
+
+  // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
   ],
-  /*
-  ** Plugins to load before mounting the App
-  */
+
+  // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    '~/plugins/main.js',
+    { src: '~/plugins/main.js', mode: 'client' },
     '~/plugins/vue-fragment.js',
     '~/plugins/vue-media-query-mixin.js',
+    { src: '~plugins/vue-cookie-law', mode: 'client' },
     { src: '~/plugins/vue-carousel.js', mode: 'client' },
     { src: '~plugins/crisp.js', mode: 'client' },
-    { src: '~/plugins/vue-analytics.js', mode: 'client' },
-    { src: '~/plugins/ga.js', mode: 'client' },
+    { src: '~plugins/amplitude.js', mode: 'client' },
     { src: '~/plugins/vue-social-sharing.js', mode: 'client' },
-    { src: '~/plugins/vue-typer.js', mode: 'client' },
     { src: '~/plugins/vue-morphling.js', mode: 'client' },
     '~/plugins/vue-lazyload.js',
-    { src: '~/plugins/amplitude.js', mode: 'client' },
     { src: '~/plugins/mycure.js', mode: 'client' },
+    { src: '~/plugins/mc-btn', mode: 'client' },
   ],
-  /*
-  ** Nuxt.js dev-modules
-  */
+
+  // Auto import components: https://go.nuxtjs.dev/config-components
+  components: true,
+
+  // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
-    // Doc: https://github.com/nuxt-community/eslint-module
+    // https://go.nuxtjs.dev/eslint
     '@nuxtjs/eslint-module',
+    // https://go.nuxtjs.dev/vuetify
     '@nuxtjs/vuetify',
     '@nuxtjs/google-analytics',
   ],
-  googleAnalytics: {
-    id: process.env.GA_ID,
-  },
-  /*
-  ** Nuxt.js modules
-  */
+
+  // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
-    // Doc: https://axios.nuxtjs.org/usage
+    // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
+    // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
-    // Doc: https://github.com/nuxt-community/dotenv-module
     '@nuxtjs/dotenv',
     'nuxt-webfontloader',
   ],
   webfontloader: {
     google: {
-      families: ['Poppins:400,700,900'],
+      families: [
+        'Poppins:400',
+        'Open Sans:300,400',
+      ],
     },
   },
-  /*
-  ** Axios module configuration
-  ** See https://axios.nuxtjs.org/options
-  */
-  axios: {
+
+  // Axios module configuration: https://go.nuxtjs.dev/config-axios
+  axios: {},
+
+  // PWA module configuration: https://go.nuxtjs.dev/pwa
+  pwa: {
+    manifest: {
+      lang: 'en',
+    },
   },
-  /*
-  ** vuetify module configuration
-  ** https://github.com/nuxt-community/vuetify-module
-  */
+
+  // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
   vuetify: {
     customVariables: ['~/assets/variables.scss'],
-    frameworkOptions: {
-      theme: {
-        themes: {
-          light: {
-            primary: '#2e9fdf',
-            accent: '#7fad33',
-            secondary: '#424242',
-            info: '#2196F3',
-            warning: '#FFC107',
-            error: '#f75a5f',
-            success: '#7fad33',
-          },
-          dark: {
-            primary: '#2e9fdf',
-            accent: '#7fad33',
-            secondary: '#424242',
-            info: '#2196F3',
-            warning: '#FFC107',
-            error: '#f75a5f',
-            success: '#7fad33',
-          },
+    theme: {
+      themes: {
+        light: {
+          primary: '#04B1E7',
+          accent: '#7fad33',
+          secondary: '#424242',
+          info: '#2196F3',
+          warning: '#FFC107',
+          error: '#f75a5f',
+          success: '#7fad33',
+        },
+        dark: {
+          primary: '#04B1E7',
+          accent: '#7fad33',
+          secondary: '#424242',
+          info: '#2196F3',
+          warning: '#FFC107',
+          error: '#f75a5f',
+          success: '#7fad33',
         },
       },
     },
   },
-  /*
-  ** Build configuration
-  */
+
+  googleAnalytics: {
+    id: process.env.GA_ID,
+    autoTracking: {
+      screenview: true,
+    },
+  },
+  publicRuntimeConfig: {
+    googleAnalytics: {
+      id: process.env.GA_ID,
+      autoTracking: {
+        screenview: true,
+      },
+    },
+  },
+
+  // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
     transpile: ['vue-clamp', 'resize-detector'],
     /*
@@ -141,9 +143,4 @@ module.exports = {
     extend (config, ctx) {
     },
   },
-  serverMiddleware: [
-    redirectSSL.create({
-      enabled: process.env.NODE_ENV === 'production',
-    }),
-  ],
 };

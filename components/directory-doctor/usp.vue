@@ -5,27 +5,33 @@
         v-row(justify="center" align="center")
           v-col(cols="12").text-center.mb-4.mt-4
             h1.font-weight-bold Hundreds of doctors with different specializations #[br] from amazing clinics all over the country.
-          v-col(cols="12" md="7").pa-1
+          v-col(cols="12" md="10").pa-1
             v-text-field(
               v-model="searchText"
-              append-icon="mdi-magnify"
               background-color="white"
               label="Search doctor name"
               clearable
               hide-details
               outlined
-              @click:append="search"
             )
-          v-col(cols="12" md="2").pa-1
-            v-btn(
-              style="height: 55px; margin-bottom: 1px"
-              block
-              depressed
-              large
-              outlined
-              :disabled="!searchText"
-              @click="search"
-            ).text-none Search
+              template(slot="append")
+                v-btn(
+                  fab
+                  small
+                  color="primary"
+                  @click="search"
+                ).elevation-0.mt-n2
+                  v-icon(small) mdi-magnify
+          //- v-col(cols="12" md="2").pa-1
+          //-   v-btn(
+          //-     style="height: 55px; margin-bottom: 1px"
+          //-     block
+          //-     depressed
+          //-     large
+          //-     outlined
+          //-     :disabled="!searchText"
+          //-     @click="search"
+          //-   ).text-none Search
 </template>
 
 <script>

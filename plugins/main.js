@@ -9,5 +9,8 @@ Vue.mixin({
     $isRegularScreen () {
       return this.wMD || this.wLG;
     },
+    $isWideScreen () {
+      return this.wXL;
+    },
   },
 });

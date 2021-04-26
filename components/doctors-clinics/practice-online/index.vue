@@ -12,17 +12,23 @@
     mobile-image-class="text-center"
     :content-align-left="true"
     :header="panelContents.title"
+    :header-classes="headerClasses"
     :descriptions="[panelContents.description]"
+    :descriptionClasses="descriptionClasses"
     :web-image="panelContents.image"
   )
-    div(slot="additional-content")
-      v-btn(text @click="onGetStarted").ml-n4
-        strong.text-capitalize.primary--text.font-18 Request An Invite
-        v-icon.primary--text mdi-arrow-right
+    template(slot="additional-content")
+      template(v-for="(item, i) in panelContents.list")
+        v-row(:align="i === 2 ? 'center' : 'start'" dense)
+          v-col(cols="1").pr-2.pt-2
+            v-icon(color="black") mdi-arrow-right
+          v-col
+            span(:class="checkListClasses") {{ item }}
 </template>
 
 <script>
 import GenericMediaPanel from '~/components/commons/generic-media-panel';
+import classBinder from '~/utils/class-binder';
 export default {
   components: {
     GenericMediaPanel,
@@ -30,12 +36,50 @@ export default {
   data () {
     this.panelContents = {
       image: 'MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-C-group-practice',
-      title: 'Take your entire practice online - even your group clinic',
-      description: 'Easily coordinate with other doctors in your group practice and centralize your clinic system under one subscription.',
-      btnTxt: 'Get Started',
-      btnIcon: 'mdi-arrow-right',
+      title: 'Practice as a Group',
+      description: 'Easily coordinate with other physicians in your group practice and centralize your medical records in one comprehensive workspace.',
+      list: [
+        'Collated Medical Records',
+        'Optimized Patient Queuing',
+        'Group Clinic Chatbox',
+        'Shared Secretary Account',
+        'Booking Website',
+      ],
     };
     return {};
+  },
+  computed: {
+    headerClasses () {
+      const headerClasses = [
+        classBinder(this, {
+          mobile: ['font-m'],
+          regular: ['font-l'],
+        }),
+        'lh-title',
+      ];
+      return headerClasses;
+    },
+    descriptionClasses () {
+      const descriptionClasses = [
+        classBinder(this, {
+          mobile: ['font-xs'],
+          regular: ['font-s'],
+        }),
+        'font-open-sans',
+        'font-gray',
+      ];
+      return descriptionClasses;
+    },
+    checkListClasses () {
+      return [
+        classBinder(this, {
+          mobile: ['font-xs'],
+          regular: ['font-s'],
+        }),
+        'font-open-sans',
+        'font-gray',
+      ];
+    },
   },
   methods: {
     onGetStarted () {
