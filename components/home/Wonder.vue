@@ -6,7 +6,15 @@
     v-card-actions
       v-spacer
       v-chip(v-if="wonder.comingSoon" color="warning" small) COMING SOON!
-      v-btn(v-else text small :to="{ name: wonder.infoLink }" color="primary").text-none.font-weight-bold
+      mc-btn(
+        v-else
+        text
+        small
+        :to="{ name: wonder.infoLink }"
+        color="primary"
+        event-category="Homepage Carousel"
+        :event-label="`click-${wonder.infoLink}`"
+      ).text-none.font-weight-bold
         | Learn More
         v-icon(right small) mdi-chevron-right
       v-spacer
