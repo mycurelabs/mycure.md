@@ -37,6 +37,7 @@
             depressed
             large
             event-label="login"
+            :to="{ name: 'signin' }"
           ).text-none.mr-2.font-12 #[b LOG IN]
           mc-btn(
             color="success"
