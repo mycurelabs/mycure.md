@@ -18,8 +18,9 @@
       v-for="(info, key) in infoPanels"
       :key="key"
       content-align-right
-      cols-left="6"
-      cols-right="6"
+      cols-left="5"
+      cols-right="4"
+      offset-cols-right="1"
       :header="info.header"
       :descriptions="info.descriptions"
       :header-classes="headerClasses"

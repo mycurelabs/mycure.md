@@ -2,8 +2,9 @@
   generic-media-panel(
     content-align-right
     header="Enjoy the best of both worlds"
-    cols-left="6"
-    cols-right="6"
+    cols-left="5"
+    cols-right="4"
+    offset-cols-right="1"
     :header-classes="headerClasses"
     :description-classes="descriptionClasses"
     :descriptions="['MYCURE works online and offline', 'Work as if you have an in-house server with the convenience of the cloud. Create your medical records locally using multiple devices even if the internet is down! Once back online, it instantly syncs your data into the cloud.']"

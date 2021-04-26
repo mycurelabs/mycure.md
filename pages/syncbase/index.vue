@@ -20,8 +20,9 @@
     //- 3rd panel
     generic-media-panel(
       content-align-right
-      cols-left="6"
-      cols-right="6"
+      cols-left="5"
+      cols-right="4"
+      offset-cols-right="1"
       header="Accessibility like no other"
       :descriptions="['Work in your local network with multiple devices even if the internet goes down and just automatically sync data back when online.']"
       :header-classes="headerClasses"
