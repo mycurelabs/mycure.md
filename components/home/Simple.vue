@@ -39,10 +39,11 @@ export default {
         text: 'For Clinics',
         route: 'clinics',
       },
-      {
-        text: 'For Hospitals',
-        route: 'hospitals',
-      },
+      // - TODO: Bring back when page is visible
+      // {
+      //   text: 'For Hospitals',
+      //   route: 'hospitals',
+      // },
     ];
     return {};
   },

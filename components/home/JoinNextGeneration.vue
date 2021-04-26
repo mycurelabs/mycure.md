@@ -10,10 +10,10 @@
         mc-btn(
           event-label="signup"
           color="primary"
-          large
+          x-large
           depressed
           :to="{ name: 'signup-health-facilities' }"
-        ).text-none Get Started
+        ).text-none.font-xs Get Started
 </template>
 <style scoped>
 .usp-container {
