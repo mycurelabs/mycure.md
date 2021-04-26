@@ -22,17 +22,17 @@
   )
     template(v-slot:selection="data")
       v-chip(small color="primary")
-        span(:max-lines="1" autoresize).font-12 {{ `${data.item.insurerName.substr(0, 20)} ...` }}
+        v-clamp(:max-lines="1" autoresize).font-12 {{ `${data.item.insurerName.substr(0, 20)} ...` }}
 </template>
 
 <script>
-// import VClamp from 'vue-clamp';
+import VClamp from 'vue-clamp';
 import { debounce } from 'lodash';
 import { fetchInsuranceContracts } from '~/services/insurance-contracts';
 
 export default {
   components: {
-    // VClamp,
+    VClamp,
   },
   props: {
     // FIXME: set proper type

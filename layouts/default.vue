@@ -2,18 +2,18 @@
   v-app#app
     mc-navbar(v-if="!loading")
     nuxt
-    mc-footer(v-if="!loading")
+    my-footer(v-if="!loading")
 </template>
 
 <script>
 // - components
-import McNavbar from '~/components/home/AppNavbar';
-import McFooter from '~/components/home/AppFooter';
+import McNavbar from '~/components/commons/mc-navbar';
+import MyFooter from '~/components/home/MyFooter';
 
 export default {
   components: {
     McNavbar,
-    McFooter,
+    MyFooter,
   },
   data () {
     return {
@@ -40,27 +40,18 @@ export default {
 .font-poppins {
   font-family: 'Poppins', 'sans-serif' !important;
 }
-.font-open-sans {
-  font-family: 'Open Sans', 'sans-serif' !important;
-}
 /* Font Sizes */
-.font-2xl {
-  font-size: 64px !important;
-}
 .font-xl {
-  font-size: 56px !important;
+  font-size: 50px !important;
 }
 .font-l {
-  font-size: 48px !important;
+  font-size: 30px !important;
 }
 .font-m {
-  font-size: 32px !important;
-}
-.font-s {
   font-size: 24px !important;
 }
-.font-xs {
-  font-size: 18px !important;
+.font-s {
+  font-size: 21px !important;
 }
 .font-60 {
   font-size: 60px !important;

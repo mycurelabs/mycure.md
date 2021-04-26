@@ -161,13 +161,6 @@ export default {
       sixthDigit: null,
     };
   },
-  head () {
-    return headMeta({
-      title: 'MYCURE | Verify your Account',
-      description: 'Create a free MYCURE account today and become a techy doctor in minutes! Better operations, beautiful reports, bye paperworks!',
-      socialBanner: require('~/assets/images/banners/MYCURE Open Graph Images -  Home.png'),
-    });
-  },
   computed: {
     pageType () {
       return this.$nuxt.$route.name;
@@ -242,7 +235,7 @@ export default {
           code: this.otp,
         };
         await verifyMobileNo(payload);
-        this.$router.replace({ query: { success: 1 } });
+        this.$router.replace({ query: { success: true } });
         this.otpCountdown = null;
         this.successDialog = true;
         // - Mock loading then run acknowledgment
@@ -369,6 +362,13 @@ export default {
         document.getElementById('firstDigit') && document.getElementById('firstDigit').focus();
       }
     },
+  },
+  head () {
+    return headMeta({
+      title: 'MYCURE | Create an Account',
+      description: 'Create a free MYCURE account today and become a techy doctor in minutes! Better operations, beautiful reports, bye paperworks!',
+      socialBanner: require('~/assets/images/banners/MYCURE Open Graph Images -  Home.png'),
+    });
   },
 };
 </script>

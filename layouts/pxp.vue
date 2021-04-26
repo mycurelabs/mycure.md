@@ -7,7 +7,7 @@
 
 <script>
 import PxpAppBar from '~/components/home/AppBar';
-import PxpFooter from '~/components/commons/mc-footer';
+import PxpFooter from '~/components/home/MyFooter';
 export default {
   components: {
     PxpAppBar,

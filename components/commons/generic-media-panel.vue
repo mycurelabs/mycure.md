@@ -1,11 +1,11 @@
 <template lang="pug">
   v-container
     //- COLUMN VIEW
-    v-row(v-if="!centerMedia" justify="center" :class="{'py-10': !dense , 'py-1': dense}")
+    v-row(v-if="!centerMedia" justify="center").py-10
       //- Left column
       v-col(:align-self="alignLeftColumn" cols="12" :md="colsLeft" :offset-md="offsetColsLeft")
         picture-source(
-          v-if="!$isMobile && contentAlignRight && webImage"
+          v-if="!$isMobile && contentAlignRight"
           :customPath="customImagePath"
           :extensionExclusive="extensionExclusive"
           :image="webImage"
@@ -14,27 +14,19 @@
           :imageWidth="webImageWidth"
           :class="webImageClass"
         )
-        v-card(
-          v-else-if="dummy && contentAlignRight && !$isMobile"
-          width="100%"
-          height="450px"
-          color="primary"
-          flat
-        )
-          | &nbsp;
         template(v-if="contentAlignLeft")
-          p(v-if="withSubheader" :class="panelSubHeaderclasses") {{ subHeader }}
-          h1(v-if="typeof(header) === 'string'" :class="panelHeaderClasses") {{ header }}
+          p(:v-show="withSubheader" :class="subHeaderClass").font-16.primary--text {{ subHeader }}
+          h1(v-if="typeof(header) === 'string'").font-30.lh-title.pb-3.font-weight-light {{ header }}
           h1(
             v-else-if="typeof(header) === 'object'"
-            :class="[{'pre-white-space': $isRegularScreen}, ...panelHeaderClasses]"
-          )
+            :class="{'pre-white-space': $isRegularScreen}"
+          ).font-30.lh-title.pb-3.font-weight-light
             | {{ header | parse-text }}
           //- MOBILE IMAGE
           br(v-if="$isMobile")
           div.text-center
             picture-source(
-              v-if="$isMobile && !hideImageMobile && webImage"
+              v-if="$isMobile && !hideImageMobile"
               :customPath="customImagePath"
               :extensionExclusive="extensionExclusive"
               :image="mobileImage || webImage"
@@ -43,29 +35,21 @@
               :imageWidth="mobileImageWidth"
               :class="mobileImageClass"
             )
-            v-card(
-              v-else-if="dummy && !hideImageMobile && $isMobile"
-              width="100%"
-              height="450px"
-              color="primary"
-              flat
-            )
-              | &nbsp;
           br
           template(v-if="descriptions.length")
             template(v-for="description in descriptions")
-              p(v-if="typeof(description) === 'string'" :class="panelDescriptionClasses").mt-3.text-justify {{ description }}
+              p(v-if="typeof(description) === 'string'").font-16.mt-3.font-gray.text-justify {{ description }}
               p(
                 v-else-if="typeof(description) === 'object'"
-                :class="[{'pre-white-space': $isRegularScreen }, ...panelDescriptionClasses]"
-              ).mt-3.text-justify
+                :class="{'pre-white-space': $isRegularScreen }"
+              ).font-16.mt-3.font-gray.text-justify
                 | {{ description | parse-text }}
             br
           slot(name="additional-content")
       //- Right Column
       v-col(:align-self="alignRightColumn" cols="12" :md="colsRight" :offset-md="offsetColsRight")
         picture-source(
-          v-if="!$isMobile && contentAlignLeft && webImage"
+          v-if="!$isMobile && contentAlignLeft"
           :customPath="customImagePath"
           :extensionExclusive="extensionExclusive"
           :image="webImage"
@@ -74,27 +58,19 @@
           :imageWidth="webImageWidth"
           :class="webImageClass"
         )
-        v-card(
-          v-else-if="dummy && contentAlignLeft && !$isMobile"
-          width="100%"
-          height="450px"
-          color="primary"
-          flat
-        )
-          | &nbsp;
         template(v-if="contentAlignRight")
-          p(v-if="withSubheader" :class="panelSubHeaderclasses") {{ subHeader }}
-          h1(v-if="typeof(header) === 'string'" :class="panelHeaderClasses") {{ header }}
+          p(:v-show="withSubheader" :class="subHeaderClass").font-16.primary--text {{ subHeader }}
+          h1(v-if="typeof(header) === 'string'").font-30.lh-title.pb-3.font-weight-light {{ header }}
           h1(
             v-else-if="typeof(header) === 'object'"
-            :class="[{'pre-white-space': $isRegularScreen}, ...panelHeaderClasses]"
-          )
+            :class="{'pre-white-space': $isRegularScreen}"
+          ).font-30.lh-title.pb-3.font-weight-light
             | {{ header | parse-text }}
           //- MOBILE IMAGE
           br(v-if="$isMobile")
           div.text-center
             picture-source(
-              v-if="$isMobile && !hideImageMobile && webImage"
+              v-if="$isMobile && !hideImageMobile"
               :customPath="customImagePath"
               :extensionExclusive="extensionExclusive"
               :image="mobileImage || webImage"
@@ -103,39 +79,42 @@
               :imageWidth="mobileImageWidth"
               :class="mobileImageClass"
             )
-            v-card(
-              v-else-if="dummy && !hideImageMobile && $isMobile"
-              width="100%"
-              height="450px"
-              color="primary"
-              flat
-            )
-              | &nbsp;
           br
           template(v-if="descriptions.length")
             template(v-for="description in descriptions")
-              p(v-if="typeof(description) === 'string'" :class="panelDescriptionClasses").mt-3.text-justify {{ description }}
+              p(v-if="typeof(description) === 'string'").font-16.mt-3.font-gray.text-justify {{ description }}
               p(
                 v-else-if="typeof(description) === 'object'"
-                :class="[{'pre-white-space': $isRegularScreen }, ...panelDescriptionClasses]"
-              ).mt-3.text-justify
+                :class="{'pre-white-space': $isRegularScreen }"
+              ).font-16.mt-3.font-gray.text-justify
                 | {{ description | parse-text }}
             br
           slot(name="additional-content")
-
+      //- ** DO NOT DELETE THIS YET **
+      //- Mobile Image
+      //- picture-source(
+      //-   v-if="$isMobile && !hideImageMobile"
+      //-   :customPath="customImagePath"
+      //-   :extensionExclusive="extensionExclusive"
+      //-   :image="mobileImage || webImage"
+      //-   :imageAlt="imageAltValue"
+      //-   :imageFileExtension="mobileFileExtension || fileExtension"
+      //-   :imageWidth="mobileImageWidth"
+      //-   :class="mobileImageClass"
+      //- )
     //- CENTER VIEW
     v-row(v-else justify="center").py-10
       v-col(cols="12" md="10" :class="{'text-center': !$isMobile}")
-        p(v-if="withSubheader" :class="panelSubHeaderclasses") {{ subHeader }}
-        h1(v-if="typeof(header) === 'string'" :class="panelHeaderClasses") {{ header }}
+        p(:v-show="withSubheader" :class="subHeaderClass").font-16.primary--text {{ subHeader }}
+        h1(v-if="typeof(header) === 'string'").font-30.lh-title.pb-3.font-weight-light {{ header }}
         h1(
           v-else-if="typeof(header) === 'object'"
-          :class="[{'pre-white-space': $isRegularScreen}, ...panelHeaderClasses]"
-        )
+          :class="{'pre-white-space': $isRegularScreen}"
+        ).font-30.lh-title.pb-3.font-weight-light
           | {{ header | parse-text }}
         //- Mobile image
         picture-source(
-          v-if="$isMobile && !hideImageMobile && webImage"
+          v-if="$isMobile && !hideImageMobile"
           :customPath="customImagePath"
           :extensionExclusive="extensionExclusive"
           :image="mobileImage || webImage"
@@ -144,27 +123,19 @@
           :imageWidth="mobileImageWidth"
           :class="mobileImageClass"
         )
-        v-card(
-          v-else-if="dummy && !hideImageMobile && $isMobile"
-          width="100%"
-          height="450px"
-          color="primary"
-          flat
-        )
-          | &nbsp;
         br
         template(v-if="descriptions.length")
           template(v-for="description in descriptions")
-            p(v-if="typeof(description) === 'string'" :class="panelDescriptionClasses").mt-3.text-center {{ description }}
+            p(v-if="typeof(description) === 'string'").font-16.mt-3.font-gray.text-center {{ description }}
             p(
               v-else-if="typeof(description) === 'object'"
-              :class="[{'pre-white-space': $isRegularScreen }, ...panelDescriptionClasses]"
-            ).mt-3.text-center
+              :class="{'pre-white-space': $isRegularScreen }"
+            ).font-16.mt-3.font-gray.text-center
               | {{ description | parse-text }}
           br
         slot(name="additional-content")
         picture-source(
-          v-if="!$isMobile && webImage"
+          v-if="!$isMobile"
           :customPath="customImagePath"
           :extensionExclusive="extensionExclusive"
           :image="webImage"
@@ -173,14 +144,6 @@
           :imageWidth="webImageWidth"
           :class="webImageClass"
         )
-        v-card(
-          v-else-if="dummy && !$isMobile"
-          width="100%"
-          height="450px"
-          color="primary"
-          flat
-        )
-          | &nbsp;
 </template>
 
 <script>
@@ -222,10 +185,10 @@ export default {
     },
     /**
      * Number of cols of the left column
-     * @type {String, Number}
+     * @type {String}
      */
     colsLeft: {
-      type: [String, Number],
+      type: String,
       default: '5',
     },
     /**
@@ -233,7 +196,7 @@ export default {
      * @type {String}
      */
     colsRight: {
-      type: [String, Number],
+      type: String,
       default: '6',
     },
     /**
@@ -286,36 +249,12 @@ export default {
       default: '',
     },
     /**
-     * Reduce spacing of panel
-     * @type {Boolean}
-     */
-    dense: {
-      type: Boolean,
-      default: false,
-    },
-    /**
      * Content paragraphs
      * @type {string []}
      */
     descriptions: {
       type: Array,
       default: () => ([]),
-    },
-    /**
-     * Description classes
-     * @type {String []}
-     */
-    descriptionClasses: {
-      type: Array,
-      default: () => ([]),
-    },
-    /**
-     * Adds a dummy image
-     * @type {Boolean}
-     */
-    dummy: {
-      type: Boolean,
-      default: false,
     },
     /**
      * Panel header
@@ -326,14 +265,6 @@ export default {
       default: '',
     },
     /**
-     * Header classes
-     * @type {String []}
-     */
-    headerClasses: {
-      type: Array,
-      default: () => ([]),
-    },
-    /**
      * Panel sub-header
      * @type {String}
      */
@@ -342,15 +273,7 @@ export default {
       default: '',
     },
     /**
-     * Sub header classes
-     * @type {String []}
-     */
-    subHeaderClasses: {
-      type: Array,
-      default: () => ([]),
-    },
-    /**
-     * Panel sub-header visibility
+     * Panel sub-header state
      * @type {Boolean}
      */
     withSubheader: {
@@ -363,7 +286,7 @@ export default {
      */
     webImage: {
       type: String,
-      default: null,
+      required: true,
     },
     /**
      * Width of web image
@@ -446,22 +369,8 @@ export default {
       }
       return 'mycure-media-image';
     },
-    panelSubHeaderclasses () {
-      const subHeaderClasses = this.subHeaderClasses.length ? this.subHeaderClasses : ['font-16', 'primary--text'];
-      return [
-        { 'mb-n1': !this.withSubheader },
-        ...subHeaderClasses,
-      ];
-    },
-    panelHeaderClasses () {
-      const defaultClasses = ['font-30', 'lh-title', 'pb-3', 'font-weight-light'];
-      if (!this.headerClasses.length) return defaultClasses;
-      return this.headerClasses;
-    },
-    panelDescriptionClasses () {
-      const defaultClasses = ['font-16, font-gray'];
-      if (!this.descriptionClasses.length) return defaultClasses;
-      return this.descriptionClasses;
+    subHeaderClass () {
+      return [{ 'mb-n1': !this.withSubheader }];
     },
   },
 };

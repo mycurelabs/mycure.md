@@ -24,7 +24,11 @@
 
 <script>
 // constants
-import FEATURES_CONSTANTS from './constants';
+import {
+  CONTENT,
+  SLIDES,
+  SOLUTIONS,
+} from './constants';
 // utils
 import { parseTextWithNewLine } from '~/utils/newline';
 // components
@@ -37,9 +41,9 @@ export default {
     MobileDiagramCarousel,
   },
   data () {
-    this.panelContent = FEATURES_CONSTANTS.CONTENT;
-    this.slides = FEATURES_CONSTANTS.SLIDES;
-    this.solutions = FEATURES_CONSTANTS.SOLUTIONS;
+    this.panelContent = CONTENT;
+    this.slides = SLIDES;
+    this.solutions = SOLUTIONS;
     this.imageExtension = '.webp';
     this.customPath = 'mycure-heart/';
     return {
@@ -48,13 +52,13 @@ export default {
   },
   computed: {
     title () {
-      const title = this.panelContent.title;
+      const title = CONTENT.title;
       return !this.$isMobile
         ? parseTextWithNewLine(title, ['data.', 'reports.'])
         : parseTextWithNewLine(title, ['organize', 'Produce', 'Make']);
     },
     description () {
-      const description = this.panelContent.description;
+      const description = CONTENT.description;
       return parseTextWithNewLine(description, ['EMR.', 'daily']);
     },
   },

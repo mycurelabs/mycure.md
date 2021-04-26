@@ -163,6 +163,7 @@ export default {
         this.$router.push({
           name: this.btnRoute,
           ...(this.btnRoute === 'home') && { params: { scrollHealthSuites: true } },
+          ...(this.$nuxt.$route.name === 'hippocrates') && { params: { route: 'hippocrates' } },
         });
       }
       this.$emit('btnClick');

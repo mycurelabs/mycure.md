@@ -4,25 +4,25 @@
     cols-left="5"
     cols-right="4"
     offset-cols-right="1"
-    custom-image-path="clinics/"
+    custom-image-path="enterprise/"
     file-extension=".webp"
-    web-image-width="100%"
+    web-image-width="104%"
     mobile-image-width="95%"
     mobile-image-class="text-center"
-    content-align-right
-    with-subheader
+    :content-align-right="true"
+    :with-subheader="true"
     :header="panelContents.title"
-    :header-classes="headerClasses"
     :sub-header="panelContents.subHeader"
-    :sub-header-classes="subHeaderClasses"
     :descriptions="[panelContents.description]"
-    :description-classes="descriptionClasses"
     :web-image="panelContents.image"
   )
+    div(slot="additional-content")
+      v-btn(text @click="onGetStarted").ml-n4
+        strong.text-capitalize.primary--text.font-18 Book a Demo
+        v-icon.primary--text mdi-arrow-right
 </template>
 
 <script>
-import classBinder from '~/utils/class-binder';
 import GenericMediaPanel from '~/components/commons/generic-media-panel';
 export default {
   components: {
@@ -32,44 +32,10 @@ export default {
     this.panelContents = {
       image: 'MYCURE-virtual-clinic-healthcare-practice-online-enterprise-E-multiple-branches',
       subHeader: 'FOR MULTI-BRANCH FACILITIES',
-      title: 'One view for multiple locations.',
-      description: 'All you need is one clean dashboard to see how your clinics are faring. Critical data from your multiple branches are beautifully compiled to show you a comprehensive summary of patient encounters, transactions, sales, expenses and even staff performance.',
+      title: 'Monitor multiple branches on one system',
+      description: 'All you need is one clean dashboard to see how your clinics are faring. The precious data from your multiple branches is automatically aggregated to show you a comprehensive summary of patient encounters, transactions, sales, expenses and even staff performance.',
     };
     return {};
-  },
-  computed: {
-    headerClasses () {
-      const headerClasses = [
-        classBinder(this, {
-          mobile: ['font-m'],
-          regular: ['font-l'],
-        }),
-        'lh-title',
-      ];
-      return headerClasses;
-    },
-    descriptionClasses () {
-      const descriptionClasses = [
-        classBinder(this, {
-          mobile: ['font-xs'],
-          regular: ['font-s'],
-        }),
-        'font-open-sans',
-        'font-gray',
-      ];
-      return descriptionClasses;
-    },
-    subHeaderClasses () {
-      return [
-        classBinder(this, {
-          mobile: ['font-xs'],
-          regular: ['font-s'],
-        }),
-        'font-open-sans',
-        'font-weight-bold',
-        'primary--text',
-      ];
-    },
   },
   methods: {
     onGetStarted () {

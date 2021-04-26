@@ -24,6 +24,7 @@
 </template>
 
 <script>
+import VClamp from 'vue-clamp';
 // utils
 import { format } from 'date-fns';
 // import { sortBy } from 'lodash';
@@ -33,6 +34,9 @@ import { format } from 'date-fns';
 // };
 
 export default {
+  components: {
+    VClamp,
+  },
   filters: {
     formatTimeRange (value) {
       if (!value) return;

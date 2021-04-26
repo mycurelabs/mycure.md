@@ -32,31 +32,6 @@
           :limit="clinicsLimit"
           @onUpdatePage="fetchDoctorInfo"
         ).mb-12
-    mc-footer
-    //- social(
-    //-   :name="name"
-    //- )
-    //- v-footer(
-    //-   height="auto"
-    //- )
-    //-   v-row
-    //-     v-col.text-left
-    //-       div.d-flex
-    //-         span Powered by
-    //-         img(
-    //-           src="../../assets/images/MYCURE-virtual-clinic-healthcare-practice-online-logo.svg"
-    //-           to="/"
-    //-           width="100"
-    //-           height=""
-    //-         ).ml-2.mb-2
-    //-       div
-    //-         span Copyright {{new Date().getFullYear()}} All Rights Reserved.
-    //-     v-col.text-right.my-2
-    //-       div
-    //-         span Terms of Use | Privacy Policy | Send us your feedback
-    //-       div
-    //-         span.primary--text See more doctors | Create my own Doctor Website
-    //- pre {{doctor}}
 </template>
 
 <script>
@@ -68,8 +43,6 @@ import {
 } from '~/utils/axios';
 import { formatName } from '~/utils/formats';
 import headMeta from '~/utils/head-meta';
-import AppBar from '~/components/doctor-website/app-bar';
-import McFooter from '~/components/commons/mc-footer';
 import Panel1 from '~/components/doctor-website/panel-1';
 import ProfessionalInfo from '~/components/doctor-website/professional-info';
 import Services from '~/components/doctor-website/services';
@@ -77,8 +50,6 @@ import Tabs from '~/components/doctor-website/tabs';
 export default {
   layout: 'doctor-website',
   components: {
-    AppBar,
-    McFooter,
     Panel1,
     ProfessionalInfo,
     Services,

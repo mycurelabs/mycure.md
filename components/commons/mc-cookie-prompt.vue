@@ -34,7 +34,11 @@
 
 <script>
 // components
+import CookieLaw from 'vue-cookie-law';
 export default {
+  components: {
+    CookieLaw,
+  },
   computed: {
     cookieClasses () {
       return [this.$isMobile ? 'mobile' : 'web'];

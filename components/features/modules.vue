@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import FEATURE_MODULE_GROUPS from './constants';
+import { FEATURE_MODULE_GROUPS } from './constants';
 import ModuleItem from './module-item.vue';
 
 export default {

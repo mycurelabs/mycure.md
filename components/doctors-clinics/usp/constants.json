@@ -1,0 +1,10 @@
+{
+  "metaTitle": "EMR Solution for Doctors",
+  "title": "The perfect clinic system for doctors doing solo or group practice",
+  "description": "",
+  "btnRoute": "signup-individual",
+  "btnId": "doctors-clinic-usp-signup-btn",
+  "btnText": "Start Free",
+  "coverImg": "mycure-doctor-clinic-usp-cover",
+  "customPath": "doctors-clinics/"
+}

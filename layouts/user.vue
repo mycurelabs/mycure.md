@@ -64,11 +64,11 @@ export default {
   background-position: bottom center;
 }
 .day-bg {
-  background-image: url('../assets/images/sign-up/mycure-final-cta-background-dense.png');
+  background-image: url('../assets/images/sign-up-individual-step-1/mycure-final-cta-background-dense.png');
   background-size: contain;
 }
 .night-bg {
-  background-image: url('../assets/images/sign-up/mycure-final-cta-background-dark-mode.png');
+  background-image: url('../assets/images/sign-up-individual-step-1/mycure-final-cta-background-dark-mode.png');
   background-size: contain;
 }
 .night-sky {

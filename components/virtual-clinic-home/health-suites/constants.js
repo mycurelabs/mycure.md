@@ -1,0 +1,75 @@
+export const HEALTH_SUITES_HEADERS = {
+  title: 'MYCURE Health Suites',
+  subtitle: 'Find the right mix based on the size and functions of your health facility.',
+};
+
+export const HEALTH_SUITES_ITEMS = [
+  {
+    header: 'Doctors Clinics',
+    subheader: 'Make writing a thing of the past',
+    features: [
+      'Best for Solo & Group Practice',
+      'Customizable EMR',
+      'ePrescription Printing',
+      'Census & Income Summary',
+      'SMS Reminders',
+    ],
+    image: 'mycure-p2-badge-doctor-clinic',
+    btnText: 'Start Free',
+    btnLink: 'signup-individual',
+    btnId: 'home-doctors-clinics-start-free',
+    learnLink: 'doctors-clinics',
+    learnId: 'home-doctors-clinics-learn-more',
+  },
+  {
+    header: 'Specialized Clinics',
+    subheader: 'Customized for your line of expertise',
+    features: [
+      'Skin & Aesthetics',
+      'Maternity Care',
+      'Pediatrics',
+      'Dentistry',
+      'Diagnostics',
+    ],
+    image: 'mycure-p2-badge-specialized-clinic',
+    btnText: 'Start 14-Day Trial',
+    btnLink: 'signup-individual',
+    btnId: 'home-solutions-specialized-clinics-book-demo',
+    learnLink: 'doctors-clinics',
+    learnId: 'home-specialized-clinics-learn-more',
+  },
+  {
+    header: 'Multispecialty Clinics',
+    subheader: 'For one-stop, multi-staff health centers',
+    features: [
+      'User designated roles',
+      'Multiple departments',
+      'Physical Medical Exams',
+      'Insurance & Corporate Billing',
+      'Materials Management',
+    ],
+    image: 'mycure-p2-badge-multispecialty',
+    btnText: 'Book A Free Demo',
+    btnLink: 'signup-multispecialty',
+    btnId: 'home-solutions-multispecialty-clinics-book-demo',
+    learnLink: 'enterprise',
+    learnId: 'home-multispecialty-clinics-learn-more',
+  },
+  // - TODO: Temporarily hide
+  // {
+  //   header: 'Hippocrates',
+  //   subheader: 'For Medical Arts Centers',
+  //   features: [
+  //     'Comprehensive telemedicine',
+  //     'Online video consultations',
+  //     'Mobile app for patients',
+  //     'Integrated EMR module',
+  //     'Easy ePrescriptions',
+  //   ],
+  //   image: 'mycure-p2-badge-hippocrates-virtual-medical-center',
+  //   btnText: 'Book A Free Demo',
+  //   btnLink: 'signup-multispecialty',
+  //   learnLink: 'hippocrates',
+  //   learnId: 'hippocrates--health-suites-learn-more',
+  // },
+];

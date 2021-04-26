@@ -17,13 +17,12 @@
                 :color="btnColor"
                 :href="btnHref"
                 width="135"
-                depressed
-              ).white--text.ml-n2.text-none Sign Me Up
+              ).white--text.ml-n2 Sign Me Up
     template(v-else)
       h2 {{ headerText }}
       img(:src="require(`~/assets/images/directory-doctor/mycure-sign-up-doctor-cms-blue-banner-mobile.png`)" width="100%").pb-5
       p.pre-white-space {{ contentText }}
-      v-btn(color="accent" depressed).mt-2.text-none
+      v-btn(color="accent").mt-2
         strong Sign Me Up
 </template>
 
