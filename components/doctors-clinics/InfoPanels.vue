@@ -25,7 +25,9 @@
           color="primary"
           event-label="signup"
           :to="{ name: 'signup-health-facilities' }"
-        ).text-none.font-xs Get Started Free
+        ).text-none.font-xs
+          span Get Started Free
+          v-icon(small right) mdi-arrow-right
 </template>
 
 <script>
