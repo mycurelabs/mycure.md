@@ -16,7 +16,7 @@
         p(:class="metaTitleClasses").font-weight-bold {{ uspMetaTitle }}
         h1(:class="titleClasses").lh-title {{ uspTitle }}
         p(:class="descriptionClasses").grey--text {{ uspDescription }}
-        template(v-if="slotted-btn")
+        template(v-if="slottedBtn")
           slot(name="usp btn")
         mc-btn(
           v-else
