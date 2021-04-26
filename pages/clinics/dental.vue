@@ -96,6 +96,7 @@ export default {
     ThinkLongTerm,
     Usp,
   },
+  middleware: ['disable-route'],
   data () {
     // - TODO: Update info
     this.features = [

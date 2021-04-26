@@ -93,6 +93,7 @@ export default {
     GenericMediaPanel,
     Usp,
   },
+  middleware: ['disable-route'],
   data () {
     // - TODO: Update info
     this.features = [

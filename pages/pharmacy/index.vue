@@ -61,6 +61,7 @@ export default {
     GenericMediaPanel,
     Usp,
   },
+  middleware: ['disable-route'],
   data () {
     // - TODO: Update info
     this.features = [
@@ -94,6 +95,14 @@ export default {
     return {
       loading: true,
     };
+  },
+  head () {
+    // - TODO: Update
+    return headMeta({
+      title: 'MYCURE for Pharmacy and Drugstores',
+      description: 'MYCURE provides medical POS and Inventory solutions that make pharmacy and drugstore management so much simpler.',
+      socialBanner: require('~/assets/images/banners/MYCURE Open Graph-Providers.jpg'),
+    });
   },
   computed: {
     headerClasses () {
@@ -130,14 +139,6 @@ export default {
   },
   mounted () {
     this.loading = false;
-  },
-  head () {
-    // - TODO: Update
-    return headMeta({
-      title: 'MYCURE for Pharmacy and Drugstores',
-      description: 'MYCURE provides medical POS and Inventory solutions that make pharmacy and drugstore management so much simpler.',
-      socialBanner: require('~/assets/images/banners/MYCURE Open Graph-Providers.jpg'),
-    });
   },
 };
 </script>

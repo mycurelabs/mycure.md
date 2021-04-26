@@ -67,6 +67,7 @@ export default {
     MultipleBranches,
     Usp,
   },
+  middleware: ['disable-route'],
   data () {
     this.features = [
       {
