@@ -28,7 +28,7 @@ export default {
   },
   methods: {
     trackEvent () {
-      // Aplitude
+      // Amplitude
       window.$amplitude.logEvent(this.eventLabel);
       // Google Analytics
       this.$ga.event({

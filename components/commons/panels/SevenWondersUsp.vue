@@ -23,6 +23,7 @@
           depressed
           color="primary"
           x-large
+          :event-label="`${title} USP button`"
           @click="$emit('click')"
         ).text-none.letter-spacing-normal.font-xs {{ btnText }}
 </template>
