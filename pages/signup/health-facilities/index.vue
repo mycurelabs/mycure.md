@@ -249,7 +249,8 @@ export default {
         text: 'Doctor\'s Clinic',
         orgProps: {
           type: 'facility',
-          types: ['doctor'],
+          // TODO: bring back when applied in service
+          // types: ['doctor'],
         },
         value: 'doctors',
       },
@@ -257,7 +258,8 @@ export default {
         text: 'Outpatient Clinic',
         orgProps: {
           type: 'facility',
-          types: ['clinic'],
+          // TODO: bring back when applied in service
+          // types: ['clinic'],
         },
         value: 'clinic',
       },
@@ -265,7 +267,8 @@ export default {
         text: 'Diagnostics',
         orgProps: {
           type: 'facility',
-          types: ['clinic-diagnostic'],
+          // TODO: bring back when applied in service
+          // types: ['clinic-diagnostic'],
         },
         value: 'clinic-diagnostic',
       },
