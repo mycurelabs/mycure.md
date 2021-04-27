@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { pick } from 'lodash';
 import { handleError } from './error-handler';
 
 // NOTE: Do not remove yet
@@ -253,7 +252,7 @@ export const signupFacility = async (opts) => {
         mobileNo: `+${opts.countryCallingCode}${opts.mobileNo}`,
       },
       organization: {
-        ...pick(opts.facilityType, 'orgProps'),
+        ...opts.facilityType.orgProps,
         superadmin: {
           roles: [...opts.roles],
         },

@@ -3,6 +3,7 @@
     v-row(justify="end").pt-1
       span.mt-2 Already have an account?&nbsp;&nbsp;
       v-btn(
+        depressed
         color="primary"
         :to="{ name: 'signin' }"
       ).text-none Log In
@@ -336,10 +337,10 @@ export default {
         this.countryFlag = location ? location.country_flag : 'https://assets.ipstack.com/flags/ph.svg';
 
         // Check if email has been passed
-        this.email = this.$route.query.email;
+        if (this.$route.query.email) this.email = this.$route.query.email;
 
         // Check if user has been prefilled a type
-        this.facilityType = this.$route.params.type;
+        if (this.$route.params.type) this.facilityType = this.$route.params.type;
       } catch (e) {
         console.error(e);
       } finally {
