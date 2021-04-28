@@ -4,7 +4,7 @@
       v-for="(content, key) in contents"
       :key="key"
       v-bind="getPanelBindings(content)"
-      dummy
+      :dummy="!content.webImage"
     )
       //- Check list
       template(slot="additional-content")
@@ -45,6 +45,9 @@ export default {
           'Create and print prescriptions and other medical forms in 10 seconds or less.',
         ],
         contentAlign: 'left',
+        customImagePath: 'features/',
+        webImage: 'MYCURE-virtual-clinic-healthcare-practice-online-features-B-02-print-prescription',
+        mobileImage: 'MYCURE-virtual-clinic-healthcare-practice-online-features-B-02-print-prescription-mobile',
       },
       {
         header: 'Going digital = better medical history',
@@ -52,6 +55,9 @@ export default {
           'Imagine looking back at your charts from 5 or 10 years ago on your mobile device with a quick search. How convenient? S-U-P-E-R.',
         ],
         contentAlign: 'right',
+        customImagePath: 'features/',
+        webImage: 'MYCURE-virtual-clinic-healthcare-practice-online-features-B-03-charting',
+        mobileImage: 'MYCURE-virtual-clinic-healthcare-practice-online-features-B-03-charting-mobile',
       },
       {
         header: 'Help patients anywhere',
@@ -59,6 +65,8 @@ export default {
           'Reach out to more people who need your expertise without getting limited by time or location.',
         ],
         contentAlign: 'left',
+        customImagePath: 'features/',
+        webImage: 'MYCURE-virtual-clinic-healthcare-practice-online-features-C-telehealth',
       },
       {
         header: 'Expand Your Reach',
@@ -120,6 +128,9 @@ export default {
       return {
         header: content.header,
         descriptions: content.descriptions,
+        customImagePath: content.customImagePath,
+        webImage: content.webImage,
+        ...content.mobileImage && { mobileImage: content.mobileImage },
         headerClasses,
         descriptionClasses,
         ...content.contentAlign === 'left' && contentLeftBindings,

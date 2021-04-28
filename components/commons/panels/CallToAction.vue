@@ -7,7 +7,6 @@
     :descriptions="callToActionPanel.descriptions"
     :descriptionClasses="descriptionClasses"
     :dense="$isMobile"
-    dummy
   )
     template(slot="additional-content" v-if="version === 1")
       v-row(justify="center").mb-10
