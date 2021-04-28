@@ -100,7 +100,7 @@ export default {
   data () {
     // Panel content
     this.uspDescription = 'Designed for modern doctors, MYCURE lets you focus on what you do best — caring for your patients.  MYCURE organizes your daily tasks to make your practice more simple, secure, and efficient.';
-    this.featuresDescription = 'Use the tools that work best for you. Everything you need is here. It’s FREE.';
+    this.featuresDescription = 'Use the tools that work best for you. Everything you need is here. It’s FREE!';
     this.features = [
       {
         title: 'Digital Records',

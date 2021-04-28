@@ -16,7 +16,7 @@
               :image="item.icon"
               :image-alt="item.title"
               :image-file-extension="item.iconExtension || '.png'"
-              image-width="45%"
+              :image-width="!$isMobile ? imageWidth : '100%'"
             )
             h3.font-xs.font-open-sans.grey--text {{ item.title }}
             p(v-if="item.description").font-xs.grey--text {{ item.description }}
@@ -51,6 +51,10 @@ export default {
     imageDir: {
       type: String,
       default: '',
+    },
+    imageWidth: {
+      type: [String, Number],
+      default: '30%',
     },
     extensionExclusive: {
       type: Boolean,
