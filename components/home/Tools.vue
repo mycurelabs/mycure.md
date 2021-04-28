@@ -15,20 +15,31 @@
           v-col(
             v-for="(tool, key) in tools"
             :key="key"
-            cols="12"
+            cols="6"
             md="4"
           ).text-center
-            v-avatar(size="70" color="primary")
-            h3(:class="{'font-s': !$isMobile, 'font-xs': $isMobile}") {{ tool.name }}
+            picture-source(
+              extension-exclusive
+              custom-path="home/"
+              :image="tool.icon"
+              :image-alt="tool.name"
+              :image-width="!$isMobile ? '50%' : '60%'"
+              image-file-extension=".png"
+            )
+            h3.font-xs.font-open-sans.grey--text {{ tool.name }}
 </template>
 
 <script>
+import PictureSource from '~/components/commons/PictureSource';
 export default {
+  components: {
+    PictureSource,
+  },
   data () {
     this.tools = [
-      { name: 'Privacy Standards' },
-      { name: 'Interoperable Systems' },
-      { name: 'Customizable Features' },
+      { name: 'Privacy Standards', icon: 'Privacy Standards' },
+      { name: 'Interoperable Systems', icon: 'Interoperable' },
+      { name: 'Customizable Features', icon: 'Customizable Features' },
     ];
     return {};
   },
