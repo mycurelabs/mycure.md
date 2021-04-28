@@ -1,14 +1,14 @@
 <template lang="pug">
   v-container
     v-row(justify="center")
-      v-col(cols="12" :md="titleColSize" :class="{'text-center': !$isMobile }")
+      v-col(cols="12" :md="titleColSize").text-center
         strong(v-if="metaTitle").font-xs.primary--text {{ metaTitle }}
         h1(:class="titleClasses").lh-title {{ title }}
-      v-col(cols="12" :md="contentColSize" :class="{'text-center': !$isMobile}")
+      v-col(cols="12" :md="contentColSize").text-center
         p(:class="descriptionClasses").grey--text.font-open-sans {{ description }}
       v-col(cols="12" md="8")
-        v-row(justify="center" align="center")
-          v-col(cols="12" md="4" v-for="(item, key) in items" :key="key").text-center
+        v-row(justify="center")
+          v-col(cols="6" md="4" v-for="(item, key) in items" :key="key").text-center
             picture-source(
               v-if="item.icon"
               :extension-exclusive="extensionExclusive"
@@ -16,7 +16,7 @@
               :image="item.icon"
               :image-alt="item.title"
               :image-file-extension="item.iconExtension || '.png'"
-              :image-width="!$isMobile ? imageWidth : '100%'"
+              :image-width="!$isMobile ? imageWidth : '60%'"
             )
             h3.font-xs.font-open-sans.grey--text {{ item.title }}
             p(v-if="item.description").font-xs.grey--text {{ item.description }}
@@ -76,7 +76,7 @@ export default {
   computed: {
     titleClasses () {
       return classBinder(this, {
-        mobile: ['font-m'],
+        mobile: ['font-s'],
         regular: ['font-l'],
       });
     },

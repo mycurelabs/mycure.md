@@ -49,7 +49,7 @@ export default {
   computed: {
     panelHeaderClasses () {
       return classBinder(this, {
-        mobile: ['font-m'],
+        mobile: ['font-s'],
         regular: ['font-l'],
       });
     },

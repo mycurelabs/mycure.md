@@ -5,6 +5,7 @@
       :key="key"
       v-bind="getPanelBindings(content)"
       :dummy="!content.webImage"
+      :dense="$isMobile"
     )
         mc-btn(
           depressed
@@ -89,14 +90,14 @@ export default {
       };
       const headerClasses = [
         classBinder(this, {
-          mobile: ['font-m'],
+          mobile: ['font-s', 'text-center'],
           regular: ['font-l'],
         }),
         'lh-title',
       ];
       const descriptionClasses = [
         classBinder(this, {
-          mobile: ['font-xs'],
+          mobile: ['font-xs', 'text-center'],
           regular: ['font-s'],
         }),
         'font-open-sans',

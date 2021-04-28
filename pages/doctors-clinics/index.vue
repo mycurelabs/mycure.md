@@ -44,15 +44,16 @@
               v-icon(color="black") mdi-arrow-right
             v-col
               span(:class="descriptionClasses") {{ item }}
-        mc-btn(
-          depressed
-          large
-          color="primary"
-          event-label="signup"
-          :to="{ name: 'signup-health-facilities' }"
-        ).text-none.font-xs
-          span Get Started Free
-          v-icon(small right) mdi-arrow-right
+        div(:class="{ 'text-center': $isMobile }")
+          mc-btn(
+            depressed
+            x-large
+            color="primary"
+            event-label="signup"
+            :to="{ name: 'signup-health-facilities' }"
+          ).text-none.font-xs
+            span Get Started Free
+            v-icon(small right) mdi-arrow-right
     //- 7th panel
     mycure-csi(:class="panelMargins")
     //- 8th panel
@@ -159,7 +160,7 @@ export default {
     headerClasses () {
       const headerClasses = [
         classBinder(this, {
-          mobile: ['font-m'],
+          mobile: ['font-s', 'text-center'],
           regular: ['font-l'],
         }),
         'lh-title',

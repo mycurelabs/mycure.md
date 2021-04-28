@@ -15,7 +15,7 @@
       v-col(cols="12" md="7" :class="{ 'text-center' : $isMobile }")
         p(:class="metaTitleClasses").font-weight-bold {{ uspMetaTitle }}
         h1(:class="titleClasses").lh-title {{ uspTitle }}
-        p(:class="descriptionClasses").grey--text {{ uspDescription }}
+        p(:class="descriptionClasses").grey--text.text-justify {{ uspDescription }}
         template(v-if="slottedBtn")
           slot(name="usp btn")
         mc-btn(
