@@ -31,13 +31,12 @@
       dummy
     )
     //- 4th panel
-    generic-media-panel(
-      :center-media="!$isMobile"
-      :content-align-left="$isMobile"
-      header="Secure cloud-based software with the benefits of an on-premise system"
-      :header-classes="headerClasses"
-      :dense="$isMobile"
-      dummy
+    features(
+      title="Secure cloud-based software with the benefits of an on-premise system"
+      title-col-size="10"
+      image-dir="syncbase/"
+      hide-learn-more
+      :items="features"
     )
     //- 5th panel
     generic-media-panel(
@@ -55,15 +54,44 @@
 import classBinder from '~/utils/class-binder';
 import headMeta from '~/utils/head-meta';
 // - components
+import Features from '~/components/commons/panels/Features';
 import GenericMediaPanel from '~/components/commons/generic-media-panel';
 import Usp from '~/components/commons/panels/SevenWondersUsp';
 
 export default {
   components: {
+    Features,
     GenericMediaPanel,
     Usp,
   },
   data () {
+    this.features = [
+      {
+        title: 'Grade A+ SSL',
+        icon: 'Grade A+ SSL',
+        iconExtension: '.png',
+      },
+      {
+        title: 'Data Encryption',
+        icon: 'Data Encryption',
+        iconExtension: '.png',
+      },
+      {
+        title: 'User Designated Access',
+        icon: 'User Designated Access',
+        iconExtension: '.png',
+      },
+      {
+        title: 'Secure Cloud Hosting',
+        icon: 'Secure Cloud Hosting',
+        iconExtension: '.png',
+      },
+      {
+        title: 'Data Privacy Standards',
+        icon: 'Data Privacy standards',
+        iconExtension: '.png',
+      },
+    ];
     return {
       loading: true,
     };

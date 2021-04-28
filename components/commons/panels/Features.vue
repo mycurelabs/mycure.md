@@ -9,6 +9,15 @@
       v-col(cols="12")
         v-row(justify="center" align="center")
           v-col(cols="12" md="4" v-for="(item, key) in items" :key="key").text-center
+            picture-source(
+              v-if="item.icon"
+              extension-exclusive
+              :custom-path="imageDir"
+              :image="item.icon"
+              :image-alt="item.title"
+              :image-file-extension="item.iconExtension || '.png'"
+              image-width="40%"
+            )
             h3.font-s.grey--text {{ item.title }}
             p(v-if="item.description").font-xs.grey--text {{ item.description }}
             nuxt-link(v-if="!hideLearnMore && item.route" :to="{ name: item.route }").primary--text.font-weight-bold.learnLink Learn more
@@ -17,7 +26,11 @@
 
 <script>
 import classBinder from '~/utils/class-binder';
+import PictureSource from '~/components/commons/PictureSource';
 export default {
+  components: {
+    PictureSource,
+  },
   props: {
     title: {
       type: String,
@@ -34,6 +47,10 @@ export default {
     items: {
       type: Array,
       default: () => ([]),
+    },
+    imageDir: {
+      type: String,
+      default: '',
     },
     hideLearnMore: {
       type: Boolean,
