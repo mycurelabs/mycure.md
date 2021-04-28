@@ -15,33 +15,67 @@
       title="Your Practice. Your Call"
       :description="featuresDescription"
       :items="features"
-      :class="panelMargins"
-    )
+    ).mt-5
     //- 3rd to 5th panels
     info-panels(:class="panelMargins")
-    //- 6th panel
-    mycure-csi(:class="panelMargins")
+    //-6th panel
+    generic-media-panel(
+      content-align-right
+      cols-right="5"
+      cols-left="7"
+      :header="sixthPanel.header"
+      :descriptions="sixthPanel.descriptions"
+      :header-classes="headerClasses"
+      :description-classes="descriptionClasses"
+      dummy
+    )
+      //- Check list
+      template(slot="additional-content")
+        div.mb-5
+          v-row(
+            v-for="(item, i) in sixthPanel.list"
+            :align="i === 2 ? 'center' : 'start'"
+            :key="i"
+            dense
+          )
+            v-col(cols="1").pr-2.pt-2
+              v-icon(color="black") mdi-arrow-right
+            v-col
+              span(:class="descriptionClasses") {{ item }}
+        mc-btn(
+          depressed
+          large
+          color="primary"
+          event-label="signup"
+          :to="{ name: 'signup-health-facilities' }"
+        ).text-none.font-xs
+          span Get Started Free
+          v-icon(small right) mdi-arrow-right
     //- 7th panel
-    practice-online(:class="panelMargins")#group-practice
+    mycure-csi(:class="panelMargins")
     //- 8th panel
-    think-long-term(extended :class="panelMargins")
+    practice-online(:class="panelMargins")#group-practice
     //- 9th panel
+    think-long-term(extended :class="panelMargins")
+    //- 10th panel
     pricing(
       title="Start free and only pay as you grow"
       :pricing-details="pricingDetails"
     ).py-10.my-10
-    //- 10th panel
+    //- 11th panel
     call-to-action
 </template>
 
 <script>
 // utils
 import headMeta from '~/utils/head-meta';
+import classBinder from '~/utils/class-binder';
 // constants
 import { DOCTORS_PRICING } from '~/constants/pricing';
 // components
 import CallToAction from '~/components/commons/panels/CallToAction';
 import Features from '~/components/commons/panels/Features';
+import GenericMediaPanel from '~/components/commons/generic-media-panel';
 import InfoPanels from '~/components/doctors-clinics/InfoPanels';
 import MycureCsi from '~/components/commons/panels/MycureCsi';
 import PracticeOnline from '~/components/doctors-clinics/practice-online';
@@ -53,6 +87,7 @@ export default {
   components: {
     CallToAction,
     Features,
+    GenericMediaPanel,
     InfoPanels,
     MycureCsi,
     PracticeOnline,
@@ -81,6 +116,18 @@ export default {
         title: 'Appointment Booking',
       },
     ];
+    this.sixthPanel = {
+      header: 'Expand Your Reach',
+      descriptions: [
+        'Opt in to MYCURE ONE, a global online directory of modern healthcare practitioners and facilities',
+      ],
+      list: [
+        'Patients can easily find you',
+        'Get more organized appointments',
+        'Comes with a Professional Website',
+      ],
+      contentAlign: 'right',
+    };
     this.pricingDetails = DOCTORS_PRICING;
     return {
       loading: true,
@@ -95,7 +142,28 @@ export default {
   },
   computed: {
     panelMargins () {
-      return { 'mt-10': this.$isMobile };
+      return { 'mt-10': this.$isMobile, 'mt-12': !this.$isMobile };
+    },
+    headerClasses () {
+      const headerClasses = [
+        classBinder(this, {
+          mobile: ['font-m'],
+          regular: ['font-l'],
+        }),
+        'lh-title',
+      ];
+      return headerClasses;
+    },
+    descriptionClasses () {
+      const descriptionClasses = [
+        classBinder(this, {
+          mobile: ['font-xs'],
+          regular: ['font-s'],
+        }),
+        'font-open-sans',
+        'font-gray',
+      ];
+      return descriptionClasses;
     },
   },
   mounted () {

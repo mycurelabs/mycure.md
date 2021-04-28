@@ -1,24 +1,11 @@
 <template lang="pug">
-  fragment
+  div
     generic-media-panel(
       v-for="(content, key) in contents"
       :key="key"
       v-bind="getPanelBindings(content)"
       :dummy="!content.webImage"
     )
-      //- Check list
-      template(slot="additional-content")
-        div(v-if="content.list").mb-5
-          v-row(
-            v-for="(item, i) in content.list"
-            :align="i === 2 ? 'center' : 'start'"
-            :key="i"
-            dense
-          )
-            v-col(cols="1").pr-2.pt-2
-              v-icon(color="black") mdi-arrow-right
-            v-col
-              span(:class="checkListClasses") {{ item }}
         mc-btn(
           depressed
           large
@@ -67,18 +54,6 @@ export default {
         contentAlign: 'left',
         customImagePath: 'features/',
         webImage: 'MYCURE-virtual-clinic-healthcare-practice-online-features-C-telehealth',
-      },
-      {
-        header: 'Expand Your Reach',
-        descriptions: [
-          'Opt in to MYCURE ONE, a global online directory of modern healthcare practitioners and facilities',
-        ],
-        list: [
-          'Patients can easily find you',
-          'Get more organized appointments',
-          'Comes with a Professional Website',
-        ],
-        contentAlign: 'right',
       },
     ];
     return {};
