@@ -82,11 +82,15 @@
       description="MYCURE has already built in workflows and processes for different setups."
       :items="features"
       :class="panelMargins"
+      image-dir="clinics/"
+      icon-container-col-size="10"
+      icon-col-size="3"
+      extension-exclusive
     ).mt-10.mb-10
       template(slot="additional-content")
-        v-row(justify="center")
-          v-col(cols="12" md="3")
-            v-btn(color="primary" block text).text-none.font-xs Practicing solo? Click here.
+        v-row(justify="center").mt-10
+          v-col(cols="12" md="4")
+            v-btn(color="primary" block text :to="{ name: 'doctors-clinics' }").text-none.font-xs Practicing solo? Click here.
     //- 8th panel
     think-long-term(extended :class="panelMargins")
     //- 9th panel
@@ -131,24 +135,38 @@ export default {
     this.features = [
       {
         title: 'Multispecialty',
+        icon: 'Multispecialty',
+        iconExtension: '.png',
       },
       {
         title: 'Skin & Aesthetics',
+        icon: 'Multispecialty',
+        iconExtension: '.png',
       },
       {
         title: 'Maternity Care',
+        icon: 'Maternity Care',
+        iconExtension: '.png',
       },
       {
         title: 'Pediatric Care',
+        icon: 'Pedia',
+        iconExtension: '.png',
       },
       {
         title: 'Dentistry',
+        icon: 'Dentistry',
+        iconExtension: '.png',
       },
       {
         title: 'Diagnostics',
+        icon: 'Diagnostics',
+        iconExtension: '.png',
       },
       {
         title: 'Corporate',
+        icon: 'Corporate',
+        iconExtension: '.png',
       },
     ];
     this.infoPanels = [

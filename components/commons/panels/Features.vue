@@ -6,9 +6,9 @@
         h1(:class="titleClasses").lh-title {{ title }}
       v-col(cols="12" :md="contentColSize").text-center
         p(:class="descriptionClasses").grey--text.font-open-sans {{ description }}
-      v-col(cols="12" md="8")
+      v-col(cols="12" :md="iconContainerColSize")
         v-row(justify="center")
-          v-col(cols="6" md="4" v-for="(item, key) in items" :key="key").text-center
+          v-col(cols="6" :md="iconColSize" v-for="(item, key) in items" :key="key").text-center
             picture-source(
               v-if="item.icon"
               :extension-exclusive="extensionExclusive"
@@ -64,13 +64,25 @@ export default {
       type: Boolean,
       default: false,
     },
+    // - Space for title
     titleColSize: {
       type: [Number, String],
       default: '8',
     },
+    // - Space for description
     contentColSize: {
       type: [Number, String],
       default: '6',
+    },
+    // - Space for icons container
+    iconContainerColSize: {
+      type: [Number, String],
+      default: '8',
+    },
+    // - Space for each icon
+    iconColSize: {
+      type: [Number, String],
+      default: '4',
     },
   },
   computed: {
