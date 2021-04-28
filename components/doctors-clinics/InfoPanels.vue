@@ -35,6 +35,7 @@ export default {
         customImagePath: 'features/',
         webImage: 'MYCURE-virtual-clinic-healthcare-practice-online-features-B-02-print-prescription',
         mobileImage: 'MYCURE-virtual-clinic-healthcare-practice-online-features-B-02-print-prescription-mobile',
+        mobileFileExtension: '.png',
       },
       {
         header: 'Going digital = better medical history',
@@ -45,6 +46,7 @@ export default {
         customImagePath: 'features/',
         webImage: 'MYCURE-virtual-clinic-healthcare-practice-online-features-B-03-charting',
         mobileImage: 'MYCURE-virtual-clinic-healthcare-practice-online-features-B-03-charting-mobile',
+        mobileFileExtension: '.png',
       },
       {
         header: 'Help patients anywhere',
@@ -106,6 +108,7 @@ export default {
         customImagePath: content.customImagePath,
         webImage: content.webImage,
         ...content.mobileImage && { mobileImage: content.mobileImage },
+        ...content.mobileFileExtension && { extensionExclusive: true, mobileFileExtension: content.mobileFileExtension },
         headerClasses,
         descriptionClasses,
         ...content.contentAlign === 'left' && contentLeftBindings,

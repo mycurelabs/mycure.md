@@ -12,10 +12,12 @@
     )
     //- 2nd panel
     features(
+      extension-exclusive
       title="Your Practice. Your Call"
       :description="featuresDescription"
       :items="features"
-    ).mt-5
+      image-dir="doctors-clinics/"
+    ).mt-1
     //- 3rd to 5th panels
     info-panels(:class="panelMargins")
     //-6th panel
@@ -102,18 +104,28 @@ export default {
     this.features = [
       {
         title: 'Digital Records',
+        icon: 'Digital Records',
+        iconExtension: '.png',
       },
       {
         title: 'Telehealth',
+        icon: 'Telehealth',
+        iconExtension: '.png',
       },
       {
         title: 'Daily Reports',
+        icon: 'Daily Reports',
+        iconExtension: '.png',
       },
       {
         title: 'Professional Website',
+        icon: 'Professional Website',
+        iconExtension: '.png',
       },
       {
         title: 'Appointment Booking',
+        icon: 'Appointment Booking',
+        iconExtension: '.png',
       },
     ];
     this.sixthPanel = {
@@ -142,7 +154,7 @@ export default {
   },
   computed: {
     panelMargins () {
-      return { 'mt-10': this.$isMobile, 'mt-12': !this.$isMobile };
+      return { 'mt-10': this.$isMobile, 'web-margins': !this.$isMobile };
     },
     headerClasses () {
       const headerClasses = [
@@ -173,18 +185,7 @@ export default {
 </script>
 
 <style>
-#top {
-  margin-top: 12vh;
-}
-.cta-container {
-  position: relative;
-  margin-bottom: 0%;
-  z-index: 1;
-}
-.content-container {
-  position: relative;
-}
-.get-started-btn {
-  margin-left: -3%;
+.web-margins {
+  margin-top: 50px;
 }
 </style>

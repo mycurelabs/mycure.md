@@ -6,19 +6,19 @@
         h1(:class="titleClasses").lh-title {{ title }}
       v-col(cols="12" :md="contentColSize" :class="{'text-center': !$isMobile}")
         p(:class="descriptionClasses").grey--text.font-open-sans {{ description }}
-      v-col(cols="12")
+      v-col(cols="12" md="8")
         v-row(justify="center" align="center")
           v-col(cols="12" md="4" v-for="(item, key) in items" :key="key").text-center
             picture-source(
               v-if="item.icon"
-              extension-exclusive
+              :extension-exclusive="extensionExclusive"
               :custom-path="imageDir"
               :image="item.icon"
               :image-alt="item.title"
               :image-file-extension="item.iconExtension || '.png'"
-              image-width="40%"
+              image-width="45%"
             )
-            h3.font-xs.grey--text {{ item.title }}
+            h3.font-xs.font-open-sans.grey--text {{ item.title }}
             p(v-if="item.description").font-xs.grey--text {{ item.description }}
             nuxt-link(v-if="!hideLearnMore && item.route" :to="{ name: item.route }").primary--text.font-weight-bold.learnLink Learn more
     slot(name="additional-content")
@@ -51,6 +51,10 @@ export default {
     imageDir: {
       type: String,
       default: '',
+    },
+    extensionExclusive: {
+      type: Boolean,
+      default: false,
     },
     hideLearnMore: {
       type: Boolean,
