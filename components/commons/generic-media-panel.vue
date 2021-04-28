@@ -249,14 +249,14 @@ export default {
      * @type {String}
      */
     offsetColsLeft: {
-      type: String,
+      type: [String, Number],
       default: '0',
     },
     /**
      * Number of offset-cols of the right column
      */
     offsetColsRight: {
-      type: String,
+      type: [String, Number],
       default: '0',
     },
     /**

@@ -5,8 +5,9 @@
       align="center"
       no-gutters
     )
-      v-col(cols="12" md="7").text-center
-        h1(:class="{ 'font-xl mb-8' : !$isMobile, 'font-m mb-6' : $isMobile }").lh-title Patients will love you even more.
+      v-col(cols="12" md="6").text-center
+        h1(:class="{ 'font-l mb-8' : !$isMobile, 'font-m mb-6' : $isMobile }").lh-title Patients will love you even more.
+    v-row(justify="center" align="center")
       v-col(cols="12" md="6").text-center
         p(:class="{ 'font-s' : !$isMobile, 'font-xs' : $isMobile }").grey--text.font-open-sans You treat your patients with holistic care. Now, make it extra covenient for them to reach you.
     v-row

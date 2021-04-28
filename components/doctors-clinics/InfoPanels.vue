@@ -1,24 +1,12 @@
 <template lang="pug">
-  fragment
+  div
     generic-media-panel(
       v-for="(content, key) in contents"
       :key="key"
       v-bind="getPanelBindings(content)"
-      dummy
+      :dummy="!content.webImage"
+      :dense="$isMobile"
     )
-      //- Check list
-      template(slot="additional-content")
-        div(v-if="content.list").mb-5
-          v-row(
-            v-for="(item, i) in content.list"
-            :align="i === 2 ? 'center' : 'start'"
-            :key="i"
-            dense
-          )
-            v-col(cols="1").pr-2.pt-2
-              v-icon(color="black") mdi-arrow-right
-            v-col
-              span(:class="checkListClasses") {{ item }}
         mc-btn(
           depressed
           large
@@ -45,6 +33,10 @@ export default {
           'Create and print prescriptions and other medical forms in 10 seconds or less.',
         ],
         contentAlign: 'left',
+        customImagePath: 'features/',
+        webImage: 'MYCURE-virtual-clinic-healthcare-practice-online-features-B-02-print-prescription',
+        mobileImage: 'MYCURE-virtual-clinic-healthcare-practice-online-features-B-02-print-prescription-mobile',
+        mobileFileExtension: '.png',
       },
       {
         header: 'Going digital = better medical history',
@@ -52,6 +44,10 @@ export default {
           'Imagine looking back at your charts from 5 or 10 years ago on your mobile device with a quick search. How convenient? S-U-P-E-R.',
         ],
         contentAlign: 'right',
+        customImagePath: 'features/',
+        webImage: 'MYCURE-virtual-clinic-healthcare-practice-online-features-B-03-charting',
+        mobileImage: 'MYCURE-virtual-clinic-healthcare-practice-online-features-B-03-charting-mobile',
+        mobileFileExtension: '.png',
       },
       {
         header: 'Help patients anywhere',
@@ -59,18 +55,8 @@ export default {
           'Reach out to more people who need your expertise without getting limited by time or location.',
         ],
         contentAlign: 'left',
-      },
-      {
-        header: 'Expand Your Reach',
-        descriptions: [
-          'Opt in to MYCURE ONE, a global online directory of modern healthcare practitioners and facilities',
-        ],
-        list: [
-          'Patients can easily find you',
-          'Get more organized appointments',
-          'Comes with a Professional Website',
-        ],
-        contentAlign: 'right',
+        customImagePath: 'features/',
+        webImage: 'MYCURE-virtual-clinic-healthcare-practice-online-features-C-telehealth',
       },
     ];
     return {};
@@ -104,14 +90,14 @@ export default {
       };
       const headerClasses = [
         classBinder(this, {
-          mobile: ['font-m'],
+          mobile: ['font-s', 'text-center'],
           regular: ['font-l'],
         }),
         'lh-title',
       ];
       const descriptionClasses = [
         classBinder(this, {
-          mobile: ['font-xs'],
+          mobile: ['font-xs', 'text-center'],
           regular: ['font-s'],
         }),
         'font-open-sans',
@@ -120,6 +106,10 @@ export default {
       return {
         header: content.header,
         descriptions: content.descriptions,
+        customImagePath: content.customImagePath,
+        webImage: content.webImage,
+        ...content.mobileImage && { mobileImage: content.mobileImage },
+        ...content.mobileFileExtension && { extensionExclusive: true, mobileFileExtension: content.mobileFileExtension },
         headerClasses,
         descriptionClasses,
         ...content.contentAlign === 'left' && contentLeftBindings,

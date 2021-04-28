@@ -5,8 +5,8 @@
       align="center"
       no-gutters
     )
-      v-col(cols="12" md="9").text-center
-        h1(:class="{ 'font-xl mb-8' : !$isMobile, 'font-m mb-6' : $isMobile }").lh-title Caring for people who care for people
+      v-col(cols="12" md="6").text-center
+        h1(:class="{ 'font-l mb-8' : !$isMobile, 'font-m mb-6' : $isMobile }").lh-title Caring for people who care for people
       v-col(cols="12" md="7").text-center
         p(:class="{ 'font-s' : !$isMobile, 'font-xs' : $isMobile }").grey--text.font-open-sans MYCURE is dedicated to help healthcare providers save more lives each day
     v-row

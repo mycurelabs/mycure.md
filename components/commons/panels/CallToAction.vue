@@ -7,7 +7,6 @@
     :descriptions="callToActionPanel.descriptions"
     :descriptionClasses="descriptionClasses"
     :dense="$isMobile"
-    dummy
   )
     template(slot="additional-content" v-if="version === 1")
       v-row(justify="center").mb-10
@@ -91,7 +90,7 @@ export default {
     headerClasses () {
       const headerClasses = [
         classBinder(this, {
-          mobile: ['font-m'],
+          mobile: ['font-s', 'text-center'],
           regular: ['font-l'],
         }),
         'lh-title',

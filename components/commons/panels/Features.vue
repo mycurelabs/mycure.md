@@ -1,15 +1,24 @@
 <template lang="pug">
   v-container
     v-row(justify="center")
-      v-col(cols="12" :md="titleColSize" :class="{'text-center': !$isMobile }")
+      v-col(cols="12" :md="titleColSize").text-center
         strong(v-if="metaTitle").font-xs.primary--text {{ metaTitle }}
         h1(:class="titleClasses").lh-title {{ title }}
-      v-col(cols="12" :md="contentColSize" :class="{'text-center': !$isMobile}")
+      v-col(cols="12" :md="contentColSize").text-center.py-3
         p(:class="descriptionClasses").grey--text.font-open-sans {{ description }}
-      v-col(cols="12")
-        v-row(justify="center" align="center")
-          v-col(cols="12" md="4" v-for="(item, key) in items" :key="key").text-center
-            h3.font-s.grey--text {{ item.title }}
+      v-col(cols="12" :md="iconContainerColSize")
+        v-row(justify="center")
+          v-col(cols="6" :md="iconColSize" v-for="(item, key) in items" :key="key").text-center
+            picture-source(
+              v-if="item.icon"
+              :extension-exclusive="extensionExclusive"
+              :custom-path="imageDir"
+              :image="item.icon"
+              :image-alt="item.title"
+              :image-file-extension="item.iconExtension || '.png'"
+              :image-width="!$isMobile ? imageWidth : '60%'"
+            )
+            h3.font-xs.font-open-sans.grey--text {{ item.title }}
             p(v-if="item.description").font-xs.grey--text {{ item.description }}
             nuxt-link(v-if="!hideLearnMore && item.route" :to="{ name: item.route }").primary--text.font-weight-bold.learnLink Learn more
     slot(name="additional-content")
@@ -17,7 +26,11 @@
 
 <script>
 import classBinder from '~/utils/class-binder';
+import PictureSource from '~/components/commons/PictureSource';
 export default {
+  components: {
+    PictureSource,
+  },
   props: {
     title: {
       type: String,
@@ -35,23 +48,47 @@ export default {
       type: Array,
       default: () => ([]),
     },
+    imageDir: {
+      type: String,
+      default: '',
+    },
+    imageWidth: {
+      type: [String, Number],
+      default: '40%',
+    },
+    extensionExclusive: {
+      type: Boolean,
+      default: false,
+    },
     hideLearnMore: {
       type: Boolean,
       default: false,
     },
+    // - Space for title
     titleColSize: {
       type: [Number, String],
       default: '8',
     },
+    // - Space for description
     contentColSize: {
       type: [Number, String],
       default: '6',
+    },
+    // - Space for icons container
+    iconContainerColSize: {
+      type: [Number, String],
+      default: '8',
+    },
+    // - Space for each icon
+    iconColSize: {
+      type: [Number, String],
+      default: '4',
     },
   },
   computed: {
     titleClasses () {
       return classBinder(this, {
-        mobile: ['font-m'],
+        mobile: ['font-s'],
         regular: ['font-l'],
       });
     },
