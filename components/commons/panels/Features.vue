@@ -4,7 +4,7 @@
       v-col(cols="12" :md="titleColSize").text-center
         strong(v-if="metaTitle").font-xs.primary--text {{ metaTitle }}
         h1(:class="titleClasses").lh-title {{ title }}
-      v-col(cols="12" :md="contentColSize").text-center
+      v-col(cols="12" :md="contentColSize").text-center.py-3
         p(:class="descriptionClasses").grey--text.font-open-sans {{ description }}
       v-col(cols="12" :md="iconContainerColSize")
         v-row(justify="center")
@@ -54,7 +54,7 @@ export default {
     },
     imageWidth: {
       type: [String, Number],
-      default: '30%',
+      default: '40%',
     },
     extensionExclusive: {
       type: Boolean,

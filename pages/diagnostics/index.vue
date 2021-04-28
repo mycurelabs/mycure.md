@@ -12,6 +12,8 @@
       title="Embrace the power to choose"
       description="Don’t settle for anything less.Customize your experience based on the tools you need. MYCURE is designed for diagnostic labs and imaging centers of all sizes."
       :items="features"
+      extension-exclusive
+      image-dir="diagnostics/"
     )
     //- 3rd to 4th panel
     generic-media-panel(
@@ -137,18 +139,28 @@ export default {
     this.features = [
       {
         title: 'Booking System',
+        icon: 'Booking Systems',
+        iconExtension: '.png',
       },
       {
         title: 'Laboratory Information System (LIS)',
+        icon: 'LIS',
+        iconExtension: '.png',
       },
       {
         title: 'Radiology Information System (RIS)',
+        icon: 'RIS',
+        iconExtension: '.png',
       },
       {
         title: 'Billing',
+        icon: 'Billing',
+        iconExtension: '.png',
       },
       {
         title: 'Online Results',
+        icon: 'Online Results',
+        iconExtension: '.png',
       },
     ];
     this.integrations = [
