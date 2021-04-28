@@ -6,7 +6,7 @@
       no-gutters
     )
       v-col(cols="12" md="8").text-center
-        h1(:class="{ 'font-xl mb-8' : !$isMobile, 'font-m mb-6' : $isMobile }").title-line-spacing Join the next generation of healthcare providers today.
+        h1(:class="{ 'font-l mb-8' : !$isMobile, 'font-m mb-6' : $isMobile }").title-line-spacing Join the next generation of healthcare providers today.
         mc-btn(
           event-label="signup"
           color="primary"
