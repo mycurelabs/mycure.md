@@ -10,10 +10,7 @@
     :descriptions="callToActionPanel.descriptions"
     :descriptionClasses="descriptionClasses"
     :dense="$isMobile"
-    custom-image-path="commons/"
-    extension-exclusive
-    web-image="Preventing Failures"
-    file-extension=".png"
+    dummy
   )
     template(slot="additional-content" v-if="version === 1")
       v-row(justify="center")

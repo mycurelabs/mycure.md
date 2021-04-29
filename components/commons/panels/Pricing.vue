@@ -1,7 +1,7 @@
 <template lang="pug">
   v-container
     v-row(justify="center")
-      v-col(cols="12" md="8").text-center
+      v-col(cols="12" md="10").text-center
         strong(v-if="metaTitle").font-xs.primary--text {{ metaTitle }}
         h1(:class="titleClasses").lh-title {{ title }}
       v-col(cols="12" md="6" v-if="description").text-center
