@@ -6,7 +6,8 @@
     simple(:class="panelMargins")
     patients(:class="panelMargins")
     tools(:class="panelMargins")
-    join-next-generation(:class="panelMargins").mb-8
+    div(:class="panelMargins").primary.pb-3.pt-10
+      join-next-generation
     //- usp(@getStarted="goToSignupIndividual")
     //- start-easy
     //- features
