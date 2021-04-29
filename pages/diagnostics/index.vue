@@ -14,21 +14,22 @@
       :items="features"
       extension-exclusive
       image-dir="diagnostics/"
+      :class="panelMargins"
     )
     //- 3rd to 4th panel
     generic-media-panel(
       v-for="(info, key) in infoPanels"
       :key="key"
-      content-align-right
-      align-content-right="center"
-      cols-left="5"
-      cols-right="4"
       offset-cols-right="1"
       :header="info.header"
       :header-classes="headerClasses"
       :descriptions="info.descriptions"
       :description-classes="descriptionClasses"
-      dummy
+      extension-exclusive
+      file-extension=".png"
+      custom-image-path="diagnostics/"
+      :web-image="info.image"
+      v-bind="getPanelBindings(key)"
     )
       //- Check list
       template(slot="additional-content" v-if="info.list")
@@ -43,8 +44,12 @@
       title="Ready whenever you are"
       meta-title="POWERFUL INTEGRATIONS"
       :items="integrations"
+      extension-exclusive
+      image-dir="diagnostics/"
       hide-learn-more
-    )
+      :class="panelMargins"
+      image-width="50%"
+    ).mb-10
     //- 6th panel
     generic-media-panel(
       content-align-left
@@ -56,7 +61,10 @@
       :descriptions="['Join MYCURE ONE, a global online directory of modern healthcare practitioners and facilities so patients can easily find and book an appointment anytime.']"
       :header-classes="headerClasses"
       :description-classes="descriptionClasses"
-      dummy
+      web-image="Expand your reach"
+      extension-exclusive
+      custom-image-path="commons/"
+      file-extension=".png"
     )
       template(slot="additional-content")
         v-row(:justify="$isMobile ? 'center' : 'start'")
@@ -65,17 +73,20 @@
               text
               color="primary"
               :block="$isMobile"
+              event-label="signup"
+              :to="{ name: 'signup-health-facilities' }"
             ).text-none.font-xs
               span Create my website
               v-icon(right) mdi-chevron-right
-        v-row
-          mc-btn(
-            text
-            color="primary"
-            :block="$isMobile"
-          ).text-none.font-xs
-            span View a sample website
-            v-icon(right) mdi-chevron-right
+        //- TODO: Bring back once demo is available
+        //- v-row
+        //-   mc-btn(
+        //-     text
+        //-     color="primary"
+        //-     :block="$isMobile"
+        //-   ).text-none.font-xs
+        //-     span View a sample website
+        //-     v-icon(right) mdi-chevron-right
     //- 7th panel
     generic-media-panel(
       header="Grow into a full service clinic anytime"
@@ -102,14 +113,15 @@
           span Learn more
           v-icon(right) mdi-chevron-right
     //- 8th panel
-    think-long-term(extended)
+    think-long-term(:class="panelMargins")
     //- 9th panel
-    call-to-action(:version="2")
+    call-to-action(:version="2" :class="panelMargins")
     //- 10th panel
     pricing(
       title="Take the first step today"
       description="Start free and only pay as you grow."
       :pricing-details="pricingDetails"
+      :class="panelMargins"
     )
 </template>
 
@@ -168,9 +180,11 @@ export default {
     this.integrations = [
       {
         title: 'HL7',
+        icon: 'HL7',
       },
       {
         title: 'DICOM',
+        icon: 'Dicom',
       },
     ];
     this.infoPanels = [
@@ -185,12 +199,14 @@ export default {
           'Integrate with HL7 and DICOM-ready machines',
           'Send online results to patients',
         ],
+        image: 'easy',
       },
       {
         header: 'Send Test Results Instantly',
         descriptions: [
           'Give your patients quick access to their test results through the MYCURE app for patients.',
         ],
+        image: 'Fast results',
       },
     ];
     this.pricingDetails = ENTERPRISE_PRICING;
@@ -210,7 +226,7 @@ export default {
     headerClasses () {
       const headerClasses = [
         classBinder(this, {
-          mobile: ['font-m'],
+          mobile: ['font-s'],
           regular: ['font-l'],
         }),
         'lh-title',
@@ -239,9 +255,30 @@ export default {
         'primary--text',
       ];
     },
+    panelMargins () {
+      return { 'mt-10': this.$isMobile, 'mt-12': !this.$isMobile };
+    },
   },
   mounted () {
     this.loading = false;
+  },
+  methods: {
+    getPanelBindings (key) {
+      if (key % 2 === 0) {
+        return {
+          contentAlignLeft: true,
+          colsLeft: '4',
+          colsRight: '5',
+          alignContentRight: 'center',
+        };
+      }
+      return {
+        contentAlignRight: true,
+        colsLeft: '5',
+        colsRight: '4',
+        alignContentLeft: 'center',
+      };
+    },
   },
 };
 </script>
