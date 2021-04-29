@@ -140,7 +140,7 @@ export default {
       },
       {
         title: 'Skin & Aesthetics',
-        icon: 'Multispecialty',
+        icon: 'Skin',
         iconExtension: '.png',
       },
       {
