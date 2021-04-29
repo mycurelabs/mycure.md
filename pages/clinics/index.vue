@@ -10,11 +10,12 @@
       :parse-title-fields="['workflows, ', 'results, ']"
       btn-text="Watch How It Works"
       :parse-meta-title-fields="['Complete ']"
-      @click="$nuxt.$router.push({ name: 'signup-health-facilities', params: { type: 'clinic' }})"
       web-height="720px"
       image="Clinics Landing Page USP"
       custom-image-path="clinics/"
+      @click="videoDialog = true"
     )
+    cms-video-dialog(v-model="videoDialog")
     //- 2nd panel
     features(
       title="Why do clinics switch to MYCURE?"
@@ -127,6 +128,7 @@ import classBinder from '~/utils/class-binder';
 import headMeta from '~/utils/head-meta';
 // - components
 import CallToAction from '~/components/commons/panels/CallToAction';
+import CmsVideoDialog from '~/components/outpatient-clinics/CmsVideoDialog';
 import Features from '~/components/commons/panels/Features';
 import Flexibility from '~/components/outpatient-clinics/Flexibility';
 import GenericMediaPanel from '~/components/commons/generic-media-panel';
@@ -140,6 +142,7 @@ import { ENTERPRISE_PRICING } from '~/constants/pricing';
 export default {
   components: {
     CallToAction,
+    CmsVideoDialog,
     Features,
     Flexibility,
     GenericMediaPanel,
@@ -204,6 +207,7 @@ export default {
     this.pricingDetails = ENTERPRISE_PRICING;
     return {
       loading: true,
+      videoDialog: false,
     };
   },
   head () {
