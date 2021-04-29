@@ -3,9 +3,9 @@
     v-row(
       justify="center"
       no-gutters
-      :style="{ height: $isMobile ? '700px' : '650px' }"
+      :style="{ height: $isMobile ? mobileHeight : webHeight }"
     )
-      v-col(cols="10" md="6" offset-md="1" :class="{ 'order-last' : !$isMobile }" :align-self="$isMobile ? 'end' : 'center'")
+      v-col(cols="10" md="5" offset-md="1" :class="{ 'order-last' : !$isMobile }" :align-self="$isMobile ? 'end' : 'center'")
         picture-source(
           v-if="image"
           extension-exclusive
@@ -14,7 +14,7 @@
           image-file-extension=".png"
           :custom-path="customImagePath"
         )
-      v-col(cols="12" md="5" :class="{ 'text-center' : $isMobile }" :align-self="$isMobile ? 'start' : 'center'")
+      v-col(cols="12" md="6" :class="{ 'text-center' : $isMobile }" :align-self="$isMobile ? 'start' : 'center'")
         p(:class="metaTitleClasses").font-weight-bold {{ uspMetaTitle }}
         h1(:class="titleClasses").lh-title {{ uspTitle }}
         p(:class="descriptionClasses").grey--text {{ uspDescription }}
@@ -91,6 +91,15 @@ export default {
     customImagePath: {
       type: String,
       default: '',
+    },
+    // - Panel height
+    webHeight: {
+      type: String,
+      default: '650px',
+    },
+    mobileHeight: {
+      type: String,
+      default: '700px',
     },
   },
   computed: {

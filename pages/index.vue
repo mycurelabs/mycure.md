@@ -3,7 +3,8 @@
     //- 1st panel
     seven-wonders
     care(:class="panelMargins")
-    simple(:class="panelMargins")
+    div.simple-container
+      simple(:class="panelMargins")
     patients(:class="panelMargins")
     tools(:class="panelMargins")
     div(:class="panelMargins").primary.pb-3.pt-10
@@ -58,3 +59,9 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.simple-container {
+  background-color: #f0f0f0;
+}
+</style>

@@ -6,9 +6,14 @@
       meta-title="MYCURE Most Complete Clinic Management System"
       description="Designed for modern clinics with complex operations. Large or small, MYCURE enables clinics to be much more efficient, increase in revenue, and build more patient loyalty."
       parse-meta-title="mobile"
+      parse-title="regular"
+      :parse-title-fields="['workflows, ', 'results, ']"
       btn-text="Watch How It Works"
       :parse-meta-title-fields="['Complete ']"
       @click="$nuxt.$router.push({ name: 'signup-health-facilities', params: { type: 'clinic' }})"
+      web-height="720px"
+      image="Clinics Landing Page USP"
+      custom-image-path="clinics/"
     )
     //- 2nd panel
     features(
