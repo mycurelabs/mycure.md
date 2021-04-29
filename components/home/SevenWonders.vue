@@ -21,6 +21,7 @@
         carousel(
           :perPage="4"
           :navigationEnabled="true"
+          autoplay
         )
           slide(v-for="(wonder, key) in wonders" :key="key")
             wonder(:wonder="wonder").ma-1
