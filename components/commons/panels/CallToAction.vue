@@ -42,16 +42,17 @@
             event-label="signup"
             :to="{ name: 'signup-health-facilities' }"
           ).text-none Start Now
-      v-row(justify="center").mb-10
-        v-col(cols="12")
-          mc-btn(
-            depressed
-            text
-            x-large
-            color="primary"
-          ).text-none
-            span Download MYCURE's implementation workflow
-            v-icon(right) mdi-download
+      //- TODO: Bring back once available
+      //- v-row(justify="center").mb-10
+      //-   v-col(cols="12")
+      //-     mc-btn(
+      //-       depressed
+      //-       text
+      //-       x-large
+      //-       color="primary"
+      //-     ).text-none
+      //-       span Download MYCURE's implementation workflow
+      //-       v-icon(right) mdi-download
 </template>
 
 <script>

@@ -43,21 +43,24 @@
     )
       template(slot="additional-content")
         v-row
-         v-btn(
+         mc-btn(
            text
            color="primary"
            :block="$isMobile"
+           event-label="signup"
+           :to="{ name: 'signup-health-facilities' }"
          ).text-none.font-xs
           span Create my website
           v-icon(right) mdi-chevron-right
-        v-row
-          v-btn(
-            text
-            color="primary"
-            :block="$isMobile"
-          ).text-none.font-xs
-            span View a sample website
-            v-icon(right) mdi-chevron-right
+        //- TODO: Need sample clinic
+        //- v-row
+        //-   v-btn(
+        //-     text
+        //-     color="primary"
+        //-     :block="$isMobile"
+        //-   ).text-none.font-xs
+        //-     span View a sample website
+        //-     v-icon(right) mdi-chevron-right
     //- 5th panel
     flexibility(:class="panelMargins")
     //- 6th panel
@@ -86,6 +89,7 @@
            text
            color="primary"
            :block="$isMobile"
+           :to="{ name: 'syncbase' }"
          ).text-none.font-xs
           span Learn about MYCURE Syncbase
           v-icon(right) mdi-chevron-right
