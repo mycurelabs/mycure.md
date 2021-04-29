@@ -1,7 +1,9 @@
 <template lang="pug">
   generic-media-panel(
-    :center-media="!$isMobile"
-    :content-align-left="$isMobile"
+    content-align-left
+    cols-left="6"
+    cols-right="6"
+    align-conten-left="center"
     :header="callToActionPanel.header"
     :header-classes="headerClasses"
     :descriptions="callToActionPanel.descriptions"
