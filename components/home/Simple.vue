@@ -14,7 +14,7 @@
           image-alt="Patient List"
           custom-path="features/"
         )
-      v-col(cols="12" md="5" :class="{ 'text-center' : $isMobile }")
+      v-col(cols="11" md="5" :class="{ 'text-center' : $isMobile }")
         h1(:class="{ 'font-l mb-8' : !$isMobile, 'font-m mb-6' : $isMobile }").lh-title Simple and powerful
         p(:class="{ 'font-s' : !$isMobile, 'font-xs' : $isMobile }").grey--text Say goodbye to paperwork and hello to an easy, compact database.
         p.font-xs.font-open-sans MYCURE is infused with advanced user experience that you can never compare with another medical software. Experience smooth transitions from one workflow
