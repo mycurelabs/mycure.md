@@ -4,9 +4,9 @@
     usp(
       title="Bring Out the Hero in You"
       meta-title="MYCURE Doctor"
-      parse-title
-      :parse-title-fields="['Hero ']"
       :description="uspDescription"
+      image="USP"
+      custom-image-path="doctors-clinics/"
       btn-text="Get Started Free"
       @click="$nuxt.$router.push({ name: 'signup-health-facilities', params: { type: 'doctors' }})"
     )

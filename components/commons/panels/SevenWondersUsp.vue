@@ -2,20 +2,22 @@
   v-container(:class="{'usp-container' : !$isMobile }")
     v-row(
       justify="center"
-      align="center"
       no-gutters
-      :style="{ height: $isMobile ? '500px' : '650px' }"
+      :style="{ height: $isMobile ? '700px' : '650px' }"
     )
-      v-col(cols="8" md="5" :class="{ 'order-last' : !$isMobile }")
-        //- v-img(
-        //-   :src="require('~/assets/images/patients/usp-patients.png')"
-        //-   width="100%"
-        //-   alt="patients-usp"
-        //- )
-      v-col(cols="12" md="7" :class="{ 'text-center' : $isMobile }")
+      v-col(cols="10" md="6" offset-md="1" :class="{ 'order-last' : !$isMobile }" :align-self="$isMobile ? 'end' : 'center'")
+        picture-source(
+          v-if="image"
+          extension-exclusive
+          :image="image"
+          :image-alt="image"
+          image-file-extension=".png"
+          :custom-path="customImagePath"
+        )
+      v-col(cols="12" md="5" :class="{ 'text-center' : $isMobile }" :align-self="$isMobile ? 'start' : 'center'")
         p(:class="metaTitleClasses").font-weight-bold {{ uspMetaTitle }}
         h1(:class="titleClasses").lh-title {{ uspTitle }}
-        p(:class="descriptionClasses").grey--text.text-justify {{ uspDescription }}
+        p(:class="descriptionClasses").grey--text {{ uspDescription }}
         template(v-if="slottedBtn")
           slot(name="usp btn")
         mc-btn(
@@ -31,8 +33,12 @@
 <script>
 import classBinder from '~/utils/class-binder';
 import { parseTextWithNewLine } from '~/utils/newline';
+import PictureSource from '~/components/commons/PictureSource';
 
 export default {
+  components: {
+    PictureSource,
+  },
   props: {
     title: {
       type: String,
@@ -76,6 +82,16 @@ export default {
       type: Boolean,
       default: false,
     },
+    // - USP Image (Name without file extension)
+    image: {
+      type: String,
+      default: null,
+    },
+    // - Custom directory
+    customImagePath: {
+      type: String,
+      default: '',
+    },
   },
   computed: {
     // NOTE: For customizations
@@ -116,8 +132,8 @@ export default {
     },
     descriptionClasses () {
       return classBinder(this, {
-        mobile: ['font-xs'],
-        regular: ['font-s'],
+        mobile: ['font-xs', 'text-center'],
+        regular: ['font-s', 'text-justify'],
       });
     },
   },
