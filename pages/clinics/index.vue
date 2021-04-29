@@ -209,7 +209,7 @@ export default {
     headerClasses () {
       const headerClasses = [
         classBinder(this, {
-          mobile: ['font-m'],
+          mobile: ['font-s'],
           regular: ['font-l'],
         }),
         'lh-title',
