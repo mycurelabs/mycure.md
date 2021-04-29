@@ -47,11 +47,11 @@
     )
     //- 6th panel
     generic-media-panel(
-      content-align-right
-      cols-left="5"
-      cols-right="4"
+      content-align-left
+      cols-left="4"
+      cols-right="5"
       offset-cols-right="1"
-      align-content-right="center"
+      align-content-left="center"
       header="Expand Your Reach"
       :descriptions="['Join MYCURE ONE, a global online directory of modern healthcare practitioners and facilities so patients can easily find and book an appointment anytime.']"
       :header-classes="headerClasses"
@@ -81,8 +81,11 @@
       header="Grow into a full service clinic anytime"
       sub-header="MYCURE CLINIC MANAGEMENT SYSTEM"
       with-subheader
-      :center-media="!$isMobile"
-      :content-align-left="$isMobile"
+      content-align-right
+      cols-left="5"
+      cols-right="4"
+      offset-cols-right="1"
+      align-content-right="center"
       :dense="$isMobile"
       :descriptions="['Cover all your patient journeys with MYCURE’s most complete clinic management system.']"
       :header-classes="headerClasses"
@@ -91,7 +94,6 @@
       dummy
     )
       template(slot="additional-content")
-        v-row(justify="center").mb-10
          mc-btn(
            text
            color="primary"
@@ -230,7 +232,7 @@ export default {
       return [
         classBinder(this, {
           mobile: ['font-xs'],
-          regular: ['font-s'],
+          regular: ['font-xs'],
         }),
         'font-open-sans',
         'font-weight-bold',

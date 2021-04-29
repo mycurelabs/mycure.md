@@ -31,7 +31,10 @@
       :descriptionClasses="descriptionClasses"
       :dense="$isMobile"
       :class="panelMargins"
-      dummy
+      custom-image-path="commons/"
+      extension-exclusive
+      :web-image="infoPanels[1].image"
+      file-extension=".png"
     )
       template(slot="additional-content")
         v-row
@@ -65,8 +68,13 @@
       :descriptionClasses="descriptionClasses"
       :dense="$isMobile"
       :class="panelMargins"
-      dummy
     )
+      template(slot="custom-left")
+        video(v-if="!$isMobile" :width="wXL ? '1100' : '820'" playsinline autoplay muted loop).syncbase-animate
+          source(src="~/assets/videos/mycure-syncbase-diagram-animate.webm" type="video/webm")
+          source(src="~/assets/videos/mycure-syncbase-diagram-animate.mp4" type="video/mp4")
+          | Your browser does not support the video tag.
+
       template(slot="additional-content")
         v-row
          v-btn(
@@ -181,6 +189,7 @@ export default {
         descriptions: [
           'Join MYCURE ONE, a global online directory of modern healthcare facilities so patients can easily find and book an appointment with you anytime.',
         ],
+        image: 'Expand your reach',
       },
     ];
     this.pricingDetails = ENTERPRISE_PRICING;
@@ -227,3 +236,9 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.syncbase-animate {
+  margin-left: -18vw;
+}
+</style>

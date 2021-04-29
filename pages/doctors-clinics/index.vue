@@ -23,13 +23,18 @@
     //-6th panel
     generic-media-panel(
       content-align-right
-      cols-right="5"
-      cols-left="7"
+      cols-right="4"
+      cols-left="5"
+      offset-cols-right="1"
+      align-content-right="center"
       :header="sixthPanel.header"
       :descriptions="sixthPanel.descriptions"
       :header-classes="headerClasses"
       :description-classes="descriptionClasses"
-      dummy
+      custom-image-path="commons/"
+      extension-exclusive
+      file-extension=".png"
+      :web-image="sixthPanel.image"
     )
       //- Check list
       template(slot="additional-content")
@@ -140,6 +145,7 @@ export default {
         'Comes with a Professional Website',
       ],
       contentAlign: 'right',
+      image: 'Expand your reach',
     };
     this.pricingDetails = DOCTORS_PRICING;
     return {

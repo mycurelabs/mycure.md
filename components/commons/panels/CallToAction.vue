@@ -1,14 +1,19 @@
 <template lang="pug">
   generic-media-panel(
     content-align-left
-    cols-left="6"
+    cols-left="5"
     cols-right="6"
+    offset-cols-right="1"
     align-conten-left="center"
     :header="callToActionPanel.header"
     :header-classes="headerClasses"
     :descriptions="callToActionPanel.descriptions"
     :descriptionClasses="descriptionClasses"
     :dense="$isMobile"
+    custom-image-path="commons/"
+    extension-exclusive
+    web-image="Preventing Failures"
+    file-extension=".png"
   )
     template(slot="additional-content" v-if="version === 1")
       v-row(justify="center")
@@ -17,6 +22,7 @@
             depressed
             x-large
             color="success"
+            :block="$isMobile"
             :href="'https://calendly.com/mycure/demo'"
           ).text-none Book a full training
       v-row(justify="center").mb-10
@@ -25,6 +31,7 @@
             depressed
             x-large
             color="primary"
+            :block="$isMobile"
             event-label="signup"
             :to="{ name: 'signup-health-facilities' }"
           ).text-none Get Started Free
