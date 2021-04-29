@@ -62,6 +62,8 @@
                 | {{ description | parse-text }}
             br
           slot(name="additional-content")
+        slot(name="custom-left")
+
       //- Right Column
       v-col(:align-self="alignRightColumn" cols="12" :md="colsRight" :offset-md="offsetColsRight")
         picture-source(
@@ -122,6 +124,7 @@
                 | {{ description | parse-text }}
             br
           slot(name="additional-content")
+        slot(name="custom-right")
 
     //- CENTER VIEW
     v-row(v-else justify="center").py-10
