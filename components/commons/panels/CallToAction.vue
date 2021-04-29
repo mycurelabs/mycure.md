@@ -11,20 +11,19 @@
     :dense="$isMobile"
   )
     template(slot="additional-content" v-if="version === 1")
-      v-row(justify="center").mb-10
-        v-col(cols="12" md="3")
+      v-row(justify="center")
+        v-col(cols="12")
           mc-btn(
             depressed
             x-large
-            block
             color="success"
             :href="'https://calendly.com/mycure/demo'"
           ).text-none Book a full training
-        v-col(cols="12" md="3")
+      v-row(justify="center").mb-10
+        v-col(cols="12")
           mc-btn(
             depressed
             x-large
-            block
             color="primary"
             event-label="signup"
             :to="{ name: 'signup-health-facilities' }"
