@@ -1,37 +1,39 @@
 <template lang="pug">
-  v-container(:class="{'usp-container' : !$isMobile }")
-    v-row(
-      justify="center"
-      align="center"
-      no-gutters
-    )
-      v-col(cols="12" md="6").text-center
-        h1(:class="{ 'font-l mb-8' : !$isMobile, 'font-m mb-6' : $isMobile }").lh-title Patients will love you even more.
-    v-row(justify="center" align="center")
-      v-col(cols="12" md="6").text-center
-        p(:class="{ 'font-s' : !$isMobile, 'font-xs' : $isMobile }").grey--text.font-open-sans You treat your patients with holistic care. Now, make it extra covenient for them to reach you.
-    v-row(justify="center")
-      v-col(
-        v-for="(app, key) in apps"
-        :key="key"
-        cols="12"
-        md="5"
-      )
-        v-card(flat color="#f0f0f0")
-          v-card-text.text-center
-            h3.primary--text {{ app.name }}
-            br
-            v-row(justify="center")
-              v-col(cols="10" md="6")
-                h1.content-line-spacing {{ app.description }}
-            br
-          picture-source(
-            extension-exclusive
-            custom-path="home/"
-            image-file-extension=".png"
-            :image-alt="app.name"
-            :image="app.image"
-          )
+  v-container.usp-container
+    v-row(justify="center" align="center" :style="{ height: $isMobile ? 'auto' : '700px' }")
+      v-col(cols="12" md="10")
+        v-row(
+          justify="center"
+          align="center"
+        )
+          v-col(cols="12" md="10").text-center
+            h1(:class="{ 'font-l' : !$isMobile, 'font-m' : $isMobile }").lh-title Patients will love you even more.
+          v-col(cols="12" md="10").text-center
+            p(:class="{ 'font-s' : !$isMobile, 'font-xs' : $isMobile }").grey--text.font-open-sans You treat your patients with holistic care. Now, make it extra covenient for them to reach you.
+        v-row(justify="center")
+          v-col(
+            v-for="(app, key) in apps"
+            :key="key"
+            cols="12"
+            md="6"
+            :class="{ 'pt-10': $isMobile }"
+          ).text-center.app-container
+              strong.font-m.primary--text {{ app.name }}
+              br
+              br
+              v-row(justify="center")
+                v-col(cols="10" md="6")
+                  span.font-s.content-line-spacing.grey--text.font-open-sans {{ app.description }}
+              br
+              div.image-container
+                picture-source(
+                  extension-exclusive
+                  custom-path="home/"
+                  image-file-extension=".png"
+                  :image-alt="app.name"
+                  :image="app.image"
+                  image-width="50%"
+                )
 </template>
 
 <script>
@@ -60,10 +62,34 @@ export default {
 
 <style scoped>
 .usp-container {
-  padding-bottom: 70px;
+  padding-bottom: 80px;
 }
 
 .content-line-spacing {
   line-height: 1em;
+}
+
+.app-container {
+  height: 450px;
+  position: relative;
+}
+
+.image-container {
+  position: absolute;
+  bottom: 0;
+}
+
+@media screen and (min-width: 1024px) {
+  .app-container {
+    height: 450px;
+  }
+}
+@media screen and (min-width: 1920px) {
+  .usp-container {
+    padding-top: 50px;
+  }
+  .app-container {
+    height: 600px;
+  }
 }
 </style>

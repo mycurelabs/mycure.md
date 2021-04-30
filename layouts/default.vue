@@ -1,7 +1,8 @@
 <template lang="pug">
   v-app#app
     mc-navbar(v-if="!loading")
-    nuxt
+    div(style="padding-top: 45px")
+      nuxt
     mc-footer(v-if="!loading")
 </template>
 
@@ -48,19 +49,21 @@ export default {
   font-size: 64px !important;
 }
 .font-xl {
-  font-size: 56px !important;
+  font-size: 56px;
+  line-height: 1;
+  letter-spacing: -2px;
 }
 .font-l {
-  font-size: 48px !important;
+  font-size: 38px !important;
 }
 .font-m {
-  font-size: 32px !important;
+  font-size: 28px !important;
 }
 .font-s {
-  font-size: 24px !important;
+  font-size: 18px !important;
 }
 .font-xs {
-  font-size: 18px !important;
+  font-size: 16px !important;
 }
 .font-60 {
   font-size: 60px !important;
@@ -161,4 +164,5 @@ export default {
 .subtitle-gray{
   color: #777777;
 }
+
 </style>

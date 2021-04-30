@@ -4,10 +4,10 @@
     seven-wonders
     care(:class="panelMargins")
     div.simple-container
-      simple(:class="panelMargins")
+      simple
     patients(:class="panelMargins")
     tools(:class="panelMargins")
-    div(:class="panelMargins").primary.pb-3.pt-10
+    div(:class="panelMargins").cta-container.pb-3.pt-10
       join-next-generation
     //- usp(@getStarted="goToSignupIndividual")
     //- start-easy
@@ -63,5 +63,9 @@ export default {
 <style scoped>
 .simple-container {
   background-color: #f0f0f0;
+}
+
+.cta-container {
+  background-color: #2b2d30;
 }
 </style>
