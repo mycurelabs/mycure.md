@@ -5,7 +5,7 @@
       no-gutters
       :style="{ height: $isMobile ? mobileHeight : webHeight }"
     )
-      v-col(cols="10" md="5" offset-md="1" :class="{ 'order-last' : !$isMobile }" :align-self="$isMobile ? 'end' : 'center'")
+      v-col(cols="10" md="4" offset-md="1" :class="{ 'order-last' : !$isMobile }" :align-self="$isMobile ? 'end' : 'center'")
         picture-source(
           v-if="image"
           extension-exclusive
@@ -14,20 +14,22 @@
           image-file-extension=".png"
           :custom-path="customImagePath"
         )
-      v-col(cols="12" md="6" :class="{ 'text-center' : $isMobile }" :align-self="$isMobile ? 'start' : 'center'")
+      v-col(cols="12" md="5" :class="{ 'text-center' : $isMobile }" :align-self="$isMobile ? 'start' : 'center'")
         p(:class="metaTitleClasses").font-weight-bold {{ uspMetaTitle }}
         h1(:class="titleClasses").lh-title {{ uspTitle }}
         p(:class="descriptionClasses").grey--text {{ uspDescription }}
+        br
         template(v-if="slottedBtn")
           slot(name="usp btn")
         mc-btn(
           v-else
           depressed
-          color="primary"
-          x-large
+          color="success"
+          small
+          tile
           :event-label="`${title} USP button`"
           @click="$emit('click')"
-        ).text-none.letter-spacing-normal.font-xs {{ btnText }}
+        ).text-none.letter-spacing-normal {{ btnText }}
 </template>
 
 <script>

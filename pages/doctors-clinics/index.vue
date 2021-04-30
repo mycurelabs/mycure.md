@@ -1,5 +1,5 @@
 <template lang="pug">
-  div(v-if="!loading")
+  div(v-if="!loading").white
     //- 1st panel
     usp(
       title="Bring Out the Hero in You"
@@ -8,6 +8,7 @@
       image="USP"
       custom-image-path="doctors-clinics/"
       btn-text="Get Started Free"
+      web-height="550px"
       @click="$nuxt.$router.push({ name: 'signup-health-facilities', params: { type: 'doctors' }})"
     )
     //- 2nd panel
@@ -17,6 +18,7 @@
       :description="featuresDescription"
       :items="features"
       image-dir="doctors-clinics/"
+      panel-height="70vh"
     ).mt-1
     //- 3rd to 5th panels
     info-panels(:class="panelMargins")
@@ -49,14 +51,16 @@
               v-icon(color="black") mdi-arrow-right
             v-col
               span(:class="descriptionClasses") {{ item }}
+        br
         div(:class="{ 'text-center': $isMobile }")
           mc-btn(
             depressed
-            x-large
-            color="primary"
+            tile
+            small
+            color="success"
             event-label="signup"
             :to="{ name: 'signup-health-facilities' }"
-          ).text-none.font-xs
+          ).text-none
             span Get Started Free
             v-icon(small right) mdi-arrow-right
     //- 7th panel

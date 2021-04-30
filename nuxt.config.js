@@ -101,7 +101,7 @@ export default {
           primary: '#04B1E7',
           accent: '#7fad33',
           secondary: '#424242',
-          info: '#2196F3',
+          info: '#0174BB',
           warning: '#FFC107',
           error: '#f75a5f',
           success: '#7fad33',

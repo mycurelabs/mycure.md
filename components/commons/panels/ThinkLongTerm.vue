@@ -12,6 +12,7 @@
       :descriptions="panel.descriptions"
       :header-classes="headerClasses"
       :description-classes="descriptionClasses"
+      :dense='$isMobile'
       v-bind="getPanelBindings(key)"
       extension-exclusive
       custom-image-path="commons/"

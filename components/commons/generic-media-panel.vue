@@ -54,11 +54,11 @@
           br
           template(v-if="descriptions.length")
             template(v-for="description in descriptions")
-              p(v-if="typeof(description) === 'string'" :class="panelDescriptionClasses").mt-3.text-justify {{ description }}
+              p(v-if="typeof(description) === 'string'" :class="panelDescriptionClasses").mt-2.text-justify {{ description }}
               p(
                 v-else-if="typeof(description) === 'object'"
                 :class="[{'pre-white-space': $isRegularScreen }, ...panelDescriptionClasses]"
-              ).mt-3.text-justify
+              ).mt-2.text-justify
                 | {{ description | parse-text }}
             br
           slot(name="additional-content")
@@ -116,11 +116,11 @@
           br
           template(v-if="descriptions.length")
             template(v-for="description in descriptions")
-              p(v-if="typeof(description) === 'string'" :class="panelDescriptionClasses").mt-3.text-justify {{ description }}
+              p(v-if="typeof(description) === 'string'" :class="panelDescriptionClasses").mt-2.text-justify {{ description }}
               p(
                 v-else-if="typeof(description) === 'object'"
                 :class="[{'pre-white-space': $isRegularScreen }, ...panelDescriptionClasses]"
-              ).mt-3.text-justify
+              ).mt-2.text-justify
                 | {{ description | parse-text }}
             br
           slot(name="additional-content")

@@ -3,7 +3,6 @@
     v-app-bar(
       height="50"
       app
-      color="black"
       dark
       elevate-on-scroll
     ).nav-bar
@@ -163,6 +162,6 @@ export default {
 
 <style scoped>
 .nav-bar {
-  opacity: 0.8;
+  background-color: rgba(0,0,0,0.8);
 }
 </style>

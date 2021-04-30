@@ -9,10 +9,10 @@
         mc-btn(
           event-label="signup"
           color="success"
-          x-large
+          small
           tile
           :to="{ name: 'signup-health-facilities' }"
-        ).text-none.font-xs Get Started
+        ).text-none Get Started
 </template>
 <style scoped>
 .usp-container {
