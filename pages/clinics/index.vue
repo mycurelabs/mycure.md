@@ -9,9 +9,10 @@
       parse-title="regular"
       :parse-title-fields="['workflows, ', 'results, ']"
       btn-text="Watch How It Works"
+      btn-color="info"
       :parse-meta-title-fields="['Complete ']"
-      web-height="720px"
-      image="Clinics Landing Page USP"
+      web-height="550px"
+      image="USP"
       custom-image-path="clinics/"
       @click="videoDialog = true"
     )
@@ -43,16 +44,17 @@
       file-extension=".png"
     )
       template(slot="additional-content")
-        v-row
-         mc-btn(
-           text
-           color="primary"
-           :block="$isMobile"
-           event-label="signup"
-           :to="{ name: 'signup-health-facilities' }"
-         ).text-none.font-xs
+        mc-btn(
+          tile
+          small
+          depressed
+          color="primary"
+          :block="$isMobile"
+          event-label="signup"
+          :to="{ name: 'signup-health-facilities' }"
+        ).text-none
+          v-icon(small left) mdi-web
           span Create my website
-          v-icon(right) mdi-chevron-right
         //- TODO: Need sample clinic
         //- v-row
         //-   v-btn(
@@ -63,7 +65,7 @@
         //-     span View a sample website
         //-     v-icon(right) mdi-chevron-right
     //- 5th panel
-    flexibility(:class="panelMargins")
+    tools(:version="2" :class="panelMargins")
     //- 6th panel
     generic-media-panel(
       content-align-right
@@ -79,21 +81,22 @@
       :class="panelMargins"
     )
       template(slot="custom-left")
-        video(v-if="!$isMobile" :width="wXL ? '1100' : '820'" playsinline autoplay muted loop).syncbase-animate
+        video(v-if="!$isMobile" :width="wXL ? '1175' : '820'" playsinline autoplay muted loop).syncbase-animate
           source(src="~/assets/videos/mycure-syncbase-diagram-animate.webm" type="video/webm")
           source(src="~/assets/videos/mycure-syncbase-diagram-animate.mp4" type="video/mp4")
           | Your browser does not support the video tag.
 
       template(slot="additional-content")
-        v-row
-         v-btn(
-           text
-           color="primary"
-           :block="$isMobile"
-           :to="{ name: 'syncbase' }"
-         ).text-none.font-xs
+        mc-btn(
+          tile
+          small
+          depressed
+          color="primary"
+          :block="$isMobile"
+          :to="{ name: 'syncbase' }"
+        ).text-none
+          v-icon(small left) mdi-information-outline
           span Learn about MYCURE Syncbase
-          v-icon(right) mdi-chevron-right
     //- 7th panel
     features(
       title="Customized for Your Specialty"
@@ -104,11 +107,19 @@
       icon-container-col-size="10"
       icon-col-size="3"
       extension-exclusive
+      panel-height="70vh"
     ).mt-10.mb-10
       template(slot="additional-content")
         v-row(justify="center").mt-10
-          v-col(cols="12" md="4")
-            v-btn(color="primary" block text :to="{ name: 'doctors-clinics' }").text-none.font-xs Practicing solo? Click here.
+          v-col(cols="12" md="4" lg="3")
+            mc-btn(
+              color="primary"
+              block
+              tile
+              small
+              depressed
+              :to="{ name: 'doctors-clinics' }"
+            ).text-none Practicing solo? Click here.
     //- 8th panel
     think-long-term(extended :class="panelMargins")
     //- 9th panel
@@ -130,7 +141,7 @@ import headMeta from '~/utils/head-meta';
 import CallToAction from '~/components/commons/panels/CallToAction';
 import CmsVideoDialog from '~/components/outpatient-clinics/CmsVideoDialog';
 import Features from '~/components/commons/panels/Features';
-import Flexibility from '~/components/outpatient-clinics/Flexibility';
+import Tools from '~/components/home/Tools';
 import GenericMediaPanel from '~/components/commons/generic-media-panel';
 import MultipleBranches from '~/components/enterprise/multiple-branches';
 import Pricing from '~/components/commons/panels/Pricing';
@@ -144,7 +155,7 @@ export default {
     CallToAction,
     CmsVideoDialog,
     Features,
-    Flexibility,
+    Tools,
     GenericMediaPanel,
     MultipleBranches,
     Pricing,
@@ -222,7 +233,7 @@ export default {
     headerClasses () {
       const headerClasses = [
         classBinder(this, {
-          mobile: ['font-s'],
+          mobile: ['font-m'],
           regular: ['font-l'],
         }),
         'lh-title',

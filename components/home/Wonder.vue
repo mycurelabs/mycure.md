@@ -1,12 +1,10 @@
 <template lang="pug">
   v-card(flat color="#fafafa" :height="wonderHeight")
     v-card-text.text-center
-      picture-source(
-        :image="wonder.image"
-        image-file-extension=".png"
-        extension-exclusive
-        custom-path="home/"
-        image-width="80%"
+      img(
+        :src="require(`~/assets/images/home/${wonder.image}.png`)"
+        width="80%"
+        :alt="wonder.title"
       )
       br
       br

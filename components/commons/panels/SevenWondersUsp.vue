@@ -16,15 +16,15 @@
         )
       v-col(cols="12" md="5" :class="{ 'text-center' : $isMobile }" :align-self="$isMobile ? 'start' : 'center'")
         p(:class="metaTitleClasses").font-weight-bold {{ uspMetaTitle }}
-        h1(:class="titleClasses").lh-title {{ uspTitle }}
-        p(:class="descriptionClasses").grey--text {{ uspDescription }}
+        h1(:class="titleClasses") {{ uspTitle }}
+        p(:class="descriptionClasses").grey--text.font-open-sans {{ uspDescription }}
         br
         template(v-if="slottedBtn")
           slot(name="usp btn")
         mc-btn(
           v-else
           depressed
-          color="success"
+          :color="btnColor"
           small
           tile
           :event-label="`${title} USP button`"
@@ -75,9 +75,14 @@ export default {
       type: Array,
       default: () => ([]),
     },
+    // - Button options
     btnText: {
       type: String,
       default: 'Get Started',
+    },
+    btnColor: {
+      type: String,
+      default: 'success',
     },
     // - If custom btn
     slottedBtn: {
