@@ -16,7 +16,7 @@
             cols="12"
             md="4"
           ).text-center
-            h1(:class="{ 'font-l' : !$isMobile, 'font-s' : $isMobile }").primary--text {{ stat.amount }}
+            h1(:class="{ 'font-l' : !$isMobile, 'font-m' : $isMobile }").primary--text {{ stat.amount }}
             h3(:class="{ 'font-s' : !$isMobile, 'font-12' : $isMobile }").font-weight-regular.grey--text {{ stat.title }}
 </template>
 
