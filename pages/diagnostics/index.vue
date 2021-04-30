@@ -5,6 +5,9 @@
       title="Your Diagnostic Center Fortified"
       meta-title="MYCURE Diagnostic"
       description="The best tool to create, finalize, and release diagnostic test results is finally here."
+      web-height="500px"
+      image="USP"
+      custom-image-path="diagnostics/"
       @click="$nuxt.$router.push({ name: 'signup-health-facilities', params: { type: 'clinic-diagnostic' }})"
     )
     //- 2nd panel
@@ -15,30 +18,32 @@
       extension-exclusive
       image-dir="diagnostics/"
       :class="panelMargins"
+      panel-height="70vh"
     )
     //- 3rd to 4th panel
-    generic-media-panel(
-      v-for="(info, key) in infoPanels"
-      :key="key"
-      offset-cols-right="1"
-      :header="info.header"
-      :header-classes="headerClasses"
-      :descriptions="info.descriptions"
-      :description-classes="descriptionClasses"
-      extension-exclusive
-      file-extension=".png"
-      custom-image-path="diagnostics/"
-      :web-image="info.image"
-      v-bind="getPanelBindings(key)"
-    )
-      //- Check list
-      template(slot="additional-content" v-if="info.list")
-        template(v-for="(item, i) in info.list")
-          v-row(dense)
-            v-col(cols="1").pr-2.pt-2
-              img(width="20" src="~/assets/images/mycure-check.png" alt="Check icon")
-            v-col
-              span(:class="descriptionClasses") {{ item }}
+    div.mt-12
+      generic-media-panel(
+        v-for="(info, key) in infoPanels"
+        :key="key"
+        offset-cols-right="1"
+        :header="info.header"
+        :header-classes="headerClasses"
+        :descriptions="info.descriptions"
+        :description-classes="descriptionClasses"
+        extension-exclusive
+        file-extension=".png"
+        custom-image-path="diagnostics/"
+        :web-image="info.image"
+        v-bind="getPanelBindings(key)"
+      )
+        //- Check list
+        template(slot="additional-content" v-if="info.list")
+          template(v-for="(item, i) in info.list")
+            v-row(dense)
+              v-col(cols="1").pr-2.pt-2
+                img(width="20" src="~/assets/images/mycure-check.png" alt="Check icon")
+              v-col
+                span(:class="descriptionClasses") {{ item }}
     //- 5th panel
     features(
       title="Ready whenever you are"
@@ -67,17 +72,17 @@
       file-extension=".png"
     )
       template(slot="additional-content")
-        v-row(:justify="$isMobile ? 'center' : 'start'")
-          v-col
-            mc-btn(
-              text
-              color="primary"
-              :block="$isMobile"
-              event-label="signup"
-              :to="{ name: 'signup-health-facilities' }"
-            ).text-none.font-xs
-              span Create my website
-              v-icon(right) mdi-chevron-right
+        mc-btn(
+          tile
+          small
+          depressed
+          color="primary"
+          :block="$isMobile"
+          event-label="signup"
+          :to="{ name: 'signup-health-facilities' }"
+        ).text-none
+          v-icon(small left) mdi-web
+          span Create my website
         //- TODO: Bring back once demo is available
         //- v-row
         //-   mc-btn(
@@ -102,16 +107,22 @@
       :header-classes="headerClasses"
       :sub-header-classes="subHeaderClasses"
       :description-classes="descriptionClasses"
-      dummy
+      web-image="workspace"
+      file-extension=".png"
+      extension-exclusive
+      custom-image-path="diagnostics/"
     )
       template(slot="additional-content")
-         mc-btn(
-           text
-           color="primary"
-           :block="$isMobile"
-         ).text-none.font-xs
+        mc-btn(
+          tile
+          small
+          depressed
+          color="primary"
+          :block="$isMobile"
+          :to="{ name: 'clinics' }"
+        ).text-none
+          v-icon(small left) mdi-information-outline
           span Learn more
-          v-icon(right) mdi-chevron-right
     //- 8th panel
     think-long-term(:class="panelMargins")
     //- 9th panel
@@ -226,7 +237,7 @@ export default {
     headerClasses () {
       const headerClasses = [
         classBinder(this, {
-          mobile: ['font-s'],
+          mobile: ['font-m'],
           regular: ['font-l'],
         }),
         'lh-title',
@@ -256,7 +267,7 @@ export default {
       ];
     },
     panelMargins () {
-      return { 'mt-10': this.$isMobile, 'mt-12': !this.$isMobile };
+      return { 'mt-10': this.$isMobile, 'mt-8': !this.$isMobile };
     },
   },
   mounted () {
