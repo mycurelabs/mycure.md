@@ -27,7 +27,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .font-64 {
   font-size: 64px !important;
 }

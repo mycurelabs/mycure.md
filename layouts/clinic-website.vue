@@ -10,7 +10,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .font-50 {
   font-size: 50px !important;
 }

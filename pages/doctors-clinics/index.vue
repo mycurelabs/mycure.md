@@ -191,7 +191,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .web-margins {
   margin-top: 50px;
 }
