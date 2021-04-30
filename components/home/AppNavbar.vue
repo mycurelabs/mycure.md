@@ -5,50 +5,52 @@
       app
       color="black"
       dark
-      flat
       elevate-on-scroll
-    )
-      v-container.d-flex
-        nuxt-link(to="/")
-          img(
-            src="~/assets/images/MYCURE Logo - white.png"
-            width="120"
-            alt="MYCURE logo"
-          ).mt-1
-        template(v-if="!$isMobile")
-          v-btn(
-            v-for="(nav, key) in navs"
-            :key="key"
-            text
-            depressed
-            large
-            @click="onNavClick(nav)"
-          ).text-none.font-12
-            b {{ nav.name }}
-          //- v-btn(
-          //-   text
-          //-   depressed
-          //-   large
-          //-   :to="{ name: 'pxp' }"
-          //- ).text-none.mr-2.font-12 #[b For Patients]
-          v-spacer
-          mc-btn(
-            text
-            depressed
-            large
-            event-label="login"
-            :to="{ name: 'signin' }"
-          ).text-none.mr-2.font-12 #[b LOG IN]
-          mc-btn(
-            color="success"
-            large
-            tile
-            event-label="signup"
-            :to="{name: 'signup-health-facilities'}"
-          ).text-none.font-12.font-weight-bold #[b SIGN UP]
-        template(v-else)
-          v-spacer
-          v-app-bar-nav-icon(@click.stop="drawer = !drawer")
+    ).nav-bar
+      v-container
+        v-row(justify="center")
+          v-col(cols="12" md="10")
+            div.d-flex
+              nuxt-link(to="/")
+                img(
+                  src="~/assets/images/MYCURE Logo - white.png"
+                  width="120"
+                  alt="MYCURE logo"
+                ).mt-1
+              template(v-if="!$isMobile")
+                v-btn(
+                  v-for="(nav, key) in navs"
+                  :key="key"
+                  text
+                  depressed
+                  large
+                  @click="onNavClick(nav)"
+                ).text-none.font-12
+                  b {{ nav.name }}
+                //- v-btn(
+                //-   text
+                //-   depressed
+                //-   large
+                //-   :to="{ name: 'pxp' }"
+                //- ).text-none.mr-2.font-12 #[b For Patients]
+                v-spacer
+                mc-btn(
+                  text
+                  depressed
+                  large
+                  event-label="login"
+                  :to="{ name: 'signin' }"
+                ).text-none.mr-2.font-12 #[b LOG IN]
+                mc-btn(
+                  color="success"
+                  large
+                  tile
+                  event-label="signup"
+                  :to="{name: 'signup-health-facilities'}"
+                ).text-none.font-12.font-weight-bold #[b SIGN UP]
+              template(v-else)
+                v-spacer
+                v-app-bar-nav-icon(@click.stop="drawer = !drawer")
 
     v-navigation-drawer(
       v-if="$isMobile"
@@ -160,20 +162,7 @@ export default {
 </script>
 
 <style scoped>
-.border-transparent {
-  border-color: rgb(0 0 0 / 0%) !important;
-}
-.bg-white {
-  background-color: white !important;
-  border-color: white !important;
-}
-.navHeader {
-  position: sticky;
-  top: 0px;
-  z-index: 9999;
-  width: 100%;
-}
-#navbar {
-  z-index: 999;
+.nav-bar {
+  opacity: 0.8;
 }
 </style>
