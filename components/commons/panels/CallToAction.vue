@@ -16,7 +16,7 @@
     custom-image-path="commons/"
   )
     template(slot="additional-content" v-if="version === 1")
-      v-row(justify="center")
+      v-row(justify="center" dense)
         v-col(cols="12")
           mc-btn(
             depressed
@@ -26,7 +26,7 @@
             :block="$isMobile"
             :href="'https://calendly.com/mycure/demo'"
           ).text-none Book a full training
-      v-row(justify="center").mb-10
+      v-row(justify="center" dense).mb-10
         v-col(cols="12")
           mc-btn(
             depressed

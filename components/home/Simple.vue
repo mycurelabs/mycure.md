@@ -21,8 +21,14 @@
           | &nbsp;to another -- you probably won't even consider using pen and paper ever again.
         v-row(dense v-for="(service, key) in services" :key="key")
           v-col(col="4")
-            nuxt-link(:to="{ name: service.route }").primary--text.service-link.font-xs.font-open-sans
-              v-icon(small left color="primary") mdi-chevron-right
+            mc-btn(
+              tile
+              small
+              depressed
+              :to="{ name: service.route }"
+              :color="service.color"
+            ).text-none
+              v-icon(small left) {{ service.icon }}
               span {{ service.text }}
 </template>
 
@@ -37,10 +43,14 @@ export default {
       {
         text: 'For Physicians',
         route: 'doctors-clinics',
+        icon: 'mdi-stethoscope',
+        color: 'primary',
       },
       {
         text: 'For Clinics',
         route: 'clinics',
+        icon: 'mdi-hospital-marker',
+        color: 'info',
       },
       // - TODO: Bring back when page is visible
       // {
