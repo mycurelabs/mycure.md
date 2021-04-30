@@ -9,13 +9,11 @@
             width="150"
           ).mt-4
       v-row(justify="center" align="center")
-        v-col(v-if="!$isMobile" cols="12" md="2").text-right
-          strong.primary--text Share the love:
         v-col(
-          :class="{ 'order-first text-center ' : $isMobile, 'text-left' : !$isMobile }"
+          :class="{ 'order-first' : $isMobile }"
           cols="12"
-          md="5"
-        )
+          md="6"
+        ).text-center
           template(v-for="(account, key) in socMed")
             a(:href="account.link" target="_blank" rel="noopener noreferrer")
               img(:src="require(`~/assets/images/${ account.icon }`)" height="35" :alt="account.name").ma-4
