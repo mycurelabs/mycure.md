@@ -28,6 +28,7 @@
           autoplay
           :speed="2000"
           :autoplaySpeed="500"
+          swipeToSlide
         )
           div(v-for="(wonder, key) in wonders" :key="key")
             wonder(:wonder="wonder").ma-1

@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-card(flat color="#fafafa" height="350")
+  v-card(flat color="#fafafa" :height="wonderHeight")
     v-card-text.text-center
       picture-source(
         :image="wonder.image"
@@ -24,6 +24,12 @@ export default {
     wonder: {
       type: Object,
       default: () => ({}),
+    },
+  },
+  computed: {
+    wonderHeight () {
+      if (this.$isWideScreen) return '400';
+      return '350';
     },
   },
 };
