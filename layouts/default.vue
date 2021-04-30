@@ -55,9 +55,11 @@ export default {
 }
 .font-l {
   font-size: 38px !important;
+  letter-spacing: -2px;
 }
 .font-m {
   font-size: 28px !important;
+  letter-spacing: -2px;
 }
 .font-s {
   font-size: 18px !important;

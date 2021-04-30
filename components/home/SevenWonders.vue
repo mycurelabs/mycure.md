@@ -11,20 +11,25 @@
       v-col(cols="12" md="6" :class="{ 'text-center' : $isMobile }")
         h1(:class="{ 'font-xl mb-8' : !$isMobile, 'font-m mb-6' : $isMobile }") Make Healthcare Accessible to All
         p(:class="{ 'font-m' : !$isMobile, 'font-xs' : $isMobile }").grey--text THE&nbsp;
-          span.primary--text SEVEN WONDERS&nbsp;
+          strong.primary--text SEVEN WONDERS&nbsp;
           span.grey--text OF HEALTHCARE
           br
-          | EMPOWERED BY MYCURE
+          | EMPOWERED BY&nbsp;
+          strong.primary--text MYCURE
       v-col(cols="12" md="4")
     v-row(justify="center" align="center" no-gutters)
       v-col(v-if="!$isMobile" cols="12" md="10")
-        carousel(
-          :perPage="4"
-          :navigationEnabled="true"
-          navigationNextLabel=" "
-          navigationPrevLabel=" "
+        vue-slick-carousel(
+          :arrows="false"
+          :dots="false"
+          infinite
+          :slidesToShow="4"
+          :slidesToScroll="1"
+          autoplay
+          :speed="2000"
+          :autoplaySpeed="500"
         )
-          slide(v-for="(wonder, key) in wonders" :key="key")
+          div(v-for="(wonder, key) in wonders" :key="key")
             wonder(:wonder="wonder").ma-1
       v-row(v-else justify="center")
         v-col(cols="6" v-for="(wonder, key) in wonders" :key="key")
@@ -32,10 +37,14 @@
 </template>
 
 <script>
+import VueSlickCarousel from 'vue-slick-carousel';
+import 'vue-slick-carousel/dist/vue-slick-carousel.css';
+
 import Wonder from './Wonder';
 export default {
   components: {
     Wonder,
+    VueSlickCarousel,
   },
   data () {
     this.wonders = [
@@ -43,25 +52,25 @@ export default {
         title: 'Physicians',
         description: 'Easily create digital medical records',
         infoLink: 'doctors-clinics',
-        image: 'hospitals',
+        image: 'Doctor',
       },
       {
         title: 'Outpatient Clinics',
         description: 'Get simplified workflows, real-time reports',
         infoLink: 'clinics',
-        image: 'hospitals',
+        image: 'Outpatient',
       },
       {
         title: 'Diagnostics',
         description: 'Convert online booking to online results',
         infoLink: 'diagnostics',
-        image: 'hospitals',
+        image: 'diagnostic',
       },
       {
         title: 'Pharmacy',
         description: 'Make medicines available anytime, anywhere',
         comingSoon: true,
-        image: 'hospitals',
+        image: 'Pharmacy',
       },
       {
         title: 'Hospitals',
@@ -75,13 +84,13 @@ export default {
         description: 'Build continuity of care for your patients.',
         infoLink: 'patients',
         comingSoon: true,
-        image: 'hospitals',
+        image: 'PRM',
       },
       {
         title: 'Compliance, security, interoperability',
         description: 'Implement health international health IT standards',
         infoLink: 'csi',
-        image: 'hospitals',
+        image: 'security',
       },
     ];
     return {};

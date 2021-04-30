@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-card(flat color="#fafafa" height="100%")
+  v-card(flat color="#fafafa" height="400")
     v-card-text.text-center
       picture-source(
         :image="wonder.image"

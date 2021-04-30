@@ -31,6 +31,7 @@
     "vue-media-query-mixin": "^0.1.0",
     "vue-morphling": "^1.1.2",
     "vue-scrollto": "^2.20.0",
+    "vue-slick-carousel": "^1.0.6",
     "vue-social-sharing": "^3.0.7"
   },
   "devDependencies": {
