@@ -35,7 +35,7 @@
               p(v-if="details.requireContact").font-m.font-weight-bold.pb-10 Contact Us
               template(v-else)
                 p.font-weight-bold {{ details.currency }}&nbsp;
-                  span(v-if="pricingMode === 'monthly'").font-m {{ details.monthlyPrice }}
+                  span(v-if="pricingMode === 'monthly'").font-l {{ details.monthlyPrice }}
                   span(v-else).font-m {{ details.annualMonthlyPrice ? details.annualMonthlyPrice : details.monthlyPrice }}
                 p {{ details.users }} user
                   br
@@ -104,7 +104,7 @@ export default {
   computed: {
     titleClasses () {
       return classBinder(this, {
-        mobile: ['font-s'],
+        mobile: ['font-m'],
         regular: ['font-l'],
       });
     },

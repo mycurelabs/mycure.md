@@ -96,7 +96,7 @@ export default {
   computed: {
     titleClasses () {
       return classBinder(this, {
-        mobile: ['font-s'],
+        mobile: ['font-m'],
         regular: ['font-l'],
       });
     },
