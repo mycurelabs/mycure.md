@@ -14,7 +14,7 @@
           iframe(
             align="middle"
             id="ytplayer"
-            type="text/html" :width="!$isMobile ? '90%' : '100%'" height="450"
+            type="text/html" :width="!$isMobile ? '90%' : '100%'" :height="wXL? '600' : '450'"
             src="https://www.youtube.com/embed/siFBgZMt26k?autoplay=1&loop=1&showinfo=0&rel=0"
             frameborder="0"
             allowfullscreen
