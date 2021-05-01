@@ -1,22 +1,35 @@
 <template lang="pug">
   div(v-if="!loading").white
     //- 1st panel
-    usp(
-      title="The holy grail of online-offline technology."
-      meta-title="MYCURE Syncbase"
-      btn-text="Watch"
-    )
-    //- 2nd panel
     generic-media-panel(
-      :center-media="!$isMobile"
-      :content-align-left="$isMobile"
-      header="Which is best for your health facility?"
-      :header-classes="headerClasses"
-      :descriptions="['Download our comparative analysis on the different healthcare software setups.']"
-      :descriptionClasses="descriptionClasses"
-      :dense="$isMobile"
-      dummy
+      center-media
+      with-subheader
+      header="The holy grail of online-offline technology"
+      sub-header="MYCURE Syncbase"
+      :header-classes="titleClasses"
+      :sub-header-classes="metaTitleClasses"
     )
+      template(slot="additional-content")
+        v-card(flat color="black")
+          iframe(
+            align="middle"
+            id="ytplayer"
+            type="text/html" :width="!$isMobile ? '90%' : '100%'" height="450"
+            src="https://www.youtube.com/embed/siFBgZMt26k?autoplay=1&loop=1&showinfo=0&rel=0"
+            frameborder="0"
+            allowfullscreen
+          )
+    //- 2nd panel
+    //- generic-media-panel(
+    //-   :center-media="!$isMobile"
+    //-   :content-align-left="$isMobile"
+    //-   header="Which is best for your health facility?"
+    //-   :header-classes="headerClasses"
+    //-   :descriptions="['Download our comparative analysis on the different healthcare software setups.']"
+    //-   :descriptionClasses="descriptionClasses"
+    //-   :dense="$isMobile"
+    //-   dummy
+    //- )
     //- 3rd panel
     generic-media-panel(
       content-align-right
@@ -28,8 +41,12 @@
       :header-classes="headerClasses"
       :descriptionClasses="descriptionClasses"
       :dense="$isMobile"
-      dummy
     )
+      template(slot="custom-left")
+        video(v-if="!$isMobile" :width="wXL ? '1175' : '820'" playsinline autoplay muted loop).syncbase-animate
+          source(src="~/assets/videos/mycure-syncbase-diagram-animate.webm" type="video/webm")
+          source(src="~/assets/videos/mycure-syncbase-diagram-animate.mp4" type="video/mp4")
+          | Your browser does not support the video tag.
     //- 4th panel
     features(
       title="Secure cloud-based software with the benefits of an on-premise system"
@@ -37,16 +54,25 @@
       image-dir="syncbase/"
       hide-learn-more
       :items="features"
+      extension-exclusive
+      panel-height="70vh"
     )
     //- 5th panel
-    generic-media-panel(
-      :center-media="!$isMobile"
-      :content-align-left="$isMobile"
-      header="See it in action. Book a demo today"
-      :header-classes="headerClasses"
-      :dense="$isMobile"
-      dummy
-    )
+    div.info
+      generic-media-panel(
+        center-media
+        header="See it in action. Book a demo today!"
+        :header-classes="headerClasses"
+        :dense="$isMobile"
+      ).white--text
+        template(slot="additional-content")
+          mc-btn(
+            tile
+            small
+            depressed
+            color="primary"
+            :href="'https://calendly.com/mycure/demo'"
+          ).text-none Book a Demo
 </template>
 
 <script>
@@ -105,6 +131,7 @@ export default {
     });
   },
   computed: {
+    // - Generic Media Panel Classes
     headerClasses () {
       const headerClasses = [
         classBinder(this, {
@@ -126,9 +153,38 @@ export default {
       ];
       return descriptionClasses;
     },
+    // - USP Classes
+    titleClasses () {
+      const classes = classBinder(this, {
+        mobile: ['font-l'],
+        regular: ['font-xl'],
+      });
+      return [
+        'mb-8',
+        classes,
+      ];
+    },
+    metaTitleClasses () {
+      const classes = classBinder(this, {
+        mobile: ['font-s'],
+        regular: ['font-s'],
+        wide: ['font-m'],
+      });
+      return [
+        'font-open-sans',
+        'font-weight-bold',
+        classes,
+      ];
+    },
   },
   mounted () {
     this.loading = false;
   },
 };
 </script>
+
+<style scoped>
+.syncbase-animate {
+  margin-left: -18vw;
+}
+</style>

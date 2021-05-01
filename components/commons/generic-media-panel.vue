@@ -128,7 +128,7 @@
 
     //- CENTER VIEW
     v-row(v-else justify="center").py-10
-      v-col(cols="12" md="10" :class="{'text-center': !$isMobile}")
+      v-col(cols="12" md="10" :class="{'text-center': !$isMobile}").text-center
         p(v-if="withSubheader" :class="panelSubHeaderclasses") {{ subHeader }}
         h1(v-if="typeof(header) === 'string'" :class="panelHeaderClasses") {{ header }}
         h1(
