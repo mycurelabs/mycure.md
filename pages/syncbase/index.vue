@@ -173,6 +173,7 @@ export default {
       return [
         'font-open-sans',
         'font-weight-bold',
+        'primary--text',
         classes,
       ];
     },

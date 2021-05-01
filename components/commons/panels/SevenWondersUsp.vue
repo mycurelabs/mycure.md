@@ -15,7 +15,7 @@
           :custom-path="customImagePath"
         )
       v-col(cols="12" md="5" :class="{ 'text-center' : $isMobile }" :align-self="$isMobile ? 'start' : 'center'")
-        p(:class="metaTitleClasses").font-weight-bold {{ uspMetaTitle }}
+        p(:class="metaTitleClasses").font-weight-bold.primary--text {{ uspMetaTitle }}
         h1(:class="titleClasses") {{ uspTitle }}
         p(:class="descriptionClasses").grey--text.font-open-sans {{ uspDescription }}
         br
