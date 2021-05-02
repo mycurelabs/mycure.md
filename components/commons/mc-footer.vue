@@ -4,7 +4,7 @@
       v-row(justify="center" align="center" no-gutters)
         v-col.text-center
           img(
-            src="~/assets/images/MYCURE Logo - white.png"
+            src="~/assets/images/MYCURE-virtual-clinic-healthcare-practice-online-logo.svg"
             alt="White MYCURE Logo"
             width="200"
           ).mt-4
@@ -18,19 +18,19 @@
                 :href="col.link"
                 target="_blank"
                 el="noopener noreferrer"
-              ).white--text.d-block.font-16 {{col.value}}
+              ).black--text.d-block.font-16 {{col.value}}
               a(
                 v-if="col.type === 'phone'"
                 :href="`tel:${col.value}`"
-              ).white--text.d-block.font-16 {{col.value}}
+              ).black--text.d-block.font-16 {{col.value}}
               a(
                 v-if="col.type === 'email'"
                 :href="`mailto:${col.value}`"
-              ).white--text.d-block.font-16 {{col.value}}
+              ).black--text.d-block.font-16 {{col.value}}
               a(
                 v-if="col.type === 'chat'"
                 @click.stop="toggleChat()"
-              ).white--text.d-block.font-16 {{col.value}}
+              ).black--text.d-block.font-16 {{col.value}}
       v-row(v-if="$isMobile")
         v-expansion-panels(flat).footer-gray.elevation-0.mx-2
           v-expansion-panel(v-for="(footerItem, index) in footerItems" :key="index").footer-gray
@@ -44,29 +44,29 @@
                   :href="col.link"
                   target="_blank"
                   el="noopener noreferrer"
-                ).white--text.d-block.font-16 {{col.value}}
+                ).black--text.d-block.font-16 {{col.value}}
                 a(
                   v-if="col.type === 'phone'"
                   :href="`tel:${col.value}`"
-                ).white--text.d-block.font-16 {{col.value}}
+                ).black--text.d-block.font-16 {{col.value}}
                 a(
                   v-if="col.type === 'email'"
                   :href="`mailto:${col.value}`"
-                ).white--text.d-block.font-16 {{col.value}}
+                ).black--text.d-block.font-16 {{col.value}}
                 a(
                   v-if="col.type === 'chat'"
                   @click.stop="toggleChat()"
-                ).white--text.d-block.font-16 {{col.value}}
+                ).black--text.d-block.font-16 {{col.value}}
       v-row(align="center" no-gutters)
         v-col(
           :class="{ 'text-center order-last' : $isMobile }"
           cols="12"
           md="7"
         )
-          span.call-number.white--text Copyright &copy; 2016 - {{ new Date().getFullYear() }}
+          span.call-number.black--text Copyright &copy; 2016 - {{ new Date().getFullYear() }}
             a(href="https://mycure.md" rel="noopener noreferrer")
               strong.primary--text &nbsp;MYCURE Inc.&nbsp;
-          span.call-number.white--text #[br(v-if="$isMobile")] All Rights Reserved.
+          span.call-number.black--text #[br(v-if="$isMobile")] All Rights Reserved.
         v-col(v-if="$isMobile" cols="12")
           hr.mb-4
         v-col(
@@ -114,7 +114,7 @@ export default {
         // },
         {
           type: 'footer-header',
-          value: 'Providers',
+          value: 'Services',
           columns: [
             { type: 'link', value: 'Doctor\'s Clinics', link: '/doctors-clinics' },
             { type: 'link', value: 'Outpatient Clinics', link: '/clinics' },
@@ -183,7 +183,7 @@ export default {
 
 <style scoped>
 .footer-gray {
-  background-color: #343a40 !important;
+  background-color: #f0f0f0!important;
 }
 a {
   text-decoration: none !important;

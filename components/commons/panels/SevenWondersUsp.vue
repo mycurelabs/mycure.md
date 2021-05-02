@@ -15,14 +15,14 @@
           :custom-path="customImagePath"
         )
       v-col(cols="12" md="5" :class="{ 'text-center' : $isMobile }" :align-self="$isMobile ? 'start' : 'center'")
-        p(:class="metaTitleClasses").font-weight-bold.primary--text {{ uspMetaTitle }}
+        p(v-if="metaTitle" :class="metaTitleClasses").font-weight-bold.primary--text {{ uspMetaTitle }}
         h1(:class="titleClasses") {{ uspTitle }}
         p(:class="descriptionClasses").grey--text.font-open-sans {{ uspDescription }}
         br
         template(v-if="slottedBtn")
           slot(name="usp btn")
         mc-btn(
-          v-else
+          v-else-if="!hideBtn"
           depressed
           :color="btnColor"
           small
@@ -76,6 +76,10 @@ export default {
       default: () => ([]),
     },
     // - Button options
+    hideBtn: {
+      type: Boolean,
+      default: false,
+    },
     btnText: {
       type: String,
       default: 'Get Started',

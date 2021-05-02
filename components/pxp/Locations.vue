@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-container.mb-10
+  v-container.my-10
     v-row(justify="center")
       v-col(cols="12" md="10")
         v-row(justify="center" align="center")
