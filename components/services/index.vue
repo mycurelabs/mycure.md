@@ -169,7 +169,7 @@ export default {
 
 <style scoped>
 .search-container {
-  margin-top: 60px;
+  margin-top: 50px;
   width: 100%;
 }
 
