@@ -8,7 +8,7 @@
       image="USP"
       custom-image-path="doctors-clinics/"
       btn-text="Get Started Free"
-      web-height="550px"
+      web-height="600px"
       @click="$nuxt.$router.push({ name: 'signup-health-facilities', params: { type: 'doctors' }})"
     )
     //- 2nd panel

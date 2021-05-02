@@ -11,7 +11,7 @@
       btn-text="Watch How It Works"
       btn-color="info"
       :parse-meta-title-fields="['Complete ']"
-      web-height="550px"
+      web-height="590px"
       image="USP"
       custom-image-path="clinics/"
       @click="videoDialog = true"
@@ -21,10 +21,8 @@
     features(
       title="Why do clinics switch to MYCURE?"
       description="MYCURE integrates critical clinic operations into a clean, simple interface to make record management much easier for everyone. Say goodbye to multiple, complicated systems."
-      :class="panelMargins"
     )
     //- 3rd panel
-    multiple-branches(:class="panelMargins")
     //- 4th panel
     generic-media-panel(
       content-align-left
@@ -37,7 +35,6 @@
       :header-classes="headerClasses"
       :descriptionClasses="descriptionClasses"
       :dense="$isMobile"
-      :class="panelMargins"
       custom-image-path="commons/"
       extension-exclusive
       :web-image="infoPanels[1].image"
@@ -65,7 +62,6 @@
         //-     span View a sample website
         //-     v-icon(right) mdi-chevron-right
     //- 5th panel
-    tools(:version="2" :class="panelMargins")
     //- 6th panel
     generic-media-panel(
       content-align-right
@@ -78,7 +74,6 @@
       :header-classes="headerClasses"
       :descriptionClasses="descriptionClasses"
       :dense="$isMobile"
-      :class="panelMargins"
     )
       template(slot="custom-left")
         video(v-if="!$isMobile" :width="wXL ? '1175' : '820'" playsinline autoplay muted loop).syncbase-animate

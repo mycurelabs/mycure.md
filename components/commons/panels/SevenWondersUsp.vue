@@ -170,7 +170,9 @@ export default {
 </script>
 
 <style scoped>
-.usp-container {
-  padding-bottom: 70px;
+@media screen and (max-width: 1080px) {
+  .usp-container {
+    padding-bottom: 50px;
+  }
 }
 </style>
