@@ -1,5 +1,5 @@
 <template lang="pug">
-  fragment
+  div
     v-container(
       :class="[isMobile ? 'mobile-page-height' : 'whole-page', {'mt-4': visibleCookie}]"
     )
@@ -173,7 +173,7 @@ export default {
 
 <style scoped>
 .whole-page {
-  height: 320px;
+  height: 300px;
 }
 .mobile-page-height {
   padding-top: 4vh;

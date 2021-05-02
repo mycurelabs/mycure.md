@@ -1,5 +1,5 @@
 <template lang="pug">
-  div(v-if="!loading")#top
+  div(v-if="!loading")
     //- 1st panel
     usp.pb-5
     //- 2nd panel
@@ -59,9 +59,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-#top {
-  margin-top: 12vh;
-}
-</style>
