@@ -128,6 +128,10 @@ export default {
       //   route: 'hospitals',
       // },
       {
+        name: 'Telehealth',
+        route: 'telehealth',
+      },
+      {
         name: 'Booking',
         route: 'booking',
       },
