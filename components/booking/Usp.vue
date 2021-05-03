@@ -1,49 +1,34 @@
 <template lang="pug">
-  v-content
-    v-container(:class="{'usp-container' : !$isMobile, 'usp-mobile' : $isMobile }")
-      v-row(
-        align="center"
-        justify="center"
-        :style="{ height: $isMobile ? 'auto' : '520px' }"
-        no-gutters
-      )
-        v-col(cols="8" md="5" :class="{ 'order-last' : !$isMobile }")
-          v-img(
-            :src="require('../../assets/images/providers/website-image-providers.png')"
-            width="100%"
-            alt="homepage image"
-          )
-        v-col(cols="12" md="6" :class="{ 'text-center' : $isMobile }")
-          h1(:class="{ 'font-50 mb-8' : !$isMobile, 'font-35 mb-6' : $isMobile }").primary--text Grow your #[br]
-            vue-typer(
-              :text="['Practice', 'Clinic', 'Diagnostic Center', 'Hospital']"
-              :repeat="Infinity"
-              :erase-delay="100"
-              :class="{ 'font-50' : !$isMobile, 'font-35' : $isMobile }"
-              erase-style="backspace"
-            ).typer
-            span(:class="{ 'font-50' : !$isMobile, 'font-35' : $isMobile }").primary--text #[br] Safely
-          p(:class="{ 'font-18' : !$isMobile, 'font-14' : $isMobile }").gray--text Bring in more patients using a powerful healthcare service booking and management software. It's free, secure, and easy to use.
-          v-col(cols="10" md="12" :class="{ 'd-flex' : !$isMobile, 'text-center mx-auto' : $isMobile }").pl-0
-            v-text-field(
-              v-model="email"
-              outlined
-              rounded
-              large
-              hide-details
-              placeholder="Enter your email address"
-            ).bg-white
-            get-started-button(
-              :class="{ 'mt-2' : $isMobile }"
-              :x-large="!$isMobile"
-              :large="$isMobile"
-              :email="email"
-            ).ml-2
+  v-container(:class="{'usp-mobile' : $isMobile }")
+    v-row(
+      align="center"
+      justify="center"
+      :style="{ height: $isMobile ? 'auto' : '600px' }"
+      no-gutters
+    )
+      v-col(cols="8" md="4" offset-md="1" :class="{ 'order-last' : !$isMobile }")
+        v-img(
+          :src="require('../../assets/images/providers/website-image-providers.png')"
+          width="100%"
+          alt="homepage image"
+        )
+      v-col(cols="12" md="5" :class="{ 'text-center' : $isMobile }")
+        h1(:class="titleClasses") Grow your #[br]
+          vue-typer(
+            :text="['Practice', 'Clinic', 'Diagnostics', 'Hospital']"
+            :repeat="Infinity"
+            :erase-delay="100"
+            erase-style="backspace"
+          ).typer
+          span #[br] Safely
+        p(:class="descriptionClasses").grey--text.font-open-sans Bring in more patients using a powerful healthcare service booking and management software. It's free, secure, and easy to use.
+        br
+        get-started-button(small)
 </template>
 
 <script>
 import GetStartedButton from './GetStartedButton';
-import { parseTextWithNewLine } from '~/utils/newline';
+import classBinder from '~/utils/class-binder';
 export default {
   components: {
     GetStartedButton,
@@ -54,15 +39,22 @@ export default {
     };
   },
   computed: {
-    uspTitle () {
-      const title = this.uspContents.title;
-      return !this.$isMobile
-        ? parseTextWithNewLine(title, ['workflows'])
-        : parseTextWithNewLine(title, ['your', 'workflows', 'maximize']);
+    // Classes
+    titleClasses () {
+      const classes = classBinder(this, {
+        mobile: ['font-m'],
+        regular: ['font-xl'],
+      });
+      return [
+        'mb-8',
+        classes,
+      ];
     },
-    uspDescription () {
-      const description = this.uspContents.description;
-      return !this.$isMobile ? parseTextWithNewLine(description, ['system']) : description;
+    descriptionClasses () {
+      return classBinder(this, {
+        mobile: ['font-xs', 'text-center'],
+        regular: ['font-s', 'text-justify'],
+      });
     },
   },
   methods: {
@@ -79,7 +71,7 @@ export default {
 }
 
 .vue-typer >>> .custom.char.typed  {
-  color: #2E9FDF;
+  color: #04B1E7;
 }
 
 .vue-typer >>> .custom.caret {
@@ -88,11 +80,7 @@ export default {
 }
 
 .vue-typer >>> .custom.caret.typing {
-  background-color: #2E9FDF;
-}
-
-.usp-container {
-  margin-top: 60px;
+  background-color: #04B1E7;
 }
 
 .usp-mobile {

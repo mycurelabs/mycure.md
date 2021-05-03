@@ -1,11 +1,13 @@
 <template lang="pug">
-  v-btn(
+  mc-btn(
     color="success"
-    rounded
+    tile
+    depressed
     :large="large"
     :x-large="xLarge"
+    :small="small"
     @click="getStarted"
-  ).text-none.font-weight-bold Get started for free
+  ).text-none.font-weight-bold.letter-spacing-normal Get Started
 </template>
 
 <script>
@@ -13,6 +15,7 @@ export default {
   props: {
     large: Boolean,
     xLarge: Boolean,
+    small: Boolean,
     email: {
       type: String,
       default: '',

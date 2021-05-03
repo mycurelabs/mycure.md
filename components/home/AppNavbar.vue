@@ -128,8 +128,8 @@ export default {
       //   route: 'hospitals',
       // },
       {
-        name: 'Scheduling',
-        route: 'pxp',
+        name: 'Booking',
+        route: 'booking',
       },
       // {
       //   name: 'For Patients',
