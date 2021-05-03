@@ -6,27 +6,34 @@
       meta-title="MYCURE Telehealth"
       description="Starting a virtual practice has never been easier. Give your patients the quality care they deserve."
       btn-text="Get Started Free"
+      web-height="600px"
     )
     //- 2nd panel
-    features(
-      title="Your New Virtual Clinic"
-      description="Use the tools that work best for you. Everything you need is here. It’s FREE."
+    div.mb-12
+      generic-media-panel(
+        center-media
+        header="Your New Virtual Clinic"
+        :descriptions="['Use the tools that work best for you. Everything you need is here. It’s FREE.']"
+        :header-classes="headerClasses"
+        :description-classes="descriptionClasses"
+        web-image="MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-A-online-consult"
+        custom-image-path="telehealth/"
+      )
 
-    )
-    //- 3rd to 6th panel
+      increase-revenue
+    //- 3rd to 4th panel
     generic-media-panel(
       v-for="(info, key) in infoPanels"
       :key="key"
-      content-align-right
-      cols-left="5"
-      cols-right="4"
       offset-cols-right="1"
       :header="info.header"
       :descriptions="info.descriptions"
       :header-classes="headerClasses"
       :descriptionClasses="descriptionClasses"
       :dense="$isMobile"
-      dummy
+      :web-image="info.image"
+      :custom-image-path="info.customImagePath"
+      v-bind="getPanelBindings(key)"
     )
       //- Check list
       template(slot="additional-content" v-if="info.list")
@@ -36,12 +43,12 @@
               img(width="20" src="~/assets/images/mycure-check.png" alt="Check icon")
             v-col
               span(:class="descriptionClasses") {{ item }}
-    //- 7th panel
+    //- 5th panel
     pricing(
       title="Start free and only pay as you grow."
       :pricing-details="pricingDetails"
     )
-    //- 8th panel
+    //- 6th panel
     call-to-action
 </template>
 
@@ -53,6 +60,7 @@ import headMeta from '~/utils/head-meta';
 import CallToAction from '~/components/commons/panels/CallToAction';
 import Features from '~/components/commons/panels/Features';
 import GenericMediaPanel from '~/components/commons/generic-media-panel';
+import IncreaseRevenue from '~/components/telehealth/IncreaseRevenue';
 import Pricing from '~/components/commons/panels/Pricing';
 import Usp from '~/components/commons/panels/SevenWondersUsp';
 // - constants
@@ -63,6 +71,7 @@ export default {
     CallToAction,
     Features,
     GenericMediaPanel,
+    IncreaseRevenue,
     Pricing,
     Usp,
   },
@@ -89,22 +98,12 @@ export default {
     ];
     this.infoPanels = [
       {
-        header: 'Increase your revenue',
-        descriptions: [
-          'Treat more patients and reduce no-shows and cancellations with online consultations via secure video and voice calls.',
-        ],
-      },
-      {
-        header: 'Build your clientele',
-        descriptions: [
-          'Build patient loyalty and accommodate patients outside of your physical work hours. It\'s easy for your old and new patients to set appointments with you.',
-        ],
-      },
-      {
         header: 'Safekeep your important medical data',
         descriptions: [
           'Your patient\'s medical records are both accessible and secure in our system that complies with international data privacy standards. We make it our business to make sure your electronic health records are kept safe so you can focus on what you do best-taking care of your patients.',
         ],
+        image: 'MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-B-secure-data',
+        customImagePath: 'telehealth/',
       },
       {
         header: 'Works for group practice',
@@ -117,6 +116,8 @@ export default {
           'Optimized Patient Queuing',
           'Booking Website',
         ],
+        image: 'MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-C-group-practice',
+        customImagePath: 'doctors-clinics/',
       },
     ];
     this.pricingDetails = DOCTORS_PRICING;
@@ -157,6 +158,24 @@ export default {
   },
   mounted () {
     this.loading = false;
+  },
+  methods: {
+    getPanelBindings (key) {
+      if (key % 2 === 0) {
+        return {
+          contentAlignRight: true,
+          alignContentLeft: 'center',
+          colsLeft: 5,
+          colsRight: 4,
+        };
+      }
+      return {
+        contentAlignLeft: true,
+        alignContentRight: 'center',
+        colsLeft: 4,
+        colsRight: 5,
+      };
+    },
   },
 };
 </script>
