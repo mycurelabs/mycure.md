@@ -50,6 +50,7 @@ export default {
     { src: '~/plugins/vue-social-sharing.js', mode: 'client' },
     { src: '~/plugins/vue-morphling.js', mode: 'client' },
     { src: '~/plugins/mycure.js', mode: 'client' },
+    { src: '~/plugins/vue-typer.js', mode: 'client' },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
