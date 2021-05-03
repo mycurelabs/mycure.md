@@ -1,7 +1,7 @@
 <template lang="pug">
-  div
+  v-container
     v-row(align="center" justify="center" :class="{ 'mobile-container' : $isMobile }")
-      v-col(md="8")
+      v-col(md="10")
         v-row(align="center" justify="center" :class="{ 'plans-container my-10' : !$isMobile }")
           v-col(cols="10" md="5" :class="{ 'pa-12' : !$isMobile }")
             h1(:class="{ 'font-35 mb-5' : !$isMobile, 'font-32 text-center' : $isMobile }").plan-title.white--text {{title}}
