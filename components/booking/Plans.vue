@@ -4,21 +4,28 @@
       v-col(md="10")
         v-row(align="center" justify="center" :class="{ 'plans-container my-10' : !$isMobile }")
           v-col(cols="10" md="5" :class="{ 'pa-12' : !$isMobile }")
-            h1(:class="{ 'font-35 mb-5' : !$isMobile, 'font-32 text-center' : $isMobile }").plan-title.white--text {{title}}
-            get-started-btn(color="success")
+            h1(:class="[{ 'mb-5' : !$isMobile, 'text-center' : $isMobile }, ...headerClasses]").plan-title.white--text {{title}}
+            get-started-btn(v-if="!$isMobile" color="success" small)
           v-col(cols="10" md="6" :class="{ 'pa-12' : !$isMobile }").mt-4
             template(v-for="plan in plans")
-              h1(:class=" $isMobile ? 'font-20' : 'font-30'").white--text {{plan.name}}
-              p.white--text.mb-6 {{plan.description}}
+              h1(:class="planTitleClasses").white--text {{plan.name}}
+              p.white--text.mb-6.font-open-sans {{plan.description}}
           v-col(v-if="$isMobile" cols="12").text-center
-            get-started-btn(color="success")
+            get-started-btn(color="success" block small)
 </template>
 
 <script>
 import GetStartedBtn from './GetStartedButton';
+import classBinder from '~/utils/class-binder';
 export default {
   components: {
     GetStartedBtn,
+  },
+  props: {
+    headerClasses: {
+      type: Array,
+      default: () => ([]),
+    },
   },
   data () {
     this.title = 'Start for free, then pay as you grow';
@@ -38,17 +45,29 @@ export default {
     ];
     return {};
   },
+  computed: {
+    planTitleClasses () {
+      const headerClasses = [
+        classBinder(this, {
+          mobile: ['font-s', 'text-center'],
+          regular: ['font-m'],
+        }),
+        'lh-title',
+      ];
+      return headerClasses;
+    },
+  },
 };
 </script>
 
 <style scoped>
 .plans-container {
-  background-color: #1D6A83;
+  background-color: #0174BB;
   border-radius: 10px;
 }
 
 .mobile-container {
-  background-color: #1D6A83;
+  background-color: #0174BB;
 }
 
 .plan-title {

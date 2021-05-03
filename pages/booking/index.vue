@@ -2,15 +2,25 @@
   div(v-if="!loading").white
     //- 1st panel
     usp(@getStarted="goToSignupIndividual")
-    start-easy
-    features
-    syncbase
-    hipaa
-    plans
+    start-easy(:header-classes="headerClasses")
+    features(
+      :header-classes="headerClasses"
+      :description-classes="descriptionClasses"
+    )
+    syncbase(
+      :header-classes="headerClasses"
+      :description-classes="descriptionClasses"
+    )
+    hipaa(
+      :header-classes="headerClasses"
+      :description-classes="descriptionClasses"
+    )
+    plans(:header-classes="headerClasses")
 </template>
 
 <script>
 // - utils
+import classBinder from '~/utils/class-binder';
 import headMeta from '~/utils/head-meta';
 // - components
 import Usp from '~/components/booking/Usp';
@@ -40,6 +50,29 @@ export default {
       description: 'MYCURE helps you bring in more patients using a powerful healthcare service booking and management software. It’s free, secure, and easy to use.',
       socialBanner: require('~/assets/images/banners/MYCURE Open Graph-Providers.jpg'),
     });
+  },
+  computed: {
+    headerClasses () {
+      const headerClasses = [
+        classBinder(this, {
+          mobile: ['font-m'],
+          regular: ['font-l'],
+        }),
+        'lh-title',
+      ];
+      return headerClasses;
+    },
+    descriptionClasses () {
+      const descriptionClasses = [
+        classBinder(this, {
+          mobile: ['font-xs'],
+          regular: ['font-s'],
+        }),
+        'font-open-sans',
+        'font-gray',
+      ];
+      return descriptionClasses;
+    },
   },
   mounted () {
     window.$crisp.push(['safe', true]);

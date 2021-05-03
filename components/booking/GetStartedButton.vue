@@ -6,6 +6,7 @@
     :large="large"
     :x-large="xLarge"
     :small="small"
+    :block="block"
     @click="getStarted"
   ).text-none.font-weight-bold.letter-spacing-normal Get Started
 </template>
@@ -16,6 +17,7 @@ export default {
     large: Boolean,
     xLarge: Boolean,
     small: Boolean,
+    block: Boolean,
     email: {
       type: String,
       default: '',

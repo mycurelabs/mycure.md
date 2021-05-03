@@ -1,32 +1,31 @@
 <template lang="pug">
-  div.header-gray
-    v-container
-      v-row(justify="center" no-gutters)
-        v-col(cols="12" md="10")
-          v-row
-            v-col(cols="12").mb-6.text-center
-              h1 As easy as
-            div(v-if="!$isMobile").d-flex.align-end
-              v-row(align="center")
-                v-col(cols="12" md="4" v-for="(item, key) in items" :key="key").text-center
+  v-container
+    v-row(justify="center" no-gutters)
+      v-col(cols="12" md="10")
+        v-row
+          v-col(cols="12").mb-6.text-center
+            h1(:class="headerClasses") As easy as
+          div(v-if="!$isMobile").d-flex.align-end
+            v-row(align="center")
+              v-col(cols="12" md="4" v-for="(item, key) in items" :key="key").text-center
+                img(
+                  :src="item.image"
+                  width="80%"
+                )
+                h2(:class="") {{item.title}}
+                p.font-open-sans.grey--text {{item.description}}
+          div(v-else)
+            template(v-for="item in items")
+              div.d-flex
+                v-col(cols="5")
                   img(
                     :src="item.image"
-                    width="80%"
+                    width="130"
                   )
-                  h2 {{item.title}}
-                  p {{item.description}}
-            div(v-else)
-              template(v-for="item in items")
-                div.d-flex
-                  v-col(cols="5")
-                    img(
-                      :src="item.image"
-                      width="130"
-                    )
-                  v-col(cols="7")
-                    h2.font-20 {{item.title}}
-                    p {{item.description}}
-          //- need-more(:class="{ 'need-more-md-up' : !$isMobile }")
+                v-col(cols="7")
+                  h2.font-20 {{item.title}}
+                  p.font-open-sans.grey--text {{item.description}}
+        //- need-more(:class="{ 'need-more-md-up' : !$isMobile }")
 </template>
 
 <script>
@@ -36,6 +35,12 @@ export default {
   components: {
     GetStartedButton,
     NeedMore,
+  },
+  props: {
+    headerClasses: {
+      type: Array,
+      default: () => ([]),
+    },
   },
   data () {
     return {
