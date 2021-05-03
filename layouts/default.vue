@@ -51,15 +51,15 @@ export default {
 .font-xl {
   font-size: 56px;
   line-height: 1;
-  letter-spacing: -2px;
+  letter-spacing: -0.5px;
 }
 .font-l {
   font-size: 38px !important;
-  letter-spacing: -2px;
+  letter-spacing: -0.5px;
 }
 .font-m {
   font-size: 28px !important;
-  letter-spacing: -2px;
+  letter-spacing: -0.5px;
 }
 .font-s {
   font-size: 18px !important;

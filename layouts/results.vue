@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import AppBar from '~/components/home/AppNavbar';
+import AppBar from '~/components/home/AppBar';
 export default {
   components: {
     AppBar,

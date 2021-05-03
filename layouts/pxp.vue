@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import PxpAppBar from '~/components/home/AppNavbar';
+import PxpAppBar from '~/components/home/AppBar';
 import PxpFooter from '~/components/commons/mc-footer';
 export default {
   components: {
