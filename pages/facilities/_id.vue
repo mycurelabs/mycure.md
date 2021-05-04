@@ -335,9 +335,9 @@ export default {
 
         return {
           ...doctor,
-          picURL: doctor.personalDetails?.picURL,
-          doctorName: `Dr. ${doctor.personalDetails?.name?.firstName} ${doctor.personalDetails?.name?.lastName}`,
-          specialties: doctor.personalDetails?.['doc_specialties']?.join(', '),
+          picURL: doctor?.personalDetails?.picURL,
+          doctorName: `Dr. ${doctor?.personalDetails?.name?.firstName} ${doctor?.personalDetails?.name?.lastName}`,
+          specialties: doctor?.personalDetails?.['doc_specialties']?.join(', '),
           yearsPracticing: yearsPracticing && `${yearsPracticing} years`,
         };
       }) || [];
