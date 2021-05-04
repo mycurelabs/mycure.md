@@ -136,11 +136,12 @@ import headMeta from '~/utils/head-meta';
 // - components
 import CallToAction from '~/components/commons/panels/CallToAction';
 import CmsVideoDialog from '~/components/outpatient-clinics/CmsVideoDialog';
-import Tools from '~/components/home/Tools';
+import Features from '~/components/commons/panels/Features';
 import GenericMediaPanel from '~/components/commons/generic-media-panel';
 import MultipleBranches from '~/components/enterprise/multiple-branches';
 import Pricing from '~/components/commons/panels/Pricing';
 import ThinkLongTerm from '~/components/commons/panels/ThinkLongTerm';
+import Tools from '~/components/home/Tools';
 import Usp from '~/components/commons/panels/SevenWondersUsp';
 // - constants
 import { ENTERPRISE_PRICING } from '~/constants/pricing';
@@ -149,11 +150,12 @@ export default {
   components: {
     CallToAction,
     CmsVideoDialog,
-    Tools,
     GenericMediaPanel,
+    Features,
     MultipleBranches,
     Pricing,
     ThinkLongTerm,
+    Tools,
     Usp,
   },
   data () {
