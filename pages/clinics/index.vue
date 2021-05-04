@@ -23,6 +23,7 @@
       description="MYCURE integrates critical clinic operations into a clean, simple interface to make record management much easier for everyone. Say goodbye to multiple, complicated systems."
     )
     //- 3rd panel
+    tools(:version="2")
     //- 4th panel
     generic-media-panel(
       content-align-left
@@ -135,7 +136,6 @@ import headMeta from '~/utils/head-meta';
 // - components
 import CallToAction from '~/components/commons/panels/CallToAction';
 import CmsVideoDialog from '~/components/outpatient-clinics/CmsVideoDialog';
-import Features from '~/components/commons/panels/Features';
 import Tools from '~/components/home/Tools';
 import GenericMediaPanel from '~/components/commons/generic-media-panel';
 import MultipleBranches from '~/components/enterprise/multiple-branches';
@@ -149,7 +149,6 @@ export default {
   components: {
     CallToAction,
     CmsVideoDialog,
-    Features,
     Tools,
     GenericMediaPanel,
     MultipleBranches,
