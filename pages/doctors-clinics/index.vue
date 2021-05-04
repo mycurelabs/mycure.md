@@ -10,6 +10,8 @@
       btn-text="Get Started Free"
       web-height="600px"
       @click="$nuxt.$router.push({ name: 'signup-health-facilities', params: { type: 'doctors' }})"
+      parse-title="regular"
+      :parse-title-fields="['the ']"
     )
     //- 2nd panel
     features(

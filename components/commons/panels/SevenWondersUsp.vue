@@ -5,7 +5,7 @@
       no-gutters
       :style="{ height: $isMobile ? mobileHeight : webHeight }"
     )
-      v-col(cols="10" md="4" offset-md="1" :class="{ 'order-last' : !$isMobile }" :align-self="$isMobile ? 'end' : 'center'")
+      v-col(cols="10" md="5" offset-md="1" :class="{ 'order-last' : !$isMobile }" :align-self="$isMobile ? 'end' : 'center'")
         picture-source(
           v-if="image"
           extension-exclusive
@@ -14,7 +14,7 @@
           image-file-extension=".png"
           :custom-path="customImagePath"
         )
-      v-col(cols="12" md="5" :class="{ 'text-center' : $isMobile }" :align-self="$isMobile ? 'start' : 'center'")
+      v-col(cols="12" md="4" :class="{ 'text-center' : $isMobile }" :align-self="$isMobile ? 'start' : 'center'")
         p(v-if="metaTitle" :class="metaTitleClasses").font-weight-bold.primary--text {{ uspMetaTitle }}
         h1(:class="titleClasses") {{ uspTitle }}
         p(:class="descriptionClasses").grey--text.font-open-sans {{ uspDescription }}
@@ -130,10 +130,11 @@ export default {
     titleClasses () {
       const classes = classBinder(this, {
         mobile: ['font-m'],
-        regular: ['font-xl'],
+        regular: ['font-l'],
       });
       return [
         'mb-8',
+        'lh-title',
         { 'pre-white-space': this.toParse(this.parseTitle) },
         classes,
       ];

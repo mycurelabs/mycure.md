@@ -6,13 +6,13 @@
       :style="{ height: $isMobile ? 'auto' : '600px' }"
       no-gutters
     )
-      v-col(cols="8" md="4" offset-md="1" :class="{ 'order-last' : !$isMobile }")
+      v-col(cols="8" md="5" offset-md="1" :class="{ 'order-last' : !$isMobile }")
         v-img(
           :src="require('../../assets/images/providers/website-image-providers.png')"
           width="100%"
           alt="homepage image"
         )
-      v-col(cols="12" md="5" :class="{ 'text-center' : $isMobile }")
+      v-col(cols="12" md="4" :class="{ 'text-center' : $isMobile }")
         h1(:class="titleClasses") Grow your #[br]
           vue-typer(
             :text="['Practice', 'Clinic', 'Diagnostics', 'Hospital']"
@@ -43,10 +43,11 @@ export default {
     titleClasses () {
       const classes = classBinder(this, {
         mobile: ['font-m'],
-        regular: ['font-xl'],
+        regular: ['font-l'],
       });
       return [
         'mb-8',
+        'lh-title',
         classes,
       ];
     },
