@@ -8,25 +8,33 @@
       :professions="professions"
       :education="education"
       :practicing-since="practicingSince"
-      :member-cms-organizations="memberCMSOrganizations"
       :is-verified="isVerified"
     )
     stats
+    facilities(
+      :first-name="firstName"
+      :doctorId="doctor.id"
+      :clinics="clinics"
+      :total="clinicsTotal"
+      :limit="clinicsLimit"
+       @onUpdatePage="fetchDoctorInfo($event)"
+    )
 </template>
 
 <script>
 import _ from 'lodash';
 import {
   getDoctorWebsite,
-  getMemberOrganizations,
   recordWebsiteVisit,
 } from '~/utils/axios';
+import Facilities from '~/components/doctor-website/Facilities';
 import MainPanel from '~/components/doctor-website/MainPanel';
 import Stats from '~/components/doctor-website/Stats';
 import { formatName } from '~/utils/formats';
 import headMeta from '~/utils/head-meta';
 export default {
   components: {
+    Facilities,
     MainPanel,
     Stats,
   },
@@ -72,7 +80,10 @@ export default {
       return this.doctor?.picURL || require('~/assets/images/doctor-website/doctor-website-profile-male.png');
     },
     name () {
-      return this.doctor?.name;
+      return this.doctor?.name || {};
+    },
+    firstName () {
+      return this.name.firstName || '';
     },
     fullName () {
       return formatName(this.doctor?.name || {}, 'firstName middleInitial lastName generationalSuffix');
@@ -117,6 +128,7 @@ export default {
   },
   methods: {
     async fetchDoctorInfo (page = 1) {
+      console.log('page', page);
       const skip = this.clinicsLimit * (page - 1);
 
       const { items, total } = await this.$sdk.service('organizations').find({
@@ -135,14 +147,6 @@ export default {
 
       this.clinicsTotal = total;
       this.clinics = items;
-
-      const [memberCMSOrganizations] = await getMemberOrganizations({
-        uid: this.doctor?.id,
-        type: 'cms',
-        select: ['id', 'name', 'picURL'],
-      });
-
-      this.memberCMSOrganizations = memberCMSOrganizations;
     },
   },
 };

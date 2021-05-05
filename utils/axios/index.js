@@ -76,7 +76,7 @@ export const getMemberOrganizations = async (opts) => {
       uid: opts.uid,
     },
   });
-  const memberships = memberData.data;
+  const memberships = memberData.data || [];
   if (!memberships?.length) return null;
   const { data: organizationData } = await axios({
     method: 'GET',
