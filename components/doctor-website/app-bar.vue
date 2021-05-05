@@ -1,21 +1,18 @@
 <template lang="pug">
-  v-app-bar(color="white")
-    nuxt-link(:to="{ name: 'index' }" title="MYCURE | Clinic Management System | Cloud EMR Philippines" id="toolbar-mycure-logo")
-      img(
-        height="45"
-        src="../../assets/images/MYCURE-virtual-clinic-healthcare-practice-online-logo.svg"
-        to="/"
-      )
-    v-spacer
-    //- Hide in mobile view since they overlap with logo,
-    //- The same btns exist on the center
+  v-app-bar(
+    height="50"
+    app
+    elevate-on-scroll
+    color="white"
+  )
+    v-container
+      v-row(justify="center")
+        v-col(cols="12" md="10")
+          div.d-flex
+            nuxt-link(to="/")
+              img(
+                src="~/assets/images/MYCURE-logo.png"
+                width="120"
+                alt="MYCURE logo"
+              ).mt-1
 </template>
-
-<script>
-import BookAppointmentBtn from '~/components/commons/book-appointment-btn';
-export default {
-  components: {
-    BookAppointmentBtn,
-  },
-};
-</script>

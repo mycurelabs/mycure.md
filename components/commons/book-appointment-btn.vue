@@ -1,12 +1,13 @@
 <template lang="pug">
   v-btn(
     :outlined="outlined"
-    :large="!$isMobile"
+    :large="large"
     :rounded="rounded"
     :color="color"
     :href="url"
     :class="{ 'font-11' : $isMobile }"
   ).text-none.font-weight-600 {{ btnText }}
+    v-icon(v-if="showIcon" small right) mdi-calendar
 </template>
 
 <script>
@@ -14,19 +15,32 @@ export default {
   props: {
     color: {
       type: String,
-      default: 'primary',
+      default: null,
     },
     outlined: {
       type: Boolean,
-      default: true,
+      default: false,
     },
     rounded: {
       type: Boolean,
-      default: true,
+      default: false,
     },
     btnText: {
       type: String,
-      default: 'Book Appointment',
+      default: 'primary',
+    },
+    large: {
+      type: Boolean,
+      default: false,
+    },
+    small: {
+      type: Boolean,
+      default: true,
+    },
+    // - Show icon
+    showIcon: {
+      type: Boolean,
+      default: false,
     },
   },
   computed: {
