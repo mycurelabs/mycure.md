@@ -3,6 +3,7 @@
     color="white"
     height="auto"
     :absolute="absolute"
+    app
   )
     v-container
       v-row(align="center" no-gutters)

@@ -1,5 +1,5 @@
 <template lang="pug">
-  div(v-if="!loading")
+  div(v-if="!loading" style="padding-bottom: 150px;")
     main-panel(
       :pic-url="picURL"
       :full-name="fullNameWithSuffixes"
@@ -23,6 +23,7 @@
       :first-name="firstName"
       :services="services"
     )
+    learning-corner(:doctor-id="doctor.id")
 </template>
 
 <script>
@@ -32,6 +33,7 @@ import {
   recordWebsiteVisit,
 } from '~/utils/axios';
 import Facilities from '~/components/doctor-website/Facilities';
+import LearningCorner from '~/components/doctor-website/LearningCorner';
 import MainPanel from '~/components/doctor-website/MainPanel';
 import Services from '~/components/doctor-website/ServicesPanel';
 import Stats from '~/components/doctor-website/Stats';
@@ -40,6 +42,7 @@ import headMeta from '~/utils/head-meta';
 export default {
   components: {
     Facilities,
+    LearningCorner,
     MainPanel,
     Services,
     Stats,

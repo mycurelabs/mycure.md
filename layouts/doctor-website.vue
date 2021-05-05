@@ -3,7 +3,7 @@
     app-bar(v-if="!loading")
     div(style="padding-top: 45px")
       nuxt
-    //- app-footer(v-if="!loading")
+    app-footer(v-if="!loading" absolute)
 </template>
 
 <script>
