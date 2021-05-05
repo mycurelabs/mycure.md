@@ -19,6 +19,10 @@
       :limit="clinicsLimit"
        @onUpdatePage="fetchDoctorInfo($event)"
     )
+    services(
+      :first-name="firstName"
+      :services="services"
+    )
 </template>
 
 <script>
@@ -29,6 +33,7 @@ import {
 } from '~/utils/axios';
 import Facilities from '~/components/doctor-website/Facilities';
 import MainPanel from '~/components/doctor-website/MainPanel';
+import Services from '~/components/doctor-website/ServicesPanel';
 import Stats from '~/components/doctor-website/Stats';
 import { formatName } from '~/utils/formats';
 import headMeta from '~/utils/head-meta';
@@ -36,6 +41,7 @@ export default {
   components: {
     Facilities,
     MainPanel,
+    Services,
     Stats,
   },
   layout: 'doctor-website',

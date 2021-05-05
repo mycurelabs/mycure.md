@@ -1,10 +1,10 @@
 <template lang="pug">
-  v-container
+  v-container.pb-10
     v-row(justify="center" align="center" no-gutters)
       v-col(cols="12" md="10")
         v-row(justify="center").text-center#clinics-list-top
           v-col(cols="12").text-center
-            h2
+            h1
               v-icon(color="error" large left) mdi-hospital-marker
               | {{ firstName ? `${firstName}'s ` : '' }}Clinics
           v-col(

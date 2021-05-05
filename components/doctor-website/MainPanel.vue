@@ -9,7 +9,7 @@
               img(:src="picUrl")
             br
             br
-            h2 {{ fullName }}
+            h1 {{ fullName }}
             br
             //- Bio
             div
