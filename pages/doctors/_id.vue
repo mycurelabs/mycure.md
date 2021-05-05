@@ -1,89 +1,53 @@
 <template lang="pug">
-  div(v-if="!loading")
-    panel-1(
+  div(v-if="!loading" style="padding-bottom: 150px;")
+    main-panel(
       :pic-url="picURL"
       :full-name="fullNameWithSuffixes"
       :bio="bio"
       :specialties="specialties"
       :professions="professions"
+      :education="education"
       :practicing-since="practicingSince"
-      :member-cms-organizations="memberCMSOrganizations"
       :is-verified="isVerified"
     )
-    v-row.mt-8
-      v-col(cols="12" md="3" :class="{ 'order-last pb-12' : $isMobile }")
-        professional-info(
-          :specialties="specialties"
-          :professions="professions"
-          :practicing-since="practicingSince"
-          :education="education"
-        )
-      v-col(cols="12" md="9").pa-0
-        tabs(
-          :clinics="clinics"
-          :bio="bio"
-          :specialties="specialties"
-          :professions="professions"
-          :practicing-since="practicingSince"
-          :education="education"
-          :services="services"
-          :doctorId="doctor.id"
-          :total="clinicsTotal"
-          :limit="clinicsLimit"
-          @onUpdatePage="fetchDoctorInfo"
-        ).mb-12
-    mc-footer
-    //- social(
-    //-   :name="name"
-    //- )
-    //- v-footer(
-    //-   height="auto"
-    //- )
-    //-   v-row
-    //-     v-col.text-left
-    //-       div.d-flex
-    //-         span Powered by
-    //-         img(
-    //-           src="../../assets/images/MYCURE-virtual-clinic-healthcare-practice-online-logo.svg"
-    //-           to="/"
-    //-           width="100"
-    //-           height=""
-    //-         ).ml-2.mb-2
-    //-       div
-    //-         span Copyright {{new Date().getFullYear()}} All Rights Reserved.
-    //-     v-col.text-right.my-2
-    //-       div
-    //-         span Terms of Use | Privacy Policy | Send us your feedback
-    //-       div
-    //-         span.primary--text See more doctors | Create my own Doctor Website
-    //- pre {{doctor}}
+    stats
+    facilities(
+      :first-name="firstName"
+      :doctorId="doctor.id"
+      :clinics="clinics"
+      :total="clinicsTotal"
+      :limit="clinicsLimit"
+       @onUpdatePage="fetchDoctorInfo($event)"
+    )
+    services(
+      :first-name="firstName"
+      :services="services"
+    )
+    learning-corner(:doctor-id="doctor.id")
 </template>
 
 <script>
 import _ from 'lodash';
 import {
   getDoctorWebsite,
-  getMemberOrganizations,
   recordWebsiteVisit,
 } from '~/utils/axios';
+import Facilities from '~/components/doctor-website/Facilities';
+import LearningCorner from '~/components/doctor-website/LearningCorner';
+import MainPanel from '~/components/doctor-website/MainPanel';
+import Services from '~/components/doctor-website/ServicesPanel';
+import Stats from '~/components/doctor-website/Stats';
 import { formatName } from '~/utils/formats';
 import headMeta from '~/utils/head-meta';
-import AppBar from '~/components/doctor-website/app-bar';
-import McFooter from '~/components/commons/mc-footer';
-import Panel1 from '~/components/doctor-website/panel-1';
-import ProfessionalInfo from '~/components/doctor-website/professional-info';
-import Services from '~/components/doctor-website/services';
-import Tabs from '~/components/doctor-website/tabs';
 export default {
-  layout: 'doctor-website',
   components: {
-    AppBar,
-    McFooter,
-    Panel1,
-    ProfessionalInfo,
+    Facilities,
+    LearningCorner,
+    MainPanel,
     Services,
-    Tabs,
+    Stats,
   },
+  layout: 'doctor-website',
   async asyncData ({ app, router, params, error }) {
     try {
       const doctor = await getDoctorWebsite({ username: params.id }, true);
@@ -109,6 +73,13 @@ export default {
       memberCMSOrganizations: [],
     };
   },
+  head () {
+    return headMeta({
+      title: `${this.fullNameWithSuffixes}`,
+      description: `${this.bio || 'Visit my professional website and schedule an appointment with me today.'}`,
+      socialBanner: this.picURL,
+    });
+  },
   computed: {
     picURL () {
       const sex = this.doctor?.sex;
@@ -118,7 +89,10 @@ export default {
       return this.doctor?.picURL || require('~/assets/images/doctor-website/doctor-website-profile-male.png');
     },
     name () {
-      return this.doctor?.name;
+      return this.doctor?.name || {};
+    },
+    firstName () {
+      return this.name.firstName || '';
     },
     fullName () {
       return formatName(this.doctor?.name || {}, 'firstName middleInitial lastName generationalSuffix');
@@ -163,20 +137,8 @@ export default {
   },
   methods: {
     async fetchDoctorInfo (page = 1) {
+      console.log('page', page);
       const skip = this.clinicsLimit * (page - 1);
-
-      // const [clinics, memberCMSOrganizations, total] = await Promise.all([
-      //   getDoctorClinics({
-      //     uid: this.doctor?.id,
-      //     $limit: this.clinicsLimit,
-      //     $skip: skip,
-      //   }),
-      //   getMemberOrganizations({
-      //     uid: this.doctor?.id,
-      //     type: 'cms',
-      //     select: ['id', 'name', 'picURL'],
-      //   }),
-      // ]);
 
       const { items, total } = await this.$sdk.service('organizations').find({
         createdBy: this.doctor?.id,
@@ -194,22 +156,7 @@ export default {
 
       this.clinicsTotal = total;
       this.clinics = items;
-
-      const [memberCMSOrganizations] = await getMemberOrganizations({
-        uid: this.doctor?.id,
-        type: 'cms',
-        select: ['id', 'name', 'picURL'],
-      });
-
-      this.memberCMSOrganizations = memberCMSOrganizations;
     },
-  },
-  head () {
-    return headMeta({
-      title: `${this.fullNameWithSuffixes}`,
-      description: `${this.bio || 'Visit my professional website and schedule an appointment with me today.'}`,
-      socialBanner: this.picURL,
-    });
   },
 };
 </script>
