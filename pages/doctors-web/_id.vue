@@ -6,10 +6,12 @@
       :bio="bio"
       :specialties="specialties"
       :professions="professions"
+      :education="education"
       :practicing-since="practicingSince"
       :member-cms-organizations="memberCMSOrganizations"
       :is-verified="isVerified"
     )
+    stats
 </template>
 
 <script>
@@ -20,11 +22,13 @@ import {
   recordWebsiteVisit,
 } from '~/utils/axios';
 import MainPanel from '~/components/doctor-website/MainPanel';
+import Stats from '~/components/doctor-website/Stats';
 import { formatName } from '~/utils/formats';
 import headMeta from '~/utils/head-meta';
 export default {
   components: {
     MainPanel,
+    Stats,
   },
   layout: 'doctor-website',
   async asyncData ({ app, router, params, error }) {

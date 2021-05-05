@@ -2,6 +2,7 @@
   v-btn(
     :outlined="outlined"
     :large="large"
+    :small="small"
     :rounded="rounded"
     :color="color"
     :href="url"

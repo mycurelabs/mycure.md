@@ -1,9 +1,10 @@
 <template lang="pug">
   v-app-bar(
     height="50"
+    absolute
     app
-    elevate-on-scroll
     color="white"
+    flat
   )
     v-container
       v-row(justify="center")
