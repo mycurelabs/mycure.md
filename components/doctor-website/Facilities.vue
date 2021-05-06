@@ -31,7 +31,7 @@ export default {
   props: {
     doctorId: {
       type: String,
-      defaut: '',
+      default: '',
     },
     firstName: {
       type: String,
