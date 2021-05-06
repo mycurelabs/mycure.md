@@ -31,12 +31,12 @@
               to="/terms"
               text
             ).text-none.letter-spacing-normal Terms of Use
-            span.mt-1 &nbsp;&nbsp;|&nbsp;&nbsp;
+            span(v-if="!$isMobile").mt-1 &nbsp;&nbsp;|&nbsp;&nbsp;
             v-btn(
               to="/privacy-policy"
               text
             ).text-none.letter-spacing-normal Privacy Policy
-            span.mt-1 &nbsp;&nbsp;|&nbsp;&nbsp;
+            span(v-if="!$isMobile").mt-1 &nbsp;&nbsp;|&nbsp;&nbsp;
             v-btn(
               text
               @click="toggleChat"
@@ -47,7 +47,7 @@
               text
               color="primary"
             ).text-none.letter-spacing-normal.font-weight-bold See more Doctors
-             span.mt-1.primary--text &nbsp;&nbsp;|&nbsp;&nbsp;
+             span(v-if="!$isMobile").mt-1.primary--text &nbsp;&nbsp;|&nbsp;&nbsp;
              v-btn(
               href="https://doctors.mycure.md"
               text

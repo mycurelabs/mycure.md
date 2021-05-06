@@ -137,7 +137,6 @@ export default {
   },
   methods: {
     async fetchDoctorInfo (page = 1) {
-      console.log('page', page);
       const skip = this.clinicsLimit * (page - 1);
 
       const { items, total } = await this.$sdk.service('organizations').find({

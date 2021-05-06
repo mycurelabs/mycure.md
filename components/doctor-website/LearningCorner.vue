@@ -43,16 +43,19 @@
                   :key="key"
                   cols="12"
                   md="4"
-                ).material-container
-                  v-card(height="100%").px-4
+                )
+                  v-card(height="100%").material-container
                     v-card-text
                       h3.my-2 {{ material.title }}
                       p.my-2 {{ material.description }}
                       i.primary--text.font-12(v-if="material.category") {{ material.category }}
-                    v-card-actions
-                      v-spacer
-                      a(@click="openFile(material)").primary--text.font-weight-bold View
-                      v-spacer
+                    div.material-bottom.text-center
+                      v-btn(
+                        text
+                        block
+                        color="primary"
+                        @click="openFile(material)"
+                      ).text-none.font-weight-bold View
         template(v-else)
           p.text-center.font-open-sans.font-gray No materials have been added to this section yet. You may check this website from time to time for updates!
 </template>
@@ -147,11 +150,13 @@ export default {
 </script>
 
 <style scoped>
-/* .material-container {
+.material-container {
   position: relative;
-} */
+  padding-bottom: 50px;
+}
 .material-bottom {
   position: absolute;
   bottom: 0;
+  width: 100%;
 }
 </style>

@@ -37,6 +37,8 @@ export const getDoctorWebsite = async (opts) => {
       url: `${process.env.API_URL}/personal-details?$or[0][id]=${opts.username}&$or[1][doc_website]=${opts.username}`,
     });
 
+    console.log('data fetched', data);
+
     return data.data[0];
 
     // console.log('data', data);
