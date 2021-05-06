@@ -6,7 +6,7 @@
     div.simple-container
       simple
     patients(:class="panelMargins")
-    tools(:class="panelMargins")
+    tools(:class="panelMargins" :version="2")
     div(:class="panelMargins").cta-container.pb-3.pt-10
       join-next-generation
     //- usp(@getStarted="goToSignupIndividual")
@@ -62,7 +62,7 @@ export default {
 
 <style scoped>
 .simple-container {
-  background-color: #f0f0f0;
+  background-color: #0099cc;
 }
 
 .cta-container {

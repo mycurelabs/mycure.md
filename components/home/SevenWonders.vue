@@ -82,14 +82,14 @@ export default {
       },
       {
         title: 'Patient Relationship',
-        description: 'Build continuity of care for your patients.',
+        description: 'Build continuity of care for your patients',
         infoLink: 'patients',
         comingSoon: true,
         image: 'PRM',
       },
       {
-        title: 'Compliance, security, interoperability',
-        description: 'Implement health international health IT standards',
+        title: 'Health IT',
+        description: 'Compliance, security, and interoperability standards',
         infoLink: 'csi',
         image: 'security',
       },

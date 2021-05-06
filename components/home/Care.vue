@@ -9,7 +9,7 @@
           v-col(cols="12").text-center
             h1(:class="{ 'font-l' : !$isMobile, 'font-m' : $isMobile }").lh-title Caring for people who care for people
           v-col(cols="12").text-center
-            p(:class="{ 'font-s' : !$isMobile, 'font-xs' : $isMobile }").grey--text.font-open-sans MYCURE is dedicated to help healthcare providers save more lives each day
+            p(:class="{ 'font-s' : !$isMobile, 'font-xs' : $isMobile }").grey--text.font-open-sans MYCURE is dedicated to help healthcare providers save more lives each day.
           v-col(
             v-for="(stat, key) in stats"
             :key="key"
@@ -26,7 +26,7 @@ export default {
     this.stats = [
       {
         title: 'Medical Records',
-        amount: '9,600,000+',
+        amount: '2,700,000+',
       },
       {
         title: 'Lives Saved',

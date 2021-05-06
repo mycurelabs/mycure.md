@@ -120,7 +120,7 @@ export default {
       if (this.$isMobile) return 'auto';
       if (this.version === 1 && this.$isRegularScreen) return '475px';
       if (this.version === 1 && this.$isWideScreen) return '800px';
-      if (this.version === 2 && this.$isRegularScreen) return '900px';
+      if (this.version === 2 && this.$isRegularScreen) return '950px';
       if (this.version === 2 && this.$isWideScreen) return '1100px';
       return '850px';
     },

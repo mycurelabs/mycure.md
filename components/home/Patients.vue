@@ -15,25 +15,36 @@
             v-for="(app, key) in apps"
             :key="key"
             cols="12"
-            md="6"
+            md="5"
             :class="{ 'pt-10': $isMobile }"
           ).text-center.app-container
-              strong.font-m.primary--text {{ app.name }}
-              br
-              br
-              v-row(justify="center")
-                v-col(cols="10" md="6")
-                  span.font-s.content-line-spacing.grey--text.font-open-sans {{ app.description }}
-              br
-              div.image-container
-                picture-source(
-                  extension-exclusive
-                  custom-path="home/"
-                  image-file-extension=".png"
-                  :image-alt="app.name"
-                  :image="app.image"
-                  image-width="50%"
-                )
+            //- strong.font-m.primary--text {{ app.name }}
+            //- br
+            //- br
+            //- v-row(justify="center")
+            //-   v-col(cols="10" md="6")
+            //-     span.font-s.content-line-spacing.grey--text.font-open-sans {{ app.description }}
+            //- br
+            //- div.image-container
+            //-   picture-source(
+            //-     extension-exclusive
+            //-     custom-path="home/"
+            //-     image-file-extension=".png"
+            //-     :image-alt="app.name"
+            //-     :image="app.image"
+            //-     image-width="50%"
+            //-   )
+            v-card(flat)
+              v-img(
+                :src="require(`~/assets/images/home/${app.image}.png`)"
+                height="100%"
+              )
+                v-card-title
+                  v-spacer
+                  span.font-s.white--text {{ app.name }}
+                  v-spacer
+                v-card-text.text-center
+                  strong.font-m.white--text.content-line-spacing {{ app.description }}
 </template>
 
 <script>
@@ -47,12 +58,12 @@ export default {
       {
         name: 'Online Booking',
         description: 'Help patients find the best schedule for their next visit.',
-        image: 'online_booking',
+        image: 'homepage-online-booking-2',
       },
       {
         name: 'Online Results',
         description: 'Time to go digital for the new generation.',
-        image: 'online_result',
+        image: 'homepage-online-results-2',
       },
     ];
     return {};
@@ -66,7 +77,7 @@ export default {
 }
 
 .content-line-spacing {
-  line-height: 1em;
+  line-height: 1.5em;
 }
 
 .app-container {

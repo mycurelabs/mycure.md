@@ -15,21 +15,25 @@
           custom-path="features/"
         )
       v-col(cols="11" md="4" :class="{ 'text-center' : $isMobile }")
-        h1(:class="{ 'font-l mb-8' : !$isMobile, 'font-m mb-6' : $isMobile }").lh-title Simple and powerful
-        p(:class="{ 'font-s' : !$isMobile, 'font-xs' : $isMobile }").grey--text Say goodbye to paperwork and hello to an easy, compact database.
-        p.font-xs.font-open-sans MYCURE is infused with advanced user experience that you can never compare with another medical software. Experience smooth transitions from one workflow
-          | &nbsp;to another -- you probably won't even consider using pen and paper ever again.
+        h1(:class="{ 'font-l' : !$isMobile, 'font-m' : $isMobile }").white--text.mb-4 Simple and powerful
+        p(:class="{ 'font-s' : !$isMobile, 'font-xs' : $isMobile }").white--text Say goodbye to paperwork and hello to an easy, compact database.
+        p.font-xs.font-open-sans.white--text MYCURE is infused with advanced user experience that you can never compare with another medical software. Experience smooth transitions from one workflow
+          | &nbsp;to another — you probably won't even consider using pen and paper ever again.
         v-row(dense v-for="(service, key) in services" :key="key")
           v-col(col="4")
-            mc-btn(
-              tile
-              small
-              depressed
-              :to="{ name: service.route }"
-              :color="service.color"
-            ).text-none
-              v-icon(small left) {{ service.icon }}
-              span {{ service.text }}
+            v-hover(
+              v-slot="{ hover }"
+              open-delay="100"
+            )
+              mc-btn(
+                small
+                depressed
+                :outlined="!hover"
+                :to="{ name: service.route }"
+                color="white"
+              ).text-none.info--text
+                v-icon(small left) {{ service.icon }}
+                strong {{ service.text }}
 </template>
 
 <script>
@@ -52,6 +56,12 @@ export default {
         icon: 'mdi-hospital-marker',
         color: 'info',
       },
+      {
+        text: 'For Diagnostics',
+        route: 'diagnostics',
+        icon: 'mdi-flask',
+        color: 'error',
+      },
       // - TODO: Bring back when page is visible
       // {
       //   text: 'For Hospitals',
@@ -65,10 +75,10 @@ export default {
 
 <style scoped>
 .usp-container {
-  padding-bottom: 70px;
+  padding-bottom: 50px;
 }
 
-.service-link {
-  text-decoration: none;
+.product-btn {
+  width: 175px;
 }
 </style>
