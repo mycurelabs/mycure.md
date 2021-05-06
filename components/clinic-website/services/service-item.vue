@@ -255,7 +255,7 @@ export default {
       return `${schedule.day} (${format(schedule.opening, 'hh:mm A')} - ${format(schedule.closing, 'hh:mm A')})`;
     },
     formatDay (day) {
-      if (this.nonMfSchedule) return this.days.find(item => item.value === day).text || '';
+      if (this.nonMfSchedule) return this.days.find(item => item.value === day)?.text || '';
       return day;
     },
   },

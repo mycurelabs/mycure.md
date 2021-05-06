@@ -1,6 +1,6 @@
 <template lang="pug">
-  v-card(color="#f0f0f0" flat)#servicesList
-    v-toolbar(color="#f0f0f0" flat)
+  v-card(color="white" flat)#servicesList
+    v-toolbar(v-if="!hideTabs && !showBackButton" color="white" flat)
       v-btn(v-if="showBackButton" color="primary" outlined @click="$emit('back')").text-none
         v-icon(small left) mdi-arrow-left
         | Back
@@ -34,7 +34,7 @@
             :is-preview-mode="isPreviewMode"
             :read-only="readOnly"
           )
-          v-divider
+          v-divider.my-5
     v-card-actions
       v-spacer
       v-pagination(

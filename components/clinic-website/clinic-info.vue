@@ -18,12 +18,12 @@
           v-col.shrink
             v-icon(color="error" medium) mdi-map-marker
           v-col.grow
-            span.ml-2.font-14 {{ completeAddress }}
+            span.ml-2.font-14.font-gray {{ completeAddress }}
         v-row(no-gutters)
           v-col.shrink
             v-icon(color="success" medium) mdi-phone
           v-col.grow
-            span.ml-2.font-14 #[b {{ contactNumber }}]
+            span.ml-2.font-14.font-gray #[b {{ contactNumber }}]
       v-col(cols="12" :class="{ 'text-center': $isMobile }")
         v-btn(
           color="primary"
@@ -33,6 +33,7 @@
           v-icon(left) mdi-forum
           | Questions? Chat with us now.
     v-divider
+    br
     v-row(justify="center" align="center")
       v-col(
         cols="12"
@@ -66,7 +67,7 @@ export default {
   },
   computed: {
     name () {
-      return this.clinic?.name || 'MYCURE Clinic';
+      return this.clinic?.name;
     },
     completeAddress () {
       const { address } = this.clinic;
@@ -81,7 +82,7 @@ export default {
     },
     description () {
       return this.clinic?.description ||
-      `${this.clinic?.name} specializes in telehealth services. ${this.clinic?.name} telemedicine service is committed to provide medical consultation via video conference or phone call to our patient 24 hours a day 7 days a week.`;
+      `${this.name || 'This facility'} specializes in telehealth services. ${this.name || 'It'} is committed to provide medical consultation via video conference or phone call to our patient 24 hours a day 7 days a week.`;
     },
   },
   methods: {

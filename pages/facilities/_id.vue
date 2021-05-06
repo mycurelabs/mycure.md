@@ -1,5 +1,5 @@
 <template lang="pug">
-  div(v-if="!loading.page").py-0
+  div(v-if="!loading.page").py-0.main-container
     app-bar(
       :picURL="picURL"
       :clinicName="clinicName"
@@ -20,40 +20,53 @@
     )
     v-container(fluid)
       v-row(justify="center")
+        //- Mobile
         v-col(
-          v-if="$isMobile && !searchResultsMode"
+          v-if="!searchResultsMode"
           cols="12"
+          md="7"
+          :class="{ 'order-first': $isMobile, 'order-last': !$isMobile }"
         )
           service-types-mobile-selection(
-            v-if="!mobileServicesListView"
+            v-if="!mobileServicesListView && $isMobile"
             :service-types="serviceTypes"
             :has-doctors="hasDoctors"
             :is-preview-mode="isPreviewMode"
             @select="activeTab = $event; mobileServicesListView = true"
           )
-          //- TODO: Organize to not use separate components for mobile and web
           services-tabs(
-            v-else
+            v-else-if="showServiceTabs"
+            v-model="activeTab"
             hide-tabs
-            show-back-button
+            :show-back-button="$isMobile"
             :items="listItems"
             :items-pagination-length="itemsPaginationLength"
             :organization="orgId"
             :loading="loading.list"
             :has-next-page="hasNextPage"
             :has-previous-page="hasPreviousPage"
+            :has-doctors="hasDoctors"
             :is-preview-mode="isPreviewMode"
             :service-types="serviceTypes"
             @back="mobileServicesListView = false"
             @paginate="refetchListItems(activeTab, $event)"
           )
         v-col(cols="12" md="3")
+          service-types-selection(
+            v-if="!$isMobile"
+            v-model="activeTab"
+            :service-types="serviceTypes"
+            :has-doctors="hasDoctors"
+            :is-preview-mode="isPreviewMode"
+            @select="activeTab = $event"
+          )
           clinic-info(
             :clinic="clinicWebsite"
             :is-dummy-org="isDummyOrg"
             :is-preview-mode="isPreviewMode"
           )
           schedules(:schedules="groupedSchedules").mt-2
+          //- Show on mobile
           usp(
             v-if="$isMobile && searchResultsMode"
             v-model="searchText"
@@ -68,28 +81,15 @@
             @search="onServiceSearch"
             @filter:date="filterByDate"
           )
-        v-col(cols="12" md="8")#services
-          services-tabs(
-            v-if="!searchResultsMode && !$isMobile"
-            v-model="activeTab"
-            :items="listItems"
-            :items-pagination-length="itemsPaginationLength"
-            :organization="orgId"
-            :loading="loading.list"
-            :has-next-page="hasNextPage"
-            :has-previous-page="hasPreviousPage"
-            :is-preview-mode="isPreviewMode"
-            :service-types="serviceTypes"
-            :has-doctors="hasDoctors"
-            @paginate="refetchListItems(activeTab, $event)"
-          )
+        v-col(cols="12" md="7" v-if="searchResultsMode")#services
           services-search-results(
-            v-else-if="searchResultsMode"
             :organization="orgId"
             :loading="loading.list"
             :items="searchResults"
             :is-preview-mode="isPreviewMode"
           )
+
+    //- Footer
     v-divider
     v-footer(v-if="!$isMobile" color="white").mt-3
       v-row.d-flex
@@ -166,6 +166,7 @@ import Schedules from '~/components/clinic-website/schedules';
 import ServicesSearchResults from '~/components/clinic-website/services/search-results';
 import ServicesTabs from '~/components/clinic-website/services/tabs';
 import ServiceTypesMobileSelection from '~/components/clinic-website/services/service-types-mobile-selection';
+import ServiceTypesSelection from '~/components/clinic-website/services/service-types-selection';
 import Usp from '~/components/clinic-website/usp';
 
 const SERVICE_TYPES = [
@@ -178,7 +179,6 @@ const SERVICE_TYPES = [
 ];
 
 export default {
-  layout: 'clinic-website',
   components: {
     AppBar,
     ClinicInfo,
@@ -186,8 +186,10 @@ export default {
     ServicesSearchResults,
     ServicesTabs,
     ServiceTypesMobileSelection,
+    ServiceTypesSelection,
     Usp,
   },
+  layout: 'clinic-website',
   async asyncData ({ params, $sdk, redirect }) {
     try {
       const clinicWebsite = await getOrganization({ id: params.id }, true) || {};
@@ -277,6 +279,13 @@ export default {
       searchFilters: {},
     };
   },
+  head () {
+    return headMeta({
+      title: `${this.clinicWebsite?.name || 'Facility Website'}`,
+      description: 'Visit my professional website and schedule an appointment with me today.',
+      socialBanner: this.picURL,
+    });
+  },
   computed: {
     mode () {
       return this.$route.query.mode;
@@ -285,7 +294,7 @@ export default {
       return this.mode === 'preview';
     },
     orgId () {
-      return this.clinicWebsite.id;
+      return this.clinicWebsite?.id;
     },
     isVerified () {
       return !!this.clinicWebsite?.websiteId;
@@ -329,15 +338,16 @@ export default {
       return this.clinicWebsite?.description;
     },
     formattedDoctors () {
-      return this.orgDoctors?.map((doctor) => {
-        const practicingSince = doctor.personalDetails?.['doc_practicingSince'];
+      if (!this.orgDoctors?.length) return [];
+      return this.orgDoctors.map((doctor) => {
+        const practicingSince = doctor.personalDetails?.doc_practicingSince; // eslint-disable-line
         const yearsPracticing = practicingSince && (new Date().getFullYear() - practicingSince);
 
         return {
           ...doctor,
           picURL: doctor.personalDetails?.picURL,
           doctorName: `Dr. ${doctor.personalDetails?.name?.firstName} ${doctor.personalDetails?.name?.lastName}`,
-          specialties: doctor.personalDetails?.['doc_specialties']?.join(', '),
+          specialties: doctor.personalDetails?.doc_specialties?.join(', '), // eslint-disable-line
           yearsPracticing: yearsPracticing && `${yearsPracticing} years`,
         };
       }) || [];
@@ -355,6 +365,11 @@ export default {
     hasPreviousPage () {
       const previousSkip = this.itemsLimit * (this.page - 1);
       return previousSkip > 0;
+    },
+    showServiceTabs () {
+      if (this.$isMobile && this.mobileServicesListView) return true;
+      if (!this.$isMobile && !this.searchResultsMode) return true;
+      return false;
     },
   },
   watch: {
@@ -493,13 +508,6 @@ export default {
       }) || [];
     },
   },
-  head () {
-    return headMeta({
-      title: `${this.clinicWebsite?.name || 'Facility Website'}`,
-      description: 'Visit my professional website and schedule an appointment with me today.',
-      socialBanner: this.picURL,
-    });
-  },
 };
 </script>
 
@@ -507,10 +515,7 @@ export default {
 a {
   text-decoration: none;
 }
-.main-content {
-  margin-top: 100px;
-}
-.doctors-container {
-  background-color: #F2F2F2;
+.main-container {
+  background-color: #fafafa;
 }
 </style>
