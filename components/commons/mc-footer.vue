@@ -12,7 +12,7 @@
               ).mt-4
           v-row(v-if="!$isMobile").mt-4.justify-space-around
             template(v-for="(footerItem, index) in footerItems")
-              v-col(cols="6" md="2").footer-section
+              v-col(cols="6" md="3").footer-section
                 h4(v-if="footerItem.type === 'footer-header'").primary--text {{ footerItem.value }}
                 template(v-for="(col, index) in footerItem.columns")
                   a(
@@ -121,6 +121,8 @@ export default {
             { type: 'link', value: 'Doctor\'s Clinics', link: '/doctors-clinics' },
             { type: 'link', value: 'Outpatient Clinics', link: '/clinics' },
             { type: 'link', value: 'Diagnostics', link: '/diagnostics' },
+            { type: 'link', value: 'Telehealth', link: '/telehealth' },
+            { type: 'link', value: 'Booking', link: '/booking' },
           ],
         },
         {
