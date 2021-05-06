@@ -106,7 +106,7 @@
       :header-classes="headerClasses"
       :sub-header-classes="subHeaderClasses"
       :description-classes="descriptionClasses"
-      web-image="workspace"
+      web-image="FullService"
       file-extension=".png"
       extension-exclusive
       custom-image-path="diagnostics/"
