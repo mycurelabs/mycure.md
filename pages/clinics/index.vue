@@ -12,7 +12,7 @@
       btn-color="info"
       :parse-meta-title-fields="['Complete ']"
       web-height="590px"
-      image="USP"
+      image="Clinics USP"
       custom-image-path="clinics/"
       @click="videoDialog = true"
     )

@@ -6,7 +6,7 @@
       meta-title="MYCURE Diagnostic"
       description="The best tool to create, finalize, and release diagnostic test results is finally here."
       web-height="600px"
-      image="USP"
+      image="Diagnostics-USP"
       custom-image-path="diagnostics/"
       @click="$nuxt.$router.push({ name: 'signup-health-facilities', params: { type: 'clinic-diagnostic' }})"
     )
