@@ -10,7 +10,7 @@
             p(:class="descriptionClasses").grey--text.font-open-sans {{ description }}
           v-col(cols="12" :md="iconContainerColSize")
             v-row(justify="center")
-              v-col(cols="6" :md="iconColSize" v-for="(item, key) in items" :key="key").text-center
+              v-col(:cols="iconColSizeMobile" :md="iconColSize" v-for="(item, key) in items" :key="key").text-center
                 picture-source(
                   v-if="item.icon"
                   :extension-exclusive="extensionExclusive"
@@ -18,7 +18,7 @@
                   :image="item.icon"
                   :image-alt="item.title"
                   :image-file-extension="item.iconExtension || '.png'"
-                  :image-width="!$isMobile ? imageWidth : '60%'"
+                  :image-width="!$isMobile ? imageWidth : imageWidthMobile"
                 )
                 br
                 h3.font-xs.font-open-sans.grey--text {{ item.title }}
@@ -59,6 +59,10 @@ export default {
       type: [String, Number],
       default: '40%',
     },
+    imageWidthMobile: {
+      type: [String, Number],
+      default: '60%',
+    },
     extensionExclusive: {
       type: Boolean,
       default: false,
@@ -82,10 +86,15 @@ export default {
       type: [Number, String],
       default: '12',
     },
-    // - Space for each icon
+    // - Space for each icon (web)
     iconColSize: {
       type: [Number, String],
       default: '4',
+    },
+    // - Space for each icon (mobile)
+    iconColSizeMobile: {
+      type: [Number, String],
+      default: '6',
     },
     // - Height of panel
     panelHeight: {
