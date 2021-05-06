@@ -51,7 +51,7 @@ export default {
   },
   computed: {
     panelMargins () {
-      return { 'mt-10': this.$isMobile, 'mt-5': !this.$isMobile };
+      return { 'mt-10': this.$isMobile, 'mt-12': !this.$isMobile };
     },
   },
   mounted () {
