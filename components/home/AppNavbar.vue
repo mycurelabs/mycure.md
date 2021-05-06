@@ -60,6 +60,15 @@
       color="black"
       width="500"
     )
+      v-toolbar(flat color="black")
+        img(
+          src="~/assets/images/MYCURE Logo - white.png"
+          width="120"
+          alt="MYCURE logo"
+        )
+        v-spacer
+        v-btn(icon @click="drawer = false")
+          v-icon mdi-close
       v-list(dense nav)
         template(v-for="nav in navs")
           v-list-item(
