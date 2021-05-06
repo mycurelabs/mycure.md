@@ -1,10 +1,12 @@
 <template lang="pug">
-  v-card(flat)
-    v-tabs(vertical v-model="activeServiceType" grow).tabs
-      template(v-for="type in types")
-        v-tab(v-if="hasServiceType(type.value)" :href="`#${type.value}`").text-left
-          v-icon(left) {{ type.icon }}
-          | {{ type.text }}
+  div
+    h3.font-21 Our Services
+    v-card(flat).mt-1
+      v-tabs(vertical v-model="activeServiceType" grow).tabs
+        template(v-for="type in types")
+          v-tab(v-if="hasServiceType(type.value)" :href="`#${type.value}`").text-left
+            v-icon(left) {{ type.icon }}
+            | {{ type.text }}
 </template>
 
 <script>

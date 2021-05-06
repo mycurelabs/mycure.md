@@ -28,9 +28,10 @@
         v-btn(
           color="primary"
           shaped
+          depressed
           @click="onInquiry"
-        ).text-none
-          v-icon(left) mdi-forum
+        ).text-none.font-12
+          v-icon(small left) mdi-forum
           | Questions? Chat with us now.
     v-divider
     br

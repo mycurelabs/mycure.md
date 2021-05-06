@@ -53,13 +53,22 @@
           )
         v-col(cols="12" md="3")
           service-types-selection(
-            v-if="!$isMobile"
+            v-if="!$isMobile && !searchResultsMode"
             v-model="activeTab"
             :service-types="serviceTypes"
             :has-doctors="hasDoctors"
             :is-preview-mode="isPreviewMode"
             @select="activeTab = $event"
           )
+          v-btn(
+            v-if="searchResultsMode && !$isMobile"
+            tile
+            outlined
+            color="primary"
+            @click="searchResultsMode = false"
+          ).text-none
+            v-icon(small left) mdi-arrow-left
+            | Go back to Main Page
           clinic-info(
             :clinic="clinicWebsite"
             :is-dummy-org="isDummyOrg"
