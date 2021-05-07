@@ -11,7 +11,7 @@
               h1(:class="planTitleClasses").white--text {{plan.name}}
               p.white--text.mb-6.font-open-sans {{plan.description}}
           v-col(v-if="$isMobile" cols="12").text-center
-            get-started-btn(color="success" block small)
+            get-started-btn(color="success" block).font-12
 </template>
 
 <script>

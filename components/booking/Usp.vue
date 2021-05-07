@@ -23,7 +23,7 @@
           span #[br] Safely
         p(:class="descriptionClasses").font-gray.font-open-sans Bring in more patients using a powerful healthcare service booking and management software. It's free, secure, and easy to use.
         br
-        get-started-button(small)
+        get-started-button.font-12
 </template>
 
 <script>

@@ -37,16 +37,14 @@
       :web-image="infoPanels[1].image"
       file-extension=".png"
     )
-      template(slot="additional-content")
+      div(slot="additional-content" :class="{'text-center': $isMobile}")
         mc-btn(
-          tile
-          small
           depressed
           color="primary"
           :block="$isMobile"
           event-label="signup"
           :to="{ name: 'signup-health-facilities' }"
-        ).text-none
+        ).text-none.font-12
           v-icon(small left) mdi-web
           span Create my website
         //- TODO: Need sample clinic
@@ -78,15 +76,13 @@
           source(src="~/assets/videos/mycure-syncbase-diagram-animate.mp4" type="video/mp4")
           | Your browser does not support the video tag.
 
-      template(slot="additional-content")
+      div(slot="additional-content" :class="{'text-center': $isMobile}")
         mc-btn(
-          tile
-          small
           depressed
           color="primary"
           :block="$isMobile"
           :to="{ name: 'syncbase' }"
-        ).text-none
+        ).text-none.font-12
           v-icon(small left) mdi-information-outline
           span Learn about MYCURE Syncbase
     //- 7th panel
@@ -107,11 +103,9 @@
             mc-btn(
               color="primary"
               block
-              tile
-              small
               depressed
               :to="{ name: 'doctors-clinics' }"
-            ).text-none Practicing solo? Click here.
+            ).text-none.font-12 Practicing solo? Click here.
     //- 8th panel
     think-long-term(extended :class="panelMargins")
     //- 9th panel

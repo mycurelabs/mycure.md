@@ -70,16 +70,13 @@
       custom-image-path="commons/"
       file-extension=".png"
     )
-      template(slot="additional-content")
+      div(slot="additional-content" :class="{'text-center': $isMobile}")
         mc-btn(
-          tile
-          small
           depressed
           color="primary"
-          :block="$isMobile"
           event-label="signup"
           :to="{ name: 'signup-health-facilities' }"
-        ).text-none
+        ).text-none.font-12
           v-icon(small left) mdi-web
           span Create my website
         //- TODO: Bring back once demo is available
@@ -111,15 +108,12 @@
       extension-exclusive
       custom-image-path="diagnostics/"
     )
-      template(slot="additional-content")
+      div(slot="additional-content" :class="{'text-center': $isMobile}")
         mc-btn(
-          tile
-          small
           depressed
           color="primary"
-          :block="$isMobile"
           :to="{ name: 'clinics' }"
-        ).text-none
+        ).text-none.font-12
           v-icon(small left) mdi-information-outline
           span Learn more
     //- 8th panel

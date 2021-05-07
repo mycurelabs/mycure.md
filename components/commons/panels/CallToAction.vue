@@ -15,50 +15,24 @@
     extension-exclusive
     custom-image-path="commons/"
   )
-    template(slot="additional-content" v-if="version === 1")
+    template(slot="additional-content")
       v-row(justify="center" dense)
         v-col(cols="12")
           mc-btn(
             depressed
-            small
-            tile
-            color="primary"
+            :color="version === 1 ? 'primary' : 'success'"
             :block="$isMobile"
             :href="'https://calendly.com/mycure/demo'"
-          ).text-none Book a full training
-      v-row(justify="center" dense).mb-10
+          ).text-none.font-12 {{ version === 1 ? 'Book a full training' : 'Start Now' }}
+      v-row(justify="center" dense v-if="version === 1").mb-10
         v-col(cols="12")
           mc-btn(
             depressed
-            small
-            tile
             color="success"
             :block="$isMobile"
             event-label="signup"
             :to="{ name: 'signup-health-facilities' }"
-          ).text-none Get Started Free
-    template(slot="additional-content" v-if="version === 2")
-      v-row(justify="center")
-        v-col(cols="12")
-          mc-btn(
-            depressed
-            small
-            tile
-            color="success"
-            event-label="signup"
-            :to="{ name: 'signup-health-facilities' }"
-          ).text-none Start Now
-      //- TODO: Bring back once available
-      //- v-row(justify="center").mb-10
-      //-   v-col(cols="12")
-      //-     mc-btn(
-      //-       depressed
-      //-       text
-      //-       x-large
-      //-       color="primary"
-      //-     ).text-none
-      //-       span Download MYCURE's implementation workflow
-      //-       v-icon(right) mdi-download
+          ).text-none.font-12 Get Started Free
 </template>
 
 <script>

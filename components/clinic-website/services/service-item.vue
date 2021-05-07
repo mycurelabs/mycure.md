@@ -58,13 +58,11 @@
         h3(v-else).font-italic No price stated
         v-btn(
           color="success"
-          tile
           depressed
-          small
           block
           :disabled="!isAvailable"
           :href="bookServiceURL"
-        ).text-none.mt-1 Book Now
+        ).text-none.mt-1.font-12 Book Now
     v-row(justify="end")
       v-col(
         v-if="isDoctor && !readOnly"
@@ -73,24 +71,20 @@
       )
         v-btn(
           color="success"
-          tile
           depressed
-          small
           block
           :disabled="!isAvailable"
           :href="bookTeleconsultURL"
-        ).text-none Book a Teleconsult
+        ).text-none.font-12 Book a Teleconsult
         br
         v-btn(
           color="info"
-          tile
           depressed
-          small
           block
           outlined
           :disabled="!isAvailable"
           :href="bookTeleconsultURL"
-        ).text-none Book a Visit
+        ).text-none.font-12 Book a Visit
     //- Schedule dialog
     v-dialog(v-model="scheduleExpanded" width="1000")
       v-toolbar(flat)

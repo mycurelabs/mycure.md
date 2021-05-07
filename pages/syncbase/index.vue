@@ -65,14 +65,12 @@
         :header-classes="headerClasses"
         :dense="$isMobile"
       ).white--text
-        template(slot="additional-content")
+        div(slot="additional-content" :class="{'text-center': $isMobile}")
           mc-btn(
-            tile
-            small
             depressed
             color="primary"
             :href="'https://calendly.com/mycure/demo'"
-          ).text-none Book a Demo
+          ).text-none.font-12 Book a Demo
 </template>
 
 <script>

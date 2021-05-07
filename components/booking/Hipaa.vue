@@ -17,12 +17,10 @@
               href="https://blog.mycure.md/mycure-is-hipaa-compliant/"
               target="_blank"
               rel="noreferrer noopener"
-              tile
               depressed
-              small
               color="primary"
               :block="$isMobile"
-            ).text-none
+            ).text-none.font-12
               v-icon(small left) mdi-information-outline
               | Learn more
 </template>

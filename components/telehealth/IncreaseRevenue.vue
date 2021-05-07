@@ -16,13 +16,11 @@
         p(:class="descriptionClasses").text-justify.font-gray.font-open-sans {{ data.description }}
         br
         mc-btn(
-          small
-          tile
           depressed
           color="success"
           event-label="signup"
           :to="{ name: 'signup-health-facilities' }"
-        ).text-none
+        ).text-none.font-12
           | Get Started Free
           v-icon(small right) mdi-arrow-right
 </template>

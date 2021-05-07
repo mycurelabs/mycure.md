@@ -23,11 +23,9 @@
                 rel="noopener noreferrer"
                 :class="{ 'pl-2' : $isMobile }"
                 :block="$isMobile"
-                tile
-                small
                 depressed
                 color="primary"
-              ).text-none
+              ).text-none.font-12
                 | Book a Demo
                 v-icon(small right) mdi-arrow-right
 </template>

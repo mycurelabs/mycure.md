@@ -1,14 +1,13 @@
 <template lang="pug">
   mc-btn(
     color="success"
-    tile
     depressed
     :large="large"
     :x-large="xLarge"
     :small="small"
     :block="block"
     @click="getStarted"
-  ).text-none.font-weight-bold.letter-spacing-normal Get Started
+  ).text-none.letter-spacing-normal Get Started
 </template>
 
 <script>

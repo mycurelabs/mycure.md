@@ -57,12 +57,10 @@
         div(:class="{ 'text-center': $isMobile }")
           mc-btn(
             depressed
-            tile
-            small
             color="success"
             event-label="signup"
             :to="{ name: 'signup-health-facilities' }"
-          ).text-none
+          ).text-none.font-12
             span Get Started Free
             v-icon(small right) mdi-arrow-right
     //- 7th panel
