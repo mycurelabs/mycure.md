@@ -108,6 +108,14 @@ export default {
       loading: true,
     };
   },
+  head () {
+    return headMeta({
+      title: 'MYCURE Privacy Policy',
+      description: 'MYCURE practices data privacy and integrity at its core. Learn more about our Privacy Policy so you will know how we process your data using MYCURE Clinic Management System in your practice. Last updated: March 6, 2018.',
+      // - TODO: Replace with local if applicable
+      socialBanner: 'https://firebasestorage.googleapis.com/v0/b/mc-v4-prod.appspot.com/o/web-main-assets%2FMYCURE_Open_Graph_Images_Privacy_Policy.png?alt=media&token=f68b2956-ed80-421b-bbcd-a7c129f7430c',
+    });
+  },
   computed: {
     headerClasses () {
       return [{ 'header-container': !this.$isMobile }];
@@ -116,14 +124,6 @@ export default {
   mounted () {
     VueScrollTo.scrollTo('#app', 500, { easing: 'ease' });
     this.loading = false;
-  },
-  head () {
-    return headMeta({
-      title: 'MYCURE Privacy Policy',
-      description: 'MYCURE practices data privacy and integrity at its core. Learn more about our Privacy Policy so you will know how we process your data using MYCURE Clinic Management System in your practice. Last updated: March 6, 2018.',
-      // - TODO: Replace with local if applicable
-      socialBanner: 'https://firebasestorage.googleapis.com/v0/b/mc-v4-prod.appspot.com/o/web-main-assets%2FMYCURE_Open_Graph_Images_Privacy_Policy.png?alt=media&token=f68b2956-ed80-421b-bbcd-a7c129f7430c',
-    });
   },
 };
 </script>
