@@ -43,6 +43,8 @@
               v-card-text.py-8
                 div.text-center
                   p(v-if="details.requireContact").font-m.font-weight-bold.pb-10 Contact Us
+                    br
+                    br
                   template(v-else)
                     p.font-weight-bold {{ details.currency }}&nbsp;
                       span(v-if="pricingMode === 'monthly'").font-l {{ details.monthlyPrice }}
@@ -50,7 +52,7 @@
                     p {{ details.users }} user
                       br
                       | per month
-              v-divider
+              v-divider(:class="{'mt-2' : details.requireContact }")
               v-card-text
                 div(v-for="(inclusion, key) in details.inclusions" :key="key").d-flex
                   v-icon(small :color="inclusion.valid ? 'primary' : 'error'" left) {{ inclusion.valid ? 'mdi-check' : 'mdi-close' }}
