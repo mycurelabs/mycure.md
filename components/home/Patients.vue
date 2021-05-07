@@ -16,7 +16,7 @@
             :key="key"
             cols="12"
             md="5"
-            :class="{ 'pt-10': $isMobile }"
+            :class="{ 'mt-10': $isMobile }"
           ).text-center.app-container
             //- strong.font-m.primary--text {{ app.name }}
             //- br
@@ -81,7 +81,7 @@ export default {
 }
 
 .app-container {
-  height: 450px;
+  height: 600px;
   position: relative;
 }
 

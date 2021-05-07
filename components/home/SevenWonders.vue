@@ -9,8 +9,8 @@
       :class="{ 'pt-10': $isMobile }"
     )
       v-col(cols="12" md="6" :class="{ 'text-center' : $isMobile }")
-        h1(:class="{ 'font-xl mb-8' : !$isMobile, 'font-m mb-6' : $isMobile }") Make Healthcare Accessible to All
-        p(:class="{ 'font-m' : !$isMobile, 'font-xs' : $isMobile }").grey--text THE&nbsp;
+        h1(:class="{ 'font-xl mb-8' : !$isMobile, 'font-l mb-6' : $isMobile }") Make Healthcare Accessible to All
+        p(:class="{ 'font-m' : !$isMobile, 'font-s' : $isMobile }").grey--text THE&nbsp;
           strong.primary--text SEVEN WONDERS&nbsp;
           span.grey--text OF HEALTHCARE&nbsp;
           br(v-if="$isRegularScreen")
