@@ -1,5 +1,6 @@
 <template lang="pug">
   v-container.container
+    cms-video-dialog(v-model="videoDialog")
     v-row(justify="center" align="center")
       v-col(cols="12" md="10")
         v-row(justify="center")
@@ -7,6 +8,14 @@
             h1(:class="titleClasses").lh-title Why do clinics switch to MYCURE?
           v-col(cols="12" md="6").text-center.py-3
             p(:class="descriptionClasses").grey--text.font-open-sans MYCURE integrates critical clinic operations into a clean, simple interface to make record management much easier for everyone. Say goodbye to multiple, complicated systems.
+            mc-btn(
+              event-label="click-cms-video"
+              event-category="Video"
+              depressed
+              color="info"
+              :block="$isMobile"
+              @click="videoDialog = true"
+            ).text-none.font-12.mt-3 Watch How It Works
           v-col(cols="12")
             v-row(justify="center")
               v-col(v-if="!$isMobile" cols="12").text-center
@@ -35,17 +44,12 @@
 
 <script>
 import classBinder from '~/utils/class-binder';
+import CmsVideoDialog from '~/components/outpatient-clinics/CmsVideoDialog';
 import PictureSource from '~/components/commons/PictureSource';
 export default {
   components: {
+    CmsVideoDialog,
     PictureSource,
-  },
-  props: {
-    // - Height of panel
-    panelHeight: {
-      type: String,
-      default: '1000px',
-    },
   },
   data () {
     this.items = [
@@ -82,7 +86,9 @@ export default {
         icon: '8M-Journeys',
       },
     ];
-    return {};
+    return {
+      videoDialog: false,
+    };
   },
   computed: {
     titleClasses () {

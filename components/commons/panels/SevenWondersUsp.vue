@@ -25,11 +25,9 @@
           v-else-if="!hideBtn"
           depressed
           :color="btnColor"
-          small
-          tile
           :event-label="`${title} USP button`"
           @click="$emit('click')"
-        ).text-none.letter-spacing-normal {{ btnText }}
+        ).text-none.letter-spacing-normal.font-12 {{ btnText }}
 </template>
 
 <script>

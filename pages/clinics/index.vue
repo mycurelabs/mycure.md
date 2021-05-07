@@ -8,15 +8,14 @@
       parse-meta-title="mobile"
       parse-title="regular"
       :parse-title-fields="['workflows, ', 'results, ']"
-      btn-text="Watch How It Works"
-      btn-color="info"
+      btn-text="Get Started"
+      btn-color="success"
       :parse-meta-title-fields="['Complete ']"
       web-height="590px"
       image="Clinics USP"
       custom-image-path="clinics/"
-      @click="videoDialog = true"
+      @click="$nuxt.$router.push({ name: 'signup-health-facilities', params: { type: 'clinic' }})"
     )
-    cms-video-dialog(v-model="videoDialog")
     //- 2nd panel
     workflow
     //- 3rd panel
@@ -132,7 +131,6 @@ import classBinder from '~/utils/class-binder';
 import headMeta from '~/utils/head-meta';
 // - components
 import CallToAction from '~/components/commons/panels/CallToAction';
-import CmsVideoDialog from '~/components/outpatient-clinics/CmsVideoDialog';
 import Features from '~/components/commons/panels/Features';
 import GenericMediaPanel from '~/components/commons/generic-media-panel';
 import MultipleBranches from '~/components/enterprise/multiple-branches';
@@ -147,7 +145,6 @@ import { ENTERPRISE_PRICING } from '~/constants/pricing';
 export default {
   components: {
     CallToAction,
-    CmsVideoDialog,
     GenericMediaPanel,
     Features,
     MultipleBranches,
@@ -213,7 +210,6 @@ export default {
     this.pricingDetails = ENTERPRISE_PRICING;
     return {
       loading: true,
-      videoDialog: false,
     };
   },
   head () {
