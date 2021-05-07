@@ -7,7 +7,7 @@
             v-col(cols="11" md="5")
               img(
                 width="100%"
-                src="../../assets/images/providers/mycure-syncbase-diagram-animate.gif"
+                src="../../assets/images/booking/mycure-syncbase-diagram-animate.gif"
                 style="border-radius: 10px;"
               )
             v-col(cols="12" md="1")

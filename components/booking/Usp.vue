@@ -8,7 +8,7 @@
     )
       v-col(cols="8" md="5" offset-md="1" :class="{ 'order-last' : !$isMobile }")
         v-img(
-          :src="require('../../assets/images/providers/website-image-providers.png')"
+          :src="require('../../assets/images/booking/Booking USP.png')"
           width="100%"
           alt="homepage image"
         )

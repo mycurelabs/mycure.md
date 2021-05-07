@@ -46,17 +46,17 @@ export default {
     return {
       items: [
         {
-          image: require('../../assets/images/providers/A Asset 2.png'),
+          image: require('../../assets/images/booking/A Asset 2.png'),
           title: 'Appointments',
           description: 'Seamless booking to get more patients',
         },
         {
-          image: require('../../assets/images/providers/B Asset 2.png'),
+          image: require('../../assets/images/booking/B Asset 2.png'),
           title: 'Billing',
           description: 'Efficiently measure your growth',
         },
         {
-          image: require('../../assets/images/providers/C Asset 2.png'),
+          image: require('../../assets/images/booking/C Asset 2.png'),
           title: 'Charting',
           description: 'Quick & secure access to medical records',
         },

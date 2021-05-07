@@ -1,7 +1,7 @@
 <template lang="pug">
   div(v-if="!loading").white
     //- 1st panel
-    usp(@getStarted="goToSignupIndividual")
+    usp
     start-easy(:header-classes="headerClasses")
     features(
       :header-classes="headerClasses"
@@ -77,14 +77,6 @@ export default {
   mounted () {
     window.$crisp.push(['safe', true]);
     this.loading = false;
-  },
-  methods: {
-    getStarted () {
-      this.$router.push({ name: 'signup-individual' });
-    },
-    goToSignupIndividual (email) {
-      this.$router.push({ name: 'signup-individual' });
-    },
   },
 };
 </script>

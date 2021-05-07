@@ -53,7 +53,7 @@ export default {
       rows: [
         {
           imagePos: 'right',
-          image: require('../../assets/images/providers/Phone-Mockup.png'),
+          image: require('../../assets/images/booking/Phone-Mockup.png'),
           title: 'MYCURE makes every step of patient care a breeze',
           list: [
             'Organized patient visits for easy COVID-19 safety compliance',
@@ -63,7 +63,7 @@ export default {
         },
         {
           imagePos: 'left',
-          image: require('../../assets/images/providers/pxp-page.jpg'),
+          image: require('../../assets/images/booking/pxp-page.jpg'),
           title: 'Patients book your healthcare services, keeping you both safe',
           superTitle: 'DIRECTORY',
           // superTitleChipText: 'Coming Soon!',
@@ -75,7 +75,7 @@ export default {
         },
         {
           imagePos: 'right',
-          image: require('../../assets/images/providers/Clinic-Website-cropped.png'),
+          image: require('../../assets/images/booking/Clinic-Website-cropped.png'),
           title: 'Impress your patients when they learn about you on your website',
           superTitle: 'FREE WEBSITE',
           list: [
