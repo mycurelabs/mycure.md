@@ -1,5 +1,5 @@
 <template lang="pug">
-  div(v-if="!loading" style="padding-bottom: 150px;")
+  div(v-if="!loading").bottom-padding
     main-panel(
       :pic-url="picURL"
       :full-name="fullNameWithSuffixes"
@@ -10,7 +10,9 @@
       :practicing-since="practicingSince"
       :is-verified="isVerified"
     )
-    stats
+    stats(
+      :website-visits="websiteVisits"
+    )
     facilities(
       :first-name="firstName"
       :doctorId="doctor.id"
@@ -69,6 +71,7 @@ export default {
       loading: true,
       page: 1,
       clinicsTotal: 0,
+      websiteVisits: 0,
       clinics: [],
       memberCMSOrganizations: [],
     };
@@ -129,10 +132,25 @@ export default {
   },
   async mounted () {
     this.loading = false;
+    // - TODO: Fetch website visits
     if (this.$route.query.audience === 'self') {
+      // // - Fetch existing
+      // const data = await this.$sdk.service('system-counters').find({
+      //   account: this.doctor.id,
+      //   type: 'doctor-website-visit',
+      // });
+      // this.websiteVisits = data || 0;
       return;
-    };
-    await recordWebsiteVisit({ uid: this.doctor.id });
+    } else {
+      // - Record new
+      await recordWebsiteVisit({ uid: this.doctor.id });
+      // // - Fetch visits
+      // const data = await this.$sdk.service('system-counters').find({
+      //   account: this.doctor.id,
+      //   type: 'doctor-website-visit',
+      // });
+      // this.websiteVisits = data || 0;
+    }
     this.fetchDoctorInfo();
   },
   methods: {
@@ -165,5 +183,15 @@ export default {
 .mycure-link {
   color: white;
   text-decoration: none;
+}
+
+.bottom-padding {
+  padding-bottom: 500px;
+}
+
+@media screen and (min-width: 1000px) {
+  .bottom-padding {
+    padding-bottom: 150px;
+  }
 }
 </style>

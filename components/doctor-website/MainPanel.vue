@@ -10,18 +10,17 @@
             br
             br
             h1 {{ fullName }}
-            br
+            div(v-if="hasProfessionalInfo")
+              span.font-gray.font-open-sans {{ specialtiesMapped }}
+              br
+              p(v-if="practicingSince").font-open-sans.font-gray {{yearsOfExperience}} Years of Experience
+              br(v-else)
+              br
             //- Bio
             div
               strong.primary--text About
               p.font-open-sans.font-gray {{ bio || 'Ready to accomodate you!' }}
             //- Professional Info
-            div(v-if="hasProfessionalInfo")
-              strong.primary--text Professional Info
-              br
-              span.font-gray.font-open-sans {{ specialtiesMapped }}
-              br
-              span(v-if="practicingSince").info--text.font-open-sans {{yearsOfExperience}} Years of Experience
             br
             //- Educational Background
             div(v-if="education.length")
@@ -79,19 +78,6 @@
                             img(src="~/assets/images/doctor-website/linkedin-logo-white.png" width="20%").pa-3
                           network(network="email").social-image
                             img(src="~/assets/images/doctor-website/gmail-logo-white.png" width="20%").pa-3
-        //- Professional Info
-        v-row(justify="center" align="center")
-          template(v-for="(stat, key) in stats")
-            v-col(
-              cols="12"
-              md="2"
-            ).text-center
-              v-avatar(size="60" :color="stat.color")
-                v-icon(color="white" large) {{ stat.icon }}
-              h3.mt-1 {{ stat.value }}
-              span.font-14 {{ stat.label }}
-            v-col(cols="1" v-if="!$isMobile && key !== 2").divider-container
-              div.divider
 </template>
 
 <script>

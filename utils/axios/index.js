@@ -369,7 +369,7 @@ export const recordWebsiteVisit = async (opts) => {
       campaign: 'Website Visit',
       source: window.location.href,
     };
-    const { data } = await axios({
+    const data = await axios({
       method: 'post',
       url: `${process.env.API_URL}/system-counters`,
       data: payload,
