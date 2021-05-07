@@ -25,8 +25,8 @@ export const DOCTORS_PRICING = [
     users: 'per',
     inclusions: [
       { text: 'Unlimited Patients', valid: true },
-      { text: '3 clinics', valid: true },
-      { text: '200 MB Storage', valid: true },
+      { text: 'Unlimited clinics', valid: true },
+      { text: '10 GB Storage', valid: true },
       { text: 'Core Features', valid: true },
       { text: 'Premium Features', valid: true },
       { text: 'Add Ons', valid: true },
@@ -65,7 +65,7 @@ export const ENTERPRISE_PRICING = [
     users: 'per',
     inclusions: [
       { text: 'Unlimited Patients', valid: true },
-      { text: '3 clinics', valid: true },
+      { text: 'Unlimited Clinics', valid: true },
       { text: '10 GB Storage', valid: true },
       { text: 'Core Features', valid: true },
       { text: 'Premium Features', valid: true },
@@ -85,7 +85,7 @@ export const ENTERPRISE_PRICING = [
     users: 'per',
     inclusions: [
       { text: 'Unlimited Patients', valid: true },
-      { text: 'Un clinics', valid: true },
+      { text: 'Unlimited Clinics', valid: true },
       { text: '100 GB Storage', valid: true },
       { text: 'Core Features', valid: true },
       { text: 'Premium Features', valid: true },

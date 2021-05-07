@@ -13,6 +13,7 @@
           :image-alt="image"
           image-file-extension=".png"
           :custom-path="customImagePath"
+          :image-width="imageWidth"
         )
       v-col(cols="12" md="4" :class="{ 'text-center' : $isMobile }" :align-self="$isMobile ? 'start' : 'center'")
         p(v-if="metaTitle" :class="metaTitleClasses").font-weight-bold.primary--text {{ uspMetaTitle }}
@@ -95,6 +96,11 @@ export default {
     image: {
       type: String,
       default: null,
+    },
+    // - USP Image width
+    imageWidth: {
+      type: String,
+      default: '100%',
     },
     // - Custom directory
     customImagePath: {
