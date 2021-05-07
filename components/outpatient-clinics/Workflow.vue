@@ -13,7 +13,6 @@
               event-category="Video"
               depressed
               color="info"
-              :block="$isMobile"
               @click="videoDialog = true"
             ).text-none.font-12.mt-3 Watch How It Works
           v-col(cols="12")

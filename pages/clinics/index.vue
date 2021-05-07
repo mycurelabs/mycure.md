@@ -19,7 +19,7 @@
     //- 2nd panel
     workflow
     //- 3rd panel
-    tools(:version="2")
+    mycure-csi.mb-12
     //- 4th panel
     generic-media-panel(
       content-align-left
@@ -134,9 +134,9 @@ import CallToAction from '~/components/commons/panels/CallToAction';
 import Features from '~/components/commons/panels/Features';
 import GenericMediaPanel from '~/components/commons/generic-media-panel';
 import MultipleBranches from '~/components/enterprise/multiple-branches';
+import MycureCsi from '~/components/commons/panels/MycureCsi';
 import Pricing from '~/components/commons/panels/Pricing';
 import ThinkLongTerm from '~/components/commons/panels/ThinkLongTerm';
-import Tools from '~/components/home/Tools';
 import Usp from '~/components/commons/panels/SevenWondersUsp';
 import Workflow from '~/components/outpatient-clinics/Workflow';
 // - constants
@@ -148,9 +148,9 @@ export default {
     GenericMediaPanel,
     Features,
     MultipleBranches,
+    MycureCsi,
     Pricing,
     ThinkLongTerm,
-    Tools,
     Usp,
     Workflow,
   },
