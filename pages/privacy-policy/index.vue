@@ -129,9 +129,6 @@ export default {
 </script>
 
 <style scoped>
-#top {
-  margin-top: 12vh;
-}
 .header {
   background-image: url('../../assets/images/mycure-clinic-background-legal.png');
   background-position: center center;
