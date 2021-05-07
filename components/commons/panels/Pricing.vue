@@ -39,7 +39,7 @@
                   template(v-else)
                     p.font-weight-bold {{ details.currency }}&nbsp;
                       span(v-if="pricingMode === 'monthly'").font-l {{ details.monthlyPrice }}
-                      span(v-else).font-m {{ details.annualMonthlyPrice ? details.annualMonthlyPrice : details.monthlyPrice }}
+                      span(v-else).font-l {{ details.annualMonthlyPrice ? details.annualMonthlyPrice : details.monthlyPrice }}
                     p {{ details.users }} user
                       br
                       | per month
@@ -100,7 +100,7 @@ export default {
     },
   },
   data () {
-    this.modeBtns = ['monthly', 'anually'];
+    this.modeBtns = ['monthly', 'annually'];
     return {
       pricingMode: 'monthly', // monthly | annually
     };
