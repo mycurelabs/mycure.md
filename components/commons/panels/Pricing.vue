@@ -28,11 +28,18 @@
             cols="12"
             :md="columnSize"
           )
-            v-card(color="#fafafa" flat height="100%" width="100%").card-outter
-              v-toolbar(flat color="info" dark)
-                v-spacer
-                v-toolbar-title {{ details.title }}
-                v-spacer
+            v-card(color="#fafafa" flat height="100%" width="100%" rounded).card-outter
+              v-toolbar(flat color="info" dark height="175").text-center
+                v-col
+                  picture-source(
+                    extension-exclusive
+                    custom-path="pricing/"
+                    :image="details.image"
+                    image-file-extension=".png"
+                    :image-alt="details.title"
+                    :image-width="!$isMobile ? '60%' : '40%'"
+                  )
+                  v-toolbar-title {{ details.title }}
               v-card-text.py-8
                 div.text-center
                   p(v-if="details.requireContact").font-m.font-weight-bold.pb-10 Contact Us
@@ -43,10 +50,11 @@
                     p {{ details.users }} user
                       br
                       | per month
-                  template(v-for="inclusion in details.inclusions")
-                    v-icon(small color="primary" left) mdi-check
-                    span {{ inclusion }}
-                    br
+              v-divider
+              v-card-text
+                div(v-for="(inclusion, key) in details.inclusions" :key="key").d-flex
+                  v-icon(small :color="inclusion.valid ? 'primary' : 'error'" left) {{ inclusion.valid ? 'mdi-check' : 'mdi-close' }}
+                  span {{ inclusion.text }}
               div.card-actions
                 mc-btn(
                   depressed
@@ -61,7 +69,11 @@
 
 <script>
 import classBinder from '~/utils/class-binder';
+import PictureSource from '~/components/commons/PictureSource';
 export default {
+  components: {
+    PictureSource,
+  },
   props: {
     title: {
       type: String,
