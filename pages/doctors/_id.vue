@@ -51,7 +51,7 @@ export default {
   async asyncData ({ app, router, params, error }) {
     try {
       const doctor = await getDoctorWebsite({ username: params.id }, true);
-      if (_.isEmpty(doctor)) {
+      if (_.isEmpty(doctor) || !doctor.id) {
         error({ statusCode: 404, message: 'doctor-not-found' });
       }
 
@@ -140,15 +140,16 @@ export default {
       const skip = this.clinicsLimit * (page - 1);
 
       const { items, total } = await this.$sdk.service('organizations').find({
-        createdBy: this.doctor?.id,
+        createdBy: this.doctor.id,
         $limit: this.clinicsLimit,
         $skip: skip,
         $populate: {
           doctorSchedules: {
             service: 'schedule-slots',
             method: 'find',
-            localKey: 'createdBy',
-            foreignKey: 'account',
+            localKey: 'id',
+            foreignKey: 'organization',
+            createdBy: this.doctor.id,
           },
         },
       });

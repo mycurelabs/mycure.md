@@ -178,7 +178,6 @@ export default {
       this.fullSchedules = this.clinic?.$populated?.doctorSchedules || []; // eslint-disable-line
       if (!this.fullSchedules?.length) this.clinicSchedules = [];
       const groupedSchedules = uniqWith(this.fullSchedules
-        .filter(schedule => schedule.organization === this.clinic.id)
         .map((schedule) => {
           const { day } = this.days.find(day => day.order === schedule.day);
           return {

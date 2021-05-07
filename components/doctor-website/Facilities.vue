@@ -6,7 +6,7 @@
           v-col(cols="12").text-center
             h1
               v-icon(color="error" large left) mdi-hospital-marker
-              | {{ firstName ? `${firstName}'s ` : '' }}Clinics
+              | {{ firstName ? `Dr. ${firstName}'s ` : '' }}Clinics
           v-col(
             v-for="(clinic, key) in clinics"
             :key="key"
