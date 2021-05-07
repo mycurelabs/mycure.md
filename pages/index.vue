@@ -7,14 +7,20 @@
       simple
     patients(:class="panelMargins")
     tools(:class="panelMargins" :version="2")
-    div(:class="panelMargins").cta-container.pb-3.pt-10
-      join-next-generation
-    //- usp(@getStarted="goToSignupIndividual")
-    //- start-easy
-    //- features
-    //- syncbase
-    //- hipaa
-    //- plans
+
+    //- CTA
+    div(:class="panelMargins").text-center
+      picture-source(
+        image="CTA Home"
+        image-file-extension=".png"
+        extension-exclusive
+        custom-path="home/"
+        image-alt="CTA Home"
+        :image-width="!$isMobile ? '30%' : '70%'"
+        :image-styles="{ marginBottom: '-5px' }"
+      )
+      div.cta-container
+        join-next-generation
 </template>
 
 <script>
@@ -24,6 +30,7 @@ import headMeta from '~/utils/head-meta';
 import Care from '~/components/home/Care';
 import JoinNextGeneration from '~/components/home/JoinNextGeneration';
 import Patients from '~/components/home/Patients';
+import PictureSource from '~/components/commons/PictureSource';
 import SevenWonders from '~/components/home/SevenWonders';
 import Simple from '~/components/home/Simple';
 import Tools from '~/components/home/Tools';
@@ -33,6 +40,7 @@ export default {
     Care,
     JoinNextGeneration,
     Patients,
+    PictureSource,
     SevenWonders,
     Simple,
     Tools,
@@ -65,6 +73,9 @@ export default {
   background-color: #0099cc;
 }
 
+.cta-image {
+  margin-bottom: -50px;
+}
 .cta-container {
   background-color: #2b2d30;
 }
