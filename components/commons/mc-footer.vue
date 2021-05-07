@@ -8,7 +8,7 @@
               img(
                 src="~/assets/images/MYCURE-virtual-clinic-healthcare-practice-online-logo.svg"
                 alt="White MYCURE Logo"
-                width="200"
+                width="150"
               ).mt-4
           v-row(v-if="!$isMobile").mt-4.justify-space-around
             template(v-for="(footerItem, index) in footerItems")
@@ -20,19 +20,19 @@
                     :href="col.link"
                     target="_blank"
                     el="noopener noreferrer"
-                  ).black--text.d-block.font-16 {{col.value}}
+                  ).black--text.d-block.font-14 {{col.value}}
                   a(
                     v-if="col.type === 'phone'"
                     :href="`tel:${col.value}`"
-                  ).black--text.d-block.font-16 {{col.value}}
+                  ).black--text.d-block.font-14 {{col.value}}
                   a(
                     v-if="col.type === 'email'"
                     :href="`mailto:${col.value}`"
-                  ).black--text.d-block.font-16 {{col.value}}
+                  ).black--text.d-block.font-14 {{col.value}}
                   a(
                     v-if="col.type === 'chat'"
                     @click.stop="toggleChat()"
-                  ).black--text.d-block.font-16 {{col.value}}
+                  ).black--text.d-block.font-14 {{col.value}}
           v-row(v-if="$isMobile")
             v-expansion-panels(flat).footer-gray.elevation-0.mx-2
               v-expansion-panel(v-for="(footerItem, index) in footerItems" :key="index").footer-gray
@@ -46,26 +46,26 @@
                       :href="col.link"
                       target="_blank"
                       el="noopener noreferrer"
-                    ).black--text.d-block.font-16 {{col.value}}
+                    ).black--text.d-block.font-14 {{col.value}}
                     a(
                       v-if="col.type === 'phone'"
                       :href="`tel:${col.value}`"
-                    ).black--text.d-block.font-16 {{col.value}}
+                    ).black--text.d-block.font-14 {{col.value}}
                     a(
                       v-if="col.type === 'email'"
                       :href="`mailto:${col.value}`"
-                    ).black--text.d-block.font-16 {{col.value}}
+                    ).black--text.d-block.font-14 {{col.value}}
                     a(
                       v-if="col.type === 'chat'"
                       @click.stop="toggleChat()"
-                    ).black--text.d-block.font-16 {{col.value}}
+                    ).black--text.d-block.font-14 {{col.value}}
           v-row(align="center" no-gutters)
             v-col(
               :class="{ 'text-center order-last' : $isMobile }"
               cols="12"
               md="7"
-            )
-              span.call-number.black--text Copyright &copy; 2016 - {{ new Date().getFullYear() }}
+            ).font-14
+              span.call-number.black--text Copyright &copy; {{ new Date().getFullYear() }}
                 a(href="https://mycure.md" rel="noopener noreferrer")
                   strong.primary--text &nbsp;MYCURE Inc.&nbsp;
               span.call-number.black--text #[br(v-if="$isMobile")] All Rights Reserved.
@@ -78,7 +78,7 @@
             )
               template(v-for="(account, key) in socMed")
                 a(:href="account.link" target="_blank" rel="noopener noreferrer")
-                  img(:src="require(`~/assets/images/${ account.icon }`)" height="35" :alt="account.name").ma-4
+                  img(:src="require(`~/assets/images/${ account.icon }`)" height="20" :alt="account.name").ma-4
 </template>
 
 <script>
@@ -129,7 +129,7 @@ export default {
           type: 'footer-header',
           value: 'Legal',
           columns: [
-            { type: 'link', value: 'Terms of use', link: '/terms' },
+            { type: 'link', value: 'Terms of Use', link: '/terms' },
             { type: 'link', value: 'Privacy Policy', link: '/privacy-policy' },
           ],
         },

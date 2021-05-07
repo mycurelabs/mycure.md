@@ -24,7 +24,7 @@
           cols="12"
           md="5"
         )
-          strong.call-number.grey--text Copyright &copy; 2016 - {{ new Date().getFullYear() }}
+          strong.call-number.grey--text Copyright &copy; {{ new Date().getFullYear() }}
             a(href="https://mycure.md" rel="noopener noreferrer").grey--text &nbsp;MYCURE Inc.&nbsp;
           strong.call-number.grey--text #[br(v-if="$isMobile")] All Rights Reserved.
         v-spacer

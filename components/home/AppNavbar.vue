@@ -15,13 +15,14 @@
                   src="~/assets/images/MYCURE Logo - white.png"
                   width="120"
                   alt="MYCURE logo"
-                ).mt-1
+                ).mt-1.mr-1
               template(v-if="!$isMobile")
                 v-btn(
                   v-for="(nav, key) in navs"
                   :key="key"
                   text
                   depressed
+                  tile
                   large
                   @click="onNavClick(nav)"
                 ).text-none.font-12
@@ -37,6 +38,7 @@
                   text
                   depressed
                   large
+                  tile
                   event-label="login"
                   :to="{ name: 'signin' }"
                 ).text-none.mr-2.font-12 #[b LOG IN]
