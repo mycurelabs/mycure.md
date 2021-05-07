@@ -165,7 +165,7 @@ export default {
     return headMeta({
       title: 'MYCURE | Verify your Account',
       description: 'Create a free MYCURE account today and become a techy doctor in minutes! Better operations, beautiful reports, bye paperworks!',
-      socialBanner: require('~/assets/images/banners/MYCURE Open Graph Images -  Home.png'),
+      socialBanner: require('~/assets/images/banners/MYCURE Open Graph-Providers.jpg'),
     });
   },
   computed: {

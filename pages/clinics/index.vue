@@ -207,11 +207,10 @@ export default {
     };
   },
   head () {
-    // - TODO: Update
     return headMeta({
       title: 'MYCURE Clinic Management System',
-      description: 'MYCURE helps you bring in more patients using a powerful healthcare service booking and management software. It’s free, secure, and easy to use.',
-      socialBanner: require('~/assets/images/banners/MYCURE Open Graph-Providers.jpg'),
+      description: 'MYCURE enables clinics with complex operations to have simplified workflows to be much more efficient, increase in revenue, and build.',
+      socialBanner: require('~/assets/images/banners/OG Clinics.png'),
     });
   },
   computed: {

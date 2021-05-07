@@ -37,9 +37,9 @@ export default {
   },
   head () {
     return headMeta({
-      title: 'MYCURE Healthcare Service Booking Management Software',
+      title: 'MYCURE Healthcare Directory',
       description: 'Search for facilities and services in the MYCURE Healthcare Directory',
-      socialBanner: require('~/assets/images/banners/MYCURE Open Graph-Patients.jpg'),
+      socialBanner: require('~/assets/images/banners/OG Patients.png'),
     });
   },
   mounted () {

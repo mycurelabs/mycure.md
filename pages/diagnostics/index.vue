@@ -219,11 +219,10 @@ export default {
     };
   },
   head () {
-    // - TODO: Update
     return headMeta({
       title: 'MYCURE Diagnostics',
-      description: 'MYCURE helps you bring in more patients using a powerful healthcare service booking and management software. It’s free, secure, and easy to use.',
-      socialBanner: require('~/assets/images/banners/MYCURE Open Graph-Providers.jpg'),
+      description: 'MYCURE provides the best tool to create, finalize, and release diagnostic test results for diagnostic clinics. Best alternative to laboratory and radiology information systems. ',
+      socialBanner: require('~/assets/images/banners/OG Diag.png'),
     });
   },
   computed: {

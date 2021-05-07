@@ -128,11 +128,10 @@ export default {
     };
   },
   head () {
-    // - TODO: Update
     return headMeta({
       title: 'MYCURE Telehealth',
       description: 'Starting a virtual practice has never been easier. Give your patients the quality care they deserve wherever they are.',
-      socialBanner: require('~/assets/images/banners/MYCURE Open Graph-Providers.jpg'),
+      socialBanner: require('~/assets/images/banners/OG Telehealth.png'),
     });
   },
   computed: {
