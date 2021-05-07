@@ -27,7 +27,7 @@ export default {
   computed: {
     wonderHeight () {
       if (this.$isWideScreen) return '400';
-      return '350';
+      return '325';
     },
   },
 };

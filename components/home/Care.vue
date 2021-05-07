@@ -1,6 +1,6 @@
 <template lang="pug">
   v-container.usp-container
-    v-row(justify="center" align="center" :style="{ height: $isMobile ? 'auto' : '50vh' }")
+    v-row(justify="center" align="center" :style="{ height: $isMobile ? 'auto' : '40vh' }")
       v-col(cols="12" md="10")
         v-row(
           justify="center"
@@ -44,7 +44,7 @@ export default {
 
 <style scoped>
 .usp-container {
-  padding-bottom: 100px;
+  padding-bottom: 125px;
   padding-top: 10px;
 }
 </style>
