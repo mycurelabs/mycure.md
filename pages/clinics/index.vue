@@ -18,18 +18,7 @@
     )
     cms-video-dialog(v-model="videoDialog")
     //- 2nd panel
-    features(
-      title="Why do clinics switch to MYCURE?"
-      description="MYCURE integrates critical clinic operations into a clean, simple interface to make record management much easier for everyone. Say goodbye to multiple, complicated systems."
-      :items="operations"
-      extension-exclusive
-      image-dir="clinics/"
-      image-width="60%"
-      image-width-mobile="40%"
-      :panel-height="wXL ? '60vh' : '80vh'"
-      icon-col-size="3"
-      icon-col-size-mobile="12"
-    )
+    workflow
     //- 3rd panel
     tools(:version="2")
     //- 4th panel
@@ -151,6 +140,7 @@ import Pricing from '~/components/commons/panels/Pricing';
 import ThinkLongTerm from '~/components/commons/panels/ThinkLongTerm';
 import Tools from '~/components/home/Tools';
 import Usp from '~/components/commons/panels/SevenWondersUsp';
+import Workflow from '~/components/outpatient-clinics/Workflow';
 // - constants
 import { ENTERPRISE_PRICING } from '~/constants/pricing';
 
@@ -165,42 +155,9 @@ export default {
     ThinkLongTerm,
     Tools,
     Usp,
+    Workflow,
   },
   data () {
-    this.operations = [
-      {
-        title: 'Appointments',
-        icon: '1D-Appointments',
-      },
-      {
-        title: 'Queuing',
-        icon: '2D-Queuing',
-      },
-      {
-        title: 'Nurse Triage',
-        icon: '3D-Nurse Triage',
-      },
-      {
-        title: 'Doctors Consult',
-        icon: '4D-Doctors Consult',
-      },
-      {
-        title: 'Diagnostics',
-        icon: '5D-Diagnostics',
-      },
-      {
-        title: 'Pharmacy',
-        icon: '6D-Pharmacy',
-      },
-      {
-        title: 'Billings',
-        icon: '7D-Billings',
-      },
-      {
-        title: 'Journeys',
-        icon: '8D-Journeys',
-      },
-    ];
     this.features = [
       {
         title: 'Multispecialty',
