@@ -43,7 +43,7 @@
           color="primary"
           :block="$isMobile"
           event-label="signup"
-          :to="{ name: 'signup-health-facilities' }"
+          :to="{ name: 'signup-health-facilities', params: { type: 'clinic' } }"
         ).text-none.font-12
           v-icon(small left) mdi-web
           span Create my website

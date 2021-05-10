@@ -19,7 +19,7 @@
           depressed
           color="success"
           event-label="signup"
-          :to="{ name: 'signup-health-facilities' }"
+          :to="{ name: 'signup-health-facilities', params: { type: 'doctor-telehealth' } }"
         ).text-none.font-12
           | Get Started Free
           v-icon(small right) mdi-arrow-right

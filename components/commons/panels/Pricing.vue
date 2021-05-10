@@ -145,7 +145,27 @@ export default {
         return;
       }
       if (btnRoute) {
-        this.$router.push({ name: btnRoute });
+        let preset = '';
+        switch (this.$nuxt.$route.name) {
+          case 'doctors-clinics':
+            preset = 'doctors';
+            break;
+          case 'clinics':
+            preset = 'clinic';
+            break;
+          case 'diagnostics':
+            preset = 'clinic-diagnostic';
+            break;
+          case 'telehealth':
+            preset = 'doctor-telehealth';
+            break;
+          default:
+            preset = '';
+        }
+        this.$router.push({
+          name: btnRoute,
+          params: { type: preset },
+        });
       }
     },
   },

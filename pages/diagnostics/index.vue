@@ -75,7 +75,7 @@
           depressed
           color="primary"
           event-label="signup"
-          :to="{ name: 'signup-health-facilities' }"
+          :to="{ name: 'signup-health-facilities', params: { type: 'clinic-diagnostic' } }"
         ).text-none.font-12
           v-icon(small left) mdi-web
           span Create my website

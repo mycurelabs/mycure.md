@@ -9,6 +9,7 @@
       web-height="600px"
       image="Telehealth USP"
       custom-image-path="telehealth/"
+      @click="$nuxt.$router.push({ name: 'signup-health-facilities', params: { type: 'doctor-telehealth' }})"
     )
     //- 2nd panel
     div.mb-12

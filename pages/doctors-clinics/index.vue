@@ -60,7 +60,7 @@
             depressed
             color="success"
             event-label="signup"
-            :to="{ name: 'signup-health-facilities' }"
+            :to="{ name: 'signup-health-facilities', params: { type: 'doctors' }}"
           ).text-none.font-12
             span Get Started Free
             v-icon(small right) mdi-arrow-right

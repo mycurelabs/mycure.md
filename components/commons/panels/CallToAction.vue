@@ -31,7 +31,7 @@
             color="success"
             :block="$isMobile"
             event-label="signup"
-            :to="{ name: 'signup-health-facilities' }"
+            :to="signUpRoute"
           ).text-none.font-12 Get Started Free
 </template>
 
@@ -93,6 +93,30 @@ export default {
         'font-gray',
       ];
       return descriptionClasses;
+    },
+    signUpRoute () {
+      let preset = '';
+      switch (this.$nuxt.$route.name) {
+        case 'doctors-clinics':
+          preset = 'doctors';
+          break;
+        case 'clinics':
+          preset = 'clinic';
+          break;
+        case 'diagnostics':
+          preset = 'clinic-diagnostic';
+          break;
+        case 'telehealth':
+          preset = 'doctor-telehealth';
+          break;
+        default:
+          preset = '';
+      }
+      const route = {
+        name: 'signup-health-facilities',
+        params: { type: preset },
+      };
+      return route;
     },
   },
 };

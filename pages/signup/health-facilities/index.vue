@@ -249,8 +249,7 @@ export default {
         text: 'Doctor\'s Clinic',
         orgProps: {
           type: 'facility',
-          // TODO: bring back when applied in service
-          // types: ['doctor'],
+          types: ['doctor'],
         },
         value: 'doctors',
       },
@@ -258,8 +257,7 @@ export default {
         text: 'Outpatient Clinic',
         orgProps: {
           type: 'facility',
-          // TODO: bring back when applied in service
-          // types: ['clinic'],
+          types: ['clinic'],
         },
         value: 'clinic',
       },
@@ -267,10 +265,17 @@ export default {
         text: 'Diagnostics',
         orgProps: {
           type: 'facility',
-          // TODO: bring back when applied in service
-          // types: ['clinic-diagnostic'],
+          types: ['diagnostic'],
         },
-        value: 'clinic-diagnostic',
+        value: 'diagnostic',
+      },
+      {
+        text: 'Doctor\'s Clinic (Telehealth)',
+        orgProps: {
+          type: 'facility',
+          types: ['doctor-telehealth'],
+        },
+        value: 'doctor-telehealth',
       },
     ];
     this.userRoles = [
