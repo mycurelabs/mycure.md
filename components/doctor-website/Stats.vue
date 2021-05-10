@@ -31,9 +31,9 @@ export default {
     PictureSource,
   },
   props: {
-    websiteVisits: {
-      type: Number,
-      default: 0,
+    data: {
+      type: Object,
+      default: () => ({}),
     },
   },
   data () {
@@ -51,7 +51,7 @@ export default {
       {
         icon: 'Views',
         title: 'Page Views',
-        value: 'visits',
+        value: 'websiteVisits',
       },
     ];
     return {};
@@ -59,9 +59,9 @@ export default {
   computed: {
     metricData () {
       return {
-        patients: 10, // sample
-        records: 20, // sample
-        visits: this.websiteVisits,
+        patients: this.data.patients,
+        records: this.data.records,
+        websiteVisits: this.data.websiteVisits,
       };
     },
   },

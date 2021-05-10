@@ -10,9 +10,7 @@
       :practicing-since="practicingSince"
       :is-verified="isVerified"
     )
-    stats(
-      :website-visits="websiteVisits"
-    )
+    stats(:data="doctorMetrics")
     facilities(
       :first-name="firstName"
       :doctorId="doctor.id"
@@ -33,6 +31,7 @@ import _ from 'lodash';
 import {
   getDoctorWebsite,
   recordWebsiteVisit,
+  fetchDoctorMetrics,
 } from '~/utils/axios';
 import Facilities from '~/components/doctor-website/Facilities';
 import LearningCorner from '~/components/doctor-website/LearningCorner';
@@ -71,7 +70,7 @@ export default {
       loading: true,
       page: 1,
       clinicsTotal: 0,
-      websiteVisits: 0,
+      doctorMetrics: {},
       clinics: [],
       memberCMSOrganizations: [],
     };
@@ -132,25 +131,13 @@ export default {
   },
   async mounted () {
     this.loading = false;
-    // - TODO: Fetch website visits
-    if (this.$route.query.audience === 'self') {
-      // // - Fetch existing
-      // const data = await this.$sdk.service('system-counters').find({
-      //   account: this.doctor.id,
-      //   type: 'doctor-website-visit',
-      // });
-      // this.websiteVisits = data || 0;
-      return;
-    } else {
-      // - Record new
+    if (!this.$route.query.audience || this.$route.query.audience !== 'self') {
+      // Record new
       await recordWebsiteVisit({ uid: this.doctor.id });
-      // // - Fetch visits
-      // const data = await this.$sdk.service('system-counters').find({
-      //   account: this.doctor.id,
-      //   type: 'doctor-website-visit',
-      // });
-      // this.websiteVisits = data || 0;
     }
+    // Fetch metrics
+    await this.fetchMetrics();
+    // Fetch Doctor info
     this.fetchDoctorInfo();
   },
   methods: {
@@ -174,6 +161,14 @@ export default {
 
       this.clinicsTotal = total;
       this.clinics = items;
+    },
+    async fetchMetrics () {
+      try {
+        const data = await fetchDoctorMetrics({ uid: this.doctor.id }, this.$sdk);
+        this.doctorMetrics = data || {};
+      } catch (error) {
+        console.error(error);
+      }
     },
   },
 };

@@ -360,41 +360,7 @@ export const resendVerificationCode = async (opts) => {
   }
 };
 
-export const recordWebsiteVisit = async (opts) => {
-  try {
-    const payload = {
-      account: opts.uid,
-      type: 'doctor-website-visit',
-      label: 'Website Visit',
-      campaign: 'Website Visit',
-      source: window.location.href,
-    };
-    const data = await axios({
-      method: 'post',
-      url: `${process.env.API_URL}/system-counters`,
-      data: payload,
-    });
-    return data;
-  } catch (e) {
-    console.error(e);
-    throw handleError(e);
-  }
-};
-
-export const fetchLearningCornerMaterials = async (opts) => {
-  try {
-    const searchQuery = opts.searchText ? `&$search=${opts.searchText}` : '';
-    const { data } = await axios({
-      method: 'get',
-      url: `${process.env.API_URL}/file-links?account=${opts.account}&public=true${searchQuery}`,
-    });
-    return data.data;
-  } catch (e) {
-    console.error(e);
-    throw handleError(e);
-  }
-};
-
+export * from './doctor-website';
 export * from './doctor-directory';
 export * from './clinics-website';
 export * from './organizations';
