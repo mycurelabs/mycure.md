@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-content.bottom-bg
+  div.bottom-bg
     v-container.mt-10
       v-row(justify="center" align="center")
         v-col(cols="12" md="4").pa-2
@@ -15,7 +15,7 @@
           :class="{'text-center': $isMobile }"
         )
           img(src="~/assets/images/mycure-logo.svg" height="50")
-          h1 TRIAL FAILED
+          h1 PAYMENT FAILED
           p.mt-3
             | Oops! Something went wrong!
             br
@@ -32,15 +32,15 @@
 <script>
 export default {
   layout: 'empty',
+  head () {
+    return {
+      title: 'Payment Failed - MYCURE Sign Up',
+    };
+  },
   methods: {
     onGoBack () {
       this.$nuxt.$router.push({ name: 'signin' });
     },
-  },
-  head () {
-    return {
-      title: 'Trial Failed - MYCURE Sign Up',
-    };
   },
 };
 </script>

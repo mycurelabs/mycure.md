@@ -240,6 +240,7 @@ export const signupIndividual = async (opts) => {
 export const signupFacility = async (opts) => {
   try {
     const payload = {
+      skipMobileNoVerification: opts.skipMobileNoVerification,
       email: opts.email,
       mobileNo: `+${opts.countryCallingCode}${opts.mobileNo}`,
       password: opts.password,
@@ -252,14 +253,11 @@ export const signupFacility = async (opts) => {
         mobileNo: `+${opts.countryCallingCode}${opts.mobileNo}`,
       },
       organization: {
-        ...opts.facilityType.orgProps,
+        ...opts.organization,
         superadmin: {
           roles: [...opts.roles],
         },
         name: `${opts.firstName}'s Clinic`,
-        subscription: {
-          onlineBooking: true,
-        },
       },
     };
     if (opts.otp) { payload.totpToken = opts.otp; }

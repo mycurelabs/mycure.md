@@ -1,8 +1,24 @@
 export const SUBSCRIPTION_MAPPINGS = {
-  doctors: {
+  doctor: {
     essentials: {
       memberSeatsMax: 1,
       storageMax: 200000, // KIB
+    },
+    premium: {
+      storageMax: 10000000,
+      inventory: true,
+    },
+  },
+  'doctor-telehealth': {
+    essentials: {
+      memberSeatsMax: 1,
+      storageMax: 200000, // KIB
+      onlineBooking: true,
+    },
+    premium: {
+      storageMax: 10000000,
+      inventory: true,
+      onlineBooking: true,
     },
   },
   clinic: {
