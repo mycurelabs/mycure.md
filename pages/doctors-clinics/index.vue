@@ -10,7 +10,7 @@
       custom-image-path="doctors-clinics/"
       btn-text="Get Started Free"
       web-height="600px"
-      @click="$nuxt.$router.push({ name: 'signup-health-facilities', params: { type: 'doctors' }})"
+      @click="$nuxt.$router.push({ name: 'signup-health-facilities', params: { type: 'doctor' }})"
       parse-title="regular"
       :parse-title-fields="['the ']"
     )
@@ -60,7 +60,7 @@
             depressed
             color="success"
             event-label="signup"
-            :to="{ name: 'signup-health-facilities', params: { type: 'doctors' }}"
+            :to="{ name: 'signup-health-facilities', params: { type: 'doctor' }}"
           ).text-none.font-12
             span Get Started Free
             v-icon(small right) mdi-arrow-right

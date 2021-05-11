@@ -4,6 +4,7 @@ export const DOCTORS_PRICING = [
     image: 'Essentials',
     currency: 'PHP',
     monthlyPrice: 0,
+    annualMonthlyPrice: 0,
     users: 1,
     inclusions: [
       { text: 'Unlimited Patients', valid: true },
@@ -42,6 +43,7 @@ export const ENTERPRISE_PRICING = [
     image: 'Essentials',
     currency: 'PHP',
     monthlyPrice: 0,
+    annualMonthlyPrice: 0,
     users: 1,
     inclusions: [
       { text: 'Unlimited Patients', valid: true },
@@ -55,6 +57,7 @@ export const ENTERPRISE_PRICING = [
     ],
     btnText: 'Start Free',
     btnRoute: 'signup-health-facilities',
+    value: 'essentials',
   },
   {
     title: 'PREMIUM',
@@ -75,6 +78,7 @@ export const ENTERPRISE_PRICING = [
     ],
     btnText: 'Get Started',
     btnRoute: 'signup-health-facilities',
+    value: 'premium',
   },
   {
     title: 'PLATINUM',
@@ -95,6 +99,7 @@ export const ENTERPRISE_PRICING = [
     ],
     btnText: 'Get Started',
     btnRoute: 'signup-health-facilities',
+    value: 'platinum',
   },
   {
     title: 'ENTERPRISE',

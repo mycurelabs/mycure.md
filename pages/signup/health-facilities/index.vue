@@ -145,6 +145,25 @@
                 :disabled="loading.form"
                 return-object
               )
+                template(v-slot:item="data")
+                  span {{ data.item.text }}&nbsp;
+                    v-chip(small color="primary" v-if="data.item.value === 'doctor-telehealth'").font-11 Telehealth
+                template(v-slot:selection="data")
+                  span {{ data.item.text }}&nbsp;
+                    v-chip(small color="primary" v-if="data.item.value === 'doctor-telehealth'").font-11 Telehealth
+              //- Pricing
+              v-autocomplete(
+                v-if="facilityType"
+                v-model="subscription"
+                label="Pricing Bundle"
+                item-text="title"
+                item-value="value"
+                outlined
+                :items="pricingBundles"
+                :rules="isRequired"
+                :disabled="loading.form"
+                return-object
+              )
             v-col(
               cols="12"
               md="6"
@@ -232,6 +251,8 @@ import {
   emailRules,
   passwordRules,
 } from '~/utils/text-field-rules';
+import { ENTERPRISE_PRICING } from '~/constants/pricing';
+// import { SUBSCRIPTION_MAPPINGS } from '~/constants/subscription';
 export default {
   layout: 'user',
   // middleware: ['typeform-signup'],
@@ -242,7 +263,7 @@ export default {
     this.passwordRules = passwordRules;
     this.matchPasswordRule = v => v === this.password || 'Passwords do not match';
     this.mobileNumberRule = v => this.validatePhoneNo(v) || 'Invalid phone number';
-    // ENUM
+    // -- ENUM --
     // Clinic Types
     this.facilityTypes = [
       {
@@ -251,7 +272,7 @@ export default {
           type: 'facility',
           types: ['doctor'],
         },
-        value: 'doctors',
+        value: 'doctor',
       },
       {
         text: 'Outpatient Clinic',
@@ -270,10 +291,10 @@ export default {
         value: 'diagnostic',
       },
       {
-        text: 'Doctor\'s Clinic (Telehealth)',
+        text: 'Doctor\'s Clinic',
         orgProps: {
           type: 'facility',
-          types: ['doctor-telehealth'],
+          types: ['doctor', 'doctor-telehealth'],
         },
         value: 'doctor-telehealth',
       },
@@ -282,6 +303,7 @@ export default {
       { text: 'Physician/Owner', value: ['doctor', 'admin'] },
       { text: 'Administrator', value: ['admin'] },
     ];
+    this.pricingConstants = ENTERPRISE_PRICING;
     return {
       // Models
       firstName: '',
@@ -291,6 +313,7 @@ export default {
       password: '',
       confirmPassword: '',
       facilityType: null,
+      subscription: null,
       doc_PRCLicenseNo: '',
       roles: [],
       agree: '',
@@ -318,6 +341,10 @@ export default {
   computed: {
     isDoctor () {
       return this.roles.includes('doctor');
+    },
+    pricingBundles () {
+      if (this.facilityType.value === 'doctor' || this.facilityType.value === 'doctor-telehealth') return this.pricingConstants.slice(0, 2);
+      return this.pricingConstants.slice(0, 3);
     },
   },
   watch: {
@@ -347,8 +374,9 @@ export default {
         // Check if email has been passed
         if (this.$route.query.email) this.email = this.$route.query.email;
 
-        // Check if user has been prefilled a type
+        // Check if user has been prefilled a type and subscription
         if (this.$route.params.type) this.facilityType = this.$route.params.type;
+        if (this.$route.params.subscription) this.subscription = this.$route.params.subscription;
       } catch (e) {
         console.error(e);
       } finally {
