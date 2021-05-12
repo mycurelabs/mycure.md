@@ -12,7 +12,7 @@
       description="Diagnostic clinics, hospitals, and full service clinics in Metro Manila are within your reach whenever you need them."
       image="Patients USP"
       custom-image-path="patients/"
-      web-height="500px"
+      regular-height="500px"
       hide-btn
     )
     locations

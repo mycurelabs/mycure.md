@@ -1,21 +1,24 @@
 <template lang="pug">
-  v-container(:class="{'usp-container' : !$isMobile }")
+  v-container(fluid :class="{'usp-container' : !$isMobile }")
     v-row(
       justify="center"
-      no-gutters
-      :style="{ height: $isMobile ? mobileHeight : webHeight }"
+      :style="{ height: panelHeight }"
     )
-      v-col(cols="10" md="5" offset-md="1" :class="{ 'order-last' : !$isMobile }" :align-self="$isMobile ? 'end' : 'center'")
-        picture-source(
-          v-if="image"
-          extension-exclusive
-          :image="image"
-          :image-alt="image"
-          image-file-extension=".png"
-          :custom-path="customImagePath"
-          :image-width="imageWidth"
+      v-col(cols="10" :md="imageCol" :offset-md="imageColOffset" :class="{ 'order-last' : !$isMobile }" :align-self="$isMobile ? 'end' : 'center'")
+        //- picture-source(
+        //-   extension-exclusive
+        //-   :image="image"
+        //-   :image-alt="image"
+        //-   image-file-extension=".png"
+        //-   :custom-path="customImagePath"
+        //-   :image-width="imageWidth"
+        //- )
+        img(
+          :src="require(`~/assets/images/${customImagePath}${image}.png`)"
+          :alt="image"
+          :width="imageWidth"
         )
-      v-col(cols="12" md="4" :class="{ 'text-center' : $isMobile }" :align-self="$isMobile ? 'start' : 'center'")
+      v-col(cols="12" :md="textCol" offset-md="1" :class="{ 'text-center' : $isMobile }" :align-self="$isMobile ? 'start' : 'center'")
         p(v-if="metaTitle" :class="metaTitleClasses").font-weight-bold.primary--text {{ uspMetaTitle }}
         h1(:class="titleClasses") {{ uspTitle }}
         p(:class="descriptionClasses").grey--text.font-open-sans {{ uspDescription }}
@@ -25,10 +28,13 @@
         mc-btn(
           v-else-if="!hideBtn"
           depressed
+          rounded
+          :class="descriptionClasses"
+          :large="!$isMobile"
           :color="btnColor"
           :event-label="`${title} USP button`"
           @click="$emit('click')"
-        ).text-none.letter-spacing-normal.font-12 {{ btnText }}
+        ).text-none.letter-spacing-normal {{ btnText }}
 </template>
 
 <script>
@@ -108,13 +114,32 @@ export default {
       default: '',
     },
     // - Panel height
-    webHeight: {
+    regularHeight: {
       type: String,
       default: '650px',
     },
     mobileHeight: {
       type: String,
       default: '700px',
+    },
+    wideHeight: {
+      type: String,
+      default: '900px',
+    },
+    // - Column for Image
+    imageCol: {
+      type: [String, Number],
+      default: '8',
+    },
+    imageColOffset: {
+      type: [String, Number],
+      default: '0',
+    },
+    // - Column for Text
+    // - Note: This column is offsetted by 1
+    textCol: {
+      type: [String, Number],
+      default: '3',
     },
   },
   computed: {
@@ -135,6 +160,7 @@ export default {
       const classes = classBinder(this, {
         mobile: ['font-m'],
         regular: ['font-l'],
+        wide: ['font-xl'],
       });
       return [
         'mb-8',
@@ -145,7 +171,7 @@ export default {
     },
     metaTitleClasses () {
       const classes = classBinder(this, {
-        mobile: ['font-s'],
+        mobile: ['font-xs'],
         regular: ['font-s'],
         wide: ['font-m'],
       });
@@ -157,9 +183,15 @@ export default {
     },
     descriptionClasses () {
       return classBinder(this, {
-        mobile: ['font-xs', 'text-center'],
-        regular: ['font-s', 'text-justify'],
+        mobile: ['text-center'],
+        regular: ['font-xs', 'text-justify'],
+        wide: ['font-s', 'text-left'],
       });
+    },
+    panelHeight () {
+      if (this.$isMobile) return this.mobileHeight;
+      if (this.$isRegularScreen) return this.regularHeight;
+      return this.wideHeight;
     },
   },
   methods: {

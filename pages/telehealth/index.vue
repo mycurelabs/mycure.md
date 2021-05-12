@@ -6,8 +6,9 @@
       meta-title="MYCURE Telehealth"
       description="Starting a virtual practice has never been easier. Give your patients the quality care they deserve."
       btn-text="Get Started Free"
-      web-height="600px"
+      regular-height="600px"
       image="Telehealth USP"
+      image-width="108%"
       custom-image-path="telehealth/"
       @click="$nuxt.$router.push({ name: 'signup-health-facilities', params: { type: 'doctor-telehealth' }})"
     )

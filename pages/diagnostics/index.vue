@@ -5,8 +5,12 @@
       title="Your Diagnostic Center Fortified"
       meta-title="MYCURE Diagnostic"
       description="The best tool to create, finalize, and release diagnostic test results is finally here."
-      web-height="600px"
+      regular-height="600px"
       image="Diagnostics-USP"
+      text-col="3"
+      image-col="7"
+      image-col-offset="1"
+      iamge-width="108%"
       custom-image-path="diagnostics/"
       @click="$nuxt.$router.push({ name: 'signup-health-facilities', params: { type: 'clinic-diagnostic' }})"
     )
