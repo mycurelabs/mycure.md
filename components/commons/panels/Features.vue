@@ -4,10 +4,10 @@
       v-col(cols="12" md="10")
         v-row(justify="center")
           v-col(cols="12" :md="titleColSize").text-center
-            strong(v-if="metaTitle").font-xs.primary--text {{ metaTitle }}
-            h1(:class="titleClasses").lh-title {{ title }}
+            strong(v-if="metaTitle" :class="metaTitleClasses").primary--text {{ metaTitle }}
+            h1(:class="titleClasses").lh-title.font-weight-medium {{ title }}
           v-col(cols="12" :md="contentColSize").text-center.py-3
-            p(:class="descriptionClasses").grey--text.font-open-sans {{ description }}
+            p(:class="descriptionClasses").font-open-sans.grey--text {{ description }}
           v-col(cols="12" :md="iconContainerColSize")
             v-row(justify="center")
               v-col(:cols="iconColSizeMobile" :md="iconColSize" v-for="(item, key) in items" :key="key").text-center
@@ -21,8 +21,8 @@
                   :image-width="!$isMobile ? imageWidth : imageWidthMobile"
                 )
                 br
-                h3.font-xs.font-open-sans.grey--text {{ item.title }}
-                p(v-if="item.description").font-xs.grey--text {{ item.description }}
+                h3(:class="itemTextClasses").font-open-sans.font-weight-medium {{ item.title }}
+                p(v-if="item.description" :class="itemTextClasses") {{ item.description }}
                 nuxt-link(v-if="!hideLearnMore && item.route" :to="{ name: item.route }").primary--text.font-weight-bold.learnLink Learn more
         slot(name="additional-content")
 </template>
@@ -76,6 +76,10 @@ export default {
       type: [Number, String],
       default: '8',
     },
+    primaryTitle: {
+      type: Boolean,
+      default: false,
+    },
     // - Space for description
     contentColSize: {
       type: [Number, String],
@@ -104,16 +108,39 @@ export default {
   },
   computed: {
     titleClasses () {
-      return classBinder(this, {
-        mobile: ['font-m'],
-        regular: ['font-l'],
-      });
+      return [
+        classBinder(this, {
+          mobile: ['font-m'],
+          regular: ['font-l'],
+          wide: ['font-xl'],
+        }),
+        { 'primary--text': this.primaryTitle },
+      ];
+    },
+    metaTitleClasses () {
+      return [
+        classBinder(this, {
+          regular: ['font-xs'],
+          wide: ['font-s'],
+        }),
+      ];
     },
     descriptionClasses () {
-      return classBinder(this, {
-        mobile: ['font-xs'],
-        regular: ['font-s'],
-      });
+      return [
+        classBinder(this, {
+          mobile: ['font-xs'],
+          regular: ['font-s'],
+          wide: ['font-m'],
+        }),
+      ];
+    },
+    itemTextClasses () {
+      return [
+        classBinder(this, {
+          regular: ['font-xs'],
+          wide: ['font-s'],
+        }),
+      ];
     },
   },
 };

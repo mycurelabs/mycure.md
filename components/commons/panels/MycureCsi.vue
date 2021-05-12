@@ -1,9 +1,12 @@
 <template lang="pug">
   features(
-    title="Add Protection and Flexibility with MYCURE CSI"
+    title="Add Protection and Flexibility"
+    meta-title="MYCURE CSI"
     description="Using MYCURE makes your practice Compliant, Secure, and Interoperable."
     image-dir="csi/"
     image-width="50%"
+    icon-container-col-size="8"
+    panel-height="70vh"
     :items="items"
     hide-learn-more
     extension-exclusive

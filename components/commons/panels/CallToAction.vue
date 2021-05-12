@@ -1,10 +1,10 @@
 <template lang="pug">
   generic-media-panel(
-    content-align-left
-    cols-left="4"
-    cols-right="5"
+    content-align-right
+    cols-left="5"
+    cols-right="4"
     offset-cols-right="1"
-    align-conten-left="center"
+    align-conten-right="center"
     :header="callToActionPanel.header"
     :header-classes="headerClasses"
     :descriptions="callToActionPanel.descriptions"
@@ -20,19 +20,25 @@
         v-col(cols="12")
           mc-btn(
             depressed
+            rounded
+            :large="$isRegularScreen"
+            :x-large="$isWideScreen"
             :color="version === 1 ? 'primary' : 'success'"
             :block="$isMobile"
             :href="'https://calendly.com/mycure/demo'"
-          ).text-none.font-12 {{ version === 1 ? 'Book a full training' : 'Start Now' }}
+          ).text-none.font-s {{ version === 1 ? 'Book a full training' : 'Start Now' }}
       v-row(justify="center" dense v-if="version === 1").mb-10
         v-col(cols="12")
           mc-btn(
             depressed
+            rounded
+            :large="$isRegularScreen"
+            :x-large="$isWideScreen"
             color="success"
             :block="$isMobile"
             event-label="signup"
             :to="signUpRoute"
-          ).text-none.font-12 Get Started Free
+          ).text-none.font-s Get Started Free
 </template>
 
 <script>
@@ -78,8 +84,10 @@ export default {
         classBinder(this, {
           mobile: ['font-m', 'text-center'],
           regular: ['font-l'],
+          wide: ['font-xl'],
         }),
         'lh-title',
+        'font-weight-medium',
       ];
       return headerClasses;
     },
@@ -88,6 +96,7 @@ export default {
         classBinder(this, {
           mobile: ['font-xs'],
           regular: ['font-s'],
+          wide: ['font-m'],
         }),
         'font-open-sans',
         'font-gray',

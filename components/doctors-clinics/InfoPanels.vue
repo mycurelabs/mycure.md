@@ -83,13 +83,17 @@ export default {
         classBinder(this, {
           mobile: ['font-m', 'text-center'],
           regular: ['font-l'],
+          wide: ['font-xl'],
         }),
         'lh-title',
+        'primary--text',
+        'font-weight-medium',
       ];
       const descriptionClasses = [
         classBinder(this, {
           mobile: ['font-xs', 'text-center'],
           regular: ['font-s'],
+          wide: ['font-m'],
         }),
         'font-open-sans',
         'font-gray',

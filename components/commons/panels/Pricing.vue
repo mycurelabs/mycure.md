@@ -4,12 +4,12 @@
       v-col(cols="12" md="10")
         v-row(justify="center")
           v-col(cols="12" md="10").text-center
-            strong(v-if="metaTitle").font-xs.primary--text {{ metaTitle }}
-            h1(:class="titleClasses").lh-title {{ title }}
+            strong(v-if="metaTitle" :class="metaTitleClasses").primary--text {{ metaTitle }}
+            h1(:class="titleClasses").lh-title.font-weight-medium {{ title }}
           v-col(cols="12" md="6" v-if="description").text-center
             p(:class="descriptionClasses").grey--text.font-open-sans {{ description }}
         v-row(justify="center")
-          v-col(cols="12" md="4").text-center
+          v-col(cols="12" md="6" xl="4").text-center
             v-btn(
               v-for="(mode, key) in modeBtns"
               :key="key"
@@ -17,6 +17,7 @@
               v-bind="modeBtnBindings(mode)"
               depressed
               tile
+              :large="$isWideScreen"
               @click="pricingMode = mode"
             ).text-none
               | Billed&nbsp;
@@ -124,12 +125,20 @@ export default {
       return classBinder(this, {
         mobile: ['font-m'],
         regular: ['font-l'],
+        wide: ['font-xl'],
+      });
+    },
+    metaTitleClasses () {
+      return classBinder(this, {
+        mobile: ['font-xs'],
+        regular: ['font-s'],
       });
     },
     descriptionClasses () {
       return classBinder(this, {
         mobile: ['font-xs'],
         regular: ['font-s'],
+        wide: ['font-m'],
       });
     },
   },

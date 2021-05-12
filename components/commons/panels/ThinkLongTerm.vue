@@ -2,46 +2,46 @@
   v-container
     v-row(justify="center")
       v-col(cols="12" md="6").text-center
-        strong.font-xs.primary--text Why MYCURE?
+        strong(:class="metaTitleClasses").primary--text Why MYCURE?
         h1(:class="panelHeaderClasses") Think Long-Term
-    v-row(justify="center")
-      v-col(
-        cols="12"
-        md="4"
-        v-for="(panel, key) in panels"
-        :key="key"
-      )
-        v-card(flat color="#fafafa" height="100%")
-          v-card-text
-            div.text-center
-              picture-source(
-                extension-exclusive
-                custom-path="commons/"
-                image-file-extension=".png"
-                :image="panel.image"
-                :image-alt="panel.header"
-                image-width="90%"
-              )
-            br
-            br
-            h2(:class="headerClasses") {{ panel.header }}
-            br
-            p(:class="descriptionClasses") {{ panel.descriptions }}
-    //- generic-media-panel(
-    //-   v-for="(panel, key) in panels"
-    //-   :key="key"
-    //-   offset-cols-right="1"
-    //-   :header="panel.header"
-    //-   :descriptions="panel.descriptions"
-    //-   :header-classes="headerClasses"
-    //-   :description-classes="descriptionClasses"
-    //-   :dense='$isMobile'
-    //-   v-bind="getPanelBindings(key)"
-    //-   extension-exclusive
-    //-   custom-image-path="commons/"
-    //-   file-extension=".png"
-    //-   :web-image="panel.image"
-    //- )
+    generic-media-panel(
+      v-for="(panel, key) in panels"
+      :key="key"
+      offset-cols-right="1"
+      :header="panel.header"
+      :descriptions="panel.descriptions"
+      :header-classes="headerClasses"
+      :description-classes="descriptionClasses"
+      :dense='$isMobile'
+      v-bind="getPanelBindings(key)"
+      extension-exclusive
+      custom-image-path="commons/"
+      file-extension=".png"
+      :web-image="panel.image"
+    )
+    //- v-row(justify="center")
+    //-   v-col(
+    //-     cols="12"
+    //-     md="4"
+    //-     v-for="(panel, key) in panels"
+    //-     :key="key"
+    //-   )
+    //-     v-card(flat color="#fafafa" height="100%")
+    //-       v-card-text
+    //-         div.text-center
+    //-           picture-source(
+    //-             extension-exclusive
+    //-             custom-path="commons/"
+    //-             image-file-extension=".png"
+    //-             :image="panel.image"
+    //-             :image-alt="panel.header"
+    //-             image-width="90%"
+    //-           )
+    //-         br
+    //-         br
+    //-         h2(:class="headerClasses") {{ panel.header }}
+    //-         br
+    //-         p(:class="descriptionClasses") {{ panel.descriptions }}
 </template>
 
 <script>
@@ -57,13 +57,13 @@ export default {
     this.panels = [
       {
         header: 'MYCURE is not just your ordinary medical app.',
-        descriptions: 'It’s a platform built for the healthcare ecosystem. You can connect and share files with clinics, diagnostic centers, hospitals, and other physicians within the MYCURE network. MYCURE has open APIs to give you more flexibility in integrating with other systems.',
+        descriptions: ['It’s a platform built for the healthcare ecosystem. You can connect and share files with clinics, diagnostic centers, hospitals, and other physicians within the MYCURE network. MYCURE has open APIs to give you more flexibility in integrating with other systems.'],
         image: 'Prevent Failures',
         imageWidth: '80%',
       },
       {
         header: 'As your practice grows, your tech tools need to upgrade too.',
-        descriptions: 'The great thing about starting with MYCURE is that you only need to upgrade once you need to. We’re here to make your practice so much easier to manage because you are a crucial part of healthcare. Together, let’s make this world a healthier place.',
+        descriptions: ['The great thing about starting with MYCURE is that you only need to upgrade once you need to. We’re here to make your practice so much easier to manage because you are a crucial part of healthcare. Together, let’s make this world a healthier place.'],
         image: 'Success',
         imageWidth: '80%',
       },
@@ -75,6 +75,13 @@ export default {
       return classBinder(this, {
         mobile: ['font-m'],
         regular: ['font-l'],
+        wide: ['font-xl'],
+      });
+    },
+    metaTitleClasses () {
+      return classBinder(this, {
+        regular: ['font-xs'],
+        wide: ['font-s'],
       });
     },
     headerClasses () {
@@ -82,6 +89,7 @@ export default {
         classBinder(this, {
           mobile: ['font-s'],
           regular: ['font-m'],
+          wide: ['font-l'],
         }),
         'lh-title',
         'text-justify',
@@ -94,6 +102,7 @@ export default {
         classBinder(this, {
           mobile: ['font-xs'],
           regular: ['font-s'],
+          wide: ['font-m'],
         }),
         'font-open-sans',
         'font-gray',

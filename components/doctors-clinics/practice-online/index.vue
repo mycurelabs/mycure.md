@@ -21,7 +21,7 @@
       template(v-for="(item, i) in panelContents.list")
         v-row(:align="i === 2 ? 'center' : 'start'" dense)
           v-col(cols="1").pr-2.pt-2
-            v-icon(color="black") mdi-arrow-right
+            v-icon(color="white") mdi-chevron-right
           v-col
             span(:class="checkListClasses") {{ item }}
 </template>
@@ -54,8 +54,11 @@ export default {
         classBinder(this, {
           mobile: ['font-m', 'text-center'],
           regular: ['font-l'],
+          wide: ['font-xl'],
         }),
         'lh-title',
+        'white--text',
+        'font-weight-medium',
       ];
       return headerClasses;
     },
@@ -64,9 +67,10 @@ export default {
         classBinder(this, {
           mobile: ['font-xs'],
           regular: ['font-s'],
+          wide: ['font-m'],
         }),
         'font-open-sans',
-        'font-gray',
+        'white--text',
       ];
       return descriptionClasses;
     },
@@ -75,9 +79,10 @@ export default {
         classBinder(this, {
           mobile: ['font-xs'],
           regular: ['font-s'],
+          wide: ['font-m'],
         }),
         'font-open-sans',
-        'font-gray',
+        'white--text',
       ];
     },
   },

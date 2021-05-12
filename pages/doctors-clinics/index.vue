@@ -15,14 +15,17 @@
       :parse-title-fields="['the ']"
     )
     //- 2nd panel
-    features(
-      extension-exclusive
-      title="Your Practice. Your Call"
-      :description="featuresDescription"
-      :items="features"
-      image-dir="doctors-clinics/"
-      panel-height="70vh"
-    ).mt-1
+    div.grey-bg
+      features(
+        primary-title
+        extension-exclusive
+        title="Your Practice. Your Call"
+        :description="featuresDescription"
+        :items="features"
+        icon-container-col-size="8"
+        image-dir="doctors-clinics/"
+        panel-height="70vh"
+      ).pt-10
     //- 3rd to 5th panels
     info-panels(:class="panelMargins")
     //-6th panel
@@ -58,16 +61,21 @@
         div(:class="{ 'text-center': $isMobile }")
           mc-btn(
             depressed
+            rounded
+            :x-large="$isWideScreen"
+            :large="$isRegularScreen"
             color="success"
             event-label="signup"
             :to="{ name: 'signup-health-facilities', params: { type: 'doctor' }}"
-          ).text-none.font-12
+          ).text-none.font-s
             span Get Started Free
             v-icon(small right) mdi-arrow-right
     //- 7th panel
-    mycure-csi(:class="panelMargins")
+    div.grey-bg
+      mycure-csi(:class="panelMargins").pt-10
     //- 8th panel
-    practice-online(:class="panelMargins")#group-practice
+    div.blue-bg
+      practice-online(:class="panelMargins")
     //- 9th panel
     think-long-term(extended :class="panelMargins")
     //- 10th panel
@@ -173,8 +181,11 @@ export default {
         classBinder(this, {
           mobile: ['font-m', 'text-center'],
           regular: ['font-l'],
+          wide: ['font-xl'],
         }),
         'lh-title',
+        'primary--text',
+        'font-weight-medium',
       ];
       return headerClasses;
     },
@@ -183,6 +194,7 @@ export default {
         classBinder(this, {
           mobile: ['font-xs'],
           regular: ['font-s'],
+          wide: ['font-m'],
         }),
         'font-open-sans',
         'font-gray',
@@ -199,5 +211,11 @@ export default {
 <style scoped>
 .web-margins {
   margin-top: 50px;
+}
+.grey-bg {
+  background-color: #fafafa;
+}
+.blue-bg {
+  background-color: #0099cc;
 }
 </style>
