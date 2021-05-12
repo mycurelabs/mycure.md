@@ -7,7 +7,7 @@
           align="center"
         )
           v-col(cols="12" md="10" xl="12").text-center
-            h1(:class="headerClasses").lh-title.font-weight-medium Caring for people who care for people
+            h1(:class="headerClasses").lh-title.font-weight-medium.primary--text Caring for people who care for people
           v-col(cols="12" xl="6").text-center
             p(:class="descriptionClasses").grey--text.font-open-sans MYCURE is dedicated to help healthcare providers save more lives each day.
         v-row(justify="center" align="center")

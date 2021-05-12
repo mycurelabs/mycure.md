@@ -7,7 +7,7 @@
           align="center"
         )
           v-col(cols="12" md="10").text-center
-            h1(:class="headerClasses").font-weight-medium Patients will love you even more.
+            h1(:class="headerClasses").font-weight-medium.primary--text Patients will love you even more.
           v-col(cols="12" md="6").text-center
             p(:class="descriptionClasses").grey--text.font-open-sans You treat your patients with holistic care. Now, make it extra covenient for them to reach you.
         v-row(justify="center")
