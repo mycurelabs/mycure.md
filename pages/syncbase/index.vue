@@ -125,7 +125,7 @@ export default {
     return headMeta({
       title: 'MYCURE Syncbase',
       description: 'Digitally process your medical records in your local network using multiple devices, even if the internet goes down. Then once back online, it automatically synchronizes data back in the cloud. It’s like getting the best of both worlds — reliability of an on-premise server, and affordability of the cloud. Like magic, but scientifically-blended. ',
-      socialBanner: require('~/assets/images/banners/MYCURE Open Graph-Providers.jpg'),
+      socialBanner: require('~/assets/images/banners/OG Homepage.png'),
     });
   },
   computed: {

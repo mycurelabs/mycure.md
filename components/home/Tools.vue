@@ -55,7 +55,7 @@ export default {
     this.modules = [
       {
         name: 'Personal Details',
-        icon: 'PERSONAL DETAILS',
+        icon: 'Personal Details',
       },
       {
         name: 'Electronic Medical Records (EMR)',
@@ -63,39 +63,43 @@ export default {
       },
       {
         name: 'Queueing',
-        icon: 'QUEUEING',
+        icon: 'Queueing',
       },
       {
         name: 'Appointments',
-        icon: 'APPOINTMENTS',
+        icon: 'Appointment',
       },
       {
         name: 'Pharmacy',
-        icon: 'PHARMA',
+        icon: 'Pharmacy',
       },
       {
         name: 'Billing',
-        icon: 'BILLING',
+        icon: 'Billing',
       },
       {
-        name: 'Laboratory & Imaging',
-        icon: 'LABORATORY',
+        name: 'Laboratory',
+        icon: 'Laboratory',
+      },
+      {
+        name: 'Imaging',
+        icon: 'Imaging',
       },
       {
         name: 'Physical Medical Exam',
-        icon: 'PME',
+        icon: 'Physical Medical Exam',
       },
       {
         name: 'Inventory',
-        icon: 'INVENTORY',
+        icon: 'Inventory',
       },
       {
         name: 'Ward Management',
-        icon: 'WARD MANAGEMENT',
+        icon: 'Ward Management',
       },
       {
         name: 'Authentication & Authorization',
-        icon: 'AUTH',
+        icon: 'Authentication',
       },
       {
         name: 'SMS',
@@ -103,11 +107,11 @@ export default {
       },
       {
         name: 'Chat',
-        icon: 'CHAT',
+        icon: 'Chat',
       },
       {
         name: 'Notifications',
-        icon: 'NOTIF',
+        icon: 'Notification',
       },
     ];
     return {};

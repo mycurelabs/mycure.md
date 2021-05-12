@@ -54,7 +54,7 @@ export default {
     return headMeta({
       title: 'MYCURE | Making Healthcare Accessible to All',
       description: 'MYCURE is a healthcare platform that connects physicians, clinics, hospitals, and medical organizations to anyone in need.',
-      socialBanner: require('~/assets/images/banners/MYCURE Open Graph-Providers.jpg'),
+      socialBanner: require('~/assets/images/banners/OG Homepage.png'),
     });
   },
   computed: {

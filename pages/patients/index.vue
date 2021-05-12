@@ -83,6 +83,7 @@ export default {
     ThinkLongTerm,
     Usp,
   },
+  middleware: ['disable-route'],
   data () {
     // - TODO: Update info
     this.features = [
@@ -125,6 +126,14 @@ export default {
       loading: true,
     };
   },
+  head () {
+    // - TODO: Update
+    return headMeta({
+      title: 'MYCURE Patient Relationship Management',
+      description: 'Build lasting connections with your patients with MYCURE’s medical CRM. Let them know you are there. Make quick calls, chats, appointments, and reminders to your patients and reinforce continuity of care in an effective and timely way.',
+      socialBanner: require('~/assets/images/banners/OG Homepage.png'),
+    });
+  },
   computed: {
     headerClasses () {
       const headerClasses = [
@@ -150,14 +159,6 @@ export default {
   },
   mounted () {
     this.loading = false;
-  },
-  head () {
-    // - TODO: Update
-    return headMeta({
-      title: 'MYCURE Patient Relationship Management',
-      description: 'Build lasting connections with your patients with MYCURE’s medical CRM. Let them know you are there. Make quick calls, chats, appointments, and reminders to your patients and reinforce continuity of care in an effective and timely way.',
-      socialBanner: require('~/assets/images/banners/MYCURE Open Graph-Providers.jpg'),
-    });
   },
 };
 </script>

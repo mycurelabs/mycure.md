@@ -17,7 +17,7 @@
             width="175"
           ).link-to-home.mb-3
           br
-          h1 Verify it's you
+          h1 {{ isPaymentSuccessful ? 'Your payment was successful!' : 'Verify it\'s you' }}
           p Enter the code sent to your mobile number: +{{step1Data.countryCallingCode}}{{step1Data.mobileNo}}
           v-row(align="center" :class="{'mx-1': $isMobile}" no-gutters).mb-5
             v-col.grow
@@ -140,11 +140,12 @@ export default {
   data () {
     this.dayOrNight = dayOrNight();
     return {
+      // UI States
       valid: false,
       loading: false,
-      sendingCode: false,
       verificationError: false,
       successDialog: false,
+      // Data Models
       otp: '',
       step1Data: {},
       otpCountdown: null,
@@ -159,13 +160,14 @@ export default {
       fourthDigit: null,
       fifthDigit: null,
       sixthDigit: null,
+      isPaymentSuccessful: false,
     };
   },
   head () {
     return headMeta({
       title: 'MYCURE | Verify your Account',
       description: 'Create a free MYCURE account today and become a techy doctor in minutes! Better operations, beautiful reports, bye paperworks!',
-      socialBanner: require('~/assets/images/banners/MYCURE Open Graph-Providers.jpg'),
+      socialBanner: require('~/assets/images/banners/OG Homepage.png'),
     });
   },
   computed: {
@@ -224,6 +226,8 @@ export default {
           this.step1Data = step1Data;
         }
 
+        this.isPaymentSuccessful = this.$route.query.payment === 'success';
+
         const ongoingCountDown = JSON.parse(localStorage.getItem('otp:resend:countdown'));
         if (!ongoingCountDown) {
           this.resetCountDown();
@@ -245,6 +249,8 @@ export default {
         this.$router.replace({ query: { success: 1 } });
         this.otpCountdown = null;
         this.successDialog = true;
+        // Remove saved data
+        localStorage.removeItem('facility:step1:model');
         // - Mock loading then run acknowledgment
         await setTimeout(() => {
           this.onAcknowledgment();
@@ -260,7 +266,6 @@ export default {
     async resendVerificationCode () {
       try {
         this.resetCountDown();
-        this.sendingCode = true;
         const { accessToken } = await signin({
           email: this.step1Data.email,
           password: this.step1Data.password,
@@ -278,8 +283,6 @@ export default {
           color: 'error',
         };
         this.showSnack = true;
-      } finally {
-        this.sendingCode = false;
       }
     },
     async onAcknowledgment () {

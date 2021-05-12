@@ -158,7 +158,7 @@ export default {
     return headMeta({
       title: 'MYCURE for Dental Clinics',
       description: 'Experience the most versatile software for dental clinics that seamlessly manages dental charts, inventory, and billing.',
-      socialBanner: require('~/assets/images/banners/MYCURE Open Graph-Providers.jpg'),
+      socialBanner: require('~/assets/images/banners/OG Homepage.png'),
     });
   },
   computed: {

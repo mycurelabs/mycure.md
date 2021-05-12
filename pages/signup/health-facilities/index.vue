@@ -215,6 +215,11 @@
                 :disabled="loading.form || !valid || !agree"
                 :loading="loading.form"
               ).mt-5.text-none #[b Create my free account]
+              stripe-checkout(
+                ref="checkoutRef"
+                :pk="stripePK"
+                :sessionId="stripeCheckoutSessionId"
+              )
     //- Country Dialog
     v-dialog(v-model="countryDialog" width="500" scrollable)
       v-card
@@ -237,14 +242,17 @@
               v-list-item-content
                 v-list-item-title.text-wrap {{ country.name }}
               strong +{{ country.callingCodes[0] }}
+    //- Email Verification Dialog
+    email-verification-dialog(v-model="emailVerificationMessageDialog" :email="email")
 </template>
 
 <script>
 import { parsePhoneNumberFromString } from 'libphonenumber-js';
+// import { get } from 'lodash';
 import {
   getCountries,
   getCountry,
-  signupFacility,
+  // signupFacility,
 } from '~/utils/axios';
 import {
   requiredRule,
@@ -252,10 +260,13 @@ import {
   passwordRules,
 } from '~/utils/text-field-rules';
 import { ENTERPRISE_PRICING } from '~/constants/pricing';
-// import { SUBSCRIPTION_MAPPINGS } from '~/constants/subscription';
+import { SUBSCRIPTION_MAPPINGS } from '~/constants/subscription';
+import EmailVerificationDialog from '~/components/signup/EmailVerificationDialog';
 export default {
+  components: {
+    EmailVerificationDialog,
+  },
   layout: 'user',
-  // middleware: ['typeform-signup'],
   data () {
     // TEXT FIELD RULES
     this.isRequired = requiredRule;
@@ -304,6 +315,7 @@ export default {
       { text: 'Administrator', value: ['admin'] },
     ];
     this.pricingConstants = ENTERPRISE_PRICING;
+    this.stripePK = process.env.STRIPE_PK;
     return {
       // Models
       firstName: '',
@@ -317,7 +329,9 @@ export default {
       doc_PRCLicenseNo: '',
       roles: [],
       agree: '',
-      // County Dialog
+      // - Stripe
+      stripeCheckoutSessionId: null,
+      // Country Dialog
       countryDialog: false,
       searchString: '',
       countries: [],
@@ -329,6 +343,7 @@ export default {
         page: true,
         form: false,
       },
+      emailVerificationMessageDialog: false,
       // validity
       valid: false, // Overall form details validity
       isEmailValid: false, // email validity
@@ -345,6 +360,10 @@ export default {
     pricingBundles () {
       if (this.facilityType.value === 'doctor' || this.facilityType.value === 'doctor-telehealth') return this.pricingConstants.slice(0, 2);
       return this.pricingConstants.slice(0, 3);
+    },
+    // - If needs to pay
+    requiresCheckout () {
+      return this.subscription.value !== 'essentials';
     },
   },
   watch: {
@@ -383,31 +402,57 @@ export default {
         this.loading.form = false;
       }
     },
-    async submit () {
+    submit () {
       try {
         this.loading.form = true;
         this.error = false;
         if (!this.$refs.formRef.validate()) {
           return;
         }
-        const payload = {
-          firstName: this.firstName,
-          lastName: this.lastName,
-          email: this.email,
-          password: this.password,
-          mobileNo: this.mobileNo,
-          countryCallingCode: this.countryCallingCode,
-          facilityType: this.facilityType,
-          roles: this.roles,
-          doc_PRCLicenseNo: this.doc_PRCLicenseNo,
+
+        // Map org types and subscription
+        const organizationPayload = {
+          ...this.facilityType.orgProps,
+          subscription: {
+            ...SUBSCRIPTION_MAPPINGS[this.facilityType.value][this.subscription.value],
+            stripeCheckoutSuccessURL: this.facilityType.value === 'doctor'
+              ? `${window.location.origin}/signup/health-facilities/otp-verification/?payment=success`
+              : process.env.STRIPE_CHECKOUT_SUCCESS_URL,
+            stripeCheckoutCancelURL: process.env.STRIPE_CHECKOUT_CANCEL_URL,
+          },
         };
-        this.saveModel(payload);
-        await signupFacility(payload);
-        if (this.countryCallingCode !== '63') {
-          this.emailVerificationMessageDialog = true;
-        } else {
-          this.$nuxt.$router.push({ name: 'signup-health-facilities-otp-verification' });
-        }
+
+        console.log('org payload', organizationPayload);
+
+        // // Map account payload
+        // const payload = {
+        //   firstName: this.firstName,
+        //   lastName: this.lastName,
+        //   email: this.email,
+        //   password: this.password,
+        //   mobileNo: this.mobileNo,
+        //   organization: organizationPayload,
+        //   countryCallingCode: this.countryCallingCode,
+        //   roles: this.roles,
+        //   doc_PRCLicenseNo: this.doc_PRCLicenseNo,
+        //   skipMobileNoVerification: this.facilityType.value !== 'doctor',
+        // };
+        // this.saveModel(payload);
+
+        // const data = await signupFacility(payload);
+
+        // if (this.requiresCheckout) {
+        //   const checkoutSession = get(data, 'organization.subscription.updatesPending');
+        //   console.log('checkout session', checkoutSession);
+        //   this.stripeCheckoutSessionId = checkoutSession.stripeSession;
+        //   this.$refs.checkoutRef.redirectToCheckout();
+        //   return;
+        // }
+        // if (this.countryCallingCode !== '63') {
+        //   this.emailVerificationMessageDialog = true;
+        // } else {
+        //   this.$nuxt.$router.push({ name: 'signup-health-facilities-otp-verification' });
+        // }
       } catch (e) {
         console.error(e);
         this.error = true;
