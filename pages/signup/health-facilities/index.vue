@@ -248,11 +248,11 @@
 
 <script>
 import { parsePhoneNumberFromString } from 'libphonenumber-js';
-// import { get } from 'lodash';
+import { get } from 'lodash';
 import {
   getCountries,
   getCountry,
-  // signupFacility,
+  signupFacility,
 } from '~/utils/axios';
 import {
   requiredRule,
@@ -402,7 +402,7 @@ export default {
         this.loading.form = false;
       }
     },
-    submit () {
+    async submit () {
       try {
         this.loading.form = true;
         this.error = false;
@@ -424,35 +424,35 @@ export default {
 
         console.log('org payload', organizationPayload);
 
-        // // Map account payload
-        // const payload = {
-        //   firstName: this.firstName,
-        //   lastName: this.lastName,
-        //   email: this.email,
-        //   password: this.password,
-        //   mobileNo: this.mobileNo,
-        //   organization: organizationPayload,
-        //   countryCallingCode: this.countryCallingCode,
-        //   roles: this.roles,
-        //   doc_PRCLicenseNo: this.doc_PRCLicenseNo,
-        //   skipMobileNoVerification: this.facilityType.value !== 'doctor',
-        // };
-        // this.saveModel(payload);
+        // Map account payload
+        const payload = {
+          firstName: this.firstName,
+          lastName: this.lastName,
+          email: this.email,
+          password: this.password,
+          mobileNo: this.mobileNo,
+          organization: organizationPayload,
+          countryCallingCode: this.countryCallingCode,
+          roles: this.roles,
+          doc_PRCLicenseNo: this.doc_PRCLicenseNo,
+          skipMobileNoVerification: this.facilityType.value !== 'doctor',
+        };
+        this.saveModel(payload);
 
-        // const data = await signupFacility(payload);
+        const data = await signupFacility(payload);
 
-        // if (this.requiresCheckout) {
-        //   const checkoutSession = get(data, 'organization.subscription.updatesPending');
-        //   console.log('checkout session', checkoutSession);
-        //   this.stripeCheckoutSessionId = checkoutSession.stripeSession;
-        //   this.$refs.checkoutRef.redirectToCheckout();
-        //   return;
-        // }
-        // if (this.countryCallingCode !== '63') {
-        //   this.emailVerificationMessageDialog = true;
-        // } else {
-        //   this.$nuxt.$router.push({ name: 'signup-health-facilities-otp-verification' });
-        // }
+        if (this.requiresCheckout) {
+          const checkoutSession = get(data, 'organization.subscription.updatesPending');
+          console.log('checkout session', checkoutSession);
+          this.stripeCheckoutSessionId = checkoutSession.stripeSession;
+          this.$refs.checkoutRef.redirectToCheckout();
+          return;
+        }
+        if (this.countryCallingCode !== '63') {
+          this.emailVerificationMessageDialog = true;
+        } else {
+          this.$nuxt.$router.push({ name: 'signup-health-facilities-otp-verification' });
+        }
       } catch (e) {
         console.error(e);
         this.error = true;
