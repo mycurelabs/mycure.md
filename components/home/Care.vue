@@ -6,21 +6,23 @@
           justify="center"
           align="center"
         )
-          v-col(cols="12").text-center
-            h1(:class="{ 'font-l' : !$isMobile, 'font-m' : $isMobile }").lh-title Caring for people who care for people
-          v-col(cols="12").text-center
-            p(:class="{ 'font-s' : !$isMobile, 'font-xs' : $isMobile }").grey--text.font-open-sans MYCURE is dedicated to help healthcare providers save more lives each day.
+          v-col(cols="12" md="10" xl="12").text-center
+            h1(:class="headerClasses").lh-title.font-weight-medium Caring for people who care for people
+          v-col(cols="12" xl="6").text-center
+            p(:class="descriptionClasses").grey--text.font-open-sans MYCURE is dedicated to help healthcare providers save more lives each day.
+        v-row(justify="center" align="center")
           v-col(
             v-for="(stat, key) in stats"
             :key="key"
             cols="12"
             md="4"
           ).text-center
-            h1(:class="{ 'font-l' : !$isMobile, 'font-m' : $isMobile }").primary--text {{ stat.amount }}
-            h3(:class="{ 'font-s' : !$isMobile, 'font-12' : $isMobile }").font-weight-regular.grey--text {{ stat.title }}
+            h1(:class="{ 'font-xl': $isWideScreen, 'font-l': $isRegularScreen, 'font-m' : $isMobile }").primary--text.font-weight-medium {{ stat.amount }}
+            h3(:class="{ 'font-m': $isWideScreen, 'font-s' : $isRegularScreen, 'font-xs' : $isMobile }").font-weight-regular.grey--text {{ stat.title }}
 </template>
 
 <script>
+import classBinder from '~/utils/class-binder';
 export default {
   data () {
     this.stats = [
@@ -38,6 +40,22 @@ export default {
       },
     ];
     return {};
+  },
+  computed: {
+    headerClasses () {
+      return classBinder(this, {
+        mobile: ['font-m'],
+        regular: ['font-l'],
+        wide: ['font-xl'],
+      });
+    },
+    descriptionClasses () {
+      return classBinder(this, {
+        mobile: ['font-xs'],
+        regular: ['font-s'],
+        wide: ['font-m'],
+      });
+    },
   },
 };
 </script>

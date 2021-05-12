@@ -9,10 +9,12 @@
           span.primary--text healthcare providers&nbsp;
           | today.
         mc-btn(
+          rounded
+          large
           event-label="signup"
           color="success"
           :to="{ name: 'signup-health-facilities' }"
-        ).text-none.font-12 Get Started
+        ).text-none.font-s Get Started
 </template>
 <style scoped>
 .usp-container {

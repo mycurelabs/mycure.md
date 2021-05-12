@@ -78,7 +78,7 @@ export default {
   webfontloader: {
     google: {
       families: [
-        'Poppins:400',
+        'Poppins:400,500,700,900',
         'Open Sans:300,400',
       ],
     },

@@ -8,7 +8,7 @@
     ).nav-bar
       v-container
         v-row(justify="center")
-          v-col(cols="12" md="10")
+          v-col(cols="12" md="11")
             div.d-flex
               nuxt-link(to="/")
                 img(
@@ -26,7 +26,7 @@
                   large
                   @click="onNavClick(nav)"
                 ).text-none.font-12
-                  b {{ nav.name }}
+                  span.font-weight-medium {{ nav.name }}
                 //- v-btn(
                 //-   text
                 //-   depressed
@@ -41,14 +41,14 @@
                   tile
                   event-label="login"
                   :to="{ name: 'signin' }"
-                ).text-none.mr-2.font-12 #[b LOG IN]
+                ).text-none.mr-2.font-12 #[span.font-weight-medium LOG IN]
                 mc-btn(
                   color="success"
                   large
                   tile
                   event-label="signup"
                   :to="{name: 'signup-health-facilities'}"
-                ).text-none.font-12.font-weight-bold #[b SIGN UP]
+                ).text-none.font-12.font-weight-medium #[span SIGN UP]
               template(v-else)
                 v-spacer
                 v-app-bar-nav-icon(@click.stop="drawer = !drawer")
@@ -85,36 +85,13 @@
         text
         depressed
         large
-      ).text-none.mr-2 #[b LOG IN]
+      ).text-none.mr-2 #[span.font-weight-medium LOG IN]
       v-btn(
         color="success"
         large
         shaped
         :to="{name: 'signup-health-facilities'}"
-      ).text-none #[b SIGN UP]
-        //- v-menu(
-        //-   v-else
-        //-   bottom
-        //-   left
-        //-   large
-        //- )
-        //-   template(v-slot:activator="{ on, attrs }")
-        //-     v-btn(icon v-bind="attrs" v-on="on")
-        //-       v-icon mdi-menu
-        //-   v-list(style="width: 250px")
-        //-     v-list-item
-        //-       v-btn(
-        //-         text
-        //-         block
-        //-         href="/"
-        //-       ) For Providers
-        //-     //- v-list-item
-        //-       //- v-btn(text block) Support
-        //-     v-list-item
-        //-       v-btn(
-        //-         text
-        //-         block
-        //-       ) Get Started Free
+      ).text-none #[span.font-weight-medium SIGN UP]
 </template>
 
 <script>

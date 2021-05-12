@@ -5,18 +5,12 @@
       justify="center"
       align="center"
       no-gutters
-      :style="{ height: $isMobile ? '300px' : '325px' }"
+      :style="{ height: $isMobile ? '300px' : '400px' }"
       :class="{ 'pt-10': $isMobile }"
     )
-      v-col(cols="12" md="6" :class="{ 'text-center' : $isMobile }")
-        h1(:class="{ 'font-xl mb-8' : !$isMobile, 'font-l mb-6' : $isMobile }") Make Healthcare Accessible to All
-        p(:class="{ 'font-m' : !$isMobile, 'font-s' : $isMobile }").grey--text THE&nbsp;
-          strong.primary--text SEVEN WONDERS&nbsp;
-          span.grey--text OF HEALTHCARE&nbsp;
-          br(v-if="$isRegularScreen")
-          | EMPOWERED BY&nbsp;
-          strong.primary--text MYCURE
-      v-col(cols="12" md="4")
+      v-col(cols="12" md="6" xl="4").text-center
+        h1(:class="headerClasses") Make Healthcare Accessible to All
+        p(:class="{ 'font-m' : !$isMobile, 'font-s' : $isMobile }").primary--text.font-weight-medium THE SEVEN WONDERS OF HEALTHCARE EMPOWERED BY MYCURE
     v-row(justify="center" align="center" no-gutters)
       v-col(v-if="!$isMobile" cols="12")
         vue-slick-carousel(
@@ -40,8 +34,8 @@
 <script>
 import VueSlickCarousel from 'vue-slick-carousel';
 import 'vue-slick-carousel/dist/vue-slick-carousel.css';
-
 import Wonder from './Wonder';
+import classBinder from '~/utils/class-binder';
 export default {
   components: {
     Wonder,
@@ -95,6 +89,15 @@ export default {
       },
     ];
     return {};
+  },
+  computed: {
+    headerClasses () {
+      return classBinder(this, {
+        mobile: ['font-l', 'mb-6'],
+        regular: ['font-xl', 'mb-8'],
+        wide: ['font-2xl', 'mb-8'],
+      });
+    },
   },
 };
 </script>

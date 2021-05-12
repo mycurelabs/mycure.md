@@ -46,15 +46,18 @@ export default {
 }
 /* Font Sizes */
 .font-2xl {
-  font-size: 64px !important;
+  font-size: 65px !important;
+  line-height: 1.5;
+  letter-spacing: -0.5px;
 }
 .font-xl {
-  font-size: 56px;
+  font-size: 55px;
   line-height: 1;
   letter-spacing: -0.5px;
 }
 .font-l {
-  font-size: 38px !important;
+  font-size: 35px !important;
+  line-height: 1.5;
   letter-spacing: -0.5px;
 }
 .font-m {

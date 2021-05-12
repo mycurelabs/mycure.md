@@ -17,7 +17,7 @@
         custom-path="home/"
         image-alt="CTA Home"
         :image-width="!$isMobile ? '30%' : '70%'"
-        :image-styles="{ marginBottom: '-5px' }"
+        :image-styles="{ marginBottom: '-7px' }"
       )
       div.cta-container
         join-next-generation
@@ -73,9 +73,6 @@ export default {
   background-color: #0099cc;
 }
 
-.cta-image {
-  margin-bottom: -50px;
-}
 .cta-container {
   background-color: #2b2d30;
 }

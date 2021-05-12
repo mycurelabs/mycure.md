@@ -7,14 +7,14 @@
           align="center"
         )
           v-col(cols="12" md="12").text-center
-            h1(:class="{ 'font-l' : !$isMobile, 'font-m' : $isMobile }") Flexible. Scalable.
+            h1(:class="headerClasses").font-weight-medium Flexible. Scalable.
           v-col(cols="12" md="12").text-center
-            p.font-s.grey--text Customizable based on what you need
-          v-col(cols="12" md="12" lg="8").text-center
-            p.font-xs.font-open-sans MYCURE is modularized and provides APIs for each so you are able to build from scratch, add missing modules while making your system secure and compliant.
+            p(:class="subheaderClasses").primary--text Customizable based on what you need
+          v-col(cols="12" md="12" lg="8" xl="6").text-center
+            p(:class="descriptionClasses").font-open-sans.grey--text MYCURE is modularized and provides APIs for each so you are able to build from scratch, add missing modules while making your system secure and compliant.
         v-row(justify="center").pt-5
-          v-col(cols="12" md="10")
-            v-row(justify="center")
+          v-col(cols="12" md="8")
+            v-row(justify="center" dense)
               v-col(
                 v-for="(tool, key) in items"
                 :key="key"
@@ -30,11 +30,12 @@
                   image-file-extension=".png"
                 )
                 br
-                br
                 h3.font-xs.font-open-sans.grey--text {{ tool.name }}
+                br
 </template>
 
 <script>
+import classBinder from '~/utils/class-binder';
 import PictureSource from '~/components/commons/PictureSource';
 export default {
   components: {
@@ -120,12 +121,32 @@ export default {
     items () {
       return this.version === 1 ? this.defaultTools : this.modules;
     },
+    headerClasses () {
+      return classBinder(this, {
+        mobile: ['font-m'],
+        regular: ['font-l'],
+        wide: ['font-xl'],
+      });
+    },
+    subheaderClasses () {
+      return classBinder(this, {
+        mobile: ['font-xs'],
+        regular: ['font-s'],
+        wide: ['font-m'],
+      });
+    },
+    descriptionClasses () {
+      return classBinder(this, {
+        regular: ['font-xs'],
+        wide: ['font-s'],
+      });
+    },
     panelHeight () {
       if (this.$isMobile) return 'auto';
       if (this.version === 1 && this.$isRegularScreen) return '475px';
       if (this.version === 1 && this.$isWideScreen) return '800px';
       if (this.version === 2 && this.$isRegularScreen) return '1000px';
-      if (this.version === 2 && this.$isWideScreen) return '1500px';
+      if (this.version === 2 && this.$isWideScreen) return '1300px';
       return '850px';
     },
     toolWidth () {
@@ -139,7 +160,9 @@ export default {
 </script>
 
 <style scoped>
-.usp-container {
-  padding-bottom: 100px;
+@media screen and (min-width: 1024px) {
+  .usp-container {
+    padding-top: 100px;
+  }
 }
 </style>
