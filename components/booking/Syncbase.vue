@@ -1,17 +1,17 @@
 <template lang="pug">
   div(style="background-color: #BDDBE6")
-    v-container
+    v-container(fluid)
       v-row(justify="center" no-gutters)
         v-col(cols="12" md="10")
           v-row(align="center" justify="center").my-10
-            v-col(cols="11" md="5")
+            v-col(cols="11" md="6")
               img(
                 width="100%"
                 src="../../assets/images/booking/mycure-syncbase-diagram-animate.gif"
                 style="border-radius: 10px;"
               )
             v-col(cols="12" md="1")
-            v-col(cols="12" md="6")
+            v-col(cols="12" md="5")
               h4(:class="{ 'text-center' : $isMobile }").primary--text SYNCBASE TECHNOLOGY
               h1(:class="[{ 'text-center' : $isMobile }, ...headerClasses]").mb-2 MYCURE works online and offline
               br
@@ -24,10 +24,13 @@
                 :class="{ 'pl-2' : $isMobile }"
                 :block="$isMobile"
                 depressed
+                rounded
+                :large="$isRegularScreen"
+                :x-large="$isWideScreen"
                 color="primary"
-              ).text-none.font-12
+              ).text-none.font-s
                 | Book a Demo
-                v-icon(small right) mdi-arrow-right
+                v-icon(right) mdi-arrow-right
 </template>
 
 <script>

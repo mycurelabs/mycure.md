@@ -1,6 +1,6 @@
 <template lang="pug">
-  v-container
-    v-row(justify="center" no-gutters)
+  v-container(fluid)
+    v-row(justify="center" align="center" no-gutters :style="{ height: panelHeight }")
       v-col(cols="12" md="10")
         v-row
           v-col(cols="12").mb-6.text-center
@@ -12,8 +12,8 @@
                   :src="item.image"
                   width="80%"
                 )
-                h2(:class="") {{item.title}}
-                p.font-open-sans.grey--text {{item.description}}
+                h2(:class="{'font-m': $isWideScreen, 'font-s': $isRegularScreen}").font-weight-medium {{item.title}}
+                p(:class="{'font-S': $isWideScreen, 'font-xs': $isRegularScreen}").font-open-sans.font-gray {{item.description}}
           div(v-else)
             template(v-for="item in items")
               div.d-flex
@@ -23,8 +23,8 @@
                     width="130"
                   )
                 v-col(cols="7")
-                  h2.font-20 {{item.title}}
-                  p.font-open-sans.grey--text {{item.description}}
+                  h2.font-s.font-weight-medium {{item.title}}
+                  p.font-open-sans.font-gray {{item.description}}
         //- need-more(:class="{ 'need-more-md-up' : !$isMobile }")
 </template>
 
@@ -62,6 +62,13 @@ export default {
         },
       ],
     };
+  },
+  computed: {
+    panelHeight () {
+      if (this.$isMobile) return 'auto';
+      if (this.$isRegularScreen) return '600px';
+      return '900px';
+    },
   },
 };
 </script>

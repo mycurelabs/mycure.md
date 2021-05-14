@@ -1,18 +1,18 @@
 <template lang="pug">
-  v-container(:class="{'usp-mobile' : $isMobile }")
+  v-container(fluid :class="{'usp-mobile' : $isMobile }")
     v-row(
       align="center"
       justify="center"
-      :style="{ height: $isMobile ? 'auto' : '600px' }"
+      :style="{ height: panelHeight }"
       no-gutters
     )
-      v-col(cols="8" md="5" offset-md="1" :class="{ 'order-last' : !$isMobile }")
+      v-col(cols="8" md="7" offset-md="1" :class="{ 'order-last' : !$isMobile }")
         v-img(
           :src="require('../../assets/images/booking/Booking USP.png')"
-          width="100%"
+          width="108%"
           alt="homepage image"
         )
-      v-col(cols="12" md="4" :class="{ 'text-center' : $isMobile }")
+      v-col(cols="12" md="3" offset-md="1" :class="{ 'text-center' : $isMobile }")
         h1(:class="titleClasses") Grow your #[br]
           vue-typer(
             :text="['Practice', 'Clinic', 'Diagnostics', 'Hospital']"
@@ -23,7 +23,7 @@
           span #[br] Safely
         p(:class="descriptionClasses").font-gray.font-open-sans Bring in more patients using a powerful healthcare service booking and management software. It's free, secure, and easy to use.
         br
-        get-started-button.font-12
+        get-started-button(rounded :large="$isRegularScreen" :x-large="$isWideScreen").font-s
 </template>
 
 <script>
@@ -44,10 +44,10 @@ export default {
       const classes = classBinder(this, {
         mobile: ['font-m'],
         regular: ['font-l'],
+        wide: ['font-xl'],
       });
       return [
         'mb-8',
-        'lh-title',
         classes,
       ];
     },
@@ -55,7 +55,13 @@ export default {
       return classBinder(this, {
         mobile: ['font-xs', 'text-center'],
         regular: ['font-s', 'text-justify'],
+        wide: ['font-m', 'text-justify'],
       });
+    },
+    panelHeight () {
+      if (this.$isMobile) return 'auto';
+      if (this.$isRegularScreen) return '650px';
+      return '950px';
     },
   },
   methods: {

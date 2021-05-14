@@ -1,10 +1,10 @@
 <template lang="pug">
-  v-container
+  v-container(fluid)
     v-row(justify="center" no-gutters)
       v-col(cols="12" md="10")
         template(v-for="row in rows")
-          v-row(v-if="!$isMobile" align="center").row-margins
-            v-col(cols="12" md="6" :class="{ 'order-last': row.imagePos === 'left' }")
+          v-row(v-if="!$isMobile" align="center" :style="{ height: panelHeight }").row-margins
+            v-col(cols="12" md="5" :class="{ 'order-last': row.imagePos === 'left' }")
               b(v-if="row.superTitle").primary--text {{row.superTitle}}
               h1(:class="headerClasses").mt-2 {{row.title}}
               ul(v-if="row.list && row.list.length" :class="descriptionClasses")
@@ -12,7 +12,7 @@
                   li.mt-4.d-flex #[v-icon(size="25").success--text.mr-2 mdi-checkbox-marked-circle]
                     div {{listItem}}
             v-col(cols="1").subtitle-gray
-            v-col(cols="12" md="5" :class="{ 'order-first': row.imagePos === 'left' }")
+            v-col(cols="12" md="6" :class="{ 'order-first': row.imagePos === 'left' }")
               img(
                 :src="row.image"
                 width="100%"
@@ -92,6 +92,13 @@ export default {
       ],
     };
   },
+  computed: {
+    panelHeight () {
+      if (this.$isMobile) return 'auto';
+      if (this.$isRegularScreen) return '600px';
+      return '900px';
+    },
+  },
 };
 </script>
 
@@ -101,8 +108,4 @@ ul {
   padding: 0;
 }
 
-.row-margins {
-  margin-top: 100px;
-  margin-bottom: 100px;
-}
 </style>

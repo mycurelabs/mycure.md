@@ -2,6 +2,7 @@
   mc-btn(
     color="success"
     depressed
+    :rounded="rounded"
     :large="large"
     :x-large="xLarge"
     :small="small"
@@ -17,6 +18,7 @@ export default {
     xLarge: Boolean,
     small: Boolean,
     block: Boolean,
+    rounded: Boolean,
     email: {
       type: String,
       default: '',

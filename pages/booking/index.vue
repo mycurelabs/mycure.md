@@ -2,6 +2,7 @@
   div(v-if="!loading").white
     //- 1st panel
     usp
+    //- 2nd panel
     start-easy(:header-classes="headerClasses")
     features(
       :header-classes="headerClasses"
@@ -15,7 +16,7 @@
       :header-classes="headerClasses"
       :description-classes="descriptionClasses"
     )
-    plans(:header-classes="headerClasses")
+    plans
 </template>
 
 <script>
@@ -57,7 +58,9 @@ export default {
         classBinder(this, {
           mobile: ['font-m'],
           regular: ['font-l'],
+          wide: ['font-xl'],
         }),
+        'font-weight-medium',
         'lh-title',
       ];
       return headerClasses;
@@ -67,6 +70,7 @@ export default {
         classBinder(this, {
           mobile: ['font-xs'],
           regular: ['font-s'],
+          wide: ['font-m'],
         }),
         'font-open-sans',
         'font-gray',

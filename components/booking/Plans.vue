@@ -1,17 +1,29 @@
 <template lang="pug">
-  v-container
+  v-container(fluid)
     v-row(align="center" justify="center" :class="{ 'mobile-container' : $isMobile }")
       v-col(md="10")
         v-row(align="center" justify="center" :class="{ 'plans-container my-10' : !$isMobile }")
           v-col(cols="10" md="5" :class="{ 'pa-12' : !$isMobile }")
             h1(:class="[{ 'mb-5' : !$isMobile, 'text-center' : $isMobile }, ...headerClasses]").plan-title.white--text {{title}}
-            get-started-btn(v-if="!$isMobile" color="success" small)
+            get-started-btn(
+              v-if="!$isMobile"
+              color="success"
+              rounded
+              depressed
+              :large="$isRegularScreen"
+              :x-large="$isWideScreen"
+            ).font-s
           v-col(cols="10" md="6" :class="{ 'pa-12' : !$isMobile }").mt-4
             template(v-for="plan in plans")
               h1(:class="planTitleClasses").white--text {{plan.name}}
               p.white--text.mb-6.font-open-sans {{plan.description}}
           v-col(v-if="$isMobile" cols="12").text-center
-            get-started-btn(color="success" block).font-12
+            get-started-btn(
+              rounded
+              depressed
+              block
+              color="success"
+            ).font-s
 </template>
 
 <script>
@@ -20,12 +32,6 @@ import classBinder from '~/utils/class-binder';
 export default {
   components: {
     GetStartedBtn,
-  },
-  props: {
-    headerClasses: {
-      type: Array,
-      default: () => ([]),
-    },
   },
   data () {
     this.title = 'Start for free, then pay as you grow';
@@ -46,6 +52,13 @@ export default {
     return {};
   },
   computed: {
+    headerClasses () {
+      return classBinder(this, {
+        mobile: ['font-s'],
+        regular: ['font-l'],
+        wide: ['font-xl'],
+      });
+    },
     planTitleClasses () {
       const headerClasses = [
         classBinder(this, {
