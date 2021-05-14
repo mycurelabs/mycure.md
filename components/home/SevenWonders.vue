@@ -5,7 +5,7 @@
       justify="center"
       align="center"
       no-gutters
-      :style="{ height: $isMobile ? '300px' : '400px' }"
+      :style="{ height: $isMobile ? '300px' : '450px' }"
       :class="{ 'pt-10': $isMobile }"
     )
       v-col(cols="12" md="6" xl="4").text-center

@@ -4,7 +4,7 @@
       v-col(md="10")
         v-row(align="center" justify="center" :class="{ 'plans-container my-10' : !$isMobile }")
           v-col(cols="10" md="5" :class="{ 'pa-12' : !$isMobile }")
-            h1(:class="[{ 'mb-5' : !$isMobile, 'text-center' : $isMobile }, ...headerClasses]").plan-title.white--text {{title}}
+            h1(:class="[{ 'mb-5' : !$isMobile, 'text-center' : $isMobile }, ...headerClasses]").white--text.font-weight-medium {{title}}
             get-started-btn(
               v-if="!$isMobile"
               color="success"
@@ -15,7 +15,7 @@
             ).font-s
           v-col(cols="10" md="6" :class="{ 'pa-12' : !$isMobile }").mt-4
             template(v-for="plan in plans")
-              h1(:class="planTitleClasses").white--text {{plan.name}}
+              h1(:class="planTitleClasses").white--text.font-weight-medium {{plan.name}}
               p.white--text.mb-6.font-open-sans {{plan.description}}
           v-col(v-if="$isMobile" cols="12").text-center
             get-started-btn(
@@ -81,10 +81,5 @@ export default {
 
 .mobile-container {
   background-color: #0174BB;
-}
-
-.plan-title {
-  font-size: 70px;
-  line-height: 1;
 }
 </style>

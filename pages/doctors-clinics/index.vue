@@ -26,7 +26,7 @@
         panel-height="70vh"
       ).pt-10
     //- 3rd to 5th panels
-    info-panels(:class="panelMargins")
+    info-panels(:fluid="!$isMobile" :class="panelMargins")
     //-6th panel
     generic-media-panel(
       :fluid="!$isMobile"

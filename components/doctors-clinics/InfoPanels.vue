@@ -1,6 +1,7 @@
 <template lang="pug">
   div
     generic-media-panel(
+      :fluid="fluid"
       v-for="(content, key) in contents"
       :key="key"
       v-bind="getPanelBindings(content)"
@@ -15,6 +16,12 @@ import classBinder from '~/utils/class-binder';
 export default {
   components: {
     GenericMediaPanel,
+  },
+  props: {
+    fluid: {
+      type: Boolean,
+      default: false,
+    },
   },
   data () {
     this.contents = [

@@ -7,7 +7,7 @@
       description="Starting a virtual practice has never been easier. Give your patients the quality care they deserve."
       btn-text="Get Started Free"
       regular-height="600px"
-      wide-height="950px"
+      wide-height="1000px"
       image="Telehealth USP"
       image-width="108%"
       custom-image-path="telehealth/"
