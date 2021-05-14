@@ -7,12 +7,12 @@
   ).nav-bar
     v-container
       v-row(justify="center")
-        v-col(cols="12" md="10")
+        v-col(cols="12" md="11")
           div.d-flex
             nuxt-link(to="/")
               img(
                 src="~/assets/images/MYCURE Logo - white.png"
-                width="140"
+                width="120"
                 alt="MYCURE logo"
               )
             template(v-if="!$isMobile")
@@ -35,7 +35,7 @@
                 depressed
                 large
                 @click="openPxPortal(pxPortalLogIn)"
-              ).text-none.mr-2.font-12 #[b Log In]
+              ).text-none.mr-2.font-12 #[span.font-weight-medium LOG IN]
               v-btn(
                 v-if="!$isMobile"
                 depressed
@@ -43,7 +43,7 @@
                 tile
                 large
                 @click="openPxPortal(pxPortalSignUp)"
-              ).text-none.font-12.font-weight-bold #[b Get Started]
+              ).text-none.font-12.font-weight-medium #[span GET STARTED]
             v-menu(
               v-else
               bottom

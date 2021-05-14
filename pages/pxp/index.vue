@@ -11,8 +11,12 @@
       title="Find the right healthcare services near you"
       description="Diagnostic clinics, hospitals, and full service clinics in Metro Manila are within your reach whenever you need them."
       image="Patients USP"
+      image-col="7"
+      image-col-offset="1"
+      image-width="80%"
       custom-image-path="patients/"
-      regular-height="500px"
+      regular-height="600px"
+      wide-height="1000px"
       hide-btn
     )
     locations
