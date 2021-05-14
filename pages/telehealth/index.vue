@@ -7,16 +7,18 @@
       description="Starting a virtual practice has never been easier. Give your patients the quality care they deserve."
       btn-text="Get Started Free"
       regular-height="600px"
+      wide-height="950px"
       image="Telehealth USP"
       image-width="108%"
       custom-image-path="telehealth/"
       @click="$nuxt.$router.push({ name: 'signup-health-facilities', params: { type: 'doctor-telehealth' }})"
     )
     //- 2nd panel
-    div.mb-12
+    div.mb-12.pb-12
       generic-media-panel(
         center-media
         header="Your New Virtual Clinic"
+        :fluid="!$isMobile"
         :descriptions="['Use the tools that work best for you. Everything you need is here. It’s FREE.']"
         :header-classes="headerClasses"
         :description-classes="descriptionClasses"
@@ -24,10 +26,11 @@
         custom-image-path="telehealth/"
       )
 
-      increase-revenue
+      increase-revenue(:fluid="!$isMobile")
     //- 3rd to 4th panel
     generic-media-panel(
       v-for="(info, key) in infoPanels"
+      :fluid="!$isMobile"
       :key="key"
       offset-cols-right="1"
       :header="info.header"
@@ -49,11 +52,16 @@
               span(:class="descriptionClasses") {{ item }}
     //- 5th panel
     pricing(
+      :fluid="!$isMobile"
       title="Start free and only pay as you grow."
+      :class="panelMargins"
       :pricing-details="pricingDetails"
     )
     //- 6th panel
-    call-to-action
+    call-to-action(
+      :fluid="!$isMobile"
+      :class="panelMargins"
+    )
 </template>
 
 <script>
@@ -140,10 +148,11 @@ export default {
     headerClasses () {
       const headerClasses = [
         classBinder(this, {
-          mobile: ['font-m'],
+          mobile: ['font-m', 'text-center'],
           regular: ['font-l'],
+          wide: ['font-xl'],
         }),
-        'lh-title',
+        'font-weight-medium',
       ];
       return headerClasses;
     },
@@ -152,11 +161,15 @@ export default {
         classBinder(this, {
           mobile: ['font-xs'],
           regular: ['font-s'],
+          wide: ['font-m'],
         }),
         'font-open-sans',
         'font-gray',
       ];
       return descriptionClasses;
+    },
+    panelMargins () {
+      return { 'mt-10': this.$isMobile, 'mt-8': !this.$isMobile };
     },
   },
   mounted () {

@@ -1,33 +1,41 @@
 <template lang="pug">
-  v-container
+  v-container(:fluid="fluid")
     v-row(justify="center")
       v-col(
         v-for="(data, key) in contents"
-        justify="center"
-        align-self="center"
         cols="12"
         md="5"
         :key="key"
-      )
+      ).content-container
         div.d-flex
-          img(v-lazy="require(`~/assets/images/telehealth/${data.headerIcon}`)" height="30%" :class="{'pt-3': $isMobile}")
-          h1(:class="headerClasses").ml-3 {{ data.header }}
+          img(v-lazy="require(`~/assets/images/telehealth/${data.headerIcon}`)" :height="$isMobile? '10%' : '30%'" :class="{'pt-3': $isMobile}")
+          h1(:class="headerClasses").ml-3.font-weight-medium {{ data.header }}
         br
         p(:class="descriptionClasses").text-justify.font-gray.font-open-sans {{ data.description }}
-        br
-        mc-btn(
-          depressed
-          color="success"
-          event-label="signup"
-          :to="{ name: 'signup-health-facilities', params: { type: 'doctor-telehealth' } }"
-        ).text-none.font-12
-          | Get Started Free
-          v-icon(small right) mdi-arrow-right
+        div.btn-container
+          mc-btn(
+            depressed
+            rounded
+            color="success"
+            event-label="signup"
+            :large="$isRegularScreen"
+            :x-large="$isWideScreen"
+            :to="{ name: 'signup-health-facilities', params: { type: 'doctor-telehealth' } }"
+          ).text-none.font-s
+            | Get Started Free
+            v-icon(small right) mdi-arrow-right
 </template>
 
 <script>
 import classBinder from '~/utils/class-binder';
 export default {
+  props: {
+    // - Container fluid
+    fluid: {
+      type: Boolean,
+      default: false,
+    },
+  },
   data () {
     this.contents = [
       {
@@ -46,16 +54,29 @@ export default {
   computed: {
     headerClasses () {
       return classBinder(this, {
-        mobile: ['font-s'],
+        mobile: ['font-s', 'pt-5'],
         regular: ['font-m'],
+        wide: ['font-l'],
       });
     },
     descriptionClasses () {
       return classBinder(this, {
         mobile: ['font-xs'],
         regular: ['font-s'],
+        wide: ['font-m'],
       });
     },
   },
 };
 </script>
+
+<style scoped>
+.content-container {
+  position: relative;
+  padding-bottom: 50px;
+}
+.btn-container {
+  position: absolute;
+  bottom: 0;
+}
+</style>
