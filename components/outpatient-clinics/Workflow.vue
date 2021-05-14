@@ -16,8 +16,9 @@
               rounded
               :large="$isRegularScreen"
               :x-large="$isWideScreen"
+              :class="{'font-s': !$isMobile}"
               @click="videoDialog = true"
-            ).text-none.font-s.mt-3 Watch How It Works
+            ).text-none.mt-3 Watch How It Works
           v-col(cols="12")
             v-row(justify="center")
               v-col(v-if="!$isMobile" cols="12").text-center

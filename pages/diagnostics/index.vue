@@ -90,7 +90,8 @@
           color="primary"
           event-label="signup"
           :to="{ name: 'signup-health-facilities', params: { type: 'clinic-diagnostic' } }"
-        ).text-none.font-s
+          :class="{'font-s': !$isMobile}"
+        ).text-none
           v-icon(left) mdi-web
           span Create my website
         //- TODO: Bring back once demo is available
@@ -132,7 +133,8 @@
             depressed
             color="primary"
             :to="{ name: 'clinics' }"
-          ).text-none.font-s
+            :class="{'font-s': !$isMobile}"
+          ).text-none
             v-icon(left) mdi-information-outline
             span Learn more
     //- 8th panel
@@ -256,7 +258,7 @@ export default {
     headerClasses () {
       const headerClasses = [
         classBinder(this, {
-          mobile: ['font-m'],
+          mobile: ['font-m', 'text-center'],
           regular: ['font-l'],
           wide: ['font-xl'],
         }),
@@ -280,7 +282,7 @@ export default {
     subHeaderClasses () {
       return [
         classBinder(this, {
-          mobile: ['font-xs'],
+          mobile: ['font-xs', 'text-center'],
           regular: ['font-xs'],
           wide: ['font-s'],
         }),

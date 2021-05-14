@@ -21,13 +21,14 @@
         p(:class="descriptionClasses").font-open-sans.white--text MYCURE is infused with advanced user experience that you can never compare with another medical software. Experience smooth transitions from one workflow
           | &nbsp;to another — you probably won't even consider using pen and paper ever again.
         br
-        v-row(:dense="!$isWideScreen")
+        v-row(:dense="!$isWideScreen" :justify="$isMobile ? 'center': null")
           v-col(v-for="(service, key) in services" :key="key").shrink
             v-hover(
               v-slot="{ hover }"
               open-delay="100"
             )
               mc-btn(
+                :block="$isMobile"
                 :large="$isWideScreen"
                 :small="!$isWideScreen"
                 depressed

@@ -54,7 +54,8 @@
           :x-large="$isWideScreen"
           :block="$isMobile"
           :to="{ name: 'syncbase' }"
-        ).text-none.font-s
+          :class="{'font-s': !$isMobile}"
+        ).text-none
           v-icon(left) mdi-information-outline
           span Learn about MYCURE Syncbase
     //- 5th panel
@@ -85,7 +86,8 @@
           :large="$isRegularScreen"
           :x-large="$isWideScreen"
           :to="{ name: 'signup-health-facilities', params: { type: 'clinic' } }"
-        ).text-none.font-s
+          :class="{'font-s': !$isMobile}"
+        ).text-none
           v-icon(left) mdi-web
           span Create my website
         //- TODO: Need sample clinic
@@ -234,7 +236,7 @@ export default {
     headerClasses () {
       const headerClasses = [
         classBinder(this, {
-          mobile: ['font-m'],
+          mobile: ['font-m', 'text-center'],
           regular: ['font-l'],
           wide: ['font-xl'],
         }),
