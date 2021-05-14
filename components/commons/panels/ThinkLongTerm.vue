@@ -1,6 +1,6 @@
 <template lang="pug">
   v-container
-    v-row(justify="center")
+    v-row(justify="center").pb-5
       v-col(cols="12" md="6").text-center
         strong(:class="metaTitleClasses").primary--text Why MYCURE?
         h1(:class="panelHeaderClasses") Think Long-Term

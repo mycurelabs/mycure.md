@@ -75,7 +75,7 @@
       mycure-csi(:class="panelMargins").pt-10
     //- 8th panel
     div.blue-bg
-      practice-online(:class="panelMargins")
+      practice-online
     //- 9th panel
     think-long-term(extended :class="panelMargins")
     //- 10th panel
