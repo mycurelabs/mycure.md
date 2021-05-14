@@ -5,13 +5,14 @@
       title="Simplified workflows, faster results, better performance."
       meta-title="MYCURE Most Complete Clinic Management System"
       description="Designed for modern clinics with complex operations. Large or small, MYCURE enables clinics to be much more efficient, increase in revenue, and build more patient loyalty."
-      parse-meta-title="mobile"
+      parse-meta-title="wide"
       parse-title="regular"
       :parse-title-fields="['workflows, ', 'results, ']"
       btn-text="Get Started"
       btn-color="success"
       :parse-meta-title-fields="['Complete ']"
       regular-height="650px"
+      wide-height="975px"
       image-width="108%"
       image-col="7"
       text-col="4"
@@ -20,48 +21,13 @@
       @click="$nuxt.$router.push({ name: 'signup-health-facilities', params: { type: 'clinic' }})"
     )
     //- 2nd panel
-    workflow
+    div.grey-bg.pt-12
+      workflow.pt-12
     //- 3rd panel
-    mycure-csi.mb-12
+    mycure-csi
     //- 4th panel
     generic-media-panel(
-      content-align-left
-      align-left-column="center"
-      cols-left="4"
-      cols-right="5"
-      offset-cols-right="1"
-      :header="infoPanels[1].header"
-      :descriptions="infoPanels[1].descriptions"
-      :header-classes="headerClasses"
-      :descriptionClasses="descriptionClasses"
-      :dense="$isMobile"
-      custom-image-path="commons/"
-      extension-exclusive
-      :web-image="infoPanels[1].image"
-      file-extension=".png"
-    )
-      div(slot="additional-content" :class="{'text-center': $isMobile}")
-        mc-btn(
-          depressed
-          color="primary"
-          :block="$isMobile"
-          event-label="signup"
-          :to="{ name: 'signup-health-facilities', params: { type: 'clinic' } }"
-        ).text-none.font-12
-          v-icon(small left) mdi-web
-          span Create my website
-        //- TODO: Need sample clinic
-        //- v-row
-        //-   v-btn(
-        //-     text
-        //-     color="primary"
-        //-     :block="$isMobile"
-        //-   ).text-none.font-xs
-        //-     span View a sample website
-        //-     v-icon(right) mdi-chevron-right
-    //- 5th panel
-    //- 6th panel
-    generic-media-panel(
+      :fluid="!$isMobile"
       content-align-right
       align-right-column="center"
       cols-left="5"
@@ -82,41 +48,89 @@
       div(slot="additional-content" :class="{'text-center': $isMobile}")
         mc-btn(
           depressed
+          rounded
           color="primary"
+          :large="$isRegularScreen"
+          :x-large="$isWideScreen"
           :block="$isMobile"
           :to="{ name: 'syncbase' }"
-        ).text-none.font-12
-          v-icon(small left) mdi-information-outline
+        ).text-none.font-s
+          v-icon(left) mdi-information-outline
           span Learn about MYCURE Syncbase
-    //- 7th panel
-    features(
-      title="Customized for Your Specialty"
-      description="MYCURE has already built in workflows and processes for different setups."
-      :items="features"
-      :class="panelMargins"
-      image-dir="clinics/"
-      icon-container-col-size="10"
-      icon-col-size="3"
+    //- 5th panel
+    generic-media-panel(
+      :fluid="!$isMobile"
+      content-align-left
+      align-left-column="center"
+      cols-left="4"
+      cols-right="5"
+      offset-cols-right="1"
+      :header="infoPanels[1].header"
+      :descriptions="infoPanels[1].descriptions"
+      :header-classes="headerClasses"
+      :descriptionClasses="descriptionClasses"
+      :dense="$isMobile"
+      custom-image-path="commons/"
       extension-exclusive
-      panel-height="70vh"
-    ).mt-10.mb-10
-      template(slot="additional-content")
-        v-row(justify="center").mt-10
-          v-col(cols="12" md="4" lg="3")
-            mc-btn(
-              color="primary"
-              block
-              depressed
-              :to="{ name: 'doctors-clinics' }"
-            ).text-none.font-12 Practicing solo? Click here.
+      :web-image="infoPanels[1].image"
+      file-extension=".png"
+    )
+      div(slot="additional-content" :class="{'text-center': $isMobile}")
+        mc-btn(
+          depressed
+          rounded
+          color="primary"
+          event-label="signup"
+          :block="$isMobile"
+          :large="$isRegularScreen"
+          :x-large="$isWideScreen"
+          :to="{ name: 'signup-health-facilities', params: { type: 'clinic' } }"
+        ).text-none.font-s
+          v-icon(left) mdi-web
+          span Create my website
+        //- TODO: Need sample clinic
+        //- v-row
+        //-   v-btn(
+        //-     text
+        //-     color="primary"
+        //-     :block="$isMobile"
+        //-   ).text-none.font-xs
+        //-     span View a sample website
+        //-     v-icon(right) mdi-chevron-right
+    //- 6th panel
+    div.grey-bg.pt-12
+      features(
+        title="Customized for Your Specialty"
+        description="MYCURE has already built in workflows and processes for different setups."
+        :items="features"
+        :class="panelMargins"
+        image-dir="clinics/"
+        icon-container-col-size="10"
+        icon-col-size="3"
+        extension-exclusive
+        panel-height="70vh"
+      ).mt-10.mb-10
+        template(slot="additional-content")
+          v-row(justify="center").mt-10
+            v-col(cols="12" md="4" xl="3")
+              mc-btn(
+                color="primary"
+                block
+                depressed
+                rounded
+                :x-large="$isWideScreen"
+                :to="{ name: 'doctors-clinics' }"
+                :class="{'font-s': $isWideScreen }"
+              ).text-none Practicing solo? Click here.
+    //- 7th panel
+    think-long-term(:fluid="!$isMobile" :class="panelMargins").mb-12
     //- 8th panel
-    think-long-term(extended :class="panelMargins")
+    call-to-action(:fluid="!$isMobile" :class="panelMargins" :version="2")
     //- 9th panel
-    call-to-action(:class="panelMargins" :version="2")
-    //- 10th panel
     pricing(
       title="Take the first step today"
       description="Start free and only pay as you grow."
+      :fluid="!$isMobile"
       :pricing-details="pricingDetails"
       :class="panelMargins"
     )
@@ -224,7 +238,7 @@ export default {
           regular: ['font-l'],
           wide: ['font-xl'],
         }),
-        'lh-title',
+        'font-weight-medium',
       ];
       return headerClasses;
     },
@@ -253,5 +267,8 @@ export default {
 <style scoped>
 .syncbase-animate {
   margin-left: -18vw;
+}
+.grey-bg {
+  background-color: #fafafa;
 }
 </style>

@@ -6,7 +6,7 @@
     image-dir="csi/"
     image-width="50%"
     icon-container-col-size="8"
-    panel-height="70vh"
+    panel-height="60vh"
     :items="items"
     hide-learn-more
     extension-exclusive

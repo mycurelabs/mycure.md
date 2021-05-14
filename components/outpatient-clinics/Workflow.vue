@@ -5,16 +5,19 @@
       v-col(cols="12" md="10")
         v-row(justify="center")
           v-col(cols="12" md="8").text-center
-            h1(:class="titleClasses").lh-title Why do clinics switch to MYCURE?
-          v-col(cols="12" md="6").text-center.py-3
-            p(:class="descriptionClasses").grey--text.font-open-sans MYCURE integrates critical clinic operations into a clean, simple interface to make record management much easier for everyone. Say goodbye to multiple, complicated systems.
+            h1(:class="titleClasses").font-weight-medium Why do clinics switch to MYCURE?
+          v-col(cols="12" md="6" xl="7").text-center.py-3
+            p(:class="descriptionClasses").font-gray.font-open-sans MYCURE integrates critical clinic operations into a clean, simple interface to make record management much easier for everyone. Say goodbye to multiple, complicated systems.
             mc-btn(
               event-label="click-cms-video"
               event-category="Video"
-              depressed
               color="info"
+              depressed
+              rounded
+              :large="$isRegularScreen"
+              :x-large="$isWideScreen"
               @click="videoDialog = true"
-            ).text-none.font-12.mt-3 Watch How It Works
+            ).text-none.font-s.mt-3 Watch How It Works
           v-col(cols="12")
             v-row(justify="center")
               v-col(v-if="!$isMobile" cols="12").text-center
@@ -94,12 +97,14 @@ export default {
       return classBinder(this, {
         mobile: ['font-m'],
         regular: ['font-l'],
+        wide: ['font-xl'],
       });
     },
     descriptionClasses () {
       return classBinder(this, {
         mobile: ['font-xs'],
         regular: ['font-s'],
+        wide: ['font-m'],
       });
     },
   },
