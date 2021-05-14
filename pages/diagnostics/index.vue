@@ -217,7 +217,7 @@ export default {
       },
       {
         title: 'DICOM',
-        icon: 'Dicom',
+        icon: 'DICOM',
       },
     ];
     this.infoPanels = [

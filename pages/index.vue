@@ -11,7 +11,7 @@
     //- CTA
     div(:class="panelMargins").text-center
       picture-source(
-        image="CTA Home"
+        image="CTA"
         image-file-extension=".png"
         extension-exclusive
         custom-path="home/"

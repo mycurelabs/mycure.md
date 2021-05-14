@@ -67,13 +67,13 @@ export default {
       {
         header: 'MYCURE is not just your ordinary medical app.',
         descriptions: ['It’s a platform built for the healthcare ecosystem. You can connect and share files with clinics, diagnostic centers, hospitals, and other physicians within the MYCURE network. MYCURE has open APIs to give you more flexibility in integrating with other systems.'],
-        image: 'Prevent Failures',
+        image: 'Preventing Failures',
         imageWidth: '80%',
       },
       {
         header: 'As your practice grows, your tech tools need to upgrade too.',
         descriptions: ['The great thing about starting with MYCURE is that you only need to upgrade once you need to. We’re here to make your practice so much easier to manage because you are a crucial part of healthcare. Together, let’s make this world a healthier place.'],
-        image: 'Success',
+        image: 'As your practice grows',
         imageWidth: '80%',
       },
     ];

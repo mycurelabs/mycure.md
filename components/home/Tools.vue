@@ -63,12 +63,12 @@ export default {
         icon: 'EMR',
       },
       {
-        name: 'Queueing',
-        icon: 'Queueing',
+        name: 'Queuing',
+        icon: 'Queuing',
       },
       {
         name: 'Appointments',
-        icon: 'Appointment',
+        icon: 'Appointments',
       },
       {
         name: 'Pharmacy',
