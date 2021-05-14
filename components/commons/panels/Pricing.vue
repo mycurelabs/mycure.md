@@ -29,45 +29,52 @@
             cols="12"
             :md="columnSize"
           )
-            v-card(color="#fafafa" flat height="100%" width="100%" rounded).card-outter
-              v-toolbar(flat color="info" dark height="175").text-center
-                v-col
+            v-card(flat height="100%" width="100%" :class="{'primary': key === 2}").card-outter.rounded-xl
+              v-card-text(:class="{'white--text': key === 2}").py-8
+                div.text-center
                   picture-source(
                     extension-exclusive
                     custom-path="pricing/"
                     :image="details.image"
                     image-file-extension=".png"
                     :image-alt="details.title"
-                    :image-width="!$isMobile ? '60%' : '40%'"
+                    :image-width="!$isMobile ? '50%' : '40%'"
                   )
-                  v-toolbar-title {{ details.title }}
-              v-card-text.py-8
+                  h1.pt-5 {{ details.title }}
+              div(:class="key === 2 ? 'divider-dark' : 'divider'").mx-5
+              v-card-text(:class="{'white--text': key === 2}")
+                v-row(justify="center")
+                  v-col(cols="12" xl="10")
+                    div(v-for="(inclusion, inclusionKey) in details.inclusions" :key="inclusionKey").d-flex
+                      v-icon(:color="getInclusionColor(inclusion.valid, key)" left) {{ inclusion.valid ? 'mdi-checkbox-marked-circle-outline' : 'mdi-close' }}
+                      span {{ inclusion.text }}
+              div
+              v-card-text(:class="{'white--text': key === 2}").py-8.card-actions
                 div.text-center
-                  p(v-if="details.requireContact").font-m.font-weight-bold.pb-10 Contact Us
+                  div(v-if="details.requireContact").pb-10
+                    br
                     br
                     br
                   template(v-else)
-                    p.font-weight-bold {{ details.currency }}&nbsp;
-                      span(v-if="pricingMode === 'monthly'").font-l {{ details.monthlyPrice }}
-                      span(v-else).font-l {{ details.annualMonthlyPrice ? details.annualMonthlyPrice : details.monthlyPrice }}
-                    p {{ details.users }} user
+                    p.font-weight-bold
+                      span.font-s.font-weight-medium {{ details.currency }}&nbsp;
+                      span(v-if="pricingMode === 'monthly'").font-xl {{ details.monthlyPrice }}
+                      span(v-else).font-xl {{ details.annualMonthlyPrice ? details.annualMonthlyPrice : details.monthlyPrice }}
+                    p.font-s {{ details.users }} user
                       br
                       | per month
-              v-divider(:class="{'mt-2' : details.requireContact }")
-              v-card-text
-                div(v-for="(inclusion, key) in details.inclusions" :key="key").d-flex
-                  v-icon(small :color="inclusion.valid ? 'primary' : 'error'" left) {{ inclusion.valid ? 'mdi-check' : 'mdi-close' }}
-                  span {{ inclusion.text }}
-              div.card-actions
-                mc-btn(
-                  depressed
-                  block
-                  tile
-                  color="success"
-                  event-category="Pricing"
-                  :event-label="`click-pricing-${details.title}`"
-                  @click="onBtnClick(details)"
-                ).text-none {{ details.btnText }}
+                  mc-btn(
+                    depressed
+                    rounded
+                    block
+                    event-category="Pricing"
+                    :color="key === 2 ? 'white' : 'primary'"
+                    :class="{'primary--text': key === 2}"
+                    :large="$isRegularScreen"
+                    :x-large='$isWideScreen'
+                    :event-label="`click-pricing-${details.title}`"
+                    @click="onBtnClick(details)"
+                  ).font-s.font-weight-medium {{ details.btnText }}
 </template>
 
 <script>
@@ -182,6 +189,11 @@ export default {
         });
       }
     },
+    getInclusionColor (valid, key) {
+      if (!valid) return 'error';
+      if (key === 2) return 'white';
+      return 'primary';
+    },
   },
 };
 </script>
@@ -189,12 +201,20 @@ export default {
 <style scoped>
 .card-outter {
   position: relative;
-  padding-bottom: 50px;
+  padding-bottom: 250px;
+  border: 3px solid #04B1E7;
 }
 
 .card-actions {
   position: absolute;
   bottom: 0;
   width: 100%;
+}
+
+.divider {
+  border-bottom: 1px solid black;
+}
+.divider-dark {
+  border-bottom: 1px solid white;
 }
 </style>

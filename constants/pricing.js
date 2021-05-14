@@ -32,7 +32,7 @@ export const DOCTORS_PRICING = [
       { text: 'Premium Features', valid: true },
       { text: 'Add Ons', valid: true },
     ],
-    btnText: 'Get Started Free',
+    btnText: 'Get Started',
     btnRoute: 'signup-health-facilities',
   },
 ];
@@ -55,7 +55,7 @@ export const ENTERPRISE_PRICING = [
       { text: 'Chat Support', valid: false },
       { text: 'Call & Email Support', valid: false },
     ],
-    btnText: 'Start Free',
+    btnText: 'Try Free',
     btnRoute: 'signup-health-facilities',
     value: 'essentials',
   },

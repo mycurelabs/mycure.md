@@ -155,7 +155,7 @@
       description="Start free and only pay as you grow."
       :pricing-details="pricingDetails"
       :class="panelMargins"
-    )
+    ).pb-10
 </template>
 
 <script>
