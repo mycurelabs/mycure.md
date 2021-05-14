@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-container
+  v-container(:fluid="fluid")
     v-row(justify="center" align="center")
       v-col(cols="12" md="10")
         v-row(justify="center")
@@ -78,6 +78,11 @@ export default {
     PictureSource,
   },
   props: {
+    // Make container fluid
+    fluid: {
+      type: Boolean,
+      default: false,
+    },
     title: {
       type: String,
       default: '',

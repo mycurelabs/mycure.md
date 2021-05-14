@@ -21,7 +21,7 @@
       v-col(cols="12" :md="textCol" offset-md="1" :class="{ 'text-center' : $isMobile }" :align-self="$isMobile ? 'start' : 'center'")
         p(v-if="metaTitle" :class="metaTitleClasses").font-weight-bold.primary--text {{ uspMetaTitle }}
         h1(:class="titleClasses") {{ uspTitle }}
-        p(:class="descriptionClasses").grey--text.font-open-sans {{ uspDescription }}
+        p(:class="descriptionClasses").font-gray.font-open-sans {{ uspDescription }}
         br
         template(v-if="slottedBtn")
           slot(name="usp btn")

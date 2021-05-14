@@ -222,6 +222,7 @@ export default {
         classBinder(this, {
           mobile: ['font-m'],
           regular: ['font-l'],
+          wide: ['font-xl'],
         }),
         'lh-title',
       ];
@@ -232,6 +233,7 @@ export default {
         classBinder(this, {
           mobile: ['font-xs'],
           regular: ['font-s'],
+          wide: ['font-m'],
         }),
         'font-open-sans',
         'font-gray',

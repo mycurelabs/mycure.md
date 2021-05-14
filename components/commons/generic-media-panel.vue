@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-container
+  v-container(:fluid="fluid")
     //- COLUMN VIEW
     v-row(v-if="!centerMedia" justify="center" :class="{'py-10': !dense , 'py-1': dense}")
       //- Left column
@@ -199,6 +199,14 @@ export default {
     },
   },
   props: {
+    /**
+     * Make container fluid
+     *
+     */
+    fluid: {
+      type: Boolean,
+      default: false,
+    },
     /**
      * Alignment of left column
      * @type {String}

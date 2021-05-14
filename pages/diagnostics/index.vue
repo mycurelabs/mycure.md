@@ -5,27 +5,31 @@
       title="Your Diagnostic Center Fortified"
       meta-title="MYCURE Diagnostic"
       description="The best tool to create, finalize, and release diagnostic test results is finally here."
-      regular-height="600px"
       image="Diagnostics-USP"
       text-col="3"
       image-col="7"
       image-col-offset="1"
       iamge-width="108%"
       custom-image-path="diagnostics/"
+      regular-height="650px"
+      wide-height="950px"
       @click="$nuxt.$router.push({ name: 'signup-health-facilities', params: { type: 'clinic-diagnostic' }})"
     )
     //- 2nd panel
-    features(
-      title="Embrace the power to choose"
-      description="Don’t settle for anything less.Customize your experience based on the tools you need. MYCURE is designed for diagnostic labs and imaging centers of all sizes."
-      :items="features"
-      extension-exclusive
-      image-dir="diagnostics/"
-      panel-height="70vh"
-    )
+    div.grey-bg
+      features(
+        title="Embrace the power to choose"
+        description="Don’t settle for anything less. Customize your experience based on the tools you need. MYCURE is designed for diagnostic labs and imaging centers of all sizes."
+        :items="features"
+        icon-container-col-size="8"
+        extension-exclusive
+        image-dir="diagnostics/"
+        panel-height="70vh"
+      ).pt-12
     //- 3rd to 4th panel
     div.mt-12
       generic-media-panel(
+        :fluid="!$isMobile"
         v-for="(info, key) in infoPanels"
         :key="key"
         offset-cols-right="1"
@@ -48,21 +52,24 @@
               v-col
                 span(:class="descriptionClasses") {{ item }}
     //- 5th panel
-    features(
-      title="Ready whenever you are"
-      meta-title="POWERFUL INTEGRATIONS"
-      :items="integrations"
-      extension-exclusive
-      image-dir="diagnostics/"
-      hide-learn-more
-      :class="panelMargins"
-      image-width="50%"
-    ).mb-10
+    div.grey-bg
+      features(
+        title="Ready whenever you are"
+        meta-title="POWERFUL INTEGRATIONS"
+        image-dir="diagnostics/"
+        image-width="50%"
+        icon-container-col-size="8"
+        extension-exclusive
+        hide-learn-more
+        :items="integrations"
+        :class="panelMargins"
+      ).mb-10
     //- 6th panel
     generic-media-panel(
-      content-align-left
-      cols-left="4"
-      cols-right="5"
+      :fluid="!$isMobile"
+      content-align-right
+      cols-left="5"
+      cols-right="4"
       offset-cols-right="1"
       align-content-left="center"
       header="Expand Your Reach"
@@ -77,11 +84,14 @@
       div(slot="additional-content" :class="{'text-center': $isMobile}")
         mc-btn(
           depressed
+          rounded
+          :large="$isRegularScreen"
+          :x-large="$isWideScreen"
           color="primary"
           event-label="signup"
           :to="{ name: 'signup-health-facilities', params: { type: 'clinic-diagnostic' } }"
-        ).text-none.font-12
-          v-icon(small left) mdi-web
+        ).text-none.font-s
+          v-icon(left) mdi-web
           span Create my website
         //- TODO: Bring back once demo is available
         //- v-row
@@ -93,39 +103,52 @@
         //-     span View a sample website
         //-     v-icon(right) mdi-chevron-right
     //- 7th panel
-    generic-media-panel(
-      header="Grow into a full service clinic anytime"
-      sub-header="MYCURE CLINIC MANAGEMENT SYSTEM"
-      with-subheader
-      content-align-right
-      cols-left="5"
-      cols-right="4"
-      offset-cols-right="1"
-      align-content-right="center"
-      :dense="$isMobile"
-      :descriptions="['Cover all your patient journeys with MYCURE’s most complete clinic management system.']"
-      :header-classes="headerClasses"
-      :sub-header-classes="subHeaderClasses"
-      :description-classes="descriptionClasses"
-      web-image="FullService"
-      file-extension=".png"
-      extension-exclusive
-      custom-image-path="diagnostics/"
-    )
-      div(slot="additional-content" :class="{'text-center': $isMobile}")
-        mc-btn(
-          depressed
-          color="primary"
-          :to="{ name: 'clinics' }"
-        ).text-none.font-12
-          v-icon(small left) mdi-information-outline
-          span Learn more
+    div(:class="panelMargins").mb-12
+      generic-media-panel(
+        :fluid="!$isMobile"
+        header="Grow into a full service clinic anytime"
+        sub-header="MYCURE CLINIC MANAGEMENT SYSTEM"
+        with-subheader
+        content-align-left
+        cols-left="4"
+        cols-right="5"
+        offset-cols-right="1"
+        align-content-right="center"
+        :dense="$isMobile"
+        :descriptions="['Cover all your patient journeys with MYCURE’s most complete clinic management system.']"
+        :header-classes="headerClasses"
+        :sub-header-classes="subHeaderClasses"
+        :description-classes="descriptionClasses"
+        web-image="FullService"
+        file-extension=".png"
+        extension-exclusive
+        custom-image-path="diagnostics/"
+      )
+        div(slot="additional-content" :class="{'text-center': $isMobile}")
+          mc-btn(
+            rounded
+            :large="$isRegularScreen"
+            :x-large="$isWideScreen"
+            depressed
+            color="primary"
+            :to="{ name: 'clinics' }"
+          ).text-none.font-s
+            v-icon(left) mdi-information-outline
+            span Learn more
     //- 8th panel
-    think-long-term(:class="panelMargins")
+    think-long-term(
+      :fluid="!$isMobile"
+      :class="panelMargins"
+    )
     //- 9th panel
-    call-to-action(:version="2" :class="panelMargins")
+    call-to-action(
+      :fluid="!$isMobile"
+      :version="2"
+      :class="panelMargins"
+    )
     //- 10th panel
     pricing(
+      :fluid="!$isMobile"
       title="Take the first step today"
       description="Start free and only pay as you grow."
       :pricing-details="pricingDetails"
@@ -235,8 +258,10 @@ export default {
         classBinder(this, {
           mobile: ['font-m'],
           regular: ['font-l'],
+          wide: ['font-xl'],
         }),
         'lh-title',
+        'font-weight-medium',
       ];
       return headerClasses;
     },
@@ -245,6 +270,7 @@ export default {
         classBinder(this, {
           mobile: ['font-xs'],
           regular: ['font-s'],
+          wide: ['font-m'],
         }),
         'font-open-sans',
         'font-gray',
@@ -256,6 +282,7 @@ export default {
         classBinder(this, {
           mobile: ['font-xs'],
           regular: ['font-xs'],
+          wide: ['font-s'],
         }),
         'font-open-sans',
         'font-weight-bold',
@@ -289,3 +316,9 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.grey-bg {
+  background-color: #fafafa;
+}
+</style>

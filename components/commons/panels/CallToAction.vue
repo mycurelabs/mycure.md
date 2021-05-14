@@ -1,5 +1,6 @@
 <template lang="pug">
   generic-media-panel(
+    :fluid="fluid"
     content-align-right
     cols-left="5"
     cols-right="4"
@@ -53,6 +54,11 @@ export default {
       type: Number,
       default: 1,
     },
+    // - Make container fluid
+    fluid: {
+      type: Boolean,
+      default: false,
+    },
   },
   data () {
     this.versionOne = {
@@ -88,6 +94,7 @@ export default {
         }),
         'lh-title',
         'font-weight-medium',
+        'primary--text',
       ];
       return headerClasses;
     },

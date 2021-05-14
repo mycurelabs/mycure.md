@@ -17,7 +17,6 @@
     //- 2nd panel
     div.grey-bg
       features(
-        primary-title
         extension-exclusive
         title="Your Practice. Your Call"
         :description="featuresDescription"

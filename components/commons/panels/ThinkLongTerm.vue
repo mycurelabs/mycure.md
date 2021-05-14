@@ -1,10 +1,12 @@
 <template lang="pug">
-  v-container
-    v-row(justify="center").pb-5
-      v-col(cols="12" md="6").text-center
-        strong(:class="metaTitleClasses").primary--text Why MYCURE?
-        h1(:class="panelHeaderClasses") Think Long-Term
+  div
+    v-container(:fluid="fluid")
+      v-row(justify="center").pb-5
+        v-col(cols="12" md="6").text-center
+          strong(:class="metaTitleClasses").primary--text Why MYCURE?
+          h1(:class="panelHeaderClasses").font-weight-medium Think Long-Term
     generic-media-panel(
+      :fluid="fluid"
       v-for="(panel, key) in panels"
       :key="key"
       offset-cols-right="1"
@@ -53,6 +55,13 @@ export default {
     GenericMediaPanel,
     PictureSource,
   },
+  props: {
+    // - Make container fluid
+    fluid: {
+      type: Boolean,
+      default: false,
+    },
+  },
   data () {
     this.panels = [
       {
@@ -91,9 +100,9 @@ export default {
           regular: ['font-m'],
           wide: ['font-l'],
         }),
-        'lh-title',
         'text-justify',
         'primary--text',
+        'font-weight-medium',
       ];
       return headerClasses;
     },
