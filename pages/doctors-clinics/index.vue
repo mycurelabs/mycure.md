@@ -29,6 +29,7 @@
     info-panels(:class="panelMargins")
     //-6th panel
     generic-media-panel(
+      :fluid="!$isMobile"
       content-align-right
       cols-right="4"
       cols-left="5"
@@ -76,14 +77,18 @@
     div.blue-bg
       practice-online
     //- 9th panel
-    think-long-term(extended :class="panelMargins")
+    think-long-term(
+      :fluid="!$isMobile"
+      :class="panelMargins"
+    )
     //- 10th panel
     pricing(
+      :fluid="!$isMobile"
       title="Start free and only pay as you grow"
       :pricing-details="pricingDetails"
     ).py-10.my-10
     //- 11th panel
-    call-to-action
+    call-to-action(:fluid="!$isMobile")
 </template>
 
 <script>

@@ -1,5 +1,6 @@
 <template lang="pug">
   generic-media-panel(
+    :fluid="!$isMobile"
     align-left-column="center"
     cols-left="4"
     cols-right="5"
