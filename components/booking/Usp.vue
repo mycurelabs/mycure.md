@@ -61,7 +61,7 @@ export default {
     panelHeight () {
       if (this.$isMobile) return 'auto';
       if (this.$isRegularScreen) return '650px';
-      return '950px';
+      return '100vh';
     },
   },
   methods: {

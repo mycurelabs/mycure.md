@@ -12,7 +12,6 @@
       btn-color="success"
       :parse-meta-title-fields="['Complete ']"
       regular-height="650px"
-      wide-height="975px"
       image-col="7"
       text-col="4"
       image="Clinics USP"

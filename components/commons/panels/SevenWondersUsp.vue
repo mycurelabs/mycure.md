@@ -124,7 +124,7 @@ export default {
     },
     wideHeight: {
       type: String,
-      default: '1000px',
+      default: '100vh',
     },
     // - Column for Image
     imageCol: {
