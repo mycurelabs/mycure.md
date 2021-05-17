@@ -394,8 +394,8 @@ export default {
         if (this.$route.query.email) this.email = this.$route.query.email;
 
         // Check if user has been prefilled a type and subscription
-        if (this.$route.params.type) this.facilityType = this.$route.params.type;
-        if (this.$route.params.subscription) this.subscription = this.$route.params.subscription;
+        if (this.$route.query.type) this.facilityType = this.$route.query.type;
+        if (this.$route.query.subscription) this.subscription = this.$route.query.subscription;
       } catch (e) {
         console.error(e);
       } finally {
