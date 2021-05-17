@@ -37,7 +37,7 @@
       :descriptions="infoPanels[0].descriptions"
       :header-classes="headerClasses"
       :descriptionClasses="descriptionClasses"
-      :dense="$isMobile"
+      dense
     )
       template(slot="custom-left")
         video(v-if="!$isMobile" :width="wXL ? '1000' : '820'" playsinline autoplay muted loop).syncbase-animate

@@ -11,14 +11,16 @@
             mc-btn(
               event-label="click-cms-video"
               event-category="Video"
-              color="info"
+              color="primary"
               depressed
               rounded
               :large="$isRegularScreen"
               :x-large="$isWideScreen"
               :class="{'font-s': !$isMobile}"
               @click="videoDialog = true"
-            ).text-none.mt-3 Watch How It Works
+            ).text-none.mt-3
+              v-icon(left) mdi-play-circle
+              span Watch How It Works
           v-col(cols="12")
             v-row(justify="center")
               v-col(v-if="!$isMobile" cols="12").text-center
@@ -117,7 +119,7 @@ export default {
   text-decoration: none;
 }
 .container {
-  padding-bottom: 100px;
+  padding-bottom: 50px;
   padding-top: 10px;
 }
 </style>
