@@ -11,7 +11,7 @@
       image-width="90%"
       image-align="right"
       custom-image-path="telehealth/"
-      @click="$nuxt.$router.push({ name: 'signup-health-facilities', params: { type: 'doctor-telehealth' }})"
+      @click="$nuxt.$router.push({ name: 'signup-health-facilities', query: { type: 'doctor-telehealth' }})"
     )
     //- 2nd panel
     div.mb-12.pb-12
