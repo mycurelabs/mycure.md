@@ -169,7 +169,7 @@ export default {
         let preset = '';
         switch (this.$nuxt.$route.name) {
           case 'doctors-clinics':
-            preset = 'doctors';
+            preset = 'doctor';
             break;
           case 'clinics':
             preset = 'clinic';
@@ -185,7 +185,7 @@ export default {
         }
         this.$router.push({
           name: btnRoute,
-          params: { type: preset },
+          query: { type: preset },
         });
       }
     },
