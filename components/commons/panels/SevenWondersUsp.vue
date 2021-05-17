@@ -4,7 +4,13 @@
       justify="center"
       :style="{ height: panelHeight }"
     )
-      v-col(cols="10" :md="imageCol" :offset-md="imageColOffset" :class="{ 'order-last' : !$isMobile }" :align-self="$isMobile ? 'end' : 'center'")
+      v-col(
+        cols="10"
+        :md="imageCol"
+        :offset-md="imageColOffset"
+        :class="[{ 'order-last' : !$isMobile }, imageAlignment]"
+        :align-self="$isMobile ? 'end' : 'center'"
+      )
         //- picture-source(
         //-   extension-exclusive
         //-   :image="image"
@@ -135,6 +141,11 @@ export default {
       type: [String, Number],
       default: '0',
     },
+    // - Alignment of image
+    imageAlign: {
+      type: String,
+      default: 'left',
+    },
     // - Column for Text
     // - Note: This column is offsetted by 1
     textCol: {
@@ -193,6 +204,14 @@ export default {
       if (this.$isMobile) return this.mobileHeight;
       if (this.$isRegularScreen) return this.regularHeight;
       return this.wideHeight;
+    },
+    imageAlignment () {
+      switch (this.imageAlign) {
+        case 'left': return 'text-left';
+        case 'right': return 'text-right';
+        case 'center': return 'text-center';
+        default: return 'text-left';
+      }
     },
   },
   methods: {

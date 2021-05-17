@@ -6,8 +6,9 @@
       meta-title="MYCURE Doctor"
       :description="uspDescription"
       image="Doc USP"
-      image-width="108%"
+      image-width="90%"
       custom-image-path="doctors-clinics/"
+      image-align="right"
       btn-text="Get Started Free"
       regular-height="650px"
       @click="$nuxt.$router.push({ name: 'signup-health-facilities', params: { type: 'doctor' }})"
@@ -18,7 +19,7 @@
     div.grey-bg
       features(
         extension-exclusive
-        title="Your Practice. Your Call"
+        title="Your Practice. Your Call."
         :description="featuresDescription"
         :items="features"
         icon-container-col-size="8"

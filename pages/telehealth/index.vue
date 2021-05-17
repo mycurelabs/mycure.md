@@ -8,7 +8,8 @@
       btn-text="Get Started Free"
       regular-height="600px"
       image="Telehealth USP"
-      image-width="108%"
+      image-width="90%"
+      image-align="right"
       custom-image-path="telehealth/"
       @click="$nuxt.$router.push({ name: 'signup-health-facilities', params: { type: 'doctor-telehealth' }})"
     )

@@ -15,6 +15,8 @@
       image-col="7"
       text-col="4"
       image="Clinics USP"
+      image-width="90%"
+      image-align="right"
       custom-image-path="clinics/"
       @click="$nuxt.$router.push({ name: 'signup-health-facilities', params: { type: 'clinic' }})"
     )
