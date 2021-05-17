@@ -17,26 +17,26 @@
     custom-image-path="commons/"
   )
     template(slot="additional-content")
-      v-row(justify="center" dense)
-        v-col(cols="12")
+      v-row(dense)
+        v-col(cols="12" md="7" xl="5")
           mc-btn(
             depressed
             rounded
             :large="$isRegularScreen"
             :x-large="$isWideScreen"
             :color="version === 1 ? 'primary' : 'success'"
-            :block="$isMobile"
+            block
             :href="'https://calendly.com/mycure/demo'"
           ).text-none.font-s {{ version === 1 ? 'Book a full training' : 'Start Now' }}
-      v-row(justify="center" dense v-if="version === 1").mb-10
-        v-col(cols="12")
+      v-row(dense v-if="version === 1").mb-10
+        v-col(cols="12" md="7" xl="5")
           mc-btn(
             depressed
             rounded
             :large="$isRegularScreen"
             :x-large="$isWideScreen"
             color="success"
-            :block="$isMobile"
+            block
             event-label="signup"
             :to="signUpRoute"
           ).text-none.font-s Get Started Free
