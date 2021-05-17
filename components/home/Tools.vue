@@ -146,7 +146,7 @@ export default {
       if (this.version === 1 && this.$isRegularScreen) return '475px';
       if (this.version === 1 && this.$isWideScreen) return '800px';
       if (this.version === 2 && this.$isRegularScreen) return '950px';
-      if (this.version === 2 && this.$isWideScreen) return '100vh';
+      if (this.version === 2 && this.$isWideScreen) return '110vh';
       return '850px';
     },
     toolWidth () {

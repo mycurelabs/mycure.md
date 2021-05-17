@@ -30,6 +30,19 @@
           source(src="~/assets/videos/mycure-syncbase-diagram-animate.webm" type="video/webm")
           source(src="~/assets/videos/mycure-syncbase-diagram-animate.mp4" type="video/mp4")
           | Your browser does not support the video tag.
+      div(slot="additional-content" :class="{'text-center': $isMobile}")
+        mc-btn(
+          depressed
+          rounded
+          color="primary"
+          :large="$isRegularScreen"
+          :x-large="$isWideScreen"
+          :block="$isMobile"
+          :to="{ name: 'syncbase' }"
+          :class="{'font-s': !$isMobile}"
+        ).text-none
+          v-icon(left) mdi-information-outline
+          span Learn about MYCURE Syncbase
 
     //- CTA
     div(:class="panelMargins").text-center
