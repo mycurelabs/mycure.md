@@ -38,7 +38,7 @@
       :dense="$isMobile"
     )
       template(slot="custom-left")
-        video(v-if="!$isMobile" :width="wXL ? '1175' : '820'" playsinline autoplay muted loop).syncbase-animate
+        video(v-if="!$isMobile" :width="wXL ? '1000' : '820'" playsinline autoplay muted loop).syncbase-animate
           source(src="~/assets/videos/mycure-syncbase-diagram-animate.webm" type="video/webm")
           source(src="~/assets/videos/mycure-syncbase-diagram-animate.mp4" type="video/mp4")
           | Your browser does not support the video tag.
@@ -270,5 +270,10 @@ export default {
 }
 .grey-bg {
   background-color: #fafafa;
+}
+@media screen and (min-width: 1920px) {
+  .syncbase-animate {
+    margin-left: -8vw;
+  }
 }
 </style>

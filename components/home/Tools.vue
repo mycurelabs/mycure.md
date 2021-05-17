@@ -9,29 +9,28 @@
           v-col(cols="12" md="12").text-center
             h1(:class="headerClasses").font-weight-medium Flexible. Scalable.
           v-col(cols="12" md="12").text-center
-            p(:class="subheaderClasses").primary--text Customizable based on what you need
+            p(:class="subheaderClasses").primary--text.font-open-sans Customizable based on what you need
           v-col(cols="12" md="12" lg="8" xl="6").text-center
             p(:class="descriptionClasses").font-open-sans.grey--text MYCURE is modularized and provides APIs for each so you are able to build from scratch, add missing modules while making your system secure and compliant.
-        v-row(justify="center").pt-5
-          v-col(cols="12" md="8")
-            v-row(justify="center" dense)
-              v-col(
-                v-for="(tool, key) in items"
-                :key="key"
-                cols="6"
-                md="4"
-              ).text-center
-                picture-source(
-                  extension-exclusive
-                  :custom-path="version === 1? 'home/' : 'clinics/module-icons/'"
-                  :image="tool.icon"
-                  :image-alt="tool.name"
-                  :image-width="toolWidth"
-                  image-file-extension=".png"
-                )
-                br
-                h3.font-xs.font-open-sans.grey--text {{ tool.name }}
-                br
+        v-row(justify="start").pt-5
+          v-col(
+            v-for="(tool, key) in items"
+            :key="key"
+            cols="6"
+            md="2"
+            :offset-md="getCustomOffset(key)"
+          ).text-center
+            picture-source(
+              extension-exclusive
+              :custom-path="version === 1? 'home/' : 'clinics/module-icons/'"
+              :image="tool.icon"
+              :image-alt="tool.name"
+              :image-width="toolWidth"
+              image-file-extension=".png"
+            )
+            br
+            h3.font-xs.font-open-sans.grey--text {{ tool.name }}
+            br
 </template>
 
 <script>
@@ -137,23 +136,32 @@ export default {
     },
     descriptionClasses () {
       return classBinder(this, {
-        regular: ['font-xs'],
-        wide: ['font-s'],
+        mobile: ['font-xs'],
+        regular: ['font-s'],
+        wide: ['font-m'],
       });
     },
     panelHeight () {
       if (this.$isMobile) return 'auto';
       if (this.version === 1 && this.$isRegularScreen) return '475px';
       if (this.version === 1 && this.$isWideScreen) return '800px';
-      if (this.version === 2 && this.$isRegularScreen) return '1000px';
-      if (this.version === 2 && this.$isWideScreen) return '1400px';
+      if (this.version === 2 && this.$isRegularScreen) return '950px';
+      if (this.version === 2 && this.$isWideScreen) return '100vh';
       return '850px';
     },
     toolWidth () {
       if (this.version === 1) {
         return this.$isMobile ? '65%' : '60%';
       }
-      return '30%';
+      return '50%%';
+    },
+  },
+  methods: {
+    // - For making 5 columns
+    getCustomOffset (key) {
+      if (this.version === 1) return 0;
+      if (key % 5 === 0) return 1;
+      return 0;
     },
   },
 };

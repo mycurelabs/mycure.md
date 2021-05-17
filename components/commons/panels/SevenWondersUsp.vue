@@ -186,7 +186,7 @@ export default {
       return classBinder(this, {
         mobile: ['text-center'],
         regular: ['font-xs', 'text-justify'],
-        wide: ['font-s', 'text-left'],
+        wide: ['font-s', 'text-justify'],
       });
     },
     panelHeight () {
