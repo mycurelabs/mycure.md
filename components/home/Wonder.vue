@@ -1,14 +1,14 @@
 <template lang="pug">
-  v-card(flat color="#fafafa" :height="wonderHeight")
+  v-card(flat color="#fafafa" :height="wonderHeight" rounded="xl")
     v-card-text.text-center
       img(
         :src="require(`~/assets/images/home/${wonder.image}.png`)"
-        width="75%"
+        :width="$isMobile ? '50%' : '75%'"
         :alt="wonder.title"
       )
       br
       br
-      h1(:class="wonderHeaderClasses") {{ wonder.title }}
+      h2(:class="wonderHeaderClasses").font-weight-bold.lh-title {{ wonder.title }}
       p(:class="wonderDescriptionClasses").mt-2 {{ wonder.description }}
 </template>
 
@@ -28,7 +28,8 @@ export default {
   computed: {
     wonderHeight () {
       if (this.$isWideScreen) return '400';
-      return '325';
+      if (this.$isRegularScreen) return '325';
+      return '300';
     },
     wonderHeaderClasses () {
       return classBinder(this, {

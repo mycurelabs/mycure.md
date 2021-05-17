@@ -5,41 +5,40 @@
       justify="center"
       align="center"
       no-gutters
-      :style="{ height: $isMobile ? '300px' : '450px' }"
+      :style="{ height: panelHeight }"
       :class="{ 'pt-10': $isMobile }"
     )
       v-col(cols="12" md="6" xl="4").text-center
         h1(:class="headerClasses") Make Healthcare Accessible to All
         p(:class="{ 'font-m' : !$isMobile, 'font-s' : $isMobile }").primary--text.font-weight-medium THE SEVEN WONDERS OF HEALTHCARE EMPOWERED BY MYCURE
-    v-row(justify="center" align="center" no-gutters)
-      v-col(v-if="!$isMobile" cols="12")
-        vue-slick-carousel(
-          :arrows="false"
-          :dots="false"
-          infinite
-          :slidesToShow="5"
-          :slidesToScroll="1"
-          autoplay
-          :speed="2000"
-          :autoplaySpeed="500"
-          swipeToSlide
-        )
-          div(v-for="(wonder, key) in wonders" :key="key")
-            wonder(:wonder="wonder").ma-1
-      v-row(v-else justify="center")
-        v-col(cols="6" v-for="(wonder, key) in wonders" :key="key")
-          wonder(:wonder="wonder")
+    v-row(justify="center" align="center")
+      //- v-col(v-if="!$isMobile" cols="12")
+        //- vue-slick-carousel(
+        //-   :arrows="false"
+        //-   :dots="false"
+        //-   infinite
+        //-   :slidesToShow="5"
+        //-   :slidesToScroll="1"
+        //-   autoplay
+        //-   :speed="2000"
+        //-   :autoplaySpeed="500"
+        //-   swipeToSlide
+        //- )
+        //-   div(v-for="(wonder, key) in wonders" :key="key")
+        //-     wonder(:wonder="wonder").ma-1
+      v-col(cols="12" md="3" xl="2" v-for="(wonder, key) in wonders" :key="key")
+        wonder(:wonder="wonder")
 </template>
 
 <script>
-import VueSlickCarousel from 'vue-slick-carousel';
-import 'vue-slick-carousel/dist/vue-slick-carousel.css';
+// import VueSlickCarousel from 'vue-slick-carousel';
+// import 'vue-slick-carousel/dist/vue-slick-carousel.css';
 import Wonder from './Wonder';
 import classBinder from '~/utils/class-binder';
 export default {
   components: {
     Wonder,
-    VueSlickCarousel,
+    // VueSlickCarousel,
   },
   data () {
     this.wonders = [
@@ -61,32 +60,32 @@ export default {
         infoLink: 'diagnostics',
         image: 'diagnostic',
       },
-      {
-        title: 'Pharmacy',
-        description: 'Make medicines available anytime, anywhere',
-        comingSoon: true,
-        image: 'Pharmacy',
-      },
-      {
-        title: 'Hospitals',
-        description: 'Take control of a more streamlined inpatient care',
-        infoLink: 'hospitals',
-        comingSoon: true,
-        image: 'hospitals',
-      },
-      {
-        title: 'Patient Relationship',
-        description: 'Build continuity of care for your patients',
-        infoLink: 'patients',
-        comingSoon: true,
-        image: 'PRM',
-      },
-      {
-        title: 'Health IT',
-        description: 'Compliance, security, and interoperability standards',
-        infoLink: 'csi',
-        image: 'security',
-      },
+      // {
+      //   title: 'Pharmacy',
+      //   description: 'Make medicines available anytime, anywhere',
+      //   comingSoon: true,
+      //   image: 'Pharmacy',
+      // },
+      // {
+      //   title: 'Hospitals',
+      //   description: 'Take control of a more streamlined inpatient care',
+      //   infoLink: 'hospitals',
+      //   comingSoon: true,
+      //   image: 'hospitals',
+      // },
+      // {
+      //   title: 'Patient Relationship',
+      //   description: 'Build continuity of care for your patients',
+      //   infoLink: 'patients',
+      //   comingSoon: true,
+      //   image: 'PRM',
+      // },
+      // {
+      //   title: 'Health IT',
+      //   description: 'Compliance, security, and interoperability standards',
+      //   infoLink: 'csi',
+      //   image: 'security',
+      // },
     ];
     return {};
   },
@@ -97,6 +96,11 @@ export default {
         regular: ['font-xl', 'mb-8'],
         wide: ['font-2xl', 'mb-8'],
       });
+    },
+    panelHeight () {
+      if (this.$isMobile) return '300px';
+      if (this.$isRegularScreen) return '350px';
+      return '450px';
     },
   },
 };
