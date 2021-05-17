@@ -100,7 +100,7 @@
         //-     span View a sample website
         //-     v-icon(right) mdi-chevron-right
     //- 6th panel
-    div.grey-bg.pt-12
+    div.grey-bg.pt-12.pb-3
       features(
         title="Customized for Your Specialty"
         description="MYCURE has already built in workflows and processes for different setups."
@@ -113,7 +113,7 @@
         panel-height="70vh"
       ).mt-10.mb-10
         template(slot="additional-content")
-          v-row(justify="center").mt-10
+          v-row(justify="center").my-10
             v-col(cols="12" md="4" xl="3")
               mc-btn(
                 color="primary"
