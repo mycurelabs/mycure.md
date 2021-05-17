@@ -4,7 +4,7 @@
       v-row(justify="center").pb-5
         v-col(cols="12" md="6").text-center
           strong(:class="metaTitleClasses").primary--text Why MYCURE?
-          h1(:class="panelHeaderClasses").font-weight-medium Think Long-Term
+          h2(:class="panelHeaderClasses").font-weight-medium Think Long-Term
     generic-media-panel(
       :fluid="fluid"
       v-for="(panel, key) in panels"

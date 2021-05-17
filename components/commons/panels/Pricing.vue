@@ -5,7 +5,7 @@
         v-row(justify="center")
           v-col(cols="12" md="10").text-center
             strong(v-if="metaTitle" :class="metaTitleClasses").primary--text {{ metaTitle }}
-            h1(:class="titleClasses").lh-title.font-weight-medium {{ title }}
+            h2(:class="titleClasses").lh-title.font-weight-medium {{ title }}
           v-col(cols="12" md="6" v-if="description").text-center
             p(:class="descriptionClasses").grey--text.font-open-sans {{ description }}
         v-row(justify="center")
@@ -40,7 +40,7 @@
                     :image-alt="details.title"
                     :image-width="!$isMobile ? '50%' : '40%'"
                   )
-                  h1.pt-5 {{ details.title }}
+                  h2.pt-5 {{ details.title }}
               div(:class="key === 2 ? 'divider-dark' : 'divider'").mx-5
               v-card-text(:class="{'white--text': key === 2}")
                 v-row(justify="center")

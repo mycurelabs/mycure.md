@@ -5,7 +5,7 @@
         v-row(justify="center")
           v-col(cols="12" :md="titleColSize").text-center
             strong(v-if="metaTitle" :class="metaTitleClasses").primary--text {{ metaTitle }}
-            h1(:class="titleClasses").lh-title.font-weight-medium {{ title }}
+            h2(:class="titleClasses").lh-title.font-weight-medium {{ title }}
           v-col(cols="12" :md="contentColSize").text-center.py-3
             p(:class="descriptionClasses").font-open-sans.font-gray {{ description }}
         v-row(justify="center")

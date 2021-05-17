@@ -19,8 +19,8 @@
           :width="imageWidth"
         )
       v-col(cols="12" :md="textCol" offset-md="1" :class="{ 'text-center' : $isMobile }" :align-self="$isMobile ? 'start' : 'center'")
-        p(v-if="metaTitle" :class="metaTitleClasses").font-weight-bold.primary--text {{ uspMetaTitle }}
-        h1(:class="titleClasses") {{ uspTitle }}
+        h1(v-if="metaTitle" :class="metaTitleClasses").font-weight-bold.primary--text {{ uspMetaTitle }}
+        p(:class="titleClasses") {{ uspTitle }}
         p(:class="descriptionClasses").font-gray.font-open-sans {{ uspDescription }}
         br
         template(v-if="slottedBtn")
@@ -165,6 +165,7 @@ export default {
       return [
         'mb-8',
         'lh-title',
+        'font-weight-bold',
         { 'pre-white-space': this.toParse(this.parseTitle) },
         classes,
       ];
