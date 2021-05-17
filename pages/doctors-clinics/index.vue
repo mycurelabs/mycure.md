@@ -11,7 +11,7 @@
       image-align="right"
       btn-text="Get Started Free"
       regular-height="650px"
-      @click="$nuxt.$router.push({ name: 'signup-health-facilities', params: { type: 'doctor' }})"
+      @click="$nuxt.$router.push({ name: 'signup-health-facilities', query: { type: 'doctor' }})"
       parse-title="regular"
       :parse-title-fields="['the ']"
     )
@@ -67,7 +67,7 @@
             :large="$isRegularScreen"
             color="success"
             event-label="signup"
-            :to="{ name: 'signup-health-facilities', params: { type: 'doctor' }}"
+            :to="{ name: 'signup-health-facilities', query: { type: 'doctor' }}"
           ).text-none.font-s
             span Get Started Free
             v-icon(small right) mdi-arrow-right
