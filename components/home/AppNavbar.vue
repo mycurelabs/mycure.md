@@ -9,7 +9,7 @@
       v-container
         v-row(justify="center")
           generic-panel(disable-parent-padding)
-            v-row.d-flex
+            v-col.d-flex
               nuxt-link(to="/")
                 img(
                   src="~/assets/images/MYCURE Logo - white.png"

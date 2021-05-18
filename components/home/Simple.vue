@@ -143,7 +143,7 @@ export default {
         image: 'MYCURE-virtual-clinic-healthcare-practice-online-features-B-01-emr',
         imageFileExtension: '.webp',
         imageAlt: 'Patient List',
-        imageWidth: '104%',
+        imageWidth: '100%',
         customPath: 'features/',
       };
     },
