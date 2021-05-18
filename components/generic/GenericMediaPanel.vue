@@ -40,6 +40,10 @@ export default {
       type: [Array, Object],
       default: undefined,
     },
+    superTitleClasses: {
+      type: [Array, Object],
+      default: undefined,
+    },
   },
   computed: {
     defaultTitleClasses () {
@@ -66,6 +70,18 @@ export default {
       ];
       return contentClasses;
     },
+    defaultSuperTitleClasses () {
+      return [
+        classBinder(this, {
+          mobile: ['font-xs', 'text-center'],
+          regular: ['font-xs'],
+          wide: ['font-s'],
+        }),
+        'font-open-sans',
+        'font-weight-bold',
+        'primary--text',
+      ];
+    },
   },
   methods: {
     getPanelBindings (content) {
@@ -83,9 +99,11 @@ export default {
       const panelBindings = {
         titleClasses: this.titleClasses ? this.titleClasses : this.defaultTitleClasses,
         contentClasses: this.contentClasses ? this.contentClasses : this.defaultContentClasses,
+        superTitleClasses: this.superTitleClasses ? this.superTitleClasses : this.defaultSuperTitleClasses,
         contentColumnBindings,
         mediaColumnBindings,
         title: content.title,
+        superTitle: content.superTitle,
         description: content.description,
         contentRight: content.contentAlign === 'right',
       };

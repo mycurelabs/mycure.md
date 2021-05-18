@@ -1,5 +1,5 @@
 <template lang="pug">
-  div(v-if="!loading").white
+  v-container(v-if="!loading" fluid).white
     //- 1st panel
     usp(
       title="Your Diagnostic Center Fortified"
@@ -16,7 +16,7 @@
       @click="$nuxt.$router.push({ name: 'signup-health-facilities', query: { type: 'clinic-diagnostic' }})"
     )
     //- 2nd panel
-    div.grey-bg
+    div.grey-bg.mx-n3
       features(
         title="Embrace the power to choose"
         description="Don’t settle for anything less. Customize your experience based on the tools you need. MYCURE is designed for diagnostic labs and imaging centers of all sizes."
@@ -25,32 +25,22 @@
         extension-exclusive
         image-dir="diagnostics/"
         panel-height="70vh"
-      ).pt-12
-    //- 3rd to 4th panel
-    div.mt-12
-      generic-media-panel(
-        :fluid="!$isMobile"
-        v-for="(info, key) in infoPanels"
-        :key="key"
-        offset-cols-right="1"
-        :header="info.header"
-        :header-classes="headerClasses"
-        :descriptions="info.descriptions"
-        :description-classes="descriptionClasses"
-        extension-exclusive
-        file-extension=".png"
-        custom-image-path="diagnostics/"
-        :web-image="info.image"
-        v-bind="getPanelBindings(key)"
       )
-        //- Check list
-        template(slot="additional-content" v-if="info.list")
-          template(v-for="(item, i) in info.list")
-            v-row(dense)
-              v-col(cols="1").pr-2.pt-2
-                img(width="20" src="~/assets/images/mycure-check.png" alt="Check icon")
-              v-col
-                span(:class="descriptionClasses") {{ item }}
+    //- 3rd to 4th panel
+    generic-media-panel(
+      v-for="(info, key) in infoPanels"
+      :content="info"
+      :key="key"
+      hide-btn
+    )
+      //- Check list
+      template(slot="additional-content" v-if="info.list")
+        template(v-for="(item, i) in info.list")
+          v-row(dense)
+            v-col(cols="1").pr-2.pt-2
+              img(width="20" src="~/assets/images/mycure-check.png" alt="Check icon")
+            v-col
+              span(:class="descriptionClasses") {{ item }}
     //- 5th panel
     div.grey-bg
       features(
@@ -63,98 +53,49 @@
         hide-learn-more
         :items="integrations"
         :class="panelMargins"
-      ).mb-10
+      )
     //- 6th panel
     generic-media-panel(
-      :fluid="!$isMobile"
-      content-align-right
-      cols-left="5"
-      cols-right="4"
-      offset-cols-right="1"
-      align-content-left="center"
-      header="Expand Your Reach"
-      :descriptions="['Join MYCURE ONE, a global online directory of modern healthcare practitioners and facilities so patients can easily find and book an appointment anytime.']"
-      :header-classes="headerClasses"
-      :description-classes="descriptionClasses"
-      web-image="Expand your reach"
-      extension-exclusive
-      custom-image-path="commons/"
-      file-extension=".png"
+      :content="expandPanel"
+      hide-btn
     )
-      div(slot="additional-content" :class="{'text-center': $isMobile}")
+      div(slot="additional-content" :class="{'text-center': $isMobile}").mt-10
         signup-button(
           depressed
           rounded
-          :large="$isRegularScreen"
-          :x-large="$isWideScreen"
           color="primary"
           event-label="signup"
+          :block="$isMobile"
+          :large="$isRegularScreen"
+          :x-large="$isWideScreen"
           :class="{'font-s': !$isMobile}"
         ).text-none
           v-icon(left) mdi-web
           span Create my website
-        //- TODO: Bring back once demo is available
-        //- v-row
-        //-   mc-btn(
-        //-     text
-        //-     color="primary"
-        //-     :block="$isMobile"
-        //-   ).text-none.font-xs
-        //-     span View a sample website
-        //-     v-icon(right) mdi-chevron-right
     //- 7th panel
-    div(:class="panelMargins").mb-12
-      generic-media-panel(
-        :fluid="!$isMobile"
-        header="Grow into a full service clinic anytime"
-        sub-header="MYCURE CLINIC MANAGEMENT SYSTEM"
-        with-subheader
-        content-align-left
-        cols-left="4"
-        cols-right="5"
-        offset-cols-right="1"
-        align-content-right="center"
-        :dense="$isMobile"
-        :descriptions="['Cover all your patient journeys with MYCURE’s most complete clinic management system.']"
-        :header-classes="headerClasses"
-        :sub-header-classes="subHeaderClasses"
-        :description-classes="descriptionClasses"
-        web-image="FullService"
-        file-extension=".png"
-        extension-exclusive
-        custom-image-path="diagnostics/"
-      )
-        div(slot="additional-content" :class="{'text-center': $isMobile}")
-          mc-btn(
-            rounded
-            :large="$isRegularScreen"
-            :x-large="$isWideScreen"
-            depressed
-            color="primary"
-            :to="{ name: 'clinics' }"
-            :class="{'font-s': !$isMobile}"
-          ).text-none
-            v-icon(left) mdi-information-outline
-            span Learn more
+    generic-media-panel(:content="cmsPanel")
+      div(slot="cta-button" :class="{'text-center': $isMobile}")
+        mc-btn(
+          rounded
+          :large="$isRegularScreen"
+          :x-large="$isWideScreen"
+          depressed
+          color="primary"
+          :to="{ name: 'clinics' }"
+          :class="{'font-s': !$isMobile}"
+        ).text-none
+          v-icon(left) mdi-information-outline
+          span Learn more
     //- 8th panel
-    think-long-term(
-      :fluid="!$isMobile"
-      :class="panelMargins"
-    )
+    think-long-term
     //- 9th panel
-    call-to-action(
-      :fluid="!$isMobile"
-      :version="2"
-      :class="panelMargins"
-    )
+    call-to-action
     //- 10th panel
     pricing(
-      :fluid="!$isMobile"
       title="Take the first step today"
       description="Start free and only pay as you grow."
       :pricing-details="pricingDetails"
-      :class="panelMargins"
-    ).pb-10
+    )
 </template>
 
 <script>
@@ -166,7 +107,7 @@ import { ENTERPRISE_PRICING } from '~/constants/pricing';
 // - components
 import CallToAction from '~/components/commons/panels/CallToAction';
 import Features from '~/components/commons/panels/Features';
-import GenericMediaPanel from '~/components/commons/generic-media-panel';
+import GenericMediaPanel from '~/components/generic/GenericMediaPanel';
 import Pricing from '~/components/commons/panels/Pricing';
 import ThinkLongTerm from '~/components/commons/panels/ThinkLongTerm';
 import Usp from '~/components/commons/panels/SevenWondersUsp';
@@ -223,26 +164,53 @@ export default {
     ];
     this.infoPanels = [
       {
-        header: 'Easy to integrate. Easy to Use',
-        descriptions: [
-          'Flawlessly incorporate MYCURE into your workflows.',
-        ],
+        title: 'Easy to integrate. Easy to Use',
+        description: 'Flawlessly incorporate MYCURE into your workflows.',
         list: [
           'Track specimen collection',
           'Produce beautiful reports',
           'Integrate with HL7 and DICOM-ready machines',
           'Send online results to patients',
         ],
-        image: 'easy',
+        imageBindings: {
+          image: 'easy.png',
+          extensionExclusive: true,
+          customPath: 'diagnostics/',
+        },
+        contentAlign: 'left',
       },
       {
-        header: 'Send Test Results Instantly',
-        descriptions: [
-          'Give your patients quick access to their test results through the MYCURE app for patients.',
-        ],
-        image: 'Fast results',
+        title: 'Send Test Results Instantly',
+        description: 'Give your patients quick access to their test results through the MYCURE app for patients.',
+        imageBindings: {
+          image: 'Fast results.png',
+          extensionExclusive: true,
+          customPath: 'diagnostics/',
+        },
+        contentAlign: 'right',
       },
     ];
+    this.expandPanel = {
+      title: 'Expand your Reach',
+      description: 'Join MYCURE ONE, a global online directory of modern healthcare facilities so patients can easily find and book an appointment with you anytime.',
+      imageBindings: {
+        image: 'Expand your reach.png',
+        extensionExclusive: true,
+        customPath: 'commons/',
+      },
+      contentAlign: 'right',
+    };
+    this.cmsPanel = {
+      title: 'Grow into a full service clinic anytime',
+      superTitle: 'MYCURE CLINIC MANAGEMENT SYSTEM',
+      description: 'Cover all your patient journeys with MYCURE’s most complete clinic management system.',
+      imageBindings: {
+        image: 'FullService.png',
+        extensionExclusive: true,
+        customPath: 'diagnostics/',
+      },
+      contentAlign: 'left',
+    };
     this.pricingDetails = ENTERPRISE_PRICING;
     return {
       loading: true,
