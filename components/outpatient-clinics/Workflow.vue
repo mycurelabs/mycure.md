@@ -25,15 +25,25 @@
                 span Watch How It Works
             v-col(cols="12")
               v-row(justify="center")
-                v-col(v-if="!$isMobile" cols="12").text-center
-                  picture-source(
-                    extension-exclusive
-                    custom-path="clinics/"
-                    image="Workflow"
-                    image-alt="Clinic workflow"
-                    image-file-extension=".png"
-                    image-width="60%"
-                  )
+                template(v-if="!$isMobile")
+                  v-col(cols="12").text-center
+                    picture-source(
+                      extension-exclusive
+                      custom-path="clinics/"
+                      image="Problem Statement"
+                      image-alt="Clinic workflow"
+                      image-file-extension=".png"
+                      image-width="60%"
+                    )
+                  v-col(cols="12").text-center
+                    picture-source(
+                      extension-exclusive
+                      custom-path="clinics/"
+                      image="Step 8"
+                      image-alt="Flawless Patient Journeys"
+                      image-file-extension=".png"
+                      image-width="25%"
+                    )
                 template(v-else)
                   v-col(cols="12" v-for="(item, key) in items" :key="key").text-center
                       picture-source(
