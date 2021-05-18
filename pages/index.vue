@@ -2,7 +2,7 @@
   v-container(v-if="!loading" fluid).white
     //- 1st panel
     seven-wonders
-    v-divider.edge-divider
+    v-divider.divider
     //- 2nd panel
     care
     //- 3rd panel
@@ -10,10 +10,10 @@
       simple
     //- 4th panel
     patients
-    v-divider.edge-divider
+    v-divider.divider
     //- 5th panel
     tools(:version="2")
-    v-divider.edge-divider
+    v-divider.divider
     //-6th panel
     syncbase
     //- CTA
@@ -106,5 +106,10 @@ export default {
 <style scoped>
 .simple-container {
   background-color: #0099cc;
+}
+
+.divider {
+  margin-right: 30% !important;
+  margin-left: 30% !important;
 }
 </style>

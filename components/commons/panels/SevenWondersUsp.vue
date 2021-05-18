@@ -1,6 +1,6 @@
 <template lang="pug">
   v-container
-    v-row(justify="center" align="center" :style="{ height: panelHeight }")
+    v-row(justify="center" align="center")
       generic-sub-page-panel(
         :title="uspTitle"
         :title-classes="titleClasses"
