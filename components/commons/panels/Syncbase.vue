@@ -7,9 +7,9 @@
       :media-column-bindings="mediaColumnBindings"
       :content-column-bindings="contentColumnBindings"
     )
-      div(slot="content" :class="descriptionClasses")
-        p.content MYCURE works online and offline
-        p Work as if you have an in-house server with the convenience of the cloud. Create your medical records locally using multiple devices even if the internet is down! Once back online, it instantly syncs your data into the cloud.
+      div(slot="content")
+        p(:class="descriptionClasses") MYCURE works online and offline
+        p(:class="descriptionClasses") Work as if you have an in-house server with the convenience of the cloud. Create your medical records locally using multiple devices even if the internet is down! Once back online, it instantly syncs your data into the cloud.
       template(slot="cta-button")
         mc-btn(
           color="primary"
