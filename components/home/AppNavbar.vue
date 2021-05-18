@@ -8,8 +8,8 @@
     ).nav-bar
       v-container
         v-row(justify="center")
-          v-col(cols="12" md="11")
-            div.d-flex
+          generic-panel(disable-parent-padding)
+            v-row.d-flex
               nuxt-link(to="/")
                 img(
                   src="~/assets/images/MYCURE Logo - white.png"
@@ -19,11 +19,11 @@
               template(v-if="!$isMobile")
                 v-btn(
                   v-for="(nav, key) in navs"
-                  :key="key"
                   text
                   depressed
                   tile
                   large
+                  :key="key"
                   @click="onNavClick(nav)"
                 ).text-none.font-12
                   span.font-weight-medium {{ nav.name }}
@@ -35,13 +35,13 @@
                 //- ).text-none.mr-2.font-12 #[b For Patients]
                 v-spacer
                 mc-btn(
+                  event-label="login"
                   text
                   depressed
                   large
                   tile
-                  event-label="login"
                   :to="{ name: 'signin' }"
-                ).text-none.mr-2.font-12 #[span.font-weight-medium LOG IN]
+                ).text-none.font-12 #[span.font-weight-medium LOG IN]
                 signup-button(
                   color="success"
                   large
@@ -94,9 +94,11 @@
 
 <script>
 import VueScrollTo from 'vue-scrollto';
+import GenericPanel from '~/components/generic/GenericPanel';
 import SignupButton from '~/components/commons/SignupButton';
 export default {
   components: {
+    GenericPanel,
     SignupButton,
   },
   data () {
