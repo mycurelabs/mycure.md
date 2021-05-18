@@ -63,7 +63,7 @@
                     p.font-s {{ details.users }} user
                       br
                       | per month
-                  mc-btn(
+                  signup-button(
                     depressed
                     rounded
                     block
@@ -73,16 +73,18 @@
                     :large="$isRegularScreen"
                     :x-large='$isWideScreen'
                     :event-label="`click-pricing-${details.title}`"
-                    @click="onBtnClick(details)"
+                    :pricing-bundle="details.id"
                   ).font-s.font-weight-medium {{ details.btnText }}
 </template>
 
 <script>
 import classBinder from '~/utils/class-binder';
 import PictureSource from '~/components/commons/PictureSource';
+import SignupButton from '~/components/commons/SignupButton';
 export default {
   components: {
     PictureSource,
+    SignupButton,
   },
   props: {
     // Make container fluid
@@ -169,7 +171,7 @@ export default {
         let preset = '';
         switch (this.$nuxt.$route.name) {
           case 'doctors-clinics':
-            preset = 'doctors';
+            preset = 'doctor';
             break;
           case 'clinics':
             preset = 'clinic';
@@ -185,7 +187,7 @@ export default {
         }
         this.$router.push({
           name: btnRoute,
-          params: { type: preset },
+          query: { type: preset },
         });
       }
     },

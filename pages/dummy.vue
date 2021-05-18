@@ -1,7 +1,9 @@
 <template lang="pug">
   v-container
     v-row(justify="center")
-      //- h1 home usp sample
+      generic-panel
+        v-col(cols="12").text-center
+          signup-button Foo
       generic-panel
         v-col(cols="12").text-center
           h1.text-h2 Make Healthcare Accessible to All
@@ -52,9 +54,11 @@
 
 <script>
 import GenericPanel from '~/components/generic/GenericPanel';
+import SignupButton from '~/components/commons/SignupButton';
 export default {
   components: {
     GenericPanel,
+    SignupButton,
   },
 };
 </script>
