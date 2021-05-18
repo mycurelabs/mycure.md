@@ -1,9 +1,12 @@
 <template lang="pug">
-  generic-panel(:row-bindings="{ justify: 'center', align: 'center'}")
+  generic-panel(:row-bindings="{ justify: 'center' }")
     v-col(v-if="centerPanelTitle" sm="12").text-center
       div
         slot(name="center-panel-title")
           h2(:class="defaultCenterPanelTitleClasses") {{ centerPanelTitle }}
+    v-col(v-bind="mediaColumnBindings" :class=" { 'order-last': !contentRight }").text-center
+      slot(name="image")
+        img(:width="width" :src="image")
     v-col(v-bind="contentColumnBindings")
       div
         slot(name="super-title")
@@ -17,9 +20,6 @@
       div(v-if="!hideBtn")
         slot(name="cta-button")
           v-btn {{ ctaButtonText }}
-    v-col(v-bind="mediaColumnBindings" :class=" { 'order-last': !contentRight || !this.$isMobile }").text-center
-      slot(name="image")
-        img(:width="width" :src="image")
 </template>
 
 <script>

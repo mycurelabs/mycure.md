@@ -1,43 +1,40 @@
 <template lang="pug">
-  v-container.usp-container
-    v-row(justify="center" align="center" :style="{ height: panelHeight }")
-      v-col(cols="12" md="10")
-        v-row(
-          justify="center"
-          align="center"
-        )
-          v-col(cols="12" md="12").text-center
-            h1(:class="headerClasses").font-weight-medium Flexible. Scalable.
-          v-col(cols="12" md="12").text-center
-            p(:class="subheaderClasses").primary--text.font-open-sans Customizable based on what you need
+  v-row(justify="center")
+    generic-panel(:row-bindings="{ justify: 'center' }")
+      v-col(cols="12" md="12").text-center
+        h1(:class="headerClasses").font-weight-medium.mb-10 Flexible. Scalable.
+        p(:class="subheaderClasses").primary--text.font-open-sans.mb-10 Customizable based on what you need
+        v-row(justify="center")
           v-col(cols="12" md="12" lg="8" xl="6").text-center
-            p(:class="descriptionClasses").font-open-sans.grey--text MYCURE is modularized and provides APIs for each so you are able to build from scratch, add missing modules while making your system secure and compliant.
-        v-row(justify="start").pt-5
-          v-col(
-            v-for="(tool, key) in items"
-            :key="key"
-            cols="6"
-            md="2"
-            :offset-md="getCustomOffset(key)"
-          ).text-center
-            picture-source(
-              extension-exclusive
-              :custom-path="version === 1? 'home/' : 'clinics/module-icons/'"
-              :image="tool.icon"
-              :image-alt="tool.name"
-              :image-width="toolWidth"
-              image-file-extension=".png"
-            )
-            br
-            h3.font-xs.font-open-sans.grey--text {{ tool.name }}
-            br
+            p(:class="descriptionClasses").font-open-sans.font-gray.mb-10 MYCURE is modularized and provides APIs for each so you are able to build from scratch, add missing modules while making your system secure and compliant.
+      v-row(justify="start")
+        v-col(
+          v-for="(tool, key) in items"
+          :key="key"
+          cols="6"
+          md="2"
+          :offset-md="getCustomOffset(key)"
+        ).text-center
+          picture-source(
+            extension-exclusive
+            :custom-path="version === 1? 'home/' : 'clinics/module-icons/'"
+            :image="tool.icon"
+            :image-alt="tool.name"
+            :image-width="toolWidth"
+            image-file-extension=".png"
+          )
+          br
+          h3.font-xs.font-open-sans.grey--text {{ tool.name }}
+          br
 </template>
 
 <script>
 import classBinder from '~/utils/class-binder';
+import GenericPanel from '~/components/generic/GenericPanel';
 import PictureSource from '~/components/commons/PictureSource';
 export default {
   components: {
+    GenericPanel,
     PictureSource,
   },
   props: {

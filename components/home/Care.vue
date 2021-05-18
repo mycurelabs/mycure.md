@@ -1,7 +1,7 @@
 <template lang="pug">
   v-row(justify="center")
     generic-panel(:row-bindings="{ justify: 'center' }")
-        v-col(cols="12" md="10" xl="12").text-center
+        v-col(cols="12" md="10" xl="12").text-center.pa-0
           h1(:class="headerClasses").mb-10.font-weight-medium.primary--text Caring for people who care for people
           p(:class="descriptionClasses").grey--text.mb-10.font-open-sans MYCURE is dedicated to help healthcare providers save more lives each day.
         v-row(justify="center")

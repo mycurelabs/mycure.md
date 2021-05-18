@@ -1,9 +1,6 @@
 <template lang="pug">
-  v-container(:class="{'usp-container' : !$isMobile }")
-    v-row(
-      justify="center"
-      align="center"
-    )
+  v-row(justify="center").cta-container
+    generic-panel(:row-bindings="{ justify: 'center' }")
       v-col(cols="12" md="8").text-center
         h1(:class="{ 'font-l mb-8' : !$isMobile, 'font-m mb-6' : $isMobile }").title-line-spacing.white--text Join the next generation of&nbsp;
           span.primary--text healthcare providers&nbsp;
@@ -17,8 +14,8 @@
         ).text-none.font-s Get Started
 </template>
 <style scoped>
-.usp-container {
-  padding-bottom: 40px;
+.cta-container {
+  background-color: #2b2d30;
 }
 .title-line-spacing {
   line-height: 1.25em;
