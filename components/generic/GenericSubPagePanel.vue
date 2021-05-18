@@ -1,10 +1,10 @@
 <template lang="pug">
   generic-panel(:row-bindings="{ justify: 'center' }")
-    v-col(v-if="centerPanelTitle" sm="12").text-center
+    v-col(v-if="centerPanelTitle" cols="12").text-center
       div
         slot(name="center-panel-title")
           h2(:class="defaultCenterPanelTitleClasses") {{ centerPanelTitle }}
-    v-col(v-bind="mediaColumnBindings" :class=" { 'order-last': !contentRight }").text-center
+    v-col(v-bind="mediaColumnBindings" :class=" { 'order-last': !contentRight && !$isMobile }").text-center
       slot(name="image")
         img(:width="width" :src="image")
     v-col(v-bind="contentColumnBindings")

@@ -13,7 +13,7 @@
       )
         template(slot="image")
           picture-source( v-bind="imageBindings")
-        v-row(slot="cta-button" justify="$isMobile ? 'center': null")
+        v-row(slot="cta-button" :justify="$isMobile ? 'center': null")
           v-col(v-for="(service, key) in services" :key="key").shrink
             v-hover(
               v-slot="{ hover }"
@@ -110,18 +110,19 @@ export default {
     headerClasses () {
       return [
         classBinder(this, {
-          mobile: ['font-m', 'mb-6'],
-          regular: ['font-l', 'mb-8'],
-          wide: ['font-xl', 'mb-8'],
+          mobile: ['font-m'],
+          regular: ['font-l'],
+          wide: ['font-xl'],
         }),
         'white--text',
         'font-weight-medium',
+        'mb-8',
       ];
     },
     subheaderClasses () {
       return [
         classBinder(this, {
-          mobile: ['font-xs'],
+          mobile: ['font-xs', 'text-center'],
           regular: ['font-s'],
           wide: ['font-l'],
         }),
@@ -132,6 +133,7 @@ export default {
     descriptionClasses () {
       return [
         classBinder(this, {
+          mobile: ['text-center'],
           regular: ['font-xs'],
           wide: ['font-m'],
         }),
@@ -150,13 +152,14 @@ export default {
     },
     contentColumnBindings () {
       return {
+        cols: 12,
         md: 5,
         alignSelf: 'center',
       };
     },
     mediaColumnBindings () {
       return {
-        sm: 8,
+        cols: 8,
         md: 6,
         offsetMd: 1,
       };

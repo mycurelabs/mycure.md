@@ -8,7 +8,7 @@
 export default {
   props: {
     column: {
-      type: String,
+      type: [Number, String],
       default: '10',
     },
     rowBindings: {

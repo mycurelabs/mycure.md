@@ -8,7 +8,7 @@
     ).nav-bar
       v-container
         v-row(justify="center")
-          generic-panel(disable-parent-padding)
+          generic-panel(:column="$isMobile ? 12 : 10" disable-parent-padding)
             v-col.d-flex
               nuxt-link(to="/")
                 img(
