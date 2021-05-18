@@ -3,7 +3,6 @@
     generic-sub-page-panel(
       title="Enjoy the best of both worlds"
       content-right
-      :title-classes="headerClasses"
       :media-column-bindings="mediaColumnBindings"
       :content-column-bindings="contentColumnBindings"
     )
