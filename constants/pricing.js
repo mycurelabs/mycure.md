@@ -1,5 +1,6 @@
 export const DOCTORS_PRICING = [
   {
+    id: 'doctor-essentials',
     title: 'ALWAYS FREE',
     image: 'Essentials',
     currency: 'PHP',
@@ -18,6 +19,7 @@ export const DOCTORS_PRICING = [
     btnRoute: 'signup-health-facilities',
   },
   {
+    id: 'doctor-premium',
     title: 'PREMIUM',
     image: 'Premium',
     currency: 'PHP',
@@ -39,6 +41,7 @@ export const DOCTORS_PRICING = [
 
 export const ENTERPRISE_PRICING = [
   {
+    id: 'clinic-essentials',
     title: 'ESSENTIALS',
     image: 'Essentials',
     currency: 'PHP',
@@ -60,6 +63,7 @@ export const ENTERPRISE_PRICING = [
     value: 'essentials',
   },
   {
+    id: 'clinic-premium',
     title: 'PREMIUM',
     image: 'Premium',
     currency: 'PHP',
@@ -81,6 +85,7 @@ export const ENTERPRISE_PRICING = [
     value: 'premium',
   },
   {
+    id: 'clinic-platinum',
     title: 'PLATINUM',
     image: 'Platinum',
     currency: 'PHP',
@@ -102,6 +107,7 @@ export const ENTERPRISE_PRICING = [
     value: 'platinum',
   },
   {
+    id: 'clinic-enterprise',
     title: 'ENTERPRISE',
     image: 'Enterprise',
     requireContact: true,

@@ -31,15 +31,13 @@
         br
         template(v-if="slottedBtn")
           slot(name="usp btn")
-        mc-btn(
+        signup-button(
           v-else-if="!hideBtn"
           depressed
           rounded
           :class="descriptionClasses"
           :large="!$isMobile"
           :color="btnColor"
-          :event-label="`${title} USP button`"
-          @click="$emit('click')"
         ).text-none.letter-spacing-normal {{ btnText }}
 </template>
 
@@ -47,10 +45,12 @@
 import classBinder from '~/utils/class-binder';
 import { parseTextWithNewLine } from '~/utils/newline';
 import PictureSource from '~/components/commons/PictureSource';
+import SignupButton from '~/components/commons/SignupButton';
 
 export default {
   components: {
     PictureSource,
+    SignupButton,
   },
   props: {
     title: {

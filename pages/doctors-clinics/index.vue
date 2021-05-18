@@ -11,7 +11,6 @@
       image-align="right"
       btn-text="Get Started Free"
       regular-height="650px"
-      @click="$nuxt.$router.push({ name: 'signup-health-facilities', params: { type: 'doctor' }})"
       parse-title="regular"
       :parse-title-fields="['the ']"
     )
@@ -60,14 +59,12 @@
               span(:class="descriptionClasses") {{ item }}
         br
         div(:class="{ 'text-center': $isMobile }")
-          mc-btn(
+          signup-button(
             depressed
             rounded
             :x-large="$isWideScreen"
             :large="$isRegularScreen"
             color="success"
-            event-label="signup"
-            :to="{ name: 'signup-health-facilities', params: { type: 'doctor' }}"
           ).text-none.font-s
             span Get Started Free
             v-icon(small right) mdi-arrow-right
@@ -108,6 +105,7 @@ import PracticeOnline from '~/components/doctors-clinics/practice-online';
 import Pricing from '~/components/commons/panels/Pricing';
 import ThinkLongTerm from '~/components/commons/panels/ThinkLongTerm';
 import Usp from '~/components/commons/panels/SevenWondersUsp';
+import SignupButton from '~/components/commons/SignupButton';
 
 export default {
   components: {
@@ -120,6 +118,7 @@ export default {
     Pricing,
     ThinkLongTerm,
     Usp,
+    SignupButton,
   },
   data () {
     // Panel content

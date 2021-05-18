@@ -30,7 +30,7 @@
           ).text-none.font-s {{ version === 1 ? 'Book a full training' : 'Start Now' }}
       v-row(dense v-if="version === 1").mb-10
         v-col(cols="12" md="7" xl="5")
-          mc-btn(
+          signup-button(
             depressed
             rounded
             :large="$isRegularScreen"
@@ -38,16 +38,17 @@
             color="success"
             block
             event-label="signup"
-            :to="signUpRoute"
           ).text-none.font-s Get Started Free
 </template>
 
 <script>
 import classBinder from '~/utils/class-binder';
 import GenericMediaPanel from '~/components/commons/generic-media-panel';
+import SignupButton from '~/components/commons/SignupButton';
 export default {
   components: {
     GenericMediaPanel,
+    SignupButton,
   },
   props: {
     version: {

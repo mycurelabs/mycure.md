@@ -18,7 +18,7 @@
       image-width="90%"
       image-align="right"
       custom-image-path="clinics/"
-      @click="$nuxt.$router.push({ name: 'signup-health-facilities', params: { type: 'clinic' }})"
+      @click="$nuxt.$router.push({ name: 'signup-health-facilities', query: { type: 'clinic' }})"
     )
     //- 2nd panel
     div.grey-bg.pt-12
