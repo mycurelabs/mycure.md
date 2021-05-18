@@ -42,13 +42,11 @@
                   event-label="login"
                   :to="{ name: 'signin' }"
                 ).text-none.mr-2.font-12 #[span.font-weight-medium LOG IN]
-                mc-btn(
+                signup-button(
                   color="success"
                   large
                   tile
-                  event-label="signup"
-                  :to="{name: 'signup-health-facilities'}"
-                ).text-none.font-12.font-weight-medium #[span SIGN UP]
+                ).text-none.font-12.font-weight-medium SIGN UP
               template(v-else)
                 v-spacer
                 v-app-bar-nav-icon(@click.stop="drawer = !drawer")
@@ -96,7 +94,11 @@
 
 <script>
 import VueScrollTo from 'vue-scrollto';
+import SignupButton from '~/components/commons/SignupButton';
 export default {
+  components: {
+    SignupButton,
+  },
   data () {
     this.navs = [
       {
