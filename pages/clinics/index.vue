@@ -18,7 +18,6 @@
       image-width="90%"
       image-align="right"
       custom-image-path="clinics/"
-      @click="$nuxt.$router.push({ name: 'signup-health-facilities', query: { type: 'clinic' }})"
     )
     //- 2nd panel
     div.grey-bg.pt-12
@@ -77,7 +76,7 @@
       file-extension=".png"
     )
       div(slot="additional-content" :class="{'text-center': $isMobile}")
-        mc-btn(
+        signup-button(
           depressed
           rounded
           color="primary"
@@ -85,7 +84,6 @@
           :block="$isMobile"
           :large="$isRegularScreen"
           :x-large="$isWideScreen"
-          :to="{ name: 'signup-health-facilities', params: { type: 'clinic' } }"
           :class="{'font-s': !$isMobile}"
         ).text-none
           v-icon(left) mdi-web
@@ -152,6 +150,7 @@ import Pricing from '~/components/commons/panels/Pricing';
 import ThinkLongTerm from '~/components/commons/panels/ThinkLongTerm';
 import Usp from '~/components/commons/panels/SevenWondersUsp';
 import Workflow from '~/components/outpatient-clinics/Workflow';
+import SignupButton from '~/components/commons/SignupButton';
 // - constants
 import { ENTERPRISE_PRICING } from '~/constants/pricing';
 
@@ -166,6 +165,7 @@ export default {
     ThinkLongTerm,
     Usp,
     Workflow,
+    SignupButton,
   },
   data () {
     this.features = [

@@ -13,22 +13,25 @@
         br
         p(:class="descriptionClasses").text-justify.font-gray.font-open-sans {{ data.description }}
         div.btn-container
-          mc-btn(
+          signup-button(
             depressed
             rounded
             color="success"
             event-label="signup"
             :large="$isRegularScreen"
             :x-large="$isWideScreen"
-            :to="{ name: 'signup-health-facilities', params: { type: 'doctor-telehealth' } }"
           ).text-none.font-s
             | Get Started Free
             v-icon(small right) mdi-arrow-right
 </template>
 
 <script>
+import SignupButton from '~/components/commons/SignupButton';
 import classBinder from '~/utils/class-binder';
 export default {
+  components: {
+    SignupButton,
+  },
   props: {
     // - Container fluid
     fluid: {
