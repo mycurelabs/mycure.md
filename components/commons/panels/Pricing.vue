@@ -63,18 +63,32 @@
                     p.font-s {{ details.users }} user
                       br
                       | per month
-                  signup-button(
-                    depressed
-                    rounded
-                    block
-                    event-category="Pricing"
-                    :color="key === 2 ? 'white' : 'primary'"
-                    :class="{'primary--text': key === 2}"
-                    :large="$isRegularScreen"
-                    :x-large='$isWideScreen'
-                    :event-label="`click-pricing-${details.title}`"
-                    :pricing-bundle="details.id"
-                  ).font-s.font-weight-medium {{ details.btnText }}
+                  template(v-if="details.id === 'clinic-enterprise'")
+                    v-btn(
+                      depressed
+                      rounded
+                      block
+                      event-category="Pricing"
+                      :color="key === 2 ? 'white' : 'primary'"
+                      :class="{'primary--text': key === 2}"
+                      :large="$isRegularScreen"
+                      :x-large='$isWideScreen'
+                      :event-label="`click-pricing-${details.title}`"
+                      @click="sendCrispMessage"
+                    ).font-s.font-weight-medium {{ details.btnText }}
+                  template(v-else)
+                    signup-button(
+                      depressed
+                      rounded
+                      block
+                      event-category="Pricing"
+                      :color="key === 2 ? 'white' : 'primary'"
+                      :class="{'primary--text': key === 2}"
+                      :large="$isRegularScreen"
+                      :x-large='$isWideScreen'
+                      :event-label="`click-pricing-${details.title}`"
+                      :pricing-bundle="details.id"
+                    ).font-s.font-weight-medium {{ details.btnText }}
 </template>
 
 <script>
@@ -195,6 +209,11 @@ export default {
       if (!valid) return 'error';
       if (key === 2) return 'white';
       return 'primary';
+    },
+    sendCrispMessage () {
+      const message = 'Hello, I would like to inquire about the ENTERPRISE plan.';
+      window.$crisp.push(['do', 'chat:toggle']);
+      window.$crisp.push(['do', 'message:send', ['text', message]]);
     },
   },
 };

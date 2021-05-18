@@ -23,15 +23,25 @@
           span #[br] Safely
         p(:class="descriptionClasses").font-gray.font-open-sans Bring in more patients using a powerful healthcare service booking and management software. It's free, secure, and easy to use.
         br
-        get-started-button(rounded :large="$isRegularScreen" :x-large="$isWideScreen").font-s
+        signup-button(
+          color="success"
+          rounded
+          large
+          x-large
+          small
+          :large="$isRegularScreen"
+          :x-large="$isWideScreen"
+        ).text-none.letter-spacing-normal.font-s Get Started
 </template>
 
 <script>
 import GetStartedButton from './GetStartedButton';
+import SignupButton from '~/components/commons/SignupButton';
 import classBinder from '~/utils/class-binder';
 export default {
   components: {
     GetStartedButton,
+    SignupButton,
   },
   data () {
     return {

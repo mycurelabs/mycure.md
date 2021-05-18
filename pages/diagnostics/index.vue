@@ -82,14 +82,13 @@
       file-extension=".png"
     )
       div(slot="additional-content" :class="{'text-center': $isMobile}")
-        mc-btn(
+        signup-button(
           depressed
           rounded
           :large="$isRegularScreen"
           :x-large="$isWideScreen"
           color="primary"
           event-label="signup"
-          :to="{ name: 'signup-health-facilities', params: { type: 'clinic-diagnostic' } }"
           :class="{'font-s': !$isMobile}"
         ).text-none
           v-icon(left) mdi-web
@@ -171,6 +170,7 @@ import GenericMediaPanel from '~/components/commons/generic-media-panel';
 import Pricing from '~/components/commons/panels/Pricing';
 import ThinkLongTerm from '~/components/commons/panels/ThinkLongTerm';
 import Usp from '~/components/commons/panels/SevenWondersUsp';
+import SignupButton from '~/components/commons/SignupButton';
 
 export default {
   components: {
@@ -180,6 +180,7 @@ export default {
     Pricing,
     ThinkLongTerm,
     Usp,
+    SignupButton,
   },
   data () {
     // - TODO: Update info
