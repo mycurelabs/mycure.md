@@ -1,14 +1,14 @@
 <template lang="pug">
-  div(v-if="!loading").white
+  v-container(v-if="!loading" fluid).white
     //- 1st panel
     seven-wonders
     //- 2nd panel
-    care(:class="panelMargins")
+    v-divider.edge-divider
+    care
     //- 3rd panel
-    div.simple-container
-      simple
+    simple
     //- 4th panel
-    patients(:class="panelMargins")
+    patients
     //- 5th panel
     tools(:version="2" :class="panelMargins")
     //-6th panel

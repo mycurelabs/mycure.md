@@ -1,42 +1,37 @@
 <template lang="pug">
-  //- USP
-  v-container(:class="{'usp-container' : !$isMobile }")
-    v-row(
-      justify="center"
-      align="center"
-      no-gutters
-      :style="{ height: panelHeight }"
-      :class="{ 'pt-10': $isMobile }"
-    )
-      v-col(cols="12" md="6" xl="4").text-center
-        h1(:class="headerClasses") Make Healthcare Accessible to All
-        p(:class="{ 'font-m' : !$isMobile, 'font-s' : $isMobile }").primary--text.font-weight-medium THE SEVEN WONDERS OF HEALTHCARE EMPOWERED BY MYCURE
-    v-row(justify="center" align="center")
-      //- v-col(v-if="!$isMobile" cols="12")
-        //- vue-slick-carousel(
-        //-   :arrows="false"
-        //-   :dots="false"
-        //-   infinite
-        //-   :slidesToShow="5"
-        //-   :slidesToScroll="1"
-        //-   autoplay
-        //-   :speed="2000"
-        //-   :autoplaySpeed="500"
-        //-   swipeToSlide
-        //- )
-        //-   div(v-for="(wonder, key) in wonders" :key="key")
-        //-     wonder(:wonder="wonder").ma-1
-      v-col(cols="12" md="3" xl="2" v-for="(wonder, key) in wonders" :key="key")
-        wonder(:wonder="wonder")
+  v-row(justify="center")
+    generic-panel(:row-bindings="{ justify: 'center' }")
+      v-col(cols="12" md="6" xl="7").text-center
+          h1(:class="headerClasses").mb-10 Make Healthcare Accessible to All
+          p(:class="{ 'font-m' : !$isMobile, 'font-s' : $isMobile }").primary--text.font-weight-medium.mb-10 THE SEVEN WONDERS OF HEALTHCARE EMPOWERED BY MYCURE
+      v-row(justify="center")
+        v-col(cols="12" md="3" xl="2" v-for="(wonder, key) in wonders" :key="key")
+          wonder(:wonder="wonder")
+      //-   //- v-col(v-if="!$isMobile" cols="12")
+      //-     //- vue-slick-carousel(
+      //-     //-   :arrows="false"
+      //-     //-   :dots="false"
+      //-     //-   infinite
+      //-     //-   :slidesToShow="5"
+      //-     //-   :slidesToScroll="1"
+      //-     //-   autoplay
+      //-     //-   :speed="2000"
+      //-     //-   :autoplaySpeed="500"
+      //-     //-   swipeToSlide
+      //-     //- )
+      //-     //-   div(v-for="(wonder, key) in wonders" :key="key")
+      //-     //-     wonder(:wonder="wonder").ma-1
 </template>
 
 <script>
 // import VueSlickCarousel from 'vue-slick-carousel';
 // import 'vue-slick-carousel/dist/vue-slick-carousel.css';
 import Wonder from './Wonder';
+import GenericPanel from '~/components/generic/GenericPanel';
 import classBinder from '~/utils/class-binder';
 export default {
   components: {
+    GenericPanel,
     Wonder,
     // VueSlickCarousel,
   },
@@ -92,15 +87,10 @@ export default {
   computed: {
     headerClasses () {
       return classBinder(this, {
-        mobile: ['font-l', 'mb-6'],
-        regular: ['font-xl', 'mb-8'],
-        wide: ['font-2xl', 'mb-8'],
+        mobile: ['font-l'],
+        regular: ['font-xl'],
+        wide: ['font-2xl'],
       });
-    },
-    panelHeight () {
-      if (this.$isMobile) return '300px';
-      if (this.$isRegularScreen) return '350px';
-      return '450px';
     },
   },
 };

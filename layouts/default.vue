@@ -125,7 +125,8 @@ export default {
 
 /* --OTHER CSS-- */
 .edge-divider{
-  margin: 0% 11% !important;
+  margin-right: 11% !important;
+  margin-left: 11% !important;
 }
 .lh-title {
   line-height: 1.25em !important

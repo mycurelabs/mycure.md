@@ -6,7 +6,7 @@
       dark
       elevate-on-scroll
     ).nav-bar
-      v-container
+      v-container(fluid)
         v-row(justify="center")
           generic-panel(disable-parent-padding)
             v-row.d-flex
