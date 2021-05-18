@@ -63,7 +63,7 @@
                     p.font-s {{ details.users }} user
                       br
                       | per month
-                  mc-btn(
+                  signup-button(
                     depressed
                     rounded
                     block
@@ -73,16 +73,18 @@
                     :large="$isRegularScreen"
                     :x-large='$isWideScreen'
                     :event-label="`click-pricing-${details.title}`"
-                    @click="onBtnClick(details)"
+                    :pricing-bundle="details.id"
                   ).font-s.font-weight-medium {{ details.btnText }}
 </template>
 
 <script>
 import classBinder from '~/utils/class-binder';
 import PictureSource from '~/components/commons/PictureSource';
+import SignupButton from '~/components/commons/SignupButton';
 export default {
   components: {
     PictureSource,
+    SignupButton,
   },
   props: {
     // Make container fluid
