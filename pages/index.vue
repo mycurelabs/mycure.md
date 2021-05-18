@@ -1,12 +1,13 @@
 <template lang="pug">
-  v-container(v-if="!loading").white
+  v-container(v-if="!loading" fluid).white
     //- 1st panel
     seven-wonders
     v-divider.edge-divider
     //- 2nd panel
     care
     //- 3rd panel
-    simple
+    div.simple-container.mx-n3
+      simple
     //- 4th panel
     patients
     v-divider.edge-divider
@@ -101,3 +102,9 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.simple-container {
+  background-color: #0099cc;
+}
+</style>

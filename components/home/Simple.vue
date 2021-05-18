@@ -1,34 +1,35 @@
 <template lang="pug">
-  v-row(justify="center").simple-container
-    generic-sub-page-panel(
-      center-panel-title="Simple and powerful"
-      super-title="Say goodbye to paperwork and hello to an easy, compact database."
-      content="MYCURE is infused with advanced user experience that you can never compare with another medical software. Experience smooth transitions from one workflow to another — you probably won't even consider using pen and paper ever again."
-      :content-column-bindings="contentColumnBindings"
-      :media-column-bindings="mediaColumnBindings"
-      :center-panel-title-classes="headerClasses"
-      :super-title-classes="subheaderClasses"
-      :content-classes="descriptionClasses"
-    )
-      template(slot="image")
-        picture-source( v-bind="imageBindings")
-      v-row(slot="cta-button" justify="$isMobile ? 'center': null")
-        v-col(v-for="(service, key) in services" :key="key").shrink
-          v-hover(
-            v-slot="{ hover }"
-            open-delay="100"
-          )
-            mc-btn(
-              :block="$isMobile"
-              :large="$isWideScreen"
-              :small="!$isWideScreen"
-              depressed
-              :outlined="!hover"
-              :to="{ name: service.route }"
-              color="white"
-            ).text-none.info--text
-              v-icon(left) {{ service.icon }}
-              strong {{ service.text }}
+  v-container
+    v-row(justify="center")
+      generic-sub-page-panel(
+        center-panel-title="Simple and powerful"
+        super-title="Say goodbye to paperwork and hello to an easy, compact database."
+        content="MYCURE is infused with advanced user experience that you can never compare with another medical software. Experience smooth transitions from one workflow to another — you probably won't even consider using pen and paper ever again."
+        :content-column-bindings="contentColumnBindings"
+        :media-column-bindings="mediaColumnBindings"
+        :center-panel-title-classes="headerClasses"
+        :super-title-classes="subheaderClasses"
+        :content-classes="descriptionClasses"
+      )
+        template(slot="image")
+          picture-source( v-bind="imageBindings")
+        v-row(slot="cta-button" justify="$isMobile ? 'center': null")
+          v-col(v-for="(service, key) in services" :key="key").shrink
+            v-hover(
+              v-slot="{ hover }"
+              open-delay="100"
+            )
+              mc-btn(
+                :block="$isMobile"
+                :large="$isWideScreen"
+                :small="!$isWideScreen"
+                depressed
+                :outlined="!hover"
+                :to="{ name: service.route }"
+                color="white"
+              ).text-none.info--text
+                v-icon(left) {{ service.icon }}
+                strong {{ service.text }}
     //- v-row(
     //-   justify="center"
     //-   align="center"

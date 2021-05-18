@@ -1,27 +1,28 @@
 <template lang="pug">
-  v-row(justify="center")
-    generic-panel(:row-bindings="{ justify: 'center' }")
-      v-col(cols="12" md="10").text-center
-        h1(:class="headerClasses").font-weight-medium.primary--text.mb-10 Patients will love you even more.
-        v-row(justify="center")
-          v-col(cols="12" md="8").text-center
-            p(:class="descriptionClasses").grey--text.font-open-sans.mb-10 You treat your patients with holistic care. Now, make it extra covenient for them to reach you.
-      v-col(
-        v-for="(app, key) in apps"
-        :key="key"
-        cols="12"
-        md="5"
-      ).text-center
-        v-card(flat)
-          v-img(
-            :src="require(`~/assets/images/home/${app.image}.png`)"
-          )
-            v-card-title
-              v-spacer
-              span(:class="descriptionClasses").white--text {{ app.name }}
-              v-spacer
-            v-card-text.text-center
-              strong(:class="appDescriptionClasses").white--text.content-line-spacing {{ app.description }}
+  v-container
+    v-row(justify="center")
+      generic-panel(:row-bindings="{ justify: 'center' }")
+        v-col(cols="12" md="10").text-center
+          h1(:class="headerClasses").font-weight-medium.primary--text.mb-10 Patients will love you even more.
+          v-row(justify="center")
+            v-col(cols="12" md="8").text-center
+              p(:class="descriptionClasses").grey--text.font-open-sans.mb-10 You treat your patients with holistic care. Now, make it extra covenient for them to reach you.
+        v-col(
+          v-for="(app, key) in apps"
+          :key="key"
+          cols="12"
+          md="5"
+        ).text-center
+          v-card(flat)
+            v-img(
+              :src="require(`~/assets/images/home/${app.image}.png`)"
+            )
+              v-card-title
+                v-spacer
+                span(:class="descriptionClasses").white--text {{ app.name }}
+                v-spacer
+              v-card-text.text-center
+                strong(:class="appDescriptionClasses").white--text.content-line-spacing {{ app.description }}
 </template>
 
 <script>
