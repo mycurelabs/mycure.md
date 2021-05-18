@@ -80,16 +80,13 @@
               v-col
                 span(:class="eightPanelContentClasses") {{ item }}
     //- 9th panel
-    think-long-term(
-      :fluid="!$isMobile"
-      :class="panelMargins"
-    )
+    think-long-term
     //- 10th panel
     pricing(
-      :fluid="!$isMobile"
       title="Start free and only pay as you grow"
       :pricing-details="pricingDetails"
-    ).py-10.my-10
+      :column-size="4"
+    )
     //- 11th panel
     call-to-action(:fluid="!$isMobile")
 </template>
@@ -228,9 +225,6 @@ export default {
     });
   },
   computed: {
-    panelMargins () {
-      return { 'mt-10': this.$isMobile, 'web-margins': !this.$isMobile };
-    },
     headerClasses () {
       const headerClasses = [
         classBinder(this, {

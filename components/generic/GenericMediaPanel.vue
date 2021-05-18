@@ -3,9 +3,8 @@
     v-row(justify="center")
       generic-sub-page-panel(v-bind="getPanelBindings(content)" :hide-btn="hideBtn")
         template(slot="content")
-          p(v-if="typeof(content.description) === 'string'" :class="contentClasses") {{ content.description }}
-          template(v-else)
-            p(v-for="(description, key) in content.description" :key="key" :class="contentClasses") {{ content.description }}
+          slot(name="content")
+            p(:class="contentClasses || defaultContentClasses") {{ content.description }}
           slot(name="additional-content")
         template(slot="image" v-if="content.imageBindings")
           picture-source(
@@ -103,7 +102,6 @@ export default {
         imageAlt: imageBindings.alt || this.content.title,
         extensionExclusive: imageBindings.extensionExclusive || (imageBindings.mobileImage && this.$isMobile),
       };
-      console.log('bindings', bindings);
       return bindings;
     },
   },

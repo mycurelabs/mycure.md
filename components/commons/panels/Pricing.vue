@@ -1,102 +1,104 @@
 <template lang="pug">
-  v-container(:fluid="fluid")
-    v-row(justify="center" align="center")
-      v-col(cols="12" md="10")
-        v-row(justify="center")
-          v-col(cols="12" md="10").text-center
-            strong(v-if="metaTitle" :class="metaTitleClasses").primary--text {{ metaTitle }}
-            h2(:class="titleClasses").lh-title.font-weight-medium {{ title }}
-          v-col(cols="12" md="6" v-if="description").text-center
-            p(:class="descriptionClasses").grey--text.font-open-sans {{ description }}
-        v-row(justify="center")
-          v-col(cols="12" md="6" xl="4").text-center
-            v-btn(
-              v-for="(mode, key) in modeBtns"
+  v-container
+    v-row(justify="center")
+      generic-panel(:row-bindings="{ justify: 'center'}")
+        v-col(cols="12")
+          v-row(justify="center")
+            v-col(cols="12").text-center
+              strong(v-if="metaTitle" :class="metaTitleClasses").primary--text {{ metaTitle }}
+              h2(:class="titleClasses").lh-title.font-weight-medium.mb-10 {{ title }}
+              p(:class="descriptionClasses").grey--text.font-open-sans.mb-10 {{ description }}
+          v-row(justify="center")
+            v-col(cols="12" md="6" xl="4").text-center.mb-10
+              v-btn(
+                v-for="(mode, key) in modeBtns"
+                :key="key"
+                color="primary"
+                v-bind="modeBtnBindings(mode)"
+                depressed
+                tile
+                :large="$isWideScreen"
+                @click="pricingMode = mode"
+              ).text-none
+                | Billed&nbsp;
+                span.text-capitalize {{ mode }}
+          v-row(justify="center")
+            v-col(
+              v-for="(details, key) in pricingDetails"
               :key="key"
-              color="primary"
-              v-bind="modeBtnBindings(mode)"
-              depressed
-              tile
-              :large="$isWideScreen"
-              @click="pricingMode = mode"
-            ).text-none
-              | Billed&nbsp;
-              span.text-capitalize {{ mode }}
-        v-row(justify="center")
-          v-col(
-            v-for="(details, key) in pricingDetails"
-            :key="key"
-            cols="12"
-            :md="columnSize"
-          )
-            v-card(flat height="100%" width="100%" :class="{'primary': key === 2}").card-outter.rounded-xl
-              v-card-text(:class="{'white--text': key === 2}").py-8
-                div.text-center
-                  picture-source(
-                    extension-exclusive
-                    custom-path="pricing/"
-                    :image="details.image"
-                    image-file-extension=".png"
-                    :image-alt="details.title"
-                    :image-width="!$isMobile ? '50%' : '40%'"
-                  )
-                  h2.pt-5 {{ details.title }}
-              div(:class="key === 2 ? 'divider-dark' : 'divider'").mx-5
-              v-card-text(:class="{'white--text': key === 2}")
-                v-row(justify="center")
-                  v-col(cols="12" xl="10")
-                    div(v-for="(inclusion, inclusionKey) in details.inclusions" :key="inclusionKey").d-flex
-                      v-icon(:color="getInclusionColor(inclusion.valid, key)" left) {{ inclusion.valid ? 'mdi-checkbox-marked-circle-outline' : 'mdi-close' }}
-                      span {{ inclusion.text }}
-              div
-              v-card-text(:class="{'white--text': key === 2}").py-8.card-actions
-                div.text-center
-                  div(v-if="details.requireContact").pb-10
-                    br
-                    br
-                    br
-                  template(v-else)
-                    p.font-weight-bold
-                      span.font-s.font-weight-medium {{ details.currency }}&nbsp;
-                      span(v-if="pricingMode === 'monthly'").font-xl {{ details.monthlyPrice }}
-                      span(v-else).font-xl {{ details.annualMonthlyPrice ? details.annualMonthlyPrice : details.monthlyPrice }}
-                    p.font-s {{ details.users }} user
+              cols="12"
+              :md="columnSize"
+            )
+              v-card(flat height="100%" width="100%" :class="{'primary': key === 2}").card-outter.rounded-xl
+                v-card-text(:class="{'white--text': key === 2}").py-8
+                  div.text-center
+                    picture-source(
+                      extension-exclusive
+                      custom-path="pricing/"
+                      :image="details.image"
+                      image-file-extension=".png"
+                      :image-alt="details.title"
+                      :image-width="!$isMobile ? '50%' : '40%'"
+                    )
+                    h2.pt-5 {{ details.title }}
+                div(:class="key === 2 ? 'divider-dark' : 'divider'").mx-5
+                v-card-text(:class="{'white--text': key === 2}")
+                  v-row(justify="center")
+                    v-col(cols="12" xl="10")
+                      div(v-for="(inclusion, inclusionKey) in details.inclusions" :key="inclusionKey").d-flex
+                        v-icon(:color="getInclusionColor(inclusion.valid, key)" left) {{ inclusion.valid ? 'mdi-checkbox-marked-circle-outline' : 'mdi-close' }}
+                        span {{ inclusion.text }}
+                div
+                v-card-text(:class="{'white--text': key === 2}").py-8.card-actions
+                  div.text-center
+                    div(v-if="details.requireContact").pb-10
                       br
-                      | per month
-                  template(v-if="details.id === 'clinic-enterprise'")
-                    v-btn(
-                      depressed
-                      rounded
-                      block
-                      event-category="Pricing"
-                      :color="key === 2 ? 'white' : 'primary'"
-                      :class="{'primary--text': key === 2}"
-                      :large="$isRegularScreen"
-                      :x-large='$isWideScreen'
-                      :event-label="`click-pricing-${details.title}`"
-                      @click="sendCrispMessage"
-                    ).font-s.font-weight-medium {{ details.btnText }}
-                  template(v-else)
-                    signup-button(
-                      depressed
-                      rounded
-                      block
-                      event-category="Pricing"
-                      :color="key === 2 ? 'white' : 'primary'"
-                      :class="{'primary--text': key === 2}"
-                      :large="$isRegularScreen"
-                      :x-large='$isWideScreen'
-                      :event-label="`click-pricing-${details.title}`"
-                      :pricing-bundle="details.id"
-                    ).font-s.font-weight-medium {{ details.btnText }}
+                      br
+                      br
+                    template(v-else)
+                      p.font-weight-bold
+                        span.font-s.font-weight-medium {{ details.currency }}&nbsp;
+                        span(v-if="pricingMode === 'monthly'").font-xl {{ details.monthlyPrice }}
+                        span(v-else).font-xl {{ details.annualMonthlyPrice ? details.annualMonthlyPrice : details.monthlyPrice }}
+                      p.font-s {{ details.users }} user
+                        br
+                        | per month
+                    template(v-if="details.id === 'clinic-enterprise'")
+                      v-btn(
+                        depressed
+                        rounded
+                        block
+                        event-category="Pricing"
+                        :color="key === 2 ? 'white' : 'primary'"
+                        :class="{'primary--text': key === 2}"
+                        :large="$isRegularScreen"
+                        :x-large='$isWideScreen'
+                        :event-label="`click-pricing-${details.title}`"
+                        @click="sendCrispMessage"
+                      ).font-s.font-weight-medium {{ details.btnText }}
+                    template(v-else)
+                      signup-button(
+                        depressed
+                        rounded
+                        block
+                        event-category="Pricing"
+                        :color="key === 2 ? 'white' : 'primary'"
+                        :class="{'primary--text': key === 2}"
+                        :large="$isRegularScreen"
+                        :x-large='$isWideScreen'
+                        :event-label="`click-pricing-${details.title}`"
+                        :pricing-bundle="details.id"
+                      ).font-s.font-weight-medium {{ details.btnText }}
 </template>
 
 <script>
 import classBinder from '~/utils/class-binder';
+import GenericPanel from '~/components/generic/GenericPanel';
 import PictureSource from '~/components/commons/PictureSource';
 import SignupButton from '~/components/commons/SignupButton';
 export default {
   components: {
+    GenericPanel,
     PictureSource,
     SignupButton,
   },

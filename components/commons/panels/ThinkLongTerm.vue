@@ -1,26 +1,35 @@
 <template lang="pug">
   div
-    v-container(:fluid="fluid")
-      v-row(justify="center").pb-5
-        v-col(cols="12" md="6").text-center
-          strong(:class="metaTitleClasses").primary--text Why MYCURE?
-          h2(:class="panelHeaderClasses").font-weight-medium Think Long-Term
+    v-container
+      v-row(justify="center")
+        generic-panel
+          v-col(cols="12").text-center
+            strong(:class="metaTitleClasses").primary--text Why MYCURE?
+            h2(:class="panelHeaderClasses").font-weight-medium Think Long-Term
     generic-media-panel(
-      :fluid="fluid"
       v-for="(panel, key) in panels"
       :key="key"
-      offset-cols-right="1"
-      :header="panel.header"
-      :descriptions="panel.descriptions"
-      :header-classes="headerClasses"
-      :description-classes="descriptionClasses"
-      :dense='$isMobile'
-      v-bind="getPanelBindings(key)"
-      extension-exclusive
-      custom-image-path="commons/"
-      file-extension=".png"
-      :web-image="panel.image"
+      :content="panel"
+      :title-classes="headerClasses"
+      :content-classes="descriptionClasses"
+      hide-btn
     )
+    //- generic-media-panel(
+    //-   :fluid="fluid"
+    //-   v-for="(panel, key) in panels"
+    //-   :key="key"
+    //-   offset-cols-right="1"
+    //-   :header="panel.header"
+    //-   :descriptions="panel.descriptions"
+    //-   :header-classes="headerClasses"
+    //-   :description-classes="descriptionClasses"
+    //-   :dense='$isMobile'
+    //-   v-bind="getPanelBindings(key)"
+    //-   extension-exclusive
+    //-   custom-image-path="commons/"
+    //-   file-extension=".png"
+    //-   :web-image="panel.image"
+    //- )
     //- v-row(justify="center")
     //-   v-col(
     //-     cols="12"
@@ -48,33 +57,32 @@
 
 <script>
 import classBinder from '~/utils/class-binder';
-import GenericMediaPanel from '~/components/commons/generic-media-panel';
-import PictureSource from '~/components/commons/PictureSource';
+import GenericMediaPanel from '~/components/generic/GenericMediaPanel';
 export default {
   components: {
     GenericMediaPanel,
-    PictureSource,
-  },
-  props: {
-    // - Make container fluid
-    fluid: {
-      type: Boolean,
-      default: false,
-    },
   },
   data () {
     this.panels = [
       {
-        header: 'MYCURE is not just your ordinary medical app.',
-        descriptions: ['It’s a platform built for the healthcare ecosystem. You can connect and share files with clinics, diagnostic centers, hospitals, and other physicians within the MYCURE network. MYCURE has open APIs to give you more flexibility in integrating with other systems.'],
-        image: 'Preventing Failures',
-        imageWidth: '80%',
+        title: 'MYCURE is not just your ordinary medical app.',
+        description: 'It’s a platform built for the healthcare ecosystem. You can connect and share files with clinics, diagnostic centers, hospitals, and other physicians within the MYCURE network. MYCURE has open APIs to give you more flexibility in integrating with other systems.',
+        imageBindings: {
+          image: 'Preventing Failures.png',
+          customPath: 'commons/',
+          extensionExclusive: true,
+        },
+        contentAlign: 'right',
       },
       {
-        header: 'As your practice grows, your tech tools need to upgrade too.',
-        descriptions: ['The great thing about starting with MYCURE is that you only need to upgrade once you need to. We’re here to make your practice so much easier to manage because you are a crucial part of healthcare. Together, let’s make this world a healthier place.'],
-        image: 'As your practice grows',
-        imageWidth: '80%',
+        title: 'As your practice grows, your tech tools need to upgrade too.',
+        description: 'The great thing about starting with MYCURE is that you only need to upgrade once you need to. We’re here to make your practice so much easier to manage because you are a crucial part of healthcare. Together, let’s make this world a healthier place.',
+        imageBindings: {
+          image: 'As your practice grows.png',
+          customPath: 'commons/',
+          extensionExclusive: true,
+        },
+        contentAlign: 'left',
       },
     ];
     return {};
