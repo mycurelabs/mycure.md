@@ -297,9 +297,9 @@ export default {
         text: 'Diagnostics',
         orgProps: {
           type: 'facility',
-          types: ['diagnostic'],
+          types: ['clinic-diagnostic'],
         },
-        value: 'diagnostic',
+        value: 'clinic-diagnostic',
       },
       {
         text: 'Doctor\'s Clinic',
