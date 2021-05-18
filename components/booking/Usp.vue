@@ -26,6 +26,7 @@
         template(slot="cta-button")
           signup-button(
             color="success"
+            depressed
             rounded
             large
             x-large
@@ -95,9 +96,9 @@ export default {
     descriptionClasses () {
       return [
         classBinder(this, {
-          mobile: ['font-xs', 'text-center'],
+          mobile: ['text-center'],
           regular: ['font-s', 'text-justify'],
-          wide: ['font-m', 'text-justify'],
+          wide: ['font-xs', 'text-justify'],
         }),
         'font-gray',
         'font-open-sans',

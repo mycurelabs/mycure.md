@@ -22,7 +22,7 @@
           signup-button(
             depressed
             rounded
-            :class="descriptionClasses"
+            :class="btnClasses"
             :large="!$isMobile"
             :color="btnColor"
           ).text-none.letter-spacing-normal {{ btnText }}
@@ -225,8 +225,17 @@ export default {
           regular: ['font-xs', 'text-justify'],
           wide: ['font-s', 'text-justify'],
         }),
-        'fomt-open-sans',
+        'font-open-sans',
         'font-gray',
+      ];
+    },
+    btnClasses () {
+      return [
+        classBinder(this, {
+          mobile: ['text-center'],
+          regular: ['font-xs', 'text-justify'],
+          wide: ['font-s', 'text-justify'],
+        }),
       ];
     },
     panelHeight () {
