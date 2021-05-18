@@ -71,8 +71,8 @@ export default {
         image: 'Let us do the work.png',
         customPath: 'commons/',
         extensionExclusive: true,
-        contentAlign: 'right',
       },
+      contentAlign: 'right',
     };
     return {};
   },

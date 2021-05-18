@@ -1,59 +1,63 @@
 <template lang="pug">
-  v-container.container
+  v-container
     cms-video-dialog(v-model="videoDialog")
-    v-row(justify="center" align="center")
-      v-col(cols="12" md="10")
-        v-row(justify="center")
-          v-col(cols="12" md="8").text-center
-            h1(:class="titleClasses").font-weight-medium Why do clinics switch to MYCURE?
-          v-col(cols="12" md="6" xl="7").text-center.py-3
-            p(:class="descriptionClasses").font-gray.font-open-sans MYCURE integrates critical clinic operations into a clean, simple interface to make record management much easier for everyone. Say goodbye to multiple, complicated systems.
-            mc-btn(
-              event-label="click-cms-video"
-              event-category="Video"
-              color="primary"
-              depressed
-              rounded
-              :large="$isRegularScreen"
-              :x-large="$isWideScreen"
-              :class="{'font-s': !$isMobile}"
-              @click="videoDialog = true"
-            ).text-none.mt-3
-              v-icon(left) mdi-play-circle
-              span Watch How It Works
-          v-col(cols="12")
-            v-row(justify="center")
-              v-col(v-if="!$isMobile" cols="12").text-center
-                picture-source(
-                  extension-exclusive
-                  custom-path="clinics/"
-                  image="Workflow"
-                  image-alt="Clinic workflow"
-                  image-file-extension=".png"
-                  image-width="60%"
-                )
-              template(v-else)
-                v-col(cols="12" v-for="(item, key) in items" :key="key").text-center
-                    picture-source(
-                      v-if="item.icon"
-                      extension-exclusive
-                      custom-path="clinics/"
-                      :image="item.icon"
-                      :image-alt="item.title"
-                      image-file-extension=".png"
-                      image-width="40%"
-                    )
-                    br
-                    h3.font-xs.font-open-sans.grey--text {{ item.title }}
+    v-row(justify="center")
+      generic-panel
+        v-col(cols="12")
+          v-row(justify="center")
+            v-col(cols="12" md="10").text-center
+              h1(:class="titleClasses").font-weight-medium.mb-10 Why do clinics switch to MYCURE?
+              v-row(justify="center")
+                v-col(cols="12" md="7" xl="8")
+                  p(:class="descriptionClasses").font-gray.font-open-sans.mb-10 MYCURE integrates critical clinic operations into a clean, simple interface to make record management much easier for everyone. Say goodbye to multiple, complicated systems.
+              mc-btn(
+                event-label="click-cms-video"
+                event-category="Video"
+                color="primary"
+                depressed
+                rounded
+                :large="$isRegularScreen"
+                :x-large="$isWideScreen"
+                :class="{'font-s': !$isMobile}"
+                @click="videoDialog = true"
+              ).text-none.mb-10
+                v-icon(left) mdi-play-circle
+                span Watch How It Works
+            v-col(cols="12")
+              v-row(justify="center")
+                v-col(v-if="!$isMobile" cols="12").text-center
+                  picture-source(
+                    extension-exclusive
+                    custom-path="clinics/"
+                    image="Workflow"
+                    image-alt="Clinic workflow"
+                    image-file-extension=".png"
+                    image-width="60%"
+                  )
+                template(v-else)
+                  v-col(cols="12" v-for="(item, key) in items" :key="key").text-center
+                      picture-source(
+                        v-if="item.icon"
+                        extension-exclusive
+                        custom-path="clinics/"
+                        :image="item.icon"
+                        :image-alt="item.title"
+                        image-file-extension=".png"
+                        image-width="40%"
+                      )
+                      br
+                      h3.font-xs.font-open-sans.grey--text {{ item.title }}
 </template>
 
 <script>
 import classBinder from '~/utils/class-binder';
 import CmsVideoDialog from '~/components/outpatient-clinics/CmsVideoDialog';
+import GenericPanel from '~/components/generic/GenericPanel';
 import PictureSource from '~/components/commons/PictureSource';
 export default {
   components: {
     CmsVideoDialog,
+    GenericPanel,
     PictureSource,
   },
   data () {
@@ -117,9 +121,5 @@ export default {
 <style scoped>
 .learnLink {
   text-decoration: none;
-}
-.container {
-  padding-bottom: 50px;
-  padding-top: 10px;
 }
 </style>

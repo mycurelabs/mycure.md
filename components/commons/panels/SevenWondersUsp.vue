@@ -221,9 +221,9 @@ export default {
     descriptionClasses () {
       return [
         classBinder(this, {
-          mobile: ['text-center'],
-          regular: ['font-xs', 'text-justify'],
-          wide: ['font-s', 'text-justify'],
+          mobile: ['font-xs', 'text-center'],
+          regular: ['font-s', 'text-justify'],
+          wide: ['font-m', 'text-justify'],
         }),
         'font-open-sans',
         'font-gray',

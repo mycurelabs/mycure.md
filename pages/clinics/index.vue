@@ -1,5 +1,5 @@
 <template lang="pug">
-  div(v-if="!loading").white
+  v-container(v-if="!loading" fluid).white
     //- 1st panel
     usp(
       title="Simplified workflows, faster results, better performance."
@@ -16,62 +16,20 @@
       :parse-title-fields="['workflows, ', 'results, ']"
     )
     //- 2nd panel
-    div.grey-bg.pt-12
-      workflow.pt-12
+    div.grey-bg.mx-n3
+      workflow
     //- 3rd panel
     mycure-csi
     //- 4th panel
-    generic-media-panel(
-      :fluid="!$isMobile"
-      content-align-right
-      align-right-column="center"
-      cols-left="5"
-      cols-right="4"
-      offset-cols-right="1"
-      :header="infoPanels[0].header"
-      :descriptions="infoPanels[0].descriptions"
-      :header-classes="headerClasses"
-      :descriptionClasses="descriptionClasses"
-      dense
-    )
-      template(slot="custom-left")
-        video(v-if="!$isMobile" :width="wXL ? '1000' : '820'" playsinline autoplay muted loop).syncbase-animate
-          source(src="~/assets/videos/mycure-syncbase-diagram-animate.webm" type="video/webm")
-          source(src="~/assets/videos/mycure-syncbase-diagram-animate.mp4" type="video/mp4")
-          | Your browser does not support the video tag.
-
-      div(slot="additional-content" :class="{'text-center': $isMobile}")
-        mc-btn(
-          depressed
-          rounded
-          color="primary"
-          :large="$isRegularScreen"
-          :x-large="$isWideScreen"
-          :block="$isMobile"
-          :to="{ name: 'syncbase' }"
-          :class="{'font-s': !$isMobile}"
-        ).text-none
-          v-icon(left) mdi-information-outline
-          span Learn about MYCURE Syncbase
+    syncbase
     //- 5th panel
     generic-media-panel(
-      :fluid="!$isMobile"
-      content-align-left
-      align-left-column="center"
-      cols-left="4"
-      cols-right="5"
-      offset-cols-right="1"
-      :header="infoPanels[1].header"
-      :descriptions="infoPanels[1].descriptions"
-      :header-classes="headerClasses"
-      :descriptionClasses="descriptionClasses"
-      :dense="$isMobile"
-      custom-image-path="commons/"
-      extension-exclusive
-      :web-image="infoPanels[1].image"
-      file-extension=".png"
+      :content="fifthPanel"
+      :title-classes="headerClasses"
+      :content-classes="descriptionClasses"
+      hide-btn
     )
-      div(slot="additional-content" :class="{'text-center': $isMobile}")
+      div(slot="additional-content" :class="{'text-center': $isMobile}").mt-10
         signup-button(
           depressed
           rounded
@@ -84,17 +42,8 @@
         ).text-none
           v-icon(left) mdi-web
           span Create my website
-        //- TODO: Need sample clinic
-        //- v-row
-        //-   v-btn(
-        //-     text
-        //-     color="primary"
-        //-     :block="$isMobile"
-        //-   ).text-none.font-xs
-        //-     span View a sample website
-        //-     v-icon(right) mdi-chevron-right
     //- 6th panel
-    div.grey-bg.pt-12.pb-3
+    div.grey-bg.mx-n3
       features(
         title="Customized for Your Specialty"
         description="MYCURE has already built in workflows and processes for different setups."
@@ -105,7 +54,7 @@
         icon-col-size="3"
         extension-exclusive
         panel-height="70vh"
-      ).mt-10.mb-10
+      )
         template(slot="additional-content")
           v-row(justify="center").my-10
             v-col(cols="12" md="4" xl="3")
@@ -119,16 +68,14 @@
                 :class="{'font-s': $isWideScreen }"
               ).text-none Practicing solo? Click here.
     //- 7th panel
-    think-long-term(:fluid="!$isMobile" :class="panelMargins").mb-12
+    think-long-term
     //- 8th panel
-    call-to-action(:fluid="!$isMobile" :class="panelMargins" :version="2")
+    call-to-action(:version="2")
     //- 9th panel
     pricing(
       title="Take the first step today"
       description="Start free and only pay as you grow."
-      :fluid="!$isMobile"
       :pricing-details="pricingDetails"
-      :class="panelMargins"
     )
 </template>
 
@@ -139,10 +86,11 @@ import headMeta from '~/utils/head-meta';
 // - components
 import CallToAction from '~/components/commons/panels/CallToAction';
 import Features from '~/components/commons/panels/Features';
-import GenericMediaPanel from '~/components/commons/generic-media-panel';
-import MultipleBranches from '~/components/enterprise/multiple-branches';
+import GenericMediaPanel from '~/components/generic/GenericMediaPanel';
+// import MultipleBranches from '~/components/enterprise/multiple-branches';
 import MycureCsi from '~/components/commons/panels/MycureCsi';
 import Pricing from '~/components/commons/panels/Pricing';
+import Syncbase from '~/components/commons/panels/Syncbase';
 import ThinkLongTerm from '~/components/commons/panels/ThinkLongTerm';
 import Usp from '~/components/commons/panels/SevenWondersUsp';
 import Workflow from '~/components/outpatient-clinics/Workflow';
@@ -155,9 +103,10 @@ export default {
     CallToAction,
     GenericMediaPanel,
     Features,
-    MultipleBranches,
+    // MultipleBranches,
     MycureCsi,
     Pricing,
+    Syncbase,
     ThinkLongTerm,
     Usp,
     Workflow,
@@ -201,21 +150,16 @@ export default {
         iconExtension: '.png',
       },
     ];
-    this.infoPanels = [
-      {
-        header: 'Internet connection won’t be a problem',
-        descriptions: [
-          'With MYCURE Syncbase, work as if you have an in-house server with the convenience of the cloud. Create your medical records locally using multiple devices even if the internet is down! Once back online, it instantly syncs your data into the cloud.',
-        ],
+    this.fifthPanel = {
+      title: 'Expand your Reach',
+      description: 'Join MYCURE ONE, a global online directory of modern healthcare facilities so patients can easily find and book an appointment with you anytime.',
+      imageBindings: {
+        image: 'Expand your reach.png',
+        extensionExclusive: true,
+        customPath: 'commons/',
       },
-      {
-        header: 'Expand your Reach',
-        descriptions: [
-          'Join MYCURE ONE, a global online directory of modern healthcare facilities so patients can easily find and book an appointment with you anytime.',
-        ],
-        image: 'Expand your reach',
-      },
-    ];
+      contentAlign: 'left',
+    };
     this.pricingDetails = ENTERPRISE_PRICING;
     return {
       loading: true,
