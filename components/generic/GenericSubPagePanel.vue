@@ -1,5 +1,5 @@
 <template lang="pug">
-  generic-panel(:row-bindings="{ justify: 'center' }")
+  generic-panel(:row-bindings="genericPanelBindings")
     v-col(v-if="centerPanelTitle" cols="12").text-center
       div
         slot(name="center-panel-title")
@@ -68,6 +68,12 @@ export default {
       default: () => ({
         sm: 12,
         md: 6,
+      }),
+    },
+    genericPanelBindings: {
+      type: Object,
+      default: () => ({
+        justify: 'center',
       }),
     },
     image: {

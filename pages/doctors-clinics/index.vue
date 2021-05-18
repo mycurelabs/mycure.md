@@ -4,14 +4,14 @@
     usp(
       title="Bring Out the Hero in You"
       meta-title="MYCURE Doctor"
-      :description="uspDescription"
       image="Doc USP"
-      image-width="90%"
+      image-width="128%"
       custom-image-path="doctors-clinics/"
       image-align="right"
       btn-text="Get Started Free"
-      regular-height="650px"
       parse-title="regular"
+      regular-height="650px"
+      :description="uspDescription"
       :parse-title-fields="['the ']"
     )
     //- 2nd panel
@@ -23,7 +23,6 @@
         :items="features"
         icon-container-col-size="8"
         image-dir="doctors-clinics/"
-        panel-height="70vh"
       ).pt-10
     //- 3rd to 5th panels
     info-panels(:fluid="!$isMobile" :class="panelMargins")

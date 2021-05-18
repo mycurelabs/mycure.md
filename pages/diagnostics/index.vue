@@ -9,7 +9,7 @@
       text-col="3"
       image-col="7"
       image-col-offset="1"
-      iamge-width="108%"
+      iamge-width="150%"
       custom-image-path="diagnostics/"
       regular-height="650px"
       wide-height="950px"

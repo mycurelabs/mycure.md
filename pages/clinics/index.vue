@@ -7,17 +7,13 @@
       description="Designed for modern clinics with complex operations. Large or small, MYCURE enables clinics to be much more efficient, increase in revenue, and build more patient loyalty."
       parse-meta-title="wide"
       parse-title="regular"
-      :parse-title-fields="['workflows, ', 'results, ']"
       btn-text="Get Started"
       btn-color="success"
-      :parse-meta-title-fields="['Complete ']"
-      regular-height="650px"
-      image-col="7"
-      text-col="4"
       image="Clinics USP"
-      image-width="90%"
-      image-align="right"
+      image-width="100%"
       custom-image-path="clinics/"
+      :parse-meta-title-fields="['Complete ']"
+      :parse-title-fields="['workflows, ', 'results, ']"
     )
     //- 2nd panel
     div.grey-bg.pt-12

@@ -1,55 +1,80 @@
 <template lang="pug">
-  v-container(fluid :class="{'usp-container' : !$isMobile }")
-    v-row(
-      justify="center"
-      :style="{ height: panelHeight }"
-    )
-      v-col(
-        cols="10"
-        :md="imageCol"
-        :offset-md="imageColOffset"
-        :class="[{ 'order-last' : !$isMobile }, imageAlignment]"
-        :align-self="$isMobile ? 'end' : 'center'"
+  v-container
+    v-row(justify="center" align="center" :style="{ height: panelHeight }")
+      generic-sub-page-panel(
+        :title="uspTitle"
+        :title-classes="titleClasses"
+        :super-title="superTitle"
+        :super-title-classes="superTitleClasses"
+        :content="uspDescription"
+        :content-classes="descriptionClasses"
+        :content-column-bindings="contentColumnBindings"
+        :media-column-bindings="mediaColumnBindings"
+        :generic-panel-bindings="genericPanelBindings"
       )
-        //- picture-source(
-        //-   extension-exclusive
-        //-   :image="image"
-        //-   :image-alt="image"
-        //-   image-file-extension=".png"
-        //-   :custom-path="customImagePath"
-        //-   :image-width="imageWidth"
+        template(slot="image")
+          img(
+            :src="require(`~/assets/images/${customImagePath}${image}.png`)"
+            :alt="image"
+            :width="imageWidth"
+          )
+        template(slot="cta-button")
+          signup-button(
+            depressed
+            rounded
+            :class="descriptionClasses"
+            :large="!$isMobile"
+            :color="btnColor"
+          ).text-none.letter-spacing-normal {{ btnText }}
+
+        //- v-col(
+        //-   cols="10"
+        //-   :md="imageCol"
+        //-   :offset-md="imageColOffset"
+        //-   :class="[{ 'order-last' : !$isMobile }, imageAlignment]"
+        //-   :align-self="$isMobile ? 'end' : 'center'"
         //- )
-        img(
-          :src="require(`~/assets/images/${customImagePath}${image}.png`)"
-          :alt="image"
-          :width="imageWidth"
-        )
-      v-col(cols="12" :md="textCol" offset-md="1" :class="{ 'text-center' : $isMobile }" :align-self="$isMobile ? 'start' : 'center'")
-        h1(v-if="metaTitle" :class="metaTitleClasses").font-weight-bold.primary--text {{ uspMetaTitle }}
-        p(:class="titleClasses") {{ uspTitle }}
-        p(:class="descriptionClasses").font-gray.font-open-sans {{ uspDescription }}
-        br
-        template(v-if="slottedBtn")
-          slot(name="usp btn")
-        signup-button(
-          v-else-if="!hideBtn"
-          depressed
-          rounded
-          :class="descriptionClasses"
-          :large="!$isMobile"
-          :color="btnColor"
-        ).text-none.letter-spacing-normal {{ btnText }}
+        //-   //- picture-source(
+        //-   //-   extension-exclusive
+        //-   //-   :image="image"
+        //-   //-   :image-alt="image"
+        //-   //-   image-file-extension=".png"
+        //-   //-   :custom-path="customImagePath"
+        //-   //-   :image-width="imageWidth"
+        //-   //- )
+        //-   img(
+        //-     :src="require(`~/assets/images/${customImagePath}${image}.png`)"
+        //-     :alt="image"
+        //-     :width="imageWidth"
+        //-   )
+        //- v-col(cols="12" :md="textCol" offset-md="1" :class="{ 'text-center' : $isMobile }" :align-self="$isMobile ? 'start' : 'center'")
+        //-   h1(v-if="metaTitle" :class="superTitleClasses").font-weight-bold.primary--text {{ superTitle }}
+        //-   p(:class="titleClasses") {{ uspTitle }}
+        //-   p(:class="descriptionClasses").font-gray.font-open-sans {{ uspDescription }}
+        //-   br
+        //-   template(v-if="slottedBtn")
+        //-     slot(name="usp btn")
+        //-   signup-button(
+        //-     v-else-if="!hideBtn"
+        //-     depressed
+        //-     rounded
+        //-     :class="descriptionClasses"
+        //-     :large="!$isMobile"
+        //-     :color="btnColor"
+        //-   ).text-none.letter-spacing-normal {{ btnText }}
 </template>
 
 <script>
 import classBinder from '~/utils/class-binder';
 import { parseTextWithNewLine } from '~/utils/newline';
-import PictureSource from '~/components/commons/PictureSource';
+import GenericSubPagePanel from '~/components/generic/GenericSubPagePanel';
+// import PictureSource from '~/components/commons/PictureSource';
 import SignupButton from '~/components/commons/SignupButton';
 
 export default {
   components: {
-    PictureSource,
+    GenericSubPagePanel,
+    // PictureSource,
     SignupButton,
   },
   props: {
@@ -135,11 +160,11 @@ export default {
     // - Column for Image
     imageCol: {
       type: [String, Number],
-      default: '8',
+      default: '7',
     },
     imageColOffset: {
       type: [String, Number],
-      default: '0',
+      default: '1',
     },
     // - Alignment of image
     imageAlign: {
@@ -150,7 +175,7 @@ export default {
     // - Note: This column is offsetted by 1
     textCol: {
       type: [String, Number],
-      default: '3',
+      default: '4',
     },
   },
   computed: {
@@ -159,7 +184,7 @@ export default {
       if (!this.toParse(this.parseTitle)) return this.title;
       return parseTextWithNewLine(this.title, this.parseTitleFields);
     },
-    uspMetaTitle () {
+    superTitle () {
       if (!this.toParse(this.parseMetaTitle)) return this.metaTitle;
       return parseTextWithNewLine(this.metaTitle, this.parseMetaTitleFields);
     },
@@ -174,14 +199,13 @@ export default {
         wide: ['font-xl'],
       });
       return [
-        'mb-8',
         'lh-title',
         'font-weight-bold',
         { 'pre-white-space': this.toParse(this.parseTitle) },
         classes,
       ];
     },
-    metaTitleClasses () {
+    superTitleClasses () {
       const classes = classBinder(this, {
         mobile: ['font-xs'],
         regular: ['font-s'],
@@ -189,16 +213,21 @@ export default {
       });
       return [
         'font-open-sans',
+        'primary--text',
         { 'pre-white-space': this.toParse(this.parseMetaTitle) },
         classes,
       ];
     },
     descriptionClasses () {
-      return classBinder(this, {
-        mobile: ['text-center'],
-        regular: ['font-xs', 'text-justify'],
-        wide: ['font-s', 'text-justify'],
-      });
+      return [
+        classBinder(this, {
+          mobile: ['text-center'],
+          regular: ['font-xs', 'text-justify'],
+          wide: ['font-s', 'text-justify'],
+        }),
+        'fomt-open-sans',
+        'font-gray',
+      ];
     },
     panelHeight () {
       if (this.$isMobile) return this.mobileHeight;
@@ -212,6 +241,27 @@ export default {
         case 'center': return 'text-center';
         default: return 'text-left';
       }
+    },
+    contentColumnBindings () {
+      return {
+        cols: 12,
+        md: 4,
+        xl: 5,
+      };
+    },
+    mediaColumnBindings () {
+      return {
+        cols: 12,
+        md: 7,
+        offsetMd: 1,
+        xl: 6,
+      };
+    },
+    genericPanelBindings () {
+      return {
+        justify: 'center',
+        align: 'center',
+      };
     },
   },
   methods: {
