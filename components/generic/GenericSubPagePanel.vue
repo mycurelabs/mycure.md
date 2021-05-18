@@ -4,7 +4,7 @@
       div
         slot(name="center-panel-title")
           h2(:class="defaultCenterPanelTitleClasses") {{ centerPanelTitle }}
-    v-col(v-bind="mediaColumnBindings" :class=" { 'order-last': !contentRight && !$isMobile }").text-center
+    v-col(v-bind="mediaColumnBindings" :class=" { 'order-last': contentAlignment }").text-center
       slot(name="image")
         img(:width="width" :src="image")
     v-col(v-bind="contentColumnBindings")
@@ -153,6 +153,10 @@ export default {
       return this.contentClasses
         ? this.contentClasses
         : contentClasses;
+    },
+    contentAlignment () {
+      if (this.$isMobile) return false;
+      return !this.contentRight;
     },
   },
 };

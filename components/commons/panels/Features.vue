@@ -1,14 +1,12 @@
 <template lang="pug">
-  v-container.container
-    v-row(justify="center" align="center" :style="{ height: $isMobile ? 'auto' : panelHeight }")
-      v-col(cols="12" md="10")
-        v-row(justify="center")
+  v-container
+    v-row(justify="center" align="center")
+      generic-panel(:row-bindings="{ justify: 'center' }")
           v-col(cols="12" :md="titleColSize").text-center
             strong(v-if="metaTitle" :class="metaTitleClasses").primary--text {{ metaTitle }}
             h2(:class="titleClasses").lh-title.font-weight-medium {{ title }}
           v-col(cols="12" :md="contentColSize").text-center.py-3
             p(:class="descriptionClasses").font-open-sans.font-gray {{ description }}
-        v-row(justify="center")
           v-col(cols="12" :md="iconContainerColSize")
             v-row(justify="center")
               v-col(:cols="iconColSizeMobile" :md="iconColSize" v-for="(item, key) in items" :key="key").text-center
@@ -25,14 +23,16 @@
                 h3(:class="itemTextClasses").font-open-sans.font-weight-medium {{ item.title }}
                 p(v-if="item.description" :class="itemTextClasses") {{ item.description }}
                 nuxt-link(v-if="!hideLearnMore && item.route" :to="{ name: item.route }").primary--text.font-weight-bold.learnLink Learn more
-        slot(name="additional-content")
+          slot(name="additional-content")
 </template>
 
 <script>
 import classBinder from '~/utils/class-binder';
+import GenericPanel from '~/components/generic/GenericPanel';
 import PictureSource from '~/components/commons/PictureSource';
 export default {
   components: {
+    GenericPanel,
     PictureSource,
   },
   props: {
@@ -150,9 +150,5 @@ export default {
 <style scoped>
 .learnLink {
   text-decoration: none;
-}
-.container {
-  padding-bottom: 100px;
-  padding-top: 10px;
 }
 </style>

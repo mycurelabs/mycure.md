@@ -77,7 +77,7 @@ export default {
      */
     imageAlt: {
       type: String,
-      default: 'Content image',
+      default: 'MYCURE image',
     },
     /**
      * File extension of image

@@ -1,5 +1,5 @@
 <template lang="pug">
-  div(v-if="!loading").white
+  v-container(v-if="!loading" fluid).white
     //- 1st panel
     usp(
       title="Bring Out the Hero in You"
@@ -23,50 +23,55 @@
         :items="features"
         icon-container-col-size="8"
         image-dir="doctors-clinics/"
-      ).pt-10
+      )
     //- 3rd to 5th panels
-    info-panels(:fluid="!$isMobile" :class="panelMargins")
-    //-6th panel
     generic-media-panel(
-      :fluid="!$isMobile"
-      content-align-right
-      cols-right="4"
-      cols-left="5"
-      offset-cols-right="1"
-      align-content-right="center"
-      :header="sixthPanel.header"
-      :descriptions="sixthPanel.descriptions"
-      :header-classes="headerClasses"
-      :description-classes="descriptionClasses"
-      custom-image-path="commons/"
-      extension-exclusive
-      file-extension=".png"
-      :web-image="sixthPanel.image"
+      v-for="(content, key) in contents"
+      :key="key"
+      :content="content"
+      hide-btn
     )
-      //- Check list
-      template(slot="additional-content")
-        div.mb-5
-          v-row(
-            v-for="(item, i) in sixthPanel.list"
-            :align="i === 2 ? 'center' : 'start'"
-            :key="i"
-            dense
-          )
-            v-col(cols="1").pr-2.pt-2
-              v-icon(color="black") mdi-arrow-right
-            v-col
-              span(:class="descriptionClasses") {{ item }}
-        br
-        div(:class="{ 'text-center': $isMobile }")
-          signup-button(
-            depressed
-            rounded
-            :x-large="$isWideScreen"
-            :large="$isRegularScreen"
-            color="success"
-          ).text-none.font-s
-            span Get Started Free
-            v-icon(small right) mdi-arrow-right
+    //-6th panel
+    //- generic-media-panel(
+    //-   :fluid="!$isMobile"
+    //-   content-align-right
+    //-   cols-right="4"
+    //-   cols-left="5"
+    //-   offset-cols-right="1"
+    //-   align-content-right="center"
+    //-   :header="sixthPanel.header"
+    //-   :descriptions="sixthPanel.descriptions"
+    //-   :header-classes="headerClasses"
+    //-   :description-classes="descriptionClasses"
+    //-   custom-image-path="commons/"
+    //-   extension-exclusive
+    //-   file-extension=".png"
+    //-   :web-image="sixthPanel.image"
+    //- )
+    //-   //- Check list
+    //-   template(slot="additional-content")
+    //-     div.mb-5
+    //-       v-row(
+    //-         v-for="(item, i) in sixthPanel.list"
+    //-         :align="i === 2 ? 'center' : 'start'"
+    //-         :key="i"
+    //-         dense
+    //-       )
+    //-         v-col(cols="1").pr-2.pt-2
+    //-           v-icon(color="black") mdi-arrow-right
+    //-         v-col
+    //-           span(:class="descriptionClasses") {{ item }}
+    //-     br
+    //-     div(:class="{ 'text-center': $isMobile }")
+    //-       signup-button(
+    //-         depressed
+    //-         rounded
+    //-         :x-large="$isWideScreen"
+    //-         :large="$isRegularScreen"
+    //-         color="success"
+    //-       ).text-none.font-s
+    //-         span Get Started Free
+    //-         v-icon(small right) mdi-arrow-right
     //- 7th panel
     div.grey-bg
       mycure-csi(:class="panelMargins").pt-10
@@ -97,8 +102,7 @@ import { DOCTORS_PRICING } from '~/constants/pricing';
 // components
 import CallToAction from '~/components/commons/panels/CallToAction';
 import Features from '~/components/commons/panels/Features';
-import GenericMediaPanel from '~/components/commons/generic-media-panel';
-import InfoPanels from '~/components/doctors-clinics/InfoPanels';
+import GenericMediaPanel from '~/components/generic/GenericMediaPanel';
 import MycureCsi from '~/components/commons/panels/MycureCsi';
 import PracticeOnline from '~/components/doctors-clinics/practice-online';
 import Pricing from '~/components/commons/panels/Pricing';
@@ -111,7 +115,6 @@ export default {
     CallToAction,
     Features,
     GenericMediaPanel,
-    InfoPanels,
     MycureCsi,
     PracticeOnline,
     Pricing,
@@ -123,6 +126,37 @@ export default {
     // Panel content
     this.uspDescription = 'Designed for modern doctors, MYCURE lets you focus on what you do best — caring for your patients.  MYCURE organizes your daily tasks to make your practice more simple, secure, and efficient.';
     this.featuresDescription = 'Use the tools that work best for you. Everything you need is here. It’s FREE!';
+    this.contents = [
+      {
+        title: 'Lightning-fast prescriptions',
+        description: 'Create and print prescriptions and other medical forms in 10 seconds or less.',
+        contentAlign: 'left',
+        imageBindings: {
+          customPath: 'features/',
+          image: 'MYCURE-virtual-clinic-healthcare-practice-online-features-B-02-print-prescription.webp',
+          mobileImage: 'MYCURE-virtual-clinic-healthcare-practice-online-features-B-02-print-prescription-mobile.png',
+        },
+      },
+      {
+        title: 'Going digital = better medical history',
+        description: 'Imagine looking back at your charts from 5 or 10 years ago on your mobile device with a quick search. How convenient? S-U-P-E-R.',
+        contentAlign: 'right',
+        imageBindings: {
+          customPath: 'features/',
+          image: 'MYCURE-virtual-clinic-healthcare-practice-online-features-B-03-charting.webp',
+          mobileImage: 'MYCURE-virtual-clinic-healthcare-practice-online-features-B-03-charting-mobile.png',
+        },
+      },
+      {
+        title: 'Help patients anywhere',
+        description: 'Reach out to more people who need your expertise without getting limited by time or location.',
+        contentAlign: 'left',
+        imageBindings: {
+          customPath: 'features/',
+          image: 'MYCURE-virtual-clinic-healthcare-practice-online-features-C-telehealth.webp',
+        },
+      },
+    ];
     this.features = [
       {
         title: 'Digital Records',
