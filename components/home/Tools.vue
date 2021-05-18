@@ -3,10 +3,10 @@
     v-row(justify="center")
       generic-panel(:row-bindings="{ justify: 'center' }")
         v-col(cols="12" md="12").text-center
+          p(:class="subheaderClasses").primary--text Customizable based on what you need
           h1(:class="headerClasses").font-weight-medium.mb-10 Flexible. Scalable.
-          p(:class="subheaderClasses").primary--text.font-open-sans.mb-10 Customizable based on what you need
           v-row(justify="center")
-            v-col(cols="12" md="12" lg="8" xl="6").text-center
+            v-col(cols="12" md="6").text-center
               p(:class="descriptionClasses").font-open-sans.font-gray.mb-10 MYCURE is modularized and provides APIs for each so you are able to build from scratch, add missing modules while making your system secure and compliant.
         v-row(justify="start")
           v-col(

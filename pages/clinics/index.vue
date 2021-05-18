@@ -63,12 +63,14 @@
                 block
                 depressed
                 rounded
+                :large="$isRegularScreen"
                 :x-large="$isWideScreen"
                 :to="{ name: 'doctors-clinics' }"
-                :class="{'font-s': $isWideScreen }"
+                :class="{'font-s': $isWideScreen, 'font-xs': $isRegularScreen }"
               ).text-none Practicing solo? Click here.
     //- 7th panel
     think-long-term
+    v-divider.divider
     //- 8th panel
     call-to-action(:version="2")
     //- 9th panel
@@ -207,15 +209,12 @@ export default {
 </script>
 
 <style scoped>
-.syncbase-animate {
-  margin-left: -18vw;
-}
 .grey-bg {
   background-color: #fafafa;
 }
-@media screen and (min-width: 1920px) {
-  .syncbase-animate {
-    margin-left: -8vw;
-  }
+
+.divider {
+  margin-right: 30% !important;
+  margin-left: 30% !important;
 }
 </style>
