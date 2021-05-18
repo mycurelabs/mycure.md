@@ -123,8 +123,8 @@ export default {
       return [
         classBinder(this, {
           mobile: ['font-xs', 'text-center'],
-          regular: ['font-s'],
-          wide: ['font-l'],
+          regular: ['font-25'],
+          wide: ['font-40'],
         }),
         'white--text',
         'font-open-sans',
