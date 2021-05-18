@@ -29,55 +29,56 @@
       v-for="(content, key) in contents"
       :key="key"
       :content="content"
+      :title-classes="headerClasses"
       hide-btn
     )
     //-6th panel
-    //- generic-media-panel(
-    //-   :fluid="!$isMobile"
-    //-   content-align-right
-    //-   cols-right="4"
-    //-   cols-left="5"
-    //-   offset-cols-right="1"
-    //-   align-content-right="center"
-    //-   :header="sixthPanel.header"
-    //-   :descriptions="sixthPanel.descriptions"
-    //-   :header-classes="headerClasses"
-    //-   :description-classes="descriptionClasses"
-    //-   custom-image-path="commons/"
-    //-   extension-exclusive
-    //-   file-extension=".png"
-    //-   :web-image="sixthPanel.image"
-    //- )
-    //-   //- Check list
-    //-   template(slot="additional-content")
-    //-     div.mb-5
-    //-       v-row(
-    //-         v-for="(item, i) in sixthPanel.list"
-    //-         :align="i === 2 ? 'center' : 'start'"
-    //-         :key="i"
-    //-         dense
-    //-       )
-    //-         v-col(cols="1").pr-2.pt-2
-    //-           v-icon(color="black") mdi-arrow-right
-    //-         v-col
-    //-           span(:class="descriptionClasses") {{ item }}
-    //-     br
-    //-     div(:class="{ 'text-center': $isMobile }")
-    //-       signup-button(
-    //-         depressed
-    //-         rounded
-    //-         :x-large="$isWideScreen"
-    //-         :large="$isRegularScreen"
-    //-         color="success"
-    //-       ).text-none.font-s
-    //-         span Get Started Free
-    //-         v-icon(small right) mdi-arrow-right
+    generic-media-panel(
+      content-right
+      :content="sixthPanel"
+      :title-classes="headerClasses"
+      hide-btn
+    )
+      //- Check list
+      template(slot="additional-content")
+        div.mb-10
+          v-row(
+            v-for="(item, i) in sixthPanel.list"
+            :key="item"
+            dense
+          )
+            v-col(cols="1").pr-2.pt-2
+              v-icon(color="black") mdi-arrow-right
+            v-col
+              span(:class="descriptionClasses") {{ item }}
+        div(:class="{ 'text-center': $isMobile }")
+          signup-button(
+            depressed
+            rounded
+            :x-large="$isWideScreen"
+            :large="$isRegularScreen"
+            color="success"
+          ).text-none.font-s
+            span Get Started Free
+            v-icon(small right) mdi-arrow-right
     //- 7th panel
-    div.grey-bg
-      mycure-csi(:class="panelMargins").pt-10
+    div.grey-bg.mx-n3
+      mycure-csi
     //- 8th panel
-    div.blue-bg
-      practice-online
+    div.blue-bg.mx-n3
+      generic-media-panel(
+        :content="eightPanel"
+        :title-classes="[...headerClasses, 'white--text']"
+        :contentClasses="eightPanelContentClasses"
+        hide-btn
+      )
+        template(slot="additional-content")
+          template(v-for="(item, i) in eightPanel.list")
+            v-row(dense)
+              v-col(cols="1").pr-2.pt-2
+                v-icon(color="white") mdi-chevron-right
+              v-col
+                span(:class="eightPanelContentClasses") {{ item }}
     //- 9th panel
     think-long-term(
       :fluid="!$isMobile"
@@ -185,17 +186,34 @@ export default {
       },
     ];
     this.sixthPanel = {
-      header: 'Expand Your Reach',
-      descriptions: [
-        'Opt in to MYCURE ONE, a global online directory of modern healthcare practitioners and facilities',
-      ],
+      title: 'Expand Your Reach',
+      description: 'Opt in to MYCURE ONE, a global online directory of modern healthcare practitioners and facilities',
       list: [
         'Patients can easily find you',
         'Get more organized appointments',
         'Comes with a Professional Website',
       ],
       contentAlign: 'right',
-      image: 'Expand your reach',
+      imageBindings: {
+        image: 'Expand your reach.png',
+        customPath: 'commons/',
+        extensionExclusive: true,
+      },
+    };
+    this.eightPanel = {
+      title: 'Practice as a Group',
+      description: 'Easily coordinate with other physicians in your group practice and centralize your medical records in one comprehensive workspace.',
+      imageBindings: {
+        image: 'MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-C-group-practice.webp',
+        customPath: 'doctors-clinics/',
+      },
+      list: [
+        'Collated Medical Records',
+        'Optimized Patient Queuing',
+        'Group Clinic Chatbox',
+        'Shared Secretary Account',
+        'Booking Website',
+      ],
     };
     this.pricingDetails = DOCTORS_PRICING;
     return {
@@ -237,6 +255,17 @@ export default {
         'font-gray',
       ];
       return descriptionClasses;
+    },
+    eightPanelContentClasses () {
+      return [
+        classBinder(this, {
+          mobile: ['font-xs'],
+          regular: ['font-s'],
+          wide: ['font-m'],
+        }),
+        'font-open-sans',
+        'white--text',
+      ];
     },
   },
   mounted () {

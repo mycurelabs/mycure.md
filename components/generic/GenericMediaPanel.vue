@@ -3,13 +3,16 @@
     v-row(justify="center")
       generic-sub-page-panel(v-bind="getPanelBindings(content)" :hide-btn="hideBtn")
         template(slot="content")
-          p(v-if="typeof(content.description) === 'string'" :class="descriptionClasses") {{ content.description }}
+          p(v-if="typeof(content.description) === 'string'" :class="contentClasses") {{ content.description }}
           template(v-else)
-            p(v-for="(description, key) in content.description" :key="key" :class="descriptionClasses") {{ content.description }}
+            p(v-for="(description, key) in content.description" :key="key" :class="contentClasses") {{ content.description }}
+          slot(name="additional-content")
         template(slot="image" v-if="content.imageBindings")
           picture-source(
             v-bind="getImageBindings(content.imageBindings)"
           )
+        template(slot="cta-button")
+          slot(name="cta-button")
 </template>
 
 <script>
@@ -30,9 +33,17 @@ export default {
       type: Boolean,
       default: false,
     },
+    titleClasses: {
+      type: [Array, Object],
+      default: undefined,
+    },
+    contentClasses: {
+      type: [Array, Object],
+      default: undefined,
+    },
   },
   computed: {
-    titleClasses () {
+    defaultTitleClasses () {
       const titleClasses = [
         classBinder(this, {
           mobile: ['font-m', 'text-center'],
@@ -40,13 +51,12 @@ export default {
           wide: ['font-xl'],
         }),
         'lh-title',
-        'primary--text',
         'font-weight-medium',
       ];
       return titleClasses;
     },
-    descriptionClasses () {
-      const descriptionClasses = [
+    defaultContentClasses () {
+      const contentClasses = [
         classBinder(this, {
           mobile: ['font-xs', 'text-center'],
           regular: ['font-s'],
@@ -55,7 +65,7 @@ export default {
         'font-open-sans',
         'font-gray',
       ];
-      return descriptionClasses;
+      return contentClasses;
     },
   },
   methods: {
@@ -72,8 +82,8 @@ export default {
         ...content.contentAlign === 'left' && { offsetMd: 1 },
       };
       const panelBindings = {
-        titleClasses: this.titleClasses,
-        contentClasses: this.descriptionClasses,
+        titleClasses: this.titleClasses ? this.titleClasses : this.defaultTitleClasses,
+        contentClasses: this.contentClasses ? this.contentClasses : this.defaultContentClasses,
         contentColumnBindings,
         mediaColumnBindings,
         title: content.title,
@@ -91,7 +101,7 @@ export default {
         image,
         imageFileExtension: `.${extension}`,
         imageAlt: imageBindings.alt || this.content.title,
-        extensionExclusive: imageBindings.mobileImage && this.$isMobile,
+        extensionExclusive: imageBindings.extensionExclusive || (imageBindings.mobileImage && this.$isMobile),
       };
       console.log('bindings', bindings);
       return bindings;
