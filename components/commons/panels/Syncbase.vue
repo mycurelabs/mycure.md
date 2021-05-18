@@ -23,7 +23,7 @@
           v-icon(left) mdi-information-outline
           span Learn about MYCURE Syncbase
       template(slot="image")
-        video(v-if="!$isMobile" :width="wXL ? '1000' : '800'" playsinline autoplay muted loop).syncbase-animate
+        video(v-if="!$isMobile" :width="wXL ? '1000' : '700'" playsinline autoplay muted loop).syncbase-animate
             source(src="~/assets/videos/mycure-syncbase-diagram-animate.webm" type="video/webm")
             source(src="~/assets/videos/mycure-syncbase-diagram-animate.mp4" type="video/mp4")
             | Your browser does not support the video tag.
