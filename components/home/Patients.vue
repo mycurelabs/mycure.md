@@ -1,41 +1,36 @@
 <template lang="pug">
-  v-container.usp-container
-    v-row(justify="center" align="center" :style="{ height: panelHeight }")
-      v-col(cols="12" md="10")
-        v-row(
-          justify="center"
-          align="center"
-        )
-          v-col(cols="12" md="10").text-center
-            h1(:class="headerClasses").font-weight-medium.primary--text Patients will love you even more.
-          v-col(cols="12" md="6").text-center
-            p(:class="descriptionClasses").grey--text.font-open-sans You treat your patients with holistic care. Now, make it extra covenient for them to reach you.
+  v-row(justify="center")
+    generic-panel(:row-bindings="{ justify: 'center' }")
+      v-col(cols="12" md="10").text-center
+        h1(:class="headerClasses").font-weight-medium.primary--text.mb-10 Patients will love you even more.
         v-row(justify="center")
-          v-col(
-            v-for="(app, key) in apps"
-            :key="key"
-            cols="12"
-            md="5"
-            :class="{ 'mt-10': $isMobile }"
-          ).text-center.app-container
-            v-card(flat)
-              v-img(
-                :src="require(`~/assets/images/home/${app.image}.png`)"
-                height="100%"
-              )
-                v-card-title
-                  v-spacer
-                  span(:class="descriptionClasses").white--text {{ app.name }}
-                  v-spacer
-                v-card-text.text-center
-                  strong(:class="appDescriptionClasses").white--text.content-line-spacing {{ app.description }}
+          v-col(cols="12" md="8").text-center
+            p(:class="descriptionClasses").grey--text.font-open-sans.mb-10 You treat your patients with holistic care. Now, make it extra covenient for them to reach you.
+      v-col(
+        v-for="(app, key) in apps"
+        :key="key"
+        cols="12"
+        md="5"
+      ).text-center
+        v-card(flat)
+          v-img(
+            :src="require(`~/assets/images/home/${app.image}.png`)"
+          )
+            v-card-title
+              v-spacer
+              span(:class="descriptionClasses").white--text {{ app.name }}
+              v-spacer
+            v-card-text.text-center
+              strong(:class="appDescriptionClasses").white--text.content-line-spacing {{ app.description }}
 </template>
 
 <script>
 import classBinder from '~/utils/class-binder';
+import GenericPanel from '~/components/generic/GenericPanel';
 import PictureSource from '~/components/commons/PictureSource';
 export default {
   components: {
+    GenericPanel,
     PictureSource,
   },
   data () {
@@ -74,11 +69,6 @@ export default {
         regular: ['font-m'],
         wide: ['font-l'],
       });
-    },
-    panelHeight () {
-      if (this.$isMobile) return 'auto';
-      if (this.$isRegularScreen) return '500px';
-      return '80vh';
     },
   },
 };

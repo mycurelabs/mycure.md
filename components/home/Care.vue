@@ -1,16 +1,10 @@
 <template lang="pug">
-  v-container.usp-container
-    v-row(justify="center" align="center" :style="{ height: $isMobile ? 'auto' : '40vh' }")
-      v-col(cols="12" md="10")
-        v-row(
-          justify="center"
-          align="center"
-        )
-          v-col(cols="12" md="10" xl="12").text-center
-            h1(:class="headerClasses").lh-title.font-weight-medium.primary--text Caring for people who care for people
-          v-col(cols="12" xl="6").text-center
-            p(:class="descriptionClasses").grey--text.font-open-sans MYCURE is dedicated to help healthcare providers save more lives each day.
-        v-row(justify="center" align="center")
+  v-row(justify="center")
+    generic-panel(:row-bindings="{ justify: 'center' }")
+        v-col(cols="12" md="10" xl="12").text-center.pa-0
+          h1(:class="headerClasses").mb-10.font-weight-medium.primary--text Caring for people who care for people
+          p(:class="descriptionClasses").grey--text.mb-10.font-open-sans MYCURE is dedicated to help healthcare providers save more lives each day.
+        v-row(justify="center")
           v-col(
             v-for="(stat, key) in stats"
             :key="key"
@@ -22,8 +16,12 @@
 </template>
 
 <script>
+import GenericPanel from '~/components/generic/GenericPanel';
 import classBinder from '~/utils/class-binder';
 export default {
+  components: {
+    GenericPanel,
+  },
   data () {
     this.stats = [
       {
@@ -32,11 +30,11 @@ export default {
       },
       {
         title: 'Lives Saved',
-        amount: '1,800,000+',
+        amount: '1,400,000+',
       },
       {
         title: 'Partner Providers',
-        amount: '2,100+',
+        amount: '2,000+',
       },
     ];
     return {};
@@ -59,10 +57,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-.usp-container {
-  padding-bottom: 125px;
-  padding-top: 10px;
-}
-</style>

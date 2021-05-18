@@ -1,30 +1,41 @@
 <template lang="pug">
-  generic-panel
-    v-col(sm="12" md="6")
+  generic-panel(:row-bindings="{ justify: 'center' }")
+    v-col(v-if="centerPanelTitle" sm="12").text-center
       div
-        slot(name="super-title")
-          h3(v-if="superTitle") {{superTitle}}
-      div.mb-10
-        slot(name="title")
-          h1(v-if="title") {{title}}
-      div.mb-10
-        slot(name="content")
-          p(v-if="content") {{content}}
-      div
-        slot(name="cta-button")
-          v-btn {{ctaButtonText}}
-    v-col(sm="12" md="6").text-center
+        slot(name="center-panel-title")
+          h2(:class="defaultCenterPanelTitleClasses") {{ centerPanelTitle }}
+    v-col(v-bind="mediaColumnBindings" :class=" { 'order-last': !contentRight }").text-center
       slot(name="image")
         img(:width="width" :src="image")
+    v-col(v-bind="contentColumnBindings")
+      div
+        slot(name="super-title")
+          h3(v-if="superTitle" :class="defaultSuperTitleClasses") {{superTitle}}
+      div.mb-10
+        slot(name="title")
+          h2(v-if="title" :class="defaultTitleClasses") {{ title }}
+      div.mb-10
+        slot(name="content")
+          p(v-if="content" :class="defaultContentClasses") {{ content }}
+      div(v-if="!hideBtn")
+        slot(name="cta-button")
+          v-btn {{ ctaButtonText }}
 </template>
 
 <script>
 import GenericPanel from './GenericPanel';
+import PictureSource from '~/components/commons/PictureSource';
+import classBinder from '~/utils/class-binder';
 export default {
   components: {
     GenericPanel,
+    PictureSource,
   },
   props: {
+    centerPanelTitle: {
+      type: String,
+      default: undefined,
+    },
     superTitle: {
       type: String,
       default: undefined,
@@ -41,13 +52,101 @@ export default {
       type: String,
       default: 'Get Started',
     },
-    width: {
-      type: String,
-      default: '100%',
+    contentRight: {
+      type: Boolean,
+      default: false,
+    },
+    contentColumnBindings: {
+      type: Object,
+      default: () => ({
+        sm: 12,
+        md: 6,
+      }),
+    },
+    mediaColumnBindings: {
+      type: Object,
+      default: () => ({
+        sm: 12,
+        md: 6,
+      }),
     },
     image: {
       type: String,
       default: undefined,
+    },
+    width: {
+      type: String,
+      default: '100%',
+    },
+    hideBtn: {
+      type: Boolean,
+      default: false,
+    },
+    superTitleClasses: {
+      type: [Array, Object],
+      default: undefined,
+    },
+    titleClasses: {
+      type: [Array, Object],
+      default: undefined,
+    },
+    contentClasses: {
+      type: [Array, Object],
+      default: undefined,
+    },
+    centerPanelTitleClasses: {
+      type: [Array, Object],
+      default: undefined,
+    },
+  },
+  computed: {
+    defaultSuperTitleClasses () {
+      return this.superTitleClasses
+        ? this.superTitleClasses
+        : classBinder(this, {
+          regular: ['font-xs'],
+          wide: ['font-s'],
+        });
+    },
+    defaultTitleClasses () {
+      const titleClasses = [
+        classBinder(this, {
+          mobile: ['font-m', 'text-center'],
+          regular: ['font-l'],
+          wide: ['font-2xl'],
+        }),
+        'font-weight-medium',
+      ];
+      return this.titleClasses
+        ? this.titleClasses
+        : titleClasses;
+    },
+    defaultCenterPanelTitleClasses () {
+      const centerPanelTitleClasses = [
+        classBinder(this, {
+          mobile: ['font-m', 'text-center'],
+          regular: ['font-l'],
+          wide: ['font-xl'],
+        }),
+        'font-weight-medium',
+      ];
+      return this.centerPanelTitleClasses
+        ? this.centerPanelTitleClasses
+        : centerPanelTitleClasses;
+    },
+    defaultContentClasses () {
+      const contentClasses = [
+        classBinder(this, {
+          mobile: ['font-xs'],
+          regular: ['font-s'],
+          wide: ['font-m'],
+        }),
+        'font-open-sans',
+        'font-gray',
+      ];
+      return this.contentClasses
+        ? this.contentClasses
+        : contentClasses;
     },
   },
 };

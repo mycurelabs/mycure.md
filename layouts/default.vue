@@ -1,7 +1,7 @@
 <template lang="pug">
   v-app#app
     mc-navbar(v-if="!loading")
-    div(style="padding-top: 45px")
+    div(style="padding-top: 35px")
       nuxt
     mc-footer(v-if="!loading")
 </template>
@@ -125,7 +125,8 @@ export default {
 
 /* --OTHER CSS-- */
 .edge-divider{
-  margin: 0% 11% !important;
+  margin-right: 11% !important;
+  margin-left: 11% !important;
 }
 .lh-title {
   line-height: 1.25em !important
