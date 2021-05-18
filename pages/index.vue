@@ -2,7 +2,6 @@
   v-container(v-if="!loading" fluid).white
     //- 1st panel
     seven-wonders
-    v-divider.divider
     //- 2nd panel
     care
     //- 3rd panel

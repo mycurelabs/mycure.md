@@ -43,18 +43,18 @@ export default {
     PictureSource,
   },
   data () {
-    this.apps = [
-      {
-        name: 'Online Booking',
-        description: 'Help patients find the best schedule for their next visit.',
-        image: 'homepage-online-booking-2',
-      },
-      {
-        name: 'Online Results',
-        description: 'Time to go digital for the new generation.',
-        image: 'homepage-online-results-2',
-      },
-    ];
+    // this.apps = [
+    //   {
+    //     name: 'Online Booking',
+    //     description: 'Help patients find the best schedule for their next visit.',
+    //     image: 'homepage-online-booking-2',
+    //   },
+    //   {
+    //     name: 'Online Results',
+    //     description: 'Time to go digital for the new generation.',
+    //     image: 'homepage-online-results-2',
+    //   },
+    // ];
     return {};
   },
   computed: {

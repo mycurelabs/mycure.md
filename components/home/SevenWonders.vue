@@ -1,27 +1,28 @@
 <template lang="pug">
-  v-row(justify="center")
-    generic-panel(:row-bindings="{ justify: 'center' }")
-      v-col(cols="12").text-center
+  div
+    div(v-if="!$isMobile").container
+      img(
+        src="~/assets/images/home/Homepage USP v2B.png"
+        alt="MYCURE Seven wonders of healthcare"
+      ).background
+      v-container.content
         v-row(justify="center")
-          v-col(sm="12" md="7" xl="8")
-            h1(:class="headerClasses").mb-10 Make Healthcare Accessible to All
-            p(:class="{ 'font-m' : !$isMobile, 'font-s' : $isMobile }").primary--text.font-weight-medium.mb-10 THE SEVEN WONDERS OF HEALTHCARE EMPOWERED BY MYCURE
-      v-col(cols="12" md="3" xl="2" v-for="(wonder, key) in wonders" :key="key")
-        wonder(:wonder="wonder")
-      //-   //- v-col(v-if="!$isMobile" cols="12")
-      //-     //- vue-slick-carousel(
-      //-     //-   :arrows="false"
-      //-     //-   :dots="false"
-      //-     //-   infinite
-      //-     //-   :slidesToShow="5"
-      //-     //-   :slidesToScroll="1"
-      //-     //-   autoplay
-      //-     //-   :speed="2000"
-      //-     //-   :autoplaySpeed="500"
-      //-     //-   swipeToSlide
-      //-     //- )
-      //-     //-   div(v-for="(wonder, key) in wonders" :key="key")
-      //-     //-     wonder(:wonder="wonder").ma-1
+          generic-panel(:row-bindings="{ justify: 'center' }")
+            v-col(cols="12").text-center.text-container
+              v-row(justify="center")
+                v-col(sm="12" md="7" xl="10")
+                  h1(:class="headerClasses").mb-10 Make Healthcare Accessible to All
+                  v-row(justify="center")
+                    v-col(cols="12" md="10")
+                      p(:class="{ 'font-m' : !$isMobile, 'font-s' : $isMobile }").primary--text.font-weight-bold.mb-10 THE SEVEN WONDERS OF HEALTHCARE EMPOWERED BY MYCURE
+            v-col(cols="12" md="3" xl="3" v-for="(wonder, key) in wonders" :key="key")
+              wonder(:wonder="wonder")
+    div(v-else).mobile-container.ml-n3
+      img(
+        src="~/assets/images/home/Homepage USP v2.png"
+        alt="MYCURE Seven wonders of healthcare"
+        width="100%"
+      )
 </template>
 
 <script>
@@ -98,10 +99,39 @@ export default {
 </script>
 
 <style scoped>
-.usp-container {
-  padding-bottom: 50px;
-}
+/* .bg {
+  background-image: url('../../assets/images/home/Homepage USP v2B.png');
+  background-size: stretch;
+} */
 .line-spacing-title {
   line-height: 1.25em;
+}
+.background {
+  width: 100%;
+  height: 900px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  overflow: hidden;
+  object-fit: cover;
+}
+.container {
+  width: 100vw;
+  height: 850px;
+}
+.text-container {
+  margin-bottom: 65px;
+}
+.mobile-container {
+  width: 100vw;
+}
+.content {
+  position: absolute;
+}
+
+@media screen and (min-width: 1920px) {
+  .text-container {
+    margin-bottom: 90px;
+  }
 }
 </style>
