@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-container(v-if="!loading" fluid).white
+  v-container(v-if="!loading").white
     //- 1st panel
     seven-wonders
     v-divider.edge-divider
