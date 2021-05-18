@@ -126,14 +126,14 @@ export default {
   data () {
     // - TODO: Update info
     this.features = [
-      {
-        title: 'Booking System',
-        icon: 'Booking Systems',
+       {
+        title: 'Laboratory Information System (LIS)',
+        icon: 'LIS',
         iconExtension: '.png',
       },
       {
-        title: 'Laboratory Information System (LIS)',
-        icon: 'LIS',
+        title: 'Booking System',
+        icon: 'Booking Systems',
         iconExtension: '.png',
       },
       {

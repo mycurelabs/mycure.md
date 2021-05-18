@@ -25,7 +25,7 @@
               image-file-extension=".png"
             )
             br
-            h3.font-xs.font-open-sans.grey--text {{ tool.name }}
+            h3.font-xs.font-open-sans.font-gray {{ tool.name }}
             br
 </template>
 

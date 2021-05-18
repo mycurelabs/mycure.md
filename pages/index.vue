@@ -9,10 +9,9 @@
       simple
     //- 4th panel
     patients
-    v-divider.divider
     //- 5th panel
-    tools(:version="2")
-    v-divider.divider
+    div.grey-bg.mx-n3
+      tools(:version="2")
     //-6th panel
     syncbase
     //- CTA
@@ -110,5 +109,8 @@ export default {
 .divider {
   margin-right: 30% !important;
   margin-left: 30% !important;
+}
+.grey-bg {
+  background-color: #fafafa;
 }
 </style>
