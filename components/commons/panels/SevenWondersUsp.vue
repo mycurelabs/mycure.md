@@ -18,7 +18,7 @@
             :alt="image"
             :width="imageWidth"
           )
-        template(slot="cta-button")
+        div(slot="cta-button" :class="{'text-center': $isMobile}")
           signup-button(
             depressed
             rounded
@@ -194,7 +194,7 @@ export default {
     // Classes
     titleClasses () {
       const classes = classBinder(this, {
-        mobile: ['font-m'],
+        mobile: ['font-m', 'text-center'],
         regular: ['font-l'],
         wide: ['font-xl'],
       });
@@ -207,7 +207,7 @@ export default {
     },
     superTitleClasses () {
       const classes = classBinder(this, {
-        mobile: ['font-xs'],
+        mobile: ['font-xs', 'text-center'],
         regular: ['font-s'],
         wide: ['font-m'],
       });

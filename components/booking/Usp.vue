@@ -23,7 +23,7 @@
             alt="homepage image"
             width="100%"
           )
-        template(slot="cta-button")
+        div(slot="cta-button" :class="{'text-center': $isMobile}")
           signup-button(
             color="success"
             depressed
@@ -87,7 +87,7 @@ export default {
     // Classes
     titleClasses () {
       const classes = classBinder(this, {
-        mobile: ['font-m'],
+        mobile: ['font-m', 'text-center'],
         regular: ['font-l'],
         wide: ['font-xl'],
       });
