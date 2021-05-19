@@ -1,7 +1,7 @@
 export const DOCTORS_PRICING = [
   {
     value: 'doctor-lite',
-    title: 'LITE',
+    title: 'Lite',
     description: 'All the essential tools for physicians doing solo practice',
     image: 'Essentials',
     currency: '₱',
@@ -24,7 +24,7 @@ export const DOCTORS_PRICING = [
   },
   {
     value: 'doctor-premium',
-    title: 'PREMIUM',
+    title: 'Premium',
     description: 'Build modern clinics with your secretary or colleagues',
     image: 'Premium',
     currency: '₱',
@@ -50,7 +50,7 @@ export const DOCTORS_PRICING = [
 export const CLINICS_PRICING = [
   {
     value: 'clinic-lite',
-    title: 'LITE',
+    title: 'Lite',
     description: 'Essential features for growing outpatient clinics',
     image: 'Essentials',
     currency: '₱',
@@ -78,7 +78,7 @@ export const CLINICS_PRICING = [
   },
   {
     value: 'clinic-premium',
-    title: 'PREMIUM',
+    title: 'Premium',
     description: 'Advanced tools for medium-sized outpatient clinics',
     image: 'Premium',
     currency: '₱',
@@ -106,7 +106,7 @@ export const CLINICS_PRICING = [
   },
   {
     value: 'clinic-platinum',
-    title: 'PLATINUM',
+    title: 'Platinum',
     description: 'Full CMS experience for advanced outpatient clinic services',
     image: 'Platinum',
     currency: '₱',
@@ -134,7 +134,7 @@ export const CLINICS_PRICING = [
   },
   {
     value: 'clinic-enterprise',
-    title: 'ENTERPRISE',
+    title: 'Enterprise',
     description: 'Perfect for multi-branch healthcare facilities doing large-scale operations',
     image: 'Enterprise',
     requireContact: true,
@@ -155,7 +155,7 @@ export const CLINICS_PRICING = [
 export const DIAGNOSTICS_PRICING = [
   {
     value: 'diagnostics-lite',
-    title: 'LITE',
+    title: 'Lite',
     description: 'Essential features for growing diagnostic centers',
     image: 'Essentials',
     currency: '₱',
@@ -181,7 +181,7 @@ export const DIAGNOSTICS_PRICING = [
   },
   {
     value: 'diagnostics-premium',
-    title: 'PREMIUM',
+    title: 'Premium',
     description: 'Advanced tools for medium-sized diagnostic centers',
     image: 'Premium',
     currency: '₱',
@@ -207,7 +207,7 @@ export const DIAGNOSTICS_PRICING = [
   },
   {
     value: 'diagnostics-platinum',
-    title: 'PLATINUM',
+    title: 'Platinum',
     description: 'Full diagnostic tools for advanced and high-volume diagnostic centers',
     image: 'Platinum',
     currency: '₱',
@@ -233,7 +233,7 @@ export const DIAGNOSTICS_PRICING = [
   },
   {
     value: 'diagnostics-enterprise',
-    title: 'ENTERPRISE',
+    title: 'Enterprise',
     description: 'Perfect for multi-branch healthcare facilities doing large-scale operations',
     image: 'Enterprise',
     requireContact: true,

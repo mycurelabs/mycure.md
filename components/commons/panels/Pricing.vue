@@ -24,86 +24,21 @@
           //-       span.text-capitalize {{ mode }}
           v-row(justify="center")
             v-col(
-              v-for="(details, key) in pricingDetails"
+              v-for="(detail, key) in pricingDetails"
               :key="key"
-              cols="12"
-              :md="columnSize"
+              v-bind="columnBindings"
             )
-              v-card(flat height="100%" width="100%" :class="{'primary': key === 2}").card-outter.rounded-xl
-                v-card-text(:class="{'white--text': key === 2}").py-8
-                  div.text-center
-                    picture-source(
-                      extension-exclusive
-                      custom-path="pricing/"
-                      :image="details.image"
-                      image-file-extension=".png"
-                      :image-alt="details.title"
-                      :image-width="!$isMobile ? '50%' : '40%'"
-                    )
-                    h2.pt-5 {{ details.title }}
-                div(:class="key === 2 ? 'divider-dark' : 'divider'").mx-5
-                v-card-text(:class="{'white--text': key === 2}")
-                  v-row(justify="center")
-                    v-col(cols="12" xl="10")
-                      div(v-for="(inclusion, inclusionKey) in details.inclusions" :key="inclusionKey").d-flex
-                        v-icon(:color="getInclusionColor(inclusion.valid, key)" left) {{ inclusion.valid ? 'mdi-checkbox-marked-circle-outline' : 'mdi-close' }}
-                        span {{ inclusion.text }}
-                div
-                v-card-text(:class="{'white--text': key === 2}").py-8.card-actions
-                  div.text-center
-                    div(v-if="details.requireContact").pb-10
-                      br
-                      br
-                      br
-                    template(v-else)
-                      p.font-weight-bold
-                        span.font-s.font-weight-medium {{ details.currency }}&nbsp;
-                        span.font-xl {{ details.monthlyPrice }}
-                        //- span(v-else).font-xl {{ details.annualMonthlyPrice ? details.annualMonthlyPrice : details.monthlyPrice }}
-                      p.font-s
-                        span(v-if="details.users") {{ details.users }} user
-                        br
-                        | per clinic
-                        br
-                        | per month
-                    template(v-if="details.requireContact")
-                      mc-btn(
-                        depressed
-                        rounded
-                        block
-                        event-category="Pricing"
-                        :color="key === 2 ? 'white' : 'primary'"
-                        :class="{'primary--text': key === 2}"
-                        :large="$isRegularScreen"
-                        :x-large='$isWvalueeScreen'
-                        :event-label="`click-pricing-${details.title}`"
-                        @click="sendCrispMessage"
-                      ).font-s.font-weight-medium {{ details.btnText }}
-                    template(v-else)
-                      signup-button(
-                        depressed
-                        rounded
-                        block
-                        event-category="Pricing"
-                        :color="key === 2 ? 'white' : 'primary'"
-                        :class="{'primary--text': key === 2}"
-                        :large="$isRegularScreen"
-                        :x-large='$isWideScreen'
-                        :event-label="`click-pricing-${details.title}`"
-                        :pricing-bundle="details.id"
-                      ).font-s.font-weight-medium {{ details.btnText }}
+              pricing-card(:bundle="detail")
 </template>
 
 <script>
 import classBinder from '~/utils/class-binder';
 import GenericPanel from '~/components/generic/GenericPanel';
-import PictureSource from '~/components/commons/PictureSource';
-import SignupButton from '~/components/commons/SignupButton';
+import PricingCard from '~/components/commons/PricingCard';
 export default {
   components: {
     GenericPanel,
-    PictureSource,
-    SignupButton,
+    PricingCard,
   },
   props: {
     // Make container fluid
@@ -142,9 +77,13 @@ export default {
       type: Array,
       default: () => ([]),
     },
-    columnSize: {
-      type: Number,
-      default: 3,
+    columnBindings: {
+      type: Object,
+      default: () => ({
+        cols: '12',
+        md: '4',
+        xl: '3',
+      }),
     },
   },
   data () {
@@ -180,67 +119,6 @@ export default {
       if (mode === this.pricingMode) return;
       return { outlined: true };
     },
-    onBtnClick (details) {
-      const { btnRoute, requireContact } = details;
-      if (requireContact) {
-        window.$crisp.push(['do', 'chat:toggle']);
-        return;
-      }
-      if (btnRoute) {
-        let preset = '';
-        switch (this.$nuxt.$route.name) {
-          case 'doctors-clinics':
-            preset = 'doctor';
-            break;
-          case 'clinics':
-            preset = 'clinic';
-            break;
-          case 'diagnostics':
-            preset = 'diagnostic';
-            break;
-          case 'telehealth':
-            preset = 'doctor-telehealth';
-            break;
-          default:
-            preset = '';
-        }
-        this.$router.push({
-          name: btnRoute,
-          query: { type: preset },
-        });
-      }
-    },
-    getInclusionColor (valid, key) {
-      if (!valid) return 'error';
-      if (key === 2) return 'white';
-      return 'primary';
-    },
-    sendCrispMessage () {
-      const message = 'Hello, I would like to inquire about the ENTERPRISE plan.';
-      window.$crisp.push(['do', 'chat:toggle']);
-      window.$crisp.push(['do', 'message:send', ['text', message]]);
-    },
   },
 };
 </script>
-
-<style scoped>
-.card-outter {
-  position: relative;
-  padding-bottom: 250px;
-  border: 3px solid #04B1E7;
-}
-
-.card-actions {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-}
-
-.divider {
-  border-bottom: 1px solid black;
-}
-.divider-dark {
-  border-bottom: 1px solid white;
-}
-</style>
