@@ -1,49 +1,40 @@
 <template lang="pug">
-  div(style="background-color: #BDDBE6")
-    v-container(fluid)
-      v-row(justify="center" no-gutters)
-        v-col(cols="12" md="10")
-          v-row(align="center" justify="center").my-10
-            v-col(cols="11" md="6")
-              img(
-                width="100%"
-                src="../../assets/images/booking/mycure-syncbase-diagram-animate.gif"
-                style="border-radius: 10px;"
-              )
-            v-col(cols="12" md="1")
-            v-col(cols="12" md="5")
-              h4(:class="{ 'text-center' : $isMobile }").primary--text SYNCBASE TECHNOLOGY
-              h1(:class="[{ 'text-center' : $isMobile }, ...headerClasses]").mb-2 MYCURE works online and offline
-              br
-              p(:class="[{ 'pl-2' : $isMobile }, ...descriptionClasses]") Work as if you have an in-house server with the convenience of the cloud. Create your medical records locally using multiple devices even if the internet is down! Once back online, it instantly syncs your data into the cloud.
-              br
-              mc-btn(
-                href="https://calendly.com/mycure/demo"
-                target="_blank"
-                rel="noopener noreferrer"
-                :class="{ 'pl-2' : $isMobile }"
-                :block="$isMobile"
-                depressed
-                rounded
-                :large="$isRegularScreen"
-                :x-large="$isWideScreen"
-                color="primary"
-              ).text-none.font-s
-                | Book a Demo
-                v-icon(right) mdi-arrow-right
+  v-container
+    v-row(justify="center")
+      generic-sub-page-panel(
+        super-title="SYNCBASE TECHNOLOGY"
+        title="MYCURE works online and offline"
+        content="Work as if you have an in-house server with the convenience of the cloud. Create your medical records locally using multiple devices even if the internet is down! Once back online, it instantly syncs your data into the cloud."
+        content-right
+      )
+        template(slot="image")
+           img(
+              width="100%"
+              src="../../assets/images/booking/mycure-syncbase-diagram-animate.gif"
+              style="border-radius: 10px;"
+            )
+        template(slot="cta-button")
+           mc-btn(
+            href="https://calendly.com/mycure/demo"
+            target="_blank"
+            rel="noopener noreferrer"
+            :class="{ 'pl-2' : $isMobile }"
+            :block="$isMobile"
+            depressed
+            rounded
+            :large="$isRegularScreen"
+            :x-large="$isWideScreen"
+            color="primary"
+          ).text-none.font-s
+            | Book a Demo
+            v-icon(right) mdi-arrow-right
 </template>
 
 <script>
+import GenericSubPagePanel from '~/components/generic/GenericSubPagePanel';
 export default {
-  props: {
-    headerClasses: {
-      type: Array,
-      default: () => ([]),
-    },
-    descriptionClasses: {
-      type: Array,
-      default: () => ([]),
-    },
+  components: {
+    GenericSubPagePanel,
   },
 };
 </script>

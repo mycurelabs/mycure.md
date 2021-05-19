@@ -1,41 +1,35 @@
 <template lang="pug">
-  v-container(fluid)
-    v-row(justify="center" align="center" no-gutters :style="{ height: panelHeight }")
-      v-col(cols="12" md="10")
-        v-row
-          v-col(cols="12").mb-6.text-center
-            h1(:class="headerClasses") As easy as
-          div(v-if="!$isMobile").d-flex.align-end
-            v-row(align="center")
-              v-col(cols="12" md="4" v-for="(item, key) in items" :key="key").text-center
-                img(
-                  :src="item.image"
-                  width="80%"
-                )
-                h2(:class="{'font-m': $isWideScreen, 'font-s': $isRegularScreen}").font-weight-medium {{item.title}}
-                p(:class="{'font-S': $isWideScreen, 'font-xs': $isRegularScreen}").font-open-sans.font-gray {{item.description}}
-          div(v-else)
-            template(v-for="item in items")
-              div.d-flex
-                v-col(cols="5")
+  v-container
+    v-row(justify="center")
+      generic-panel
+        v-col(cols="12")
+          v-row
+            v-col(cols="12").text-center
+              h1(:class="headerClasses") As easy as
+            div(v-if="!$isMobile").d-flex.align-end
+              v-row(align="center")
+                v-col(cols="12" md="4" v-for="(item, key) in items" :key="key").text-center
                   img(
                     :src="item.image"
-                    width="130"
+                    width="80%"
                   )
-                v-col(cols="7")
-                  h2.font-s.font-weight-medium {{item.title}}
-                  p.font-open-sans.font-gray {{item.description}}
-        //- need-more(:class="{ 'need-more-md-up' : !$isMobile }")
+                  h2(:class="{'font-m': $isWideScreen, 'font-s': $isRegularScreen}").font-weight-medium {{item.title}}
+                  p(:class="{'font-S': $isWideScreen, 'font-xs': $isRegularScreen}").font-open-sans.font-gray {{item.description}}
+            div(v-else)
+              template(v-for="item in items")
+                div.d-flex
+                  v-col(cols="5")
+                    img(
+                      :src="item.image"
+                      width="130"
+                    )
+                  v-col(cols="7")
+                    h2.font-s.font-weight-medium {{item.title}}
+                    p.font-open-sans.font-gray {{item.description}}
 </template>
 
 <script>
-import GetStartedButton from './GetStartedButton';
-import NeedMore from './NeedMore';
 export default {
-  components: {
-    GetStartedButton,
-    NeedMore,
-  },
   props: {
     headerClasses: {
       type: Array,
@@ -63,34 +57,5 @@ export default {
       ],
     };
   },
-  computed: {
-    panelHeight () {
-      if (this.$isMobile) return 'auto';
-      if (this.$isRegularScreen) return '600px';
-      return '900px';
-    },
-  },
 };
 </script>
-
-<style scoped>
-
-@media (min-width: 960px) {
-  .need-more-md-up{
-    max-width: 900px;
-  }
-}
-
-@media (min-width: 1264px) {
-  .need-more-md-up{
-    max-width: 1185px;
-  }
-}
-.need-more-md-up {
-  width: 100%;
-  padding: 12px;
-  margin-right: auto;
-  margin-left: auto;
-
-}
-</style>

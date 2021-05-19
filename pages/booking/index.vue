@@ -1,5 +1,5 @@
 <template lang="pug">
-  div(v-if="!loading").white
+  v-container(v-if="!loading" fluid).white
     //- 1st panel
     usp(
       description="Bring in more patients using a powerful healthcare service booking and management software. It's free, secure, and easy to use."
@@ -18,14 +18,12 @@
           span #[br] Safely
     //- 2nd panel
     start-easy(:header-classes="headerClasses")
+    //- 3rd - 5th panel
     features(
       :header-classes="headerClasses"
       :description-classes="descriptionClasses"
     )
-    syncbase(
-      :header-classes="headerClasses"
-      :description-classes="descriptionClasses"
-    )
+    //- 6th panel
     hipaa(
       :header-classes="headerClasses"
       :description-classes="descriptionClasses"
@@ -111,5 +109,9 @@ export default {
 
 .vue-typer >>> .custom.caret.typing {
   background-color: #04B1E7;
+}
+
+.syncbase-container {
+  background-color: #BDDBE6
 }
 </style>

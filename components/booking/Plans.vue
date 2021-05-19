@@ -1,40 +1,49 @@
 <template lang="pug">
-  v-container(fluid)
-    v-row(align="center" justify="center" :class="{ 'mobile-container' : $isMobile }")
-      v-col(md="10")
-        v-row(align="center" justify="center" :class="{ 'plans-container my-10' : !$isMobile }")
-          v-col(cols="10" md="5" :class="{ 'pa-12' : !$isMobile }")
-            h1(:class="[{ 'mb-5' : !$isMobile, 'text-center' : $isMobile }, ...headerClasses]").white--text.font-weight-medium {{title}}
-            get-started-btn(
-              v-if="!$isMobile"
-              color="success"
-              rounded
-              depressed
-              :large="$isRegularScreen"
-              :x-large="$isWideScreen"
-            ).font-s
-          v-col(cols="10" md="6" :class="{ 'pa-12' : !$isMobile }").mt-4
-            template(v-for="plan in plans")
-              h1(:class="planTitleClasses").white--text.font-weight-medium {{plan.name}}
-              p.white--text.mb-6.font-open-sans {{plan.description}}
-          v-col(v-if="$isMobile" cols="12").text-center
-            get-started-btn(
-              rounded
-              depressed
-              block
-              color="success"
-            ).font-s
+  v-container
+    v-row(justify="center")
+      generic-panel
+        v-col(cols="12")
+          v-row(align="center" justify="center")
+            v-col(cols="12" md="5")
+              h1(:class="headerClasses").font-weight-medium.mb-10 {{ title }}
+              p(:class="descriptionClasses").mb-10.font-open-sans.font-gray {{ description }}
+              signup-button(
+                v-if="!$isMobile"
+                depressed
+                rounded
+                color="success"
+                event-label="signup"
+                :large="$isRegularScreen"
+                :x-large="$isWideScreen"
+              ).text-none.font-s
+                span Get Started Free
+            v-col(cols="12" md="6" offset-md="1")
+              template(v-for="plan in plans")
+                h1(:class="planTitleClasses").font-weight-medium {{plan.name}}
+                p.mb-6.font-open-sans {{plan.description}}
+            v-col(v-if="$isMobile" cols="12").text-center
+               signup-button(
+                depressed
+                rounded
+                block
+                color="success"
+                event-label="signup"
+              ).text-none.font-s
+                span Get Started Free
 </template>
 
 <script>
-import GetStartedBtn from './GetStartedButton';
+import GenericPanel from '~/components/generic/GenericPanel';
+import SignupButton from '~/components/commons/SignupButton';
 import classBinder from '~/utils/class-binder';
 export default {
   components: {
-    GetStartedBtn,
+    GenericPanel,
+    SignupButton,
   },
   data () {
-    this.title = 'Start for free, then pay as you grow';
+    this.title = 'Get started free and pay as you grow';
+    this.description = 'All essential features to help start up your digital booking journey';
     this.plans = [
       {
         name: 'ALWAYS FREE',
@@ -54,9 +63,16 @@ export default {
   computed: {
     headerClasses () {
       return classBinder(this, {
-        mobile: ['font-s'],
+        mobile: ['font-m'],
         regular: ['font-l'],
         wide: ['font-xl'],
+      });
+    },
+    descriptionClasses () {
+      return classBinder(this, {
+        mobile: ['font-xs'],
+        regular: ['font-s'],
+        wide: ['font-m'],
       });
     },
     planTitleClasses () {
