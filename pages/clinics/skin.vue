@@ -53,7 +53,7 @@
 import headMeta from '~/utils/head-meta';
 import classBinder from '~/utils/class-binder';
 // - constants
-import { ENTERPRISE_PRICING } from '~/constants/pricing';
+import { CLINICS_PRICING } from '~/constants/pricing';
 // - components
 import CallToAction from '~/components/commons/panels/CallToAction';
 import Features from '~/components/commons/panels/Features';
@@ -114,7 +114,7 @@ export default {
         ],
       },
     ];
-    this.pricingDetails = ENTERPRISE_PRICING;
+    this.pricingDetails = CLINICS_PRICING;
     return {
       loading: true,
     };

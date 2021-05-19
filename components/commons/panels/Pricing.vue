@@ -8,20 +8,20 @@
               strong(v-if="metaTitle" :class="metaTitleClasses").primary--text {{ metaTitle }}
               h2(:class="titleClasses").lh-title.font-weight-medium.mb-10 {{ title }}
               p(:class="descriptionClasses").grey--text.font-open-sans.mb-10 {{ description }}
-          v-row(justify="center")
-            v-col(cols="12" md="6" xl="4").text-center.mb-10
-              v-btn(
-                v-for="(mode, key) in modeBtns"
-                :key="key"
-                color="primary"
-                v-bind="modeBtnBindings(mode)"
-                depressed
-                tile
-                :large="$isWideScreen"
-                @click="pricingMode = mode"
-              ).text-none
-                | Billed&nbsp;
-                span.text-capitalize {{ mode }}
+          //- v-row(justify="center")
+          //-   v-col(cols="12" md="6" xl="4").text-center.mb-10
+          //-     v-btn(
+          //-       v-for="(mode, key) in modeBtns"
+          //-       :key="key"
+          //-       color="primary"
+          //-       v-bind="modeBtnBindings(mode)"
+          //-       depressed
+          //-       tile
+          //-       :large="$isWideScreen"
+          //-       @click="pricingMode = mode"
+          //-     ).text-none
+          //-       | Billed&nbsp;
+          //-       span.text-capitalize {{ mode }}
           v-row(justify="center")
             v-col(
               v-for="(details, key) in pricingDetails"
@@ -58,13 +58,16 @@
                     template(v-else)
                       p.font-weight-bold
                         span.font-s.font-weight-medium {{ details.currency }}&nbsp;
-                        span(v-if="pricingMode === 'monthly'").font-xl {{ details.monthlyPrice }}
-                        span(v-else).font-xl {{ details.annualMonthlyPrice ? details.annualMonthlyPrice : details.monthlyPrice }}
-                      p.font-s {{ details.users }} user
+                        span.font-xl {{ details.monthlyPrice }}
+                        //- span(v-else).font-xl {{ details.annualMonthlyPrice ? details.annualMonthlyPrice : details.monthlyPrice }}
+                      p.font-s
+                        span(v-if="details.users") {{ details.users }} user
+                        br
+                        | per clinic
                         br
                         | per month
-                    template(v-if="details.id === 'clinic-enterprise'")
-                      v-btn(
+                    template(v-if="details.requireContact")
+                      mc-btn(
                         depressed
                         rounded
                         block
@@ -72,7 +75,7 @@
                         :color="key === 2 ? 'white' : 'primary'"
                         :class="{'primary--text': key === 2}"
                         :large="$isRegularScreen"
-                        :x-large='$isWideScreen'
+                        :x-large='$isWvalueeScreen'
                         :event-label="`click-pricing-${details.title}`"
                         @click="sendCrispMessage"
                       ).font-s.font-weight-medium {{ details.btnText }}

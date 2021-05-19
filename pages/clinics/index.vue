@@ -98,7 +98,7 @@ import Usp from '~/components/commons/panels/SevenWondersUsp';
 import Workflow from '~/components/outpatient-clinics/Workflow';
 import SignupButton from '~/components/commons/SignupButton';
 // - constants
-import { ENTERPRISE_PRICING } from '~/constants/pricing';
+import { CLINICS_PRICING } from '~/constants/pricing';
 
 export default {
   components: {
@@ -162,7 +162,7 @@ export default {
       },
       contentAlign: 'left',
     };
-    this.pricingDetails = ENTERPRISE_PRICING;
+    this.pricingDetails = CLINICS_PRICING;
     return {
       loading: true,
     };
