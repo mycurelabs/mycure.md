@@ -259,7 +259,7 @@ import {
   emailRules,
   passwordRules,
 } from '~/utils/text-field-rules';
-import { ENTERPRISE_PRICING } from '~/constants/pricing';
+// import { CLINICS_PRICING } from '~/constants/pricing';
 // import { SUBSCRIPTION_MAPPINGS } from '~/constants/subscription';
 import EmailVerificationDialog from '~/components/signup/EmailVerificationDialog';
 export default {
@@ -314,7 +314,7 @@ export default {
       { text: 'Physician/Owner', value: ['doctor', 'admin'] },
       { text: 'Administrator', value: ['admin'] },
     ];
-    this.pricingConstants = ENTERPRISE_PRICING;
+    // this.pricingConstants = CLINICS_PRICING;
     this.stripePK = process.env.STRIPE_PK;
     return {
       // Models
@@ -357,10 +357,10 @@ export default {
     isDoctor () {
       return this.roles.includes('doctor');
     },
-    pricingBundles () {
-      if (this.facilityType.value === 'doctor' || this.facilityType.value === 'doctor-telehealth') return this.pricingConstants.slice(0, 2);
-      return this.pricingConstants.slice(0, 3);
-    },
+    // pricingBundles () {
+    //   if (this.facilityType.value === 'doctor' || this.facilityType.value === 'doctor-telehealth') return this.pricingConstants.slice(0, 2);
+    //   return this.pricingConstants.slice(0, 3);
+    // },
     // - If needs to pay
     requiresCheckout () {
       return this.subscription.value !== 'essentials';
@@ -413,6 +413,10 @@ export default {
         // Map org types and subscription
         const organizationPayload = {
           ...this.facilityType.orgProps,
+          // NOTE: Replace w/ actual subscription. Was added temporarily to fix blocking
+          subscription: {
+            status: 'active',
+          },
           // subscription: {
           //   ...SUBSCRIPTION_MAPPINGS[this.facilityType.value][this.subscription.value],
           //   stripeCheckoutSuccessURL: this.facilityType.value === 'doctor'
