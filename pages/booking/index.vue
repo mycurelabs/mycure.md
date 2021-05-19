@@ -1,7 +1,21 @@
 <template lang="pug">
   div(v-if="!loading").white
     //- 1st panel
-    usp
+    usp(
+      description="Bring in more patients using a powerful healthcare service booking and management software. It's free, secure, and easy to use."
+      slotted-title
+      image="Booking USP"
+      custom-image-path="booking/"
+    )
+      template(slot="title")
+        h1(:class="headerClasses").font-weight-bold Grow your #[br]
+          vue-typer(
+            :text="['Practice', 'Clinic', 'Diagnostics', 'Hospital']"
+            :repeat="Infinity"
+            :erase-delay="100"
+            erase-style="backspace"
+          ).typer
+          span #[br] Safely
     //- 2nd panel
     start-easy(:header-classes="headerClasses")
     features(
@@ -24,7 +38,7 @@
 import classBinder from '~/utils/class-binder';
 import headMeta from '~/utils/head-meta';
 // - components
-import Usp from '~/components/booking/Usp';
+import Usp from '~/components/commons/panels/SevenWondersUsp';
 import StartEasy from '~/components/booking/StartEasy';
 import Features from '~/components/booking/Features';
 import Syncbase from '~/components/booking/Syncbase';
@@ -56,7 +70,7 @@ export default {
     headerClasses () {
       const headerClasses = [
         classBinder(this, {
-          mobile: ['font-m'],
+          mobile: ['font-m', 'text-center'],
           regular: ['font-l'],
           wide: ['font-xl'],
         }),
@@ -84,3 +98,18 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.vue-typer >>> .custom.char.typed  {
+  color: #04B1E7;
+}
+
+.vue-typer >>> .custom.caret {
+  width: 5px;
+  background-color: #FFFFFF;
+}
+
+.vue-typer >>> .custom.caret.typing {
+  background-color: #04B1E7;
+}
+</style>

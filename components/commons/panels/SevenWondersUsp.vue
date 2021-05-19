@@ -12,6 +12,8 @@
         :media-column-bindings="mediaColumnBindings"
         :generic-panel-bindings="genericPanelBindings"
       )
+        template(v-if="slottedTitle" slot="title")
+          slot(name="title")
         template(slot="image")
           img(
             :src="require(`~/assets/images/${customImagePath}${image}.png`)"
@@ -78,6 +80,10 @@ export default {
     SignupButton,
   },
   props: {
+    slottedTitle: {
+      type: Boolean,
+      default: false,
+    },
     title: {
       type: String,
       default: '',
