@@ -152,18 +152,18 @@
                   span {{ data.item.text }}&nbsp;
                     v-chip(small color="primary" v-if="data.item.value === 'doctor-telehealth'").font-11 Telehealth
               //- Pricing
-              v-autocomplete(
-                v-if="facilityType"
-                v-model="subscription"
-                label="Pricing Bundle"
-                item-text="title"
-                item-value="value"
-                outlined
-                :items="pricingBundles"
-                :rules="isRequired"
-                :disabled="loading.form"
-                return-object
-              )
+              //- v-autocomplete(
+              //-   v-if="facilityType"
+              //-   v-model="subscription"
+              //-   label="Pricing Bundle"
+              //-   item-text="title"
+              //-   item-value="value"
+              //-   outlined
+              //-   :items="pricingBundles"
+              //-   :rules="isRequired"
+              //-   :disabled="loading.form"
+              //-   return-object
+              //- )
             v-col(
               cols="12"
               md="6"
@@ -248,7 +248,7 @@
 
 <script>
 import { parsePhoneNumberFromString } from 'libphonenumber-js';
-import { get } from 'lodash';
+// import { get } from 'lodash';
 import {
   getCountries,
   getCountry,
@@ -260,7 +260,7 @@ import {
   passwordRules,
 } from '~/utils/text-field-rules';
 import { ENTERPRISE_PRICING } from '~/constants/pricing';
-import { SUBSCRIPTION_MAPPINGS } from '~/constants/subscription';
+// import { SUBSCRIPTION_MAPPINGS } from '~/constants/subscription';
 import EmailVerificationDialog from '~/components/signup/EmailVerificationDialog';
 export default {
   components: {
@@ -413,13 +413,13 @@ export default {
         // Map org types and subscription
         const organizationPayload = {
           ...this.facilityType.orgProps,
-          subscription: {
-            ...SUBSCRIPTION_MAPPINGS[this.facilityType.value][this.subscription.value],
-            stripeCheckoutSuccessURL: this.facilityType.value === 'doctor'
-              ? `${window.location.origin}/signup/health-facilities/otp-verification/?payment=success`
-              : process.env.STRIPE_CHECKOUT_SUCCESS_URL,
-            stripeCheckoutCancelURL: process.env.STRIPE_CHECKOUT_CANCEL_URL,
-          },
+          // subscription: {
+          //   ...SUBSCRIPTION_MAPPINGS[this.facilityType.value][this.subscription.value],
+          //   stripeCheckoutSuccessURL: this.facilityType.value === 'doctor'
+          //     ? `${window.location.origin}/signup/health-facilities/otp-verification/?payment=success`
+          //     : process.env.STRIPE_CHECKOUT_SUCCESS_URL,
+          //   stripeCheckoutCancelURL: process.env.STRIPE_CHECKOUT_CANCEL_URL,
+          // },
         };
 
         console.log('org payload', organizationPayload);
@@ -435,19 +435,20 @@ export default {
           countryCallingCode: this.countryCallingCode,
           roles: this.roles,
           doc_PRCLicenseNo: this.doc_PRCLicenseNo,
-          skipMobileNoVerification: this.facilityType.value !== 'doctor',
+          // skipMobileNoVerification: this.facilityType.value !== 'doctor',
         };
         this.saveModel(payload);
 
         const data = await signupFacility(payload);
+        console.log('data', data);
 
-        if (this.requiresCheckout) {
-          const checkoutSession = get(data, 'organization.subscription.updatesPending');
-          console.log('checkout session', checkoutSession);
-          this.stripeCheckoutSessionId = checkoutSession.stripeSession;
-          this.$refs.checkoutRef.redirectToCheckout();
-          return;
-        }
+        // if (this.requiresCheckout) {
+        //   const checkoutSession = get(data, 'organization.subscription.updatesPending');
+        //   console.log('checkout session', checkoutSession);
+        //   this.stripeCheckoutSessionId = checkoutSession.stripeSession;
+        //   this.$refs.checkoutRef.redirectToCheckout();
+        //   return;
+        // }
         if (this.countryCallingCode !== '63') {
           this.emailVerificationMessageDialog = true;
         } else {
