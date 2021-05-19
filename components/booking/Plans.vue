@@ -17,12 +17,29 @@
                 :x-large="$isWideScreen"
               ).text-none.font-s
                 span Get Started Free
-            v-col(cols="12" md="6" offset-md="1")
-              template(v-for="plan in plans")
-                h1(:class="planTitleClasses").font-weight-medium {{plan.name}}
-                p.mb-6.font-open-sans {{plan.description}}
+            v-col(cols="12" md="5" offset-md="2")
+              v-card(flat height="100%" width="100%").pricing-card.rounded-xl
+                v-card-title
+                  v-spacer
+                  h2(:class="headerClasses").font-weight-medium.mb-10 Start Free
+                  v-spacer
+                v-card-text.text-center
+                  picture-source(
+                    extension-exclusive
+                    custom-path="pricing/"
+                    image="Essentials"
+                    image-file-extension=".png"
+                    image-alt="Booking Essentials"
+                    :image-width="!$isMobile ? '50%' : '40%'"
+                  )
+                v-card-text
+                  v-row(justify="center")
+                    v-col(cols="10")
+                      div(v-for="(inclusion, key) in inclusions" :key="key").d-flex
+                        v-icon(color="info" left) mdi-check
+                        span.info--text {{ inclusion }}
             v-col(v-if="$isMobile" cols="12").text-center
-               signup-button(
+              signup-button(
                 depressed
                 rounded
                 block
@@ -34,29 +51,28 @@
 
 <script>
 import GenericPanel from '~/components/generic/GenericPanel';
+import PictureSource from '~/components/commons/PictureSource';
 import SignupButton from '~/components/commons/SignupButton';
 import classBinder from '~/utils/class-binder';
 export default {
   components: {
     GenericPanel,
+    PictureSource,
     SignupButton,
   },
   data () {
     this.title = 'Get started free and pay as you grow';
     this.description = 'All essential features to help start up your digital booking journey';
-    this.plans = [
-      {
-        name: 'ALWAYS FREE',
-        description: 'All the essential tools you need to run your health facility',
-      },
-      {
-        name: 'PAY AS YOU GROW',
-        description: 'Only pay for what you use on top of the free plan',
-      },
-      {
-        name: 'ENTERPRISE',
-        description: 'Get a customized suite of healthcare modules to handle cross-functional operations across one or more health facilities that you manage',
-      },
+    this.inclusions = [
+      'Up to 1 user',
+      'Up to 200 MB',
+      'Classic Booking Website',
+      'Fast appointments',
+      'Online payments',
+      'Patient Registration',
+      'Medical Records',
+      'Daily Census',
+      'Sales Reports',
     ];
     return {};
   },
@@ -90,12 +106,7 @@ export default {
 </script>
 
 <style scoped>
-.plans-container {
-  background-color: #0174BB;
-  border-radius: 10px;
-}
-
-.mobile-container {
-  background-color: #0174BB;
+.pricing-card {
+  border: 2px solid #0174BB;
 }
 </style>
