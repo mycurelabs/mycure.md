@@ -12,7 +12,7 @@ const healthFacilityTypeMap = {
   dummy: 'doctor',
   'doctors-clinics': 'doctor',
   clinics: 'clinic',
-  diagnostics: 'clinic-diagnostic',
+  diagnostics: 'diagnostic',
   telehealth: 'doctor-telehealth',
 };
 export default {

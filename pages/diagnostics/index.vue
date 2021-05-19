@@ -13,7 +13,7 @@
       custom-image-path="diagnostics/"
       regular-height="650px"
       wide-height="950px"
-      @click="$nuxt.$router.push({ name: 'signup-health-facilities', query: { type: 'clinic-diagnostic' }})"
+      @click="$nuxt.$router.push({ name: 'signup-health-facilities', query: { type: 'diagnostic' }})"
     )
     //- 2nd panel
     div.grey-bg.mx-n3

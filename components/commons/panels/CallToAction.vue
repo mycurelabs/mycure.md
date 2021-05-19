@@ -119,7 +119,7 @@ export default {
           preset = 'clinic';
           break;
         case 'diagnostics':
-          preset = 'clinic-diagnostic';
+          preset = 'diagnostic';
           break;
         case 'telehealth':
           preset = 'doctor-telehealth';
