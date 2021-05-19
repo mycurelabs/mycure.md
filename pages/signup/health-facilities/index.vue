@@ -413,10 +413,6 @@ export default {
         // Map org types and subscription
         const organizationPayload = {
           ...this.facilityType.orgProps,
-          // NOTE: Replace w/ actual subscription. Was added temporarily to fix blocking
-          subscription: {
-            status: 'active',
-          },
           // subscription: {
           //   ...SUBSCRIPTION_MAPPINGS[this.facilityType.value][this.subscription.value],
           //   stripeCheckoutSuccessURL: this.facilityType.value === 'doctor'
