@@ -108,7 +108,6 @@ export default {
           regular: ['font-m'],
           wide: ['font-l'],
         }),
-        'text-justify',
         'primary--text',
         'font-weight-semibold',
       ];
@@ -123,7 +122,6 @@ export default {
         }),
         'font-open-sans',
         'font-gray',
-        'text-justify',
       ];
       return descriptionClasses;
     },

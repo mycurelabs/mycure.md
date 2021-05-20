@@ -9,27 +9,29 @@
       p(v-for="(desc, key) in callToActionPanel.description" :key="key" :class="descriptionClasses") {{ desc }}
     template(slot="additional-content")
       v-row(dense).mt-10
-        v-col(cols="12" md="7" xl="5")
-          mc-btn(
-            depressed
-            rounded
-            :large="$isRegularScreen"
-            :x-large="$isWideScreen"
-            :color="version === 1 ? 'primary' : 'success'"
-            block
-            :href="'https://calendly.com/mycure/demo'"
-          ).text-none.font-s {{ version === 1 ? 'Book a full training' : 'Start Now' }}
-      v-row(dense v-if="version === 1")
-        v-col(cols="12" md="7" xl="5")
+        v-col(v-if="version === 1" cols="12" md="6" xl="5")
           signup-button(
+            event-label="signup"
+            color="success"
             depressed
             rounded
+            block
             :large="$isRegularScreen"
             :x-large="$isWideScreen"
+            :class="buttonClasses"
+          ).text-none Get Started Free
+        v-col(cols="12" md="6" xl="7")
+          mc-btn(
             color="success"
+            depressed
+            rounded
             block
-            event-label="signup"
-          ).text-none.font-s Get Started Free
+            :outlined="version === 1"
+            :large="$isRegularScreen"
+            :x-large="$isWideScreen"
+            :class="buttonClasses"
+            :href="'https://calendly.com/mycure/demo'"
+          ).text-none {{ version === 1 ? 'Book a full training' : 'Start Now' }}
 </template>
 
 <script>
@@ -108,6 +110,12 @@ export default {
         'font-gray',
       ];
       return descriptionClasses;
+    },
+    buttonClasses () {
+      return classBinder(this, {
+        regular: ['font-xs'],
+        wide: ['font-s'],
+      });
     },
     signUpRoute () {
       let preset = '';

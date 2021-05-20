@@ -1,5 +1,8 @@
 <template lang="pug">
-  generic-panel(:row-bindings="genericPanelBindings")
+  generic-panel(
+    :column="containerColumn"
+    :row-bindings="genericPanelBindings"
+  )
     v-col(v-if="centerPanelTitle" cols="12").text-center
       div
         slot(name="center-panel-title")
@@ -57,17 +60,21 @@ export default {
       type: Boolean,
       default: false,
     },
+    containerColumn: {
+      type: [Number, String],
+      default: '10',
+    },
     contentColumnBindings: {
       type: Object,
       default: () => ({
-        sm: 12,
+        cols: 12,
         md: 6,
       }),
     },
     mediaColumnBindings: {
       type: Object,
       default: () => ({
-        sm: 12,
+        cols: 12,
         md: 6,
       }),
     },

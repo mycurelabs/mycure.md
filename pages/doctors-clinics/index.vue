@@ -5,7 +5,7 @@
       title="Bring Out the Hero in You"
       meta-title="MYCURE Doctor"
       image="Doc USP"
-      image-width="128%"
+      image-width="115%"
       custom-image-path="doctors-clinics/"
       image-align="right"
       btn-text="Get Started Free"
@@ -15,7 +15,7 @@
       :parse-title-fields="['the ']"
     )
     //- 2nd panel
-    div.grey-bg
+    div.grey-bg.mx-n3
       features(
         extension-exclusive
         title="Your Practice. Your Call."
@@ -81,6 +81,7 @@
                 span(:class="eightPanelContentClasses") {{ item }}
     //- 9th panel
     think-long-term
+    v-divider.divider
     //- 10th panel
     pricing(
       title="Start free and only pay as you grow"
@@ -269,13 +270,14 @@ export default {
 </script>
 
 <style scoped>
-.web-margins {
-  margin-top: 50px;
-}
 .grey-bg {
   background-color: #fafafa;
 }
 .blue-bg {
   background-color: #0099cc;
+}
+.divider {
+  margin-right: 40% !important;
+  margin-left: 40% !important;
 }
 </style>

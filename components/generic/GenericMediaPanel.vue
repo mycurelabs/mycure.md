@@ -92,7 +92,7 @@ export default {
         ...content.contentAlign === 'right' && { offsetMd: 1 },
       };
       const mediaColumnBindings = {
-        cols: 10,
+        cols: 12,
         md: 6,
         ...content.contentAlign === 'left' && { offsetMd: 1 },
       };
