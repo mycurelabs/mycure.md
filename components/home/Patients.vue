@@ -9,12 +9,23 @@
               p(:class="descriptionClasses").grey--text.font-open-sans.mb-10 You treat your patients with holistic care. Now, make it extra covenient for them to reach you.
         v-col(cols="12" md="10")
           picture-source(
+            v-if="!wXS"
             image="Patients will love you more"
             image-file-extension=".png"
             extension-exclusive
             custom-path="home/"
             image-alt="Online booking"
           )
+          template(v-else)
+            picture-source(
+              v-for="(feature, key) in features"
+              image-file-extension=".png"
+              custom-path="home/"
+              extension-exclusive
+              :key="key"
+              :image="feature"
+              :image-alt="feature"
+            ).my-1
         //- v-col(
         //-   v-for="(app, key) in apps"
         //-   :key="key"
@@ -43,18 +54,10 @@ export default {
     PictureSource,
   },
   data () {
-    // this.apps = [
-    //   {
-    //     name: 'Online Booking',
-    //     description: 'Help patients find the best schedule for their next visit.',
-    //     image: 'homepage-online-booking-2',
-    //   },
-    //   {
-    //     name: 'Online Results',
-    //     description: 'Time to go digital for the new generation.',
-    //     image: 'homepage-online-results-2',
-    //   },
-    // ];
+    this.features = [
+      'Online Results',
+      'Online Booking',
+    ];
     return {};
   },
   computed: {
