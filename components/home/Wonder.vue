@@ -3,7 +3,7 @@
     v-card-text.text-center
       img(
         :src="require(`~/assets/images/home/${wonder.image}.png`)"
-        :width="$isMobile ? '50%' : '75%'"
+        :width="$isMobile ? '60%' : '75%'"
         :alt="wonder.title"
       )
       br

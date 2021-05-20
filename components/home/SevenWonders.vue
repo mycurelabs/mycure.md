@@ -1,28 +1,28 @@
 <template lang="pug">
   div
-    div(v-if="!$isMobile").container
+    div.container
       img(
         src="~/assets/images/home/Homepage USP v2B.png"
         alt="MYCURE Seven wonders of healthcare"
       ).background
-      v-container.content
+      v-container.content.ml-n6
         v-row(justify="center")
           generic-panel(:row-bindings="{ justify: 'center' }")
             v-col(cols="12").text-center.text-container
               v-row(justify="center")
-                v-col(sm="12" md="7" xl="10")
+                v-col(cols="12" md="7" xl="10")
                   h1(:class="headerClasses").mb-10 Make Healthcare Accessible to All
                   v-row(justify="center")
                     v-col(cols="12" md="10")
                       p(:class="{ 'font-m' : !$isMobile, 'font-s' : $isMobile }").primary--text.font-weight-bold.mb-10 THE SEVEN WONDERS OF HEALTHCARE EMPOWERED BY MYCURE
-            v-col(cols="12" md="3" xl="3" v-for="(wonder, key) in wonders" :key="key")
+            v-col(cols="8" md="3" xl="3" v-for="(wonder, key) in wonders" :key="key")
               wonder(:wonder="wonder")
-    div(v-else).mobile-container.ml-n3
-      img(
-        src="~/assets/images/home/Homepage USP.png"
-        alt="MYCURE Seven wonders of healthcare"
-        width="100%"
-      )
+    //- div(v-else).mobile-container.ml-n3
+    //-   img(
+    //-     src="~/assets/images/home/Homepage USP.png"
+    //-     alt="MYCURE Seven wonders of healthcare"
+    //-     width="100%"
+    //-   )
 </template>
 
 <script>
@@ -89,7 +89,7 @@ export default {
   computed: {
     headerClasses () {
       return classBinder(this, {
-        mobile: ['font-l'],
+        mobile: ['font-m'],
         regular: ['font-xl'],
         wide: ['font-2xl'],
       });
@@ -108,7 +108,7 @@ export default {
 }
 .background {
   width: 100%;
-  height: 900px;
+  height: 950px;
   position: absolute;
   left: 0;
   top: 0;
@@ -117,7 +117,7 @@ export default {
 }
 .container {
   width: 100vw;
-  height: 850px;
+  height: 900px;
 }
 .text-container {
   margin-bottom: 65px;
@@ -127,8 +127,17 @@ export default {
 }
 .content {
   position: absolute;
+  width: 100vw;
 }
 
+@media screen and (max-width: 952px) {
+  .container {
+    height: 1500px;
+  }
+  .background {
+    height: 1550px;
+  }
+}
 @media screen and (min-width: 1920px) {
   .text-container {
     margin-bottom: 90px;
