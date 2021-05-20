@@ -62,7 +62,7 @@ export default {
   },
   data () {
     this.title = 'Get started free and pay as you grow';
-    this.description = 'All essential features to help start up your digital booking journey';
+    this.description = 'All essential features to help start up your digital booking journey.';
     this.inclusions = [
       'Up to 1 user',
       'Up to 200 MB',
@@ -79,14 +79,14 @@ export default {
   computed: {
     headerClasses () {
       return classBinder(this, {
-        mobile: ['font-m'],
+        mobile: ['font-m', 'text-center'],
         regular: ['font-l'],
         wide: ['font-xl'],
       });
     },
     descriptionClasses () {
       return classBinder(this, {
-        mobile: ['font-xs'],
+        mobile: ['font-xs', 'text-center'],
         regular: ['font-s'],
         wide: ['font-m'],
       });
