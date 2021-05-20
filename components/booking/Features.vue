@@ -8,12 +8,14 @@
       hide-btn
     )
       template(slot="content")
-        template(v-for="item in content.list")
-          v-row(dense)
-            v-col(cols="1").pr-2.pt-2
-              img(width="20" src="~/assets/images/mycure-check.png" alt="Check icon")
-            v-col
-              span(:class="descriptionClasses") {{ item }}
+        v-row(
+          v-for="(item, key) in content.list"
+          :key="key"
+          dense
+        ).my-1
+          div.d-flex
+            v-icon(left color="primary") mdi-checkbox-marked-circle
+            span(:class="descriptionClasses") {{ item }}
 </template>
 
 <script>

@@ -74,9 +74,9 @@ export default {
     descriptionClasses () {
       const descriptionClasses = [
         classBinder(this, {
-          mobile: ['font-xs', 'text-center'],
-          regular: ['font-s', 'text-justify'],
-          wide: ['font-m', 'text-justify'],
+          mobile: ['font-xs'],
+          regular: ['font-s'],
+          wide: ['font-m'],
         }),
         'font-open-sans',
         'font-gray',
