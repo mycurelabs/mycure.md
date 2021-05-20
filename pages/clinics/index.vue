@@ -10,7 +10,7 @@
       btn-text="Get Started"
       btn-color="success"
       image="Clinics USP"
-      image-width="100%"
+      image-width="90%"
       custom-image-path="clinics/"
       :parse-meta-title-fields="['Complete ']"
       :parse-title-fields="['workflows, ', 'results, ']"

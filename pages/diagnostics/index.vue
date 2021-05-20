@@ -9,7 +9,6 @@
       text-col="3"
       image-col="7"
       image-col-offset="1"
-      image-width="125%"
       custom-image-path="diagnostics/"
       regular-height="650px"
       wide-height="950px"
