@@ -12,7 +12,9 @@
       :content="panel"
       :title-classes="headerClasses"
       :content-classes="descriptionClasses"
+      :class="{'pb-16': key === 1}"
       hide-btn
+      disable-parent-padding
     )
     //- generic-media-panel(
     //-   :fluid="fluid"
@@ -104,7 +106,7 @@ export default {
     headerClasses () {
       const headerClasses = [
         classBinder(this, {
-          mobile: ['font-s'],
+          mobile: ['font-s', 'text-center'],
           regular: ['font-m'],
           wide: ['font-l'],
         }),
@@ -116,7 +118,7 @@ export default {
     descriptionClasses () {
       const descriptionClasses = [
         classBinder(this, {
-          mobile: ['font-xs'],
+          mobile: ['font-xs', 'text-center'],
           regular: ['font-s'],
           wide: ['font-m'],
         }),

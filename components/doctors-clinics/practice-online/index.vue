@@ -22,7 +22,7 @@
       template(v-for="(item, i) in panelContents.list")
         v-row(:align="i === 2 ? 'center' : 'start'" dense)
           v-col(cols="1").pr-2.pt-2
-            v-icon(color="white") mdi-chevron-right
+            v-icon(color="white") mdi-checkbox-marked-circle
           v-col
             span(:class="checkListClasses") {{ item }}
 </template>

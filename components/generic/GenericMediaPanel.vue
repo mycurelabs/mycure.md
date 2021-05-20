@@ -1,7 +1,11 @@
 <template lang="pug">
   v-container
     v-row(justify="center")
-      generic-sub-page-panel(v-bind="getPanelBindings(content)" :hide-btn="hideBtn")
+      generic-sub-page-panel(
+        v-bind="getPanelBindings(content)"
+        :hide-btn="hideBtn"
+        :disable-parent-padding="disableParentPadding"
+      )
         template(slot="content")
           slot(name="content")
             p(:class="contentClasses || defaultContentClasses") {{ content.description }}
@@ -29,6 +33,10 @@ export default {
       default: () => ({}),
     },
     hideBtn: {
+      type: Boolean,
+      default: false,
+    },
+    disableParentPadding: {
       type: Boolean,
       default: false,
     },

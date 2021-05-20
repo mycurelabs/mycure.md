@@ -47,9 +47,8 @@
             :key="item"
             dense
           )
-            v-col(cols="1").pr-2.pt-2
-              v-icon(color="black") mdi-arrow-right
-            v-col
+           div.d-flex
+              v-icon(left color="primary") mdi-checkbox-marked-circle
               span(:class="descriptionClasses") {{ item }}
         div(:class="{ 'text-center': $isMobile }")
           signup-button(
@@ -73,12 +72,14 @@
         hide-btn
       )
         template(slot="additional-content")
-          template(v-for="(item, i) in eightPanel.list")
-            v-row(dense)
-              v-col(cols="1").pr-2.pt-2
-                v-icon(color="white") mdi-chevron-right
-              v-col
-                span(:class="eightPanelContentClasses") {{ item }}
+          v-row(
+            v-for="(item, i) in eightPanel.list"
+            :key="i"
+            dense
+          )
+            div.d-flex
+              v-icon(left color="white") mdi-checkbox-marked-circle
+              span(:class="eightPanelContentClasses") {{ item }}
     //- 9th panel
     think-long-term
     v-divider.divider
@@ -86,7 +87,7 @@
     pricing(
       title="Start free and only pay as you grow"
       :pricing-details="pricingDetails"
-      :column-size="4"
+      :column-bindings="{ cols: '12', md: '4', xl: '3'}"
     )
     //- 11th panel
     call-to-action(:fluid="!$isMobile")
@@ -242,7 +243,7 @@ export default {
     descriptionClasses () {
       const descriptionClasses = [
         classBinder(this, {
-          mobile: ['font-xs'],
+          mobile: ['font-xs', 'text-center'],
           regular: ['font-s'],
           wide: ['font-m'],
         }),
@@ -254,7 +255,7 @@ export default {
     eightPanelContentClasses () {
       return [
         classBinder(this, {
-          mobile: ['font-xs'],
+          mobile: ['font-xs', 'text-center'],
           regular: ['font-s'],
           wide: ['font-m'],
         }),

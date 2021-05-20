@@ -2,6 +2,7 @@
   generic-panel(
     :column="containerColumn"
     :row-bindings="genericPanelBindings"
+    :disable-parent-padding="disableParentPadding"
   )
     v-col(v-if="centerPanelTitle" cols="12").text-center
       div
@@ -93,6 +94,10 @@ export default {
       default: '100%',
     },
     hideBtn: {
+      type: Boolean,
+      default: false,
+    },
+    disableParentPadding: {
       type: Boolean,
       default: false,
     },
