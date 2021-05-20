@@ -26,10 +26,14 @@
               v-icon(left color="primary" :large="$isWideScreen") mdi-information-outline
               span(:class="descriptionClasses").primary--text Learn about MYCURE Syncbase
         template(slot="image")
-          video(v-if="!$isMobile" :width="wXL ? '900' : '700'" playsinline autoplay muted loop).syncbase-animate
-              source(src="~/assets/videos/mycure-syncbase-diagram-animate.webm" type="video/webm")
-              source(src="~/assets/videos/mycure-syncbase-diagram-animate.mp4" type="video/mp4")
-              | Your browser does not support the video tag.
+          //- video(:width="wXL ? '800' : '400'" playsinline autoplay muted loop).syncbase-animate
+          //-     source(src="~/assets/videos/Syncbase.mp4" type="video/mp4")
+          //-     | Your browser does not support the video tag.
+          img(
+            width="100%"
+            src="~/assets/images/booking/mycure-syncbase-diagram-animate.gif"
+            alt="MYCURE Syncbase"
+          )
 </template>
 
 <script>
@@ -83,8 +87,6 @@ export default {
 
 <style scoped>
 .syncbase-animate {
-  margin-left: -14vw;
-  margin-top: -5vh;
   overflow: hidden;
   z-index: 0;
 }
@@ -93,11 +95,5 @@ export default {
 }
 .button {
   text-decoration: none;
-}
-
-@media screen and (min-width: 1920px) {
-  .syncbase-animate {
-    margin-left: -10vw;
-  }
 }
 </style>

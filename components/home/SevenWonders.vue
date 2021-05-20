@@ -19,7 +19,7 @@
               wonder(:wonder="wonder")
     div(v-else).mobile-container.ml-n3
       img(
-        src="~/assets/images/home/Homepage USP v2.png"
+        src="~/assets/images/home/Homepage USP.png"
         alt="MYCURE Seven wonders of healthcare"
         width="100%"
       )

@@ -3,8 +3,8 @@
     v-row(justify="center")
       generic-panel(:row-bindings="{ justify: 'center' }")
           v-col(cols="12" md="10" xl="12").text-center.pa-0
-            h1(:class="headerClasses").mb-10.font-weight-semibold.primary--text Caring for people who care for people
-            p(:class="descriptionClasses").grey--text.mb-12.font-open-sans MYCURE is dedicated to help healthcare providers save more lives each day.
+            h1(:class="headerClasses").font-weight-semibold.primary--text Caring for people who care for people
+            p(:class="descriptionClasses").grey--text.font-open-sans MYCURE is dedicated to help healthcare providers save more lives each day.
             v-row(justify="center")
               v-col(
                 v-for="(stat, key) in stats"
@@ -43,16 +43,16 @@ export default {
   computed: {
     headerClasses () {
       return classBinder(this, {
-        mobile: ['font-m'],
-        regular: ['font-l'],
-        wide: ['font-2xl'],
+        mobile: ['font-m', 'mb-5'],
+        regular: ['font-l', 'mb-10'],
+        wide: ['font-2xl', 'mb-10'],
       });
     },
     descriptionClasses () {
       return classBinder(this, {
-        mobile: ['font-xs'],
-        regular: ['font-s'],
-        wide: ['font-m'],
+        mobile: ['font-xs', 'mb-6'],
+        regular: ['font-s', 'mb-12'],
+        wide: ['font-m', 'mb-12'],
       });
     },
   },
