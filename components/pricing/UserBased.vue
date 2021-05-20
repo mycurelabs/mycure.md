@@ -111,7 +111,7 @@ export default {
       return ['white--text', 'text-center', 'font-weight-bold'];
     },
     currencyTypeClasses () {
-      return ['font-25', 'font-weight-medium', 'currency-type'];
+      return ['font-25', 'font-weight-semibold', 'currency-type'];
     },
     comingSoonClasses () {
       return ['mt-7', 'font-16', 'font-weight-bold'];

@@ -6,7 +6,7 @@
           v-row(justify="center")
             v-col(cols="12").text-center
               strong(v-if="metaTitle" :class="metaTitleClasses").primary--text {{ metaTitle }}
-              h2(:class="titleClasses").lh-title.font-weight-medium.mb-10 {{ title }}
+              h2(:class="titleClasses").lh-title.font-weight-semibold.mb-10 {{ title }}
               p(:class="descriptionClasses").grey--text.font-open-sans.mb-10 {{ description }}
           //- v-row(justify="center")
           //-   v-col(cols="12" md="6" xl="4").text-center.mb-10

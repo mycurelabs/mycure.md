@@ -13,7 +13,7 @@
                     :src="item.image"
                     width="80%"
                   )
-                  h2(:class="{'font-m': $isWideScreen, 'font-s': $isRegularScreen}").font-weight-medium {{item.title}}
+                  h2(:class="{'font-m': $isWideScreen, 'font-s': $isRegularScreen}").font-weight-semibold {{item.title}}
                   p(:class="{'font-S': $isWideScreen, 'font-xs': $isRegularScreen}").font-open-sans.font-gray {{item.description}}
             div(v-else)
               template(v-for="item in items")
@@ -24,7 +24,7 @@
                       width="130"
                     )
                   v-col(cols="7")
-                    h2.font-s.font-weight-medium {{item.title}}
+                    h2.font-s.font-weight-semibold {{item.title}}
                     p.font-open-sans.font-gray {{item.description}}
 </template>
 

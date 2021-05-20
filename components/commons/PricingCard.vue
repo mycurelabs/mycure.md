@@ -2,7 +2,7 @@
    v-card(flat height="100%" width="100%").card-outter.rounded-xl
       v-card-title
         v-spacer
-        h2.font-weight-medium {{ bundle.title }}
+        h2.font-weight-semibold {{ bundle.title }}
         v-spacer
       v-card-text.general-info-container
         div.text-center.pb-5
@@ -16,13 +16,13 @@
           )
         div.text-center
           div(v-if="bundle.requireContact")
-            p.font-l.font-weight-medium Contact Us
+            p.font-l.font-weight-semibold Contact Us
           template(v-else)
             p.font-weight-bold
               template(v-if='bundle.monthlyPrice > 0')
-                span.font-s.font-weight-medium {{ bundle.currency }}&nbsp;
-                span.font-xl.font-weight-medium {{ bundle.monthlyPrice }}
-              span(v-else).font-xl.font-weight-medium FREE
+                span.font-s.font-weight-semibold {{ bundle.currency }}&nbsp;
+                span.font-xl.font-weight-semibold {{ bundle.monthlyPrice }}
+              span(v-else).font-xl.font-weight-semibold FREE
               //- span(v-else).font-xl {{ bundle.annualMonthlyPrice ? bundle.annualMonthlyPrice : bundle.monthlyPrice }}
             p.font-s
               span(v-if="bundle.users") {{ bundle.users }} user
@@ -45,7 +45,7 @@
               :x-large='$isWideScreen'
               :event-label="`click-pricing-${bundle.title}`"
               @click="sendCrispMessage"
-            ).font-s.font-weight-medium.text-none {{ bundle.btnText }}
+            ).font-s.font-weight-semibold.text-none {{ bundle.btnText }}
           template(v-else)
             signup-button(
               depressed
@@ -58,7 +58,7 @@
               :x-large='$isWideScreen'
               :event-label="`click-pricing-${bundle.title}`"
               :pricing-bundle="bundle.id"
-            ).font-s.font-weight-medium.text-none {{ bundle.btnText }}
+            ).font-s.font-weight-semibold.text-none {{ bundle.btnText }}
       v-card-text
         v-row(justify="center")
           v-col(cols="12" xl="10")

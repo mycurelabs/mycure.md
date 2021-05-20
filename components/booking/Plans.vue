@@ -5,7 +5,7 @@
         v-col(cols="12")
           v-row(align="center" justify="center")
             v-col(cols="12" md="5")
-              h1(:class="headerClasses").font-weight-medium.mb-10 {{ title }}
+              h1(:class="headerClasses").font-weight-semibold.mb-10 {{ title }}
               p(:class="descriptionClasses").mb-10.font-open-sans.font-gray {{ description }}
               signup-button(
                 v-if="!$isMobile"
@@ -21,7 +21,7 @@
               v-card(flat height="100%" width="100%").pricing-card.rounded-xl
                 v-card-title
                   v-spacer
-                  h2(:class="headerClasses").font-weight-medium.mb-10 Start Free
+                  h2(:class="headerClasses").font-weight-semibold.mb-10 Start Free
                   v-spacer
                 v-card-text.text-center
                   picture-source(

@@ -59,7 +59,7 @@ export default {
         }),
         'lh-title',
         'white--text',
-        'font-weight-medium',
+        'font-weight-semibold',
       ];
       return headerClasses;
     },

@@ -92,7 +92,7 @@ export default {
           wide: ['font-xl'],
         }),
         'lh-title',
-        'font-weight-medium',
+        'font-weight-semibold',
         'primary--text',
       ];
       return headerClasses;

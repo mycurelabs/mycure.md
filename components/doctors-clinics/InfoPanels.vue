@@ -94,7 +94,7 @@ export default {
         }),
         'lh-title',
         'primary--text',
-        'font-weight-medium',
+        'font-weight-semibold',
       ];
       const descriptionClasses = [
         classBinder(this, {

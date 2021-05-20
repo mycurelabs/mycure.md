@@ -5,7 +5,7 @@
         generic-panel
           v-col(cols="12").text-center
             strong(:class="metaTitleClasses").primary--text Why MYCURE?
-            h2(:class="panelHeaderClasses").font-weight-medium Think Long-Term
+            h2(:class="panelHeaderClasses").font-weight-semibold Think Long-Term
     generic-media-panel(
       v-for="(panel, key) in panels"
       :key="key"
@@ -110,7 +110,7 @@ export default {
         }),
         'text-justify',
         'primary--text',
-        'font-weight-medium',
+        'font-weight-semibold',
       ];
       return headerClasses;
     },

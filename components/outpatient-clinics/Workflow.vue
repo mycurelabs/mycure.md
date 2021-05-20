@@ -6,7 +6,7 @@
         v-col(cols="12")
           v-row(justify="center")
             v-col(cols="12" md="10").text-center
-              h1(:class="titleClasses").font-weight-medium.mb-10 Why do clinics switch to MYCURE?
+              h1(:class="titleClasses").font-weight-semibold.mb-10 Why do clinics switch to MYCURE?
               v-row(justify="center")
                 v-col(cols="12" md="7" xl="8")
                   p(:class="descriptionClasses").font-gray.font-open-sans.mb-10 MYCURE integrates critical clinic operations into a clean, simple interface to make record management much easier for everyone. Say goodbye to multiple, complicated systems.

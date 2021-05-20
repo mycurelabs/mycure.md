@@ -9,7 +9,7 @@
       ).content-container
         div.d-flex
           img(v-lazy="require(`~/assets/images/telehealth/${data.headerIcon}`)" :height="$isMobile? '10%' : '30%'" :class="{'pt-3': $isMobile}")
-          h1(:class="headerClasses").ml-3.font-weight-medium {{ data.header }}
+          h1(:class="headerClasses").ml-3.font-weight-semibold {{ data.header }}
         br
         p(:class="descriptionClasses").text-justify.font-gray.font-open-sans {{ data.description }}
         div.btn-container

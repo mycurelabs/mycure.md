@@ -122,7 +122,7 @@ export default {
           regular: ['font-l'],
           wide: ['font-2xl'],
         }),
-        'font-weight-medium',
+        'font-weight-semibold',
       ];
       return this.titleClasses
         ? this.titleClasses
@@ -135,7 +135,7 @@ export default {
           regular: ['font-l'],
           wide: ['font-xl'],
         }),
-        'font-weight-medium',
+        'font-weight-semibold',
       ];
       return this.centerPanelTitleClasses
         ? this.centerPanelTitleClasses

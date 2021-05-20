@@ -4,7 +4,7 @@
       generic-panel(:row-bindings="{ justify: 'center' }")
           v-col(cols="12" :md="titleColSize").text-center
             strong(v-if="metaTitle" :class="metaTitleClasses").primary--text {{ metaTitle }}
-            h2(:class="titleClasses").lh-title.font-weight-medium {{ title }}
+            h2(:class="titleClasses").lh-title.font-weight-semibold {{ title }}
           v-col(cols="12" :md="contentColSize").text-center.py-3
             p(:class="descriptionClasses").font-open-sans.font-gray {{ description }}
           v-col(cols="12" :md="iconContainerColSize")
@@ -20,7 +20,7 @@
                   :image-width="!$isMobile ? imageWidth : imageWidthMobile"
                 )
                 br
-                h3(:class="itemTextClasses").font-open-sans.font-weight-medium {{ item.title }}
+                h3(:class="itemTextClasses").font-open-sans.font-weight-semibold {{ item.title }}
                 p(v-if="item.description" :class="itemTextClasses") {{ item.description }}
                 nuxt-link(v-if="!hideLearnMore && item.route" :to="{ name: item.route }").primary--text.font-weight-bold.learnLink Learn more
           slot(name="additional-content")

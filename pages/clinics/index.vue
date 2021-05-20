@@ -182,7 +182,7 @@ export default {
           regular: ['font-l'],
           wide: ['font-xl'],
         }),
-        'font-weight-medium',
+        'font-weight-semibold',
       ];
       return headerClasses;
     },

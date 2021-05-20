@@ -35,7 +35,7 @@
                 depressed
                 large
                 @click="openPxPortal(pxPortalLogIn)"
-              ).text-none.mr-2.font-12 #[span.font-weight-medium LOG IN]
+              ).text-none.mr-2.font-12 #[span.font-weight-semibold LOG IN]
               v-btn(
                 v-if="!$isMobile"
                 depressed
@@ -43,7 +43,7 @@
                 tile
                 large
                 @click="openPxPortal(pxPortalSignUp)"
-              ).text-none.font-12.font-weight-medium #[span GET STARTED]
+              ).text-none.font-12.font-weight-semibold #[span GET STARTED]
             v-menu(
               v-else
               bottom

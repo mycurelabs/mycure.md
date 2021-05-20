@@ -39,7 +39,7 @@
     //-   :style="{ height: $isMobile ? 'auto' : '90vh' }"
     //- )
     //-   v-col(cols="11").text-center.mt-10
-    //-     h1(:class="headerClasses").white--text.font-weight-medium Simple and powerful
+    //-     h1(:class="headerClasses").white--text.font-weight-semibold Simple and powerful
     //-   v-col(cols="8" md="6" offset-md="1" :class="{ 'order-last' : !$isMobile }")
     //-     picture-source(
     //-       image="MYCURE-virtual-clinic-healthcare-practice-online-features-B-01-emr"
@@ -117,7 +117,7 @@ export default {
           wide: ['font-2xl'],
         }),
         'white--text',
-        'font-weight-medium',
+        'font-weight-semibold',
         'mb-8',
       ];
     },

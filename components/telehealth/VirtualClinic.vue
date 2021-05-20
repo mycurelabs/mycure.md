@@ -72,7 +72,7 @@ export default {
           regular: ['font-l'],
           wide: ['font-xl'],
         }),
-        'font-weight-medium',
+        'font-weight-semibold',
       ];
       return titleClasses;
     },
@@ -83,7 +83,7 @@ export default {
           regular: ['font-m'],
           wide: ['font-l'],
         }),
-        'font-weight-medium',
+        'font-weight-semibold',
       ];
       return headerClasses;
     },
