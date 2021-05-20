@@ -3,10 +3,10 @@
     v-row(justify="center")
       generic-panel(:row-bindings="{ justify: 'center' }")
         v-col(cols="12" md="12").text-center
-          h1(:class="headerClasses").font-weight-semibold.mb-3 Flexible. Scalable.
+          h1(:class="headerClasses").font-weight-semibold.mb-3.title-line-spacing Flexible. Scalable.
           p(:class="subheaderClasses").primary--text.font-open-sans.font-weight-bold Customizable based on what you need
           v-row(justify="center")
-            v-col(cols="12" md="4").text-center
+            v-col(cols="12" md="4" xl="5").text-center
               p(:class="descriptionClasses").font-open-sans.font-gray.mb-10 MYCURE is modularized and provides APIs for each so you are able to build from scratch, add missing modules while making your system secure and compliant.
         v-row(justify="start")
           v-col(
@@ -135,7 +135,7 @@ export default {
     descriptionClasses () {
       return classBinder(this, {
         regular: ['font-xs'],
-        wide: ['font-s'],
+        wide: ['font-m'],
       });
     },
     panelHeight () {
@@ -165,6 +165,9 @@ export default {
 </script>
 
 <style scoped>
+.title-line-spacing {
+  letter-spacing: 1px;
+}
 @media screen and (min-width: 1024px) {
   .usp-container {
     padding-top: 100px;

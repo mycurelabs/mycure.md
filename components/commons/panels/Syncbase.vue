@@ -11,18 +11,20 @@
           p(:class="descriptionClasses") MYCURE works online and offline
           p(:class="descriptionClasses") Work as if you have an in-house server with the convenience of the cloud. Create your medical records locally using multiple devices even if the internet is down! Once back online, it instantly syncs your data into the cloud.
         template(slot="cta-button")
-          mc-btn(
-            color="primary"
-            depressed
-            rounded
-            :large="$isRegularScreen"
-            :x-large="$isWideScreen"
-            :block="$isMobile"
-            :to="{ name: 'syncbase' }"
-            :class="{'font-s': !$isMobile}"
-          ).text-none
-            v-icon(left) mdi-information-outline
-            span Learn about MYCURE Syncbase
+          //- mc-btn(
+          //-   color="primary"
+          //-   depressed
+          //-   text
+          //-   :large="$isRegularScreen"
+          //-   :x-large="$isWideScreen"
+          //-   :block="$isMobile"
+          //-   :to="{ name: 'syncbase' }"
+          //-   :class="{'font-s': !$isMobile}"
+          //- ).text-none.button
+          div(:class="{'text-center': $isMobile}")
+            nuxt-link(:to="{ name: 'syncbase' }" :class="{'d-flex': !$isMobile}").button
+              v-icon(left color="primary" :large="$isWideScreen") mdi-information-outline
+              span(:class="descriptionClasses").primary--text Learn about MYCURE Syncbase
         template(slot="image")
           video(v-if="!$isMobile" :width="wXL ? '900' : '700'" playsinline autoplay muted loop).syncbase-animate
               source(src="~/assets/videos/mycure-syncbase-diagram-animate.webm" type="video/webm")
@@ -88,6 +90,9 @@ export default {
 }
 .content {
   z-index: 1 !important;
+}
+.button {
+  text-decoration: none;
 }
 
 @media screen and (min-width: 1920px) {
