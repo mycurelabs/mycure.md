@@ -15,17 +15,18 @@
     //-6th panel
     syncbase
     //- CTA
-    div.text-center
-      picture-source(
-        image="CTA"
-        image-file-extension=".png"
-        extension-exclusive
-        custom-path="home/"
-        image-alt="CTA Home"
-        :image-width="!$isMobile ? '30%' : '70%'"
-        :image-styles="{ marginBottom: '5px' }"
-      )
+    div.cta-container.mx-n3.mb-n3
       join-next-generation
+      div.cta-image.text-center
+        picture-source(
+          image="CTA"
+          image-file-extension=".png"
+          extension-exclusive
+          custom-path="home/"
+          image-alt="CTA Home"
+          :image-width="!$isMobile ? '30%' : '70%'"
+          :image-styles="{ marginBottom: '-6px' }"
+        )
 </template>
 
 <script>
@@ -105,12 +106,27 @@ export default {
 .simple-container {
   background-color: #0099cc;
 }
-
+.cta-container {
+  background-color: #0099cc;
+  position: relative;
+  padding-bottom: 200px;
+}
+.cta-image {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
 .divider {
   margin-right: 30% !important;
   margin-left: 30% !important;
 }
 .grey-bg {
   background-color: #fafafa;
+}
+
+@media screen and (min-width: 1920px) {
+  .cta-container {
+    padding-bottom: 300px;
+  }
 }
 </style>
