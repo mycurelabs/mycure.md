@@ -12,21 +12,16 @@
             v-col(cols="10" md="8")
               h1(:class="[{ 'text-center' : $isMobile }, ...headerClasses]") MYCURE is HIPAA Compliant
               br
-              p(:class="descriptionClasses").text-justify MYCURE demonstrates its commitment to industry-leading best practices for security and privacy of protected health information as required under HIPAA.
+              p(:class="descriptionClasses") MYCURE demonstrates its commitment to industry-leading best practices for security and privacy of protected health information as required under HIPAA.
               br
-              mc-btn(
+              a(
                 href="https://blog.mycure.md/mycure-is-hipaa-compliant/"
                 target="_blank"
                 rel="noreferrer noopener"
-                depressed
-                rounded
-                color="primary"
-                :large="$isRegularScreen"
-                :x-large="$isWideScreen"
-                :block="$isMobile"
-              ).text-none.font-s
-                v-icon(small left) mdi-information-outline
-                | Learn more
+                :class="{'d-flex': !$isMobile}"
+              ).learn-more
+                v-icon(left color="primary") mdi-information-outline
+                span(:class="descriptionClasses").primary--text Learn more
 </template>
 
 <script>
@@ -47,3 +42,9 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.learn-more {
+  text-decoration: none;
+}
+</style>

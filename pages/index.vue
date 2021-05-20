@@ -14,6 +14,12 @@
       tools(:version="2")
     //-6th panel
     syncbase
+    //- 7th panel
+    div.grey-bg.mx-n3
+      hipaa(
+        :header-classes="headerClasses"
+        :description-classes="descriptionClasses"
+      )
     //- CTA
     div.cta-container.mx-n3.mb-n3
       join-next-generation
@@ -36,6 +42,7 @@ import headMeta from '~/utils/head-meta';
 // - components
 import Care from '~/components/home/Care';
 import GenericMediaPanel from '~/components/commons/generic-media-panel';
+import Hipaa from '~/components/booking/Hipaa';
 import JoinNextGeneration from '~/components/home/JoinNextGeneration';
 import Patients from '~/components/home/Patients';
 import PictureSource from '~/components/commons/PictureSource';
@@ -48,6 +55,7 @@ export default {
   components: {
     Care,
     GenericMediaPanel,
+    Hipaa,
     JoinNextGeneration,
     Patients,
     PictureSource,

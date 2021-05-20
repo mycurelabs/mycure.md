@@ -24,10 +24,6 @@
       :description-classes="descriptionClasses"
     )
     //- 6th panel
-    hipaa(
-      :header-classes="headerClasses"
-      :description-classes="descriptionClasses"
-    )
     plans
 </template>
 
@@ -40,7 +36,6 @@ import Usp from '~/components/commons/panels/SevenWondersUsp';
 import StartEasy from '~/components/booking/StartEasy';
 import Features from '~/components/booking/Features';
 import Syncbase from '~/components/booking/Syncbase';
-import Hipaa from '~/components/booking/Hipaa';
 import Plans from '~/components/booking/Plans';
 
 export default {
@@ -49,7 +44,6 @@ export default {
     StartEasy,
     Features,
     Syncbase,
-    Hipaa,
     Plans,
   },
   data () {
@@ -80,9 +74,9 @@ export default {
     descriptionClasses () {
       const descriptionClasses = [
         classBinder(this, {
-          mobile: ['font-xs'],
-          regular: ['font-s'],
-          wide: ['font-m'],
+          mobile: ['font-xs', 'text-center'],
+          regular: ['font-s', 'text-justify'],
+          wide: ['font-m', 'text-justify'],
         }),
         'font-open-sans',
         'font-gray',

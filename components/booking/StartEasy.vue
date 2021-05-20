@@ -5,7 +5,7 @@
         v-col(cols="12")
           v-row
             v-col(cols="12").text-center
-              h1(:class="headerClasses") As easy as
+              h1(:class="headerClasses").mb-10 As easy as
             div(v-if="!$isMobile").d-flex.align-end
               v-row(align="center")
                 v-col(cols="12" md="4" v-for="(item, key) in items" :key="key").text-center
@@ -16,16 +16,19 @@
                   h2(:class="{'font-m': $isWideScreen, 'font-s': $isRegularScreen}").font-weight-semibold {{item.title}}
                   p(:class="{'font-S': $isWideScreen, 'font-xs': $isRegularScreen}").font-open-sans.font-gray {{item.description}}
             div(v-else)
-              template(v-for="item in items")
-                div.d-flex
-                  v-col(cols="5")
-                    img(
-                      :src="item.image"
-                      width="130"
-                    )
-                  v-col(cols="7")
-                    h2.font-s.font-weight-semibold {{item.title}}
-                    p.font-open-sans.font-gray {{item.description}}
+              v-row
+                v-col(
+                  v-for="(item, key) in items"
+                  cols="12"
+                  :key="key"
+                ).text-center
+                  img(
+                    :src="item.image"
+                    :alt="item.title"
+                    width="150"
+                  )
+                  h2.font-s.font-weight-semibold.mb-5 {{item.title}}
+                  p.font-open-sans.font-gray.mb-5 {{item.description}}
 </template>
 
 <script>
