@@ -13,7 +13,7 @@
               mc-btn(
                 event-label="click-cms-video"
                 event-category="Video"
-                color="primary"
+                color="success"
                 depressed
                 rounded
                 :large="$isRegularScreen"
@@ -33,16 +33,7 @@
                       image="Problem Statement"
                       image-alt="Clinic workflow"
                       image-file-extension=".png"
-                      image-width="60%"
-                    )
-                  v-col(cols="12").text-center
-                    picture-source(
-                      extension-exclusive
-                      custom-path="clinics/"
-                      image="Step 8"
-                      image-alt="Flawless Patient Journeys"
-                      image-file-extension=".png"
-                      image-width="25%"
+                      image-width="90%"
                     )
                 template(v-else)
                   v-col(cols="12" v-for="(item, key) in items" :key="key").text-center
