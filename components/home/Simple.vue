@@ -10,26 +10,28 @@
         :center-panel-title-classes="headerClasses"
         :super-title-classes="subheaderClasses"
         :content-classes="descriptionClasses"
+        hide-btn
       )
         template(slot="image")
           picture-source( v-bind="imageBindings")
-        v-row(slot="cta-button" :justify="$isMobile ? 'center': null")
-          v-col(v-for="(service, key) in services" :key="key").shrink
-            v-hover(
-              v-slot="{ hover }"
-              open-delay="100"
-            )
-              mc-btn(
-                :block="$isMobile"
-                :large="$isWideScreen"
-                :small="!$isWideScreen"
-                depressed
-                :outlined="!hover"
-                :to="{ name: service.route }"
-                color="white"
-              ).text-none.info--text
-                v-icon(left) {{ service.icon }}
-                strong {{ service.text }}
+        v-col(slot="additional-content" cols="12").order-last
+          v-row(justify="center")
+            v-col(v-for="(service, key) in services" :key="key").shrink
+              v-hover(
+                v-slot="{ hover }"
+                open-delay="100"
+              )
+                mc-btn(
+                  :block="$isMobile"
+                  :large="$isWideScreen"
+                  :small="!$isWideScreen"
+                  depressed
+                  :outlined="!hover"
+                  :to="{ name: service.route }"
+                  color="white"
+                ).text-none.info--text
+                  v-icon(left) {{ service.icon }}
+                  strong {{ service.text }}
     //- v-row(
     //-   justify="center"
     //-   align="center"
@@ -143,11 +145,12 @@ export default {
     },
     imageBindings () {
       return {
-        image: 'MYCURE-virtual-clinic-healthcare-practice-online-features-B-01-emr',
-        imageFileExtension: '.webp',
-        imageAlt: 'Patient List',
+        image: 'Simple and Powerful',
+        imageFileExtension: '.png',
+        imageAlt: 'No more paperwork',
         imageWidth: '100%',
-        customPath: 'features/',
+        customPath: 'home/',
+        extensionExclusive: true,
       };
     },
     contentColumnBindings () {

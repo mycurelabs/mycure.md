@@ -20,6 +20,7 @@
       div(v-if="!hideBtn")
         slot(name="cta-button")
           v-btn {{ ctaButtonText }}
+    slot(name="additional-content")
 </template>
 
 <script>
