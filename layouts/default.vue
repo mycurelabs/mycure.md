@@ -44,6 +44,9 @@ export default {
 .font-open-sans {
   font-family: 'Open Sans', 'sans-serif' !important;
 }
+.font-weight-semibold {
+  font-weight: 600 !important;
+}
 /* Font Sizes */
 .font-2xl {
   font-size: 65px !important;
@@ -56,7 +59,7 @@ export default {
   letter-spacing: -0.5px;
 }
 .font-l {
-  font-size: 35px !important;
+  font-size: 40px !important;
   line-height: 1.5;
   letter-spacing: -0.5px;
 }

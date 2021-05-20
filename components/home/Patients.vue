@@ -3,7 +3,7 @@
     v-row(justify="center")
       generic-panel(:row-bindings="{ justify: 'center' }")
         v-col(cols="12" md="10").text-center
-          h1(:class="headerClasses").font-weight-medium.primary--text.mb-10 Patients will love you even more.
+          h1(:class="headerClasses").font-weight-medium.primary--text.mb-10 Patients will love you even more
           v-row(justify="center")
             v-col(cols="12" md="8").text-center
               p(:class="descriptionClasses").grey--text.font-open-sans.mb-10 You treat your patients with holistic care. Now, make it extra covenient for them to reach you.
@@ -62,7 +62,7 @@ export default {
       return classBinder(this, {
         mobile: ['font-m'],
         regular: ['font-l'],
-        wide: ['font-xl'],
+        wide: ['font-2xl'],
       });
     },
     descriptionClasses () {

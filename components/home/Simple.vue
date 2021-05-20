@@ -23,8 +23,8 @@
               )
                 mc-btn(
                   :block="$isMobile"
-                  :large="$isWideScreen"
-                  :small="!$isWideScreen"
+                  :x-large="$isWideScreen"
+                  :large="!$isWideScreen"
                   depressed
                   :outlined="!hover"
                   :to="{ name: service.route }"
@@ -114,7 +114,7 @@ export default {
         classBinder(this, {
           mobile: ['font-m'],
           regular: ['font-l'],
-          wide: ['font-xl'],
+          wide: ['font-2xl'],
         }),
         'white--text',
         'font-weight-medium',
