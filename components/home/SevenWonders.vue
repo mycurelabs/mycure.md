@@ -10,11 +10,20 @@
           generic-panel(:row-bindings="{ justify: 'center' }")
             v-col(cols="12").text-center.text-container
               v-row(justify="center")
-                v-col(cols="12" md="7" xl="10")
-                  h1(:class="headerClasses").mb-10 Make Healthcare Accessible to All
+                v-col(cols="12" md="8" xl="12")
+                  h1(:class="headerClasses").mb-10 Enterprise Grade Healthcare Solutions
                   v-row(justify="center")
                     v-col(cols="12" md="10")
-                      p(:class="{ 'font-m' : !$isMobile, 'font-s' : $isMobile }").primary--text.font-weight-bold.mb-10 THE SEVEN WONDERS OF HEALTHCARE EMPOWERED BY MYCURE
+                      p(:class="{ 'font-m' : !$isMobile, 'font-s' : $isMobile }").primary--text.font-weight-bold.mb-10 At a fraction of the cost.
+                  signup-button(
+                    depressed
+                    rounded
+                    :x-large="$isWideScreen"
+                    :large="$isRegularScreen"
+                    color="success"
+                  ).text-none.font-s
+                    span Get Started
+            v-icon(small right) mdi-arrow-right
             v-col(cols="8" md="3" xl="3" v-for="(wonder, key) in wonders" :key="key")
               wonder(:wonder="wonder")
     //- div(v-else).mobile-container.ml-n3
@@ -30,10 +39,12 @@
 // import 'vue-slick-carousel/dist/vue-slick-carousel.css';
 import Wonder from './Wonder';
 import GenericPanel from '~/components/generic/GenericPanel';
+import SignupButton from '~/components/commons/SignupButton';
 import classBinder from '~/utils/class-binder';
 export default {
   components: {
     GenericPanel,
+    SignupButton,
     Wonder,
     // VueSlickCarousel,
   },
@@ -141,6 +152,12 @@ export default {
 @media screen and (min-width: 1920px) {
   .text-container {
     margin-bottom: 90px;
+  }
+  .container {
+    height: 950px;
+  }
+  .background {
+    height: 1000px;
   }
 }
 </style>
