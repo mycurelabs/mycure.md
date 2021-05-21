@@ -6,12 +6,12 @@
       meta-title="MYCURE Diagnostic"
       description="The best tool to create, finalize, and release diagnostic test results is finally here."
       image="Diagnostics USP"
-      text-col="3"
-      image-col="7"
       image-col-offset="1"
       custom-image-path="diagnostics/"
       regular-height="650px"
       wide-height="950px"
+      :media-column-bindings="{ cols: 12, md: 6, offsetMd: 1, xl: 6}"
+      :content-column-bindings="{ cols: 12, md: 5 }"
       @click="$nuxt.$router.push({ name: 'signup-health-facilities', query: { type: 'diagnostic' }})"
     )
     //- 2nd panel
@@ -35,24 +35,35 @@
       //- Check list
       template(slot="additional-content" v-if="info.list")
         template(v-for="(item, i) in info.list")
-          v-row(dense)
-            v-col(cols="1").pr-2.pt-2
+          v-row(dense :justify="$isMobile ? 'center' : 'start'")
+            v-col(cols="2" sm="1" md="1").pr-2.pt-2
               img(width="20" src="~/assets/images/mycure-check.png" alt="Check icon")
-            v-col
+            v-col(cols="7" sm="5" md="7")
               span(:class="descriptionClasses") {{ item }}
     //- 5th panel
-    div.grey-bg
-      features(
-        title="Ready whenever you are"
-        meta-title="POWERFUL INTEGRATIONS"
-        image-dir="diagnostics/"
-        image-width="50%"
-        icon-container-col-size="8"
-        extension-exclusive
-        hide-learn-more
-        :items="integrations"
-        :class="panelMargins"
+    div.grey-bg.mx-n3
+      generic-media-panel(
+        :content="integrationsPanel"
+        hide-btn
       )
+        template(slot="content")
+          v-row(justify="start")
+            v-col(
+              v-for="(item, key) in integrationsPanel.list"
+              :key="key"
+              cols="6"
+              md="3"
+            ).text-center
+              picture-source(
+                custom-path="diagnostics/"
+                image-file-extension=".png"
+                extension-exclusive
+                :image="item.icon"
+                :image-alt="item.title"
+                :image-width="!$isMobile ? '100%' : '60%'"
+              )
+              br
+              h3(:class="{'font-s': $isWideScreen}").font-open-sans.font-gray {{ item.title }}
     //- 6th panel
     generic-media-panel(
       :content="expandPanel"
@@ -71,6 +82,7 @@
         ).text-none
           v-icon(left) mdi-web
           span Create my website
+    v-divider(v-if="$isMobile").divider
     //- 7th panel
     generic-media-panel(:content="cmsPanel")
       div(slot="cta-button" :class="{'text-center': $isMobile}")
@@ -92,7 +104,7 @@
     //- 10th panel
     pricing(
       title="Take the first step today"
-      description="Start free and only pay as you grow."
+      description="Choose the best plan for your diagnostic center. Only pay for what you need."
       :pricing-details="pricingDetails"
     )
 </template>
@@ -107,6 +119,7 @@ import { DIAGNOSTICS_PRICING } from '~/constants/pricing';
 import CallToAction from '~/components/commons/panels/CallToAction';
 import Features from '~/components/commons/panels/Features';
 import GenericMediaPanel from '~/components/generic/GenericMediaPanel';
+import PictureSource from '~/components/commons/PictureSource';
 import Pricing from '~/components/commons/panels/Pricing';
 import ThinkLongTerm from '~/components/commons/panels/ThinkLongTerm';
 import Usp from '~/components/commons/panels/SevenWondersUsp';
@@ -117,6 +130,7 @@ export default {
     CallToAction,
     Features,
     GenericMediaPanel,
+    PictureSource,
     Pricing,
     ThinkLongTerm,
     Usp,
@@ -151,19 +165,27 @@ export default {
         iconExtension: '.png',
       },
     ];
-    this.integrations = [
-      {
-        title: 'HL7',
-        icon: 'HL7',
+    this.integrationsPanel = {
+      title: 'Ready whenever you are',
+      superTitle: 'POWERFUL INTEGRATIONS',
+      list: [
+        {
+          title: 'HL7',
+          icon: 'HL7',
+        },
+        {
+          title: 'DICOM',
+          icon: 'DICOM',
+        },
+      ],
+      imageBindings: {
+        image: 'MYCURE-virtual-clinic-healthcare-practice-online-features-G-diagnostic-results.webp',
+        customPath: 'features/',
       },
-      {
-        title: 'DICOM',
-        icon: 'DICOM',
-      },
-    ];
+    };
     this.infoPanels = [
       {
-        title: 'Easy to integrate. Easy to Use',
+        title: 'Easy to Integrate. Easy to Use.',
         description: 'Flawlessly incorporate MYCURE into your workflows.',
         list: [
           'Track specimen collection',
@@ -290,5 +312,9 @@ export default {
 <style scoped>
 .grey-bg {
   background-color: #fafafa;
+}
+.divider {
+  margin-right: 30% !important;
+  margin-left: 30% !important;
 }
 </style>

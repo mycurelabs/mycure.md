@@ -163,25 +163,29 @@ export default {
       type: String,
       default: '100vh',
     },
-    // - Column for Image
-    imageCol: {
-      type: [String, Number],
-      default: '7',
+    // - Column for Text
+    contentColumnBindings: {
+      type: Object,
+      default: () => ({
+        cols: 12,
+        md: 4,
+        xl: 5,
+      }),
     },
-    imageColOffset: {
-      type: [String, Number],
-      default: '1',
+    // - Column for Image
+    mediaColumnBindings: {
+      type: Object,
+      default: () => ({
+        cols: 12,
+        md: 7,
+        offsetMd: 1,
+        xl: 6,
+      }),
     },
     // - Alignment of image
     imageAlign: {
       type: String,
       default: 'left',
-    },
-    // - Column for Text
-    // - Note: This column is offsetted by 1
-    textCol: {
-      type: [String, Number],
-      default: '4',
     },
   },
   computed: {
@@ -256,21 +260,6 @@ export default {
         case 'center': return 'text-center';
         default: return 'text-left';
       }
-    },
-    contentColumnBindings () {
-      return {
-        cols: 12,
-        md: 4,
-        xl: 5,
-      };
-    },
-    mediaColumnBindings () {
-      return {
-        cols: 12,
-        md: 7,
-        offsetMd: 1,
-        xl: 6,
-      };
     },
     genericPanelBindings () {
       return {
