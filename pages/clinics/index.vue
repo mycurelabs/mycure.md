@@ -76,7 +76,7 @@
     //- 9th panel
     pricing(
       title="Take the first step today"
-      description="Start free and only pay as you grow."
+      description="Choose the best plan for your clinic. Only pay for what you need."
       :pricing-details="pricingDetails"
     )
 </template>
