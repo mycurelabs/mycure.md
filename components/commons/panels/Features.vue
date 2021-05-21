@@ -20,7 +20,7 @@
                   :image-width="!$isMobile ? imageWidth : imageWidthMobile"
                 )
                 br
-                h3(:class="itemTextClasses").font-open-sans.font-weight-semibold {{ item.title }}
+                h3(:class="itemTextClasses").font-open-sans.font-gray {{ item.title }}
                 p(v-if="item.description" :class="itemTextClasses") {{ item.description }}
                 nuxt-link(v-if="!hideLearnMore && item.route" :to="{ name: item.route }").primary--text.font-weight-bold.learnLink Learn more
           slot(name="additional-content")

@@ -1,7 +1,7 @@
 <template lang="pug">
   generic-media-panel(
     :content="callToActionPanel"
-    :title-classes="headerClasses"
+    :center-panel-title-classes="headerClasses"
     :content-classes="descriptionClasses"
     hide-btn
   )
@@ -51,7 +51,7 @@ export default {
   },
   data () {
     this.versionOne = {
-      title: 'Learn the basics with ease',
+      centerPanelTitle: 'Learn the basics with ease',
       description: [
         'Worrying about the shift to digital records? We got you covered.',
         'We understand that it may be difficult to change what you’re used to doing. That’s why we have happiness agents who’d love to guide you through each step via one-on-one training session.',
@@ -64,7 +64,7 @@ export default {
       contentAlign: 'right',
     };
     this.versionTwo = {
-      title: 'Let us do the work for you',
+      centerPanelTitle: 'Let us do the work for you',
       description: [
         'Worrying about the shift to digital records? We got you covered.',
         'We know it’s challenging to shift your entire operations into a new system. Our lean implementation process ensures that you get what you need—customized forms, optimized workflows, and well-trained staff. Our experts are here to guide you from training to winning.',
@@ -95,7 +95,6 @@ export default {
         }),
         'lh-title',
         'font-weight-semibold',
-        'primary--text',
       ];
       return headerClasses;
     },
@@ -116,30 +115,6 @@ export default {
         regular: ['font-xs'],
         wide: ['font-s'],
       });
-    },
-    signUpRoute () {
-      let preset = '';
-      switch (this.$nuxt.$route.name) {
-        case 'doctors-clinics':
-          preset = 'doctors';
-          break;
-        case 'clinics':
-          preset = 'clinic';
-          break;
-        case 'diagnostics':
-          preset = 'diagnostic';
-          break;
-        case 'telehealth':
-          preset = 'doctor-telehealth';
-          break;
-        default:
-          preset = '';
-      }
-      const route = {
-        name: 'signup-health-facilities',
-        params: { type: preset },
-      };
-      return route;
     },
   },
 };

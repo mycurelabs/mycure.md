@@ -5,14 +5,14 @@
     :disable-parent-padding="disableParentPadding"
   )
     v-col(v-if="centerPanelTitle" cols="12").text-center
-      div
+      div.mb-10
         slot(name="center-panel-title")
           h2(:class="defaultCenterPanelTitleClasses") {{ centerPanelTitle }}
     v-col(v-bind="mediaColumnBindings" :class=" { 'order-last': contentAlignment }").text-center
       slot(name="image")
         img(:width="width" :src="image")
     v-col(v-bind="contentColumnBindings")
-      div
+      div.mb-3
         slot(name="super-title")
           h3(v-if="superTitle" :class="defaultSuperTitleClasses") {{superTitle}}
       div.mb-10

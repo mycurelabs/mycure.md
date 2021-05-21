@@ -118,7 +118,6 @@ export default {
         }),
         'white--text',
         'font-weight-semibold',
-        'mb-8',
       ];
     },
     subheaderClasses () {

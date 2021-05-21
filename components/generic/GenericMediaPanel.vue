@@ -40,6 +40,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    centerPanelTitleClasses: {
+      type: [Array, Object],
+      default: undefined,
+    },
     titleClasses: {
       type: [Array, Object],
       default: undefined,
@@ -105,11 +109,13 @@ export default {
         ...content.contentAlign === 'left' && { offsetMd: 1 },
       };
       const panelBindings = {
+        centerPanelTitleClasses: this.centerPanelTitleClasses,
         titleClasses: this.titleClasses ? this.titleClasses : this.defaultTitleClasses,
         contentClasses: this.contentClasses ? this.contentClasses : this.defaultContentClasses,
         superTitleClasses: this.superTitleClasses ? this.superTitleClasses : this.defaultSuperTitleClasses,
         contentColumnBindings,
         mediaColumnBindings,
+        centerPanelTitle: content.centerPanelTitle,
         title: content.title,
         superTitle: content.superTitle,
         description: content.description,

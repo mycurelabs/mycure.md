@@ -2,7 +2,7 @@
   v-dialog(v-model="dialog" max-width="600")
     v-card(width="600").pt-5
       v-card-text
-        a
+        a(v-if="dialog")
           iframe(
             align="middle"
             id="ytplayer"

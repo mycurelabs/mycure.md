@@ -21,7 +21,7 @@
     //- 3rd panel
     mycure-csi
     //- 4th panel
-    syncbase
+    syncbase(version-two)
     //- 5th panel
     generic-media-panel(
       :content="fifthPanel"
@@ -57,9 +57,9 @@
       )
         template(slot="additional-content")
           v-row(justify="center").my-10
-            v-col(cols="12" md="4" xl="3")
+            v-col(cols="12" sm="6" md="5" xl="3")
               mc-btn(
-                color="primary"
+                color="success"
                 block
                 depressed
                 rounded
