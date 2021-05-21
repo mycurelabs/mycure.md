@@ -1,6 +1,6 @@
 export const SUBSCRIPTION_MAPPINGS = {
   doctor: {
-    essentials: {
+    lite: {
       memberSeatsMax: 1,
       storageMax: 200000, // KIB
     },
@@ -22,7 +22,7 @@ export const SUBSCRIPTION_MAPPINGS = {
     },
   },
   clinic: {
-    essentials: {
+    lite: {
       memberSeatsMax: 1,
       storageMax: 200000,
     },
