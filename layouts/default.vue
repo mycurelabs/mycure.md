@@ -140,18 +140,6 @@ export default {
 .cta-btn {
   padding: 25px 30px 25px 30px;
 }
-/* TODO: Transfer to our-story/panel-5 and home/vid components then remove*/
-.maleDoctor {
-  margin: 0px -20px 0px 0px;
-  z-index: 1;
-}
-.femaleDoctor {
-  margin: 0px 0px 0px -20px;
-  z-index: 1;
-}
-.vidPosition {
-  z-index: 0;
-}
 /* TODO: Replace the elements that use these classes with the corresponding class
   then remove them after */
 
