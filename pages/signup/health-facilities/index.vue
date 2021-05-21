@@ -394,7 +394,7 @@ export default {
         if (this.$route.query.email) this.email = this.$route.query.email;
 
         // Check if user has been prefilled a type and subscription
-        if (this.$route.query.type) this.facilityType = this.$route.query.type;
+        if (this.$route.query.type) this.facilityType = this.facilityTypes.find(type => type.value === this.$route.query.type);
         if (this.$route.query.subscription) this.subscription = this.$route.query.subscription;
       } catch (e) {
         console.error(e);
@@ -437,6 +437,8 @@ export default {
           doc_PRCLicenseNo: this.doc_PRCLicenseNo,
           // skipMobileNoVerification: this.facilityType.value !== 'doctor',
         };
+
+        console.log('signup payload', payload);
         this.saveModel(payload);
 
         const data = await signupFacility(payload);
