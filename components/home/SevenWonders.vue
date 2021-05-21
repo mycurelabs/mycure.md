@@ -23,7 +23,6 @@
                     color="success"
                   ).text-none.font-s
                     span Get Started
-            v-icon(small right) mdi-arrow-right
             v-col(cols="8" md="3" xl="3" v-for="(wonder, key) in wonders" :key="key")
               wonder(:wonder="wonder")
     //- div(v-else).mobile-container.ml-n3
