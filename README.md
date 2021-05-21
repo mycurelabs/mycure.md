@@ -21,6 +21,11 @@ $ yarn generate
 
 For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
 
+# Signup Flow
+
+PH -> Pricing -> OTP -> Success -> Login
+non-PH -> Pricing -> Success -> Login
+
 
 # Old CI Configs
 
