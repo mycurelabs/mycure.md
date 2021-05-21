@@ -11,25 +11,27 @@
       image-width="90%"
       image-align="right"
       custom-image-path="telehealth/"
+      :media-column-bindings="{ cols: 12, md: 6, offsetMd: 1, xl: 6}"
+      :content-column-bindings="{ cols: 12, md: 5 }"
       @click="$nuxt.$router.push({ name: 'signup-health-facilities', query: { type: 'doctor-telehealth' }})"
     )
     //- 2nd panel
     virtual-clinic
     //- 3rd to 4th panel
-    generic-media-panel(
-      v-for="(info, key) in infoPanels"
-      :content="info"
-      :key="key"
-      hide-btn
-    )
-      //- Check list
-      template(slot="additional-content" v-if="info.list")
-        template(v-for="(item, i) in info.list")
-          v-row(dense)
-            v-col(cols="1").pr-2.pt-2
-              img(width="20" src="~/assets/images/mycure-check.png" alt="Check icon")
-            v-col
-              span(:class="descriptionClasses") {{ item }}
+    template(v-for="info in infoPanels")
+      generic-media-panel(
+        :content="info"
+        hide-btn
+      )
+        //- Check list
+        template(slot="additional-content" v-if="info.list")
+          template(v-for="(item, i) in info.list")
+            v-row(dense :justify="$isMobile ? 'center' : 'start'")
+              v-col(cols="2" sm="1" md="1").pr-2.pt-2
+                img(width="20" src="~/assets/images/mycure-check.png" alt="Check icon")
+              v-col(cols="7" sm="5" md="7")
+                span(:class="descriptionClasses") {{ item }}
+      v-divider(v-if="$isMobile").divider
     //- 5th panel
     pricing(
       title="Start free and only pay as you grow."
@@ -135,3 +137,10 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.divider {
+  margin-right: 30% !important;
+  margin-left: 30% !important;
+}
+</style>

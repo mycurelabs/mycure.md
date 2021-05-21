@@ -3,8 +3,8 @@
     v-row(justify="center")
       generic-panel(:row-bindings="{ justify: 'center'}")
         v-col(cols="12").text-center
-          h2(:class="titleClasses").mb-10 Your New Virtual Clinic
-          p(:class="contentClasses").mb-10 Use the tools that work best for you. Everything you need is here. It’s FREE.
+          h2(:class="titleClasses").mb-5 Your New Virtual Clinic
+          p(:class="contentClasses").mb-5 Use the tools that work best for you. Everything you need is here. It’s FREE.
         v-col(cols="12").text-center
           picture-source(
             image="MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-A-online-consult"
@@ -79,7 +79,7 @@ export default {
     headerClasses () {
       const headerClasses = [
         classBinder(this, {
-          mobile: ['font-s', 'text-center'],
+          mobile: ['font-s', 'text-center', 'pt-5'],
           regular: ['font-m'],
           wide: ['font-l'],
         }),
