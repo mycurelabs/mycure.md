@@ -1,5 +1,3 @@
-import { turn } from "core-js/core/array";
-
 export const SUBSCRIPTION_MAPPINGS = {
   doctor: {
     lite: {
