@@ -243,7 +243,7 @@
                 v-list-item-title.text-wrap {{ country.name }}
               strong +{{ country.callingCodes[0] }}
     //- Email Verification Dialog
-    email-verification-dialog(v-model="emailVerificationMessageDialog" :email="email")
+    email-verification-dialog(v-model="emailVerificationMessageDialog" :email="email" @confirm="confirmEmailVerification")
 </template>
 
 <script>
@@ -252,7 +252,7 @@ import { parsePhoneNumberFromString } from 'libphonenumber-js';
 import {
   getCountries,
   getCountry,
-  signupFacility,
+  // signupFacility,
 } from '~/utils/axios';
 import {
   requiredRule,
@@ -324,7 +324,7 @@ export default {
       mobileNo: '',
       password: '',
       confirmPassword: '',
-      facilityType: null,
+      facilityType: {},
       subscription: null,
       doc_PRCLicenseNo: '',
       roles: [],
@@ -394,7 +394,7 @@ export default {
         if (this.$route.query.email) this.email = this.$route.query.email;
 
         // Check if user has been prefilled a type and subscription
-        if (this.$route.query.type) this.facilityType = this.$route.query.type;
+        if (this.$route.query.type) this.facilityType = this.facilityTypes.find(({ value }) => value === this.$route.query.type);
         if (this.$route.query.subscription) this.subscription = this.$route.query.subscription;
       } catch (e) {
         console.error(e);
@@ -422,8 +422,6 @@ export default {
           // },
         };
 
-        console.log('org payload', organizationPayload);
-
         // Map account payload
         const payload = {
           firstName: this.firstName,
@@ -437,10 +435,25 @@ export default {
           doc_PRCLicenseNo: this.doc_PRCLicenseNo,
           // skipMobileNoVerification: this.facilityType.value !== 'doctor',
         };
+        const [
+          emailResultUnique,
+          mobileResultUnique,
+        ] = await Promise.all([
+          this.$sdk.service('auth').checkUniqueIdentity('email', this.email),
+          this.$sdk.service('auth').checkUniqueIdentity('mobileNo', this.mobileNo),
+        ]);
+        if (!emailResultUnique || !mobileResultUnique) {
+          this.error = true;
+          this.errorMessage = 'The email or mobile number you have entered is invalid or taken. Please try again.';
+          return;
+        };
         this.saveModel(payload);
-
-        const data = await signupFacility(payload);
-        console.log('data', data);
+        this.$router.push({
+          name: 'signup-health-facilities-pricing',
+          query: this.$route.query,
+        });
+        // const data = await signupFacility(payload);
+        // console.log('data', data);
 
         // if (this.requiresCheckout) {
         //   const checkoutSession = get(data, 'organization.subscription.updatesPending');
@@ -449,11 +462,11 @@ export default {
         //   this.$refs.checkoutRef.redirectToCheckout();
         //   return;
         // }
-        if (this.countryCallingCode !== '63') {
-          this.emailVerificationMessageDialog = true;
-        } else {
-          this.$nuxt.$router.push({ name: 'signup-health-facilities-otp-verification' });
-        }
+        // if (this.countryCallingCode !== '63') {
+        //   this.emailVerificationMessageDialog = true;
+        // } else {
+        //   this.$nuxt.$router.push({ name: 'signup-health-facilities-otp-verification' });
+        // }
       } catch (e) {
         console.error(e);
         this.error = true;
@@ -468,10 +481,12 @@ export default {
       }
     },
     saveModel (val) {
-      const saveVal = { ...val };
-      if (process.browser) {
-        localStorage.setItem('facility:step1:model', JSON.stringify(saveVal));
+      if (!val) {
+        process.browser && localStorage.removeItem('facility:step1:model');
+        return;
       }
+      const saveVal = { ...val };
+      process.browser && localStorage.setItem('facility:step1:model', JSON.stringify(saveVal));
     },
     async getCountries () {
       try {
@@ -528,6 +543,10 @@ export default {
     },
     checkEmail () {
       this.isEmailValid = /^.+@.+\.+[a-zA-Z]{2,3}$/.test(this.email);
+    },
+    confirmEmailVerification () {
+      this.saveModel(null);
+      this.$router.push({ name: 'signin' });
     },
   },
 };
