@@ -17,7 +17,7 @@
 // - utils
 // import VueScrollTo from 'vue-scrollto';
 import dayOrNight from '../utils/day-or-night';
-
+const FORCED_DAY = true;
 export default {
   data () {
     return {
@@ -38,7 +38,7 @@ export default {
   },
   methods: {
     async init () {
-      this.dayOrNight = await dayOrNight();
+      this.dayOrNight = await dayOrNight(FORCED_DAY);
       this.$vuetify.theme.dark = this.dayOrNight === 'night';
       this.loading = false;
     },
