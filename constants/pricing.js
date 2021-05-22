@@ -1,7 +1,7 @@
 export const DOCTORS_PRICING = [
   {
     facilityType: 'doctor',
-    value: 'doctor.lite',
+    value: 'lite',
     title: 'Lite',
     description: 'All the essential tools for physicians doing solo practice',
     image: 'Essentials',
@@ -25,7 +25,7 @@ export const DOCTORS_PRICING = [
   },
   {
     facilityType: 'doctor',
-    value: 'doctor.premium',
+    value: 'premium',
     title: 'Premium',
     description: 'Build modern clinics with your secretary or colleagues',
     image: 'Premium',
@@ -52,7 +52,7 @@ export const DOCTORS_PRICING = [
 export const CLINICS_PRICING = [
   {
     facilityType: 'clinic',
-    value: 'clinic.lite',
+    value: 'lite',
     title: 'Lite',
     description: 'Essential features for growing outpatient clinics',
     image: 'Essentials',
@@ -81,7 +81,7 @@ export const CLINICS_PRICING = [
   },
   {
     facilityType: 'clinic',
-    value: 'clinic.premium',
+    value: 'premium',
     title: 'Premium',
     description: 'Advanced tools for medium-sized outpatient clinics',
     image: 'Premium',
@@ -110,7 +110,7 @@ export const CLINICS_PRICING = [
   },
   {
     facilityType: 'clinic',
-    value: 'clinic.platinum',
+    value: 'platinum',
     title: 'Platinum',
     description: 'Full CMS experience for advanced outpatient clinic services',
     image: 'Platinum',
@@ -139,7 +139,7 @@ export const CLINICS_PRICING = [
   },
   {
     facilityType: 'clinic',
-    value: 'clinic.enterprise',
+    value: 'enterprise',
     title: 'Enterprise',
     description: 'Perfect for multi-branch healthcare facilities doing large-scale operations',
     image: 'Enterprise',
@@ -161,7 +161,7 @@ export const CLINICS_PRICING = [
 export const DIAGNOSTICS_PRICING = [
   {
     facilityType: 'diagnostic',
-    value: 'diagnostic.lite',
+    value: 'lite',
     title: 'Lite',
     description: 'Essential features for growing diagnostic centers',
     image: 'Essentials',
@@ -188,7 +188,7 @@ export const DIAGNOSTICS_PRICING = [
   },
   {
     facilityType: 'diagnostic',
-    value: 'diagnostic.premium',
+    value: 'premium',
     title: 'Premium',
     description: 'Advanced tools for medium-sized diagnostic centers',
     image: 'Premium',
@@ -242,7 +242,7 @@ export const DIAGNOSTICS_PRICING = [
   },
   {
     facilityType: 'diagnostic',
-    value: 'diagnostic.enterprise',
+    value: 'enterprise',
     title: 'Enterprise',
     description: 'Perfect for multi-branch healthcare facilities doing large-scale operations',
     image: 'Enterprise',
@@ -259,4 +259,10 @@ export const DIAGNOSTICS_PRICING = [
     ],
     btnText: 'Contact Us',
   },
+];
+
+export const ALL_PRICING = [
+  ...DOCTORS_PRICING,
+  ...CLINICS_PRICING,
+  ...DIAGNOSTICS_PRICING,
 ];
