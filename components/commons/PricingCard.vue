@@ -33,32 +33,32 @@
         div.text-center.description-container
           p.info--text {{ bundle.description }}
       v-card-text
-          template(v-if="bundle.requireContact")
-            mc-btn(
-              depressed
-              rounded
-              outlined
-              block
-              event-category="Pricing"
-              color="info"
-              :large="$isRegularScreen"
-              :x-large='$isWideScreen'
-              :event-label="`click-pricing-${bundle.title}`"
-              @click="sendCrispMessage"
-            ).font-s.font-weight-semibold.text-none {{ bundle.btnText }}
-          template(v-else)
-            signup-button(
-              depressed
-              rounded
-              outlined
-              block
-              event-category="Pricing"
-              color="info"
-              :large="$isRegularScreen"
-              :x-large='$isWideScreen'
-              :event-label="`click-pricing-${bundle.title}`"
-              :pricing-bundle="bundle.id"
-            ).font-s.font-weight-semibold.text-none {{ bundle.btnText }}
+        template(v-if="bundle.requireContact")
+          mc-btn(
+            depressed
+            rounded
+            outlined
+            block
+            event-category="Pricing"
+            color="info"
+            :large="$isRegularScreen"
+            :x-large='$isWideScreen'
+            :event-label="`click-pricing-${bundle.title}`"
+            @click="sendCrispMessage"
+          ).font-s.font-weight-semibold.text-none {{ bundle.btnText }}
+        template(v-else)
+          signup-button(
+            depressed
+            rounded
+            outlined
+            block
+            event-category="Pricing"
+            color="info"
+            :large="$isRegularScreen"
+            :x-large='$isWideScreen'
+            :event-label="`click-pricing-${bundle.title}`"
+            :pricing-bundle="bundle.id"
+          ).font-s.font-weight-semibold.text-none {{ bundle.btnText }}
       v-card-text
         v-row(justify="center")
           v-col(cols="12" xl="10")
