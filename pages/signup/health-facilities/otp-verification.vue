@@ -84,6 +84,7 @@
             color="primary"
             right
             bottom
+            depressed
           ).text-none.font-weight-bold
             | Resend{{ otpCountdown > 0 ? ` in 00:${otpCountdown / 1000}` : '' }}
           v-row
@@ -250,11 +251,11 @@ export default {
         this.otpCountdown = null;
         this.successDialog = true;
         // Remove saved data
-        localStorage.removeItem('facility:step1:model');
         // - Mock loading then run acknowledgment
         await setTimeout(() => {
           this.onAcknowledgment();
         }, 300);
+        localStorage.removeItem('facility:step1:model');
       } catch (e) {
         this.verificationError = true;
         this.clearInputs();
