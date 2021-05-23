@@ -5,8 +5,9 @@
       app
       dark
       elevate-on-scroll
+      style="padding-top: 1px;"
     ).nav-bar
-      v-container
+      v-container.pa-0
         v-row(justify="center")
           generic-panel(:column="$isMobile ? 12 : 10" disable-parent-padding)
             v-col.d-flex
