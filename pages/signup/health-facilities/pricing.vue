@@ -64,16 +64,20 @@
                   ).text-none Select {{bundle.title}}
                 //- v-card-text
                   pre {{bundle}}
+    email-verification-dialog(v-model="emailVerificationMessageDialog" :email="email" @confirm="confirmEmailVerification")
 </template>
 
 <script>
+import { isEmpty } from 'lodash';
+import EmailVerificationDialog from '~/components/signup/EmailVerificationDialog';
 import PictureSource from '~/components/commons/PictureSource';
 import { SUBSCRIPTION_MAPPINGS } from '~/constants/subscription';
 import { ALL_PRICING } from '~/constants/pricing';
-// import { signupFacility } from '~/utils/axios';
+import { signupFacility } from '~/utils/axios';
 const FACILITY_STEP_1_DATA = 'facility:step1:model';
 export default {
   components: {
+    EmailVerificationDialog,
     PictureSource,
   },
   layout: 'user',
@@ -86,11 +90,18 @@ export default {
       loading: false,
       selectedPricingModel: 0,
       selectedPricing: {},
+      emailVerificationMessageDialog: false,
     };
   },
   computed: {
     step1LocalStorageData () {
       return process.browser && JSON.parse(localStorage.getItem(FACILITY_STEP_1_DATA));
+    },
+    email () {
+      return this.step1LocalStorageData?.email;
+    },
+    countryCallingCode () {
+      return this.step1LocalStorageData?.countryCallingCode;
     },
     organizationTypes0 () {
       return this.step1LocalStorageData?.organization?.types?.[0];
@@ -121,31 +132,47 @@ export default {
           this.sendCrispMessage();
           return;
         }
-        // TODO: determine if isFree will still be used
-        // depending on Nad's answer on Stripe
-        // session behavior.
-        // const isFree = bundle.annualMonthlyPrice;
-
-        // TODO: Get packages
-        const { items: packages } = await this.$sdk.service('subscription/packages').find({ type: 'facility', types: this.facilityType });
-        console.warn(packages);
-
-        // TODO: get package from packages based on selected bundle
-        const selectedPackage = {};
 
         // Build payload
         const payload = {
           ...this.step1LocalStorageData,
         };
-        // Build organization payload
-        payload.organization = {
-          ...this.step1LocalStorageData?.organization,
-          subsciption: {
-            package: selectedPackage.id,
-          },
-        };
-        console.warn(payload);
-        // await signupFacility(payload);
+
+        // TODO: Subscription logic block
+        // const isFree = bundle.annualMonthlyPrice > 0;
+        // let packages, selectedPackage;
+
+        // if (!isFree) {
+        //   // TODO: Get packages
+        //   const { items } = await this.$sdk.service('subscription/packages').find({ type: 'facility', types: this.facilityType });
+        //   packages = items;
+        //   console.warn(packages);
+
+        //   // TODO: get package from packages based on selected bundle
+        //   selectedPackage = {};
+
+        //   // TODO: Inject subscription to payload
+        //   // Build organization payload
+        //   payload.organization = {
+        //     ...this.step1LocalStorageData?.organization,
+        //     subsciption: {
+        //       package: selectedPackage.id,
+        //     },
+        //   };
+        // }
+
+        const user = await signupFacility(payload);
+        console.warn(user);
+
+        if (!isEmpty(user?.organization?.subscription?.updatesPending)) {
+          // TODO: Do stripe checkout
+        }
+
+        if (this.countryCallingCode !== '63') {
+          this.emailVerificationMessageDialog = true;
+        } else {
+          this.$nuxt.$router.push({ name: 'signup-health-facilities-otp-verification' });
+        }
       } catch (e) {
         console.warn(e);
       } finally {
@@ -161,6 +188,10 @@ export default {
       const message = 'Hello, I would like to inquire about the ENTERPRISE plan.';
       window.$crisp.push(['do', 'chat:toggle']);
       window.$crisp.push(['do', 'message:send', ['text', message]]);
+    },
+    confirmEmailVerification () {
+      process.browser && localStorage.removeItem(FACILITY_STEP_1_DATA);
+      this.$router.push({ name: 'signin' });
     },
   },
 };
