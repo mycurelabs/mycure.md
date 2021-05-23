@@ -190,6 +190,7 @@
                 label="PRC License No"
                 outlined
                 hint="Please enter your PRC License No for verification"
+                :disabled="loading.form"
               )
             //- v-col(
             //-   cols="12"
@@ -208,7 +209,7 @@
                     a(@click.stop="goToTerms") Terms of Use&nbsp;
                     | and&nbsp;
                     a(@click.stop="goToPrivacy") Privacy Policy.
-              v-alert(:value="error" type="error").mt-5 {{ errorMessage }}
+            v-alert(:value="error" type="error").mt-5 {{ errorMessage }}
             v-col(
               cols="12"
               :class="{ 'pa-1': !$isMobile }"
@@ -429,13 +430,6 @@ export default {
         // Map org types and subscription
         const organizationPayload = {
           ...this.facilityType.orgProps,
-          // subscription: {
-          //   ...SUBSCRIPTION_MAPPINGS[this.facilityType.value][this.subscription.value],
-          //   stripeCheckoutSuccessURL: this.facilityType.value === 'doctor'
-          //     ? `${window.location.origin}/signup/health-facilities/otp-verification/?payment=success`
-          //     : process.env.STRIPE_CHECKOUT_SUCCESS_URL,
-          //   stripeCheckoutCancelURL: process.env.STRIPE_CHECKOUT_CANCEL_URL,
-          // },
         };
 
         // Map account payload
