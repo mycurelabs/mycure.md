@@ -1,7 +1,12 @@
 <template lang="pug">
   v-container(v-if="!loading.page")
-    v-row(justify="end").pt-1
-      span.mt-2 Already have an account?&nbsp;&nbsp;
+    v-toolbar(
+      color="transparent"
+      dense
+      flat
+    )
+      v-spacer
+      span Already have an account?&nbsp;&nbsp;
       v-btn(
         depressed
         color="primary"
@@ -134,7 +139,7 @@
               md="6"
               :class="{ 'pa-1': !$isMobile }"
             ).order-md-7.order-sm-7
-              v-autocomplete(
+              v-select(
                 v-model="facilityType"
                 label="Health Facility Type"
                 item-text="text"
@@ -169,7 +174,7 @@
               md="6"
               :class="{ 'pa-1': !$isMobile }"
             ).order-md-8.order-sm-8
-              v-autocomplete(
+              v-select(
                 v-model="roles"
                 label="Your Role"
                 item-text="text"
@@ -185,11 +190,12 @@
                 label="PRC License No"
                 outlined
                 hint="Please enter your PRC License No for verification"
+                :disabled="loading.form"
               )
-            v-col(
-              cols="12"
-              :class="{ 'pa-1': !$isMobile }"
-            ).order-md-9.order-sm-9
+            //- v-col(
+            //-   cols="12"
+            //-   :class="{ 'pa-1': !$isMobile }"
+            //- ).order-md-9.order-sm-9
               v-checkbox(
                 v-model="agree"
                 hide-details
@@ -203,18 +209,19 @@
                     a(@click.stop="goToTerms") Terms of Use&nbsp;
                     | and&nbsp;
                     a(@click.stop="goToPrivacy") Privacy Policy.
-              v-alert(:value="error" type="error").mt-5 {{ errorMessage }}
+            v-alert(:value="error" type="error").mt-5 {{ errorMessage }}
             v-col(
               cols="12"
               :class="{ 'pa-1': !$isMobile }"
             ).order-md-10.order-sm-10
               v-btn(
                 type="submit"
-                large
                 color="success"
-                :disabled="loading.form || !valid || !agree"
+                large
+                :disabled="loading.form || !valid"
                 :loading="loading.form"
-              ).mt-5.text-none #[b Create my free account]
+                :block="$isMobile"
+              ).text-none #[b Proceed #[v-icon mdi-arrow-right]]
               stripe-checkout(
                 ref="checkoutRef"
                 :pk="stripePK"
@@ -243,7 +250,7 @@
                 v-list-item-title.text-wrap {{ country.name }}
               strong +{{ country.callingCodes[0] }}
     //- Email Verification Dialog
-    email-verification-dialog(v-model="emailVerificationMessageDialog" :email="email")
+    email-verification-dialog(v-model="emailVerificationMessageDialog" :email="email" @confirm="confirmEmailVerification")
 </template>
 
 <script>
@@ -252,7 +259,7 @@ import { parsePhoneNumberFromString } from 'libphonenumber-js';
 import {
   getCountries,
   getCountry,
-  signupFacility,
+  // signupFacility,
 } from '~/utils/axios';
 import {
   requiredRule,
@@ -262,6 +269,7 @@ import {
 // import { CLINICS_PRICING } from '~/constants/pricing';
 // import { SUBSCRIPTION_MAPPINGS } from '~/constants/subscription';
 import EmailVerificationDialog from '~/components/signup/EmailVerificationDialog';
+const FACILITY_STEP_1_DATA = 'facility:step1:model';
 export default {
   components: {
     EmailVerificationDialog,
@@ -324,7 +332,7 @@ export default {
       mobileNo: '',
       password: '',
       confirmPassword: '',
-      facilityType: null,
+      facilityType: {},
       subscription: null,
       doc_PRCLicenseNo: '',
       roles: [],
@@ -390,11 +398,20 @@ export default {
         this.countryCallingCode = location ? location.calling_code : '63';
         this.countryFlag = location ? location.country_flag : 'https://assets.ipstack.com/flags/ph.svg';
 
-        // Check if email has been passed
-        if (this.$route.query.email) this.email = this.$route.query.email;
+        const localStorageData = process.browser && JSON.parse(localStorage.getItem(FACILITY_STEP_1_DATA));
+        if (localStorageData) {
+          this.firstName = localStorageData.firstName;
+          this.lastName = localStorageData.lastName;
+          this.email = localStorageData.email;
+          this.password = localStorageData.password;
+          this.mobileNo = localStorageData.mobileNo;
+          this.roles = localStorageData.roles;
+          this.doc_PRCLicenseNo = localStorageData.doc_PRCLicenseNo;
+        }
 
-        // Check if user has been prefilled a type and subscription
-        if (this.$route.query.type) this.facilityType = this.facilityTypes.find(type => type.value === this.$route.query.type);
+        // Query params handling
+        if (this.$route.query.email) this.email = this.$route.query.email;
+        if (this.$route.query.type) this.facilityType = this.facilityTypes.find(({ value }) => value === this.$route.query.type);
         if (this.$route.query.subscription) this.subscription = this.$route.query.subscription;
       } catch (e) {
         console.error(e);
@@ -413,16 +430,7 @@ export default {
         // Map org types and subscription
         const organizationPayload = {
           ...this.facilityType.orgProps,
-          // subscription: {
-          //   ...SUBSCRIPTION_MAPPINGS[this.facilityType.value][this.subscription.value],
-          //   stripeCheckoutSuccessURL: this.facilityType.value === 'doctor'
-          //     ? `${window.location.origin}/signup/health-facilities/otp-verification/?payment=success`
-          //     : process.env.STRIPE_CHECKOUT_SUCCESS_URL,
-          //   stripeCheckoutCancelURL: process.env.STRIPE_CHECKOUT_CANCEL_URL,
-          // },
         };
-
-        console.log('org payload', organizationPayload);
 
         // Map account payload
         const payload = {
@@ -437,12 +445,25 @@ export default {
           doc_PRCLicenseNo: this.doc_PRCLicenseNo,
           // skipMobileNoVerification: this.facilityType.value !== 'doctor',
         };
-
-        console.log('signup payload', payload);
+        const [
+          emailResultUnique,
+          mobileResultUnique,
+        ] = await Promise.all([
+          this.$sdk.service('auth').checkUniqueIdentity('email', this.email),
+          this.$sdk.service('auth').checkUniqueIdentity('mobileNo', this.mobileNo),
+        ]);
+        if (!emailResultUnique || !mobileResultUnique) {
+          this.error = true;
+          this.errorMessage = 'The email or mobile number you have entered is invalid or taken. Please try again.';
+          return;
+        };
         this.saveModel(payload);
-
-        const data = await signupFacility(payload);
-        console.log('data', data);
+        this.$router.push({
+          name: 'signup-health-facilities-pricing',
+          query: this.$route.query,
+        });
+        // const data = await signupFacility(payload);
+        // console.log('data', data);
 
         // if (this.requiresCheckout) {
         //   const checkoutSession = get(data, 'organization.subscription.updatesPending');
@@ -451,11 +472,11 @@ export default {
         //   this.$refs.checkoutRef.redirectToCheckout();
         //   return;
         // }
-        if (this.countryCallingCode !== '63') {
-          this.emailVerificationMessageDialog = true;
-        } else {
-          this.$nuxt.$router.push({ name: 'signup-health-facilities-otp-verification' });
-        }
+        // if (this.countryCallingCode !== '63') {
+        //   this.emailVerificationMessageDialog = true;
+        // } else {
+        //   this.$nuxt.$router.push({ name: 'signup-health-facilities-otp-verification' });
+        // }
       } catch (e) {
         console.error(e);
         this.error = true;
@@ -470,10 +491,12 @@ export default {
       }
     },
     saveModel (val) {
-      const saveVal = { ...val };
-      if (process.browser) {
-        localStorage.setItem('facility:step1:model', JSON.stringify(saveVal));
+      if (!val) {
+        process.browser && localStorage.removeItem(FACILITY_STEP_1_DATA);
+        return;
       }
+      const saveVal = { ...val };
+      process.browser && localStorage.setItem(FACILITY_STEP_1_DATA, JSON.stringify(saveVal));
     },
     async getCountries () {
       try {
@@ -530,6 +553,10 @@ export default {
     },
     checkEmail () {
       this.isEmailValid = /^.+@.+\.+[a-zA-Z]{2,3}$/.test(this.email);
+    },
+    confirmEmailVerification () {
+      this.saveModel(null);
+      this.$router.push({ name: 'signin' });
     },
   },
 };

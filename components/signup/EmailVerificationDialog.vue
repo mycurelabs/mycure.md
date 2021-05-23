@@ -6,7 +6,7 @@
           src="~/assets/images/mycure-sign-up-success-pop-up-image.png"
           alt="Email"
         )
-        h1.font-40 Sign Up Success!
+        h1.my-6.font-40 Sign Up Success!
         p.subheading A verification link has been sent to
           br
           b {{ email ? email : 'your email.' }}

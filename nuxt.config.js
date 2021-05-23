@@ -100,7 +100,7 @@ export default {
     theme: {
       themes: {
         light: {
-          primary: '#04B1E7',
+          primary: '#0099cc',
           accent: '#7fad33',
           secondary: '#424242',
           info: '#0174BB',
@@ -109,7 +109,7 @@ export default {
           success: '#7fad33',
         },
         dark: {
-          primary: '#04B1E7',
+          primary: '#0099cc',
           accent: '#7fad33',
           secondary: '#424242',
           info: '#2196F3',

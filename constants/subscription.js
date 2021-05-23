@@ -1,70 +1,76 @@
 export const SUBSCRIPTION_MAPPINGS = {
   doctor: {
-    essentials: {
+    lite: {
       memberSeatsMax: 1,
-      storageMax: 200000, // KIB
+      storageMax: 0.2, // GB
     },
     premium: {
-      storageMax: 10000000,
+      storageMax: 10,
       inventory: true,
     },
   },
   'doctor-telehealth': {
-    essentials: {
+    lite: {
       memberSeatsMax: 1,
-      storageMax: 200000, // KIB
+      storageMax: 0.2, // KIB
       onlineBooking: true,
     },
     premium: {
-      storageMax: 10000000,
+      storageMax: 10,
       inventory: true,
       onlineBooking: true,
     },
   },
   clinic: {
-    essentials: {
-      memberSeatsMax: 1,
-      storageMax: 200000,
+    lite: {
+      memberSeatsMax: 10,
+      storageMax: 5,
     },
     premium: {
-      storageMax: 10000000,
+      memberSeatsMax: 20,
+      storageMax: 10,
       inventory: true,
-      pharmacy: true,
-      dental: true,
       lis: true,
       ris: true,
-      pme: true,
+      pharmacy: false,
+      dental: false,
+      pme: false,
     },
     platinum: {
-      storageMax: 100000000,
+      memberSeatsMax: 30,
+      storageMax: 50,
       inventory: true,
       pharmacy: true,
       dental: true,
       lis: true,
       ris: true,
       pme: true,
+      prm: true,
     },
   },
   diagnostic: {
-    essentials: {
-      memberSeatsMax: 1,
-      storageMax: 200000,
+    lite: {
+      memberSeatsMax: 5,
+      storageMax: 3,
     },
     premium: {
-      storageMax: 10000000,
+      memberSeatsMax: 10,
+      storageMax: 5,
       inventory: true,
-      pharmacy: true,
       lis: true,
       ris: true,
-      pme: true,
+      pme: false,
+      prm: false,
     },
     platinum: {
-      storageMax: 100000000,
+      memberSeatsMax: 20,
+      storageMax: 10,
       inventory: true,
       pharmacy: true,
       lis: true,
       ris: true,
       pme: true,
+      prm: true,
     },
   },
 };

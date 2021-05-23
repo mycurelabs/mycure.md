@@ -1,6 +1,7 @@
 export const DOCTORS_PRICING = [
   {
-    value: 'doctor-lite',
+    facilityType: 'doctor',
+    value: 'lite',
     title: 'Lite',
     description: 'All the essential tools for physicians doing solo practice',
     image: 'Essentials',
@@ -23,7 +24,8 @@ export const DOCTORS_PRICING = [
     btnRoute: 'signup-health-facilities',
   },
   {
-    value: 'doctor-premium',
+    facilityType: 'doctor',
+    value: 'premium',
     title: 'Premium',
     description: 'Build modern clinics with your secretary or colleagues',
     image: 'Premium',
@@ -49,7 +51,8 @@ export const DOCTORS_PRICING = [
 
 export const CLINICS_PRICING = [
   {
-    value: 'clinic-lite',
+    facilityType: 'clinic',
+    value: 'lite',
     title: 'Lite',
     description: 'Essential features for growing outpatient clinics',
     image: 'Essentials',
@@ -77,7 +80,8 @@ export const CLINICS_PRICING = [
     btnRoute: 'signup-health-facilities',
   },
   {
-    value: 'clinic-premium',
+    facilityType: 'clinic',
+    value: 'premium',
     title: 'Premium',
     description: 'Advanced tools for medium-sized outpatient clinics',
     image: 'Premium',
@@ -105,7 +109,8 @@ export const CLINICS_PRICING = [
     btnRoute: 'signup-health-facilities',
   },
   {
-    value: 'clinic-platinum',
+    facilityType: 'clinic',
+    value: 'platinum',
     title: 'Platinum',
     description: 'Full CMS experience for advanced outpatient clinic services',
     image: 'Platinum',
@@ -133,7 +138,8 @@ export const CLINICS_PRICING = [
     btnRoute: 'signup-health-facilities',
   },
   {
-    value: 'clinic-enterprise',
+    facilityType: 'clinic',
+    value: 'enterprise',
     title: 'Enterprise',
     description: 'Perfect for multi-branch healthcare facilities doing large-scale operations',
     image: 'Enterprise',
@@ -154,7 +160,8 @@ export const CLINICS_PRICING = [
 
 export const DIAGNOSTICS_PRICING = [
   {
-    value: 'diagnostics-lite',
+    facilityType: 'diagnostic',
+    value: 'lite',
     title: 'Lite',
     description: 'Essential features for growing diagnostic centers',
     image: 'Essentials',
@@ -180,7 +187,8 @@ export const DIAGNOSTICS_PRICING = [
     btnRoute: 'signup-health-facilities',
   },
   {
-    value: 'diagnostics-premium',
+    facilityType: 'diagnostic',
+    value: 'premium',
     title: 'Premium',
     description: 'Advanced tools for medium-sized diagnostic centers',
     image: 'Premium',
@@ -206,6 +214,7 @@ export const DIAGNOSTICS_PRICING = [
     btnRoute: 'signup-health-facilities',
   },
   {
+    facilityType: 'diagnostic',
     value: 'diagnostics-platinum',
     title: 'Platinum',
     description: 'Full diagnostic tools for advanced and high-volume diagnostic centers',
@@ -232,7 +241,8 @@ export const DIAGNOSTICS_PRICING = [
     btnRoute: 'signup-health-facilities',
   },
   {
-    value: 'diagnostics-enterprise',
+    facilityType: 'diagnostic',
+    value: 'enterprise',
     title: 'Enterprise',
     description: 'Perfect for multi-branch healthcare facilities doing large-scale operations',
     image: 'Enterprise',
@@ -249,4 +259,10 @@ export const DIAGNOSTICS_PRICING = [
     ],
     btnText: 'Contact Us',
   },
+];
+
+export const ALL_PRICING = [
+  ...DOCTORS_PRICING,
+  ...CLINICS_PRICING,
+  ...DIAGNOSTICS_PRICING,
 ];
