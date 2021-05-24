@@ -1,6 +1,6 @@
 <template lang="pug">
   v-container
-    v-row(justify="center" align="center")
+    v-row(justify="center" align="center" :style="{ height: panelHeight }")
       generic-sub-page-panel(
         :title="uspTitle"
         :title-classes="titleClasses"
@@ -24,8 +24,8 @@
           signup-button(
             depressed
             rounded
+            large
             :class="btnClasses"
-            :large="!$isMobile"
             :color="btnColor"
           ).text-none.letter-spacing-normal {{ btnText }}
 
@@ -153,11 +153,11 @@ export default {
     // - Panel height
     regularHeight: {
       type: String,
-      default: '650px',
+      default: '100vh',
     },
     mobileHeight: {
       type: String,
-      default: '700px',
+      default: 'auto',
     },
     wideHeight: {
       type: String,
