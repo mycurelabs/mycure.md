@@ -4,20 +4,10 @@
       generic-panel
         v-col(cols="12")
           v-row(align="center" justify="center")
+            v-col(cols="12").text-center
+              h1(:class="headerClasses").font-weight-semibold.mb-5 {{ title }}
+              p(:class="descriptionClasses").mb-5.font-open-sans.font-gray {{ description }}
             v-col(cols="12" md="5")
-              h1(:class="headerClasses").font-weight-semibold.mb-10 {{ title }}
-              p(:class="descriptionClasses").mb-10.font-open-sans.font-gray {{ description }}
-              signup-button(
-                v-if="!$isMobile"
-                depressed
-                rounded
-                color="success"
-                event-label="signup"
-                :large="$isRegularScreen"
-                :x-large="$isWideScreen"
-              ).text-none.font-s
-                span Get Started Free
-            v-col(cols="12" md="5" offset-md="2")
               v-card(flat height="100%" width="100%").pricing-card.rounded-xl
                 v-card-title
                   v-spacer
@@ -35,18 +25,20 @@
                 v-card-text
                   v-row(justify="center")
                     v-col(cols="10")
+                      signup-button(
+                        depressed
+                        rounded
+                        outlined
+                        block
+                        color="info"
+                        event-label="signup"
+                        :large="$isRegularScreen"
+                        :x-large="$isWideScreen"
+                      ).text-none.font-s.mb-5
+                        span Get Started Free
                       div(v-for="(inclusion, key) in inclusions" :key="key").d-flex
                         v-icon(color="info" left) mdi-check
                         span.info--text {{ inclusion }}
-            v-col(v-if="$isMobile" cols="12").text-center
-              signup-button(
-                depressed
-                rounded
-                block
-                color="success"
-                event-label="signup"
-              ).text-none.font-s
-                span Get Started Free
 </template>
 
 <script>
