@@ -31,7 +31,7 @@
           custom-path="home/"
           image-alt="CTA Home"
           :image-width="!$isMobile ? '30%' : '70%'"
-          :image-styles="{ marginBottom: '-6px' }"
+          :image-styles="{ marginBottom: '-7px' }"
         )
 </template>
 

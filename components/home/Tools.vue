@@ -8,7 +8,7 @@
             br(v-if="$isMobile")
             | on what you need
           v-row(justify="center")
-            v-col(cols="12" md="4" xl="5").text-center
+            v-col(cols="12" md="6").text-center
               p(:class="descriptionClasses").font-open-sans.font-gray.mb-10 MYCURE is modularized and provides APIs for each so you are able to build from scratch, add missing modules while making your system secure and compliant.
         v-row(:justify="!$isMobile ? 'start' : 'center'")
           v-col(

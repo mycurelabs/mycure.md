@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-container
+  v-container.py-16.my-5
     v-row(justify="center")
       generic-panel(:row-bindings="{ justify: 'center' }")
           v-col(cols="12" md="10" xl="12").text-center.pa-0
@@ -44,8 +44,8 @@ export default {
     headerClasses () {
       return classBinder(this, {
         mobile: ['font-m', 'mb-5'],
-        regular: ['font-l', 'mb-10'],
-        wide: ['font-2xl', 'mb-10'],
+        regular: ['font-l', 'mb-5'],
+        wide: ['font-2xl', 'mb-5'],
       });
     },
     descriptionClasses () {
