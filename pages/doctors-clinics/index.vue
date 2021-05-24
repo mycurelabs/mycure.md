@@ -44,10 +44,12 @@
           v-row(
             v-for="(item, i) in sixthPanel.list"
             :key="item"
+            :justify="$isMobile ? 'center' : 'start'"
             dense
           )
-           div.d-flex
-              v-icon(left color="primary") mdi-checkbox-marked-circle
+            v-col(cols="2" sm="1" md="1").pr-2.pt-2
+              img(width="20" src="~/assets/images/mycure-check.png" alt="Check icon")
+            v-col(cols="7" sm="5" md="7")
               span(:class="descriptionClasses") {{ item }}
         div(:class="{ 'text-center': $isMobile }")
           signup-button(
@@ -74,10 +76,12 @@
           v-row(
             v-for="(item, i) in eightPanel.list"
             :key="i"
+            :justify="$isMobile ? 'center' : 'start'"
             dense
           )
-            div.d-flex
-              v-icon(left color="white") mdi-checkbox-marked-circle
+            v-col(cols="2" sm="1" md="1").pr-2.pt-2
+              v-icon(color="white") mdi-checkbox-marked-circle
+            v-col(cols="7" sm="5" md="7")
               span(:class="eightPanelContentClasses") {{ item }}
     //- 9th panel
     think-long-term
