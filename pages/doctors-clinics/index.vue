@@ -132,9 +132,10 @@ export default {
         description: 'Create and print prescriptions and other medical forms in 10 seconds or less.',
         contentAlign: 'left',
         imageBindings: {
-          customPath: 'features/',
-          image: 'MYCURE-virtual-clinic-healthcare-practice-online-features-B-02-print-prescription.webp',
-          mobileImage: 'MYCURE-virtual-clinic-healthcare-practice-online-features-B-02-print-prescription-mobile.png',
+          customPath: 'doctors-clinics/',
+          image: 'Lightning fast.png',
+          extensionExclusive: true,
+          mobileImage: 'Lightning fast mobile.png',
         },
       },
       {
@@ -142,9 +143,10 @@ export default {
         description: 'Imagine looking back at your charts from 5 or 10 years ago on your mobile device with a quick search. How convenient? S-U-P-E-R.',
         contentAlign: 'right',
         imageBindings: {
-          customPath: 'features/',
-          image: 'MYCURE-virtual-clinic-healthcare-practice-online-features-B-03-charting.webp',
-          mobileImage: 'MYCURE-virtual-clinic-healthcare-practice-online-features-B-03-charting-mobile.png',
+          customPath: 'doctors-clinics/',
+          image: 'Going digital.png',
+          mobileImage: 'Going digital mobile.png',
+          extensionExclusive: true,
         },
       },
       {
