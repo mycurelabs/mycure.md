@@ -29,7 +29,7 @@
             :outlined="version === 1"
             :large="$isRegularScreen"
             :x-large="$isWideScreen"
-            :class="buttonClasses"
+            :class="{'font-s': $isWideScreen, 'font-14': $isRegularScreen }"
             :href="'https://calendly.com/mycure/demo'"
           ).text-none {{ version === 1 ? 'Book a full training' : 'Start Now' }}
 </template>

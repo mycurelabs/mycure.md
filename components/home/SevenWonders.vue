@@ -23,8 +23,28 @@
                     color="success"
                   ).text-none.font-s
                     span Get Started
-            v-col(cols="8" md="3" xl="3" v-for="(wonder, key) in wonders" :key="key")
-              wonder(:wonder="wonder")
+            template(v-if="!$isMobile")
+              v-col(cols="8" md="3" xl="3" v-for="(wonder, key) in wonders" :key="key")
+                wonder(:wonder="wonder")
+            template(v-else)
+              v-col(cols="10")
+                carousel(
+                  navigationNextLabel=" "
+                  navigationPrevLabel=" "
+                  paginationColor="#f0f0f0"
+                  autoplay
+                  loop
+                  navigationEnabled
+                  paginationEnabled
+                  :per-page="1"
+                  :navigationClickTargetSize="50"
+                )
+                  slide(
+                    v-for="(wonder,index) in wonders"
+                    :key="index"
+                    :data-index="index+1"
+                  ).px-2
+                    wonder(:wonder="wonder")
     //- div(v-else).mobile-container.ml-n3
     //-   img(
     //-     src="~/assets/images/home/Homepage USP.png"

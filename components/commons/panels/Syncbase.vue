@@ -81,7 +81,7 @@ export default {
     },
     contentColumnBindings () {
       return {
-        cols: 10,
+        cols: 12,
         md: 6,
         xl: 5,
         alignSelf: 'center',

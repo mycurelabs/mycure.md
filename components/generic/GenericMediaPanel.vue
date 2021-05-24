@@ -100,7 +100,7 @@ export default {
       const contentColumnBindings = {
         cols: 12,
         md: 5,
-        alignSelf: 'center',
+        // alignSelf: 'center',
         ...content.contentAlign === 'right' && { offsetMd: 1 },
       };
       const mediaColumnBindings = {
