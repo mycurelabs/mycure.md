@@ -8,7 +8,6 @@
       image="Diagnostics USP"
       image-col-offset="1"
       custom-image-path="diagnostics/"
-      regular-height="650px"
       wide-height="950px"
       :media-column-bindings="{ cols: 12, md: 6, offsetMd: 1, xl: 6}"
       :content-column-bindings="{ cols: 12, md: 5 }"

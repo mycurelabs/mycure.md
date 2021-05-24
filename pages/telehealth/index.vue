@@ -6,7 +6,7 @@
       meta-title="MYCURE Telehealth"
       description="Starting a virtual practice has never been easier. Give your patients the quality care they deserve."
       btn-text="Get Started Free"
-      regular-height="600px"
+      regular-height="650px"
       image="Telehealth USP"
       image-width="90%"
       image-align="right"

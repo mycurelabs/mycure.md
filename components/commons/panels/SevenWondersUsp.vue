@@ -153,7 +153,7 @@ export default {
     // - Panel height
     regularHeight: {
       type: String,
-      default: '100vh',
+      default: '650px',
     },
     mobileHeight: {
       type: String,

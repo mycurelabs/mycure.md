@@ -10,7 +10,6 @@
       image-align="right"
       btn-text="Get Started Free"
       parse-title="regular"
-      regular-height="650px"
       :description="uspDescription"
       :parse-title-fields="['the ']"
     )
