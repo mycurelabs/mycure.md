@@ -35,17 +35,6 @@
               h1(:class="headerClasses").ml-3 {{ data.header }}
             br
             p(:class="contentClasses") {{ data.description }}
-          v-col(cols="12").text-center
-            signup-button(
-              depressed
-              rounded
-              color="success"
-              event-label="signup"
-              :large="$isRegularScreen"
-              :x-large="$isWideScreen"
-            ).text-none.font-s
-              | Get Started Free
-              v-icon(small right) mdi-arrow-right
 </template>
 
 <script>

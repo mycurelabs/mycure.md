@@ -12,26 +12,11 @@
           h1(:class="headerClasses").ml-3.font-weight-semibold {{ data.header }}
         br
         p(:class="descriptionClasses").text-justify.font-gray.font-open-sans {{ data.description }}
-        div.btn-container
-          signup-button(
-            depressed
-            rounded
-            color="success"
-            event-label="signup"
-            :large="$isRegularScreen"
-            :x-large="$isWideScreen"
-          ).text-none.font-s
-            | Get Started Free
-            v-icon(small right) mdi-arrow-right
 </template>
 
 <script>
-import SignupButton from '~/components/commons/SignupButton';
 import classBinder from '~/utils/class-binder';
 export default {
-  components: {
-    SignupButton,
-  },
   props: {
     // - Container fluid
     fluid: {
@@ -77,9 +62,5 @@ export default {
 .content-container {
   position: relative;
   padding-bottom: 50px;
-}
-.btn-container {
-  position: absolute;
-  bottom: 0;
 }
 </style>

@@ -17,7 +17,9 @@
     )
     //- 2nd panel
     virtual-clinic
-    //- 3rd to 4th panel
+    //- 3rd panel
+    telehealth-video
+    //- 4th to 5th panel
     template(v-for="info in infoPanels")
       generic-media-panel(
         :content="info"
@@ -32,13 +34,13 @@
               v-col(cols="7" sm="5" md="7")
                 span(:class="descriptionClasses") {{ item }}
       v-divider(v-if="$isMobile").divider
-    //- 5th panel
+    //- 6th panel
     pricing(
       title="Start free and only pay as you grow."
       :pricing-details="pricingDetails"
       :column-size="4"
     )
-    //- 6th panel
+    //- 7th panel
     call-to-action
 </template>
 
@@ -51,6 +53,7 @@ import CallToAction from '~/components/commons/panels/CallToAction';
 import Features from '~/components/commons/panels/Features';
 import GenericMediaPanel from '~/components/generic/GenericMediaPanel';
 import Pricing from '~/components/commons/panels/Pricing';
+import TelehealthVideo from '~/components/telehealth/TelehealthVideo';
 import Usp from '~/components/commons/panels/SevenWondersUsp';
 import VirtualClinic from '~/components/telehealth/VirtualClinic';
 // - constants
@@ -62,6 +65,7 @@ export default {
     Features,
     GenericMediaPanel,
     Pricing,
+    TelehealthVideo,
     Usp,
     VirtualClinic,
   },
