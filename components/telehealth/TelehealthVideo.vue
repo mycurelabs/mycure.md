@@ -18,7 +18,7 @@
             signup-button(
               depressed
               rounded
-              color="success"
+              color="primary"
               event-label="signup"
               :large="$isRegularScreen"
               :x-large="$isWideScreen"
