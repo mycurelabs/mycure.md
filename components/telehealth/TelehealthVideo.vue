@@ -10,7 +10,7 @@
               type="text/html"
               :width="$isMobile ? '100%' : '620'"
               height="393"
-              src="https://www.youtube.com/embed/9gxJX_eokC0?autoplay=1&loop=1&showinfo=0&rel=0"
+              src="https://www.youtube.com/embed/9gxJX_eokC0?loop=1&showinfo=0&rel=0"
               frameborder="0"
               allowfullscreen
             )
