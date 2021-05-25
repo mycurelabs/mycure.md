@@ -3,6 +3,7 @@
     :content="callToActionPanel"
     :center-panel-title-classes="headerClasses"
     :content-classes="descriptionClasses"
+    :super-title-classes="subheaderClasses"
     hide-btn
   )
     template(slot="content")
@@ -52,8 +53,8 @@ export default {
   data () {
     this.versionOne = {
       centerPanelTitle: 'Learn the basics with ease',
+      superTitle: 'Worrying about the shift to digital records? We got you covered.',
       description: [
-        'Worrying about the shift to digital records? We got you covered.',
         'We understand that it may be difficult to change what you’re used to doing. That’s why we have happiness agents who’d love to guide you through each step via one-on-one training session.',
       ],
       imageBindings: {
@@ -65,8 +66,8 @@ export default {
     };
     this.versionTwo = {
       centerPanelTitle: 'Let us do the work for you',
+      superTitle: 'Worrying about the shift to digital records? We got you covered.',
       description: [
-        'Worrying about the shift to digital records? We got you covered.',
         'We know it’s challenging to shift your entire operations into a new system. Our lean implementation process ensures that you get what you need—customized forms, optimized workflows, and well-trained staff. Our experts are here to guide you from training to winning.',
       ],
       imageBindings: {
@@ -97,6 +98,17 @@ export default {
         'font-weight-semibold',
       ];
       return headerClasses;
+    },
+    subheaderClasses () {
+      return [
+        classBinder(this, {
+          mobile: ['font-xs', 'text-center'],
+          regular: ['font-25'],
+          wide: ['font-40'],
+        }),
+        'primary--text',
+        'font-open-sans',
+      ];
     },
     descriptionClasses () {
       const descriptionClasses = [
