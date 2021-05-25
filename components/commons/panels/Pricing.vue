@@ -9,31 +9,35 @@
                 strong(v-if="metaTitle" :class="metaTitleClasses").primary--text {{ metaTitle }}
                 h2(:class="titleClasses").lh-title.font-weight-semibold.mb-5 {{ title }}
                 p(:class="descriptionClasses").font-open-sans.mb-5 {{ description }}
-            //- v-row(justify="center")
-            //-   v-col(cols="12" md="6" xl="4").text-center.mb-10
-            //-     v-btn(
-            //-       v-for="(mode, key) in modeBtns"
-            //-       :key="key"
-            //-       color="primary"
-            //-       v-bind="modeBtnBindings(mode)"
-            //-       depressed
-            //-       tile
-            //-       :large="$isWideScreen"
-            //-       @click="pricingMode = mode"
-            //-     ).text-none
-            //-       | Billed&nbsp;
-            //-       span.text-capitalize {{ mode }}
+            v-row(justify="center")
+              v-col(cols="12" md="6" xl="4").text-center.mb-10
+                v-btn(
+                  v-for="(mode, key) in modeBtns"
+                  :key="key"
+                  color="primary"
+                  v-bind="modeBtnBindings(mode)"
+                  depressed
+                  tile
+                  :large="$isWideScreen"
+                  @click="pricingMode = mode"
+                ).text-none
+                  | Billed&nbsp;
+                  span.text-capitalize {{ mode }}
             v-row(justify="center")
               v-col(
-                v-for="(detail, key) in pricingDetails"
+                v-for="(pack, key) in pricingPackages"
                 :key="key"
                 v-bind="columnBindings"
               )
-                pricing-card(:bundle="detail").elevation-3
+                pricing-card(
+                  :bundle="pack"
+                  :pricing-mode="pricingMode"
+                ).elevation-3
 </template>
 
 <script>
 import classBinder from '~/utils/class-binder';
+import { getSubscriptionPackagesPricing } from '~/services/subscription-packages';
 import GenericPanel from '~/components/generic/GenericPanel';
 import PricingCard from '~/components/commons/PricingCard';
 export default {
@@ -42,10 +46,15 @@ export default {
     PricingCard,
   },
   props: {
-    // Make container fluid
-    fluid: {
-      type: Boolean,
-      default: false,
+    /**
+     * @type {String} type
+     * @example 'doctor'
+     * @example 'clinic'
+     * @example 'diagnostic',
+     */
+    type: {
+      type: String,
+      default: 'clinic',
     },
     title: {
       type: String,
@@ -59,25 +68,6 @@ export default {
       type: String,
       default: '',
     },
-    /**
-     * @type {PricingDetail []} PricingDetails
-     *
-     * @type {Object} PricingDetail
-     * @param {String} title
-     * @param {String} currency
-     * @param {Number} monthlyPrice
-     * @param {Number} annualMonthlyPrice
-     * @param {String | Number} users
-     * @param {Array} inclusions
-     * @param {String} btnText
-     * @param {String} btnRoute
-     * @param {Boolean} requireContact
-     *
-     */
-    pricingDetails: {
-      type: Array,
-      default: () => ([]),
-    },
     columnBindings: {
       type: Object,
       default: () => ({
@@ -90,7 +80,9 @@ export default {
   data () {
     this.modeBtns = ['monthly', 'annually'];
     return {
+      loading: false,
       pricingMode: 'monthly', // monthly | annually
+      pricingPackages: [],
     };
   },
   computed: {
@@ -115,7 +107,22 @@ export default {
       });
     },
   },
+  async created () {
+    // fetch packages
+    await this.fetchPackages(this.type);
+  },
   methods: {
+    async fetchPackages (type) {
+      try {
+        this.loading = true;
+        this.pricingPackages = await getSubscriptionPackagesPricing(type) || [];
+        console.warn('pricing packages', this.pricingPackages);
+      } catch (e) {
+        console.error(e);
+      } finally {
+        this.loading = false;
+      }
+    },
     modeBtnBindings (mode) {
       if (mode === this.pricingMode) return;
       return { outlined: true };

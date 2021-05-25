@@ -23,7 +23,7 @@
             p.font-weight-bold.primary--text
               template(v-if='bundle.monthlyPrice > 0')
                 span.font-30 {{ bundle.currency }}&nbsp;
-                span.font-45 {{ bundle.monthlyPrice }}
+                span.font-45 {{ pricingMode === 'annually' ? bundle.annualMonthlyPrice : bundle.monthlyPrice }}
               span(v-else).font-45 FREE
             //- span(v-else).font-xl {{ bundle.annualMonthlyPrice ? bundle.annualMonthlyPrice : bundle.monthlyPrice }}
         div.text-center.usage-metric-container
@@ -76,6 +76,10 @@ export default {
     bundle: {
       type: Object,
       default: () => ({}),
+    },
+    pricingMode: {
+      type: String,
+      default: 'monthly',
     },
   },
   methods: {

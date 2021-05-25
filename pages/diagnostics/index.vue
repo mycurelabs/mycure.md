@@ -104,7 +104,7 @@
     pricing(
       title="Take the first step today"
       description="Choose the best plan for your diagnostic center. Only pay for what you need."
-      :pricing-details="pricingDetails"
+      type="diagnostic"
     ).mb-n3
 </template>
 

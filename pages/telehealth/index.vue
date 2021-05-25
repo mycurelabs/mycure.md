@@ -37,7 +37,7 @@
     //- 6th panel
     pricing(
       title="Start free and only pay as you grow."
-      :pricing-details="pricingDetails"
+      type="doctor"
       :column-bindings="{ cols: '12', md: '4', xl: '3'}"
     )
     //- 7th panel

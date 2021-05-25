@@ -73,6 +73,7 @@
     call-to-action(:version="2")
     //- 9th panel
     pricing(
+      type="clinic"
       title="Take the first step today"
       description="Choose the best plan for your clinic. Only pay for what you need."
       :pricing-details="pricingDetails"

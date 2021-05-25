@@ -88,8 +88,8 @@
     v-divider.divider
     //- 10th panel
     pricing(
+      type="doctor"
       title="Start free and only pay as you grow"
-      :pricing-details="pricingDetails"
       :column-bindings="{ cols: '12', md: '4', xl: '3'}"
     )
     //- 11th panel
