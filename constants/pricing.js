@@ -58,7 +58,7 @@ export const CLINICS_PRICING = [
     image: 'Essentials',
     currency: '₱',
     monthlyPrice: 4999,
-    // annualMonthlyPrice: 0,
+    annualMonthlyPrice: 4488,
     // users: 1,
     inclusions: [
       { text: 'Up to 10 users', valid: true },
@@ -166,6 +166,7 @@ export const DIAGNOSTICS_PRICING = [
     description: 'Essential features for growing diagnostic centers',
     image: 'Essentials',
     currency: '₱',
+    currencyUsd: '$',
     monthlyPrice: 2499,
     // annualMonthlyPrice: 0,
     // users: 1,
