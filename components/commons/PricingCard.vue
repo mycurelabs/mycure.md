@@ -1,10 +1,10 @@
 <template lang="pug">
-   v-card(flat height="100%" width="100%").card-outter.rounded-xl
+   v-card(height="100%" width="100%").rounded-xl.card-outter
       v-card-title
         v-spacer
-        h2.font-weight-semibold {{ bundle.title }}
+        h2.font-20.font-weight-bold {{ bundle.title }}
         v-spacer
-      v-card-text.general-info-container
+      v-card-text.general-info-container.font-open-sans
         div.text-center.pb-5
           picture-source(
             extension-exclusive
@@ -12,59 +12,56 @@
             :image="bundle.image"
             image-file-extension=".png"
             :image-alt="bundle.title"
-            :image-width="!$isMobile ? '50%' : '40%'"
+            image-width="65'"
           )
+        div.text-center.description-container
+          p.font-weight-semibold.font-12 {{ bundle.description }}
         div.text-center
           div(v-if="bundle.requireContact")
-            p.font-l.font-weight-semibold Contact Us
+            p.font-30.font-weight-bold.primary--text.lh-title Contact Us
           template(v-else)
-            p.font-weight-bold
+            p.font-weight-bold.primary--text
               template(v-if='bundle.monthlyPrice > 0')
-                span.font-s.font-weight-semibold {{ bundle.currency }}&nbsp;
-                span.font-xl.font-weight-semibold {{ bundle.monthlyPrice }}
-              span(v-else).font-xl.font-weight-semibold FREE
-              //- span(v-else).font-xl {{ bundle.annualMonthlyPrice ? bundle.annualMonthlyPrice : bundle.monthlyPrice }}
-            p.font-s
-              span(v-if="bundle.users") {{ bundle.users }} user
-              br
-              | per clinic
-              br
-              | per month
-        div.text-center.description-container
-          p.info--text {{ bundle.description }}
-      v-card-text
-        template(v-if="bundle.requireContact")
-          mc-btn(
-            depressed
-            rounded
-            outlined
-            block
-            event-category="Pricing"
-            color="info"
-            :large="$isRegularScreen"
-            :x-large='$isWideScreen'
-            :event-label="`click-pricing-${bundle.title}`"
-            @click="sendCrispMessage"
-          ).font-s.font-weight-semibold.text-none {{ bundle.btnText }}
-        template(v-else)
-          signup-button(
-            depressed
-            rounded
-            outlined
-            block
-            event-category="Pricing"
-            color="info"
-            :large="$isRegularScreen"
-            :x-large='$isWideScreen'
-            :event-label="`click-pricing-${bundle.title}`"
-            :pricing-bundle="bundle.id"
-          ).font-s.font-weight-semibold.text-none {{ bundle.btnText }}
+                span.font-30 {{ bundle.currency }}&nbsp;
+                span.font-45 {{ bundle.monthlyPrice }}
+              span(v-else).font-45 FREE
+            //- span(v-else).font-xl {{ bundle.annualMonthlyPrice ? bundle.annualMonthlyPrice : bundle.monthlyPrice }}
+        div.text-center.usage-metric-container
+          p(v-if="!bundle.requireContact").font-10.black--text
+            span(v-if="bundle.users") {{ bundle.users }} user
+            br(v-if="bundle.users")
+            | per clinic
+            br
+            | per month
+      v-divider.divider.mx-5
       v-card-text
         v-row(justify="center")
           v-col(cols="12" xl="10")
             div(v-for="(inclusion, inclusionKey) in bundle.inclusions" :key="inclusionKey").d-flex
-              v-icon(:color="getInclusionColor(inclusion.valid)" left) mdi-check
-              span(:class="inclusion.valid ? 'info--text' : 'grey--text'") {{ inclusion.text }}
+              v-icon(:color="getInclusionColor(inclusion.valid)" left) {{ inclusion.valid ? 'mdi-checkbox-marked-circle' : 'mdi-close-circle' }}
+              span(:class="inclusion.valid ? 'black--text' : 'grey--text'").font-10 {{ inclusion.text }}
+      v-card-text.card-actions
+        slot(name="card-btn")
+          template(v-if="bundle.requireContact")
+            mc-btn(
+              depressed
+              rounded
+              block
+              event-category="Pricing"
+              color="primary"
+              :event-label="`click-pricing-${bundle.title}`"
+              @click="sendCrispMessage"
+            ).font-14.font-weight-semibold.text-none {{ bundle.btnText }}
+          template(v-else)
+            signup-button(
+              depressed
+              rounded
+              block
+              event-category="Pricing"
+              color="primary"
+              :event-label="`click-pricing-${bundle.title}`"
+              :pricing-bundle="bundle.id"
+            ).font-14.font-weight-semibold.text-none {{ bundle.btnText }}
 </template>
 
 <script>
@@ -84,7 +81,7 @@ export default {
   methods: {
     getInclusionColor (valid) {
       if (!valid) return 'grey';
-      return 'info';
+      return 'primary';
     },
     sendCrispMessage () {
       const message = 'Hello, I would like to inquire about the ENTERPRISE plan.';
@@ -98,8 +95,7 @@ export default {
 <style scoped>
 .card-outter {
   position: relative;
-  padding-bottom: 250px;
-  border: 2px solid #0174BB;
+  padding-bottom: 100px;
 }
 
 .card-actions {
@@ -110,13 +106,16 @@ export default {
 
 .general-info-container {
   position: relative;
-  min-height: 400px;
+  min-height: 325px;
 }
 
 .description-container {
-  position: absolute;
-  bottom: 0;
+  min-height: 100px;
 }
+
+/* .usage-metric-container {
+  min-height: 50px;
+} */
 
 .divider {
   border-bottom: 1px solid black;
@@ -127,7 +126,7 @@ export default {
 
 @media screen and (min-width: 1920px) {
   .general-info-container {
-    min-height: 450px;
+    min-height: 350px;
   }
 }
 </style>

@@ -121,6 +121,9 @@ export default {
 .font-12 {
   font-size: 12px !important
 }
+.font-10 {
+  font-size: 10px !important;
+}
 /* Font Color */
 .font-gray {
   color: rgba(0,0,0,0.5);

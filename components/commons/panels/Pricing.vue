@@ -81,7 +81,7 @@ export default {
       type: Object,
       default: () => ({
         cols: '12',
-        md: '4',
+        md: '3',
         xl: '3',
       }),
     },
