@@ -23,7 +23,7 @@
     "babel-polyfill": "^6.26.0",
     "core-js": "^3.9.1",
     "libphonenumber-js": "^1.9.15",
-    "nuxt": "^2.15.3",
+    "nuxt": "^2.15.6",
     "nuxt-webfontloader": "^1.1.0",
     "vue-carousel": "^0.18.0",
     "vue-cookie-law": "^1.13.3",
