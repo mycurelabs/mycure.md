@@ -47,7 +47,7 @@
                           span.font-s.font-weight-semibold {{ bundle.currency }}&nbsp;
                           span.font-xl.font-weight-semibold {{ bundle.monthlyPrice }}
                         span(v-else).font-xl.font-weight-semibold FREE
-                        //- span(v-else).font-xl {{ bundle.annualPrice ? bundle.annualPrice : bundle.monthlyPrice }}
+                        //- span(v-else).font-xl {{ bundle.annualMonthlyPrice ? bundle.annualMonthlyPrice : bundle.monthlyPrice }}
                       p.font-s
                         span(v-if="bundle.users") {{ bundle.users }} user
                         br
@@ -152,15 +152,14 @@ export default {
         console.warn(bundle);
 
         // TODO: Subscription logic block
-        const paid = bundle.annualPrice > 0 || bundle.monthlyPrice;
+        const paid = bundle.annualMonthlyPrice > 0 || bundle.monthlyPrice;
 
         let packages;
         // let selectedPackage;
 
         if (paid) {
           // TODO: Get packages
-          const { doctorPackages } = await getSubscriptionPackages({ type: this.facilityType });
-          packages = doctorPackages;
+          packages = await getSubscriptionPackages({ types: this.facilityType });
           console.warn(packages);
 
           // TODO: get package from packages based on selected bundle
