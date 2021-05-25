@@ -65,7 +65,7 @@ export default {
      * @param {String} title
      * @param {String} currency
      * @param {Number} monthlyPrice
-     * @param {Number} annualMonthlyPrice
+     * @param {Number} annualPrice
      * @param {String | Number} users
      * @param {Array} inclusions
      * @param {String} btnText
