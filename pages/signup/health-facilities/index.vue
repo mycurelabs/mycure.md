@@ -144,10 +144,12 @@
                 label="Health Facility Type"
                 item-text="text"
                 item-value="value"
+                error-messages="['This is required']"
                 outlined
                 :items="facilityTypes"
                 :rules="isRequired"
                 :disabled="loading.form"
+                :error="errorFacilityType"
                 return-object
               )
                 template(v-slot:item="data")
@@ -180,9 +182,11 @@
                 item-text="text"
                 item-value="value"
                 outlined
+                error-messages="['This is required']"
                 :items="userRoles"
                 :rules="isRequired"
                 :disabled="loading.form"
+                :error="errorFacilityType"
               )
               v-text-field(
                 v-if="isDoctor"
@@ -360,6 +364,8 @@ export default {
       error: false,
       errorMessage: 'There was an error please try again later.',
       mobileNoError: false,
+      errorFacilityType: false,
+      errorRoles: false,
     };
   },
   computed: {
@@ -424,8 +430,17 @@ export default {
       try {
         this.loading.form = true;
         this.error = false;
-        if (!this.facilityType || !this.roles.length) {
+        this.errorFacilityType = false;
+        this.errorRoles = false;
+        if (!this.facilityType) {
           this.error = true;
+          this.errorFacilityType = true;
+          this.errorMessage = 'The form is incomplete. Please provide the required inforamtion';
+          return;
+        };
+        if (!this.roles.length) {
+          this.error = true;
+          this.errorRoles = true;
           this.errorMessage = 'The form is incomplete. Please provide the required inforamtion';
           return;
         };
