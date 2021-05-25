@@ -7,12 +7,8 @@
             v-col(cols="12").text-center
               h1(:class="headerClasses").font-weight-semibold.mb-5 {{ title }}
               p(:class="descriptionClasses").mb-5.font-open-sans.font-gray {{ description }}
-            v-col(cols="12" md="5")
-              v-card(flat height="100%" width="100%").pricing-card.rounded-xl
-                v-card-title
-                  v-spacer
-                  h2(:class="headerClasses").font-weight-semibold.mb-10 Start Free
-                  v-spacer
+            v-col(cols="12" md="4")
+              v-card(height="100%" width="100%").pricing-card.rounded-xl.elevation-3
                 v-card-text.text-center
                   picture-source(
                     extension-exclusive
@@ -20,25 +16,29 @@
                     image="Essentials"
                     image-file-extension=".png"
                     image-alt="Booking Essentials"
-                    :image-width="!$isMobile ? '50%' : '40%'"
+                    image-width="200"
                   )
+                v-card-title
+                  v-spacer
+                  h2(:class="headerClasses").font-weight-bold Start Free
+                  v-spacer
+                v-divider.divider.mx-5
                 v-card-text
                   v-row(justify="center")
                     v-col(cols="10")
+                      div(v-for="(inclusion, key) in inclusions" :key="key").d-flex
+                        v-icon(color="primary" left) mdi-checkbox-marked-circle
+                        span.font-10.black--text {{ inclusion }}
                       signup-button(
                         depressed
                         rounded
-                        outlined
                         block
-                        color="info"
+                        color="primary"
                         event-label="signup"
                         :large="$isRegularScreen"
                         :x-large="$isWideScreen"
-                      ).text-none.font-s.mb-5
-                        span Get Started Free
-                      div(v-for="(inclusion, key) in inclusions" :key="key").d-flex
-                        v-icon(color="info" left) mdi-check
-                        span.info--text {{ inclusion }}
+                      ).text-none.font-14.my-5
+                        span Try Free
 </template>
 
 <script>
@@ -71,9 +71,8 @@ export default {
   computed: {
     headerClasses () {
       return classBinder(this, {
-        mobile: ['font-m', 'text-center'],
-        regular: ['font-l'],
-        wide: ['font-xl'],
+        mobile: ['text-center'],
+        regular: ['font-20'],
       });
     },
     descriptionClasses () {
@@ -98,7 +97,10 @@ export default {
 </script>
 
 <style scoped>
-.pricing-card {
+/* .pricing-card {
   border: 2px solid #0174BB;
+} */
+.divider {
+  border-bottom: 1px solid black;
 }
 </style>
