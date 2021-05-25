@@ -192,10 +192,10 @@
                 hint="Please enter your PRC License No for verification"
                 :disabled="loading.form"
               )
-            //- v-col(
-            //-   cols="12"
-            //-   :class="{ 'pa-1': !$isMobile }"
-            //- ).order-md-9.order-sm-9
+            v-col(
+              cols="12"
+              :class="{ 'pa-1': !$isMobile }"
+            ).order-md-9.order-sm-9.mb-5
               v-checkbox(
                 v-model="agree"
                 hide-details
@@ -209,7 +209,7 @@
                     a(@click.stop="goToTerms") Terms of Use&nbsp;
                     | and&nbsp;
                     a(@click.stop="goToPrivacy") Privacy Policy.
-            v-alert(:value="error" type="error").mt-5 {{ errorMessage }}
+              v-alert(:value="error" type="error").mt-5 {{ errorMessage }}
             v-col(
               cols="12"
               :class="{ 'pa-1': !$isMobile }"
@@ -217,8 +217,9 @@
               v-btn(
                 type="submit"
                 color="success"
+                style="min-width: 200px;"
                 large
-                :disabled="loading.form || !valid"
+                :disabled="loading.form || !valid || !agree"
                 :loading="loading.form"
                 :block="$isMobile"
               ).text-none #[b Proceed #[v-icon mdi-arrow-right]]
@@ -423,6 +424,11 @@ export default {
       try {
         this.loading.form = true;
         this.error = false;
+        if (!this.facilityType || !this.roles.length) {
+          this.error = true;
+          this.errorMessage = 'The form is incomplete. Please provide the required inforamtion';
+          return;
+        };
         if (!this.$refs.formRef.validate()) {
           return;
         }

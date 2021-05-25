@@ -23,7 +23,7 @@
                 span.font-s.font-weight-semibold {{ bundle.currency }}&nbsp;
                 span.font-xl.font-weight-semibold {{ bundle.monthlyPrice }}
               span(v-else).font-xl.font-weight-semibold FREE
-              //- span(v-else).font-xl {{ bundle.annualPrice ? bundle.annualPrice : bundle.monthlyPrice }}
+              //- span(v-else).font-xl {{ bundle.annualMonthlyPrice ? bundle.annualMonthlyPrice : bundle.monthlyPrice }}
             p.font-s
               span(v-if="bundle.users") {{ bundle.users }} user
               br

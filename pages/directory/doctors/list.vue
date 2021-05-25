@@ -58,7 +58,6 @@ import SearchControls from '~/components/directory-doctor/search-controls';
 import Social from '~/components/directory-doctor/social';
 import TriviaCarousel from '~/components/directory-doctor/trivia-carousel';
 export default {
-  layout: 'directory-doctor',
   components: {
     AboutClinic,
     AppBar,
@@ -69,6 +68,7 @@ export default {
     Social,
     TriviaCarousel,
   },
+  layout: 'directory-doctor',
   data () {
     this.doctors = DOCTORS_LIST;
     this.socialItem = SOCIAL_ITEM;
@@ -80,14 +80,6 @@ export default {
       isLoading: false,
     };
   },
-  methods: {
-    async mockLoading () {
-      this.isLoading = true;
-      await setTimeout(() => {
-        this.isLoading = false;
-      }, 1000);
-    },
-  },
   head () {
     // TODO: update meta tags
     return headMeta({
@@ -95,6 +87,14 @@ export default {
       description: `${this.bio || 'Visit my professional website and schedule an appointment with me today.'}`,
       socialBanner: this.picURL,
     });
+  },
+  methods: {
+    async mockLoading () {
+      this.isLoading = true;
+      await setTimeout(() => {
+        this.isLoading = false;
+      }, 1000);
+    },
   },
 };
 </script>
