@@ -24,7 +24,7 @@
       :description-classes="descriptionClasses"
     )
     //- 6th panel
-    plans
+    plans.mb-n3
 </template>
 
 <script>
