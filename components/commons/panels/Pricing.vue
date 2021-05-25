@@ -134,7 +134,6 @@ export default {
       try {
         this.loading = true;
         this.pricingPackages = await getSubscriptionPackagesPricing(type) || [];
-        console.warn('pricing packages', this.pricingPackages);
       } catch (e) {
         console.error(e);
       } finally {

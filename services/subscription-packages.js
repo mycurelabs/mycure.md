@@ -26,9 +26,7 @@ export const state = () => ({
 
 export const getSubscriptionPackages = async ({ types }) => {
   const country = await getCountry();
-  console.warn('country', country);
   const currency = country?.country_code === 'PH' ? 'php' : 'usd';
-  console.warn(currency);
   const { items } = await sdk.service('subscription/packages').find({
     organizationType: 'facility',
     organizationTypes: { $in: types },
@@ -43,7 +41,6 @@ export const getSubscriptionPackagesPricing = async (type) => {
   const packages = await getSubscriptionPackages({ types: [type] });
   const plans = packages.filter(pack => pack.planInterval === 'month');
 
-  console.warn('packages', plans);
 
   const mappedPackages = plans.map((pack) => {
     const packageValue = pack.tags[0];
