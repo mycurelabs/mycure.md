@@ -148,6 +148,8 @@
                 :items="facilityTypes"
                 :rules="isRequired"
                 :disabled="loading.form"
+                :error="errorFacilityType"
+                :error-messages="errorMessagesFacilityType"
                 return-object
               )
                 template(v-slot:item="data")
@@ -180,9 +182,11 @@
                 item-text="text"
                 item-value="value"
                 outlined
+                :error-messages="errorMessagesRoles"
                 :items="userRoles"
                 :rules="isRequired"
                 :disabled="loading.form"
+                :error="errorRoles"
               )
               v-text-field(
                 v-if="isDoctor"
@@ -255,6 +259,7 @@
 </template>
 
 <script>
+import { isEmpty } from 'lodash';
 import { parsePhoneNumberFromString } from 'libphonenumber-js';
 // import { get } from 'lodash';
 import {
@@ -360,6 +365,10 @@ export default {
       error: false,
       errorMessage: 'There was an error please try again later.',
       mobileNoError: false,
+      errorFacilityType: false,
+      errorMessagesFacilityType: '',
+      errorRoles: false,
+      errorMessagesRoles: '',
     };
   },
   computed: {
@@ -382,6 +391,18 @@ export default {
       }
       const needle = val.toLowerCase();
       this.countries = this.countries.filter(v => v?.name?.toLowerCase().startsWith(needle)); // eslint-disable-line
+    },
+    facilityType (val) {
+      if (!isEmpty(val)) {
+        this.errorFacilityType = false;
+        this.errorMessagesFacilityType = '';
+      }
+    },
+    roles (val) {
+      if (!isEmpty(val)) {
+        this.errorRoles = false;
+        this.errorMessagesRoles = '';
+      }
     },
   },
   created () {
@@ -424,9 +445,20 @@ export default {
       try {
         this.loading.form = true;
         this.error = false;
-        if (!this.facilityType || !this.roles.length) {
+        this.errorFacilityType = false;
+        this.errorRoles = false;
+        if (isEmpty(this.facilityType)) {
           this.error = true;
+          this.errorFacilityType = true;
           this.errorMessage = 'The form is incomplete. Please provide the required inforamtion';
+          this.errorMessagesFacilityType = 'This is required';
+          return;
+        };
+        if (isEmpty(this.roles)) {
+          this.error = true;
+          this.errorRoles = true;
+          this.errorMessage = 'The form is incomplete. Please provide the required inforamtion';
+          this.errorMessagesRoles = 'This is required';
           return;
         };
         if (!this.$refs.formRef.validate()) {

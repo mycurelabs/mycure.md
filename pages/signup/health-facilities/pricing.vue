@@ -68,22 +68,33 @@
                     large
                     block
                     :disabled="!active || loading"
-                    :loading="loading && active"
+                    :loading="loading"
                     @click="selectBundle(bundle)"
                   ).text-none Select {{bundle.title}}
                 //- v-card-text
                   pre {{bundle}}
     email-verification-dialog(v-model="emailVerificationMessageDialog" :email="email" @confirm="confirmEmailVerification")
+    stripe-checkout(
+      ref="checkoutRef"
+      :pk="publishableKey"
+      :session-id="sessionId"
+    )
+    v-dialog(v-model="paymentErrorDialog" width="400")
+      v-card
+        v-card-text.pa-10.text-center
+          v-icon(style="font-size: 40px;").error--text mdi-close
+          h2 Error!
+          p Checkout process didn't go through!
 </template>
 
 <script>
-// import { isEmpty } from 'lodash';
+import { isEmpty } from 'lodash';
 import EmailVerificationDialog from '~/components/signup/EmailVerificationDialog';
 import PictureSource from '~/components/commons/PictureSource';
 import { SUBSCRIPTION_MAPPINGS } from '~/constants/subscription';
 import { ALL_PRICING } from '~/constants/pricing';
-// import { signupFacility } from '~/utils/axios';
-import { getSubscriptionPackages } from '~/services/subscription-packages';
+import { signupFacility } from '~/utils/axios';
+// import { getSubscriptionPackages } from '~/services/subscription-packages';
 const FACILITY_STEP_1_DATA = 'facility:step1:model';
 export default {
   components: {
@@ -93,15 +104,18 @@ export default {
   layout: 'user',
   data () {
     this.subscriptionMappings = SUBSCRIPTION_MAPPINGS;
+    this.publishableKey = process.env.STRIPE_PK;
     // this.queryTypeMapping = {
     //   doctor:
     // };
     return {
       loading: false,
+      paymentErrorDialog: false,
       paymentInterval: 0,
       selectedPricingModel: 0,
       selectedPricing: {},
       emailVerificationMessageDialog: false,
+      sessionId: '',
     };
   },
   computed: {
@@ -126,6 +140,9 @@ export default {
     filteredPricing () {
       return ALL_PRICING.filter(({ facilityType }) => facilityType === this.facilityType);
     },
+    paymentState () {
+      return process.client && (new URLSearchParams(window.location.search).get('payment') || '');
+    },
   },
   watch: {
     selectedPricingModel: {
@@ -134,6 +151,14 @@ export default {
       },
       immediate: true,
     },
+  },
+  mounted () {
+    if (this.paymentState === 'success') {
+      this.$nuxt.$router.push({ name: 'signup-health-facilities-otp-verification' });
+    }
+    if (this.paymentState === 'cancel') {
+      this.paymentErrorDialog = true;
+    }
   },
   methods: {
     async selectBundle (bundle) {
@@ -148,47 +173,39 @@ export default {
         const payload = {
           ...this.step1LocalStorageData,
         };
-        console.warn(payload);
-        console.warn(bundle);
 
         // TODO: Subscription logic block
         const paid = bundle.annualMonthlyPrice > 0 || bundle.monthlyPrice;
 
-        let packages;
-        // let selectedPackage;
-
         if (paid) {
-          // TODO: Get packages
-          packages = await getSubscriptionPackages({ types: this.facilityType });
-          console.warn(packages);
-
-          // TODO: get package from packages based on selected bundle
-          // selectedPackage = {};
-
-          // TODO: Inject subscription to bundle
           // Build organization payload
-          // payload.organization = {
-          //   ...this.step1LocalStorageData?.organization,
-          //   subsciption: {
-          //     package: selectedPackage.id,
-          //   },
-          // };
+          payload.organization = {
+            ...this.step1LocalStorageData?.organization,
+            subscription: {
+              // TODO: infer from selected bundle
+              // package: bundle.id,
+              package: 'package_physicians_premium_usd_monthly',
+              stripeCheckoutSuccessURL: process.client && `${window.location.origin}${window.location.pathname}?payment=success`,
+              stripeCheckoutCancelURL: process.client && `${window.location.origin}${window.location.pathname}?payment=cancel`,
+            },
+          };
         }
 
-        // const user = await signupFacility(payload);
-        // console.warn(user);
+        const user = await signupFacility(payload);
 
-        // if (!isEmpty(user?.organization?.subscription?.updatesPending)) {
-        //   // TODO: Do stripe checkout
-        // }
+        if (!isEmpty(user?.organization?.subscription?.updatesPending)) {
+          this.sessionId = user.organization.subscription.updatesPending.stripeSession;
+          this.$refs.checkoutRef.redirectToCheckout();
+          return;
+        }
 
-        // if (this.countryCallingCode !== '63') {
-        //   this.emailVerificationMessageDialog = true;
-        // } else {
-        //   this.$nuxt.$router.push({ name: 'signup-health-facilities-otp-verification' });
-        // }
+        if (this.countryCallingCode !== '63') {
+          this.emailVerificationMessageDialog = true;
+        } else {
+          this.$nuxt.$router.push({ name: 'signup-health-facilities-otp-verification' });
+        }
       } catch (e) {
-        console.warn(e);
+        console.error(e);
       } finally {
         this.loading = false;
       }
