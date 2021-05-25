@@ -6,6 +6,15 @@
       style="width: 100%"
     )
       v-row(justify="center" align="start")
+        v-col(cols="6" md="6").text-center
+          v-btn-toggle(
+            v-model="paymentInterval"
+            color="primary"
+            mandatory
+          )
+            v-btn.text-none Pay Monthly
+            v-btn.text-none Pay Annually
+      v-row(justify="center" align="start")
         template(v-for="bundle in filteredPricing")
           v-col(cols="6" md="3")
             v-item(v-slot="{ active, toggle }")
@@ -68,12 +77,13 @@
 </template>
 
 <script>
-import { isEmpty } from 'lodash';
+// import { isEmpty } from 'lodash';
 import EmailVerificationDialog from '~/components/signup/EmailVerificationDialog';
 import PictureSource from '~/components/commons/PictureSource';
 import { SUBSCRIPTION_MAPPINGS } from '~/constants/subscription';
 import { ALL_PRICING } from '~/constants/pricing';
-import { signupFacility } from '~/utils/axios';
+// import { signupFacility } from '~/utils/axios';
+import { getSubscriptionPackages } from '~/services/subscription-packages';
 const FACILITY_STEP_1_DATA = 'facility:step1:model';
 export default {
   components: {
@@ -88,6 +98,7 @@ export default {
     // };
     return {
       loading: false,
+      paymentInterval: 0,
       selectedPricingModel: 0,
       selectedPricing: {},
       emailVerificationMessageDialog: false,
@@ -137,42 +148,46 @@ export default {
         const payload = {
           ...this.step1LocalStorageData,
         };
+        console.warn(payload);
+        console.warn(bundle);
 
         // TODO: Subscription logic block
-        // const isFree = bundle.annualMonthlyPrice > 0;
-        // let packages, selectedPackage;
+        const paid = bundle.annualMonthlyPrice > 0 || bundle.monthlyPrice;
 
-        // if (!isFree) {
-        //   // TODO: Get packages
-        //   const { items } = await this.$sdk.service('subscription/packages').find({ type: 'facility', types: this.facilityType });
-        //   packages = items;
-        //   console.warn(packages);
+        let packages;
+        // let selectedPackage;
 
-        //   // TODO: get package from packages based on selected bundle
-        //   selectedPackage = {};
+        if (paid) {
+          // TODO: Get packages
+          const { doctorPackages } = await getSubscriptionPackages({ type: this.facilityType });
+          packages = doctorPackages;
+          console.warn(packages);
 
-        //   // TODO: Inject subscription to payload
-        //   // Build organization payload
-        //   payload.organization = {
-        //     ...this.step1LocalStorageData?.organization,
-        //     subsciption: {
-        //       package: selectedPackage.id,
-        //     },
-        //   };
+          // TODO: get package from packages based on selected bundle
+          // selectedPackage = {};
+
+          // TODO: Inject subscription to bundle
+          // Build organization payload
+          // payload.organization = {
+          //   ...this.step1LocalStorageData?.organization,
+          //   subsciption: {
+          //     package: selectedPackage.id,
+          //   },
+          // };
+        }
+
+        // const user = await signupFacility(payload);
+        // console.warn(user);
+
+        // if (!isEmpty(user?.organization?.subscription?.updatesPending)) {
+        //   // TODO: Do stripe checkout
         // }
 
-        const user = await signupFacility(payload);
-        console.warn(user);
-
-        if (!isEmpty(user?.organization?.subscription?.updatesPending)) {
-          // TODO: Do stripe checkout
-        }
-
-        if (this.countryCallingCode !== '63') {
-          this.emailVerificationMessageDialog = true;
-        } else {
-          this.$nuxt.$router.push({ name: 'signup-health-facilities-otp-verification' });
-        }
+        // if (this.countryCallingCode !== '63') {
+        //   this.emailVerificationMessageDialog = true;
+        // } else {
+        //   this.$nuxt.$router.push({ name: 'signup-health-facilities-otp-verification' });
+        // }
       } catch (e) {
         console.warn(e);
       } finally {
