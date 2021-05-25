@@ -1806,9 +1806,9 @@
     "@sinonjs/commons" "^1.7.0"
 
 "@stripe/stripe-js@^1.13.2":
-  version "1.14.0"
-  resolved "https://registry.yarnpkg.com/@stripe/stripe-js/-/stripe-js-1.14.0.tgz#0eb8a185197948ab9ddb62ee28ae555e7d90bc72"
-  integrity sha512-Zw4EI+ph8RPxRpIX2uwKKDIbe7WM2OarasPjIPRulU1UCj8lRFqWWW/fTj79lZtnX3FNZkiTRM13UG1UZF7yjQ==
+  version "1.15.0"
+  resolved "https://registry.yarnpkg.com/@stripe/stripe-js/-/stripe-js-1.15.0.tgz#86178cfbe66151910b09b03595e60048ab4c698e"
+  integrity sha512-KQsNPc+uVQkc8dewwz1A6uHOWeU2cWoZyNIbsx5mtmperr5TPxw4u8M20WOa22n6zmIOh/zLdzEe8DYK/0IjBw==
 
 "@types/anymatch@*":
   version "1.3.1"
@@ -2041,9 +2041,9 @@
     eslint-visitor-keys "^2.0.0"
 
 "@vue-stripe/vue-stripe@^4.2.0":
-  version "4.2.0"
-  resolved "https://registry.yarnpkg.com/@vue-stripe/vue-stripe/-/vue-stripe-4.2.0.tgz#2bf8ecc0bf60cd2d64ee1952ed189e111bcac7b1"
-  integrity sha512-s0/rhab+Jv5F/4xQucuehpxQ8FiVdLKO+isrT8ALAxWMh+F+07pJTutdVKLdUIUU7rl5TA4L3Gav3fpo87zQyg==
+  version "4.2.4"
+  resolved "https://registry.yarnpkg.com/@vue-stripe/vue-stripe/-/vue-stripe-4.2.4.tgz#25e7fe26b64f2956a09a28a16dc6c8d5147b5e0b"
+  integrity sha512-NWjwhUPBbw+FCHdoXp4v4OPFmuinDzW+nqesKUJQq5EH2dp7k+WOBJWYsd2iZiD2LxnDDGtQ0Ew9rOrGUruCKg==
   dependencies:
     "@stripe/stripe-js" "^1.13.2"
     vue-coerce-props "^1.0.0"
