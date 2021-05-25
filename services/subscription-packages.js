@@ -67,7 +67,8 @@ export const getSubscriptionPackagesPricing = async (type) => {
         : packages.find(item => item.tags.includes(packageValue) && item.planInterval === 'year')
           ?.plan?.amount || 0,
       inclusions,
-      btnText: !pack.plan?.amount ? 'Try Free' : 'Get Started',
+      // btnText: !pack.plan?.amount ? 'Try Free' : 'Get Started',
+      btnText: 'Get Started',
       // Doctor specific only
       ...DOCTOR_TYPES.includes(type) && { users: packageValue === 'lite' ? '1' : 'per' },
     };
