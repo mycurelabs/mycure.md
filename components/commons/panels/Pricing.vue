@@ -1,34 +1,35 @@
 <template lang="pug">
-  v-container
-    v-row(justify="center")
-      generic-panel(:row-bindings="{ justify: 'center'}")
-        v-col(cols="12")
-          v-row(justify="center")
-            v-col(cols="12").text-center
-              strong(v-if="metaTitle" :class="metaTitleClasses").primary--text {{ metaTitle }}
-              h2(:class="titleClasses").lh-title.font-weight-semibold.mb-5 {{ title }}
-              p(:class="descriptionClasses").grey--text.font-open-sans.mb-5 {{ description }}
-          //- v-row(justify="center")
-          //-   v-col(cols="12" md="6" xl="4").text-center.mb-10
-          //-     v-btn(
-          //-       v-for="(mode, key) in modeBtns"
-          //-       :key="key"
-          //-       color="primary"
-          //-       v-bind="modeBtnBindings(mode)"
-          //-       depressed
-          //-       tile
-          //-       :large="$isWideScreen"
-          //-       @click="pricingMode = mode"
-          //-     ).text-none
-          //-       | Billed&nbsp;
-          //-       span.text-capitalize {{ mode }}
-          v-row(justify="center")
-            v-col(
-              v-for="(detail, key) in pricingDetails"
-              :key="key"
-              v-bind="columnBindings"
-            )
-              pricing-card(:bundle="detail")
+  div.pricing-bg.mx-n3
+    v-container
+      v-row(justify="center")
+        generic-panel(:row-bindings="{ justify: 'center'}")
+          v-col(cols="12")
+            v-row(justify="center")
+              v-col(cols="12").text-center
+                strong(v-if="metaTitle" :class="metaTitleClasses").primary--text {{ metaTitle }}
+                h2(:class="titleClasses").lh-title.font-weight-semibold.mb-5 {{ title }}
+                p(:class="descriptionClasses").font-open-sans.mb-5 {{ description }}
+            //- v-row(justify="center")
+            //-   v-col(cols="12" md="6" xl="4").text-center.mb-10
+            //-     v-btn(
+            //-       v-for="(mode, key) in modeBtns"
+            //-       :key="key"
+            //-       color="primary"
+            //-       v-bind="modeBtnBindings(mode)"
+            //-       depressed
+            //-       tile
+            //-       :large="$isWideScreen"
+            //-       @click="pricingMode = mode"
+            //-     ).text-none
+            //-       | Billed&nbsp;
+            //-       span.text-capitalize {{ mode }}
+            v-row(justify="center")
+              v-col(
+                v-for="(detail, key) in pricingDetails"
+                :key="key"
+                v-bind="columnBindings"
+              )
+                pricing-card(:bundle="detail").elevation-3
 </template>
 
 <script>
@@ -122,3 +123,12 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.pricing-bg {
+  width: 100vw;
+  background-image: url('../../../assets/images/pricing/Pricing BG.png');
+  background-position: center center;
+  background-size: 100% 100%;
+}
+</style>
