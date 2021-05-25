@@ -41,7 +41,6 @@ export const getSubscriptionPackagesPricing = async (type) => {
   const packages = await getSubscriptionPackages({ types: [type] });
   const plans = packages.filter(pack => pack.planInterval === 'month');
 
-
   const mappedPackages = plans.map((pack) => {
     const packageValue = pack.tags[0];
     const currency = PACKAGE_CURRENCY[pack.currency];
