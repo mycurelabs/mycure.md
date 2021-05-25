@@ -11,18 +11,26 @@
                 p(:class="descriptionClasses").font-open-sans.mb-5 {{ description }}
             v-row(justify="center")
               v-col(cols="12" md="6" xl="4").text-center.mb-10
-                v-btn(
-                  v-for="(mode, key) in modeBtns"
-                  :key="key"
-                  color="primary"
-                  v-bind="modeBtnBindings(mode)"
-                  depressed
-                  tile
-                  :large="$isWideScreen"
-                  @click="pricingMode = mode"
-                ).text-none
-                  | Billed&nbsp;
-                  span.text-capitalize {{ mode }}
+                div.d-flex.align-center.justify-center
+                  strong(:class="descriptionClasses").font-open-sans.black--text.mr-3 Billed Monthly
+                  v-switch(
+                    v-model="switchModel"
+                    inset
+                    color="info"
+                  )
+                  strong(:class="descriptionClasses").font-open-sans.black--text Billed Annually
+                //- v-btn(
+                //-   v-for="(mode, key) in modeBtns"
+                //-   :key="key"
+                //-   color="primary"
+                //-   v-bind="modeBtnBindings(mode)"
+                //-   depressed
+                //-   tile
+                //-   :large="$isWideScreen"
+                //-   @click="pricingMode = mode"
+                //- ).text-none
+                //-   | Billed&nbsp;
+                //-   span.text-capitalize {{ mode }}
             v-row(justify="center")
               v-col(
                 v-for="(pack, key) in pricingPackages"
@@ -81,6 +89,7 @@ export default {
     this.modeBtns = ['monthly', 'annually'];
     return {
       loading: false,
+      switchModel: false,
       pricingMode: 'monthly', // monthly | annually
       pricingPackages: [],
     };
@@ -105,6 +114,15 @@ export default {
         regular: ['font-s'],
         wide: ['font-m'],
       });
+    },
+  },
+  watch: {
+    switchModel (val) {
+      if (val) {
+        this.pricingMode = 'annually';
+        return;
+      }
+      this.pricingMode = 'monthly';
     },
   },
   async created () {
