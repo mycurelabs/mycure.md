@@ -7,7 +7,7 @@ export const DOCTORS_PRICING = [
     image: 'Essentials',
     currency: '₱',
     monthlyPrice: 0,
-    annualMonthlyPrice: 0,
+    annualPrice: 0,
     users: 1,
     inclusions: [
       { text: 'Unlimited Patients', valid: true },
@@ -31,7 +31,7 @@ export const DOCTORS_PRICING = [
     image: 'Premium',
     currency: '₱',
     monthlyPrice: 488,
-    annualMonthlyPrice: 399,
+    annualPrice: 399,
     users: 'per',
     inclusions: [
       { text: 'Unlimited Patients', valid: true },
@@ -58,7 +58,7 @@ export const CLINICS_PRICING = [
     image: 'Essentials',
     currency: '₱',
     monthlyPrice: 4999,
-    // annualMonthlyPrice: 0,
+    annualPrice: 4488,
     // users: 1,
     inclusions: [
       { text: 'Up to 10 users', valid: true },
@@ -87,7 +87,7 @@ export const CLINICS_PRICING = [
     image: 'Premium',
     currency: '₱',
     monthlyPrice: 9999,
-    // annualMonthlyPrice: 399,
+    // annualPrice: 399,
     // users: 'per',
     inclusions: [
       { text: 'Up to 20 users', valid: true },
@@ -116,7 +116,7 @@ export const CLINICS_PRICING = [
     image: 'Platinum',
     currency: '₱',
     monthlyPrice: 14999,
-    // annualMonthlyPrice: 699,
+    // annualPrice: 699,
     // users: 'per',
     inclusions: [
       { text: 'Up to 30 users', valid: true },
@@ -167,7 +167,7 @@ export const DIAGNOSTICS_PRICING = [
     image: 'Essentials',
     currency: '₱',
     monthlyPrice: 2499,
-    // annualMonthlyPrice: 0,
+    // annualPrice: 0,
     // users: 1,
     inclusions: [
       { text: 'Up to 5 users', valid: true },
@@ -194,7 +194,7 @@ export const DIAGNOSTICS_PRICING = [
     image: 'Premium',
     currency: '₱',
     monthlyPrice: 4999,
-    // annualMonthlyPrice: 399,
+    // annualPrice: 399,
     // users: 'per',
     inclusions: [
       { text: 'Up to 10 users', valid: true },
@@ -221,7 +221,7 @@ export const DIAGNOSTICS_PRICING = [
     image: 'Platinum',
     currency: '₱',
     monthlyPrice: 9999,
-    // annualMonthlyPrice: 699,
+    // annualPrice: 699,
     // users: 'per',
     inclusions: [
       { text: 'Up to 20 users', valid: true },
