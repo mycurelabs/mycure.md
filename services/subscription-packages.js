@@ -264,7 +264,6 @@ export const getSubscriptionPackagesPricing = async (type) => {
       monthlyPrice: getMonthlyPrice(pack, type),
       annualMonthlyPrice: getAnnualMonthlyPrice(packages.find(item => item.tags.includes(packageValue) && item.planInterval === 'year'), type),
       inclusions,
-      // btnText: !pack.plan?.amount ? 'Try Free' : 'Get Started',
       btnText: 'Get Started',
       // Doctor specific only
       ...DOCTOR_TYPES.includes(type) && { users: packageValue === 'lite' ? '1' : 'per' },
