@@ -179,7 +179,6 @@ export default {
           let packageId;
           if (this.paymentInterval === 'month') packageId = bundle.monthlyPackageId;
           if (this.paymentInterval === 'year') packageId = bundle.annualPackageId;
-          console.warn('packageId', packageId);
           // Build organization payload
           payload.organization = {
             ...this.step1LocalStorageData?.organization,
