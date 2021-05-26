@@ -151,6 +151,29 @@ const mapPackageInclusions = (plan, organizationType) => {
   return inclusions;
 };
 
+const getMonthlyPrice = (pack, organizationType) => {
+  if (!pack) return 0;
+  if (DOCTOR_TYPES.includes(organizationType)) {
+    return pack.products?.memberSeatsMax?.plan?.amount || 0;
+  }
+  return pack.plan?.amount || 0;
+};
+
+const getAnnualMonthlyPrice = (pack, organizationType) => {
+  if (!pack) return 0;
+  if (DOCTOR_TYPES.includes(organizationType)) {
+    return Math.ceil((pack.products?.memberSeatsMax?.plan?.amount || 0) / 12);
+  }
+  return Math.ceil((pack.plan?.amount || 0) / 12);
+};
+
+const isRecommended = (type, packageValue) => {
+  if (DOCTOR_TYPES.includes(type)) return false;
+  if (type === 'diagnostic' && packageValue === 'platinum') return true;
+  if (type === 'clinic' && packageValue === 'premium') return true;
+  return false;
+};
+
 const PACKAGE_IMAGE = {
   lite: 'Essentials',
   premium: 'Premium',
@@ -230,19 +253,13 @@ export const getSubscriptionPackagesPricing = async (type) => {
     return {
       value: packageValue,
       facilityType: type,
-      title: pack.name,
+      title: `${packageValue.charAt(0).toUpperCase()}${packageValue.slice(1)}`,
       description: pack.description,
-      image: PACKAGE_IMAGE[packageValue],
+      image: `${PACKAGE_IMAGE[packageValue]}${isRecommended(type, packageValue) ? ' White' : ''}`,
+      isRecommended: isRecommended(type, packageValue),
       currency,
-      // Temp hack
-      monthlyPrice: packageValue === 'premium' && type === 'doctor'
-        ? 488
-        : pack.plan?.amount || 0,
-      // Temp hack
-      annualMonthlyPrice: packageValue === 'premium' && type === 'doctor'
-        ? 399
-        : packages.find(item => item.tags.includes(packageValue) && item.planInterval === 'year')
-          ?.plan?.amount || 0,
+      monthlyPrice: getMonthlyPrice(pack, type),
+      annualMonthlyPrice: getAnnualMonthlyPrice(packages.find(item => item.tags.includes(packageValue) && item.planInterval === 'year'), type),
       inclusions,
       // btnText: !pack.plan?.amount ? 'Try Free' : 'Get Started',
       btnText: 'Get Started',
