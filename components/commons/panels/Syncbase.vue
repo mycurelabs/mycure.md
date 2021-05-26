@@ -6,6 +6,7 @@
         content-right
         :media-column-bindings="mediaColumnBindings"
         :content-column-bindings="contentColumnBindings"
+        :hide-btn="hideBtn"
       )
         div(slot="content")
           template(v-if="!versionTwo")
@@ -13,7 +14,7 @@
             p(:class="descriptionClasses") Work as if you have an in-house server with the convenience of the cloud. Create your medical records locally using multiple devices even if the internet is down! Once back online, it instantly syncs your data into the cloud.
           template(v-else)
             p(:class="descriptionClasses") With MYCURE Syncbase, work as if you have an in-house server with the convenience of the cloud. Create your medical records locally using multiple devices even if the internet is down! Once back online, it instantly syncs your data into the cloud.
-        template(slot="cta-button")
+        template(v-if="!hideBtn" slot="cta-button")
           //- mc-btn(
           //-   color="primary"
           //-   depressed
@@ -48,6 +49,10 @@ export default {
   },
   props: {
     versionTwo: {
+      type: Boolean,
+      default: false,
+    },
+    hideBtn: {
       type: Boolean,
       default: false,
     },

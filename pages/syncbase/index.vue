@@ -1,24 +1,22 @@
 <template lang="pug">
-  div(v-if="!loading").white
+  v-container(fluid v-if="!loading").white
     //- 1st panel
-    generic-media-panel(
-      center-media
-      with-subheader
-      header="The holy grail of online-offline technology"
-      sub-header="MYCURE Syncbase"
-      :header-classes="titleClasses"
-      :sub-header-classes="metaTitleClasses"
-    )
-      template(slot="additional-content")
-        v-card(flat color="black")
-          iframe(
-            align="middle"
-            id="ytplayer"
-            type="text/html" :width="!$isMobile ? '90%' : '100%'" :height="wXL? '600' : '450'"
-            src="https://www.youtube.com/embed/siFBgZMt26k?autoplay=1&loop=1&showinfo=0&rel=0"
-            frameborder="0"
-            allowfullscreen
-          )
+    div.mx-n3.syncbase-bg
+      v-container
+        v-row(justify="center")
+          generic-panel
+            v-col(cols="12").text-center
+              p(:class="metaTitleClasses").mb-3 MYCURE Syncbase
+              h1(:class="titleClasses").mb-10 The holy grail of online-offline technology
+            v-col(cols="12").text-center
+              iframe(
+                align="middle"
+                id="ytplayer"
+                type="text/html" :width="!$isMobile ? '90%' : '100%'" :height="wXL? '600' : '450'"
+                src="https://www.youtube.com/embed/siFBgZMt26k?autoplay=1&loop=1&showinfo=0&rel=0"
+                frameborder="0"
+                allowfullscreen
+              )
     //- 2nd panel
     //- generic-media-panel(
     //-   :center-media="!$isMobile"
@@ -31,46 +29,31 @@
     //-   dummy
     //- )
     //- 3rd panel
-    generic-media-panel(
-      content-align-right
-      cols-left="5"
-      cols-right="4"
-      offset-cols-right="1"
-      header="Accessibility like no other"
-      :descriptions="['Work in your local network with multiple devices even if the internet goes down and just automatically sync data back when online.']"
-      :header-classes="headerClasses"
-      :descriptionClasses="descriptionClasses"
-      :dense="$isMobile"
-    )
-      template(slot="custom-left")
-        video(v-if="!$isMobile" :width="wXL ? '1175' : '820'" playsinline autoplay muted loop).syncbase-animate
-          source(src="~/assets/videos/mycure-syncbase-diagram-animate.webm" type="video/webm")
-          source(src="~/assets/videos/mycure-syncbase-diagram-animate.mp4" type="video/mp4")
-          | Your browser does not support the video tag.
+    syncbase(hide-btn version-two)
     //- 4th panel
-    features(
-      title="Secure cloud-based software with the benefits of an on-premise system"
-      title-col-size="10"
-      image-dir="syncbase/"
-      hide-learn-more
-      :items="features"
-      extension-exclusive
-      panel-height="70vh"
-    )
+    div.mx-n3.grey-bg
+      features(
+        title="Secure cloud-based software with the benefits of an on-premise system"
+        title-col-size="10"
+        image-dir="syncbase/"
+        hide-learn-more
+        :items="features"
+        extension-exclusive
+      )
     //- 5th panel
-    div.info
-      generic-media-panel(
-        center-media
-        header="See it in action. Book a demo today!"
-        :header-classes="headerClasses"
-        :dense="$isMobile"
-      ).white--text
-        div(slot="additional-content" :class="{'text-center': $isMobile}")
-          mc-btn(
-            depressed
-            color="primary"
-            :href="'https://calendly.com/mycure/demo'"
-          ).text-none.font-12 Book a Demo
+    div.mx-n3.mb-n3.primary
+      v-container
+        v-row(justify="center")
+          generic-panel(:row-bindings="{ justify: 'center' }")
+            v-col(cols="12" md="10").text-center
+              h2(:class="headerClasses").mb-10.white--text See it in action. Book a demo today!
+              mc-btn(
+                depressed
+                color="success"
+                :large="$isRegularScreen"
+                :x-large="$isWideScreen"
+                :href="'https://calendly.com/mycure/demo'"
+              ).font-s.text-none Book a Demo
 </template>
 
 <script>
@@ -79,14 +62,14 @@ import classBinder from '~/utils/class-binder';
 import headMeta from '~/utils/head-meta';
 // - components
 import Features from '~/components/commons/panels/Features';
-import GenericMediaPanel from '~/components/commons/generic-media-panel';
-import Usp from '~/components/commons/panels/SevenWondersUsp';
+import GenericPanel from '~/components/generic/GenericPanel';
+import Syncbase from '~/components/commons/panels/Syncbase';
 
 export default {
   components: {
     Features,
-    GenericMediaPanel,
-    Usp,
+    GenericPanel,
+    Syncbase,
   },
   data () {
     this.features = [
@@ -158,7 +141,6 @@ export default {
         regular: ['font-xl'],
       });
       return [
-        'mb-8',
         classes,
       ];
     },
@@ -183,7 +165,13 @@ export default {
 </script>
 
 <style scoped>
-.syncbase-animate {
-  margin-left: -18vw;
+.syncbase-bg {
+  width: 100vw;
+  background-image: url('../../assets/images/syncbase/Syncbase.png');
+  background-position: center center;
+  background-size: 100% 100%;
+}
+.grey-bg {
+  background-color: #fafafa;
 }
 </style>
