@@ -1,7 +1,7 @@
 <template lang="pug">
    v-card(:color="cardColor" height="100%" width="100%").rounded-xl.card-outter
-      v-chip(v-if="isRecommended" color="warning" label x-small).chip.mt-1.mr-3.black--text Recommended
-      v-card-title.pt-5
+      v-chip(v-if="isRecommended" color="warning" label small).chip.mt-1.black--text.align-center.justify-center Recommended
+      v-card-title.pt-8
         v-spacer
         h2(:class="normalTextColor").font-21.font-weight-bold {{ bundle.title }}
         v-spacer
@@ -154,7 +154,12 @@ export default {
 .chip {
   position: absolute;
   top: 0;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
   right: 0;
+  text-align: center;
+  width: 60%
 }
 
 /* .usage-metric-container {
