@@ -208,8 +208,8 @@ export const getSubscriptionPackages = async ({ types }) => {
 };
 
 /**
- *
- * @param {String} type - organization type
+ * See https://github.com/mycurelabs/olympus/wiki/Health-Facility-Types-Guide
+ * @param {String} type - organization types
  * @example 'doctor' - for doctor and telehealth
  * @example 'clinic'  - for outpatient clinic
  * @example 'diagnostic' - for diagnostic
@@ -225,9 +225,12 @@ export const getSubscriptionPackagesPricing = async (type) => {
   const mappedPackages = plans.map((pack) => {
     const packageValue = pack.tags[0];
     const currency = PACKAGE_CURRENCY[pack.currency];
-
     const inclusions = mapPackageInclusions(pack, type);
+    const monthlyPackage = packages.find(pkg => pkg.tags[0] === packageValue && pkg.planInterval === 'month');
+    const annualPackage = packages.find(pkg => pkg.tags[0] === packageValue && pkg.planInterval === 'year');
     return {
+      monthlyPackageId: monthlyPackage?.id,
+      annualPackageId: annualPackage?.id,
       value: packageValue,
       facilityType: type,
       title: pack.name,
