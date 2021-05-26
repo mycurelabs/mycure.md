@@ -84,18 +84,11 @@
     v-divider(v-if="$isMobile").divider
     //- 7th panel
     generic-media-panel(:content="cmsPanel")
-      div(slot="cta-button" :class="{'text-center': $isMobile}")
-        mc-btn(
-          rounded
-          :large="$isRegularScreen"
-          :x-large="$isWideScreen"
-          depressed
-          color="primary"
-          :to="{ name: 'clinics' }"
-          :class="{'font-s': !$isMobile}"
-        ).text-none
-          v-icon(left) mdi-information-outline
-          span Learn more
+      template(slot="cta-button")
+        div(:class="{'text-center': $isMobile}")
+          nuxt-link(:to="{ name: 'clinics' }" :class="{'d-flex': !$isMobile}").button
+            v-icon(left color="primary" :large="$isWideScreen") mdi-information-outline
+            span(:class="descriptionClasses").primary--text Learn more
     //- 8th panel
     think-long-term
     //- 9th panel
@@ -315,5 +308,8 @@ export default {
 .divider {
   margin-right: 30% !important;
   margin-left: 30% !important;
+}
+.button {
+  text-decoration: none;
 }
 </style>
