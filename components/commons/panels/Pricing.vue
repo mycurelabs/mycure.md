@@ -19,18 +19,6 @@
                     color="info"
                   )
                   strong(:class="descriptionClasses").font-open-sans.black--text Billed Annually
-                //- v-btn(
-                //-   v-for="(mode, key) in modeBtns"
-                //-   :key="key"
-                //-   color="primary"
-                //-   v-bind="modeBtnBindings(mode)"
-                //-   depressed
-                //-   tile
-                //-   :large="$isWideScreen"
-                //-   @click="pricingMode = mode"
-                //- ).text-none
-                //-   | Billed&nbsp;
-                //-   span.text-capitalize {{ mode }}
             v-row(justify="center")
               v-col(
                 v-for="(pack, key) in pricingPackages"
@@ -39,7 +27,7 @@
               )
                 pricing-card(
                   :bundle="pack"
-                  :pricing-mode="pricingMode"
+                  :payment-interval="paymentInterval"
                 ).elevation-3
 </template>
 
@@ -86,11 +74,10 @@ export default {
     },
   },
   data () {
-    this.modeBtns = ['monthly', 'annually'];
     return {
       loading: false,
       switchModel: false,
-      pricingMode: 'monthly', // monthly | annually
+      paymentInterval: 'month', // month | year
       pricingPackages: [],
     };
   },
@@ -119,10 +106,10 @@ export default {
   watch: {
     switchModel (val) {
       if (val) {
-        this.pricingMode = 'annually';
+        this.paymentInterval = 'year';
         return;
       }
-      this.pricingMode = 'monthly';
+      this.paymentInterval = 'month';
     },
   },
   async created () {
@@ -141,7 +128,7 @@ export default {
       }
     },
     modeBtnBindings (mode) {
-      if (mode === this.pricingMode) return;
+      if (mode === this.paymentInterval) return;
       return { outlined: true };
     },
   },

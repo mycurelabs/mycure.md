@@ -1,98 +1,6 @@
 import sdk from '@mycure/sdk-js';
 import { getCountry } from '~/utils/axios';
 
-// const generatePackageIds = (type, tiers, currencies = ['usd', 'php'], intervals = ['month', 'year']) => {
-//   const ids = [`package_${type}_lite`];
-//   tiers?.forEach(tier => {
-//     for (let cI = 0; cI < currencies.length; cI++) {
-//       for (let iI = 0; iI < intervals.length; iI++) {
-//         ids.push(`package_${type}_${tier}_${currencies[cI]}_${intervals[iI]}ly`); // eslint_disable_line
-//       }
-//     }
-//   });
-//   return ids;
-// };
-
-// const BOOKING_PACKAGE_IDS = [
-//   'package_booking_free',
-// ];
-// const DOCTOR_PACKAGE_IDS = generatePackageIds('physicians', ['premium']);
-// const CLINIC_PACKAGE_IDS = generatePackageIds('outpatients', ['premium', 'platinum', 'enterprise']);
-// const DIAGNOSTIC_PACKAGE_IDS = generatePackageIds('diagnostics', ['premium', 'platinum', 'enterprise']);
-
-export const state = () => ({
-  subscriptionPackages: [],
-});
-
-export const getSubscriptionPackages = async ({ types }) => {
-  const country = await getCountry();
-  const currency = country?.country_code === 'PH' ? 'php' : 'usd';
-  const { items } = await sdk.service('subscription/packages').find({
-    organizationType: 'facility',
-    organizationTypes: { $in: types },
-    $or: [
-      { currency },
-    ],
-  });
-  return items;
-};
-
-export const getSubscriptionPackagesPricing = async (type) => {
-  const packages = await getSubscriptionPackages({ types: [type] });
-  const plans = packages.filter(pack => pack.planInterval === 'month');
-
-  const mappedPackages = plans.map((pack) => {
-    const packageValue = pack.tags[0];
-    const currency = PACKAGE_CURRENCY[pack.currency];
-
-    const inclusions = mapPackageInclusions(pack, type);
-    return {
-      value: packageValue,
-      facilityType: type,
-      title: pack.name,
-      description: pack.description,
-      image: PACKAGE_IMAGE[packageValue],
-      currency,
-      // Temp hack
-      monthlyPrice: packageValue === 'premium' && type === 'doctor'
-        ? 488
-        : pack.plan?.amount || 0,
-      // Temp hack
-      annualMonthlyPrice: packageValue === 'premium' && type === 'doctor'
-        ? 399
-        : packages.find(item => item.tags.includes(packageValue) && item.planInterval === 'year')
-          ?.plan?.amount || 0,
-      inclusions,
-      // btnText: !pack.plan?.amount ? 'Try Free' : 'Get Started',
-      btnText: 'Get Started',
-      // Doctor specific only
-      ...DOCTOR_TYPES.includes(type) && { users: packageValue === 'lite' ? '1' : 'per' },
-    };
-  });
-
-  const ENTERPRISE = {
-    facilityType: type,
-    value: 'enterprise',
-    title: 'Enterprise',
-    description: 'Perfect for multi-branch healthcare facilities doing large-scale operations',
-    image: 'Enterprise',
-    requireContact: true,
-    inclusions: [
-      { text: 'Unlimited Users', valid: true },
-      { text: 'Flexible Storage', valid: true },
-      { text: 'Dedicated Support', valid: true },
-      { text: 'Dedicated Project Timeline', valid: true },
-      { text: 'White-labeled Patient Portal', valid: true },
-      { text: 'API Integration', valid: true },
-      { text: 'Multi-branch Functions', valid: true },
-      { text: 'Customizable Features', valid: true },
-    ],
-    btnText: 'Contact Us',
-  };
-
-  return !DOCTOR_TYPES.includes(type) ? [...mappedPackages, ENTERPRISE] : mappedPackages;
-};
-
 const mapPackageInclusions = (plan, organizationType) => {
   const {
     memberSeatsMax,
@@ -262,3 +170,106 @@ const DOCTOR_TYPES = [
   'doctor-ob',
   'doctor-telehealth',
 ];
+
+// const generatePackageIds = (type, tiers, currencies = ['usd', 'php'], intervals = ['month', 'year']) => {
+//   const ids = [`package_${type}_lite`];
+//   tiers?.forEach(tier => {
+//     for (let cI = 0; cI < currencies.length; cI++) {
+//       for (let iI = 0; iI < intervals.length; iI++) {
+//         ids.push(`package_${type}_${tier}_${currencies[cI]}_${intervals[iI]}ly`); // eslint_disable_line
+//       }
+//     }
+//   });
+//   return ids;
+// };
+
+// const BOOKING_PACKAGE_IDS = [
+//   'package_booking_free',
+// ];
+// const DOCTOR_PACKAGE_IDS = generatePackageIds('physicians', ['premium']);
+// const CLINIC_PACKAGE_IDS = generatePackageIds('outpatients', ['premium', 'platinum', 'enterprise']);
+// const DIAGNOSTIC_PACKAGE_IDS = generatePackageIds('diagnostics', ['premium', 'platinum', 'enterprise']);
+
+export const state = () => ({
+  subscriptionPackages: [],
+});
+
+export const getSubscriptionPackages = async ({ types }) => {
+  const country = await getCountry();
+  const currency = country?.country_code === 'PH' ? 'php' : 'usd';
+  const { items } = await sdk.service('subscription/packages').find({
+    organizationType: 'facility',
+    organizationTypes: { $in: types },
+    $or: [
+      { currency },
+    ],
+  });
+  return items;
+};
+
+/**
+ *
+ * @param {String} type - organization type
+ * @example 'doctor' - for doctor and telehealth
+ * @example 'clinic'  - for outpatient clinic
+ * @example 'diagnostic' - for diagnostic
+ *
+ * @returns {Array} packages
+ */
+export const getSubscriptionPackagesPricing = async (type) => {
+  const packages = await getSubscriptionPackages({ types: [type] });
+  const plans = packages.filter(pack => pack.planInterval === 'month') || [];
+
+  if (!plans.length) return [];
+
+  const mappedPackages = plans.map((pack) => {
+    const packageValue = pack.tags[0];
+    const currency = PACKAGE_CURRENCY[pack.currency];
+
+    const inclusions = mapPackageInclusions(pack, type);
+    return {
+      value: packageValue,
+      facilityType: type,
+      title: pack.name,
+      description: pack.description,
+      image: PACKAGE_IMAGE[packageValue],
+      currency,
+      // Temp hack
+      monthlyPrice: packageValue === 'premium' && type === 'doctor'
+        ? 488
+        : pack.plan?.amount || 0,
+      // Temp hack
+      annualMonthlyPrice: packageValue === 'premium' && type === 'doctor'
+        ? 399
+        : packages.find(item => item.tags.includes(packageValue) && item.planInterval === 'year')
+          ?.plan?.amount || 0,
+      inclusions,
+      // btnText: !pack.plan?.amount ? 'Try Free' : 'Get Started',
+      btnText: 'Get Started',
+      // Doctor specific only
+      ...DOCTOR_TYPES.includes(type) && { users: packageValue === 'lite' ? '1' : 'per' },
+    };
+  });
+
+  const ENTERPRISE = {
+    facilityType: type,
+    value: 'enterprise',
+    title: 'Enterprise',
+    description: 'Perfect for multi-branch healthcare facilities doing large-scale operations',
+    image: 'Enterprise',
+    requireContact: true,
+    inclusions: [
+      { text: 'Unlimited Users', valid: true },
+      { text: 'Flexible Storage', valid: true },
+      { text: 'Dedicated Support', valid: true },
+      { text: 'Dedicated Project Timeline', valid: true },
+      { text: 'White-labeled Patient Portal', valid: true },
+      { text: 'API Integration', valid: true },
+      { text: 'Multi-branch Functions', valid: true },
+      { text: 'Customizable Features', valid: true },
+    ],
+    btnText: 'Contact Us',
+  };
+
+  return !DOCTOR_TYPES.includes(type) ? [...mappedPackages, ENTERPRISE] : mappedPackages;
+};
