@@ -1,78 +1,34 @@
 <template lang="pug">
   v-container(style="height: 100vh" fluid).fill-height
-    v-item-group(
-      v-model="selectedPricingModel"
-      mandatory
-      style="width: 100%"
-    )
-      v-row(justify="center" align="start")
-        v-col(cols="6" md="6").text-center
-          v-btn-toggle(
-            v-model="paymentInterval"
+    v-row(justify="center" align="start")
+      v-col(cols="12" md="12")
+        div.d-flex.align-center.justify-center
+          strong(:class="descriptionClasses").font-open-sans.black--text.mr-3 Billed Monthly
+          v-switch(
+            v-model="paymentIntervalSwitch"
+            inset
             color="primary"
-            mandatory
           )
-            v-btn.text-none Pay Monthly
-            v-btn.text-none Pay Annually
-      v-row(justify="center" align="start")
-        template(v-for="bundle in filteredPricing")
-          v-col(cols="6" md="3")
-            v-item(v-slot="{ active, toggle }")
-              v-card(
-                flat
-                :style="{ border: `3px solid ${ active ? '#7fad33' : 'lightgrey' }` }"
-                height="100%"
-                @click="toggle"
-              )
-                v-card-title
-                  v-spacer
-                  h2.font-weight-semibold {{ bundle.title }}
-                  v-spacer
-                v-card-text(style="height: 380px;").general-info-container
-                  div.text-center.pb-5
-                    picture-source(
-                      extension-exclusive
-                      custom-path="pricing/"
-                      :image="bundle.image"
-                      image-file-extension=".png"
-                      :image-alt="bundle.title"
-                      :image-width="!$isMobile ? '50%' : '40%'"
-                    )
-                  div.text-center
-                    div(v-if="bundle.requireContact")
-                      p.font-l.font-weight-semibold Contact Us
-                    template(v-else)
-                      p.font-weight-bold
-                        template(v-if='bundle.monthlyPrice > 0')
-                          span.font-s.font-weight-semibold {{ bundle.currency }}&nbsp;
-                          span.font-xl.font-weight-semibold {{ bundle.monthlyPrice }}
-                        span(v-else).font-xl.font-weight-semibold FREE
-                        //- span(v-else).font-xl {{ bundle.annualMonthlyPrice ? bundle.annualMonthlyPrice : bundle.monthlyPrice }}
-                      p.font-s
-                        span(v-if="bundle.users") {{ bundle.users }} user
-                        br
-                        | per clinic
-                        br
-                        | per month
-                  div.text-center.description-container
-                    p.info--text {{ bundle.description }}
-                v-card-text(style="height: 360px;")
-                  v-row(justify="center")
-                    v-col(cols="12" xl="10")
-                      div(v-for="(inclusion, inclusionKey) in bundle.inclusions" :key="inclusionKey").d-flex
-                        v-icon(:color="getInclusionColor(inclusion.valid)" left) mdi-check
-                        span(:class="inclusion.valid ? 'info--text' : 'grey--text'") {{ inclusion.text }}
-                v-card-actions
-                  v-btn(
-                    color="success"
-                    large
-                    block
-                    :disabled="!active || loading"
-                    :loading="loading"
-                    @click="selectBundle(bundle)"
-                  ).text-none Select {{bundle.title}}
-                //- v-card-text
-                  pre {{bundle}}
+          strong(:class="descriptionClasses").font-open-sans.black--text Billed Annually
+      template(v-for="bundle in packages")
+        v-col(
+          v-if="!bundle.requireContact"
+          cols="12"
+          md="3"
+        )
+          pricing-card(
+            :bundle="bundle"
+            :payment-interval="paymentInterval"
+          ).elevation-3
+            template(slot="card-btn")
+              v-btn(
+                color="primary"
+                rounded
+                block
+                :loading="loading"
+                :disabled="loading"
+                @click="selectBundle(bundle)"
+              ).text-none Choose {{bundle.title}}
     email-verification-dialog(v-model="emailVerificationMessageDialog" :email="email" @confirm="confirmEmailVerification")
     stripe-checkout(
       ref="checkoutRef"
@@ -85,21 +41,41 @@
           v-icon(style="font-size: 40px;").error--text mdi-close
           h2 Error!
           p Checkout process didn't go through!
+    v-dialog(v-model="confirmPaymentDialog" width="600")
+      v-card
+        v-card-text.pa-5
+          h2.mb-5 Confirmation
+          p(v-if="isPaid") You will be redirected to our payment partner. Do you want to proceed?
+          p(v-else) Do you want to proceed creating a FREE account with MYCURE?
+        v-card-actions
+          v-spacer
+          v-btn(
+            depressed
+            @click="confirmPaymentDialog = false"
+          ).text-none Cancel
+          v-btn(
+            depressed
+            color="success"
+            @click="submit"
+          ).text-none Proceed
 </template>
 
 <script>
 import { isEmpty } from 'lodash';
+import classBinder from '~/utils/class-binder';
 import EmailVerificationDialog from '~/components/signup/EmailVerificationDialog';
 import PictureSource from '~/components/commons/PictureSource';
+import PricingCard from '~/components/commons/PricingCard';
 import { SUBSCRIPTION_MAPPINGS } from '~/constants/subscription';
 import { ALL_PRICING } from '~/constants/pricing';
 import { signupFacility } from '~/utils/axios';
-// import { getSubscriptionPackages } from '~/services/subscription-packages';
+import { getSubscriptionPackagesPricing } from '~/services/subscription-packages';
 const FACILITY_STEP_1_DATA = 'facility:step1:model';
 export default {
   components: {
     EmailVerificationDialog,
     PictureSource,
+    PricingCard,
   },
   layout: 'user',
   data () {
@@ -111,7 +87,10 @@ export default {
     return {
       loading: false,
       paymentErrorDialog: false,
-      paymentInterval: 0,
+      confirmPaymentDialog: false,
+      selectedBundle: {},
+      packages: [],
+      paymentIntervalSwitch: false,
       selectedPricingModel: 0,
       selectedPricing: {},
       emailVerificationMessageDialog: false,
@@ -143,6 +122,19 @@ export default {
     paymentState () {
       return process.client && (new URLSearchParams(window.location.search).get('payment') || '');
     },
+    descriptionClasses () {
+      return classBinder(this, {
+        mobile: ['font-xs'],
+        regular: ['font-s'],
+        wide: ['font-m'],
+      });
+    },
+    paymentInterval () {
+      return this.paymentIntervalSwitch ? 'year' : 'month';
+    },
+    isPaid () {
+      return this.selectedBundle?.monthlyPrice > 0 || this.selectedBundle?.annualMonthlyPrice > 0;
+    },
   },
   watch: {
     selectedPricingModel: {
@@ -152,18 +144,25 @@ export default {
       immediate: true,
     },
   },
-  mounted () {
+  async mounted () {
     if (this.paymentState === 'success') {
       this.$nuxt.$router.push({ name: 'signup-health-facilities-otp-verification' });
     }
     if (this.paymentState === 'cancel') {
       this.paymentErrorDialog = true;
     }
+    this.packages = await getSubscriptionPackagesPricing(this.facilityType);
   },
   methods: {
-    async selectBundle (bundle) {
+    selectBundle (bundle) {
+      this.selectedBundle = bundle;
+      this.confirmPaymentDialog = true;
+    },
+    async submit () {
       try {
         this.loading = true;
+        this.confirmPaymentDialog = false;
+        const bundle = this.selectedBundle;
         if (bundle.requireContact) {
           this.sendCrispMessage();
           return;
@@ -174,17 +173,18 @@ export default {
           ...this.step1LocalStorageData,
         };
 
-        // TODO: Subscription logic block
-        const paid = bundle.annualMonthlyPrice > 0 || bundle.monthlyPrice;
+        const paid = bundle.monthlyPrice > 0 || bundle.annualMonthlyPrice > 0;
 
         if (paid) {
+          let packageId;
+          if (this.paymentInterval === 'month') packageId = bundle.monthlyPackageId;
+          if (this.paymentInterval === 'year') packageId = bundle.annualPackageId;
+          console.warn('packageId', packageId);
           // Build organization payload
           payload.organization = {
             ...this.step1LocalStorageData?.organization,
             subscription: {
-              // TODO: infer from selected bundle
-              // package: bundle.id,
-              package: 'package_physicians_premium_usd_monthly',
+              package: packageId,
               stripeCheckoutSuccessURL: process.client && `${window.location.origin}${window.location.pathname}?payment=success`,
               stripeCheckoutCancelURL: process.client && `${window.location.origin}${window.location.pathname}?payment=cancel`,
             },
@@ -195,6 +195,7 @@ export default {
 
         if (!isEmpty(user?.organization?.subscription?.updatesPending)) {
           this.sessionId = user.organization.subscription.updatesPending.stripeSession;
+          process.browser && window.localStorage.setItem('signup:stripe:session-id', this.sessionId);
           this.$refs.checkoutRef.redirectToCheckout();
           return;
         }
@@ -206,6 +207,13 @@ export default {
         }
       } catch (e) {
         console.error(e);
+        const errorCode = parseInt(e?.message?.replace(/ .*/, '').substr(1));
+        if (errorCode === 11000) {
+          this.sessionId = process.browser && window.localStorage.getItem('signup:stripe:session-id');
+          if (this.sessionId) {
+            this.$refs.checkoutRef.redirectToCheckout();
+          }
+        };
       } finally {
         this.loading = false;
       }
