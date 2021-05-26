@@ -13,14 +13,12 @@
             :image="bundle.image"
             image-file-extension=".png"
             :image-alt="bundle.title"
-            image-width="65'"
+            :image-width="cardType === 'enterprise' ? '200' : '65'"
           )
         div.text-center.description-container
           p(:class="normalTextColor").font-weight-medium.font-12 {{ bundle.description }}
         div.text-center
-          div(v-if="bundle.requireContact")
-            p.font-30.font-weight-bold.primary--text.lh-title Contact Us
-          template(v-else)
+          template(v-if="!bundle.requireContact")
             p(:class="priceColor").font-weight-bold
               template(v-if='bundle.monthlyPrice > 0')
                 span.font-30 {{ bundle.currency }}&nbsp;
@@ -88,6 +86,9 @@ export default {
     },
   },
   computed: {
+    cardType () {
+      return this.bundle.value;
+    },
     isRecommended () {
       return this.bundle.isRecommended;
     },
