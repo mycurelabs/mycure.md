@@ -255,7 +255,6 @@ export default {
         await setTimeout(() => {
           this.onAcknowledgment();
         }, 300);
-        localStorage.removeItem('facility:step1:model');
       } catch (e) {
         this.verificationError = true;
         this.clearInputs();
@@ -293,9 +292,7 @@ export default {
           email: this.step1Data.email,
           password: this.step1Data.password,
         });
-        if (process.browser) {
-          localStorage.clear();
-        }
+        process.browser && localStorage.clear();
         window.location = `${process.env.CMS_URL}?token=${accessToken}`;
       } catch (error) {
         console.error(error);
