@@ -183,7 +183,7 @@ const PACKAGE_IMAGE = {
 
 const PACKAGE_CURRENCY = {
   php: '₱',
-  usd: '$',
+  usd: 'USD',
 };
 
 const DOCTOR_TYPES = [
