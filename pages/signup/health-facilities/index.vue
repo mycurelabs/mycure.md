@@ -160,6 +160,7 @@
               )
               v-text-field(
                 v-if="isDoctor"
+                type="number"
                 v-model="doc_PRCLicenseNo"
                 label="PRC License No"
                 outlined
@@ -265,7 +266,7 @@ export default {
       password: '',
       confirmPassword: '',
       clinicType: '',
-      doc_PRCLicenseNo: '',
+      doc_PRCLicenseNo: null,
       roles: [],
       agree: '',
       // County Dialog
@@ -340,8 +341,16 @@ export default {
           countryCallingCode: this.countryCallingCode,
           clinicType: this.clinicType,
           roles: this.roles,
-          doc_PRCLicenseNo: this.doc_PRCLicenseNo,
         };
+        // HOTFIX:
+        // if (this.doc_PRCLicenseNo !== null) {
+        //   if (Number.isNaN(+this.doc_PRCLicenseNo)) {
+        //     alert('PRC License No must be a number');
+        //     return;
+        //   }
+        //   payload.doc_PRCLicenseNo = +this.doc_PRCLicenseNo;
+        // }
+        if (this.doc_PRCLicenseNo) payload.doc_PRCLicenseNo = +this.doc_PRCLicenseNo;
         this.saveModel(payload);
         await signupFacility(payload);
         if (this.countryCallingCode !== '63') {
