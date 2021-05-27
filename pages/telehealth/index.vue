@@ -28,10 +28,10 @@
         //- Check list
         template(slot="additional-content" v-if="info.list")
           template(v-for="(item, i) in info.list")
-            v-row(dense :justify="$isMobile ? 'center' : 'start'")
+            v-row(dense)
               v-col(cols="2" sm="1" md="1").pr-2.pt-2
                 img(width="20" src="~/assets/images/mycure-check.png" alt="Check icon")
-              v-col(cols="7" sm="5" md="7")
+              v-col(cols="10" sm="5" md="7")
                 span(:class="descriptionClasses") {{ item }}
       v-divider(v-if="$isMobile").divider
     //- 6th panel

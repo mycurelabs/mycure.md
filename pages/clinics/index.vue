@@ -27,7 +27,7 @@
       :content-classes="descriptionClasses"
       hide-btn
     )
-      div(slot="additional-content" :class="{'text-center': $isMobile}").mt-10
+      div(slot="additional-content").mt-10
         signup-button(
           depressed
           rounded
@@ -177,7 +177,7 @@ export default {
     headerClasses () {
       const headerClasses = [
         classBinder(this, {
-          mobile: ['font-m', 'text-center'],
+          mobile: ['font-m'],
           regular: ['font-l'],
           wide: ['font-xl'],
         }),

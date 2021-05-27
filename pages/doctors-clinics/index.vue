@@ -44,7 +44,6 @@
           v-row(
             v-for="(item, i) in sixthPanel.list"
             :key="item"
-            :justify="$isMobile ? 'center' : 'start'"
             dense
           )
             v-col(cols="2" sm="1" md="1").pr-2.pt-2
@@ -76,12 +75,11 @@
           v-row(
             v-for="(item, i) in eightPanel.list"
             :key="i"
-            :justify="$isMobile ? 'center' : 'start'"
             dense
           )
             v-col(cols="2" sm="1" md="1").pr-2.pt-2
               v-icon(color="white") mdi-checkbox-marked-circle
-            v-col(cols="7" sm="5" md="7")
+            v-col(cols="10" sm="5" md="7")
               span(:class="eightPanelContentClasses") {{ item }}
     //- 9th panel
     think-long-term
@@ -235,7 +233,7 @@ export default {
     headerClasses () {
       const headerClasses = [
         classBinder(this, {
-          mobile: ['font-m', 'text-center'],
+          mobile: ['font-m'],
           regular: ['font-l'],
           wide: ['font-xl'],
         }),
@@ -248,7 +246,7 @@ export default {
     descriptionClasses () {
       const descriptionClasses = [
         classBinder(this, {
-          mobile: ['font-xs', 'text-center'],
+          mobile: ['font-xs'],
           regular: ['font-s'],
           wide: ['font-m'],
         }),
@@ -260,7 +258,7 @@ export default {
     eightPanelContentClasses () {
       return [
         classBinder(this, {
-          mobile: ['font-xs', 'text-center'],
+          mobile: ['font-xs'],
           regular: ['font-s'],
           wide: ['font-m'],
         }),

@@ -25,7 +25,7 @@
           //-   :to="{ name: 'syncbase' }"
           //-   :class="{'font-s': !$isMobile}"
           //- ).text-none.button
-          div(:class="{'text-center': $isMobile}")
+          div
             nuxt-link(:to="{ name: 'syncbase' }" :class="{'d-flex': !$isMobile}").button
               span(:class="descriptionClasses").primary--text Learn about MYCURE Syncbase
               v-icon(left color="primary" :large="$isWideScreen") mdi-chevron-right
@@ -64,7 +64,7 @@ export default {
     headerClasses () {
       const headerClasses = [
         classBinder(this, {
-          mobile: ['font-m', 'text-center'],
+          mobile: ['font-m'],
           regular: ['font-l'],
           wide: ['font-xl'],
         }),
@@ -75,7 +75,7 @@ export default {
     descriptionClasses () {
       const descriptionClasses = [
         classBinder(this, {
-          mobile: ['font-xs', 'text-center'],
+          mobile: ['font-xs'],
           regular: ['font-s'],
           wide: ['font-m'],
         }),

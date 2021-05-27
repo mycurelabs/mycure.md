@@ -84,6 +84,7 @@
         text
         depressed
         large
+        :to="{ name: 'signin' }"
       ).text-none.mr-2 #[span.font-weight-medium LOG IN]
       v-btn(
         color="success"

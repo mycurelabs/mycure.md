@@ -8,7 +8,7 @@
       div.mb-10
         slot(name="center-panel-title")
           h2(:class="defaultCenterPanelTitleClasses") {{ centerPanelTitle }}
-    v-col(v-bind="mediaColumnBindings" :class=" { 'order-last': contentAlignment }").text-center
+    v-col(v-bind="mediaColumnBindings" :class=" { 'order-last': contentAlignment, 'text-center': !$isMobile }")
       slot(name="image")
         img(:width="width" :src="image")
     v-col(v-bind="contentColumnBindings")
@@ -130,7 +130,7 @@ export default {
     defaultTitleClasses () {
       const titleClasses = [
         classBinder(this, {
-          mobile: ['font-m', 'text-center'],
+          mobile: ['font-m'],
           regular: ['font-l'],
           wide: ['font-2xl'],
         }),

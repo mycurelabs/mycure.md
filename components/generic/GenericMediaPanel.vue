@@ -61,7 +61,7 @@ export default {
     defaultTitleClasses () {
       const titleClasses = [
         classBinder(this, {
-          mobile: ['font-m', 'text-center'],
+          mobile: ['font-m'],
           regular: ['font-l'],
           wide: ['font-xl'],
         }),
@@ -73,7 +73,7 @@ export default {
     defaultContentClasses () {
       const contentClasses = [
         classBinder(this, {
-          mobile: ['font-xs', 'text-center'],
+          mobile: ['font-xs'],
           regular: ['font-s'],
           wide: ['font-m'],
         }),
@@ -85,7 +85,7 @@ export default {
     defaultSuperTitleClasses () {
       return [
         classBinder(this, {
-          mobile: ['font-xs', 'text-center'],
+          mobile: ['font-xs'],
           regular: ['font-xs'],
           wide: ['font-s'],
         }),

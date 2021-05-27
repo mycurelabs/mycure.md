@@ -16,45 +16,6 @@
       hide-btn
       disable-parent-padding
     )
-    //- generic-media-panel(
-    //-   :fluid="fluid"
-    //-   v-for="(panel, key) in panels"
-    //-   :key="key"
-    //-   offset-cols-right="1"
-    //-   :header="panel.header"
-    //-   :descriptions="panel.descriptions"
-    //-   :header-classes="headerClasses"
-    //-   :description-classes="descriptionClasses"
-    //-   :dense='$isMobile'
-    //-   v-bind="getPanelBindings(key)"
-    //-   extension-exclusive
-    //-   custom-image-path="commons/"
-    //-   file-extension=".png"
-    //-   :web-image="panel.image"
-    //- )
-    //- v-row(justify="center")
-    //-   v-col(
-    //-     cols="12"
-    //-     md="4"
-    //-     v-for="(panel, key) in panels"
-    //-     :key="key"
-    //-   )
-    //-     v-card(flat color="#fafafa" height="100%")
-    //-       v-card-text
-    //-         div.text-center
-    //-           picture-source(
-    //-             extension-exclusive
-    //-             custom-path="commons/"
-    //-             image-file-extension=".png"
-    //-             :image="panel.image"
-    //-             :image-alt="panel.header"
-    //-             image-width="90%"
-    //-           )
-    //-         br
-    //-         br
-    //-         h2(:class="headerClasses") {{ panel.header }}
-    //-         br
-    //-         p(:class="descriptionClasses") {{ panel.descriptions }}
 </template>
 
 <script>
@@ -106,7 +67,7 @@ export default {
     headerClasses () {
       const headerClasses = [
         classBinder(this, {
-          mobile: ['font-s', 'text-center'],
+          mobile: ['font-s'],
           regular: ['font-m'],
           wide: ['font-l'],
         }),
@@ -118,7 +79,7 @@ export default {
     descriptionClasses () {
       const descriptionClasses = [
         classBinder(this, {
-          mobile: ['font-xs', 'text-center'],
+          mobile: ['font-xs'],
           regular: ['font-s'],
           wide: ['font-m'],
         }),

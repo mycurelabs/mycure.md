@@ -11,7 +11,7 @@
             v-col(cols="12").text-center.text-container
               v-row(justify="center")
                 v-col(cols="12" md="8" xl="12")
-                  h1(:class="headerClasses").mb-10 Enterprise Grade Healthcare Solutions
+                  h1(:class="headerClasses").mb-10 Enterprise-Grade Healthcare Solutions
                   v-row(justify="center")
                     v-col(cols="12" md="10")
                       p(:class="{ 'font-m' : !$isMobile, 'font-s' : $isMobile }").primary--text.font-weight-bold.mb-10 At a fraction of the cost.

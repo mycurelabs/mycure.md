@@ -8,7 +8,7 @@
       custom-image-path="booking/"
     )
       template(slot="title")
-        h1(:class="headerClasses").font-weight-bold Grow your #[br]
+        h1(:class="[{'text-center': $isMobile}, ...headerClasses]").font-weight-bold Grow your #[br]
           vue-typer(
             :text="['Practice', 'Clinic', 'Diagnostics', 'Hospital']"
             :repeat="Infinity"
@@ -62,7 +62,7 @@ export default {
     headerClasses () {
       const headerClasses = [
         classBinder(this, {
-          mobile: ['font-m', 'text-center'],
+          mobile: ['font-m'],
           regular: ['font-l'],
           wide: ['font-xl'],
         }),
