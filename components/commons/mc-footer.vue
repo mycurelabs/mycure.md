@@ -59,7 +59,7 @@
                       v-if="col.type === 'chat'"
                       @click.stop="toggleChat()"
                     ).black--text.d-block.font-14 {{col.value}}
-          v-row(align="center" no-gutters)
+          v-row(align="center" no-gutters).mt-10
             v-col(
               :class="{ 'text-center order-last' : $isMobile }"
               cols="12"
@@ -138,8 +138,9 @@ export default {
           value: 'Contact Us',
           columns: [
             { type: 'email', value: 'hello@mycure.md' },
-            { type: 'phone', value: '(+632) 7799 6262' },
-            { type: 'phone', value: '(+63) 917 303 4350' },
+            { type: 'phone', value: 'PH: (+632) 7799 6262' },
+            { type: 'phone', value: 'PH: (+63) 917 303 4350' },
+            { type: 'phone', value: 'Guam: 1-671-646-2733' },
           ],
         },
       ],

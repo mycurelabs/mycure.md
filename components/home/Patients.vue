@@ -7,56 +7,44 @@
           v-row(justify="center")
             v-col(cols="12" md="8").text-center
               p(:class="descriptionClasses").grey--text.font-open-sans.mb-10 You treat your patients with holistic care. Now, make it extra covenient for them to reach you.
-        v-col(cols="12" md="10")
-          picture-source(
-            v-if="!wXS"
-            image="Patients will love you more"
-            image-file-extension=".png"
-            extension-exclusive
-            custom-path="home/"
-            image-alt="Online booking"
-          )
-          template(v-else)
-            picture-source(
-              v-for="(feature, key) in features"
-              image-file-extension=".png"
-              custom-path="home/"
-              extension-exclusive
-              :key="key"
-              :image="feature"
-              :image-alt="feature"
-            ).my-1
-        //- v-col(
-        //-   v-for="(app, key) in apps"
-        //-   :key="key"
-        //-   cols="12"
-        //-   md="5"
-        //- ).text-center
-        //-   v-card(flat)
-        //-     v-img(
-        //-       :src="require(`~/assets/images/home/${app.image}.png`)"
-        //-     )
-        //-       v-card-title
-        //-         v-spacer
-        //-         span(:class="descriptionClasses").white--text {{ app.name }}
-        //-         v-spacer
-        //-       v-card-text.text-center
-        //-         strong(:class="appDescriptionClasses").white--text.content-line-spacing {{ app.description }}
+        v-col(
+          v-for="(feature, key) in features"
+          :key="key"
+          cols="12"
+          md="5"
+        ).text-center
+          v-card(flat)
+            v-img(
+              :src="require(`~/assets/images/home/${feature.image}.png`)"
+              :alt="feature.title"
+            )
+              v-card-title.mt-8
+                v-spacer
+                span(:class="descriptionClasses").white--text.font-open-sans {{ feature.title }}
+                v-spacer
+              v-card-text.text-center.px-8
+                strong(:class="appDescriptionClasses").white--text.content-line-spacing {{ feature.description }}
 </template>
 
 <script>
 import classBinder from '~/utils/class-binder';
 import GenericPanel from '~/components/generic/GenericPanel';
-import PictureSource from '~/components/commons/PictureSource';
 export default {
   components: {
     GenericPanel,
-    PictureSource,
   },
   data () {
     this.features = [
-      'Online Results',
-      'Online Booking',
+      {
+        title: 'Online Results',
+        description: 'Time to go digital for the new generation.',
+        image: 'Online Results BG',
+      },
+      {
+        title: 'Online Booking',
+        description: 'Help patients find the best schedule for their next visit.',
+        image: 'Online Booking BG',
+      },
     ];
     return {};
   },
@@ -78,7 +66,7 @@ export default {
     appDescriptionClasses () {
       return classBinder(this, {
         mobile: ['font-s'],
-        regular: ['font-m'],
+        regular: ['font-24'],
         wide: ['font-l'],
       });
     },

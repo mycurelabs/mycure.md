@@ -1,15 +1,22 @@
 <template lang="pug">
-  v-card(color="#fafafa" height="100%" rounded="xl").elevation-5
-    v-card-text.text-center
-      img(
-        :src="require(`~/assets/images/home/${wonder.image}.png`)"
-        :width="$isMobile ? '60%' : '75%'"
-        :alt="wonder.title"
-      )
-      br
-      br
-      h2(:class="wonderHeaderClasses").font-weight-bold.lh-title {{ wonder.title }}
-      p(:class="wonderDescriptionClasses").mt-2 {{ wonder.description }}
+  v-hover(v-slot="{ hover }")
+    v-card(
+      color="#fafafa"
+      height="100%"
+      rounded="xl"
+      :to="wonder.infoLink"
+      :elevation="hover ? 16 : 5"
+    )
+      v-card-text.text-center
+        img(
+          :src="require(`~/assets/images/home/${wonder.image}.png`)"
+          :width="$isMobile ? '60%' : '75%'"
+          :alt="wonder.title"
+        )
+        br
+        br
+        h2(:class="wonderHeaderClasses").font-weight-bold.lh-title {{ wonder.title }}
+        p(:class="wonderDescriptionClasses").mt-2 {{ wonder.description }}
 </template>
 
 <script>

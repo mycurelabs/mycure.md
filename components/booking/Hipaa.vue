@@ -20,8 +20,8 @@
                   rel="noreferrer noopener"
                   :class="{'d-flex': !$isMobile}"
                 ).learn-more
-                  v-icon(left color="primary") mdi-information-outline
                   span(:class="descriptionClasses").primary--text Learn more
+                  v-icon(right color="primary") mdi-chevron-right
 </template>
 
 <script>

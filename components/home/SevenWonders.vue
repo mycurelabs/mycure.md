@@ -43,7 +43,7 @@
                     v-for="(wonder,index) in wonders"
                     :key="index"
                     :data-index="index+1"
-                  ).px-2
+                  ).pa-2
                     wonder(:wonder="wonder")
     //- div(v-else).mobile-container.ml-n3
     //-   img(
@@ -162,10 +162,10 @@ export default {
 
 @media screen and (max-width: 952px) {
   .container {
-    height: 1500px;
+    height: 1000px;
   }
   .background {
-    height: 1550px;
+    height: 1050px;
   }
 }
 @media screen and (min-width: 1920px) {
