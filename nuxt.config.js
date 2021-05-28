@@ -41,6 +41,7 @@ export default {
     '~/plugins/vue-media-query-mixin.js',
     '~/plugins/vue-fragment.js',
     '~/plugins/vue-lazyload.js',
+    { src: '~/plugins/vue-observe-visibility.js', mode: 'client' },
     { src: '~/plugins/main.js', mode: 'client' },
     { src: '~/plugins/mc-btn', mode: 'client' },
     { src: '~plugins/vue-cookie-law', mode: 'client' },
@@ -64,6 +65,7 @@ export default {
     // https://go.nuxtjs.dev/vuetify
     '@nuxtjs/vuetify',
     '@nuxtjs/google-analytics',
+    'nuxt-animejs',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -118,7 +120,10 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-    transpile: ['vue-clamp', 'resize-detector'],
+    transpile: [
+      'vue-clamp',
+      'resize-detector',
+    ],
     /*
     ** You can extend webpack config here
     */
