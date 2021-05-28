@@ -2,7 +2,7 @@
   div
     div.container
       img(
-        src="~/assets/images/home/Homepage USP v2B.png"
+        src="~/assets/images/home/Homepage USP BG.png"
         alt="MYCURE Seven wonders of healthcare"
       ).background
       v-container.content.ml-n6
