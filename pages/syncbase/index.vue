@@ -13,7 +13,7 @@
                 align="middle"
                 id="ytplayer"
                 type="text/html" :width="!$isMobile ? '90%' : '100%'" :height="wXL? '600' : '450'"
-                src="https://www.youtube.com/embed/siFBgZMt26k?autoplay=1&loop=1&showinfo=0&rel=0"
+                src="https://www.youtube.com/embed/siFBgZMt26k?autoplay=1&loop=1&rel=0&modestbranding=1&showinfo=0"
                 frameborder="0"
                 allowfullscreen
               )
@@ -50,6 +50,8 @@
               mc-btn(
                 depressed
                 color="success"
+                target="_blank"
+                rel="noopener noreferrer"
                 :large="$isRegularScreen"
                 :x-large="$isWideScreen"
                 :href="'https://calendly.com/mycure/demo'"
@@ -167,7 +169,7 @@ export default {
 <style scoped>
 .syncbase-bg {
   width: 100vw;
-  background-image: url('../../assets/images/syncbase/Syncbase.png');
+  background-image: url('../../assets/images/syncbase/Syncbase BG.png');
   background-position: center center;
   background-size: 100% 100%;
 }
