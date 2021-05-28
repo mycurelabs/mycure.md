@@ -190,6 +190,7 @@
               )
               v-text-field(
                 v-if="isDoctor"
+                type="number"
                 v-model="doc_PRCLicenseNo"
                 label="PRC License No"
                 outlined
@@ -340,7 +341,7 @@ export default {
       confirmPassword: '',
       facilityType: {},
       subscription: null,
-      doc_PRCLicenseNo: '',
+      doc_PRCLicenseNo: null,
       roles: [],
       agree: '',
       // - Stripe
@@ -480,9 +481,19 @@ export default {
           organization: organizationPayload,
           countryCallingCode: this.countryCallingCode,
           roles: this.roles,
-          doc_PRCLicenseNo: this.doc_PRCLicenseNo,
           // skipMobileNoVerification: this.facilityType.value !== 'doctor',
         };
+
+        // HOTFIX:
+        // if (this.doc_PRCLicenseNo !== null) {
+        //   if (Number.isNaN(+this.doc_PRCLicenseNo)) {
+        //     alert('PRC License No must be a number');
+        //     return;
+        //   }
+        //   payload.doc_PRCLicenseNo = +this.doc_PRCLicenseNo;
+        // }
+        if (this.doc_PRCLicenseNo) payload.doc_PRCLicenseNo = +this.doc_PRCLicenseNo;
+
         const [
           emailResultUnique,
           mobileResultUnique,
