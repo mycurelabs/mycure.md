@@ -6,12 +6,14 @@
       meta-title="MYCURE Clinic Management System"
       description="Designed for modern clinics with complex operations. Large or small, MYCURE enables clinics to be much more efficient, increase in revenue, and build more patient loyalty."
       parse-title="regular"
+      parse-meta-title="regular"
       btn-text="Get Started"
       btn-color="success"
       image="Clinics USP"
       image-width="90%"
       custom-image-path="clinics/"
       :parse-title-fields="['workflows, ', 'results, ']"
+      :parse-meta-title-fields="['System']"
     )
     //- 2nd panel
     div.grey-bg.mx-n3

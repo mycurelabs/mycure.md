@@ -28,42 +28,6 @@
             :class="btnClasses"
             :color="btnColor"
           ).text-none.letter-spacing-normal {{ btnText }}
-
-        //- v-col(
-        //-   cols="10"
-        //-   :md="imageCol"
-        //-   :offset-md="imageColOffset"
-        //-   :class="[{ 'order-last' : !$isMobile }, imageAlignment]"
-        //-   :align-self="$isMobile ? 'end' : 'center'"
-        //- )
-        //-   //- picture-source(
-        //-   //-   extension-exclusive
-        //-   //-   :image="image"
-        //-   //-   :image-alt="image"
-        //-   //-   image-file-extension=".png"
-        //-   //-   :custom-path="customImagePath"
-        //-   //-   :image-width="imageWidth"
-        //-   //- )
-        //-   img(
-        //-     :src="require(`~/assets/images/${customImagePath}${image}.png`)"
-        //-     :alt="image"
-        //-     :width="imageWidth"
-        //-   )
-        //- v-col(cols="12" :md="textCol" offset-md="1" :class="{ 'text-center' : $isMobile }" :align-self="$isMobile ? 'start' : 'center'")
-        //-   h1(v-if="metaTitle" :class="superTitleClasses").font-weight-bold.primary--text {{ superTitle }}
-        //-   p(:class="titleClasses") {{ uspTitle }}
-        //-   p(:class="descriptionClasses").font-gray.font-open-sans {{ uspDescription }}
-        //-   br
-        //-   template(v-if="slottedBtn")
-        //-     slot(name="usp btn")
-        //-   signup-button(
-        //-     v-else-if="!hideBtn"
-        //-     depressed
-        //-     rounded
-        //-     :class="descriptionClasses"
-        //-     :large="!$isMobile"
-        //-     :color="btnColor"
-        //-   ).text-none.letter-spacing-normal {{ btnText }}
 </template>
 
 <script>
