@@ -8,6 +8,7 @@
             h2(:class="panelHeaderClasses").font-weight-semibold Think Long-Term
     generic-media-panel(
       v-for="(panel, key) in panels"
+      align="center"
       :key="key"
       :content="panel"
       :title-classes="headerClasses"
@@ -29,7 +30,7 @@ export default {
     this.panels = [
       {
         title: 'MYCURE is not just your ordinary medical app.',
-        description: 'It’s a platform built for the healthcare ecosystem. You can connect and share files with clinics, diagnostic centers, hospitals, and other physicians within the MYCURE network. MYCURE has open APIs to give you more flexibility in integrating with other systems.',
+        description: 'It’s a platform built for the healthcare ecosystem. You can connect and share files with clinics, diagnostic centers, hospitals, and other physicians within the MYCURE network.',
         imageBindings: {
           image: 'Preventing Failures.png',
           customPath: 'commons/',
@@ -87,24 +88,6 @@ export default {
         'font-gray',
       ];
       return descriptionClasses;
-    },
-  },
-  methods: {
-    getPanelBindings (key) {
-      if (key % 2 === 0) {
-        return {
-          contentAlignRight: true,
-          colsLeft: '5',
-          colsRight: '4',
-          alignContentLeft: 'center',
-        };
-      }
-      return {
-        contentAlignLeft: true,
-        colsLeft: '4',
-        colsRight: '5',
-        alignContentRight: 'center',
-      };
     },
   },
 };

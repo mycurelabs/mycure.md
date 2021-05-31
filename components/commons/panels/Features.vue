@@ -6,7 +6,9 @@
             strong(v-if="metaTitle" :class="metaTitleClasses").primary--text {{ metaTitle }}
             h2(:class="titleClasses").lh-title.font-weight-semibold {{ title }}
           v-col(cols="12" :md="contentColSize").text-center.py-3
-            p(:class="descriptionClasses").font-open-sans.font-gray {{ description }}
+            div(:class="descriptionClasses").font-open-sans.font-gray
+              slot(name="description")
+                p {{ description }}
           v-col(cols="12" :md="iconContainerColSize")
             v-row(justify="center")
               v-col(:cols="iconColSizeMobile" :md="iconColSize" v-for="(item, key) in items" :key="key").text-center

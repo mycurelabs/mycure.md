@@ -20,15 +20,36 @@
                   )
                   strong(:class="descriptionClasses").font-open-sans.black--text Billed Annually
             v-row(justify="center" align="center" dense)
-              v-col(
-                v-for="(pack, key) in pricingPackages"
-                :key="key"
-                v-bind="columnBindings"
-              )
-                pricing-card(
-                  :bundle="pack"
-                  :payment-interval="paymentInterval"
-                ).elevation-3
+              template(v-if="!$isMobile")
+                v-col(
+                  v-for="(pack, key) in pricingPackages"
+                  :key="key"
+                  v-bind="columnBindings"
+                )
+                  pricing-card(
+                    :bundle="pack"
+                    :payment-interval="paymentInterval"
+                  ).elevation-3
+              v-col(v-else cols="12")
+                carousel(
+                  navigationNextLabel=" "
+                  navigationPrevLabel=" "
+                  paginationColor="#f0f0f0"
+                  loop
+                  navigationEnabled
+                  paginationEnabled
+                  :per-page="1"
+                  :navigationClickTargetSize="50"
+                )
+                  slide(
+                    v-for="(pack, index) in pricingPackages"
+                    :key="index"
+                    :data-index="index+1"
+                  ).pa-2
+                    pricing-card(
+                      :bundle="pack"
+                      :payment-interval="paymentInterval"
+                    ).elevation-3
 </template>
 
 <script>

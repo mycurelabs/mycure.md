@@ -9,7 +9,7 @@
     template(slot="content")
       p(v-for="(desc, key) in callToActionPanel.description" :key="key" :class="descriptionClasses") {{ desc }}
     template(slot="additional-content")
-      v-row(dense).mt-10
+      v-row.mt-10
         v-col(v-if="version === 1" cols="12" md="6" xl="5")
           signup-button(
             event-label="signup"
@@ -17,7 +17,7 @@
             depressed
             rounded
             block
-            :large="$isRegularScreen"
+            :large="!$isWideScreen"
             :x-large="$isWideScreen"
             :class="buttonClasses"
           ).text-none Get Started Free
@@ -28,7 +28,7 @@
             rounded
             block
             :outlined="version === 1"
-            :large="$isRegularScreen"
+            :large="!$isWideScreen"
             :x-large="$isWideScreen"
             :class="{'font-s': $isWideScreen, 'font-14': $isRegularScreen }"
             :href="'https://calendly.com/mycure/demo'"

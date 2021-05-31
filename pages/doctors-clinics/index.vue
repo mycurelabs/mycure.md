@@ -55,7 +55,7 @@
             depressed
             rounded
             :x-large="$isWideScreen"
-            :large="$isRegularScreen"
+            :large="!$isWideScreen"
             color="success"
           ).text-none.font-s
             span Get Started Free

@@ -2,7 +2,6 @@
   features(
     title="Add Protection and Flexibility"
     meta-title="MYCURE CSI"
-    description="Using MYCURE makes your practice Compliant, Secure, and Interoperable."
     image-dir="csi/"
     image-width="50%"
     icon-container-col-size="8"
@@ -10,6 +9,10 @@
     hide-learn-more
     extension-exclusive
   )
+    template(slot="description")
+      p Using MYCURE makes your practice&nbsp;
+        br(v-if="!$isMobile")
+        | Compliant, Secure, and Interoperable
 </template>
 
 <script>

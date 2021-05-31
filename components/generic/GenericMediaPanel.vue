@@ -56,6 +56,14 @@ export default {
       type: [Array, Object],
       default: undefined,
     },
+    align: {
+      type: String,
+      default: undefined,
+    },
+    justify: {
+      type: String,
+      default: 'center',
+    },
   },
   computed: {
     defaultTitleClasses () {
@@ -120,6 +128,10 @@ export default {
         superTitle: content.superTitle,
         description: content.description,
         contentRight: content.contentAlign === 'right',
+        genericPanelBindings: {
+          justify: this.justify,
+          align: this.align,
+        },
       };
       return panelBindings;
     },

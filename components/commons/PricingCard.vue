@@ -16,7 +16,7 @@
             :image-width="cardType === 'enterprise' ? '200' : '65'"
           )
         div.text-center.description-container
-          p(:class="normalTextColor").font-weight-medium.font-12 {{ bundle.description }}
+          p(:class="[normalTextColor, textFontSize]").font-weight-medium {{ bundle.description }}
         div.text-center
           template(v-if="!bundle.requireContact")
             p(:class="priceColor").font-weight-bold
@@ -26,7 +26,7 @@
               span(v-else).font-45 FREE
             //- span(v-else).font-xl {{ bundle.annualMonthlyPrice ? bundle.annualMonthlyPrice : bundle.monthlyPrice }}
         div.text-center.usage-metric-container
-          p(v-if="!bundle.requireContact" :class="normalTextColor").font-10.black--text
+          p(v-if="!bundle.requireContact" :class="[normalTextColor, textFontSize]").black--text
             span(v-if="bundle.users") {{ bundle.users }} user
             br(v-if="bundle.users")
             | per clinic monthly
@@ -36,7 +36,7 @@
           v-col(cols="12" xl="10")
             div(v-for="(inclusion, inclusionKey) in bundle.inclusions" :key="inclusionKey").d-flex
               v-icon(:color="getInclusionIconColor(inclusion.valid)" left) {{ getInclusionIcon(inclusion.valid) }}
-              span(:class="getInclusionTextColor(inclusion.valid)").font-10 {{ inclusion.text }}
+              span(:class="[getInclusionTextColor(inclusion.valid), textFontSize]") {{ inclusion.text }}
       v-card-text.card-actions
         slot(name="card-btn")
           template(v-if="bundle.requireContact")
@@ -66,6 +66,7 @@
 <script>
 import SignupButton from '~/components/commons/SignupButton';
 import PictureSource from '~/components/commons/PictureSource';
+import classBinder from '~/utils/class-binder';
 export default {
   components: {
     SignupButton,
@@ -105,7 +106,14 @@ export default {
       return this.isRecommended ? 'white' : 'primary';
     },
     cardHeight () {
-      return this.isRecommended ? '850' : '800';
+      return this.isRecommended && !this.$isMobile ? '850' : '800';
+    },
+    textFontSize () {
+      return classBinder(this, {
+        mobile: ['font-12'],
+        regular: ['font-12'],
+        wide: ['font-16'],
+      });
     },
   },
   methods: {
