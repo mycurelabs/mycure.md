@@ -5,6 +5,12 @@
       dense
       flat
     )
+      img(
+        src="~/assets/images/MYCURE-virtual-clinic-healthcare-practice-online-logo.svg"
+        alt="White MYCURE Logo"
+        width="150"
+        @click="$router.push({ name: 'index' })"
+      )
       v-spacer
       span Already have an account?&nbsp;&nbsp;
       v-btn(
@@ -12,15 +18,8 @@
         color="primary"
         :to="{ name: 'signin' }"
       ).text-none Log In
-    v-row(justify="center" align="center")
+    v-row(justify="center" align="center").mt-2
       v-col(cols="12" md="7" justify="center" align="center")
-        img(
-          src="~/assets/images/sign-up/mycure-sso-sign-in-logo.svg"
-          alt="MYCURE logo"
-          :width="$isMobile ? '50' : '70'"
-          :class="{ 'mb-5': !$isMobile }"
-          @click="$router.push({ name: 'index' })"
-        ).link-to-home
         h1(v-if="!$isMobile").mb-5 Level up your healthcare services and get more patients safely
         h2(v-else style="line-height: 1.25em;").mb-5 Level up your healthcare services and get more patients safely
         v-form(ref="formRef" v-model="valid" @submit.prevent="submit")
@@ -221,7 +220,7 @@
             ).order-md-10.order-sm-10
               v-btn(
                 type="submit"
-                color="success"
+                color="primary"
                 style="min-width: 200px;"
                 large
                 :disabled="loading.form || !valid || !agree"

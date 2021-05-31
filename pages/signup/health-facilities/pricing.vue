@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-container(style="height: 100vh" fluid).fill-height
+  v-container
     v-row(justify="center" align="start")
       v-col(cols="12" md="12")
         div.d-flex.align-center.justify-center
@@ -10,6 +10,7 @@
             color="primary"
           )
           strong(:class="descriptionClasses").font-open-sans.black--text Billed Annually
+    v-row(justify="center" align="center")
       template(v-for="bundle in packages")
         v-col(
           v-if="!bundle.requireContact"
@@ -22,11 +23,13 @@
           ).elevation-3
             template(slot="card-btn")
               v-btn(
-                color="primary"
                 rounded
                 block
+                depressed
+                :color="bundle.isRecommended ? 'white' : 'primary'"
                 :loading="loading"
                 :disabled="loading"
+                :class="{'primary--text': bundle.isRecommended}"
                 @click="selectBundle(bundle)"
               ).text-none Choose {{bundle.title}}
     email-verification-dialog(v-model="emailVerificationMessageDialog" :email="email" @confirm="confirmEmailVerification")
@@ -145,6 +148,8 @@ export default {
     },
   },
   async mounted () {
+    // Check if step 1 accomplished
+    if (isEmpty(this.step1LocalStorageData)) this.$nuxt.$router.push({ name: 'signup-health-facilities' });
     if (this.paymentState === 'success') {
       this.$nuxt.$router.push({ name: 'signup-health-facilities-otp-verification' });
     }
@@ -186,6 +191,9 @@ export default {
               package: packageId,
               stripeCheckoutSuccessURL: process.client && `${window.location.origin}${window.location.pathname}?payment=success`,
               stripeCheckoutCancelURL: process.client && `${window.location.origin}${window.location.pathname}?payment=cancel`,
+              customer: {
+                stripeEmail: this.email,
+              },
             },
           };
         }

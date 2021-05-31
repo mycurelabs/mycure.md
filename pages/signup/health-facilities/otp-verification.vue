@@ -79,7 +79,7 @@
           p Didn't get the code?
           v-btn(
             style="width: 150px;"
-            :disabled="otpCountdown > 0"
+            :disabled="otpCountdown > 0 || loading"
             @click="resendVerificationCode"
             color="primary"
             right
@@ -87,7 +87,7 @@
             depressed
           ).text-none.font-weight-bold
             | Resend{{ otpCountdown > 0 ? ` in 00:${otpCountdown / 1000}` : '' }}
-          v-row
+          v-row.mt-2
             v-col
               v-alert(
                 :value="verificationError"

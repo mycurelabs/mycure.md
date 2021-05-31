@@ -6,7 +6,7 @@
     v-row(align="center" justify="center").footer
       v-row(align="center" justify="center").text-center
         v-col(cols="12" md="6").pl-12.pr-12
-          span.white--text Copyright &copy; 2016 - {{new Date().getFullYear()}} MYCURE Inc. All Rights Reserved.
+          span.white--text Copyright &copy;{{new Date().getFullYear()}} MYCURE Inc. All Rights Reserved.
         v-col(cols="12" md="6")
           a(@click.stop="goToTerms") Terms of Use
           span.white--text &nbsp;&nbsp;|&nbsp;&nbsp;
