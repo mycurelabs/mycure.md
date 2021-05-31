@@ -1,5 +1,5 @@
 <template lang="pug">
-  div.pricing-bg.mx-n3
+  div(:class="{'pricing-bg': !$isMobile}").mx-n3
     v-container
       v-row(justify="center")
         generic-panel(:row-bindings="{ justify: 'center'}")
@@ -32,14 +32,12 @@
                   ).elevation-3
               v-col(v-else cols="12")
                 carousel(
-                  navigationNextLabel=" "
-                  navigationPrevLabel=" "
-                  paginationColor="#f0f0f0"
+                  paginationColor="grey"
                   loop
                   navigationEnabled
                   paginationEnabled
                   :per-page="1"
-                  :navigationClickTargetSize="50"
+                  :navigationClickTargetSize="40"
                 )
                   slide(
                     v-for="(pack, index) in pricingPackages"

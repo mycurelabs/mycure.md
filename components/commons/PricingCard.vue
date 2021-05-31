@@ -16,7 +16,7 @@
             :image-width="cardType === 'enterprise' ? '200' : '65'"
           )
         div.text-center.description-container
-          p(:class="[normalTextColor, textFontSize]").font-weight-medium {{ bundle.description }}
+          p(:class="[normalTextColor, textFontSize, recommendedText]") {{ bundle.description }}
         div.text-center
           template(v-if="!bundle.requireContact")
             p(:class="priceColor").font-weight-bold
@@ -26,7 +26,7 @@
               span(v-else).font-45 FREE
             //- span(v-else).font-xl {{ bundle.annualMonthlyPrice ? bundle.annualMonthlyPrice : bundle.monthlyPrice }}
         div.text-center.usage-metric-container
-          p(v-if="!bundle.requireContact" :class="[normalTextColor, textFontSize]").black--text
+          p(v-if="!bundle.requireContact" :class="[normalTextColor, textFontSize, recommendedText]").black--text
             span(v-if="bundle.users") {{ bundle.users }} user
             br(v-if="bundle.users")
             | per clinic monthly
@@ -36,7 +36,7 @@
           v-col(cols="12" xl="10")
             div(v-for="(inclusion, inclusionKey) in bundle.inclusions" :key="inclusionKey").d-flex
               v-icon(:color="getInclusionIconColor(inclusion.valid)" left) {{ getInclusionIcon(inclusion.valid) }}
-              span(:class="[getInclusionTextColor(inclusion.valid), textFontSize]") {{ inclusion.text }}
+              span(:class="[getInclusionTextColor(inclusion.valid), textFontSize, {'font-weight-medium': isRecommended}]") {{ inclusion.text }}
       v-card-text.card-actions
         slot(name="card-btn")
           template(v-if="bundle.requireContact")
@@ -114,6 +114,9 @@ export default {
         regular: ['font-12'],
         wide: ['font-16'],
       });
+    },
+    recommendedText () {
+      return this.isRecommended ? 'font-weight-bold' : 'font-weight-medium';
     },
   },
   methods: {

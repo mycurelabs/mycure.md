@@ -17,9 +17,10 @@
     div.grey-bg.mx-n3
       workflow
     //- 3rd panel
-    mycure-csi
-    //- 4th panel
     syncbase(version-two)
+    //- 4th panel
+    div.grey-bg.mx-n3
+      mycure-csi
     //- 5th panel
     generic-media-panel(
       :content="fifthPanel"
@@ -31,10 +32,10 @@
         signup-button(
           depressed
           rounded
-          color="primary"
+          color="success"
           event-label="signup"
           :block="$isMobile"
-          :large="$isRegularScreen"
+          :large="!$isWideScreen"
           :x-large="$isWideScreen"
           :class="{'font-s': !$isMobile}"
         ).text-none
@@ -44,7 +45,7 @@
     div.grey-bg.mx-n3
       features(
         title="Customized for Your Specialty"
-        description="MYCURE has already built in workflows and processes for different setups."
+        description="MYCURE has already built-in workflows and processes for different setups."
         :items="features"
         :class="panelMargins"
         image-dir="clinics/"

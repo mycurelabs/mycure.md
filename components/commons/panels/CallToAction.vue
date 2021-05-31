@@ -5,6 +5,7 @@
     :content-classes="descriptionClasses"
     :super-title-classes="subheaderClasses"
     hide-btn
+    align="center"
   )
     template(slot="content")
       p(v-for="(desc, key) in callToActionPanel.description" :key="key" :class="descriptionClasses") {{ desc }}

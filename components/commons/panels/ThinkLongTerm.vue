@@ -17,6 +17,9 @@
       hide-btn
       disable-parent-padding
     )
+      template(slot="content")
+        p {{ panel.description }}&nbsp;
+          span(v-if="$nuxt.$route.name !== 'doctors-clinics' && panel.descriptionAppend") {{ panel.descriptionAppend }}
 </template>
 
 <script>
@@ -31,6 +34,7 @@ export default {
       {
         title: 'MYCURE is not just your ordinary medical app.',
         description: 'It’s a platform built for the healthcare ecosystem. You can connect and share files with clinics, diagnostic centers, hospitals, and other physicians within the MYCURE network.',
+        descriptionAppend: 'MYCURE has open APIs to give you more flexibility in integrating with other systems.',
         imageBindings: {
           image: 'Preventing Failures.png',
           customPath: 'commons/',

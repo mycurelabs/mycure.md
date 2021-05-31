@@ -68,7 +68,7 @@ export default {
         icon: '1M-Appointments',
       },
       {
-        title: 'Patient Registration and Queuing',
+        title: 'Patient Queueing',
         icon: '2M-Queuing',
       },
       {
@@ -76,7 +76,7 @@ export default {
         icon: '3M-Nurse Triage',
       },
       {
-        title: 'Doctors Consult',
+        title: 'Doctor\'s Consult',
         icon: '4M-Doctors Consult',
       },
       {

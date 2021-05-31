@@ -78,7 +78,7 @@ export default {
         providers: 2000,
         easing: 'linear',
         round: 1,
-        duration: 500,
+        duration: 2500,
       });
       this.hasAnimated = true;
     },
