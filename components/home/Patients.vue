@@ -18,7 +18,7 @@
               :src="require(`~/assets/images/home/${feature.image}.png`)"
               :alt="feature.title"
             )
-              v-card-title.mt-8
+              v-card-title.mt-5
                 v-spacer
                 span(:class="descriptionClasses").white--text.font-open-sans {{ feature.title }}
                 v-spacer
