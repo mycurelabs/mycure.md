@@ -1,5 +1,5 @@
 <template lang="pug">
-   v-card(:color="cardColor" height="100%" width="100%").rounded-xl.card-outter
+   v-card(:color="cardColor" :height="cardHeight" width="100%").rounded-xl.card-outter
       v-chip(v-if="isRecommended" color="warning" label small).chip.mt-1.black--text.align-center.justify-center Recommended
       v-card-title.pt-8
         v-spacer
@@ -103,6 +103,9 @@ export default {
     },
     btnColor () {
       return this.isRecommended ? 'white' : 'primary';
+    },
+    cardHeight () {
+      return this.isRecommended ? '850' : '800';
     },
   },
   methods: {

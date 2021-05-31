@@ -19,7 +19,7 @@
                     color="info"
                   )
                   strong(:class="descriptionClasses").font-open-sans.black--text Billed Annually
-            v-row(justify="center" dense)
+            v-row(justify="center" align="center" dense)
               v-col(
                 v-for="(pack, key) in pricingPackages"
                 :key="key"
