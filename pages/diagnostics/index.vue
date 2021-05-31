@@ -44,6 +44,7 @@
       generic-media-panel(
         :content="integrationsPanel"
         hide-btn
+        align="center"
       )
         template(slot="content")
           v-row(justify="start")
@@ -51,7 +52,7 @@
               v-for="(item, key) in integrationsPanel.list"
               :key="key"
               cols="6"
-              md="3"
+              md="4"
             ).text-center
               picture-source(
                 custom-path="diagnostics/"
@@ -72,10 +73,10 @@
         signup-button(
           depressed
           rounded
-          color="primary"
+          color="success"
           event-label="signup"
           :block="$isMobile"
-          :large="$isRegularScreen"
+          :large="!$isWideScreen"
           :x-large="$isWideScreen"
           :class="{'font-s': !$isMobile}"
         ).text-none
@@ -86,9 +87,19 @@
     generic-media-panel(:content="cmsPanel")
       template(slot="cta-button")
         div(:class="{'text-center': $isMobile}")
-          nuxt-link(:to="{ name: 'clinics' }" :class="{'d-flex': !$isMobile}").button
-            v-icon(left color="primary" :large="$isWideScreen") mdi-information-outline
-            span(:class="descriptionClasses").primary--text Learn more
+          mc-btn(
+            depressed
+            rounded
+            event-label="clinics-info"
+            color="success"
+            :to="{ name: 'clinics' }"
+            :block="$isMobile"
+            :large="!$isWideScreen"
+            :x-large="$isWideScreen"
+            :class="{'font-s': !$isMobile}"
+          ).text-none
+            v-icon(left :large="$isWideScreen") mdi-information-outline
+            span  Learn more
     //- 8th panel
     think-long-term
     //- 9th panel
