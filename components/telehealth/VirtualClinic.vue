@@ -7,6 +7,7 @@
             h2(:class="titleClasses").mb-5 Your New Virtual Clinic
             p(:class="contentClasses").mb-10 Use the tools that work best for you. Everything you need is here. It’s FREE.
             mc-btn(
+              v-if="!$isMobile"
               event-label="view-telehealth-demo"
               color="primary"
               depressed

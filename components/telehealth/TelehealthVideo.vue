@@ -10,7 +10,7 @@
               type="text/html"
               :width="$isMobile ? '100%' : '620'"
               height="393"
-              src="https://www.youtube.com/embed/9gxJX_eokC0?loop=1&showinfo=0&rel=0"
+              src="https://www.youtube.com/embed/9gxJX_eokC0?loop=1&showinfo=0&rel=0&modestbranding=1"
               frameborder="0"
               allowfullscreen
             )
@@ -20,7 +20,7 @@
               rounded
               color="primary"
               event-label="signup"
-              :large="$isRegularScreen"
+              :large="!$isWideScreen"
               :x-large="$isWideScreen"
             ).text-none.font-s.mt-10
               | Get Started Free
