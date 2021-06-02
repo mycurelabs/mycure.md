@@ -37,7 +37,7 @@
           v-row(dense)
             v-col(cols="2" sm="1" md="1").pr-2.pt-2
               img(width="20" src="~/assets/images/mycure-check.png" alt="Check icon")
-            v-col(cols="10" sm="5" md="7")
+            v-col(cols="10" sm="11" md="11")
               span(:class="descriptionClasses") {{ item }}
     //- 5th panel
     div.grey-bg.mx-n3
@@ -206,6 +206,11 @@ export default {
       {
         title: 'Send Test Results Instantly',
         description: 'Give your patients quick access to their test results through the MYCURE app for patients.',
+        list: [
+          'Patient Portal for Diagnostic Tests',
+          'Tabulated Cumulative Results',
+          'Quick Appointment Booking',
+        ],
         imageBindings: {
           image: 'Fast results.png',
           extensionExclusive: true,

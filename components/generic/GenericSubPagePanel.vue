@@ -12,7 +12,7 @@
       slot(name="image")
         img(:width="width" :src="image")
     v-col(v-bind="contentColumnBindings")
-      div(v-if="superTitle" :class="defaultSuperTitleClasses").mb-3
+      div(:class="defaultSuperTitleClasses").mb-3
         slot(name="super-title")
           h3 {{superTitle}}
       div.mb-10

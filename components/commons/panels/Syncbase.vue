@@ -6,11 +6,13 @@
         content-right
         :media-column-bindings="mediaColumnBindings"
         :content-column-bindings="contentColumnBindings"
+        :superTitleClasses="superTitleClasses"
         :hide-btn="hideBtn"
       )
+        div(v-if="!versionTwo" slot="super-title")
+          p.primary--text MYCURE ONLINE & OFFLINE
         div(slot="content")
           template(v-if="!versionTwo")
-            p(:class="descriptionClasses") MYCURE works online and offline.
             p(:class="descriptionClasses") Work as if you have an in-house server with the convenience of the cloud. Create your medical records locally using multiple devices even if the internet is down! Once back online, it instantly syncs your data into the cloud.
           template(v-else)
             p(:class="descriptionClasses") With MYCURE Syncbase, work as if you have an in-house server with the convenience of the cloud. Create your medical records locally using multiple devices even if the internet is down! Once back online, it instantly syncs your data into the cloud.
@@ -83,6 +85,18 @@ export default {
         'font-gray',
       ];
       return descriptionClasses;
+    },
+    superTitleClasses () {
+      return [
+        classBinder(this, {
+          mobile: ['font-xs'],
+          regular: ['font-xs'],
+          wide: ['font-s'],
+        }),
+        'font-open-sans',
+        'font-weight-bold',
+        'primary--text',
+      ];
     },
     contentColumnBindings () {
       return {

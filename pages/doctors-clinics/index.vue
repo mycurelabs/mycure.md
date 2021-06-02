@@ -140,7 +140,7 @@ export default {
         },
       },
       {
-        title: 'Going digital = better medical history',
+        title: 'Going digital means better medical history',
         description: 'Imagine looking back at your charts from 5 or 10 years ago on your mobile device with a quick search. How convenient? S-U-P-E-R.',
         contentAlign: 'right',
         imageBindings: {
