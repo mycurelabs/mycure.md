@@ -31,11 +31,10 @@ export default {
       // Amplitude
       window.$amplitude.logEvent(this.eventLabel);
       // Google Analytics
-      this.$ga.event({
-        eventCategory: this.eventCategory,
-        eventAction: this.eventAction,
-        eventLabel: this.eventLabel,
-        eventValue: this.eventValue || this.eventLabel,
+      this.$gtag.event(this.eventAction, {
+        event_category: this.eventCategory,
+        event_label: this.eventLabel,
+        value: this.eventValue || this.eventLabel,
       });
     },
     click (e) {

@@ -106,6 +106,7 @@ export default {
   },
   mounted () {
     this.loading = false;
+    this.$gtag.pageview('/home');
   },
 };
 </script>

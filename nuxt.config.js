@@ -41,6 +41,7 @@ export default {
     '~/plugins/vue-media-query-mixin.js',
     '~/plugins/vue-fragment.js',
     '~/plugins/vue-lazyload.js',
+    '~/plugins/vue-gtag.js',
     { src: '~/plugins/vue-observe-visibility.js', mode: 'client' },
     { src: '~/plugins/main.js', mode: 'client' },
     { src: '~/plugins/mc-btn', mode: 'client' },
@@ -107,6 +108,9 @@ export default {
     id: process.env.GA_ID,
     autoTracking: {
       screenview: true,
+    },
+    debug: {
+      sendHitTask: true,
     },
   },
   publicRuntimeConfig: {
