@@ -26,7 +26,6 @@
                 type="number"
                 step="1"
                 max="9"
-                :class="{'night-field': dayOrNight === 'night'}"
                 @keypress="checkNumberInput($event, firstDigit)"
               )#firstDigit.single-field
               input(
@@ -34,7 +33,6 @@
                 type="number"
                 step="1"
                 max="9"
-                :class="{'night-field': dayOrNight === 'night'}"
                 v-on:keyup.delete="onDelete(2)"
                 @keypress="checkNumberInput($event, secondDigit)"
               )#secondDigit.single-field
@@ -43,7 +41,6 @@
                 type="number"
                 step="1"
                 max="9"
-                :class="{'night-field': dayOrNight === 'night'}"
                 v-on:keyup.delete="onDelete(3)"
                 @keypress="checkNumberInput($event, thirdDigit)"
               )#thirdDigit.single-field
@@ -52,7 +49,6 @@
                 type="number"
                 step="1"
                 max="9"
-                :class="{'night-field': dayOrNight === 'night'}"
                 v-on:keyup.delete="onDelete(4)"
                 @keypress="checkNumberInput($event, fourthDigit)"
               )#fourthDigit.single-field
@@ -61,7 +57,6 @@
                 type="number"
                 step="1"
                 max="9"
-                :class="{'night-field': dayOrNight === 'night'}"
                 v-on:keyup.delete="onDelete(5)"
                 @keypress="checkNumberInput($event, fifthDigit)"
               )#fifthDigit.single-field
@@ -70,7 +65,6 @@
                 type="number"
                 step="1"
                 max="9"
-                :class="{'night-field': dayOrNight === 'night'}"
                 v-on:keyup.delete="onDelete(6)"
                 @keypress="checkNumberInput($event, sixthDigit)"
               )#sixthDigit.single-field
