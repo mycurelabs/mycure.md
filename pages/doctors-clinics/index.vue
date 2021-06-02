@@ -105,7 +105,6 @@ import CallToAction from '~/components/commons/panels/CallToAction';
 import Features from '~/components/commons/panels/Features';
 import GenericMediaPanel from '~/components/generic/GenericMediaPanel';
 import MycureCsi from '~/components/commons/panels/MycureCsi';
-import PracticeOnline from '~/components/doctors-clinics/practice-online';
 import Pricing from '~/components/commons/panels/Pricing';
 import ThinkLongTerm from '~/components/commons/panels/ThinkLongTerm';
 import Usp from '~/components/commons/panels/SevenWondersUsp';
@@ -117,7 +116,6 @@ export default {
     Features,
     GenericMediaPanel,
     MycureCsi,
-    PracticeOnline,
     Pricing,
     ThinkLongTerm,
     Usp,
