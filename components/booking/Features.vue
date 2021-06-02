@@ -75,7 +75,7 @@ export default {
             'Patients book directly with you',
           ],
           imageBindings: {
-            image: 'Clinic-Website-cropped.png',
+            image: 'Impress your patients.png',
             customPath: 'booking/',
             extensionExclusive: true,
           },

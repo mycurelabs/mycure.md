@@ -90,8 +90,9 @@ export default {
           'Booking Website',
         ],
         imageBindings: {
-          image: 'MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-C-group-practice.webp',
+          image: 'Practice.png',
           customPath: 'doctors-clinics/',
+          extensionExclusive: true,
         },
         contentAlign: 'left',
       },

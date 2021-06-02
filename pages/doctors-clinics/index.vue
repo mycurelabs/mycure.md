@@ -206,8 +206,9 @@ export default {
       title: 'Practice as a Group',
       description: 'Easily coordinate with other physicians in your group practice and centralize your medical records in one comprehensive workspace.',
       imageBindings: {
-        image: 'MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-C-group-practice.webp',
+        image: 'Practice.png',
         customPath: 'doctors-clinics/',
+        extensionExclusive: true,
       },
       list: [
         'Collated Medical Records',
