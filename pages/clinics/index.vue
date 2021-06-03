@@ -56,25 +56,32 @@
         extension-exclusive
         panel-height="70vh"
       )
-        template(slot="additional-content")
-          v-row(justify="center").my-10
-            v-col(cols="12" sm="6" md="5" xl="3")
-              mc-btn(
-                color="success"
-                block
-                depressed
-                rounded
-                :large="$isRegularScreen"
-                :x-large="$isWideScreen"
-                :to="{ name: 'doctors-clinics' }"
-                :class="{'font-s': $isWideScreen, 'font-xs': $isRegularScreen }"
-              ).text-none Practicing solo? Click here.
     //- 7th panel
+    div.blue-bg.mx-n3
+      generic-media-panel(
+        align="center"
+        :content="practicingSoloPanel"
+        :title-classes="[...headerClasses, 'white--text']"
+        hide-btn
+      )
+        div(slot="additional-content").mt-10
+          mc-btn(
+            depressed
+            rounded
+            color="success"
+            :block="$isMobile"
+            :large="!$isWideScreen"
+            :x-large="$isWideScreen"
+            :class="{'font-s': !$isMobile}"
+            :to="{ name: 'doctors-clinics' }"
+          ).text-none
+            span Click here.
+    //- 8th panel
     think-long-term
     v-divider.divider
-    //- 8th panel
-    call-to-action(:version="2")
     //- 9th panel
+    call-to-action(:version="2")
+    //- 10th panel
     pricing(
       type="clinic"
       title="Take the first step today"
@@ -164,6 +171,16 @@ export default {
       },
       contentAlign: 'left',
     };
+    this.practicingSoloPanel = {
+      title: 'Practicing solo?',
+      imageBindings: {
+        image: 'Practicing Solo Ipad.png',
+        imageWidth: '90%',
+        extensionExclusive: true,
+        customPath: 'clinics/',
+      },
+      contentAlign: 'left',
+    };
     this.pricingDetails = CLINICS_PRICING;
     return {
       loading: true,
@@ -218,5 +235,8 @@ export default {
 .divider {
   margin-right: 30% !important;
   margin-left: 30% !important;
+}
+.blue-bg {
+  background-color: #0099cc;
 }
 </style>
