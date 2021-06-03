@@ -195,6 +195,7 @@
                 outlined
                 hint="Please enter your PRC License No for verification"
                 :disabled="loading.form"
+                :rules="isRequired"
               )
             v-col(
               cols="12"
@@ -223,7 +224,7 @@
                 color="primary"
                 style="min-width: 200px;"
                 large
-                :disabled="loading.form || !valid || !agree"
+                :disabled="isProceedDisabled"
                 :loading="loading.form"
                 :block="$isMobile"
               ).text-none #[b Proceed #[v-icon mdi-arrow-right]]
@@ -382,6 +383,12 @@ export default {
     // - If needs to pay
     requiresCheckout () {
       return this.subscription.value !== 'essentials';
+    },
+    areSelectionsValid () {
+      return this.facilityType && this.roles.length;
+    },
+    isProceedDisabled () {
+      return this.loading.form || !this.valid || !this.agree || !this.areSelectionsValid;
     },
   },
   watch: {

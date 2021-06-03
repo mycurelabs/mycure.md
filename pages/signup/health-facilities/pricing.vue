@@ -38,12 +38,25 @@
       :pk="publishableKey"
       :session-id="sessionId"
     )
+    //- Payment Error
     v-dialog(v-model="paymentErrorDialog" width="400")
       v-card
         v-card-text.pa-10.text-center
           v-icon(style="font-size: 40px;").error--text mdi-close
           h2 Error!
-          p Checkout process didn't go through!
+          p Checkout failed to proceed!
+    //- Error
+    v-dialog(v-model="errorDialog" width="400" persistent)
+      v-card
+        v-card-text.pa-10.text-center
+          v-icon(style="font-size: 40px;").error--text mdi-close
+          h2 Error!
+          p {{ errorMessage }}
+        v-card-actions
+          v-spacer
+          v-btn(color="success" depressed :to="{ name: 'signup-health-facilities' }").text-none Back
+          v-spacer
+    v-dialo
     v-dialog(v-model="confirmPaymentDialog" width="600")
       v-card
         v-card-text.pa-5
@@ -90,6 +103,8 @@ export default {
     return {
       loading: false,
       paymentErrorDialog: false,
+      errorDialog: false,
+      errorMessage: 'Checkout process failed to proceed!',
       confirmPaymentDialog: false,
       selectedBundle: {},
       packages: [],
@@ -219,8 +234,11 @@ export default {
           this.sessionId = process.browser && window.localStorage.getItem('signup:stripe:session-id');
           if (this.sessionId) {
             this.$refs.checkoutRef.redirectToCheckout();
+            return;
           }
+          this.errorMessage = 'The email or mobile number is already taken!';
         };
+        this.errorDialog = true;
       } finally {
         this.loading = false;
       }
