@@ -103,7 +103,7 @@
     //- 8th panel
     think-long-term
     //- 9th panel
-    call-to-action
+    call-to-action(:version="2")
     //- 10th panel
     pricing(
       title="Take the first step today"

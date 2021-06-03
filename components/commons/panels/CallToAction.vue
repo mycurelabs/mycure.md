@@ -11,7 +11,7 @@
       p(v-for="(desc, key) in callToActionPanel.description" :key="key" :class="descriptionClasses") {{ desc }}
     template(slot="additional-content")
       v-row.mt-10
-        v-col(v-if="version === 1" cols="12" md="6" xl="5")
+        v-col(v-if="version === 1" cols="12" md="7" lg="6" xl="5")
           signup-button(
             event-label="signup"
             color="success"
@@ -22,7 +22,7 @@
             :x-large="$isWideScreen"
             :class="buttonClasses"
           ).text-none Get Started Free
-        v-col(cols="12" md="6" xl="7")
+        v-col(cols="12" md="7" lg="6" xl="7")
           mc-btn(
             color="success"
             depressed
