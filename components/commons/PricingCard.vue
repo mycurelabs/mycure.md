@@ -85,6 +85,10 @@ export default {
       type: String,
       default: 'month',
     },
+    height: {
+      type: String,
+      default: null,
+    },
   },
   computed: {
     cardType () {
@@ -106,7 +110,7 @@ export default {
       return this.isRecommended ? 'white' : 'primary';
     },
     cardHeight () {
-      return this.isRecommended && !this.$isMobile ? '850' : '800';
+      return this.height || '800';
     },
     textFontSize () {
       return classBinder(this, {

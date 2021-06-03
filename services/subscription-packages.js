@@ -58,7 +58,7 @@ const mapPackageInclusions = (plan, organizationType) => {
   // Patient Portal Online Results
   if (!DOCTOR_TYPES.includes(organizationType)) {
     inclusions.push({
-      text: 'Patient Portal Online Results',
+      text: 'Online Results',
       valid: true,
     });
   }
@@ -153,17 +153,11 @@ const mapPackageInclusions = (plan, organizationType) => {
 
 const getMonthlyPrice = (pack, organizationType) => {
   if (!pack) return 0;
-  if (DOCTOR_TYPES.includes(organizationType)) {
-    return pack.products?.memberSeatsMax?.plan?.amount || 0;
-  }
   return pack.plan?.amount || 0;
 };
 
 const getAnnualMonthlyPrice = (pack, organizationType) => {
   if (!pack) return 0;
-  if (DOCTOR_TYPES.includes(organizationType)) {
-    return Math.ceil((pack.products?.memberSeatsMax?.plan?.amount || 0) / 12);
-  }
   return Math.ceil((pack.plan?.amount || 0) / 12);
 };
 
@@ -283,7 +277,7 @@ export const getSubscriptionPackagesPricing = async (type) => {
       { text: 'Flexible Storage', valid: true },
       { text: 'Dedicated Support', valid: true },
       { text: 'Dedicated Project Timeline', valid: true },
-      { text: 'White-labeled Patient Portal', valid: true },
+      { text: 'White-labeled Patient App', valid: true },
       { text: 'API Integration', valid: true },
       { text: 'Multi-branch Functions', valid: true },
       { text: 'Customizable Features', valid: true },
