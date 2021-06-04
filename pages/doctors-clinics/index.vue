@@ -2,6 +2,8 @@
   v-container(v-if="!loading" fluid).white
     //- 1st panel
     usp(
+      has-custom-background
+      background-image="Doctor Landing Page"
       title="Bring Out the Hero in You"
       meta-title="MYCURE Doctor"
       image="Doc USP"
