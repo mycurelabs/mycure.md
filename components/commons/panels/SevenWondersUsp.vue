@@ -1,33 +1,39 @@
 <template lang="pug">
-  v-container
-    v-row(justify="center" align="center" :style="{ height: panelHeight }")
-      generic-sub-page-panel(
-        :title="uspTitle"
-        :title-classes="titleClasses"
-        :super-title="superTitle"
-        :super-title-classes="superTitleClasses"
-        :content="uspDescription"
-        :content-classes="descriptionClasses"
-        :content-column-bindings="contentColumnBindings"
-        :media-column-bindings="mediaColumnBindings"
-        :generic-panel-bindings="genericPanelBindings"
-      )
-        template(v-if="slottedTitle" slot="title")
-          slot(name="title")
-        template(slot="image")
-          img(
-            :src="require(`~/assets/images/${customImagePath}${image}.png`)"
-            :alt="image"
-            :width="imageWidth"
-          )
-        div(slot="cta-button" :class="{'text-center': $isMobile}")
-          signup-button(
-            depressed
-            rounded
-            large
-            :class="btnClasses"
-            :color="btnColor"
-          ).text-none.letter-spacing-normal {{ btnText }}
+  div(:class="{'mx-n3 mt-n5': hasCustomBackground }").main-container
+    div(v-if="hasCustomBackground && backgroundImage && !$isMobile")
+      img(
+        :src="require(`~/assets/images/${customImagePath}${backgroundImage}.png`)"
+        :alt="title"
+      ).usp-bg
+    v-container.content
+      v-row(justify="center" align="center" :style="{ height: panelHeight }")
+        generic-sub-page-panel(
+          :title="uspTitle"
+          :title-classes="titleClasses"
+          :super-title="superTitle"
+          :super-title-classes="superTitleClasses"
+          :content="uspDescription"
+          :content-classes="descriptionClasses"
+          :content-column-bindings="contentColumnBindings"
+          :media-column-bindings="mediaColumnBindings"
+          :generic-panel-bindings="genericPanelBindings"
+        )
+          template(v-if="slottedTitle" slot="title")
+            slot(name="title")
+          template(slot="image" v-if="$isMobile")
+            img(
+              :src="require(`~/assets/images/${customImagePath}${image}.png`)"
+              :alt="image"
+              :width="imageWidth"
+            )
+          div(slot="cta-button" :class="{'text-center': $isMobile}")
+            signup-button(
+              depressed
+              rounded
+              large
+              :class="btnClasses"
+              :color="btnColor"
+            ).text-none.letter-spacing-normal {{ btnText }}
 </template>
 
 <script>
@@ -117,7 +123,7 @@ export default {
     // - Panel height
     regularHeight: {
       type: String,
-      default: '650px',
+      default: '100vh',
     },
     mobileHeight: {
       type: String,
@@ -151,6 +157,16 @@ export default {
       type: String,
       default: 'left',
     },
+    // USP Custom background
+    hasCustomBackground: {
+      type: Boolean,
+      default: false,
+    },
+    // Image file name without file extension
+    backgroundImage: {
+      type: String,
+      default: null,
+    },
   },
   computed: {
     // NOTE: For customizations
@@ -175,6 +191,7 @@ export default {
       return [
         'lh-title',
         'font-weight-bold',
+        'font-usp-primary',
         { 'pre-white-space': this.toParse(this.parseTitle) },
         classes,
       ];
@@ -200,7 +217,7 @@ export default {
           wide: ['font-m'],
         }),
         'font-open-sans',
-        'font-gray',
+        'font-usp-secondary',
       ];
     },
     btnClasses () {
@@ -249,6 +266,23 @@ export default {
 </script>
 
 <style scoped>
+.usp-bg {
+  width: 100vw;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 1;
+  object-fit: cover;
+}
+.main-container {
+  position: relative;
+}
+.content {
+  z-index: 999;
+  position: relative;
+}
+
 @media screen and (max-width: 1080px) {
   .usp-container {
     padding-bottom: 50px;

@@ -128,6 +128,17 @@ export default {
 .font-gray {
   color: rgba(0,0,0,0.5);
 }
+/* secondary */
+.header-gray {
+  color: #4D4D4D;
+}
+.font-usp-primary {
+  color: #033F58;
+}
+
+.font-usp-secondary {
+  color: #257890;
+}
 
 /* --OTHER CSS-- */
 .edge-divider{
@@ -142,27 +153,6 @@ export default {
 }
 .cta-btn {
   padding: 25px 30px 25px 30px;
-}
-/* TODO: Replace the elements that use these classes with the corresponding class
-  then remove them after */
-
-/* primary--text */
-.font-mc-blue {
-  color: #2e9fdf
-}
-/* white--text */
-.font-mc-white {
-  color: #ffffff
-}
-/* secondary */
-.mc-grey {
-  background-color: #616161 !important;
-}
-.header-gray {
-  color: #4D4D4D;
-}
-.subtitle-gray{
-  color: #777777;
 }
 
 </style>

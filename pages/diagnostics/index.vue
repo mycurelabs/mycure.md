@@ -2,6 +2,8 @@
   v-container(v-if="!loading" fluid).white
     //- 1st panel
     usp(
+      has-custom-background
+      background-image="Diagnostics Landing Page"
       title="Your Diagnostic Center Fortified"
       meta-title="MYCURE Diagnostic"
       description="The best tool to create, finalize, and release diagnostic test results is finally here."
@@ -318,6 +320,12 @@ export default {
 </script>
 
 <style scoped>
+.diagnostics-bg {
+  width: 100vw;
+  background-image: url('../../assets/images/diagnostics/Diagnostics Landing Page.png');
+  background-position: center center;
+  background-size: contain;
+}
 .grey-bg {
   background-color: #fafafa;
 }
