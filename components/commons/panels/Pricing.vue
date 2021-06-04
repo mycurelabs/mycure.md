@@ -29,8 +29,9 @@
                   pricing-card(
                     :bundle="pack"
                     :payment-interval="paymentInterval"
+                    :height="type === 'doctor' ? '700' : '800'"
                   ).elevation-3
-              v-col(v-else cols="12")
+              v-col(v-else cols="12" sm="8")
                 carousel(
                   paginationColor="grey"
                   loop
@@ -47,6 +48,7 @@
                     pricing-card(
                       :bundle="pack"
                       :payment-interval="paymentInterval"
+                      :height="type === 'doctor' ? '700' : '800'"
                     ).elevation-3
 </template>
 
