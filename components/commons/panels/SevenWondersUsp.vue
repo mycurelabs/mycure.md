@@ -30,7 +30,8 @@
             signup-button(
               depressed
               rounded
-              large
+              :large="!$isWideScreen"
+              :x-large="$isWideScreen"
               :class="btnClasses"
               :color="btnColor"
             ).text-none.letter-spacing-normal {{ btnText }}
@@ -217,15 +218,15 @@ export default {
           wide: ['font-m'],
         }),
         'font-open-sans',
-        'font-usp-secondary',
+        'font-gray',
       ];
     },
     btnClasses () {
       return [
         classBinder(this, {
           mobile: ['text-center'],
-          regular: ['font-xs', 'text-justify'],
-          wide: ['font-s', 'text-justify'],
+          regular: ['font-s'],
+          wide: ['font-m'],
         }),
       ];
     },
@@ -279,7 +280,7 @@ export default {
   position: relative;
 }
 .content {
-  z-index: 999;
+  z-index: 2;
   position: relative;
 }
 

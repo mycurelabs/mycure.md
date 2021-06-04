@@ -2,6 +2,8 @@
   v-container(v-if="!loading" fluid).white
     //- 1st panel
     usp(
+      has-custom-background
+      background-image="Clinics Landing Page"
       title="Simplified workflows, faster results, better performance."
       meta-title="MYCURE Clinic Management System"
       description="Designed for modern clinics with complex operations. Large or small, MYCURE enables clinics to be much more efficient, increase in revenue, and build more patient loyalty."
@@ -14,6 +16,8 @@
       custom-image-path="clinics/"
       :parse-title-fields="['workflows, ', 'results, ']"
       :parse-meta-title-fields="['System']"
+      :media-column-bindings="{ cols: 12, md: 6, offsetMd: 1, xl: 6}"
+      :content-column-bindings="{ cols: 12, md: 5 }"
     )
     //- 2nd panel
     div.grey-bg.mx-n3
