@@ -20,7 +20,7 @@
         )
           template(v-if="slottedTitle" slot="title")
             slot(name="title")
-          template(slot="image" v-if="$isMobile")
+          template(slot="image" v-if="!hasCustomBackground || $isMobile")
             img(
               :src="require(`~/assets/images/${customImagePath}${image}.png`)"
               :alt="image"

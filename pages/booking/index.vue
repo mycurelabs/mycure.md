@@ -17,7 +17,8 @@
           ).typer
           span #[br] Safely
     //- 2nd panel
-    start-easy(:header-classes="headerClasses")
+    div.mx-n3.grey-bg
+      start-easy(:header-classes="headerClasses")
     //- 3rd - 5th panel
     features(
       :header-classes="headerClasses"
@@ -92,6 +93,10 @@ export default {
 </script>
 
 <style scoped>
+.grey-bg {
+  background-color: #fafafa;
+}
+
 .vue-typer >>> .custom.char.typed  {
   color: #04B1E7;
 }

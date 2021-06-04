@@ -11,9 +11,11 @@
       custom-image-path="doctors-clinics/"
       image-align="right"
       btn-text="Get Started Free"
-      parse-title="regular"
+      parse-title
       :description="uspDescription"
       :parse-title-fields="['the ']"
+      :media-column-bindings="{ cols: 12, md: 6, offsetMd: 1, xl: 6}"
+      :content-column-bindings="{ cols: 12, md: 5 }"
     )
     //- 2nd panel
     div.grey-bg.mx-n3
