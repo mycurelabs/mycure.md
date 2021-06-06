@@ -121,14 +121,15 @@ export default {
       //   name: 'Hospitals',
       //   route: 'hospitals',
       // },
-      {
-        name: 'Telehealth',
-        route: 'telehealth',
-      },
-      {
-        name: 'Booking',
-        route: 'booking',
-      },
+      // TODO: re-enable
+      // {
+      //   name: 'Telehealth',
+      //   route: 'telehealth',
+      // },
+      // {
+      //   name: 'Booking',
+      //   route: 'booking',
+      // },
       // {
       //   name: 'For Patients',
       //   route: 'patients',

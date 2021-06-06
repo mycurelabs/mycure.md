@@ -121,8 +121,9 @@ export default {
             { type: 'link', value: 'Doctor\'s Clinics', link: '/doctors-clinics' },
             { type: 'link', value: 'Outpatient Clinics', link: '/clinics' },
             { type: 'link', value: 'Diagnostics', link: '/diagnostics' },
-            { type: 'link', value: 'Telehealth', link: '/telehealth' },
-            { type: 'link', value: 'Booking', link: '/booking' },
+            // TODO: re-enable
+            // { type: 'link', value: 'Telehealth', link: '/telehealth' },
+            // { type: 'link', value: 'Booking', link: '/booking' },
           ],
         },
         {
