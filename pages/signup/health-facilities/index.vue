@@ -316,14 +316,14 @@ export default {
         },
         value: 'diagnostic',
       },
-      {
-        text: 'Doctor\'s Clinic',
-        orgProps: {
-          type: 'facility',
-          types: ['doctor', 'doctor-telehealth'],
-        },
-        value: 'doctor-telehealth',
-      },
+      // {
+      //   text: 'Doctor\'s Clinic',
+      //   orgProps: {
+      //     type: 'facility',
+      //     types: ['doctor', 'doctor-telehealth'],
+      //   },
+      //   value: 'doctor-telehealth',
+      // },
     ];
     this.userRoles = [
       { text: 'Physician/Owner', value: ['doctor', 'admin'] },
