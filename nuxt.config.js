@@ -1,3 +1,4 @@
+const redirectSSL = require('redirect-ssl');
 export default {
   env: {
     AMPLITUDE_API_KEY: process.env.AMPLITUDE_API_KEY,
@@ -134,4 +135,9 @@ export default {
     extend (config, ctx) {
     },
   },
+  serverMiddleware: [
+    redirectSSL.create({
+      enabled: process.env.NODE_ENV === 'production',
+    }),
+  ],
 };
