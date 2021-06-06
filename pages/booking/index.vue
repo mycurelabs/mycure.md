@@ -47,6 +47,9 @@ export default {
     Syncbase,
     Plans,
   },
+  middleware: [
+    'disable-route',
+  ],
   data () {
     return {
       loading: true,
