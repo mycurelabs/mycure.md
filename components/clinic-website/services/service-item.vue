@@ -10,11 +10,6 @@
           )
       v-col(cols="12" md="8")
         h3 {{ title }}&nbsp;
-          v-chip(
-            :color="isAvailable ? 'lime' :'grey'"
-            small
-            label
-          ) {{ isAvailable ? 'AVAILABLE' : 'NOT AVAILABLE' }}
         div(v-if="fullSchedules.length")
           div
             v-icon(color="primary" small left) mdi-calendar-today
@@ -50,18 +45,24 @@
             span {{ coverage.name || 'HMO' }}
         i(v-else) No coverages available
       v-col(v-if="!isDoctor && !readOnly").grow.text-right
+        h3(:class="{ 'primary--text': isAvailable, 'grey--text': !isAvailable }") {{ isAvailable ? 'AVAILABLE ' : 'NOT AVAILABLE' }}
+          v-icon(v-if="isAvailable" color="primary" right) mdi-checkbox-marked-circle-outline
+        //- v-chip(
+        //-   :color="isAvailable ? 'lime' :'grey'"
+        //-   small
+        //-   label
+        //- ) {{ isAvailable ? 'AVAILABLE' : 'NOT AVAILABLE' }}
+        br
+        br
         h2(v-if="price") PHP {{ price }}
         h3(v-else).font-italic No price stated
-        br
-        br
-        br
         v-btn(
           color="success"
-          rounded
+          depressed
           block
           :disabled="!isAvailable"
           :href="bookServiceURL"
-        ).text-none Book Now
+        ).text-none.mt-1.font-12 Book Now
     v-row(justify="end")
       v-col(
         v-if="isDoctor && !readOnly"
@@ -70,20 +71,20 @@
       )
         v-btn(
           color="success"
-          rounded
+          depressed
           block
           :disabled="!isAvailable"
           :href="bookTeleconsultURL"
-        ).text-none Book a Teleconsult
+        ).text-none.font-12 Book a Teleconsult
         br
         v-btn(
-          color="success"
-          rounded
+          color="info"
+          depressed
           block
           outlined
           :disabled="!isAvailable"
           :href="bookTeleconsultURL"
-        ).text-none Book a Visit
+        ).text-none.font-12 Book a Visit
     //- Schedule dialog
     v-dialog(v-model="scheduleExpanded" width="1000")
       v-toolbar(flat)
@@ -255,7 +256,7 @@ export default {
       return `${schedule.day} (${format(schedule.opening, 'hh:mm A')} - ${format(schedule.closing, 'hh:mm A')})`;
     },
     formatDay (day) {
-      if (this.nonMfSchedule) return this.days.find(item => item.value === day).text || '';
+      if (this.nonMfSchedule) return this.days.find(item => item.value === day)?.text || '';
       return day;
     },
   },

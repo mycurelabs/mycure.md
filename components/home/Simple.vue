@@ -1,42 +1,84 @@
 <template lang="pug">
-  //- USP
-  v-container(:class="{'usp-container' : !$isMobile }")
-    v-row(
-      justify="center"
-      align="center"
-      no-gutters
-      :style="{ height: $isMobile ? 'auto' : '70vh' }"
-    )
-      v-col(cols="8" md="5" offset-md="1" :class="{ 'order-last' : !$isMobile }")
-        picture-source(
-          image="MYCURE-virtual-clinic-healthcare-practice-online-features-B-01-emr"
-          image-file-extension=".webp"
-          image-alt="Patient List"
-          custom-path="features/"
-        )
-      v-col(cols="11" md="4" :class="{ 'text-center' : $isMobile }")
-        h1(:class="{ 'font-l mb-8' : !$isMobile, 'font-m mb-6' : $isMobile }").lh-title Simple and powerful
-        p(:class="{ 'font-s' : !$isMobile, 'font-xs' : $isMobile }").grey--text Say goodbye to paperwork and hello to an easy, compact database.
-        p.font-xs.font-open-sans MYCURE is infused with advanced user experience that you can never compare with another medical software. Experience smooth transitions from one workflow
-          | &nbsp;to another -- you probably won't even consider using pen and paper ever again.
-        v-row(dense v-for="(service, key) in services" :key="key")
-          v-col(col="4")
-            mc-btn(
-              tile
-              small
-              depressed
-              :to="{ name: service.route }"
-              :color="service.color"
-            ).text-none
-              v-icon(small left) {{ service.icon }}
-              span {{ service.text }}
+  v-container
+    v-row(justify="center")
+      generic-sub-page-panel(
+        center-panel-title="Simple and powerful"
+        super-title="Say goodbye to paperwork and hello to an easy, compact database."
+        content="MYCURE is infused with advanced user experience that you can never compare with another medical software. Experience smooth transitions from one workflow to another — you probably won't even consider using pen and paper ever again."
+        :content-column-bindings="contentColumnBindings"
+        :media-column-bindings="mediaColumnBindings"
+        :center-panel-title-classes="headerClasses"
+        :super-title-classes="subheaderClasses"
+        :content-classes="descriptionClasses"
+        hide-btn
+      )
+        template(slot="image")
+          picture-source(v-bind="imageBindings")
+        v-col(slot="additional-content" cols="12").order-last
+          v-row(justify="center")
+            v-col(v-for="(service, key) in services" :key="key").shrink
+              v-hover(
+                v-slot="{ hover }"
+                open-delay="100"
+              )
+                mc-btn(
+                  :block="$isMobile"
+                  :x-large="$isWideScreen"
+                  :large="!$isWideScreen"
+                  depressed
+                  :outlined="!hover"
+                  :to="{ name: service.route }"
+                  color="white"
+                ).text-none.info--text
+                  v-icon(left) {{ service.icon }}
+                  strong {{ service.text }}
+    //- v-row(
+    //-   justify="center"
+    //-   align="center"
+    //-   no-gutters
+    //-   :style="{ height: $isMobile ? 'auto' : '90vh' }"
+    //- )
+    //-   v-col(cols="11").text-center.mt-10
+    //-     h1(:class="headerClasses").white--text.font-weight-semibold Simple and powerful
+    //-   v-col(cols="8" md="6" offset-md="1" :class="{ 'order-last' : !$isMobile }")
+    //-     picture-source(
+    //-       image="MYCURE-virtual-clinic-healthcare-practice-online-features-B-01-emr"
+    //-       image-file-extension=".webp"
+    //-       image-alt="Patient List"
+    //-       custom-path="features/"
+    //-     )
+    //-   v-col(cols="11" md="4" :class="{ 'text-center' : $isMobile }")
+    //-     p(:class="h").white--text.font-open-sans.font-weight-bold Say goodbye to paperwork and hello to an easy, compact database.
+    //-     p(:class="descriptionClasses").font-open-sans.white--text MYCURE is infused with advanced user experience that you can never compare with another medical software. Experience smooth transitions from one workflow
+    //-       | &nbsp;to another — you probably won't even consider using pen and paper ever again.
+    //-     br
+    //-     v-row(:dense="!$isWideScreen" :justify="$isMobile ? 'center': null")
+    //-       v-col(v-for="(service, key) in services" :key="key").shrink
+    //-         v-hover(
+    //-           v-slot="{ hover }"
+    //-           open-delay="100"
+    //-         )
+    //-           mc-btn(
+    //-             :block="$isMobile"
+    //-             :large="$isWideScreen"
+    //-             :small="!$isWideScreen"
+    //-             depressed
+    //-             :outlined="!hover"
+    //-             :to="{ name: service.route }"
+    //-             color="white"
+    //-           ).text-none.info--text
+    //-             v-icon(left) {{ service.icon }}
+    //-             strong {{ service.text }}
 </template>
 
 <script>
+import classBinder from '~/utils/class-binder';
 import PictureSource from '~/components/commons/PictureSource';
+import GenericSubPagePanel from '~/components/generic/GenericSubPagePanel';
 export default {
   components: {
     PictureSource,
+    GenericSubPagePanel,
   },
   data () {
     this.services = [
@@ -52,6 +94,12 @@ export default {
         icon: 'mdi-hospital-marker',
         color: 'info',
       },
+      {
+        text: 'For Diagnostics',
+        route: 'diagnostics',
+        icon: 'mdi-flask',
+        color: 'error',
+      },
       // - TODO: Bring back when page is visible
       // {
       //   text: 'For Hospitals',
@@ -60,15 +108,73 @@ export default {
     ];
     return {};
   },
+  computed: {
+    headerClasses () {
+      return [
+        classBinder(this, {
+          mobile: ['font-m'],
+          regular: ['font-l'],
+          wide: ['font-2xl'],
+        }),
+        'white--text',
+        'font-weight-semibold',
+      ];
+    },
+    subheaderClasses () {
+      return [
+        classBinder(this, {
+          mobile: ['font-xs', 'text-center'],
+          regular: ['font-25'],
+          wide: ['font-40'],
+        }),
+        'white--text',
+        'font-open-sans',
+      ];
+    },
+    descriptionClasses () {
+      return [
+        classBinder(this, {
+          mobile: ['text-center'],
+          regular: ['font-xs'],
+          wide: ['font-m'],
+        }),
+        'white--text',
+        'font-open-sans',
+      ];
+    },
+    imageBindings () {
+      return {
+        image: 'Simple and Powerful',
+        imageFileExtension: '.webp',
+        imageAlt: 'No more paperwork',
+        imageWidth: '105%',
+        customPath: 'home/',
+      };
+    },
+    contentColumnBindings () {
+      return {
+        cols: 12,
+        md: 5,
+        alignSelf: 'center',
+      };
+    },
+    mediaColumnBindings () {
+      return {
+        cols: 8,
+        md: 6,
+        offsetMd: 1,
+      };
+    },
+  },
 };
 </script>
 
 <style scoped>
-.usp-container {
-  padding-bottom: 70px;
+.simple-container {
+  background-color: #0099cc;
 }
 
-.service-link {
-  text-decoration: none;
+.product-btn {
+  width: 175px;
 }
 </style>

@@ -10,9 +10,9 @@
     usp(
       title="Find the right healthcare services near you"
       description="Diagnostic clinics, hospitals, and full service clinics in Metro Manila are within your reach whenever you need them."
-      image="usp-patients"
+      image="Patients USP"
+      image-width="80%"
       custom-image-path="patients/"
-      web-height="500px"
       hide-btn
     )
     locations
@@ -37,9 +37,9 @@ export default {
   },
   head () {
     return headMeta({
-      title: 'MYCURE Healthcare Service Booking Management Software',
+      title: 'MYCURE Healthcare Directory',
       description: 'Search for facilities and services in the MYCURE Healthcare Directory',
-      socialBanner: require('~/assets/images/banners/MYCURE Open Graph-Patients.jpg'),
+      socialBanner: require('~/assets/images/banners/OG Patients.png'),
     });
   },
   mounted () {

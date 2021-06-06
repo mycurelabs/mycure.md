@@ -25,7 +25,7 @@ export default {
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
     ],
   },
 
@@ -43,6 +43,8 @@ export default {
     '~/plugins/vue-lazyload.js',
     { src: '~/plugins/amplitude.js', mode: 'client' },
     { src: '~/plugins/crisp.js', mode: 'client' },
+    '~/plugins/vue-gtag.js',
+    { src: '~/plugins/vue-observe-visibility.js', mode: 'client' },
     { src: '~/plugins/main.js', mode: 'client' },
     { src: '~/plugins/mc-btn', mode: 'client' },
     { src: '~/plugins/mycure.js', mode: 'client' },
@@ -52,6 +54,7 @@ export default {
     { src: '~/plugins/vue-morphling.js', mode: 'client' },
     { src: '~/plugins/vue-social-sharing.js', mode: 'client' },
     { src: '~/plugins/vue-typer.js', mode: 'client' },
+    { src: '~/plugins/vue-stripe.js', mode: 'client' },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -64,6 +67,7 @@ export default {
     // https://go.nuxtjs.dev/vuetify
     '@nuxtjs/vuetify',
     '@nuxtjs/google-analytics',
+    'nuxt-animejs',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -78,7 +82,7 @@ export default {
   webfontloader: {
     google: {
       families: [
-        'Poppins:400',
+        'Poppins:400,500,600,700,900',
         'Open Sans:300,400',
       ],
     },
@@ -97,34 +101,17 @@ export default {
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
   vuetify: {
     customVariables: ['~/assets/variables.scss'],
-    theme: {
-      themes: {
-        light: {
-          primary: '#04B1E7',
-          accent: '#7fad33',
-          secondary: '#424242',
-          info: '#0174BB',
-          warning: '#FFC107',
-          error: '#f75a5f',
-          success: '#7fad33',
-        },
-        dark: {
-          primary: '#04B1E7',
-          accent: '#7fad33',
-          secondary: '#424242',
-          info: '#2196F3',
-          warning: '#FFC107',
-          error: '#f75a5f',
-          success: '#7fad33',
-        },
-      },
-    },
+    treeShake: true,
+    optionsPath: './vuetify.options.js',
   },
 
   googleAnalytics: {
     id: process.env.GA_ID,
     autoTracking: {
       screenview: true,
+    },
+    debug: {
+      sendHitTask: true,
     },
   },
   publicRuntimeConfig: {
@@ -138,7 +125,10 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-    transpile: ['vue-clamp', 'resize-detector'],
+    transpile: [
+      'vue-clamp',
+      'resize-detector',
+    ],
     /*
     ** You can extend webpack config here
     */

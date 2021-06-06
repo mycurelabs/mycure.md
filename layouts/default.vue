@@ -1,7 +1,7 @@
 <template lang="pug">
   v-app#app
     mc-navbar(v-if="!loading")
-    div(style="padding-top: 45px")
+    div(style="padding-top: 35px")
       nuxt
     mc-footer(v-if="!loading")
 </template>
@@ -44,17 +44,23 @@ export default {
 .font-open-sans {
   font-family: 'Open Sans', 'sans-serif' !important;
 }
+.font-weight-semibold {
+  font-weight: 600 !important;
+}
 /* Font Sizes */
 .font-2xl {
-  font-size: 64px !important;
+  font-size: 65px !important;
+  line-height: 1.5;
+  letter-spacing: -0.5px;
 }
 .font-xl {
-  font-size: 56px;
+  font-size: 55px;
   line-height: 1;
   letter-spacing: -0.5px;
 }
 .font-l {
-  font-size: 38px !important;
+  font-size: 40px !important;
+  line-height: 1.5;
   letter-spacing: -0.5px;
 }
 .font-m {
@@ -115,14 +121,29 @@ export default {
 .font-12 {
   font-size: 12px !important
 }
+.font-10 {
+  font-size: 10px !important;
+}
 /* Font Color */
 .font-gray {
   color: rgba(0,0,0,0.5);
 }
+/* secondary */
+.header-gray {
+  color: #4D4D4D;
+}
+.font-usp-primary {
+  color: #033F58;
+}
+
+.font-usp-secondary {
+  color: #257890;
+}
 
 /* --OTHER CSS-- */
 .edge-divider{
-  margin: 0% 11% !important;
+  margin-right: 11% !important;
+  margin-left: 11% !important;
 }
 .lh-title {
   line-height: 1.25em !important
@@ -132,39 +153,6 @@ export default {
 }
 .cta-btn {
   padding: 25px 30px 25px 30px;
-}
-/* TODO: Transfer to our-story/panel-5 and home/vid components then remove*/
-.maleDoctor {
-  margin: 0px -20px 0px 0px;
-  z-index: 1;
-}
-.femaleDoctor {
-  margin: 0px 0px 0px -20px;
-  z-index: 1;
-}
-.vidPosition {
-  z-index: 0;
-}
-/* TODO: Replace the elements that use these classes with the corresponding class
-  then remove them after */
-
-/* primary--text */
-.font-mc-blue {
-  color: #2e9fdf
-}
-/* white--text */
-.font-mc-white {
-  color: #ffffff
-}
-/* secondary */
-.mc-grey {
-  background-color: #616161 !important;
-}
-.header-gray {
-  color: #4D4D4D;
-}
-.subtitle-gray{
-  color: #777777;
 }
 
 </style>

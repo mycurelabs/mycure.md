@@ -1,16 +1,17 @@
 <template lang="pug">
-  v-container.container
-    v-row(justify="center" align="center" :style="{ height: $isMobile ? 'auto' : panelHeight }")
-      v-col(cols="12" md="10")
-        v-row(justify="center")
+  v-container
+    v-row(justify="center" align="center")
+      generic-panel(:row-bindings="{ justify: 'center' }")
           v-col(cols="12" :md="titleColSize").text-center
-            strong(v-if="metaTitle").font-xs.primary--text {{ metaTitle }}
-            h1(:class="titleClasses").lh-title {{ title }}
+            strong(v-if="metaTitle" :class="metaTitleClasses").primary--text {{ metaTitle }}
+            h2(:class="titleClasses").lh-title.font-weight-semibold {{ title }}
           v-col(cols="12" :md="contentColSize").text-center.py-3
-            p(:class="descriptionClasses").grey--text.font-open-sans {{ description }}
+            div(:class="descriptionClasses").font-open-sans.font-gray
+              slot(name="description")
+                p {{ description }}
           v-col(cols="12" :md="iconContainerColSize")
             v-row(justify="center")
-              v-col(cols="6" :md="iconColSize" v-for="(item, key) in items" :key="key").text-center
+              v-col(:cols="iconColSizeMobile" :md="iconColSize" v-for="(item, key) in items" :key="key").text-center
                 picture-source(
                   v-if="item.icon"
                   :extension-exclusive="extensionExclusive"
@@ -18,20 +19,22 @@
                   :image="item.icon"
                   :image-alt="item.title"
                   :image-file-extension="item.iconExtension || '.png'"
-                  :image-width="!$isMobile ? imageWidth : '60%'"
+                  :image-width="!$isMobile ? imageWidth : imageWidthMobile"
                 )
                 br
-                h3.font-xs.font-open-sans.grey--text {{ item.title }}
-                p(v-if="item.description").font-xs.grey--text {{ item.description }}
+                h3(:class="itemTextClasses").font-open-sans.font-gray {{ item.title }}
+                p(v-if="item.description" :class="itemTextClasses") {{ item.description }}
                 nuxt-link(v-if="!hideLearnMore && item.route" :to="{ name: item.route }").primary--text.font-weight-bold.learnLink Learn more
-        slot(name="additional-content")
+          slot(name="additional-content")
 </template>
 
 <script>
 import classBinder from '~/utils/class-binder';
+import GenericPanel from '~/components/generic/GenericPanel';
 import PictureSource from '~/components/commons/PictureSource';
 export default {
   components: {
+    GenericPanel,
     PictureSource,
   },
   props: {
@@ -59,6 +62,10 @@ export default {
       type: [String, Number],
       default: '40%',
     },
+    imageWidthMobile: {
+      type: [String, Number],
+      default: '60%',
+    },
     extensionExclusive: {
       type: Boolean,
       default: false,
@@ -72,6 +79,10 @@ export default {
       type: [Number, String],
       default: '8',
     },
+    primaryTitle: {
+      type: Boolean,
+      default: false,
+    },
     // - Space for description
     contentColSize: {
       type: [Number, String],
@@ -82,10 +93,15 @@ export default {
       type: [Number, String],
       default: '12',
     },
-    // - Space for each icon
+    // - Space for each icon (web)
     iconColSize: {
       type: [Number, String],
       default: '4',
+    },
+    // - Space for each icon (mobile)
+    iconColSizeMobile: {
+      type: [Number, String],
+      default: '6',
     },
     // - Height of panel
     panelHeight: {
@@ -95,16 +111,39 @@ export default {
   },
   computed: {
     titleClasses () {
-      return classBinder(this, {
-        mobile: ['font-m'],
-        regular: ['font-l'],
-      });
+      return [
+        classBinder(this, {
+          mobile: ['font-m'],
+          regular: ['font-l'],
+          wide: ['font-xl'],
+        }),
+        { 'primary--text': this.primaryTitle },
+      ];
+    },
+    metaTitleClasses () {
+      return [
+        classBinder(this, {
+          regular: ['font-xs'],
+          wide: ['font-s'],
+        }),
+      ];
     },
     descriptionClasses () {
-      return classBinder(this, {
-        mobile: ['font-xs'],
-        regular: ['font-s'],
-      });
+      return [
+        classBinder(this, {
+          mobile: ['font-xs'],
+          regular: ['font-s'],
+          wide: ['font-m'],
+        }),
+      ];
+    },
+    itemTextClasses () {
+      return [
+        classBinder(this, {
+          regular: ['font-xs'],
+          wide: ['font-s'],
+        }),
+      ];
     },
   },
 };
@@ -113,9 +152,5 @@ export default {
 <style scoped>
 .learnLink {
   text-decoration: none;
-}
-.container {
-  padding-bottom: 100px;
-  padding-top: 10px;
 }
 </style>

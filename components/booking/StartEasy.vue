@@ -1,41 +1,38 @@
 <template lang="pug">
   v-container
-    v-row(justify="center" no-gutters)
-      v-col(cols="12" md="10")
-        v-row
-          v-col(cols="12").mb-6.text-center
-            h1(:class="headerClasses") As easy as
-          div(v-if="!$isMobile").d-flex.align-end
-            v-row(align="center")
-              v-col(cols="12" md="4" v-for="(item, key) in items" :key="key").text-center
-                img(
-                  :src="item.image"
-                  width="80%"
-                )
-                h2(:class="") {{item.title}}
-                p.font-open-sans.grey--text {{item.description}}
-          div(v-else)
-            template(v-for="item in items")
-              div.d-flex
-                v-col(cols="5")
+    v-row(justify="center")
+      generic-panel
+        v-col(cols="12")
+          v-row
+            v-col(cols="12").text-center
+              h1(:class="headerClasses").mb-10 As easy as
+            div(v-if="!$isMobile").d-flex.align-end
+              v-row(align="center")
+                v-col(cols="12" md="4" v-for="(item, key) in items" :key="key").text-center
                   img(
                     :src="item.image"
-                    width="130"
+                    width="80%"
                   )
-                v-col(cols="7")
-                  h2.font-20 {{item.title}}
-                  p.font-open-sans.grey--text {{item.description}}
-        //- need-more(:class="{ 'need-more-md-up' : !$isMobile }")
+                  h2(:class="{'font-m': $isWideScreen, 'font-s': $isRegularScreen}").font-weight-semibold {{item.title}}
+                  p(:class="{'font-S': $isWideScreen, 'font-xs': $isRegularScreen}").font-open-sans.font-gray {{item.description}}
+            div(v-else)
+              v-row
+                v-col(
+                  v-for="(item, key) in items"
+                  cols="12"
+                  :key="key"
+                ).text-center
+                  img(
+                    :src="item.image"
+                    :alt="item.title"
+                    width="150"
+                  )
+                  h2.font-s.font-weight-semibold.mb-5 {{item.title}}
+                  p.font-open-sans.font-gray.mb-5 {{item.description}}
 </template>
 
 <script>
-import GetStartedButton from './GetStartedButton';
-import NeedMore from './NeedMore';
 export default {
-  components: {
-    GetStartedButton,
-    NeedMore,
-  },
   props: {
     headerClasses: {
       type: Array,
@@ -46,17 +43,17 @@ export default {
     return {
       items: [
         {
-          image: require('../../assets/images/providers/A Asset 2.png'),
+          image: require('../../assets/images/booking/A Asset 2.png'),
           title: 'Appointments',
           description: 'Seamless booking to get more patients',
         },
         {
-          image: require('../../assets/images/providers/B Asset 2.png'),
+          image: require('../../assets/images/booking/B Asset 2.png'),
           title: 'Billing',
           description: 'Efficiently measure your growth',
         },
         {
-          image: require('../../assets/images/providers/C Asset 2.png'),
+          image: require('../../assets/images/booking/C Asset 2.png'),
           title: 'Charting',
           description: 'Quick & secure access to medical records',
         },
@@ -65,25 +62,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-
-@media (min-width: 960px) {
-  .need-more-md-up{
-    max-width: 900px;
-  }
-}
-
-@media (min-width: 1264px) {
-  .need-more-md-up{
-    max-width: 1185px;
-  }
-}
-.need-more-md-up {
-  width: 100%;
-  padding: 12px;
-  margin-right: auto;
-  margin-left: auto;
-
-}
-</style>

@@ -3,6 +3,7 @@
     v-card(width="600").pt-5
       v-card-text
         iframe(
+          v-if="videoDialog"
           align="middle"
           id="ytplayer"
           type="text/html"

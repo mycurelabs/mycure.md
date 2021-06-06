@@ -1,24 +1,31 @@
 <template lang="pug">
-  div(v-if="!loading")
+  v-container(fluid v-if="!loading")
     //- 1st panel
-    usp.pb-5
+    usp.pb-5.mx-n3
     //- 2nd panel
-    paulette(:isMobile="isMobile")
+    paulette(
+      :header-classes="headerClasses"
+      :description-classes="descriptionClasses"
+    )
     //- 3rd panel
-    founders(:isMobile="isMobile")
+    founders(
+      :header-classes="headerClasses"
+      :description-classes="descriptionClasses"
+    )
     //- 4th panel
-    problem(:isMobile="isMobile")
+    problem(:header-classes="headerClasses" :description-classes="descriptionClasses")
     //- 5th panel
-    purpose(:isMobile="isMobile")
+    purpose(:header-classes="headerClasses" :description-classes="descriptionClasses")
     //- 6th panel
-    vid(:isMobile="isMobile")
+    vid(:header-classes="headerClasses" :description-classes="descriptionClasses")
     //- 7th panel
-    codes-of-being(:isMobile="isMobile")
+    codes-of-being(:header-classes="headerClasses" :description-classes="descriptionClasses")
     //- cta
     mc-cta-bottom(image-only)
 </template>
 
 <script>
+import classBinder from '~/utils/class-binder';
 import Usp from '~/components/our-story/usp';
 import headMeta from '~/utils/head-meta';
 export default {
@@ -45,6 +52,32 @@ export default {
       // - TODO: Replace with local if applicable
       socialBanner: 'https://firebasestorage.googleapis.com/v0/b/mc-v4-prod.appspot.com/o/web-main-assets%2FMYCURE-Open-Graph-Images-Our-Story.png?alt=media&token=de5c4443-0b36-41ee-93e6-3fac9aae0b1d',
     });
+  },
+  computed: {
+    headerClasses () {
+      const headerClasses = [
+        classBinder(this, {
+          mobile: ['font-m', 'text-center'],
+          regular: ['font-l'],
+          wide: ['font-xl'],
+        }),
+        'lh-title',
+        'font-weight-semibold',
+      ];
+      return headerClasses;
+    },
+    descriptionClasses () {
+      const descriptionClasses = [
+        classBinder(this, {
+          mobile: ['font-xs'],
+          regular: ['font-s'],
+          wide: ['font-m'],
+        }),
+        'font-open-sans',
+        'font-gray',
+      ];
+      return descriptionClasses;
+    },
   },
   watch: {
     $isMobile: {

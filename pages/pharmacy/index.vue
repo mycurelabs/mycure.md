@@ -101,7 +101,7 @@ export default {
     return headMeta({
       title: 'MYCURE for Pharmacy and Drugstores',
       description: 'MYCURE provides medical POS and Inventory solutions that make pharmacy and drugstore management so much simpler.',
-      socialBanner: require('~/assets/images/banners/MYCURE Open Graph-Providers.jpg'),
+      socialBanner: require('~/assets/images/banners/OG Homepage.png'),
     });
   },
   computed: {

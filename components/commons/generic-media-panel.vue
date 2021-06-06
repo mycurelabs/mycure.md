@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-container
+  v-container(:fluid="fluid")
     //- COLUMN VIEW
     v-row(v-if="!centerMedia" justify="center" :class="{'py-10': !dense , 'py-1': dense}")
       //- Left column
@@ -24,8 +24,8 @@
           | &nbsp;
         template(v-if="contentAlignLeft")
           p(v-if="withSubheader" :class="panelSubHeaderclasses") {{ subHeader }}
-          h1(v-if="typeof(header) === 'string'" :class="panelHeaderClasses") {{ header }}
-          h1(
+          h2(v-if="typeof(header) === 'string'" :class="panelHeaderClasses") {{ header }}
+          h2(
             v-else-if="typeof(header) === 'object'"
             :class="[{'pre-white-space': $isRegularScreen}, ...panelHeaderClasses]"
           )
@@ -86,8 +86,8 @@
           | &nbsp;
         template(v-if="contentAlignRight")
           p(v-if="withSubheader" :class="panelSubHeaderclasses") {{ subHeader }}
-          h1(v-if="typeof(header) === 'string'" :class="panelHeaderClasses") {{ header }}
-          h1(
+          h2(v-if="typeof(header) === 'string'" :class="panelHeaderClasses") {{ header }}
+          h2(
             v-else-if="typeof(header) === 'object'"
             :class="[{'pre-white-space': $isRegularScreen}, ...panelHeaderClasses]"
           )
@@ -130,8 +130,8 @@
     v-row(v-else justify="center").py-10
       v-col(cols="12" md="10" :class="{'text-center': !$isMobile}").text-center
         p(v-if="withSubheader" :class="panelSubHeaderclasses") {{ subHeader }}
-        h1(v-if="typeof(header) === 'string'" :class="panelHeaderClasses") {{ header }}
-        h1(
+        h2(v-if="typeof(header) === 'string'" :class="panelHeaderClasses") {{ header }}
+        h2(
           v-else-if="typeof(header) === 'object'"
           :class="[{'pre-white-space': $isRegularScreen}, ...panelHeaderClasses]"
         )
@@ -199,6 +199,14 @@ export default {
     },
   },
   props: {
+    /**
+     * Make container fluid
+     *
+     */
+    fluid: {
+      type: Boolean,
+      default: false,
+    },
     /**
      * Alignment of left column
      * @type {String}

@@ -5,27 +5,29 @@
       app
       dark
       elevate-on-scroll
+      style="padding-top: 1px;"
     ).nav-bar
-      v-container
+      v-container.pa-0
         v-row(justify="center")
-          v-col(cols="12" md="10")
-            div.d-flex
+          generic-panel(:column="$isMobile ? 12 : 10" disable-parent-padding)
+            v-col.d-flex
               nuxt-link(to="/")
                 img(
                   src="~/assets/images/MYCURE Logo - white.png"
                   width="120"
                   alt="MYCURE logo"
-                ).mt-1
+                ).mt-1.mr-1
               template(v-if="!$isMobile")
                 v-btn(
                   v-for="(nav, key) in navs"
-                  :key="key"
                   text
                   depressed
+                  tile
                   large
+                  :key="key"
                   @click="onNavClick(nav)"
                 ).text-none.font-12
-                  b {{ nav.name }}
+                  span.font-weight-medium {{ nav.name }}
                 //- v-btn(
                 //-   text
                 //-   depressed
@@ -34,19 +36,18 @@
                 //- ).text-none.mr-2.font-12 #[b For Patients]
                 v-spacer
                 mc-btn(
+                  event-label="login"
                   text
                   depressed
                   large
-                  event-label="login"
+                  tile
                   :to="{ name: 'signin' }"
-                ).text-none.mr-2.font-12 #[b LOG IN]
-                mc-btn(
+                ).text-none.font-12 #[span.font-weight-medium LOG IN]
+                signup-button(
                   color="success"
                   large
                   tile
-                  event-label="signup"
-                  :to="{name: 'signup-health-facilities'}"
-                ).text-none.font-12.font-weight-bold #[b SIGN UP]
+                ).text-none.font-12.font-weight-medium SIGN UP
               template(v-else)
                 v-spacer
                 v-app-bar-nav-icon(@click.stop="drawer = !drawer")
@@ -60,6 +61,15 @@
       color="black"
       width="500"
     )
+      v-toolbar(flat color="black")
+        img(
+          src="~/assets/images/MYCURE Logo - white.png"
+          width="120"
+          alt="MYCURE logo"
+        )
+        v-spacer
+        v-btn(icon @click="drawer = false")
+          v-icon mdi-close
       v-list(dense nav)
         template(v-for="nav in navs")
           v-list-item(
@@ -74,41 +84,25 @@
         text
         depressed
         large
-      ).text-none.mr-2 #[b LOG IN]
+        :to="{ name: 'signin' }"
+      ).text-none.mr-2 #[span.font-weight-medium LOG IN]
       v-btn(
         color="success"
         large
         shaped
         :to="{name: 'signup-health-facilities'}"
-      ).text-none #[b SIGN UP]
-        //- v-menu(
-        //-   v-else
-        //-   bottom
-        //-   left
-        //-   large
-        //- )
-        //-   template(v-slot:activator="{ on, attrs }")
-        //-     v-btn(icon v-bind="attrs" v-on="on")
-        //-       v-icon mdi-menu
-        //-   v-list(style="width: 250px")
-        //-     v-list-item
-        //-       v-btn(
-        //-         text
-        //-         block
-        //-         href="/"
-        //-       ) For Providers
-        //-     //- v-list-item
-        //-       //- v-btn(text block) Support
-        //-     v-list-item
-        //-       v-btn(
-        //-         text
-        //-         block
-        //-       ) Get Started Free
+      ).text-none #[span.font-weight-medium SIGN UP]
 </template>
 
 <script>
 import VueScrollTo from 'vue-scrollto';
+import GenericPanel from '~/components/generic/GenericPanel';
+import SignupButton from '~/components/commons/SignupButton';
 export default {
+  components: {
+    GenericPanel,
+    SignupButton,
+  },
   data () {
     this.navs = [
       {

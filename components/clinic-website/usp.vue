@@ -122,10 +122,10 @@ export default {
   computed: {
     availableServiceTypes () {
       if (isEmpty(this.serviceTypes)) return [];
-      const types = [];
-      this.serviceTypes.map((type) => {
-        types.push(this.serviceTypeMappings[type]);
+      const types = this.serviceTypes.map((type) => {
+        return this.serviceTypeMappings[type];
       });
+      if (!types.length) return [];
       return types;
     },
     searchText: {

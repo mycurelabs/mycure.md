@@ -1,68 +1,78 @@
 <template lang="pug">
-  v-container
-    v-row(justify="center" align="center")
-      v-col(cols="12" md="10")
-        v-row(justify="center")
-          v-col(cols="12" md="10").text-center
-            strong(v-if="metaTitle").font-xs.primary--text {{ metaTitle }}
-            h1(:class="titleClasses").lh-title {{ title }}
-          v-col(cols="12" md="6" v-if="description").text-center
-            p(:class="descriptionClasses").grey--text.font-open-sans {{ description }}
-        v-row(justify="center")
-          v-col(cols="12" md="4").text-center
-            v-btn(
-              v-for="(mode, key) in modeBtns"
-              :key="key"
-              color="primary"
-              v-bind="modeBtnBindings(mode)"
-              depressed
-              tile
-              @click="pricingMode = mode"
-            ).text-none
-              | Billed&nbsp;
-              span.text-capitalize {{ mode }}
-        v-row(justify="center")
-          v-col(
-            v-for="(details, key) in pricingDetails"
-            :key="key"
-            cols="12"
-            :md="columnSize"
-          )
-            v-card(color="#fafafa" flat height="100%" width="100%").card-outter
-              v-toolbar(flat color="info" dark)
-                v-spacer
-                v-toolbar-title {{ details.title }}
-                v-spacer
-              v-card-text.py-8
-                div.text-center
-                  p(v-if="details.requireContact").font-m.font-weight-bold.pb-10 Contact Us
-                  template(v-else)
-                    p.font-weight-bold {{ details.currency }}&nbsp;
-                      span(v-if="pricingMode === 'monthly'").font-l {{ details.monthlyPrice }}
-                      span(v-else).font-m {{ details.annualMonthlyPrice ? details.annualMonthlyPrice : details.monthlyPrice }}
-                    p {{ details.users }} user
-                      br
-                      | per month
-                  template(v-for="inclusion in details.inclusions")
-                    v-icon(small color="primary" left) mdi-check
-                    span {{ inclusion }}
-                    br
-              div.card-actions
-                mc-btn(
-                  depressed
-                  block
-                  tile
-                  color="success"
-                  event-category="Pricing"
-                  :event-label="`click-pricing-${details.title}`"
-                  @click="onBtnClick(details)"
-                ).text-none {{ details.btnText }}
+  div(:class="{'pricing-bg': !$isMobile}").mx-n3
+    v-container
+      v-row(justify="center")
+        generic-panel(:row-bindings="{ justify: 'center'}")
+          v-col(cols="12")
+            v-row(justify="center")
+              v-col(cols="12").text-center
+                strong(v-if="metaTitle" :class="metaTitleClasses").primary--text {{ metaTitle }}
+                h2(:class="titleClasses").lh-title.font-weight-semibold.mb-5 {{ title }}
+                p(:class="descriptionClasses").font-open-sans.mb-5 {{ description }}
+            v-row(justify="center")
+              v-col(cols="12" md="6" xl="4").text-center.mb-10
+                div.d-flex.align-center.justify-center
+                  strong(:class="descriptionClasses").font-open-sans.black--text.mr-3 Billed Monthly
+                  v-switch(
+                    v-model="switchModel"
+                    inset
+                    color="info"
+                  )
+                  strong(:class="descriptionClasses").font-open-sans.black--text Billed Annually
+            v-row(justify="center" align="center" dense)
+              template(v-if="!$isMobile")
+                v-col(
+                  v-for="(pack, key) in pricingPackages"
+                  :key="key"
+                  v-bind="columnBindings"
+                )
+                  pricing-card(
+                    :bundle="pack"
+                    :payment-interval="paymentInterval"
+                    :height="type === 'doctor' ? '700' : '800'"
+                  ).elevation-3
+              v-col(v-else cols="12" sm="8")
+                carousel(
+                  paginationColor="grey"
+                  loop
+                  navigationEnabled
+                  paginationEnabled
+                  :per-page="1"
+                  :navigationClickTargetSize="40"
+                )
+                  slide(
+                    v-for="(pack, index) in pricingPackages"
+                    :key="index"
+                    :data-index="index+1"
+                  ).pa-2
+                    pricing-card(
+                      :bundle="pack"
+                      :payment-interval="paymentInterval"
+                      :height="type === 'doctor' ? '700' : '800'"
+                    ).elevation-3
 </template>
 
 <script>
 import classBinder from '~/utils/class-binder';
+import { getSubscriptionPackagesPricing } from '~/services/subscription-packages';
+import GenericPanel from '~/components/generic/GenericPanel';
+import PricingCard from '~/components/commons/PricingCard';
 export default {
+  components: {
+    GenericPanel,
+    PricingCard,
+  },
   props: {
+    /**
+     * @type {String} type
+     * @example 'doctor'
+     * @example 'clinic'
+     * @example 'diagnostic',
+     */
+    type: {
+      type: String,
+      default: 'clinic',
+    },
     title: {
       type: String,
       default: '',
@@ -75,34 +85,21 @@ export default {
       type: String,
       default: '',
     },
-    /**
-     * @type {PricingDetail []} PricingDetails
-     *
-     * @type {Object} PricingDetail
-     * @param {String} title
-     * @param {String} currency
-     * @param {Number} monthlyPrice
-     * @param {Number} annualMonthlyPrice
-     * @param {String | Number} users
-     * @param {Array} inclusions
-     * @param {String} btnText
-     * @param {String} btnRoute
-     * @param {Boolean} requireContact
-     *
-     */
-    pricingDetails: {
-      type: Array,
-      default: () => ([]),
-    },
-    columnSize: {
-      type: Number,
-      default: 3,
+    columnBindings: {
+      type: Object,
+      default: () => ({
+        cols: '12',
+        md: '3',
+        xl: '3',
+      }),
     },
   },
   data () {
-    this.modeBtns = ['monthly', 'anually'];
     return {
-      pricingMode: 'monthly', // monthly | annually
+      loading: false,
+      switchModel: false,
+      paymentInterval: 'month', // month | year
+      pricingPackages: [],
     };
   },
   computed: {
@@ -110,43 +107,60 @@ export default {
       return classBinder(this, {
         mobile: ['font-m'],
         regular: ['font-l'],
+        wide: ['font-xl'],
+      });
+    },
+    metaTitleClasses () {
+      return classBinder(this, {
+        mobile: ['font-xs'],
+        regular: ['font-s'],
       });
     },
     descriptionClasses () {
       return classBinder(this, {
         mobile: ['font-xs'],
         regular: ['font-s'],
+        wide: ['font-m'],
       });
     },
   },
-  methods: {
-    modeBtnBindings (mode) {
-      if (mode === this.pricingMode) return;
-      return { outlined: true };
-    },
-    onBtnClick (details) {
-      const { btnRoute, requireContact } = details;
-      if (requireContact) {
-        window.$crisp.push(['do', 'chat:toggle']);
+  watch: {
+    switchModel (val) {
+      if (val) {
+        this.paymentInterval = 'year';
         return;
       }
-      if (btnRoute) {
-        this.$router.push({ name: btnRoute });
+      this.paymentInterval = 'month';
+    },
+  },
+  async created () {
+    // fetch packages
+    await this.fetchPackages(this.type);
+  },
+  methods: {
+    async fetchPackages (type) {
+      try {
+        this.loading = true;
+        this.pricingPackages = await getSubscriptionPackagesPricing(type) || [];
+      } catch (e) {
+        console.error(e);
+      } finally {
+        this.loading = false;
       }
+    },
+    modeBtnBindings (mode) {
+      if (mode === this.paymentInterval) return;
+      return { outlined: true };
     },
   },
 };
 </script>
 
 <style scoped>
-.card-outter {
-  position: relative;
-  padding-bottom: 50px;
-}
-
-.card-actions {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
+.pricing-bg {
+  width: 100vw;
+  background-image: url('../../../assets/images/pricing/Pricing BG.png');
+  background-position: center center;
+  background-size: 100% 100%;
 }
 </style>

@@ -1,14 +1,14 @@
 <template lang="pug">
   mc-btn(
     color="success"
-    tile
     depressed
+    :rounded="rounded"
     :large="large"
     :x-large="xLarge"
     :small="small"
     :block="block"
     @click="getStarted"
-  ).text-none.font-weight-bold.letter-spacing-normal Get Started
+  ).text-none.letter-spacing-normal Get Started
 </template>
 
 <script>
@@ -18,6 +18,7 @@ export default {
     xLarge: Boolean,
     small: Boolean,
     block: Boolean,
+    rounded: Boolean,
     email: {
       type: String,
       default: '',

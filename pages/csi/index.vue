@@ -100,7 +100,7 @@ export default {
     return headMeta({
       title: 'MYCURE CSI',
       description: 'MYCURE helps you bring in more patients using a powerful healthcare service booking and management software. It’s free, secure, and easy to use.',
-      socialBanner: require('~/assets/images/banners/MYCURE Open Graph-Providers.jpg'),
+      socialBanner: require('~/assets/images/banners/OG Homepage.png'),
     });
   },
   computed: {

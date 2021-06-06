@@ -74,7 +74,7 @@
 import headMeta from '~/utils/head-meta';
 import classBinder from '~/utils/class-binder';
 // - constants
-import { ENTERPRISE_PRICING } from '~/constants/pricing';
+import { CLINICS_PRICING } from '~/constants/pricing';
 // - components
 import CallToAction from '~/components/commons/panels/CallToAction';
 import Features from '~/components/commons/panels/Features';
@@ -148,7 +148,7 @@ export default {
       },
     ];
 
-    this.pricingDetails = ENTERPRISE_PRICING;
+    this.pricingDetails = CLINICS_PRICING;
     return {
       loading: true,
     };
@@ -158,7 +158,7 @@ export default {
     return headMeta({
       title: 'MYCURE for Dental Clinics',
       description: 'Experience the most versatile software for dental clinics that seamlessly manages dental charts, inventory, and billing.',
-      socialBanner: require('~/assets/images/banners/MYCURE Open Graph-Providers.jpg'),
+      socialBanner: require('~/assets/images/banners/OG Homepage.png'),
     });
   },
   computed: {

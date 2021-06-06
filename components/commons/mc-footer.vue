@@ -8,11 +8,11 @@
               img(
                 src="~/assets/images/MYCURE-virtual-clinic-healthcare-practice-online-logo.svg"
                 alt="White MYCURE Logo"
-                width="200"
+                width="150"
               ).mt-4
           v-row(v-if="!$isMobile").mt-4.justify-space-around
             template(v-for="(footerItem, index) in footerItems")
-              v-col(cols="6" md="2").footer-section
+              v-col(cols="6" md="3").footer-section
                 h4(v-if="footerItem.type === 'footer-header'").primary--text {{ footerItem.value }}
                 template(v-for="(col, index) in footerItem.columns")
                   a(
@@ -20,19 +20,19 @@
                     :href="col.link"
                     target="_blank"
                     el="noopener noreferrer"
-                  ).black--text.d-block.font-16 {{col.value}}
+                  ).black--text.d-block.font-14 {{col.value}}
                   a(
                     v-if="col.type === 'phone'"
                     :href="`tel:${col.value}`"
-                  ).black--text.d-block.font-16 {{col.value}}
+                  ).black--text.d-block.font-14 {{col.value}}
                   a(
                     v-if="col.type === 'email'"
                     :href="`mailto:${col.value}`"
-                  ).black--text.d-block.font-16 {{col.value}}
+                  ).black--text.d-block.font-14 {{col.value}}
                   a(
                     v-if="col.type === 'chat'"
                     @click.stop="toggleChat()"
-                  ).black--text.d-block.font-16 {{col.value}}
+                  ).black--text.d-block.font-14 {{col.value}}
           v-row(v-if="$isMobile")
             v-expansion-panels(flat).footer-gray.elevation-0.mx-2
               v-expansion-panel(v-for="(footerItem, index) in footerItems" :key="index").footer-gray
@@ -46,26 +46,26 @@
                       :href="col.link"
                       target="_blank"
                       el="noopener noreferrer"
-                    ).black--text.d-block.font-16 {{col.value}}
+                    ).black--text.d-block.font-14 {{col.value}}
                     a(
                       v-if="col.type === 'phone'"
                       :href="`tel:${col.value}`"
-                    ).black--text.d-block.font-16 {{col.value}}
+                    ).black--text.d-block.font-14 {{col.value}}
                     a(
                       v-if="col.type === 'email'"
                       :href="`mailto:${col.value}`"
-                    ).black--text.d-block.font-16 {{col.value}}
+                    ).black--text.d-block.font-14 {{col.value}}
                     a(
                       v-if="col.type === 'chat'"
                       @click.stop="toggleChat()"
-                    ).black--text.d-block.font-16 {{col.value}}
-          v-row(align="center" no-gutters)
+                    ).black--text.d-block.font-14 {{col.value}}
+          v-row(align="center" no-gutters).mt-10
             v-col(
               :class="{ 'text-center order-last' : $isMobile }"
               cols="12"
               md="7"
-            )
-              span.call-number.black--text Copyright &copy; 2016 - {{ new Date().getFullYear() }}
+            ).font-14
+              span.call-number.black--text Copyright &copy; {{ new Date().getFullYear() }}
                 a(href="https://mycure.md" rel="noopener noreferrer")
                   strong.primary--text &nbsp;MYCURE Inc.&nbsp;
               span.call-number.black--text #[br(v-if="$isMobile")] All Rights Reserved.
@@ -78,7 +78,7 @@
             )
               template(v-for="(account, key) in socMed")
                 a(:href="account.link" target="_blank" rel="noopener noreferrer")
-                  img(:src="require(`~/assets/images/${ account.icon }`)" height="35" :alt="account.name").ma-4
+                  img(:src="require(`~/assets/images/${ account.icon }`)" height="20" :alt="account.name").ma-4
 </template>
 
 <script>
@@ -121,13 +121,15 @@ export default {
             { type: 'link', value: 'Doctor\'s Clinics', link: '/doctors-clinics' },
             { type: 'link', value: 'Outpatient Clinics', link: '/clinics' },
             { type: 'link', value: 'Diagnostics', link: '/diagnostics' },
+            { type: 'link', value: 'Telehealth', link: '/telehealth' },
+            { type: 'link', value: 'Booking', link: '/booking' },
           ],
         },
         {
           type: 'footer-header',
           value: 'Legal',
           columns: [
-            { type: 'link', value: 'Terms of use', link: '/terms' },
+            { type: 'link', value: 'Terms of Use', link: '/terms' },
             { type: 'link', value: 'Privacy Policy', link: '/privacy-policy' },
           ],
         },
@@ -136,8 +138,9 @@ export default {
           value: 'Contact Us',
           columns: [
             { type: 'email', value: 'hello@mycure.md' },
-            { type: 'phone', value: '(+632) 7799 6262' },
-            { type: 'phone', value: '(+63) 917 303 4350' },
+            { type: 'phone', value: 'PH: (+632) 7799 6262' },
+            { type: 'phone', value: 'PH: (+63) 917 303 4350' },
+            { type: 'phone', value: 'Guam: 1-671-646-2733' },
           ],
         },
       ],

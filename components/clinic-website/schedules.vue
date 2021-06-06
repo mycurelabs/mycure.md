@@ -36,7 +36,7 @@ strong {
   cursor: pointer;
 }
 .main-container {
-  background: rgba(0, 153, 204, 0.2);
+  background-color: rgba(0, 153, 204, 0.2);
   border-radius: 5px;
   min-height: 300px;
   position: relative;

@@ -1,35 +1,29 @@
 <template lang="pug">
-  v-container
+  v-container(:fluid="fluid")
     v-row(justify="center")
       v-col(
         v-for="(data, key) in contents"
-        justify="center"
-        align-self="center"
         cols="12"
         md="5"
         :key="key"
-      )
+      ).content-container
         div.d-flex
-          img(v-lazy="require(`~/assets/images/telehealth/${data.headerIcon}`)" height="30%" :class="{'pt-3': $isMobile}")
-          h1(:class="headerClasses").ml-3 {{ data.header }}
+          img(v-lazy="require(`~/assets/images/telehealth/${data.headerIcon}`)" :height="$isMobile? '10%' : '30%'" :class="{'pt-3': $isMobile}")
+          h1(:class="headerClasses").ml-3.font-weight-semibold {{ data.header }}
         br
         p(:class="descriptionClasses").text-justify.font-gray.font-open-sans {{ data.description }}
-        br
-        mc-btn(
-          small
-          tile
-          depressed
-          color="success"
-          event-label="signup"
-          :to="{ name: 'signup-health-facilities' }"
-        ).text-none
-          | Get Started Free
-          v-icon(small right) mdi-arrow-right
 </template>
 
 <script>
 import classBinder from '~/utils/class-binder';
 export default {
+  props: {
+    // - Container fluid
+    fluid: {
+      type: Boolean,
+      default: false,
+    },
+  },
   data () {
     this.contents = [
       {
@@ -48,16 +42,25 @@ export default {
   computed: {
     headerClasses () {
       return classBinder(this, {
-        mobile: ['font-s'],
+        mobile: ['font-s', 'pt-5'],
         regular: ['font-m'],
+        wide: ['font-l'],
       });
     },
     descriptionClasses () {
       return classBinder(this, {
         mobile: ['font-xs'],
         regular: ['font-s'],
+        wide: ['font-m'],
       });
     },
   },
 };
 </script>
+
+<style scoped>
+.content-container {
+  position: relative;
+  padding-bottom: 50px;
+}
+</style>

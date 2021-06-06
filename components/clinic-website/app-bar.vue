@@ -3,35 +3,38 @@
     v-app-bar(
       color="white"
       height="70"
-      elevate-on-scroll
-      fixed
+      flat
+      app
+      absolute
       no-gutters
     )
-      v-container(fluid v-if="!$isMobile")
-        v-row(no-gutters align="center")
-          v-avatar
-            img(
-              :src="picURL"
-              height="60"
-              alt="Clinic Logo"
-            )
-          v-col.pl-2
-            h3 {{ clinicName }}&nbsp;
-              v-icon(v-if="isVerified" color="primary") mdi-check-decagram
-          v-spacer
-          v-btn(
-            depressed
-            Large
-            color="#fff"
-            @click="goToPxpSignin"
-          ).text-none #[b Login]
-          v-btn(
-            depressed
-            Large
-            color="primary"
-            target="_blank"
-            href="https://6rbf27w6k3r.typeform.com/to/V13pJzW9"
-          ).text-none.ml-2 #[b Create an Account]
+      v-container(v-if="!$isMobile" fluid)
+        v-row(justify="center" align="center" no-gutters)
+          v-col(cols="12" md="10")
+            v-row(no-gutters align="center")
+              v-avatar
+                img(
+                  :src="picURL"
+                  height="60"
+                  alt="Clinic Logo"
+                )
+              v-col.pl-2
+                h3 {{ clinicName }}&nbsp;
+                  v-icon(v-if="isVerified" color="primary") mdi-check-decagram
+              v-spacer
+              v-btn(
+                depressed
+                Large
+                color="#fff"
+                @click="goToPxpSignin"
+              ).text-none #[b Login]
+              v-btn(
+                depressed
+                Large
+                color="primary"
+                target="_blank"
+                href="https://6rbf27w6k3r.typeform.com/to/V13pJzW9"
+              ).text-none.ml-2 #[b Create an Account]
       v-container(v-else)
         v-row(align="center")
           v-avatar

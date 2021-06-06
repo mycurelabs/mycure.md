@@ -44,9 +44,6 @@ export default {
       otherError: 'An error occurred',
     };
   },
-  mounted () {
-    VueScrollTo.scrollTo('#app', 500, { easing: 'ease' });
-  },
   head () {
     if (this.error.statusCode === 404) {
       return headMeta({
@@ -60,6 +57,9 @@ export default {
         description: this.otherError,
       };
     }
+  },
+  mounted () {
+    VueScrollTo.scrollTo('#app', 500, { easing: 'ease' });
   },
 };
 </script>

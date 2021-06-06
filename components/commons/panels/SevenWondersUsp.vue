@@ -1,47 +1,60 @@
 <template lang="pug">
-  v-container(:class="{'usp-container' : !$isMobile }")
-    v-row(
-      justify="center"
-      no-gutters
-      :style="{ height: $isMobile ? mobileHeight : webHeight }"
-    )
-      v-col(cols="10" md="5" offset-md="1" :class="{ 'order-last' : !$isMobile }" :align-self="$isMobile ? 'end' : 'center'")
-        picture-source(
-          v-if="image"
-          extension-exclusive
-          :image="image"
-          :image-alt="image"
-          image-file-extension=".png"
-          :custom-path="customImagePath"
+  div(:class="{'mx-n3 mt-n5': hasCustomBackground }").main-container
+    div(v-if="hasCustomBackground && backgroundImage && !$isMobile")
+      img(
+        :src="require(`~/assets/images/${customImagePath}${backgroundImage}.png`)"
+        :alt="title"
+      ).usp-bg
+    v-container.content
+      v-row(justify="center" align="center" :style="{ height: panelHeight }")
+        generic-sub-page-panel(
+          :title="uspTitle"
+          :title-classes="titleClasses"
+          :super-title="superTitle"
+          :super-title-classes="superTitleClasses"
+          :content="uspDescription"
+          :content-classes="descriptionClasses"
+          :content-column-bindings="contentColumnBindings"
+          :media-column-bindings="mediaColumnBindings"
+          :generic-panel-bindings="genericPanelBindings"
         )
-      v-col(cols="12" md="4" :class="{ 'text-center' : $isMobile }" :align-self="$isMobile ? 'start' : 'center'")
-        p(v-if="metaTitle" :class="metaTitleClasses").font-weight-bold.primary--text {{ uspMetaTitle }}
-        h1(:class="titleClasses") {{ uspTitle }}
-        p(:class="descriptionClasses").grey--text.font-open-sans {{ uspDescription }}
-        br
-        template(v-if="slottedBtn")
-          slot(name="usp btn")
-        mc-btn(
-          v-else-if="!hideBtn"
-          depressed
-          :color="btnColor"
-          small
-          tile
-          :event-label="`${title} USP button`"
-          @click="$emit('click')"
-        ).text-none.letter-spacing-normal {{ btnText }}
+          template(v-if="slottedTitle" slot="title")
+            slot(name="title")
+          template(slot="image" v-if="!hasCustomBackground || $isMobile")
+            img(
+              :src="require(`~/assets/images/${customImagePath}${image}.png`)"
+              :alt="image"
+              :width="imageWidth"
+            )
+          div(slot="cta-button" :class="{'text-center': $isMobile}")
+            signup-button(
+              depressed
+              rounded
+              :large="!$isWideScreen"
+              :x-large="$isWideScreen"
+              :class="btnClasses"
+              :color="btnColor"
+            ).text-none.letter-spacing-normal {{ btnText }}
 </template>
 
 <script>
 import classBinder from '~/utils/class-binder';
 import { parseTextWithNewLine } from '~/utils/newline';
-import PictureSource from '~/components/commons/PictureSource';
+import GenericSubPagePanel from '~/components/generic/GenericSubPagePanel';
+// import PictureSource from '~/components/commons/PictureSource';
+import SignupButton from '~/components/commons/SignupButton';
 
 export default {
   components: {
-    PictureSource,
+    GenericSubPagePanel,
+    // PictureSource,
+    SignupButton,
   },
   props: {
+    slottedTitle: {
+      type: Boolean,
+      default: false,
+    },
     title: {
       type: String,
       default: '',
@@ -98,19 +111,62 @@ export default {
       type: String,
       default: null,
     },
+    // - USP Image width
+    imageWidth: {
+      type: String,
+      default: '100%',
+    },
     // - Custom directory
     customImagePath: {
       type: String,
       default: '',
     },
     // - Panel height
-    webHeight: {
+    regularHeight: {
       type: String,
-      default: '650px',
+      default: '100vh',
     },
     mobileHeight: {
       type: String,
-      default: '700px',
+      default: 'auto',
+    },
+    wideHeight: {
+      type: String,
+      default: '100vh',
+    },
+    // - Column for Text
+    contentColumnBindings: {
+      type: Object,
+      default: () => ({
+        cols: 12,
+        md: 4,
+        xl: 5,
+      }),
+    },
+    // - Column for Image
+    mediaColumnBindings: {
+      type: Object,
+      default: () => ({
+        cols: 12,
+        md: 7,
+        offsetMd: 1,
+        xl: 6,
+      }),
+    },
+    // - Alignment of image
+    imageAlign: {
+      type: String,
+      default: 'left',
+    },
+    // USP Custom background
+    hasCustomBackground: {
+      type: Boolean,
+      default: false,
+    },
+    // Image file name without file extension
+    backgroundImage: {
+      type: String,
+      default: null,
     },
   },
   computed: {
@@ -119,7 +175,7 @@ export default {
       if (!this.toParse(this.parseTitle)) return this.title;
       return parseTextWithNewLine(this.title, this.parseTitleFields);
     },
-    uspMetaTitle () {
+    superTitle () {
       if (!this.toParse(this.parseMetaTitle)) return this.metaTitle;
       return parseTextWithNewLine(this.metaTitle, this.parseMetaTitleFields);
     },
@@ -129,33 +185,69 @@ export default {
     // Classes
     titleClasses () {
       const classes = classBinder(this, {
-        mobile: ['font-m'],
+        mobile: ['font-m', 'text-center'],
         regular: ['font-l'],
+        wide: ['font-xl'],
       });
       return [
-        'mb-8',
         'lh-title',
+        'font-weight-bold',
+        'font-usp-primary',
         { 'pre-white-space': this.toParse(this.parseTitle) },
         classes,
       ];
     },
-    metaTitleClasses () {
+    superTitleClasses () {
       const classes = classBinder(this, {
-        mobile: ['font-s'],
+        mobile: ['font-xs', 'text-center'],
         regular: ['font-s'],
         wide: ['font-m'],
       });
       return [
         'font-open-sans',
+        'primary--text',
         { 'pre-white-space': this.toParse(this.parseMetaTitle) },
         classes,
       ];
     },
     descriptionClasses () {
-      return classBinder(this, {
-        mobile: ['font-xs', 'text-center'],
-        regular: ['font-s', 'text-justify'],
-      });
+      return [
+        classBinder(this, {
+          mobile: ['font-xs', 'text-center'],
+          regular: ['font-s'],
+          wide: ['font-m'],
+        }),
+        'font-open-sans',
+        'font-gray',
+      ];
+    },
+    btnClasses () {
+      return [
+        classBinder(this, {
+          mobile: ['text-center'],
+          regular: ['font-s'],
+          wide: ['font-m'],
+        }),
+      ];
+    },
+    panelHeight () {
+      if (this.$isMobile) return this.mobileHeight;
+      if (this.$isRegularScreen) return this.regularHeight;
+      return this.wideHeight;
+    },
+    imageAlignment () {
+      switch (this.imageAlign) {
+        case 'left': return 'text-left';
+        case 'right': return 'text-right';
+        case 'center': return 'text-center';
+        default: return 'text-left';
+      }
+    },
+    genericPanelBindings () {
+      return {
+        justify: 'center',
+        align: 'center',
+      };
     },
   },
   methods: {
@@ -175,6 +267,23 @@ export default {
 </script>
 
 <style scoped>
+.usp-bg {
+  width: 100vw;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 1;
+  object-fit: cover;
+}
+.main-container {
+  position: relative;
+}
+.content {
+  z-index: 2;
+  position: relative;
+}
+
 @media screen and (max-width: 1080px) {
   .usp-container {
     padding-bottom: 50px;
