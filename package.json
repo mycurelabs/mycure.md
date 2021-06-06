@@ -26,6 +26,7 @@
     "libphonenumber-js": "^1.9.15",
     "nuxt": "^2.15.6",
     "nuxt-webfontloader": "^1.1.0",
+    "redirect-ssl": "^3.0.0",
     "vue-carousel": "^0.18.0",
     "vue-cookie-law": "^1.13.3",
     "vue-fragment": "^1.5.2",
