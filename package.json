@@ -18,7 +18,7 @@
     "@nuxtjs/axios": "^5.13.1",
     "@nuxtjs/dotenv": "^1.4.1",
     "@nuxtjs/pwa": "^3.3.5",
-    "@vue-stripe/vue-stripe": "^4.2.0",
+    "@vue-stripe/vue-stripe": "^4.2.4",
     "amplitude-js": "^8.1.0",
     "animejs": "^3.2.1",
     "babel-polyfill": "^6.26.0",

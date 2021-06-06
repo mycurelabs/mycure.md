@@ -2040,7 +2040,7 @@
     "@typescript-eslint/types" "4.20.0"
     eslint-visitor-keys "^2.0.0"
 
-"@vue-stripe/vue-stripe@^4.2.0":
+"@vue-stripe/vue-stripe@^4.2.4":
   version "4.2.4"
   resolved "https://registry.yarnpkg.com/@vue-stripe/vue-stripe/-/vue-stripe-4.2.4.tgz#25e7fe26b64f2956a09a28a16dc6c8d5147b5e0b"
   integrity sha512-NWjwhUPBbw+FCHdoXp4v4OPFmuinDzW+nqesKUJQq5EH2dp7k+WOBJWYsd2iZiD2LxnDDGtQ0Ew9rOrGUruCKg==
