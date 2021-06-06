@@ -94,9 +94,11 @@ export default {
         : webClasses;
     },
     ctaSubText () {
-      return !this.ctaContent ? ''
-        : !this.ctaContent.subtext ? ''
-          : this.ctaContent.subtext;
+      return !this.ctaContent
+        ? ''
+        : !this.ctaContent.subtext
+            ? ''
+            : this.ctaContent.subtext;
     },
     ctaBtnText () {
       return !this.ctaContent ? 'Get Started' : this.ctaContent.btnText;
@@ -147,7 +149,6 @@ export default {
         this.$nuxt.$router.push({
           name: this.ctaBtnLink,
           ...(this.ctaBtnLink === 'index') && { params: { scrollHealthSuites: true } },
-          ...(this.$nuxt.$route.name === 'hippocrates') && { params: { route: 'hippocrates' } },
         });
       }
       this.$emit('btnClick');
@@ -163,7 +164,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .cta-btn {
   letter-spacing: normal;
 }

@@ -1,13 +1,14 @@
 <template lang="pug">
   v-app#app
     pxp-app-bar(v-if="!loading")
-    nuxt
+    div(style="padding-top: 45px")
+      nuxt
     pxp-footer(v-if="!loading")
 </template>
 
 <script>
 import PxpAppBar from '~/components/home/AppBar';
-import PxpFooter from '~/components/home/MyFooter';
+import PxpFooter from '~/components/commons/mc-footer';
 export default {
   components: {
     PxpAppBar,

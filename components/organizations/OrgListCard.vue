@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-card(flat color="#fafafa" height="100%").orgs-card
+  v-card(flat color="#f0f0f0" height="100%").orgs-card
     v-card-text.py-0.pl-0
       div.d-flex
         v-col.shrink
@@ -14,7 +14,7 @@
               v-icon(v-if="hasWebsite" color="primary") mdi-check-decagram
           div
             template(v-if="!isDescriptionExpanded && organization.description")
-              v-clamp(:max-lines="2" autoresize) {{ organization.description }}
+              span(:max-lines="2" autoresize) {{ organization.description }}
               a(@click="isDescriptionExpanded = true").primary--text See more
             template(v-else-if="isDescriptionExpanded")
               p {{ organization.description }}
@@ -22,23 +22,25 @@
             div(v-if="organization !== undefined").mt-4
               div.d-flex
                 v-icon(small color="error").mr-2.mb-auto.mt-1 mdi-map-marker
-                v-clamp(:max-lines="2" autoresize v-if="organization.address") {{ address }}
+                span(:max-lines="2" autoresize v-if="organization.address") {{ address }}
                 p(v-else).font-italic No address available
               div.d-flex
                 v-icon(small color="success").mr-2.mb-auto.mt-1 mdi-phone
-                v-clamp(:max-lines="2" autoresize v-if="organization.phone || organization.phones").font-weight-bold {{ phoneNumber }}
+                span(:max-lines="2" autoresize v-if="organization.phone || organization.phones").font-weight-bold {{ phoneNumber }}
                 p(v-else).font-italic No phone number available
               div.d-flex
                 v-icon(small color="primary").mr-2.mb-auto.mt-1 mdi-calendar-today
                 div(v-if="fullSchedules.length")
-                  div(v-if="!scheduleExpanded")
-                    v-clamp(:max-lines="2" autoresize).text-capitalize {{ formatTodaySchedule(schedulesToday) }}
-                      a(v-if="fullSchedules.length > 1" @click="scheduleExpanded = true").primary--text &nbsp; View More
-                  div(v-else)
-                    div(v-for="(schedule, key) in groupedSchedules" :key="key")
-                      span.text-capitalize {{ formatIndividualSchedule(schedule) }}
-                      br
-                    a(@click="scheduleExpanded = false").primary--text View Less
+                  //- div(v-if="!scheduleExpanded")
+                  //-   v-clamp(:max-lines="2" autoresize).text-capitalize {{ formatTodaySchedule(schedulesToday) }}
+                  //-     a(v-if="fullSchedules.length > 1" @click="scheduleExpanded = true").primary--text &nbsp; View More
+                  //- div(v-else)
+                  //-   div(v-for="(schedule, key) in groupedSchedules" :key="key")
+                  //-     span.text-capitalize {{ formatIndividualSchedule(schedule) }}
+                  //-     br
+                  //-   a(@click="scheduleExpanded = false").primary--text View Less
+                  span(v-if="filteredDays.length > 1").text-capitalize {{ filteredDays[0] }} - {{ filteredDays[filteredDays.length - 1] }}
+                  span(v-else).text-capitalize {{ filteredDays[0] }}
                   br
                   br
                 p(v-else).font-italic No schedules available
@@ -56,14 +58,15 @@
 </template>
 
 <script>
-import VClamp from 'vue-clamp';
+// import VClamp from 'vue-clamp';
 import { format } from 'date-fns';
+import { uniqBy } from 'lodash';
 import { formatAddress } from '~/utils/formats';
 import FacilityPlaceholder from '~/assets/images/facility-placeholder.jpg';
 
 export default {
   components: {
-    VClamp,
+    // VClamp,
   },
   props: {
     organization: {
@@ -93,11 +96,15 @@ export default {
   computed: {
     fullSchedules () {
       // eslint-disable-next-line camelcase
-      return this.organization?.mf_schedules || this.organization?.schedules || [];
+      return this.organization?.mf_schedule || this.organization?.schedules || [];
+    },
+    filteredDays () {
+      return uniqBy(this.groupedSchedules, 'day')
+        .map(schedule => schedule.day) || [];
     },
     groupedSchedules () {
       const schedules = this.fullSchedules;
-      if (this.isDoctor) return schedules.sort((a, b) => a.day !== b.day ? a.day - b.day : a.startTime - b.startTime);
+      // if (this.isDoctor) return schedules.sort((a, b) => a.day !== b.day ? a.day - b.day : a.startTime - b.startTime);
       return schedules.sort((a, b) => a.day !== b.day ? a.order - b.order : a.opening - b.opening) || [];
     },
     schedulesToday () {
@@ -141,14 +148,14 @@ export default {
     },
     formatTodaySchedule (schedules) {
       if (!schedules || !schedules?.length) return 'Unavailable today';
-      if (this.isDoctor) {
-        const today = schedules[0].day;
-        const day = this.days.find(day => day.value === today);
-        const times = schedules.map((schedule) => {
-          return `${format(schedule.startTime, 'hh:mm A')} - ${format(schedule.endTime, 'hh:mm A')}`;
-        }).join(', ');
-        return `${day?.text} (${times})`;
-      }
+      // if (this.isDoctor) {
+      //   const today = schedules[0].day;
+      //   const day = this.days.find(day => day.value === today);
+      //   const times = schedules.map((schedule) => {
+      //     return `${format(schedule.startTime, 'hh:mm A')} - ${format(schedule.endTime, 'hh:mm A')}`;
+      //   }).join(', ');
+      //   return `${day?.text} (${times})`;
+      // }
       const day = schedules[0].day;
       const times = schedules.map((schedule) => {
         return `${format(schedule.opening, 'hh:mm A')} - ${format(schedule.closing, 'hh:mm A')}`;
@@ -156,11 +163,11 @@ export default {
       return `${day} (${times})`;
     },
     formatIndividualSchedule (schedule) {
-      if (this.isDoctor) {
-        const currentDay = schedule.day;
-        const day = this.days.find(day => day.value === currentDay) || '';
-        return `${day.text} (${format(schedule.startTime, 'hh:mm A')} - ${format(schedule.endTime, 'hh:mm A')})`;
-      }
+      // if (this.isDoctor) {
+      //   const currentDay = schedule.day;
+      //   const day = this.days.find(day => day.value === currentDay) || '';
+      //   return `${day.text} (${format(schedule.startTime, 'hh:mm A')} - ${format(schedule.endTime, 'hh:mm A')})`;
+      // }
       return `${schedule.day} (${format(schedule.opening, 'hh:mm A')} - ${format(schedule.closing, 'hh:mm A')})`;
     },
   },

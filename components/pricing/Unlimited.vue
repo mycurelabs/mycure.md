@@ -117,7 +117,7 @@ export default {
       return ['white--text', 'text-center', 'font-weight-bold'];
     },
     currencyTypeClasses () {
-      return ['font-25', 'font-weight-medium', 'currency-type'];
+      return ['font-25', 'font-weight-semibold', 'currency-type'];
     },
     typeBtnClasses () {
       return ['white--text', 'font-weight-bold'];

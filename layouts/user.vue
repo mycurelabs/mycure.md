@@ -6,7 +6,7 @@
     v-row(align="center" justify="center").footer
       v-row(align="center" justify="center").text-center
         v-col(cols="12" md="6").pl-12.pr-12
-          span.white--text Copyright &copy; 2016 - {{new Date().getFullYear()}} MYCURE Inc. All Rights Reserved.
+          span.white--text Copyright &copy;{{new Date().getFullYear()}} MYCURE Inc. All Rights Reserved.
         v-col(cols="12" md="6")
           a(@click.stop="goToTerms") Terms of Use
           span.white--text &nbsp;&nbsp;|&nbsp;&nbsp;
@@ -17,7 +17,7 @@
 // - utils
 // import VueScrollTo from 'vue-scrollto';
 import dayOrNight from '../utils/day-or-night';
-
+const FORCED_DAY = true;
 export default {
   data () {
     return {
@@ -38,7 +38,7 @@ export default {
   },
   methods: {
     async init () {
-      this.dayOrNight = await dayOrNight();
+      this.dayOrNight = await dayOrNight(FORCED_DAY);
       this.$vuetify.theme.dark = this.dayOrNight === 'night';
       this.loading = false;
     },
@@ -64,11 +64,11 @@ export default {
   background-position: bottom center;
 }
 .day-bg {
-  background-image: url('../assets/images/sign-up-individual-step-1/mycure-final-cta-background-dense.png');
+  background-image: url('../assets/images/sign-up/mycure-final-cta-background-dense.png');
   background-size: contain;
 }
 .night-bg {
-  background-image: url('../assets/images/sign-up-individual-step-1/mycure-final-cta-background-dark-mode.png');
+  background-image: url('../assets/images/sign-up/mycure-final-cta-background-dark-mode.png');
   background-size: contain;
 }
 .night-sky {

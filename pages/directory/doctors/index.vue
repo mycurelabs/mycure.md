@@ -62,7 +62,6 @@ import Social from '~/components/directory-doctor/social';
 import Usp from '~/components/directory-doctor/usp';
 import { /* getDoctors */ getFeaturedDoctors, searchDoctors } from '~/utils/axios';
 export default {
-  layout: 'directory-doctor',
   components: {
     AboutClinic,
     AppBar,
@@ -77,6 +76,7 @@ export default {
     Social,
     Usp,
   },
+  layout: 'directory-doctor',
   async asyncData ({ app, router, params, error }) {
     try {
       const featuredDoctors = await getFeaturedDoctors();
@@ -104,6 +104,14 @@ export default {
       doctors: [],
       featuredDoctors: [],
     };
+  },
+  head () {
+    // TODO: update meta tags
+    return headMeta({
+      title: 'MYCURE - Doctors Directory',
+      description: 'Search doctors by specialty, and book an appointment',
+      // socialBanner: this.picURL, TODO: Add banner
+    });
   },
   created () {
     this.init();
@@ -153,14 +161,6 @@ export default {
     onBook () {
       VueScrollTo.scrollTo('#doctors-table', 500, { easing: 'ease', offset: -70 });
     },
-  },
-  head () {
-    // TODO: update meta tags
-    return headMeta({
-      title: 'MYCURE - Doctors Directory',
-      description: 'Search doctors by specialty, and book an appointment',
-      // socialBanner: this.picURL, TODO: Add banner
-    });
   },
 };
 </script>

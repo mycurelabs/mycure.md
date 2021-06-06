@@ -1,98 +1,141 @@
 <template lang="pug">
-  div(v-if="!loading").white
+  v-container(v-if="!loading" fluid).white
     //- 1st panel
-    usp(@getStarted="goToSignupIndividual")
-    start-easy
-    features
+    seven-wonders
+    //- 2nd panel
+    care
+    //- 3rd panel
+    div.simple-container.mx-n3
+      simple
+    //- 4th panel
+    patients
+    //- 5th panel
+    div.grey-bg.mx-n3
+      tools(:version="2")
+    //-6th panel
     syncbase
-    hipaa
-    plans
+    //- 7th panel
+    div.grey-bg.mx-n3
+      hipaa(
+        :header-classes="headerClasses"
+        :description-classes="descriptionClasses"
+      )
+    //- CTA
+    div.cta-container.mx-n3.mb-n3
+      join-next-generation
+      div.cta-image.text-center
+        picture-source(
+          image="CTA"
+          image-file-extension=".png"
+          extension-exclusive
+          custom-path="home/"
+          image-alt="CTA Home"
+          :image-width="!$isMobile ? '30%' : '70%'"
+          :image-styles="{ marginBottom: '-7px' }"
+        )
 </template>
 
 <script>
 // - utils
-import VueScrollTo from 'vue-scrollto';
+import classBinder from '~/utils/class-binder';
 import headMeta from '~/utils/head-meta';
-import { parseTextWithNewLine } from '~/utils/newline';
 // - components
-import Usp from '~/components/providers/Usp';
-import StartEasy from '~/components/providers/StartEasy';
-import Features from '~/components/providers/Features';
-import Syncbase from '~/components/providers/Syncbase';
-import Hipaa from '~/components/providers/Hipaa';
-import Plans from '~/components/providers/Plans';
+import Care from '~/components/home/Care';
+import GenericMediaPanel from '~/components/commons/generic-media-panel';
+import Hipaa from '~/components/booking/Hipaa';
+import JoinNextGeneration from '~/components/home/JoinNextGeneration';
+import Patients from '~/components/home/Patients';
+import PictureSource from '~/components/commons/PictureSource';
+import SevenWonders from '~/components/home/SevenWonders';
+import Simple from '~/components/home/Simple';
+import Syncbase from '~/components/commons/panels/Syncbase';
+import Tools from '~/components/home/Tools';
 
 export default {
   components: {
-    Usp,
-    StartEasy,
-    Features,
-    Syncbase,
+    Care,
+    GenericMediaPanel,
     Hipaa,
-    Plans,
+    JoinNextGeneration,
+    Patients,
+    PictureSource,
+    SevenWonders,
+    Simple,
+    Syncbase,
+    Tools,
   },
   data () {
     return {
       loading: true,
     };
   },
+  head () {
+    return headMeta({
+      title: 'MYCURE | Making Healthcare Accessible to All',
+      description: 'MYCURE is a healthcare platform that connects physicians, clinics, hospitals, and medical organizations to anyone in need.',
+      socialBanner: require('~/assets/images/banners/OG Homepage.png'),
+    });
+  },
   computed: {
-    scrollPanel () {
-      const panel = this.$nuxt.$route.params.panel;
-      return panel ? `#${panel}` : null;
+    panelMargins () {
+      return { 'mt-10': !this.$isWideScreen, 'mt-12': this.$isWideScreen };
     },
-    storyflowIntroText () {
-      return this.$isMobile
-        ? this.introText
-        : parseTextWithNewLine(this.introText, ['need']);
+    headerClasses () {
+      const headerClasses = [
+        classBinder(this, {
+          mobile: ['font-m'],
+          regular: ['font-l'],
+          wide: ['font-xl'],
+        }),
+        'font-weight-semibold',
+      ];
+      return headerClasses;
+    },
+    descriptionClasses () {
+      const descriptionClasses = [
+        classBinder(this, {
+          mobile: ['font-xs'],
+          regular: ['font-s'],
+          wide: ['font-m'],
+        }),
+        'font-open-sans',
+        'font-gray',
+      ];
+      return descriptionClasses;
     },
   },
   mounted () {
     this.loading = false;
-    const panel = this.scrollPanel || '#app';
-    setTimeout(() => {
-      VueScrollTo.scrollTo(panel, 500, { easing: 'ease', offset: -100 });
-    }, 0);
-
-    this.$nuxt.$route.params.scrollHealthSuites ? this.getStarted()
-      : VueScrollTo.scrollTo('#app', 500, { easing: 'ease' });
-    window.$crisp.push(['safe', true]);
-    this.loading = false;
-  },
-  methods: {
-    getStarted () {
-      this.$router.push({ name: 'signup-individual' });
-    },
-    goToSignupIndividual (email) {
-      this.$router.push({ name: 'signup-individual' });
-    },
-    goToPatientPortal () {
-      window.open(process.env.PX_PORTAL_URL, '_blank', 'noopener, noreferrer');
-    },
-    handleWatchFeatures () {
-      this.$ga.event({
-        eventCategory: 'button',
-        eventLabel: 'home-watch-features-btn',
-        eventAction: 'click-home-watch-features-btn',
-      });
-
-      this.featuresVideoDialog = true;
-    },
-  },
-  head () {
-    return headMeta({
-      title: 'MYCURE Healthcare Service Booking Management Software',
-      description: 'MYCURE helps you bring in more patients using a powerful healthcare service booking and management software. It’s free, secure, and easy to use.',
-      socialBanner: require('~/assets/images/banners/MYCURE Open Graph-Providers.jpg'),
-    });
+    this.$gtag.pageview('/home');
   },
 };
 </script>
 
 <style scoped>
+.simple-container {
+  background-color: #0099cc;
+}
 .cta-container {
+  background-color: #0099cc;
   position: relative;
-  margin-bottom: 0%;
-  z-index: 1;
+  padding-bottom: 200px;
+}
+.cta-image {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+.divider {
+  margin-right: 30% !important;
+  margin-left: 30% !important;
+}
+.grey-bg {
+  background-color: #fafafa;
+}
+
+@media screen and (min-width: 1920px) {
+  .cta-container {
+    padding-bottom: 300px;
+  }
 }
 </style>

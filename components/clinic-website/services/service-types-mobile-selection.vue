@@ -2,7 +2,7 @@
   v-row
     template(v-for="type in types")
       v-col(
-        v-if="hasServiceType(type.type)"
+        v-if="hasServiceType(type.value)"
         cols="12"
       )
         v-card(color="grey" @click="$emit('select', type.value)")

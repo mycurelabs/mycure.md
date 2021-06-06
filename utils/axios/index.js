@@ -76,7 +76,7 @@ export const getMemberOrganizations = async (opts) => {
       uid: opts.uid,
     },
   });
-  const memberships = memberData.data;
+  const memberships = memberData.data || [];
   if (!memberships?.length) return null;
   const { data: organizationData } = await axios({
     method: 'GET',
@@ -213,6 +213,7 @@ export const signupIndividual = async (opts) => {
         doc_PRCLicenseNo: opts.doc_PRCLicenseNo,
         mobileNo: `+${opts.countryCallingCode}${opts.mobileNo}`,
       },
+      // TODO: Update query to accomodate 'type: facility'
       organization: {
         type: 'personal-clinic',
         superadmin: {
@@ -239,6 +240,7 @@ export const signupIndividual = async (opts) => {
 export const signupFacility = async (opts) => {
   try {
     const payload = {
+      // skipMobileNoVerification: opts.skipMobileNoVerification,
       email: opts.email,
       mobileNo: `+${opts.countryCallingCode}${opts.mobileNo}`,
       password: opts.password,
@@ -247,11 +249,11 @@ export const signupFacility = async (opts) => {
           firstName: opts.firstName,
           lastName: opts.lastName,
         },
-        doc_PRCLicenseNo: opts.doc_PRCLicenseNo,
+        ...opts.doc_PRCLicenseNo && { doc_PRCLicenseNo: opts.doc_PRCLicenseNo },
         mobileNo: `+${opts.countryCallingCode}${opts.mobileNo}`,
       },
       organization: {
-        type: opts.clinicType,
+        ...opts.organization,
         superadmin: {
           roles: [...opts.roles],
         },
@@ -356,43 +358,7 @@ export const resendVerificationCode = async (opts) => {
   }
 };
 
-export const recordWebsiteVisit = async (opts) => {
-  try {
-    const payload = {
-      account: opts.uid,
-      type: 'doctor-website-visit',
-      label: 'Website Visit',
-      campaign: 'Website Visit',
-      source: window.location.href,
-    };
-    const { data } = await axios({
-      method: 'post',
-      url: `${process.env.API_URL}/system-counters`,
-      data: payload,
-    });
-    return data;
-  } catch (e) {
-    console.error(e);
-    throw handleError(e);
-  }
-};
-
-export const fetchLearningCornerMaterials = async (opts) => {
-  try {
-    const searchQuery = opts.searchText ? `&$search=${opts.searchText}` : '';
-    const { data } = await axios({
-      method: 'get',
-      url: `${process.env.API_URL}/file-links?account=${opts.account}&public=true${searchQuery}`,
-    });
-    return data.data;
-  } catch (e) {
-    console.error(e);
-    throw handleError(e);
-  }
-};
-
+export * from './doctor-website';
 export * from './doctor-directory';
 export * from './clinics-website';
-export * from './account-invitations';
-export * from './account-waitlist';
 export * from './organizations';

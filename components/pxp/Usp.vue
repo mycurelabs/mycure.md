@@ -15,7 +15,7 @@
         )
       v-col(cols="8" md="5" :class="{ 'order-last' : !$isMobile }")
         v-img(
-          :src="require('~/assets/images/patients/usp-patients.png')"
+          :src="require('~/assets/images/patients/Patients USP.png')"
           width="100%"
           alt="patients-usp"
         )

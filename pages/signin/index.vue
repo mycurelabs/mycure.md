@@ -170,6 +170,13 @@ export default {
       sixthDigit: null,
     };
   },
+  head () {
+    return headMeta({
+      title: 'Sign In to MYCURE',
+      description: 'Welcome to MYCURE Complete Clinic Management System. Sign in today and get ready to easily create, store, and retrieve your electronic medical records (EMR).',
+      socialBanner: require('~/assets/images/banners/OG Homepage.png'),
+    });
+  },
   computed: {
     label () {
       return this.isMFAMobileNoEnabled
@@ -262,9 +269,7 @@ export default {
           window.$amplitude.logEvent('RET003 Btn > Sign in');
           window.location = this.composeTarget(accessToken);
         } else {
-          throw new Error({
-            message: 'There was an error. Please try again later.',
-          });
+          throw new Error('There was an error. Please try again later.');
         }
 
         if (this.otp) {
@@ -332,13 +337,6 @@ export default {
         }
       }
     },
-  },
-  head () {
-    return headMeta({
-      title: 'Sign In to MYCURE',
-      description: 'Welcome to MYCURE Complete Clinic Management System. Sign in today and get ready to easily create, store, and retrieve your electronic medical records (EMR).',
-      socialBanner: require('~/assets/images/banners/MYCURE Open Graph Images -  Home.png'),
-    });
   },
 };
 </script>

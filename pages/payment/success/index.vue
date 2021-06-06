@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-content.bottom-bg
+  div.bottom-bg
     v-container.mt-10
       v-row(justify="center" align="center")
         v-col(cols="12" md="4")
@@ -15,7 +15,7 @@
           :class="{'text-center': $isMobile }"
         )
           img(src="~/assets/images/mycure-logo.svg" height="50")
-          h1 YOUR TRIAL IS NOW ACTIVE!
+          h1 YOUR PAYMENT WAS SUCCESSFUL!
           p.mt-3 Congratulations! You can now starting exploring MYCURE.
           v-btn(
             color="accent"
@@ -27,18 +27,15 @@
 <script>
 export default {
   layout: 'empty',
-  mounted () {
-    console.warn('just to verify stripe pk', process.env.STRIPE_PK);
+  head () {
+    return {
+      title: 'Trial Active - MYCURE Sign Up',
+    };
   },
   methods: {
     onOkayClick () {
       this.$nuxt.$router.push({ name: 'signin' });
     },
-  },
-  head () {
-    return {
-      title: 'Trial Active - MYCURE Sign Up',
-    };
   },
 };
 </script>

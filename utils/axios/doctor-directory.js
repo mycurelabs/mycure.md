@@ -62,7 +62,7 @@ export const searchDoctors = async (opts) => {
         url += `&doc_specialties=${opts?.specialties[0]}`;
       } else {
         opts?.specialties?.forEach((specialty) => { // eslint-disable-line
-          url += `&doc_specialties[$in]=${specialty}`;
+          url += '&doc_specialties[$in]=' + specialty;
         });
       }
     }

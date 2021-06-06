@@ -86,6 +86,14 @@ export default {
       loading: true,
     };
   },
+  head () {
+    return headMeta({
+      title: 'Fight COVID-19: Free EMR System for LGUs and NGOs',
+      description: 'MYCURE Heart securely manages  your community’s health data with an enterprise-grade Electronic Medical Records (EMR) System that runs on your own cloud server.',
+      // - TODO: Replace with local if applicable
+      socialBanner: require('~/assets/images/mycure-heart/MYCURE_HEART_Open_Graph_Images.png'),
+    });
+  },
   computed: {
     introText () {
       const text = 'MYCURE Heart promotes good governance, transparency, and accountability.';
@@ -109,14 +117,6 @@ export default {
         window.open('https://forms.gle/y4qpv7ajERaGE5Lr7', '_blank');
       }
     },
-  },
-  head () {
-    return headMeta({
-      title: 'Fight COVID-19: Free EMR System for LGUs and NGOs',
-      description: 'MYCURE Heart securely manages  your community’s health data with an enterprise-grade Electronic Medical Records (EMR) System that runs on your own cloud server.',
-      // - TODO: Replace with local if applicable
-      socialBanner: require('~/assets/images/mycure-heart/MYCURE_HEART_Open_Graph_Images.png'),
-    });
   },
 };
 </script>

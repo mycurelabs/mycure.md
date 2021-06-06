@@ -15,19 +15,9 @@ export default ({ title, description, socialBanner }) => {
         content: description,
       },
       {
-        hid: 'og:title',
-        name: 'og:title',
+        hid: 'title',
+        name: 'title',
         content: title,
-      },
-      {
-        hid: 'og:site_name',
-        name: 'og:site_name',
-        content: SITE_NAME,
-      },
-      {
-        hid: 'og:description',
-        name: 'og:description',
-        content: description,
       },
       // facebook meta
       {
@@ -61,7 +51,7 @@ export default ({ title, description, socialBanner }) => {
         content: description,
       },
       {
-        hid: 'image',
+        hid: 'og:image',
         name: 'og:image',
         content: socialBanner,
       },

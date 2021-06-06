@@ -1,0 +1,109 @@
+<template lang="pug">
+  v-container
+    v-row(justify="center")
+      generic-panel(:row-bindings="{ justify: 'center' }")
+        v-col(cols="12" md="10").text-center
+          h1(:class="headerClasses").font-weight-semibold.primary--text.mb-10 Patients will love you even more
+          v-row(justify="center")
+            v-col(cols="12" md="8").text-center
+              p(:class="descriptionClasses").grey--text.font-open-sans.mb-10 You treat your patients with holistic care. Now, make it extra covenient for them to reach you.
+        v-col(
+          v-for="(feature, key) in features"
+          :key="key"
+          cols="12"
+          md="5"
+        ).text-center
+          v-card(flat)
+            v-img(
+              :src="require(`~/assets/images/home/${feature.image}.png`)"
+              :alt="feature.title"
+            )
+              v-card-title.mt-5
+                v-spacer
+                span(:class="descriptionClasses").white--text.font-open-sans {{ feature.title }}
+                v-spacer
+              v-card-text.text-center.px-8
+                strong(:class="appDescriptionClasses").white--text.content-line-spacing {{ feature.description }}
+</template>
+
+<script>
+import classBinder from '~/utils/class-binder';
+import GenericPanel from '~/components/generic/GenericPanel';
+export default {
+  components: {
+    GenericPanel,
+  },
+  data () {
+    this.features = [
+      {
+        title: 'Online Results',
+        description: 'Time to go digital for the new generation.',
+        image: 'Online Results BG',
+      },
+      {
+        title: 'Online Booking',
+        description: 'Help patients find the best schedule for their next visit.',
+        image: 'Online Booking BG',
+      },
+    ];
+    return {};
+  },
+  computed: {
+    headerClasses () {
+      return classBinder(this, {
+        mobile: ['font-m'],
+        regular: ['font-l'],
+        wide: ['font-2xl'],
+      });
+    },
+    descriptionClasses () {
+      return classBinder(this, {
+        mobile: ['font-xs'],
+        regular: ['font-s'],
+        wide: ['font-m'],
+      });
+    },
+    appDescriptionClasses () {
+      return classBinder(this, {
+        mobile: ['font-s'],
+        regular: ['font-24'],
+        wide: ['font-l'],
+      });
+    },
+  },
+};
+</script>
+
+<style scoped>
+.usp-container {
+  padding-bottom: 80px;
+}
+
+.content-line-spacing {
+  line-height: 1.5em;
+}
+
+.app-container {
+  height: 600px;
+  position: relative;
+}
+
+.image-container {
+  position: absolute;
+  bottom: 0;
+}
+
+@media screen and (min-width: 1024px) {
+  .app-container {
+    height: 450px;
+  }
+}
+@media screen and (min-width: 1920px) {
+  .usp-container {
+    padding-top: 50px;
+  }
+  .app-container {
+    height: 600px;
+  }
+}
+</style>

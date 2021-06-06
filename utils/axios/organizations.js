@@ -1,5 +1,4 @@
 import axios from 'axios';
-import _ from 'lodash';
 import { handleError } from './error-handler';
 
 export const getOrganization = async (opts, website = false) => {
@@ -92,23 +91,24 @@ export const getOrgDoctorMembers = async (opts) => {
   return await Promise.all(populatedMembersPromises);
 };
 
-export const getProviders = async (opts) => {
-  try {
-    const { parentOrgId } = opts;
+// NOTE: removed coz not is use
+// export const getProviders = async (opts) => {
+//   try {
+//     const { parentOrgId } = opts;
 
-    const childOrgs = await getChildOrganizations({ parentOrgId });
-    const providerPromises = childOrgs.map(async (childOrg) => {
-      const childOrgMembers = await getOrgDoctorMembers({ organization: childOrg.id });
-      for (const childOrgMember of childOrgMembers) {
-        return { ...childOrgMember };
-      }
-    });
-    const results = await Promise.all(providerPromises);
-    const uniqueProviders = _.uniqBy(results, 'uid');
+//     const childOrgs = await getChildOrganizations({ parentOrgId });
+//     const providerPromises = childOrgs.map(async (childOrg) => {
+//       const childOrgMembers = await getOrgDoctorMembers({ organization: childOrg.id });
+//       for (const childOrgMember of childOrgMembers) {
+//         return { ...childOrgMember };
+//       }
+//     });
+//     const results = await Promise.all(providerPromises);
+//     const uniqueProviders = _.uniqBy(results, 'uid');
 
-    return uniqueProviders;
-  } catch (e) {
-    console.error(e);
-    handleError(e);
-  }
-};
+//     return uniqueProviders;
+//   } catch (e) {
+//     console.error(e);
+//     handleError(e);
+//   }
+// };

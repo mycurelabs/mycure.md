@@ -6,7 +6,8 @@
     v-row(align="center" justify="center").footer
       v-col(cols="12").mt-2.text-center
         span.white--text Don't have MYCURE yet?
-        nuxt-link(:to="{ name: 'signup-health-facilities' , params: { scrollHealthSuites: true}}").router-link.primary--text &nbsp;&nbsp;Get your account here.
+        nuxt-link(v-if="!routeContext" :to="{ name: 'signup-health-facilities'}").router-link.primary--text &nbsp;&nbsp;Get your account here.
+        a(v-else :href="redirectSignUpLink").router-link.primary--text &nbsp;&nbsp;Get your account here.
         v-divider(dark).mt-5.edge-divider
       v-row(align="center" justify="center").mt-n2.text-center
         v-col(cols="12" md="6").pl-12.pr-12
@@ -34,6 +35,16 @@ export default {
     },
     footerPaddingClasses () {
       return [this.$isMobile ? 'pb-6' : ''];
+    },
+    routeContext () {
+      return this.$route.query.context || '';
+    },
+    redirectSignUpLink () {
+      switch (this.routeContext) {
+        case 'pxp': return process.env.PX_PORTAL_URL;
+        default:
+          return this.$nuxt.$router.resolve({ name: 'signup-health-facilities' }).href;
+      }
     },
   },
   mounted () {
