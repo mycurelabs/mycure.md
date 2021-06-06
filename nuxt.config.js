@@ -1,3 +1,4 @@
+const Integrations = require('@sentry/tracing').Integrations;
 export default {
   env: {
     AMPLITUDE_API_KEY: process.env.AMPLITUDE_API_KEY,
@@ -48,7 +49,6 @@ export default {
     { src: '~/plugins/main.js', mode: 'client' },
     { src: '~/plugins/mc-btn', mode: 'client' },
     { src: '~/plugins/mycure.js', mode: 'client' },
-    { src: '~/plugins/sentry.js', mode: 'client' },
     { src: '~/plugins/vue-carousel.js', mode: 'client' },
     { src: '~/plugins/vue-cookie-law', mode: 'client' },
     { src: '~/plugins/vue-morphling.js', mode: 'client' },
@@ -78,7 +78,19 @@ export default {
     '@nuxtjs/pwa',
     '@nuxtjs/dotenv',
     'nuxt-webfontloader',
+    '@nuxtjs/sentry',
   ],
+
+  sentry: {
+    dsn: 'https://58567a0b813e4a6b8d82f7d81a65546f@o595042.ingest.sentry.io/5748409',
+    config: {
+      integrations: [new Integrations.BrowserTracing()],
+      tracesSampleRate: 1.0,
+      // Our config
+      environment: process.env.ENV,
+    },
+  },
+
   webfontloader: {
     google: {
       families: [
