@@ -38,7 +38,7 @@
                   navigationEnabled
                   paginationEnabled
                   :per-page="1"
-                  :navigationClickTargetSize="40"
+                  :navigationClickTargetSize="25"
                 )
                   slide(
                     v-for="(pack, index) in pricingPackages"
