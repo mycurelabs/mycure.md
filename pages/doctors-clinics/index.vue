@@ -83,7 +83,7 @@
           )
             v-col(cols="2" sm="1" md="1").pr-2.pt-2
               v-icon(color="white") mdi-checkbox-marked-circle
-            v-col(cols="10" sm="5" md="7")
+            v-col(cols="10" sm="5" md="11")
               span(:class="eightPanelContentClasses") {{ item }}
     //- 9th panel
     think-long-term
@@ -190,7 +190,7 @@ export default {
       },
     ];
     this.sixthPanel = {
-      title: 'Expand Your Reach',
+      title: 'Expand your reach',
       description: 'Opt in to MYCURE ONE, a global online directory of modern healthcare practitioners and facilities',
       list: [
         'Patients can easily find you',
