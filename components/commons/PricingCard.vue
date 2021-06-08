@@ -17,11 +17,11 @@
           )
         div.text-center.description-container
           p(:class="[normalTextColor, textFontSize, recommendedText]") {{ bundle.description }}
-        div.text-center
+        div.text-center.price-container
           template(v-if="!bundle.requireContact")
             p(:class="priceColor").font-weight-bold
               template(v-if='bundle.monthlyPrice > 0')
-                span(:class="{'font-30': !$isWideScreen, 'font-35': $isWideScreen}") {{ bundle.currency }}&nbsp;
+                span(:class="{'font-30': !$isWideScreen, 'font-35': $isWideScreen}").currency {{ bundle.currency }}&nbsp;
                 span(:class="{'font-45': !$isWideScreen, 'font-60': $isWideScreen}") {{ paymentInterval === 'year' ? bundle.annualMonthlyPrice : bundle.monthlyPrice }}
               span(v-else).font-45 FREE
             //- span(v-else).font-xl {{ bundle.annualMonthlyPrice ? bundle.annualMonthlyPrice : bundle.monthlyPrice }}
@@ -163,13 +163,23 @@ export default {
   width: 100%;
 }
 
+.price-container {
+  position: relative;
+}
+
+.currency {
+  position: absolute;
+  top: 25%;
+  left: 5%;
+}
+
 .general-info-container {
   position: relative;
   min-height: 280px;
 }
 
 .description-container {
-  min-height: 90px;
+  min-height: 85px;
 }
 
 .chip {
@@ -197,9 +207,6 @@ export default {
 @media screen and (min-width: 1920px) {
   .general-info-container {
     min-height: 275px;
-  }
-  .description-container {
-    min-height: 85px;
   }
 }
 </style>
