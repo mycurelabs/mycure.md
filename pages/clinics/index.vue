@@ -12,7 +12,7 @@
       btn-text="Get Started"
       btn-color="success"
       image="Clinics USP"
-      image-width="90%"
+      :image-width="$isMobile ? '100%' : '90%'"
       custom-image-path="clinics/"
       :parse-title-fields="['workflows, ', 'results, ']"
       :parse-meta-title-fields="['System']"
@@ -67,19 +67,21 @@
         :content="practicingSoloPanel"
         :title-classes="[...headerClasses, 'white--text']"
         hide-btn
+        disable-parent-padding
       )
         div(slot="additional-content").mt-10
           mc-btn(
             depressed
             rounded
-            color="success"
+            color="white"
             :block="$isMobile"
             :large="!$isWideScreen"
             :x-large="$isWideScreen"
             :class="{'font-s': !$isMobile}"
             :to="{ name: 'doctors-clinics' }"
-          ).text-none
-            span Click here.
+          ).text-none.primary--text
+            v-icon(left) mdi-information-outline
+            span Learn More
     //- 8th panel
     think-long-term
     v-divider.divider
