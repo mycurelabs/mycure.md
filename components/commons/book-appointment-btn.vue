@@ -1,47 +1,47 @@
 <template lang="pug">
-  v-btn(
-    :outlined="outlined"
-    :large="large"
-    :small="small"
-    :rounded="rounded"
-    :color="color"
+  mc-btn(
+    v-bind="$attrs"
+    :event-label="eventLabel"
     :href="url"
-    :class="{ 'font-11' : $isMobile }"
-  ).text-none.font-weight-600 {{ btnText }}
-    v-icon(v-if="showIcon" small right) mdi-calendar
+  ).text-none
+    v-icon(v-if="showIcon" left) mdi-calendar
+    span {{ btnText }}
 </template>
 
 <script>
 export default {
   props: {
-    color: {
-      type: String,
-      default: null,
-    },
-    outlined: {
-      type: Boolean,
-      default: false,
-    },
-    rounded: {
-      type: Boolean,
-      default: false,
-    },
+    // color: {
+    //   type: String,
+    //   default: null,
+    // },
+    // outlined: {
+    //   type: Boolean,
+    //   default: false,
+    // },
+    // rounded: {
+    //   type: Boolean,
+    //   default: false,
+    // },
+    // large: {
+    //   type: Boolean,
+    //   default: false,
+    // },
+    // small: {
+    //   type: Boolean,
+    //   default: true,
+    // },
     btnText: {
       type: String,
-      default: 'primary',
+      default: 'Book Now',
     },
-    large: {
-      type: Boolean,
-      default: false,
-    },
-    small: {
-      type: Boolean,
-      default: true,
-    },
-    // - Show icon
     showIcon: {
       type: Boolean,
       default: false,
+    },
+    eventLabel: {
+      type: String,
+      default: 'book-doctor',
     },
   },
   computed: {

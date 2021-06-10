@@ -1,5 +1,5 @@
 <template lang="pug">
-  div(v-if="!loading").bottom-padding
+  v-container(v-if="!loading" fluid).white
     main-panel(
       :pic-url="picURL"
       :full-name="fullNameWithSuffixes"
@@ -10,20 +10,20 @@
       :practicing-since="practicingSince"
       :is-verified="isVerified"
     )
-    stats(:data="doctorMetrics")
-    facilities(
-      :first-name="firstName"
-      :doctorId="doctor.id"
-      :clinics="clinics"
-      :total="clinicsTotal"
-      :limit="clinicsLimit"
-       @onUpdatePage="fetchDoctorInfo($event)"
-    )
-    services(
-      :first-name="firstName"
-      :services="services"
-    )
-    learning-corner(:doctor-id="doctor.id")
+    //- stats(:data="doctorMetrics")
+    //- facilities(
+    //-   :first-name="firstName"
+    //-   :doctorId="doctor.id"
+    //-   :clinics="clinics"
+    //-   :total="clinicsTotal"
+    //-   :limit="clinicsLimit"
+    //-    @onUpdatePage="fetchDoctorInfo($event)"
+    //- )
+    //- services(
+    //-   :first-name="firstName"
+    //-   :services="services"
+    //- )
+    //- learning-corner(:doctor-id="doctor.id")
 </template>
 
 <script>

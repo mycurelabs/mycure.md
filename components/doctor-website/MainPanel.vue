@@ -1,91 +1,88 @@
 <template lang="pug">
-  v-container
-    v-row(justify="center" align="center" no-gutters)
-      v-col(cols="12" md="10")
-        v-row(justify="center" align="center" no-gutters)
+  div.panel-bg.mx-n3
+    v-container
+      v-row(justify="center")
+        generic-panel(:row-bindings="{ justify: 'center' }")
           //- Profile picture and main info
-          v-col(cols="12" md="10").text-center
-            v-avatar(size="100")
+          v-col(cols="12").text-center
+            v-avatar(size="200")
               img(:src="picUrl")
             br
             br
-            h1 {{ fullName }}
-            div(v-if="hasProfessionalInfo")
-              span.font-gray.font-open-sans {{ specialtiesMapped }}
-              br
-              p(v-if="practicingSince").font-open-sans.font-gray {{yearsOfExperience}} Years of Experience
-              br(v-else)
-              br
-            //- Bio
-            div
-              strong.primary--text About
-              p.font-open-sans.font-gray {{ bio || 'Ready to accomodate you!' }}
-            //- Professional Info
+            h2 {{ fullName }}
+          //- Professional Info
+          v-col(cols="10" v-if="hasProfessionalInfo").text-center
+            p(v-if="practicingSince").font-open-sans.font-gray {{yearsOfExperience}} Years of Experience
+            br(v-else)
+            v-chip(v-for="(specialty, key) in specialties" :key="key").mx-1 {{ specialty }}
+            //- span.font-gray.font-open-sans {{ specialtiesMapped }}
             br
-            //- Educational Background
-            div(v-if="education.length")
-              strong.primary--text Education
-              br
-              div(v-for="(educ, key) in education" :key="key").font-gray.font-open-sans
-                strong {{educ.from }} - {{ educ.to }}
-                br
-                span {{ educ | format-school }}
+            //- //- Educational Background
+            //- div(v-if="education.length")
+            //-   strong.primary--text Education
+            //-   br
+            //-   div(v-for="(educ, key) in education" :key="key").font-gray.font-open-sans
+            //-     strong {{educ.from }} - {{ educ.to }}
+            //-     br
+            //-     span {{ educ | format-school }}
             br
             //- Virtual Consult
             book-appointment-btn(
-              outlined
+              color="info"
+              btn-text="Book Me Now"
               rounded
-              small
+              depressed
+              x-large
               show-icon
-              btn-text="Book an Appointment"
-              color="success"
               :class="{ 'font-11' : $isMobile }"
             ).text-none.font-weight-bold
             br
-            //- Share Btn and Menu
-            v-menu(
-              v-model="socialMenu"
-              :close-on-content-click="false"
-              offset-y
-            )
-              template(v-slot:activator="{ on }")
-                v-btn(
-                  v-on="on"
-                  small
-                  rounded
-                  depressed
-                  color="primary"
-                  :class="{ 'font-11' : $isMobile , 'ml-1': !$isMobile }"
-                ).text-none.mt-1
-                  | Share
-                  v-icon(small right) mdi-share-variant
-              v-card(color="primary" width="275")
-                v-card-text
-                  h4.white--text Love this doctor? Let your friends know by sharing this website!
-                  v-row(no-gutters)
-                    v-col(cols="12")
-                      social-sharing(
-                        :url="doctorLink"
-                        :title="windowTitle"
-                        inline-template
-                      )
-                        div
-                          network(network="facebook").social-image
-                            img(src="~/assets/images/doctor-website/facebook-logo-white.png" width="20%").pa-3
-                          network(network="twitter").social-image
-                            img(src="~/assets/images/doctor-website/twitter-logo-white.png" width="20%").pa-3
-                          network(network="linkedin").social-image
-                            img(src="~/assets/images/doctor-website/linkedin-logo-white.png" width="20%").pa-3
-                          network(network="email").social-image
-                            img(src="~/assets/images/doctor-website/gmail-logo-white.png" width="20%").pa-3
+            //- //- Share Btn and Menu
+            //- v-menu(
+            //-   v-model="socialMenu"
+            //-   :close-on-content-click="false"
+            //-   offset-y
+            //- )
+            //-   template(v-slot:activator="{ on }")
+            //-     v-btn(
+            //-       v-on="on"
+            //-       small
+            //-       rounded
+            //-       depressed
+            //-       color="primary"
+            //-       :class="{ 'font-11' : $isMobile , 'ml-1': !$isMobile }"
+            //-     ).text-none.mt-1
+            //-       | Share
+            //-       v-icon(small right) mdi-share-variant
+            //-   v-card(color="primary" width="275")
+            //-     v-card-text
+            //-       h4.white--text Love this doctor? Let your friends know by sharing this website!
+            //-       v-row(no-gutters)
+            //-         v-col(cols="12")
+            //-           social-sharing(
+            //-             :url="doctorLink"
+            //-             :title="windowTitle"
+            //-             inline-template
+            //-           )
+            //-             div
+            //-               network(network="facebook").social-image
+            //-                 img(src="~/assets/images/doctor-website/facebook-logo-white.png" width="20%").pa-3
+            //-               network(network="twitter").social-image
+            //-                 img(src="~/assets/images/doctor-website/twitter-logo-white.png" width="20%").pa-3
+            //-               network(network="linkedin").social-image
+            //-                 img(src="~/assets/images/doctor-website/linkedin-logo-white.png" width="20%").pa-3
+            //-               network(network="email").social-image
+            //-                 img(src="~/assets/images/doctor-website/gmail-logo-white.png" width="20%").pa-3
 </template>
 
 <script>
 import SocialSharing from 'vue-social-sharing';
 import BookAppointmentBtn from '~/components/commons/book-appointment-btn';
+import GenericPanel from '~/components/generic/GenericPanel';
 export default {
   components: {
     BookAppointmentBtn,
+    GenericPanel,
     SocialSharing,
   },
   filters: {
@@ -184,5 +181,11 @@ export default {
 }
 .social-image:hover {
   cursor: pointer !important;
+}
+.panel-bg {
+  background-image: url('../../assets/images/doctor-website/Doctor BG Full.png');
+  background-size: cover;
+  width: 100vw;
+  height: 1500px;
 }
 </style>
