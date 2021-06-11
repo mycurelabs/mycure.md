@@ -17,12 +17,11 @@
             :offset-md="getCustomOffset(key)"
           ).text-center
             picture-source(
-              extension-exclusive
               :custom-path="version === 1? 'home/' : 'clinics/module-icons/'"
               :image="tool.icon"
               :image-alt="tool.name"
               :image-width="toolWidth"
-              image-file-extension=".png"
+              image-file-extension=".webp"
             )
             br
             h3.font-xs.font-open-sans.font-gray {{ tool.name }}
