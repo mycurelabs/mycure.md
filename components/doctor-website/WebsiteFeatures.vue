@@ -3,9 +3,7 @@
     v-tabs(v-model="activeTab")
       v-tab(v-for="(tab, key) in doctorTabs" :key="key" :href="tab.href").text-none {{ tab.name }}
     v-tabs-items(v-model="activeTab")
-      v-tab-item(
-        value="facilities"
-      )
+      v-tab-item(value="facilities")
         v-card(flat)
           v-card-text
              facilities(
@@ -15,6 +13,17 @@
                 :limit="clinicsLimit"
                 @onUpdatePage="$emit('onUpdateClinicPage', $event)"
               )
+      v-tab-item(value="services")
+        v-card(flat)
+          v-card-text
+            h2 Services Offered
+            v-list(v-if="services.length" dense)
+              v-list-item(v-for="(service, key) in services" :key="key")
+                v-list-item-icon
+                  v-icon(color="primary") mdi-check-circle-outline
+                v-list-item-content
+                  v-list-item-title {{ service }}
+            p(v-else).font-open-sans.font-gray.text-center This doctor has not listed any services yet. You may check this website from time to time for updates!
 </template>
 
 <script>
@@ -39,6 +48,10 @@ export default {
     clinicsLimit: {
       type: Number,
       default: 6,
+    },
+    services: {
+      type: Array,
+      default: () => ([]),
     },
   },
   data () {

@@ -36,6 +36,7 @@
               :clinics="clinics"
               :clinics-total="clinicsTotal"
               :clinics-limit="clinicsLimit"
+              :services="services"
               @onUpdateClinicPage="fetchDoctorInfo($event)"
             )
     //- services(
