@@ -17,22 +17,14 @@
               img(:src="picUrl")
             br
             br
-            h2 {{ fullName }}
+            h2 Dr. {{ fullName }}
           //- Professional Info
           v-col(cols="10" v-if="hasProfessionalInfo").text-center
-            p(v-if="practicingSince").font-open-sans {{yearsOfExperience}} Years of Experience
+            p(v-if="practicingYears").font-open-sans {{practicingYears}} Years of Experience
             br(v-else)
             v-chip(v-for="(specialty, key) in specialties" :key="key" color="white").mx-1 {{ specialty }}
             //- span.font-gray.font-open-sans {{ specialtiesMapped }}
             br
-            //- //- Educational Background
-            //- div(v-if="education.length")
-            //-   strong.primary--text Education
-            //-   br
-            //-   div(v-for="(educ, key) in education" :key="key").font-gray.font-open-sans
-            //-     strong {{educ.from }} - {{ educ.to }}
-            //-     br
-            //-     span {{ educ | format-school }}
             br
             //- Virtual Consult
             book-appointment-btn(
@@ -121,8 +113,8 @@ export default {
       type: Array,
       default: () => ([]),
     },
-    practicingSince: {
-      type: [Date, Number],
+    practicingYears: {
+      type: Number,
       default: null,
     },
     bio: {
@@ -145,11 +137,6 @@ export default {
     };
   },
   computed: {
-    yearsOfExperience () {
-      const from = new Date(this.practicingSince).getFullYear();
-      const to = new Date().getFullYear();
-      return to - from;
-    },
     specialtiesMapped () {
       return this.specialties.join(', ');
     },
@@ -195,7 +182,7 @@ export default {
   background-image: url('../../assets/images/doctor-website/Doctor BG Full.png');
   background-size: cover;
   width: 100%;
-  height: 150vh;
+  min-height: 150vh;
   /* top: 0;
   position: absolute; */
 }

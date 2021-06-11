@@ -1,5 +1,5 @@
 <template lang="pug">
-  div(v-if="!loading").blue.main-container
+  div(v-if="!loading").main-container
     main-panel(
       :pic-url="picURL"
       :full-name="fullNameWithSuffixes"
@@ -7,9 +7,29 @@
       :specialties="specialties"
       :professions="professions"
       :education="education"
-      :practicing-since="practicingSince"
+      :practicing-years="practicingYears"
       :is-verified="isVerified"
     )
+    //- Banner
+    div.banner
+
+    //- Workflow area
+    v-container
+      v-row(justify="center")
+        generic-panel
+          //- Profile
+          v-col(cols="12" lg="4")
+            profile(
+              :pic-url="picURL"
+              :full-name="fullNameWithSuffixes"
+              :practicing-since="practicingSince"
+              :practicing-years="practicingYears"
+              :bio="bio"
+              :specialties="specialties"
+              :education="education"
+            )
+          //- Tabs
+          v-col(cols="12" lg="8")
 
     //- stats(:data="doctorMetrics")
     //- facilities(
@@ -35,19 +55,23 @@ import {
   fetchDoctorMetrics,
 } from '~/utils/axios';
 import Facilities from '~/components/doctor-website/Facilities';
+import GenericPanel from '~/components/generic/GenericPanel';
 import LearningCorner from '~/components/doctor-website/LearningCorner';
 import MainPanel from '~/components/doctor-website/MainPanel';
 import Services from '~/components/doctor-website/ServicesPanel';
 import Stats from '~/components/doctor-website/Stats';
+import Profile from '~/components/doctor-website/Profile';
 import { formatName } from '~/utils/formats';
 import headMeta from '~/utils/head-meta';
 export default {
   components: {
     Facilities,
+    GenericPanel,
     LearningCorner,
     MainPanel,
     Services,
     Stats,
+    Profile,
   },
   layout: 'doctor-website',
   async asyncData ({ app, router, params, error }) {
@@ -120,6 +144,11 @@ export default {
     practicingSince () {
       return this.doctor?.doc_practicingSince; // eslint-disable-line
     },
+    practicingYears () {
+      const from = new Date(this.practicingSince).getFullYear();
+      const to = new Date().getFullYear();
+      return to - from;
+    },
     services () {
       return this.doctor?.doc_services; // eslint-disable-line
     },
@@ -177,9 +206,15 @@ export default {
 
 <style scoped>
 .main-container {
+  background-color: #f0f0f0;
   width: 100vw;
   margin: 0;
   padding: 0;
+}
+.banner {
+  min-height: 300px;
+  background-image: url('../../assets/images/doctor-website/mycure-doctor-website-banner.png');
+  background-size: cover;
 }
 .mycure-link {
   color: white;
