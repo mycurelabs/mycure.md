@@ -2,6 +2,9 @@
   v-container(v-if="!loading" fluid).white
     //- 1st panel
     usp(
+      has-custom-background
+      background-image="Booking Landing Page"
+      background-image-file-extension=".webp"
       description="Bring in more patients using a powerful healthcare service booking and management software. It's free, secure, and easy to use."
       slotted-title
       image="Booking USP"
