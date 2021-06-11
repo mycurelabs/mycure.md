@@ -27,6 +27,7 @@
               :bio="bio"
               :specialties="specialties"
               :education="education"
+              :metrics="doctorMetrics"
             )
           //- Tabs
           v-col(cols="12" lg="8")
