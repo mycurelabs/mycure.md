@@ -12,6 +12,7 @@
       image-align="right"
       btn-text="Get Started Free"
       parse-title
+      extension-exclusive
       :description="uspDescription"
       :parse-title-fields="['the ']"
       :media-column-bindings="{ cols: 12, md: 6, offsetMd: 1, xl: 6}"

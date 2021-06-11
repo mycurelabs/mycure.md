@@ -1,9 +1,12 @@
 <template lang="pug">
   div(:class="{'mx-n3 mt-n5': hasCustomBackground }").main-container
     div(v-if="hasCustomBackground && backgroundImage && !$isMobile")
-      img(
-        :src="require(`~/assets/images/${customImagePath}${backgroundImage}.png`)"
-        :alt="title"
+      picture-source(
+        :image-file-extension="backgroundImageFileExtension"
+        :image="backgroundImage"
+        :image-alt="title"
+        :extension-exclusive="extensionExclusive"
+        :custom-path="customImagePath"
       ).usp-bg
     v-container.content
       v-row(justify="center" align="center" :style="{ height: panelHeight }")
@@ -41,13 +44,13 @@
 import classBinder from '~/utils/class-binder';
 import { parseTextWithNewLine } from '~/utils/newline';
 import GenericSubPagePanel from '~/components/generic/GenericSubPagePanel';
-// import PictureSource from '~/components/commons/PictureSource';
+import PictureSource from '~/components/commons/PictureSource';
 import SignupButton from '~/components/commons/SignupButton';
 
 export default {
   components: {
     GenericSubPagePanel,
-    // PictureSource,
+    PictureSource,
     SignupButton,
   },
   props: {
@@ -120,6 +123,14 @@ export default {
     customImagePath: {
       type: String,
       default: '',
+    },
+    extensionExclusive: {
+      type: Boolean,
+      default: false,
+    },
+    backgroundImageFileExtension: {
+      type: String,
+      default: '.png',
     },
     // - Panel height
     regularHeight: {
