@@ -26,17 +26,17 @@
             //- span.font-gray.font-open-sans {{ specialtiesMapped }}
             br
             br
-            //- Virtual Consult
-            book-appointment-btn(
-              color="info"
-              btn-text="Book Me Now"
-              rounded
-              depressed
-              x-large
-              show-icon
-              :class="{ 'font-11' : $isMobile }"
-            ).text-none.font-weight-bold
-            br
+          //- Virtual Consult
+          book-appointment-btn(
+            color="info"
+            btn-text="Book Me Now"
+            rounded
+            depressed
+            x-large
+            show-icon
+            :class="{ 'font-11' : $isMobile }"
+          ).text-none.font-weight-bold
+          br
 
             //- //- Share Btn and Menu
             //- v-menu(

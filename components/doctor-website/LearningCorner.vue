@@ -1,63 +1,62 @@
 <template lang="pug">
-  v-container
-    v-row(justify="center" align="center" no-gutters)
-      v-col(cols="12" md="10").pt-10
-        h1.text-center.primary--text.font-weight-heavy Learning Corner
-        br
-        template(v-if="materials.length")
-          v-row
-            v-col(cols="12" md="4")
-              span.font-weight-bold Browse by Category:&nbsp;
-              br
-              v-checkbox(
-                v-for="(category, key) in categories"
-                :key="key"
-                :value="selectedCategory === category"
-                :label="category"
+  v-row(justify="center" align="center" no-gutters)
+    v-col(cols="12").pt-10
+      template(v-if="materials.length")
+        v-row
+          v-col(cols="12" md="5").px-5
+            span.font-weight-bold Browse by Tag:&nbsp;
+            br
+            br
+            v-row
+              v-autocomplete(
+                v-model="selectedCategory"
+                label="Select Tags"
+                multiple
                 dense
-                hide-details
-                @click="onCategorySelect(category)"
-              ).py-0.my-0
-            v-col(cols="12" md="8")
-              span.font-weight-bold Sort by
-              br
-              br
-              v-row
-                v-select(
-                  v-model="materialSorter"
-                  outlined
-                  dense
-                  clearable
-                  label="Newest, Oldest, Alphabetically"
-                  :items="sortTypes"
-                  item-text="text"
-                  item-value="value"
-                  @change="sortMaterials(materialSorter)"
-                  @clear="filteredMaterials = [...materials]"
-                )
-          v-row.pt-5
-            v-col(cols="12")
-              v-row(align="stretch")
-                v-col(
-                  v-for="(material, key) in filteredMaterials"
-                  :key="key"
-                  cols="12"
-                  md="4"
-                )
-                  v-card(height="100%").material-container
-                    v-card-text
-                      h3.my-2 {{ material.title }}
-                      p.my-2 {{ material.description }}
-                      i.primary--text.font-12(v-if="material.category") {{ material.category }}
-                    div.material-bottom.text-center
-                      v-btn(
-                        text
-                        block
-                        color="primary"
-                        @click="openFile(material)"
-                      ).text-none.font-weight-bold View
-        template(v-else)
-          p.text-center.font-open-sans.font-gray No materials have been added to this section yet. You may check this website from time to time for updates!
+                outlined
+                clearable
+                :items="categories"
+              )
+          v-col(cols="12" md="7").px-5
+            span.font-weight-bold Sort by
+            br
+            br
+            v-row
+              v-select(
+                v-model="materialSorter"
+                outlined
+                dense
+                clearable
+                label="Newest, Oldest, Alphabetically"
+                :items="sortTypes"
+                item-text="text"
+                item-value="value"
+                @change="sortMaterials(materialSorter)"
+                @clear="filteredMaterials = [...materials]"
+              )
+        v-row.pt-5
+          v-col(cols="12")
+            v-row(align="stretch")
+              v-col(
+                v-for="(material, key) in filteredMaterials"
+                :key="key"
+                cols="12"
+                md="6"
+              )
+                v-card(height="100%").material-container
+                  v-card-text
+                    h3.my-2 {{ material.title }}
+                    p.my-2 {{ material.description }}
+                    i.primary--text.font-12(v-if="material.category") {{ material.category }}
+                  div.material-bottom.text-center.pa-3
+                    v-btn(
+                      depressed
+                      block
+                      color="primary"
+                      @click="openFile(material)"
+                    ).text-none.font-weight-bold View
+      template(v-else)
+        p.text-center.font-open-sans.font-gray No materials have been added to this section yet. You may check this website from time to time for updates!
 </template>
 
 <script>
@@ -89,7 +88,7 @@ export default {
     return {
       materials: [],
       filteredMaterials: [],
-      selectedCategory: null,
+      selectedCategory: [],
       materialSorter: null,
     };
   },
@@ -104,8 +103,8 @@ export default {
   },
   watch: {
     selectedCategory (val) {
-      if (val) {
-        this.filteredMaterials = this.materials.filter(material => material.category === val);
+      if (val.length) {
+        this.filteredMaterials = [...this.materials].filter(material => val.includes(material.category));
         return;
       }
       this.filteredMaterials = [...this.materials];

@@ -39,11 +39,6 @@
               :services="services"
               @onUpdateClinicPage="fetchDoctorInfo($event)"
             )
-    //- services(
-    //-   :first-name="firstName"
-    //-   :services="services"
-    //- )
-    //- learning-corner(:doctor-id="doctor.id")
 </template>
 
 <script>
@@ -54,9 +49,7 @@ import {
   fetchDoctorMetrics,
 } from '~/utils/axios';
 import GenericPanel from '~/components/generic/GenericPanel';
-import LearningCorner from '~/components/doctor-website/LearningCorner';
 import MainPanel from '~/components/doctor-website/MainPanel';
-import Services from '~/components/doctor-website/ServicesPanel';
 import Profile from '~/components/doctor-website/Profile';
 import WebsiteFeatures from '~/components/doctor-website/WebsiteFeatures';
 import { formatName } from '~/utils/formats';
@@ -64,9 +57,7 @@ import headMeta from '~/utils/head-meta';
 export default {
   components: {
     GenericPanel,
-    LearningCorner,
     MainPanel,
-    Services,
     Profile,
     WebsiteFeatures,
   },

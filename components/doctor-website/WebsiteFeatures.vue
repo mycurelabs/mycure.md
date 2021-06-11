@@ -23,14 +23,21 @@
                   v-icon(color="primary") mdi-check-circle-outline
                 v-list-item-content
                   v-list-item-title {{ service }}
-            p(v-else).font-open-sans.font-gray.text-center This doctor has not listed any services yet. You may check this website from time to time for updates!
+            p(v-else).font-open-sans.font-gray.mt-1 This doctor has not listed any services yet. You may check this website from time to time for updates!
+
+      v-tab-item(value="learning-corner")
+        v-card(flat)
+          v-card-text
+            learning-corner(:doctor-id="doctorId")
 </template>
 
 <script>
 import Facilities from './Facilities';
+import LearningCorner from './LearningCorner';
 export default {
   components: {
     Facilities,
+    LearningCorner,
   },
   props: {
     doctorId: {
