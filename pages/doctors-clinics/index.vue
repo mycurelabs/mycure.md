@@ -20,7 +20,6 @@
     //- 2nd panel
     div.grey-bg.mx-n3
       features(
-        extension-exclusive
         title="Your Practice. Your Call."
         :description="featuresDescription"
         :items="features"
@@ -52,7 +51,7 @@
           )
             v-col(cols="2" sm="1" md="1").pr-2.pt-2
               img(width="20" src="~/assets/images/mycure-check.png" alt="Check icon")
-            v-col(cols="7" sm="5" md="7")
+            v-col(cols="10" sm="11" md="11")
               span(:class="descriptionClasses") {{ item }}
         div(:class="{ 'text-center': $isMobile }")
           signup-button(
@@ -136,8 +135,7 @@ export default {
         contentAlign: 'left',
         imageBindings: {
           customPath: 'doctors-clinics/',
-          image: 'Lightning fast.png',
-          extensionExclusive: true,
+          image: 'Lightning fast.webp',
           mobileImage: 'Lightning fast mobile.png',
         },
       },
@@ -147,9 +145,8 @@ export default {
         contentAlign: 'right',
         imageBindings: {
           customPath: 'doctors-clinics/',
-          image: 'Going digital.png',
+          image: 'Going digital.webp',
           mobileImage: 'Going digital mobile.png',
-          extensionExclusive: true,
         },
       },
       {
@@ -166,27 +163,27 @@ export default {
       {
         title: 'Digital Records',
         icon: 'Digital Records',
-        iconExtension: '.png',
+        iconExtension: '.webp',
       },
       {
         title: 'Telehealth',
         icon: 'Telehealth',
-        iconExtension: '.png',
+        iconExtension: '.webp',
       },
       {
         title: 'Daily Reports',
         icon: 'Daily Reports',
-        iconExtension: '.png',
+        iconExtension: '.webp',
       },
       {
         title: 'Professional Website',
         icon: 'Professional Website',
-        iconExtension: '.png',
+        iconExtension: '.webp',
       },
       {
         title: 'Appointment Booking',
         icon: 'Appointment Booking',
-        iconExtension: '.png',
+        iconExtension: '.webp',
       },
     ];
     this.sixthPanel = {
@@ -199,18 +196,16 @@ export default {
       ],
       contentAlign: 'right',
       imageBindings: {
-        image: 'Expand your reach.png',
+        image: 'Expand your reach.webp',
         customPath: 'commons/',
-        extensionExclusive: true,
       },
     };
     this.eightPanel = {
       title: 'Practice as a Group',
       description: 'Easily coordinate with other physicians in your group practice and centralize your medical records in one comprehensive workspace.',
       imageBindings: {
-        image: 'Practice.png',
+        image: 'Practice.webp',
         customPath: 'doctors-clinics/',
-        extensionExclusive: true,
       },
       list: [
         'Collated Medical Records',
