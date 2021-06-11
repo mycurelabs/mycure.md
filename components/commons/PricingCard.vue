@@ -8,10 +8,9 @@
       v-card-text.general-info-container.font-open-sans
         div.text-center.pb-3
           picture-source(
-            extension-exclusive
             custom-path="pricing/"
             :image="bundle.image"
-            image-file-extension=".png"
+            image-file-extension=".webp"
             :image-alt="bundle.title"
             :image-width="cardType === 'enterprise' ? '200' : iconSize"
           )
@@ -32,12 +31,12 @@
             | per clinic monthly
       v-divider(:class="{'divider': !this.isRecommended, 'divider-dark': this.isRecommended}").mx-5
       v-card-text
-        v-row(justify="center" v-if="(showList && cardType !== 'enterprise') || cardType === 'enterprise'")
+        v-row(justify="center" v-if="showList")
           v-col(cols="12" xl="10")
             div(v-for="(inclusion, inclusionKey) in bundle.inclusions" :key="inclusionKey").d-flex
               v-icon(:color="getInclusionIconColor(inclusion.valid)" left) {{ getInclusionIcon(inclusion.valid) }}
               span(:class="[getInclusionTextColor(inclusion.valid), textFontSize, {'font-weight-medium': isRecommended}]") {{ inclusion.text }}
-        v-row(justify="center" v-if="cardType !== 'enterprise'")
+        v-row(justify="center" v-if="!showList")
           v-col(cols="12" xl="10").text-center
             v-btn(:color="isRecommended ? 'white' : 'primary'" text @click="showList = !showList").text-none
               | {{ showList ? 'Collapse' : 'View Details'}}
@@ -123,7 +122,7 @@ export default {
       return this.isRecommended ? 'white' : 'primary';
     },
     cardHeight () {
-      if (!this.showList && this.cardType !== 'enterprise') return '500';
+      if (!this.showList) return '500';
       return this.height || '800';
     },
     textFontSize () {
