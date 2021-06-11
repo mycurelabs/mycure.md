@@ -3,7 +3,8 @@
     v-col(
       v-for="(clinic, key) in clinics"
       :key="key"
-      cols="6"
+      cols="12"
+      md="6"
     )
       facility-item(:clinic="clinic" :doctor-id="doctorId")
     v-col(cols="12")

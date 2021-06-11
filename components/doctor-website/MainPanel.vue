@@ -35,7 +35,7 @@
             x-large
             show-icon
             :class="{ 'font-11' : $isMobile }"
-          ).text-none.font-weight-bold
+          ).text-none.font-weight-bold.elevation-5
           br
 
             //- //- Share Btn and Menu
@@ -101,10 +101,6 @@ export default {
       type: String,
       default: null,
     },
-    education: {
-      type: Array,
-      default: () => ([]),
-    },
     specialties: {
       type: Array,
       default: () => ([]),
@@ -115,10 +111,6 @@ export default {
     },
     practicingYears: {
       type: Number,
-      default: null,
-    },
-    bio: {
-      type: String,
       default: null,
     },
     isVerified: {

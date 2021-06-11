@@ -1,23 +1,29 @@
 <template lang="pug">
   v-card(height="100%").card-outter.elevation-3
-    v-card-text.text-center
+    v-card-text
       v-avatar(size="125")
         img(:src="clinicPicURL")
     v-card-text
-      h3.text-center {{ clinic.name }}
+      h3 {{ clinic.name }}
+        template(v-if="isVerified")
+          | &nbsp;
+          v-icon(color="primary" small) mdi-check-circle-outline
       br
       //- About
-      div.text-center
-        h3.primary--text About
+      div
+        h4.primary--text About
         p(:class="{ 'font-italic': !description }") {{ description || 'No information provided' }}
-      div.d-flex
-        v-icon(color="error" small left).mb-auto mdi-map-marker
+      //- Address
+      div
+        h4.primary--text Address
         p(:class="{ 'font-italic': !clinic.address }").text-left {{ clinic.address | prettify-address }}
-      div.d-flex
-        v-icon(color="success" small left).mr-2.mb-auto.mt-1 mdi-phone
+      //- Contact number
+      div
+        h4.primary--text Contact number
         p(:class="{ 'font-italic': !phone }") {{ phone ? `+${phone}` : 'No information provided' }}
-      div.d-flex
-        v-icon(color="primary" small left).mr-2.mb-auto.mt-1 mdi-email
+      //- Email
+      div
+        h4.primary--text Email
         p(:class="{ 'font-italic': !email }") {{ email || 'No information provided' }}
       br
       template(v-if="clinicSchedules && clinicSchedules.length === 0")
@@ -38,7 +44,7 @@
           @click="clinicSchedulesExpanded = !clinicSchedulesExpanded"
         ) View {{clinicSchedulesExpanded ? 'less' : 'more'}}
         br
-    div.card-actions
+    div.card-actions.px-3
       //- Online Consult
       v-btn(
         color="success"
@@ -49,11 +55,11 @@
         small
         :disabled="!canBook"
         :href="bookURL"
-      ).my-4 #[b Book Appointment]
+      ).my-4.text-none #[b Teleconsult]
 
       //- Physical Visit
       v-btn(
-        color="success"
+        color="primary"
         target="_blank"
         rel="noopener noreferrer"
         outlined
@@ -62,7 +68,7 @@
         small
         :disabled="!canBook"
         :href="bookURL"
-      ) #[b Book a Visit]
+      ).text-none #[b Clinic Visit]
 </template>
 
 <script>
@@ -169,6 +175,9 @@ export default {
     },
     email () {
       return this.clinic?.email;
+    },
+    isVerified () {
+      return !!this.clinic?.websiteId;
     },
   },
   watch: {
