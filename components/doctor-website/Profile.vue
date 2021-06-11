@@ -26,11 +26,10 @@
       //- Educational Background
       div(v-if="education.length")
         h2(:class="sectionTextClasses").primary--text Education
-        div(v-for="(educ, key) in education" :key="key")
+        div(v-for="(educ, key) in education" :key="key").mt-2
           span {{ educ | format-school }}
           br
           span {{ educ.from }} - {{ educ.to }}
-          br
       br
       book-appointment-btn(
         color="primary"

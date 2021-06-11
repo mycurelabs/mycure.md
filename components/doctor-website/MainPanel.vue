@@ -13,7 +13,7 @@
         generic-panel(:row-bindings="{ justify: 'center' }")
           //- Profile picture and main info
           v-col(cols="12").text-center
-            v-avatar(size="200")
+            v-avatar(size="200").elevation-5
               img(:src="picUrl")
             br
             br

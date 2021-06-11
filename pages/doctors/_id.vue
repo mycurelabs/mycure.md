@@ -31,16 +31,13 @@
             )
           //- Tabs
           v-col(cols="12" lg="8")
-
-    //- stats(:data="doctorMetrics")
-    //- facilities(
-    //-   :first-name="firstName"
-    //-   :doctorId="doctor.id"
-    //-   :clinics="clinics"
-    //-   :total="clinicsTotal"
-    //-   :limit="clinicsLimit"
-    //-    @onUpdatePage="fetchDoctorInfo($event)"
-    //- )
+            website-features(
+              :doctorId="doctor.id"
+              :clinics="clinics"
+              :clinics-total="clinicsTotal"
+              :clinics-limit="clinicsLimit"
+              @onUpdateClinicPage="fetchDoctorInfo($event)"
+            )
     //- services(
     //-   :first-name="firstName"
     //-   :services="services"
@@ -55,24 +52,22 @@ import {
   recordWebsiteVisit,
   fetchDoctorMetrics,
 } from '~/utils/axios';
-import Facilities from '~/components/doctor-website/Facilities';
 import GenericPanel from '~/components/generic/GenericPanel';
 import LearningCorner from '~/components/doctor-website/LearningCorner';
 import MainPanel from '~/components/doctor-website/MainPanel';
 import Services from '~/components/doctor-website/ServicesPanel';
-import Stats from '~/components/doctor-website/Stats';
 import Profile from '~/components/doctor-website/Profile';
+import WebsiteFeatures from '~/components/doctor-website/WebsiteFeatures';
 import { formatName } from '~/utils/formats';
 import headMeta from '~/utils/head-meta';
 export default {
   components: {
-    Facilities,
     GenericPanel,
     LearningCorner,
     MainPanel,
     Services,
-    Stats,
     Profile,
+    WebsiteFeatures,
   },
   layout: 'doctor-website',
   async asyncData ({ app, router, params, error }) {

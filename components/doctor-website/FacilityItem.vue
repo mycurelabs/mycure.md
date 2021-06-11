@@ -1,10 +1,9 @@
 <template lang="pug">
-  v-card(height="100%").card-outter
-    v-card-text
+  v-card(height="100%").card-outter.elevation-3
+    v-card-text.text-center
       v-avatar(size="125")
         img(:src="clinicPicURL")
-      br
-      br
+    v-card-text
       h3.text-center {{ clinic.name }}
       br
       //- About

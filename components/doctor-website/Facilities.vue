@@ -1,24 +1,16 @@
 <template lang="pug">
-  v-container.pb-10
-    v-row(justify="center" align="center" no-gutters)
-      v-col(cols="12" md="10")
-        v-row(justify="center").text-center#clinics-list-top
-          v-col(cols="12").text-center
-            h1
-              v-icon(color="error" large left) mdi-hospital-marker
-              | {{ firstName ? `Dr. ${firstName}'s ` : '' }}Clinics
-          v-col(
-            v-for="(clinic, key) in clinics"
-            :key="key"
-            cols="6"
-            md="4"
-          )
-            facility-item(:clinic="clinic" :doctor-id="doctorId")
-          v-col(cols="12")
-            v-pagination(
-              v-model="page"
-              :length="length"
-            )
+  v-row#clinics-list-top
+    v-col(
+      v-for="(clinic, key) in clinics"
+      :key="key"
+      cols="6"
+    )
+      facility-item(:clinic="clinic" :doctor-id="doctorId")
+    v-col(cols="12")
+      v-pagination(
+        v-model="page"
+        :length="length"
+      )
 </template>
 
 <script>
@@ -32,10 +24,6 @@ export default {
     doctorId: {
       type: String,
       default: null,
-    },
-    firstName: {
-      type: String,
-      default: '',
     },
     clinics: {
       type: Array,
