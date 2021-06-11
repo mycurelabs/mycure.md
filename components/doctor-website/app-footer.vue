@@ -1,10 +1,5 @@
 <template lang="pug">
-  v-footer(
-    color="white"
-    height="auto"
-    :absolute="absolute"
-    app
-  )
+  div.footer.white
     v-container
       v-row(align="center" no-gutters)
         v-col(
@@ -73,10 +68,10 @@ export default {
 
 <style scoped>
 .footer {
-  background-color: #343a40 !important;
-  bottom: 0;
-  position: absolute;
   width: 100%;
+  bottom: 0;
+  left: 0;
+  position: absolute;
 }
 a {
   text-decoration: none !important;

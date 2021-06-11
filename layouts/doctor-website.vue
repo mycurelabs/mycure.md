@@ -1,9 +1,9 @@
 <template lang="pug">
   v-app#app
-    app-bar(v-if="!loading")
-    div(style="padding-top: 45px;")
-      nuxt
-    app-footer(v-if="!loading" absolute)
+    //- app-bar(v-if="!loading")
+    //- div(style="padding-top: 45px;")
+    nuxt
+    //- app-footer(v-if="!loading")
 </template>
 
 <script>

@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-container(v-if="!loading" fluid).white
+  div(v-if="!loading").blue.main-container
     main-panel(
       :pic-url="picURL"
       :full-name="fullNameWithSuffixes"
@@ -10,6 +10,7 @@
       :practicing-since="practicingSince"
       :is-verified="isVerified"
     )
+
     //- stats(:data="doctorMetrics")
     //- facilities(
     //-   :first-name="firstName"
@@ -175,6 +176,11 @@ export default {
 </script>
 
 <style scoped>
+.main-container {
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+}
 .mycure-link {
   color: white;
   text-decoration: none;

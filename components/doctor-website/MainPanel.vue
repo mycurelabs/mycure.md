@@ -1,7 +1,15 @@
 <template lang="pug">
-  div.panel-bg.mx-n3
+  div.panel-bg
     v-container
       v-row(justify="center")
+        //- Logo
+        v-col(cols="10")
+           nuxt-link(to="/")
+              img(
+                src="~/assets/images/MYCURE-logo.png"
+                width="120"
+                alt="MYCURE logo"
+              ).mt-1
         generic-panel(:row-bindings="{ justify: 'center' }")
           //- Profile picture and main info
           v-col(cols="12").text-center
@@ -12,9 +20,9 @@
             h2 {{ fullName }}
           //- Professional Info
           v-col(cols="10" v-if="hasProfessionalInfo").text-center
-            p(v-if="practicingSince").font-open-sans.font-gray {{yearsOfExperience}} Years of Experience
+            p(v-if="practicingSince").font-open-sans {{yearsOfExperience}} Years of Experience
             br(v-else)
-            v-chip(v-for="(specialty, key) in specialties" :key="key").mx-1 {{ specialty }}
+            v-chip(v-for="(specialty, key) in specialties" :key="key" color="white").mx-1 {{ specialty }}
             //- span.font-gray.font-open-sans {{ specialtiesMapped }}
             br
             //- //- Educational Background
@@ -37,6 +45,7 @@
               :class="{ 'font-11' : $isMobile }"
             ).text-none.font-weight-bold
             br
+
             //- //- Share Btn and Menu
             //- v-menu(
             //-   v-model="socialMenu"
@@ -185,7 +194,9 @@ export default {
 .panel-bg {
   background-image: url('../../assets/images/doctor-website/Doctor BG Full.png');
   background-size: cover;
-  width: 100vw;
-  height: 1500px;
+  width: 100%;
+  height: 150vh;
+  /* top: 0;
+  position: absolute; */
 }
 </style>
