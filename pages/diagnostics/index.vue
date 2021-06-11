@@ -4,10 +4,11 @@
     usp(
       has-custom-background
       background-image="Diagnostics Landing Page"
+      background-image-file-extension=".webp"
       title="Your Diagnostic Center Fortified"
       meta-title="MYCURE Diagnostic"
       description="The best tool to create, finalize, and release diagnostic test results is finally here."
-      image="Diagnostics USP"
+      image="Diagnostics Mobile USP"
       image-col-offset="1"
       custom-image-path="diagnostics/"
       wide-height="950px"
@@ -22,7 +23,6 @@
         description="Don’t settle for anything less. Customize your experience based on the tools you need. MYCURE is designed for diagnostic labs and imaging centers of all sizes."
         :items="features"
         icon-container-col-size="8"
-        extension-exclusive
         image-dir="diagnostics/"
         panel-height="70vh"
       )
@@ -147,27 +147,27 @@ export default {
       {
         title: 'Laboratory Information System (LIS)',
         icon: 'LIS',
-        iconExtension: '.png',
+        iconExtension: '.webp',
       },
       {
         title: 'Booking System',
         icon: 'Booking Systems',
-        iconExtension: '.png',
+        iconExtension: '.webp',
       },
       {
         title: 'Radiology Information System (RIS)',
         icon: 'RIS',
-        iconExtension: '.png',
+        iconExtension: '.webp',
       },
       {
         title: 'Billing',
         icon: 'Billing',
-        iconExtension: '.png',
+        iconExtension: '.webp',
       },
       {
         title: 'Online Results',
         icon: 'Online Results',
-        iconExtension: '.png',
+        iconExtension: '.webp',
       },
     ];
     this.integrationsPanel = {
@@ -199,8 +199,7 @@ export default {
           'Send online results to patients',
         ],
         imageBindings: {
-          image: 'easy.png',
-          extensionExclusive: true,
+          image: 'easy.webp',
           customPath: 'diagnostics/',
         },
         contentAlign: 'left',
@@ -214,8 +213,7 @@ export default {
           'Quick Appointment Booking',
         ],
         imageBindings: {
-          image: 'Fast results.png',
-          extensionExclusive: true,
+          image: 'Fast results.webp',
           customPath: 'diagnostics/',
         },
         contentAlign: 'right',
@@ -225,8 +223,7 @@ export default {
       title: 'Expand your Reach',
       description: 'Join MYCURE ONE, a global online directory of modern healthcare facilities so patients can easily find and book an appointment with you anytime.',
       imageBindings: {
-        image: 'Expand your reach.png',
-        extensionExclusive: true,
+        image: 'Expand your reach.webp',
         customPath: 'commons/',
       },
       contentAlign: 'right',
@@ -236,8 +233,7 @@ export default {
       superTitle: 'MYCURE CLINIC MANAGEMENT SYSTEM',
       description: 'Cover all your patient journeys with MYCURE’s most complete clinic management system.',
       imageBindings: {
-        image: 'FullService.png',
-        extensionExclusive: true,
+        image: 'FullService.webp',
         customPath: 'diagnostics/',
       },
       contentAlign: 'left',
