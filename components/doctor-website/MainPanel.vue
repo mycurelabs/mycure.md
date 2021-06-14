@@ -26,16 +26,14 @@
             //- span.font-gray.font-open-sans {{ specialtiesMapped }}
             br
             br
-          //- Virtual Consult
-          book-appointment-btn(
-            color="info"
-            btn-text="Book Me Now"
-            rounded
+          //- Consult btn
+          v-btn(
+            color="warning"
             depressed
             x-large
-            show-icon
             :class="{ 'font-11' : $isMobile }"
-          ).text-none.font-weight-bold.elevation-5
+            @click="$emit('book')"
+          ).text-none.font-weight-bold.elevation-5.rounded-xl The doctor is in
           br
 
             //- //- Share Btn and Menu
@@ -78,11 +76,9 @@
 
 <script>
 import SocialSharing from 'vue-social-sharing';
-import BookAppointmentBtn from '~/components/commons/book-appointment-btn';
 import GenericPanel from '~/components/generic/GenericPanel';
 export default {
   components: {
-    BookAppointmentBtn,
     GenericPanel,
     SocialSharing,
   },

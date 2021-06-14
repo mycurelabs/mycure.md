@@ -1,5 +1,17 @@
 <template lang="pug">
   div(v-if="!loading").main-container
+    //- Dialogs
+    choose-appointment(
+      v-model="appointmentDialog"
+      @select="onSelectAppointment($event)"
+    )
+    choose-facility(
+      v-model="facilityDialog"
+      :organizations="clinics"
+      :doctor-id="doctor.id"
+      :appointment-type="appointmentType"
+    )
+    //- First panel
     main-panel(
       :pic-url="picURL"
       :full-name="fullNameWithSuffixes"
@@ -9,6 +21,7 @@
       :education="education"
       :practicing-years="practicingYears"
       :is-verified="isVerified"
+      @book="onBook"
     )
     //- Banner
     div.banner-container
@@ -43,6 +56,7 @@
               :specialties="specialties"
               :education="education"
               :metrics="doctorMetrics"
+              @book="onBook"
             )
           //- Tabs
           v-col(cols="12" lg="8")
@@ -62,20 +76,25 @@
 
 <script>
 import _ from 'lodash';
+import ChooseAppointment from '~/components/doctor-website/ChooseAppointment';
+import ChooseFacility from '~/components/doctor-website/ChooseFacility';
+import GenericPanel from '~/components/generic/GenericPanel';
+import MainPanel from '~/components/doctor-website/MainPanel';
+import Profile from '~/components/doctor-website/Profile';
+import WebsiteFeatures from '~/components/doctor-website/WebsiteFeatures';
 import {
   heartDoctor,
   getDoctorWebsite,
   recordWebsiteVisit,
   fetchDoctorMetrics,
 } from '~/utils/axios';
-import GenericPanel from '~/components/generic/GenericPanel';
-import MainPanel from '~/components/doctor-website/MainPanel';
-import Profile from '~/components/doctor-website/Profile';
-import WebsiteFeatures from '~/components/doctor-website/WebsiteFeatures';
 import { formatName } from '~/utils/formats';
 import headMeta from '~/utils/head-meta';
+import { fetchUserFacilities } from '~/services/organization-members';
 export default {
   components: {
+    ChooseAppointment,
+    ChooseFacility,
     GenericPanel,
     MainPanel,
     Profile,
@@ -102,8 +121,11 @@ export default {
       // - UI State
       loading: true,
       showSnack: false,
+      appointmentDialog: false,
+      facilityDialog: false,
       // - Data models
       selectedTab: 'clinics',
+      appointmentType: null,
       doctorMetrics: {},
       memberCMSOrganizations: [],
       snackbarModel: {
@@ -193,22 +215,14 @@ export default {
     async fetchDoctorInfo (page = 1) {
       try {
         const skip = this.clinicsLimit * (page - 1);
-        const { items, total } = await this.$sdk.service('organizations').find({
-          createdBy: this.doctor.id,
-          $limit: this.clinicsLimit,
-          $skip: skip,
-          $populate: {
-            doctorSchedules: {
-              service: 'schedule-slots',
-              method: 'find',
-              localKey: 'id',
-              foreignKey: 'organization',
-              createdBy: this.doctor.id,
-            },
-          },
+
+        const { items, total } = await fetchUserFacilities(this.$sdk, {
+          id: this.doctor.id,
+          limit: this.clinicsLimit,
+          skip,
         });
         this.clinicsTotal = total;
-        this.clinics = items;
+        this.clinics = items.map(item => item.organization);
       } catch (error) {
         console.error(error);
         this.$nuxt.$router.push('/');
@@ -241,6 +255,13 @@ export default {
           text: 'Failed to send a heart, please try again later!',
         });
       }
+    },
+    onSelectAppointment (type) {
+      this.appointmentType = type;
+      this.facilityDialog = true;
+    },
+    onBook () {
+      this.appointmentDialog = true;
     },
     enqueueSnack ({ text, color }) {
       this.snackbarModel = {

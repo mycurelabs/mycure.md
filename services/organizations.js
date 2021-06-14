@@ -1,10 +1,11 @@
+import { pick, pickBy } from 'lodash';
+
 export const fetchOrganizations = async (sdk, opts) => {
   const query = {
     $limit: opts.limit,
     $skip: opts.skip,
+    ...pickBy(pick(opts, ['createdBy', 'type', '$populated']), Boolean),
   };
-
-  if (opts.type) query.type = opts.type;
 
   if (opts.searchText) {
     query.$and = [];

@@ -62,20 +62,19 @@
           br
           span {{ educ.from }} - {{ educ.to }}
       br
-      book-appointment-btn(
+      v-btn(
         color="primary"
-        btn-text="Book an Appointment"
-        rounded
         block
         depressed
         x-large
-        show-icon
         :class="{ 'font-11' : $isMobile }"
-      ).text-none.font-weight-bold.elevation-5
+        @click="$emit('book')"
+      ).text-none.font-weight-bold.elevation-5.rounded-md
+        v-icon(left) mdi-calendar
+        span Book an Appointment
 </template>
 
 <script>
-import BookAppointmentBtn from '~/components/commons/book-appointment-btn';
 import classBinder from '~/utils/class-binder';
 export default {
   filters: {
@@ -83,9 +82,6 @@ export default {
       if (!educ.degree) return educ.school;
       return `${educ.degree} - ${educ.school}`;
     },
-  },
-  components: {
-    BookAppointmentBtn,
   },
   props: {
     picUrl: {
