@@ -54,8 +54,10 @@
         block
         small
         :disabled="!canBook"
-        :href="bookURL"
-      ).my-4.text-none #[b Teleconsult]
+        :href="telehealthURL"
+      ).my-4.text-none
+        v-icon(left) mdi-stethoscope
+        b Teleconsult
 
       //- Physical Visit
       v-btn(
@@ -67,8 +69,10 @@
         block
         small
         :disabled="!canBook"
-        :href="bookURL"
-      ).text-none #[b Clinic Visit]
+        :href="visitURL"
+      ).text-none
+        v-icon(left) mdi-calendar
+        b Clinic Visit
 </template>
 
 <script>
@@ -157,9 +161,13 @@ export default {
     canBook () {
       return this.clinicId && this.doctorId && this.clinicSchedules?.length;
     },
-    bookURL () {
+    telehealthURL () {
       const pxPortalUrl = process.env.PX_PORTAL_URL;
-      return `${pxPortalUrl}/appointments/step-1?doctor=${this.doctorId}&organization=${this.clinicId}`;
+      return `${pxPortalUrl}/appointments/step-1?doctor=${this.doctorId}&organization=${this.clinicId}&type=telehealth`;
+    },
+    visitURL () {
+      const pxPortalUrl = process.env.PX_PORTAL_URL;
+      return `${pxPortalUrl}/appointments/step-1?doctor=${this.doctorId}&organization=${this.clinicId}&type=physical`;
     },
     clinicId () {
       return this.clinic?.id;
