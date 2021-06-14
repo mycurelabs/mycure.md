@@ -191,7 +191,7 @@ export default {
   watch: {
     clinicSchedulesExpanded (val) {
       // Sort the schedules
-      this.fullSchedules = this.clinic?.$populated?.doctorSchedules || []; // eslint-disable-line
+      this.fullSchedules = this.clinic?.$populated?.doctorSchedules  || this.clinic?.doctorSchedules || []; // eslint-disable-line
       if (!this.fullSchedules?.length) this.clinicSchedules = [];
       const groupedSchedules = uniqWith(this.fullSchedules
         .map((schedule) => {
