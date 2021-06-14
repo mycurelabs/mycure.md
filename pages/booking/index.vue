@@ -18,45 +18,34 @@
       :content-column-bindings="{ cols: 12, md: 5 }"
     )
     //- 2nd panel
+    v-row(justify="center")
+      generic-panel(:row-bindings="{ justify: 'center' }")
+        v-col(cols="12" :md="titleColSize").text-center
+          strong(:class="metaTitleClasses").primary--text HOW IT WORKS
+          h2(:class="titleClasses").lh-title.font-weight-semibold Acquire and accommodate #[br] more patients
+        v-col(cols="12" :md="titleColSize").text-center
+          img(src="https://dummyimage.com/500x500/e3e4e8/00089c.png")
+    //- 3th panel
     div.grey-bg.mx-n3
-      //- HOW IT WORKS
-    //- 3rd to 5th panels
-    //- generic-media-panel(
-    //-   v-for="(content, key) in contents"
-    //-   :key="key"
-    //-   :content="content"
-    //-   :title-classes="headerClasses"
-    //-   hide-btn
-    //- )
-    //-6th panel
-    //- generic-media-panel(
-    //-   content-right
-    //-   :content="sixthPanel"
-    //-   :title-classes="headerClasses"
-    //-   hide-btn
-    //- )
-    //-   //- Check list
-    //-   template(slot="additional-content")
-    //-     div.mb-10
-    //-       v-row(
-    //-         v-for="(item, i) in sixthPanel.list"
-    //-         :key="item"
-    //-         dense
-    //-       )
-    //-         v-col(cols="2" sm="1" md="1").pr-2.pt-2
-    //-           img(width="20" src="~/assets/images/mycure-check.png" alt="Check icon")
-    //-         v-col(cols="7" sm="5" md="7")
-    //-           span(:class="descriptionClasses") {{ item }}
-    //-     div(:class="{ 'text-center': $isMobile }")
-    //-       signup-button(
-    //-         depressed
-    //-         rounded
-    //-         :x-large="$isWideScreen"
-    //-         :large="!$isWideScreen"
-    //-         color="success"
-    //-       ).text-none.font-s
-    //-         span Get Started Free
-    //-         v-icon(small right) mdi-arrow-right
+      v-row(justify="center")
+        generic-panel(:row-bindings="{ justify: 'center' }")
+          v-col(cols="12" :md="titleColSize").text-center
+            h2(:class="titleClasses").primary--text Make every step of patient care a breeze
+          template(v-for="item in thirdPanelContents")
+            v-col(sm="12" md="4").text-center
+              v-avatar(size="200").mb-5
+                img(:src="item.image")
+              p(:class="itemTextClasses") {{item.content}}
+          v-col(cols="12" :md="titleColSize").text-center
+            signup-button(
+              event-label="signup"
+              color="success"
+              depressed
+              rounded
+              :large="!$isWideScreen"
+              :x-large="$isWideScreen"
+              :class="buttonClasses"
+            ).text-none Get Started Free
     //- 7th panel
     div.grey-bg.mx-n3
       //- mycure-csi
@@ -95,12 +84,13 @@
 // utils
 import headMeta from '~/utils/head-meta';
 import classBinder from '~/utils/class-binder';
-// constants
-import { DOCTORS_PRICING } from '~/constants/pricing';
+// // constants
+// import { DOCTORS_PRICING } from '~/constants/pricing';
 // components
 import CallToAction from '~/components/commons/panels/CallToAction';
 import Features from '~/components/commons/panels/Features';
 import GenericMediaPanel from '~/components/generic/GenericMediaPanel';
+import GenericPanel from '~/components/generic/GenericPanel';
 import MycureCsi from '~/components/commons/panels/MycureCsi';
 import Pricing from '~/components/commons/panels/Pricing';
 import ThinkLongTerm from '~/components/commons/panels/ThinkLongTerm';
@@ -112,6 +102,7 @@ export default {
     CallToAction,
     Features,
     GenericMediaPanel,
+    GenericPanel,
     MycureCsi,
     Pricing,
     ThinkLongTerm,
@@ -119,101 +110,20 @@ export default {
     SignupButton,
   },
   data () {
-    // Panel content
-    this.uspDescription = 'Let your patients book and schedule appointments efficiently.';
-    this.featuresDescription = 'Use the tools that work best for you. Everything you need is here. It’s FREE!';
-    this.contents = [
+    this.thirdPanelContents = [
       {
-        title: 'Lightning-fast prescriptions',
-        description: 'Create and print prescriptions and other medical forms in 10 seconds or less.',
-        contentAlign: 'left',
-        imageBindings: {
-          customPath: 'doctors-clinics/',
-          image: 'Lightning fast.png',
-          extensionExclusive: true,
-          mobileImage: 'Lightning fast mobile.png',
-        },
+        image: 'https://dummyimage.com/200x200/e3e4e8/00089c.png',
+        content: 'Organized patient visits for easy COVID-19 safety compliance.',
       },
       {
-        title: 'Going digital means better medical history',
-        description: 'Imagine looking back at your charts from 5 or 10 years ago on your mobile devices with a quick search. How convenient? S-U-P-E-R.',
-        contentAlign: 'right',
-        imageBindings: {
-          customPath: 'doctors-clinics/',
-          image: 'Going digital.png',
-          mobileImage: 'Going digital mobile.png',
-          extensionExclusive: true,
-        },
+        image: 'https://dummyimage.com/200x200/e3e4e8/00089c.png',
+        content: 'Open schedule to the days and times that work for you. Reminders go out automatically.',
       },
       {
-        title: 'Help patients anywhere',
-        description: 'Reach out to more people who need your expertise without getting limited by time or location.',
-        contentAlign: 'left',
-        imageBindings: {
-          customPath: 'features/',
-          image: 'MYCURE-virtual-clinic-healthcare-practice-online-features-C-telehealth.webp',
-        },
+        image: 'https://dummyimage.com/200x200/e3e4e8/00089c.png',
+        content: 'Covers from virtual  (telehealth) to physical (face to face) accommodation',
       },
     ];
-    this.features = [
-      {
-        title: 'Digital Records',
-        icon: 'Digital Records',
-        iconExtension: '.png',
-      },
-      {
-        title: 'Telehealth',
-        icon: 'Telehealth',
-        iconExtension: '.png',
-      },
-      {
-        title: 'Daily Reports',
-        icon: 'Daily Reports',
-        iconExtension: '.png',
-      },
-      {
-        title: 'Professional Website',
-        icon: 'Professional Website',
-        iconExtension: '.png',
-      },
-      {
-        title: 'Appointment Booking',
-        icon: 'Appointment Booking',
-        iconExtension: '.png',
-      },
-    ];
-    this.sixthPanel = {
-      title: 'Expand your reach',
-      description: 'Opt in to MYCURE ONE, a global online directory of modern healthcare practitioners and facilities',
-      list: [
-        'Patients can easily find you',
-        'Get more organized appointments',
-        'Comes with a Professional Website',
-      ],
-      contentAlign: 'right',
-      imageBindings: {
-        image: 'Expand your reach.png',
-        customPath: 'commons/',
-        extensionExclusive: true,
-      },
-    };
-    this.eightPanel = {
-      title: 'Practice as a Group',
-      description: 'Easily coordinate with other physicians in your group practice and centralize your medical records in one comprehensive workspace.',
-      imageBindings: {
-        image: 'Practice.png',
-        customPath: 'doctors-clinics/',
-        extensionExclusive: true,
-      },
-      list: [
-        'Collated Medical Records',
-        'Optimized Patient Queuing',
-        'Group Clinic Chatbox',
-        'Shared Secretary Account',
-        'Booking Website',
-      ],
-    };
-    this.pricingDetails = DOCTORS_PRICING;
     return {
       loading: true,
     };
@@ -226,41 +136,40 @@ export default {
     });
   },
   computed: {
-    headerClasses () {
-      const headerClasses = [
+    metaTitleClasses () {
+      return [
+        classBinder(this, {
+          regular: ['font-xs'],
+          wide: ['font-s'],
+        }),
+      ];
+    },
+    titleClasses () {
+      return [
         classBinder(this, {
           mobile: ['font-m'],
           regular: ['font-l'],
           wide: ['font-xl'],
         }),
-        'lh-title',
-        'primary--text',
-        'font-weight-semibold',
       ];
-      return headerClasses;
     },
-    descriptionClasses () {
-      const descriptionClasses = [
-        classBinder(this, {
-          mobile: ['font-xs'],
-          regular: ['font-s'],
-          wide: ['font-m'],
-        }),
-        'font-open-sans',
-        'font-gray',
-      ];
-      return descriptionClasses;
+    titleColSize: {
+      type: [Number, String],
+      default: '8',
     },
-    eightPanelContentClasses () {
+    itemTextClasses () {
       return [
         classBinder(this, {
-          mobile: ['font-xs'],
-          regular: ['font-s'],
-          wide: ['font-m'],
+          regular: ['font-xs'],
+          wide: ['font-s'],
         }),
-        'font-open-sans',
-        'white--text',
       ];
+    },
+    buttonClasses () {
+      return classBinder(this, {
+        regular: ['font-xs'],
+        wide: ['font-s'],
+      });
     },
   },
   mounted () {
