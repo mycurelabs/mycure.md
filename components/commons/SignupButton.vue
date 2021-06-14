@@ -9,7 +9,7 @@
 
 <script>
 const healthFacilityTypeMap = {
-  booking: 'doctor',
+  booking: 'doctor-booking',
   'doctors-clinics': 'doctor',
   clinics: 'clinic',
   diagnostics: 'diagnostic',
