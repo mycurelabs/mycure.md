@@ -11,7 +11,21 @@
       :is-verified="isVerified"
     )
     //- Banner
-    div.banner
+    div.banner-container
+      img(
+        :src="banner"
+        alt="MYCURE Doctor Banner"
+      ).banner
+      //- v-row(justify="end")
+      //-   v-col(cols="12" md="4")
+      //-     v-btn(
+      //-       color="white"
+      //-       rounded
+      //-       block
+      //-       @click="onHeartDoctor"
+      //-     ).text-none
+      //-       v-icon(left color="error") mdi-heart-outline
+      //-       span.error--text Heart
 
     //- Workflow area
     v-container
@@ -22,6 +36,7 @@
             profile(
               :pic-url="picURL"
               :full-name="fullNameWithSuffixes"
+              :first-name="firstName"
               :practicing-since="practicingSince"
               :practicing-years="practicingYears"
               :bio="bio"
@@ -39,11 +54,16 @@
               :services="services"
               @onUpdateClinicPage="fetchDoctorInfo($event)"
             )
+    v-snackbar(
+      v-model="showSnack"
+      :color="snackbarModel.color"
+    ) {{ snackbarModel.text }}
 </template>
 
 <script>
 import _ from 'lodash';
 import {
+  heartDoctor,
   getDoctorWebsite,
   recordWebsiteVisit,
   fetchDoctorMetrics,
@@ -79,13 +99,21 @@ export default {
   data () {
     this.clinicsLimit = 3;
     return {
-      selectedTab: 'clinics',
+      // - UI State
       loading: true,
+      showSnack: false,
+      // - Data models
+      selectedTab: 'clinics',
+      doctorMetrics: {},
+      memberCMSOrganizations: [],
+      snackbarModel: {
+        color: 'success',
+        text: null,
+      },
+      clinics: [],
+      // - Paginations
       page: 1,
       clinicsTotal: 0,
-      doctorMetrics: {},
-      clinics: [],
-      memberCMSOrganizations: [],
     };
   },
   head () {
@@ -146,6 +174,9 @@ export default {
     isVerified () {
       return this.doctor?.doc_verified; // eslint-disable-line
     },
+    banner () {
+      return this.doctor?.doc_websiteBannerURL || require('~/assets/images/doctor-website/mycure-doctor-website-banner.png');
+    },
   },
   async mounted () {
     this.loading = false;
@@ -160,25 +191,28 @@ export default {
   },
   methods: {
     async fetchDoctorInfo (page = 1) {
-      const skip = this.clinicsLimit * (page - 1);
-
-      const { items, total } = await this.$sdk.service('organizations').find({
-        createdBy: this.doctor.id,
-        $limit: this.clinicsLimit,
-        $skip: skip,
-        $populate: {
-          doctorSchedules: {
-            service: 'schedule-slots',
-            method: 'find',
-            localKey: 'id',
-            foreignKey: 'organization',
-            createdBy: this.doctor.id,
+      try {
+        const skip = this.clinicsLimit * (page - 1);
+        const { items, total } = await this.$sdk.service('organizations').find({
+          createdBy: this.doctor.id,
+          $limit: this.clinicsLimit,
+          $skip: skip,
+          $populate: {
+            doctorSchedules: {
+              service: 'schedule-slots',
+              method: 'find',
+              localKey: 'id',
+              foreignKey: 'organization',
+              createdBy: this.doctor.id,
+            },
           },
-        },
-      });
-
-      this.clinicsTotal = total;
-      this.clinics = items;
+        });
+        this.clinicsTotal = total;
+        this.clinics = items;
+      } catch (error) {
+        console.error(error);
+        this.$nuxt.$router.push('/');
+      }
     },
     async fetchMetrics () {
       try {
@@ -186,7 +220,34 @@ export default {
         this.doctorMetrics = data || {};
       } catch (error) {
         console.error(error);
+        this.enqueueSnack({
+          color: 'error',
+          text: 'Failed to fetch doctor metrics',
+        });
       }
+    },
+    async onHeartDoctor () {
+      try {
+        await heartDoctor({ id: this.doctor.id });
+        this.enqueueSnack({
+          color: 'success',
+          text: 'You have sent a heart to this doctor!',
+        });
+        this.fetchMetrics();
+      } catch (error) {
+        console.error(error);
+        this.enqueueSnack({
+          color: 'error',
+          text: 'Failed to send a heart, please try again later!',
+        });
+      }
+    },
+    enqueueSnack ({ text, color }) {
+      this.snackbarModel = {
+        text,
+        color,
+      };
+      this.showSnack = true;
     },
   },
 };
@@ -199,10 +260,17 @@ export default {
   margin: 0;
   padding: 0;
 }
-.banner {
+.banner-container {
   min-height: 300px;
-  background-image: url('../../assets/images/doctor-website/mycure-doctor-website-banner.png');
-  background-size: cover;
+  position: relative;
+}
+.banner {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  object-fit: cover;
 }
 .mycure-link {
   color: white;

@@ -12,6 +12,37 @@
           v-icon(:color="metric.color") {{ metric.icon }}
           br
           span(:class="`${metric.color}--text`").font-12.lh-title {{ metricData[metric.value] }} {{ metric.title }}
+        v-col(cols="12" md="4").text-center
+          v-menu(
+            v-model="socialMenu"
+            :close-on-content-click="false"
+            offset-y
+          )
+            template(v-slot:activator="{ on }")
+              v-btn(
+                v-on="on"
+                small
+                rounded
+                depressed
+                text
+                color="primary"
+              ).text-none
+                v-icon(color="primary" left) mdi-export-variant
+                span.primary--text.font-12 Share
+            v-card(color="primary" width="275")
+              v-card-text
+                h4.white--text Love this doctor? Let your friends know by sharing this website!
+                v-row(no-gutters)
+                  v-col(cols="12")
+                    div.d-flex
+                      share-network(network="facebook" :url="doctorLink" title="Doctor").social-image.pa-3
+                        v-icon(large color="white") mdi-facebook
+                      share-network(network="twitter" v-bind="networkBindings").social-image.pa-3
+                        v-icon(large color="white") mdi-twitter
+                      //- share-network(network="linkedin" v-bind="networkBindings").social-image
+                      //-   img(src="~/assets/images/doctor-website/linkedin-logo-white.png" width="20%").pa-3
+                      share-network(network="email" v-bind="networkBindings").social-image.pa-3
+                        v-icon(large color="white") mdi-email
       br
       h2(:class="sectionTextClasses").primary--text About Me
       p {{ bio || 'I am ready to accomodate you! How can I help you?' }}
@@ -65,6 +96,10 @@ export default {
       type: String,
       default: null,
     },
+    firstName: {
+      type: String,
+      default: null,
+    },
     practicingSince: {
       type: Number,
       default: null,
@@ -93,33 +128,43 @@ export default {
   data () {
     this.metricMappings = [
       {
-        icon: 'mdi-heart-outline',
-        title: 'lives saved',
-        value: 'patients',
-        color: 'error',
-      },
-      {
-        icon: 'mdi-pulse',
-        title: 'medical records',
-        value: 'records',
-        color: 'success',
-      },
-      {
         icon: 'mdi-eye',
         title: 'views',
         value: 'websiteVisits',
         color: 'info',
       },
+      {
+        icon: 'mdi-pulse',
+        title: 'lives saved',
+        value: 'patients',
+        color: 'success',
+      },
+      {
+        icon: 'mdi-bookshelf',
+        title: 'medical records',
+        value: 'records',
+        color: 'primary',
+      },
+      {
+        icon: 'mdi-heart-outline',
+        title: 'hearts',
+        value: 'hearts',
+        color: 'error',
+      },
     ];
-    return {};
+    return {
+      // - UI State
+      socialMenu: false,
+    };
   },
   computed: {
     metricData () {
       console.log('metrics', this.metrics);
       return {
+        websiteVisits: this.metrics.websiteVisits || 0,
         patients: this.metrics.patients || 0,
         records: this.metrics.records || 0,
-        websiteVisits: this.metrics.websiteVisits || 0,
+        hearts: this.metrics.hearts || 0,
       };
     },
     mainTextClasses () {
@@ -135,6 +180,37 @@ export default {
         wide: ['font-s'],
       });
     },
+    doctorLink () {
+      if (process.client) {
+        return window.location.href;
+      }
+      return '';
+    },
+    windowTitle () {
+      if (process.client) {
+        return window.document.title;
+      }
+      return '';
+    },
+    networkBindings () {
+      return {
+        title: this.windowTitle,
+        url: this.doctorLink,
+        description: `Book a consultation with ${this.firstName} today!`,
+      };
+    },
   },
 };
 </script>
+
+<style scoped>
+.social-image {
+  text-decoration: none;
+}
+.social-image:hover {
+  cursor: pointer !important;
+}
+.social-icon {
+  z-index: 99;
+}
+</style>
