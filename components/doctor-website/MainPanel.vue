@@ -19,59 +19,30 @@
             br
             h2 Dr. {{ fullName }}
           //- Professional Info
-          v-col(cols="10" v-if="hasProfessionalInfo").text-center
+          v-col(cols="10" v-if="hasProfessionalInfo").text-center.mb-10
             p(v-if="practicingYears").font-open-sans {{practicingYears}} Years of Experience
             br(v-else)
             v-chip(v-for="(specialty, key) in specialties" :key="key" color="white").mx-1 {{ specialty }}
             //- span.font-gray.font-open-sans {{ specialtiesMapped }}
-            br
-            br
-          //- Consult btn
-          v-btn(
-            color="warning"
-            depressed
-            x-large
-            :class="{ 'font-11' : $isMobile }"
-            @click="$emit('book')"
-          ).text-none.font-weight-bold.elevation-5.rounded-xl The doctor is in
-          br
 
-            //- //- Share Btn and Menu
-            //- v-menu(
-            //-   v-model="socialMenu"
-            //-   :close-on-content-click="false"
-            //-   offset-y
-            //- )
-            //-   template(v-slot:activator="{ on }")
-            //-     v-btn(
-            //-       v-on="on"
-            //-       small
-            //-       rounded
-            //-       depressed
-            //-       color="primary"
-            //-       :class="{ 'font-11' : $isMobile , 'ml-1': !$isMobile }"
-            //-     ).text-none.mt-1
-            //-       | Share
-            //-       v-icon(small right) mdi-share-variant
-            //-   v-card(color="primary" width="275")
-            //-     v-card-text
-            //-       h4.white--text Love this doctor? Let your friends know by sharing this website!
-            //-       v-row(no-gutters)
-            //-         v-col(cols="12")
-            //-           social-sharing(
-            //-             :url="doctorLink"
-            //-             :title="windowTitle"
-            //-             inline-template
-            //-           )
-            //-             div
-            //-               network(network="facebook").social-image
-            //-                 img(src="~/assets/images/doctor-website/facebook-logo-white.png" width="20%").pa-3
-            //-               network(network="twitter").social-image
-            //-                 img(src="~/assets/images/doctor-website/twitter-logo-white.png" width="20%").pa-3
-            //-               network(network="linkedin").social-image
-            //-                 img(src="~/assets/images/doctor-website/linkedin-logo-white.png" width="20%").pa-3
-            //-               network(network="email").social-image
-            //-                 img(src="~/assets/images/doctor-website/gmail-logo-white.png" width="20%").pa-3
+          //- Consult btn
+          v-col(cols="10").text-center
+            v-tooltip(
+              color="white"
+              top
+              :disabled="!isBookable"
+            )
+              template(v-slot:activator="{ on }")
+                v-btn(
+                  v-on="on"
+                  color="warning"
+                  depressed
+                  x-large
+                  :class="{ 'font-11' : $isMobile }"
+                  :disabled="!isBookable"
+                  @click="$emit('book')"
+                ).text-none.font-weight-bold.elevation-5.rounded-xl The doctor is in
+              strong.font-18.warning--text I'm available
 </template>
 
 <script>
@@ -113,10 +84,9 @@ export default {
       type: Boolean,
       default: false,
     },
-    /** @type {Organization[]} */
-    memberCmsOrganizations: {
-      type: Array,
-      default: () => [],
+    isBookable: {
+      type: Boolean,
+      default: false,
     },
   },
   data () {

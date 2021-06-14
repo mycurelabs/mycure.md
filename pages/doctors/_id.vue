@@ -21,6 +21,7 @@
       :education="education"
       :practicing-years="practicingYears"
       :is-verified="isVerified"
+      :is-bookable="isBookable"
       @book="onBook"
     )
     //- Banner
@@ -56,6 +57,7 @@
               :specialties="specialties"
               :education="education"
               :metrics="doctorMetrics"
+              :is-bookable="isBookable"
               @book="onBook"
             )
           //- Tabs
@@ -196,8 +198,11 @@ export default {
     isVerified () {
       return this.doctor?.doc_verified; // eslint-disable-line
     },
+    isBookable () {
+      return !!this.clinics.length;
+    },
     banner () {
-      return this.doctor?.doc_websiteBannerURL || require('~/assets/images/doctor-website/mycure-doctor-website-banner.png');
+      return this.doctor?.doc_websiteBannerURL || require('~/assets/images/doctor-website/doctor-banner-placeholder.png');
     },
   },
   async mounted () {

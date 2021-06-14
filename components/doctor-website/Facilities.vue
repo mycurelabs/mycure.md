@@ -1,17 +1,20 @@
 <template lang="pug">
   v-row#clinics-list-top
-    v-col(
-      v-for="(clinic, key) in clinics"
-      :key="key"
-      cols="12"
-      md="6"
-    )
-      facility-item(:clinic="clinic" :doctor-id="doctorId")
-    v-col(cols="12")
-      v-pagination(
-        v-model="page"
-        :length="length"
+    v-col(v-if="!clinics.length" cols="12")
+      p.font-open-sans.font-gray.mt-1 This doctor has no listed organizations. Please come and check another time!
+    template(v-else)
+      v-col(
+        v-for="(clinic, key) in clinics"
+        :key="key"
+        cols="12"
+        md="6"
       )
+        facility-item(:clinic="clinic" :doctor-id="doctorId")
+      v-col(cols="12")
+        v-pagination(
+          v-model="page"
+          :length="length"
+        )
 </template>
 
 <script>

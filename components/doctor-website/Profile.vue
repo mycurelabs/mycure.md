@@ -4,7 +4,7 @@
       v-avatar(size="200").mt-n16.pa-3.elevation-5
         img(:src="picUrl")
     v-card-text
-      h1(v-if="fullName" :class="mainTextClasses") Dr. {{ fullName }}
+      h1(v-if="fullName" :class="mainTextClasses").lh-title Dr. {{ fullName }}
       p(v-if="practicingYears") {{practicingYears}} Years of Experience
       br
       v-row
@@ -57,7 +57,7 @@
       //- Educational Background
       div(v-if="education.length")
         h2(:class="sectionTextClasses").primary--text Education
-        div(v-for="(educ, key) in education" :key="key").mt-2
+        div(v-for="(educ, key) in education" :key="key").mt-3
           span {{ educ | format-school }}
           br
           span {{ educ.from }} - {{ educ.to }}
@@ -68,6 +68,7 @@
         depressed
         x-large
         :class="{ 'font-11' : $isMobile }"
+        :disabled="!isBookable"
         @click="$emit('book')"
       ).text-none.font-weight-bold.elevation-5.rounded-md
         v-icon(left) mdi-calendar
@@ -119,6 +120,10 @@ export default {
     metrics: {
       type: Object,
       default: () => ({}),
+    },
+    isBookable: {
+      type: Boolean,
+      default: false,
     },
   },
   data () {
