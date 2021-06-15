@@ -7,7 +7,7 @@
       h1(v-if="fullName" :class="mainTextClasses").lh-title Dr. {{ fullName }}
       p(v-if="practicingYears") {{practicingYears}} Years of Experience
       br
-      v-row
+      v-row(justify="center")
         v-col(v-for="(metric, key) in metricMappings" :key="key" cols="12" md="4").text-center
           v-icon(:color="metric.color") {{ metric.icon }}
           br
@@ -23,8 +23,8 @@
                 v-on="on"
                 small
                 rounded
+                outlined
                 depressed
-                text
                 color="primary"
               ).text-none
                 v-icon(color="primary" left) mdi-export-variant
@@ -138,20 +138,20 @@ export default {
         icon: 'mdi-pulse',
         title: 'lives saved',
         value: 'patients',
-        color: 'success',
+        color: 'error',
       },
       {
         icon: 'mdi-bookshelf',
         title: 'medical records',
         value: 'records',
-        color: 'primary',
+        color: 'success',
       },
-      {
-        icon: 'mdi-heart-outline',
-        title: 'hearts',
-        value: 'hearts',
-        color: 'error',
-      },
+      // {
+      //   icon: 'mdi-heart-outline',
+      //   title: 'hearts',
+      //   value: 'hearts',
+      //   color: 'error',
+      // },
     ];
     return {
       // - UI State
@@ -165,7 +165,7 @@ export default {
         websiteVisits: this.metrics.websiteVisits || 0,
         patients: this.metrics.patients || 0,
         records: this.metrics.records || 0,
-        hearts: this.metrics.hearts || 0,
+        // - hearts: this.metrics.hearts || 0,
       };
     },
     mainTextClasses () {

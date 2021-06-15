@@ -117,7 +117,7 @@ export default {
       return '';
     },
     backgroundImage () {
-      return this.canUseWebp ? '.bg-webp' : 'bg-png';
+      return this.canUseWebp ? 'bg-webp' : 'bg-png';
     },
   },
   async mounted () {
