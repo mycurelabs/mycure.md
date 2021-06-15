@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-card(color="white" flat)#servicesList
+  v-card(flat style="border-radius: 10px;")#servicesList
     v-toolbar(v-if="!hideTabs && !showBackButton" color="white" flat)
       v-btn(v-if="showBackButton" color="primary" outlined @click="$emit('back')").text-none
         v-icon(small left) mdi-arrow-left

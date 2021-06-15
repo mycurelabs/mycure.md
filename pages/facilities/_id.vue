@@ -1,11 +1,113 @@
 <template lang="pug">
-  div(v-if="!loading.page").py-0.main-container
-    app-bar(
-      :picURL="picURL"
-      :clinicName="clinicName"
-      :is-verified="isVerified"
-      :is-preview-mode="isPreviewMode"
-    )
+  div(style="overflow: hidden; background: #fafafa")
+    new-app-bar
+    //- PANEL 1
+    div(:style="{ height: '100vh', paddingTop: $isMobile ? '60px' : '100px' }").panel-bg
+      v-row(justify="center")
+        v-col(cols="10").text-center
+          v-avatar(size="200").mb-5
+            img(:src="picURL")
+          h1.mb-5 {{clinicName}}
+          v-btn(
+            large
+            rounded
+            color="#05386E"
+            dark
+            @click="servicesDialog = true"
+          ).text-none.custom-clinic-button
+            h2 Schedule a visit today
+          v-dialog(v-model="servicesDialog" width="900" persistent scrollable)
+            v-card
+              v-toolbar(flat)
+                h2 Select a service
+                v-spacer
+                v-btn(icon @click="servicesDialog = false")
+                  v-icon mdi-close
+              v-divider
+              v-card-text.pt-5
+                v-row(justify="center")
+                  v-col(cols="10")
+                    v-col(v-if="$isMobile && searchResultsMode")
+                      v-btn(
+                        tile
+                        outlined
+                        color="primary"
+                        @click="searchResultsMode = false"
+                      ).text-none
+                        v-icon(small left) mdi-arrow-left
+                        | Go back to Main Page
+                    v-row(justify="center")
+                      //- Mobil
+                      v-col(
+                        v-if="!searchResultsMode"
+                        cols="12"
+                        md="8"
+                        :class="{ 'order-first': $isMobile, 'order-last': !$isMobile }"
+                      )
+                        service-types-mobile-selection(
+                          v-if="!mobileServicesListView && $isMobile"
+                          :service-types="serviceTypes"
+                          :has-doctors="hasDoctors"
+                          :is-preview-mode="isPreviewMode"
+                          @select="activeTab = $event; mobileServicesListView = true"
+                        )
+                        services-tabs(
+                          v-else-if="showServiceTabs"
+                          v-model="activeTab"
+                          hide-tabs
+                          :show-back-button="$isMobile"
+                          :items="listItems"
+                          :items-pagination-length="itemsPaginationLength"
+                          :organization="orgId"
+                          :loading="loading.list"
+                          :has-next-page="hasNextPage"
+                          :has-previous-page="hasPreviousPage"
+                          :has-doctors="hasDoctors"
+                          :is-preview-mode="isPreviewMode"
+                          :service-types="serviceTypes"
+                          @back="mobileServicesListView = false"
+                          @paginate="refetchListItems(activeTab, $event)"
+                        )
+                      v-col(cols="12" md="4")
+                        service-types-selection(
+                          v-if="!$isMobile && !searchResultsMode"
+                          v-model="activeTab"
+                          :service-types="serviceTypes"
+                          :has-doctors="hasDoctors"
+                          :is-preview-mode="isPreviewMode"
+                          @select="activeTab = $event"
+                        )
+                        //- Show on mobile
+                        usp(
+                          v-if="$isMobile && searchResultsMode"
+                          v-model="searchText"
+                          hide-banner
+                          no-gutters
+                          search-results-mode
+                          :name="clinicName"
+                          :org-id="orgId"
+                          :coverURL="coverURL"
+                          :is-preview-mode="isPreviewMode"
+                          :service-types="serviceTypes"
+                          @search="onServiceSearch"
+                          @filter:date="filterByDate"
+                        )
+                      v-col(cols="12" md="8" v-if="searchResultsMode")#services
+                        services-search-results(
+                          :organization="orgId"
+                          :loading="loading.list"
+                          :items="searchResults"
+                          :is-preview-mode="isPreviewMode"
+                        )
+    //- PANEL 1 FOOTER
+    div(v-if="!$isMobile").d-flex.panel-1-footer
+      span(v-if="formattedAddress")
+        v-icon.red--text mdi-map-marker
+        span {{formattedAddress}}
+      v-spacer
+      span(v-if="clinicPhone")
+        v-icon.green--text mdi-phone
+        span {{clinicPhone}}
     usp(
       v-model="searchText"
       :search-results-mode="searchResultsMode"
@@ -17,97 +119,179 @@
       :service-types="serviceTypes"
       @search="onServiceSearch"
       @filter:date="filterByDate"
+      style="margin-top: 12px;"
     )
-    v-container(fluid)
-      v-row(justify="center")
-        //- Mobile
-        v-col(
-          v-if="!searchResultsMode"
-          cols="12"
-          md="7"
-          :class="{ 'order-first': $isMobile, 'order-last': !$isMobile }"
-        )
-          service-types-mobile-selection(
-            v-if="!mobileServicesListView && $isMobile"
-            :service-types="serviceTypes"
-            :has-doctors="hasDoctors"
-            :is-preview-mode="isPreviewMode"
-            @select="activeTab = $event; mobileServicesListView = true"
-          )
-          services-tabs(
-            v-else-if="showServiceTabs"
-            v-model="activeTab"
-            hide-tabs
-            :show-back-button="$isMobile"
-            :items="listItems"
-            :items-pagination-length="itemsPaginationLength"
-            :organization="orgId"
-            :loading="loading.list"
-            :has-next-page="hasNextPage"
-            :has-previous-page="hasPreviousPage"
-            :has-doctors="hasDoctors"
-            :is-preview-mode="isPreviewMode"
-            :service-types="serviceTypes"
-            @back="mobileServicesListView = false"
-            @paginate="refetchListItems(activeTab, $event)"
-          )
-        v-col(cols="12" md="3")
-          service-types-selection(
-            v-if="!$isMobile && !searchResultsMode"
-            v-model="activeTab"
-            :service-types="serviceTypes"
-            :has-doctors="hasDoctors"
-            :is-preview-mode="isPreviewMode"
-            @select="activeTab = $event"
-          )
-          v-btn(
-            v-if="searchResultsMode && !$isMobile"
-            tile
-            outlined
-            color="primary"
-            @click="searchResultsMode = false"
-          ).text-none
-            v-icon(small left) mdi-arrow-left
-            | Go back to Main Page
-          clinic-info(
-            :clinic="clinicWebsite"
-            :is-dummy-org="isDummyOrg"
-            :is-preview-mode="isPreviewMode"
-          )
-          schedules(:schedules="groupedSchedules").mt-2
-          //- Show on mobile
-          usp(
-            v-if="$isMobile && searchResultsMode"
-            v-model="searchText"
-            hide-banner
-            no-gutters
-            search-results-mode
-            :name="clinicName"
-            :org-id="orgId"
-            :coverURL="coverURL"
-            :is-preview-mode="isPreviewMode"
-            :service-types="serviceTypes"
-            @search="onServiceSearch"
-            @filter:date="filterByDate"
-          )
-        v-col(cols="12" md="7" v-if="searchResultsMode")#services
-          services-search-results(
-            :organization="orgId"
-            :loading="loading.list"
-            :items="searchResults"
-            :is-preview-mode="isPreviewMode"
-          )
-
-    //- Footer
-    v-divider
-    v-footer(v-if="!$isMobile" color="white").mt-3
+    div#services-panel.mt-10
+      v-container
+        v-row(justify="center")
+          v-col(cols="10")
+            v-row(justify="center")
+              //- Mobile
+              v-col(
+                v-if="!searchResultsMode"
+                cols="12"
+                md="8"
+                :class="{ 'order-first': $isMobile, 'order-last': !$isMobile }"
+              )
+                service-types-mobile-selection(
+                  v-if="!mobileServicesListView && $isMobile"
+                  :service-types="serviceTypes"
+                  :has-doctors="hasDoctors"
+                  :is-preview-mode="isPreviewMode"
+                  @select="activeTab = $event; mobileServicesListView = true"
+                )
+                services-tabs(
+                  v-else-if="showServiceTabs"
+                  v-model="activeTab"
+                  hide-tabs
+                  :show-back-button="$isMobile"
+                  :items="listItems"
+                  :items-pagination-length="itemsPaginationLength"
+                  :organization="orgId"
+                  :loading="loading.list"
+                  :has-next-page="hasNextPage"
+                  :has-previous-page="hasPreviousPage"
+                  :has-doctors="hasDoctors"
+                  :is-preview-mode="isPreviewMode"
+                  :service-types="serviceTypes"
+                  @back="mobileServicesListView = false"
+                  @paginate="refetchListItems(activeTab, $event)"
+                )
+              v-col(cols="12" md="4")
+                service-types-selection(
+                  v-if="!$isMobile && !searchResultsMode"
+                  v-model="activeTab"
+                  :service-types="serviceTypes"
+                  :has-doctors="hasDoctors"
+                  :is-preview-mode="isPreviewMode"
+                  @select="activeTab = $event"
+                )
+                v-btn(
+                  v-if="searchResultsMode && !$isMobile"
+                  tile
+                  outlined
+                  color="primary"
+                  @click="searchResultsMode = false"
+                ).text-none
+                  v-icon(small left) mdi-arrow-left
+                  | Go back to Main Page
+                //- Show on mobile
+                usp(
+                  v-if="$isMobile && searchResultsMode"
+                  v-model="searchText"
+                  hide-banner
+                  no-gutters
+                  search-results-mode
+                  :name="clinicName"
+                  :org-id="orgId"
+                  :coverURL="coverURL"
+                  :is-preview-mode="isPreviewMode"
+                  :service-types="serviceTypes"
+                  @search="onServiceSearch"
+                  @filter:date="filterByDate"
+                )
+              v-col(cols="12" md="8" v-if="searchResultsMode")#services
+                services-search-results(
+                  :organization="orgId"
+                  :loading="loading.list"
+                  :items="searchResults"
+                  :is-preview-mode="isPreviewMode"
+                )
+    div#about-us-panel.white
+      v-container
+        v-row(justify="center")
+          generic-panel(:row-bindings="{ justify: 'center', align: 'center' }")
+            //- v-col(cols="12")
+              h1 About Us
+              div(style="width: 160px; height: 3px; background: #0099cc")
+            v-col(cols="12" md="4").px-10.text-center
+              h1 About Us
+              center
+                div(style="width: 160px; height: 3px; background: #0099cc")
+              br
+              h1.primary--text At MYCURE we always care for the extra mile
+            v-col(cols="12" md="4").py-10
+              div.text-center
+                v-avatar(size="200").mb-5
+                  img(:src="picURL")
+              p {{description}}
+              br
+              media(v-if="formattedAddress" align="top")
+                template(slot="media-image")
+                  v-icon.red--text mdi-map-marker
+                template(slot="media-content")
+                  p {{formattedAddress}}
+              media(v-if="clinicPhone" align="top")
+                template(slot="media-image")
+                  v-icon.green--text mdi-phone
+                template(slot="media-content")
+                  p {{clinicPhone}}
+            v-col(cols="12" md="4").py-10
+              schedules(:schedules="groupedSchedules")
+            //- v-col(cols="12" md="10")
+              v-row(justify="center")
+                v-col(cols="12" md="4")
+                  v-row(justify="center" align="center").d-flex
+                    v-col.shrink
+                      v-avatar(size="100")
+                        img(src="https://dummyimage.com/150x150/f2f2f2/121212")
+                    v-col.text-start
+                      h3.primary--text CEO
+                      h3.primary--text Dr. Jean Rivera
+                v-col(cols="12" md="8")
+                  p
+                    i "Anim et est excepteur culpa do incididunt adipisicing ut ipsum. Esse in ipsum culpa id cillum ad elit laboris qui commodo laboris qui cillum veniam. Fugiat officia ut esse pariatur id elit occaecat ipsum ipsum. Ad non id quis elit labore do dolor esse adipisicing esse commodo. Quis elit aliquip mollit dolor."
+    //- GALLERY
+    //- div.white
+      v-container
+        v-row(justify="center")
+          generic-panel(:row-bindings="{ justify: 'center' }")
+    //- QUICK BOOK
+    div(style="background: #0369A5")
+      v-container
+        v-row(justify="center")
+          generic-panel(:row-bindings="{ justify: 'center' }")
+            v-col(cols="12")
+              h1.mb-5.white--text Get An Appointment
+            v-col(cols="12" md="6").pa-10
+              template(v-for="item in quickAppointmentsContent")
+                media
+                  template(slot="media-image")
+                    v-avatar(size="45" color="#add35b")
+                      v-icon.white--text {{item.icon}}
+                  template(slot="media-content")
+                    br
+                    h5.white--text {{item.title}}
+                    p.white--text {{item.content}}
+            v-col(cols="12" md="6").pa-10
+              v-card(style="border-radius: 10px;")
+                v-card-text.pa-10
+                  h3.mb-5 Choose a service
+                  v-text-field(
+                    outlined
+                    label="Types"
+                  )
+                  v-text-field(
+                    outlined
+                    label="Services"
+                  )
+                  div.d-flex
+                    v-spacer
+                    v-btn(
+                      color="#0369A5"
+                      unelevated
+                      large
+                      dark
+                    ).text-none Continue
+    //- FOOTER
+    v-footer(v-if="!$isMobile" dark color="#343A40").pa-5
       v-row.d-flex
         v-col.font-14
           div.d-flex
             p.ml-5.mt-1 #[b Powered by]
             img(
               height="30"
-              src="~/assets/images/MYCURE-logo.png"
+              src="~/assets/images/mycure-footer-logo.png"
               alt="MYCURE"
               @click="$nuxt.$router.push({ name: 'index' })"
             ).ml-2
@@ -126,7 +310,7 @@
           nuxt-link(to="/directory/results").font-14 See more Health Facilities
           | &nbsp;|&nbsp;
           nuxt-link(to="/signup/health-facilities").font-14 Create my own Health Facility Website
-    v-footer(v-else color="primary")
+    v-footer(v-else dark color="#343A40").pa-5
       v-row(justify="center" align="center")
         v-col(cols="12" align="center")
           div.d-flex.justify-center.white--text
@@ -161,6 +345,7 @@ import VueScrollTo from 'vue-scrollto';
 // - utils
 import { getServices } from '~/utils/axios';
 import { getOrganization } from '~/utils/axios/organizations';
+import { formatAddress } from '~/utils/formats';
 import headMeta from '~/utils/head-meta';
 // - services
 import { fetchClinicWebsiteDoctors } from '~/services/organization-members';
@@ -177,6 +362,9 @@ import ServicesTabs from '~/components/clinic-website/services/tabs';
 import ServiceTypesMobileSelection from '~/components/clinic-website/services/service-types-mobile-selection';
 import ServiceTypesSelection from '~/components/clinic-website/services/service-types-selection';
 import Usp from '~/components/clinic-website/usp';
+import GenericPanel from '~/components/generic/GenericPanel';
+import Media from '~/components/commons/media';
+import NewAppBar from '~/components/clinic-website/new/AppBar';
 
 const SERVICE_TYPES = [
   'clinical-consultation',
@@ -197,15 +385,19 @@ export default {
     ServiceTypesMobileSelection,
     ServiceTypesSelection,
     Usp,
+    GenericPanel,
+    Media,
+    //
+    NewAppBar,
   },
   layout: 'clinic-website',
   async asyncData ({ params, $sdk, redirect }) {
     try {
-      const clinicWebsite = await getOrganization({ id: params.id }, true) || {};
-      if (isEmpty(clinicWebsite)) redirect('/');
+      const clinic = await getOrganization({ id: params.id }, true) || {};
+      if (isEmpty(clinic)) redirect('/');
       const services = await getServices({ facility: params.id });
       return {
-        clinicWebsite,
+        clinic,
         services,
       };
     } catch (error) {
@@ -258,12 +450,30 @@ export default {
       },
     ];
     this.itemsLimit = 10;
+    this.quickAppointmentsContent = [
+      {
+        icon: 'mdi-microscope',
+        title: 'Choose a service',
+        content: 'Select from among the healthcare services available for you.',
+      },
+      {
+        icon: 'mdi-calendar-blank',
+        title: 'Book a schedule',
+        content: 'Choose your best time and fill in the appointment form.',
+      },
+      {
+        icon: 'mdi-clock-outline',
+        title: 'Show up on time',
+        content: 'Our friendly healthcare professionals will be there to see you.',
+      },
+    ];
     return {
       // UI State
       loading: {
         page: true,
         list: false,
       },
+      servicesDialog: false,
       mobileServicesListView: false,
       // Pagination
       page: 1,
@@ -296,6 +506,14 @@ export default {
     });
   },
   computed: {
+    formattedAddress () {
+      if (!this.clinic?.address) return '';
+      return formatAddress(this.clinic.address, 'street1, street2, city, province, country');
+    },
+    clinicPhone () {
+      return this.clinic?.phone;
+    },
+    // old
     mode () {
       return this.$route.query.mode;
     },
@@ -303,30 +521,30 @@ export default {
       return this.mode === 'preview';
     },
     orgId () {
-      return this.clinicWebsite?.id;
+      return this.clinic?.id;
     },
     isVerified () {
-      return !!this.clinicWebsite?.websiteId;
+      return !!this.clinic?.websiteId;
     },
     isDummyOrg () {
-      const { tags } = this.clinicWebsite;
+      const { tags } = this.clinic;
       if (!tags?.length) return false;
       return tags.includes('dummy');
     },
     picURL () {
-      return this.clinicWebsite?.picURL || require('~/assets/images/clinics-website/hospital-thumbnail.jpg');
+      return this.clinic?.picURL || require('~/assets/images/clinics-website/hospital-thumbnail.jpg');
     },
     coverURL () {
-      return this.clinicWebsite?.coverURL || require('~/assets/images/clinics-website/usp-background.png');
+      return this.clinic?.coverURL || require('~/assets/images/clinics-website/usp-background.png');
     },
     clinicName () {
-      return this.clinicWebsite?.name || 'MYCURE Clinic';
+      return this.clinic?.name || 'MYCURE Clinic';
     },
     servicesOffered () {
       return this.services;
     },
     schedules () {
-      return this.clinicWebsite?.mf_schedule || []; // eslint-disable-line
+      return this.clinic?.mf_schedule || []; // eslint-disable-line
     },
     groupedSchedules () {
       const groupedSchedules = this.schedules
@@ -379,6 +597,10 @@ export default {
       if (this.$isMobile && this.mobileServicesListView) return true;
       if (!this.$isMobile && !this.searchResultsMode) return true;
       return false;
+    },
+    description () {
+      return this.clinic?.description ||
+      `${this.name || 'This facility'} specializes in telehealth services. ${this.name || 'It'} is committed to provide medical consultation via video conference or phone call to our patient 24 hours a day 7 days a week.`;
     },
   },
   watch: {
@@ -526,5 +748,23 @@ a {
 }
 .main-container {
   background-color: #fafafa;
+}
+.panel-bg {
+  background-image: url('../../assets/images/clinics-website/clinic-background.png');
+  background-position: center center;
+  background-size: cover;
+}
+.custom-clinic-button {
+  height: 90px !important;
+  width: 300px;
+}
+.panel-1-footer {
+  margin-top: -55px;
+  height: 55px;
+  padding: 17px 10px 0px 10px;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+.search-container {
+  height: 400px;
 }
 </style>
