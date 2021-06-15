@@ -78,6 +78,32 @@
               custom-path="booking/"
               extension-exclusive
             )
+    //- 5th panel
+    div.blue-bg.mx-n3
+      v-container
+        v-row(justify="center")
+          generic-panel(:row-bindings="{ justify: 'center' }")
+            v-col(cols="12" md="8").text-center.mb-3
+              h2(:class="titleClasses").font-weight-semibold.white--text.mb-3 Also available for Medium and Large-scale Facilities
+              p(:class="['white--text', ...descriptionClasses]").mb-3 MYCURE Booking can also be used for clinics, diagnostic centers, and hospitals to seamlessly organize your patient visits. It has APIs that can be integrated in your existing information systems.
+              signup-button(
+                depressed
+                rounded
+                :x-large="$isWideScreen"
+                :large="!$isWideScreen"
+                color="success"
+              ).text-none.font-s
+                span Get Started Free
+            v-col(cols="12").text-center
+              picture-source(
+                image="As your practice grows"
+                image-alt="MYCURE Booking"
+                image-file-extension=".png"
+                custom-path="commons/"
+                extension-exclusive
+                :image-width="$isMobile ? '100%' : '60%'"
+              )
+    //- 6th panel
     plans
 </template>
 
