@@ -44,7 +44,7 @@
           @click="clinicSchedulesExpanded = !clinicSchedulesExpanded"
         ) View {{clinicSchedulesExpanded ? 'less' : 'more'}}
         br
-    div.card-actions.px-3
+    div.card-actions.px-3.pb-3
       //- Online Consult
       v-btn(
         color="success"

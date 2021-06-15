@@ -1,5 +1,5 @@
 <template lang="pug">
-  div.panel-bg
+  div(:class="backgroundImage").panel-bg
     v-container
       v-row(justify="center")
         //- Logo
@@ -22,9 +22,7 @@
           v-col(cols="10" v-if="hasProfessionalInfo").text-center.mb-10
             p(v-if="practicingYears").font-open-sans {{practicingYears}} Years of Experience
             br(v-else)
-            v-chip(v-for="(specialty, key) in specialties" :key="key" color="white").mx-1 {{ specialty }}
-            //- span.font-gray.font-open-sans {{ specialtiesMapped }}
-
+            v-chip(v-for="(specialty, key) in specialties" :key="key" color="white").ma-1 {{ specialty }}
           //- Consult btn
           v-col(cols="10").text-center
             v-tooltip(
@@ -48,6 +46,7 @@
 <script>
 import SocialSharing from 'vue-social-sharing';
 import GenericPanel from '~/components/generic/GenericPanel';
+import canUseWebp from '~/utils/can-use-webp';
 export default {
   components: {
     GenericPanel,
@@ -92,6 +91,7 @@ export default {
   data () {
     return {
       socialMenu: false,
+      canUseWebp: null,
     };
   },
   computed: {
@@ -116,6 +116,12 @@ export default {
       }
       return '';
     },
+    backgroundImage () {
+      return this.canUseWebp ? '.bg-webp' : 'bg-png';
+    },
+  },
+  async mounted () {
+    this.canUseWebp = await canUseWebp();
   },
 };
 </script>
@@ -136,12 +142,34 @@ export default {
 .social-image:hover {
   cursor: pointer !important;
 }
+.bg-png {
+  background-image: url('../../assets/images/doctor-website/Doctor Sky BG.png');
+}
+.bg-webp {
+  background-image: url('../../assets/images/doctor-website/Doctor Sky BG.webp');
+}
 .panel-bg {
-  background-image: url('../../assets/images/doctor-website/Doctor BG Full.png');
   background-size: cover;
   width: 100%;
-  min-height: 150vh;
+  height: 1100px;
+  position: relative;
   /* top: 0;
   position: absolute; */
+}
+
+@media screen and (max-width: 700px) {
+  .panel-bg {
+    height: 1000px;
+  }
+}
+@media screen and (min-width: 1600px) {
+  .panel-bg {
+    height: 1300px;
+  }
+}
+@media screen and (min-width: 1800px) {
+  .panel-bg {
+    height: 1500px;
+  }
 }
 </style>

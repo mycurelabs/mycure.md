@@ -24,8 +24,10 @@
       :is-bookable="isBookable"
       @book="onBook"
     )
+    //- Patient panel
+    patient-panel(:metrics="doctorMetrics")
     //- Banner
-    div.banner-container
+    div.banner-container.mt-n5
       img(
         :src="banner"
         alt="MYCURE Doctor Banner"
@@ -82,6 +84,7 @@ import ChooseAppointment from '~/components/doctor-website/ChooseAppointment';
 import ChooseFacility from '~/components/doctor-website/ChooseFacility';
 import GenericPanel from '~/components/generic/GenericPanel';
 import MainPanel from '~/components/doctor-website/MainPanel';
+import PatientPanel from '~/components/doctor-website/PatientPanel';
 import Profile from '~/components/doctor-website/Profile';
 import WebsiteFeatures from '~/components/doctor-website/WebsiteFeatures';
 import {
@@ -99,6 +102,7 @@ export default {
     ChooseFacility,
     GenericPanel,
     MainPanel,
+    PatientPanel,
     Profile,
     WebsiteFeatures,
   },
