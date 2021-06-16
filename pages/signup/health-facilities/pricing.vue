@@ -129,7 +129,14 @@ export default {
       return this.step1LocalStorageData?.organization?.types?.[0];
     },
     facilityType () {
-      return this.$route.query.type || this.organizationTypes0;
+      const typesMap = {
+        'doctor-booking': 'doctor',
+        'doctor-telehealth': 'doctor',
+        'clinic-booking': 'clinic',
+        'clinic-telehealth': 'clinic',
+      };
+      const type = this.$route.query.type || this.organizationTypes0;
+      return typesMap[type];
     },
     allPricing () {
       return ALL_PRICING;
