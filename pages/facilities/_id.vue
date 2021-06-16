@@ -1,6 +1,7 @@
 <template lang="pug">
   div(style="overflow: hidden; background: #fafafa")
-    new-app-bar
+    //- APP BAR
+    app-bar
     //- PANEL 1
     div(:style="{ height: '100vh', paddingTop: $isMobile ? '60px' : '100px' }").panel-bg
       v-row(justify="center")
@@ -101,42 +102,13 @@
             v-col(cols="12" md="4").py-10
               schedules(:schedules="groupedSchedules")
     //- QUICK BOOK
-    div(style="background: #0369A5")
-      v-container
-        v-row(justify="center")
-          generic-panel(:row-bindings="{ justify: 'center' }")
-            v-col(cols="12")
-              h1.mb-5.white--text Get An Appointment
-            v-col(cols="12" md="6").pa-10
-              template(v-for="item in quickAppointmentsContent")
-                media
-                  template(slot="media-image")
-                    v-avatar(size="45" color="#add35b")
-                      v-icon.white--text {{item.icon}}
-                  template(slot="media-content")
-                    br
-                    h5.white--text {{item.title}}
-                    p.white--text {{item.content}}
-            v-col(cols="12" md="6").pa-10
-              v-card(style="border-radius: 10px;")
-                v-card-text.pa-10
-                  h3.mb-5 Choose a service
-                  v-text-field(
-                    outlined
-                    label="Types"
-                  )
-                  v-text-field(
-                    outlined
-                    label="Services"
-                  )
-                  div.d-flex
-                    v-spacer
-                    v-btn(
-                      color="#0369A5"
-                      unelevated
-                      large
-                      dark
-                    ).text-none Continue
+    quick-book(
+      :is-preview-mode="isPreviewMode"
+      :service-types="serviceTypes"
+      :service-schedules="serviceSchedules"
+      :organization-schedules="groupedSchedules"
+      :organization="orgId"
+    )
     //- FOOTER
     app-footer
 </template>
@@ -156,7 +128,7 @@ import {
   fetchClinicServiceTypes,
 } from '~/services/services';
 // - components
-import AppBar from '~/components/clinic-website/app-bar';
+import AppBar from '~/components/clinic-website/new/AppBar';
 import AppFooter from '~/components/clinic-website/AppFooter';
 import ClinicInfo from '~/components/clinic-website/clinic-info';
 import Schedules from '~/components/clinic-website/schedules';
@@ -164,7 +136,7 @@ import SearchPanel from '~/components/clinic-website/SearchPanel';
 import GenericPanel from '~/components/generic/GenericPanel';
 import MainWorkflow from '~/components/clinic-website/MainWorkflow';
 import Media from '~/components/commons/media';
-import NewAppBar from '~/components/clinic-website/new/AppBar';
+import QuickBook from '~/components/clinic-website/QuickBook';
 
 const SERVICE_TYPES = [
   'clinical-consultation',
@@ -185,8 +157,7 @@ export default {
     GenericPanel,
     MainWorkflow,
     Media,
-    //
-    NewAppBar,
+    QuickBook,
   },
   layout: 'clinic-website',
   async asyncData ({ params, $sdk, redirect }) {
@@ -241,23 +212,6 @@ export default {
       },
     ];
     this.itemsLimit = 10;
-    this.quickAppointmentsContent = [
-      {
-        icon: 'mdi-microscope',
-        title: 'Choose a service',
-        content: 'Select from among the healthcare services available for you.',
-      },
-      {
-        icon: 'mdi-calendar-blank',
-        title: 'Book a schedule',
-        content: 'Choose your best time and fill in the appointment form.',
-      },
-      {
-        icon: 'mdi-clock-outline',
-        title: 'Show up on time',
-        content: 'Our friendly healthcare professionals will be there to see you.',
-      },
-    ];
     return {
       // UI State
       loading: {
