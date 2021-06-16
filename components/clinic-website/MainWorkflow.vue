@@ -1,6 +1,7 @@
 <template lang="pug">
   div
     search-panel(
+      v-if="!hideBanner"
       v-model="searchText"
       :search-results-mode="searchResultsMode"
       :name="clinicName"
@@ -14,7 +15,7 @@
     div#services-panel
       v-container
         v-row(justify="center")
-          generic-panel(:row-bindings="{ justify: 'center' }")
+          generic-panel(:column="fullWidth ? '12' : '10'" :row-bindings="{ justify: 'center' }")
             //- Content Area
             v-col(
               v-if="!searchResultsMode"
@@ -139,6 +140,16 @@ export default {
     },
     // - Previous page for items
     hasPreviousPage: {
+      type: Boolean,
+      default: false,
+    },
+    // - Hide search bar and banner
+    hideBanner: {
+      type: Boolean,
+      default: false,
+    },
+    // - Make component occupy full 12 cols of generic panel
+    fullWidth: {
       type: Boolean,
       default: false,
     },

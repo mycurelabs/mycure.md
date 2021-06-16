@@ -25,8 +25,21 @@
                 v-btn(icon @click="servicesDialog = false")
                   v-icon mdi-close
               v-divider
-              v-card-text.pt-5
-                //- MAIN INSERT HERE
+              v-card-text
+                main-workflow(
+                  full-width
+                  hide-banner
+                  :is-preview-mode="isPreviewMode"
+                  :service-types="serviceTypes"
+                  :has-doctors="hasDoctors"
+                  :items="listItems"
+                  :items-pagination-length="itemsPaginationLength"
+                  :organization="clinic"
+                  :loading="loading.list"
+                  :has-next-page="hasNextPage"
+                  :has-previous-page="hasPreviousPage"
+                  @paginate="onPaginate($event)"
+                )
 
     //- PANEL 1 FOOTER
     div(v-if="!$isMobile").d-flex.panel-1-footer
@@ -38,20 +51,6 @@
         v-icon.green--text mdi-phone
         span {{clinicPhone}}
     //- MAIN PANELS
-    //- search-panel(
-    //-   v-model="searchText"
-    //-   :search-results-mode="searchResultsMode"
-    //-   :name="clinicName"
-    //-   :org-id="orgId"
-    //-   :coverURL="coverURL"
-    //-   :is-preview-mode="isPreviewMode"
-    //-   :hide-search-bars="$isMobile"
-    //-   :service-types="serviceTypes"
-    //-   @search="onServiceSearch"
-    //-   @filter:date="filterByDate"
-    //-   style="margin-top: 12px;"
-    //- )
-    //- div#services-panel.mt-10
     main-workflow(
       :is-preview-mode="isPreviewMode"
       :search-results-mode="searchResultsMode"
