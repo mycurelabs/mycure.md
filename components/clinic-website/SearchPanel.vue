@@ -8,7 +8,6 @@
         v-col(cols="10" md="6").text-center
           h1(v-if="!hideBanner" :class="{ 'font-30': $isMobile }").white--text Easily book your next visit to #[br] {{ name }}
           v-text-field(
-            v-if="isInitialSearchBarVisible"
             solo
             clearable
             :placeholder="`Search ${name}’s doctors, diagnostic tests, and services`"
@@ -18,49 +17,12 @@
           ).mt-3.search-bar
             template(v-slot:append)
               v-icon(color="white").search-icon mdi-magnify
-        //- v-col(v-if="(searchResultsMode && !hideSearchBars)" cols="10" md="2")
-        //-   v-select(
-        //-     v-model="serviceType"
-        //-     :items="availableServiceTypes"
-        //-     label="Service Type"
-        //-     item-text="text"
-        //-     item-value="value"
-        //-     solo
-        //-     clearable
-        //-     :class="{ 'mt-3': !$isMobile }"
-        //-     :disabled="isPreviewMode"
-        //-     @change="onServiceTypeSelect"
-        //-     @click:clear="clearServiceFilter"
-        //-   ).search-bar
-        //- v-col(v-if="searchResultsMode && !hideSearchBars" cols="10" md="2")
-        //-   search-insurance-contracts(
-        //-     solo
-        //-     :class="{ 'mt-3': !$isMobile }"
-        //-     :disabled="isPreviewMode"
-        //-     @select="onInsuranceSelect"
-        //-     @clear="clearInsuranceFilter"
-        //-   ).search-bar
-        //- v-col(v-if="searchResultsMode && !hideSearchBars" cols="10" md="2" :class="{ 'mt-n4': !$isMobile }")
-        //-   date-picker-menu(
-        //-     v-model="dateFilter"
-        //-     solo
-        //-     bordered
-        //-     :disabled="isPreviewMode"
-        //-     @clear="dateFilter = null"
-        //-   )
 </template>
 
 <script>
 // utils
-import { debounce, isEmpty } from 'lodash';
-// components
-import SearchInsuranceContracts from './services/search-insurance-contracts';
-import DatePickerMenu from '~/components/commons/date-picker-menu';
+import { debounce } from 'lodash';
 export default {
-  components: {
-    DatePickerMenu,
-    SearchInsuranceContracts,
-  },
   props: {
     value: {
       type: String,
@@ -104,30 +66,11 @@ export default {
     },
   },
   data () {
-    this.serviceTypeMappings = {
-      'clinical-consultation': { text: 'Consult', value: 'clinical-consultation' },
-      'clinical-procedure': { text: 'Procedure', value: 'clinical-procedure' },
-      lab: { text: 'Laboratory', value: 'lab' },
-      imaging: { text: 'Imaging', value: 'imaging' },
-      pe: { text: 'PE Package', value: 'pe' },
-      dental: { text: 'Dental', value: 'dental' },
-    };
     return {
-      searchFilters: {},
-      serviceType: null,
-      dateFilter: null,
       debouncedSearch: debounce(this.search, 500),
     };
   },
   computed: {
-    availableServiceTypes () {
-      if (isEmpty(this.serviceTypes)) return [];
-      const types = this.serviceTypes.map((type) => {
-        return this.serviceTypeMappings[type];
-      });
-      if (!types.length) return [];
-      return types;
-    },
     searchText: {
       get () {
         return this.value;
@@ -140,45 +83,11 @@ export default {
       const overlay = 'linear-gradient(270deg, rgba(0, 0, 0, .5), rgba(0, 0, 0, .5))';
       return { 'background-image': `${overlay}, url(${this.coverURL})` };
     },
-    isInitialSearchBarVisible () {
-      if (this.$isMobile && !this.searchResultsMode) return true;
-      if (!this.$isMobile) return true;
-      return false;
-    },
-  },
-  watch: {
-    dateFilter (val) {
-      this.$emit('filter:date', val);
-    },
   },
   methods: {
     search () {
       this.$emit('searchLoading', true);
       this.$emit('search', { searchText: this.searchText, searchFilters: this.searchFilters });
-    },
-    onServiceTypeSelect () {
-      this.searchFilters = {
-        ...this.searchFilters,
-        type: this.serviceType === 'lab' || this.serviceType === 'imaging' ? 'diagnostic' : this.serviceType,
-        subtype: this.serviceType === 'lab' || this.serviceType === 'imaging' ? this.serviceType : null,
-      };
-      this.search();
-    },
-    onInsuranceSelect (insurer) {
-      this.searchFilters = {
-        ...this.searchFilters,
-        insurer,
-      };
-      this.search();
-    },
-    clearServiceFilter () {
-      delete this.searchFilters?.type;
-      delete this.searchFilters?.subtype;
-      this.search();
-    },
-    clearInsuranceFilter () {
-      delete this.searchFilters?.insurer;
-      this.search();
     },
   },
 };

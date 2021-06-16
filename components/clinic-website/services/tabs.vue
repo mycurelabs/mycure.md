@@ -1,6 +1,6 @@
 <template lang="pug">
   v-card(flat style="border-radius: 10px;")#servicesList
-    v-toolbar(v-if="!hideTabs && !showBackButton" color="white" flat)
+    v-toolbar(v-if="showBackButton" color="white" flat)
       v-btn(v-if="showBackButton" color="primary" outlined @click="$emit('back')").text-none
         v-icon(small left) mdi-arrow-left
         | Back
@@ -12,7 +12,7 @@
             indeterminate
             size="100"
           )
-      v-row(v-else-if="items.length === 0")
+      v-row(v-else-if="items.length === 0" justify="center")
         v-col(cols="12" md="4").text-center
           h2 No services available
       template(v-else)
@@ -62,10 +62,6 @@ export default {
       type: Boolean,
       default: false,
     },
-    hideTabs: {
-      type: Boolean,
-      default: false,
-    },
     items: {
       type: Array,
       default: () => ([]),
@@ -94,10 +90,6 @@ export default {
       type: Boolean,
       default: false,
     },
-    hasDoctors: {
-      type: Boolean,
-      default: false,
-    },
   },
   data () {
     return {
@@ -118,11 +110,6 @@ export default {
     itemsPage (page) {
       this.$emit('paginate', page);
       VueScrollTo.scrollTo('#servicesList', 500, { offset: -100, easing: 'ease' });
-    },
-  },
-  methods: {
-    hasServiceType (type) {
-      return this.serviceTypes.includes(type);
     },
   },
 };

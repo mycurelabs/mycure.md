@@ -495,6 +495,7 @@ export default {
     },
     async onServiceSearch ({ searchText, searchFilters }) {
       if (!this.searchResultsMode) this.searchResultsMode = true;
+      this.searchText = searchText;
       this.searchFilters = searchFilters;
       await this.fetchDoctorMembers(searchText);
       await this.fetchServices(searchFilters, searchText);

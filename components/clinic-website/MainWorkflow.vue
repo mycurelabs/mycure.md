@@ -7,10 +7,8 @@
       :org-id="orgId"
       :coverURL="coverURL"
       :is-preview-mode="isPreviewMode"
-      :hide-search-bars="$isMobile"
       :service-types="serviceTypes"
       @search="onSearch"
-      @filter:date="$emit('filter:date', $event)"
       style="margin-top: 12px;"
     )
     div#services-panel
@@ -19,6 +17,7 @@
           generic-panel(:row-bindings="{ justify: 'center' }")
             //- Content Area
             v-col(
+              v-if="!searchResultsMode"
               cols="12"
               md="8"
               :class="{ 'order-first': $isMobile, 'order-last': !$isMobile }"
@@ -43,11 +42,12 @@
                 :has-doctors="hasDoctors"
                 :is-preview-mode="isPreviewMode"
                 :service-types="serviceTypes"
+                :search-results-mode="searchResultsMode"
                 @back="mobileServicesListView = false"
                 @paginate="onPaginate($event)"
               )
             //- Selection Area
-            v-col(cols="12" md="4")
+            v-col(cols="12" :md="searchResultsMode ? '3' : '4'")
               service-types-selection(
                 v-if="!$isMobile && !searchResultsMode"
                 v-model="activeTab"
@@ -65,25 +65,15 @@
               ).text-none
                 v-icon(small left) mdi-arrow-left
                 | Go back to Main Page
-              //- Show on mobile
-              search-panel(
-                v-if="$isMobile && searchResultsMode"
-                v-model="searchText"
-                hide-banner
-                no-gutters
-                :name="clinicName"
-                :org-id="orgId"
-                :is-preview-mode="isPreviewMode"
-                :service-types="serviceTypes"
-                @search="onSearch($event)"
-                @filter:date="$emit('filter:date', $event)"
-              )
-            v-col(cols="12" md="8" v-if="searchResultsMode")#services
+            v-col(cols="12" md="9" v-if="searchResultsMode")#services
               services-search-results(
                 :organization="orgId"
                 :loading="loading"
                 :items="searchResults"
                 :is-preview-mode="isPreviewMode"
+                :service-types="serviceTypes"
+                @search="onSearch({ searchText, ...$event})"
+                @filter:date="$emit('filter:date', $event)"
               )
 </template>
 
