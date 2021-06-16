@@ -4,14 +4,45 @@
       v-avatar(size="200").mt-n16.pa-3.elevation-5
         img(:src="picUrl")
     v-card-text
-      h1(v-if="fullName" :class="mainTextClasses") Dr. {{ fullName }}
+      h1(v-if="fullName" :class="mainTextClasses").lh-title Dr. {{ fullName }}
       p(v-if="practicingYears") {{practicingYears}} Years of Experience
       br
-      v-row
+      v-row(justify="center")
         v-col(v-for="(metric, key) in metricMappings" :key="key" cols="12" md="4").text-center
           v-icon(:color="metric.color") {{ metric.icon }}
           br
           span(:class="`${metric.color}--text`").font-12.lh-title {{ metricData[metric.value] }} {{ metric.title }}
+        v-col(cols="12" md="4").text-center
+          v-menu(
+            v-model="socialMenu"
+            :close-on-content-click="false"
+            offset-y
+          )
+            template(v-slot:activator="{ on }")
+              v-btn(
+                v-on="on"
+                small
+                rounded
+                outlined
+                depressed
+                color="primary"
+              ).text-none
+                v-icon(color="primary" left) mdi-export-variant
+                span.primary--text.font-12 Share
+            v-card(color="primary" width="275")
+              v-card-text
+                h4.white--text Love this doctor? Let your friends know by sharing this website!
+                v-row(no-gutters)
+                  v-col(cols="12")
+                    div.d-flex
+                      share-network(network="facebook" :url="doctorLink" title="Doctor").social-image.pa-3
+                        v-icon(large color="white") mdi-facebook
+                      share-network(network="twitter" v-bind="networkBindings").social-image.pa-3
+                        v-icon(large color="white") mdi-twitter
+                      //- share-network(network="linkedin" v-bind="networkBindings").social-image
+                      //-   img(src="~/assets/images/doctor-website/linkedin-logo-white.png" width="20%").pa-3
+                      share-network(network="email" v-bind="networkBindings").social-image.pa-3
+                        v-icon(large color="white") mdi-email
       br
       h2(:class="sectionTextClasses").primary--text About Me
       p {{ bio || 'I am ready to accomodate you! How can I help you?' }}
@@ -26,25 +57,25 @@
       //- Educational Background
       div(v-if="education.length")
         h2(:class="sectionTextClasses").primary--text Education
-        div(v-for="(educ, key) in education" :key="key").mt-2
+        div(v-for="(educ, key) in education" :key="key").mt-3
           span {{ educ | format-school }}
           br
           span {{ educ.from }} - {{ educ.to }}
       br
-      book-appointment-btn(
+      v-btn(
         color="primary"
-        btn-text="Book an Appointment"
-        rounded
         block
         depressed
         x-large
-        show-icon
         :class="{ 'font-11' : $isMobile }"
-      ).text-none.font-weight-bold.elevation-5
+        :disabled="!isBookable"
+        @click="$emit('book')"
+      ).text-none.font-weight-bold.elevation-5.rounded-md
+        v-icon(left) mdi-calendar
+        span Book an Appointment
 </template>
 
 <script>
-import BookAppointmentBtn from '~/components/commons/book-appointment-btn';
 import classBinder from '~/utils/class-binder';
 export default {
   filters: {
@@ -53,15 +84,16 @@ export default {
       return `${educ.degree} - ${educ.school}`;
     },
   },
-  components: {
-    BookAppointmentBtn,
-  },
   props: {
     picUrl: {
       type: String,
       default: null,
     },
     fullName: {
+      type: String,
+      default: null,
+    },
+    firstName: {
       type: String,
       default: null,
     },
@@ -89,37 +121,51 @@ export default {
       type: Object,
       default: () => ({}),
     },
+    isBookable: {
+      type: Boolean,
+      default: false,
+    },
   },
   data () {
     this.metricMappings = [
-      {
-        icon: 'mdi-heart-outline',
-        title: 'lives saved',
-        value: 'patients',
-        color: 'error',
-      },
-      {
-        icon: 'mdi-pulse',
-        title: 'medical records',
-        value: 'records',
-        color: 'success',
-      },
       {
         icon: 'mdi-eye',
         title: 'views',
         value: 'websiteVisits',
         color: 'info',
       },
+      {
+        icon: 'mdi-pulse',
+        title: 'lives saved',
+        value: 'patients',
+        color: 'error',
+      },
+      {
+        icon: 'mdi-bookshelf',
+        title: 'medical records',
+        value: 'records',
+        color: 'success',
+      },
+      // {
+      //   icon: 'mdi-heart-outline',
+      //   title: 'hearts',
+      //   value: 'hearts',
+      //   color: 'error',
+      // },
     ];
-    return {};
+    return {
+      // - UI State
+      socialMenu: false,
+    };
   },
   computed: {
     metricData () {
       console.log('metrics', this.metrics);
       return {
+        websiteVisits: this.metrics.websiteVisits || 0,
         patients: this.metrics.patients || 0,
         records: this.metrics.records || 0,
-        websiteVisits: this.metrics.websiteVisits || 0,
+        // - hearts: this.metrics.hearts || 0,
       };
     },
     mainTextClasses () {
@@ -135,6 +181,37 @@ export default {
         wide: ['font-s'],
       });
     },
+    doctorLink () {
+      if (process.client) {
+        return window.location.href;
+      }
+      return '';
+    },
+    windowTitle () {
+      if (process.client) {
+        return window.document.title;
+      }
+      return '';
+    },
+    networkBindings () {
+      return {
+        title: this.windowTitle,
+        url: this.doctorLink,
+        description: `Book a consultation with ${this.firstName} today!`,
+      };
+    },
   },
 };
 </script>
+
+<style scoped>
+.social-image {
+  text-decoration: none;
+}
+.social-image:hover {
+  cursor: pointer !important;
+}
+.social-icon {
+  z-index: 99;
+}
+</style>

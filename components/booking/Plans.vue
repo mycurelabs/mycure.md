@@ -54,7 +54,7 @@ export default {
     SignupButton,
   },
   data () {
-    this.title = 'Get started free and pay as you grow';
+    this.title = 'Try MYCURE Booking FREE!';
     this.description = 'All essential features to help start up your digital booking journey.';
     this.inclusions = [
       'Up to 1 user',
