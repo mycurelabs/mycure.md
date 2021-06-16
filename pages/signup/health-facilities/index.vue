@@ -151,12 +151,12 @@
                 :error-messages="errorMessagesFacilityType"
                 return-object
               )
-                template(v-slot:item="data")
-                  span {{ data.item.text }}&nbsp;
-                    v-chip(small color="primary" v-if="data.item.value === 'doctor-telehealth'").font-11 Telehealth
-                template(v-slot:selection="data")
-                  span {{ data.item.text }}&nbsp;
-                    v-chip(small color="primary" v-if="data.item.value === 'doctor-telehealth'").font-11 Telehealth
+                template(v-slot:item="{ item }")
+                  span {{ item.text }}&nbsp;
+                    v-chip(v-if="item.chip" small color="primary").font-11 {{item.chip}}
+                template(v-slot:selection="{ item }")
+                  span {{ item.text }}&nbsp;
+                    v-chip(v-if="item.chip" small color="primary").font-11 {{item.chip}}
               //- Pricing
               //- v-autocomplete(
               //-   v-if="facilityType"
@@ -317,12 +317,38 @@ export default {
         value: 'diagnostic',
       },
       {
-        text: 'Doctor\'s Clinic',
+        text: 'Doctor Booking',
+        orgProps: {
+          type: 'facility',
+          types: ['doctor', 'doctor-booking'],
+        },
+        value: 'doctor-booking',
+      },
+      {
+        text: 'Clinic Booking',
+        orgProps: {
+          type: 'facility',
+          types: ['clinic', 'clinic-booking'],
+        },
+        value: 'clinic-booking',
+      },
+      {
+        text: 'Doctor Telehealth',
         orgProps: {
           type: 'facility',
           types: ['doctor', 'doctor-telehealth'],
         },
         value: 'doctor-telehealth',
+        chip: 'Telehealth',
+      },
+      {
+        text: 'Clinic Telehealth',
+        orgProps: {
+          type: 'facility',
+          types: ['clinic', 'clinic-telehealth'],
+        },
+        value: 'clinic-telehealth',
+        chip: 'Telehealth',
       },
     ];
     this.userRoles = [
@@ -515,7 +541,10 @@ export default {
         this.saveModel(payload);
         this.$router.push({
           name: 'signup-health-facilities-pricing',
-          query: this.$route.query,
+          query: {
+            ...this.$route.query,
+            type: this.facilityType?.value,
+          },
         });
         // const data = await signupFacility(payload);
         // console.log('data', data);
