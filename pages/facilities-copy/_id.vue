@@ -176,7 +176,7 @@ import ServicesSearchResults from '~/components/clinic-website/services/search-r
 import ServicesTabs from '~/components/clinic-website/services/tabs';
 import ServiceTypesMobileSelection from '~/components/clinic-website/services/service-types-mobile-selection';
 import ServiceTypesSelection from '~/components/clinic-website/services/service-types-selection';
-import Usp from '~/components/clinic-website/usp';
+import SearchPanel from '~/components/clinic-website/SearchPanel';
 
 const SERVICE_TYPES = [
   'clinical-consultation',
@@ -196,7 +196,7 @@ export default {
     ServicesTabs,
     ServiceTypesMobileSelection,
     ServiceTypesSelection,
-    Usp,
+    SearchPanel,
   },
   layout: 'clinic-website',
   async asyncData ({ params, $sdk, redirect }) {

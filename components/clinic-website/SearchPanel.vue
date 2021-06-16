@@ -1,12 +1,12 @@
 <template lang="pug">
   v-col(
     :style="!hideBanner ? backgroundStyle : null"
-    :class="[searchResultsMode ? 'search-mode-container' : 'full-container', { 'mobile-height': $isMobile }]"
-  )
+    :class="{ 'mobile-height': $isMobile }"
+  ).full-container
     v-container(fluid).pa-0
       v-row(align="center" justify="center" :no-gutters="noGutters").content-container.mx-1
         v-col(cols="10" md="6").text-center
-          h1(v-if="(!searchResultsMode || $isMobile) && !hideBanner" :class="{ 'font-30': $isMobile }").white--text Easily book your next visit to #[br] {{ name }}
+          h1(v-if="!hideBanner" :class="{ 'font-30': $isMobile }").white--text Easily book your next visit to #[br] {{ name }}
           v-text-field(
             v-if="isInitialSearchBarVisible"
             solo
@@ -18,36 +18,36 @@
           ).mt-3.search-bar
             template(v-slot:append)
               v-icon(color="white").search-icon mdi-magnify
-        v-col(v-if="(searchResultsMode && !hideSearchBars)" cols="10" md="2")
-          v-select(
-            v-model="serviceType"
-            :items="availableServiceTypes"
-            label="Service Type"
-            item-text="text"
-            item-value="value"
-            solo
-            clearable
-            :class="{ 'mt-3': !$isMobile }"
-            :disabled="isPreviewMode"
-            @change="onServiceTypeSelect"
-            @click:clear="clearServiceFilter"
-          ).search-bar
-        v-col(v-if="searchResultsMode && !hideSearchBars" cols="10" md="2")
-          search-insurance-contracts(
-            solo
-            :class="{ 'mt-3': !$isMobile }"
-            :disabled="isPreviewMode"
-            @select="onInsuranceSelect"
-            @clear="clearInsuranceFilter"
-          ).search-bar
-        v-col(v-if="searchResultsMode && !hideSearchBars" cols="10" md="2" :class="{ 'mt-n4': !$isMobile }")
-          date-picker-menu(
-            v-model="dateFilter"
-            solo
-            bordered
-            :disabled="isPreviewMode"
-            @clear="dateFilter = null"
-          )
+        //- v-col(v-if="(searchResultsMode && !hideSearchBars)" cols="10" md="2")
+        //-   v-select(
+        //-     v-model="serviceType"
+        //-     :items="availableServiceTypes"
+        //-     label="Service Type"
+        //-     item-text="text"
+        //-     item-value="value"
+        //-     solo
+        //-     clearable
+        //-     :class="{ 'mt-3': !$isMobile }"
+        //-     :disabled="isPreviewMode"
+        //-     @change="onServiceTypeSelect"
+        //-     @click:clear="clearServiceFilter"
+        //-   ).search-bar
+        //- v-col(v-if="searchResultsMode && !hideSearchBars" cols="10" md="2")
+        //-   search-insurance-contracts(
+        //-     solo
+        //-     :class="{ 'mt-3': !$isMobile }"
+        //-     :disabled="isPreviewMode"
+        //-     @select="onInsuranceSelect"
+        //-     @clear="clearInsuranceFilter"
+        //-   ).search-bar
+        //- v-col(v-if="searchResultsMode && !hideSearchBars" cols="10" md="2" :class="{ 'mt-n4': !$isMobile }")
+        //-   date-picker-menu(
+        //-     v-model="dateFilter"
+        //-     solo
+        //-     bordered
+        //-     :disabled="isPreviewMode"
+        //-     @clear="dateFilter = null"
+        //-   )
 </template>
 
 <script>

@@ -4,13 +4,6 @@
       v-btn(v-if="showBackButton" color="primary" outlined @click="$emit('back')").text-none
         v-icon(small left) mdi-arrow-left
         | Back
-      v-tabs(v-if="!hideTabs" v-model="activeServiceType" :show-arrows="$isMobile")
-        v-tab(v-if="hasServiceType('lab')" href="#lab") #[b Laboratory]
-        v-tab(v-if="hasServiceType('imaging')" href="#imaging") #[b Imaging]
-        v-tab(v-if="hasServiceType('pe')" href="#pe") #[b PE Packages]
-        v-tab(v-if="hasDoctors" href="#doctors") #[b Doctors]
-        v-tab(v-if="hasServiceType('clinical-procedure')" href="#clinical-procedure") #[b Procedures]
-        v-tab(v-if="hasServiceType('dental')" href="#dental") #[b Dental]
     v-card-text
       v-row(v-if="loading" justify="center")
         v-col(cols="12" md="4").text-center
