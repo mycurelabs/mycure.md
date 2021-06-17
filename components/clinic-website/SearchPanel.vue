@@ -1,11 +1,11 @@
 <template lang="pug">
   v-col(
     :style="!hideBanner ? backgroundStyle : null"
-    :class="{ 'mobile-height': $isMobile }"
-  ).full-container
+    :class="{ 'mobile-height': $isMobile, 'full-container': !hideBanner }"
+  )
     v-container(fluid).pa-0
-      v-row(align="center" justify="center" :no-gutters="noGutters").content-container.mx-1
-        v-col(cols="10" md="6").text-center
+      v-row(align="center" justify="center" :no-gutters="noGutters" :class="{'content-container': !hideBanner}").mx-1
+        v-col(cols="10" :md="!hideBanner ? '6' : '12'").text-center
           h1(v-if="!hideBanner" :class="{ 'font-30': $isMobile }").white--text Easily book your next visit to #[br] {{ name }}
           v-text-field(
             solo
@@ -119,7 +119,7 @@ export default {
   height: 425px;
 }
 .search-bar >>> .v-input__slot {
-  border-radius: 0px 5px 5px 0px;
+  border-radius: 5px 5px 5px 5px;
   border: 4px solid #0099CC;
   padding-right: 0 !important;
 }

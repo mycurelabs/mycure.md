@@ -1,7 +1,6 @@
 <template lang="pug">
   div
     search-panel(
-      v-if="!hideBanner"
       v-model="searchText"
       :search-results-mode="searchResultsMode"
       :name="clinicName"
@@ -9,6 +8,7 @@
       :coverURL="coverURL"
       :is-preview-mode="isPreviewMode"
       :service-types="serviceTypes"
+      :hide-banner="hideBanner"
       @search="onSearch"
       style="margin-top: 12px;"
     )

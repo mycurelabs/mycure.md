@@ -12,7 +12,7 @@
           v-btn(
             large
             rounded
-            color="#05386E"
+            color="warning"
             dark
             @click="servicesDialog = true"
           ).text-none.custom-clinic-button
@@ -69,38 +69,15 @@
       @paginate="onPaginate($event)"
       @filter:date="filterByDate"
     )
-    //- ABOUT US PANEL
-    div#about-us-panel.white
-      v-container
-        v-row(justify="center")
-          generic-panel(:row-bindings="{ justify: 'center', align: 'center' }")
-            //- v-col(cols="12")
-              h1 About Us
-              div(style="width: 160px; height: 3px; background: #0099cc")
-            v-col(cols="12" md="4").px-10.text-center
-              h1 About Us
-              center
-                div(style="width: 160px; height: 3px; background: #0099cc")
-              br
-              h1.primary--text At MYCURE we always care for the extra mile
-            v-col(cols="12" md="4").py-10
-              div.text-center
-                v-avatar(size="200").mb-5
-                  img(:src="picURL")
-              p {{description}}
-              br
-              media(v-if="formattedAddress" align="top")
-                template(slot="media-image")
-                  v-icon.red--text mdi-map-marker
-                template(slot="media-content")
-                  p {{formattedAddress}}
-              media(v-if="clinicPhone" align="top")
-                template(slot="media-image")
-                  v-icon.green--text mdi-phone
-                template(slot="media-content")
-                  p {{clinicPhone}}
-            v-col(cols="12" md="4").py-10
-              schedules(:schedules="groupedSchedules")
+    //- ABOUT US
+    about-us(
+      :picURL="picURL"
+      :name="clinicName"
+      :description="description"
+      :phone="clinicPhone"
+      :address="formattedAddress"
+      :schedules="groupedSchedules"
+    )
     //- QUICK BOOK
     quick-book(
       :is-preview-mode="isPreviewMode"
@@ -128,14 +105,11 @@ import {
   fetchClinicServiceTypes,
 } from '~/services/services';
 // - components
+import AboutUs from '~/components/clinic-website/AboutUs';
 import AppBar from '~/components/clinic-website/new/AppBar';
 import AppFooter from '~/components/clinic-website/AppFooter';
-import ClinicInfo from '~/components/clinic-website/clinic-info';
-import Schedules from '~/components/clinic-website/schedules';
 import SearchPanel from '~/components/clinic-website/SearchPanel';
-import GenericPanel from '~/components/generic/GenericPanel';
 import MainWorkflow from '~/components/clinic-website/MainWorkflow';
-import Media from '~/components/commons/media';
 import QuickBook from '~/components/clinic-website/QuickBook';
 
 const SERVICE_TYPES = [
@@ -149,14 +123,11 @@ const SERVICE_TYPES = [
 
 export default {
   components: {
+    AboutUs,
     AppBar,
     AppFooter,
-    ClinicInfo,
-    Schedules,
     SearchPanel,
-    GenericPanel,
     MainWorkflow,
-    Media,
     QuickBook,
   },
   layout: 'clinic-website',
