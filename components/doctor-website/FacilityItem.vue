@@ -1,37 +1,33 @@
 <template lang="pug">
   v-card(height="100%").card-outter.elevation-3
-    v-card-text
+    v-card-text.text-center
       v-avatar(size="125")
         img(:src="clinicPicURL")
     v-card-text
-      h3 {{ clinic.name }}
+      h3.text-center {{ clinic.name }}
         template(v-if="isVerified")
           | &nbsp;
           v-icon(color="primary" small) mdi-check-circle-outline
       br
-      //- About
-      div
-        h4.primary--text About
-        p(:class="{ 'font-italic': !description }") {{ description || 'No information provided' }}
       //- Address
-      div
-        h4.primary--text Address
+      div.d-flex
+        v-icon(color="primary").mr-2.mb-auto.mt-1 mdi-home-variant-outline
         p(:class="{ 'font-italic': !clinic.address }").text-left {{ clinic.address | prettify-address }}
       //- Contact number
-      div
-        h4.primary--text Contact number
+      div.d-flex
+        v-icon(color="primary").mr-2.mb-auto.mt-1 mdi-phone-in-talk
         p(:class="{ 'font-italic': !phone }") {{ phone ? `+${phone}` : 'No information provided' }}
       //- Email
-      div
-        h4.primary--text Email
+      div.d-flex
+        v-icon(color="primary").mr-2.mb-auto.mt-1 mdi-email
         p(:class="{ 'font-italic': !email }") {{ email || 'No information provided' }}
       br
       template(v-if="clinicSchedules && clinicSchedules.length === 0")
         div(:class="{ 'justify-center' : $isMobile}").d-flex
-          v-icon(color="primary" small left).mr-2.mb-auto.mt-1 mdi-calendar-today
+          v-icon(color="primary" left).mr-2.mb-auto.mt-1 mdi-calendar-today
           i No schedules available
       div(v-else :class="{ 'justify-center' : $isMobile}").d-flex
-        v-icon(color="primary" small left).mr-2.mb-auto.mt-1 mdi-calendar-today
+        v-icon(color="primary" left).mr-2.mb-auto.mt-1 mdi-calendar-today
         table
           tr(v-for="sched in clinicSchedules").font-weight-600
             td(width="70") #[b.text-capitalize {{ formatDay(sched.day) }}]
@@ -39,7 +35,7 @@
             td -
             td {{sched.endTime | morph-date-format('hh:mm A')}}
       br
-      div(v-if="fullSchedules.length > 3")
+      div(v-if="fullSchedules.length > 3").pl-3
         a(
           @click="clinicSchedulesExpanded = !clinicSchedulesExpanded"
         ) View {{clinicSchedulesExpanded ? 'less' : 'more'}}
@@ -47,30 +43,28 @@
     div.card-actions.px-3.pb-3
       //- Online Consult
       v-btn(
-        color="success"
+        color="accent"
         target="_blank"
         rel="noopener noreferrer"
-        tile
         block
-        small
+        large
         :disabled="!canBook"
         :href="telehealthURL"
-      ).my-4.text-none
+      ).my-4.text-none.rounded-lg
         v-icon(left) mdi-stethoscope
         b Teleconsult
 
       //- Physical Visit
       v-btn(
-        color="primary"
+        color="secondary"
         target="_blank"
         rel="noopener noreferrer"
         outlined
-        tile
         block
-        small
+        large
         :disabled="!canBook"
         :href="visitURL"
-      ).text-none
+      ).text-none.rounded-lg
         v-icon(left) mdi-calendar
         b Clinic Visit
 </template>
@@ -237,7 +231,7 @@ td {
 
 .card-outter {
   position: relative;
-  padding-bottom: 100px;
+  padding-bottom: 120px;
 }
 
 .card-actions {

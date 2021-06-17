@@ -46,9 +46,9 @@
     //- Workflow area
     v-container
       v-row(justify="center")
-        generic-panel
+        generic-panel(:row-bindings="{ justify: 'center' }")
           //- Profile
-          v-col(cols="12" lg="4")
+          v-col(cols="12" lg="4" xl="3")
             profile(
               :pic-url="picURL"
               :full-name="fullNameWithSuffixes"
@@ -63,7 +63,7 @@
               @book="onBook"
             )
           //- Tabs
-          v-col(cols="12" lg="8")
+          v-col(cols="12" lg="8" xl="7")
             website-features(
               :doctorId="doctor.id"
               :clinics="clinics"

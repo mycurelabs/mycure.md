@@ -20,27 +20,26 @@
             h2 Dr. {{ fullName }}
           //- Professional Info
           v-col(cols="10" v-if="hasProfessionalInfo").text-center.mb-10
-            p(v-if="practicingYears").font-open-sans {{practicingYears}} Years of Experience
+            p(v-if="practicingYears" style="color: #878E9B;").font-open-sans.font-weight-medium {{practicingYears}} Years of Experience
             br(v-else)
-            v-chip(v-for="(specialty, key) in specialties" :key="key" color="white").ma-1 {{ specialty }}
+            v-chip(v-for="(specialty, key) in specialties" :key="key" color="#878E9B").ma-1.white--text {{ specialty }}
           //- Consult btn
-          v-col(cols="10").text-center
-            v-tooltip(
-              color="white"
-              top
-              :disabled="!isBookable"
-            )
-              template(v-slot:activator="{ on }")
+          v-col(cols="10").text-center.justify-center
+              div(style="width: 25%; margin: auto;").white
+                strong(slot="badge").font-18.warning--text I'm available
+              v-hover(
+                v-slot="{ hover }"
+                open-delay="100"
+              )
+
                 v-btn(
-                  v-on="on"
-                  color="warning"
                   depressed
                   x-large
+                  :color="hover ? 'info' : 'warning'"
                   :class="{ 'font-11' : $isMobile }"
                   :disabled="!isBookable"
                   @click="$emit('book')"
-                ).text-none.font-weight-bold.elevation-5.rounded-xl The doctor is in
-              strong.font-18.warning--text I'm available
+                ).text-none.font-weight-bold.custom-book-btn.rounded-xl.font-18 {{ hover ? 'Book me now' : 'The doctor is in' }}
 </template>
 
 <script>
@@ -155,6 +154,10 @@ export default {
   position: relative;
   /* top: 0;
   position: absolute; */
+}
+.custom-book-btn {
+  height: 70px !important;
+  width: 300px;
 }
 
 @media screen and (max-width: 700px) {

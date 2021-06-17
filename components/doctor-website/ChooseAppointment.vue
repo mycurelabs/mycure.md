@@ -1,11 +1,19 @@
 <template lang="pug">
   v-dialog(v-model="dialog" width="900" height="900" persistent)
     v-card
+      v-toolbar(flat)
+        v-spacer
+        h2.primary--text Choose a Service
+        v-spacer
+        v-btn(
+          icon
+          depressed
+          @click="dialog = false"
+        ).text-none
+          v-icon mdi-close
       v-card-text.pa-3
         v-container
           v-row
-            v-col(cols="12").text-center
-              h1 Choose a Service
             v-col(cols="6" v-for="(service, key) in services" :key="key").text-center
               v-card(height="100%").elevation-3.service-card
                 v-card-text
@@ -16,10 +24,9 @@
                   )
                 v-card-actions.px-3.card-actions
                   v-btn(
-                    color="primary"
-                    outlined
                     depressed
                     block
+                    :color="service.color"
                     @click="onServiceSelect(service.type)"
                   ).text-none
                     v-icon(left) {{ service.btnBindings.icon }}
@@ -42,6 +49,7 @@ export default {
           icon: 'mdi-stethoscope',
         },
         type: 'telehealth',
+        color: 'accent',
         image: 'Telehealth',
       },
       {
@@ -50,6 +58,7 @@ export default {
           icon: 'mdi-calendar',
         },
         type: 'physical',
+        color: 'secondary',
         image: 'Booking',
       },
     ];
