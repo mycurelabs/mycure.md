@@ -4,7 +4,8 @@
       generic-panel(:row-bindings="{ justify: 'center' }")
         v-col(cols="12" :md="titleColSize").text-center
           strong(v-if="metaTitle" :class="metaTitleClasses").primary--text {{ metaTitle }}
-          h2(:class="titleClasses").lh-title.font-weight-semibold {{ title }}
+          slot(name="title")
+            h2(:class="titleClasses").lh-title.font-weight-semibold {{ title }}
         v-col(cols="12" :md="contentColSize").text-center.py-3
           div(:class="descriptionClasses").font-open-sans.font-gray
             slot(name="description")
@@ -12,7 +13,7 @@
         v-col(cols="12" :md="iconContainerColSize")
           v-row(justify="center")
             slot(name="items")
-              v-col(:cols="iconColSizeMobile" :md="iconColSize" v-for="(item, key) in items" :key="key").text-center
+              v-col(v-bind="iconColumnBindings" v-for="(item, key) in items" :key="key").text-center
                 picture-source(
                   v-if="item.icon"
                   :extension-exclusive="extensionExclusive"
@@ -23,7 +24,7 @@
                   :image-width="!$isMobile ? imageWidth : imageWidthMobile"
                 )
                 br
-                h3(:class="itemTextClasses").font-open-sans.font-gray {{ item.title }}
+                h3(:class="itemTextClasses").font-open-sans.font-gray.font-weight-semibold {{ item.title }}
                 p(v-if="item.description" :class="itemTextClasses") {{ item.description }}
                 nuxt-link(v-if="!hideLearnMore && item.route" :to="{ name: item.route }").primary--text.font-weight-bold.learnLink Learn more
         slot(name="additional-content")
@@ -94,15 +95,14 @@ export default {
       type: [Number, String],
       default: '12',
     },
-    // - Space for each icon (web)
-    iconColSize: {
-      type: [Number, String],
-      default: '4',
-    },
-    // - Space for each icon (mobile)
-    iconColSizeMobile: {
-      type: [Number, String],
-      default: '6',
+    // - Space for each icon
+    iconColumnBindings: {
+      type: Object,
+      default: () => ({
+        cols: 6,
+        md: 4,
+        xl: 3,
+      }),
     },
     // - Height of panel
     panelHeight: {
@@ -141,6 +141,7 @@ export default {
     itemTextClasses () {
       return [
         classBinder(this, {
+          mobile: ['font-14'],
           regular: ['font-xs'],
           wide: ['font-s'],
         }),

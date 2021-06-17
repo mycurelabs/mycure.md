@@ -18,92 +18,101 @@
     //- 2nd panel
     features(
       title="Acquire and accomodate more patients"
-      meta-title="HOW IT WORKS"
+      meta-title="How It Works?"
       :items="howItWorksContents"
-      :icon-col-size="4"
       image-dir="booking/"
     )
       template(slot="items")
-        v-col(cols="12" md="4" v-for="(item, key) in howItWorksContents" :key="key").text-center
+        v-col(cols="12" md="4" xl="3" v-for="(item, key) in howItWorksContents" :key="key").text-center
           picture-source(
             v-if="item.icon"
             custom-path="booking/"
             :image="item.icon"
             :image-alt="item.title"
             :image-file-extension="item.iconExtension"
-            :image-width="!$isMobile ? '100%' : '50%'"
+            :image-width="!$isMobile ? '100%' : '80%'"
           )
           br
           br
-          h2.font-weight-semibold {{ item.title }}
-          p {{ item.description }}
+          h2.hiw-subheading.font-weight-semibold {{ item.title }}
+          p.hiw-caption.font-open-sans {{ item.description }}
 
     //- 3rd panel
     div.grey-bg.mx-n3
       features(
-        title="Make every step of patient care a breeze"
         :items="thirdPanelContents"
         image-dir="booking/"
       )
+        template(slot="title")
+          h2(:class="['primary--text', 'font-weight-semibold', ...titleClasses]") Make every step of patient care a breeze
+        template(slot="additional-content")
+          v-col(cols="12").text-center.mt-5
+            signup-button(
+              depressed
+              rounded
+              :x-large="$isWideScreen"
+              :large="!$isWideScreen"
+              color="accent"
+            ).text-none.font-s
+              span Get Started Free
     //- 4th panel
     v-container
       v-row(justify="center")
         generic-panel(:row-bindings="{ justify: 'center' }")
           v-col(cols="12" md="8").text-center
-            h2(:class="titleClasses").font-weight-semibold Activate your awesome booking website
+            h2(:class="titleClasses").font-weight-semibold.primary--text Activate your awesome booking website
             p(:class="descriptionClasses").mt-3 Patients can directly book their next visit on your professional booking page. It’s a digital hub where you can showcase your services and medical professionals like having your very own website.
           v-col(cols="12").text-center
-            v-btn-toggle(v-model="websiteType" mandatory)
+            //- v-btn-toggle(v-model="websiteType" mandatory)
+            v-row.text-center
+              v-spacer
               v-btn(
                 color="primary"
                 depressed
-                outlined
+                tile
                 x-large
-                value="doctor"
+                style="width: 200px;"
+                :outlined="websiteType !== 'doctor'"
+                @click="websiteType = 'doctor'"
               ).text-none Doctors
               v-btn(
                 color="primary"
                 depressed
                 outlined
+                tile
                 x-large
-                value="clinic"
+                style="width: 200px;"
+                :outlined="websiteType !== 'clinic'"
+                @click="websiteType = 'clinic'"
               ).text-none Clinics
+              v-spacer
             br
             br
             picture-source(
-              :image="`ui-mockup-${websiteType}`"
+              :image="websiteMockupMappings[websiteType]"
               :image-alt="websiteType"
-              :image-width="$isMobile ? '100%' : '80%'"
-              image-file-extension=".png"
+              image-width="80%"
+              image-file-extension=".webp"
               custom-path="booking/"
-              extension-exclusive
             )
     //- 5th panel
     div.blue-bg.mx-n3
-      v-container
-        v-row(justify="center")
-          generic-panel(:row-bindings="{ justify: 'center' }")
-            v-col(cols="12" md="8").text-center.mb-3
-              h2(:class="titleClasses").font-weight-semibold.white--text.mb-3 Also available for Medium and Large-scale Facilities
-              p(:class="['white--text', ...descriptionClasses]").mb-3 MYCURE Booking can also be used for clinics, diagnostic centers, and hospitals to seamlessly organize your patient visits. It has APIs that can be integrated in your existing information systems.
-              signup-button(
-                depressed
-                rounded
-                color="success"
-                facility-type="clinic-booking"
-                :x-large="$isWideScreen"
-                :large="!$isWideScreen"
-              ).text-none.font-s
-                span Get Started Free
-            v-col(cols="12").text-center
-              picture-source(
-                image="As your practice grows"
-                image-alt="MYCURE Booking"
-                image-file-extension=".png"
-                custom-path="commons/"
-                extension-exclusive
-                :image-width="$isMobile ? '100%' : '60%'"
-              )
+      generic-media-panel(
+        align="center"
+        :content="fifthPanelContents"
+        :title-classes="[...titleClasses, 'white--text']"
+        :content-classes="['white--text', ...descriptionClasses]"
+      )
+        template(slot="cta-button")
+          signup-button(
+            depressed
+            rounded
+            color="accent"
+            facility-type="clinic-booking"
+            :x-large="$isWideScreen"
+            :large="!$isWideScreen"
+          ).text-none.font-s
+            span Get Started Free
     //- 6th panel
     plans
 </template>
@@ -114,6 +123,7 @@ import headMeta from '~/utils/head-meta';
 import classBinder from '~/utils/class-binder';
 // components
 import Features from '~/components/commons/panels/Features';
+import GenericMediaPanel from '~/components/generic/GenericMediaPanel';
 import GenericPanel from '~/components/generic/GenericPanel';
 import PictureSource from '~/components/commons/PictureSource';
 import Plans from '~/components/booking/Plans';
@@ -123,6 +133,7 @@ import SignupButton from '~/components/commons/SignupButton';
 export default {
   components: {
     Features,
+    GenericMediaPanel,
     GenericPanel,
     PictureSource,
     Plans,
@@ -154,19 +165,33 @@ export default {
       {
         icon: 'Organized Patient visits',
         iconExtension: '.webp',
-        description: 'Organized patient visits for easy COVID-19 safety compliance.',
+        title: 'Organized patient visits for easy COVID-19 safety compliance.',
       },
       {
         icon: 'open schedule',
         iconExtension: '.webp',
-        description: 'Open schedule to the days and times that work for you. Reminders go out automatically.',
+        title: 'Open schedule to the days and times that work for you. Reminders go out automatically.',
       },
       {
         icon: 'covers from virtual',
         iconExtension: '.webp',
-        description: 'Covers from virtual (telehealth) to physical (face to face) accommodation',
+        title: 'Covers from virtual (telehealth) to physical (face to face) accommodation',
       },
     ];
+    this.fifthPanelContents = {
+      title: 'Also available for Medium and Large-scale Facilities',
+      description: 'MYCURE Booking can also be used for clinics, diagnostic centers, and hospitals to seamlessly organize your patient visits. It has APIs that can be integrated in your existing information systems.',
+      imageBindings: {
+        image: 'As your practice grows.png',
+        customPath: 'commons/',
+        extensionExclusive: true,
+        imageAlt: 'MYCURE Booking',
+      },
+    };
+    this.websiteMockupMappings = {
+      doctor: 'Booking Page UI Mockup - Doctor',
+      clinic: 'Booking Page UI Mockup - Clinic',
+    };
     return {
       loading: true,
       websiteType: 'doctor',
@@ -182,7 +207,7 @@ export default {
   computed: {
     imageBindings () {
       return {
-        image: 'Booking USP',
+        image: 'Booking Mobile',
         customImagePath: 'booking/',
         imageAlign: 'right',
       };
@@ -238,6 +263,12 @@ export default {
 </script>
 
 <style scoped>
+.hiw-subheading {
+  color: #212121;
+}
+.hiw-caption {
+  color: #787878;
+}
 .grey-bg {
   background-color: #fafafa;
 }

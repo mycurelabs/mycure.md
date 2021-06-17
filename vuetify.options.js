@@ -3,7 +3,7 @@ export default {
     themes: {
       light: {
         primary: '#0099cc',
-        accent: '#7fad33',
+        accent: '#ADD35B',
         secondary: '#424242',
         info: '#0174BB',
         warning: '#FFC107',
@@ -12,7 +12,7 @@ export default {
       },
       dark: {
         primary: '#0099cc',
-        accent: '#7fad33',
+        accent: '#ADD35B',
         secondary: '#424242',
         info: '#2196F3',
         warning: '#FFC107',

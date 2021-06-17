@@ -102,7 +102,7 @@ export default {
     },
     btnColor: {
       type: String,
-      default: 'success',
+      default: 'accent',
     },
     // - If custom btn
     slottedBtn: {
@@ -217,6 +217,7 @@ export default {
       return [
         'font-open-sans',
         'primary--text',
+        'font-weight-bold',
         { 'pre-white-space': this.toParse(this.parseMetaTitle) },
         classes,
       ];
@@ -237,7 +238,6 @@ export default {
         classBinder(this, {
           mobile: ['text-center'],
           regular: ['font-s'],
-          wide: ['font-m'],
         }),
       ];
     },
