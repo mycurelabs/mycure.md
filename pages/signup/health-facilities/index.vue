@@ -332,24 +332,24 @@ export default {
         },
         value: 'clinic-booking',
       },
-      {
-        text: 'Doctor Telehealth',
-        orgProps: {
-          type: 'facility',
-          types: ['doctor', 'doctor-telehealth'],
-        },
-        value: 'doctor-telehealth',
-        chip: 'Telehealth',
-      },
-      {
-        text: 'Clinic Telehealth',
-        orgProps: {
-          type: 'facility',
-          types: ['clinic', 'clinic-telehealth'],
-        },
-        value: 'clinic-telehealth',
-        chip: 'Telehealth',
-      },
+      // {
+      //   text: 'Doctor Telehealth',
+      //   orgProps: {
+      //     type: 'facility',
+      //     types: ['doctor', 'doctor-telehealth'],
+      //   },
+      //   value: 'doctor-telehealth',
+      //   chip: 'Telehealth',
+      // },
+      // {
+      //   text: 'Clinic Telehealth',
+      //   orgProps: {
+      //     type: 'facility',
+      //     types: ['clinic', 'clinic-telehealth'],
+      //   },
+      //   value: 'clinic-telehealth',
+      //   chip: 'Telehealth',
+      // },
     ];
     this.userRoles = [
       { text: 'Physician/Owner', value: ['doctor', 'admin'] },
