@@ -61,3 +61,10 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+#clinics-list-top {
+  height: 800px;
+  overflow-y: scroll;
+}
+</style>
