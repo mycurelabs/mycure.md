@@ -89,9 +89,10 @@
               signup-button(
                 depressed
                 rounded
+                color="success"
+                facility-type="clinic-booking"
                 :x-large="$isWideScreen"
                 :large="!$isWideScreen"
-                color="success"
               ).text-none.font-s
                 span Get Started Free
             v-col(cols="12").text-center
