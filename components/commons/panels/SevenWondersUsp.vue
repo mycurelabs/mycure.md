@@ -5,9 +5,10 @@
         :image-file-extension="backgroundImageFileExtension"
         :image="backgroundImage"
         :image-alt="title"
+        :image-styles="backgroundStyle"
         :extension-exclusive="extensionExclusive"
         :custom-path="customImagePath"
-      ).usp-bg
+      )
     v-container.content
       v-row(justify="center" align="center" :style="{ height: panelHeight }")
         generic-sub-page-panel(
@@ -46,7 +47,6 @@ import { parseTextWithNewLine } from '~/utils/newline';
 import GenericSubPagePanel from '~/components/generic/GenericSubPagePanel';
 import PictureSource from '~/components/commons/PictureSource';
 import SignupButton from '~/components/commons/SignupButton';
-
 export default {
   components: {
     GenericSubPagePanel,
@@ -260,6 +260,17 @@ export default {
         align: 'center',
       };
     },
+    backgroundStyle () {
+      return {
+        width: '100%',
+        height: '100%',
+        position: 'absolute',
+        left: '0',
+        top: '0',
+        zIndex: '1',
+        objectFit: 'cover',
+      };
+    },
   },
   methods: {
     toParse (parseFlag) {
@@ -293,11 +304,5 @@ export default {
 .content {
   z-index: 2;
   position: relative;
-}
-
-@media screen and (max-width: 1080px) {
-  .usp-container {
-    padding-bottom: 50px;
-  }
 }
 </style>

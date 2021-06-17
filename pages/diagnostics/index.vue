@@ -11,7 +11,6 @@
       image="Diagnostics Mobile USP"
       image-col-offset="1"
       custom-image-path="diagnostics/"
-      wide-height="950px"
       :media-column-bindings="{ cols: 12, md: 6, offsetMd: 1, xl: 6}"
       :content-column-bindings="{ cols: 12, md: 5 }"
       @click="$nuxt.$router.push({ name: 'signup-health-facilities', query: { type: 'diagnostic' }})"
