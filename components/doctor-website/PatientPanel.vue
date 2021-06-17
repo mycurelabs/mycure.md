@@ -62,4 +62,10 @@ export default {
   left: 0;
   right: 0;
 }
+
+@media screen and (max-width: 700px) {
+  .bg-container {
+    margin-top: -300px;
+  }
+}
 </style>

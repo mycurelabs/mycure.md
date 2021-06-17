@@ -24,7 +24,7 @@
             br(v-else)
             v-chip(v-for="(specialty, key) in specialties" :key="key" color="#878E9B").ma-1.white--text {{ specialty }}
           //- Consult btn
-          v-col(cols="10").text-center.justify-center
+          v-col(cols="10" v-if="!$isMobile").text-center.justify-center
               div(style="width: 25%; margin: auto;").white
                 strong(slot="badge").font-18.warning--text I'm available
               v-hover(
