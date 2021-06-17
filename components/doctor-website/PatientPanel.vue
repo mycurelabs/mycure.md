@@ -2,7 +2,7 @@
   div
     div.bg-container
       picture-source(
-        image="Doctor Foreground"
+        image="Doctor Website - Foreground Hills and Clinics"
         image-file-extension=".webp"
         custom-path="doctor-website/"
         image-alt="Doctor Foreground"
@@ -43,7 +43,7 @@ export default {
 .bg-container {
   min-height: 100%;
   width: 100vw;
-  margin-top: -300px;
+  margin-top: -450px;
   position: relative;
 }
 .bg {

@@ -143,10 +143,10 @@ export default {
   cursor: pointer !important;
 }
 .bg-png {
-  background-image: url('../../assets/images/doctor-website/Doctor Sky BG.png');
+  background-image: url('../../assets/images/doctor-website/Doctor Website - Background Clouds.png');
 }
 .bg-webp {
-  background-image: url('../../assets/images/doctor-website/Doctor Sky BG.webp');
+  background-image: url('../../assets/images/doctor-website/Doctor Website - Background Clouds.webp');
 }
 .panel-bg {
   background-size: cover;
