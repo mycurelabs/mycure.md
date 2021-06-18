@@ -88,13 +88,15 @@
               v-spacer
             br
             br
-            picture-source(
-              :image="websiteMockupMappings[websiteType]"
-              :image-alt="websiteType"
-              image-width="80%"
-              image-file-extension=".webp"
-              custom-path="booking/"
-            )
+            v-tabs-items(v-model="websiteType")
+              v-tab-item(v-for="(mockup, key) in websiteMockups" :key="key" :value="mockup.value")
+                picture-source(
+                  :image="mockup.image"
+                  :image-alt="websiteType"
+                  image-width="80%"
+                  image-file-extension=".webp"
+                  custom-path="booking/"
+                )
     //- 5th panel
     div.blue-bg.mx-n3
       generic-media-panel(
@@ -188,10 +190,16 @@ export default {
         imageAlt: 'MYCURE Booking',
       },
     };
-    this.websiteMockupMappings = {
-      doctor: 'Booking Page UI Mockup - Doctor',
-      clinic: 'Booking Page UI Mockup - Clinic',
-    };
+    this.websiteMockups = [
+      {
+        image: 'Booking Page UI Mockup - Doctor',
+        value: 'doctor',
+      },
+      {
+        image: 'Booking Page UI Mockup - Clinic',
+        value: 'clinic',
+      },
+    ];
     return {
       loading: true,
       websiteType: 'doctor',
