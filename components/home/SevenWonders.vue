@@ -1,11 +1,16 @@
 <template lang="pug">
   div
     div.container
-      picture-source(
-        image="Homepage USP BG"
-        image-alt="MYCURE Seven wonders of healthcare"
-        image-file-extension=".webp"
-        custom-path="home/"
+      //- picture-source(
+      //-   image="Homepage USP BG"
+      //-   image-alt="MYCURE Seven wonders of healthcare"
+      //-   image-file-extension=".webp"
+      //-   custom-path="home/"
+      //- ).background
+      img(
+        src="~/assets/images/home/Homepage USP BG.png"
+        alt="MYCURE Seven wonders of healthcare"
+        width="100%"
       ).background
       v-container.content.ml-n6
         v-row(justify="center")
