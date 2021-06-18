@@ -11,6 +11,7 @@
                 :clinics="clinics"
                 :total="clinicsTotal"
                 :limit="clinicsLimit"
+                :is-preview-mode="isPreviewMode"
                 @onUpdatePage="$emit('onUpdateClinicPage', $event)"
               )
       v-tab-item(value="services")
@@ -28,7 +29,10 @@
       v-tab-item(value="learning-corner")
         v-card(flat)
           v-card-text
-            learning-corner(:doctor-id="doctorId")
+            learning-corner(
+              :is-preview-mode="isPreviewMode"
+              :doctor-id="doctorId"
+            )
 </template>
 
 <script>
@@ -59,6 +63,10 @@ export default {
     services: {
       type: Array,
       default: () => ([]),
+    },
+    isPreviewMode: {
+      type: Boolean,
+      default: false,
     },
   },
   data () {

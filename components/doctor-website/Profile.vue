@@ -70,7 +70,7 @@
         x-large
         :class="{ 'font-11' : $isMobile }"
         :disabled="!isBookable"
-        @click="$emit('book')"
+        @click="onBook"
       ).text-none.rounded-xl
         v-icon(left) mdi-calendar-blank
         span Book an Appointment
@@ -127,6 +127,10 @@ export default {
       default: () => ({}),
     },
     isBookable: {
+      type: Boolean,
+      default: false,
+    },
+    isPreviewMode: {
       type: Boolean,
       default: false,
     },
@@ -204,6 +208,12 @@ export default {
         url: this.doctorLink,
         description: `Book a consultation with ${this.firstName} today!`,
       };
+    },
+  },
+  methods: {
+    onBook () {
+      if (this.isPreviewMode) return;
+      return this.$emit('book');
     },
   },
 };

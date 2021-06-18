@@ -99,6 +99,10 @@ export default {
       type: String,
       default: '',
     },
+    isPreviewMode: {
+      type: Boolean,
+      default: false,
+    },
   },
   data () {
     this.days = [
@@ -157,11 +161,11 @@ export default {
     },
     telehealthURL () {
       const pxPortalUrl = process.env.PX_PORTAL_URL;
-      return `${pxPortalUrl}/appointments/step-1?doctor=${this.doctorId}&organization=${this.clinicId}&type=telehealth`;
+      return !this.isPreviewMode ? `${pxPortalUrl}/appointments/step-1?doctor=${this.doctorId}&organization=${this.clinicId}&type=telehealth` : null;
     },
     visitURL () {
       const pxPortalUrl = process.env.PX_PORTAL_URL;
-      return `${pxPortalUrl}/appointments/step-1?doctor=${this.doctorId}&organization=${this.clinicId}&type=physical`;
+      return !this.isPreviewMode ? `${pxPortalUrl}/appointments/step-1?doctor=${this.doctorId}&organization=${this.clinicId}&type=physical` : null;
     },
     clinicId () {
       return this.clinic?.id;

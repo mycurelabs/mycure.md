@@ -15,6 +15,7 @@
                 dense
                 outlined
                 clearable
+                :disabled="isPreviewMode"
                 :items="categories"
               )
           v-col(cols="12" md="7").px-5
@@ -28,9 +29,10 @@
                 dense
                 clearable
                 label="Newest, Oldest, Alphabetically"
-                :items="sortTypes"
                 item-text="text"
                 item-value="value"
+                :items="sortTypes"
+                :disabled="isPreviewMode"
                 @change="sortMaterials(materialSorter)"
                 @clear="filteredMaterials = [...materials]"
               )
@@ -68,6 +70,10 @@ export default {
     doctorId: {
       type: String,
       default: null,
+    },
+    isPreviewMode: {
+      type: Boolean,
+      default: false,
     },
   },
   data () {
@@ -142,6 +148,7 @@ export default {
       }
     },
     openFile (material) {
+      if (this.isPreviewMode) return;
       window.open(material.url, '_blank', 'noopener noreferrer');
     },
   },

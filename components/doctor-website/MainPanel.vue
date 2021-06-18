@@ -38,7 +38,7 @@
                   :color="hover ? 'info' : 'warning'"
                   :class="{ 'font-11' : $isMobile }"
                   :disabled="!isBookable"
-                  @click="$emit('book')"
+                  @click="onBook"
                 ).text-none.font-weight-bold.custom-book-btn.rounded-xl.font-18 {{ hover ? 'Book me now' : 'The doctor is in' }}
 </template>
 
@@ -86,6 +86,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    isPreviewMode: {
+      type: Boolean,
+      default: false,
+    },
   },
   data () {
     return {
@@ -121,6 +125,12 @@ export default {
   },
   async mounted () {
     this.canUseWebp = await canUseWebp();
+  },
+  methods: {
+    onBook () {
+      if (this.isPreviewMode) return;
+      this.$emit('book');
+    },
   },
 };
 </script>

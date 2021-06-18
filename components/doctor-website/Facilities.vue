@@ -9,7 +9,7 @@
         cols="12"
         md="6"
       )
-        facility-item(:clinic="clinic" :doctor-id="doctorId")
+        facility-item(:clinic="clinic" :doctor-id="doctorId" :is-preview-mode="isPreviewMode")
       v-col(cols="12")
         v-pagination(
           v-model="page"
@@ -40,6 +40,10 @@ export default {
     limit: {
       type: Number,
       default: 6,
+    },
+    isPreviewMode: {
+      type: Boolean,
+      default: false,
     },
   },
   data () {

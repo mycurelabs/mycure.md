@@ -22,6 +22,7 @@
       :practicing-years="practicingYears"
       :is-verified="isVerified"
       :is-bookable="isBookable"
+      :is-preview-mode="isPreviewMode"
       @book="onBook"
     )
     //- Patient panel
@@ -60,6 +61,7 @@
               :education="education"
               :metrics="doctorMetrics"
               :is-bookable="isBookable"
+              :is-preview-mode="isPreviewMode"
               @book="onBook"
             )
           //- Tabs
@@ -70,6 +72,7 @@
               :clinics-total="clinicsTotal"
               :clinics-limit="clinicsLimit"
               :services="services"
+              :is-preview-mode="isPreviewMode"
               @onUpdateClinicPage="fetchDoctorInfo($event)"
             )
     v-snackbar(
@@ -152,6 +155,12 @@ export default {
     });
   },
   computed: {
+    mode () {
+      return this.$route.query.mode;
+    },
+    isPreviewMode () {
+      return this.mode === 'preview';
+    },
     picURL () {
       const sex = this.doctor?.sex;
       if (sex === 'female') {
