@@ -27,6 +27,7 @@
                     depressed
                     block
                     :color="service.color"
+                    :disabled="service.btnBindings.disabled"
                     @click="onServiceSelect(service.type)"
                   ).text-none
                     v-icon(left) {{ service.btnBindings.icon }}
@@ -47,6 +48,8 @@ export default {
         btnBindings: {
           text: 'Teleconsult',
           icon: 'mdi-stethoscope',
+          // - Temporary
+          disabled: true,
         },
         type: 'telehealth',
         color: 'accent',
