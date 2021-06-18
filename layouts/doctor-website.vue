@@ -2,8 +2,9 @@
   v-app#app
     //- app-bar(v-if="!loading")
     //- div(style="padding-top: 45px;")
-    nuxt
-    //- app-footer(v-if="!loading")
+    div.mb-10
+      nuxt
+    app-footer(v-if="!loading")
 </template>
 
 <script>

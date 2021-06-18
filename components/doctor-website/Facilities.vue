@@ -68,7 +68,7 @@ export default {
 
 <style scoped>
 #clinics-list-top {
-  height: 800px;
+  height: 700px;
   overflow-y: scroll;
 }
 </style>
