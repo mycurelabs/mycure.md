@@ -1,5 +1,11 @@
 <template lang="pug">
   div(style="overflow: hidden; background: #fafafa")
+    //- CHOOSE SERVICE DIALOG
+    choose-service(
+      v-model="chooseServiceDialog"
+      :service-types="serviceTypes"
+      :has-doctors="hasDoctors"
+    )
     //- APP BAR
     app-bar
     //- PANEL 1
@@ -23,34 +29,9 @@
               rounded
               dark
               :color="hover ? 'info' : 'warning'"
-              @click="servicesDialog = true"
+              @click="chooseServiceDialog = true"
             ).text-none.custom-clinic-button
               h2 {{ hover ? 'Choose a service' : 'Schedule a visit today' }}
-          //- Services Dialog
-          v-dialog(v-model="servicesDialog" width="900" persistent scrollable)
-            v-card
-              v-toolbar(flat)
-                h2 Select a service
-                v-spacer
-                v-btn(icon @click="servicesDialog = false")
-                  v-icon mdi-close
-              v-divider
-              v-card-text
-                main-workflow(
-                  full-width
-                  hide-banner
-                  :is-preview-mode="isPreviewMode"
-                  :service-types="serviceTypes"
-                  :has-doctors="hasDoctors"
-                  :items="listItems"
-                  :items-pagination-length="itemsPaginationLength"
-                  :organization="clinic"
-                  :loading="loading.list"
-                  :has-next-page="hasNextPage"
-                  :has-previous-page="hasPreviousPage"
-                  @search="onServiceSearch"
-                  @paginate="onPaginate($event)"
-                )
 
     //- PANEL 1 FOOTER
     div(v-if="!$isMobile").d-flex.panel-1-footer
@@ -119,6 +100,7 @@ import {
 import AboutUs from '~/components/clinic-website/AboutUs';
 import AppBar from '~/components/clinic-website/new/AppBar';
 import AppFooter from '~/components/clinic-website/AppFooter';
+import ChooseService from '~/components/clinic-website/ChooseService';
 import SearchPanel from '~/components/clinic-website/SearchPanel';
 import MainWorkflow from '~/components/clinic-website/MainWorkflow';
 import QuickBook from '~/components/clinic-website/QuickBook';
@@ -137,6 +119,7 @@ export default {
     AboutUs,
     AppBar,
     AppFooter,
+    ChooseService,
     SearchPanel,
     MainWorkflow,
     QuickBook,
@@ -201,6 +184,7 @@ export default {
         list: false,
       },
       servicesDialog: false,
+      chooseServiceDialog: false,
       // Pagination
       page: 1,
       pageCount: 2,
@@ -331,7 +315,6 @@ export default {
 
     this.loading.page = false;
     await this.fetchServiceTypes();
-    // await this.fetchServices({ type: 'diagnostic', subtype: 'lab' });
     await this.fetchDoctorMembers();
     this.canUseWebp = await canUseWebp();
     this.listItems = [...this.filteredServices];
@@ -341,7 +324,6 @@ export default {
     // - Fetches all doctors of facility
     async fetchDoctorMembers (searchText, page = 1) {
       try {
-        this.loading.list = true;
         const skip = this.itemsLimit * (page - 1);
         const { items, total } = await fetchClinicWebsiteDoctors(this.$sdk, {
           organization: this.orgId,
@@ -351,16 +333,14 @@ export default {
         });
         this.doctorsTotal = total;
         this.orgDoctors = items || [];
+        return { items: this.orgDoctors, total: this.doctorsTotal };
       } catch (error) {
         console.error(error);
-      } finally {
-        this.loading.list = false;
       }
     },
     // - Fetches all services of facility
     async fetchServices (service = {}, searchText, page = 1) {
       try {
-        this.loading.list = true;
         const { type, subtype, insurer } = service;
         const skip = this.itemsLimit * (page - 1);
         const { items, total } = await fetchClinicServices(this.$sdk, {
@@ -388,10 +368,9 @@ export default {
             schedules: schedules?.items || this.groupedSchedules,
           };
         }) || [];
+        return { items: this.filteredServices, total: this.servicesTotal };
       } catch (error) {
         console.error(error);
-      } finally {
-        this.loading.list = false;
       }
     },
     // - Fetches all service types of facility
@@ -421,26 +400,42 @@ export default {
     },
     // - When pagination or tab changes, all services and doctors are refetched
     async refetchListItems ({ tab, page = 1 }) {
-      this.page = page;
-      if (tab === 'doctors') {
-        await this.fetchDoctorMembers({ page: this.page });
-        this.listItems = [...this.formattedDoctors];
-        this.itemsTotal = this.doctorsTotal;
-        return;
+      try {
+        this.loading.list = true;
+        this.page = page;
+        if (tab === 'doctors') {
+          await this.fetchDoctorMembers({ page: this.page });
+          this.listItems = [...this.formattedDoctors];
+          this.itemsTotal = this.doctorsTotal;
+          return;
+        }
+        const subtype = tab === 'lab' || tab === 'imaging' ? tab : null;
+        await this.fetchServices({ type: subtype ? 'diagnostic' : tab, ...subtype && { subtype } }, null, this.page);
+        this.listItems = [...this.filteredServices];
+        this.itemsTotal = this.servicesTotal;
+      } catch (e) {
+        console.error(e);
+      } finally {
+        this.loading.list = false;
       }
-      const subtype = tab === 'lab' || tab === 'imaging' ? tab : null;
-      await this.fetchServices({ type: subtype ? 'diagnostic' : tab, ...subtype && { subtype } }, null, this.page);
-      this.listItems = [...this.filteredServices];
-      this.itemsTotal = this.servicesTotal;
     },
     async onServiceSearch ({ searchText, searchFilters }) {
-      if (!this.searchResultsMode) this.searchResultsMode = true;
-      this.searchText = searchText;
-      this.searchFilters = searchFilters;
-      await this.fetchDoctorMembers(searchText);
-      await this.fetchServices(searchFilters, searchText);
-      this.searchResults = [...this.formattedDoctors, ...this.filteredServices];
-      VueScrollTo.scrollTo('#services', 500, { offset: -100, easing: 'ease' });
+      try {
+        this.loading.list = true;
+        if (!this.searchResultsMode) this.searchResultsMode = true;
+
+        this.searchText = searchText;
+        this.searchFilters = searchFilters;
+
+        await this.fetchDoctorMembers(searchText);
+        await this.fetchServices(searchFilters, searchText);
+        this.searchResults = [...this.formattedDoctors, ...this.filteredServices];
+        VueScrollTo.scrollTo('#services', 500, { offset: -100, easing: 'ease' });
+      } catch (e) {
+        console.error(e);
+      } finally {
+        this.loading.list = false;
+      }
     },
     async onPaginate (payload) {
       await this.refetchListItems(payload);

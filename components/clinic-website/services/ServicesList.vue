@@ -86,10 +86,6 @@ export default {
       type: Boolean,
       default: false,
     },
-    serviceTypes: {
-      type: Array,
-      default: () => ([]),
-    },
     showBackButton: {
       type: Boolean,
       default: false,
