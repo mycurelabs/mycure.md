@@ -5,7 +5,6 @@
         img(:src="picUrl")
     v-card-text
       h1(v-if="fullName" :class="mainTextClasses").lh-title.black--text Dr. {{ fullName }}
-      p(v-if="practicingYears") {{practicingYears}} Years of Experience
       br
       v-row(justify="center")
         v-col(v-for="(metric, key) in metricMappings" :key="key" cols="12" md="3").text-center
