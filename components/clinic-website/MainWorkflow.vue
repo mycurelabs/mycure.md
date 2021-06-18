@@ -103,6 +103,10 @@ export default {
     SearchPanel,
   },
   props: {
+    value: {
+      type: String,
+      default: null,
+    },
     organization: {
       type: Object,
       default: () => ({}),
@@ -166,13 +170,19 @@ export default {
     return {
       // - UI State
       mobileServicesListView: false,
-      // - Data Models
-      activeTab: 'lab',
       // - Search
       searchText: null,
     };
   },
   computed: {
+    activeTab: {
+      get () {
+        return this.value;
+      },
+      set (val) {
+        this.$emit('input', val);
+      },
+    },
     orgId () {
       return this.organization.id;
     },
@@ -190,6 +200,7 @@ export default {
   },
   watch: {
     activeTab (val) {
+      if (val && this.$isMobile && !this.mobileServicesListView) this.mobileServicesListView = true;
       this.onPaginate();
     },
   },

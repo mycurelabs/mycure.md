@@ -7,7 +7,7 @@
         v-spacer
       v-card-text
         v-row(justify="center")
-          v-col(v-for="(type, key) in availableServiceTypes" :key="key" cols="12" md="3")
+          v-col(v-for="(type, key) in availableServiceTypes" :key="key" cols="6" md="3")
             v-card(@click="onSelect(type)")
               v-card-text.text-center
                 picture-source(
@@ -26,6 +26,7 @@
 
 <script>
 import { isEmpty } from 'lodash';
+import VueScrollTo from 'vue-scrollto';
 import PictureSource from '~/components/commons/PictureSource';
 
 export default {
@@ -50,51 +51,38 @@ export default {
     this.TYPE_MAPPINGS = {
       'clinical-consultation': {
         text: 'Consultations',
-        orgProps: {
-          type: 'clinical-consultation',
-        },
+        value: 'clinical-consultation',
         image: 'Consult',
       },
       'clinical-procedure': {
         text: 'Procedures',
-        orgProps: {
-          type: 'clinical-procedure',
-        },
+        value: 'clinical-procedure',
         image: 'Procedures',
       },
       lab: {
         text: 'Laboratory',
-        orgProps: {
-          type: 'diagnostic',
-          subtype: 'lab',
-        },
+        value: 'lab',
         image: 'Laboratory',
       },
       imaging: {
         text: 'Imaging',
-        orgProps: {
-          type: 'diagnostic',
-          subtype: 'imaging',
-        },
+        value: 'imaging',
         image: 'Imaging',
       },
       pe: {
         text: 'PE Packages',
-        orgProps: {
-          type: 'pe',
-        },
+        value: 'pe',
         image: 'PE Packages',
       },
       dental: {
         text: 'Dental',
-        orgProps: {
-          type: 'dental',
-        },
+        value: 'dental',
         image: 'Dental',
       },
     };
     this.DOCTOR_TYPE = {
       text: 'Doctors',
+      value: 'doctors',
       image: 'Doctors',
     };
     return {};
@@ -121,8 +109,8 @@ export default {
   },
   methods: {
     onSelect (type) {
-      // - Note that doctors will give null
-      this.$emit('select', type.orgProps);
+      this.$emit('select', type.value);
+      VueScrollTo.scrollTo('#services-panel', 500, { offset: -100, easing: 'ease' });
       this.dialog = false;
     },
   },

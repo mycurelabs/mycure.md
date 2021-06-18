@@ -1,7 +1,7 @@
 <template lang="pug">
   div#servicesList
     //- BACK BUTTON
-    v-row(v-if="showBackButton")
+    v-row(v-if="showBackButton").mb-5
       v-btn(v-if="showBackButton" color="primary" outlined @click="$emit('back')").text-none
         v-icon(small left) mdi-arrow-left
         | Back

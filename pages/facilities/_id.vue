@@ -5,6 +5,7 @@
       v-model="chooseServiceDialog"
       :service-types="serviceTypes"
       :has-doctors="hasDoctors"
+      @select="activeTab = $event"
     )
     //- APP BAR
     app-bar
@@ -44,6 +45,7 @@
         span {{clinicPhone}}
     //- MAIN PANELS
     main-workflow(
+      v-model="activeTab"
       :is-preview-mode="isPreviewMode"
       :search-results-mode="searchResultsMode"
       :search-results="searchResults"
@@ -185,6 +187,7 @@ export default {
       },
       servicesDialog: false,
       chooseServiceDialog: false,
+      activeTab: null,
       // Pagination
       page: 1,
       pageCount: 2,
@@ -430,7 +433,7 @@ export default {
         await this.fetchDoctorMembers(searchText);
         await this.fetchServices(searchFilters, searchText);
         this.searchResults = [...this.formattedDoctors, ...this.filteredServices];
-        VueScrollTo.scrollTo('#services', 500, { offset: -100, easing: 'ease' });
+        VueScrollTo.scrollTo('#services-panel', 500, { offset: -100, easing: 'ease' });
       } catch (e) {
         console.error(e);
       } finally {
