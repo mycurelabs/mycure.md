@@ -134,6 +134,9 @@ export default {
         'doctor-telehealth': 'doctor',
         'clinic-booking': 'clinic',
         'clinic-telehealth': 'clinic',
+        doctor: 'doctor',
+        clinic: 'clinic',
+        diagnostic: 'diagnostic',
       };
       const type = this.$route.query.type || this.organizationTypes0;
       return typesMap[type];
