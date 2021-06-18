@@ -3,20 +3,29 @@
     //- APP BAR
     app-bar
     //- PANEL 1
-    div(:style="{ height: '100vh', paddingTop: $isMobile ? '60px' : '100px' }").panel-bg
+    div(
+      :class="background"
+      :style="{ height: '150vh', paddingTop: $isMobile ? '60px' : '100px' }"
+    ).panel-bg
       v-row(justify="center")
         v-col(cols="10").text-center
           v-avatar(size="200").mb-5
             img(:src="picURL")
           h1.mb-5 {{clinicName}}
-          v-btn(
-            large
-            rounded
-            color="warning"
-            dark
-            @click="servicesDialog = true"
-          ).text-none.custom-clinic-button
-            h2 Schedule a visit today
+          div(style="width: 25%; margin: auto;").white
+            strong(slot="badge").font-18.warning--text We're Open!
+          v-hover(
+            v-slot="{ hover }"
+            open-delay="100"
+          )
+            v-btn(
+              large
+              rounded
+              dark
+              :color="hover ? 'info' : 'warning'"
+              @click="servicesDialog = true"
+            ).text-none.custom-clinic-button
+              h2 {{ hover ? 'Choose a service' : 'Schedule a visit today' }}
           //- Services Dialog
           v-dialog(v-model="servicesDialog" width="900" persistent scrollable)
             v-card
@@ -39,6 +48,7 @@
                   :loading="loading.list"
                   :has-next-page="hasNextPage"
                   :has-previous-page="hasPreviousPage"
+                  @search="onServiceSearch"
                   @paginate="onPaginate($event)"
                 )
 
@@ -97,6 +107,7 @@ import VueScrollTo from 'vue-scrollto';
 import { getServices } from '~/utils/axios';
 import { getOrganization } from '~/utils/axios/organizations';
 import { formatAddress } from '~/utils/formats';
+import canUseWebp from '~/utils/can-use-webp';
 import headMeta from '~/utils/head-meta';
 // - services
 import { fetchClinicWebsiteDoctors } from '~/services/organization-members';
@@ -199,6 +210,7 @@ export default {
       filteredServices: [],
       serviceTypes: [],
       serviceSchedules: [],
+      canUseWebp: null,
       // Items to show in tab list
       listItems: [],
       // total items
@@ -308,6 +320,9 @@ export default {
       return this.clinic?.description ||
       `${this.name || 'This facility'} specializes in telehealth services. ${this.name || 'It'} is committed to provide medical consultation via video conference or phone call to our patient 24 hours a day 7 days a week.`;
     },
+    background () {
+      return this.canUseWebp ? 'bg-webp' : 'bg-png';
+    },
   },
   async mounted () {
     // Initial window setups
@@ -318,6 +333,7 @@ export default {
     await this.fetchServiceTypes();
     await this.fetchServices({ type: 'diagnostic', subtype: 'lab' });
     await this.fetchDoctorMembers();
+    this.canUseWebp = await canUseWebp();
     this.listItems = [...this.filteredServices];
     this.itemsTotal = this.servicesTotal;
   },
@@ -457,12 +473,19 @@ a {
   background-color: #fafafa;
 }
 .panel-bg {
-  background-image: url('../../assets/images/clinics-website/clinic-background.png');
   background-position: center center;
   background-size: cover;
 }
+
+.bg-png {
+  background-image: url('../../assets/images/clinics-website/Clinic Website BG.png');
+}
+
+.bg-webp {
+  background-image: url('../../assets/images/clinics-website/Clinic Website BG.webp');
+}
 .custom-clinic-button {
-  height: 90px !important;
+  height: 70px !important;
   width: 300px;
 }
 .panel-1-footer {
