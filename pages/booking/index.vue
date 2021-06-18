@@ -114,7 +114,7 @@
           ).text-none.font-s
             span Get Started Free
     //- 6th panel
-    plans
+    plans.mb-n3
 </template>
 
 <script>
