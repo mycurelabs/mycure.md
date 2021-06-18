@@ -1,90 +1,87 @@
 <template lang="pug">
-  div
-    v-row
-      v-col(v-if="isDoctor" cols="12" md="2")
-        v-avatar(size="100")
-          img(
-            :src="picURL"
-            :alt="title"
-            width="100%"
-          )
-      v-col(cols="12" md="8")
-        h3 {{ title }}&nbsp;
-        div(v-if="fullSchedules.length")
-          div
-            v-icon(color="primary" small left) mdi-calendar-today
-            span(v-if="filteredDays.length > 1").text-capitalize {{ formatDay(filteredDays[0]) }} - {{ formatDay(filteredDays[filteredDays.length - 1]) }}
-            span(v-else).text-capitalize {{ formatDay(filteredDays[0]) }}
-            //- div(v-for="(schedule, key) in previewSchedules" :key="key")
-            //-   v-icon(color="primary" small left) mdi-calendar
-            //-   span.text-capitalize {{ formatIndividualSchedule(schedule) }}
-            //-   br
-            //- br
-            //- a(@click="scheduleExpanded = true").primary--text View More Schedules >
+  v-card.rounded-lg
+    v-card-text
+      v-row
+        v-col(v-if="isDoctor" cols="12" md="2")
+          v-avatar(size="100")
+            img(
+              :src="picURL"
+              :alt="title"
+              width="100%"
+            )
+        v-col(cols="12" md="8")
+          h3.black--text {{ title }}&nbsp;
+          //- SCHEDULES
+          div(v-if="fullSchedules.length")
+            div
+              div(v-for="(schedule, key) in previewSchedules" :key="key")
+                v-icon(color="black" small left) mdi-calendar-blank
+                span.text-capitalize {{ formatIndividualSchedule(schedule) }}
+                br
+              br
+              a(@click="scheduleExpanded = true").grey--text More Schedules >
+            br
+            br
+          template(v-else)
+            i No schedules available
+            br
+          span Coverages:
+          br
+          template(v-if="hasCoverages")
+            v-tooltip(
+              v-for="(coverage, key) in coverages"
+              :key="key"
+              top
+            )
+              template(v-slot:activator="{ on, attrs }")
+                v-avatar(
+                  size="40"
+                  color="secondary"
+                  v-on="on"
+                ).mx-1
+                  v-img(v-if="coverage.picURL" :src="coverage.picURL")
+                  span(v-else).white--text {{ coverage.name.substring(0,1) }}
+              span {{ coverage.name || 'HMO' }}
+          i(v-else) No coverages available
+        v-col(v-if="!isDoctor && !readOnly").grow.text-right
+          h3.info--text Availability
+            v-icon(:color="isAvailable ? 'primary' : 'error'" right) {{ isAvailable ? 'mdi-checkbox-marked-circle-outline' : 'mdi-close-circle-outline' }}
           br
           br
-        template(v-else)
-          i No schedules available
-          br
-        span Coverages:
-        br
-        template(v-if="hasCoverages")
-          v-tooltip(
-            v-for="(coverage, key) in coverages"
-            :key="key"
-            top
-          )
-            template(v-slot:activator="{ on, attrs }")
-              v-avatar(
-                size="40"
-                color="secondary"
-                v-on="on"
-              ).mx-1
-                v-img(v-if="coverage.picURL" :src="coverage.picURL")
-                span(v-else).white--text {{ coverage.name.substring(0,1) }}
-            span {{ coverage.name || 'HMO' }}
-        i(v-else) No coverages available
-      v-col(v-if="!isDoctor && !readOnly").grow.text-right
-        h3(:class="{ 'primary--text': isAvailable, 'grey--text': !isAvailable }") {{ isAvailable ? 'AVAILABLE ' : 'NOT AVAILABLE' }}
-          v-icon(v-if="isAvailable" color="primary" right) mdi-checkbox-marked-circle-outline
-        //- v-chip(
-        //-   :color="isAvailable ? 'lime' :'grey'"
-        //-   small
-        //-   label
-        //- ) {{ isAvailable ? 'AVAILABLE' : 'NOT AVAILABLE' }}
-        br
-        br
-        h2(v-if="price") PHP {{ price }}
-        h3(v-else).font-italic No price stated
-        v-btn(
-          color="success"
-          depressed
-          block
-          :disabled="!isAvailable"
-          :href="bookServiceURL"
-        ).text-none.mt-1.font-12 Book Now
-    v-row(justify="end")
-      v-col(
-        v-if="isDoctor && !readOnly"
-        cols="12"
-        md="4"
-      )
-        v-btn(
-          color="success"
-          depressed
-          block
-          :disabled="!isAvailable"
-          :href="bookTeleconsultURL"
-        ).text-none.font-12 Book a Teleconsult
-        br
-        v-btn(
-          color="info"
-          depressed
-          block
-          outlined
-          :disabled="!isAvailable"
-          :href="bookTeleconsultURL"
-        ).text-none.font-12 Book a Visit
+          h2(v-if="price").black--text
+            v-icon(left) mdi-cash
+            | {{ price }}
+          h3(v-else).font-italic No price stated
+          v-btn(
+            color="accent"
+            depressed
+            block
+            :disabled="!isAvailable"
+            :href="bookServiceURL"
+          ).text-none.mt-1.font-12 Book Now
+      v-row(justify="end")
+        v-col(
+          v-if="isDoctor && !readOnly"
+          cols="12"
+          md="4"
+        )
+          //- TODO: Temporary hide
+          //- v-btn(
+          //-   color="success"
+          //-   depressed
+          //-   block
+          //-   :disabled="!isAvailable"
+          //-   :href="bookTeleconsultURL"
+          //- ).text-none.font-12 Book a Teleconsult
+          //- br
+          v-btn(
+            color="info"
+            depressed
+            block
+            outlined
+            :disabled="!isAvailable"
+            :href="bookTeleconsultURL"
+          ).text-none.font-12 Book a Visit
     //- Schedule dialog
     v-dialog(v-model="scheduleExpanded" width="1000")
       v-toolbar(flat)

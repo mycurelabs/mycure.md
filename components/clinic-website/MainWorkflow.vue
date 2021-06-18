@@ -20,7 +20,8 @@
             v-col(
               v-if="!searchResultsMode"
               cols="12"
-              md="8"
+              :md="!serviceTypes.length ? '12' : '8'"
+              :xl="!serviceTypes.length ? '12' : '7'"
               :class="{ 'order-first': $isMobile, 'order-last': !$isMobile }"
             )
               service-types-mobile-selection(
@@ -30,7 +31,7 @@
                 :is-preview-mode="isPreviewMode"
                 @select="activeTab = $event; mobileServicesListView = true"
               )
-              services-tabs(
+              services-list(
                 v-else-if="showServiceTabs"
                 v-model="activeTab"
                 :show-back-button="$isMobile"
@@ -48,7 +49,11 @@
                 @paginate="onPaginate($event)"
               )
             //- Selection Area
-            v-col(cols="12" :md="searchResultsMode ? '3' : '4'")
+            v-col(
+              cols="12"
+              :md="searchResultsMode ? '3' : '4'"
+              :xl="searchResultsMode ? '2' : '3'"
+            )
               service-types-selection(
                 v-if="!$isMobile && !searchResultsMode"
                 v-model="activeTab"
@@ -66,7 +71,12 @@
               ).text-none
                 v-icon(small left) mdi-arrow-left
                 | Go back to Main Page
-            v-col(cols="12" md="9" v-if="searchResultsMode")#services
+            v-col(
+              cols="12"
+              :md="!serviceTypes.length ? '12' : '9'"
+              :xl="!serviceTypes.length ? '12' : '8'"
+              v-if="searchResultsMode"
+            )#services
               services-search-results(
                 :organization="orgId"
                 :loading="loading"
@@ -80,7 +90,7 @@
 
 <script>
 import ServicesSearchResults from './services/search-results';
-import ServicesTabs from './services/tabs';
+import ServicesList from './services/ServicesList';
 import ServiceTypesMobileSelection from './services/service-types-mobile-selection';
 import ServiceTypesSelection from './services/service-types-selection';
 import SearchPanel from './SearchPanel';
@@ -89,7 +99,7 @@ export default {
   components: {
     GenericPanel,
     ServicesSearchResults,
-    ServicesTabs,
+    ServicesList,
     ServiceTypesMobileSelection,
     ServiceTypesSelection,
     SearchPanel,

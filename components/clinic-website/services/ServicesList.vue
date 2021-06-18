@@ -1,34 +1,38 @@
 <template lang="pug">
-  v-card(flat style="border-radius: 10px;")#servicesList
-    v-toolbar(v-if="showBackButton" color="white" flat)
+  div#servicesList
+    //- BACK BUTTON
+    v-row(v-if="showBackButton")
       v-btn(v-if="showBackButton" color="primary" outlined @click="$emit('back')").text-none
         v-icon(small left) mdi-arrow-left
         | Back
-    v-card-text
-      v-row(v-if="loading" justify="center")
-        v-col(cols="12" md="4").text-center
-          v-progress-circular(
-            color="primary"
-            indeterminate
-            size="100"
-          )
-      v-row(v-else-if="items.length === 0" justify="center")
-        v-col(cols="12" md="4").text-center
-          h2 No services available
-      template(v-else)
-        div(
-          v-for="(item, key) in items"
-          :key="key"
+    //- LOADING
+    v-row(v-if="loading" justify="center")
+      v-col(cols="12" md="4").text-center
+        v-progress-circular(
+          color="primary"
+          indeterminate
+          size="100"
         )
-          service-item(
-            :item="item"
-            :organization="organization"
-            :is-doctor="activeServiceType === 'doctors'"
-            :is-preview-mode="isPreviewMode"
-            :read-only="readOnly"
-          )
-          v-divider.my-5
-    v-card-actions
+    //- EMPTY SERVICES
+    v-row(v-else-if="items.length === 0" justify="center")
+      v-col(cols="12" md="4").text-center
+        h2 No services available
+    //- SERVICE ITEM
+    template(v-else)
+      div(
+        v-for="(item, key) in items"
+        :key="key"
+        :class="{'mt-0': key === 0}"
+      ).my-3
+        service-item(
+          :item="item"
+          :organization="organization"
+          :is-doctor="activeServiceType === 'doctors'"
+          :is-preview-mode="isPreviewMode"
+          :read-only="readOnly"
+        )
+    //- PAGINATION
+    v-row
       v-spacer
       v-pagination(
         v-model="itemsPage"

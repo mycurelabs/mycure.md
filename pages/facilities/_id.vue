@@ -331,7 +331,7 @@ export default {
 
     this.loading.page = false;
     await this.fetchServiceTypes();
-    await this.fetchServices({ type: 'diagnostic', subtype: 'lab' });
+    // await this.fetchServices({ type: 'diagnostic', subtype: 'lab' });
     await this.fetchDoctorMembers();
     this.canUseWebp = await canUseWebp();
     this.listItems = [...this.filteredServices];
