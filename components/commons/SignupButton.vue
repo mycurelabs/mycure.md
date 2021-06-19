@@ -9,7 +9,7 @@
 
 <script>
 const healthFacilityTypeMap = {
-  booking: 'doctor-booking',
+  booking: 'doctor',
   'doctors-clinics': 'doctor',
   clinics: 'clinic',
   diagnostics: 'diagnostic',
@@ -43,6 +43,9 @@ export default {
       if (this.facilityType) route.query.type = this.facilityType;
       if (this.pricingBundle) {
         route.query.subscription = this.pricingBundle;
+      }
+      if (routeName === 'booking') {
+        route.query.from = 'booking';
       }
       this.$router.push(route);
     },
