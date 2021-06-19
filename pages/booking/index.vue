@@ -110,7 +110,7 @@
             depressed
             rounded
             color="accent"
-            facility-type="clinic-booking"
+            facility-type="clinic"
             :x-large="$isWideScreen"
             :large="!$isWideScreen"
           ).text-none.font-s
