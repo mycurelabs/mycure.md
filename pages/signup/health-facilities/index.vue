@@ -316,22 +316,22 @@ export default {
         },
         value: 'diagnostic',
       },
-      {
-        text: 'Doctor Booking',
-        orgProps: {
-          type: 'facility',
-          types: ['doctor', 'doctor-booking'],
-        },
-        value: 'doctor-booking',
-      },
-      {
-        text: 'Clinic Booking',
-        orgProps: {
-          type: 'facility',
-          types: ['clinic', 'clinic-booking'],
-        },
-        value: 'clinic-booking',
-      },
+      // {
+      //   text: 'Doctor Booking',
+      //   orgProps: {
+      //     type: 'facility',
+      //     types: ['doctor', 'doctor-booking'],
+      //   },
+      //   value: 'doctor-booking',
+      // },
+      // {
+      //   text: 'Clinic Booking',
+      //   orgProps: {
+      //     type: 'facility',
+      //     types: ['clinic', 'clinic-booking'],
+      //   },
+      //   value: 'clinic-booking',
+      // },
       // {
       //   text: 'Doctor Telehealth',
       //   orgProps: {
@@ -502,6 +502,25 @@ export default {
         const organizationPayload = {
           ...this.facilityType.orgProps,
         };
+
+        // NOTE: See SignupButton component
+        // for the logic of query params being
+        // passed to the url before going to
+        // signup page.
+        if (this.$route.query.from === 'booking') {
+          if (this.$route.query.type === 'doctor') {
+            organizationPayload.types = [
+              'doctor',
+              'doctor-booking',
+            ];
+          }
+          if (this.$route.query.type === 'clinic') {
+            organizationPayload.types = [
+              'clinic',
+              'clinic-booking',
+            ];
+          }
+        }
 
         // Map account payload
         const payload = {
