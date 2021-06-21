@@ -40,6 +40,15 @@
                   :items="services"
                   :disabled="!serviceType || loading"
                 )
+                  template(slot="item" slot-scope="props")
+                    v-list-item(v-on="props.on" :disabled="!hasSchedules(props.item)")
+                      v-list-item-content
+                        v-list-item-title
+                          v-clamp(autoresize :max-lines="1") {{ props.item.name }}
+                        v-list-item-subtitle(
+                          :class="hasSchedules(props.item) ? 'success--text' : 'error--text'"
+                        ) {{ hasSchedules(props.item) ? 'Available' : 'Unavailable' }}
+
                 div.d-flex
                   v-spacer
                   v-btn(
@@ -54,6 +63,7 @@
 
 <script>
 import { isEmpty } from 'lodash';
+import VClamp from 'vue-clamp';
 import {
   fetchClinicServices,
 } from '~/services/services';
@@ -63,6 +73,7 @@ export default {
   components: {
     GenericPanel,
     Media,
+    VClamp,
   },
   props: {
     isPreviewMode: {
@@ -157,14 +168,13 @@ export default {
         this.services = items.map((item) => {
           const { type, subtype } = item;
           const primaryType = subtype || type;
-          console.log('primaryType', primaryType);
           const schedules = this.serviceSchedules.find(schedule => schedule.type === primaryType);
           return {
             ...item,
             nonMfSchedule: !!schedules,
             schedules: schedules?.items || this.organizationSchedules,
           };
-        }).filter(item => item.schedules.length) || [];
+        }) || [];
       } catch (e) {
         console.error(e);
       } finally {
@@ -176,6 +186,9 @@ export default {
       const pxPortalUrl = process.env.PX_PORTAL_URL;
       const bookURL = `${pxPortalUrl}/appointments/step-1?service=${this.selectedService}&organization=${this.organization}`;
       window.open(bookURL, '_blank', 'noopener noreferrer');
+    },
+    hasSchedules (item) {
+      return item.schedules?.length;
     },
     clearInputs () {
       this.selectedService = null;
