@@ -1,6 +1,6 @@
 <template lang="pug">
   div
-    v-footer(v-if="!$isMobile" dark color="#343A40").pa-5
+    v-footer(v-if="!$isMobile" dark color="#343A40").pa-5.pb-10
         v-row.d-flex
           v-col.font-14
             div.d-flex
@@ -26,7 +26,7 @@
             nuxt-link(to="/directory/results").font-14 See more Health Facilities
             | &nbsp;|&nbsp;
             nuxt-link(to="/signup/health-facilities").font-14 Create my own Health Facility Website
-    v-footer(v-else dark color="#343A40").pa-5
+    v-footer(v-else dark color="#343A40" :class="{'pb-mobile': $isMobile}").pa-5
       v-row(justify="center" align="center")
         v-col(cols="12" align="center")
           div.d-flex.justify-center.white--text
@@ -73,5 +73,8 @@ export default {
 <style lang="scss" scoped>
 a {
   text-decoration: none !important;
+}
+.pb-mobile {
+  padding-bottom: 80px !important;
 }
 </style>
