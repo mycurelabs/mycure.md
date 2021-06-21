@@ -32,14 +32,15 @@
               :color="hover ? 'info' : 'warning'"
               @click="chooseServiceDialog = true"
             ).text-none.custom-clinic-button
-              h2 {{ hover ? 'Choose a service' : 'Schedule a visit today' }}
+              h2 {{ hover ? 'Choose a service' : 'Book an Appointment' }}
 
     //- PANEL 1 FOOTER
-    div(v-if="!$isMobile").d-flex.panel-1-footer
+    div(:class="{'d-flex': !$isMobile}" :style="{ height: !$isMobile ? '55px' : 'auto'}").panel-1-footer
       span(v-if="formattedAddress")
         v-icon.red--text mdi-map-marker
         span {{formattedAddress}}
-      v-spacer
+      v-spacer(v-if="!$isMobile")
+      br(v-else)
       span(v-if="clinicPhone")
         v-icon.green--text mdi-phone
         span {{clinicPhone}}
@@ -69,7 +70,7 @@
       :description="description"
       :phone="clinicPhone"
       :address="formattedAddress"
-      :schedules="groupedSchedules"
+      :schedules="compressedSchedules"
     )
     //- QUICK BOOK
     quick-book(
@@ -267,6 +268,21 @@ export default {
         })
         .sort((a, b) => a.day !== b.day ? a.order - b.order : a.opening - b.opening) || [];
       return groupedSchedules;
+    },
+    // - Schedules simplified to get overall time period instead of multiple periods
+    compressedSchedules () {
+      const schedules = [...this.groupedSchedules];
+      const compressedSchedules = [];
+      schedules.forEach((schedule) => {
+        const existing = compressedSchedules.find(sched => sched.day === schedule.day && sched.closing < schedule.closing);
+        if (!existing) {
+          compressedSchedules.push(schedule);
+          return;
+        }
+        const index = compressedSchedules.indexOf(existing);
+        compressedSchedules[index].closing = schedule.closing;
+      });
+      return compressedSchedules;
     },
     testimonialDate () {
       return this.clinicWebsite?.createdAt;
@@ -488,8 +504,11 @@ a {
 }
 .panel-1-footer {
   margin-top: -55px;
-  height: 55px;
+  width: 100vw;
   padding: 17px 10px 0px 10px;
+  z-index: 99;
+  position: fixed;
+  bottom: 0;
   background-color: rgba(255, 255, 255, 0.8);
 }
 .search-container {
