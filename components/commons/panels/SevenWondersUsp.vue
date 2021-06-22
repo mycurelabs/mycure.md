@@ -1,10 +1,14 @@
 <template lang="pug">
   div(:class="{'mx-n3 mt-n5': hasCustomBackground }").main-container
     div(v-if="hasCustomBackground && backgroundImage && !$isMobile")
-      img(
-        :src="require(`~/assets/images/${customImagePath}${backgroundImage}.png`)"
-        :alt="title"
-      ).usp-bg
+      picture-source(
+        :image-file-extension="backgroundImageFileExtension"
+        :image="backgroundImage"
+        :image-alt="title"
+        :image-styles="backgroundStyle"
+        :extension-exclusive="extensionExclusive"
+        :custom-path="customImagePath"
+      )
     v-container.content
       v-row(justify="center" align="center" :style="{ height: panelHeight }")
         generic-sub-page-panel(
@@ -41,13 +45,12 @@
 import classBinder from '~/utils/class-binder';
 import { parseTextWithNewLine } from '~/utils/newline';
 import GenericSubPagePanel from '~/components/generic/GenericSubPagePanel';
-// import PictureSource from '~/components/commons/PictureSource';
+import PictureSource from '~/components/commons/PictureSource';
 import SignupButton from '~/components/commons/SignupButton';
-
 export default {
   components: {
     GenericSubPagePanel,
-    // PictureSource,
+    PictureSource,
     SignupButton,
   },
   props: {
@@ -99,7 +102,7 @@ export default {
     },
     btnColor: {
       type: String,
-      default: 'success',
+      default: 'accent',
     },
     // - If custom btn
     slottedBtn: {
@@ -120,6 +123,14 @@ export default {
     customImagePath: {
       type: String,
       default: '',
+    },
+    extensionExclusive: {
+      type: Boolean,
+      default: false,
+    },
+    backgroundImageFileExtension: {
+      type: String,
+      default: '.png',
     },
     // - Panel height
     regularHeight: {
@@ -206,6 +217,7 @@ export default {
       return [
         'font-open-sans',
         'primary--text',
+        'font-weight-bold',
         { 'pre-white-space': this.toParse(this.parseMetaTitle) },
         classes,
       ];
@@ -226,7 +238,6 @@ export default {
         classBinder(this, {
           mobile: ['text-center'],
           regular: ['font-s'],
-          wide: ['font-m'],
         }),
       ];
     },
@@ -249,6 +260,17 @@ export default {
         align: 'center',
       };
     },
+    backgroundStyle () {
+      return {
+        width: '100%',
+        height: '100%',
+        position: 'absolute',
+        left: '0',
+        top: '0',
+        zIndex: '1',
+        objectFit: 'cover',
+      };
+    },
   },
   methods: {
     toParse (parseFlag) {
@@ -268,7 +290,7 @@ export default {
 
 <style scoped>
 .usp-bg {
-  width: 100vw;
+  width: 100%;
   height: 100%;
   position: absolute;
   left: 0;
@@ -282,11 +304,5 @@ export default {
 .content {
   z-index: 2;
   position: relative;
-}
-
-@media screen and (max-width: 1080px) {
-  .usp-container {
-    padding-bottom: 50px;
-  }
 }
 </style>

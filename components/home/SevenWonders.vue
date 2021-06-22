@@ -1,9 +1,16 @@
 <template lang="pug">
   div
     div.container
+      //- picture-source(
+      //-   image="Homepage USP BG"
+      //-   image-alt="MYCURE Seven wonders of healthcare"
+      //-   image-file-extension=".webp"
+      //-   custom-path="home/"
+      //- ).background
       img(
         src="~/assets/images/home/Homepage USP BG.png"
         alt="MYCURE Seven wonders of healthcare"
+        width="100%"
       ).background
       v-container.content.ml-n6
         v-row(justify="center")
@@ -58,11 +65,13 @@
 // import 'vue-slick-carousel/dist/vue-slick-carousel.css';
 import Wonder from './Wonder';
 import GenericPanel from '~/components/generic/GenericPanel';
+import PictureSource from '~/components/commons/PictureSource';
 import SignupButton from '~/components/commons/SignupButton';
 import classBinder from '~/utils/class-binder';
 export default {
   components: {
     GenericPanel,
+    PictureSource,
     SignupButton,
     Wonder,
     // VueSlickCarousel,

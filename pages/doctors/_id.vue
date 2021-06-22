@@ -1,5 +1,17 @@
 <template lang="pug">
-  div(v-if="!loading").bottom-padding
+  div(v-if="!loading").main-container
+    //- Dialogs
+    choose-appointment(
+      v-model="appointmentDialog"
+      @select="onSelectAppointment($event)"
+    )
+    choose-facility(
+      v-model="facilityDialog"
+      :organizations="clinics"
+      :doctor-id="doctor.id"
+      :appointment-type="appointmentType"
+    )
+    //- First panel
     main-panel(
       :pic-url="picURL"
       :full-name="fullNameWithSuffixes"
@@ -7,46 +19,95 @@
       :specialties="specialties"
       :professions="professions"
       :education="education"
-      :practicing-since="practicingSince"
+      :practicing-years="practicingYears"
       :is-verified="isVerified"
+      :is-bookable="isBookable"
+      :is-preview-mode="isPreviewMode"
+      @book="onBook"
     )
-    stats(:data="doctorMetrics")
-    facilities(
-      :first-name="firstName"
-      :doctorId="doctor.id"
-      :clinics="clinics"
-      :total="clinicsTotal"
-      :limit="clinicsLimit"
-       @onUpdatePage="fetchDoctorInfo($event)"
-    )
-    services(
-      :first-name="firstName"
-      :services="services"
-    )
-    learning-corner(:doctor-id="doctor.id")
+    //- Patient panel
+    patient-panel(:metrics="doctorMetrics")
+    //- Banner
+    div.banner-container.mt-n5
+      img(
+        :src="banner"
+        alt="MYCURE Doctor Banner"
+      ).banner
+      //- v-row(justify="end")
+      //-   v-col(cols="12" md="4")
+      //-     v-btn(
+      //-       color="white"
+      //-       rounded
+      //-       block
+      //-       @click="onHeartDoctor"
+      //-     ).text-none
+      //-       v-icon(left color="error") mdi-heart-outline
+      //-       span.error--text Heart
+
+    //- Workflow area
+    v-container
+      v-row(justify="center")
+        generic-panel(:row-bindings="{ justify: 'center' }")
+          //- Profile
+          v-col(cols="12" lg="4" xl="3")
+            profile(
+              :pic-url="picURL"
+              :full-name="fullNameWithSuffixes"
+              :first-name="firstName"
+              :practicing-since="practicingSince"
+              :practicing-years="practicingYears"
+              :bio="bio"
+              :specialties="specialties"
+              :education="education"
+              :metrics="doctorMetrics"
+              :is-bookable="isBookable"
+              :is-preview-mode="isPreviewMode"
+              @book="onBook"
+            )
+          //- Tabs
+          v-col(cols="12" lg="8" xl="7")
+            website-features(
+              :doctorId="doctor.id"
+              :clinics="clinics"
+              :clinics-total="clinicsTotal"
+              :clinics-limit="clinicsLimit"
+              :services="services"
+              :is-preview-mode="isPreviewMode"
+              @onUpdateClinicPage="fetchDoctorInfo($event)"
+            )
+    v-snackbar(
+      v-model="showSnack"
+      :color="snackbarModel.color"
+    ) {{ snackbarModel.text }}
 </template>
 
 <script>
 import _ from 'lodash';
+import ChooseAppointment from '~/components/doctor-website/ChooseAppointment';
+import ChooseFacility from '~/components/doctor-website/ChooseFacility';
+import GenericPanel from '~/components/generic/GenericPanel';
+import MainPanel from '~/components/doctor-website/MainPanel';
+import PatientPanel from '~/components/doctor-website/PatientPanel';
+import Profile from '~/components/doctor-website/Profile';
+import WebsiteFeatures from '~/components/doctor-website/WebsiteFeatures';
 import {
+  heartDoctor,
   getDoctorWebsite,
   recordWebsiteVisit,
   fetchDoctorMetrics,
 } from '~/utils/axios';
-import Facilities from '~/components/doctor-website/Facilities';
-import LearningCorner from '~/components/doctor-website/LearningCorner';
-import MainPanel from '~/components/doctor-website/MainPanel';
-import Services from '~/components/doctor-website/ServicesPanel';
-import Stats from '~/components/doctor-website/Stats';
 import { formatName } from '~/utils/formats';
 import headMeta from '~/utils/head-meta';
+import { fetchUserFacilities } from '~/services/organization-members';
 export default {
   components: {
-    Facilities,
-    LearningCorner,
+    ChooseAppointment,
+    ChooseFacility,
+    GenericPanel,
     MainPanel,
-    Services,
-    Stats,
+    PatientPanel,
+    Profile,
+    WebsiteFeatures,
   },
   layout: 'doctor-website',
   async asyncData ({ app, router, params, error }) {
@@ -66,13 +127,24 @@ export default {
   data () {
     this.clinicsLimit = 3;
     return {
-      selectedTab: 'clinics',
+      // - UI State
       loading: true,
+      showSnack: false,
+      appointmentDialog: false,
+      facilityDialog: false,
+      // - Data models
+      selectedTab: 'clinics',
+      appointmentType: null,
+      doctorMetrics: {},
+      memberCMSOrganizations: [],
+      snackbarModel: {
+        color: 'success',
+        text: null,
+      },
+      clinics: [],
+      // - Paginations
       page: 1,
       clinicsTotal: 0,
-      doctorMetrics: {},
-      clinics: [],
-      memberCMSOrganizations: [],
     };
   },
   head () {
@@ -83,6 +155,12 @@ export default {
     });
   },
   computed: {
+    mode () {
+      return this.$route.query.mode;
+    },
+    isPreviewMode () {
+      return this.mode === 'preview';
+    },
     picURL () {
       const sex = this.doctor?.sex;
       if (sex === 'female') {
@@ -119,6 +197,11 @@ export default {
     practicingSince () {
       return this.doctor?.doc_practicingSince; // eslint-disable-line
     },
+    practicingYears () {
+      const from = new Date(this.practicingSince).getFullYear();
+      const to = new Date().getFullYear();
+      return to - from;
+    },
     services () {
       return this.doctor?.doc_services; // eslint-disable-line
     },
@@ -127,6 +210,12 @@ export default {
     },
     isVerified () {
       return this.doctor?.doc_verified; // eslint-disable-line
+    },
+    isBookable () {
+      return !!this.clinics.length;
+    },
+    banner () {
+      return this.doctor?.doc_websiteBannerURL || require('~/assets/images/doctor-website/doctor-banner-placeholder.png');
     },
   },
   async mounted () {
@@ -142,25 +231,20 @@ export default {
   },
   methods: {
     async fetchDoctorInfo (page = 1) {
-      const skip = this.clinicsLimit * (page - 1);
+      try {
+        const skip = this.clinicsLimit * (page - 1);
 
-      const { items, total } = await this.$sdk.service('organizations').find({
-        createdBy: this.doctor.id,
-        $limit: this.clinicsLimit,
-        $skip: skip,
-        $populate: {
-          doctorSchedules: {
-            service: 'schedule-slots',
-            method: 'find',
-            localKey: 'id',
-            foreignKey: 'organization',
-            createdBy: this.doctor.id,
-          },
-        },
-      });
-
-      this.clinicsTotal = total;
-      this.clinics = items;
+        const { items, total } = await fetchUserFacilities(this.$sdk, {
+          id: this.doctor.id,
+          limit: this.clinicsLimit,
+          skip,
+        });
+        this.clinicsTotal = total;
+        this.clinics = items.map(item => item.organization);
+      } catch (error) {
+        console.error(error);
+        this.$nuxt.$router.push('/');
+      }
     },
     async fetchMetrics () {
       try {
@@ -168,13 +252,65 @@ export default {
         this.doctorMetrics = data || {};
       } catch (error) {
         console.error(error);
+        this.enqueueSnack({
+          color: 'error',
+          text: 'Failed to fetch doctor metrics',
+        });
       }
+    },
+    async onHeartDoctor () {
+      try {
+        await heartDoctor({ id: this.doctor.id });
+        this.enqueueSnack({
+          color: 'success',
+          text: 'You have sent a heart to this doctor!',
+        });
+        this.fetchMetrics();
+      } catch (error) {
+        console.error(error);
+        this.enqueueSnack({
+          color: 'error',
+          text: 'Failed to send a heart, please try again later!',
+        });
+      }
+    },
+    onSelectAppointment (type) {
+      this.appointmentType = type;
+      this.facilityDialog = true;
+    },
+    onBook () {
+      this.appointmentDialog = true;
+    },
+    enqueueSnack ({ text, color }) {
+      this.snackbarModel = {
+        text,
+        color,
+      };
+      this.showSnack = true;
     },
   },
 };
 </script>
 
 <style scoped>
+.main-container {
+  background-color: #f0f0f0;
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+}
+.banner-container {
+  min-height: 300px;
+  position: relative;
+}
+.banner {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  object-fit: cover;
+}
 .mycure-link {
   color: white;
   text-decoration: none;

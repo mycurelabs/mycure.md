@@ -4,6 +4,7 @@
     usp(
       has-custom-background
       background-image="Clinics Landing Page"
+      background-image-file-extension=".webp"
       title="Simplified workflows, faster results, better performance."
       meta-title="MYCURE Clinic Management System"
       description="Designed for modern clinics with complex operations. Large or small, MYCURE enables clinics to be much more efficient, increase in revenue, and build more patient loyalty."
@@ -12,7 +13,7 @@
       btn-text="Get Started"
       btn-color="success"
       image="Clinics USP"
-      image-width="90%"
+      :image-width="$isMobile ? '100%' : '90%'"
       custom-image-path="clinics/"
       :parse-title-fields="['workflows, ', 'results, ']"
       :parse-meta-title-fields="['System']"
@@ -54,10 +55,9 @@
         description="MYCURE has already built-in workflows and processes for different setups."
         :items="features"
         :class="panelMargins"
+        :icon-column-bindings="{ cols: 6, md: 3 }"
         image-dir="clinics/"
         icon-container-col-size="10"
-        icon-col-size="3"
-        extension-exclusive
         panel-height="70vh"
       )
     //- 7th panel
@@ -67,19 +67,21 @@
         :content="practicingSoloPanel"
         :title-classes="[...headerClasses, 'white--text']"
         hide-btn
+        disable-parent-padding
       )
         div(slot="additional-content").mt-10
           mc-btn(
             depressed
             rounded
-            color="success"
+            color="white"
             :block="$isMobile"
             :large="!$isWideScreen"
             :x-large="$isWideScreen"
             :class="{'font-s': !$isMobile}"
             :to="{ name: 'doctors-clinics' }"
-          ).text-none
-            span Click here.
+          ).text-none.primary--text
+            v-icon(left) mdi-information-outline
+            span Learn More
     //- 8th panel
     think-long-term
     v-divider.divider
@@ -132,45 +134,44 @@ export default {
       {
         title: 'Multispecialty',
         icon: 'Multispecialty',
-        iconExtension: '.png',
+        iconExtension: '.webp',
       },
       {
         title: 'Skin & Aesthetics',
         icon: 'Skin',
-        iconExtension: '.png',
+        iconExtension: '.webp',
       },
       {
         title: 'Maternity Care',
         icon: 'Maternity Care',
-        iconExtension: '.png',
+        iconExtension: '.webp',
       },
       {
         title: 'Pediatric Care',
         icon: 'Pedia',
-        iconExtension: '.png',
+        iconExtension: '.webp',
       },
       {
         title: 'Dentistry',
         icon: 'Dentistry',
-        iconExtension: '.png',
+        iconExtension: '.webp',
       },
       {
         title: 'Diagnostics',
         icon: 'Diagnostics',
-        iconExtension: '.png',
+        iconExtension: '.webp',
       },
       {
         title: 'Corporate',
         icon: 'Corporate',
-        iconExtension: '.png',
+        iconExtension: '.webp',
       },
     ];
     this.fifthPanel = {
       title: 'Expand your Reach',
       description: 'Join MYCURE ONE, a global online directory of modern healthcare facilities so patients can easily find and book an appointment with you anytime.',
       imageBindings: {
-        image: 'Expand your reach.png',
-        extensionExclusive: true,
+        image: 'Expand your reach.webp',
         customPath: 'commons/',
       },
       contentAlign: 'left',
@@ -178,9 +179,8 @@ export default {
     this.practicingSoloPanel = {
       title: 'Practicing solo?',
       imageBindings: {
-        image: 'Practicing Solo Ipad.png',
+        image: 'Practicing Solo Ipad.webp',
         imageWidth: '90%',
-        extensionExclusive: true,
         customPath: 'clinics/',
       },
       contentAlign: 'left',

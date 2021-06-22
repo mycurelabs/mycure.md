@@ -126,7 +126,8 @@ export default {
 }
 /* Font Color */
 .font-gray {
-  color: rgba(0,0,0,0.5);
+  /* color: rgba(0,0,0,0.5); */
+  color: #787878;
 }
 /* secondary */
 .header-gray {

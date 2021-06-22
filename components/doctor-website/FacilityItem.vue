@@ -1,32 +1,33 @@
 <template lang="pug">
-  v-card(height="100%").card-outter
-    v-card-text
+  v-card(height="100%").card-outter.elevation-3
+    v-card-text.text-center
       v-avatar(size="125")
         img(:src="clinicPicURL")
-      br
-      br
+    v-card-text
       h3.text-center {{ clinic.name }}
+        template(v-if="isVerified")
+          | &nbsp;
+          v-icon(color="primary" small) mdi-check-circle-outline
       br
-      //- About
-      div.text-center
-        h3.primary--text About
-        p(:class="{ 'font-italic': !description }") {{ description || 'No information provided' }}
+      //- Address
       div.d-flex
-        v-icon(color="error" small left).mb-auto mdi-map-marker
+        v-icon(color="primary").mr-2.mb-auto.mt-1 mdi-home-variant-outline
         p(:class="{ 'font-italic': !clinic.address }").text-left {{ clinic.address | prettify-address }}
+      //- Contact number
       div.d-flex
-        v-icon(color="success" small left).mr-2.mb-auto.mt-1 mdi-phone
+        v-icon(color="primary").mr-2.mb-auto.mt-1 mdi-phone-in-talk
         p(:class="{ 'font-italic': !phone }") {{ phone ? `+${phone}` : 'No information provided' }}
+      //- Email
       div.d-flex
-        v-icon(color="primary" small left).mr-2.mb-auto.mt-1 mdi-email
+        v-icon(color="primary").mr-2.mb-auto.mt-1 mdi-email
         p(:class="{ 'font-italic': !email }") {{ email || 'No information provided' }}
       br
       template(v-if="clinicSchedules && clinicSchedules.length === 0")
         div(:class="{ 'justify-center' : $isMobile}").d-flex
-          v-icon(color="primary" small left).mr-2.mb-auto.mt-1 mdi-calendar-today
+          v-icon(color="primary" left).mr-2.mb-auto.mt-1 mdi-calendar-today
           i No schedules available
       div(v-else :class="{ 'justify-center' : $isMobile}").d-flex
-        v-icon(color="primary" small left).mr-2.mb-auto.mt-1 mdi-calendar-today
+        v-icon(color="primary" left).mr-2.mb-auto.mt-1 mdi-calendar-today
         table
           tr(v-for="sched in clinicSchedules").font-weight-600
             td(width="70") #[b.text-capitalize {{ formatDay(sched.day) }}]
@@ -34,36 +35,38 @@
             td -
             td {{sched.endTime | morph-date-format('hh:mm A')}}
       br
-      div(v-if="fullSchedules.length > 3")
+      div(v-if="fullSchedules.length > 3").pl-3
         a(
           @click="clinicSchedulesExpanded = !clinicSchedulesExpanded"
         ) View {{clinicSchedulesExpanded ? 'less' : 'more'}}
         br
-    div.card-actions
+    div.card-actions.px-3.pb-3
       //- Online Consult
       v-btn(
-        color="success"
+        color="accent"
         target="_blank"
         rel="noopener noreferrer"
-        tile
         block
-        small
+        large
         :disabled="!canBook"
-        :href="bookURL"
-      ).my-4 #[b Book Appointment]
+        :href="telehealthURL"
+      ).my-4.text-none.rounded-lg
+        v-icon(left) mdi-stethoscope
+        b Teleconsult
 
       //- Physical Visit
       v-btn(
-        color="success"
+        color="secondary"
         target="_blank"
         rel="noopener noreferrer"
         outlined
-        tile
         block
-        small
+        large
         :disabled="!canBook"
-        :href="bookURL"
-      ) #[b Book a Visit]
+        :href="visitURL"
+      ).text-none.rounded-lg
+        v-icon(left) mdi-calendar
+        b Clinic Visit
 </template>
 
 <script>
@@ -95,6 +98,10 @@ export default {
     doctorId: {
       type: String,
       default: '',
+    },
+    isPreviewMode: {
+      type: Boolean,
+      default: false,
     },
   },
   data () {
@@ -152,9 +159,13 @@ export default {
     canBook () {
       return this.clinicId && this.doctorId && this.clinicSchedules?.length;
     },
-    bookURL () {
+    telehealthURL () {
       const pxPortalUrl = process.env.PX_PORTAL_URL;
-      return `${pxPortalUrl}/appointments/step-1?doctor=${this.doctorId}&organization=${this.clinicId}`;
+      return !this.isPreviewMode ? `${pxPortalUrl}/appointments/step-1?doctor=${this.doctorId}&organization=${this.clinicId}&type=telehealth` : null;
+    },
+    visitURL () {
+      const pxPortalUrl = process.env.PX_PORTAL_URL;
+      return !this.isPreviewMode ? `${pxPortalUrl}/appointments/step-1?doctor=${this.doctorId}&organization=${this.clinicId}&type=physical` : null;
     },
     clinicId () {
       return this.clinic?.id;
@@ -171,11 +182,14 @@ export default {
     email () {
       return this.clinic?.email;
     },
+    isVerified () {
+      return !!this.clinic?.websiteId;
+    },
   },
   watch: {
     clinicSchedulesExpanded (val) {
       // Sort the schedules
-      this.fullSchedules = this.clinic?.$populated?.doctorSchedules || []; // eslint-disable-line
+      this.fullSchedules = this.clinic?.$populated?.doctorSchedules  || this.clinic?.doctorSchedules || []; // eslint-disable-line
       if (!this.fullSchedules?.length) this.clinicSchedules = [];
       const groupedSchedules = uniqWith(this.fullSchedules
         .map((schedule) => {
@@ -221,7 +235,7 @@ td {
 
 .card-outter {
   position: relative;
-  padding-bottom: 100px;
+  padding-bottom: 120px;
 }
 
 .card-actions {

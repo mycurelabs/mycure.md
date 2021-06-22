@@ -3,26 +3,25 @@
       v-chip(v-if="isRecommended" color="warning" label small).chip.mt-1.black--text.align-center.justify-center Recommended
       v-card-title.pt-8
         v-spacer
-        h2(:class="normalTextColor").font-21.font-weight-bold {{ bundle.title }}
+        h2(:class="[normalTextColor, {'font-21': !$isWideScreen, 'font-24': $isWideScreen}]").font-weight-bold {{ bundle.title }}
         v-spacer
       v-card-text.general-info-container.font-open-sans
         div.text-center.pb-3
           picture-source(
-            extension-exclusive
             custom-path="pricing/"
             :image="bundle.image"
-            image-file-extension=".png"
+            image-file-extension=".webp"
             :image-alt="bundle.title"
-            :image-width="cardType === 'enterprise' ? '200' : '65'"
+            :image-width="cardType === 'enterprise' ? '200' : iconSize"
           )
         div.text-center.description-container
           p(:class="[normalTextColor, textFontSize, recommendedText]") {{ bundle.description }}
-        div.text-center
+        div.text-center.price-container
           template(v-if="!bundle.requireContact")
             p(:class="priceColor").font-weight-bold
               template(v-if='bundle.monthlyPrice > 0')
-                span.font-30 {{ bundle.currency }}&nbsp;
-                span.font-45 {{ paymentInterval === 'year' ? bundle.annualMonthlyPrice : bundle.monthlyPrice }}
+                span(:class="{'font-30': !$isWideScreen, 'font-35': $isWideScreen}").currency {{ bundle.currency }}&nbsp;
+                span(:class="{'font-45': !$isWideScreen, 'font-60': $isWideScreen}") {{ paymentInterval === 'year' ? bundle.annualMonthlyPrice : bundle.monthlyPrice }}
               span(v-else).font-45 FREE
             //- span(v-else).font-xl {{ bundle.annualMonthlyPrice ? bundle.annualMonthlyPrice : bundle.monthlyPrice }}
         div.text-center.usage-metric-container
@@ -32,11 +31,16 @@
             | per clinic monthly
       v-divider(:class="{'divider': !this.isRecommended, 'divider-dark': this.isRecommended}").mx-5
       v-card-text
-        v-row(justify="center")
+        v-row(justify="center" v-if="showList")
           v-col(cols="12" xl="10")
             div(v-for="(inclusion, inclusionKey) in bundle.inclusions" :key="inclusionKey").d-flex
               v-icon(:color="getInclusionIconColor(inclusion.valid)" left) {{ getInclusionIcon(inclusion.valid) }}
               span(:class="[getInclusionTextColor(inclusion.valid), textFontSize, {'font-weight-medium': isRecommended}]") {{ inclusion.text }}
+        v-row(justify="center" v-if="!showList")
+          v-col(cols="12" xl="10").text-center
+            v-btn(:color="isRecommended ? 'white' : 'primary'" text @click="showList = !showList").text-none
+              | {{ showList ? 'Collapse' : 'View Details'}}
+              v-icon(v-if="!showList" right) mdi-chevron-down
       v-card-text.card-actions
         slot(name="card-btn")
           template(v-if="bundle.requireContact")
@@ -90,7 +94,15 @@ export default {
       default: null,
     },
   },
+  data () {
+    return {
+      showList: false,
+    };
+  },
   computed: {
+    iconSize () {
+      return this.$isWideScreen ? '85' : '65';
+    },
     cardType () {
       return this.bundle.value;
     },
@@ -110,13 +122,14 @@ export default {
       return this.isRecommended ? 'white' : 'primary';
     },
     cardHeight () {
+      if (!this.showList) return '500';
       return this.height || '800';
     },
     textFontSize () {
       return classBinder(this, {
         mobile: ['font-12'],
         regular: ['font-12'],
-        wide: ['font-16'],
+        wide: ['font-18'],
       });
     },
     recommendedText () {
@@ -130,9 +143,9 @@ export default {
       return 'primary';
     },
     getInclusionIcon (valid) {
-      if (valid) return 'mdi-checkbox-marked-circle';
-      if (this.isRecommended && !valid) return 'mdi-close-circle-outline';
-      return 'mdi-close-circle';
+      if (valid) return 'mdi-check';
+      if (this.isRecommended && !valid) return 'mdi-close';
+      return 'mdi-close';
     },
     getInclusionTextColor (valid) {
       if (this.isRecommended) return 'white--text';
@@ -151,7 +164,7 @@ export default {
 <style scoped>
 .card-outter {
   position: relative;
-  padding-bottom: 75px;
+  padding-bottom: 85px;
 }
 
 .card-actions {
@@ -160,13 +173,23 @@ export default {
   width: 100%;
 }
 
+.price-container {
+  position: relative;
+}
+
+.currency {
+  position: absolute;
+  top: 25%;
+  left: 5%;
+}
+
 .general-info-container {
   position: relative;
   min-height: 280px;
 }
 
 .description-container {
-  min-height: 90px;
+  min-height: 85px;
 }
 
 .chip {

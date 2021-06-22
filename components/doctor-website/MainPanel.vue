@@ -1,91 +1,54 @@
 <template lang="pug">
-  v-container
-    v-row(justify="center" align="center" no-gutters)
-      v-col(cols="12" md="10")
-        v-row(justify="center" align="center" no-gutters)
+  div(:class="backgroundImage").panel-bg
+    v-container
+      v-row(justify="center")
+        //- Logo
+        v-col(cols="10")
+           nuxt-link(to="/")
+              img(
+                src="~/assets/images/MYCURE-logo.png"
+                width="120"
+                alt="MYCURE logo"
+              ).mt-1
+        generic-panel(:row-bindings="{ justify: 'center' }")
           //- Profile picture and main info
-          v-col(cols="12" md="10").text-center
-            v-avatar(size="100")
+          v-col(cols="12").text-center
+            v-avatar(size="200").elevation-5
               img(:src="picUrl")
             br
             br
-            h1 {{ fullName }}
-            div(v-if="hasProfessionalInfo")
-              span.font-gray.font-open-sans {{ specialtiesMapped }}
-              br
-              p(v-if="practicingSince").font-open-sans.font-gray {{yearsOfExperience}} Years of Experience
-              br(v-else)
-              br
-            //- Bio
-            div
-              strong.primary--text About
-              p.font-open-sans.font-gray {{ bio || 'Ready to accomodate you!' }}
-            //- Professional Info
-            br
-            //- Educational Background
-            div(v-if="education.length")
-              strong.primary--text Education
-              br
-              div(v-for="(educ, key) in education" :key="key").font-gray.font-open-sans
-                strong {{educ.from }} - {{ educ.to }}
-                br
-                span {{ educ | format-school }}
-            br
-            //- Virtual Consult
-            book-appointment-btn(
-              outlined
-              rounded
-              small
-              show-icon
-              btn-text="Book an Appointment"
-              color="success"
-              :class="{ 'font-11' : $isMobile }"
-            ).text-none.font-weight-bold
-            br
-            //- Share Btn and Menu
-            v-menu(
-              v-model="socialMenu"
-              :close-on-content-click="false"
-              offset-y
-            )
-              template(v-slot:activator="{ on }")
+            h2 Dr. {{ fullName }}
+          //- Professional Info
+          v-col(cols="10" v-if="hasProfessionalInfo").text-center.mb-10
+            p(v-if="practicingYears" style="color: #878E9B;").font-open-sans.font-weight-medium {{practicingYears}} Years of Experience
+            br(v-else)
+            v-chip(v-for="(specialty, key) in specialties" :key="key" color="#878E9B").ma-1.white--text {{ specialty }}
+          //- Consult btn
+          v-col(cols="10" v-if="!$isMobile").text-center.justify-center
+              div(v-if="isBookable" style="width: 25%; margin: auto;").white
+                strong(slot="badge").font-18.warning--text I'm available
+              v-hover(
+                v-slot="{ hover }"
+                open-delay="100"
+              )
+
                 v-btn(
-                  v-on="on"
-                  small
-                  rounded
                   depressed
-                  color="primary"
-                  :class="{ 'font-11' : $isMobile , 'ml-1': !$isMobile }"
-                ).text-none.mt-1
-                  | Share
-                  v-icon(small right) mdi-share-variant
-              v-card(color="primary" width="275")
-                v-card-text
-                  h4.white--text Love this doctor? Let your friends know by sharing this website!
-                  v-row(no-gutters)
-                    v-col(cols="12")
-                      social-sharing(
-                        :url="doctorLink"
-                        :title="windowTitle"
-                        inline-template
-                      )
-                        div
-                          network(network="facebook").social-image
-                            img(src="~/assets/images/doctor-website/facebook-logo-white.png" width="20%").pa-3
-                          network(network="twitter").social-image
-                            img(src="~/assets/images/doctor-website/twitter-logo-white.png" width="20%").pa-3
-                          network(network="linkedin").social-image
-                            img(src="~/assets/images/doctor-website/linkedin-logo-white.png" width="20%").pa-3
-                          network(network="email").social-image
-                            img(src="~/assets/images/doctor-website/gmail-logo-white.png" width="20%").pa-3
+                  x-large
+                  :color="hover ? 'info' : 'warning'"
+                  :class="{ 'font-11' : $isMobile }"
+                  :disabled="!isBookable"
+                  @click="onBook"
+                ).text-none.font-weight-bold.custom-book-btn.rounded-xl.font-18 {{ hover ? 'Book me now' : 'The doctor is in' }}
 </template>
 
 <script>
 import SocialSharing from 'vue-social-sharing';
-import BookAppointmentBtn from '~/components/commons/book-appointment-btn';
+import GenericPanel from '~/components/generic/GenericPanel';
+import canUseWebp from '~/utils/can-use-webp';
 export default {
   components: {
-    BookAppointmentBtn,
+    GenericPanel,
     SocialSharing,
   },
   filters: {
@@ -103,10 +66,6 @@ export default {
       type: String,
       default: null,
     },
-    education: {
-      type: Array,
-      default: () => ([]),
-    },
     specialties: {
       type: Array,
       default: () => ([]),
@@ -115,35 +74,30 @@ export default {
       type: Array,
       default: () => ([]),
     },
-    practicingSince: {
-      type: [Date, Number],
-      default: null,
-    },
-    bio: {
-      type: String,
+    practicingYears: {
+      type: Number,
       default: null,
     },
     isVerified: {
       type: Boolean,
       default: false,
     },
-    /** @type {Organization[]} */
-    memberCmsOrganizations: {
-      type: Array,
-      default: () => [],
+    isBookable: {
+      type: Boolean,
+      default: false,
+    },
+    isPreviewMode: {
+      type: Boolean,
+      default: false,
     },
   },
   data () {
     return {
       socialMenu: false,
+      canUseWebp: null,
     };
   },
   computed: {
-    yearsOfExperience () {
-      const from = new Date(this.practicingSince).getFullYear();
-      const to = new Date().getFullYear();
-      return to - from;
-    },
     specialtiesMapped () {
       return this.specialties.join(', ');
     },
@@ -165,6 +119,18 @@ export default {
       }
       return '';
     },
+    backgroundImage () {
+      return this.canUseWebp ? 'bg-webp' : 'bg-png';
+    },
+  },
+  async mounted () {
+    this.canUseWebp = await canUseWebp();
+  },
+  methods: {
+    onBook () {
+      if (this.isPreviewMode) return;
+      this.$emit('book');
+    },
   },
 };
 </script>
@@ -184,5 +150,39 @@ export default {
 }
 .social-image:hover {
   cursor: pointer !important;
+}
+.bg-png {
+  background-image: url('../../assets/images/doctor-website/Doctor Website - Background Clouds.png');
+}
+.bg-webp {
+  background-image: url('../../assets/images/doctor-website/Doctor Website - Background Clouds.webp');
+}
+.panel-bg {
+  background-size: cover;
+  width: 100%;
+  height: 1100px;
+  position: relative;
+  /* top: 0;
+  position: absolute; */
+}
+.custom-book-btn {
+  height: 70px !important;
+  width: 300px;
+}
+
+@media screen and (max-width: 700px) {
+  .panel-bg {
+    height: 1000px;
+  }
+}
+@media screen and (min-width: 1600px) {
+  .panel-bg {
+    height: 1300px;
+  }
+}
+@media screen and (min-width: 1800px) {
+  .panel-bg {
+    height: 1500px;
+  }
 }
 </style>

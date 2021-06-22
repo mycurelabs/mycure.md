@@ -1,9 +1,8 @@
 <template lang="pug">
   v-app-bar(
     height="50"
+    color="transparent"
     absolute
-    app
-    color="white"
     flat
   )
     v-container

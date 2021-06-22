@@ -38,7 +38,6 @@
         image-dir="syncbase/"
         hide-learn-more
         :items="features"
-        extension-exclusive
       )
     //- 5th panel
     div.mx-n3.mb-n3.primary
@@ -78,27 +77,27 @@ export default {
       {
         title: 'Grade A+ SSL',
         icon: 'Grade A+ SSL',
-        iconExtension: '.png',
+        iconExtension: '.webp',
       },
       {
         title: 'Data Encryption',
         icon: 'Data Encryption',
-        iconExtension: '.png',
+        iconExtension: '.webp',
       },
       {
         title: 'User Designated Access',
         icon: 'User Designated Access',
-        iconExtension: '.png',
+        iconExtension: '.webp',
       },
       {
         title: 'Secure Cloud Hosting',
         icon: 'Secure Cloud Hosting',
-        iconExtension: '.png',
+        iconExtension: '.webp',
       },
       {
         title: 'Data Privacy Standards',
         icon: 'Data Privacy standards',
-        iconExtension: '.png',
+        iconExtension: '.webp',
       },
     ];
     return {

@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-app
+  v-app(style="overflow: hidden;")
     v-row(v-if="!loading" :class="contentClasses" fill-height fluid)
       v-col(:class="[contentClasses, footerClasses]").footer-bg
         nuxt

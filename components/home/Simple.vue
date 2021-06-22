@@ -13,7 +13,7 @@
         hide-btn
       )
         template(slot="image")
-          picture-source(v-bind="imageBindings")
+          picture-source(v-bind="imageBindings" :class="{'ml-n10': wSM }")
         v-col(slot="additional-content" cols="12").order-last
           v-row(justify="center")
             v-col(v-for="(service, key) in services" :key="key").shrink
@@ -147,7 +147,7 @@ export default {
         image: 'Simple and Powerful',
         imageFileExtension: '.webp',
         imageAlt: 'No more paperwork',
-        imageWidth: '105%',
+        imageWidth: this.wSM ? '125%' : '105%',
         customPath: 'home/',
       };
     },

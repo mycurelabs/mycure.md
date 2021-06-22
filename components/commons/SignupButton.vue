@@ -25,6 +25,10 @@ export default {
       type: String,
       default: 'signup',
     },
+    facilityType: {
+      type: String,
+      default: null,
+    },
   },
   methods: {
     click () {
@@ -36,8 +40,12 @@ export default {
       if (healthFacilityTypeMap[routeName]) {
         route.query.type = healthFacilityTypeMap[routeName];
       }
+      if (this.facilityType) route.query.type = this.facilityType;
       if (this.pricingBundle) {
         route.query.subscription = this.pricingBundle;
+      }
+      if (routeName === 'booking') {
+        route.query.from = 'booking';
       }
       this.$router.push(route);
     },

@@ -36,3 +36,28 @@ export const fetchClinicWebsiteDoctors = async (sdk, opts) => {
 
   return { items: normalizePopulated(items), total };
 };
+
+export const fetchUserFacilities = async (sdk, opts) => {
+  const payload = {
+    $limit: opts.limit,
+    $skip: opts.skip,
+    uid: opts.id,
+    $populate: {
+      organization: {
+        service: 'organizations',
+        key: 'organization',
+        $populate: {
+          doctorSchedules: {
+            service: 'schedule-slots',
+            method: 'find',
+            localKey: 'id',
+            foreignKey: 'organization',
+          },
+        },
+      },
+    },
+  };
+
+  const { items, total } = await sdk.service('organization-members').find(payload);
+  return { items: normalizePopulated(items), total };
+};

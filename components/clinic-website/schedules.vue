@@ -1,11 +1,10 @@
 <template lang="pug">
-  v-container(:class="{ 'text-left': !$isMobile, 'text-center': $isMobile  }").main-container
-    h2.font-21.font-gray Facility Schedule
-    v-row(v-for="(sched, key) in schedules" :key="key")
-      v-col(cols="4").pb-0
-        h3.font-weight-bold.text-capitalize.left.font-gray {{ sched.day }}
-      v-col(cols="8").pb-0
-        p.mb-0.right.text-center.font-gray {{ formatTime(sched.opening) }} - {{ formatTime(sched.closing) }}
+  div(:class="{ 'text-left': !$isMobile, 'text-center': $isMobile  }").main-container
+    h3.mb-3 Facility Schedule
+    div(v-for="(sched, key) in schedules" :key="key").d-flex
+      h3.font-weight-bold.text-capitalize.font-gray {{ sched.day }}
+      v-spacer
+      p.text-center.font-gray {{ formatTime(sched.opening) }} - {{ formatTime(sched.closing) }}
 </template>
 
 <script>
@@ -36,11 +35,11 @@ strong {
   cursor: pointer;
 }
 .main-container {
-  background-color: rgba(0, 153, 204, 0.2);
-  border-radius: 5px;
+  /* background-color: rgba(0, 153, 204, 0.2); */
+  /* border-radius: 5px; */
   min-height: 300px;
   position: relative;
-  padding: 20px;
+  /* padding: 20px; */
 }
 .font-gray {
   color: #4D4D4D !important;

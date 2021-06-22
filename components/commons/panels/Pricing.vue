@@ -19,7 +19,7 @@
                     color="info"
                   )
                   strong(:class="descriptionClasses").font-open-sans.black--text Billed Annually
-            v-row(justify="center" align="center" dense)
+            v-row(justify="center" dense)
               template(v-if="!$isMobile")
                 v-col(
                   v-for="(pack, key) in pricingPackages"
@@ -38,7 +38,7 @@
                   navigationEnabled
                   paginationEnabled
                   :per-page="1"
-                  :navigationClickTargetSize="40"
+                  :navigationClickTargetSize="25"
                 )
                   slide(
                     v-for="(pack, index) in pricingPackages"

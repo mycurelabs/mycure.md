@@ -1,158 +1,87 @@
 <template lang="pug">
-  div(v-if="!loading.page").py-0.main-container
-    app-bar(
-      :picURL="picURL"
-      :clinicName="clinicName"
-      :is-verified="isVerified"
-      :is-preview-mode="isPreviewMode"
-    )
-    usp(
-      v-model="searchText"
-      :search-results-mode="searchResultsMode"
-      :name="clinicName"
-      :org-id="orgId"
-      :coverURL="coverURL"
-      :is-preview-mode="isPreviewMode"
-      :hide-search-bars="$isMobile"
+  div(style="overflow: hidden; background: #fafafa")
+    //- CHOOSE SERVICE DIALOG
+    choose-service(
+      v-model="chooseServiceDialog"
       :service-types="serviceTypes"
+      :has-doctors="hasDoctors"
+      @select="activeTab = $event"
+    )
+    //- APP BAR
+    app-bar
+    //- PANEL 1
+    div(
+      :class="background"
+      :style="{ height: '150vh', paddingTop: $isMobile ? '60px' : '100px' }"
+    ).panel-bg
+      v-row(justify="center")
+        v-col(cols="10").text-center
+          v-avatar(size="200").mb-5
+            img(:src="picURL")
+          h1.mb-5 {{clinicName}}
+          div(style="width: 25%; margin: auto;").white
+            strong(slot="badge").font-18.warning--text We're Open!
+          v-hover(
+            v-slot="{ hover }"
+            open-delay="100"
+          )
+            v-btn(
+              large
+              rounded
+              dark
+              :color="hover ? 'info' : 'warning'"
+              @click="chooseServiceDialog = true"
+            ).text-none.custom-clinic-button
+              h2 {{ hover ? 'Choose a service' : 'Book an Appointment' }}
+
+    //- PANEL 1 FOOTER
+    div(:class="{'d-flex': !$isMobile}" :style="{ height: !$isMobile ? '55px' : 'auto'}").panel-1-footer
+      span(v-if="formattedAddress")
+        v-icon.red--text mdi-map-marker
+        span {{formattedAddress}}
+      v-spacer(v-if="!$isMobile")
+      br(v-else)
+      span(v-if="clinicPhone")
+        v-icon.green--text mdi-phone
+        span {{clinicPhone}}
+    //- MAIN PANELS
+    main-workflow(
+      v-model="activeTab"
+      :is-preview-mode="isPreviewMode"
+      :search-results-mode="searchResultsMode"
+      :search-results="searchResults"
+      :service-types="serviceTypes"
+      :has-doctors="hasDoctors"
+      :items="listItems"
+      :items-pagination-length="itemsPaginationLength"
+      :organization="clinic"
+      :loading="loading.list"
+      :has-next-page="hasNextPage"
+      :has-previous-page="hasPreviousPage"
+      @back="searchResultsMode = false"
       @search="onServiceSearch"
+      @paginate="onPaginate($event)"
       @filter:date="filterByDate"
     )
-    v-container(fluid)
-      v-row(justify="center")
-        //- Mobile
-        v-col(
-          v-if="!searchResultsMode"
-          cols="12"
-          md="7"
-          :class="{ 'order-first': $isMobile, 'order-last': !$isMobile }"
-        )
-          service-types-mobile-selection(
-            v-if="!mobileServicesListView && $isMobile"
-            :service-types="serviceTypes"
-            :has-doctors="hasDoctors"
-            :is-preview-mode="isPreviewMode"
-            @select="activeTab = $event; mobileServicesListView = true"
-          )
-          services-tabs(
-            v-else-if="showServiceTabs"
-            v-model="activeTab"
-            hide-tabs
-            :show-back-button="$isMobile"
-            :items="listItems"
-            :items-pagination-length="itemsPaginationLength"
-            :organization="orgId"
-            :loading="loading.list"
-            :has-next-page="hasNextPage"
-            :has-previous-page="hasPreviousPage"
-            :has-doctors="hasDoctors"
-            :is-preview-mode="isPreviewMode"
-            :service-types="serviceTypes"
-            @back="mobileServicesListView = false"
-            @paginate="refetchListItems(activeTab, $event)"
-          )
-        v-col(cols="12" md="3")
-          service-types-selection(
-            v-if="!$isMobile && !searchResultsMode"
-            v-model="activeTab"
-            :service-types="serviceTypes"
-            :has-doctors="hasDoctors"
-            :is-preview-mode="isPreviewMode"
-            @select="activeTab = $event"
-          )
-          v-btn(
-            v-if="searchResultsMode && !$isMobile"
-            tile
-            outlined
-            color="primary"
-            @click="searchResultsMode = false"
-          ).text-none
-            v-icon(small left) mdi-arrow-left
-            | Go back to Main Page
-          clinic-info(
-            :clinic="clinicWebsite"
-            :is-dummy-org="isDummyOrg"
-            :is-preview-mode="isPreviewMode"
-          )
-          schedules(:schedules="groupedSchedules").mt-2
-          //- Show on mobile
-          usp(
-            v-if="$isMobile && searchResultsMode"
-            v-model="searchText"
-            hide-banner
-            no-gutters
-            search-results-mode
-            :name="clinicName"
-            :org-id="orgId"
-            :coverURL="coverURL"
-            :is-preview-mode="isPreviewMode"
-            :service-types="serviceTypes"
-            @search="onServiceSearch"
-            @filter:date="filterByDate"
-          )
-        v-col(cols="12" md="7" v-if="searchResultsMode")#services
-          services-search-results(
-            :organization="orgId"
-            :loading="loading.list"
-            :items="searchResults"
-            :is-preview-mode="isPreviewMode"
-          )
-
-    //- Footer
-    v-divider
-    v-footer(v-if="!$isMobile" color="white").mt-3
-      v-row.d-flex
-        v-col.font-14
-          div.d-flex
-            p.ml-5.mt-1 #[b Powered by]
-            img(
-              height="30"
-              src="~/assets/images/MYCURE-logo.png"
-              alt="MYCURE"
-              @click="$nuxt.$router.push({ name: 'index' })"
-            ).ml-2
-          p.ml-5 Copyright &#169;{{new Date().getFullYear()}} All Rights Reserved.
-        v-col.d-flex
-          nuxt-link(to="/terms").font-14 Terms of Use
-          | &nbsp;|&nbsp;
-          nuxt-link(to="/privacy-policy").font-14 Privacy Policy
-          | &nbsp;|&nbsp;
-          a(
-            :href="feedbackLink"
-            target="_blank"
-            rel="noopener noreferrer"
-          ).font-14 Send us your feedback
-        v-col.d-flex.text-center
-          nuxt-link(to="/directory/results").font-14 See more Health Facilities
-          | &nbsp;|&nbsp;
-          nuxt-link(to="/signup/health-facilities").font-14 Create my own Health Facility Website
-    v-footer(v-else color="primary")
-      v-row(justify="center" align="center")
-        v-col(cols="12" align="center")
-          div.d-flex.justify-center.white--text
-            nuxt-link(to="/terms").white--text.font-14 Terms of Use
-            | &nbsp;&nbsp;|&nbsp;&nbsp;
-            nuxt-link(to="/privacy-policy").white--text.font-14 Privacy Policy
-            | &nbsp;&nbsp;|&nbsp;&nbsp;
-            a(
-              :href="feedbackLink"
-              target="_blank"
-              rel="noopener noreferrer"
-            ).white--text.font-14 Send us your feedback
-        v-col(cols="10" align="center")
-          div.d-flex.white--text
-            nuxt-link(to="/directory/results").white--text.font-14 See more Health Facilities
-            | &nbsp;&nbsp;|&nbsp;&nbsp;
-            nuxt-link(to="/signup/health-facilities").white--text.font-14 Create my own Health Facility Website
-        v-col(cols="10" align="center")
-          div.d-flex.justify-center
-            img(
-              height="26"
-              src="~/assets/images/MYCURE-logo-white.png"
-              alt="MYCURE"
-              @click="$nuxt.$router.push({ name: 'index' })"
-            )
-            p.white--text.font-14.ml-4.mt-1 &#169;{{new Date().getFullYear()}} All Rights Reserved.
+    //- ABOUT US
+    about-us(
+      :picURL="picURL"
+      :name="clinicName"
+      :description="description"
+      :phone="clinicPhone"
+      :address="formattedAddress"
+      :schedules="compressedSchedules"
+    )
+    //- QUICK BOOK
+    quick-book(
+      :is-preview-mode="isPreviewMode"
+      :service-types="serviceTypes"
+      :service-schedules="serviceSchedules"
+      :organization-schedules="groupedSchedules"
+      :organization="orgId"
+    )
+    //- FOOTER
+    app-footer
 </template>
 
 <script>
@@ -161,6 +90,8 @@ import VueScrollTo from 'vue-scrollto';
 // - utils
 import { getServices } from '~/utils/axios';
 import { getOrganization } from '~/utils/axios/organizations';
+import { formatAddress } from '~/utils/formats';
+import canUseWebp from '~/utils/can-use-webp';
 import headMeta from '~/utils/head-meta';
 // - services
 import { fetchClinicWebsiteDoctors } from '~/services/organization-members';
@@ -169,14 +100,13 @@ import {
   fetchClinicServiceTypes,
 } from '~/services/services';
 // - components
-import AppBar from '~/components/clinic-website/app-bar';
-import ClinicInfo from '~/components/clinic-website/clinic-info';
-import Schedules from '~/components/clinic-website/schedules';
-import ServicesSearchResults from '~/components/clinic-website/services/search-results';
-import ServicesTabs from '~/components/clinic-website/services/tabs';
-import ServiceTypesMobileSelection from '~/components/clinic-website/services/service-types-mobile-selection';
-import ServiceTypesSelection from '~/components/clinic-website/services/service-types-selection';
-import Usp from '~/components/clinic-website/usp';
+import AboutUs from '~/components/clinic-website/AboutUs';
+import AppBar from '~/components/clinic-website/new/AppBar';
+import AppFooter from '~/components/clinic-website/AppFooter';
+import ChooseService from '~/components/clinic-website/ChooseService';
+import SearchPanel from '~/components/clinic-website/SearchPanel';
+import MainWorkflow from '~/components/clinic-website/MainWorkflow';
+import QuickBook from '~/components/clinic-website/QuickBook';
 
 const SERVICE_TYPES = [
   'clinical-consultation',
@@ -189,23 +119,22 @@ const SERVICE_TYPES = [
 
 export default {
   components: {
+    AboutUs,
     AppBar,
-    ClinicInfo,
-    Schedules,
-    ServicesSearchResults,
-    ServicesTabs,
-    ServiceTypesMobileSelection,
-    ServiceTypesSelection,
-    Usp,
+    AppFooter,
+    ChooseService,
+    SearchPanel,
+    MainWorkflow,
+    QuickBook,
   },
   layout: 'clinic-website',
   async asyncData ({ params, $sdk, redirect }) {
     try {
-      const clinicWebsite = await getOrganization({ id: params.id }, true) || {};
-      if (isEmpty(clinicWebsite)) redirect('/');
+      const clinic = await getOrganization({ id: params.id }, true) || {};
+      if (isEmpty(clinic)) redirect('/');
       const services = await getServices({ facility: params.id });
       return {
-        clinicWebsite,
+        clinic,
         services,
       };
     } catch (error) {
@@ -213,13 +142,6 @@ export default {
     }
   },
   data () {
-    this.feedbackLink = 'https://airtable.com/shrgkdR8ASEdbQ1Pa';
-    this.icons = [
-      { icon: 'mdi-facebook', link: 'https://facebook.com/' },
-      { icon: 'mdi-twitter', link: 'https://twitter.com/' },
-      { icon: 'mdi-email', link: 'mailto:' },
-      { icon: 'mdi-linkedin', link: 'https://www.linkedin.com/' },
-    ];
     this.days = [
       {
         order: 1,
@@ -264,17 +186,19 @@ export default {
         page: true,
         list: false,
       },
-      mobileServicesListView: false,
+      servicesDialog: false,
+      chooseServiceDialog: false,
+      activeTab: null,
       // Pagination
       page: 1,
       pageCount: 2,
       // Data Models
       orgDoctors: [],
       clinicWebsite: {},
-      activeTab: 'lab',
       filteredServices: [],
       serviceTypes: [],
       serviceSchedules: [],
+      canUseWebp: null,
       // Items to show in tab list
       listItems: [],
       // total items
@@ -296,6 +220,14 @@ export default {
     });
   },
   computed: {
+    formattedAddress () {
+      if (!this.clinic?.address) return '';
+      return formatAddress(this.clinic.address, 'street1, street2, city, province, country');
+    },
+    clinicPhone () {
+      return this.clinic?.phone;
+    },
+    // old
     mode () {
       return this.$route.query.mode;
     },
@@ -303,30 +235,27 @@ export default {
       return this.mode === 'preview';
     },
     orgId () {
-      return this.clinicWebsite?.id;
+      return this.clinic?.id;
     },
     isVerified () {
-      return !!this.clinicWebsite?.websiteId;
+      return !!this.clinic?.websiteId;
     },
     isDummyOrg () {
-      const { tags } = this.clinicWebsite;
+      const { tags } = this.clinic;
       if (!tags?.length) return false;
       return tags.includes('dummy');
     },
     picURL () {
-      return this.clinicWebsite?.picURL || require('~/assets/images/clinics-website/hospital-thumbnail.jpg');
-    },
-    coverURL () {
-      return this.clinicWebsite?.coverURL || require('~/assets/images/clinics-website/usp-background.png');
+      return this.clinic?.picURL || require('~/assets/images/clinics-website/hospital-thumbnail.jpg');
     },
     clinicName () {
-      return this.clinicWebsite?.name || 'MYCURE Clinic';
+      return this.clinic?.name || 'MYCURE Clinic';
     },
     servicesOffered () {
       return this.services;
     },
     schedules () {
-      return this.clinicWebsite?.mf_schedule || []; // eslint-disable-line
+      return this.clinic?.mf_schedule || []; // eslint-disable-line
     },
     groupedSchedules () {
       const groupedSchedules = this.schedules
@@ -339,6 +268,21 @@ export default {
         })
         .sort((a, b) => a.day !== b.day ? a.order - b.order : a.opening - b.opening) || [];
       return groupedSchedules;
+    },
+    // - Schedules simplified to get overall time period instead of multiple periods
+    compressedSchedules () {
+      const schedules = [...this.groupedSchedules];
+      const compressedSchedules = [];
+      schedules.forEach((schedule) => {
+        const existing = compressedSchedules.find(sched => sched.day === schedule.day && sched.closing < schedule.closing);
+        if (!existing) {
+          compressedSchedules.push(schedule);
+          return;
+        }
+        const index = compressedSchedules.indexOf(existing);
+        compressedSchedules[index].closing = schedule.closing;
+      });
+      return compressedSchedules;
     },
     testimonialDate () {
       return this.clinicWebsite?.createdAt;
@@ -375,17 +319,12 @@ export default {
       const previousSkip = this.itemsLimit * (this.page - 1);
       return previousSkip > 0;
     },
-    showServiceTabs () {
-      if (this.$isMobile && this.mobileServicesListView) return true;
-      if (!this.$isMobile && !this.searchResultsMode) return true;
-      return false;
+    description () {
+      return this.clinic?.description ||
+      `${this.name || 'This facility'} specializes in telehealth services. ${this.name || 'It'} is committed to provide medical consultation via video conference or phone call to our patient 24 hours a day 7 days a week.`;
     },
-  },
-  watch: {
-    activeTab: {
-      async handler (val) {
-        await this.refetchListItems(val);
-      },
+    background () {
+      return this.canUseWebp ? 'bg-webp' : 'bg-png';
     },
   },
   async mounted () {
@@ -395,15 +334,15 @@ export default {
 
     this.loading.page = false;
     await this.fetchServiceTypes();
-    await this.fetchServices({ type: 'diagnostic', subtype: 'lab' });
     await this.fetchDoctorMembers();
-    this.listItems = this.filteredServices;
+    this.canUseWebp = await canUseWebp();
+    this.listItems = [...this.filteredServices];
     this.itemsTotal = this.servicesTotal;
   },
   methods: {
+    // - Fetches all doctors of facility
     async fetchDoctorMembers (searchText, page = 1) {
       try {
-        this.loading.list = true;
         const skip = this.itemsLimit * (page - 1);
         const { items, total } = await fetchClinicWebsiteDoctors(this.$sdk, {
           organization: this.orgId,
@@ -413,15 +352,14 @@ export default {
         });
         this.doctorsTotal = total;
         this.orgDoctors = items || [];
+        return { items: this.orgDoctors, total: this.doctorsTotal };
       } catch (error) {
         console.error(error);
-      } finally {
-        this.loading.list = false;
       }
     },
+    // - Fetches all services of facility
     async fetchServices (service = {}, searchText, page = 1) {
       try {
-        this.loading.list = true;
         const { type, subtype, insurer } = service;
         const skip = this.itemsLimit * (page - 1);
         const { items, total } = await fetchClinicServices(this.$sdk, {
@@ -449,12 +387,12 @@ export default {
             schedules: schedules?.items || this.groupedSchedules,
           };
         }) || [];
+        return { items: this.filteredServices, total: this.servicesTotal };
       } catch (error) {
         console.error(error);
-      } finally {
-        this.loading.list = false;
       }
     },
+    // - Fetches all service types of facility
     async fetchServiceTypes () {
       try {
         const { items } = await fetchClinicServiceTypes(this.$sdk, { facility: this.orgId });
@@ -479,26 +417,47 @@ export default {
         console.error(error);
       }
     },
-    async refetchListItems (tab, page = 1) {
-      this.page = page;
-      if (tab === 'doctors') {
-        await this.fetchDoctorMembers({ page: this.page });
-        this.listItems = [...this.formattedDoctors];
-        this.itemsTotal = this.doctorsTotal;
-        return;
+    // - When pagination or tab changes, all services and doctors are refetched
+    async refetchListItems ({ tab, page = 1 }) {
+      try {
+        this.loading.list = true;
+        this.page = page;
+        if (tab === 'doctors') {
+          await this.fetchDoctorMembers({ page: this.page });
+          this.listItems = [...this.formattedDoctors];
+          this.itemsTotal = this.doctorsTotal;
+          return;
+        }
+        const subtype = tab === 'lab' || tab === 'imaging' ? tab : null;
+        await this.fetchServices({ type: subtype ? 'diagnostic' : tab, ...subtype && { subtype } }, null, this.page);
+        this.listItems = [...this.filteredServices];
+        this.itemsTotal = this.servicesTotal;
+      } catch (e) {
+        console.error(e);
+      } finally {
+        this.loading.list = false;
       }
-      const subtype = tab === 'lab' || tab === 'imaging' ? tab : null;
-      await this.fetchServices({ type: subtype ? 'diagnostic' : tab, ...subtype && { subtype } }, null, this.page);
-      this.listItems = [...this.filteredServices];
-      this.itemsTotal = this.servicesTotal;
     },
     async onServiceSearch ({ searchText, searchFilters }) {
-      if (!this.searchResultsMode) this.searchResultsMode = true;
-      this.searchFilters = searchFilters;
-      await this.fetchDoctorMembers(searchText);
-      await this.fetchServices(searchFilters, searchText);
-      this.searchResults = [...this.formattedDoctors, ...this.filteredServices];
-      VueScrollTo.scrollTo('#services', 500, { offset: -100, easing: 'ease' });
+      try {
+        this.loading.list = true;
+        if (!this.searchResultsMode) this.searchResultsMode = true;
+
+        this.searchText = searchText;
+        this.searchFilters = searchFilters;
+
+        await this.fetchDoctorMembers(searchText);
+        await this.fetchServices(searchFilters, searchText);
+        this.searchResults = [...this.formattedDoctors, ...this.filteredServices];
+        VueScrollTo.scrollTo('#services-panel', 500, { offset: -100, easing: 'ease' });
+      } catch (e) {
+        console.error(e);
+      } finally {
+        this.loading.list = false;
+      }
+    },
+    async onPaginate (payload) {
+      await this.refetchListItems(payload);
     },
     filterByDate (unixDate) {
       if (!unixDate) {
@@ -526,5 +485,33 @@ a {
 }
 .main-container {
   background-color: #fafafa;
+}
+.panel-bg {
+  background-position: center center;
+  background-size: cover;
+}
+
+.bg-png {
+  background-image: url('../../assets/images/clinics-website/Clinic Website BG.png');
+}
+
+.bg-webp {
+  background-image: url('../../assets/images/clinics-website/Clinic Website BG.webp');
+}
+.custom-clinic-button {
+  height: 70px !important;
+  width: 300px;
+}
+.panel-1-footer {
+  margin-top: -55px;
+  width: 100vw;
+  padding: 17px 10px 0px 10px;
+  z-index: 99;
+  position: fixed;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+.search-container {
+  height: 400px;
 }
 </style>

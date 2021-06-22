@@ -1,24 +1,20 @@
 <template lang="pug">
-  v-container.pb-10
-    v-row(justify="center" align="center" no-gutters)
-      v-col(cols="12" md="10")
-        v-row(justify="center").text-center#clinics-list-top
-          v-col(cols="12").text-center
-            h1
-              v-icon(color="error" large left) mdi-hospital-marker
-              | {{ firstName ? `Dr. ${firstName}'s ` : '' }}Clinics
-          v-col(
-            v-for="(clinic, key) in clinics"
-            :key="key"
-            cols="6"
-            md="4"
-          )
-            facility-item(:clinic="clinic" :doctor-id="doctorId")
-          v-col(cols="12")
-            v-pagination(
-              v-model="page"
-              :length="length"
-            )
+  v-row#clinics-list-top
+    v-col(v-if="!clinics.length" cols="12")
+      p.font-open-sans.font-gray.mt-1 This doctor has no listed organizations. Please come and check another time!
+    template(v-else)
+      v-col(
+        v-for="(clinic, key) in clinics"
+        :key="key"
+        cols="12"
+        md="6"
+      )
+        facility-item(:clinic="clinic" :doctor-id="doctorId" :is-preview-mode="isPreviewMode")
+      v-col(cols="12")
+        v-pagination(
+          v-model="page"
+          :length="length"
+        )
 </template>
 
 <script>
@@ -33,10 +29,6 @@ export default {
       type: String,
       default: null,
     },
-    firstName: {
-      type: String,
-      default: '',
-    },
     clinics: {
       type: Array,
       default: () => ([]),
@@ -48,6 +40,10 @@ export default {
     limit: {
       type: Number,
       default: 6,
+    },
+    isPreviewMode: {
+      type: Boolean,
+      default: false,
     },
   },
   data () {
@@ -69,3 +65,10 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+#clinics-list-top {
+  height: 700px;
+  overflow-y: scroll;
+}
+</style>

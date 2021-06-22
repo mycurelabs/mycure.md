@@ -9880,6 +9880,11 @@ reserved-words@^0.1.2:
   resolved "https://registry.yarnpkg.com/reserved-words/-/reserved-words-0.1.2.tgz#00a0940f98cd501aeaaac316411d9adc52b31ab1"
   integrity sha1-AKCUD5jNUBrqqsMWQR2a3FKzGrE=
 
+resize-detector@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/resize-detector/-/resize-detector-0.3.0.tgz#fe495112e184695500a8f51e0389f15774cb1cfc"
+  integrity sha512-R/tCuvuOHQ8o2boRP6vgx8hXCCy87H1eY9V5imBYeVNyNVpuL9ciReSccLj2gDcax9+2weXy3bc8Vv+NRXeEvQ==
+
 resize-observer-polyfill@1.5.1:
   version "1.5.1"
   resolved "https://registry.yarnpkg.com/resize-observer-polyfill/-/resize-observer-polyfill-1.5.1.tgz#0e9020dd3d21024458d4ebd27e23e40269810464"
@@ -11455,6 +11460,13 @@ vue-carousel@^0.18.0:
     regenerator-runtime "^0.12.1"
     vue "^2.5.17"
 
+vue-clamp@^0.4.0:
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/vue-clamp/-/vue-clamp-0.4.0.tgz#dad08327ca6c161c67582e5e4ff39f7e7d846491"
+  integrity sha512-r8mw6Hpy2YDv9U/pJg13TZB2GNuDFo+sOwSLnyWU7yzVzA7SjU7t157+vOwEwSPKS/Tg9g0T0CkCnDLSPOOm6w==
+  dependencies:
+    resize-detector "^0.3.0"
+
 vue-client-only@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/vue-client-only/-/vue-client-only-2.0.0.tgz#ddad8d675ee02c761a14229f0e440e219de1da1c"
@@ -11618,9 +11630,9 @@ vue-slick-carousel@^1.0.6:
     vue "^2.6.10"
 
 vue-social-sharing@^3.0.7:
-  version "3.0.7"
-  resolved "https://registry.yarnpkg.com/vue-social-sharing/-/vue-social-sharing-3.0.7.tgz#8dee6a955ce72d0391481204dcb306804373c9f9"
-  integrity sha512-6FS+9t9qJQXY/Km0oyfpJv7rtjhqvrQodpVc/cbBc6TvQdhXc64pHi4yoqa3Jv797veNAlFuLztYyir9jONhBg==
+  version "3.0.8"
+  resolved "https://registry.yarnpkg.com/vue-social-sharing/-/vue-social-sharing-3.0.8.tgz#5927c54a91b8cb4965dfa492c2ad4553591ba00c"
+  integrity sha512-56gOES9fq7kyzuW7+lVAKtoG9Wi4MGjIfMqXAFZv1QSwW00EN0X5zJDSQjZn1Y2cIU6DUG+1KfJB7r7nTuiISA==
 
 vue-style-loader@^4.1.0, vue-style-loader@^4.1.3:
   version "4.1.3"

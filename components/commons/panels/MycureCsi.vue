@@ -7,7 +7,6 @@
     icon-container-col-size="8"
     :items="items"
     hide-learn-more
-    extension-exclusive
   )
     template(slot="description")
       p Using MYCURE makes your practice&nbsp;
@@ -26,19 +25,19 @@ export default {
       {
         title: 'Compliance',
         icon: 'Compliance',
-        iconExtension: '.png',
+        iconExtension: '.webp',
         route: 'csi',
       },
       {
         title: 'Security',
         icon: 'Security',
-        iconExtension: '.png',
+        iconExtension: '.webp',
         route: 'csi',
       },
       {
         title: 'Interoperability',
         icon: 'Interoperability',
-        iconExtension: '.png',
+        iconExtension: '.webp',
         route: 'csi',
       },
     ];

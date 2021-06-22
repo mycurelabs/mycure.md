@@ -59,9 +59,8 @@ export default {
         'We understand that it may be difficult to change what you’re used to doing. That’s why we have happiness agents who’d love to guide you through each step via one-on-one training session.',
       ],
       imageBindings: {
-        image: 'Let us do the work.png',
+        image: 'Let us do the work.webp',
         customPath: 'commons/',
-        extensionExclusive: true,
       },
       contentAlign: 'right',
     };
@@ -72,9 +71,8 @@ export default {
         'We know it’s challenging to shift your entire operations into a new system. Our lean implementation process ensures that you get what you need—customized forms, optimized workflows, and well-trained staff. Our experts are here to guide you from training to winning.',
       ],
       imageBindings: {
-        image: 'Let us do the work.png',
+        image: 'Let us do the work.webp',
         customPath: 'commons/',
-        extensionExclusive: true,
       },
       contentAlign: 'right',
     };

@@ -22,11 +22,31 @@ export const recordWebsiteVisit = async (opts) => {
   }
 };
 
+export const heartDoctor = async (opts) => {
+  try {
+    const payload = {
+      reviewee: opts.id,
+      revieweeType: 'accounts',
+      application: 'doctors-directory',
+      reaction: 'heart',
+    };
+    const data = await axios({
+      method: 'post',
+      url: `${process.env.API_URL}/reviews`,
+      data: payload,
+    });
+    return data;
+  } catch (e) {
+    console.error(e);
+    throw handleError(e);
+  }
+};
+
 export const fetchDoctorMetrics = async (opts, sdk) => {
   try {
     const doctorId = opts.uid;
     // Fetch Website visits
-    const { total } = await sdk.service('system-counters').find({
+    const { total: visits } = await sdk.service('system-counters').find({
       account: doctorId,
       type: 'doctor-website-visit',
     });
@@ -34,19 +54,27 @@ export const fetchDoctorMetrics = async (opts, sdk) => {
     // Fetch patients
     const patients = await axios({
       method: 'get',
-      url: `${process.env.API_URL}/metrics?name=medical_patients_served_total&doctor=${doctorId}`,
+      url: `${process.env.API_URL}/metrics/metrics?name=medical_patients_served_total&doctor=${doctorId}`,
     });
 
     // Fetch medical records
     const records = await axios({
       method: 'get',
-      url: `${process.env.API_URL}/metrics?name=medical_records_total&creator=${doctorId}`,
+      url: `${process.env.API_URL}/metrics/metrics?name=medical_records_total&creator=${doctorId}`,
+    });
+
+    // Fetching hearts
+    const { total: hearts } = await sdk.service('reviews').find({
+      reviewee: doctorId,
+      reaction: 'heart',
+      application: 'doctors-directory',
     });
 
     return {
-      websiteVisits: total,
+      websiteVisits: visits,
       patients: patients.data.total,
       records: records.data.total,
+      hearts,
     };
   } catch (e) {
     console.error(e);

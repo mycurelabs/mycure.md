@@ -28,22 +28,20 @@
                 template(v-if="!$isMobile")
                   v-col(cols="12").text-center
                     picture-source(
-                      extension-exclusive
                       custom-path="clinics/"
                       image="Problem Statement"
                       image-alt="Clinic workflow"
-                      image-file-extension=".png"
+                      image-file-extension=".webp"
                       image-width="90%"
                     )
                 template(v-else)
                   v-col(cols="12" v-for="(item, key) in items" :key="key").text-center
                       picture-source(
                         v-if="item.icon"
-                        extension-exclusive
                         custom-path="clinics/"
                         :image="item.icon"
                         :image-alt="item.title"
-                        image-file-extension=".png"
+                        image-file-extension=".webp"
                         image-width="40%"
                       )
                       br

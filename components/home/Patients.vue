@@ -15,7 +15,7 @@
         ).text-center
           v-card(flat)
             v-img(
-              :src="require(`~/assets/images/home/${feature.image}.png`)"
+              :src="require(`~/assets/images/home/${feature.image}.${fileExtension}`)"
               :alt="feature.title"
             )
               v-card-title.mt-5
@@ -28,10 +28,13 @@
 
 <script>
 import classBinder from '~/utils/class-binder';
+import canUseWebp from '~/utils/can-use-webp';
 import GenericPanel from '~/components/generic/GenericPanel';
+import PictureSource from '~/components/commons/PictureSource';
 export default {
   components: {
     GenericPanel,
+    PictureSource,
   },
   data () {
     this.features = [
@@ -46,7 +49,9 @@ export default {
         image: 'Online Booking BG',
       },
     ];
-    return {};
+    return {
+      canUseWebp: false,
+    };
   },
   computed: {
     headerClasses () {
@@ -70,6 +75,12 @@ export default {
         wide: ['font-l'],
       });
     },
+    fileExtension () {
+      return this.canUseWebp ? 'webp' : 'png';
+    },
+  },
+  async mounted () {
+    this.canUseWebp = await canUseWebp();
   },
 };
 </script>

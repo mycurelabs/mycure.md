@@ -26,6 +26,7 @@ export default {
   },
   data () {
     this.types = [
+      { text: 'Consultations', type: 'clinical-consultation', value: 'clinical-consultation' },
       { text: 'Laboratory', type: 'diagnostic', value: 'lab' },
       { text: 'Imaging', type: 'diagnostic', value: 'imaging' },
       { text: 'PE Packages', type: 'pe', value: 'pe' },

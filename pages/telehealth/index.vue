@@ -4,12 +4,12 @@
     usp(
       has-custom-background
       background-image="Telehealth Landing Page"
+      background-image-file-extension=".webp"
       title="Everything you need to build your virtual practice"
       meta-title="MYCURE Telehealth"
       description="Starting a virtual practice has never been easier. Give your patients the quality care they deserve."
       btn-text="Get Started Free"
-      regular-height="675px"
-      image="Telehealth USP"
+      image="Telehealth Mobile USP"
       image-width="90%"
       image-align="right"
       custom-image-path="telehealth/"
@@ -71,9 +71,7 @@ export default {
     Usp,
     VirtualClinic,
   },
-  middleware: [
-    'disable-route',
-  ],
+  middleware: ['disable-route'],
   data () {
     this.infoPanels = [
       {

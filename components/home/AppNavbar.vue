@@ -117,19 +117,20 @@ export default {
         name: 'Diagnostics',
         route: 'diagnostics',
       },
+      // TODO: re-enable
       // {
       //   name: 'Hospitals',
       //   route: 'hospitals',
       // },
-      // TODO: re-enable
       // {
       //   name: 'Telehealth',
       //   route: 'telehealth',
       // },
-      // {
-      //   name: 'Booking',
-      //   route: 'booking',
-      // },
+      {
+        name: 'Booking',
+        route: 'booking',
+      },
+      // TODO: re-enable
       // {
       //   name: 'For Patients',
       //   route: 'patients',

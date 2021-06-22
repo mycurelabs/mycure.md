@@ -8,7 +8,7 @@
               v-col(cols="12").text-center
                 h1(:class="headerClasses").font-weight-semibold.mb-5 {{ title }}
                 p(:class="descriptionClasses").mb-5.font-open-sans.font-gray {{ description }}
-              v-col(cols="12" md="4")
+              v-col(cols="10" md="4" xl="3")
                 v-card(height="100%" width="100%").pricing-card.rounded-xl.elevation-3
                   v-card-text.text-center
                     picture-source(
@@ -54,7 +54,7 @@ export default {
     SignupButton,
   },
   data () {
-    this.title = 'Get started free and pay as you grow';
+    this.title = 'Try MYCURE Booking FREE!';
     this.description = 'All essential features to help start up your digital booking journey.';
     this.inclusions = [
       'Up to 1 user',
