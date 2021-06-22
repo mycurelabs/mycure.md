@@ -117,6 +117,7 @@ export default {
         name: 'Diagnostics',
         route: 'diagnostics',
       },
+      // TODO: re-enable
       // {
       //   name: 'Hospitals',
       //   route: 'hospitals',
@@ -129,6 +130,7 @@ export default {
         name: 'Booking',
         route: 'booking',
       },
+      // TODO: re-enable
       // {
       //   name: 'For Patients',
       //   route: 'patients',
