@@ -142,9 +142,6 @@ export default {
     Usp,
     SignupButton,
   },
-  middleware: [
-    'disable-route',
-  ],
   data () {
     this.howItWorksContents = [
       {
