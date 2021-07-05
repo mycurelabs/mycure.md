@@ -8,16 +8,25 @@
       v-card-text
         v-row(justify="center")
           v-col(v-for="(type, key) in availableServiceTypes" :key="key" cols="6" md="4")
-            v-card(@click="onSelect(type)")
-              picture-source(
-                :image="type.image"
-                :image-alt="type.text"
-                :image-width="$isMobile ? '50%' : '100%'"
-                image-file-extension=".webp"
-                custom-path="booking/"
-              )
-              v-card-text.text-center
-                h3 {{ type.text }}
+            v-hover(
+              v-slot="{ hover }"
+              open-delay="100"
+            )
+              v-card(
+                hover
+                :color="hover ? 'primary' : 'white'"
+                :class="{'white--text': hover}"
+                @click="onSelect(type)"
+              ).service-card
+                picture-source(
+                  :image="type.image"
+                  :image-alt="type.text"
+                  :image-width="$isMobile ? '50%' : '100%'"
+                  image-file-extension=".webp"
+                  custom-path="booking/"
+                )
+                v-card-text.text-center
+                  h3(:class="hover ? 'white--text' : 'secondary--text'") {{ type.text }}
       v-card-actions
         v-spacer
         v-btn(color="error" outlined depressed x-large @click="dialog = false").text-none Cancel
@@ -109,3 +118,9 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.service-card {
+  border: 2px solid #04B1E7;
+}
+</style>
