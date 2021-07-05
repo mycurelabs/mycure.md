@@ -59,7 +59,6 @@
         color="secondary"
         target="_blank"
         rel="noopener noreferrer"
-        outlined
         block
         large
         :disabled="!canBook"

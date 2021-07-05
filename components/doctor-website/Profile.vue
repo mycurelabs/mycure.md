@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-card(flat width="100%").mt-n16
+  v-card(:color="$isMobile ? '#f9f9f9' : 'white'" flat width="100%").mt-n16
     v-card-text.text-center
       v-avatar(size="200").mt-n16.pa-3.elevation-5
         img(:src="picUrl")
@@ -7,11 +7,11 @@
       h1(v-if="fullName" :class="mainTextClasses").lh-title.black--text Dr. {{ fullName }}
       br
       v-row(justify="center")
-        v-col(v-for="(metric, key) in metricMappings" :key="key" cols="12" md="3").text-center
+        v-col(v-for="(metric, key) in metricMappings" :key="key" cols="6" sm="3").text-center
           v-icon(:color="metric.color") {{ metric.icon }}
           br
           span(:class="`${metric.color}--text`").font-12.lh-title {{ metricData[metric.value] }} {{ metric.title }}
-        v-col(cols="12" md="3").text-center
+        v-col(cols="6" sm="3").text-center
           div.mb-6
             v-menu(
               v-model="socialMenu"
@@ -178,7 +178,7 @@ export default {
     },
     mainTextClasses () {
       return classBinder(this, {
-        mobile: ['font-xs'],
+        mobile: ['font-xs', 'text-center'],
         regular: ['font-24'],
         wide: ['font-m'],
       });

@@ -294,7 +294,7 @@ export default {
 
 <style scoped>
 .main-container {
-  background-color: #f0f0f0;
+  background-color: #f9f9f9;
   width: 100vw;
   margin: 0;
   padding: 0;

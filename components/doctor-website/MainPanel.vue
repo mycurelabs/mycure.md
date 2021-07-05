@@ -22,10 +22,11 @@
           v-col(cols="10" v-if="hasProfessionalInfo").text-center.mb-10
             p(v-if="practicingYears" style="color: #878E9B;").font-open-sans.font-weight-medium {{practicingYears}} Years of Experience
             br(v-else)
-            v-chip(v-for="(specialty, key) in specialties" :key="key" color="#878E9B").ma-1.white--text {{ specialty }}
+            v-chip(v-for="(specialty, key) in specialties" :key="key" color="white").ma-1
+              span(style="color: #878E9B;") {{ specialty }}
           //- Consult btn
           v-col(cols="10" v-if="!$isMobile").text-center.justify-center
-              div(v-if="isBookable" style="width: 25%; margin: auto;").white
+              div(v-if="isBookable").white.btn-banner
                 strong(slot="badge").font-18.warning--text I'm available
               v-hover(
                 v-slot="{ hover }"
@@ -33,13 +34,14 @@
               )
 
                 v-btn(
+                  rounded
                   depressed
                   x-large
                   :color="hover ? 'info' : 'warning'"
                   :class="{ 'font-11' : $isMobile }"
                   :disabled="!isBookable"
                   @click="onBook"
-                ).text-none.font-weight-bold.custom-book-btn.rounded-xl.font-18 {{ hover ? 'Book me now' : 'The doctor is in' }}
+                ).text-none.font-weight-bold.custom-book-btn.font-18 {{ hover ? 'Book me now' : 'The doctor is in' }}
 </template>
 
 <script>
@@ -168,6 +170,17 @@ export default {
 .custom-book-btn {
   height: 70px !important;
   width: 300px;
+}
+
+.btn-banner {
+  width: 25%;
+  margin: auto;
+}
+
+@media screen and (max-width: 500px) {
+  .btn-banner {
+    width: 50%;
+  }
 }
 
 @media screen and (max-width: 700px) {
