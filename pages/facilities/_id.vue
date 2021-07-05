@@ -226,7 +226,9 @@ export default {
       return formatAddress(this.clinic.address, 'street1, street2, city, province, country');
     },
     clinicPhone () {
-      return this.clinic?.phone;
+      const { phone, phones } = this.clinic;
+      if (phones?.length) return phones.join(', ');
+      return phone || '';
     },
     // old
     mode () {
