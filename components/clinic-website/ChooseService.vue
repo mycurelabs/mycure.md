@@ -1,23 +1,22 @@
 <template lang="pug">
-  v-dialog(v-model="dialog" width="900")
+  v-dialog(v-model="dialog" width="600")
     v-card
       v-card-title
         v-spacer
-        h2 Choose a Service
+        h3 Choose a Service
         v-spacer
       v-card-text
         v-row(justify="center")
-          v-col(v-for="(type, key) in availableServiceTypes" :key="key" cols="6" md="3")
+          v-col(v-for="(type, key) in availableServiceTypes" :key="key" cols="6" md="4")
             v-card(@click="onSelect(type)")
+              picture-source(
+                :image="type.image"
+                :image-alt="type.text"
+                :image-width="$isMobile ? '50%' : '100%'"
+                image-file-extension=".webp"
+                custom-path="booking/"
+              )
               v-card-text.text-center
-                picture-source(
-                  :image="type.image"
-                  :image-alt="type.text"
-                  image-file-extension=".webp"
-                  image-width="50%"
-                  custom-path="clinics-website/"
-                )
-                br
                 h3 {{ type.text }}
       v-card-actions
         v-spacer
@@ -52,7 +51,7 @@ export default {
       'clinical-consultation': {
         text: 'Consultations',
         value: 'clinical-consultation',
-        image: 'Consult',
+        image: 'Doctors',
       },
       'clinical-procedure': {
         text: 'Procedures',
@@ -80,11 +79,6 @@ export default {
         image: 'Dental',
       },
     };
-    this.DOCTOR_TYPE = {
-      text: 'Doctors',
-      value: 'doctors',
-      image: 'Doctors',
-    };
     return {};
   },
   computed: {
@@ -102,7 +96,6 @@ export default {
         return this.TYPE_MAPPINGS[type];
       });
 
-      if (this.hasDoctors) types.push(this.DOCTOR_TYPE);
       if (!types.length) return [];
       return types;
     },

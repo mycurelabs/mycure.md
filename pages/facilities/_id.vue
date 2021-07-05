@@ -18,7 +18,7 @@
         v-col(cols="10").text-center
           v-avatar(size="200").mb-5
             img(:src="picURL")
-          h1.mb-5 {{clinicName}}
+          h1.mb-5.font-usp-primary {{clinicName}}
           div(style="width: 25%; margin: auto;").white
             strong(slot="badge").font-18.warning--text We're Open!
           v-hover(
