@@ -203,7 +203,7 @@ export default {
       return [
         'lh-title',
         'font-weight-bold',
-        'font-usp-primary',
+        // 'font-usp-primary',
         { 'pre-white-space': this.toParse(this.parseTitle) },
         classes,
       ];
@@ -237,7 +237,8 @@ export default {
       return [
         classBinder(this, {
           mobile: ['text-center'],
-          regular: ['font-s'],
+          regular: ['font-xs'],
+          wide: ['font-s'],
         }),
       ];
     },

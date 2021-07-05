@@ -7,9 +7,9 @@
           slot(name="title")
             h2(:class="titleClasses").lh-title.font-weight-semibold {{ title }}
         v-col(cols="12" :md="contentColSize").text-center.py-3
-          div(:class="descriptionClasses").font-open-sans.font-gray
+          div
             slot(name="description")
-              p {{ description }}
+              p(:class="descriptionClasses").font-open-sans.font-gray {{ description }}
         v-col(cols="12" :md="iconContainerColSize")
           v-row(justify="center")
             slot(name="items")

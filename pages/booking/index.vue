@@ -18,10 +18,11 @@
     //- 2nd panel
     features(
       title="Acquire and accomodate more patients"
-      meta-title="How It Works?"
       :items="howItWorksContents"
       image-dir="booking/"
     )
+      template(slot="description")
+        p(:class="howItWorksClass").primary--text.font-weight-semibold How it works?
       template(slot="items")
         v-col(cols="12" md="4" xl="3" v-for="(item, key) in howItWorksContents" :key="key").text-center
           picture-source(
@@ -113,7 +114,8 @@
             facility-type="clinic"
             :x-large="$isWideScreen"
             :large="!$isWideScreen"
-          ).text-none.font-s
+            :class="buttonClasses"
+          ).text-none
             span Get Started Free
     //- 6th panel
     plans.mb-n3
@@ -261,6 +263,13 @@ export default {
       return classBinder(this, {
         regular: ['font-xs'],
         wide: ['font-s'],
+      });
+    },
+    howItWorksClass () {
+      return classBinder(this, {
+        mobile: ['font-s'],
+        regular: ['font-m'],
+        wide: ['font-l'],
       });
     },
   },

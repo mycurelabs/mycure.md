@@ -68,7 +68,7 @@ export default {
   letter-spacing: -0.5px;
 }
 .font-s {
-  font-size: 18px !important;
+  font-size: 19px !important;
 }
 .font-xs {
   font-size: 16px !important;

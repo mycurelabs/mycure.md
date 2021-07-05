@@ -11,7 +11,6 @@
       parse-title="regular"
       parse-meta-title="regular"
       btn-text="Get Started"
-      btn-color="success"
       image="Clinics USP"
       :image-width="$isMobile ? '100%' : '90%'"
       custom-image-path="clinics/"
