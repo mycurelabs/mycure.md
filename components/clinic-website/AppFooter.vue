@@ -1,6 +1,6 @@
 <template lang="pug">
   div
-    v-footer(dark color="#343A40").pa-5.pb-16
+    v-footer(dark color="#343A40" :class="$isMobile ? 'pb-mobile' : 'pb-16'").pa-5
         v-row(:class="{'flex-column text-center': $isMobile}").d-md-flex
           v-col.font-14
             div(:class="{'text-center justify-center': $isMobile}").d-flex
