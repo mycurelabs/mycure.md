@@ -16,10 +16,10 @@
     ).panel-bg
       v-row(justify="center")
         v-col(cols="10").text-center
-          v-avatar(size="200").mb-5
+          v-avatar(:size="$isMobile ? '150' : '200'").mb-5
             img(:src="picURL")
-          h1.mb-5.font-usp-primary {{clinicName}}
-          div(style="width: 25%; margin: auto;").white
+          h1(:class="clinicNameClasses").mb-5.font-usp-primary {{clinicName}}
+          div.white.btn-banner
             strong(slot="badge").font-18.warning--text We're Open!
           v-hover(
             v-slot="{ hover }"
@@ -93,6 +93,7 @@ import { getOrganization } from '~/utils/axios/organizations';
 import { formatAddress } from '~/utils/formats';
 import canUseWebp from '~/utils/can-use-webp';
 import headMeta from '~/utils/head-meta';
+import classBinder from '~/utils/class-binder';
 // - services
 import { fetchClinicWebsiteDoctors } from '~/services/organization-members';
 import {
@@ -246,7 +247,7 @@ export default {
       return tags.includes('dummy');
     },
     picURL () {
-      return this.clinic?.picURL || require('~/assets/images/clinics-website/hospital-thumbnail.jpg');
+      return this.clinic?.picURL || require('~/assets/images/facility-placeholder.jpg');
     },
     clinicName () {
       return this.clinic?.name || 'MYCURE Clinic';
@@ -325,6 +326,14 @@ export default {
     },
     background () {
       return this.canUseWebp ? 'bg-webp' : 'bg-png';
+    },
+    // Classes
+    clinicNameClasses () {
+      return classBinder(this, {
+        mobile: ['font-m'],
+        regular: ['font-l'],
+        wide: ['font-xl'],
+      });
     },
   },
   async mounted () {
@@ -513,5 +522,15 @@ a {
 }
 .search-container {
   height: 400px;
+}
+.btn-banner {
+  width: 25%;
+  margin: auto;
+}
+
+@media screen and (max-width: 500px) {
+  .btn-banner {
+    width: 50%;
+  }
 }
 </style>

@@ -15,7 +15,7 @@
                   br
                   h5.white--text.step-title.ml-4  {{item.title}}
                   p.white--text.step-caption.ml-4 {{item.content}}
-          v-col(cols="12" md="6").pa-10
+          v-col(cols="12" md="6" :class="{'pa-10': !$isMobile}")
             v-card(style="border-radius: 10px;")
               v-card-text.pa-10
                 h3.mb-5 Choose a service
