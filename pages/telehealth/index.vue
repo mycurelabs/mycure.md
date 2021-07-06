@@ -71,7 +71,6 @@ export default {
     Usp,
     VirtualClinic,
   },
-  middleware: ['disable-route'],
   data () {
     this.infoPanels = [
       {

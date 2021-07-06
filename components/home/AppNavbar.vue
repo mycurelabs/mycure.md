@@ -122,10 +122,10 @@ export default {
       //   name: 'Hospitals',
       //   route: 'hospitals',
       // },
-      // {
-      //   name: 'Telehealth',
-      //   route: 'telehealth',
-      // },
+      {
+        name: 'Telehealth',
+        route: 'telehealth',
+      },
       {
         name: 'Booking',
         route: 'booking',
