@@ -87,7 +87,7 @@ export default {
     google: {
       families: [
         'Poppins:400,500,600,700,900',
-        'Open Sans:400,700',
+        'Open Sans:400,600',
       ],
     },
   },
