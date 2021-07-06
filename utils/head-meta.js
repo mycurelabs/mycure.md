@@ -79,9 +79,8 @@ export default ({ title, description, socialBanner }) => {
       {
         hid: 'twitter:description',
         name: 'twitter:description',
-        content:'MYCURE is a healthcare platform that connects physicians, clinics, hospitals, and medical organizations to anyone in need.',
+        content: 'MYCURE is a healthcare platform that connects physicians, clinics, hospitals, and medical organizations to anyone in need.',
       },
-        
       // mobile meta
       {
         hid: 'apple-mobile-web-app-title',
