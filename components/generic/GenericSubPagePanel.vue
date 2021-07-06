@@ -17,7 +17,7 @@
           h3 {{superTitle}}
       div.mb-10
         slot(name="title")
-          h2(v-if="title" :class="defaultTitleClasses") {{ title }}
+          h2(:class="defaultTitleClasses") {{ title }}
       div.mb-10
         slot(name="content")
           p(v-if="content" :class="defaultContentClasses") {{ content }}

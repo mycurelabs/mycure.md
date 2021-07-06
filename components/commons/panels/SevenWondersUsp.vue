@@ -12,8 +12,6 @@
     v-container.content
       v-row(justify="center" align="center" :style="{ height: panelHeight }")
         generic-sub-page-panel(
-          :title="uspTitle"
-          :title-classes="titleClasses"
           :super-title="superTitle"
           :super-title-classes="superTitleClasses"
           :content="uspDescription"
@@ -22,8 +20,8 @@
           :media-column-bindings="mediaColumnBindings"
           :generic-panel-bindings="genericPanelBindings"
         )
-          template(v-if="slottedTitle" slot="title")
-            slot(name="title")
+          template(slot="title")
+            h1(:class="titleClasses") {{ uspTitle }}
           template(slot="image" v-if="!hasCustomBackground || $isMobile")
             img(
               :src="require(`~/assets/images/${customImagePath}${image}.png`)"
@@ -54,10 +52,6 @@ export default {
     SignupButton,
   },
   props: {
-    slottedTitle: {
-      type: Boolean,
-      default: false,
-    },
     title: {
       type: String,
       default: '',
