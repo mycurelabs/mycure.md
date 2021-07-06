@@ -78,7 +78,10 @@ export default {
     '@nuxtjs/pwa',
     '@nuxtjs/dotenv',
     'nuxt-webfontloader',
+    // Sitemap should always be declared last according to docs https://sitemap.nuxtjs.org/guide/setup
+    '@nuxtjs/sitemap',
   ],
+  // Google Web Font Loader Module
   webfontloader: {
     google: {
       families: [
@@ -104,7 +107,8 @@ export default {
     treeShake: true,
     optionsPath: './vuetify.options.js',
   },
-
+  
+  // Google Analytics Module
   googleAnalytics: {
     id: process.env.GA_ID,
     autoTracking: {
@@ -122,7 +126,10 @@ export default {
       },
     },
   },
-
+  sitemap: {
+    hostname: 'https://mycure.md',
+    gzip: true,
+  },
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
     transpile: [
