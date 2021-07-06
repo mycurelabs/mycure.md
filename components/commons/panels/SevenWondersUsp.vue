@@ -12,16 +12,16 @@
     v-container.content
       v-row(justify="center" align="center" :style="{ height: panelHeight }")
         generic-sub-page-panel(
-          :super-title="superTitle"
-          :super-title-classes="superTitleClasses"
+          :title="uspTitle"
+          :title-classes="titleClasses"
           :content="uspDescription"
           :content-classes="descriptionClasses"
           :content-column-bindings="contentColumnBindings"
           :media-column-bindings="mediaColumnBindings"
           :generic-panel-bindings="genericPanelBindings"
         )
-          template(slot="title")
-            h1(:class="titleClasses") {{ uspTitle }}
+          template(slot="super-title")
+            h1(:class="superTitleClasses") {{ superTitle }}
           template(slot="image" v-if="!hasCustomBackground || $isMobile")
             img(
               :src="require(`~/assets/images/${customImagePath}${image}.png`)"
@@ -96,7 +96,7 @@ export default {
     },
     btnColor: {
       type: String,
-      default: 'accent',
+      default: 'success',
     },
     // - If custom btn
     slottedBtn: {
