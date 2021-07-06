@@ -93,7 +93,7 @@
               v-tab-item(v-for="(mockup, key) in websiteMockups" :key="key" :value="mockup.value")
                 picture-source(
                   :image="mockup.image"
-                  :image-alt="websiteType"
+                  :image-alt="`A ${websiteType} website mockup on laptop screen`"
                   image-width="80%"
                   image-file-extension=".webp"
                   custom-path="booking/"
@@ -151,18 +151,21 @@ export default {
         description: 'Create your professional website and add your availability preferences.',
         icon: 'Set up your page',
         iconExtension: '.webp',
+        alt: 'Man browsing a website page artwork',
       },
       {
         title: 'Share your link',
         description: 'Send your website URL to your family, network, and patients.',
         icon: 'Share your link',
         iconExtension: '.webp',
+        alt: 'Woman pressing the share button artwork',
       },
       {
         title: 'Get booked',
         description: 'Patients pick a time and the consultation is added in your calendar',
         icon: 'Get Booked',
         iconExtension: '.webp',
+        alt: 'Doctor and patient appointment confirmation artwork',
       },
     ];
     this.thirdPanelContents = [
@@ -170,16 +173,19 @@ export default {
         icon: 'Organized Patient visits',
         iconExtension: '.webp',
         title: 'Organized patient visits for easy COVID-19 safety compliance.',
+        alt: 'Health checklist icon',
       },
       {
         icon: 'open schedule',
         iconExtension: '.webp',
         title: 'Open schedule to the days and times that work for you. Reminders go out automatically.',
+        alt: 'Phone scheduling icon',
       },
       {
         icon: 'covers from virtual',
         iconExtension: '.webp',
         title: 'Covers from virtual (telehealth) to physical (face to face) accommodation',
+        alt: 'Virtual telehealth icon',
       },
     ];
     this.fifthPanelContents = {
@@ -187,9 +193,9 @@ export default {
       description: 'MYCURE Booking can also be used for clinics, diagnostic centers, and hospitals to seamlessly organize your patient visits. It has APIs that can be integrated in your existing information systems.',
       imageBindings: {
         image: 'As your practice grows.png',
+        imageAlt: 'Hospitals growing and scaling up artwork',
         customPath: 'commons/',
         extensionExclusive: true,
-        imageAlt: 'MYCURE Booking',
       },
     };
     this.websiteMockups = [
@@ -220,6 +226,7 @@ export default {
         image: 'Booking Mobile',
         customImagePath: 'booking/',
         imageAlign: 'right',
+        imageAlt: 'Booking a schedule on a phone artwork',
       };
     },
     metaTitleClasses () {

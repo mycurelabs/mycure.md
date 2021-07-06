@@ -9,9 +9,9 @@
         div.text-center.pb-3
           picture-source(
             custom-path="pricing/"
-            :image="bundle.image"
             image-file-extension=".webp"
-            :image-alt="bundle.title"
+            image-alt="Health facility pricing icon"
+            :image="bundle.image"
             :image-width="cardType === 'enterprise' ? '200' : iconSize"
           )
         div.text-center.description-container

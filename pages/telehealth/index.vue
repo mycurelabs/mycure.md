@@ -78,6 +78,7 @@ export default {
         description: 'Your patient\'s medical records are both accessible and secure in our system that complies with international data privacy standards. We make it our business to make sure your electronic health records are kept safe so you can focus on what you do best-taking care of your patients.',
         imageBindings: {
           image: 'MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-B-secure-data.webp',
+          imageAlt: 'Securing of medical records',
           customPath: 'telehealth/',
         },
         contentAlign: 'right',
@@ -93,6 +94,7 @@ export default {
         ],
         imageBindings: {
           image: 'Practice.png',
+          imageAlt: 'Physicians and medical workers',
           customPath: 'doctors-clinics/',
           extensionExclusive: true,
         },

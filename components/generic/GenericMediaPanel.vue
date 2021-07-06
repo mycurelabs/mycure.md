@@ -144,7 +144,7 @@ export default {
         ...imageBindings,
         image,
         imageFileExtension: `.${extension}`,
-        imageAlt: imageBindings.alt || this.content.title,
+        imageAlt: imageBindings.imageAlt || imageBindings.alt || this.content.title,
         extensionExclusive: imageBindings.extensionExclusive || (imageBindings.mobileImage && this.$isMobile),
       };
       return bindings;

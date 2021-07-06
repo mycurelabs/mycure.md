@@ -19,7 +19,7 @@
                   :extension-exclusive="extensionExclusive"
                   :custom-path="imageDir"
                   :image="item.icon"
-                  :image-alt="item.title"
+                  :image-alt="item.alt || item.title"
                   :image-file-extension="item.iconExtension || '.png'"
                   :image-width="!$isMobile ? imageWidth : imageWidthMobile"
                 )

@@ -9,7 +9,7 @@
       //- ).background
       img(
         src="~/assets/images/home/Homepage USP BG.png"
-        alt="MYCURE Seven wonders of healthcare"
+        alt="Bushes and clouds background artwork"
         width="100%"
       ).background
       v-container.content.ml-n6

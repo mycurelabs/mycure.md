@@ -171,6 +171,7 @@ export default {
       description: 'Join MYCURE ONE, a global online directory of modern healthcare facilities so patients can easily find and book an appointment with you anytime.',
       imageBindings: {
         image: 'Expand your reach.webp',
+        imageAlt: 'Man browsing a clinic website artwork',
         customPath: 'commons/',
       },
       contentAlign: 'left',
@@ -179,6 +180,7 @@ export default {
       title: 'Practicing solo?',
       imageBindings: {
         image: 'Practicing Solo Ipad.webp',
+        imageAlt: 'Woman video call in Ipad tablet',
         imageWidth: '90%',
         customPath: 'clinics/',
       },

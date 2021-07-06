@@ -16,7 +16,7 @@
                       custom-path="pricing/"
                       image="Essentials"
                       image-file-extension=".png"
-                      image-alt="Booking Essentials"
+                      image-alt="Health facility with a tree icon"
                       image-width="200"
                     )
                   v-card-title

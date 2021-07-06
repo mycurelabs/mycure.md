@@ -8,7 +8,7 @@
               img(
                 height="30"
                 src="~/assets/images/mycure-footer-logo.png"
-                alt="MYCURE"
+                alt="MYCURE logo"
                 @click="$nuxt.$router.push({ name: 'index' })"
               ).ml-2
             p(v-if="!$isMobile").ml-5 Copyright &#169;{{new Date().getFullYear()}} All Rights Reserved.

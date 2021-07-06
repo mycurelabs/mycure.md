@@ -9,13 +9,14 @@
     hide-learn-more
   )
     template(slot="description")
-      p Using MYCURE makes your practice&nbsp;
+      p(:class="descriptionClasses").font-open-sans.font-gray Using MYCURE makes your practice&nbsp;
         br(v-if="!$isMobile")
         | Compliant, Secure, and Interoperable
 </template>
 
 <script>
 import Features from './Features';
+import classBinder from '~/utils/class-binder';
 export default {
   components: {
     Features,
@@ -42,6 +43,17 @@ export default {
       },
     ];
     return {};
+  },
+  computed: {
+    descriptionClasses () {
+      return [
+        classBinder(this, {
+          mobile: ['font-xs'],
+          regular: ['font-s'],
+          wide: ['font-m'],
+        }),
+      ];
+    },
   },
 };
 </script>

@@ -27,7 +27,7 @@
                 ).service-card
                   picture-source(
                     :image="service.image"
-                    :image-alt="service.text"
+                    :image-alt="service.alt"
                     :image-width="$isMobile ? '50%' : '100%'"
                     image-file-extension=".webp"
                     custom-path="doctor-website/"
@@ -55,12 +55,14 @@ export default {
         type: 'telehealth',
         color: 'accent',
         image: 'Teleconsult',
+        alt: 'Doctor talking to a patient online artwork',
       },
       {
         text: 'Clinic Visit',
         type: 'physical',
         color: 'secondary',
         image: 'Clinic Visit',
+        alt: 'Doctor talking to a patient in a hospital room',
       },
     ];
     return {};

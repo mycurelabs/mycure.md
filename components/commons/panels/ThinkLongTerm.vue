@@ -37,6 +37,7 @@ export default {
         descriptionAppend: 'MYCURE has open APIs to give you more flexibility in integrating with other systems.',
         imageBindings: {
           image: 'Preventing Failures.png',
+          imageAlt: 'Doctor and patient communicating artwork',
           customPath: 'commons/',
           extensionExclusive: true,
         },
@@ -47,6 +48,7 @@ export default {
         description: 'The great thing about starting with MYCURE is that you only need to upgrade once you need to. We’re here to make your practice so much easier to manage because you are a crucial part of healthcare. Together, let’s make this world a healthier place.',
         imageBindings: {
           image: 'As your practice grows.png',
+          imageAlt: 'Hospitals growing and scaling up artwork',
           customPath: 'commons/',
           extensionExclusive: true,
         },

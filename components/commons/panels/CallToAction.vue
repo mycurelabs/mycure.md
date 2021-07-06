@@ -60,6 +60,7 @@ export default {
       ],
       imageBindings: {
         image: 'Let us do the work.webp',
+        imageAlt: 'Hospital and smartphone artwork',
         customPath: 'commons/',
       },
       contentAlign: 'right',
@@ -72,6 +73,7 @@ export default {
       ],
       imageBindings: {
         image: 'Let us do the work.webp',
+        imageAlt: 'Hospital and smartphone artwork',
         customPath: 'commons/',
       },
       contentAlign: 'right',

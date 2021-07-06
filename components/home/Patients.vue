@@ -15,8 +15,8 @@
         ).text-center
           v-card(flat)
             v-img(
+              alt="Mobile health application on Iphone"
               :src="require(`~/assets/images/home/${feature.image}.${fileExtension}`)"
-              :alt="feature.title"
             )
               v-card-title.mt-5
                 v-spacer

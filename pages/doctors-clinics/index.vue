@@ -138,6 +138,7 @@ export default {
           customPath: 'doctors-clinics/',
           image: 'Lightning fast.webp',
           mobileImage: 'Lightning fast mobile.png',
+          imageAlt: 'Print preview of health prescription receipt',
         },
       },
       {
@@ -148,6 +149,7 @@ export default {
           customPath: 'doctors-clinics/',
           image: 'Going digital.webp',
           mobileImage: 'Going digital mobile.png',
+          imageAlt: 'Growth chart showing an increasing trend',
         },
       },
       {
@@ -157,6 +159,7 @@ export default {
         imageBindings: {
           customPath: 'features/',
           image: 'MYCURE-virtual-clinic-healthcare-practice-online-features-C-telehealth.webp',
+          imageAlt: 'Woman in a video call using MYCURE telehealth',
         },
       },
     ];
@@ -198,6 +201,7 @@ export default {
       contentAlign: 'right',
       imageBindings: {
         image: 'Expand your reach.webp',
+        imageAlt: 'Man browsing a clinic website artwork',
         customPath: 'commons/',
       },
     };
@@ -206,6 +210,7 @@ export default {
       description: 'Easily coordinate with other physicians in your group practice and centralize your medical records in one comprehensive workspace.',
       imageBindings: {
         image: 'Practice.webp',
+        imageAlt: 'Physicians and health workers',
         customPath: 'doctors-clinics/',
       },
       list: [

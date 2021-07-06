@@ -4,7 +4,7 @@
       picture-source(
         :image-file-extension="backgroundImageFileExtension"
         :image="backgroundImage"
-        :image-alt="title"
+        :image-alt="imageAlt || title"
         :image-styles="backgroundStyle"
         :extension-exclusive="extensionExclusive"
         :custom-path="customImagePath"
@@ -162,6 +162,11 @@ export default {
     imageAlign: {
       type: String,
       default: 'left',
+    },
+    // - Custom alt of image
+    imageAlt: {
+      type: String,
+      default: null,
     },
     // USP Custom background
     hasCustomBackground: {

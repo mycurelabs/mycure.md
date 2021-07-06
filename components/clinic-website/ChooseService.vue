@@ -20,7 +20,7 @@
               ).service-card
                 picture-source(
                   :image="type.image"
-                  :image-alt="type.text"
+                  :image-alt="type.alt"
                   :image-width="$isMobile ? '50%' : '100%'"
                   image-file-extension=".webp"
                   custom-path="booking/"
@@ -61,31 +61,37 @@ export default {
         text: 'Consultations',
         value: 'clinical-consultation',
         image: 'Doctors',
+        alt: 'Doctor giving consultation artwork',
       },
       'clinical-procedure': {
         text: 'Procedures',
         value: 'clinical-procedure',
         image: 'Procedures',
+        alt: 'Nurse and patient artwork',
       },
       lab: {
         text: 'Laboratory',
         value: 'lab',
         image: 'Laboratory',
+        alt: 'Health specialists working in a laboratory artwork',
       },
       imaging: {
         text: 'Imaging',
         value: 'imaging',
         image: 'Imaging',
+        alt: 'Doctors assisting an elderly patient artwork',
       },
       pe: {
         text: 'PE Packages',
         value: 'pe',
         image: 'PE Packages',
+        alt: 'Eye test examination artwork',
       },
       dental: {
         text: 'Dental',
         value: 'dental',
         image: 'Dental',
+        alt: 'Dentist working on a dental procedure artwork',
       },
     };
     return {};

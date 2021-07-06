@@ -184,6 +184,7 @@ export default {
       ],
       imageBindings: {
         image: 'MYCURE-virtual-clinic-healthcare-practice-online-features-G-diagnostic-results.webp',
+        imageAlt: 'Diagnostic and x-ray results',
         customPath: 'features/',
       },
     };
@@ -199,6 +200,7 @@ export default {
         ],
         imageBindings: {
           image: 'easy.webp',
+          imageAlt: 'Charts and graphs artwork',
           customPath: 'diagnostics/',
         },
         contentAlign: 'left',
@@ -213,6 +215,7 @@ export default {
         ],
         imageBindings: {
           image: 'Fast results.webp',
+          imageAlt: 'Sending out health results artwork',
           customPath: 'diagnostics/',
         },
         contentAlign: 'right',
@@ -223,6 +226,7 @@ export default {
       description: 'Join MYCURE ONE, a global online directory of modern healthcare facilities so patients can easily find and book an appointment with you anytime.',
       imageBindings: {
         image: 'Expand your reach.webp',
+        imageAlt: 'Man browsing a clinic website artwork',
         customPath: 'commons/',
       },
       contentAlign: 'right',
@@ -233,6 +237,7 @@ export default {
       description: 'Cover all your patient journeys with MYCURE’s most complete clinic management system.',
       imageBindings: {
         image: 'FullService.webp',
+        imageAlt: 'Doctor and patient transacting over a counter artwork',
         customPath: 'diagnostics/',
       },
       contentAlign: 'left',
