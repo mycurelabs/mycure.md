@@ -10,7 +10,7 @@
                 src="../../assets/images/HIPAA Badge.png"
               )
             v-col(cols="12" md="8")
-              h1(:class="headerClasses") MYCURE is HIPAA Compliant
+              h2(:class="headerClasses") MYCURE is HIPAA Compliant
               br
               p(:class="descriptionClasses") MYCURE demonstrates its commitment to industry-leading best practices for security and privacy of protected health information as required under HIPAA.
               div

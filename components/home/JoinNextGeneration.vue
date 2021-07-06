@@ -2,7 +2,7 @@
   v-row(justify="center")
     generic-panel(:row-bindings="{ justify: 'center' }")
       v-col(cols="12" md="8" xl="6").text-center
-        h1(:class="{ 'font-l mb-8' : !$isMobile, 'font-m mb-6' : $isMobile }").title-line-spacing.white--text Join the next generation of healthcare providers today.
+        h2(:class="{ 'font-l mb-8' : !$isMobile, 'font-m mb-6' : $isMobile }").title-line-spacing.white--text Join the next generation of healthcare providers today.
         mc-btn(
           rounded
           depressed
