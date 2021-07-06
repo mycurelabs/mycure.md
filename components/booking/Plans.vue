@@ -6,7 +6,7 @@
           v-col(cols="12")
             v-row(align="center" justify="center")
               v-col(cols="12").text-center
-                h1(:class="headerClasses").font-weight-semibold.mb-5 {{ title }}
+                h2(:class="headerClasses").font-weight-semibold.mb-5 {{ title }}
                 p(:class="descriptionClasses").mb-5.font-open-sans.font-gray {{ description }}
               v-col(cols="10" md="4" xl="3")
                 v-card(height="100%" width="100%").pricing-card.rounded-xl.elevation-3
