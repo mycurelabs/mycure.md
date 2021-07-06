@@ -78,6 +78,7 @@ export default {
     '@nuxtjs/pwa',
     '@nuxtjs/dotenv',
     'nuxt-webfontloader',
+    '@nuxtjs/robots',
     // Sitemap should always be declared last according to docs https://sitemap.nuxtjs.org/guide/setup
     '@nuxtjs/sitemap',
   ],
