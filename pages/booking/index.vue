@@ -53,7 +53,7 @@
               rounded
               :x-large="$isWideScreen"
               :large="!$isWideScreen"
-              color="accent"
+              color="success"
             ).text-none.font-s
               span Get Started Free
     //- 4th panel
@@ -110,7 +110,7 @@
           signup-button(
             depressed
             rounded
-            color="accent"
+            color="success"
             facility-type="clinic"
             :x-large="$isWideScreen"
             :large="!$isWideScreen"
