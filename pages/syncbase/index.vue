@@ -29,7 +29,7 @@
     //-   dummy
     //- )
     //- 3rd panel
-    syncbase(hide-btn version-two)
+    syncbase(hide-btn :version="2")
     //- 4th panel
     div.mx-n3.grey-bg
       features(

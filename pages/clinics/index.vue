@@ -23,7 +23,7 @@
     div.grey-bg.mx-n3
       workflow
     //- 3rd panel
-    syncbase(version-two)
+    syncbase(:version="2")
     //- 4th panel
     div.grey-bg.mx-n3
       mycure-csi

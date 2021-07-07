@@ -40,7 +40,7 @@
     //-         v-col
     //-           span(:class="descriptionClasses") {{ item }}
     //- 6th panel
-    syncbase
+    syncbase(:version="3")
     //- 7th panel
     think-long-term(extended)
     //- 8th panel

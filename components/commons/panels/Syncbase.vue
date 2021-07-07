@@ -2,17 +2,19 @@
   v-container
     v-row(justify="center")
       generic-sub-page-panel(
-        :title="panelTitle"
         content-right
+        :title="panelTitle"
+        :title-classes="headerClasses"
+        :center-panel-title="version === 3 ? 'Enjoy the best of both worlds' : null"
         :media-column-bindings="mediaColumnBindings"
         :content-column-bindings="contentColumnBindings"
         :superTitleClasses="superTitleClasses"
         :hide-btn="hideBtn"
       )
-        div(v-if="!versionTwo" slot="super-title")
+        div(v-if="version === 1" slot="super-title")
           p.primary--text MYCURE ONLINE & OFFLINE
         div(slot="content")
-          template(v-if="!versionTwo")
+          template(v-if="version !== 2")
             p(:class="descriptionClasses") Work as if you have an in-house server with the convenience of the cloud. Create your medical records locally using multiple devices even if the internet is down! Once back online, it instantly syncs your data into the cloud.
           template(v-else)
             p(:class="descriptionClasses") With MYCURE Syncbase, work as if you have an in-house server with the convenience of the cloud. Create your medical records locally using multiple devices even if the internet is down! Once back online, it instantly syncs your data into the cloud.
@@ -50,9 +52,9 @@ export default {
     GenericSubPagePanel,
   },
   props: {
-    versionTwo: {
-      type: Boolean,
-      default: false,
+    version: {
+      type: Number,
+      default: 1,
     },
     hideBtn: {
       type: Boolean,
@@ -61,16 +63,24 @@ export default {
   },
   computed: {
     panelTitle () {
-      return this.versionTwo ? 'Internet connection won\'t be a problem' : 'Enjoy the best of both worlds';
+      switch (this.version) {
+        case 2:
+          return 'Enjoy the best of both worlds';
+        case 3:
+          return 'MYCURE works online and offline';
+        default:
+          return 'Internet connection won\'t be a problem';
+      }
     },
     headerClasses () {
       const headerClasses = [
         classBinder(this, {
-          mobile: ['font-m'],
-          regular: ['font-l'],
+          mobile: ['font-s'],
+          regular: ['font-m'],
           wide: ['font-xl'],
         }),
-        'lh-title',
+        'font-weight-semibold',
+        'primary--text',
       ];
       return headerClasses;
     },
@@ -96,6 +106,16 @@ export default {
         'font-open-sans',
         'font-weight-bold',
         'primary--text',
+      ];
+    },
+    centerPanelTitleClasses () {
+      return [
+        classBinder(this, {
+          mobile: ['font-m', 'text-center'],
+          regular: ['font-l'],
+          wide: ['font-xl'],
+        }),
+        'font-weight-semibold',
       ];
     },
     contentColumnBindings () {
