@@ -47,12 +47,14 @@
           text
           :block="$isMobile"
           href="http://culture.mycure.md/"
+          rel="noreferrer noopener"
         ).text-none.font-16.letter-spacing-normal Careers
         v-btn(
           color="primary"
           text
           :block="$isMobile"
           href="https://blog.mycure.md/"
+          rel="noreferrer noopener"
         ).text-none.font-16.letter-spacing-normal Blog
 </template>
 
