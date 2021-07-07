@@ -13,6 +13,18 @@
       :media-column-bindings="{ cols: 12, md: 6, offsetMd: 1, xl: 6}"
       :content-column-bindings="{ cols: 12, md: 5 }"
     )
+      template(slot="cta-button")
+        mc-btn(
+          color="success"
+          href="https://calendly.com/mycure/demo"
+          target="_blank"
+          rel="noopener noreferrer"
+          depressed
+          rounded
+          :large="!$isWideScreen"
+          :x-large="$isWideScreen"
+          :class="uspBtnClasses"
+        ).text-none Book a demo today
     //- 2nd panel
     features(
       title="Easy to implement. Easy to maintain"
@@ -146,6 +158,15 @@ export default {
         'font-gray',
       ];
       return descriptionClasses;
+    },
+    uspBtnClasses () {
+      return [
+        classBinder(this, {
+          mobile: ['text-center'],
+          regular: ['font-xs'],
+          wide: ['font-s'],
+        }),
+      ];
     },
   },
   mounted () {

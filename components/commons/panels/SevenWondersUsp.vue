@@ -28,15 +28,17 @@
               :alt="image"
               :width="imageWidth"
             )
-          div(slot="cta-button" :class="{'text-center': $isMobile}")
-            signup-button(
-              depressed
-              rounded
-              :large="!$isWideScreen"
-              :x-large="$isWideScreen"
-              :class="btnClasses"
-              :color="btnColor"
-            ).text-none.letter-spacing-normal {{ btnText }}
+          template(slot="cta-button")
+            div(:class="{'text-center': $isMobile}")
+              slot(name="cta-button")
+                signup-button(
+                  depressed
+                  rounded
+                  :large="!$isWideScreen"
+                  :x-large="$isWideScreen"
+                  :class="btnClasses"
+                  :color="btnColor"
+                ).text-none.letter-spacing-normal {{ btnText }}
 </template>
 
 <script>
