@@ -1,10 +1,10 @@
 <template lang="pug">
   generic-media-panel(
     :content="callToActionPanel"
-    :center-panel-title-classes="headerClasses"
+    :center-panel-title-classes="titleClasses"
     :content-classes="descriptionClasses"
     :super-title-classes="subheaderClasses"
-    :title-classes="titleClasses"
+    :title-classes="[...titleClasses, 'primary--text']"
     hide-btn
     align="center"
   )
@@ -111,7 +111,6 @@ export default {
         }),
         'lh-title',
         'font-weight-semibold',
-        'primary--text',
       ];
       return titleClasses;
     },

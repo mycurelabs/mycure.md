@@ -35,6 +35,21 @@
         extension-exclusive
         :items="features"
       )
+    //- 3rd panel
+    generic-media-panel(:content="thirdPanel")
+      template(slot="content")
+        h2(:class="headerClasses") Beautiful user experience
+        br
+        h2(:class="headerClasses").primary--text You won't feel like you are at work.
+      template(slot="cta-button")
+        signup-button(
+          depressed
+          rounded
+          :x-large="$isWideScreen"
+          :large="!$isWideScreen"
+          color="success"
+        ).text-none.font-s
+          span Get Started
     //- 6th panel
     syncbase(:version="3")
     //- 7th panel
@@ -57,15 +72,15 @@ import classBinder from '~/utils/class-binder';
 // - constants
 import { CLINICS_PRICING } from '~/constants/pricing';
 // - components
-// import GenericMediaPanel from '~/components/commons/generic-media-panel';
 import Usp from '~/components/commons/panels/SevenWondersUsp';
 
 export default {
   components: {
     CallToAction: () => import('~/components/commons/panels/CallToAction'),
     Features: () => import('~/components/commons/panels/Features'),
-    // GenericMediaPanel,
+    GenericMediaPanel: () => import('~/components/generic/GenericMediaPanel'),
     Pricing: () => import('~/components/commons/panels/Pricing'),
+    SignupButton: () => import('~/components/commons/SignupButton'),
     Syncbase: () => import('~/components/commons/panels/Syncbase'),
     ThinkLongTerm: () => import('~/components/commons/panels/ThinkLongTerm'),
     Usp,
@@ -98,6 +113,17 @@ export default {
         iconExtension: '.png',
       },
     ];
+    this.thirdPanel = {
+      contentAlign: 'left',
+      imageBindings: {
+        image: 'Beautiful User experience.png',
+        mobileImage: 'Beautiful User experience mobile.png',
+        imageAlt: 'Body diagram in a tablet',
+        customPath: 'clinics/skin/',
+        extensionExclusive: true,
+        imageWidth: '70%',
+      },
+    };
     this.fourthPanel = {
       title: 'Get more eyes on your brand',
       description: 'Join MYCURE ONE, a global online directory of modern healthcare practitioners and facilities where people anywhere can book appointments at any time.',
@@ -144,8 +170,10 @@ export default {
         classBinder(this, {
           mobile: ['font-m'],
           regular: ['font-l'],
+          wide: ['font-xl'],
         }),
         'lh-title',
+        'font-weight-semibold',
       ];
       return headerClasses;
     },
