@@ -26,31 +26,15 @@
           :class="uspBtnClasses"
         ).text-none Book a demo today
     //- 2nd panel
-    features(
-      title="Easy to implement. Easy to maintain"
-      description="MYCURE designed specialized solutions for skin and aesthetic clinics."
-      :items="features"
-    )
-    //- 3rd to 4th panel
-    //- generic-media-panel(
-    //-   v-for="(info, key) in infoPanels"
-    //-   :key="key"
-    //-   content-align-right
-    //-   cols-left="6"
-    //-   cols-right="6"
-    //-   :header="info.header"
-    //-   :header-classes="headerClasses"
-    //-   :descriptions="info.descriptions"
-    //-   :description-classes="descriptionClasses"
-    //- )
-    //-   //- Check list
-    //-   template(slot="additional-content" v-if="info.list")
-    //-     template(v-for="(item, i) in info.list")
-    //-       v-row(dense)
-    //-         v-col(cols="1").pr-2.pt-2
-    //-           img(width="20" src="~/assets/images/mycure-check.png" alt="Check icon")
-    //-         v-col
-    //-           span(:class="descriptionClasses") {{ item }}
+    div.grey-bg.mx-n3
+      features(
+        title="Easy to implement. Easy to maintain"
+        description="MYCURE designed specialized solutions for skin and aesthetic clinics."
+        image-dir="clinics/skin/"
+        icon-container-col-size="8"
+        extension-exclusive
+        :items="features"
+      )
     //- 6th panel
     syncbase(:version="3")
     //- 7th panel
@@ -87,43 +71,60 @@ export default {
     Usp,
   },
   data () {
-    // - TODO: Update info
     this.features = [
       {
         title: 'Digital Medical Records',
+        icon: 'Digital Records',
+        iconExtension: '.png',
       },
       {
         title: 'Smart Attachments',
+        icon: 'Smart Attachments',
+        iconExtension: '.png',
       },
       {
         title: 'Point-of-Sales',
+        icon: 'Point of Sales',
+        iconExtension: '.png',
       },
       {
-        title: 'Inventory management',
+        title: 'Inventory Management',
+        icon: 'Inventory Management',
+        iconExtension: '.png',
       },
       {
-        title: 'Works offline',
+        title: 'Works Offline',
+        icon: 'Works Offline',
+        iconExtension: '.png',
       },
     ];
-    this.infoPanels = [
-      {
-        header: 'Beautiful user experience',
-        descriptions: [
-          'You won\'t feel like you\'re at work.',
-        ],
+    this.fourthPanel = {
+      title: 'Get more eyes on your brand',
+      description: 'Join MYCURE ONE, a global online directory of modern healthcare practitioners and facilities where people anywhere can book appointments at any time.',
+      contentAlign: 'right',
+      imageBindings: {
+        customPath: 'clinics/skin/',
+        image: 'Lightning fast.webp',
+        mobileImage: 'Lightning fast mobile.png',
+        imageAlt: 'Print preview of health prescription receipt',
       },
-      {
-        header: 'Get more eyes on your brand',
-        descriptions: [
-          'Join MYCURE ONE, a global online directory of modern healthcare practitioners and facilities where people anywhere can book appointments at any time.',
-        ],
-        list: [
-          'Acquire patients beyond your reach',
-          'Hassle-free from booking to billing',
-          'Covers virtual to physical accommodation',
-        ],
+      list: [
+        'Acquire patients beyond your reach',
+        'Hassle-free from booking to billing',
+        'Covers virtual to physical accommodation',
+      ],
+    };
+    this.fifthPanel = {
+      title: 'One view for multiple locations',
+      description: 'All you need is one clean dashboard to see how your clinics are faring. Critical data from your multiple branches are beautifully compiled to show you a comprehensive summary of patient encounters, transactions, sales, expenses and even staff performance.',
+      contentAlign: 'left',
+      imageBindings: {
+        customPath: 'clinics/skin/',
+        image: 'Going digital.webp',
+        mobileImage: 'Going digital mobile.png',
+        imageAlt: 'Growth chart showing an increasing trend',
       },
-    ];
+    };
     this.pricingDetails = CLINICS_PRICING;
     return {
       loading: true,
@@ -174,3 +175,9 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.grey-bg {
+  background-color: #fafafa;
+}
+</style>
