@@ -23,20 +23,22 @@
           rounded
           :large="!$isWideScreen"
           :x-large="$isWideScreen"
-          :class="uspBtnClasses"
+          :class="btnClasses"
         ).text-none Book a demo today
     //- 2nd panel
     div.grey-bg.mx-n3
       features(
-        title="Easy to implement. Easy to maintain"
+        title="Easy to implement. Easy to maintain."
         description="MYCURE designed specialized solutions for skin and aesthetic clinics."
         image-dir="clinics/skin/"
+        title-col-size="10"
         icon-container-col-size="8"
         extension-exclusive
+        primary-title
         :items="features"
       )
     //- 3rd panel
-    generic-media-panel(:content="thirdPanel")
+    generic-media-panel(:content="thirdPanel" align="center")
       template(slot="content")
         h2(:class="headerClasses") Beautiful user experience
         br
@@ -50,6 +52,54 @@
           color="success"
         ).text-none.font-s
           span Get Started
+
+    //- 4th panel
+    generic-media-panel(
+      hide-btn
+      :content="fourthPanel"
+      :title-classes="[...headerClasses, 'primary--text']"
+    )
+      //- Check list
+      template(slot="additional-content")
+        div.mb-10
+          v-row(
+            v-for="(item, i) in fourthPanel.list"
+            :key="item"
+            dense
+          )
+            v-col(cols="2" sm="1" md="1").pr-2.pt-2
+              img(width="20" src="~/assets/images/mycure-check.png" alt="Check icon")
+            v-col(cols="10" sm="11" md="11")
+              span(:class="descriptionClasses") {{ item }}
+        div(:class="{ 'text-center': $isMobile }")
+          signup-button(
+            depressed
+            rounded
+            :x-large="$isWideScreen"
+            :large="!$isWideScreen"
+            color="success"
+          ).text-none.font-s
+            span Create your website
+
+    //- 5th panel
+    generic-media-panel(
+      :content="fifthPanel"
+      :title-classes="[...headerClasses, 'primary--text']"
+    )
+      template(slot="cta-button")
+        div(:class="{'text-center': $isMobile}")
+          mc-btn(
+            color="success"
+            href="https://calendly.com/mycure/demo"
+            target="_blank"
+            rel="noopener noreferrer"
+            depressed
+            rounded
+            :large="!$isWideScreen"
+            :x-large="$isWideScreen"
+            :class="btnClasses"
+          ).text-none.font-s Book a demo today
+
     //- 6th panel
     syncbase(:version="3")
     //- 7th panel
@@ -129,10 +179,9 @@ export default {
       description: 'Join MYCURE ONE, a global online directory of modern healthcare practitioners and facilities where people anywhere can book appointments at any time.',
       contentAlign: 'right',
       imageBindings: {
-        customPath: 'clinics/skin/',
-        image: 'Lightning fast.webp',
-        mobileImage: 'Lightning fast mobile.png',
-        imageAlt: 'Print preview of health prescription receipt',
+        customPath: 'commons/',
+        image: 'Expand your reach.webp',
+        imageAlt: 'Man browsing a clinic website',
       },
       list: [
         'Acquire patients beyond your reach',
@@ -146,9 +195,10 @@ export default {
       contentAlign: 'left',
       imageBindings: {
         customPath: 'clinics/skin/',
-        image: 'Going digital.webp',
-        mobileImage: 'Going digital mobile.png',
-        imageAlt: 'Growth chart showing an increasing trend',
+        image: 'Multiple locations.png',
+        mobileImage: 'Multiple locations mobile.png',
+        extensionExclusive: true,
+        imageAlt: 'Charts and graphs',
       },
     };
     this.pricingDetails = CLINICS_PRICING;
@@ -182,13 +232,14 @@ export default {
         classBinder(this, {
           mobile: ['font-xs'],
           regular: ['font-s'],
+          wide: ['font-m'],
         }),
         'font-open-sans',
         'font-gray',
       ];
       return descriptionClasses;
     },
-    uspBtnClasses () {
+    btnClasses () {
       return [
         classBinder(this, {
           mobile: ['text-center'],

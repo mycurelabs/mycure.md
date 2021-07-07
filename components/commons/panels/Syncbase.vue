@@ -40,9 +40,8 @@
               rounded
               :large="!$isWideScreen"
               :x-large="$isWideScreen"
-              :class="{'font-s': $isWideScreen, 'font-14': $isRegularScreen }"
               @click="syncbaseVideoDialog = true"
-            ).text-none Watch how it works
+            ).text-none.font-s Watch how it works
         template(slot="image")
           //- video(:width="wXL ? '800' : '400'" playsinline autoplay muted loop).syncbase-animate
           //-     source(src="~/assets/videos/Syncbase.mp4" type="video/mp4")
