@@ -12,13 +12,12 @@
       :key="key"
       :content="panel"
       :title-classes="headerClasses"
-      :content-classes="descriptionClasses"
       :class="{'pb-16': key === 1}"
       hide-btn
       disable-parent-padding
     )
       template(slot="content")
-        p {{ panel.description }}&nbsp;
+        p(:class="descriptionClasses") {{ panel.description }}&nbsp;
           span(v-if="$nuxt.$route.name !== 'doctors-clinics' && panel.descriptionAppend") {{ panel.descriptionAppend }}
 </template>
 

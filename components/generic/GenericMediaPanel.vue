@@ -7,9 +7,9 @@
         :disable-parent-padding="disableParentPadding"
       )
         template(slot="content")
-          div(:class="contentClasses || defaultContentClasses")
+          div
             slot(name="content")
-              p {{ content.description }}
+              p(:class="contentClasses || defaultContentClasses") {{ content.description }}
           slot(name="additional-content")
         template(slot="image" v-if="content.imageBindings")
           picture-source(
