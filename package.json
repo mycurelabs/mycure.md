@@ -41,8 +41,7 @@
     "vue-observe-visibility": "^1.0.0",
     "vue-scrollto": "^2.20.0",
     "vue-slick-carousel": "^1.0.6",
-    "vue-social-sharing": "^3.0.7",
-    "vue-typer": "^1.2.0"
+    "vue-social-sharing": "^3.0.7"
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.14.3",
