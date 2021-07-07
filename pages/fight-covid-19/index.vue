@@ -52,6 +52,7 @@ export default {
     Apis: () => import('~/components/mycure-heart/apis'),
     McCtaBottom: () => import('~/components/commons/mc-cta-bottom'),
   },
+  middleware: ['disable-route'],
   data () {
     this.storyflowItems = [
       {
