@@ -100,33 +100,22 @@
 import classBinder from '~/utils/class-binder';
 import headMeta from '~/utils/head-meta';
 // - components
-import CallToAction from '~/components/commons/panels/CallToAction';
-import Features from '~/components/commons/panels/Features';
-import GenericMediaPanel from '~/components/generic/GenericMediaPanel';
-// import MultipleBranches from '~/components/enterprise/multiple-branches';
-import MycureCsi from '~/components/commons/panels/MycureCsi';
-import Pricing from '~/components/commons/panels/Pricing';
-import Syncbase from '~/components/commons/panels/Syncbase';
-import ThinkLongTerm from '~/components/commons/panels/ThinkLongTerm';
 import Usp from '~/components/commons/panels/SevenWondersUsp';
-import Workflow from '~/components/outpatient-clinics/Workflow';
-import SignupButton from '~/components/commons/SignupButton';
 // - constants
 import { CLINICS_PRICING } from '~/constants/pricing';
 
 export default {
   components: {
-    CallToAction,
-    GenericMediaPanel,
-    Features,
-    // MultipleBranches,
-    MycureCsi,
-    Pricing,
-    Syncbase,
-    ThinkLongTerm,
+    CallToAction: () => import('~/components/commons/panels/CallToAction'),
+    GenericMediaPanel: () => import('~/components/generic/GenericMediaPanel'),
+    Features: () => import('~/components/commons/panels/Features'),
+    MycureCsi: () => import('~/components/commons/panels/MycureCsi'),
+    Pricing: () => import('~/components/commons/panels/Pricing'),
+    Syncbase: () => import('~/components/commons/panels/Syncbase'),
+    ThinkLongTerm: () => import('~/components/commons/panels/ThinkLongTerm'),
     Usp,
-    Workflow,
-    SignupButton,
+    Workflow: () => import('~/components/outpatient-clinics/Workflow'),
+    SignupButton: () => import('~/components/commons/SignupButton'),
   },
   data () {
     this.features = [

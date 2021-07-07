@@ -126,23 +126,18 @@
 import headMeta from '~/utils/head-meta';
 import classBinder from '~/utils/class-binder';
 // components
-import Features from '~/components/commons/panels/Features';
-import GenericMediaPanel from '~/components/generic/GenericMediaPanel';
-import GenericPanel from '~/components/generic/GenericPanel';
 import PictureSource from '~/components/commons/PictureSource';
-import Plans from '~/components/booking/Plans';
 import Usp from '~/components/commons/panels/SevenWondersUsp';
-import SignupButton from '~/components/commons/SignupButton';
 
 export default {
   components: {
-    Features,
-    GenericMediaPanel,
-    GenericPanel,
+    Features: () => import('~/components/commons/panels/Features'),
+    GenericMediaPanel: () => import('~/components/generic/GenericMediaPanel'),
+    GenericPanel: () => import('~/components/generic/GenericPanel'),
     PictureSource,
-    Plans,
+    Plans: () => import('~/components/booking/Plans'),
     Usp,
-    SignupButton,
+    SignupButton: () => import('~/components/commons/SignupButton'),
   },
   data () {
     this.howItWorksContents = [

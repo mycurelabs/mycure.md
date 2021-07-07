@@ -105,25 +105,18 @@ import classBinder from '~/utils/class-binder';
 // constants
 import { DOCTORS_PRICING } from '~/constants/pricing';
 // components
-import CallToAction from '~/components/commons/panels/CallToAction';
-import Features from '~/components/commons/panels/Features';
-import GenericMediaPanel from '~/components/generic/GenericMediaPanel';
-import MycureCsi from '~/components/commons/panels/MycureCsi';
-import Pricing from '~/components/commons/panels/Pricing';
-import ThinkLongTerm from '~/components/commons/panels/ThinkLongTerm';
 import Usp from '~/components/commons/panels/SevenWondersUsp';
-import SignupButton from '~/components/commons/SignupButton';
 
 export default {
   components: {
-    CallToAction,
-    Features,
-    GenericMediaPanel,
-    MycureCsi,
-    Pricing,
-    ThinkLongTerm,
+    CallToAction: () => import('~/components/commons/panels/CallToAction'),
+    Features: () => import('~/components/commons/panels/Features'),
+    GenericMediaPanel: () => import('~/components/generic/GenericMediaPanel'),
+    MycureCsi: () => import('~/components/commons/panels/MycureCsi'),
+    Pricing: () => import('~/components/commons/panels/Pricing'),
+    ThinkLongTerm: () => import('~/components/commons/panels/ThinkLongTerm'),
     Usp,
-    SignupButton,
+    SignupButton: () => import('~/components/commons/SignupButton'),
   },
   data () {
     // Panel content

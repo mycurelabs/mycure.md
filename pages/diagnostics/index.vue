@@ -120,25 +120,19 @@ import classBinder from '~/utils/class-binder';
 // - constants
 import { DIAGNOSTICS_PRICING } from '~/constants/pricing';
 // - components
-import CallToAction from '~/components/commons/panels/CallToAction';
-import Features from '~/components/commons/panels/Features';
-import GenericMediaPanel from '~/components/generic/GenericMediaPanel';
 import PictureSource from '~/components/commons/PictureSource';
-import Pricing from '~/components/commons/panels/Pricing';
-import ThinkLongTerm from '~/components/commons/panels/ThinkLongTerm';
 import Usp from '~/components/commons/panels/SevenWondersUsp';
-import SignupButton from '~/components/commons/SignupButton';
 
 export default {
   components: {
-    CallToAction,
-    Features,
-    GenericMediaPanel,
+    CallToAction: () => import('~/components/commons/panels/CallToAction'),
+    Features: () => import('~/components/commons/panels/Features'),
+    GenericMediaPanel: () => import('~/components/generic/GenericMediaPanel'),
     PictureSource,
-    Pricing,
-    ThinkLongTerm,
+    Pricing: () => import('~/components/commons/panels/Pricing'),
+    ThinkLongTerm: () => import('~/components/commons/panels/ThinkLongTerm'),
     Usp,
-    SignupButton,
+    SignupButton: () => import('~/components/commons/SignupButton'),
   },
   data () {
     // - TODO: Update info

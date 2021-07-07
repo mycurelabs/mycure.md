@@ -39,29 +39,21 @@
 import classBinder from '~/utils/class-binder';
 import headMeta from '~/utils/head-meta';
 // - components
-import Care from '~/components/home/Care';
-import GenericMediaPanel from '~/components/commons/generic-media-panel';
-import Hipaa from '~/components/booking/Hipaa';
-import JoinNextGeneration from '~/components/home/JoinNextGeneration';
-import Patients from '~/components/home/Patients';
 import PictureSource from '~/components/commons/PictureSource';
 import SevenWonders from '~/components/home/SevenWonders';
-import Simple from '~/components/home/Simple';
-import Syncbase from '~/components/commons/panels/Syncbase';
-import Tools from '~/components/home/Tools';
 
 export default {
   components: {
-    Care,
-    GenericMediaPanel,
-    Hipaa,
-    JoinNextGeneration,
-    Patients,
+    Care: () => import('~/components/home/Care'),
+    GenericMediaPanel: () => import('~/components/commons/generic-media-panel'),
+    Hipaa: () => import( '~/components/booking/Hipaa'),
+    JoinNextGeneration: () => import('~/components/home/JoinNextGeneration'),
+    Patients: () => import('~/components/home/Patients'),
     PictureSource,
     SevenWonders,
-    Simple,
-    Syncbase,
-    Tools,
+    Simple: () => import('~/components/home/Simple'),
+    Syncbase: () => import('~/components/commons/panels/Syncbase'),
+    Tools: () => import('~/components/home/Tools'),
   },
   data () {
     return {

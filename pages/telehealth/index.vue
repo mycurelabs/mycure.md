@@ -51,25 +51,19 @@
 import classBinder from '~/utils/class-binder';
 import headMeta from '~/utils/head-meta';
 // - components
-import CallToAction from '~/components/commons/panels/CallToAction';
-import Features from '~/components/commons/panels/Features';
-import GenericMediaPanel from '~/components/generic/GenericMediaPanel';
-import Pricing from '~/components/commons/panels/Pricing';
-import TelehealthVideo from '~/components/telehealth/TelehealthVideo';
 import Usp from '~/components/commons/panels/SevenWondersUsp';
-import VirtualClinic from '~/components/telehealth/VirtualClinic';
 // - constants
 import { DOCTORS_PRICING } from '~/constants/pricing';
 
 export default {
   components: {
-    CallToAction,
-    Features,
-    GenericMediaPanel,
-    Pricing,
-    TelehealthVideo,
+    CallToAction: () => import('~/components/commons/panels/CallToAction'),
+    Features: () => import('~/components/commons/panels/Features'),
+    GenericMediaPanel: () => import('~/components/generic/GenericMediaPanel'),
+    Pricing: () => import('~/components/commons/panels/Pricing'),
+    TelehealthVideo: () => import('~/components/telehealth/TelehealthVideo'),
     Usp,
-    VirtualClinic,
+    VirtualClinic: () => import('~/components/telehealth/VirtualClinic'),
   },
   data () {
     this.infoPanels = [
