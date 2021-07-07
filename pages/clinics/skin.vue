@@ -2,9 +2,16 @@
   div(v-if="!loading").white
     //- 1st panel
     usp(
-      title="The #1 Software for Skin and Aesthetic clinics"
+      has-custom-background
+      background-image="Skin Clinics Full Illu"
+      background-image-file-extension=".webp"
+      title="The #1 Software for Skin and Aesthetic Clinics"
       meta-title="MYCURE for Skin Clinics"
       btn-text="Book a Demo Today"
+      image="Skin Clinics USP Mobile"
+      custom-image-path="clinics/skin/"
+      :media-column-bindings="{ cols: 12, md: 6, offsetMd: 1, xl: 6}"
+      :content-column-bindings="{ cols: 12, md: 5 }"
     )
     //- 2nd panel
     features(
@@ -13,33 +20,32 @@
       :items="features"
     )
     //- 3rd to 4th panel
-    generic-media-panel(
-      v-for="(info, key) in infoPanels"
-      :key="key"
-      content-align-right
-      cols-left="6"
-      cols-right="6"
-      :header="info.header"
-      :header-classes="headerClasses"
-      :descriptions="info.descriptions"
-      :description-classes="descriptionClasses"
-    )
-      //- Check list
-      template(slot="additional-content" v-if="info.list")
-        template(v-for="(item, i) in info.list")
-          v-row(dense)
-            v-col(cols="1").pr-2.pt-2
-              img(width="20" src="~/assets/images/mycure-check.png" alt="Check icon")
-            v-col
-              span(:class="descriptionClasses") {{ item }}
-    //- 5th panel
-    multiple-branches
+    //- generic-media-panel(
+    //-   v-for="(info, key) in infoPanels"
+    //-   :key="key"
+    //-   content-align-right
+    //-   cols-left="6"
+    //-   cols-right="6"
+    //-   :header="info.header"
+    //-   :header-classes="headerClasses"
+    //-   :descriptions="info.descriptions"
+    //-   :description-classes="descriptionClasses"
+    //- )
+    //-   //- Check list
+    //-   template(slot="additional-content" v-if="info.list")
+    //-     template(v-for="(item, i) in info.list")
+    //-       v-row(dense)
+    //-         v-col(cols="1").pr-2.pt-2
+    //-           img(width="20" src="~/assets/images/mycure-check.png" alt="Check icon")
+    //-         v-col
+    //-           span(:class="descriptionClasses") {{ item }}
     //- 6th panel
     syncbase
     //- 7th panel
     think-long-term(extended)
     //- 8th panel
     pricing(
+      type="clinic"
       title="Take the first step today"
       description="Start free and only pay as you grow."
       :pricing-details="pricingDetails"
@@ -55,27 +61,19 @@ import classBinder from '~/utils/class-binder';
 // - constants
 import { CLINICS_PRICING } from '~/constants/pricing';
 // - components
-import CallToAction from '~/components/commons/panels/CallToAction';
-import Features from '~/components/commons/panels/Features';
-import GenericMediaPanel from '~/components/commons/generic-media-panel';
-import MultipleBranches from '~/components/enterprise/multiple-branches';
-import Pricing from '~/components/commons/panels/Pricing';
-import Syncbase from '~/components/commons/panels/Syncbase';
-import ThinkLongTerm from '~/components/commons/panels/ThinkLongTerm';
+// import GenericMediaPanel from '~/components/commons/generic-media-panel';
 import Usp from '~/components/commons/panels/SevenWondersUsp';
 
 export default {
   components: {
-    CallToAction,
-    Features,
-    GenericMediaPanel,
-    MultipleBranches,
-    Pricing,
-    Syncbase,
-    ThinkLongTerm,
+    CallToAction: () => import('~/components/commons/panels/CallToAction'),
+    Features: () => import('~/components/commons/panels/Features'),
+    // GenericMediaPanel,
+    Pricing: () => import('~/components/commons/panels/Pricing'),
+    Syncbase: () => import('~/components/commons/panels/Syncbase'),
+    ThinkLongTerm: () => import('~/components/commons/panels/ThinkLongTerm'),
     Usp,
   },
-  middleware: ['disable-route'],
   data () {
     // - TODO: Update info
     this.features = [
