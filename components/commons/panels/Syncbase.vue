@@ -4,7 +4,7 @@
       generic-sub-page-panel(
         content-right
         :title="panelTitle"
-        :title-classes="headerClasses"
+        :title-classes="version === 3 ? headerClasses : null"
         :center-panel-title="version === 3 ? 'Enjoy the best of both worlds' : null"
         :media-column-bindings="mediaColumnBindings"
         :content-column-bindings="contentColumnBindings"
@@ -29,10 +29,20 @@
           //-   :to="{ name: 'syncbase' }"
           //-   :class="{'font-s': !$isMobile}"
           //- ).text-none.button
-          div
+          div(v-if="version !== 3")
             nuxt-link(:to="{ name: 'syncbase' }" :class="{'d-flex': !$isMobile}").button
               span(:class="[{'font-14':  $isMobile }, ...descriptionClasses]").primary--text Learn about MYCURE Syncbase
               v-icon(left color="primary" :large="$isWideScreen" :small="$isMobile") mdi-chevron-right
+          div(v-else)
+             mc-btn(
+              color="success"
+              depressed
+              rounded
+              :large="!$isWideScreen"
+              :x-large="$isWideScreen"
+              :class="{'font-s': $isWideScreen, 'font-14': $isRegularScreen }"
+              @click="syncbaseVideoDialog = true"
+            ).text-none Watch how it works
         template(slot="image")
           //- video(:width="wXL ? '800' : '400'" playsinline autoplay muted loop).syncbase-animate
           //-     source(src="~/assets/videos/Syncbase.mp4" type="video/mp4")
@@ -42,6 +52,19 @@
             src="~/assets/images/booking/mycure-syncbase-diagram-animate.gif"
             alt="MYCURE Syncbase"
           )
+    //- Syncbase Video Dialog
+    v-dialog(v-model="syncbaseVideoDialog" max-width="800" max-height="500")
+      v-card(width="800").pt-5
+        v-card-text
+          a(v-if="syncbaseVideoDialog")
+            iframe(
+              align="middle"
+              id="ytplayer"
+              type="text/html" width="100%" height="500"
+              src="https://www.youtube.com/embed/siFBgZMt26k?autoplay=1&loop=1&rel=0&modestbranding=1&showinfo=0"
+              frameborder="0"
+              allowfullscreen
+            )
 </template>
 
 <script>
@@ -60,6 +83,11 @@ export default {
       type: Boolean,
       default: false,
     },
+  },
+  data () {
+    return {
+      syncbaseVideoDialog: false,
+    };
   },
   computed: {
     panelTitle () {
