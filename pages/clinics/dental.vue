@@ -2,120 +2,53 @@
   div(v-if="!loading").white
     //- 1st panel
     usp(
+      has-custom-background
+      background-image="Dental Clinics USP - Full Illu"
+      background-image-file-extension=".webp"
       title="Easy to setup, affordable"
       meta-title="MYCURE for Dental Clinics"
       description="Start going digital without spending anything."
       btn-text="Start Free"
+      image="Dental Clinics USP - Mobile version"
+      custom-image-path="clinics/dental/"
+      :media-column-bindings="{ cols: 12, md: 6, offsetMd: 1, xl: 6}"
+      :content-column-bindings="{ cols: 12, md: 5 }"
     )
     //- 2nd panel
-    features(
-      title="From your first sale to full scale"
-      description="MYCURE is designed to help you grow your practice."
-      :items="features"
-    )
     //- 3rd to 4th panel
-    generic-media-panel(
-      v-for="(info, key) in infoPanels"
-      :key="key"
-      content-align-right
-      cols-left="6"
-      cols-right="6"
-      :header="info.header"
-      :header-classes="headerClasses"
-      :descriptions="info.descriptions"
-      :description-classes="descriptionClasses"
-    )
-    //- 5th panel
-    generic-media-panel(
-      :center-media="!$isMobile"
-      :content-align-left="$isMobile"
-      :header="studentPanel.header"
-      :header-classes="headerClasses"
-      :descriptions="studentPanel.descriptions"
-      :descriptionClasses="descriptionClasses"
-      :dense="$isMobile"
-    )
-    //- 6th panel
-    generic-media-panel(
-      content-align-right
-      cols-left="6"
-      cols-right="6"
-      :header="directoryPanel.header"
-      :header-classes="headerClasses"
-      :descriptions="directoryPanel.descriptions"
-      :description-classes="descriptionClasses"
-    )
-      //- Check list
-      template(slot="additional-content")
-        template(v-for="(item, i) in directoryPanel.list")
-          v-row(dense)
-            v-col(cols="1").pr-2.pt-2
-              img(width="20" src="~/assets/images/mycure-check.png" alt="Check icon")
-            v-col
-              span(:class="descriptionClasses") {{ item }}
-    //- 7th panel
-    multiple-branches
     //- 8th panel
-    syncbase
+    syncbase(:version="3")
     //- 9th panel
     think-long-term(extended)
     //- 10th panel
     pricing(
       title="Take the first step today"
+      type="doctor"
       description="Start free and only pay as you grow."
-      :pricing-details="pricingDetails"
     )
     //- 11th panel
-    call-to-action
+    call-to-action(:version="3")
 </template>
 
 <script>
 // - utils
 import headMeta from '~/utils/head-meta';
 import classBinder from '~/utils/class-binder';
-// - constants
-import { CLINICS_PRICING } from '~/constants/pricing';
 // - components
-import CallToAction from '~/components/commons/panels/CallToAction';
-import Features from '~/components/commons/panels/Features';
-import GenericMediaPanel from '~/components/commons/generic-media-panel';
-import MultipleBranches from '~/components/enterprise/multiple-branches';
-import Pricing from '~/components/commons/panels/Pricing';
-import Syncbase from '~/components/commons/panels/Syncbase';
-import ThinkLongTerm from '~/components/commons/panels/ThinkLongTerm';
 import Usp from '~/components/commons/panels/SevenWondersUsp';
 
 export default {
   components: {
-    CallToAction,
-    Features,
-    GenericMediaPanel,
-    MultipleBranches,
-    Pricing,
-    Syncbase,
-    ThinkLongTerm,
+    CallToAction: () => import('~/components/commons/panels/CallToAction'),
+    Features: () => import('~/components/commons/panels/Features'),
+    GenericMediaPanel: () => import('~/components/generic/GenericMediaPanel'),
+    Pricing: () => import('~/components/commons/panels/Pricing'),
+    SignupButton: () => import('~/components/commons/SignupButton'),
+    Syncbase: () => import('~/components/commons/panels/Syncbase'),
+    ThinkLongTerm: () => import('~/components/commons/panels/ThinkLongTerm'),
     Usp,
   },
-  middleware: ['disable-route'],
   data () {
-    // - TODO: Update info
-    this.features = [
-      {
-        title: 'Smart Dental Charting',
-      },
-      {
-        title: 'Easy Billing and POS',
-      },
-      {
-        title: 'Inventory Management',
-      },
-      {
-        title: 'Works offline',
-      },
-      {
-        title: 'Appointment Booking and Alerts',
-      },
-    ];
     this.studentPanel = {
       header: 'Still a student?',
       descriptions: [
@@ -148,7 +81,6 @@ export default {
       },
     ];
 
-    this.pricingDetails = CLINICS_PRICING;
     return {
       loading: true,
     };

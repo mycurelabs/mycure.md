@@ -7,7 +7,6 @@
       background-image-file-extension=".webp"
       title="The #1 Software for Skin and Aesthetic Clinics"
       meta-title="MYCURE for Skin Clinics"
-      btn-text="Book a Demo Today"
       image="Skin Clinics USP Mobile"
       custom-image-path="clinics/skin/"
       :media-column-bindings="{ cols: 12, md: 6, offsetMd: 1, xl: 6}"
