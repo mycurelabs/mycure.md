@@ -8,6 +8,7 @@
               img(
                 :width="$isMobile ? '100%' : '80%'"
                 src="../../assets/images/HIPAA Badge.png"
+                alt="HIPAA Compliance Seal"
               )
             v-col(cols="12" md="8")
               h2(:class="headerClasses") MYCURE is HIPAA Compliant
