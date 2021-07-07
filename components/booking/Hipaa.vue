@@ -21,7 +21,7 @@
                   rel="noreferrer noopener"
                   :class="{'d-flex': !$isMobile}"
                 ).learn-more
-                  span(:class="descriptionClasses").primary--text Learn more
+                  span(:class="descriptionClasses").primary--text Read more about MYCURE's Privacy Standards
                   v-icon(right color="primary") mdi-chevron-right
 </template>
 
