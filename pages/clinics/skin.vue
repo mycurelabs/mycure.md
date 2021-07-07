@@ -51,7 +51,7 @@
       :pricing-details="pricingDetails"
     )
     //- 9th panel
-    call-to-action
+    call-to-action(:version="3")
 </template>
 
 <script>
