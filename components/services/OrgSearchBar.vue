@@ -91,7 +91,7 @@
 </template>
 
 <script>
-import { debounce } from 'lodash';
+import debounce from 'lodash/debounce';
 import NCR_CITIES from '~/assets/fixtures/ncr-cities';
 import { fetchOrganizations } from '~/services/organizations';
 export default {

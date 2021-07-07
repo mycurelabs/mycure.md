@@ -33,7 +33,7 @@
 </template>
 
 <script>
-import { isEmpty } from 'lodash';
+import isEmpty from 'lodash/isEmpty';
 import VueScrollTo from 'vue-scrollto';
 import PictureSource from '~/components/commons/PictureSource';
 

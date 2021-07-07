@@ -69,7 +69,7 @@
 </template>
 
 <script>
-import { uniqWith } from 'lodash';
+import uniqWith from 'lodash/uniqWith';
 // - components
 import BookAppointmentBtn from '~/components/commons/book-appointment-btn';
 import { formatAddress } from '~/utils/formats';

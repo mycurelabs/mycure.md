@@ -168,7 +168,6 @@ export default {
   },
   computed: {
     metricData () {
-      console.log('metrics', this.metrics);
       return {
         websiteVisits: this.metrics.websiteVisits || 0,
         patients: this.metrics.patients || 0,

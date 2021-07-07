@@ -164,7 +164,7 @@
                   ) #[b Book a Visit]
 </template>
 <script>
-import { isEmpty } from 'lodash';
+import isEmpty from 'lodash/isEmpty';
 import { formatAddress } from '~/utils/formats';
 export default {
   props: {
@@ -227,7 +227,6 @@ export default {
     },
     coverages () {
       const coverages = this.service?.coveragesData;
-      console.log('coverages', coverages);
       if (!coverages?.length) return [];
       return coverages.map((coverage) => {
         return {

@@ -32,7 +32,7 @@
 </template>
 
 <script>
-import { isEmpty } from 'lodash';
+import isEmpty from 'lodash/isEmpty';
 // components
 import SearchInsuranceContracts from './services/search-insurance-contracts';
 import DatePickerMenu from '~/components/commons/date-picker-menu';

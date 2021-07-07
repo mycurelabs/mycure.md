@@ -85,7 +85,9 @@
 </template>
 
 <script>
-import { isEmpty, intersection, uniq } from 'lodash';
+import isEmpty from 'lodash/isEmpty';
+import intersection from 'lodash/intersection';
+import uniq from 'lodash/uniq';
 import VueScrollTo from 'vue-scrollto';
 // - utils
 import { getServices } from '~/utils/axios';

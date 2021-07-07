@@ -1,4 +1,5 @@
-import { pick, pickBy } from 'lodash';
+import pick from 'lodash/pick';
+import pickBy from 'lodash/pickBy';
 
 export const fetchOrganizations = async (sdk, opts) => {
   const query = {

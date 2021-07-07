@@ -41,7 +41,7 @@
 
 <script>
 import VueScrollTo from 'vue-scrollto';
-import { uniqBy } from 'lodash';
+import uniqBy from 'lodash/uniqBy';
 import OrgListCard from '~/components/organizations/OrgListCard';
 import OrgSearchBar from '~/components/services/OrgSearchBar';
 import { fetchOrganizations } from '~/services/organizations';

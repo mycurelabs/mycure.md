@@ -60,7 +60,7 @@
 </template>
 
 <script>
-import { isEmpty } from 'lodash';
+import isEmpty from 'lodash/isEmpty';
 import VClamp from 'vue-clamp';
 import {
   fetchClinicServices,

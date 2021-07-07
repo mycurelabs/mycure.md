@@ -77,7 +77,7 @@
 </template>
 
 <script>
-import { isEmpty } from 'lodash';
+import isEmpty from 'lodash/isEmpty';
 import classBinder from '~/utils/class-binder';
 import EmailVerificationDialog from '~/components/signup/EmailVerificationDialog';
 import PictureSource from '~/components/commons/PictureSource';

@@ -1,4 +1,8 @@
-import _ from 'lodash';
+import isArray from 'lodash/isArray';
+import map from 'lodash/map';
+import isObject from 'lodash/isObject';
+import omit from 'lodash/omit';
+import mapValues from 'lodash/mapValues';
 /**
  * Normalizes nested $populated from an object. Also normalizes objects under
  * array keys.
@@ -24,12 +28,12 @@ import _ from 'lodash';
  * parent.
  */
 export const normalizePopulated = (val) => {
-  if (_.isArray(val)) {
-    return _.map(val, normalizePopulated);
-  } else if (_.isObject(val)) {
+  if (isArray(val)) {
+    return map(val, normalizePopulated);
+  } else if (isObject(val)) {
     return {
-      ..._.omit(val, '$populated'),
-      ..._.mapValues(val.$populated, normalizePopulated),
+      ...omit(val, '$populated'),
+      ...mapValues(val.$populated, normalizePopulated),
     };
   } else {
     return val;

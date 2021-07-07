@@ -82,7 +82,7 @@
 </template>
 
 <script>
-import _ from 'lodash';
+import isEmpty from 'lodash/isEmpty';
 import ChooseAppointment from '~/components/doctor-website/ChooseAppointment';
 import ChooseFacility from '~/components/doctor-website/ChooseFacility';
 import GenericPanel from '~/components/generic/GenericPanel';
@@ -113,7 +113,7 @@ export default {
   async asyncData ({ app, router, params, error }) {
     try {
       const doctor = await getDoctorWebsite({ username: params.id }, true);
-      if (_.isEmpty(doctor) || !doctor.id) {
+      if (isEmpty(doctor) || !doctor.id) {
         error({ statusCode: 404, message: 'doctor-not-found' });
       }
 

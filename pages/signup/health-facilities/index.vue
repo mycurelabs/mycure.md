@@ -260,7 +260,7 @@
 </template>
 
 <script>
-import { isEmpty } from 'lodash';
+import isEmpty from 'lodash/isEmpty';
 import { parsePhoneNumberFromString } from 'libphonenumber-js';
 // import { get } from 'lodash';
 import {

@@ -99,7 +99,7 @@
 
 <script>
 import { format } from 'date-fns';
-import { uniqBy } from 'lodash';
+import uniqBy from 'lodash/uniqBy';
 import ServiceSchedules from './service-schedules';
 
 export default {
