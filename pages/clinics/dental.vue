@@ -17,7 +17,27 @@
     //- 2nd panel
     div.grey-bg.mx-n3
       problem-statement
-    //- 3rd to 4th panel
+    //- 3rd panel
+    generic-media-panel(
+      :content="thirdPanel" align="center"
+    )
+      template(slot="content")
+        h2(:class="headerClasses") Always accesible dental charts.
+        br
+        h2(:class="subHeaderClasses") Never miss an appointment.
+          br
+          span Never miss a tooth.
+      template(slot="cta-button")
+        signup-button(
+          depressed
+          rounded
+          :x-large="$isWideScreen"
+          :large="!$isWideScreen"
+          color="success"
+        ).text-none.font-s
+          span Get Started
+    //- 4th panel
+    straightforward
     //- 8th panel
     syncbase(:version="3")
     //- 9th panel
@@ -47,11 +67,23 @@ export default {
     Pricing: () => import('~/components/commons/panels/Pricing'),
     ProblemStatement: () => import('~/components/dental-clinics/ProblemStatement'),
     SignupButton: () => import('~/components/commons/SignupButton'),
+    Straightforward: () => import('~/components/dental-clinics/Straightforward'),
     Syncbase: () => import('~/components/commons/panels/Syncbase'),
     ThinkLongTerm: () => import('~/components/commons/panels/ThinkLongTerm'),
     Usp,
   },
   data () {
+    this.thirdPanel = {
+      contentAlign: 'left',
+      imageBindings: {
+        image: 'Dental charts.png',
+        mobileImage: 'Dental charts mobile.png',
+        imageAlt: 'Dental charts in a tablet',
+        customPath: 'clinics/dental/',
+        extensionExclusive: true,
+        imageWidth: '80%',
+      },
+    };
     this.studentPanel = {
       header: 'Still a student?',
       descriptions: [
@@ -69,21 +101,6 @@ export default {
         'Covers virtual to physical accommodation',
       ],
     };
-    this.infoPanels = [
-      {
-        header: 'Always accessible dental charts',
-        descriptions: [
-          'Never miss an appointment. Never miss a tooth.',
-        ],
-      },
-      {
-        header: 'Straightforward and simple.',
-        descriptions: [
-          'Accurately track baseline and updated dental charts, proposed procedures, and the actual work done.',
-        ],
-      },
-    ];
-
     return {
       loading: true,
     };
@@ -102,8 +119,10 @@ export default {
         classBinder(this, {
           mobile: ['font-m'],
           regular: ['font-l'],
+          wide: ['font-xl'],
         }),
         'lh-title',
+        'font-weight-semibold',
       ];
       return headerClasses;
     },
@@ -121,12 +140,13 @@ export default {
     subHeaderClasses () {
       return [
         classBinder(this, {
-          mobile: ['font-xs'],
-          regular: ['font-s'],
+          mobile: ['font-s'],
+          regular: ['font-25'],
+          wide: ['font-l'],
         }),
-        'font-open-sans',
-        'font-weight-bold',
-        'primary--text',
+        'lh-title',
+        'font-weight-semibold',
+        'secondary--text',
       ];
     },
   },

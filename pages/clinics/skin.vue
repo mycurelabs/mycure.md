@@ -41,7 +41,7 @@
       template(slot="content")
         h2(:class="headerClasses") Beautiful user experience
         br
-        h2(:class="headerClasses").primary--text You won't feel like you are at work.
+        h2(:class="headerClasses").secondary--text You won't feel like you are at work.
       template(slot="cta-button")
         signup-button(
           depressed
