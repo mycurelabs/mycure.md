@@ -111,7 +111,22 @@
     )
     //- 8th panel
     call-to-action(:version="2")
-
+    //- 9th panel
+    div.info.mx-n3
+      v-container
+        v-row(justify="center")
+          generic-panel(:row-bindings="{ justify: 'center' }")
+            v-col(cols="12" lg="8" xl="6").white--text.text-center
+              h2(:class="['white--text', ...headerClasses]").mb-5 Take the first step today
+              h3(:class="descriptionClasses").mb-5 Start now and get all your questions answered
+              mc-btn(
+                color="success"
+                depressed
+                rounded
+                :large="!$isWideScreen"
+                :x-large="$isWideScreen"
+                :class="btnClasses"
+              ).text-none Start Now
 </template>
 
 <script>
