@@ -12,7 +12,7 @@
       p(v-for="(desc, key) in callToActionPanel.description" :key="key" :class="descriptionClasses") {{ desc }}
     template(slot="additional-content")
       v-row.mt-10
-        v-col(v-if="version !== 2" cols="12" md="7" lg="6" xl="5")
+        v-col(v-if="![2, 4].includes(version)" cols="12" md="7" lg="6" xl="5")
           signup-button(
             event-label="signup"
             color="success"
@@ -29,7 +29,7 @@
             depressed
             rounded
             block
-            :outlined="version !== 2"
+            :outlined="![2, 4].includes(version)"
             :large="!$isWideScreen"
             :x-large="$isWideScreen"
             :class="{'font-s': $isWideScreen, 'font-14': $isRegularScreen }"
@@ -53,17 +53,17 @@ export default {
     },
   },
   data () {
+    this.imageBindings = {
+      image: 'Let us do the work.webp',
+      imageAlt: 'Hospital and smartphone artwork',
+      customPath: 'commons/',
+    };
     this.versionOne = {
       centerPanelTitle: 'Learn the basics with ease',
       superTitle: 'Worrying about the shift to digital records? We got you covered.',
       description: [
         'We understand that it may be difficult to change what you’re used to doing. That’s why we have happiness agents who’d love to guide you through each step via one-on-one training session.',
       ],
-      imageBindings: {
-        image: 'Let us do the work.webp',
-        imageAlt: 'Hospital and smartphone artwork',
-        customPath: 'commons/',
-      },
       contentAlign: 'right',
     };
     this.versionTwo = {
@@ -72,11 +72,6 @@ export default {
       description: [
         'We know it’s challenging to shift your entire operations into a new system. Our lean implementation process ensures that you get what you need—customized forms, optimized workflows, and well-trained staff. Our experts are here to guide you from training to winning.',
       ],
-      imageBindings: {
-        image: 'Let us do the work.webp',
-        imageAlt: 'Hospital and smartphone artwork',
-        customPath: 'commons/',
-      },
       contentAlign: 'right',
     };
     this.versionThree = {
@@ -84,22 +79,25 @@ export default {
       description: [
         'Worrying about the shift to digital records? We got you covered. We have happiness agents who’d love to guide you through each step via one-on-one training session.',
       ],
-      imageBindings: {
-        image: 'Let us do the work.webp',
-        imageAlt: 'Hospital and smartphone artwork',
-        customPath: 'commons/',
-      },
       contentAlign: 'right',
+    };
+    this.versionFour = {
+      centerPanelTitle: 'Let us do the work for you',
+      superTitle: 'Worrying about the shift to digital records? We got you covered.',
+      description: [
+        'Get what you need—customized forms, optimized workflows, and well-trained staff. Our experts are here to guide you from training to winning.',
+      ],
+      contentAlign: 'left',
     };
     return {};
   },
   computed: {
     callToActionPanel () {
       switch (this.version) {
-        case 1: return this.versionOne;
-        case 2: return this.versionTwo;
-        case 3: return this.versionThree;
-        default: return this.versionOne;
+        case 2: return { ...this.versionTwo, imageBindings: this.imageBindings };
+        case 3: return { ...this.versionThree, imageBindings: this.imageBindings };
+        case 4: return { ...this.versionFour, imageBindings: this.imageBindings };
+        default: return { ...this.versionOne, imageBindings: this.imageBindings };
       }
     },
     titleClasses () {

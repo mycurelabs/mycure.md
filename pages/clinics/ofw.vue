@@ -140,7 +140,6 @@ import Usp from '~/components/commons/panels/SevenWondersUsp';
 export default {
   components: {
     CallToAction: () => import('~/components/commons/panels/CallToAction'),
-    Features: () => import('~/components/commons/panels/Features'),
     GenericMediaPanel: () => import('~/components/generic/GenericMediaPanel'),
     GenericPanel: () => import('~/components/generic/GenericPanel'),
     PictureSource: () => import('~/components/commons/PictureSource'),

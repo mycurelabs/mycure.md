@@ -2,50 +2,40 @@
   div(v-if="!loading").white
     //- 1st panel
     usp(
+      has-custom-background
+      background-image="Corporate Clinics Full"
+      background-image-file-extension=".webp"
       title="Organize your employee health records like a breeze"
       meta-title="MYCURE for Corporate Clinics"
       description="Get the most affordable software for corporate clinics today."
       btn-text="Start Free"
-    )
-    //- 2nd panel
-    features(
-      title="Newest tools for the newest generation."
-      description="Everyone in your workplace is online. MYCURE helps you monitor their health and safety conveniently through the cloud."
-      :items="features"
-      hide-learn-more
-    )
-    //- 3rd panel
-    generic-media-panel(
-      :center-media="!$isMobile"
-      :content-align-left="$isMobile"
-      header="Know the health status of your employees stat"
-      :header-classes="headerClasses"
-      :descriptions="['Easily access and share medical records with them through the MYCURE health portal.']"
-      :description-classes="descriptionClasses"
+      image="Corporate Clinics Mobile"
+      custom-image-path="clinics/corporate/"
+      :media-column-bindings="{ cols: 12, md: 6, offsetMd: 1, xl: 6}"
+      :content-column-bindings="{ cols: 12, md: 5 }"
     )
 
-    //- 4th panel
-    multiple-branches
-
-    //- 5th panel
-    call-to-action
-
-    //- 6th panel
-    generic-media-panel(
-      :center-media="!$isMobile"
-      :content-align-left="$isMobile"
-      header="Start easy. Take the first step today"
-      :header-classes="headerClasses"
-      :dense="$isMobile"
+    pricing(
+      type="doctor"
+      title="Start free and only pay as you grow."
     )
-      template(slot="additional-content")
+    call-to-action(:version="4")
+    //- 9th panel
+    div.info.mx-n3
+      v-container
         v-row(justify="center")
-          v-col(cols="4").text-center
-            mc-btn(
-              color="primary"
-              large
-              depressed
-            ).text-none.font-xs Get Started
+          generic-panel(:row-bindings="{ justify: 'center' }")
+            v-col(cols="12").white--text.text-center
+              h2(:class="['white--text', ...headerClasses]").mb-5 Start easy. Take the first step today
+              signup-button(
+                depressed
+                rounded
+                :x-large="$isWideScreen"
+                :large="!$isWideScreen"
+                :class="btnClasses"
+                color="success"
+              ).text-none
+                span Start Free
 </template>
 
 <script>
@@ -53,21 +43,22 @@
 import headMeta from '~/utils/head-meta';
 import classBinder from '~/utils/class-binder';
 // - components
-import CallToAction from '~/components/commons/panels/CallToAction';
-import Features from '~/components/commons/panels/Features';
-import GenericMediaPanel from '~/components/commons/generic-media-panel';
-import MultipleBranches from '~/components/enterprise/multiple-branches';
 import Usp from '~/components/commons/panels/SevenWondersUsp';
 
 export default {
   components: {
-    CallToAction,
-    Features,
-    GenericMediaPanel,
-    MultipleBranches,
+    CallToAction: () => import('~/components/commons/panels/CallToAction'),
+    Features: () => import('~/components/commons/panels/Features'),
+    GenericMediaPanel: () => import('~/components/generic/GenericMediaPanel'),
+    GenericPanel: () => import('~/components/generic/GenericPanel'),
+    Pricing: () => import('~/components/commons/panels/Pricing'),
+    ProblemStatement: () => import('~/components/dental-clinics/ProblemStatement'),
+    SignupButton: () => import('~/components/commons/SignupButton'),
+    Straightforward: () => import('~/components/dental-clinics/Straightforward'),
+    Syncbase: () => import('~/components/commons/panels/Syncbase'),
+    ThinkLongTerm: () => import('~/components/commons/panels/ThinkLongTerm'),
     Usp,
   },
-  middleware: ['disable-route'],
   data () {
     this.features = [
       {
@@ -101,8 +92,10 @@ export default {
         classBinder(this, {
           mobile: ['font-m'],
           regular: ['font-l'],
+          wide: ['font-xl'],
         }),
         'lh-title',
+        'font-weight-semibold',
       ];
       return headerClasses;
     },
@@ -111,11 +104,19 @@ export default {
         classBinder(this, {
           mobile: ['font-xs'],
           regular: ['font-s'],
+          wide: ['font-m'],
         }),
-        'font-open-sans',
-        'font-gray',
       ];
       return descriptionClasses;
+    },
+    btnClasses () {
+      return [
+        classBinder(this, {
+          mobile: ['text-center'],
+          regular: ['font-xs'],
+          wide: ['font-s'],
+        }),
+      ];
     },
   },
   mounted () {
