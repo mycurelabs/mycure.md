@@ -40,8 +40,9 @@
               rounded
               :large="!$isWideScreen"
               :x-large="$isWideScreen"
+              :class="btnClasses"
               @click="syncbaseVideoDialog = true"
-            ).text-none.font-s Watch how it works
+            ).text-none Watch how it works
         template(slot="image")
           //- video(:width="wXL ? '800' : '400'" playsinline autoplay muted loop).syncbase-animate
           //-     source(src="~/assets/videos/Syncbase.mp4" type="video/mp4")
@@ -143,6 +144,15 @@ export default {
           wide: ['font-xl'],
         }),
         'font-weight-semibold',
+      ];
+    },
+    btnClasses () {
+      return [
+        classBinder(this, {
+          mobile: ['text-center'],
+          regular: ['font-xs'],
+          wide: ['font-s'],
+        }),
       ];
     },
     contentColumnBindings () {

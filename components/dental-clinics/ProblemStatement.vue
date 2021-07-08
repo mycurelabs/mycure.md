@@ -8,10 +8,11 @@
           signup-button(
             depressed
             rounded
+            color="success"
             :x-large="$isWideScreen"
             :large="!$isWideScreen"
-            color="success"
-          ).text-none.font-s.mb-10
+            :class="btnClasses"
+          ).text-none.mb-10
             span Start Free
         v-col(cols="12")
           v-row(justify="center" no-gutters)
@@ -66,6 +67,15 @@ export default {
         'font-weight-semibold',
       ];
       return contentClasses;
+    },
+    btnClasses () {
+      return [
+        classBinder(this, {
+          mobile: ['text-center'],
+          regular: ['font-xs'],
+          wide: ['font-s'],
+        }),
+      ];
     },
   },
 };

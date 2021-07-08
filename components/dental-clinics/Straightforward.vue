@@ -16,10 +16,11 @@
           signup-button(
             depressed
             rounded
+            color="success"
             :x-large="$isWideScreen"
             :large="!$isWideScreen"
-            color="success"
-          ).text-none.font-s
+            :class="btnClasses"
+          ).text-none
             span Get Started
 </template>
 
@@ -57,6 +58,15 @@ export default {
         'font-weight-semibold',
       ];
       return contentClasses;
+    },
+    btnClasses () {
+      return [
+        classBinder(this, {
+          mobile: ['text-center'],
+          regular: ['font-xs'],
+          wide: ['font-s'],
+        }),
+      ];
     },
   },
 };

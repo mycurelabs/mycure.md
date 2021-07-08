@@ -31,10 +31,11 @@
         signup-button(
           depressed
           rounded
+          color="success"
           :x-large="$isWideScreen"
           :large="!$isWideScreen"
-          color="success"
-        ).text-none.font-s
+          :class="btnClasses"
+        ).text-none
           span Get Started
     //- 4th panel
     straightforward
@@ -54,7 +55,70 @@
                 :x-large="$isWideScreen"
                 :class="btnClasses"
               ).text-none Count me in
-    v-container
+
+    //- 6th panel
+    generic-media-panel(
+      :content="directoryPanel"
+      :title-classes="[...headerClasses, 'primary--text']"
+    )
+      //- Check list
+      template(slot="additional-content")
+        div.mb-10
+          v-row(
+            v-for="(item, i) in directoryPanel.list"
+            :key="item"
+            dense
+          )
+            v-col(cols="2" sm="1" md="1").pr-2.pt-2
+              img(width="20" src="~/assets/images/mycure-check.png" alt="Check icon")
+            v-col(cols="10" sm="11" md="11")
+              span(:class="descriptionClasses").font-open-sans.font-gray {{ item }}
+      template(slot="cta-button")
+        v-row
+          v-col(cols="12" md="7" lg="6" xl="5")
+            mc-btn(
+              color="success"
+              href="https://calendly.com/mycure/demo"
+              target="_blank"
+              rel="noopener noreferrer"
+              depressed
+              rounded
+              block
+              :large="!$isWideScreen"
+              :x-large="$isWideScreen"
+              :class="{'font-s': $isWideScreen, 'font-14': $isRegularScreen }"
+            ).text-none Book a full training
+          v-col(cols="12" md="7" lg="6" xl="7")
+            signup-button(
+              depressed
+              rounded
+              outlined
+              block
+              :x-large="$isWideScreen"
+              :large="!$isWideScreen"
+              :class="btnClasses"
+              color="success"
+            ).text-none
+              span Get Started Free
+
+    //- 7th panel
+    generic-media-panel(
+      :content="multiplePanel"
+      :title-classes="[...headerClasses, 'primary--text']"
+    )
+      template(slot="cta-button")
+        div(:class="{'text-center': $isMobile}")
+          mc-btn(
+            color="success"
+            href="https://calendly.com/mycure/demo"
+            target="_blank"
+            rel="noopener noreferrer"
+            depressed
+            rounded
+            :large="!$isWideScreen"
+            :x-large="$isWideScreen"
+            :class="btnClasses"
+          ).text-none Book a demo
     //- 8th panel
     syncbase(:version="3")
     //- 9th panel
@@ -109,15 +173,31 @@ export default {
       ],
     };
     this.directoryPanel = {
-      header: 'Get more eyes on the brand',
-      descriptions: [
-        'Join MYCURE ONE, a global online directory of modern healthcare practitioners and facilities where people anywhere can book appointments at any time.',
-      ],
+      title: 'Get more eyes on your brand',
+      description: 'Join MYCURE ONE, a global online directory of modern healthcare practitioners and facilities where people anywhere can book appointments at any time.',
+      contentAlign: 'right',
+      imageBindings: {
+        customPath: 'commons/',
+        image: 'Expand your reach.webp',
+        imageAlt: 'Man browsing a clinic website',
+      },
       list: [
         'Acquire patients beyond your reach',
         'Hassle-free from booking to billing',
         'Covers virtual to physical accommodation',
       ],
+    };
+    this.multiplePanel = {
+      title: 'One view for multiple locations',
+      description: 'All you need is one clean dashboard to see how your clinics are faring. Critical data from your multiple branches are beautifully compiled to show you a comprehensive summary of patient encounters, transactions, sales, expenses and even staff performance.',
+      contentAlign: 'left',
+      imageBindings: {
+        customPath: 'clinics/skin/',
+        image: 'Multiple locations.png',
+        mobileImage: 'Multiple locations mobile.png',
+        extensionExclusive: true,
+        imageAlt: 'Charts and graphs',
+      },
     };
     return {
       loading: true,
