@@ -38,6 +38,23 @@
           span Get Started
     //- 4th panel
     straightforward
+    //- 5th panel
+    div.info.mx-n3
+      v-container
+        v-row(justify="center")
+          generic-panel(:row-bindings="{ justify: 'center' }")
+            v-col(cols="12" lg="8" xl="6").white--text.text-center
+              h2(:class="['white--text', ...headerClasses]").mb-10 Still a student?
+              h3(:class="studentPanelDescriptionClasses").mb-10 Join the next free webinar series for dentistry students.
+              mc-btn(
+                color="success"
+                depressed
+                rounded
+                :large="!$isWideScreen"
+                :x-large="$isWideScreen"
+                :class="btnClasses"
+              ).text-none Count me in
+    v-container
     //- 8th panel
     syncbase(:version="3")
     //- 9th panel
@@ -64,6 +81,7 @@ export default {
     CallToAction: () => import('~/components/commons/panels/CallToAction'),
     Features: () => import('~/components/commons/panels/Features'),
     GenericMediaPanel: () => import('~/components/generic/GenericMediaPanel'),
+    GenericPanel: () => import('~/components/generic/GenericPanel'),
     Pricing: () => import('~/components/commons/panels/Pricing'),
     ProblemStatement: () => import('~/components/dental-clinics/ProblemStatement'),
     SignupButton: () => import('~/components/commons/SignupButton'),
@@ -131,11 +149,21 @@ export default {
         classBinder(this, {
           mobile: ['font-xs'],
           regular: ['font-s'],
+          wide: ['font-m'],
         }),
-        'font-open-sans',
-        'font-gray',
       ];
       return descriptionClasses;
+    },
+    studentPanelDescriptionClasses () {
+      const studentPanelDescriptionClasses = [
+        classBinder(this, {
+          mobile: ['font-s'],
+          regular: ['font-m'],
+          wide: ['font-l'],
+        }),
+        'font-weight-semibold',
+      ];
+      return studentPanelDescriptionClasses;
     },
     subHeaderClasses () {
       return [
@@ -149,6 +177,15 @@ export default {
         'secondary--text',
       ];
     },
+    btnClasses () {
+      return [
+        classBinder(this, {
+          mobile: ['text-center'],
+          regular: ['font-xs'],
+          wide: ['font-s'],
+        }),
+      ];
+    },
   },
   mounted () {
     this.loading = false;
@@ -159,5 +196,8 @@ export default {
 <style scoped>
 .grey-bg {
   background-color: #fafafa;
+}
+.blue-bg {
+  background-color: #0099cc;
 }
 </style>
