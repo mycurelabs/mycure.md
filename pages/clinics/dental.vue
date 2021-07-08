@@ -15,6 +15,8 @@
       :content-column-bindings="{ cols: 12, md: 5 }"
     )
     //- 2nd panel
+    div.grey-bg.mx-n3
+      problem-statement
     //- 3rd to 4th panel
     //- 8th panel
     syncbase(:version="3")
@@ -43,6 +45,7 @@ export default {
     Features: () => import('~/components/commons/panels/Features'),
     GenericMediaPanel: () => import('~/components/generic/GenericMediaPanel'),
     Pricing: () => import('~/components/commons/panels/Pricing'),
+    ProblemStatement: () => import('~/components/dental-clinics/ProblemStatement'),
     SignupButton: () => import('~/components/commons/SignupButton'),
     Syncbase: () => import('~/components/commons/panels/Syncbase'),
     ThinkLongTerm: () => import('~/components/commons/panels/ThinkLongTerm'),
@@ -132,3 +135,9 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.grey-bg {
+  background-color: #fafafa;
+}
+</style>
