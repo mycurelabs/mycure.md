@@ -164,6 +164,7 @@ export default {
       },
     ];
     this.integrationsPanel = {
+      contentAlign: 'left',
       title: 'Ready whenever you are',
       superTitle: 'POWERFUL INTEGRATIONS',
       list: [
