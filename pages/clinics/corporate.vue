@@ -14,7 +14,33 @@
       :media-column-bindings="{ cols: 12, md: 6, offsetMd: 1, xl: 6}"
       :content-column-bindings="{ cols: 12, md: 5 }"
     )
-
+    //- 2nd panel
+    div.grey-bg.mx-n3
+    features(
+      extension-exclusive
+      image-dir="clinics/corporate/"
+      icon-container-col-size="6"
+      description="Everyone in your workplace is online. MYCURE helps you monitor their health and safety conveniently through the cloud."
+      :icon-column-bindings="{ cols: 6 }"
+      :items="features"
+    )
+      template(slot="title")
+        h2(:class="headerClasses").primary--text Newest tools for the newest generation.
+    //- 3rd panel
+    div.info.mx-n3
+      v-container
+        v-row(justify="center")
+          generic-panel(:row-bindings="{ justify: 'center' }")
+            v-col(cols="12" lg="8" xl="6").white--text.text-center
+              h2(:class="['white--text', ...headerClasses]").mb-10 Know the health status of your employees stat.
+              h3(:class="descriptionClasses").mb-10.font-weight-semibold.white--text Easily access and share medical records with them through the MYCURE health portal.
+    //- 4th panel
+    generic-media-panel(
+      :content="multiplePanel"
+      :title-classes="[...headerClasses, 'primary--text']"
+      hide-btn
+    )
+    //- 5th panel
     pricing(
       type="doctor"
       title="Start free and only pay as you grow."
@@ -50,30 +76,46 @@ export default {
     CallToAction: () => import('~/components/commons/panels/CallToAction'),
     Features: () => import('~/components/commons/panels/Features'),
     GenericMediaPanel: () => import('~/components/generic/GenericMediaPanel'),
-    GenericPanel: () => import('~/components/generic/GenericPanel'),
     Pricing: () => import('~/components/commons/panels/Pricing'),
-    ProblemStatement: () => import('~/components/dental-clinics/ProblemStatement'),
     SignupButton: () => import('~/components/commons/SignupButton'),
-    Straightforward: () => import('~/components/dental-clinics/Straightforward'),
-    Syncbase: () => import('~/components/commons/panels/Syncbase'),
-    ThinkLongTerm: () => import('~/components/commons/panels/ThinkLongTerm'),
     Usp,
   },
   data () {
     this.features = [
       {
         title: 'Online Health Records',
+        icon: 'Online Health Records',
+        iconExtension: '.png',
       },
       {
         title: 'Medical Certificates',
+        icon: 'Certificate',
+        iconExtension: '.png',
       },
       {
         title: 'Annual Checkups',
+        icon: 'Annual',
+        iconExtension: '.png',
       },
       {
         title: 'COVID-19 Test and Vaccine Tracker',
+        icon: 'Covid vaccine tracker',
+        iconExtension: '.png',
       },
     ];
+    this.multiplePanel = {
+      centerPanelTitle: 'FOR MULTI-BRANCH FACILITIES',
+      title: 'One view for multiple locations',
+      description: 'All you need is one clean dashboard to see how your clinics are faring. Critical data from your multiple branches are beautifully compiled to show you a comprehensive summary of patient encounters, transactions, sales, expenses and even staff performance.',
+      contentAlign: 'left',
+      imageBindings: {
+        customPath: 'clinics/skin/',
+        image: 'Multiple locations.png',
+        mobileImage: 'Multiple locations mobile.png',
+        extensionExclusive: true,
+        imageAlt: 'Charts and graphs',
+      },
+    };
     return {
       loading: true,
     };
@@ -124,3 +166,9 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.grey-bg {
+  background-color: #fafafa;
+}
+</style>
