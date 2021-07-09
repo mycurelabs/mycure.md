@@ -14,6 +14,10 @@
       :media-column-bindings="{ cols: 12, md: 6, offsetMd: 1, xl: 6}"
       :content-column-bindings="{ cols: 12, md: 5 }"
     )
+
+    //- 2nd panel
+    workflow
+
     //- 3rd panel
     v-container
       v-row(justify="center")
@@ -48,13 +52,14 @@
             v-tabs-items(v-model="reportType")
               v-tab-item(v-for="(mockup, key) in reportMockups" :key="key" :value="mockup.value")
                 picture-source(
-                  image-width="80%"
+                  image-width="100%"
                   image-file-extension=".png"
                   custom-path="diagnostics/mobile-labs/"
                   extensionExclusive
                   :image="`${mockup.image}${$isMobile ? '-mobile' : ''}`"
                   :image-alt="`A ${reportType} sample report from MYCURE Clinic Management System on laptop screen`"
                 )
+
     //- 4th panel
     generic-media-panel(
       :content="directoryPanel"
@@ -87,11 +92,14 @@
           //-     :x-large="$isWideScreen"
           //-     :class="{'font-s': $isWideScreen, 'font-14': $isRegularScreen }"
           //-   ).text-none Book a full training
+
+    //- 5th panel
     pricing(
       title="Start free and only pay as you grow"
       type="diagnostic"
     )
-    //- 5th panel
+
+    //- 6th panel
     call-to-action(:version="4")
       template(slot="cta-button")
         v-col(cols="12" md="7" lg="6" xl="5")
@@ -106,6 +114,7 @@
             :class="btnClasses"
           ).text-none Get Started
 
+    //- 7th panel
     div.info.mx-n3
       v-container
         v-row(justify="center")
@@ -139,6 +148,7 @@ export default {
     PictureSource: () => import('~/components/commons/PictureSource'),
     Pricing: () => import('~/components/commons/panels/Pricing'),
     SignupButton: () => import('~/components/commons/SignupButton'),
+    Workflow: () => import('~/components/mobile-labs/Workflow'),
     Usp,
   },
   data () {
