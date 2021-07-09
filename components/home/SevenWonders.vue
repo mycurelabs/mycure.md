@@ -94,7 +94,7 @@ export default {
         title: 'Diagnostics',
         description: 'Convert online booking to online results',
         infoLink: 'diagnostics',
-        image: 'diagnostic',
+        image: 'Diagnostics',
       },
       // {
       //   title: 'Pharmacy',

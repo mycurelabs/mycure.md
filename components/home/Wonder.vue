@@ -8,10 +8,12 @@
       :elevation="hover ? 16 : 5"
     )
       v-card-text.text-center
-        img(
-          :src="require(`~/assets/images/home/${wonder.image}.png`)"
-          :width="$isMobile ? '60%' : '75%'"
-          :alt="wonder.title"
+        picture-source(
+          :image="wonder.image"
+          :image-width="$isMobile ? '60%' : '75%'"
+          :image-alt="wonder.title"
+          custom-path="home/"
+          image-file-extension=".webp"
         )
         br
         br
