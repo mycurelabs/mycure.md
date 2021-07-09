@@ -14,6 +14,79 @@
       :media-column-bindings="{ cols: 12, md: 6, offsetMd: 1, xl: 6}"
       :content-column-bindings="{ cols: 12, md: 5 }"
     )
+    //- 3rd panel
+    v-container
+      v-row(justify="center")
+        generic-panel(:row-bindings="{ justify: 'center' }")
+          v-col(cols="12" md="8").text-center
+            h2(:class="headerClasses").font-weight-semibold.mb-5 Create beautiful reports for your clients.
+            p(:class="descriptionClasses").mb-10.font-weight-semibold.secondary--text Provide both printed and online copies of their medical exam results without the hassle.
+          v-col(cols="12").text-center
+            v-row.text-center
+              v-spacer
+              v-btn(
+                color="primary"
+                depressed
+                tile
+                x-large
+                style="width: 200px;"
+                :outlined="reportType !== 'imaging'"
+                @click="reportType = 'imaging'"
+              ).text-none Imaging
+              v-btn(
+                color="primary"
+                depressed
+                tile
+                x-large
+                style="width: 200px;"
+                :outlined="reportType !== 'lab'"
+                @click="reportType = 'lab'"
+              ).text-none Laboratory
+              v-spacer
+            br
+            br
+            v-tabs-items(v-model="reportType")
+              v-tab-item(v-for="(mockup, key) in reportMockups" :key="key" :value="mockup.value")
+                picture-source(
+                  image-width="80%"
+                  image-file-extension=".png"
+                  custom-path="diagnostics/mobile-labs/"
+                  extensionExclusive
+                  :image="`${mockup.image}${$isMobile ? '-mobile' : ''}`"
+                  :image-alt="`A ${reportType} sample report from MYCURE Clinic Management System on laptop screen`"
+                )
+    //- 4th panel
+    generic-media-panel(
+      :content="directoryPanel"
+      :title-classes="[...headerClasses, 'primary--text']"
+    )
+      template(slot="cta-button")
+        v-row(:justify="$isMobile ? 'center' : 'start'")
+          v-col(cols="10" md="7" lg="6" xl="7")
+            signup-button(
+              depressed
+              rounded
+              block
+              :x-large="$isWideScreen"
+              :large="!$isWideScreen"
+              :class="btnClasses"
+              color="success"
+            ).text-none
+              span Create my website
+          //- TODO: Bring back when sample website is available
+          //- v-col(cols="12" md="7" lg="6" xl="5")
+          //-   mc-btn(
+          //-     color="success"
+          //-     href="https://calendly.com/mycure/demo"
+          //-     target="_blank"
+          //-     rel="noopener noreferrer"
+          //-     depressed
+          //-     rounded
+          //-     block
+          //-     :large="!$isWideScreen"
+          //-     :x-large="$isWideScreen"
+          //-     :class="{'font-s': $isWideScreen, 'font-14': $isRegularScreen }"
+          //-   ).text-none Book a full training
     pricing(
       title="Start free and only pay as you grow"
       type="diagnostic"
@@ -63,39 +136,34 @@ export default {
     CallToAction: () => import('~/components/commons/panels/CallToAction'),
     GenericMediaPanel: () => import('~/components/generic/GenericMediaPanel'),
     GenericPanel: () => import('~/components/generic/GenericPanel'),
+    PictureSource: () => import('~/components/commons/PictureSource'),
     Pricing: () => import('~/components/commons/panels/Pricing'),
     SignupButton: () => import('~/components/commons/SignupButton'),
     Usp,
   },
   data () {
-    this.infoPanels = [
+    this.reportMockups = [
       {
-        header: 'Seamless workflows anywhere you go',
-        descriptions: [
-          'Value everyone\'s time more effectively. Handle location-based registrations like a breeze.',
-        ],
-        list: [
-          'Book appointments',
-          'Register via kiosk',
-          'Specimen collection queuing',
-          'Online and printed results',
-        ],
+        image: 'Imaging Report',
+        value: 'imaging',
       },
       {
-        header: 'Create beautiful reports',
-        descriptions: [
-          'Provide both printed and online copies of medical exam results without the hassle.',
-        ],
-      },
-      {
-        header: 'Expand Your Reach',
-        descriptions: [
-          'Join MYCURE ONE, a global online directory of modern healthcare practitioners and facilities so patients can easily find and book an appointment anytime.',
-        ],
+        image: 'Mobile Labs Laboratory',
+        value: 'lab',
       },
     ];
-
+    this.directoryPanel = {
+      title: 'Expand your Reach',
+      description: 'Join MYCURE ONE, a global online directory of modern healthcare practitioners and facilities so patients can easily find and book an appointment anytime.',
+      contentAlign: 'right',
+      imageBindings: {
+        customPath: 'commons/',
+        image: 'Expand your reach.webp',
+        imageAlt: 'Man browsing a clinic website',
+      },
+    };
     return {
+      reportType: 'imaging',
       loading: true,
     };
   },
