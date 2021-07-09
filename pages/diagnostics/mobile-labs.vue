@@ -14,6 +14,10 @@
       :media-column-bindings="{ cols: 12, md: 6, offsetMd: 1, xl: 6}"
       :content-column-bindings="{ cols: 12, md: 5 }"
     )
+    pricing(
+      title="Start free and only pay as you grow"
+      type="diagnostic"
+    )
     //- 5th panel
     call-to-action(:version="4")
       template(slot="cta-button")
@@ -28,7 +32,23 @@
             :x-large="$isWideScreen"
             :class="btnClasses"
           ).text-none Get Started
-    //- 6th panel
+
+    div.info.mx-n3
+      v-container
+        v-row(justify="center")
+          generic-panel(:row-bindings="{ justify: 'center' }")
+            v-col(cols="12").white--text.text-center
+              h2(:class="['white--text', ...headerClasses]").mb-5 Take the first step today
+              p(:class="descriptionClasses").white--text.font-weight-bold.mb-5 Start now and get all your questions answered.
+              signup-button(
+                depressed
+                rounded
+                :x-large="$isWideScreen"
+                :large="!$isWideScreen"
+                :class="btnClasses"
+                color="success"
+              ).text-none
+                span Get Started
 </template>
 
 <script>
@@ -93,8 +113,10 @@ export default {
         classBinder(this, {
           mobile: ['font-m'],
           regular: ['font-l'],
+          wide: ['font-xl'],
         }),
         'lh-title',
+        'font-weight-semibold',
       ];
       return headerClasses;
     },
@@ -103,9 +125,8 @@ export default {
         classBinder(this, {
           mobile: ['font-xs'],
           regular: ['font-s'],
+          wide: ['font-m'],
         }),
-        'font-open-sans',
-        'font-gray',
       ];
       return descriptionClasses;
     },
