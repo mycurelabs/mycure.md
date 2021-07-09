@@ -2,55 +2,33 @@
   div(v-if="!loading").white
     //- 1st panel
     usp(
+      has-custom-background
+      background-image="Mobile Clinics Full"
+      background-image-file-extension=".webp"
       title="The simplest LIS for Mobile Labs"
       meta-title="MYCURE LIS for Mobile Labs"
       description="MYCURE is an easy to use, secure, cloud-based laboratory information software (LIS) that you can easily setup anywhere your medical team is."
       btn-text="Sign Up"
+      image="Mobile Clinics Mobile Version"
+      custom-image-path="diagnostics/mobile-labs/"
+      :media-column-bindings="{ cols: 12, md: 6, offsetMd: 1, xl: 6}"
+      :content-column-bindings="{ cols: 12, md: 5 }"
     )
-    //- 2nd - 4th panel
-    generic-media-panel(
-      v-for="(info, key) in infoPanels"
-      :key="key"
-      content-align-right
-      cols-left="6"
-      cols-right="6"
-      :header="info.header"
-      :header-classes="headerClasses"
-      :descriptions="info.descriptions"
-      :description-classes="descriptionClasses"
-      dummy
-    )
-      //- List
-      template(slot="additional-content" v-if="info.list")
-        template(v-for="(item, i) in info.list")
-          v-row(dense)
-            v-col(cols="1").pr-2.pt-2
-              span(:class="descriptionClasses") {{ i + 1 }}.
-            v-col
-              span(:class="descriptionClasses") {{ item }}
-
     //- 5th panel
-    call-to-action
-
+    call-to-action(:version="4")
+      template(slot="cta-button")
+        v-col(cols="12" md="7" lg="6" xl="5")
+          signup-button(
+            event-label="signup"
+            color="success"
+            depressed
+            rounded
+            block
+            :large="!$isWideScreen"
+            :x-large="$isWideScreen"
+            :class="btnClasses"
+          ).text-none Get Started
     //- 6th panel
-    generic-media-panel(
-      :center-media="!$isMobile"
-      :content-align-left="$isMobile"
-      header="Take the first step today"
-      :header-classes="headerClasses"
-      :descriptions="['Start now and get all your questions answered']"
-      :descriptionClasses="descriptionClasses"
-      :dense="$isMobile"
-      dummy
-    )
-      template(slot="additional-content")
-        v-row(justify="center")
-          v-col(cols="4").text-center
-            mc-btn(
-              color="primary"
-              large
-              depressed
-            ).text-none.font-xs Start Now
 </template>
 
 <script>
@@ -58,14 +36,15 @@
 import headMeta from '~/utils/head-meta';
 import classBinder from '~/utils/class-binder';
 // - components
-import CallToAction from '~/components/commons/panels/CallToAction';
-import GenericMediaPanel from '~/components/commons/generic-media-panel';
 import Usp from '~/components/commons/panels/SevenWondersUsp';
 
 export default {
   components: {
-    CallToAction,
-    GenericMediaPanel,
+    CallToAction: () => import('~/components/commons/panels/CallToAction'),
+    GenericMediaPanel: () => import('~/components/generic/GenericMediaPanel'),
+    GenericPanel: () => import('~/components/generic/GenericPanel'),
+    Pricing: () => import('~/components/commons/panels/Pricing'),
+    SignupButton: () => import('~/components/commons/SignupButton'),
     Usp,
   },
   data () {
@@ -139,6 +118,15 @@ export default {
         'font-open-sans',
         'font-weight-bold',
         'primary--text',
+      ];
+    },
+    btnClasses () {
+      return [
+        classBinder(this, {
+          mobile: ['text-center'],
+          regular: ['font-xs'],
+          wide: ['font-s'],
+        }),
       ];
     },
   },
