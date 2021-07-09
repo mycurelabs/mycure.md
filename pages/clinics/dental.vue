@@ -8,7 +8,7 @@
       title="Easy to setup, affordable"
       meta-title="MYCURE for Dental Clinics"
       description="Start going digital without spending anything."
-      btn-text="Start Free"
+      btn-text="Get Started"
       image="Dental Clinics USP - Mobile version"
       custom-image-path="clinics/dental/"
       :media-column-bindings="{ cols: 12, md: 6, offsetMd: 1, xl: 6}"
@@ -99,7 +99,7 @@
               :class="btnClasses"
               color="success"
             ).text-none
-              span Get Started Free
+              span Get Started
 
     //- 7th panel
     generic-media-panel(
@@ -126,8 +126,7 @@
     //- 10th panel
     pricing(
       title="Take the first step today"
-      type="doctor"
-      description="Start free and only pay as you grow."
+      type="clinic"
     )
     //- 11th panel
     call-to-action(:version="3")

@@ -42,8 +42,8 @@
     )
     //- 5th panel
     pricing(
-      type="doctor"
-      title="Start free and only pay as you grow."
+      type="clinic"
+      title="Take the first step today."
     )
     call-to-action(:version="4")
     //- 9th panel
@@ -61,7 +61,7 @@
                 :class="btnClasses"
                 color="success"
               ).text-none
-                span Start Free
+                span Get Started
 </template>
 
 <script>

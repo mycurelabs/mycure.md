@@ -95,7 +95,7 @@
 
     //- 5th panel
     pricing(
-      title="Start free and only pay as you grow"
+      title="Take the first step today."
       type="diagnostic"
     )
 

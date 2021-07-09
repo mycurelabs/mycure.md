@@ -107,7 +107,6 @@
     pricing(
       type="clinic"
       title="Take the first step today"
-      description="Start free and only pay as you grow."
       :pricing-details="pricingDetails"
     )
     //- 9th panel
