@@ -6,8 +6,8 @@
           v-row(align="center" justify="center").my-6
             v-col(cols="10" md="4" :class="{ 'text-center': !$isMobile }")
               img(
-                :width="$isMobile ? '100%' : '80%'"
-                src="../../assets/images/HIPAA Badge.png"
+                width="100%"
+                src="../../assets/images/MYCURE-HIPAA Badge.png"
                 alt="HIPAA Compliance Seal"
               )
             v-col(cols="12" md="8")
