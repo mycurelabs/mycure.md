@@ -1,0 +1,35 @@
+$font-s: 19px;
+$font-xs: 16px;
+$font-m: 28px;
+$font-l: 40px;
+$font-xl: 55px;
+$font-2xl: 65px;
+
+$letter-spacing: -0.5px;
+
+.font-2xl {
+  font-size: $font-2xl !important;
+  line-height: 1.5;
+  letter-spacing: $letter-spacing;
+}
+.font-xl {
+  font-size: $font-xl;
+  line-height: 1;
+  letter-spacing: $letter-spacing;
+}
+.font-l {
+  font-size: $font-l !important;
+  line-height: 1.5;
+  letter-spacing: $letter-spacing;
+}
+.font-m {
+  font-size: $font-m !important;
+  letter-spacing: $letter-spacing;
+}
+.font-s {
+  font-size: $font-s !important;
+}
+.font-xs {
+  font-size: $font-xs !important;
+}
+
