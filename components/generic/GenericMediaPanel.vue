@@ -29,38 +29,74 @@ export default {
     PictureSource,
   },
   props: {
+    /**
+     * Content to display
+     * @type {Object}
+     */
     content: {
       type: Object,
       default: () => ({}),
     },
+    /**
+     * If there should be no button
+     * @type {Boolean}
+     */
     hideBtn: {
       type: Boolean,
       default: false,
     },
+    /**
+     * If panel should have no padding in the y-axis
+     * @type {Boolean}
+     */
     disableParentPadding: {
       type: Boolean,
       default: false,
     },
+    /**
+     * List of center panel title classes
+     * @type {Array, Object}
+     */
     centerPanelTitleClasses: {
       type: [Array, Object],
       default: undefined,
     },
+    /**
+     * List of title classes
+     * @type {Array, Object}
+     */
     titleClasses: {
       type: [Array, Object],
       default: undefined,
     },
+    /**
+     * List of content classes
+     * @type {Array, Object}
+     */
     contentClasses: {
       type: [Array, Object],
       default: undefined,
     },
+    /**
+     * List of super title classes
+     * @type {Array, Object}
+     */
     superTitleClasses: {
       type: [Array, Object],
       default: undefined,
     },
+    /**
+     * Alignment of whole panel
+     * @type {String}
+     */
     align: {
       type: String,
       default: undefined,
     },
+    /**
+     * Justification of whole panel
+     * @type {String}
+     */
     justify: {
       type: String,
       default: 'center',
