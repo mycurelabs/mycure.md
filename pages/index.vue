@@ -29,7 +29,7 @@
           image-file-extension=".webp"
           custom-path="home/"
           image-alt="CTA Home"
-          :image-width="!$isMobile ? '30%' : '70%'"
+          :image-width="!$isMobile ? '30%' : '100%'"
           :image-styles="{ marginBottom: '-7px' }"
         )
 </template>
@@ -46,7 +46,7 @@ export default {
   components: {
     Care: () => import('~/components/home/Care'),
     GenericMediaPanel: () => import('~/components/commons/generic-media-panel'),
-    Hipaa: () => import( '~/components/booking/Hipaa'),
+    Hipaa: () => import('~/components/booking/Hipaa'),
     JoinNextGeneration: () => import('~/components/home/JoinNextGeneration'),
     Patients: () => import('~/components/home/Patients'),
     PictureSource,
