@@ -17,7 +17,7 @@
                 :class="btnClasses"
                 color="success"
               ).text-none
-                span Sign Up
+                span Start Free
             v-col(cols="12")
               v-row(justify="center")
                 template(v-if="!$isMobile")

@@ -1,5 +1,5 @@
 <template lang="pug">
-  div(:class="{'pricing-bg': !$isMobile}").mx-n3
+  div(:class="$isMobile ? 'pricing-bg-mobile' : 'pricing-bg' ").mx-n3
     v-container
       v-row(justify="center")
         generic-panel(:row-bindings="{ justify: 'center'}")
@@ -162,5 +162,9 @@ export default {
   background-image: url('../../../assets/images/pricing/Pricing BG.png');
   background-position: center center;
   background-size: 100% 100%;
+}
+.pricing-bg-mobile {
+  background-image: url('../../../assets/images/pricing/Pricing BG.png');
+  background-position: center bottom;
 }
 </style>

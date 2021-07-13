@@ -8,7 +8,7 @@
       title="Easy to setup, affordable"
       meta-title="MYCURE for Dental Clinics"
       description="Start going digital without spending anything."
-      btn-text="Get Started"
+      btn-text="Start Free"
       image="Dental Clinics USP - Mobile version"
       custom-image-path="clinics/dental/"
       :media-column-bindings="{ cols: 12, md: 6, offsetMd: 1, xl: 6}"
@@ -28,15 +28,16 @@
           br
           span Never miss a tooth.
       template(slot="cta-button")
-        signup-button(
-          depressed
-          rounded
-          color="success"
-          :x-large="$isWideScreen"
-          :large="!$isWideScreen"
-          :class="btnClasses"
-        ).text-none
-          span Get Started
+        div(:class="{ 'text-center': $isMobile }")
+          signup-button(
+            depressed
+            rounded
+            color="success"
+            :x-large="$isWideScreen"
+            :large="!$isWideScreen"
+            :class="btnClasses"
+          ).text-none
+            span Get Started
     //- 4th panel
     straightforward
     //- 5th panel
@@ -87,7 +88,7 @@
               :large="!$isWideScreen"
               :x-large="$isWideScreen"
               :class="{'font-s': $isWideScreen, 'font-14': $isRegularScreen }"
-            ).text-none Book a full training
+            ).text-none Create my Website
           v-col(cols="12" md="7" lg="6" xl="7")
             signup-button(
               depressed
@@ -99,7 +100,7 @@
               :class="btnClasses"
               color="success"
             ).text-none
-              span Get Started
+              span View Sample Website
 
     //- 7th panel
     generic-media-panel(
@@ -118,14 +119,14 @@
             :large="!$isWideScreen"
             :x-large="$isWideScreen"
             :class="btnClasses"
-          ).text-none Book a demo
+          ).text-none Get Started
     //- 8th panel
     syncbase(:version="3")
     //- 9th panel
     think-long-term(extended)
     //- 10th panel
     pricing(
-      title="Take the first step today"
+      title="Start free and only pay as you grow"
       type="clinic"
     )
     //- 11th panel
@@ -213,7 +214,7 @@ export default {
     headerClasses () {
       const headerClasses = [
         classBinder(this, {
-          mobile: ['font-m'],
+          mobile: ['font-m', 'text-center'],
           regular: ['font-l'],
           wide: ['font-xl'],
         }),
@@ -225,7 +226,7 @@ export default {
     descriptionClasses () {
       const descriptionClasses = [
         classBinder(this, {
-          mobile: ['font-xs'],
+          mobile: ['font-xs', 'text-center'],
           regular: ['font-s'],
           wide: ['font-m'],
         }),
@@ -246,7 +247,7 @@ export default {
     subHeaderClasses () {
       return [
         classBinder(this, {
-          mobile: ['font-s'],
+          mobile: ['font-s', 'text-center'],
           regular: ['font-25'],
           wide: ['font-l'],
         }),

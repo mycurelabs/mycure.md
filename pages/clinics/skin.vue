@@ -39,18 +39,20 @@
     //- 3rd panel
     generic-media-panel(:content="thirdPanel" align="center")
       template(slot="content")
-        h2(:class="headerClasses") Beautiful user experience
+        h2(:class="headerClasses" text-align) Beautiful user experience!
         br
         h2(:class="headerClasses").secondary--text You won't feel like you are at work.
       template(slot="cta-button")
-        signup-button(
-          depressed
-          rounded
-          :x-large="$isWideScreen"
-          :large="!$isWideScreen"
-          color="success"
-        ).text-none.font-s
-          span Get Started
+        div(:class="{ 'text-center': $isMobile }")
+          signup-button(
+            :class="btnClasses"
+            depressed
+            rounded
+            :x-large="$isWideScreen"
+            :large="!$isWideScreen"
+            color="success"
+          ).text-none.font-s
+            span Get Started
 
     //- 4th panel
     generic-media-panel(
@@ -72,13 +74,15 @@
               span(:class="descriptionClasses") {{ item }}
         div(:class="{ 'text-center': $isMobile }")
           signup-button(
+            :class="btnClasses"
             depressed
             rounded
+            block
             :x-large="$isWideScreen"
             :large="!$isWideScreen"
             color="success"
-          ).text-none.font-s
-            span Create your website
+          ).text-none.font-s.mb-3
+            span Create my website
 
     //- 5th panel
     generic-media-panel(
@@ -97,7 +101,7 @@
             :large="!$isWideScreen"
             :x-large="$isWideScreen"
             :class="btnClasses"
-          ).text-none.font-s Book a demo today
+          ).text-none.font-s Get Started
 
     //- 6th panel
     syncbase(:version="3")
@@ -106,7 +110,7 @@
     //- 8th panel
     pricing(
       type="clinic"
-      title="Take the first step today"
+      title="Start free and only pay as you grow"
       :pricing-details="pricingDetails"
     )
     //- 9th panel
@@ -216,7 +220,7 @@ export default {
     headerClasses () {
       const headerClasses = [
         classBinder(this, {
-          mobile: ['font-m'],
+          mobile: ['font-m', 'text-center'],
           regular: ['font-l'],
           wide: ['font-xl'],
         }),
@@ -228,7 +232,7 @@ export default {
     descriptionClasses () {
       const descriptionClasses = [
         classBinder(this, {
-          mobile: ['font-xs'],
+          mobile: ['font-xs', 'text-center'],
           regular: ['font-s'],
           wide: ['font-m'],
         }),
@@ -238,13 +242,15 @@ export default {
       return descriptionClasses;
     },
     btnClasses () {
-      return [
+      const btnClasses = [
         classBinder(this, {
-          mobile: ['text-center'],
+          mobile: ['font-xs', 'text-center'],
           regular: ['font-xs'],
           wide: ['font-s'],
         }),
+        'font-weight-thin',
       ];
+      return btnClasses;
     },
   },
   mounted () {

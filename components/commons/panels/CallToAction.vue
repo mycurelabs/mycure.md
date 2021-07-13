@@ -13,6 +13,18 @@
     template(slot="additional-content")
       v-row.mt-10
         slot(name="cta-button")
+          v-col(cols="12" md="7" lg="6" xl="7")
+            div(:class="{'text-center': $isMobile}")
+              mc-btn(
+                color="success"
+                depressed
+                rounded
+                :block="![2, 4].includes(version)"
+                :large="!$isWideScreen"
+                :x-large="$isWideScreen"
+                :class="{'font-s': $isWideScreen, 'font-14': $isRegularScreen }"
+                :href="'https://calendly.com/mycure/demo'"
+              ).text-none {{ ![2, 4].includes(version) ? 'Book a full training for $20' : 'Start Now' }}
           v-col(v-if="![2, 4].includes(version)" cols="12" md="7" lg="6" xl="5")
             signup-button(
               event-label="signup"
@@ -20,22 +32,11 @@
               depressed
               rounded
               block
+              :outlined="![2, 4].includes(version)"
               :large="!$isWideScreen"
               :x-large="$isWideScreen"
               :class="buttonClasses"
             ).text-none Get Started Free
-          v-col(cols="12" md="7" lg="6" xl="7")
-            mc-btn(
-              color="success"
-              depressed
-              rounded
-              block
-              :outlined="![2, 4].includes(version)"
-              :large="!$isWideScreen"
-              :x-large="$isWideScreen"
-              :class="{'font-s': $isWideScreen, 'font-14': $isRegularScreen }"
-              :href="'https://calendly.com/mycure/demo'"
-            ).text-none {{ version !== 2 ? 'Book a full training' : 'Start Now' }}
 </template>
 
 <script>
