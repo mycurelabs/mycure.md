@@ -7,6 +7,11 @@ $font-2xl: 65px;
 
 $letter-spacing: -0.5px;
 
+// Creates custom font-class
+@mixin font-n($font-size) {
+  .col-#{$font-size} { font-size: $font-size !important; }
+}
+
 .font-2xl {
   font-size: $font-2xl !important;
   line-height: 1.5;
@@ -33,3 +38,22 @@ $letter-spacing: -0.5px;
   font-size: $font-xs !important;
 }
 
+/* Font Styles */
+.font-poppins {
+  font-family: 'Poppins', 'sans-serif' !important;
+}
+.font-open-sans {
+  font-family: 'Open Sans', 'sans-serif' !important;
+}
+.font-weight-semibold {
+  font-weight: 600 !important;
+}
+
+/* Font Color */
+.font-gray {
+  /* color: rgba(0,0,0,0.5); */
+  color: #787878;
+}
+.font-usp-primary {
+  color: #033F58;
+}
