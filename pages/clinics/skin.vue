@@ -205,11 +205,10 @@ export default {
     };
   },
   head () {
-    // - TODO: Update
     return headMeta({
       title: 'MYCURE for Skin Clinics',
       description: 'Experience the #1 Software for Skin and Aesthetic clinics. MYCURE is easy to set up and maintain. Get started today.',
-      socialBanner: require('~/assets/images/banners/OG Homepage.png'),
+      socialBanner: require('~/assets/images/banners/MYCURE - Skin Clinic OG BANNER.png'),
     });
   },
   computed: {

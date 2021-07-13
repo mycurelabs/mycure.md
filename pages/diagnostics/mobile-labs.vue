@@ -178,11 +178,10 @@ export default {
     };
   },
   head () {
-    // - TODO: Update
     return headMeta({
       title: 'MYCURE LIS for Mobile Labs',
       description: 'Discover the simplest and most affordable laboratory information software designed for mobile labs. It’s cloud-based and works offline.',
-      socialBanner: require('~/assets/images/banners/OG Homepage.png'),
+      socialBanner: require('~/assets/images/banners/MYCURE - Mobile Clinic OG BANNER.png'),
     });
   },
   computed: {
