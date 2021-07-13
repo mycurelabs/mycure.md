@@ -21,7 +21,7 @@
                   h1(:class="headerClasses").mb-10 Enterprise-Grade Healthcare Solutions
                   v-row(justify="center")
                     v-col(cols="12" md="10")
-                      p(:class="{ 'font-24' : !$isMobile, 'font-s' : $isMobile }").primary--text.font-weight-bold.mb-10 At a fraction of the cost.
+                      p(:class="{ 'font-xs' : $isMobile, 'font-s' : $isRegularScreen, 'font-m': $isWideScreen }").primary--text.font-weight-bold.mb-10 At a fraction of the cost.
                   signup-button(
                     depressed
                     rounded
