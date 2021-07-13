@@ -25,7 +25,7 @@
             v-chip(v-for="(specialty, key) in specialties" :key="key" color="white").ma-1
               span(style="color: #878E9B;") {{ specialty }}
           //- Consult btn
-          v-col(cols="10" v-if="!$isMobile").text-center.justify-center
+          v-col(cols="10").text-center.justify-center
               div(v-if="isBookable").white.btn-banner
                 strong(slot="badge").font-18.warning--text I'm available
               v-hover(
@@ -181,11 +181,20 @@ export default {
   .btn-banner {
     width: 50%;
   }
+  .custom-book-btn {
+    width: 200px;
+  }
 }
 
 @media screen and (max-width: 700px) {
   .panel-bg {
     height: 1000px;
+  }
+}
+
+@media screen and (min-width: 1300px) {
+  .btn-banner {
+    width: 200px;
   }
 }
 @media screen and (min-width: 1600px) {
