@@ -45,14 +45,15 @@
               @click="syncbaseVideoDialog = true"
             ).text-none Watch how it works
         template(slot="image")
-          //- video(:width="wXL ? '800' : '400'" playsinline autoplay muted loop).syncbase-animate
-          //-     source(src="~/assets/videos/Syncbase.mp4" type="video/mp4")
-          //-     | Your browser does not support the video tag.
-          img(
-            width="100%"
-            src="~/assets/images/booking/mycure-syncbase-diagram-animate.gif"
-            alt="MYCURE Syncbase"
-          )
+          div.vid-container
+            video(width="101%" playsinline autoplay muted loop).syncbase-animate
+                source(src="~/assets/videos/MYCURE-Syncbase animate.mp4" type="video/mp4")
+                | Your browser does not support the video tag.
+          //- img(
+          //-   width="100%"
+          //-   src="~/assets/images/booking/mycure-syncbase-diagram-animate.gif"
+          //-   alt="MYCURE Syncbase"
+          //- )
     //- Syncbase Video Dialog
     v-dialog(v-model="syncbaseVideoDialog" max-width="800" max-height="500")
       v-card(width="800").pt-5
@@ -177,9 +178,16 @@ export default {
 </script>
 
 <style scoped>
-.syncbase-animate {
+.vid-container {
   overflow: hidden;
-  z-index: 0;
+}
+.syncbase-animate {
+  position: relative;
+  right: 2px;
+}
+
+.syncbase-animate:focus {
+  outline: none;
 }
 .content {
   z-index: 1 !important;

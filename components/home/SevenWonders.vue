@@ -21,7 +21,7 @@
                   h1(:class="headerClasses").mb-10 Enterprise-Grade Healthcare Solutions
                   v-row(justify="center")
                     v-col(cols="12" md="10")
-                      p(:class="{ 'font-24' : !$isMobile, 'font-s' : $isMobile }").primary--text.font-weight-bold.mb-10 At a fraction of the cost.
+                      p(:class="{ 'font-xs' : $isMobile, 'font-s' : $isRegularScreen, 'font-m': $isWideScreen }").primary--text.font-weight-bold.mb-10 At a fraction of the cost.
                   signup-button(
                     depressed
                     rounded
@@ -31,8 +31,20 @@
                   ).text-none.font-s
                     span Get Started
             template(v-if="!$isMobile")
-              v-col(cols="8" md="3" xl="3" v-for="(wonder, key) in wonders" :key="key")
-                wonder(:wonder="wonder")
+              v-col(cols="12" xl="10")
+                vue-slick-carousel(
+                  autoplay
+                  draggable
+                  infinite
+                  :arrows="false"
+                  :dots="false"
+                  :slidesToShow="4",
+                  :speed="500"
+                )
+                  div(v-for="(wonder,key) in wonders" :key="key")
+                    wonder(:wonder="wonder")
+              //- v-col(cols="8" md="3" xl="3" v-for="(wonder, key) in wonders" :key="key")
+              //-   wonder(:wonder="wonder")
             template(v-else)
               v-col(cols="10")
                 carousel(
@@ -61,8 +73,8 @@
 </template>
 
 <script>
-// import VueSlickCarousel from 'vue-slick-carousel';
-// import 'vue-slick-carousel/dist/vue-slick-carousel.css';
+import VueSlickCarousel from 'vue-slick-carousel';
+import 'vue-slick-carousel/dist/vue-slick-carousel.css';
 import Wonder from './Wonder';
 import GenericPanel from '~/components/generic/GenericPanel';
 import PictureSource from '~/components/commons/PictureSource';
@@ -74,7 +86,7 @@ export default {
     PictureSource,
     SignupButton,
     Wonder,
-    // VueSlickCarousel,
+    VueSlickCarousel,
   },
   data () {
     this.wonders = [
@@ -95,6 +107,18 @@ export default {
         description: 'Convert online booking to online results',
         infoLink: 'diagnostics',
         image: 'Diagnostics',
+      },
+      {
+        title: 'Booking',
+        description: 'Book and schedule appointments efficiently',
+        infoLink: 'booking',
+        image: 'Booking',
+      },
+      {
+        title: 'Telehealth',
+        description: 'Everything you need to build your virtual practice',
+        infoLink: 'telehealth',
+        image: 'Telehealth',
       },
       // {
       //   title: 'Pharmacy',

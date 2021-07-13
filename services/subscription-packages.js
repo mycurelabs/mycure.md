@@ -177,7 +177,7 @@ const PACKAGE_IMAGE = {
 
 const PACKAGE_CURRENCY = {
   php: '₱',
-  usd: 'USD',
+  usd: '$',
 };
 
 const DOCTOR_TYPES = [
@@ -220,7 +220,7 @@ export const getSubscriptionPackages = async ({ types }) => {
     $or: [
       { currency },
     ],
-    ...country.country_code === 'US' && { tags: ['us'] },
+    ...country.country_code === 'US' && { tags: { $in: ['us'] } },
   });
   return items;
 };

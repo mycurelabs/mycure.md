@@ -30,38 +30,84 @@ export default {
     PictureSource,
   },
   props: {
+    /**
+     * Content to display
+     * @type {Object}
+     * @param centerPanelTitle - short statement for the content placed at the top-center
+     * @param superTitle - subheader or pre-title
+     * @param {String} title - panel main title
+     * @param {String} description - panel content
+     * @param {String} contentAlign - which side to put the content
+     * @param {Object} imageBindings - description of image to display with content
+     *   @param {String} customPath - path to folder of image
+     *   @param {String} image - image name with extension
+     *   @param {String} mobileImage -image name with extension for display on mobile devices
+     *   @param {String} imageAlt - alt message of image
+     */
     content: {
       type: Object,
       default: () => ({}),
     },
+    /**
+     * If there should be no button
+     * @type {Boolean}
+     */
     hideBtn: {
       type: Boolean,
       default: false,
     },
+    /**
+     * If panel should have no padding in the y-axis
+     * @type {Boolean}
+     */
     disableParentPadding: {
       type: Boolean,
       default: false,
     },
+    /**
+     * List of center panel title classes
+     * @type {Array, Object}
+     */
     centerPanelTitleClasses: {
       type: [Array, Object],
       default: undefined,
     },
+    /**
+     * List of title classes
+     * @type {Array, Object}
+     */
     titleClasses: {
       type: [Array, Object],
       default: undefined,
     },
+    /**
+     * List of content classes
+     * @type {Array, Object}
+     */
     contentClasses: {
       type: [Array, Object],
       default: undefined,
     },
+    /**
+     * List of super title classes
+     * @type {Array, Object}
+     */
     superTitleClasses: {
       type: [Array, Object],
       default: undefined,
     },
+    /**
+     * Adjusts alignment of elements in regards to the y-axis
+     * @type {String}
+     */
     align: {
       type: String,
       default: undefined,
     },
+    /**
+     * Adjusts alignment of elements in regards to the x-axis
+     * @type {String}
+     */
     justify: {
       type: String,
       default: 'center',

@@ -95,6 +95,10 @@ export default {
 .router-link {
   text-decoration: none;
 }
+.edge-divider{
+  margin-right: 11% !important;
+  margin-left: 11% !important;
+}
 @media screen and (min-width: 768px) {
   .footer-bg {
     padding-bottom: unset;

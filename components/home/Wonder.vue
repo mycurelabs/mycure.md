@@ -3,9 +3,9 @@
     v-card(
       color="#fafafa"
       height="100%"
-      rounded="xl"
+      flat
       :to="wonder.infoLink"
-      :elevation="hover ? 16 : 5"
+      :elevation="hover ? 16 : 0"
     )
       v-card-text.text-center
         picture-source(

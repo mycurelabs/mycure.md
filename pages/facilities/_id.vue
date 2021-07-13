@@ -537,4 +537,10 @@ a {
     width: 50%;
   }
 }
+
+@media screen and (min-width: 1300px) {
+  .btn-banner {
+    width: 150px;
+  }
+}
 </style>
