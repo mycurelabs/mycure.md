@@ -49,4 +49,7 @@ export default {
 .usp-container {
   padding-bottom: 70px;
 }
+.font-50 {
+  font-size: 50px !important;
+}
 </style>

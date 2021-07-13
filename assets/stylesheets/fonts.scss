@@ -8,9 +8,12 @@ $font-2xl: 65px;
 $letter-spacing: -0.5px;
 
 // Creates custom font-class
-@mixin font-n($font-size) {
-  .col-#{$font-size} { font-size: $font-size !important; }
+@mixin font-n($max-font-size) {
+  @for $i from 10 through $max-font-size {
+    .font-#{$i} { font-size: #{$i}px !important; }
+  }
 }
+@include font-n($font-l);
 
 .font-2xl {
   font-size: $font-2xl !important;
