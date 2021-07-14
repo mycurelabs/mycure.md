@@ -110,7 +110,7 @@
     //- 8th panel
     pricing(
       type="clinic"
-      title="Start free and only pay as you grow"
+      title="Take the first step today."
       :pricing-details="pricingDetails"
     )
     //- 9th panel

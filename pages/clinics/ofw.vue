@@ -106,7 +106,7 @@
           //-   ).text-none Book a full training
     //- 7th panel
     pricing(
-      title="Start free and only pay as you grow"
+      title="Take the first step today."
       type="clinic"
     )
     //- 8th panel

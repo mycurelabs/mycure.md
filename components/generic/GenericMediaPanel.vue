@@ -112,10 +112,6 @@ export default {
       type: String,
       default: 'center',
     },
-    containerColumn: {
-      type: [Number, String],
-      default: '10',
-    },
   },
   computed: {
     defaultTitleClasses () {

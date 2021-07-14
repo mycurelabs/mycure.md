@@ -24,7 +24,7 @@
                 :x-large="$isWideScreen"
                 :class="{'font-s': $isWideScreen, 'font-14': $isRegularScreen }"
                 :href="'https://calendly.com/mycure/demo'"
-              ).text-none {{ ![2, 4].includes(version) ? 'Book a full training for $20' : 'Start Now' }}
+              ).text-none {{ ![2, 4].includes(version) ? 'Book a full training' : 'Start Now' }}
           v-col(v-if="![2, 4].includes(version)" cols="12" md="7" lg="6" xl="5")
             signup-button(
               event-label="signup"
