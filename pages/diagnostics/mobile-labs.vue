@@ -8,7 +8,7 @@
       title="The simplest LIS for Mobile Labs"
       meta-title="MYCURE LIS for Mobile Labs"
       description="MYCURE is an easy to use, secure, cloud-based laboratory information software (LIS) that you can easily setup anywhere your medical team is."
-      btn-text="Sign Up"
+      btn-text="Start Free"
       image="Mobile Clinics Mobile Version"
       custom-image-path="diagnostics/mobile-labs/"
       :media-column-bindings="{ cols: 12, md: 6, offsetMd: 1, xl: 6}"
@@ -26,27 +26,27 @@
             h2(:class="headerClasses").font-weight-semibold.mb-5 Create beautiful reports for your clients.
             p(:class="descriptionClasses").mb-10.font-weight-semibold.secondary--text Provide both printed and online copies of their medical exam results without the hassle.
           v-col(cols="12").text-center
-            v-row.text-center
-              v-spacer
-              v-btn(
-                color="primary"
-                depressed
-                tile
-                x-large
-                style="width: 200px;"
-                :outlined="reportType !== 'imaging'"
-                @click="reportType = 'imaging'"
-              ).text-none Imaging
-              v-btn(
-                color="primary"
-                depressed
-                tile
-                x-large
-                style="width: 200px;"
-                :outlined="reportType !== 'lab'"
-                @click="reportType = 'lab'"
-              ).text-none Laboratory
-              v-spacer
+            v-row.justify-center.gutterless
+              v-col(cols="6" md="3").pa-0
+                v-btn(
+                  color="primary"
+                  depressed
+                  tile
+                  block
+                  :x-large="!$isMobile"
+                  :outlined="reportType !== 'imaging'"
+                  @click="reportType = 'imaging'"
+                ).text-none Imaging
+              v-col(cols="6" md="3").pa-0
+                v-btn(
+                  color="primary"
+                  depressed
+                  tile
+                  block
+                  :x-large="!$isMobile"
+                  :outlined="reportType !== 'lab'"
+                  @click="reportType = 'lab'"
+                ).text-none Laboratory
             br
             br
             v-tabs-items(v-model="reportType")
@@ -103,16 +103,16 @@
     call-to-action(:version="4")
       template(slot="cta-button")
         v-col(cols="12" md="7" lg="6" xl="5")
-          signup-button(
-            event-label="signup"
-            color="success"
-            depressed
-            rounded
-            block
-            :large="!$isWideScreen"
-            :x-large="$isWideScreen"
-            :class="btnClasses"
-          ).text-none Get Started
+          div(:class="{'text-center': $isMobile}")
+            signup-button(
+              event-label="signup"
+              color="success"
+              depressed
+              rounded
+              :large="!$isWideScreen"
+              :x-large="$isWideScreen"
+              :class="btnClasses"
+            ).text-none Start Now
 
     //- 7th panel
     div.info.mx-n3
@@ -130,7 +130,7 @@
                 :class="btnClasses"
                 color="success"
               ).text-none
-                span Get Started
+                span Start Now
 </template>
 
 <script>

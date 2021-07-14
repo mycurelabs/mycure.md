@@ -61,7 +61,7 @@
                 :class="btnClasses"
                 color="success"
               ).text-none
-                span Get Started
+                span Count me in
 </template>
 
 <script>
@@ -131,7 +131,7 @@ export default {
     headerClasses () {
       const headerClasses = [
         classBinder(this, {
-          mobile: ['font-m'],
+          mobile: ['font-m', 'text-center'],
           regular: ['font-l'],
           wide: ['font-xl'],
         }),
@@ -143,7 +143,7 @@ export default {
     descriptionClasses () {
       const descriptionClasses = [
         classBinder(this, {
-          mobile: ['font-xs'],
+          mobile: ['font-xs', 'text-center'],
           regular: ['font-s'],
           wide: ['font-m'],
         }),

@@ -37,16 +37,16 @@
       template(slot="cta-button")
         v-row(:justify="$isMobile ? 'center' : 'start'")
           v-col(cols="10" md="7" lg="6" xl="7")
-            signup-button(
-              depressed
-              rounded
-              block
-              :x-large="$isWideScreen"
-              :large="!$isWideScreen"
-              :class="btnClasses"
-              color="success"
-            ).text-none
-              span Sign Up
+            div(:class="{ 'text-center': $isMobile }")
+              signup-button(
+                depressed
+                rounded
+                :x-large="$isWideScreen"
+                :large="!$isWideScreen"
+                :class="btnClasses"
+                color="success"
+              ).text-none
+                span Sign Up
     //- 5th panel
     div.grey-bg.mx-n3
       generic-media-panel(
@@ -106,7 +106,7 @@
           //-   ).text-none Book a full training
     //- 7th panel
     pricing(
-      title="Take the first step today"
+      title="Take the first step today."
       type="clinic"
     )
     //- 8th panel
@@ -126,7 +126,7 @@
                 :large="!$isWideScreen"
                 :x-large="$isWideScreen"
                 :class="btnClasses"
-              ).text-none Start Now
+              ).text-none Count me in
 </template>
 
 <script>
@@ -207,7 +207,7 @@ export default {
     headerClasses () {
       const headerClasses = [
         classBinder(this, {
-          mobile: ['font-m'],
+          mobile: ['font-m', 'text-center'],
           regular: ['font-l'],
           wide: ['font-xl'],
         }),
@@ -219,7 +219,7 @@ export default {
     descriptionClasses () {
       const descriptionClasses = [
         classBinder(this, {
-          mobile: ['font-xs'],
+          mobile: ['font-xs', 'text-center'],
           regular: ['font-s'],
           wide: ['font-m'],
         }),

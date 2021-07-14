@@ -12,7 +12,7 @@
         :hide-btn="hideBtn"
       )
         div(v-if="version === 1" slot="super-title")
-          p.primary--text MYCURE ONLINE & OFFLINE
+          p(:class="{ 'text-center' : $isMobile }").primary--text MYCURE ONLINE & OFFLINE
         div(slot="content")
           template(v-if="version !== 2")
             p(:class="descriptionClasses") Work as if you have an in-house server with the convenience of the cloud. Create your medical records locally using multiple devices even if the internet is down! Once back online, it instantly syncs your data into the cloud.
@@ -33,11 +33,12 @@
             nuxt-link(:to="{ name: 'syncbase' }" :class="{'d-flex': !$isMobile}").button
               span(:class="[{'font-14':  $isMobile }, ...descriptionClasses]").primary--text Learn about MYCURE Syncbase
               v-icon(left color="primary" :large="$isWideScreen" :small="$isMobile") mdi-chevron-right
-          div(v-else)
-             mc-btn(
+          div(v-else :class="{'text-center': $isMobile}")
+            mc-btn(
               color="success"
               depressed
               rounded
+              block
               :large="!$isWideScreen"
               :x-large="$isWideScreen"
               :class="btnClasses"
@@ -104,7 +105,7 @@ export default {
     headerClasses () {
       const headerClasses = [
         classBinder(this, {
-          mobile: ['font-s'],
+          mobile: ['font-s', 'text-center'],
           regular: ['font-m'],
           wide: ['font-xl'],
         }),
@@ -116,7 +117,7 @@ export default {
     descriptionClasses () {
       const descriptionClasses = [
         classBinder(this, {
-          mobile: ['font-xs'],
+          mobile: ['font-xs', 'text-center'],
           regular: ['font-s'],
           wide: ['font-m'],
         }),
@@ -128,7 +129,7 @@ export default {
     superTitleClasses () {
       return [
         classBinder(this, {
-          mobile: ['font-xs'],
+          mobile: ['font-xs', 'text-center'],
           regular: ['font-xs'],
           wide: ['font-s'],
         }),

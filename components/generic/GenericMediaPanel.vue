@@ -5,6 +5,7 @@
         v-bind="getPanelBindings(content)"
         :hide-btn="hideBtn"
         :disable-parent-padding="disableParentPadding"
+        :container-column="containerColumn"
       )
         template(slot="content")
           div
@@ -116,7 +117,7 @@ export default {
     defaultTitleClasses () {
       const titleClasses = [
         classBinder(this, {
-          mobile: ['font-m'],
+          mobile: ['font-m', 'text-center'],
           regular: ['font-l'],
           wide: ['font-xl'],
         }),
@@ -128,7 +129,7 @@ export default {
     defaultContentClasses () {
       const contentClasses = [
         classBinder(this, {
-          mobile: ['font-xs'],
+          mobile: ['font-xs', 'text-center'],
           regular: ['font-s'],
           wide: ['font-m'],
         }),
@@ -140,7 +141,7 @@ export default {
     defaultSuperTitleClasses () {
       return [
         classBinder(this, {
-          mobile: ['font-xs'],
+          mobile: ['font-xs', 'text-center'],
           regular: ['font-xs'],
           wide: ['font-s'],
         }),
