@@ -48,7 +48,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 a {
   text-decoration: none !important;
 }

@@ -196,17 +196,18 @@ export default {
     },
     // Classes
     titleClasses () {
-      const classes = classBinder(this, {
-        mobile: ['font-m', 'text-center'],
-        regular: ['font-l'],
-        wide: ['font-xl'],
-      });
+      // const classes = classBinder(this, {
+      //   mobile: ['font-m', 'text-center'],
+      //   regular: ['font-l'],
+      //   wide: ['font-xl'],
+      // });
       return [
+        'mc-usp-title',
         'lh-title',
         'font-weight-bold',
         // 'font-usp-primary',
         { 'pre-white-space': this.toParse(this.parseTitle) },
-        classes,
+        // classes,
       ];
     },
     superTitleClasses () {
