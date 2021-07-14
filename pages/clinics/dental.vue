@@ -100,7 +100,7 @@
               :class="btnClasses"
               color="success"
             ).text-none
-              span View Sample Website
+              span Get Started
 
     //- 7th panel
     generic-media-panel(

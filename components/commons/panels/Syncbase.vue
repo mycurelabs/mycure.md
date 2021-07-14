@@ -12,7 +12,7 @@
         :hide-btn="hideBtn"
       )
         div(v-if="version === 1" slot="super-title")
-          p.primary--text MYCURE ONLINE & OFFLINE
+          p(:class="{ 'text-center' : $isMobile }").primary--text MYCURE ONLINE & OFFLINE
         div(slot="content")
           template(v-if="version !== 2")
             p(:class="descriptionClasses") Work as if you have an in-house server with the convenience of the cloud. Create your medical records locally using multiple devices even if the internet is down! Once back online, it instantly syncs your data into the cloud.

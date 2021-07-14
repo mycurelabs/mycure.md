@@ -33,6 +33,7 @@
                   depressed
                   tile
                   block
+                  :x-large="!$isMobile"
                   :outlined="reportType !== 'imaging'"
                   @click="reportType = 'imaging'"
                 ).text-none Imaging
@@ -42,6 +43,7 @@
                   depressed
                   tile
                   block
+                  :x-large="!$isMobile"
                   :outlined="reportType !== 'lab'"
                   @click="reportType = 'lab'"
                 ).text-none Laboratory

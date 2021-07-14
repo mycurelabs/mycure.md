@@ -105,7 +105,7 @@ export default {
     titleClasses () {
       const titleClasses = [
         classBinder(this, {
-          mobile: ['font-m'],
+          mobile: ['font-m', 'text-center'],
           regular: ['font-l'],
           wide: ['font-xl'],
         }),

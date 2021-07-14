@@ -65,28 +65,28 @@
             p(:class="descriptionClasses").mt-3 Patients can directly book their next visit on your professional booking page. It’s a digital hub where you can showcase your services and medical professionals like having your very own website.
           v-col(cols="12").text-center
             //- v-btn-toggle(v-model="websiteType" mandatory)
-            v-row.text-center
-              v-spacer
-              v-btn(
-                color="primary"
-                depressed
-                tile
-                x-large
-                style="width: 200px;"
-                :outlined="websiteType !== 'doctor'"
-                @click="websiteType = 'doctor'"
-              ).text-none Doctors
-              v-btn(
-                color="primary"
-                depressed
-                outlined
-                tile
-                x-large
-                style="width: 200px;"
-                :outlined="websiteType !== 'clinic'"
-                @click="websiteType = 'clinic'"
-              ).text-none Clinics
-              v-spacer
+            v-row.justify-center.gutterless
+              v-col(cols="6" md="3").pa-0
+                v-btn(
+                  color="primary"
+                  depressed
+                  tile
+                  block
+                  :x-large="!$isMobile"
+                  :outlined="websiteType !== 'doctor'"
+                  @click="websiteType = 'doctor'"
+                ).text-none Doctors
+              v-col(cols="6" md="3").pa-0
+                v-btn(
+                  color="primary"
+                  depressed
+                  outlined
+                  tile
+                  block
+                  :x-large="!$isMobile"
+                  :outlined="websiteType !== 'clinic'"
+                  @click="websiteType = 'clinic'"
+                ).text-none Clinics
             br
             br
             v-tabs-items(v-model="websiteType")
