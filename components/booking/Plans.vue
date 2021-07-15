@@ -67,6 +67,7 @@ export default {
       'Daily Census',
       'Sales Reports',
     ];
+    this.descriptionClasses = ['mc-content-set-1'];
     return {};
   },
   computed: {
@@ -75,23 +76,6 @@ export default {
         mobile: ['text-center'],
         regular: ['font-20'],
       });
-    },
-    descriptionClasses () {
-      return classBinder(this, {
-        mobile: ['font-xs', 'text-center'],
-        regular: ['font-s'],
-        wide: ['font-m'],
-      });
-    },
-    planTitleClasses () {
-      const headerClasses = [
-        classBinder(this, {
-          mobile: ['font-s', 'text-center'],
-          regular: ['font-m'],
-        }),
-        'lh-title',
-      ];
-      return headerClasses;
     },
   },
 };

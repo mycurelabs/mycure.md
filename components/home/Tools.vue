@@ -111,29 +111,18 @@ export default {
         icon: 'Notification',
       },
     ];
+    this.headerClasses = ['mc-title-set-3'];
+    this.descriptionClasses = ['mc-content-set-4'];
     return {};
   },
   computed: {
     items () {
       return this.version === 1 ? this.defaultTools : this.modules;
     },
-    headerClasses () {
-      return classBinder(this, {
-        mobile: ['font-m'],
-        regular: ['font-l'],
-        wide: ['font-2xl'],
-      });
-    },
     subheaderClasses () {
       return classBinder(this, {
         mobile: ['font-14'],
         regular: ['font-s'],
-        wide: ['font-m'],
-      });
-    },
-    descriptionClasses () {
-      return classBinder(this, {
-        regular: ['font-xs'],
         wide: ['font-m'],
       });
     },

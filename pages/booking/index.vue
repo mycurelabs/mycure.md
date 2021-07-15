@@ -107,16 +107,17 @@
         :content-classes="['white--text', ...descriptionClasses]"
       )
         template(slot="cta-button")
-          signup-button(
-            depressed
-            rounded
-            color="success"
-            facility-type="clinic"
-            :x-large="$isWideScreen"
-            :large="!$isWideScreen"
-            :class="buttonClasses"
-          ).text-none
-            span Get Started Free
+          div(:class="{ 'text-center': $isMobile }")
+            signup-button(
+              depressed
+              rounded
+              color="success"
+              facility-type="clinic"
+              :x-large="$isWideScreen"
+              :large="!$isWideScreen"
+              :class="buttonClasses"
+            ).text-none
+              span Get Started Free
     //- 6th panel
     plans.mb-n3
 </template>
@@ -124,7 +125,6 @@
 <script>
 // utils
 import headMeta from '~/utils/head-meta';
-import classBinder from '~/utils/class-binder';
 // components
 import PictureSource from '~/components/commons/PictureSource';
 import Usp from '~/components/commons/panels/SevenWondersUsp';
@@ -203,6 +203,16 @@ export default {
         value: 'clinic',
       },
     ];
+    this.titleClasses = ['mc-title-set-1'];
+    this.descriptionClasses = ['mc-content-set-1', 'font-open-sans', 'font-gray'];
+    this.buttonClasses = ['mc-button-set-1'];
+    this.howItWorksClass = ['mc-title-set-2'];
+    this.imageBindings = {
+      image: 'Booking Mobile',
+      customImagePath: 'booking/',
+      imageAlign: 'right',
+      imageAlt: 'Booking a schedule on a phone artwork',
+    };
     return {
       loading: true,
       websiteType: 'doctor',
@@ -214,66 +224,6 @@ export default {
       description: 'MYCURE helps you bring in more patients using a powerful healthcare service booking and management software. It’s free, secure, and easy to use.',
       socialBanner: require('~/assets/images/banners/OG Booking.png'),
     });
-  },
-  computed: {
-    imageBindings () {
-      return {
-        image: 'Booking Mobile',
-        customImagePath: 'booking/',
-        imageAlign: 'right',
-        imageAlt: 'Booking a schedule on a phone artwork',
-      };
-    },
-    metaTitleClasses () {
-      return [
-        classBinder(this, {
-          regular: ['font-xs'],
-          wide: ['font-s'],
-        }),
-      ];
-    },
-    titleClasses () {
-      return [
-        classBinder(this, {
-          mobile: ['font-m'],
-          regular: ['font-l'],
-          wide: ['font-xl'],
-        }),
-      ];
-    },
-    descriptionClasses () {
-      const descriptionClasses = [
-        classBinder(this, {
-          mobile: ['font-xs'],
-          regular: ['font-s'],
-          wide: ['font-m'],
-        }),
-        'font-open-sans',
-        'font-gray',
-      ];
-      return descriptionClasses;
-    },
-    itemTextClasses () {
-      return [
-        classBinder(this, {
-          regular: ['font-xs'],
-          wide: ['font-s'],
-        }),
-      ];
-    },
-    buttonClasses () {
-      return classBinder(this, {
-        regular: ['font-xs'],
-        wide: ['font-s'],
-      });
-    },
-    howItWorksClass () {
-      return classBinder(this, {
-        mobile: ['font-s'],
-        regular: ['font-m'],
-        wide: ['font-l'],
-      });
-    },
   },
   mounted () {
     this.loading = false;

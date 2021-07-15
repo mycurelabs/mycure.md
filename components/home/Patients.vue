@@ -49,25 +49,13 @@ export default {
         image: 'Online Booking BG',
       },
     ];
+    this.headerClasses = ['mc-title-set-3'];
+    this.descriptionClasses = ['mc-content-set-1'];
     return {
       canUseWebp: false,
     };
   },
   computed: {
-    headerClasses () {
-      return classBinder(this, {
-        mobile: ['font-m'],
-        regular: ['font-l'],
-        wide: ['font-2xl'],
-      });
-    },
-    descriptionClasses () {
-      return classBinder(this, {
-        mobile: ['font-xs'],
-        regular: ['font-s'],
-        wide: ['font-m'],
-      });
-    },
     appDescriptionClasses () {
       return classBinder(this, {
         mobile: ['font-s'],

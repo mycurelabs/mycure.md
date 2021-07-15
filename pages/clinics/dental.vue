@@ -75,8 +75,8 @@
             v-col(cols="10" sm="11" md="11")
               span(:class="descriptionClasses").font-open-sans.font-gray {{ item }}
       template(slot="cta-button")
-        v-row
-          v-col(cols="12" md="7" lg="6" xl="5")
+        v-row(:justify="$isMobile ? 'center' : 'start'")
+          v-col(cols="10" md="7" lg="6" xl="5")
             mc-btn(
               color="success"
               href="https://calendly.com/mycure/demo"
@@ -89,7 +89,7 @@
               :x-large="$isWideScreen"
               :class="{'font-s': $isWideScreen, 'font-14': $isRegularScreen }"
             ).text-none Create my Website
-          v-col(cols="12" md="7" lg="6" xl="7")
+          v-col(cols="10" md="7" lg="6" xl="7")
             signup-button(
               depressed
               rounded
@@ -136,7 +136,6 @@
 <script>
 // - utils
 import headMeta from '~/utils/head-meta';
-import classBinder from '~/utils/class-binder';
 // - components
 import Usp from '~/components/commons/panels/SevenWondersUsp';
 
@@ -198,6 +197,11 @@ export default {
         imageAlt: 'Charts and graphs',
       },
     };
+    this.headerClasses = ['mc-title-set-1', 'lh-title', 'font-weight-semibold'];
+    this.descriptionClasses = ['mc-content-set-1'];
+    this.btnClasses = ['mc-button-set-1'];
+    this.subHeaderClasses = ['mc-subheader-set-1', 'lh-title', 'font-weight-semibold', 'secondary--text'];
+    this.studentPanelDescriptionClasses = ['mc-subheader-set-2', 'font-weight-semibold'];
     return {
       loading: true,
     };
@@ -208,62 +212,6 @@ export default {
       description: 'Experience the most versatile software for dental clinics that seamlessly manages dental charts, inventory, and billing.',
       socialBanner: require('~/assets/images/banners/MYCURE - Dental Clinic OG BANNER.png'),
     });
-  },
-  computed: {
-    headerClasses () {
-      const headerClasses = [
-        classBinder(this, {
-          mobile: ['font-m', 'text-center'],
-          regular: ['font-l'],
-          wide: ['font-xl'],
-        }),
-        'lh-title',
-        'font-weight-semibold',
-      ];
-      return headerClasses;
-    },
-    descriptionClasses () {
-      const descriptionClasses = [
-        classBinder(this, {
-          mobile: ['font-xs', 'text-center'],
-          regular: ['font-s'],
-          wide: ['font-m'],
-        }),
-      ];
-      return descriptionClasses;
-    },
-    studentPanelDescriptionClasses () {
-      const studentPanelDescriptionClasses = [
-        classBinder(this, {
-          mobile: ['font-s'],
-          regular: ['font-m'],
-          wide: ['font-l'],
-        }),
-        'font-weight-semibold',
-      ];
-      return studentPanelDescriptionClasses;
-    },
-    subHeaderClasses () {
-      return [
-        classBinder(this, {
-          mobile: ['font-s', 'text-center'],
-          regular: ['font-25'],
-          wide: ['font-l'],
-        }),
-        'lh-title',
-        'font-weight-semibold',
-        'secondary--text',
-      ];
-    },
-    btnClasses () {
-      return [
-        classBinder(this, {
-          mobile: ['text-center'],
-          regular: ['font-xs'],
-          wide: ['font-s'],
-        }),
-      ];
-    },
   },
   mounted () {
     this.loading = false;

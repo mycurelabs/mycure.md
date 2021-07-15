@@ -79,7 +79,6 @@ import Wonder from './Wonder';
 import GenericPanel from '~/components/generic/GenericPanel';
 import PictureSource from '~/components/commons/PictureSource';
 import SignupButton from '~/components/commons/SignupButton';
-import classBinder from '~/utils/class-binder';
 export default {
   components: {
     GenericPanel,
@@ -147,16 +146,8 @@ export default {
       //   image: 'security',
       // },
     ];
+    this.headerClasses = ['mc-title-set-3'];
     return {};
-  },
-  computed: {
-    headerClasses () {
-      return classBinder(this, {
-        mobile: ['font-m'],
-        regular: ['font-xl'],
-        wide: ['font-2xl'],
-      });
-    },
   },
 };
 </script>

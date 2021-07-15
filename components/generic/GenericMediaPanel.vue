@@ -5,7 +5,6 @@
         v-bind="getPanelBindings(content)"
         :hide-btn="hideBtn"
         :disable-parent-padding="disableParentPadding"
-        :container-column="containerColumn"
       )
         template(slot="content")
           div
@@ -113,31 +112,12 @@ export default {
       default: 'center',
     },
   },
+  data () {
+    this.defaultTitleClasses = ['mc-title-set-1', 'lh-title', 'font-weight-semibold'];
+    this.defaultContentClasses = ['mc-content-set-1', 'font-open-sans', 'font-gray'];
+    return {};
+  },
   computed: {
-    defaultTitleClasses () {
-      const titleClasses = [
-        classBinder(this, {
-          mobile: ['font-m', 'text-center'],
-          regular: ['font-l'],
-          wide: ['font-xl'],
-        }),
-        'lh-title',
-        'font-weight-semibold',
-      ];
-      return titleClasses;
-    },
-    defaultContentClasses () {
-      const contentClasses = [
-        classBinder(this, {
-          mobile: ['font-xs', 'text-center'],
-          regular: ['font-s'],
-          wide: ['font-m'],
-        }),
-        'font-open-sans',
-        'font-gray',
-      ];
-      return contentClasses;
-    },
     defaultSuperTitleClasses () {
       return [
         classBinder(this, {

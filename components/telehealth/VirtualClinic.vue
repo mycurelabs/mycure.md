@@ -39,7 +39,6 @@
 </template>
 
 <script>
-import classBinder from '~/utils/class-binder';
 import GenericPanel from '~/components/generic/GenericPanel';
 import PictureSource from '~/components/commons/PictureSource';
 import SignupButton from '~/components/commons/SignupButton';
@@ -63,43 +62,10 @@ export default {
         description: 'Build patient loyalty and accommodate patients outside of your physical work hours. It\'s easy for your old and new patients to set appointments with you.',
       },
     ];
+    this.titleClasses = ['mc-title-set-1', 'font-weight-semibold'];
+    this.headerClasses = ['mc-title-set-2', 'font-weight-semibold', { 'pt-5': this.$isMobile }];
+    this.contentClasses = ['mc-content-set-1', 'font-open-sans', 'font-gray'];
     return {};
-  },
-  computed: {
-    titleClasses () {
-      const titleClasses = [
-        classBinder(this, {
-          mobile: ['font-m', 'text-center'],
-          regular: ['font-l'],
-          wide: ['font-xl'],
-        }),
-        'font-weight-semibold',
-      ];
-      return titleClasses;
-    },
-    headerClasses () {
-      const headerClasses = [
-        classBinder(this, {
-          mobile: ['font-s', 'text-center', 'pt-5'],
-          regular: ['font-m'],
-          wide: ['font-l'],
-        }),
-        'font-weight-semibold',
-      ];
-      return headerClasses;
-    },
-    contentClasses () {
-      const contentClasses = [
-        classBinder(this, {
-          mobile: ['font-xs'],
-          regular: ['font-s'],
-          wide: ['font-m'],
-        }),
-        'font-open-sans',
-        'font-gray',
-      ];
-      return contentClasses;
-    },
   },
   methods: {
     viewDemo () {
