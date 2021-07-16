@@ -53,8 +53,8 @@ export default {
       });
     },
     cardHeight () {
-      if (this.$isWideScreen) return '400';
-      if (this.wLG) return '405';
+      if (this.$isWideScreen) return '390';
+      if (this.wLG) return '360';
       if (this.wSM) return '375';
       return '350';
     },
