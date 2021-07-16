@@ -247,13 +247,15 @@ export default {
           createdBy: this.doctor.id,
           limit: this.clinicsLimit,
           skip,
-          // $populate: {
-          //   doctorSchedules: {
-          //     service: 'schedule-slots',
-          //     method: 'find',
-          //     key: 'id',
-          //   },
-          // },
+          $populate: {
+            doctorSchedules: {
+              service: 'schedule-slots',
+              method: 'find',
+              localKey: 'id',
+              foreignKey: 'organization',
+              account: this.doctor.id,
+            },
+          },
         });
         this.clinicsTotal = total;
         // this.clinics = items.map(item => item.organization);

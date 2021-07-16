@@ -30,10 +30,10 @@
         v-icon(color="primary" left).mr-2.mb-auto.mt-1 mdi-calendar-today
         table
           tr(v-for="sched in clinicSchedules").font-weight-600
-            td(width="70") #[b.text-capitalize {{ formatDay(sched.day) }}]
-            td {{sched.startTime | morph-date-format('hh:mm A')}}
+            td(width="70") #[b.text-capitalize {{ formatDay(sched) }}]
+            td {{sched.startTime || sched.opening | morph-date-format('hh:mm A')}}
             td -
-            td {{sched.endTime | morph-date-format('hh:mm A')}}
+            td {{sched.endTime || sched.closing | morph-date-format('hh:mm A')}}
       br
       div(v-if="fullSchedules.length > 3").pl-3
         a(
@@ -156,8 +156,7 @@ export default {
   },
   computed: {
     canBook () {
-      // return this.clinicId && this.doctorId && this.clinicSchedules?.length;
-      return this.clinicId && this.doctorId;
+      return this.clinicId && this.doctorId && this.clinicSchedules?.length;
     },
     telehealthURL () {
       const pxPortalUrl = process.env.PX_PORTAL_URL;
@@ -189,22 +188,54 @@ export default {
   watch: {
     clinicSchedulesExpanded (val) {
       // Sort the schedules
+      let useMfSchedule = false;
       this.fullSchedules = this.clinic?.$populated?.doctorSchedules  || this.clinic?.doctorSchedules || []; // eslint-disable-line
-      // this.fullSchedules = this.clinic?.mf_schedule;
-      if (!this.fullSchedules?.length) this.clinicSchedules = [];
-      const groupedSchedules = uniqWith(this.fullSchedules
-        .map((schedule) => {
-          const { day } = this.days.find(day => day.order === schedule.day);
-          return {
-            day,
-            ...schedule,
-          };
-        })
-        .sort((a, b) => a.day !== b.day ? a.day - b.day : a.startTime - b.startTime) || []
-      , (a, b) => a.day === b.day && a.startTime === b.startTime);
-      if (!val && groupedSchedules && groupedSchedules.length >= 3) {
-        this.clinicSchedules = groupedSchedules.slice(0, 3);
+      if (!this.fullSchedules?.length && this.clinic?.mf_schedule?.length) {
+        this.fullSchedules = this.clinic.mf_schedule;
+        useMfSchedule = true;
+      }
+
+      if (!this.fullSchedules?.length) {
+        this.clinicSchedules = [];
         return;
+      }
+
+      let groupedSchedules = [];
+
+      // - Non mf schedule usage
+      if (!useMfSchedule) {
+        groupedSchedules = uniqWith(this.fullSchedules
+          .map((schedule) => {
+            const { day, order } = this.days.find(day => day.order === schedule.day);
+            return {
+              day,
+              order,
+              ...schedule,
+            };
+          })
+          .sort((a, b) => a.day !== b.day ? a.day - b.day : a.startTime - b.startTime) || []
+        , (a, b) => a.day === b.day && a.startTime === b.startTime);
+        if (!val && groupedSchedules && groupedSchedules.length >= 3) {
+          this.clinicSchedules = groupedSchedules.slice(0, 3);
+          return;
+        }
+      } else {
+        // - Mf schedule usage
+        groupedSchedules = uniqWith(this.fullSchedules
+          .map((schedule) => {
+            const { day, order } = this.days.find(day => day.order === schedule.order);
+            return {
+              day,
+              order,
+              ...schedule,
+            };
+          })
+          .sort((a, b) => a.order !== b.order ? a.order - b.order : a.opening - b.opening) || []
+        , (a, b) => a.order === b.order && a.opening === b.opening);
+        if (!val && groupedSchedules && groupedSchedules.length >= 3) {
+          this.clinicSchedules = groupedSchedules.slice(0, 3);
+          return;
+        }
       }
       this.clinicSchedules = groupedSchedules;
     },
@@ -218,8 +249,10 @@ export default {
         window.location.href = url;
       }
     },
-    formatDay (scheduleDay) {
-      return this.days.find(day => day.order === scheduleDay).day;
+    formatDay (schedule) {
+      console.log('scheduleDay', schedule);
+      const comparingItem = typeof (schedule.day) === 'number' ? schedule.day : schedule.order;
+      return this.days.find(day => day.order === comparingItem).day;
     },
   },
 };
