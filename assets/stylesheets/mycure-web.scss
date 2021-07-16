@@ -34,7 +34,7 @@ $letter-spacing: -0.5px;
   letter-spacing: $letter-spacing;
 }
 .font-xl {
-  font-size: $font-xl;
+  font-size: $font-xl !important;
   line-height: 1;
   letter-spacing: $letter-spacing;
 }
@@ -123,7 +123,7 @@ classBinder(this, {
     text-align: center;
   }
   // - Regular
-  @media (max-width: $max-lg) {
+  @media (min-width: $min-md) and (max-width: $max-lg) {
     @include font-sizer(l);
   }
   // - Wide
@@ -137,7 +137,7 @@ classBinder(this, {
     @include font-sizer(m);
     text-align: center;
   }
-  @media (max-width: $max-lg) {
+  @media (min-width: $min-md) and (max-width: $max-lg) {
     @include font-sizer(l);
   }
   @media (min-width: $min-xl) {
@@ -150,7 +150,7 @@ classBinder(this, {
     @include font-sizer(s);
     text-align: center;
   }
-  @media (max-width: $max-lg) {
+  @media (min-width: $min-md) and (max-width: $max-lg) {
     @include font-sizer(m);
   }
   @media (min-width: $min-xl) {
@@ -162,7 +162,7 @@ classBinder(this, {
     @include font-sizer(m);
     text-align: center;
   }
-  @media (max-width: $max-lg) {
+  @media (min-width: $min-md) and (max-width: $max-lg) {
     @include font-sizer(l);
   }
   @media (min-width: $min-xl) {
@@ -175,7 +175,7 @@ classBinder(this, {
     @include font-sizer(xs);
     text-align: center;
   }
-  @media (max-width: $max-lg) {
+  @media (min-width: $min-md) and (max-width: $max-lg) {
     @include font-sizer(s);
   }
   @media (min-width: $min-xl) {
@@ -187,7 +187,7 @@ classBinder(this, {
     @include font-sizer(xs);
     text-align: center;
   }
-  @media (max-width: $max-lg) {
+  @media (min-width: $min-md) and (max-width: $max-lg) {
     @include font-sizer(s);
   }
 }
@@ -195,7 +195,7 @@ classBinder(this, {
   @media (max-width: $max-sm) {
     @include font-sizer(xs);
   }
-  @media (max-width: $max-lg) {
+  @media (min-width: $min-md) and (max-width: $max-lg) {
     @include font-sizer(s);
   }
   @media (min-width: $min-xl) {
@@ -207,7 +207,7 @@ classBinder(this, {
     @include font-sizer(xs);
     text-align: center;
   }
-  @media (max-width: $max-lg) {
+  @media (min-width: $min-md) and (max-width: $max-lg) {
     @include font-sizer(xs);
   }
   @media (min-width: $min-xl) {
@@ -219,7 +219,7 @@ classBinder(this, {
   @media (max-width: $max-sm) {
     @include font-sizer(xs);
   }
-  @media (max-width: $max-lg) {
+  @media (min-width: $min-md) and (max-width: $max-lg) {
     @include font-sizer(xs);
   }
   @media (min-width: $min-xl) {
@@ -231,7 +231,7 @@ classBinder(this, {
   @media (max-width: $max-sm) {
     text-align: center;
   }
-  @media (max-width: $max-lg) {
+  @media (min-width: $min-md) and (max-width: $max-lg) {
     @include font-sizer(xs);
   }
   @media (min-width: $min-xl) {
@@ -245,7 +245,7 @@ classBinder(this, {
     @include font-sizer(s);
     text-align: center;
   }
-  @media (max-width: $max-lg) {
+  @media (min-width: $min-md) and (max-width: $max-lg) {
     @include font-sizer(m);
   }
   @media (min-width: $min-xl) {
@@ -257,7 +257,7 @@ classBinder(this, {
     @include font-sizer(xs);
     text-align: center;
   }
-  @media (max-width: $max-lg) {
+  @media (min-width: $min-md) and (max-width: $max-lg) {
     @include font-sizer(m);
   }
   @media (min-width: $min-xl) {
@@ -269,7 +269,7 @@ classBinder(this, {
     @include font-sizer(xs);
     text-align: center;
   }
-  @media (max-width: $max-lg) {
+  @media (min-width: $min-md) and (max-width: $max-lg) {
     @include font-sizer(s);
   }
 }
