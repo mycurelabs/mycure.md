@@ -77,7 +77,6 @@
             :class="btnClasses"
             depressed
             rounded
-            block
             :x-large="$isWideScreen"
             :large="!$isWideScreen"
             color="success"
@@ -120,7 +119,6 @@
 <script>
 // - utils
 import headMeta from '~/utils/head-meta';
-import classBinder from '~/utils/class-binder';
 // - constants
 import { CLINICS_PRICING } from '~/constants/pricing';
 // - components
@@ -204,6 +202,9 @@ export default {
       },
     };
     this.pricingDetails = CLINICS_PRICING;
+    this.headerClasses = ['mc-title-set-1', 'lh-title', 'font-weight-semibold'];
+    this.descriptionClasses = ['mc-content-set-1', 'font-open-sans', 'font-gray'];
+    this.btnClasses = ['mc-button-set-1'];
     return {
       loading: true,
     };
@@ -214,43 +215,6 @@ export default {
       description: 'Experience the #1 Software for Skin and Aesthetic clinics. MYCURE is easy to set up and maintain. Get started today.',
       socialBanner: require('~/assets/images/banners/MYCURE - Skin Clinic OG BANNER.png'),
     });
-  },
-  computed: {
-    headerClasses () {
-      const headerClasses = [
-        classBinder(this, {
-          mobile: ['font-m', 'text-center'],
-          regular: ['font-l'],
-          wide: ['font-xl'],
-        }),
-        'lh-title',
-        'font-weight-semibold',
-      ];
-      return headerClasses;
-    },
-    descriptionClasses () {
-      const descriptionClasses = [
-        classBinder(this, {
-          mobile: ['font-xs', 'text-center'],
-          regular: ['font-s'],
-          wide: ['font-m'],
-        }),
-        'font-open-sans',
-        'font-gray',
-      ];
-      return descriptionClasses;
-    },
-    btnClasses () {
-      const btnClasses = [
-        classBinder(this, {
-          mobile: ['font-xs', 'text-center'],
-          regular: ['font-xs'],
-          wide: ['font-s'],
-        }),
-        'font-weight-thin',
-      ];
-      return btnClasses;
-    },
   },
   mounted () {
     this.loading = false;

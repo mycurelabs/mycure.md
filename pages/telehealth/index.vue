@@ -48,7 +48,6 @@
 
 <script>
 // - utils
-import classBinder from '~/utils/class-binder';
 import headMeta from '~/utils/head-meta';
 // - components
 import Usp from '~/components/commons/panels/SevenWondersUsp';
@@ -96,6 +95,8 @@ export default {
       },
     ];
     this.pricingDetails = DOCTORS_PRICING;
+    this.headerClasses = ['mc-title-set-1', 'font-weight-semibold'];
+    this.descriptionClasses = ['mc-content-set-1', 'font-open-sans', 'font-gray'];
     return {
       loading: true,
     };
@@ -106,34 +107,6 @@ export default {
       description: 'Starting a virtual practice has never been easier. Give your patients the quality care they deserve wherever they are.',
       socialBanner: require('~/assets/images/banners/OG Telehealth.png'),
     });
-  },
-  computed: {
-    headerClasses () {
-      const headerClasses = [
-        classBinder(this, {
-          mobile: ['font-m', 'text-center'],
-          regular: ['font-l'],
-          wide: ['font-xl'],
-        }),
-        'font-weight-semibold',
-      ];
-      return headerClasses;
-    },
-    descriptionClasses () {
-      const descriptionClasses = [
-        classBinder(this, {
-          mobile: ['font-xs'],
-          regular: ['font-s'],
-          wide: ['font-m'],
-        }),
-        'font-open-sans',
-        'font-gray',
-      ];
-      return descriptionClasses;
-    },
-    panelMargins () {
-      return { 'mt-10': this.$isMobile, 'mt-8': !this.$isMobile };
-    },
   },
   mounted () {
     this.loading = false;

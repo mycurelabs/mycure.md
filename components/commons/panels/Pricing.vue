@@ -53,7 +53,6 @@
 </template>
 
 <script>
-import classBinder from '~/utils/class-binder';
 import { getSubscriptionPackagesPricing } from '~/services/subscription-packages';
 import GenericPanel from '~/components/generic/GenericPanel';
 import PricingCard from '~/components/commons/PricingCard';
@@ -95,34 +94,15 @@ export default {
     },
   },
   data () {
+    this.titleClasses = ['mc-title-set-1'];
+    this.descriptionClasses = ['mc-content-set-1'];
+    this.metaTitleClasses = ['mc-metatitle-set-1'];
     return {
       loading: false,
       switchModel: false,
       paymentInterval: 'month', // month | year
       pricingPackages: [],
     };
-  },
-  computed: {
-    titleClasses () {
-      return classBinder(this, {
-        mobile: ['font-m'],
-        regular: ['font-l'],
-        wide: ['font-xl'],
-      });
-    },
-    metaTitleClasses () {
-      return classBinder(this, {
-        mobile: ['font-xs'],
-        regular: ['font-s'],
-      });
-    },
-    descriptionClasses () {
-      return classBinder(this, {
-        mobile: ['font-xs'],
-        regular: ['font-s'],
-        wide: ['font-m'],
-      });
-    },
   },
   watch: {
     switchModel (val) {

@@ -16,7 +16,6 @@
 
 <script>
 import Features from './Features';
-import classBinder from '~/utils/class-binder';
 export default {
   components: {
     Features,
@@ -42,18 +41,8 @@ export default {
         route: 'csi',
       },
     ];
+    this.descriptionClasses = ['mc-content-set-1'];
     return {};
-  },
-  computed: {
-    descriptionClasses () {
-      return [
-        classBinder(this, {
-          mobile: ['font-xs'],
-          regular: ['font-s'],
-          wide: ['font-m'],
-        }),
-      ];
-    },
   },
 };
 </script>

@@ -69,14 +69,11 @@ export default {
       default: () => ([]),
     },
   },
+  data () {
+    this.mainTitleClasses = ['mc-title-set-1'];
+    return {};
+  },
   computed: {
-    mainTitleClasses () {
-      return classBinder(this, {
-        mobile: ['font-m', 'text-center'],
-        regular: ['font-l'],
-        wide: ['font-xl'],
-      });
-    },
     sectionClasses () {
       return classBinder(this, {
         mobile: ['font-s', 'text-center'],

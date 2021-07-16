@@ -37,7 +37,6 @@
 
 <script>
 // - utils
-import classBinder from '~/utils/class-binder';
 import headMeta from '~/utils/head-meta';
 // - components
 import PictureSource from '~/components/commons/PictureSource';
@@ -57,6 +56,8 @@ export default {
     Tools: () => import('~/components/home/Tools'),
   },
   data () {
+    this.headerClasses = ['mc-title-set-1', 'font-weight-semibold'];
+    this.descriptionClasses = ['mc-content-set-1', 'font-open-sans', 'font-gray'];
     return {
       loading: true,
     };
@@ -67,34 +68,6 @@ export default {
       description: 'MYCURE is a healthcare platform that connects physicians, clinics, hospitals, and medical organizations to anyone in need.',
       socialBanner: require('~/assets/images/banners/OG Homepage.png'),
     });
-  },
-  computed: {
-    panelMargins () {
-      return { 'mt-10': !this.$isWideScreen, 'mt-12': this.$isWideScreen };
-    },
-    headerClasses () {
-      const headerClasses = [
-        classBinder(this, {
-          mobile: ['font-m'],
-          regular: ['font-l'],
-          wide: ['font-xl'],
-        }),
-        'font-weight-semibold',
-      ];
-      return headerClasses;
-    },
-    descriptionClasses () {
-      const descriptionClasses = [
-        classBinder(this, {
-          mobile: ['font-xs'],
-          regular: ['font-s'],
-          wide: ['font-m'],
-        }),
-        'font-open-sans',
-        'font-gray',
-      ];
-      return descriptionClasses;
-    },
   },
   mounted () {
     this.loading = false;

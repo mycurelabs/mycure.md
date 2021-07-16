@@ -29,7 +29,6 @@
 import GenericPanel from '~/components/generic/GenericPanel';
 import PictureSource from '~/components/commons/PictureSource';
 import SignupButton from '~/components/commons/SignupButton';
-import classBinder from '~/utils/class-binder';
 export default {
   components: {
     GenericPanel,
@@ -42,41 +41,10 @@ export default {
       { image: 'Queueing', alt: 'Patients waiting in line artwork' },
       { image: 'Dentist', alt: 'Dentist treating a patient artwork' },
     ];
+    this.titleClasses = ['mc-title-set-1', 'font-weight-semibold'];
+    this.contentClasses = ['mc-content-set-1', 'font-weight-semibold', 'secondary--text'];
+    this.btnClasses = ['mc-button-set-1'];
     return {};
-  },
-  computed: {
-    titleClasses () {
-      const titleClasses = [
-        classBinder(this, {
-          mobile: ['font-m', 'text-center'],
-          regular: ['font-l'],
-          wide: ['font-xl'],
-        }),
-        'font-weight-semibold',
-      ];
-      return titleClasses;
-    },
-    contentClasses () {
-      const contentClasses = [
-        classBinder(this, {
-          mobile: ['font-xs'],
-          regular: ['font-s'],
-          wide: ['font-m'],
-        }),
-        'secondary--text',
-        'font-weight-semibold',
-      ];
-      return contentClasses;
-    },
-    btnClasses () {
-      return [
-        classBinder(this, {
-          mobile: ['text-center'],
-          regular: ['font-xs'],
-          wide: ['font-s'],
-        }),
-      ];
-    },
   },
 };
 </script>

@@ -129,34 +129,13 @@ export default {
       default: '50vh',
     },
   },
+  data () {
+    this.titleClasses = ['mc-title-set-1', { 'primary--text': this.primaryTitle }];
+    this.descriptionClasses = ['mc-content-set-1'];
+    this.metaTitleClasses = ['mc-metatitle-set-1'];
+    return {};
+  },
   computed: {
-    titleClasses () {
-      return [
-        classBinder(this, {
-          mobile: ['font-m'],
-          regular: ['font-l'],
-          wide: ['font-xl'],
-        }),
-        { 'primary--text': this.primaryTitle },
-      ];
-    },
-    metaTitleClasses () {
-      return [
-        classBinder(this, {
-          regular: ['font-xs'],
-          wide: ['font-s'],
-        }),
-      ];
-    },
-    descriptionClasses () {
-      return [
-        classBinder(this, {
-          mobile: ['font-xs'],
-          regular: ['font-s'],
-          wide: ['font-m'],
-        }),
-      ];
-    },
     itemTextClasses () {
       return [
         classBinder(this, {

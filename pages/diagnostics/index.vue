@@ -39,7 +39,7 @@
             v-col(cols="2" sm="1" md="1").pr-2.pt-2
               img(width="20" src="~/assets/images/mycure-check.png" alt="Check icon")
             v-col(cols="10" sm="11" md="11")
-              span(:class="descriptionClasses") {{ item }}
+              span.mc-content-set-1.font-open-sans.font-gray {{ item }}
     //- 5th panel
     div.grey-bg.mx-n3
       generic-media-panel(
@@ -116,7 +116,6 @@
 <script>
 // - utils
 import headMeta from '~/utils/head-meta';
-import classBinder from '~/utils/class-binder';
 // - constants
 import { DIAGNOSTICS_PRICING } from '~/constants/pricing';
 // - components
@@ -248,47 +247,6 @@ export default {
       description: 'MYCURE provides the best tool to create, finalize, and release diagnostic test results for diagnostic clinics. Best alternative to laboratory and radiology information systems. ',
       socialBanner: require('~/assets/images/banners/OG Diag.png'),
     });
-  },
-  computed: {
-    headerClasses () {
-      const headerClasses = [
-        classBinder(this, {
-          mobile: ['font-m', 'text-center'],
-          regular: ['font-l'],
-          wide: ['font-xl'],
-        }),
-        'lh-title',
-        'font-weight-semibold',
-      ];
-      return headerClasses;
-    },
-    descriptionClasses () {
-      const descriptionClasses = [
-        classBinder(this, {
-          mobile: ['font-xs'],
-          regular: ['font-s'],
-          wide: ['font-m'],
-        }),
-        'font-open-sans',
-        'font-gray',
-      ];
-      return descriptionClasses;
-    },
-    subHeaderClasses () {
-      return [
-        classBinder(this, {
-          mobile: ['font-xs', 'text-center'],
-          regular: ['font-xs'],
-          wide: ['font-s'],
-        }),
-        'font-open-sans',
-        'font-weight-bold',
-        'primary--text',
-      ];
-    },
-    panelMargins () {
-      return { 'mt-10': this.$isMobile, 'mt-8': !this.$isMobile };
-    },
   },
   mounted () {
     this.loading = false;

@@ -44,7 +44,6 @@
 </template>
 
 <script>
-import classBinder from '~/utils/class-binder';
 import GenericPanel from '~/components/generic/GenericPanel';
 import PictureSource from '~/components/commons/PictureSource';
 import SignupButton from '~/components/commons/SignupButton';
@@ -73,34 +72,12 @@ export default {
         icon: '4-Results Mobile',
       },
     ];
+    this.titleClasses = ['mc-title-set-1'];
+    this.descriptionClasses = ['mc-content-set-1'];
+    this.btnClasses = ['mc-button-set-1'];
     return {
       videoDialog: false,
     };
-  },
-  computed: {
-    titleClasses () {
-      return classBinder(this, {
-        mobile: ['font-m'],
-        regular: ['font-l'],
-        wide: ['font-xl'],
-      });
-    },
-    descriptionClasses () {
-      return classBinder(this, {
-        mobile: ['font-xs'],
-        regular: ['font-s'],
-        wide: ['font-m'],
-      });
-    },
-    btnClasses () {
-      return [
-        classBinder(this, {
-          mobile: ['text-center'],
-          regular: ['font-xs'],
-          wide: ['font-s'],
-        }),
-      ];
-    },
   },
 };
 </script>

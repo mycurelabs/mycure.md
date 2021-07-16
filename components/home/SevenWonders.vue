@@ -8,10 +8,10 @@
       //-   custom-path="home/"
       //- ).background
       img(
-        src="~/assets/images/home/Homepage USP BG.png"
         alt="Bushes and clouds background artwork"
         width="1920px"
         height="1080px"
+        :src="require(`~/assets/images/home/Homepage USP BG.${isWebp ? 'webp' : 'png'}`)"
       ).background
       v-container.content.ml-n6
         v-row(justify="center")
@@ -80,7 +80,8 @@ import Wonder from './Wonder';
 import GenericPanel from '~/components/generic/GenericPanel';
 import PictureSource from '~/components/commons/PictureSource';
 import SignupButton from '~/components/commons/SignupButton';
-import classBinder from '~/utils/class-binder';
+import canUseWebp from '~/utils/can-use-webp';
+
 export default {
   components: {
     GenericPanel,
@@ -148,16 +149,13 @@ export default {
       //   image: 'security',
       // },
     ];
-    return {};
+    this.headerClasses = ['mc-title-set-3'];
+    return {
+      isWebp: false,
+    };
   },
-  computed: {
-    headerClasses () {
-      return classBinder(this, {
-        mobile: ['font-m'],
-        regular: ['font-xl'],
-        wide: ['font-2xl'],
-      });
-    },
+  async mounted () {
+    this.isWebp = await canUseWebp();
   },
 };
 </script>

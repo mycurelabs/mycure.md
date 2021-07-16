@@ -22,7 +22,6 @@
 </template>
 
 <script>
-import classBinder from '~/utils/class-binder';
 import GenericMediaPanel from '~/components/generic/GenericMediaPanel';
 export default {
   components: {
@@ -54,46 +53,11 @@ export default {
         contentAlign: 'left',
       },
     ];
+    this.panelHeaderClasses = ['mc-title-set-1'];
+    this.descriptionClasses = ['mc-content-set-1', 'font-open-sans', 'font-gray'];
+    this.metaTitleClasses = ['mc-metatitle-set-1'];
+    this.headerClasses = ['mc-title-set-2', 'primary--text', 'font-weight-semibold'];
     return {};
-  },
-  computed: {
-    panelHeaderClasses () {
-      return classBinder(this, {
-        mobile: ['font-m', 'text-center'],
-        regular: ['font-l'],
-        wide: ['font-xl'],
-      });
-    },
-    metaTitleClasses () {
-      return classBinder(this, {
-        regular: ['font-xs'],
-        wide: ['font-s'],
-      });
-    },
-    headerClasses () {
-      const headerClasses = [
-        classBinder(this, {
-          mobile: ['font-s', 'text-center'],
-          regular: ['font-m'],
-          wide: ['font-l'],
-        }),
-        'primary--text',
-        'font-weight-semibold',
-      ];
-      return headerClasses;
-    },
-    descriptionClasses () {
-      const descriptionClasses = [
-        classBinder(this, {
-          mobile: ['font-xs', 'text-center'],
-          regular: ['font-s'],
-          wide: ['font-m'],
-        }),
-        'font-open-sans',
-        'font-gray',
-      ];
-      return descriptionClasses;
-    },
   },
 };
 </script>

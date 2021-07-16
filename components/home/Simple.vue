@@ -36,7 +36,6 @@
 </template>
 
 <script>
-import classBinder from '~/utils/class-binder';
 import PictureSource from '~/components/commons/PictureSource';
 import GenericSubPagePanel from '~/components/generic/GenericSubPagePanel';
 export default {
@@ -70,42 +69,12 @@ export default {
       //   route: 'hospitals',
       // },
     ];
+    this.headerClasses = ['mc-title-set-3', 'white--text', 'font-weight-semibold'];
+    this.descriptionClasses = ['mc-content-set-4', 'white--text', 'font-open-sans'];
+    this.subheaderClasses = ['mc-subheader-set-2', 'white--text', 'font-open-sans'];
     return {};
   },
   computed: {
-    headerClasses () {
-      return [
-        classBinder(this, {
-          mobile: ['font-m'],
-          regular: ['font-l'],
-          wide: ['font-2xl'],
-        }),
-        'white--text',
-        'font-weight-semibold',
-      ];
-    },
-    subheaderClasses () {
-      return [
-        classBinder(this, {
-          mobile: ['font-xs', 'text-center'],
-          regular: ['font-25'],
-          wide: ['font-40'],
-        }),
-        'white--text',
-        'font-open-sans',
-      ];
-    },
-    descriptionClasses () {
-      return [
-        classBinder(this, {
-          mobile: ['text-center'],
-          regular: ['font-xs'],
-          wide: ['font-m'],
-        }),
-        'white--text',
-        'font-open-sans',
-      ];
-    },
     imageBindings () {
       return {
         image: 'Simple and Powerful',

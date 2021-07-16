@@ -5,7 +5,7 @@ export const fetchOrganizations = async (sdk, opts) => {
   const query = {
     $limit: opts.limit,
     $skip: opts.skip,
-    ...pickBy(pick(opts, ['createdBy', 'type', '$populate', 'mf_schedule']), Boolean),
+    ...pickBy(pick(opts, ['createdBy', 'type', '$populate']), Boolean),
   };
 
   if (opts.searchText) {

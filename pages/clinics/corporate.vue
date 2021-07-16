@@ -31,9 +31,9 @@
       v-container
         v-row(justify="center")
           generic-panel(:row-bindings="{ justify: 'center' }")
-            v-col(cols="12" lg="8" xl="6").white--text.text-center
+            v-col(cols="12" lg="8" xl="6").white--text
               h2(:class="['white--text', ...headerClasses]").mb-10 Know the health status of your employees stat.
-              h3(:class="descriptionClasses").mb-10.font-weight-semibold.white--text Easily access and share medical records with them through the MYCURE health portal.
+              h3.mc-content-set-1.mb-10.font-weight-semibold.white--text Easily access and share medical records with them through the MYCURE health portal.
     //- 4th panel
     generic-media-panel(
       :content="multiplePanel"
@@ -58,16 +58,14 @@
                 rounded
                 :x-large="$isWideScreen"
                 :large="!$isWideScreen"
-                :class="btnClasses"
                 color="success"
-              ).text-none
+              ).text-none.mc-button-set-1
                 span Count me in
 </template>
 
 <script>
 // - utils
 import headMeta from '~/utils/head-meta';
-import classBinder from '~/utils/class-binder';
 // - components
 import Usp from '~/components/commons/panels/SevenWondersUsp';
 
@@ -116,6 +114,7 @@ export default {
         imageAlt: 'Charts and graphs',
       },
     };
+    this.headerClasses = ['mc-title-set-1', 'lh-title', 'font-weight-semibold'];
     return {
       loading: true,
     };
@@ -126,39 +125,6 @@ export default {
       description: 'Get the most affordable software for corporate clinics today.',
       socialBanner: require('~/assets/images/banners/MYCURE - Corporate Clinic OG BANNER.png'),
     });
-  },
-  computed: {
-    headerClasses () {
-      const headerClasses = [
-        classBinder(this, {
-          mobile: ['font-m', 'text-center'],
-          regular: ['font-l'],
-          wide: ['font-xl'],
-        }),
-        'lh-title',
-        'font-weight-semibold',
-      ];
-      return headerClasses;
-    },
-    descriptionClasses () {
-      const descriptionClasses = [
-        classBinder(this, {
-          mobile: ['font-xs', 'text-center'],
-          regular: ['font-s'],
-          wide: ['font-m'],
-        }),
-      ];
-      return descriptionClasses;
-    },
-    btnClasses () {
-      return [
-        classBinder(this, {
-          mobile: ['text-center'],
-          regular: ['font-xs'],
-          wide: ['font-s'],
-        }),
-      ];
-    },
   },
   mounted () {
     this.loading = false;

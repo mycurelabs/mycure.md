@@ -102,7 +102,6 @@
 <script>
 // utils
 import headMeta from '~/utils/head-meta';
-import classBinder from '~/utils/class-binder';
 // constants
 import { DOCTORS_PRICING } from '~/constants/pricing';
 // components
@@ -216,6 +215,9 @@ export default {
       ],
     };
     this.pricingDetails = DOCTORS_PRICING;
+    this.headerClasses = ['mc-title-set-1', 'lh-title', 'primary-text', 'font-weight-semibold'];
+    this.descriptionClasses = ['mc-content-set-1', 'font-open-sans', 'font-gray'];
+    this.eightPanelContentClasses = ['mc-content-set-1', 'font-open-sans', 'white--text'];
     return {
       loading: true,
     };
@@ -226,44 +228,6 @@ export default {
       description: 'MYCURE organizes your daily tasks to make your practice more simple, secure, and efficient.',
       socialBanner: require('~/assets/images/banners/OG Doc.png'),
     });
-  },
-  computed: {
-    headerClasses () {
-      const headerClasses = [
-        classBinder(this, {
-          mobile: ['font-m', 'text-center'],
-          regular: ['font-l'],
-          wide: ['font-xl'],
-        }),
-        'lh-title',
-        'primary--text',
-        'font-weight-semibold',
-      ];
-      return headerClasses;
-    },
-    descriptionClasses () {
-      const descriptionClasses = [
-        classBinder(this, {
-          mobile: ['font-xs'],
-          regular: ['font-s'],
-          wide: ['font-m'],
-        }),
-        'font-open-sans',
-        'font-gray',
-      ];
-      return descriptionClasses;
-    },
-    eightPanelContentClasses () {
-      return [
-        classBinder(this, {
-          mobile: ['font-xs'],
-          regular: ['font-s'],
-          wide: ['font-m'],
-        }),
-        'font-open-sans',
-        'white--text',
-      ];
-    },
   },
   mounted () {
     this.loading = false;

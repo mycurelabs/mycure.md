@@ -28,46 +28,17 @@
 import GenericPanel from '~/components/generic/GenericPanel';
 import PictureSource from '~/components/commons/PictureSource';
 import SignupButton from '~/components/commons/SignupButton';
-import classBinder from '~/utils/class-binder';
 export default {
   components: {
     GenericPanel,
     PictureSource,
     SignupButton,
   },
-  computed: {
-    titleClasses () {
-      const titleClasses = [
-        classBinder(this, {
-          mobile: ['font-m', 'text-center'],
-          regular: ['font-l'],
-          wide: ['font-xl'],
-        }),
-        'font-weight-semibold',
-      ];
-      return titleClasses;
-    },
-    contentClasses () {
-      const contentClasses = [
-        classBinder(this, {
-          mobile: ['font-s'],
-          regular: ['font-m'],
-          wide: ['font-l'],
-        }),
-        'secondary--text',
-        'font-weight-semibold',
-      ];
-      return contentClasses;
-    },
-    btnClasses () {
-      return [
-        classBinder(this, {
-          mobile: ['text-center'],
-          regular: ['font-xs'],
-          wide: ['font-s'],
-        }),
-      ];
-    },
+  data () {
+    this.titleClasses = ['mc-title-set-1', 'font-weight-semibold'];
+    this.contentClasses = ['mc-title-set-2', 'font-weight-semibold', 'secondary--text'];
+    this.btnClasses = ['mc-button-set-1'];
+    return {};
   },
 };
 </script>

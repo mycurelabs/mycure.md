@@ -30,7 +30,6 @@
 <script>
 import GenericPanel from './GenericPanel';
 import PictureSource from '~/components/commons/PictureSource';
-import classBinder from '~/utils/class-binder';
 export default {
   components: {
     GenericPanel,
@@ -192,55 +191,15 @@ export default {
       default: undefined,
     },
   },
+  data () {
+    this.defaultTitleClasses = this.titleClasses ? this.titleClasses : ['mc-title-set-3', 'font-weight-semibold'];
+    this.defaultSuperTitleClasses = this.superTitleClasses ? this.superTitleClasses : ['mc-metatitle-set-1'];
+    this.defaultCenterPanelTitleClasses = this.centerPanelTitleClasses ? this.centerPanelTitleClasses : ['mc-title-set-1', 'font-weight-semibold'];
+    this.defaultContentClasses = this.contentClasses ? this.contentClasses : ['mc-content-set-1', 'font-open-sans', 'font-gray'];
+    this.btnClasses = ['mc-button-set-1'];
+    return {};
+  },
   computed: {
-    defaultSuperTitleClasses () {
-      return this.superTitleClasses
-        ? this.superTitleClasses
-        : classBinder(this, {
-          regular: ['font-xs'],
-          wide: ['font-s'],
-        });
-    },
-    defaultTitleClasses () {
-      const titleClasses = [
-        classBinder(this, {
-          mobile: ['font-m', 'text-center'],
-          regular: ['font-l'],
-          wide: ['font-2xl'],
-        }),
-        'font-weight-semibold',
-      ];
-      return this.titleClasses
-        ? this.titleClasses
-        : titleClasses;
-    },
-    defaultCenterPanelTitleClasses () {
-      const centerPanelTitleClasses = [
-        classBinder(this, {
-          mobile: ['font-m', 'text-center'],
-          regular: ['font-l'],
-          wide: ['font-xl'],
-        }),
-        'font-weight-semibold',
-      ];
-      return this.centerPanelTitleClasses
-        ? this.centerPanelTitleClasses
-        : centerPanelTitleClasses;
-    },
-    defaultContentClasses () {
-      const contentClasses = [
-        classBinder(this, {
-          mobile: ['font-xs', 'text-center'],
-          regular: ['font-s'],
-          wide: ['font-m'],
-        }),
-        'font-open-sans',
-        'font-gray',
-      ];
-      return this.contentClasses
-        ? this.contentClasses
-        : contentClasses;
-    },
     contentAlignment () {
       if (this.$isMobile) return false;
       return !this.contentRight;

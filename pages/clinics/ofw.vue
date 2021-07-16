@@ -132,7 +132,6 @@
 <script>
 // - utils
 import headMeta from '~/utils/head-meta';
-import classBinder from '~/utils/class-binder';
 // - constants
 // - components
 import Usp from '~/components/commons/panels/SevenWondersUsp';
@@ -192,6 +191,9 @@ export default {
         imageAlt: 'Man browsing a clinic website',
       },
     };
+    this.headerClasses = ['mc-title-set-1', 'lh-title', 'font-weight-semibold'];
+    this.descriptionClasses = ['mc-content-set-1'];
+    this.btnClasses = ['mc-button-set-1'];
     return {
       loading: true,
     };
@@ -202,39 +204,6 @@ export default {
       description: 'MYCURE provides a specialized tool to create, finalize, and release medical exam results designed for OFW clinics. Book a demo today.',
       socialBanner: require('~/assets/images/banners/MYCURE - OFW Clinic OG BANNER.png'),
     });
-  },
-  computed: {
-    headerClasses () {
-      const headerClasses = [
-        classBinder(this, {
-          mobile: ['font-m', 'text-center'],
-          regular: ['font-l'],
-          wide: ['font-xl'],
-        }),
-        'lh-title',
-        'font-weight-semibold',
-      ];
-      return headerClasses;
-    },
-    descriptionClasses () {
-      const descriptionClasses = [
-        classBinder(this, {
-          mobile: ['font-xs', 'text-center'],
-          regular: ['font-s'],
-          wide: ['font-m'],
-        }),
-      ];
-      return descriptionClasses;
-    },
-    btnClasses () {
-      return [
-        classBinder(this, {
-          mobile: ['text-center'],
-          regular: ['font-xs'],
-          wide: ['font-s'],
-        }),
-      ];
-    },
   },
   mounted () {
     this.loading = false;

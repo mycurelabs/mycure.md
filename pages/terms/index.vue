@@ -170,7 +170,6 @@
 
 <script>
 import VueScrollTo from 'vue-scrollto';
-import classBinder from '~/utils/class-binder';
 import headMeta from '~/utils/head-meta';
 import GenericPanel from '~/components/generic/GenericPanel';
 
@@ -179,6 +178,8 @@ export default {
     GenericPanel,
   },
   data () {
+    this.headerClasses = ['mc-title-set-1', 'lh-title', 'font-weight-semibold'];
+    this.descriptionClasses = ['mc-content-set-3', 'font-open-sans', 'font-gray'];
     return {
       loading: true,
     };
@@ -190,32 +191,6 @@ export default {
       // - TODO: Replace with local if applicable
       socialBanner: 'https://firebasestorage.googleapis.com/v0/b/mc-v4-prod.appspot.com/o/web-main-assets%2FMYCURE_Open_Graph_Images_Terms_and_Conditions.png?alt=media&token=3884660e-7f81-4586-9dc6-c500991e0b03',
     });
-  },
-  computed: {
-    headerClasses () {
-      const headerClasses = [
-        classBinder(this, {
-          mobile: ['font-m', 'text-center'],
-          regular: ['font-l'],
-          wide: ['font-xl'],
-        }),
-        'lh-title',
-        'font-weight-semibold',
-      ];
-      return headerClasses;
-    },
-    descriptionClasses () {
-      const descriptionClasses = [
-        classBinder(this, {
-          mobile: ['font-xs'],
-          regular: ['font-s'],
-          wide: ['font-m'],
-        }),
-        'font-open-sans',
-        'font-gray',
-      ];
-      return descriptionClasses;
-    },
   },
   mounted () {
     VueScrollTo.scrollTo('#app', 500, { easing: 'ease' });
