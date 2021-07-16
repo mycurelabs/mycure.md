@@ -250,7 +250,6 @@ export default {
       }
     },
     formatDay (schedule) {
-      console.log('scheduleDay', schedule);
       const comparingItem = typeof (schedule.day) === 'number' ? schedule.day : schedule.order;
       return this.days.find(day => day.order === comparingItem).day;
     },
