@@ -24,7 +24,7 @@
         title="Your Practice. Your Call."
         :description="featuresDescription"
         :items="features"
-        icon-container-col-size="8"
+        :icon-container-col-size="$isWideScreen ? '6' : '8'"
         image-dir="doctors-clinics/"
       )
     //- 3rd to 5th panels

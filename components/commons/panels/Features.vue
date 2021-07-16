@@ -103,7 +103,6 @@ export default {
       default: () => ({
         cols: 6,
         md: 4,
-        xl: 3,
       }),
     },
     // - Height of panel
