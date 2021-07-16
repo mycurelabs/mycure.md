@@ -162,6 +162,14 @@ export default {
 </script>
 
 <style scoped>
+.font-45 {
+  font-size: 45px;
+}
+
+.font-60 {
+  font-size: 60px;
+}
+
 .card-outter {
   position: relative;
   padding-bottom: 85px;

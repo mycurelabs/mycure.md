@@ -2,11 +2,11 @@
   v-hover(v-slot="{ hover }")
     v-card(
       color="#fafafa"
-      height="100%"
       flat
+      :height="cardHeight"
       :to="wonder.infoLink"
       :elevation="hover ? 16 : 0"
-    )
+    ).fill-height
       v-card-text.text-center
         picture-source(
           :image="wonder.image"
@@ -50,6 +50,17 @@ export default {
       return classBinder(this, {
         wide: ['font-s'],
       });
+    },
+    imageWidth () {
+      if (this.wSM) return '40%';
+      if (this.$isRegularScreen) return '65%';
+      return '50%';
+    },
+    cardHeight () {
+      if (this.$isWideScreen) return '400';
+      if (this.wLG) return '405';
+      if (this.wSM) return '375';
+      return '350';
     },
   },
 };
