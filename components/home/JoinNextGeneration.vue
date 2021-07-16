@@ -2,7 +2,8 @@
   v-row(justify="center")
     generic-panel(:row-bindings="{ justify: 'center' }")
       v-col(cols="12" md="8" xl="6").text-center
-        h2(:class="{ 'font-l mb-8' : !$isMobile, 'font-m mb-6' : $isMobile }").title-line-spacing.white--text Join the next generation of healthcare providers today.
+        h2.mc-title-set-1.lh-title.white--text Join the next generation of healthcare providers today.
+        br
         mc-btn(
           rounded
           depressed
@@ -13,9 +14,3 @@
           :to="{ name: 'signup-health-facilities' }"
         ).text-none.font-s Get Started
 </template>
-
-<style scoped>
-.title-line-spacing {
-  line-height: 1.25em;
-}
-</style>

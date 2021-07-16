@@ -112,7 +112,7 @@ export default {
         icon: 'Notification',
       },
     ];
-    this.headerClasses = ['mc-title-set-3'];
+    this.headerClasses = ['mc-title-set-1'];
     this.descriptionClasses = ['mc-content-set-4'];
     return {};
   },

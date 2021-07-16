@@ -23,14 +23,15 @@
                 open-delay="100"
               )
                 mc-btn(
+                  depressed
+                  color="white"
                   :block="$isMobile"
                   :x-large="$isWideScreen"
                   :large="!$isWideScreen"
-                  depressed
-                  :outlined="!hover"
                   :to="{ name: service.route }"
-                  color="white"
-                ).text-none.info--text
+                  :outlined="!hover"
+                  :class="{'white--text': !hover, 'info--text': hover}"
+                ).text-none
                   v-icon(left) {{ service.icon }}
                   strong {{ service.text }}
 </template>
@@ -69,7 +70,7 @@ export default {
       //   route: 'hospitals',
       // },
     ];
-    this.headerClasses = ['mc-title-set-3', 'white--text', 'font-weight-semibold'];
+    this.headerClasses = ['mc-title-set-1', 'white--text', 'font-weight-semibold'];
     this.descriptionClasses = ['mc-content-set-4', 'white--text', 'font-open-sans'];
     this.subheaderClasses = ['mc-subheader-set-2', 'white--text', 'font-open-sans'];
     return {};

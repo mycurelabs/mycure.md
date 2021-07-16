@@ -217,7 +217,7 @@ export default {
       ],
     };
     this.pricingDetails = DOCTORS_PRICING;
-    this.headerClasses = ['mc-title-set-1', 'lh-title', 'primary-text', 'font-weight-semibold'];
+    this.headerClasses = ['mc-title-set-1', 'lh-title', 'primary--text', 'font-weight-semibold'];
     this.descriptionClasses = ['mc-content-set-1', 'font-open-sans', 'font-gray'];
     this.eightPanelContentClasses = ['mc-content-set-1', 'font-open-sans', 'white--text'];
     return {

@@ -27,7 +27,7 @@ export default {
     GenericPanel,
   },
   data () {
-    this.headerClasses = ['mc-title-set-3', 'mb-5'];
+    this.headerClasses = ['mc-title-set-1', 'mb-5'];
     this.descriptionClasses = this.$isMobile ? ['mc-content-set-1', 'mb-6'] : ['mc-content-set-1', 'mb-12'];
     this.btnClasses = ['mc-button-set-1'];
     return {

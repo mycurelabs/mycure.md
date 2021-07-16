@@ -50,7 +50,7 @@ export default {
         image: 'Online Booking BG',
       },
     ];
-    this.headerClasses = ['mc-title-set-3'];
+    this.headerClasses = ['mc-title-set-1'];
     this.descriptionClasses = ['mc-content-set-1'];
     return {
       canUseWebp: false,

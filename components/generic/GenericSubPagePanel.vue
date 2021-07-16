@@ -192,7 +192,7 @@ export default {
     },
   },
   data () {
-    this.defaultTitleClasses = this.titleClasses ? this.titleClasses : ['mc-title-set-3', 'font-weight-semibold'];
+    this.defaultTitleClasses = this.titleClasses ? this.titleClasses : ['mc-title-set-1', 'font-weight-semibold'];
     this.defaultSuperTitleClasses = this.superTitleClasses ? this.superTitleClasses : ['mc-metatitle-set-1'];
     this.defaultCenterPanelTitleClasses = this.centerPanelTitleClasses ? this.centerPanelTitleClasses : ['mc-title-set-1', 'font-weight-semibold'];
     this.defaultContentClasses = this.contentClasses ? this.contentClasses : ['mc-content-set-1', 'font-open-sans', 'font-gray'];
