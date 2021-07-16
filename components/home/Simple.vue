@@ -13,7 +13,8 @@
         hide-btn
       )
         template(slot="image")
-          picture-source(v-bind="imageBindings" :class="{'ml-n10': wSM }")
+          div(:class="{ 'text-center': $isMobile }")
+            picture-source(v-bind="imageBindings" :class="{'ml-n10': wSM }")
         v-col(slot="additional-content" cols="12").order-last
           v-row(justify="center")
             v-col(v-for="(service, key) in services" :key="key").shrink
@@ -110,7 +111,8 @@ export default {
         image: 'Simple and Powerful',
         imageFileExtension: '.webp',
         imageAlt: 'Health application in Macbook laptop',
-        imageWidth: this.$isMobile ? '185px' : (this.$isRegularScreen ? '485px' : '750px'),
+        imageWidth: this.$isMobile ? '250px' : (this.$isRegularScreen ? '485px' : '750px'),
+        imageHeight: this.$isMobile ? '138.23px' : (this.$isRegularScreen ? '268.18px' : '414.68px'),
         customPath: 'home/',
       };
     },
@@ -123,7 +125,7 @@ export default {
     },
     mediaColumnBindings () {
       return {
-        cols: 8,
+        cols: 12,
         md: 6,
         offsetMd: 1,
       };

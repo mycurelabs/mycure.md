@@ -11,6 +11,7 @@
         src="~/assets/images/home/Homepage USP BG.png"
         alt="Bushes and clouds background artwork"
         width="1920px"
+        height="1080px"
       ).background
       v-container.content.ml-n6
         v-row(justify="center")
