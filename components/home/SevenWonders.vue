@@ -46,7 +46,7 @@
               //- v-col(cols="8" md="3" xl="3" v-for="(wonder, key) in wonders" :key="key")
               //-   wonder(:wonder="wonder")
             template(v-else)
-              v-col(cols="10")
+              v-col(cols="10" sm="8" md="10")
                 carousel(
                   navigationNextLabel=" "
                   navigationPrevLabel=" "
