@@ -51,11 +51,6 @@ export default {
         wide: ['font-s'],
       });
     },
-    imageWidth () {
-      if (this.wSM) return '40%';
-      if (this.$isRegularScreen) return '65%';
-      return '50%';
-    },
     cardHeight () {
       if (this.$isWideScreen) return '400';
       if (this.wLG) return '405';
