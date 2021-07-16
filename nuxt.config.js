@@ -27,6 +27,7 @@ export default {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'preload', type: 'image', href: '~/assets/images/home/Homepage USP BG.webp' },
     ],
   },
 

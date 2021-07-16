@@ -29,7 +29,8 @@
           image-file-extension=".webp"
           custom-path="home/"
           image-alt="CTA Home"
-          :image-width="!$isMobile ? '30%' : '100%'"
+          :image-width="this.$isMobile ? '360px' : (this.$isRegularScreen ? '450px' : '750px')"
+          :image-height="this.$isMobile ? '157.89px' : (this.$isRegularScreen ? '197.34px' : '328.94px')"
           :image-styles="{ marginBottom: '-7px' }"
         )
 </template>

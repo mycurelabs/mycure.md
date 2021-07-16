@@ -111,6 +111,15 @@ export default {
       type: String,
       default: 'center',
     },
+    /**
+     * Number of columns specified for generic sub page panel
+     * @type {Number | String}
+     *
+     */
+    containerColumn: {
+      type: [Number, String],
+      default: '10',
+    },
   },
   data () {
     this.defaultTitleClasses = ['mc-title-set-1', 'lh-title', 'font-weight-semibold'];

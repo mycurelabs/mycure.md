@@ -11,27 +11,30 @@
           )
           strong(:class="descriptionClasses").font-open-sans.black--text Billed Annually
     v-row(justify="center" align="center")
-      template(v-for="bundle in packages")
-        v-col(
-          v-if="!bundle.requireContact"
-          cols="12"
-          md="3"
-        )
-          pricing-card(
-            :bundle="bundle"
-            :payment-interval="paymentInterval"
-          ).elevation-3
-            template(slot="card-btn")
-              v-btn(
-                rounded
-                block
-                depressed
-                :color="bundle.isRecommended ? 'white' : 'primary'"
-                :loading="loading"
-                :disabled="loading"
-                :class="{'primary--text': bundle.isRecommended}"
-                @click="selectBundle(bundle)"
-              ).text-none Choose {{bundle.title}}
+      v-col(cols="12" md="10")
+        v-row(justify="center" align="center")
+          template(v-for="bundle in packages")
+            v-col(
+              v-if="!bundle.requireContact"
+              cols="10"
+              md="4"
+              xl="3"
+            )
+              pricing-card(
+                :bundle="bundle"
+                :payment-interval="paymentInterval"
+              ).elevation-3
+                template(slot="card-btn")
+                  v-btn(
+                    rounded
+                    block
+                    depressed
+                    :color="bundle.isRecommended ? 'white' : 'primary'"
+                    :loading="loading"
+                    :disabled="loading"
+                    :class="{'primary--text': bundle.isRecommended}"
+                    @click="selectBundle(bundle)"
+                  ).text-none Choose {{bundle.title}}
     email-verification-dialog(v-model="emailVerificationMessageDialog" :email="email" @confirm="confirmEmailVerification")
     stripe-checkout(
       ref="checkoutRef"
@@ -56,7 +59,6 @@
           v-spacer
           v-btn(color="success" depressed :to="{ name: 'signup-health-facilities' }").text-none Back
           v-spacer
-    v-dialo
     v-dialog(v-model="confirmPaymentDialog" width="600")
       v-card
         v-card-text.pa-5
@@ -174,7 +176,7 @@ export default {
   },
   async mounted () {
     // Check if step 1 accomplished
-    if (isEmpty(this.step1LocalStorageData)) this.$nuxt.$router.push({ name: 'signup-health-facilities' });
+    // if (isEmpty(this.step1LocalStorageData)) this.$nuxt.$router.push({ name: 'signup-health-facilities' });
     if (this.paymentState === 'success') {
       this.$nuxt.$router.push({ name: 'signup-health-facilities-otp-verification' });
     }

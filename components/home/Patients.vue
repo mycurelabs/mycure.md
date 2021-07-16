@@ -17,6 +17,7 @@
             v-img(
               alt="Mobile health application on Iphone"
               :src="require(`~/assets/images/home/${feature.image}.${fileExtension}`)"
+              width="588px"
             )
               v-card-title.mt-5
                 v-spacer

@@ -8,9 +8,10 @@
       //-   custom-path="home/"
       //- ).background
       img(
-        src="~/assets/images/home/Homepage USP BG.png"
         alt="Bushes and clouds background artwork"
-        width="100%"
+        width="1920px"
+        height="1080px"
+        :src="require(`~/assets/images/home/Homepage USP BG.${webp ? 'webp' : 'png'}`)"
       ).background
       v-container.content.ml-n6
         v-row(justify="center")
@@ -46,7 +47,7 @@
               //- v-col(cols="8" md="3" xl="3" v-for="(wonder, key) in wonders" :key="key")
               //-   wonder(:wonder="wonder")
             template(v-else)
-              v-col(cols="10")
+              v-col(cols="10" sm="8" md="10")
                 carousel(
                   navigationNextLabel=" "
                   navigationPrevLabel=" "
@@ -79,6 +80,8 @@ import Wonder from './Wonder';
 import GenericPanel from '~/components/generic/GenericPanel';
 import PictureSource from '~/components/commons/PictureSource';
 import SignupButton from '~/components/commons/SignupButton';
+import canUseWebp from '~/utils/can-use-webp';
+
 export default {
   components: {
     GenericPanel,
@@ -86,6 +89,10 @@ export default {
     SignupButton,
     Wonder,
     VueSlickCarousel,
+  },
+  async asyncData () {
+    const webp = await canUseWebp();
+    return { webp };
   },
   data () {
     this.wonders = [
