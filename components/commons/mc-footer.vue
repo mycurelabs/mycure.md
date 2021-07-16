@@ -8,7 +8,8 @@
               img(
                 src="~/assets/images/MYCURE-virtual-clinic-healthcare-practice-online-logo.svg"
                 alt="White MYCURE Logo"
-                width="150"
+                width="150px"
+                height="41.89px"
               ).mt-4
           v-row(v-if="!$isMobile").mt-4.justify-space-around
             template(v-for="(footerItem, index) in footerItems")

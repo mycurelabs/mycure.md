@@ -12,7 +12,8 @@
             nuxt-link(to="/")
               img(
                 src="~/assets/images/MYCURE Logo - white.png"
-                width="120"
+                width="120px"
+                height="34.46px"
                 alt="MYCURE logo"
               )
             template(v-if="!$isMobile")

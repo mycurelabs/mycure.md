@@ -49,4 +49,7 @@ export default {
 .learn-more {
   text-decoration: none;
 }
+.hipaa-logo {
+  background-position: center bottom;
+}
 </style>
