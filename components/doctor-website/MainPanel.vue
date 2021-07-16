@@ -199,12 +199,12 @@ export default {
 }
 @media screen and (min-width: 1600px) {
   .panel-bg {
-    height: 1300px;
+    height: 1100px;
   }
 }
 @media screen and (min-width: 1800px) {
   .panel-bg {
-    height: 1500px;
+    height: 1300px;
   }
 }
 </style>
