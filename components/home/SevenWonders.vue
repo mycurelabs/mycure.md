@@ -11,6 +11,7 @@
         alt="Bushes and clouds background artwork"
         width="1920px"
         v-lazy="require(`~/assets/images/home/Homepage USP BG.${webp ? 'webp' : 'png'}`)"
+        height="1080px"
       ).background
       v-container.content.ml-n6
         v-row(justify="center")
