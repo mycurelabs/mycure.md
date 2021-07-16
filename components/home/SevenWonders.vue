@@ -11,7 +11,7 @@
         alt="Bushes and clouds background artwork"
         width="1920px"
         height="1080px"
-        :src="require(`~/assets/images/home/Homepage USP BG.${webp ? 'webp' : 'png'}`)"
+        :src="require(`~/assets/images/home/Homepage USP BG.${isWebp ? 'webp' : 'png'}`)"
       ).background
       v-container.content.ml-n6
         v-row(justify="center")
@@ -90,10 +90,6 @@ export default {
     Wonder,
     VueSlickCarousel,
   },
-  async asyncData () {
-    const webp = await canUseWebp();
-    return { webp };
-  },
   data () {
     this.wonders = [
       {
@@ -154,7 +150,12 @@ export default {
       // },
     ];
     this.headerClasses = ['mc-title-set-3'];
-    return {};
+    return {
+      isWebp: false,
+    };
+  },
+  async mounted () {
+    this.isWebp = await canUseWebp();
   },
 };
 </script>
