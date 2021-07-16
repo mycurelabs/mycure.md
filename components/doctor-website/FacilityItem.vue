@@ -156,7 +156,8 @@ export default {
   },
   computed: {
     canBook () {
-      return this.clinicId && this.doctorId && this.clinicSchedules?.length;
+      // return this.clinicId && this.doctorId && this.clinicSchedules?.length;
+      return this.clinicId && this.doctorId;
     },
     telehealthURL () {
       const pxPortalUrl = process.env.PX_PORTAL_URL;
@@ -188,7 +189,8 @@ export default {
   watch: {
     clinicSchedulesExpanded (val) {
       // Sort the schedules
-      this.fullSchedules = this.clinic?.$populated?.doctorSchedules  || this.clinic?.doctorSchedules || []; // eslint-disable-line
+      // this.fullSchedules = this.clinic?.$populated?.doctorSchedules  || this.clinic?.doctorSchedules || []; // eslint-disable-line
+      this.fullSchedules = this.clinic?.mf_schedule;
       if (!this.fullSchedules?.length) this.clinicSchedules = [];
       const groupedSchedules = uniqWith(this.fullSchedules
         .map((schedule) => {
