@@ -8,9 +8,9 @@
       //-   custom-path="home/"
       //- ).background
       img(
-        src="~/assets/images/home/Homepage USP BG.png"
         alt="Bushes and clouds background artwork"
         width="1920px"
+        v-lazy="require(`~/assets/images/home/Homepage USP BG.${webp ? 'webp' : 'png'}`)"
       ).background
       v-container.content.ml-n6
         v-row(justify="center")
@@ -80,6 +80,8 @@ import GenericPanel from '~/components/generic/GenericPanel';
 import PictureSource from '~/components/commons/PictureSource';
 import SignupButton from '~/components/commons/SignupButton';
 import classBinder from '~/utils/class-binder';
+import canUseWebp from '~/utils/can-use-webp';
+
 export default {
   components: {
     GenericPanel,
@@ -87,6 +89,10 @@ export default {
     SignupButton,
     Wonder,
     VueSlickCarousel,
+  },
+  async asyncData () {
+    const webp = await canUseWebp();
+    return { webp };
   },
   data () {
     this.wonders = [
