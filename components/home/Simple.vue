@@ -110,7 +110,7 @@ export default {
         image: 'Simple and Powerful',
         imageFileExtension: '.webp',
         imageAlt: 'Health application in Macbook laptop',
-        imageWidth: this.wSM ? '125%' : '105%',
+        imageWidth: this.$isMobile ? '185px' : (this.$isRegularScreen ? '485px' : '750px'),
         customPath: 'home/',
       };
     },

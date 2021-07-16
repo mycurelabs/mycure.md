@@ -10,7 +10,7 @@
       v-card-text.text-center
         picture-source(
           :image="wonder.image"
-          :image-width="imageWidth"
+          :image-width="( $isMobile ? '107px' : '135px')"
           :image-alt="wonder.title"
           custom-path="home/"
           image-file-extension=".webp"
@@ -50,11 +50,6 @@ export default {
       return classBinder(this, {
         wide: ['font-s'],
       });
-    },
-    imageWidth () {
-      if (this.wSM) return '40%';
-      if (this.$isRegularScreen) return '65%';
-      return '50%';
     },
     cardHeight () {
       if (this.$isWideScreen) return '400';
