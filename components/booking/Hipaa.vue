@@ -7,6 +7,7 @@
             v-col(cols="10" md="4" :class="{ 'text-center': !$isMobile }")
               img(
                 :width="$isMobile ? '226px' : ($isRegularScreen ? '300px' : '465px')"
+                :height="$isMobile ? '218.42px' : ($isRegularScreen ? '289.93px' : '449.41px')"
                 src="../../assets/images/MYCURE-HIPAA Badge.png"
                 alt="HIPAA Compliance Seal"
               )

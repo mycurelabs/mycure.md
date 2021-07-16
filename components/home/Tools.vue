@@ -21,6 +21,7 @@
               :image="tool.icon"
               :image-alt="tool.name"
               :image-width="!$isWideScreen ? '70px' : '115px'"
+              :image-height="!$isWideScreen ? '70px' : '115px'"
               image-file-extension=".webp"
             )
             br

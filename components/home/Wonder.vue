@@ -11,6 +11,7 @@
         picture-source(
           :image="wonder.image"
           :image-width="( $isMobile ? '107px' : '135px')"
+          :image-height="( $isMobile ? '145px' : '185px')"
           :image-alt="wonder.title"
           custom-path="home/"
           image-file-extension=".webp"
