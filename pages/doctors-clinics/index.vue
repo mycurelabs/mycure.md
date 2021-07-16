@@ -27,6 +27,8 @@
         :items="features"
         icon-container-col-size="8"
         image-dir="doctors-clinics/"
+        :image-width="$isWideScreen ? '89px' : '77px'"
+        :image-height="$isWideScreen ? '89px' : '77px'"
       )
     //- 3rd to 5th panels
     generic-media-panel(

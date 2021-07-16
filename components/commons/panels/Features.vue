@@ -23,8 +23,8 @@
                       :image="item.icon"
                       :image-alt="item.alt || item.title"
                       :image-file-extension="item.iconExtension || '.png'"
-                      :image-width="$isMobile ? imageHeightMobile : ($isRegularScreen ? imageHeight : imageHeightWide)"
-                      :image-height="$isMobile ? imageHeightMobile : ($isRegularScreen ? imageHeight : imageHeightWide)"
+                      :image-width="imageWidth"
+                      :image-height="imageHeight"
                     )
                     br
                     h3(:class="itemTextClasses").font-open-sans.font-gray.font-weight-semibold {{ item.title }}
@@ -67,25 +67,9 @@ export default {
       type: [String, Number],
       default: '77px',
     },
-    imageWidthMobile: {
-      type: [String, Number],
-      default: '76px',
-    },
-    imageWidthWide: {
-      type: [String, Number],
-      default: '89px',
-    },
     imageHeight: {
       type: [String, Number],
       default: '77px',
-    },
-    imageHeightMobile: {
-      type: [String, Number],
-      default: '76px',
-    },
-    imageHeightWide: {
-      type: [String, Number],
-      default: '89px',
     },
     extensionExclusive: {
       type: Boolean,
