@@ -136,7 +136,6 @@
 <script>
 // - utils
 import headMeta from '~/utils/head-meta';
-import classBinder from '~/utils/class-binder';
 // - components
 import Usp from '~/components/commons/panels/SevenWondersUsp';
 
@@ -172,6 +171,9 @@ export default {
         imageAlt: 'Man browsing a clinic website',
       },
     };
+    this.headerClasses = ['mc-title-set-1', 'lh-title', 'font-weight-semibold'];
+    this.descriptionClasses = ['mc-content-set-1'];
+    this.btnClasses = ['mc-button-set-1'];
     return {
       reportType: 'imaging',
       loading: true,
@@ -183,50 +185,6 @@ export default {
       description: 'Discover the simplest and most affordable laboratory information software designed for mobile labs. It’s cloud-based and works offline.',
       socialBanner: require('~/assets/images/banners/MYCURE - Mobile Clinic OG BANNER.png'),
     });
-  },
-  computed: {
-    headerClasses () {
-      const headerClasses = [
-        classBinder(this, {
-          mobile: ['font-m'],
-          regular: ['font-l'],
-          wide: ['font-xl'],
-        }),
-        'lh-title',
-        'font-weight-semibold',
-      ];
-      return headerClasses;
-    },
-    descriptionClasses () {
-      const descriptionClasses = [
-        classBinder(this, {
-          mobile: ['font-xs'],
-          regular: ['font-s'],
-          wide: ['font-m'],
-        }),
-      ];
-      return descriptionClasses;
-    },
-    subHeaderClasses () {
-      return [
-        classBinder(this, {
-          mobile: ['font-xs'],
-          regular: ['font-s'],
-        }),
-        'font-open-sans',
-        'font-weight-bold',
-        'primary--text',
-      ];
-    },
-    btnClasses () {
-      return [
-        classBinder(this, {
-          mobile: ['text-center'],
-          regular: ['font-xs'],
-          wide: ['font-s'],
-        }),
-      ];
-    },
   },
   mounted () {
     this.loading = false;

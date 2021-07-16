@@ -31,14 +31,13 @@
           //- ).text-none.button
           div(v-if="version !== 3")
             nuxt-link(:to="{ name: 'syncbase' }" :class="{'d-flex': !$isMobile}").button
-              span(:class="[{'font-14':  $isMobile }, ...descriptionClasses]").primary--text Learn about MYCURE Syncbase
+              span(:class="[{'font-14':  $isMobile}, {'font-s':  $isRegularScreen}, {'font-m':  $isWideScreen}]").primary--text Learn about MYCURE Syncbase
               v-icon(left color="primary" :large="$isWideScreen" :small="$isMobile") mdi-chevron-right
           div(v-else :class="{'text-center': $isMobile}")
             mc-btn(
               color="success"
               depressed
               rounded
-              block
               :large="!$isWideScreen"
               :x-large="$isWideScreen"
               :class="btnClasses"
@@ -87,6 +86,9 @@ export default {
     },
   },
   data () {
+    this.descriptionClasses = ['mc-content-set-1', 'font-open-sans', 'font-gray'];
+    this.btnClasses = ['mc-button-set-1'];
+    this.centerPanelTitleClasses = ['mc-title-set-1', 'font-weight-semibold'];
     return {
       syncbaseVideoDialog: false,
     };
@@ -114,18 +116,6 @@ export default {
       ];
       return headerClasses;
     },
-    descriptionClasses () {
-      const descriptionClasses = [
-        classBinder(this, {
-          mobile: ['font-xs', 'text-center'],
-          regular: ['font-s'],
-          wide: ['font-m'],
-        }),
-        'font-open-sans',
-        'font-gray',
-      ];
-      return descriptionClasses;
-    },
     superTitleClasses () {
       return [
         classBinder(this, {
@@ -136,25 +126,6 @@ export default {
         'font-open-sans',
         'font-weight-bold',
         'primary--text',
-      ];
-    },
-    centerPanelTitleClasses () {
-      return [
-        classBinder(this, {
-          mobile: ['font-m', 'text-center'],
-          regular: ['font-l'],
-          wide: ['font-xl'],
-        }),
-        'font-weight-semibold',
-      ];
-    },
-    btnClasses () {
-      return [
-        classBinder(this, {
-          mobile: ['text-center'],
-          regular: ['font-xs'],
-          wide: ['font-s'],
-        }),
       ];
     },
     contentColumnBindings () {

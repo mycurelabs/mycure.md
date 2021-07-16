@@ -80,7 +80,6 @@ import Wonder from './Wonder';
 import GenericPanel from '~/components/generic/GenericPanel';
 import PictureSource from '~/components/commons/PictureSource';
 import SignupButton from '~/components/commons/SignupButton';
-import classBinder from '~/utils/class-binder';
 import canUseWebp from '~/utils/can-use-webp';
 
 export default {
@@ -150,18 +149,10 @@ export default {
       //   image: 'security',
       // },
     ];
+    this.headerClasses = ['mc-title-set-3'];
     return {
       isWebp: false,
     };
-  },
-  computed: {
-    headerClasses () {
-      return classBinder(this, {
-        mobile: ['font-m'],
-        regular: ['font-xl'],
-        wide: ['font-2xl'],
-      });
-    },
   },
   async mounted () {
     this.isWebp = await canUseWebp();

@@ -35,6 +35,8 @@ export default {
       title: 'One view for multiple locations.',
       description: 'All you need is one clean dashboard to see how your clinics are faring. Critical data from your multiple branches are beautifully compiled to show you a comprehensive summary of patient encounters, transactions, sales, expenses and even staff performance.',
     };
+    this.descriptionClasses = ['mc-content-set-2', 'font-open-sans', 'font-gray'];
+    this.subHeaderClasses = ['mc-subheader-set-3', 'font-open-sans', 'font-weight-bold', 'primary--text'];
     return {};
   },
   computed: {
@@ -47,28 +49,6 @@ export default {
         'lh-title',
       ];
       return headerClasses;
-    },
-    descriptionClasses () {
-      const descriptionClasses = [
-        classBinder(this, {
-          mobile: ['font-xs'],
-          regular: ['font-s'],
-        }),
-        'font-open-sans',
-        'font-gray',
-      ];
-      return descriptionClasses;
-    },
-    subHeaderClasses () {
-      return [
-        classBinder(this, {
-          mobile: ['font-xs'],
-          regular: ['font-s'],
-        }),
-        'font-open-sans',
-        'font-weight-bold',
-        'primary--text',
-      ];
     },
   },
   methods: {

@@ -53,7 +53,7 @@
         title="Customized for Your Specialty"
         description="MYCURE has already built-in workflows and processes for different setups."
         :items="features"
-        :class="panelMargins"
+        :class="{ 'mt-10': $isMobile, 'mt-5': !$isMobile }"
         :icon-column-bindings="{ cols: 6, md: 3 }"
         image-dir="clinics/"
         icon-container-col-size="10"
@@ -97,7 +97,6 @@
 
 <script>
 // - utils
-import classBinder from '~/utils/class-binder';
 import headMeta from '~/utils/head-meta';
 // - components
 import Usp from '~/components/commons/panels/SevenWondersUsp';
@@ -176,6 +175,8 @@ export default {
       contentAlign: 'left',
     };
     this.pricingDetails = CLINICS_PRICING;
+    this.headerClasses = ['mc-title-set-1', 'font-weight-semibold'];
+    this.descriptionClasses = ['mc-content-set-1', 'font-open-sans', 'font-gray'];
     return {
       loading: true,
     };
@@ -186,34 +187,6 @@ export default {
       description: 'MYCURE enables clinics with complex operations to have simplified workflows to be much more efficient, increase in revenue, and build.',
       socialBanner: require('~/assets/images/banners/OG Clinics.png'),
     });
-  },
-  computed: {
-    headerClasses () {
-      const headerClasses = [
-        classBinder(this, {
-          mobile: ['font-m'],
-          regular: ['font-l'],
-          wide: ['font-xl'],
-        }),
-        'font-weight-semibold',
-      ];
-      return headerClasses;
-    },
-    descriptionClasses () {
-      const descriptionClasses = [
-        classBinder(this, {
-          mobile: ['font-xs'],
-          regular: ['font-s'],
-          wide: ['font-m'],
-        }),
-        'font-open-sans',
-        'font-gray',
-      ];
-      return descriptionClasses;
-    },
-    panelMargins () {
-      return { 'mt-10': this.$isMobile, 'mt-5': !this.$isMobile };
-    },
   },
   mounted () {
     this.loading = false;

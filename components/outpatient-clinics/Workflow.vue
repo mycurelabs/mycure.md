@@ -49,7 +49,6 @@
 </template>
 
 <script>
-import classBinder from '~/utils/class-binder';
 import CmsVideoDialog from '~/components/outpatient-clinics/CmsVideoDialog';
 import GenericPanel from '~/components/generic/GenericPanel';
 import PictureSource from '~/components/commons/PictureSource';
@@ -94,25 +93,11 @@ export default {
         icon: '8M-Journeys',
       },
     ];
+    this.titleClasses = ['mc-title-set-1'];
+    this.descriptionClasses = ['mc-content-set-1'];
     return {
       videoDialog: false,
     };
-  },
-  computed: {
-    titleClasses () {
-      return classBinder(this, {
-        mobile: ['font-m'],
-        regular: ['font-l'],
-        wide: ['font-xl'],
-      });
-    },
-    descriptionClasses () {
-      return classBinder(this, {
-        mobile: ['font-xs'],
-        regular: ['font-s'],
-        wide: ['font-m'],
-      });
-    },
   },
 };
 </script>

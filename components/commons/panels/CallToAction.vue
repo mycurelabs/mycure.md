@@ -13,34 +13,34 @@
     template(slot="additional-content")
       v-row.mt-10
         slot(name="cta-button")
-          v-col(cols="12" md="7" lg="6" xl="7")
-            div(:class="{'text-center': $isMobile}")
-              mc-btn(
+          v-row(:justify="$isMobile ? 'center' : 'start'")
+            v-col(cols="10" md="7" lg="6" xl="7")
+              div(:class="{'text-center': $isMobile}")
+                mc-btn(
+                  color="success"
+                  depressed
+                  rounded
+                  :block="![2, 4].includes(version)"
+                  :large="!$isWideScreen"
+                  :x-large="$isWideScreen"
+                  :class="{'font-s': $isWideScreen, 'font-14': $isRegularScreen }"
+                  :href="'https://calendly.com/mycure/demo'"
+                ).text-none {{ ![2, 4].includes(version) ? 'Book a full training' : 'Start Now' }}
+            v-col(v-if="![2, 4].includes(version)" cols="10" md="7" lg="6" xl="5")
+              signup-button(
+                event-label="signup"
                 color="success"
                 depressed
                 rounded
-                :block="![2, 4].includes(version)"
+                block
+                :outlined="![2, 4].includes(version)"
                 :large="!$isWideScreen"
                 :x-large="$isWideScreen"
-                :class="{'font-s': $isWideScreen, 'font-14': $isRegularScreen }"
-                :href="'https://calendly.com/mycure/demo'"
-              ).text-none {{ ![2, 4].includes(version) ? 'Book a full training' : 'Start Now' }}
-          v-col(v-if="![2, 4].includes(version)" cols="12" md="7" lg="6" xl="5")
-            signup-button(
-              event-label="signup"
-              color="success"
-              depressed
-              rounded
-              block
-              :outlined="![2, 4].includes(version)"
-              :large="!$isWideScreen"
-              :x-large="$isWideScreen"
-              :class="buttonClasses"
-            ).text-none Get Started Free
+                :class="buttonClasses"
+              ).text-none Get Started Free
 </template>
 
 <script>
-import classBinder from '~/utils/class-binder';
 import GenericMediaPanel from '~/components/generic/GenericMediaPanel';
 import SignupButton from '~/components/commons/SignupButton';
 export default {
@@ -91,6 +91,10 @@ export default {
       ],
       contentAlign: 'left',
     };
+    this.titleClasses = ['mc-title-set-1', 'lh-title', 'font-weight-semibold'];
+    this.descriptionClasses = ['mc-content-set-1', 'font-open-sans', 'font-gray'];
+    this.buttonClasses = ['mc-button-set-1'];
+    this.subheaderClasses = ['mc-subheader-set-2', 'font-open-sans', 'primary--text'];
     return {};
   },
   computed: {
@@ -101,47 +105,6 @@ export default {
         case 4: return { ...this.versionFour, imageBindings: this.imageBindings };
         default: return { ...this.versionOne, imageBindings: this.imageBindings };
       }
-    },
-    titleClasses () {
-      const titleClasses = [
-        classBinder(this, {
-          mobile: ['font-m', 'text-center'],
-          regular: ['font-l'],
-          wide: ['font-xl'],
-        }),
-        'lh-title',
-        'font-weight-semibold',
-      ];
-      return titleClasses;
-    },
-    subheaderClasses () {
-      return [
-        classBinder(this, {
-          mobile: ['font-xs', 'text-center'],
-          regular: ['font-25'],
-          wide: ['font-40'],
-        }),
-        'primary--text',
-        'font-open-sans',
-      ];
-    },
-    descriptionClasses () {
-      const descriptionClasses = [
-        classBinder(this, {
-          mobile: ['font-xs', 'text-center'],
-          regular: ['font-s'],
-          wide: ['font-m'],
-        }),
-        'font-open-sans',
-        'font-gray',
-      ];
-      return descriptionClasses;
-    },
-    buttonClasses () {
-      return classBinder(this, {
-        regular: ['font-xs'],
-        wide: ['font-s'],
-      });
     },
   },
 };

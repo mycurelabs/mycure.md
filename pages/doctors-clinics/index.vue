@@ -7,7 +7,8 @@
       title="Bring Out the Hero in You"
       meta-title="MYCURE Doctor"
       image="Doc USP"
-      image-width="115%"
+      :image-width="!$isMobile ? '1920px' : '300px' "
+      :image-height="!$isMobile ? '1080px' : '165.8px' "
       custom-image-path="doctors-clinics/"
       image-align="right"
       btn-text="Get Started Free"
@@ -26,6 +27,8 @@
         :items="features"
         :icon-container-col-size="$isWideScreen ? '6' : '8'"
         image-dir="doctors-clinics/"
+        :image-width="$isWideScreen ? '89px' : '77px'"
+        :image-height="$isWideScreen ? '89px' : '77px'"
       )
     //- 3rd to 5th panels
     generic-media-panel(
@@ -101,7 +104,6 @@
 <script>
 // utils
 import headMeta from '~/utils/head-meta';
-import classBinder from '~/utils/class-binder';
 // constants
 import { DOCTORS_PRICING } from '~/constants/pricing';
 // components
@@ -215,6 +217,9 @@ export default {
       ],
     };
     this.pricingDetails = DOCTORS_PRICING;
+    this.headerClasses = ['mc-title-set-1', 'lh-title', 'primary-text', 'font-weight-semibold'];
+    this.descriptionClasses = ['mc-content-set-1', 'font-open-sans', 'font-gray'];
+    this.eightPanelContentClasses = ['mc-content-set-1', 'font-open-sans', 'white--text'];
     return {
       loading: true,
     };
@@ -225,44 +230,6 @@ export default {
       description: 'MYCURE organizes your daily tasks to make your practice more simple, secure, and efficient.',
       socialBanner: require('~/assets/images/banners/OG Doc.png'),
     });
-  },
-  computed: {
-    headerClasses () {
-      const headerClasses = [
-        classBinder(this, {
-          mobile: ['font-m', 'text-center'],
-          regular: ['font-l'],
-          wide: ['font-xl'],
-        }),
-        'lh-title',
-        'primary--text',
-        'font-weight-semibold',
-      ];
-      return headerClasses;
-    },
-    descriptionClasses () {
-      const descriptionClasses = [
-        classBinder(this, {
-          mobile: ['font-xs'],
-          regular: ['font-s'],
-          wide: ['font-m'],
-        }),
-        'font-open-sans',
-        'font-gray',
-      ];
-      return descriptionClasses;
-    },
-    eightPanelContentClasses () {
-      return [
-        classBinder(this, {
-          mobile: ['font-xs'],
-          regular: ['font-s'],
-          wide: ['font-m'],
-        }),
-        'font-open-sans',
-        'white--text',
-      ];
-    },
   },
   mounted () {
     this.loading = false;

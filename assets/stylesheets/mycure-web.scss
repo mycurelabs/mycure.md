@@ -26,7 +26,7 @@ $letter-spacing: -0.5px;
     .font-#{$i} { font-size: #{$i}px !important; }
   }
 }
-@include font-n($font-l);
+@include font-n($font-2xl);
 
 .font-2xl {
   font-size: $font-2xl !important;
@@ -34,7 +34,7 @@ $letter-spacing: -0.5px;
   letter-spacing: $letter-spacing;
 }
 .font-xl {
-  font-size: $font-xl;
+  font-size: $font-xl !important;
   line-height: 1;
   letter-spacing: $letter-spacing;
 }
@@ -123,7 +123,7 @@ classBinder(this, {
     text-align: center;
   }
   // - Regular
-  @media (max-width: $max-lg) {
+  @media (min-width: $min-md) and (max-width: $max-lg) {
     @include font-sizer(l);
   }
   // - Wide
@@ -132,3 +132,144 @@ classBinder(this, {
   }
 }
 
+.mc-title-set-1 {
+  @media (max-width: $max-sm) {
+    @include font-sizer(m);
+    text-align: center;
+  }
+  @media (min-width: $min-md) and (max-width: $max-lg) {
+    @include font-sizer(l);
+  }
+  @media (min-width: $min-xl) {
+    @include font-sizer(xl);
+  }
+}
+
+.mc-title-set-2 {
+  @media (max-width: $max-sm) {
+    @include font-sizer(s);
+    text-align: center;
+  }
+  @media (min-width: $min-md) and (max-width: $max-lg) {
+    @include font-sizer(m);
+  }
+  @media (min-width: $min-xl) {
+    @include font-sizer(l);
+  }
+}
+.mc-title-set-3 {
+  @media (max-width: $max-sm) {
+    @include font-sizer(m);
+    text-align: center;
+  }
+  @media (min-width: $min-md) and (max-width: $max-lg) {
+    @include font-sizer(l);
+  }
+  @media (min-width: $min-xl) {
+    @include font-sizer(2xl);
+  }
+}
+
+.mc-content-set-1 {
+  @media (max-width: $max-sm) {
+    @include font-sizer(xs);
+    text-align: center;
+  }
+  @media (min-width: $min-md) and (max-width: $max-lg) {
+    @include font-sizer(s);
+  }
+  @media (min-width: $min-xl) {
+    @include font-sizer(m);
+  }
+}
+.mc-content-set-2 {
+  @media (max-width: $max-sm) {
+    @include font-sizer(xs);
+    text-align: center;
+  }
+  @media (min-width: $min-md) and (max-width: $max-lg) {
+    @include font-sizer(s);
+  }
+}
+.mc-content-set-3 {
+  @media (max-width: $max-sm) {
+    @include font-sizer(xs);
+  }
+  @media (min-width: $min-md) and (max-width: $max-lg) {
+    @include font-sizer(s);
+  }
+  @media (min-width: $min-xl) {
+    @include font-sizer(m);
+  }
+}
+.mc-content-set-4 {
+  @media (max-width: $max-sm) {
+    @include font-sizer(xs);
+    text-align: center;
+  }
+  @media (min-width: $min-md) and (max-width: $max-lg) {
+    @include font-sizer(xs);
+  }
+  @media (min-width: $min-xl) {
+    @include font-sizer(m);
+  }
+}
+
+.mc-metatitle-set-1 {
+  @media (max-width: $max-sm) {
+    @include font-sizer(xs);
+  }
+  @media (min-width: $min-md) and (max-width: $max-lg) {
+    @include font-sizer(xs);
+  }
+  @media (min-width: $min-xl) {
+    @include font-sizer(s);
+  }
+}
+
+.mc-button-set-1 {
+  @media (max-width: $max-sm) {
+    text-align: center;
+  }
+  @media (min-width: $min-md) and (max-width: $max-lg) {
+    @include font-sizer(xs);
+  }
+  @media (min-width: $min-xl) {
+    @include font-sizer(s);
+  }
+}
+
+
+.mc-subheader-set-1 {
+  @media (max-width: $max-sm) {
+    @include font-sizer(s);
+    text-align: center;
+  }
+  @media (min-width: $min-md) and (max-width: $max-lg) {
+    @include font-sizer(m);
+  }
+  @media (min-width: $min-xl) {
+    @include font-sizer(l);
+  }
+}
+.mc-subheader-set-2 {
+  @media (max-width: $max-sm) {
+    @include font-sizer(xs);
+    text-align: center;
+  }
+  @media (min-width: $min-md) and (max-width: $max-lg) {
+    @include font-sizer(m);
+  }
+  @media (min-width: $min-xl) {
+    @include font-sizer(l);
+  }
+}
+.mc-subheader-set-3 {
+  @media (max-width: $max-sm) {
+    @include font-sizer(xs);
+    text-align: center;
+  }
+  @media (min-width: $min-md) and (max-width: $max-lg) {
+    @include font-sizer(s);
+  }
+}

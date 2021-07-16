@@ -23,7 +23,8 @@
                       :image="item.icon"
                       :image-alt="item.alt || item.title"
                       :image-file-extension="item.iconExtension || '.png'"
-                      :image-width="!$isMobile ? imageWidth : imageWidthMobile"
+                      :image-width="imageWidth"
+                      :image-height="imageHeight"
                     )
                     br
                     h3(:class="itemTextClasses").font-open-sans.font-gray.font-weight-semibold {{ item.title }}
@@ -64,11 +65,11 @@ export default {
     },
     imageWidth: {
       type: [String, Number],
-      default: '40%',
+      default: '77px',
     },
-    imageWidthMobile: {
+    imageHeight: {
       type: [String, Number],
-      default: '60%',
+      default: '77px',
     },
     extensionExclusive: {
       type: Boolean,
@@ -111,34 +112,13 @@ export default {
       default: '50vh',
     },
   },
+  data () {
+    this.titleClasses = ['mc-title-set-1', { 'primary--text': this.primaryTitle }];
+    this.descriptionClasses = ['mc-content-set-1'];
+    this.metaTitleClasses = ['mc-metatitle-set-1'];
+    return {};
+  },
   computed: {
-    titleClasses () {
-      return [
-        classBinder(this, {
-          mobile: ['font-m'],
-          regular: ['font-l'],
-          wide: ['font-xl'],
-        }),
-        { 'primary--text': this.primaryTitle },
-      ];
-    },
-    metaTitleClasses () {
-      return [
-        classBinder(this, {
-          regular: ['font-xs'],
-          wide: ['font-s'],
-        }),
-      ];
-    },
-    descriptionClasses () {
-      return [
-        classBinder(this, {
-          mobile: ['font-xs'],
-          regular: ['font-s'],
-          wide: ['font-m'],
-        }),
-      ];
-    },
     itemTextClasses () {
       return [
         classBinder(this, {

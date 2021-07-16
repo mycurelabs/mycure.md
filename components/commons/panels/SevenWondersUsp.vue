@@ -202,7 +202,7 @@ export default {
       //   wide: ['font-xl'],
       // });
       return [
-        'mc-usp-title',
+        'mc-title-set-1',
         'lh-title',
         'font-weight-bold',
         // 'font-usp-primary',
