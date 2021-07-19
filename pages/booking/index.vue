@@ -31,7 +31,8 @@
             :image="item.icon"
             :image-alt="item.title"
             :image-file-extension="item.iconExtension"
-            :image-width="!$isMobile ? '100%' : '80%'"
+            :image-width="$isMobile ? '205px' : ($isRegularScreen ? '300px' : '345px')"
+            :image-height="$isMobile ? '135px' : ($isRegularScreen ? '200px' : '230px')"
           )
           br
           br
@@ -94,7 +95,8 @@
                 picture-source(
                   :image="mockup.image"
                   :image-alt="`A ${websiteType} website mockup on laptop screen`"
-                  image-width="80%"
+                  :image-width="$isMobile ? '205px' : ($isRegularScreen ? '756px' : '1156px')"
+                  :image-height="$isMobile ? '137px' : ($isRegularScreen ? '502px' : '767.6px')"
                   image-file-extension=".webp"
                   custom-path="booking/"
                 )
