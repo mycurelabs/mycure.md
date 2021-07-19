@@ -59,6 +59,7 @@
       hide-btn
       :content="fourthPanel"
       :title-classes="[...headerClasses, 'primary--text']"
+      :content-classes="[...descriptionClasses, 'justify-left']"
     )
       //- Check list
       template(slot="additional-content")
@@ -80,7 +81,7 @@
             :x-large="$isWideScreen"
             :large="!$isWideScreen"
             color="success"
-          ).text-none.font-s.mb-3
+          ).text-none
             span Create my website
 
     //- 5th panel
@@ -113,7 +114,7 @@
       :pricing-details="pricingDetails"
     )
     //- 9th panel
-    call-to-action(:version="3")
+    call-to-action(:version="3", not-free)
 </template>
 
 <script>

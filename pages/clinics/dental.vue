@@ -22,7 +22,7 @@
       :content="thirdPanel" align="center"
     )
       template(slot="content")
-        h2(:class="headerClasses") Always accesible dental charts.
+        h2(:class="headerClasses") Always accessible dental charts.
         br
         h2(:class="subHeaderClasses") Never miss an appointment.
           br
@@ -41,21 +41,21 @@
     //- 4th panel
     straightforward
     //- 5th panel
-    div.info.mx-n3
-      v-container
-        v-row(justify="center")
-          generic-panel(:row-bindings="{ justify: 'center' }")
-            v-col(cols="12" lg="8" xl="6").white--text.text-center
-              h2(:class="['white--text', ...headerClasses]").mb-10 Still a student?
-              h3(:class="studentPanelDescriptionClasses").mb-10 Join the next free webinar series for dentistry students.
-              mc-btn(
-                color="success"
-                depressed
-                rounded
-                :large="!$isWideScreen"
-                :x-large="$isWideScreen"
-                :class="btnClasses"
-              ).text-none Count me in
+    //- div.info.mx-n3
+    //-   v-container
+    //-     v-row(justify="center")
+    //-       generic-panel(:row-bindings="{ justify: 'center' }")
+    //-         v-col(cols="12" lg="8" xl="6").white--text.text-center
+    //-           h2(:class="['white--text', ...headerClasses]").mb-10 Still a student?
+    //-           h3(:class="studentPanelDescriptionClasses").mb-10 Join the next free webinar series for dentistry students.
+    //-           mc-btn(
+    //-             color="success"
+    //-             depressed
+    //-             rounded
+    //-             :large="!$isWideScreen"
+    //-             :x-large="$isWideScreen"
+    //-             :class="btnClasses"
+    //-           ).text-none Count me in
 
     //- 6th panel
     generic-media-panel(

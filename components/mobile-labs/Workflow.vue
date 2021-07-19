@@ -9,25 +9,25 @@
               v-row(justify="center")
                 v-col(cols="12" md="8" xl="9")
                   p(:class="descriptionClasses").secondary--text.mb-10.font-weight-semibold Value everyone's time more effectively. Handle location-based registrations like a breeze.
-              signup-button(
-                depressed
-                rounded
-                :x-large="$isWideScreen"
-                :large="!$isWideScreen"
-                :class="btnClasses"
-                color="success"
-              ).text-none
-                span Start Free
+              //- signup-button(
+              //-   depressed
+              //-   rounded
+              //-   :x-large="$isWideScreen"
+              //-   :large="!$isWideScreen"
+              //-   :class="btnClasses"
+              //-   color="success"
+              //- ).text-none
+              //-   span Start Free
             v-col(cols="12")
               v-row(justify="center")
                 template(v-if="!$isMobile")
-                  v-col(cols="12").text-center
+                  v-col(cols="12").text-center.ml-n16
                     picture-source(
                       custom-path="diagnostics/mobile-labs/"
                       image="Mobile Labs Problem Statement"
                       image-alt="Mobile labs workflow"
-                      image-file-extension=".webp"
-                      image-width="90%"
+                      image-file-extension=".png"
+                      image-width="1050px"
                     )
                 template(v-else)
                   v-col(cols="12" v-for="(item, key) in items" :key="key").text-center
