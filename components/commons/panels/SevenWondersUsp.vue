@@ -181,6 +181,10 @@ export default {
       default: null,
     },
   },
+  data () {
+    this.descriptionClasses = ['mc-content-set-1', 'font-open-sans', 'font-gray'];
+    return {};
+  },
   computed: {
     // NOTE: For customizations
     uspTitle () {
@@ -211,28 +215,12 @@ export default {
       ];
     },
     superTitleClasses () {
-      const classes = classBinder(this, {
-        mobile: ['font-xs', 'text-center'],
-        regular: ['font-s'],
-        wide: ['font-m'],
-      });
       return [
+        'mc-content-set-1',
         'font-open-sans',
         'primary--text',
         'font-weight-bold',
         { 'pre-white-space': this.toParse(this.parseMetaTitle) },
-        classes,
-      ];
-    },
-    descriptionClasses () {
-      return [
-        classBinder(this, {
-          mobile: ['font-xs', 'text-center'],
-          regular: ['font-s'],
-          wide: ['font-m'],
-        }),
-        'font-open-sans',
-        'font-gray',
       ];
     },
     btnClasses () {
