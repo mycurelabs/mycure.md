@@ -114,7 +114,7 @@
       :pricing-details="pricingDetails"
     )
     //- 9th panel
-    call-to-action(:version="3", not-free)
+    call-to-action(:version="3" not-free)
 </template>
 
 <script>
