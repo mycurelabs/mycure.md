@@ -37,7 +37,7 @@
                 :large="!$isWideScreen"
                 :x-large="$isWideScreen"
                 :class="buttonClasses"
-              ).text-none Get Started Free
+              ).text-none {{notFree ? 'Get Started' : 'Get Started Free'}}
 </template>
 
 <script>
@@ -52,6 +52,10 @@ export default {
     version: {
       type: Number,
       default: 1,
+    },
+    notFree: {
+      type: Boolean,
+      default: false,
     },
   },
   data () {
