@@ -6,7 +6,7 @@
       :height="cardHeight"
       :to="wonder.infoLink"
       :elevation="hover ? 16 : 0"
-    ).fill-height
+    ).ma-1
       v-card-text.text-center
         picture-source(
           :image="wonder.image"
