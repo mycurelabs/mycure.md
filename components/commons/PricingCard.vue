@@ -20,7 +20,7 @@
           template(v-if="!bundle.requireContact")
             p(:class="priceColor").font-weight-bold
               template(v-if='bundle.monthlyPrice > 0')
-                span(:class="{'font-30': !$isWideScreen, 'font-35': $isWideScreen}").currency {{ bundle.currency }}&nbsp;
+                span(:class="{'font-30': !$isWideScreen, 'font-35': $isWideScreen}").currency.font-open-sans {{ bundle.currency }}&nbsp;
                 span(:class="{'font-45': !$isWideScreen, 'font-60': $isWideScreen}") {{ paymentInterval === 'year' ? bundle.annualMonthlyPrice : bundle.monthlyPrice }}
               span(v-else).font-45 FREE
             //- span(v-else).font-xl {{ bundle.annualMonthlyPrice ? bundle.annualMonthlyPrice : bundle.monthlyPrice }}
