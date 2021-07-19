@@ -64,7 +64,7 @@
             :x-large="$isWideScreen"
             :large="!$isWideScreen"
             color="success"
-          ).text-none.font-s
+          ).text-none.mc-button-set-1
             span Get Started Free
             v-icon(small right) mdi-arrow-right
     //- 7th panel

@@ -176,7 +176,7 @@ export default {
   },
   async mounted () {
     // Check if step 1 accomplished
-    // if (isEmpty(this.step1LocalStorageData)) this.$nuxt.$router.push({ name: 'signup-health-facilities' });
+    if (isEmpty(this.step1LocalStorageData)) this.$nuxt.$router.push({ name: 'signup-health-facilities' });
     if (this.paymentState === 'success') {
       this.$nuxt.$router.push({ name: 'signup-health-facilities-otp-verification' });
     }

@@ -135,6 +135,7 @@ import headMeta from '~/utils/head-meta';
 // - constants
 // - components
 import Usp from '~/components/commons/panels/SevenWondersUsp';
+import { getCountry } from '~/utils/axios';
 
 export default {
   components: {
@@ -147,6 +148,12 @@ export default {
     Syncbase: () => import('~/components/commons/panels/Syncbase'),
     ThinkLongTerm: () => import('~/components/commons/panels/ThinkLongTerm'),
     Usp,
+  },
+  async asyncData ({ redirect }) {
+    const country = await getCountry() || {};
+    const code = country.country_code;
+
+    if (!code || code !== 'PH') redirect('/');
   },
   data () {
     this.integrationsPanel = {

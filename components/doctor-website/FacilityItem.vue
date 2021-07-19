@@ -199,7 +199,6 @@ export default {
         this.clinicSchedules = [];
         return;
       }
-
       let groupedSchedules = [];
 
       // - Non mf schedule usage
@@ -223,7 +222,7 @@ export default {
         // - Mf schedule usage
         groupedSchedules = uniqWith(this.fullSchedules
           .map((schedule) => {
-            const { day, order } = this.days.find(day => day.order === schedule.order);
+            const { day, order } = this.days.find(day => day.day === schedule.day);
             return {
               day,
               order,

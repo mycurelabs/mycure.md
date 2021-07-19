@@ -176,7 +176,7 @@ const PACKAGE_IMAGE = {
 };
 
 const PACKAGE_CURRENCY = {
-  php: '₱',
+  php: 'P',
   usd: '$',
 };
 

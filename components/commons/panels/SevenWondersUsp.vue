@@ -36,13 +36,11 @@
                   rounded
                   :large="!$isWideScreen"
                   :x-large="$isWideScreen"
-                  :class="btnClasses"
                   :color="btnColor"
-                ).text-none.letter-spacing-normal {{ btnText }}
+                ).text-none.letter-spacing-normal.mc-button-set-1 {{ btnText }}
 </template>
 
 <script>
-import classBinder from '~/utils/class-binder';
 import { parseTextWithNewLine } from '~/utils/newline';
 import GenericSubPagePanel from '~/components/generic/GenericSubPagePanel';
 import PictureSource from '~/components/commons/PictureSource';
@@ -181,6 +179,11 @@ export default {
       default: null,
     },
   },
+  data () {
+    this.descriptionClasses = ['mc-content-set-1', 'font-open-sans', 'font-gray'];
+    this.btnClasses = ['mc-content-set-1'];
+    return {};
+  },
   computed: {
     // NOTE: For customizations
     uspTitle () {
@@ -196,52 +199,21 @@ export default {
     },
     // Classes
     titleClasses () {
-      // const classes = classBinder(this, {
-      //   mobile: ['font-m', 'text-center'],
-      //   regular: ['font-l'],
-      //   wide: ['font-xl'],
-      // });
       return [
         'mc-title-set-1',
         'lh-title',
         'font-weight-bold',
         // 'font-usp-primary',
         { 'pre-white-space': this.toParse(this.parseTitle) },
-        // classes,
       ];
     },
     superTitleClasses () {
-      const classes = classBinder(this, {
-        mobile: ['font-xs', 'text-center'],
-        regular: ['font-s'],
-        wide: ['font-m'],
-      });
       return [
+        'mc-content-set-1',
         'font-open-sans',
         'primary--text',
         'font-weight-bold',
         { 'pre-white-space': this.toParse(this.parseMetaTitle) },
-        classes,
-      ];
-    },
-    descriptionClasses () {
-      return [
-        classBinder(this, {
-          mobile: ['font-xs', 'text-center'],
-          regular: ['font-s'],
-          wide: ['font-m'],
-        }),
-        'font-open-sans',
-        'font-gray',
-      ];
-    },
-    btnClasses () {
-      return [
-        classBinder(this, {
-          mobile: ['text-center'],
-          regular: ['font-xs'],
-          wide: ['font-s'],
-        }),
       ];
     },
     panelHeight () {

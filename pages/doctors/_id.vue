@@ -28,11 +28,11 @@
     //- Patient panel
     patient-panel(:metrics="doctorMetrics")
     //- Banner
-    div.banner-container.mt-n5
-      img(
-        :src="banner"
-        alt="MYCURE Doctor Banner"
-      ).banner
+    //- div.banner-container.mt-n5
+    //-   img(
+    //-     :src="banner"
+    //-     alt="MYCURE Doctor Banner"
+    //-   ).banner
       //- v-row(justify="end")
       //-   v-col(cols="12" md="4")
       //-     v-btn(
