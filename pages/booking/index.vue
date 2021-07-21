@@ -228,7 +228,7 @@ export default {
           customPath: 'commons/',
           extensionExclusive: true,
           width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
-          height: this.$isMobile ? '213.25px' : (this.$isRegularScreen ? '255.42px' : '548.58px'),
+          height: this.$isMobile ? '213.25px' : (this.$isRegularScreen ? '355.42px' : '548.58px'),
         },
       };
     },
