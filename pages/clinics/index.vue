@@ -154,26 +154,6 @@ export default {
         iconExtension: '.webp',
       },
     ];
-    this.fifthPanel = {
-      title: 'Expand your Reach',
-      description: 'Join MYCURE ONE, a global online directory of modern healthcare facilities so patients can easily find and book an appointment with you anytime.',
-      imageBindings: {
-        image: 'Expand your reach.webp',
-        imageAlt: 'Man browsing a clinic website artwork',
-        customPath: 'commons/',
-      },
-      contentAlign: 'left',
-    };
-    this.practicingSoloPanel = {
-      title: 'Practicing solo?',
-      imageBindings: {
-        image: 'Practicing Solo Ipad.webp',
-        imageAlt: 'Woman video call in Ipad tablet',
-        imageWidth: '90%',
-        customPath: 'clinics/',
-      },
-      contentAlign: 'left',
-    };
     this.pricingDetails = CLINICS_PRICING;
     this.headerClasses = ['mc-title-set-1', 'font-weight-semibold'];
     this.descriptionClasses = ['mc-content-set-1', 'font-open-sans', 'font-gray'];
@@ -187,6 +167,35 @@ export default {
       description: 'MYCURE enables clinics with complex operations to have simplified workflows to be much more efficient, increase in revenue, and build.',
       socialBanner: require('~/assets/images/banners/OG Clinics.png'),
     });
+  },
+  computed: {
+    fifthPanel () {
+      return {
+        title: 'Expand your Reach',
+        description: 'Join MYCURE ONE, a global online directory of modern healthcare facilities so patients can easily find and book an appointment with you anytime.',
+        contentAlign: 'left',
+        imageBindings: {
+          customPath: 'commons/',
+          image: 'Expand your reach.webp',
+          imageAlt: 'Man browsing a clinic website artwork',
+          width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
+          height: this.$isMobile ? '242.88px' : (this.$isRegularScreen ? '404.79px' : '624.8px'),
+        },
+      };
+    },
+    practicingSoloPanel () {
+      return {
+        title: 'Practicing solo?',
+        imageBindings: {
+          image: 'Practicing Solo Ipad.webp',
+          imageAlt: 'Woman video call in Ipad tablet',
+          customPath: 'clinics/',
+          width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
+          height: this.$isMobile ? '212.58px' : (this.$isRegularScreen ? '354.6px' : '547.15px'),
+        },
+        contentAlign: 'left',
+      };
+    },
   },
   mounted () {
     this.loading = false;

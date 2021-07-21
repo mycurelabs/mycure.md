@@ -28,6 +28,8 @@
               image-file-extension=".png"
               custom-path="clinics/ofw/"
               :image="`Beautiful reports${$isMobile ? '-mobile' : ''}`"
+              :image-width="this.$isMobile ? '276px' : (this.$isRegularScreen ? '945px' : '1445px')"
+              :image-height="this.$isMobile ? '204.36px' : (this.$isRegularScreen ? '692.25px' : '1058.51px')"
             )
     //- 4th panel
     generic-media-panel(
@@ -156,48 +158,6 @@ export default {
     if (!code || code !== 'PH') redirect('/');
   },
   data () {
-    this.integrationsPanel = {
-      contentAlign: 'left',
-      title: 'Ready whenever you are',
-      superTitle: 'POWERFUL INTEGRATIONS',
-      list: [
-        {
-          title: 'HL7',
-          icon: 'HL7',
-        },
-        {
-          title: 'DICOM',
-          icon: 'DICOM',
-        },
-      ],
-      imageBindings: {
-        image: 'MYCURE-virtual-clinic-healthcare-practice-online-features-G-diagnostic-results.webp',
-        imageAlt: 'Diagnostic and x-ray results in MYCURE Clinic Management System',
-        customPath: 'features/',
-      },
-    };
-    this.queuePanel = {
-      title: 'Value everyone’s time more effectively.',
-      description: 'Handle group registrations like a breeze. Your clients can now easily register themselves via kiosks. Display multiple queues through auxiliary monitors or smart TVs. Incoming doctors even get notified in their devices for every new patient in line.',
-      contentAlign: 'right',
-      imageBindings: {
-        customPath: 'clinics/ofw/',
-        image: 'Queue.png',
-        mobileImage: 'Queue-mobile.png',
-        imageAlt: 'Registration kiosk in MYCURE Clinic Management System',
-        extensionExclusive: true,
-      },
-    };
-    this.directoryPanel = {
-      title: 'Expand your Reach',
-      description: 'Join MYCURE ONE, a global online directory of modern healthcare practitioners and facilities so patients can easily find and book an appointment anytime.',
-      contentAlign: 'right',
-      imageBindings: {
-        customPath: 'commons/',
-        image: 'Expand your reach.webp',
-        imageAlt: 'Man browsing a clinic website',
-      },
-    };
     this.headerClasses = ['mc-title-set-1', 'lh-title', 'font-weight-semibold'];
     this.descriptionClasses = ['mc-content-set-1'];
     this.btnClasses = ['mc-button-set-1'];
@@ -211,6 +171,62 @@ export default {
       description: 'MYCURE provides a specialized tool to create, finalize, and release medical exam results designed for OFW clinics. Book a demo today.',
       socialBanner: require('~/assets/images/banners/MYCURE - OFW Clinic OG BANNER.png'),
     });
+  },
+  computed: {
+    queuePanel () {
+      return {
+        title: 'Value everyone’s time more effectively.',
+        description: 'Handle group registrations like a breeze. Your clients can now easily register themselves via kiosks. Display multiple queues through auxiliary monitors or smart TVs. Incoming doctors even get notified in their devices for every new patient in line.',
+        contentAlign: 'right',
+        imageBindings: {
+          customPath: 'clinics/ofw/',
+          image: 'Queue.png',
+          mobileImage: 'Queue-mobile.png',
+          imageAlt: 'Registration kiosk in MYCURE Clinic Management System',
+          extensionExclusive: true,
+          width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
+          height: this.$isMobile ? '298.88px' : (this.$isRegularScreen ? '498.19px' : '768.94px'),
+        },
+      };
+    },
+    integrationsPanel () {
+      return {
+        contentAlign: 'left',
+        title: 'Ready whenever you are',
+        superTitle: 'POWERFUL INTEGRATIONS',
+        list: [
+          {
+            title: 'HL7',
+            icon: 'HL7',
+          },
+          {
+            title: 'DICOM',
+            icon: 'DICOM',
+          },
+        ],
+        imageBindings: {
+          image: 'MYCURE-virtual-clinic-healthcare-practice-online-features-G-diagnostic-results.webp',
+          imageAlt: 'Diagnostic and x-ray results in MYCURE Clinic Management System',
+          customPath: 'features/',
+          width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
+          height: this.$isMobile ? '240.05px' : (this.$isRegularScreen ? '400.06px' : '617.48px'),
+        },
+      };
+    },
+    directoryPanel () {
+      return {
+        title: 'Expand your Reach',
+        description: 'Join MYCURE ONE, a global online directory of modern healthcare practitioners and facilities so patients can easily find and book an appointment anytime.',
+        contentAlign: 'right',
+        imageBindings: {
+          customPath: 'commons/',
+          image: 'Expand your reach.webp',
+          imageAlt: 'Man browsing a clinic website',
+          width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
+          height: this.$isMobile ? '242.88px' : (this.$isRegularScreen ? '404.79px' : '624.8px'),
+        },
+      };
+    },
   },
   mounted () {
     this.loading = false;

@@ -18,6 +18,7 @@
                       image-file-extension=".png"
                       image-alt="Health facility with a tree icon"
                       image-width="200"
+                      image-height="200"
                     )
                   v-card-title
                     v-spacer

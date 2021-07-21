@@ -182,6 +182,8 @@ export default {
         imageFileExtension: `.${extension}`,
         imageAlt: imageBindings.imageAlt || imageBindings.alt || this.content.title,
         extensionExclusive: imageBindings.extensionExclusive || (imageBindings.mobileImage && this.$isMobile),
+        imageWidth: imageBindings.width,
+        imageHeight: imageBindings.height,
       };
       return bindings;
     },
