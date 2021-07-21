@@ -15,16 +15,38 @@
           ).text-none.mb-10
             span Start Free
         v-col(cols="12")
-          v-row(justify="center" no-gutters)
-            v-col(v-for="(item, key) in images" :key="key" cols="8" lg="4")
-              picture-source(
-                :image="item.image"
-                :image-alt="item.alt"
-                image-file-extension=".webp"
-                custom-path="clinics/dental/"
-                :image-width="$isMobile ? '200px' : ($isRegularScreen ? '315px' : '482px')"
-                :image-height="$isMobile ? '212.2px' : ($isRegularScreen ? '334.22px' : '511.41px')"
+          v-row(v-if="!$isMobile" justify="center")
+            picture-source(
+              image="Problem Statement"
+              image-alt="Mother and child in the hospital, Patients waiting in line, and Dentist treating a patient artwork"
+              image-file-extension=".webp"
+              custom-path="clinics/dental/"
+              :image-width="$isRegularScreen ? '945x' : '1446px'"
+            )
+          v-row(v-else justify="center")
+            v-col(cols="10")
+              carousel(
+                paginationColor="grey"
+                loop
+                navigationEnabled
+                paginationEnabled
+                per-page="1"
+                :navigationClickTargetSize="25"
               )
+                slide(
+                  v-for="(item, key) in images"
+                  :key="key"
+                  :data-index="index+1"
+                ).pa-2
+                  div(class="text-center")
+                    picture-source(
+                      :image="item.image"
+                      :image-alt="item.alt"
+                      image-file-extension=".webp"
+                      custom-path="clinics/dental/"
+                      image-width="200px"
+                      image-height="212.2px"
+                    )
 </template>
 
 <script>

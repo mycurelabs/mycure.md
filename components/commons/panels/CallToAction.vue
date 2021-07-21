@@ -23,7 +23,7 @@
                   :block="![2, 4].includes(version)"
                   :large="!$isWideScreen"
                   :x-large="$isWideScreen"
-                  :class="{'font-s': $isWideScreen, 'font-14': $isRegularScreen }"
+                  :class="!$isWideScreen ? 'font-14' : ![2, 4].includes(version) ? 'font-s' : 'font-m'"
                   :href="'https://calendly.com/mycure/demo'"
                 ).text-none {{ ![2, 4].includes(version) ? 'Book a full training' : 'Start Now' }}
             v-col(v-if="![2, 4].includes(version)" cols="10" md="7" lg="6" xl="5")
