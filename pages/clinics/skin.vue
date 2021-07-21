@@ -164,44 +164,6 @@ export default {
         iconExtension: '.png',
       },
     ];
-    this.thirdPanel = {
-      contentAlign: 'left',
-      imageBindings: {
-        image: 'Beautiful User experience.png',
-        mobileImage: 'Beautiful User experience mobile.png',
-        imageAlt: 'Body diagram in a tablet',
-        customPath: 'clinics/skin/',
-        extensionExclusive: true,
-        imageWidth: '70%',
-      },
-    };
-    this.fourthPanel = {
-      title: 'Get more eyes on your brand',
-      description: 'Join MYCURE ONE, a global online directory of modern healthcare practitioners and facilities where people anywhere can book appointments at any time.',
-      contentAlign: 'right',
-      imageBindings: {
-        customPath: 'commons/',
-        image: 'Expand your reach.webp',
-        imageAlt: 'Man browsing a clinic website',
-      },
-      list: [
-        'Acquire patients beyond your reach',
-        'Hassle-free from booking to billing',
-        'Covers virtual to physical accommodation',
-      ],
-    };
-    this.fifthPanel = {
-      title: 'One view for multiple locations',
-      description: 'All you need is one clean dashboard to see how your clinics are faring. Critical data from your multiple branches are beautifully compiled to show you a comprehensive summary of patient encounters, transactions, sales, expenses and even staff performance.',
-      contentAlign: 'left',
-      imageBindings: {
-        customPath: 'clinics/skin/',
-        image: 'Multiple locations.png',
-        mobileImage: 'Multiple locations mobile.png',
-        extensionExclusive: true,
-        imageAlt: 'Charts and graphs',
-      },
-    };
     this.pricingDetails = CLINICS_PRICING;
     this.headerClasses = ['mc-title-set-1', 'lh-title', 'font-weight-semibold'];
     this.descriptionClasses = ['mc-content-set-1', 'font-open-sans', 'font-gray'];
@@ -216,6 +178,57 @@ export default {
       description: 'Experience the #1 Software for Skin and Aesthetic clinics. MYCURE is easy to set up and maintain. Get started today.',
       socialBanner: require('~/assets/images/banners/MYCURE - Skin Clinic OG BANNER.png'),
     });
+  },
+  computed: {
+    thirdPanel () {
+      return {
+        contentAlign: 'left',
+        imageBindings: {
+          image: 'Beautiful User experience.png',
+          mobileImage: 'Beautiful User experience mobile.png',
+          imageAlt: 'Body diagram in a tablet',
+          customPath: 'clinics/skin/',
+          extensionExclusive: true,
+          width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
+          height: this.$isMobile ? '305.91px' : (this.$isRegularScreen ? '508.96px' : '785.58px'),
+        },
+      };
+    },
+    fourthPanel () {
+      return {
+        title: 'Get more eyes on your brand',
+        description: 'Join MYCURE ONE, a global online directory of modern healthcare practitioners and facilities where people anywhere can book appointments at any time.',
+        contentAlign: 'right',
+        imageBindings: {
+          customPath: 'commons/',
+          image: 'Expand your reach.webp',
+          imageAlt: 'Man browsing a clinic website',
+          width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
+          height: this.$isMobile ? '242.88px' : (this.$isRegularScreen ? '404.79px' : '624.8px'),
+        },
+        list: [
+          'Acquire patients beyond your reach',
+          'Hassle-free from booking to billing',
+          'Covers virtual to physical accommodation',
+        ],
+      };
+    },
+    fifthPanel () {
+      return {
+        title: 'One view for multiple locations',
+        description: 'All you need is one clean dashboard to see how your clinics are faring. Critical data from your multiple branches are beautifully compiled to show you a comprehensive summary of patient encounters, transactions, sales, expenses and even staff performance.',
+        contentAlign: 'left',
+        imageBindings: {
+          customPath: 'clinics/skin/',
+          image: 'Multiple locations.png',
+          mobileImage: 'Multiple locations mobile.png',
+          extensionExclusive: true,
+          imageAlt: 'Charts and graphs',
+          width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
+          height: this.$isMobile ? '156.16px' : (this.$isRegularScreen ? '260.08px' : '401.41px'),
+        },
+      };
+    },
   },
   mounted () {
     this.loading = false;

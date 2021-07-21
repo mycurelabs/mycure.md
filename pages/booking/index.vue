@@ -185,16 +185,6 @@ export default {
         alt: 'Virtual telehealth icon',
       },
     ];
-    this.fifthPanelContents = {
-      title: 'Also available for Medium and Large-scale Facilities',
-      description: 'MYCURE Booking can also be used for clinics, diagnostic centers, and hospitals to seamlessly organize your patient visits. It has APIs that can be integrated in your existing information systems.',
-      imageBindings: {
-        image: 'As your practice grows.png',
-        imageAlt: 'Hospitals growing and scaling up artwork',
-        customPath: 'commons/',
-        extensionExclusive: true,
-      },
-    };
     this.websiteMockups = [
       {
         image: 'Booking Page UI Mockup - Doctor',
@@ -226,6 +216,22 @@ export default {
       description: 'MYCURE helps you bring in more patients using a powerful healthcare service booking and management software. It’s free, secure, and easy to use.',
       socialBanner: require('~/assets/images/banners/OG Booking.png'),
     });
+  },
+  computed: {
+    fifthPanelContents () {
+      return {
+        title: 'Also available for Medium and Large-scale Facilities',
+        description: 'MYCURE Booking can also be used for clinics, diagnostic centers, and hospitals to seamlessly organize your patient visits. It has APIs that can be integrated in your existing information systems.',
+        imageBindings: {
+          image: 'As your practice grows.png',
+          imageAlt: 'Hospitals growing and scaling up artwork',
+          customPath: 'commons/',
+          extensionExclusive: true,
+          width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
+          height: this.$isMobile ? '213.25px' : (this.$isRegularScreen ? '255.42px' : '548.58px'),
+        },
+      };
+    },
   },
   mounted () {
     this.loading = false;

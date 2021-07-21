@@ -22,6 +22,8 @@
                 :image-alt="item.alt"
                 image-file-extension=".webp"
                 custom-path="clinics/dental/"
+                :image-width="$isMobile ? '200px' : ($isRegularScreen ? '315px' : '482px')"
+                :image-height="$isMobile ? '212.2px' : ($isRegularScreen ? '334.22px' : '511.41px')"
               )
 </template>
 

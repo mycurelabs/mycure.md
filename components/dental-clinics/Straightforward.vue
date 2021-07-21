@@ -9,6 +9,8 @@
               custom-path="clinics/dental/"
               extensionExclusive
               :image="`Straightforward${$isMobile ? '-mobile' : ''}`"
+              :image-width="$isMobile ? '226px' : ($isRegularScreen ? '784px' : '1200px')"
+              :image-height="$isMobile ? '169.19px' : ($isRegularScreen ? '581.27px' : '889.71px')"
             )
         v-col(cols="12").text-center
           h2(:class="titleClasses").mb-5 Straightforward and simple.

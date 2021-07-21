@@ -59,11 +59,6 @@ export default {
     },
   },
   data () {
-    this.imageBindings = {
-      image: 'Let us do the work.webp',
-      imageAlt: 'Hospital and smartphone artwork',
-      customPath: 'commons/',
-    };
     this.versionOne = {
       centerPanelTitle: 'Learn the basics with ease',
       superTitle: 'Worrying about the shift to digital records? We got you covered.',
@@ -102,12 +97,21 @@ export default {
     return {};
   },
   computed: {
+    imgBindings () {
+      return {
+        image: 'Let us do the work.webp',
+        imageAlt: 'Hospital and smartphone artwork',
+        customPath: 'commons/',
+        width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
+        height: this.$isMobile ? '181.8px' : (this.$isRegularScreen ? '303px' : '467.65px'),
+      };
+    },
     callToActionPanel () {
       switch (this.version) {
-        case 2: return { ...this.versionTwo, imageBindings: this.imageBindings };
-        case 3: return { ...this.versionThree, imageBindings: this.imageBindings };
-        case 4: return { ...this.versionFour, imageBindings: this.imageBindings };
-        default: return { ...this.versionOne, imageBindings: this.imageBindings };
+        case 2: return { ...this.versionTwo, imageBindings: this.imgBindings };
+        case 3: return { ...this.versionThree, imageBindings: this.imgBindings };
+        case 4: return { ...this.versionFour, imageBindings: this.imgBindings };
+        default: return { ...this.versionOne, imageBindings: this.imgBindings };
       }
     },
   },

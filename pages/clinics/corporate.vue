@@ -101,19 +101,6 @@ export default {
         iconExtension: '.png',
       },
     ];
-    this.multiplePanel = {
-      centerPanelTitle: 'FOR MULTI-BRANCH FACILITIES',
-      title: 'One view for multiple locations',
-      description: 'All you need is one clean dashboard to see how your clinics are faring. Critical data from your multiple branches are beautifully compiled to show you a comprehensive summary of patient encounters, transactions, sales, expenses and even staff performance.',
-      contentAlign: 'left',
-      imageBindings: {
-        customPath: 'clinics/skin/',
-        image: 'Multiple locations.png',
-        mobileImage: 'Multiple locations mobile.png',
-        extensionExclusive: true,
-        imageAlt: 'Charts and graphs',
-      },
-    };
     this.headerClasses = ['mc-title-set-1', 'lh-title', 'font-weight-semibold'];
     return {
       loading: true,
@@ -125,6 +112,25 @@ export default {
       description: 'Get the most affordable software for corporate clinics today.',
       socialBanner: require('~/assets/images/banners/MYCURE - Corporate Clinic OG BANNER.png'),
     });
+  },
+  computed: {
+    multiplePanel () {
+      return {
+        centerPanelTitle: 'FOR MULTI-BRANCH FACILITIES',
+        title: 'One view for multiple locations',
+        description: 'All you need is one clean dashboard to see how your clinics are faring. Critical data from your multiple branches are beautifully compiled to show you a comprehensive summary of patient encounters, transactions, sales, expenses and even staff performance.',
+        contentAlign: 'left',
+        imageBindings: {
+          customPath: 'clinics/skin/',
+          image: 'Multiple locations.png',
+          mobileImage: 'Multiple locations mobile.png',
+          extensionExclusive: true,
+          imageAlt: 'Charts and graphs',
+          width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
+          height: this.$isMobile ? '156.16px' : (this.$isRegularScreen ? '260.07px' : '401.41px'),
+        },
+      };
+    },
   },
   mounted () {
     this.loading = false;

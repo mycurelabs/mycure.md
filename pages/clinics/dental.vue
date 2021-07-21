@@ -153,49 +153,11 @@ export default {
     Usp,
   },
   data () {
-    this.thirdPanel = {
-      contentAlign: 'left',
-      imageBindings: {
-        image: 'Dental charts.png',
-        mobileImage: 'Dental charts mobile.png',
-        imageAlt: 'Dental charts in a tablet',
-        customPath: 'clinics/dental/',
-        extensionExclusive: true,
-        imageWidth: '80%',
-      },
-    };
     this.studentPanel = {
       header: 'Still a student?',
       descriptions: [
         'Join the next free webinar series for dentistry students',
       ],
-    };
-    this.directoryPanel = {
-      title: 'Get more eyes on your brand',
-      description: 'Join MYCURE ONE, a global online directory of modern healthcare practitioners and facilities where people anywhere can book appointments at any time.',
-      contentAlign: 'right',
-      imageBindings: {
-        customPath: 'commons/',
-        image: 'Expand your reach.webp',
-        imageAlt: 'Man browsing a clinic website',
-      },
-      list: [
-        'Acquire patients beyond your reach',
-        'Hassle-free from booking to billing',
-        'Covers virtual to physical accommodation',
-      ],
-    };
-    this.multiplePanel = {
-      title: 'One view for multiple locations',
-      description: 'All you need is one clean dashboard to see how your clinics are faring. Critical data from your multiple branches are beautifully compiled to show you a comprehensive summary of patient encounters, transactions, sales, expenses and even staff performance.',
-      contentAlign: 'left',
-      imageBindings: {
-        customPath: 'clinics/skin/',
-        image: 'Multiple locations.png',
-        mobileImage: 'Multiple locations mobile.png',
-        extensionExclusive: true,
-        imageAlt: 'Charts and graphs',
-      },
     };
     this.headerClasses = ['mc-title-set-1', 'lh-title', 'font-weight-semibold'];
     this.descriptionClasses = ['mc-content-set-1'];
@@ -212,6 +174,57 @@ export default {
       description: 'Experience the most versatile software for dental clinics that seamlessly manages dental charts, inventory, and billing.',
       socialBanner: require('~/assets/images/banners/MYCURE - Dental Clinic OG BANNER.png'),
     });
+  },
+  computed: {
+    thirdPanel () {
+      return {
+        contentAlign: 'left',
+        imageBindings: {
+          image: 'Dental charts.png',
+          mobileImage: 'Dental charts mobile.png',
+          imageAlt: 'Dental charts in a tablet',
+          customPath: 'clinics/dental/',
+          extensionExclusive: true,
+          width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
+          height: this.$isMobile ? '231.38px' : (this.$isRegularScreen ? '385.52px' : '595.03px'),
+        },
+      };
+    },
+    directoryPanel () {
+      return {
+        title: 'Get more eyes on your brand',
+        description: 'Join MYCURE ONE, a global online directory of modern healthcare practitioners and facilities where people anywhere can book appointments at any time.',
+        contentAlign: 'right',
+        imageBindings: {
+          customPath: 'commons/',
+          image: 'Expand your reach.webp',
+          imageAlt: 'Man browsing a clinic website',
+          width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
+          height: this.$isMobile ? '242.88px' : (this.$isRegularScreen ? '404.79px' : '624.8px'),
+        },
+        list: [
+          'Acquire patients beyond your reach',
+          'Hassle-free from booking to billing',
+          'Covers virtual to physical accommodation',
+        ],
+      };
+    },
+    multiplePanel () {
+      return {
+        title: 'One view for multiple locations',
+        description: 'All you need is one clean dashboard to see how your clinics are faring. Critical data from your multiple branches are beautifully compiled to show you a comprehensive summary of patient encounters, transactions, sales, expenses and even staff performance.',
+        contentAlign: 'left',
+        imageBindings: {
+          customPath: 'clinics/skin/',
+          image: 'Multiple locations.png',
+          mobileImage: 'Multiple locations mobile.png',
+          extensionExclusive: true,
+          imageAlt: 'Charts and graphs',
+          width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
+          height: this.$isMobile ? '156.16px' : (this.$isRegularScreen ? '260.29px' : '401.63px'),
+        },
+      };
+    },
   },
   mounted () {
     this.loading = false;
