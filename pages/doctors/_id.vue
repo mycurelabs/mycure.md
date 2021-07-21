@@ -74,7 +74,7 @@
               :services="services"
               :is-preview-mode="isPreviewMode"
               @onUpdateClinicPage="fetchDoctorInfo($event)"
-            )
+            )#doctor-website-features
     v-snackbar(
       v-model="showSnack"
       :color="snackbarModel.color"
@@ -83,6 +83,7 @@
 
 <script>
 import isEmpty from 'lodash/isEmpty';
+import VueScrollTo from 'vue-scrollto';
 import ChooseAppointment from '~/components/doctor-website/ChooseAppointment';
 import ChooseFacility from '~/components/doctor-website/ChooseFacility';
 import GenericPanel from '~/components/generic/GenericPanel';
@@ -298,7 +299,8 @@ export default {
       this.facilityDialog = true;
     },
     onBook () {
-      this.appointmentDialog = true;
+      // this.appointmentDialog = true;
+      VueScrollTo.scrollTo('#doctor-website-features', 500, { offset: -100, easing: 'ease' });
     },
     enqueueSnack ({ text, color }) {
       this.snackbarModel = {

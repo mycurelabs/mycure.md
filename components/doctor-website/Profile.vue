@@ -62,17 +62,18 @@
           span {{ educ | format-school }}
           br
           span {{ educ.from }} - {{ educ.to }}
-      v-btn(
-        color="secondary"
-        block
-        depressed
-        x-large
-        :class="{ 'font-11' : $isMobile }"
-        :disabled="!isBookable"
-        @click="onBook"
-      ).text-none.rounded-xl
-        v-icon(left) mdi-calendar-blank
-        span Book an Appointment
+      //- TODO: Confirm what functionality
+      //- v-btn(
+      //-   color="secondary"
+      //-   block
+      //-   depressed
+      //-   x-large
+      //-   :class="{ 'font-11' : $isMobile }"
+      //-   :disabled="!isBookable"
+      //-   @click="onBook"
+      //- ).text-none.rounded-xl
+      //-   v-icon(left) mdi-calendar-blank
+      //-   span Book an Appointment
 </template>
 
 <script>
