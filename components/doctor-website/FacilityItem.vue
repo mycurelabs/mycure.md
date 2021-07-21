@@ -48,7 +48,7 @@
         rel="noopener noreferrer"
         block
         large
-        :disabled="!canBook"
+        :disabled="!canOnlineBook"
         :href="telehealthURL"
       ).my-4.text-none.rounded-lg
         v-icon(left) mdi-stethoscope
@@ -61,7 +61,7 @@
         rel="noopener noreferrer"
         block
         large
-        :disabled="!canBook"
+        :disabled="!canVisit"
         :href="visitURL"
       ).text-none.rounded-lg
         v-icon(left) mdi-calendar
@@ -155,8 +155,11 @@ export default {
     };
   },
   computed: {
-    canBook () {
+    canOnlineBook () {
       return this.clinicId && this.doctorId && this.clinicSchedules?.length;
+    },
+    canVisit () {
+      return this.clinic?.types?.includes('doctor-booking');
     },
     telehealthURL () {
       const pxPortalUrl = process.env.PX_PORTAL_URL;
