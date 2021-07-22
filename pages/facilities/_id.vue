@@ -30,9 +30,9 @@
               rounded
               dark
               :color="hover ? 'info' : 'warning'"
-              @click="chooseServiceDialog = true"
+              :href="bookURL"
             ).text-none.custom-clinic-button
-              h2 {{ hover ? 'Choose a service' : 'Book an Appointment' }}
+              h2 {{ hover ? 'Choose a schedule' : 'Book an Appointment' }}
 
     //- PANEL 1 FOOTER
     div(:class="{'d-flex': !$isMobile}" :style="{ height: !$isMobile ? '55px' : 'auto'}").panel-1-footer
@@ -197,7 +197,6 @@ export default {
       pageCount: 2,
       // Data Models
       orgDoctors: [],
-      clinicWebsite: {},
       filteredServices: [],
       serviceTypes: [],
       serviceSchedules: [],
@@ -217,12 +216,17 @@ export default {
   },
   head () {
     return headMeta({
-      title: `${this.clinicWebsite?.name || 'Facility Website'}`,
+      title: `${this.clinic?.name || 'Facility Website'}`,
       description: 'Visit my professional website and schedule an appointment with me today.',
       socialBanner: this.picURL,
     });
   },
   computed: {
+    bookURL () {
+      if (this.isPreviewMode) return null;
+      const pxPortalUrl = process.env.PX_PORTAL_URL;
+      return `${pxPortalUrl}/appointments/step-1?organization=${this.orgId}&type=physical`;
+    },
     formattedAddress () {
       if (!this.clinic?.address) return '';
       return formatAddress(this.clinic.address, 'street1, street2, city, province, country');
@@ -288,12 +292,6 @@ export default {
         compressedSchedules[index].closing = schedule.closing;
       });
       return compressedSchedules;
-    },
-    testimonialDate () {
-      return this.clinicWebsite?.createdAt;
-    },
-    testimonialDescription () {
-      return this.clinicWebsite?.description;
     },
     formattedDoctors () {
       if (!this.orgDoctors?.length) return [];

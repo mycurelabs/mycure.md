@@ -5,12 +5,12 @@
         v-col(cols="10").text-center
             picture-source(
               image-alt="Dental chart in MYCURE clinic management system"
-              image-file-extension=".png"
               custom-path="clinics/dental/"
-              extensionExclusive
+              :image-file-extension="$isMobile ? '.png' : '.webp'"
+              :extension-exclusive="$isMobile"
               :image="`Straightforward${$isMobile ? '-mobile' : ''}`"
-              :image-width="$isMobile ? '226px' : ($isRegularScreen ? '784px' : '1200px')"
-              :image-height="$isMobile ? '169.19px' : ($isRegularScreen ? '581.27px' : '889.71px')"
+              :image-width="$isMobile ? '226px' : ($isRegularScreen ? '875px' : '1200px')"
+              :image-height="$isMobile ? '169.19px' : ($isRegularScreen ? '500px' : '668.08px')"
             )
         v-col(cols="12").text-center
           h2(:class="titleClasses").mb-5 Straightforward and simple.
