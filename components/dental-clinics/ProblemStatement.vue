@@ -31,7 +31,7 @@
                 loop
                 navigationEnabled
                 paginationEnabled
-                per-page="1"
+                :per-page="1"
                 :navigationClickTargetSize="25"
               )
                 slide(
