@@ -79,7 +79,7 @@
             )
               template(v-for="(account, key) in socMed")
                 a(:href="account.link" target="_blank" rel="noopener noreferrer")
-                  img(:src="require(`~/assets/images/${ account.icon }`)" height="20" :alt="account.name").ma-4
+                  img(:src="require(`~/assets/images/${ account.icon }`)" width="20" height="20" :alt="account.name").ma-4
 </template>
 
 <script>

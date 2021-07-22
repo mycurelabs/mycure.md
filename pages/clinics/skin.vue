@@ -70,7 +70,7 @@
             dense
           )
             v-col(cols="2" sm="1" md="1").pr-2.pt-2
-              img(width="20" src="~/assets/images/mycure-check.png" alt="Check icon")
+              img(width="20" height="20" src="~/assets/images/mycure-check.png" alt="Check icon")
             v-col(cols="10" sm="11" md="11")
               span(:class="descriptionClasses") {{ item }}
         div(:class="{ 'text-center': $isMobile }")
