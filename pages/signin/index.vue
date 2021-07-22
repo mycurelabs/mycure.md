@@ -126,7 +126,7 @@
             width="236px"
             height="102.66px"
             alt="PC Monitor, Laptop, and Tablet Screens artwork"
-            )
+          )
           p.py-3
             strong MYCURE&nbsp;
             | is best used on
