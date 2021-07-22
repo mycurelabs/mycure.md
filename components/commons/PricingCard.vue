@@ -12,7 +12,8 @@
             image-file-extension=".webp"
             image-alt="Health facility pricing icon"
             :image="bundle.image"
-            :image-width="cardType === 'enterprise' ? '200' : iconSize"
+            :image-width="cardType === 'enterprise' ? '200px' : iconSize"
+            :image-height="cardType === 'enterprise' ? '139.4px' : iconSize"
           )
         div.text-center.description-container
           p(:class="[normalTextColor, textFontSize, recommendedText]") {{ bundle.description }}
@@ -101,7 +102,7 @@ export default {
   },
   computed: {
     iconSize () {
-      return this.$isWideScreen ? '85' : '65';
+      return this.$isWideScreen ? '85px' : '65px';
     },
     cardType () {
       return this.bundle.value;
