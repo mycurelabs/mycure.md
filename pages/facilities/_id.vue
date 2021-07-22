@@ -225,7 +225,7 @@ export default {
     bookURL () {
       if (this.isPreviewMode) return null;
       const pxPortalUrl = process.env.PX_PORTAL_URL;
-      return `${pxPortalUrl}/appointments/step-1?organization=${this.organization}&type=physical`;
+      return `${pxPortalUrl}/appointments/step-1?organization=${this.orgId}&type=physical`;
     },
     formattedAddress () {
       if (!this.clinic?.address) return '';
