@@ -32,7 +32,7 @@
               :color="hover ? 'info' : 'warning'"
               :href="bookURL"
             ).text-none.custom-clinic-button
-              h2 {{ hover ? 'Choose a service' : 'Book an Appointment' }}
+              h2 {{ hover ? 'Choose a schedule' : 'Book an Appointment' }}
 
     //- PANEL 1 FOOTER
     div(:class="{'d-flex': !$isMobile}" :style="{ height: !$isMobile ? '55px' : 'auto'}").panel-1-footer
