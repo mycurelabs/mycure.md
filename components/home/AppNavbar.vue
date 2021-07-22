@@ -14,8 +14,9 @@
               nuxt-link(to="/")
                 img(
                   src="~/assets/images/MYCURE Logo - white.png"
-                  width="120"
                   alt="MYCURE logo"
+                  width="120px"
+                  height="34.46px"
                 ).mt-1.mr-1
               template(v-if="!$isMobile")
                 template(v-for="(nav, key) in navs")

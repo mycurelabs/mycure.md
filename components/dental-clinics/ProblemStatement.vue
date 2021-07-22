@@ -21,7 +21,8 @@
               image-alt="Mother and child in the hospital, Patients waiting in line, and Dentist treating a patient artwork"
               image-file-extension=".webp"
               custom-path="clinics/dental/"
-              :image-width="$isRegularScreen ? '945x' : '1446px'"
+              :image-width="$isRegularScreen ? '945px' : '1446px'"
+              :image-height="$isRegularScreen ? '314.89px' : '481.84px'"
             )
           v-row(v-else justify="center")
             v-col(cols="10")
