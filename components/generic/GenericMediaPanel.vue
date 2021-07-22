@@ -22,7 +22,6 @@
 <script>
 import GenericSubPagePanel from '~/components/generic/GenericSubPagePanel';
 import PictureSource from '~/components/commons/PictureSource';
-import classBinder from '~/utils/class-binder';
 export default {
   components: {
     GenericSubPagePanel,
@@ -124,21 +123,8 @@ export default {
   data () {
     this.defaultTitleClasses = ['mc-title-set-1', 'lh-title', 'font-weight-semibold'];
     this.defaultContentClasses = ['mc-content-set-1', 'font-open-sans', 'font-gray'];
+    this.defaultSuperTitleClasses = ['mc-subheader-set-4', 'font-open-sans', 'font-weight-bold', 'primary--text'];
     return {};
-  },
-  computed: {
-    defaultSuperTitleClasses () {
-      return [
-        classBinder(this, {
-          mobile: ['font-xs', 'text-center'],
-          regular: ['font-xs'],
-          wide: ['font-s'],
-        }),
-        'font-open-sans',
-        'font-weight-bold',
-        'primary--text',
-      ];
-    },
   },
   methods: {
     getPanelBindings (content) {

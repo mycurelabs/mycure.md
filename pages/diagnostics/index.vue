@@ -76,7 +76,6 @@
           rounded
           color="success"
           event-label="signup"
-          :block="$isMobile"
           :large="!$isWideScreen"
           :x-large="$isWideScreen"
           :class="{'font-s': !$isMobile}"
@@ -85,7 +84,9 @@
           span Create my website
     v-divider(v-if="$isMobile").divider
     //- 7th panel
-    generic-media-panel(:content="cmsPanel")
+    generic-media-panel(
+      :content="cmsPanel"
+    )
       template(slot="cta-button")
         div(:class="{'text-center': $isMobile}")
           mc-btn(
@@ -94,7 +95,6 @@
             event-label="clinics-info"
             color="success"
             :to="{ name: 'clinics' }"
-            :block="$isMobile"
             :large="!$isWideScreen"
             :x-large="$isWideScreen"
             :class="{'font-s': !$isMobile}"

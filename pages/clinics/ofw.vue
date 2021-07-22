@@ -81,7 +81,7 @@
     )
       template(slot="cta-button")
         v-row(:justify="$isMobile ? 'center' : 'start'")
-          v-col(cols="10" md="7" lg="6" xl="7")
+          v-col(cols="10" sm="5" md="7" lg="6" xl="7")
             signup-button(
               depressed
               rounded

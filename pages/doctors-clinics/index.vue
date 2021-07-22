@@ -42,12 +42,13 @@
     generic-media-panel(
       content-right
       :content="sixthPanel"
-      :title-classes="headerClasses"
+      :title-classes="['mc-title-set-4', 'lh-title', 'primary--text', 'font-weight-semibold']"
+      :content-classes="['mc-content-set-3', 'font-open-sans', 'font-gray']"
       hide-btn
     )
       //- Check list
       template(slot="additional-content")
-        div.mb-10
+        div.my-10
           v-row(
             v-for="(item, i) in sixthPanel.list"
             :key="item"

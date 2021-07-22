@@ -34,13 +34,12 @@
       :content-classes="descriptionClasses"
       hide-btn
     )
-      div(slot="additional-content").mt-10
+      div(slot="additional-content" :class="{'text-center': $isMobile}").mt-10
         signup-button(
           depressed
           rounded
           color="success"
           event-label="signup"
-          :block="$isMobile"
           :large="!$isWideScreen"
           :x-large="$isWideScreen"
           :class="{'font-s': !$isMobile}"
@@ -68,12 +67,11 @@
         hide-btn
         disable-parent-padding
       )
-        div(slot="additional-content").mt-10
+        div(slot="additional-content" :class="{'text-center': $isMobile}").mt-10
           mc-btn(
             depressed
             rounded
             color="white"
-            :block="$isMobile"
             :large="!$isWideScreen"
             :x-large="$isWideScreen"
             :class="{'font-s': !$isMobile}"

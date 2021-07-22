@@ -170,6 +170,18 @@ classBinder(this, {
   }
 }
 
+.mc-title-set-4 {
+  @media (max-width: $max-sm) {
+    @include font-sizer(m);
+  }
+  @media (min-width: $min-md) and (max-width: $max-lg) {
+    @include font-sizer(l);
+  }
+  @media (min-width: $min-xl) {
+    @include font-sizer(xl);
+  }
+}
+
 .mc-content-set-1 {
   @media (max-width: $max-sm) {
     @include font-sizer(xs);
@@ -270,6 +282,19 @@ classBinder(this, {
     text-align: center;
   }
   @media (min-width: $min-md) and (max-width: $max-lg) {
+    @include font-sizer(s);
+  }
+}
+
+.mc-subheader-set-4 {
+  @media (max-width: $max-sm) {
+    @include font-sizer(xs);
+    text-align: center;
+  }
+  @media (min-width: $min-md) and (max-width: $max-lg) {
+    @include font-sizer(xs);
+  }
+  @media (min-width: $min-xl) {
     @include font-sizer(s);
   }
 }

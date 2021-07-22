@@ -14,7 +14,7 @@
       v-row.mt-10
         slot(name="cta-button")
           v-row(:justify="$isMobile ? 'center' : 'start'")
-            v-col(cols="10" md="7" lg="6" xl="7")
+            v-col(cols="10" sm="5" md="7" lg="6" xl="7")
               div(:class="{'text-center': $isMobile}")
                 mc-btn(
                   color="success"
@@ -26,7 +26,7 @@
                   :class="!$isWideScreen ? 'font-14' : ![2, 4].includes(version) ? 'font-s' : 'font-m'"
                   :href="'https://calendly.com/mycure/demo'"
                 ).text-none {{ ![2, 4].includes(version) ? 'Book a full training' : 'Start Now' }}
-            v-col(v-if="![2, 4].includes(version)" cols="10" md="7" lg="6" xl="5")
+            v-col(v-if="![2, 4].includes(version)" cols="10" sm="5" md="7" lg="6" xl="5")
               signup-button(
                 event-label="signup"
                 color="success"
