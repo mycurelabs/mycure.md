@@ -4,7 +4,7 @@
       v-container
         v-row(align="center" justify="center").padding-container
           div.maleDoctor
-            img(src="~/assets/images/mycure-web-video-cover-decor-doctor-left.png" alt="Male doctor")
+            img(src="~/assets/images/mycure-web-video-cover-decor-doctor-left.png" alt="Male doctor" width="141px" height="385px")
           div.vidPosition
             a
               img(
@@ -12,7 +12,8 @@
                 @click.stop="videoDialog=!videoDialog"
                 v-lazy="require('~/assets/images/our-story/mycure-web-video-cover-our-story-care-the-extra-mile.png')"
                 alt="MYCURE Our Story video thumbnail"
-                width="620"
+                width="620px"
+                height="362.58px"
               )
               iframe(
                 v-else
@@ -24,7 +25,7 @@
                 allowfullscreen
                 )
           div.femaleDoctor
-            img(src="~/assets/images/mycure-web-video-cover-decor-doctor-right.png" alt="Female doctor")
+            img(src="~/assets/images/mycure-web-video-cover-decor-doctor-right.png" alt="Female doctor" width="124px" height="371px")
     div(v-else).white
       v-container
         v-col(cols="12").text-center

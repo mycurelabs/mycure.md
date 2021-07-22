@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-container(v-if="!loading" fluid).white
+  div(v-if="!loading").white
     //- 1st panel
     usp(
       has-custom-background
@@ -37,7 +37,13 @@
         template(v-for="(item, i) in info.list")
           v-row(dense)
             v-col(cols="2" sm="1" md="1").pr-2.pt-2
-              img(width="20" src="~/assets/images/mycure-check.png" alt="Check icon")
+              div(class="text-center")
+                img(
+                  src="~/assets/images/mycure-check.png"
+                  alt="Check icon"
+                  :width="!$isWideScreen ? '20' : '25'"
+                  :height="!$isWideScreen ? '20' : '25'"
+                )
             v-col(cols="10" sm="11" md="11")
               span.mc-content-set-1.font-open-sans.font-gray {{ item }}
     //- 5th panel
@@ -61,7 +67,8 @@
                 extension-exclusive
                 :image="item.icon"
                 :image-alt="item.title"
-                :image-width="!$isMobile ? '100%' : '60%'"
+                :image-width="$isMobile ? '76px' : ($isRegularScreen ? '111px' : '180px' )"
+                :image-height="$isMobile ? '76px' : ($isRegularScreen ? '111px' : '180px' )"
               )
               br
               h3(:class="{'font-s': $isWideScreen}").font-open-sans.font-gray {{ item.title }}
@@ -162,80 +169,6 @@ export default {
         iconExtension: '.webp',
       },
     ];
-    this.integrationsPanel = {
-      contentAlign: 'left',
-      title: 'Ready whenever you are',
-      superTitle: 'POWERFUL INTEGRATIONS',
-      list: [
-        {
-          title: 'HL7',
-          icon: 'HL7',
-        },
-        {
-          title: 'DICOM',
-          icon: 'DICOM',
-        },
-      ],
-      imageBindings: {
-        image: 'MYCURE-virtual-clinic-healthcare-practice-online-features-G-diagnostic-results.webp',
-        imageAlt: 'Diagnostic and x-ray results',
-        customPath: 'features/',
-      },
-    };
-    this.infoPanels = [
-      {
-        title: 'Easy to Integrate. Easy to Use.',
-        description: 'Flawlessly incorporate MYCURE into your workflows.',
-        list: [
-          'Track specimen collection',
-          'Produce beautiful reports',
-          'Integrate with HL7 and DICOM-ready machines',
-          'Send online results to patients',
-        ],
-        imageBindings: {
-          image: 'easy.webp',
-          imageAlt: 'Charts and graphs artwork',
-          customPath: 'diagnostics/',
-        },
-        contentAlign: 'left',
-      },
-      {
-        title: 'Send Test Results Instantly',
-        description: 'Give your patients quick access to their test results through the MYCURE app for patients.',
-        list: [
-          'Patient Portal for Diagnostic Tests',
-          'Tabulated Cumulative Results',
-          'Quick Appointment Booking',
-        ],
-        imageBindings: {
-          image: 'Fast results.webp',
-          imageAlt: 'Sending out health results artwork',
-          customPath: 'diagnostics/',
-        },
-        contentAlign: 'right',
-      },
-    ];
-    this.expandPanel = {
-      title: 'Expand your Reach',
-      description: 'Join MYCURE ONE, a global online directory of modern healthcare facilities so patients can easily find and book an appointment with you anytime.',
-      imageBindings: {
-        image: 'Expand your reach.webp',
-        imageAlt: 'Man browsing a clinic website artwork',
-        customPath: 'commons/',
-      },
-      contentAlign: 'right',
-    };
-    this.cmsPanel = {
-      title: 'Grow into a full service clinic anytime',
-      superTitle: 'MYCURE CLINIC MANAGEMENT SYSTEM',
-      description: 'Cover all your patient journeys with MYCURE’s most complete clinic management system.',
-      imageBindings: {
-        image: 'FullService.webp',
-        imageAlt: 'Doctor and patient transacting over a counter artwork',
-        customPath: 'diagnostics/',
-      },
-      contentAlign: 'left',
-    };
     this.pricingDetails = DIAGNOSTICS_PRICING;
     return {
       loading: true,
@@ -247,6 +180,100 @@ export default {
       description: 'MYCURE provides the best tool to create, finalize, and release diagnostic test results for diagnostic clinics. Best alternative to laboratory and radiology information systems. ',
       socialBanner: require('~/assets/images/banners/OG Diag.png'),
     });
+  },
+  computed: {
+    infoPanels () {
+      return [
+        {
+          title: 'Easy to Integrate. Easy to Use.',
+          description: 'Flawlessly incorporate MYCURE into your workflows.',
+          list: [
+            'Track specimen collection',
+            'Produce beautiful reports',
+            'Integrate with HL7 and DICOM-ready machines',
+            'Send online results to patients',
+          ],
+          imageBindings: {
+            image: 'easy.webp',
+            imageAlt: 'Charts and graphs artwork',
+            customPath: 'diagnostics/',
+            width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
+            height: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
+          },
+          contentAlign: 'left',
+        },
+        {
+          title: 'Send Test Results Instantly',
+          description: 'Give your patients quick access to their test results through the MYCURE app for patients.',
+          list: [
+            'Patient Portal for Diagnostic Tests',
+            'Tabulated Cumulative Results',
+            'Quick Appointment Booking',
+          ],
+          imageBindings: {
+            image: 'Fast results.webp',
+            imageAlt: 'Sending out health results artwork',
+            customPath: 'diagnostics/',
+            width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
+            height: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
+          },
+          contentAlign: 'right',
+        },
+      ];
+    },
+    integrationsPanel () {
+      return {
+        contentAlign: 'left',
+        title: 'Ready whenever you are',
+        superTitle: 'POWERFUL INTEGRATIONS',
+        list: [
+          {
+            title: 'HL7',
+            icon: 'HL7',
+          },
+          {
+            title: 'DICOM',
+            icon: 'DICOM',
+          },
+        ],
+        imageBindings: {
+          image: 'MYCURE-virtual-clinic-healthcare-practice-online-features-G-diagnostic-results.webp',
+          imageAlt: 'Diagnostic and x-ray results in MYCURE Clinic Management System',
+          customPath: 'features/',
+          width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
+          height: this.$isMobile ? '240.05px' : (this.$isRegularScreen ? '400.06px' : '617.48px'),
+        },
+      };
+    },
+    expandPanel () {
+      return {
+        title: 'Expand your Reach',
+        description: 'Join MYCURE ONE, a global online directory of modern healthcare facilities so patients can easily find and book an appointment with you anytime.',
+        imageBindings: {
+          image: 'Expand your reach.webp',
+          imageAlt: 'Man browsing a clinic website artwork',
+          customPath: 'commons/',
+          width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
+          height: this.$isMobile ? '242.88px' : (this.$isRegularScreen ? '404.79px' : '624.8px'),
+        },
+        contentAlign: 'right',
+      };
+    },
+    cmsPanel () {
+      return {
+        title: 'Grow into a full service clinic anytime',
+        superTitle: 'MYCURE CLINIC MANAGEMENT SYSTEM',
+        description: 'Cover all your patient journeys with MYCURE’s most complete clinic management system.',
+        imageBindings: {
+          image: 'FullService.webp',
+          imageAlt: 'Doctor and patient transacting over a counter artwork',
+          customPath: 'diagnostics/',
+          width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
+          height: this.$isMobile ? '161.56px' : (this.$isRegularScreen ? '257.6px' : '397.59px'),
+        },
+        contentAlign: 'left',
+      };
+    },
   },
   mounted () {
     this.loading = false;

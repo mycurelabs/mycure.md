@@ -65,35 +65,6 @@ export default {
     VirtualClinic: () => import('~/components/telehealth/VirtualClinic'),
   },
   data () {
-    this.infoPanels = [
-      {
-        title: 'Safekeep your important medical data',
-        description: 'Your patient\'s medical records are both accessible and secure in our system that complies with international data privacy standards. We make it our business to make sure your electronic health records are kept safe so you can focus on what you do best-taking care of your patients.',
-        imageBindings: {
-          image: 'MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-B-secure-data.webp',
-          imageAlt: 'Securing of medical records',
-          customPath: 'telehealth/',
-        },
-        contentAlign: 'right',
-      },
-      {
-        title: 'Works for group practice',
-        description: 'Easily coordinate with other physicians in your group practice and centralize your medical records in one comprehensive workspace.',
-        list: [
-          'Conference Calls',
-          'Collated Medical Records',
-          'Optimized Patient Queuing',
-          'Booking Website',
-        ],
-        imageBindings: {
-          image: 'Practice.png',
-          imageAlt: 'Physicians and medical workers',
-          customPath: 'doctors-clinics/',
-          extensionExclusive: true,
-        },
-        contentAlign: 'left',
-      },
-    ];
     this.pricingDetails = DOCTORS_PRICING;
     this.headerClasses = ['mc-title-set-1', 'font-weight-semibold'];
     this.descriptionClasses = ['mc-content-set-1', 'font-open-sans', 'font-gray'];
@@ -107,6 +78,43 @@ export default {
       description: 'Starting a virtual practice has never been easier. Give your patients the quality care they deserve wherever they are.',
       socialBanner: require('~/assets/images/banners/OG Telehealth.png'),
     });
+  },
+  computed: {
+    infoPanels () {
+      return [
+        {
+          title: 'Safekeep your important medical data',
+          description: 'Your patient\'s medical records are both accessible and secure in our system that complies with international data privacy standards. We make it our business to make sure your electronic health records are kept safe so you can focus on what you do best-taking care of your patients.',
+          imageBindings: {
+            image: 'MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-B-secure-data.webp',
+            imageAlt: 'Securing of medical records',
+            customPath: 'telehealth/',
+            width: this.$isMobile ? '256px' : (this.$isRegularScreen ? '460px' : '710px'),
+            height: this.$isMobile ? '197.52px' : (this.$isRegularScreen ? '354.9px' : '547.78px'),
+          },
+          contentAlign: 'right',
+        },
+        {
+          title: 'Works for group practice',
+          description: 'Easily coordinate with other physicians in your group practice and centralize your medical records in one comprehensive workspace.',
+          list: [
+            'Conference Calls',
+            'Collated Medical Records',
+            'Optimized Patient Queuing',
+            'Booking Website',
+          ],
+          imageBindings: {
+            image: 'Practice.png',
+            imageAlt: 'Physicians and medical workers',
+            customPath: 'doctors-clinics/',
+            extensionExclusive: true,
+            width: this.$isMobile ? '256px' : (this.$isRegularScreen ? '460px' : '710px'),
+            height: this.$isMobile ? '280px' : (this.$isRegularScreen ? '503.13px' : '776.56px'),
+          },
+          contentAlign: 'left',
+        },
+      ];
+    },
   },
   mounted () {
     this.loading = false;

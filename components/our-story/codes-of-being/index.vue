@@ -10,21 +10,21 @@
             v-list(two-line).check-list
               v-list-item(v-for="(code, key) in codes.slice(0,4)" :key="key")
                 v-list-item-action
-                    img(:src="require(`~/assets/images/${checkIcon}.png`)" alt="Check icon")
+                    img(:src="require(`~/assets/images/${checkIcon}.png`)" alt="Check icon" width="29px" height="29px")
                 v-list-item-content
                     span(:class="descriptionClasses") {{ code }}
           v-col(cols="12" md="4")
             v-list(two-line).check-list
               v-list-item(v-for="(code, key) in codes.slice(4,8)" :key="key")
                 v-list-item-action
-                    img(:src="require(`~/assets/images/${checkIcon}.png`)" alt="Check icon")
+                    img(:src="require(`~/assets/images/${checkIcon}.png`)" alt="Check icon" width="29px" height="29px")
                 v-list-item-content
                     span(:class="descriptionClasses") {{ code }}
         v-col(cols="12" v-else)
           v-list(two-line).check-list
             v-list-item(v-for="(code, key) in codes" :key="key").pb-3
               v-list-item-action
-                  img(:src="require(`~/assets/images/${checkIcon}.png`)" alt="Check icon")
+                  img(:src="require(`~/assets/images/${checkIcon}.png`)" alt="Check icon" width="29px" height="29px")
               v-list-item-content
                   span(:class="descriptionClasses") {{ code }}
 </template>
