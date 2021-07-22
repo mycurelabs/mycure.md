@@ -39,6 +39,7 @@
           :image="`${coverImg}${$isMobile ? '-mobile' : ''}`"
           :imageAlt="coverImg"
           :width="coverImgWidth"
+          :height="coverImgHeight"
           :imageFileExtension="coverImgExtension"
           :imageClasses="['justify-center']"
         )
@@ -96,6 +97,10 @@ export default {
       default: '.png',
     },
     coverImgWidth: {
+      type: String,
+      default: '82%',
+    },
+    coverImgHeight: {
       type: String,
       default: '82%',
     },

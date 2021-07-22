@@ -21,13 +21,14 @@
             v-col(cols="12")
               v-row(justify="center")
                 template(v-if="!$isMobile")
-                  v-col(cols="12").text-center.ml-n16
+                  v-col(cols="12").text-center
                     picture-source(
                       custom-path="diagnostics/mobile-labs/"
                       image="Mobile Labs Problem Statement"
                       image-alt="Mobile labs workflow"
                       image-file-extension=".png"
-                      image-width="1050px"
+                      :image-width="$isRegularScreen ? '945px' : '1445px'"
+                      :image-height="$isRegularScreen ? '174.35px' : '266.6px'"
                     )
                 template(v-else)
                   v-col(cols="12" v-for="(item, key) in items" :key="key").text-center
@@ -37,7 +38,8 @@
                         :image="item.icon"
                         :image-alt="item.title"
                         image-file-extension=".webp"
-                        image-width="40%"
+                        image-width="115px"
+                        image-height="94.19px"
                       )
                       br
                       h3.font-xs.font-open-sans.grey--text {{ item.title }}
