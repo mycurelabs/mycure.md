@@ -58,8 +58,8 @@
     generic-media-panel(
       hide-btn
       :content="fourthPanel"
-      :title-classes="[...headerClasses, 'primary--text']"
-      :content-classes="[...descriptionClasses, 'justify-left']"
+      :title-classes="listHeaderClasses"
+      :content-classes="listContentClasses"
     )
       //- Check list
       template(slot="additional-content")
@@ -174,6 +174,8 @@ export default {
     this.headerClasses = ['mc-title-set-1', 'lh-title', 'font-weight-semibold'];
     this.descriptionClasses = ['mc-content-set-1', 'font-open-sans', 'font-gray'];
     this.btnClasses = ['mc-button-set-1'];
+    this.listHeaderClasses = ['mc-list-title-set-1', 'lh-title', 'primary--text', 'font-weight-semibold'];
+    this.listContentClasses = ['mc-list-content-set-1', 'font-open-sans', 'font-gray'];
     return {
       loading: true,
     };

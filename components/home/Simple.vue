@@ -13,7 +13,7 @@
         hide-btn
       )
         template(slot="image")
-          div(:class="{ 'text-center': $isMobile }")
+          div(:class="{'text-center': $isMobile}")
             picture-source(v-bind="imageBindings" :class="{'ml-n10': wSM }")
         v-col(slot="additional-content" cols="12").order-last
           v-row(justify="center")

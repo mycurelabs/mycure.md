@@ -5,18 +5,18 @@
         v-col(cols="12")
           v-row(align="center" justify="center").my-6
             v-col(cols="10" md="4" :class="{ 'text-center': !$isMobile }")
-              picture-source(
-                :image-width="$isMobile ? '226px' : ($isRegularScreen ? '266.66px' : '465px')"
-                :image-height="$isMobile ? '218.42px' : ($isRegularScreen ? '257.7px' : '449.41px')"
-                image="MYCURE-HIPAA Badge"
-                image-file-extension=".webp"
-                image-alt="HIPAA Compliance Seal"
-              )
+                picture-source(
+                  :image-width="$isMobile ? '226px' : ($isRegularScreen ? '266.66px' : '465px')"
+                  :image-height="$isMobile ? '218.42px' : ($isRegularScreen ? '257.7px' : '449.41px')"
+                  image="MYCURE-HIPAA Badge"
+                  image-file-extension=".webp"
+                  image-alt="HIPAA Compliance Seal"
+                )
             v-col(cols="12" md="8")
               h2(:class="headerClasses") MYCURE is HIPAA Compliant
               br
               p(:class="descriptionClasses") MYCURE demonstrates its commitment to industry-leading best practices for security and privacy of protected health information as required under HIPAA.
-              div
+              div.text-center
                 a(
                   href="https://blog.mycure.md/mycure-is-hipaa-compliant/"
                   target="_blank"
