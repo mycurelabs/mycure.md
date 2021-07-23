@@ -86,6 +86,11 @@ export default {
     },
   },
   data () {
+    this.headerClasses = [
+      'mc-title-set-2',
+      'font-weight-semibold',
+      'primary--text',
+    ];
     this.descriptionClasses = ['mc-content-set-1', 'font-open-sans', 'font-gray'];
     this.btnClasses = ['mc-button-set-1'];
     this.centerPanelTitleClasses = ['mc-title-set-1', 'font-weight-semibold'];
@@ -103,18 +108,6 @@ export default {
         default:
           return 'Internet connection won\'t be a problem';
       }
-    },
-    headerClasses () {
-      const headerClasses = [
-        classBinder(this, {
-          mobile: ['font-s', 'text-center'],
-          regular: ['font-m'],
-          wide: ['font-xl'],
-        }),
-        'font-weight-semibold',
-        'primary--text',
-      ];
-      return headerClasses;
     },
     superTitleClasses () {
       return [
