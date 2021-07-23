@@ -41,7 +41,8 @@
                   :class="{ 'font-11' : $isMobile }"
                   :disabled="!isBookable"
                   @click="onBook"
-                ).text-none.font-weight-bold.custom-book-btn.font-18 {{ hover ? 'Book me now' : 'The doctor is in' }}
+                ).text-none.font-weight-bold.custom-book-btn.font-18
+                  | {{ !isBookable ? 'The doctor is out' : hover ? 'Book me now' : 'The doctor is in' }}
 </template>
 
 <script>

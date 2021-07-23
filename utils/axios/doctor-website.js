@@ -64,17 +64,17 @@ export const fetchDoctorMetrics = async (opts, sdk) => {
     });
 
     // Fetching hearts
-    const { total: hearts } = await sdk.service('reviews').find({
-      reviewee: doctorId,
-      reaction: 'heart',
-      application: 'doctors-directory',
-    });
+    // const { total: hearts } = await sdk.service('reviews').find({
+    //   reviewee: doctorId,
+    //   reaction: 'heart',
+    //   application: 'doctors-directory',
+    // });
 
     return {
       websiteVisits: visits,
       patients: patients.data.total,
       records: records.data.total,
-      hearts,
+      hearts: 0, // TODO: Revert once functional
     };
   } catch (e) {
     console.error(e);
