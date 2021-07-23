@@ -114,8 +114,8 @@
                 picture-source(
                   :image="mockup.image"
                   :image-alt="`A ${websiteType} website mockup on laptop screen`"
-                  :image-width="$isMobile ? '205px' : ($isRegularScreen ? '756px' : '1156px')"
-                  :image-height="$isMobile ? '137px' : ($isRegularScreen ? '502px' : '767.6px')"
+                  :image-width="$isMobile ? '256px' : ($isRegularScreen ? '756px' : '1156px')"
+                  :image-height="$isMobile ? '192px' : ($isRegularScreen ? '567px' : '867px')"
                   image-file-extension=".webp"
                   custom-path="booking/"
                 )
