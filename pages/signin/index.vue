@@ -7,6 +7,8 @@
             src="~/assets/images/sign-in/mycure-sso-sign-in-logo.svg"
             alt="MYCURE logo"
             @click="$nuxt.$router.push({ name: 'index' })"
+            width="95px"
+            height="110px"
           ).link-to-home.mb-3
           h1(:class="titleSizeClasses").signin-title.font-weight-bold.pb-2 Sign in to MYCURE
           span.grey--text Because you care the extra mile.
@@ -119,7 +121,12 @@
     v-dialog(v-if="checkDevice" v-model="bestUseDialog" width="300" persistent)
       v-card.text-center
         v-card-text.pa-8
-          img(src="~/assets/images/sign-in/MYCURE-modal-best-used-in-big-screens-image.png" width="100%")
+          img(
+            src="~/assets/images/sign-in/MYCURE-modal-best-used-in-big-screens-image.png"
+            width="236px"
+            height="102.66px"
+            alt="PC Monitor, Laptop, and Tablet Screens artwork"
+          )
           p.py-3
             strong MYCURE&nbsp;
             | is best used on

@@ -23,7 +23,7 @@
                   :block="![2, 4].includes(version)"
                   :large="!$isWideScreen"
                   :x-large="$isWideScreen"
-                  :class="!$isWideScreen ? 'font-14' : ![2, 4].includes(version) ? 'font-s' : 'font-m'"
+                  :class="ctaButtonClass"
                   :href="'https://calendly.com/mycure/demo'"
                 ).text-none {{ ![2, 4].includes(version) ? 'Book a full training' : 'Start Now' }}
             v-col(v-if="![2, 4].includes(version)" cols="10" sm="5" md="7" lg="6" xl="5")
@@ -113,6 +113,9 @@ export default {
         case 4: return { ...this.versionFour, imageBindings: this.imgBindings };
         default: return { ...this.versionOne, imageBindings: this.imgBindings };
       }
+    },
+    ctaButtonClass () {
+      return ![2, 4].includes(this.version) ? (this.$isWideScreen ? 'font-s' : 'font-14') : (this.$isWideScreen ? 'font-m' : 'font-s');
     },
   },
 };

@@ -20,7 +20,8 @@
             picture-source(
               image="MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-A-online-consult"
               image-alt="Virtual Clinic"
-              image-width="102%"
+              :image-width="$isMobile ? '300px' : ($isRegularScreen ? '964px' : '1475px')"
+              :image-height="$isMobile ? '192.08px' : ($isRegularScreen ? '617.23px' : '944.39px')"
               image-file-extension=".webp"
               custom-path="telehealth/"
             )
@@ -32,7 +33,7 @@
             :key="key"
           )
             div.d-flex
-              img(v-lazy="require(`~/assets/images/telehealth/${data.headerIcon}`)" :height="$isMobile? '10%' : '30%'" :class="{'pt-3': $isMobile}")
+              img(v-lazy="require(`~/assets/images/telehealth/${data.headerIcon}`)" width="45px" :height="$isMobile? '57px' : '45px'" :class="{'pt-3': $isMobile}")
               h1(:class="headerClasses").ml-3 {{ data.header }}
             br
             p(:class="contentClasses") {{ data.description }}

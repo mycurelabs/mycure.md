@@ -70,7 +70,8 @@
                 extension-exclusive
                 :image="item.icon"
                 :image-alt="item.title"
-                :image-width="!$isMobile ? '100%' : '60%'"
+                :image-width="$isMobile ? '76px' : ($isRegularScreen ? '111px' : '180px' )"
+                :image-height="$isMobile ? '76px' : ($isRegularScreen ? '111px' : '180px' )"
               )
               br
               h3(:class="{'font-s': $isWideScreen}").font-open-sans.font-gray {{ item.title }}

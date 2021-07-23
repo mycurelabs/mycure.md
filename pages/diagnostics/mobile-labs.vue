@@ -52,12 +52,13 @@
             v-tabs-items(v-model="reportType")
               v-tab-item(v-for="(mockup, key) in reportMockups" :key="key" :value="mockup.value")
                 picture-source(
-                  image-width="100%"
                   image-file-extension=".png"
                   custom-path="diagnostics/mobile-labs/"
                   extensionExclusive
                   :image="`${mockup.image}${$isMobile ? '-mobile' : ''}`"
                   :image-alt="`A ${reportType} sample report from MYCURE Clinic Management System on laptop screen`"
+                  :image-width="$isMobile ? '276px' : ($isRegularScreen ? '945px' : '1445px')"
+                  :image-height="$isMobile ? '147.06px' : ($isRegularScreen ? '502.89px' : '768.96px')"
                 )
 
     //- 4th panel
@@ -161,16 +162,6 @@ export default {
         value: 'lab',
       },
     ];
-    this.directoryPanel = {
-      title: 'Expand your Reach',
-      description: 'Join MYCURE ONE, a global online directory of modern healthcare practitioners and facilities so patients can easily find and book an appointment anytime.',
-      contentAlign: 'right',
-      imageBindings: {
-        customPath: 'commons/',
-        image: 'Expand your reach.webp',
-        imageAlt: 'Man browsing a clinic website',
-      },
-    };
     this.headerClasses = ['mc-title-set-1', 'lh-title', 'font-weight-semibold'];
     this.descriptionClasses = ['mc-content-set-1'];
     this.btnClasses = ['mc-button-set-1'];
@@ -185,6 +176,22 @@ export default {
       description: 'Discover the simplest and most affordable laboratory information software designed for mobile labs. It’s cloud-based and works offline.',
       socialBanner: require('~/assets/images/banners/MYCURE - Mobile Clinic OG BANNER.png'),
     });
+  },
+  computed: {
+    directoryPanel () {
+      return {
+        title: 'Expand your Reach',
+        description: 'Join MYCURE ONE, a global online directory of modern healthcare practitioners and facilities so patients can easily find and book an appointment anytime.',
+        contentAlign: 'right',
+        imageBindings: {
+          image: 'Expand your reach.webp',
+          imageAlt: 'Man browsing a clinic website artwork',
+          customPath: 'commons/',
+          width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
+          height: this.$isMobile ? '242.88px' : (this.$isRegularScreen ? '404.79px' : '624.8px'),
+        },
+      };
+    },
   },
   mounted () {
     this.loading = false;
