@@ -274,7 +274,7 @@ classBinder(this, {
   }
 }
 
-.mc-listtitle-set-1 {
+.mc-list-title-set-1 {
   @media (max-width: $max-sm) {
     @include font-sizer(m);
   }
@@ -285,7 +285,7 @@ classBinder(this, {
     @include font-sizer(xl);
   }
 }
-.mc-listcontent-set-1 {
+.mc-list-content-set-1 {
   @media (max-width: $max-sm) {
     @include font-sizer(xs);
   }

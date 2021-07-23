@@ -165,8 +165,8 @@ export default {
     this.btnClasses = ['mc-button-set-1'];
     this.subHeaderClasses = ['mc-subheader-set-1', 'lh-title', 'font-weight-semibold', 'secondary--text'];
     this.studentPanelDescriptionClasses = ['mc-subheader-set-2', 'font-weight-semibold'];
-    this.listHeaderClasses = ['mc-listtitle-set-1', 'lh-title', 'primary--text', 'font-weight-semibold'];
-    this.listContentClasses = ['mc-listcontent-set-1', 'font-open-sans', 'font-gray'];
+    this.listHeaderClasses = ['mc-list-title-set-1', 'lh-title', 'primary--text', 'font-weight-semibold'];
+    this.listContentClasses = ['mc-list-content-set-1', 'font-open-sans', 'font-gray'];
     return {
       loading: true,
     };
