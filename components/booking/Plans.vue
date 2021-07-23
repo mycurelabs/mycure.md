@@ -6,7 +6,7 @@
           v-col(cols="12")
             v-row(align="center" justify="center")
               v-col(cols="12").text-center
-                h2(:class="headerClasses").font-weight-semibold.mb-5 {{ title }}
+                h2.mc-title-set-2.font-weight-semibold.mb-5 {{ title }}
                 p(:class="descriptionClasses").mb-5.font-open-sans.font-gray {{ description }}
               v-col(cols="10" md="4" xl="3")
                 v-card(height="100%" width="100%").pricing-card.rounded-xl.elevation-3
@@ -47,7 +47,6 @@
 import GenericPanel from '~/components/generic/GenericPanel';
 import PictureSource from '~/components/commons/PictureSource';
 import SignupButton from '~/components/commons/SignupButton';
-import classBinder from '~/utils/class-binder';
 export default {
   components: {
     GenericPanel,
@@ -70,14 +69,6 @@ export default {
     ];
     this.descriptionClasses = ['mc-content-set-1'];
     return {};
-  },
-  computed: {
-    headerClasses () {
-      return classBinder(this, {
-        mobile: ['text-center'],
-        regular: ['font-20'],
-      });
-    },
   },
 };
 </script>
