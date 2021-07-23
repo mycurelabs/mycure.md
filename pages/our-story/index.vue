@@ -40,7 +40,7 @@ export default {
   },
   data () {
     this.headerClasses = ['mc-title-set-1', 'lh-title', 'font-weight-semibold'];
-    this.descriptionClasses = ['mc-content-set-1', 'font-open-sans', 'font-gray'];
+    this.descriptionClasses = ['mc-content-set-3', 'font-open-sans', 'font-gray'];
     return {
       isMobile: true,
       loading: true,
