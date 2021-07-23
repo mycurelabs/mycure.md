@@ -12,19 +12,20 @@
           :key="key"
           cols="12"
           md="5"
-        ).text-center
-          v-card(flat)
-            v-img(
-              alt="Mobile health application on Iphone"
-              :src="require(`~/assets/images/home/${feature.image}.${fileExtension}`)"
-              width="588px"
-            )
-              v-card-title.mt-5
-                v-spacer
-                span(:class="descriptionClasses").white--text.font-open-sans {{ feature.title }}
-                v-spacer
-              v-card-text.text-center.px-8
-                strong(:class="appDescriptionClasses").white--text.content-line-spacing {{ feature.description }}
+        ).text-center.ma-2
+          v-row(justify='center')
+            v-card(flat)
+              v-img(
+                alt="Mobile health application on Iphone"
+                :src="require(`~/assets/images/home/${feature.image}.${fileExtension}`)"
+                width="588px"
+              )
+                v-card-title.mt-5
+                  v-spacer
+                  span(:class="descriptionClasses").white--text.font-open-sans {{ feature.title }}
+                  v-spacer
+                v-card-text.text-center.px-8
+                  strong(:class="appDescriptionClasses").white--text.content-line-spacing {{ feature.description }}
 </template>
 
 <script>

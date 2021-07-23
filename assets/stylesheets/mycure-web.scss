@@ -298,3 +298,27 @@ classBinder(this, {
     @include font-sizer(s);
   }
 }
+
+.mc-list-title-set-1 {
+  @media (max-width: $max-sm) {
+    @include font-sizer(m);
+  }
+  @media (min-width: $min-md) and (max-width: $max-lg) {
+    @include font-sizer(l);
+  }
+  @media (min-width: $min-xl) {
+    @include font-sizer(xl);
+  }
+}
+
+.mc-list-content-set-1 {
+  @media (max-width: $max-sm) {
+    @include font-sizer(xs);
+  }
+  @media (min-width: $min-md) and (max-width: $max-lg) {
+    @include font-sizer(s);
+  }
+  @media (min-width: $min-xl) {
+    @include font-sizer(m);
+  }
+}

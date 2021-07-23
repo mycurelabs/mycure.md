@@ -5,10 +5,10 @@
         v-col(cols="12")
           v-row(justify="center")
             v-col(cols="12" md="10").text-center
-              h1(:class="titleClasses").font-weight-semibold.mb-5 Seamless workflows anywhere you go.
+              h1(:class="[...titleClasses, {'mx-n1': $isMobile}]").mb-5 Seamless workflows anywhere you go.
               v-row(justify="center")
                 v-col(cols="12" md="8" xl="9")
-                  p(:class="descriptionClasses").secondary--text.mb-10.font-weight-semibold Value everyone's time more effectively. Handle location-based registrations like a breeze.
+                  p(:class="descriptionClasses").mb-10 Value everyone's time more effectively. Handle location-based registrations like a breeze.
               //- signup-button(
               //-   depressed
               //-   rounded
@@ -74,8 +74,8 @@ export default {
         icon: '4-Results Mobile',
       },
     ];
-    this.titleClasses = ['mc-title-set-1'];
-    this.descriptionClasses = ['mc-content-set-1'];
+    this.titleClasses = ['mc-title-set-1', 'font-weight-semibold'];
+    this.descriptionClasses = ['mc-content-set-1', 'secondary--text', 'font-weight-semibold'];
     this.btnClasses = ['mc-button-set-1'];
     return {
       videoDialog: false,

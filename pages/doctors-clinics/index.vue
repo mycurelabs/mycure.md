@@ -42,8 +42,8 @@
     generic-media-panel(
       content-right
       :content="sixthPanel"
-      :title-classes="['mc-title-set-4', 'lh-title', 'primary--text', 'font-weight-semibold']"
-      :content-classes="['mc-content-set-3', 'font-open-sans', 'font-gray']"
+      :title-classes="listHeaderClasses"
+      :content-classes="listContentClasses"
       hide-btn
     )
       //- Check list
@@ -81,7 +81,7 @@
     div.blue-bg.mx-n3
       generic-media-panel(
         :content="eightPanel"
-        :title-classes="[...headerClasses, 'white--text']"
+        :title-classes="[...listHeaderClasses, 'white--text']"
         :contentClasses="eightPanelContentClasses"
         hide-btn
       )
@@ -161,7 +161,9 @@ export default {
     this.pricingDetails = DOCTORS_PRICING;
     this.headerClasses = ['mc-title-set-1', 'lh-title', 'primary--text', 'font-weight-semibold'];
     this.descriptionClasses = ['mc-content-set-1', 'font-open-sans', 'font-gray'];
-    this.eightPanelContentClasses = ['mc-content-set-1', 'font-open-sans', 'white--text'];
+    this.eightPanelContentClasses = ['mc-list-content-set-1', 'font-open-sans', 'white--text'];
+    this.listHeaderClasses = ['mc-list-title-set-1', 'lh-title', 'primary--text', 'font-weight-semibold'];
+    this.listContentClasses = ['mc-list-content-set-1', 'font-open-sans', 'font-gray'];
     return {
       loading: true,
     };

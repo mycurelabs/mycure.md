@@ -8,7 +8,6 @@
         :center-panel-title="version === 3 ? 'Enjoy the best of both worlds' : null"
         :media-column-bindings="mediaColumnBindings"
         :content-column-bindings="contentColumnBindings"
-        :superTitleClasses="superTitleClasses"
         :hide-btn="hideBtn"
       )
         div(v-if="version === 1" slot="super-title")
@@ -29,7 +28,7 @@
           //-   :to="{ name: 'syncbase' }"
           //-   :class="{'font-s': !$isMobile}"
           //- ).text-none.button
-          div(v-if="version !== 3")
+          div(v-if="version !== 3" :class="{'text-center': $isMobile}").pl-3.mr-n3
             nuxt-link(:to="{ name: 'syncbase' }" :class="{'d-flex': !$isMobile}").button
               span(:class="[{'font-14':  $isMobile}, {'font-s':  $isRegularScreen}, {'font-m':  $isWideScreen}]").primary--text Learn about MYCURE Syncbase
               v-icon(left color="primary" :large="$isWideScreen" :small="$isMobile") mdi-chevron-right
@@ -69,7 +68,6 @@
 </template>
 
 <script>
-import classBinder from '~/utils/class-binder';
 import GenericSubPagePanel from '~/components/generic/GenericSubPagePanel';
 export default {
   components: {
@@ -94,6 +92,7 @@ export default {
     this.descriptionClasses = ['mc-content-set-1', 'font-open-sans', 'font-gray'];
     this.btnClasses = ['mc-button-set-1'];
     this.centerPanelTitleClasses = ['mc-title-set-1', 'font-weight-semibold'];
+    this.headerClasses = ['mc-title-set-2', 'font-weight-semibold', 'primary--text'];
     return {
       syncbaseVideoDialog: false,
     };
@@ -108,18 +107,6 @@ export default {
         default:
           return 'Internet connection won\'t be a problem';
       }
-    },
-    superTitleClasses () {
-      return [
-        classBinder(this, {
-          mobile: ['font-xs', 'text-center'],
-          regular: ['font-xs'],
-          wide: ['font-s'],
-        }),
-        'font-open-sans',
-        'font-weight-bold',
-        'primary--text',
-      ];
     },
     contentColumnBindings () {
       return {
