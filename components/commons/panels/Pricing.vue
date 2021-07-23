@@ -19,8 +19,15 @@
                     color="info"
                   )
                   strong(:class="descriptionClasses").font-open-sans.black--text Billed Annually
-            v-row(justify="center" dense)
-              template(v-if="!$isMobile")
+            v-row(v-if="loading" justify="center" dense).text-center
+              v-col(cols="12")
+                v-progress-circular(
+                  color="primary"
+                  indeterminate
+                  size="150"
+                )
+            v-row(v-else justify="center" dense)
+              template(v-if="wLG || wXL")
                 v-col(
                   v-for="(pack, key) in pricingPackages"
                   :key="key"
@@ -29,9 +36,9 @@
                   pricing-card(
                     :bundle="pack"
                     :payment-interval="paymentInterval"
-                    :height="type === 'doctor' ? '700' : '800'"
+                    :height="type === 'doctor' ? '700' : '850'"
                   ).elevation-3
-              v-col(v-else cols="12" sm="8")
+              v-col(v-else cols="12" sm="8" md="6")
                 carousel(
                   paginationColor="grey"
                   loop
@@ -48,7 +55,7 @@
                     pricing-card(
                       :bundle="pack"
                       :payment-interval="paymentInterval"
-                      :height="type === 'doctor' ? '700' : '800'"
+                      :height="type === 'doctor' ? '700' : '850'"
                     ).elevation-3
 </template>
 

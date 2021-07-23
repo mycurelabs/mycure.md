@@ -1,6 +1,6 @@
 <template lang="pug">
    v-card(:color="cardColor" :height="cardHeight" width="100%").rounded-xl.card-outter
-      v-chip(v-if="isRecommended" color="warning" label small).chip.mt-1.black--text.align-center.justify-center Recommended
+      v-chip(v-if="isRecommended" color="warning" label small).chip.mt-n3.black--text.align-center.justify-center.font-weight-bold Recommended
       v-card-title.pt-8
         v-spacer
         h2(:class="[normalTextColor, {'font-21': !$isWideScreen, 'font-24': $isWideScreen}]").font-weight-bold {{ bundle.title }}
@@ -30,18 +30,8 @@
             span(v-if="bundle.users") {{ bundle.users }} user
             br(v-if="bundle.users")
             | per clinic monthly
-      v-divider(:class="{'divider': !this.isRecommended, 'divider-dark': this.isRecommended}").mx-5
-      v-card-text
-        v-row(justify="center" v-if="showList")
-          v-col(cols="12" xl="10")
-            div(v-for="(inclusion, inclusionKey) in bundle.inclusions" :key="inclusionKey").d-flex
-              v-icon(:color="getInclusionIconColor(inclusion.valid)" left) {{ getInclusionIcon(inclusion.valid) }}
-              span(:class="[getInclusionTextColor(inclusion.valid), textFontSize, {'font-weight-medium': isRecommended}]") {{ inclusion.text }}
-        v-row(justify="center" v-if="!showList")
-          v-col(cols="12" xl="10").text-center
-            v-btn(:color="isRecommended ? 'white' : 'primary'" text @click="showList = !showList").text-none
-              | {{ showList ? 'Collapse' : 'View Details'}}
-              v-icon(v-if="!showList" right) mdi-chevron-down
+          div(v-else).top-spacing-btn
+            | &nbsp;
       v-card-text.card-actions
         slot(name="card-btn")
           template(v-if="bundle.requireContact")
@@ -52,9 +42,9 @@
               event-category="Pricing"
               :color="btnColor"
               :event-label="`click-pricing-${bundle.title}`"
-              :class="{'primary--text': isRecommended}"
+              :class="{'white--text': isRecommended}"
               @click="sendCrispMessage"
-            ).font-14.font-weight-semibold.text-none {{ bundle.btnText }}
+            ).mc-button-set-1.font-weight-semibold.text-none {{ bundle.btnText }}
           template(v-else)
             signup-button(
               depressed
@@ -62,10 +52,22 @@
               block
               event-category="Pricing"
               :color="btnColor"
-              :class="{'primary--text': isRecommended}"
+              :class="{'white--text': isRecommended}"
               :event-label="`click-pricing-${bundle.title}`"
               :pricing-bundle="bundle.id"
-            ).font-14.font-weight-semibold.text-none {{ bundle.btnText }}
+            ).mc-button-set-1.font-weight-semibold.text-none {{ bundle.btnText }}
+      v-divider(:class="{'divider': !this.isRecommended, 'divider-dark': this.isRecommended}").mx-5
+      v-card-text
+        v-row(justify="center")
+          v-col(cols="12" xl="10")
+            div(v-for="(inclusion, inclusionKey) in bundle.inclusions" :key="inclusionKey").d-flex
+              v-icon(:color="getInclusionIconColor(inclusion.valid)" left) {{ getInclusionIcon(inclusion.valid) }}
+              span(:class="[getInclusionTextColor(inclusion.valid), textFontSize, {'font-weight-medium': isRecommended}]") {{ inclusion.text }}
+        //- v-row(justify="center" v-if="!showList")
+        //-   v-col(cols="12" xl="10").text-center
+        //-     v-btn(:color="isRecommended ? 'white' : 'primary'" text @click="showList = !showList").text-none
+        //-       | {{ showList ? 'Collapse' : 'View Details'}}
+        //-       v-icon(v-if="!showList" right) mdi-chevron-down
 </template>
 
 <script>
@@ -120,16 +122,16 @@ export default {
       return { 'primary--text': !this.isRecommended, 'white--text': this.isRecommended };
     },
     btnColor () {
-      return this.isRecommended ? 'white' : 'primary';
+      return this.isRecommended ? 'warning' : 'primary';
     },
     cardHeight () {
-      if (!this.showList) return '500';
+      // if (!this.showList) return '500';
       return this.height || '800';
     },
     textFontSize () {
       return classBinder(this, {
         mobile: ['font-12'],
-        regular: ['font-12'],
+        regular: ['font-14'],
         wide: ['font-18'],
       });
     },
@@ -176,11 +178,11 @@ export default {
   padding-bottom: 85px;
 }
 
-.card-actions {
+/* .card-actions {
   position: absolute;
   bottom: 0;
   width: 100%;
-}
+} */
 
 .price-container {
   position: relative;
@@ -215,7 +217,9 @@ export default {
 /* .usage-metric-container {
   min-height: 50px;
 } */
-
+.top-spacing-btn {
+  margin-top: 0px;
+}
 .divider {
   border-bottom: 1px solid black;
 }
@@ -223,9 +227,17 @@ export default {
   border-bottom: 1px solid white;
 }
 
-@media screen and (min-width: 1920px) {
+@media screen and (width: 1920px) and (height: 1007px) {
+  .top-spacing-btn {
+    margin-top: 5px;
+  }
+}
+@media screen and (min-width: 1921px) {
   .general-info-container {
     min-height: 275px;
+  }
+  .top-spacing-btn {
+    margin-top: 20px;
   }
 }
 </style>
