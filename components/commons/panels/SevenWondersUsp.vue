@@ -264,15 +264,6 @@ export default {
 </script>
 
 <style scoped>
-.usp-bg {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  left: 0;
-  top: 0;
-  z-index: 1;
-  object-fit: cover;
-}
 .main-container {
   position: relative;
 }

@@ -1,76 +1,72 @@
 <template lang="pug">
-  div
-    div.container
-      //- picture-source(
-      //-   image="Homepage USP BG"
-      //-   image-alt="MYCURE Seven wonders of healthcare"
-      //-   image-file-extension=".webp"
-      //-   custom-path="home/"
+  div.mx-n3.mt-n5.main-container
+    div
+      picture-source(
+        image-file-extension=".webp"
+        image="Homepage USP BG"
+        image-alt="Bushes and clouds background artwork"
+        custom-path="home/"
+        :image-styles="backgroundStyle"
+      )
+      //- img(
+      //-   alt=""
+      //-   width="100%"
+      //-   :src="require(`~/assets/images/home/Homepage USP BG.${isWebp ? 'webp' : 'png'}`)"
       //- ).background
-      img(
-        alt="Bushes and clouds background artwork"
-        width="1920px"
-        height="1080px"
-        :src="require(`~/assets/images/home/Homepage USP BG.${isWebp ? 'webp' : 'png'}`)"
-      ).background
-      v-container.content.ml-n6
-        v-row(justify="center")
-          generic-panel(:row-bindings="{ justify: 'center' }")
-            v-col(cols="12").text-center.text-container
-              v-row(justify="center")
-                v-col(cols="12" md="6" xl="8")
-                  h1(:class="headerClasses").mb-10 Enterprise-Grade Healthcare Solutions
-                  v-row(justify="center")
-                    v-col(cols="12" md="10")
-                      p.mc-content-set-3.primary--text.font-weight-bold.mb-10 At a fraction of the cost.
-                  signup-button(
-                    depressed
-                    rounded
-                    :x-large="$isWideScreen"
-                    :large="$isRegularScreen"
-                    color="success"
-                  ).text-none.font-s
-                    span Get Started
-            template(v-if="!$isMobile")
-              v-col(cols="12" xl="10")
-                vue-slick-carousel(
-                  autoplay
-                  draggable
-                  infinite
-                  :arrows="false"
-                  :dots="false"
-                  :slidesToShow="4",
-                  :speed="500"
-                )
-                  div(v-for="(wonder,key) in wonders" :key="key")
-                    wonder(:wonder="wonder")
-              //- v-col(cols="8" md="3" xl="3" v-for="(wonder, key) in wonders" :key="key")
-              //-   wonder(:wonder="wonder")
-            template(v-else)
-              v-col(cols="10" sm="8" md="10")
-                carousel(
-                  navigationNextLabel=" "
-                  navigationPrevLabel=" "
-                  paginationColor="#f0f0f0"
-                  autoplay
-                  loop
-                  navigationEnabled
-                  paginationEnabled
-                  :per-page="1"
-                  :navigationClickTargetSize="50"
-                )
-                  slide(
-                    v-for="(wonder,index) in wonders"
-                    :key="index"
-                    :data-index="index+1"
-                  ).pa-2
-                    wonder(:wonder="wonder")
-    //- div(v-else).mobile-container.ml-n3
-    //-   img(
-    //-     src="~/assets/images/home/Homepage USP.png"
-    //-     alt="MYCURE Seven wonders of healthcare"
-    //-     width="100%"
-    //-   )
+    v-container.content.ml-n6
+      v-row(justify="center" align="center" :style="{ height: $isMobile ? 'auto' : '100vh', width: '100vw'}")
+        generic-panel(:row-bindings="{ justify: 'center' }")
+          v-col(cols="12").text-center.text-container
+            v-row(justify="center")
+              v-col(cols="12" md="6" xl="8")
+                h1(:class="headerClasses").mb-10 Enterprise-Grade
+                  br
+                  | Healthcare Solutions
+                v-row(justify="center")
+                  v-col(cols="12" md="10")
+                    p.mc-content-set-3.primary--text.font-weight-bold.mb-10 At a fraction of the cost.
+                signup-button(
+                  depressed
+                  rounded
+                  :x-large="$isWideScreen"
+                  :large="$isRegularScreen"
+                  color="success"
+                ).text-none.font-s
+                  span Get Started
+          template(v-if="!$isMobile")
+            v-col(cols="12" xl="10")
+              vue-slick-carousel(
+                autoplay
+                draggable
+                infinite
+                :arrows="false"
+                :dots="false"
+                :slidesToShow="4",
+                :speed="500"
+              )
+                div(v-for="(wonder,key) in wonders" :key="key")
+                  wonder(:wonder="wonder")
+            //- v-col(cols="8" md="3" xl="3" v-for="(wonder, key) in wonders" :key="key")
+            //-   wonder(:wonder="wonder")
+          template(v-else)
+            v-col(cols="10" sm="8" md="10")
+              carousel(
+                navigationNextLabel=" "
+                navigationPrevLabel=" "
+                paginationColor="#f0f0f0"
+                autoplay
+                loop
+                navigationEnabled
+                paginationEnabled
+                :per-page="1"
+                :navigationClickTargetSize="50"
+              )
+                slide(
+                  v-for="(wonder,index) in wonders"
+                  :key="index"
+                  :data-index="index+1"
+                ).pa-2
+                  wonder(:wonder="wonder")
 </template>
 
 <script>
@@ -154,6 +150,19 @@ export default {
       isWebp: false,
     };
   },
+  computed: {
+    backgroundStyle () {
+      return {
+        width: '100%',
+        height: '100%',
+        position: 'absolute',
+        left: '0',
+        top: '0',
+        zIndex: '1',
+        objectFit: 'cover',
+      };
+    },
+  },
   async mounted () {
     this.isWebp = await canUseWebp();
   },
@@ -161,54 +170,33 @@ export default {
 </script>
 
 <style scoped>
-/* .bg {
-  background-image: url('../../assets/images/home/Homepage USP v2B.png');
-  background-size: stretch;
-} */
+.main-container {
+  position: relative;
+}
+.content {
+  z-index: 2;
+  position: relative;
+}
 .line-spacing-title {
   line-height: 1.25em;
 }
-.background {
+/* .background {
   width: 100%;
-  height: 950px;
+  height: 100%;
   position: absolute;
   left: 0;
   top: 0;
   overflow: hidden;
   object-fit: cover;
-}
+} */
 .container {
   width: 100vw;
-  height: 900px;
 }
 .text-container {
   margin-bottom: 65px;
 }
-.mobile-container {
-  width: 100vw;
-}
-.content {
+/* .content {
   position: absolute;
   width: 100vw;
-}
-
-@media screen and (max-width: 952px) {
-  .container {
-    height: 1000px;
-  }
-  .background {
-    height: 1050px;
-  }
-}
-@media screen and (min-width: 1920px) {
-  .text-container {
-    margin-bottom: 90px;
-  }
-  .container {
-    height: 950px;
-  }
-  .background {
-    height: 1000px;
-  }
-}
+} */
 </style>
