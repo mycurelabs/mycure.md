@@ -16,8 +16,27 @@
     )
 
     //- 2nd panel
+    generic-media-panel(
+      :content="secondPanel"
+      :title-classes="[...headerClasses, 'primary--text']"
+      :content-classes="[...descriptionClasses, 'justify-left']"
+    )
+      template(slot="cta-button")
+        div(:class="{ 'text-center': $isMobile }")
+          signup-button(
+            depressed
+            rounded
+            color="success"
+            facility-type="clinic"
+            :x-large="$isWideScreen"
+            :large="!$isWideScreen"
+            :class="buttonClasses"
+          ).text-none
+            span Get Started Free
+
+    //-3rd panel
     features(
-      title="Acquire and accomodate more patients"
+      title="Easy as 1-2-3"
       :items="howItWorksContents"
       image-dir="booking/"
     )
@@ -31,22 +50,22 @@
             :image="item.icon"
             :image-alt="item.title"
             :image-file-extension="item.iconExtension"
-            :image-width="$isMobile ? '205px' : ($isRegularScreen ? '300px' : '345px')"
-            :image-height="$isMobile ? '135px' : ($isRegularScreen ? '200px' : '230px')"
+            :image-width="$isMobile ? '190px' : ($isRegularScreen ? '250px' : '325px')"
+            :image-height="$isMobile ? '124.48px' : ($isRegularScreen ? '163.63px' : '212.91px')"
           )
           br
           br
           h2.hiw-subheading.font-weight-semibold {{ item.title }}
           p.hiw-caption.font-open-sans {{ item.description }}
 
-    //- 3rd panel
+    //- 4th panel
     div.grey-bg.mx-n3
       features(
         :items="thirdPanelContents"
         image-dir="booking/"
       )
         template(slot="title")
-          h2(:class="['primary--text', 'font-weight-semibold', ...titleClasses]") Make every step of patient care a breeze
+          h2(:class="['primary--text', 'font-weight-semibold', ...titleClasses]") Acquire and Accomodate more Patients
         template(slot="additional-content")
           v-col(cols="12").text-center.mt-5
             signup-button(
@@ -57,7 +76,7 @@
               color="success"
             ).text-none.font-s
               span Get Started Free
-    //- 4th panel
+    //- 5th panel
     v-container
       v-row(justify="center")
         generic-panel(:row-bindings="{ justify: 'center' }")
@@ -95,12 +114,12 @@
                 picture-source(
                   :image="mockup.image"
                   :image-alt="`A ${websiteType} website mockup on laptop screen`"
-                  :image-width="$isMobile ? '205px' : ($isRegularScreen ? '756px' : '1156px')"
-                  :image-height="$isMobile ? '137px' : ($isRegularScreen ? '502px' : '767.6px')"
+                  :image-width="$isMobile ? '256px' : ($isRegularScreen ? '756px' : '1156px')"
+                  :image-height="$isMobile ? '192px' : ($isRegularScreen ? '567px' : '867px')"
                   image-file-extension=".webp"
                   custom-path="booking/"
                 )
-    //- 5th panel
+    //- 6th panel
     div.blue-bg.mx-n3
       generic-media-panel(
         align="center"
@@ -120,7 +139,7 @@
               :class="buttonClasses"
             ).text-none
               span Get Started Free
-    //- 6th panel
+    //- 7th panel
     plans.mb-n3
 </template>
 
@@ -199,6 +218,7 @@ export default {
     this.descriptionClasses = ['mc-content-set-1', 'font-open-sans', 'font-gray'];
     this.buttonClasses = ['mc-button-set-1'];
     this.howItWorksClass = ['mc-title-set-2'];
+    this.headerClasses = ['mc-title-set-1', 'lh-title', 'font-weight-semibold'];
     this.imageBindings = {
       image: 'Booking Mobile',
       customImagePath: 'booking/',
@@ -218,6 +238,22 @@ export default {
     });
   },
   computed: {
+    secondPanel () {
+      return {
+        title: 'Never waste Time or Money',
+        description: 'Without an appointment booking system, healthcare providers find it difficult to organize patient visits resulting to missed opportunities and more time wasted.',
+        contentAlign: 'right',
+        imageBindings: {
+          image: 'Stakes.png',
+          mobileImage: 'Stakes.png',
+          imageAlt: 'Doctor witha lot of paper work',
+          customPath: 'booking/',
+          extensionExclusive: true,
+          width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
+          height: this.$isMobile ? '197.14px' : (this.$isRegularScreen ? '328.58px' : '507.14px'),
+        },
+      };
+    },
     fifthPanelContents () {
       return {
         title: 'Also available for Medium and Large-scale Facilities',
