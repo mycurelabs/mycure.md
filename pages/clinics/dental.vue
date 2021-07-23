@@ -60,7 +60,8 @@
     //- 6th panel
     generic-media-panel(
       :content="directoryPanel"
-      :title-classes="[...headerClasses, 'primary--text']"
+      :title-classes="listHeaderClasses"
+      :content-classes="listContentClasses"
     )
       //- Check list
       template(slot="additional-content")
@@ -164,6 +165,8 @@ export default {
     this.btnClasses = ['mc-button-set-1'];
     this.subHeaderClasses = ['mc-subheader-set-1', 'lh-title', 'font-weight-semibold', 'secondary--text'];
     this.studentPanelDescriptionClasses = ['mc-subheader-set-2', 'font-weight-semibold'];
+    this.listHeaderClasses = ['mc-listtitle-set-1', 'lh-title', 'primary--text', 'font-weight-semibold'];
+    this.listContentClasses = ['mc-listcontent-set-1', 'font-open-sans', 'font-gray'];
     return {
       loading: true,
     };
