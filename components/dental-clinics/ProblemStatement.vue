@@ -25,7 +25,7 @@
               :image-height="$isRegularScreen ? '314.89px' : '481.84px'"
             )
           v-row(v-else justify="center")
-            v-col(cols="10")
+            v-col(cols="10" sm="6")
               carousel(
                 paginationColor="grey"
                 loop
