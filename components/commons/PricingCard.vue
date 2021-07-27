@@ -17,12 +17,16 @@
           )
         div.text-center.description-container
           p(:class="[normalTextColor, textFontSize, recommendedText]") {{ bundle.description }}
-        div.text-center.price-container
+        div.text-center#price-container
           template(v-if="!bundle.requireContact")
             p(:class="priceColor").font-weight-bold
-              template(v-if='bundle.monthlyPrice > 0')
-                span(:class="{'font-30': !$isWideScreen, 'font-35': $isWideScreen}").currency.font-open-sans {{ bundle.currency }}&nbsp;
-                span(:class="{'font-45': !$isWideScreen, 'font-60': $isWideScreen}") {{ paymentInterval === 'year' ? bundle.annualMonthlyPrice : bundle.monthlyPrice }}
+              v-tabs-items(v-if="bundle.monthlyPrice > 0" v-model="paymentInterval")
+                v-tab-item(value="year")
+                  span(:class="{'font-30': !$isWideScreen, 'font-35': $isWideScreen}").currency.font-open-sans {{ bundle.currency }}&nbsp;
+                  span(:class="{'font-45': !$isWideScreen, 'font-60': $isWideScreen}") {{ bundle.annualMonthlyPrice }}
+                v-tab-item(value="month")
+                  span(:class="{'font-30': !$isWideScreen, 'font-35': $isWideScreen}").currency.font-open-sans {{ bundle.currency }}&nbsp;
+                  span(:class="{'font-45': !$isWideScreen, 'font-60': $isWideScreen}") {{  bundle.monthlyPrice }}
               span(v-else).font-45 FREE
             //- span(v-else).font-xl {{ bundle.annualMonthlyPrice ? bundle.annualMonthlyPrice : bundle.monthlyPrice }}
         div.text-center.usage-metric-container
@@ -240,6 +244,17 @@ export default {
 }
 .divider-dark {
   border-bottom: 1px solid white;
+}
+
+#price-container .v-window {
+  overflow: visible !important;
+}
+#price-container .v-window-item {
+  overflow: visible !important;
+}
+
+.v-tabs-items {
+  background-color: transparent !important;
 }
 
 @media screen and (width: 1920px) and (height: 1007px) {
