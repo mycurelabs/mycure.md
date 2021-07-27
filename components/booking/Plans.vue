@@ -79,12 +79,12 @@ export default {
 } */
 .pricing-bg {
   width: 100vw;
-  background-image: url('../../assets/images/pricing/Pricing BG.png');
+  background-image: url('../../assets/images/pricing/MYCURE-Pricing BG Wide.png');
   background-position: center center;
   background-size: 100% 100%;
 }
 .pricing-bg-mobile {
-  background-image: url('../../assets/images/pricing/Pricing BG.png');
+  background-image: url('../../assets/images/pricing/MYCURE-Pricing BG Mobile.png');
   background-position: center bottom;
 }
 .divider {
