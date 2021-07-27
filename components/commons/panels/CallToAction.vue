@@ -57,6 +57,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    contentAlignProp: {
+      type: String,
+      default: 'none',
+    },
   },
   data () {
     this.versionOne = {
@@ -65,7 +69,6 @@ export default {
       description: [
         'We understand that it may be difficult to change what you’re used to doing. That’s why we have happiness agents who’d love to guide you through each step via one-on-one training session.',
       ],
-      contentAlign: 'right',
     };
     this.versionTwo = {
       centerPanelTitle: 'Let us do the work for you',
@@ -73,14 +76,12 @@ export default {
       description: [
         'We know it’s challenging to shift your entire operations into a new system. Our lean implementation process ensures that you get what you need—customized forms, optimized workflows, and well-trained staff. Our experts are here to guide you from training to winning.',
       ],
-      contentAlign: 'right',
     };
     this.versionThree = {
       title: 'Learn the basics with ease',
       description: [
         'Worrying about the shift to digital records? We got you covered. We have happiness agents who’d love to guide you through each step via one-on-one training session.',
       ],
-      contentAlign: 'right',
     };
     this.versionFour = {
       centerPanelTitle: 'Let us do the work for you',
@@ -88,7 +89,6 @@ export default {
       description: [
         'Get what you need—customized forms, optimized workflows, and well-trained staff. Our experts are here to guide you from training to winning.',
       ],
-      contentAlign: 'left',
     };
     this.titleClasses = ['mc-title-set-1', 'lh-title', 'font-weight-semibold'];
     this.descriptionClasses = ['mc-content-set-1', 'font-open-sans', 'font-gray'];
@@ -108,10 +108,20 @@ export default {
     },
     callToActionPanel () {
       switch (this.version) {
-        case 2: return { ...this.versionTwo, imageBindings: this.imgBindings };
-        case 3: return { ...this.versionThree, imageBindings: this.imgBindings };
-        case 4: return { ...this.versionFour, imageBindings: this.imgBindings };
-        default: return { ...this.versionOne, imageBindings: this.imgBindings };
+        case 2: return { ...this.versionTwo, imageBindings: this.imgBindings, contentAlign: this.computedAlign };
+        case 3: return { ...this.versionThree, imageBindings: this.imgBindings, contentAlign: this.computedAlign };
+        case 4: return { ...this.versionFour, imageBindings: this.imgBindings, contentAlign: this.computedAlign };
+        default: return { ...this.versionOne, imageBindings: this.imgBindings, contentAlign: this.computedAlign };
+      }
+    },
+    computedAlign () {
+      if (this.contentAlignProp === 'none') {
+        switch (this.version) {
+          case 4: return 'left';
+          default: return 'right';
+        }
+      } else {
+        return this.contentAlignProp;
       }
     },
     ctaButtonClass () {

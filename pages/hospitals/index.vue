@@ -5,54 +5,104 @@
       title="Advanced Patient-centric hospital software"
       meta-title="MYCURE Hospital Information System"
       description="MYCURE smoothly handles the critical process flows inside hospitals that enables healthcare professionals to focus more on patient care."
+      has-custom-background
+      background-image="Skin Clinics Full Illu"
+      background-image-file-extension=".webp"
+      image="Skin Clinics USP Mobile"
+      custom-image-path="clinics/skin/"
+      :media-column-bindings="{ cols: 12, md: 6, offsetMd: 1, xl: 6}"
+      :content-column-bindings="{ cols: 12, md: 5 }"
+      btn-text="Get exclusive access"
     )
     //- 2nd panel
     features(
       title="Easy to implement. Easy to maintain"
       description="Work seamlessly from one station to another.  With its open APIs, MYCURE can integrate with your other existing systems."
       :items="features"
+      image-dir="doctors-clinics/"
     )
     //- 3rd panel
     syncbase
     //- 4th panel
     mycure-csi
-    //- 5th to 6th panel
+    //- 5th panel
     generic-media-panel(
-      v-for="(info, key) in infoPanels"
-      :key="key"
-      content-align-right
-      cols-left="5"
-      cols-right="4"
-      offset-cols-right="1"
-      :header="info.header"
-      :descriptions="info.descriptions"
-      :header-classes="headerClasses"
-      :description-classes="descriptionClasses"
-      dummy
+      :content="directoryPanel"
+      :title-classes="listHeaderClasses"
+      :content-classes="listContentClasses"
     )
+      template(slot="cta-button")
+        v-row(:justify="$isMobile ? 'center' : 'start'")
+          v-col(cols="10" sm="5" md="7" lg="6" xl="5")
+            mc-btn(
+              color="success"
+              href="https://calendly.com/mycure/demo"
+              target="_blank"
+              rel="noopener noreferrer"
+              depressed
+              rounded
+              block
+              :large="!$isWideScreen"
+              :x-large="$isWideScreen"
+              :class="{'font-s': $isWideScreen, 'font-14': $isRegularScreen }"
+            ).text-none Create my Website
+          v-col(cols="10" sm="5" md="7" lg="6" xl="7")
+            signup-button(
+              depressed
+              rounded
+              outlined
+              block
+              :x-large="$isWideScreen"
+              :large="!$isWideScreen"
+              :class="btnClasses"
+              color="success"
+            ).text-none
+              span Get Started
     //- 7th panel
-    call-to-action(:version="2")
+    call-to-action(:version="2" contentAlignProp="left")
     //- 8th panel
-    generic-media-panel(
-      :center-media="!$isMobile"
-      :content-align-left="$isMobile"
-      :header="bookDemoPanel.header"
-      :header-classes="headerClasses"
-      :descriptions="bookDemoPanel.descriptions"
-      :descriptionClasses="descriptionClasses"
-      :dense="$isMobile"
-      dummy
-    )
+    div.info.mx-n3
+      v-container
+        v-row(justify="center")
+          generic-panel(:row-bindings="{ justify: 'center' }")
+            v-row(justify="center")
+              v-col(cols="12" sm="6").white--text.text-center
+                h2(:class="headerClasses").mb-5 Book a Demo today
+                p(:class="['white--text', ...descriptionClasses]").ma-0 Know how MYCURE works straight from the experts. The newest technologies are just within your reach.
+            v-row(justify="center").gutterless
+              v-col(cols="8" sm="3")
+                signup-button(
+                  depressed
+                  rounded
+                  block
+                  :x-large="$isWideScreen"
+                  :large="!$isWideScreen"
+                  :class="btnClasses"
+                  color="success"
+                ).text-none
+                  span Book Free Demo
+              v-col(cols="8" sm="3")
+                mc-btn(
+                  color="white"
+                  href="https://calendly.com/mycure/demo"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  outlined
+                  depressed
+                  rounded
+                  block
+                  :large="!$isWideScreen"
+                  :x-large="$isWideScreen"
+                  :class="btnClasses"
+                ).text-none Talk to Us
 </template>
 
 <script>
 // - utils
 import headMeta from '~/utils/head-meta';
-import classBinder from '~/utils/class-binder';
 // - components
 import CallToAction from '~/components/commons/panels/CallToAction';
 import Features from '~/components/commons/panels/Features';
-import GenericMediaPanel from '~/components/commons/generic-media-panel';
 import MycureCsi from '~/components/commons/panels/MycureCsi';
 import Syncbase from '~/components/commons/panels/Syncbase';
 import Usp from '~/components/commons/panels/SevenWondersUsp';
@@ -61,29 +111,51 @@ export default {
   components: {
     CallToAction,
     Features,
-    GenericMediaPanel,
+    GenericMediaPanel: () => import('~/components/generic/GenericMediaPanel'),
+    GenericPanel: () => import('~/components/generic/GenericPanel'),
+    SignupButton: () => import('~/components/commons/SignupButton'),
     MycureCsi,
     Syncbase,
     Usp,
   },
-  middleware: ['disable-route'],
   data () {
     // - TODO: Update info
     this.features = [
       {
-        title: 'Digital Records',
+        title: 'Ward Management',
+        icon: 'Appointment Booking',
+        iconExtension: '.png',
+        alt: 'cookie',
       },
       {
-        title: 'Telehealth',
+        title: 'Kitchen Management',
+        icon: 'Appointment Booking',
+        iconExtension: '.png',
+        alt: 'cookie',
       },
       {
-        title: 'Daily Reports',
+        title: 'Emergency Room',
+        icon: 'Appointment Booking',
+        iconExtension: '.png',
+        alt: 'cookie',
       },
       {
-        title: 'Professional Website',
+        title: 'Nursing Services',
+        icon: 'Appointment Booking',
+        iconExtension: '.png',
+        alt: 'cookie',
       },
       {
-        title: 'Appointment Booking',
+        title: 'Philhealth',
+        icon: 'Appointment Booking',
+        iconExtension: '.png',
+        alt: 'cookie',
+      },
+      {
+        title: 'Ancillary Services',
+        icon: 'Appointment Booking',
+        iconExtension: '.png',
+        alt: 'cookie',
       },
     ];
     this.infoPanels = [
@@ -106,6 +178,8 @@ export default {
         'Know how MYCURE works straight from the experts. The newest technologies are just within your reach.',
       ],
     };
+    this.headerClasses = ['mc-title-set-1', 'lh-title', 'font-weight-semibold'];
+    this.descriptionClasses = ['mc-content-set-1', 'font-open-sans', 'font-gray'];
     return {
       loading: true,
     };
@@ -119,26 +193,49 @@ export default {
     });
   },
   computed: {
-    headerClasses () {
-      const headerClasses = [
-        classBinder(this, {
-          mobile: ['font-m'],
-          regular: ['font-l'],
-        }),
-        'lh-title',
-      ];
-      return headerClasses;
+    thirdPanel () {
+      return {
+        contentAlign: 'left',
+        imageBindings: {
+          image: 'Dental charts.png',
+          mobileImage: 'Dental charts mobile.png',
+          imageAlt: 'Dental charts in a tablet',
+          customPath: 'clinics/dental/',
+          extensionExclusive: true,
+          width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
+          height: this.$isMobile ? '231.38px' : (this.$isRegularScreen ? '385.52px' : '595.03px'),
+        },
+      };
     },
-    descriptionClasses () {
-      const descriptionClasses = [
-        classBinder(this, {
-          mobile: ['font-xs'],
-          regular: ['font-s'],
-        }),
-        'font-open-sans',
-        'font-gray',
-      ];
-      return descriptionClasses;
+    directoryPanel () {
+      return {
+        title: 'Get more eyes on your brand',
+        description: 'Join MYCURE ONE, a global online directory of modern healthcare practitioners and facilities where people anywhere can book appointments at any time.',
+        contentAlign: 'right',
+        imageBindings: {
+          customPath: 'commons/',
+          image: 'Expand your reach.webp',
+          imageAlt: 'Man browsing a clinic website',
+          width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
+          height: this.$isMobile ? '242.88px' : (this.$isRegularScreen ? '404.79px' : '624.8px'),
+        },
+      };
+    },
+    multiplePanel () {
+      return {
+        title: 'One view for multiple locations',
+        description: 'All you need is one clean dashboard to see how your clinics are faring. Critical data from your multiple branches are beautifully compiled to show you a comprehensive summary of patient encounters, transactions, sales, expenses and even staff performance.',
+        contentAlign: 'left',
+        imageBindings: {
+          customPath: 'clinics/skin/',
+          image: 'Multiple locations.png',
+          mobileImage: 'Multiple locations mobile.png',
+          extensionExclusive: true,
+          imageAlt: 'Charts and graphs',
+          width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
+          height: this.$isMobile ? '156.16px' : (this.$isRegularScreen ? '260.29px' : '401.63px'),
+        },
+      };
     },
   },
   mounted () {

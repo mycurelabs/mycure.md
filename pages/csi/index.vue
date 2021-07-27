@@ -46,7 +46,6 @@
 <script>
 // - utils
 import headMeta from '~/utils/head-meta';
-import classBinder from '~/utils/class-binder';
 // - components
 import Features from '~/components/commons/panels/Features';
 import GenericMediaPanel from '~/components/commons/generic-media-panel';
@@ -91,6 +90,8 @@ export default {
         ],
       },
     ];
+    this.headerClasses = ['mc-title-set-1', 'lh-title', 'font-weight-semibold'];
+    this.descriptionClasses = ['mc-content-set-1', 'font-open-sans', 'font-gray'];
     return {
       loading: true,
     };
@@ -102,29 +103,6 @@ export default {
       description: 'MYCURE helps you bring in more patients using a powerful healthcare service booking and management software. It’s free, secure, and easy to use.',
       socialBanner: require('~/assets/images/banners/OG Homepage.png'),
     });
-  },
-  computed: {
-    headerClasses () {
-      const headerClasses = [
-        classBinder(this, {
-          mobile: ['font-m'],
-          regular: ['font-l'],
-        }),
-        'lh-title',
-      ];
-      return headerClasses;
-    },
-    descriptionClasses () {
-      const descriptionClasses = [
-        classBinder(this, {
-          mobile: ['font-xs'],
-          regular: ['font-s'],
-        }),
-        'font-open-sans',
-        'font-gray',
-      ];
-      return descriptionClasses;
-    },
   },
   mounted () {
     this.loading = false;

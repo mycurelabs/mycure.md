@@ -27,14 +27,13 @@
                       :image-height="imageHeight"
                     )
                     br
-                    h3(:class="itemTextClasses").font-open-sans.font-gray.font-weight-semibold {{ item.title }}
-                    p(v-if="item.description" :class="itemTextClasses") {{ item.description }}
+                    h3(:class="itemTextClasses").font-open-sans.font-weight-semibold {{ item.title }}
+                    p(v-if="item.description" :class="itemDescriptionClasses") {{ item.description }}
                     nuxt-link(v-if="!hideLearnMore && item.route" :to="{ name: item.route }").primary--text.font-weight-bold.learnLink Learn more
         slot(name="additional-content")
 </template>
 
 <script>
-import classBinder from '~/utils/class-binder';
 import GenericPanel from '~/components/generic/GenericPanel';
 import PictureSource from '~/components/commons/PictureSource';
 export default {
@@ -116,18 +115,9 @@ export default {
     this.titleClasses = ['mc-title-set-1', { 'primary--text': this.primaryTitle }];
     this.descriptionClasses = ['mc-content-set-1'];
     this.metaTitleClasses = ['mc-metatitle-set-1'];
+    this.itemTextClasses = ['mc-content-set-4'];
+    this.itemDescriptionClasses = ['mc-content-set-4', 'font-open-sans', 'font-gray'];
     return {};
-  },
-  computed: {
-    itemTextClasses () {
-      return [
-        classBinder(this, {
-          mobile: ['font-14'],
-          regular: ['font-xs'],
-          wide: ['font-s'],
-        }),
-      ];
-    },
   },
 };
 </script>
