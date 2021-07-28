@@ -76,7 +76,7 @@
                   :class="buttonClasses"
                 ).text-none Sign up
     //- 5th panel
-    syncbase(:version="4" content-left)
+    syncbase(:version="4" :content-right="false")
     //- 6th panel
     generic-media-panel(
       :content="ctaPanel"
@@ -105,18 +105,16 @@
 // - utils
 import headMeta from '~/utils/head-meta';
 // - components
-import Features from '~/components/commons/panels/Features';
 import Usp from '~/components/commons/panels/SevenWondersUsp';
-import SignupButton from '~/components/commons/SignupButton';
 
 export default {
   components: {
-    Features,
+    Features: () => import('~/components/commons/panels/Features'),
     GenericMediaPanel: () => import('~/components/generic/GenericMediaPanel'),
     Syncbase: () => import('~/components/commons/panels/Syncbase'),
     CallToAction: () => import('~/components/commons/panels/CallToAction'),
     Usp,
-    SignupButton,
+    SignupButton: () => import('~/components/commons/SignupButton'),
   },
   data () {
     // - TODO: Update info

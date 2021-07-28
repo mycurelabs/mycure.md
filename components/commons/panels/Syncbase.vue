@@ -2,7 +2,7 @@
   v-container
     v-row(justify="center")
       generic-sub-page-panel(
-        :content-right="!contentLeft"
+        :content-right="contentRight"
         :title="panelTitle"
         :title-classes="version === 3 ? headerClasses : null"
         :center-panel-title="version === 3 ? 'Enjoy the best of both worlds' : null"
@@ -84,9 +84,9 @@ export default {
       type: Boolean,
       default: false,
     },
-    contentLeft: {
+    contentRight: {
       type: Boolean,
-      default: false,
+      default: true,
     },
   },
   data () {
@@ -114,7 +114,7 @@ export default {
     },
     linkText () {
       if (this.version === 4) return 'Learn more';
-      else return 'Learn about MYCURE Syncbase';
+      return 'Learn about MYCURE Syncbase';
     },
     contentColumnBindings () {
       return {

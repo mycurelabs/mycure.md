@@ -68,14 +68,12 @@
 // - utils
 import headMeta from '~/utils/head-meta';
 // - components
-import CallToAction from '~/components/commons/panels/CallToAction';
-import Features from '~/components/commons/panels/Features';
 import Usp from '~/components/commons/panels/SevenWondersUsp';
 
 export default {
   components: {
-    CallToAction,
-    Features,
+    CallToAction: () => import('~/components/commons/panels/CallToAction'),
+    Features: () => import('~/components/commons/panels/Features'),
     GenericMediaPanel: () => import('~/components/generic/GenericMediaPanel'),
     GenericPanel: () => import('~/components/generic/GenericPanel'),
     SignupButton: () => import('~/components/commons/SignupButton'),
