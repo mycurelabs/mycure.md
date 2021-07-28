@@ -135,6 +135,7 @@ export default {
 <style scoped>
 .signin-title {
   font-weight: 500;
+  line-height: 1.50rem !important;
 }
 
 .router-link {

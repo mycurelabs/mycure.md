@@ -47,7 +47,12 @@
       br
       div.mb-6
         h2(:class="sectionTextClasses").secondary--text About Me
-        v-clamp(autoresize :max-lines="3") {{ bio || 'I am ready to accomodate you! How can I help you?' }}
+        template(v-if="!isAboutExpanded")
+          v-clamp(autoresize :max-lines="3") {{ bio }}
+          a(@click="isAboutExpanded = true").primary--text See more...
+        template(v-else)
+          p {{ bio }}
+          a(@click="isAboutExpanded = false").primary--text See less
       div(v-if="specialties.length").mb-6
         h2(:class="sectionTextClasses").secondary--text Specializations
         v-chip(v-for="(specialty, key) in specialties" :key="key" small color="#ECEDEF").mx-1.mt-1.font-12
@@ -112,7 +117,7 @@ export default {
     },
     bio: {
       type: String,
-      default: null,
+      default: 'I am ready to accomodate you! How can I help you?',
     },
     specialties: {
       type: Array,
@@ -165,6 +170,7 @@ export default {
     return {
       // - UI State
       socialMenu: false,
+      isAboutExpanded: false,
     };
   },
   computed: {

@@ -1,7 +1,7 @@
 <template lang="pug">
-  v-app.sign-in-page
-    v-layout(:class="contentClasses" fill-height fluid)
-      v-row(align="center" justify="center" :class="[contentClasses, footerClasses]").footer-bg
+  v-app#app
+    v-row(align="center" justify="center" :class="[contentClasses]" fill-height fluid).footer-bg
+      v-col(:class="[contentClasses, footerClasses]").footer-bg
         nuxt
     v-row(align="center" justify="center").footer
       v-col(cols="12").mt-2.text-center

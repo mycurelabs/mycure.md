@@ -28,7 +28,9 @@
                         depressed
                         tile
                         large
-                      ).text-none.font-12.font-weight-medium {{ nav.name }}
+                      ).text-none.font-12.font-weight-medium
+                        | {{ nav.name }}
+                        v-icon(small right) mdi-chevron-down
                     v-list
                       v-list-item(
                         v-for="(item, key) in nav.menuItems"
