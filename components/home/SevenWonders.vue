@@ -13,8 +13,8 @@
       //-   width="100%"
       //-   :src="require(`~/assets/images/home/Homepage USP BG.${isWebp ? 'webp' : 'png'}`)"
       //- ).background
-    v-container.content.ml-n6
-      v-row(justify="center" align="center" :style="{ height: $isMobile ? 'auto' : '100vh', width: '100vw'}")
+    v-container(:class="{'ml-n6': !$isMobile}").content
+      v-row(justify="center" align="center" :style="{ height: $isMobile ? 'auto' : '110vh', width: '100vw'}")
         generic-panel(:row-bindings="{ justify: 'center' }")
           v-col(cols="12").text-center.text-container
             v-row(justify="center")
