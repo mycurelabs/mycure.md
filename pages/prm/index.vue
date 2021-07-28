@@ -4,29 +4,52 @@
     usp(
       has-custom-background
       background="primary"
-      title="Everything you need to build your virtual practice"
-      meta-title="MYCURE Telehealth"
-      description="Starting a virtual practice has never been easier. Give your patients the quality care they deserve."
-      btn-text="Get Started Free"
-      image="Telehealth Mobile USP"
+      title="Build lasting connections with your patients"
+      meta-title="MYCURE Patient Relationship Management"
+      btn-text="Book a Demo"
+      background-image="cookie"
+      background-image-file-extension=".png"
+      image="cookie"
+      extension-exclusive
       image-width="90%"
       image-align="right"
-      custom-image-path="telehealth/"
+      custom-image-path="prm/"
       :media-column-bindings="{ cols: 12, md: 6, offsetMd: 1, xl: 6}"
       :content-column-bindings="{ cols: 12, md: 5 }"
       @click="$nuxt.$router.push({ name: 'signup-health-facilities', query: { type: 'doctor-telehealth' }})"
     )
     //- 2nd panel
-    virtual-clinic
+    features(
+      primary-title
+      title="Let them know you are there"
+      description="Reinforce continuity of care in an effective and timely way using this medical CRM"
+      :items="features"
+      image-dir="prm/"
+      extension-exclusive
+    )
     //- 3rd panel
-    telehealth-video
-    //- 4th panel
     generic-media-panel(
-      :content="fourthPanel"
+      :content="thirdPanel"
+      :title-classes="['primary--text', ...headerClasses]"
       hide-btn
       dummy
     )
-    v-divider(v-if="$isMobile").divider
+    //- 4th panel
+    div.info.mx-n3
+      v-container
+        v-row(justify="center")
+          generic-panel(:row-bindings="{ justify: 'center' }")
+            v-col(cols="12").white--text.text-center
+              h2(:class="['white--text', ...headerClasses]").mb-5 Don't have an EMR yet?
+              signup-button(
+                depressed
+                rounded
+                :x-large="$isWideScreen"
+                :large="!$isWideScreen"
+                :class="btnClasses"
+                color="success"
+              ).text-none
+                span Get Started Free
     //-5th panel
     generic-media-panel(
       :content="fifthPanel"
@@ -44,13 +67,7 @@
             v-col(cols="10" sm="5" md="7")
               span(:class="descriptionClasses") {{ item }}
     //- 6th panel
-    pricing(
-      title="Start free and only pay as you grow."
-      type="doctor"
-      :column-bindings="{ cols: '12', md: '4', xl: '3'}"
-    )
-    //- 7th panel
-    call-to-action
+    call-to-action(:version="3")
 </template>
 
 <script>
@@ -66,12 +83,42 @@ export default {
     CallToAction: () => import('~/components/commons/panels/CallToAction'),
     Features: () => import('~/components/commons/panels/Features'),
     GenericMediaPanel: () => import('~/components/generic/GenericMediaPanel'),
-    Pricing: () => import('~/components/commons/panels/Pricing'),
-    TelehealthVideo: () => import('~/components/telehealth/TelehealthVideo'),
     Usp,
-    VirtualClinic: () => import('~/components/telehealth/VirtualClinic'),
+    SignupButton: () => import('~/components/commons/SignupButton'),
   },
   data () {
+    this.features = [
+      {
+        title: 'Quick Calls and Chats',
+        icon: 'cookie',
+        iconExtension: '.png',
+        alt: 'cookie',
+      },
+      {
+        title: 'Appointment Schedule',
+        icon: 'cookie',
+        iconExtension: '.png',
+        alt: 'cookie',
+      },
+      {
+        title: 'SMS and In-app Reminders',
+        icon: 'cookie',
+        iconExtension: '.png',
+        alt: 'cookie',
+      },
+      {
+        title: 'Promotions and Packages',
+        icon: 'cookie',
+        iconExtension: '.png',
+        alt: 'cookie',
+      },
+      {
+        title: 'Feedback Forms',
+        icon: 'cookie',
+        iconExtension: '.png',
+        alt: 'cookie',
+      },
+    ];
     this.pricingDetails = DOCTORS_PRICING;
     this.headerClasses = ['mc-title-set-1', 'font-weight-semibold'];
     this.descriptionClasses = ['mc-content-set-1', 'font-open-sans', 'font-gray'];
@@ -89,37 +136,35 @@ export default {
     });
   },
   computed: {
-    fourthPanel () {
+    thirdPanel () {
       return {
-        title: 'Safekeep your important medical data',
-        description: 'Your patient\'s medical records are both accessible and secure in our system that complies with international data privacy standards. We make it our business to make sure your electronic health records are kept safe so you can focus on what you do best-taking care of your patients.',
+        title: 'Connect with your EMR',
+        description: 'MYCURE allows API integrations with other EMR software.',
         imageBindings: {
-          image: 'MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-B-secure-data.webp',
-          imageAlt: 'Securing of medical records',
-          customPath: 'telehealth/',
+          image: 'cookie.png',
+          imageAlt: 'cookie',
+          customPath: 'prm/',
           width: this.$isMobile ? '256px' : (this.$isRegularScreen ? '460px' : '710px'),
-          height: this.$isMobile ? '197.52px' : (this.$isRegularScreen ? '354.9px' : '547.78px'),
+          extensionExclusive: true,
         },
-        contentAlign: 'right',
+        contentAlign: 'left',
       };
     },
     fifthPanel () {
       return {
-        title: 'Works for group practice',
-        description: 'Easily coordinate with other physicians in your group practice and centralize your medical records in one comprehensive workspace.',
+        title: 'One tool to rule them all',
+        description: 'Why use multiple apps when you can get all features in one account?',
         list: [
-          'Conference Calls',
-          'Collated Medical Records',
-          'Optimized Patient Queuing',
-          'Booking Website',
+          'Designed for medical care',
+          'API Integrations available',
+          'Easy to set up',
         ],
         imageBindings: {
-          image: 'Practice.png',
-          imageAlt: 'Physicians and medical workers',
-          customPath: 'doctors-clinics/',
+          image: 'cookie.png',
+          imageAlt: 'cookie',
+          customPath: 'prm/',
           extensionExclusive: true,
           width: this.$isMobile ? '256px' : (this.$isRegularScreen ? '460px' : '710px'),
-          height: this.$isMobile ? '280px' : (this.$isRegularScreen ? '503.13px' : '776.56px'),
         },
         contentAlign: 'left',
       };

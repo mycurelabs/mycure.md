@@ -6,10 +6,11 @@
       meta-title="MYCURE Pharmacy"
       description="MYCURE provides POS and Inventory solutions specifically designed for pharmacies and drugstores."
       has-custom-background
-      background-image="Skin Clinics Full Illu"
-      background-image-file-extension=".webp"
-      image="Skin Clinics USP Mobile"
-      custom-image-path="clinics/skin/"
+      background-image="cookie"
+      background-image-file-extension=".png"
+      image="cookie"
+      extension-exclusive
+      custom-image-path="pharmacy/"
       :media-column-bindings="{ cols: 12, md: 6, offsetMd: 1, xl: 6}"
       :content-column-bindings="{ cols: 12, md: 5 }"
       btn-text="Get exclusive access"
@@ -18,10 +19,11 @@
     div.grey-bg.mx-n3
       features(
         :items="features"
-        image-dir="booking/"
+        image-dir="pharmacy/"
         image-width="200px"
         image-height="200px"
         :icon-column-bindings="iconBindings"
+        extension-exclusive
       )
         template(slot="title")
           h2(:class="headerClasses") Acquire and Accomodate more Patients
@@ -85,23 +87,23 @@ export default {
       {
         title: 'Point of Sales',
         description: 'Easy to use, barcode-ready POS',
-        icon: 'open schedule',
-        iconExtension: '.webp',
-        alt: 'Phone scheduling icon',
+        icon: 'cookie',
+        iconExtension: '.png',
+        alt: 'cookie',
       },
       {
         title: 'Inventory Tracking',
         description: 'Know where all your products go',
-        icon: 'Organized Patient visits',
-        iconExtension: '.webp',
-        alt: 'Health checklist icon',
+        icon: 'cookie',
+        iconExtension: '.png',
+        alt: 'cookie',
       },
       {
         title: 'Smart Reports',
         description: 'Get real-time business analytics',
-        icon: 'covers from virtual',
-        iconExtension: '.webp',
-        alt: 'Virtual telehealth icon',
+        icon: 'cookie',
+        iconExtension: '.png',
+        alt: 'cookie',
       },
     ];
     this.iconBindings = {

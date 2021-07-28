@@ -6,10 +6,11 @@
       meta-title="MYCURE Hospital Information System"
       description="MYCURE smoothly handles the critical process flows inside hospitals that enables healthcare professionals to focus more on patient care."
       has-custom-background
-      background-image="Skin Clinics Full Illu"
-      background-image-file-extension=".webp"
-      image="Skin Clinics USP Mobile"
-      custom-image-path="clinics/skin/"
+      background-image="cookie"
+      background-image-file-extension=".png"
+      image="cookie"
+      extension-exclusive
+      custom-image-path="hospitals/"
       :media-column-bindings="{ cols: 12, md: 6, offsetMd: 1, xl: 6}"
       :content-column-bindings="{ cols: 12, md: 5 }"
       btn-text="Get exclusive access"
@@ -19,7 +20,8 @@
       title="Easy to implement. Easy to maintain"
       description="Work seamlessly from one station to another.  With its open APIs, MYCURE can integrate with your other existing systems."
       :items="features"
-      image-dir="doctors-clinics/"
+      image-dir="hospitals/"
+      extension-exclusive
     )
     //- 3rd panel
     syncbase
@@ -123,37 +125,37 @@ export default {
     this.features = [
       {
         title: 'Ward Management',
-        icon: 'Appointment Booking',
+        icon: 'cookie',
         iconExtension: '.png',
         alt: 'cookie',
       },
       {
         title: 'Kitchen Management',
-        icon: 'Appointment Booking',
+        icon: 'cookie',
         iconExtension: '.png',
         alt: 'cookie',
       },
       {
         title: 'Emergency Room',
-        icon: 'Appointment Booking',
+        icon: 'cookie',
         iconExtension: '.png',
         alt: 'cookie',
       },
       {
         title: 'Nursing Services',
-        icon: 'Appointment Booking',
+        icon: 'cookie',
         iconExtension: '.png',
         alt: 'cookie',
       },
       {
         title: 'Philhealth',
-        icon: 'Appointment Booking',
+        icon: 'cookie',
         iconExtension: '.png',
         alt: 'cookie',
       },
       {
         title: 'Ancillary Services',
-        icon: 'Appointment Booking',
+        icon: 'cookie',
         iconExtension: '.png',
         alt: 'cookie',
       },
@@ -180,6 +182,9 @@ export default {
     };
     this.headerClasses = ['mc-title-set-1', 'lh-title', 'font-weight-semibold'];
     this.descriptionClasses = ['mc-content-set-1', 'font-open-sans', 'font-gray'];
+    this.listHeaderClasses = ['mc-list-title-set-1', 'lh-title', 'font-weight-semibold'];
+    this.listContentClasses = ['mc-list-content-set-1', 'font-open-sans', 'font-gray'];
+    this.btnClasses = ['mc-button-set-1'];
     return {
       loading: true,
     };
@@ -193,20 +198,6 @@ export default {
     });
   },
   computed: {
-    thirdPanel () {
-      return {
-        contentAlign: 'left',
-        imageBindings: {
-          image: 'Dental charts.png',
-          mobileImage: 'Dental charts mobile.png',
-          imageAlt: 'Dental charts in a tablet',
-          customPath: 'clinics/dental/',
-          extensionExclusive: true,
-          width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
-          height: this.$isMobile ? '231.38px' : (this.$isRegularScreen ? '385.52px' : '595.03px'),
-        },
-      };
-    },
     directoryPanel () {
       return {
         title: 'Get more eyes on your brand',
@@ -218,22 +209,6 @@ export default {
           imageAlt: 'Man browsing a clinic website',
           width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
           height: this.$isMobile ? '242.88px' : (this.$isRegularScreen ? '404.79px' : '624.8px'),
-        },
-      };
-    },
-    multiplePanel () {
-      return {
-        title: 'One view for multiple locations',
-        description: 'All you need is one clean dashboard to see how your clinics are faring. Critical data from your multiple branches are beautifully compiled to show you a comprehensive summary of patient encounters, transactions, sales, expenses and even staff performance.',
-        contentAlign: 'left',
-        imageBindings: {
-          customPath: 'clinics/skin/',
-          image: 'Multiple locations.png',
-          mobileImage: 'Multiple locations mobile.png',
-          extensionExclusive: true,
-          imageAlt: 'Charts and graphs',
-          width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
-          height: this.$isMobile ? '156.16px' : (this.$isRegularScreen ? '260.29px' : '401.63px'),
         },
       };
     },

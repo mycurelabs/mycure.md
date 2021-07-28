@@ -59,7 +59,7 @@ export default {
     },
     contentAlignProp: {
       type: String,
-      default: 'none',
+      default: undefined,
     },
   },
   data () {
@@ -115,13 +115,13 @@ export default {
       }
     },
     computedAlign () {
-      if (this.contentAlignProp === 'none') {
+      if (this.contentAlignProp) {
+        return this.contentAlignProp;
+      } else {
         switch (this.version) {
           case 4: return 'left';
           default: return 'right';
         }
-      } else {
-        return this.contentAlignProp;
       }
     },
     ctaButtonClass () {
