@@ -1,15 +1,16 @@
 <template lang="pug">
   v-app#app
-    v-row(align="center" justify="center" :class="[contentClasses]" fill-height fluid).footer-bg
-      v-col(:class="[contentClasses, footerClasses]").footer-bg
-        nuxt
-    v-row(align="center" justify="center").footer
-      v-col(cols="12").mt-2.text-center
-        span.white--text Don't have MYCURE yet?
-        nuxt-link(v-if="!routeContext" :to="{ name: 'signup-health-facilities'}").router-link.primary--text &nbsp;&nbsp;Get your account here.
-        a(v-else :href="redirectSignUpLink").router-link.primary--text &nbsp;&nbsp;Get your account here.
-        v-divider(dark).mt-5.edge-divider
-      v-row(align="center" justify="center").mt-n2.text-center
+    v-col
+      v-row(align="center" justify="center" :class="[contentClasses]" fill-height fluid).footer-bg
+        v-col(:class="[contentClasses, footerClasses]").footer-bg
+          nuxt
+      v-row(align="center" justify="center" fluid).footer
+        v-col(cols="12").mt-2.text-center
+          span.white--text Don't have MYCURE yet?
+          nuxt-link(v-if="!routeContext" :to="{ name: 'signup-health-facilities'}").router-link.primary--text &nbsp;&nbsp;Get your account here.
+          a(v-else :href="redirectSignUpLink").router-link.primary--text &nbsp;&nbsp;Get your account here.
+          v-divider(dark).mt-5.edge-divider
+      v-row(align="center" justify="center").text-center.footer
         v-col(cols="12" md="6").pl-12.pr-12
           span.white--text Copyright &copy; 2016 - {{new Date().getFullYear()}} MYCURE Inc. All Rights Reserved.
         v-col(cols="12" md="6" :class="footerPaddingClasses")
