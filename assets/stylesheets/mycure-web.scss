@@ -322,3 +322,6 @@ classBinder(this, {
     @include font-sizer(m);
   }
 }
+.line-height-reducer {
+  line-height: 110% !important;
+}

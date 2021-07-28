@@ -124,7 +124,7 @@
       generic-media-panel(
         align="center"
         :content="fifthPanelContents"
-        :title-classes="[...titleClasses, 'white--text']"
+        :title-classes="[...titleClasses, 'white--text', 'line-height-reducer']"
         :content-classes="['white--text', ...descriptionClasses]"
       )
         template(slot="cta-button")
