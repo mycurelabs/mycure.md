@@ -62,6 +62,7 @@
               :class="{'white--text': isRecommended}"
               :event-label="`click-pricing-${bundle.title}`"
               :pricing-bundle="bundle.id"
+              :query-ops="bundle.queryOps"
             ).mc-button-set-1.font-weight-semibold.text-none {{ bundle.btnText }}
         v-row(justify="center").mt-3
           v-col(cols="12" xl="10")

@@ -127,6 +127,9 @@ export default {
         // - Get the 2nd package from doctors
         const doctorBookingPricing = {
           title: 'Doctors',
+          queryOps: {
+            type: 'doctor',
+          },
           ...omit(doctorPricings[1], 'title'),
         };
         // - Fetch clinic pricings
@@ -135,6 +138,9 @@ export default {
         const clinicBookingPricing = {
           title: 'Clinics',
           image: 'Platinum',
+          queryOps: {
+            type: 'clinic',
+          },
           ...omit(clinicPricings[0], 'title'),
         };
         // - Map Free Booking
@@ -144,6 +150,7 @@ export default {
           image: 'Essentials',
           btnText: 'Try Free',
           title: 'Start Free',
+          trial: true,
           description: 'All essential features to help start up your digital booking journey',
           inclusions: [
             { text: 'Up to 1 user', valid: true },
@@ -156,6 +163,9 @@ export default {
             { text: 'Daily Census', valid: true },
             { text: 'Sales Reports', valid: true },
           ],
+          queryOps: {
+            trial: 1,
+          },
         };
 
         // - Put them all together
