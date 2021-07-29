@@ -76,16 +76,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-.service-card {
-  position: relative;
-  padding-bottom: 30px;
-}
-
-.card-actions {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-}
-</style>
