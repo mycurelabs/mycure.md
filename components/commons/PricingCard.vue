@@ -20,11 +20,11 @@
         div.text-center#price-container
           template(v-if="!bundle.requireContact")
             p(:class="priceColor").font-weight-bold
-              v-tabs-items(v-if="bundle.monthlyPrice > 0" v-model="paymentInterval")
-                v-tab-item(value="year")
+              v-tabs-items(v-if="bundle.monthlyPrice > 0" v-model="paymentInterval" transition="slide-y-transition")
+                v-tab-item(value="year" transition="slide-y-transition")
                   span(:class="{'font-30': !$isWideScreen, 'font-35': $isWideScreen}").currency.font-open-sans {{ bundle.currency }}&nbsp;
                   span(:class="{'font-45': !$isWideScreen, 'font-60': $isWideScreen}") {{ bundle.annualMonthlyPrice }}
-                v-tab-item(value="month")
+                v-tab-item(value="month" transition="slide-y-transition")
                   span(:class="{'font-30': !$isWideScreen, 'font-35': $isWideScreen}").currency.font-open-sans {{ bundle.currency }}&nbsp;
                   span(:class="{'font-45': !$isWideScreen, 'font-60': $isWideScreen}") {{  bundle.monthlyPrice }}
               span(v-else).font-45 FREE
