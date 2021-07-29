@@ -145,6 +145,7 @@
                 item-text="text"
                 item-value="value"
                 outlined
+                disabled
                 :items="facilityTypes"
                 :rules="isRequired"
                 :disabled="loading.form"
@@ -258,12 +259,17 @@
               strong +{{ country.callingCodes[0] }}
     //- Email Verification Dialog
     email-verification-dialog(v-model="emailVerificationMessageDialog" :email="email" @confirm="confirmEmailVerification")
+    //- Choose Facility Type Dialog
+    choose-facility-type(
+      v-model="chooseFacilityTypeDialog"
+      :facility-types="facilityTypeOptions"
+      @select="facilityType = $event; chooseFacilityTypeDialog = false"
+    )
 </template>
 
 <script>
 import isEmpty from 'lodash/isEmpty';
 import { parsePhoneNumberFromString } from 'libphonenumber-js';
-// import { get } from 'lodash';
 import {
   getCountries,
   getCountry,
@@ -276,10 +282,14 @@ import {
 } from '~/utils/text-field-rules';
 // import { CLINICS_PRICING } from '~/constants/pricing';
 // import { SUBSCRIPTION_MAPPINGS } from '~/constants/subscription';
+import ChooseFacilityType from '~/components/signup/ChooseFacilityType';
 import EmailVerificationDialog from '~/components/signup/EmailVerificationDialog';
+
 const FACILITY_STEP_1_DATA = 'facility:step1:model';
+
 export default {
   components: {
+    ChooseFacilityType,
     EmailVerificationDialog,
   },
   layout: 'user',
@@ -300,6 +310,7 @@ export default {
           types: ['doctor'],
         },
         value: 'doctor',
+        image: 'Doctor',
       },
       {
         text: 'Outpatient Clinic',
@@ -308,6 +319,7 @@ export default {
           types: ['clinic'],
         },
         value: 'clinic',
+        image: 'Outpatient',
       },
       {
         text: 'Diagnostics',
@@ -316,41 +328,8 @@ export default {
           types: ['diagnostic'],
         },
         value: 'diagnostic',
+        image: 'Diagnostics',
       },
-      // {
-      //   text: 'Doctor Booking',
-      //   orgProps: {
-      //     type: 'facility',
-      //     types: ['doctor', 'doctor-booking'],
-      //   },
-      //   value: 'doctor-booking',
-      // },
-      // {
-      //   text: 'Clinic Booking',
-      //   orgProps: {
-      //     type: 'facility',
-      //     types: ['clinic', 'clinic-booking'],
-      //   },
-      //   value: 'clinic-booking',
-      // },
-      // {
-      //   text: 'Doctor Telehealth',
-      //   orgProps: {
-      //     type: 'facility',
-      //     types: ['doctor', 'doctor-telehealth'],
-      //   },
-      //   value: 'doctor-telehealth',
-      //   chip: 'Telehealth',
-      // },
-      // {
-      //   text: 'Clinic Telehealth',
-      //   orgProps: {
-      //     type: 'facility',
-      //     types: ['clinic', 'clinic-telehealth'],
-      //   },
-      //   value: 'clinic-telehealth',
-      //   chip: 'Telehealth',
-      // },
     ];
     this.userRoles = [
       { text: 'Physician/Owner', value: ['doctor', 'admin'] },
@@ -386,6 +365,7 @@ export default {
         form: false,
       },
       emailVerificationMessageDialog: false,
+      chooseFacilityTypeDialog: false,
       // validity
       valid: false, // Overall form details validity
       isEmailValid: false, // email validity
@@ -407,6 +387,11 @@ export default {
     //   if (this.facilityType.value === 'doctor' || this.facilityType.value === 'doctor-telehealth') return this.pricingConstants.slice(0, 2);
     //   return this.pricingConstants.slice(0, 3);
     // },
+    facilityTypeOptions () {
+      return this.$route.query.from === 'booking'
+        ? this.facilityTypes.filter(type => type.value !== 'diagnostic')
+        : this.facilityTypes;
+    },
     // - If needs to pay
     requiresCheckout () {
       return this.subscription.value !== 'essentials';
@@ -467,7 +452,11 @@ export default {
 
         // Query params handling
         if (this.$route.query.email) this.email = this.$route.query.email;
-        if (this.$route.query.type) this.facilityType = this.facilityTypes.find(({ value }) => value === this.$route.query.type);
+        if (this.$route.query.type) {
+          this.facilityType = this.facilityTypes.find(({ value }) => value === this.$route.query.type);
+        } else {
+          this.chooseFacilityTypeDialog = true;
+        }
         if (this.$route.query.subscription) this.subscription = this.$route.query.subscription;
       } catch (e) {
         console.error(e);
@@ -509,13 +498,13 @@ export default {
         // passed to the url before going to
         // signup page.
         if (this.$route.query.from === 'booking') {
-          if (this.$route.query.type === 'doctor') {
+          if (this.$route.query.type === 'doctor' || this.facilityType === 'doctor') {
             organizationPayload.types = [
               'doctor',
               'doctor-booking',
             ];
           }
-          if (this.$route.query.type === 'clinic') {
+          if (this.$route.query.type === 'clinic' || this.facilityType === 'clinic') {
             organizationPayload.types = [
               'clinic',
               'clinic-booking',
