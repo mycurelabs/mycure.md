@@ -2,13 +2,14 @@
   v-app#app
     app-bar(v-if="!loading")
     nuxt
+    results-footer(v-if="!loading")
 </template>
 
 <script>
-import AppBar from '~/components/home/AppBar';
 export default {
   components: {
-    AppBar,
+    AppBar: () => import('~/components/home/AppBar'),
+    ResultsFooter: () => import('~/components/services/ResultsFooter'),
   },
   data () {
     return {

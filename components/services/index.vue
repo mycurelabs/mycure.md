@@ -1,6 +1,6 @@
 <template lang="pug">
   div(v-if="!loading.page")
-    v-row(justify="center" no-gutters :class="{ 'fixed-container': fixedSearchBar, 'primary': fixedSearchBar }").search-container
+    v-row(justify="center" no-gutters).fixed-container.search-container
       v-col(cols="12").text-center.py-1
         org-search-bar(
           :mobile-search-btn-color="fixedSearchBar ? 'success' : 'primary'"
@@ -12,7 +12,7 @@
       v-col(v-if="!loading.results" cols="11" md="10")#org-results
         h4(v-if="orgsTotal") There {{ orgsTotal > 1 ? 'are' : 'is' }} {{ orgsTotal }} organization{{ orgsTotal > 1 ? 's' : '' }} available.
         h4(v-else) There are no results available.
-      v-col(cols="12")
+      v-col(cols="10")
         //- Loading
         v-row(v-if="loading.results" justify="center")
           v-col(cols="12" md="4").text-center
@@ -26,8 +26,8 @@
             v-for="(organization, key) in orgsList"
             :key="key"
             cols="12"
-            md="5"
-          )
+            md="4"
+          ).px-5
             org-list-card(
               :organization="organization"
               :read-only="readOnly"
@@ -42,13 +42,11 @@
 <script>
 import VueScrollTo from 'vue-scrollto';
 import uniqBy from 'lodash/uniqBy';
-import OrgListCard from '~/components/organizations/OrgListCard';
-import OrgSearchBar from '~/components/services/OrgSearchBar';
 import { fetchOrganizations } from '~/services/organizations';
 export default {
   components: {
-    OrgListCard,
-    OrgSearchBar,
+    OrgListCard: () => import('~/components/organizations/OrgListCard'),
+    OrgSearchBar: () => import('~/components/services/OrgSearchBar'),
   },
   props: {
     fixedSearchBar: {
@@ -169,7 +167,7 @@ export default {
 
 <style scoped>
 .search-container {
-  margin-top: 50px;
+  margin-top: 70px;
   width: 100%;
 }
 

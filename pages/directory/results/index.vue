@@ -1,17 +1,13 @@
 <template lang="pug">
   div(style="background-color: #fafafa;")
     services.services
-    results-footer(v-if="!loading" absolute)
 </template>
 
 <script>
-import ResultsFooter from '~/components/services/ResultsFooter';
-import Services from '~/components/services';
 import headMeta from '~/utils/head-meta';
 export default {
   components: {
-    ResultsFooter,
-    Services,
+    Services: () => import('~/components/services'),
   },
   layout: 'results',
   // middleware: ['disable-route'],

@@ -4,40 +4,60 @@
     height="auto"
     :absolute="absolute"
   )
-    v-container
-      v-row(align="center" no-gutters)
+    v-container.my-6
+      v-row(align="start" no-gutters)
         v-col(
           :class="{ 'text-center' : $isMobile }"
           cols="12"
           md="5"
         )
-          span.call-number.white--text Copyright &copy; 2016 - {{ new Date().getFullYear() }}
-            a(href="https://mycure.md" rel="noopener noreferrer")
-              strong.primary--text &nbsp;MYCURE Inc.&nbsp;
-          span.call-number.white--text #[br(v-if="$isMobile")] All Rights Reserved.
-        v-col(v-if="$isMobile" cols="12")
-          hr.mb-5
+          v-row.pl-3.py-5
+            v-row(align="center" :justify="$isMobile ? 'center' : 'start' ").call-number.white--text Powered by
+              img(
+                src="~/assets/images/MYCURE Logo - white.png"
+                width="120px"
+                height="34.46px"
+                alt="MYCURE logo"
+              ).ml-3.mt-1
+          v-row(v-if="!$isMobile").font-weight-light
+            span.call-number.white--text &copy; 2016 - {{ new Date().getFullYear() }}
+            span.call-number.white--text #[br(v-if="$isMobile")] &nbsp;All Rights Reserved.
         v-spacer
-        v-col
-        v-btn(
-          to="/terms"
-          color="white"
-          text
-          :block="$isMobile"
-        ).text-none.font-16.letter-spacing-normal Terms of Use
-        v-btn(
-          to="/privacy-policy"
-          color="white"
-          text
-          :block="$isMobile"
+        v-col(:class="{'mt-8': $isMobile}" cols="12" sm="6")
+          v-row(justify="end")
+            v-btn(
+              to="/terms"
+              color="white"
+              text
+              :block="$isMobile"
+            ).text-none.font-16.letter-spacing-normal Terms of Use
+            v-btn(
+              to="/privacy-policy"
+              color="white"
+              text
+              :block="$isMobile"
 
-        ).text-none.font-16.letter-spacing-normal Privacy Policy
-        v-btn(
-          color="white"
-          text
-          :block="$isMobile"
-          @click="toggleChat"
-        ).text-none.font-16.letter-spacing-normal Send us your feedback
+            ).text-none.font-16.letter-spacing-normal Privacy Policy
+            v-btn(
+              color="white"
+              text
+              :block="$isMobile"
+              @click="toggleChat"
+            ).text-none.font-16.letter-spacing-normal Send us your feedback
+          v-row(justify="end" align="center")
+            a(v-if="!$isMobile" href="/directory/doctors") See more doctors
+            v-col(
+              :class="{ 'order-first text-center ' : $isMobile, 'text-right' : !$isMobile }"
+              cols="12"
+              md="4"
+            )
+              template(v-for="(account, key) in socMed")
+                a(:href="account.link" target="_blank" rel="noopener noreferrer")
+                  img(:src="require(`~/assets/images/${ account.icon }`)" width="20" height="20" :alt="account.name").ma-4
+        v-col(v-if="$isMobile")
+          v-row(align="end" justify="center").font-weight-light
+            span.call-number.white--text &copy; 2016 - {{ new Date().getFullYear() }}
+            span.call-number.white--text #[br(v-if="$isMobile")] &nbsp;All Rights Reserved.
 </template>
 
 <script>
@@ -47,6 +67,30 @@ export default {
       type: Boolean,
       default: false,
     },
+  },
+  data () {
+    return {
+      socMed: [
+        {
+          name: 'MYCURE - Facebook',
+          link: 'https://www.facebook.com/mycure.md',
+          icon: 'Fb - white.png',
+          id: 'footer-fb-btn',
+        },
+        {
+          name: 'MYCURE - Instagram',
+          link: 'https://www.instagram.com/mycure.md/',
+          icon: 'Instagram - white.png',
+          id: 'footer-ig-btn',
+        },
+        {
+          name: 'MYCURE - Twitter',
+          link: 'https://twitter.com/mycureapp',
+          icon: 'Twitter - white.png',
+          id: 'footer-twitter-btn',
+        },
+      ],
+    };
   },
   methods: {
     toggleChat () {
