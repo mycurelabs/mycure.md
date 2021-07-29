@@ -148,7 +148,6 @@
                 disabled
                 :items="facilityTypes"
                 :rules="isRequired"
-                :disabled="loading.form"
                 :error="errorFacilityType"
                 :error-messages="errorMessagesFacilityType"
                 return-object

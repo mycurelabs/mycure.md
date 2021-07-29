@@ -86,6 +86,7 @@
     call-to-action(:version="2")
     //- 10th panel
     pricing(
+      has-trial-option
       type="clinic"
       title="Take the first step today"
       description="Choose the best plan for your clinic. Only pay for what you need."
