@@ -34,6 +34,9 @@
             span(v-if="bundle.users") {{ bundle.users }} user
             br(v-if="bundle.users")
             | per clinic monthly
+            template(v-if="!bundle.users")
+              br
+              br
           div(v-else).top-spacing-btn
             | &nbsp;
       v-card-text.card-actions
@@ -70,8 +73,9 @@
         v-row(justify="center")
           v-col(cols="12" xl="10")
             div(v-for="(inclusion, inclusionKey) in additionalInclusions" :key="inclusionKey").d-flex
-              v-icon(:color="getInclusionIconColor(inclusion.valid, true)" left :small="!$isWideScreen") {{ getInclusionIcon(inclusion.valid, true) }}
-              span(:class="[getInclusionTextColor(inclusion.valid), textFontSize]") {{ inclusion.text }}
+              template(v-if="inclusion.valid || !hideInvalidItems")
+                v-icon(:color="getInclusionIconColor(inclusion.valid, true)" left :small="!$isWideScreen") {{ getInclusionIcon(inclusion.valid, true) }}
+                span(:class="[getInclusionTextColor(inclusion.valid), textFontSize]") {{ inclusion.text }}
         //- v-row(justify="center" v-if="!showList")
         //-   v-col(cols="12" xl="10").text-center
         //-     v-btn(:color="isRecommended ? 'white' : 'primary'" text @click="showList = !showList").text-none
@@ -104,6 +108,11 @@ export default {
     height: {
       type: String,
       default: null,
+    },
+    // - If non-inclusions will be included
+    hideInvalidItems: {
+      type: Boolean,
+      default: false,
     },
   },
   data () {
