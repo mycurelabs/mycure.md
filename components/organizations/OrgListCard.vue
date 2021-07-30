@@ -9,7 +9,7 @@
             :width="!$isMobile ? 120 : 80"
             :height="!$isMobile ? 120 : 80"
           ).rounded-circle
-          v-icon(v-if="hasWebsite" color="primary" large).mt-16.pt-7.ml-n8 mdi-check-decagram
+          v-icon(v-if="hasWebsite" color="primary" large :class="{'pt-7': !$isMobile}").mt-16.ml-n8 mdi-check-decagram
         v-row(justify="center").pt-3
           div.d-inline-flex
             p.font-weight-bold.font-18.text-center {{ organization.name }}&nbsp;
