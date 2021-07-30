@@ -7,7 +7,7 @@
           h1(:class="subheaderClasses") Find clinics in our directory
         v-row(justify="center" align="center").search-bar-container
           v-col(cols="12" md="10")
-            pxp-org-search-bar(
+            clinics-org-search-bar(
               require-action
               show-suggestions
               @search-organizations="onSearch($event)"
@@ -18,9 +18,9 @@
 import headMeta from '~/utils/head-meta';
 export default {
   components: {
-    PxpOrgSearchBar: () => import('~/components/facilities-directory/PxpOrgSearchBar'),
+    ClinicsOrgSearchBar: () => import('~/components/facilities-directory/ClinicsOrgSearchBar'),
   },
-  layout: 'pxp',
+  layout: 'directory-facilities',
   data () {
     this.titleClasses = ['mc-title-set-1', 'font-weight-bold'];
     this.subheaderClasses = ['mc-title-set-2', 'font-weight-light'];

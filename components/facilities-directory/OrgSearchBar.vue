@@ -4,18 +4,18 @@
       v-col(cols="12" sm="5").pb-0.mb-n5
         v-combobox(
           v-model="orgSuggestionsSearchQuery"
-          :background-color="$isMobile ? '#e5e5e5' : 'white' "
           item-text="name"
           placeholder="Search for clinics"
+          background-color="#d0e8f5"
           return-object
           solo
-          :height="$isMobile ? '40px' : '60px'"
           rounded
+          :height="$isMobile ? '40px' : '60px'"
+          :items="orgSuggestions"
+          :clear-icon="null"
           @update:search-input="debouncedSuggestionsSearch"
           @keyup.enter="searchFacility"
           @change="onSelectOrganization"
-          :items="orgSuggestions"
-          :clear-icon="null"
         ).font-14.font-weight-regular
           template(v-slot:append)
             v-row
@@ -29,11 +29,11 @@
         v-autocomplete(
           placeholder="Location"
           v-model="orgSearchLocation"
-          :background-color="$isMobile ? '#e5e5e5' : 'white' "
-          :height="$isMobile ? '40px' : '60px'"
+          background-color="#d0e8f5"
           rounded
           solo
           dense
+          :height="$isMobile ? '40px' : '60px'"
           :white--text="$isMobile"
           :append-icon="null"
           :items="cities"

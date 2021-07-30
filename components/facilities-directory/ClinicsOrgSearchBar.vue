@@ -9,13 +9,13 @@
           placeholder="Search for clinics"
           return-object
           solo
-          :height="$isMobile ? '40px' : '60px'"
           rounded
+          :height="$isMobile ? '40px' : '60px'"
+          :items="orgSuggestions"
+          :clear-icon="null"
           @update:search-input="debouncedSuggestionsSearch"
           @keyup.enter="searchFacility"
           @change="onSelectOrganization"
-          :items="orgSuggestions"
-          :clear-icon="null"
         ).font-14.font-weight-regular
           template(v-slot:append)
             v-row
