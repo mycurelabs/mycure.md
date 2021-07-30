@@ -1,13 +1,13 @@
 <template lang="pug">
   div(style="background-color: #fafafa;")
-    services(:class="{'pb-5': $isMobile}").services
+    facilities-directory(:class="{'pb-5': $isMobile}").services
 </template>
 
 <script>
 import headMeta from '~/utils/head-meta';
 export default {
   components: {
-    Services: () => import('~/components/services'),
+    FacilitiesDirectory: () => import('~/components/facilities-directory'),
   },
   layout: 'results',
   // middleware: ['disable-route'],

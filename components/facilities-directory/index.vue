@@ -37,7 +37,7 @@
           v-pagination(
             v-model="orgsPage"
             :length="orgsLength"
-            total-visible="10"
+            total-visible="9"
           )
 </template>
 
@@ -48,7 +48,7 @@ import { fetchOrganizations } from '~/services/organizations';
 export default {
   components: {
     OrgListCard: () => import('~/components/organizations/OrgListCard'),
-    OrgSearchBar: () => import('~/components/services/OrgSearchBar'),
+    OrgSearchBar: () => import('~/components/facilities-directory/OrgSearchBar'),
   },
   props: {
     fixedSearchBar: {
@@ -68,7 +68,7 @@ export default {
       },
       locationQuery: '',
       orgsTotal: 0,
-      orgsLimit: 10,
+      orgsLimit: 12,
       orgsList: [],
       orgsPage: 1,
       orgsSearchQuery: {},

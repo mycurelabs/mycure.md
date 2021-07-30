@@ -18,7 +18,7 @@
 import headMeta from '~/utils/head-meta';
 export default {
   components: {
-    PxpOrgSearchBar: () => import('~/components/services/PxpOrgSearchBar'),
+    PxpOrgSearchBar: () => import('~/components/facilities-directory/PxpOrgSearchBar'),
   },
   layout: 'pxp',
   data () {
@@ -41,7 +41,7 @@ export default {
   methods: {
     onSearch ({ searchText, locationText, suggestion }) {
       this.$nuxt.$router.push({
-        name: 'directory-results',
+        name: 'directory-facilities-results',
         params: {
           facilitySearchText: searchText,
           facilityLocationText: locationText,

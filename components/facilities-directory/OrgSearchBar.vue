@@ -1,10 +1,10 @@
 <template lang="pug">
   v-container
-    v-row(justify="center" align="center")
-      v-col(cols="12" md="11").pb-0
+    v-row(justify="end" align="center")
+      v-col(cols="12" sm="5").pb-0.mb-n5
         v-combobox(
           v-model="orgSuggestionsSearchQuery"
-          color="white"
+          :background-color="$isMobile ? '#e5e5e5' : 'white' "
           item-text="name"
           placeholder="Search for clinics"
           return-object
@@ -24,14 +24,21 @@
                 color="primary"
               ).mx-1.pt-1
                 v-icon mdi-microphone
-              v-btn(
-                v-if="!$isMobile"
-                fab
-                small
-                color="primary"
-                @click="searchFacility(true)"
-              ).elevation-0
-                v-icon mdi-magnify
+      v-spacer(v-if="!$isMobile")
+      v-col(cols="5" sm="3").search-fields.mb-n5
+        v-autocomplete(
+          placeholder="Location"
+          v-model="orgSearchLocation"
+          :background-color="$isMobile ? '#e5e5e5' : 'white' "
+          :height="$isMobile ? '40px' : '60px'"
+          rounded
+          solo
+          dense
+          :white--text="$isMobile"
+          :append-icon="null"
+          :items="cities"
+          @keyup.enter="searchFacility"
+        ).font-14.font-weight-regular.mt-2
 </template>
 
 <script>
@@ -40,6 +47,10 @@ import NCR_CITIES from '~/assets/fixtures/ncr-cities';
 import { fetchOrganizations } from '~/services/organizations';
 export default {
   props: {
+    provinces: {
+      type: Array,
+      default: () => ([]),
+    },
     requireAction: {
       type: Boolean,
       default: false,
@@ -47,6 +58,10 @@ export default {
     showSuggestions: {
       type: Boolean,
       default: false,
+    },
+    mobileSearchBtnColor: {
+      type: String,
+      default: 'primary',
     },
   },
   data () {
@@ -64,6 +79,9 @@ export default {
     };
   },
   watch: {
+    orgSuggestionsSearchQuery (val) {
+      this.searchFacility();
+    },
     orgSearchLocation (val) {
       if (!val && !this.orgSearchQuery) {
         this.clearSearch();
@@ -145,9 +163,6 @@ export default {
 
 .search-select >>> .v-select__selection--comma {
   color: #FFFFFF !important;
-}
-.search-button {
-  size: 10 10;
 }
 
 @media screen and (max-width: 1269px) {

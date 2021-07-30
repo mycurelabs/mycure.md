@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import OrgSearchBar from '~/components/services/OrgSearchBar';
+import OrgSearchBar from '~/components/facilities-directory/OrgSearchBar';
 export default {
   components: {
     OrgSearchBar,

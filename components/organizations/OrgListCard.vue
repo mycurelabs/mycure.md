@@ -9,7 +9,7 @@
             :width="!$isMobile ? 120 : 80"
             :height="!$isMobile ? 120 : 80"
           ).rounded-circle
-          v-icon(v-if="hasWebsite" color="primary" large :class="{'pt-7': !$isMobile}").mt-16.ml-n8 mdi-check-decagram
+          v-icon(v-if="hasWebsite" color="primary" large :class="{'pt-7': !$isMobile}").mt-16.ml-n8 mdi-check-circle-outline
         v-row(justify="center").pt-3
           div.d-inline-flex
             p.font-weight-bold.font-18.text-center {{ organization.name }}&nbsp;
@@ -22,31 +22,31 @@
               p {{ organization.description }}
               a(@click="isDescriptionExpanded = false").primary--text Collapse
             div(v-if="organization !== undefined").mt-4
-              div.d-flex
+              div.d-flex.my-1
                 img(
                   src="~/assets/images/directory-results/address.png"
                   width="16px"
                   height="16px"
                   alt="Address logo"
-                ).mr-2
+                ).mr-2.pt-1.pl-1
                 v-clamp(:max-lines="2" autoresize v-if="organization.address") {{ address }}
                 p(v-else).font-italic No address available
-              div.d-flex
+              div.d-flex.my-1
                 img(
                   src="~/assets/images/directory-results/contact.png"
                   width="16px"
                   height="16px"
                   alt="Phone logo"
-                ).mr-2
+                ).mr-2.pt-1.pl-1
                 v-clamp(:max-lines="1" autoresize v-if="organization.phone || organization.phones").font-weight-bold {{ phoneNumber }}
                 p(v-else).font-italic No phone number available
-              div.d-flex
+              div.d-flex.my-1
                 img(
                   src="~/assets/images/directory-results/calendar.png"
                   width="16px"
                   height="16px"
                   alt="Calendar logo"
-                ).mr-2
+                ).mr-2.pt-1.pl-1
                 div(v-if="fullSchedules.length")
                   //- div(v-if="!scheduleExpanded")
                   //-   v-clamp(:max-lines="2" autoresize).text-capitalize {{ formatTodaySchedule(schedulesToday) }}
@@ -61,16 +61,6 @@
                   br
                   br
                 p(v-else).font-italic No schedules available
-        v-row(justify="center" align="end").mb-1
-          v-btn(
-            color="success"
-            target="_blank"
-            rel="noopener noreferrer"
-            block
-            :disabled="readOnly || !hasWebsite"
-            @click="openFacility"
-          ).text-none.elevation-0.font-weight-light
-            b Teleconsult
         v-row(justify="center" align="end")
           v-btn(
             color="primary"

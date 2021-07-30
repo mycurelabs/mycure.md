@@ -9,7 +9,7 @@
 export default {
   components: {
     AppBar: () => import('~/components/home/AppBar'),
-    ResultsFooter: () => import('~/components/services/ResultsFooter'),
+    ResultsFooter: () => import('~/components/facilities-directory/ResultsFooter'),
   },
   data () {
     return {
