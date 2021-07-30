@@ -127,6 +127,7 @@ export default {
         // - Get the 2nd package from doctors
         const doctorBookingPricing = {
           title: 'Doctors',
+          image: 'Platinum',
           queryOps: {
             type: 'doctor',
           },
