@@ -136,12 +136,23 @@ export default {
         const clinicPricings = await getSubscriptionPackagesPricing('clinic') || [];
         // - Get lowest pricing from clinics
         const clinicBookingPricing = {
-          title: 'Clinics',
+          title: 'Outpatient Clinics',
           image: 'Platinum',
           queryOps: {
             type: 'clinic',
           },
           ...omit(clinicPricings[0], 'title'),
+        };
+        // - Fetch Diagnostic Pricings
+        const diagnosticPricings = await getSubscriptionPackagesPricing('diagnostic') || [];
+        // - Get lowest pricing from diagnostic
+        const diagnosticBookingPricing = {
+          title: 'Diagnostic Centers',
+          image: 'Platinum',
+          queryOps: {
+            type: 'diagnostic',
+          },
+          ...omit(diagnosticPricings[0], 'title'),
         };
         // - Map Free Booking
         const freeBooking = {
@@ -169,7 +180,12 @@ export default {
         };
 
         // - Put them all together
-        this.pricingPackages = [freeBooking, doctorBookingPricing, clinicBookingPricing];
+        this.pricingPackages = [
+          freeBooking,
+          doctorBookingPricing,
+          diagnosticBookingPricing,
+          clinicBookingPricing,
+        ];
       } catch (e) {
         console.error(e);
       } finally {

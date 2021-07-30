@@ -261,7 +261,7 @@
     //- Choose Facility Type Dialog
     choose-facility-type(
       v-model="chooseFacilityTypeDialog"
-      :facility-types="facilityTypeOptions"
+      :facility-types="facilityTypes"
       @select="facilityType = $event; chooseFacilityTypeDialog = false"
     )
 </template>
@@ -386,11 +386,6 @@ export default {
     //   if (this.facilityType.value === 'doctor' || this.facilityType.value === 'doctor-telehealth') return this.pricingConstants.slice(0, 2);
     //   return this.pricingConstants.slice(0, 3);
     // },
-    facilityTypeOptions () {
-      return this.$route.query.from === 'booking'
-        ? this.facilityTypes.filter(type => type.value !== 'diagnostic')
-        : this.facilityTypes;
-    },
     // - If needs to pay
     requiresCheckout () {
       return this.subscription.value !== 'essentials';
@@ -507,6 +502,12 @@ export default {
             organizationPayload.types = [
               'clinic',
               'clinic-booking',
+            ];
+          }
+          if (this.$route.query.type === 'diagnostic' || this.facilityType === 'diagnostic') {
+            organizationPayload.types = [
+              'diagnostic',
+              'diagnostic-booking',
             ];
           }
         }
