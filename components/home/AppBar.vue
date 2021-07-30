@@ -5,29 +5,30 @@
     color="#343A40"
     elevate-on-scroll
   ).nav-bar
-    v-container
-      v-row(:justify="{'center': !$isMobile}" :class="!$isMobile ? 'mx-8' : '' ")
-        v-col(cols="1")
-          nuxt-link(to="/")
-            img(
-              src="~/assets/images/MYCURE Logo - white.png"
-              width="120px"
-              height="34.46px"
-              alt="MYCURE logo"
-              :class="!$isMobile ? ['mr-1', 'mt-1'] : '' "
-            )
-        v-spacer(v-if="!$isMobile")
-        v-col(v-else cols="7")
-        v-col(cols="1" :class="{'pt-4': !$isMobile}")
-          v-btn(
-            color="primary"
-            depressed
-            rounded
-            :large="$isWideScreen"
-            @click="openPxPortal(pxPortalLogIn)"
-          ).text-none.mr-2
-            v-icon(small) mdi-account-outline
-            span.font-weight-thin.font-12 Login
+    v-container.px-0
+      v-col.pa-0
+        v-row(:justify="{'center': !$isMobile}" :class="!$isMobile ? 'mx-8' : '' ").px-0.mx-0
+          v-col(cols="1").pl-0
+            nuxt-link(to="/")
+              img(
+                src="~/assets/images/MYCURE Logo - white.png"
+                width="120px"
+                height="34.46px"
+                alt="MYCURE logo"
+                :class="!$isMobile ? ['mr-1', 'mt-1'] : '' "
+              )
+          v-spacer(v-if="!$isMobile")
+          v-col(v-else cols="7")
+          v-col(cols="1" :class="{'pt-4': !$isMobile}").pr-0
+            v-btn(
+              color="primary"
+              depressed
+              rounded
+              :large="$isWideScreen"
+              @click="openPxPortal(pxPortalLogIn)"
+            ).text-none.mr-2
+              v-icon(small) mdi-account-outline
+              span.font-weight-thin.font-12 Login
 </template>
 
 <script>

@@ -1,6 +1,6 @@
 <template lang="pug">
   div(style="background-color: #fafafa;")
-    services.services
+    services(:class="{'pb-5': $isMobile}").services
 </template>
 
 <script>

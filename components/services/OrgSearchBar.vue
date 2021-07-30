@@ -1,93 +1,43 @@
 <template lang="pug">
   v-container
-    v-row(justify="center" align="center")
-      v-col(cols="12" md="11").pb-0
-        v-toolbar(
-          height="65"
+    v-row(justify="end" align="center")
+      v-col(cols="12" sm="5").pb-0.mb-n5
+        v-combobox(
+          v-model="orgSuggestionsSearchQuery"
           color="white"
-          :class="{'toolbar-shadow': !$isMobile }"
-        ).toolbar
-          v-row.search-container.d-flex.mt-5.ml-1
-            v-col.grow.search-fields
-              v-toolbar-title.font-14.ml-4.text-left.font-weight-bold Facility
-                v-text-field(
-                  v-if="!showSuggestions || $isMobile"
-                  v-model="orgSearchQuery"
-                  placeholder="Search for a health facility"
-                  clearable
-                  solo
-                  flat
-                  dense
-                  @click:clear="clearSearch"
-                  @keyup.enter="searchFacility"
-                  @input="debouncedSearch"
-                ).font-14.font-weight-regular
-                v-combobox(
-                  v-else
-                  v-model="orgSuggestionsSearchQuery"
-                  color="white"
-                  item-text="name"
-                  placeholder="Search for a health facility"
-                  return-object
-                  solo
-                  flat
-                  dense
-                  @update:search-input="debouncedSuggestionsSearch"
-                  @keyup.enter="searchFacility"
-                  @change="onSelectOrganization"
-                  :items="orgSuggestions"
-                  :append-icon="null"
-                  :clear-icon="null"
-                ).font-14.font-weight-regular
-
-            template(v-if="!$isMobile")
-              v-divider(inset vertical).mt-5.mb-10
-              v-col(cols="4" md="4").search-fields
-                v-toolbar-title.font-14.ml-4.text-left.font-weight-bold Location
-                  v-autocomplete(
-                    placeholder="Municipality"
-                    v-model="orgSearchLocation"
-                    solo
-                    flat
-                    dense
-                    :append-icon="null"
-                    :items="cities"
-                    @keyup.enter="searchFacility"
-                  ).font-14.font-weight-regular
-              v-col(cols="1")
-                v-btn(
-                  fab
-                  color="primary"
-                  @click="searchFacility(true)"
-                ).elevation-0
-                  v-icon mdi-magnify
-
-        template(v-if="$isMobile")
-          v-toolbar(
-            height="65"
-            color="white"
-            :class="{'toolbar-shadow': !$isMobile }"
-          ).toolbar.mt-5
-            v-row.search-container.d-flex.mt-5.ml-1
-              v-col.grow.search-fields.mt-2
-                v-toolbar-title.font-14.ml-4.text-left.font-weight-bold Location
-                  v-autocomplete(
-                    placeholder="Municipality"
-                    v-model="orgSearchLocation"
-                    solo
-                    flat
-                    dense
-                    :append-icon="null"
-                    :items="cities"
-                    @keyup.enter="searchFacility"
-                  ).font-14.font-weight-regular
-          v-row(justify="end")
-            v-col(cols="4")
+          item-text="name"
+          placeholder="Search for clinics"
+          return-object
+          solo
+          :height="$isMobile ? '40px' : '60px'"
+          rounded
+          @update:search-input="debouncedSuggestionsSearch"
+          @keyup.enter="searchFacility"
+          @change="onSelectOrganization"
+          :items="orgSuggestions"
+          :clear-icon="null"
+        ).font-14.font-weight-regular
+          template(v-slot:append)
+            v-row
               v-btn(
-                block
-                :color="mobileSearchBtnColor"
-                @click="searchFacility(true)"
-              ).text-none Search
+                icon
+                color="primary"
+              ).mx-1.pt-1
+                v-icon mdi-microphone
+      v-spacer(v-if="!$isMobile")
+      v-col(cols="5" sm="3").search-fields.mb-n5
+        v-autocomplete(
+          placeholder="Location"
+          v-model="orgSearchLocation"
+          background-color="white"
+          :height="$isMobile ? '40px' : '60px'"
+          rounded
+          solo
+          dense
+          :append-icon="null"
+          :items="cities"
+          @keyup.enter="searchFacility"
+        ).font-14.font-weight-regular.mt-2
 </template>
 
 <script>
