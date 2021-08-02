@@ -23,7 +23,6 @@
         image-width="200px"
         image-height="200px"
         :icon-column-bindings="iconBindings"
-        extension-exclusive
       )
         template(slot="title")
           h2(:class="headerClasses") Acquire and Accomodate more Patients
@@ -85,23 +84,20 @@ export default {
       {
         title: 'Point of Sales',
         description: 'Easy to use, barcode-ready POS',
-        icon: 'cookie',
-        iconExtension: '.png',
-        alt: 'cookie',
+        icon: 'MYCURE-Point of Sales',
+        iconExtension: '.webp',
       },
       {
         title: 'Inventory Tracking',
         description: 'Know where all your products go',
-        icon: 'cookie',
-        iconExtension: '.png',
-        alt: 'cookie',
+        icon: 'MYCURE-Inventory Tracking',
+        iconExtension: '.webp',
       },
       {
         title: 'Smart Reports',
         description: 'Get real-time business analytics',
-        icon: 'cookie',
-        iconExtension: '.png',
-        alt: 'cookie',
+        icon: 'MYCURE-Smart Reports',
+        iconExtension: '.webp',
       },
     ];
     this.iconBindings = {
