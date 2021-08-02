@@ -1,6 +1,6 @@
 <template lang="pug">
   div(v-if="!loading.page")
-    v-row(justify="center" no-gutters :class="{ 'fixed-container': fixedSearchBar, 'primary': fixedSearchBar }").search-container
+    v-row(justify="center" no-gutters).fixed-container.search-container
       v-col(cols="12").text-center.py-1
         org-search-bar(
           :mobile-search-btn-color="fixedSearchBar ? 'success' : 'primary'"
@@ -8,47 +8,47 @@
           @clear-organizations="clearOrganizationResults"
         )
     //- Facility Results
-    v-row(align="center" justify="center" :class="{ 'org-results-margin': fixedSearchBar }").org-results-summary
-      v-col(v-if="!loading.results" cols="11" md="10")#org-results
-        h4(v-if="orgsTotal") There {{ orgsTotal > 1 ? 'are' : 'is' }} {{ orgsTotal }} organization{{ orgsTotal > 1 ? 's' : '' }} available.
-        h4(v-else) There are no results available.
-      v-col(cols="12")
-        //- Loading
-        v-row(v-if="loading.results" justify="center")
-          v-col(cols="12" md="4").text-center
-            v-progress-circular(
-              color="primary"
-              indeterminate
-              size="100"
-            )
-        v-row(v-else justify="center" align="stretch")
-          v-col(
-            v-for="(organization, key) in orgsList"
-            :key="key"
-            cols="12"
-            md="5"
+    v-container
+      v-row(align="center" justify="center" :class="$isMobile? 'org-results-margin-mobile' : 'org-results-margin' ").org-results-summary
+        v-col(v-if="!loading.results" cols="12")#org-results
+          h4(v-if="orgsTotal") There {{ orgsTotal > 1 ? 'are' : 'is' }} {{ orgsTotal }} organization{{ orgsTotal > 1 ? 's' : '' }} available.
+          h4(v-else) There are no results available.
+        v-col(cols="12")
+          //- Loading
+          v-row(v-if="loading.results" justify="center")
+            v-col(cols="12" md="4").text-center
+              v-progress-circular(
+                color="primary"
+                indeterminate
+                size="100"
+              )
+          v-row(v-else justify="center" align="stretch")
+            v-col(
+              v-for="(organization, key) in orgsList"
+              :key="key"
+              cols="12"
+              md="4"
+            ).px-5
+              org-list-card(
+                :organization="organization"
+                :read-only="readOnly"
+              )
+          br
+          v-pagination(
+            v-model="orgsPage"
+            :length="orgsLength"
+            total-visible="9"
           )
-            org-list-card(
-              :organization="organization"
-              :read-only="readOnly"
-            )
-        v-pagination(
-          v-model="orgsPage"
-          :length="orgsLength"
-          total-visible="10"
-        )
 </template>
 
 <script>
 import VueScrollTo from 'vue-scrollto';
 import uniqBy from 'lodash/uniqBy';
-import OrgListCard from '~/components/organizations/OrgListCard';
-import OrgSearchBar from '~/components/services/OrgSearchBar';
 import { fetchOrganizations } from '~/services/organizations';
 export default {
   components: {
-    OrgListCard,
-    OrgSearchBar,
+    OrgListCard: () => import('~/components/organizations/OrgListCard'),
+    OrgSearchBar: () => import('~/components/facilities-directory/OrgSearchBar'),
   },
   props: {
     fixedSearchBar: {
@@ -68,7 +68,7 @@ export default {
       },
       locationQuery: '',
       orgsTotal: 0,
-      orgsLimit: 10,
+      orgsLimit: 12,
       orgsList: [],
       orgsPage: 1,
       orgsSearchQuery: {},
@@ -169,7 +169,7 @@ export default {
 
 <style scoped>
 .search-container {
-  margin-top: 50px;
+  margin-top: 70px;
   width: 100%;
 }
 
@@ -185,6 +185,9 @@ export default {
 
 .org-results-margin {
   margin-top: 160px;
+}
+.org-results-margin-mobile {
+  margin-top: 200px;
 }
 
 @media screen and (max-width: 970px) {

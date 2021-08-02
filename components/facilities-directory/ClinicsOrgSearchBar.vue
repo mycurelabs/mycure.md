@@ -2,92 +2,37 @@
   v-container
     v-row(justify="center" align="center")
       v-col(cols="12" md="11").pb-0
-        v-toolbar(
-          height="65"
+        v-combobox(
+          v-model="orgSuggestionsSearchQuery"
           color="white"
-          :class="{'toolbar-shadow': !$isMobile }"
-        ).toolbar
-          v-row.search-container.d-flex.mt-5.ml-1
-            v-col.grow.search-fields
-              v-toolbar-title.font-14.ml-4.text-left.font-weight-bold Facility
-                v-text-field(
-                  v-if="!showSuggestions || $isMobile"
-                  v-model="orgSearchQuery"
-                  placeholder="Search for a health facility"
-                  clearable
-                  solo
-                  flat
-                  dense
-                  @click:clear="clearSearch"
-                  @keyup.enter="searchFacility"
-                  @input="debouncedSearch"
-                ).font-14.font-weight-regular
-                v-combobox(
-                  v-else
-                  v-model="orgSuggestionsSearchQuery"
-                  color="white"
-                  item-text="name"
-                  placeholder="Search for a health facility"
-                  return-object
-                  solo
-                  flat
-                  dense
-                  @update:search-input="debouncedSuggestionsSearch"
-                  @keyup.enter="searchFacility"
-                  @change="onSelectOrganization"
-                  :items="orgSuggestions"
-                  :append-icon="null"
-                  :clear-icon="null"
-                ).font-14.font-weight-regular
-
-            template(v-if="!$isMobile")
-              v-divider(inset vertical).mt-5.mb-10
-              v-col(cols="4" md="4").search-fields
-                v-toolbar-title.font-14.ml-4.text-left.font-weight-bold Location
-                  v-autocomplete(
-                    placeholder="Municipality"
-                    v-model="orgSearchLocation"
-                    solo
-                    flat
-                    dense
-                    :append-icon="null"
-                    :items="cities"
-                    @keyup.enter="searchFacility"
-                  ).font-14.font-weight-regular
-              v-col(cols="1")
+          item-text="name"
+          placeholder="Search for clinics"
+          return-object
+          solo
+          rounded
+          :height="$isMobile ? '40px' : '60px'"
+          :items="orgSuggestions"
+          :clear-icon="null"
+          @update:search-input="debouncedSuggestionsSearch"
+          @keyup.enter="searchFacility"
+          @change="onSelectOrganization"
+        ).font-14.font-weight-regular
+          template(v-slot:append)
+            v-row
+              //- voice search
                 v-btn(
-                  fab
+                  icon
                   color="primary"
-                  @click="searchFacility(true)"
-                ).elevation-0
-                  v-icon mdi-magnify
-
-        template(v-if="$isMobile")
-          v-toolbar(
-            height="65"
-            color="white"
-            :class="{'toolbar-shadow': !$isMobile }"
-          ).toolbar.mt-5
-            v-row.search-container.d-flex.mt-5.ml-1
-              v-col.grow.search-fields.mt-2
-                v-toolbar-title.font-14.ml-4.text-left.font-weight-bold Location
-                  v-autocomplete(
-                    placeholder="Municipality"
-                    v-model="orgSearchLocation"
-                    solo
-                    flat
-                    dense
-                    :append-icon="null"
-                    :items="cities"
-                    @keyup.enter="searchFacility"
-                  ).font-14.font-weight-regular
-          v-row(justify="end")
-            v-col(cols="4")
+                ).mx-1.pt-1
+                  v-icon mdi-microphone
               v-btn(
-                block
-                :color="mobileSearchBtnColor"
+                v-if="!$isMobile"
+                fab
+                small
+                color="primary"
                 @click="searchFacility(true)"
-              ).text-none Search
+              ).elevation-0
+                v-icon mdi-magnify
 </template>
 
 <script>
@@ -96,10 +41,6 @@ import NCR_CITIES from '~/assets/fixtures/ncr-cities';
 import { fetchOrganizations } from '~/services/organizations';
 export default {
   props: {
-    provinces: {
-      type: Array,
-      default: () => ([]),
-    },
     requireAction: {
       type: Boolean,
       default: false,
@@ -107,10 +48,6 @@ export default {
     showSuggestions: {
       type: Boolean,
       default: false,
-    },
-    mobileSearchBtnColor: {
-      type: String,
-      default: 'primary',
     },
   },
   data () {
@@ -128,6 +65,9 @@ export default {
     };
   },
   watch: {
+    orgSuggestionsSearchQuery (val) {
+      this.searchFacility(true);
+    },
     orgSearchLocation (val) {
       if (!val && !this.orgSearchQuery) {
         this.clearSearch();
@@ -209,6 +149,9 @@ export default {
 
 .search-select >>> .v-select__selection--comma {
   color: #FFFFFF !important;
+}
+.search-button {
+  size: 10 10;
 }
 
 @media screen and (max-width: 1269px) {

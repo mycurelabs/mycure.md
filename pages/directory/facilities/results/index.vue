@@ -1,17 +1,13 @@
 <template lang="pug">
   div(style="background-color: #fafafa;")
-    services.services
-    results-footer(v-if="!loading" absolute)
+    facilities-directory(:class="{'pb-5': $isMobile}").services
 </template>
 
 <script>
-import ResultsFooter from '~/components/services/ResultsFooter';
-import Services from '~/components/services';
 import headMeta from '~/utils/head-meta';
 export default {
   components: {
-    ResultsFooter,
-    Services,
+    FacilitiesDirectory: () => import('~/components/facilities-directory'),
   },
   layout: 'results',
   // middleware: ['disable-route'],
