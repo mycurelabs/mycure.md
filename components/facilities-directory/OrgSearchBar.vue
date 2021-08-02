@@ -1,7 +1,7 @@
 <template lang="pug">
   v-container
     v-row(justify="end" align="center")
-      v-col(cols="12" sm="5").pb-0.mb-n5
+      v-col(cols="12" sm="5").pb-0
         v-text-field(
           v-model="orgSearchQuery"
           item-text="name"
@@ -30,6 +30,7 @@
           rounded
           solo
           dense
+          flat
           :height="$isMobile ? '40px' : '60px'"
           :white--text="$isMobile"
           :append-icon="null"
@@ -89,12 +90,16 @@ export default {
       });
     },
     orgSearchLocation (val) {
-      if (!val && !this.orgSearchQuery) {
+      if (this.requireAction) return;
+      if (!this.orgSearchQuery && !this.orgSearchLocation) {
         this.clearSearch();
         return;
       }
-      if (this.showSuggestions && !this.$isMobile) this.handleSuggestions();
-      this.searchFacility();
+      console.log('eyo');
+      this.$emit('search-organizations', {
+        searchText: this.orgSearchQuery,
+        locationText: this.orgSearchLocation,
+      });
     },
   },
   methods: {
