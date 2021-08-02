@@ -2,28 +2,23 @@
   v-container
     v-row(justify="end" align="center")
       v-col(cols="12" sm="5").pb-0.mb-n5
-        v-combobox(
-          v-model="orgSuggestionsSearchQuery"
+        v-text-field(
+          v-model="orgSearchQuery"
           item-text="name"
           placeholder="Search for clinics"
           background-color="#d0e8f5"
-          return-object
-          solo
           rounded
           :height="$isMobile ? '40px' : '60px'"
           :items="orgSuggestions"
-          :clear-icon="null"
           @update:search-input="debouncedSuggestionsSearch"
           @keyup.enter="searchFacility"
           @change="onSelectOrganization"
         ).font-14.font-weight-regular
-          template(v-slot:append)
-            v-row
-              v-btn(
-                icon
-                color="primary"
-              ).mx-1.pt-1
-                v-icon mdi-microphone
+          v-btn(
+            icon
+            color="primary"
+          ).mx-1.pt-1
+            v-icon mdi-microphone
       v-spacer(v-if="!$isMobile")
       v-col(cols="5" sm="3").search-fields.mb-n5
         v-autocomplete(
@@ -79,8 +74,17 @@ export default {
     };
   },
   watch: {
-    orgSuggestionsSearchQuery (val) {
-      this.searchFacility();
+    orgSearchQuery (val) {
+      if (this.requireAction) return;
+      if (!this.orgSearchQuery && !this.orgSearchLocation) {
+        this.clearSearch();
+        return;
+      }
+      console.log('eyo');
+      this.$emit('search-organizations', {
+        searchText: this.orgSearchQuery,
+        locationText: this.orgSearchLocation,
+      });
     },
     orgSearchLocation (val) {
       if (!val && !this.orgSearchQuery) {
@@ -114,19 +118,19 @@ export default {
       const { items } = await fetchOrganizations(this.$sdk, query);
       this.orgSuggestions = items || [];
     },
-    searchFacility (forceSearch = false) {
-      if (this.requireAction && !forceSearch) return;
-      if (!this.orgSearchQuery && !this.orgSearchLocation) {
-        this.clearSearch();
-        return;
-      }
-      const suggestion = this.mapSuggestion();
-      this.$emit('search-organizations', {
-        searchText: this.orgSearchQuery,
-        locationText: this.orgSearchLocation,
-        ...suggestion && { suggestion },
-      });
-    },
+    // searchFacility (forceSearch = false) {
+    //   if (this.requireAction && !forceSearch) return;
+    //   if (!this.orgSearchQuery && !this.orgSearchLocation) {
+    //     this.clearSearch();
+    //     return;
+    //   }
+    //   const suggestion = this.mapSuggestion();
+    //   this.$emit('search-organizations', {
+    //     searchText: this.orgSearchQuery,
+    //     locationText: this.orgSearchLocation,
+    //     ...suggestion && { suggestion },
+    //   });
+    // },
     clearSearch () {
       this.orgSearchQuery = '';
       this.$emit('clear-organizations');

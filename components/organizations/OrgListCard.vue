@@ -77,7 +77,7 @@
                 height="16px"
                 alt="Calendar logo"
               ).mr-2
-            b Clinic Visit
+            b Book a Visit
 </template>
 
 <script>
