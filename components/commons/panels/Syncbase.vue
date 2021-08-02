@@ -2,7 +2,7 @@
   v-container
     v-row(justify="center")
       generic-sub-page-panel(
-        content-right
+        :content-right="contentRight"
         :title="panelTitle"
         :title-classes="version === 3 ? headerClasses : null"
         :center-panel-title="version === 3 ? 'Enjoy the best of both worlds' : null"
@@ -13,10 +13,12 @@
         div(v-if="version === 1" slot="super-title")
           p(:class="{ 'text-center' : $isMobile }").primary--text MYCURE ONLINE & OFFLINE
         div(slot="content")
-          template(v-if="version !== 2")
-            p(:class="descriptionClasses") Work as if you have an in-house server with the convenience of the cloud. Create your medical records locally using multiple devices even if the internet is down! Once back online, it instantly syncs your data into the cloud.
-          template(v-else)
+          template(v-if="version === 2")
             p(:class="descriptionClasses") With MYCURE Syncbase, work as if you have an in-house server with the convenience of the cloud. Create your medical records locally using multiple devices even if the internet is down! Once back online, it instantly syncs your data into the cloud.
+          template(v-if="version === 4")
+            p(:class="descriptionClasses") Work online and offline across multiple locations with MYCURE Syncbase.
+          template(v-else)
+            p(:class="descriptionClasses") Work as if you have an in-house server with the convenience of the cloud. Create your medical records locally using multiple devices even if the internet is down! Once back online, it instantly syncs your data into the cloud.
         template(v-if="!hideBtn" slot="cta-button")
           //- mc-btn(
           //-   color="primary"
@@ -28,9 +30,9 @@
           //-   :to="{ name: 'syncbase' }"
           //-   :class="{'font-s': !$isMobile}"
           //- ).text-none.button
-          div(v-if="version !== 3" :class="{'text-center': $isMobile}").pl-3.mr-n3
+          div(v-if="version !== 3" :class="{'text-center': $isMobile}").mr-n3
             nuxt-link(:to="{ name: 'syncbase' }" :class="{'d-flex': !$isMobile}").button
-              span(:class="[{'font-14':  $isMobile}, {'font-s':  $isRegularScreen}, {'font-m':  $isWideScreen}]").primary--text Learn about MYCURE Syncbase
+              span(:class="[{'font-14':  $isMobile}, {'font-s':  $isRegularScreen}, {'font-m':  $isWideScreen}]").primary--text {{ linkText}}
               v-icon(left color="primary" :large="$isWideScreen" :small="$isMobile") mdi-chevron-right
           div(v-else :class="{'text-center': $isMobile}")
             mc-btn(
@@ -82,6 +84,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    contentRight: {
+      type: Boolean,
+      default: true,
+    },
   },
   data () {
     this.headerClasses = [
@@ -100,13 +106,15 @@ export default {
   computed: {
     panelTitle () {
       switch (this.version) {
-        case 2:
-          return 'Enjoy the best of both worlds';
-        case 3:
-          return 'MYCURE works online and offline';
-        default:
-          return 'Internet connection won\'t be a problem';
+        case 2: return 'Enjoy the best of both worlds';
+        case 3: return 'MYCURE works online and offline';
+        case 4: return 'Accesibility like never before';
+        default: return 'Internet connection won\'t be a problem';
       }
+    },
+    linkText () {
+      if (this.version === 4) return 'Learn more';
+      return 'Learn about MYCURE Syncbase';
     },
     contentColumnBindings () {
       return {
@@ -114,7 +122,7 @@ export default {
         md: 6,
         xl: 5,
         alignSelf: 'center',
-        offsetMd: 1,
+        offsetMd: this.contentLeft ? 0 : 1,
       };
     },
     mediaColumnBindings () {
