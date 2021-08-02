@@ -67,7 +67,7 @@
             target="_blank"
             rel="noopener noreferrer"
             block
-            :disabled="readOnly || !hasWebsite"
+            :disabled="readOnly"
             @click="openFacility"
           ).text-none.elevation-0.font-weight-light
             //- need white version
@@ -167,7 +167,7 @@ export default {
       }
     },
     openFacility () {
-      this.$router.push(`/facilities/${this.organization.id}`);
+      this.$router.push(`/facilities/${this.organization.websiteId || this.organization.id}`);
     },
     formatTodaySchedule (schedules) {
       if (!schedules || !schedules?.length) return 'Unavailable today';
