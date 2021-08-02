@@ -7,7 +7,7 @@
   ).nav-bar
     v-container.px-0
       v-col.pa-0
-        v-row(:justify="{'center': !$isMobile}" :class="!$isMobile ? 'mx-8' : '' ").px-0.mx-0
+        v-row(:justify="{'center': !$isMobile}").px-0.mx-0
           v-col(cols="1").pl-0
             nuxt-link(to="/")
               img(
@@ -17,18 +17,18 @@
                 alt="MYCURE logo"
                 :class="!$isMobile ? ['mr-1', 'mt-1'] : '' "
               )
-          v-spacer(v-if="!$isMobile")
-          v-col(v-else cols="7")
-          v-col(cols="1" :class="{'pt-4': !$isMobile}").pr-0
-            v-btn(
-              color="primary"
-              depressed
-              rounded
-              :large="$isWideScreen"
-              @click="openPxPortal(pxPortalLogIn)"
-            ).text-none.mr-2
-              v-icon(small) mdi-account-outline
-              span.font-weight-thin.font-12 Login
+          v-spacer
+          v-col(cols="1" :class="!$isMobile ? 'pt-7' : 'pt-6'").pr-0
+            v-row(justify="end")
+              v-btn(
+                color="primary"
+                depressed
+                rounded
+                :large="$isWideScreen"
+                @click="openPxPortal(pxPortalLogIn)"
+              ).text-none.mr-2
+                v-icon(small) mdi-account-outline
+                span.font-weight-thin.font-12 Login
 </template>
 
 <script>
