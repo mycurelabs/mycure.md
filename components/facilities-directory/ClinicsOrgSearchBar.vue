@@ -19,11 +19,12 @@
         ).font-14.font-weight-regular
           template(v-slot:append)
             v-row
-              v-btn(
-                icon
-                color="primary"
-              ).mx-1.pt-1
-                v-icon mdi-microphone
+              //- voice search
+                v-btn(
+                  icon
+                  color="primary"
+                ).mx-1.pt-1
+                  v-icon mdi-microphone
               v-btn(
                 v-if="!$isMobile"
                 fab

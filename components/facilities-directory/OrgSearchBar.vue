@@ -14,11 +14,13 @@
           @keyup.enter="searchFacility"
           @change="onSelectOrganization"
         ).font-14.font-weight-regular
-          v-btn(
-            icon
-            color="primary"
-          ).mx-1.pt-1
-            v-icon mdi-microphone
+          //- voice search
+            template(v-slot:append)
+              v-btn(
+                icon
+                color="primary"
+              ).mt-2
+                v-icon mdi-microphone
       v-spacer(v-if="!$isMobile")
       v-col(cols="5" sm="3").search-fields.mb-n5
         v-autocomplete(
