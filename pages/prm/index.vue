@@ -25,7 +25,6 @@
       description="Reinforce continuity of care in an effective and timely way using this medical CRM"
       :items="features"
       image-dir="prm/"
-      extension-exclusive
     )
     //- 3rd panel
     generic-media-panel(
@@ -90,38 +89,34 @@ export default {
     this.features = [
       {
         title: 'Quick Calls and Chats',
-        icon: 'cookie',
-        iconExtension: '.png',
-        alt: 'cookie',
+        icon: 'Quick Calls and Chats',
+        iconExtension: '.webp',
       },
       {
         title: 'Appointment Schedule',
-        icon: 'cookie',
-        iconExtension: '.png',
-        alt: 'cookie',
+        icon: 'Appointment Schedule',
+        iconExtension: '.webp',
       },
       {
         title: 'SMS and In-app Reminders',
-        icon: 'cookie',
-        iconExtension: '.png',
-        alt: 'cookie',
+        icon: 'SMS and In-app Reminders',
+        iconExtension: '.webp',
       },
       {
         title: 'Promotions and Packages',
-        icon: 'cookie',
-        iconExtension: '.png',
-        alt: 'cookie',
+        icon: 'Promotions and Packages',
+        iconExtension: '.webp',
       },
       {
         title: 'Feedback Forms',
-        icon: 'cookie',
-        iconExtension: '.png',
-        alt: 'cookie',
+        icon: 'Feedback Forms',
+        iconExtension: '.webp',
       },
     ];
     this.pricingDetails = DOCTORS_PRICING;
     this.headerClasses = ['mc-title-set-1', 'font-weight-semibold'];
     this.descriptionClasses = ['mc-content-set-1', 'font-open-sans', 'font-gray'];
+    this.btnClasses = ['mc-button-set-1'];
     this.listHeaderClasses = ['mc-list-title-set-1', 'lh-title', 'font-weight-semibold'];
     this.listContentClasses = ['mc-list-content-set-1', 'font-open-sans', 'font-gray'];
     return {
