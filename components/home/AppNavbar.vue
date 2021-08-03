@@ -143,22 +143,24 @@ export default {
       },
       {
         name: 'Clinics',
-        isMenu: true,
-        menuItems: [
-          { name: 'Outpatient Clinics', route: 'clinics' },
-          { name: 'Skin Clinics', route: 'clinics-skin' },
-          { name: 'Dental Clinics', route: 'clinics-dental' },
-          { name: 'OFW Clinics', route: 'clinics-ofw' },
-          { name: 'Corporate Clinics', route: 'clinics-corporate' },
-        ],
+        // isMenu: true,
+        // menuItems: [
+        //   { name: 'Outpatient Clinics', route: 'clinics' },
+        //   { name: 'Skin Clinics', route: 'clinics-skin' },
+        //   { name: 'Dental Clinics', route: 'clinics-dental' },
+        //   { name: 'OFW Clinics', route: 'clinics-ofw' },
+        //   { name: 'Corporate Clinics', route: 'clinics-corporate' },
+        // ],
+        route: 'clinics',
       },
       {
         name: 'Diagnostics',
-        isMenu: true,
-        menuItems: [
-          { name: 'Diagnostic Centers', route: 'diagnostics' },
-          { name: 'Mobile Labs', route: 'diagnostics-mobile-labs' },
-        ],
+        // isMenu: true,
+        // menuItems: [
+        //   { name: 'Diagnostic Centers', route: 'diagnostics' },
+        //   { name: 'Mobile Labs', route: 'diagnostics-mobile-labs' },
+        // ],
+        route: 'diagnostics',
       },
       // TODO: re-enable
       // {
