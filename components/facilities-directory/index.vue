@@ -132,7 +132,7 @@ export default {
           searchText,
           locationText,
           // TODO: confirm org types that are not included
-          type: 'diagnostic-center',
+          type: 'facility',
         };
 
         const { items, total } = await fetchOrganizations(this.$sdk, query);
