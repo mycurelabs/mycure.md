@@ -12,7 +12,6 @@
           filled
           :items="orgSuggestions"
           @update:search-input="debouncedSuggestionsSearch"
-          @keyup.enter="searchFacility"
           @change="onSelectOrganization"
         ).font-14.font-weight-regular
           //- voice search
@@ -37,7 +36,6 @@
           :white--text="$isMobile"
           :append-icon="null"
           :items="cities"
-          @keyup.enter="searchFacility"
         ).font-14.font-weight-regular
 </template>
 
