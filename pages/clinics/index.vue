@@ -8,8 +8,8 @@
       title="Simplified workflows, faster results, better performance."
       meta-title="MYCURE Clinic Management System"
       description="Designed for modern clinics with complex operations. Large or small, MYCURE enables clinics to be much more efficient, increase in revenue, and build more patient loyalty."
-      parse-title="regular"
-      parse-meta-title="regular"
+      parse-title
+      parse-meta-title
       btn-text="Get Started"
       image="Clinics USP"
       :image-width="$isMobile ? '100%' : '90%'"
