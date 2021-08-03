@@ -152,6 +152,7 @@ export default {
     ThinkLongTerm: () => import('~/components/commons/panels/ThinkLongTerm'),
     Usp,
   },
+  middleware: ['disable-route'],
   async asyncData ({ redirect }) {
     const country = await getCountry() || {};
     const code = country.country_code;

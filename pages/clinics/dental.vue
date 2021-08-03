@@ -153,6 +153,7 @@ export default {
     ThinkLongTerm: () => import('~/components/commons/panels/ThinkLongTerm'),
     Usp,
   },
+  middleware: ['disable-route'],
   data () {
     this.studentPanel = {
       header: 'Still a student?',

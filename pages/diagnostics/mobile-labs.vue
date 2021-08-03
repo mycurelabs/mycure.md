@@ -151,6 +151,7 @@ export default {
     Workflow: () => import('~/components/mobile-labs/Workflow'),
     Usp,
   },
+  middleware: ['disable-route'],
   data () {
     this.reportMockups = [
       {

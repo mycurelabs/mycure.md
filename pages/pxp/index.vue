@@ -30,6 +30,7 @@ export default {
     Usp,
   },
   layout: 'pxp',
+  middleware: ['disable-route'],
   data () {
     return {
       loading: true,

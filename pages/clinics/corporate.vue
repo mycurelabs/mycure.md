@@ -78,6 +78,7 @@ export default {
     SignupButton: () => import('~/components/commons/SignupButton'),
     Usp,
   },
+  middleware: ['disable-route'],
   data () {
     this.features = [
       {
