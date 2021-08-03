@@ -14,10 +14,10 @@
       //-   :src="require(`~/assets/images/home/Homepage USP BG.${isWebp ? 'webp' : 'png'}`)"
       //- ).background
     v-container(:class="{'ml-n6': !$isMobile}").content
-      v-row(justify="center" :align="$isRegularScreen ? 'center' : 'start'" :style="{ height: $isMobile ? 'auto' : '115vh', width: '100vw'}")
+      v-row(justify="center" align="center" :style="{ height: $isMobile ? 'auto' : '115vh', width: '100vw'}")
         generic-panel(:row-bindings="{ justify: 'center' }")
           v-col(cols="12").text-center.text-container
-            v-row(justify="center")
+            v-row(justify="center").mb-5
               v-col(cols="12" md="6" xl="8")
                 h1(:class="headerClasses").mb-10 Enterprise-Grade
                   br
@@ -144,7 +144,7 @@ export default {
       //   image: 'security',
       // },
     ];
-    this.headerClasses = ['mc-title-set-3'];
+    this.headerClasses = ['mc-title-set-4', 'lh-title'];
     return {
       isWebp: false,
     };

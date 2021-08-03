@@ -211,7 +211,7 @@ classBinder(this, {
     @include font-sizer(s);
   }
   @media (min-width: $min-xl) {
-    @include font-sizer(l);
+    @include font-sizer(m);
   }
 }
 .mc-content-set-4 {

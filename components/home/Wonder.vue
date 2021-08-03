@@ -2,16 +2,16 @@
   v-hover(v-slot="{ hover }")
     v-card(
       color="#fafafa"
-      flat
+      rounded="xl"
       :height="cardHeight"
       :to="wonder.infoLink"
-      :elevation="hover ? 16 : 0"
+      :elevation="hover ? 16 : 5"
     ).ma-1
       v-card-text.text-center
         picture-source(
           :image="wonder.image"
-          :image-width="( $isMobile ? '107px' : '135px')"
-          :image-height="( $isMobile ? '145px' : '185px')"
+          :image-width="( $isMobile ? '107px' : '115px')"
+          :image-height="( $isMobile ? '145px' : '165px')"
           :image-alt="wonder.title"
           custom-path="home/"
           image-file-extension=".webp"
@@ -53,10 +53,10 @@ export default {
       });
     },
     cardHeight () {
-      if (this.$isWideScreen) return '390';
-      if (this.wLG) return '360';
+      if (this.$isWideScreen) return '380';
+      if (this.wLG) return '355';
       if (this.wSM) return '375';
-      return '350';
+      return '300';
     },
   },
 };
