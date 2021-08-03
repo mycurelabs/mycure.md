@@ -8,6 +8,7 @@
           placeholder="Search for clinics"
           background-color="#d0e8f5"
           rounded
+          clearable
           :height="$isMobile ? '40px' : '60px'"
           :items="orgSuggestions"
           @update:search-input="debouncedSuggestionsSearch"
@@ -31,6 +32,7 @@
           solo
           dense
           flat
+          clearable
           :height="$isMobile ? '40px' : '60px'"
           :white--text="$isMobile"
           :append-icon="null"
