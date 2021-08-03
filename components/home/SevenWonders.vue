@@ -14,7 +14,7 @@
       //-   :src="require(`~/assets/images/home/Homepage USP BG.${isWebp ? 'webp' : 'png'}`)"
       //- ).background
     v-container(:class="{'ml-n6': !$isMobile}").content
-      v-row(justify="center" align="center" :style="{ height: $isMobile ? 'auto' : '110vh', width: '100vw'}")
+      v-row(justify="center" :align="$isRegularScreen ? 'center' : 'start'" :style="{ height: $isMobile ? 'auto' : '115vh', width: '100vw'}")
         generic-panel(:row-bindings="{ justify: 'center' }")
           v-col(cols="12").text-center.text-container
             v-row(justify="center")
@@ -31,42 +31,41 @@
                   :x-large="$isWideScreen"
                   :large="$isRegularScreen"
                   color="success"
-                ).text-none.font-s
+                ).text-none.mc-button-set-1
                   span Get Started
-          template(v-if="!$isMobile")
-            v-col(cols="12" xl="10")
-              vue-slick-carousel(
-                autoplay
-                draggable
-                infinite
-                :arrows="false"
-                :dots="false"
-                :slidesToShow="4",
-                :speed="500"
-              )
-                div(v-for="(wonder,key) in wonders" :key="key")
-                  wonder(:wonder="wonder")
-            //- v-col(cols="8" md="3" xl="3" v-for="(wonder, key) in wonders" :key="key")
-            //-   wonder(:wonder="wonder")
-          template(v-else)
-            v-col(cols="10" sm="8" md="10")
-              carousel(
-                navigationNextLabel=" "
-                navigationPrevLabel=" "
-                paginationColor="#f0f0f0"
-                autoplay
-                loop
-                navigationEnabled
-                paginationEnabled
-                :per-page="1"
-                :navigationClickTargetSize="50"
-              )
-                slide(
-                  v-for="(wonder,index) in wonders"
-                  :key="index"
-                  :data-index="index+1"
-                ).pa-2
-                  wonder(:wonder="wonder")
+            v-row(justify="center")
+              v-col(v-if="!$isMobile" cols="12" xl="10")
+                vue-slick-carousel(
+                  autoplay
+                  draggable
+                  infinite
+                  :arrows="false"
+                  :dots="false"
+                  :slidesToShow="4",
+                  :speed="500"
+                )
+                  div(v-for="(wonder,key) in wonders" :key="key")
+                    wonder(:wonder="wonder")
+              //- v-col(cols="8" md="3" xl="3" v-for="(wonder, key) in wonders" :key="key")
+              //-   wonder(:wonder="wonder")
+              v-col(v-else cols="10" sm="8" md="10")
+                carousel(
+                  navigationNextLabel=" "
+                  navigationPrevLabel=" "
+                  paginationColor="#f0f0f0"
+                  autoplay
+                  loop
+                  navigationEnabled
+                  paginationEnabled
+                  :per-page="1"
+                  :navigationClickTargetSize="50"
+                )
+                  slide(
+                    v-for="(wonder,index) in wonders"
+                    :key="index"
+                    :data-index="index+1"
+                  ).pa-2
+                    wonder(:wonder="wonder")
 </template>
 
 <script>
