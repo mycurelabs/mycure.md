@@ -11,8 +11,8 @@ $max-md: $min-lg - 1;
 $max-lg: $min-xl - 1;
 
 // Font Presets
-$font-s: 1.25rem;
 $font-xs: 16px;
+$font-s: 1.25rem;
 $font-m: 1.5rem;
 $font-l: 3rem;
 $font-xl: 3.75rem;
@@ -211,7 +211,7 @@ classBinder(this, {
     @include font-sizer(s);
   }
   @media (min-width: $min-xl) {
-    @include font-sizer(m);
+    @include font-sizer(l);
   }
 }
 .mc-content-set-4 {
