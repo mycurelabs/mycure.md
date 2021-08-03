@@ -65,10 +65,11 @@
         color="primary"
         target="_blank"
         rel="noopener noreferrer"
+        tile
         block
         x-large
         @click="openFacility"
-      ).text-none.elevation-0.font-weight-light.card-actions.mb-n8.ml-n8
+      ).text-none.elevation-0.font-weight-light.card-actions.mb-n8.ml-n8.rounded-bl-lg.rounded-br-lg
         //- need white version
           img(
             src="~/assets/images/directory-results/calendar.png"
