@@ -167,7 +167,7 @@ export default {
       }
     },
     openFacility () {
-      this.$router.push(`/facilities/${this.organization.id}`);
+      this.$router.push(`/facilities/${this.organization.websiteId || this.organization.id}`);
     },
     formatTodaySchedule (schedules) {
       if (!schedules || !schedules?.length) return 'Unavailable today';

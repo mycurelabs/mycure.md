@@ -121,7 +121,7 @@ export default {
       const query = {
         searchText,
         limit: 10,
-        type: 'diagnostic-center',
+        type: 'facility',
       };
 
       const { items } = await fetchOrganizations(this.$sdk, query);
