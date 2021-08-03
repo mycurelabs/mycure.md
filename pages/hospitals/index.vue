@@ -21,7 +21,6 @@
       description="Work seamlessly from one station to another.  With its open APIs, MYCURE can integrate with your other existing systems."
       :items="features"
       image-dir="hospitals/"
-      extension-exclusive
     )
     //- 3rd panel
     syncbase
@@ -125,39 +124,33 @@ export default {
     this.features = [
       {
         title: 'Ward Management',
-        icon: 'cookie',
-        iconExtension: '.png',
-        alt: 'cookie',
+        icon: 'Ward Management',
+        iconExtension: '.webp',
       },
       {
         title: 'Kitchen Management',
-        icon: 'cookie',
-        iconExtension: '.png',
-        alt: 'cookie',
+        icon: 'Kitchen Management',
+        iconExtension: '.webp',
       },
       {
         title: 'Emergency Room',
-        icon: 'cookie',
-        iconExtension: '.png',
-        alt: 'cookie',
+        icon: 'Emergency Room',
+        iconExtension: '.webp',
       },
       {
         title: 'Nursing Services',
-        icon: 'cookie',
-        iconExtension: '.png',
-        alt: 'cookie',
+        icon: 'Nursing Services',
+        iconExtension: '.webp',
       },
       {
         title: 'Philhealth',
-        icon: 'cookie',
-        iconExtension: '.png',
-        alt: 'cookie',
+        icon: 'Philhealth',
+        iconExtension: '.webp',
       },
       {
         title: 'Ancillary Services',
-        icon: 'cookie',
-        iconExtension: '.png',
-        alt: 'cookie',
+        icon: 'Ancillary Services',
+        iconExtension: '.webp',
       },
     ];
     this.infoPanels = [
