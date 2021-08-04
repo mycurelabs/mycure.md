@@ -1,17 +1,17 @@
 <template lang="pug">
   v-container
-    v-row(justify="end" align="center")
-      v-col(cols="12" sm="5").pb-0
+    v-row(justify="end" align="center").mt-2
+      v-col(cols="12" sm="5").py-0
         v-text-field(
           v-model="orgSearchQuery"
           item-text="name"
           placeholder="Search for clinics"
           background-color="#d0e8f5"
           rounded
-          :height="$isMobile ? '40px' : '60px'"
+          clearable
+          filled
           :items="orgSuggestions"
           @update:search-input="debouncedSuggestionsSearch"
-          @keyup.enter="searchFacility"
           @change="onSelectOrganization"
         ).font-14.font-weight-regular
           //- voice search
@@ -22,7 +22,7 @@
               ).mt-2
                 v-icon mdi-microphone
       v-spacer(v-if="!$isMobile")
-      v-col(cols="5" sm="3").search-fields.mb-n5
+      v-col(cols="6" sm="3").search-fields.py-0
         v-autocomplete(
           placeholder="Location"
           v-model="orgSearchLocation"
@@ -31,12 +31,12 @@
           solo
           dense
           flat
+          clearable
           :height="$isMobile ? '40px' : '60px'"
           :white--text="$isMobile"
           :append-icon="null"
           :items="cities"
-          @keyup.enter="searchFacility"
-        ).font-14.font-weight-regular.mt-2
+        ).font-14.font-weight-regular
 </template>
 
 <script>
@@ -119,7 +119,7 @@ export default {
       const query = {
         searchText,
         limit: 10,
-        type: 'diagnostic-center',
+        type: 'facility',
       };
 
       const { items } = await fetchOrganizations(this.$sdk, query);
