@@ -98,7 +98,8 @@
 </template>
 
 <script>
-import _ from 'lodash';
+import debounce from 'lodash/debounce';
+import isEmpty from 'lodash/isEmpty';
 import specialties from '~/assets/fixtures/specialties';
 import GenericContainer from '~/components/commons/generic-container';
 import DoctorFilterDialogMobile from '~/components/commons/generic-doctor-filter-dialog-mobile';
@@ -166,7 +167,7 @@ export default {
         specialties: [],
         sortBy: {},
       },
-      debouncedFetch: _.debounce(this.onSearch, 1000),
+      debouncedFetch: debounce(this.onSearch, 1000),
       //
       viewType: 'grid',
       mobileViewType: 'grid',
@@ -190,7 +191,7 @@ export default {
       this.searchObject.searchString = val;
     },
     searchSpecialties (val) {
-      if (_.isEmpty(val)) return;
+      if (isEmpty(val)) return;
       this.searchObject.specialties = val;
     },
     'searchObject.searchString': {

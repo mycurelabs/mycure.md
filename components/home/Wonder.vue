@@ -2,16 +2,19 @@
   v-hover(v-slot="{ hover }")
     v-card(
       color="#fafafa"
-      height="100%"
       rounded="xl"
+      :height="cardHeight"
       :to="wonder.infoLink"
       :elevation="hover ? 16 : 5"
-    )
+    ).ma-1
       v-card-text.text-center
-        img(
-          :src="require(`~/assets/images/home/${wonder.image}.png`)"
-          :width="$isMobile ? '60%' : '75%'"
-          :alt="wonder.title"
+        picture-source(
+          :image="wonder.image"
+          :image-width="( $isMobile ? '107px' : '115px')"
+          :image-height="( $isMobile ? '145px' : '165px')"
+          :image-alt="wonder.title"
+          custom-path="home/"
+          image-file-extension=".webp"
         )
         br
         br
@@ -48,6 +51,12 @@ export default {
       return classBinder(this, {
         wide: ['font-s'],
       });
+    },
+    cardHeight () {
+      if (this.$isWideScreen) return '380';
+      if (this.wLG) return '355';
+      if (this.wSM) return '375';
+      return '300';
     },
   },
 };

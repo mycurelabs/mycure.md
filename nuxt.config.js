@@ -27,6 +27,7 @@ export default {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'preload', type: 'image', href: '~/assets/images/home/Homepage USP BG.webp' },
     ],
   },
 
@@ -35,24 +36,22 @@ export default {
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
+    '~/assets/stylesheets/mycure-web.scss',
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     '~/plugins/vue-media-query-mixin.js',
-    '~/plugins/vue-fragment.js',
     '~/plugins/vue-lazyload.js',
     '~/plugins/vue-gtag.js',
     { src: '~/plugins/vue-observe-visibility.js', mode: 'client' },
     { src: '~/plugins/main.js', mode: 'client' },
     { src: '~/plugins/mc-btn', mode: 'client' },
-    { src: '~plugins/vue-cookie-law', mode: 'client' },
     { src: '~/plugins/vue-carousel.js', mode: 'client' },
     { src: '~plugins/crisp.js', mode: 'client' },
     { src: '~plugins/amplitude.js', mode: 'client' },
     { src: '~/plugins/vue-morphling.js', mode: 'client' },
     { src: '~/plugins/mycure.js', mode: 'client' },
-    { src: '~/plugins/vue-typer.js', mode: 'client' },
     { src: '~/plugins/vue-stripe.js', mode: 'client' },
   ],
 
@@ -78,12 +77,16 @@ export default {
     '@nuxtjs/pwa',
     '@nuxtjs/dotenv',
     'nuxt-webfontloader',
+    '@nuxtjs/robots',
+    // Sitemap should always be declared last according to docs https://sitemap.nuxtjs.org/guide/setup
+    '@nuxtjs/sitemap',
   ],
+  // Google Web Font Loader Module
   webfontloader: {
     google: {
       families: [
         'Poppins:400,500,600,700,900',
-        'Open Sans:300,400',
+        'Open Sans:400,600',
       ],
     },
   },
@@ -104,7 +107,8 @@ export default {
     treeShake: true,
     optionsPath: './vuetify.options.js',
   },
-
+  
+  // Google Analytics Module
   googleAnalytics: {
     id: process.env.GA_ID,
     autoTracking: {
@@ -122,7 +126,10 @@ export default {
       },
     },
   },
-
+  sitemap: {
+    hostname: 'https://mycure.md',
+    gzip: true,
+  },
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
     transpile: [

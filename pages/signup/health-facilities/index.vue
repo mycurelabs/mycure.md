@@ -8,11 +8,12 @@
       img(
         src="~/assets/images/MYCURE-virtual-clinic-healthcare-practice-online-logo.svg"
         alt="White MYCURE Logo"
-        width="150"
+        width="150px"
+        height="41.88px"
         @click="$router.push({ name: 'index' })"
       )
       v-spacer
-      span Already have an account?&nbsp;&nbsp;
+      span(:class="{'font-10' : $isMobile}").ml-5.mr-2 Already have an account?&nbsp;&nbsp;
       v-btn(
         depressed
         color="primary"
@@ -99,7 +100,7 @@
                     v-tooltip(bottom)
                       template(v-slot:activator="{ on }")
                         v-btn(icon @click="countryDialog = true" v-on="on")
-                          img(width="25" :src="countryFlag").flag-img.mt-2
+                          img(width="25" height="18.75" :src="countryFlag").flag-img.mt-2
                       | Change Country
             v-col(
               cols="12"
@@ -260,7 +261,7 @@
 </template>
 
 <script>
-import { isEmpty } from 'lodash';
+import isEmpty from 'lodash/isEmpty';
 import { parsePhoneNumberFromString } from 'libphonenumber-js';
 // import { get } from 'lodash';
 import {

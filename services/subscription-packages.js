@@ -49,6 +49,12 @@ const mapPackageInclusions = (plan, organizationType) => {
     });
   }
 
+  // Core Features
+  inclusions.push({
+    text: 'Core Features',
+    valid: true,
+  });
+
   // Classic Booking website
   inclusions.push({
     text: `${organizationType === 'doctor' ? 'Professional' : 'Classic Booking'} Website`,
@@ -62,12 +68,6 @@ const mapPackageInclusions = (plan, organizationType) => {
       valid: true,
     });
   }
-
-  // Core Features
-  inclusions.push({
-    text: 'Core Features',
-    valid: true,
-  });
 
   // Doctor specific only
   if (DOCTOR_TYPES.includes(organizationType)) {
@@ -176,8 +176,8 @@ const PACKAGE_IMAGE = {
 };
 
 const PACKAGE_CURRENCY = {
-  php: '₱',
-  usd: 'USD',
+  php: 'P',
+  usd: '$',
 };
 
 const DOCTOR_TYPES = [

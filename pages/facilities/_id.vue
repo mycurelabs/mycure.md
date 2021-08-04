@@ -16,10 +16,10 @@
     ).panel-bg
       v-row(justify="center")
         v-col(cols="10").text-center
-          v-avatar(size="200").mb-5
+          v-avatar(:size="$isMobile ? '150' : '200'").mb-5
             img(:src="picURL")
-          h1.mb-5 {{clinicName}}
-          div(style="width: 25%; margin: auto;").white
+          h1(:class="clinicNameClasses").mb-5.font-usp-primary {{clinicName}}
+          div.white.btn-banner
             strong(slot="badge").font-18.warning--text We're Open!
           v-hover(
             v-slot="{ hover }"
@@ -30,9 +30,9 @@
               rounded
               dark
               :color="hover ? 'info' : 'warning'"
-              @click="chooseServiceDialog = true"
+              :href="bookURL"
             ).text-none.custom-clinic-button
-              h2 {{ hover ? 'Choose a service' : 'Book an Appointment' }}
+              h2 {{ hover ? 'Choose a schedule' : 'Book an Appointment' }}
 
     //- PANEL 1 FOOTER
     div(:class="{'d-flex': !$isMobile}" :style="{ height: !$isMobile ? '55px' : 'auto'}").panel-1-footer
@@ -85,7 +85,9 @@
 </template>
 
 <script>
-import { isEmpty, intersection, uniq } from 'lodash';
+import isEmpty from 'lodash/isEmpty';
+import intersection from 'lodash/intersection';
+import uniq from 'lodash/uniq';
 import VueScrollTo from 'vue-scrollto';
 // - utils
 import { getServices } from '~/utils/axios';
@@ -93,6 +95,7 @@ import { getOrganization } from '~/utils/axios/organizations';
 import { formatAddress } from '~/utils/formats';
 import canUseWebp from '~/utils/can-use-webp';
 import headMeta from '~/utils/head-meta';
+import classBinder from '~/utils/class-binder';
 // - services
 import { fetchClinicWebsiteDoctors } from '~/services/organization-members';
 import {
@@ -194,7 +197,6 @@ export default {
       pageCount: 2,
       // Data Models
       orgDoctors: [],
-      clinicWebsite: {},
       filteredServices: [],
       serviceTypes: [],
       serviceSchedules: [],
@@ -214,18 +216,25 @@ export default {
   },
   head () {
     return headMeta({
-      title: `${this.clinicWebsite?.name || 'Facility Website'}`,
+      title: `${this.clinic?.name || 'Facility Website'}`,
       description: 'Visit my professional website and schedule an appointment with me today.',
       socialBanner: this.picURL,
     });
   },
   computed: {
+    bookURL () {
+      if (this.isPreviewMode) return null;
+      const pxPortalUrl = process.env.PX_PORTAL_URL;
+      return `${pxPortalUrl}/appointments/step-1?organization=${this.orgId}&type=physical`;
+    },
     formattedAddress () {
       if (!this.clinic?.address) return '';
       return formatAddress(this.clinic.address, 'street1, street2, city, province, country');
     },
     clinicPhone () {
-      return this.clinic?.phone;
+      const { phone, phones } = this.clinic;
+      if (phones?.length) return phones.join(', ');
+      return phone || '';
     },
     // old
     mode () {
@@ -246,7 +255,7 @@ export default {
       return tags.includes('dummy');
     },
     picURL () {
-      return this.clinic?.picURL || require('~/assets/images/clinics-website/hospital-thumbnail.jpg');
+      return this.clinic?.picURL || require('~/assets/images/facility-placeholder.jpg');
     },
     clinicName () {
       return this.clinic?.name || 'MYCURE Clinic';
@@ -284,12 +293,6 @@ export default {
       });
       return compressedSchedules;
     },
-    testimonialDate () {
-      return this.clinicWebsite?.createdAt;
-    },
-    testimonialDescription () {
-      return this.clinicWebsite?.description;
-    },
     formattedDoctors () {
       if (!this.orgDoctors?.length) return [];
       return this.orgDoctors.map((doctor) => {
@@ -325,6 +328,14 @@ export default {
     },
     background () {
       return this.canUseWebp ? 'bg-webp' : 'bg-png';
+    },
+    // Classes
+    clinicNameClasses () {
+      return classBinder(this, {
+        mobile: ['font-m'],
+        regular: ['font-l'],
+        wide: ['font-xl'],
+      });
     },
   },
   async mounted () {
@@ -513,5 +524,21 @@ a {
 }
 .search-container {
   height: 400px;
+}
+.btn-banner {
+  width: 25%;
+  margin: auto;
+}
+
+@media screen and (max-width: 500px) {
+  .btn-banner {
+    width: 50%;
+  }
+}
+
+@media screen and (min-width: 1300px) {
+  .btn-banner {
+    width: 150px;
+  }
 }
 </style>

@@ -1,12 +1,21 @@
 <template lang="pug">
   v-app#app
-    nuxt
+    template(v-if="!loading")
+      nuxt
 </template>
 
 <script>
 import 'babel-polyfill';
 
 export default {
+  data () {
+    return {
+      loading: true,
+    };
+  },
+  mounted () {
+    this.loading = false;
+  },
 };
 </script>
 

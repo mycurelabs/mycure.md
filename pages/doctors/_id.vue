@@ -28,11 +28,11 @@
     //- Patient panel
     patient-panel(:metrics="doctorMetrics")
     //- Banner
-    div.banner-container.mt-n5
-      img(
-        :src="banner"
-        alt="MYCURE Doctor Banner"
-      ).banner
+    //- div.banner-container.mt-n5
+    //-   img(
+    //-     :src="banner"
+    //-     alt="MYCURE Doctor Banner"
+    //-   ).banner
       //- v-row(justify="end")
       //-   v-col(cols="12" md="4")
       //-     v-btn(
@@ -74,7 +74,7 @@
               :services="services"
               :is-preview-mode="isPreviewMode"
               @onUpdateClinicPage="fetchDoctorInfo($event)"
-            )
+            )#doctor-website-features
     v-snackbar(
       v-model="showSnack"
       :color="snackbarModel.color"
@@ -82,7 +82,8 @@
 </template>
 
 <script>
-import _ from 'lodash';
+import isEmpty from 'lodash/isEmpty';
+import VueScrollTo from 'vue-scrollto';
 import ChooseAppointment from '~/components/doctor-website/ChooseAppointment';
 import ChooseFacility from '~/components/doctor-website/ChooseFacility';
 import GenericPanel from '~/components/generic/GenericPanel';
@@ -98,7 +99,8 @@ import {
 } from '~/utils/axios';
 import { formatName } from '~/utils/formats';
 import headMeta from '~/utils/head-meta';
-import { fetchUserFacilities } from '~/services/organization-members';
+// import { fetchUserFacilities } from '~/services/organization-members';
+import { fetchOrganizations } from '~/services/organizations';
 export default {
   components: {
     ChooseAppointment,
@@ -113,7 +115,7 @@ export default {
   async asyncData ({ app, router, params, error }) {
     try {
       const doctor = await getDoctorWebsite({ username: params.id }, true);
-      if (_.isEmpty(doctor) || !doctor.id) {
+      if (isEmpty(doctor) || !doctor.id) {
         error({ statusCode: 404, message: 'doctor-not-found' });
       }
 
@@ -234,13 +236,31 @@ export default {
       try {
         const skip = this.clinicsLimit * (page - 1);
 
-        const { items, total } = await fetchUserFacilities(this.$sdk, {
-          id: this.doctor.id,
+        /* Uses organization-members service */
+        // const { items, total } = await fetchUserFacilities(this.$sdk, {
+        //   id: this.doctor.id,
+        //   limit: this.clinicsLimit,
+        //   skip,
+        // });
+
+        /* Uses organizations service */
+        const { items, total } = await fetchOrganizations(this.$sdk, {
+          createdBy: this.doctor.id,
           limit: this.clinicsLimit,
           skip,
+          $populate: {
+            doctorSchedules: {
+              service: 'schedule-slots',
+              method: 'find',
+              localKey: 'id',
+              foreignKey: 'organization',
+              account: this.doctor.id,
+            },
+          },
         });
         this.clinicsTotal = total;
-        this.clinics = items.map(item => item.organization);
+        // this.clinics = items.map(item => item.organization);
+        this.clinics = items;
       } catch (error) {
         console.error(error);
         this.$nuxt.$router.push('/');
@@ -279,7 +299,8 @@ export default {
       this.facilityDialog = true;
     },
     onBook () {
-      this.appointmentDialog = true;
+      // this.appointmentDialog = true;
+      VueScrollTo.scrollTo('#doctor-website-features', 500, { offset: -100, easing: 'ease' });
     },
     enqueueSnack ({ text, color }) {
       this.snackbarModel = {
@@ -294,7 +315,7 @@ export default {
 
 <style scoped>
 .main-container {
-  background-color: #f0f0f0;
+  background-color: #f9f9f9;
   width: 100vw;
   margin: 0;
   padding: 0;

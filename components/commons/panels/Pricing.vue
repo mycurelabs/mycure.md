@@ -1,5 +1,5 @@
 <template lang="pug">
-  div(:class="{'pricing-bg': !$isMobile}").mx-n3
+  div(:class="panelBackground").mx-n3
     v-container
       v-row(justify="center")
         generic-panel(:row-bindings="{ justify: 'center'}")
@@ -19,7 +19,14 @@
                     color="info"
                   )
                   strong(:class="descriptionClasses").font-open-sans.black--text Billed Annually
-            v-row(justify="center" dense)
+            v-row(v-if="loading" justify="center" dense).text-center
+              v-col(cols="12")
+                v-progress-circular(
+                  color="primary"
+                  indeterminate
+                  size="150"
+                )
+            v-row(v-else justify="center" dense)
               template(v-if="!$isMobile")
                 v-col(
                   v-for="(pack, key) in pricingPackages"
@@ -29,9 +36,9 @@
                   pricing-card(
                     :bundle="pack"
                     :payment-interval="paymentInterval"
-                    :height="type === 'doctor' ? '700' : '800'"
+                    :height="type === 'doctor' ? '750' : '850'"
                   ).elevation-3
-              v-col(v-else cols="12" sm="8")
+              v-col(v-else cols="12" sm="8" md="6")
                 carousel(
                   paginationColor="grey"
                   loop
@@ -48,15 +55,15 @@
                     pricing-card(
                       :bundle="pack"
                       :payment-interval="paymentInterval"
-                      :height="type === 'doctor' ? '700' : '800'"
+                      :height="type === 'doctor' ? '700' : '850'"
                     ).elevation-3
 </template>
 
 <script>
-import classBinder from '~/utils/class-binder';
 import { getSubscriptionPackagesPricing } from '~/services/subscription-packages';
 import GenericPanel from '~/components/generic/GenericPanel';
 import PricingCard from '~/components/commons/PricingCard';
+import canUseWebp from '~/utils/can-use-webp';
 export default {
   components: {
     GenericPanel,
@@ -95,33 +102,24 @@ export default {
     },
   },
   data () {
+    this.titleClasses = ['mc-title-set-1'];
+    this.descriptionClasses = ['mc-content-set-1'];
+    this.metaTitleClasses = ['mc-metatitle-set-1'];
     return {
       loading: false,
       switchModel: false,
       paymentInterval: 'month', // month | year
       pricingPackages: [],
+      canUseWebp: false,
     };
   },
   computed: {
-    titleClasses () {
-      return classBinder(this, {
-        mobile: ['font-m'],
-        regular: ['font-l'],
-        wide: ['font-xl'],
-      });
-    },
-    metaTitleClasses () {
-      return classBinder(this, {
-        mobile: ['font-xs'],
-        regular: ['font-s'],
-      });
-    },
-    descriptionClasses () {
-      return classBinder(this, {
-        mobile: ['font-xs'],
-        regular: ['font-s'],
-        wide: ['font-m'],
-      });
+    panelBackground () {
+      return this.$isMobile
+        ? 'pricing-bg-mobile'
+        : this.canUseWebp
+          ? 'pricing-bg-webp'
+          : 'pricing-bg-png';
     },
   },
   watch: {
@@ -136,6 +134,7 @@ export default {
   async created () {
     // fetch packages
     await this.fetchPackages(this.type);
+    this.canUseWebp = await canUseWebp();
   },
   methods: {
     async fetchPackages (type) {
@@ -157,10 +156,21 @@ export default {
 </script>
 
 <style scoped>
-.pricing-bg {
+.pricing-bg-png {
   width: 100vw;
-  background-image: url('../../../assets/images/pricing/Pricing BG.png');
+  background-image: url('../../../assets/images/pricing/MYCURE-Pricing BG Wide.png');
   background-position: center center;
+  background-size: 100% 100%;
+}
+.pricing-bg-webp {
+  width: 100vw;
+  background-image: url('../../../assets/images/pricing/MYCURE-Pricing BG Wide.webp');
+  background-position: center center;
+  background-size: 100% 100%;
+}
+.pricing-bg-mobile {
+  background-image: url('../../../assets/images/pricing/MYCURE-Pricing BG Mobile.png');
+  background-position: center bottom;
   background-size: 100% 100%;
 }
 </style>

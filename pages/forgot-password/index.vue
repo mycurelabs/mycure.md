@@ -1,17 +1,19 @@
 <template lang="pug">
-  v-container
+  v-container.pt-6
     v-row(align="center" justify="center")
       v-col(cols="12" sm="8" md="12" align="center" justify="center")
         img(
-          :width="logoWidth"
+          :width="$isMobile ? '180px' : ($isRegularScreen ? '170px' : '260px')"
+          :height="$isMobile ? '50.28px' : ($isRegularScreen ? '47.48px' : '72.61px')"
           src="~/assets/images/MYCURE-virtual-clinic-healthcare-practice-online-logo.svg"
           @click="$nuxt.$router.push({ name: 'index' })"
         ).link-to-home
       v-col(cols="12" sm="8" md="4" justify="center")
         v-card(width="100%")
           img(
-            width="100%"
             src="~/assets/images/forgot-password/mycure-password-banner-forgot.png"
+            :width="$isMobile ? '360px' : ($isRegularScreen ? '363.48px' : '563.48px')"
+            :height="$isMobile ? '121.64px' : ($isRegularScreen ? '122.83px' : '190.41px')"
           ).mx-auto
           v-card-text.px-4
             div.text-center
@@ -133,6 +135,7 @@ export default {
 <style scoped>
 .signin-title {
   font-weight: 500;
+  line-height: 1.50rem !important;
 }
 
 .router-link {

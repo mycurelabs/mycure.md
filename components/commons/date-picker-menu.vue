@@ -54,7 +54,7 @@
 </template>
 
 <script>
-import _ from 'lodash';
+import split from 'lodash/split';
 import {
   format,
   getTime,
@@ -166,7 +166,7 @@ export default {
         return format(this.value, 'YYYY-MM-DD');
       },
       set (val) {
-        const [year, month, date] = _.split(val, '-');
+        const [year, month, date] = split(val, '-');
         const withYear = setYear(this.value, year);
         const withMonth = setMonth(withYear, month - 1); // month is 0 based
         const withDate = this.type === 'date'
@@ -185,7 +185,7 @@ export default {
         return format(this.value, 'HH:mm');
       },
       set (val) {
-        const [hours, minutes] = _.split(val, ':');
+        const [hours, minutes] = split(val, ':');
         const withHour = setHours(this.value, hours);
         const withMinutes = setMinutes(withHour, minutes);
 

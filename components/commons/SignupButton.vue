@@ -14,6 +14,11 @@ const healthFacilityTypeMap = {
   clinics: 'clinic',
   diagnostics: 'diagnostic',
   telehealth: 'doctor-telehealth',
+  'clinics-skin': 'clinic',
+  'clinics-dental': 'clinic',
+  'clinics-ofw': 'clinic',
+  'clinics-corporate': 'clinic',
+  'diagnostics-mobile-labs': 'diagnostic',
 };
 export default {
   props: {

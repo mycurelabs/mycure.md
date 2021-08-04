@@ -1,7 +1,8 @@
 <template lang="pug">
   div
     v-tabs(v-model="activeTab")
-      v-tab(v-for="(tab, key) in doctorTabs" :key="key" :href="tab.href").text-none {{ tab.name }}
+      v-tab(v-for="(tab, key) in doctorTabs" :key="key" :href="tab.href").text-none
+        span(:class="{'font-11': $isMobile}") {{ tab.name }}
     v-tabs-items(v-model="activeTab")
       v-tab-item(value="facilities")
         v-card(flat)

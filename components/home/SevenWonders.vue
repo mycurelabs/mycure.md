@@ -1,40 +1,54 @@
 <template lang="pug">
-  div
-    div.container
-      //- picture-source(
-      //-   image="Homepage USP BG"
-      //-   image-alt="MYCURE Seven wonders of healthcare"
-      //-   image-file-extension=".webp"
-      //-   custom-path="home/"
+  div.mx-n3.mt-n5.main-container
+    div
+      picture-source(
+        image-file-extension=".webp"
+        image="Homepage USP BG"
+        image-alt="Bushes and clouds background artwork"
+        custom-path="home/"
+        :image-styles="backgroundStyle"
+      )
+      //- img(
+      //-   alt=""
+      //-   width="100%"
+      //-   :src="require(`~/assets/images/home/Homepage USP BG.${isWebp ? 'webp' : 'png'}`)"
       //- ).background
-      img(
-        src="~/assets/images/home/Homepage USP BG.png"
-        alt="MYCURE Seven wonders of healthcare"
-        width="100%"
-      ).background
-      v-container.content.ml-n6
-        v-row(justify="center")
-          generic-panel(:row-bindings="{ justify: 'center' }")
-            v-col(cols="12").text-center.text-container
-              v-row(justify="center")
-                v-col(cols="12" md="8" xl="12")
-                  h1(:class="headerClasses").mb-10 Enterprise-Grade Healthcare Solutions
-                  v-row(justify="center")
-                    v-col(cols="12" md="10")
-                      p(:class="{ 'font-24' : !$isMobile, 'font-s' : $isMobile }").primary--text.font-weight-bold.mb-10 At a fraction of the cost.
-                  signup-button(
-                    depressed
-                    rounded
-                    :x-large="$isWideScreen"
-                    :large="$isRegularScreen"
-                    color="success"
-                  ).text-none.font-s
-                    span Get Started
-            template(v-if="!$isMobile")
-              v-col(cols="8" md="3" xl="3" v-for="(wonder, key) in wonders" :key="key")
-                wonder(:wonder="wonder")
-            template(v-else)
-              v-col(cols="10")
+    v-container(:class="{'ml-n6': !$isMobile}").content
+      v-row(justify="center" align="center" :style="{ height: $isMobile ? 'auto' : '115vh', width: '100vw'}")
+        generic-panel(:row-bindings="{ justify: 'center' }")
+          v-col(cols="12").text-center.text-container
+            v-row(justify="center").mb-5
+              v-col(cols="12" md="6" xl="8")
+                h1(:class="headerClasses").mb-10 Enterprise-Grade
+                  br
+                  | Healthcare Solutions
+                v-row(justify="center")
+                  v-col(cols="12" md="10")
+                    p.mc-content-set-3.primary--text.font-weight-bold.mb-10 At a fraction of the cost.
+                signup-button(
+                  depressed
+                  rounded
+                  :x-large="$isWideScreen"
+                  :large="$isRegularScreen"
+                  color="success"
+                ).text-none.mc-button-set-1
+                  span Get Started
+            v-row(justify="center")
+              v-col(v-if="!$isMobile" cols="12" xl="10")
+                vue-slick-carousel(
+                  autoplay
+                  draggable
+                  infinite
+                  :arrows="false"
+                  :dots="false"
+                  :slidesToShow="4",
+                  :speed="500"
+                )
+                  div(v-for="(wonder,key) in wonders" :key="key")
+                    wonder(:wonder="wonder")
+              //- v-col(cols="8" md="3" xl="3" v-for="(wonder, key) in wonders" :key="key")
+              //-   wonder(:wonder="wonder")
+              v-col(v-else cols="10" sm="8" md="10")
                 carousel(
                   navigationNextLabel=" "
                   navigationPrevLabel=" "
@@ -52,29 +66,24 @@
                     :data-index="index+1"
                   ).pa-2
                     wonder(:wonder="wonder")
-    //- div(v-else).mobile-container.ml-n3
-    //-   img(
-    //-     src="~/assets/images/home/Homepage USP.png"
-    //-     alt="MYCURE Seven wonders of healthcare"
-    //-     width="100%"
-    //-   )
 </template>
 
 <script>
-// import VueSlickCarousel from 'vue-slick-carousel';
-// import 'vue-slick-carousel/dist/vue-slick-carousel.css';
+import VueSlickCarousel from 'vue-slick-carousel';
+import 'vue-slick-carousel/dist/vue-slick-carousel.css';
 import Wonder from './Wonder';
 import GenericPanel from '~/components/generic/GenericPanel';
 import PictureSource from '~/components/commons/PictureSource';
 import SignupButton from '~/components/commons/SignupButton';
-import classBinder from '~/utils/class-binder';
+import canUseWebp from '~/utils/can-use-webp';
+
 export default {
   components: {
     GenericPanel,
     PictureSource,
     SignupButton,
     Wonder,
-    // VueSlickCarousel,
+    VueSlickCarousel,
   },
   data () {
     this.wonders = [
@@ -94,7 +103,19 @@ export default {
         title: 'Diagnostics',
         description: 'Convert online booking to online results',
         infoLink: 'diagnostics',
-        image: 'diagnostic',
+        image: 'Diagnostics',
+      },
+      {
+        title: 'Booking',
+        description: 'Book and schedule appointments efficiently',
+        infoLink: 'booking',
+        image: 'Booking',
+      },
+      {
+        title: 'Telehealth',
+        description: 'Everything you need to build your virtual practice',
+        infoLink: 'telehealth',
+        image: 'Telehealth',
       },
       // {
       //   title: 'Pharmacy',
@@ -123,69 +144,58 @@ export default {
       //   image: 'security',
       // },
     ];
-    return {};
+    this.headerClasses = ['mc-title-set-4', 'lh-title'];
+    return {
+      isWebp: false,
+    };
   },
   computed: {
-    headerClasses () {
-      return classBinder(this, {
-        mobile: ['font-m'],
-        regular: ['font-xl'],
-        wide: ['font-2xl'],
-      });
+    backgroundStyle () {
+      return {
+        width: '100%',
+        height: '100%',
+        position: 'absolute',
+        left: '0',
+        top: '0',
+        zIndex: '1',
+        objectFit: 'cover',
+      };
     },
+  },
+  async mounted () {
+    this.isWebp = await canUseWebp();
   },
 };
 </script>
 
 <style scoped>
-/* .bg {
-  background-image: url('../../assets/images/home/Homepage USP v2B.png');
-  background-size: stretch;
-} */
+.main-container {
+  position: relative;
+}
+.content {
+  z-index: 2;
+  position: relative;
+}
 .line-spacing-title {
   line-height: 1.25em;
 }
-.background {
+/* .background {
   width: 100%;
-  height: 950px;
+  height: 100%;
   position: absolute;
   left: 0;
   top: 0;
   overflow: hidden;
   object-fit: cover;
-}
+} */
 .container {
   width: 100vw;
-  height: 900px;
 }
 .text-container {
   margin-bottom: 65px;
 }
-.mobile-container {
-  width: 100vw;
-}
-.content {
+/* .content {
   position: absolute;
   width: 100vw;
-}
-
-@media screen and (max-width: 952px) {
-  .container {
-    height: 1000px;
-  }
-  .background {
-    height: 1050px;
-  }
-}
-@media screen and (min-width: 1920px) {
-  .text-container {
-    margin-bottom: 90px;
-  }
-  .container {
-    height: 950px;
-  }
-  .background {
-    height: 1000px;
-  }
-}
+} */
 </style>

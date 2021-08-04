@@ -56,6 +56,31 @@ export default ({ title, description, socialBanner }) => {
         content: socialBanner,
       },
       // twitter meta
+      {
+        hid: 'twitter:card',
+        name: 'twitter:card',
+        content: 'summary',
+      },
+      {
+        hid: 'twitter:site',
+        name: 'twitter:site',
+        content: '@mycureapp',
+      },
+      {
+        hid: 'twitter:creator',
+        name: 'twitter:creator',
+        content: '@mycureapp',
+      },
+      {
+        hid: 'twitter:title',
+        name: 'twitter:title',
+        content: 'MYCURE | Making Healthcare Accessible to All',
+      },
+      {
+        hid: 'twitter:description',
+        name: 'twitter:description',
+        content: 'MYCURE is a healthcare platform that connects physicians, clinics, hospitals, and medical organizations to anyone in need.',
+      },
       // mobile meta
       {
         hid: 'apple-mobile-web-app-title',

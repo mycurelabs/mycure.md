@@ -8,10 +8,9 @@
       title="Simplified workflows, faster results, better performance."
       meta-title="MYCURE Clinic Management System"
       description="Designed for modern clinics with complex operations. Large or small, MYCURE enables clinics to be much more efficient, increase in revenue, and build more patient loyalty."
-      parse-title="regular"
-      parse-meta-title="regular"
+      parse-title
+      parse-meta-title
       btn-text="Get Started"
-      btn-color="success"
       image="Clinics USP"
       :image-width="$isMobile ? '100%' : '90%'"
       custom-image-path="clinics/"
@@ -24,7 +23,7 @@
     div.grey-bg.mx-n3
       workflow
     //- 3rd panel
-    syncbase(version-two)
+    syncbase(:version="2")
     //- 4th panel
     div.grey-bg.mx-n3
       mycure-csi
@@ -35,13 +34,12 @@
       :content-classes="descriptionClasses"
       hide-btn
     )
-      div(slot="additional-content").mt-10
+      div(slot="additional-content" :class="{'text-center': $isMobile}").mt-10
         signup-button(
           depressed
           rounded
           color="success"
           event-label="signup"
-          :block="$isMobile"
           :large="!$isWideScreen"
           :x-large="$isWideScreen"
           :class="{'font-s': !$isMobile}"
@@ -54,7 +52,7 @@
         title="Customized for Your Specialty"
         description="MYCURE has already built-in workflows and processes for different setups."
         :items="features"
-        :class="panelMargins"
+        :class="{ 'mt-10': $isMobile, 'mt-5': !$isMobile }"
         :icon-column-bindings="{ cols: 6, md: 3 }"
         image-dir="clinics/"
         icon-container-col-size="10"
@@ -69,12 +67,11 @@
         hide-btn
         disable-parent-padding
       )
-        div(slot="additional-content").mt-10
+        div(slot="additional-content" :class="{'text-center': $isMobile}").mt-10
           mc-btn(
             depressed
             rounded
             color="white"
-            :block="$isMobile"
             :large="!$isWideScreen"
             :x-large="$isWideScreen"
             :class="{'font-s': !$isMobile}"
@@ -98,36 +95,24 @@
 
 <script>
 // - utils
-import classBinder from '~/utils/class-binder';
 import headMeta from '~/utils/head-meta';
 // - components
-import CallToAction from '~/components/commons/panels/CallToAction';
-import Features from '~/components/commons/panels/Features';
-import GenericMediaPanel from '~/components/generic/GenericMediaPanel';
-// import MultipleBranches from '~/components/enterprise/multiple-branches';
-import MycureCsi from '~/components/commons/panels/MycureCsi';
-import Pricing from '~/components/commons/panels/Pricing';
-import Syncbase from '~/components/commons/panels/Syncbase';
-import ThinkLongTerm from '~/components/commons/panels/ThinkLongTerm';
 import Usp from '~/components/commons/panels/SevenWondersUsp';
-import Workflow from '~/components/outpatient-clinics/Workflow';
-import SignupButton from '~/components/commons/SignupButton';
 // - constants
 import { CLINICS_PRICING } from '~/constants/pricing';
 
 export default {
   components: {
-    CallToAction,
-    GenericMediaPanel,
-    Features,
-    // MultipleBranches,
-    MycureCsi,
-    Pricing,
-    Syncbase,
-    ThinkLongTerm,
+    CallToAction: () => import('~/components/commons/panels/CallToAction'),
+    GenericMediaPanel: () => import('~/components/generic/GenericMediaPanel'),
+    Features: () => import('~/components/commons/panels/Features'),
+    MycureCsi: () => import('~/components/commons/panels/MycureCsi'),
+    Pricing: () => import('~/components/commons/panels/Pricing'),
+    Syncbase: () => import('~/components/commons/panels/Syncbase'),
+    ThinkLongTerm: () => import('~/components/commons/panels/ThinkLongTerm'),
     Usp,
-    Workflow,
-    SignupButton,
+    Workflow: () => import('~/components/outpatient-clinics/Workflow'),
+    SignupButton: () => import('~/components/commons/SignupButton'),
   },
   data () {
     this.features = [
@@ -167,25 +152,9 @@ export default {
         iconExtension: '.webp',
       },
     ];
-    this.fifthPanel = {
-      title: 'Expand your Reach',
-      description: 'Join MYCURE ONE, a global online directory of modern healthcare facilities so patients can easily find and book an appointment with you anytime.',
-      imageBindings: {
-        image: 'Expand your reach.webp',
-        customPath: 'commons/',
-      },
-      contentAlign: 'left',
-    };
-    this.practicingSoloPanel = {
-      title: 'Practicing solo?',
-      imageBindings: {
-        image: 'Practicing Solo Ipad.webp',
-        imageWidth: '90%',
-        customPath: 'clinics/',
-      },
-      contentAlign: 'left',
-    };
     this.pricingDetails = CLINICS_PRICING;
+    this.headerClasses = ['mc-title-set-1', 'font-weight-semibold'];
+    this.descriptionClasses = ['mc-content-set-1', 'font-open-sans', 'font-gray'];
     return {
       loading: true,
     };
@@ -198,31 +167,32 @@ export default {
     });
   },
   computed: {
-    headerClasses () {
-      const headerClasses = [
-        classBinder(this, {
-          mobile: ['font-m'],
-          regular: ['font-l'],
-          wide: ['font-xl'],
-        }),
-        'font-weight-semibold',
-      ];
-      return headerClasses;
+    fifthPanel () {
+      return {
+        title: 'Expand your Reach',
+        description: 'Join MYCURE ONE, a global online directory of modern healthcare facilities so patients can easily find and book an appointment with you anytime.',
+        contentAlign: 'left',
+        imageBindings: {
+          customPath: 'commons/',
+          image: 'Expand your reach.webp',
+          imageAlt: 'Man browsing a clinic website artwork',
+          width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
+          height: this.$isMobile ? '242.88px' : (this.$isRegularScreen ? '404.79px' : '624.8px'),
+        },
+      };
     },
-    descriptionClasses () {
-      const descriptionClasses = [
-        classBinder(this, {
-          mobile: ['font-xs'],
-          regular: ['font-s'],
-          wide: ['font-m'],
-        }),
-        'font-open-sans',
-        'font-gray',
-      ];
-      return descriptionClasses;
-    },
-    panelMargins () {
-      return { 'mt-10': this.$isMobile, 'mt-5': !this.$isMobile };
+    practicingSoloPanel () {
+      return {
+        title: 'Practicing solo?',
+        imageBindings: {
+          image: 'Practicing Solo Ipad.webp',
+          imageAlt: 'Woman video call in Ipad tablet',
+          customPath: 'clinics/',
+          width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
+          height: this.$isMobile ? '212.58px' : (this.$isRegularScreen ? '354.6px' : '547.15px'),
+        },
+        contentAlign: 'left',
+      };
     },
   },
   mounted () {

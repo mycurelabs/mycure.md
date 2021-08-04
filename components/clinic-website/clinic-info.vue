@@ -45,7 +45,7 @@
 </template>
 
 <script>
-import { isEmpty } from 'lodash';
+import isEmpty from 'lodash/isEmpty';
 import { formatAddress } from '~/utils/formats';
 
 export default {

@@ -9,13 +9,13 @@
             template(v-for="item in quickAppointmentsContent")
               media
                 template(slot="media-image")
-                  v-avatar(size="45" color="#add35b")
-                    v-icon.white--text {{item.icon}}
+                  v-avatar(size="75" color="#add35b")
+                    v-icon(large).white--text {{item.icon}}
                 template(slot="media-content")
                   br
-                  h5.white--text {{item.title}}
-                  p.white--text {{item.content}}
-          v-col(cols="12" md="6").pa-10
+                  h5.white--text.step-title.ml-4  {{item.title}}
+                  p.white--text.step-caption.ml-4 {{item.content}}
+          v-col(cols="12" md="6" :class="{'pa-10': !$isMobile}")
             v-card(style="border-radius: 10px;")
               v-card-text.pa-10
                 h3.mb-5 Choose a service
@@ -48,21 +48,19 @@
                         v-list-item-subtitle(
                           :class="hasSchedules(props.item) ? 'success--text' : 'error--text'"
                         ) {{ hasSchedules(props.item) ? 'Available' : 'Unavailable' }}
-
                 div.d-flex
                   v-spacer
                   v-btn(
                     color="success"
                     depressed
                     large
-                    dark
                     :disabled="!selectedService || isPreviewMode || loading"
                     @click="bookService"
                   ).text-none Continue
 </template>
 
 <script>
-import { isEmpty } from 'lodash';
+import isEmpty from 'lodash/isEmpty';
 import VClamp from 'vue-clamp';
 import {
   fetchClinicServices,
@@ -196,3 +194,12 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.step-title {
+  font-size: 20px;
+}
+.step-caption {
+  font-size: 16px;
+}
+</style>

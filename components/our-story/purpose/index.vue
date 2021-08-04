@@ -5,7 +5,12 @@
           v-col(cols="12").text-center
             h1(:class="headerClasses").mb-10 Our Purpose
           v-col(cols="12" :class="descriptionClasses")
-            img(width="100%" v-lazy="require('~/assets/images/our-story/mycure-team.png')" alt="Our Story - Team").mb-10
+            img(
+              v-lazy="require('~/assets/images/our-story/mycure-team.png')"
+              alt="Our Story - Team"
+            :width="$isMobile ? '256px' : ($isRegularScreen ? '945px' : '1445px')"
+            :height="$isMobile ? '88.61px' : ($isRegularScreen ? '327.08px' : '500.13px')"
+            ).mb-10
             p MYCURE’s vision is to&nbsp;
               strong securely organize medical records that will provide fast, safe, and efficient access to health professionals, enabling them to help and save more lives
               | .

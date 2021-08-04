@@ -21,21 +21,27 @@
     virtual-clinic
     //- 3rd panel
     telehealth-video
-    //- 4th to 5th panel
-    template(v-for="info in infoPanels")
-      generic-media-panel(
-        :content="info"
-        hide-btn
-      )
-        //- Check list
-        template(slot="additional-content" v-if="info.list")
-          template(v-for="(item, i) in info.list")
-            v-row(dense)
-              v-col(cols="2" sm="1" md="1").pr-2.pt-2
-                img(width="20" src="~/assets/images/mycure-check.png" alt="Check icon")
-              v-col(cols="10" sm="5" md="7")
-                span(:class="descriptionClasses") {{ item }}
-      v-divider(v-if="$isMobile").divider
+    //- 4th panel
+    generic-media-panel(
+      :content="fourthPanel"
+      hide-btn
+    )
+    v-divider(v-if="$isMobile").divider
+    //-5th panel
+    generic-media-panel(
+      :content="fifthPanel"
+      hide-btn
+      :title-classes="listHeaderClasses"
+      :content-classes="listContentClasses"
+    )
+      //- Check list
+      template(slot="additional-content")
+        template(v-for="(item, i) in fifthPanel.list")
+          v-row(dense)
+            v-col(cols="2" sm="1" md="1").pr-2.pt-2
+              img(width="20" src="~/assets/images/mycure-check.png" alt="Check icon")
+            v-col(cols="10" sm="5" md="7")
+              span(:class="descriptionClasses") {{ item }}
     //- 6th panel
     pricing(
       title="Start free and only pay as you grow."
@@ -48,59 +54,28 @@
 
 <script>
 // - utils
-import classBinder from '~/utils/class-binder';
 import headMeta from '~/utils/head-meta';
 // - components
-import CallToAction from '~/components/commons/panels/CallToAction';
-import Features from '~/components/commons/panels/Features';
-import GenericMediaPanel from '~/components/generic/GenericMediaPanel';
-import Pricing from '~/components/commons/panels/Pricing';
-import TelehealthVideo from '~/components/telehealth/TelehealthVideo';
 import Usp from '~/components/commons/panels/SevenWondersUsp';
-import VirtualClinic from '~/components/telehealth/VirtualClinic';
 // - constants
 import { DOCTORS_PRICING } from '~/constants/pricing';
 
 export default {
   components: {
-    CallToAction,
-    Features,
-    GenericMediaPanel,
-    Pricing,
-    TelehealthVideo,
+    CallToAction: () => import('~/components/commons/panels/CallToAction'),
+    Features: () => import('~/components/commons/panels/Features'),
+    GenericMediaPanel: () => import('~/components/generic/GenericMediaPanel'),
+    Pricing: () => import('~/components/commons/panels/Pricing'),
+    TelehealthVideo: () => import('~/components/telehealth/TelehealthVideo'),
     Usp,
-    VirtualClinic,
+    VirtualClinic: () => import('~/components/telehealth/VirtualClinic'),
   },
-  middleware: ['disable-route'],
   data () {
-    this.infoPanels = [
-      {
-        title: 'Safekeep your important medical data',
-        description: 'Your patient\'s medical records are both accessible and secure in our system that complies with international data privacy standards. We make it our business to make sure your electronic health records are kept safe so you can focus on what you do best-taking care of your patients.',
-        imageBindings: {
-          image: 'MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-B-secure-data.webp',
-          customPath: 'telehealth/',
-        },
-        contentAlign: 'right',
-      },
-      {
-        title: 'Works for group practice',
-        description: 'Easily coordinate with other physicians in your group practice and centralize your medical records in one comprehensive workspace.',
-        list: [
-          'Conference Calls',
-          'Collated Medical Records',
-          'Optimized Patient Queuing',
-          'Booking Website',
-        ],
-        imageBindings: {
-          image: 'Practice.png',
-          customPath: 'doctors-clinics/',
-          extensionExclusive: true,
-        },
-        contentAlign: 'left',
-      },
-    ];
     this.pricingDetails = DOCTORS_PRICING;
+    this.headerClasses = ['mc-title-set-1', 'font-weight-semibold'];
+    this.descriptionClasses = ['mc-content-set-1', 'font-open-sans', 'font-gray'];
+    this.listHeaderClasses = ['mc-list-title-set-1', 'lh-title', 'font-weight-semibold'];
+    this.listContentClasses = ['mc-list-content-set-1', 'font-open-sans', 'font-gray'];
     return {
       loading: true,
     };
@@ -113,31 +88,40 @@ export default {
     });
   },
   computed: {
-    headerClasses () {
-      const headerClasses = [
-        classBinder(this, {
-          mobile: ['font-m', 'text-center'],
-          regular: ['font-l'],
-          wide: ['font-xl'],
-        }),
-        'font-weight-semibold',
-      ];
-      return headerClasses;
+    fourthPanel () {
+      return {
+        title: 'Safekeep your important medical data',
+        description: 'Your patient\'s medical records are both accessible and secure in our system that complies with international data privacy standards. We make it our business to make sure your electronic health records are kept safe so you can focus on what you do best-taking care of your patients.',
+        imageBindings: {
+          image: 'MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-B-secure-data.webp',
+          imageAlt: 'Securing of medical records',
+          customPath: 'telehealth/',
+          width: this.$isMobile ? '256px' : (this.$isRegularScreen ? '460px' : '710px'),
+          height: this.$isMobile ? '197.52px' : (this.$isRegularScreen ? '354.9px' : '547.78px'),
+        },
+        contentAlign: 'right',
+      };
     },
-    descriptionClasses () {
-      const descriptionClasses = [
-        classBinder(this, {
-          mobile: ['font-xs'],
-          regular: ['font-s'],
-          wide: ['font-m'],
-        }),
-        'font-open-sans',
-        'font-gray',
-      ];
-      return descriptionClasses;
-    },
-    panelMargins () {
-      return { 'mt-10': this.$isMobile, 'mt-8': !this.$isMobile };
+    fifthPanel () {
+      return {
+        title: 'Works for group practice',
+        description: 'Easily coordinate with other physicians in your group practice and centralize your medical records in one comprehensive workspace.',
+        list: [
+          'Conference Calls',
+          'Collated Medical Records',
+          'Optimized Patient Queuing',
+          'Booking Website',
+        ],
+        imageBindings: {
+          image: 'Practice.png',
+          imageAlt: 'Physicians and medical workers',
+          customPath: 'doctors-clinics/',
+          extensionExclusive: true,
+          width: this.$isMobile ? '256px' : (this.$isRegularScreen ? '460px' : '710px'),
+          height: this.$isMobile ? '280px' : (this.$isRegularScreen ? '503.13px' : '776.56px'),
+        },
+        contentAlign: 'left',
+      };
     },
   },
   mounted () {

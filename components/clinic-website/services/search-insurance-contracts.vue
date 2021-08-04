@@ -27,7 +27,7 @@
 
 <script>
 // import VClamp from 'vue-clamp';
-import { debounce } from 'lodash';
+import debounce from 'lodash/debounce';
 import { fetchInsuranceContracts } from '~/services/insurance-contracts';
 
 export default {

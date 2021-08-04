@@ -1,14 +1,15 @@
 <template lang="pug">
   div(:class="{ 'text-left': !$isMobile, 'text-center': $isMobile  }").main-container
-    h3.mb-3 Facility Schedule
+    h3(:class="sectionClasses").mb-3 Facility Schedule
     div(v-for="(sched, key) in schedules" :key="key").d-flex
-      h3.font-weight-bold.text-capitalize.font-gray {{ sched.day }}
+      h4.font-weight-bold.text-capitalize.font-gray {{ DAY_MAPPINGS[sched.day] }}
       v-spacer
       p.text-center.font-gray {{ formatTime(sched.opening) }} - {{ formatTime(sched.closing) }}
 </template>
 
 <script>
 import datefns from 'date-fns';
+import classBinder from '~/utils/class-binder';
 
 export default {
   props: {
@@ -18,9 +19,27 @@ export default {
     },
   },
   data () {
+    this.DAY_MAPPINGS = {
+      mon: 'Monday',
+      tue: 'Tuesday',
+      wed: 'Wednesday',
+      thu: 'Thursday',
+      fri: 'Friday',
+      sat: 'Saturday',
+      sun: 'Sunday',
+    };
     return {
       showAll: false,
     };
+  },
+  computed: {
+    sectionClasses () {
+      return classBinder(this, {
+        mobile: ['font-s', 'text-center'],
+        regular: ['font-s'],
+        wide: ['font-m'],
+      });
+    },
   },
   methods: {
     formatTime (time) {
@@ -41,8 +60,4 @@ strong {
   position: relative;
   /* padding: 20px; */
 }
-.font-gray {
-  color: #4D4D4D !important;
-}
-
 </style>

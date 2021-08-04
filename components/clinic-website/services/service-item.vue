@@ -45,7 +45,7 @@
           i(v-else) No coverages available
         v-col(v-if="!isDoctor && !readOnly").grow.text-right
           h3.info--text Availability
-            v-icon(:color="isAvailable ? 'primary' : 'error'" right) {{ isAvailable ? 'mdi-checkbox-marked-circle-outline' : 'mdi-close-circle-outline' }}
+            v-icon(:color="isAvailable ? 'info' : 'error'" right) {{ isAvailable ? 'mdi-checkbox-marked-circle-outline' : 'mdi-close-circle-outline' }}
           br
           br
           h2(v-if="price").black--text
@@ -99,7 +99,7 @@
 
 <script>
 import { format } from 'date-fns';
-import { uniqBy } from 'lodash';
+import uniqBy from 'lodash/uniqBy';
 import ServiceSchedules from './service-schedules';
 
 export default {

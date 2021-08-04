@@ -3,7 +3,7 @@
     v-row(justify="center")
       generic-panel(:row-bindings="{ justify: 'center' }")
         v-col(cols="12" md="12").text-center
-          h1(:class="headerClasses").font-weight-semibold.mb-3.title-line-spacing Flexible. Scalable.
+          h2(:class="headerClasses").font-weight-semibold.mb-3.title-line-spacing Flexible. Scalable.
           p(:class="subheaderClasses").primary--text.font-open-sans.font-weight-bold Customizable based on what you need
           v-row(justify="center")
             v-col(cols="12" md="6").text-center
@@ -20,7 +20,8 @@
               :custom-path="version === 1? 'home/' : 'clinics/module-icons/'"
               :image="tool.icon"
               :image-alt="tool.name"
-              :image-width="toolWidth"
+              :image-width="!$isWideScreen ? '70px' : '115px'"
+              :image-height="!$isWideScreen ? '70px' : '115px'"
               image-file-extension=".webp"
             )
             br
@@ -111,29 +112,18 @@ export default {
         icon: 'Notification',
       },
     ];
+    this.headerClasses = ['mc-title-set-1'];
+    this.descriptionClasses = ['mc-content-set-4'];
     return {};
   },
   computed: {
     items () {
       return this.version === 1 ? this.defaultTools : this.modules;
     },
-    headerClasses () {
-      return classBinder(this, {
-        mobile: ['font-m'],
-        regular: ['font-l'],
-        wide: ['font-2xl'],
-      });
-    },
     subheaderClasses () {
       return classBinder(this, {
         mobile: ['font-14'],
         regular: ['font-s'],
-        wide: ['font-m'],
-      });
-    },
-    descriptionClasses () {
-      return classBinder(this, {
-        regular: ['font-xs'],
         wide: ['font-m'],
       });
     },

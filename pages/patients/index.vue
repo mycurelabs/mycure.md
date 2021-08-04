@@ -69,7 +69,6 @@
 <script>
 // - utils
 import headMeta from '~/utils/head-meta';
-import classBinder from '~/utils/class-binder';
 // - components
 import Features from '~/components/commons/panels/Features';
 import GenericMediaPanel from '~/components/commons/generic-media-panel';
@@ -122,6 +121,8 @@ export default {
         ],
       },
     ];
+    this.headerClasses = ['mc-title-set-2', 'lh-title'];
+    this.descriptionClasses = ['mc-content-set-2', 'font-open-sans', 'font-gray'];
     return {
       loading: true,
     };
@@ -133,29 +134,6 @@ export default {
       description: 'Build lasting connections with your patients with MYCURE’s medical CRM. Let them know you are there. Make quick calls, chats, appointments, and reminders to your patients and reinforce continuity of care in an effective and timely way.',
       socialBanner: require('~/assets/images/banners/OG Homepage.png'),
     });
-  },
-  computed: {
-    headerClasses () {
-      const headerClasses = [
-        classBinder(this, {
-          mobile: ['font-m'],
-          regular: ['font-l'],
-        }),
-        'lh-title',
-      ];
-      return headerClasses;
-    },
-    descriptionClasses () {
-      const descriptionClasses = [
-        classBinder(this, {
-          mobile: ['font-xs'],
-          regular: ['font-s'],
-        }),
-        'font-open-sans',
-        'font-gray',
-      ];
-      return descriptionClasses;
-    },
   },
   mounted () {
     this.loading = false;

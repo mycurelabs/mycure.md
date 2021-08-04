@@ -20,7 +20,8 @@
             picture-source(
               image="MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-A-online-consult"
               image-alt="Virtual Clinic"
-              image-width="102%"
+              :image-width="$isMobile ? '300px' : ($isRegularScreen ? '964px' : '1475px')"
+              :image-height="$isMobile ? '192.08px' : ($isRegularScreen ? '617.23px' : '944.39px')"
               image-file-extension=".webp"
               custom-path="telehealth/"
             )
@@ -32,14 +33,13 @@
             :key="key"
           )
             div.d-flex
-              img(v-lazy="require(`~/assets/images/telehealth/${data.headerIcon}`)" :height="$isMobile? '10%' : '30%'" :class="{'pt-3': $isMobile}")
+              img(v-lazy="require(`~/assets/images/telehealth/${data.headerIcon}`)" width="45px" :height="$isMobile? '57px' : '45px'" :class="{'pt-3': $isMobile}")
               h1(:class="headerClasses").ml-3 {{ data.header }}
             br
             p(:class="contentClasses") {{ data.description }}
 </template>
 
 <script>
-import classBinder from '~/utils/class-binder';
 import GenericPanel from '~/components/generic/GenericPanel';
 import PictureSource from '~/components/commons/PictureSource';
 import SignupButton from '~/components/commons/SignupButton';
@@ -63,43 +63,10 @@ export default {
         description: 'Build patient loyalty and accommodate patients outside of your physical work hours. It\'s easy for your old and new patients to set appointments with you.',
       },
     ];
+    this.titleClasses = ['mc-title-set-1', 'font-weight-semibold'];
+    this.headerClasses = ['mc-title-set-2', 'font-weight-semibold', { 'pt-5': this.$isMobile }];
+    this.contentClasses = ['mc-content-set-1', 'font-open-sans', 'font-gray'];
     return {};
-  },
-  computed: {
-    titleClasses () {
-      const titleClasses = [
-        classBinder(this, {
-          mobile: ['font-m', 'text-center'],
-          regular: ['font-l'],
-          wide: ['font-xl'],
-        }),
-        'font-weight-semibold',
-      ];
-      return titleClasses;
-    },
-    headerClasses () {
-      const headerClasses = [
-        classBinder(this, {
-          mobile: ['font-s', 'text-center', 'pt-5'],
-          regular: ['font-m'],
-          wide: ['font-l'],
-        }),
-        'font-weight-semibold',
-      ];
-      return headerClasses;
-    },
-    contentClasses () {
-      const contentClasses = [
-        classBinder(this, {
-          mobile: ['font-xs'],
-          regular: ['font-s'],
-          wide: ['font-m'],
-        }),
-        'font-open-sans',
-        'font-gray',
-      ];
-      return contentClasses;
-    },
   },
   methods: {
     viewDemo () {

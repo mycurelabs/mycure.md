@@ -7,7 +7,8 @@
       title="Bring Out the Hero in You"
       meta-title="MYCURE Doctor"
       image="Doc USP"
-      image-width="115%"
+      :image-width="!$isMobile ? '1920px' : '300px' "
+      :image-height="!$isMobile ? '1080px' : '165.8px' "
       custom-image-path="doctors-clinics/"
       image-align="right"
       btn-text="Get Started Free"
@@ -24,8 +25,10 @@
         title="Your Practice. Your Call."
         :description="featuresDescription"
         :items="features"
-        icon-container-col-size="8"
+        :icon-container-col-size="$isWideScreen ? '6' : '8'"
         image-dir="doctors-clinics/"
+        :image-width="$isWideScreen ? '89px' : '77px'"
+        :image-height="$isWideScreen ? '89px' : '77px'"
       )
     //- 3rd to 5th panels
     generic-media-panel(
@@ -39,19 +42,26 @@
     generic-media-panel(
       content-right
       :content="sixthPanel"
-      :title-classes="headerClasses"
+      :title-classes="listHeaderClasses"
+      :content-classes="listContentClasses"
       hide-btn
     )
       //- Check list
       template(slot="additional-content")
-        div.mb-10
+        div.my-10
           v-row(
             v-for="(item, i) in sixthPanel.list"
             :key="item"
             dense
           )
             v-col(cols="2" sm="1" md="1").pr-2.pt-2
-              img(width="20" src="~/assets/images/mycure-check.png" alt="Check icon")
+              div(class="text-center")
+                img(
+                  src="~/assets/images/mycure-check.png"
+                  alt="Check icon"
+                  :width="!$isWideScreen ? '20' : '25'"
+                  :height="!$isWideScreen ? '20' : '25'"
+                )
             v-col(cols="10" sm="11" md="11")
               span(:class="descriptionClasses") {{ item }}
         div(:class="{ 'text-center': $isMobile }")
@@ -61,7 +71,7 @@
             :x-large="$isWideScreen"
             :large="!$isWideScreen"
             color="success"
-          ).text-none.font-s
+          ).text-none.mc-button-set-1
             span Get Started Free
             v-icon(small right) mdi-arrow-right
     //- 7th panel
@@ -71,7 +81,7 @@
     div.blue-bg.mx-n3
       generic-media-panel(
         :content="eightPanel"
-        :title-classes="[...headerClasses, 'white--text']"
+        :title-classes="[...listHeaderClasses, 'white--text']"
         :contentClasses="eightPanelContentClasses"
         hide-btn
       )
@@ -101,65 +111,26 @@
 <script>
 // utils
 import headMeta from '~/utils/head-meta';
-import classBinder from '~/utils/class-binder';
 // constants
 import { DOCTORS_PRICING } from '~/constants/pricing';
 // components
-import CallToAction from '~/components/commons/panels/CallToAction';
-import Features from '~/components/commons/panels/Features';
-import GenericMediaPanel from '~/components/generic/GenericMediaPanel';
-import MycureCsi from '~/components/commons/panels/MycureCsi';
-import Pricing from '~/components/commons/panels/Pricing';
-import ThinkLongTerm from '~/components/commons/panels/ThinkLongTerm';
 import Usp from '~/components/commons/panels/SevenWondersUsp';
-import SignupButton from '~/components/commons/SignupButton';
 
 export default {
   components: {
-    CallToAction,
-    Features,
-    GenericMediaPanel,
-    MycureCsi,
-    Pricing,
-    ThinkLongTerm,
+    CallToAction: () => import('~/components/commons/panels/CallToAction'),
+    Features: () => import('~/components/commons/panels/Features'),
+    GenericMediaPanel: () => import('~/components/generic/GenericMediaPanel'),
+    MycureCsi: () => import('~/components/commons/panels/MycureCsi'),
+    Pricing: () => import('~/components/commons/panels/Pricing'),
+    ThinkLongTerm: () => import('~/components/commons/panels/ThinkLongTerm'),
     Usp,
-    SignupButton,
+    SignupButton: () => import('~/components/commons/SignupButton'),
   },
   data () {
     // Panel content
     this.uspDescription = 'Designed for modern doctors, MYCURE lets you focus on what you do best — caring for your patients.  MYCURE organizes your daily tasks to make your practice more simple, secure, and efficient.';
     this.featuresDescription = 'Use the tools that work best for you. Everything you need is here. It’s FREE!';
-    this.contents = [
-      {
-        title: 'Lightning-fast prescriptions',
-        description: 'Create and print prescriptions and other medical forms in 10 seconds or less.',
-        contentAlign: 'left',
-        imageBindings: {
-          customPath: 'doctors-clinics/',
-          image: 'Lightning fast.webp',
-          mobileImage: 'Lightning fast mobile.png',
-        },
-      },
-      {
-        title: 'Going digital means better medical history',
-        description: 'Imagine looking back at your charts from 5 or 10 years ago on your mobile devices with a quick search. How convenient? S-U-P-E-R.',
-        contentAlign: 'right',
-        imageBindings: {
-          customPath: 'doctors-clinics/',
-          image: 'Going digital.webp',
-          mobileImage: 'Going digital mobile.png',
-        },
-      },
-      {
-        title: 'Help patients anywhere',
-        description: 'Reach out to more people who need your expertise without getting limited by time or location.',
-        contentAlign: 'left',
-        imageBindings: {
-          customPath: 'features/',
-          image: 'MYCURE-virtual-clinic-healthcare-practice-online-features-C-telehealth.webp',
-        },
-      },
-    ];
     this.features = [
       {
         title: 'Digital Records',
@@ -187,36 +158,12 @@ export default {
         iconExtension: '.webp',
       },
     ];
-    this.sixthPanel = {
-      title: 'Expand your reach',
-      description: 'Opt in to MYCURE ONE, a global online directory of modern healthcare practitioners and facilities',
-      list: [
-        'Patients can easily find you',
-        'Get more organized appointments',
-        'Comes with a Professional Website',
-      ],
-      contentAlign: 'right',
-      imageBindings: {
-        image: 'Expand your reach.webp',
-        customPath: 'commons/',
-      },
-    };
-    this.eightPanel = {
-      title: 'Practice as a Group',
-      description: 'Easily coordinate with other physicians in your group practice and centralize your medical records in one comprehensive workspace.',
-      imageBindings: {
-        image: 'Practice.webp',
-        customPath: 'doctors-clinics/',
-      },
-      list: [
-        'Collated Medical Records',
-        'Optimized Patient Queuing',
-        'Group Clinic Chatbox',
-        'Shared Secretary Account',
-        'Booking Website',
-      ],
-    };
     this.pricingDetails = DOCTORS_PRICING;
+    this.headerClasses = ['mc-title-set-1', 'lh-title', 'primary--text', 'font-weight-semibold'];
+    this.descriptionClasses = ['mc-content-set-1', 'font-open-sans', 'font-gray'];
+    this.eightPanelContentClasses = ['mc-list-content-set-1', 'font-open-sans', 'white--text'];
+    this.listHeaderClasses = ['mc-list-title-set-1', 'lh-title', 'primary--text', 'font-weight-semibold'];
+    this.listContentClasses = ['mc-list-content-set-1', 'font-open-sans', 'font-gray'];
     return {
       loading: true,
     };
@@ -229,41 +176,86 @@ export default {
     });
   },
   computed: {
-    headerClasses () {
-      const headerClasses = [
-        classBinder(this, {
-          mobile: ['font-m'],
-          regular: ['font-l'],
-          wide: ['font-xl'],
-        }),
-        'lh-title',
-        'primary--text',
-        'font-weight-semibold',
-      ];
-      return headerClasses;
-    },
-    descriptionClasses () {
-      const descriptionClasses = [
-        classBinder(this, {
-          mobile: ['font-xs'],
-          regular: ['font-s'],
-          wide: ['font-m'],
-        }),
-        'font-open-sans',
-        'font-gray',
-      ];
-      return descriptionClasses;
-    },
-    eightPanelContentClasses () {
+    contents () {
       return [
-        classBinder(this, {
-          mobile: ['font-xs'],
-          regular: ['font-s'],
-          wide: ['font-m'],
-        }),
-        'font-open-sans',
-        'white--text',
+        {
+          title: 'Lightning-fast prescriptions',
+          description: 'Create and print prescriptions and other medical forms in 10 seconds or less.',
+          contentAlign: 'left',
+          imageBindings: {
+            customPath: 'doctors-clinics/',
+            image: 'Lightning fast.webp',
+            mobileImage: 'Lightning fast mobile.png',
+            imageAlt: 'Print preview of health prescription receipt',
+            width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
+            height: this.$isMobile ? '210.45px' : (this.$isRegularScreen ? '339.25px' : '523.62px'),
+          },
+        },
+        {
+          title: 'Going digital means better medical history',
+          description: 'Imagine looking back at your charts from 5 or 10 years ago on your mobile devices with a quick search. How convenient? S-U-P-E-R.',
+          contentAlign: 'right',
+          imageBindings: {
+            customPath: 'doctors-clinics/',
+            image: 'Going digital.webp',
+            mobileImage: 'Going digital mobile.png',
+            imageAlt: 'Growth chart showing an increasing trend',
+            width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
+            height: this.$isMobile ? '210.45px' : (this.$isRegularScreen ? '339.25px' : '523.62px'),
+          },
+        },
+        {
+          title: 'Help patients anywhere',
+          description: 'Reach out to more people who need your expertise without getting limited by time or location.',
+          contentAlign: 'left',
+          imageBindings: {
+            customPath: 'features/',
+            image: 'MYCURE-virtual-clinic-healthcare-practice-online-features-C-telehealth.webp',
+            imageAlt: 'Woman in a video call using MYCURE telehealth',
+            width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
+            height: this.$isMobile ? '183.72px' : (this.$isRegularScreen ? '294.52px' : '454.59px'),
+          },
+        },
       ];
+    },
+    sixthPanel () {
+      return {
+        title: 'Expand your reach',
+        description: 'Opt in to MYCURE ONE, a global online directory of modern healthcare practitioners and facilities',
+        list: [
+          'Patients can easily find you',
+          'Get more organized appointments',
+          'Comes with a Professional Website',
+        ],
+        contentAlign: 'right',
+        imageBindings: {
+          image: 'Expand your reach.webp',
+          imageAlt: 'Man browsing a clinic website artwork',
+          customPath: 'commons/',
+          width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
+          height: this.$isMobile ? '242.88px' : (this.$isRegularScreen ? '404.79px' : '624.8px'),
+        },
+      };
+    },
+    eightPanel () {
+      return {
+        title: 'Practice as a Group',
+        description: 'Easily coordinate with other physicians in your group practice and centralize your medical records in one comprehensive workspace.',
+        imageBindings: {
+          image: 'Practice.webp',
+          imageAlt: 'Physicians and health workers',
+          customPath: 'doctors-clinics/',
+          width: this.$isMobile ? '296px' : (this.$isRegularScreen ? '460px' : '710px'),
+          height: this.$isMobile ? '323.75px' : (this.$isRegularScreen ? '503.13px' : '776.56px'),
+        },
+        list: [
+          'Collated Medical Records',
+          'Optimized Patient Queuing',
+          'Group Clinic Chatbox',
+          'Shared Secretary Account',
+          'Booking Website',
+        ],
+      };
     },
   },
   mounted () {

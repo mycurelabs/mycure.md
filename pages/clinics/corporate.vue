@@ -2,69 +2,80 @@
   div(v-if="!loading").white
     //- 1st panel
     usp(
+      has-custom-background
+      background-image="Corporate Clinics Full"
+      background-image-file-extension=".webp"
       title="Organize your employee health records like a breeze"
       meta-title="MYCURE for Corporate Clinics"
       description="Get the most affordable software for corporate clinics today."
       btn-text="Start Free"
+      image="Corporate Clinics Mobile"
+      custom-image-path="clinics/corporate/"
+      :media-column-bindings="{ cols: 12, md: 6, offsetMd: 1, xl: 6}"
+      :content-column-bindings="{ cols: 12, md: 5 }"
     )
     //- 2nd panel
+    div.grey-bg.mx-n3
     features(
-      title="Newest tools for the newest generation."
+      extension-exclusive
+      image-dir="clinics/corporate/"
+      icon-container-col-size="6"
       description="Everyone in your workplace is online. MYCURE helps you monitor their health and safety conveniently through the cloud."
+      :icon-column-bindings="{ cols: 6 }"
       :items="features"
-      hide-learn-more
     )
+      template(slot="title")
+        h2(:class="headerClasses").primary--text Newest tools for the newest generation.
     //- 3rd panel
-    generic-media-panel(
-      :center-media="!$isMobile"
-      :content-align-left="$isMobile"
-      header="Know the health status of your employees stat"
-      :header-classes="headerClasses"
-      :descriptions="['Easily access and share medical records with them through the MYCURE health portal.']"
-      :description-classes="descriptionClasses"
-    )
-
-    //- 4th panel
-    multiple-branches
-
-    //- 5th panel
-    call-to-action
-
-    //- 6th panel
-    generic-media-panel(
-      :center-media="!$isMobile"
-      :content-align-left="$isMobile"
-      header="Start easy. Take the first step today"
-      :header-classes="headerClasses"
-      :dense="$isMobile"
-    )
-      template(slot="additional-content")
+    div.info.mx-n3
+      v-container
         v-row(justify="center")
-          v-col(cols="4").text-center
-            mc-btn(
-              color="primary"
-              large
-              depressed
-            ).text-none.font-xs Get Started
+          generic-panel(:row-bindings="{ justify: 'center' }")
+            v-col(cols="12" lg="8" xl="6").white--text
+              h2(:class="headerClasses").mb-10.text-center.white--text Know the health status of your employees stat.
+              h3.mc-content-set-1.mb-10.font-weight-semibold.white--text.text-center Easily access and share medical records with them through the MYCURE health portal.
+    //- 4th panel
+    generic-media-panel(
+      :content="multiplePanel"
+      :title-classes="[...headerClasses, 'primary--text']"
+      hide-btn
+    )
+    //- 5th panel
+    pricing(
+      type="clinic"
+      title="Take the first step today."
+    )
+    call-to-action(:version="4")
+    //- 9th panel
+    div.info.mx-n3
+      v-container
+        v-row(justify="center")
+          generic-panel(:row-bindings="{ justify: 'center' }")
+            v-col(cols="12").white--text.text-center
+              h2(:class="['white--text', ...headerClasses]").mb-5 Start easy. Take the first step today
+              signup-button(
+                depressed
+                rounded
+                :x-large="$isWideScreen"
+                :large="!$isWideScreen"
+                color="success"
+              ).text-none.mc-button-set-1
+                span Count me in
 </template>
 
 <script>
 // - utils
 import headMeta from '~/utils/head-meta';
-import classBinder from '~/utils/class-binder';
 // - components
-import CallToAction from '~/components/commons/panels/CallToAction';
-import Features from '~/components/commons/panels/Features';
-import GenericMediaPanel from '~/components/commons/generic-media-panel';
-import MultipleBranches from '~/components/enterprise/multiple-branches';
 import Usp from '~/components/commons/panels/SevenWondersUsp';
 
 export default {
   components: {
-    CallToAction,
-    Features,
-    GenericMediaPanel,
-    MultipleBranches,
+    CallToAction: () => import('~/components/commons/panels/CallToAction'),
+    Features: () => import('~/components/commons/panels/Features'),
+    GenericMediaPanel: () => import('~/components/generic/GenericMediaPanel'),
+    Pricing: () => import('~/components/commons/panels/Pricing'),
+    SignupButton: () => import('~/components/commons/SignupButton'),
     Usp,
   },
   middleware: ['disable-route'],
@@ -72,50 +83,54 @@ export default {
     this.features = [
       {
         title: 'Online Health Records',
+        icon: 'Online Health Records',
+        iconExtension: '.png',
       },
       {
         title: 'Medical Certificates',
+        icon: 'Certificate',
+        iconExtension: '.png',
       },
       {
         title: 'Annual Checkups',
+        icon: 'Annual',
+        iconExtension: '.png',
       },
       {
         title: 'COVID-19 Test and Vaccine Tracker',
+        icon: 'Covid vaccine tracker',
+        iconExtension: '.png',
       },
     ];
+    this.headerClasses = ['mc-title-set-1', 'lh-title', 'font-weight-semibold'];
     return {
       loading: true,
     };
   },
   head () {
-    // - TODO: Update
     return headMeta({
-      title: 'MYCURE LIS for Mobile Labs',
-      description: 'Discover the simplest and most affordable laboratory information software designed for mobile labs. It’s cloud-based and works offline.',
-      socialBanner: require('~/assets/images/banners/OG Homepage.png'),
+      title: 'MYCURE for Corporate Clinics',
+      description: 'Get the most affordable software for corporate clinics today.',
+      socialBanner: require('~/assets/images/banners/MYCURE - Corporate Clinic OG BANNER.png'),
     });
   },
   computed: {
-    headerClasses () {
-      const headerClasses = [
-        classBinder(this, {
-          mobile: ['font-m'],
-          regular: ['font-l'],
-        }),
-        'lh-title',
-      ];
-      return headerClasses;
-    },
-    descriptionClasses () {
-      const descriptionClasses = [
-        classBinder(this, {
-          mobile: ['font-xs'],
-          regular: ['font-s'],
-        }),
-        'font-open-sans',
-        'font-gray',
-      ];
-      return descriptionClasses;
+    multiplePanel () {
+      return {
+        centerPanelTitle: 'FOR MULTI-BRANCH FACILITIES',
+        title: 'One view for multiple locations',
+        description: 'All you need is one clean dashboard to see how your clinics are faring. Critical data from your multiple branches are beautifully compiled to show you a comprehensive summary of patient encounters, transactions, sales, expenses and even staff performance.',
+        contentAlign: 'left',
+        imageBindings: {
+          customPath: 'clinics/skin/',
+          image: 'Multiple locations.png',
+          mobileImage: 'Multiple locations mobile.png',
+          extensionExclusive: true,
+          imageAlt: 'Charts and graphs',
+          width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
+          height: this.$isMobile ? '156.16px' : (this.$isRegularScreen ? '260.07px' : '401.41px'),
+        },
+      };
     },
   },
   mounted () {
@@ -123,3 +138,9 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.grey-bg {
+  background-color: #fafafa;
+}
+</style>

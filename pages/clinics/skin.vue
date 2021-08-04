@@ -2,152 +2,241 @@
   div(v-if="!loading").white
     //- 1st panel
     usp(
-      title="The #1 Software for Skin and Aesthetic clinics"
+      has-custom-background
+      background-image="Skin Clinics Full Illu"
+      background-image-file-extension=".webp"
+      title="The #1 Software for Skin and Aesthetic Clinics"
       meta-title="MYCURE for Skin Clinics"
-      btn-text="Book a Demo Today"
+      image="Skin Clinics USP Mobile"
+      custom-image-path="clinics/skin/"
+      :media-column-bindings="{ cols: 12, md: 6, offsetMd: 1, xl: 6}"
+      :content-column-bindings="{ cols: 12, md: 5 }"
     )
+      template(slot="cta-button")
+        mc-btn(
+          color="success"
+          href="https://calendly.com/mycure/demo"
+          target="_blank"
+          rel="noopener noreferrer"
+          depressed
+          rounded
+          :large="!$isWideScreen"
+          :x-large="$isWideScreen"
+          :class="btnClasses"
+        ).text-none Book a demo today
     //- 2nd panel
-    features(
-      title="Easy to implement. Easy to maintain"
-      description="MYCURE designed specialized solutions for skin and aesthetic clinics."
-      :items="features"
-    )
-    //- 3rd to 4th panel
+    div.grey-bg.mx-n3
+      features(
+        title="Easy to implement. Easy to maintain."
+        description="MYCURE designed specialized solutions for skin and aesthetic clinics."
+        image-dir="clinics/skin/"
+        title-col-size="10"
+        icon-container-col-size="8"
+        extension-exclusive
+        primary-title
+        :items="features"
+      )
+    //- 3rd panel
+    generic-media-panel(:content="thirdPanel" align="center")
+      template(slot="content")
+        h2(:class="headerClasses" text-align) Beautiful user experience!
+        br
+        h2(:class="headerClasses").secondary--text You won't feel like you are at work.
+      template(slot="cta-button")
+        div(:class="{ 'text-center': $isMobile }")
+          signup-button(
+            :class="btnClasses"
+            depressed
+            rounded
+            :x-large="$isWideScreen"
+            :large="!$isWideScreen"
+            color="success"
+          ).text-none.font-s
+            span Get Started
+
+    //- 4th panel
     generic-media-panel(
-      v-for="(info, key) in infoPanels"
-      :key="key"
-      content-align-right
-      cols-left="6"
-      cols-right="6"
-      :header="info.header"
-      :header-classes="headerClasses"
-      :descriptions="info.descriptions"
-      :description-classes="descriptionClasses"
+      hide-btn
+      :content="fourthPanel"
+      :title-classes="listHeaderClasses"
+      :content-classes="listContentClasses"
     )
       //- Check list
-      template(slot="additional-content" v-if="info.list")
-        template(v-for="(item, i) in info.list")
-          v-row(dense)
-            v-col(cols="1").pr-2.pt-2
-              img(width="20" src="~/assets/images/mycure-check.png" alt="Check icon")
-            v-col
+      template(slot="additional-content")
+        div.mb-10
+          v-row(
+            v-for="(item, i) in fourthPanel.list"
+            :key="item"
+            dense
+          )
+            v-col(cols="2" sm="1" md="1").pr-2.pt-2
+              div(class="text-center")
+                img(
+                  src="~/assets/images/mycure-check.png"
+                  alt="Check icon"
+                  :width="!$isWideScreen ? '20' : '25'"
+                  :height="!$isWideScreen ? '20' : '25'"
+                )
+            v-col(cols="10" sm="11" md="11")
               span(:class="descriptionClasses") {{ item }}
+        div(:class="{ 'text-center': $isMobile }")
+          signup-button(
+            :class="btnClasses"
+            depressed
+            rounded
+            :x-large="$isWideScreen"
+            :large="!$isWideScreen"
+            color="success"
+          ).text-none
+            span Create my website
+
     //- 5th panel
-    multiple-branches
+    generic-media-panel(
+      :content="fifthPanel"
+      :title-classes="[...headerClasses, 'primary--text']"
+    )
+      template(slot="cta-button")
+        div(:class="{'text-center': $isMobile}")
+          mc-btn(
+            color="success"
+            href="https://calendly.com/mycure/demo"
+            target="_blank"
+            rel="noopener noreferrer"
+            depressed
+            rounded
+            :large="!$isWideScreen"
+            :x-large="$isWideScreen"
+            :class="btnClasses"
+          ).text-none.font-s Get Started
+
     //- 6th panel
-    syncbase
+    syncbase(:version="3")
     //- 7th panel
     think-long-term(extended)
     //- 8th panel
     pricing(
-      title="Take the first step today"
-      description="Start free and only pay as you grow."
+      type="clinic"
+      title="Take the first step today."
       :pricing-details="pricingDetails"
     )
     //- 9th panel
-    call-to-action
+    call-to-action(:version="3" not-free)
 </template>
 
 <script>
 // - utils
 import headMeta from '~/utils/head-meta';
-import classBinder from '~/utils/class-binder';
 // - constants
 import { CLINICS_PRICING } from '~/constants/pricing';
 // - components
-import CallToAction from '~/components/commons/panels/CallToAction';
-import Features from '~/components/commons/panels/Features';
-import GenericMediaPanel from '~/components/commons/generic-media-panel';
-import MultipleBranches from '~/components/enterprise/multiple-branches';
-import Pricing from '~/components/commons/panels/Pricing';
-import Syncbase from '~/components/commons/panels/Syncbase';
-import ThinkLongTerm from '~/components/commons/panels/ThinkLongTerm';
 import Usp from '~/components/commons/panels/SevenWondersUsp';
 
 export default {
   components: {
-    CallToAction,
-    Features,
-    GenericMediaPanel,
-    MultipleBranches,
-    Pricing,
-    Syncbase,
-    ThinkLongTerm,
+    CallToAction: () => import('~/components/commons/panels/CallToAction'),
+    Features: () => import('~/components/commons/panels/Features'),
+    GenericMediaPanel: () => import('~/components/generic/GenericMediaPanel'),
+    Pricing: () => import('~/components/commons/panels/Pricing'),
+    SignupButton: () => import('~/components/commons/SignupButton'),
+    Syncbase: () => import('~/components/commons/panels/Syncbase'),
+    ThinkLongTerm: () => import('~/components/commons/panels/ThinkLongTerm'),
     Usp,
   },
   middleware: ['disable-route'],
   data () {
-    // - TODO: Update info
     this.features = [
       {
         title: 'Digital Medical Records',
+        icon: 'Digital Records',
+        iconExtension: '.png',
       },
       {
         title: 'Smart Attachments',
+        icon: 'Smart Attachments',
+        iconExtension: '.png',
       },
       {
         title: 'Point-of-Sales',
+        icon: 'Point of Sales',
+        iconExtension: '.png',
       },
       {
-        title: 'Inventory management',
+        title: 'Inventory Management',
+        icon: 'Inventory Management',
+        iconExtension: '.png',
       },
       {
-        title: 'Works offline',
-      },
-    ];
-    this.infoPanels = [
-      {
-        header: 'Beautiful user experience',
-        descriptions: [
-          'You won\'t feel like you\'re at work.',
-        ],
-      },
-      {
-        header: 'Get more eyes on your brand',
-        descriptions: [
-          'Join MYCURE ONE, a global online directory of modern healthcare practitioners and facilities where people anywhere can book appointments at any time.',
-        ],
-        list: [
-          'Acquire patients beyond your reach',
-          'Hassle-free from booking to billing',
-          'Covers virtual to physical accommodation',
-        ],
+        title: 'Works Offline',
+        icon: 'Works Offline',
+        iconExtension: '.png',
       },
     ];
     this.pricingDetails = CLINICS_PRICING;
+    this.headerClasses = ['mc-title-set-1', 'lh-title', 'font-weight-semibold'];
+    this.descriptionClasses = ['mc-content-set-1', 'font-open-sans', 'font-gray'];
+    this.btnClasses = ['mc-button-set-1'];
+    this.listHeaderClasses = ['mc-list-title-set-1', 'lh-title', 'primary--text', 'font-weight-semibold'];
+    this.listContentClasses = ['mc-list-content-set-1', 'font-open-sans', 'font-gray'];
     return {
       loading: true,
     };
   },
   head () {
-    // - TODO: Update
     return headMeta({
       title: 'MYCURE for Skin Clinics',
       description: 'Experience the #1 Software for Skin and Aesthetic clinics. MYCURE is easy to set up and maintain. Get started today.',
-      socialBanner: require('~/assets/images/banners/OG Homepage.png'),
+      socialBanner: require('~/assets/images/banners/MYCURE - Skin Clinic OG BANNER.png'),
     });
   },
   computed: {
-    headerClasses () {
-      const headerClasses = [
-        classBinder(this, {
-          mobile: ['font-m'],
-          regular: ['font-l'],
-        }),
-        'lh-title',
-      ];
-      return headerClasses;
+    thirdPanel () {
+      return {
+        contentAlign: 'left',
+        imageBindings: {
+          image: 'Beautiful User experience.png',
+          mobileImage: 'Beautiful User experience mobile.png',
+          imageAlt: 'Body diagram in a tablet',
+          customPath: 'clinics/skin/',
+          extensionExclusive: true,
+          width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
+          height: this.$isMobile ? '305.91px' : (this.$isRegularScreen ? '508.96px' : '785.58px'),
+        },
+      };
     },
-    descriptionClasses () {
-      const descriptionClasses = [
-        classBinder(this, {
-          mobile: ['font-xs'],
-          regular: ['font-s'],
-        }),
-        'font-open-sans',
-        'font-gray',
-      ];
-      return descriptionClasses;
+    fourthPanel () {
+      return {
+        title: 'Get more eyes on your brand',
+        description: 'Join MYCURE ONE, a global online directory of modern healthcare practitioners and facilities where people anywhere can book appointments at any time.',
+        contentAlign: 'right',
+        imageBindings: {
+          customPath: 'commons/',
+          image: 'Expand your reach.webp',
+          imageAlt: 'Man browsing a clinic website',
+          width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
+          height: this.$isMobile ? '242.88px' : (this.$isRegularScreen ? '404.79px' : '624.8px'),
+        },
+        list: [
+          'Acquire patients beyond your reach',
+          'Hassle-free from booking to billing',
+          'Covers virtual to physical accommodation',
+        ],
+      };
+    },
+    fifthPanel () {
+      return {
+        title: 'One view for multiple locations',
+        description: 'All you need is one clean dashboard to see how your clinics are faring. Critical data from your multiple branches are beautifully compiled to show you a comprehensive summary of patient encounters, transactions, sales, expenses and even staff performance.',
+        contentAlign: 'left',
+        imageBindings: {
+          customPath: 'clinics/skin/',
+          image: 'Multiple locations.png',
+          mobileImage: 'Multiple locations mobile.png',
+          extensionExclusive: true,
+          imageAlt: 'Charts and graphs',
+          width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
+          height: this.$isMobile ? '156.16px' : (this.$isRegularScreen ? '260.08px' : '401.41px'),
+        },
+      };
     },
   },
   mounted () {
@@ -155,3 +244,9 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.grey-bg {
+  background-color: #fafafa;
+}
+</style>

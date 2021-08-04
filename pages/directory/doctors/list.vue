@@ -1,5 +1,5 @@
 <template lang="pug">
-  fragment
+  div
     v-app-bar(
       fixed
       elevate-on-scroll

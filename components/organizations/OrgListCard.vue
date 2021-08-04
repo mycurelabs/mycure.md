@@ -60,7 +60,7 @@
 <script>
 // import VClamp from 'vue-clamp';
 import { format } from 'date-fns';
-import { uniqBy } from 'lodash';
+import uniqBy from 'lodash/uniqBy';
 import { formatAddress } from '~/utils/formats';
 import FacilityPlaceholder from '~/assets/images/facility-placeholder.jpg';
 

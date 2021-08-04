@@ -1,12 +1,12 @@
 <template lang="pug">
-  div.pricing-bg.mx-n3
+  div(:class="$isMobile ? 'pricing-bg-mobile' : 'pricing-bg' ").mx-n3
     v-container
       v-row(justify="center")
         generic-panel
           v-col(cols="12")
             v-row(align="center" justify="center")
               v-col(cols="12").text-center
-                h1(:class="headerClasses").font-weight-semibold.mb-5 {{ title }}
+                h2.mc-title-set-2.font-weight-semibold.mb-5 {{ title }}
                 p(:class="descriptionClasses").mb-5.font-open-sans.font-gray {{ description }}
               v-col(cols="10" md="4" xl="3")
                 v-card(height="100%" width="100%").pricing-card.rounded-xl.elevation-3
@@ -16,8 +16,9 @@
                       custom-path="pricing/"
                       image="Essentials"
                       image-file-extension=".png"
-                      image-alt="Booking Essentials"
+                      image-alt="Health facility with a tree icon"
                       image-width="200"
+                      image-height="200"
                     )
                   v-card-title
                     v-spacer
@@ -46,7 +47,6 @@
 import GenericPanel from '~/components/generic/GenericPanel';
 import PictureSource from '~/components/commons/PictureSource';
 import SignupButton from '~/components/commons/SignupButton';
-import classBinder from '~/utils/class-binder';
 export default {
   components: {
     GenericPanel,
@@ -67,32 +67,8 @@ export default {
       'Daily Census',
       'Sales Reports',
     ];
+    this.descriptionClasses = ['mc-content-set-1'];
     return {};
-  },
-  computed: {
-    headerClasses () {
-      return classBinder(this, {
-        mobile: ['text-center'],
-        regular: ['font-20'],
-      });
-    },
-    descriptionClasses () {
-      return classBinder(this, {
-        mobile: ['font-xs', 'text-center'],
-        regular: ['font-s'],
-        wide: ['font-m'],
-      });
-    },
-    planTitleClasses () {
-      const headerClasses = [
-        classBinder(this, {
-          mobile: ['font-s', 'text-center'],
-          regular: ['font-m'],
-        }),
-        'lh-title',
-      ];
-      return headerClasses;
-    },
   },
 };
 </script>
@@ -103,9 +79,13 @@ export default {
 } */
 .pricing-bg {
   width: 100vw;
-  background-image: url('../../assets/images/pricing/Pricing BG.png');
+  background-image: url('../../assets/images/pricing/MYCURE-Pricing BG Wide.png');
   background-position: center center;
   background-size: 100% 100%;
+}
+.pricing-bg-mobile {
+  background-image: url('../../assets/images/pricing/MYCURE-Pricing BG Mobile.png');
+  background-position: center bottom;
 }
 .divider {
   border-bottom: 1px solid black;

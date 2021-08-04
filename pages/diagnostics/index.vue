@@ -31,15 +31,23 @@
       :content="info"
       :key="key"
       hide-btn
+      :title-classes="listHeaderClasses"
+      :content-classes="listContentClasses"
     )
       //- Check list
       template(slot="additional-content" v-if="info.list")
         template(v-for="(item, i) in info.list")
           v-row(dense)
             v-col(cols="2" sm="1" md="1").pr-2.pt-2
-              img(width="20" src="~/assets/images/mycure-check.png" alt="Check icon")
+              div(class="text-center")
+                img(
+                  src="~/assets/images/mycure-check.png"
+                  alt="Check icon"
+                  :width="!$isWideScreen ? '20' : '25'"
+                  :height="!$isWideScreen ? '20' : '25'"
+                )
             v-col(cols="10" sm="11" md="11")
-              span(:class="descriptionClasses") {{ item }}
+              span.mc-content-set-1.font-open-sans.font-gray {{ item }}
     //- 5th panel
     div.grey-bg.mx-n3
       generic-media-panel(
@@ -61,7 +69,8 @@
                 extension-exclusive
                 :image="item.icon"
                 :image-alt="item.title"
-                :image-width="!$isMobile ? '100%' : '60%'"
+                :image-width="$isMobile ? '76px' : ($isRegularScreen ? '111px' : '180px' )"
+                :image-height="$isMobile ? '76px' : ($isRegularScreen ? '111px' : '180px' )"
               )
               br
               h3(:class="{'font-s': $isWideScreen}").font-open-sans.font-gray {{ item.title }}
@@ -76,7 +85,6 @@
           rounded
           color="success"
           event-label="signup"
-          :block="$isMobile"
           :large="!$isWideScreen"
           :x-large="$isWideScreen"
           :class="{'font-s': !$isMobile}"
@@ -85,7 +93,9 @@
           span Create my website
     v-divider(v-if="$isMobile").divider
     //- 7th panel
-    generic-media-panel(:content="cmsPanel")
+    generic-media-panel(
+      :content="cmsPanel"
+    )
       template(slot="cta-button")
         div(:class="{'text-center': $isMobile}")
           mc-btn(
@@ -94,7 +104,6 @@
             event-label="clinics-info"
             color="success"
             :to="{ name: 'clinics' }"
-            :block="$isMobile"
             :large="!$isWideScreen"
             :x-large="$isWideScreen"
             :class="{'font-s': !$isMobile}"
@@ -116,29 +125,22 @@
 <script>
 // - utils
 import headMeta from '~/utils/head-meta';
-import classBinder from '~/utils/class-binder';
 // - constants
 import { DIAGNOSTICS_PRICING } from '~/constants/pricing';
 // - components
-import CallToAction from '~/components/commons/panels/CallToAction';
-import Features from '~/components/commons/panels/Features';
-import GenericMediaPanel from '~/components/generic/GenericMediaPanel';
 import PictureSource from '~/components/commons/PictureSource';
-import Pricing from '~/components/commons/panels/Pricing';
-import ThinkLongTerm from '~/components/commons/panels/ThinkLongTerm';
 import Usp from '~/components/commons/panels/SevenWondersUsp';
-import SignupButton from '~/components/commons/SignupButton';
 
 export default {
   components: {
-    CallToAction,
-    Features,
-    GenericMediaPanel,
+    CallToAction: () => import('~/components/commons/panels/CallToAction'),
+    Features: () => import('~/components/commons/panels/Features'),
+    GenericMediaPanel: () => import('~/components/generic/GenericMediaPanel'),
     PictureSource,
-    Pricing,
-    ThinkLongTerm,
+    Pricing: () => import('~/components/commons/panels/Pricing'),
+    ThinkLongTerm: () => import('~/components/commons/panels/ThinkLongTerm'),
     Usp,
-    SignupButton,
+    SignupButton: () => import('~/components/commons/SignupButton'),
   },
   data () {
     // - TODO: Update info
@@ -169,75 +171,9 @@ export default {
         iconExtension: '.webp',
       },
     ];
-    this.integrationsPanel = {
-      title: 'Ready whenever you are',
-      superTitle: 'POWERFUL INTEGRATIONS',
-      list: [
-        {
-          title: 'HL7',
-          icon: 'HL7',
-        },
-        {
-          title: 'DICOM',
-          icon: 'DICOM',
-        },
-      ],
-      imageBindings: {
-        image: 'MYCURE-virtual-clinic-healthcare-practice-online-features-G-diagnostic-results.webp',
-        customPath: 'features/',
-      },
-    };
-    this.infoPanels = [
-      {
-        title: 'Easy to Integrate. Easy to Use.',
-        description: 'Flawlessly incorporate MYCURE into your workflows.',
-        list: [
-          'Track specimen collection',
-          'Produce beautiful reports',
-          'Integrate with HL7 and DICOM-ready machines',
-          'Send online results to patients',
-        ],
-        imageBindings: {
-          image: 'easy.webp',
-          customPath: 'diagnostics/',
-        },
-        contentAlign: 'left',
-      },
-      {
-        title: 'Send Test Results Instantly',
-        description: 'Give your patients quick access to their test results through the MYCURE app for patients.',
-        list: [
-          'Patient Portal for Diagnostic Tests',
-          'Tabulated Cumulative Results',
-          'Quick Appointment Booking',
-        ],
-        imageBindings: {
-          image: 'Fast results.webp',
-          customPath: 'diagnostics/',
-        },
-        contentAlign: 'right',
-      },
-    ];
-    this.expandPanel = {
-      title: 'Expand your Reach',
-      description: 'Join MYCURE ONE, a global online directory of modern healthcare facilities so patients can easily find and book an appointment with you anytime.',
-      imageBindings: {
-        image: 'Expand your reach.webp',
-        customPath: 'commons/',
-      },
-      contentAlign: 'right',
-    };
-    this.cmsPanel = {
-      title: 'Grow into a full service clinic anytime',
-      superTitle: 'MYCURE CLINIC MANAGEMENT SYSTEM',
-      description: 'Cover all your patient journeys with MYCURE’s most complete clinic management system.',
-      imageBindings: {
-        image: 'FullService.webp',
-        customPath: 'diagnostics/',
-      },
-      contentAlign: 'left',
-    };
     this.pricingDetails = DIAGNOSTICS_PRICING;
+    this.listHeaderClasses = ['mc-list-title-set-1', 'lh-title', 'font-weight-semibold'];
+    this.listContentClasses = ['mc-list-content-set-1', 'font-open-sans', 'font-gray'];
     return {
       loading: true,
     };
@@ -250,44 +186,97 @@ export default {
     });
   },
   computed: {
-    headerClasses () {
-      const headerClasses = [
-        classBinder(this, {
-          mobile: ['font-m', 'text-center'],
-          regular: ['font-l'],
-          wide: ['font-xl'],
-        }),
-        'lh-title',
-        'font-weight-semibold',
-      ];
-      return headerClasses;
-    },
-    descriptionClasses () {
-      const descriptionClasses = [
-        classBinder(this, {
-          mobile: ['font-xs'],
-          regular: ['font-s'],
-          wide: ['font-m'],
-        }),
-        'font-open-sans',
-        'font-gray',
-      ];
-      return descriptionClasses;
-    },
-    subHeaderClasses () {
+    infoPanels () {
       return [
-        classBinder(this, {
-          mobile: ['font-xs', 'text-center'],
-          regular: ['font-xs'],
-          wide: ['font-s'],
-        }),
-        'font-open-sans',
-        'font-weight-bold',
-        'primary--text',
+        {
+          title: 'Easy to Integrate. Easy to Use.',
+          description: 'Flawlessly incorporate MYCURE into your workflows.',
+          list: [
+            'Track specimen collection',
+            'Produce beautiful reports',
+            'Integrate with HL7 and DICOM-ready machines',
+            'Send online results to patients',
+          ],
+          imageBindings: {
+            image: 'easy.webp',
+            imageAlt: 'Charts and graphs artwork',
+            customPath: 'diagnostics/',
+            width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
+            height: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
+          },
+          contentAlign: 'left',
+        },
+        {
+          title: 'Send Test Results Instantly',
+          description: 'Give your patients quick access to their test results through the MYCURE app for patients.',
+          list: [
+            'Patient Portal for Diagnostic Tests',
+            'Tabulated Cumulative Results',
+            'Quick Appointment Booking',
+          ],
+          imageBindings: {
+            image: 'Fast results.webp',
+            imageAlt: 'Sending out health results artwork',
+            customPath: 'diagnostics/',
+            width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
+            height: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
+          },
+          contentAlign: 'right',
+        },
       ];
     },
-    panelMargins () {
-      return { 'mt-10': this.$isMobile, 'mt-8': !this.$isMobile };
+    integrationsPanel () {
+      return {
+        contentAlign: 'left',
+        title: 'Ready whenever you are',
+        superTitle: 'POWERFUL INTEGRATIONS',
+        list: [
+          {
+            title: 'HL7',
+            icon: 'HL7',
+          },
+          {
+            title: 'DICOM',
+            icon: 'DICOM',
+          },
+        ],
+        imageBindings: {
+          image: 'MYCURE-virtual-clinic-healthcare-practice-online-features-G-diagnostic-results.webp',
+          imageAlt: 'Diagnostic and x-ray results in MYCURE Clinic Management System',
+          customPath: 'features/',
+          width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
+          height: this.$isMobile ? '240.05px' : (this.$isRegularScreen ? '400.06px' : '617.48px'),
+        },
+      };
+    },
+    expandPanel () {
+      return {
+        title: 'Expand your Reach',
+        description: 'Join MYCURE ONE, a global online directory of modern healthcare facilities so patients can easily find and book an appointment with you anytime.',
+        imageBindings: {
+          image: 'Expand your reach.webp',
+          imageAlt: 'Man browsing a clinic website artwork',
+          customPath: 'commons/',
+          width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
+          height: this.$isMobile ? '242.88px' : (this.$isRegularScreen ? '404.79px' : '624.8px'),
+        },
+        contentAlign: 'right',
+      };
+    },
+    cmsPanel () {
+      return {
+        title: 'Grow into a full service clinic anytime',
+        superTitle: 'MYCURE CLINIC MANAGEMENT SYSTEM',
+        description: 'Cover all your patient journeys with MYCURE’s most complete clinic management system.',
+        imageBindings: {
+          image: 'FullService.webp',
+          imageAlt: 'Doctor and patient transacting over a counter artwork',
+          customPath: 'diagnostics/',
+          width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
+          height: this.$isMobile ? '161.56px' : (this.$isRegularScreen ? '257.6px' : '397.59px'),
+        },
+        contentAlign: 'left',
+      };
     },
   },
   mounted () {

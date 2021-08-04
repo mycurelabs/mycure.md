@@ -2,191 +2,232 @@
   div(v-if="!loading").white
     //- 1st panel
     usp(
+      has-custom-background
+      background-image="OFW Clinics Full"
+      background-image-file-extension=".webp"
       title="The first and only medical software for OFW clinics"
       meta-title="MYCURE for OFW Medical Clinics"
       description="MYCURE is an easy to use, secure, cloud-based software where you can conveniently create, finalize, and release medical exam results."
       btn-text="Sign Up"
+      image="OFW Clinics Mobile"
+      custom-image-path="clinics/ofw/"
+      :media-column-bindings="{ cols: 12, md: 6, offsetMd: 1, xl: 6}"
+      :content-column-bindings="{ cols: 12, md: 5 }"
     )
     //- 2nd panel
-    generic-media-panel(
-      content-align-right
-      cols-left="6"
-      cols-right="6"
-      :header="infoPanels[0].header"
-      :header-classes="headerClasses"
-      :descriptions="infoPanels[0].descriptions"
-      :description-classes="descriptionClasses"
-    )
-
-    //- 3rd panel
-    features(
-      title="Design your own packages"
-      description="Easily create and customize pre-employment packages based on your client requirements. "
-      :items="features"
-    )
+    v-container
+      v-row(justify="center")
+        generic-panel(:row-bindings="{ justify: 'center'}")
+          v-col(cols="12" lg="8").text-center
+            h2(:class="headerClasses").mb-5 Create beautiful reports for your clients.
+            p(:class="descriptionClasses").mb-10.secondary--text.font-weight-semibold Provide both printed and online copies of their medical exam results without the hassle.
+          v-col(cols="12").text-center
+            picture-source(
+              extension-exclusive
+              image-alt="Sample report in MYCURE Clinic Management System"
+              image-file-extension=".png"
+              custom-path="clinics/ofw/"
+              :image="`Beautiful reports${$isMobile ? '-mobile' : ''}`"
+              :image-width="this.$isMobile ? '276px' : (this.$isRegularScreen ? '945px' : '1445px')"
+              :image-height="this.$isMobile ? '204.36px' : (this.$isRegularScreen ? '692.25px' : '1058.51px')"
+            )
     //- 4th panel
     generic-media-panel(
-      content-align-right
-      cols-left="6"
-      cols-right="6"
-      :header="infoPanels[1].header"
-      :header-classes="headerClasses"
-      :descriptions="infoPanels[1].descriptions"
-      :description-classes="descriptionClasses"
+      :content="queuePanel"
+      :title-classes="[...headerClasses, 'primary--text']"
     )
+      template(slot="cta-button")
+        v-row(:justify="$isMobile ? 'center' : 'start'")
+          v-col(cols="10" md="7" lg="6" xl="7")
+            div(:class="{ 'text-center': $isMobile }")
+              signup-button(
+                depressed
+                rounded
+                :x-large="$isWideScreen"
+                :large="!$isWideScreen"
+                :class="btnClasses"
+                color="success"
+              ).text-none
+                span Sign Up
     //- 5th panel
-    features(
-      title="Ready whenever you are"
-      meta-title="POWERFUL INTEGRATIONS"
-      :items="integrations"
-      hide-learn-more
-    )
+    div.grey-bg.mx-n3
+      generic-media-panel(
+        :content="integrationsPanel"
+        hide-btn
+        align="center"
+      )
+        template(slot="content")
+          v-row(justify="start")
+            v-col(
+              v-for="(item, key) in integrationsPanel.list"
+              :key="key"
+              cols="6"
+              md="4"
+            ).text-center
+              picture-source(
+                custom-path="diagnostics/"
+                image-file-extension=".png"
+                extension-exclusive
+                :image="item.icon"
+                :image-alt="item.title"
+                :image-width="$isMobile ? '76px' : ($isRegularScreen ? '111px' : '180px' )"
+                :image-height="$isMobile ? '76px' : ($isRegularScreen ? '111px' : '180px' )"
+              )
+              br
+              h3(:class="{'font-s': $isWideScreen}").font-open-sans.font-gray {{ item.title }}
     //- 6th panel
     generic-media-panel(
-      content-align-right
-      cols-left="6"
-      cols-right="6"
-      :header="infoPanels[2].header"
-      :header-classes="headerClasses"
-      :descriptions="infoPanels[2].descriptions"
-      :description-classes="descriptionClasses"
+      :content="directoryPanel"
+      :title-classes="[...headerClasses, 'primary--text']"
     )
-    //- 7th panel
-    call-to-action(:version="2")
-
-    //- 8th panel
-    generic-media-panel(
-      :center-media="!$isMobile"
-      :content-align-left="$isMobile"
-      header="Take the first step today"
-      :header-classes="headerClasses"
-      :descriptions="['Start now and get all your questions answered']"
-      :descriptionClasses="descriptionClasses"
-      :dense="$isMobile"
-    )
-      template(slot="additional-content")
-        v-row(justify="center")
-          v-col(cols="4").text-center
-            mc-btn(
-              color="primary"
-              large
+      template(slot="cta-button")
+        v-row(:justify="$isMobile ? 'center' : 'start'")
+          v-col(cols="10" sm="5" md="7" lg="6" xl="7")
+            signup-button(
               depressed
-            ).text-none.font-xs Start Now
+              rounded
+              block
+              :x-large="$isWideScreen"
+              :large="!$isWideScreen"
+              :class="btnClasses"
+              color="success"
+            ).text-none
+              span Create my website
+          //- TODO: Bring back when sample website is available
+          //- v-col(cols="12" md="7" lg="6" xl="5")
+          //-   mc-btn(
+          //-     color="success"
+          //-     href="https://calendly.com/mycure/demo"
+          //-     target="_blank"
+          //-     rel="noopener noreferrer"
+          //-     depressed
+          //-     rounded
+          //-     block
+          //-     :large="!$isWideScreen"
+          //-     :x-large="$isWideScreen"
+          //-     :class="{'font-s': $isWideScreen, 'font-14': $isRegularScreen }"
+          //-   ).text-none Book a full training
+    //- 7th panel
+    pricing(
+      title="Take the first step today."
+      type="clinic"
+    )
+    //- 8th panel
+    call-to-action(:version="2")
+    //- 9th panel
+    div.info.mx-n3
+      v-container
+        v-row(justify="center")
+          generic-panel(:row-bindings="{ justify: 'center' }")
+            v-col(cols="12" lg="8" xl="6").white--text.text-center
+              h2(:class="['white--text', ...headerClasses]").mb-5 Take the first step today
+              h3(:class="descriptionClasses").mb-5 Start now and get all your questions answered
+              mc-btn(
+                color="success"
+                depressed
+                rounded
+                :large="!$isWideScreen"
+                :x-large="$isWideScreen"
+                :class="btnClasses"
+              ).text-none Count me in
 </template>
 
 <script>
 // - utils
 import headMeta from '~/utils/head-meta';
-import classBinder from '~/utils/class-binder';
 // - constants
-import { CLINICS_PRICING } from '~/constants/pricing';
 // - components
-import CallToAction from '~/components/commons/panels/CallToAction';
-import Features from '~/components/commons/panels/Features';
-import GenericMediaPanel from '~/components/commons/generic-media-panel';
 import Usp from '~/components/commons/panels/SevenWondersUsp';
+import { getCountry } from '~/utils/axios';
 
 export default {
   components: {
-    CallToAction,
-    Features,
-    GenericMediaPanel,
+    CallToAction: () => import('~/components/commons/panels/CallToAction'),
+    GenericMediaPanel: () => import('~/components/generic/GenericMediaPanel'),
+    GenericPanel: () => import('~/components/generic/GenericPanel'),
+    PictureSource: () => import('~/components/commons/PictureSource'),
+    Pricing: () => import('~/components/commons/panels/Pricing'),
+    SignupButton: () => import('~/components/commons/SignupButton'),
+    Syncbase: () => import('~/components/commons/panels/Syncbase'),
+    ThinkLongTerm: () => import('~/components/commons/panels/ThinkLongTerm'),
     Usp,
   },
   middleware: ['disable-route'],
-  data () {
-    // - TODO: Update info
-    this.features = [
-      {
-        title: 'Laboratory',
-      },
-      {
-        title: 'Imaging',
-      },
-      {
-        title: 'Ancillary',
-      },
-      {
-        title: 'Dental',
-      },
-      {
-        title: 'Physical Exam',
-      },
-    ];
-    this.integrations = [
-      {
-        title: 'HL7',
-      },
-      {
-        title: 'DICOM',
-      },
-    ];
-    this.infoPanels = [
-      {
-        header: 'Create beautiful reports for your clients',
-        descriptions: [
-          'Provide both printed and online copies of their medical exam results without the hassle.',
-        ],
-      },
-      {
-        header: 'Value everyone\'s time more effectively',
-        descriptions: [
-          'Handle group registrations like a breeze. Your clients can now easily register themselves via kiosks. Display multiple queues through auxiliary monitors or smart TVs. Incoming doctors even get notified in their devices for every new patient in line.',
-        ],
-      },
-      {
-        header: 'Expand Your Reach',
-        descriptions: [
-          'Join MYCURE ONE, a global online directory of modern healthcare practitioners and facilities so patients can easily find and book an appointment anytime.',
-        ],
-      },
-    ];
+  async asyncData ({ redirect }) {
+    const country = await getCountry() || {};
+    const code = country.country_code;
 
-    this.pricingDetails = CLINICS_PRICING;
+    if (!code || code !== 'PH') redirect('/');
+  },
+  data () {
+    this.headerClasses = ['mc-title-set-1', 'lh-title', 'font-weight-semibold'];
+    this.descriptionClasses = ['mc-content-set-1'];
+    this.btnClasses = ['mc-button-set-1'];
     return {
       loading: true,
     };
   },
   head () {
-    // - TODO: Update
     return headMeta({
       title: 'MYCURE for OFW Medical Clinics',
       description: 'MYCURE provides a specialized tool to create, finalize, and release medical exam results designed for OFW clinics. Book a demo today.',
-      socialBanner: require('~/assets/images/banners/OG Homepage.png'),
+      socialBanner: require('~/assets/images/banners/MYCURE - OFW Clinic OG BANNER.png'),
     });
   },
   computed: {
-    headerClasses () {
-      const headerClasses = [
-        classBinder(this, {
-          mobile: ['font-m'],
-          regular: ['font-l'],
-        }),
-        'lh-title',
-      ];
-      return headerClasses;
+    queuePanel () {
+      return {
+        title: 'Value everyone’s time more effectively.',
+        description: 'Handle group registrations like a breeze. Your clients can now easily register themselves via kiosks. Display multiple queues through auxiliary monitors or smart TVs. Incoming doctors even get notified in their devices for every new patient in line.',
+        contentAlign: 'right',
+        imageBindings: {
+          customPath: 'clinics/ofw/',
+          image: 'Queue.png',
+          mobileImage: 'Queue-mobile.png',
+          imageAlt: 'Registration kiosk in MYCURE Clinic Management System',
+          extensionExclusive: true,
+          width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
+          height: this.$isMobile ? '298.88px' : (this.$isRegularScreen ? '498.19px' : '768.94px'),
+        },
+      };
     },
-    descriptionClasses () {
-      const descriptionClasses = [
-        classBinder(this, {
-          mobile: ['font-xs'],
-          regular: ['font-s'],
-        }),
-        'font-open-sans',
-        'font-gray',
-      ];
-      return descriptionClasses;
+    integrationsPanel () {
+      return {
+        contentAlign: 'left',
+        title: 'Ready whenever you are',
+        superTitle: 'POWERFUL INTEGRATIONS',
+        list: [
+          {
+            title: 'HL7',
+            icon: 'HL7',
+          },
+          {
+            title: 'DICOM',
+            icon: 'DICOM',
+          },
+        ],
+        imageBindings: {
+          image: 'MYCURE-virtual-clinic-healthcare-practice-online-features-G-diagnostic-results.webp',
+          imageAlt: 'Diagnostic and x-ray results in MYCURE Clinic Management System',
+          customPath: 'features/',
+          width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
+          height: this.$isMobile ? '240.05px' : (this.$isRegularScreen ? '400.06px' : '617.48px'),
+        },
+      };
     },
-    subHeaderClasses () {
-      return [
-        classBinder(this, {
-          mobile: ['font-xs'],
-          regular: ['font-s'],
-        }),
-        'font-open-sans',
-        'font-weight-bold',
-        'primary--text',
-      ];
+    directoryPanel () {
+      return {
+        title: 'Expand your Reach',
+        description: 'Join MYCURE ONE, a global online directory of modern healthcare practitioners and facilities so patients can easily find and book an appointment anytime.',
+        contentAlign: 'right',
+        imageBindings: {
+          customPath: 'commons/',
+          image: 'Expand your reach.webp',
+          imageAlt: 'Man browsing a clinic website',
+          width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
+          height: this.$isMobile ? '242.88px' : (this.$isRegularScreen ? '404.79px' : '624.8px'),
+        },
+      };
     },
   },
   mounted () {
@@ -194,3 +235,9 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.grey-bg {
+  background-color: #fafafa;
+}
+</style>

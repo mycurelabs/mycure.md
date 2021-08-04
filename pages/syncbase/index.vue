@@ -29,7 +29,7 @@
     //-   dummy
     //- )
     //- 3rd panel
-    syncbase(hide-btn version-two)
+    syncbase(hide-btn :version="2")
     //- 4th panel
     div.mx-n3.grey-bg
       features(
@@ -100,6 +100,8 @@ export default {
         iconExtension: '.webp',
       },
     ];
+    this.headerClasses = ['mc-title-set-2', 'lh-title', 'font-weight-semibold'];
+    this.descriptionClasses = ['mc-content-set-2', 'font-open-sans', 'font-gray'];
     return {
       loading: true,
     };
@@ -113,28 +115,6 @@ export default {
     });
   },
   computed: {
-    // - Generic Media Panel Classes
-    headerClasses () {
-      const headerClasses = [
-        classBinder(this, {
-          mobile: ['font-m'],
-          regular: ['font-l'],
-        }),
-        'lh-title',
-      ];
-      return headerClasses;
-    },
-    descriptionClasses () {
-      const descriptionClasses = [
-        classBinder(this, {
-          mobile: ['font-xs'],
-          regular: ['font-s'],
-        }),
-        'font-open-sans',
-        'font-gray',
-      ];
-      return descriptionClasses;
-    },
     // - USP Classes
     titleClasses () {
       const classes = classBinder(this, {

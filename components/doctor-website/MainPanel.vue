@@ -22,10 +22,11 @@
           v-col(cols="10" v-if="hasProfessionalInfo").text-center.mb-10
             p(v-if="practicingYears" style="color: #878E9B;").font-open-sans.font-weight-medium {{practicingYears}} Years of Experience
             br(v-else)
-            v-chip(v-for="(specialty, key) in specialties" :key="key" color="#878E9B").ma-1.white--text {{ specialty }}
+            v-chip(v-for="(specialty, key) in specialties" :key="key" color="white").ma-1
+              span(style="color: #878E9B;") {{ specialty }}
           //- Consult btn
-          v-col(cols="10" v-if="!$isMobile").text-center.justify-center
-              div(v-if="isBookable" style="width: 25%; margin: auto;").white
+          v-col(cols="10").text-center.justify-center
+              div(v-if="isBookable").white.btn-banner
                 strong(slot="badge").font-18.warning--text I'm available
               v-hover(
                 v-slot="{ hover }"
@@ -33,13 +34,15 @@
               )
 
                 v-btn(
+                  rounded
                   depressed
                   x-large
                   :color="hover ? 'info' : 'warning'"
                   :class="{ 'font-11' : $isMobile }"
                   :disabled="!isBookable"
                   @click="onBook"
-                ).text-none.font-weight-bold.custom-book-btn.rounded-xl.font-18 {{ hover ? 'Book me now' : 'The doctor is in' }}
+                ).text-none.font-weight-bold.custom-book-btn.font-18
+                  | {{ !isBookable ? 'The doctor is out' : hover ? 'Book me now' : 'The doctor is in' }}
 </template>
 
 <script>
@@ -170,19 +173,39 @@ export default {
   width: 300px;
 }
 
+.btn-banner {
+  width: 25%;
+  margin: auto;
+}
+
+@media screen and (max-width: 500px) {
+  .btn-banner {
+    width: 50%;
+  }
+  .custom-book-btn {
+    width: 200px;
+  }
+}
+
 @media screen and (max-width: 700px) {
   .panel-bg {
     height: 1000px;
   }
 }
+
+@media screen and (min-width: 1300px) {
+  .btn-banner {
+    width: 200px;
+  }
+}
 @media screen and (min-width: 1600px) {
   .panel-bg {
-    height: 1300px;
+    height: 1100px;
   }
 }
 @media screen and (min-width: 1800px) {
   .panel-bg {
-    height: 1500px;
+    height: 1300px;
   }
 }
 </style>

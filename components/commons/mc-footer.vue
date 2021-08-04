@@ -8,7 +8,8 @@
               img(
                 src="~/assets/images/MYCURE-virtual-clinic-healthcare-practice-online-logo.svg"
                 alt="White MYCURE Logo"
-                width="150"
+                width="150px"
+                height="41.89px"
               ).mt-4
           v-row(v-if="!$isMobile").mt-4.justify-space-around
             template(v-for="(footerItem, index) in footerItems")
@@ -78,7 +79,7 @@
             )
               template(v-for="(account, key) in socMed")
                 a(:href="account.link" target="_blank" rel="noopener noreferrer")
-                  img(:src="require(`~/assets/images/${ account.icon }`)" height="20" :alt="account.name").ma-4
+                  img(:src="require(`~/assets/images/${ account.icon }`)" width="20" height="20" :alt="account.name").ma-4
 </template>
 
 <script>
@@ -141,7 +142,7 @@ export default {
             { type: 'email', value: 'hello@mycure.md' },
             { type: 'phone', value: 'PH: (+632) 7799 6262' },
             { type: 'phone', value: 'PH: (+63) 917 303 4350' },
-            { type: 'phone', value: 'Guam: 1-671-646-2733' },
+            { type: 'phone', value: 'US: 1-671-646-2733' },
           ],
         },
       ],

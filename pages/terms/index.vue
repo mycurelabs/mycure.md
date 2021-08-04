@@ -1,5 +1,5 @@
 <template lang="pug">
-  div
+  div.pt-3
     div.header.mb-5
       v-container
         v-row(align="center" :class="{'header-container': !$isMobile}")
@@ -48,7 +48,12 @@
                 p For Doctors App: This is strictly exclusive for Licensed Medical Doctors only.
                 p For Patients App: Please do not lie about your age. Considering the sensitivity of medical data, we are only allowing users 18 years of age (or whatever is the legal age in your country) and above. Should you want to enroll a child then it can be done by using your name and registering him/her under you. We also understand that you would need to keep and monitor records of your children.
           v-col(cols="12").mb-3
-            img(width="100%" src="../../assets/images/mycure-terms-and-conditions-artwork.png" alt="MYCURE Terms and Conditions")
+            img(
+              src="../../assets/images/mycure-terms-and-conditions-artwork.png"
+              alt="MYCURE Terms and Conditions"
+              :width="$isMobile ? '276px' : ( $isRegularScreen ? '945px' : '1445px')"
+              :height="$isMobile ? '98.63px' : ( $isRegularScreen ? '337.69px' : '516.35px')"
+            )
           v-col(cols="12").mb-3
             h2 Subscription
             br
@@ -170,7 +175,6 @@
 
 <script>
 import VueScrollTo from 'vue-scrollto';
-import classBinder from '~/utils/class-binder';
 import headMeta from '~/utils/head-meta';
 import GenericPanel from '~/components/generic/GenericPanel';
 
@@ -179,6 +183,8 @@ export default {
     GenericPanel,
   },
   data () {
+    this.headerClasses = ['mc-title-set-1', 'lh-title', 'font-weight-semibold'];
+    this.descriptionClasses = ['mc-content-set-3', 'font-open-sans', 'font-gray'];
     return {
       loading: true,
     };
@@ -190,32 +196,6 @@ export default {
       // - TODO: Replace with local if applicable
       socialBanner: 'https://firebasestorage.googleapis.com/v0/b/mc-v4-prod.appspot.com/o/web-main-assets%2FMYCURE_Open_Graph_Images_Terms_and_Conditions.png?alt=media&token=3884660e-7f81-4586-9dc6-c500991e0b03',
     });
-  },
-  computed: {
-    headerClasses () {
-      const headerClasses = [
-        classBinder(this, {
-          mobile: ['font-m', 'text-center'],
-          regular: ['font-l'],
-          wide: ['font-xl'],
-        }),
-        'lh-title',
-        'font-weight-semibold',
-      ];
-      return headerClasses;
-    },
-    descriptionClasses () {
-      const descriptionClasses = [
-        classBinder(this, {
-          mobile: ['font-xs'],
-          regular: ['font-s'],
-          wide: ['font-m'],
-        }),
-        'font-open-sans',
-        'font-gray',
-      ];
-      return descriptionClasses;
-    },
   },
   mounted () {
     VueScrollTo.scrollTo('#app', 500, { easing: 'ease' });
