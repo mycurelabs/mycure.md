@@ -52,6 +52,8 @@ export default {
       if (routeName === 'booking') {
         route.query.from = 'booking';
       }
+      // - Flag for trial
+      if (this.queryOps?.trial) route.query.trial = this.queryOps.trial;
       this.$router.push(route);
     },
   },
