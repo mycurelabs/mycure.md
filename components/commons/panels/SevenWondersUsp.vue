@@ -12,14 +12,14 @@
     v-container.content
       v-row(justify="center" align="center" :style="{ height: panelHeight }")
         generic-sub-page-panel(
-          :title="uspTitle"
-          :title-classes="titleClasses"
           :content="uspDescription"
           :content-classes="descriptionClasses"
           :content-column-bindings="contentColumnBindings"
           :media-column-bindings="mediaColumnBindings"
           :generic-panel-bindings="genericPanelBindings"
         )
+          template(slot="title")
+            h2(:class="titleClasses") {{ uspTitle }}
           template(slot="super-title")
             h1(:class="superTitleClasses") {{ superTitle }}
           template(slot="image" v-if="!hasCustomBackground || $isMobile")
