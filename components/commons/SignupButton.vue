@@ -58,7 +58,7 @@ export default {
         if (this.queryOps?.type) route.query.type = this.queryOps.type;
       }
       // - Flag for trial
-      if (this.queryOps.trial) route.query.trial = this.queryOps.trial;
+      if (this.queryOps?.trial) route.query.trial = this.queryOps.trial;
       this.$router.push(route);
     },
   },
