@@ -2,7 +2,7 @@
   div
     v-container
       v-row(justify="end" align="center")
-        v-col(cols="12" sm="4").mb-2
+        v-col(cols="12" sm="5").mb-2
           v-text-field(
             v-model="searchObject.searchString"
             append-icon="mdi-magnify"
@@ -16,16 +16,16 @@
             :loading="isLoading"
           ).input-field
         v-spacer(v-if="!$isMobile")
-        v-col(cols="6" sm="3").mb-2
+        v-col(cols="6" sm="4").mb-2
           v-autocomplete(
             v-model="searchObject.specialty"
             label="Specialization"
             background-color="#d0e8f5"
+            height="56px"
             clearable
             hide-details
             filled
             small-chips
-            deletable-chips
             :search-input.sync="search"
             :items="specialties"
             :loading="isLoading"
@@ -58,7 +58,7 @@
         //-         size="36"
         //-         color="primary"
         //-       ) mdi-view-list
-      v-row
+      v-row.mt-4
         v-col.py-0
           template(v-for="(specialy, index) in searchObject.specialties")
             v-chip(

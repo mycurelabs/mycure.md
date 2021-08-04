@@ -29,7 +29,7 @@
               cols="12"
               md="4"
             ).px-5
-              doc-list-card(
+              org-list-card(
                 :organization="organization"
                 :read-only="readOnly"
               )
@@ -47,7 +47,7 @@ import uniqBy from 'lodash/uniqBy';
 import { fetchOrganizations } from '~/services/organizations';
 export default {
   components: {
-    DocListCard: () => import('~/components/directory-doctor/DocListCard'),
+    OrgListCard: () => import('~/components/organizations/OrgListCard'),
     OrgSearchBar: () => import('~/components/facilities-directory/OrgSearchBar'),
   },
   props: {

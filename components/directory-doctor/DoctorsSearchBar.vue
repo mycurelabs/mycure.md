@@ -12,7 +12,6 @@
           :height="$isMobile ? '40px' : '60px'"
           :items="doctorsSuggestions"
           :clear-icon="null"
-          item-text="name.lastName"
           @update:search-input="debouncedSuggestionsSearch"
           @keyup.enter="searchFacility"
           @change="onSelectDoctor"
@@ -33,10 +32,10 @@
                 @click="searchFacility(true)"
               ).elevation-0
                 v-icon mdi-magnify
-        v-card(v-for="doctorName in doctorsSuggestions" :key="doctorName")
-          v-list-item
-            v-list-item-content
-              v-list-item-title.text-wrap {{doctorName}}
+        //- v-card(v-for="doctorName in doctorsSuggestions" :key="doctorName")
+        //-   v-list-item
+        //-     v-list-item-content
+        //-       v-list-item-title.text-wrap {{doctorName}}
 </template>
 
 <script>
@@ -117,7 +116,7 @@ export default {
       //   query.skip = query.limit * (page - 1);
       // }
       const { data } = await searchDoctors(query);
-      this.doctorsSuggestions = data;
+      this.doctorsSuggestions = data.map(x => x.name.firstName + ' ' + x.name.lastName);
     },
     searchFacility (forceSearch = false) {
       if (this.requireAction && !forceSearch) return;
