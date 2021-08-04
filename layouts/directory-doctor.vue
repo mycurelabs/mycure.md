@@ -1,62 +1,39 @@
 <template lang="pug">
-  v-app
-    nuxt
+  v-app#app.pa-0
+    v-row(align="start" :class="$isMobile ? 'clinics-mobile-bg' : 'clinics-bg' ").pa-0.ma-0
+      v-col
+        v-row(align="start")
+          clinics-app-bar(v-if="!loading")
+        v-row(justify="center")
+          v-col(cols="12" sm="8")
+            nuxt
 </template>
 
 <script>
-import dayOrNight from '../utils/day-or-night';
 export default {
+  components: {
+    ClinicsAppBar: () => import('~/components/home/ClinicsAppBar'),
+  },
   data () {
     return {
-      dayOrNight: '',
+      loading: true,
     };
   },
   mounted () {
-    this.init();
-  },
-  methods: {
-    // DISABLE THE DARK THEME AFTER SUCCESSFUL
-    // APPLICATION FOR WAIT LISTS IN SIGN UP
-    async init () {
-      this.dayOrNight = await dayOrNight();
-      if (this.dayOrNight === 'night') {
-        this.$vuetify.theme.dark = false;
-      }
-    },
+    this.loading = false;
   },
 };
 </script>
 
 <style scoped>
-.font-64 {
-  font-size: 64px !important;
+.clinics-bg {
+  background-image: url('../assets/images/directory-doctor/Doctors Directory Desktop.png');
+  background-position: bottom center;
+  background-size: cover;
 }
-.font-56 {
-  font-size: 56px !important;
-}
-.font-32 {
-  font-size: 32px !important;
-}
-.font-30 {
-  font-size: 30px !important;
-}
-.font-26 {
-  font-size: 26px !important;
-}
-.font-24 {
-  font-size: 24px !important;
-}
-.font-20 {
-  font-size: 20px !important;
-}
-.font-16 {
-  font-size: 16px !important;
-}
-
-.letter-spacing-normal {
-  letter-spacing: normal !important;
-}
-.pre-white-space {
-  white-space: pre;
+.clinics-mobile-bg {
+  background-image: url('../assets/images/directory-doctor/Doctors Directory Mobile.png');
+  background-position: bottom center;
+  background-size: cover;
 }
 </style>

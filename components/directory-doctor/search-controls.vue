@@ -1,45 +1,50 @@
 <template lang="pug">
   div
-    template
-      v-row(justify="center" align="end")
-        v-col
+    v-container
+      v-row(justify="end" align="center")
+        v-col(cols="12" sm="4").mb-2
           v-text-field(
             v-model="searchObject.searchString"
             append-icon="mdi-magnify"
-            label="Search Doctor"
+            placeholder="Search Doctor"
+            background-color="#d0e8f5"
             type="text"
             clearable
-            dense
+            rounded
+            filled
             hide-details
-            outlined
             :loading="isLoading"
           ).input-field
-        v-col
+        v-spacer(v-if="!$isMobile")
+        v-col(cols="6" sm="3").mb-2
           v-autocomplete(
             v-model="searchObject.specialty"
-            color="primary"
             label="Specialization"
+            background-color="#d0e8f5"
             clearable
-            dense
             hide-details
-            outlined
+            filled
             small-chips
+            deletable-chips
+            :search-input.sync="search"
             :items="specialties"
             :loading="isLoading"
-          ).input-field
-        v-col
+            @click:clear="clearSpecialties"
+          ).input-field.no-line
+        v-col(v-if="$isMobile" cols="1")
+        v-col(cols="5" sm="2").mb-2
           v-select(
             v-model="searchObject.sortBy"
-            label="Sort By"
+            placeholder="Sort By"
             item-text="text"
+            background-color="#d0e8f5"
             clearable
-            dense
+            filled
             hide-details
-            outlined
             return-object
             :items="sortBy"
             :loading="isLoading"
-          ).input-field
+          ).input-field.no-line
         //- TEMPORARILY REMOVED REFER TO https://github.com/mycurelabs/web-main/issues/762
         //- v-col.col-auto
         //-   div.d-flex.justify-end
@@ -69,7 +74,7 @@
             close
             small
             color="error"
-            @click:close="searchObject.specialties = []"
+            @click:close="clearSpecialties"
           ).ma-1 Clear filters
     //- template(v-else)
       v-row.mb-2
@@ -226,6 +231,7 @@ export default {
     },
     removeSpecialty (index) {
       this.searchObject.specialties.splice(index, 1);
+      this.searchObject.specialty = '';
     },
     // Review below
     toggleView (type) {
@@ -240,6 +246,10 @@ export default {
     updateMobileView (type) {
       this.mobileViewType = type;
     },
+    clearSpecialties () {
+      this.searchObject.specialties = [];
+      this.searchObject.specialty = '';
+    },
   },
 };
 </script>
@@ -247,5 +257,8 @@ export default {
 <style scoped>
 .input-field {
   height: 40px;
+}
+.no-line::v-deep .v-input__slot::before {
+  border-style: none !important;
 }
 </style>

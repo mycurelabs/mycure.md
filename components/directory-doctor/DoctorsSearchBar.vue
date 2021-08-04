@@ -3,19 +3,19 @@
     v-row(justify="center" align="center")
       v-col(cols="12" md="11").pb-0
         v-combobox(
-          v-model="orgSuggestionsSearchQuery"
+          v-model="docSuggestionsSearchQuery"
           color="white"
-          item-text="name"
-          placeholder="Search for clinics"
+          placeholder="Search for doctors"
           return-object
           solo
           rounded
           :height="$isMobile ? '40px' : '60px'"
-          :items="orgSuggestions"
+          :items="doctorsSuggestions"
           :clear-icon="null"
+          item-text="name.lastName"
           @update:search-input="debouncedSuggestionsSearch"
           @keyup.enter="searchFacility"
-          @change="onSelectOrganization"
+          @change="onSelectDoctor"
         ).font-14.font-weight-regular
           template(v-slot:append)
             v-row
@@ -33,12 +33,17 @@
                 @click="searchFacility(true)"
               ).elevation-0
                 v-icon mdi-magnify
+        v-card(v-for="doctorName in doctorsSuggestions" :key="doctorName")
+          v-list-item
+            v-list-item-content
+              v-list-item-title.text-wrap {{doctorName}}
 </template>
 
 <script>
 import debounce from 'lodash/debounce';
 import NCR_CITIES from '~/assets/fixtures/ncr-cities';
-import { fetchOrganizations } from '~/services/organizations';
+// import { fetchdocanizations } from '~/services/docanizations';
+import { searchDoctors } from '~/utils/axios';
 export default {
   props: {
     requireAction: {
@@ -53,10 +58,10 @@ export default {
   data () {
     this.cities = NCR_CITIES;
     return {
-      orgSearchQuery: null,
-      orgSuggestionsSearchQuery: null,
-      orgSearchLocation: null,
-      orgSuggestions: [],
+      docSearchQuery: null,
+      docSuggestionsSearchQuery: null,
+      docSearchLocation: null,
+      doctorsSuggestions: [],
       selectedSuggestion: null,
       debouncedSearch: debounce(this.searchDebounce, 500),
       debouncedSuggestionsSearch: debounce((event) => {
@@ -65,11 +70,11 @@ export default {
     };
   },
   watch: {
-    orgSuggestionsSearchQuery (val) {
+    docSuggestionsSearchQuery (val) {
       this.searchFacility(true);
     },
-    orgSearchLocation (val) {
-      if (!val && !this.orgSearchQuery) {
+    docSearchLocation (val) {
+      if (!val && !this.docSearchQuery) {
         this.clearSearch();
         return;
       }
@@ -78,6 +83,9 @@ export default {
     },
   },
   methods: {
+    fullName () {
+      return this.name.firstName;
+    },
     searchDebounce () {
       if (this.requireAction) {
         return;
@@ -86,46 +94,57 @@ export default {
     },
     handleSuggestions (searchText) {
       if (!searchText) return;
-      this.orgSearchQuery = searchText;
+      this.docSearchQuery = searchText;
       this.searchSuggestions(searchText);
     },
     async searchSuggestions (searchText) {
       // - If location is selected, only places within that location will be suggested
       const query = {
         searchText,
-        limit: 10,
-        type: 'diagnostic-center',
+        // limit: 10,
+        // type: 'diagnostic-center',
       };
-
-      const { items } = await fetchOrganizations(this.$sdk, query);
-      this.orgSuggestions = items || [];
+      //   const { items } = await fetchdocanizations(this.$sdk, query);
+      //   this.doctorSuggestions = items || [];
+      // },
+      // async searchDoctors () {
+      // const { page, itemsPerPage } = this.doctorsTablePaginationOptions;
+      // const query = {
+      //   ...this.searchObject,
+      // };
+      // if (page && itemsPerPage) {
+      //   query.limit = itemsPerPage;
+      //   query.skip = query.limit * (page - 1);
+      // }
+      const { data } = await searchDoctors(query);
+      this.doctorsSuggestions = data;
     },
     searchFacility (forceSearch = false) {
       if (this.requireAction && !forceSearch) return;
-      if (!this.orgSearchQuery && !this.orgSearchLocation) {
+      if (!this.docSearchQuery && !this.docSearchLocation) {
         this.clearSearch();
         return;
       }
       const suggestion = this.mapSuggestion();
-      this.$emit('search-organizations', {
-        searchText: this.orgSearchQuery,
-        locationText: this.orgSearchLocation,
+      this.$emit('search-doctors', {
+        searchText: this.docSearchQuery,
+        locationText: this.docSearchLocation,
         ...suggestion && { suggestion },
       });
     },
     clearSearch () {
-      this.orgSearchQuery = '';
-      this.$emit('clear-organizations');
+      this.docSearchQuery = '';
+      this.$emit('clear-doctors');
     },
-    onSelectOrganization (organization) {
-      this.selectedSuggestion = organization;
+    onSelectDoctor (doctor) {
+      this.selectedSuggestion = doctor;
     },
     // - Check if suggestion satisfies location
     mapSuggestion () {
-      if (!this.orgSearchLocation) return null;
+      if (!this.docSearchLocation) return null;
       const city = this.selectedSuggestion?.address?.city;
       if (!city) return null;
-      return city.includes(this.orgSearchLocation)
+      return city.includes(this.docSearchLocation)
         ? this.selectedSuggestion?.id
         : null;
     },
