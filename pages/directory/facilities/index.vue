@@ -42,7 +42,7 @@ export default {
     onSearch ({ searchText, locationText, suggestion }) {
       this.$nuxt.$router.push({
         name: 'directory-facilities-results',
-        params: {
+        query: {
           facilitySearchText: searchText,
           facilityLocationText: locationText,
           facilitySuggestion: suggestion,

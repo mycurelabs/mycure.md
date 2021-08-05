@@ -18,16 +18,41 @@
         v-col(v-if="!loading.results" cols="12")#org-results
           h4(v-if="doctorsTableTotalItems") There {{ doctorsTableTotalItems > 1 ? 'are' : 'is' }} {{ doctorsTableTotalItems }} doctor{{ doctorsTableTotalItems > 1 ? 's' : '' }} available.
           h4(v-else) There are no results available.
+        //- v-col(cols="12")
+        //-   doctors-table(
+        //-     :doctors="doctors"
+        //-     :serverItemsLength="doctorsTableTotalItems"
+        //-     @paginate="doctorsTablePaginate"
+        //-   )#doctors-table
         v-col(cols="12")
-          doctors-table(
-            :doctors="doctors"
-            :serverItemsLength="doctorsTableTotalItems"
-            @paginate="doctorsTablePaginate"
-          )#doctors-table
-    //- v-card(v-for="doctorName in doctors" :key="doctorName")
-    //-   v-list-item
-    //-     v-list-item-content
-    //-       v-list-item-title.text-wrap {{/*doctorName*/}}
+          v-row(v-if="loading.results" justify="center")
+            v-col(cols="12" md="4").text-center
+              v-progress-circular(
+                color="primary"
+                indeterminate
+                size="100"
+              )
+          v-row(v-else justify="center" align="stretch")
+            v-col(
+              v-for="(doctorObj, key) in doctors"
+              :key="key"
+              cols="12"
+              md="4"
+            ).px-5
+              doc-list-card(
+                :organization="doctorObj"
+                :read-only="readOnly"
+              )
+          br
+          v-pagination(
+            v-model="docsPage"
+            :length="orgsLength"
+            total-visible="9"
+          )
+        //- v-card(v-for="doctorName in doctors" :key="doctorName")
+        //-   v-list-item
+        //-     v-list-item-content
+        //-       v-list-item-title.text-wrap {{doctorName}}
 
     //- Facility Results
       v-container
@@ -57,7 +82,7 @@
                 )
             br
             v-pagination(
-              v-model="orgsPage"
+              v-model="docsPage"
               :length="orgsLength"
               total-visible="9"
             )
@@ -71,7 +96,7 @@ import { searchDoctors } from '~/utils/axios';
 export default {
   components: {
     DoctorsTable: () => import('~/components/directory-doctor/doctors-table'),
-    OrgListCard: () => import('~/components/organizations/OrgListCard'),
+    DocListCard: () => import('~/components/directory-doctor/DocListCard'),
     OrgSearchBar: () => import('~/components/facilities-directory/OrgSearchBar'),
     SearchControls: () => import('~/components/directory-doctor/search-controls'),
   },
@@ -100,15 +125,16 @@ export default {
         page: null,
         itemsPerPage: null,
       },
+      searchString: '',
       doctorsTableTotalItems: 0,
-      orgsPage: 1,
+      docsPage: 1,
       orgsSearchQuery: {},
       municipalityList: [],
     };
   },
   computed: {
     orgsLength () {
-      return Math.ceil(this.orgsTotal / this.orgsLimit) || 0;
+      return Math.ceil(this.doctorsTableTotalItems / this.orgsLimit) || 0;
     },
     buttonSize () {
       const size = { xs: 'small', sm: 'large', lg: 'large', xl: 'x-large' }[this.$vuetify.breakpoint.name];
@@ -120,8 +146,8 @@ export default {
     },
   },
   watch: {
-    async orgsPage (val) {
-      await this.fetchOrganizations(this.orgsSearchQuery, val);
+    async docsPage (val) {
+      await this.searchDoctors(this.searchString, val);
       VueScrollTo.scrollTo('#org-results', 500, { offset: -250, easing: 'ease' });
     },
   },
@@ -214,7 +240,7 @@ export default {
     },
     clearOrganizationResults () {
       this.orgsSearchQuery = '';
-      this.orgsPage = 1;
+      this.docsPage = 1;
       this.fetchOrganizations();
       this.searchQuery = null;
     },
