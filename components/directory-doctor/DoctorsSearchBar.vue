@@ -126,7 +126,7 @@ export default {
       }
       const suggestion = this.mapSuggestion();
       this.$emit('search-doctors', {
-        searchText: this.docSearchQuery,
+        searchText: this.docSuggestionsSearchQuery,
         locationText: this.docSearchLocation,
         ...suggestion && { suggestion },
       });

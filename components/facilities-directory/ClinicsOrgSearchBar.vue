@@ -108,7 +108,7 @@ export default {
       }
       const suggestion = this.mapSuggestion();
       this.$emit('search-organizations', {
-        searchText: this.orgSearchQuery,
+        searchText: this.orgSuggestionsSearchQuery.name,
         locationText: this.orgSearchLocation,
         ...suggestion && { suggestion },
       });

@@ -29,8 +29,8 @@
               cols="12"
               md="4"
             ).px-5
-              org-list-card(
-                :organization="organization"
+              doc-list-card(
+                :doctor="organization"
                 :read-only="readOnly"
               )
           br
@@ -49,6 +49,7 @@ export default {
   components: {
     OrgListCard: () => import('~/components/organizations/OrgListCard'),
     OrgSearchBar: () => import('~/components/facilities-directory/OrgSearchBar'),
+    DocListCard: () => import('~/components/directory-doctor/DocListCard'),
   },
   props: {
     fixedSearchBar: {
@@ -100,7 +101,7 @@ export default {
   methods: {
     async init () {
       this.loading.page = false;
-      const { facilitySearchText, facilityLocationText, facilitySuggestion } = this.$route.query;
+      const { facilitySearchText, facilityLocationText, facilitySuggestion } = this.$route.params;
       let finalOrgResults = [];
       if (facilitySuggestion) {
         const suggestion = await this.$sdk.service('organizations').get(facilitySuggestion);

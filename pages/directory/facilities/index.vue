@@ -39,13 +39,11 @@ export default {
     this.loading = false;
   },
   methods: {
-    onSearch ({ searchText, locationText, suggestion }) {
+    onSearch ({ searchText }) {
       this.$nuxt.$router.push({
         name: 'directory-facilities-results',
         query: {
           facilitySearchText: searchText,
-          facilityLocationText: locationText,
-          facilitySuggestion: suggestion,
         },
       });
     },

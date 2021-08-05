@@ -18,23 +18,23 @@
           div.d-inline-flex
             p.font-weight-bold.font-24 {{ fullNameWithSuffixes }}&nbsp;
             v-icon(v-if="organization.doc_website" color="primary" large).mt-n4 mdi-check-decagram
-      v-col(align="start").pa-0
+      v-col(align="start").pa-0.mt-7
         v-row
-          span.mb-2.font-16 Specialization
+          span.font-14.info-text Specialization
         v-row(v-if="organization.doc_specialties")
-          span(v-for="specialty in organization.doc_specialties").font-12 {{ specialty }}&nbsp;
+          span.font-16.info-text.font-weight-semibold {{ organization.doc_specialties[0] }}&nbsp;
         v-row(v-else)
           span ---
-        v-row.mt-3
-          span.mb-2.font-16 Years of Experience
+        v-row.mt-5
+          span.font-14.info-text Years of Experience
         v-row(v-if="organization.doc_practicingSince" justify="start")
-          span.font-12 {{ yearsOfExperience }} year/s of experience
+          span.font-16.info-text.font-weight-semibold {{ yearsOfExperience }} year/s of experience
         v-row(v-else)
           span ---
-        v-row.mt-3
-          span.mb-2.font-16 Years of Experience
-        v-row(v-if="organization.doc_practicingSince" justify="start")
-          span.font-12 {{ yearsOfExperience }} year/s of experience
+        v-row.mt-5
+          span.font-14.info-text Tags
+        v-row(v-if="organization.doc_specialties")
+          v-chip(v-for="(specialty, key) in organization.doc_specialties" :key="key").font-12.ma-1 {{ specialty }}&nbsp;
         v-row(v-else)
           span ---
       v-btn(
@@ -137,5 +137,8 @@ export default {
 .card-actions2 {
   position: absolute;
   bottom: 32px;
+}
+.info-text {
+ color: #393d45;
 }
 </style>

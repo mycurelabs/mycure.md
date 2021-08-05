@@ -26,7 +26,7 @@
         //-   )#doctors-table
         v-col(cols="12")
           v-row(v-if="loading.results" justify="center")
-            v-col(cols="12" md="4").text-center
+            v-col(cols="12" md="5").text-center
               v-progress-circular(
                 color="primary"
                 indeterminate
@@ -37,7 +37,7 @@
               v-for="(doctorObj, key) in orgsList"
               :key="key"
               cols="12"
-              md="4"
+              md="5"
             ).px-5
               doc-list-card(
                 :organization="doctorObj"
@@ -114,7 +114,7 @@ export default {
         results: false,
       },
       orgsTotal: 0,
-      orgsLimit: 12,
+      orgsLimit: 10,
       orgsList: [],
       orgsPage: 1,
       orgsSearchQuery: {},
