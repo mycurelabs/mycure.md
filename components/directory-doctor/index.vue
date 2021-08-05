@@ -16,7 +16,7 @@
     v-container
       v-row(align="center" justify="center" :class="$isMobile? 'org-results-margin-mobile' : 'org-results-margin' ").org-results-summary
         v-col(v-if="!loading.results" cols="12")#org-results
-          h4(v-if="doctorsTableTotalItems") There {{ doctorsTableTotalItems > 1 ? 'are' : 'is' }} {{ doctorsTableTotalItems }} doctor{{ doctorsTableTotalItems > 1 ? 's' : '' }} available.
+          h4(v-if="orgsTotal") There {{ orgsTotal > 1 ? 'are' : 'is' }} {{ orgsTotal }} organization{{ orgsTotal > 1 ? 's' : '' }} available.
           h4(v-else) There are no results available.
         //- v-col(cols="12")
         //-   doctors-table(
@@ -34,7 +34,7 @@
               )
           v-row(v-else justify="center" align="stretch")
             v-col(
-              v-for="(doctorObj, key) in doctors"
+              v-for="(doctorObj, key) in orgsList"
               :key="key"
               cols="12"
               md="4"
@@ -45,7 +45,7 @@
               )
           br
           v-pagination(
-            v-model="docsPage"
+            v-model="orgsPage"
             :length="orgsLength"
             total-visible="9"
           )
@@ -91,13 +91,10 @@
 <script>
 import VueScrollTo from 'vue-scrollto';
 import uniqBy from 'lodash/uniqBy';
-import { fetchOrganizations } from '~/services/organizations';
 import { searchDoctors } from '~/utils/axios';
 export default {
   components: {
-    DoctorsTable: () => import('~/components/directory-doctor/doctors-table'),
     DocListCard: () => import('~/components/directory-doctor/DocListCard'),
-    OrgSearchBar: () => import('~/components/facilities-directory/OrgSearchBar'),
     SearchControls: () => import('~/components/directory-doctor/search-controls'),
   },
   props: {
@@ -116,25 +113,17 @@ export default {
         page: true,
         results: false,
       },
-      locationQuery: '',
       orgsTotal: 0,
       orgsLimit: 12,
       orgsList: [],
-      doctors: [],
-      doctorsTablePaginationOptions: {
-        page: null,
-        itemsPerPage: null,
-      },
-      searchString: '',
-      doctorsTableTotalItems: 0,
-      docsPage: 1,
+      orgsPage: 1,
       orgsSearchQuery: {},
       municipalityList: [],
     };
   },
   computed: {
     orgsLength () {
-      return Math.ceil(this.doctorsTableTotalItems / this.orgsLimit) || 0;
+      return Math.ceil(this.orgsTotal / this.orgsLimit) || 0;
     },
     buttonSize () {
       const size = { xs: 'small', sm: 'large', lg: 'large', xl: 'x-large' }[this.$vuetify.breakpoint.name];
@@ -146,8 +135,8 @@ export default {
     },
   },
   watch: {
-    async docsPage (val) {
-      await this.searchDoctors(this.searchString, val);
+    async orgsPage (val) {
+      await this.fetchDoctors(this.orgsSearchQuery, val);
       VueScrollTo.scrollTo('#org-results', 500, { offset: -250, easing: 'ease' });
     },
   },
@@ -155,42 +144,19 @@ export default {
     this.init();
   },
   methods: {
-    async searchDoctors () {
-      const { page, itemsPerPage } = this.doctorsTablePaginationOptions;
-      const query = {
-        ...this.searchObject,
-      };
-      if (page && itemsPerPage) {
-        query.limit = itemsPerPage;
-        query.skip = query.limit * (page - 1);
-      }
-      const { data, total } = await searchDoctors(query);
-      this.doctorsTableTotalItems = total;
-      this.doctors = data;
-    },
     searchFromControls (searchObject) {
       this.isLoading = true;
-      this.searchObject = searchObject;
-      this.searchDoctors();
+      this.searchQuery = searchObject;
+      this.fetchDoctors(this.searchQuery);
       this.isLoading = false;
     },
-    doctorsTablePaginate (doctorsTablePaginationOptions) {
-      this.doctorsTablePaginationOptions = doctorsTablePaginationOptions;
-      this.searchDoctors();
-    },
-
     async init () {
       this.loading.page = false;
-      const { facilitysearchString, facilityLocationText, facilitySuggestion } = this.$route.params;
+      const { doctorSearchText } = this.$route.query;
       let finalOrgResults = [];
-      if (facilitySuggestion) {
-        const suggestion = await this.$sdk.service('organizations').get(facilitySuggestion);
-        if (suggestion) finalOrgResults.push(suggestion);
-      }
-      if (facilitysearchString || facilityLocationText) {
-        await this.searchOrganizations({
-          searchString: facilitysearchString,
-          locationText: facilityLocationText,
+      if (doctorSearchText) {
+        await this.searchFromControls({
+          searchString: doctorSearchText,
         });
 
         if (!this.orgsTotal && finalOrgResults.length) this.orgsTotal++;
@@ -199,25 +165,24 @@ export default {
         this.orgsList = finalOrgResults;
         return;
       }
-      await this.fetchOrganizations();
+      await this.fetchDoctors();
     },
-    async fetchOrganizations (searchQuery = {}, page = 1) {
+    async fetchDoctors (searchQuery = {}, page = 1) {
       try {
         this.loading.results = true;
         this.$emit('results:filled', false);
-        const { searchString, locationText } = searchQuery;
+        const { searchString, specialties, sortBy } = searchQuery;
         const skip = this.orgsLimit * (page - 1);
         const query = {
           limit: this.orgsLimit,
           skip,
           searchString,
-          locationText,
-          // TODO: confirm org types that are not included
-          type: 'diagnostic-center',
+          specialties,
+          sortBy,
         };
 
-        const { items, total } = await fetchOrganizations(this.$sdk, query);
-        this.orgsList = items || [];
+        const { data, total } = await searchDoctors(query);
+        this.orgsList = data;
         this.orgsTotal = total;
       } catch (error) {
         console.error(error);
@@ -233,15 +198,15 @@ export default {
         console.error(error);
       }
     },
-    async searchOrganizations ({ searchString, locationText }) {
-      this.orgsSearchQuery = { searchString, locationText };
-      await this.fetchOrganizations(this.orgsSearchQuery);
+    async searchOrganizations ({ searchText }) {
+      this.orgsSearchQuery = { searchText };
+      await this.fetchDoctors(this.orgsSearchQuery);
       VueScrollTo.scrollTo('#org-results', 500, { offset: -250, easing: 'ease' });
     },
     clearOrganizationResults () {
       this.orgsSearchQuery = '';
-      this.docsPage = 1;
-      this.fetchOrganizations();
+      this.orgsPage = 1;
+      this.fetchDoctors();
       this.searchQuery = null;
     },
   },

@@ -100,7 +100,7 @@ export default {
   methods: {
     async init () {
       this.loading.page = false;
-      const { facilitySearchText, facilityLocationText, facilitySuggestion } = this.$route.params;
+      const { facilitySearchText, facilityLocationText, facilitySuggestion } = this.$route.query;
       let finalOrgResults = [];
       if (facilitySuggestion) {
         const suggestion = await this.$sdk.service('organizations').get(facilitySuggestion);

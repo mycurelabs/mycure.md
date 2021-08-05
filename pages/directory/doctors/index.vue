@@ -88,10 +88,8 @@ export default {
     onSearch ({ searchText, locationText, suggestion }) {
       this.$nuxt.$router.push({
         name: 'directory-doctors-results',
-        params: {
-          facilitySearchText: searchText,
-          facilityLocationText: locationText,
-          facilitySuggestion: suggestion,
+        query: {
+          doctorSearchText: searchText,
         },
       });
     },
