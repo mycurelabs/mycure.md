@@ -14,7 +14,7 @@
           :items="orgSuggestions"
           :clear-icon="null"
           @update:search-input="debouncedSuggestionsSearch"
-          @keyup.enter="searchFacility"
+          @keyup.enter="searchFacilityBtn"
           @change="onSelectOrganization"
         ).font-14.font-weight-regular
           template(v-slot:append)
@@ -30,7 +30,7 @@
                 fab
                 small
                 color="primary"
-                @click="searchFacilityBtn"
+                @click="searchFacilityBtn(true)"
               ).elevation-0
                 v-icon mdi-magnify
 </template>
