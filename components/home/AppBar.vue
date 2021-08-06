@@ -6,33 +6,38 @@
     elevate-on-scroll
   ).nav-bar
     v-container.px-0
-      v-col.pa-0
-        v-row(:justify="{'center': !$isMobile}").px-0.mx-0
-          v-col(cols="1").pl-0
-            nuxt-link(to="/")
-              img(
-                src="~/assets/images/MYCURE Logo - white.png"
-                width="120px"
-                height="34.46px"
-                alt="MYCURE logo"
-                :class="!$isMobile ? ['mr-1', 'mt-1'] : '' "
-              )
-          v-spacer
-          v-col(cols="1" :class="!$isMobile ? 'pt-7' : 'pt-6'").pr-0
-            v-row(justify="end")
-              v-btn(
-                color="primary"
-                depressed
-                rounded
-                :large="$isWideScreen"
-                @click="openPxPortal(pxPortalLogIn)"
-              ).text-none.mr-2
-                v-icon(small) mdi-account-outline
-                span.font-weight-thin.font-12 Login
+      v-row(justify="center")
+        generic-panel(:column="$isMobile ? 12 : 10" disable-parent-padding)
+          v-col.pa-0.ml-n3
+            v-row(:justify="{'center': !$isMobile}").px-0.mx-0
+              v-col(cols="1")
+                nuxt-link(to="/")
+                  img(
+                    src="~/assets/images/MYCURE Logo - white.png"
+                    width="120px"
+                    height="34.46px"
+                    alt="MYCURE logo"
+                    :class="!$isMobile ? ['mr-1', 'mt-1'] : '' "
+                  )
+              v-spacer
+              v-col(cols="1" :class="!$isMobile ? 'pt-7' : 'pt-6'").pr-0
+                v-row(justify="end")
+                  v-btn(
+                    color="primary"
+                    depressed
+                    rounded
+                    :large="$isWideScreen"
+                    @click="openPxPortal(pxPortalLogIn)"
+                  ).text-none.mr-2
+                    v-icon(small) mdi-account-outline
+                    span.font-weight-thin.font-12 Login
 </template>
 
 <script>
 export default {
+  components: {
+    GenericPanel: () => import('~/components/generic/GenericPanel'),
+  },
   props: {
     isServices: {
       type: Boolean,

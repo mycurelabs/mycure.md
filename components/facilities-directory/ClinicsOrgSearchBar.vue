@@ -30,7 +30,7 @@
                 fab
                 small
                 color="primary"
-                @click="searchFacility(true)"
+                @click="searchFacilityBtn"
               ).elevation-0
                 v-icon mdi-magnify
 </template>
@@ -94,7 +94,7 @@ export default {
       const query = {
         searchText,
         limit: 10,
-        type: 'facility',
+        type: 'diagnostic-center',
       };
 
       const { items } = await fetchOrganizations(this.$sdk, query);
@@ -109,6 +109,19 @@ export default {
       const suggestion = this.mapSuggestion();
       this.$emit('search-organizations', {
         searchText: this.orgSuggestionsSearchQuery.name,
+        locationText: this.orgSearchLocation,
+        ...suggestion && { suggestion },
+      });
+    },
+    searchFacilityBtn (forceSearch = false) {
+      if (this.requireAction && !forceSearch) return;
+      if (!this.orgSearchQuery && !this.orgSearchLocation) {
+        this.clearSearch();
+        return;
+      }
+      const suggestion = this.mapSuggestion();
+      this.$emit('search-organizations', {
+        searchText: this.orgSearchQuery,
         locationText: this.orgSearchLocation,
         ...suggestion && { suggestion },
       });

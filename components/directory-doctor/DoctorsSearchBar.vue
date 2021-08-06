@@ -29,7 +29,7 @@
                 fab
                 small
                 color="primary"
-                @click="searchFacility(true)"
+                @click="searchFacilityBtn(true)"
               ).elevation-0
                 v-icon mdi-magnify
         //- v-card(v-for="doctorName in doctorsSuggestions" :key="doctorName")
@@ -127,6 +127,19 @@ export default {
       const suggestion = this.mapSuggestion();
       this.$emit('search-doctors', {
         searchText: this.docSuggestionsSearchQuery,
+        locationText: this.docSearchLocation,
+        ...suggestion && { suggestion },
+      });
+    },
+    searchFacilityBtn (forceSearch = false) {
+      if (this.requireAction && !forceSearch) return;
+      if (!this.docSearchQuery && !this.docSearchLocation) {
+        this.clearSearch();
+        return;
+      }
+      const suggestion = this.mapSuggestion();
+      this.$emit('search-doctors', {
+        searchText: this.docSearchQuery,
         locationText: this.docSearchLocation,
         ...suggestion && { suggestion },
       });
