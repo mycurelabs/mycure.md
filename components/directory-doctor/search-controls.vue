@@ -18,8 +18,7 @@
                   hide-details
                   :loading="isLoading"
                 ).input-field
-              v-spacer(v-if="!$isMobile")
-              v-col(cols="6" sm="4" :class="{'py-0': $isMobile}").mb-2
+              v-col(cols="6" sm="5" :class="{'py-0': $isMobile}").mb-2
                 v-autocomplete(
                   v-model="searchObject.specialty"
                   label="Specialization"
@@ -29,6 +28,7 @@
                   hide-details
                   filled
                   small-chips
+                  rounded
                   :search-input.sync="search"
                   :items="specialties"
                   :loading="isLoading"
@@ -45,6 +45,7 @@
                   filled
                   hide-details
                   return-object
+                  rounded
                   :items="sortBy"
                   :loading="isLoading"
                 ).input-field.no-line
