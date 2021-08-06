@@ -1,64 +1,65 @@
 <template lang="pug">
-  v-card(height="100%" elevation="3" rounded="lg").orgs-card.pb-13
-    v-col.fill-height.mb-12.pa-8
+  v-card(height="100%" elevation="3" style="border-radius: 30px").orgs-card.pa-2
+    v-col.fill-height
       v-row(justify="center")
-        v-col.py-0
+        v-col(cols="5")
           img(
             :src="picURL"
             alt="Services"
-            width="120"
-            height="120"
-          ).rounded-circle
-        v-spacer
-        v-col(align="end").pa-0
-          v-btn( icon )
-            v-icon mdi-dots-horizontal
-      v-row(justify="start")
-        v-col.pa-0
-          div.d-inline-flex
-            p.font-weight-bold.font-24 {{ fullNameWithSuffixes }}&nbsp;
-            v-icon(v-if="organization.doc_website" color="primary" large).mt-n4 mdi-check-decagram
-      v-col(align="start").pa-0.mt-7
-        v-row
-          span.font-14.info-text Specialization
-        v-row(v-if="organization.doc_specialties")
-          span.font-16.info-text.font-weight-semibold {{ organization.doc_specialties[0] }}&nbsp;
-        v-row(v-else)
-          span ---
-        v-row.mt-5
-          span.font-14.info-text Years of Experience
-        v-row(v-if="organization.doc_practicingSince" justify="start")
-          span.font-16.info-text.font-weight-semibold {{ yearsOfExperience }} year/s of experience
-        v-row(v-else)
-          span ---
-        v-row.mt-5
-          span.font-14.info-text Tags
-        v-row(v-if="organization.doc_specialties")
-          v-chip(v-for="(specialty, key) in organization.doc_specialties" :key="key").font-12.ma-1 {{ specialty }}&nbsp;
-        v-row(v-else)
-          span ---
-      v-btn(
-        color="success"
-        target="_blank"
-        rel="noopener noreferrer"
-        tile
-        block
-        x-large
-        @click="openFacility"
-      ).text-none.elevation-0.font-weight-light.mb-n8.ml-n8.card-actions
-        v-icon mdi-stethoscope
-        b &nbsp;Teleconsult
-      v-btn(
-        color="primary"
-        target="_blank"
-        rel="noopener noreferrer"
-        tile
-        block
-        x-large
-        @click="openFacility"
-      ).text-none.elevation-0.font-weight-light.mb-n8.ml-n8.rounded-bl-lg.rounded-br-lg.card-actions2
-        v-icon mdi-calendar
-        b &nbsp;Book a Visit
+            width="200"
+            height="200"
+            style="border-radius: 30px"
+          )
+        v-col(cols="7").pt-10.pl-6
+          v-row
+            p(:class="(fullNameWithSuffixes.length > 21) ? 'font-18' : 'font-24'").font-weight-bold.mb-0 {{ fullNameWithSuffixes }}&nbsp;
+          v-row
+            span(v-if="organization.doc_specialties").font-16.info-text {{ organization.doc_specialties[0] }}&nbsp;&nbsp;
+            span(v-else) ---&nbsp;&nbsp;
+            v-chip(v-if="organization.doc_website" color="primary" outlined x-small).mt-1 verified
+          v-row(justify="start").mt-5
+            v-col(cols="2").pa-0
+              v-icon(color="primary" large) mdi-briefcase-variant-outline
+            v-col.px-0.pb-0.pt-3
+              v-row
+                span.font-12.info-text &nbsp;Experience
+              v-row
+                span(v-if="organization.doc_practicingSince" justify="start").font-14.info-text.font-weight-semibold &nbsp;{{ yearsOfExperience }} year/s of experience
+                span(v-else) &nbsp;---
+          v-row(justify="start").mt-3
+            v-col(cols="2").pa-0
+              v-icon(color="primary" large) mdi-map-marker
+            v-col.px-0.pb-0.pt-3
+              v-row
+                span.font-12.info-text &nbsp;Location
+              v-row
+                span(v-if="organization.doc_practicingSince" justify="start").font-14.info-text.font-weight-semibold &nbsp;{{ yearsOfExperience }} year/s of experience
+                span(v-else) &nbsp;---
+          v-row(justify="start").mt-5
+            v-btn(
+              color="success"
+              target="_blank"
+              rel="noopener noreferrer"
+              small
+              rounded
+              :href="doctorWebsite"
+            ).text-none.elevation-0.font-weight-light.ma-1
+              v-icon(small) mdi-stethoscope
+              b &nbsp;Teleconsult
+            v-btn(
+              color="primary"
+              target="_blank"
+              rel="noopener noreferrer"
+              small
+              rounded
+              :href="doctorWebsite"
+            ).text-none.elevation-0.font-weight-light.ma-1
+              v-icon(small) mdi-calendar
+              b &nbsp;Book a Visit
+      v-row(v-if="organization.doc_specialties").mt-3.pa-2
+        v-col(cols="12")
+          v-row
+            v-chip(v-for="(specialty, key) in organization.doc_specialties" :key="key").font-12.ma-1 {{ specialty }}&nbsp;
 </template>
 
 <script>
@@ -99,6 +100,10 @@ export default {
     };
   },
   computed: {
+    doctorWebsite () {
+      const username = this.organization?.doc_website; // eslint-disable-line
+      return `${process.env.WEB_MAIN_URL}/doctors/${username}`;
+    },
     fullNameWithSuffixes () {
       let fullName = this.organization.name.firstName;
       if (this.organization.name.middleInitial) fullName = fullName + ' ' + this.organization.name.middleInitial;
@@ -129,14 +134,6 @@ export default {
 .orgs-card {
   box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.35);
   border-radius: 10px;
-}
-.card-actions {
-  position: absolute;
-  bottom: 84px;
-}
-.card-actions2 {
-  position: absolute;
-  bottom: 32px;
 }
 .info-text {
  color: #393d45;

@@ -37,7 +37,7 @@
               v-for="(doctorObj, key) in orgsList"
               :key="key"
               cols="12"
-              md="5"
+              md="6"
             ).px-5
               doc-list-card(
                 :organization="doctorObj"
