@@ -11,7 +11,7 @@
               require-action
               show-suggestions
               @search-organizations="onSearch($event)"
-          )
+            )
 </template>
 
 <script>
@@ -39,13 +39,11 @@ export default {
     this.loading = false;
   },
   methods: {
-    onSearch ({ searchText, locationText, suggestion }) {
+    onSearch ({ searchText }) {
       this.$nuxt.$router.push({
         name: 'directory-facilities-results',
-        params: {
+        query: {
           facilitySearchText: searchText,
-          facilityLocationText: locationText,
-          facilitySuggestion: suggestion,
         },
       });
     },

@@ -1,25 +1,25 @@
 <template lang="pug">
   div(v-if="!loading.page")
     v-row(justify="center" no-gutters).fixed-container.search-container
-      v-col(cols="12" :class="{'ml-n5': !$isMobile}").text-center.py-1
-        org-search-bar(
-          :mobile-search-btn-color="fixedSearchBar ? 'success' : 'primary'"
-          @search-organizations="searchOrganizations($event)"
-          @clear-organizations="clearOrganizationResults"
+      v-col(cols="12").text-center.py-1
+        search-controls(
+          :search-string="searchString"
+          :search-specialties="searchSpecialties"
+          :isLoading="isLoading"
+          @search="searchFromControls"
+          :class="{'ml-n5': !$isMobile}"
         )
-    //- Facility Results
     v-container
       v-row(justify="center")
         generic-panel(:column="$isMobile ? 12 : 10" disable-parent-padding)
           v-container
             v-row(align="center" justify="center" :class="$isMobile? 'org-results-margin-mobile' : 'org-results-margin' ").org-results-summary
-              v-col(v-if="!loading.results" cols="12")#org-results
-                h4(v-if="orgsTotal") There {{ orgsTotal > 1 ? 'are' : 'is' }} {{ orgsTotal }} organization{{ orgsTotal > 1 ? 's' : '' }} available.
+              v-col(v-if="!loading.results" cols="12" :class="{'text-center': $isMobile}")#org-results
+                h4(v-if="orgsTotal") There {{ orgsTotal > 1 ? 'are' : 'is' }} {{ orgsTotal }} doctor{{ orgsTotal > 1 ? 's' : '' }} available.
                 h4(v-else) There are no results available.
               v-col(cols="12")
-                //- Loading
                 v-row(v-if="loading.results" justify="center")
-                  v-col(cols="12" md="4").text-center
+                  v-col(cols="12" md="5").text-center
                     v-progress-circular(
                       color="primary"
                       indeterminate
@@ -27,13 +27,13 @@
                     )
                 v-row(v-else justify="center" align="stretch")
                   v-col(
-                    v-for="(organization, key) in orgsList"
+                    v-for="(doctorObj, key) in orgsList"
                     :key="key"
                     cols="12"
-                    md="4"
+                    md="6"
                   ).px-5
-                    org-list-card(
-                      :organization="organization"
+                    doc-list-card(
+                      :organization="doctorObj"
                       :read-only="readOnly"
                     )
                 br
@@ -47,11 +47,11 @@
 <script>
 import VueScrollTo from 'vue-scrollto';
 import uniqBy from 'lodash/uniqBy';
-import { fetchOrganizations } from '~/services/organizations';
+import { searchDoctors } from '~/utils/axios';
 export default {
   components: {
-    OrgListCard: () => import('~/components/organizations/OrgListCard'),
-    OrgSearchBar: () => import('~/components/facilities-directory/OrgSearchBar'),
+    DocListCard: () => import('~/components/directory-doctor/DocListCard'),
+    SearchControls: () => import('~/components/directory-doctor/search-controls'),
   },
   props: {
     fixedSearchBar: {
@@ -69,9 +69,8 @@ export default {
         page: true,
         results: false,
       },
-      locationQuery: '',
       orgsTotal: 0,
-      orgsLimit: 12,
+      orgsLimit: 10,
       orgsList: [],
       orgsPage: 1,
       orgsSearchQuery: {},
@@ -93,7 +92,7 @@ export default {
   },
   watch: {
     async orgsPage (val) {
-      await this.fetchOrganizations(this.orgsSearchQuery, val);
+      await this.fetchDoctors(this.orgsSearchQuery, val);
       VueScrollTo.scrollTo('#org-results', 500, { offset: -250, easing: 'ease' });
     },
   },
@@ -101,18 +100,19 @@ export default {
     this.init();
   },
   methods: {
+    searchFromControls (searchObject) {
+      this.isLoading = true;
+      this.searchQuery = searchObject;
+      this.fetchDoctors(this.searchQuery);
+      this.isLoading = false;
+    },
     async init () {
       this.loading.page = false;
-      const { facilitySearchText, facilityLocationText, facilitySuggestion } = this.$route.query;
+      const { doctorSearchText } = this.$route.query;
       let finalOrgResults = [];
-      if (facilitySuggestion) {
-        const suggestion = await this.$sdk.service('organizations').get(facilitySuggestion);
-        if (suggestion) finalOrgResults.push(suggestion);
-      }
-      if (facilitySearchText || facilityLocationText) {
-        await this.searchOrganizations({
-          searchText: facilitySearchText,
-          locationText: facilityLocationText,
+      if (doctorSearchText) {
+        await this.searchFromControls({
+          searchString: doctorSearchText,
         });
 
         if (!this.orgsTotal && finalOrgResults.length) this.orgsTotal++;
@@ -121,25 +121,24 @@ export default {
         this.orgsList = finalOrgResults;
         return;
       }
-      await this.fetchOrganizations();
+      await this.fetchDoctors();
     },
-    async fetchOrganizations (searchQuery = {}, page = 1) {
+    async fetchDoctors (searchQuery = {}, page = 1) {
       try {
         this.loading.results = true;
         this.$emit('results:filled', false);
-        const { searchText, locationText } = searchQuery;
+        const { searchString, specialties, sortBy } = searchQuery;
         const skip = this.orgsLimit * (page - 1);
         const query = {
           limit: this.orgsLimit,
           skip,
-          searchText,
-          locationText,
-          // TODO: confirm org types that are not included
-          type: 'diagnostic-center',
+          searchString,
+          specialties,
+          sortBy,
         };
 
-        const { items, total } = await fetchOrganizations(this.$sdk, query);
-        this.orgsList = items || [];
+        const { data, total } = await searchDoctors(query);
+        this.orgsList = data;
         this.orgsTotal = total;
       } catch (error) {
         console.error(error);
@@ -155,15 +154,15 @@ export default {
         console.error(error);
       }
     },
-    async searchOrganizations ({ searchText, locationText }) {
-      this.orgsSearchQuery = { searchText, locationText };
-      await this.fetchOrganizations(this.orgsSearchQuery);
+    async searchOrganizations ({ searchText }) {
+      this.orgsSearchQuery = { searchText };
+      await this.fetchDoctors(this.orgsSearchQuery);
       VueScrollTo.scrollTo('#org-results', 500, { offset: -250, easing: 'ease' });
     },
     clearOrganizationResults () {
       this.orgsSearchQuery = '';
       this.orgsPage = 1;
-      this.fetchOrganizations();
+      this.fetchDoctors();
       this.searchQuery = null;
     },
   },

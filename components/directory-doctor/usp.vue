@@ -1,4 +1,38 @@
 <template lang="pug">
+  //- v-container
+  //-   v-row(justify="center" align="center")
+  //-     v-col(cols="12" md="11").pb-0
+  //-       v-combobox(
+  //-         v-model="orgSuggestionsSearchQuery"
+  //-         color="white"
+  //-         item-text="name"
+  //-         placeholder="Search for clinics"
+  //-         return-object
+  //-         solo
+  //-         rounded
+  //-         :height="$isMobile ? '40px' : '60px'"
+  //-         :items="orgSuggestions"
+  //-         :clear-icon="null"
+  //-         @update:search-input="debouncedSuggestionsSearch"
+  //-         @keyup.enter="searchFacility"
+  //-         @change="onSelectOrganization"
+  //-       ).font-14.font-weight-regular
+  //-         template(v-slot:append)
+  //-           v-row
+  //-             //- voice search
+  //-               v-btn(
+  //-                 icon
+  //-                 color="primary"
+  //-               ).mx-1.pt-1
+  //-                 v-icon mdi-microphone
+  //-             v-btn(
+  //-               v-if="!$isMobile"
+  //-               fab
+  //-               small
+  //-               color="primary"
+  //-               @click="searchFacility(true)"
+  //-             ).elevation-0
+  //-               v-icon mdi-magnify
   generic-container
     v-row.mb-10
       v-col.usp-panel.ma-1
@@ -22,16 +56,6 @@
                   @click="search"
                 ).elevation-0.mt-n2
                   v-icon(small) mdi-magnify
-          //- v-col(cols="12" md="2").pa-1
-          //-   v-btn(
-          //-     style="height: 55px; margin-bottom: 1px"
-          //-     block
-          //-     depressed
-          //-     large
-          //-     outlined
-          //-     :disabled="!searchText"
-          //-     @click="search"
-          //-   ).text-none Search
 </template>
 
 <script>
@@ -43,6 +67,7 @@ export default {
   data () {
     return {
       searchText: '',
+      orgSuggestions: [],
     };
   },
   methods: {

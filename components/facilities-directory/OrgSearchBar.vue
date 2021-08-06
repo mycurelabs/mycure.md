@@ -1,42 +1,45 @@
 <template lang="pug">
   v-container
-    v-row(justify="end" align="center").mt-2
-      v-col(cols="12" sm="5").py-0
-        v-text-field(
-          v-model="orgSearchQuery"
-          item-text="name"
-          placeholder="Search for clinics"
-          background-color="#d0e8f5"
-          rounded
-          clearable
-          filled
-          :items="orgSuggestions"
-          @update:search-input="debouncedSuggestionsSearch"
-          @change="onSelectOrganization"
-        ).font-14.font-weight-regular
-          //- voice search
-            template(v-slot:append)
-              v-btn(
-                icon
-                color="primary"
-              ).mt-2
-                v-icon mdi-microphone
-      v-spacer(v-if="!$isMobile")
-      v-col(cols="6" sm="3").search-fields.py-0
-        v-autocomplete(
-          placeholder="Location"
-          v-model="orgSearchLocation"
-          background-color="#d0e8f5"
-          rounded
-          solo
-          dense
-          flat
-          clearable
-          :height="$isMobile ? '40px' : '60px'"
-          :white--text="$isMobile"
-          :append-icon="null"
-          :items="cities"
-        ).font-14.font-weight-regular
+    v-row(justify="center")
+      generic-panel(:column="$isMobile ? 12 : 10" disable-parent-padding)
+        v-container
+          v-row(justify="end" align="center").mt-2
+            v-col(cols="12" sm="5").py-0
+              v-text-field(
+                v-model="orgSearchQuery"
+                item-text="name"
+                placeholder="Search for clinics"
+                background-color="#d0e8f5"
+                rounded
+                clearable
+                filled
+                :items="orgSuggestions"
+                @update:search-input="debouncedSuggestionsSearch"
+                @change="onSelectOrganization"
+              ).font-14.font-weight-regular
+                //- voice search
+                  template(v-slot:append)
+                    v-btn(
+                      icon
+                      color="primary"
+                    ).mt-2
+                      v-icon mdi-microphone
+            v-spacer(v-if="!$isMobile")
+            v-col(cols="6" sm="3").search-fields.py-0
+              v-autocomplete(
+                placeholder="Location"
+                v-model="orgSearchLocation"
+                background-color="#d0e8f5"
+                rounded
+                solo
+                dense
+                flat
+                clearable
+                :height="$isMobile ? '40px' : '60px'"
+                :white--text="$isMobile"
+                :append-icon="null"
+                :items="cities"
+              ).font-14.font-weight-regular
 </template>
 
 <script>
