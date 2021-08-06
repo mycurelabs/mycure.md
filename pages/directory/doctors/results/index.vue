@@ -18,7 +18,7 @@ export default {
   },
   head () {
     return headMeta({
-      title: 'MYCURE Healthcare Service Booking Management Software',
+      title: 'MYCURE Doctor Booking Management Software',
       description: 'Search for doctors and specialties in the MYCURE Doctors Directory',
       socialBanner: require('~/assets/images/banners/OG Patients.png'),
     });
