@@ -59,14 +59,12 @@
                     color="primary"
                     @click:close="removeSpecialty(index)"
                   ).ma-1 {{specialy}}
-                v-chip(
-                  v-if="searchObject.specialties.length >= 3"
-                  clearable
-                  close
-                  small
-                  color="error"
-                  @click:close="clearSpecialties"
-                ).ma-1 Clear filters
+                v-btn(
+                  v-if="searchObject.specialties.length >= 1"
+                  text
+                  color="primary"
+                  @click="clearSpecialties"
+                ).ma-1.font-12 Clear filters
 </template>
 
 <script>

@@ -24,7 +24,7 @@
                       color="primary"
                       indeterminate
                       size="100"
-                    )
+                    ).mt-16
                 v-row(v-else justify="center" align="stretch")
                   v-col(
                     v-for="(doctorObj, key) in orgsList"

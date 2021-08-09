@@ -13,7 +13,7 @@
           :items="doctorsSuggestions"
           :clear-icon="null"
           @update:search-input="debouncedSuggestionsSearch"
-          @keyup.enter="searchFacility"
+          @keyup.enter="searchFacilityBtn"
           @change="onSelectDoctor"
         ).font-14.font-weight-regular
           template(v-slot:append)
