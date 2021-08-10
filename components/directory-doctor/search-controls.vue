@@ -1,100 +1,70 @@
 <template lang="pug">
   div
-    template
-      v-row(justify="center" align="end")
-        v-col
-          v-text-field(
-            v-model="searchObject.searchString"
-            append-icon="mdi-magnify"
-            label="Search Doctor"
-            type="text"
-            clearable
-            dense
-            hide-details
-            outlined
-            :loading="isLoading"
-          ).input-field
-        v-col
-          v-autocomplete(
-            v-model="searchObject.specialty"
-            color="primary"
-            label="Specialization"
-            clearable
-            dense
-            hide-details
-            outlined
-            small-chips
-            :items="specialties"
-            :loading="isLoading"
-          ).input-field
-        v-col
-          v-select(
-            v-model="searchObject.sortBy"
-            label="Sort By"
-            item-text="text"
-            clearable
-            dense
-            hide-details
-            outlined
-            return-object
-            :items="sortBy"
-            :loading="isLoading"
-          ).input-field
-        //- TEMPORARILY REMOVED REFER TO https://github.com/mycurelabs/web-main/issues/762
-        //- v-col.col-auto
-        //-   div.d-flex.justify-end
-        //-     v-btn(tile icon)
-        //-       v-icon(
-        //-         size="28"
-        //-         color="grey"
-        //-       ) mdi-view-grid
-        //-     v-btn(tile icon)
-        //-       v-icon(
-        //-         size="36"
-        //-         color="primary"
-        //-       ) mdi-view-list
-      v-row
-        v-col.py-0
-          template(v-for="(specialy, index) in searchObject.specialties")
-            v-chip(
-              clearable
-              close
-              small
-              color="primary"
-              @click:close="removeSpecialty(index)"
-            ).ma-1 {{specialy}}
-          v-chip(
-            v-if="searchObject.specialties.length >= 3"
-            clearable
-            close
-            small
-            color="error"
-            @click:close="searchObject.specialties = []"
-          ).ma-1 Clear filters
-    //- template(v-else)
-      v-row.mb-2
-        v-text-field(
-          v-model="searchObject.searchString"
-          label="Search Doctor"
-          type="text"
-          append-icon="mdi-magnify"
-          outlined
-          clearable
-          dense
-        ).align-baseline
-          template(v-slot:append-outer)
-            div
-              v-btn(icon @click="isOptionDialogOpen = !isOptionDialogOpen")
-                v-icon(color="primary") mdi-cog
-        doctor-filter-dialog-mobile(
-          :option-dialog="isOptionDialogOpen"
-          :mobile-view-type="mobileViewType"
-          :specializations="specializations"
-          :sort-by="sortBy"
-          @apply-filters-mobile="$emit('mock-load')"
-          @close-dialog="closeDialog"
-          @update-mobile-view="updateMobileView"
-        )
+    v-container
+      v-row(justify="center")
+        generic-panel(:column="$isMobile ? 12 : 10" disable-parent-padding)
+          v-container
+            v-row(justify="end" align="center")
+              v-col(cols="12" sm="5" :class="{'pt-0': $isMobile}").mb-2
+                v-text-field(
+                  v-model="searchObject.searchString"
+                  append-icon="mdi-magnify"
+                  placeholder="Search Doctor"
+                  background-color="#d0e8f5"
+                  type="text"
+                  clearable
+                  rounded
+                  filled
+                  hide-details
+                  :loading="isLoading"
+                ).input-field
+              v-col(cols="6" sm="5" :class="{'py-0': $isMobile}").mb-2
+                v-autocomplete(
+                  v-model="searchObject.specialty"
+                  label="Specialization"
+                  background-color="#d0e8f5"
+                  height="56px"
+                  clearable
+                  hide-details
+                  filled
+                  small-chips
+                  rounded
+                  :search-input.sync="search"
+                  :items="specialties"
+                  :loading="isLoading"
+                  @click:clear="clearSpecialties"
+                ).input-field.no-line
+              v-col(v-if="$isMobile" cols="1" :class="{'py-0': $isMobile}")
+              v-col(cols="5" sm="2" :class="{'py-0': $isMobile}").mb-2
+                v-select(
+                  v-model="searchObject.sortBy"
+                  placeholder="Sort By"
+                  item-text="text"
+                  background-color="#d0e8f5"
+                  clearable
+                  filled
+                  hide-details
+                  return-object
+                  rounded
+                  :items="sortBy"
+                  :loading="isLoading"
+                ).input-field.no-line
+            v-row.mt-4
+              v-col.py-0
+                template(v-for="(specialy, index) in searchObject.specialties")
+                  v-chip(
+                    clearable
+                    close
+                    small
+                    color="primary"
+                    @click:close="removeSpecialty(index)"
+                  ).ma-1 {{specialy}}
+                v-btn(
+                  v-if="searchObject.specialties.length >= 1"
+                  text
+                  color="primary"
+                  @click="clearSpecialties"
+                ).ma-1.font-12 Clear filters
 </template>
 
 <script>
@@ -107,6 +77,7 @@ export default {
   components: {
     DoctorFilterDialogMobile,
     GenericContainer,
+    GenericPanel: () => import('~/components/generic/GenericPanel'),
   },
   props: {
     searchString: {
@@ -226,6 +197,7 @@ export default {
     },
     removeSpecialty (index) {
       this.searchObject.specialties.splice(index, 1);
+      this.searchObject.specialty = '';
     },
     // Review below
     toggleView (type) {
@@ -240,6 +212,10 @@ export default {
     updateMobileView (type) {
       this.mobileViewType = type;
     },
+    clearSpecialties () {
+      this.searchObject.specialties = [];
+      this.searchObject.specialty = '';
+    },
   },
 };
 </script>
@@ -247,5 +223,8 @@ export default {
 <style scoped>
 .input-field {
   height: 40px;
+}
+.no-line::v-deep .v-input__slot::before {
+  border-style: none !important;
 }
 </style>
