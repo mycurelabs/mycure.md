@@ -3,14 +3,13 @@
     v-row(v-if="!loading" :class="contentClasses" fill-height fluid)
       v-col(:class="[contentClasses, footerClasses]").footer-bg
         nuxt
-    v-row(align="center" justify="center").footer
-      v-row(align="center" justify="center").text-center
-        v-col(cols="12" md="6").pl-12.pr-12
-          span.white--text Copyright &copy;{{new Date().getFullYear()}} MYCURE Inc. All Rights Reserved.
-        v-col(cols="12" md="6")
-          a(@click.stop="goToTerms") Terms of Use
-          span.white--text &nbsp;&nbsp;|&nbsp;&nbsp;
-          a(@click.stop="goToPrivacy") Privacy Policy
+    v-row(align="center" justify="center").text-center.footer.pb-3
+      v-col(cols="12" md="6").pl-12.pr-12
+        span.white--text Copyright &copy;{{new Date().getFullYear()}} MYCURE Inc. All Rights Reserved.
+      v-col(cols="12" md="6")
+        a(@click.stop="goToTerms") Terms of Use
+        span.white--text &nbsp;&nbsp;|&nbsp;&nbsp;
+        a(@click.stop="goToPrivacy") Privacy Policy
 </template>
 
 <script>
