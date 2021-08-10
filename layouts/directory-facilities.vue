@@ -29,12 +29,12 @@ export default {
 
 <style scoped>
 .clinics-bg {
-  background-image: url('../assets/images/directory-doctor/Doctors Directory Desktop.png');
+  background-image: url('../assets/images/directory-facilities/Clinic Directory - Desktop.png');
   background-position: bottom center;
   background-size: cover;
 }
 .clinics-mobile-bg {
-  background-image: url('../assets/images/directory-doctor/Doctors Directory Mobile.png');
+  background-image: url('../assets/images/directory-facilities/Clinic Directory - Mobile.png');
   background-position: bottom center;
   background-size: cover;
 }
