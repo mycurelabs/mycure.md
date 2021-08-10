@@ -12,9 +12,10 @@
         v-card(width="100%")
           img(
             src="~/assets/images/forgot-password/mycure-password-banner-forgot.png"
-            :width="$isMobile ? '360px' : ($isRegularScreen ? '363.48px' : '563.48px')"
-            :height="$isMobile ? '121.64px' : ($isRegularScreen ? '122.83px' : '190.41px')"
+            width="100%"
           ).mx-auto
+            //- :width="$isMobile ? '360px' : ($isRegularScreen ? '363.48px' : '563.48px')"
+            //- :height="$isMobile ? '121.64px' : ($isRegularScreen ? '122.83px' : '190.41px')"
           v-card-text.px-4
             div.text-center
               h1(:class="titleSizeClasses").signin-title Forgot your password?
