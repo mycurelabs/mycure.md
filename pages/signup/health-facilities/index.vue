@@ -171,6 +171,13 @@
               //-   :disabled="loading.form"
               //-   return-object
               //- )
+              v-text-field(
+                v-model="invitation"
+                label="Invite Code"
+                outlined
+                hint="6 character invite code"
+                :disabled="loading.form"
+              )
             v-col(
               cols="12"
               md="6"
@@ -369,6 +376,7 @@ export default {
       facilityType: {},
       subscription: null,
       doc_PRCLicenseNo: null,
+      invitation: null,
       roles: [],
       agree: '',
       // - Stripe
@@ -463,12 +471,14 @@ export default {
           this.mobileNo = localStorageData.mobileNo;
           this.roles = localStorageData.roles;
           this.doc_PRCLicenseNo = localStorageData.doc_PRCLicenseNo;
+          this.invitation = localStorageData.invitation;
         }
 
         // Query params handling
         if (this.$route.query.email) this.email = this.$route.query.email;
         if (this.$route.query.type) this.facilityType = this.facilityTypes.find(({ value }) => value === this.$route.query.type);
         if (this.$route.query.subscription) this.subscription = this.$route.query.subscription;
+        if (this.$route.query.referralCode) this.invitation = this.$route.query.referralCode;
       } catch (e) {
         console.error(e);
       } finally {
@@ -533,6 +543,7 @@ export default {
           organization: organizationPayload,
           countryCallingCode: this.countryCallingCode,
           roles: this.roles,
+          invitation: this.invitation,
           // skipMobileNoVerification: this.facilityType.value !== 'doctor',
         };
 
