@@ -119,6 +119,7 @@
       title="Take the first step today"
       description="Choose the best plan for your diagnostic center. Only pay for what you need."
       type="diagnostic"
+      has-trial-option
     ).mb-n3
 </template>
 

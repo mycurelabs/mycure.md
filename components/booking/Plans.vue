@@ -127,15 +127,33 @@ export default {
         // - Get the 2nd package from doctors
         const doctorBookingPricing = {
           title: 'Doctors',
+          image: 'Platinum',
+          queryOps: {
+            type: 'doctor',
+          },
           ...omit(doctorPricings[1], 'title'),
         };
         // - Fetch clinic pricings
         const clinicPricings = await getSubscriptionPackagesPricing('clinic') || [];
         // - Get lowest pricing from clinics
         const clinicBookingPricing = {
-          title: 'Clinics',
+          title: 'Outpatient Clinics',
           image: 'Platinum',
+          queryOps: {
+            type: 'clinic',
+          },
           ...omit(clinicPricings[0], 'title'),
+        };
+        // - Fetch Diagnostic Pricings
+        const diagnosticPricings = await getSubscriptionPackagesPricing('diagnostic') || [];
+        // - Get lowest pricing from diagnostic
+        const diagnosticBookingPricing = {
+          title: 'Diagnostic Centers',
+          image: 'Platinum',
+          queryOps: {
+            type: 'diagnostic',
+          },
+          ...omit(diagnosticPricings[0], 'title'),
         };
         // - Map Free Booking
         const freeBooking = {
@@ -144,6 +162,7 @@ export default {
           image: 'Essentials',
           btnText: 'Try Free',
           title: 'Start Free',
+          trial: true,
           description: 'All essential features to help start up your digital booking journey',
           inclusions: [
             { text: 'Up to 1 user', valid: true },
@@ -156,10 +175,18 @@ export default {
             { text: 'Daily Census', valid: true },
             { text: 'Sales Reports', valid: true },
           ],
+          queryOps: {
+            trial: 1,
+          },
         };
 
         // - Put them all together
-        this.pricingPackages = [freeBooking, doctorBookingPricing, clinicBookingPricing];
+        this.pricingPackages = [
+          freeBooking,
+          doctorBookingPricing,
+          diagnosticBookingPricing,
+          clinicBookingPricing,
+        ];
       } catch (e) {
         console.error(e);
       } finally {

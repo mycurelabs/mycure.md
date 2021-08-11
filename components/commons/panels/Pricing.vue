@@ -10,7 +10,7 @@
                 h2(:class="titleClasses").lh-title.font-weight-semibold.mb-5 {{ title }}
                 p(:class="descriptionClasses").font-open-sans.mb-5 {{ description }}
             v-row(justify="center")
-              v-col(cols="12" md="6" xl="4").text-center.mb-10
+              v-col(cols="12" md="6" xl="4" :class="{'mb-10': !hasTrialOption}").text-center
                 div.d-flex.align-center.justify-center
                   strong(:class="descriptionClasses").font-open-sans.black--text.mr-3 Billed Monthly
                   v-switch(
@@ -19,6 +19,18 @@
                     color="info"
                   )
                   strong(:class="descriptionClasses").font-open-sans.black--text Billed Annually
+            v-row(justify="center" v-if="hasTrialOption")
+              v-col(cols="12").text-center.mb-10.mt-n5
+                strong(:class="descriptionClasses").font-open-sans.mb-5 or
+                br
+                signup-button(
+                  depressed
+                  rounded
+                  event-category="Pricing"
+                  color="primary"
+                  :event-label="`click-pricing-${type}-trial`"
+                  :queryOps="{ trial: true }"
+                ).mc-button-set-1.font-weight-semibold.text-none Start a Trial
             v-row(v-if="loading" justify="center" dense).text-center
               v-col(cols="12")
                 v-progress-circular(
@@ -63,11 +75,13 @@
 import { getSubscriptionPackagesPricing } from '~/services/subscription-packages';
 import GenericPanel from '~/components/generic/GenericPanel';
 import PricingCard from '~/components/commons/PricingCard';
+import SignupButton from '~/components/commons/SignupButton';
 import canUseWebp from '~/utils/can-use-webp';
 export default {
   components: {
     GenericPanel,
     PricingCard,
+    SignupButton,
   },
   props: {
     /**
@@ -99,6 +113,10 @@ export default {
         md: '3',
         xl: '3',
       }),
+    },
+    hasTrialOption: {
+      type: Boolean,
+      default: false,
     },
   },
   data () {

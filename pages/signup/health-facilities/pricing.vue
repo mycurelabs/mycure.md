@@ -1,5 +1,10 @@
 <template lang="pug">
   v-container
+    v-row(justify="center" align="center")
+      v-col(cols="12").text-center
+        h1.font-m Choose a&nbsp;
+          span.primary--text pricing plan&nbsp;
+          span(v-if="isTrial") before beginning your trial
     v-row(justify="center" align="start")
       v-col(cols="12" md="12")
         div.d-flex.align-center.justify-center
@@ -115,6 +120,7 @@ export default {
       selectedPricing: {},
       emailVerificationMessageDialog: false,
       sessionId: '',
+      isTrial: false,
     };
   },
   computed: {
@@ -183,6 +189,11 @@ export default {
     if (this.paymentState === 'cancel') {
       this.paymentErrorDialog = true;
     }
+
+    // - Note: URL query parameters are strings
+    this.isTrial = this.$route.query.trial === 'true' || false;
+
+    // For other types
     this.packages = await getSubscriptionPackagesPricing(this.facilityType);
   },
   methods: {
@@ -221,6 +232,7 @@ export default {
               customer: {
                 stripeEmail: this.email,
               },
+              ...this.isTrial && { trial: true },
             },
           };
         }
