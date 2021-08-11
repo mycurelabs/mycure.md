@@ -11,7 +11,7 @@
                 height="34.46px"
                 alt="MYCURE logo"
                 :class="!$isMobile ? ['mr-1', 'mt-1'] : '' "
-              )
+              ).ml-n5
           v-spacer(v-if="!$isMobile")
           v-col(v-else cols="7")
           v-col(cols="1" :class="{'pt-4': !$isMobile}").pl-0
