@@ -145,12 +145,15 @@
                 item-text="text"
                 item-value="value"
                 outlined
+                readonly
+                return-object
+                append-icon="$dropdown"
                 :items="facilityTypes"
                 :rules="isRequired"
                 :disabled="loading.form"
                 :error="errorFacilityType"
                 :error-messages="errorMessagesFacilityType"
-                return-object
+                @click:append="chooseFacilityTypeDialog = true"
               )
                 template(v-slot:item="{ item }")
                   span {{ item.text }}&nbsp;
@@ -258,6 +261,12 @@
               strong +{{ country.callingCodes[0] }}
     //- Email Verification Dialog
     email-verification-dialog(v-model="emailVerificationMessageDialog" :email="email" @confirm="confirmEmailVerification")
+    //- Choose Facility Type Dialog
+    choose-facility-type(
+      v-model="chooseFacilityTypeDialog"
+      :facility-types="facilityTypes"
+      @select="onFacilityTypeSelect($event)"
+    )
 </template>
 
 <script>
@@ -661,6 +670,16 @@ export default {
     confirmEmailVerification () {
       this.saveModel(null);
       this.$router.push({ name: 'signin' });
+    },
+    onFacilityTypeSelect (type) {
+      this.facilityType = type;
+      this.$router.replace({
+        query: {
+          ...this.$route.query,
+          type,
+        },
+      });
+      this.chooseFacilityTypeDialog = false;
     },
   },
 };
