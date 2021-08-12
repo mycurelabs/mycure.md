@@ -121,7 +121,7 @@
           generic-panel(:row-bindings="{ justify: 'center' }")
             v-col(cols="12" lg="8" xl="6").white--text.text-center
               h2(:class="['white--text', ...headerClasses]").mb-5 Take the first step today
-              h3(:class="descriptionClasses").mb-5 Start now and get all your questions answered
+              h3(:class="descriptionClasses").mb-5.font-weight-semibold Start now and get all your questions answered
               mc-btn(
                 color="success"
                 depressed

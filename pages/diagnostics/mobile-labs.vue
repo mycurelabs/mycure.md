@@ -122,7 +122,7 @@
           generic-panel(:row-bindings="{ justify: 'center' }")
             v-col(cols="12").white--text.text-center
               h2(:class="['white--text', ...headerClasses]").mb-5 Take the first step today
-              p(:class="descriptionClasses").white--text.font-weight-bold.mb-5 Start now and get all your questions answered.
+              p(:class="descriptionClasses").white--text.font-weight-semibold.mb-5 Start now and get all your questions answered.
               signup-button(
                 depressed
                 rounded

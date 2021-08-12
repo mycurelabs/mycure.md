@@ -5,7 +5,7 @@ export default {
         primary: '#0099cc',
         accent: '#ADD35B',
         secondary: '#04B1E7',
-        info: '#0174BB',
+        info: '#0099cc',
         warning: '#FFC107',
         error: '#f75a5f',
         success: '#7fad33',
