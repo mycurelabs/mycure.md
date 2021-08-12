@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-dialog(v-model="dialog" width="850" height="900" persistent)
+  v-dialog(v-model="dialog" width="850" height="900")
     v-card.pa-4.rounded-xl
       v-card-text.pa-3
         v-container
@@ -19,21 +19,6 @@
                 )
                 v-card-text.text-center
                   h3.mt-3.primary--text {{ type.text }}
-      v-card-actions
-        v-btn(
-          color="grey"
-          text
-          :to="{ name: 'index' }"
-        )
-          v-icon mdi-arrow-left
-          span Back
-        v-spacer
-        v-btn(
-          color="primary"
-          rounded
-          :disabled="!typeValue"
-          @click="onContinue()"
-        ) Continue
 </template>
 
 <script>
@@ -69,9 +54,6 @@ export default {
   methods: {
     onTypeSelect (type) {
       this.typeValue = type.value;
-    },
-    onContinue () {
-      console.log(this.typeValue);
       this.$emit('select', this.typeValue);
     },
   },
