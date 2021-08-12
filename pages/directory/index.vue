@@ -53,6 +53,11 @@
             v-row
               p.font-18 Popular tags:
             v-row
+              template(v-for="(specialty, index) in specialties")
+                v-chip(
+                  small
+                  @click:close="removeSpecialty(index)"
+                ).ma-1 {{specialty}}
 </template>
 
 <script>
@@ -60,6 +65,7 @@
 // import VueScrollTo from 'vue-scrollto';
 
 import headMeta from '~/utils/head-meta';
+import specialties from '~/assets/fixtures/specialties';
 // import DoctorsTable from '~/components/directory-doctor/doctors-table';
 // import GenericContainer from '~/components/commons/generic-container';
 // import SearchControls from '~/components/directory-doctor/search-controls';
@@ -73,6 +79,7 @@ export default {
   },
   layout: 'directory',
   data () {
+    this.specialties = specialties;
     this.titleClasses = ['mc-title-set-1', 'font-weight-bold'];
     this.subheaderClasses = ['mc-title-set-2', 'font-weight-light', 'primary--text'];
     return {
@@ -80,12 +87,13 @@ export default {
       locationDialog: true,
       locationAccess: false,
       tagSearchDialog: false,
+      specilatiesList: [],
     };
   },
   head () {
     return headMeta({
-      title: 'MYCURE Doctors Directory',
-      description: 'Search for doctors and specialties in the MYCURE Doctors Directory',
+      title: 'MYCURE Directory',
+      description: 'Search for clinics, doctors, and specialties in the MYCURE Directory',
       socialBanner: require('~/assets/images/banners/OG Patients.png'),
     });
   },
