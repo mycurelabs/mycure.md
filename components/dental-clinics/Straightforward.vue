@@ -12,9 +12,9 @@
               :image-width="$isMobile ? '226px' : ($isRegularScreen ? '875px' : '1200px')"
               :image-height="$isMobile ? '169.19px' : ($isRegularScreen ? '500px' : '668.08px')"
             )
-        v-col(cols="12").text-center
+        v-col(cols="12" sm="10").text-center
           h2(:class="titleClasses").mb-5 Straightforward and simple.
-          p(:class="contentClasses").mb-10 Accurately track baseline and updated dental charts, proposed procedures, and the actual work done.
+          p(:class="[...contentClasses, {'mx-16': !$isMobile}]").mb-10 Accurately track baseline and updated dental charts, proposed procedures, and the actual work done.
           signup-button(
             depressed
             rounded
@@ -38,8 +38,9 @@ export default {
   },
   data () {
     this.titleClasses = ['mc-title-set-1', 'font-weight-semibold'];
-    this.contentClasses = ['mc-title-set-2', 'font-weight-semibold', 'secondary--text'];
+    // this.contentClasses = ['mc-title-set-2', 'font-weight-semibold', 'secondary--text'];
     this.btnClasses = ['mc-button-set-1'];
+    this.contentClasses = ['mc-content-set-1', 'font-weight-semibold', 'secondary--text'];
     return {};
   },
 };

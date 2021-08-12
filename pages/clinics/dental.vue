@@ -24,7 +24,7 @@
       template(slot="content")
         h2(:class="headerClasses") Always accessible dental charts.
         br
-        h2(:class="subHeaderClasses") Never miss an appointment.
+        h2(:class="contentClasses") Never miss an appointment.
           br
           span Never miss a tooth.
       template(slot="cta-button")
@@ -162,6 +162,7 @@ export default {
     };
     this.headerClasses = ['mc-title-set-1', 'lh-title', 'font-weight-semibold'];
     this.descriptionClasses = ['mc-content-set-1'];
+    this.contentClasses = ['mc-content-set-1', 'font-weight-semibold', 'secondary--text'];
     this.btnClasses = ['mc-button-set-1'];
     this.subHeaderClasses = ['mc-subheader-set-1', 'lh-title', 'font-weight-semibold', 'secondary--text'];
     this.studentPanelDescriptionClasses = ['mc-subheader-set-2', 'font-weight-semibold'];
