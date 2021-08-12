@@ -41,7 +41,7 @@
       template(slot="content")
         h2(:class="headerClasses" text-align) Beautiful user experience!
         br
-        h2(:class="headerClasses").secondary--text You won't feel like you are at work.
+        h2(:class="subHeaderClasses") You won't feel like you are at work.
       template(slot="cta-button")
         div(:class="{ 'text-center': $isMobile }")
           signup-button(
@@ -172,6 +172,7 @@ export default {
     ];
     this.pricingDetails = CLINICS_PRICING;
     this.headerClasses = ['mc-title-set-1', 'lh-title', 'font-weight-semibold'];
+    this.subHeaderClasses = ['mc-subheader-set-1', 'lh-title', 'font-weight-semibold', 'secondary--text'];
     this.descriptionClasses = ['mc-content-set-1', 'font-open-sans', 'font-gray'];
     this.btnClasses = ['mc-button-set-1'];
     this.listHeaderClasses = ['mc-list-title-set-1', 'lh-title', 'primary--text', 'font-weight-semibold'];
