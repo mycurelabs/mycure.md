@@ -63,7 +63,7 @@ export default {
       if (this.$isWideScreen) return 'pt-6';
       if (this.wLG) return 'pt-6';
       if (this.wSM) return 'pt-6';
-      return '';
+      return 'pt-3';
     },
   },
 };
