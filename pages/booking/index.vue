@@ -63,9 +63,11 @@
       features(
         :items="thirdPanelContents"
         image-dir="booking/"
+        :image-width="$isWideScreen ? '130px' : '77px'"
+        :image-height="$isWideScreen ? '130px' : '77px'"
       )
         template(slot="title")
-          h2(:class="['primary--text', 'font-weight-semibold', ...titleClasses]") Acquire and Accomodate more Patients
+          h2(:class="['primary--text', 'font-weight-semibold', ...titleClasses]") Acquire and Accommodate more Patients
         template(slot="additional-content")
           v-col(cols="12").text-center.mt-5
             signup-button(
