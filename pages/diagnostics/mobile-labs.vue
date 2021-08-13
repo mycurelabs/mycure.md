@@ -58,7 +58,7 @@
                   :image="`${mockup.image}${$isMobile ? '-mobile' : ''}`"
                   :image-alt="`A ${reportType} sample report from MYCURE Clinic Management System on laptop screen`"
                   :image-width="$isMobile ? '276px' : ($isRegularScreen ? '945px' : '1445px')"
-                  :image-height="$isMobile ? '147.06px' : ($isRegularScreen ? '502.89px' : '768.96px')"
+                  :image-height="reportsPanelImgHeight"
                 )
 
     //- 4th panel
@@ -191,6 +191,17 @@ export default {
           height: this.$isMobile ? '242.88px' : (this.$isRegularScreen ? '404.79px' : '624.8px'),
         },
       };
+    },
+    reportsPanelImgHeight () {
+      if (this.reportType === 'imaging') {
+        if (this.$isMobile) return '147.06px';
+        if (this.$isRegularScreen) return '502.89px';
+        return '768.96px';
+      } else {
+        if (this.$isMobile) return '181.77px';
+        if (this.$isRegularScreen) return '621.8px';
+        return '950.79px';
+      }
     },
   },
   mounted () {
