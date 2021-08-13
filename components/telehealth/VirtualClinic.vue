@@ -32,11 +32,14 @@
             :offset-md="key === 1 ? 2 : null"
             :key="key"
           )
-            div.d-flex
-              img(v-lazy="require(`~/assets/images/telehealth/${data.headerIcon}`)" width="45px" :height="$isMobile? '57px' : '45px'" :class="{'pt-3': $isMobile}")
-              h1(:class="headerClasses").ml-3 {{ data.header }}
-            br
-            p(:class="contentClasses") {{ data.description }}
+            v-row(justify="center")
+              v-col(align="center" :cols="$isMobile ? '12' : '2'").pb-0
+                div.text-center
+                  img(v-lazy="require(`~/assets/images/telehealth/${data.headerIcon}`)" :width="$isWideScreen ? '80px' : '45px'" :height="$isWideScreen ? '80px' : '45px'")
+              v-col
+                h1(:class="headerClasses") {{ data.header }}
+                br
+                p(:class="contentClasses") {{ data.description }}
 </template>
 
 <script>
