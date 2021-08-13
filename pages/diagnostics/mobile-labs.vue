@@ -78,6 +78,7 @@
               :class="btnClasses"
               color="success"
             ).text-none
+              v-icon(left) mdi-web
               span Create my website
           //- TODO: Bring back when sample website is available
           //- v-col(cols="12" md="7" lg="6" xl="5")

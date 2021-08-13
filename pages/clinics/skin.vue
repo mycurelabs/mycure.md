@@ -88,6 +88,7 @@
             :large="!$isWideScreen"
             color="success"
           ).text-none
+            v-icon(left) mdi-web
             span Create my website
 
     //- 5th panel

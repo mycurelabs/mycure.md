@@ -41,7 +41,9 @@
               :x-large="$isWideScreen"
               :class="btnClasses"
               @click="syncbaseVideoDialog = true"
-            ).text-none Watch how it works
+            ).text-none
+                v-icon(left) mdi-play-circle
+                span Watch how it works
         template(slot="image")
           div.vid-container
             video(width="101%" playsinline autoplay muted loop).syncbase-animate

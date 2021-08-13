@@ -77,7 +77,7 @@
               span(:class="descriptionClasses").font-open-sans.font-gray {{ item }}
       template(slot="cta-button")
         v-row(:justify="$isMobile ? 'center' : 'start'")
-          v-col(cols="10" sm="5" md="7" lg="6" xl="5")
+          v-col(cols="10" sm="7")
             mc-btn(
               color="success"
               href="https://calendly.com/mycure/demo"
@@ -89,8 +89,10 @@
               :large="!$isWideScreen"
               :x-large="$isWideScreen"
               :class="{'font-s': $isWideScreen, 'font-14': $isRegularScreen }"
-            ).text-none Create my Website
-          v-col(cols="10" sm="5" md="7" lg="6" xl="7")
+            ).text-none
+              v-icon(left) mdi-web
+              span Create my Website
+          v-col(cols="10" sm="5")
             signup-button(
               depressed
               rounded
