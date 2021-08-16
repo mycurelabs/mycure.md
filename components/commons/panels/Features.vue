@@ -17,7 +17,7 @@
                 slot(name="items")
                   v-col(v-bind="iconColumnBindings" v-for="(item, key) in items" :key="key").text-center
                     v-row(justify="center")
-                      v-col(:cols="eachIconCol").py-1
+                      v-col(:cols="eachIconCol" :class="{'py-1': !$isMobile}")
                         picture-source(
                           v-if="item.icon"
                           :extension-exclusive="extensionExclusive"
