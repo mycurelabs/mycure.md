@@ -38,7 +38,6 @@ export default {
   },
   data () {
     this.titleClasses = ['mc-title-set-1', 'font-weight-semibold'];
-    // this.contentClasses = ['mc-title-set-2', 'font-weight-semibold', 'secondary--text'];
     this.btnClasses = ['mc-button-set-1'];
     this.contentClasses = ['mc-content-set-1', 'font-weight-semibold', 'secondary--text'];
     return {};

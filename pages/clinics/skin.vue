@@ -63,22 +63,18 @@
     )
       //- Check list
       template(slot="additional-content")
-        div.mb-10
-          v-row(
-            v-for="(item, i) in fourthPanel.list"
-            :key="item"
-            dense
-          )
-            v-col(cols="2" sm="1" md="1").pr-2.pt-2
-              div(class="text-center")
-                img(
-                  src="~/assets/images/mycure-check.png"
-                  alt="Check icon"
-                  :width="!$isWideScreen ? '20' : '25'"
-                  :height="!$isWideScreen ? '20' : '25'"
-                )
+        template(v-for="(item, i) in fourthPanel.list")
+          v-row(dense)
+            v-col(cols="2" sm="1" md="1"  :class="$isWideScreen ? 'pt-3' : 'pt-2'").pr-2
+              img(
+                src="~/assets/images/mycure-check.png"
+                alt="Check icon"
+                :width="$isWideScreen ? '30' : '20'"
+                :height="$isWideScreen ? '30' : '20'"
+              )
             v-col(cols="10" sm="11" md="11")
               span(:class="descriptionClasses") {{ item }}
+        div.mb-10
         div(:class="{ 'text-center': $isMobile }")
           signup-button(
             :class="btnClasses"
