@@ -40,12 +40,11 @@
           rounded
           color="success"
           event-label="signup"
-          :large="!$isWideScreen"
-          :x-large="$isWideScreen"
-          :class="{'font-s': !$isMobile}"
+          width="228px"
+          height="59px"
         ).text-none
           v-icon(left) mdi-web
-          span Create my website
+          span.generic-button-text Create my website
     //- 6th panel
     div.grey-bg.mx-n3
       features(
@@ -70,13 +69,12 @@
             depressed
             rounded
             color="white"
-            :large="!$isWideScreen"
-            :x-large="$isWideScreen"
-            :class="{'font-s': !$isMobile}"
+            width="228px"
+            height="59px"
             :to="{ name: 'doctors-clinics' }"
           ).text-none.primary--text
             v-icon(left) mdi-information-outline
-            span Learn More
+            span.generic-button-text Learn More
     //- 8th panel
     think-long-term
     v-divider.divider

@@ -9,8 +9,9 @@
           depressed
           event-label="signup"
           color="success"
-          :large="$isRegularScreen"
-          :x-large="$isWideScreen"
+          height="59px"
+          width="228px"
           :to="{ name: 'signup-health-facilities' }"
-        ).text-none.font-s Get Started
+        ).text-none
+          span.generic-button-text Get Started
 </template>

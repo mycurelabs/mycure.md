@@ -28,11 +28,10 @@
             rounded
             color="success"
             facility-type="clinic"
-            :x-large="$isWideScreen"
-            :large="!$isWideScreen"
-            :class="buttonClasses"
+            width="228px"
+            height="59px"
           ).text-none
-            span Get Started Free
+            span.generic-button-text Get Started Free
 
     //-3rd panel
     features(
@@ -75,11 +74,11 @@
             signup-button(
               depressed
               rounded
-              :x-large="$isWideScreen"
-              :large="!$isWideScreen"
+              width="228px"
+              height="59px"
               color="success"
-            ).text-none.font-s
-              span Get Started Free
+            ).text-none
+              span.generic-button-text Get Started Free
     //- 5th panel
     v-container
       v-row(justify="center")
@@ -138,11 +137,10 @@
               rounded
               color="success"
               facility-type="clinic"
-              :x-large="$isWideScreen"
-              :large="!$isWideScreen"
-              :class="buttonClasses"
+              width="228px"
+              height="59px"
             ).text-none
-              span Get Started Free
+              span.generic-button-text Get Started Free
     //- 7th panel
     plans.mb-n3
 </template>

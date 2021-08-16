@@ -73,13 +73,12 @@
               depressed
               rounded
               block
-              :x-large="$isWideScreen"
-              :large="!$isWideScreen"
-              :class="btnClasses"
+              width="228px"
+              height="59px"
               color="success"
             ).text-none
               v-icon(left) mdi-web
-              span Create my website
+              span.generic-button-text Create my website
           //- TODO: Bring back when sample website is available
           //- v-col(cols="12" md="7" lg="6" xl="5")
           //-   mc-btn(
@@ -111,10 +110,10 @@
               color="success"
               depressed
               rounded
-              :large="!$isWideScreen"
-              :x-large="$isWideScreen"
-              :class="btnClasses"
-            ).text-none Start Now
+              width="228px"
+              height="59px"
+            ).text-none
+              span.generic-button-text Start Now
 
     //- 7th panel
     div.info.mx-n3
@@ -127,12 +126,11 @@
               signup-button(
                 depressed
                 rounded
-                :x-large="$isWideScreen"
-                :large="!$isWideScreen"
-                :class="btnClasses"
+                width="228px"
+                height="59px"
                 color="success"
               ).text-none
-                span Start Now
+                span.generic-button-text Start Now
 </template>
 
 <script>

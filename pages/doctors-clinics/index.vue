@@ -61,11 +61,11 @@
           signup-button(
             depressed
             rounded
-            :x-large="$isWideScreen"
-            :large="!$isWideScreen"
+            width="228px"
+            height="59px"
             color="success"
-          ).text-none.mc-button-set-1
-            span Get Started Free
+          ).text-none
+            span.generic-button-text Get Started Free
             v-icon(small right) mdi-arrow-right
     //- 7th panel
     div.grey-bg.mx-n3

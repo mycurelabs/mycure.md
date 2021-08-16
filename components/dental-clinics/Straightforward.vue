@@ -19,11 +19,10 @@
             depressed
             rounded
             color="success"
-            :x-large="$isWideScreen"
-            :large="!$isWideScreen"
-            :class="btnClasses"
+            width="228px"
+            height="59px"
           ).text-none
-            span Get Started
+            span.generic-button-text Get Started
 </template>
 
 <script>

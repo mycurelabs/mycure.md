@@ -12,10 +12,11 @@
               color="primary"
               depressed
               rounded
-              :large="$isRegularScreen"
-              :x-large="$isWideScreen"
+              width="228px"
+              height="59px"
               @click="viewDemo"
-            ).text-none.font-s View live demo
+            ).text-none
+              span.generic-button-text View live demo
           v-col(cols="12").text-center.ml-n10
             picture-source(
               image="MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-A-online-consult"

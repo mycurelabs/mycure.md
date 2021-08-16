@@ -20,10 +20,10 @@
           rel="noopener noreferrer"
           depressed
           rounded
-          :large="!$isWideScreen"
-          :x-large="$isWideScreen"
-          :class="btnClasses"
-        ).text-none Book a demo today
+          width="228px"
+          height="59px"
+        ).text-none
+          span.generic-button-text Book a demo today
     //- 2nd panel
     div.grey-bg.mx-n3
       features(
@@ -44,14 +44,13 @@
       template(slot="cta-button")
         div(:class="{ 'text-center': $isMobile }")
           signup-button(
-            :class="btnClasses"
             depressed
             rounded
-            :x-large="$isWideScreen"
-            :large="!$isWideScreen"
+            width="228px"
+            height="59px"
             color="success"
           ).text-none.font-s
-            span Get Started
+            span.generic-button-text Get Started
 
     //- 4th panel
     generic-media-panel(
@@ -76,15 +75,14 @@
         div.mb-10
         div(:class="{ 'text-center': $isMobile }")
           signup-button(
-            :class="btnClasses"
             depressed
             rounded
-            :x-large="$isWideScreen"
-            :large="!$isWideScreen"
+            width="228px"
+            height="59px"
             color="success"
           ).text-none
             v-icon(left) mdi-web
-            span Create my website
+            span.generic-button-text Create my website
 
     //- 5th panel
     generic-media-panel(
@@ -100,10 +98,10 @@
             rel="noopener noreferrer"
             depressed
             rounded
-            :large="!$isWideScreen"
-            :x-large="$isWideScreen"
-            :class="btnClasses"
-          ).text-none.font-s Get Started
+            width="228px"
+            height="59px"
+          ).text-none
+            span.generic-button-text Get Started
 
     //- 6th panel
     syncbase(:version="3")

@@ -43,12 +43,11 @@
               signup-button(
                 depressed
                 rounded
-                :x-large="$isWideScreen"
-                :large="!$isWideScreen"
-                :class="btnClasses"
+                width="228px"
+                height="59px"
                 color="success"
               ).text-none
-                span Sign Up
+                span.generic-button-text Sign Up
     //- 5th panel
     div.grey-bg.mx-n3
       generic-media-panel(
@@ -87,13 +86,12 @@
               depressed
               rounded
               block
-              :x-large="$isWideScreen"
-              :large="!$isWideScreen"
-              :class="btnClasses"
+              width="228px"
+              height="59px"
               color="success"
             ).text-none
               v-icon(left) mdi-web
-              span Create my website
+              span.generic-button-text Create my website
           //- TODO: Bring back when sample website is available
           //- v-col(cols="12" md="7" lg="6" xl="5")
           //-   mc-btn(

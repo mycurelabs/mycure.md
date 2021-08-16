@@ -37,13 +37,12 @@
               color="success"
               depressed
               rounded
-              :large="!$isWideScreen"
-              :x-large="$isWideScreen"
-              :class="btnClasses"
+              width="228px"
+              height="59px"
               @click="syncbaseVideoDialog = true"
             ).text-none
                 v-icon(left) mdi-play-circle
-                span Watch how it works
+                span.generic-button-text Watch how it works
         template(slot="image")
           div.vid-container
             video(width="101%" playsinline autoplay muted loop).syncbase-animate

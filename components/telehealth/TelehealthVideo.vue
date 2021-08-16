@@ -20,10 +20,10 @@
               rounded
               color="primary"
               event-label="signup"
-              :large="!$isWideScreen"
-              :x-large="$isWideScreen"
-            ).text-none.font-s.mt-10
-              | Get Started Free
+              width="228px"
+              height="59px"
+            ).text-none.mt-10
+              span.generic-button-text Get Started Free
               v-icon(small right) mdi-arrow-right
 </template>
 

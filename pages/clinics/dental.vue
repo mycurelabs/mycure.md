@@ -33,11 +33,10 @@
             depressed
             rounded
             color="success"
-            :x-large="$isWideScreen"
-            :large="!$isWideScreen"
-            :class="btnClasses"
+            width="228px"
+            height="59px"
           ).text-none
-            span Get Started
+            span.generic-button-text Get Started
     //- 4th panel
     straightforward
     //- 5th panel
@@ -87,25 +86,21 @@
               rel="noopener noreferrer"
               depressed
               rounded
-              block
-              :large="!$isWideScreen"
-              :x-large="$isWideScreen"
-              :class="{'font-s': $isWideScreen, 'font-14': $isRegularScreen }"
+              width="228px"
+              height="59px"
             ).text-none
               v-icon(left) mdi-web
-              span Create my Website
+              span.generic-button-text Create my Website
           v-col(cols="10" sm="5")
             signup-button(
               depressed
               rounded
               outlined
               block
-              :x-large="$isWideScreen"
-              :large="!$isWideScreen"
-              :class="btnClasses"
+              height="59px"
               color="success"
             ).text-none
-              span Get Started
+              span.generic-button-text Get Started
 
     //- 7th panel
     generic-media-panel(
@@ -121,10 +116,10 @@
             rel="noopener noreferrer"
             depressed
             rounded
-            :large="!$isWideScreen"
-            :x-large="$isWideScreen"
-            :class="btnClasses"
-          ).text-none Get Started
+                  width="228px"
+                  height="59px"
+          ).text-none
+            span.generic-button-text Get Started
     //- 8th panel
     syncbase(:version="3")
     //- 9th panel

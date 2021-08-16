@@ -28,11 +28,11 @@
                 signup-button(
                   depressed
                   rounded
-                  :x-large="$isWideScreen"
-                  :large="$isRegularScreen"
+                  width="228px"
+                  height="59px"
                   color="success"
                 ).text-none.mc-button-set-1
-                  span Get Started
+                  span.generic-button-text Get Started
             v-row(justify="center")
               v-col(v-if="!$isMobile" cols="12" xl="10")
                 vue-slick-carousel(

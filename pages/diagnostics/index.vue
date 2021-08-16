@@ -83,12 +83,11 @@
           rounded
           color="success"
           event-label="signup"
-          :large="!$isWideScreen"
-          :x-large="$isWideScreen"
-          :class="{'font-s': !$isMobile}"
+          width="228px"
+          height="59px"
         ).text-none
           v-icon(left) mdi-web
-          span Create my website
+          span.generic-button-text Create my website
     v-divider(v-if="$isMobile").divider
     //- 7th panel
     generic-media-panel(
@@ -102,12 +101,11 @@
             event-label="clinics-info"
             color="success"
             :to="{ name: 'clinics' }"
-            :large="!$isWideScreen"
-            :x-large="$isWideScreen"
-            :class="{'font-s': !$isMobile}"
+            width="228px"
+            height="59px"
           ).text-none
             v-icon(left :large="$isWideScreen") mdi-information-outline
-            span  Learn more
+            span.generic-button-text  Learn more
     //- 8th panel
     think-long-term
     //- 9th panel
