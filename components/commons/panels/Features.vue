@@ -17,7 +17,7 @@
                 slot(name="items")
                   v-col(v-bind="iconColumnBindings" v-for="(item, key) in items" :key="key").text-center
                     v-row(justify="center")
-                      v-col(:cols="eachIconCol" :class="{'py-1': !$isMobile}")
+                      v-col(v-bind="eachIconCol" :class="{'py-1': !$isMobile}")
                         picture-source(
                           v-if="item.icon"
                           :extension-exclusive="extensionExclusive"
@@ -113,9 +113,12 @@ export default {
       type: String,
       default: '50vh',
     },
+    // - Column bindings for a single icon
     eachIconCol: {
-      type: String,
-      default: '10',
+      type: Object,
+      default: () => ({
+        cols: 10,
+      }),
     },
   },
   data () {

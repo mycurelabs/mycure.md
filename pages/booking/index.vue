@@ -40,7 +40,7 @@
       :items="howItWorksContents"
       image-dir="booking/"
       icon-container-col-size="12"
-      each-icon-col="12"
+      :each-icon-col="{ cols: 12 }"
     )
       template(slot="description")
         p(:class="howItWorksClass").primary--text.font-weight-semibold How it works?
@@ -65,8 +65,8 @@
       features(
         :items="thirdPanelContents"
         image-dir="booking/"
-        :image-width="$isWideScreen ? '130px' : '77px'"
-        :image-height="$isWideScreen ? '130px' : '77px'"
+        icon-container-col-size="10"
+        :each-icon-col="{ cols: 12, sm: 10 }"
       )
         template(slot="title")
           h2(:class="['primary--text', 'font-weight-semibold', ...titleClasses]") Acquire and Accommodate more Patients
