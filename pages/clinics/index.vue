@@ -53,9 +53,7 @@
         description="MYCURE has already built-in workflows and processes for different setups."
         :items="features"
         :class="{ 'mt-10': $isMobile, 'mt-5': !$isMobile }"
-        :icon-column-bindings="{ cols: 6, md: 3 }"
         image-dir="clinics/"
-        icon-container-col-size="10"
         panel-height="70vh"
       )
     //- 7th panel

@@ -39,6 +39,8 @@
       title="Easy as 1-2-3"
       :items="howItWorksContents"
       image-dir="booking/"
+      icon-container-col-size="12"
+      each-icon-col="12"
     )
       template(slot="description")
         p(:class="howItWorksClass").primary--text.font-weight-semibold How it works?

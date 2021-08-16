@@ -12,24 +12,26 @@
               p(:class="descriptionClasses").font-open-sans.font-gray {{ description }}
         v-col(cols="12")
           v-row(justify="center")
-            v-col(cols="12" :md="iconContainerColSize")
+            v-col(cols="12" :md="iconContainerColSize ? iconContainerColSize : defaultIconContainerSize")
               v-row(justify="center")
                 slot(name="items")
                   v-col(v-bind="iconColumnBindings" v-for="(item, key) in items" :key="key").text-center
-                    picture-source(
-                      v-if="item.icon"
-                      :extension-exclusive="extensionExclusive"
-                      :custom-path="imageDir"
-                      :image="item.icon"
-                      :image-alt="item.alt || item.title"
-                      :image-file-extension="item.iconExtension || '.png'"
-                      :image-width="imageWidth"
-                      :image-height="imageHeight"
-                    )
-                    br
-                    h3(:class="itemTextClasses").font-open-sans.font-gray.font-weight-semibold {{ item.title }}
-                    p(v-if="item.description" :class="itemTextClasses") {{ item.description }}
-                    nuxt-link(v-if="!hideLearnMore && item.route" :to="{ name: item.route }").primary--text.font-weight-bold.learnLink Learn more
+                    v-row(justify="center")
+                      v-col(:cols="eachIconCol").py-1
+                        picture-source(
+                          v-if="item.icon"
+                          :extension-exclusive="extensionExclusive"
+                          :custom-path="imageDir"
+                          :image="item.icon"
+                          :image-alt="item.alt || item.title"
+                          :image-file-extension="item.iconExtension || '.png'"
+                          :image-width="imageWidth ? imageWidth : defaultImageSize"
+                          :image-height="imageHeight ? imageHeight : defaultImageSize"
+                        )
+                        br
+                        h3(:class="itemTextClasses").font-open-sans.font-gray.font-weight-semibold {{ item.title }}
+                        p(v-if="item.description" :class="itemTextClasses") {{ item.description }}
+                        nuxt-link(v-if="!hideLearnMore && item.route" :to="{ name: item.route }").primary--text.font-weight-bold.learnLink Learn more
         slot(name="additional-content")
 </template>
 
@@ -65,11 +67,11 @@ export default {
     },
     imageWidth: {
       type: [String, Number],
-      default: '77px',
+      default: undefined,
     },
     imageHeight: {
       type: [String, Number],
-      default: '77px',
+      default: undefined,
     },
     extensionExclusive: {
       type: Boolean,
@@ -96,7 +98,7 @@ export default {
     // - Space for icons container
     iconContainerColSize: {
       type: [Number, String],
-      default: '12',
+      default: undefined,
     },
     // - Space for each icon
     iconColumnBindings: {
@@ -110,6 +112,10 @@ export default {
     panelHeight: {
       type: String,
       default: '50vh',
+    },
+    eachIconCol: {
+      type: String,
+      default: '10',
     },
   },
   data () {
@@ -127,6 +133,12 @@ export default {
           wide: ['font-s'],
         }),
       ];
+    },
+    defaultImageSize () {
+      return this.$isMobile ? '77px' : (this.$isRegularScreen ? '90px' : '120px');
+    },
+    defaultIconContainerSize () {
+      return this.$isWideScreen ? '5' : '7';
     },
   },
 };

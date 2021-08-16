@@ -21,7 +21,6 @@
         title="Embrace the power to choose"
         description="Don’t settle for anything less. Customize your experience based on the tools you need. MYCURE is designed for diagnostic labs and imaging centers of all sizes."
         :items="features"
-        icon-container-col-size="8"
         image-dir="diagnostics/"
         panel-height="70vh"
       )

@@ -31,7 +31,6 @@
         description="MYCURE designed specialized solutions for skin and aesthetic clinics."
         image-dir="clinics/skin/"
         title-col-size="10"
-        icon-container-col-size="8"
         extension-exclusive
         primary-title
         :items="features"

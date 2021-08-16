@@ -21,7 +21,7 @@
       image-dir="clinics/corporate/"
       icon-container-col-size="6"
       description="Everyone in your workplace is online. MYCURE helps you monitor their health and safety conveniently through the cloud."
-      :icon-column-bindings="{ cols: 6 }"
+      :icon-column-bindings="{ cols: 5 }"
       :items="features"
     )
       template(slot="title")
