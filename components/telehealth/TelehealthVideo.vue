@@ -1,5 +1,5 @@
 <template lang="pug">
-  div.video-bg.mx-n3
+  div(:class="$isMobile? 'video-bg-mobile' : 'video-bg'").mx-n3
     v-container
       v-row(justify="center")
         generic-panel
@@ -41,6 +41,13 @@ export default {
 
 <style scoped>
 .video-bg {
+  /* height: 1000px; */
+  width: 100vw;
+  background-image: url('../../assets/images/telehealth/Telehealth Video Banner.png');
+  background-position: center center;
+  background-size: 100% 100%;
+}
+.video-bg-mobile {
   /* height: 1000px; */
   background-image: url('../../assets/images/telehealth/Telehealth Video Banner.png');
   background-position: center top;
