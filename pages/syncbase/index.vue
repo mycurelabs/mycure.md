@@ -1,7 +1,7 @@
 <template lang="pug">
   v-container(fluid v-if="!loading").white
     //- 1st panel
-    div.mx-n3.syncbase-bg
+    div(:class="$isMobile? 'syncbase-bg-mobile' : 'syncbase-bg'").mx-n3
       v-container
         v-row(justify="center")
           generic-panel
@@ -147,10 +147,13 @@ export default {
 
 <style scoped>
 .syncbase-bg {
-  width: 100vw;
   background-image: url('../../assets/images/syncbase/Syncbase BG.png');
   background-position: center center;
-  background-size: 100% 100%;
+  background-size: 100%;
+}
+.syncbase-bg-mobile {
+  background-image: url('../../assets/images/syncbase/Syncbase BG.png');
+  background-position: center bottom;
 }
 .grey-bg {
   background-color: #fafafa;

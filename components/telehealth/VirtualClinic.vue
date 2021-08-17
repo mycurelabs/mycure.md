@@ -36,7 +36,7 @@
             v-row(justify="center")
               v-col(align="center" :cols="$isMobile ? '12' : '2'").pb-0
                 div.text-center
-                  img(v-lazy="require(`~/assets/images/telehealth/${data.headerIcon}`)" :width="$isWideScreen ? '80px' : '45px'" :height="$isWideScreen ? '80px' : '45px'")
+                  img(v-lazy="require(`~/assets/images/telehealth/${data.headerIcon}`)" :width="$isWideScreen ? '80px' : '50px'" :height="$isWideScreen ? '80px' : '50px'")
               v-col
                 h1(:class="headerClasses") {{ data.header }}
                 br

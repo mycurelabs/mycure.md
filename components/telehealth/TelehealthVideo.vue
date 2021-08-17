@@ -42,9 +42,7 @@ export default {
 <style scoped>
 .video-bg {
   /* height: 1000px; */
-  width: 100vw;
   background-image: url('../../assets/images/telehealth/Telehealth Video Banner.png');
-  background-position: center center;
-  background-size: 100% 100%;
+  background-position: center top;
 }
 </style>
