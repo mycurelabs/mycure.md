@@ -47,14 +47,16 @@
             v-col(cols="12" md="10").text-center
               h2(:class="headerClasses").mb-10.white--text See it in action. Book a demo today!
               mc-btn(
-                depressed
                 color="success"
                 target="_blank"
                 rel="noopener noreferrer"
-                :large="$isRegularScreen"
-                :x-large="$isWideScreen"
+                width="228px"
+                height="59px"
+                rounded
+                depressed
                 :href="'https://calendly.com/mycure/demo'"
-              ).font-s.text-none Book a Demo
+              ).text-none
+                span.generic-button-text Book a Demo
 </template>
 
 <script>
