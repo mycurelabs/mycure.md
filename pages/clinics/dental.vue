@@ -78,29 +78,27 @@
         div.mb-10
       template(slot="cta-button")
         v-row(:justify="$isMobile ? 'center' : 'start'")
-          v-col(cols="10" sm="7")
-            mc-btn(
-              color="success"
-              href="https://calendly.com/mycure/demo"
-              target="_blank"
-              rel="noopener noreferrer"
-              depressed
-              rounded
-              width="228px"
-              height="59px"
-            ).text-none
-              v-icon(left) mdi-web
-              span.generic-button-text Create my Website
-          v-col(cols="10" sm="5")
-            signup-button(
-              depressed
-              rounded
-              outlined
-              block
-              height="59px"
-              color="success"
-            ).text-none
-              span.generic-button-text Get Started
+          mc-btn(
+            color="success"
+            href="https://calendly.com/mycure/demo"
+            target="_blank"
+            rel="noopener noreferrer"
+            depressed
+            rounded
+            width="228px"
+            height="59px"
+          ).text-none
+            v-icon(left) mdi-web
+            span.generic-button-text Create my Website
+          signup-button(
+            depressed
+            rounded
+            outlined
+            width="228px"
+            height="59px"
+            color="success"
+          ).text-none.ml-5
+            span.generic-button-text Get Started
 
     //- 7th panel
     generic-media-panel(
