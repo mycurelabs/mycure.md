@@ -2,7 +2,7 @@
   div(:class="$isMobile ? 'pricing-bg-mobile' : 'pricing-bg' ").mx-n3
     v-container
       v-row(justify="center")
-        generic-panel
+        generic-panel(column="12")
           v-col(cols="12")
             v-row(align="center" justify="center")
               v-col(cols="12").text-center
@@ -26,7 +26,7 @@
                   size="150"
                 )
             v-row(v-else justify="center" dense)
-              template(v-if="!$isMobile")
+              template(v-if="!$isMobile && $vuetify.breakpoint.width > 1240")
                 v-col(
                   v-for="(pack, key) in pricingPackages"
                   :key="key"
@@ -79,7 +79,7 @@ export default {
       type: Object,
       default: () => ({
         cols: '12',
-        md: '4',
+        md: '3',
         xl: '3',
       }),
     },
