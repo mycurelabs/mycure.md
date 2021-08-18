@@ -158,7 +158,8 @@ const getMonthlyPrice = (pack, organizationType) => {
 
 const getAnnualMonthlyPrice = (pack, organizationType) => {
   if (!pack) return 0;
-  return Math.ceil((pack.plan?.amount || 0) / 12);
+  // return Math.ceil((pack.plan?.amount || 0) / 12);
+  return pack.plan?.amount || 0;
 };
 
 const isRecommended = (type, packageValue) => {
@@ -176,8 +177,8 @@ const PACKAGE_IMAGE = {
 };
 
 const PACKAGE_CURRENCY = {
-  php: 'P',
-  usd: '$',
+  php: 'PHP',
+  usd: 'USD',
 };
 
 const DOCTOR_TYPES = [
@@ -261,7 +262,7 @@ export const getSubscriptionPackagesPricing = async (type) => {
       inclusions,
       btnText: 'Get Started',
       // Doctor specific only
-      ...DOCTOR_TYPES.includes(type) && { users: packageValue === 'lite' ? '1' : 'per' },
+      ...DOCTOR_TYPES.includes(type) && { users: packageValue === 'lite' ? 1 : '/' },
     };
   });
 
