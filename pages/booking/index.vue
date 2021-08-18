@@ -62,10 +62,12 @@
     //- 4th panel
     div.grey-bg.mx-n3
       features(
-        :items="thirdPanelContents"
         image-dir="booking/"
         icon-container-col-size="10"
         :each-icon-col="{ cols: 12, sm: 10 }"
+        :items="thirdPanelContents"
+        :image-width="acquireIconsSize"
+        :image-height="acquireIconsSize"
       )
         template(slot="title")
           h2(:class="['primary--text', 'font-weight-semibold', ...titleClasses]") Acquire and Accommodate more Patients
@@ -246,9 +248,9 @@ export default {
         description: 'Without an appointment booking system, healthcare providers find it difficult to organize patient visits resulting to missed opportunities and more time wasted.',
         contentAlign: 'right',
         imageBindings: {
-          image: 'Stakes.png',
-          mobileImage: 'Stakes.png',
-          imageAlt: 'Doctor witha lot of paper work',
+          image: 'Stakes.webp',
+          mobileImage: 'Stakes.webp',
+          imageAlt: 'Doctor with a lot of paper work',
           customPath: 'booking/',
           extensionExclusive: true,
           width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
@@ -269,6 +271,9 @@ export default {
           height: this.$isMobile ? '213.25px' : (this.$isRegularScreen ? '355.42px' : '548.58px'),
         },
       };
+    },
+    acquireIconsSize () {
+      return this.$isMobile ? '77px' : (this.$isRegularScreen ? '110px' : '175px');
     },
   },
   mounted () {
