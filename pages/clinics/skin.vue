@@ -86,6 +86,7 @@
 
     //- 5th panel
     generic-media-panel(
+      align="center"
       :content="fifthPanel"
       :title-classes="[...headerClasses, 'primary--text']"
     )

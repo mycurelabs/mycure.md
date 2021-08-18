@@ -102,6 +102,7 @@
 
     //- 7th panel
     generic-media-panel(
+      align="center"
       :content="multiplePanel"
       :title-classes="[...headerClasses, 'primary--text']"
     )
