@@ -2,7 +2,7 @@
   div(:class="panelBackground").mx-n3
     v-container
       v-row(justify="center")
-        generic-panel(:row-bindings="{ justify: 'center'}")
+        generic-panel(column="12" :row-bindings="{ justify: 'center'}")
           v-col(cols="12")
             v-row(justify="center")
               v-col(cols="12").text-center
@@ -39,7 +39,7 @@
                   size="150"
                 )
             v-row(v-else justify="center" dense)
-              template(v-if="!$isMobile")
+              template(v-if="!$isMobile && $vuetify.breakpoint.width > 1240")
                 v-col(
                   v-for="(pack, key) in pricingPackages"
                   :key="key"
