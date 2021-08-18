@@ -1,5 +1,5 @@
 <template lang="pug">
-   v-card(:color="cardColor" :height="cardHeight" width="100%").rounded-xl.card-outter
+   v-card(:color="cardColor" :height="cardHeight" width="100%").rounded-xl.card-outter.pa-3
       v-chip(v-if="isRecommended" color="warning" label small).chip.mt-n3.black--text.align-center.justify-center.font-weight-bold Recommended
       v-card-title.pt-8
         v-spacer
@@ -12,33 +12,48 @@
             image-file-extension=".webp"
             image-alt="Health facility pricing icon"
             :image="bundle.image"
-            :image-width="cardType === 'enterprise' ? '200px' : iconSize"
-            :image-height="cardType === 'enterprise' ? '139.4px' : iconSize"
+            :image-width="cardType === 'enterprise' ? '150px' : iconSize"
+            :image-height="cardType === 'enterprise' ? '89.4px' : iconSize"
           )
         div.text-center.description-container
           p(:class="[normalTextColor, textFontSize, recommendedText]") {{ bundle.description }}
-        div.text-center#price-container
+        div#price-container
           template(v-if="!bundle.requireContact")
-            p(:class="priceColor").font-weight-bold
+            p(:class="priceColor").font-weight-black
               v-tabs-items(v-if="bundle.monthlyPrice > 0" v-model="paymentInterval" transition="slide-y-transition")
                 v-tab-item(value="year" transition="slide-y-transition")
-                  span(:class="{'font-30': !$isWideScreen, 'font-35': $isWideScreen}").currency.font-open-sans {{ bundle.currency }}&nbsp;
-                  span(:class="{'font-45': !$isWideScreen, 'font-60': $isWideScreen}") {{ bundle.annualMonthlyPrice }}
+
+                  span(:class="{'font-18': !$isWideScreen, 'font-25': $isWideScreen}").currency.font-open-sans {{ bundle.currency }}&nbsp;
+                  span(:class="{'font-35': !$isWideScreen, 'font-40': $isWideScreen}") {{ kFormatter(bundle.annualMonthlyPrice) }}
+                  //- template(v-if="bundle.users")
+                  //-   span(:class="{'slash': bundle.users !== 1}") &nbsp;{{ bundle.users }}
+                  //-   span {{ bundle.users === 1 ? ' ' : '' }}user
+                  span.slash &nbsp;/
+                  | clinic
+                  span.slash /
+                  | year
                 v-tab-item(value="month" transition="slide-y-transition")
-                  span(:class="{'font-30': !$isWideScreen, 'font-35': $isWideScreen}").currency.font-open-sans {{ bundle.currency }}&nbsp;
-                  span(:class="{'font-45': !$isWideScreen, 'font-60': $isWideScreen}") {{  bundle.monthlyPrice }}
+                  span(:class="{'font-18': !$isWideScreen, 'font-25': $isWideScreen}").currency.font-open-sans {{ bundle.currency }}&nbsp;
+                  span(:class="{'font-35': !$isWideScreen, 'font-40': $isWideScreen}") {{  kFormatter(bundle.monthlyPrice) }}
+                  //- template(v-if="bundle.users")
+                  //-   span(:class="{'slash': bundle.users !== 1}") &nbsp;{{ bundle.users }}
+                  //-   span {{ bundle.users === 1 ? ' ' : '' }}user
+                  span.slash &nbsp;/
+                  | clinic
+                  span.slash /
+                  | month
               span(v-else).font-45 FREE
             //- span(v-else).font-xl {{ bundle.annualMonthlyPrice ? bundle.annualMonthlyPrice : bundle.monthlyPrice }}
         div.text-center.usage-metric-container
-          p(v-if="!bundle.requireContact" :class="[normalTextColor, textFontSize, recommendedText]").black--text
-            span(v-if="bundle.users") {{ bundle.users }} user
-            br(v-if="bundle.users")
-            | per clinic monthly
-            template(v-if="!bundle.users")
-              br
-              br
-          div(v-else).top-spacing-btn
-            | &nbsp;
+          //- p(v-if="!bundle.requireContact" :class="[normalTextColor, textFontSize, recommendedText]").black--text
+          //-   span(v-if="bundle.users") {{ bundle.users }} user
+          //-   br(v-if="bundle.users")
+          //-   | per clinic monthly
+          //-   template(v-if="!bundle.users")
+          //-     br
+          //-     br
+          //- div(v-else).top-spacing-btn
+          //-   | &nbsp;
       v-card-text.card-actions
         slot(name="card-btn")
           template(v-if="bundle.requireContact")
@@ -47,32 +62,36 @@
               rounded
               block
               event-category="Pricing"
+              width="200px"
+              height="40px"
               :color="btnColor"
               :event-label="`click-pricing-${bundle.title}`"
-              :class="{'white--text': isRecommended}"
+              :class="{'primary--text': isRecommended}"
               @click="sendCrispMessage"
-            ).mc-button-set-1.font-weight-semibold.text-none {{ bundle.btnText }}
+            ).generic-button-text.font-weight-semibold.text-none {{ bundle.btnText }}
           template(v-else)
             signup-button(
               depressed
               rounded
               block
+              width="200px"
+              height="40px"
               event-category="Pricing"
               :color="btnColor"
-              :class="{'white--text': isRecommended}"
+              :class="{'primary--text': isRecommended}"
               :event-label="`click-pricing-${bundle.title}`"
               :pricing-bundle="bundle.id"
               :query-ops="bundle.queryOps"
-            ).mc-button-set-1.font-weight-semibold.text-none {{ bundle.btnText }}
+            ).generic-button-text.font-weight-semibold.text-none {{ btnText }}
         v-row(justify="center").mt-3
-          v-col(cols="12" xl="10")
+          v-col(cols="12" xl="12")
             div(v-for="(inclusion, inclusionKey) in mainInclusions" :key="inclusionKey").d-flex
               v-icon(:color="getInclusionIconColor(inclusion.valid)" left :small="!$isWideScreen") {{ getInclusionIcon(inclusion.valid) }}
               span(:class="[getInclusionTextColor(inclusion.valid), textFontSize, {'font-weight-medium': isRecommended}]") {{ inclusion.text }}
       v-divider(:class="{'divider': !this.isRecommended, 'divider-dark': this.isRecommended}").mx-5
       v-card-text
         v-row(justify="center")
-          v-col(cols="12" xl="10")
+          v-col(cols="12")
             div(v-for="(inclusion, inclusionKey) in additionalInclusions" :key="inclusionKey").d-flex
               template(v-if="inclusion.valid || !hideInvalidItems")
                 v-icon(:color="getInclusionIconColor(inclusion.valid, true)" left :small="!$isWideScreen") {{ getInclusionIcon(inclusion.valid, true) }}
@@ -115,6 +134,11 @@ export default {
       type: Boolean,
       default: false,
     },
+    // - If has trial
+    hasTrialOption: {
+      type: Boolean,
+      default: false,
+    },
   },
   data () {
     return {
@@ -148,8 +172,11 @@ export default {
     priceColor () {
       return { 'primary--text': !this.isRecommended, 'white--text': this.isRecommended };
     },
+    btnText () {
+      return this.hasTrialOption ? 'Start Trial' : this.bundle.btnText;
+    },
     btnColor () {
-      return this.isRecommended ? 'warning' : 'primary';
+      return this.isRecommended ? 'white' : 'primary';
     },
     cardHeight () {
       // if (!this.showList) return '500';
@@ -189,6 +216,10 @@ export default {
       window.$crisp.push(['do', 'chat:toggle']);
       window.$crisp.push(['do', 'message:send', ['text', message]]);
     },
+    // Derived from https://stackoverflow.com/questions/9461621/format-a-number-as-2-5k-if-a-thousand-or-more-otherwise-900
+    kFormatter (num) {
+      return Math.abs(num) > 999 ? Math.sign(num) * ((Math.abs(num) / 1000).toFixed(1)) + 'K' : Math.sign(num) * Math.abs(num);
+    },
   },
 };
 </script>
@@ -200,6 +231,11 @@ export default {
 
 .font-60 {
   font-size: 60px;
+}
+
+.slash {
+  font-size: 20px !important;
+  margin-top: 10px;
 }
 
 /* .card-outter {
@@ -217,11 +253,11 @@ export default {
   position: relative;
 }
 
-.currency {
+/* .currency {
   position: absolute;
   top: 25%;
   left: 5%;
-}
+} */
 
 .general-info-container {
   position: relative;

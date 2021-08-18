@@ -19,18 +19,18 @@
                     color="info"
                   )
                   strong(:class="descriptionClasses").font-open-sans.black--text Billed Annually
-            v-row(justify="center" v-if="hasTrialOption")
-              v-col(cols="12").text-center.mb-10.mt-n5
-                strong(:class="descriptionClasses").font-open-sans.mb-5 or
-                br
-                signup-button(
-                  depressed
-                  rounded
-                  event-category="Pricing"
-                  color="primary"
-                  :event-label="`click-pricing-${type}-trial`"
-                  :queryOps="{ trial: true }"
-                ).mc-button-set-1.font-weight-semibold.text-none Start a Trial
+            //- v-row(justify="center" v-if="hasTrialOption")
+            //-   v-col(cols="12").text-center.mb-10.mt-n5
+            //-     strong(:class="descriptionClasses").font-open-sans.mb-5 or
+            //-     br
+            //-     signup-button(
+            //-       depressed
+            //-       rounded
+            //-       event-category="Pricing"
+            //-       color="primary"
+            //-       :event-label="`click-pricing-${type}-trial`"
+            //-       :queryOps="{ trial: true }"
+            //-     ).mc-button-set-1.font-weight-semibold.text-none Start a Trial
             v-row(v-if="loading" justify="center" dense).text-center
               v-col(cols="12")
                 v-progress-circular(
@@ -46,6 +46,7 @@
                   v-bind="columnBindings"
                 )
                   pricing-card(
+                    :has-trial-option="hasTrialOption"
                     :bundle="pack"
                     :payment-interval="paymentInterval"
                     :height="type === 'doctor' ? '750' : '850'"
@@ -65,6 +66,7 @@
                     :data-index="index+1"
                   ).pa-2
                     pricing-card(
+                      :has-trial-option="hasTrialOption"
                       :bundle="pack"
                       :payment-interval="paymentInterval"
                       :height="type === 'doctor' ? '700' : '850'"
