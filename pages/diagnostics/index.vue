@@ -92,6 +92,7 @@
     //- 7th panel
     generic-media-panel(
       :content="cmsPanel"
+      align="center"
     )
       template(slot="cta-button")
         div(:class="{'text-center': $isMobile}")
@@ -104,7 +105,7 @@
             width="228px"
             height="59px"
           ).text-none
-            v-icon(left :large="$isWideScreen") mdi-information-outline
+            v-icon(left)  mdi-information-outline
             span.generic-button-text  Learn more
     //- 8th panel
     think-long-term
