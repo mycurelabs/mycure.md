@@ -142,7 +142,7 @@ export default {
             { type: 'email', value: 'hello@mycure.md' },
             { type: 'phone', value: 'PH: (+632) 7799 6262' },
             { type: 'phone', value: 'PH: (+63) 917 303 4350' },
-            { type: 'phone', value: 'Guam: 1-671-646-2733' },
+            { type: 'phone', value: 'US: 1-671-646-2733' },
           ],
         },
       ],
