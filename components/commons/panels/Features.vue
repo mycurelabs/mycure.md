@@ -113,7 +113,7 @@ export default {
       type: String,
       default: '50vh',
     },
-    // - Column bindings for a single icon
+    // - Space to occupy for each icon given the available space
     eachIconCol: {
       type: Object,
       default: () => ({
