@@ -6,6 +6,7 @@
       :height="cardHeight"
       :to="wonder.infoLink"
       :elevation="hover ? 16 : 5"
+      :class="cardPadding"
     ).ma-1
       v-card-text.text-center
         picture-source(
@@ -53,10 +54,16 @@ export default {
       });
     },
     cardHeight () {
-      if (this.$isWideScreen) return '380';
-      if (this.wLG) return '355';
+      if (this.$isWideScreen) return '370';
+      if (this.wLG) return '345';
       if (this.wSM) return '375';
-      return '300';
+      return '350';
+    },
+    cardPadding () {
+      if (this.$isWideScreen) return 'pt-6';
+      if (this.wLG) return 'pt-6';
+      if (this.wSM) return 'pt-6';
+      return 'pt-3';
     },
   },
 };

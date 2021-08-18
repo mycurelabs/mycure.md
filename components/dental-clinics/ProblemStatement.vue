@@ -9,11 +9,10 @@
             depressed
             rounded
             color="success"
-            :x-large="$isWideScreen"
-            :large="!$isWideScreen"
-            :class="btnClasses"
+            width="228px"
+            height="59px"
           ).text-none.mb-10
-            span Start Free
+            span.generic-button-text Start Free
         v-col(cols="12")
           v-row(v-if="!$isMobile" justify="center")
             picture-source(

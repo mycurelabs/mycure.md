@@ -208,7 +208,7 @@ export default {
   background-size: 100% 100%;
 }
 .pricing-bg-mobile {
-  background-image: url('../../assets/images/pricing/MYCURE-Pricing BG Mobile.png');
+  background-image: url('../../assets/images/pricing/MYCURE-Pricing BG Wide.png');
   background-position: center bottom;
 }
 .divider {

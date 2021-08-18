@@ -28,17 +28,18 @@
             rounded
             color="success"
             facility-type="clinic"
-            :x-large="$isWideScreen"
-            :large="!$isWideScreen"
-            :class="buttonClasses"
+            width="228px"
+            height="59px"
           ).text-none
-            span Get Started Free
+            span.generic-button-text Get Started Free
 
     //-3rd panel
     features(
       title="Easy as 1-2-3"
       :items="howItWorksContents"
       image-dir="booking/"
+      icon-container-col-size="12"
+      :each-icon-col="{ cols: 12 }"
     )
       template(slot="description")
         p(:class="howItWorksClass").primary--text.font-weight-semibold How it works?
@@ -63,19 +64,21 @@
       features(
         :items="thirdPanelContents"
         image-dir="booking/"
+        icon-container-col-size="10"
+        :each-icon-col="{ cols: 12, sm: 10 }"
       )
         template(slot="title")
-          h2(:class="['primary--text', 'font-weight-semibold', ...titleClasses]") Acquire and Accomodate more Patients
+          h2(:class="['primary--text', 'font-weight-semibold', ...titleClasses]") Acquire and Accommodate more Patients
         template(slot="additional-content")
           v-col(cols="12").text-center.mt-5
             signup-button(
               depressed
               rounded
-              :x-large="$isWideScreen"
-              :large="!$isWideScreen"
+              width="228px"
+              height="59px"
               color="success"
-            ).text-none.font-s
-              span Get Started Free
+            ).text-none
+              span.generic-button-text Get Started Free
     //- 5th panel
     v-container
       v-row(justify="center")
@@ -134,11 +137,10 @@
               rounded
               color="success"
               facility-type="clinic"
-              :x-large="$isWideScreen"
-              :large="!$isWideScreen"
-              :class="buttonClasses"
+              width="228px"
+              height="59px"
             ).text-none
-              span Get Started Free
+              span.generic-button-text Get Started Free
     //- 7th panel
     plans.mb-n3
 </template>

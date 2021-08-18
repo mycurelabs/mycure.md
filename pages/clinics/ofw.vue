@@ -43,12 +43,11 @@
               signup-button(
                 depressed
                 rounded
-                :x-large="$isWideScreen"
-                :large="!$isWideScreen"
-                :class="btnClasses"
+                width="228px"
+                height="59px"
                 color="success"
               ).text-none
-                span Sign Up
+                span.generic-button-text Sign Up
     //- 5th panel
     div.grey-bg.mx-n3
       generic-media-panel(
@@ -87,12 +86,12 @@
               depressed
               rounded
               block
-              :x-large="$isWideScreen"
-              :large="!$isWideScreen"
-              :class="btnClasses"
+              width="228px"
+              height="59px"
               color="success"
             ).text-none
-              span Create my website
+              v-icon(left) mdi-web
+              span.generic-button-text Create my website
           //- TODO: Bring back when sample website is available
           //- v-col(cols="12" md="7" lg="6" xl="5")
           //-   mc-btn(
@@ -121,7 +120,7 @@
           generic-panel(:row-bindings="{ justify: 'center' }")
             v-col(cols="12" lg="8" xl="6").white--text.text-center
               h2(:class="['white--text', ...headerClasses]").mb-5 Take the first step today
-              h3(:class="descriptionClasses").mb-5 Start now and get all your questions answered
+              h3(:class="descriptionClasses").mb-5.font-weight-semibold Start now and get all your questions answered
               mc-btn(
                 color="success"
                 depressed

@@ -1,5 +1,5 @@
 <template lang="pug">
-  div.video-bg.mx-n3
+  div(:class="$isMobile? 'video-bg-mobile' : 'video-bg'").mx-n3
     v-container
       v-row(justify="center")
         generic-panel
@@ -20,10 +20,10 @@
               rounded
               color="primary"
               event-label="signup"
-              :large="!$isWideScreen"
-              :x-large="$isWideScreen"
-            ).text-none.font-s.mt-10
-              | Get Started Free
+              width="228px"
+              height="59px"
+            ).text-none.mt-10
+              span.generic-button-text Get Started Free
               v-icon(small right) mdi-arrow-right
 </template>
 
@@ -46,5 +46,10 @@ export default {
   background-image: url('../../assets/images/telehealth/Telehealth Video Banner.png');
   background-position: center center;
   background-size: 100% 100%;
+}
+.video-bg-mobile {
+  /* height: 1000px; */
+  background-image: url('../../assets/images/telehealth/Telehealth Video Banner.png');
+  background-position: center top;
 }
 </style>

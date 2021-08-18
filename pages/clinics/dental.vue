@@ -24,7 +24,7 @@
       template(slot="content")
         h2(:class="headerClasses") Always accessible dental charts.
         br
-        h2(:class="subHeaderClasses") Never miss an appointment.
+        h2(:class="contentClasses") Never miss an appointment.
           br
           span Never miss a tooth.
       template(slot="cta-button")
@@ -33,11 +33,10 @@
             depressed
             rounded
             color="success"
-            :x-large="$isWideScreen"
-            :large="!$isWideScreen"
-            :class="btnClasses"
+            width="228px"
+            height="59px"
           ).text-none
-            span Get Started
+            span.generic-button-text Get Started
     //- 4th panel
     straightforward
     //- 5th panel
@@ -65,19 +64,21 @@
     )
       //- Check list
       template(slot="additional-content")
-        div.mb-10
-          v-row(
-            v-for="(item, i) in directoryPanel.list"
-            :key="item"
-            dense
-          )
-            v-col(cols="2" sm="1" md="1").pr-2.pt-2
-              img(width="20" src="~/assets/images/mycure-check.png" alt="Check icon")
+        template(v-for="(item, i) in directoryPanel.list")
+          v-row(dense)
+            v-col(cols="2" sm="1" md="1"  :class="$isWideScreen ? 'pt-3' : 'pt-2'").pr-2
+              img(
+                src="~/assets/images/mycure-check.png"
+                alt="Check icon"
+                :width="$isWideScreen ? '30' : '20'"
+                :height="$isWideScreen ? '30' : '20'"
+              )
             v-col(cols="10" sm="11" md="11")
               span(:class="descriptionClasses").font-open-sans.font-gray {{ item }}
+        div.mb-10
       template(slot="cta-button")
         v-row(:justify="$isMobile ? 'center' : 'start'")
-          v-col(cols="10" sm="5" md="7" lg="6" xl="5")
+          v-col(cols="10" sm="7")
             mc-btn(
               color="success"
               href="https://calendly.com/mycure/demo"
@@ -85,23 +86,21 @@
               rel="noopener noreferrer"
               depressed
               rounded
-              block
-              :large="!$isWideScreen"
-              :x-large="$isWideScreen"
-              :class="{'font-s': $isWideScreen, 'font-14': $isRegularScreen }"
-            ).text-none Create my Website
-          v-col(cols="10" sm="5" md="7" lg="6" xl="7")
+              width="228px"
+              height="59px"
+            ).text-none
+              v-icon(left) mdi-web
+              span.generic-button-text Create my Website
+          v-col(cols="10" sm="5")
             signup-button(
               depressed
               rounded
               outlined
               block
-              :x-large="$isWideScreen"
-              :large="!$isWideScreen"
-              :class="btnClasses"
+              height="59px"
               color="success"
             ).text-none
-              span Get Started
+              span.generic-button-text Get Started
 
     //- 7th panel
     generic-media-panel(
@@ -117,10 +116,10 @@
             rel="noopener noreferrer"
             depressed
             rounded
-            :large="!$isWideScreen"
-            :x-large="$isWideScreen"
-            :class="btnClasses"
-          ).text-none Get Started
+                  width="228px"
+                  height="59px"
+          ).text-none
+            span.generic-button-text Get Started
     //- 8th panel
     syncbase(:version="3")
     //- 9th panel
@@ -162,6 +161,7 @@ export default {
     };
     this.headerClasses = ['mc-title-set-1', 'lh-title', 'font-weight-semibold'];
     this.descriptionClasses = ['mc-content-set-1'];
+    this.contentClasses = ['mc-content-set-1', 'font-weight-semibold', 'secondary--text'];
     this.btnClasses = ['mc-button-set-1'];
     this.subHeaderClasses = ['mc-subheader-set-1', 'lh-title', 'font-weight-semibold', 'secondary--text'];
     this.studentPanelDescriptionClasses = ['mc-subheader-set-2', 'font-weight-semibold'];
