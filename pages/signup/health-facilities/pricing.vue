@@ -262,6 +262,7 @@ export default {
           }
           this.errorMessage = 'The email or mobile number is already taken!';
         };
+        if (e.message === 'Invitation not found') this.errorMessage = 'Invitation code is not valid!';
         this.errorDialog = true;
       } finally {
         this.loading = false;

@@ -261,6 +261,7 @@ export const signupFacility = async (opts) => {
       },
     };
     if (opts.otp) { payload.totpToken = opts.otp; }
+    if (opts.invitation) { payload.invitation = opts.invitation; };
     const { data } = await axios({
       method: 'POST',
       url: `${process.env.API_URL}/accounts`,
