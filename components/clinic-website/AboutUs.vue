@@ -12,7 +12,12 @@
           v-col(cols="12" md="4")
             h3(:class="sectionClasses") About Us
             br
-            p(:class="{'text-center': $isMobile}").font-gray {{description}}
+            //- p(:class="{'text-center': $isMobile}").font-gray {{description}}
+            v-clamp(
+              autoresize
+              :class="{'text-center': $isMobile}"
+              :max-lines="3"
+            ).font-gray {{ description }}
           v-col(cols="10" md="4")
             template(v-if="address || phone")
               h3(:class="sectionClasses") Contact Us
@@ -32,6 +37,7 @@
 </template>
 
 <script>
+import VClamp from 'vue-clamp';
 import GenericPanel from '~/components/generic/GenericPanel';
 import Media from '~/components/commons/media';
 import Schedules from '~/components/clinic-website/schedules';
@@ -41,6 +47,7 @@ export default {
     GenericPanel,
     Media,
     Schedules,
+    VClamp,
   },
   props: {
     name: {
