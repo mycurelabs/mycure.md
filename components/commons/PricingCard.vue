@@ -23,7 +23,7 @@
             :style="opacity"
           ).text-center
             v-icon(color="success" small left) {{ isRecommended ? 'mdi-tag' : 'mdi-tag-outline' }}
-            strong(:class="{ 'white--text': isRecommended, 'grey--text': !isRecommended}").savings {{ bundle.currency }} {{ bundle.monthlyPrice | getYearly }}
+            strong(:class="{ 'white--text': isRecommended, 'grey--text': !isRecommended}").savings.font-16 {{ bundle.currency }} {{ bundle.monthlyPrice | getYearly }}
             v-chip(color="success" :small="!$isWideScreen").white--text.ml-1.font-weight-medium Save {{ savingsPercentage }}%
           p(
             v-if="!bundle.requireContact"
