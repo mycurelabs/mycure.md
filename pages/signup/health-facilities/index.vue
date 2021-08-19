@@ -139,27 +139,27 @@
               md="6"
               :class="{ 'pa-1': !$isMobile }"
             ).order-md-7.order-sm-7
-              v-select(
-                v-model="facilityType"
-                label="Health Facility Type"
-                item-text="text"
-                item-value="value"
-                outlined
-                readonly
-                return-object
-                append-icon="$dropdown"
-                :items="facilityTypes"
-                :rules="isRequired"
-                :error="errorFacilityType"
-                :error-messages="errorMessagesFacilityType"
-                @click:append="chooseFacilityTypeDialog = true"
-              )
-                template(v-slot:item="{ item }")
-                  span {{ item.text }}&nbsp;
-                    v-chip(v-if="item.chip" small color="primary").font-11 {{item.chip}}
-                template(v-slot:selection="{ item }")
-                  span {{ item.text }}&nbsp;
-                    v-chip(v-if="item.chip" small color="primary").font-11 {{item.chip}}
+              div(@click="chooseFacilityTypeDialog = true")
+                v-select(
+                  v-model="facilityType"
+                  label="Health Facility Type"
+                  item-text="text"
+                  item-value="value"
+                  outlined
+                  readonly
+                  append-icon="$dropdown"
+                  :items="facilityTypes"
+                  :rules="isRequired"
+                  :error="errorFacilityType"
+                  :error-messages="errorMessagesFacilityType"
+                  @click:append="chooseFacilityTypeDialog = true"
+                )
+                  template(v-slot:item="{ item }")
+                    span {{ item.text }}&nbsp;
+                      v-chip(v-if="item.chip" small color="primary").font-11 {{item.chip}}
+                  template(v-slot:selection="{ item }")
+                    span {{ item.text }}&nbsp;
+                      v-chip(v-if="item.chip" small color="primary").font-11 {{item.chip}}
               //- Pricing
               //- v-autocomplete(
               //-   v-if="facilityType"
@@ -495,8 +495,9 @@ export default {
         }
 
         // Map org types and subscription
+        const { orgProps } = this.facilityTypes.find(type => type.value === this.facilityType || this.facilityType?.value);
         const organizationPayload = {
-          ...this.facilityType.orgProps,
+          ...orgProps,
         };
 
         // NOTE: See SignupButton component
@@ -519,7 +520,7 @@ export default {
           if (this.$route.query.type === 'diagnostic' || this.facilityType === 'diagnostic') {
             organizationPayload.types = [
               'diagnostic',
-              'diagnostic-booking',
+              // - 'diagnostic-booking', TODO: Let Nad add in types
             ];
           }
         }
