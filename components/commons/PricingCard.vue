@@ -19,16 +19,19 @@
           p(:class="[normalTextColor, textFontSize, recommendedText]") {{ bundle.description }}
         div#price-container.text-center
           p(
-            :class="{'font-18': !$isWideScreen, 'font-25': $isWideScreen, 'white--text': isRecommended, 'grey--text': !isRecommended}"
+            :class="{'font-18': !$isWideScreen, 'font-25': $isWideScreen}"
             :style="opacity"
-          ).text-center.savings {{ bundle.currency }} {{ bundle.monthlyPrice | getYearly }}
+          ).text-center
+            v-icon(color="success" small left) {{ isRecommended ? 'mdi-tag' : 'mdi-tag-outline' }}
+            strong(:class="{ 'white--text': isRecommended, 'grey--text': !isRecommended}").savings {{ bundle.currency }} {{ bundle.monthlyPrice | getYearly }}
+            v-chip(color="success" :small="!$isWideScreen").white--text.ml-1.font-weight-medium Save {{ savingsPercentage }}%
           p(
             v-if="!bundle.requireContact"
             :class="[priceColor]"
           ).font-weight-black
             v-tabs-items(v-if="bundle.monthlyPrice > 0" v-model="paymentInterval" transition="slide-y-transition")
               v-tab-item(value="year" transition="slide-y-transition")
-                span(:class="{'font-18': !$isWideScreen, 'font-25': $isWideScreen}").currency.font-open-sans {{ bundle.currency }}&nbsp;
+                span(:class="{'font-16': !$isWideScreen, 'font-25': $isWideScreen}").currency.font-open-sans {{ bundle.currency }}&nbsp;
                 span(:class="{'font-35': !$isWideScreen, 'font-40': $isWideScreen}") {{ kFormatter(bundle.annualMonthlyPrice) }}
                 //- template(v-if="bundle.users")
                 //-   span(:class="{'slash': bundle.users !== 1}") &nbsp;{{ bundle.users }}
@@ -38,7 +41,7 @@
                 span.slash /
                 | year
               v-tab-item(value="month" transition="slide-y-transition")
-                span(:class="{'font-18': !$isWideScreen, 'font-25': $isWideScreen}").currency.font-open-sans {{ bundle.currency }}&nbsp;
+                span(:class="{'font-16': !$isWideScreen, 'font-25': $isWideScreen}").currency.font-open-sans {{ bundle.currency }}&nbsp;
                 span(:class="{'font-35': !$isWideScreen, 'font-40': $isWideScreen}") {{  kFormatter(bundle.monthlyPrice) }}
                 //- template(v-if="bundle.users")
                 //-   span(:class="{'slash': bundle.users !== 1}") &nbsp;{{ bundle.users }}
@@ -165,6 +168,12 @@ export default {
     };
   },
   computed: {
+    savingsPercentage () {
+      const yearly = (this.bundle?.monthlyPrice * 12) || 0;
+      const saveAmount = yearly - this.bundle.annualMonthlyPrice;
+      const percentage = (saveAmount / yearly) * 100;
+      return Math.round(percentage);
+    },
     mainInclusions () {
       return this.bundle?.inclusions?.slice(0, 3) || [];
     },
@@ -240,9 +249,13 @@ export default {
       window.$crisp.push(['do', 'chat:toggle']);
       window.$crisp.push(['do', 'message:send', ['text', message]]);
     },
-    // Derived from https://stackoverflow.com/questions/9461621/format-a-number-as-2-5k-if-a-thousand-or-more-otherwise-900
+    /*
+      Derived from https://stackoverflow.com/questions/9461621/format-a-number-as-2-5k-if-a-thousand-or-more-otherwise-900
+
+      Modified for 2-digit thousand
+    */
     kFormatter (num) {
-      return Math.abs(num) > 999 ? Math.sign(num) * ((Math.abs(num) / 1000).toFixed(1)) + 'K' : Math.sign(num) * Math.abs(num);
+      return Math.abs(num) > 9999 ? Math.sign(num) * ((Math.abs(num) / 1000).toFixed(1)) + 'K' : Math.sign(num) * Math.abs(num);
     },
   },
 };
