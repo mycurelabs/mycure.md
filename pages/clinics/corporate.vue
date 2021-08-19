@@ -53,7 +53,7 @@
         v-row(justify="center")
           generic-panel(:row-bindings="{ justify: 'center' }")
             v-col(cols="12").white--text.text-center
-              h2(:class="['white--text', ...headerClasses]").mb-5 Start easy. Take the first step today
+              h2(:class="['white--text', ...headerClasses]").mb-5 Start easy. Take the first step today.
               signup-button(
                 depressed
                 rounded
