@@ -520,7 +520,7 @@ export default {
           if (this.$route.query.type === 'diagnostic' || this.facilityType === 'diagnostic') {
             organizationPayload.types = [
               'diagnostic',
-              // - 'diagnostic-booking', TODO: Let Nad add in types
+              'diagnostic-booking',
             ];
           }
         }
