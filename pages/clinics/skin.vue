@@ -62,16 +62,14 @@
       //- Check list
       template(slot="additional-content")
         template(v-for="(item, i) in fourthPanel.list")
-          v-row(dense)
-            v-col(cols="2" sm="1" md="1"  :class="$isWideScreen ? 'pt-3' : 'pt-2'").pr-2
-              img(
-                src="~/assets/images/mycure-check.png"
-                alt="Check icon"
-                :width="$isWideScreen ? '30' : '20'"
-                :height="$isWideScreen ? '30' : '20'"
-              )
-            v-col(cols="10" sm="11" md="11")
-              span(:class="descriptionClasses") {{ item }}
+          v-row(dense align="center").my-2
+            img(
+              src="~/assets/images/mycure-check.png"
+              alt="Check icon"
+              :width="$isWideScreen ? '30' : '20'"
+              :height="$isWideScreen ? '30' : '20'"
+            )
+            span(:class="[descriptionClasses, ($isMobile ? 'ml-2' : ($isRegularScreen ? 'ml-3' : 'ml-4'))]") {{ item }}
         div.mb-10
         div(:class="{ 'text-center': $isMobile }")
           signup-button(
@@ -212,7 +210,7 @@ export default {
         list: [
           'Acquire patients beyond your reach',
           'Hassle-free from booking to billing',
-          'Covers virtual to physical accommodation',
+          'Virtual to physical accommodation',
         ],
       };
     },

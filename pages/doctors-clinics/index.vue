@@ -45,16 +45,14 @@
       //- Check list
       template(slot="additional-content")
         template(v-for="(item, i) in sixthPanel.list")
-          v-row(dense)
-            v-col(cols="2" sm="1" md="1"  :class="$isWideScreen ? 'pt-3' : 'pt-2'").pr-2
-              img(
-                src="~/assets/images/mycure-check.png"
-                alt="Check icon"
-                :width="$isWideScreen ? '30' : '20'"
-                :height="$isWideScreen ? '30' : '20'"
-              )
-            v-col(cols="10" sm="11" md="11")
-              span(:class="descriptionClasses") {{ item }}
+          v-row(dense align="center").my-2
+            img(
+              src="~/assets/images/mycure-check.png"
+              alt="Check icon"
+              :width="$isWideScreen ? '30' : '20'"
+              :height="$isWideScreen ? '30' : '20'"
+            )
+            span(:class="[descriptionClasses, ($isMobile ? 'ml-2' : ($isRegularScreen ? 'ml-3' : 'ml-4'))]") {{ item }}
         div.mb-10
         div(:class="{ 'text-center': $isMobile }")
           signup-button(
@@ -78,15 +76,10 @@
         hide-btn
       )
         template(slot="additional-content")
-          v-row(
-            v-for="(item, i) in eightPanel.list"
-            :key="i"
-            dense
-          )
-            v-col(cols="2" sm="1" md="1" :class="$isWideScreen ? 'pt-2' : 'pt-1' ").pr-2
+          template(v-for="item in eightPanel.list")
+            v-row(dense align="center").my-2
               v-icon(color="white" :large="$isWideScreen") mdi-checkbox-marked-circle
-            v-col(cols="10" sm="5" md="11")
-              span(:class="eightPanelContentClasses") {{ item }}
+              span(:class="[eightPanelContentClasses, ($isMobile ? 'ml-2' : ($isRegularScreen ? 'ml-3' : 'ml-4'))]") {{ item }}
     //- 9th panel
     think-long-term
     v-divider.divider
