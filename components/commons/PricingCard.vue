@@ -17,14 +17,14 @@
           )
         div.text-center.description-container
           p(:class="[normalTextColor, textFontSize, recommendedText]") {{ bundle.description }}
-        div#price-container
+        div#price-container.text-center
           p(
             :class="{'font-18': !$isWideScreen, 'font-25': $isWideScreen, 'white--text': isRecommended, 'grey--text': !isRecommended}"
             :style="opacity"
           ).text-center.savings {{ bundle.currency }} {{ bundle.monthlyPrice | getYearly }}
           p(
             v-if="!bundle.requireContact"
-            :class="[priceColor, {'text-center': bundle.monthlyPrice === 0 || centerItems}]"
+            :class="[priceColor]"
           ).font-weight-black
             v-tabs-items(v-if="bundle.monthlyPrice > 0" v-model="paymentInterval" transition="slide-y-transition")
               v-tab-item(value="year" transition="slide-y-transition")
