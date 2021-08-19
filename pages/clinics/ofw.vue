@@ -22,14 +22,12 @@
             h2(:class="headerClasses").mb-5 Create beautiful reports for your clients.
             p(:class="descriptionClasses").mb-10.secondary--text.font-weight-semibold Provide both printed and online copies of their medical exam results without the hassle.
           v-col(cols="12").text-center
+            //- TODO: Add explicit width and height
             picture-source(
-              extension-exclusive
               image-alt="Sample report in MYCURE Clinic Management System"
-              image-file-extension=".png"
+              image-file-extension=".webp"
               custom-path="clinics/ofw/"
-              :image="`Beautiful reports${$isMobile ? '-mobile' : ''}`"
-              :image-width="this.$isMobile ? '276px' : (this.$isRegularScreen ? '945px' : '1445px')"
-              :image-height="this.$isMobile ? '204.36px' : (this.$isRegularScreen ? '692.25px' : '1058.51px')"
+              image="Beautiful reports"
             )
     //- 4th panel
     generic-media-panel(
