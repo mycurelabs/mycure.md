@@ -173,7 +173,7 @@ const PACKAGE_IMAGE = {
   lite: 'Essentials',
   premium: 'Premium',
   platinum: 'Platinum',
-  enterprise: 'Enterprise',
+  enterprise: 'Enterprise Blue',
 };
 
 const PACKAGE_CURRENCY = {
@@ -263,6 +263,8 @@ export const getSubscriptionPackagesPricing = async (type) => {
       btnText: 'Get Started',
       // Doctor specific only
       ...DOCTOR_TYPES.includes(type) && { users: packageValue === 'lite' ? 1 : '/' },
+      // Sign-up query (except Doctor)
+      ...!DOCTOR_TYPES.includes(type) && { queryOps: { trial: true } },
     };
   });
 
@@ -283,7 +285,7 @@ export const getSubscriptionPackagesPricing = async (type) => {
       { text: 'Multi-branch Functions', valid: true },
       { text: 'Customizable Features', valid: true },
     ],
-    btnText: 'Contact Us',
+    btnText: 'Get Started',
   };
 
   return !DOCTOR_TYPES.includes(type) ? [...mappedPackages, ENTERPRISE] : mappedPackages;

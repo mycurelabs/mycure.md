@@ -10,7 +10,7 @@
                 h2(:class="titleClasses").lh-title.font-weight-semibold.mb-5 {{ title }}
                 p(:class="descriptionClasses").font-open-sans.mb-5 {{ description }}
             v-row(justify="center")
-              v-col(cols="12" md="6" xl="4" :class="{'mb-10': !hasTrialOption}").text-center
+              v-col(cols="12" md="6" xl="5" :class="{'mb-10': !hasTrialOption}").text-center
                 div.d-flex.align-center.justify-center
                   strong(:class="descriptionClasses").font-open-sans.black--text.mr-3 Billed Monthly
                   v-switch(
@@ -66,6 +66,7 @@
                     :data-index="index+1"
                   ).pa-2
                     pricing-card(
+                      center-items
                       :has-trial-option="hasTrialOption"
                       :bundle="pack"
                       :payment-interval="paymentInterval"
