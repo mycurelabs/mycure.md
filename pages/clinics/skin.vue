@@ -189,11 +189,9 @@ export default {
       return {
         contentAlign: 'left',
         imageBindings: {
-          image: 'Beautiful User experience.png',
-          mobileImage: 'Beautiful User experience mobile.png',
+          image: 'Beautiful User experience.webp',
           imageAlt: 'Body diagram in a tablet',
           customPath: 'clinics/skin/',
-          extensionExclusive: true,
           width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
           height: this.$isMobile ? '305.91px' : (this.$isRegularScreen ? '508.96px' : '785.58px'),
         },
