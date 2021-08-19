@@ -63,7 +63,6 @@
         :content="practicingSoloPanel"
         :title-classes="[...headerClasses, 'white--text']"
         hide-btn
-        disable-parent-padding
       )
         div(slot="additional-content" :class="{'text-center': $isMobile}").mt-10
           mc-btn(
