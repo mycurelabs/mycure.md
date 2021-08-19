@@ -566,7 +566,7 @@ export default {
           name: 'signup-health-facilities-pricing',
           query: {
             ...this.$route.query,
-            type: this.facilityType?.value,
+            type: this.facilityType?.value || this.$route.query.type,
           },
         });
         // const data = await signupFacility(payload);

@@ -12,48 +12,56 @@
             image-file-extension=".webp"
             image-alt="Health facility pricing icon"
             :image="bundle.image"
-            :image-width="cardType === 'enterprise' ? '150px' : iconSize"
-            :image-height="cardType === 'enterprise' ? '89.4px' : iconSize"
+            :image-width="iconSize"
+            :image-height="iconSize"
           )
         div.text-center.description-container
           p(:class="[normalTextColor, textFontSize, recommendedText]") {{ bundle.description }}
         div#price-container
-          template(v-if="!bundle.requireContact")
-            p(:class="priceColor").font-weight-black
-              v-tabs-items(v-if="bundle.monthlyPrice > 0" v-model="paymentInterval" transition="slide-y-transition")
-                v-tab-item(value="year" transition="slide-y-transition")
-
-                  span(:class="{'font-18': !$isWideScreen, 'font-25': $isWideScreen}").currency.font-open-sans {{ bundle.currency }}&nbsp;
-                  span(:class="{'font-35': !$isWideScreen, 'font-40': $isWideScreen}") {{ kFormatter(bundle.annualMonthlyPrice) }}
-                  //- template(v-if="bundle.users")
-                  //-   span(:class="{'slash': bundle.users !== 1}") &nbsp;{{ bundle.users }}
-                  //-   span {{ bundle.users === 1 ? ' ' : '' }}user
-                  span.slash &nbsp;/
-                  | clinic
-                  span.slash /
-                  | year
-                v-tab-item(value="month" transition="slide-y-transition")
-                  span(:class="{'font-18': !$isWideScreen, 'font-25': $isWideScreen}").currency.font-open-sans {{ bundle.currency }}&nbsp;
-                  span(:class="{'font-35': !$isWideScreen, 'font-40': $isWideScreen}") {{  kFormatter(bundle.monthlyPrice) }}
-                  //- template(v-if="bundle.users")
-                  //-   span(:class="{'slash': bundle.users !== 1}") &nbsp;{{ bundle.users }}
-                  //-   span {{ bundle.users === 1 ? ' ' : '' }}user
-                  span.slash &nbsp;/
-                  | clinic
-                  span.slash /
-                  | month
-              span(v-else).font-45 FREE
-            //- span(v-else).font-xl {{ bundle.annualMonthlyPrice ? bundle.annualMonthlyPrice : bundle.monthlyPrice }}
-        div.text-center.usage-metric-container
-          //- p(v-if="!bundle.requireContact" :class="[normalTextColor, textFontSize, recommendedText]").black--text
-          //-   span(v-if="bundle.users") {{ bundle.users }} user
-          //-   br(v-if="bundle.users")
-          //-   | per clinic monthly
-          //-   template(v-if="!bundle.users")
-          //-     br
-          //-     br
-          //- div(v-else).top-spacing-btn
-          //-   | &nbsp;
+          p(
+            :class="{'font-18': !$isWideScreen, 'font-25': $isWideScreen, 'white--text': isRecommended, 'grey--text': !isRecommended}"
+            :style="opacity"
+          ).text-center.savings {{ bundle.currency }} {{ bundle.monthlyPrice | getYearly }}
+          p(
+            v-if="!bundle.requireContact"
+            :class="[priceColor, {'text-center': bundle.monthlyPrice === 0 || centerItems}]"
+          ).font-weight-black
+            v-tabs-items(v-if="bundle.monthlyPrice > 0" v-model="paymentInterval" transition="slide-y-transition")
+              v-tab-item(value="year" transition="slide-y-transition")
+                span(:class="{'font-18': !$isWideScreen, 'font-25': $isWideScreen}").currency.font-open-sans {{ bundle.currency }}&nbsp;
+                span(:class="{'font-35': !$isWideScreen, 'font-40': $isWideScreen}") {{ kFormatter(bundle.annualMonthlyPrice) }}
+                //- template(v-if="bundle.users")
+                //-   span(:class="{'slash': bundle.users !== 1}") &nbsp;{{ bundle.users }}
+                //-   span {{ bundle.users === 1 ? ' ' : '' }}user
+                span.slash &nbsp;/
+                | clinic
+                span.slash /
+                | year
+              v-tab-item(value="month" transition="slide-y-transition")
+                span(:class="{'font-18': !$isWideScreen, 'font-25': $isWideScreen}").currency.font-open-sans {{ bundle.currency }}&nbsp;
+                span(:class="{'font-35': !$isWideScreen, 'font-40': $isWideScreen}") {{  kFormatter(bundle.monthlyPrice) }}
+                //- template(v-if="bundle.users")
+                //-   span(:class="{'slash': bundle.users !== 1}") &nbsp;{{ bundle.users }}
+                //-   span {{ bundle.users === 1 ? ' ' : '' }}user
+                span.slash &nbsp;/
+                | clinic
+                span.slash /
+                | month
+            span(v-else).font-45 FREE
+          p(v-else).text-center
+            strong.primary--text.font-30 Contact Us
+            //- br
+            //- span for customized pricing
+        //- div.text-center.usage-metric-container
+        //-   p(v-if="!bundle.requireContact" :class="[normalTextColor, textFontSize, recommendedText]").black--text
+        //-     span(v-if="bundle.users") {{ bundle.users }} user
+        //-     br(v-if="bundle.users")
+        //-     | per clinic monthly
+        //-     template(v-if="!bundle.users")
+        //-       br
+        //-       br
+        //-   div(v-else).top-spacing-btn
+        //-     | &nbsp;
       v-card-text.card-actions
         slot(name="card-btn")
           template(v-if="bundle.requireContact")
@@ -112,6 +120,12 @@ export default {
     SignupButton,
     PictureSource,
   },
+  filters: {
+    getYearly (amount) {
+      if (!amount) return 0;
+      return (amount * 12).toLocaleString();
+    },
+  },
   props: {
     bundle: {
       type: Object,
@@ -136,6 +150,11 @@ export default {
     },
     // - If has trial
     hasTrialOption: {
+      type: Boolean,
+      default: false,
+    },
+    // Force center items
+    centerItems: {
       type: Boolean,
       default: false,
     },
@@ -192,6 +211,11 @@ export default {
     recommendedText () {
       return this.isRecommended ? 'font-weight-bold' : 'font-weight-medium';
     },
+    opacity () {
+      return {
+        opacity: this.bundle.monthlyPrice > 0 && this.paymentInterval === 'year' ? 1 : 0,
+      };
+    },
   },
   methods: {
     getInclusionIconColor (valid, additional = false) {
@@ -238,6 +262,10 @@ export default {
   margin-top: 10px;
 }
 
+.savings {
+  text-decoration: line-through;
+}
+
 /* .card-outter {
   position: relative;
   padding-bottom: 90px;
@@ -265,7 +293,7 @@ export default {
 }
 
 .description-container {
-  min-height: 85px;
+  min-height: 80px;
 }
 
 .chip {
