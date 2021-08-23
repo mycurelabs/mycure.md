@@ -11,7 +11,7 @@
         width="150px"
         height="41.88px"
         @click="$router.push({ name: 'index' })"
-      )
+      ).link-to-home
       v-spacer
       span(:class="{'font-10' : $isMobile}").ml-5.mr-2 Already have an account?&nbsp;&nbsp;
       v-btn(
