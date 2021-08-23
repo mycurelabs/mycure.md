@@ -1,6 +1,6 @@
 <template lang="pug">
    v-card(:color="cardColor" :height="cardHeight" width="100%").rounded-xl.card-outter.pa-3
-      v-chip(v-if="isRecommended" color="warning" label small).chip.mt-n3.black--text.align-center.justify-center.font-weight-bold Recommended
+      v-chip(v-if="isRecommended" color="warning" label small).chip.mt-n3.black--text.align-center.justify-center.font-weight-bold Popular
       v-card-title.pt-8
         v-spacer
         h2(:class="[normalTextColor, {'font-21': !$isWideScreen, 'font-24': $isWideScreen}]").font-weight-bold {{ bundle.title }}

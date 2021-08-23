@@ -61,7 +61,7 @@
                   :navigationClickTargetSize="25"
                 )
                   slide(
-                    v-for="(pack, index) in pricingPackages"
+                    v-for="(pack, index) in mobilePricingItems"
                     :key="index"
                     :data-index="index+1"
                   ).pa-2
@@ -141,6 +141,16 @@ export default {
         : this.canUseWebp
           ? 'pricing-bg-webp'
           : 'pricing-bg-png';
+    },
+    mobilePricingItems () {
+      if (!this.pricingPackages?.length) return [];
+      const packs = [...this.pricingPackages];
+      const popular = packs.find(pack => pack.isRecommended);
+      if (!popular) return this.pricingPackages;
+      const indexPopular = packs.indexOf(popular);
+      packs[indexPopular] = packs[0];
+      packs[0] = popular;
+      return packs;
     },
   },
   watch: {
