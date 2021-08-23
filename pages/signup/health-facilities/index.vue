@@ -539,6 +539,9 @@ export default {
           roles: this.roles,
           invitation: this.invitation,
           // skipMobileNoVerification: this.facilityType.value !== 'doctor',
+          // - To be omitted in actual payload
+          ...this.$route.query.trial && { trial: true },
+          organizationType: this.facilityType,
         };
 
         // HOTFIX:
@@ -675,7 +678,7 @@ export default {
       */
       this.$router.replace({
         query: {
-          ...omit(this.$route.query, 'plan', 'trial'),
+          ...omit(this.$route.query, ['plan', 'trial']),
           ...(!DOCTOR_TYPES.includes(type) && this.$route.query.trial) && { trial: true },
           type,
         },

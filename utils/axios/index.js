@@ -339,6 +339,24 @@ export const signupSpecialized = async (opts) => {
   }
 };
 
+export const refetchStripeToken = async (opts) => {
+  try {
+    // Get account data
+    const { data } = await axios({
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${opts.accessToken}`,
+      },
+      url: `${process.env.API_URL}/accounts/${opts.uid}`,
+    });
+    // Get stripe session id
+    return data?.organization?.subscription?.updatesPending?.stripeSession;
+  } catch (e) {
+    console.error(e);
+    throw handleError(e);
+  }
+};
+
 export const resendVerificationCode = async (opts) => {
   try {
     const payload = {
