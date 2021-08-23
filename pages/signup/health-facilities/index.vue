@@ -277,6 +277,7 @@
 
 <script>
 import isEmpty from 'lodash/isEmpty';
+import omit from 'lodash/omit';
 import { parsePhoneNumberFromString } from 'libphonenumber-js';
 import {
   getCountries,
@@ -290,6 +291,7 @@ import {
 } from '~/utils/text-field-rules';
 // import { CLINICS_PRICING } from '~/constants/pricing';
 // import { SUBSCRIPTION_MAPPINGS } from '~/constants/subscription';
+import { DOCTOR_TYPES } from '~/services/subscription-packages';
 import ChooseFacilityType from '~/components/signup/ChooseFacilityType';
 import EmailVerificationDialog from '~/components/signup/EmailVerificationDialog';
 
@@ -667,9 +669,14 @@ export default {
     },
     onFacilityTypeSelect (type) {
       this.facilityType = type;
+      /*
+        Remove the pricing plan query since you've changed facility type.
+        Remove the trial flag, when doctor has been selected.
+      */
       this.$router.replace({
         query: {
-          ...this.$route.query,
+          ...omit(this.$route.query, 'plan', 'trial'),
+          ...(!DOCTOR_TYPES.includes(type) && this.$route.query.trial) && { trial: true },
           type,
         },
       });

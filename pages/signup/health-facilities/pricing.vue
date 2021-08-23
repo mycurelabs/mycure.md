@@ -193,6 +193,11 @@ export default {
     // - Note: URL query parameters are strings
     this.isTrial = this.$route.query.trial === 'true' || false;
 
+    if (this.$route.query.plan) {
+      await this.submit(true);
+      return;
+    }
+
     // For other types
     this.packages = await getSubscriptionPackagesPricing(this.facilityType);
   },
@@ -201,11 +206,15 @@ export default {
       this.selectedBundle = bundle;
       this.confirmPaymentDialog = true;
     },
-    async submit () {
+    /*
+      The prebundle flag is meant for proceeding to stripe without selecting from the packages
+      Used when there is already a pre-selected plan from website pricing panels.
+    */
+    async submit (preBundle) {
       try {
         this.loading = true;
         this.confirmPaymentDialog = false;
-        const bundle = this.selectedBundle;
+        const bundle = preBundle || this.selectedBundle;
         if (bundle.requireContact) {
           this.sendCrispMessage();
           return;
@@ -216,25 +225,43 @@ export default {
           ...this.step1LocalStorageData,
         };
 
-        const paid = bundle.monthlyPrice > 0 || bundle.annualMonthlyPrice > 0;
+        // Subscription URLS
+        const subscription = {
+          stripeCheckoutSuccessURL: process.client && `${window.location.origin}${window.location.pathname}?payment=success`,
+          stripeCheckoutCancelURL: process.client && `${window.location.origin}${window.location.pathname}?payment=cancel`,
+        };
 
-        if (paid) {
-          let packageId;
-          if (this.paymentInterval === 'month') packageId = bundle.monthlyPackageId;
-          if (this.paymentInterval === 'year') packageId = bundle.annualPackageId;
-          // Build organization payload
+        if (preBundle) {
           payload.organization = {
             ...this.step1LocalStorageData?.organization,
             subscription: {
-              package: packageId,
-              stripeCheckoutSuccessURL: process.client && `${window.location.origin}${window.location.pathname}?payment=success`,
-              stripeCheckoutCancelURL: process.client && `${window.location.origin}${window.location.pathname}?payment=cancel`,
+              ...subscription,
+              package: this.$route.query.plan,
               customer: {
                 stripeEmail: this.email,
               },
               ...this.isTrial && { trial: true },
             },
           };
+        } else {
+          const paid = bundle.monthlyPrice > 0 || bundle.annualMonthlyPrice > 0;
+          if (paid) {
+            let packageId;
+            if (this.paymentInterval === 'month') packageId = bundle.monthlyPackageId;
+            if (this.paymentInterval === 'year') packageId = bundle.annualPackageId;
+            // Build organization payload
+            payload.organization = {
+              ...this.step1LocalStorageData?.organization,
+              subscription: {
+                ...subscription,
+                package: packageId,
+                customer: {
+                  stripeEmail: this.email,
+                },
+                ...this.isTrial && { trial: true },
+              },
+            };
+          }
         }
 
         const user = await signupFacility(payload);

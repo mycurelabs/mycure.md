@@ -181,7 +181,7 @@ const PACKAGE_CURRENCY = {
   usd: 'USD',
 };
 
-const DOCTOR_TYPES = [
+export const DOCTOR_TYPES = [
   'doctor',
   'doctor-skin',
   'doctor-pedia',

@@ -57,6 +57,9 @@ export default {
         // - This was done since booking is a special case in health facility types
         if (this.queryOps?.type) route.query.type = this.queryOps.type;
       }
+      // Pricing pre-seletion
+      if (this.queryOps?.plan) route.query.plan = this.queryOps.plan;
+
       // - Flag for trial
       if (this.queryOps?.trial) route.query.trial = this.queryOps.trial;
       this.$router.push(route);

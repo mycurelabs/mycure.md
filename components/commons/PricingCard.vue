@@ -92,7 +92,7 @@
               :class="{'primary--text': isRecommended}"
               :event-label="`click-pricing-${bundle.title}`"
               :pricing-bundle="bundle.id"
-              :query-ops="bundle.queryOps"
+              :query-ops="getQueryOps(bundle)"
             ).generic-button-text.font-weight-semibold.text-none {{ btnText }}
         v-row(justify="center").mt-3
           v-col(cols="12" xl="12")
@@ -227,6 +227,14 @@ export default {
     },
   },
   methods: {
+    // Formulate signup route query
+    getQueryOps (bundle) {
+      const queryOps = {
+        ...bundle.queryOps,
+        plan: this.paymentInterval === 'month' ? bundle.monthlyPackageId : bundle.annualPackageId,
+      };
+      return queryOps;
+    },
     getInclusionIconColor (valid, additional = false) {
       if (this.isRecommended) return 'white';
       if (!valid) return 'grey';
