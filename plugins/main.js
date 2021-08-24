@@ -1,4 +1,5 @@
 import Vue from 'vue';
+import OtpInput from '@bachdgvn/vue-otp-input';
 
 Vue.mixin({
   computed: {
@@ -14,3 +15,5 @@ Vue.mixin({
     },
   },
 });
+
+Vue.component('VOtpInput', OtpInput);
