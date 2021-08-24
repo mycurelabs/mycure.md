@@ -321,6 +321,7 @@ export default {
         query: {
           trial: this.step1LocalStorageData.trial,
           type: this.step1LocalStorageData.organizationType,
+          referralCode: this.step1LocalStorageData.invitation,
         },
       });
 
