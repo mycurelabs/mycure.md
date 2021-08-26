@@ -24,13 +24,14 @@
         v-row
           v-col.pa-0
             v-text-field(
-              v-model="sea"
+              v-model="searchObject.searchString"
               :placeholder="searchPlaceholder"
               append-icon="mdi-tune-variant"
               solo
               flat
               :height="$isMobile ? '40px' : '60px'"
-              @click:append="tagsSearch"
+              @click:append="tagSearchDialog = true"
+              @keyup.enter="emitSearch"
             ).rounded-bl-lg.rounded-tl-lg
               template(v-slot:prepend-inner)
                 v-icon(small).mx-3 mdi-magnify
@@ -45,6 +46,22 @@
               :height="$isMobile ? '40px' : '60px'"
             ).elevation-0.rounded-br-lg.rounded-tr-lg
               v-icon mdi-microphone-outline
+        v-row
+          v-col.py-0.mt-n3
+            template(v-for="(tag, index) in searchObject.specialties")
+              v-chip(
+                clearable
+                close
+                close-icon="mdi-close"
+                color="white"
+                @click:close="tag.selected = false; searchObject.specialties.splice(index, 1);"
+              ).ma-1 {{tag.strVal}}
+            //- v-btn(
+            //-   v-if="searchObject.specialties.length >= 1"
+            //-   text
+            //-   color="primary"
+            //-   @click="clearSpecialties"
+            //- ).ma-1.font-12 Clear filters
 
           //- v-combobox(
           //-   v-if="mode==='all'"
@@ -85,19 +102,38 @@
               //-   ).elevation-0.rounded-lg
               //-     v-icon mdi-microphone-outline
                 //- v-icon mdi-magnify
-          doctors-search-bar(
-            v-if="mode==='doctor'"
-          )
-          clinics-search-bar(
-            v-if="mode==='clinic'"
-          )
-          locations-search-bar(
-            v-if="mode==='location'"
-          )
         //- v-card(v-for="doctorName in doctorsSuggestions" :key="doctorName")
         //-   v-list-item
         //-     v-list-item-content
         //-       v-list-item-title.text-wrap {{doctorName}}
+    v-dialog(
+      v-model="tagSearchDialog"
+      width="80%"
+      height="80%"
+      persistent
+    )
+      v-card.rounded-xl.pa-16
+        v-card-text
+          v-col.pa-0
+            v-row.mb-2
+              v-col.pa-0
+                h1.font-weight-bold.black--text Filter by Services
+              v-col(align="end").pa-0
+                v-icon(@click="tagSearchDialog = false") mdi-close
+            v-row
+              p.font-18 Popular tags:
+            v-row
+              p.font-18 Alphabetical:
+            v-row
+              template(v-for="specialty in specialtiesList")
+                v-chip(
+                  large
+                  outlined
+                  :color="specialty.selected ? 'primary' : 'grey' "
+                  @click="toggleChip(specialty.indexVal)"
+                ).mx-1.my-2.font-weight-semibold
+                  v-icon(v-if="specialty.selected" left) mdi-check
+                  |{{specialty.strVal}}
 </template>
 
 <script>
@@ -105,11 +141,9 @@
 // import NCR_CITIES from '~/assets/fixtures/ncr-cities';
 // import { fetchdocanizations } from '~/services/docanizations';
 // import { searchDoctors } from '~/utils/axios';
+import specialties from '~/assets/fixtures/specialties';
 export default {
   components: {
-    DoctorsSearchBar: () => import('~/components/directory/DoctorsSearchBar'),
-    ClinicsSearchBar: () => import('~/components/directory/ClinicsSearchBar'),
-    LocationsSearchBar: () => import('~/components/directory/LocationsSearchBar'),
   },
   props: {
     // requireAction: {
@@ -129,9 +163,18 @@ export default {
     // this.cities = NCR_CITIES;
     this.buttonGroupClasses = ['font-weight-semibold', 'font-16', 'black--text'];
     return {
-      mode: 'all',
       selectedMode: '',
-      // docSearchQuery: null,
+      deleteTag: {
+        removeIndex: undefined,
+      },
+      tagSearchDialog: false,
+      searchText: null,
+      searchObject: {
+        searchString: '',
+        specialties: [],
+        mode: 'all',
+      },
+      specialtiesList: specialties.map((str, index) => ({ strVal: str, selected: false, indexVal: index })),
       // docSuggestionsSearchQuery: null,
       // docSearchLocation: null,
       // doctorsSuggestions: [],
@@ -144,7 +187,7 @@ export default {
   },
   computed: {
     searchPlaceholder () {
-      switch (this.mode) {
+      switch (this.searchObject.mode) {
         case 'doctor': return 'Search for doctors';
         case 'clinic': return 'Search for clinics';
         case 'location': return 'Search by location';
@@ -167,11 +210,26 @@ export default {
   },
   methods: {
     searchSelect () {
-      console.log(this.selectedMode);
-      this.mode = this.selectedMode;
+      console.log(this.searchObject.mode);
+      this.searchObject.mode = this.selectedMode;
     },
-    tagsSearch () {
-      this.$emit('tags-search', { tagSearchDialog: true });
+    emitSearch () {
+      this.$emit('enter', this.searchObject);
+    },
+    toggleChip (index) {
+      // console.log(this.specialtiesList[index].selected);
+      if (!this.specialtiesList[index].selected) {
+        this.specialtiesList[index].selected = true;
+        this.searchObject.specialties.push(this.specialtiesList[index]);
+      } else {
+        this.specialtiesList[index].selected = false;
+        for (let i = 0; i < this.searchObject.specialties.length; i++) {
+          if (this.specialtiesList[index].indexVal === this.searchObject.specialties[i].indexVal) {
+            this.searchObject.specialties.splice(i, 1);
+            console.log('weewee' + i);
+          }
+        };
+      };
     },
     // fullName () {
     //   return this.name.firstName;

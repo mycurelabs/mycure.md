@@ -3,7 +3,7 @@
     v-row(align="start" :class="$isMobile ? 'clinics-mobile-bg' : 'clinics-bg' ").pa-0.ma-0
       v-col.fill-height
         v-row(align="start")
-          clinics-app-bar(v-if="!loading" :class="$isMobile ? ['mt-3', 'ml-3'] : '' ")
+          directory-app-bar(v-if="!loading" :class="$isMobile ? ['mt-3', 'ml-3'] : '' ")
         v-col.fill-height.pt-16
           //- v-container(fluid).fill-height
           //-   v-row(justify="center").mb-16
@@ -12,9 +12,10 @@
 </template>
 
 <script>
+import DirectoryAppBar from '~/components/directory/DirectoryAppBar';
 export default {
   components: {
-    ClinicsAppBar: () => import('~/components/home/ClinicsAppBar'),
+    DirectoryAppBar,
   },
   data () {
     return {
