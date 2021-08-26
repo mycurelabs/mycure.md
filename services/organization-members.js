@@ -1,4 +1,5 @@
 import { normalizePopulated } from '~/utils/services';
+// import { fetchScheduleSlots } from './schedule-slots';
 
 export const fetchClinicWebsiteDoctors = async (sdk, opts) => {
   const query = {
@@ -37,6 +38,16 @@ export const fetchClinicWebsiteDoctors = async (sdk, opts) => {
   return { items: normalizePopulated(items), total };
 };
 
+/**
+ * FetchUserFacilities
+ *
+ * Fetch a user's facilities that they are part of.
+ * @param {Object} sdk
+ * @param {Object} opts
+ * @param {Number} opts.limit
+ * @param {Number} opts.skip
+ * @param {String} opts.id
+ */
 export const fetchUserFacilities = async (sdk, opts) => {
   const payload = {
     $limit: opts.limit,
@@ -52,6 +63,12 @@ export const fetchUserFacilities = async (sdk, opts) => {
             method: 'find',
             localKey: 'id',
             foreignKey: 'organization',
+            account: opts.id,
+            // - TODO: Confirm if meta is allowed
+            meta: {
+              serviceType: 'clinical-consultation',
+              providers: { $in: [opts.id] },
+            },
           },
         },
       },
