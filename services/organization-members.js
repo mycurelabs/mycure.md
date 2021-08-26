@@ -59,5 +59,5 @@ export const fetchUserFacilities = async (sdk, opts) => {
   };
 
   const { items, total } = await sdk.service('organization-members').find(payload);
-  return { items: normalizePopulated(items), total };
+  return { items: items.map(item => item.$populated?.organization), total };
 };

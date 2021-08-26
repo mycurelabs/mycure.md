@@ -99,8 +99,8 @@ import {
 } from '~/utils/axios';
 import { formatName } from '~/utils/formats';
 import headMeta from '~/utils/head-meta';
-// import { fetchUserFacilities } from '~/services/organization-members';
-import { fetchOrganizations } from '~/services/organizations';
+import { fetchUserFacilities } from '~/services/organization-members';
+// import { fetchOrganizations } from '~/services/organizations';
 export default {
   components: {
     ChooseAppointment,
@@ -244,20 +244,21 @@ export default {
         // });
 
         /* Uses organizations service */
-        const { items, total } = await fetchOrganizations(this.$sdk, {
-          createdBy: this.doctor.id,
+        const { items, total } = await fetchUserFacilities(this.$sdk, {
+          id: this.doctor.id,
           limit: this.clinicsLimit,
           skip,
-          $populate: {
-            doctorSchedules: {
-              service: 'schedule-slots',
-              method: 'find',
-              localKey: 'id',
-              foreignKey: 'organization',
-              account: this.doctor.id,
-            },
-          },
+          // $populate: {
+          //   doctorSchedules: {
+          //     service: 'schedule-slots',
+          //     method: 'find',
+          //     localKey: 'id',
+          //     foreignKey: 'organization',
+          //     account: this.doctor.id,
+          //   },
+          // },
         });
+        console.log('orgs', items);
         this.clinicsTotal = total;
         // this.clinics = items.map(item => item.organization);
         this.clinics = items;
