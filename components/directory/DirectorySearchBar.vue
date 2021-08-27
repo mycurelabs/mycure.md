@@ -12,14 +12,14 @@
               borderless
               @change="searchSelect"
             )
-              v-btn(value="all" text active-class="active-button" :class="buttonGroupClasses").mr-3.tight-font all
-              v-btn(value="doctor" text active-class="active-button" :class="buttonGroupClasses").mr-3.tight-font doctor
-              v-btn(value="clinic" text active-class="active-button" :class="buttonGroupClasses").mr-3.tight-font clinics
-              v-btn(value="location" text active-class="active-button" :class="buttonGroupClasses").mr-3.tight-font location
+              //- v-btn(value="all" text active-class="active-button" :class="buttonGroupClasses").mr-3.tight-font all
+              v-btn(value="doctor" text active-class="active-button" :class="buttonGroupClasses").mr-3.tight-font.rounded-pill doctor
+              v-btn(value="clinic" text active-class="active-button" :class="buttonGroupClasses").mr-3.tight-font.rounded-pill clinics
+              v-btn(value="location" text active-class="active-button" :class="buttonGroupClasses").mr-3.tight-font.rounded-pill location
           v-spacer
           v-col
             v-row(align="center" justify="end")
-              span.font-weight-bold.font-18 Use my Location
+              span.font-weight-bold.font-14 USE MY LOCATION
               v-switch(v-model="locationSwitch" inset).ml-3
         v-row
           v-col.pa-0
@@ -28,6 +28,7 @@
               :placeholder="searchPlaceholder"
               append-icon="mdi-tune-variant"
               solo
+              outlined
               flat
               :height="$isMobile ? '40px' : '60px'"
               @click:append="tagSearchDialog = true"
@@ -52,16 +53,16 @@
               v-chip(
                 clearable
                 close
+                outlined
                 close-icon="mdi-close"
-                color="white"
                 @click:close="tag.selected = false; searchObject.specialties.splice(index, 1);"
               ).ma-1 {{tag.strVal}}
-            //- v-btn(
-            //-   v-if="searchObject.specialties.length >= 1"
-            //-   text
-            //-   color="primary"
-            //-   @click="clearSpecialties"
-            //- ).ma-1.font-12 Clear filters
+            v-btn(
+              v-if="searchObject.specialties.length >= 1"
+              text
+              color="primary"
+              @click="clearSpecialties"
+            ).ma-1.font-12 Clear filters
 
           //- v-combobox(
           //-   v-if="mode==='all'"
@@ -172,7 +173,7 @@ export default {
       searchObject: {
         searchString: '',
         specialties: [],
-        mode: 'all',
+        mode: 'doctor',
       },
       specialtiesList: specialties.map((str, index) => ({ strVal: str, selected: false, indexVal: index })),
       // docSuggestionsSearchQuery: null,
@@ -230,6 +231,12 @@ export default {
           }
         };
       };
+    },
+    clearSpecialties () {
+      for (let i = 0; i < this.specialtiesList.length; i++) {
+        this.specialtiesList[i].selected = false;
+      }
+      this.searchObject.specialties = [];
     },
     // fullName () {
     //   return this.name.firstName;

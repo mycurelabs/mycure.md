@@ -1,6 +1,7 @@
 <template lang="pug">
   v-app#app.pa-0
-    v-row(align="start" :class="$isMobile ? 'clinics-mobile-bg' : 'clinics-bg' ").pa-0.ma-0
+    //- v-row(align="start" :class="$isMobile ? 'clinics-mobile-bg' : 'clinics-bg' ").pa-0.ma-0
+    v-row(align="start").pa-0.ma-0
       v-col.fill-height
         v-row(align="start")
           directory-app-bar(v-if="!loading" :class="$isMobile ? ['mt-3', 'ml-3'] : '' ")

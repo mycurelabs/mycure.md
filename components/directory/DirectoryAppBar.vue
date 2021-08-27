@@ -4,33 +4,27 @@
       generic-panel(:column="$isMobile ? 12 : 10" disable-parent-padding)
         v-row(:justify="{'center': !$isMobile}" :class="!$isMobile ? ['mx-3', 'mt-3'] : ['ml-1', 'mt-1']")
           v-col(cols="1")
-            nuxt-link(to="/")
-              img(
-                src="~/assets/images/MYCURE Logo - black.png"
-                width="120px"
-                height="34.46px"
-                alt="MYCURE logo"
-                :class="!$isMobile ? ['mr-1', 'mt-1'] : '' "
-              ).ml-n5
           v-spacer(v-if="!$isMobile")
-          v-col(v-else cols="7")
-          v-col(cols="2")
+          v-col(cols="5" align="end")
             v-row(justify="end").pt-5.pl-4
-              v-chip(
+              v-btn(
                 color="primary"
+                :width="$isWideScreen ? '120' : '110' "
+                :height="$isWideScreen ? '40' : '35' "
                 depressed
-                rounded
-                outlined
+                text
                 :large="$isWideScreen"
                 @click="openPxPortal(pxPortalLogIn)"
-              ).text-none.font-weight-thin.font-12.mr-2 Sign up
-              v-chip(
+              ).text-none.font-weight-semibold.mr-2.font-16 Sign up
+              v-btn(
                 color="primary"
+                :width="$isWideScreen ? '120' : '110' "
+                :height="$isWideScreen ? '40' : '35' "
                 depressed
                 rounded
                 :large="$isWideScreen"
                 @click="openPxPortal(pxPortalLogIn)"
-              ).text-none.font-weight-thin.font-12 Log in
+              ).text-none.font-weight-thin.font-16 Log in
 </template>
 
 <script>

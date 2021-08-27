@@ -4,10 +4,13 @@
       generic-panel(:column="$isMobile ? 12 : 10" disable-parent-padding)
         v-col
           v-row(justify="center")
-            v-col(align="center" cols="10" sm="8")
-              div
-                h1(:class="titleClasses") MYCURE Directory
-                h1(:class="subheaderClasses") Find doctors in our directory
+            v-col(align="center" cols="10" sm="8").pl-0
+              nuxt-link(to="/")
+                img(
+                  src="~/assets/images/MYCURE Logo - black.png"
+                    width="50%"
+                  alt="MYCURE logo"
+                ).ml-n16
           v-row(justify="center" align="center").search-bar-container
             v-col(cols="12")
               //- clinics-org-search-bar(
@@ -33,8 +36,10 @@
           v-row(justify="center")
             v-col(cols="10").py-0
               v-row(justify="center")
-                v-btn(color="primary" elevation="0" rounded @click="locationDialog = false; locationAccess = true;").mx-2 Allow
-                v-btn(rounded outlined @click="locationDialog = false").mx-2 Decline
+                v-col(cols="6")
+                  v-btn(color="primary" elevation="0" rounded @click="locationDialog = false; locationAccess = true;") Allow
+                v-col(cols="6" justify="start")
+                  v-btn(rounded outlined @click="locationDialog = false") Decline
 </template>
 
 <script>
