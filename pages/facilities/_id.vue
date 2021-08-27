@@ -412,6 +412,14 @@ export default {
           const { type, subtype } = item;
           const primaryType = subtype || type;
           const schedules = this.serviceSchedules.find(schedule => schedule.type === primaryType);
+
+          // Filter schedules according to section
+          if (item.refSection) {
+            return {
+              ...item,
+              schedules: schedules?.items?.filter(slot => slot.meta?.testSection === item.refSection) || [],
+            };
+          }
           return {
             ...item,
             // nonMfSchedule: !!schedules,
