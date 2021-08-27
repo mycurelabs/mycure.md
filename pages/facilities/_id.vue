@@ -101,7 +101,7 @@
 <script>
 import isEmpty from 'lodash/isEmpty';
 import intersection from 'lodash/intersection';
-import uniq from 'lodash/uniq';
+// import uniq from 'lodash/uniq';
 import VueScrollTo from 'vue-scrollto';
 // - utils
 import { getServices } from '~/utils/axios';
@@ -282,6 +282,7 @@ export default {
     schedules () {
       return this.clinic?.mf_schedule || []; // eslint-disable-line
     },
+    // - Grouped General clinic schedules
     groupedSchedules () {
       const groupedSchedules = this.schedules
         .map((schedule) => {
@@ -405,8 +406,7 @@ export default {
         this.servicesTotal = total;
 
         /*
-          Checks if there is a specific schedule for the service type, if not then it assigns the clinic's schedule.
-          A flag for mf_schedule formatting is also included for rendering purposes.
+          Checks if there is a specific schedule for the service type
         */
         this.filteredServices = items.map((item) => {
           const { type, subtype } = item;
@@ -414,8 +414,8 @@ export default {
           const schedules = this.serviceSchedules.find(schedule => schedule.type === primaryType);
           return {
             ...item,
-            nonMfSchedule: !!schedules,
-            schedules: schedules?.items || this.groupedSchedules,
+            // nonMfSchedule: !!schedules,
+            schedules: schedules?.items || [],
           };
         }) || [];
         return { items: this.filteredServices, total: this.servicesTotal };
@@ -431,12 +431,11 @@ export default {
         const typeSchedulesPromises = this.serviceTypes.map(async (type) => {
           const serviceScheduleQuery = {
             organization: this.orgId,
+            meta: {
+              serviceType: ['lab', 'imaging'].includes(type) ? 'diagnostic' : type,
+              ...['lab', 'imaging'].includes(type) && { serviceSubtype: type },
+            },
           };
-          const serviceTags = [];
-          serviceTags.push(type);
-          if (!isEmpty(serviceTags)) {
-            serviceScheduleQuery.tags = { $in: uniq(serviceTags) };
-          }
           const data = await this.$sdk.service('schedule-slots').find(serviceScheduleQuery);
           return {
             type,

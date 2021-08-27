@@ -1,4 +1,5 @@
 // import { normalizePopulated } from '~/utils/services';
+
 /**
  * FetchScheduleSlots
  *
@@ -31,10 +32,8 @@ export const fetchScheduleSlots = async (sdk, opts) => {
       query = {
         ...query,
         account: opts.account,
-        meta: {
-          serviceType: 'clinical-consultation',
-          providers: { $in: [opts.account] },
-        },
+        'meta.serviceType': 'clinical-consultation',
+        'meta.providers': { $in: [opts.account] },
       };
 
       const { items, total } = await sdk.service('schedule-slots').find(query);
@@ -46,10 +45,13 @@ export const fetchScheduleSlots = async (sdk, opts) => {
      *
      * Fetches all clinic schedules
      */
-    query = {
-      ...query,
-      meta: { ...opts.meta },
-    };
+    if (opts.meta) {
+      const metaKeys = Object.keys(opts.meta);
+      query = {
+        ...query,
+        ...metaKeys.map(key => opts[`meta.${key}`]),
+      };
+    }
     const { items, total } = await sdk.service('schedule-slots').find(query);
     return { items, total };
   } catch (e) {
