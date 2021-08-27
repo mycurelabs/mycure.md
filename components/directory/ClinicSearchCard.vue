@@ -1,65 +1,72 @@
 <template lang="pug">
-  v-card(height="100%" elevation="3" style="border-radius: 30px").orgs-card.pa-2
-    v-col.fill-height
-      v-row(justify="center")
-        v-col(cols="5")
-          img(
-            :src="picURL"
-            alt="Services"
-            :width="!$isMobile ? '154.48' : '102.66'"
-            :height="!$isMobile ? '154.48' : '102.66'"
-            style="border-radius: 30px"
-          )
-        v-col(cols="7").pt-10
-          v-row
-            p(:class="(fullNameWithSuffixes.length > 21) ? 'font-18' : 'font-24'").font-weight-bold.mb-0 {{ fullNameWithSuffixes }}&nbsp;
-          v-row
-            span(v-if="organization.doc_specialties").font-16.info-text {{ organization.doc_specialties[0] }}&nbsp;&nbsp;
-            span(v-else) ---&nbsp;&nbsp;
-            v-chip(v-if="organization.doc_website" color="primary" outlined x-small).mt-1 verified
-          v-row(justify="start").mt-5.mb-3
-            v-col(cols="2").pa-0
-              v-icon(color="primary") mdi-briefcase-variant-outline
-            v-col.pr-0.pb-0.pt-3.pl-2
-              v-row
-                span.font-12.info-text &nbsp;Experience
-              v-row
-                span(v-if="organization.doc_practicingSince" justify="start" :class="$isMobile ? 'font-12' : 'font-14'").info-text.font-weight-semibold &nbsp;{{ yearsOfExperience }} year/s of experience
-                span(v-else justify="start" :class="$isMobile ? 'font-12' : 'font-14'").info-text.font-weight-semibold &nbsp;---
-          v-row(justify="start" :class="$isMobile ? 'my-5' : 'mt-3'")
-            v-col(cols="2").pa-0
-              v-icon(color="primary") mdi-map-marker
-            v-col.pr-0.pb-0.pt-3.pl-2
-              v-row
-                span.font-12.info-text &nbsp;Location
-              v-row
-                span(v-if="organization.doc_practicingSince" justify="start" :class="$isMobile ? 'font-12' : 'font-14'").info-text.font-weight-semibold &nbsp;{{ yearsOfExperience }} somewhere
-                span(v-else justify="start" :class="$isMobile ? 'font-12' : 'font-14'").info-text.font-weight-semibold &nbsp;---
-          v-row(justify="start").pt-3
-            v-btn(
-              color="success"
-              target="_blank"
-              rel="noopener noreferrer"
-              small
-              rounded
-              :href="doctorWebsite"
-            ).text-none.elevation-0.font-weight-light.ma-1.font-10
-              v-icon(:x-small="!$isMobile") mdi-stethoscope
-              b &nbsp;Teleconsult
-            v-btn(
-              color="primary"
-              target="_blank"
-              rel="noopener noreferrer"
-              small
-              rounded
-              :href="doctorWebsite"
-            ).text-none.elevation-0.font-weight-light.ma-1.font-10
-              v-icon(:x-small="!$isMobile") mdi-calendar
-              b &nbsp;Book a Visit
-      v-row(v-if="organization.doc_specialties").mt-6.pa-2
-        v-col(cols="12")
-          v-row
-            v-chip(v-for="(specialty, key) in organization.doc_specialties" :key="key").font-12.ma-1 {{ specialty }}&nbsp;
+  v-card(height="100%" elevation="2").orgs-card.px-5.pt-5.pb-3
+    v-row
+      v-icon(v-if="hasWebsite" color="primary" large :class="{'pt-7': !$isMobile}").mt-16.ml-n8 mdi-check-decagram
+      img(
+        :src="picURL"
+        alt="Services"
+        :width="$isRegularScreen? '82px' : '130px'"
+        :height="$isRegularScreen? '82px' : '130px'"
+        style="border-radius: 20px"
+      ).ma-3
+      v-col.my-3
+        v-row
+          span(:class="[nameFontSize, $isWideScreen ? 'name-width-wide' : 'name-width-reg']").text-truncate.font-weight-bold.mb-0 {{ organization.name   }}&nbsp;
+        v-row(:class="textFontSize").info-text.font-weight-semibold
+          span(v-if="organization.doc_specialties") {{ organization.doc_specialties[0] }}&nbsp;&nbsp;
+          span(v-else) ---&nbsp;&nbsp;
+          //- v-chip(v-if="organization.doc_website" color="primary" outlined x-small).mt-1 verified
+        v-row(justify="start").mt-5
+          v-col(cols="1").pa-0
+            v-icon(color="primary" :small="!$isWideScreen") mdi-map-marker
+          v-col(cols="11").pa-0
+            div(:class="textFontSize").info-text.mt-1
+              span(v-if="organization.address") {{ address }}
+              span(v-else) &nbsp;- somewhere
+        v-row(justify="start").mt-5.white--text
+          div(v-for="(day, index) in daysInit" :key="index")
+            div(:class="[textFontSize, $isWideScreen ? 'badge-size-wide' : 'badge-size', {'primary': clinicOpen(day.value)}]"
+            ).badge {{ day.text }}
+            //- span(v-if="organization.doc_practicingSince") &nbsp;{{ yearsOfExperience }} year/s of experience
+            //- span(v-else) &nbsp;- year/s of experience
+        //- v-row(justify="start").pt-3
+        //-   v-btn(
+        //-     color="success"
+        //-     target="_blank"
+        //-     rel="noopener noreferrer"
+        //-     small
+        //-     rounded
+        //-     :href="doctorWebsite"
+        //-   ).text-none.elevation-0.font-weight-light.ma-1.font-10
+        //-     v-icon(:x-small="!$isMobile") mdi-stethoscope
+        //-     b &nbsp;Teleconsult
+        //-   v-btn(
+        //-     color="primary"
+        //-     target="_blank"
+        //-     rel="noopener noreferrer"
+        //-     small
+        //-     rounded
+        //-     :href="doctorWebsite"
+        //-   ).text-none.elevation-0.font-weight-light.ma-1.font-10
+        //-     v-icon(:x-small="!$isMobile") mdi-calendar
+        //-     b &nbsp;Book a Visit
+    v-col
+      v-row(justify="end")
+        v-btn(
+          color="primary"
+          target="_blank"
+          rel="noopener noreferrer"
+          :small="!$isWideScreen"
+          rounded
+          :href="doctorWebsite"
+          :class="$isWideScreen ? ['font-14', 'px-6'] : ['font-10', 'px-5'] "
+        ).text-none.elevation-0.font-weight-light.mt-2
+          b View
+
+    //- v-row(v-if="organization.doc_specialties").mt-6.pa-2
+    //-   v-col(cols="12")
+    //-     v-row
+    //-       v-chip(v-for="(specialty, key) in organization.doc_specialties" :key="key").font-12.ma-1 {{ specialty }}&nbsp;
 </template>
 
 <script>
@@ -70,6 +77,10 @@
 // import FacilityPlaceholder from '~/assets/images/facility-placeholder.jpg';
 
 // import { formatName } from '~/utils/formats';
+import uniqBy from 'lodash/uniqBy';
+import classBinder from '~/utils/class-binder';
+import FacilityPlaceholder from '~/assets/images/facility-placeholder.jpg';
+import { formatAddress } from '~/utils/formats';
 export default {
   components: {
     VClamp: () => import('vue-clamp'),
@@ -85,14 +96,14 @@ export default {
     },
   },
   data () {
-    this.days = [
-      { text: 'Mon', value: 1 },
-      { text: 'Tues', value: 2 },
-      { text: 'Wed', value: 3 },
-      { text: 'Thu', value: 4 },
-      { text: 'Fri', value: 5 },
-      { text: 'Sat', value: 6 },
-      { text: 'Sun', value: 0 },
+    this.daysInit = [
+      { text: 'S', value: 0 },
+      { text: 'M', value: 1 },
+      { text: 'T', value: 2 },
+      { text: 'W', value: 3 },
+      { text: 'Th', value: 4 },
+      { text: 'F', value: 5 },
+      { text: 'S', value: 6 },
     ];
     return {
       scheduleExpanded: false,
@@ -100,31 +111,81 @@ export default {
     };
   },
   computed: {
-    doctorWebsite () {
-      const username = this.organization?.doc_website; // eslint-disable-line
-      return `${process.env.WEB_MAIN_URL}/doctors/${username}`;
+    fullSchedules () {
+      // eslint-disable-next-line camelcase
+      return this.organization?.mf_schedule || this.organization?.schedules || [];
     },
-    fullNameWithSuffixes () {
-      let fullName = this.organization.name.firstName;
-      if (this.organization.name.middleInitial) fullName = fullName + ' ' + this.organization.name.middleInitial;
-      fullName = fullName + ' ' + this.organization.name.lastName;
-      if (this.organization.name.generationalSuffix) fullName = fullName + ' ' + this.organization.name.generationalSuffix;
-      if (this.organization.name.doc_professions) fullName = fullName + ', ' + this.organization.name.doc_professions;
-      if (this.organization.name.academicSuffix) fullName = fullName + ', ' + this.organization.name.academicSuffix;
-      if (this.organization.name.professionalSuffix) fullName = fullName + ', ' + this.organization.name.professionalSuffix;
-      return fullName;
+    filteredDays () {
+      return uniqBy(this.groupedSchedules, 'day')
+        .map(schedule => schedule.day) || [];
+    },
+    groupedSchedules () {
+      const schedules = this.fullSchedules;
+      // if (this.isDoctor) return schedules.sort((a, b) => a.day !== b.day ? a.day - b.day : a.startTime - b.startTime);
+      return schedules.sort((a, b) => a.day !== b.day ? a.order - b.order : a.opening - b.opening) || [];
+    },
+    schedulesToday () {
+      if (!this.fullSchedules?.length) {
+        return null;
+      }
+      const dateToday = new Date();
+      const dayToday = dateToday.getDay();
+      const dayOrder = dayToday === 7 ? 0 : dayToday;
+
+      return this.fullSchedules.filter(schedule => schedule.order === dayOrder || schedule.day === dayOrder) || [];
+    },
+    startDay () {
+      switch (this.filteredDays[0]) {
+        case 'mon': return 1;
+        case 'tue': return 2;
+        case 'wed': return 3;
+        case 'thu': return 4;
+        case 'fri': return 5;
+        case 'sat': return 6;
+        default: return 0;
+      };
+    },
+    endDay () {
+      switch (this.filteredDays[this.filteredDays.length - 1]) {
+        case 'mon': return 1;
+        case 'tue': return 2;
+        case 'wed': return 3;
+        case 'thu': return 4;
+        case 'fri': return 5;
+        case 'sat': return 6;
+        default: return 0;
+      };
     },
     picURL () {
-      const sex = this.organization?.sex;
-      if (sex === 'female') {
-        return this.organization?.picURL || require('~/assets/images/doctor-website/doctor-website-profile-female.png');
-      }
-      return this.organization?.picURL || require('~/assets/images/doctor-website/doctor-website-profile-male.png');
+      return this.organization?.picURL || FacilityPlaceholder;
     },
-    yearsOfExperience () {
-      const from = new Date(this.organization.doc_practicingSince).getFullYear();
-      const to = new Date().getFullYear();
-      return to - from;
+    nameFontSize () {
+      return classBinder(this, {
+        mobile: ['font-12'],
+        regular: ['font-16'],
+        wide: ['font-24'],
+      });
+    },
+    textFontSize () {
+      return classBinder(this, {
+        mobile: ['font-10'],
+        regular: ['font-10'],
+        wide: ['font-14'],
+      });
+    },
+    address () {
+      const { address } = this.organization;
+      return formatAddress(address, 'street1, street2, city, province, region, country');
+    },
+  },
+  methods: {
+    clinicOpen (value) {
+      if (this.fullSchedules.length) {
+        if (value < this.startDay) return false;
+        if (value > this.endDay) return false;
+        return true;
+      }
+      return false;
     },
   },
 };
@@ -133,9 +194,30 @@ export default {
 <style scoped>
 .orgs-card {
   box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.35);
-  border-radius: 10px;
+  border-radius: 20px;
 }
 .info-text {
  color: #393d45;
+}
+.name-width-wide {
+  max-width: 300px;
+}
+.name-width-reg {
+  max-width: 180px;
+}
+.badge-size {
+  height: 15px;
+  width: 15px;
+}
+.badge-size-wide {
+  height: 30px;
+  width: 30px;
+}
+.badge {
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+  border-radius: 50%; /* may require vendor prefixes */
+  background: rgb(163, 163, 163);
 }
 </style>

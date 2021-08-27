@@ -30,9 +30,42 @@
                     v-for="(doctorObj, key) in orgsList"
                     :key="key"
                     cols="12"
-                    md="6"
-                  ).px-5
-                    doc-list-card(
+                    md="4"
+                  ).px-2
+                    doc-search-card(
+                      :organization="doctorObj"
+                      :read-only="readOnly"
+                    )
+                br
+                v-pagination(
+                  v-model="orgsPage"
+                  :length="orgsLength"
+                  total-visible="9"
+                )
+    v-container
+      v-row(justify="center")
+        generic-panel(:column="$isMobile ? 12 : 10" disable-parent-padding)
+          v-container
+            v-row(align="center" justify="center" :class="$isMobile? 'org-results-margin-mobile' : 'org-results-margin' ").org-results-summary
+              v-col(v-if="!loading.results" cols="12" :class="{'text-center': $isMobile}")#org-results
+                h4(v-if="orgsTotal") There {{ orgsTotal > 1 ? 'are' : 'is' }} {{ orgsTotal }} doctor{{ orgsTotal > 1 ? 's' : '' }} available.
+                h4(v-else) There are no results available.
+              v-col(cols="12")
+                v-row(v-if="loading.results" justify="center")
+                  v-col(cols="12" md="5").text-center
+                    v-progress-circular(
+                      color="primary"
+                      indeterminate
+                      size="100"
+                    ).mt-16
+                v-row(v-else justify="center" align="stretch")
+                  v-col(
+                    v-for="(doctorObj, key) in orgsList"
+                    :key="key"
+                    cols="12"
+                    md="4"
+                  ).px-2
+                    clinic-search-card(
                       :organization="doctorObj"
                       :read-only="readOnly"
                     )
@@ -52,11 +85,12 @@ import DirectoryAppBar from '~/components/directory/DirectoryAppBar';
 import DirectorySearchBar from '~/components/directory/DirectorySearchBar';
 export default {
   components: {
-    DocListCard: () => import('~/components/directory-doctor/DocListCard'),
+    DocSearchCard: () => import('~/components/directory/DocSearchCard'),
     SearchControls: () => import('~/components/directory-doctor/search-controls'),
     DirectoryAppBar,
     DirectorySearchBar,
     GenericPanel: () => import('~/components/generic/GenericPanel.vue'),
+    ClinicSearchCard: () => import('~/components/directory/ClinicSearchCard'),
   },
   props: {
     fixedSearchBar: {
@@ -75,7 +109,7 @@ export default {
         results: false,
       },
       orgsTotal: 0,
-      orgsLimit: 10,
+      orgsLimit: 12,
       orgsList: [],
       orgsPage: 1,
       orgsSearchQuery: {},
@@ -179,7 +213,7 @@ export default {
 .fixed-container {
   position: fixed;
   z-index: 99;
-  width: 1440px;
+  width: 100%;
   height: 200px;
   left: 0px;
   top: 0px;

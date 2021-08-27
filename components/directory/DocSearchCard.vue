@@ -1,65 +1,68 @@
 <template lang="pug">
-  v-card(height="100%" elevation="3" style="border-radius: 30px").orgs-card.pa-2
-    v-col.fill-height
-      v-row(justify="center")
-        v-col(cols="5")
-          img(
-            :src="picURL"
-            alt="Services"
-            :width="!$isMobile ? '154.48' : '102.66'"
-            :height="!$isMobile ? '154.48' : '102.66'"
-            style="border-radius: 30px"
-          )
-        v-col(cols="7").pt-10
-          v-row
-            p(:class="(fullNameWithSuffixes.length > 21) ? 'font-18' : 'font-24'").font-weight-bold.mb-0 {{ fullNameWithSuffixes }}&nbsp;
-          v-row
-            span(v-if="organization.doc_specialties").font-16.info-text {{ organization.doc_specialties[0] }}&nbsp;&nbsp;
-            span(v-else) ---&nbsp;&nbsp;
-            v-chip(v-if="organization.doc_website" color="primary" outlined x-small).mt-1 verified
-          v-row(justify="start").mt-5.mb-3
-            v-col(cols="2").pa-0
-              v-icon(color="primary") mdi-briefcase-variant-outline
-            v-col.pr-0.pb-0.pt-3.pl-2
-              v-row
-                span.font-12.info-text &nbsp;Experience
-              v-row
-                span(v-if="organization.doc_practicingSince" justify="start" :class="$isMobile ? 'font-12' : 'font-14'").info-text.font-weight-semibold &nbsp;{{ yearsOfExperience }} year/s of experience
-                span(v-else justify="start" :class="$isMobile ? 'font-12' : 'font-14'").info-text.font-weight-semibold &nbsp;---
-          v-row(justify="start" :class="$isMobile ? 'my-5' : 'mt-3'")
-            v-col(cols="2").pa-0
-              v-icon(color="primary") mdi-map-marker
-            v-col.pr-0.pb-0.pt-3.pl-2
-              v-row
-                span.font-12.info-text &nbsp;Location
-              v-row
-                span(v-if="organization.doc_practicingSince" justify="start" :class="$isMobile ? 'font-12' : 'font-14'").info-text.font-weight-semibold &nbsp;{{ yearsOfExperience }} somewhere
-                span(v-else justify="start" :class="$isMobile ? 'font-12' : 'font-14'").info-text.font-weight-semibold &nbsp;---
-          v-row(justify="start").pt-3
-            v-btn(
-              color="success"
-              target="_blank"
-              rel="noopener noreferrer"
-              small
-              rounded
-              :href="doctorWebsite"
-            ).text-none.elevation-0.font-weight-light.ma-1.font-10
-              v-icon(:x-small="!$isMobile") mdi-stethoscope
-              b &nbsp;Teleconsult
-            v-btn(
-              color="primary"
-              target="_blank"
-              rel="noopener noreferrer"
-              small
-              rounded
-              :href="doctorWebsite"
-            ).text-none.elevation-0.font-weight-light.ma-1.font-10
-              v-icon(:x-small="!$isMobile") mdi-calendar
-              b &nbsp;Book a Visit
-      v-row(v-if="organization.doc_specialties").mt-6.pa-2
-        v-col(cols="12")
-          v-row
-            v-chip(v-for="(specialty, key) in organization.doc_specialties" :key="key").font-12.ma-1 {{ specialty }}&nbsp;
+  v-card(height="100%" elevation="2").orgs-card.px-5.pt-5.pb-3
+    v-row
+      img(
+        :src="picURL"
+        alt="Services"
+        :width="$isRegularScreen? '82px' : '130px'"
+        :height="$isRegularScreen? '82px' : '130px'"
+        style="border-radius: 20px"
+      ).ma-3
+      v-col.my-3
+        v-row
+          span(:class="[nameFontSize, $isWideScreen ? 'name-width-wide' : 'name-width-reg']").text-truncate.font-weight-bold.mb-0 {{ fullNameWithSuffixes }}&nbsp;
+        v-row(:class="textFontSize").info-text.font-weight-semibold
+          span(v-if="organization.doc_specialties") {{ organization.doc_specialties[0] }}&nbsp;&nbsp;
+          span(v-else) ---&nbsp;&nbsp;
+          //- v-chip(v-if="organization.doc_website" color="primary" outlined x-small).mt-1 verified
+        v-row(justify="start").mt-5
+          v-icon(color="primary" :small="!$isWideScreen") mdi-briefcase-variant-outline
+          div(:class="textFontSize").info-text.mt-1
+            span(v-if="organization.doc_practicingSince") &nbsp;{{ yearsOfExperience }} year/s of experience
+            span(v-else) &nbsp;- year/s of experience
+        v-row(justify="start").mt-3
+          v-icon(color="primary" :small="!$isWideScreen") mdi-map-marker
+          div(:class="textFontSize").info-text.mt-1
+            span(v-if="organization.doc_practicingSince") &nbsp;{{ yearsOfExperience }} somewhere
+            span(v-else) &nbsp;- somewhere
+        //- v-row(justify="start").pt-3
+        //-   v-btn(
+        //-     color="success"
+        //-     target="_blank"
+        //-     rel="noopener noreferrer"
+        //-     small
+        //-     rounded
+        //-     :href="doctorWebsite"
+        //-   ).text-none.elevation-0.font-weight-light.ma-1.font-10
+        //-     v-icon(:x-small="!$isMobile") mdi-stethoscope
+        //-     b &nbsp;Teleconsult
+        //-   v-btn(
+        //-     color="primary"
+        //-     target="_blank"
+        //-     rel="noopener noreferrer"
+        //-     small
+        //-     rounded
+        //-     :href="doctorWebsite"
+        //-   ).text-none.elevation-0.font-weight-light.ma-1.font-10
+        //-     v-icon(:x-small="!$isMobile") mdi-calendar
+        //-     b &nbsp;Book a Visit
+    v-col
+      v-row(justify="end")
+        v-btn(
+          color="primary"
+          target="_blank"
+          rel="noopener noreferrer"
+          :small="!$isWideScreen"
+          rounded
+          :href="doctorWebsite"
+          :class="$isWideScreen ? ['font-14', 'px-6'] : ['font-10', 'px-5'] "
+        ).text-none.elevation-0.font-weight-light.mt-n2
+          b View
+
+    //- v-row(v-if="organization.doc_specialties").mt-6.pa-2
+    //-   v-col(cols="12")
+    //-     v-row
+    //-       v-chip(v-for="(specialty, key) in organization.doc_specialties" :key="key").font-12.ma-1 {{ specialty }}&nbsp;
 </template>
 
 <script>
@@ -70,6 +73,7 @@
 // import FacilityPlaceholder from '~/assets/images/facility-placeholder.jpg';
 
 // import { formatName } from '~/utils/formats';
+import classBinder from '~/utils/class-binder';
 export default {
   components: {
     VClamp: () => import('vue-clamp'),
@@ -126,6 +130,20 @@ export default {
       const to = new Date().getFullYear();
       return to - from;
     },
+    nameFontSize () {
+      return classBinder(this, {
+        mobile: ['font-12'],
+        regular: ['font-16'],
+        wide: ['font-24'],
+      });
+    },
+    textFontSize () {
+      return classBinder(this, {
+        mobile: ['font-10'],
+        regular: ['font-10'],
+        wide: ['font-14'],
+      });
+    },
   },
 };
 </script>
@@ -133,9 +151,15 @@ export default {
 <style scoped>
 .orgs-card {
   box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.35);
-  border-radius: 10px;
+  border-radius: 20px;
 }
 .info-text {
  color: #393d45;
+}
+.name-width-wide {
+  max-width: 300px;
+}
+.name-width-reg {
+  max-width: 180px;
 }
 </style>
