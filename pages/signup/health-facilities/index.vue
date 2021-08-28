@@ -173,13 +173,14 @@
               //-   :disabled="loading.form"
               //-   return-object
               //- )
-              v-text-field(
-                v-model="invitation"
-                label="Invite Code"
-                outlined
-                hint="6 character invite code"
-                :disabled="loading.form"
-              )
+              //- TODO: Return once ok
+              //- v-text-field(
+              //-   v-model="invitation"
+              //-   label="Invite Code"
+              //-   outlined
+              //-   hint="6 character invite code"
+              //-   :disabled="loading.form"
+              //- )
             v-col(
               cols="12"
               md="6"
