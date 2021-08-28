@@ -5,6 +5,7 @@
         v-col(cols="12")
           v-row(align="center" justify="center").my-6
             v-col(cols="10" md="4" :class="{ 'text-center': !$isMobile }")
+              div.text-center
                 picture-source(
                   :image-width="$isMobile ? '226px' : ($isRegularScreen ? '266.66px' : '465px')"
                   :image-height="$isMobile ? '218.42px' : ($isRegularScreen ? '257.7px' : '449.41px')"

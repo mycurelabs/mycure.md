@@ -7,8 +7,7 @@
       title="Bring Out the Hero in You"
       meta-title="MYCURE Doctor"
       image="Doc USP"
-      :image-width="!$isMobile ? '1920px' : '300px' "
-      :image-height="!$isMobile ? '1080px' : '165.8px' "
+      image-width="90%"
       custom-image-path="doctors-clinics/"
       image-align="right"
       btn-text="Get Started Free"
@@ -25,10 +24,7 @@
         title="Your Practice. Your Call."
         :description="featuresDescription"
         :items="features"
-        :icon-container-col-size="$isWideScreen ? '6' : '8'"
         image-dir="doctors-clinics/"
-        :image-width="$isWideScreen ? '89px' : '77px'"
-        :image-height="$isWideScreen ? '89px' : '77px'"
       )
     //- 3rd to 5th panels
     generic-media-panel(
@@ -48,31 +44,27 @@
     )
       //- Check list
       template(slot="additional-content")
-        div.my-10
-          v-row(
-            v-for="(item, i) in sixthPanel.list"
-            :key="item"
-            dense
-          )
-            v-col(cols="2" sm="1" md="1").pr-2.pt-2
-              div(class="text-center")
-                img(
-                  src="~/assets/images/mycure-check.png"
-                  alt="Check icon"
-                  :width="!$isWideScreen ? '20' : '25'"
-                  :height="!$isWideScreen ? '20' : '25'"
-                )
+        template(v-for="(item, i) in sixthPanel.list")
+          v-row(dense)
+            v-col(cols="2" sm="1" md="1"  :class="$isWideScreen ? 'pt-3' : 'pt-2'").pr-2
+              img(
+                src="~/assets/images/mycure-check.png"
+                alt="Check icon"
+                :width="$isWideScreen ? '30' : '20'"
+                :height="$isWideScreen ? '30' : '20'"
+              )
             v-col(cols="10" sm="11" md="11")
               span(:class="descriptionClasses") {{ item }}
+        div.mb-10
         div(:class="{ 'text-center': $isMobile }")
           signup-button(
             depressed
             rounded
-            :x-large="$isWideScreen"
-            :large="!$isWideScreen"
+            width="228px"
+            height="59px"
             color="success"
-          ).text-none.mc-button-set-1
-            span Get Started Free
+          ).text-none
+            span.generic-button-text Get Started Free
             v-icon(small right) mdi-arrow-right
     //- 7th panel
     div.grey-bg.mx-n3
@@ -91,8 +83,8 @@
             :key="i"
             dense
           )
-            v-col(cols="2" sm="1" md="1").pr-2.pt-2
-              v-icon(color="white") mdi-checkbox-marked-circle
+            v-col(cols="2" sm="1" md="1" :class="$isWideScreen ? 'pt-2' : 'pt-1' ").pr-2
+              v-icon(color="white" :large="$isWideScreen") mdi-checkbox-marked-circle
             v-col(cols="10" sm="5" md="11")
               span(:class="eightPanelContentClasses") {{ item }}
     //- 9th panel

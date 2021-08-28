@@ -58,7 +58,7 @@
                   :image="`${mockup.image}${$isMobile ? '-mobile' : ''}`"
                   :image-alt="`A ${reportType} sample report from MYCURE Clinic Management System on laptop screen`"
                   :image-width="$isMobile ? '276px' : ($isRegularScreen ? '945px' : '1445px')"
-                  :image-height="$isMobile ? '147.06px' : ($isRegularScreen ? '502.89px' : '768.96px')"
+                  :image-height="reportsPanelImgHeight"
                 )
 
     //- 4th panel
@@ -73,12 +73,12 @@
               depressed
               rounded
               block
-              :x-large="$isWideScreen"
-              :large="!$isWideScreen"
-              :class="btnClasses"
+              width="228px"
+              height="59px"
               color="success"
             ).text-none
-              span Create my website
+              v-icon(left) mdi-web
+              span.generic-button-text Create my website
           //- TODO: Bring back when sample website is available
           //- v-col(cols="12" md="7" lg="6" xl="5")
           //-   mc-btn(
@@ -110,10 +110,10 @@
               color="success"
               depressed
               rounded
-              :large="!$isWideScreen"
-              :x-large="$isWideScreen"
-              :class="btnClasses"
-            ).text-none Start Now
+              width="228px"
+              height="59px"
+            ).text-none
+              span.generic-button-text Start Now
 
     //- 7th panel
     div.info.mx-n3
@@ -122,16 +122,15 @@
           generic-panel(:row-bindings="{ justify: 'center' }")
             v-col(cols="12").white--text.text-center
               h2(:class="['white--text', ...headerClasses]").mb-5 Take the first step today
-              p(:class="descriptionClasses").white--text.font-weight-bold.mb-5 Start now and get all your questions answered.
+              p(:class="descriptionClasses").white--text.font-weight-semibold.mb-5 Start now and get all your questions answered.
               signup-button(
                 depressed
                 rounded
-                :x-large="$isWideScreen"
-                :large="!$isWideScreen"
-                :class="btnClasses"
+                width="228px"
+                height="59px"
                 color="success"
               ).text-none
-                span Start Now
+                span.generic-button-text Start Now
 </template>
 
 <script>
@@ -192,6 +191,17 @@ export default {
           height: this.$isMobile ? '242.88px' : (this.$isRegularScreen ? '404.79px' : '624.8px'),
         },
       };
+    },
+    reportsPanelImgHeight () {
+      if (this.reportType === 'imaging') {
+        if (this.$isMobile) return '147.06px';
+        if (this.$isRegularScreen) return '502.89px';
+        return '768.96px';
+      } else {
+        if (this.$isMobile) return '181.77px';
+        if (this.$isRegularScreen) return '621.8px';
+        return '950.79px';
+      }
     },
   },
   mounted () {

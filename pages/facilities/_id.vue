@@ -12,74 +12,88 @@
     //- PANEL 1
     div(
       :class="background"
-      :style="{ height: '150vh', paddingTop: $isMobile ? '60px' : '100px' }"
+      :style="{ height: isVerified ? '150vh' : '175vh', paddingTop: $isMobile ? '60px' : '100px' }"
     ).panel-bg
       v-row(justify="center")
         v-col(cols="10").text-center
           v-avatar(:size="$isMobile ? '150' : '200'").mb-5
             img(:src="picURL")
           h1(:class="clinicNameClasses").mb-5.font-usp-primary {{clinicName}}
-          div.white.btn-banner
-            strong(slot="badge").font-18.warning--text We're Open!
-          v-hover(
-            v-slot="{ hover }"
-            open-delay="100"
-          )
-            v-btn(
-              large
-              rounded
-              dark
-              :color="hover ? 'info' : 'warning'"
-              :href="bookURL"
-            ).text-none.custom-clinic-button
-              h2 {{ hover ? 'Choose a schedule' : 'Book an Appointment' }}
-
-    //- PANEL 1 FOOTER
-    div(:class="{'d-flex': !$isMobile}" :style="{ height: !$isMobile ? '55px' : 'auto'}").panel-1-footer
-      span(v-if="formattedAddress")
-        v-icon.red--text mdi-map-marker
-        span {{formattedAddress}}
-      v-spacer(v-if="!$isMobile")
-      br(v-else)
-      span(v-if="clinicPhone")
-        v-icon.green--text mdi-phone
-        span {{clinicPhone}}
-    //- MAIN PANELS
-    main-workflow(
-      v-model="activeTab"
-      :is-preview-mode="isPreviewMode"
-      :search-results-mode="searchResultsMode"
-      :search-results="searchResults"
-      :service-types="serviceTypes"
-      :has-doctors="hasDoctors"
-      :items="listItems"
-      :items-pagination-length="itemsPaginationLength"
-      :organization="clinic"
-      :loading="loading.list"
-      :has-next-page="hasNextPage"
-      :has-previous-page="hasPreviousPage"
-      @back="searchResultsMode = false"
-      @search="onServiceSearch"
-      @paginate="onPaginate($event)"
-      @filter:date="filterByDate"
-    )
-    //- ABOUT US
-    about-us(
-      :picURL="picURL"
-      :name="clinicName"
-      :description="description"
-      :phone="clinicPhone"
-      :address="formattedAddress"
-      :schedules="compressedSchedules"
-    )
-    //- QUICK BOOK
-    quick-book(
-      :is-preview-mode="isPreviewMode"
-      :service-types="serviceTypes"
-      :service-schedules="serviceSchedules"
-      :organization-schedules="groupedSchedules"
-      :organization="orgId"
-    )
+          template(v-if="isVerified")
+            div.white.btn-banner
+              strong(slot="badge").font-18.warning--text We're Open!
+            v-hover(
+              v-slot="{ hover }"
+              open-delay="100"
+            )
+              v-btn(
+                large
+                rounded
+                dark
+                :color="hover ? 'info' : 'warning'"
+                :href="bookURL"
+              ).text-none.custom-clinic-button
+                h2 {{ hover ? 'Choose a schedule' : 'Book an Appointment' }}
+    template(v-if="isVerified")
+      //- PANEL 1 FOOTER
+      div(:class="{'d-flex': !$isMobile}" :style="{ height: !$isMobile ? '55px' : 'auto'}").panel-1-footer
+        span(v-if="formattedAddress")
+          v-icon.red--text mdi-map-marker
+          span {{formattedAddress}}
+        v-spacer(v-if="!$isMobile")
+        br(v-else)
+        span(v-if="clinicPhone")
+          v-icon.green--text mdi-phone
+          span {{clinicPhone}}
+      //- MAIN PANELS
+      main-workflow(
+        v-model="activeTab"
+        :is-preview-mode="isPreviewMode"
+        :search-results-mode="searchResultsMode"
+        :search-results="searchResults"
+        :service-types="serviceTypes"
+        :has-doctors="hasDoctors"
+        :items="listItems"
+        :items-pagination-length="itemsPaginationLength"
+        :organization="clinic"
+        :loading="loading.list"
+        :has-next-page="hasNextPage"
+        :has-previous-page="hasPreviousPage"
+        @back="searchResultsMode = false"
+        @search="onServiceSearch"
+        @paginate="onPaginate($event)"
+        @filter:date="filterByDate"
+      )
+      //- ABOUT US
+      about-us(
+        :picURL="picURL"
+        :name="clinicName"
+        :description="description"
+        :phone="clinicPhone"
+        :address="formattedAddress"
+        :schedules="compressedSchedules"
+      )
+      //- QUICK BOOK
+      quick-book(
+        :is-preview-mode="isPreviewMode"
+        :service-types="serviceTypes"
+        :service-schedules="serviceSchedules"
+        :organization-schedules="groupedSchedules"
+        :organization="orgId"
+      )
+    div(v-else).mx-n3.mb-n3.info
+      v-container
+        v-row(justify="center")
+          generic-panel(:row-bindings="{ justify: 'center' }")
+            v-col(cols="12" md="10").text-center
+              h2.mc-title-set-1.mb-10.white--text Do you own this business?
+              mc-btn(
+                depressed
+                color="success"
+                :large="$isRegularScreen"
+                :x-large="$isWideScreen"
+                :to="{ name: 'signup-health-facilities' }"
+              ).font-s.text-none Claim for free now!
     //- FOOTER
     app-footer
 </template>
@@ -107,6 +121,7 @@ import AboutUs from '~/components/clinic-website/AboutUs';
 import AppBar from '~/components/clinic-website/new/AppBar';
 import AppFooter from '~/components/clinic-website/AppFooter';
 import ChooseService from '~/components/clinic-website/ChooseService';
+import GenericPanel from '~/components/generic/GenericPanel';
 import SearchPanel from '~/components/clinic-website/SearchPanel';
 import MainWorkflow from '~/components/clinic-website/MainWorkflow';
 import QuickBook from '~/components/clinic-website/QuickBook';
@@ -126,6 +141,7 @@ export default {
     AppBar,
     AppFooter,
     ChooseService,
+    GenericPanel,
     SearchPanel,
     MainWorkflow,
     QuickBook,
@@ -327,7 +343,11 @@ export default {
       `${this.name || 'This facility'} specializes in telehealth services. ${this.name || 'It'} is committed to provide medical consultation via video conference or phone call to our patient 24 hours a day 7 days a week.`;
     },
     background () {
-      return this.canUseWebp ? 'bg-webp' : 'bg-png';
+      if (this.isVerified && this.canUseWebp) return 'bg-webp';
+      if (this.isVerified && !this.canUseWebp) return 'bg-png';
+      if (!this.isVerified && this.canUseWebp) return 'construct-bg-webp';
+      if (!this.isVerified && !this.canUseWebp) return 'construct-bg-png';
+      return 'bg-png';
     },
     // Classes
     clinicNameClasses () {
@@ -508,6 +528,12 @@ a {
 
 .bg-webp {
   background-image: url('../../assets/images/clinics-website/Clinic Website BG.webp');
+}
+.construct-bg-png {
+  background-image: url('../../assets/images/clinics-website/MYCURE - Construction.png');
+}
+.construct-bg-webp {
+  background-image: url('../../assets/images/clinics-website/MYCURE - Construction.webp');
 }
 .custom-clinic-button {
   height: 70px !important;

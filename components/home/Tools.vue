@@ -20,8 +20,8 @@
               :custom-path="version === 1? 'home/' : 'clinics/module-icons/'"
               :image="tool.icon"
               :image-alt="tool.name"
-              :image-width="!$isWideScreen ? '70px' : '115px'"
-              :image-height="!$isWideScreen ? '70px' : '115px'"
+              :image-width="$isMobile ? '77px' : ($isRegularScreen ? '90px' : '120px')"
+              :image-height="$isMobile ? '77px' : ($isRegularScreen ? '90px' : '120px')"
               image-file-extension=".webp"
             )
             br

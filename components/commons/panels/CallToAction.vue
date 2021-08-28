@@ -14,30 +14,29 @@
       v-row.mt-10
         slot(name="cta-button")
           v-row(:justify="$isMobile ? 'center' : 'start'")
-            v-col(cols="10" sm="5" md="7" lg="6" xl="7")
+            v-col(cols="10" sm="5" md="7" lg="6" xl="7").pr-0
               div(:class="{'text-center': $isMobile}")
                 mc-btn(
                   color="success"
                   depressed
                   rounded
                   :block="![2, 4].includes(version)"
-                  :large="!$isWideScreen"
-                  :x-large="$isWideScreen"
-                  :class="ctaButtonClass"
+                  :width="(version === 2 || version === 4) ? '228px' : '' "
+                  height="59px"
                   :href="'https://calendly.com/mycure/demo'"
-                ).text-none {{ ![2, 4].includes(version) ? 'Book a full training' : 'Start Now' }}
-            v-col(v-if="![2, 4].includes(version)" cols="10" sm="5" md="7" lg="6" xl="5")
+                ).text-none
+                  span.generic-button-text {{ ![2, 4].includes(version) ? 'Book a full training' : 'Start Now' }}
+            v-col(v-if="![2, 4].includes(version)" cols="10" sm="5" md="7" lg="6" xl="5").pr-0
               signup-button(
                 event-label="signup"
                 color="success"
                 depressed
                 rounded
                 block
+                height="59px"
                 :outlined="![2, 4].includes(version)"
-                :large="!$isWideScreen"
-                :x-large="$isWideScreen"
-                :class="buttonClasses"
-              ).text-none {{notFree ? 'Get Started' : 'Get Started Free'}}
+              ).text-none
+                span.generic-button-text {{notFree ? 'Get Started' : 'Get Started Free'}}
 </template>
 
 <script>

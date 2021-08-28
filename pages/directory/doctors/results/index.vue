@@ -1,17 +1,13 @@
 <template lang="pug">
   div(style="background-color: #fafafa;")
-    services.services
-    results-footer(v-if="!loading" absolute)
+    directory-doctor(:class="{'pb-5': $isMobile}").services
 </template>
 
 <script>
-import ResultsFooter from '~/components/services/ResultsFooter';
-import Services from '~/components/services';
 import headMeta from '~/utils/head-meta';
 export default {
   components: {
-    ResultsFooter,
-    Services,
+    DirectoryDoctor: () => import('~/components/directory-doctor'),
   },
   layout: 'results',
   // middleware: ['disable-route'],
@@ -22,8 +18,8 @@ export default {
   },
   head () {
     return headMeta({
-      title: 'MYCURE Healthcare Service Booking Management Software',
-      description: 'Search for facilities and services in the MYCURE Healthcare Directory',
+      title: 'MYCURE Doctor Booking Management Software',
+      description: 'Search for doctors and specialties in the MYCURE Doctors Directory',
       socialBanner: require('~/assets/images/banners/OG Patients.png'),
     });
   },

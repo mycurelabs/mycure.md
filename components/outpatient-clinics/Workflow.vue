@@ -16,13 +16,12 @@
                 color="success"
                 depressed
                 rounded
-                :large="$isRegularScreen"
-                :x-large="$isWideScreen"
-                :class="{'font-s': !$isMobile}"
+                width="228px"
+                height="59px"
                 @click="videoDialog = true"
               ).text-none.mb-10
                 v-icon(left) mdi-play-circle
-                span Watch How It Works
+                span.generic-button-text Watch How It Works
             v-col(cols="12")
               v-row(justify="center")
                 template(v-if="!$isMobile")

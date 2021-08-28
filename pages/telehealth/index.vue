@@ -37,11 +37,14 @@
       //- Check list
       template(slot="additional-content")
         template(v-for="(item, i) in fifthPanel.list")
-          v-row(dense)
-            v-col(cols="2" sm="1" md="1").pr-2.pt-2
-              img(width="20" src="~/assets/images/mycure-check.png" alt="Check icon")
-            v-col(cols="10" sm="5" md="7")
-              span(:class="descriptionClasses") {{ item }}
+          v-row(dense align="center").my-2
+            img(
+              src="~/assets/images/mycure-check.png"
+              alt="Check icon"
+              :width="$isWideScreen ? '30' : '20'"
+              :height="$isWideScreen ? '30' : '20'"
+            )
+            span(:class="[...descriptionClasses, ($isMobile ? 'ml-2' : ($isRegularScreen ? 'ml-3' : 'ml-4'))]") {{ item }}
     //- 6th panel
     pricing(
       title="Start free and only pay as you grow."
