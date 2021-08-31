@@ -21,7 +21,8 @@
     //- 2nd panel
     div.grey-bg.mx-n3
       features(
-        title="Your Practice. Your Call."
+        title="Can your patients easily find and book a consultation with you?"
+        :title-col-size="11"
         :description="featuresDescription"
         :items="features"
         image-dir="doctors-clinics/"
@@ -116,7 +117,7 @@ export default {
   data () {
     // Panel content
     this.uspDescription = 'Designed for modern doctors, MYCURE lets you focus on what you do best — caring for your patients.  MYCURE organizes your daily tasks to make your practice more simple, secure, and efficient.';
-    this.featuresDescription = 'Use the tools that work best for you. Everything you need is here. It’s FREE!';
+    this.featuresDescription = 'Use the tools that work best for you. Everything you need is here from task management to data compliance. It’s FREE!';
     this.features = [
       {
         title: 'Digital Records',
