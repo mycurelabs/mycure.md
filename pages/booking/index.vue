@@ -116,14 +116,15 @@
             br
             v-tabs-items(v-model="websiteType")
               v-tab-item(v-for="(mockup, key) in websiteMockups" :key="key" :value="mockup.value")
-                picture-source(
-                  :image="mockup.image"
-                  :image-alt="`A ${websiteType} website mockup on laptop screen`"
-                  :image-width="$isMobile ? '256px' : ($isRegularScreen ? '756px' : '1156px')"
-                  :image-height="$isMobile ? '192px' : ($isRegularScreen ? '567px' : '867px')"
-                  image-file-extension=".webp"
-                  custom-path="booking/"
-                )
+                div(@click="onClickImage(`${mockup.value}.png`, 'booking/')")
+                  picture-source(
+                    :image="mockup.image"
+                    :image-alt="`A ${websiteType} website mockup on laptop screen`"
+                    :image-width="$isMobile ? '256px' : ($isRegularScreen ? '756px' : '1156px')"
+                    :image-height="$isMobile ? '192px' : ($isRegularScreen ? '567px' : '867px')"
+                    image-file-extension=".webp"
+                    custom-path="booking/"
+                  )
     //- 6th panel
     div.blue-bg.mx-n3
       generic-media-panel(
@@ -145,6 +146,12 @@
               span.generic-button-text Get Started Free
     //- 7th panel
     plans.mb-n3
+
+    //- Image Viewer
+    mc-image-viewer(
+      v-model="imageViewerDialog"
+      v-bind="imageViewerModel"
+    )
 </template>
 
 <script>
@@ -230,8 +237,12 @@ export default {
       imageAlt: 'Booking a schedule on a phone artwork',
     };
     return {
+      // UI State
       loading: true,
+      imageViewerDialog: false,
       websiteType: 'doctor',
+      // Data
+      imageViewerModel: null,
     };
   },
   head () {
@@ -278,6 +289,15 @@ export default {
   },
   mounted () {
     this.loading = false;
+  },
+  methods: {
+    onClickImage (image, path) {
+      this.imageViewerModel = {
+        image,
+        customImagePath: path,
+      };
+      this.imageViewerDialog = true;
+    },
   },
 };
 </script>
