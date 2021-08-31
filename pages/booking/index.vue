@@ -116,7 +116,7 @@
             br
             v-tabs-items(v-model="websiteType")
               v-tab-item(v-for="(mockup, key) in websiteMockups" :key="key" :value="mockup.value")
-                div(@click="onClickImage(`${mockup.value}.png`, 'booking/')")
+                div(@click="onClickImage(`${mockup.image}.png`, 'booking/')")
                   picture-source(
                     :image="mockup.image"
                     :image-alt="`A ${websiteType} website mockup on laptop screen`"
