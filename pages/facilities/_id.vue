@@ -104,7 +104,6 @@ import intersection from 'lodash/intersection';
 // import uniq from 'lodash/uniq';
 import VueScrollTo from 'vue-scrollto';
 // - utils
-import { getServices } from '~/utils/axios';
 import { getOrganization } from '~/utils/axios/organizations';
 import { formatAddress } from '~/utils/formats';
 import canUseWebp from '~/utils/can-use-webp';
@@ -112,6 +111,7 @@ import headMeta from '~/utils/head-meta';
 import classBinder from '~/utils/class-binder';
 // - services
 import { fetchClinicWebsiteDoctors } from '~/services/organization-members';
+import { fetchScheduleSlots } from '~/services/schedule-slots';
 import {
   fetchClinicServices,
   fetchClinicServiceTypes,
@@ -151,10 +151,8 @@ export default {
     try {
       const clinic = await getOrganization({ id: params.id }, true) || {};
       if (isEmpty(clinic)) redirect('/');
-      const services = await getServices({ facility: params.id });
       return {
         clinic,
-        services,
       };
     } catch (error) {
       console.error(error);
@@ -275,9 +273,6 @@ export default {
     },
     clinicName () {
       return this.clinic?.name || 'MYCURE Clinic';
-    },
-    servicesOffered () {
-      return this.services;
     },
     schedules () {
       return this.clinic?.mf_schedule || []; // eslint-disable-line
@@ -443,8 +438,17 @@ export default {
               serviceType: ['lab', 'imaging'].includes(type) ? 'diagnostic' : type,
               ...['lab', 'imaging'].includes(type) && { serviceSubtype: type },
             },
+            $populate: {
+              providers: {
+                service: 'personal-details',
+                localKey: 'meta.providers',
+                method: 'find',
+                foreignKey: 'id',
+                foreignOps: '$in',
+              },
+            },
           };
-          const data = await this.$sdk.service('schedule-slots').find(serviceScheduleQuery);
+          const data = await fetchScheduleSlots(this.$sdk, serviceScheduleQuery);
           return {
             type,
             items: data.items,

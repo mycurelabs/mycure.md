@@ -1,4 +1,4 @@
-// import { normalizePopulated } from '~/utils/services';
+import { normalizePopulated } from '~/utils/services';
 
 /**
  * FetchScheduleSlots
@@ -21,6 +21,7 @@ export const fetchScheduleSlots = async (sdk, opts) => {
     if (!opts?.organization) return;
     let query = {
       organization: opts.organization,
+      ...opts.$populate && { $populate: opts.$populate },
     };
 
     /**
@@ -37,7 +38,7 @@ export const fetchScheduleSlots = async (sdk, opts) => {
       };
 
       const { items, total } = await sdk.service('schedule-slots').find(query);
-      return { items, total };
+      return { items: normalizePopulated(items), total };
     }
 
     /**
@@ -53,7 +54,7 @@ export const fetchScheduleSlots = async (sdk, opts) => {
       };
     }
     const { items, total } = await sdk.service('schedule-slots').find(query);
-    return { items, total };
+    return { items: normalizePopulated(items), total };
   } catch (e) {
     console.error(e);
   }
