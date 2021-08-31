@@ -12,6 +12,8 @@
     //- 5th panel
     div.grey-bg.mx-n3
       tools(:version="2")
+    //- 5.5th panel
+    steps(:steps="stepsContent")
     //-6th panel
     syncbase
     //- 7th panel
@@ -54,9 +56,24 @@ export default {
     Simple: () => import('~/components/home/Simple'),
     Syncbase: () => import('~/components/commons/panels/Syncbase'),
     Tools: () => import('~/components/home/Tools'),
+    Steps: () => import('~/components/commons/panels/Steps'),
   },
   data () {
     this.headerClasses = ['mc-title-set-1', 'font-weight-semibold'];
+    this.stepsContent = [
+      {
+        title: 'Choose a Solution',
+        description: 'Select the application suited to your practice or facility.',
+      },
+      {
+        title: 'Create an Account',
+        description: 'This activates your Health Management System.',
+      },
+      {
+        title: 'Set up your Account',
+        description: 'Customize the system to fit your needs.',
+      },
+    ];
     this.descriptionClasses = ['mc-content-set-1', 'font-open-sans', 'font-gray'];
     return {
       loading: true,
