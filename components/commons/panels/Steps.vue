@@ -9,11 +9,19 @@
         v-row(justify="center")
           v-col(cols="4" v-for="(step, index) in steps" :key="index")
             v-row
-              v-col(cols="2")
-                span(:class="numberSize") {{ index + 1 }}
-              v-col
+              picture-source(
+                extension-exclusive
+                custom-path="commons/"
+                :image="(index + 1)"
+                image-alt="Steps number"
+                image-file-extension=".png"
+                :image-height="$isWideScreen ? '170' : '120'"
+              ).mr-3.ml-2
+              v-col.pr-3
                 p.font-weight-semibold.mc-content-set-1 {{ step.title }}
                 p.mc-content-set-1 {{ step.description }}
+        v-row
+          v-col.py-10
         v-row(justify="center")
           signup-button(
             depressed
@@ -27,12 +35,12 @@
 </template>
 
 <script>
-// import PictureSource from '~/components/commons/PictureSource';
+import PictureSource from '~/components/commons/PictureSource';
 import classBinder from '~/utils/class-binder';
 export default {
   components: {
     SignupButton: () => import('~/components/commons/SignupButton'),
-    //     PictureSource,
+    PictureSource,
   },
   props: {
     steps: {

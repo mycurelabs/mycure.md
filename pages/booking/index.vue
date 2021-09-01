@@ -145,9 +145,9 @@
                   custom-path="booking/"
                 )
 
-    storyboard(
+    storybrand(
       title="Using Modern Tools to Boost Your Practice"
-      :content="storyboardContent"
+      :content="storybrandContent"
     )
     //- 6th panel
     div.blue-bg.mx-n3
@@ -189,7 +189,7 @@ export default {
     Usp,
     SignupButton: () => import('~/components/commons/SignupButton'),
     Practicioners: () => import('~/components/booking/Practicioners'),
-    Storyboard: () => import('~/components/commons/panels/Storyboard'),
+    Storybrand: () => import('~/components/commons/panels/Storybrand'),
   },
   data () {
     this.howItWorksContents = [
@@ -248,7 +248,7 @@ export default {
         value: 'clinic',
       },
     ];
-    this.storyboardContent = [
+    this.storybrandContent = [
       'At MYCURE, we know the many challenges in choosing the right healthcare management solution. Some are good but costly. Some are affordable but lack the needed features and reports. Many are poorly designed and difficult to use. Very few work both online and offline. A lot has closed systems and lacks interoperability.',
       'In order to make an easy decision, you need a solution that has all the benefits and functionalities required without compromising ease of use and affordability. The problem is in finding such a system which makes you feel frustrated. We believe that health providers should never have to deal with this.',
       'That’s why we’ve built MYCURE Healthcare Management Solutions, designed to be robust, easy to use, interoperable and affordable.',
