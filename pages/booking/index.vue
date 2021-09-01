@@ -170,6 +170,12 @@
               span.generic-button-text Get Started Free
     //- 7th panel
     plans.mb-n3
+
+    //- Image Viewer
+    mc-image-viewer(
+      v-model="imageViewerDialog"
+      v-bind="imageViewerModel"
+    )
 </template>
 
 <script>
@@ -266,8 +272,12 @@ export default {
       imageAlt: 'Booking a schedule on a phone artwork',
     };
     return {
+      // UI State
       loading: true,
+      imageViewerDialog: false,
       websiteType: 'doctor',
+      // Data
+      imageViewerModel: null,
     };
   },
   head () {
@@ -315,6 +325,15 @@ export default {
   },
   mounted () {
     this.loading = false;
+  },
+  methods: {
+    onClickImage (image, path) {
+      this.imageViewerModel = {
+        image,
+        customImagePath: path,
+      };
+      this.imageViewerDialog = true;
+    },
   },
 };
 </script>

@@ -30,9 +30,9 @@ export default {
       { text: 'Laboratory', type: 'diagnostic', value: 'lab' },
       { text: 'Imaging', type: 'diagnostic', value: 'imaging' },
       { text: 'PE Packages', type: 'pe', value: 'pe' },
-      { text: 'Doctors', type: 'doctors', value: 'doctors' },
       { text: 'Procedures', type: 'clinical-procedure', value: 'clinical-procedure' },
       { text: 'Dental', type: 'dental', value: 'dental' },
+      { text: 'Our Doctors', type: 'doctors', value: 'doctors' },
     ];
     return {};
   },
