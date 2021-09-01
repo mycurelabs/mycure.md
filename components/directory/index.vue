@@ -14,8 +14,8 @@
         v-row(justify="center")
           generic-panel(:column="$isMobile ? 12 : 10" disable-parent-padding)
             directory-search-bar(
+              v-model="searchMode"
               @search="onSearch($event)"
-              :location-switch="locationAccess"
             )
     v-container
       v-row(justify="center")
@@ -58,24 +58,20 @@
 
 <script>
 import VueScrollTo from 'vue-scrollto';
-import uniqBy from 'lodash/uniqBy';
+// import uniqBy from 'lodash/uniqBy';
+// import { unifiedSearch } from '~/services/unified-search';
 import { searchDoctors } from '~/utils/axios';
 import DirectoryAppBar from '~/components/directory/DirectoryAppBar';
 import DirectorySearchBar from '~/components/directory/DirectorySearchBar';
 export default {
   components: {
     DocSearchCard: () => import('~/components/directory/DocSearchCard'),
-    SearchControls: () => import('~/components/directory-doctor/search-controls'),
     DirectoryAppBar,
     DirectorySearchBar,
     GenericPanel: () => import('~/components/generic/GenericPanel.vue'),
     ClinicSearchCard: () => import('~/components/directory/ClinicSearchCard'),
   },
   props: {
-    fixedSearchBar: {
-      type: Boolean,
-      default: true,
-    },
     readOnly: {
       type: Boolean,
       default: false,
@@ -93,6 +89,9 @@ export default {
       orgsPage: 1,
       orgsSearchQuery: {},
       municipalityList: [],
+      // Data
+      searchMode: 'account',
+      searchText: null,
     };
   },
   computed: {
@@ -118,28 +117,25 @@ export default {
     this.init();
   },
   methods: {
-    searchFromControls (searchObject) {
-      this.isLoading = true;
-      this.searchQuery = searchObject;
-      this.fetchDoctors(this.searchQuery);
-      this.isLoading = false;
-    },
     async init () {
-      this.loading.page = false;
-      const { doctorSearchText } = this.$route.query;
-      let finalOrgResults = [];
-      if (doctorSearchText) {
-        await this.searchFromControls({
-          searchString: doctorSearchText,
-        });
-
-        if (!this.orgsTotal && finalOrgResults.length) this.orgsTotal++;
-
-        finalOrgResults = uniqBy([...finalOrgResults, ...this.orgsList], 'id');
-        this.orgsList = finalOrgResults;
-        return;
+      try {
+        this.loading.page = false;
+        this.loading.results = true;
+        this.searchText = this.$route.query.searchText;
+        this.searchMode = this.$route.query.searchMode;
+        // - TODO: Apply tags
+        // - run search
+        // const data = await unifiedSearch(this.$sdk, {
+        //   type: this.searchMode,
+        //   text: this.searchText,
+        // });
+        await this.fetchDoctors();
+        // console.log('data', data);
+      } catch (e) {
+        console.error(e);
+      } finally {
+        this.loading.results = false;
       }
-      await this.fetchDoctors();
     },
     async fetchDoctors (searchQuery = {}, page = 1) {
       try {
@@ -172,17 +168,12 @@ export default {
         console.error(error);
       }
     },
-    async searchOrganizations ({ searchText }) {
-      this.orgsSearchQuery = { searchText };
-      await this.fetchDoctors(this.orgsSearchQuery);
-      VueScrollTo.scrollTo('#org-results', 500, { offset: -250, easing: 'ease' });
-    },
-    clearOrganizationResults () {
-      this.orgsSearchQuery = '';
-      this.orgsPage = 1;
-      this.fetchDoctors();
-      this.searchQuery = null;
-    },
+    // clearOrganizationResults () {
+    //   this.orgsSearchQuery = '';
+    //   this.orgsPage = 1;
+    //   this.fetchDoctors();
+    //   this.searchQuery = null;
+    // },
   },
 };
 </script>

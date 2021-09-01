@@ -13,14 +13,15 @@
               @change="searchSelect"
             )
               //- v-btn(value="all" text active-class="active-button" :class="buttonGroupClasses").mr-3.tight-font all
-              v-btn(value="doctor" text active-class="active-button" :class="buttonGroupClasses").mr-3.tight-font.rounded-pill doctor
-              v-btn(value="clinic" text active-class="active-button" :class="buttonGroupClasses").mr-3.tight-font.rounded-pill clinics
-              v-btn(value="location" text active-class="active-button" :class="buttonGroupClasses").mr-3.tight-font.rounded-pill location
+              v-btn(value="account" text active-class="active-button" :class="buttonGroupClasses").mr-3.tight-font.rounded-pill doctor
+              v-btn(value="organization" text active-class="active-button" :class="buttonGroupClasses").mr-3.tight-font.rounded-pill clinics
+              //- v-btn(value="location" text active-class="active-button" :class="buttonGroupClasses").mr-3.tight-font.rounded-pill location
           v-spacer
-          v-col
-            v-row(align="center" justify="end")
-              span.font-weight-bold.font-14 USE MY LOCATION
-              v-switch(v-model="locationSwitch" inset).ml-3
+          //- TODO: Location
+          //- v-col
+          //-   v-row(align="center" justify="end")
+          //-     span.font-weight-bold.font-14 USE MY LOCATION
+          //-     v-switch(v-model="locationSwitch" inset).ml-3
         v-row
           v-col.pa-0
             v-text-field(
@@ -36,17 +37,17 @@
             ).rounded-bl-lg.rounded-tl-lg
               template(v-slot:prepend-inner)
                 v-icon(small).mx-3 mdi-magnify
-          v-col(cols="1").pa-0
-            v-btn(
-              v-if="!$isMobile"
-              small
-              block
-              tile
-              color="primary"
-              @click="onVoiceSearch"
-              :height="$isMobile ? '40px' : '60px'"
-            ).elevation-0.rounded-br-lg.rounded-tr-lg
-              v-icon mdi-microphone-outline
+          //- v-col(cols="1").pa-0
+          //-   v-btn(
+          //-     v-if="!$isMobile"
+          //-     small
+          //-     block
+          //-     tile
+          //-     color="primary"
+          //-     @click="onVoiceSearch"
+          //-     :height="$isMobile ? '40px' : '60px'"
+          //-   ).elevation-0.rounded-br-lg.rounded-tr-lg
+          //-     v-icon mdi-microphone-outline
         v-row(v-if="searchObject.specialties.length >= 1").mt-n3
           v-btn(
             color="primary"
@@ -154,6 +155,10 @@ export default {
     //   type: Boolean,
     //   default: false,
     // },
+    value: {
+      type: String,
+      default: 'account',
+    },
     locationSwitch: {
       type: Boolean,
       default: false,
@@ -163,7 +168,6 @@ export default {
     // this.cities = NCR_CITIES;
     this.buttonGroupClasses = ['font-weight-semibold', 'font-16', 'black--text'];
     return {
-      selectedMode: '',
       deleteTag: {
         removeIndex: undefined,
       },
@@ -188,25 +192,20 @@ export default {
   computed: {
     searchPlaceholder () {
       switch (this.searchObject.mode) {
-        case 'doctor': return 'Search for doctors';
-        case 'clinic': return 'Search for clinics';
+        case 'account': return 'Search for doctors';
+        case 'organization': return 'Search for clinics';
         case 'location': return 'Search by location';
         default: return 'Search for clinics, doctors, and services';
       };
     },
-  },
-  watch: {
-    // docSuggestionsSearchQuery (val) {
-    //   this.searchFacility(true);
-    // },
-    // docSearchLocation (val) {
-    //   if (!val && !this.docSearchQuery) {
-    //     this.clearSearch();
-    //     return;
-    //   }
-    //   if (this.showSuggestions && !this.$isMobile) this.handleSuggestions();
-    //   this.searchFacility();
-    // },
+    selectedMode: {
+      get () {
+        return this.value;
+      },
+      set (val) {
+        this.$emit('input', val);
+      },
+    },
   },
   methods: {
     searchSelect () {
@@ -242,84 +241,6 @@ export default {
     onVoiceSearch () {
       //
     },
-    // fullName () {
-    //   return this.name.firstName;
-    // },
-    // searchDebounce () {
-    //   if (this.requireAction) {
-    //     return;
-    //   };
-    //   this.searchFacility();
-    // },
-    // handleSuggestions (searchText) {
-    //   if (!searchText) return;
-    //   this.docSearchQuery = searchText;
-    //   this.searchSuggestions(searchText);
-    // },
-    // async searchSuggestions (searchText) {
-    //   // - If location is selected, only places within that location will be suggested
-    //   const query = {
-    //     searchText,
-    //     limit: 10,
-    //     type: 'diagnostic-center',
-    //   };
-    //     const { items } = await fetchdocanizations(this.$sdk, query);
-    //     this.doctorSuggestions = items || [];
-    //   },
-    //   async searchDoctors () {
-    //   const { page, itemsPerPage } = this.doctorsTablePaginationOptions;
-    //   const query = {
-    //     ...this.searchObject,
-    //   };
-    //   if (page && itemsPerPage) {
-    //     query.limit = itemsPerPage;
-    //     query.skip = query.limit * (page - 1);
-    //   }
-    //   const { data } = await searchDoctors(query);
-    //   this.doctorsSuggestions = data.map(x => x.name.firstName + ' ' + x.name.lastName);
-    // },
-    // searchFacility (forceSearch = false) {
-    //   if (this.requireAction && !forceSearch) return;
-    //   if (!this.docSearchQuery && !this.docSearchLocation) {
-    //     this.clearSearch();
-    //     return;
-    //   }
-    //   const suggestion = this.mapSuggestion();
-    //   this.$emit('search-doctors', {
-    //     searchText: this.docSuggestionsSearchQuery,
-    //     locationText: this.docSearchLocation,
-    //     ...suggestion && { suggestion },
-    //   });
-    // },
-    // searchFacilityBtn (forceSearch = false) {
-    //   if (this.requireAction && !forceSearch) return;
-    //   if (!this.docSearchQuery && !this.docSearchLocation) {
-    //     this.clearSearch();
-    //     return;
-    //   }
-    //   const suggestion = this.mapSuggestion();
-    //   this.$emit('search-doctors', {
-    //     searchText: this.docSearchQuery,
-    //     locationText: this.docSearchLocation,
-    //     ...suggestion && { suggestion },
-    //   });
-    // },
-    // clearSearch () {
-    //   this.docSearchQuery = '';
-    //   this.$emit('clear-doctors');
-    // },
-    // onSelectDoctor (doctor) {
-    //   this.selectedSuggestion = doctor;
-    // },
-    // // - Check if suggestion satisfies location
-    // mapSuggestion () {
-    //   if (!this.docSearchLocation) return null;
-    //   const city = this.selectedSuggestion?.address?.city;
-    //   if (!city) return null;
-    //   return city.includes(this.docSearchLocation)
-    //     ? this.selectedSuggestion?.id
-    //     : null;
-    // },
   },
 };
 </script>
