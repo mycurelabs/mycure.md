@@ -9,7 +9,6 @@
 
 <script>
 const healthFacilityTypeMap = {
-  booking: 'doctor',
   'doctors-clinics': 'doctor',
   clinics: 'clinic',
   diagnostics: 'diagnostic',
@@ -34,6 +33,10 @@ export default {
       type: String,
       default: null,
     },
+    queryOps: {
+      type: Object,
+      default: null,
+    },
   },
   methods: {
     click () {
@@ -51,7 +54,14 @@ export default {
       }
       if (routeName === 'booking') {
         route.query.from = 'booking';
+        // - This was done since booking is a special case in health facility types
+        if (this.queryOps?.type) route.query.type = this.queryOps.type;
       }
+      // Pricing pre-seletion
+      if (this.queryOps?.plan) route.query.plan = this.queryOps.plan;
+
+      // - Flag for trial
+      if (this.queryOps?.trial) route.query.trial = this.queryOps.trial;
       this.$router.push(route);
     },
   },

@@ -7,8 +7,7 @@
       title="Bring Out the Hero in You"
       meta-title="MYCURE Doctor"
       image="Doc USP"
-      :image-width="!$isMobile ? '1920px' : '300px' "
-      :image-height="!$isMobile ? '1080px' : '165.8px' "
+      image-width="90%"
       custom-image-path="doctors-clinics/"
       image-align="right"
       btn-text="Get Started Free"
@@ -22,13 +21,11 @@
     //- 2nd panel
     div.grey-bg.mx-n3
       features(
-        title="Your Practice. Your Call."
+        title="Can your patients easily find and book a consultation with you?"
+        :title-col-size="11"
         :description="featuresDescription"
         :items="features"
-        :icon-container-col-size="$isWideScreen ? '6' : '8'"
         image-dir="doctors-clinics/"
-        :image-width="$isWideScreen ? '89px' : '77px'"
-        :image-height="$isWideScreen ? '89px' : '77px'"
       )
     //- 3rd to 5th panels
     generic-media-panel(
@@ -48,31 +45,25 @@
     )
       //- Check list
       template(slot="additional-content")
-        div.my-10
-          v-row(
-            v-for="(item, i) in sixthPanel.list"
-            :key="item"
-            dense
-          )
-            v-col(cols="2" sm="1" md="1").pr-2.pt-2
-              div(class="text-center")
-                img(
-                  src="~/assets/images/mycure-check.png"
-                  alt="Check icon"
-                  :width="!$isWideScreen ? '20' : '25'"
-                  :height="!$isWideScreen ? '20' : '25'"
-                )
-            v-col(cols="10" sm="11" md="11")
-              span(:class="descriptionClasses") {{ item }}
+        template(v-for="(item, i) in sixthPanel.list")
+          v-row(dense align="center").my-2
+            img(
+              src="~/assets/images/mycure-check.png"
+              alt="Check icon"
+              :width="$isWideScreen ? '30' : '20'"
+              :height="$isWideScreen ? '30' : '20'"
+            )
+            span(:class="[descriptionClasses, ($isMobile ? 'ml-2' : ($isRegularScreen ? 'ml-3' : 'ml-4'))]") {{ item }}
+        div.mb-10
         div(:class="{ 'text-center': $isMobile }")
           signup-button(
             depressed
             rounded
-            :x-large="$isWideScreen"
-            :large="!$isWideScreen"
+            width="228px"
+            height="59px"
             color="success"
-          ).text-none.mc-button-set-1
-            span Get Started Free
+          ).text-none
+            span.generic-button-text Get Started Free
             v-icon(small right) mdi-arrow-right
     //- 7th panel
     div.grey-bg.mx-n3
@@ -86,20 +77,16 @@
         hide-btn
       )
         template(slot="additional-content")
-          v-row(
-            v-for="(item, i) in eightPanel.list"
-            :key="i"
-            dense
-          )
-            v-col(cols="2" sm="1" md="1").pr-2.pt-2
-              v-icon(color="white") mdi-checkbox-marked-circle
-            v-col(cols="10" sm="5" md="11")
-              span(:class="eightPanelContentClasses") {{ item }}
+          template(v-for="item in eightPanel.list")
+            v-row(dense align="center").my-2
+              v-icon(color="white" :large="$isWideScreen") mdi-checkbox-marked-circle
+              span(:class="[eightPanelContentClasses, ($isMobile ? 'ml-2' : ($isRegularScreen ? 'ml-3' : 'ml-4'))]") {{ item }}
     //- 9th panel
     think-long-term
     v-divider.divider
     //- 10th panel
     pricing(
+      center-items
       type="doctor"
       title="Start free and only pay as you grow"
       :column-bindings="{ cols: '12', md: '4', xl: '3'}"
@@ -130,7 +117,7 @@ export default {
   data () {
     // Panel content
     this.uspDescription = 'Designed for modern doctors, MYCURE lets you focus on what you do best — caring for your patients.  MYCURE organizes your daily tasks to make your practice more simple, secure, and efficient.';
-    this.featuresDescription = 'Use the tools that work best for you. Everything you need is here. It’s FREE!';
+    this.featuresDescription = 'Use the tools that work best for you. Everything you need is here from task management to data compliance. It’s FREE!';
     this.features = [
       {
         title: 'Digital Records',

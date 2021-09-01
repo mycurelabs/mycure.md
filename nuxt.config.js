@@ -47,6 +47,7 @@ export default {
     { src: '~/plugins/vue-observe-visibility.js', mode: 'client' },
     { src: '~/plugins/main.js', mode: 'client' },
     { src: '~/plugins/mc-btn', mode: 'client' },
+    { src: '~/plugins/mc-image-viewer', mode: 'client' },
     { src: '~/plugins/vue-carousel.js', mode: 'client' },
     { src: '~plugins/crisp.js', mode: 'client' },
     { src: '~plugins/amplitude.js', mode: 'client' },

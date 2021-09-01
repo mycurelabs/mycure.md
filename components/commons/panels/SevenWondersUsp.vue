@@ -34,10 +34,11 @@
                 signup-button(
                   depressed
                   rounded
-                  :large="!$isWideScreen"
-                  :x-large="$isWideScreen"
+                  width="228px"
+                  height="59px"
                   :color="btnColor"
-                ).text-none.letter-spacing-normal.mc-button-set-1 {{ btnText }}
+                ).text-none
+                  span.generic-button-text {{ btnText }}
 </template>
 
 <script>

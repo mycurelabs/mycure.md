@@ -1122,6 +1122,13 @@
     "@babel/helper-validator-identifier" "^7.14.0"
     to-fast-properties "^2.0.0"
 
+"@bachdgvn/vue-otp-input@^1.0.8":
+  version "1.0.8"
+  resolved "https://registry.yarnpkg.com/@bachdgvn/vue-otp-input/-/vue-otp-input-1.0.8.tgz#e870f222170902ad9b39177949735990f36e15ac"
+  integrity sha512-yZJD3ONjwEfwrgvP1M+aMYK8VirMzsU4mUihz0SQokda4KX7zFPiWMUP0JNYvpomkrhLMXvFQaA+DsTmrfHSUg==
+  dependencies:
+    vue "^2.5.22"
+
 "@bcoe/v8-coverage@^0.2.3":
   version "0.2.3"
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
@@ -12070,6 +12077,11 @@ vue@^2.5.17, vue@^2.6.10, vue@^2.6.12:
   version "2.6.12"
   resolved "https://registry.yarnpkg.com/vue/-/vue-2.6.12.tgz#f5ebd4fa6bd2869403e29a896aed4904456c9123"
   integrity sha512-uhmLFETqPPNyuLLbsKz6ioJ4q7AZHzD8ZVFNATNyICSZouqP2Sz0rotWQC8UNBF6VGSCs5abnKJoStA6JbCbfg==
+
+vue@^2.5.22:
+  version "2.6.14"
+  resolved "https://registry.yarnpkg.com/vue/-/vue-2.6.14.tgz#e51aa5250250d569a3fbad3a8a5a687d6036e235"
+  integrity sha512-x2284lgYvjOMj3Za7kqzRcUSxBboHqtgRE2zlos1qWaOye5yUmHn42LB1250NJBLRwEcdrB0JRwyPTEPhfQjiQ==
 
 vuetify-loader@^1.6.0:
   version "1.7.2"

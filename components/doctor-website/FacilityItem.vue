@@ -42,17 +42,17 @@
         br
     div.card-actions.px-3.pb-3
       //- Online Consult
-      v-btn(
-        color="accent"
-        target="_blank"
-        rel="noopener noreferrer"
-        block
-        large
-        :disabled="!canOnlineBook"
-        :href="telehealthURL"
-      ).my-4.text-none.rounded-lg
-        v-icon(left) mdi-stethoscope
-        b Teleconsult
+      //- v-btn(
+      //-   color="accent"
+      //-   target="_blank"
+      //-   rel="noopener noreferrer"
+      //-   block
+      //-   large
+      //-   :disabled="!canOnlineBook"
+      //-   :href="telehealthURL"
+      //- ).my-4.text-none.rounded-lg
+      //-   v-icon(left) mdi-stethoscope
+      //-   b Teleconsult
 
       //- Physical Visit
       v-btn(
@@ -65,7 +65,7 @@
         :href="visitURL"
       ).text-none.rounded-lg
         v-icon(left) mdi-calendar
-        b Clinic Visit
+        b Visit Clinic
 </template>
 
 <script>
@@ -190,54 +190,27 @@ export default {
   },
   watch: {
     clinicSchedulesExpanded (val) {
-      // Sort the schedules
-      let useMfSchedule = false;
       this.fullSchedules = this.clinic?.$populated?.doctorSchedules  || this.clinic?.doctorSchedules || []; // eslint-disable-line
-      if (!this.fullSchedules?.length && this.clinic?.mf_schedule?.length) {
-        this.fullSchedules = this.clinic.mf_schedule;
-        useMfSchedule = true;
-      }
 
       if (!this.fullSchedules?.length) {
         this.clinicSchedules = [];
         return;
       }
-      let groupedSchedules = [];
-
-      // - Non mf schedule usage
-      if (!useMfSchedule) {
-        groupedSchedules = uniqWith(this.fullSchedules
-          .map((schedule) => {
-            const { day, order } = this.days.find(day => day.order === schedule.day);
-            return {
-              day,
-              order,
-              ...schedule,
-            };
-          })
-          .sort((a, b) => a.day !== b.day ? a.day - b.day : a.startTime - b.startTime) || []
-        , (a, b) => a.day === b.day && a.startTime === b.startTime);
-        if (!val && groupedSchedules && groupedSchedules.length >= 3) {
-          this.clinicSchedules = groupedSchedules.slice(0, 3);
-          return;
-        }
-      } else {
-        // - Mf schedule usage
-        groupedSchedules = uniqWith(this.fullSchedules
-          .map((schedule) => {
-            const { day, order } = this.days.find(day => day.day === schedule.day);
-            return {
-              day,
-              order,
-              ...schedule,
-            };
-          })
-          .sort((a, b) => a.order !== b.order ? a.order - b.order : a.opening - b.opening) || []
-        , (a, b) => a.order === b.order && a.opening === b.opening);
-        if (!val && groupedSchedules && groupedSchedules.length >= 3) {
-          this.clinicSchedules = groupedSchedules.slice(0, 3);
-          return;
-        }
+      // Organize the schedules
+      const groupedSchedules = uniqWith(this.fullSchedules
+        .map((schedule) => {
+          const { day, order } = this.days.find(day => day.order === schedule.day);
+          return {
+            day,
+            order,
+            ...schedule,
+          };
+        })
+        .sort((a, b) => a.day !== b.day ? a.day - b.day : a.startTime - b.startTime) || []
+      , (a, b) => a.day === b.day && a.startTime === b.startTime);
+      if (!val && groupedSchedules && groupedSchedules.length >= 3) {
+        this.clinicSchedules = groupedSchedules.slice(0, 3);
+        return;
       }
       this.clinicSchedules = groupedSchedules;
     },

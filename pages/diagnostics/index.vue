@@ -21,7 +21,6 @@
         title="Embrace the power to choose"
         description="Don’t settle for anything less. Customize your experience based on the tools you need. MYCURE is designed for diagnostic labs and imaging centers of all sizes."
         :items="features"
-        icon-container-col-size="8"
         image-dir="diagnostics/"
         panel-height="70vh"
       )
@@ -38,14 +37,13 @@
       template(slot="additional-content" v-if="info.list")
         template(v-for="(item, i) in info.list")
           v-row(dense)
-            v-col(cols="2" sm="1" md="1").pr-2.pt-2
-              div(class="text-center")
-                img(
-                  src="~/assets/images/mycure-check.png"
-                  alt="Check icon"
-                  :width="!$isWideScreen ? '20' : '25'"
-                  :height="!$isWideScreen ? '20' : '25'"
-                )
+            v-col(cols="2" sm="1" md="1"  :class="$isWideScreen ? 'pt-3' : ( $isRegularScreen ? 'pt-2' : 'pt-1')").pr-2
+              img(
+                src="~/assets/images/mycure-check.png"
+                alt="Check icon"
+                :width="$isWideScreen ? '30' : '20'"
+                :height="$isWideScreen ? '30' : '20'"
+              )
             v-col(cols="10" sm="11" md="11")
               span.mc-content-set-1.font-open-sans.font-gray {{ item }}
     //- 5th panel
@@ -85,16 +83,16 @@
           rounded
           color="success"
           event-label="signup"
-          :large="!$isWideScreen"
-          :x-large="$isWideScreen"
-          :class="{'font-s': !$isMobile}"
+          width="228px"
+          height="59px"
         ).text-none
           v-icon(left) mdi-web
-          span Create my website
+          span.generic-button-text Create my website
     v-divider(v-if="$isMobile").divider
     //- 7th panel
     generic-media-panel(
       :content="cmsPanel"
+      align="center"
     )
       template(slot="cta-button")
         div(:class="{'text-center': $isMobile}")
@@ -104,12 +102,11 @@
             event-label="clinics-info"
             color="success"
             :to="{ name: 'clinics' }"
-            :large="!$isWideScreen"
-            :x-large="$isWideScreen"
-            :class="{'font-s': !$isMobile}"
+            width="228px"
+            height="59px"
           ).text-none
-            v-icon(left :large="$isWideScreen") mdi-information-outline
-            span  Learn more
+            v-icon(left)  mdi-information-outline
+            span.generic-button-text  Learn more
     //- 8th panel
     think-long-term
     //- 9th panel
@@ -119,6 +116,7 @@
       title="Take the first step today"
       description="Choose the best plan for your diagnostic center. Only pay for what you need."
       type="diagnostic"
+      has-trial-option
     ).mb-n3
 </template>
 

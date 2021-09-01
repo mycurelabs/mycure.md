@@ -19,57 +19,68 @@
           br
           h1 {{ isPaymentSuccessful ? 'Your payment was successful!' : 'Verify it\'s you' }}
           p Enter the code sent to your mobile number: +{{step1Data.countryCallingCode}}{{step1Data.mobileNo}}
-          v-row(align="center" :class="{'mx-1': $isMobile}" no-gutters).mb-5
-            v-col.grow
-              input(
-                v-model="firstDigit"
-                type="number"
-                step="1"
-                max="9"
-                @keypress="checkNumberInput($event, firstDigit)"
-              )#firstDigit.single-field
-              input(
-                v-model="secondDigit"
-                type="number"
-                step="1"
-                max="9"
-                v-on:keyup.delete="onDelete(2)"
-                @keypress="checkNumberInput($event, secondDigit)"
-              )#secondDigit.single-field
-              input(
-                v-model="thirdDigit"
-                type="number"
-                step="1"
-                max="9"
-                v-on:keyup.delete="onDelete(3)"
-                @keypress="checkNumberInput($event, thirdDigit)"
-              )#thirdDigit.single-field
-              input(
-                v-model="fourthDigit"
-                type="number"
-                step="1"
-                max="9"
-                v-on:keyup.delete="onDelete(4)"
-                @keypress="checkNumberInput($event, fourthDigit)"
-              )#fourthDigit.single-field
-              input(
-                v-model="fifthDigit"
-                type="number"
-                step="1"
-                max="9"
-                v-on:keyup.delete="onDelete(5)"
-                @keypress="checkNumberInput($event, fifthDigit)"
-              )#fifthDigit.single-field
-              input(
-                v-model="sixthDigit"
-                type="number"
-                step="1"
-                max="9"
-                v-on:keyup.delete="onDelete(6)"
-                @keypress="checkNumberInput($event, sixthDigit)"
-              )#sixthDigit.single-field
+          //- v-row(align="center" :class="{'mx-1': $isMobile}" no-gutters).mb-5
+          //-   v-col.grow
+          //-     input(
+          //-       v-model="firstDigit"
+          //-       type="number"
+          //-       step="1"
+          //-       max="9"
+          //-       @keypress="checkNumberInput($event, firstDigit)"
+          //-     )#firstDigit.single-field
+          //-     input(
+          //-       v-model="secondDigit"
+          //-       type="number"
+          //-       step="1"
+          //-       max="9"
+          //-       v-on:keyup.delete="onDelete(2)"
+          //-       @keypress="checkNumberInput($event, secondDigit)"
+          //-     )#secondDigit.single-field
+          //-     input(
+          //-       v-model="thirdDigit"
+          //-       type="number"
+          //-       step="1"
+          //-       max="9"
+          //-       v-on:keyup.delete="onDelete(3)"
+          //-       @keypress="checkNumberInput($event, thirdDigit)"
+          //-     )#thirdDigit.single-field
+          //-     input(
+          //-       v-model="fourthDigit"
+          //-       type="number"
+          //-       step="1"
+          //-       max="9"
+          //-       v-on:keyup.delete="onDelete(4)"
+          //-       @keypress="checkNumberInput($event, fourthDigit)"
+          //-     )#fourthDigit.single-field
+          //-     input(
+          //-       v-model="fifthDigit"
+          //-       type="number"
+          //-       step="1"
+          //-       max="9"
+          //-       v-on:keyup.delete="onDelete(5)"
+          //-       @keypress="checkNumberInput($event, fifthDigit)"
+          //-     )#fifthDigit.single-field
+          //-     input(
+          //-       v-model="sixthDigit"
+          //-       type="number"
+          //-       step="1"
+          //-       max="9"
+          //-       v-on:keyup.delete="onDelete(6)"
+          //-       @keypress="checkNumberInput($event, sixthDigit)"
+          //-     )#sixthDigit.single-field
             v-col(v-if="loading").shrink
               v-progress-circular(indeterminate size="15" color="primary")
+          v-row.my-5
+            div.d-flex
+              v-otp-input(
+                ref="otpInput"
+                separator=""
+                input-classes="otp-input"
+                :num-inputs="6"
+                :should-auto-focus="true"
+                :is-input-num="true"
+                @on-complete="onOTPComplete($event)"
+              )
           p Didn't get the code?
           v-btn(
             style="width: 150px;"
@@ -171,38 +182,38 @@ export default {
     },
   },
   watch: {
-    firstDigit (val) {
-      if (val?.length === 1) {
-        document.getElementById('secondDigit') && document.getElementById('secondDigit').focus();
-      }
-    },
-    secondDigit (val) {
-      if (val?.length === 1) {
-        document.getElementById('thirdDigit') && document.getElementById('thirdDigit').focus();
-      }
-    },
-    thirdDigit (val) {
-      if (val?.length === 1) {
-        document.getElementById('fourthDigit') && document.getElementById('fourthDigit').focus();
-      }
-    },
-    fourthDigit (val) {
-      if (val?.length === 1) {
-        document.getElementById('fifthDigit') && document.getElementById('fifthDigit').focus();
-      }
-    },
-    fifthDigit (val) {
-      if (val?.length === 1) {
-        document.getElementById('sixthDigit') && document.getElementById('sixthDigit').focus();
-      }
-    },
-    sixthDigit (val) {
-      if (val?.length === 1) {
-        const code = `${this.firstDigit}${this.secondDigit}${this.thirdDigit}${this.fourthDigit}${this.fifthDigit}${val}`;
-        this.otp = code;
-        this.submit();
-      }
-    },
+    // firstDigit (val) {
+    //   if (val?.length === 1) {
+    //     document.getElementById('secondDigit') && document.getElementById('secondDigit').focus();
+    //   }
+    // },
+    // secondDigit (val) {
+    //   if (val?.length === 1) {
+    //     document.getElementById('thirdDigit') && document.getElementById('thirdDigit').focus();
+    //   }
+    // },
+    // thirdDigit (val) {
+    //   if (val?.length === 1) {
+    //     document.getElementById('fourthDigit') && document.getElementById('fourthDigit').focus();
+    //   }
+    // },
+    // fourthDigit (val) {
+    //   if (val?.length === 1) {
+    //     document.getElementById('fifthDigit') && document.getElementById('fifthDigit').focus();
+    //   }
+    // },
+    // fifthDigit (val) {
+    //   if (val?.length === 1) {
+    //     document.getElementById('sixthDigit') && document.getElementById('sixthDigit').focus();
+    //   }
+    // },
+    // sixthDigit (val) {
+    //   if (val?.length === 1) {
+    //     const code = `${this.firstDigit}${this.secondDigit}${this.thirdDigit}${this.fourthDigit}${this.fifthDigit}${val}`;
+    //     this.otp = code;
+    //     this.submit();
+    //   }
+    // },
   },
   async created () {
     await this.init();
@@ -210,9 +221,9 @@ export default {
   methods: {
     init () {
       if (process.browser) {
-        this.$nextTick(() => {
-          document.getElementById('firstDigit') && document.getElementById('firstDigit').focus();
-        });
+        // this.$nextTick(() => {
+        //   document.getElementById('firstDigit') && document.getElementById('firstDigit').focus();
+        // });
 
         const step1Data = JSON.parse(localStorage.getItem('facility:step1:model'));
         if (!step1Data?.email) {
@@ -231,6 +242,11 @@ export default {
           this.startCountDown();
         }
       }
+    },
+    // - Test
+    onOTPComplete (otp) {
+      this.otp = `${otp}`;
+      this.submit();
     },
     // Verify mobile no and signup
     async submit () {
@@ -286,7 +302,7 @@ export default {
           email: this.step1Data.email,
           password: this.step1Data.password,
         });
-        process.browser && localStorage.clear();
+        localStorage.clear();
         window.location = `${process.env.CMS_URL}?token=${accessToken}`;
       } catch (error) {
         console.error(error);

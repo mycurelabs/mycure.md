@@ -12,10 +12,11 @@
               color="primary"
               depressed
               rounded
-              :large="$isRegularScreen"
-              :x-large="$isWideScreen"
+              width="228px"
+              height="59px"
               @click="viewDemo"
-            ).text-none.font-s View live demo
+            ).text-none
+              span.generic-button-text View live demo
           v-col(cols="12").text-center.ml-n10
             picture-source(
               image="MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-A-online-consult"
@@ -32,11 +33,14 @@
             :offset-md="key === 1 ? 2 : null"
             :key="key"
           )
-            div.d-flex
-              img(v-lazy="require(`~/assets/images/telehealth/${data.headerIcon}`)" width="45px" :height="$isMobile? '57px' : '45px'" :class="{'pt-3': $isMobile}")
-              h1(:class="headerClasses").ml-3 {{ data.header }}
-            br
-            p(:class="contentClasses") {{ data.description }}
+            v-row(justify="center")
+              v-col(align="center" :cols="$isMobile ? '12' : '2'").pb-0
+                div.text-center.pt-1
+                  img(v-lazy="require(`~/assets/images/telehealth/${data.headerIcon}`)" :width="$isWideScreen ? '80px' : '50px'" :height="$isWideScreen ? '80px' : '50px'")
+              v-col
+                h1(:class="headerClasses") {{ data.header }}
+                br
+                p(:class="contentClasses") {{ data.description }}
 </template>
 
 <script>

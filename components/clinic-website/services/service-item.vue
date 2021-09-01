@@ -92,8 +92,8 @@
       v-card
         v-card-text
           service-schedules(
+            non-mf-schedule
             :items="groupedSchedules"
-            :non-mf-schedule="nonMfSchedule"
           )
 </template>
 
@@ -159,10 +159,10 @@ export default {
     price () {
       return this.item?.price;
     },
-    nonMfSchedule () {
-      // - Doctor schedules automatically do not use mf_schedule
-      return this.item?.nonMfSchedule || this.isDoctor;
-    },
+    // nonMfSchedule () {
+    //   // - Doctor schedules automatically do not use mf_schedule
+    //   return this.item?.nonMfSchedule || this.isDoctor;
+    // },
     fullSchedules () {
       return this.item?.scheduleData || this.item?.schedules || [];
     },
@@ -193,12 +193,9 @@ export default {
       const timeNow = format(Date.now(), 'HH:mm');
 
       const availableNow = this.todaySchedules.find((schedule) => {
-        const opening = this.nonMfSchedule ? schedule.startTime : schedule.opening;
-        const closing = this.nonMfSchedule ? schedule.endTime : schedule.closing;
-        const openingHour = format(opening, 'HH:mm');
-        const closingHour = format(closing, 'HH:mm');
-
-        return timeNow >= openingHour && timeNow <= closingHour;
+        const startTime = format(schedule.startTime, 'HH:mm');
+        const endTime = format(schedule.endTime, 'HH:mm');
+        return timeNow >= startTime && timeNow <= endTime;
       });
 
       return availableNow;
@@ -234,27 +231,23 @@ export default {
   methods: {
     formatTodaySchedule (schedule) {
       if (!schedule) return 'Unavailable at this hour';
-      if (this.nonMfSchedule) {
-        const today = schedule.day;
-        const day = this.days.find(day => day.value === today);
-        const times = `${format(schedule.startTime, 'hh:mm A')} - ${format(schedule.endTime, 'hh:mm A')}`;
-        return `${day?.text} (${times})`;
-      }
-      const day = schedule.day;
-      const times = `${format(schedule.opening, 'hh:mm A')} - ${format(schedule.closing, 'hh:mm A')}`;
-      return `${day} (${times})`;
+      const today = schedule.day;
+      const day = this.days.find(day => day.value === today);
+      const times = `${format(schedule.startTime, 'hh:mm A')} - ${format(schedule.endTime, 'hh:mm A')}`;
+      return `${day?.text} (${times})`;
+      // const day = schedule.day;
+      // const times = `${format(schedule.opening, 'hh:mm A')} - ${format(schedule.closing, 'hh:mm A')}`;
+      // return `${day} (${times})`;
     },
     formatIndividualSchedule (schedule) {
-      if (this.nonMfSchedule) {
-        const currentDay = schedule.day;
-        const day = this.days.find(day => day.value === currentDay) || '';
-        return `${day.text} (${format(schedule.startTime, 'hh:mm A')} - ${format(schedule.endTime, 'hh:mm A')})`;
-      }
-      return `${schedule.day} (${format(schedule.opening, 'hh:mm A')} - ${format(schedule.closing, 'hh:mm A')})`;
+      const currentDay = schedule.day;
+      const day = this.days.find(day => day.value === currentDay) || '';
+      return `${day.text} (${format(schedule.startTime, 'hh:mm A')} - ${format(schedule.endTime, 'hh:mm A')})`;
+      // return `${schedule.day} (${format(schedule.opening, 'hh:mm A')} - ${format(schedule.closing, 'hh:mm A')})`;
     },
     formatDay (day) {
-      if (this.nonMfSchedule) return this.days.find(item => item.value === day)?.text || '';
-      return day;
+      return this.days?.find(item => item.value === day)?.text || '';
+      // return day;
     },
   },
 };

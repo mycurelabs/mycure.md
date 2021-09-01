@@ -101,10 +101,9 @@
 <script>
 import isEmpty from 'lodash/isEmpty';
 import intersection from 'lodash/intersection';
-import uniq from 'lodash/uniq';
+// import uniq from 'lodash/uniq';
 import VueScrollTo from 'vue-scrollto';
 // - utils
-import { getServices } from '~/utils/axios';
 import { getOrganization } from '~/utils/axios/organizations';
 import { formatAddress } from '~/utils/formats';
 import canUseWebp from '~/utils/can-use-webp';
@@ -112,6 +111,7 @@ import headMeta from '~/utils/head-meta';
 import classBinder from '~/utils/class-binder';
 // - services
 import { fetchClinicWebsiteDoctors } from '~/services/organization-members';
+import { fetchScheduleSlots } from '~/services/schedule-slots';
 import {
   fetchClinicServices,
   fetchClinicServiceTypes,
@@ -151,10 +151,8 @@ export default {
     try {
       const clinic = await getOrganization({ id: params.id }, true) || {};
       if (isEmpty(clinic)) redirect('/');
-      const services = await getServices({ facility: params.id });
       return {
         clinic,
-        services,
       };
     } catch (error) {
       console.error(error);
@@ -276,12 +274,10 @@ export default {
     clinicName () {
       return this.clinic?.name || 'MYCURE Clinic';
     },
-    servicesOffered () {
-      return this.services;
-    },
     schedules () {
       return this.clinic?.mf_schedule || []; // eslint-disable-line
     },
+    // - Grouped General clinic schedules
     groupedSchedules () {
       const groupedSchedules = this.schedules
         .map((schedule) => {
@@ -405,17 +401,24 @@ export default {
         this.servicesTotal = total;
 
         /*
-          Checks if there is a specific schedule for the service type, if not then it assigns the clinic's schedule.
-          A flag for mf_schedule formatting is also included for rendering purposes.
+          Checks if there is a specific schedule for the service type
         */
         this.filteredServices = items.map((item) => {
           const { type, subtype } = item;
           const primaryType = subtype || type;
           const schedules = this.serviceSchedules.find(schedule => schedule.type === primaryType);
+
+          // Filter schedules according to section
+          if (item.refSection) {
+            return {
+              ...item,
+              schedules: schedules?.items?.filter(slot => slot.meta?.testSection === item.refSection) || [],
+            };
+          }
           return {
             ...item,
-            nonMfSchedule: !!schedules,
-            schedules: schedules?.items || this.groupedSchedules,
+            // nonMfSchedule: !!schedules,
+            schedules: schedules?.items || [],
           };
         }) || [];
         return { items: this.filteredServices, total: this.servicesTotal };
@@ -431,13 +434,21 @@ export default {
         const typeSchedulesPromises = this.serviceTypes.map(async (type) => {
           const serviceScheduleQuery = {
             organization: this.orgId,
+            meta: {
+              serviceType: ['lab', 'imaging'].includes(type) ? 'diagnostic' : type,
+              ...['lab', 'imaging'].includes(type) && { serviceSubtype: type },
+            },
+            $populate: {
+              providers: {
+                service: 'personal-details',
+                localKey: 'meta.providers',
+                method: 'find',
+                foreignKey: 'id',
+                foreignOps: '$in',
+              },
+            },
           };
-          const serviceTags = [];
-          serviceTags.push(type);
-          if (!isEmpty(serviceTags)) {
-            serviceScheduleQuery.tags = { $in: uniq(serviceTags) };
-          }
-          const data = await this.$sdk.service('schedule-slots').find(serviceScheduleQuery);
+          const data = await fetchScheduleSlots(this.$sdk, serviceScheduleQuery);
           return {
             type,
             items: data.items,

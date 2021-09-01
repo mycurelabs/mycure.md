@@ -18,9 +18,9 @@
               v-img(
                 alt="Mobile health application on Iphone"
                 :src="require(`~/assets/images/home/${feature.image}.${fileExtension}`)"
-                width="588px"
+                :width="$isMobile ? '430px' : '588px'"
               )
-                v-card-title.mt-5
+                v-card-title(:class="$isMobile ? 'pb-1' : 'mt-5' ")
                   v-spacer
                   span(:class="descriptionClasses").white--text.font-open-sans {{ feature.title }}
                   v-spacer

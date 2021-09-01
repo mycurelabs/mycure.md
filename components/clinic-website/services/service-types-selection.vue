@@ -39,9 +39,9 @@ export default {
       { icon: 'mdi-flask-outline', text: 'Laboratory', type: 'diagnostic', value: 'lab' },
       { icon: 'mdi-radiology-box-outline', text: 'Imaging', type: 'diagnostic', value: 'imaging' },
       { icon: 'mdi-package-variant-closed', text: 'PE Packages', type: 'pe', value: 'pe' },
-      { icon: 'mdi-stethoscope', text: 'Doctors', type: 'doctors', value: 'doctors' },
       { icon: 'mdi-pulse', text: 'Procedures', type: 'clinical-procedure', value: 'clinical-procedure' },
       { icon: 'mdi-tooth-outline', text: 'Dental', type: 'dental', value: 'dental' },
+      { icon: 'mdi-stethoscope', text: 'Our Doctors', type: 'doctors', value: 'doctors' },
     ];
     return {};
   },

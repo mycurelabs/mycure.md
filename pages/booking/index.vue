@@ -28,17 +28,18 @@
             rounded
             color="success"
             facility-type="clinic"
-            :x-large="$isWideScreen"
-            :large="!$isWideScreen"
-            :class="buttonClasses"
+            width="228px"
+            height="59px"
           ).text-none
-            span Get Started Free
+            span.generic-button-text Get Started Free
 
     //-3rd panel
     features(
       title="Easy as 1-2-3"
       :items="howItWorksContents"
       image-dir="booking/"
+      icon-container-col-size="12"
+      :each-icon-col="{ cols: 12 }"
     )
       template(slot="description")
         p(:class="howItWorksClass").primary--text.font-weight-semibold How it works?
@@ -61,21 +62,25 @@
     //- 4th panel
     div.grey-bg.mx-n3
       features(
-        :items="thirdPanelContents"
         image-dir="booking/"
+        icon-container-col-size="10"
+        :each-icon-col="{ cols: 12, sm: 10 }"
+        :items="thirdPanelContents"
+        :image-width="acquireIconsSize"
+        :image-height="acquireIconsSize"
       )
         template(slot="title")
-          h2(:class="['primary--text', 'font-weight-semibold', ...titleClasses]") Acquire and Accomodate more Patients
+          h2(:class="['primary--text', 'font-weight-semibold', ...titleClasses]") Acquire and Accommodate more Patients
         template(slot="additional-content")
           v-col(cols="12").text-center.mt-5
             signup-button(
               depressed
               rounded
-              :x-large="$isWideScreen"
-              :large="!$isWideScreen"
+              width="228px"
+              height="59px"
               color="success"
-            ).text-none.font-s
-              span Get Started Free
+            ).text-none
+              span.generic-button-text Get Started Free
     //- 5th panel
     v-container
       v-row(justify="center")
@@ -111,14 +116,15 @@
             br
             v-tabs-items(v-model="websiteType")
               v-tab-item(v-for="(mockup, key) in websiteMockups" :key="key" :value="mockup.value")
-                picture-source(
-                  :image="mockup.image"
-                  :image-alt="`A ${websiteType} website mockup on laptop screen`"
-                  :image-width="$isMobile ? '256px' : ($isRegularScreen ? '756px' : '1156px')"
-                  :image-height="$isMobile ? '192px' : ($isRegularScreen ? '567px' : '867px')"
-                  image-file-extension=".webp"
-                  custom-path="booking/"
-                )
+                div(@click="onClickImage(`${mockup.image}.png`, 'booking/')")
+                  picture-source(
+                    :image="mockup.image"
+                    :image-alt="`A ${websiteType} website mockup on laptop screen`"
+                    :image-width="$isMobile ? '256px' : ($isRegularScreen ? '756px' : '1156px')"
+                    :image-height="$isMobile ? '192px' : ($isRegularScreen ? '567px' : '867px')"
+                    image-file-extension=".webp"
+                    custom-path="booking/"
+                  )
     //- 6th panel
     div.blue-bg.mx-n3
       generic-media-panel(
@@ -134,13 +140,18 @@
               rounded
               color="success"
               facility-type="clinic"
-              :x-large="$isWideScreen"
-              :large="!$isWideScreen"
-              :class="buttonClasses"
+              width="228px"
+              height="59px"
             ).text-none
-              span Get Started Free
+              span.generic-button-text Get Started Free
     //- 7th panel
     plans.mb-n3
+
+    //- Image Viewer
+    mc-image-viewer(
+      v-model="imageViewerDialog"
+      v-bind="imageViewerModel"
+    )
 </template>
 
 <script>
@@ -226,8 +237,12 @@ export default {
       imageAlt: 'Booking a schedule on a phone artwork',
     };
     return {
+      // UI State
       loading: true,
+      imageViewerDialog: false,
       websiteType: 'doctor',
+      // Data
+      imageViewerModel: null,
     };
   },
   head () {
@@ -244,9 +259,9 @@ export default {
         description: 'Without an appointment booking system, healthcare providers find it difficult to organize patient visits resulting to missed opportunities and more time wasted.',
         contentAlign: 'right',
         imageBindings: {
-          image: 'Stakes.png',
-          mobileImage: 'Stakes.png',
-          imageAlt: 'Doctor witha lot of paper work',
+          image: 'Stakes.webp',
+          mobileImage: 'Stakes.webp',
+          imageAlt: 'Doctor with a lot of paper work',
           customPath: 'booking/',
           extensionExclusive: true,
           width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
@@ -268,9 +283,21 @@ export default {
         },
       };
     },
+    acquireIconsSize () {
+      return this.$isMobile ? '77px' : (this.$isRegularScreen ? '110px' : '175px');
+    },
   },
   mounted () {
     this.loading = false;
+  },
+  methods: {
+    onClickImage (image, path) {
+      this.imageViewerModel = {
+        image,
+        customImagePath: path,
+      };
+      this.imageViewerDialog = true;
+    },
   },
 };
 </script>

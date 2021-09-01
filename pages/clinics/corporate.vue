@@ -21,7 +21,7 @@
       image-dir="clinics/corporate/"
       icon-container-col-size="6"
       description="Everyone in your workplace is online. MYCURE helps you monitor their health and safety conveniently through the cloud."
-      :icon-column-bindings="{ cols: 6 }"
+      :icon-column-bindings="{ cols: 5 }"
       :items="features"
     )
       template(slot="title")
@@ -36,9 +36,10 @@
               h3.mc-content-set-1.mb-10.font-weight-semibold.white--text.text-center Easily access and share medical records with them through the MYCURE health portal.
     //- 4th panel
     generic-media-panel(
-      :content="multiplePanel"
-      :title-classes="[...headerClasses, 'primary--text']"
+      align="center"
       hide-btn
+      :content="multiplePanel"
+      :title-classes="headerClasses"
     )
     //- 5th panel
     pricing(
@@ -52,15 +53,15 @@
         v-row(justify="center")
           generic-panel(:row-bindings="{ justify: 'center' }")
             v-col(cols="12").white--text.text-center
-              h2(:class="['white--text', ...headerClasses]").mb-5 Start easy. Take the first step today
+              h2(:class="['white--text', ...headerClasses]").mb-5 Start easy. Take the first step today.
               signup-button(
                 depressed
                 rounded
-                :x-large="$isWideScreen"
-                :large="!$isWideScreen"
+                width="228px"
+                height="59px"
                 color="success"
-              ).text-none.mc-button-set-1
-                span Count me in
+              ).text-none
+                span.generic-button-text Count me in
 </template>
 
 <script>
@@ -116,7 +117,7 @@ export default {
   computed: {
     multiplePanel () {
       return {
-        centerPanelTitle: 'FOR MULTI-BRANCH FACILITIES',
+        superTitle: 'FOR MULTI-BRANCH FACILITIES',
         title: 'One view for multiple locations',
         description: 'All you need is one clean dashboard to see how your clinics are faring. Critical data from your multiple branches are beautifully compiled to show you a comprehensive summary of patient encounters, transactions, sales, expenses and even staff performance.',
         contentAlign: 'left',

@@ -1,7 +1,7 @@
 <template lang="pug">
   v-container(fluid v-if="!loading").white
     //- 1st panel
-    div.mx-n3.syncbase-bg
+    div(:class="$isMobile? 'syncbase-bg-mobile' : 'syncbase-bg'").mx-n3
       v-container
         v-row(justify="center")
           generic-panel
@@ -47,14 +47,16 @@
             v-col(cols="12" md="10").text-center
               h2(:class="headerClasses").mb-10.white--text See it in action. Book a demo today!
               mc-btn(
-                depressed
                 color="success"
                 target="_blank"
                 rel="noopener noreferrer"
-                :large="$isRegularScreen"
-                :x-large="$isWideScreen"
+                width="228px"
+                height="59px"
+                rounded
+                depressed
                 :href="'https://calendly.com/mycure/demo'"
-              ).font-s.text-none Book a Demo
+              ).text-none
+                span.generic-button-text Book a Demo
 </template>
 
 <script>
@@ -147,10 +149,13 @@ export default {
 
 <style scoped>
 .syncbase-bg {
-  width: 100vw;
   background-image: url('../../assets/images/syncbase/Syncbase BG.png');
   background-position: center center;
-  background-size: 100% 100%;
+  background-size: 100%;
+}
+.syncbase-bg-mobile {
+  background-image: url('../../assets/images/syncbase/Syncbase BG.png');
+  background-position: center bottom;
 }
 .grey-bg {
   background-color: #fafafa;

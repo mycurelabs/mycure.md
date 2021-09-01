@@ -40,12 +40,11 @@
           rounded
           color="success"
           event-label="signup"
-          :large="!$isWideScreen"
-          :x-large="$isWideScreen"
-          :class="{'font-s': !$isMobile}"
+          width="228px"
+          height="59px"
         ).text-none
           v-icon(left) mdi-web
-          span Create my website
+          span.generic-button-text Create my website
     //- 6th panel
     div.grey-bg.mx-n3
       features(
@@ -53,9 +52,8 @@
         description="MYCURE has already built-in workflows and processes for different setups."
         :items="features"
         :class="{ 'mt-10': $isMobile, 'mt-5': !$isMobile }"
-        :icon-column-bindings="{ cols: 6, md: 3 }"
+        :icon-column-bindings="{ cols: '6', md: '3' }"
         image-dir="clinics/"
-        icon-container-col-size="10"
         panel-height="70vh"
       )
     //- 7th panel
@@ -65,20 +63,18 @@
         :content="practicingSoloPanel"
         :title-classes="[...headerClasses, 'white--text']"
         hide-btn
-        disable-parent-padding
       )
         div(slot="additional-content" :class="{'text-center': $isMobile}").mt-10
           mc-btn(
             depressed
             rounded
             color="white"
-            :large="!$isWideScreen"
-            :x-large="$isWideScreen"
-            :class="{'font-s': !$isMobile}"
+            width="228px"
+            height="59px"
             :to="{ name: 'doctors-clinics' }"
           ).text-none.primary--text
             v-icon(left) mdi-information-outline
-            span Learn More
+            span.generic-button-text Learn More
     //- 8th panel
     think-long-term
     v-divider.divider
@@ -86,6 +82,7 @@
     call-to-action(:version="2")
     //- 10th panel
     pricing(
+      has-trial-option
       type="clinic"
       title="Take the first step today"
       description="Choose the best plan for your clinic. Only pay for what you need."

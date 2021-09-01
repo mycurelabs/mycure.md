@@ -325,3 +325,18 @@ classBinder(this, {
 .line-height-reducer {
   line-height: 110% !important;
 }
+
+.generic-button-text {
+  font-size: 18px;
+  letter-spacing: 0px;
+}
+
+.otp-input {
+  width: 40px !important;
+  height: 40px;
+  padding: 5px;
+  margin: 0 10px;
+  font-size: 20px;
+  border-bottom: 2px solid black;
+  text-align: center;
+}

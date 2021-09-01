@@ -22,14 +22,12 @@
             h2(:class="headerClasses").mb-5 Create beautiful reports for your clients.
             p(:class="descriptionClasses").mb-10.secondary--text.font-weight-semibold Provide both printed and online copies of their medical exam results without the hassle.
           v-col(cols="12").text-center
+            //- TODO: Add explicit width and height
             picture-source(
-              extension-exclusive
               image-alt="Sample report in MYCURE Clinic Management System"
-              image-file-extension=".png"
+              image-file-extension=".webp"
               custom-path="clinics/ofw/"
-              :image="`Beautiful reports${$isMobile ? '-mobile' : ''}`"
-              :image-width="this.$isMobile ? '276px' : (this.$isRegularScreen ? '945px' : '1445px')"
-              :image-height="this.$isMobile ? '204.36px' : (this.$isRegularScreen ? '692.25px' : '1058.51px')"
+              image="Beautiful reports"
             )
     //- 4th panel
     generic-media-panel(
@@ -43,12 +41,11 @@
               signup-button(
                 depressed
                 rounded
-                :x-large="$isWideScreen"
-                :large="!$isWideScreen"
-                :class="btnClasses"
+                width="228px"
+                height="59px"
                 color="success"
               ).text-none
-                span Sign Up
+                span.generic-button-text Sign Up
     //- 5th panel
     div.grey-bg.mx-n3
       generic-media-panel(
@@ -87,12 +84,12 @@
               depressed
               rounded
               block
-              :x-large="$isWideScreen"
-              :large="!$isWideScreen"
-              :class="btnClasses"
+              width="228px"
+              height="59px"
               color="success"
             ).text-none
-              span Create my website
+              v-icon(left) mdi-web
+              span.generic-button-text Create my website
           //- TODO: Bring back when sample website is available
           //- v-col(cols="12" md="7" lg="6" xl="5")
           //-   mc-btn(
@@ -121,7 +118,7 @@
           generic-panel(:row-bindings="{ justify: 'center' }")
             v-col(cols="12" lg="8" xl="6").white--text.text-center
               h2(:class="['white--text', ...headerClasses]").mb-5 Take the first step today
-              h3(:class="descriptionClasses").mb-5 Start now and get all your questions answered
+              h3(:class="descriptionClasses").mb-5.font-weight-semibold Start now and get all your questions answered
               mc-btn(
                 color="success"
                 depressed

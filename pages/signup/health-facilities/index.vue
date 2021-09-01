@@ -11,7 +11,7 @@
         width="150px"
         height="41.88px"
         @click="$router.push({ name: 'index' })"
-      )
+      ).link-to-home
       v-spacer
       span(:class="{'font-10' : $isMobile}").ml-5.mr-2 Already have an account?&nbsp;&nbsp;
       v-btn(
@@ -139,25 +139,27 @@
               md="6"
               :class="{ 'pa-1': !$isMobile }"
             ).order-md-7.order-sm-7
-              v-select(
-                v-model="facilityType"
-                label="Health Facility Type"
-                item-text="text"
-                item-value="value"
-                outlined
-                :items="facilityTypes"
-                :rules="isRequired"
-                :disabled="loading.form"
-                :error="errorFacilityType"
-                :error-messages="errorMessagesFacilityType"
-                return-object
-              )
-                template(v-slot:item="{ item }")
-                  span {{ item.text }}&nbsp;
-                    v-chip(v-if="item.chip" small color="primary").font-11 {{item.chip}}
-                template(v-slot:selection="{ item }")
-                  span {{ item.text }}&nbsp;
-                    v-chip(v-if="item.chip" small color="primary").font-11 {{item.chip}}
+              div(@click="chooseFacilityTypeDialog = true")
+                v-select(
+                  v-model="facilityType"
+                  label="Health Facility Type"
+                  item-text="text"
+                  item-value="value"
+                  outlined
+                  readonly
+                  append-icon="$dropdown"
+                  :items="facilityTypes"
+                  :rules="isRequired"
+                  :error="errorFacilityType"
+                  :error-messages="errorMessagesFacilityType"
+                  @click:append="chooseFacilityTypeDialog = true"
+                )
+                  template(v-slot:item="{ item }")
+                    span {{ item.text }}&nbsp;
+                      v-chip(v-if="item.chip" small color="primary").font-11 {{item.chip}}
+                  template(v-slot:selection="{ item }")
+                    span {{ item.text }}&nbsp;
+                      v-chip(v-if="item.chip" small color="primary").font-11 {{item.chip}}
               //- Pricing
               //- v-autocomplete(
               //-   v-if="facilityType"
@@ -171,6 +173,13 @@
               //-   :disabled="loading.form"
               //-   return-object
               //- )
+              v-text-field(
+                v-model="invitation"
+                label="Invite Code"
+                outlined
+                hint="6 character invite code"
+                :disabled="loading.form"
+              )
             v-col(
               cols="12"
               md="6"
@@ -258,12 +267,18 @@
               strong +{{ country.callingCodes[0] }}
     //- Email Verification Dialog
     email-verification-dialog(v-model="emailVerificationMessageDialog" :email="email" @confirm="confirmEmailVerification")
+    //- Choose Facility Type Dialog
+    choose-facility-type(
+      v-model="chooseFacilityTypeDialog"
+      :facility-types="facilityTypes"
+      @select="onFacilityTypeSelect($event)"
+    )
 </template>
 
 <script>
 import isEmpty from 'lodash/isEmpty';
+import omit from 'lodash/omit';
 import { parsePhoneNumberFromString } from 'libphonenumber-js';
-// import { get } from 'lodash';
 import {
   getCountries,
   getCountry,
@@ -276,10 +291,15 @@ import {
 } from '~/utils/text-field-rules';
 // import { CLINICS_PRICING } from '~/constants/pricing';
 // import { SUBSCRIPTION_MAPPINGS } from '~/constants/subscription';
+import { DOCTOR_TYPES } from '~/services/subscription-packages';
+import ChooseFacilityType from '~/components/signup/ChooseFacilityType';
 import EmailVerificationDialog from '~/components/signup/EmailVerificationDialog';
+
 const FACILITY_STEP_1_DATA = 'facility:step1:model';
+
 export default {
   components: {
+    ChooseFacilityType,
     EmailVerificationDialog,
   },
   layout: 'user',
@@ -300,6 +320,7 @@ export default {
           types: ['doctor'],
         },
         value: 'doctor',
+        image: 'Doctor',
       },
       {
         text: 'Outpatient Clinic',
@@ -308,6 +329,7 @@ export default {
           types: ['clinic'],
         },
         value: 'clinic',
+        image: 'Outpatient',
       },
       {
         text: 'Diagnostics',
@@ -316,41 +338,8 @@ export default {
           types: ['diagnostic'],
         },
         value: 'diagnostic',
+        image: 'Diagnostics',
       },
-      // {
-      //   text: 'Doctor Booking',
-      //   orgProps: {
-      //     type: 'facility',
-      //     types: ['doctor', 'doctor-booking'],
-      //   },
-      //   value: 'doctor-booking',
-      // },
-      // {
-      //   text: 'Clinic Booking',
-      //   orgProps: {
-      //     type: 'facility',
-      //     types: ['clinic', 'clinic-booking'],
-      //   },
-      //   value: 'clinic-booking',
-      // },
-      // {
-      //   text: 'Doctor Telehealth',
-      //   orgProps: {
-      //     type: 'facility',
-      //     types: ['doctor', 'doctor-telehealth'],
-      //   },
-      //   value: 'doctor-telehealth',
-      //   chip: 'Telehealth',
-      // },
-      // {
-      //   text: 'Clinic Telehealth',
-      //   orgProps: {
-      //     type: 'facility',
-      //     types: ['clinic', 'clinic-telehealth'],
-      //   },
-      //   value: 'clinic-telehealth',
-      //   chip: 'Telehealth',
-      // },
     ];
     this.userRoles = [
       { text: 'Physician/Owner', value: ['doctor', 'admin'] },
@@ -369,6 +358,7 @@ export default {
       facilityType: {},
       subscription: null,
       doc_PRCLicenseNo: null,
+      invitation: null,
       roles: [],
       agree: '',
       // - Stripe
@@ -386,6 +376,7 @@ export default {
         form: false,
       },
       emailVerificationMessageDialog: false,
+      chooseFacilityTypeDialog: false,
       // validity
       valid: false, // Overall form details validity
       isEmailValid: false, // email validity
@@ -463,12 +454,18 @@ export default {
           this.mobileNo = localStorageData.mobileNo;
           this.roles = localStorageData.roles;
           this.doc_PRCLicenseNo = localStorageData.doc_PRCLicenseNo;
+          this.invitation = localStorageData.invitation;
         }
 
         // Query params handling
         if (this.$route.query.email) this.email = this.$route.query.email;
-        if (this.$route.query.type) this.facilityType = this.facilityTypes.find(({ value }) => value === this.$route.query.type);
+        if (this.$route.query.type) {
+          this.facilityType = this.facilityTypes.find(({ value }) => value === this.$route.query.type);
+        } else {
+          this.chooseFacilityTypeDialog = true;
+        }
         if (this.$route.query.subscription) this.subscription = this.$route.query.subscription;
+        if (this.$route.query.referralCode) this.invitation = this.$route.query.referralCode;
       } catch (e) {
         console.error(e);
       } finally {
@@ -500,8 +497,9 @@ export default {
         }
 
         // Map org types and subscription
+        const { orgProps } = this.facilityTypes.find(type => type.value === this.facilityType || this.facilityType?.value);
         const organizationPayload = {
-          ...this.facilityType.orgProps,
+          ...orgProps,
         };
 
         // NOTE: See SignupButton component
@@ -509,16 +507,22 @@ export default {
         // passed to the url before going to
         // signup page.
         if (this.$route.query.from === 'booking') {
-          if (this.$route.query.type === 'doctor') {
+          if (this.$route.query.type === 'doctor' || this.facilityType === 'doctor') {
             organizationPayload.types = [
               'doctor',
               'doctor-booking',
             ];
           }
-          if (this.$route.query.type === 'clinic') {
+          if (this.$route.query.type === 'clinic' || this.facilityType === 'clinic') {
             organizationPayload.types = [
               'clinic',
               'clinic-booking',
+            ];
+          }
+          if (this.$route.query.type === 'diagnostic' || this.facilityType === 'diagnostic') {
+            organizationPayload.types = [
+              'diagnostic',
+              'diagnostic-booking',
             ];
           }
         }
@@ -533,7 +537,11 @@ export default {
           organization: organizationPayload,
           countryCallingCode: this.countryCallingCode,
           roles: this.roles,
+          invitation: this.invitation,
           // skipMobileNoVerification: this.facilityType.value !== 'doctor',
+          // - To be omitted in actual payload
+          ...this.$route.query.trial && { trial: true },
+          organizationType: this.facilityType,
         };
 
         // HOTFIX:
@@ -563,7 +571,7 @@ export default {
           name: 'signup-health-facilities-pricing',
           query: {
             ...this.$route.query,
-            type: this.facilityType?.value,
+            type: this.facilityType?.value || this.$route.query.type,
           },
         });
         // const data = await signupFacility(payload);
@@ -661,6 +669,21 @@ export default {
     confirmEmailVerification () {
       this.saveModel(null);
       this.$router.push({ name: 'signin' });
+    },
+    onFacilityTypeSelect (type) {
+      this.facilityType = type;
+      /*
+        Remove the pricing plan query since you've changed facility type.
+        Remove the trial flag, when doctor has been selected.
+      */
+      this.$router.replace({
+        query: {
+          ...omit(this.$route.query, ['plan', 'trial']),
+          ...(!DOCTOR_TYPES.includes(type) && this.$route.query.trial) && { trial: true },
+          type,
+        },
+      });
+      this.chooseFacilityTypeDialog = false;
     },
   },
 };

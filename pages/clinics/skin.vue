@@ -20,10 +20,10 @@
           rel="noopener noreferrer"
           depressed
           rounded
-          :large="!$isWideScreen"
-          :x-large="$isWideScreen"
-          :class="btnClasses"
-        ).text-none Book a demo today
+          width="228px"
+          height="59px"
+        ).text-none
+          span.generic-button-text Book a demo today
     //- 2nd panel
     div.grey-bg.mx-n3
       features(
@@ -31,7 +31,6 @@
         description="MYCURE designed specialized solutions for skin and aesthetic clinics."
         image-dir="clinics/skin/"
         title-col-size="10"
-        icon-container-col-size="8"
         extension-exclusive
         primary-title
         :items="features"
@@ -41,18 +40,17 @@
       template(slot="content")
         h2(:class="headerClasses" text-align) Beautiful user experience!
         br
-        h2(:class="headerClasses").secondary--text You won't feel like you are at work.
+        h2(:class="subHeaderClasses") You won't feel like you are at work.
       template(slot="cta-button")
         div(:class="{ 'text-center': $isMobile }")
           signup-button(
-            :class="btnClasses"
             depressed
             rounded
-            :x-large="$isWideScreen"
-            :large="!$isWideScreen"
+            width="228px"
+            height="59px"
             color="success"
           ).text-none.font-s
-            span Get Started
+            span.generic-button-text Get Started
 
     //- 4th panel
     generic-media-panel(
@@ -63,35 +61,30 @@
     )
       //- Check list
       template(slot="additional-content")
+        template(v-for="(item, i) in fourthPanel.list")
+          v-row(dense align="center").my-2
+            img(
+              src="~/assets/images/mycure-check.png"
+              alt="Check icon"
+              :width="$isWideScreen ? '30' : '20'"
+              :height="$isWideScreen ? '30' : '20'"
+            )
+            span(:class="[descriptionClasses, ($isMobile ? 'ml-2' : ($isRegularScreen ? 'ml-3' : 'ml-4'))]") {{ item }}
         div.mb-10
-          v-row(
-            v-for="(item, i) in fourthPanel.list"
-            :key="item"
-            dense
-          )
-            v-col(cols="2" sm="1" md="1").pr-2.pt-2
-              div(class="text-center")
-                img(
-                  src="~/assets/images/mycure-check.png"
-                  alt="Check icon"
-                  :width="!$isWideScreen ? '20' : '25'"
-                  :height="!$isWideScreen ? '20' : '25'"
-                )
-            v-col(cols="10" sm="11" md="11")
-              span(:class="descriptionClasses") {{ item }}
         div(:class="{ 'text-center': $isMobile }")
           signup-button(
-            :class="btnClasses"
             depressed
             rounded
-            :x-large="$isWideScreen"
-            :large="!$isWideScreen"
+            width="228px"
+            height="59px"
             color="success"
           ).text-none
-            span Create my website
+            v-icon(left) mdi-web
+            span.generic-button-text Create my website
 
     //- 5th panel
     generic-media-panel(
+      align="center"
       :content="fifthPanel"
       :title-classes="[...headerClasses, 'primary--text']"
     )
@@ -104,10 +97,10 @@
             rel="noopener noreferrer"
             depressed
             rounded
-            :large="!$isWideScreen"
-            :x-large="$isWideScreen"
-            :class="btnClasses"
-          ).text-none.font-s Get Started
+            width="228px"
+            height="59px"
+          ).text-none
+            span.generic-button-text Get Started
 
     //- 6th panel
     syncbase(:version="3")
@@ -172,6 +165,7 @@ export default {
     ];
     this.pricingDetails = CLINICS_PRICING;
     this.headerClasses = ['mc-title-set-1', 'lh-title', 'font-weight-semibold'];
+    this.subHeaderClasses = ['mc-content-set-1', 'lh-title', 'font-weight-semibold', 'secondary--text'];
     this.descriptionClasses = ['mc-content-set-1', 'font-open-sans', 'font-gray'];
     this.btnClasses = ['mc-button-set-1'];
     this.listHeaderClasses = ['mc-list-title-set-1', 'lh-title', 'primary--text', 'font-weight-semibold'];
@@ -192,11 +186,9 @@ export default {
       return {
         contentAlign: 'left',
         imageBindings: {
-          image: 'Beautiful User experience.png',
-          mobileImage: 'Beautiful User experience mobile.png',
+          image: 'Beautiful User experience.webp',
           imageAlt: 'Body diagram in a tablet',
           customPath: 'clinics/skin/',
-          extensionExclusive: true,
           width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
           height: this.$isMobile ? '305.91px' : (this.$isRegularScreen ? '508.96px' : '785.58px'),
         },
@@ -217,7 +209,7 @@ export default {
         list: [
           'Acquire patients beyond your reach',
           'Hassle-free from booking to billing',
-          'Covers virtual to physical accommodation',
+          'Virtual to physical accommodation',
         ],
       };
     },

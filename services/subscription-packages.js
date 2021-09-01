@@ -158,7 +158,8 @@ const getMonthlyPrice = (pack, organizationType) => {
 
 const getAnnualMonthlyPrice = (pack, organizationType) => {
   if (!pack) return 0;
-  return Math.ceil((pack.plan?.amount || 0) / 12);
+  // return Math.ceil((pack.plan?.amount || 0) / 12);
+  return pack.plan?.amount || 0;
 };
 
 const isRecommended = (type, packageValue) => {
@@ -172,15 +173,15 @@ const PACKAGE_IMAGE = {
   lite: 'Essentials',
   premium: 'Premium',
   platinum: 'Platinum',
-  enterprise: 'Enterprise',
+  enterprise: 'Enterprise Blue',
 };
 
 const PACKAGE_CURRENCY = {
-  php: 'P',
-  usd: '$',
+  php: 'PHP',
+  usd: 'USD',
 };
 
-const DOCTOR_TYPES = [
+export const DOCTOR_TYPES = [
   'doctor',
   'doctor-skin',
   'doctor-pedia',
@@ -221,6 +222,7 @@ export const getSubscriptionPackages = async ({ types }) => {
       { currency },
     ],
     ...country.country_code === 'US' && { tags: { $in: ['us'] } },
+    ...country.country_code !== 'US' && { tags: { $nin: ['us'] } },
   });
   return items;
 };
@@ -261,7 +263,9 @@ export const getSubscriptionPackagesPricing = async (type) => {
       inclusions,
       btnText: 'Get Started',
       // Doctor specific only
-      ...DOCTOR_TYPES.includes(type) && { users: packageValue === 'lite' ? '1' : 'per' },
+      ...DOCTOR_TYPES.includes(type) && { users: packageValue === 'lite' ? 1 : '/' },
+      // Sign-up query (except Doctor)
+      ...!DOCTOR_TYPES.includes(type) && { queryOps: { trial: true } },
     };
   });
 
@@ -282,7 +286,7 @@ export const getSubscriptionPackagesPricing = async (type) => {
       { text: 'Multi-branch Functions', valid: true },
       { text: 'Customizable Features', valid: true },
     ],
-    btnText: 'Contact Us',
+    btnText: 'Get Started',
   };
 
   return !DOCTOR_TYPES.includes(type) ? [...mappedPackages, ENTERPRISE] : mappedPackages;

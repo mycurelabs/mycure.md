@@ -2,7 +2,7 @@
   div(:class="$isMobile ? 'pricing-bg-mobile' : 'pricing-bg' ").mx-n3
     v-container
       v-row(justify="center")
-        generic-panel
+        generic-panel(column="12")
           v-col(cols="12")
             v-row(align="center" justify="center")
               v-col(cols="12").text-center
@@ -26,7 +26,7 @@
                   size="150"
                 )
             v-row(v-else justify="center" dense)
-              template(v-if="!$isMobile")
+              template(v-if="!$isMobile && $vuetify.breakpoint.width > 1240")
                 v-col(
                   v-for="(pack, key) in pricingPackages"
                   :key="key"
@@ -79,7 +79,7 @@ export default {
       type: Object,
       default: () => ({
         cols: '12',
-        md: '4',
+        md: '3',
         xl: '3',
       }),
     },
@@ -127,15 +127,33 @@ export default {
         // - Get the 2nd package from doctors
         const doctorBookingPricing = {
           title: 'Doctors',
+          image: 'Platinum',
+          queryOps: {
+            type: 'doctor',
+          },
           ...omit(doctorPricings[1], 'title'),
         };
         // - Fetch clinic pricings
         const clinicPricings = await getSubscriptionPackagesPricing('clinic') || [];
         // - Get lowest pricing from clinics
         const clinicBookingPricing = {
-          title: 'Clinics',
+          title: 'Outpatient Clinics',
           image: 'Platinum',
+          queryOps: {
+            type: 'clinic',
+          },
           ...omit(clinicPricings[0], 'title'),
+        };
+        // - Fetch Diagnostic Pricings
+        const diagnosticPricings = await getSubscriptionPackagesPricing('diagnostic') || [];
+        // - Get lowest pricing from diagnostic
+        const diagnosticBookingPricing = {
+          title: 'Diagnostic Centers',
+          image: 'Platinum',
+          queryOps: {
+            type: 'diagnostic',
+          },
+          ...omit(diagnosticPricings[0], 'title'),
         };
         // - Map Free Booking
         const freeBooking = {
@@ -144,6 +162,7 @@ export default {
           image: 'Essentials',
           btnText: 'Try Free',
           title: 'Start Free',
+          trial: true,
           description: 'All essential features to help start up your digital booking journey',
           inclusions: [
             { text: 'Up to 1 user', valid: true },
@@ -156,10 +175,18 @@ export default {
             { text: 'Daily Census', valid: true },
             { text: 'Sales Reports', valid: true },
           ],
+          queryOps: {
+            trial: 1,
+          },
         };
 
         // - Put them all together
-        this.pricingPackages = [freeBooking, doctorBookingPricing, clinicBookingPricing];
+        this.pricingPackages = [
+          freeBooking,
+          doctorBookingPricing,
+          diagnosticBookingPricing,
+          clinicBookingPricing,
+        ];
       } catch (e) {
         console.error(e);
       } finally {
@@ -181,7 +208,7 @@ export default {
   background-size: 100% 100%;
 }
 .pricing-bg-mobile {
-  background-image: url('../../assets/images/pricing/MYCURE-Pricing BG Mobile.png');
+  background-image: url('../../assets/images/pricing/MYCURE-Pricing BG Wide.png');
   background-position: center bottom;
 }
 .divider {
