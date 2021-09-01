@@ -15,7 +15,7 @@
             v-col(cols="12")
               //- clinics-org-search-bar(
               directory-search-bar(
-                @enter="onSearch($event)"
+                @search="onSearch($event)"
                 :location-switch="locationAccess"
               )
     v-dialog(
@@ -79,6 +79,11 @@ export default {
     this.loading = false;
   },
   methods: {
+    /**
+     * @param {String} searchString
+     * @param {String []} specialties
+     * @param {String} mode doctor | clinic | location
+     */
     onSearch ({ searchString, specialties, mode }) {
       this.$nuxt.$router.push({
         name: 'directory-results',

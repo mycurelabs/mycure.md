@@ -32,7 +32,7 @@
               flat
               :height="$isMobile ? '40px' : '60px'"
               @click:append="tagSearchDialog = true"
-              @keyup.enter="emitSearch"
+              @keyup.enter="onSearch"
             ).rounded-bl-lg.rounded-tl-lg
               template(v-slot:prepend-inner)
                 v-icon(small).mx-3 mdi-magnify
@@ -43,26 +43,25 @@
               block
               tile
               color="primary"
-              @click="searchFacilityBtn(true)"
+              @click="onVoiceSearch"
               :height="$isMobile ? '40px' : '60px'"
             ).elevation-0.rounded-br-lg.rounded-tr-lg
               v-icon mdi-microphone-outline
+        v-row(v-if="searchObject.specialties.length >= 1").mt-n3
+          v-btn(
+            color="primary"
+            @click="clearSpecialties"
+          ).font-12 Clear filters
         v-row
           v-col.py-0.mt-n3
             template(v-for="(tag, index) in searchObject.specialties")
               v-chip(
                 clearable
+                color="#f0f0f0"
                 close
-                outlined
                 close-icon="mdi-close"
                 @click:close="tag.selected = false; searchObject.specialties.splice(index, 1);"
-              ).ma-1 {{tag.strVal}}
-            v-btn(
-              v-if="searchObject.specialties.length >= 1"
-              text
-              color="primary"
-              @click="clearSpecialties"
-            ).ma-1.font-12 Clear filters
+              ).ma-1.bordered-chip {{tag.strVal}}
 
           //- v-combobox(
           //-   v-if="mode==='all'"
@@ -211,11 +210,13 @@ export default {
   },
   methods: {
     searchSelect () {
-      console.log(this.searchObject.mode);
       this.searchObject.mode = this.selectedMode;
     },
-    emitSearch () {
-      this.$emit('enter', this.searchObject);
+    onSearch () {
+      this.$emit('search', {
+        ...this.searchObject,
+        specialties: this.searchObject?.specialties?.map(s => s.strVal) || [],
+      });
     },
     toggleChip (index) {
       // console.log(this.specialtiesList[index].selected);
@@ -237,6 +238,9 @@ export default {
         this.specialtiesList[i].selected = false;
       }
       this.searchObject.specialties = [];
+    },
+    onVoiceSearch () {
+      //
     },
     // fullName () {
     //   return this.name.firstName;
@@ -327,5 +331,8 @@ export default {
 }
 .tight-font {
   letter-spacing: 0px;
+}
+.bordered-chip {
+  border: 1px solid black;
 }
 </style>
