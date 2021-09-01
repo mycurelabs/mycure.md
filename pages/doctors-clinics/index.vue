@@ -21,7 +21,7 @@
     //- 2nd panel
     div.grey-bg.mx-n3
       features(
-        title="Your Practice. Your Call."
+        title='Can your patients easily find and book a consultation with you?'
         :description="featuresDescription"
         :items="features"
         image-dir="doctors-clinics/"
@@ -81,9 +81,16 @@
               v-icon(color="white" :large="$isWideScreen") mdi-checkbox-marked-circle
               span(:class="[eightPanelContentClasses, ($isMobile ? 'ml-2' : ($isRegularScreen ? 'ml-3' : 'ml-4'))]") {{ item }}
     //- 9th panel
+    steps(:steps="stepsContent")
+    testimonials
+    storybrand(
+      title="Using Modern Tools to Boost Your Practice"
+      :content="storybrandContent"
+    )
     think-long-term
     v-divider.divider
     //- 10th panel
+    telehealth-video
     pricing(
       center-items
       type="doctor"
@@ -112,6 +119,10 @@ export default {
     ThinkLongTerm: () => import('~/components/commons/panels/ThinkLongTerm'),
     Usp,
     SignupButton: () => import('~/components/commons/SignupButton'),
+    Steps: () => import('~/components/commons/panels/Steps'),
+    Testimonials: () => import('~/components/doctors-clinics/Testimonials'),
+    Storybrand: () => import('~/components/commons/panels/Storybrand'),
+    TelehealthVideo: () => import('~/components/telehealth/TelehealthVideo'),
   },
   data () {
     // Panel content
@@ -143,6 +154,25 @@ export default {
         icon: 'Appointment Booking',
         iconExtension: '.webp',
       },
+    ];
+    this.stepsContent = [
+      {
+        title: 'Create an Account',
+        description: 'This activates the features in your account for FREE.',
+      },
+      {
+        title: 'Set up your Website',
+        description: 'Allow your patients to easily find and book you.',
+      },
+      {
+        title: 'Set up your EMR',
+        description: 'Securely store and organize your patient records.',
+      },
+    ];
+    this.storybrandContent = [
+      'At MYCURE, we know the many challenges in choosing the right healthcare management solution. Some are good but costly. Some are affordable but lack the needed features and reports. Many are poorly designed and difficult to use. Very few work both online and offline. A lot has closed systems and lacks interoperability.',
+      'In order to make an easy decision, you need a solution that has all the benefits and functionalities required without compromising ease of use and affordability. The problem is in finding such a system which makes you feel frustrated. We believe that health providers should never have to deal with this.',
+      'That’s why we’ve built MYCURE Healthcare Management Solutions, designed to be robust, easy to use, interoperable and affordable.',
     ];
     this.pricingDetails = DOCTORS_PRICING;
     this.headerClasses = ['mc-title-set-1', 'lh-title', 'primary--text', 'font-weight-semibold'];

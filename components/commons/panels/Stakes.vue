@@ -10,7 +10,7 @@
                 p(v-if="version === 2").mc-content-set-1.mb-0 {{ subTitle }}
           //- version 1
           div(v-if="version === 1")
-            div(v-for="content in contents")
+            div(v-for="(content, index) in contents" :key="index")
               v-row(justify="center")
                 v-col(cols="5").pb-0
                   span.primary--text.mc-content-set-1.font-weight-semibold {{ content.leftTitle }}
@@ -28,7 +28,7 @@
             v-row(justify="center")
               v-col(cols="10").table
                 v-row.mc-content-set-1
-                  v-col(v-for="(content, index) in contents" cols="6" :class=" index < 2 ? {'table-entry1': index === 1} : (index % 2 === 0 ? 'table-entry2' : 'table-entry3')")
+                  v-col(v-for="(content, index) in contents" :key="index" cols="6" :class=" index < 2 ? {'table-entry1': index === 1} : (index % 2 === 0 ? 'table-entry2' : 'table-entry3')")
                     v-icon(small black) mdi-circle
                     span &nbsp; {{ content.description }}
           //- footer

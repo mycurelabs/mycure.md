@@ -5,7 +5,7 @@
         hide-btn
         :disable-parent-padding="disableParentPadding"
       )
-        v-card(width="100%" :class="$isMobile ? 'pa-3' : ['pa-10', 'mx-10'] ").primary.rounded-xl.pt-16
+        v-card(width="100%" :class="$isMobile ? 'pa-3' : 'pa-10' ").card-bg.rounded-xl.pt-16
           v-card-text.white--text
             v-row(justify="center")
               span.font-weight-semibold.mc-content-set-1 MYCURE helps medical practicioners anywhere they are
@@ -41,3 +41,9 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.card-bg{
+  background: linear-gradient(208.18deg, #04B1E7 9.05%, #0098CC 76.74%);
+}
+</style>
