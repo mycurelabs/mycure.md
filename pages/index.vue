@@ -7,7 +7,6 @@
     //- 2.5
     stakes(
       panel-title="IT Solutions for your Health Facility Should Not Be Too Expensive and Complicated"
-      sub-title="Disorganized workflows, long waiting time, incomplete documents result in unsatisfied patients."
       panel-description="Good thing you don’t have to handle all these problems anymore. Join the MYCURE Community of health professionals and become the expert who doesn’t just sound like you’re good in managing your health facility—you’ll actually know how to maximise the MYCURE suite of tools to get all the right insights, reports, and seamless organisation you’ve always aspired to have."
       :version="1"
       :contents="stakesContent"

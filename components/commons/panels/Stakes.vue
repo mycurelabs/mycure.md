@@ -30,7 +30,7 @@
                 v-row.mc-content-set-1
                   v-col(v-for="(content, index) in contents" :key="index" cols="6" :class=" index < 2 ? {'table-entry1': index === 1} : (index % 2 === 0 ? 'table-entry2' : 'table-entry3')")
                     v-icon(small black) mdi-circle
-                    span &nbsp; {{ content.description }}
+                    span &nbsp; {{ content }}
           //- footer
           v-row(justify="center").mt-10
             v-col(cols="11")
@@ -47,10 +47,10 @@
               span.generic-button-text Start Your Free Trial
     generic-media-panel(
       v-else
-      :content="secondPanel"
-      :title-classes="headerClasses"
-      :super-title-classes="superTitleClasses"
-      :content-classes="[...descriptionClasses, 'justify-left']"
+      :content="mediaContent"
+      :title-classes="mediaHeaderClasses"
+      :super-title-classes="mediaSuperTitleClasses"
+      :content-classes="[...mediaDescriptionClasses, 'justify-left']"
     ).mt-16
       template(slot="cta-button")
         div(:class="{ 'text-center': $isMobile }")
@@ -100,6 +100,22 @@ export default {
     panelDescription: {
       type: String,
       default: '',
+    },
+    mediaContent: {
+      type: Object,
+      default: () => {},
+    },
+    mediaHeaderClasses: {
+      type: Array,
+      default: () => [],
+    },
+    mediaSuperTitleClasses: {
+      type: Array,
+      default: () => [],
+    },
+    mediaDescriptionClasses: {
+      type: Array,
+      default: () => [],
     },
   },
   data () {

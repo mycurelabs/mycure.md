@@ -107,6 +107,13 @@
           ).text-none
             v-icon(left)  mdi-information-outline
             span.generic-button-text  Learn more
+    //- 7.5
+    care
+    steps(:steps="stepsContent" hide-btn)
+    storybrand(
+      title="Using Modern Tools to Boost Your Practice"
+      :content="storybrandContent"
+    )
     //- 8th panel
     think-long-term
     //- 9th panel
@@ -139,6 +146,10 @@ export default {
     ThinkLongTerm: () => import('~/components/commons/panels/ThinkLongTerm'),
     Usp,
     SignupButton: () => import('~/components/commons/SignupButton'),
+    Care: () => import('~/components/home/Care'),
+    Steps: () => import('~/components/commons/panels/Steps'),
+    Stakes: () => import('~/components/commons/panels/Stakes'),
+    Storybrand: () => import('~/components/commons/panels/Storybrand'),
   },
   data () {
     // - TODO: Update info
@@ -168,6 +179,25 @@ export default {
         icon: 'Online Results',
         iconExtension: '.webp',
       },
+    ];
+    this.stepsContent = [
+      {
+        title: 'Create an Account',
+        description: 'This activates your Laboratory and Imaging Management System',
+      },
+      {
+        title: 'Set up your Account',
+        description: 'Customize your account based on your facilities’ needs.',
+      },
+      {
+        title: 'Integrate',
+        description: 'Integrate to your existing EMR system or use MYCURE’s homegrown health system.',
+      },
+    ];
+    this.storybrandContent = [
+      'At MYCURE, we know you are the kind of diagnostic center that prioritizes using modern tools to optimize efficiency and improve operations. In order to be that way, you need a solution that can automate routine tasks that will result in reducing costly errors.',
+      'The problem is it’s hard to find such a system that is easy to use, affordable and interoperable with other systems, which is lacking from your current provider.  We believe that diagnostic centers like yours should never have to deal with this. We’ve talked to dozens of labs and understand that there is a need for this.',
+      'That’s why we\'ve built MYCURE Diagnostics with powerful LIS and RIS modules to specifically address this need.',
     ];
     this.pricingDetails = DIAGNOSTICS_PRICING;
     this.listHeaderClasses = ['mc-list-title-set-1', 'lh-title', 'font-weight-semibold'];

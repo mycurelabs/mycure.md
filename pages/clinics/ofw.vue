@@ -104,6 +104,12 @@
           //-     :x-large="$isWideScreen"
           //-     :class="{'font-s': $isWideScreen, 'font-14': $isRegularScreen }"
           //-   ).text-none Book a full training
+    care
+    steps(:steps="stepsContent" hide-btn)
+    storybrand(
+      title="Using Modern Tools to Boost Your Practice"
+      :content="storybrandContent"
+    )
     //- 7th panel
     pricing(
       title="Take the first step today."
@@ -148,6 +154,10 @@ export default {
     Syncbase: () => import('~/components/commons/panels/Syncbase'),
     ThinkLongTerm: () => import('~/components/commons/panels/ThinkLongTerm'),
     Usp,
+    Care: () => import('~/components/home/Care'),
+    Steps: () => import('~/components/commons/panels/Steps'),
+    Stakes: () => import('~/components/commons/panels/Stakes'),
+    Storybrand: () => import('~/components/commons/panels/Storybrand'),
   },
   async asyncData ({ redirect }) {
     const country = await getCountry() || {};
@@ -156,6 +166,25 @@ export default {
     if (!code || code !== 'PH') redirect('/');
   },
   data () {
+    this.stepsContent = [
+      {
+        title: 'Create an Account',
+        description: 'This activates your Dental Management System',
+      },
+      {
+        title: 'Set up your Account',
+        description: 'Customize your account based on your clinic’s needs.',
+      },
+      {
+        title: 'Serve and Save More',
+        description: 'Start processing more transactions while saving time in the process.',
+      },
+    ];
+    this.storybrandContent = [
+      'At MYCURE, we know your clinic is serving OFWs and you have unique needs and requirements.  You know that having a custom system to address your market can increase efficiency and decrease costly human errors.',
+      'The problem is it’s hard to find such a system that is easy to use and affordable.  We believe that clinics like yours should never have to deal with this. We understand that there is a need for this.',
+      'That’s why we\'ve built MYCURE OFW Clinic Management System for those who are rightfully serving this market, the ‘new heroes’ of the land.',
+    ];
     this.headerClasses = ['mc-title-set-1', 'lh-title', 'font-weight-semibold'];
     this.descriptionClasses = ['mc-content-set-1'];
     this.btnClasses = ['mc-button-set-1'];

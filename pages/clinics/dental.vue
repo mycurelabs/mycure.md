@@ -119,6 +119,12 @@
             span.generic-button-text Get Started
     //- 8th panel
     syncbase(:version="3")
+    care
+    steps(:steps="stepsContent" hide-btn)
+    storybrand(
+      title="Using Modern Tools to Boost Your Practice"
+      :content="storybrandContent"
+    )
     //- 9th panel
     think-long-term(extended)
     //- 10th panel
@@ -148,6 +154,10 @@ export default {
     Syncbase: () => import('~/components/commons/panels/Syncbase'),
     ThinkLongTerm: () => import('~/components/commons/panels/ThinkLongTerm'),
     Usp,
+    Care: () => import('~/components/home/Care'),
+    Steps: () => import('~/components/commons/panels/Steps'),
+    Stakes: () => import('~/components/commons/panels/Stakes'),
+    Storybrand: () => import('~/components/commons/panels/Storybrand'),
   },
   data () {
     this.studentPanel = {
@@ -156,6 +166,25 @@ export default {
         'Join the next free webinar series for dentistry students',
       ],
     };
+    this.stepsContent = [
+      {
+        title: 'Create an Account',
+        description: 'This activates your Dental Management System',
+      },
+      {
+        title: 'Set up your Account',
+        description: 'Customize your account based on your clinic’s needs. ',
+      },
+      {
+        title: 'Share',
+        description: 'Share your beautiful, free website so your patients can start booking',
+      },
+    ];
+    this.storybrandContent = [
+      'At MYCURE, we know you are the kind of dental clinic that loves providing a great service to make your patients smile. You know that having a robust system to complement your practice. In order to be that way, you need a solution that is custom built to your specific processes and needs.',
+      'The problem is it’s hard to find such a system that is easy to use, flexible and affordable.  We believe that dental clinics like yours should never have to deal with this. We’ve talked to dozens of dental clinics and understand that there is a need for this. ',
+      'That’s why we\'ve built MYCURE Dental Clinic Management System for those who value a shiny experience that guarantees to bring smiles to your clinic and your patients.',
+    ];
     this.headerClasses = ['mc-title-set-1', 'lh-title', 'font-weight-semibold'];
     this.descriptionClasses = ['mc-content-set-1'];
     this.contentClasses = ['mc-content-set-1', 'font-weight-semibold', 'secondary--text'];

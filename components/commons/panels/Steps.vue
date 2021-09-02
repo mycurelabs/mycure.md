@@ -20,18 +20,19 @@
               v-col.pr-3
                 p.font-weight-semibold.mc-content-set-1 {{ step.title }}
                 p.mc-content-set-1 {{ step.description }}
-        v-row
-          v-col.py-10
-        v-row(justify="center")
-          signup-button(
-            depressed
-            rounded
-            color="primary"
-            facility-type="clinic"
-            width="228px"
-            height="59px"
-          ).text-none
-            span.generic-button-text Get Started Now
+        div(v-if="!hideBtn")
+          v-row
+            v-col.py-10
+          v-row(justify="center")
+            signup-button(
+              depressed
+              rounded
+              color="primary"
+              facility-type="clinic"
+              width="228px"
+              height="59px"
+            ).text-none
+              span.generic-button-text Get Started Now
 </template>
 
 <script>
@@ -46,6 +47,10 @@ export default {
     steps: {
       type: Array,
       default: undefined,
+    },
+    hideBtn: {
+      type: Boolean,
+      default: false,
     },
   },
   computed: {

@@ -104,6 +104,13 @@
 
     //- 6th panel
     syncbase(:version="3")
+    //- 6.5
+    care
+    steps(:steps="stepsContent" hide-btn)
+    storybrand(
+      title="Using Modern Tools to Boost Your Practice"
+      :content="storybrandContent"
+    )
     //- 7th panel
     think-long-term(extended)
     //- 8th panel
@@ -134,6 +141,10 @@ export default {
     Syncbase: () => import('~/components/commons/panels/Syncbase'),
     ThinkLongTerm: () => import('~/components/commons/panels/ThinkLongTerm'),
     Usp,
+    Care: () => import('~/components/home/Care'),
+    Steps: () => import('~/components/commons/panels/Steps'),
+    Stakes: () => import('~/components/commons/panels/Stakes'),
+    Storybrand: () => import('~/components/commons/panels/Storybrand'),
   },
   data () {
     this.features = [
@@ -162,6 +173,25 @@ export default {
         icon: 'Works Offline',
         iconExtension: '.png',
       },
+    ];
+    this.stepsContent = [
+      {
+        title: 'Create an Account',
+        description: '-',
+      },
+      {
+        title: 'Set up your Account',
+        description: 'Customize your account based on your clinic’s needs. ',
+      },
+      {
+        title: 'Share',
+        description: 'Share your beautiful, free website so your patients can start booking',
+      },
+    ];
+    this.storybrandContent = [
+      'At MYCURE, we know you are the kind of skin clinic that gives utmost importance to its clients. Providing the highest quality is non-negotiable both in the services provided and the tools you use. In order to be that way, you need a solution that also puts quality at its core.',
+      'The problem is it’s hard to find a provider that looks at its system not just as a service but as an experience. We believe that aesthetic clinics like yours should never have this choice. ',
+      'That’s why we\'ve built MYCURE Skin and Aesthetics Clinic Management System for those who value a flawless experience in their clinics like yours.',
     ];
     this.pricingDetails = CLINICS_PRICING;
     this.headerClasses = ['mc-title-set-1', 'lh-title', 'font-weight-semibold'];

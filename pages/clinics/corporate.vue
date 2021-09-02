@@ -41,6 +41,12 @@
       :content="multiplePanel"
       :title-classes="headerClasses"
     )
+    care
+    steps(:steps="stepsContent" hide-btn)
+    storybrand(
+      title="Using Modern Tools to Boost Your Practice"
+      :content="storybrandContent"
+    )
     //- 5th panel
     pricing(
       type="clinic"
@@ -78,6 +84,10 @@ export default {
     Pricing: () => import('~/components/commons/panels/Pricing'),
     SignupButton: () => import('~/components/commons/SignupButton'),
     Usp,
+    Care: () => import('~/components/home/Care'),
+    Steps: () => import('~/components/commons/panels/Steps'),
+    Stakes: () => import('~/components/commons/panels/Stakes'),
+    Storybrand: () => import('~/components/commons/panels/Storybrand'),
   },
   data () {
     this.features = [
@@ -101,6 +111,25 @@ export default {
         icon: 'Covid vaccine tracker',
         iconExtension: '.png',
       },
+    ];
+    this.stepsContent = [
+      {
+        title: 'Create an Account',
+        description: 'This activates your Dental Management System',
+      },
+      {
+        title: 'Set up your Account',
+        description: 'Customize your account based on your clinic’s needs. ',
+      },
+      {
+        title: 'Serve and Save More',
+        description: 'Start using the system to serve your employees better.',
+      },
+    ];
+    this.storybrandContent = [
+      'At MYCURE, we know that corporate clinics have their own special needs and requirements.  You know that having a customized system to properly organize and secure employees’ health records is a high priority.',
+      'The problem is it’s hard to find such a clinic system that is specifically designed for companies.  We believe that clinics like yours should never have to deal with this.',
+      'That’s why we\'ve built MYCURE Corporate Clinic Management System so that you can focus more on your core business.',
     ];
     this.headerClasses = ['mc-title-set-1', 'lh-title', 'font-weight-semibold'];
     return {

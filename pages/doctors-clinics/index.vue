@@ -82,6 +82,7 @@
               v-icon(color="white" :large="$isWideScreen") mdi-checkbox-marked-circle
               span(:class="[eightPanelContentClasses, ($isMobile ? 'ml-2' : ($isRegularScreen ? 'ml-3' : 'ml-4'))]") {{ item }}
     //- 9th panel
+    telehealth-video
     steps(:steps="stepsContent")
     testimonials
     storybrand(
@@ -91,7 +92,6 @@
     think-long-term
     v-divider.divider
     //- 10th panel
-    telehealth-video
     pricing(
       center-items
       type="doctor"
@@ -171,9 +171,9 @@ export default {
       },
     ];
     this.storybrandContent = [
-      'At MYCURE, we know the many challenges in choosing the right healthcare management solution. Some are good but costly. Some are affordable but lack the needed features and reports. Many are poorly designed and difficult to use. Very few work both online and offline. A lot has closed systems and lacks interoperability.',
-      'In order to make an easy decision, you need a solution that has all the benefits and functionalities required without compromising ease of use and affordability. The problem is in finding such a system which makes you feel frustrated. We believe that health providers should never have to deal with this.',
-      'That’s why we’ve built MYCURE Healthcare Management Solutions, designed to be robust, easy to use, interoperable and affordable.',
+      'At MYCURE, we know you are the kind of doctor who wants to be efficient, organized and prefers to use modern tools. In order to be that way, you need a solution that will make it easier for you to securely organize and secure patients’ records while allowing them to conveniently book an appointment with you.',
+      'The problem is it’s hard to find such a system that is easy to use, affordable and customized to your practice, which makes you feel frustrated.  We believe that health providers should never have to deal with this. We’ve talked to hundreds of doctors and understand that there is a need for this. ',
+      'That’s why we’ve been continuously building MYCURE EMR Practice Management System designed for modern doctors like you so you can focus on what you do best - taking care of your patients, while MYCURE takes care of the rest.',
     ];
     this.pricingDetails = DOCTORS_PRICING;
     this.headerClasses = ['mc-title-set-1', 'lh-title', 'primary--text', 'font-weight-semibold'];
