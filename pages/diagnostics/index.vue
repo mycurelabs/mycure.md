@@ -15,6 +15,11 @@
       :content-column-bindings="{ cols: 12, md: 5 }"
       @click="$nuxt.$router.push({ name: 'signup-health-facilities', query: { type: 'diagnostic' }})"
     )
+    stakes(
+      :version="3"
+      :media-content="stakesContent"
+      hide-btn
+    )
     //- 2nd panel
     div.grey-bg.mx-n3
       features(
@@ -199,6 +204,23 @@ export default {
       'The problem is it’s hard to find such a system that is easy to use, affordable and interoperable with other systems, which is lacking from your current provider.  We believe that diagnostic centers like yours should never have to deal with this. We’ve talked to dozens of labs and understand that there is a need for this.',
       'That’s why we\'ve built MYCURE Diagnostics with powerful LIS and RIS modules to specifically address this need.',
     ];
+    this.stakesContent = {
+      title: 'Manual Routinary Tasks are Prone to Errors',
+      // superTitle: 'Tired of long waiting lines?',
+      description: 'And this can be costly! Not only does these errors contribute to your bottomline, but this also pertains to providing accurate, sensitive information to your patients.',
+      contentAlign: 'right',
+      imageBindings: {
+        image: 'Diagnostic Stakes.png',
+        mobileImage: 'Diagnostic Stakes.png',
+        imageAlt: 'Doctor with hourglass and downhill chart in monitor',
+        customPath: 'diagnostics/',
+        extensionExclusive: true,
+        width: '100%',
+      },
+      //   width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
+      //   height: this.$isMobile ? '197.14px' : (this.$isRegularScreen ? '328.58px' : '507.14px'),
+      // },
+    };
     this.pricingDetails = DIAGNOSTICS_PRICING;
     this.listHeaderClasses = ['mc-list-title-set-1', 'lh-title', 'font-weight-semibold'];
     this.listContentClasses = ['mc-list-content-set-1', 'font-open-sans', 'font-gray'];

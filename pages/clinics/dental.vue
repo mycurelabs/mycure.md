@@ -14,6 +14,11 @@
       :media-column-bindings="{ cols: 12, md: 6, offsetMd: 1, xl: 6}"
       :content-column-bindings="{ cols: 12, md: 5 }"
     )
+    stakes(
+      :version="3"
+      :media-content="stakesContent"
+      hide-btn
+    )
     //- 2nd panel
     div.grey-bg.mx-n3
       problem-statement
@@ -185,6 +190,19 @@ export default {
       'The problem is it’s hard to find such a system that is easy to use, flexible and affordable.  We believe that dental clinics like yours should never have to deal with this. We’ve talked to dozens of dental clinics and understand that there is a need for this. ',
       'That’s why we\'ve built MYCURE Dental Clinic Management System for those who value a shiny experience that guarantees to bring smiles to your clinic and your patients.',
     ];
+    this.stakesContent = {
+      title: 'Don\'t Get Left Behind',
+      description: 'Do you still use paper charting to track history of your patient’s dental records? You may be losing to your competition.',
+      contentAlign: 'right',
+      imageBindings: {
+        image: 'Diagnostic Stakes.png',
+        mobileImage: 'Diagnostic Stakes.png',
+        imageAlt: 'Doctor with hourglass and downhill chart in monitor',
+        customPath: 'diagnostics/',
+        extensionExclusive: true,
+        width: '100%',
+      },
+    };
     this.headerClasses = ['mc-title-set-1', 'lh-title', 'font-weight-semibold'];
     this.descriptionClasses = ['mc-content-set-1'];
     this.contentClasses = ['mc-content-set-1', 'font-weight-semibold', 'secondary--text'];

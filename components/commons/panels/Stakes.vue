@@ -116,15 +116,15 @@ export default {
     },
     mediaHeaderClasses: {
       type: Array,
-      default: () => [],
+      default: () => ['mc-title-set-2'],
     },
     mediaSuperTitleClasses: {
       type: Array,
-      default: () => [],
+      default: () => ['mc-content-set-1', 'lh-title', 'font-weight-semibold', 'primary--text'],
     },
     mediaDescriptionClasses: {
       type: Array,
-      default: () => [],
+      default: () => ['mc-content-set-1', 'font-open-sans', 'font-gray'],
     },
     hideBtn: {
       type: Boolean,

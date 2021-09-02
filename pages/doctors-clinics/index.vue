@@ -82,7 +82,7 @@
               v-icon(color="white" :large="$isWideScreen") mdi-checkbox-marked-circle
               span(:class="[eightPanelContentClasses, ($isMobile ? 'ml-2' : ($isRegularScreen ? 'ml-3' : 'ml-4'))]") {{ item }}
     //- 9th panel
-    telehealth-video
+    different-video
     steps(:steps="stepsContent")
     testimonials
     storybrand(
@@ -123,7 +123,7 @@ export default {
     Steps: () => import('~/components/commons/panels/Steps'),
     Testimonials: () => import('~/components/doctors-clinics/Testimonials'),
     Storybrand: () => import('~/components/commons/panels/Storybrand'),
-    TelehealthVideo: () => import('~/components/telehealth/TelehealthVideo'),
+    DifferentVideo: () => import('~/components/commons/panels/DifferentVideo'),
   },
   data () {
     // Panel content

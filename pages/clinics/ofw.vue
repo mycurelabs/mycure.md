@@ -17,9 +17,6 @@
     stakes(
       :version="3"
       :media-content="stakesContent"
-      :media-header-classes="['mc-title-set-2']"
-      :media-super-title-classes="['mc-content-set-1', 'lh-title', 'font-weight-semibold', 'primary--text']"
-      :media-description-classes="['mc-content-set-1', 'font-open-sans', 'font-gray']"
       hide-btn
     )
     //- 2nd panel
