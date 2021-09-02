@@ -4,7 +4,7 @@
       v-icon(v-if="hasWebsite" color="primary" large :class="{'pt-7': !$isMobile}").mt-16.ml-n8 mdi-check-decagram
       img(
         :src="picURL"
-        alt="Services"
+        :alt="organization.name"
         :width="$isRegularScreen? '82px' : '130px'"
         :height="$isRegularScreen? '82px' : '130px'"
         style="border-radius: 20px"
@@ -12,9 +12,6 @@
       v-col.my-3
         v-row
           span(:class="[nameFontSize, $isWideScreen ? 'name-width-wide' : 'name-width-reg']").text-truncate.font-weight-bold.mb-0 {{ organization.name   }}&nbsp;
-        v-row(:class="textFontSize").info-text.font-weight-semibold
-          span(v-if="organization.doc_specialties") {{ organization.doc_specialties[0] }}&nbsp;&nbsp;
-          span(v-else) ---&nbsp;&nbsp;
           //- v-chip(v-if="organization.doc_website" color="primary" outlined x-small).mt-1 verified
         v-row(justify="start").mt-5
           v-col(cols="1").pa-0
@@ -22,7 +19,6 @@
           v-col(cols="11").pa-0
             div(:class="textFontSize").info-text.mt-1
               span(v-if="organization.address") {{ address }}
-              span(v-else) &nbsp;- somewhere
         v-row(justify="start").mt-5.white--text
           div(v-for="(day, index) in daysInit" :key="index")
             div(:class="[textFontSize, $isWideScreen ? 'badge-size-wide' : 'badge-size', {'primary': clinicOpen(day.value)}]"
@@ -58,10 +54,9 @@
           rel="noopener noreferrer"
           :small="!$isWideScreen"
           rounded
-          :href="doctorWebsite"
           :class="$isWideScreen ? ['font-14', 'px-6'] : ['font-10', 'px-5'] "
         ).text-none.elevation-0.font-weight-light.mt-2
-          b View
+          b Book a Visit
 
     //- v-row(v-if="organization.doc_specialties").mt-6.pa-2
     //-   v-col(cols="12")
@@ -111,6 +106,9 @@ export default {
     };
   },
   computed: {
+    hasWebsite () {
+      return !!this.organization?.websiteId;
+    },
     fullSchedules () {
       // eslint-disable-next-line camelcase
       return this.organization?.mf_schedule || this.organization?.schedules || [];

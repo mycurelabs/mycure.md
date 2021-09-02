@@ -29,6 +29,8 @@ export const unifiedDirectorySearch = async (sdk, opts) => {
   let query = {
     $search: opts.text,
     type: opts.type,
+    $limit: opts.limit,
+    $skip: opts.skip,
   };
 
   // Populate according to type

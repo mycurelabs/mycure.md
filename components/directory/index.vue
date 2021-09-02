@@ -1,9 +1,12 @@
 <template lang="pug">
   div(v-if="!loading.page")
-    v-row(justify="center" no-gutters).fixed-container
-      v-container.mb-5
-        v-row(justify="center")
-          generic-panel(:column="$isMobile ? 12 : 10" disable-parent-padding)
+    v-container.mb-5.fixed-container
+      v-row(justify="center")
+        generic-panel(
+          :column="$isMobile ? 12 : 10"
+          disable-parent-padding
+        )
+          v-col(cols="12")
             nuxt-link(to="/")
               img(
                 src="~/assets/images/MYCURE Logo - black.png"
@@ -11,65 +14,41 @@
                 height="34.46px"
                 alt="MYCURE logo"
               ).mt-8.ml-2.mb-5
-        v-row(justify="center")
-          generic-panel(:column="$isMobile ? 12 : 10" disable-parent-padding)
-            directory-search-bar(
-              v-model="searchMode"
-              @search="onSearch($event)"
-            )
-    v-container
       v-row(justify="center")
-        generic-panel(:column="$isMobile ? 12 : 10" disable-parent-padding)
-          v-container
-            v-row(align="center" justify="center" :class="$isMobile? 'org-results-margin-mobile' : 'org-results-margin' ").org-results-summary
-              v-col(v-if="!loading.results" cols="12" :class="{'text-center': $isMobile}")#org-results
-                v-row(align="center")
-                  v-col(align="start")
-                    h1 Doctors
-                  v-col(align="end")
-                    h3(v-if="orgsTotal") {{ orgsTotal }} results
-                    h3(v-else) There are no results available.
-              v-col(cols="12")
-                v-row(v-if="loading.results" justify="center")
-                  v-col(cols="12" md="5").text-center
-                    v-progress-circular(
-                      color="primary"
-                      indeterminate
-                      size="100"
-                    ).mt-16
-                v-row(v-else justify="center" align="stretch")
-                  v-col(
-                    v-for="(doctorObj, key) in orgsList"
-                    :key="key"
-                    cols="12"
-                    md="4"
-                  ).px-2
-                    doc-search-card(
-                      :organization="doctorObj"
-                      :read-only="readOnly"
-                    )
-                br
-                v-pagination(
-                  v-model="orgsPage"
-                  :length="orgsLength"
-                  total-visible="9"
-                )
+        generic-panel(
+          :column="$isMobile ? 12 : 10"
+          disable-parent-padding
+        )
+          v-col(cols="12")
+            v-row(align="center" justify="center").my-6
+              directory-search-bar(
+                v-model="searchMode"
+                @search="onSearch($event)"
+              )
+    results-section(
+      section-title="Doctors"
+      type="doctor"
+      :items="entries"
+      :loading="loading.results"
+      :pagination="resultsPagination"
+      :read-only="readOnly"
+    )
 </template>
 
 <script>
-import VueScrollTo from 'vue-scrollto';
+// import VueScrollTo from 'vue-scrollto';
 // import uniqBy from 'lodash/uniqBy';
-// import { unifiedSearch } from '~/services/unified-search';
-import { searchDoctors } from '~/utils/axios';
+import ResultsSection from './ResultsSection';
 import DirectoryAppBar from '~/components/directory/DirectoryAppBar';
 import DirectorySearchBar from '~/components/directory/DirectorySearchBar';
+import { unifiedDirectorySearch } from '~/services/unified-directory';
+import { searchDoctors } from '~/utils/axios';
+
 export default {
   components: {
-    DocSearchCard: () => import('~/components/directory/DocSearchCard'),
     DirectoryAppBar,
     DirectorySearchBar,
-    GenericPanel: () => import('~/components/generic/GenericPanel.vue'),
-    ClinicSearchCard: () => import('~/components/directory/ClinicSearchCard'),
+    ResultsSection,
   },
   props: {
     readOnly: {
@@ -79,24 +58,34 @@ export default {
   },
   data () {
     return {
+      // UI State
       loading: {
         page: true,
         results: false,
       },
-      orgsTotal: 0,
-      orgsLimit: 12,
-      orgsList: [],
-      orgsPage: 1,
-      orgsSearchQuery: {},
-      municipalityList: [],
       // Data
+      entries: [],
+      municipalityList: [],
+      // Search
       searchMode: 'account',
       searchText: null,
+      // Pagination
+      entriesTotal: 0,
+      entriesPage: 1,
+      entriesLimit: 12,
     };
   },
   computed: {
-    orgsLength () {
-      return Math.ceil(this.orgsTotal / this.orgsLimit) || 0;
+    resultsPagination () {
+      return {
+        page: this.entriesPage,
+        itemsTotal: this.entriesTotal,
+        totalVisible: 9,
+        itemsLength: this.entriesLength,
+      };
+    },
+    entriesLength () {
+      return Math.ceil(this.entriesTotal / this.entriesLimit) || 0;
     },
     buttonSize () {
       const size = { xs: 'small', sm: 'large', lg: 'large', xl: 'x-large' }[this.$vuetify.breakpoint.name];
@@ -107,30 +96,48 @@ export default {
       return { [size]: true };
     },
   },
-  watch: {
-    async orgsPage (val) {
-      await this.fetchDoctors(this.orgsSearchQuery, val);
-      VueScrollTo.scrollTo('#org-results', 500, { offset: -250, easing: 'ease' });
-    },
-  },
-  mounted () {
-    this.init();
+  // watch: {
+  //   async entriesPage (val) {
+  //     await this.fetchDoctors(this.orgsSearchQuery, val);
+  //     VueScrollTo.scrollTo('#org-results', 500, { offset: -250, easing: 'ease' });
+  //   },
+  // },
+  async mounted () {
+    this.loading.page = false;
+    await this.search();
   },
   methods: {
-    async init () {
+    async search (page = 1) {
       try {
-        this.loading.page = false;
         this.loading.results = true;
         this.searchText = this.$route.query.searchText;
         this.searchMode = this.$route.query.searchMode;
-        // - TODO: Apply tags
-        // - run search
-        // const data = await unifiedSearch(this.$sdk, {
-        //   type: this.searchMode,
-        //   text: this.searchText,
-        // });
-        await this.fetchDoctors();
-        // console.log('data', data);
+        const skip = this.entriesLimit * (page - 1);
+        const query = {
+          type: this.searchMode,
+          text: this.searchText,
+          limit: this.entriesLimit,
+          skip,
+          // Apply filters
+        };
+        const { items, total } = await unifiedDirectorySearch(this.$sdk, query);
+
+        this.entriesTotal = total;
+        const entryItems = items || [];
+
+        this.entries = entryItems;
+
+        if (this.searchMode === 'account' && entryItems.length) {
+          const entryPromises = entryItems.map(async (entry) => {
+            console.log('entry.ref.id', entry.ref.id);
+            const personalDetails = await this.$sdk.service('personal-details').get(entry.ref.id);
+            return personalDetails;
+          });
+
+          this.entries = await Promise.all(entryPromises);
+          console.log('entries', this.entries);
+          return;
+        }
       } catch (e) {
         console.error(e);
       } finally {
@@ -142,9 +149,9 @@ export default {
         this.loading.results = true;
         this.$emit('results:filled', false);
         const { searchString, specialties, sortBy } = searchQuery;
-        const skip = this.orgsLimit * (page - 1);
+        const skip = this.entriesLimit * (page - 1);
         const query = {
-          limit: this.orgsLimit,
+          limit: this.entriesLimit,
           skip,
           searchString,
           specialties,
@@ -152,8 +159,8 @@ export default {
         };
 
         const { data, total } = await searchDoctors(query);
-        this.orgsList = data;
-        this.orgsTotal = total;
+        this.entries = data;
+        this.entriesTotal = total;
       } catch (error) {
         console.error(error);
       } finally {
@@ -170,7 +177,7 @@ export default {
     },
     // clearOrganizationResults () {
     //   this.orgsSearchQuery = '';
-    //   this.orgsPage = 1;
+    //   this.entriesPage = 1;
     //   this.fetchDoctors();
     //   this.searchQuery = null;
     // },
@@ -188,22 +195,5 @@ export default {
   top: 0px;
 
   /* background: linear-gradient(180deg, #EBEDFF 0%, #F7E8E6 100%); */
-}
-.org-results-summary {
-  z-index: -1;
-  background-color: #fafafa;
-}
-
-.org-results-margin {
-  margin-top: 300px;
-}
-.org-results-margin-mobile {
-  margin-top: 300px;
-}
-
-@media screen and (max-width: 970px) {
-  .org-results-margin {
-    margin-top: 330px;
-  }
 }
 </style>

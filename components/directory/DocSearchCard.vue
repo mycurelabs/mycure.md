@@ -12,19 +12,19 @@
         v-row
           span(:class="[nameFontSize, $isWideScreen ? 'name-width-wide' : 'name-width-reg']").text-truncate.font-weight-bold.mb-0 {{ fullNameWithSuffixes }}&nbsp;
         v-row(:class="textFontSize").info-text.font-weight-semibold
-          span(v-if="organization.doc_specialties") {{ organization.doc_specialties[0] }}&nbsp;&nbsp;
+          span(v-if="doctor.doc_specialties") {{ doctor.doc_specialties[0] }}&nbsp;&nbsp;
           span(v-else) ---&nbsp;&nbsp;
-          //- v-chip(v-if="organization.doc_website" color="primary" outlined x-small).mt-1 verified
+          //- v-chip(v-if="doctor.doc_website" color="primary" outlined x-small).mt-1 verified
         v-row(justify="start").mt-5
           v-icon(color="primary" :small="!$isWideScreen") mdi-briefcase-variant-outline
           div(:class="textFontSize").info-text.mt-1
-            span(v-if="organization.doc_practicingSince") &nbsp;{{ yearsOfExperience }} year/s of experience
+            span(v-if="doctor.doc_practicingSince") &nbsp;{{ yearsOfExperience }} year/s of experience
             span(v-else) &nbsp;- year/s of experience
         v-row(justify="start").mt-3
           v-icon(color="primary" :small="!$isWideScreen") mdi-map-marker
           div(:class="textFontSize").info-text.mt-1
-            span(v-if="organization.doc_practicingSince") &nbsp;{{ yearsOfExperience }} somewhere
-            span(v-else) &nbsp;- somewhere
+            span(v-if="doctor.doc_practicingSince") &nbsp;{{ yearsOfExperience }}
+            span(v-else) &nbsp;-
         //- v-row(justify="start").pt-3
         //-   v-btn(
         //-     color="success"
@@ -59,10 +59,10 @@
         ).text-none.elevation-0.font-weight-light.mt-n2
           b View
 
-    //- v-row(v-if="organization.doc_specialties").mt-6.pa-2
+    //- v-row(v-if="doctor.doc_specialties").mt-6.pa-2
     //-   v-col(cols="12")
     //-     v-row
-    //-       v-chip(v-for="(specialty, key) in organization.doc_specialties" :key="key").font-12.ma-1 {{ specialty }}&nbsp;
+    //-       v-chip(v-for="(specialty, key) in doctor.doc_specialties" :key="key").font-12.ma-1 {{ specialty }}&nbsp;
 </template>
 
 <script>
@@ -79,9 +79,9 @@ export default {
     VClamp: () => import('vue-clamp'),
   },
   props: {
-    organization: {
+    doctor: {
       type: Object,
-      default: () => {},
+      default: () => ({}),
     },
     readOnly: {
       type: Boolean,
@@ -105,28 +105,29 @@ export default {
   },
   computed: {
     doctorWebsite () {
-      const username = this.organization?.doc_website; // eslint-disable-line
+      const username = this.doctor?.doc_website; // eslint-disable-line
       return `${process.env.WEB_MAIN_URL}/doctors/${username}`;
     },
     fullNameWithSuffixes () {
-      let fullName = this.organization.name.firstName;
-      if (this.organization.name.middleInitial) fullName = fullName + ' ' + this.organization.name.middleInitial;
-      fullName = fullName + ' ' + this.organization.name.lastName;
-      if (this.organization.name.generationalSuffix) fullName = fullName + ' ' + this.organization.name.generationalSuffix;
-      if (this.organization.name.doc_professions) fullName = fullName + ', ' + this.organization.name.doc_professions;
-      if (this.organization.name.academicSuffix) fullName = fullName + ', ' + this.organization.name.academicSuffix;
-      if (this.organization.name.professionalSuffix) fullName = fullName + ', ' + this.organization.name.professionalSuffix;
+      if (!this.doctor) return '';
+      let fullName = this.doctor.name.firstName;
+      if (this.doctor.name.middleInitial) fullName = fullName + ' ' + this.doctor.name.middleInitial;
+      fullName = fullName + ' ' + this.doctor.name.lastName;
+      if (this.doctor.name.generationalSuffix) fullName = fullName + ' ' + this.doctor.name.generationalSuffix;
+      if (this.doctor.name.doc_professions) fullName = fullName + ', ' + this.doctor.name.doc_professions;
+      if (this.doctor.name.academicSuffix) fullName = fullName + ', ' + this.doctor.name.academicSuffix;
+      if (this.doctor.name.professionalSuffix) fullName = fullName + ', ' + this.doctor.name.professionalSuffix;
       return fullName;
     },
     picURL () {
-      const sex = this.organization?.sex;
+      const sex = this.doctor?.sex;
       if (sex === 'female') {
-        return this.organization?.picURL || require('~/assets/images/doctor-website/doctor-website-profile-female.png');
+        return this.doctor?.picURL || require('~/assets/images/doctor-website/doctor-website-profile-female.png');
       }
-      return this.organization?.picURL || require('~/assets/images/doctor-website/doctor-website-profile-male.png');
+      return this.doctor?.picURL || require('~/assets/images/doctor-website/doctor-website-profile-male.png');
     },
     yearsOfExperience () {
-      const from = new Date(this.organization.doc_practicingSince).getFullYear();
+      const from = new Date(this.doctor.doc_practicingSince).getFullYear();
       const to = new Date().getFullYear();
       return to - from;
     },
