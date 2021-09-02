@@ -14,6 +14,11 @@
       :media-column-bindings="{ cols: 12, md: 6, offsetMd: 1, xl: 6}"
       :content-column-bindings="{ cols: 12, md: 5 }"
     )
+    stakes(
+      :version="4"
+      panelTitle="Problems of Not Using a Clinic Management System"
+      :contents="stakesContent"
+    )
     //- 2nd panel
     div.grey-bg.mx-n3
     features(
@@ -110,6 +115,44 @@ export default {
         title: 'COVID-19 Test and Vaccine Tracker',
         icon: 'Covid vaccine tracker',
         iconExtension: '.png',
+      },
+    ];
+    this.stakesContent = [
+      {
+        title: 'Non-Compliance',
+        description: 'With strict laws and heavy penalties on data privacy and security, storing and management of employee health records have to be compliant.',
+        imageBindings: {
+          image: 'Non-Compliance.png',
+          mobileImage: 'Non-compliance.png',
+          imageAlt: 'Data privacy breach',
+          customPath: 'clinics/corporate/',
+          extensionExclusive: true,
+          width: '100%',
+        },
+      },
+      {
+        title: 'Low Safety Monitoring',
+        description: 'With the ‘new normal’ due to the pandemic, a robust health system would greatly complement HR’s processes on vaccine and testing tracking.',
+        imageBindings: {
+          image: 'Low Safety Monitoring.png',
+          mobileImage: 'Low Safety Monitoring.png',
+          imageAlt: 'Woman confused at list',
+          customPath: 'clinics/corporate/',
+          extensionExclusive: true,
+          width: '100%',
+        },
+      },
+      {
+        title: 'Low Productivity',
+        description: 'Having a health platform with analytics could provide helpful insights that can help in creating activities to boost productivity.',
+        imageBindings: {
+          image: 'Low Productivity.png',
+          mobileImage: 'Low Productivity.png',
+          imageAlt: 'Man sleeping on the job due to slow software',
+          customPath: 'clinics/corporate/',
+          extensionExclusive: true,
+          width: '100%',
+        },
       },
     ];
     this.stepsContent = [

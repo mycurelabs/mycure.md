@@ -201,7 +201,7 @@ export default {
       imageBindings: {
         image: 'MYCURE - OFW The Stakes.png',
         mobileImage: 'MYCURE - OFW The Stakes.png',
-        imageAlt: 'Doctor with a lot of paper work',
+        imageAlt: 'Doctor with hourglass and downhill chart in monitor',
         customPath: 'clinics/ofw/',
         extensionExclusive: true,
         width: '100%',

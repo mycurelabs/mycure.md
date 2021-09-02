@@ -24,15 +24,23 @@
                 v-col(cols="5")
                   p.mc-content-set-1.grey--text {{ content.rightDescription }}
           //- version 2
-          div(v-else)
+          div(v-if="version === 2")
             v-row(justify="center")
               v-col(cols="10").table
                 v-row.mc-content-set-1
                   v-col(v-for="(content, index) in contents" :key="index" cols="6" :class=" index < 2 ? {'table-entry1': index === 1} : (index % 2 === 0 ? 'table-entry2' : 'table-entry3')")
                     v-icon(small black) mdi-circle
                     span &nbsp; {{ content }}
+          div(v-else)
+            v-row(justify="center")
+              v-col(v-for="(content, index) in contents" :key="index" cols="4" align="center").pb-0
+                picture-source(
+                  v-bind="getImageBindings(content.imageBindings)"
+                )
+                p.mc-title-set-2.font-weight-semibold {{ content.title }}
+                p.mc-content-set-1 {{ content.description }}
           //- footer
-          v-row(justify="center").mt-10
+          v-row(justify="center" :class="{'mt-10': version !== 4}")
             v-col(cols="11")
               p(:class="{'text-center': version === 1}").mc-content-set-1.text-center {{ panelDescription }}
           v-row(justify="center")
@@ -67,12 +75,12 @@
 </template>
 
 <script>
-// import PictureSource from '~/components/commons/PictureSource';
+import PictureSource from '~/components/commons/PictureSource';
 export default {
   components: {
     SignupButton: () => import('~/components/commons/SignupButton'),
     GenericMediaPanel: () => import('~/components/generic/GenericMediaPanel'),
-    //     PictureSource,
+    PictureSource,
   },
   props: {
     version: {
@@ -147,6 +155,23 @@ export default {
           height: this.$isMobile ? '197.14px' : (this.$isRegularScreen ? '328.58px' : '507.14px'),
         },
       };
+    },
+  },
+  methods: {
+    getImageBindings (imageBindings) {
+      const [image, extension] = imageBindings.mobileImage && this.$isMobile
+        ? imageBindings.mobileImage.split('.')
+        : imageBindings.image.split('.');
+      const bindings = {
+        ...imageBindings,
+        image,
+        imageFileExtension: `.${extension}`,
+        imageAlt: imageBindings.imageAlt || imageBindings.alt || this.content.title,
+        extensionExclusive: imageBindings.extensionExclusive || (imageBindings.mobileImage && this.$isMobile),
+        imageWidth: imageBindings.width,
+        imageHeight: imageBindings.height,
+      };
+      return bindings;
     },
   },
 };
