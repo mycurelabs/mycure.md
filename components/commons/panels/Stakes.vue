@@ -48,9 +48,10 @@
     generic-media-panel(
       v-else
       :content="mediaContent"
-      :title-classes="mediaHeaderClasses"
+      :title-classes="[...mediaHeaderClasses, 'font-weight-semibold']"
       :super-title-classes="mediaSuperTitleClasses"
       :content-classes="[...mediaDescriptionClasses, 'justify-left']"
+      :hide-btn="hideBtn"
     ).mt-16
       template(slot="cta-button")
         div(:class="{ 'text-center': $isMobile }")
@@ -116,6 +117,10 @@ export default {
     mediaDescriptionClasses: {
       type: Array,
       default: () => [],
+    },
+    hideBtn: {
+      type: Boolean,
+      default: false,
     },
   },
   data () {

@@ -14,6 +14,14 @@
       :media-column-bindings="{ cols: 12, md: 6, offsetMd: 1, xl: 6}"
       :content-column-bindings="{ cols: 12, md: 5 }"
     )
+    stakes(
+      :version="3"
+      :media-content="stakesContent"
+      :media-header-classes="['mc-title-set-2']"
+      :media-super-title-classes="['mc-content-set-1', 'lh-title', 'font-weight-semibold', 'primary--text']"
+      :media-description-classes="['mc-content-set-1', 'font-open-sans', 'font-gray']"
+      hide-btn
+    )
     //- 2nd panel
     v-container
       v-row(justify="center")
@@ -185,6 +193,23 @@ export default {
       'The problem is it’s hard to find such a system that is easy to use and affordable.  We believe that clinics like yours should never have to deal with this. We understand that there is a need for this.',
       'That’s why we\'ve built MYCURE OFW Clinic Management System for those who are rightfully serving this market, the ‘new heroes’ of the land.',
     ];
+    this.stakesContent = {
+      title: 'Wasted Time + Missed Opportunities  = Lost Income',
+      // superTitle: 'Tired of long waiting lines?',
+      description: 'Not automating your system means more errors and losses which can impact a lot in your bottomline.',
+      contentAlign: 'right',
+      imageBindings: {
+        image: 'MYCURE - OFW The Stakes.png',
+        mobileImage: 'MYCURE - OFW The Stakes.png',
+        imageAlt: 'Doctor with a lot of paper work',
+        customPath: 'clinics/ofw/',
+        extensionExclusive: true,
+        width: '100%',
+      },
+      //   width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
+      //   height: this.$isMobile ? '197.14px' : (this.$isRegularScreen ? '328.58px' : '507.14px'),
+      // },
+    };
     this.headerClasses = ['mc-title-set-1', 'lh-title', 'font-weight-semibold'];
     this.descriptionClasses = ['mc-content-set-1'];
     this.btnClasses = ['mc-button-set-1'];
