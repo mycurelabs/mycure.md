@@ -200,6 +200,7 @@ export default {
     },
     selectedMode: {
       get () {
+        console.log('mode', this.value);
         return this.value;
       },
       set (val) {

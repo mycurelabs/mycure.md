@@ -1,37 +1,38 @@
 <template lang="pug">
-  div(v-if="!loading.page")
-    v-container.mb-5.fixed-container
-      v-row(justify="center")
-        generic-panel(
-          :column="$isMobile ? 12 : 10"
-          disable-parent-padding
-        )
-          v-col(cols="12")
-            nuxt-link(to="/")
-              img(
-                src="~/assets/images/MYCURE Logo - black.png"
-                width="120px"
-                height="34.46px"
-                alt="MYCURE logo"
-              ).mt-8.ml-2.mb-5
-      v-row(justify="center")
-        generic-panel(
-          :column="$isMobile ? 12 : 10"
-          disable-parent-padding
-        )
-          v-col(cols="12")
-            v-row(align="center" justify="center").my-6
+  div(v-if="!loading.page").white
+    //- App Bar
+    v-app-bar(
+      height="275"
+      app
+      color="white"
+      elevate-on-scroll
+    )
+      v-container
+        v-row(justify="center")
+          generic-panel(
+            :column="$isMobile ? 12 : 10"
+            disable-parent-padding
+          )
+            v-col(cols="12")
+              nuxt-link(to="/")
+                img(
+                  src="~/assets/images/MYCURE Logo - black.png"
+                  width="120px"
+                  height="34.46px"
+                  alt="MYCURE logo"
+                ).ml-2.mb-5
               directory-search-bar(
                 v-model="searchMode"
                 @search="onSearch($event)"
               )
     results-section(
-      section-title="Doctors"
-      type="doctor"
+      :results-name="resultsName"
+      :type="searchMode"
       :items="entries"
       :loading="loading.results"
       :pagination="resultsPagination"
       :read-only="readOnly"
+      @page:update="onPagination($event)"
     )
 </template>
 
@@ -42,7 +43,6 @@ import ResultsSection from './ResultsSection';
 import DirectoryAppBar from '~/components/directory/DirectoryAppBar';
 import DirectorySearchBar from '~/components/directory/DirectorySearchBar';
 import { unifiedDirectorySearch } from '~/services/unified-directory';
-import { searchDoctors } from '~/utils/axios';
 
 export default {
   components: {
@@ -84,6 +84,13 @@ export default {
         itemsLength: this.entriesLength,
       };
     },
+    resultsName () {
+      switch (this.searchMode) {
+        case 'account': return 'doctor';
+        case 'organization': return 'organization';
+        default: return 'results';
+      }
+    },
     entriesLength () {
       return Math.ceil(this.entriesTotal / this.entriesLimit) || 0;
     },
@@ -104,14 +111,20 @@ export default {
   // },
   async mounted () {
     this.loading.page = false;
-    await this.search();
+    await this.search({
+      searchText: this.$route.query.searchText,
+      searchMode: this.$route.query.searchMode,
+    });
   },
   methods: {
-    async search (page = 1) {
+    async search ({
+      searchText,
+      searchMode,
+    }, page = 1) {
       try {
         this.loading.results = true;
-        this.searchText = this.$route.query.searchText;
-        this.searchMode = this.$route.query.searchMode;
+        this.searchText = searchText || this.searchText;
+        this.searchMode = searchMode || this.searchMode;
         const skip = this.entriesLimit * (page - 1);
         const query = {
           type: this.searchMode,
@@ -123,6 +136,7 @@ export default {
         const { items, total } = await unifiedDirectorySearch(this.$sdk, query);
 
         this.entriesTotal = total;
+        console.log('total', this.entriesTotal);
         const entryItems = items || [];
 
         this.entries = entryItems;
@@ -144,28 +158,8 @@ export default {
         this.loading.results = false;
       }
     },
-    async fetchDoctors (searchQuery = {}, page = 1) {
-      try {
-        this.loading.results = true;
-        this.$emit('results:filled', false);
-        const { searchString, specialties, sortBy } = searchQuery;
-        const skip = this.entriesLimit * (page - 1);
-        const query = {
-          limit: this.entriesLimit,
-          skip,
-          searchString,
-          specialties,
-          sortBy,
-        };
-
-        const { data, total } = await searchDoctors(query);
-        this.entries = data;
-        this.entriesTotal = total;
-      } catch (error) {
-        console.error(error);
-      } finally {
-        this.loading.results = false;
-      }
+    onPagination (page) {
+      this.search({}, page);
     },
     async fetchMunicipalities () {
       try {
@@ -187,7 +181,7 @@ export default {
 
 <style scoped>
 
-.fixed-container {
+ .fixed-container{
   position: fixed;
   z-index: 99;
   width: 100%;
