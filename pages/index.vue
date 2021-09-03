@@ -114,8 +114,8 @@ export default {
   },
   head () {
     return headMeta({
-      title: 'MYCURE | Making Healthcare Accessible to All',
-      description: 'MYCURE is a healthcare platform that connects physicians, clinics, hospitals, and medical organizations to anyone in need.',
+      title: 'MYCURE | Enterprise-Grade Healthcare Solutions',
+      description: 'MYCURE is a suite of cost-effective healthcare management solutions designed for doctors, clinics, diagnostic labs, and hospitals.',
       socialBanner: require('~/assets/images/banners/OG Homepage.png'),
     });
   },

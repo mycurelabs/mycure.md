@@ -131,7 +131,7 @@ export default {
     // - TODO: Update
     return headMeta({
       title: 'MYCURE Patient Relationship Management',
-      description: 'Build lasting connections with your patients with MYCURE’s medical CRM. Let them know you are there. Make quick calls, chats, appointments, and reminders to your patients and reinforce continuity of care in an effective and timely way.',
+      description: 'Build lasting connections with your patients with MYCURE’s medical CRM by making quick calls and appointments to reinforce continuity of care in effective ways.',
       socialBanner: require('~/assets/images/banners/OG Homepage.png'),
     });
   },

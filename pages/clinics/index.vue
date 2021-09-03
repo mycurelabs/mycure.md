@@ -205,8 +205,8 @@ export default {
   },
   head () {
     return headMeta({
-      title: 'MYCURE Clinic Management System',
-      description: 'MYCURE enables clinics with complex operations to have simplified workflows to be much more efficient, increase in revenue, and build.',
+      title: 'MYCURE EMR and Outpatient Multispecialty Clinic Management System',
+      description: 'MYCURE provides clinics with simple and customized workflows based on the specialization of the clinics',
       socialBanner: require('~/assets/images/banners/OG Clinics.png'),
     });
   },

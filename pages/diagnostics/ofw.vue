@@ -221,7 +221,7 @@ export default {
   head () {
     return headMeta({
       title: 'MYCURE for OFW Medical Clinics',
-      description: 'MYCURE provides a specialized tool to create, finalize, and release medical exam results designed for OFW clinics. Book a demo today.',
+      description: 'Time to comply with the Universal Healthcare Act. MYCURE enables OFW Clinics to digitally create, finalize, and release medical exam results. Book a demo today.',
       socialBanner: require('~/assets/images/banners/MYCURE - OFW Clinic OG BANNER.png'),
     });
   },

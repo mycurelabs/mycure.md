@@ -182,7 +182,7 @@ export default {
   head () {
     return headMeta({
       title: 'MYCURE for Corporate Clinics',
-      description: 'Get the most affordable software for corporate clinics today.',
+      description: 'Organize your employee health records like a breeze. Get the most affordable software for corporate clinics today.',
       socialBanner: require('~/assets/images/banners/MYCURE - Corporate Clinic OG BANNER.png'),
     });
   },
