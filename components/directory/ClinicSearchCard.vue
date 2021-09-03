@@ -26,11 +26,10 @@
       v-row(justify="end")
         v-btn(
           color="primary"
-          target="_blank"
-          rel="noopener noreferrer"
           :small="!$isWideScreen"
           rounded
-          :class="$isWideScreen ? ['font-14', 'px-6'] : ['font-10', 'px-5'] "
+          :class="$isWideScreen ? ['font-14', 'px-6'] : ['font-10', 'px-5']"
+          @click="visitWebsite"
         ).text-none.elevation-0.font-weight-light.mt-2
           b Book a Visit
 </template>
@@ -146,6 +145,9 @@ export default {
     },
   },
   methods: {
+    visitWebsite () {
+      this.$router.push(`/facilities/${this.organization.websiteId || this.organization.id}`);
+    },
     clinicOpen (value) {
       if (this.fullSchedules.length) {
         if (value < this.startDay) return false;

@@ -12,7 +12,7 @@
         v-row
           span(:class="[nameFontSize, $isWideScreen ? 'name-width-wide' : 'name-width-reg']").text-truncate.font-weight-bold.mb-0 {{ fullNameWithSuffixes }}&nbsp;
         v-row(:class="textFontSize").info-text.font-weight-semibold
-          span(v-if="doctor.doc_specialties") {{ doctor.doc_specialties[0] }}&nbsp;&nbsp;
+          span(v-if="hasSpecialties") {{ doctor.doc_specialties[0] }}&nbsp;&nbsp;
           span(v-else) ---&nbsp;&nbsp;
           //- v-chip(v-if="doctor.doc_website" color="primary" outlined x-small).mt-1 verified
         v-row(justify="start").mt-5
@@ -144,6 +144,9 @@ export default {
         regular: ['font-10'],
         wide: ['font-14'],
       });
+    },
+    hasSpecialties () {
+      return this.doctor?.doc_specialties?.length;
     },
   },
 };

@@ -3,18 +3,17 @@
     v-row(justify="center" align="center")
       v-col(cols="12").pb-0
         v-row
-          v-col
-            v-btn-toggle(
-              v-model="selectedMode"
-              background-color="transparent"
-              dense
-              mandatory
-              borderless
-              @change="onModeChange($event)"
-            )
-              //- v-btn(value="all" text active-class="active-button" :class="buttonGroupClasses").mr-3.tight-font all
-              v-btn(value="account" text active-class="active-button" :class="buttonGroupClasses").mr-3.tight-font.rounded-pill doctor
-              v-btn(value="organization" text active-class="active-button" :class="buttonGroupClasses").mr-3.tight-font.rounded-pill clinics
+          v-btn-toggle(
+            v-model="selectedMode"
+            background-color="transparent"
+            dense
+            mandatory
+            borderless
+            @change="onModeChange($event)"
+          )
+            //- v-btn(value="all" text active-class="active-button" :class="buttonGroupClasses").mr-3.tight-font all
+            v-btn(value="account" text active-class="active-button" :class="buttonGroupClasses").mr-3.tight-font.rounded-pill doctor
+            v-btn(value="organization" text active-class="active-button" :class="buttonGroupClasses").mr-3.tight-font.rounded-pill clinics
               //- v-btn(value="location" text active-class="active-button" :class="buttonGroupClasses").mr-3.tight-font.rounded-pill location
           v-spacer
           //- TODO: Location
@@ -22,32 +21,28 @@
           //-   v-row(align="center" justify="end")
           //-     span.font-weight-bold.font-14 USE MY LOCATION
           //-     v-switch(v-model="locationSwitch" inset).ml-3
-        v-row
+        v-row.pt-2
           v-col.pa-0
             v-text-field(
               v-model="searchObject.searchString"
               :placeholder="searchPlaceholder"
-              append-icon="mdi-tune-variant"
               solo
               outlined
               flat
               :height="$isMobile ? '40px' : '60px'"
-              @click:append="tagSearchDialog = true"
               @keyup.enter="onSearch"
             ).rounded-bl-lg.rounded-tl-lg
-              template(v-slot:prepend-inner)
-                v-icon(small).mx-3 mdi-magnify
-          //- v-col(cols="1").pa-0
-          //-   v-btn(
-          //-     v-if="!$isMobile"
-          //-     small
-          //-     block
-          //-     tile
-          //-     color="primary"
-          //-     @click="onVoiceSearch"
-          //-     :height="$isMobile ? '40px' : '60px'"
-          //-   ).elevation-0.rounded-br-lg.rounded-tr-lg
-          //-     v-icon mdi-microphone-outline
+          v-col(cols="1").pa-0
+            v-btn(
+              v-if="!$isMobile"
+              small
+              block
+              tile
+              color="primary"
+              @click="onSearch"
+              :height="$isMobile ? '40px' : '60px'"
+            ).elevation-0.rounded-br-lg.rounded-tr-lg
+              v-icon mdi-magnify
         v-row(v-if="searchObject.specialties.length >= 1").mt-n3
           v-btn(
             color="primary"
@@ -211,6 +206,7 @@ export default {
   methods: {
     onModeChange (val) {
       this.selectedMode = val;
+      this.searchObject.mode = val;
     },
     onSearch () {
       this.searchObject.mode = this.selectedMode;
