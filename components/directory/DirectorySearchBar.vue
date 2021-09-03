@@ -10,7 +10,7 @@
               dense
               mandatory
               borderless
-              @change="searchSelect"
+              @change="onModeChange($event)"
             )
               //- v-btn(value="all" text active-class="active-button" :class="buttonGroupClasses").mr-3.tight-font all
               v-btn(value="account" text active-class="active-button" :class="buttonGroupClasses").mr-3.tight-font.rounded-pill doctor
@@ -155,7 +155,8 @@ export default {
     //   type: Boolean,
     //   default: false,
     // },
-    value: {
+    // Search Mode
+    mode: {
       type: String,
       default: 'account',
     },
@@ -176,7 +177,7 @@ export default {
       searchObject: {
         searchString: '',
         specialties: [],
-        mode: 'doctor',
+        mode: 'account',
       },
       specialtiesList: specialties.map((str, index) => ({ strVal: str, selected: false, indexVal: index })),
       // docSuggestionsSearchQuery: null,
@@ -200,19 +201,19 @@ export default {
     },
     selectedMode: {
       get () {
-        console.log('mode', this.value);
-        return this.value;
+        return this.mode || 'account';
       },
       set (val) {
-        this.$emit('input', val);
+        this.$emit('update:mode', { mode: val });
       },
     },
   },
   methods: {
-    searchSelect () {
-      this.searchObject.mode = this.selectedMode;
+    onModeChange (val) {
+      this.selectedMode = val;
     },
     onSearch () {
+      this.searchObject.mode = this.selectedMode;
       this.$emit('search', {
         ...this.searchObject,
         specialties: this.searchObject?.specialties?.map(s => s.strVal) || [],

@@ -22,8 +22,9 @@
                   alt="MYCURE logo"
                 ).ml-2.mb-5
               directory-search-bar(
-                v-model="searchMode"
+                :mode="searchMode"
                 @search="onSearch($event)"
+                @update:mode="onSearch($event)"
               )
     results-section(
       :results-name="resultsName"
@@ -136,14 +137,12 @@ export default {
         const { items, total } = await unifiedDirectorySearch(this.$sdk, query);
 
         this.entriesTotal = total;
-        console.log('total', this.entriesTotal);
         const entryItems = items || [];
 
         this.entries = entryItems;
 
         if (this.searchMode === 'account' && entryItems.length) {
           const entryPromises = entryItems.map(async (entry) => {
-            console.log('entry.ref.id', entry.ref.id);
             const personalDetails = await this.$sdk.service('personal-details').get(entry.ref.id);
             return personalDetails;
           });
@@ -157,6 +156,17 @@ export default {
       } finally {
         this.loading.results = false;
       }
+    },
+    onSearch (searchOpts = {}) {
+      const { searchString, mode } = searchOpts;
+      const searchObject = {
+        searchText: searchString || this.searchText,
+        searchMode: mode,
+      };
+      // update route queries
+      this.$router.replace({ query: searchObject });
+      // search
+      this.search(searchObject);
     },
     onPagination (page) {
       this.search({}, page);

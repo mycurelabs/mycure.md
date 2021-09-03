@@ -27,7 +27,7 @@
                   md="4"
                 )
                   doc-search-card(
-                    v-if="type === 'doctor'"
+                    v-if="type === 'account'"
                     :doctor="item"
                     :read-only="readOnly"
                   )
