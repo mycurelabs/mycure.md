@@ -84,7 +84,7 @@
             span.generic-button-text Learn More
     //- 7.5
     care
-    steps(:steps="stepsContent" hide-btn)
+    steps(:steps="stepsContent")
     storybrand(
       title="Using Modern Tools to Boost Your Practice"
       :content="storybrandContent"
@@ -180,7 +180,7 @@ export default {
     this.stepsContent = [
       {
         title: 'Create an Account',
-        description: 'This activates your Clinic Management System',
+        description: 'This activates your Clinic Management System.',
       },
       {
         title: 'Set up your Account',

@@ -4,16 +4,19 @@
       v-row(justify="center")
         generic-panel
           v-col(cols="12").text-center
+            h1.mc-title-set-1.font-weight-bold Here's How MYCURE is Different
+          v-col(cols="12").text-center
             iframe(
               align="middle"
               id="ytplayer"
               type="text/html"
-              :width="$isMobile ? '100%' : '620'"
-              height="393"
-              src="https://www.youtube.com/embed/9gxJX_eokC0?loop=1&showinfo=0&rel=0&modestbranding=1"
+              :width="$isMobile ? '100%' : '944.75'"
+              :height="$isMobile ? '393' : '600'"
+              src="https://www.youtube.com/embed/r7oewF5qDz4"
               frameborder="0"
               allowfullscreen
             )
+            //- width="560" height="315"
             br
             signup-button(
               depressed
@@ -22,8 +25,8 @@
               event-label="signup"
               width="228px"
               height="59px"
-            ).text-none.mt-10
-              span.generic-button-text Get Different
+            ).text-none.mt-5
+              span.generic-button-text Get Started Free
               v-icon(small right) mdi-arrow-right
 </template>
 
@@ -42,14 +45,13 @@ export default {
 <style scoped>
 .video-bg {
   /* height: 1000px; */
-  width: 100vw;
-background-image: url('~/assets/images/telehealth/Telehealth Video Banner.png');
+  background-image: url('~/assets/images/commons/MYCURE - Video Banner BG.webp');
   background-position: center center;
-  background-size: 100% 100%;
+  background-size: 100%;
 }
 .video-bg-mobile {
   /* height: 1000px; */
-  background-image: url('~/assets/images/telehealth/Telehealth Video Banner.png');
+  background-image: url('~/assets/images/commons/MYCURE - Video Banner BG.webp');
   background-position: center top;
 }
 </style>

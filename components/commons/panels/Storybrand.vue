@@ -1,14 +1,14 @@
 <template lang="pug">
   v-container
     v-row(justify="center").pa-5
-      v-card(:width="!$isMobile ? '60%' : '100%'" elevation="5" :class="{'px-0': $isMobile}").rounded-xl.px-8.py-16.my-16
-        v-card-text(:class="$isMobile ? 'px-0' : 'my-16'")
+      v-card(:width="!$isMobile ? '60%' : '100%'" elevation="5" :class="{'px-0': $isMobile}").rounded-xl.pa-8.my-16
+        v-card-text(:class="$isMobile ? 'px-0' : 'my-8'")
           v-row(justify="center")
             v-col(cols="10" align="center")
-              span.font-weight-bold.mc-title-set-2.black--text {{ title}}
-            v-col(cols="12").font-open-sans.px-10
+              span.font-weight-bold.mc-title-set-2.black--text {{ title }}
+            v-col(cols="12").px-10
               div(v-for="paragraph in content")
-                p.mc-content-set-3 {{ paragraph }}
+                p.mc-content-set-3.font-gray.font-open-sans {{ paragraph }}
             v-col(cols="12" :class="{'px-0': $isMobile}" align="center")
               signup-button(
                 depressed
@@ -35,7 +35,7 @@ export default {
     },
     content: {
       type: Array,
-      default: undefined,
+      default: () => [],
     },
   },
 };

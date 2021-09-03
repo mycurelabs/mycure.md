@@ -43,7 +43,7 @@
         :items="thirdPanelContents"
       )
         template(slot="title")
-          h2(:class="superTitleClasses") Benefits of MYCURE Booking System
+          h2(:class="[...superTitleClasses, 'font-open-sans']") BENEFITS OF MYCURE BOOKING SYSTEM
         template(slot="description")
           p.mc-title-set-2.font-weight-semibold Acquire and Accommodate more Patients
         template(slot="items")
@@ -73,7 +73,7 @@
             ).text-none
               span.generic-button-text Get Started Free
 
-    practicioners
+    practitioners
 
     //- 4th panel
     features(
@@ -154,7 +154,7 @@
       generic-media-panel(
         align="center"
         :content="fifthPanelContents"
-        :title-classes="[...titleClasses, 'white--text', 'line-height-reducer']"
+        :title-classes="[...titleClasses, 'white--text', 'line-height-reducer', 'font-weight-semibold']"
         :content-classes="['white--text', ...descriptionClasses]"
       )
         template(slot="cta-button")
@@ -194,7 +194,7 @@ export default {
     Plans: () => import('~/components/booking/Plans'),
     Usp,
     SignupButton: () => import('~/components/commons/SignupButton'),
-    Practicioners: () => import('~/components/booking/Practicioners'),
+    Practitioners: () => import('~/components/booking/Practitioners'),
     Storybrand: () => import('~/components/commons/panels/Storybrand'),
   },
   data () {

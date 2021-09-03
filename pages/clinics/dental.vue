@@ -81,27 +81,29 @@
         div.mb-10
       template(slot="cta-button")
         v-row(:justify="$isMobile ? 'center' : 'start'")
-          mc-btn(
-            color="success"
-            href="https://calendly.com/mycure/demo"
-            target="_blank"
-            rel="noopener noreferrer"
-            depressed
-            rounded
-            width="228px"
-            height="59px"
-          ).text-none
-            v-icon(left) mdi-web
-            span.generic-button-text Create my Website
-          signup-button(
-            depressed
-            rounded
-            outlined
-            width="228px"
-            height="59px"
-            color="success"
-          ).text-none.ml-5
-            span.generic-button-text Get Started
+          v-col(cols="12" sm="6").pa-0
+            mc-btn(
+              color="success"
+              href="https://calendly.com/mycure/demo"
+              target="_blank"
+              rel="noopener noreferrer"
+              depressed
+              block
+              height="59px"
+              rounded
+            ).text-none
+              //- v-icon(left) mdi-web
+              span.generic-button-text Create my Website
+          v-col(cols="12" sm="6").py-0
+            signup-button(
+              depressed
+              block
+              rounded
+              outlined
+              color="success"
+              height="59px"
+            ).text-none
+              span.generic-button-text Get Started
 
     //- 7th panel
     generic-media-panel(
@@ -125,7 +127,7 @@
     //- 8th panel
     syncbase(:version="3")
     care
-    steps(:steps="stepsContent" hide-btn)
+    steps(:steps="stepsContent")
     storybrand(
       title="Using Modern Tools to Boost Your Practice"
       :content="storybrandContent"
@@ -174,15 +176,15 @@ export default {
     this.stepsContent = [
       {
         title: 'Create an Account',
-        description: 'This activates your Dental Management System',
+        description: 'This activates your Dental Management System.',
       },
       {
         title: 'Set up your Account',
-        description: 'Customize your account based on your clinic’s needs. ',
+        description: 'Customize your account based on your clinic’s needs.',
       },
       {
         title: 'Share',
-        description: 'Share your beautiful, free website so your patients can start booking',
+        description: 'Share your beautiful, free website so your patients can start booking.',
       },
     ];
     this.storybrandContent = [
@@ -195,10 +197,10 @@ export default {
       description: 'Do you still use paper charting to track history of your patient’s dental records? You may be losing to your competition.',
       contentAlign: 'right',
       imageBindings: {
-        image: 'Diagnostic Stakes.png',
-        mobileImage: 'Diagnostic Stakes.png',
-        imageAlt: 'Doctor with hourglass and downhill chart in monitor',
-        customPath: 'diagnostics/',
+        image: 'Dental - The Stakes.png',
+        mobileImage: 'Dental - The Stakes.png',
+        imageAlt: 'Doctor with tons of paper work',
+        customPath: 'clinics/dental/',
         extensionExclusive: true,
         width: '100%',
       },

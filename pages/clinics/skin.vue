@@ -111,7 +111,7 @@
     syncbase(:version="3")
     //- 6.5
     care
-    steps(:steps="stepsContent" hide-btn)
+    steps(:steps="stepsContent")
     storybrand(
       title="Using Modern Tools to Boost Your Practice"
       :content="storybrandContent"
@@ -182,15 +182,15 @@ export default {
     this.stepsContent = [
       {
         title: 'Create an Account',
-        description: '-',
+        description: 'This activates your Skin Management System.',
       },
       {
         title: 'Set up your Account',
-        description: 'Customize your account based on your clinic’s needs. ',
+        description: 'Customize your account based on your clinic’s needs.',
       },
       {
         title: 'Share',
-        description: 'Share your beautiful, free website so your patients can start booking',
+        description: 'Share your beautiful, free website so your patients can start booking.',
       },
     ];
     this.storybrandContent = [
@@ -203,10 +203,10 @@ export default {
       description: 'Don’t give a reason to lose to your competition. Complement your top notch skin services with a modern, robust and complete system.',
       contentAlign: 'right',
       imageBindings: {
-        image: 'Diagnostic Stakes.png',
-        mobileImage: 'Diagnostic Stakes.png',
-        imageAlt: 'Doctor with hourglass and downhill chart in monitor',
-        customPath: 'diagnostics/',
+        image: 'Skin - The Stakes.png',
+        mobileImage: 'Skin - The Stakes.png',
+        imageAlt: 'Doctor listening to patient feedback',
+        customPath: 'clinics/skin/',
         extensionExclusive: true,
         width: '100%',
       },

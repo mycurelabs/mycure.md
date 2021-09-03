@@ -7,7 +7,7 @@
             v-col(cols="11")
               div.text-center
                 p(:class="{'primary--text': version === 2}").mc-title-set-1.font-weight-semibold.mb-0 {{ panelTitle }}
-                p(v-if="version === 2").mc-content-set-1.mb-0 {{ subTitle }}
+                p(v-if="version === 2").mc-content-set-1.mb-0.font-gray {{ subTitle }}
           //- version 1
           div(v-if="version === 1")
             div(v-for="(content, index) in contents" :key="index")
@@ -19,10 +19,10 @@
                   span.primary--text.mc-content-set-1.font-weight-semibold {{ content.rightTitle }}
               v-row(justify="center")
                 v-col(cols="5")
-                  p.mc-content-set-1.grey--text {{ content.leftDescription }}
+                  p.mc-content-set-1.font-gray {{ content.leftDescription }}
                 v-col(cols="1")
                 v-col(cols="5")
-                  p.mc-content-set-1.grey--text {{ content.rightDescription }}
+                  p.mc-content-set-1.font-gray {{ content.rightDescription }}
           //- version 2
           div(v-if="version === 2")
             v-row(justify="center")
@@ -30,24 +30,24 @@
                 v-row.mc-content-set-1
                   v-col(v-for="(content, index) in contents" :key="index" cols="6" :class=" index < 2 ? {'table-entry1': index === 1} : (index % 2 === 0 ? 'table-entry2' : 'table-entry3')")
                     v-icon(small black) mdi-circle
-                    span &nbsp; {{ content }}
-          div(v-else)
+                    span.font-gray &nbsp; {{ content }}
+          div(v-if="version === 4")
             v-row(justify="center")
               v-col(v-for="(content, index) in contents" :key="index" cols="4" align="center").pb-0
                 picture-source(
                   v-bind="getImageBindings(content.imageBindings)"
                 )
                 p.mc-title-set-2.font-weight-semibold {{ content.title }}
-                p.mc-content-set-1 {{ content.description }}
-          //- footer
+                div.px-5
+                  p.mc-content-set-1.font-gray {{ content.description }}
+          footer
           v-row(justify="center" :class="{'mt-10': version !== 4}")
             v-col(cols="11")
-              p(:class="{'text-center': version === 1}").mc-content-set-1.text-center {{ panelDescription }}
+              p(:class="{'text-center': version === 1}").mc-content-set-1.text-center.font-gray {{ panelDescription }}
           v-row(justify="center")
             v-btn(
               color="primary"
               depressed
-              outlined
               rounded
               width="228px"
               height="59px"
@@ -61,6 +61,8 @@
       :content-classes="[...mediaDescriptionClasses, 'justify-left']"
       :hide-btn="hideBtn"
     ).mt-16
+      template(slot="title")
+        slot(name="title")
       template(slot="cta-button")
         div(:class="{ 'text-center': $isMobile }")
           signup-button(
@@ -83,6 +85,10 @@ export default {
     PictureSource,
   },
   props: {
+    // version 1 - 4 panel with only text
+    // version 2 - table format
+    // version 3 - generic media panel format
+    // version 4 - 3 images in a row with title and description
     version: {
       type: Number,
       default: 3,
@@ -137,25 +143,6 @@ export default {
     this.headerClasses = ['mc-title-set-2', 'font-weight-semibold'];
     return {
     };
-  },
-  computed: {
-    secondPanel () {
-      return {
-        title: 'Stop wasting your time',
-        superTitle: 'Tired of long waiting lines?',
-        description: 'Without an appointment booking system, healthcare providers find it difficult to organize patient visits resulting to missed opportunities and more time wasted.',
-        contentAlign: 'right',
-        imageBindings: {
-          image: 'Stakes.webp',
-          mobileImage: 'Stakes.webp',
-          imageAlt: 'Doctor with a lot of paper work',
-          customPath: 'booking/',
-          extensionExclusive: true,
-          width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
-          height: this.$isMobile ? '197.14px' : (this.$isRegularScreen ? '328.58px' : '507.14px'),
-        },
-      };
-    },
   },
   methods: {
     getImageBindings (imageBindings) {

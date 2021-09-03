@@ -17,9 +17,9 @@
                 image-file-extension=".png"
                 :image-height="$isWideScreen ? '170' : '120'"
               ).mr-3.ml-2
-              v-col.pr-3
+              v-col.pr-5
                 p.font-weight-semibold.mc-content-set-1 {{ step.title }}
-                p.mc-content-set-1 {{ step.description }}
+                p.mc-content-set-1.font-gray.font-open-sans {{ step.description }}
         div(v-if="!hideBtn")
           v-row
             v-col.py-10

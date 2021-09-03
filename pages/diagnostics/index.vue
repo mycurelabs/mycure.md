@@ -114,7 +114,7 @@
             span.generic-button-text  Learn more
     //- 7.5
     care
-    steps(:steps="stepsContent" hide-btn)
+    steps(:steps="stepsContent")
     storybrand(
       title="Using Modern Tools to Boost Your Practice"
       :content="storybrandContent"
@@ -188,7 +188,7 @@ export default {
     this.stepsContent = [
       {
         title: 'Create an Account',
-        description: 'This activates your Laboratory and Imaging Management System',
+        description: 'This activates your Laboratory and Imaging Management System.',
       },
       {
         title: 'Set up your Account',
@@ -207,7 +207,7 @@ export default {
     this.stakesContent = {
       title: 'Manual Routinary Tasks are Prone to Errors',
       // superTitle: 'Tired of long waiting lines?',
-      description: 'And this can be costly! Not only does these errors contribute to your bottomline, but this also pertains to providing accurate, sensitive information to your patients.',
+      description: 'And this can be costly! Not only do these errors contribute to your bottomline, but this also pertains to providing accurate, sensitive information to your patients.',
       contentAlign: 'right',
       imageBindings: {
         image: 'Diagnostic Stakes.png',

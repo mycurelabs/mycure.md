@@ -19,6 +19,10 @@
       :media-content="stakesContent"
       hide-btn
     )
+      template(slot="title")
+        h2.mc-title-set-2.font-weight-semibold Wasted Time +
+        h2.mc-title-set-2.font-weight-semibold Missed Opportunities =
+        h2.mc-title-set-2.font-weight-semibold Lost Income
     //- 2nd panel
     v-container
       v-row(justify="center")
@@ -110,7 +114,7 @@
           //-     :class="{'font-s': $isWideScreen, 'font-14': $isRegularScreen }"
           //-   ).text-none Book a full training
     care
-    steps(:steps="stepsContent" hide-btn)
+    steps(:steps="stepsContent")
     storybrand(
       title="Using Modern Tools to Boost Your Practice"
       :content="storybrandContent"
@@ -174,7 +178,7 @@ export default {
     this.stepsContent = [
       {
         title: 'Create an Account',
-        description: 'This activates your Dental Management System',
+        description: 'This activates your OFW Clinic Management System.',
       },
       {
         title: 'Set up your Account',

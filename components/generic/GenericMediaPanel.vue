@@ -6,6 +6,10 @@
         :hide-btn="hideBtn"
         :disable-parent-padding="disableParentPadding"
       )
+        template(slot="title")
+          div
+            slot(name="title")
+              p(:class="titleClasses || defaultTitleClasses") {{ content.title }}
         template(slot="content")
           div
             slot(name="content")
