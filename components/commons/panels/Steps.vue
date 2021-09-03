@@ -9,17 +9,19 @@
         v-row(justify="center")
           v-col(cols="12" sm="4" v-for="(step, index) in steps" :key="index")
             v-row.mb-4
-              picture-source(
-                extension-exclusive
-                custom-path="commons/"
-                :image="(index + 1)"
-                image-alt="Steps number"
-                image-file-extension=".png"
-                :image-height="$isWideScreen ? '170' : '120'"
-              ).mr-3.ml-2
-              v-col.pr-5
-                p.font-weight-semibold.mc-content-set-1 {{ step.title }}
-                p.mc-content-set-1.font-gray.font-open-sans {{ step.description }}
+              v-col(cols="4" align="center" justify="center").px-0.pb-0
+                picture-source(
+                  extension-exclusive
+                  custom-path="commons/"
+                  :image="(index + 1)"
+                  image-alt="Steps number"
+                  image-file-extension=".png"
+                  :image-width="(index === 0) ? ($isWideScreen ? '66' : '46.52') : ($isWideScreen ? '117' : '82')"
+                  :image-height="$isWideScreen ? '170' : '120'"
+                ).mr-3.ml-2
+              v-col
+                p.font-weight-semibold.mc-list-content-set-1 {{ step.title }}
+                p.mc-list-content-set-1.font-gray.font-open-sans {{ step.description }}
         div(v-if="!hideBtn")
           v-row
             v-col.py-5

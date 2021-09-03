@@ -204,23 +204,6 @@ export default {
       'The problem is it’s hard to find such a system that is easy to use, affordable and interoperable with other systems, which is lacking from your current provider.  We believe that diagnostic centers like yours should never have to deal with this. We’ve talked to dozens of labs and understand that there is a need for this.',
       'That’s why we\'ve built MYCURE Diagnostics with powerful LIS and RIS modules to specifically address this need.',
     ];
-    this.stakesContent = {
-      title: 'Manual Routinary Tasks are Prone to Errors',
-      // superTitle: 'Tired of long waiting lines?',
-      description: 'And this can be costly! Not only do these errors contribute to your bottomline, but this also pertains to providing accurate, sensitive information to your patients.',
-      contentAlign: 'right',
-      imageBindings: {
-        image: 'Diagnostic Stakes.png',
-        mobileImage: 'Diagnostic Stakes.png',
-        imageAlt: 'Doctor with hourglass and downhill chart in monitor',
-        customPath: 'diagnostics/',
-        extensionExclusive: true,
-        width: '100%',
-      },
-      //   width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
-      //   height: this.$isMobile ? '197.14px' : (this.$isRegularScreen ? '328.58px' : '507.14px'),
-      // },
-    };
     this.pricingDetails = DIAGNOSTICS_PRICING;
     this.listHeaderClasses = ['mc-list-title-set-1', 'lh-title', 'font-weight-semibold'];
     this.listContentClasses = ['mc-list-content-set-1', 'font-open-sans', 'font-gray'];
@@ -326,6 +309,22 @@ export default {
           height: this.$isMobile ? '161.56px' : (this.$isRegularScreen ? '257.6px' : '397.59px'),
         },
         contentAlign: 'left',
+      };
+    },
+    stakesContent () {
+      return {
+        title: 'Manual Routinary Tasks are Prone to Errors',
+        description: 'And this can be costly! Not only do these errors contribute to your bottomline, but this also pertains to providing accurate, sensitive information to your patients.',
+        contentAlign: 'right',
+        imageBindings: {
+          image: 'Diagnostic Stakes.png',
+          mobileImage: 'Diagnostic Stakes.png',
+          imageAlt: 'Doctor with hourglass and downhill chart in monitor',
+          customPath: 'diagnostics/',
+          extensionExclusive: true,
+          width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
+          height: this.$isMobile ? '184.14px' : (this.$isRegularScreen ? '306.92px' : '473.72px'),
+        },
       };
     },
   },

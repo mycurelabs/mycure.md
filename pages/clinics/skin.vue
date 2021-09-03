@@ -198,19 +198,6 @@ export default {
       'The problem is it’s hard to find a provider that looks at its system not just as a service but as an experience. We believe that aesthetic clinics like yours should never have this choice. ',
       'That’s why we\'ve built MYCURE Skin and Aesthetics Clinic Management System for those who value a flawless experience in their clinics like yours.',
     ];
-    this.stakesContent = {
-      title: 'Is Status and Quality Important to Your Clinic?',
-      description: 'Don’t give a reason to lose to your competition. Complement your top notch skin services with a modern, robust and complete system.',
-      contentAlign: 'right',
-      imageBindings: {
-        image: 'Skin - The Stakes.png',
-        mobileImage: 'Skin - The Stakes.png',
-        imageAlt: 'Doctor listening to patient feedback',
-        customPath: 'clinics/skin/',
-        extensionExclusive: true,
-        width: '100%',
-      },
-    };
     this.pricingDetails = CLINICS_PRICING;
     this.headerClasses = ['mc-title-set-1', 'lh-title', 'font-weight-semibold'];
     this.subHeaderClasses = ['mc-content-set-1', 'lh-title', 'font-weight-semibold', 'secondary--text'];
@@ -273,7 +260,23 @@ export default {
           extensionExclusive: true,
           imageAlt: 'Charts and graphs',
           width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
-          height: this.$isMobile ? '156.16px' : (this.$isRegularScreen ? '260.08px' : '401.41px'),
+          height: this.$isMobile ? '206.56px' : (this.$isRegularScreen ? '260.08px' : '401.41px'),
+        },
+      };
+    },
+    stakesContent () {
+      return {
+        title: 'Is Status and Quality Important to Your Clinic?',
+        description: 'Don’t give a reason to lose to your competition. Complement your top notch skin services with a modern, robust and complete system.',
+        contentAlign: 'right',
+        imageBindings: {
+          image: 'Skin - The Stakes.png',
+          mobileImage: 'Skin - The Stakes.png',
+          imageAlt: 'Doctor listening to patient feedback',
+          customPath: 'clinics/skin/',
+          extensionExclusive: true,
+          width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
+          height: this.$isMobile ? '139.59px' : (this.$isRegularScreen ? '344.27px' : '531.38px'),
         },
       };
     },

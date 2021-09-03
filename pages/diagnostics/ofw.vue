@@ -122,7 +122,7 @@
     //- 7th panel
     pricing(
       title="Take the first step today."
-      type="clinic"
+      type="diagnostic"
     )
     //- 8th panel
     call-to-action(:version="2")
@@ -194,23 +194,6 @@ export default {
       'The problem is it’s hard to find such a system that is easy to use and affordable.  We believe that clinics like yours should never have to deal with this. We understand that there is a need for this.',
       'That’s why we\'ve built MYCURE OFW Clinic Management System for those who are rightfully serving this market, the ‘new heroes’ of the land.',
     ];
-    this.stakesContent = {
-      title: 'Wasted Time + Missed Opportunities  = Lost Income',
-      // superTitle: 'Tired of long waiting lines?',
-      description: 'Not automating your system means more errors and losses which can impact a lot in your bottomline.',
-      contentAlign: 'right',
-      imageBindings: {
-        image: 'MYCURE - OFW The Stakes.png',
-        mobileImage: 'MYCURE - OFW The Stakes.png',
-        imageAlt: 'Doctor with hourglass and downhill chart in monitor',
-        customPath: 'clinics/ofw/',
-        extensionExclusive: true,
-        width: '100%',
-      },
-      //   width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
-      //   height: this.$isMobile ? '197.14px' : (this.$isRegularScreen ? '328.58px' : '507.14px'),
-      // },
-    };
     this.headerClasses = ['mc-title-set-1', 'lh-title', 'font-weight-semibold'];
     this.descriptionClasses = ['mc-content-set-1'];
     this.btnClasses = ['mc-button-set-1'];
@@ -277,6 +260,22 @@ export default {
           imageAlt: 'Man browsing a clinic website',
           width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
           height: this.$isMobile ? '242.88px' : (this.$isRegularScreen ? '404.79px' : '624.8px'),
+        },
+      };
+    },
+    stakesContent () {
+      return {
+        title: 'Wasted Time + Missed Opportunities  = Lost Income',
+        description: 'Not automating your system means more errors and losses which can impact a lot in your bottomline.',
+        contentAlign: 'right',
+        imageBindings: {
+          image: 'MYCURE - OFW The Stakes.png',
+          mobileImage: 'MYCURE - OFW The Stakes.png',
+          imageAlt: 'Doctor with hourglass and downhill chart in monitor',
+          customPath: 'clinics/ofw/',
+          extensionExclusive: true,
+          width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
+          height: this.$isMobile ? '184.14px' : (this.$isRegularScreen ? '306.92px' : '473.72px'),
         },
       };
     },
