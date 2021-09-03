@@ -1,7 +1,7 @@
 <template lang="pug">
   v-card(height="100%" elevation="2").orgs-card.px-5.pt-5.pb-3
-    v-row
-      v-icon(v-if="hasWebsite" color="primary" large :class="{'pt-7': !$isMobile}").mt-16.ml-n8 mdi-check-decagram
+    v-row.d-flex
+      //- v-icon(v-if="hasWebsite" color="primary" large :class="{'pt-7': !$isMobile}").mt-16.ml-n8 mdi-check-decagram
       img(
         :src="picURL"
         :alt="organization.name"
@@ -10,42 +10,18 @@
         style="border-radius: 20px"
       ).ma-3
       v-col.my-3
-        v-row
-          span(:class="[nameFontSize, $isWideScreen ? 'name-width-wide' : 'name-width-reg']").text-truncate.font-weight-bold.mb-0 {{ organization.name   }}&nbsp;
-          //- v-chip(v-if="organization.doc_website" color="primary" outlined x-small).mt-1 verified
-        v-row(justify="start").mt-5
-          v-col(cols="1").pa-0
-            v-icon(color="primary" :small="!$isWideScreen") mdi-map-marker
-          v-col(cols="11").pa-0
-            div(:class="textFontSize").info-text.mt-1
-              span(v-if="organization.address") {{ address }}
-        v-row(justify="start").mt-5.white--text
+        v-clamp(
+          autoresize
+          :max-lines="1"
+          :class="[nameFontSize, $isWideScreen ? 'name-width-wide' : 'name-width-reg']"
+        ).font-weight-bold.mb-0 {{ organization.name }}&nbsp;
+        div.d-flex.mt-1
+          v-icon(color="primary" :small="!$isWideScreen") mdi-map-marker
+          span(:class="[textFontSize, {'font-italic': !address }]").info--text.mt-1 {{ address || 'No address provided'}}
+        div.d-flex.white--text.mt-1
           div(v-for="(day, index) in daysInit" :key="index")
-            div(:class="[textFontSize, $isWideScreen ? 'badge-size-wide' : 'badge-size', {'primary': clinicOpen(day.value)}]"
-            ).badge {{ day.text }}
-            //- span(v-if="organization.doc_practicingSince") &nbsp;{{ yearsOfExperience }} year/s of experience
-            //- span(v-else) &nbsp;- year/s of experience
-        //- v-row(justify="start").pt-3
-        //-   v-btn(
-        //-     color="success"
-        //-     target="_blank"
-        //-     rel="noopener noreferrer"
-        //-     small
-        //-     rounded
-        //-     :href="doctorWebsite"
-        //-   ).text-none.elevation-0.font-weight-light.ma-1.font-10
-        //-     v-icon(:x-small="!$isMobile") mdi-stethoscope
-        //-     b &nbsp;Teleconsult
-        //-   v-btn(
-        //-     color="primary"
-        //-     target="_blank"
-        //-     rel="noopener noreferrer"
-        //-     small
-        //-     rounded
-        //-     :href="doctorWebsite"
-        //-   ).text-none.elevation-0.font-weight-light.ma-1.font-10
-        //-     v-icon(:x-small="!$isMobile") mdi-calendar
-        //-     b &nbsp;Book a Visit
+            div(:class="[textFontSize, $isWideScreen ? 'badge-size-wide' : 'badge-size', {'primary': clinicOpen(day.value)}]").badge
+              | {{ day.text }}
     v-col
       v-row(justify="end")
         v-btn(
@@ -57,20 +33,13 @@
           :class="$isWideScreen ? ['font-14', 'px-6'] : ['font-10', 'px-5'] "
         ).text-none.elevation-0.font-weight-light.mt-2
           b Book a Visit
-
-    //- v-row(v-if="organization.doc_specialties").mt-6.pa-2
-    //-   v-col(cols="12")
-    //-     v-row
-    //-       v-chip(v-for="(specialty, key) in organization.doc_specialties" :key="key").font-12.ma-1 {{ specialty }}&nbsp;
 </template>
 
 <script>
-// import VClamp from 'vue-clamp';
+import VClamp from 'vue-clamp';
 // import { format } from 'date-fns';
 // import uniqBy from 'lodash/uniqBy';
 // import { formatAddress, formatName } from '~/utils/formats';
-// import FacilityPlaceholder from '~/assets/images/facility-placeholder.jpg';
-
 // import { formatName } from '~/utils/formats';
 import uniqBy from 'lodash/uniqBy';
 import classBinder from '~/utils/class-binder';
@@ -78,7 +47,7 @@ import FacilityPlaceholder from '~/assets/images/facility-placeholder.jpg';
 import { formatAddress } from '~/utils/formats';
 export default {
   components: {
-    VClamp: () => import('vue-clamp'),
+    VClamp,
   },
   props: {
     organization: {

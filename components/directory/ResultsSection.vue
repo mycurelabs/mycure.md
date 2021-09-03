@@ -4,13 +4,13 @@
       generic-panel(:column="$isMobile ? 12 : 10" disable-parent-padding)
         v-container
           v-row(align="center" justify="center" :class="$isMobile? 'results-margin-mobile' : 'results-margin' ").results-summary
-            v-col(v-if="loading" cols="12" :class="{'text-center': $isMobile}")
+            v-col(v-if="!loading" cols="12" :class="{'text-center': $isMobile}")
               v-row(align="center")
                 v-col(align="start")
-                  h1 {{ sectionTitle }}
-                v-col(align="end")
-                  h3(v-if="itemsTotal") {{ itemsTotal }} results
-                  h3(v-else) There are no results available.
+                  p(v-if="itemsTotal") Showing&nbsp;
+                    strong.primary--text {{ itemsTotal }}&nbsp;
+                    | {{ resultsName }}{{ itemsTotal > 1 ? 's' : '' }}
+                  p(v-else) There are no results available.
             v-col(cols="12")
               v-row(v-if="loading" justify="center")
                 v-col(cols="12" md="5").text-center
@@ -19,13 +19,13 @@
                     indeterminate
                     size="100"
                   ).mt-16
-              v-row(v-else-if="items.length" justify="center" align="stretch")
+              v-row(v-else-if="items.length" align="stretch")
                 v-col(
                   v-for="(item, key) in items"
                   :key="key"
                   cols="12"
                   md="4"
-                ).px-2
+                )
                   doc-search-card(
                     v-if="type === 'doctor'"
                     :doctor="item"
@@ -59,9 +59,9 @@ export default {
       type: Boolean,
       default: true,
     },
-    sectionTitle: {
+    resultsName: {
       type: String,
-      default: null,
+      default: 'results',
     },
     items: {
       type: Array,
@@ -94,8 +94,13 @@ export default {
     },
   },
   computed: {
-    page () {
-      return this.pagination.page || 1;
+    page: {
+      get () {
+        return this.pagination.page || 0;
+      },
+      set (val) {
+        this.$emit('page:update', val);
+      },
     },
     itemsLength () {
       return this.pagination.itemsLength || 0;
@@ -113,7 +118,7 @@ export default {
 <style scoped>
 .results-summary {
   z-index: -1;
-  background-color: #fafafa;
+  /* background-color: #fafafa; */
 }
 
 .results-margin {
