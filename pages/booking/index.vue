@@ -18,9 +18,10 @@
     //- 2nd panel
     generic-media-panel(
       :content="secondPanel"
-      :title-classes="[...headerClasses, 'primary--text']"
+      :title-classes="headerClasses"
+      :super-title-classes="superTitleClasses"
       :content-classes="[...descriptionClasses, 'justify-left']"
-    )
+    ).mt-16
       template(slot="cta-button")
         div(:class="{ 'text-center': $isMobile }")
           signup-button(
@@ -34,15 +35,56 @@
             span.generic-button-text Get Started Free
 
     //-3rd panel
+    div.grey-bg.mx-n3
+      features(
+        image-dir="booking/"
+        icon-container-col-size="10"
+        :each-icon-col="{ cols: 12, sm: 10 }"
+        :items="thirdPanelContents"
+      )
+        template(slot="title")
+          h2(:class="[...superTitleClasses, 'font-open-sans']") BENEFITS OF MYCURE BOOKING SYSTEM
+        template(slot="description")
+          p.mc-title-set-2.font-weight-semibold Acquire and Accommodate more Patients
+        template(slot="items")
+          v-col(cols="12" md="4" xl="3" v-for="(item, key) in thirdPanelContents" :key="key").text-center
+            picture-source(
+              v-if="item.icon"
+              custom-path="booking/"
+              :image="item.icon"
+              :image-alt="item.title"
+              :image-file-extension="item.iconExtension"
+              :image-width="acquireIconsSize"
+              :image-height="acquireIconsSize"
+            )
+            br
+            br
+            h2.hiw-subheading.font-weight-semibold {{ item.title }}
+            p.hiw-caption.font-open-sans {{ item.description }}
+
+        template(slot="additional-content")
+          v-col(cols="12").text-center.mt-5
+            signup-button(
+              depressed
+              rounded
+              width="228px"
+              height="59px"
+              color="success"
+            ).text-none
+              span.generic-button-text Get Started Free
+
+    practitioners
+
+    //- 4th panel
     features(
-      title="Easy as 1-2-3"
       :items="howItWorksContents"
       image-dir="booking/"
       icon-container-col-size="12"
       :each-icon-col="{ cols: 12 }"
     )
-      template(slot="description")
-        p(:class="howItWorksClass").primary--text.font-weight-semibold How it works?
+      template(slot="title")
+        h2(:class="superTitleClasses") How it works?
+        p.mc-title-set-1.font-weight-semibold Easy as 1-2-3
       template(slot="items")
         v-col(cols="12" md="4" xl="3" v-for="(item, key) in howItWorksContents" :key="key").text-center
           picture-source(
@@ -59,28 +101,6 @@
           h2.hiw-subheading.font-weight-semibold {{ item.title }}
           p.hiw-caption.font-open-sans {{ item.description }}
 
-    //- 4th panel
-    div.grey-bg.mx-n3
-      features(
-        image-dir="booking/"
-        icon-container-col-size="10"
-        :each-icon-col="{ cols: 12, sm: 10 }"
-        :items="thirdPanelContents"
-        :image-width="acquireIconsSize"
-        :image-height="acquireIconsSize"
-      )
-        template(slot="title")
-          h2(:class="['primary--text', 'font-weight-semibold', ...titleClasses]") Acquire and Accommodate more Patients
-        template(slot="additional-content")
-          v-col(cols="12").text-center.mt-5
-            signup-button(
-              depressed
-              rounded
-              width="228px"
-              height="59px"
-              color="success"
-            ).text-none
-              span.generic-button-text Get Started Free
     //- 5th panel
     v-container
       v-row(justify="center")
@@ -116,21 +136,25 @@
             br
             v-tabs-items(v-model="websiteType")
               v-tab-item(v-for="(mockup, key) in websiteMockups" :key="key" :value="mockup.value")
-                div(@click="onClickImage(`${mockup.image}.png`, 'booking/')")
-                  picture-source(
-                    :image="mockup.image"
-                    :image-alt="`A ${websiteType} website mockup on laptop screen`"
-                    :image-width="$isMobile ? '256px' : ($isRegularScreen ? '756px' : '1156px')"
-                    :image-height="$isMobile ? '192px' : ($isRegularScreen ? '567px' : '867px')"
-                    image-file-extension=".webp"
-                    custom-path="booking/"
-                  )
+                picture-source(
+                  :image="mockup.image"
+                  :image-alt="`A ${websiteType} website mockup on laptop screen`"
+                  :image-width="$isMobile ? '256px' : ($isRegularScreen ? '756px' : '1156px')"
+                  :image-height="$isMobile ? '192px' : ($isRegularScreen ? '567px' : '867px')"
+                  image-file-extension=".webp"
+                  custom-path="booking/"
+                )
+
+    storybrand(
+      title="Using Modern Tools to Boost Your Practice"
+      :content="storybrandContent"
+    )
     //- 6th panel
     div.blue-bg.mx-n3
       generic-media-panel(
         align="center"
         :content="fifthPanelContents"
-        :title-classes="[...titleClasses, 'white--text', 'line-height-reducer']"
+        :title-classes="[...titleClasses, 'white--text', 'line-height-reducer', 'font-weight-semibold']"
         :content-classes="['white--text', ...descriptionClasses]"
       )
         template(slot="cta-button")
@@ -170,6 +194,8 @@ export default {
     Plans: () => import('~/components/booking/Plans'),
     Usp,
     SignupButton: () => import('~/components/commons/SignupButton'),
+    Practitioners: () => import('~/components/booking/Practitioners'),
+    Storybrand: () => import('~/components/commons/panels/Storybrand'),
   },
   data () {
     this.howItWorksContents = [
@@ -199,19 +225,22 @@ export default {
       {
         icon: 'Organized Patient visits',
         iconExtension: '.webp',
-        title: 'Organized patient visits for easy COVID-19 safety compliance.',
+        title: 'Systematic',
+        description: 'Organized patient visits for easy COVID-19 safety compliance.',
         alt: 'Health checklist icon',
       },
       {
         icon: 'open schedule',
         iconExtension: '.webp',
-        title: 'Open schedule to the days and times that work for you. Reminders go out automatically.',
+        title: 'Automated',
+        description: 'Open schedule to the days and times that work for you. Reminders go out automatically.',
         alt: 'Phone scheduling icon',
       },
       {
         icon: 'covers from virtual',
         iconExtension: '.webp',
-        title: 'Covers from virtual (telehealth) to physical (face to face) accommodation',
+        title: 'Flexible',
+        description: 'Covers from virtual (telehealth) to physical (face to face) accommodation',
         alt: 'Virtual telehealth icon',
       },
     ];
@@ -225,11 +254,17 @@ export default {
         value: 'clinic',
       },
     ];
+    this.storybrandContent = [
+      'At MYCURE, we know the many challenges in choosing the right healthcare management solution. Some are good but costly. Some are affordable but lack the needed features and reports. Many are poorly designed and difficult to use. Very few work both online and offline. A lot has closed systems and lacks interoperability.',
+      'In order to make an easy decision, you need a solution that has all the benefits and functionalities required without compromising ease of use and affordability. The problem is in finding such a system which makes you feel frustrated. We believe that health providers should never have to deal with this.',
+      'That’s why we’ve built MYCURE Healthcare Management Solutions, designed to be robust, easy to use, interoperable and affordable.',
+    ];
     this.titleClasses = ['mc-title-set-1'];
+    this.superTitleClasses = ['mc-content-set-1', 'lh-title', 'font-weight-semibold', 'primary--text'];
     this.descriptionClasses = ['mc-content-set-1', 'font-open-sans', 'font-gray'];
     this.buttonClasses = ['mc-button-set-1'];
     this.howItWorksClass = ['mc-title-set-2'];
-    this.headerClasses = ['mc-title-set-1', 'lh-title', 'font-weight-semibold'];
+    this.headerClasses = ['mc-title-set-2', 'font-weight-semibold'];
     this.imageBindings = {
       image: 'Booking Mobile',
       customImagePath: 'booking/',
@@ -255,7 +290,8 @@ export default {
   computed: {
     secondPanel () {
       return {
-        title: 'Never waste Time or Money',
+        title: 'Stop wasting your time',
+        superTitle: 'Tired of long waiting lines?',
         description: 'Without an appointment booking system, healthcare providers find it difficult to organize patient visits resulting to missed opportunities and more time wasted.',
         contentAlign: 'right',
         imageBindings: {

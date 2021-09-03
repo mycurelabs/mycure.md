@@ -6,7 +6,7 @@
       background-image="Clinics Landing Page"
       background-image-file-extension=".webp"
       title="Simplified workflows, faster results, better performance."
-      meta-title="MYCURE Clinic Management System"
+      meta-title="MYCURE Most Complete Clinic Management System"
       description="Designed for modern clinics with complex operations. Large or small, MYCURE enables clinics to be much more efficient, increase in revenue, and build more patient loyalty."
       parse-title
       parse-meta-title
@@ -19,14 +19,21 @@
       :media-column-bindings="{ cols: 12, md: 6, offsetMd: 1, xl: 6}"
       :content-column-bindings="{ cols: 12, md: 5 }"
     )
+    stakes(
+      panel-title="Your clinic system should not cause you more problems"
+      sub-title="Without correctly utilizing the technologies available today, you’re actually losing opportunities more than you think."
+      panel-description="Well you don’t have to handle all these problems anymore. Join MYCURE and become the expert who doesn’t just sound like you’re good at managing your clinic—you’ll actually know how to maximise the MYCURE suite of tools to get all the right insights, reports, and seamless organisation you’ve always aspired to have."
+      :version="2"
+      :contents="stakesContent"
+    )
     //- 2nd panel
     div.grey-bg.mx-n3
       workflow
     //- 3rd panel
     syncbase(:version="2")
     //- 4th panel
-    div.grey-bg.mx-n3
-      mycure-csi
+    //- div.grey-bg.mx-n3
+    //-   mycure-csi
     //- 5th panel
     generic-media-panel(
       :content="fifthPanel"
@@ -75,6 +82,13 @@
           ).text-none.primary--text
             v-icon(left) mdi-information-outline
             span.generic-button-text Learn More
+    //- 7.5
+    care
+    steps(:steps="stepsContent")
+    storybrand(
+      title="Using Modern Tools to Boost Your Practice"
+      :content="storybrandContent"
+    )
     //- 8th panel
     think-long-term
     v-divider.divider
@@ -110,6 +124,10 @@ export default {
     Usp,
     Workflow: () => import('~/components/outpatient-clinics/Workflow'),
     SignupButton: () => import('~/components/commons/SignupButton'),
+    Care: () => import('~/components/home/Care'),
+    Steps: () => import('~/components/commons/panels/Steps'),
+    Stakes: () => import('~/components/commons/panels/Stakes'),
+    Storybrand: () => import('~/components/commons/panels/Storybrand'),
   },
   data () {
     this.features = [
@@ -149,6 +167,35 @@ export default {
         iconExtension: '.webp',
       },
     ];
+    this.stakesContent = [
+      'You spend more on tools you don\'t need',
+      'Patient turnaround time doesn\'t improve',
+      'You pay extra space for paper charts',
+      'You get appointment no-shows',
+      'You\'ll have dissatisfied patients',
+      'Your staff gets frustrated with more work',
+      'Your daily reports are prone to errors',
+      'You\'re unsure of your compliance to laws',
+    ];
+    this.stepsContent = [
+      {
+        title: 'Create an Account',
+        description: 'This activates your Clinic Management System.',
+      },
+      {
+        title: 'Set up your Account',
+        description: 'Customize your account. MYCURE offers a wide range of modules and features.',
+      },
+      {
+        title: 'Onboarding',
+        description: 'Start onboarding other users. You can also watch tutorials or book a training session with a MYCURE specialist.',
+      },
+    ];
+    this.storybrandContent = [
+      'At MYCURE, we know you are the kind of clinic that  utilizes modern tools to optimize efficiency and improve operations.  In order to be that way, you need a solution that will integrate critical processes into a simple workflow that benefits everyone.',
+      'The problem is it’s hard to find an all-in-one system that is easy to use, affordable and customized to your practice, which makes you feel shortchanged in your current provider.  We believe that clinics like yours should never have to deal with this. We’ve talked to hundreds of health facilities and understand that there is a need for this.',
+      'That’s why we\'ve built MYCURE as the most complete Clinic Management System that is flexible and customizable to fit your exact needs.',
+    ];
     this.pricingDetails = CLINICS_PRICING;
     this.headerClasses = ['mc-title-set-1', 'font-weight-semibold'];
     this.descriptionClasses = ['mc-content-set-1', 'font-open-sans', 'font-gray'];
@@ -158,8 +205,8 @@ export default {
   },
   head () {
     return headMeta({
-      title: 'MYCURE Clinic Management System',
-      description: 'MYCURE enables clinics with complex operations to have simplified workflows to be much more efficient, increase in revenue, and build.',
+      title: 'MYCURE EMR and Outpatient Multispecialty Clinic Management System',
+      description: 'MYCURE provides clinics with simple and customized workflows based on the specialization of the clinics',
       socialBanner: require('~/assets/images/banners/OG Clinics.png'),
     });
   },

@@ -24,6 +24,11 @@
           height="59px"
         ).text-none
           span.generic-button-text Book a demo today
+    stakes(
+      :version="3"
+      :media-content="stakesContent"
+      hide-btn
+    )
     //- 2nd panel
     div.grey-bg.mx-n3
       features(
@@ -104,6 +109,13 @@
 
     //- 6th panel
     syncbase(:version="3")
+    //- 6.5
+    care
+    steps(:steps="stepsContent")
+    storybrand(
+      title="Using Modern Tools to Boost Your Practice"
+      :content="storybrandContent"
+    )
     //- 7th panel
     think-long-term(extended)
     //- 8th panel
@@ -134,6 +146,10 @@ export default {
     Syncbase: () => import('~/components/commons/panels/Syncbase'),
     ThinkLongTerm: () => import('~/components/commons/panels/ThinkLongTerm'),
     Usp,
+    Care: () => import('~/components/home/Care'),
+    Steps: () => import('~/components/commons/panels/Steps'),
+    Stakes: () => import('~/components/commons/panels/Stakes'),
+    Storybrand: () => import('~/components/commons/panels/Storybrand'),
   },
   data () {
     this.features = [
@@ -163,6 +179,25 @@ export default {
         iconExtension: '.png',
       },
     ];
+    this.stepsContent = [
+      {
+        title: 'Create an Account',
+        description: 'This activates your Skin Management System.',
+      },
+      {
+        title: 'Set up your Account',
+        description: 'Customize your account based on your clinic’s needs.',
+      },
+      {
+        title: 'Share',
+        description: 'Share your beautiful, free website so your patients can start booking.',
+      },
+    ];
+    this.storybrandContent = [
+      'At MYCURE, we know you are the kind of skin clinic that gives utmost importance to its clients. Providing the highest quality is non-negotiable both in the services provided and the tools you use. In order to be that way, you need a solution that also puts quality at its core.',
+      'The problem is it’s hard to find a provider that looks at its system not just as a service but as an experience. We believe that aesthetic clinics like yours should never have this choice. ',
+      'That’s why we\'ve built MYCURE Skin and Aesthetics Clinic Management System for those who value a flawless experience in their clinics like yours.',
+    ];
     this.pricingDetails = CLINICS_PRICING;
     this.headerClasses = ['mc-title-set-1', 'lh-title', 'font-weight-semibold'];
     this.subHeaderClasses = ['mc-content-set-1', 'lh-title', 'font-weight-semibold', 'secondary--text'];
@@ -176,8 +211,8 @@ export default {
   },
   head () {
     return headMeta({
-      title: 'MYCURE for Skin Clinics',
-      description: 'Experience the #1 Software for Skin and Aesthetic clinics. MYCURE is easy to set up and maintain. Get started today.',
+      title: 'MYCURE Skin and Aesthetics | POS Clinic Management System',
+      description: 'Experience the #1 Software for Skin and Aesthetic clinics. MYCURE provides dermatologists an easy way to beautifully manage their practice.',
       socialBanner: require('~/assets/images/banners/MYCURE - Skin Clinic OG BANNER.png'),
     });
   },
@@ -225,7 +260,23 @@ export default {
           extensionExclusive: true,
           imageAlt: 'Charts and graphs',
           width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
-          height: this.$isMobile ? '156.16px' : (this.$isRegularScreen ? '260.08px' : '401.41px'),
+          height: this.$isMobile ? '206.56px' : (this.$isRegularScreen ? '260.08px' : '401.41px'),
+        },
+      };
+    },
+    stakesContent () {
+      return {
+        title: 'Is Status and Quality Important to Your Clinic?',
+        description: 'Don’t give a reason to lose to your competition. Complement your top notch skin services with a modern, robust and complete system.',
+        contentAlign: 'right',
+        imageBindings: {
+          image: 'Skin - The Stakes.png',
+          mobileImage: 'Skin - The Stakes.png',
+          imageAlt: 'Doctor listening to patient feedback',
+          customPath: 'clinics/skin/',
+          extensionExclusive: true,
+          width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
+          height: this.$isMobile ? '139.59px' : (this.$isRegularScreen ? '344.27px' : '531.38px'),
         },
       };
     },

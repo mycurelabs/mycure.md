@@ -98,8 +98,8 @@ export default {
   head () {
     // - TODO: Update
     return headMeta({
-      title: 'MYCURE CSI',
-      description: 'MYCURE helps you bring in more patients using a powerful healthcare service booking and management software. It’s free, secure, and easy to use.',
+      title: 'MYCURE Compliance Security Interoperability',
+      description: 'MYCURE offers a customizable clinic management system that allows API integration to ensure a smooth experience for doctors and clinics.',
       socialBanner: require('~/assets/images/banners/OG Homepage.png'),
     });
   },

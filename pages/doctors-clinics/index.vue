@@ -82,6 +82,13 @@
               v-icon(color="white" :large="$isWideScreen") mdi-checkbox-marked-circle
               span(:class="[eightPanelContentClasses, ($isMobile ? 'ml-2' : ($isRegularScreen ? 'ml-3' : 'ml-4'))]") {{ item }}
     //- 9th panel
+    different-video
+    steps(:steps="stepsContent")
+    testimonials
+    storybrand(
+      title="Using Modern Tools to Boost Your Practice"
+      :content="storybrandContent"
+    )
     think-long-term
     v-divider.divider
     //- 10th panel
@@ -113,6 +120,10 @@ export default {
     ThinkLongTerm: () => import('~/components/commons/panels/ThinkLongTerm'),
     Usp,
     SignupButton: () => import('~/components/commons/SignupButton'),
+    Steps: () => import('~/components/commons/panels/Steps'),
+    Testimonials: () => import('~/components/doctors-clinics/Testimonials'),
+    Storybrand: () => import('~/components/commons/panels/Storybrand'),
+    DifferentVideo: () => import('~/components/commons/panels/DifferentVideo'),
   },
   data () {
     // Panel content
@@ -144,6 +155,25 @@ export default {
         icon: 'Appointment Booking',
         iconExtension: '.webp',
       },
+    ];
+    this.stepsContent = [
+      {
+        title: 'Create an Account',
+        description: 'This activates the features in your account for FREE.',
+      },
+      {
+        title: 'Set up your Website',
+        description: 'Allow your patients to easily find and book you.',
+      },
+      {
+        title: 'Set up your EMR',
+        description: 'Securely store and organize your patient records.',
+      },
+    ];
+    this.storybrandContent = [
+      'At MYCURE, we know you are the kind of doctor who wants to be efficient, organized and prefers to use modern tools. In order to be that way, you need a solution that will make it easier for you to securely organize and secure patients’ records while allowing them to conveniently book an appointment with you.',
+      'The problem is it’s hard to find such a system that is easy to use, affordable and customized to your practice, which makes you feel frustrated.  We believe that health providers should never have to deal with this. We’ve talked to hundreds of doctors and understand that there is a need for this. ',
+      'That’s why we’ve been continuously building MYCURE EMR Practice Management System designed for modern doctors like you so you can focus on what you do best - taking care of your patients, while MYCURE takes care of the rest.',
     ];
     this.pricingDetails = DOCTORS_PRICING;
     this.headerClasses = ['mc-title-set-1', 'lh-title', 'primary--text', 'font-weight-semibold'];

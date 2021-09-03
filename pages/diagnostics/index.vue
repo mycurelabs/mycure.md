@@ -15,6 +15,11 @@
       :content-column-bindings="{ cols: 12, md: 5 }"
       @click="$nuxt.$router.push({ name: 'signup-health-facilities', query: { type: 'diagnostic' }})"
     )
+    stakes(
+      :version="3"
+      :media-content="stakesContent"
+      hide-btn
+    )
     //- 2nd panel
     div.grey-bg.mx-n3
       features(
@@ -107,6 +112,13 @@
           ).text-none
             v-icon(left)  mdi-information-outline
             span.generic-button-text  Learn more
+    //- 7.5
+    care
+    steps(:steps="stepsContent")
+    storybrand(
+      title="Using Modern Tools to Boost Your Practice"
+      :content="storybrandContent"
+    )
     //- 8th panel
     think-long-term
     //- 9th panel
@@ -139,6 +151,10 @@ export default {
     ThinkLongTerm: () => import('~/components/commons/panels/ThinkLongTerm'),
     Usp,
     SignupButton: () => import('~/components/commons/SignupButton'),
+    Care: () => import('~/components/home/Care'),
+    Steps: () => import('~/components/commons/panels/Steps'),
+    Stakes: () => import('~/components/commons/panels/Stakes'),
+    Storybrand: () => import('~/components/commons/panels/Storybrand'),
   },
   data () {
     // - TODO: Update info
@@ -169,6 +185,25 @@ export default {
         iconExtension: '.webp',
       },
     ];
+    this.stepsContent = [
+      {
+        title: 'Create an Account',
+        description: 'This activates your Laboratory and Imaging Management System.',
+      },
+      {
+        title: 'Set up your Account',
+        description: 'Customize your account based on your facilities’ needs.',
+      },
+      {
+        title: 'Integrate',
+        description: 'Integrate to your existing EMR system or use MYCURE’s homegrown health system.',
+      },
+    ];
+    this.storybrandContent = [
+      'At MYCURE, we know you are the kind of diagnostic center that prioritizes using modern tools to optimize efficiency and improve operations. In order to be that way, you need a solution that can automate routine tasks that will result in reducing costly errors.',
+      'The problem is it’s hard to find such a system that is easy to use, affordable and interoperable with other systems, which is lacking from your current provider.  We believe that diagnostic centers like yours should never have to deal with this. We’ve talked to dozens of labs and understand that there is a need for this.',
+      'That’s why we\'ve built MYCURE Diagnostics with powerful LIS and RIS modules to specifically address this need.',
+    ];
     this.pricingDetails = DIAGNOSTICS_PRICING;
     this.listHeaderClasses = ['mc-list-title-set-1', 'lh-title', 'font-weight-semibold'];
     this.listContentClasses = ['mc-list-content-set-1', 'font-open-sans', 'font-gray'];
@@ -178,8 +213,8 @@ export default {
   },
   head () {
     return headMeta({
-      title: 'MYCURE Diagnostics',
-      description: 'MYCURE provides the best tool to create, finalize, and release diagnostic test results for diagnostic clinics. Best alternative to laboratory and radiology information systems. ',
+      title: 'MYCURE for Diagnostic Labs and Imaging Centers | HL7-Ready LIS RIS',
+      description: 'MYCURE provides the best tool to create, finalize, and release diagnostic test results. Best alternative to laboratory and radiology information systems.',
       socialBanner: require('~/assets/images/banners/OG Diag.png'),
     });
   },
@@ -274,6 +309,22 @@ export default {
           height: this.$isMobile ? '161.56px' : (this.$isRegularScreen ? '257.6px' : '397.59px'),
         },
         contentAlign: 'left',
+      };
+    },
+    stakesContent () {
+      return {
+        title: 'Manual Routinary Tasks are Prone to Errors',
+        description: 'And this can be costly! Not only do these errors contribute to your bottomline, but this also pertains to providing accurate, sensitive information to your patients.',
+        contentAlign: 'right',
+        imageBindings: {
+          image: 'Diagnostic Stakes.png',
+          mobileImage: 'Diagnostic Stakes.png',
+          imageAlt: 'Doctor with hourglass and downhill chart in monitor',
+          customPath: 'diagnostics/',
+          extensionExclusive: true,
+          width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
+          height: this.$isMobile ? '184.14px' : (this.$isRegularScreen ? '306.92px' : '473.72px'),
+        },
       };
     },
   },

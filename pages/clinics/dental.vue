@@ -14,6 +14,11 @@
       :media-column-bindings="{ cols: 12, md: 6, offsetMd: 1, xl: 6}"
       :content-column-bindings="{ cols: 12, md: 5 }"
     )
+    stakes(
+      :version="3"
+      :media-content="stakesContent"
+      hide-btn
+    )
     //- 2nd panel
     div.grey-bg.mx-n3
       problem-statement
@@ -76,27 +81,29 @@
         div.mb-10
       template(slot="cta-button")
         v-row(:justify="$isMobile ? 'center' : 'start'")
-          mc-btn(
-            color="success"
-            href="https://calendly.com/mycure/demo"
-            target="_blank"
-            rel="noopener noreferrer"
-            depressed
-            rounded
-            width="228px"
-            height="59px"
-          ).text-none
-            v-icon(left) mdi-web
-            span.generic-button-text Create my Website
-          signup-button(
-            depressed
-            rounded
-            outlined
-            width="228px"
-            height="59px"
-            color="success"
-          ).text-none.ml-5
-            span.generic-button-text Get Started
+          v-col(cols="12" sm="6").pa-0
+            mc-btn(
+              color="success"
+              href="https://calendly.com/mycure/demo"
+              target="_blank"
+              rel="noopener noreferrer"
+              depressed
+              block
+              height="59px"
+              rounded
+            ).text-none
+              //- v-icon(left) mdi-web
+              span.generic-button-text Create my Website
+          v-col(cols="12" sm="6").py-0
+            signup-button(
+              depressed
+              block
+              rounded
+              outlined
+              color="success"
+              height="59px"
+            ).text-none
+              span.generic-button-text Get Started
 
     //- 7th panel
     generic-media-panel(
@@ -119,6 +126,12 @@
             span.generic-button-text Get Started
     //- 8th panel
     syncbase(:version="3")
+    care
+    steps(:steps="stepsContent")
+    storybrand(
+      title="Using Modern Tools to Boost Your Practice"
+      :content="storybrandContent"
+    )
     //- 9th panel
     think-long-term(extended)
     //- 10th panel
@@ -148,6 +161,10 @@ export default {
     Syncbase: () => import('~/components/commons/panels/Syncbase'),
     ThinkLongTerm: () => import('~/components/commons/panels/ThinkLongTerm'),
     Usp,
+    Care: () => import('~/components/home/Care'),
+    Steps: () => import('~/components/commons/panels/Steps'),
+    Stakes: () => import('~/components/commons/panels/Stakes'),
+    Storybrand: () => import('~/components/commons/panels/Storybrand'),
   },
   data () {
     this.studentPanel = {
@@ -156,6 +173,25 @@ export default {
         'Join the next free webinar series for dentistry students',
       ],
     };
+    this.stepsContent = [
+      {
+        title: 'Create an Account',
+        description: 'This activates your Dental Management System.',
+      },
+      {
+        title: 'Set up your Account',
+        description: 'Customize your account based on your clinic’s needs.',
+      },
+      {
+        title: 'Share',
+        description: 'Share your beautiful, free website so your patients can start booking.',
+      },
+    ];
+    this.storybrandContent = [
+      'At MYCURE, we know you are the kind of dental clinic that loves providing a great service to make your patients smile. You know that having a robust system to complement your practice. In order to be that way, you need a solution that is custom built to your specific processes and needs.',
+      'The problem is it’s hard to find such a system that is easy to use, flexible and affordable.  We believe that dental clinics like yours should never have to deal with this. We’ve talked to dozens of dental clinics and understand that there is a need for this. ',
+      'That’s why we\'ve built MYCURE Dental Clinic Management System for those who value a shiny experience that guarantees to bring smiles to your clinic and your patients.',
+    ];
     this.headerClasses = ['mc-title-set-1', 'lh-title', 'font-weight-semibold'];
     this.descriptionClasses = ['mc-content-set-1'];
     this.contentClasses = ['mc-content-set-1', 'font-weight-semibold', 'secondary--text'];
@@ -222,6 +258,22 @@ export default {
           imageAlt: 'Charts and graphs',
           width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
           height: this.$isMobile ? '156.16px' : (this.$isRegularScreen ? '260.29px' : '401.63px'),
+        },
+      };
+    },
+    stakesContent () {
+      return {
+        title: 'Don\'t Get Left Behind',
+        description: 'Do you still use paper charting to track history of your patient’s dental records? You may be losing to your competition.',
+        contentAlign: 'right',
+        imageBindings: {
+          image: 'Dental - The Stakes.png',
+          mobileImage: 'Dental - The Stakes.png',
+          imageAlt: 'Doctor with tons of paper work',
+          customPath: 'clinics/dental/',
+          extensionExclusive: true,
+          width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
+          height: this.$isMobile ? '139.59px' : (this.$isRegularScreen ? '232.67px' : '359.11px'),
         },
       };
     },

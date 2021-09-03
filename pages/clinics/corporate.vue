@@ -14,6 +14,11 @@
       :media-column-bindings="{ cols: 12, md: 6, offsetMd: 1, xl: 6}"
       :content-column-bindings="{ cols: 12, md: 5 }"
     )
+    stakes(
+      :version="4"
+      panelTitle="Problems of Not Using a Clinic Management System"
+      :contents="stakesContent"
+    )
     //- 2nd panel
     div.grey-bg.mx-n3
     features(
@@ -32,7 +37,7 @@
         v-row(justify="center")
           generic-panel(:row-bindings="{ justify: 'center' }")
             v-col(cols="12" lg="8" xl="6").white--text
-              h2(:class="headerClasses").mb-10.text-center.white--text Know the health status of your employees stat.
+              h2(:class="headerClasses").mb-10.text-center.white--text Know the health status of your employees, stat!
               h3.mc-content-set-1.mb-10.font-weight-semibold.white--text.text-center Easily access and share medical records with them through the MYCURE health portal.
     //- 4th panel
     generic-media-panel(
@@ -40,6 +45,12 @@
       hide-btn
       :content="multiplePanel"
       :title-classes="headerClasses"
+    )
+    care
+    steps(:steps="stepsContent")
+    storybrand(
+      title="Using Modern Tools to Boost Your Practice"
+      :content="storybrandContent"
     )
     //- 5th panel
     pricing(
@@ -78,6 +89,10 @@ export default {
     Pricing: () => import('~/components/commons/panels/Pricing'),
     SignupButton: () => import('~/components/commons/SignupButton'),
     Usp,
+    Care: () => import('~/components/home/Care'),
+    Steps: () => import('~/components/commons/panels/Steps'),
+    Stakes: () => import('~/components/commons/panels/Stakes'),
+    Storybrand: () => import('~/components/commons/panels/Storybrand'),
   },
   data () {
     this.features = [
@@ -102,6 +117,63 @@ export default {
         iconExtension: '.png',
       },
     ];
+    this.stakesContent = [
+      {
+        title: 'Non-Compliance',
+        description: 'With strict laws and heavy penalties on data privacy and security, storing and management of employee health records have to be compliant.',
+        imageBindings: {
+          image: 'Non-Compliance.png',
+          mobileImage: 'Non-compliance.png',
+          imageAlt: 'Data privacy breach',
+          customPath: 'clinics/corporate/',
+          extensionExclusive: true,
+          width: '100%',
+        },
+      },
+      {
+        title: 'Low Safety Monitoring',
+        description: 'With the ‘new normal’ due to the pandemic, a robust health system would greatly complement HR’s processes on vaccine and testing tracking.',
+        imageBindings: {
+          image: 'Low Safety Monitoring.png',
+          mobileImage: 'Low Safety Monitoring.png',
+          imageAlt: 'Woman confused at list',
+          customPath: 'clinics/corporate/',
+          extensionExclusive: true,
+          width: '100%',
+        },
+      },
+      {
+        title: 'Low Productivity',
+        description: 'Having a health platform with analytics could provide helpful insights that can help in creating activities to boost productivity.',
+        imageBindings: {
+          image: 'Low Productivity.png',
+          mobileImage: 'Low Productivity.png',
+          imageAlt: 'Man sleeping on the job due to slow software',
+          customPath: 'clinics/corporate/',
+          extensionExclusive: true,
+          width: '100%',
+        },
+      },
+    ];
+    this.stepsContent = [
+      {
+        title: 'Create an Account',
+        description: 'This activates your Corporate Management System.',
+      },
+      {
+        title: 'Set up your Account',
+        description: 'Customize your account based on your clinic’s needs.',
+      },
+      {
+        title: 'Serve and Save More',
+        description: 'Start using the system to serve your employees better.',
+      },
+    ];
+    this.storybrandContent = [
+      'At MYCURE, we know that corporate clinics have their own special needs and requirements.  You know that having a customized system to properly organize and secure employees’ health records is a high priority.',
+      'The problem is it’s hard to find such a clinic system that is specifically designed for companies.  We believe that clinics like yours should never have to deal with this.',
+      'That’s why we\'ve built MYCURE Corporate Clinic Management System so that you can focus more on your core business.',
+    ];
     this.headerClasses = ['mc-title-set-1', 'lh-title', 'font-weight-semibold'];
     return {
       loading: true,
@@ -110,7 +182,7 @@ export default {
   head () {
     return headMeta({
       title: 'MYCURE for Corporate Clinics',
-      description: 'Get the most affordable software for corporate clinics today.',
+      description: 'Organize your employee health records like a breeze. Get the most affordable software for corporate clinics today.',
       socialBanner: require('~/assets/images/banners/MYCURE - Corporate Clinic OG BANNER.png'),
     });
   },

@@ -148,7 +148,6 @@ export default {
           { name: 'Outpatient Clinics', route: 'clinics' },
           { name: 'Skin Clinics', route: 'clinics-skin' },
           { name: 'Dental Clinics', route: 'clinics-dental' },
-          { name: 'OFW Clinics', route: 'clinics-ofw' },
           { name: 'Corporate Clinics', route: 'clinics-corporate' },
         ],
       },
@@ -157,6 +156,7 @@ export default {
         isMenu: true,
         menuItems: [
           { name: 'Diagnostic Centers', route: 'diagnostics' },
+          { name: 'OFW Clinics', route: 'diagnostics-ofw' },
           { name: 'Mobile Labs', route: 'diagnostics-mobile-labs' },
         ],
       },

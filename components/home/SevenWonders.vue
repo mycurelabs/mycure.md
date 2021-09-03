@@ -19,12 +19,12 @@
           v-col(cols="12").text-center.text-container
             v-row(justify="center").mb-5
               v-col(cols="12" md="6" xl="8")
-                h1(:class="headerClasses").mb-10 Enterprise-Grade
+                h1(:class="headerClasses").mb-2 Enterprise-Grade
                   br
                   | Healthcare Solutions
                 v-row(justify="center")
                   v-col(cols="12" md="10")
-                    p.mc-content-set-3.primary--text.font-weight-bold.mb-10 At a fraction of the cost.
+                    p.mc-metatitle-set-1.font-weight-semibold.font-gray.mb-8.font-open-sans MYCURE provides a wide array of modern healthcare management solutions that are custom-built for doctors, clinics, diagnostic labs and hospitals at a fraction of the cost.
                 signup-button(
                   depressed
                   rounded

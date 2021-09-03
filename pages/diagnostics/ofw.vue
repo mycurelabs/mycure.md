@@ -14,6 +14,15 @@
       :media-column-bindings="{ cols: 12, md: 6, offsetMd: 1, xl: 6}"
       :content-column-bindings="{ cols: 12, md: 5 }"
     )
+    stakes(
+      :version="3"
+      :media-content="stakesContent"
+      hide-btn
+    )
+      template(slot="title")
+        h2.mc-title-set-2.font-weight-semibold Wasted Time +
+        h2.mc-title-set-2.font-weight-semibold Missed Opportunities =
+        h2.mc-title-set-2.font-weight-semibold Lost Income
     //- 2nd panel
     v-container
       v-row(justify="center")
@@ -104,10 +113,16 @@
           //-     :x-large="$isWideScreen"
           //-     :class="{'font-s': $isWideScreen, 'font-14': $isRegularScreen }"
           //-   ).text-none Book a full training
+    care
+    steps(:steps="stepsContent")
+    storybrand(
+      title="Using Modern Tools to Boost Your Practice"
+      :content="storybrandContent"
+    )
     //- 7th panel
     pricing(
       title="Take the first step today."
-      type="clinic"
+      type="diagnostic"
     )
     //- 8th panel
     call-to-action(:version="2")
@@ -148,6 +163,10 @@ export default {
     Syncbase: () => import('~/components/commons/panels/Syncbase'),
     ThinkLongTerm: () => import('~/components/commons/panels/ThinkLongTerm'),
     Usp,
+    Care: () => import('~/components/home/Care'),
+    Steps: () => import('~/components/commons/panels/Steps'),
+    Stakes: () => import('~/components/commons/panels/Stakes'),
+    Storybrand: () => import('~/components/commons/panels/Storybrand'),
   },
   async asyncData ({ redirect }) {
     const country = await getCountry() || {};
@@ -156,6 +175,25 @@ export default {
     if (!code || code !== 'PH') redirect('/');
   },
   data () {
+    this.stepsContent = [
+      {
+        title: 'Create an Account',
+        description: 'This activates your OFW Clinic Management System.',
+      },
+      {
+        title: 'Set up your Account',
+        description: 'Customize your account based on your clinic’s needs.',
+      },
+      {
+        title: 'Serve and Save More',
+        description: 'Start processing more transactions while saving time in the process.',
+      },
+    ];
+    this.storybrandContent = [
+      'At MYCURE, we know your clinic is serving OFWs and you have unique needs and requirements.  You know that having a custom system to address your market can increase efficiency and decrease costly human errors.',
+      'The problem is it’s hard to find such a system that is easy to use and affordable.  We believe that clinics like yours should never have to deal with this. We understand that there is a need for this.',
+      'That’s why we\'ve built MYCURE OFW Clinic Management System for those who are rightfully serving this market, the ‘new heroes’ of the land.',
+    ];
     this.headerClasses = ['mc-title-set-1', 'lh-title', 'font-weight-semibold'];
     this.descriptionClasses = ['mc-content-set-1'];
     this.btnClasses = ['mc-button-set-1'];
@@ -166,7 +204,7 @@ export default {
   head () {
     return headMeta({
       title: 'MYCURE for OFW Medical Clinics',
-      description: 'MYCURE provides a specialized tool to create, finalize, and release medical exam results designed for OFW clinics. Book a demo today.',
+      description: 'Time to comply with the Universal Healthcare Act. MYCURE enables OFW Clinics to digitally create, finalize, and release medical exam results. Book a demo today.',
       socialBanner: require('~/assets/images/banners/MYCURE - OFW Clinic OG BANNER.png'),
     });
   },
@@ -222,6 +260,22 @@ export default {
           imageAlt: 'Man browsing a clinic website',
           width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
           height: this.$isMobile ? '242.88px' : (this.$isRegularScreen ? '404.79px' : '624.8px'),
+        },
+      };
+    },
+    stakesContent () {
+      return {
+        title: 'Wasted Time + Missed Opportunities  = Lost Income',
+        description: 'Not automating your system means more errors and losses which can impact a lot in your bottomline.',
+        contentAlign: 'right',
+        imageBindings: {
+          image: 'MYCURE - OFW The Stakes.png',
+          mobileImage: 'MYCURE - OFW The Stakes.png',
+          imageAlt: 'Doctor with hourglass and downhill chart in monitor',
+          customPath: 'clinics/ofw/',
+          extensionExclusive: true,
+          width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
+          height: this.$isMobile ? '184.14px' : (this.$isRegularScreen ? '306.92px' : '473.72px'),
         },
       };
     },
