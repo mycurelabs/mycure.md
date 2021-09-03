@@ -31,6 +31,7 @@ export const unifiedDirectorySearch = async (sdk, opts) => {
     type: opts.type,
     $limit: opts.limit,
     $skip: opts.skip,
+    $total: true,
   };
 
   // Populate according to type
@@ -61,6 +62,7 @@ export const unifiedDirectorySearch = async (sdk, opts) => {
     };
   }
 
-  const { items, total } = await sdk.service('bff/unified-directory').find(query);
-  return { items, total };
+  const data = await sdk.service('bff/unified-directory').find(query);
+  console.log('data', data);
+  return { items: data.items, total: data.total };
 };
