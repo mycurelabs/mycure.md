@@ -10,8 +10,8 @@
               align="middle"
               id="ytplayer"
               type="text/html"
-              :width="$isMobile ? '100%' : $isRegularScreen ? '560' : '840'"
-              :height="$isMobile ? '393' : $isRegularScreen ? '315' : '472.5'"
+              :width="$isMobile ? '280' : $isRegularScreen ? '560' : '840'"
+              :height="$isMobile ? '157.5' : $isRegularScreen ? '315' : '472.5'"
               src="https://www.youtube.com/embed/r7oewF5qDz4"
               frameborder="0"
               allowfullscreen

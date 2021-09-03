@@ -7,8 +7,8 @@
         v-row
           v-col.py-10
         v-row(justify="center")
-          v-col(cols="4" v-for="(step, index) in steps" :key="index")
-            v-row
+          v-col(cols="12" sm="4" v-for="(step, index) in steps" :key="index")
+            v-row.mb-4
               picture-source(
                 extension-exclusive
                 custom-path="commons/"
@@ -22,7 +22,7 @@
                 p.mc-content-set-1.font-gray.font-open-sans {{ step.description }}
         div(v-if="!hideBtn")
           v-row
-            v-col.py-10
+            v-col.py-5
           v-row(justify="center")
             signup-button(
               depressed

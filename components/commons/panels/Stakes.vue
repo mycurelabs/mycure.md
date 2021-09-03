@@ -11,18 +11,27 @@
           //- version 1
           div(v-if="version === 1")
             div(v-for="(content, index) in contents" :key="index")
-              v-row(justify="center")
-                v-col(cols="5").pb-0
-                  span.primary--text.mc-content-set-1.font-weight-semibold {{ content.leftTitle }}
-                v-col(cols="1").pb-0
-                v-col(cols="5").pb-0
-                  span.primary--text.mc-content-set-1.font-weight-semibold {{ content.rightTitle }}
-              v-row(justify="center")
-                v-col(cols="5")
-                  p.mc-content-set-1.font-gray {{ content.leftDescription }}
-                v-col(cols="1")
-                v-col(cols="5")
-                  p.mc-content-set-1.font-gray {{ content.rightDescription }}
+              div(v-if="!$isMobile")
+                v-row(justify="center")
+                  v-col(cols="5").pb-0
+                    span.primary--text.mc-content-set-1.font-weight-semibold {{ content.leftTitle }}
+                  v-col(cols="1").pb-0
+                  v-col(cols="5").pb-0
+                    span.primary--text.mc-content-set-1.font-weight-semibold {{ content.rightTitle }}
+                v-row(justify="center")
+                  v-col(cols="5")
+                    p.mc-content-set-1.font-gray {{ content.leftDescription }}
+                  v-col(cols="1")
+                  v-col(cols="5")
+                    p.mc-content-set-1.font-gray {{ content.rightDescription }}
+              div(v-else)
+                v-row(justify="center")
+                  v-col(cols="10")
+                    span.primary--text.mc-content-set-1.font-weight-semibold {{ content.leftTitle }}
+                    p.mc-list-content-set-1.font-gray {{ content.leftDescription }}
+                    span.primary--text.mc-content-set-1.font-weight-semibold {{ content.rightTitle }}
+                    p.mc-list-content-set-1.font-gray {{ content.rightDescription }}
+
           //- version 2
           div(v-if="version === 2")
             v-row(justify="center")
@@ -43,7 +52,7 @@
           footer
           v-row(justify="center" :class="{'mt-10': version !== 4}")
             v-col(cols="11")
-              p(:class="{'text-center': version === 1}").mc-content-set-1.text-center.font-gray {{ panelDescription }}
+              p(:class="{'text-center': version === 1}").mc-content-set-1.font-gray {{ panelDescription }}
           v-row(justify="center")
             v-btn(
               color="primary"
