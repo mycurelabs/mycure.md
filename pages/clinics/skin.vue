@@ -89,7 +89,6 @@
 
     //- 5th panel
     generic-media-panel(
-      align="center"
       :content="fifthPanel"
       :title-classes="[...headerClasses, 'primary--text']"
     )
@@ -260,7 +259,7 @@ export default {
           extensionExclusive: true,
           imageAlt: 'Charts and graphs',
           width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
-          height: this.$isMobile ? '206.56px' : (this.$isRegularScreen ? '260.08px' : '401.41px'),
+          height: this.$isMobile ? '156.05px' : (this.$isRegularScreen ? '260.08px' : '401.41px'),
         },
       };
     },
@@ -276,7 +275,7 @@ export default {
           customPath: 'clinics/skin/',
           extensionExclusive: true,
           width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
-          height: this.$isMobile ? '139.59px' : (this.$isRegularScreen ? '344.27px' : '531.38px'),
+          height: this.$isMobile ? '206.56px' : (this.$isRegularScreen ? '344.27px' : '531.38px'),
         },
       };
     },

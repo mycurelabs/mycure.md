@@ -123,7 +123,7 @@ export default {
         description: 'With strict laws and heavy penalties on data privacy and security, storing and management of employee health records have to be compliant.',
         imageBindings: {
           image: 'Non-Compliance.png',
-          mobileImage: 'Non-compliance.png',
+          mobileImage: 'Non-Compliance.png',
           imageAlt: 'Data privacy breach',
           customPath: 'clinics/corporate/',
           extensionExclusive: true,
