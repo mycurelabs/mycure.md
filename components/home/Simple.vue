@@ -81,8 +81,8 @@ export default {
         image: 'Simple and Powerful',
         imageFileExtension: '.webp',
         imageAlt: 'Health application in Macbook laptop',
-        imageWidth: this.$isMobile ? '250px' : (this.$isRegularScreen ? '485px' : '750px'),
-        imageHeight: this.$isMobile ? '138.23px' : (this.$isRegularScreen ? '268.18px' : '414.68px'),
+        imageWidth: this.$vuetify.breakpoint.width > 1919 ? '750px' : (this.$isRegularScreen ? '485px' : '250px'),
+        imageHeight: this.$vuetify.breakpoint.width > 1919 ? '414.68px' : (this.$isRegularScreen ? '268.18px' : '138.23px'),
         customPath: 'home/',
       };
     },
