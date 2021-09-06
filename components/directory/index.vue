@@ -153,6 +153,7 @@ export default {
 
         VueScrollTo.scrollTo('#resultsSection', 500, { easing: 'ease' });
 
+        // - Fetch Account details
         if (this.searchMode === 'account' && entryItems.length) {
           const entryPromises = entryItems.map(async (entry) => {
             const personalDetails = await this.$sdk.service('personal-details').get(entry.ref.id);
@@ -161,6 +162,17 @@ export default {
 
           this.entries = await Promise.all(entryPromises);
           console.log('entries', this.entries);
+          return;
+        }
+
+        // Fetch Org Details
+        if (this.searchMode === 'organization' && entryItems.length) {
+          const entryPromises = entryItems.map(async (entry) => {
+            const orgDetails = await this.$sdk.service('organizations').get(entry.ref.id);
+            return orgDetails;
+          });
+          this.entries = await Promise.all(entryPromises);
+          console.log('org entries', this.entries);
           return;
         }
       } catch (e) {
