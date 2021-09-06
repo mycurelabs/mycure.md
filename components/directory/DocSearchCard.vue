@@ -10,7 +10,11 @@
       ).ma-3
       v-col.my-3
         v-row
-          span(:class="[nameFontSize, $isWideScreen ? 'name-width-wide' : 'name-width-reg']").text-truncate.font-weight-bold.mb-0 {{ fullNameWithSuffixes }}&nbsp;
+          v-clamp(
+            autoresize
+            :max-lines="1"
+            :class="[nameFontSize, $isWideScreen ? 'name-width-wide' : 'name-width-reg']"
+          ).font-weight-bold.mb-0 {{ fullNameWithSuffixes }}&nbsp;
         v-row(:class="textFontSize").info-text.font-weight-semibold
           span(v-if="hasSpecialties") {{ doctor.doc_specialties[0] }}&nbsp;&nbsp;
           span(v-else) ---&nbsp;&nbsp;
@@ -23,7 +27,7 @@
         v-row(justify="start").mt-3
           v-icon(color="primary" :small="!$isWideScreen") mdi-map-marker
           div(:class="textFontSize").info-text.mt-1
-            span(v-if="doctor.doc_practicingSince") &nbsp;{{ yearsOfExperience }}
+            span(v-if="doctor.address") &nbsp;{{ address }}
             span(v-else) &nbsp;-
         //- v-row(justify="start").pt-3
         //-   v-btn(
@@ -66,17 +70,12 @@
 </template>
 
 <script>
-// import VClamp from 'vue-clamp';
-// import { format } from 'date-fns';
-// import uniqBy from 'lodash/uniqBy';
-// import { formatAddress, formatName } from '~/utils/formats';
-// import FacilityPlaceholder from '~/assets/images/facility-placeholder.jpg';
-
-// import { formatName } from '~/utils/formats';
+import VClamp from 'vue-clamp';
+import { formatAddress } from '~/utils/formats';
 import classBinder from '~/utils/class-binder';
 export default {
   components: {
-    VClamp: () => import('vue-clamp'),
+    VClamp,
   },
   props: {
     doctor: {
@@ -130,6 +129,10 @@ export default {
       const from = new Date(this.doctor.doc_practicingSince).getFullYear();
       const to = new Date().getFullYear();
       return to - from;
+    },
+    address () {
+      const { address } = this.doctor;
+      return formatAddress(address, 'street1, street2, city, province, region, country');
     },
     nameFontSize () {
       return classBinder(this, {

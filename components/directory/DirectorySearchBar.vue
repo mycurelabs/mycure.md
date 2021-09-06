@@ -29,8 +29,10 @@
               solo
               outlined
               flat
+              clearable
               :height="$isMobile ? '40px' : '60px'"
               @keyup.enter="onSearch"
+              @clear="onSearch(true)"
             ).rounded-bl-lg.rounded-tl-lg
           v-col(cols="1").pa-0
             v-btn(
@@ -156,9 +158,9 @@ export default {
       };
     },
     showSpecializationsField () {
-      return this.searchObject.mode === 'account' ||
-        this.searchObject.serviceType === 'clinical-consultation' ||
-        this.searchObject.serviceType === 'clinical-procedure';
+      return this.searchObject.mode === 'account';
+      // this.searchObject.serviceType === 'clinical-consultation' ||
+      // this.searchObject.serviceType === 'clinical-procedure';
     },
     selectedMode: {
       get () {
@@ -167,6 +169,13 @@ export default {
       set (val) {
         this.$emit('update:mode', { mode: val });
       },
+    },
+  },
+  watch: {
+    'searchObject.searchString' (val) {
+      if (!val) {
+        this.onSearch(true);
+      }
     },
   },
   async created () {
@@ -182,8 +191,8 @@ export default {
       this.searchObject.mode = val;
       this.searchObject.specializations = [];
     },
-    onSearch () {
-      if (!this.searchObject.searchString) return;
+    onSearch (forceSearch = false) {
+      if (!this.searchObject.searchString && !forceSearch) return;
       this.searchObject.mode = this.selectedMode;
       console.log('searchObject', this.searchObject);
       this.$emit('search', this.searchObject);

@@ -27,7 +27,7 @@
 export const unifiedDirectorySearch = async (sdk, opts) => {
   if (!opts) return;
   let query = {
-    $search: opts.text,
+    ...opts.text && { $search: opts.text },
     type: opts.type,
     $limit: opts.limit,
     $skip: opts.skip,

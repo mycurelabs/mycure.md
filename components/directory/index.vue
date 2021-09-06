@@ -131,7 +131,7 @@ export default {
     }, page = 1) {
       try {
         this.loading.results = true;
-        this.searchText = searchText || this.searchText;
+        this.searchText = searchText;
         this.searchMode = searchMode || this.searchMode;
         const skip = this.entriesLimit * (page - 1);
         const query = {
@@ -169,7 +169,7 @@ export default {
     onSearch (searchOpts = {}) {
       const { searchString, mode, specializations, serviceType } = searchOpts;
       const searchObject = {
-        searchText: searchString || this.searchText,
+        searchText: searchString,
         searchMode: mode,
       };
       // update route queries
