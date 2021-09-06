@@ -39,7 +39,7 @@
 
 <script>
 import VueScrollTo from 'vue-scrollto';
-// import uniqBy from 'lodash/uniqBy';
+import intersection from 'lodash/intersection';
 import isEqual from 'lodash/isEqual';
 import ResultsSection from './ResultsSection';
 import DirectoryAppBar from '~/components/directory/DirectoryAppBar';
@@ -126,13 +126,14 @@ export default {
     async search ({
       searchText,
       searchMode,
-      // specializations,
+      specializations,
       serviceType,
     }, page = 1) {
       try {
         this.loading.results = true;
         this.searchText = searchText;
         this.searchMode = searchMode || this.searchMode;
+        this.specializationFilters = specializations;
         this.entriesPage = page;
         const skip = this.entriesLimit * (page - 1);
         const query = {
@@ -160,8 +161,13 @@ export default {
             return personalDetails;
           });
 
-          this.entries = await Promise.all(entryPromises);
-          console.log('entries', this.entries);
+          const doctors = await Promise.all(entryPromises);
+          this.entries = doctors;
+          // Filter specializations
+          if (this.specializationFilters?.length) {
+            this.entries = doctors.filter(doc => intersection(doc.doc_specialties, this.specializationFilters)?.length) || [];
+            this.entriesTotal = total - (doctors.length - this.entries.length);
+          }
           return;
         }
 
@@ -202,7 +208,10 @@ export default {
       return { tags: [`sto:${serviceType}`] };
     },
     onPagination (page) {
-      this.search({}, page);
+      this.search({
+        serviceType: this.serviceType,
+        specializations: this.specializationFilters,
+      }, page);
     },
     async fetchMunicipalities () {
       try {

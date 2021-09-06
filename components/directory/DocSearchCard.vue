@@ -16,7 +16,11 @@
             :class="[nameFontSize, $isWideScreen ? 'name-width-wide' : 'name-width-reg']"
           ).font-weight-bold.mb-0 {{ fullNameWithSuffixes }}&nbsp;
         v-row(:class="textFontSize").info-text.font-weight-semibold
-          span(v-if="hasSpecialties") {{ doctor.doc_specialties[0] }}&nbsp;&nbsp;
+          v-clamp(
+            v-if="hasSpecialties"
+            autoresize
+            :max-lines="1"
+          ) {{ specialtiesText }}&nbsp;&nbsp;
           span(v-else) ---&nbsp;&nbsp;
           //- v-chip(v-if="doctor.doc_website" color="primary" outlined x-small).mt-1 verified
         v-row(justify="start").mt-5
@@ -124,6 +128,9 @@ export default {
         return this.doctor?.picURL || require('~/assets/images/doctor-website/doctor-website-profile-female.png');
       }
       return this.doctor?.picURL || require('~/assets/images/doctor-website/doctor-website-profile-male.png');
+    },
+    specialtiesText () {
+      return this.doctor?.doc_specialties?.join(', ') || '';
     },
     yearsOfExperience () {
       const from = new Date(this.doctor.doc_practicingSince).getFullYear();
