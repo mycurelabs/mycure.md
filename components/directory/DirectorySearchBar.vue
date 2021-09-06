@@ -58,7 +58,7 @@
               item-text="name"
               item-value="value"
               :items="serviceTypes"
-              @change="onSearch"
+              @change="onSearch(false)"
             )
           //- Specialization
           v-col(
@@ -78,7 +78,7 @@
               item-text="text"
               :item-value="searchObject.mode === 'organization' ? 'code' : 'text'"
               :items="specialtiesList"
-              @change="onSearch"
+              @change="onSearch(false)"
             )
               template(v-slot:selection="{ item, index }")
                 v-chip(v-if="index === 0")
