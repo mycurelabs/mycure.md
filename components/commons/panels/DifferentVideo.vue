@@ -46,7 +46,7 @@ export default {
 .video-bg {
   /* height: 1000px; */
   background-image: url('~/assets/images/commons/MYCURE - Video Banner BG.webp');
-  background-position: center center;
+  background-position: center top;
   background-size: 100%;
 }
 .video-bg-mobile {

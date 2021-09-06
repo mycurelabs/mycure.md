@@ -13,7 +13,7 @@
     template(slot="additional-content")
       v-row.mt-10
         slot(name="cta-button")
-          v-row(:justify="$isMobile ? 'center' : 'start'")
+          v-row(:justify="$vuetify.breakpoint.width < 1024 ? 'center' : 'start'")
             v-col(cols="10" sm="5" md="7" lg="6" xl="7").pr-0
               div(:class="{'text-center': $isMobile}")
                 mc-btn(
@@ -101,8 +101,8 @@ export default {
         image: 'Let us do the work.webp',
         imageAlt: 'Hospital and smartphone artwork',
         customPath: 'commons/',
-        width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
-        height: this.$isMobile ? '181.8px' : (this.$isRegularScreen ? '303px' : '467.65px'),
+        width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '440px' : '710px'),
+        height: this.$isMobile ? '181.8px' : (this.$isRegularScreen ? '289.83px' : '467.65px'),
       };
     },
     callToActionPanel () {

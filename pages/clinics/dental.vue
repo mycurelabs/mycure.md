@@ -11,6 +11,9 @@
       btn-text="Start Free"
       image="Dental Clinics USP - Mobile version"
       custom-image-path="clinics/dental/"
+      parse-title
+      parse-meta-title
+      :parse-title-fields="['setup, ']"
       :media-column-bindings="{ cols: 12, md: 6, offsetMd: 1, xl: 6}"
       :content-column-bindings="{ cols: 12, md: 5 }"
     )
@@ -33,7 +36,7 @@
           br
           span Never miss a tooth.
       template(slot="cta-button")
-        div(:class="{ 'text-center': $isMobile }")
+        div(:class="{ 'text-center': $vuetify.breakpoint.width < 1024 }")
           signup-button(
             depressed
             rounded
@@ -112,7 +115,7 @@
       :title-classes="[...headerClasses, 'primary--text']"
     )
       template(slot="cta-button")
-        div(:class="{'text-center': $isMobile}")
+        div(:class="{'text-center': $vuetify.breakpoint.width < 1024}")
           mc-btn(
             color="success"
             href="https://calendly.com/mycure/demo"
@@ -235,8 +238,8 @@ export default {
           customPath: 'commons/',
           image: 'Expand your reach.webp',
           imageAlt: 'Man browsing a clinic website',
-          width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
-          height: this.$isMobile ? '242.88px' : (this.$isRegularScreen ? '404.79px' : '624.8px'),
+          width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '440px' : '710px'),
+          height: this.$isMobile ? '242.88px' : (this.$isRegularScreen ? '387.19px' : '624.8px'),
         },
         list: [
           'Acquire patients beyond your reach',
@@ -272,8 +275,8 @@ export default {
           imageAlt: 'Doctor with tons of paper work',
           customPath: 'clinics/dental/',
           extensionExclusive: true,
-          width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
-          height: this.$isMobile ? '139.59px' : (this.$isRegularScreen ? '232.67px' : '359.11px'),
+          width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '440px' : '710px'),
+          height: this.$isMobile ? '139.59px' : (this.$isRegularScreen ? '222.55px' : '359.11px'),
         },
       };
     },

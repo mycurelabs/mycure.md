@@ -11,6 +11,9 @@
       btn-text="Sign Up"
       image="OFW Clinics Mobile"
       custom-image-path="clinics/ofw/"
+      parse-title
+      parse-meta-title
+      :parse-title-fields="['only ', 'for ']"
       :media-column-bindings="{ cols: 12, md: 6, offsetMd: 1, xl: 6}"
       :content-column-bindings="{ cols: 12, md: 5 }"
     )
@@ -46,7 +49,7 @@
       template(slot="cta-button")
         v-row(:justify="$isMobile ? 'center' : 'start'")
           v-col(cols="10" md="7" lg="6" xl="7")
-            div(:class="{ 'text-center': $isMobile }")
+            div(:class="{ 'text-center': $vuetify.breakpoint.width < 1024 }")
               signup-button(
                 depressed
                 rounded
@@ -87,7 +90,7 @@
       :title-classes="[...headerClasses, 'primary--text']"
     )
       template(slot="cta-button")
-        v-row(:justify="$isMobile ? 'center' : 'start'")
+        v-row(:justify="$vuetify.breakpoint.width < 1024 ? 'center' : 'start'")
           v-col(cols="10" sm="5" md="7" lg="6" xl="7")
             signup-button(
               depressed
@@ -220,8 +223,8 @@ export default {
           mobileImage: 'Queue-mobile.png',
           imageAlt: 'Registration kiosk in MYCURE Clinic Management System',
           extensionExclusive: true,
-          width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
-          height: this.$isMobile ? '298.88px' : (this.$isRegularScreen ? '498.19px' : '768.94px'),
+          width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '440px' : '710px'),
+          height: this.$isMobile ? '298.88px' : (this.$isRegularScreen ? '476.53px' : '768.94px'),
         },
       };
     },
@@ -258,8 +261,8 @@ export default {
           customPath: 'commons/',
           image: 'Expand your reach.webp',
           imageAlt: 'Man browsing a clinic website',
-          width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
-          height: this.$isMobile ? '242.88px' : (this.$isRegularScreen ? '404.79px' : '624.8px'),
+          width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '440px' : '710px'),
+          height: this.$isMobile ? '242.88px' : (this.$isRegularScreen ? '387.19px' : '624.8px'),
         },
       };
     },
@@ -274,8 +277,8 @@ export default {
           imageAlt: 'Doctor with hourglass and downhill chart in monitor',
           customPath: 'clinics/ofw/',
           extensionExclusive: true,
-          width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
-          height: this.$isMobile ? '184.14px' : (this.$isRegularScreen ? '306.92px' : '473.72px'),
+          width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '440px' : '710px'),
+          height: this.$isMobile ? '184.14px' : (this.$isRegularScreen ? '293.58px' : '473.72px'),
         },
       };
     },

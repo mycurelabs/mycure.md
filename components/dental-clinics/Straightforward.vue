@@ -9,8 +9,8 @@
               :image-file-extension="$isMobile ? '.png' : '.webp'"
               :extension-exclusive="$isMobile"
               :image="`Straightforward${$isMobile ? '-mobile' : ''}`"
-              :image-width="$isMobile ? '226px' : ($isRegularScreen ? '875px' : '1200px')"
-              :image-height="$isMobile ? '169.19px' : ($isRegularScreen ? '500px' : '668.08px')"
+              :image-width="$isMobile ? '226px' : ($isRegularScreen ? '666.66px' : '1200px')"
+              :image-height="$isMobile ? '169.19px' : ($isRegularScreen ? '380.95px' : '668.08px')"
             )
         v-col(cols="12" sm="10").text-center
           h2(:class="titleClasses").mb-5 Straightforward and simple.

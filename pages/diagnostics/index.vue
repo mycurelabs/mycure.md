@@ -82,7 +82,7 @@
       :content="expandPanel"
       hide-btn
     )
-      div(slot="additional-content" :class="{'text-center': $isMobile}").mt-10
+      div(slot="additional-content" :class="{'text-center': $vuetify.breakpoint.width < 1024}").mt-10
         signup-button(
           depressed
           rounded
@@ -100,7 +100,7 @@
       align="center"
     )
       template(slot="cta-button")
-        div(:class="{'text-center': $isMobile}")
+        div(:class="{'text-center': $vuetify.breakpoint.width < 1024}")
           mc-btn(
             depressed
             rounded
@@ -234,8 +234,8 @@ export default {
             image: 'easy.webp',
             imageAlt: 'Charts and graphs artwork',
             customPath: 'diagnostics/',
-            width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
-            height: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
+            width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '440px' : '710px'),
+            height: this.$isMobile ? '276px' : (this.$isRegularScreen ? '440px' : '710px'),
           },
           contentAlign: 'left',
         },
@@ -251,8 +251,8 @@ export default {
             image: 'Fast results.webp',
             imageAlt: 'Sending out health results artwork',
             customPath: 'diagnostics/',
-            width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
-            height: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
+            width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '440px' : '710px'),
+            height: this.$isMobile ? '276px' : (this.$isRegularScreen ? '440px' : '710px'),
           },
           contentAlign: 'right',
         },
@@ -290,8 +290,8 @@ export default {
           image: 'Expand your reach.webp',
           imageAlt: 'Man browsing a clinic website artwork',
           customPath: 'commons/',
-          width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
-          height: this.$isMobile ? '242.88px' : (this.$isRegularScreen ? '404.79px' : '624.8px'),
+          width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '440px' : '710px'),
+          height: this.$isMobile ? '242.88px' : (this.$isRegularScreen ? '387.19px' : '624.8px'),
         },
         contentAlign: 'right',
       };

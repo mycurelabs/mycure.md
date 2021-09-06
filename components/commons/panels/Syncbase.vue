@@ -28,11 +28,11 @@
           //-   :to="{ name: 'syncbase' }"
           //-   :class="{'font-s': !$isMobile}"
           //- ).text-none.button
-          div(v-if="version !== 3" :class="{'text-center ml-4': $isMobile}")
+          div(v-if="version !== 3" :class="{'text-center ml-4': $vuetify.breakpoint.width < 1024}")
             nuxt-link(:to="{ name: 'syncbase' }" :class="{'d-flex': !$isMobile}").button
               span(:class="[{'font-14':  $isMobile}, {'font-s':  $isRegularScreen}, {'font-m':  $isWideScreen}]").primary--text Learn about MYCURE Syncbase
               v-icon(left color="primary" :large="$isWideScreen" :small="$isMobile") mdi-chevron-right
-          div(v-else :class="{'text-center': $isMobile}")
+          div(v-else :class="{'text-center': $vuetify.breakpoint.width < 1024}")
             mc-btn(
               color="success"
               depressed
@@ -112,17 +112,14 @@ export default {
     contentColumnBindings () {
       return {
         cols: 12,
-        md: 6,
-        xl: 5,
+        sm: 6,
         alignSelf: 'center',
-        offsetMd: 1,
       };
     },
     mediaColumnBindings () {
       return {
         cols: 12,
-        md: 5,
-        xl: 6,
+        sm: 6,
       };
     },
   },

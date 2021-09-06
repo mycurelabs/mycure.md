@@ -23,7 +23,7 @@
       :content-classes="[...descriptionClasses, 'justify-left']"
     ).mt-16
       template(slot="cta-button")
-        div(:class="{ 'text-center': $isMobile }")
+        div(:class="{ 'text-center': $vuetify.breakpoint.width < 1024 }")
           signup-button(
             depressed
             rounded
@@ -158,7 +158,7 @@
         :content-classes="['white--text', ...descriptionClasses]"
       )
         template(slot="cta-button")
-          div(:class="{ 'text-center': $isMobile }")
+          div(:class="{ 'text-center': $vuetify.breakpoint.width < 1024 }")
             signup-button(
               depressed
               rounded

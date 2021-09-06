@@ -9,6 +9,9 @@
       meta-title="MYCURE for Skin Clinics"
       image="Skin Clinics USP Mobile"
       custom-image-path="clinics/skin/"
+      parse-title
+      parse-meta-title
+      :parse-title-fields="['for ', 'Aesthetic ']"
       :media-column-bindings="{ cols: 12, md: 6, offsetMd: 1, xl: 6}"
       :content-column-bindings="{ cols: 12, md: 5 }"
     )
@@ -47,7 +50,7 @@
         br
         h2(:class="subHeaderClasses") You won't feel like you are at work.
       template(slot="cta-button")
-        div(:class="{ 'text-center': $isMobile }")
+        div(:class="{ 'text-center': $vuetify.breakpoint.width < 1024 }")
           signup-button(
             depressed
             rounded
@@ -76,7 +79,7 @@
             )
             span(:class="[descriptionClasses, ($isMobile ? 'ml-2' : ($isRegularScreen ? 'ml-3' : 'ml-4'))]") {{ item }}
         div.mb-10
-        div(:class="{ 'text-center': $isMobile }")
+        div(:class="{ 'text-center': $vuetify.breakpoint.width < 1024 }")
           signup-button(
             depressed
             rounded
@@ -93,7 +96,7 @@
       :title-classes="[...headerClasses, 'primary--text']"
     )
       template(slot="cta-button")
-        div(:class="{'text-center': $isMobile}")
+        div(:class="{'text-center': $vuetify.breakpoint.width < 1024}")
           mc-btn(
             color="success"
             href="https://calendly.com/mycure/demo"
@@ -237,8 +240,8 @@ export default {
           customPath: 'commons/',
           image: 'Expand your reach.webp',
           imageAlt: 'Man browsing a clinic website',
-          width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
-          height: this.$isMobile ? '242.88px' : (this.$isRegularScreen ? '404.79px' : '624.8px'),
+          width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '440px' : '710px'),
+          height: this.$isMobile ? '242.88px' : (this.$isRegularScreen ? '387.19px' : '624.8px'),
         },
         list: [
           'Acquire patients beyond your reach',
@@ -274,8 +277,8 @@ export default {
           imageAlt: 'Doctor listening to patient feedback',
           customPath: 'clinics/skin/',
           extensionExclusive: true,
-          width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
-          height: this.$isMobile ? '206.56px' : (this.$isRegularScreen ? '344.27px' : '531.38px'),
+          width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '440px' : '710px'),
+          height: this.$isMobile ? '206.56px' : (this.$isRegularScreen ? '329.3px' : '531.38px'),
         },
       };
     },

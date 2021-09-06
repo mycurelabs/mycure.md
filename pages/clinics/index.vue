@@ -41,7 +41,7 @@
       :content-classes="descriptionClasses"
       hide-btn
     )
-      div(slot="additional-content" :class="{'text-center': $isMobile}").mt-10
+      div(slot="additional-content" :class="{'text-center': $vuetify.breakpoint.width < 1024}").mt-10
         signup-button(
           depressed
           rounded
@@ -71,7 +71,7 @@
         :title-classes="[...headerClasses, 'white--text']"
         hide-btn
       )
-        div(slot="additional-content" :class="{'text-center': $isMobile}").mt-10
+        div(slot="additional-content" :class="{'text-center': $vuetify.breakpoint.width < 1024}").mt-10
           mc-btn(
             depressed
             rounded

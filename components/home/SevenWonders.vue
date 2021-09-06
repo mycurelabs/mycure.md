@@ -18,7 +18,7 @@
         generic-panel(:row-bindings="{ justify: 'center' }")
           v-col(cols="12").text-center.text-container
             v-row(justify="center").mb-5
-              v-col(cols="12" md="6" xl="8")
+              v-col(cols="12" md="7" xl="8")
                 h1(:class="headerClasses").mb-2 Enterprise-Grade
                   br
                   | Healthcare Solutions

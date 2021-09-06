@@ -11,6 +11,9 @@
       btn-text="Start Free"
       image="Mobile Clinics Mobile Version"
       custom-image-path="diagnostics/mobile-labs/"
+      parse-title
+      parse-meta-title
+      :parse-title-fields="['LIS ']"
       :media-column-bindings="{ cols: 12, md: 6, offsetMd: 1, xl: 6}"
       :content-column-bindings="{ cols: 12, md: 5 }"
     )
@@ -67,7 +70,7 @@
       :title-classes="[...headerClasses, 'primary--text']"
     )
       template(slot="cta-button")
-        v-row(:justify="$isMobile ? 'center' : 'start'")
+        v-row(:justify="$vuetify.breakpoint.width < 1024 ? 'center' : 'start'")
           v-col(cols="10" md="7" lg="6" xl="7")
             signup-button(
               depressed
@@ -186,8 +189,8 @@ export default {
           image: 'Expand your reach.webp',
           imageAlt: 'Man browsing a clinic website artwork',
           customPath: 'commons/',
-          width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
-          height: this.$isMobile ? '242.88px' : (this.$isRegularScreen ? '404.79px' : '624.8px'),
+          width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '440px' : '710px'),
+          height: this.$isMobile ? '242.88px' : (this.$isRegularScreen ? '387.19px' : '624.8px'),
         },
       };
     },
