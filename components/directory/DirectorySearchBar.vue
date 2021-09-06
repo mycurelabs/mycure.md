@@ -31,17 +31,16 @@
               flat
               clearable
               :height="$isMobile ? '40px' : '60px'"
-              @keyup.enter="onSearch"
-              @clear="onSearch(true)"
+              @keyup.enter="onSearch(true)"
+              @clear="onSearch"
             ).rounded-bl-lg.rounded-tl-lg
           v-col(cols="1").pa-0
             v-btn(
-              v-if="!$isMobile"
               small
               block
               tile
               color="primary"
-              @click="onSearch"
+              @click="onSearch(true)"
               :height="$isMobile ? '40px' : '60px'"
             ).elevation-0.rounded-br-lg.rounded-tr-lg
               v-icon mdi-magnify
@@ -59,6 +58,7 @@
               item-text="name"
               item-value="value"
               :items="serviceTypes"
+              @change="onSearch"
             )
           //- Specialization
           v-col(
@@ -78,6 +78,7 @@
               item-text="text"
               :item-value="searchObject.mode === 'organization' ? 'code' : 'text'"
               :items="specialtiesList"
+              @change="onSearch"
             )
               template(v-slot:selection="{ item, index }")
                 v-chip(v-if="index === 0")
@@ -89,16 +90,15 @@
 </template>
 
 <script>
-// import debounce from 'lodash/debounce';
 // import NCR_CITIES from '~/assets/fixtures/ncr-cities';
 export default {
   components: {
   },
   props: {
-    // requireAction: {
-    //   type: Boolean,
-    //   default: false,
-    // },
+    requireAction: {
+      type: Boolean,
+      default: false,
+    },
     // showSuggestions: {
     //   type: Boolean,
     //   default: false,
@@ -142,7 +142,6 @@ export default {
       // docSearchLocation: null,
       // doctorsSuggestions: [],
       // selectedSuggestion: null,
-      // debouncedSearch: debounce(this.searchDebounce, 500),
       // debouncedSuggestionsSearch: debounce((event) => {
       //   this.handleSuggestions(event);
       // }, 500),
@@ -167,18 +166,14 @@ export default {
         return this.mode || 'account';
       },
       set (val) {
-        this.$emit('update:mode', { mode: val });
+        this.$emit('update:mode', {
+          ...this.searchObject,
+          mode: val,
+        });
       },
     },
   },
-  watch: {
-    'searchObject.searchString' (val) {
-      if (!val) {
-        this.onSearch(true);
-      }
-    },
-  },
-  async created () {
+  async mounted () {
     this.loading = true;
     this.searchObject.mode = this.selectedMode;
     this.searchObject.searchString = this.$route.query.searchText;
@@ -191,8 +186,13 @@ export default {
       this.searchObject.mode = val;
       this.searchObject.specializations = [];
     },
-    onSearch (forceSearch = false) {
-      if (!this.searchObject.searchString && !forceSearch) return;
+    /**
+     * @param {Boolean} allowableSearch - if true, continue with search regardless of action requirement
+     *
+     * An action requirement is usually a trigger through button or enter key
+     */
+    onSearch (allowableSearch = false) {
+      if (!allowableSearch && this.requireAction) return;
       this.searchObject.mode = this.selectedMode;
       console.log('searchObject', this.searchObject);
       this.$emit('search', this.searchObject);
@@ -225,9 +225,6 @@ export default {
         this.specialtiesList[i].selected = false;
       }
       this.searchObject.specialties = [];
-    },
-    onVoiceSearch () {
-      //
     },
   },
 };

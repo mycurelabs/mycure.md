@@ -15,6 +15,7 @@
             v-col(cols="12")
               //- clinics-org-search-bar(
               directory-search-bar(
+                require-action
                 :mode="searchMode"
                 :location-switch="locationAccess"
                 @search="onSearch($event)"
