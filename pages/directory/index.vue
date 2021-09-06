@@ -15,8 +15,10 @@
             v-col(cols="12")
               //- clinics-org-search-bar(
               directory-search-bar(
-                @search="onSearch($event)"
+                :mode="searchMode"
                 :location-switch="locationAccess"
+                @search="onSearch($event)"
+                @update:mode="onChangeMode($event)"
               )
     v-dialog(
       v-model="locationDialog"
@@ -64,6 +66,7 @@ export default {
     this.subheaderClasses = ['mc-title-set-2', 'font-weight-light', 'primary--text'];
     return {
       loading: true,
+      searchMode: 'account',
       locationDialog: true,
       locationAccess: false,
     };
@@ -81,18 +84,25 @@ export default {
   methods: {
     /**
      * @param {String} searchString
-     * @param {String []} specialties
+     * @param {String []} specializations
+     * @param {String} serviceType
      * @param {String} mode doctor | clinic | location
      */
-    onSearch ({ searchString, specialties, mode }) {
+    onSearch ({ searchString, specializations, mode, serviceType }) {
       this.$nuxt.$router.push({
         name: 'directory-results',
         query: {
           searchText: searchString,
-          tagArray: specialties,
           searchMode: mode,
         },
+        params: {
+          serviceType,
+          specializations,
+        },
       });
+    },
+    onChangeMode (val) {
+      this.searchMode = val.mode;
     },
   },
 };

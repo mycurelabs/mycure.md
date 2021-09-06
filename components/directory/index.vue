@@ -40,6 +40,7 @@
 <script>
 // import VueScrollTo from 'vue-scrollto';
 // import uniqBy from 'lodash/uniqBy';
+import isEqual from 'lodash/isEqual';
 import ResultsSection from './ResultsSection';
 import DirectoryAppBar from '~/components/directory/DirectoryAppBar';
 import DirectorySearchBar from '~/components/directory/DirectorySearchBar';
@@ -70,6 +71,8 @@ export default {
       // Search
       searchMode: 'account',
       searchText: null,
+      specializationFilters: [],
+      serviceType: null,
       // Pagination
       entriesTotal: 0,
       entriesPage: 1,
@@ -115,12 +118,16 @@ export default {
     await this.search({
       searchText: this.$route.query.searchText,
       searchMode: this.$route.query.searchMode,
+      specializations: this.$route.params.specializations,
+      serviceType: this.$route.params.serviceType,
     });
   },
   methods: {
     async search ({
       searchText,
       searchMode,
+      // specializations,
+      serviceType,
     }, page = 1) {
       try {
         this.loading.results = true;
@@ -133,6 +140,8 @@ export default {
           limit: this.entriesLimit,
           skip,
           // Apply filters
+          ...serviceType && this.composeTags(serviceType),
+          // Apply specialization
         };
         const { items, total } = await unifiedDirectorySearch(this.$sdk, query);
 
@@ -158,15 +167,24 @@ export default {
       }
     },
     onSearch (searchOpts = {}) {
-      const { searchString, mode } = searchOpts;
+      const { searchString, mode, specializations, serviceType } = searchOpts;
       const searchObject = {
         searchText: searchString || this.searchText,
         searchMode: mode,
       };
       // update route queries
-      this.$router.replace({ query: searchObject });
+      if (!isEqual(searchObject, this.$route.query)) {
+        this.$router.replace({ query: searchObject });
+      }
       // search
-      this.search(searchObject);
+      this.search({
+        ...searchObject,
+        specializations,
+        serviceType,
+      });
+    },
+    composeTags (serviceType) {
+      return { tags: [`sto:${serviceType}`] };
     },
     onPagination (page) {
       this.search({}, page);

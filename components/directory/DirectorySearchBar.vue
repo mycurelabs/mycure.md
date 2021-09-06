@@ -43,101 +43,52 @@
               :height="$isMobile ? '40px' : '60px'"
             ).elevation-0.rounded-br-lg.rounded-tr-lg
               v-icon mdi-magnify
-        v-row(v-if="searchObject.specialties.length >= 1").mt-n3
-          v-btn(
-            color="primary"
-            @click="clearSpecialties"
-          ).font-12 Clear filters
         v-row
-          v-col.py-0.mt-n3
-            template(v-for="(tag, index) in searchObject.specialties")
-              v-chip(
-                clearable
-                color="#f0f0f0"
-                close
-                close-icon="mdi-close"
-                @click:close="tag.selected = false; searchObject.specialties.splice(index, 1);"
-              ).ma-1.bordered-chip {{tag.strVal}}
-
-          //- v-combobox(
-          //-   v-if="mode==='all'"
-          //-   v-model="docSuggestionsSearchQuery"
-          //-   color="white"
-          //-   placeholder="Search for clinics, doctors and services"
-          //-   return-object
-          //-   solo
-          //-   :height="$isMobile ? '40px' : '60px'"
-          //-   :items="doctorsSuggestions"
-          //-   :clear-icon="null"
-          //-   @update:search-input="debouncedSuggestionsSearch"
-          //-   @keyup.enter="searchFacilityBtn"
-          //-   @change="onSelectDoctor"
-          //- ).font-14.font-weight-regular.rounded-lg
-          //-   template(v-slot:append)
-          //-     //- v-row
-          //-       //- voice search
-          //-         v-btn(
-          //-           icon
-          //-           color="primary"
-          //-         ).mx-1.pt-1
-          //-           v-icon mdi-microphone
-          //-     v-col(fill-height)
-          //-       v-btn(
-          //-         v-if="!$isMobile"
-          //-         color="light-grey"
-          //-         @click="searchFacilityBtn(true)"
-          //-       ).elevation-0.rounded-lg
-          //-         v-icon mdi-tune-variant
-              //- v-col(fill-height)
-              //-   v-btn(
-              //-     v-if="!$isMobile"
-              //-     small
-              //-     block
-              //-     color="primary"
-              //-     @click="searchFacilityBtn(true)"
-              //-   ).elevation-0.rounded-lg
-              //-     v-icon mdi-microphone-outline
-                //- v-icon mdi-magnify
-        //- v-card(v-for="doctorName in doctorsSuggestions" :key="doctorName")
-        //-   v-list-item
-        //-     v-list-item-content
-        //-       v-list-item-title.text-wrap {{doctorName}}
-    v-dialog(
-      v-model="tagSearchDialog"
-      width="80%"
-      height="80%"
-      persistent
-    )
-      v-card.rounded-xl.pa-16
-        v-card-text
-          v-col.pa-0
-            v-row.mb-2
-              v-col.pa-0
-                h1.font-weight-bold.black--text Filter by Services
-              v-col(align="end").pa-0
-                v-icon(@click="tagSearchDialog = false") mdi-close
-            v-row
-              p.font-18 Popular tags:
-            v-row
-              p.font-18 Alphabetical:
-            v-row
-              template(v-for="specialty in specialtiesList")
-                v-chip(
-                  large
-                  outlined
-                  :color="specialty.selected ? 'primary' : 'grey' "
-                  @click="toggleChip(specialty.indexVal)"
-                ).mx-1.my-2.font-weight-semibold
-                  v-icon(v-if="specialty.selected" left) mdi-check
-                  |{{specialty.strVal}}
+          //- Service Type Filter
+          v-col(v-if="searchObject.mode === 'organization'" cols="12" md="4").pa-0
+            v-autocomplete(
+              v-model="searchObject.serviceType"
+              placeholder="Service Type"
+              solo
+              outlined
+              flat
+              dense
+              clearable
+              item-text="name"
+              item-value="value"
+              :items="serviceTypes"
+            )
+          //- Specialization
+          v-col(
+            v-if="showSpecializationsField" cols="12" md="4"
+            :class="{'pl-1 py-0 pr-0': searchObject.mode === 'organization', 'pa-0': searchObject.mode === 'account'}"
+          )
+            v-autocomplete(
+              v-model="searchObject.specializations"
+              label="Specializations"
+              solo
+              outlined
+              flat
+              dense
+              multiple
+              chips
+              small-chips
+              item-text="text"
+              :item-value="searchObject.mode === 'organization' ? 'code' : 'text'"
+              :items="specialtiesList"
+            )
+              template(v-slot:selection="{ item, index }")
+                v-chip(v-if="index === 0")
+                  span {{ item.text }}
+                span(
+                  v-if="index === 1"
+                  class="grey--text text-caption"
+                ) (+{{ searchObject.specializations.length - 1 }} others)
 </template>
 
 <script>
 // import debounce from 'lodash/debounce';
 // import NCR_CITIES from '~/assets/fixtures/ncr-cities';
-// import { fetchdocanizations } from '~/services/docanizations';
-// import { searchDoctors } from '~/utils/axios';
-import specialties from '~/assets/fixtures/specialties';
 export default {
   components: {
   },
@@ -163,7 +114,16 @@ export default {
   data () {
     // this.cities = NCR_CITIES;
     this.buttonGroupClasses = ['font-weight-semibold', 'font-16', 'black--text'];
+    this.serviceTypes = [
+      { name: 'Consult', value: 'clinical-consultation' },
+      { name: 'Procedure', value: 'clinical-procedure' },
+      { name: 'Laboratory', value: 'lab' },
+      { name: 'Imaging', value: 'imaging' },
+      { name: 'Physical Exam', value: 'pe' },
+      { name: 'Dental', value: 'dental' },
+    ];
     return {
+      loading: false,
       deleteTag: {
         removeIndex: undefined,
       },
@@ -171,10 +131,11 @@ export default {
       searchText: null,
       searchObject: {
         searchString: '',
-        specialties: [],
+        specializations: [],
         mode: 'account',
+        serviceType: null,
       },
-      specialtiesList: specialties.map((str, index) => ({ strVal: str, selected: false, indexVal: index })),
+      specialtiesList: [],
       // docSuggestionsSearchQuery: null,
       // docSearchLocation: null,
       // doctorsSuggestions: [],
@@ -194,6 +155,11 @@ export default {
         default: return 'Search for clinics, doctors, and services';
       };
     },
+    showSpecializationsField () {
+      return this.searchObject.mode === 'account' ||
+        this.searchObject.serviceType === 'clinical-consultation' ||
+        this.searchObject.serviceType === 'clinical-procedure';
+    },
     selectedMode: {
       get () {
         return this.mode || 'account';
@@ -203,17 +169,32 @@ export default {
       },
     },
   },
+  async created () {
+    this.loading = true;
+    this.searchObject.mode = this.selectedMode;
+    this.searchObject.searchString = this.$route.query.searchText;
+    await this.fetchSpecialties();
+    this.loading = false;
+  },
   methods: {
     onModeChange (val) {
       this.selectedMode = val;
       this.searchObject.mode = val;
+      this.searchObject.specializations = [];
     },
     onSearch () {
+      if (!this.searchObject.searchString) return;
       this.searchObject.mode = this.selectedMode;
-      this.$emit('search', {
-        ...this.searchObject,
-        specialties: this.searchObject?.specialties?.map(s => s.strVal) || [],
-      });
+      console.log('searchObject', this.searchObject);
+      this.$emit('search', this.searchObject);
+    },
+    async fetchSpecialties () {
+      try {
+        const { items } = await this.$sdk.service('fixtures').find({ type: 'specialty' });
+        this.specialtiesList = items;
+      } catch (e) {
+        console.error(e);
+      }
     },
     toggleChip (index) {
       // console.log(this.specialtiesList[index].selected);
