@@ -34,11 +34,11 @@
       :pagination="resultsPagination"
       :read-only="readOnly"
       @page:update="onPagination($event)"
-    )
+    )#resultsSection
 </template>
 
 <script>
-// import VueScrollTo from 'vue-scrollto';
+import VueScrollTo from 'vue-scrollto';
 // import uniqBy from 'lodash/uniqBy';
 import isEqual from 'lodash/isEqual';
 import ResultsSection from './ResultsSection';
@@ -133,6 +133,7 @@ export default {
         this.loading.results = true;
         this.searchText = searchText;
         this.searchMode = searchMode || this.searchMode;
+        this.entriesPage = page;
         const skip = this.entriesLimit * (page - 1);
         const query = {
           type: this.searchMode,
@@ -149,6 +150,8 @@ export default {
         const entryItems = items || [];
 
         this.entries = entryItems;
+
+        VueScrollTo.scrollTo('#resultsSection', 500, { easing: 'ease' });
 
         if (this.searchMode === 'account' && entryItems.length) {
           const entryPromises = entryItems.map(async (entry) => {
