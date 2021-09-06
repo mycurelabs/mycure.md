@@ -1,6 +1,5 @@
 <template lang="pug">
   v-app#app
-    app-bar(v-if="!loading")
     nuxt(:class="$isMobile? 'mobile-margin' : ['mb-16', 'pb-10']")
     results-footer(v-if="!loading").footer
 </template>
@@ -29,5 +28,14 @@ export default {
 }
 .mobile-margin{
   margin-bottom: 360px;
+}
+.topper{
+  position: absolute;
+  width: 1440px;
+  height: 656.78px;
+  left: 0px;
+  top: 0px;
+
+  background: linear-gradient(180deg, #EBEDFF 0%, #F7E8E6 100%);
 }
 </style>
