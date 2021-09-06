@@ -25,6 +25,7 @@
                 :mode="searchMode"
                 @search="onSearch($event)"
                 @update:mode="onSearch($event)"
+                @update:locationSwitch="onLocationSwitchUpdate($event)"
               )
     results-section(
       :results-name="resultsName"
@@ -73,6 +74,7 @@ export default {
       searchText: null,
       specializationFilters: [],
       serviceType: null,
+      location: null,
       // Pagination
       entriesTotal: 0,
       entriesPage: 1,
@@ -120,6 +122,7 @@ export default {
       searchMode: this.$route.query.searchMode,
       specializations: this.$route.params.specializations,
       serviceType: this.$route.params.serviceType,
+      location: this.$route.params.location,
     });
   },
   methods: {
@@ -128,12 +131,14 @@ export default {
       searchMode,
       specializations,
       serviceType,
+      location,
     }, page = 1) {
       try {
         this.loading.results = true;
         this.searchText = searchText;
         this.searchMode = searchMode || this.searchMode;
         this.specializationFilters = specializations;
+        this.location = location;
         this.entriesPage = page;
         const skip = this.entriesLimit * (page - 1);
         const query = {
@@ -143,7 +148,8 @@ export default {
           skip,
           // Apply filters
           ...serviceType && this.composeTags(serviceType),
-          // Apply specialization
+          // Apply location
+          ...location && { location: this.location },
         };
         const { items, total } = await unifiedDirectorySearch(this.$sdk, query);
 
@@ -188,7 +194,7 @@ export default {
       }
     },
     onSearch (searchOpts = {}) {
-      const { searchString, mode, specializations, serviceType } = searchOpts;
+      const { searchString, mode, specializations, serviceType, location } = searchOpts;
       const searchObject = {
         searchText: searchString,
         searchMode: mode,
@@ -202,6 +208,7 @@ export default {
         ...searchObject,
         specializations,
         serviceType,
+        location,
       });
     },
     composeTags (serviceType) {
@@ -211,7 +218,16 @@ export default {
       this.search({
         serviceType: this.serviceType,
         specializations: this.specializationFilters,
+        location: this.location,
       }, page);
+    },
+    onLocationSwitchUpdate (val) {
+      if (!val) this.location = null;
+      this.search({
+        serviceType: this.serviceType,
+        specializations: this.specializationFilters,
+        location: this.location,
+      });
     },
     async fetchMunicipalities () {
       try {

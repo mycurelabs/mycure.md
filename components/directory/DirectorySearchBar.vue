@@ -16,11 +16,11 @@
             v-btn(value="organization" text active-class="active-button" :class="buttonGroupClasses").mr-3.tight-font.rounded-pill clinics
               //- v-btn(value="location" text active-class="active-button" :class="buttonGroupClasses").mr-3.tight-font.rounded-pill location
           v-spacer
-          //- TODO: Location
-          //- v-col
-          //-   v-row(align="center" justify="end")
-          //-     span.font-weight-bold.font-14 USE MY LOCATION
-          //-     v-switch(v-model="locationSwitch" inset).ml-3
+          TODO: Location
+          v-col
+            v-row(align="center" justify="end")
+              span.font-weight-bold.font-14 USE MY LOCATION
+              v-switch(v-model="locationSwitch" inset).ml-3
         v-row.pt-2
           v-col.pa-0
             v-text-field(
@@ -108,9 +108,13 @@ export default {
       type: String,
       default: 'account',
     },
-    locationSwitch: {
-      type: Boolean,
-      default: false,
+    /**
+     * @param {Number} lat
+     * @param {Number} lng
+     */
+    location: {
+      type: Object,
+      default: null,
     },
   },
   data () {
@@ -168,8 +172,17 @@ export default {
       set (val) {
         this.$emit('update:mode', {
           ...this.searchObject,
+          ...this.location && { location: this.location },
           mode: val,
         });
+      },
+    },
+    locationSwitch: {
+      get () {
+        return !!this.location;
+      },
+      set (val) {
+        this.$emit('update:locationSwitch', val);
       },
     },
   },
@@ -195,7 +208,10 @@ export default {
       if (!allowableSearch && this.requireAction) return;
       this.searchObject.mode = this.selectedMode;
       console.log('searchObject', this.searchObject);
-      this.$emit('search', this.searchObject);
+      this.$emit('search', {
+        ...this.searchObject,
+        ...this.location && { location: this.location },
+      });
     },
     async fetchSpecialties () {
       try {
@@ -215,7 +231,6 @@ export default {
         for (let i = 0; i < this.searchObject.specialties.length; i++) {
           if (this.specialtiesList[index].indexVal === this.searchObject.specialties[i].indexVal) {
             this.searchObject.specialties.splice(i, 1);
-            console.log('weewee' + i);
           }
         };
       };

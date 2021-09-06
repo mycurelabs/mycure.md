@@ -10,6 +10,9 @@
  * @param {String} opts.ref.types - only used when entry type is organization
  * @param {String} opts.ref.subtype - only used when entry type is service
  * @param {String} opts.tags - used for organization entry types to be filtered with service types
+ * @param {Object} opts.location - location of user
+ * @param {Number} opts.location.lat - latitute
+ * @param {Number} opts.location.lng - longitude
  *
  * # Uses
  * - for type=organization, service types offered are tags with prefix `sto:`
@@ -34,16 +37,11 @@ export const unifiedDirectorySearch = async (sdk, opts) => {
     $total: true,
   };
 
-  // Populate according to type
-  // if (query.type === 'account') {
-  //   query.$populate = {
-  //     personalDetails: {
-  //       service: 'personal-details',
-  //       method: 'get',
-  //       localKey: 'ref',
-  //     },
-  //   };
-  // }
+  // put location string
+  if (opts.location) {
+    const { lat, lng } = opts.location;
+    query.location = `${lat},${lng},10`;
+  }
   if (query.type === 'organization') {
     query = {
       ...query,

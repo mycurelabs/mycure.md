@@ -17,9 +17,10 @@
               directory-search-bar(
                 require-action
                 :mode="searchMode"
-                :location-switch="locationAccess"
+                :location="location"
                 @search="onSearch($event)"
                 @update:mode="onChangeMode($event)"
+                @update:locationSwitch="onLocationSwitchUpdate($event)"
               )
     v-dialog(
       v-model="locationDialog"
@@ -40,25 +41,26 @@
             v-col(cols="10").py-0
               v-row(justify="center")
                 v-col(cols="6")
-                  v-btn(color="primary" elevation="0" rounded @click="locationDialog = false; locationAccess = true;") Allow
+                  v-btn(
+                    color="primary"
+                    elevation="0"
+                    rounded
+                    :loading="loading.location"
+                    @click="getLocation"
+                  ) Allow
                 v-col(cols="6" justify="start")
-                  v-btn(rounded outlined @click="locationDialog = false") Decline
+                  v-btn(
+                    rounded
+                    outlined
+                    :disabled="loading.location"
+                    @click="locationDialog = false"
+                  ) Decline
 </template>
 
 <script>
-// import debounce from 'lodash/debounce';
-// import VueScrollTo from 'vue-scrollto';
-
 import headMeta from '~/utils/head-meta';
-// import DoctorsTable from '~/components/directory-doctor/doctors-table';
-// import GenericContainer from '~/components/commons/generic-container';
-// import SearchControls from '~/components/directory-doctor/search-controls';
-// import { /* getDoctors */ getFeaturedDoctors, searchDoctors } from '~/utils/axios';
 export default {
   components: {
-    // DoctorsTable,
-    // GenericContainer,
-    // SearchControls,
     DirectorySearchBar: () => import('~/components/directory/DirectorySearchBar'),
   },
   layout: 'directory',
@@ -66,10 +68,14 @@ export default {
     this.titleClasses = ['mc-title-set-1', 'font-weight-bold'];
     this.subheaderClasses = ['mc-title-set-2', 'font-weight-light', 'primary--text'];
     return {
-      loading: true,
+      loading: {
+        page: true,
+        location: false,
+      },
       searchMode: 'account',
-      locationDialog: true,
-      locationAccess: false,
+      coordinates: null,
+      locationDialog: false,
+      location: null,
     };
   },
   head () {
@@ -80,7 +86,8 @@ export default {
     });
   },
   mounted () {
-    this.loading = false;
+    this.loading.page = false;
+    this.locationDialog = true;
   },
   methods: {
     /**
@@ -89,7 +96,7 @@ export default {
      * @param {String} serviceType
      * @param {String} mode doctor | clinic | location
      */
-    onSearch ({ searchString, specializations, mode, serviceType }) {
+    onSearch ({ searchString, specializations, mode, serviceType, location }) {
       this.$nuxt.$router.push({
         name: 'directory-results',
         query: {
@@ -99,11 +106,31 @@ export default {
         params: {
           serviceType,
           specializations,
+          location,
         },
       });
     },
+    async getLocation () {
+      this.loading.location = true;
+      await this.$getLocation()
+        .then((coordinates) => {
+          this.coordinates = coordinates;
+        });
+      this.locationDialog = false;
+      if (this.coordinates) {
+        this.location = {
+          lat: this.coordinates.lat,
+          lng: this.coordinates.lng,
+        };
+      }
+    },
     onChangeMode (val) {
       this.searchMode = val.mode;
+    },
+    onLocationSwitchUpdate (val) {
+      if (!val) {
+        this.location = null;
+      }
     },
   },
 };
