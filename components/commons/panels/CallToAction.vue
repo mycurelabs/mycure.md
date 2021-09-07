@@ -13,7 +13,7 @@
     template(slot="additional-content")
       v-row.mt-10
         slot(name="cta-button")
-          v-row(:justify="$vuetify.breakpoint.width < 1024 ? 'center' : 'start'")
+          v-row(:justify="$isMobile ? 'center' : 'start'")
             v-col(cols="10" sm="5" md="7" lg="6" xl="7").pr-0
               div(:class="{'text-center': $isMobile}")
                 mc-btn(

@@ -36,7 +36,7 @@
           br
           span Never miss a tooth.
       template(slot="cta-button")
-        div(:class="{ 'text-center': $vuetify.breakpoint.width < 1024 }")
+        div(:class="{ 'text-center': $isMobile }")
           signup-button(
             depressed
             color="success"
@@ -115,7 +115,7 @@
       :title-classes="[...headerClasses, 'primary--text']"
     )
       template(slot="cta-button")
-        div(:class="{'text-center': $vuetify.breakpoint.width < 1024}")
+        div(:class="{'text-center': $isMobile}")
           mc-btn(
             color="success"
             href="https://calendly.com/mycure/demo"

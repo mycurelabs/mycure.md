@@ -84,7 +84,7 @@
       :content="expandPanel"
       hide-btn
     )
-      div(slot="additional-content" :class="{'text-center': $vuetify.breakpoint.width < 1024}").mt-10
+      div(slot="additional-content" :class="{'text-center': $isMobile}").mt-10
         signup-button(
           depressed
           color="success"
@@ -102,7 +102,7 @@
       align="center"
     )
       template(slot="cta-button")
-        div(:class="{'text-center': $vuetify.breakpoint.width < 1024}")
+        div(:class="{'text-center': $isMobile}")
           mc-btn(
             depressed
             event-label="clinics-info"

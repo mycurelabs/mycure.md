@@ -24,7 +24,7 @@
       :class="{'mt-16': !$isMobile}"
     )
       template(slot="cta-button")
-        div(:class="{ 'text-center': $vuetify.breakpoint.width < 1024 }")
+        div(:class="{ 'text-center': $isMobile }")
           signup-button(
             depressed
             color="success"
@@ -159,7 +159,7 @@
         :content-classes="['white--text', ...descriptionClasses]"
       )
         template(slot="cta-button")
-          div(:class="{ 'text-center': $vuetify.breakpoint.width < 1024 }")
+          div(:class="{ 'text-center': $isMobile }")
             signup-button(
               depressed
               color="success"

@@ -51,7 +51,7 @@
       template(slot="cta-button")
         v-row(:justify="$isMobile ? 'center' : 'start'")
           v-col(cols="10" md="7" lg="6" xl="7")
-            div(:class="{ 'text-center': $vuetify.breakpoint.width < 1024 }")
+            div(:class="{ 'text-center': $isMobile }")
               signup-button(
                 depressed
                 rounded
@@ -92,7 +92,7 @@
       :title-classes="[...headerClasses, 'primary--text']"
     )
       template(slot="cta-button")
-        v-row(:justify="$vuetify.breakpoint.width < 1024 ? 'center' : 'start'")
+        v-row(:justify="$isMobile ? 'center' : 'start'")
           v-col(cols="10" sm="5" md="7" lg="6" xl="7")
             signup-button(
               depressed

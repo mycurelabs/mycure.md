@@ -55,7 +55,7 @@
             )
             span(:class="[descriptionClasses, ($isMobile ? 'ml-2' : ($isRegularScreen ? 'ml-3' : 'ml-4'))]") {{ item }}
         div.mb-10
-        div(:class="{ 'text-center': $vuetify.breakpoint.width < 1024 }")
+        div(:class="{ 'text-center': $isMobile }")
           signup-button(
             depressed
             class="rounded-pill"

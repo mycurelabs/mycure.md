@@ -50,7 +50,7 @@
         br
         h2(:class="subHeaderClasses") You won't feel like you are at work.
       template(slot="cta-button")
-        div(:class="{ 'text-center': $vuetify.breakpoint.width < 1024 }")
+        div(:class="{ 'text-center': $isMobile }")
           signup-button(
             depressed
             class="rounded-pill"
@@ -79,7 +79,7 @@
             )
             span(:class="[descriptionClasses, ($isMobile ? 'ml-2' : ($isRegularScreen ? 'ml-3' : 'ml-4'))]") {{ item }}
         div.mb-10
-        div(:class="{ 'text-center': $vuetify.breakpoint.width < 1024 }")
+        div(:class="{ 'text-center': $isMobile }")
           signup-button(
             depressed
             class="rounded-pill"
@@ -96,7 +96,7 @@
       :title-classes="[...headerClasses, 'primary--text']"
     )
       template(slot="cta-button")
-        div(:class="{'text-center': $vuetify.breakpoint.width < 1024}")
+        div(:class="{'text-center': $isMobile}")
           mc-btn(
             color="success"
             href="https://calendly.com/mycure/demo"

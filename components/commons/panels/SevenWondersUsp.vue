@@ -29,7 +29,7 @@
               :width="imageWidth"
             )
           template(slot="cta-button")
-            div(:class="{'text-center': $vuetify.breakpoint.width < 1024}")
+            div(:class="{'text-center': $isMobile}")
               slot(name="cta-button")
                 signup-button(
                   depressed

@@ -70,7 +70,7 @@
       :title-classes="[...headerClasses, 'primary--text']"
     )
       template(slot="cta-button")
-        v-row(:justify="$vuetify.breakpoint.width < 1024 ? 'center' : 'start'")
+        v-row(:justify="$isMobile ? 'center' : 'start'")
           v-col(cols="10" md="7" lg="6" xl="7")
             signup-button(
               depressed
