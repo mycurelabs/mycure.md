@@ -33,9 +33,9 @@
               slot(name="cta-button")
                 signup-button(
                   depressed
-                  rounded
-                  width="228px"
-                  height="59px"
+                  class="rounded-pill"
+                  :width="!$isWideScreen ? '228px' : '300'"
+                  :height="!$isWideScreen ? '59px' : '73.68'"
                   :color="btnColor"
                 ).text-none
                   span.generic-button-text {{ btnText }}

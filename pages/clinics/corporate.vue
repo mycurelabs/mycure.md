@@ -65,9 +65,9 @@
               h2(:class="['white--text', ...headerClasses]").mb-5 Start easy. Take the first step today.
               signup-button(
                 depressed
-                rounded
-                width="228px"
-                height="59px"
+                class="rounded-pill"
+                :width="!$isWideScreen ? '228px' : '300'"
+                :height="!$isWideScreen ? '59px' : '73.68'"
                 color="success"
               ).text-none
                 span.generic-button-text Count me in

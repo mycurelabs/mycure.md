@@ -20,11 +20,11 @@
             br
             signup-button(
               depressed
-              rounded
               color="primary"
               event-label="signup"
-              width="228px"
-              height="59px"
+              class="rounded-pill"
+              :width="!$isWideScreen ? '228px' : '300'"
+              :height="!$isWideScreen ? '59px' : '73.68'"
             ).text-none.mt-5
               span.generic-button-text Get Started Free
               v-icon(small right) mdi-arrow-right

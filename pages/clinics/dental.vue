@@ -39,10 +39,10 @@
         div(:class="{ 'text-center': $vuetify.breakpoint.width < 1024 }")
           signup-button(
             depressed
-            rounded
             color="success"
-            width="228px"
-            height="59px"
+            class="rounded-pill"
+            :width="!$isWideScreen ? '228px' : '300'"
+            :height="!$isWideScreen ? '59px' : '73.68'"
           ).text-none
             span.generic-button-text Get Started
     //- 4th panel
@@ -92,8 +92,8 @@
               rel="noopener noreferrer"
               depressed
               block
-              height="59px"
-              rounded
+              class="rounded-pill"
+              :height="!$isWideScreen ? '59px' : '73.68'"
             ).text-none
               //- v-icon(left) mdi-web
               span.generic-button-text Create my Website
@@ -101,10 +101,10 @@
             signup-button(
               depressed
               block
-              rounded
               outlined
               color="success"
-              height="59px"
+              class="rounded-pill"
+              :height="!$isWideScreen ? '59px' : '73.68'"
             ).text-none
               span.generic-button-text Get Started
 
@@ -122,9 +122,9 @@
             target="_blank"
             rel="noopener noreferrer"
             depressed
-            rounded
-                  width="228px"
-                  height="59px"
+            class="rounded-pill"
+            :width="!$isWideScreen ? '228px' : '300'"
+            :height="!$isWideScreen ? '59px' : '73.68'"
           ).text-none
             span.generic-button-text Get Started
     //- 8th panel

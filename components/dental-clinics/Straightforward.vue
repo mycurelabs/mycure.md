@@ -17,10 +17,10 @@
           p(:class="[...contentClasses, {'mx-16': !$isMobile}]").mb-10 Accurately track baseline and updated dental charts, proposed procedures, and the actual work done.
           signup-button(
             depressed
-            rounded
             color="success"
-            width="228px"
-            height="59px"
+            class="rounded-pill"
+            :width="!$isWideScreen ? '228px' : '300'"
+            :height="!$isWideScreen ? '59px' : '73.68'"
           ).text-none
             span.generic-button-text Get Started
 </template>

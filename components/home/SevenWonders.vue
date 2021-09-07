@@ -27,9 +27,9 @@
                     p.mc-content-set-1.font-gray.mb-8.font-open-sans MYCURE provides a wide array of modern healthcare management solutions that are custom-built for doctors, clinics, diagnostic labs and hospitals at a fraction of the cost.
                 signup-button(
                   depressed
-                  rounded
-                  width="228px"
-                  height="59px"
+                  class="rounded-pill"
+                  :width="!$isWideScreen ? '228px' : '300'"
+                  :height="!$isWideScreen ? '59px' : '73.68'"
                   color="success"
                 ).text-none.mc-button-set-1
                   span.generic-button-text Get Started

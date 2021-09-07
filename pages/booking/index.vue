@@ -21,16 +21,17 @@
       :title-classes="headerClasses"
       :super-title-classes="superTitleClasses"
       :content-classes="[...descriptionClasses, 'justify-left']"
-    ).mt-16
+      :class="{'mt-16': !$isMobile}"
+    )
       template(slot="cta-button")
         div(:class="{ 'text-center': $vuetify.breakpoint.width < 1024 }")
           signup-button(
             depressed
-            rounded
             color="success"
             facility-type="clinic"
-            width="228px"
-            height="59px"
+            class="rounded-pill"
+            :width="!$isWideScreen ? '228px' : '300'"
+            :height="!$isWideScreen ? '59px' : '73.68'"
           ).text-none
             span.generic-button-text Get Started Free
 
@@ -66,9 +67,9 @@
           v-col(cols="12").text-center.mt-5
             signup-button(
               depressed
-              rounded
-              width="228px"
-              height="59px"
+              class="rounded-pill"
+              :width="!$isWideScreen ? '228px' : '300'"
+              :height="!$isWideScreen ? '59px' : '73.68'"
               color="success"
             ).text-none
               span.generic-button-text Get Started Free
@@ -161,11 +162,11 @@
           div(:class="{ 'text-center': $vuetify.breakpoint.width < 1024 }")
             signup-button(
               depressed
-              rounded
               color="success"
               facility-type="clinic"
-              width="228px"
-              height="59px"
+              class="rounded-pill"
+              :width="!$isWideScreen ? '228px' : '300'"
+              :height="!$isWideScreen ? '59px' : '73.68'"
             ).text-none
               span.generic-button-text Get Started Free
     //- 7th panel

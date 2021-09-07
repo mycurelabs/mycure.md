@@ -96,10 +96,9 @@
           v-col(cols="10" sm="5" md="7" lg="6" xl="7")
             signup-button(
               depressed
-              rounded
-              block
-              width="228px"
-              height="59px"
+              class="rounded-pill"
+              :width="!$isWideScreen ? '228px' : '300'"
+              :height="!$isWideScreen ? '59px' : '73.68'"
               color="success"
             ).text-none
               v-icon(left) mdi-web
@@ -141,8 +140,10 @@
               h3(:class="descriptionClasses").mb-5.font-weight-semibold Start now and get all your questions answered
               mc-btn(
                 color="success"
+                class="rounded-pill"
+                :width="!$isWideScreen ? '228px' : '300'"
+                :height="!$isWideScreen ? '59px' : '73.68'"
                 depressed
-                rounded
                 :large="!$isWideScreen"
                 :x-large="$isWideScreen"
                 :class="btnClasses"

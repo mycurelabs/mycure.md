@@ -37,16 +37,16 @@
             div(v-if="version === 2").font-open-sans
               v-row(justify="center")
                 v-col(cols="10")
-                  v-row(justify="start").mc-content-set-1
+                  v-row(justify="start")
                     v-col(v-for="(content, index) in contents" :key="index" cols="12" sm="6")
                       v-row(justify="start").pr-1
                         v-col(cols="1" :class="!$isMobile ? 'pa-0' : ['pl-0', 'pt-0']")
                           v-icon(:large="$isWideScreen" color="primary") mdi-check-circle
                         v-col(:class="!$isMobile ? 'pa-0' : ['pr-0', 'pt-0']")
-                          span.font-gray {{ content }}
+                          span.font-gray.mc-list-content-set-1 {{ content }}
             div(v-if="version === 4").font-open-sans
               v-row(justify="center")
-                v-col(v-for="(content, index) in contents" :key="index" cols="4" align="center").pb-0
+                v-col(v-for="(content, index) in contents" :key="index" cols="12" sm="4" align="center").pb-0
                   picture-source(
                     v-bind="getImageBindings(content.imageBindings)"
                   )
@@ -68,10 +68,10 @@
               //- ).text-none.my-3
               signup-button(
                 depressed
-                rounded
-                color="primary"
-                width="228px"
-                height="59px"
+                color="success"
+                class="rounded-pill"
+                :width="!$isWideScreen ? '228px' : '300'"
+                :height="!$isWideScreen ? '59px' : '73.68'"
               ).text-none.my-3
                 span.generic-button-text Start Your Free Trial
     generic-media-panel(

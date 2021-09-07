@@ -9,11 +9,11 @@
             mc-btn(
               v-if="!$isMobile"
               event-label="view-telehealth-demo"
-              color="primary"
+              color="success"
               depressed
-              rounded
-              width="228px"
-              height="59px"
+              class="rounded-pill"
+              :width="!$isWideScreen ? '228px' : '300'"
+              :height="!$isWideScreen ? '59px' : '73.68'"
               @click="viewDemo"
             ).text-none
               span.generic-button-text View live demo

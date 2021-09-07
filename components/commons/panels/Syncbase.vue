@@ -36,9 +36,9 @@
             mc-btn(
               color="success"
               depressed
-              rounded
-              width="228px"
-              height="59px"
+              class="rounded-pill"
+              :width="!$isWideScreen ? '228px' : '300'"
+              :height="!$isWideScreen ? '59px' : '73.68'"
               @click="syncbaseVideoDialog = true"
             ).text-none
                 v-icon(left) mdi-play-circle

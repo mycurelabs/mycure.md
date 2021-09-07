@@ -87,11 +87,11 @@
       div(slot="additional-content" :class="{'text-center': $vuetify.breakpoint.width < 1024}").mt-10
         signup-button(
           depressed
-          rounded
           color="success"
           event-label="signup"
-          width="228px"
-          height="59px"
+          class="rounded-pill"
+          :width="!$isWideScreen ? '228px' : '300'"
+          :height="!$isWideScreen ? '59px' : '73.68'"
         ).text-none
           v-icon(left) mdi-web
           span.generic-button-text Create my website
@@ -105,12 +105,12 @@
         div(:class="{'text-center': $vuetify.breakpoint.width < 1024}")
           mc-btn(
             depressed
-            rounded
             event-label="clinics-info"
             color="success"
             :to="{ name: 'clinics' }"
-            width="228px"
-            height="59px"
+            class="rounded-pill"
+            :width="!$isWideScreen ? '228px' : '300'"
+            :height="!$isWideScreen ? '59px' : '73.68'"
           ).text-none
             v-icon(left)  mdi-information-outline
             span.generic-button-text  Learn more
