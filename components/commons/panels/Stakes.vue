@@ -4,9 +4,9 @@
       v-row(justify="center").pa-5
         v-col(cols="12").py-16
           v-row(justify="center").mb-10
-            v-col(cols="11")
+            v-col(cols="11" sm="7")
               div.text-center
-                p(:class="{'primary--text': version === 2}").mc-title-set-1.font-weight-semibold.mb-0 {{ panelTitle }}
+                p(:class="{'primary--text': version === 2}").mc-title-set-1.font-weight-semibold.mb-0.mb-4 {{ panelTitle }}
                 p(v-if="version === 2").mc-content-set-1.mb-0.font-gray {{ subTitle }}
           //- version 1
           div(v-if="version === 1")
@@ -35,10 +35,10 @@
           //- version 2
           div(v-if="version === 2")
             v-row(justify="center")
-              v-col(cols="10").table
-                v-row.mc-content-set-1
-                  v-col(v-for="(content, index) in contents" :key="index" cols="6" :class=" index < 2 ? {'table-entry1': index === 1} : (index % 2 === 0 ? 'table-entry2' : 'table-entry3')")
-                    v-icon(small black) mdi-circle
+              v-col(cols="10")
+                v-row(justify="start").mc-content-set-1
+                  v-col(v-for="(content, index) in contents" :key="index" cols="12" sm="6")
+                    v-icon(:large="$isWideScreen" color="primary") mdi-check-circle
                     span.font-gray &nbsp; {{ content }}
           div(v-if="version === 4")
             v-row(justify="center")

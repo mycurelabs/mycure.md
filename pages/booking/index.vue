@@ -73,7 +73,7 @@
             ).text-none
               span.generic-button-text Get Started Free
 
-    practitioners
+    testimonials(is-booking)
 
     //- 4th panel
     features(
@@ -196,6 +196,7 @@ export default {
     SignupButton: () => import('~/components/commons/SignupButton'),
     Practitioners: () => import('~/components/booking/Practitioners'),
     Storybrand: () => import('~/components/commons/panels/Storybrand'),
+    Testimonials: () => import('~/components/doctors-clinics/Testimonials'),
   },
   data () {
     this.howItWorksContents = [

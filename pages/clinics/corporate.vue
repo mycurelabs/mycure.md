@@ -49,18 +49,13 @@
       :content="multiplePanel"
       :title-classes="headerClasses"
     )
+    call-to-action(:version="4")
     care
     steps(:steps="stepsContent")
     storybrand(
       title="Using Modern Tools to Boost Your Practice"
       :content="storybrandContent"
     )
-    //- 5th panel
-    pricing(
-      type="clinic"
-      title="Take the first step today."
-    )
-    call-to-action(:version="4")
     //- 9th panel
     div.info.mx-n3
       v-container
@@ -76,6 +71,11 @@
                 color="success"
               ).text-none
                 span.generic-button-text Count me in
+    //- 5th panel
+    pricing(
+      type="clinic"
+      title="Take the first step today."
+    )
 </template>
 
 <script>

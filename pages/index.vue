@@ -4,36 +4,36 @@
     seven-wonders
     //- 2nd panel
     care
-    //- 2.5
+    //- 3rd panel
     stakes(
       panel-title="IT Solutions for your Health Facility Should Not Be Too Expensive and Complicated"
-      panel-description="Good thing you don’t have to handle all these problems anymore. Join the MYCURE Community of health professionals and become the expert who doesn’t just sound like you’re good in managing your health facility—you’ll actually know how to maximise the MYCURE suite of tools to get all the right insights, reports, and seamless organisation you’ve always aspired to have."
+      panel-description="Good thing you don’t have to handle all these problems anymore. Join MYCURE and learn how to be a health tech expert—get all the right insights, reports, and seamless organization you’ve always aspired to have."
       :version="1"
       :contents="stakesContent"
     )
-    //- 3rd panel
+    //- 4th panel
     div.simple-container.mx-n3
       simple
-    //- 4th panel
-    patients
     //- 5th panel
+    patients
+    //- 6th panel
     div.grey-bg.mx-n3
       tools(:version="2")
-    //- 5.5th panel
-    steps(:steps="stepsContent")
-    //- 5.75 panel
-    storybrand(
-      title="Using Modern Tools to Boost Your Practice"
-      :content="storybrandContent"
-    )
-    //-6th panel
-    syncbase
     //- 7th panel
+    syncbase
+    //- 8th panel
     div.grey-bg.mx-n3
       hipaa(
         :header-classes="headerClasses"
         :description-classes="descriptionClasses"
       )
+    //- 9th panel
+    steps(:steps="stepsContent")
+    //- 10th panel
+    storybrand(
+      title="Using Modern Tools to Boost Your Practice"
+      :content="storybrandContent"
+    )
     //- CTA
     div.cta-container.mx-n3.mb-n3
       join-next-generation
@@ -77,7 +77,7 @@ export default {
     this.stakesContent = [
       {
         leftTitle: 'You spend more on tools that you don’t need',
-        leftDescription: 'Covers from virtual  (telehealth) to physical (face to face) accommodation',
+        leftDescription: 'Lack of needed reports and functionalities lead to problems in your operations. This is wasted time and lost revenue.',
         rightTitle: 'You’ll have unhappy patients',
         rightDescription: 'Disorganized workflows, long waiting time, incomplete documents result in unsatisfied patients.',
       },

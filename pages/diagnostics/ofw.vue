@@ -37,10 +37,12 @@
             //- TODO: Add explicit width and height
             picture-source(
               image-alt="Sample report in MYCURE Clinic Management System"
-              image-file-extension=".webp"
+              image-file-extension=".png"
+              extension-exclusive
               custom-path="clinics/ofw/"
               image="Beautiful reports"
             )
+    //- h1.text-center.my-16 Design your own packages panel (placeholder)
     //- 4th panel
     generic-media-panel(
       :content="queuePanel"
