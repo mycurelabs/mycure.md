@@ -11,6 +11,9 @@
       btn-text="Start Free"
       image="Mobile Clinics Mobile Version"
       custom-image-path="diagnostics/mobile-labs/"
+      parse-title
+      parse-meta-title
+      :parse-title-fields="['LIS ']"
       :media-column-bindings="{ cols: 12, md: 6, offsetMd: 1, xl: 6}"
       :content-column-bindings="{ cols: 12, md: 5 }"
     )
@@ -71,10 +74,9 @@
           v-col(cols="10" md="7" lg="6" xl="7")
             signup-button(
               depressed
-              rounded
-              block
-              width="228px"
-              height="59px"
+              class="rounded-pill"
+              :width="!$isWideScreen ? '228px' : '300'"
+              :height="!$isWideScreen ? '59px' : '73.68'"
               color="success"
             ).text-none
               v-icon(left) mdi-web
@@ -109,9 +111,9 @@
               event-label="signup"
               color="success"
               depressed
-              rounded
-              width="228px"
-              height="59px"
+              class="rounded-pill"
+              :width="!$isWideScreen ? '228px' : '300'"
+              :height="!$isWideScreen ? '59px' : '73.68'"
             ).text-none
               span.generic-button-text Start Now
 
@@ -125,9 +127,9 @@
               p(:class="descriptionClasses").white--text.font-weight-semibold.mb-5 Start now and get all your questions answered.
               signup-button(
                 depressed
-                rounded
-                width="228px"
-                height="59px"
+                class="rounded-pill"
+                :width="!$isWideScreen ? '228px' : '300'"
+                :height="!$isWideScreen ? '59px' : '73.68'"
                 color="success"
               ).text-none
                 span.generic-button-text Start Now
@@ -186,8 +188,8 @@ export default {
           image: 'Expand your reach.webp',
           imageAlt: 'Man browsing a clinic website artwork',
           customPath: 'commons/',
-          width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
-          height: this.$isMobile ? '242.88px' : (this.$isRegularScreen ? '404.79px' : '624.8px'),
+          width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '440px' : '710px'),
+          height: this.$isMobile ? '242.88px' : (this.$isRegularScreen ? '387.19px' : '624.8px'),
         },
       };
     },

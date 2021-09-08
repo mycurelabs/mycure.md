@@ -5,12 +5,12 @@
         h2.mc-title-set-1.lh-title.white--text Join the next generation of healthcare providers today.
         br
         mc-btn(
-          rounded
           depressed
           event-label="signup"
           color="success"
-          height="59px"
-          width="228px"
+          class="rounded-pill"
+          :width="!$isWideScreen ? '228px' : '300'"
+          :height="!$isWideScreen ? '59px' : '73.68'"
           :to="{ name: 'signup-health-facilities' }"
         ).text-none
           span.generic-button-text Get Started

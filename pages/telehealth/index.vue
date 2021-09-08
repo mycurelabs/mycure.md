@@ -13,6 +13,9 @@
       image-width="90%"
       image-align="right"
       custom-image-path="telehealth/"
+      parse-title
+      parse-meta-title
+      :parse-title-fields="['you ', 'your ']"
       :media-column-bindings="{ cols: 12, md: 6, offsetMd: 1, xl: 6}"
       :content-column-bindings="{ cols: 12, md: 5 }"
       @click="$nuxt.$router.push({ name: 'signup-health-facilities', query: { type: 'doctor-telehealth' }})"
@@ -99,8 +102,8 @@ export default {
           image: 'MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-B-secure-data.webp',
           imageAlt: 'Securing of medical records',
           customPath: 'telehealth/',
-          width: this.$isMobile ? '256px' : (this.$isRegularScreen ? '460px' : '710px'),
-          height: this.$isMobile ? '197.52px' : (this.$isRegularScreen ? '354.9px' : '547.78px'),
+          width: this.$isMobile ? '256px' : (this.$isRegularScreen ? '440px' : '710px'),
+          height: this.$isMobile ? '197.52px' : (this.$isRegularScreen ? '339.47px' : '547.78px'),
         },
         contentAlign: 'right',
       };

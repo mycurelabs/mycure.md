@@ -11,6 +11,8 @@
       image="Diagnostics Mobile USP"
       image-col-offset="1"
       custom-image-path="diagnostics/"
+      parse-title
+      :parse-title-fields="['Diagnostic ']"
       :media-column-bindings="{ cols: 12, md: 6, offsetMd: 1, xl: 6}"
       :content-column-bindings="{ cols: 12, md: 5 }"
       @click="$nuxt.$router.push({ name: 'signup-health-facilities', query: { type: 'diagnostic' }})"
@@ -85,11 +87,11 @@
       div(slot="additional-content" :class="{'text-center': $isMobile}").mt-10
         signup-button(
           depressed
-          rounded
           color="success"
           event-label="signup"
-          width="228px"
-          height="59px"
+          class="rounded-pill"
+          :width="!$isWideScreen ? '228px' : '300'"
+          :height="!$isWideScreen ? '59px' : '73.68'"
         ).text-none
           v-icon(left) mdi-web
           span.generic-button-text Create my website
@@ -103,12 +105,12 @@
         div(:class="{'text-center': $isMobile}")
           mc-btn(
             depressed
-            rounded
             event-label="clinics-info"
             color="success"
             :to="{ name: 'clinics' }"
-            width="228px"
-            height="59px"
+            class="rounded-pill"
+            :width="!$isWideScreen ? '228px' : '300'"
+            :height="!$isWideScreen ? '59px' : '73.68'"
           ).text-none
             v-icon(left)  mdi-information-outline
             span.generic-button-text  Learn more
@@ -234,8 +236,8 @@ export default {
             image: 'easy.webp',
             imageAlt: 'Charts and graphs artwork',
             customPath: 'diagnostics/',
-            width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
-            height: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
+            width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '440px' : '710px'),
+            height: this.$isMobile ? '276px' : (this.$isRegularScreen ? '440px' : '710px'),
           },
           contentAlign: 'left',
         },
@@ -251,8 +253,8 @@ export default {
             image: 'Fast results.webp',
             imageAlt: 'Sending out health results artwork',
             customPath: 'diagnostics/',
-            width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
-            height: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
+            width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '440px' : '710px'),
+            height: this.$isMobile ? '276px' : (this.$isRegularScreen ? '440px' : '710px'),
           },
           contentAlign: 'right',
         },
@@ -290,8 +292,8 @@ export default {
           image: 'Expand your reach.webp',
           imageAlt: 'Man browsing a clinic website artwork',
           customPath: 'commons/',
-          width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
-          height: this.$isMobile ? '242.88px' : (this.$isRegularScreen ? '404.79px' : '624.8px'),
+          width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '440px' : '710px'),
+          height: this.$isMobile ? '242.88px' : (this.$isRegularScreen ? '387.19px' : '624.8px'),
         },
         contentAlign: 'right',
       };

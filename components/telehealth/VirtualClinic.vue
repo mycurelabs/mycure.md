@@ -9,23 +9,24 @@
             mc-btn(
               v-if="!$isMobile"
               event-label="view-telehealth-demo"
-              color="primary"
+              color="success"
               depressed
-              rounded
-              width="228px"
-              height="59px"
+              class="rounded-pill"
+              :width="!$isWideScreen ? '228px' : '300'"
+              :height="!$isWideScreen ? '59px' : '73.68'"
               @click="viewDemo"
             ).text-none
               span.generic-button-text View live demo
-          v-col(cols="12").text-center.ml-n10
-            picture-source(
-              image="MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-A-online-consult"
-              image-alt="Virtual Clinic"
-              :image-width="$isMobile ? '300px' : ($isRegularScreen ? '964px' : '1475px')"
-              :image-height="$isMobile ? '192.08px' : ($isRegularScreen ? '617.23px' : '944.39px')"
-              image-file-extension=".webp"
-              custom-path="telehealth/"
-            )
+        v-col(cols="12").text-center.ml-n10
+          picture-source(
+            image="MYCURE-virtual-clinic-healthcare-practice-online-doctors-clinic-A-online-consult"
+            image-alt="Virtual Clinic"
+            :image-width="$isMobile ? '300px' : ($isRegularScreen ? '964px' : '1475px')"
+            :image-height="$isMobile ? '192.08px' : ($isRegularScreen ? '617.23px' : '944.39px')"
+            image-file-extension=".webp"
+            custom-path="telehealth/"
+          )
+        generic-panel(:row-bindings="{ justify: 'center'}").pa-0
           v-col(
             v-for="(data, key) in contents"
             cols="12"

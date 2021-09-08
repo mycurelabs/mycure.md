@@ -36,9 +36,9 @@
             mc-btn(
               color="success"
               depressed
-              rounded
-              width="228px"
-              height="59px"
+              class="rounded-pill"
+              :width="!$isWideScreen ? '228px' : '300'"
+              :height="!$isWideScreen ? '59px' : '73.68'"
               @click="syncbaseVideoDialog = true"
             ).text-none
                 v-icon(left) mdi-play-circle
@@ -112,17 +112,14 @@ export default {
     contentColumnBindings () {
       return {
         cols: 12,
-        md: 6,
-        xl: 5,
+        sm: 6,
         alignSelf: 'center',
-        offsetMd: 1,
       };
     },
     mediaColumnBindings () {
       return {
         cols: 12,
-        md: 5,
-        xl: 6,
+        sm: 6,
       };
     },
   },

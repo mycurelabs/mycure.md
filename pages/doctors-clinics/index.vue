@@ -58,9 +58,9 @@
         div(:class="{ 'text-center': $isMobile }")
           signup-button(
             depressed
-            rounded
-            width="228px"
-            height="59px"
+            class="rounded-pill"
+            :width="!$isWideScreen ? '228px' : '300'"
+            :height="!$isWideScreen ? '59px' : '73.68'"
             color="success"
           ).text-none
             span.generic-button-text Get Started Free
@@ -204,8 +204,8 @@ export default {
             image: 'Lightning fast.webp',
             mobileImage: 'Lightning fast mobile.png',
             imageAlt: 'Print preview of health prescription receipt',
-            width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
-            height: this.$isMobile ? '210.45px' : (this.$isRegularScreen ? '339.25px' : '523.62px'),
+            width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '440px' : '710px'),
+            height: this.$isMobile ? '210.45px' : (this.$isRegularScreen ? '324.5px' : '523.62px'),
           },
         },
         {
@@ -217,8 +217,8 @@ export default {
             image: 'Going digital.webp',
             mobileImage: 'Going digital mobile.png',
             imageAlt: 'Growth chart showing an increasing trend',
-            width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
-            height: this.$isMobile ? '210.45px' : (this.$isRegularScreen ? '339.25px' : '523.62px'),
+            width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '440px' : '710px'),
+            height: this.$isMobile ? '210.45px' : (this.$isRegularScreen ? '324.5px' : '523.62px'),
           },
         },
         {
@@ -229,8 +229,8 @@ export default {
             customPath: 'features/',
             image: 'MYCURE-virtual-clinic-healthcare-practice-online-features-C-telehealth.webp',
             imageAlt: 'Woman in a video call using MYCURE telehealth',
-            width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
-            height: this.$isMobile ? '183.72px' : (this.$isRegularScreen ? '294.52px' : '454.59px'),
+            width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '440px' : '710px'),
+            height: this.$isMobile ? '183.72px' : (this.$isRegularScreen ? '281.71px' : '454.59px'),
           },
         },
       ];
@@ -249,8 +249,8 @@ export default {
           image: 'Expand your reach.webp',
           imageAlt: 'Man browsing a clinic website artwork',
           customPath: 'commons/',
-          width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
-          height: this.$isMobile ? '242.88px' : (this.$isRegularScreen ? '404.79px' : '624.8px'),
+          width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '440px' : '710px'),
+          height: this.$isMobile ? '242.88px' : (this.$isRegularScreen ? '387.19px' : '624.8px'),
         },
       };
     },

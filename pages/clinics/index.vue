@@ -44,11 +44,11 @@
       div(slot="additional-content" :class="{'text-center': $isMobile}").mt-10
         signup-button(
           depressed
-          rounded
           color="success"
           event-label="signup"
-          width="228px"
-          height="59px"
+          class="rounded-pill"
+          :width="!$isWideScreen ? '228px' : '300'"
+          :height="!$isWideScreen ? '59px' : '73.68'"
         ).text-none
           v-icon(left) mdi-web
           span.generic-button-text Create my website
@@ -74,10 +74,10 @@
         div(slot="additional-content" :class="{'text-center': $isMobile}").mt-10
           mc-btn(
             depressed
-            rounded
             color="white"
-            width="228px"
-            height="59px"
+            class="rounded-pill"
+            :width="!$isWideScreen ? '228px' : '300'"
+            :height="!$isWideScreen ? '59px' : '73.68'"
             :to="{ name: 'doctors-clinics' }"
           ).text-none.primary--text
             v-icon(left) mdi-information-outline

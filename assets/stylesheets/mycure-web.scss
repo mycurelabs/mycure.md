@@ -1,7 +1,7 @@
 // Width Presets
 $min-xs: 0px;
 $min-sm: 600px;
-$min-md: 1024px;
+$min-md: 1040px;
 $min-lg: 1264px;
 $min-xl: 1904px;
 
@@ -251,7 +251,6 @@ classBinder(this, {
   }
 }
 
-
 .mc-subheader-set-1 {
   @media (max-width: $max-sm) {
     @include font-sizer(s);
@@ -327,7 +326,15 @@ classBinder(this, {
 }
 
 .generic-button-text {
-  font-size: 18px;
+  @media (max-width: $max-sm) {
+    font-size: 18px;
+  }
+  @media (min-width: $min-md) and (max-width: $max-lg) {
+    font-size: 18px;
+  }
+  @media (min-width: $min-xl) {
+    font-size: 28px;
+  }
   letter-spacing: 0px;
 }
 

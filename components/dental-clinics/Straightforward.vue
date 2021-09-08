@@ -9,18 +9,18 @@
               :image-file-extension="$isMobile ? '.png' : '.webp'"
               :extension-exclusive="$isMobile"
               :image="`Straightforward${$isMobile ? '-mobile' : ''}`"
-              :image-width="$isMobile ? '226px' : ($isRegularScreen ? '875px' : '1200px')"
-              :image-height="$isMobile ? '169.19px' : ($isRegularScreen ? '500px' : '668.08px')"
+              :image-width="$isMobile ? '226px' : ($isRegularScreen ? '666.66px' : '1200px')"
+              :image-height="$isMobile ? '169.19px' : ($isRegularScreen ? '380.95px' : '668.08px')"
             )
         v-col(cols="12" sm="10").text-center
           h2(:class="titleClasses").mb-5 Straightforward and simple.
           p(:class="[...contentClasses, {'mx-16': !$isMobile}]").mb-10 Accurately track baseline and updated dental charts, proposed procedures, and the actual work done.
           signup-button(
             depressed
-            rounded
             color="success"
-            width="228px"
-            height="59px"
+            class="rounded-pill"
+            :width="!$isWideScreen ? '228px' : '300'"
+            :height="!$isWideScreen ? '59px' : '73.68'"
           ).text-none
             span.generic-button-text Get Started
 </template>
