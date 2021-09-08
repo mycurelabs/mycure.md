@@ -18,11 +18,12 @@
           v-col
             v-row(align="center" justify="end")
               span.font-weight-bold.font-14 USE MY LOCATION
+              v-progress-circular(indeterminate size="20" v-if="loadingLocation" color="primary").pl-1
               v-switch(
+                v-else
                 v-model="locationSwitch"
                 inset
                 :class="{'mt-5': appBar}"
-                :disabled="loading.location"
               ).ml-3
         v-row.pt-2
           v-col.pa-0
@@ -157,7 +158,7 @@ export default {
       tagSearchDialog: false,
       searchText: null,
       searchObject: {
-        searchString: '',
+        searchString: null,
         specializations: [],
         mode: 'account',
         serviceType: null,
@@ -208,7 +209,7 @@ export default {
     this.searchObject.mode = this.selectedMode;
     // Load Route data
     const { specializations, serviceType } = this.$route.params;
-    this.searchObject.searchString = this.$route.query.searchText;
+    this.searchObject.searchString = this.$route.query.searchText || '';
     if (this.selectedMode === 'account' && specializations) this.searchObject.specializations = specializations;
     if (this.selectedMode === 'organization' && serviceType) this.searchObject.serviceType = serviceType;
   },
@@ -260,6 +261,7 @@ export default {
      */
     handleDebouncedSearch (searchText) {
       if (this.loading.initial && !searchText) return;
+      this.searchObject.searchString = searchText;
       // For A
       if (searchText && this.showSuggestions) {
         this.debouncedSuggestionsSearch(searchText);

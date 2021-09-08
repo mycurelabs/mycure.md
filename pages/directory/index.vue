@@ -171,6 +171,7 @@ export default {
       } finally {
         this.preparingDirectoryDialog = false;
         this.locationDialog = false;
+        this.loading.location = false;
       }
     },
     onChangeMode (val) {
