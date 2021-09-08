@@ -31,7 +31,7 @@
               clearable
               :height="$isMobile ? '40px' : '60px'"
               @keyup.enter="onSearch(true)"
-              @clear="onSearch"
+              @click:clear="clearSearchText"
             ).rounded-bl-lg.rounded-tl-lg
           v-col(cols="1").pa-0
             v-btn(
@@ -140,6 +140,7 @@ export default {
         specializations: [],
         mode: 'account',
         serviceType: null,
+        location: null,
       },
       // docSuggestionsSearchQuery: null,
       // docSearchLocation: null,
@@ -171,7 +172,6 @@ export default {
       set (val) {
         this.$emit('update:mode', {
           ...this.searchObject,
-          ...this.location && { location: this.location },
           mode: val,
         });
       },
@@ -187,7 +187,11 @@ export default {
   },
   mounted () {
     this.searchObject.mode = this.selectedMode;
+    // Load Route data
+    const { specializations, serviceType } = this.$route.params;
     this.searchObject.searchString = this.$route.query.searchText;
+    if (this.selectedMode === 'account' && specializations) this.searchObject.specializations = specializations;
+    if (this.selectedMode === 'organization' && serviceType) this.searchObject.serviceType = serviceType;
   },
   methods: {
     onModeChange (val) {
@@ -203,10 +207,11 @@ export default {
     onSearch (allowableSearch = false) {
       if (!allowableSearch && this.requireAction) return;
       this.searchObject.mode = this.selectedMode;
+      this.searchObject.location = this.location;
       console.log('searchObject', this.searchObject);
+      console.log('search string', this.searchObject.searchString);
       this.$emit('search', {
         ...this.searchObject,
-        ...this.location && { location: this.location },
       });
     },
     // async fetchSpecialties () {
@@ -217,19 +222,9 @@ export default {
     //     console.error(e);
     //   }
     // },
-    toggleChip (index) {
-      // console.log(this.specialtiesList[index].selected);
-      if (!this.specialtiesList[index].selected) {
-        this.specialtiesList[index].selected = true;
-        this.searchObject.specialties.push(this.specialtiesList[index]);
-      } else {
-        this.specialtiesList[index].selected = false;
-        for (let i = 0; i < this.searchObject.specialties.length; i++) {
-          if (this.specialtiesList[index].indexVal === this.searchObject.specialties[i].indexVal) {
-            this.searchObject.specialties.splice(i, 1);
-          }
-        };
-      };
+    clearSearchText () {
+      this.searchObject.searchString = null;
+      this.onSearch();
     },
     clearSpecialties () {
       for (let i = 0; i < this.specialtiesList.length; i++) {

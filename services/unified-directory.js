@@ -31,8 +31,8 @@
 export const unifiedDirectorySearch = async (sdk, opts) => {
   if (!opts) return;
   let query = {
-    ...opts.text && { $search: opts.text },
-    ...opts.tags && { tags: opts.tags },
+    $search: opts.text,
+    ...opts.tags?.length && { tags: opts.tags },
     type: opts.type,
     $limit: opts.limit,
     $skip: opts.skip,
@@ -40,7 +40,7 @@ export const unifiedDirectorySearch = async (sdk, opts) => {
   };
   console.log('directory query', query);
   // put location string
-  if (opts.location) {
+  if (query.$search && query.type === 'organization' && opts.location) {
     const { lat, lng } = opts.location;
     query.location = `${lat},${lng},10`;
   }
@@ -53,7 +53,6 @@ export const unifiedDirectorySearch = async (sdk, opts) => {
           types: opts.ref.types,
         },
       },
-      ...opts.tags && { tags: opts.tags },
     };
   } else if (query.type === 'service' && opts.ref) {
     query.ref = {

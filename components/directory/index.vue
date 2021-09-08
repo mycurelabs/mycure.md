@@ -36,6 +36,11 @@
       :read-only="readOnly"
       @page:update="onPagination($event)"
     )#resultsSection
+    //- Snack bar
+    v-snackbar(
+      v-model="showSnack"
+      :color="snackbarModel.color"
+    ) {{ snackbarModel.text }}
 </template>
 
 <script>
@@ -65,6 +70,12 @@ export default {
       loading: {
         page: true,
         results: false,
+      },
+      // Snack Bar
+      showSnack: false,
+      snackbarModel: {
+        color: null,
+        text: '',
       },
       // Data
       entries: [],
@@ -134,7 +145,6 @@ export default {
       location,
     }, page = 1) {
       try {
-        console.log('specs', specializations);
         this.loading.results = true;
         this.searchText = searchText;
         this.searchMode = searchMode || this.searchMode;
@@ -171,11 +181,6 @@ export default {
 
           const doctors = await Promise.all(entryPromises);
           this.entries = doctors;
-          // // Filter specializations
-          // if (this.specializationFilters?.length) {
-          //   this.entries = doctors.filter(doc => intersection(doc.doc_specialties, this.specializationFilters)?.length) || [];
-          //   this.entriesTotal = total - (doctors.length - this.entries.length);
-          // }
           return;
         }
 
@@ -186,11 +191,14 @@ export default {
             return orgDetails;
           });
           this.entries = await Promise.all(entryPromises);
-          console.log('org entries', this.entries);
           return;
         }
       } catch (e) {
         console.error(e);
+        this.enqueueSnack({
+          color: 'error',
+          message: e.message,
+        });
       } finally {
         this.loading.results = false;
       }
@@ -198,13 +206,15 @@ export default {
     onSearch (searchOpts = {}) {
       const { searchString, mode, specializations, serviceType, location } = searchOpts;
       const searchObject = {
-        searchText: searchString,
+        ...searchString && { searchText: searchString },
         searchMode: mode,
       };
       // update route queries
       if (!isEqual(searchObject, this.$route.query)) {
+        this.$router.replace({ query: null });
         this.$router.replace({ query: searchObject });
       }
+      console.log('searchObject', searchObject);
       // search
       this.search({
         ...searchObject,
@@ -225,6 +235,7 @@ export default {
     },
     onPagination (page) {
       this.search({
+        searchText: this.searchText,
         serviceType: this.serviceType,
         specializations: this.specializationFilters,
         location: this.location,
@@ -252,6 +263,11 @@ export default {
     //   this.fetchDoctors();
     //   this.searchQuery = null;
     // },
+    enqueueSnack ({ color, message }) {
+      this.snackbarModel.color = color;
+      this.snackbarModel.text = message;
+      this.showSnack = true;
+    },
   },
 };
 </script>
