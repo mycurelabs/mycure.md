@@ -7,7 +7,6 @@
             v-model="selectedMode"
             background-color="transparent"
             dense
-            mandatory
             borderless
             @change="onModeChange($event)"
           )
@@ -19,7 +18,7 @@
           v-col
             v-row(align="center" justify="end")
               span.font-weight-bold.font-14 USE MY LOCATION
-              v-switch(v-model="locationSwitch" inset).ml-3
+              v-switch(v-model="locationSwitch" inset :class="{'mt-5': appBar}").ml-3
         v-row.pt-2
           v-col.pa-0
             //- Combobox has return-object triggered by default
@@ -99,6 +98,10 @@ import { unifiedDirectorySearch } from '~/services/unified-directory';
 import SPECIALTIES from '~/assets/fixtures/specialties';
 export default {
   props: {
+    appBar: {
+      type: Boolean,
+      default: false,
+    },
     // - If button needs to be clicked before search can proceed
     requireAction: {
       type: Boolean,
@@ -186,6 +189,7 @@ export default {
         return !!this.location;
       },
       set (val) {
+        if (!val) this.searchObject.location = null;
         this.$emit('update:locationSwitch', val);
       },
     },
@@ -201,9 +205,9 @@ export default {
   },
   methods: {
     onModeChange (val) {
-      this.selectedMode = val;
       this.searchObject.mode = val;
       this.searchObject.specializations = [];
+      this.selectedMode = val;
     },
     /**
      * @param {Boolean} allowableSearch - if true, continue with search regardless of action requirement
@@ -215,6 +219,7 @@ export default {
       if (!allowableSearch && this.requireAction) return;
       if (customSearchText) this.searchObject.searchString = customSearchText;
       this.searchObject.mode = this.selectedMode;
+      console.log('existing location', this.location);
       this.searchObject.location = this.location;
       console.log('searchObject', this.searchObject);
       console.log('search string', this.searchObject.searchString);

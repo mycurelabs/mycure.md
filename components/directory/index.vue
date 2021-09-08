@@ -2,7 +2,7 @@
   div(v-if="!loading.page").white
     //- App Bar
     v-app-bar(
-      height="275"
+      height="290"
       app
       color="white"
       elevate-on-scroll
@@ -22,7 +22,9 @@
                   alt="MYCURE logo"
                 ).ml-2.mb-5
               directory-search-bar(
+                app-bar
                 :mode="searchMode"
+                :location="location"
                 @search="onSearch($event)"
                 @update:mode="onSearch($event)"
                 @update:locationSwitch="onLocationSwitchUpdate($event)"
@@ -87,8 +89,6 @@ export default {
       specializationFilters: [],
       serviceType: null,
       // === Location ====
-      // - Whole location data
-      locationData: null,
       // - Coordinates
       location: null,
       // === Pagination ====
@@ -214,6 +214,7 @@ export default {
     },
     onSearch (searchOpts = {}) {
       const { searchString, mode, specializations, serviceType, location } = searchOpts;
+      console.log('searchOpts', searchOpts);
       const searchObject = {
         ...searchString && { searchText: searchString },
         searchMode: mode,
@@ -251,30 +252,37 @@ export default {
         location: this.location,
       }, page);
     },
-    async onLocationSwitchUpdate (val) {
-      if (!val) this.location = null;
-      if (val && !this.location) await this.getLocation();
-      this.search({
-        searchText: this.searchText,
-        serviceType: this.serviceType,
-        specializations: this.specializationFilters,
-        location: this.location,
-      });
+    onLocationSwitchUpdate (val) {
+      if (!val) {
+        this.location = null;
+        this.search({
+          searchText: this.searchText,
+          serviceType: this.serviceType,
+          specializations: this.specializationFilters,
+          location: this.location,
+        });
+        return;
+      }
+      if (val && !this.location) this.getLocation();
     },
     async getLocation () {
       try {
         this.loading.results = true;
         await this.$getLocation()
           .then((coordinates) => {
-            this.coordinates = coordinates;
+            if (!coordinates) return;
+            this.location = {
+              lat: coordinates.lat,
+              lng: coordinates.lng,
+            };
+            console.log('fetched location', this.location);
+            this.search({
+              searchText: this.searchText,
+              serviceType: this.serviceType,
+              specializations: this.specializationFilters,
+              location: this.location,
+            });
           });
-        if (this.coordinates) {
-          this.location = {
-            lat: this.coordinates.lat,
-            lng: this.coordinates.lng,
-          };
-          console.log('fetched location', this.location);
-        }
       } catch (e) {
         console.error(e);
         this.enqueueSnack({

@@ -1,4 +1,3 @@
-
 /**
  * UnifiedDirectorySearch
  * @param {Object} sdk
@@ -31,19 +30,19 @@
 export const unifiedDirectorySearch = async (sdk, opts) => {
   if (!opts) return;
   let query = {
-    $search: opts.text,
+    ...opts.text && { $search: opts.text },
     ...opts.tags?.length && { tags: opts.tags },
     type: opts.type,
     $limit: opts.limit || 10,
     $skip: opts.skip,
     $total: true,
   };
-  console.log('directory query', query);
   // put location string
-  if (query.$search && query.type === 'organization' && opts.location) {
+  if (opts.location) {
     const { lat, lng } = opts.location;
-    query.location = `${lat},${lng},10`;
+    query.location = `${lat},${lng},5`; // - 5 stands for radius in km
   }
+  console.log('directory query', query);
   if (query.type === 'organization') {
     query = {
       ...query,
