@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-card(height="100%" elevation="2").orgs-card.px-5.pt-5.pb-3
+  v-card(height="100%" elevation="2").orgs-card.px-2.pt-5.pb-3
     v-row
       img(
         :src="picURL"
@@ -9,13 +9,13 @@
         style="border-radius: 20px"
       ).ma-3
       v-col.my-3
-        v-row
+        div
           v-clamp(
             autoresize
             :max-lines="1"
             :class="[nameFontSize, $isWideScreen ? 'name-width-wide' : 'name-width-reg']"
           ).font-weight-bold.mb-0 {{ fullNameWithSuffixes }}&nbsp;
-        v-row(:class="textFontSize").info-text.font-weight-semibold
+        div(:class="textFontSize").info-text.font-weight-semibold
           v-clamp(
             v-if="hasSpecialties"
             autoresize
@@ -23,37 +23,18 @@
           ) {{ specialtiesText }}&nbsp;&nbsp;
           span(v-else) ---&nbsp;&nbsp;
           //- v-chip(v-if="doctor.doc_website" color="primary" outlined x-small).mt-1 verified
-        v-row(justify="start").mt-5
+        div.d-flex.mt-1
           v-icon(color="primary" :small="!$isWideScreen") mdi-briefcase-variant-outline
           div(:class="textFontSize").info-text.mt-1
             span(v-if="doctor.doc_practicingSince") &nbsp;{{ yearsOfExperience }} year/s of experience
             span(v-else) &nbsp;- year/s of experience
-        v-row(justify="start").mt-3
+        div(justify="start").mt-1.d-flex
           v-icon(color="primary" :small="!$isWideScreen") mdi-map-marker
-          div(:class="textFontSize").info-text.mt-1
-            span(v-if="doctor.address") &nbsp;{{ address }}
-            span(v-else) &nbsp;-
-        //- v-row(justify="start").pt-3
-        //-   v-btn(
-        //-     color="success"
-        //-     target="_blank"
-        //-     rel="noopener noreferrer"
-        //-     small
-        //-     rounded
-        //-     :href="doctorWebsite"
-        //-   ).text-none.elevation-0.font-weight-light.ma-1.font-10
-        //-     v-icon(:x-small="!$isMobile") mdi-stethoscope
-        //-     b &nbsp;Teleconsult
-        //-   v-btn(
-        //-     color="primary"
-        //-     target="_blank"
-        //-     rel="noopener noreferrer"
-        //-     small
-        //-     rounded
-        //-     :href="doctorWebsite"
-        //-   ).text-none.elevation-0.font-weight-light.ma-1.font-10
-        //-     v-icon(:x-small="!$isMobile") mdi-calendar
-        //-     b &nbsp;Book a Visit
+          v-clamp(
+            autoresize
+            :max-lines="2"
+            :class="[textFontSize, {'font-italic': !address }]"
+          ).info--text {{ address || 'No address provided'}}
     v-col
       v-row(justify="end")
         v-btn(
@@ -62,6 +43,7 @@
           rel="noopener noreferrer"
           :small="!$isWideScreen"
           rounded
+          :disabled="!hasDoctorWebsite"
           :href="doctorWebsite"
           :class="$isWideScreen ? ['font-14', 'px-6'] : ['font-10', 'px-5'] "
         ).text-none.elevation-0.font-weight-light.mt-n2
@@ -107,12 +89,15 @@ export default {
     };
   },
   computed: {
+    hasDoctorWebsite () {
+      return !!this.doctor?.doc_website;
+    },
     doctorWebsite () {
       const username = this.doctor?.doc_website; // eslint-disable-line
       return `${process.env.WEB_MAIN_URL}/doctors/${username}`;
     },
     fullNameWithSuffixes () {
-      if (!this.doctor) return '';
+      if (!this.doctor?.name) return '';
       let fullName = this.doctor.name.firstName;
       if (this.doctor.name.middleInitial) fullName = fullName + ' ' + this.doctor.name.middleInitial;
       fullName = fullName + ' ' + this.doctor.name.lastName;
@@ -123,11 +108,7 @@ export default {
       return fullName;
     },
     picURL () {
-      const sex = this.doctor?.sex;
-      if (sex === 'female') {
-        return this.doctor?.picURL || require('~/assets/images/doctor-website/doctor-website-profile-female.png');
-      }
-      return this.doctor?.picURL || require('~/assets/images/doctor-website/doctor-website-profile-male.png');
+      return this.doctor?.picURL || require('~/assets/images/commons/MYCURE Default Avatar.png');
     },
     specialtiesText () {
       return this.doctor?.doc_specialties?.join(', ') || '';

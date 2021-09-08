@@ -7,7 +7,6 @@
             v-model="selectedMode"
             background-color="transparent"
             dense
-            mandatory
             borderless
             @change="onModeChange($event)"
           )
@@ -16,25 +15,34 @@
             v-btn(value="organization" text active-class="active-button" :class="buttonGroupClasses").mr-3.tight-font.rounded-pill clinics
               //- v-btn(value="location" text active-class="active-button" :class="buttonGroupClasses").mr-3.tight-font.rounded-pill location
           v-spacer
-          TODO: Location
           v-col
             v-row(align="center" justify="end")
               span.font-weight-bold.font-14 USE MY LOCATION
-              v-switch(v-model="locationSwitch" inset).ml-3
+              v-switch(
+                v-model="locationSwitch"
+                inset
+                :class="{'mt-5': appBar}"
+                :disabled="loading.location"
+              ).ml-3
         v-row.pt-2
           v-col.pa-0
-            v-text-field(
+            //- Combobox has return-object triggered by default
+            v-combobox(
               v-model="searchObject.searchString"
               :placeholder="searchPlaceholder"
               solo
               outlined
               flat
               clearable
+              :items="suggestionEntries"
+              item-text="name"
               :height="$isMobile ? '40px' : '60px'"
+              :return-object="false"
               @keyup.enter="onSearch(true)"
-              @clear="onSearch"
+              @click:clear="clearSearchText"
+              @update:search-input="handleDebouncedSearch($event)"
             ).rounded-bl-lg.rounded-tl-lg
-          v-col(cols="1").pa-0
+          v-col(cols="1").pa-0.ml-n1
             v-btn(
               small
               block
@@ -75,14 +83,14 @@
               multiple
               chips
               small-chips
-              item-text="text"
-              :item-value="searchObject.mode === 'organization' ? 'code' : 'text'"
+              deletable-chips
+              clearable
               :items="specialtiesList"
               @change="onSearch(false)"
             )
               template(v-slot:selection="{ item, index }")
                 v-chip(v-if="index === 0")
-                  span {{ item.text }}
+                  span {{ item }}
                 span(
                   v-if="index === 1"
                   class="grey--text text-caption"
@@ -90,19 +98,25 @@
 </template>
 
 <script>
-// import NCR_CITIES from '~/assets/fixtures/ncr-cities';
+import debounce from 'lodash/debounce';
+import { unifiedDirectorySearch } from '~/services/unified-directory';
+import SPECIALTIES from '~/assets/fixtures/specialties';
 export default {
-  components: {
-  },
   props: {
+    appBar: {
+      type: Boolean,
+      default: false,
+    },
+    // - If button needs to be clicked before search can proceed
     requireAction: {
       type: Boolean,
       default: false,
     },
-    // showSuggestions: {
-    //   type: Boolean,
-    //   default: false,
-    // },
+    // - If suggested results should be shown
+    showSuggestions: {
+      type: Boolean,
+      default: false,
+    },
     // Search Mode
     mode: {
       type: String,
@@ -116,6 +130,10 @@ export default {
       type: Object,
       default: null,
     },
+    loadingLocation: {
+      type: Boolean,
+      default: false,
+    },
   },
   data () {
     // this.cities = NCR_CITIES;
@@ -128,8 +146,11 @@ export default {
       { name: 'Physical Exam', value: 'pe' },
       { name: 'Dental', value: 'dental' },
     ];
+    this.specialtiesList = SPECIALTIES;
     return {
-      loading: false,
+      loading: {
+        initial: true,
+      },
       deleteTag: {
         removeIndex: undefined,
       },
@@ -140,15 +161,11 @@ export default {
         specializations: [],
         mode: 'account',
         serviceType: null,
+        location: null,
       },
-      specialtiesList: [],
-      // docSuggestionsSearchQuery: null,
-      // docSearchLocation: null,
-      // doctorsSuggestions: [],
-      // selectedSuggestion: null,
-      // debouncedSuggestionsSearch: debounce((event) => {
-      //   this.handleSuggestions(event);
-      // }, 500),
+      suggestionEntries: [],
+      debouncedResultsSearch: debounce((event) => { this.onSearch(true, event); }, 500),
+      debouncedSuggestionsSearch: debounce(this.searchSuggestions, 500),
     };
   },
   computed: {
@@ -172,7 +189,6 @@ export default {
       set (val) {
         this.$emit('update:mode', {
           ...this.searchObject,
-          ...this.location && { location: this.location },
           mode: val,
         });
       },
@@ -182,58 +198,95 @@ export default {
         return !!this.location;
       },
       set (val) {
+        if (!val) this.searchObject.location = null;
         this.$emit('update:locationSwitch', val);
       },
     },
   },
-  async mounted () {
-    this.loading = true;
+  mounted () {
+    this.loading.initial = false;
     this.searchObject.mode = this.selectedMode;
+    // Load Route data
+    const { specializations, serviceType } = this.$route.params;
     this.searchObject.searchString = this.$route.query.searchText;
-    await this.fetchSpecialties();
-    this.loading = false;
+    if (this.selectedMode === 'account' && specializations) this.searchObject.specializations = specializations;
+    if (this.selectedMode === 'organization' && serviceType) this.searchObject.serviceType = serviceType;
   },
   methods: {
     onModeChange (val) {
-      this.selectedMode = val;
       this.searchObject.mode = val;
       this.searchObject.specializations = [];
+      this.selectedMode = val;
     },
     /**
      * @param {Boolean} allowableSearch - if true, continue with search regardless of action requirement
-     *
      * An action requirement is usually a trigger through button or enter key
+     * @param {String} customSearchText - for passing a custom search text value
+     * Usually used for debouncing purposes, because it does not update `searchObject.searchString` on its own.
      */
-    onSearch (allowableSearch = false) {
+    onSearch (allowableSearch = false, customSearchText) {
       if (!allowableSearch && this.requireAction) return;
+      if (customSearchText) this.searchObject.searchString = customSearchText;
       this.searchObject.mode = this.selectedMode;
-      console.log('searchObject', this.searchObject);
+      this.searchObject.location = this.location;
       this.$emit('search', {
         ...this.searchObject,
-        ...this.location && { location: this.location },
       });
     },
-    async fetchSpecialties () {
-      try {
-        const { items } = await this.$sdk.service('fixtures').find({ type: 'specialty' });
-        this.specialtiesList = items;
-      } catch (e) {
-        console.error(e);
+    // async fetchSpecialties () {
+    //   try {
+    //     const { items } = await this.$sdk.service('fixtures').find({ type: 'specialty' });
+    //     this.specialtiesList = items;
+    //   } catch (e) {
+    //     console.error(e);
+    //   }
+    // },
+    /**
+     * HandleDebouncedSearch
+     *
+     * There are two scenarios in handling:
+     * A.
+     * Displaying the results in the combobox dropdown
+     * This is usually used in the landing page of the directory
+     *
+     * or
+     *
+     * B.
+     * Displaying the results in the directory list as you type
+     * Used for results page
+     *
+     * Both scenarios are exclusive depending on the values of
+     * `showSuggestions` and `requireAction` props.
+     */
+    handleDebouncedSearch (searchText) {
+      if (this.loading.initial && !searchText) return;
+      // For A
+      if (searchText && this.showSuggestions) {
+        this.debouncedSuggestionsSearch(searchText);
+        return;
+      }
+      // For B
+      if (!this.requireAction) {
+        if (!searchText) {
+          this.clearSearchText();
+          return;
+        }
+        this.debouncedResultsSearch(searchText);
       }
     },
-    toggleChip (index) {
-      // console.log(this.specialtiesList[index].selected);
-      if (!this.specialtiesList[index].selected) {
-        this.specialtiesList[index].selected = true;
-        this.searchObject.specialties.push(this.specialtiesList[index]);
-      } else {
-        this.specialtiesList[index].selected = false;
-        for (let i = 0; i < this.searchObject.specialties.length; i++) {
-          if (this.specialtiesList[index].indexVal === this.searchObject.specialties[i].indexVal) {
-            this.searchObject.specialties.splice(i, 1);
-          }
-        };
+    async searchSuggestions (searchText) {
+      // - If location is selected, only places within that location will be suggested
+      const query = {
+        text: searchText,
+        limit: 10,
+        type: this.selectedMode,
       };
+      const { items } = await unifiedDirectorySearch(this.$sdk, query);
+      this.suggestionEntries = items || [];
+    },
+    clearSearchText () {
+      this.searchObject.searchString = null;
+      this.onSearch();
     },
     clearSpecialties () {
       for (let i = 0; i < this.specialtiesList.length; i++) {

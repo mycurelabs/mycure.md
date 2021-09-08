@@ -1,4 +1,3 @@
-
 /**
  * UnifiedDirectorySearch
  * @param {Object} sdk
@@ -13,6 +12,7 @@
  * @param {Object} opts.location - location of user
  * @param {Number} opts.location.lat - latitute
  * @param {Number} opts.location.lng - longitude
+ * @param {String []} opts.specializations - specializations
  *
  * # Uses
  * - for type=organization, service types offered are tags with prefix `sto:`
@@ -31,16 +31,16 @@ export const unifiedDirectorySearch = async (sdk, opts) => {
   if (!opts) return;
   let query = {
     ...opts.text && { $search: opts.text },
+    ...opts.tags?.length && { tags: opts.tags },
     type: opts.type,
-    $limit: opts.limit,
+    $limit: opts.limit || 10,
     $skip: opts.skip,
     $total: true,
   };
-
   // put location string
   if (opts.location) {
     const { lat, lng } = opts.location;
-    query.location = `${lat},${lng},10`;
+    query.location = `${lat},${lng},5`; // - 5 stands for radius in km
   }
   if (query.type === 'organization') {
     query = {
@@ -51,7 +51,6 @@ export const unifiedDirectorySearch = async (sdk, opts) => {
           types: opts.ref.types,
         },
       },
-      ...opts.tags && { tags: opts.tags },
     };
   } else if (query.type === 'service' && opts.ref) {
     query.ref = {
@@ -61,6 +60,5 @@ export const unifiedDirectorySearch = async (sdk, opts) => {
   }
 
   const data = await sdk.service('bff/unified-directory').find(query);
-  console.log('data', data);
   return { items: data.items, total: data.total };
 };

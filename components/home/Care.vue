@@ -21,6 +21,7 @@
 
 <script>
 import GenericPanel from '~/components/generic/GenericPanel';
+import { fetchWebsiteMetrics } from '~/utils/axios';
 export default {
   components: {
     GenericPanel,
@@ -78,24 +79,28 @@ export default {
     },
   },
   async created () {
-    await Promise.all([
-      this.$sdk.service('metrics/metrics').findOne({
-        name: 'new_medical_records_total',
-        $aggregate: { sum: 1 },
-      }),
-      this.$sdk.service('metrics/metrics').findOne({
-        name: 'new_medical_patients_total',
-        $aggregate: { sum: 1 },
-      }),
-      this.$sdk.service('metrics/metrics').findOne({
-        name: 'new_facilities_total',
-        $aggregate: { sum: 1 },
-      }),
-    ]).then((values) => {
-      this.medicalRecordsData = values[0].data[0].value;
-      this.patientsData = values[1].data[0].value;
-      this.providersData = values[2].data[0].value;
-    });
+    // await Promise.all([
+    //   this.$sdk.service('metrics/metrics').findOne({
+    //     name: 'new_medical_records_total',
+    //     $aggregate: { sum: 1 },
+    //   }),
+    //   this.$sdk.service('metrics/metrics').findOne({
+    //     name: 'new_medical_patients_total',
+    //     $aggregate: { sum: 1 },
+    //   }),
+    //   this.$sdk.service('metrics/metrics').findOne({
+    //     name: 'new_facilities_total',
+    //     $aggregate: { sum: 1 },
+    //   }),
+    // ]).then((values) => {
+    //   this.medicalRecordsData = values[0].data[0].value;
+    //   this.patientsData = values[1].data[0].value;
+    //   this.providersData = values[2].data[0].value;
+    // });
+    const data = await fetchWebsiteMetrics();
+    this.medicalRecordsData = data?.medicalRecordsData || 0;
+    this.patientsData = data?.patientsData || 0;
+    this.providersData = data?.providersData || 0;
   },
   methods: {
     onVisibilityChange (isVisible) {
