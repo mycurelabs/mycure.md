@@ -1,6 +1,6 @@
 <template lang="pug">
   v-container.pa-0.mt-16
-    v-row(justify="center")
+    v-row(v-if="!loading.page" justify="center")
       generic-panel(:column="$isMobile ? 12 : 10" disable-parent-padding)
         v-col
           v-row(justify="center")
@@ -19,10 +19,18 @@
                 show-suggestions
                 :mode="searchMode"
                 :location="location"
+                :loadingLocation="loading.location"
                 @search="onSearch($event)"
                 @update:mode="onChangeMode($event)"
                 @update:locationSwitch="onLocationSwitchUpdate($event)"
               )
+    //- //- Loading Location
+    //- v-dialog(v-model="preparingDirectoryDialog" width="350" persistent)
+    //-   v-card.text-center
+    //-     v-card-text.pa-8
+    //-       h3.primary--text Preparing the directory...
+    //-       v-progress-circular(indeterminate size="50" color="primary")
+    //- Location Dialog
     v-dialog(
       v-model="locationDialog"
       width="350"
@@ -56,6 +64,11 @@
                     :disabled="loading.location"
                     @click="locationDialog = false"
                   ) Decline
+    //- Snack bar
+    v-snackbar(
+      v-model="showSnack"
+      :color="snackbarModel.color"
+    ) {{ snackbarModel.text }}
 </template>
 
 <script>
@@ -75,8 +88,15 @@ export default {
       },
       searchMode: 'account',
       coordinates: null,
+      preparingDirectoryDialog: false,
       locationDialog: false,
       location: null,
+      // Snack
+      snackbarModel: {
+        text: '',
+        color: null,
+      },
+      showSnack: false,
     };
   },
   head () {
@@ -88,7 +108,8 @@ export default {
   },
   mounted () {
     this.loading.page = false;
-    this.locationDialog = true;
+    // Check if already has location
+    this.checkLocation();
   },
   methods: {
     /**
@@ -111,27 +132,72 @@ export default {
         },
       });
     },
-    async getLocation () {
-      this.loading.location = true;
-      await this.$getLocation()
-        .then((coordinates) => {
-          this.coordinates = coordinates;
+    async checkLocation () {
+      this.preparingDirectoryDialog = true;
+      await navigator.permissions && navigator.permissions.query({ name: 'geolocation' })
+        .then((result) => {
+          console.log('result', result);
+          this.preparingDirectoryDialog = false;
+          if (result.state === 'granted') {
+            this.getLocation();
+          } else if (result.state === 'prompt') {
+            this.locationDialog = true;
+          } else {
+            this.snackbarModel = {
+              color: 'warning',
+              text: 'Please update your browser location settings before enabling location search.',
+            };
+            this.showSnack = true;
+          }
         });
-      this.locationDialog = false;
-      if (this.coordinates) {
-        this.location = {
-          lat: this.coordinates.lat,
-          lng: this.coordinates.lng,
-        };
+      this.preparingDirectoryDialog = false;
+    },
+    async getLocation () {
+      try {
+        this.loading.location = true;
+        await this.$getLocation()
+          .then((coordinates) => {
+            console.log('coordinates', coordinates);
+            this.coordinates = coordinates;
+          });
+        if (this.coordinates) {
+          this.location = {
+            lat: this.coordinates.lat,
+            lng: this.coordinates.lng,
+          };
+          console.log('location', this.location);
+        } else {
+          this.location = null;
+        }
+      } catch (e) {
+        console.error(e);
+      } finally {
+        this.preparingDirectoryDialog = false;
+        this.locationDialog = false;
       }
     },
     onChangeMode (val) {
       this.searchMode = val.mode;
     },
-    onLocationSwitchUpdate (val) {
+    async onLocationSwitchUpdate (val) {
       if (!val) {
         this.location = null;
+        return;
       }
+      await navigator.permissions && navigator.permissions.query({ name: 'geolocation' })
+        .then((result) => {
+          console.log('result', result);
+          this.preparingDirectoryDialog = false;
+          if (result.state === 'granted' || result.state === 'prompt') {
+            this.getLocation();
+          } else if (result.state === 'denied') {
+            this.snackbarModel = {
+              color: 'warning',
+              text: 'Please update your browser location settings before enabling location search.',
+            };
+            this.showSnack = true;
+          }
+        });
     },
   },
 };

@@ -18,7 +18,12 @@
           v-col
             v-row(align="center" justify="end")
               span.font-weight-bold.font-14 USE MY LOCATION
-              v-switch(v-model="locationSwitch" inset :class="{'mt-5': appBar}").ml-3
+              v-switch(
+                v-model="locationSwitch"
+                inset
+                :class="{'mt-5': appBar}"
+                :disabled="loading.location"
+              ).ml-3
         v-row.pt-2
           v-col.pa-0
             //- Combobox has return-object triggered by default
@@ -124,6 +129,10 @@ export default {
     location: {
       type: Object,
       default: null,
+    },
+    loadingLocation: {
+      type: Boolean,
+      default: false,
     },
   },
   data () {
