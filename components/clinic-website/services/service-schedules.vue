@@ -1,26 +1,41 @@
 <template lang="pug">
   v-row
     v-col(cols="12").bordered-table
-      v-data-table(
-        :headers="headers"
-        :items="tableItems"
-        hide-default-footer
-        light
-        dense
-      ).schedule-table
-        tr(slot="item" slot-scope="props")
-          td(v-for="(day, key) in props.item" :key="key").text-xs-center
-            v-row(no-gutters)
-              v-col(cols="12" v-for="(timeslot, key) in day" :key="key")
-                v-chip(
-                  :class="{'mt-1': key !== 0}"
-                  color="primary"
-                  small
-                ).white--text
-                  v-tooltip(bottom)
-                    template(slot="activator" slot-scope="data")
-                      span(v-on="data.on") {{ timeslot | format-time-range-shortened }}
-                    | {{ timeslot | format-time-range }}
+      //- v-data-table(
+      //-   :headers="headers"
+      //-   :items="tableItems"
+      //-   hide-default-footer
+      //-   light
+      //-   dense
+      //- ).schedule-table
+      //-   tr(slot="item" slot-scope="props")
+      //-     td(v-for="(day, key) in props.item" :key="key").text-xs-center
+      //-       v-row(no-gutters)
+      //-         v-col(cols="12" v-for="(timeslot, key) in day" :key="key")
+      //-           v-chip(
+      //-             :class="{'mt-1': key !== 0}"
+      //-             color="primary"
+      //-             small
+      //-           ).white--text
+      //-             v-tooltip(bottom)
+      //-               template(slot="activator" slot-scope="data")
+      //-                 span(v-on="data.on") {{ timeslot | format-time-range-shortened }}
+      //-               | {{ timeslot | format-time-range }}
+      v-row(v-for="(day, key) in days" :key="key" align="center")
+        v-col(cols="12" md="2")
+          h3 {{ day.text }}
+        v-col.grow
+          v-row(dense).bordered-table
+            v-col(
+              v-for="(timeslot, key) in getSlots(day.value)"
+              :key="key"
+            )
+              v-chip(color="primary" small).white--text
+                | {{ timeslot | format-time-range }}
+                //- v-tooltip(bottom)
+                //-   template(slot="activator" slot-scope="data")
+                //-     span(v-on="data.on") {{ timeslot | format-time-range-shortened }}
+                //-   | {{ timeslot | format-time-range }}
 </template>
 
 <script>
@@ -137,6 +152,19 @@ export default {
         sat: this.sat,
         sun: this.sun,
       }];
+    },
+  },
+  methods: {
+    getSlots (value) {
+      if (!this.items?.length) return [];
+      const items = [...this.items];
+      if (this.nonMfSchedule && value === 0) {
+        return items.filter(item => item.day === 0);
+      } else if (value === 0) {
+        return items.filter(item => item.order === 7);
+      }
+      if (this.nonMfSchedule) return items.filter(item => item.day === value);
+      return items.filter(item => item.order === value);
     },
   },
 };
