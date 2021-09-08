@@ -176,8 +176,9 @@
               v-text-field(
                 v-model="invitation"
                 label="Invite Code"
-                outlined
                 hint="6 character invite code"
+                outlined
+                clearable
                 :disabled="loading.form"
               )
             v-col(

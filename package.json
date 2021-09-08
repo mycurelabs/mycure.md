@@ -33,6 +33,7 @@
     "resize-detector": "^0.3.0",
     "sass": "^1.35.2",
     "sass-loader": "^10",
+    "vue-browser-geolocation": "^1.8.0",
     "vue-carousel": "^0.18.0",
     "vue-clamp": "^0.4.0",
     "vue-gtag": "^1.16.1",

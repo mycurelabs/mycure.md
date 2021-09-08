@@ -1,13 +1,13 @@
 <template lang="pug">
   div(style="background-color: #fafafa;")
-    directory-doctor(:class="{'pb-5': $isMobile}").services
+    directory(:class="{'pb-5': $isMobile}").services
 </template>
 
 <script>
 import headMeta from '~/utils/head-meta';
 export default {
   components: {
-    DirectoryDoctor: () => import('~/components/directory-doctor'),
+    Directory: () => import('~/components/directory'),
   },
   layout: 'results',
   // middleware: ['disable-route'],

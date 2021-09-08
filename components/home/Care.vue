@@ -16,7 +16,6 @@
               v-observe-visibility="{ callback: onVisibilityChange, intersection: { threshold: 1 } }"
             ).text-center
               h3(:class="{ 'font-xl': $isWideScreen, 'font-l': $isRegularScreen, 'font-m' : $isMobile }").primary--text.font-weight-semibold {{ statData[stat.amountKey].toLocaleString() }}
-                span(v-if="statData[stat.amountKey] > 0") +
               h3(:class="{ 'font-m': $isWideScreen, 'font-s' : $isRegularScreen, 'font-xs' : $isMobile }").font-weight-regular.grey--text {{ stat.title }}
 </template>
 
@@ -52,22 +51,51 @@ export default {
       ],
       isVisible: false,
       hasAnimated: false,
+      // Realtime data
+      medicalRecordsData: 0,
+      patientsData: 0,
+      providersData: 0,
     };
+  },
+  computed: {
+    hasFetched () {
+      return this.medicalRecordsData && this.patientsData && this.providersData;
+    },
   },
   watch: {
     isVisible (val) {
-      if (!val || this.hasAnimated) return;
+      if ((!val || this.hasAnimated) && !this.hasFetched) return;
       this.$anime({
         targets: this.statData,
-        'medical-records': 2700000,
-        lives: 1400000,
-        providers: 2000,
+        'medical-records': this.medicalRecordsData,
+        lives: this.patientsData,
+        providers: this.providersData,
         easing: 'linear',
         round: 1,
         duration: 2500,
       });
       this.hasAnimated = true;
     },
+  },
+  async created () {
+    await Promise.all([
+      this.$sdk.service('metrics/metrics').findOne({
+        name: 'new_medical_records_total',
+        $aggregate: { sum: 1 },
+      }),
+      this.$sdk.service('metrics/metrics').findOne({
+        name: 'new_medical_patients_total',
+        $aggregate: { sum: 1 },
+      }),
+      this.$sdk.service('metrics/metrics').findOne({
+        name: 'new_facilities_total',
+        $aggregate: { sum: 1 },
+      }),
+    ]).then((values) => {
+      this.medicalRecordsData = values[0].data[0].value;
+      this.patientsData = values[1].data[0].value;
+      this.providersData = values[2].data[0].value;
+    });
   },
   methods: {
     onVisibilityChange (isVisible) {

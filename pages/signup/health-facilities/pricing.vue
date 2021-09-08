@@ -1,12 +1,10 @@
 <template lang="pug">
   v-container
-    v-row(v-if="loading.page" justify="center" dense).text-center
-      v-col(cols="12")
-        v-progress-circular(
-          color="primary"
-          indeterminate
-          size="150"
-        )
+    v-overlay(v-if="loading.page" :value="loading.page")
+      v-progress-circular(
+        indeterminate
+        size="64"
+      )
     template(v-else)
       v-row(justify="center" align="center")
         v-col(cols="12").text-center
@@ -61,6 +59,11 @@
           v-icon(style="font-size: 40px;").error--text mdi-close
           h2 Error!
           p Checkout failed to proceed!
+          v-btn(
+            depressed
+            color="success"
+            @click="retryPayment"
+          ).text-none Retry Now
     //- Error
     v-dialog(v-model="errorDialog" width="400" persistent)
       v-card
@@ -230,6 +233,9 @@ export default {
       The prebundle is meant for proceeding to stripe without selecting from the packages
       Used when there is already a pre-selected plan from website pricing panels.
     */
+    retryPayment () {
+      this.confirmPaymentDialog = true;
+    },
     async submit () {
       try {
         this.loading.button = true;
