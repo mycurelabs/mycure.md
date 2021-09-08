@@ -136,7 +136,6 @@ export default {
       this.preparingDirectoryDialog = true;
       await navigator.permissions && navigator.permissions.query({ name: 'geolocation' })
         .then((result) => {
-          console.log('result', result);
           this.preparingDirectoryDialog = false;
           if (result.state === 'granted') {
             this.getLocation();
@@ -157,7 +156,6 @@ export default {
         this.loading.location = true;
         await this.$getLocation()
           .then((coordinates) => {
-            console.log('coordinates', coordinates);
             this.coordinates = coordinates;
           });
         if (this.coordinates) {
@@ -165,7 +163,6 @@ export default {
             lat: this.coordinates.lat,
             lng: this.coordinates.lng,
           };
-          console.log('location', this.location);
         } else {
           this.location = null;
         }
@@ -186,7 +183,6 @@ export default {
       }
       await navigator.permissions && navigator.permissions.query({ name: 'geolocation' })
         .then((result) => {
-          console.log('result', result);
           this.preparingDirectoryDialog = false;
           if (result.state === 'granted' || result.state === 'prompt') {
             this.getLocation();

@@ -228,10 +228,7 @@ export default {
       if (!allowableSearch && this.requireAction) return;
       if (customSearchText) this.searchObject.searchString = customSearchText;
       this.searchObject.mode = this.selectedMode;
-      console.log('existing location', this.location);
       this.searchObject.location = this.location;
-      console.log('searchObject', this.searchObject);
-      console.log('search string', this.searchObject.searchString);
       this.$emit('search', {
         ...this.searchObject,
       });

@@ -42,7 +42,6 @@ export const unifiedDirectorySearch = async (sdk, opts) => {
     const { lat, lng } = opts.location;
     query.location = `${lat},${lng},5`; // - 5 stands for radius in km
   }
-  console.log('directory query', query);
   if (query.type === 'organization') {
     query = {
       ...query,
@@ -61,6 +60,5 @@ export const unifiedDirectorySearch = async (sdk, opts) => {
   }
 
   const data = await sdk.service('bff/unified-directory').find(query);
-  console.log('data', data);
   return { items: data.items, total: data.total };
 };

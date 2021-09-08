@@ -167,7 +167,6 @@ export default {
           // Apply location
           ...location && { location: this.location },
         };
-        console.log('composed query', query);
         const { items, total } = await unifiedDirectorySearch(this.$sdk, query);
 
         this.entriesTotal = total;
@@ -214,7 +213,6 @@ export default {
     },
     onSearch (searchOpts = {}) {
       const { searchString, mode, specializations, serviceType, location } = searchOpts;
-      console.log('searchOpts', searchOpts);
       const searchObject = {
         ...searchString && { searchText: searchString },
         searchMode: mode,
@@ -224,7 +222,6 @@ export default {
         this.$router.replace({ query: null });
         this.$router.replace({ query: searchObject });
       }
-      console.log('searchObject', searchObject);
       // search
       this.search({
         ...searchObject,
@@ -275,7 +272,6 @@ export default {
               lat: coordinates.lat,
               lng: coordinates.lng,
             };
-            console.log('fetched location', this.location);
             this.search({
               searchText: this.searchText,
               serviceType: this.serviceType,
