@@ -4,7 +4,7 @@
       v-row(justify="center")
         generic-panel
           v-col(cols="12").text-center
-            strong(:class="metaTitleClasses").primary--text Why MYCURE?
+            span(:class="metaTitleClasses").primary--text Why MYCURE?
             h2(:class="panelHeaderClasses").font-weight-semibold Think Long-Term
     generic-media-panel(
       v-for="(panel, key) in panels"
@@ -30,7 +30,7 @@ export default {
   data () {
     this.panelHeaderClasses = ['mc-title-set-1'];
     this.descriptionClasses = ['mc-content-set-1', 'font-open-sans', 'font-gray'];
-    this.metaTitleClasses = ['mc-metatitle-set-1'];
+    this.metaTitleClasses = ['mc-content-set-1', 'font-open-sans', 'font-weight-semibold'];
     this.headerClasses = ['mc-title-set-2', 'primary--text', 'font-weight-semibold'];
     return {};
   },

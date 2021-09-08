@@ -67,7 +67,7 @@ export default {
       { image: 'Dentist', alt: 'Dentist treating a patient artwork' },
     ];
     this.titleClasses = ['mc-title-set-1', 'font-weight-semibold'];
-    this.contentClasses = ['mc-content-set-1', 'font-weight-semibold', 'secondary--text'];
+    this.contentClasses = ['mc-content-set-1', 'font-open-sans', 'font-gray'];
     this.btnClasses = ['mc-button-set-1'];
     return {};
   },

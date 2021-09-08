@@ -32,7 +32,7 @@
         generic-panel(:row-bindings="{ justify: 'center'}")
           v-col(cols="12" lg="8").text-center
             h2(:class="headerClasses").mb-5 Create beautiful reports for your clients.
-            p(:class="descriptionClasses").mb-10.secondary--text.font-weight-semibold Provide both printed and online copies of their medical exam results without the hassle.
+            p(:class="descriptionClasses").mb-10.font-gray.font-open-sans Provide both printed and online copies of their medical exam results without the hassle.
           v-col(cols="12").text-center
             //- TODO: Add explicit width and height
             picture-source(
@@ -54,9 +54,9 @@
             div(:class="{ 'text-center': $isMobile }")
               signup-button(
                 depressed
-                rounded
-                width="228px"
-                height="59px"
+                class="rounded-pill"
+                :width="!$isWideScreen ? '228px' : '300'"
+                :height="!$isWideScreen ? '59px' : '73.68'"
                 color="success"
               ).text-none
                 span.generic-button-text Sign Up
@@ -66,6 +66,7 @@
         :content="integrationsPanel"
         hide-btn
         align="center"
+        :super-title-classes="['mc-content-set-1', 'font-open-sans', 'font-weight-semibold', 'primary--text']"
       )
         template(slot="content")
           v-row(justify="start")
@@ -135,9 +136,9 @@
       v-container
         v-row(justify="center")
           generic-panel(:row-bindings="{ justify: 'center' }")
-            v-col(cols="12" lg="8" xl="6").white--text.text-center
+            v-col(cols="12" lg="8").white--text.text-center
               h2(:class="['white--text', ...headerClasses]").mb-5 Take the first step today
-              h3(:class="descriptionClasses").mb-5.font-weight-semibold Start now and get all your questions answered
+              p(:class="descriptionClasses").mb-5 Start now and get all your questions answered
               mc-btn(
                 color="success"
                 class="rounded-pill"
@@ -235,7 +236,7 @@ export default {
       return {
         contentAlign: 'left',
         title: 'Ready whenever you are',
-        superTitle: 'POWERFUL INTEGRATIONS',
+        superTitle: 'Powerful Integrations',
         list: [
           {
             title: 'HL7',

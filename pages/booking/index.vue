@@ -44,7 +44,7 @@
         :items="thirdPanelContents"
       )
         template(slot="title")
-          h2(:class="[...superTitleClasses, 'font-open-sans']") BENEFITS OF MYCURE BOOKING SYSTEM
+          h2(:class="[...superTitleClasses, 'font-open-sans']") Benefits of MYCURE Booking System
         template(slot="description")
           p.mc-title-set-2.font-weight-semibold Acquire and Accommodate more Patients
         template(slot="items")
@@ -262,7 +262,7 @@ export default {
       'That’s why we’ve built MYCURE Healthcare Management Solutions, designed to be robust, easy to use, interoperable and affordable.',
     ];
     this.titleClasses = ['mc-title-set-1'];
-    this.superTitleClasses = ['mc-content-set-1', 'lh-title', 'font-weight-semibold', 'primary--text'];
+    this.superTitleClasses = ['mc-content-set-1', 'font-open-sans', 'font-weight-semibold', 'primary--text'];
     this.descriptionClasses = ['mc-content-set-1', 'font-open-sans', 'font-gray'];
     this.buttonClasses = ['mc-button-set-1'];
     this.howItWorksClass = ['mc-title-set-2'];
