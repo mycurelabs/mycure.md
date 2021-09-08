@@ -13,6 +13,7 @@
  * @param {Object} opts.location - location of user
  * @param {Number} opts.location.lat - latitute
  * @param {Number} opts.location.lng - longitude
+ * @param {String []} opts.specializations - specializations
  *
  * # Uses
  * - for type=organization, service types offered are tags with prefix `sto:`
@@ -31,12 +32,13 @@ export const unifiedDirectorySearch = async (sdk, opts) => {
   if (!opts) return;
   let query = {
     ...opts.text && { $search: opts.text },
+    ...opts.tags && { tags: opts.tags },
     type: opts.type,
     $limit: opts.limit,
     $skip: opts.skip,
     $total: true,
   };
-
+  console.log('directory query', query);
   // put location string
   if (opts.location) {
     const { lat, lng } = opts.location;

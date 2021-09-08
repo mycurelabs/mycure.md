@@ -16,7 +16,6 @@
             v-btn(value="organization" text active-class="active-button" :class="buttonGroupClasses").mr-3.tight-font.rounded-pill clinics
               //- v-btn(value="location" text active-class="active-button" :class="buttonGroupClasses").mr-3.tight-font.rounded-pill location
           v-spacer
-          TODO: Location
           v-col
             v-row(align="center" justify="end")
               span.font-weight-bold.font-14 USE MY LOCATION
@@ -75,14 +74,14 @@
               multiple
               chips
               small-chips
-              item-text="text"
-              :item-value="searchObject.mode === 'organization' ? 'code' : 'text'"
+              deletable-chips
+              clearable
               :items="specialtiesList"
               @change="onSearch(false)"
             )
               template(v-slot:selection="{ item, index }")
                 v-chip(v-if="index === 0")
-                  span {{ item.text }}
+                  span {{ item }}
                 span(
                   v-if="index === 1"
                   class="grey--text text-caption"
@@ -90,7 +89,7 @@
 </template>
 
 <script>
-// import NCR_CITIES from '~/assets/fixtures/ncr-cities';
+import SPECIALTIES from '~/assets/fixtures/specialties';
 export default {
   components: {
   },
@@ -128,6 +127,7 @@ export default {
       { name: 'Physical Exam', value: 'pe' },
       { name: 'Dental', value: 'dental' },
     ];
+    this.specialtiesList = SPECIALTIES;
     return {
       loading: false,
       deleteTag: {
@@ -141,7 +141,6 @@ export default {
         mode: 'account',
         serviceType: null,
       },
-      specialtiesList: [],
       // docSuggestionsSearchQuery: null,
       // docSearchLocation: null,
       // doctorsSuggestions: [],
@@ -186,12 +185,9 @@ export default {
       },
     },
   },
-  async mounted () {
-    this.loading = true;
+  mounted () {
     this.searchObject.mode = this.selectedMode;
     this.searchObject.searchString = this.$route.query.searchText;
-    await this.fetchSpecialties();
-    this.loading = false;
   },
   methods: {
     onModeChange (val) {
@@ -213,14 +209,14 @@ export default {
         ...this.location && { location: this.location },
       });
     },
-    async fetchSpecialties () {
-      try {
-        const { items } = await this.$sdk.service('fixtures').find({ type: 'specialty' });
-        this.specialtiesList = items;
-      } catch (e) {
-        console.error(e);
-      }
-    },
+    // async fetchSpecialties () {
+    //   try {
+    //     const { items } = await this.$sdk.service('fixtures').find({ type: 'specialty' });
+    //     this.specialtiesList = items;
+    //   } catch (e) {
+    //     console.error(e);
+    //   }
+    // },
     toggleChip (index) {
       // console.log(this.specialtiesList[index].selected);
       if (!this.specialtiesList[index].selected) {

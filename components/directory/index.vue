@@ -40,7 +40,7 @@
 
 <script>
 import VueScrollTo from 'vue-scrollto';
-import intersection from 'lodash/intersection';
+// import intersection from 'lodash/intersection';
 import isEqual from 'lodash/isEqual';
 import ResultsSection from './ResultsSection';
 import DirectoryAppBar from '~/components/directory/DirectoryAppBar';
@@ -134,10 +134,11 @@ export default {
       location,
     }, page = 1) {
       try {
+        console.log('specs', specializations);
         this.loading.results = true;
         this.searchText = searchText;
         this.searchMode = searchMode || this.searchMode;
-        this.specializationFilters = specializations;
+        this.specializationFilters = specializations || [];
         this.location = location;
         this.entriesPage = page;
         const skip = this.entriesLimit * (page - 1);
@@ -147,10 +148,11 @@ export default {
           limit: this.entriesLimit,
           skip,
           // Apply filters
-          ...serviceType && this.composeTags(serviceType),
+          ...(serviceType || specializations) && { tags: this.composeTags(serviceType, specializations) },
           // Apply location
           ...location && { location: this.location },
         };
+        console.log('composed query', query);
         const { items, total } = await unifiedDirectorySearch(this.$sdk, query);
 
         this.entriesTotal = total;
@@ -169,11 +171,11 @@ export default {
 
           const doctors = await Promise.all(entryPromises);
           this.entries = doctors;
-          // Filter specializations
-          if (this.specializationFilters?.length) {
-            this.entries = doctors.filter(doc => intersection(doc.doc_specialties, this.specializationFilters)?.length) || [];
-            this.entriesTotal = total - (doctors.length - this.entries.length);
-          }
+          // // Filter specializations
+          // if (this.specializationFilters?.length) {
+          //   this.entries = doctors.filter(doc => intersection(doc.doc_specialties, this.specializationFilters)?.length) || [];
+          //   this.entriesTotal = total - (doctors.length - this.entries.length);
+          // }
           return;
         }
 
@@ -211,8 +213,15 @@ export default {
         location,
       });
     },
-    composeTags (serviceType) {
-      return { tags: [`sto:${serviceType}`] };
+    composeTags (serviceType, specializations) {
+      const tags = [];
+      if (serviceType) {
+        tags.push(`sto:${serviceType}`);
+      }
+      if (specializations?.length) {
+        specializations.map(s => tags.push(`spc:${s.replace(/\s+/g, '-').toLowerCase()}`));
+      }
+      return tags;
     },
     onPagination (page) {
       this.search({
