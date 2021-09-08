@@ -27,7 +27,7 @@
         generic-panel(:row-bindings="{ justify: 'center' }")
           v-col(cols="12" md="8").text-center
             h2(:class="headerClasses").font-weight-semibold.mb-5 Create beautiful reports for your clients.
-            p(:class="descriptionClasses").mb-10.font-weight-semibold.secondary--text Provide both printed and online copies of their medical exam results without the hassle.
+            p(:class="descriptionClasses").mb-10.font-open-sans.font-gray Provide both printed and online copies of their medical exam results without the hassle.
           v-col(cols="12").text-center
             v-row.justify-center.gutterless
               v-col(cols="6" md="3").pa-0

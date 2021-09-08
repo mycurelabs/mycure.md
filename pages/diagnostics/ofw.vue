@@ -32,7 +32,7 @@
         generic-panel(:row-bindings="{ justify: 'center'}")
           v-col(cols="12" lg="8").text-center
             h2(:class="headerClasses").mb-5 Create beautiful reports for your clients.
-            p(:class="descriptionClasses").mb-10.secondary--text.font-weight-semibold Provide both printed and online copies of their medical exam results without the hassle.
+            p(:class="descriptionClasses").mb-10.font-gray.font-open-sans Provide both printed and online copies of their medical exam results without the hassle.
           v-col(cols="12").text-center
             //- TODO: Add explicit width and height
             picture-source(
