@@ -42,7 +42,7 @@
               @click:clear="clearSearchText"
               @update:search-input="handleDebouncedSearch($event)"
             ).rounded-bl-lg.rounded-tl-lg
-          v-col(cols="1").pa-0
+          v-col(cols="1").pa-0.ml-n1
             v-btn(
               small
               block
