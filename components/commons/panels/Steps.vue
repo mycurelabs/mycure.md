@@ -28,11 +28,11 @@
           v-row(justify="center")
             signup-button(
               depressed
-              rounded
-              color="primary"
+              color="success"
               facility-type="clinic"
-              width="228px"
-              height="59px"
+              class="rounded-pill"
+              :width="!$isWideScreen ? '228px' : '300'"
+              :height="!$isWideScreen ? '59px' : '73.68'"
             ).text-none
               span.generic-button-text Get Started Now
 </template>

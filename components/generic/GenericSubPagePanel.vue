@@ -12,18 +12,21 @@
       slot(name="image")
         img(:width="width" :src="image")
     v-col(v-bind="contentColumnBindings")
-      div.mb-3
-        slot(name="super-title")
-          h3(:class="defaultSuperTitleClasses") {{superTitle}}
-      div.mb-10
-        slot(name="title")
-          h2(:class="defaultTitleClasses") {{ title }}
-      div.mb-10
-        slot(name="content")
-          p(v-if="content" :class="defaultContentClasses") {{ content }}
-      div(v-if="!hideBtn")
-        slot(name="cta-button")
-          v-btn {{ ctaButtonText }}
+      v-row(justify="center")
+        v-col(v-if="!$isMobile && contentRight" cols="2").pa-0
+        v-col(cols="12" sm="10").pa-0
+          div.mb-3
+            slot(name="super-title")
+              h3(:class="defaultSuperTitleClasses") {{superTitle}}
+          div.mb-10
+            slot(name="title")
+              h2(:class="defaultTitleClasses") {{ title }}
+          div.mb-10
+            slot(name="content")
+              p(v-if="content" :class="defaultContentClasses") {{ content }}
+          div(v-if="!hideBtn")
+            slot(name="cta-button")
+              v-btn {{ ctaButtonText }}
     slot(name="additional-content")
 </template>
 

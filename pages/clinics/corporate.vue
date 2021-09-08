@@ -11,6 +11,9 @@
       btn-text="Start Free"
       image="Corporate Clinics Mobile"
       custom-image-path="clinics/corporate/"
+      parse-title
+      parse-meta-title
+      :parse-title-fields="['your ', 'records ']"
       :media-column-bindings="{ cols: 12, md: 6, offsetMd: 1, xl: 6}"
       :content-column-bindings="{ cols: 12, md: 5 }"
     )
@@ -46,18 +49,13 @@
       :content="multiplePanel"
       :title-classes="headerClasses"
     )
+    call-to-action(:version="4")
     care
     steps(:steps="stepsContent")
     storybrand(
       title="Using Modern Tools to Boost Your Practice"
       :content="storybrandContent"
     )
-    //- 5th panel
-    pricing(
-      type="clinic"
-      title="Take the first step today."
-    )
-    call-to-action(:version="4")
     //- 9th panel
     div.info.mx-n3
       v-container
@@ -67,12 +65,17 @@
               h2(:class="['white--text', ...headerClasses]").mb-5 Start easy. Take the first step today.
               signup-button(
                 depressed
-                rounded
-                width="228px"
-                height="59px"
+                class="rounded-pill"
+                :width="!$isWideScreen ? '228px' : '300'"
+                :height="!$isWideScreen ? '59px' : '73.68'"
                 color="success"
               ).text-none
                 span.generic-button-text Count me in
+    //- 5th panel
+    pricing(
+      type="clinic"
+      title="Take the first step today."
+    )
 </template>
 
 <script>
@@ -123,7 +126,7 @@ export default {
         description: 'With strict laws and heavy penalties on data privacy and security, storing and management of employee health records have to be compliant.',
         imageBindings: {
           image: 'Non-Compliance.png',
-          mobileImage: 'Non-compliance.png',
+          mobileImage: 'Non-Compliance.png',
           imageAlt: 'Data privacy breach',
           customPath: 'clinics/corporate/',
           extensionExclusive: true,

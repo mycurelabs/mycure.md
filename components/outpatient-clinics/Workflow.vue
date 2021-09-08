@@ -15,9 +15,9 @@
                 event-category="Video"
                 color="success"
                 depressed
-                rounded
-                width="228px"
-                height="59px"
+                  class="rounded-pill"
+                  :width="!$isWideScreen ? '228px' : '300'"
+                  :height="!$isWideScreen ? '59px' : '73.68'"
                 @click="videoDialog = true"
               ).text-none.mb-10
                 v-icon(left) mdi-play-circle

@@ -11,6 +11,9 @@
       btn-text="Sign Up"
       image="OFW Clinics Mobile"
       custom-image-path="clinics/ofw/"
+      parse-title
+      parse-meta-title
+      :parse-title-fields="['only ', 'for ']"
       :media-column-bindings="{ cols: 12, md: 6, offsetMd: 1, xl: 6}"
       :content-column-bindings="{ cols: 12, md: 5 }"
     )
@@ -34,10 +37,12 @@
             //- TODO: Add explicit width and height
             picture-source(
               image-alt="Sample report in MYCURE Clinic Management System"
-              image-file-extension=".webp"
+              image-file-extension=".png"
+              extension-exclusive
               custom-path="clinics/ofw/"
               image="Beautiful reports"
             )
+    //- h1.text-center.my-16 Design your own packages panel (placeholder)
     //- 4th panel
     generic-media-panel(
       :content="queuePanel"
@@ -91,10 +96,9 @@
           v-col(cols="10" sm="5" md="7" lg="6" xl="7")
             signup-button(
               depressed
-              rounded
-              block
-              width="228px"
-              height="59px"
+              class="rounded-pill"
+              :width="!$isWideScreen ? '228px' : '300'"
+              :height="!$isWideScreen ? '59px' : '73.68'"
               color="success"
             ).text-none
               v-icon(left) mdi-web
@@ -136,8 +140,10 @@
               h3(:class="descriptionClasses").mb-5.font-weight-semibold Start now and get all your questions answered
               mc-btn(
                 color="success"
+                class="rounded-pill"
+                :width="!$isWideScreen ? '228px' : '300'"
+                :height="!$isWideScreen ? '59px' : '73.68'"
                 depressed
-                rounded
                 :large="!$isWideScreen"
                 :x-large="$isWideScreen"
                 :class="btnClasses"
@@ -220,8 +226,8 @@ export default {
           mobileImage: 'Queue-mobile.png',
           imageAlt: 'Registration kiosk in MYCURE Clinic Management System',
           extensionExclusive: true,
-          width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
-          height: this.$isMobile ? '298.88px' : (this.$isRegularScreen ? '498.19px' : '768.94px'),
+          width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '440px' : '710px'),
+          height: this.$isMobile ? '298.88px' : (this.$isRegularScreen ? '476.53px' : '768.94px'),
         },
       };
     },
@@ -258,8 +264,8 @@ export default {
           customPath: 'commons/',
           image: 'Expand your reach.webp',
           imageAlt: 'Man browsing a clinic website',
-          width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
-          height: this.$isMobile ? '242.88px' : (this.$isRegularScreen ? '404.79px' : '624.8px'),
+          width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '440px' : '710px'),
+          height: this.$isMobile ? '242.88px' : (this.$isRegularScreen ? '387.19px' : '624.8px'),
         },
       };
     },
@@ -274,8 +280,8 @@ export default {
           imageAlt: 'Doctor with hourglass and downhill chart in monitor',
           customPath: 'clinics/ofw/',
           extensionExclusive: true,
-          width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
-          height: this.$isMobile ? '184.14px' : (this.$isRegularScreen ? '306.92px' : '473.72px'),
+          width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '440px' : '710px'),
+          height: this.$isMobile ? '184.14px' : (this.$isRegularScreen ? '293.58px' : '473.72px'),
         },
       };
     },

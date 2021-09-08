@@ -19,10 +19,10 @@
                 mc-btn(
                   color="success"
                   depressed
-                  rounded
                   :block="![2, 4].includes(version)"
-                  :width="(version === 2 || version === 4) ? '228px' : '' "
-                  height="59px"
+                  :width="(version === 2 || version === 4) ? (!$isWideScreen ? '228px' : '300') : '' "
+                  class="rounded-pill"
+                  :height="!$isWideScreen ? '59px' : '73.68'"
                   :href="'https://calendly.com/mycure/demo'"
                 ).text-none
                   span.generic-button-text {{ ![2, 4].includes(version) ? 'Book a full training' : 'Start Now' }}
@@ -31,9 +31,9 @@
                 event-label="signup"
                 color="success"
                 depressed
-                rounded
                 block
-                height="59px"
+                class="rounded-pill"
+                :height="!$isWideScreen ? '59px' : '73.68'"
                 :outlined="![2, 4].includes(version)"
               ).text-none
                 span.generic-button-text {{notFree ? 'Get Started' : 'Get Started Free'}}
@@ -101,8 +101,8 @@ export default {
         image: 'Let us do the work.webp',
         imageAlt: 'Hospital and smartphone artwork',
         customPath: 'commons/',
-        width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
-        height: this.$isMobile ? '181.8px' : (this.$isRegularScreen ? '303px' : '467.65px'),
+        width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '440px' : '710px'),
+        height: this.$isMobile ? '181.8px' : (this.$isRegularScreen ? '289.83px' : '467.65px'),
       };
     },
     callToActionPanel () {

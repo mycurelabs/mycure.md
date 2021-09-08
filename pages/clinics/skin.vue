@@ -9,6 +9,9 @@
       meta-title="MYCURE for Skin Clinics"
       image="Skin Clinics USP Mobile"
       custom-image-path="clinics/skin/"
+      parse-title
+      parse-meta-title
+      :parse-title-fields="['for ', 'Aesthetic ']"
       :media-column-bindings="{ cols: 12, md: 6, offsetMd: 1, xl: 6}"
       :content-column-bindings="{ cols: 12, md: 5 }"
     )
@@ -19,9 +22,9 @@
           target="_blank"
           rel="noopener noreferrer"
           depressed
-          rounded
-          width="228px"
-          height="59px"
+          class="rounded-pill"
+          :width="!$isWideScreen ? '228px' : '300'"
+          :height="!$isWideScreen ? '59px' : '73.68'"
         ).text-none
           span.generic-button-text Book a demo today
     stakes(
@@ -50,9 +53,9 @@
         div(:class="{ 'text-center': $isMobile }")
           signup-button(
             depressed
-            rounded
-            width="228px"
-            height="59px"
+            class="rounded-pill"
+            :width="!$isWideScreen ? '228px' : '300'"
+            :height="!$isWideScreen ? '59px' : '73.68'"
             color="success"
           ).text-none.font-s
             span.generic-button-text Get Started
@@ -79,9 +82,9 @@
         div(:class="{ 'text-center': $isMobile }")
           signup-button(
             depressed
-            rounded
-            width="228px"
-            height="59px"
+            class="rounded-pill"
+            :width="!$isWideScreen ? '228px' : '300'"
+            :height="!$isWideScreen ? '59px' : '73.68'"
             color="success"
           ).text-none
             v-icon(left) mdi-web
@@ -89,7 +92,6 @@
 
     //- 5th panel
     generic-media-panel(
-      align="center"
       :content="fifthPanel"
       :title-classes="[...headerClasses, 'primary--text']"
     )
@@ -101,9 +103,9 @@
             target="_blank"
             rel="noopener noreferrer"
             depressed
-            rounded
-            width="228px"
-            height="59px"
+            class="rounded-pill"
+            :width="!$isWideScreen ? '228px' : '300'"
+            :height="!$isWideScreen ? '59px' : '73.68'"
           ).text-none
             span.generic-button-text Get Started
 
@@ -221,8 +223,9 @@ export default {
       return {
         contentAlign: 'left',
         imageBindings: {
-          image: 'Beautiful User experience.webp',
+          image: 'Beautiful User experience.png',
           imageAlt: 'Body diagram in a tablet',
+          extensionExclusive: true,
           customPath: 'clinics/skin/',
           width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
           height: this.$isMobile ? '305.91px' : (this.$isRegularScreen ? '508.96px' : '785.58px'),
@@ -238,8 +241,8 @@ export default {
           customPath: 'commons/',
           image: 'Expand your reach.webp',
           imageAlt: 'Man browsing a clinic website',
-          width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
-          height: this.$isMobile ? '242.88px' : (this.$isRegularScreen ? '404.79px' : '624.8px'),
+          width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '440px' : '710px'),
+          height: this.$isMobile ? '242.88px' : (this.$isRegularScreen ? '387.19px' : '624.8px'),
         },
         list: [
           'Acquire patients beyond your reach',
@@ -260,7 +263,7 @@ export default {
           extensionExclusive: true,
           imageAlt: 'Charts and graphs',
           width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
-          height: this.$isMobile ? '206.56px' : (this.$isRegularScreen ? '260.08px' : '401.41px'),
+          height: this.$isMobile ? '156.05px' : (this.$isRegularScreen ? '260.08px' : '401.41px'),
         },
       };
     },
@@ -275,8 +278,8 @@ export default {
           imageAlt: 'Doctor listening to patient feedback',
           customPath: 'clinics/skin/',
           extensionExclusive: true,
-          width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '460px' : '710px'),
-          height: this.$isMobile ? '139.59px' : (this.$isRegularScreen ? '344.27px' : '531.38px'),
+          width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '440px' : '710px'),
+          height: this.$isMobile ? '206.56px' : (this.$isRegularScreen ? '329.3px' : '531.38px'),
         },
       };
     },
