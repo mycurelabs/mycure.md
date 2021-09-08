@@ -59,6 +59,7 @@
         :content="integrationsPanel"
         hide-btn
         align="center"
+        :super-title-classes="['mc-content-set-1', 'font-open-sans', 'font-weight-semibold', 'primary--text']"
       )
         template(slot="content")
           v-row(justify="start")
@@ -100,6 +101,7 @@
     generic-media-panel(
       :content="cmsPanel"
       align="center"
+      :super-title-classes="['mc-content-set-1', 'font-open-sans', 'font-weight-semibold', 'primary--text']"
     )
       template(slot="cta-button")
         div(:class="{'text-center': $isMobile}")
@@ -264,7 +266,7 @@ export default {
       return {
         contentAlign: 'left',
         title: 'Ready whenever you are',
-        superTitle: 'POWERFUL INTEGRATIONS',
+        superTitle: 'Powerful Integrations',
         list: [
           {
             title: 'HL7',
@@ -301,7 +303,7 @@ export default {
     cmsPanel () {
       return {
         title: 'Grow into a full service clinic anytime',
-        superTitle: 'MYCURE CLINIC MANAGEMENT SYSTEM',
+        superTitle: 'MYCURE Clinic Management System',
         description: 'Cover all your patient journeys with MYCURE’s most complete clinic management system.',
         imageBindings: {
           image: 'FullService.webp',

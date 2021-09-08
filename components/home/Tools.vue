@@ -3,7 +3,7 @@
     v-row(justify="center")
       generic-panel(:row-bindings="{ justify: 'center' }")
         v-col(cols="12" md="12").text-center
-          p(:class="subheaderClasses").primary--text.font-open-sans.font-weight-bold Customizable based on what you need
+          p(:class="subheaderClasses").primary--text.font-open-sans.font-weight-semibold Customizable based on what you need
           h2(:class="headerClasses").font-weight-semibold.mb-3.title-line-spacing Flexible. Scalable.
           v-row(justify="center")
             v-col(cols="12" md="6").text-center

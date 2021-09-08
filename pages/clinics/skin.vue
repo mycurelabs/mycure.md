@@ -48,7 +48,7 @@
       template(slot="content")
         h2(:class="headerClasses" text-align) Beautiful user experience!
         br
-        h2(:class="subHeaderClasses") You won't feel like you are at work.
+        span(:class="descriptionClasses") You won't feel like you are at work.
       template(slot="cta-button")
         div(:class="{ 'text-center': $isMobile }")
           signup-button(

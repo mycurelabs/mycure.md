@@ -17,7 +17,7 @@
                   alt="MYCURE logo"
                   width="120px"
                   height="34.46px"
-                ).mt-1.mr-1
+                ).mt-1.mr-4
               template(v-if="!$isMobile")
                 template(v-for="(nav, key) in navs")
                   v-menu(v-if="nav.isMenu" offset-y)
@@ -36,6 +36,7 @@
                         v-for="(item, key) in nav.menuItems"
                         :key="key"
                         :to="{ name: item.route }"
+                        exact-path
                       )
                         v-list-item-title {{ item.name }}
                   v-btn(
@@ -101,6 +102,7 @@
                 :key="key"
                 dense
                 link
+                exact-path
                 :to="{ name: item.route }"
               )
                 v-list-item-title(dark) {{ item.name }}

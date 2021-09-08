@@ -72,7 +72,7 @@ export default {
       },
     ];
     this.titleClasses = ['mc-title-set-1', 'font-weight-semibold'];
-    this.descriptionClasses = ['mc-content-set-1', 'secondary--text', 'font-weight-semibold'];
+    this.descriptionClasses = ['mc-content-set-1', 'font-open-sans', 'font-gray'];
     this.btnClasses = ['mc-button-set-1'];
     return {
       videoDialog: false,

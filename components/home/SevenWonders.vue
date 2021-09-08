@@ -2,7 +2,7 @@
   div.mx-n3.mt-n5.main-container
     div
       picture-source(
-        image-file-extension=".webp"
+        image-file-extension=".png"
         image="Homepage USP BG"
         image-alt="Bushes and clouds background artwork"
         custom-path="home/"

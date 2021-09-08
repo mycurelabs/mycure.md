@@ -13,7 +13,7 @@
                 picture-source(
                   extension-exclusive
                   custom-path="commons/"
-                  :image="index + 1"
+                  :image="(index + 1).toString()"
                   image-alt="Steps number"
                   image-file-extension=".png"
                   :image-width="(index === 0) ? ($isWideScreen ? '66' : '46.52') : ($isWideScreen ? '117' : '82')"
