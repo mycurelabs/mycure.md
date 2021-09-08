@@ -95,7 +95,7 @@ export default {
       return `${process.env.WEB_MAIN_URL}/doctors/${username}`;
     },
     fullNameWithSuffixes () {
-      if (!this.doctor) return '';
+      if (!this.doctor?.name) return '';
       let fullName = this.doctor.name.firstName;
       if (this.doctor.name.middleInitial) fullName = fullName + ' ' + this.doctor.name.middleInitial;
       fullName = fullName + ' ' + this.doctor.name.lastName;
