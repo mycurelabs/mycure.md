@@ -235,7 +235,7 @@ export default {
     composeTags (serviceType, specializations) {
       const tags = [];
       if (serviceType) {
-        tags.push(`sto:${serviceType}`);
+        tags.push(`sto:${['lab', 'imaging'].includes(serviceType) ? 'diagnostic/' : ''}${serviceType}`);
       }
       if (specializations?.length) {
         specializations.map(s => tags.push(`spc:${s.replace(/\s+/g, '-').toLowerCase()}`));
