@@ -16,6 +16,7 @@
               //- clinics-org-search-bar(
               directory-search-bar(
                 require-action
+                show-suggestions
                 :mode="searchMode"
                 :location="location"
                 @search="onSearch($event)"
@@ -36,7 +37,7 @@
           v-row(justify="center")
             v-col(cols="10").py-0
               p.py-3
-                | We need your location to give you a better experience
+                | Find the nearest health facility to where you are now.
           v-row(justify="center")
             v-col(cols="10").py-0
               v-row(justify="center")

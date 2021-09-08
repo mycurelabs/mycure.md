@@ -22,16 +22,21 @@
               v-switch(v-model="locationSwitch" inset).ml-3
         v-row.pt-2
           v-col.pa-0
-            v-text-field(
+            //- Combobox has return-object triggered by default
+            v-combobox(
               v-model="searchObject.searchString"
               :placeholder="searchPlaceholder"
               solo
               outlined
               flat
               clearable
+              :items="suggestionEntries"
+              item-text="name"
               :height="$isMobile ? '40px' : '60px'"
+              :return-object="false"
               @keyup.enter="onSearch(true)"
               @click:clear="clearSearchText"
+              @update:search-input="handleDebouncedSearch($event)"
             ).rounded-bl-lg.rounded-tl-lg
           v-col(cols="1").pa-0
             v-btn(
@@ -89,19 +94,21 @@
 </template>
 
 <script>
+import debounce from 'lodash/debounce';
+import { unifiedDirectorySearch } from '~/services/unified-directory';
 import SPECIALTIES from '~/assets/fixtures/specialties';
 export default {
-  components: {
-  },
   props: {
+    // - If button needs to be clicked before search can proceed
     requireAction: {
       type: Boolean,
       default: false,
     },
-    // showSuggestions: {
-    //   type: Boolean,
-    //   default: false,
-    // },
+    // - If suggested results should be shown
+    showSuggestions: {
+      type: Boolean,
+      default: false,
+    },
     // Search Mode
     mode: {
       type: String,
@@ -129,7 +136,9 @@ export default {
     ];
     this.specialtiesList = SPECIALTIES;
     return {
-      loading: false,
+      loading: {
+        initial: true,
+      },
       deleteTag: {
         removeIndex: undefined,
       },
@@ -142,13 +151,9 @@ export default {
         serviceType: null,
         location: null,
       },
-      // docSuggestionsSearchQuery: null,
-      // docSearchLocation: null,
-      // doctorsSuggestions: [],
-      // selectedSuggestion: null,
-      // debouncedSuggestionsSearch: debounce((event) => {
-      //   this.handleSuggestions(event);
-      // }, 500),
+      suggestionEntries: [],
+      debouncedResultsSearch: debounce((event) => { this.onSearch(true, event); }, 500),
+      debouncedSuggestionsSearch: debounce(this.searchSuggestions, 500),
     };
   },
   computed: {
@@ -186,6 +191,7 @@ export default {
     },
   },
   mounted () {
+    this.loading.initial = false;
     this.searchObject.mode = this.selectedMode;
     // Load Route data
     const { specializations, serviceType } = this.$route.params;
@@ -201,11 +207,13 @@ export default {
     },
     /**
      * @param {Boolean} allowableSearch - if true, continue with search regardless of action requirement
-     *
      * An action requirement is usually a trigger through button or enter key
+     * @param {String} customSearchText - for passing a custom search text value
+     * Usually used for debouncing purposes, because it does not update `searchObject.searchString` on its own.
      */
-    onSearch (allowableSearch = false) {
+    onSearch (allowableSearch = false, customSearchText) {
       if (!allowableSearch && this.requireAction) return;
+      if (customSearchText) this.searchObject.searchString = customSearchText;
       this.searchObject.mode = this.selectedMode;
       this.searchObject.location = this.location;
       console.log('searchObject', this.searchObject);
@@ -222,6 +230,49 @@ export default {
     //     console.error(e);
     //   }
     // },
+    /**
+     * HandleDebouncedSearch
+     *
+     * There are two scenarios in handling:
+     * A.
+     * Displaying the results in the combobox dropdown
+     * This is usually used in the landing page of the directory
+     *
+     * or
+     *
+     * B.
+     * Displaying the results in the directory list as you type
+     * Used for results page
+     *
+     * Both scenarios are exclusive depending on the values of
+     * `showSuggestions` and `requireAction` props.
+     */
+    handleDebouncedSearch (searchText) {
+      if (this.loading.initial && !searchText) return;
+      // For A
+      if (searchText && this.showSuggestions) {
+        this.debouncedSuggestionsSearch(searchText);
+        return;
+      }
+      // For B
+      if (!this.requireAction) {
+        if (!searchText) {
+          this.clearSearchText();
+          return;
+        }
+        this.debouncedResultsSearch(searchText);
+      }
+    },
+    async searchSuggestions (searchText) {
+      // - If location is selected, only places within that location will be suggested
+      const query = {
+        text: searchText,
+        limit: 10,
+        type: this.selectedMode,
+      };
+      const { items } = await unifiedDirectorySearch(this.$sdk, query);
+      this.suggestionEntries = items || [];
+    },
     clearSearchText () {
       this.searchObject.searchString = null;
       this.onSearch();

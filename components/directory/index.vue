@@ -168,8 +168,6 @@ export default {
         this.entriesTotal = total;
         const entryItems = items || [];
 
-        this.entries = entryItems;
-
         VueScrollTo.scrollTo('#resultsSection', 500, { easing: 'ease' });
 
         // - Fetch Account details
@@ -234,6 +232,7 @@ export default {
       return tags;
     },
     onPagination (page) {
+      if (page === this.entriesPage) return;
       this.search({
         searchText: this.searchText,
         serviceType: this.serviceType,

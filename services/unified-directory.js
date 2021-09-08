@@ -34,7 +34,7 @@ export const unifiedDirectorySearch = async (sdk, opts) => {
     $search: opts.text,
     ...opts.tags?.length && { tags: opts.tags },
     type: opts.type,
-    $limit: opts.limit,
+    $limit: opts.limit || 10,
     $skip: opts.skip,
     $total: true,
   };
