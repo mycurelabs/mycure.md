@@ -70,6 +70,7 @@ export default {
       loading: {
         page: true,
         results: false,
+        location: false,
       },
       // Snack Bar
       showSnack: false,
@@ -85,8 +86,12 @@ export default {
       searchText: null,
       specializationFilters: [],
       serviceType: null,
+      // === Location ====
+      // - Whole location data
+      locationData: null,
+      // - Coordinates
       location: null,
-      // Pagination
+      // === Pagination ====
       entriesTotal: 0,
       entriesPage: 1,
       entriesLimit: 12,
@@ -170,6 +175,12 @@ export default {
 
         VueScrollTo.scrollTo('#resultsSection', 500, { easing: 'ease' });
 
+        // If no items fetched, clear
+        if (!this.entriesTotal) {
+          this.entries = [];
+          return;
+        }
+
         // - Fetch Account details
         if (this.searchMode === 'account' && entryItems.length) {
           const entryPromises = entryItems.map(async (entry) => {
@@ -240,28 +251,38 @@ export default {
         location: this.location,
       }, page);
     },
-    onLocationSwitchUpdate (val) {
+    async onLocationSwitchUpdate (val) {
       if (!val) this.location = null;
+      if (val && !this.location) await this.getLocation();
       this.search({
+        searchText: this.searchText,
         serviceType: this.serviceType,
         specializations: this.specializationFilters,
         location: this.location,
       });
     },
-    async fetchMunicipalities () {
+    async getLocation () {
       try {
-        const { items } = await this.$sdk.service('fixtures').find({ type: 'address-province' });
-        this.municipalityList = items || [];
-      } catch (error) {
-        console.error(error);
+        this.loading.results = true;
+        await this.$getLocation()
+          .then((coordinates) => {
+            this.coordinates = coordinates;
+          });
+        if (this.coordinates) {
+          this.location = {
+            lat: this.coordinates.lat,
+            lng: this.coordinates.lng,
+          };
+          console.log('fetched location', this.location);
+        }
+      } catch (e) {
+        console.error(e);
+        this.enqueueSnack({
+          color: 'error',
+          message: 'Failed to retrieve your location',
+        });
       }
     },
-    // clearOrganizationResults () {
-    //   this.orgsSearchQuery = '';
-    //   this.entriesPage = 1;
-    //   this.fetchDoctors();
-    //   this.searchQuery = null;
-    // },
     enqueueSnack ({ color, message }) {
       this.snackbarModel.color = color;
       this.snackbarModel.text = message;
