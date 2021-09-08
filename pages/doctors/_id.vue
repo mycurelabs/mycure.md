@@ -165,11 +165,7 @@ export default {
       return this.mode === 'preview';
     },
     picURL () {
-      const sex = this.doctor?.sex;
-      if (sex === 'female') {
-        return this.doctor?.picURL || require('~/assets/images/doctor-website/doctor-website-profile-female.png');
-      }
-      return this.doctor?.picURL || require('~/assets/images/doctor-website/doctor-website-profile-male.png');
+      return this.doctor?.picURL || require('~/assets/images/commons/MYCURE Default Avatar.png');
     },
     name () {
       return this.doctor?.name || {};
