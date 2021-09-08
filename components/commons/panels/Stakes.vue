@@ -3,9 +3,9 @@
     v-container(v-if="version !== 3")
       v-row(justify="center" align="center")
         generic-panel(:row-bindings="{ justify: 'center' }")
-          v-col(cols="12").py-16
+          v-col(cols="12").py-16.px-0
             v-row(justify="center").mb-10
-              v-col(cols="11" :sm="version === 2 ? 7 : 11")
+              v-col(cols="12" :sm="version === 2 ? 7 : 11")
                 div.text-center
                   p(:class="{'primary--text': version === 2}").mc-title-set-1.font-weight-semibold.mb-0.mb-4 {{ panelTitle }}
                   p(v-if="version === 2").mc-content-set-1.mb-0.font-gray {{ subTitle }}
@@ -27,7 +27,7 @@
                       p.mc-content-set-1.font-gray {{ content.rightDescription }}
                 div(v-else)
                   v-row(justify="center")
-                    v-col(cols="10")
+                    v-col(cols="12")
                       span.primary--text.mc-title-set-2.font-weight-bold {{ content.leftTitle }}
                       p.mc-list-content-set-1.font-gray {{ content.leftDescription }}
                       span.primary--text.mc-title-set-2.font-weight-bold {{ content.rightTitle }}
@@ -36,7 +36,7 @@
             //- version 2
             div(v-if="version === 2").font-open-sans
               v-row(justify="center")
-                v-col(cols="10")
+                v-col(cols="12" sm="10")
                   v-row(justify="start")
                     v-col(v-for="(content, index) in contents" :key="index" cols="12" sm="6")
                       v-row(justify="start").pr-1
@@ -55,7 +55,7 @@
                     p.mc-content-set-1.font-gray {{ content.description }}
             footer
             v-row(justify="center" :class="{'mt-10': version !== 4}")
-              v-col(cols="11")
+              v-col(cols="12" sm="11")
                 p(:class="{'text-center': version === 1}").mc-content-set-1.font-gray.font-open-sans {{ panelDescription }}
             v-row(justify="center")
               //- v-btn(

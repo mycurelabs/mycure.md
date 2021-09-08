@@ -102,6 +102,7 @@
                 :key="key"
                 dense
                 link
+                exact-path
                 :to="{ name: item.route }"
               )
                 v-list-item-title(dark) {{ item.name }}

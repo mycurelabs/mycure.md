@@ -3,7 +3,7 @@
     v-container
       v-row(justify="center")
         generic-panel
-          v-col(cols="12").text-center
+          v-col(cols="12" :class="{'py-16': !$isMobile}").text-center
             iframe(
               align="middle"
               id="ytplayer"
@@ -42,14 +42,14 @@ export default {
 <style scoped>
 .video-bg {
   /* height: 1000px; */
-  width: 100vw;
-  background-image: url('../../assets/images/telehealth/Telehealth Video Banner.png');
-  background-position: center center;
-  background-size: 100% 100%;
+  background-image: url('~/assets/images/commons/MYCURE - Video Banner BG.webp');
+  background-position: center bottom;
+  background-size: 100%;
 }
 .video-bg-mobile {
   /* height: 1000px; */
-  background-image: url('../../assets/images/telehealth/Telehealth Video Banner.png');
-  background-position: center top;
+  background-image: url('~/assets/images/commons/MYCURE - Video Banner BG.webp');
+  background-position: center center;
+  height: 100%;
 }
 </style>
