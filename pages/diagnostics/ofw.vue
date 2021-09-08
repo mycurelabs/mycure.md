@@ -66,6 +66,7 @@
         :content="integrationsPanel"
         hide-btn
         align="center"
+        :super-title-classes="['mc-content-set-1', 'font-open-sans', 'font-weight-semibold', 'primary--text']"
       )
         template(slot="content")
           v-row(justify="start")
@@ -235,7 +236,7 @@ export default {
       return {
         contentAlign: 'left',
         title: 'Ready whenever you are',
-        superTitle: 'POWERFUL INTEGRATIONS',
+        superTitle: 'Powerful Integrations',
         list: [
           {
             title: 'HL7',

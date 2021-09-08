@@ -41,7 +41,7 @@
                     v-col(v-for="(content, index) in contents" :key="index" cols="12" sm="6")
                       v-row(justify="start").pr-1
                         v-col(cols="1" :class="!$isMobile ? 'pa-0' : ['pl-0', 'pt-0']")
-                          v-icon(:large="$isWideScreen" color="primary") mdi-check-circle
+                          v-icon(:large="$isWideScreen" color="primary" :class="{'mt-2': $isWideScreen}").mdi-check-circle
                         v-col(:class="!$isMobile ? 'pa-0' : ['pr-0', 'pt-0']")
                           span.font-gray.mc-list-content-set-1 {{ content }}
             div(v-if="version === 4").font-open-sans

@@ -8,7 +8,7 @@
         v-col(cols="12").pa-0
           v-row(justify="center")
             v-col(cols="12").text-center
-              h4.mc-content-set-1.primary--text.font-open-sans MYCURE TESTIMONIALS
+              h4.mc-content-set-1.primary--text.font-open-sans.font-weight-semibold MYCURE Testimonials
               span.font-weight-semibold.mc-title-set-1 {{ isBooking ? 'What Our Clients are Saying' : 'What do our Doctors say?' }}
 
           v-row(justify="center").mt-5.mb-10

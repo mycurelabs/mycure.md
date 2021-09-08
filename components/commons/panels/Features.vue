@@ -3,7 +3,7 @@
     v-row(justify="center" align="center")
       generic-panel(:row-bindings="{ justify: 'center' }")
         v-col(cols="12" :md="titleColSize").text-center
-          strong(v-if="metaTitle" :class="metaTitleClasses").primary--text {{ metaTitle }}
+          span(v-if="metaTitle" :class="metaTitleClasses").primary--text {{ metaTitle }}
           slot(name="title")
             h2(:class="titleClasses").lh-title.font-weight-semibold {{ title }}
         v-col(cols="12" :md="contentColSize").text-center.py-3
@@ -124,7 +124,7 @@ export default {
   data () {
     this.titleClasses = ['mc-title-set-1', { 'primary--text': this.primaryTitle }];
     this.descriptionClasses = ['mc-content-set-1'];
-    this.metaTitleClasses = ['mc-metatitle-set-1'];
+    this.metaTitleClasses = ['mc-content-set-1', 'font-open-sans', 'font-weight-semibold'];
     return {};
   },
   computed: {

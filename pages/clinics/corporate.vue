@@ -48,6 +48,7 @@
       hide-btn
       :content="multiplePanel"
       :title-classes="headerClasses"
+      :super-title-classes="['mc-content-set-1', 'font-open-sans', 'font-weight-semibold', 'primary--text']"
     )
     call-to-action(:version="4")
     care
@@ -192,7 +193,7 @@ export default {
   computed: {
     multiplePanel () {
       return {
-        superTitle: 'FOR MULTI-BRANCH FACILITIES',
+        superTitle: 'For Multi-Branch Facilities',
         title: 'One view for multiple locations',
         description: 'All you need is one clean dashboard to see how your clinics are faring. Critical data from your multiple branches are beautifully compiled to show you a comprehensive summary of patient encounters, transactions, sales, expenses and even staff performance.',
         contentAlign: 'left',
