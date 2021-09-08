@@ -15,10 +15,10 @@
                 div(v-if="!$isMobile")
                   v-row(justify="center")
                     v-col(cols="5").pb-0
-                      span.primary--text.mc-content-set-1.font-weight-semibold {{ content.leftTitle }}
+                      span.primary--text.mc-title-set-2.font-weight-bold {{ content.leftTitle }}
                     v-col(cols="1").pb-0
                     v-col(cols="5").pb-0
-                      span.primary--text.mc-content-set-1.font-weight-semibold {{ content.rightTitle }}
+                      span.primary--text.mc-title-set-2.font-weight-bold {{ content.rightTitle }}
                   v-row(justify="center")
                     v-col(cols="5")
                       p.mc-content-set-1.font-gray {{ content.leftDescription }}
@@ -28,9 +28,9 @@
                 div(v-else)
                   v-row(justify="center")
                     v-col(cols="10")
-                      span.primary--text.mc-content-set-1.font-weight-semibold {{ content.leftTitle }}
+                      span.primary--text.mc-title-set-2.font-weight-bold {{ content.leftTitle }}
                       p.mc-list-content-set-1.font-gray {{ content.leftDescription }}
-                      span.primary--text.mc-content-set-1.font-weight-semibold {{ content.rightTitle }}
+                      span.primary--text.mc-title-set-2.font-weight-bold {{ content.rightTitle }}
                       p.mc-list-content-set-1.font-gray {{ content.rightDescription }}
 
             //- version 2
@@ -50,7 +50,7 @@
                   picture-source(
                     v-bind="getImageBindings(content.imageBindings)"
                   )
-                  p.mc-title-set-2.font-weight-semibold {{ content.title }}
+                  p(:class="$isWideScreen ? 'mt-8' : 'mt-4'").mc-title-set-2.font-weight-bold {{ content.title }}
                   div.px-5
                     p.mc-content-set-1.font-gray {{ content.description }}
             footer

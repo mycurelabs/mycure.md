@@ -36,20 +36,21 @@
                   depressed
                   tile
                   block
-                  :x-large="!$isMobile"
-                  :outlined="reportType !== 'imaging'"
+                  :height="$isMobile ? '36' : $isRegularScreen ? '52' : '75'"
                   @click="reportType = 'imaging'"
-                ).text-none Imaging
+                ).text-none
+                  span.mc-button-set-1 Imaging
               v-col(cols="6" md="3").pa-0
                 v-btn(
                   color="primary"
                   depressed
                   tile
                   block
-                  :x-large="!$isMobile"
+                  :height="$isMobile ? '36' : $isRegularScreen ? '52' : '75'"
                   :outlined="reportType !== 'lab'"
                   @click="reportType = 'lab'"
-                ).text-none Laboratory
+                ).text-none
+                  span.mc-button-set-1 Laboratory
             br
             br
             v-tabs-items(v-model="reportType")
@@ -124,7 +125,7 @@
           generic-panel(:row-bindings="{ justify: 'center' }")
             v-col(cols="12").white--text.text-center
               h2(:class="['white--text', ...headerClasses]").mb-5 Take the first step today
-              p(:class="descriptionClasses").white--text.font-weight-semibold.mb-5 Start now and get all your questions answered.
+              p(:class="descriptionClasses").white--text.mb-5 Start now and get all your questions answered.
               signup-button(
                 depressed
                 class="rounded-pill"

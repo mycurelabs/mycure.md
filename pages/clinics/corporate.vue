@@ -39,9 +39,10 @@
       v-container
         v-row(justify="center")
           generic-panel(:row-bindings="{ justify: 'center' }")
-            v-col(cols="12" lg="8" xl="6").white--text
-              h2(:class="headerClasses").mb-10.text-center.white--text Know the health status of your employees, stat!
-              h3.mc-content-set-1.mb-10.font-weight-semibold.white--text.text-center Easily access and share medical records with them through the MYCURE health portal.
+            v-col(cols="12" lg="8").white--text
+              h2(:class="headerClasses").mb-8.text-center.white--text Know the health status of your employees, stat!
+              div.text-center
+                span.mc-content-set-1.mb-10.white--text Easily access and share medical records with them through the MYCURE health portal.
     //- 4th panel
     generic-media-panel(
       align="center"

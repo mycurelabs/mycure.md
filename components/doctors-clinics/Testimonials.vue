@@ -19,7 +19,7 @@
                 v-card-text
                   v-col(cols="12")
                     v-icon(:large="$vuetify.breakpoint.width > 1024" :x-large="$isWideScreen" color="primary").mb-3 mdi-format-quote-open
-                    p.font-weight-light.mc-metatitle-set-1.font-open-sans “MYCURE fulfills a long time need of physicians for accurate records of patients which they can carry with them wherever they are. It enables them also to prescribe and countercheck their prescriptions, issue medical certificate, communicate with other doctors for referrals. Patients could check and follow their medical progress, check their medications and look for doctors anywhere and set up appointments. I look forward to enjoying this app to improve my practice.”
+                    p.font-weight-light.mc-metatitle-set-1.font-open-sans MYCURE fulfills a long time need of physicians for accurate records of patients which they can carry with them wherever they are. It enables them also to prescribe and countercheck their prescriptions, issue medical certificate, communicate with other doctors for referrals. Patients could check and follow their medical progress, check their medications and look for doctors anywhere and set up appointments. I look forward to enjoying this app to improve my practice.
                     v-row(align="center")
                       v-col(cols="3")
                         //- v-icon(large) mdi-circle
@@ -40,7 +40,7 @@
                 v-card-text
                   v-col(cols="12")
                     v-icon(:large="$vuetify.breakpoint.width > 1024" :x-large="$isWideScreen" color="primary").mb-3 mdi-format-quote-open
-                    p.font-weight-light.mc-metatitle-set-1.font-open-sans “It's a great experience using MYCURE app in our rural setup. I've been through many EMR apps, but this one is the best so far. MYCURE provides a well organized patient data profiling with customized options for personalized encoding and with integration of lab tests, immunizations as well as growth charts that are very important for us as pediatricians for growth monitoring of our little ones. It is very convenient to use, simple, adaptable and user friendly even to my secretary.”
+                    p.font-weight-light.mc-metatitle-set-1.font-open-sans It's a great experience using MYCURE app in our rural setup. I've been through many EMR apps, but this one is the best so far. MYCURE provides a well organized patient data profiling with customized options for personalized encoding and with integration of lab tests, immunizations as well as growth charts that are very important for us as pediatricians for growth monitoring of our little ones. It is very convenient to use, simple, adaptable and user friendly even to my secretary.
                     v-row(align="center")
                       v-col(cols="3")
                         //- v-icon(large) mdi-circle
