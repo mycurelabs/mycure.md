@@ -33,27 +33,6 @@
           div(:class="textFontSize").info-text.mt-1
             span(v-if="doctor.address") &nbsp;{{ address }}
             span(v-else) &nbsp;-
-        //- v-row(justify="start").pt-3
-        //-   v-btn(
-        //-     color="success"
-        //-     target="_blank"
-        //-     rel="noopener noreferrer"
-        //-     small
-        //-     rounded
-        //-     :href="doctorWebsite"
-        //-   ).text-none.elevation-0.font-weight-light.ma-1.font-10
-        //-     v-icon(:x-small="!$isMobile") mdi-stethoscope
-        //-     b &nbsp;Teleconsult
-        //-   v-btn(
-        //-     color="primary"
-        //-     target="_blank"
-        //-     rel="noopener noreferrer"
-        //-     small
-        //-     rounded
-        //-     :href="doctorWebsite"
-        //-   ).text-none.elevation-0.font-weight-light.ma-1.font-10
-        //-     v-icon(:x-small="!$isMobile") mdi-calendar
-        //-     b &nbsp;Book a Visit
     v-col
       v-row(justify="end")
         v-btn(
@@ -62,6 +41,7 @@
           rel="noopener noreferrer"
           :small="!$isWideScreen"
           rounded
+          :disabled="!hasDoctorWebsite"
           :href="doctorWebsite"
           :class="$isWideScreen ? ['font-14', 'px-6'] : ['font-10', 'px-5'] "
         ).text-none.elevation-0.font-weight-light.mt-n2
@@ -107,6 +87,9 @@ export default {
     };
   },
   computed: {
+    hasDoctorWebsite () {
+      return !!this.doctor?.doc_website;
+    },
     doctorWebsite () {
       const username = this.doctor?.doc_website; // eslint-disable-line
       return `${process.env.WEB_MAIN_URL}/doctors/${username}`;
