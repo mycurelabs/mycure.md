@@ -1,13 +1,23 @@
 <template lang="pug">
-  div.mx-n3.mt-n5.main-container
-    div
+  div(:class="$isMobile ? 'video-bg-mobile' : ''").mx-n3.mt-n5.main-container
+    div(v-if="!$isMobile")
       picture-source(
+        v-if="!$isMobile"
         image-file-extension=".png"
         image="Homepage USP BG"
         image-alt="Bushes and clouds background artwork"
         custom-path="home/"
         :image-styles="backgroundStyle"
       )
+      //- picture-source(
+      //-   v-else
+      //-   image-file-extension=".png"
+      //-   image="Homepage USP BG Mobile"
+      //-   extension-exclusive="true"
+      //-   image-alt="Bushes and clouds background artwork"
+      //-   custom-path="home/"
+      //-   :image-styles="backgroundStyleMobile"
+      //- )
       //- img(
       //-   alt=""
       //-   width="100%"
@@ -161,6 +171,16 @@ export default {
         objectFit: 'cover',
       };
     },
+    backgroundStyleMobile () {
+      return {
+        width: '100%',
+        height: '100%',
+        position: 'absolute',
+        bottom: '0',
+        zIndex: '1',
+        objectFit: 'cover',
+      };
+    },
   },
   async mounted () {
     this.isWebp = await canUseWebp();
@@ -198,4 +218,15 @@ export default {
   position: absolute;
   width: 100vw;
 } */
+.video-bg {
+  /* height: 1000px; */
+  background-image: url('~/assets/images/home/Homepage USP BG.png');
+  background-position: left top;
+  background-size: 100%;
+}
+.video-bg-mobile {
+  /* height: 1000px; */
+  background-image: url('~/assets/images/home/Homepage USP BG Mobile.png');
+  background-position: center bottom;
+}
 </style>

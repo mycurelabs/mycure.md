@@ -5,13 +5,14 @@
       has-custom-background
       background-image="Skin Clinics Full Illu"
       background-image-file-extension=".webp"
-      title="The #1 Software for Skin and Aesthetic Clinics"
+      title="Skin and Aesthetic Clinic Management System for a Flawless Experience"
       meta-title="MYCURE for Skin Clinics"
+      description="Easy appointment, inventory management and secure client records and relationship management with analytics and reporting."
       image="Skin Clinics USP Mobile"
       custom-image-path="clinics/skin/"
       parse-title
       parse-meta-title
-      :parse-title-fields="['for ', 'Aesthetic ']"
+      :parse-title-fields="['Aesthetic ', 'Management ', 'a ']"
       :media-column-bindings="{ cols: 12, md: 6, offsetMd: 1, xl: 6}"
       :content-column-bindings="{ cols: 12, md: 5 }"
     )

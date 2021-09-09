@@ -7,7 +7,7 @@
         v-row
           v-col.py-10
         v-row(justify="center")
-          v-col(cols="12" sm="4" v-for="(step, index) in steps" :key="index")
+          v-col(:cols="$isMobile ? 12 : 4" v-for="(step, index) in steps" :key="index")
             v-row.mb-4
               v-col(cols="4" align="center" justify="center").px-0.pb-0
                 picture-source(

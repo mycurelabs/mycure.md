@@ -37,6 +37,7 @@
                   tile
                   block
                   :height="$isMobile ? '36' : $isRegularScreen ? '52' : '75'"
+                  :outlined="reportType !== 'imaging'"
                   @click="reportType = 'imaging'"
                 ).text-none
                   span.mc-button-set-1 Imaging
