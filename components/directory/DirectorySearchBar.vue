@@ -55,7 +55,7 @@
               v-icon mdi-magnify
         v-row
           //- Service Type Filter
-          v-col(v-if="searchObject.mode === 'organization'" cols="12" md="4").pa-0
+          v-col(v-if="searchObject.mode === 'organization'" cols="12" md="5" lg="4").pa-0
             v-autocomplete(
               v-model="searchObject.serviceType"
               placeholder="Service Type"
@@ -71,7 +71,7 @@
             )
           //- Specialization
           v-col(
-            v-if="showSpecializationsField" cols="12" md="4"
+            v-if="showSpecializationsField" cols="12" md="5" lg="4"
             :class="{'pl-1 py-0 pr-0': searchObject.mode === 'organization', 'pa-0': searchObject.mode === 'account'}"
           )
             v-autocomplete(
@@ -91,7 +91,10 @@
             )
               template(v-slot:selection="{ item, index }")
                 v-chip(v-if="index === 0")
-                  span {{ item }}
+                  v-clamp(
+                    autoresize
+                    :max-lines="1"
+                  ) {{ item }}
                 span(
                   v-if="index === 1"
                   class="grey--text text-caption"
@@ -100,9 +103,13 @@
 
 <script>
 import debounce from 'lodash/debounce';
+import VClamp from 'vue-clamp';
 import { unifiedDirectorySearch } from '~/services/unified-directory';
 import SPECIALTIES from '~/assets/fixtures/specialties';
 export default {
+  components: {
+    VClamp,
+  },
   props: {
     appBar: {
       type: Boolean,
