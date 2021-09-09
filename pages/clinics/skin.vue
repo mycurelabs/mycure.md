@@ -5,13 +5,14 @@
       has-custom-background
       background-image="Skin Clinics Full Illu"
       background-image-file-extension=".webp"
-      title="The #1 Software for Skin and Aesthetic Clinics"
+      title="Skin and Aesthetic Clinic Management System for a Flawless Experience"
       meta-title="MYCURE for Skin Clinics"
+      description="Easy appointment, inventory management and secure client records and relationship management with analytics and reporting."
       image="Skin Clinics USP Mobile"
       custom-image-path="clinics/skin/"
       parse-title
       parse-meta-title
-      :parse-title-fields="['for ', 'Aesthetic ']"
+      :parse-title-fields="['Aesthetic ', 'Management ', 'a ']"
       :media-column-bindings="{ cols: 12, md: 6, offsetMd: 1, xl: 6}"
       :content-column-bindings="{ cols: 12, md: 5 }"
     )
@@ -46,7 +47,7 @@
     //- 3rd panel
     generic-media-panel(:content="thirdPanel" align="center")
       template(slot="content")
-        h2(:class="headerClasses" text-align) Beautiful user experience!
+        h2(:class="headerClasses" text-align) Beautiful user experience
         br
         span(:class="descriptionClasses") You won't feel like you are at work.
       template(slot="cta-button")
@@ -94,6 +95,7 @@
     generic-media-panel(
       :content="fifthPanel"
       :title-classes="[...headerClasses, 'primary--text']"
+      align="center"
     )
       template(slot="cta-button")
         div(:class="{'text-center': $isMobile}")

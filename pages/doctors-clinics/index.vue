@@ -85,11 +85,11 @@
     different-video
     steps(:steps="stepsContent")
     testimonials
+    think-long-term
     storybrand(
       title="Using Modern Tools to Boost Your Practice"
       :content="storybrandContent"
     )
-    think-long-term
     v-divider.divider
     //- 10th panel
     pricing(

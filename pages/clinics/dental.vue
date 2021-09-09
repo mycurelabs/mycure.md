@@ -5,15 +5,15 @@
       has-custom-background
       background-image="Dental Clinics USP - Full Illu"
       background-image-file-extension=".webp"
-      title="Easy to setup, affordable"
+      title="The Dental Clinic Management System that makes you Smile"
       meta-title="MYCURE for Dental Clinics"
-      description="Start going digital without spending anything."
+      description="It has everything your dental clinic needs from appointments, billing, inventory to smart dental charting."
       btn-text="Start Free"
       image="Dental Clinics USP - Mobile version"
       custom-image-path="clinics/dental/"
       parse-title
       parse-meta-title
-      :parse-title-fields="['setup, ']"
+      :parse-title-fields="['Dental ', 'Management ', 'that ']"
       :media-column-bindings="{ cols: 12, md: 6, offsetMd: 1, xl: 6}"
       :content-column-bindings="{ cols: 12, md: 5 }"
     )

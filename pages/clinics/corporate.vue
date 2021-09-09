@@ -7,7 +7,7 @@
       background-image-file-extension=".webp"
       title="Organize your employee health records like a breeze"
       meta-title="MYCURE for Corporate Clinics"
-      description="Get the most affordable software for corporate clinics today."
+      description="Custom built for corporate clinics, this management system provides useful analytics while being compliant on employees’ data privacy."
       btn-text="Start Free"
       image="Corporate Clinics Mobile"
       custom-image-path="clinics/corporate/"
@@ -27,9 +27,9 @@
     features(
       extension-exclusive
       image-dir="clinics/corporate/"
-      icon-container-col-size="6"
+      icon-container-col-size="10"
       description="Everyone in your workplace is online. MYCURE helps you monitor their health and safety conveniently through the cloud."
-      :icon-column-bindings="{ cols: 5 }"
+      :icon-column-bindings="{ cols: 3 }"
       :items="features"
     )
       template(slot="title")

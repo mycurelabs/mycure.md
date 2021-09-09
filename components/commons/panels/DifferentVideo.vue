@@ -1,5 +1,5 @@
 <template lang="pug">
-  div(:class="$isMobile ? 'video-bg-mobile' : 'video-bg'").mx-n3.py-10
+  div(:class="$vuetify.breakpoint.width < 650 ? 'video-bg-mobile' : 'video-bg'").mx-n3.py-10
     v-container
       v-row(justify="center")
         generic-panel
@@ -45,14 +45,14 @@ export default {
 <style scoped>
 .video-bg {
   /* height: 1000px; */
-  background-image: url('~/assets/images/commons/MYCURE - Video Banner BG.webp');
+  background-image: url('~/assets/images/commons/MYCURE - Video Banner BG.png');
   background-position: center bottom;
   background-size: 100%;
 }
 .video-bg-mobile {
   /* height: 1000px; */
-  background-image: url('~/assets/images/commons/MYCURE - Video Banner BG.webp');
-  background-position: center center;
-  height: 100%;
+  background-image: url('~/assets/images/commons/MYCURE - Video Banner BG Mobile.png');
+  background-position: center bottom;
+  background-size: 100%;
 }
 </style>
