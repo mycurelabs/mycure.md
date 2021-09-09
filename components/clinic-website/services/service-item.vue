@@ -269,7 +269,6 @@ export default {
       // return day;
     },
     getServiceProvider (schedule) {
-      console.log('schedule', schedule);
       const providers = schedule.providers || [];
       return providers[0];
     },

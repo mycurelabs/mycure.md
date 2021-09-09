@@ -403,6 +403,9 @@ export default {
         /*
           Checks if there is a specific schedule for the service type
         */
+        if (this.serviceTypes?.length && !this.serviceSchedules?.length) {
+          await this.fetchServiceTypes();
+        }
         this.filteredServices = items.map((item) => {
           const { type, subtype } = item;
           const primaryType = subtype || type;
