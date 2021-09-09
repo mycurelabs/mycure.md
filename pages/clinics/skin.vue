@@ -47,7 +47,7 @@
     //- 3rd panel
     generic-media-panel(:content="thirdPanel" align="center")
       template(slot="content")
-        h2(:class="headerClasses" text-align) Beautiful user experience!
+        h2(:class="headerClasses" text-align) Beautiful user experience
         br
         span(:class="descriptionClasses") You won't feel like you are at work.
       template(slot="cta-button")
@@ -95,6 +95,7 @@
     generic-media-panel(
       :content="fifthPanel"
       :title-classes="[...headerClasses, 'primary--text']"
+      align="center"
     )
       template(slot="cta-button")
         div(:class="{'text-center': $isMobile}")

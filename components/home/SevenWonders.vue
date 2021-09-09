@@ -32,7 +32,7 @@
                 h1(:class="headerClasses").mb-2 Enterprise-Grade
                   br
                   | Healthcare Solutions
-                v-row(justify="center")
+                v-row(justify="center").mt-5
                   v-col(cols="12" md="10")
                     p.mc-content-set-1.font-gray.mb-8.font-open-sans MYCURE provides a wide array of modern healthcare management solutions that are custom-built for doctors, clinics, diagnostic labs and hospitals at a fraction of the cost.
                 signup-button(
@@ -52,7 +52,7 @@
                   :arrows="false"
                   :dots="false"
                   :slidesToShow="4",
-                  :speed="500"
+                  :speed="1000"
                 )
                   div(v-for="(wonder,key) in wonders" :key="key")
                     wonder(:wonder="wonder").mx-2
@@ -98,6 +98,12 @@ export default {
   data () {
     this.wonders = [
       {
+        title: 'Booking',
+        description: 'Book and schedule appointments efficiently',
+        infoLink: 'booking',
+        image: 'Booking',
+      },
+      {
         title: 'Physicians',
         description: 'Easily create digital medical records',
         infoLink: 'doctors-clinics',
@@ -114,12 +120,6 @@ export default {
         description: 'Convert online booking to online results',
         infoLink: 'diagnostics',
         image: 'Diagnostics',
-      },
-      {
-        title: 'Booking',
-        description: 'Book and schedule appointments efficiently',
-        infoLink: 'booking',
-        image: 'Booking',
       },
       {
         title: 'Telehealth',

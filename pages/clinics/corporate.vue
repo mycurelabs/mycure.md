@@ -27,9 +27,9 @@
     features(
       extension-exclusive
       image-dir="clinics/corporate/"
-      icon-container-col-size="6"
+      icon-container-col-size="10"
       description="Everyone in your workplace is online. MYCURE helps you monitor their health and safety conveniently through the cloud."
-      :icon-column-bindings="{ cols: 5 }"
+      :icon-column-bindings="{ cols: 3 }"
       :items="features"
     )
       template(slot="title")

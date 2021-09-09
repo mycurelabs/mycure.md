@@ -8,17 +8,17 @@
               span.font-weight-bold.mc-title-set-2.black--text {{ title }}
             v-col(cols="12").px-10
               div(v-for="paragraph in content")
-                p.mc-content-set-3.font-gray.font-open-sans {{ paragraph }}
-            v-col(cols="12" :class="{'px-0': $isMobile}" align="center")
-              signup-button(
-                depressed
-                color="success"
-                facility-type="clinic"
-                class="rounded-pill"
-                :width="!$isWideScreen ? '228px' : '300'"
-                :height="!$isWideScreen ? '59px' : '73.68'"
-              ).text-none
-                span.generic-button-text Get Started Now
+                p(:class="$isWideScreen ? 'mb-8' : 'mb-5'").mc-content-set-3.font-gray.font-open-sans {{ paragraph }}
+            //- v-col(cols="12" :class="{'px-0': $isMobile}" align="center")
+            //-   signup-button(
+            //-     depressed
+            //-     color="success"
+            //-     facility-type="clinic"
+            //-     class="rounded-pill"
+            //-     :width="!$isWideScreen ? '228px' : '300'"
+            //-     :height="!$isWideScreen ? '59px' : '73.68'"
+            //-   ).text-none
+            //-     span.generic-button-text Get Started Now
 </template>
 
 <script>

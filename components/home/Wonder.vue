@@ -54,7 +54,7 @@ export default {
       });
     },
     cardHeight () {
-      if (this.$isWideScreen) return '370';
+      if (this.$isWideScreen) return '390';
       if (this.wLG) return '345';
       if (this.wSM) return '375';
       return '350';
