@@ -1,7 +1,7 @@
 <template lang="pug">
   v-card(:color="$isMobile ? '#f9f9f9' : 'white'" flat width="100%").mt-n16
     v-card-text.text-center
-      v-avatar(size="200").mt-n16.pa-3.elevation-5
+      v-avatar(size="200").mt-n16.elevation-5
         img(:src="picUrl")
     v-card-text
       h1(v-if="fullName" :class="mainTextClasses").lh-title.black--text Dr. {{ fullName }}
