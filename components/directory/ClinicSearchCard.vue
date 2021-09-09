@@ -17,7 +17,7 @@
               autoresize
               :max-lines="2"
               :class="[nameFontSize, $isWideScreen ? 'name-width-wide' : 'name-width-reg']"
-            ).font-weight-bold.mb-0 {{ organization.name }}&nbsp;
+            ).font-weight-bold.mb-0 {{ organization.name || '' }}&nbsp;
           span {{ organization.name }}
         div.d-flex.mt-1
           v-icon(color="primary" :small="!$isWideScreen") mdi-map-marker
@@ -30,7 +30,7 @@
                 :class="[textFontSize, {'font-italic': !address }]"
               ).info--text.mt-1 {{ address || 'No address provided'}}
             span {{ address || 'No address' }}
-        div.d-flex.white--text.mt-1
+        div.d-flex.white--text.mt-2
           div(v-for="(day, index) in daysInit" :key="index")
             div(:class="[textFontSize, $isWideScreen ? 'badge-size-wide' : 'badge-size', {'primary': clinicOpen(day.value)}]").badge
               | {{ day.text }}
