@@ -545,15 +545,8 @@ export default {
           organizationType: this.facilityType,
         };
 
-        // HOTFIX:
-        // if (this.doc_PRCLicenseNo !== null) {
-        //   if (Number.isNaN(+this.doc_PRCLicenseNo)) {
-        //     alert('PRC License No must be a number');
-        //     return;
-        //   }
-        //   payload.doc_PRCLicenseNo = +this.doc_PRCLicenseNo;
-        // }
-        if (this.doc_PRCLicenseNo) payload.doc_PRCLicenseNo = +this.doc_PRCLicenseNo;
+        // Only include PRC when user is a doctor
+        if (this.doc_PRCLicenseNo && this.isDoctor) payload.doc_PRCLicenseNo = +this.doc_PRCLicenseNo;
 
         const [
           emailResultUnique,
