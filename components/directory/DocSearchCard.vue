@@ -90,10 +90,10 @@ export default {
   },
   computed: {
     hasDoctorWebsite () {
-      return !!this.doctor?.doc_website;
+      return !!this.doctor?.doc_website && !!this.doctor?.id;
     },
     doctorWebsite () {
-      const username = this.doctor?.doc_website; // eslint-disable-line
+      const username = this.doctor?.doc_website || this.doctor?.id; // eslint-disable-line
       return `${process.env.WEB_MAIN_URL}/doctors/${username}`;
     },
     fullNameWithSuffixes () {
