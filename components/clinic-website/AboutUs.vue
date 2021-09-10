@@ -6,7 +6,7 @@
         generic-panel(:row-bindings="{ justify: 'center' }")
           v-col(cols="12" :class="{'mb-5': !$isMobile}")
             h2(:class="mainTitleClasses") Our Clinic
-            div(v-if="!$isMobile" style="width: 160px; height: 3px; background: #0099cc")
+            div(v-if="!$isMobile" style="width: 250px; height: 3px; background: #0099cc")
           v-col(cols="12" md="4")
             h2(:class="mainTitleClasses").secondary--text {{ name }}
           v-col(cols="12" md="4")

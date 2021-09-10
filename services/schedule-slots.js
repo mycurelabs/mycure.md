@@ -47,10 +47,11 @@ export const fetchScheduleSlots = async (sdk, opts) => {
      * Fetches all clinic schedules
      */
     if (opts.meta) {
-      const metaKeys = Object.keys(opts.meta);
+      // console.log('here');
       query = {
         ...query,
-        ...metaKeys.map(key => opts[`meta.${key}`]),
+        'meta.serviceType': opts.meta.serviceType,
+        'meta.serviceSubtype': opts.meta.serviceSubtype,
       };
     }
     const { items, total } = await sdk.service('schedule-slots').find(query);

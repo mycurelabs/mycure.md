@@ -15,7 +15,17 @@
           div(v-if="fullSchedules.length")
             div
               div(v-for="(schedule, key) in previewSchedules" :key="key")
-                v-icon(color="black" small left) mdi-calendar-blank
+                v-tooltip(bottom v-if="!isDoctor")
+                  template(v-slot:activator="{ on }")
+                    v-avatar(v-on="on" size="25")
+                      img(
+                        :src="getServiceProvider(schedule) ? getServiceProvider(schedule).picURL || doctorAvatar : doctorAvatar"
+                        alt="MYCURE Doctor"
+                        wid
+                        th="100%"
+                      )
+                  span {{ getServiceProvider(schedule) | format-name }}
+                v-icon(v-else color="black" small left) mdi-calendar-blank
                 span.text-capitalize {{ formatIndividualSchedule(schedule) }}
                 br
               br
@@ -101,10 +111,18 @@
 import { format } from 'date-fns';
 import uniqBy from 'lodash/uniqBy';
 import ServiceSchedules from './service-schedules';
+import { formatName } from '~/utils/formats';
+import DefaultAvatar from '~/assets/images/commons/MYCURE Default Avatar.png';
 
 export default {
   components: {
     ServiceSchedules,
+  },
+  filters: {
+    formatName (provider) {
+      if (!provider?.name) return 'Doctor';
+      return formatName(provider.name || {}, 'firstName middleInitial lastName generationalSuffix');
+    },
   },
   props: {
     item: {
@@ -138,6 +156,7 @@ export default {
       { text: 'Sat', value: 6 },
       { text: 'Sun', value: 0 },
     ];
+    this.doctorAvatar = DefaultAvatar;
     return {
       scheduleExpanded: false,
     };
@@ -248,6 +267,10 @@ export default {
     formatDay (day) {
       return this.days?.find(item => item.value === day)?.text || '';
       // return day;
+    },
+    getServiceProvider (schedule) {
+      const providers = schedule.providers || [];
+      return providers[0];
     },
   },
 };

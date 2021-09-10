@@ -48,7 +48,6 @@
                     @click="toggleChat"
                   ).text-none.font-16.letter-spacing-normal Send us your feedback
                 v-row(justify="end" align="center")
-                  a(v-if="!$isMobile" href="/directory/doctors") See more doctors
                   v-col(
                     :class="{ 'order-first text-center ' : $isMobile, 'text-right' : !$isMobile }"
                     cols="12"

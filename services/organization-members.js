@@ -4,7 +4,7 @@ import { normalizePopulated } from '~/utils/services';
 export const fetchClinicWebsiteDoctors = async (sdk, opts) => {
   const query = {
     organization: opts.organization,
-    roles: 'doctor',
+    roles: { $in: ['doctor'] },
     $populate: {
       personalDetails: {
         service: 'personal-details',
@@ -16,7 +16,7 @@ export const fetchClinicWebsiteDoctors = async (sdk, opts) => {
         service: 'schedule-slots',
         method: 'find',
         localKey: 'uid',
-        foreignKey: 'account',
+        foreignKey: 'meta.providers',
         organization: opts.organization,
       },
     },
@@ -60,15 +60,10 @@ export const fetchUserFacilities = async (sdk, opts) => {
         $populate: {
           doctorSchedules: {
             service: 'schedule-slots',
-            method: 'find',
             localKey: 'id',
+            method: 'find',
             foreignKey: 'organization',
-            account: opts.id,
-            // - TODO: Confirm if meta is allowed
-            meta: {
-              serviceType: 'clinical-consultation',
-              providers: { $in: [opts.id] },
-            },
+            'meta.providers': opts.id,
           },
         },
       },

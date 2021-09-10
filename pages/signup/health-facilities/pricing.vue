@@ -213,7 +213,7 @@ export default {
     }
 
     // - Note: URL query parameters are strings
-    this.isTrial = this.$route.query.trial === 'true' || false;
+    this.isTrial = this.$route.query.trial === 'true' || this.$route.query.trial === true;
 
     if (this.preBundle) {
       await this.submit();

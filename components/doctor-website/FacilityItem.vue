@@ -159,7 +159,8 @@ export default {
       return this.clinicId && this.doctorId && this.clinicSchedules?.length;
     },
     canVisit () {
-      return this.clinic?.types?.includes('doctor-booking');
+      return !!this.clinicSchedules?.length;
+      // return this.clinic?.types?.includes('doctor-booking' || 'clinic-booking');
     },
     telehealthURL () {
       const pxPortalUrl = process.env.PX_PORTAL_URL;
