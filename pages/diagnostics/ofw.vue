@@ -7,13 +7,13 @@
       background-image-file-extension=".webp"
       title="The first and only medical software for OFW clinics"
       meta-title="MYCURE for OFW Medical Clinics"
-      description="MYCURE is an easy to use, secure, cloud-based software where you can conveniently create, finalize, and release medical exam results."
+      description="MYCURE is an easy to use, secure, cloud-based clinic management system where you can conveniently create, finalize, and release medical exam results online and offline."
       btn-text="Sign Up"
       image="OFW Clinics Mobile"
       custom-image-path="clinics/ofw/"
       parse-title
       parse-meta-title
-      :parse-title-fields="['only ', 'for ']"
+      :parse-title-fields="['only ', 'software ']"
       :media-column-bindings="{ cols: 12, md: 6, offsetMd: 1, xl: 6}"
       :content-column-bindings="{ cols: 12, md: 5 }"
     )

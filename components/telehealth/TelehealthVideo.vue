@@ -42,14 +42,14 @@ export default {
 <style scoped>
 .video-bg {
   /* height: 1000px; */
-  background-image: url('~/assets/images/commons/MYCURE - Video Banner BG.webp');
+  background-image: url('~/assets/images/commons/MYCURE - Video Banner BG.png');
   background-position: center bottom;
   background-size: 100%;
 }
 .video-bg-mobile {
   /* height: 1000px; */
-  background-image: url('~/assets/images/commons/MYCURE - Video Banner BG.webp');
-  background-position: center center;
-  height: 100%;
+  background-image: url('~/assets/images/commons/MYCURE - Video Banner BG Mobile.png');
+  background-position: center bottom;
+  background-size: 100%;
 }
 </style>

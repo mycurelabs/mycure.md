@@ -16,7 +16,7 @@
                 color="success"
                 depressed
                   class="rounded-pill"
-                  :width="!$isWideScreen ? '228px' : '300'"
+                  :width="!$isWideScreen ? '240px' : '299.7'"
                   :height="!$isWideScreen ? '59px' : '73.68'"
                 @click="videoDialog = true"
               ).text-none.mb-10

@@ -7,7 +7,7 @@
       background-image-file-extension=".webp"
       title="Your Diagnostic Center Fortified"
       meta-title="MYCURE Diagnostic"
-      description="The best tool to create, finalize, and release diagnostic test results is finally here."
+      description="The best tool to streamline diagnostic laboratories and imaging centers’ operations, automate routine tasks, and reduce costs and errors."
       image="Diagnostics Mobile USP"
       image-col-offset="1"
       custom-image-path="diagnostics/"

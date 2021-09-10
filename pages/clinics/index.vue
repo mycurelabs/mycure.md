@@ -63,25 +63,6 @@
         image-dir="clinics/"
         panel-height="70vh"
       )
-    //- 7th panel
-    div.blue-bg.mx-n3
-      generic-media-panel(
-        align="center"
-        :content="practicingSoloPanel"
-        :title-classes="[...headerClasses, 'white--text']"
-        hide-btn
-      )
-        div(slot="additional-content" :class="{'text-center': $isMobile}").mt-10
-          mc-btn(
-            depressed
-            color="white"
-            class="rounded-pill"
-            :width="!$isWideScreen ? '228px' : '300'"
-            :height="!$isWideScreen ? '59px' : '73.68'"
-            :to="{ name: 'doctors-clinics' }"
-          ).text-none.primary--text
-            v-icon(left) mdi-information-outline
-            span.generic-button-text Learn More
     //- 7.5
     care
     steps(:steps="stepsContent")
@@ -102,6 +83,25 @@
       description="Choose the best plan for your clinic. Only pay for what you need."
       :pricing-details="pricingDetails"
     ).mb-n3
+    //- 7th panel
+    div.blue-bg.mx-n3
+      generic-media-panel(
+        align="center"
+        :content="practicingSoloPanel"
+        :title-classes="[...headerClasses, 'white--text']"
+        hide-btn
+      )
+        div(slot="additional-content" :class="{'text-center': $isMobile}").mt-10
+          mc-btn(
+            depressed
+            color="white"
+            class="rounded-pill"
+            :width="!$isWideScreen ? '228px' : '300'"
+            :height="!$isWideScreen ? '59px' : '73.68'"
+            :to="{ name: 'doctors-clinics' }"
+          ).text-none.primary--text
+            v-icon(left) mdi-information-outline
+            span.generic-button-text Learn More
 </template>
 
 <script>
