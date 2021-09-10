@@ -8,7 +8,7 @@
       title="The first and only medical software for OFW clinics"
       meta-title="MYCURE for OFW Medical Clinics"
       description="MYCURE is an easy to use, secure, cloud-based clinic management system where you can conveniently create, finalize, and release medical exam results online and offline."
-      btn-text="Sign Up"
+      btn-text="Get Started"
       image="OFW Clinics Mobile"
       custom-image-path="clinics/ofw/"
       parse-title
@@ -60,7 +60,7 @@
                 :height="!$isWideScreen ? '59px' : '73.68'"
                 color="success"
               ).text-none
-                span.generic-button-text Sign Up
+                span.generic-button-text Get Started
     //- 5th panel
     div.grey-bg.mx-n3
       generic-media-panel(
@@ -120,7 +120,7 @@
           //-     :class="{'font-s': $isWideScreen, 'font-14': $isRegularScreen }"
           //-   ).text-none Book a full training
     care
-    steps(:steps="stepsContent")
+    steps(:steps="stepsContent" not-free)
     storybrand(
       title="Using Modern Tools to Boost Your Practice"
       :content="storybrandContent"
@@ -131,7 +131,7 @@
       type="diagnostic"
     )
     //- 8th panel
-    call-to-action(:version="2")
+    call-to-action(:version="2" not-free)
     //- 9th panel
     //- div.info.mx-n3
     //-   v-container
@@ -225,7 +225,7 @@ export default {
         imageBindings: {
           customPath: 'clinics/ofw/',
           image: 'Queue.png',
-          mobileImage: 'Queue-mobile.png',
+          mobileImage: 'Queue.png',
           imageAlt: 'Registration kiosk in MYCURE Clinic Management System',
           extensionExclusive: true,
           width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '440px' : '710px'),

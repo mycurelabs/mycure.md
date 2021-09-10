@@ -25,6 +25,7 @@
       panel-description="MYCURE is a full featured, end-to-end solution that eliminates many of the challenges of manual processing. MYCURE’s solution encompasses the entire customer journey, from the time they book an appointment to the time they pay and leave, so no more disjointed or separate solutions for different aspects of the clinic operations. The digital solution eliminates the need for manual record keeping and the pushing paper documents to different departments."
       :version="2"
       :contents="stakesContent"
+      not-free
     )
     //- 2nd panel
     div.grey-bg.mx-n3
@@ -65,24 +66,30 @@
       )
     //- 7.5
     care
-    steps(:steps="stepsContent")
+    steps(
+      :steps="stepsContent"
+      not-free
+    )
+    //- 8th panel
+    think-long-term
     storybrand(
       title="Using Modern Tools to Boost Your Practice"
       :content="storybrandContent"
     )
-    //- 8th panel
-    think-long-term
     v-divider.divider
-    //- 9th panel
-    call-to-action(:version="2")
     //- 10th panel
+    //- pricing(
+    //-   type="clinic"
+    //-   title="Take the first step today"
+    //- ).mb-n3
     pricing(
       has-trial-option
       type="clinic"
       title="Take the first step today"
       description="Choose the best plan for your clinic. Only pay for what you need."
-      :pricing-details="pricingDetails"
     ).mb-n3
+    //- 9th panel
+    call-to-action(:version="2" not-free)
     //- 7th panel
     div.blue-bg.mx-n3
       generic-media-panel(
@@ -173,7 +180,7 @@ export default {
       'Long Patient Turn-around Time',
       'Patient Dissatisfaction',
       'Overworked Staff',
-      'Error Prone Reportd',
+      'Error Prone Reports',
       'Increased Storage Costs',
       'Lack of Compliance to Regulations',
     ];

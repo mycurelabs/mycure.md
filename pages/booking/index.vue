@@ -146,10 +146,6 @@
                   custom-path="booking/"
                 )
 
-    storybrand(
-      title="Using Modern Tools to Boost Your Practice"
-      :content="storybrandContent"
-    )
     //- 6th panel
     div.blue-bg.mx-n3
       generic-media-panel(
@@ -169,6 +165,10 @@
               :height="!$isWideScreen ? '59px' : '73.68'"
             ).text-none
               span.generic-button-text Get Started Free
+    storybrand(
+      title="Using Modern Tools to Boost Your Practice"
+      :content="storybrandContent"
+    )
     //- 7th panel
     plans.mb-n3
 
