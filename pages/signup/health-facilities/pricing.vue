@@ -34,6 +34,7 @@
                 pricing-card(
                   :bundle="bundle"
                   :payment-interval="paymentInterval"
+                  height="850"
                 ).elevation-3
                   template(slot="card-btn")
                     v-btn(
