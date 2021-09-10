@@ -3,7 +3,7 @@
     v-row(justify="center")
       generic-panel(:row-bindings="{ justify: 'center'}")
         v-col(cols="12").text-center
-          h2(:class="titleClasses").mb-5 From your first extraction to full scale operation.
+          h2(:class="titleClasses").mb-5 From your first extraction to full service operations.
           p(:class="contentClasses").mb-10 MYCURE is designed to help you grow your practice.
           signup-button(
             depressed
