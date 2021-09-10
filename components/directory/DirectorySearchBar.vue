@@ -15,7 +15,7 @@
             v-btn(value="organization" text active-class="active-button" :class="buttonGroupClasses").mr-3.tight-font.rounded-pill clinics
               //- v-btn(value="location" text active-class="active-button" :class="buttonGroupClasses").mr-3.tight-font.rounded-pill location
           v-spacer
-          v-col
+          v-col(v-if="isOrganization")
             v-row(align="center" justify="end")
               span.font-weight-bold.font-14 USE MY LOCATION
               v-progress-circular(indeterminate size="20" v-if="loadingLocation" color="primary").pl-1
@@ -201,6 +201,9 @@ export default {
         });
       },
     },
+    isOrganization () {
+      return this.selectedMode === 'organization';
+    },
     locationSwitch: {
       get () {
         return !!this.location;
@@ -236,7 +239,7 @@ export default {
       if (!allowableSearch && this.requireAction) return;
       if (customSearchText) this.searchObject.searchString = customSearchText;
       this.searchObject.mode = this.selectedMode;
-      this.searchObject.location = this.location;
+      this.searchObject.location = this.isOrganization ? this.location : null;
       this.$emit('search', {
         ...this.searchObject,
       });
