@@ -235,9 +235,9 @@ export default {
     getBtnText (bundle) {
       switch (this.paymentInterval) {
         case 'month':
-          return bundle.monthlyTrial ? 'Start Trial' : 'Get Started';
+          return bundle.monthlyTrial ? 'Start Free Trial' : 'Get Started';
         case 'year':
-          return bundle.annualTrial ? 'Start Trial' : 'Get Started';
+          return bundle.annualTrial ? 'Start Free Trial' : 'Get Started';
         default:
           return 'Get Started';
       }
