@@ -209,7 +209,7 @@ export default {
     },
     networkBindings () {
       return {
-        title: this.windowTitle,
+        title: this.fullName ? `Consult with Dr. ${this.fullName}` : this.windowTitle,
         url: this.doctorLink,
         description: `Book a consultation with ${this.firstName} today!`,
         media: this.picURL,
