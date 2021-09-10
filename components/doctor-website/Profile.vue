@@ -36,7 +36,7 @@
                   v-row(no-gutters)
                     v-col(cols="12")
                       div.d-flex
-                        share-network(network="facebook" :url="doctorLink" title="Doctor").social-image.pa-3
+                        share-network(network="facebook" v-bind="networkBindings").social-image.pa-3
                           v-icon(large color="white") mdi-facebook
                         share-network(network="twitter" v-bind="networkBindings").social-image.pa-3
                           v-icon(large color="white") mdi-twitter
@@ -212,6 +212,7 @@ export default {
         title: this.windowTitle,
         url: this.doctorLink,
         description: `Book a consultation with ${this.firstName} today!`,
+        media: this.picURL,
       };
     },
   },
