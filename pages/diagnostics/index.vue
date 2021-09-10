@@ -119,14 +119,13 @@
     //- 7.5
     care
     steps(:steps="stepsContent" not-free)
+    //- 8th panel
+    think-long-term
+    //- 9th panel
     storybrand(
       title="Using Modern Tools to Boost Your Practice"
       :content="storybrandContent"
     )
-    //- 8th panel
-    think-long-term
-    //- 9th panel
-    call-to-action(:version="2" not-free)
     //- 10th panel
     pricing(
       title="Take the first step today"
@@ -134,6 +133,7 @@
       type="diagnostic"
       has-trial-option
     ).mb-n3
+    call-to-action(:version="2" not-free)
 </template>
 
 <script>

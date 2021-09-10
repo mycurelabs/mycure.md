@@ -52,7 +52,6 @@
       :title-classes="headerClasses"
       :super-title-classes="['mc-content-set-1', 'font-open-sans', 'font-weight-semibold', 'primary--text']"
     )
-    call-to-action(:version="4" not-free)
     care
     steps(:steps="stepsContent" not-free)
     storybrand(
@@ -79,6 +78,7 @@
       type="clinic"
       title="Take the first step today."
     )
+    call-to-action(:version="4" not-free)
 </template>
 
 <script>

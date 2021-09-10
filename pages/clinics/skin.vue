@@ -125,12 +125,12 @@
     //- 6.5
     care
     steps(:steps="stepsContent" not-free)
+    //- 7th panel
+    think-long-term(extended)
     storybrand(
       title="Using Modern Tools to Boost Your Practice"
       :content="storybrandContent"
     )
-    //- 7th panel
-    think-long-term(extended)
     //- 8th panel
     pricing(
       type="clinic"

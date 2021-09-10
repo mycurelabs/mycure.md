@@ -10,7 +10,7 @@
                 h2(:class="titleClasses").lh-title.font-weight-semibold.mb-5 {{ title }}
                 p(:class="descriptionClasses").font-open-sans.mb-5 {{ description }}
             v-row(justify="center")
-              v-col(cols="12" md="6" xl="5" :class="{'mb-10': !hasTrialOption}").text-center
+              v-col(cols="12" md="6" xl="5").text-center.mb-10
                 div.d-flex.align-center.justify-center
                   strong(:class="descriptionClasses").font-open-sans.black--text.mr-3 Billed Monthly
                   v-switch(
@@ -51,14 +51,13 @@
                     :payment-interval="paymentInterval"
                     :height="type === 'doctor' ? '750' : '850'"
                   ).elevation-3
-              v-col(v-else cols="12" sm="8" md="6")
+              v-col(v-else cols="10" sm="8" md="6")
                 carousel(
                   paginationColor="grey"
                   loop
                   navigationEnabled
                   paginationEnabled
                   :per-page="1"
-                  :navigationClickTargetSize="25"
                 )
                   slide(
                     v-for="(pack, index) in mobilePricingItems"

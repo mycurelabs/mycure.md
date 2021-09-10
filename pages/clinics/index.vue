@@ -70,23 +70,26 @@
       :steps="stepsContent"
       not-free
     )
+    //- 8th panel
+    think-long-term
     storybrand(
       title="Using Modern Tools to Boost Your Practice"
       :content="storybrandContent"
     )
-    //- 8th panel
-    think-long-term
     v-divider.divider
-    //- 9th panel
-    call-to-action(:version="2" not-free)
     //- 10th panel
+    //- pricing(
+    //-   type="clinic"
+    //-   title="Take the first step today"
+    //- ).mb-n3
     pricing(
       has-trial-option
       type="clinic"
       title="Take the first step today"
       description="Choose the best plan for your clinic. Only pay for what you need."
-      :pricing-details="pricingDetails"
     ).mb-n3
+    //- 9th panel
+    call-to-action(:version="2" not-free)
     //- 7th panel
     div.blue-bg.mx-n3
       generic-media-panel(

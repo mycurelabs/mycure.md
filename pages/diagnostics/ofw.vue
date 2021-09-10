@@ -225,7 +225,7 @@ export default {
         imageBindings: {
           customPath: 'clinics/ofw/',
           image: 'Queue.png',
-          mobileImage: 'Queue-mobile.png',
+          mobileImage: 'Queue.png',
           imageAlt: 'Registration kiosk in MYCURE Clinic Management System',
           extensionExclusive: true,
           width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '440px' : '710px'),
