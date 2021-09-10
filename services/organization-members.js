@@ -57,6 +57,15 @@ export const fetchUserFacilities = async (sdk, opts) => {
       organization: {
         service: 'organizations',
         key: 'organization',
+        $populate: {
+          doctorSchedules: {
+            service: 'schedule-slots',
+            localKey: 'id',
+            method: 'find',
+            foreignKey: 'organization',
+            'meta.providers': opts.id,
+          },
+        },
       },
     },
   };
