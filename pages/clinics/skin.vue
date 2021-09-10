@@ -50,7 +50,8 @@
       template(slot="content")
         h2(:class="headerClasses" text-align) Beautiful user experience
         br
-        span(:class="descriptionClasses") You won't feel like you are at work.
+        div(:class="{'text-center': $isMobile}")
+          span.font-open-sans.font-gray.mc-title-set-2 You won't feel like you are at work.
       template(slot="cta-button")
         div(:class="{ 'text-center': $isMobile }")
           signup-button(
