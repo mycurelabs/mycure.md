@@ -132,23 +132,23 @@
     //- 8th panel
     call-to-action(:version="2")
     //- 9th panel
-    div.info.mx-n3
-      v-container
-        v-row(justify="center")
-          generic-panel(:row-bindings="{ justify: 'center' }")
-            v-col(cols="12" lg="8").white--text.text-center
-              h2(:class="['white--text', ...headerClasses]").mb-5 Take the first step today
-              p(:class="descriptionClasses").mb-5 Start now and get all your questions answered
-              mc-btn(
-                color="success"
-                class="rounded-pill"
-                :width="!$isWideScreen ? '228px' : '300'"
-                :height="!$isWideScreen ? '59px' : '73.68'"
-                depressed
-                :large="!$isWideScreen"
-                :x-large="$isWideScreen"
-                :class="btnClasses"
-              ).text-none Count me in
+    //- div.info.mx-n3
+    //-   v-container
+    //-     v-row(justify="center")
+    //-       generic-panel(:row-bindings="{ justify: 'center' }")
+    //-         v-col(cols="12" lg="8").white--text.text-center
+    //-           h2(:class="['white--text', ...headerClasses]").mb-5 Take the first step today
+    //-           p(:class="descriptionClasses").mb-5 Start now and get all your questions answered
+    //-           mc-btn(
+    //-             color="success"
+    //-             class="rounded-pill"
+    //-             :width="!$isWideScreen ? '228px' : '300'"
+    //-             :height="!$isWideScreen ? '59px' : '73.68'"
+    //-             depressed
+    //-             :large="!$isWideScreen"
+    //-             :x-large="$isWideScreen"
+    //-             :class="btnClasses"
+    //-           ).text-none Count me in
 </template>
 
 <script>

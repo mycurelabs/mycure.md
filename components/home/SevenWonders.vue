@@ -49,7 +49,6 @@
                   autoplay
                   draggable
                   infinite
-                  :arrows="false"
                   :dots="false"
                   :slidesToShow="4",
                   :speed="1000"
@@ -81,6 +80,7 @@
 <script>
 import VueSlickCarousel from 'vue-slick-carousel';
 import 'vue-slick-carousel/dist/vue-slick-carousel.css';
+import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css';
 import Wonder from './Wonder';
 import GenericPanel from '~/components/generic/GenericPanel';
 import PictureSource from '~/components/commons/PictureSource';
