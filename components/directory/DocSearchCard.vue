@@ -131,7 +131,7 @@ export default {
     },
     textFontSize () {
       return classBinder(this, {
-        mobile: ['font-10'],
+        mobile: ['font-12'],
         regular: ['font-10'],
         wide: ['font-14'],
       });

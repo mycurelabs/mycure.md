@@ -32,7 +32,7 @@
             span {{ address || 'No address' }}
         div.d-flex.white--text.mt-2
           div(v-for="(day, index) in daysInit" :key="index")
-            div(:class="[textFontSize, $isWideScreen ? 'badge-size-wide' : 'badge-size', {'primary': clinicOpen(day.value)}]").badge
+            div(:class="[textFontSize, badgeSize, {'primary': clinicOpen(day.value)}]").badge
               | {{ day.text }}
     v-col
       v-row(justify="end")
@@ -146,9 +146,16 @@ export default {
     },
     textFontSize () {
       return classBinder(this, {
-        mobile: ['font-10'],
+        mobile: ['font-12'],
         regular: ['font-10'],
         wide: ['font-14'],
+      });
+    },
+    badgeSize () {
+      return classBinder(this, {
+        mobile: ['badge-size-mobile'],
+        regular: ['badge-size'],
+        wide: ['badge-size-wide'],
       });
     },
     address () {
@@ -189,6 +196,10 @@ export default {
 .badge-size {
   height: 15px;
   width: 15px;
+}
+.badge-size-mobile {
+  height: 20px;
+  width: 20px;
 }
 .badge-size-wide {
   height: 30px;

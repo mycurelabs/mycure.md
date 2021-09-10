@@ -15,8 +15,8 @@
             v-btn(value="organization" text active-class="active-button" :class="buttonGroupClasses").mr-3.tight-font.rounded-pill clinics
               //- v-btn(value="location" text active-class="active-button" :class="buttonGroupClasses").mr-3.tight-font.rounded-pill location
           v-spacer
-          v-col(v-if="isOrganization")
-            v-row(align="center" justify="end")
+          v-col(v-if="isOrganization" :cols="$isMobile ? '12' : null")
+            v-row(align="center" :justify="$isMobile ? 'start' : 'end'")
               span.font-weight-bold.font-14 USE MY LOCATION
               v-progress-circular(indeterminate size="20" v-if="loadingLocation" color="primary").pl-1
               v-switch(
@@ -43,7 +43,7 @@
               @click:clear="clearSearchText"
               @update:search-input="handleDebouncedSearch($event)"
             ).rounded-bl-lg.rounded-tl-lg
-          v-col(cols="1").pa-0.ml-n1
+          v-col(v-if="!$isMobile" cols="1").pa-0.ml-n1
             v-btn(
               small
               block
@@ -103,6 +103,7 @@
 
 <script>
 import debounce from 'lodash/debounce';
+import isEmpty from 'lodash/isEmpty';
 import VClamp from 'vue-clamp';
 import { unifiedDirectorySearch } from '~/services/unified-directory';
 import SPECIALTIES from '~/assets/fixtures/specialties';
@@ -227,6 +228,7 @@ export default {
     onModeChange (val) {
       this.searchObject.mode = val;
       this.searchObject.specializations = [];
+      if (val === 'account' && !isEmpty(this.searchObject.location)) this.searchObject.location = null;
       this.selectedMode = val;
     },
     /**
