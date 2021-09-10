@@ -213,7 +213,7 @@ export default {
     // Check if doctor has a schedule in any clinic
     isBookable () {
       if (!this.clinics?.length) return false;
-      return this.clinics.find(c => c?.$populated?.doctorSchedules?.length || c?.doctorSchedules?.length);
+      return !!this.clinics.find(c => c?.$populated?.doctorSchedules?.length || c?.doctorSchedules?.length);
     },
     banner () {
       return this.doctor?.doc_websiteBannerURL || require('~/assets/images/doctor-website/doctor-banner-placeholder.png');
