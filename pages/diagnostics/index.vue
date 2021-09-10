@@ -5,7 +5,7 @@
       has-custom-background
       background-image="Diagnostics Landing Page"
       background-image-file-extension=".webp"
-      title="Your Diagnostic Center Fortified"
+      title="Your Diagnostic Center Transformed"
       meta-title="MYCURE Diagnostic"
       description="The best tool to streamline diagnostic laboratories and imaging centers’ operations, automate routine tasks, and reduce costs and errors."
       image="Diagnostics Mobile USP"

@@ -286,7 +286,7 @@ export const getSubscriptionPackagesPricing = async (type) => {
       { text: 'Multi-branch Functions', valid: true },
       { text: 'Customizable Features', valid: true },
     ],
-    btnText: 'Get Started',
+    btnText: 'Chat With Us',
   };
 
   return !DOCTOR_TYPES.includes(type) ? [...mappedPackages, ENTERPRISE] : mappedPackages;

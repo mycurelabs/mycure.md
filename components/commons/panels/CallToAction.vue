@@ -27,7 +27,7 @@
               //-       :href="'https://calendly.com/mycure/demo'"
               //-     ).text-none
               //-       span.generic-button-text {{ ![2, 4].includes(version) ? 'Book a full training' : 'Start Now' }}
-              v-col
+              v-col(:align="$isMobile ? 'center' : 'start'")
                 signup-button(
                   event-label="signup"
                   color="success"

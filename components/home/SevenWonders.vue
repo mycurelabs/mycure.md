@@ -59,8 +59,6 @@
               //-   wonder(:wonder="wonder")
               v-col(v-else cols="10" sm="8" md="10")
                 carousel(
-                  navigationNextLabel=" "
-                  navigationPrevLabel=" "
                   paginationColor="#f0f0f0"
                   autoplay
                   loop

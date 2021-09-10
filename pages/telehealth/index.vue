@@ -48,6 +48,10 @@
               :height="$isWideScreen ? '30' : '20'"
             )
             span(:class="[...descriptionClasses, ($isMobile ? 'ml-2' : ($isRegularScreen ? 'ml-3' : 'ml-4'))]") {{ item }}
+    storybrand(
+      title="Using Modern Tools to Boost Your Practice"
+      :content="storybrandContent"
+    )
     //- 6th panel
     pricing(
       title="Start free and only pay as you grow."
@@ -75,9 +79,15 @@ export default {
     TelehealthVideo: () => import('~/components/telehealth/TelehealthVideo'),
     Usp,
     VirtualClinic: () => import('~/components/telehealth/VirtualClinic'),
+    Storybrand: () => import('~/components/commons/panels/Storybrand'),
   },
   data () {
     this.pricingDetails = DOCTORS_PRICING;
+    this.storybrandContent = [
+      'At MYCURE, we know the many challenges in choosing the right healthcare management solution. Some are good but costly. Some are affordable but lack the needed features and reports. Many are poorly designed and difficult to use. Very few work both online and offline. A lot has closed systems and lacks interoperability.',
+      'In order to make an easy decision, you need a solution that has all the benefits and functionalities required without compromising ease of use and affordability. The problem is in finding such a system which makes you feel frustrated. We believe that health providers should never have to deal with this.',
+      'That’s why we’ve built MYCURE Healthcare Management Solutions, designed to be robust, easy to use, interoperable and affordable.',
+    ];
     this.headerClasses = ['mc-title-set-1', 'font-weight-semibold'];
     this.descriptionClasses = ['mc-content-set-1', 'font-open-sans', 'font-gray'];
     this.listHeaderClasses = ['mc-list-title-set-1', 'lh-title', 'font-weight-semibold'];
