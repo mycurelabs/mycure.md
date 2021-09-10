@@ -13,30 +13,31 @@
     template(slot="additional-content")
       v-row.mt-10
         slot(name="cta-button")
-          v-row(:justify="$isMobile ? 'center' : 'start'")
-            v-col(cols="10" sm="5" md="7" lg="6" xl="7").pr-0
-              div(:class="{'text-center': $isMobile}")
-                mc-btn(
+          v-col
+            v-row(:justify="$isMobile ? 'center' : 'start'")
+              //- v-col(cols="10" sm="5" md="7" lg="6" xl="7").pr-0
+              //-   div(:class="{'text-center': $isMobile}")
+              //-     mc-btn(
+              //-       color="success"
+              //-       depressed
+              //-       :block="![2, 4].includes(version)"
+              //-       :width="(version === 2 || version === 4) ? (!$isWideScreen ? '228px' : '300') : '' "
+              //-       class="rounded-pill"
+              //-       :height="!$isWideScreen ? '59px' : '73.68'"
+              //-       :href="'https://calendly.com/mycure/demo'"
+              //-     ).text-none
+              //-       span.generic-button-text {{ ![2, 4].includes(version) ? 'Book a full training' : 'Start Now' }}
+              v-col(:align="$isMobile ? 'center' : 'start'")
+                signup-button(
+                  event-label="signup"
                   color="success"
                   depressed
-                  :block="![2, 4].includes(version)"
-                  :width="(version === 2 || version === 4) ? (!$isWideScreen ? '228px' : '300') : '' "
                   class="rounded-pill"
+                  :width="!$isWideScreen ? '228px' : '300'"
                   :height="!$isWideScreen ? '59px' : '73.68'"
-                  :href="'https://calendly.com/mycure/demo'"
                 ).text-none
-                  span.generic-button-text {{ ![2, 4].includes(version) ? 'Book a full training' : 'Start Now' }}
-            v-col(v-if="![2, 4].includes(version)" cols="10" sm="5" md="7" lg="6" xl="5").pr-0
-              signup-button(
-                event-label="signup"
-                color="success"
-                depressed
-                block
-                class="rounded-pill"
-                :height="!$isWideScreen ? '59px' : '73.68'"
-                :outlined="![2, 4].includes(version)"
-              ).text-none
-                span.generic-button-text {{notFree ? 'Get Started' : 'Get Started Free'}}
+                  span.generic-button-text {{notFree ? 'Get Started' : 'Get Started Free'}}
+                //-   :outlined="![2, 4].includes(version)"
 </template>
 
 <script>

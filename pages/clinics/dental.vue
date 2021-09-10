@@ -8,7 +8,7 @@
       title="The Dental Clinic Management System that makes you Smile"
       meta-title="MYCURE for Dental Clinics"
       description="It has everything your dental clinic needs from appointments, billing, inventory to smart dental charting."
-      btn-text="Start Free"
+      btn-text="Get Started"
       image="Dental Clinics USP - Mobile version"
       custom-image-path="clinics/dental/"
       parse-title
@@ -84,26 +84,27 @@
         div.mb-10
       template(slot="cta-button")
         v-row(:justify="$isMobile ? 'center' : 'start'")
-          v-col(cols="12" sm="6").pa-0
+          v-col(cols="12" sm="6" align="center").px-0.pb-0
             mc-btn(
               color="success"
               href="https://calendly.com/mycure/demo"
               target="_blank"
               rel="noopener noreferrer"
               depressed
-              block
               class="rounded-pill"
+              :width="!$isWideScreen ? '228px' : '300'"
               :height="!$isWideScreen ? '59px' : '73.68'"
             ).text-none
               //- v-icon(left) mdi-web
               span.generic-button-text Create my Website
-          v-col(cols="12" sm="6").py-0
+          v-col(cols="12" sm="6" align="center" :class="{'pl-6': !$isMobile}").pb-0
             signup-button(
               depressed
-              block
+              :block="!$isMobile"
               outlined
               color="success"
               class="rounded-pill"
+              :width="$isMobile ? '228' : ''"
               :height="!$isWideScreen ? '59px' : '73.68'"
             ).text-none
               span.generic-button-text Get Started

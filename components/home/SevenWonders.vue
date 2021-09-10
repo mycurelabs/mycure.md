@@ -49,7 +49,6 @@
                   autoplay
                   draggable
                   infinite
-                  :arrows="false"
                   :dots="false"
                   :slidesToShow="4",
                   :speed="1000"
@@ -60,8 +59,6 @@
               //-   wonder(:wonder="wonder")
               v-col(v-else cols="10" sm="8" md="10")
                 carousel(
-                  navigationNextLabel=" "
-                  navigationPrevLabel=" "
                   paginationColor="#f0f0f0"
                   autoplay
                   loop
@@ -81,6 +78,7 @@
 <script>
 import VueSlickCarousel from 'vue-slick-carousel';
 import 'vue-slick-carousel/dist/vue-slick-carousel.css';
+import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css';
 import Wonder from './Wonder';
 import GenericPanel from '~/components/generic/GenericPanel';
 import PictureSource from '~/components/commons/PictureSource';

@@ -21,7 +21,7 @@
     //- 2nd panel
     div.grey-bg.mx-n3
       features(
-        title="Can your patients easily find and book a consultation with you?"
+        title="Make it easy for your patients to schedule a consultation"
         :title-col-size="11"
         :description="featuresDescription"
         :items="features"
@@ -131,8 +131,13 @@ export default {
     this.featuresDescription = 'Use the tools that work best for you. Everything you need is here from task management to data compliance. It’s FREE!';
     this.features = [
       {
-        title: 'Digital Records',
-        icon: 'Digital Records',
+        title: 'Professional Website',
+        icon: 'Professional Website',
+        iconExtension: '.webp',
+      },
+      {
+        title: 'Appointment Booking',
+        icon: 'Appointment Booking',
         iconExtension: '.webp',
       },
       {
@@ -141,18 +146,13 @@ export default {
         iconExtension: '.webp',
       },
       {
+        title: 'Digital Records',
+        icon: 'Digital Records',
+        iconExtension: '.webp',
+      },
+      {
         title: 'Daily Reports',
         icon: 'Daily Reports',
-        iconExtension: '.webp',
-      },
-      {
-        title: 'Professional Website',
-        icon: 'Professional Website',
-        iconExtension: '.webp',
-      },
-      {
-        title: 'Appointment Booking',
-        icon: 'Appointment Booking',
         iconExtension: '.webp',
       },
     ];

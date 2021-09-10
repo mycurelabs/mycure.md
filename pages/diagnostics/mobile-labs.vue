@@ -73,7 +73,7 @@
     )
       template(slot="cta-button")
         v-row(:justify="$isMobile ? 'center' : 'start'")
-          v-col(cols="10" md="7" lg="6" xl="7")
+          v-col(cols="10" md="7" lg="6" xl="7" :align="$isMobile ? 'center' : 'start'")
             signup-button(
               depressed
               class="rounded-pill"
@@ -97,7 +97,10 @@
           //-     :x-large="$isWideScreen"
           //-     :class="{'font-s': $isWideScreen, 'font-14': $isRegularScreen }"
           //-   ).text-none Book a full training
-
+    storybrand(
+      title="Using Modern Tools to Boost Your Practice"
+      :content="storybrandContent"
+    )
     //- 5th panel
     pricing(
       title="Take the first step today."
@@ -120,21 +123,21 @@
               span.generic-button-text Start Now
 
     //- 7th panel
-    div.info.mx-n3
-      v-container
-        v-row(justify="center")
-          generic-panel(:row-bindings="{ justify: 'center' }")
-            v-col(cols="12").white--text.text-center
-              h2(:class="['white--text', ...headerClasses]").mb-5 Take the first step today
-              p(:class="descriptionClasses").white--text.mb-5 Start now and get all your questions answered.
-              signup-button(
-                depressed
-                class="rounded-pill"
-                :width="!$isWideScreen ? '228px' : '300'"
-                :height="!$isWideScreen ? '59px' : '73.68'"
-                color="success"
-              ).text-none
-                span.generic-button-text Start Now
+    //- div.info.mx-n3
+    //-   v-container
+    //-     v-row(justify="center")
+    //-       generic-panel(:row-bindings="{ justify: 'center' }")
+    //-         v-col(cols="12").white--text.text-center
+    //-           h2(:class="['white--text', ...headerClasses]").mb-5 Take the first step today
+    //-           p(:class="descriptionClasses").white--text.mb-5 Start now and get all your questions answered.
+    //-           signup-button(
+    //-             depressed
+    //-             class="rounded-pill"
+    //-             :width="!$isWideScreen ? '228px' : '300'"
+    //-             :height="!$isWideScreen ? '59px' : '73.68'"
+    //-             color="success"
+    //-           ).text-none
+    //-             span.generic-button-text Start Now
 </template>
 
 <script>
@@ -153,6 +156,7 @@ export default {
     SignupButton: () => import('~/components/commons/SignupButton'),
     Workflow: () => import('~/components/mobile-labs/Workflow'),
     Usp,
+    Storybrand: () => import('~/components/commons/panels/Storybrand'),
   },
   data () {
     this.reportMockups = [
@@ -164,6 +168,11 @@ export default {
         image: 'Mobile Labs Laboratory',
         value: 'lab',
       },
+    ];
+    this.storybrandContent = [
+      'At MYCURE, we know you are the kind of diagnostic center that prioritizes using modern tools to optimize efficiency and improve operations. In order to be that way, you need a solution that can automate routine tasks that will result in reducing costly errors.',
+      'The problem is it’s hard to find such a system that is easy to use, affordable and interoperable with other systems, which is lacking from your current provider.  We believe that diagnostic centers like yours should never have to deal with this. We’ve talked to dozens of labs and understand that there is a need for this.',
+      'That’s why we\'ve built MYCURE Diagnostics with powerful LIS and RIS modules to specifically address this need.',
     ];
     this.headerClasses = ['mc-title-set-1', 'lh-title', 'font-weight-semibold'];
     this.descriptionClasses = ['mc-content-set-1'];
