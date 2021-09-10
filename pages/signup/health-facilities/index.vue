@@ -278,6 +278,7 @@
 
 <script>
 import isEmpty from 'lodash/isEmpty';
+import isObject from 'lodash/isObject';
 import omit from 'lodash/omit';
 import { parsePhoneNumberFromString } from 'libphonenumber-js';
 import {
@@ -496,9 +497,9 @@ export default {
         if (!this.$refs.formRef.validate()) {
           return;
         }
-
         // Map org types and subscription
-        const { orgProps } = this.facilityTypes.find(type => type.value === this.facilityType || this.facilityType?.value);
+        const filledFacilityType = isObject(this.facilityType) ? this.facilityType.value : this.facilityType;
+        const { orgProps } = this.facilityTypes.find(type => type.value === filledFacilityType);
         const organizationPayload = {
           ...orgProps,
         };
