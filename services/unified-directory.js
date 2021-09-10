@@ -31,12 +31,16 @@ export const unifiedDirectorySearch = async (sdk, opts) => {
   if (!opts) return;
   let query = {
     ...opts.text && { $search: opts.text },
-    ...opts.tags?.length && { tags: opts.tags },
     type: opts.type,
     $limit: opts.limit || 10,
     $skip: opts.skip,
     $total: true,
   };
+  // put tags
+  if (opts.tags?.length) {
+    const { tags } = opts;
+    query.tags = tags.length === 1 ? tags[0] : { $in: tags };
+  }
   // put location string
   if (opts.location) {
     const { lat, lng } = opts.location;
