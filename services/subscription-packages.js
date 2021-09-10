@@ -262,10 +262,12 @@ export const getSubscriptionPackagesPricing = async (type) => {
       annualMonthlyPrice: getAnnualMonthlyPrice(packages.find(item => item.tags.includes(packageValue) && item.planInterval === 'year'), type),
       inclusions,
       btnText: 'Get Started',
+      // Trial days
+      ...monthlyPackage?.trialDays && { monthlyTrial: monthlyPackage.trialDays },
+      ...annualPackage?.trialDays && { annualTrial: annualPackage.trialDays },
       // Doctor specific only
       ...DOCTOR_TYPES.includes(type) && { users: packageValue === 'lite' ? 1 : '/' },
       // Sign-up query (except Doctor)
-      ...!DOCTOR_TYPES.includes(type) && { queryOps: { trial: true } },
     };
   });
 
