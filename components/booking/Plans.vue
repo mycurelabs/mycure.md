@@ -123,7 +123,7 @@ export default {
       try {
         this.loading = true;
         // - Fetch doctor pricings
-        const doctorPricings = await getSubscriptionPackagesPricing('doctor') || [];
+        const doctorPricings = await getSubscriptionPackagesPricing('doctor', { isBooking: true }) || [];
         // - Get the 2nd package from doctors
         const doctorBookingPricing = {
           title: 'Doctors',
@@ -134,7 +134,7 @@ export default {
           ...omit(doctorPricings[1], 'title'),
         };
         // - Fetch clinic pricings
-        const clinicPricings = await getSubscriptionPackagesPricing('clinic') || [];
+        const clinicPricings = await getSubscriptionPackagesPricing('clinic', { isBooking: true }) || [];
         // - Get lowest pricing from clinics
         const clinicBookingPricing = {
           title: 'Outpatient Clinics',
@@ -145,7 +145,7 @@ export default {
           ...omit(clinicPricings[0], 'title'),
         };
         // - Fetch Diagnostic Pricings
-        const diagnosticPricings = await getSubscriptionPackagesPricing('diagnostic') || [];
+        const diagnosticPricings = await getSubscriptionPackagesPricing('diagnostic', { isBooking: true }) || [];
         // - Get lowest pricing from diagnostic
         const diagnosticBookingPricing = {
           title: 'Diagnostic Centers',
