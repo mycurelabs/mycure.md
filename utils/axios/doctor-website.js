@@ -54,13 +54,13 @@ export const fetchDoctorMetrics = async (opts, sdk) => {
     // Fetch patients
     const patients = await axios({
       method: 'get',
-      url: `${process.env.API_URL}/metrics/metrics?name=medical_patients_served_total&doctor=${doctorId}`,
+      url: `${process.env.API_URL}/metrics/metrics?name=medical_patients_served_total&labels.doctor=${doctorId}`,
     });
 
     // Fetch medical records
     const records = await axios({
       method: 'get',
-      url: `${process.env.API_URL}/metrics/metrics?name=medical_records_total&creator=${doctorId}`,
+      url: `${process.env.API_URL}/metrics/metrics?name=new_medical_records_total&labels.creator=${doctorId}`,
     });
 
     // Fetching hearts
