@@ -8,6 +8,7 @@
       title="Skin and Aesthetic Clinic Management System for a Flawless Experience"
       meta-title="MYCURE for Skin Clinics"
       description="Easy appointment, inventory management and secure client records and relationship management with analytics and reporting."
+      btn-text="Get Started"
       image="Skin Clinics USP Mobile"
       custom-image-path="clinics/skin/"
       parse-title
@@ -16,18 +17,18 @@
       :media-column-bindings="{ cols: 12, md: 6, offsetMd: 1, xl: 6}"
       :content-column-bindings="{ cols: 12, md: 5 }"
     )
-      template(slot="cta-button")
-        mc-btn(
-          color="success"
-          href="https://calendly.com/mycure/demo"
-          target="_blank"
-          rel="noopener noreferrer"
-          depressed
-          class="rounded-pill"
-          :width="!$isWideScreen ? '228px' : '300'"
-          :height="!$isWideScreen ? '59px' : '73.68'"
-        ).text-none
-          span.generic-button-text Book a demo today
+      //- template(slot="cta-button")
+      //-   mc-btn(
+      //-     color="success"
+      //-     href="https://calendly.com/mycure/demo"
+      //-     target="_blank"
+      //-     rel="noopener noreferrer"
+      //-     depressed
+      //-     class="rounded-pill"
+      //-     :width="!$isWideScreen ? '228px' : '300'"
+      //-     :height="!$isWideScreen ? '59px' : '73.68'"
+      //-   ).text-none
+      //-     span.generic-button-text Book a demo today
     stakes(
       :version="3"
       :media-content="stakesContent"
@@ -99,23 +100,31 @@
     )
       template(slot="cta-button")
         div(:class="{'text-center': $isMobile}")
-          mc-btn(
-            color="success"
-            href="https://calendly.com/mycure/demo"
-            target="_blank"
-            rel="noopener noreferrer"
+          signup-button(
             depressed
             class="rounded-pill"
             :width="!$isWideScreen ? '228px' : '300'"
             :height="!$isWideScreen ? '59px' : '73.68'"
+            color="success"
           ).text-none
             span.generic-button-text Get Started
+          //- mc-btn(
+          //-   color="success"
+          //-   href="https://calendly.com/mycure/demo"
+          //-   target="_blank"
+          //-   rel="noopener noreferrer"
+          //-   depressed
+          //-   class="rounded-pill"
+          //-   :width="!$isWideScreen ? '228px' : '300'"
+          //-   :height="!$isWideScreen ? '59px' : '73.68'"
+          //- ).text-none
+          //-   span.generic-button-text Get Started
 
     //- 6th panel
     syncbase(:version="3")
     //- 6.5
     care
-    steps(:steps="stepsContent")
+    steps(:steps="stepsContent" not-free)
     storybrand(
       title="Using Modern Tools to Boost Your Practice"
       :content="storybrandContent"

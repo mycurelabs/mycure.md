@@ -117,21 +117,29 @@
     )
       template(slot="cta-button")
         div(:class="{'text-center': $isMobile}")
-          mc-btn(
-            color="success"
-            href="https://calendly.com/mycure/demo"
-            target="_blank"
-            rel="noopener noreferrer"
+          signup-button(
             depressed
+            color="success"
             class="rounded-pill"
             :width="!$isWideScreen ? '228px' : '300'"
             :height="!$isWideScreen ? '59px' : '73.68'"
           ).text-none
             span.generic-button-text Get Started
+          //- mc-btn(
+          //-   color="success"
+          //-   href="https://calendly.com/mycure/demo"
+          //-   target="_blank"
+          //-   rel="noopener noreferrer"
+          //-   depressed
+          //-   class="rounded-pill"
+          //-   :width="!$isWideScreen ? '228px' : '300'"
+          //-   :height="!$isWideScreen ? '59px' : '73.68'"
+          //- ).text-none
+          //-   span.generic-button-text Get Started
     //- 8th panel
     syncbase(:version="3")
     care
-    steps(:steps="stepsContent")
+    steps(:steps="stepsContent" not-free)
     storybrand(
       title="Using Modern Tools to Boost Your Practice"
       :content="storybrandContent"

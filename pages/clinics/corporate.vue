@@ -21,6 +21,7 @@
       :version="4"
       panelTitle="Problems of Not Using a Clinic Management System"
       :contents="stakesContent"
+      not-free
     )
     //- 2nd panel
     div.grey-bg.mx-n3
@@ -51,9 +52,9 @@
       :title-classes="headerClasses"
       :super-title-classes="['mc-content-set-1', 'font-open-sans', 'font-weight-semibold', 'primary--text']"
     )
-    call-to-action(:version="4")
+    call-to-action(:version="4" not-free)
     care
-    steps(:steps="stepsContent")
+    steps(:steps="stepsContent" not-free)
     storybrand(
       title="Using Modern Tools to Boost Your Practice"
       :content="storybrandContent"
