@@ -8,7 +8,7 @@
       title="The simplest LIS for Mobile Labs"
       meta-title="MYCURE LIS for Mobile Labs"
       description="MYCURE is an easy to use, secure, cloud-based laboratory information software (LIS) that you can easily setup anywhere your medical team is."
-      btn-text="Start Free"
+      btn-text="Get Started"
       image="Mobile Clinics Mobile Version"
       custom-image-path="diagnostics/mobile-labs/"
       parse-title
@@ -120,7 +120,7 @@
               :width="!$isWideScreen ? '228px' : '300'"
               :height="!$isWideScreen ? '59px' : '73.68'"
             ).text-none
-              span.generic-button-text Start Now
+              span.generic-button-text Get Started
 
     //- 7th panel
     //- div.info.mx-n3

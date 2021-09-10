@@ -33,7 +33,8 @@
                 navigationEnabled
                 paginationEnabled
                 :per-page="1"
-                :navigationClickTargetSize="25"
+                :navigationClickTargetSize="20"
+                :paginationPadding="5"
               )
                 slide(
                   v-for="(item, key) in images"

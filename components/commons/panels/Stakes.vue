@@ -8,7 +8,7 @@
               v-col(cols="12" :sm="version === 2 ? 7 : 11")
                 div.text-center
                   p(:class="{'primary--text': version === 2}").mc-title-set-1.font-weight-semibold.mb-0.mb-4 {{ panelTitle }}
-                  p(v-if="version === 2").mc-content-set-1.mb-0.font-gray {{ subTitle }}
+                  p(v-if="version === 2").mc-content-set-1.mb-0.font-gray.font-open-sans {{ subTitle }}
             //- version 1
             div(v-if="version === 1").font-open-sans
               div(v-for="(content, index) in contents" :key="index")
@@ -70,11 +70,10 @@
                 depressed
                 color="success"
                 class="rounded-pill"
-                :facility-type="facility"
                 :width="!$isWideScreen ? '228px' : '300'"
                 :height="!$isWideScreen ? '59px' : '73.68'"
               ).text-none.my-3
-                span.generic-button-text {{ btnText }}
+                span.generic-button-text {{ notFree ? 'Get Started' : 'Get Started Free' }}
     generic-media-panel(
       v-else
       :content="mediaContent"
@@ -95,7 +94,7 @@
             width="228px"
             height="59px"
           ).text-none
-            span.generic-button-text Get Started Free
+            span.generic-button-text {{ notFree ? 'Get Started' : 'Get Started Free' }}
 </template>
 
 <script>
@@ -156,17 +155,13 @@ export default {
       type: Array,
       default: () => ['mc-content-set-1', 'font-open-sans', 'font-gray'],
     },
-    btnText: {
-      type: String,
-      default: '',
-    },
     hideBtn: {
       type: Boolean,
       default: false,
     },
-    facility: {
-      type: String,
-      default: '',
+    notFree: {
+      type: Boolean,
+      default: false,
     },
   },
   data () {

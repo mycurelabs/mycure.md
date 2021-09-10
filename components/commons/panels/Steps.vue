@@ -29,12 +29,11 @@
             signup-button(
               depressed
               color="success"
-              :facility-type="facility"
               class="rounded-pill"
               :width="!$isWideScreen ? '228px' : '300'"
               :height="!$isWideScreen ? '59px' : '73.68'"
             ).text-none
-              span.generic-button-text {{ btnText }}
+              span.generic-button-text {{ notFree ? 'Get Started' : 'Get Started Free' }}
 </template>
 
 <script>
@@ -54,13 +53,9 @@ export default {
       type: Boolean,
       default: false,
     },
-    btnText: {
-      type: String,
-      default: '',
-    },
-    facility: {
-      type: String,
-      default: '',
+    notFree: {
+      type: Boolean,
+      default: false,
     },
   },
   computed: {

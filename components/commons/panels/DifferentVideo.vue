@@ -45,13 +45,13 @@ export default {
 <style scoped>
 .video-bg {
   /* height: 1000px; */
-  background-image: url('~/assets/images/commons/MYCURE - Video Banner BG.png');
+  background-image: url('~/assets/images/commons/MYCURE - Video Banner BG.webp');
   background-position: center bottom;
   background-size: 100%;
 }
 .video-bg-mobile {
   /* height: 1000px; */
-  background-image: url('~/assets/images/commons/MYCURE - Video Banner BG Mobile.png');
+  background-image: url('~/assets/images/commons/MYCURE - Video Banner BG Mobile.webp');
   background-position: center bottom;
   background-size: 100%;
 }
