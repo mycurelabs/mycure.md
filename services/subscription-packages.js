@@ -164,7 +164,7 @@ const getAnnualMonthlyPrice = (pack, organizationType) => {
 
 const isRecommended = (type, packageValue) => {
   if (DOCTOR_TYPES.includes(type)) return false;
-  if (type === 'diagnostic' && packageValue === 'platinum') return true;
+  if (type === 'diagnostic' && packageValue === 'premium') return true;
   if (type === 'clinic' && packageValue === 'premium') return true;
   return false;
 };
