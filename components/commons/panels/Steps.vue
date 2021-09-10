@@ -29,12 +29,12 @@
             signup-button(
               depressed
               color="success"
-              facility-type="clinic"
+              :facility-type="facility"
               class="rounded-pill"
               :width="!$isWideScreen ? '228px' : '300'"
               :height="!$isWideScreen ? '59px' : '73.68'"
             ).text-none
-              span.generic-button-text Get Started Now
+              span.generic-button-text {{ btnText }}
 </template>
 
 <script>
@@ -53,6 +53,14 @@ export default {
     hideBtn: {
       type: Boolean,
       default: false,
+    },
+    btnText: {
+      type: String,
+      default: '',
+    },
+    facility: {
+      type: String,
+      default: '',
     },
   },
   computed: {

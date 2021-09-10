@@ -1,10 +1,10 @@
 <template lang="pug">
   v-container
     v-row(justify="center").py-16
-      v-col(cols="12" md="8").text-center
+      v-col(cols="12" md="6").text-center
         h1(:class="[...titleClasses, {'mx-n1': $isMobile}]").mb-5 Seamless workflows anywhere you go.
         v-row(justify="center")
-          v-col(cols="12" md="8" xl="9")
+          v-col(cols="12" md="10")
             p(:class="descriptionClasses").mb-10 Value everyone's time more effectively. Handle location-based registrations like a breeze.
         //- signup-button(
         //-   depressed

@@ -16,6 +16,7 @@
       :parse-title-fields="['only ', 'software ']"
       :media-column-bindings="{ cols: 12, md: 6, offsetMd: 1, xl: 6}"
       :content-column-bindings="{ cols: 12, md: 5 }"
+      @click="$nuxt.$router.push({ name: 'signup-health-facilities', query: { type: 'diagnostic' }})"
     )
     stakes(
       :version="3"
@@ -94,7 +95,7 @@
     )
       template(slot="cta-button")
         v-row(:justify="$isMobile ? 'center' : 'start'")
-          v-col(cols="10" sm="5" md="7" lg="6" xl="7")
+          v-col(cols="10" sm="5" md="7" lg="6" xl="7" :align="$isMobile ? 'center' : 'start'")
             signup-button(
               depressed
               class="rounded-pill"
@@ -132,23 +133,23 @@
     //- 8th panel
     call-to-action(:version="2")
     //- 9th panel
-    div.info.mx-n3
-      v-container
-        v-row(justify="center")
-          generic-panel(:row-bindings="{ justify: 'center' }")
-            v-col(cols="12" lg="8").white--text.text-center
-              h2(:class="['white--text', ...headerClasses]").mb-5 Take the first step today
-              p(:class="descriptionClasses").mb-5 Start now and get all your questions answered
-              mc-btn(
-                color="success"
-                class="rounded-pill"
-                :width="!$isWideScreen ? '228px' : '300'"
-                :height="!$isWideScreen ? '59px' : '73.68'"
-                depressed
-                :large="!$isWideScreen"
-                :x-large="$isWideScreen"
-                :class="btnClasses"
-              ).text-none Count me in
+    //- div.info.mx-n3
+    //-   v-container
+    //-     v-row(justify="center")
+    //-       generic-panel(:row-bindings="{ justify: 'center' }")
+    //-         v-col(cols="12" lg="8").white--text.text-center
+    //-           h2(:class="['white--text', ...headerClasses]").mb-5 Take the first step today
+    //-           p(:class="descriptionClasses").mb-5 Start now and get all your questions answered
+    //-           mc-btn(
+    //-             color="success"
+    //-             class="rounded-pill"
+    //-             :width="!$isWideScreen ? '228px' : '300'"
+    //-             :height="!$isWideScreen ? '59px' : '73.68'"
+    //-             depressed
+    //-             :large="!$isWideScreen"
+    //-             :x-large="$isWideScreen"
+    //-             :class="btnClasses"
+    //-           ).text-none Count me in
 </template>
 
 <script>

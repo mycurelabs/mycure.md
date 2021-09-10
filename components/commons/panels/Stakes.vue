@@ -70,10 +70,11 @@
                 depressed
                 color="success"
                 class="rounded-pill"
+                :facility-type="facility"
                 :width="!$isWideScreen ? '228px' : '300'"
                 :height="!$isWideScreen ? '59px' : '73.68'"
               ).text-none.my-3
-                span.generic-button-text Start Your Free Trial
+                span.generic-button-text {{ btnText }}
     generic-media-panel(
       v-else
       :content="mediaContent"
@@ -155,9 +156,17 @@ export default {
       type: Array,
       default: () => ['mc-content-set-1', 'font-open-sans', 'font-gray'],
     },
+    btnText: {
+      type: String,
+      default: '',
+    },
     hideBtn: {
       type: Boolean,
       default: false,
+    },
+    facility: {
+      type: String,
+      default: '',
     },
   },
   data () {
