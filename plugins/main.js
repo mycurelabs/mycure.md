@@ -19,11 +19,11 @@ import OtpInput from '@bachdgvn/vue-otp-input';
 Vue.mixin({
   computed: {
     $isMobile () {
-      return this.$vuetify.breakpoint.width < 1041;
+      return this.$vuetify.breakpoint.width < 1025;
     },
     /* Used if you do not want changes to transcend to widescreens */
     $isRegularScreen () {
-      return this.$vuetify.breakpoint.width > 1040 && this.$vuetify.breakpoint.width < 1904;
+      return this.$vuetify.breakpoint.width > 1024 && this.$vuetify.breakpoint.width < 1904;
     },
     $isWideScreen () {
       return this.$vuetify.breakpoint.width > 1903;

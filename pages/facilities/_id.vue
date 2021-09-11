@@ -403,6 +403,9 @@ export default {
         /*
           Checks if there is a specific schedule for the service type
         */
+        if (this.serviceTypes?.length && !this.serviceSchedules?.length) {
+          await this.fetchServiceTypes();
+        }
         this.filteredServices = items.map((item) => {
           const { type, subtype } = item;
           const primaryType = subtype || type;
@@ -501,20 +504,17 @@ export default {
     async onPaginate (payload) {
       await this.refetchListItems(payload);
     },
-    filterByDate (unixDate) {
-      if (!unixDate) {
-        this.onServiceSearch({ searchText: this.searchText, searchFilters: this.searchFilters });
-        return;
-      }
+    async filterByDate (unixDate) {
+      await this.onServiceSearch({ searchText: this.searchText, searchFilters: this.searchFilters });
+      if (!unixDate) return;
       const date = new Date(unixDate);
       let day = date.getDay();
       if (day === 0) day = 7;
-
       if (!this.searchResults?.length) return;
       this.searchResults = this.searchResults.filter((result) => {
         const schedules = result.scheduleData || result.schedules;
-        const matchDay = schedules?.find(schedule => schedule.order === day);
-        return matchDay;
+        const matchDay = schedules?.find(schedule => schedule.order || schedule.day === day);
+        return !!matchDay;
       }) || [];
     },
   },

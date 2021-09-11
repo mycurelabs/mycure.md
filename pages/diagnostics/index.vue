@@ -5,9 +5,9 @@
       has-custom-background
       background-image="Diagnostics Landing Page"
       background-image-file-extension=".webp"
-      title="Your Diagnostic Center Fortified"
+      title="Your Diagnostic Center Transformed"
       meta-title="MYCURE Diagnostic"
-      description="The best tool to create, finalize, and release diagnostic test results is finally here."
+      description="The best tool to streamline diagnostic laboratories and imaging centers’ operations, automate routine tasks, and reduce costs and errors."
       image="Diagnostics Mobile USP"
       image-col-offset="1"
       custom-image-path="diagnostics/"
@@ -59,6 +59,7 @@
         :content="integrationsPanel"
         hide-btn
         align="center"
+        :super-title-classes="['mc-content-set-1', 'font-open-sans', 'font-weight-semibold', 'primary--text']"
       )
         template(slot="content")
           v-row(justify="start")
@@ -100,6 +101,7 @@
     generic-media-panel(
       :content="cmsPanel"
       align="center"
+      :super-title-classes="['mc-content-set-1', 'font-open-sans', 'font-weight-semibold', 'primary--text']"
     )
       template(slot="cta-button")
         div(:class="{'text-center': $isMobile}")
@@ -116,15 +118,14 @@
             span.generic-button-text  Learn more
     //- 7.5
     care
-    steps(:steps="stepsContent")
+    steps(:steps="stepsContent" not-free)
+    //- 8th panel
+    think-long-term
+    //- 9th panel
     storybrand(
       title="Using Modern Tools to Boost Your Practice"
       :content="storybrandContent"
     )
-    //- 8th panel
-    think-long-term
-    //- 9th panel
-    call-to-action(:version="2")
     //- 10th panel
     pricing(
       title="Take the first step today"
@@ -132,6 +133,7 @@
       type="diagnostic"
       has-trial-option
     ).mb-n3
+    call-to-action(:version="2" not-free)
 </template>
 
 <script>
@@ -264,7 +266,7 @@ export default {
       return {
         contentAlign: 'left',
         title: 'Ready whenever you are',
-        superTitle: 'POWERFUL INTEGRATIONS',
+        superTitle: 'Powerful Integrations',
         list: [
           {
             title: 'HL7',
@@ -301,7 +303,7 @@ export default {
     cmsPanel () {
       return {
         title: 'Grow into a full service clinic anytime',
-        superTitle: 'MYCURE CLINIC MANAGEMENT SYSTEM',
+        superTitle: 'MYCURE Clinic Management System',
         description: 'Cover all your patient journeys with MYCURE’s most complete clinic management system.',
         imageBindings: {
           image: 'FullService.webp',

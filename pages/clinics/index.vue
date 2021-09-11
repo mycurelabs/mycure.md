@@ -22,9 +22,10 @@
     stakes(
       panel-title="Your clinic system should not cause you more problems"
       sub-title="Without correctly utilizing the technologies available today, you’re actually losing opportunities more than you think."
-      panel-description="Well you don’t have to handle all these problems anymore. Join MYCURE and become the expert who doesn’t just sound like you’re good at managing your clinic—you’ll actually know how to maximise the MYCURE suite of tools to get all the right insights, reports, and seamless organisation you’ve always aspired to have."
+      panel-description="MYCURE is a full featured, end-to-end solution that eliminates many of the challenges of manual processing. MYCURE’s solution encompasses the entire customer journey, from the time they book an appointment to the time they pay and leave, so no more disjointed or separate solutions for different aspects of the clinic operations. The digital solution eliminates the need for manual record keeping and the pushing paper documents to different departments."
       :version="2"
       :contents="stakesContent"
+      not-free
     )
     //- 2nd panel
     div.grey-bg.mx-n3
@@ -63,6 +64,32 @@
         image-dir="clinics/"
         panel-height="70vh"
       )
+    //- 7.5
+    care
+    steps(
+      :steps="stepsContent"
+      not-free
+    )
+    //- 8th panel
+    think-long-term
+    storybrand(
+      title="Using Modern Tools to Boost Your Practice"
+      :content="storybrandContent"
+    )
+    v-divider.divider
+    //- 10th panel
+    //- pricing(
+    //-   type="clinic"
+    //-   title="Take the first step today"
+    //- ).mb-n3
+    pricing(
+      has-trial-option
+      type="clinic"
+      title="Take the first step today"
+      description="Choose the best plan for your clinic. Only pay for what you need."
+    ).mb-n3
+    //- 9th panel
+    call-to-action(:version="2" not-free)
     //- 7th panel
     div.blue-bg.mx-n3
       generic-media-panel(
@@ -82,26 +109,6 @@
           ).text-none.primary--text
             v-icon(left) mdi-information-outline
             span.generic-button-text Learn More
-    //- 7.5
-    care
-    steps(:steps="stepsContent")
-    storybrand(
-      title="Using Modern Tools to Boost Your Practice"
-      :content="storybrandContent"
-    )
-    //- 8th panel
-    think-long-term
-    v-divider.divider
-    //- 9th panel
-    call-to-action(:version="2")
-    //- 10th panel
-    pricing(
-      has-trial-option
-      type="clinic"
-      title="Take the first step today"
-      description="Choose the best plan for your clinic. Only pay for what you need."
-      :pricing-details="pricingDetails"
-    ).mb-n3
 </template>
 
 <script>
@@ -168,14 +175,14 @@ export default {
       },
     ];
     this.stakesContent = [
-      'You spend more on tools you don\'t need',
-      'Patient turnaround time doesn\'t improve',
-      'You pay extra space for paper charts',
-      'You get appointment no-shows',
-      'You\'ll have dissatisfied patients',
-      'Your staff gets frustrated with more work',
-      'Your daily reports are prone to errors',
-      'You\'re unsure of your compliance to laws',
+      'Wasted Time and Resources',
+      'Cancelled Appointments',
+      'Long Patient Turn-around Time',
+      'Patient Dissatisfaction',
+      'Overworked Staff',
+      'Error Prone Reports',
+      'Increased Storage Costs',
+      'Lack of Compliance to Regulations',
     ];
     this.stepsContent = [
       {

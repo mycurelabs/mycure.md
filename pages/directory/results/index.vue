@@ -18,8 +18,8 @@ export default {
   },
   head () {
     return headMeta({
-      title: 'MYCURE Doctor Booking Management Software',
-      description: 'Search for doctors and specialties in the MYCURE Doctors Directory',
+      title: 'MYCURE Booking Management Software',
+      description: 'Search for doctors and clinics in the MYCURE Directory',
       socialBanner: require('~/assets/images/banners/OG Patients.png'),
     });
   },

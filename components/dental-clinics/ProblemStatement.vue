@@ -3,7 +3,7 @@
     v-row(justify="center")
       generic-panel(:row-bindings="{ justify: 'center'}")
         v-col(cols="12").text-center
-          h2(:class="titleClasses").mb-5 From your first sale to full scale.
+          h2(:class="titleClasses").mb-5 From your first extraction to full service operations.
           p(:class="contentClasses").mb-10 MYCURE is designed to help you grow your practice.
           signup-button(
             depressed
@@ -13,7 +13,7 @@
             :width="!$isWideScreen ? '228px' : '300'"
             :height="!$isWideScreen ? '59px' : '73.68'"
           ).text-none.mb-10
-            span.generic-button-text Start Free
+            span.generic-button-text Get Started
         v-col(cols="12")
           v-row(v-if="!$isMobile" justify="center")
             picture-source(
@@ -28,11 +28,13 @@
             v-col(cols="10")
               carousel(
                 paginationColor="grey"
+                autoplay
                 loop
                 navigationEnabled
                 paginationEnabled
                 :per-page="1"
-                :navigationClickTargetSize="25"
+                :navigationClickTargetSize="20"
+                :paginationPadding="5"
               )
                 slide(
                   v-for="(item, key) in images"
@@ -51,6 +53,9 @@
 </template>
 
 <script>
+import VueSlickCarousel from 'vue-slick-carousel';
+import 'vue-slick-carousel/dist/vue-slick-carousel.css';
+import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css';
 import GenericPanel from '~/components/generic/GenericPanel';
 import PictureSource from '~/components/commons/PictureSource';
 import SignupButton from '~/components/commons/SignupButton';
@@ -59,6 +64,7 @@ export default {
     GenericPanel,
     PictureSource,
     SignupButton,
+    VueSlickCarousel,
   },
   data () {
     this.images = [
@@ -67,7 +73,7 @@ export default {
       { image: 'Dentist', alt: 'Dentist treating a patient artwork' },
     ];
     this.titleClasses = ['mc-title-set-1', 'font-weight-semibold'];
-    this.contentClasses = ['mc-content-set-1', 'font-weight-semibold', 'secondary--text'];
+    this.contentClasses = ['mc-content-set-1', 'font-open-sans', 'font-gray'];
     this.btnClasses = ['mc-button-set-1'];
     return {};
   },

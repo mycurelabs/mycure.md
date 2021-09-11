@@ -5,15 +5,15 @@
       has-custom-background
       background-image="Dental Clinics USP - Full Illu"
       background-image-file-extension=".webp"
-      title="Easy to setup, affordable"
+      title="The Dental Clinic Management System that makes you Smile"
       meta-title="MYCURE for Dental Clinics"
-      description="Start going digital without spending anything."
-      btn-text="Start Free"
+      description="It has everything your dental clinic needs from appointments, billing, inventory to smart dental charting."
+      btn-text="Get Started"
       image="Dental Clinics USP - Mobile version"
       custom-image-path="clinics/dental/"
       parse-title
       parse-meta-title
-      :parse-title-fields="['setup, ']"
+      :parse-title-fields="['Dental ', 'Management ', 'that ']"
       :media-column-bindings="{ cols: 12, md: 6, offsetMd: 1, xl: 6}"
       :content-column-bindings="{ cols: 12, md: 5 }"
     )
@@ -83,27 +83,39 @@
             span(:class="[descriptionClasses, ($isMobile ? 'ml-2' : ($isRegularScreen ? 'ml-3' : 'ml-4'))]").font-open-sans.font-gray {{ item }}
         div.mb-10
       template(slot="cta-button")
-        v-row(:justify="$isMobile ? 'center' : 'start'")
-          v-col(cols="12" sm="6").pa-0
+        div(:class="{'text-center': $isMobile}")
+          signup-button(
+            depressed
+            color="success"
+            event-label="signup"
+            class="rounded-pill"
+            :width="!$isWideScreen ? '228px' : '300'"
+            :height="!$isWideScreen ? '59px' : '73.68'"
+          ).text-none
+            v-icon(left) mdi-web
+            span.generic-button-text Create my website
+        //- v-row(:justify="$isMobile ? 'center' : 'start'")
+          v-col(cols="12" sm="6" align="center").px-0.pb-0
             mc-btn(
               color="success"
               href="https://calendly.com/mycure/demo"
               target="_blank"
               rel="noopener noreferrer"
               depressed
-              block
               class="rounded-pill"
+              :width="!$isWideScreen ? '228px' : '300'"
               :height="!$isWideScreen ? '59px' : '73.68'"
             ).text-none
               //- v-icon(left) mdi-web
               span.generic-button-text Create my Website
-          v-col(cols="12" sm="6").py-0
+          v-col(cols="12" sm="6" align="center" :class="{'pl-6': !$isMobile}").pb-0
             signup-button(
               depressed
-              block
+              :block="!$isMobile"
               outlined
               color="success"
               class="rounded-pill"
+              :width="$isMobile ? '228' : ''"
               :height="!$isWideScreen ? '59px' : '73.68'"
             ).text-none
               span.generic-button-text Get Started
@@ -116,28 +128,36 @@
     )
       template(slot="cta-button")
         div(:class="{'text-center': $isMobile}")
-          mc-btn(
-            color="success"
-            href="https://calendly.com/mycure/demo"
-            target="_blank"
-            rel="noopener noreferrer"
+          signup-button(
             depressed
+            color="success"
             class="rounded-pill"
             :width="!$isWideScreen ? '228px' : '300'"
             :height="!$isWideScreen ? '59px' : '73.68'"
           ).text-none
             span.generic-button-text Get Started
+          //- mc-btn(
+          //-   color="success"
+          //-   href="https://calendly.com/mycure/demo"
+          //-   target="_blank"
+          //-   rel="noopener noreferrer"
+          //-   depressed
+          //-   class="rounded-pill"
+          //-   :width="!$isWideScreen ? '228px' : '300'"
+          //-   :height="!$isWideScreen ? '59px' : '73.68'"
+          //- ).text-none
+          //-   span.generic-button-text Get Started
     //- 8th panel
     syncbase(:version="3")
     care
-    steps(:steps="stepsContent")
+    steps(:steps="stepsContent" not-free)
+    //- 9th panel
+    think-long-term(extended)
+    //- 10th panel
     storybrand(
       title="Using Modern Tools to Boost Your Practice"
       :content="storybrandContent"
     )
-    //- 9th panel
-    think-long-term(extended)
-    //- 10th panel
     pricing(
       title="Take the first step today."
       type="clinic"
@@ -197,7 +217,7 @@ export default {
     ];
     this.headerClasses = ['mc-title-set-1', 'lh-title', 'font-weight-semibold'];
     this.descriptionClasses = ['mc-content-set-1'];
-    this.contentClasses = ['mc-content-set-1', 'font-weight-semibold', 'secondary--text'];
+    this.contentClasses = ['mc-content-set-1', 'font-open-sans', 'font-gray'];
     this.btnClasses = ['mc-button-set-1'];
     this.subHeaderClasses = ['mc-subheader-set-1', 'lh-title', 'font-weight-semibold', 'secondary--text'];
     this.studentPanelDescriptionClasses = ['mc-subheader-set-2', 'font-weight-semibold'];

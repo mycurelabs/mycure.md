@@ -7,15 +7,16 @@
       background-image-file-extension=".webp"
       title="The first and only medical software for OFW clinics"
       meta-title="MYCURE for OFW Medical Clinics"
-      description="MYCURE is an easy to use, secure, cloud-based software where you can conveniently create, finalize, and release medical exam results."
-      btn-text="Sign Up"
+      description="MYCURE is an easy to use, secure, cloud-based clinic management system where you can conveniently create, finalize, and release medical exam results online and offline."
+      btn-text="Get Started"
       image="OFW Clinics Mobile"
       custom-image-path="clinics/ofw/"
       parse-title
       parse-meta-title
-      :parse-title-fields="['only ', 'for ']"
+      :parse-title-fields="['only ', 'software ']"
       :media-column-bindings="{ cols: 12, md: 6, offsetMd: 1, xl: 6}"
       :content-column-bindings="{ cols: 12, md: 5 }"
+      @click="$nuxt.$router.push({ name: 'signup-health-facilities', query: { type: 'diagnostic' }})"
     )
     stakes(
       :version="3"
@@ -32,7 +33,7 @@
         generic-panel(:row-bindings="{ justify: 'center'}")
           v-col(cols="12" lg="8").text-center
             h2(:class="headerClasses").mb-5 Create beautiful reports for your clients.
-            p(:class="descriptionClasses").mb-10.secondary--text.font-weight-semibold Provide both printed and online copies of their medical exam results without the hassle.
+            p(:class="descriptionClasses").mb-10.font-gray.font-open-sans Provide both printed and online copies of their medical exam results without the hassle.
           v-col(cols="12").text-center
             //- TODO: Add explicit width and height
             picture-source(
@@ -54,18 +55,19 @@
             div(:class="{ 'text-center': $isMobile }")
               signup-button(
                 depressed
-                rounded
-                width="228px"
-                height="59px"
+                class="rounded-pill"
+                :width="!$isWideScreen ? '228px' : '300'"
+                :height="!$isWideScreen ? '59px' : '73.68'"
                 color="success"
               ).text-none
-                span.generic-button-text Sign Up
+                span.generic-button-text Get Started
     //- 5th panel
     div.grey-bg.mx-n3
       generic-media-panel(
         :content="integrationsPanel"
         hide-btn
         align="center"
+        :super-title-classes="['mc-content-set-1', 'font-open-sans', 'font-weight-semibold', 'primary--text']"
       )
         template(slot="content")
           v-row(justify="start")
@@ -93,7 +95,7 @@
     )
       template(slot="cta-button")
         v-row(:justify="$isMobile ? 'center' : 'start'")
-          v-col(cols="10" sm="5" md="7" lg="6" xl="7")
+          v-col(cols="10" sm="5" md="7" lg="6" xl="7" :align="$isMobile ? 'center' : 'start'")
             signup-button(
               depressed
               class="rounded-pill"
@@ -118,7 +120,7 @@
           //-     :class="{'font-s': $isWideScreen, 'font-14': $isRegularScreen }"
           //-   ).text-none Book a full training
     care
-    steps(:steps="stepsContent")
+    steps(:steps="stepsContent" not-free)
     storybrand(
       title="Using Modern Tools to Boost Your Practice"
       :content="storybrandContent"
@@ -129,25 +131,25 @@
       type="diagnostic"
     )
     //- 8th panel
-    call-to-action(:version="2")
+    call-to-action(:version="2" not-free)
     //- 9th panel
-    div.info.mx-n3
-      v-container
-        v-row(justify="center")
-          generic-panel(:row-bindings="{ justify: 'center' }")
-            v-col(cols="12" lg="8" xl="6").white--text.text-center
-              h2(:class="['white--text', ...headerClasses]").mb-5 Take the first step today
-              h3(:class="descriptionClasses").mb-5.font-weight-semibold Start now and get all your questions answered
-              mc-btn(
-                color="success"
-                class="rounded-pill"
-                :width="!$isWideScreen ? '228px' : '300'"
-                :height="!$isWideScreen ? '59px' : '73.68'"
-                depressed
-                :large="!$isWideScreen"
-                :x-large="$isWideScreen"
-                :class="btnClasses"
-              ).text-none Count me in
+    //- div.info.mx-n3
+    //-   v-container
+    //-     v-row(justify="center")
+    //-       generic-panel(:row-bindings="{ justify: 'center' }")
+    //-         v-col(cols="12" lg="8").white--text.text-center
+    //-           h2(:class="['white--text', ...headerClasses]").mb-5 Take the first step today
+    //-           p(:class="descriptionClasses").mb-5 Start now and get all your questions answered
+    //-           mc-btn(
+    //-             color="success"
+    //-             class="rounded-pill"
+    //-             :width="!$isWideScreen ? '228px' : '300'"
+    //-             :height="!$isWideScreen ? '59px' : '73.68'"
+    //-             depressed
+    //-             :large="!$isWideScreen"
+    //-             :x-large="$isWideScreen"
+    //-             :class="btnClasses"
+    //-           ).text-none Count me in
 </template>
 
 <script>
@@ -223,7 +225,7 @@ export default {
         imageBindings: {
           customPath: 'clinics/ofw/',
           image: 'Queue.png',
-          mobileImage: 'Queue-mobile.png',
+          mobileImage: 'Queue.png',
           imageAlt: 'Registration kiosk in MYCURE Clinic Management System',
           extensionExclusive: true,
           width: this.$isMobile ? '276px' : (this.$isRegularScreen ? '440px' : '710px'),
@@ -235,7 +237,7 @@ export default {
       return {
         contentAlign: 'left',
         title: 'Ready whenever you are',
-        superTitle: 'POWERFUL INTEGRATIONS',
+        superTitle: 'Powerful Integrations',
         list: [
           {
             title: 'HL7',

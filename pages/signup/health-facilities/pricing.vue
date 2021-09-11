@@ -34,6 +34,7 @@
                 pricing-card(
                   :bundle="bundle"
                   :payment-interval="paymentInterval"
+                  height="850"
                 ).elevation-3
                   template(slot="card-btn")
                     v-btn(
@@ -213,7 +214,7 @@ export default {
     }
 
     // - Note: URL query parameters are strings
-    this.isTrial = this.$route.query.trial === 'true' || false;
+    this.isTrial = this.$route.query.trial === 'true' || this.$route.query.trial === true;
 
     if (this.preBundle) {
       await this.submit();

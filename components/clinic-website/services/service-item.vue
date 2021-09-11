@@ -17,6 +17,13 @@
               div(v-for="(schedule, key) in previewSchedules" :key="key")
                 v-icon(color="black" small left) mdi-calendar-blank
                 span.text-capitalize {{ formatIndividualSchedule(schedule) }}
+                v-icon(
+                  v-if="getProviders(schedule).length"
+                  color="primary"
+                  small
+                  right
+                  @click="openProvidersDialog(schedule)"
+                ) mdi-information-outline
                 br
               br
               a(@click="scheduleExpanded = true").grey--text More Schedules >
@@ -95,16 +102,43 @@
             non-mf-schedule
             :items="groupedSchedules"
           )
+    //- Providers Dialog
+    v-dialog(v-model="providersDialog" width="350")
+      v-toolbar(flat)
+        v-toolbar-title.primary--text Available Doctors
+        v-spacer
+        v-btn(icon @click="closeProvidersDialog")
+          v-icon mdi-close
+      v-card
+        v-card-text
+          v-list
+            v-list-item(v-for="(provider, key) in previewProviders" :key="key")
+              v-list-item-avatar
+                v-avatar(size="25")
+                  img(
+                    :src="provider.picURL || doctorAvatar"
+                    alt="MYCURE Doctor Default Avatar"
+                    width="100%"
+                  )
+              v-list-item-title {{ provider | format-name }}
 </template>
 
 <script>
 import { format } from 'date-fns';
 import uniqBy from 'lodash/uniqBy';
 import ServiceSchedules from './service-schedules';
+import { formatName } from '~/utils/formats';
+import DefaultAvatar from '~/assets/images/commons/MYCURE Default Avatar.png';
 
 export default {
   components: {
     ServiceSchedules,
+  },
+  filters: {
+    formatName (provider) {
+      if (!provider?.name) return 'CONCEALED Doctor';
+      return `Dr. ${formatName(provider.name || {}, 'firstName middleInitial lastName generationalSuffix')}`;
+    },
   },
   props: {
     item: {
@@ -138,8 +172,12 @@ export default {
       { text: 'Sat', value: 6 },
       { text: 'Sun', value: 0 },
     ];
+    this.doctorAvatar = DefaultAvatar;
     return {
       scheduleExpanded: false,
+      // Providers Dialog
+      providersDialog: false,
+      previewProviders: [],
     };
   },
   computed: {
@@ -172,7 +210,7 @@ export default {
       return schedules.sort((a, b) => a.day !== b.day ? a.order - b.order : a.opening - b.opening) || [];
     },
     previewSchedules () {
-      return this.todaySchedules?.slice(0, 3);
+      return this.groupedSchedules?.slice(0, 3) || [];
     },
     todaySchedules () {
       if (!this.fullSchedules?.length) {
@@ -248,6 +286,20 @@ export default {
     formatDay (day) {
       return this.days?.find(item => item.value === day)?.text || '';
       // return day;
+    },
+    getProviders (schedule) {
+      if (this.isDoctor) return [];
+      if (!['clinical-consultation', 'clinical-procedure'].includes(schedule.meta?.serviceType)) return [];
+      const { providers } = schedule;
+      return providers || [];
+    },
+    openProvidersDialog (schedule) {
+      this.previewProviders = this.getProviders(schedule);
+      this.providersDialog = true;
+    },
+    closeProvidersDialog () {
+      this.providersDialog = false;
+      this.previewProviders = [];
     },
   },
 };

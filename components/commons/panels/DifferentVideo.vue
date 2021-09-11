@@ -1,11 +1,11 @@
 <template lang="pug">
-  div(:class="$isMobile? 'video-bg-mobile' : 'video-bg'").mx-n3
+  div(:class="$vuetify.breakpoint.width < 650 ? 'video-bg-mobile' : 'video-bg'").mx-n3.py-10
     v-container
       v-row(justify="center")
         generic-panel
           v-col(cols="12").text-center
             h1.mc-title-set-1.font-weight-bold Here's How MYCURE is Different
-          v-col(cols="12").text-center
+          v-col(cols="12").text-center.mt-8
             iframe(
               align="middle"
               id="ytplayer"
@@ -46,12 +46,13 @@ export default {
 .video-bg {
   /* height: 1000px; */
   background-image: url('~/assets/images/commons/MYCURE - Video Banner BG.webp');
-  background-position: center top;
+  background-position: center bottom;
   background-size: 100%;
 }
 .video-bg-mobile {
   /* height: 1000px; */
-  background-image: url('~/assets/images/commons/MYCURE - Video Banner BG.webp');
-  background-position: center top;
+  background-image: url('~/assets/images/commons/MYCURE - Video Banner BG Mobile.webp');
+  background-position: center bottom;
+  background-size: 100%;
 }
 </style>

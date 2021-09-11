@@ -6,10 +6,11 @@
     care
     //- 3rd panel
     stakes(
-      panel-title="IT Solutions for your Health Facility Should Not Be Too Expensive and Complicated"
-      panel-description="Good thing you don’t have to handle all these problems anymore. Join MYCURE and learn how to be a health tech expert—get all the right insights, reports, and seamless organization you’ve always aspired to have."
+      panel-title="Your clinic system should not cause you more problems"
+      panel-description="IT solutions for your health facility should not be expensive or complicated. Good thing you don’t have to handle all these problems anymore. Join MYCURE and learn how to be a health tech expert—get all the right insights, reports, and seamless organization you’ve always aspired to have."
       :version="1"
       :contents="stakesContent"
+      not-free
     )
     //- 4th panel
     div.simple-container.mx-n3
@@ -28,7 +29,7 @@
         :description-classes="descriptionClasses"
       )
     //- 9th panel
-    steps(:steps="stepsContent")
+    steps(:steps="stepsContent" not-free)
     //- 10th panel
     storybrand(
       title="Using Modern Tools to Boost Your Practice"

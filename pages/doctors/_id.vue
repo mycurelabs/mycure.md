@@ -165,11 +165,7 @@ export default {
       return this.mode === 'preview';
     },
     picURL () {
-      const sex = this.doctor?.sex;
-      if (sex === 'female') {
-        return this.doctor?.picURL || require('~/assets/images/doctor-website/doctor-website-profile-female.png');
-      }
-      return this.doctor?.picURL || require('~/assets/images/doctor-website/doctor-website-profile-male.png');
+      return this.doctor?.picURL || require('~/assets/images/commons/MYCURE Default Avatar.png');
     },
     name () {
       return this.doctor?.name || {};
@@ -214,8 +210,10 @@ export default {
     isVerified () {
       return this.doctor?.doc_verified; // eslint-disable-line
     },
+    // Check if doctor has a schedule in any clinic
     isBookable () {
-      return !!this.clinics.length;
+      if (!this.clinics?.length) return false;
+      return !!this.clinics.find(c => c?.$populated?.doctorSchedules?.length || c?.doctorSchedules?.length);
     },
     banner () {
       return this.doctor?.doc_websiteBannerURL || require('~/assets/images/doctor-website/doctor-banner-placeholder.png');

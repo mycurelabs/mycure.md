@@ -1,13 +1,23 @@
 <template lang="pug">
-  div.mx-n3.mt-n5.main-container
-    div
+  div(:class="$isMobile ? 'video-bg-mobile' : ''").mx-n3.mt-n5.main-container
+    div(v-if="!$isMobile")
       picture-source(
-        image-file-extension=".webp"
+        v-if="!$isMobile"
+        image-file-extension=".png"
         image="Homepage USP BG"
         image-alt="Bushes and clouds background artwork"
         custom-path="home/"
         :image-styles="backgroundStyle"
       )
+      //- picture-source(
+      //-   v-else
+      //-   image-file-extension=".png"
+      //-   image="Homepage USP BG Mobile"
+      //-   extension-exclusive="true"
+      //-   image-alt="Bushes and clouds background artwork"
+      //-   custom-path="home/"
+      //-   :image-styles="backgroundStyleMobile"
+      //- )
       //- img(
       //-   alt=""
       //-   width="100%"
@@ -22,7 +32,7 @@
                 h1(:class="headerClasses").mb-2 Enterprise-Grade
                   br
                   | Healthcare Solutions
-                v-row(justify="center")
+                v-row(justify="center").mt-5
                   v-col(cols="12" md="10")
                     p.mc-content-set-1.font-gray.mb-8.font-open-sans MYCURE provides a wide array of modern healthcare management solutions that are custom-built for doctors, clinics, diagnostic labs and hospitals at a fraction of the cost.
                 signup-button(
@@ -39,10 +49,9 @@
                   autoplay
                   draggable
                   infinite
-                  :arrows="false"
                   :dots="false"
                   :slidesToShow="4",
-                  :speed="500"
+                  :speed="1000"
                 )
                   div(v-for="(wonder,key) in wonders" :key="key")
                     wonder(:wonder="wonder").mx-2
@@ -50,8 +59,6 @@
               //-   wonder(:wonder="wonder")
               v-col(v-else cols="10" sm="8" md="10")
                 carousel(
-                  navigationNextLabel=" "
-                  navigationPrevLabel=" "
                   paginationColor="#f0f0f0"
                   autoplay
                   loop
@@ -71,6 +78,7 @@
 <script>
 import VueSlickCarousel from 'vue-slick-carousel';
 import 'vue-slick-carousel/dist/vue-slick-carousel.css';
+import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css';
 import Wonder from './Wonder';
 import GenericPanel from '~/components/generic/GenericPanel';
 import PictureSource from '~/components/commons/PictureSource';
@@ -88,6 +96,12 @@ export default {
   data () {
     this.wonders = [
       {
+        title: 'Booking',
+        description: 'Book and schedule appointments efficiently',
+        infoLink: 'booking',
+        image: 'Booking',
+      },
+      {
         title: 'Physicians',
         description: 'Easily create digital medical records',
         infoLink: 'doctors-clinics',
@@ -104,12 +118,6 @@ export default {
         description: 'Convert online booking to online results',
         infoLink: 'diagnostics',
         image: 'Diagnostics',
-      },
-      {
-        title: 'Booking',
-        description: 'Book and schedule appointments efficiently',
-        infoLink: 'booking',
-        image: 'Booking',
       },
       {
         title: 'Telehealth',
@@ -161,6 +169,16 @@ export default {
         objectFit: 'cover',
       };
     },
+    backgroundStyleMobile () {
+      return {
+        width: '100%',
+        height: '100%',
+        position: 'absolute',
+        bottom: '0',
+        zIndex: '1',
+        objectFit: 'cover',
+      };
+    },
   },
   async mounted () {
     this.isWebp = await canUseWebp();
@@ -198,4 +216,15 @@ export default {
   position: absolute;
   width: 100vw;
 } */
+.video-bg {
+  /* height: 1000px; */
+  background-image: url('~/assets/images/home/Homepage USP BG.png');
+  background-position: left top;
+  background-size: 100%;
+}
+.video-bg-mobile {
+  /* height: 1000px; */
+  background-image: url('~/assets/images/home/Homepage USP BG Mobile.png');
+  background-position: center bottom;
+}
 </style>

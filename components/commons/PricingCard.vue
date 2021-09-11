@@ -93,7 +93,7 @@
               :event-label="`click-pricing-${bundle.title}`"
               :pricing-bundle="bundle.id"
               :query-ops="getQueryOps(bundle)"
-            ).generic-button-text.font-weight-semibold.text-none {{ btnText }}
+            ).generic-button-text.font-weight-semibold.text-none {{ getBtnText(bundle) }}
         v-row(justify="center").mt-3
           v-col(cols="12" xl="12")
             div(v-for="(inclusion, inclusionKey) in mainInclusions" :key="inclusionKey").d-flex
@@ -200,9 +200,6 @@ export default {
     priceColor () {
       return { 'primary--text': !this.isRecommended, 'white--text': this.isRecommended };
     },
-    btnText () {
-      return this.hasTrialOption ? 'Start Trial' : this.bundle.btnText;
-    },
     btnColor () {
       return this.isRecommended ? 'white' : 'primary';
     },
@@ -230,10 +227,30 @@ export default {
     // Formulate signup route query
     getQueryOps (bundle) {
       const queryOps = {
-        ...bundle.queryOps,
+        trial: this.isTrialAvailable(bundle),
         plan: this.paymentInterval === 'month' ? bundle.monthlyPackageId : bundle.annualPackageId,
       };
       return queryOps;
+    },
+    getBtnText (bundle) {
+      switch (this.paymentInterval) {
+        case 'month':
+          return bundle.monthlyTrial ? 'Start Free Trial' : 'Get Started';
+        case 'year':
+          return bundle.annualTrial ? 'Start Free Trial' : 'Get Started';
+        default:
+          return 'Get Started';
+      }
+    },
+    isTrialAvailable (bundle) {
+      switch (this.paymentInterval) {
+        case 'month':
+          return !!bundle.monthlyTrial;
+        case 'year':
+          return !!bundle.annualTrial;
+        default:
+          return false;
+      }
     },
     getInclusionIconColor (valid, additional = false) {
       if (this.isRecommended) return 'white';

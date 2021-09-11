@@ -278,6 +278,7 @@
 
 <script>
 import isEmpty from 'lodash/isEmpty';
+import isObject from 'lodash/isObject';
 import omit from 'lodash/omit';
 import { parsePhoneNumberFromString } from 'libphonenumber-js';
 import {
@@ -496,9 +497,9 @@ export default {
         if (!this.$refs.formRef.validate()) {
           return;
         }
-
         // Map org types and subscription
-        const { orgProps } = this.facilityTypes.find(type => type.value === this.facilityType || this.facilityType?.value);
+        const filledFacilityType = isObject(this.facilityType) ? this.facilityType.value : this.facilityType;
+        const { orgProps } = this.facilityTypes.find(type => type.value === filledFacilityType);
         const organizationPayload = {
           ...orgProps,
         };
@@ -545,15 +546,8 @@ export default {
           organizationType: this.facilityType,
         };
 
-        // HOTFIX:
-        // if (this.doc_PRCLicenseNo !== null) {
-        //   if (Number.isNaN(+this.doc_PRCLicenseNo)) {
-        //     alert('PRC License No must be a number');
-        //     return;
-        //   }
-        //   payload.doc_PRCLicenseNo = +this.doc_PRCLicenseNo;
-        // }
-        if (this.doc_PRCLicenseNo) payload.doc_PRCLicenseNo = +this.doc_PRCLicenseNo;
+        // Only include PRC when user is a doctor
+        if (this.doc_PRCLicenseNo && this.isDoctor) payload.doc_PRCLicenseNo = +this.doc_PRCLicenseNo;
 
         const [
           emailResultUnique,

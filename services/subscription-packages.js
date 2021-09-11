@@ -164,9 +164,14 @@ const getAnnualMonthlyPrice = (pack, organizationType) => {
 
 const isRecommended = (type, packageValue) => {
   if (DOCTOR_TYPES.includes(type)) return false;
-  if (type === 'diagnostic' && packageValue === 'platinum') return true;
+  if (type === 'diagnostic' && packageValue === 'premium') return true;
   if (type === 'clinic' && packageValue === 'premium') return true;
   return false;
+};
+
+const getPackageImage = (type, packageValue, isBooking = false) => {
+  if (isBooking) return PACKAGE_IMAGE[type];
+  return `${PACKAGE_IMAGE[packageValue]}${isRecommended(type, packageValue) ? ' White' : ''}`;
 };
 
 const PACKAGE_IMAGE = {
@@ -174,6 +179,10 @@ const PACKAGE_IMAGE = {
   premium: 'Premium',
   platinum: 'Platinum',
   enterprise: 'Enterprise Blue',
+  // - BOOKING EXCLUSIVE
+  doctor: 'MYCURE Pricing Doctor',
+  clinic: 'MYCURE Pricing Outpatient',
+  diagnostic: 'MYCURE Pricing Diagnostics',
 };
 
 const PACKAGE_CURRENCY = {
@@ -236,7 +245,7 @@ export const getSubscriptionPackages = async ({ types }) => {
  *
  * @returns {Array} packages
  */
-export const getSubscriptionPackagesPricing = async (type) => {
+export const getSubscriptionPackagesPricing = async (type, { isBooking = false } = {}) => {
   const packages = await getSubscriptionPackages({ types: [type] });
   const plans = packages.filter(pack => pack.planInterval === 'month') || [];
 
@@ -255,17 +264,19 @@ export const getSubscriptionPackagesPricing = async (type) => {
       facilityType: type,
       title: `${packageValue.charAt(0).toUpperCase()}${packageValue.slice(1)}`,
       description: pack.description,
-      image: `${PACKAGE_IMAGE[packageValue]}${isRecommended(type, packageValue) ? ' White' : ''}`,
+      image: getPackageImage(type, packageValue, isBooking),
       isRecommended: isRecommended(type, packageValue),
       currency,
       monthlyPrice: getMonthlyPrice(pack, type),
       annualMonthlyPrice: getAnnualMonthlyPrice(packages.find(item => item.tags.includes(packageValue) && item.planInterval === 'year'), type),
       inclusions,
       btnText: 'Get Started',
+      // Trial days
+      ...monthlyPackage?.trialDays && { monthlyTrial: monthlyPackage.trialDays },
+      ...annualPackage?.trialDays && { annualTrial: annualPackage.trialDays },
       // Doctor specific only
       ...DOCTOR_TYPES.includes(type) && { users: packageValue === 'lite' ? 1 : '/' },
       // Sign-up query (except Doctor)
-      ...!DOCTOR_TYPES.includes(type) && { queryOps: { trial: true } },
     };
   });
 
@@ -286,7 +297,7 @@ export const getSubscriptionPackagesPricing = async (type) => {
       { text: 'Multi-branch Functions', valid: true },
       { text: 'Customizable Features', valid: true },
     ],
-    btnText: 'Get Started',
+    btnText: 'Chat With Us',
   };
 
   return !DOCTOR_TYPES.includes(type) ? [...mappedPackages, ENTERPRISE] : mappedPackages;

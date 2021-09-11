@@ -8,7 +8,7 @@
       title="The simplest LIS for Mobile Labs"
       meta-title="MYCURE LIS for Mobile Labs"
       description="MYCURE is an easy to use, secure, cloud-based laboratory information software (LIS) that you can easily setup anywhere your medical team is."
-      btn-text="Start Free"
+      btn-text="Get Started"
       image="Mobile Clinics Mobile Version"
       custom-image-path="diagnostics/mobile-labs/"
       parse-title
@@ -27,7 +27,7 @@
         generic-panel(:row-bindings="{ justify: 'center' }")
           v-col(cols="12" md="8").text-center
             h2(:class="headerClasses").font-weight-semibold.mb-5 Create beautiful reports for your clients.
-            p(:class="descriptionClasses").mb-10.font-weight-semibold.secondary--text Provide both printed and online copies of their medical exam results without the hassle.
+            p(:class="descriptionClasses").mb-10.font-open-sans.font-gray Provide both printed and online copies of their medical exam results without the hassle.
           v-col(cols="12").text-center
             v-row.justify-center.gutterless
               v-col(cols="6" md="3").pa-0
@@ -36,20 +36,22 @@
                   depressed
                   tile
                   block
-                  :x-large="!$isMobile"
+                  :height="$isMobile ? '36' : $isRegularScreen ? '52' : '75'"
                   :outlined="reportType !== 'imaging'"
                   @click="reportType = 'imaging'"
-                ).text-none Imaging
+                ).text-none
+                  span.mc-button-set-1 Imaging
               v-col(cols="6" md="3").pa-0
                 v-btn(
                   color="primary"
                   depressed
                   tile
                   block
-                  :x-large="!$isMobile"
+                  :height="$isMobile ? '36' : $isRegularScreen ? '52' : '75'"
                   :outlined="reportType !== 'lab'"
                   @click="reportType = 'lab'"
-                ).text-none Laboratory
+                ).text-none
+                  span.mc-button-set-1 Laboratory
             br
             br
             v-tabs-items(v-model="reportType")
@@ -71,7 +73,7 @@
     )
       template(slot="cta-button")
         v-row(:justify="$isMobile ? 'center' : 'start'")
-          v-col(cols="10" md="7" lg="6" xl="7")
+          v-col(cols="10" md="7" lg="6" xl="7" :align="$isMobile ? 'center' : 'start'")
             signup-button(
               depressed
               class="rounded-pill"
@@ -95,7 +97,10 @@
           //-     :x-large="$isWideScreen"
           //-     :class="{'font-s': $isWideScreen, 'font-14': $isRegularScreen }"
           //-   ).text-none Book a full training
-
+    storybrand(
+      title="Using Modern Tools to Boost Your Practice"
+      :content="storybrandContent"
+    )
     //- 5th panel
     pricing(
       title="Take the first step today."
@@ -115,24 +120,24 @@
               :width="!$isWideScreen ? '228px' : '300'"
               :height="!$isWideScreen ? '59px' : '73.68'"
             ).text-none
-              span.generic-button-text Start Now
+              span.generic-button-text Get Started
 
     //- 7th panel
-    div.info.mx-n3
-      v-container
-        v-row(justify="center")
-          generic-panel(:row-bindings="{ justify: 'center' }")
-            v-col(cols="12").white--text.text-center
-              h2(:class="['white--text', ...headerClasses]").mb-5 Take the first step today
-              p(:class="descriptionClasses").white--text.font-weight-semibold.mb-5 Start now and get all your questions answered.
-              signup-button(
-                depressed
-                class="rounded-pill"
-                :width="!$isWideScreen ? '228px' : '300'"
-                :height="!$isWideScreen ? '59px' : '73.68'"
-                color="success"
-              ).text-none
-                span.generic-button-text Start Now
+    //- div.info.mx-n3
+    //-   v-container
+    //-     v-row(justify="center")
+    //-       generic-panel(:row-bindings="{ justify: 'center' }")
+    //-         v-col(cols="12").white--text.text-center
+    //-           h2(:class="['white--text', ...headerClasses]").mb-5 Take the first step today
+    //-           p(:class="descriptionClasses").white--text.mb-5 Start now and get all your questions answered.
+    //-           signup-button(
+    //-             depressed
+    //-             class="rounded-pill"
+    //-             :width="!$isWideScreen ? '228px' : '300'"
+    //-             :height="!$isWideScreen ? '59px' : '73.68'"
+    //-             color="success"
+    //-           ).text-none
+    //-             span.generic-button-text Start Now
 </template>
 
 <script>
@@ -151,6 +156,7 @@ export default {
     SignupButton: () => import('~/components/commons/SignupButton'),
     Workflow: () => import('~/components/mobile-labs/Workflow'),
     Usp,
+    Storybrand: () => import('~/components/commons/panels/Storybrand'),
   },
   data () {
     this.reportMockups = [
@@ -162,6 +168,11 @@ export default {
         image: 'Mobile Labs Laboratory',
         value: 'lab',
       },
+    ];
+    this.storybrandContent = [
+      'At MYCURE, we know you are the kind of diagnostic center that prioritizes using modern tools to optimize efficiency and improve operations. In order to be that way, you need a solution that can automate routine tasks that will result in reducing costly errors.',
+      'The problem is it’s hard to find such a system that is easy to use, affordable and interoperable with other systems, which is lacking from your current provider.  We believe that diagnostic centers like yours should never have to deal with this. We’ve talked to dozens of labs and understand that there is a need for this.',
+      'That’s why we\'ve built MYCURE Diagnostics with powerful LIS and RIS modules to specifically address this need.',
     ];
     this.headerClasses = ['mc-title-set-1', 'lh-title', 'font-weight-semibold'];
     this.descriptionClasses = ['mc-content-set-1'];

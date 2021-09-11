@@ -2,7 +2,7 @@
   div(v-if="!loading.page").white
     //- App Bar
     v-app-bar(
-      height="275"
+      height="290"
       app
       color="white"
       elevate-on-scroll
@@ -22,7 +22,9 @@
                   alt="MYCURE logo"
                 ).ml-2.mb-5
               directory-search-bar(
+                app-bar
                 :mode="searchMode"
+                :location="location"
                 @search="onSearch($event)"
                 @update:mode="onSearch($event)"
                 @update:locationSwitch="onLocationSwitchUpdate($event)"
@@ -36,11 +38,16 @@
       :read-only="readOnly"
       @page:update="onPagination($event)"
     )#resultsSection
+    //- Snack bar
+    v-snackbar(
+      v-model="showSnack"
+      :color="snackbarModel.color"
+    ) {{ snackbarModel.text }}
 </template>
 
 <script>
 import VueScrollTo from 'vue-scrollto';
-import intersection from 'lodash/intersection';
+// import intersection from 'lodash/intersection';
 import isEqual from 'lodash/isEqual';
 import ResultsSection from './ResultsSection';
 import DirectoryAppBar from '~/components/directory/DirectoryAppBar';
@@ -65,6 +72,13 @@ export default {
       loading: {
         page: true,
         results: false,
+        location: false,
+      },
+      // Snack Bar
+      showSnack: false,
+      snackbarModel: {
+        color: null,
+        text: '',
       },
       // Data
       entries: [],
@@ -74,8 +88,10 @@ export default {
       searchText: null,
       specializationFilters: [],
       serviceType: null,
+      // === Location ====
+      // - Coordinates
       location: null,
-      // Pagination
+      // === Pagination ====
       entriesTotal: 0,
       entriesPage: 1,
       entriesLimit: 12,
@@ -137,7 +153,7 @@ export default {
         this.loading.results = true;
         this.searchText = searchText;
         this.searchMode = searchMode || this.searchMode;
-        this.specializationFilters = specializations;
+        this.specializationFilters = specializations || [];
         this.location = location;
         this.entriesPage = page;
         const skip = this.entriesLimit * (page - 1);
@@ -147,7 +163,7 @@ export default {
           limit: this.entriesLimit,
           skip,
           // Apply filters
-          ...serviceType && this.composeTags(serviceType),
+          ...(serviceType || specializations) && { tags: this.composeTags(serviceType, specializations) },
           // Apply location
           ...location && { location: this.location },
         };
@@ -156,9 +172,13 @@ export default {
         this.entriesTotal = total;
         const entryItems = items || [];
 
-        this.entries = entryItems;
-
         VueScrollTo.scrollTo('#resultsSection', 500, { easing: 'ease' });
+
+        // If no items fetched, clear
+        if (!this.entriesTotal) {
+          this.entries = [];
+          return;
+        }
 
         // - Fetch Account details
         if (this.searchMode === 'account' && entryItems.length) {
@@ -169,11 +189,6 @@ export default {
 
           const doctors = await Promise.all(entryPromises);
           this.entries = doctors;
-          // Filter specializations
-          if (this.specializationFilters?.length) {
-            this.entries = doctors.filter(doc => intersection(doc.doc_specialties, this.specializationFilters)?.length) || [];
-            this.entriesTotal = total - (doctors.length - this.entries.length);
-          }
           return;
         }
 
@@ -184,11 +199,14 @@ export default {
             return orgDetails;
           });
           this.entries = await Promise.all(entryPromises);
-          console.log('org entries', this.entries);
           return;
         }
       } catch (e) {
         console.error(e);
+        this.enqueueSnack({
+          color: 'error',
+          message: e.message,
+        });
       } finally {
         this.loading.results = false;
       }
@@ -196,11 +214,12 @@ export default {
     onSearch (searchOpts = {}) {
       const { searchString, mode, specializations, serviceType, location } = searchOpts;
       const searchObject = {
-        searchText: searchString,
+        ...searchString && { searchText: searchString },
         searchMode: mode,
       };
       // update route queries
       if (!isEqual(searchObject, this.$route.query)) {
+        this.$router.replace({ query: null });
         this.$router.replace({ query: searchObject });
       }
       // search
@@ -211,38 +230,68 @@ export default {
         location,
       });
     },
-    composeTags (serviceType) {
-      return { tags: [`sto:${serviceType}`] };
+    composeTags (serviceType, specializations) {
+      const tags = [];
+      if (serviceType) {
+        tags.push(`sto:${['lab', 'imaging'].includes(serviceType) ? 'diagnostic/' : ''}${serviceType}`);
+      }
+      if (specializations?.length) {
+        specializations.map(s => tags.push(`spc:${s.replace(/\s+/g, '-').toLowerCase()}`));
+      }
+      return tags;
     },
     onPagination (page) {
+      if (page === this.entriesPage) return;
       this.search({
+        searchText: this.searchText,
         serviceType: this.serviceType,
         specializations: this.specializationFilters,
         location: this.location,
       }, page);
     },
     onLocationSwitchUpdate (val) {
-      if (!val) this.location = null;
-      this.search({
-        serviceType: this.serviceType,
-        specializations: this.specializationFilters,
-        location: this.location,
-      });
+      if (!val) {
+        this.location = null;
+        this.search({
+          searchText: this.searchText,
+          serviceType: this.serviceType,
+          specializations: this.specializationFilters,
+          location: this.location,
+        });
+        return;
+      }
+      if (val && !this.location) this.getLocation();
     },
-    async fetchMunicipalities () {
+    async getLocation () {
       try {
-        const { items } = await this.$sdk.service('fixtures').find({ type: 'address-province' });
-        this.municipalityList = items || [];
-      } catch (error) {
-        console.error(error);
+        this.loading.results = true;
+        await this.$getLocation()
+          .then((coordinates) => {
+            if (!coordinates) return;
+            this.location = {
+              lat: coordinates.lat,
+              lng: coordinates.lng,
+            };
+            this.search({
+              searchText: this.searchText,
+              serviceType: this.serviceType,
+              specializations: this.specializationFilters,
+              location: this.location,
+            });
+          });
+      } catch (e) {
+        console.error(e);
+        this.enqueueSnack({
+          color: 'error',
+          message: 'Failed to retrieve your location',
+        });
       }
     },
-    // clearOrganizationResults () {
-    //   this.orgsSearchQuery = '';
-    //   this.entriesPage = 1;
-    //   this.fetchDoctors();
-    //   this.searchQuery = null;
-    // },
+    enqueueSnack ({ color, message }) {
+      this.snackbarModel.color = color;
+      this.snackbarModel.text = message;
+      this.showSnack = true;
+    },
   },
 };
 </script>

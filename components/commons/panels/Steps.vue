@@ -7,13 +7,13 @@
         v-row
           v-col.py-10
         v-row(justify="center")
-          v-col(cols="12" sm="4" v-for="(step, index) in steps" :key="index")
+          v-col(:cols="$isMobile ? 12 : 4" v-for="(step, index) in steps" :key="index")
             v-row.mb-4
               v-col(cols="4" align="center" justify="center").px-0.pb-0
                 picture-source(
                   extension-exclusive
                   custom-path="commons/"
-                  :image="index + 1"
+                  :image="(index + 1).toString()"
                   image-alt="Steps number"
                   image-file-extension=".png"
                   :image-width="(index === 0) ? ($isWideScreen ? '66' : '46.52') : ($isWideScreen ? '117' : '82')"
@@ -29,12 +29,11 @@
             signup-button(
               depressed
               color="success"
-              facility-type="clinic"
               class="rounded-pill"
               :width="!$isWideScreen ? '228px' : '300'"
               :height="!$isWideScreen ? '59px' : '73.68'"
             ).text-none
-              span.generic-button-text Get Started Now
+              span.generic-button-text {{ notFree ? 'Get Started' : 'Get Started Free' }}
 </template>
 
 <script>
@@ -51,6 +50,10 @@ export default {
       default: undefined,
     },
     hideBtn: {
+      type: Boolean,
+      default: false,
+    },
+    notFree: {
       type: Boolean,
       default: false,
     },

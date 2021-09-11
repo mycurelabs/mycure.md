@@ -5,15 +5,15 @@
       has-custom-background
       background-image="Corporate Clinics Full"
       background-image-file-extension=".webp"
-      title="Organize your employee health records like a breeze"
+      title="Manage your Company Clinic with Ease"
       meta-title="MYCURE for Corporate Clinics"
-      description="Get the most affordable software for corporate clinics today."
-      btn-text="Start Free"
+      description="Custom built for corporate clinics, this management system provides useful analytics while being compliant on employees’ data privacy."
+      btn-text="Get Started"
       image="Corporate Clinics Mobile"
       custom-image-path="clinics/corporate/"
       parse-title
       parse-meta-title
-      :parse-title-fields="['your ', 'records ']"
+      :parse-title-fields="['your ']"
       :media-column-bindings="{ cols: 12, md: 6, offsetMd: 1, xl: 6}"
       :content-column-bindings="{ cols: 12, md: 5 }"
     )
@@ -21,15 +21,16 @@
       :version="4"
       panelTitle="Problems of Not Using a Clinic Management System"
       :contents="stakesContent"
+      not-free
     )
     //- 2nd panel
     div.grey-bg.mx-n3
     features(
       extension-exclusive
       image-dir="clinics/corporate/"
-      icon-container-col-size="6"
+      icon-container-col-size="10"
       description="Everyone in your workplace is online. MYCURE helps you monitor their health and safety conveniently through the cloud."
-      :icon-column-bindings="{ cols: 5 }"
+      :icon-column-bindings="{ cols: 6, sm: 3 }"
       :items="features"
     )
       template(slot="title")
@@ -39,43 +40,45 @@
       v-container
         v-row(justify="center")
           generic-panel(:row-bindings="{ justify: 'center' }")
-            v-col(cols="12" lg="8" xl="6").white--text
-              h2(:class="headerClasses").mb-10.text-center.white--text Know the health status of your employees, stat!
-              h3.mc-content-set-1.mb-10.font-weight-semibold.white--text.text-center Easily access and share medical records with them through the MYCURE health portal.
+            v-col(cols="12" lg="8").white--text
+              h2(:class="headerClasses").mb-8.text-center.white--text Know the health status of your employees, stat!
+              div.text-center
+                span.mc-content-set-1.mb-10.white--text Easily access and share medical records with them through the MYCURE health portal.
     //- 4th panel
     generic-media-panel(
       align="center"
       hide-btn
       :content="multiplePanel"
       :title-classes="headerClasses"
+      :super-title-classes="['mc-content-set-1', 'font-open-sans', 'font-weight-semibold', 'primary--text']"
     )
-    call-to-action(:version="4")
     care
-    steps(:steps="stepsContent")
+    steps(:steps="stepsContent" not-free)
     storybrand(
       title="Using Modern Tools to Boost Your Practice"
       :content="storybrandContent"
     )
     //- 9th panel
-    div.info.mx-n3
-      v-container
-        v-row(justify="center")
-          generic-panel(:row-bindings="{ justify: 'center' }")
-            v-col(cols="12").white--text.text-center
-              h2(:class="['white--text', ...headerClasses]").mb-5 Start easy. Take the first step today.
-              signup-button(
-                depressed
-                class="rounded-pill"
-                :width="!$isWideScreen ? '228px' : '300'"
-                :height="!$isWideScreen ? '59px' : '73.68'"
-                color="success"
-              ).text-none
-                span.generic-button-text Count me in
+    //- div.info.mx-n3
+    //-   v-container
+    //-     v-row(justify="center")
+    //-       generic-panel(:row-bindings="{ justify: 'center' }")
+    //-         v-col(cols="12").white--text.text-center
+    //-           h2(:class="['white--text', ...headerClasses]").mb-5 Start easy. Take the first step today.
+    //-           signup-button(
+    //-             depressed
+    //-             class="rounded-pill"
+    //-             :width="!$isWideScreen ? '228px' : '300'"
+    //-             :height="!$isWideScreen ? '59px' : '73.68'"
+    //-             color="success"
+    //-           ).text-none
+    //-             span.generic-button-text Count me in
     //- 5th panel
     pricing(
       type="clinic"
       title="Take the first step today."
     )
+    call-to-action(:version="4" not-free)
 </template>
 
 <script>
@@ -192,7 +195,7 @@ export default {
   computed: {
     multiplePanel () {
       return {
-        superTitle: 'FOR MULTI-BRANCH FACILITIES',
+        superTitle: 'For Multi-Branch Facilities',
         title: 'One view for multiple locations',
         description: 'All you need is one clean dashboard to see how your clinics are faring. Critical data from your multiple branches are beautifully compiled to show you a comprehensive summary of patient encounters, transactions, sales, expenses and even staff performance.',
         contentAlign: 'left',

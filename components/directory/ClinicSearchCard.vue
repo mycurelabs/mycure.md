@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-card(height="100%" elevation="2").orgs-card.px-5.pt-5.pb-3
+  v-card(height="100%" elevation="2").orgs-card.px-2.pt-5.pb-3
     v-row.d-flex
       //- v-icon(v-if="hasWebsite" color="primary" large :class="{'pt-7': !$isMobile}").mt-16.ml-n8 mdi-check-decagram
       img(
@@ -9,30 +9,30 @@
         :height="$isRegularScreen? '82px' : '130px'"
         style="border-radius: 20px"
       ).ma-3
-      v-col.my-3
+      v-col
         v-tooltip(bottom)
           template(v-slot:activator="{ on, attrs }")
-            template(v-on="on")
-              v-clamp(
-                autoresize
-                :max-lines="1"
-                :class="[nameFontSize, $isWideScreen ? 'name-width-wide' : 'name-width-reg']"
-              ).font-weight-bold.mb-0 {{ organization.name }}&nbsp;
+            v-clamp(
+              v-on="on"
+              autoresize
+              :max-lines="2"
+              :class="[nameFontSize, $isWideScreen ? 'name-width-wide' : 'name-width-reg']"
+            ).font-weight-bold.mb-0 {{ organization.name || '' }}&nbsp;
           span {{ organization.name }}
         div.d-flex.mt-1
           v-icon(color="primary" :small="!$isWideScreen") mdi-map-marker
           v-tooltip(bottom)
             template(v-slot:activator="{ on, attrs }")
-              template(v-on="on")
-                v-clamp(
-                  autoresize
-                  :max-lines="1"
-                  :class="[textFontSize, {'font-italic': !address }]"
-                ).info--text.mt-1 {{ address || 'No address provided'}}
+              v-clamp(
+                v-on="on"
+                autoresize
+                :max-lines="2"
+                :class="[textFontSize, {'font-italic': !address }]"
+              ).info--text.mt-1 {{ address || 'No address provided'}}
             span {{ address || 'No address' }}
-        div.d-flex.white--text.mt-1
+        div.d-flex.white--text.mt-2
           div(v-for="(day, index) in daysInit" :key="index")
-            div(:class="[textFontSize, $isWideScreen ? 'badge-size-wide' : 'badge-size', {'primary': clinicOpen(day.value)}]").badge
+            div(:class="[textFontSize, badgeSize, {'primary': clinicOpen(day.value)}]").badge
               | {{ day.text }}
     v-col
       v-row(justify="end")
@@ -146,9 +146,16 @@ export default {
     },
     textFontSize () {
       return classBinder(this, {
-        mobile: ['font-10'],
+        mobile: ['font-12'],
         regular: ['font-10'],
         wide: ['font-14'],
+      });
+    },
+    badgeSize () {
+      return classBinder(this, {
+        mobile: ['badge-size-mobile'],
+        regular: ['badge-size'],
+        wide: ['badge-size-wide'],
       });
     },
     address () {
@@ -189,6 +196,10 @@ export default {
 .badge-size {
   height: 15px;
   width: 15px;
+}
+.badge-size-mobile {
+  height: 20px;
+  width: 20px;
 }
 .badge-size-wide {
   height: 30px;
