@@ -65,7 +65,34 @@ export default {
   },
   watch: {
     isVisible (val) {
-      if ((!val || this.hasAnimated) && !this.hasFetched) return;
+      this.animate();
+    },
+    medicalRecordsData () {
+      this.animate();
+    },
+    patientsData () {
+      this.animate();
+    },
+    providersData () {
+      this.animate();
+    },
+  },
+  async created () {
+    try {
+      const data = await fetchWebsiteMetrics();
+      this.medicalRecordsData = data?.medicalRecordsData || 1700000;
+      this.patientsData = data?.patientsData || 1450000;
+      this.providersData = data?.providersData || 780;
+    } catch (e) {
+      console.error(e);
+    }
+  },
+  methods: {
+    onVisibilityChange (isVisible) {
+      this.isVisible = isVisible;
+    },
+    animate () {
+      if ((!this.isVisible || this.hasAnimated) && !this.hasFetched) return;
       this.$anime({
         targets: this.statData,
         'medical-records': this.medicalRecordsData,
@@ -76,35 +103,6 @@ export default {
         duration: 2500,
       });
       this.hasAnimated = true;
-    },
-  },
-  async created () {
-    // await Promise.all([
-    //   this.$sdk.service('metrics/metrics').findOne({
-    //     name: 'new_medical_records_total',
-    //     $aggregate: { sum: 1 },
-    //   }),
-    //   this.$sdk.service('metrics/metrics').findOne({
-    //     name: 'new_medical_patients_total',
-    //     $aggregate: { sum: 1 },
-    //   }),
-    //   this.$sdk.service('metrics/metrics').findOne({
-    //     name: 'new_facilities_total',
-    //     $aggregate: { sum: 1 },
-    //   }),
-    // ]).then((values) => {
-    //   this.medicalRecordsData = values[0].data[0].value;
-    //   this.patientsData = values[1].data[0].value;
-    //   this.providersData = values[2].data[0].value;
-    // });
-    const data = await fetchWebsiteMetrics();
-    this.medicalRecordsData = data?.medicalRecordsData || 0;
-    this.patientsData = data?.patientsData || 0;
-    this.providersData = data?.providersData || 0;
-  },
-  methods: {
-    onVisibilityChange (isVisible) {
-      this.isVisible = isVisible;
     },
   },
 };
