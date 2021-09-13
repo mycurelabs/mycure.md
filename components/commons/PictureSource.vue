@@ -7,7 +7,7 @@
       :type="`image/${source}`"
     )
     img(
-      v-lazy="require(`~/assets/images/${this.customPath}${this.image}${this.imageFileExtension}`)"
+      v-lazy="require(`~/assets/images/${this.customPath}${this.image}.png`)"
       :width="imageWidth"
       :height="imageHeight"
       :alt="imageAlt"
