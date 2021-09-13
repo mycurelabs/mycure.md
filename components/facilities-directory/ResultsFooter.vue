@@ -8,7 +8,7 @@
       v-row(justify="center")
         generic-panel(:column="$isMobile ? 12 : 10" disable-parent-padding)
           v-container.my-6
-            v-row(align="start" no-gutters)
+            v-row(align="start" justify="center" no-gutters)
               v-col(
                 :class="{ 'text-center' : $isMobile }"
                 cols="12"
@@ -51,12 +51,12 @@
                   v-col(
                     :class="{ 'order-first text-center ' : $isMobile, 'text-right' : !$isMobile }"
                     cols="12"
-                    md="4"
+                    md="6"
                   )
                     template(v-for="(account, key) in socMed")
                       a(:href="account.link" target="_blank" rel="noopener noreferrer")
                         img(:src="require(`~/assets/images/${ account.icon }`)" width="20" height="20" :alt="account.name").ma-4
-              v-col(v-if="$isMobile")
+              v-col(v-if="$isMobile" cols="12" sm="7")
                 v-row(align="end" justify="center").font-weight-light
                   span.call-number.white--text &copy; 2016 - {{ new Date().getFullYear() }}
                   span.call-number.white--text #[br(v-if="$isMobile")] &nbsp;All Rights Reserved.
