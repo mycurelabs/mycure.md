@@ -4,6 +4,7 @@
     usp(
       has-custom-background
       background-image="Doctor Landing Page"
+      :background-image-file-extension="$useWebp? '.webp' : '.png'"
       title="Bring Out the Hero in You"
       meta-title="MYCURE Doctor"
       image="Doc USP"

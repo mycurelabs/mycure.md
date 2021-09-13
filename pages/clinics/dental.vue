@@ -4,7 +4,7 @@
     usp(
       has-custom-background
       background-image="Dental Clinics USP - Full Illu"
-      background-image-file-extension=".webp"
+      :background-image-file-extension="$useWebp? '.webp' : '.png'"
       title="The Dental Clinic Management System that makes you Smile"
       meta-title="MYCURE for Dental Clinics"
       description="It has everything your dental clinic needs from appointments, billing, inventory to smart dental charting."

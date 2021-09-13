@@ -4,7 +4,7 @@
     usp(
       has-custom-background
       background-image="Corporate Clinics Full"
-      background-image-file-extension=".webp"
+      :background-image-file-extension="$useWebp? '.webp' : '.png'"
       title="Manage your Company Clinic with Ease"
       meta-title="MYCURE for Corporate Clinics"
       description="Custom built for corporate clinics, this management system provides useful analytics while being compliant on employees’ data privacy."

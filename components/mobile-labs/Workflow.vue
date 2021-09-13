@@ -34,7 +34,7 @@
                   custom-path="diagnostics/mobile-labs/"
                   :image="item.icon"
                   :image-alt="item.title"
-                  image-file-extension=".webp"
+                  :image-file-extension="$useWebp? '.webp' : '.png'"
                   image-width="115px"
                   image-height="94.19px"
                 )

@@ -15,7 +15,7 @@
           :image-height="( $isMobile ? '145px' : '165px')"
           :image-alt="wonder.title"
           custom-path="home/"
-          image-file-extension=".webp"
+          :image-file-extension="$useWebp? '.webp' : '.png'"
         )
         br
         br

@@ -9,7 +9,7 @@
         div.text-center.pb-3
           picture-source(
             custom-path="pricing/"
-            image-file-extension=".webp"
+            :image-file-extension="$useWebp? '.webp' : '.png'"
             image-alt="Health facility pricing icon"
             :image="bundle.image"
             :image-width="iconSize"

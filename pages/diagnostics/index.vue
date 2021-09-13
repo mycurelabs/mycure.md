@@ -4,7 +4,7 @@
     usp(
       has-custom-background
       background-image="Diagnostics Landing Page"
-      background-image-file-extension=".webp"
+      :background-image-file-extension="$useWebp? '.webp' : '.png'"
       title="Your Diagnostic Center Transformed"
       meta-title="MYCURE Diagnostic"
       description="The best tool to streamline diagnostic laboratories and imaging centers’ operations, automate routine tasks, and reduce costs and errors."
