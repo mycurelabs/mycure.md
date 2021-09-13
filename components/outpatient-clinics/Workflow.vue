@@ -30,7 +30,7 @@
                       custom-path="clinics/"
                       image="Problem Statement"
                       image-alt="Clinic workflow"
-                      image-file-extension=".webp"
+                      :image-file-extension="$useWebp? '.webp' : '.png'"
                       :image-width=" $isRegularScreen ? '850px' : '1300px' "
                       :image-height=" $isRegularScreen ? '677.73px' : '1036.52px' "
                     )
@@ -41,7 +41,7 @@
                         custom-path="clinics/"
                         :image="item.icon"
                         :image-alt="item.title"
-                        image-file-extension=".webp"
+                        :image-file-extension="$useWebp? '.webp' : '.png'"
                         image-width="111px"
                         image-height="92px"
                       )

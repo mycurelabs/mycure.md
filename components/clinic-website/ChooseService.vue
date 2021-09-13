@@ -22,7 +22,7 @@
                   :image="type.image"
                   :image-alt="type.alt"
                   :image-width="$isMobile ? '50%' : '100%'"
-                  image-file-extension=".webp"
+                  :image-file-extension="$useWebp? '.webp' : '.png'"
                   custom-path="booking/"
                 )
                 v-card-text.text-center

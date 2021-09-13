@@ -4,7 +4,7 @@
     usp(
       has-custom-background
       background-image="OFW Clinics Full"
-      background-image-file-extension=".webp"
+      :background-image-file-extension="$useWebp? '.webp' : '.png'"
       title="The first and only medical software for OFW clinics"
       meta-title="MYCURE for OFW Medical Clinics"
       description="MYCURE is an easy to use, secure, cloud-based clinic management system where you can conveniently create, finalize, and release medical exam results online and offline."

@@ -142,7 +142,7 @@
                   :image-alt="`A ${websiteType} website mockup on laptop screen`"
                   :image-width="$isMobile ? '256px' : ($isRegularScreen ? '756px' : '1156px')"
                   :image-height="$isMobile ? '192px' : ($isRegularScreen ? '567px' : '867px')"
-                  image-file-extension=".webp"
+                  :image-file-extension="$useWebp? '.webp' : '.png'"
                   custom-path="booking/"
                 )
 
