@@ -41,7 +41,7 @@
       div.cta-image.text-center
         picture-source(
           image="CTA"
-          image-file-extension=".webp"
+          :image-file-extension="$useWebp? '.webp' : '.png'"
           custom-path="home/"
           image-alt="CTA Home"
           :image-width="$isMobile ? '360px' : ($isRegularScreen ? '450px' : '750px')"

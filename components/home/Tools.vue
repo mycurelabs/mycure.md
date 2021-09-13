@@ -22,7 +22,7 @@
               :image-alt="tool.name"
               :image-width="$isMobile ? '77px' : ($isRegularScreen ? '90px' : '120px')"
               :image-height="$isMobile ? '77px' : ($isRegularScreen ? '90px' : '120px')"
-              image-file-extension=".webp"
+              :image-file-extension="$useWebp? '.webp' : '.png'"
             )
             br
             h3.font-xs.font-open-sans.font-gray {{ tool.name }}

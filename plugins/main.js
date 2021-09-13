@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import OtpInput from '@bachdgvn/vue-otp-input';
+import CanUseWebp from '~/utils/can-use-webp.js';
 
 // Vue.mixin({
 //   computed: {
@@ -15,6 +16,7 @@ import OtpInput from '@bachdgvn/vue-otp-input';
 //     },
 //   },
 // });
+const useWebp = async () => await CanUseWebp();
 
 Vue.mixin({
   computed: {
@@ -27,6 +29,9 @@ Vue.mixin({
     },
     $isWideScreen () {
       return this.$vuetify.breakpoint.width > 1903;
+    },
+    $useWebp () {
+      return useWebp;
     },
   },
 });

@@ -24,7 +24,7 @@
                           :custom-path="imageDir"
                           :image="item.icon"
                           :image-alt="item.alt || item.title"
-                          :image-file-extension="item.iconExtension || '.png'"
+                          image-file-extension=".png"
                           :image-width="imageWidth ? imageWidth : defaultImageSize"
                           :image-height="imageHeight ? imageHeight : defaultImageSize"
                         )
