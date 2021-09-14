@@ -15,16 +15,17 @@
               allowfullscreen
             )
             br
-            signup-button(
-              depressed
-              color="primary"
-              event-label="signup"
-              class="rounded-pill"
-              :width="!$isWideScreen ? '228px' : '300'"
-              :height="!$isWideScreen ? '59px' : '73.68'"
-            ).text-none.mt-10
-              span.generic-button-text Get Started Free
-              v-icon(small right) mdi-arrow-right
+            slot(name="cta-button")
+              signup-button(
+                depressed
+                color="primary"
+                event-label="signup"
+                class="rounded-pill"
+                :width="!$isWideScreen ? '228px' : '300'"
+                :height="!$isWideScreen ? '59px' : '73.68'"
+              ).text-none.mt-10
+                span.generic-button-text Get Started Free
+                v-icon(small right) mdi-arrow-right
 </template>
 
 <script>
