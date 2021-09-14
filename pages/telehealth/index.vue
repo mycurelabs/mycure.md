@@ -20,10 +20,33 @@
       :content-column-bindings="{ cols: 12, md: 5 }"
       @click="$nuxt.$router.push({ name: 'signup-health-facilities', query: { type: 'doctor-telehealth' }})"
     )
+      //- remove when telehealth is available
+      template(slot="cta-button")
+        mc-btn(
+          depressed
+          class="rounded-pill"
+          :width="!$isWideScreen ? '228px' : '300'"
+          :height="!$isWideScreen ? '59px' : '73.68'"
+          color="success"
+          @click="btnClicked = true"
+        ).text-none
+          span.generic-button-text Get Started Free
     //- 2nd panel
     virtual-clinic
     //- 3rd panel
     telehealth-video
+      //- remove when telehealth is available
+      template(slot="cta-button")
+        br
+        mc-btn(
+          depressed
+          class="rounded-pill"
+          :width="!$isWideScreen ? '228px' : '300'"
+          :height="!$isWideScreen ? '59px' : '73.68'"
+          color="primary"
+          @click="btnClicked = true"
+        ).text-none
+          span.generic-button-text Get Started Free
     //- 4th panel
     generic-media-panel(
       :content="fourthPanel"
@@ -53,13 +76,32 @@
       :content="storybrandContent"
     )
     //- 6th panel
-    pricing(
-      title="Start free and only pay as you grow."
-      type="doctor"
-      :column-bindings="{ cols: '12', md: '3', xl: '3'}"
-    )
+    //- pricing(
+    //-   title="Start free and only pay as you grow."
+    //-   type="doctor"
+    //-   :column-bindings="{ cols: '12', md: '3', xl: '3'}"
+    //- )
     //- 7th panel
     call-to-action
+      //- remove when telehealth is available
+      template(slot="cta-button")
+        v-col
+          v-row(:justify="$isMobile ? 'center' : 'start'")
+            v-col(:align="$isMobile ? 'center' : 'start'")
+              mc-btn(
+                depressed
+                class="rounded-pill"
+                :width="!$isWideScreen ? '228px' : '300'"
+                :height="!$isWideScreen ? '59px' : '73.68'"
+                color="success"
+                @click="btnClicked = true"
+              ).text-none
+                span.generic-button-text Get Started Free
+    v-dialog(v-model="btnClicked" width="unset")
+      script(type='text/javascript'
+        src='https://app.getresponse.com/view_webform_v2.js?u=MQETv&webforms_id=hUJKB'
+        data-webform-id='hUJKB'
+      )
 </template>
 
 <script>
@@ -94,6 +136,7 @@ export default {
     this.listContentClasses = ['mc-list-content-set-1', 'font-open-sans', 'font-gray'];
     return {
       loading: true,
+      btnClicked: false,
     };
   },
   head () {
