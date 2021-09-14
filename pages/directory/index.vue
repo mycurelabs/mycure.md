@@ -10,7 +10,7 @@
                   src="~/assets/images/MYCURE Logo - black.png"
                     width="50%"
                   alt="MYCURE logo"
-                ).ml-n16
+                )
           v-row(justify="center" align="center").search-bar-container
             v-col(cols="12")
               //- clinics-org-search-bar(

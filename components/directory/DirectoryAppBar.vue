@@ -2,29 +2,29 @@
   v-container.pa-0
     v-row(justify="center")
       generic-panel(:column="$isMobile ? 12 : 10" disable-parent-padding)
-        v-row(:justify="{'center': !$isMobile}" :class="!$isMobile ? ['mx-3', 'mt-3'] : ['ml-1', 'mt-1']")
-          v-col(cols="1")
-          v-spacer(v-if="!$isMobile")
-          v-col(cols="5" align="end")
-            v-row(justify="end").pt-5.pl-4
-              v-btn(
-                color="primary"
-                :width="$isWideScreen ? '120' : '110' "
-                :height="$isWideScreen ? '40' : '35' "
-                depressed
-                text
-                :large="$isWideScreen"
-                @click="openPxPortal(pxPortalLogIn)"
-              ).text-none.font-weight-semibold.mr-2.font-16 Sign up
-              v-btn(
-                color="primary"
-                :width="$isWideScreen ? '120' : '110' "
-                :height="$isWideScreen ? '40' : '35' "
-                depressed
-                rounded
-                :large="$isWideScreen"
-                @click="openPxPortal(pxPortalLogIn)"
-              ).text-none.font-weight-thin.font-16 Log in
+        //- v-row(justify="end" :class="!$isMobile ? ['mx-3', 'mt-3'] : ['ml-1', 'mt-1']")
+        //-   v-col(cols="1")
+        //-   v-spacer(v-if="!$isMobile")
+        v-col(cols="12" align="end")
+          v-row(justify="end" :class="!$isMobile ? ['mx-0', 'mt-5'] : ['pr-9', 'mt-1']")
+            v-btn(
+              color="primary"
+              :width="$isWideScreen ? '120' : '110' "
+              :height="$isWideScreen ? '40' : '35' "
+              depressed
+              text
+              :large="$isWideScreen"
+              @click="openPxPortal(pxPortalLogIn)"
+            ).text-none.font-weight-semibold.mr-2.font-16 Sign up
+            v-btn(
+              color="primary"
+              :width="$isWideScreen ? '120' : '110' "
+              :height="$isWideScreen ? '40' : '35' "
+              depressed
+              rounded
+              :large="$isWideScreen"
+              @click="openPxPortal(pxPortalLogIn)"
+            ).text-none.font-weight-thin.font-16 Log in
 </template>
 
 <script>
