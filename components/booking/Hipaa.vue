@@ -10,7 +10,7 @@
                   :image-width="$vuetify.breakpoint.width > 1919 ? '465px' : ($isRegularScreen ? '266.66px' : '226px')"
                   :image-height="$vuetify.breakpoint.width > 1919 ? '449.41px' : ($isRegularScreen ? '257.7px' : '218.42px')"
                   image="MYCURE-HIPAA Badge"
-                  image-file-extension=".webp"
+                  :image-file-extension="$useWebp? '.webp' : '.png'"
                   image-alt="HIPAA Compliance Seal"
                 )
             v-col(cols="12" md="8")

@@ -29,7 +29,7 @@
                     :image="service.image"
                     :image-alt="service.alt"
                     :image-width="$isMobile ? '50%' : '100%'"
-                    image-file-extension=".webp"
+                    :image-file-extension="$useWebp? '.webp' : '.png'"
                     custom-path="doctor-website/"
                   )
                   v-card-text.text-center

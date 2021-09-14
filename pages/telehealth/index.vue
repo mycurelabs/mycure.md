@@ -4,7 +4,7 @@
     usp(
       has-custom-background
       background-image="Telehealth Landing Page"
-      background-image-file-extension=".webp"
+      :background-image-file-extension="$useWebp? '.webp' : '.png'"
       title="Everything you need to build your virtual practice"
       meta-title="MYCURE Telehealth"
       description="Starting a virtual practice has never been easier. Give your patients the quality care they deserve."

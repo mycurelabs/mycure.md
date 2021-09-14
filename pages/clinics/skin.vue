@@ -4,7 +4,7 @@
     usp(
       has-custom-background
       background-image="Skin Clinics Full Illu"
-      background-image-file-extension=".webp"
+      :background-image-file-extension="$useWebp? '.webp' : '.png'"
       title="Skin and Aesthetic Clinic Management System for a Flawless Experience"
       meta-title="MYCURE for Skin Clinics"
       description="Easy appointment, inventory management and secure client records and relationship management with analytics and reporting."

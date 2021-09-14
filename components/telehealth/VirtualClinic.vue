@@ -23,7 +23,7 @@
             image-alt="Virtual Clinic"
             :image-width="$isMobile ? '300px' : ($isRegularScreen ? '964px' : '1475px')"
             :image-height="$isMobile ? '192.08px' : ($isRegularScreen ? '617.23px' : '944.39px')"
-            image-file-extension=".webp"
+            :image-file-extension="$useWebp? '.webp' : '.png'"
             custom-path="telehealth/"
           )
         generic-panel(:row-bindings="{ justify: 'center'}").pa-0

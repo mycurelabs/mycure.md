@@ -4,7 +4,7 @@
     usp(
       has-custom-background
       background-image="Mobile Clinics Full"
-      background-image-file-extension=".webp"
+      :background-image-file-extension="$useWebp? '.webp' : '.png'"
       title="The simplest LIS for Mobile Labs"
       meta-title="MYCURE LIS for Mobile Labs"
       description="MYCURE is an easy to use, secure, cloud-based laboratory information software (LIS) that you can easily setup anywhere your medical team is."
