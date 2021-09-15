@@ -1,6 +1,6 @@
 <template lang="pug">
-  v-card(height="100%" elevation="2").orgs-card.px-2.pt-5.pb-3
-    v-row.d-flex
+  v-card(height="100%" elevation="2").orgs-card.px-3.pb-3.pt-4.d-flex.flex-column
+    v-row
       //- v-icon(v-if="hasWebsite" color="primary" large :class="{'pt-7': !$isMobile}").mt-16.ml-n8 mdi-check-decagram
       img(
         :src="picURL"
@@ -34,16 +34,18 @@
           div(v-for="(day, index) in daysInit" :key="index")
             div(:class="[textFontSize, badgeSize, {'primary': clinicOpen(day.value)}]").badge
               | {{ day.text }}
-    v-col
-      v-row(justify="end")
-        v-btn(
-          color="primary"
-          :small="!$isWideScreen"
-          rounded
-          :class="$isWideScreen ? ['font-14', 'px-6'] : ['font-10', 'px-5']"
-          @click="visitWebsite"
-        ).text-none.elevation-0.font-weight-light.mt-2
-          b Book a Visit
+    v-spacer
+    v-card-actions.pa-0
+      v-col
+        v-row(justify="end")
+          v-btn(
+            color="primary"
+            :small="!$isWideScreen"
+            rounded
+            :class="$isWideScreen ? ['font-14', 'px-6'] : ['font-10', 'px-5']"
+            @click="visitWebsite"
+          ).text-none.elevation-0.font-weight-light.mt-2
+            b Book a Visit
 </template>
 
 <script>
