@@ -20,7 +20,7 @@
                   width="120px"
                   height="34.46px"
                   alt="MYCURE logo"
-                ).ml-2.mb-5
+                ).mb-2
               directory-search-bar(
                 app-bar
                 :mode="searchMode"

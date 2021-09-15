@@ -26,15 +26,22 @@
         div.d-flex.mt-1
           v-icon(color="primary" :small="!$isWideScreen") mdi-briefcase-variant-outline
           div(:class="textFontSize").info-text.mt-1
-            span(v-if="doctor.doc_practicingSince") &nbsp;{{ yearsOfExperience }} year/s of experience
+            span(v-if="doctor") &nbsp;{{ doctor.doc_practicingSince ? yearsOfExperience : '-' }} year/s of experience
             span(v-else) &nbsp;- year/s of experience
         div(justify="start").mt-1.d-flex
           v-icon(color="primary" :small="!$isWideScreen") mdi-map-marker
-          v-clamp(
-            autoresize
-            :max-lines="2"
-            :class="[textFontSize, {'font-italic': !address }]"
-          ).info--text {{ address || 'No address provided'}}
+          div(v-if="doctor")
+            v-clamp(
+              autoresize
+              :max-lines="2"
+              :class="[textFontSize, {'font-italic': !address }]"
+            ).info--text {{ address || 'No address provided'}}
+          div(v-else)
+            v-clamp(
+              autoresize
+              :max-lines="2"
+              :class="[textFontSize, 'font-italic']"
+            ).info--text No address provided
     v-spacer
     v-card-actions.pa-0
       v-col
