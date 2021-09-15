@@ -3,7 +3,7 @@
     v-row(justify="center")
       generic-panel(:column="$isMobile ? 12 : 10" disable-parent-padding)
         v-container
-          v-row(align="center" justify="center" :class="$isMobile? 'results-margin-mobile' : 'results-margin' ").results-summary
+          v-row(align="center" justify="center" :class="$isMobile? ( type === 'account' ? 'results-margin-mobile' : 'results-margin-mobile-org') : 'results-margin' ").results-summary
             v-col(v-if="!loading" cols="12" :class="{'text-center': $isMobile}")
               v-row(align="center")
                 v-col(align="start")
@@ -122,9 +122,12 @@ export default {
 }
 
 .results-margin {
-  margin-top: 300px;
+  margin-top: 280px;
 }
 .results-margin-mobile {
+  margin-top: 230px;
+}
+.results-margin-mobile-org {
   margin-top: 300px;
 }
 

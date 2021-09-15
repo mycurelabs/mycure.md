@@ -2,7 +2,7 @@
   div(v-if="!loading.page").white
     //- App Bar
     v-app-bar(
-      height="290"
+      :height="$isMobile ? (searchMode ==='account' ? '240' : '305') : '290'"
       app
       color="white"
       elevate-on-scroll
@@ -13,14 +13,14 @@
             :column="$isMobile ? 12 : 10"
             disable-parent-padding
           )
-            v-col(cols="12")
+            v-col(cols="12" :class="{'pa-0': $isMobile}")
               nuxt-link(to="/")
                 img(
                   src="~/assets/images/MYCURE Logo - black.png"
                   width="120px"
                   height="34.46px"
                   alt="MYCURE logo"
-                ).ml-2.mb-5
+                ).mb-2
               directory-search-bar(
                 app-bar
                 :mode="searchMode"
