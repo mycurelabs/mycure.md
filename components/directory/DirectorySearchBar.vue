@@ -11,8 +11,8 @@
             @change="onModeChange($event)"
           )
             //- v-btn(value="all" text active-class="active-button" :class="buttonGroupClasses").mr-3.tight-font all
-            v-btn(value="account" text active-class="active-button" :class="buttonGroupClasses").mr-3.tight-font.rounded-pill doctor
-            v-btn(value="organization" text active-class="active-button" :class="buttonGroupClasses").mr-3.tight-font.rounded-pill clinics
+            v-btn(value="account" text active-class="active-button" :class="[$isMobile ? 'font-14' : 'font-16', ...buttonGroupClasses]").mr-3.tight-font.rounded-pill doctor
+            v-btn(value="organization" text active-class="active-button" :class="[$isMobile ? 'font-14' : 'font-16', ...buttonGroupClasses]").mr-3.tight-font.rounded-pill clinics
               //- v-btn(value="location" text active-class="active-button" :class="buttonGroupClasses").mr-3.tight-font.rounded-pill location
           v-spacer
           v-col(v-if="isOrganization" :cols="$isMobile ? '12' : null")
@@ -34,6 +34,7 @@
               solo
               outlined
               flat
+              dense
               clearable
               :items="suggestionEntries"
               item-text="name"
@@ -146,7 +147,7 @@ export default {
   },
   data () {
     // this.cities = NCR_CITIES;
-    this.buttonGroupClasses = ['font-weight-semibold', 'font-16', 'black--text'];
+    this.buttonGroupClasses = ['font-weight-semibold', 'black--text'];
     this.serviceTypes = [
       { name: 'Consult', value: 'clinical-consultation' },
       { name: 'Procedure', value: 'clinical-procedure' },
