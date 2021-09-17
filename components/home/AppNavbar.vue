@@ -36,6 +36,7 @@
                         v-for="(item, key) in nav.menuItems"
                         :key="key"
                         :to="{ name: item.route }"
+                        v-if="item.route !== 'diagnostics-ofw' || !inPh"
                         exact-path
                       )
                         v-list-item-title {{ item.name }}
@@ -132,6 +133,7 @@
 <script>
 import GenericPanel from '~/components/generic/GenericPanel';
 import SignupButton from '~/components/commons/SignupButton';
+import inPh from '~/utils/in-ph';
 export default {
   components: {
     GenericPanel,
@@ -183,7 +185,12 @@ export default {
     ];
     return {
       drawer: false,
+      inPh: false,
     };
+  },
+  async created () {
+    // fetch packages
+    this.inPh = await inPh();
   },
   methods: {
     onNavClick (nav) {
