@@ -24,6 +24,7 @@
             h1(:class="superTitleClasses") {{ superTitle }}
           template(slot="image" v-if="!hasCustomBackground || $isMobile")
             img(
+              v-if="$isMobile"
               :src="require(`~/assets/images/${customImagePath}${image}.png`)"
               :alt="image"
               :width="imageWidth"

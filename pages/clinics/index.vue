@@ -99,6 +99,7 @@
         hide-btn
       )
         div(slot="additional-content" :class="{'text-center': $isMobile}").mt-10
+          //- SEO issue non descriptiove link
           mc-btn(
             depressed
             color="white"
