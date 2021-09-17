@@ -114,8 +114,8 @@
             :width="!$isWideScreen ? '228px' : '300'"
             :height="!$isWideScreen ? '59px' : '73.68'"
           ).text-none
-            v-icon(left)  mdi-information-outline
-            span.generic-button-text  Learn more
+            //- v-icon(left)  mdi-information-outline
+            span.generic-button-text See MYCURE for Clinics
     //- 7.5
     care
     steps(:steps="stepsContent" not-free)
