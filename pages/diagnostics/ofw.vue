@@ -178,7 +178,6 @@ export default {
   },
   async asyncData ({ redirect }) {
     const country = await getCountry() || {};
-    console.log(country);
     const code = country.country_code;
 
     if (!code || code !== 'PH') redirect('/');
