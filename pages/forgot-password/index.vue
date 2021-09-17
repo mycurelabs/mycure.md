@@ -5,6 +5,7 @@
         img(
           :width="$isMobile ? '180px' : ($isRegularScreen ? '170px' : '260px')"
           :height="$isMobile ? '50.28px' : ($isRegularScreen ? '47.48px' : '72.61px')"
+          alt="MYCURE logo"
           src="~/assets/images/MYCURE-virtual-clinic-healthcare-practice-online-logo.svg"
           @click="$nuxt.$router.push({ name: 'index' })"
         ).link-to-home
@@ -12,6 +13,7 @@
         v-card(width="100%")
           img(
             src="~/assets/images/forgot-password/mycure-password-banner-forgot.png"
+            alt="Doctor resetting his forgot password"
             width="100%"
           ).mx-auto
             //- :width="$isMobile ? '360px' : ($isRegularScreen ? '363.48px' : '563.48px')"

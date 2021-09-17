@@ -100,7 +100,7 @@
                     v-tooltip(bottom)
                       template(v-slot:activator="{ on }")
                         v-btn(icon @click="countryDialog = true" v-on="on")
-                          img(width="25" height="18.75" :src="countryFlag").flag-img.mt-2
+                          img(width="25" height="18.75" :src="countryFlag" :alt="countryFlag").flag-img.mt-2
                       | Change Country
             v-col(
               cols="12"
