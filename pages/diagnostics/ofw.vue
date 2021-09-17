@@ -158,7 +158,7 @@ import headMeta from '~/utils/head-meta';
 // - constants
 // - components
 import Usp from '~/components/commons/panels/SevenWondersUsp';
-import { getCountry } from '~/utils/axios';
+// import { getCountry } from '~/utils/axios';
 
 export default {
   components: {
@@ -176,13 +176,13 @@ export default {
     Stakes: () => import('~/components/commons/panels/Stakes'),
     Storybrand: () => import('~/components/commons/panels/Storybrand'),
   },
-  async asyncData ({ redirect }) {
-    const country = await getCountry() || {};
-    console.log(country);
-    const code = country.country_code;
+  // async asyncData ({ redirect }) {
+  //   const country = await getCountry() || {};
+  //   console.log(country);
+  //   const code = country.country_code;
 
-    if (!code || code !== 'PH') redirect('/');
-  },
+  //   if (!code || code !== 'PH') redirect('/');
+  // },
   data () {
     this.stepsContent = [
       {
