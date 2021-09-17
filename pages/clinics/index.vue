@@ -108,8 +108,8 @@
             :height="!$isWideScreen ? '59px' : '73.68'"
             :to="{ name: 'doctors-clinics' }"
           ).text-none.primary--text
-            v-icon(left) mdi-information-outline
-            span.generic-button-text Learn More
+            //- v-icon(left) mdi-information-outline
+            span.generic-button-text See MYCURE for Doctors
 </template>
 
 <script>
