@@ -281,6 +281,7 @@ import isEmpty from 'lodash/isEmpty';
 import isObject from 'lodash/isObject';
 import omit from 'lodash/omit';
 import { parsePhoneNumberFromString } from 'libphonenumber-js';
+import headMeta from '~/utils/head-meta';
 import {
   getCountries,
   getCountry,
@@ -391,6 +392,13 @@ export default {
       errorRoles: false,
       errorMessagesRoles: '',
     };
+  },
+  head () {
+    return headMeta({
+      title: 'Sign Up to MYCURE',
+      description: 'Welcome to MYCURE Complete Clinic Management System. Sign up today and get ready to easily create, store, and retrieve your electronic medical records (EMR).',
+      socialBanner: require('~/assets/images/banners/OG Homepage.png'),
+    });
   },
   computed: {
     isDoctor () {
