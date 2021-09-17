@@ -105,6 +105,7 @@
     )
       template(slot="cta-button")
         div(:class="{'text-center': $isMobile}")
+          //- SEO issue non descriptiove link
           mc-btn(
             depressed
             event-label="clinics-info"
