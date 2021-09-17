@@ -8,7 +8,7 @@
       div.mb-10
         slot(name="center-panel-title")
           h2(:class="defaultCenterPanelTitleClasses") {{ centerPanelTitle }}
-    v-col(v-bind="mediaColumnBindings" :class=" { 'order-last': contentAlignment }").text-center
+    v-col(v-if="$isMobile" v-bind="mediaColumnBindings" :class=" { 'order-last': contentAlignment }").text-center
       slot(name="image")
         img(:width="width" :src="image" :alt="image")
     v-col(v-bind="contentColumnBindings")
