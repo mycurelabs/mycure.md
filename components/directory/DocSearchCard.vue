@@ -53,8 +53,8 @@
             :small="!$isWideScreen"
             rounded
             :disabled="!hasDoctorWebsite"
-            :href="doctorWebsite"
             :class="$isWideScreen ? ['font-14', 'px-6'] : ['font-10', 'px-5'] "
+            @click="dialogBox = true"
           ).text-none.elevation-0.font-weight-light.mt-2
             b View
 
@@ -62,6 +62,82 @@
     //-   v-col(cols="12")
     //-     v-row
     //-       v-chip(v-for="(specialty, key) in doctor.doc_specialties" :key="key").font-12.ma-1 {{ specialty }}&nbsp;
+    v-dialog(v-model="dialogBox" :scrollable="false" width="60%").pa-0
+      v-card(width="100%").pa-5.rounded-xl
+        v-card-text
+          v-col(cols="12")
+            v-row
+              v-col(cols="5" justify="center" align="center")
+                img(
+                  :src="picURL"
+                  alt="Services"
+                  width="90%"
+                ).ma-3.rounded-xl
+              v-col(cols="6").pt-5
+                div
+                  v-clamp(
+                    autoresize
+                    :max-lines="1"
+                  ).font-weight-bold.mb-0.mc-title-set-2 {{ fullNameWithSuffixes }}&nbsp;
+                div.mc-content-set-1.info--text.font-weight-semibold
+                  v-clamp(
+                    v-if="hasSpecialties"
+                    autoresize
+                    :max-lines="1"
+                  ) {{ doctor.doc_specialties[0] }}&nbsp;&nbsp;
+                  span(v-else) ---&nbsp;&nbsp;
+                  //- v-chip(v-if="doctor.doc_website" color="primary" outlined x-small).mt-1 verified
+                v-row.mt-5
+                  v-icon(color="primary" x-large) mdi-medical-bag
+                  v-col.mc-content-set-1.font-gray
+                    span.mc-content-set-4 Specialization
+                    v-clamp(
+                      v-if="hasSpecialties"
+                      autoresize
+                      :max-lines="1"
+                    ).font-weight-semibold {{ specialtiesText }}
+                    span(v-else).font-weight-semibold &nbsp;---
+                v-row.mt-2
+                  v-icon(color="primary" x-large) mdi-briefcase-variant-outline
+                  v-col.mc-content-set-1.font-gray
+                    span.mc-content-set-4 Experience
+                    v-clamp(
+                      v-if="doctor"
+                      autoresize
+                      :max-lines="1"
+                    ).font-weight-semibold {{ doctor.doc_practicingSince ? yearsOfExperience : '-' }} year/s of experience
+                    span(v-else).font-weight-semibold &nbsp;- year/s of experience
+                v-row.mt-2
+                  v-icon(color="primary" x-large) mdi-map-marker
+                  v-col.mc-content-set-1.font-gray
+                    span.mc-content-set-4 Location
+                    v-clamp(
+                      v-if="doctor"
+                      autoresize
+                      :max-lines="2"
+                      :class="{'font-italic': !address }"
+                    ).font-weight-semibold.info--text {{ address || 'No address provided'}}
+                    v-clamp(
+                      v-else
+                      autoresize
+                      :max-lines="2"
+                      class="font-italic"
+                    ).font-weight-semibold.info--text No address provided
+        v-spacer
+        v-card-actions.pa-0
+          v-row(justify="center")
+            v-col(cols="11")
+              v-row(justify="end").py-4
+                  v-btn(
+                    color="primary"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    :href="doctorWebsite"
+                    :width="!$isWideScreen ? '228px' : '300'"
+                    :height="!$isWideScreen ? '59px' : '73.68'"
+                  ).text-none.elevation-0.rounded-pill
+                    v-icon mdi-open-in-new
+                    span.generic-button-text &nbsp;View Profile
 </template>
 
 <script>
@@ -93,6 +169,7 @@ export default {
       { text: 'Sun', value: 0 },
     ];
     return {
+      dialogBox: false,
       scheduleExpanded: false,
       isDescriptionExpanded: false,
     };
