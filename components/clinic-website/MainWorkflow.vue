@@ -24,6 +24,7 @@
               :xl="!serviceTypes.length ? '12' : '7'"
               :class="{ 'order-first': $isMobile, 'order-last': !$isMobile }"
             )
+              //- If mobile view and no service type is expanded, show all service types card
               service-types-mobile-selection(
                 v-if="!mobileServicesListView && $isMobile"
                 :service-types="serviceTypes"
@@ -31,6 +32,7 @@
                 :is-preview-mode="isPreviewMode"
                 @select="activeTab = $event; mobileServicesListView = true"
               )
+              //- For web: if not in search results mode
               services-list(
                 v-else-if="showServiceTabs"
                 v-model="activeTab"
@@ -46,22 +48,25 @@
                 @back="mobileServicesListView = false"
                 @paginate="onPaginate($event)"
               )
-            //- Selection Area
+            //- Selection Area, side panel. Only present in web view
             v-col(
+              v-if="!$isMobile"
               cols="12"
               :md="searchResultsMode ? '3' : '4'"
               :xl="searchResultsMode ? '2' : '3'"
             )
+              //-Show in standard view (no search)
               service-types-selection(
-                v-if="!$isMobile && !searchResultsMode"
+                v-if="!searchResultsMode"
                 v-model="activeTab"
                 :service-types="serviceTypes"
                 :has-doctors="hasDoctors"
                 :is-preview-mode="isPreviewMode"
                 @select="activeTab = $event"
               )
+              //- Only show in search results mode
               v-btn(
-                v-if="searchResultsMode && !$isMobile"
+                v-else
                 tile
                 outlined
                 color="primary"
@@ -69,6 +74,7 @@
               ).text-none
                 v-icon(small left) mdi-arrow-left
                 | Go back to Main Page
+            //- The results list. Show this when user has searched
             v-col(
               cols="12"
               :md="!serviceTypes.length ? '12' : '9'"
