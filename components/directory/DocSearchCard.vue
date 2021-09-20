@@ -115,14 +115,12 @@
                       v-if="doctor"
                       autoresize
                       :max-lines="2"
-                      :class="{'font-italic': !address }"
-                    ).font-weight-semibold.info--text {{ address || 'No address provided'}}
+                    ).font-weight-semibold {{ address || 'No address provided'}}
                     v-clamp(
                       v-else
                       autoresize
                       :max-lines="2"
-                      class="font-italic"
-                    ).font-weight-semibold.info--text No address provided
+                    ).font-weight-semibold No address provided
         v-spacer
         v-card-actions.pa-0
           v-row(justify="center")
