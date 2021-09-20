@@ -57,12 +57,12 @@
                 width="60%"
               ).rounded-xl
             div.text-center.mt-2
-              span.mc-title-set-2.font-weight-bold.black--text {{ organization.tags }}
+              span.mc-title-set-2.font-weight-bold.black--text {{ organization.name }}
             v-row.mt-8
               v-icon(color="primary" x-large) mdi-medical-bag
               v-col.font-gray
                 span.mc-content-set-4 Services
-                span.mc-content-set-1.font-weight-semibold {{ organization }}
+                span.mc-content-set-1.font-weight-semibold {{ organization.tags }}
             v-row.mt-1
               v-icon(color="primary" x-large) mdi-map-marker
               v-col.font-gray
