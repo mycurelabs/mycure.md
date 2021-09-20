@@ -1,8 +1,13 @@
 <template lang="pug">
   div(style="overflow: hidden; background: #fafafa")
+    //- CHOOSE APPOINTMENT TYPE
+    choose-appointment(
+      v-model="dialogs.appointment"
+      @select="onSelectAppointment($event)"
+    )
     //- CHOOSE SERVICE DIALOG
     choose-service(
-      v-model="chooseServiceDialog"
+      v-model="dialogs.serviceType"
       :service-types="serviceTypes"
       :has-doctors="hasDoctors"
       @select="activeTab = $event"
@@ -31,7 +36,7 @@
                 rounded
                 dark
                 :color="hover ? 'info' : 'warning'"
-                :href="bookURL"
+                @click="dialogs.appointment = true"
               ).text-none.custom-clinic-button
                 h2 {{ hover ? 'Choose a schedule' : 'Book an Appointment' }}
     template(v-if="isVerified")
@@ -120,6 +125,7 @@ import {
 import AboutUs from '~/components/clinic-website/AboutUs';
 import AppBar from '~/components/clinic-website/new/AppBar';
 import AppFooter from '~/components/clinic-website/AppFooter';
+import ChooseAppointment from '~/components/doctor-website/ChooseAppointment';
 import ChooseService from '~/components/clinic-website/ChooseService';
 import GenericPanel from '~/components/generic/GenericPanel';
 import SearchPanel from '~/components/clinic-website/SearchPanel';
@@ -140,6 +146,7 @@ export default {
     AboutUs,
     AppBar,
     AppFooter,
+    ChooseAppointment,
     ChooseService,
     GenericPanel,
     SearchPanel,
@@ -203,9 +210,11 @@ export default {
         page: true,
         list: false,
       },
-      servicesDialog: false,
-      chooseServiceDialog: false,
-      activeTab: null,
+      dialogs: {
+        serviceType: false,
+        appointment: false,
+      },
+      activeTab: null, // - possible values: all service type values, and 'doctors'
       // Pagination
       page: 1,
       pageCount: 2,
@@ -516,6 +525,18 @@ export default {
         const matchDay = schedules?.find(schedule => schedule.order || schedule.day === day);
         return !!matchDay;
       }) || [];
+    },
+    onSelectAppointment (type) {
+      this.dialogs.appointment = false;
+      if (type === 'physical') {
+        this.dialogs.serviceType = true;
+        return;
+      }
+      if (type === 'telehealth') {
+        this.activeTab = 'doctors';
+        // - scroll down to doctors list
+        VueScrollTo.scrollTo('#services-panel', 500, { offset: -100, easing: 'ease' });
+      }
     },
   },
 };

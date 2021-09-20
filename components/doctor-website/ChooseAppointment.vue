@@ -21,7 +21,7 @@
               )
                 v-card(
                   hover
-                  :color="hover ? 'primary' : 'white'"
+                  :color="hover ? service.color : 'white'"
                   :class="{'white--text': hover}"
                   @click="onServiceSelect(service.type)"
                 ).service-card
@@ -33,7 +33,7 @@
                     custom-path="doctor-website/"
                   )
                   v-card-text.text-center
-                    h3(:class="hover ? 'white--text' : 'secondary--text'") {{ service.text }}
+                    h3(:class="hover ? 'white--text' : `${service.color}--text`") {{ service.text }}
 </template>
 
 <script>
@@ -51,14 +51,14 @@ export default {
   data () {
     this.services = [
       {
-        text: 'Teleconsult',
+        text: 'Online Consult',
         type: 'telehealth',
         color: 'accent',
         image: 'Teleconsult',
         alt: 'Doctor talking to a patient online artwork',
       },
       {
-        text: 'Clinic Visit',
+        text: 'Visit Doctor',
         type: 'physical',
         color: 'secondary',
         image: 'Clinic Visit',

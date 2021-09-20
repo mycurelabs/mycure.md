@@ -32,24 +32,25 @@
           template(v-else)
             i No schedules available
             br
-          span Coverages:
-          br
-          template(v-if="hasCoverages")
-            v-tooltip(
-              v-for="(coverage, key) in coverages"
-              :key="key"
-              top
-            )
-              template(v-slot:activator="{ on, attrs }")
-                v-avatar(
-                  size="40"
-                  color="secondary"
-                  v-on="on"
-                ).mx-1
-                  v-img(v-if="coverage.picURL" :src="coverage.picURL")
-                  span(v-else).white--text {{ coverage.name.substring(0,1) }}
-              span {{ coverage.name || 'HMO' }}
-          i(v-else) No coverages available
+          template(v-if="!isDoctor")
+            span Coverages:
+            br
+            template(v-if="hasCoverages")
+              v-tooltip(
+                v-for="(coverage, key) in coverages"
+                :key="key"
+                top
+              )
+                template(v-slot:activator="{ on, attrs }")
+                  v-avatar(
+                    size="40"
+                    color="secondary"
+                    v-on="on"
+                  ).mx-1
+                    v-img(v-if="coverage.picURL" :src="coverage.picURL")
+                    span(v-else).white--text {{ coverage.name.substring(0,1) }}
+                span {{ coverage.name || 'HMO' }}
+            i(v-else) No coverages available
         v-col(v-if="!isDoctor && !readOnly").grow.text-right
           h3.info--text Availability
             v-icon(:color="isAvailable ? 'info' : 'error'" right) {{ isAvailable ? 'mdi-checkbox-marked-circle-outline' : 'mdi-close-circle-outline' }}
@@ -72,23 +73,25 @@
           cols="12"
           md="4"
         )
-          //- TODO: Temporary hide
-          //- v-btn(
-          //-   color="success"
-          //-   depressed
-          //-   block
-          //-   :disabled="!isAvailable"
-          //-   :href="bookTeleconsultURL"
-          //- ).text-none.font-12 Book a Teleconsult
-          //- br
+          v-btn(
+            color="success"
+            depressed
+            block
+            :href="bookTeleconsultURL"
+            :disabled="!hasTeleconsult"
+          ).text-none.font-12
+            v-icon(small left) {{ hasTeleconsult ? 'mdi-video-outline' : 'mdi-close' }}
+            span Online Consult
+          br
           v-btn(
             color="info"
             depressed
             block
-            outlined
             :disabled="!isAvailable"
             :href="bookTeleconsultURL"
-          ).text-none.font-12 Book a Visit
+          ).text-none.font-12
+            v-icon(small left) {{ isAvailable ? 'mdi-stethoscope' : 'mdi-close' }}
+            span Visit Doctor
     //- Schedule dialog
     v-dialog(v-model="scheduleExpanded" width="1000")
       v-toolbar(flat)
@@ -188,11 +191,7 @@ export default {
       return this.item?.name;
     },
     picURL () {
-      const sex = this.item?.sex;
-      if (sex === 'female') {
-        return this.item?.picURL || require('~/assets/images/doctor-website/doctor-website-profile-female.png');
-      }
-      return this.item?.picURL || require('~/assets/images/doctor-website/doctor-website-profile-male.png');
+      return this.item?.picURL || require('~/assets/images/commons/MYCURE Default Avatar.png');
     },
     price () {
       return this.item?.price;
@@ -253,6 +252,9 @@ export default {
     isAvailable () {
       return this.todaySchedules.length;
     },
+    hasTeleconsult () {
+      return this.item?.teleconsultQueue;
+    },
     bookServiceURL () {
       if (this.isPreviewMode) return null;
       const pxPortalUrl = process.env.PX_PORTAL_URL;
@@ -263,7 +265,7 @@ export default {
       if (this.isPreviewMode) return null;
       const pxPortalUrl = process.env.PX_PORTAL_URL;
       const id = this.item?.uid;
-      return `${pxPortalUrl}/appointments/step-1?doctor=${id}&organization=${this.organization}`;
+      return `${pxPortalUrl}/appointments/step-1?doctor=${id}&organization=${this.organization}&type=telehealth`;
     },
   },
   methods: {
