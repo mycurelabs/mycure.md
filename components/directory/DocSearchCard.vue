@@ -63,7 +63,7 @@
     //-     v-row
     //-       v-chip(v-for="(specialty, key) in doctor.doc_specialties" :key="key").font-12.ma-1 {{ specialty }}&nbsp;
     v-dialog(v-model="dialogBox" :scrollable="false" width="60%").pa-0
-      v-card(width="100%").pa-5.rounded-xl
+      v-card(width="100%").px-5.py-10.rounded-xl
         v-card-text
           v-col(cols="12")
             v-row
