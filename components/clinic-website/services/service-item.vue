@@ -73,16 +73,16 @@
           cols="12"
           md="4"
         )
-          template(v-if="hasTeleconsult")
-            v-btn(
-              color="success"
-              depressed
-              block
-              :href="bookTeleconsultURL"
-            ).text-none.font-12
-              v-icon(small left) mdi-video-outline
-              span Online Consult
-            br
+          v-btn(
+            color="success"
+            depressed
+            block
+            :href="bookTeleconsultURL"
+            :disabled="!hasTeleconsult"
+          ).text-none.font-12
+            v-icon(small left) {{ hasTeleconsult ? 'mdi-video-outline' : 'mdi-close' }}
+            span Online Consult
+          br
           v-btn(
             color="info"
             depressed
@@ -90,7 +90,7 @@
             :disabled="!isAvailable"
             :href="bookTeleconsultURL"
           ).text-none.font-12
-            v-icon(small left) mdi-stethoscope
+            v-icon(small left) {{ isAvailable ? 'mdi-stethoscope' : 'mdi-close' }}
             span Visit Doctor
     //- Schedule dialog
     v-dialog(v-model="scheduleExpanded" width="1000")
@@ -191,11 +191,7 @@ export default {
       return this.item?.name;
     },
     picURL () {
-      const sex = this.item?.sex;
-      if (sex === 'female') {
-        return this.item?.picURL || require('~/assets/images/doctor-website/doctor-website-profile-female.png');
-      }
-      return this.item?.picURL || require('~/assets/images/doctor-website/doctor-website-profile-male.png');
+      return this.item?.picURL || require('~/assets/images/commons/MYCURE Default Avatar.png');
     },
     price () {
       return this.item?.price;
