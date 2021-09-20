@@ -43,9 +43,51 @@
             :small="!$isWideScreen"
             rounded
             :class="$isWideScreen ? ['font-14', 'px-6'] : ['font-10', 'px-5']"
-            @click="visitWebsite"
+            @click="dialogBox = true"
           ).text-none.elevation-0.font-weight-light.mt-2
             b Book a Visit
+    v-dialog(v-model="dialogBox" :scrollable="false" width="30%").pa-0
+      v-card(width="100%").px-5.py-10.rounded-xl
+        v-card-text
+          v-col(cols="12")
+            div.text-center
+              img(
+                :src="picURL"
+                :alt="organization.name"
+                width="60%"
+              ).rounded-xl
+            div.text-center.mt-2
+              span.mc-title-set-2.font-weight-bold.black--text {{ organization.tags }}
+            v-row.mt-8
+              v-icon(color="primary" x-large) mdi-medical-bag
+              v-col.font-gray
+                span.mc-content-set-4 Services
+                span.mc-content-set-1.font-weight-semibold {{ organization }}
+            v-row.mt-1
+              v-icon(color="primary" x-large) mdi-map-marker
+              v-col.font-gray
+                span.mc-content-set-4 Facility Address
+                v-clamp(
+                  autoresize
+                  :max-lines="2"
+                ).mc-content-set-1.font-weight-semibold {{ address || 'No address provided'}}
+            v-row.mt-1
+              v-icon(color="primary" x-large) mdi-phone-in-talk-outline
+              v-col.font-gray
+                span.mc-content-set-4 Contact Number
+                v-clamp(
+                  autoresize
+                  :max-lines="2"
+                ).mc-content-set-1.font-weight-semibold {{ organization.phone || 'No contact number'}}
+            v-row.mt-1
+              v-icon(color="primary" x-large) mdi-calendar
+              v-col.font-gray
+                span.mc-content-set-4 Schedule
+                v-clamp(
+                  autoresize
+                  :max-lines="2"
+                ).mc-content-set-1.font-weight-semibold {{ 'to be coded'}}
+
 </template>
 
 <script>
@@ -83,6 +125,7 @@ export default {
       { text: 'S', value: 6 },
     ];
     return {
+      dialogBox: false,
       scheduleExpanded: false,
       isDescriptionExpanded: false,
     };
