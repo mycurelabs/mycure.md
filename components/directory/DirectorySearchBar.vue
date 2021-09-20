@@ -16,15 +16,17 @@
               //- v-btn(value="location" text active-class="active-button" :class="buttonGroupClasses").mr-3.tight-font.rounded-pill location
           v-spacer
           v-col(v-if="isOrganization" :cols="$isMobile ? '12' : null")
-            v-row(align="center" :justify="$isMobile ? 'start' : 'end'")
-              span.font-weight-bold.font-14 USE MY LOCATION
+            v-row(align="start" :justify="$isMobile ? 'start' : 'end'")
+              span.font-weight-bold.font-14.mt-1 USE MY LOCATION
               v-progress-circular(indeterminate size="20" v-if="loadingLocation" color="primary").pl-1
               v-switch(
                 v-else
                 v-model="locationSwitch"
                 inset
-                :class="{'mt-5': appBar}"
+                :class="appBar ? 'mt-5' : 'mt-0'"
               ).ml-3
+          v-col(v-else)
+            br
         v-row.pt-2
           v-col.pa-0
             //- Combobox has return-object triggered by default
@@ -43,17 +45,25 @@
               @keyup.enter="onSearch(true)"
               @click:clear="clearSearchText"
               @update:search-input="handleDebouncedSearch($event)"
-            ).rounded-bl-lg.rounded-tl-lg
-          v-col(v-if="!$isMobile" cols="1").pa-0.ml-n1
-            v-btn(
-              small
-              block
-              tile
-              color="primary"
-              @click="onSearch(true)"
-              :height="$isMobile ? '40px' : '60px'"
-            ).elevation-0.rounded-br-lg.rounded-tr-lg
-              v-icon mdi-magnify
+            ).rounded-lg
+              template(slot="append")
+                v-btn(
+                  small
+                  fab
+                  color="primary"
+                  @click="onSearch(true)"
+                ).elevation-0
+                  v-icon mdi-magnify
+          //- v-col(v-if="!$isMobile" cols="1").pa-0.ml-n1
+          //-   v-btn(
+          //-     small
+          //-     block
+          //-     tile
+          //-     color="primary"
+          //-     @click="onSearch(true)"
+          //-     :height="$isMobile ? '40px' : '60px'"
+          //-   ).elevation-0.rounded-br-lg.rounded-tr-lg
+          //-     v-icon mdi-magnify
         v-row
           //- Service Type Filter
           v-col(v-if="searchObject.mode === 'organization'" cols="12" md="5" lg="4").pa-0
@@ -100,6 +110,9 @@
                   v-if="index === 1"
                   class="grey--text text-caption"
                 ) (+{{ searchObject.specializations.length - 1 }} others)
+    //- v-dialog
+    //-   v-card
+    //-     v-card-text
 </template>
 
 <script>

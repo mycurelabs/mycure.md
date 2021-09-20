@@ -1,8 +1,8 @@
 <template lang="pug">
-  v-container.pa-0.mt-16
+  v-container.pa-0
     v-row(v-if="!loading.page" justify="center")
       generic-panel(:column="$isMobile ? 12 : 10" disable-parent-padding)
-        v-col
+        v-col.mt-n16
           v-row(justify="center")
             v-col(align="center" cols="10" sm="8").pl-0
               nuxt-link(to="/")
@@ -17,6 +17,7 @@
               directory-search-bar(
                 require-action
                 show-suggestions
+                :app-bar="false"
                 :mode="searchMode"
                 :location="location"
                 :loadingLocation="loading.location"
