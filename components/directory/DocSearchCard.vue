@@ -127,12 +127,12 @@
               v-row(justify="end").py-4
                   v-btn(
                     color="primary"
-                    target="_blank"
                     rel="noopener noreferrer"
                     :href="doctorWebsite"
                     :disabled="!hasDoctorWebsite"
                     :width="!$isWideScreen ? '228px' : '300'"
                     :height="!$isWideScreen ? '59px' : '73.68'"
+                    @click="visitWebsite"
                   ).text-none.elevation-0.rounded-pill
                     v-icon mdi-open-in-new
                     span.generic-button-text &nbsp;View Profile
@@ -222,6 +222,12 @@ export default {
     },
     hasSpecialties () {
       return this.doctor?.doc_specialties?.length;
+    },
+  },
+  methods: {
+    visitWebsite () {
+      const username = this.doctor?.doc_website || this.doctor?.id;
+      this.$router.push(`/doctors/${username}`);
     },
   },
 };
