@@ -52,7 +52,6 @@
             rel="noopener noreferrer"
             :small="!$isWideScreen"
             rounded
-            :disabled="!hasDoctorWebsite"
             :class="$isWideScreen ? ['font-14', 'px-6'] : ['font-10', 'px-5'] "
             @click="dialogBox = true"
           ).text-none.elevation-0.font-weight-light.mt-2
@@ -131,6 +130,7 @@
                     target="_blank"
                     rel="noopener noreferrer"
                     :href="doctorWebsite"
+                    :disabled="!hasDoctorWebsite"
                     :width="!$isWideScreen ? '228px' : '300'"
                     :height="!$isWideScreen ? '59px' : '73.68'"
                   ).text-none.elevation-0.rounded-pill
