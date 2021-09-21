@@ -13,11 +13,12 @@
             clearable
             :disabled="isPreviewMode || loading"
             @change="onServiceTypeSelect"
-            @click:clear="clearServiceFilter"
+          @click:clear="clearServiceFilter"
           ).search-bar
         v-col(cols="12" md="4")
           search-insurance-contracts(
             solo
+            avatar
             :disabled="isPreviewMode || loading"
             @select="onInsuranceSelect"
             @clear="clearInsuranceFilter"
@@ -107,6 +108,7 @@ export default {
     clearServiceFilter () {
       delete this.searchFilters?.type;
       delete this.searchFilters?.subtype;
+      this.serviceType = null;
       this.search();
     },
     clearInsuranceFilter () {
