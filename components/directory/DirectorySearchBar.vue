@@ -28,7 +28,32 @@
             br
         v-row.pt-2
           v-col.pa-0
-            //- Combobox has return-object triggered by default
+            //- Working
+            //- v-combobox(
+            //-   v-model="searchObject.searchString"
+            //-   :placeholder="searchPlaceholder"
+            //-   solo
+            //-   outlined
+            //-   flat
+            //-   dense
+            //-   clearable
+            //-   :items="suggestionEntries"
+            //-   item-text="name"
+            //-   :height="$isMobile ? '40px' : '60px'"
+            //-   :return-object="false"
+            //-   @keyup.enter="onSearch(true)"
+            //-   @click:clear="clearSearchText"
+            //-   @update:search-input="handleDebouncedSearch($event)"
+            //- ).rounded-lg
+            //-   template(slot="append")
+            //-     v-btn(
+            //-       :small="!$isMobile"
+            //-       :x-small="$isMobile"
+            //-       fab
+            //-       color="primary"
+            //-       @click="onSearch(true)"
+            //-     ).elevation-0
+            //-       v-icon mdi-magnify
             v-combobox(
               v-model="searchObject.searchString"
               :placeholder="searchPlaceholder"
@@ -39,6 +64,8 @@
               clearable
               :items="suggestionEntries"
               item-text="name"
+              cache-items
+              :search-input.sync="searchDummy"
               :height="$isMobile ? '40px' : '60px'"
               :return-object="false"
               @keyup.enter="onSearch(true)"
@@ -54,6 +81,24 @@
                   @click="onSearch(true)"
                 ).elevation-0
                   v-icon mdi-magnify
+              template(v-slot:item="data")
+                v-col(cols="12")
+                  v-row.py-3
+                    v-col.mc-content-set-4
+                      v-row
+                        v-col.py-0
+                          span.font-weight-semibold {{ data.item.name }}
+                      v-row
+                        v-col.pb-0
+                          v-row.px-3
+                            v-icon(color="primary" small) mdi-medical-bag
+                            span(:class="{'font-italic': !data.item.tags}") &nbsp;{{ data.item.tags? data.item.tags[0] : 'Not Available'  }}
+                        v-col.pb-0
+                          v-row.px-3
+                            v-icon(color="primary" small) mdi-map-marker
+                            span(:class="{'font-italic': !data.item.location}") &nbsp;{{ data.item.location || 'Not Available'  }}
+                        v-spacer
+                    v-icon(color="primary" large) mdi-arrow-right
           //- v-col(v-if="!$isMobile" cols="1").pa-0.ml-n1
           //-   v-btn(
           //-     small
@@ -189,6 +234,7 @@ export default {
       suggestionEntries: [],
       debouncedResultsSearch: debounce((event) => { this.onSearch(true, event); }, 500),
       debouncedSuggestionsSearch: debounce(this.searchSuggestions, 500),
+      searchDummy: null,
     };
   },
   computed: {
