@@ -16,15 +16,14 @@
               //- v-btn(value="location" text active-class="active-button" :class="buttonGroupClasses").mr-3.tight-font.rounded-pill location
           v-spacer
           v-col(v-if="isOrganization" :cols="$isMobile ? '12' : null")
-            v-row(align="start" :justify="$isMobile ? 'start' : 'end'")
+            v-row(align="start" :justify="$isMobile ? 'start' : 'end'" :class="{'mt-3': $isMobile}")
               span.font-weight-bold.font-14.mt-1 USE MY LOCATION
               v-progress-circular(indeterminate size="20" v-if="loadingLocation" color="primary").pl-1
               v-switch(
                 v-else
                 v-model="locationSwitch"
                 inset
-                :class="appBar ? 'mt-5' : 'mt-0'"
-              ).ml-3
+              ).ml-3.mt-0
           v-col(v-else)
             br
         v-row.pt-2
@@ -48,7 +47,8 @@
             ).rounded-lg
               template(slot="append")
                 v-btn(
-                  small
+                  :small="!$isMobile"
+                  :x-small="$isMobile"
                   fab
                   color="primary"
                   @click="onSearch(true)"

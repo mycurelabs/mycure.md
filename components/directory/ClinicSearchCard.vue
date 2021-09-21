@@ -46,51 +46,85 @@
             @click="dialogBox = true"
           ).text-none.elevation-0.font-weight-light.mt-2
             b Book a Visit
-    v-dialog(v-model="dialogBox" :scrollable="false" width="30%").pa-0
-      v-card(width="100%").px-5.py-10.rounded-xl
+    v-dialog(v-model="dialogBox" :scrollable="false" width="40%").pa-0
+      v-card(width="100%").pa-5.rounded-xl
         v-card-text
           v-col(cols="12")
             div.text-center
               img(
                 :src="picURL"
                 :alt="organization.name"
-                width="60%"
+                width="30%"
               ).rounded-xl
-            div.text-center.mt-2
-              span.mc-title-set-2.font-weight-bold.black--text {{ organization.name }}
-            v-row.mt-8
+              v-clamp(
+                autoresize
+                :max-lines="2"
+              ).mc-title-set-2.font-weight-bold.black--text {{ organization.name }}
+            v-row.mc-content-set-4.mt-5
               v-icon(color="primary" x-large) mdi-medical-bag
-              v-col.font-gray
-                span.mc-content-set-4 Services
-                span.mc-content-set-1.font-weight-semibold {{ organization.tags }}
-            v-row.mt-1
+              v-col.font-gray.py-0
+                span Services
+                v-clamp(
+                  autoresize
+                  :max-lines="2"
+                ).font-weight-semibold {{ organization.tags }}
+            v-row.mc-content-set-4.pt-2
               v-icon(color="primary" x-large) mdi-map-marker
-              v-col.font-gray
-                span.mc-content-set-4 Facility Address
+              v-col.font-gray.py-0
+                span Facility Address
                 v-clamp(
                   autoresize
                   :max-lines="2"
-                ).mc-content-set-1.font-weight-semibold {{ address || 'No address provided'}}
-            v-row.mt-1
+                ).font-weight-semibold {{ address || 'No address provided'}}
+            v-row.mc-content-set-4.pt-2
               v-icon(color="primary" x-large) mdi-phone-in-talk-outline
-              v-col.font-gray
-                span.mc-content-set-4 Contact Number
+              v-col.font-gray.py-0
+                span Contact Number
                 v-clamp(
                   autoresize
                   :max-lines="2"
-                ).mc-content-set-1.font-weight-semibold {{ organization.phone || 'No contact number'}}
-            v-row.mt-1
+                ).font-weight-semibold {{ organization.phone || 'No contact number'}}
+            v-row.mc-content-set-4.pt-2
               v-icon(color="primary" x-large) mdi-calendar
-              v-col.font-gray
-                span.mc-content-set-4 Schedule
-                v-clamp(
-                  autoresize
-                  :max-lines="2"
-                ).mc-content-set-1.font-weight-semibold {{ 'to be coded'}}
+              v-col.font-gray.py-0
+                v-row
+                  v-col.pb-2
+                    span Schedule
+                //- div(v-for="(sched, index, key) in clinicSchedule" :key="key").d-flex
+                //-   span {{ sched }}
+                div(v-for="(sched, key) in clinicSchedule" :key="key")
+                  v-col.py-0
+                    v-row.py-1
+                      span.font-weight-semibold.text-capitalize.font-gray {{ sched.day }}
+                      v-spacer
+                      v-col(cols="7" align="end").pa-0
+                        span(v-if="sched.time.length > 18").text-center.font-gray {{ sched.time }}
+                        div(v-else v-for="(slot, index, key) in sched.time" :key="key").pt-3
+                          v-row.pb-1
+                            v-col.py-0
+                              span.text-center.font-gray {{ sched.time[index] }}
+                //- v-clamp(
+                //-   autoresize
+                //- ).mc-content-set-1.font-weight-semibold {{ organization.mf_schedule || 'heyhey' + organization.schedules}}
+        v-card-actions.pa-0
+          v-col
+            v-row(justify="center")
+              v-btn(
+                color="primary"
+                rel="noopener noreferrer"
+                :href="clinicWebsite"
+                :disabled="!hasWebsite"
+                :width="!$isWideScreen ? '228px' : '300'"
+                :height="!$isWideScreen ? '59px' : '73.68'"
+                @click="visitWebsite"
+              ).text-none.elevation-0.rounded-pill
+                v-icon mdi-open-in-new
+                span.generic-button-text &nbsp;View Website
 
 </template>
 
 <script>
+import datefns from 'date-fns';
 import VClamp from 'vue-clamp';
 // import { format } from 'date-fns';
 // import uniqBy from 'lodash/uniqBy';
@@ -133,6 +167,10 @@ export default {
   computed: {
     hasWebsite () {
       return !!this.organization?.websiteId;
+    },
+    clinicWebsite () {
+      const username =this.organization?.websiteId; // eslint-disable-line
+      return `${process.env.WEB_MAIN_URL}/facilities/${username}`;
     },
     fullSchedules () {
       // eslint-disable-next-line camelcase
@@ -207,6 +245,52 @@ export default {
       const { address } = this.organization;
       return formatAddress(address, 'street1, street2, city, province, region, country');
     },
+    clinicSchedule () {
+      const orgSched = this.organization.mf_schedule;
+      const schedArray = [];
+      let hasMatch = false;
+      let schedIndex = 0;
+      if (this.organization.mf_schedule) {
+        for (let i = 0; i < orgSched.length; i++) {
+          hasMatch = false;
+          for (let x = 0; x < schedArray.length; x++) {
+            // if ((orgSched[i].opening === schedArray[x].opening) && (orgSched[i].closing === schedArray[x].closing)) {
+            if (schedArray[x].time === this.formatTime(orgSched[i].opening) + ' - ' + this.formatTime(orgSched[i].closing)) {
+              if (schedArray[x].multiday) {
+                console.log('hit');
+                schedArray[x].dayArray = [...schedArray[x].dayArray, this.formatDay(orgSched[i].day)];
+              } else {
+                console.log('hithit');
+                schedArray[x].dayArray = [schedArray[x].dayArray, this.formatDay(orgSched[i].day)];
+                schedArray[x].multiday = true;
+              }
+              hasMatch = true;
+              console.log('match 1');
+            }
+          }
+          for (let x = 0; x < schedArray.length; x++) {
+            if (schedArray[x].dayArray === this.formatDay(orgSched[i].day)) {
+              schedArray[x].time = [schedArray[x].time, this.formatTime(orgSched[i].opening) + ' - ' + this.formatTime(orgSched[i].closing)];
+              hasMatch = true;
+              console.log('match 2');
+            }
+          }
+          if (!hasMatch) {
+            schedArray[schedIndex] = { dayArray: this.formatDay(orgSched[i].day), day: '', time: this.formatTime(orgSched[i].opening) + ' - ' + this.formatTime(orgSched[i].closing), multiday: false };
+            schedIndex++;
+            console.log('match 3');
+          }
+        }
+      }
+      for (let i = 0; i < schedArray.length; i++) {
+        if (schedArray[i].multiday) {
+          schedArray[i].day = schedArray[i].dayArray[0] + ' - ' + schedArray[i].dayArray[schedArray[i].dayArray.length - 1];
+        } else {
+          schedArray[i].day = schedArray[i].dayArray;
+        }
+      }
+      return schedArray;
+    },
   },
   methods: {
     visitWebsite () {
@@ -219,6 +303,21 @@ export default {
         return true;
       }
       return false;
+    },
+    formatTime (time) {
+      return datefns.format(time, 'hh:mm A');
+    },
+    formatDay (day) {
+      switch (day) {
+        case 'mon': return 'Mon';
+        case 'tue': return 'Tue';
+        case 'wed': return 'Wed';
+        case 'thu': return 'Thu';
+        case 'fri': return 'Fri';
+        case 'sat': return 'Sat';
+        case 'sun': return 'Sun';
+        default: return '';
+      }
     },
   },
 };
