@@ -127,7 +127,7 @@ export default {
     }
   },
   data () {
-    this.clinicsLimit = 3;
+    this.clinicsLimit = 4;
     return {
       // - UI State
       loading: true,
