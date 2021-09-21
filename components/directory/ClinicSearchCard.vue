@@ -64,10 +64,12 @@
               v-icon(color="primary" x-large) mdi-medical-bag
               v-col.font-gray.py-0
                 span Services
-                v-clamp(
-                  autoresize
-                  :max-lines="2"
-                ).font-weight-semibold {{ organization.tags }}
+                //- v-clamp(
+                //-   autoresize
+                //-   :max-lines="2"
+                //- ).font-weight-semibold {{ tagsToDisplay }}
+                div(v-if="organization.tags").font-weight-semibold
+                  span(v-for="(tag, index, key) in tagsToDisplay" :key="key") {{ index === 0 ? tag : ', ' + tag }}
             v-row.mc-content-set-4.pt-2
               v-icon(color="primary" x-large) mdi-map-marker
               v-col.font-gray.py-0
@@ -257,28 +259,23 @@ export default {
             // if ((orgSched[i].opening === schedArray[x].opening) && (orgSched[i].closing === schedArray[x].closing)) {
             if (schedArray[x].time === this.formatTime(orgSched[i].opening) + ' - ' + this.formatTime(orgSched[i].closing)) {
               if (schedArray[x].multiday) {
-                console.log('hit');
                 schedArray[x].dayArray = [...schedArray[x].dayArray, this.formatDay(orgSched[i].day)];
               } else {
-                console.log('hithit');
                 schedArray[x].dayArray = [schedArray[x].dayArray, this.formatDay(orgSched[i].day)];
                 schedArray[x].multiday = true;
               }
               hasMatch = true;
-              console.log('match 1');
             }
           }
           for (let x = 0; x < schedArray.length; x++) {
             if (schedArray[x].dayArray === this.formatDay(orgSched[i].day)) {
               schedArray[x].time = [schedArray[x].time, this.formatTime(orgSched[i].opening) + ' - ' + this.formatTime(orgSched[i].closing)];
               hasMatch = true;
-              console.log('match 2');
             }
           }
           if (!hasMatch) {
             schedArray[schedIndex] = { dayArray: this.formatDay(orgSched[i].day), day: '', time: this.formatTime(orgSched[i].opening) + ' - ' + this.formatTime(orgSched[i].closing), multiday: false };
             schedIndex++;
-            console.log('match 3');
           }
         }
       }
@@ -290,6 +287,18 @@ export default {
         }
       }
       return schedArray;
+    },
+    tagsToDisplay () {
+      const tagArray = this.organization.tags;
+      const tags = [];
+      let x = 0;
+      for (let i = 0; i < tagArray.length; i++) {
+        if (tagArray[i].search('sto:') === 0) {
+          tags[x] = this.formatTag(tagArray[i]);
+          x++;
+        }
+      }
+      return tags;
     },
   },
   methods: {
@@ -316,6 +325,19 @@ export default {
         case 'fri': return 'Fri';
         case 'sat': return 'Sat';
         case 'sun': return 'Sun';
+        default: return '';
+      }
+    },
+    formatTag (tag) {
+      switch (tag) {
+        case 'sto:diagnostic': return 'Diagnostics';
+        case 'sto:diagnostic/lab': return 'Laboratory';
+        case 'sto:diagnostic/imaging': return 'Imaging';
+        case 'sto:clinical-consultation': return 'Consultation';
+        case 'sto:clinical-procedure': return 'Clinical Procedure';
+        case 'sto:dental': return 'Dental';
+        case 'sto:pe': return 'Physical Exam';
+        case 'sto:clinical-procedure/ambulatory-bp-monitoring': return 'BP Monitoring';
         default: return '';
       }
     },
