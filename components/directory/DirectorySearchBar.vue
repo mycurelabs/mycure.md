@@ -92,11 +92,11 @@
                         v-col.pb-0
                           v-row.px-3
                             v-icon(color="primary" small) mdi-medical-bag
-                            span(:class="{'font-italic': !data.item.tags}") &nbsp;{{ data.item.tags? data.item.tags[0] : 'Not Available'  }}
+                            span(:class="{'font-italic': !data.item.tags}") &nbsp;{{ data.item.tags? tagFormat(data.item.tags[0]) : 'Not Available'  }}
                         v-col.pb-0
                           v-row.px-3
                             v-icon(color="primary" small) mdi-map-marker
-                            span(:class="{'font-italic': !data.item.location}") &nbsp;{{ data.item.location || 'Not Available'  }}
+                            span(:class="{'font-italic': !data.item.location}") &nbsp;{{ searchObject.mode === 'account' ? (data.item.location || 'Not Available') : ((formatAddress(data.item.address) || 'Not Available')) }}
                         v-spacer
                     v-icon(color="primary" large) mdi-arrow-right
           //- v-col(v-if="!$isMobile" cols="1").pa-0.ml-n1
@@ -166,6 +166,7 @@ import isEmpty from 'lodash/isEmpty';
 import VClamp from 'vue-clamp';
 import { unifiedDirectorySearch } from '~/services/unified-directory';
 import SPECIALTIES from '~/assets/fixtures/specialties';
+import { formatAddress } from '~/utils/formats';
 export default {
   components: {
     VClamp,
@@ -367,6 +368,30 @@ export default {
         this.specialtiesList[i].selected = false;
       }
       this.searchObject.specialties = [];
+    },
+    capitalizeLetter (string) {
+      return string.charAt(0).toUpperCase() + string.slice(1);
+    },
+    tagFormat (string) {
+      let finArray = [];
+      let str1 = '';
+      let capitalizeNext = true;
+      if (string.search('sto:') === 0 || string.search('spc:') === 0) str1 = string.slice(4, string.length);
+      for (let i = 0; i < str1.length; i++) {
+        if (str1[i] === '-') {
+          finArray = [...finArray, ' '];
+          capitalizeNext = true;
+        } else if (capitalizeNext === true) {
+          finArray = [...finArray, str1[i].toUpperCase()];
+          capitalizeNext = false;
+        } else {
+          finArray = [...finArray, str1[i]];
+        }
+      }
+      return finArray.join('');
+    },
+    formatAddress (address) {
+      return formatAddress(address, 'street1, street2, city, province, region, country');
     },
   },
 };
