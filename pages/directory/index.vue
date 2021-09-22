@@ -141,7 +141,7 @@ export default {
           if (result.state === 'granted') {
             this.getLocation();
           } else if (result.state === 'prompt') {
-            if (this.searchMode === 'organization') this.locationDialog = true;
+            this.locationDialog = true;
           } else {
             this.snackbarModel = {
               color: 'warning',
