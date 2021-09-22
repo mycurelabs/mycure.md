@@ -29,32 +29,6 @@
             br
         v-row.pt-2
           v-col.pa-0
-            //- Working
-            //- v-combobox(
-            //-   v-model="searchObject.searchString"
-            //-   :placeholder="searchPlaceholder"
-            //-   solo
-            //-   outlined
-            //-   flat
-            //-   dense
-            //-   clearable
-            //-   :items="suggestionEntries"
-            //-   item-text="name"
-            //-   :height="$isMobile ? '40px' : '60px'"
-            //-   :return-object="false"
-            //-   @keyup.enter="onSearch(true)"
-            //-   @click:clear="clearSearchText"
-            //-   @update:search-input="handleDebouncedSearch($event)"
-            //- ).rounded-lg
-            //-   template(slot="append")
-            //-     v-btn(
-            //-       :small="!$isMobile"
-            //-       :x-small="$isMobile"
-            //-       fab
-            //-       color="primary"
-            //-       @click="onSearch(true)"
-            //-     ).elevation-0
-            //-       v-icon mdi-magnify
             v-combobox(
               v-model="searchObject.searchString"
               :placeholder="searchPlaceholder"
@@ -100,16 +74,6 @@
                             span(:class="{'font-italic': !data.item.location}") &nbsp;{{ searchObject.mode === 'account' ? (data.item.location || 'Not Available') : ((formatAddress(data.item.address) || 'Not Available')) }}
                         v-spacer
                     v-icon(color="primary" large) mdi-arrow-right
-          //- v-col(v-if="!$isMobile" cols="1").pa-0.ml-n1
-          //-   v-btn(
-          //-     small
-          //-     block
-          //-     tile
-          //-     color="primary"
-          //-     @click="onSearch(true)"
-          //-     :height="$isMobile ? '40px' : '60px'"
-          //-   ).elevation-0.rounded-br-lg.rounded-tr-lg
-          //-     v-icon mdi-magnify
         v-row
           //- Service Type Filter
           v-col(v-if="searchObject.mode === 'organization'" cols="12" md="5" lg="4").pa-0
@@ -150,7 +114,6 @@
               @change="onSearch(false)"
             )
               template(v-slot:selection="{ item, index }")
-                //- v-chip(v-if="index === 0")
                 v-clamp(
                   v-if="index === 0"
                   autoresize
@@ -160,9 +123,6 @@
                   v-if="index === 1"
                   class="grey--text text-caption"
                 ) (+{{ searchObject.specializations.length - 1 }} others)
-    //- v-dialog
-    //-   v-card
-    //-     v-card-text
 </template>
 
 <script>
@@ -312,14 +272,6 @@ export default {
         ...this.searchObject,
       });
     },
-    // async fetchSpecialties () {
-    //   try {
-    //     const { items } = await this.$sdk.service('fixtures').find({ type: 'specialty' });
-    //     this.specialtiesList = items;
-    //   } catch (e) {
-    //     console.error(e);
-    //   }
-    // },
     /**
      * HandleDebouncedSearch
      *
@@ -380,20 +332,12 @@ export default {
     tagFormat (string) {
       let finArray = [];
       let str1 = '';
-      let capitalizeNext = true;
       if (string.search('sto:') === 0 || string.search('spc:') === 0) str1 = string.slice(4, string.length);
-      for (let i = 0; i < str1.length; i++) {
-        if (str1[i] === '-') {
-          finArray = [...finArray, ' '];
-          capitalizeNext = true;
-        } else if (capitalizeNext === true) {
-          finArray = [...finArray, str1[i].toUpperCase()];
-          capitalizeNext = false;
-        } else {
-          finArray = [...finArray, str1[i]];
-        }
+      finArray = str1.split('-');
+      for (let i = 0; i < finArray.length; i++) {
+        finArray[i] = finArray[i].charAt(0).toUpperCase() + finArray[i].slice(1);
       }
-      return finArray.join('');
+      return finArray.join(' ');
     },
     formatAddress (address) {
       return formatAddress(address, 'street1, street2, city, province, region, country');
