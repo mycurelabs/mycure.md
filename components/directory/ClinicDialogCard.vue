@@ -44,8 +44,6 @@
             v-row
               v-col.pb-2
                 span Schedule
-            //- div(v-for="(sched, index, key) in clinicSchedule" :key="key").d-flex
-            //-   span {{ sched }}
             div(v-for="(sched, key) in clinicSchedule" :key="key")
               v-col.py-0
                 v-row.py-1
@@ -57,9 +55,6 @@
                       v-row.pb-1
                         v-col.py-0
                           span.text-center.font-gray {{ sched.time[index] }}
-            //- v-clamp(
-            //-   autoresize
-            //- ).mc-content-set-1.font-weight-semibold {{ organization.mf_schedule || 'heyhey' + organization.schedules}}
     v-card-actions.pa-0
       v-col
         v-row(justify="center")
@@ -107,45 +102,23 @@ export default {
       return formatAddress(address, 'street1, street2, city, province, region, country');
     },
     clinicSchedule () {
-      const orgSched = this.organization?.mf_schedule || [];
-      const schedArray = [];
-      let hasMatch = false;
-      let schedIndex = 0;
-      if (orgSched !== []) {
-        for (let i = 0; i < orgSched.length; i++) {
-          hasMatch = false;
-          for (let x = 0; x < schedArray.length; x++) {
-            // if ((orgSched[i].opening === schedArray[x].opening) && (orgSched[i].closing === schedArray[x].closing)) {
-            if (schedArray[x].time === this.formatTime(orgSched[i].opening) + ' - ' + this.formatTime(orgSched[i].closing)) {
-              if (schedArray[x].multiday) {
-                schedArray[x].dayArray = [...schedArray[x].dayArray, this.formatDay(orgSched[i].day)];
-              } else {
-                schedArray[x].dayArray = [schedArray[x].dayArray, this.formatDay(orgSched[i].day)];
-                schedArray[x].multiday = true;
-              }
-              hasMatch = true;
-            }
+      const sched = this.organization?.mf_schedule || [];
+      const formatSched = sched.map(x => ({ day: x.day, time: this.formatTime(x.opening) + ' - ' + this.formatTime(x.closing) }));
+      const finalSched = [{ day: '', time: '' }];
+      let x = 0;
+      for (let i = 0; i < formatSched.length; i++) {
+        if (finalSched[x].time === formatSched[i].time) {
+          finalSched[x].day = finalSched[x].day + ', ' + formatSched[i].day;
+        } else if (finalSched[x].day === formatSched[i].day) {
+          finalSched[x].time = [finalSched[x].time, formatSched[i].time];
+        } else {
+          if (i !== 0) {
+            x++;
           }
-          for (let x = 0; x < schedArray.length; x++) {
-            if (schedArray[x].dayArray === this.formatDay(orgSched[i].day)) {
-              schedArray[x].time = [schedArray[x].time, this.formatTime(orgSched[i].opening) + ' - ' + this.formatTime(orgSched[i].closing)];
-              hasMatch = true;
-            }
-          }
-          if (!hasMatch) {
-            schedArray[schedIndex] = { dayArray: this.formatDay(orgSched[i].day), day: '', time: this.formatTime(orgSched[i].opening) + ' - ' + this.formatTime(orgSched[i].closing), multiday: false };
-            schedIndex++;
-          }
-        }
-        for (let i = 0; i < schedArray.length; i++) {
-          if (schedArray[i].multiday) {
-            schedArray[i].day = schedArray[i].dayArray[0] + ' - ' + schedArray[i].dayArray[schedArray[i].dayArray.length - 1];
-          } else {
-            schedArray[i].day = schedArray[i].dayArray;
-          }
+          finalSched[x] = formatSched[i];
         }
       }
-      return schedArray;
+      return finalSched;
     },
     tagsToDisplay () {
       const tagArray = this.organization.tags.filter(tag => tag.search('sto:') === 0);
