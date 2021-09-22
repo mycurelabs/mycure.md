@@ -71,7 +71,12 @@ export default {
       this.dialog = false;
     },
     isOrgBookable (organization) {
-      return (organization.$populated?.doctorSchedules || organization?.doctorSchedules || []).length;
+      if (this.appointmentType === 'physical') {
+        return (organization.$populated?.doctorSchedules || organization?.doctorSchedules || []).length;
+      } else if (this.appointmentType === 'telehealth') {
+        return organization.teleconsultQueue;
+      }
+      return false;
     },
   },
 };
