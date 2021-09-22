@@ -105,19 +105,19 @@ export default {
       const sched = this.organization?.mf_schedule || [];
       const formatSched = sched.map(x => ({ day: x.day, time: this.formatTime(x.opening) + ' - ' + this.formatTime(x.closing) }));
       const finalSched = [{ day: '', time: '' }];
-      let x = 0;
-      for (let i = 0; i < formatSched.length; i++) {
-        if (finalSched[x].time === formatSched[i].time) {
-          finalSched[x].day = finalSched[x].day + ', ' + formatSched[i].day;
-        } else if (finalSched[x].day === formatSched[i].day) {
-          finalSched[x].time = [finalSched[x].time, formatSched[i].time];
+      formatSched.map((x) => {
+        if (finalSched.find(sched => sched.time === x.time)) {
+          const index = finalSched.indexOf(finalSched.find(sched => sched.time === x.time));
+          finalSched[index].day = finalSched[index].day + ', ' + x.day;
+        } else if (finalSched.find(sched => sched.day === x.day)) {
+          const index = finalSched.indexOf(finalSched.find(sched => sched.day === x.day));
+          finalSched[index].time = [finalSched[index].time, x.time];
         } else {
-          if (i !== 0) {
-            x++;
-          }
-          finalSched[x] = formatSched[i];
+          finalSched.push(x);
+          if (finalSched.find(sched => sched.day === '')) finalSched.shift();
         }
-      }
+        return 0;
+      });
       return finalSched;
     },
     tagsToDisplay () {
