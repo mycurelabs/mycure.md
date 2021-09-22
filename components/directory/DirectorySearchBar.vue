@@ -8,6 +8,7 @@
             background-color="transparent"
             dense
             borderless
+            mandatory
             @change="onModeChange($event)"
           )
             //- v-btn(value="all" text active-class="active-button" :class="buttonGroupClasses").mr-3.tight-font all
@@ -122,6 +123,7 @@
               clearable
               item-text="name"
               item-value="value"
+              prepend-inner-icon="mdi-filter"
               :items="serviceTypes"
               @change="onSearch(false)"
             )
@@ -133,6 +135,7 @@
             v-autocomplete(
               v-model="searchObject.specializations"
               label="Specializations"
+              prepend-inner-icon="mdi-filter"
               solo
               outlined
               flat
@@ -142,15 +145,17 @@
               small-chips
               deletable-chips
               clearable
+              :menu-props="{ bottom: true }"
               :items="specialtiesList"
               @change="onSearch(false)"
             )
               template(v-slot:selection="{ item, index }")
-                v-chip(v-if="index === 0")
-                  v-clamp(
-                    autoresize
-                    :max-lines="1"
-                  ) {{ item }}
+                //- v-chip(v-if="index === 0")
+                v-clamp(
+                  v-if="index === 0"
+                  autoresize
+                  :max-lines="1"
+                ) {{ item }}
                 span(
                   v-if="index === 1"
                   class="grey--text text-caption"
