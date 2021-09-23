@@ -16,10 +16,6 @@
           v-icon(color="primary" x-large) mdi-medical-bag
           v-col.font-gray.py-0
             span Services
-            //- v-clamp(
-            //-   autoresize
-            //-   :max-lines="2"
-            //- ).font-weight-semibold {{ tagsToDisplay }}
             div(v-if="organization.tags").font-weight-semibold
               span(v-for="(tag, index, key) in tagsToDisplay" :key="key") {{ index === 0 ? tag : ', ' + tag }}
         v-row.mc-content-set-4.pt-2
@@ -47,7 +43,8 @@
             div(v-for="(sched, key) in clinicSchedule" :key="key")
               v-col.py-0
                 v-row.py-1
-                  span.font-weight-semibold.text-capitalize.font-gray {{ sched.day }}
+                  span(v-if="typeof sched.day === 'string'").font-weight-semibold.text-capitalize.font-gray {{ sched.day }}
+                  span(v-else).font-weight-semibold.text-capitalize.font-gray {{ `${sched.day[0]} - ${sched.day[sched.day.length - 1]}` }}
                   v-spacer
                   v-col(cols="7" align="end").pa-0
                     span(v-if="sched.time.length > 18").text-center.font-gray {{ sched.time }}
@@ -86,6 +83,20 @@ export default {
       default: () => {},
     },
   },
+  data () {
+    this.formatTag = {
+      'sto:diagnostic': 'Diagnostics',
+      'sto:diagnostic/lab': 'Laboratory',
+      'sto:diagnostic/imaging': 'Imaging',
+      'sto:clinical-consultation': 'Consultation',
+      'sto:clinical-procedure': 'Clinical Procedure',
+      'sto:dental': 'Dental',
+      'sto:pe': 'Physical Exam',
+      'sto:clinical-procedure/ambulatory-bp-monitoring': 'BP Monitoring',
+    };
+    return {
+    };
+  },
   computed: {
     hasWebsite () {
       return !!this.organization?.websiteId;
@@ -103,12 +114,16 @@ export default {
     },
     clinicSchedule () {
       const sched = this.organization?.mf_schedule || [];
-      const formatSched = sched.map(x => ({ day: x.day, time: this.formatTime(x.opening) + ' - ' + this.formatTime(x.closing) }));
+      const formatSched = sched.map(x => ({ day: x.day, time: `${this.formatTime(x.opening)} - ${this.formatTime(x.closing)}` }));
       const finalSched = [{ day: '', time: '' }];
       formatSched.map((x) => {
         if (finalSched.find(sched => sched.time === x.time)) {
           const index = finalSched.indexOf(finalSched.find(sched => sched.time === x.time));
-          finalSched[index].day = finalSched[index].day + ', ' + x.day;
+          if (typeof finalSched[index].day === 'string') {
+            finalSched[index].day = [finalSched[index].day, x.day];
+          } else {
+            finalSched[index].day = [...finalSched[index].day, x.day];
+          }
         } else if (finalSched.find(sched => sched.day === x.day)) {
           const index = finalSched.indexOf(finalSched.find(sched => sched.day === x.day));
           finalSched[index].time = [finalSched[index].time, x.time];
@@ -121,9 +136,8 @@ export default {
       return finalSched;
     },
     tagsToDisplay () {
-      const tagArray = this.organization.tags.filter(tag => tag.search('sto:') === 0);
-      const tags = tagArray.map(this.formatTag);
-      return tags;
+      const tagArray = this.organization.tags.filter(tag => tag.includes('sto:'));
+      return tagArray.map(x => this.formatTag[x]);
     },
   },
   methods: {
@@ -132,31 +146,6 @@ export default {
     },
     formatTime (time) {
       return format(time, 'hh:mm A');
-    },
-    formatDay (day) {
-      switch (day) {
-        case 'mon': return 'Mon';
-        case 'tue': return 'Tue';
-        case 'wed': return 'Wed';
-        case 'thu': return 'Thu';
-        case 'fri': return 'Fri';
-        case 'sat': return 'Sat';
-        case 'sun': return 'Sun';
-        default: return '';
-      }
-    },
-    formatTag (tag) {
-      switch (tag) {
-        case 'sto:diagnostic': return 'Diagnostics';
-        case 'sto:diagnostic/lab': return 'Laboratory';
-        case 'sto:diagnostic/imaging': return 'Imaging';
-        case 'sto:clinical-consultation': return 'Consultation';
-        case 'sto:clinical-procedure': return 'Clinical Procedure';
-        case 'sto:dental': return 'Dental';
-        case 'sto:pe': return 'Physical Exam';
-        case 'sto:clinical-procedure/ambulatory-bp-monitoring': return 'BP Monitoring';
-        default: return '';
-      }
     },
   },
 };
