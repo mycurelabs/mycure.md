@@ -332,9 +332,9 @@ export default {
     tagFormat (string) {
       let finArray = [];
       let str1 = '';
-      if (string.search('sto:') === 0 || string.search('spc:') === 0) str1 = string.slice(4, string.length);
+      if (string.includes('sto:') || string.includes('spc:')) str1 = string.slice(4, string.length);
       finArray = str1.split('-');
-      finArray = finArray.map(x => x.charAt(0).toUpperCase() + x.slice(1));
+      finArray = finArray.map(x => `${x.charAt(0).toUpperCase()}${x.slice(1)}`);
       return finArray.join(' ');
     },
     formatAddress (address) {
