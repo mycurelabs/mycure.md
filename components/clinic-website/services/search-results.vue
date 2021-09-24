@@ -21,7 +21,17 @@
             h2 No results available
         template(v-else)
           div(v-for="(item, key) in items" :key="key")
+            //- If doctor
+            doc-item-card(
+              v-if="!!item.uid"
+              :organization="organization"
+              :item="item"
+              :is-preview-mode="isPreviewMode"
+              :read-only="readOnly"
+            )
+            //- Service
             service-item(
+              v-else
               :organization="organization"
               :item="item"
               :is-doctor="!!item.uid"
@@ -32,10 +42,12 @@
 </template>
 
 <script>
+import DocItemCard from '../DocItemCard';
 import SearchFilters from '../SearchFilters';
 import ServiceItem from './service-item';
 export default {
   components: {
+    DocItemCard,
     SearchFilters,
     ServiceItem,
   },
