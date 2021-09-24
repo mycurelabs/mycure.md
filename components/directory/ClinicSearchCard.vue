@@ -46,7 +46,12 @@
             @click="dialogBox = true"
           ).text-none.elevation-0.font-weight-light.mt-2
             b Book a Visit
-    v-dialog(v-model="dialogBox" :scrollable="false" width="40%").pa-0
+    v-dialog(
+      v-model="dialogBox"
+      :scrollable="false"
+      width="40%"
+      content-class="rounded-xl"
+    ).pa-0
       clinic-dialog-card(:organization="organization")
 </template>
 

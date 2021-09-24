@@ -27,11 +27,7 @@
               v-icon(color="primary" x-large) mdi-medical-bag
               v-col.mc-content-set-1.font-gray
                 span.mc-content-set-4 Specialization
-                v-clamp(
-                  v-if="hasSpecialties"
-                  autoresize
-                  :max-lines="2"
-                ).font-weight-semibold {{ specialtiesText }}
+                p(v-if="hasSpecialties").font-weight-semibold {{ specialtiesText }}&nbsp;&nbsp;
                 span(v-else).font-weight-semibold &nbsp;---
             v-row.mt-2
               v-icon(color="primary" x-large) mdi-briefcase-variant-outline
@@ -44,19 +40,15 @@
                 ).font-weight-semibold {{ doctor.doc_practicingSince ? yearsOfExperience : '-' }} year/s of experience
                 span(v-else).font-weight-semibold &nbsp;- year/s of experience
             v-row.mt-2
-              v-icon(color="primary" x-large) mdi-map-marker
+              v-icon(color="primary" x-large) mdi-information-outline
               v-col.mc-content-set-1.font-gray
-                span.mc-content-set-4 Location
+                span.mc-content-set-4 About
                 v-clamp(
-                  v-if="doctor"
+                  v-if="bio"
                   autoresize
                   :max-lines="2"
-                ).font-weight-semibold {{ address || 'No address provided'}}
-                v-clamp(
-                  v-else
-                  autoresize
-                  :max-lines="2"
-                ).font-weight-semibold No address provided
+                ).font-weight-semibold {{ bio }}
+                p(v-else).font-weight-semibold No information provided
     v-spacer
     v-card-actions.pa-0
       v-row(justify="center")
@@ -121,6 +113,9 @@ export default {
     address () {
       const { address } = this.doctor;
       return formatAddress(address, 'street1, street2, city, province, region, country');
+    },
+    bio () {
+      return this.doctor?.doc_bio;
     },
     hasSpecialties () {
       return this.doctor?.doc_specialties?.length;

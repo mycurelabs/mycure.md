@@ -24,24 +24,24 @@
           span(v-else) ---&nbsp;&nbsp;
           //- v-chip(v-if="doctor.doc_website" color="primary" outlined x-small).mt-1 verified
         div.d-flex.mt-1
-          v-icon(color="primary" :small="!$isWideScreen") mdi-briefcase-variant-outline
+          v-icon(color="primary" :small="!$isWideScreen" left) mdi-briefcase-variant-outline
           div(:class="textFontSize").info-text.mt-1
             span(v-if="doctor") &nbsp;{{ doctor.doc_practicingSince ? yearsOfExperience : '-' }} year/s of experience
             span(v-else) &nbsp;- year/s of experience
         div(justify="start").mt-1.d-flex
-          v-icon(color="primary" :small="!$isWideScreen") mdi-map-marker
-          div(v-if="doctor")
+          v-icon(color="primary" :small="!$isWideScreen" left) mdi-information-outline
+          div(v-if="bio")
             v-clamp(
               autoresize
               :max-lines="2"
-              :class="[textFontSize, {'font-italic': !address }]"
-            ).info--text {{ address || 'No address provided'}}
+              :class="[textFontSize, {'font-italic': !bio }]"
+            ) {{ bio || 'No address provided'}}
           div(v-else)
             v-clamp(
               autoresize
               :max-lines="2"
               :class="[textFontSize, 'font-italic']"
-            ).info--text No address provided
+            ) No information provided
     v-spacer
     v-card-actions.pa-0
       v-col
@@ -61,7 +61,12 @@
     //-   v-col(cols="12")
     //-     v-row
     //-       v-chip(v-for="(specialty, key) in doctor.doc_specialties" :key="key").font-12.ma-1 {{ specialty }}&nbsp;
-    v-dialog(v-model="dialogBox" :scrollable="false" width="60%").pa-0
+    v-dialog(
+      v-model="dialogBox"
+      width="50%"
+      content-class="rounded-xl"
+      :scrollable="false"
+    ).pa-0
       doc-dialog-card(:doctor="doctor")
 </template>
 
@@ -133,6 +138,9 @@ export default {
     address () {
       const { address } = this.doctor;
       return formatAddress(address, 'street1, street2, city, province, region, country');
+    },
+    bio () {
+      return this.doctor?.doc_bio;
     },
     nameFontSize () {
       return classBinder(this, {
