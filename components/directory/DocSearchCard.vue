@@ -41,7 +41,7 @@
               autoresize
               :max-lines="2"
               :class="[textFontSize, 'font-italic']"
-            ) No information provided
+            ) No information
     v-spacer
     v-card-actions.pa-0
       v-col

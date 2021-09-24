@@ -63,15 +63,16 @@
                       v-row
                         v-col.py-0
                           span.font-weight-semibold {{ data.item.name }}
-                      v-row
+                      v-row(v-if="selectedMode === 'account'")
                         v-col.pb-0
                           v-row.px-3
                             v-icon(color="primary" small) mdi-medical-bag
-                            span(:class="{'font-italic': !data.item.tags}") &nbsp;{{ data.item.tags? tagFormat(data.item.tags[0]) : 'Not Available'  }}
-                        v-col.pb-0
-                          v-row.px-3
-                            v-icon(color="primary" small) mdi-map-marker
-                            span(:class="{'font-italic': !data.item.location}") &nbsp;{{ searchObject.mode === 'account' ? (data.item.location || 'Not Available') : ((formatAddress(data.item.address) || 'Not Available')) }}
+                            span(:class="{'font-italic': !data.item.tags}") &nbsp;{{ data.item.tags? tagFormat(data.item.tags[0]) : 'No specialty listed'  }}
+                        //- TODO: Location search not yet applicable for doctor
+                        //- v-col.pb-0
+                        //-   v-row.px-3
+                        //-     v-icon(color="primary" small) mdi-map-marker
+                        //-     span(:class="{'font-italic': !data.item.location}") &nbsp;{{ searchObject.mode === 'account' ? (data.item.location || 'Not Available') : ((formatAddress(data.item.address) || 'Not Available')) }}
                         v-spacer
                     v-icon(color="primary" large) mdi-arrow-right
         v-row
