@@ -46,7 +46,7 @@
                 v-clamp(
                   v-if="bio"
                   autoresize
-                  :max-lines="2"
+                  :max-lines="1"
                 ).font-weight-semibold {{ bio }}
                 p(v-else).font-weight-semibold No information provided
     v-spacer
