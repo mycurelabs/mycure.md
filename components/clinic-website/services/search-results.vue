@@ -22,12 +22,19 @@
         template(v-else)
           div(v-for="(item, key) in items" :key="key")
             //- If doctor
-            doc-item-card(
+            //- doc-item-card(
+            //-   v-if="!!item.uid"
+            //-   :organization="organization"
+            //-   :item="item"
+            //-   :is-preview-mode="isPreviewMode"
+            //-   :read-only="readOnly"
+            //- )
+            doc-info-card(
               v-if="!!item.uid"
+              minified
+              show-book-buttons
               :organization="organization"
-              :item="item"
-              :is-preview-mode="isPreviewMode"
-              :read-only="readOnly"
+              :doctor="item"
             )
             //- Service
             service-item(
@@ -42,12 +49,14 @@
 </template>
 
 <script>
-import DocItemCard from '../DocItemCard';
+// import DocItemCard from '../DocItemCard';
 import SearchFilters from '../SearchFilters';
 import ServiceItem from './service-item';
+import DocInfoCard from '~/components/directory/DocInfoCard';
 export default {
   components: {
-    DocItemCard,
+    // DocItemCard,
+    DocInfoCard,
     SearchFilters,
     ServiceItem,
   },

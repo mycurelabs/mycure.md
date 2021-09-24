@@ -24,7 +24,17 @@
         :key="key"
         :class="{'mt-0': key === 0}"
       ).my-3
+        doc-info-card(
+          v-if="!!item.uid"
+          minified
+          show-book-buttons
+          :organization="organization"
+          :doctor="item"
+          :is-preview-mode="isPreviewMode"
+          :read-only="readOnly"
+        )
         service-item(
+          v-else
           :item="item"
           :organization="organization"
           :is-doctor="activeServiceType === 'doctors'"
@@ -45,8 +55,10 @@
 <script>
 import VueScrollTo from 'vue-scrollto';
 import ServiceItem from './service-item';
+import DocInfoCard from '~/components/directory/DocInfoCard';
 export default {
   components: {
+    DocInfoCard,
     ServiceItem,
   },
   props: {
