@@ -67,17 +67,18 @@
       content-class="rounded-xl"
       :scrollable="false"
     ).pa-0
-      doc-dialog-card(:doctor="doctor")
+      doc-info-card(:doctor="doctor")
 </template>
 
 <script>
 import VClamp from 'vue-clamp';
+import DocInfoCard from './DocInfoCard';
 import { formatAddress } from '~/utils/formats';
 import classBinder from '~/utils/class-binder';
 export default {
   components: {
+    DocInfoCard,
     VClamp,
-    DocDialogCard: () => import('~/components/directory/DocDialogCard.vue'),
   },
   props: {
     doctor: {

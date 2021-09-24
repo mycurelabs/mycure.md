@@ -50,21 +50,22 @@
                 ).font-weight-semibold {{ bio }}
                 p(v-else).font-weight-semibold No information provided
     v-spacer
-    v-card-actions.pa-0
-      v-row(justify="center")
-        v-col(cols="11")
-          v-row(justify="end").py-4
-              v-btn(
-                color="primary"
-                rel="noopener noreferrer"
-                :href="doctorWebsite"
-                :disabled="!hasDoctorWebsite"
-                :width="!$isWideScreen ? '228px' : '300'"
-                :height="!$isWideScreen ? '59px' : '73.68'"
-                @click="visitWebsite"
-              ).text-none.elevation-0.rounded-pill
-                v-icon mdi-open-in-new
-                span.generic-button-text &nbsp;View Profile
+    slot(name="card-actions")
+      v-card-actions.pa-0
+        v-row(justify="center")
+          v-col(cols="11")
+            v-row(justify="end").py-4
+                v-btn(
+                  color="primary"
+                  rel="noopener noreferrer"
+                  :href="doctorWebsite"
+                  :disabled="!hasDoctorWebsite"
+                  :width="!$isWideScreen ? '228px' : '300'"
+                  :height="!$isWideScreen ? '59px' : '73.68'"
+                  @click="visitWebsite"
+                ).text-none.elevation-0.rounded-pill
+                  v-icon mdi-open-in-new
+                  span.generic-button-text &nbsp;View Profile
 </template>
 
 <script>
