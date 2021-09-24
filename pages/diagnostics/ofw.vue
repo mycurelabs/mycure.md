@@ -176,11 +176,11 @@ export default {
     Stakes: () => import('~/components/commons/panels/Stakes'),
     Storybrand: () => import('~/components/commons/panels/Storybrand'),
   },
-  async asyncData ({ redirect }) {
+  async asyncData ({ error }) {
     const country = await getCountry() || {};
     const code = country.country_code;
 
-    if (!code || code !== 'PH') redirect('/');
+    if (!code || code !== 'PH') error({ statusCode: 404, message: 'Page unavailable in your country' });
   },
   data () {
     this.stepsContent = [

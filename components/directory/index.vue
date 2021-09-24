@@ -196,7 +196,7 @@ export default {
         if (this.searchMode === 'organization' && entryItems.length) {
           const entryPromises = entryItems.map(async (entry) => {
             const orgDetails = await this.$sdk.service('organizations').get(entry.ref.id);
-            return orgDetails;
+            return { ...orgDetails, tags: entry.tags };
           });
           this.entries = await Promise.all(entryPromises);
           return;

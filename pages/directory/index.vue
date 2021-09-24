@@ -1,14 +1,14 @@
 <template lang="pug">
-  v-container.pa-0.mt-16
-    v-row(v-if="!loading.page" justify="center")
+  v-container.pa-0
+    v-row(v-if="!loading.page" justify="center").pb-16
       generic-panel(:column="$isMobile ? 12 : 10" disable-parent-padding)
-        v-col
+        v-col.mt-n16.pb-16
           v-row(justify="center")
             v-col(align="center" cols="10" sm="8").pl-0
               nuxt-link(to="/")
                 img(
                   src="~/assets/images/MYCURE Logo - black.png"
-                    width="50%"
+                    width="70%"
                   alt="MYCURE logo"
                 )
           v-row(justify="center" align="center").search-bar-container
@@ -17,6 +17,7 @@
               directory-search-bar(
                 require-action
                 show-suggestions
+                :app-bar="false"
                 :mode="searchMode"
                 :location="location"
                 :loadingLocation="loading.location"

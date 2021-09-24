@@ -43,17 +43,15 @@
             :small="!$isWideScreen"
             rounded
             :class="$isWideScreen ? ['font-14', 'px-6'] : ['font-10', 'px-5']"
-            @click="visitWebsite"
+            @click="dialogBox = true"
           ).text-none.elevation-0.font-weight-light.mt-2
             b Book a Visit
+    v-dialog(v-model="dialogBox" :scrollable="false" width="40%").pa-0
+      clinic-dialog-card(:organization="organization")
 </template>
 
 <script>
 import VClamp from 'vue-clamp';
-// import { format } from 'date-fns';
-// import uniqBy from 'lodash/uniqBy';
-// import { formatAddress, formatName } from '~/utils/formats';
-// import { formatName } from '~/utils/formats';
 import uniqBy from 'lodash/uniqBy';
 import classBinder from '~/utils/class-binder';
 import FacilityPlaceholder from '~/assets/images/facility-placeholder.jpg';
@@ -61,6 +59,7 @@ import { formatAddress } from '~/utils/formats';
 export default {
   components: {
     VClamp,
+    ClinicDialogCard: () => import('~/components/directory/ClinicDialogCard.vue'),
   },
   props: {
     organization: {
@@ -83,6 +82,7 @@ export default {
       { text: 'S', value: 6 },
     ];
     return {
+      dialogBox: false,
       scheduleExpanded: false,
       isDescriptionExpanded: false,
     };
@@ -90,6 +90,10 @@ export default {
   computed: {
     hasWebsite () {
       return !!this.organization?.websiteId;
+    },
+    clinicWebsite () {
+      const username = this.organization?.websiteId;
+      return `${process.env.WEB_MAIN_URL}/facilities/${username}`;
     },
     fullSchedules () {
       // eslint-disable-next-line camelcase

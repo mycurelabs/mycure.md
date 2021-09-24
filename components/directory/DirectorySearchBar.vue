@@ -8,6 +8,7 @@
             background-color="transparent"
             dense
             borderless
+            mandatory
             @change="onModeChange($event)"
           )
             //- v-btn(value="all" text active-class="active-button" :class="buttonGroupClasses").mr-3.tight-font all
@@ -16,18 +17,18 @@
               //- v-btn(value="location" text active-class="active-button" :class="buttonGroupClasses").mr-3.tight-font.rounded-pill location
           v-spacer
           v-col(v-if="isOrganization" :cols="$isMobile ? '12' : null")
-            v-row(align="center" :justify="$isMobile ? 'start' : 'end'")
-              span.font-weight-bold.font-14 USE MY LOCATION
+            v-row(align="start" :justify="$isMobile ? 'start' : 'end'" :class="{'mt-3': $isMobile}")
+              span.font-weight-bold.font-14.mt-1 USE MY LOCATION
               v-progress-circular(indeterminate size="20" v-if="loadingLocation" color="primary").pl-1
               v-switch(
                 v-else
                 v-model="locationSwitch"
                 inset
-                :class="{'mt-5': appBar}"
-              ).ml-3
+              ).ml-3.mt-0
+          v-col(v-else)
+            br
         v-row.pt-2
           v-col.pa-0
-            //- Combobox has return-object triggered by default
             v-combobox(
               v-model="searchObject.searchString"
               :placeholder="searchPlaceholder"
@@ -38,22 +39,41 @@
               clearable
               :items="suggestionEntries"
               item-text="name"
+              cache-items
+              :search-input.sync="searchDummy"
               :height="$isMobile ? '40px' : '60px'"
               :return-object="false"
               @keyup.enter="onSearch(true)"
               @click:clear="clearSearchText"
               @update:search-input="handleDebouncedSearch($event)"
-            ).rounded-bl-lg.rounded-tl-lg
-          v-col(v-if="!$isMobile" cols="1").pa-0.ml-n1
-            v-btn(
-              small
-              block
-              tile
-              color="primary"
-              @click="onSearch(true)"
-              :height="$isMobile ? '40px' : '60px'"
-            ).elevation-0.rounded-br-lg.rounded-tr-lg
-              v-icon mdi-magnify
+            ).rounded-lg
+              template(slot="append")
+                v-btn(
+                  :small="!$isMobile"
+                  :x-small="$isMobile"
+                  fab
+                  color="primary"
+                  @click="onSearch(true)"
+                ).elevation-0
+                  v-icon mdi-magnify
+              template(v-slot:item="data")
+                v-col(cols="12")
+                  v-row.py-3
+                    v-col.mc-content-set-4
+                      v-row
+                        v-col.py-0
+                          span.font-weight-semibold {{ data.item.name }}
+                      v-row
+                        v-col.pb-0
+                          v-row.px-3
+                            v-icon(color="primary" small) mdi-medical-bag
+                            span(:class="{'font-italic': !data.item.tags}") &nbsp;{{ data.item.tags? tagFormat(data.item.tags[0]) : 'Not Available'  }}
+                        v-col.pb-0
+                          v-row.px-3
+                            v-icon(color="primary" small) mdi-map-marker
+                            span(:class="{'font-italic': !data.item.location}") &nbsp;{{ searchObject.mode === 'account' ? (data.item.location || 'Not Available') : ((formatAddress(data.item.address) || 'Not Available')) }}
+                        v-spacer
+                    v-icon(color="primary" large) mdi-arrow-right
         v-row
           //- Service Type Filter
           v-col(v-if="searchObject.mode === 'organization'" cols="12" md="5" lg="4").pa-0
@@ -67,6 +87,7 @@
               clearable
               item-text="name"
               item-value="value"
+              prepend-inner-icon="mdi-filter"
               :items="serviceTypes"
               @change="onSearch(false)"
             )
@@ -78,6 +99,7 @@
             v-autocomplete(
               v-model="searchObject.specializations"
               label="Specializations"
+              prepend-inner-icon="mdi-filter"
               solo
               outlined
               flat
@@ -87,15 +109,16 @@
               small-chips
               deletable-chips
               clearable
+              :menu-props="{ bottom: true }"
               :items="specialtiesList"
               @change="onSearch(false)"
             )
               template(v-slot:selection="{ item, index }")
-                v-chip(v-if="index === 0")
-                  v-clamp(
-                    autoresize
-                    :max-lines="1"
-                  ) {{ item }}
+                v-clamp(
+                  v-if="index === 0"
+                  autoresize
+                  :max-lines="1"
+                ) {{ item }}
                 span(
                   v-if="index === 1"
                   class="grey--text text-caption"
@@ -108,6 +131,7 @@ import isEmpty from 'lodash/isEmpty';
 import VClamp from 'vue-clamp';
 import { unifiedDirectorySearch } from '~/services/unified-directory';
 import SPECIALTIES from '~/assets/fixtures/specialties';
+import { formatAddress } from '~/utils/formats';
 export default {
   components: {
     VClamp,
@@ -176,6 +200,7 @@ export default {
       suggestionEntries: [],
       debouncedResultsSearch: debounce((event) => { this.onSearch(true, event); }, 500),
       debouncedSuggestionsSearch: debounce(this.searchSuggestions, 500),
+      searchDummy: null,
     };
   },
   computed: {
@@ -247,14 +272,6 @@ export default {
         ...this.searchObject,
       });
     },
-    // async fetchSpecialties () {
-    //   try {
-    //     const { items } = await this.$sdk.service('fixtures').find({ type: 'specialty' });
-    //     this.specialtiesList = items;
-    //   } catch (e) {
-    //     console.error(e);
-    //   }
-    // },
     /**
      * HandleDebouncedSearch
      *
@@ -308,6 +325,20 @@ export default {
         this.specialtiesList[i].selected = false;
       }
       this.searchObject.specialties = [];
+    },
+    capitalizeLetter (string) {
+      return string.charAt(0).toUpperCase() + string.slice(1);
+    },
+    tagFormat (string) {
+      let finArray = [];
+      let str1 = '';
+      if (string.includes('sto:') || string.includes('spc:')) str1 = string.slice(4, string.length);
+      finArray = str1.split('-');
+      finArray = finArray.map(x => `${x.charAt(0).toUpperCase()}${x.slice(1)}`);
+      return finArray.join(' ');
+    },
+    formatAddress (address) {
+      return formatAddress(address, 'street1, street2, city, province, region, country');
     },
   },
 };

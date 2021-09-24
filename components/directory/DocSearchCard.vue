@@ -52,9 +52,8 @@
             rel="noopener noreferrer"
             :small="!$isWideScreen"
             rounded
-            :disabled="!hasDoctorWebsite"
-            :href="doctorWebsite"
             :class="$isWideScreen ? ['font-14', 'px-6'] : ['font-10', 'px-5'] "
+            @click="dialogBox = true"
           ).text-none.elevation-0.font-weight-light.mt-2
             b View
 
@@ -62,6 +61,8 @@
     //-   v-col(cols="12")
     //-     v-row
     //-       v-chip(v-for="(specialty, key) in doctor.doc_specialties" :key="key").font-12.ma-1 {{ specialty }}&nbsp;
+    v-dialog(v-model="dialogBox" :scrollable="false" width="60%").pa-0
+      doc-dialog-card(:doctor="doctor")
 </template>
 
 <script>
@@ -71,6 +72,7 @@ import classBinder from '~/utils/class-binder';
 export default {
   components: {
     VClamp,
+    DocDialogCard: () => import('~/components/directory/DocDialogCard.vue'),
   },
   props: {
     doctor: {
@@ -93,6 +95,7 @@ export default {
       { text: 'Sun', value: 0 },
     ];
     return {
+      dialogBox: false,
       scheduleExpanded: false,
       isDescriptionExpanded: false,
     };
@@ -147,6 +150,12 @@ export default {
     },
     hasSpecialties () {
       return this.doctor?.doc_specialties?.length;
+    },
+  },
+  methods: {
+    visitWebsite () {
+      const username = this.doctor?.doc_website || this.doctor?.id;
+      this.$router.push(`/doctors/${username}`);
     },
   },
 };
