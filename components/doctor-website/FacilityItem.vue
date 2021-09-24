@@ -42,29 +42,25 @@
         br
     div.card-actions.px-3.pb-3
       //- Online Consult
-      //- v-btn(
-      //-   color="accent"
-      //-   target="_blank"
-      //-   rel="noopener noreferrer"
-      //-   block
-      //-   large
-      //-   :disabled="!canOnlineBook"
-      //-   :href="telehealthURL"
-      //- ).my-4.text-none.rounded-lg
-      //-   v-icon(left) mdi-stethoscope
-      //-   b Teleconsult
+      v-btn(
+        color="accent"
+        block
+        large
+        :disabled="!canOnlineBook"
+        :href="telehealthURL"
+      ).my-4.text-none.rounded-lg
+        v-icon(left) mdi-video-outline
+        b Online Consult
 
       //- Physical Visit
       v-btn(
         color="secondary"
-        target="_blank"
-        rel="noopener noreferrer"
         block
         large
         :disabled="!canVisit"
         :href="visitURL"
       ).text-none.rounded-lg
-        v-icon(left) mdi-calendar
+        v-icon(left) mdi-stethoscope
         b Visit Clinic
 </template>
 
@@ -156,7 +152,7 @@ export default {
   },
   computed: {
     canOnlineBook () {
-      return this.clinicId && this.doctorId && this.clinicSchedules?.length;
+      return this.clinic?.teleconsultQueue;
     },
     canVisit () {
       return !!this.clinicSchedules?.length;

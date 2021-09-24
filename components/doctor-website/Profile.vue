@@ -47,12 +47,10 @@
       br
       div.mb-6
         h2(:class="sectionTextClasses").secondary--text About Me
-        template(v-if="!isAboutExpanded")
-          v-clamp(autoresize :max-lines="3") {{ bio }}
-          a(@click="isAboutExpanded = true").primary--text See more...
-        template(v-else)
-          p {{ bio }}
-          a(@click="isAboutExpanded = false").primary--text See less
+        v-clamp(autoresize :max-lines="3") {{ bio }}
+          template(v-slot:after="{ expand, collapse, clamped, expanded }")
+            a(v-if="clamped" @click="expand").primary--text See more...
+            a(v-else-if="expanded" @click="collapse").primary--text See less
       div(v-if="specialties.length").mb-6
         h2(:class="sectionTextClasses").secondary--text Specializations
         v-chip(v-for="(specialty, key) in specialties" :key="key" small color="#ECEDEF").mx-1.mt-1.font-12
@@ -170,7 +168,6 @@ export default {
     return {
       // - UI State
       socialMenu: false,
-      isAboutExpanded: false,
     };
   },
   computed: {

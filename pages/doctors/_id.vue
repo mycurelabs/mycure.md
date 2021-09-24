@@ -83,7 +83,7 @@
 
 <script>
 import isEmpty from 'lodash/isEmpty';
-import VueScrollTo from 'vue-scrollto';
+// import VueScrollTo from 'vue-scrollto';
 import ChooseAppointment from '~/components/doctor-website/ChooseAppointment';
 import ChooseFacility from '~/components/doctor-website/ChooseFacility';
 import GenericPanel from '~/components/generic/GenericPanel';
@@ -281,8 +281,8 @@ export default {
       this.facilityDialog = true;
     },
     onBook () {
-      // this.appointmentDialog = true;
-      VueScrollTo.scrollTo('#doctor-website-features', 500, { offset: -100, easing: 'ease' });
+      this.appointmentDialog = true;
+      // VueScrollTo.scrollTo('#doctor-website-features', 500, { offset: -100, easing: 'ease' });
     },
     enqueueSnack ({ text, color }) {
       this.snackbarModel = {
