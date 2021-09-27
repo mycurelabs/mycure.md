@@ -1,78 +1,111 @@
 <template lang="pug">
-  v-card(height="100%").card-outter.elevation-3
-    v-card-text.text-center
-      v-avatar(size="125")
-        img(:src="clinicPicURL")
+  v-card(width="100%" flat).px-1.py-1.rounded-xl.card-outter
     v-card-text
-      h3.text-center {{ clinic.name }}
-        template(v-if="isVerified")
-          | &nbsp;
-          v-icon(color="primary" small) mdi-check-circle-outline
-      br
-      //- Address
-      div.d-flex
-        v-icon(color="primary").mr-2.mb-auto.mt-1 mdi-home-variant-outline
-        p(:class="{ 'font-italic': !clinic.address }").text-left {{ clinic.address | prettify-address }}
-      //- Contact number
-      div.d-flex
-        v-icon(color="primary").mr-2.mb-auto.mt-1 mdi-phone-in-talk
-        p(:class="{ 'font-italic': !phone }") {{ phone ? `+${phone}` : 'No information provided' }}
-      //- Email
-      div.d-flex
-        v-icon(color="primary").mr-2.mb-auto.mt-1 mdi-email
-        p(:class="{ 'font-italic': !email }") {{ email || 'No information provided' }}
-      br
-      template(v-if="clinicSchedules && clinicSchedules.length === 0")
-        div(:class="{ 'justify-center' : $isMobile}").d-flex
-          v-icon(color="primary" left).mr-2.mb-auto.mt-1 mdi-calendar-today
-          i No schedules available
-      div(v-else :class="{ 'justify-center' : $isMobile}").d-flex
-        v-icon(color="primary" left).mr-2.mb-auto.mt-1 mdi-calendar-today
-        table
-          tr(v-for="sched in clinicSchedules").font-weight-600
-            td(width="70") #[b.text-capitalize {{ formatDay(sched) }}]
-            td {{sched.startTime || sched.opening | morph-date-format('hh:mm A')}}
-            td -
-            td {{sched.endTime || sched.closing | morph-date-format('hh:mm A')}}
-      br
-      div(v-if="fullSchedules.length > 3").pl-3
-        a(
-          @click="clinicSchedulesExpanded = !clinicSchedulesExpanded"
-        ) View {{clinicSchedulesExpanded ? 'less' : 'more'}}
-        br
-    div.card-actions.px-3.pb-3
-      //- Online Consult
+      v-row
+        v-col(cols="5" md="3" justify="center" align="center").text-center
+          img(
+            :src="clinicPicURL"
+            alt="Services"
+            width="90%"
+          ).ma-3.rounded-xl
+        v-col(cols="12" md="8").pt-5
+          div
+            v-clamp(
+              autoresize
+              :max-lines="1"
+            ).font-weight-bold.mb-0.mc-content-set-3 {{ clinic.name }}&nbsp;
+          //- Address
+          v-row.mt-2
+            v-icon(color="primary") mdi-home-variant-outline
+            v-col.font-gray
+              span.mc-content-set-4 Address
+              v-clamp(autoresize :max-lines="1" :class="{ 'font-italic': !clinic.address }").font-weight-semibold {{ clinic.address | prettify-address }}&nbsp;&nbsp;
+          //- Contact
+          v-row
+            v-icon(color="primary") mdi-phone-in-talk
+            v-col.font-gray
+              span.mc-content-set-4 Contact Number
+              v-clamp(
+                autoresize
+                :max-lines="1"
+                :class="{ 'font-italic': !phone }"
+              ).font-weight-semibold {{ phone ? `+${phone}` : 'No information provided' }}
+          //- Email
+          v-row
+            v-icon(color="primary") mdi-email
+            v-col.font-gray
+              span.mc-content-set-4 Email
+              v-clamp(
+                autoresize
+                :max-lines="1"
+                :class="{ 'font-italic': !email }"
+              ).font-weight-semibold {{ email || 'No information provided'}}
+      //- Schedules
+      v-row.pt-2
+        v-col(cols="1" v-if="!$isMobile")
+        v-badge(
+          v-for="(day, key) in days"
+          :key="key"
+          :color="isClinicOpen(day.order) ? 'success' : 'grey'"
+          :content="day.dayName.charAt(0)"
+          inline
+          large
+        )
+        v-spacer
+        a(v-if="!$isMobile" @click="scheduleDialog = true").primary--text.font-weight-medium View full schedule
+        v-col(cols="12" v-else)
+          a(@click="scheduleDialog = true").primary--text.font-weight-medium View full schedule
+    v-spacer
+    v-card-actions.pa-2
+      v-spacer(v-if="!$isMobile")
       v-btn(
-        color="accent"
-        block
+        color="success"
+        depressed
         large
+        :href="!readOnly && telehealthURL"
         :disabled="!canOnlineBook"
-        :href="telehealthURL"
-      ).my-4.text-none.rounded-lg
-        v-icon(left) mdi-video-outline
-        b Online Consult
-
-      //- Physical Visit
+      ).text-none.font-12.mx-1.clinic-book-btn
+        v-icon(small left) {{ canOnlineBook ? 'mdi-video-outline' : 'mdi-close' }}
+        span Online Consult
       v-btn(
-        color="secondary"
-        block
+        color="info"
+        depressed
         large
         :disabled="!canVisit"
-        :href="visitURL"
-      ).text-none.rounded-lg
-        v-icon(left) mdi-stethoscope
-        b Visit Clinic
+        :href="!readOnly && visitURL"
+      ).text-none.font-12.mx-1.clinic-book-btn
+        v-icon(small left) {{ canVisit ? 'mdi-stethoscope' : 'mdi-close' }}
+        span Visit Clinic
+      v-spacer(v-if="!$isMobile")
+
+    //- Schedule Dialog
+    v-dialog(v-model="scheduleDialog" width="600")
+      v-card.pa-3
+        v-toolbar(flat)
+          v-toolbar-title.primary--text Schedules
+            br
+            h5.black--text {{ clinic.name }}
+          v-spacer
+          v-btn(icon @click="scheduleDialog = false")
+            v-icon mdi-close
+        v-card-text.pt-3
+          schedules-list(:items="groupedSchedules")
 </template>
 
 <script>
+import isNil from 'lodash/isNil';
 import uniqWith from 'lodash/uniqWith';
+import VClamp from 'vue-clamp';
 // - components
 import BookAppointmentBtn from '~/components/commons/book-appointment-btn';
+import SchedulesList from '~/components/clinic-website/services/service-schedules';
 import { formatAddress } from '~/utils/formats';
 
 export default {
   components: {
     BookAppointmentBtn,
+    SchedulesList,
+    VClamp,
   },
   filters: {
     prettifyAddress (address) {
@@ -138,16 +171,7 @@ export default {
       },
     ];
     return {
-      clinicSchedules: [],
-      clinicSchedulesExpanded: null,
-      fullSchedules: [],
-      clinicKeys: [
-        'description',
-        'address',
-        'phone',
-        'email',
-        'website',
-      ],
+      scheduleDialog: false,
     };
   },
   computed: {
@@ -184,17 +208,15 @@ export default {
     isVerified () {
       return !!this.clinic?.websiteId;
     },
-  },
-  watch: {
-    clinicSchedulesExpanded (val) {
-      this.fullSchedules = this.clinic?.$populated?.doctorSchedules  || this.clinic?.doctorSchedules || []; // eslint-disable-line
-
-      if (!this.fullSchedules?.length) {
-        this.clinicSchedules = [];
-        return;
-      }
-      // Organize the schedules
-      const groupedSchedules = uniqWith(this.fullSchedules
+    // - Schedules models
+    // all schedules
+    fullSchedules () {
+      return this.clinic?.$populated?.doctorSchedules  || this.clinic?.doctorSchedules || []; // eslint-disable-line
+    },
+    // schedules organized
+    groupedSchedules () {
+      const schedules = this.fullSchedules;
+      return uniqWith(schedules
         .map((schedule) => {
           const { day, order } = this.days.find(day => day.order === schedule.day);
           return {
@@ -205,15 +227,7 @@ export default {
         })
         .sort((a, b) => a.day !== b.day ? a.day - b.day : a.startTime - b.startTime) || []
       , (a, b) => a.day === b.day && a.startTime === b.startTime);
-      if (!val && groupedSchedules && groupedSchedules.length >= 3) {
-        this.clinicSchedules = groupedSchedules.slice(0, 3);
-        return;
-      }
-      this.clinicSchedules = groupedSchedules;
     },
-  },
-  created () {
-    this.clinicSchedulesExpanded = false;
   },
   methods: {
     visitWebsite (url) {
@@ -225,27 +239,19 @@ export default {
       const comparingItem = typeof (schedule.day) === 'number' ? schedule.day : schedule.order;
       return this.days.find(day => day.order === comparingItem).day;
     },
+    isClinicOpen (dayValue) {
+      const matchedDay = this.groupedSchedules.find(schedule => (schedule.day || schedule.order) === dayValue);
+      return !isNil(matchedDay);
+    },
   },
 };
 </script>
 
 <style scoped>
+.card-outter {
+  border: 0.5px solid grey !important;
+}
 .clinic-book-btn {
   width: 150px;
-}
-
-td {
-  vertical-align: unset !important;
-}
-
-.card-outter {
-  position: relative;
-  padding-bottom: 120px;
-}
-
-.card-actions {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
 }
 </style>

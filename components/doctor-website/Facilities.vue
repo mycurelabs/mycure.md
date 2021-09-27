@@ -7,7 +7,6 @@
         v-for="(clinic, key) in clinics"
         :key="key"
         cols="12"
-        md="6"
       )
         facility-item(:clinic="clinic" :doctor-id="doctorId" :is-preview-mode="isPreviewMode")
       v-col(cols="12")
