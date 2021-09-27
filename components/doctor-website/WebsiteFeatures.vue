@@ -26,7 +26,7 @@
           @onUpdatePage="$emit('onUpdateClinicPage', $event)"
         )
       v-tab-item(value="services")
-        v-card.rounded-xl.bordered-card
+        v-card(flat).rounded-xl.bordered-card
           v-card-text
             h2 Services Offered
             v-list(v-if="services.length" dense)
@@ -38,12 +38,10 @@
             p(v-else).font-open-sans.font-gray.mt-1 This doctor has not listed any services yet. You may check this website from time to time for updates!
 
       v-tab-item(value="learning-corner")
-        v-card.rounded-xl.bordered-card
-          v-card-text
-            learning-corner(
-              :is-preview-mode="isPreviewMode"
-              :doctor-id="doctorId"
-            )
+        learning-corner(
+          :is-preview-mode="isPreviewMode"
+          :doctor-id="doctorId"
+        )
 </template>
 
 <script>
