@@ -13,6 +13,7 @@
     )
     //- First panel
     main-panel(
+      :metrics="doctorMetrics"
       :pic-url="picURL"
       :full-name="fullNameWithSuffixes"
       :bio="bio"
@@ -59,7 +60,6 @@
               :bio="bio"
               :specialties="specialties"
               :education="education"
-              :metrics="doctorMetrics"
               :is-bookable="isBookable"
               :is-preview-mode="isPreviewMode"
               @book="onBook"

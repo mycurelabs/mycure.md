@@ -19,30 +19,32 @@
             br
             h2 Dr. {{ fullName }}
           //- Professional Info
-          v-col(cols="10" v-if="hasProfessionalInfo").text-center.mb-10
+          v-col(cols="10" md="8" v-if="hasProfessionalInfo").text-center.mb-10
             p(v-if="practicingYears" style="color: #878E9B;").font-open-sans.font-weight-medium {{practicingYears}} Years of Experience
-            br(v-else)
-            v-chip(v-for="(specialty, key) in specialties" :key="key" color="white").ma-1
-              span(style="color: #878E9B;") {{ specialty }}
+            span {{ specialties.slice(0, 3).join(', ')}}
+          //- Analytics
+          v-col(cols="6" md="8")
+            v-row(justify="center")
+              v-col(v-for="(metric, key) in metricMappings" :key="key" cols="4" sm="3").text-center
+                v-avatar(size="50" :color="metric.color").lighten-3
+                  v-icon(:color="metric.color").darken-1 {{ metric.icon }}
+                br
+                span.lh-title
+                  span.font-14.font-weight-bold {{ metricData[metric.value] }}
+                  br
+                  span.font-12 {{ metric.title }}
           //- Consult btn
           v-col(cols="10").text-center.justify-center
-              div(v-if="isBookable").white.btn-banner
-                strong(slot="badge").font-18.warning--text I'm available
-              v-hover(
-                v-slot="{ hover }"
-                open-delay="100"
-              )
-
-                v-btn(
-                  rounded
-                  depressed
-                  x-large
-                  :color="hover ? 'info' : 'warning'"
-                  :class="{ 'font-11' : $isMobile }"
-                  :disabled="!isBookable"
-                  @click="onBook"
-                ).text-none.font-weight-bold.custom-book-btn.font-18
-                  | {{ !isBookable ? 'The doctor is out' : hover ? 'Book me now' : 'The doctor is in' }}
+            v-btn(
+              hover
+              rounded
+              depressed
+              x-large
+              color="info"
+              :class="{ 'font-11' : $isMobile }"
+              :disabled="!isBookable"
+              @click="onBook"
+            ).text-none.font-weight-bold.custom-book-btn.font-18 {{ !isBookable ? 'The doctor is out' : 'Book me now' }}
 </template>
 
 <script>
@@ -81,6 +83,10 @@ export default {
       type: Number,
       default: null,
     },
+    metrics: {
+      type: Object,
+      default: () => ({}),
+    },
     isVerified: {
       type: Boolean,
       default: false,
@@ -95,12 +101,45 @@ export default {
     },
   },
   data () {
+    this.metricMappings = [
+      {
+        icon: 'mdi-eye',
+        title: 'views',
+        value: 'websiteVisits',
+        color: 'info',
+      },
+      {
+        icon: 'mdi-pulse',
+        title: 'lives saved',
+        value: 'patients',
+        color: 'error',
+      },
+      {
+        icon: 'mdi-bookshelf',
+        title: 'records',
+        value: 'records',
+        color: 'success',
+      },
+      // {
+      //   icon: 'mdi-heart-outline',
+      //   title: 'hearts',
+      //   value: 'hearts',
+      //   color: 'error',
+      // },
+    ];
     return {
-      socialMenu: false,
       canUseWebp: null,
     };
   },
   computed: {
+    metricData () {
+      return {
+        websiteVisits: this.metrics.websiteVisits || 0,
+        patients: this.metrics.patients || 0,
+        records: this.metrics.records || 0,
+        // - hearts: this.metrics.hearts || 0,
+      };
+    },
     specialtiesMapped () {
       return this.specialties.join(', ');
     },
@@ -151,9 +190,6 @@ export default {
   margin-left: -3px;
   top: 0;
 }
-.social-image:hover {
-  cursor: pointer !important;
-}
 .bg-png {
   background-image: url('../../assets/images/doctor-website/Doctor Website - Background Clouds.png');
 }
@@ -163,7 +199,7 @@ export default {
 .panel-bg {
   background-size: cover;
   width: 100%;
-  height: 1100px;
+  height: 1150px;
   position: relative;
   /* top: 0;
   position: absolute; */
@@ -171,6 +207,9 @@ export default {
 .custom-book-btn {
   height: 70px !important;
   width: 300px;
+}
+.book-text:hover {
+  cursor: pointer;
 }
 
 .btn-banner {
