@@ -52,7 +52,7 @@
           large
         )
         v-spacer
-        a(v-if="!$isMobile" @click="scheduleDialog = true").primary--text.font-weight-medium View full schedule
+        a(v-if="!$isMobile" @click="scheduleDialog = true").primary--text.font-weight-medium.pr-3 View full schedule
         v-col(cols="12" v-else)
           a(@click="scheduleDialog = true").primary--text.font-weight-medium View full schedule
     v-spacer

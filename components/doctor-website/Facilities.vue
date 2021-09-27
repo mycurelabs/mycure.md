@@ -68,6 +68,17 @@ export default {
 <style scoped>
 #clinics-list-top {
   height: 700px;
+  width: 100%;
   overflow-y: scroll;
+}
+
+#clinics-list-top::-webkit-scrollbar {
+  width: 11px;
+}
+
+#clinics-list-top::-webkit-scrollbar-thumb {
+  background-color: #04B1E7;
+  border-radius: 6px;
+  border: 3px solid #f3f0dd;
 }
 </style>
