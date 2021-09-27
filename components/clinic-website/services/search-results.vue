@@ -29,7 +29,7 @@
             //-   :is-preview-mode="isPreviewMode"
             //-   :read-only="readOnly"
             //- )
-            doc-info-card(
+            doc-item-card(
               v-if="!!item.uid"
               minified
               show-book-buttons
@@ -50,13 +50,12 @@
 
 <script>
 // import DocItemCard from '../DocItemCard';
+import DocItemCard from '../DocItemCard';
 import SearchFilters from '../SearchFilters';
 import ServiceItem from './service-item';
-import DocInfoCard from '~/components/directory/DocInfoCard';
 export default {
   components: {
-    // DocItemCard,
-    DocInfoCard,
+    DocItemCard,
     SearchFilters,
     ServiceItem,
   },

@@ -24,7 +24,7 @@
         :key="key"
         :class="{'mt-0': key === 0}"
       ).my-3
-        doc-info-card(
+        doc-item-card(
           v-if="!!item.uid"
           minified
           show-book-buttons
@@ -54,11 +54,11 @@
 
 <script>
 import VueScrollTo from 'vue-scrollto';
+import DocItemCard from '../DocItemCard';
 import ServiceItem from './service-item';
-import DocInfoCard from '~/components/directory/DocInfoCard';
 export default {
   components: {
-    DocInfoCard,
+    DocItemCard,
     ServiceItem,
   },
   props: {
