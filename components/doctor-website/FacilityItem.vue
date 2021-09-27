@@ -179,7 +179,7 @@ export default {
       return this.clinic?.teleconsultQueue;
     },
     canVisit () {
-      return !!this.clinicSchedules?.length;
+      return !!this.fullSchedules?.length;
       // return this.clinic?.types?.includes('doctor-booking' || 'clinic-booking');
     },
     telehealthURL () {
