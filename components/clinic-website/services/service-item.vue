@@ -93,7 +93,7 @@
             v-icon(small left) {{ isAvailable ? 'mdi-stethoscope' : 'mdi-close' }}
             span Visit Doctor
     //- Schedule dialog
-    v-dialog(v-model="scheduleExpanded" width="1000")
+    v-dialog(v-model="scheduleExpanded" width="600")
       v-toolbar(flat)
         v-toolbar-title.primary--text Available Schedules
         v-spacer

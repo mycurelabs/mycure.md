@@ -1,38 +1,36 @@
 <template lang="pug">
-  v-card(width="100%" :class="paddings").rounded-xl
+  v-card(width="100%").px-1.py-1.rounded-xl
     v-card-text
       v-row
-        v-col(cols="5" :md="imageColumn" justify="center" align="center").text-center
+        v-col(cols="5" md="3" justify="center" align="center").text-center
           img(
             :src="picURL"
             alt="Services"
             width="90%"
           ).ma-3.rounded-xl
-        v-col(cols="12" :md="infoColumn").pt-5
+        v-col(cols="12" md="8").pt-5
           div
             v-clamp(
               autoresize
               :max-lines="1"
-              :class="[nameClass]"
-            ).font-weight-bold.mb-0 Dr. {{ fullNameWithSuffixes }}&nbsp;
+            ).font-weight-bold.mb-0.mc-content-set-3 Dr. {{ fullNameWithSuffixes }}&nbsp;
           div.info--text.font-weight-semibold
             v-clamp(
               v-if="hasSpecialties"
               autoresize
               :max-lines="1"
             ) {{ doctor.doc_specialties[0] }}&nbsp;&nbsp;
-            span(v-else-if="!hasSpecialties && !minified") ---&nbsp;&nbsp;
             //- v-chip(v-if="doctor.doc_website" color="primary" outlined x-small).mt-1 verified
           v-row.mt-2
-            v-icon(color="primary" v-bind="iconBindings") mdi-medical-bag
+            v-icon(color="primary") mdi-medical-bag
             v-col.font-gray
-              span(:class="sectionHeaderClass") Specialization
+              span.mc-content-set-4 Specialization
               p(v-if="hasSpecialties").font-weight-semibold {{ specialtiesText }}&nbsp;&nbsp;
               p(v-else).font-weight-semibold &nbspNo information provided
-          v-row(:class="{'mt-2': !minified}")
+          v-row
             v-icon(color="primary" ) mdi-briefcase-variant-outline
             v-col.font-gray
-              span(:class="sectionHeaderClass") Experience
+              span.mc-content-set-4 Experience
               v-clamp(
                 v-if="doctor"
                 autoresize
@@ -42,7 +40,7 @@
           v-row(v-if="!minified" :class="{'mt-2': !minified}")
             v-icon(color="primary" v-bind="iconBindings") mdi-information-outline
             v-col.font-gray
-              span(:class="sectionHeaderClass") About
+              span.mc-content-set-4 About
               v-clamp(
                 v-if="bio"
                 autoresize
@@ -61,9 +59,9 @@
           large
         )
         v-spacer
-        a(v-if="!$isMobile").primary--text.font-weight-medium View full schedule
+        a(v-if="!$isMobile" @click="scheduleDialog = true").primary--text.font-weight-medium View full schedule
         v-col(cols="12" v-else)
-          a.primary--text.font-weight-medium View full schedule
+          a(@click="scheduleDialog = true").primary--text.font-weight-medium View full schedule
     v-spacer
     slot(name="card-actions")
       v-card-actions(v-if="showBookButtons").pa-2
@@ -102,42 +100,28 @@
                 ).text-none.elevation-0.rounded-pill
                   v-icon mdi-open-in-new
                   span.generic-button-text &nbsp;View Profile
+    v-dialog(v-model="scheduleDialog" width="600")
+      v-card.pa-3
+        v-toolbar(flat)
+          v-toolbar-title.primary--text Schedules
+            br
+            h5.black--text Dr. {{ fullNameWithSuffixes }}
+          v-spacer
+          v-btn(icon @click="scheduleDialog = false")
+            v-icon mdi-close
+        v-card-text.pt-3
+          schedules-list(:items="groupedSchedules")
 </template>
 
 <script>
 import VClamp from 'vue-clamp';
 import isNil from 'lodash/isNil';
+import SchedulesList from './services/service-schedules';
 import { formatAddress } from '~/utils/formats';
-
-const COMPONENT_SPECS = {
-  paddings: {
-    default: 'px-5 py-10',
-    minified: 'px-1 py-1',
-  },
-  iconBindings: {
-    default: { xLarge: true },
-    minified: { medium: true },
-  },
-  imageColumn: {
-    default: 5,
-    minified: 3,
-  },
-  infoColumn: {
-    default: 6,
-    minified: 8,
-  },
-  nameClass: {
-    default: 'mc-title-set-2',
-    minified: 'mc-content-set-3',
-  },
-  sectionHeaderClass: {
-    default: 'mc-content-set-4',
-    minified: 'mc-content-set-4',
-  },
-};
 
 export default {
   components: {
+    SchedulesList,
     VClamp,
   },
   props: {
@@ -176,7 +160,9 @@ export default {
       { text: 'Sa', value: 6 },
       { text: 'S', value: 0 },
     ];
-    return {};
+    return {
+      scheduleDialog: false,
+    };
   },
   computed: {
     hasDoctorWebsite () {
@@ -217,28 +203,6 @@ export default {
     },
     hasSpecialties () {
       return this.doctor?.doc_specialties?.length;
-    },
-    // Component specs
-    version () {
-      return this.minified ? 'minified' : 'default';
-    },
-    paddings () {
-      return COMPONENT_SPECS.paddings[this.version];
-    },
-    iconBindings () {
-      return COMPONENT_SPECS.iconBindings[this.version];
-    },
-    imageColumn () {
-      return COMPONENT_SPECS.imageColumn[this.version];
-    },
-    infoColumn () {
-      return COMPONENT_SPECS.infoColumn[this.version];
-    },
-    nameClass () {
-      return COMPONENT_SPECS.nameClass[this.version];
-    },
-    sectionHeaderClass () {
-      return COMPONENT_SPECS.sectionHeaderClass[this.version];
     },
     fullSchedules () {
       return this.doctor?.scheduleData || this.doctor?.schedules || [];
